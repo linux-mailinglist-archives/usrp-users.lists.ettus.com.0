@@ -2,242 +2,310 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D6472EBE3
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 21:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4660372EBF8
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 21:30:04 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CD6EA384B05
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 15:25:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 82838384B05
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 15:30:03 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686684329; bh=/ut+M8o7j30FRpc2GLuCJni7cO33g1Hz17bm/ALhy4M=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=eklJDkuQN6lK/ZzEVslSSHcbTxS4EqoRskGXfRmAWQEKlutPn4iJsHoAXTFH4PXBv
-	 LCkdcAcKI+E+5dQQOoJI1vnvdwxuVXuM+WV1oC5/eL15qEgH+hQ1K1Cf4XooyOwzMy
-	 jZ6oveOh7tjHIZHVW3UKNZ5EOGMVHuuUbLJYCF17gtgotK6/Q4e3qjB9qZ4eG8An5o
-	 3MqPdbkm7FmvKM4CFsh0DkUVDMAoScOS+JyX9JoPKorb+/GrrbWQbixF1ecZcsM6L1
-	 5Uu9Sps7aDFYnE5KPUFxw4Hbo5Sf6R7uLxyci9wRrIDwc7kdcdwxX/Yw0B+/SXslV4
-	 uqCfa4l/XkDrg==
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	by mm2.emwd.com (Postfix) with ESMTPS id F19B8384ABB
-	for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 15:24:32 -0400 (EDT)
+	t=1686684603; bh=TyO3+E3HrJpIQ8xWiTcmmt273JiIERYww64vr0qszlo=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=y3j46Az+Wc7LOA6KLeqVAkkAeuMovRNNaOCiYbdakpJ29b803T+NqKT4x3LSiSKHs
+	 OymnTBpnWHaMwSUdbbrQ5OKJgGqhHNj0tn9TG3LfZgXiZYoKb9YlxBsvjLFNK7K4Ml
+	 TvylWd/Na0Bb+cOoXBDRkPdJNLf9t/Yu5L2UDc14UyHKVXcU/D8hnWLyUEzTCYkogp
+	 GpS11XNseKDj/NILW7uU9T5bNxrsQtiN2tcubAThsq6OeTqcbOB/tRm3K66Zr0EdFF
+	 j9d1iTMhztQ44sQF7IJHT3zfKk786Us4XF/iTPhod7ohy+kWu+nVcOT5Q2k4xhTsEx
+	 UaoSEZOCAiLLw==
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 45178384965
+	for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 15:29:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VfcGdAII";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="j2FIvn2D";
 	dkim-atps=neutral
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-75d4094f9baso120725885a.1
-        for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 12:24:32 -0700 (PDT)
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-543c692db30so4256578a12.3
+        for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 12:29:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686684272; x=1689276272;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3gwTvbcX+Z2utV3Qnc32hw24SdQtGiHqHJAai8QOW3g=;
-        b=VfcGdAIIom+cQsEuE4Byq5zorZkFBewxKOug7M97CsgK1StjzyrXM8HePAiJpJBfrX
-         vG/BTOAIaZgurIUSPbAJ8qca8Cg9ZzDZPwu2WpP6fc5eO5Wffaufa7MMi61deGbv5nn/
-         sJs6gyNTcxx8cP3ibbXfxeXIq8caMuvjy14YuGC7gLC/mVZ3uXgmunUoElsKabJx50St
-         DJLvBk7cLRp0XsGQZBP4u9TWZQvSpeKrMPZSBBZy5x27PjMxD85z80mVLNH0IUBzec6M
-         TbFlo88bxxdrqFxmy7cul5Cl4Ayb0SXn+rm1F11Rc86eAuRMhEZrAyzUflONGDi6nrRa
-         s01w==
+        d=nd.edu; s=google; t=1686684546; x=1689276546;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jgHeon+k0ItXNEGGVyYOVmyo7zu2IEGhDj01biRru2U=;
+        b=j2FIvn2D7hlh8qdbuK5q048NlLg4q2RXoc0UpnPcU/79GhAKu6Jduwbl7rlq4W9sOQ
+         MFhpN0Jhi2Ws4mD0GK0QY69WJi/Cssx7+BZ5GHZS8KlvoSuWDOGYDR3FiRebgJb8ws3L
+         +WT2XT+6H12hDr9TZ+7HrPfy9/m5PFSiivnkBYFA2xEX4EmD8DqfYW2o8Uz+Xrqll7xh
+         JUZJ2+T68D3JtD/qa7ljbnw6GGWsKm4YtDu7rmhaIyaaqN53XzLkeP8TJ/HmY8awHtJ3
+         Agf4rZHj5dHset60Mxa05sO5CnlkMwKsLaWZU6e2izXnb+Ac/f++jfbAw79UQeQ6Dvoc
+         2X3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686684272; x=1689276272;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3gwTvbcX+Z2utV3Qnc32hw24SdQtGiHqHJAai8QOW3g=;
-        b=GPpfdYFTCZkDpRDvYH9uRcJfylEg98DCHSrXV+3pNLf5VUfPTrhKccUKehKwQ5MGGe
-         JGV0egEUsAdEigyOjDbrUqIL7KzKjjxD56KSoUW21FaxwCsZhNk5LvpL7ekVeswIx3jY
-         dLVn7pYaAgr5wcli6pzO9eUbiNVzbvT08pzhtFb40/3yn7F3EtEUbHZ2kPQ1qmnVc1ud
-         V1QD9/GrQBVOuFuj5ybZd5mMXJFjE7jC2ZC58kyI6Ae1lxCGfA+P2TxbRSd1LJJvsgrF
-         fzfENGhAjSz9q2R3bvF7KqRG8aRm+0iUl97FvJiRmIljLc3tbDjhUkzUpZ6s4E/V2Q0n
-         T/tw==
-X-Gm-Message-State: AC+VfDwVJEux+5RaiGkUl8EByEvlVyN1trk63BxwI7oIdDy3G3KLD3gv
-	DNLMkrSg8ZvpIwMFSaMG7hXcQfevcEhQhA==
-X-Google-Smtp-Source: ACHHUZ5VbtzCYLWu/CBnX32aRtYVYkU/BbxuB0P9WPRvt1p3AKHRTWYILptf4iC/KUDUmBS8e+AdxA==
-X-Received: by 2002:a05:620a:2a16:b0:75e:b9e1:876d with SMTP id o22-20020a05620a2a1600b0075eb9e1876dmr16340731qkp.75.1686684272287;
-        Tue, 13 Jun 2023 12:24:32 -0700 (PDT)
-Received: from [192.168.2.201] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id k4-20020a05620a142400b0075ceca53e84sm3821189qkj.15.2023.06.13.12.24.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 12:24:32 -0700 (PDT)
-Message-ID: <64bd7132-71d1-a93d-a252-ef43b790fc9d@gmail.com>
-Date: Tue, 13 Jun 2023 15:24:31 -0400
+        d=1e100.net; s=20221208; t=1686684546; x=1689276546;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jgHeon+k0ItXNEGGVyYOVmyo7zu2IEGhDj01biRru2U=;
+        b=UnUjNQoSE2XK87cp47eqyMHm8DSQccml3DpMCIbYBLk/68c5EoR8MLR75upDiXtdIM
+         5Wqo3rjpuSuL5oZu8SW4djt2oxnaOnspqITNvbClsmgUOKj/ttI6sSZKTmOkUDktnnJG
+         nvxER5ElGiJH9cOOJfNLM5Ynx0vf2X7EMnD3gNbfNAXuqeD8AGZFyjjFxKgyNJuNjS+G
+         i+9zi3U7aRj8euRyPIVdpmddKP08M/mjfYkaSWx88qOCA5DIjZQSmZeoA9gA0WlowOaF
+         F3lk3hAItmE0WC18MVVrdsi9PuTd0IpT6vOKD5L+U7TZ6SR1X5IJeVgbatAk099tAgWr
+         cGaQ==
+X-Gm-Message-State: AC+VfDyW7QIy7/UY7fQZ+rjrOzZpgVcYyA1CqL1phwMo843I9Ln2nNoD
+	EIdgXsFrWvnRD38Dd4ncPP3BHIcks6bu0CabgI+vVw==
+X-Google-Smtp-Source: ACHHUZ4nKqVD5r3K5bg9h1ayGi+V8FGetJh77VBVnyMPMDdOVDeQ1Ey3rC/YVqRUPpP8R/t+x6Q6jyTdcWY5AJjVpwE=
+X-Received: by 2002:a17:90a:d3cf:b0:256:cf04:f8f7 with SMTP id
+ d15-20020a17090ad3cf00b00256cf04f8f7mr12329882pjw.29.1686684544759; Tue, 13
+ Jun 2023 12:29:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Rob Kossler <rkossler@nd.edu>, Michael Toussaint <mtoussaint@chaosinc.com>
-References: <CAMhTvws54hP-vxo9FwLt9FncOgGsR-Ps+FAe4x9-mnJVy59C0Q@mail.gmail.com>
- <f51e48a3-9d30-2e07-e7e2-a30cc4bab1f9@gmail.com>
- <CAB__hTQgDtPFOMXqK7-gyAhnc_1Q7=Or9rw2bgBaqwe+_xTSbw@mail.gmail.com>
- <CAMhTvwvb+g+CP_yTedvAfObnjbmUUw+ZOC2J1m3xYbWh_HaC_g@mail.gmail.com>
- <CAB__hTSa6Gx54yshpFFGEdzmLoO48YTsAR8M0fTdkjqRkM2D3Q@mail.gmail.com>
- <CAMhTvwvk-15EvqX3T8ze-+FuLOU4jYxNtkK_K7AYa7OJkAwOAg@mail.gmail.com>
- <CAB__hTRW5aPaRYhuC6sZm3G1hJkpip-qPghwKc02XKwghxzb9g@mail.gmail.com>
- <CAMhTvwv0n=cYmx=CaW4qyVsnSkpaVmF39Ee2E4rL8Ay0Yb-h8g@mail.gmail.com>
- <CAB__hTRC45inNTcHWFo6dvqOTDersMMyi1z=yz-zSY_=s-iCUg@mail.gmail.com>
- <CAMhTvwtOr4=S68thYh_z9knGtRu1yn0gQdMkzfPs8XBCA03s+w@mail.gmail.com>
- <6149614c-e040-74d7-c794-d718094de6bc@gmail.com>
- <CAMhTvwu6hYdwEtsW3+z4zJgrDe2mex6YFZHBBjJFRUWOnJ8LZg@mail.gmail.com>
- <CAB__hTRJfxrj_SpN4Hn66Q=tE+-cpmfRxCSrxEiO+zD=g3C76A@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTRJfxrj_SpN4Hn66Q=tE+-cpmfRxCSrxEiO+zD=g3C76A@mail.gmail.com>
-Message-ID-Hash: QN2MYBRB6VVF2ZGJVVJLAJVXH4YNEANM
-X-Message-ID-Hash: QN2MYBRB6VVF2ZGJVVJLAJVXH4YNEANM
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAH2Hh738iQj6a55CAsuN9Y9f4OKVHSuWuOrqeP_+06gMhrG=LA@mail.gmail.com>
+ <79a14485-d53c-382b-e75c-97ee5d10cf29@gmail.com>
+In-Reply-To: <79a14485-d53c-382b-e75c-97ee5d10cf29@gmail.com>
+Date: Tue, 13 Jun 2023 15:28:52 -0400
+Message-ID: <CAB__hTTFQy73SDsb9grWt6rwzFycu33fYBH74ATR=vFBGs8BEw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: WYEZVULQPC6DXVBCNXVOZUOKGVMPKUWN
+X-Message-ID-Hash: WYEZVULQPC6DXVBCNXVOZUOKGVMPKUWN
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N321 LO Distribution
+Subject: [USRP-users] Re: X310 Dual 200 Msps Streaming
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QN2MYBRB6VVF2ZGJVVJLAJVXH4YNEANM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WYEZVULQPC6DXVBCNXVOZUOKGVMPKUWN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3261728439052837529=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============8056758488663943810=="
 
-This is a multi-part message in MIME format.
---===============3261728439052837529==
-Content-Type: multipart/alternative;
- boundary="------------0r08dsV5COBzthv7k7lsvASW"
-Content-Language: en-US
+--===============8056758488663943810==
+Content-Type: multipart/alternative; boundary="0000000000002506fd05fe07d99b"
 
-This is a multi-part message in MIME format.
---------------0r08dsV5COBzthv7k7lsvASW
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000002506fd05fe07d99b
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 13/06/2023 15:17, Rob Kossler wrote:
-> Hi Michael,
->
->
->         LZ631368043US
->
-> One calibration procedure could be that you simply add a digital phase=20
-> offset to your 2nd Tx channel until your oscilloscope traces line up=20
-> to your satisfaction.=C2=A0 It would be nice if the default FPGA image=20
-> included a simple Rx & Tx complex scalar for this exact purpose=20
-> (inside the DDC & DUC), but that does not exist (yet).=C2=A0 If you are=
-=20
-> using gnuradio, it should be easy to insert a complex scalar=20
-> multiplication that would allow you to adjust the samples streaming to=20
-> just one channel.=C2=A0 In any case, if the signal on the oscilloscope=20
-> lines up well over your desired bandwidth, then you can declare=20
-> "mission accomplished".=C2=A0 On the other hand, if your signal lines u=
-p at=20
-> one end of your frequency bandwidth but then diverges at the other=20
-> end, it likely means a delay mismatch that you could potentially=20
-> "calibrate" by adding an appropriate length of cable to one path (in=20
-> cable, 1 ns delay is about 8 inches).
-> Rob
->
-I'll note that in any actual, deployed, multi-antenna phase-coherent=20
-system, calibrating the *radio* phase is only part of the
- =C2=A0 battle.=C2=A0 If there's any significant (where "significant" is =
-in terms=20
-of wavelength) cable-length between the radio and the antennas,
- =C2=A0 there will be that part to compensate, and the longer the cable, =
-the=20
-more it is subject to differential heating, and thus
- =C2=A0 differential phase delays.
-
-[Old man anecdote time]
-
-Way back in the 1970s, a radio astronomy observatory in British Columbia=20
-was setting up their synthesis array for observations
- =C2=A0 at 327MHz and 1420MHz.=C2=A0=C2=A0 They had to come up with an ex=
-otic system=20
-for measuring the phase delays of the cables in
- =C2=A0 "near real time" to apply compensating phase offsets where the=20
-downconversions happened at the antennas (7 of them).
- =C2=A0 One cable in full Sun, the other in a shadow (at least for part o=
-f=20
-its length), and you get differential phase offsets.=C2=A0 Since the
- =C2=A0 array spanned 1km, cable issues HAD to be dealt with.=C2=A0 Even =
-though=20
-the IF going down those cables was at 30MHz or so...
+My own experience is that 200 S/s on two channels is very difficult to
+achieve from the host. Separate streamers may help, but you will likely
+need to move to DPDK to get the best performance. I have not tried DPDK
+recently, but when I tried it a few years ago, the performance was
+excellent, but it was not easy to get it working properly (and there were
+some negative side effects that I never solved).  The "skip_ddc" and
+"skip_duc" do not have any effect on FPGA images that are "statically
+linked" between the Radio and DDC/DUC (which is likely all UHD 4 images).
 
 
---------------0r08dsV5COBzthv7k7lsvASW
-Content-Type: text/html; charset=UTF-8
+On Tue, Jun 13, 2023 at 12:40=E2=80=AFPM Marcus D. Leech <patchvonbraun@gma=
+il.com>
+wrote:
+
+> On 12/06/2023 22:03, Aaron Smith wrote:
+> > Hello All,
+> >
+> > I am trying to transmit on two UBX-160 daughterboards  within a single
+> > X310 at 200 Msps using UHD 4.1.0.5-3.
+> >
+> > I am experiencing periodic underflows, and I have already applied all
+> > of the tips in the "USRP Host Performance Tuning Tips and Tricks"
+> > application note, with the exception of using DPDK.
+> >
+> > I have a few questions about UHD streaming and what can be done to
+> > improve performance.
+> >
+> > 1. My current implementation uses a single tx_streamer for both
+> > channels, and uses multiple threads to populate the buffers sent to
+> > the X310. Would the performance be better if I used two separate
+> > streamers, one for each channel, in separate threads?
+> I don't think there's a closed-form answer to this.  Because it would
+> depend on your particular system, application, etc.   I'd
+>    just do the experiment and see...
+>
+> >
+> > 2. I have seen some claims that DPDK is not as useful with UHD 4, is
+> > this true?
+> I don't use DPDK myself, so I don't know if that's true or not.
+>
+> >
+> > 3. With UHD 4, would it help to set the skip_duc and skip_ddc flags
+> > with full rate streaming?
+> Again, the answer here is susceptible to experiment...
+>
+> >
+> > 4. Are underflows only created within the send() function? Or can the
+> > timing of calls to send() cause underflows, especially when the burst
+> > flags are used? For example, suppose I set the start of burst flag to
+> > true for a single buffer containing 1 second of data, and then I
+> > toggle the start of burst flag to false for subsequent buffers and
+> > continuously call send() on 1 second buffers for 10 minutes. On the
+> > last second I set end of burst flag to true. The idea is to create a
+> > 10 minute long "burst." If I call send late on one of the one second
+> > buffers in the middle of the "burst" will UHD report underflows? My
+> > thinking is the X310 should think it is in the middle of a burst, and
+> > will expect data, but send() has not been called, so there is no data
+> > for the radio to read from the host, creating underflows. Perhaps I am
+> > also misunderstanding the purpose of the burst flags, as they are not
+> > well documented.
+> >
+> > Thanks for the help!
+> > Armon
+> >
+> Underflows occur when the radio hardware underflows its FIFO, which in
+> turn means the host isn't providing samples at
+>    the desired rate--the radio has no idea what your "send()" boundaries
+> are, just that it isn't getting samples when it needs
+>    them.    The data in the "send()" has to percolate through UHD,
+> through the kernel IP stack (or DPDK stack) and its buffers, and
+>    then the hardware buffers.  Any information about exactly when you
+> called "send()" is pretty invisible by the time it reaches
+>    the radio.
+>
+> The "burst" architecture is really intended for applications like TDD or
+> half-duplex, where you need to let the radio know to
+>    not expect any more TX samples, so it can do things like switch
+> antennas, etc.
+>
+>
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000002506fd05fe07d99b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 13/06/2023 15:17, Rob Kossler wrote=
-:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTRJfxrj_SpN4Hn66Q=3DtE+-cpmfRxCSrxEiO+zD=3Dg3C76A@mail.=
-gmail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">Hi Michael,
-        <h4 class=3D"a-spacing-medium">LZ631368043US </h4>
-        <div>One calibration procedure could be that you simply add a
-          digital phase offset to your 2nd Tx channel until your
-          oscilloscope traces line up to your satisfaction.=C2=A0 It woul=
-d be
-          nice if the default FPGA image included a simple Rx &amp; Tx
-          complex scalar for this exact purpose (inside the DDC &amp;
-          DUC), but that does not exist (yet).=C2=A0 If you are using
-          gnuradio, it should be easy to insert a complex scalar
-          multiplication that would allow you to adjust the samples
-          streaming to just one channel.=C2=A0 In any case, if the signal=
- on
-          the oscilloscope lines up well over your desired bandwidth,
-          then you can declare "mission accomplished".=C2=A0 On the other
-          hand, if your signal lines up at one end of your frequency
-          bandwidth but then diverges at the other end, it likely means
-          a delay mismatch that you could potentially "calibrate" by
-          adding an appropriate length of cable to one path (in cable, 1
-          ns delay is about 8 inches).</div>
-        <div>Rob</div>
-      </div>
-      <br>
-    </blockquote>
-    I'll note that in any actual, deployed, multi-antenna phase-coherent
-    system, calibrating the *radio* phase is only part of the<br>
-    =C2=A0 battle.=C2=A0 If there's any significant (where "significant" =
-is in
-    terms of wavelength) cable-length between the radio and the
-    antennas,<br>
-    =C2=A0 there will be that part to compensate, and the longer the cabl=
-e,
-    the more it is subject to differential heating, and thus<br>
-    =C2=A0 differential phase delays.<br>
-    <br>
-    [Old man anecdote time]<br>
-    <br>
-    Way back in the 1970s, a radio astronomy observatory in British
-    Columbia was setting up their synthesis array for observations<br>
-    =C2=A0 at 327MHz and 1420MHz.=C2=A0=C2=A0 They had to come up with an=
- exotic system
-    for measuring the phase delays of the cables in<br>
-    =C2=A0 "near real time" to apply compensating phase offsets where the
-    downconversions happened at the antennas (7 of them).<br>
-    =C2=A0 One cable in full Sun, the other in a shadow (at least for par=
-t of
-    its length), and you get differential phase offsets.=C2=A0 Since the<=
+<div dir=3D"ltr"><div dir=3D"ltr">My own experience is that 200 S/s on two =
+channels is very difficult to achieve from the host. Separate=C2=A0streamer=
+s may help, but you will likely need to move to DPDK to get the best perfor=
+mance. I have not tried DPDK recently, but when I tried it a few years ago,=
+ the performance was excellent, but it was not easy to get it working prope=
+rly (and there were some negative side effects that I never solved).=C2=A0 =
+The &quot;skip_ddc&quot; and &quot;skip_duc&quot; do not have any effect on=
+ FPGA images that are &quot;statically linked&quot; between the Radio and D=
+DC/DUC (which is likely all UHD 4 images).<br><div><br></div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 13=
+, 2023 at 12:40=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbr=
+aun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex">On 12/06/2023 22:03, Aaron Smith wrot=
+e:<br>
+&gt; Hello All,<br>
+&gt;<br>
+&gt; I am trying to transmit on two UBX-160 daughterboards=C2=A0 within a s=
+ingle <br>
+&gt; X310 at 200 Msps using UHD 4.1.0.5-3.<br>
+&gt;<br>
+&gt; I am experiencing periodic underflows, and I have already applied all =
+<br>
+&gt; of the tips in the &quot;USRP Host Performance Tuning Tips and Tricks&=
+quot; <br>
+&gt; application note, with the exception of using DPDK.<br>
+&gt;<br>
+&gt; I have a few questions about UHD streaming and what can be done to <br=
+>
+&gt; improve performance.<br>
+&gt;<br>
+&gt; 1. My current implementation uses a single tx_streamer for both <br>
+&gt; channels, and uses multiple threads to populate the buffers sent to <b=
+r>
+&gt; the X310. Would the performance be better if I used two separate <br>
+&gt; streamers, one for each channel, in separate threads?<br>
+I don&#39;t think there&#39;s a closed-form answer to this.=C2=A0 Because i=
+t would <br>
+depend on your particular system, application, etc.=C2=A0=C2=A0 I&#39;d<br>
+=C2=A0=C2=A0 just do the experiment and see...<br>
+<br>
+&gt;<br>
+&gt; 2. I have seen some claims that DPDK is not as useful with UHD 4, is <=
 br>
-    =C2=A0 array spanned 1km, cable issues HAD to be dealt with.=C2=A0 Ev=
-en though
-    the IF going down those cables was at 30MHz or so...<br>
-    <br>
-    <br>
-  </body>
-</html>
+&gt; this true?<br>
+I don&#39;t use DPDK myself, so I don&#39;t know if that&#39;s true or not.=
+<br>
+<br>
+&gt;<br>
+&gt; 3. With UHD 4, would it help to set the skip_duc and skip_ddc flags <b=
+r>
+&gt; with full rate streaming?<br>
+Again, the answer here is susceptible to experiment...<br>
+<br>
+&gt;<br>
+&gt; 4. Are underflows only created within the send() function? Or can the =
+<br>
+&gt; timing of calls to send() cause underflows, especially when the burst =
+<br>
+&gt; flags are used? For example, suppose I set the start of burst flag to =
+<br>
+&gt; true for a single buffer containing 1 second of data, and then I <br>
+&gt; toggle the start of burst flag to false for subsequent buffers and <br=
+>
+&gt; continuously call send() on 1 second buffers for 10 minutes. On the <b=
+r>
+&gt; last second I set end of burst flag to true. The idea is to create a <=
+br>
+&gt; 10 minute long &quot;burst.&quot; If I call send late on one of the on=
+e second <br>
+&gt; buffers in the middle of the &quot;burst&quot; will UHD report underfl=
+ows? My <br>
+&gt; thinking is the X310 should think it is in the middle of a burst, and =
+<br>
+&gt; will expect data, but send() has not been called, so there is no data =
+<br>
+&gt; for the radio to read from the host, creating underflows. Perhaps I am=
+ <br>
+&gt; also misunderstanding the purpose of the burst flags, as they are not =
+<br>
+&gt; well documented.<br>
+&gt;<br>
+&gt; Thanks for the help!<br>
+&gt; Armon<br>
+&gt;<br>
+Underflows occur when the radio hardware underflows its FIFO, which in <br>
+turn means the host isn&#39;t providing samples at<br>
+=C2=A0=C2=A0 the desired rate--the radio has no idea what your &quot;send()=
+&quot; boundaries <br>
+are, just that it isn&#39;t getting samples when it needs<br>
+=C2=A0=C2=A0 them.=C2=A0=C2=A0=C2=A0 The data in the &quot;send()&quot; has=
+ to percolate through UHD, <br>
+through the kernel IP stack (or DPDK stack) and its buffers, and<br>
+=C2=A0=C2=A0 then the hardware buffers.=C2=A0 Any information about exactly=
+ when you <br>
+called &quot;send()&quot; is pretty invisible by the time it reaches<br>
+=C2=A0=C2=A0 the radio.<br>
+<br>
+The &quot;burst&quot; architecture is really intended for applications like=
+ TDD or <br>
+half-duplex, where you need to let the radio know to<br>
+=C2=A0=C2=A0 not expect any more TX samples, so it can do things like switc=
+h <br>
+antennas, etc.<br>
+<br>
+<br>
+&gt;<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
 
---------------0r08dsV5COBzthv7k7lsvASW--
+--0000000000002506fd05fe07d99b--
 
---===============3261728439052837529==
+--===============8056758488663943810==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -247,4 +315,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3261728439052837529==--
+--===============8056758488663943810==--
