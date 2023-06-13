@@ -2,106 +2,171 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F389A72D07E
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Jun 2023 22:33:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7635072D73A
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 04:03:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D00EB384995
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Jun 2023 16:33:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9803F38455A
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Jun 2023 22:03:39 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686602004; bh=abyU657ExXEkfBIvDsNaX7fdmKHvpZcfVMUwAcpP/S4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=N/dgVcLK+WbGkL9UZkZ86RJoDgUceeean+A97ASArUWojKDMdodlbP0plc8DGrpdE
-	 lf2Dhqf2DCDwjuvXXB1IPCVHkxqenom89cJEKKoZzk4t6hNQ/9vNHn8lEo7C/YUAiB
-	 UW82Tcaj9dojg+rC/jYvF2rhg9rtjvMWIIxRCCAeOREy7Dc/5Uqm+UzWynjVEMUgtq
-	 Eu556YzVcL/eWoGLe2HuloeemUjyDdr7DKfp2ixKDCWceMpQzBUSQsee8W71S793ee
-	 Hh81hfwN1AXhAN6r/0+/TZA+OXeLnOQQi8j0duV5sm+KLxnyB2/bVoNZpQgV0XQ4MZ
-	 pcPLYmGyiBLYA==
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id F08DF384857
-	for <usrp-users@lists.ettus.com>; Mon, 12 Jun 2023 16:31:25 -0400 (EDT)
+	t=1686621819; bh=/s+oB18VOc5NmtfUgeJghZQPmASqZE2U5G9wrlRYm2Y=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=eNMClXUHRkjJV4yPZxTUFPIQfOnxEu2xeKD2sJE8TRRXnL3a6YyRZMD6AGvyO5F9K
+	 uTjDB06qP4yJTg54fpSVFcZqE1dV5kJabYwWBLZV3AwJdPdZbLhlyIls4uiXXEFjNx
+	 fatvR5Wmpp8wZqNhQtVDdmZLW9RIbXvQ1RRaHmLPGzqc0Y/hu1lOq4nBpnaz+q3oX6
+	 pgkW+v57O9+67G+a0jyVMJE4kwYW7fBZkGlqDlyiqjEQvOKwMnyAUSmUlLO/zrJ3Mg
+	 RZrWvbbK5VLJk3j7pProFS8XndoTI2OQ5UxWUmZJ+eqIpHniMxaDobjKNEanFfDpIv
+	 i1JRadjV5y+Qg==
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id E12F938455A
+	for <usrp-users@lists.ettus.com>; Mon, 12 Jun 2023 22:03:15 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pBznHzTs";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qOU7aiGm";
 	dkim-atps=neutral
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-62de8bce252so2582576d6.0
-        for <usrp-users@lists.ettus.com>; Mon, 12 Jun 2023 13:31:25 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2b1c910ee19so60136081fa.3
+        for <usrp-users@lists.ettus.com>; Mon, 12 Jun 2023 19:03:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686601885; x=1689193885;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wdRASa7kx8Vslii3cfTww3vWkjnbvx/JzaVF1aXF9IQ=;
-        b=pBznHzTsW+utq1ZmJlvB0yKJ2IWxMhA1ip0HV/HDWIbXU6i8CuiZmvb4naFCs0n5AV
-         JWPJhVTkMSqZF8qMtKKZLcTLuMxkwzt2X4DgYc6jLQz/P3gC0tVKdaXQYoJ/0ixTlCT7
-         YzZR8+5rWUerKVXWeXDnWttnTQIM0H2DafkDhE3F2Qgj9NDYdPMuxUhNyuZuUWkMkhAc
-         cHS12X8Z6A3KsXISxBdnLx25A3kENmCCDHT9ZcFKTDPAVSZU1xxKZdeVBs37zrBm7IE9
-         y+dzh1YW1eLOzoSfQ8aOxcaf52fWHrX7NK8TdZxMRc8nB0F4hB8hO05JA8uCK2i0jzak
-         pyAw==
+        d=gmail.com; s=20221208; t=1686621794; x=1689213794;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pigzo9MsxBeVt4BpL+L/4pw930S499q92nyYuElPupM=;
+        b=qOU7aiGmlq/QVR1Jo6y6bCcyYETaLpzfgPAb/PGRKLTlPDYWOB/BKZPoARB9k08Pkr
+         tzLlCgIoWO6WBCefAep4DBr/y9I37N+kq+zzjghvUDFZHX/ktwyTlpcWap70PWctGS3h
+         0rBLLm2t+CrPy1GIrlGAcmYeMHgjwHEBtxGvsP6aY+PaTLcBkm9o4gT0v62cBSp6DhER
+         YzK4nkv+S/D4JK56bLytj5mbBkKb4fcqscFw7xVJQ0TUf6kYFO5hfj7j8K5tGLymkcvB
+         AsldnLaS4CL+kGRy1YXf57VaNYTNUh5zwG1JaZwwCuOy7kr11Nvl1Y3lNp3x2e75/AnP
+         Rspw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686601885; x=1689193885;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wdRASa7kx8Vslii3cfTww3vWkjnbvx/JzaVF1aXF9IQ=;
-        b=EHl8FFAsgn9C91XGzLneTlDWpzcuBmCypV30fDaG5uMyM9OVze0o7yskECMpnEeUZh
-         7Y9atVJ0UR+PwkThy9Ur65aaGwiyUVr9l6Y/BCZ0hUfmTlYBCevcNZXSZpVESASZQg7o
-         cWliUwAgDd+gwTILAK9fIITnHJUAMq10d4uo2sYrDFYQZE20TuksgA6gMFLBfpyS4tac
-         9dQtqhy1si+h6CCGJLEjfziDSftt3wz+9OnYErw7aomSXBeYXUxaQ6OmShubW2PNlmVd
-         WBci4P8cziKIx8VaWjfPVMpHLTHfgxgROMMHYHdzb1d1Mspsx99Ntwfm4dPJ7GIw3vZi
-         Z0sw==
-X-Gm-Message-State: AC+VfDxqlAjUugl8WeyQdc83GfB24me/23+VzVqtagE1RFHVMLvLKVtt
-	ZaoaUxAj14IjnT2xeTI7W1RFIS6XII3sVg==
-X-Google-Smtp-Source: ACHHUZ4u8dKW2qJdCHPbEXfftj8TTRyr4143mkH1MOvIKM+PaUUwvrwNNgpR3bt3Zjx46joa32j2Bg==
-X-Received: by 2002:ad4:5ca9:0:b0:626:29d4:9a26 with SMTP id q9-20020ad45ca9000000b0062629d49a26mr13166486qvh.37.1686601885142;
-        Mon, 12 Jun 2023 13:31:25 -0700 (PDT)
-Received: from [192.168.2.199] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id w10-20020a0ce10a000000b006261c80d76dsm3469842qvk.71.2023.06.12.13.31.24
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jun 2023 13:31:24 -0700 (PDT)
-Message-ID: <679340f6-46c3-94a0-7d82-800b007e8b8f@gmail.com>
-Date: Mon, 12 Jun 2023 16:31:24 -0400
+        d=1e100.net; s=20221208; t=1686621794; x=1689213794;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pigzo9MsxBeVt4BpL+L/4pw930S499q92nyYuElPupM=;
+        b=e8Bnlf2uJZz/ng32WhbnOe7icnwld+ueF/sHQ31CdfyZol5+d2ghAC/cvHcO5aho3O
+         8LkxxLyrqRVPKrIQZlerOsLLrIrWE5yUu8r6spk5Su7s3NTIqhyIwD7Msx8Mqu5mlBCO
+         1VZ7y6XvRd7Tc/id9mNwVucSLpTi9bBiPcJJvyHHEJmbz0jGWQL1Zg98BeNczo8zzf9p
+         JR0otTG76cLLq+w7oBtnwh1tCrf7yfZzR/FfM/rWC7fjlhaWkydO/5Fskp7VV3atTi2l
+         Mj6otTaVo+AjLAtMyt1RH+LRHTNtKESdF1hmRGIvSh54c3MLQKS5m6edgJ5QHMgKiM72
+         QfkQ==
+X-Gm-Message-State: AC+VfDxiCbnm5PwCrh0KujyNNjtcwk92aCLBHeSKE3CCM94O+5PAsId4
+	UxW4q4u79E+NcilWgjDJlupEcQr48kXMy+AX7jTiyFz8
+X-Google-Smtp-Source: ACHHUZ6uvze02tfhy7L8yNqX16KrUiwwXEwEENzH1AfFAA5EpP0wJYAWmm6ts2frRkqsjG3W8Q5sPSIfMRDzfDknk80=
+X-Received: by 2002:a2e:8017:0:b0:2b2:7851:f059 with SMTP id
+ j23-20020a2e8017000000b002b27851f059mr3753718ljg.42.1686621793889; Mon, 12
+ Jun 2023 19:03:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <Y2TJLNy7YRT0i1dyJ6DzahVEgwKN8a1v9fgRKFaGE@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <Y2TJLNy7YRT0i1dyJ6DzahVEgwKN8a1v9fgRKFaGE@lists.ettus.com>
-Message-ID-Hash: G2FF77ZOPT3HGQK3N2QRPEXV3IIRGD5Z
-X-Message-ID-Hash: G2FF77ZOPT3HGQK3N2QRPEXV3IIRGD5Z
-X-MailFrom: patchvonbraun@gmail.com
+From: Aaron Smith <aarsmith54@gmail.com>
+Date: Mon, 12 Jun 2023 22:03:04 -0400
+Message-ID: <CAH2Hh738iQj6a55CAsuN9Y9f4OKVHSuWuOrqeP_+06gMhrG=LA@mail.gmail.com>
+To: Ettus Mail List <usrp-users@lists.ettus.com>
+Message-ID-Hash: M3PZN3OB6HCDU5VDNFP44WBYQBXV6CIP
+X-Message-ID-Hash: M3PZN3OB6HCDU5VDNFP44WBYQBXV6CIP
+X-MailFrom: aarsmith54@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Using dual 10G ethernet synchronously x310s
+Subject: [USRP-users] X310 Dual 200 Msps Streaming
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G2FF77ZOPT3HGQK3N2QRPEXV3IIRGD5Z/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M3PZN3OB6HCDU5VDNFP44WBYQBXV6CIP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============7567465466922007573=="
 
-T24gMTIvMDYvMjAyMyAxNjoyMCwgV2lsbCBIYWZ0ZWwgdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQo+
-DQo+IEhpLA0KPg0KPiBJIGFtIHRyeWluZyB0byBzdHJlYW0gZGF0YSBhdCAyMDAgTXMvcyB3aXRo
-IDIgeDMxMHMgYW5kIGFtIGhhdmluZyANCj4gdHJvdWJsZSBmaWd1cmluZyBvdXQgdGhlIG1ha2Ug
-YXJncyBmb3IgdGhpcyBjb25maWd1cmF0aW9uLiBJIGhhdmUgYmVlbiANCj4gYWJsZSB0byB1c2Ug
-YWRkciBhbmQgc2Vjb25kX2FkZHIgb24gMSBkZXZpY2UgdG8gZW5hYmxlIGR1YWwgMTBnIGV0aCwg
-DQo+IGJ1dCB0aGlzIHN5bnRheCBkb2VzbuKAmXQgc2VlbSB0byB3b3JrIHdoZW4gY29tYmluaW5n
-IHdpdGggYWRkcjAgYW5kIA0KPiBhZGRyMSBmb3IgbXVsdGlwbGUgeDMxMHMuIElzIHRoaXMgY29u
-ZmlndXJhdGlvbiBzdXBwb3J0ZWQ/DQo+DQo+DQo+IFRoYW5rcw0KPg0KPg0KPiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxp
-bmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBz
-ZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpUaGUgInNl
-Y29uZF9hZGRyIiBhcmd1bWVudCBpcyBBTFNPIG51bWVyaWNhbGx5IGluZGV4ZWQgZm9yIG11bHRp
-cGxlIA0KZGV2aWNlcywgc286DQoNCmFkZHIwPWZvbyxzZWNvbmRfYWRkcjA9Zm9vLGFkZHIxPWJh
-cixzZWNvbmRfYWRkcjE9YmFyDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2
-ZUBsaXN0cy5ldHR1cy5jb20K
+--===============7567465466922007573==
+Content-Type: multipart/alternative; boundary="000000000000e5336e05fdf93c7b"
+
+--000000000000e5336e05fdf93c7b
+Content-Type: text/plain; charset="UTF-8"
+
+Hello All,
+
+I am trying to transmit on two UBX-160 daughterboards  within a single X310
+at 200 Msps using UHD 4.1.0.5-3.
+
+I am experiencing periodic underflows, and I have already applied all of
+the tips in the "USRP Host Performance Tuning Tips and Tricks" application
+note, with the exception of using DPDK.
+
+I have a few questions about UHD streaming and what can be done to improve
+performance.
+
+1. My current implementation uses a single tx_streamer for both channels,
+and uses multiple threads to populate the buffers sent to the X310. Would
+the performance be better if I used two separate streamers, one for each
+channel, in separate threads?
+
+2. I have seen some claims that DPDK is not as useful with UHD 4, is this
+true?
+
+3. With UHD 4, would it help to set the skip_duc and skip_ddc flags with
+full rate streaming?
+
+4. Are underflows only created within the send() function? Or can the
+timing of calls to send() cause underflows, especially when the burst flags
+are used? For example, suppose I set the start of burst flag to true for a
+single buffer containing 1 second of data, and then I toggle the start of
+burst flag to false for subsequent buffers and continuously call send() on
+1 second buffers for 10 minutes. On the last second I set end of burst flag
+to true. The idea is to create a 10 minute long "burst." If I call send
+late on one of the one second buffers in the middle of the "burst" will UHD
+report underflows? My thinking is the X310 should think it is in the middle
+of a burst, and will expect data, but send() has not been called, so there
+is no data for the radio to read from the host, creating underflows.
+Perhaps I am also misunderstanding the purpose of the burst flags, as they
+are not well documented.
+
+Thanks for the help!
+Armon
+
+--000000000000e5336e05fdf93c7b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hello All,<div dir=3D"auto"><br></div><div dir=3D"auto">I=
+ am trying to transmit on two UBX-160 daughterboards=C2=A0 within a single =
+X310 at 200 Msps using UHD 4.1.0.5-3.=C2=A0</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">I am experiencing periodic underflows, and I have alrea=
+dy applied all of the tips in the &quot;USRP Host Performance Tuning Tips a=
+nd Tricks&quot; application note, with the exception of using DPDK.=C2=A0</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">I have a few questions ab=
+out UHD streaming and what can be done to improve performance.</div><div di=
+r=3D"auto"><br></div><div dir=3D"auto">1. My current implementation uses a =
+single tx_streamer for both channels, and uses multiple threads to populate=
+ the buffers sent to the X310. Would the performance be better if I used tw=
+o separate streamers, one for each channel, in separate threads?</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">2. I have seen some claims that DP=
+DK is not as useful with UHD 4, is this true?</div><div dir=3D"auto"><br></=
+div><div dir=3D"auto">3. With UHD 4, would it help to set the skip_duc and =
+skip_ddc flags with full rate streaming?</div><div dir=3D"auto"><br></div><=
+div dir=3D"auto">4. Are underflows only created within the send() function?=
+ Or can the timing of calls to send() cause underflows, especially when the=
+ burst flags are used? For example, suppose I set the start of burst flag t=
+o true for a single buffer containing 1 second of data, and then I toggle t=
+he start of burst flag to false for subsequent buffers and continuously cal=
+l send() on 1 second buffers for 10 minutes. On the last second I set end o=
+f burst flag to true. The idea is to create a 10 minute long &quot;burst.&q=
+uot; If I call send late on one of the one second buffers in the middle of =
+the &quot;burst&quot; will UHD report underflows? My thinking is the X310 s=
+hould think it is in the middle of a burst, and will expect data, but send(=
+) has not been called, so there is no data for the radio to read from the h=
+ost, creating underflows. Perhaps I am also misunderstanding the purpose of=
+ the burst flags, as they are not well documented.</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">Thanks for the help!</div><div dir=3D"auto">Armo=
+n</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div></div>
+
+--000000000000e5336e05fdf93c7b--
+
+--===============7567465466922007573==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7567465466922007573==--
