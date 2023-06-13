@@ -2,65 +2,65 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD73372EAFF
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 20:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF1072EB89
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 21:05:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C5BB33846B8
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 14:31:20 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9C1BA384B3C
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 15:05:46 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686681080; bh=AHIUlJhreUzH9O9Fyp1b2CMJDptX2QZGWL09eiJRrLs=;
+	t=1686683146; bh=NQjrlyNdrqg0dN7W3ysar66HIzhirO8qP8SR3CIoo8Y=;
 	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=FfWeknz2mpIrDXUfDM4MufESQMiwM56XytVcwDfetphdwg6iEpt818dZXCYDqa5Px
-	 E9G39CVV50HNfI34EzF1WeUHn7twVV3LcB1qt4Os7wUVpVzB09xjEbcu5Ir3sYgIaA
-	 uBDJkQC6kQ/IoNoSgMnY1wrkhTQFKz+tJdB3fSi6vHAhTkoFnQOwwaSByjEihBA9Wc
-	 i+82AEqXDsuk15FmT/S/fczHkZvwDkg0G7Q1gKvNqPM2gSLu3wyYt547AOg6asJgXq
-	 93QYP+gr8IBLwXE9kdymbXsR5EVBsJwprjuJtwFEHTCtVaSOS7OM8aSgpmQR9l1QS1
-	 ijZSWJVqh55DA==
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9D26A384B17
-	for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 14:30:18 -0400 (EDT)
+	b=DDMQR629749YDHeldJuMFAKD+NuGXgc84fTNr9+ziCer+iijtIj0utwuEKnzX54zK
+	 drmRFnvq9QbS6f7HAi6+9L4ElTnyqcBUQOBKKIM6D9rD/uJyKE4oziZn8a7nhflLDQ
+	 qRNteU6NbNGMtL1emDEPwx2PGZ3GhgLWLYHNYWo5Tbb1PKajdoVHZCHRDfzA0ZGUWs
+	 P+vlOLU4GCJGQ7pgkZPiqmJDgPfYXDnWUelvGVhkwZOsYfvE2Sz3hR89mnJS4Ts2L7
+	 +diE5M3h20K3kpH49saSTHorLBWqpt8HMbFFeyGuB3kgqXJMYtxnlnE+ABUQCujc0L
+	 yAOeQ6c0Gtasg==
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id E5742384B1D
+	for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 15:04:44 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SU+SEVyA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dBgOl1Ym";
 	dkim-atps=neutral
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-39a3f26688bso3306141b6e.2
-        for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 11:30:18 -0700 (PDT)
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-75d54faa03eso124515185a.1
+        for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 12:04:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686681018; x=1689273018;
+        d=gmail.com; s=20221208; t=1686683084; x=1689275084;
         h=in-reply-to:from:references:cc:to:content-language:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SH39SdSp9NV7pINHESHi3SCmrXGbqmU5zuxdiRXI38U=;
-        b=SU+SEVyAoySpuIgm7vocFg3q4UheJLZNNJGb+8l19goz9Q/HhozYHmJcH2TzfnEj8y
-         ofsppwGQNEYuYkKV+B35VwetGHj7KxkBrTeTxyjsja4ELv59I+2Z4FTFoRgHNxdQszrZ
-         xePq+iClv1m+WYi33WK+gbEfUpnRHyZiXTu1WSXz3IgAtlpCdE1OZYvTvosYLE5TCptl
-         lzevLe9C8ZRmaBXuotSWsa8XFzHQx7xzMWD2GZBPFfREvijFae/aW1IAmhYh9F7T/Bli
-         ZmU+QuvzdvSD+VkOr6YiBZ/iPcjq+xe35B1IQD3Toj/eIYb9/B50cZOniB8Q/Cf1r/FK
-         Jh+A==
+        bh=AnsjnQ0ExIJ1NYMjLDP7eHUZfkZ2Pymt6hVF1iLMbbs=;
+        b=dBgOl1YmOthvl5q9drGJbmI5vKSUAMMEgZo+2Wkyoad+UfPNX6yWqUm4H/UYzD2LON
+         ByIVipzSe/jj2R/nCysdnA4H8QD/mmMFzvmXNaAkGRyBiFYxVxErRGpqFfzd4Q547iHO
+         i1cmixuoBZhg8h2PQAyCbxzsiRkfYr6x2+3KWK2Vd71VqtYzJZJgRf+vf0IxW/9hh6nn
+         7kao0eZgGt+ptVaqXqFQoQnVVeOFyWNXdAbGpT8zil8IfmGhLP8w76iXUJN6db0e4Hlw
+         djGXRZwkd7jscQNIqXiJiQF4U+N7xLBkDcQgAyLK3Q1aasinOgYfVj+3JuVtRRRF+re3
+         nFnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686681018; x=1689273018;
+        d=1e100.net; s=20221208; t=1686683084; x=1689275084;
         h=in-reply-to:from:references:cc:to:content-language:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=SH39SdSp9NV7pINHESHi3SCmrXGbqmU5zuxdiRXI38U=;
-        b=GHPuIXVjjyOjUuAck5c/91EQRqGSbaWGBcn36vBb5PPaJ0DGJBkjfp+K86AsZiu7aR
-         eK7NpQhLpEF8M6vxorLoER7bhp6eO9KHF9JXDbC2R8Rd8vhnFjE3SpoZG+cZXwkZ88C2
-         npaJf1haYSc3loh6MMf6nOzN/KGhq6z9QrCFK9fK42bIr4aSul/x68TVazfyNRQc3X87
-         LGDEsuiF0XQBh/SkALuUK6C7SFV6q9qBvkRETSc3aeapAYigZgXuvHBHJstQlBhrfEhT
-         i4M2qaxdMfNq3WFxnC/YeQhgy9rtOqxhU+DEfnVhayw5JjQfLL//OwXvJgZdHztIwCqk
-         UxLg==
-X-Gm-Message-State: AC+VfDzn5XBVmOiSNIsGeQKY+PTDMFPK7+TIEG/I3Ov8oIaoGLXut6JV
-	3EnyyE5ccm3pur3zvWNd7W/l6HaHOnu67Q==
-X-Google-Smtp-Source: ACHHUZ5A0bB5frDtpkSYH0/wkJ6biLh82kp1mFaECV91qjMpIYi7c9lXeQyGFRyE0KMq9o1QnmAWOQ==
-X-Received: by 2002:a05:6808:28d:b0:39b:6f01:babb with SMTP id z13-20020a056808028d00b0039b6f01babbmr7212282oic.58.1686681017640;
-        Tue, 13 Jun 2023 11:30:17 -0700 (PDT)
+        bh=AnsjnQ0ExIJ1NYMjLDP7eHUZfkZ2Pymt6hVF1iLMbbs=;
+        b=NR7DvsPbSrlC6DRFoST9plHIBmR1sNL2WmSt5p8a70ARiYnzaft9uf7zsS5iWrw95p
+         PLvfQobZmZ7mRgPzNWaHGlYDO0ei5tEkPCVjD0B8w9l4W7cYYeCjSe0cWWM4z534Bgm+
+         YJQfZhbhFHnchIYnZ+vEXefpGE2k2sbewnh+I3mXOtAuUcna9HPqm64x0B9KxPVw4mos
+         C/43LWa0nwUJt2HL6z1a3NfakpAt2iOvYNWnwIsPzJtD7lEmaUC3CJq2A6mkjZXUi+sY
+         H3N7itAbzd6AIWmgpRFwNSbDBnaE03GvfgqFPMT2i0jlXmnWHvtLUzOI5tep5jX0TVU5
+         yV/Q==
+X-Gm-Message-State: AC+VfDzCDBaRj4bxpKGDVJN4/HlemXLGVVV0QTT1cttRHJA47nfiOhuj
+	Jm1pBlmOcfE0rGOB0ErATKY=
+X-Google-Smtp-Source: ACHHUZ4c16iutfC8l75Jqo0VfcUGbdEPoWGuglO5Tf0ZgnOKIw4cRciHDI5jkM0cK8D0UPvhPRMWQQ==
+X-Received: by 2002:a05:620a:8ec5:b0:760:8cd2:b237 with SMTP id rg5-20020a05620a8ec500b007608cd2b237mr4726679qkn.76.1686683084014;
+        Tue, 13 Jun 2023 12:04:44 -0700 (PDT)
 Received: from [192.168.2.201] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id g27-20020a0caadb000000b0061b7c0ff41dsm1013751qvb.34.2023.06.13.11.30.16
+        by smtp.googlemail.com with ESMTPSA id e9-20020a05620a12c900b0075b13a89c30sm3809265qkl.3.2023.06.13.12.04.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 11:30:17 -0700 (PDT)
-Message-ID: <325f0007-ac62-6fd9-829f-f270ed416c8f@gmail.com>
-Date: Tue, 13 Jun 2023 14:30:16 -0400
+        Tue, 13 Jun 2023 12:04:43 -0700 (PDT)
+Message-ID: <2bcbc8c3-c2c4-827b-f9fe-e1a66119c87b@gmail.com>
+Date: Tue, 13 Jun 2023 15:04:42 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
@@ -80,8 +80,8 @@ References: <CAMhTvws54hP-vxo9FwLt9FncOgGsR-Ps+FAe4x9-mnJVy59C0Q@mail.gmail.com>
  <CAMhTvwu6hYdwEtsW3+z4zJgrDe2mex6YFZHBBjJFRUWOnJ8LZg@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <CAMhTvwu6hYdwEtsW3+z4zJgrDe2mex6YFZHBBjJFRUWOnJ8LZg@mail.gmail.com>
-Message-ID-Hash: 2CIRJSJNT3WWGDQIVMZRM5LJ5ES4LLYL
-X-Message-ID-Hash: 2CIRJSJNT3WWGDQIVMZRM5LJ5ES4LLYL
+Message-ID-Hash: 72MTBY2RTRO3D3PBVPGSYN4HOKXSNECS
+X-Message-ID-Hash: 72MTBY2RTRO3D3PBVPGSYN4HOKXSNECS
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: Rob Kossler <rkossler@nd.edu>, usrp-users@lists.ettus.com
@@ -89,23 +89,23 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N321 LO Distribution
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2CIRJSJNT3WWGDQIVMZRM5LJ5ES4LLYL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/72MTBY2RTRO3D3PBVPGSYN4HOKXSNECS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4734188472587093717=="
+Content-Type: multipart/mixed; boundary="===============5168778185281288927=="
 
 This is a multi-part message in MIME format.
---===============4734188472587093717==
+--===============5168778185281288927==
 Content-Type: multipart/alternative;
- boundary="------------nDP5DhESRQkgbxVclEPiHcJU"
+ boundary="------------krqADqR6pWdRXmcBLQO0PPWj"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------nDP5DhESRQkgbxVclEPiHcJU
+--------------krqADqR6pWdRXmcBLQO0PPWj
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -120,23 +120,6 @@ t.=20
 > Is that level of offset to be expected, if so is there a procedure=C2=A0=
 to=20
 > calibrate that out to align the RF?
-For RX, you'd send a tone into all ports, and measure the phase offset=20
-and insert appropriate phase-rotations to compensate.
-
-But, from what I understand, that shouldn't be necessary with the N321.=C2=
-=A0=20
-The LO comes out and is then distributed to the
- =C2=A0 mixers via the LO distribution, which should be phase-matched.
-
-Does the apparent phase offset change with different versions of UHD?=C2=A0=
-=C2=A0=20
-That is, if you step forward/backward a rev or two,
- =C2=A0 does that change things?=C2=A0=C2=A0=C2=A0 (I'm thinking here of =
-timing differences=20
-in the DUC setups that would be software/firmware-linked,
- =C2=A0 rather than hardware-linked).
-
-
 >
 > Understand that the phase drift measurements=C2=A0are the change over t=
 ime.=20
@@ -149,13 +132,19 @@ ime.=20
 here=20
 > some other way? I'd just like to repeat the process to see if I can=20
 > repeat=C2=A0the results or see if there is something I am doing wrong.
-I don't know how those tests were done, nor who did them within Ettus/NI=20
-R&D.
-
 >
 > Thanks,
 >
 > Michael Toussaint
+One of my colleagues just pointed me at this:
+
+https://kb.ettus.com/Multichannel_RF_Reference_Architecture
+
+To be honest, I didn't know that it existed.=C2=A0=C2=A0 This may include=
+ some=20
+tips and tricks that you've overlooked.
+
+
 >
 >
 > On Thu, Jun 8, 2023 at 6:53=E2=80=AFPM Marcus D. Leech=20
@@ -314,8 +303,7 @@ p=3Dsafe&realattid=3Df_lijcykt50>).
 >>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 time.sleep(1.0)
 >>
 >>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 all_ref_locked =3D Tru=
-eand they called it
->>                     puppy love
+e
 >>
 >>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 for board in
 >>                     range(hw_info.usrp.get_num_mboards()):
@@ -332,8 +320,7 @@ ith_gps_locked =3D=3D -1) and \
 >>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 if all_ref_locked:
 >>                     logging.info <http://logging.info/>('All Devices
 >>                     are REF locked')
->>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 breakand=
- they called it puppy love
+>>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break
 >>
 >>                     logging.info <http://logging.info/>('GPS Locked
 >>                     on MB #%d', mb_with_gps_locked)
@@ -525,7 +512,8 @@ rray is
 >>                     usrp.set_rx_lo_export_enabled(lo_enabled, 'lo1', 0=
 )
 >>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 enable_val =3D
->>                     usrp.get_rx_lo_export_enabled('lo1')
+>>                     usrp.get_rx_lo_export_enabled('lo1')https://kb.ett=
+us.com/Multichannel_RF_Reference_Architecture
 >>                     =C2=A0 =C2=A0 elif dirx.lower() =3D=3D 'tx':
 >>                     usrp.set_tx_lo_export_enabled(lo_enabled, 'lo1', 0=
 )
@@ -551,7 +539,8 @@ rd/' + \
 >>                     =C2=A0 =C2=A0 for out_num in range(len(output_arra=
 y)):
 >>                     hw_lo_export_path =3D temp_path.format(out_num)
->>
+>>                     https://kb.ettus.com/Multichannel_RF_Reference_Arc=
+hitecture
 >>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 if usrp.get_tree().exi=
 sts(hw_lo_export_path):
 >>                     usrp.get_tree().access_bool(hw_lo_export_path).set=
@@ -569,7 +558,9 @@ HW
 >>                     =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:
 >>                     logging.warning(' =C2=A0%s LO HW Export Out[%d] do=
 es
->>                     not exist',
+>>                     not
+>>                     exishttps://kb.ettus.com/Multichannel_RF_Reference=
+_Architecturet',
 >>                     =C2=A0 =C2=A0 dirx.upper(), out_num)
 >>
 >>
@@ -588,7 +579,8 @@ l Toussaint
 >>                         to match the results from the knowledge base,
 >>                         https://kb.ettus.com/USRP_N320/N321_LO_Distrib=
 ution?
->>
+>>                         https://kb.ettus.com/Multichannel_RF_Reference=
+_Architecture
 >>                         How do you measure the relative delay?
 >>
 >>
@@ -601,7 +593,7 @@ ution?
 >
 >
 
---------------nDP5DhESRQkgbxVclEPiHcJU
+--------------krqADqR6pWdRXmcBLQO0PPWj
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -631,34 +623,8 @@ TF-8">
             ~135 degree phase shift=C2=A0@ 144MHz seems like more than th=
 at.
             Is that level of offset to be expected, if so is there a
-            procedure=C2=A0to calibrate that out to align the RF? <br>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    For RX, you'd send a tone into all ports, and measure the phase
-    offset and insert appropriate phase-rotations to compensate.<br>
-    <br>
-    But, from what I understand, that shouldn't be necessary with the
-    N321.=C2=A0 The LO comes out and is then distributed to the<br>
-    =C2=A0 mixers via the LO distribution, which should be phase-matched.=
-<br>
-    <br>
-    Does the apparent phase offset change with different versions of
-    UHD?=C2=A0=C2=A0 That is, if you step forward/backward a rev or two,<=
-br>
-    =C2=A0 does that change things?=C2=A0=C2=A0=C2=A0 (I'm thinking here =
-of timing
-    differences in the DUC setups that would be
-    software/firmware-linked,<br>
-    =C2=A0 rather than hardware-linked).<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAMhTvwu6hYdwEtsW3+z4zJgrDe2mex6YFZHBBjJFRUWOnJ8LZg@mail.gmai=
-l.com">
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">
+            procedure=C2=A0to calibrate that out to align the RF?=C2=A0</=
+div>
           <div dir=3D"ltr"><br>
           </div>
           <div>Understand that the phase drift measurements=C2=A0are the
@@ -678,23 +644,31 @@ e
             if I can repeat=C2=A0the results or see if there is something=
  I
             am doing wrong.</div>
-        </div>
-      </div>
-    </blockquote>
-    I don't know how those tests were done, nor who did them within
-    Ettus/NI R&amp;D.<br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAMhTvwu6hYdwEtsW3+z4zJgrDe2mex6YFZHBBjJFRUWOnJ8LZg@mail.gmai=
-l.com">
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">
           <div><br>
           </div>
           <div>Thanks,</div>
           <div><br>
           </div>
           <div>Michael Toussaint</div>
+        </div>
+      </div>
+    </blockquote>
+    One of my colleagues just pointed me at this:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/Multi=
+channel_RF_Reference_Architecture">https://kb.ettus.com/Multichannel_RF_R=
+eference_Architecture</a><br>
+    <br>
+    To be honest, I didn't know that it existed.=C2=A0=C2=A0 This may inc=
+lude some
+    tips and tricks that you've overlooked.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAMhTvwu6hYdwEtsW3+z4zJgrDe2mex6YFZHBBjJFRUWOnJ8LZg@mail.gmai=
+l.com">
+      <div dir=3D"ltr">
+        <div dir=3D"ltr">
           <div><br>
           </div>
         </div>
@@ -1042,8 +1016,7 @@ _locked =3D
                                                 <br>
                                                 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
  all_ref_locked =3D
-                                                Trueand they called it
-                                                puppy love<br>
+                                                True<br>
                                                 <br>
                                                 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
  for board in
@@ -1096,9 +1069,7 @@ info/"
                                                 Devices are REF locked')<=
 br>
                                                 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 breakand
-                                                they called it puppy
-                                                love<br>
+ =C2=A0 =C2=A0 break<br>
                                                 <br>
                                                 =C2=A0 =C2=A0=C2=A0<a
                                                   href=3D"http://logging.=
@@ -1612,8 +1583,9 @@ bled(lo_enabled,
                                                 'lo1', 0)<br>
                                                 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
  enable_val =3D
-                                                usrp.get_rx_lo_export_ena=
-bled('lo1')<br>
+usrp.get_rx_lo_export_enabled('lo1')<a class=3D"moz-txt-link-freetext" hr=
+ef=3D"https://kb.ettus.com/Multichannel_RF_Reference_Architecture">https:=
+//kb.ettus.com/Multichannel_RF_Reference_Architecture</a><br>
                                                 =C2=A0 =C2=A0 elif dirx.l=
 ower() =3D=3D
                                                 'tx':<br>
@@ -1680,7 +1652,9 @@ info/"
                                                 hw_lo_export_path =3D
                                                 temp_path.format(out_num)=
 <br>
-                                                <br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/Multichan=
+nel_RF_Reference_Architecture">https://kb.ettus.com/Multichannel_RF_Refer=
+ence_Architecture</a><br>
                                                 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
  if
                                                 usrp.get_tree().exists(hw=
@@ -1730,7 +1704,9 @@ um,<br>
                                                 logging.warning(' =C2=A0%=
 s LO
                                                 HW Export Out[%d] does
-                                                not exist',<br>
+                                                not
+                                                exishttps://kb.ettus.com/=
+Multichannel_RF_Reference_Architecturet',<br>
                                                 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
  =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
                                                 =C2=A0 =C2=A0 dirx.upper(=
@@ -1787,7 +1763,9 @@ m/USRP_N320/N321_LO_Distribution"
                                               moz-do-not-send=3D"true"
                                               class=3D"moz-txt-link-freet=
 ext">https://kb.ettus.com/USRP_N320/N321_LO_Distribution</a>?<br>
-                                            <br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/Multichan=
+nel_RF_Reference_Architecture">https://kb.ettus.com/Multichannel_RF_Refer=
+ence_Architecture</a><br>
                                             How do you measure the
                                             relative delay?<br>
                                           </blockquote>
@@ -1881,9 +1859,9 @@ line-height:1.15;color:rgb(0,0,0)"
   </body>
 </html>
 
---------------nDP5DhESRQkgbxVclEPiHcJU--
+--------------krqADqR6pWdRXmcBLQO0PPWj--
 
---===============4734188472587093717==
+--===============5168778185281288927==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1893,4 +1871,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4734188472587093717==--
+--===============5168778185281288927==--
