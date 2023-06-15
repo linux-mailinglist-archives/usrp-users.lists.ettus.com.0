@@ -2,117 +2,100 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8481E731561
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Jun 2023 12:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6C3B731A07
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Jun 2023 15:33:09 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 22211384AE3
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Jun 2023 06:32:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E7258384AE5
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Jun 2023 09:33:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686825145; bh=pSh/ti1GVOv0ATXEyPs8EwXhG5xaX0fsI0BFiHPIHec=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=zGm2O5mGOfNJAN/O0Cx3IWToD5PlZSIRgbmvfXBdmi9fBoRBEU2HbjJqn4YSfcgXl
-	 FroO7NC9D2/OQfyYa2/35LfCOuxwOjMqvZu0lRtwJWNjvGxOub7GWZtzpY2ppDgWcP
-	 RzpTSUwaQ/FWgZRbXrC+X0xe2EH3qm3pO8193FnMwQPLeELEwc3uncBdAL8Zi7CJq0
-	 4xVnVHqIfyJoF7EfE2TCOwRCiG91AW6uYeYTGGJjP9MxSVK2ghPDDqbx+v2U5kSP+d
-	 Z+o0ymoE89jgej85+d63S/qUhRbRCyvpXw/GNi7mtYo3kIEhpIdwDHs82Lyyb+SWxz
-	 Dst7AeBwhZojw==
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 47EEF3849B1
-	for <usrp-users@lists.ettus.com>; Thu, 15 Jun 2023 06:31:23 -0400 (EDT)
+	t=1686835987; bh=AopwsYeKMvW5/fGC1zvTvg/aUtlnvIWkJvQyIFKu2MU=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=LGCQqVUjZulAE/toIhema6xymkCPeFf4DkaL2M7PIrcX5O/OJKvUU7ZOHE6l5NjA+
+	 aYbiO2aQ+Hoin54S46BLt6XV+04MOzx35J/bQSv6lkCBsW+zqrDBm3zMQFr9MZJ7xQ
+	 y/UJcjVnEfoLhedyy/PFi0UJbdjuis9YpsCPVYdse4+SNKWoKRe0VBknOw7eg3nKmr
+	 MHDli+pePrnXnKmi1o0VgFCcpXx4KZyJustwhIJmyhJJiqO0XRBlZ9wS260av1wU70
+	 uaM7StZcyjyMNOzl26Y/QeOPELlyrb3fPRQLwwnIDDoMp53sCccUdFo3E5664PFvzd
+	 7zhVT++GgxHtg==
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 45FF3384957
+	for <usrp-users@lists.ettus.com>; Thu, 15 Jun 2023 09:32:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AR+EHwe5";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CGRt6rUi";
 	dkim-atps=neutral
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-9786fc23505so238930966b.2
-        for <usrp-users@lists.ettus.com>; Thu, 15 Jun 2023 03:31:23 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-3f9b4a656deso29844151cf.0
+        for <usrp-users@lists.ettus.com>; Thu, 15 Jun 2023 06:32:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686825082; x=1689417082;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=boCJsh3pUhIvdp6vXXtLFTeLSqHwN1tzuueF4omuHLo=;
-        b=AR+EHwe5u/lb4ieoGtPDzsDOv/xwZNt+5r2rKlpcC0jT1tqTmV6DllwVxJfcvlqYpn
-         dEf04OSraxJZ6tfz5DD8crEbNQxfSyf+8l6MqWO6H+Ud2LaT2IGXTGzxQe+RwBkO5kqr
-         ovbz++NB7ExCoGZeO0DZBhuXhp4zf+7Zt4AGm7PQrfBSZTF//diRPt4JSrHDoxZfCx6D
-         k9ill2jACRsw4lLS2F/ydS8E5kbueTNzLHfyOdYVb+R7tSOA1BcwY0URXYLKdbeAnm/e
-         6kMybgYZHmeE2Wcd49AeuAUvVg0jsuM3LIPnSkBaNb2Ii8humJDd/nuRvPUke1+d6s6+
-         y7fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686825082; x=1689417082;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20221208; t=1686835927; x=1689427927;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=boCJsh3pUhIvdp6vXXtLFTeLSqHwN1tzuueF4omuHLo=;
-        b=E8r5gvvKDr86huIuqxNEP4ocpl36GlzBBHZ0x583YK1NogFKU3JgI5/NGAhX3B5si6
-         1Oojd02wwlDBnczxYvtupSbOuR/wLkcbmaIHV+CZanURK3wUAweYlbQV24U6690VLMPa
-         tyyuQwBMsLZfqK58YBjHxd7wS3gmG/7D53vIWF4CTX90/pddY8okhRxGE1rMIip4QFyx
-         07afn6jN9nKVbYl0Vy4f3WW3AUX7cc/lImxoQ/mI75T+/ATMiigI91y5uzSW9bUIvYZ7
-         VidxXR0PJrlJjs/xRAr5o/M4JTADFjTnexH0UOEkjNx+3Cs/wlgQGcyAb2lczAM0VALi
-         Q6KQ==
-X-Gm-Message-State: AC+VfDyyRogElftnhywNaWLSpd3v3CSJN1wtFGLiXfhskrv8CD5plTQ1
-	z+v/HvgGHYzwI3L9HllW1DXPAxJZbVPG9xnfJ/ouqplOJcI=
-X-Google-Smtp-Source: ACHHUZ4d5tBzyTxvGcz0AV8maPdamCikQu0fRBK4szASu1QA+xOUyXVgPr+Xisep+tK39LmbiEaLSZcNv8lf2V5/l5Y=
-X-Received: by 2002:a17:906:db03:b0:974:1f0e:ec2d with SMTP id
- xj3-20020a170906db0300b009741f0eec2dmr18107044ejb.15.1686825081639; Thu, 15
- Jun 2023 03:31:21 -0700 (PDT)
+        bh=krO6zdSUIlLm+xyLwMnnUxYbD3ca2UwCOGJ9+7Xl2Bw=;
+        b=CGRt6rUi8gDdP5pDOKVshqEHzVFnZdvhm4CrWiY9zt99GyQcwRS2+azSY8Zyb9EtSV
+         AmjuINXqInbc6DPJ7xXARZgjokaSKIxZ4RwydRrt9U/n0lpV5zysNGa3uUz2Yb9uPKXe
+         iGbNUD6hqj1rxsfJCjHmLhRPCR/SWqGjPIiUmYg36lj2z9vBgAUo1gAkZM/7dmslA5g9
+         3L/vvdo43RkQtlkYvkpNEBIn0Y0omyrnElG8ztWgQIyLtQqAH6ao22YnsvtFAbvSMTsD
+         78OxKd6LWg7jUa/+wnUnckNVAQZsM2djNR0vM3sqCsPVWBmnnxU9EodW2CjqxUAAIzxS
+         WKqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686835927; x=1689427927;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=krO6zdSUIlLm+xyLwMnnUxYbD3ca2UwCOGJ9+7Xl2Bw=;
+        b=bhIPRq04/iqAOAY9tEllHOwcR1DjpNovDzpQ3DZ9R4o5fEsAK7mEWdPBfr1qgFE86i
+         sDDcyt45zEPD1pgV7iUc3uQub6UIZNuO5X4F0aNW8RdlaRlDxx4LXSLtWI7LaLSc1voZ
+         sJlXeS2v9Z1X1fKEV98PnZ/cJGKSFntQeo0UW0fY21kYppJv4cT8fwW+bxXbCL6BgYAX
+         UI0LWVIFNOuL7lHE8hCNNnT8ziUipw+PW53Wtq8bfsXMPKgFC5woAxSwiI4C8Smb58ZN
+         Xeed2AJsrDoS7wEB5lANiZnM3LF0FBwWZ9QynttOecWOo7aHn1bUQ0whDZCOOGDQWBX0
+         4Xew==
+X-Gm-Message-State: AC+VfDzGcmOrYfMkT5TM3xtvDCsJ3iiiWOzmnRx0+b5WYISB/j2v4aan
+	h9NXv0/2hQtI2GYorQ3k9nGTsEbb11wnGw==
+X-Google-Smtp-Source: ACHHUZ6B4Hyzf0OW5wzlqob9xvg2Zt46wD58Ae/qy5s7uT4v2Ky/O1noU1VWsFbMsioIB7lb374F/A==
+X-Received: by 2002:ac8:7e86:0:b0:3f5:2d80:e5f0 with SMTP id w6-20020ac87e86000000b003f52d80e5f0mr6223611qtj.40.1686835927265;
+        Thu, 15 Jun 2023 06:32:07 -0700 (PDT)
+Received: from [192.168.2.183] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id e5-20020ac84b45000000b003ef13aa5b0bsm6218856qts.82.2023.06.15.06.32.06
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 06:32:06 -0700 (PDT)
+Message-ID: <b87ade32-d119-2a53-4cbc-efe60212a90c@gmail.com>
+Date: Thu, 15 Jun 2023 09:32:05 -0400
 MIME-Version: 1.0
-From: cyberphox <cyberphox@gmail.com>
-Date: Thu, 15 Jun 2023 11:31:10 +0100
-Message-ID: <CAOkUcStztZNDcFMHftzcZXXnQwDbYAOeHZ+eBpJJoNUY8pmGUw@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: FV3ZZ4C2EOBOOHKHKLAD66KN7INWNWX6
-X-Message-ID-Hash: FV3ZZ4C2EOBOOHKHKLAD66KN7INWNWX6
-X-MailFrom: cyberphox@gmail.com
+References: <CAOkUcStztZNDcFMHftzcZXXnQwDbYAOeHZ+eBpJJoNUY8pmGUw@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAOkUcStztZNDcFMHftzcZXXnQwDbYAOeHZ+eBpJJoNUY8pmGUw@mail.gmail.com>
+Message-ID-Hash: DXJNB5PCQXOHJCQVPGHKUD45DW2WWXIZ
+X-Message-ID-Hash: DXJNB5PCQXOHJCQVPGHKUD45DW2WWXIZ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] UHD 4.0 - Reading FPGA core temperature - USRP2974
+Subject: [USRP-users] Re: UHD 4.0 - Reading FPGA core temperature - USRP2974
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FV3ZZ4C2EOBOOHKHKLAD66KN7INWNWX6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DXJNB5PCQXOHJCQVPGHKUD45DW2WWXIZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4783987614769316841=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============4783987614769316841==
-Content-Type: multipart/alternative; boundary="000000000000ca19ae05fe289196"
-
---000000000000ca19ae05fe289196
-Content-Type: text/plain; charset="UTF-8"
-
-Hi All
-
-I would like to read the FPGA core temperature of the Kintex within the
-USRP2974, and any other temperature sensor available, ideally on the RF
-boards.
-
-
-Is there an API for this?
-
-thanks
-marino
-
---000000000000ca19ae05fe289196
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi All<div><br></div><div>I would like to read the FPGA co=
-re temperature of the Kintex within the USRP2974, and any other temperature=
- sensor available, ideally on the RF boards.</div><div><br></div><div><br><=
-/div><div>Is there an API for this?</div><div><br></div><div>thanks</div><d=
-iv>marino</div></div>
-
---000000000000ca19ae05fe289196--
-
---===============4783987614769316841==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4783987614769316841==--
+T24gMTUvMDYvMjAyMyAwNjozMSwgY3liZXJwaG94IHdyb3RlOg0KPiBIaSBBbGwNCj4NCj4gSSB3
+b3VsZCBsaWtlIHRvIHJlYWQgdGhlIEZQR0EgY29yZSB0ZW1wZXJhdHVyZSBvZiB0aGUgS2ludGV4
+IHdpdGhpbiANCj4gdGhlIFVTUlAyOTc0LCBhbmQgYW55IG90aGVyIHRlbXBlcmF0dXJlIHNlbnNv
+ciBhdmFpbGFibGUsIGlkZWFsbHkgb24gDQo+IHRoZSBSRiBib2FyZHMuDQo+DQo+DQo+IElzIHRo
+ZXJlIGFuIEFQSSBmb3IgdGhpcz8NCj4NCj4gdGhhbmtzDQo+IG1hcmlubw0KWW91IGNhbiB1c2Ug
+dGhlICJ1c3JwX2xpc3Rfc2Vuc29ycyIgZXhhbXBsZXMgYXBwIHRvIGxpc3QgYWxsIHRoZSBzZW5z
+b3JzIA0KdGhhdCBhcmUgYXZhaWxhYmxlIHRvIHRoZSBBUEkgLS0gYW5kIGxvb2sgYXQgdGhlIGNv
+ZGUNCiDCoCB0byBzZWUgaG93IGl0IHVzZXMgdGhlIHNlbnNvcnMgQVBJLg0KDQoNCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQg
+YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
