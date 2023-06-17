@@ -2,100 +2,119 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6C3B731A07
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Jun 2023 15:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D68C0734126
+	for <lists+usrp-users@lfdr.de>; Sat, 17 Jun 2023 15:14:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E7258384AE5
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Jun 2023 09:33:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 89E92384B28
+	for <lists+usrp-users@lfdr.de>; Sat, 17 Jun 2023 09:14:32 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686835987; bh=AopwsYeKMvW5/fGC1zvTvg/aUtlnvIWkJvQyIFKu2MU=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=LGCQqVUjZulAE/toIhema6xymkCPeFf4DkaL2M7PIrcX5O/OJKvUU7ZOHE6l5NjA+
-	 aYbiO2aQ+Hoin54S46BLt6XV+04MOzx35J/bQSv6lkCBsW+zqrDBm3zMQFr9MZJ7xQ
-	 y/UJcjVnEfoLhedyy/PFi0UJbdjuis9YpsCPVYdse4+SNKWoKRe0VBknOw7eg3nKmr
-	 MHDli+pePrnXnKmi1o0VgFCcpXx4KZyJustwhIJmyhJJiqO0XRBlZ9wS260av1wU70
-	 uaM7StZcyjyMNOzl26Y/QeOPELlyrb3fPRQLwwnIDDoMp53sCccUdFo3E5664PFvzd
-	 7zhVT++GgxHtg==
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id 45FF3384957
-	for <usrp-users@lists.ettus.com>; Thu, 15 Jun 2023 09:32:07 -0400 (EDT)
+	t=1687007672; bh=JdAxH7vKQTm02BzmOp2DiRfq3Yrc91Th1WOeRXDQLFo=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=vubLfllu5jw5PigdiYF5Xqv4lSIaUGsCk0zQc6ipz4D6G9DbNnIS/cuVMvi/QsRmb
+	 ephRqaBiV3B657eDWSHrOVbuCFTJCNKniDZp2cqrOtGVnj+WEFNEz+3ErTgwBFp443
+	 HBVkPGMjgkhspf62obq9Fkl0BBdeQ0Vh6h93kjO9+bOcPqOmbqaqqZKjMEKJdm1tPA
+	 6ZMsUZYsxHsPu1z3V/O88Ex/KGTUxCytwcQpxU0tXEfQt8WHOGnO9DqJk6WV/RpVVE
+	 t+GAu5OIp9ihMkHUNwANZM4qcuztT2KxHsMvNll9ZBfrNIApSPTWXU+0wVi+orUMYb
+	 nodZDTmgmmC9Q==
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8EAC738499A
+	for <usrp-users@lists.ettus.com>; Sat, 17 Jun 2023 09:13:36 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CGRt6rUi";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NqOgCXMR";
 	dkim-atps=neutral
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-3f9b4a656deso29844151cf.0
-        for <usrp-users@lists.ettus.com>; Thu, 15 Jun 2023 06:32:07 -0700 (PDT)
+Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-46e4ba859c5so548050e0c.2
+        for <usrp-users@lists.ettus.com>; Sat, 17 Jun 2023 06:13:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686835927; x=1689427927;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=krO6zdSUIlLm+xyLwMnnUxYbD3ca2UwCOGJ9+7Xl2Bw=;
-        b=CGRt6rUi8gDdP5pDOKVshqEHzVFnZdvhm4CrWiY9zt99GyQcwRS2+azSY8Zyb9EtSV
-         AmjuINXqInbc6DPJ7xXARZgjokaSKIxZ4RwydRrt9U/n0lpV5zysNGa3uUz2Yb9uPKXe
-         iGbNUD6hqj1rxsfJCjHmLhRPCR/SWqGjPIiUmYg36lj2z9vBgAUo1gAkZM/7dmslA5g9
-         3L/vvdo43RkQtlkYvkpNEBIn0Y0omyrnElG8ztWgQIyLtQqAH6ao22YnsvtFAbvSMTsD
-         78OxKd6LWg7jUa/+wnUnckNVAQZsM2djNR0vM3sqCsPVWBmnnxU9EodW2CjqxUAAIzxS
-         WKqw==
+        d=gmail.com; s=20221208; t=1687007615; x=1689599615;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+SWv4K2ZmzXbd7smMyThShs1AJW1zlRm27DvJZznhKw=;
+        b=NqOgCXMRtStrWG1ljPZY1hSoRplDOEWDu/7q6D9E7j6IOr6xozZgVcHr1GoLRDoB0D
+         5nLwPK1k4bCDhSLTdZyCIDGuG63yqdh/qo/QXyCsdQQ3NFY6btIJTsBxg2kQbdFvsjTf
+         lLmkvD+rdc59V+lR6qU0IB9xLj5hijNdRoRxm8NIlJSkaEYA/uSG7/Ah8rGUP6E68cKU
+         Vq/aqqfofNUAx4qmjfP1kG/DFQsuTUhMY9XaNEGnC/UtAKIPp8UyD7VcKFLDAVtSjUih
+         C96lgSmbdZ+gH5AAhXL/HOKAebnGW3yE5awSCrWULumS22fvgPrluUXnNXsmfI+CSZog
+         ECsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686835927; x=1689427927;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=krO6zdSUIlLm+xyLwMnnUxYbD3ca2UwCOGJ9+7Xl2Bw=;
-        b=bhIPRq04/iqAOAY9tEllHOwcR1DjpNovDzpQ3DZ9R4o5fEsAK7mEWdPBfr1qgFE86i
-         sDDcyt45zEPD1pgV7iUc3uQub6UIZNuO5X4F0aNW8RdlaRlDxx4LXSLtWI7LaLSc1voZ
-         sJlXeS2v9Z1X1fKEV98PnZ/cJGKSFntQeo0UW0fY21kYppJv4cT8fwW+bxXbCL6BgYAX
-         UI0LWVIFNOuL7lHE8hCNNnT8ziUipw+PW53Wtq8bfsXMPKgFC5woAxSwiI4C8Smb58ZN
-         Xeed2AJsrDoS7wEB5lANiZnM3LF0FBwWZ9QynttOecWOo7aHn1bUQ0whDZCOOGDQWBX0
-         4Xew==
-X-Gm-Message-State: AC+VfDzGcmOrYfMkT5TM3xtvDCsJ3iiiWOzmnRx0+b5WYISB/j2v4aan
-	h9NXv0/2hQtI2GYorQ3k9nGTsEbb11wnGw==
-X-Google-Smtp-Source: ACHHUZ6B4Hyzf0OW5wzlqob9xvg2Zt46wD58Ae/qy5s7uT4v2Ky/O1noU1VWsFbMsioIB7lb374F/A==
-X-Received: by 2002:ac8:7e86:0:b0:3f5:2d80:e5f0 with SMTP id w6-20020ac87e86000000b003f52d80e5f0mr6223611qtj.40.1686835927265;
-        Thu, 15 Jun 2023 06:32:07 -0700 (PDT)
-Received: from [192.168.2.183] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id e5-20020ac84b45000000b003ef13aa5b0bsm6218856qts.82.2023.06.15.06.32.06
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 06:32:06 -0700 (PDT)
-Message-ID: <b87ade32-d119-2a53-4cbc-efe60212a90c@gmail.com>
-Date: Thu, 15 Jun 2023 09:32:05 -0400
+        d=1e100.net; s=20221208; t=1687007615; x=1689599615;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+SWv4K2ZmzXbd7smMyThShs1AJW1zlRm27DvJZznhKw=;
+        b=RPZgywwPhbyF+VLaLKAi/Yp4rD0urF2vShIysHIpFCw7gFOO94ruU+fqYMsW0wpIA7
+         7Fz7SX71BW5aUOiWMv1YlgmKVnQ1LtYU6jOzDdFgkkdc6jk8IoWv2230T713jNT7axKv
+         tEJAnrWBkD3GeYzAXPz/jQqLNN2U8ANOj6OI2nL/BAex5bVIs8RMOYGnBhGGI+3rHIoy
+         sKdqjWNqafMlFc728VLiBRdSbCJ5DEQBopHgHYecGfWTr0Q3Zm2ff3xovekh5pv3LO0C
+         4YoUxny6jgTyPcobU5V5C1txQSJ2PDp661pS0oxoxep9YoTnl+ewPxPuSBxzzhA5YyGz
+         2Daw==
+X-Gm-Message-State: AC+VfDyJurmp6CUlNZnfH91/X6lzXo7amiXMwndMdGNnI4O+6i4kOKWb
+	eJdNDaQFkLX+JdX6RELN3UrX7m4VB7i+6BCdrnO0zRelH+myNdNCJqNySA==
+X-Google-Smtp-Source: ACHHUZ7dUQR+pk8Ed1zOM3fDnLwlthG/EfDdcuGo2oKmvpgbUIxuQKhxaMP572k2gghojgoHnWfNdEqjA6B+4o7NMNs=
+X-Received: by 2002:a1f:4597:0:b0:471:17be:ba8d with SMTP id
+ s145-20020a1f4597000000b0047117beba8dmr741686vka.3.1687007615401; Sat, 17 Jun
+ 2023 06:13:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAOkUcStztZNDcFMHftzcZXXnQwDbYAOeHZ+eBpJJoNUY8pmGUw@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAOkUcStztZNDcFMHftzcZXXnQwDbYAOeHZ+eBpJJoNUY8pmGUw@mail.gmail.com>
-Message-ID-Hash: DXJNB5PCQXOHJCQVPGHKUD45DW2WWXIZ
-X-Message-ID-Hash: DXJNB5PCQXOHJCQVPGHKUD45DW2WWXIZ
-X-MailFrom: patchvonbraun@gmail.com
+From: sp <stackprogramer@gmail.com>
+Date: Sat, 17 Jun 2023 17:43:24 +0430
+Message-ID: <CAA=S3Ps64+RMO8_==-95ZGEziAPzdmMAXTHan+TkGCYav3qVhg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: KTZ4QNIDVF5UZMGVE6C6PMGNWEPBD5IX
+X-Message-ID-Hash: KTZ4QNIDVF5UZMGVE6C6PMGNWEPBD5IX
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD 4.0 - Reading FPGA core temperature - USRP2974
+Subject: [USRP-users] What is delay change frequency USRP daughterboard when i used PCIe vs Ethernet?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DXJNB5PCQXOHJCQVPGHKUD45DW2WWXIZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KTZ4QNIDVF5UZMGVE6C6PMGNWEPBD5IX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1460794253405033440=="
 
-T24gMTUvMDYvMjAyMyAwNjozMSwgY3liZXJwaG94IHdyb3RlOg0KPiBIaSBBbGwNCj4NCj4gSSB3
-b3VsZCBsaWtlIHRvIHJlYWQgdGhlIEZQR0EgY29yZSB0ZW1wZXJhdHVyZSBvZiB0aGUgS2ludGV4
-IHdpdGhpbiANCj4gdGhlIFVTUlAyOTc0LCBhbmQgYW55IG90aGVyIHRlbXBlcmF0dXJlIHNlbnNv
-ciBhdmFpbGFibGUsIGlkZWFsbHkgb24gDQo+IHRoZSBSRiBib2FyZHMuDQo+DQo+DQo+IElzIHRo
-ZXJlIGFuIEFQSSBmb3IgdGhpcz8NCj4NCj4gdGhhbmtzDQo+IG1hcmlubw0KWW91IGNhbiB1c2Ug
-dGhlICJ1c3JwX2xpc3Rfc2Vuc29ycyIgZXhhbXBsZXMgYXBwIHRvIGxpc3QgYWxsIHRoZSBzZW5z
-b3JzIA0KdGhhdCBhcmUgYXZhaWxhYmxlIHRvIHRoZSBBUEkgLS0gYW5kIGxvb2sgYXQgdGhlIGNv
-ZGUNCiDCoCB0byBzZWUgaG93IGl0IHVzZXMgdGhlIHNlbnNvcnMgQVBJLg0KDQoNCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGlu
-ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQg
-YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============1460794253405033440==
+Content-Type: multipart/alternative; boundary="000000000000a6432b05fe53113b"
+
+--000000000000a6432b05fe53113b
+Content-Type: text/plain; charset="UTF-8"
+
+What is the delay change frequency USRP daughterboard when I used PCIe vs
+Ethernet?
+I have a USRP x310, and when I send a change frequency to change the
+frequency it takes long .2 ms, this delay is for the ethernet command sent
+to the daughterboard I measure it with cpp code, but I had not any PCIe,
+but this is a question for me?
+My question is for PCIe what's a delay for change frequency that effect the
+daughterboard?
+Can anyone guide me?
+thanks in advance
+
+--000000000000a6432b05fe53113b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">What is the delay change frequency USRP daughterboard when=
+ I used PCIe vs Ethernet?<br><div>I have a USRP x310, and when I send a cha=
+nge frequency to change the frequency it takes long .2 ms, this delay is fo=
+r the ethernet command sent to the daughterboard I measure it with cpp code=
+, but I had not any PCIe, but this is a question for me?</div><div>My quest=
+ion is for PCIe what&#39;s a delay for change frequency that effect=C2=A0th=
+e daughterboard?</div><div>Can anyone guide me?=C2=A0</div><div>thanks in a=
+dvance</div></div>
+
+--000000000000a6432b05fe53113b--
+
+--===============1460794253405033440==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1460794253405033440==--
