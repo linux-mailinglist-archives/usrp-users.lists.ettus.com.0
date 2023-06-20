@@ -2,111 +2,258 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CABDA73418E
-	for <lists+usrp-users@lfdr.de>; Sat, 17 Jun 2023 16:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F39847362BB
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jun 2023 06:47:16 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DE6F3384204
-	for <lists+usrp-users@lfdr.de>; Sat, 17 Jun 2023 10:04:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 99D19384C32
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jun 2023 00:47:15 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1687010647; bh=QosE9SJ9oCwhYvliUr1lNY2Dfp5rhOsiov39n+HLlXQ=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=vUCGvt6nAf7SxsZJw4cW9fTBjIFW/7uYlQg7NwLHVXMGtfeZlwGdNDFuxkhAm147g
-	 sLaicY+A1sGmA6wQKKzfqGR3ChRWbFsEG0dhTKPzPAKLzXF0wniD/qdIKHTPcdayq9
-	 BGTlWw+WLMamZD0M8IJlSULarWJu8u20M2Z25r2LB8yp0eQDjh2ZiN0cUlG794nel6
-	 FIYFbQzEcFl49RGvqjxa+JqeGr0e/ZyihTCj88CQqW1ryEbhTf1jP71UNd4y3ktISS
-	 InzwSJeVd9JDwxK0IU0zbrL9vQ+gGeyPdeIi6aqod7nHJmC40tDv7ikBufx6gxENxz
-	 hICTXnTjY+c2g==
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id A7223384204
-	for <usrp-users@lists.ettus.com>; Sat, 17 Jun 2023 10:03:43 -0400 (EDT)
+	t=1687236435; bh=yS5A91Lf8vbJuqxGNRXlnk9m8f4BHbofDnFOH/xMS4M=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=dYyLAxC3Evd5jxYjMAFOtEDcwN08hW4lOGbM2Q1hD0oNEvpAMwD6ufgMxpFvAbmaa
+	 FPkFAXUmY2aTGLd6dyC7J45Jae55S+ViXNj+2LHwSrtimBt02GSyF/wWKANOb8hubh
+	 Di3RslNQg9RucqHje4s7kg4i1jfLxOdJYSzWrlqfopYMMKzlsfZqGPncSgXM3oooxo
+	 3k5Onj3K+twUsgzXiiklEvVWEJOOltteAuEPgN6k6I7FfoEJF60VFazr02R5dLg8lJ
+	 tDY8tXBjGCLenKAq87OAoAW8OdUBjpVauxPacRc0vwRNrdtyCY/QaAEPDCats/8dEl
+	 8fT35cO05wQHw==
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id 92DDA384931
+	for <usrp-users@lists.ettus.com>; Tue, 20 Jun 2023 00:46:19 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nguy7ZPR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="glZwjJsa";
 	dkim-atps=neutral
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-762339bf0a0so96605785a.2
-        for <usrp-users@lists.ettus.com>; Sat, 17 Jun 2023 07:03:43 -0700 (PDT)
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-3fde1d6b1c4so23423241cf.0
+        for <usrp-users@lists.ettus.com>; Mon, 19 Jun 2023 21:46:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687010623; x=1689602623;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wYobFRuldKeA0amkeTRB/mm3cvdF7HbSVAhzeW73uNU=;
-        b=nguy7ZPRA8LuJOIg/hUnSoSAEB5kyyGqzGIQErkO/mZFbFhFQgsQwzmBZ5BdtsJgFq
-         2/A/5WFH5GCRP1pOB+Y757a71JOYmpriv3JexT37RCaAp9WkQ0PzX93TgsmTdOk+hGlh
-         UsXjg+eGqpjqEEkcmKTnV4/p0f8T8XHGSlOapn6T6/rGnjhLTS1VscxuRFQGeK9yXVCm
-         I4/+02/2TbR4KJRnYw4aHV6BtoqxPuDqEEwXKW9zYqKzp8pibBA6pbfCmbkR9xMJE80B
-         hAq4YtHMW17DM3AcPaIjLfo+tJazqUQXVxzmSxV8Jpw7KSGPMTrrRRURrpo9f49bhylc
-         0lFw==
+        d=gmail.com; s=20221208; t=1687236379; x=1689828379;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=NY20kvt2FXoKnnPIRKQiiNiJsXLNUYH5vSmFTd2M94s=;
+        b=glZwjJsat4FQhdZ2Q9CMFLWNJMi8sRd0otWIR0EnS4995kLrF2fAxcK9gWh/lHVAM9
+         a455fUIA0yqsbhoU4CFXrLo5+VobKjSyKPX9R4CnnmBmbrztiI42FR9EIuBBK9tuZUNe
+         guni0/hVpJCq4d1Fol7kpvcXVoQ1BFKdQRvUWvE0n9UoONz6JZs6fhwj92yKopwwOLBR
+         GkH0Lrn88cwg2d2F3ogiT/WGJRgi71BeshxsOQgVatkEyo8lbC9dKohES+ppYqIEDroy
+         hXZsn/P97GKZCx+brMZVUHTthC4ufFE1Y/B2BKwScJEbgrGnmRxywBsHhUqa04qHndI/
+         3akw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687010623; x=1689602623;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wYobFRuldKeA0amkeTRB/mm3cvdF7HbSVAhzeW73uNU=;
-        b=eOcXsMe+XCF/vOZZcOqtNAbgq9u80R45gy36tltsEhn19xzC2XGvlTlLC3VKU5klaD
-         CNU35bmBOAJYlHDTeGUVo8ZYDvHnmO4PQh0oZDbqz4nq1sd7jbZQD4jP7beHPKM6TYD1
-         +WVWbF2WhH4lHuAlhLy87/gbobQuJ/WNGWOVrYUoRON/IJgy/TsieqQ+n0nPnuoQ+GLl
-         Re1KJCNkWUXTxgrFH5pkBKboZobtB+mfAkElfewEx8b/ZnU1HOZdgvNInTvFdoc0NLJ0
-         LxId1fiGEog2NHhEpOld9UM0jguiKenenLpjTLgvboKYq0Aqdv7tONtRlFexvlz0BETe
-         j8MQ==
-X-Gm-Message-State: AC+VfDzXtH7++ywt1g+bCetkGfskf0Z6ztSojKiO5ab0rcRB3Af00FrM
-	4SgboEdy4b0z0NEfiex+gr9K2+EcfJ4=
-X-Google-Smtp-Source: ACHHUZ7d3Jk090yvgXeXMkLiYvPzjQGMrMiwWtNatWtA2e5OdHJ1gAey/uu0LIAfzbbwJarTIH+4oQ==
-X-Received: by 2002:a05:620a:21d6:b0:760:7913:e5d8 with SMTP id h22-20020a05620a21d600b007607913e5d8mr4007205qka.78.1687010622673;
-        Sat, 17 Jun 2023 07:03:42 -0700 (PDT)
-Received: from [192.168.2.199] ([174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id b10-20020a05620a118a00b0075cc5e34e48sm7541257qkk.131.2023.06.17.07.03.42
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Jun 2023 07:03:42 -0700 (PDT)
-Message-ID: <333e6acf-fd34-23c7-eec3-1e81a94df2c6@gmail.com>
-Date: Sat, 17 Jun 2023 10:03:37 -0400
+        d=1e100.net; s=20221208; t=1687236379; x=1689828379;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NY20kvt2FXoKnnPIRKQiiNiJsXLNUYH5vSmFTd2M94s=;
+        b=kyiWld2CFhlh6MxgmxWmdG2OQkRwEFWBwtnCdJE66qPBU1s/BJIdM/l1Yv5KQtiCZ2
+         0tGCMrehU//BsK4+vBG2KxxuGV66mo3MoewBKn9nXY7ldUlxk9O+sN36bFNfQGThYdDx
+         3sTy7y1FqgHyTnTiyIB1BjkvwralXAvGyyJm8j8DCbnzX8686fN+zwENcBkrPVK+VR+H
+         E7JARgnnde6FMvkj++yrvBzGfTbufFN2b0g3VOPvwuTE61WR3wWEJ96A5fS9vjcOmKm4
+         1FZkVGhGp1gYd3qnvhM1XQqo7XJPuBr8hz47oGSFWL8yyfaI36y6zhyDzreik3iBtyML
+         t2fA==
+X-Gm-Message-State: AC+VfDy3rm/8CJ7KWvbAvJ+5fIXRrQqPth7VZqKknN/1OadwJ/CffY6N
+	vebLnOT8YbQ0m/CzuNZ4PnIpARSnN0RKL8CZ3CuI3bYo7vUAEUCGweU=
+X-Google-Smtp-Source: ACHHUZ4c9nEtBp1C7WgqHNc7B6YyEy4eIewTO22ewWCznfIImdv7phcD9JPtRNmueUTOZ3sUS7Zy4r6zyJcoQYIyYhY=
+X-Received: by 2002:a05:622a:1a11:b0:3e2:4280:bc5b with SMTP id
+ f17-20020a05622a1a1100b003e24280bc5bmr16913345qtb.21.1687236378330; Mon, 19
+ Jun 2023 21:46:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAA=S3Ps64+RMO8_==-95ZGEziAPzdmMAXTHan+TkGCYav3qVhg@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAA=S3Ps64+RMO8_==-95ZGEziAPzdmMAXTHan+TkGCYav3qVhg@mail.gmail.com>
-Message-ID-Hash: B32XFL3UQ7TMPVE2H6Y542O27FOBHLAE
-X-Message-ID-Hash: B32XFL3UQ7TMPVE2H6Y542O27FOBHLAE
-X-MailFrom: patchvonbraun@gmail.com
+From: sp <stackprogramer@gmail.com>
+Date: Tue, 20 Jun 2023 09:16:07 +0430
+Message-ID: <CAA=S3PvYd+9pPYgukF8iH-AHF9ut8LUAt=Maw+qU5mm2pJ9KWw@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: BT2O7TJIOJ5LDWEMKKMIHBRYNMPKKWAV
+X-Message-ID-Hash: BT2O7TJIOJ5LDWEMKKMIHBRYNMPKKWAV
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: What is delay change frequency USRP daughterboard when i used PCIe vs Ethernet?
+Subject: [USRP-users] error in installing nuradio 3.8 with UHD4.2.0
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/B32XFL3UQ7TMPVE2H6Y542O27FOBHLAE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BT2O7TJIOJ5LDWEMKKMIHBRYNMPKKWAV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1942995457395862022=="
 
-T24gMTcvMDYvMjAyMyAwOToxMywgc3Agd3JvdGU6DQo+IFdoYXQgaXMgdGhlIGRlbGF5IGNoYW5n
-ZSBmcmVxdWVuY3kgVVNSUCBkYXVnaHRlcmJvYXJkIHdoZW4gSSB1c2VkIFBDSWUgDQo+IHZzIEV0
-aGVybmV0Pw0KPiBJIGhhdmUgYSBVU1JQIHgzMTAsIGFuZCB3aGVuIEkgc2VuZCBhIGNoYW5nZSBm
-cmVxdWVuY3kgdG8gY2hhbmdlIHRoZSANCj4gZnJlcXVlbmN5IGl0IHRha2VzIGxvbmcgLjIgbXMs
-IHRoaXMgZGVsYXkgaXMgZm9yIHRoZSBldGhlcm5ldCBjb21tYW5kIA0KPiBzZW50IHRvIHRoZSBk
-YXVnaHRlcmJvYXJkIEkgbWVhc3VyZSBpdCB3aXRoIGNwcCBjb2RlLCBidXQgSSBoYWQgbm90IA0K
-PiBhbnkgUENJZSwgYnV0IHRoaXMgaXMgYSBxdWVzdGlvbiBmb3IgbWU/DQo+IE15IHF1ZXN0aW9u
-IGlzIGZvciBQQ0llIHdoYXQncyBhIGRlbGF5IGZvciBjaGFuZ2UgZnJlcXVlbmN5IHRoYXQgDQo+
-IGVmZmVjdMKgdGhlIGRhdWdodGVyYm9hcmQ/DQo+IENhbiBhbnlvbmUgZ3VpZGUgbWU/DQo+IHRo
-YW5rcyBpbiBhZHZhbmNlDQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vy
-cy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NClRoZSBmcmVxdWVuY3ktc2V0dGluZyBsYXRlbmN5IGlz
-wqAgKnV0dGVybHkgZG9taW5hdGVkKiBieSB0aGUgdGltZSBpdCANCnRha2VzIGZvciB0aGUgUExM
-IHN5bnRoZXNpemVyIHRvIGFjaGlldmUgbG9jaywgYW5kIFRIQVQNCiDCoCBpcyBkZXBlbmRlbnQg
-b24gd2hpY2ggZGF1Z2hlcmJvYXJkIHlvdSBoYXZlLCBhbmQgaG93IGJpZyBhIGZyZXF1ZW5jeSAN
-CmNoYW5nZSB5b3UncmUgbWFraW5nLsKgwqAgVGhlIGZyYWN0aW9uIG9mIHRoZSBsYXRlbmN5DQog
-wqAgY2F1c2VkIGJ5IHRoZSBjb21tdW5pY2F0aW9ucyBjaGFubmVsIGlzIGxhcmdlbHkgaW1tYXRl
-cmlhbC4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8g
-dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
-LmNvbQo=
+--===============1942995457395862022==
+Content-Type: multipart/alternative; boundary="000000000000fb88e105fe8854f5"
+
+--000000000000fb88e105fe8854f5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+when I want to build Gnuradio 3.8.5 with UHD4.2.0 I faced a strange error I
+send it to the Gnuradio mailing list they can not solve it.
+Does anyone have any idea that solves my problem? thanks in advance
+
+[ 51%] Building CXX object
+gr-uhd/swig/CMakeFiles/uhd_swig.dir/CMakeFiles/uhd_swig.dir/uhd_swigPYTHON_=
+wrap.cxx.o
+[ 51%] Building CXX object
+gr-blocks/lib/CMakeFiles/gnuradio-blocks.dir/stream_to_streams_impl.cc.o
+/home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_s=
+wigPYTHON_wrap.cxx:
+In function =E2=80=98PyObject* _wrap_dboard_iface_sleep(PyObject*, PyObject=
+*,
+PyObject*)=E2=80=99:
+/home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_s=
+wigPYTHON_wrap.cxx:32748:21:
+error: cannot convert =E2=80=98const nanoseconds=E2=80=99 {aka =E2=80=98con=
+st
+std::chrono::duration<long int, std::ratio<1, 1000000000> >=E2=80=99} to =
+=E2=80=98const
+nanoseconds&=E2=80=99 {aka =E2=80=98const boost::chrono::duration<long int,=
+ boost::ratio<1,
+1000000000> >&=E2=80=99}
+32748 |       (arg1)->sleep((std::chrono::nanoseconds const &)*arg2);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |
+      |                     const nanoseconds {aka const
+std::chrono::duration<long int, std::ratio<1, 1000000000> >}
+In file included from /usr/local/include/uhd/usrp/multi_usrp.hpp:38,
+                 from
+/home/sp/Documents/gnuradio/gr-uhd/lib/../include/gnuradio/uhd/usrp_block.h=
+:28,
+                 from
+/home/sp/Documents/gnuradio/gr-uhd/lib/../include/gnuradio/uhd/usrp_source.=
+h:26,
+                 from
+/home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_s=
+wigPYTHON_wrap.cxx:3415:
+/usr/local/include/uhd/usrp/dboard_iface.hpp:283:58: note:   initializing
+argument 1 of =E2=80=98virtual void uhd::usrp::dboard_iface::sleep(const
+nanoseconds&)=E2=80=99
+  283 |     virtual void sleep(const boost::chrono::nanoseconds& time);
+      |                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_s=
+wigPYTHON_wrap.cxx:
+In function =E2=80=98PyObject* _wrap_dboard_iface_sptr_sleep(PyObject*, PyO=
+bject*,
+PyObject*)=E2=80=99:
+/home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_s=
+wigPYTHON_wrap.cxx:36150:22:
+error: cannot convert =E2=80=98const nanoseconds=E2=80=99 {aka =E2=80=98con=
+st
+std::chrono::duration<long int, std::ratio<1, 1000000000> >=E2=80=99} to =
+=E2=80=98const
+nanoseconds&=E2=80=99 {aka =E2=80=98const boost::chrono::duration<long int,=
+ boost::ratio<1,
+1000000000> >&=E2=80=99}
+36150 |       (*arg1)->sleep((std::chrono::nanoseconds const &)*arg2);
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                      |
+      |                      const nanoseconds {aka const
+std::chrono::duration<long int, std::ratio<1, 1000000000> >}
+In file included from /usr/local/include/uhd/usrp/multi_usrp.hpp:38,
+                 from
+/home/sp/Documents/gnuradio/gr-uhd/lib/../include/gnuradio/uhd/usrp_block.h=
+:28,
+                 from
+/home/sp/Documents/gnuradio/gr-uhd/lib/../include/gnuradio/uhd/usrp_source.=
+h:26,
+                 from
+/home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_s=
+wigPYTHON_wrap.cxx:3415:
+/usr/local/include/uhd/usrp/dboard_iface.hpp:283:58: note:   initializing
+argument 1 of =E2=80=98virtual void uhd::usrp::dboard_iface::sleep(const
+nanoseconds&)=E2=80=99
+  283 |     virtual void sleep(const boost::chrono::nanoseconds& time);
+      |                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+[ 52%] Building CXX object
+gr-blocks/lib/CMakeFiles/gnuradio-blocks.dir/stream_to_tagged_stream_impl.c=
+c.o
+make[2]: *** [gr-uhd/swig/CMakeFiles/uhd_swig.dir/build.make:63:
+gr-uhd/swig/CMakeFiles/uhd_swig.dir/CMakeFiles/uhd_swig.dir/uhd_swigPYTHON_=
+wrap.cxx.o]
+Error 1
+make[1]: *** [CMakeFiles/Makefile2:11109:
+gr-uhd/swig/CMakeFiles/uhd_swig.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+
+--000000000000fb88e105fe8854f5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">when I want to build Gnuradio 3.8.5 with UHD4.2.0 I faced =
+a strange error I send it to the Gnuradio mailing list they can not solve i=
+t.<div>Does anyone have any idea that solves my problem? thanks in advance<=
+/div><div><br></div><div>[ 51%] Building CXX object gr-uhd/swig/CMakeFiles/=
+uhd_swig.dir/CMakeFiles/uhd_swig.dir/uhd_swigPYTHON_wrap.cxx.o<br>[ 51%] Bu=
+ilding CXX object gr-blocks/lib/CMakeFiles/gnuradio-blocks.dir/stream_to_st=
+reams_impl.cc.o<br>/home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFiles=
+/uhd_swig.dir/uhd_swigPYTHON_wrap.cxx: In function =E2=80=98PyObject* _wrap=
+_dboard_iface_sleep(PyObject*, PyObject*, PyObject*)=E2=80=99:<br>/home/sp/=
+Documents/gnuradio/build/gr-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_swigPYTHON=
+_wrap.cxx:32748:21: error: cannot convert =E2=80=98const nanoseconds=E2=80=
+=99 {aka =E2=80=98const std::chrono::duration&lt;long int, std::ratio&lt;1,=
+ 1000000000&gt; &gt;=E2=80=99} to =E2=80=98const nanoseconds&amp;=E2=80=99 =
+{aka =E2=80=98const boost::chrono::duration&lt;long int, boost::ratio&lt;1,=
+ 1000000000&gt; &gt;&amp;=E2=80=99}<br>32748 | =C2=A0 =C2=A0 =C2=A0 (arg1)-=
+&gt;sleep((std::chrono::nanoseconds const &amp;)*arg2);<br>=C2=A0 =C2=A0 =
+=C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>=C2=A0 =C2=A0 =C2=A0 | =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |<br>=C2=
+=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 const nanoseconds {aka const std::chrono::duration&lt;long i=
+nt, std::ratio&lt;1, 1000000000&gt; &gt;}<br>In file included from /usr/loc=
+al/include/uhd/usrp/multi_usrp.hpp:38,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from /home/sp/Documents/gnuradio/gr-uhd/lib/=
+../include/gnuradio/uhd/usrp_block.h:28,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from /home/sp/Documents/gnuradio/gr-uhd/lib/=
+../include/gnuradio/uhd/usrp_source.h:26,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from /home/sp/Documents/gnuradio/build/gr=
+-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_swigPYTHON_wrap.cxx:3415:<br>/usr/loc=
+al/include/uhd/usrp/dboard_iface.hpp:283:58: note: =C2=A0 initializing argu=
+ment 1 of =E2=80=98virtual void uhd::usrp::dboard_iface::sleep(const nanose=
+conds&amp;)=E2=80=99<br>=C2=A0 283 | =C2=A0 =C2=A0 virtual void sleep(const=
+ boost::chrono::nanoseconds&amp; time);<br>=C2=A0 =C2=A0 =C2=A0 | =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~<br>/home/sp/Documents/gnuradio/bu=
+ild/gr-uhd/swig/CMakeFiles/uhd_swig.dir/uhd_swigPYTHON_wrap.cxx: In functio=
+n =E2=80=98PyObject* _wrap_dboard_iface_sptr_sleep(PyObject*, PyObject*, Py=
+Object*)=E2=80=99:<br>/home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFi=
+les/uhd_swig.dir/uhd_swigPYTHON_wrap.cxx:36150:22: error: cannot convert =
+=E2=80=98const nanoseconds=E2=80=99 {aka =E2=80=98const std::chrono::durati=
+on&lt;long int, std::ratio&lt;1, 1000000000&gt; &gt;=E2=80=99} to =E2=80=98=
+const nanoseconds&amp;=E2=80=99 {aka =E2=80=98const boost::chrono::duration=
+&lt;long int, boost::ratio&lt;1, 1000000000&gt; &gt;&amp;=E2=80=99}<br>3615=
+0 | =C2=A0 =C2=A0 =C2=A0 (*arg1)-&gt;sleep((std::chrono::nanoseconds const =
+&amp;)*arg2);<br>=C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~~<br>=C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|<br>=C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const nanose=
+conds {aka const std::chrono::duration&lt;long int, std::ratio&lt;1, 100000=
+0000&gt; &gt;}<br>In file included from /usr/local/include/uhd/usrp/multi_u=
+srp.hpp:38,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0from /home/sp/Documents/gnuradio/gr-uhd/lib/../include/gnuradio/uhd/usrp=
+_block.h:28,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0from /home/sp/Documents/gnuradio/gr-uhd/lib/../include/gnuradio/uhd/usrp=
+_source.h:26,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0from /home/sp/Documents/gnuradio/build/gr-uhd/swig/CMakeFiles/uhd_swi=
+g.dir/uhd_swigPYTHON_wrap.cxx:3415:<br>/usr/local/include/uhd/usrp/dboard_i=
+face.hpp:283:58: note: =C2=A0 initializing argument 1 of =E2=80=98virtual v=
+oid uhd::usrp::dboard_iface::sleep(const nanoseconds&amp;)=E2=80=99<br>=C2=
+=A0 283 | =C2=A0 =C2=A0 virtual void sleep(const boost::chrono::nanoseconds=
+&amp; time);<br>=C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~~~~^~~~<br>[ 52%] Building CXX object gr-blocks/lib/CMakeFiles/gnuradio=
+-blocks.dir/stream_to_tagged_stream_impl.cc.o<br>make[2]: *** [gr-uhd/swig/=
+CMakeFiles/uhd_swig.dir/build.make:63: gr-uhd/swig/CMakeFiles/uhd_swig.dir/=
+CMakeFiles/uhd_swig.dir/uhd_swigPYTHON_wrap.cxx.o] Error 1<br>make[1]: *** =
+[CMakeFiles/Makefile2:11109: gr-uhd/swig/CMakeFiles/uhd_swig.dir/all] Error=
+ 2<br>make[1]: *** Waiting for unfinished jobs....<br></div></div>
+
+--000000000000fb88e105fe8854f5--
+
+--===============1942995457395862022==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1942995457395862022==--
