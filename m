@@ -2,546 +2,192 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F127973E2CB
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Jun 2023 17:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C9D73E2EF
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Jun 2023 17:12:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A4BE6380ABB
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Jun 2023 11:07:27 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 608C0380C19
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Jun 2023 11:12:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1687792047; bh=75fUppJvYBFjDVH6YY0shePn0JKB7L+LT29KeWL3pto=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=PqJNkk/MqBk4J1e/m6VBk4cNde0U9j/e0cj+op1X7cZWXd5oVdNt4omA7R+swzNuK
-	 Uou84vB2f5zabk5/ocOUsAB2sW/MRChDpxp3idt/GF8nh9nbkC4p21ZqLHF4qO1Yqk
-	 raZkAfQgtaEY8JPPkN8Bwzvzi+woGi3PPaeJMWqEbmWgReoyre1XAuJnQ0v2zruDLM
-	 zmKOUx7ot3N/lA6C4S3f3cJ6U69AieDKcBgWnFBS2wL0nrTsBhJIvZw2aI0IYt9Mje
-	 yZCN5IR68yBfBRs52o2xrd/SYf+OLdXPlMLQceJzV46WLYy9VaQ3ub0Vd/yX4AMLdh
-	 sUbtfOmCV3LeA==
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 45AF8380A6F
-	for <usrp-users@lists.ettus.com>; Mon, 26 Jun 2023 11:06:22 -0400 (EDT)
+	t=1687792372; bh=j1dPlw7uugyotRGRWx5zjvfjvLSPWLaJMhbdY02tCPs=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=RX8WTfYSHfgez/C5Coav2X/++WG00sCpxS/tUPScdLt0zAz+czO3wxX6vxqVYUSCQ
+	 ph8XbBBIYASCysNN7CxRU+eG0AmG+TfwElgh/GBkKswGCD/9E9DAh0ASfgiFZnxJ90
+	 KsW63K7RRx7p3mFyPSJPWIGc+JEVGH0sXIWk5aBnT1dEw1stoYBCknbRIyCGv81av7
+	 3mpL30jDln99zoFiomXIc/UquBWBpEwMrJuGMbdEyt0SKI2NzTLw5KhxOk6ZsJuV8C
+	 3SrXsN74spgu7RY8USTOwm6S1T8J5IcaXffgjgoGT47QlAenxSe0Mqyh7OJ6ChVJYR
+	 1BGo8leUxG5iA==
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8B3C938093F
+	for <usrp-users@lists.ettus.com>; Mon, 26 Jun 2023 11:12:21 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HAvIf6HI";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hVLSpcY+";
 	dkim-atps=neutral
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7658430eb5dso225920185a.2
-        for <usrp-users@lists.ettus.com>; Mon, 26 Jun 2023 08:06:22 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1b80ba9326bso6512415ad.1
+        for <usrp-users@lists.ettus.com>; Mon, 26 Jun 2023 08:12:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687791975; x=1690383975;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1CEj9Wxa5PW3tNsjAKodNv7W1G3WYftsLuUerpnMve0=;
-        b=HAvIf6HIULY/SFOIrbq80jEwaedEkHBnv84FWZ/YPrQ+ZJeNxLriLBr3aHcvQMyG5B
-         IlaNP6liua29xVwWwg/5EPJl2rxZ9MUolTAfF+joY4G8dk8Mf+4yJ0sEEYFbBbfcEsKS
-         Zn2xYXpIN/iqfJ9vKa6HJ9IdGqzZjxMfmk9naAR7iC4wHgB15OEUmaBxMAo60Jmbhqp5
-         0i953ndBAj88yJUjjpbxJHikJBEry5BIoAM25DHF9dNuJbNa20AzeTLxMYtW0/ov5/OT
-         CDZyCMhf6cAcF+3W4dt2Qgh/jyyJr4rFr94yDEAeg5eIlc2AM6uknygsv+cbuFn1M0gV
-         F1FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687791975; x=1690383975;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+        d=gmail.com; s=20221208; t=1687792340; x=1690384340;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=1CEj9Wxa5PW3tNsjAKodNv7W1G3WYftsLuUerpnMve0=;
-        b=fG1ahg0Ar36L7UPWE79d6Yn8wOROU3xUAZk/psItHTpJOyfDX/cpLbk9JFFRNGLHa6
-         cMWaFVVnql2xHY9jXtITVsLUHMi6LoSqbiQMSyTQM3aGt/q07YU2bLXoX7tyR78qQcKX
-         CA7FB6d8xXZR95bzhsZv4GxZj80uiAwGGLPuNSZgvu+f93kFoJO4fe/E1s3P5xu3sMJV
-         LenFG7sxjZAM3Bh6Q4pyAjOS42EmKEhOuaEe94n5jgNx2KZ4wsgMw8XpDEH/PC2NGPm6
-         V9JiJelguZyJQE/cu5I/FSFzX1TKEtIDj0gzwe35aB87HGlfW1OvB5z6yFTxMYMnb50/
-         jqeA==
-X-Gm-Message-State: AC+VfDxFqusUF3ZJKatXuPXfgeEIVoEuSojY2Lkiyby4uJC/MQ8HKJE9
-	+j8Eu98s8L8vhbs0tL4JdX3mL3xh1tM=
-X-Google-Smtp-Source: ACHHUZ5V33+JcTuUmW+9twGzpuesswd+KHQ7E3CPzDTqONrHNhVeaHLgG79vNmrM/saadtEP2lLSNw==
-X-Received: by 2002:a05:620a:372c:b0:764:9574:80e2 with SMTP id de44-20020a05620a372c00b00764957480e2mr16433020qkb.61.1687791975410;
-        Mon, 26 Jun 2023 08:06:15 -0700 (PDT)
-Received: from [192.168.2.171] ([174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id a10-20020a05620a16ca00b0076639dfca86sm599807qkn.17.2023.06.26.08.06.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 08:06:15 -0700 (PDT)
-Message-ID: <d846abc8-cbbb-0bb4-0432-72ac15aeb7df@gmail.com>
-Date: Mon, 26 Jun 2023 11:06:10 -0400
+        bh=Y16XqAtHyVB2tNS3vqbcriYZhqYTb05+HwTV5G9z1J4=;
+        b=hVLSpcY+TtMfRukoN6AP5ZzpSptvyTqJrH7bHQnVr5Lht161JjRBvuCZpLmctBUUIj
+         Dt3PgE7D4Oos65+o1kEvbFPmg0KZj3XaPof+RTwQE44hY73mYiCITQ9IWObicZNZ5Cpl
+         0lY9ZwvVVi8ZKzfexesVxNvA7A4O7mZdldiQe4nAcpYCfPvzVt+PPcPUrwZxFGXIMF90
+         u5ft+bz5Fb52HolIQ0P1+FMal3qMpIYQfO8aKDxdKHjtO9iOxpST/5f3jrhT3jibMiiv
+         GaqaCyD+fkKdOReboo9cZ19i5Jc0G7N/449obVmq3y/EBcghMOXb0NlBL0Ru5YgBIdcJ
+         TTFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687792340; x=1690384340;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y16XqAtHyVB2tNS3vqbcriYZhqYTb05+HwTV5G9z1J4=;
+        b=ZGlYhq6gE47v6zVVjGVAub7ujEv80hErhtYSrwuowxgpJTzFR/IVFvRBsEiGp7r4LB
+         n2N0QbVPVU773LZtvI8TJ1v2mxihoOux7ggdTKsZjKlLA3VnAAYQItHYGFtJ5DNWEZzO
+         MBbfitZ5GMGpThT6G7vg9jMsXXEEerlj6vVn/V0tTrt5dex0ow+Ovhoiq+HtNyLBBM2t
+         hepQht9nnQs32rZ4YqEDTP1FZRXW9+4Z7wP7EnHWU34UO10HK9FvVYaA1j25SY/mWpsB
+         8FrBvnbBEC5U/7j8sCHhTumOnqb+XWbJ1kBiYMXxt+Db/inrFE4MHo/uYREieMIvEvGO
+         UlKw==
+X-Gm-Message-State: AC+VfDy/OEhcCIxsVoxy8CwedBjzz/mjoiUO5FI8FAOF2tW+lUnI3GNM
+	vPxFzJS7oGioDOrDCTqkJd6LcBWksIEBPR9xWVh+htrf
+X-Google-Smtp-Source: ACHHUZ6558isXBTNpdvwByGAsDVbYgLPrO3adhIL4Hz5S71dIDJ7OoRzS+DWX0nFyEsz+IqyFfMWMOBr7L6viue2YlQ=
+X-Received: by 2002:a17:902:c1c6:b0:1b5:553e:4ea1 with SMTP id
+ c6-20020a170902c1c600b001b5553e4ea1mr7959954plc.1.1687792340045; Mon, 26 Jun
+ 2023 08:12:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Arhum Ahmad <arhum.19eez0005@iitrpr.ac.in>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <CA+QP_P=kMBqVSfi7ktJdrayHEjMWxu0SK-1jpgJx3ho2=fxOJQ@mail.gmail.com>
- <11ffaa69-3ae5-bd0f-8570-dc0caf48912f@gmail.com>
- <CA+QP_PnM2bqW6U+FG6NbaQ66ES921w9EPVGu-Uf8JoPGPnW1fQ@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CA+QP_PnM2bqW6U+FG6NbaQ66ES921w9EPVGu-Uf8JoPGPnW1fQ@mail.gmail.com>
-Message-ID-Hash: CRFP64FQ4JALZRYDQQ5K6IYDJAV327FF
-X-Message-ID-Hash: CRFP64FQ4JALZRYDQQ5K6IYDJAV327FF
-X-MailFrom: patchvonbraun@gmail.com
+From: Carlo Venier <venier.carlo@gmail.com>
+Date: Mon, 26 Jun 2023 17:12:08 +0200
+Message-ID: <CAHRiTbnhtWyYk3A+q_J7PLhbKPb9USF5ZPnUxzFLGZCm938m+g@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: UHTGO5NL4IUJKSCLSEOGMXGR37WWVFCC
+X-Message-ID-Hash: UHTGO5NL4IUJKSCLSEOGMXGR37WWVFCC
+X-MailFrom: venier.carlo@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Help Regarding Transmitting Gain of USRP N-200
+Subject: [USRP-users] TwinRx in coherent setup
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CRFP64FQ4JALZRYDQQ5K6IYDJAV327FF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UHTGO5NL4IUJKSCLSEOGMXGR37WWVFCC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3330027321923052733=="
+Content-Type: multipart/mixed; boundary="===============8248090801581450127=="
 
-This is a multi-part message in MIME format.
---===============3330027321923052733==
-Content-Type: multipart/alternative;
- boundary="------------tcKaXFikTrOAyPNA2vtLTlCi"
-Content-Language: en-US
+--===============8248090801581450127==
+Content-Type: multipart/alternative; boundary="000000000000e2166205ff09c60e"
 
-This is a multi-part message in MIME format.
---------------tcKaXFikTrOAyPNA2vtLTlCi
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000e2166205ff09c60e
+Content-Type: text/plain; charset="UTF-8"
+
+Good evening to everybody,
+
+I am trying to use an X300 with two TwinRX in a coherent setup.
+After synchronization, in the case of fixed frequency operation (no
+re-tuning) the phase differences among the channels are constant and
+they remain constant over time.
+However, if I re-tune the TwinRx on the exact same frequency, I expect
+that the phase differences remain the same, but it does not happen. How
+is it possible?
+
+The LO settings are the following:
+
+multi_usrp->set_rx_lo_export_enabled(true,
+uhd::usrp::multi_usrp::ALL_LOS, 0);
+multi_usrp->set_rx_lo_source("internal", uhd::usrp::multi_usrp::ALL_LOS, 0);
+multi_usrp->set_rx_lo_source("companion",
+uhd::usrp::multi_usrp::ALL_LOS, 1);
+multi_usrp->set_rx_lo_source("external", uhd::usrp::multi_usrp::ALL_LOS, 2);
+multi_usrp->set_rx_lo_source("external", uhd::usrp::multi_usrp::ALL_LOS, 3);
+
+Moreover, by using the timed command before tuning all the channels
+(code snippet at "https://files.ettus.com/manual/page_sync.html", "Align
+LOs in the front-end"), I get into the issue at
+("https://github.com/EttusResearch/uhd/issues/606") and the X300 is not
+usable until a power-cycle.
+I get the same issues when using both the uhd3.15.0.0 and the uhd4.4.0.0.
+
+Should I expect the same phase differences when I re-tune to the exact
+same frequency or is it okay for the phase differences to change and I
+am missing something?
+Do you have any suggestion on how to solve the issue?
+
+Thanks,
+
+Best regards,
+Carlo Venier
+
+--000000000000e2166205ff09c60e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 26/06/2023 09:32, Arhum Ahmad wrote:
-> Thanks for the response,
->
-> 1. I am using UBX 10-6000 MHz=20
-> Rx/Tx(https://www.ettus.com/all-products/ubx40/)
-> 2. Yes, I am using AGC for the processing part. The parameter values I=20
-> have uses are
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- DesiredPower: 2
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- AveragingLength: 50
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- MaxPowerGain: 60
-> 3. I have=C2=A0checked the spectrum of the signal in a=20
-> separate=C2=A0spectruHm=C2=A0analyzer, there is NO change in the spectr=
-um=C2=A0as I=20
-> vary the gain.
-Assuming you have a complete UHD installation, you can use the=20
-tx_waveforms example app to check this as well.=C2=A0 Since you're
- =C2=A0 using MATLAB, I cannot help with that aspect.
+<div dir=3D"auto"><span style=3D"font-size:12.8px">Good evening to everybod=
+y,</span><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><spa=
+n style=3D"font-size:12.8px">I am trying to use an X300 with two TwinRX in =
+a coherent setup.</span><br style=3D"font-size:12.8px"><span style=3D"font-=
+size:12.8px">After synchronization, in the case of fixed frequency operatio=
+n (no</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px"=
+>re-tuning) the phase differences among the channels are constant and</span=
+><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">they remai=
+n constant over time.</span><br style=3D"font-size:12.8px"><span style=3D"f=
+ont-size:12.8px">However, if I re-tune the TwinRx on the exact same frequen=
+cy, I expect</span><br style=3D"font-size:12.8px"><span style=3D"font-size:=
+12.8px">that the phase differences remain the same, but it does not happen.=
+ How</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">=
+is it possible?</span><br style=3D"font-size:12.8px"><br style=3D"font-size=
+:12.8px"><span style=3D"font-size:12.8px">The LO settings are the following=
+:</span><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span=
+ style=3D"font-size:12.8px">multi_usrp-&gt;set_rx_lo_export_e</span><span s=
+tyle=3D"font-size:12.8px">nabled(true,</span><br style=3D"font-size:12.8px"=
+><span style=3D"font-size:12.8px">uhd::usrp::multi_usrp::ALL_LOS</span><spa=
+n style=3D"font-size:12.8px">, 0);</span><br style=3D"font-size:12.8px"><sp=
+an style=3D"font-size:12.8px">multi_usrp-&gt;set_rx_lo_source(&quot;</span>=
+<span style=3D"font-size:12.8px">internal&quot;, uhd::usrp::multi_usrp::ALL=
+_LOS</span><span style=3D"font-size:12.8px">, 0);</span><br style=3D"font-s=
+ize:12.8px"><span style=3D"font-size:12.8px">multi_usrp-&gt;set_rx_lo_sourc=
+e(&quot;</span><span style=3D"font-size:12.8px">companion&quot;,</span><br =
+style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">uhd::usrp::mult=
+i_usrp::ALL_LOS</span><span style=3D"font-size:12.8px">, 1);</span><br styl=
+e=3D"font-size:12.8px"><span style=3D"font-size:12.8px">multi_usrp-&gt;set_=
+rx_lo_source(&quot;</span><span style=3D"font-size:12.8px">external&quot;, =
+uhd::usrp::multi_usrp::ALL_LOS</span><span style=3D"font-size:12.8px">, 2);=
+</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">mult=
+i_usrp-&gt;set_rx_lo_source(&quot;</span><span style=3D"font-size:12.8px">e=
+xternal&quot;, uhd::usrp::multi_usrp::ALL_LOS</span><span style=3D"font-siz=
+e:12.8px">, 3);</span><br style=3D"font-size:12.8px"><br style=3D"font-size=
+:12.8px"><span style=3D"font-size:12.8px">Moreover, by using the timed comm=
+and before tuning all the channels</span><br style=3D"font-size:12.8px"><sp=
+an style=3D"font-size:12.8px">(code snippet at &quot;</span><a href=3D"http=
+s://files.ettus.com/manual/page_sync.html" style=3D"text-decoration-line:no=
+ne;color:rgb(66,133,244);font-size:12.8px" target=3D"_blank" rel=3D"norefer=
+rer">https://files.ettus.com/manual/page_sync.html</a><span style=3D"font-s=
+ize:12.8px">&quot;, &quot;Align</span><br style=3D"font-size:12.8px"><span =
+style=3D"font-size:12.8px">LOs in the front-end&quot;), I get into the issu=
+e at</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">=
+(&quot;</span><a href=3D"https://github.com/EttusResearch/uhd/issues/606" s=
+tyle=3D"text-decoration-line:none;color:rgb(66,133,244);font-size:12.8px" t=
+arget=3D"_blank" rel=3D"noreferrer">https://github.com/EttusResearch/uhd/is=
+sues/606</a><span style=3D"font-size:12.8px">&quot;) and the X300 is not</s=
+pan><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">usable =
+until a power-cycle.</span><br style=3D"font-size:12.8px"><span style=3D"fo=
+nt-size:12.8px">I get the same issues when using both the uhd3.15.0.0 and t=
+he uhd4.4.0.0.</span><br style=3D"font-size:12.8px"><br style=3D"font-size:=
+12.8px"><span style=3D"font-size:12.8px">Should I expect the same phase dif=
+ferences when I re-tune to the exact</span><br style=3D"font-size:12.8px"><=
+span style=3D"font-size:12.8px">same frequency or is it okay for the phase =
+differences to change and I</span><br style=3D"font-size:12.8px"><span styl=
+e=3D"font-size:12.8px">am missing something?</span><br style=3D"font-size:1=
+2.8px"><span style=3D"font-size:12.8px">Do you have any suggestion on how t=
+o solve the issue?</span><br style=3D"font-size:12.8px"><br style=3D"font-s=
+ize:12.8px"><span style=3D"font-size:12.8px">Thanks,</span><br style=3D"fon=
+t-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8=
+px">Best regards,</span><br style=3D"font-size:12.8px"><span style=3D"font-=
+size:12.8px">Carlo Venier</span></div>
 
+--000000000000e2166205ff09c60e--
 
->
-> On Mon, Jun 26, 2023 at 2:58=E2=80=AFAM Marcus D. Leech=20
-> <patchvonbraun@gmail.com> wrote:
->
->     On 25/06/2023 16:49, Arhum Ahmad wrote:
->>     Respected sir,
->>     I am using N-200 USRP for transmitting a signal. While
->>     transmitting, I havechangedthe Gain value in the SDRutransmitting
->>     block, but my signal strength at the receiver remains=C2=A0the sam=
-e. I
->>     also stop and restart the code but the change in gain does not
->>     affect the received signal. I have tried the changing gain via
->>     both available options i.e., input port and dialog, but it seems
->>     to have no effecton the receiver. The signal strength at the
->>     receiver remains=C2=A0the same. I have tried 30 dB(Maximum gain) t=
-o 0
->>     dB (minimum gain) in both cases received SNR is the same(i.e.,15
->>     dB). I am using a wireless connection in line-of-sight, with
->>     minimum Tx gain at least a fewdropsin SNR should be observed. I
->>     have also tried -50dB (just checking) but noeffect in the SNR is
->>     observed. The same thing I havetried using B210 as Tx, Rx signal
->>     strength does change in this case. However, while using N-200,
->>     noeffect of changing the gain value is observed.
->>     Somehow=C2=A0gainvalue is fixed in N-200 while using the MATLABSDR=
-u
->>     block. Can you PLEASE HELP ME!!! IT IS VERY, VERY IMPORTANT.
->>
->     Well, neither usrp-users nor discuss-gnuradio are support lists
->     for MATLAB.
->
->     You haven't mentioned which daughter-card you are using in the
->     N200, which would certainly help to fill in information about
->     =C2=A0 what *might* be going on.
->
->
->     Does your receiver setup use AGC?=C2=A0 Do you know what its set-po=
-ints
->     are?
->
->     If you simply look at the spectrum on the RX end as you vary gain
->     on the TX end, do you see a change?=C2=A0=C2=A0 At the higher end,
->     =C2=A0 SNR may not change very much, depending on how it is being
->     measured, etc.
->
->
->
->
-> --=20
-> *Thanks and Regards**
-> *
-> *Arhum Ahmad*
-> Ph.D. Scholar,=C2=A0Electrical Engineering Department, IIT Ropar
->
-> +91- <tel:+91-7015802356>7974897279 |=C2=A0arhum.19eez0005@iitrpr.ac.in=
-=20
-> <mailto:2016eez0009@iitrpr.ac.in>
->
-> Lab No. 323, Communication Research Lab, J.C.Bose Building
->
->
-> *
-> /CONFIDENTIALITY NOTICE:=C2=A0The contents of this email message and an=
-y=20
-> attachments are intended solely for the addressee(s) and may contain=20
-> confidential and/or privileged information and may be legally=20
-> protected from disclosure. If you are not the intended recipient of=20
-> this message or their agent, or if this message has been addressed to=20
-> you in error, please immediately alert the sender by reply email and=20
-> then delete this message and any attachments. If you are not the=20
-> intended recipient, you are hereby notified that any use,=20
-> dissemination, copying, or storage of this message or its attachments=20
-> is strictly prohibited./
-> *=20
-
---------------tcKaXFikTrOAyPNA2vtLTlCi
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 26/06/2023 09:32, Arhum Ahmad wrote=
-:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CA+QP_PnM2bqW6U+FG6NbaQ66ES921w9EPVGu-Uf8JoPGPnW1fQ@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">Thanks for the response,
-        <div><br>
-        </div>
-        <div>1. I am using=C2=A0<span
-            style=3D"color:rgb(51,51,51);font-family:&quot;Source Sans
-            Pro&quot;,sans-serif">UBX 10-6000 MHz Rx/Tx</span><span
-            style=3D"font-size:x-small;color:rgb(51,51,51);font-family:&q=
-uot;Source
-            Sans Pro&quot;,sans-serif">=C2=A0</span>(<a
-            href=3D"https://www.ettus.com/all-products/ubx40/"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">http=
-s://www.ettus.com/all-products/ubx40/</a>)</div>
-        <div>2. Yes, I am using AGC for the processing part. The
-          parameter values I have uses are=C2=A0</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- DesiredPower: 2=
-</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- AveragingLength=
-: 50</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- MaxPowerGain: 6=
-0</div>
-        <div>3. I have=C2=A0checked the spectrum of the signal in a
-          separate=C2=A0spectru<span data-lexical-text=3D"true">H</span>m=
-=C2=A0analyzer,
-          there is NO change in the spectrum=C2=A0as I vary the gain.</di=
-v>
-      </div>
-    </blockquote>
-    Assuming you have a complete UHD installation, you can use the
-    tx_waveforms example app to check this as well.=C2=A0 Since you're<br=
->
-    =C2=A0 using MATLAB, I cannot help with that aspect.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CA+QP_PnM2bqW6U+FG6NbaQ66ES921w9EPVGu-Uf8JoPGPnW1fQ@mail.gmai=
-l.com"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 26, 2023 at
-          2:58=E2=80=AFAM Marcus D. Leech &lt;<a
-            href=3D"mailto:patchvonbraun@gmail.com" moz-do-not-send=3D"tr=
-ue"
-            class=3D"moz-txt-link-freetext">patchvonbraun@gmail.com</a>&g=
-t;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <div>On 25/06/2023 16:49, Arhum Ahmad wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">Respected sir,
-                <div><span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">I
-                    am using N-200 USRP for transmitting a signal. While
-                    transmitting,=C2=A0</span>I have<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                  </span>changed<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    the Gain value </span>in the SDRu<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    transmitting block, but my signal strength at the
-                    receiver </span>remains<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">=C2=A0the
-                    same. I also stop and restart the code but the
-                    change in gain does not affect the received signal.
-                    I have tried the changing gain via both available
-                    options i.e., input port and dialog, but it </span>se=
-ems
-                  to have no effect<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    on the receiver. The signal strength at the receiver
-                  </span>remains<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">=C2=A0the
-                    same. I have tried 30 dB(Maximum gain) to 0 dB
-                    (minimum gain) in both cases received SNR </span>is
-                  the same<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    (i.e.,15 dB). I am using a wireless connection in
-                    line-of-sight, with minimum Tx gain at </span>least
-                  a few<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                  </span>drops<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    in SNR should be observed. I have also tried -50dB
-                    (just checking) but </span>no<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    effect in the SNR is observed. The same thing </span>=
-I
-                  have<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    tried using B210 as Tx, Rx signal strength does
-                    change in this case. However, while using N-200,=C2=A0=
-</span>no<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    effect of changing the gain value is observed.
-                    Somehow</span>=C2=A0gain<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    value is fixed in N-200 while </span>using the
-                  MATLAB<span
-style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14p=
-x">
-                    SDRu block. Can you PLEASE HELP ME!!! IT IS VERY,
-                    VERY IMPORTANT.</span><br>
-                </div>
-                <br>
-              </div>
-            </blockquote>
-            Well, neither usrp-users nor discuss-gnuradio are support
-            lists for MATLAB.<br>
-            <br>
-            You haven't mentioned which daughter-card you are using in
-            the N200, which would certainly help to fill in information
-            about<br>
-            =C2=A0 what *might* be going on.<br>
-            <br>
-            <br>
-            Does your receiver setup use AGC?=C2=A0 Do you know what its
-            set-points are?<br>
-            <br>
-            If you simply look at the spectrum on the RX end as you vary
-            gain on the TX end, do you see a change?=C2=A0=C2=A0 At the h=
-igher
-            end,<br>
-            =C2=A0 SNR may not change very much, depending on how it is b=
-eing
-            measured, etc.=C2=A0=C2=A0 <br>
-            <br>
-            <br>
-          </div>
-        </blockquote>
-      </div>
-      <br clear=3D"all">
-      <div><br>
-      </div>
-      <span class=3D"gmail_signature_prefix">-- </span><br>
-      <div dir=3D"ltr" class=3D"gmail_signature">
-        <div dir=3D"ltr">
-          <div>
-            <div dir=3D"ltr">
-              <div
-style=3D"color:rgb(100,100,100);font-family:Arial;font-size:12px;margin-b=
-ottom:5px;margin-top:0px"><b
-style=3D"color:rgb(53,28,117);font-family:Arial,Helvetica,sans-serif;font=
--size:small"><span
-                    style=3D"font-family:&quot;times new
-                    roman&quot;,serif">Thanks and Regards</span></b><b><b=
-r>
-                </b></div>
-              <div
-style=3D"color:rgb(100,100,100);font-family:Arial;font-size:12px;margin-b=
-ottom:5px;margin-top:0px"><b>Arhum
-                  Ahmad</b><br>
-                Ph.D. Scholar,=C2=A0Electrical Engineering Department, II=
-T
-                Ropar</div>
-              <table
-style=3D"color:rgb(100,100,100);font-family:Arial;font-size:12px;width:47=
-0px;margin-top:5px"
-                width=3D"470" cellspacing=3D"0" cellpadding=3D"0" border=3D=
-"0">
-                <tbody>
-                  <tr>
-                    <td style=3D"color:rgb(141,141,141)">
-                      <p style=3D"margin:0px"><span
-                          style=3D"display:inline-block"><a
-                            href=3D"tel:+91-7015802356"
-                            style=3D"color:rgb(141,141,141);font-family:s=
-ans-serif"
-                            target=3D"_blank" moz-do-not-send=3D"true">+9=
-1-</a>7974897279</span>=C2=A0<span
-style=3D"color:rgb(69,102,142);display:inline-block">|</span>=C2=A0arhum.=
-19eez0005<span
-                          style=3D"display:inline-block"><a
-                            href=3D"mailto:2016eez0009@iitrpr.ac.in"
-                            style=3D"color:rgb(141,141,141);font-family:s=
-ans-serif"
-                            target=3D"_blank" moz-do-not-send=3D"true">@i=
-itrpr.ac.in</a></span></p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td
-                      style=3D"font-family:sans-serif;color:rgb(141,141,1=
-41)"><span
-                        style=3D"display:inline-block">Lab No. 323,
-                        Communication Research Lab, J.C.Bose Building</sp=
-an></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <b><font size=3D"1"><span><span><span>
-                <div>
-                  <div dir=3D"ltr">
-                    <div dir=3D"ltr">
-                      <div>
-                        <div dir=3D"ltr">
-                          <div dir=3D"ltr">
-                            <div dir=3D"ltr">
-                              <div dir=3D"ltr">
-                                <div dir=3D"ltr">
-                                  <div dir=3D"ltr">
-                                    <div dir=3D"ltr">
-                                      <div dir=3D"ltr">
-                                        <div dir=3D"ltr">
-                                          <div dir=3D"ltr">
-                                            <div dir=3D"ltr">
-                                              <div dir=3D"ltr">
-                                                <div dir=3D"ltr">
-                                                  <div dir=3D"ltr">
-                                                    <div dir=3D"ltr">
-                                                      <div dir=3D"ltr">
-                                                        <div dir=3D"ltr">
-                                                          <div dir=3D"ltr=
-">
-                                                          <div dir=3D"ltr=
-">
-                                                          <div><span><spa=
-n><span><span><i>CONFIDENTIALITY
-                                                          NOTICE:=C2=A0Th=
-e
-                                                          contents of
-                                                          this email
-                                                          message and
-                                                          any
-                                                          attachments
-                                                          are intended
-                                                          solely for the
-                                                          addressee(s)
-                                                          and may
-                                                          contain
-                                                          confidential
-                                                          and/or
-                                                          privileged
-                                                          information
-                                                          and may be
-                                                          legally
-                                                          protected from
-                                                          disclosure. If
-                                                          you are not
-                                                          the intended
-                                                          recipient of
-                                                          this message
-                                                          or their
-                                                          agent, or if
-                                                          this message
-                                                          has been
-                                                          addressed to
-                                                          you in error,
-                                                          please
-                                                          immediately
-                                                          alert the
-                                                          sender by
-                                                          reply email
-                                                          and then
-                                                          delete this
-                                                          message and
-                                                          any
-                                                          attachments.
-                                                          If you are not
-                                                          the intended
-                                                          recipient, you
-                                                          are hereby
-                                                          notified that
-                                                          any use,
-                                                          dissemination,
-                                                          copying, or
-                                                          storage of
-                                                          this message
-                                                          or its
-                                                          attachments is
-                                                          strictly
-                                                          prohibited.<spa=
-n></span></i></span></span></span></span></div>
-                                                          </div>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </span></span></span></font></b>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------tcKaXFikTrOAyPNA2vtLTlCi--
-
---===============3330027321923052733==
+--===============8248090801581450127==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -551,4 +197,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3330027321923052733==--
+--===============8248090801581450127==--
