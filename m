@@ -2,804 +2,467 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3394973E605
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Jun 2023 19:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B36D73F643
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Jun 2023 09:59:29 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5E4D3383EB1
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Jun 2023 13:13:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id ECF3C3837AC
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Jun 2023 03:59:27 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1687799609; bh=fFd1vvKCmu/Gsyw+S6tbgzNRKxIoROXMv2ApsubPt9Y=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=cYrBbC40bkptP/3RG961iEl44ekUuJkfru+fDxPKpCms4CGgoLorI9MAxyqUteBFV
-	 4VSYj4IP7CSGrFLxwg60iLQv0itkSz26jQBG/2pW8iWKsh5xrrvKSqEHWBDIyujZ+o
-	 Q1BOog9cSmdgpk2Nrt27Rb0MG0i8QoCRM2d4+vjmcdRiff24MAmYL8wA2UzXvVv4e4
-	 wve4n4gwv3POxpknT2iswYlyWKr9PGTBdtH1bADdq+oNskmpdAgO5/78VLbD3kELG5
-	 yYII7dgPuRSVJxS1ZFitG3LYvv3qXidizal7whzc4AjTfXHoJir1Hp9J0Njc1Q2kQI
-	 0Wge8B3Xzax7A==
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id E16D9380BB2
-	for <usrp-users@lists.ettus.com>; Mon, 26 Jun 2023 13:12:27 -0400 (EDT)
+	t=1687852767; bh=/iYvMEDV3NWbrI0ALARJCClpcoqh3/s/VkvOGBBw1IQ=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=XvoqVjizm+KmlYW9n2awKJxTp3fpohIRoumLEDQY4bi9M+imgZm5T6UncfRcK/OpZ
+	 L+lA619xXwRXlx7npBiWjU04T9GqsjQ/NA+CjRXSkrup58zPiRYn5Q5knzsgeXQrOC
+	 oC+3OED60PmGjeDoxdUMe/bdTVBeaAFuoKj2pRvVdXL73ygRf5/93sZxyVBBvpfMjh
+	 gMb/yzekEjcJKy2jVFpEBJq2zyzQO9V+BXbOxsanwxqM/zURHbqJ5rker5ItEe2qnK
+	 g5g8PyFbVazVnV2lapDgJqlDlzXcSVMg6YsANwwmIovZGnEHDsSFQxg3RMQUvwm4uy
+	 KZCkzHhkFENFA==
+Received: from pta-smg2.csir.co.za (pta-smg2.csir.co.za [146.64.81.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id DA141381008
+	for <usrp-users@lists.ettus.com>; Tue, 27 Jun 2023 03:58:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=iitrpr.ac.in header.i=@iitrpr.ac.in header.b="LuDgb5jR";
+	dkim=pass (1024-bit key; unprotected) header.d=csircoza.onmicrosoft.com header.i=@csircoza.onmicrosoft.com header.b="Djah+9Hk";
 	dkim-atps=neutral
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3a1e6022b93so610434b6e.1
-        for <usrp-users@lists.ettus.com>; Mon, 26 Jun 2023 10:12:27 -0700 (PDT)
+Received: from pta-smg2.csir.co.za (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id 9761628EE396;
+	Tue, 27 Jun 2023 07:58:27 +0000 (GMT)
+Received: from ZAF01-CT2-obe.outbound.protection.outlook.com (mail-ct2zaf01lp2172.outbound.protection.outlook.com [104.47.19.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
+	by pta-smg2.csir.co.za (Sophos Email Appliance) with ESMTPS id E215628FCB20;
+	Tue, 27 Jun 2023 07:58:26 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FU3U6gilEJ7OTq4YDuK+TusVkr2oCDhnKNI+ROtTTJhXJjQJCW3OEVv8hBKE/Jd0yfVv2O0Fw2sCo14fNkD46kfqazPdI4xrVLTmCYftcD6GrmWX6YqEAcbs13tcN1+shW/pRXuPqQisRHMuyhKG4Dx5Uni7NGq0pN3fb0wpF+8mi3WdDLYWVrdQbb6oZtKSLtiuSvG19Wi8NJHn4HbjFsF4Q0iSao2N314daFeMdntt6+Z9qnBuvBqSbst8F6D7N90lGIVVSCm9Oyt3sNyz2ZTsT+2QeKc6Or7GcMB0kc1+7Flcp/Sl4zMASQsN8UxF55QJ2nj0V82bt3cjyR+n9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PfswQC/hYmUn48hCYIkbkMn5KZ0RozFFL1wUKED+MC8=;
+ b=QZHV99FTXm2vxJrnMw41NYB4VhdjQ0+7iIiYenJpS83RN0AesOR9dzqdL24VADTdf5yp/7J++bqWulrB9FrEd6PetPz10e6IDB4AxeSwU9ScPwrKzrXvSyrmbCJCp1lF3BKPAed58xm5ZTqNnY4o5+PmiIOhiG0yPv8WHkl93KxTydHaQY6I3XoZK+c01UckKTRhaN7urJUlvNu6LAPqnDOMousC1lJFjpc/zL5GWct7zcBQgQ3yg2pRnFUAarmy+VRXmyH7rCYTWgAZpBQkfjGl+z7N+q+PSht8Eop1hDQ/IbFsAg8HEha1xjeNsmhZH3T2WtMwlMWvxAMQQ7iSiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=csir.co.za; dmarc=pass action=none header.from=csir.co.za;
+ dkim=pass header.d=csir.co.za; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=iitrpr.ac.in; s=google; t=1687799546; x=1690391546;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sS8KsrTJPnTwy0wAtSQwVKa+5IzMIg8aEj8UG2gMCU8=;
-        b=LuDgb5jRO1Q34L+987/mM0zO6/cb96Lssc6VLtz8ivXFz8m9Zoc6w0nW3RmoSI1hss
-         FaYyHkxB5lNwGRf0TqqYowwyxI0A2sI1qeIOYKqbUVZGdoYgl8IIbjupj+oFt91Yr7Pt
-         h8mnEZvs8BG1LhtBKJN/M8k0XpuJaARF7JyAw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687799546; x=1690391546;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sS8KsrTJPnTwy0wAtSQwVKa+5IzMIg8aEj8UG2gMCU8=;
-        b=WHMpVUAtHWkk+FSgpQL6c7TT/oZHL5nseo1FEsW0kyHiQGbaAO9a/VWwyHYTLJzXqa
-         XS5QylHqYc4fJAL1edTN2AOmHPXWqpNK5wP9s8mdLfBBCBH+roDOEBvN4eicBA90E523
-         dAj0Qc45QIIvE1RRzl8Qut/DmeEauBHgtJyt/ucclXGwDxLyLVTRSNBScUgWMvz+9nx+
-         NAyqDbQBjN8q3s60rB1V5ht9K6UFwEExJJJAsnp0q0aLEVU+ar5Y6sFMYJv5okI5kgW+
-         YAXDVKeNwFiDi8+tEVNwR0jwechlYUYjW/gPJLwy6IZGpxiai3l6LFxYhYKGofufhpjq
-         NkZw==
-X-Gm-Message-State: AC+VfDwSiaTyBGqvz+x1pmw+1Uw54aeZgleu1WF5bCm+GvhsJGdD33/9
-	OAiT+W55B6HBZmNXggdtJaL5lKPwDyK9H8TPpNeltqEty5X0oNMpEX4GjYNeWbOzVvzllaQ80NH
-	VweD/VEuB2BlTqXwFgQSJBhpWLQSxdkMOEFsnGHN9Gk0AmQ==
-X-Google-Smtp-Source: ACHHUZ4DA+fMBsdVJgA7n81ZplxPqnxLsqBihwnYcFZJpLLbhAtRoj65KTNn8pMqx6bqc67PbE0fUcWMWJgJ8V0+tMg=
-X-Received: by 2002:a05:6808:b22:b0:3a1:a316:c2d8 with SMTP id
- t2-20020a0568080b2200b003a1a316c2d8mr11925997oij.49.1687799546482; Mon, 26
- Jun 2023 10:12:26 -0700 (PDT)
+ d=csircoza.onmicrosoft.com; s=selector2-csircoza-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PfswQC/hYmUn48hCYIkbkMn5KZ0RozFFL1wUKED+MC8=;
+ b=Djah+9HkAs+Ox2nAju0O9uOsHAfuTMB6KNmkUGz5cVPxX3f2fZ8YKlMn8p3LiFszKaBWfM/v5Cy8iAqxfYX0DYSJ+EpLPnaWDpjFMrug+V5b/6iR9sBp8786ytT/NXvAnnlV9ZVkbRm5fzxbLsg7h8OU1fzD9ZUwfGVh13NtABg=
+Received: from JN2P275MB0538.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:7::12) by
+ JN2P275MB0651.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:6::7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6521.26; Tue, 27 Jun 2023 07:58:25 +0000
+Received: from JN2P275MB0538.ZAFP275.PROD.OUTLOOK.COM
+ ([fe80::3aa2:1ec0:9719:1ee6]) by JN2P275MB0538.ZAFP275.PROD.OUTLOOK.COM
+ ([fe80::3aa2:1ec0:9719:1ee6%3]) with mapi id 15.20.6521.026; Tue, 27 Jun 2023
+ 07:58:24 +0000
+From: Leon Wabeke <LWabeke@csir.co.za>
+To: Carlo Venier <venier.carlo@gmail.com>, Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [USRP-users] Re: TwinRx in coherent setup
+Thread-Index: AQHZqEImqY8I94GhP0WLqDauw892Ua+dNnSAgAAMwICAAQJfyA==
+Date: Tue, 27 Jun 2023 07:58:24 +0000
+Message-ID: 
+ <JN2P275MB053832AA51DF7159F38767549527A@JN2P275MB0538.ZAFP275.PROD.OUTLOOK.COM>
+References: 
+ <CAHRiTbnhtWyYk3A+q_J7PLhbKPb9USF5ZPnUxzFLGZCm938m+g@mail.gmail.com>
+ <9b273b3f-114d-c9c4-d407-b62dbeb290ac@gmail.com>
+ <CAB__hTQo909O7H-ht304d05rCu5qCeVVmAq++13dyKoEKMULCA@mail.gmail.com>
+ <CAHRiTbnB3AbYV+=-GxY9c7kt=EUvjOExtEPbB0HjLKVnE4pNcw@mail.gmail.com>
+In-Reply-To: 
+ <CAHRiTbnB3AbYV+=-GxY9c7kt=EUvjOExtEPbB0HjLKVnE4pNcw@mail.gmail.com>
+Accept-Language: en-ZA, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=csir.co.za;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: JN2P275MB0538:EE_|JN2P275MB0651:EE_
+x-ms-office365-filtering-correlation-id: 6cbaa6ba-d276-447f-7487-08db76e448d1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 8zFM3cs1Wavhwzyoll6edG9nVuZ+g5G61uzm+qptaK4p+/dU84Wpw9exKmBCPmJwN2GPZXt5JvW6TjCiUYZ1R41Oh8FxaA8TLNrbWQXVkcrALcbVaiVE15cf+C+RWeuJNNJReqDhIDm1tmnPKPj0gHuKng1g2yGJmH1WmNoINcXCRYqjAYbZ6PUWXyOMc7BzstFfSxR7rM7571UBFdtAUpGJPc8Xw/ZIEO4raQckFqX8ZnttAnVND2R+JDGJZk9oixHyqrY21lBdKXZ6DQkCUTXBiIvROKQYmnBCLM/VexfraIVsNNB52mWKz+GJrzb5649Mhvdtxe/5WaTQN+jQ727sdsytIuWL4tl1RIobtsWCVg6ZXtD+y2m7SEZVj4CxYc8tPx/ZNAf6FeZrNJ7ypuYI5RzWKAz9rkD1dNEckygoSRezQMyRA2MmkOfaWDJq0LtBRJZiH/O7WrjlB5IlMzTEWhnvGOE/TcZa9rkrhIAk0sPshZATd/0p5i/VotEX6Jao00VWu0ED6eGLXXsjXEE6tax3pWeROGKZkMibv5QnBnwL3Qt4DoyPdZ2dWfxlUkBFoXFOMys5m/Zv54RIGycJxENxBNsvehb746ugs188eSEsjibMShmDEwWq6+FVWO7fLKvXoDKjDMe55EjxFQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:JN2P275MB0538.ZAFP275.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(39850400004)(346002)(366004)(136003)(376002)(396003)(279900001)(451199021)(66899021)(110136005)(54906003)(478600001)(7696005)(83380400001)(166002)(55016003)(38070700005)(86362001)(66446008)(66476007)(64756008)(71200400001)(55236004)(9686003)(33656002)(53546011)(6506007)(26005)(186003)(66556008)(66946007)(2906002)(122000001)(4326008)(52536014)(41300700001)(76116006)(38100700002)(316002)(8936002)(8676002)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?WklOdWRwY2g0WmhwVm9VWVBvZHg1VElMNXdyU0dzbWNyVnU1SXVENVpQN2Fi?=
+ =?utf-8?B?cWxWc3RRTkR1Um8xQjdBRitPTmdpdnhlVUZ6ejhWRDQ4L0VmVUtPMzF6UmJQ?=
+ =?utf-8?B?MVliZGNaT0Y2Zk1aTWpJQVlsV0ZkbVAyRmxib3c3SEN2cU4vc1ppRUp2QzlM?=
+ =?utf-8?B?OFhSa2VVWDZpUytVZHlJMGtpcTNxbk9GdTB2WFZjemlFSG9RUzR5eUl4TWpP?=
+ =?utf-8?B?MVdwblBiQjlBSkZ1L2FENURkTG5iRmdsb3ZMN0tNL2h1NjE2Ri9Uams2RUdG?=
+ =?utf-8?B?UUlUR2V0enNNZkJyS1BmelhpaHhySTZzK3RTN1U0c3BBVlNDUCsvMkJBU1VN?=
+ =?utf-8?B?NmowTHNzWEcrclpsYWpzMEtIeHdIQzk0SVhQbUdNOG02Z3I1UjNESERudC8v?=
+ =?utf-8?B?ZFpoUVYza0w2QlB0VlRNbzBwRytvU1dlWmlnOUNxTXlTOUVSQmx2LytFMnNM?=
+ =?utf-8?B?NW1XakpmMkttWGt1cCtRUEtsMHdrUXZLM2RiWVEvL0wwV29pSENXZUYySVk1?=
+ =?utf-8?B?VTVhczBEZGk4cUM1eklTVHkvdXdvMCt0RkJYK2hjdTVIRlpLUkZFNTVzUnFR?=
+ =?utf-8?B?cnFvU0YvdmthQnFjSVNjaHFLWFVFNE9INDFGZWJFdHVDTEh4YW9KeVhjdHBI?=
+ =?utf-8?B?Rml5bDdaSmVCc1I4bzQ0UkE5QkNuc0RQOGFpUjRTTXBIcWx1aXFwUzBPMVNH?=
+ =?utf-8?B?Snhwb0ZMbE9zMlZkenBnSHMwMC9UOTVsK25XTjI2NXk0R0hlVmd4c3ZodmQx?=
+ =?utf-8?B?QVU0U0YyMnBWbDMrMWZNWm1aQU00QWNVNnlIWTU5cnhiTTdSMHlFYitTUFpN?=
+ =?utf-8?B?SVM2SVc5M0tVOHZPdkZOaWVHKzczalBPSytRYlRQeFN6Z241U2tZVFJqZW8x?=
+ =?utf-8?B?Y05hZ3lVeVNnQUh0OEVRdWEyRnNSSkhsUXJtV3RMNldJOS9EOHRTcXZuWTFt?=
+ =?utf-8?B?VWhkNU9ZaWN3TzZsajdoRkNCNFRhT1ZpTGtNTUtpWWhKREVnU2lkWGtZUkUz?=
+ =?utf-8?B?YlBRYjZQU0ZpbDZEajErL3g4L1BxU1B2SzFxaFIxRTg4OTEyMWRGbXowallM?=
+ =?utf-8?B?NmVuek80Tzg4bGdYUzNwNmlSYWFBczdhMnV2S21XVlZoc2d6OFZzOEpiQ2xZ?=
+ =?utf-8?B?d3U1VUNFR3lVTjdqbFJYMmtxeGIvVVFOMitUR2U2eWhXcnpHZFNrWHE0ei9l?=
+ =?utf-8?B?Sno1Zy9XSGtGQTU4VDFYRVg2OHVhaEdmVm5kbndnQ05BWXBqK0JRZDh5NHkx?=
+ =?utf-8?B?MXI3RFF0dkhBR3BjRHEveXdRQzNKa3JiazFha2V3TUs0TnVQNFRCY3VBWHdS?=
+ =?utf-8?B?ZVh3QjNZc3A5SGVuVmdRdGNpMVo0QWFsVTVCQmNob1VWSUdXVklBTXZJbjli?=
+ =?utf-8?B?UFJ0aEZDWXlIVGRIZFB0Qk1NV2FxVE9DRU1BcjltK0ZzQVZhVzlNVklYUTdl?=
+ =?utf-8?B?VVdCYjBieGZNSFE2T1JDTkw2ZzREQmxJZ1RNMCsyUmVjcGhOWjlGbXdIUVE5?=
+ =?utf-8?B?SW9NdnJ0dzhXQ2QvZlVIUENNNTBqbGhUcjZ4Vm1jVS9FaTZ2MXRkMzVQRmN2?=
+ =?utf-8?B?ZGNpQWgzTGdZYSs3ZzB5bjhqMlVHTCtwQ1lmbFpKcHp4K0ovTjlnNFFuU3Qx?=
+ =?utf-8?B?RGZUTktBOFUxSTdYTFFSVTMwSExFcVZpQWxxcE0wRlhqeS9YVWJ1OUwrU2xC?=
+ =?utf-8?B?MjVvcExqRkgzZDdValQxVWxpellMOUZ0eExGR0NuVWt0SVI5OUI2Mk1hODdF?=
+ =?utf-8?B?V3F5N2JVTURhampmZ3RwNHpnZVlqelBSM0FPbEIxNm9uRTJlUXc2N1JzL0pj?=
+ =?utf-8?B?bDZ1Y1QwZmVjaldsWmRUSk4wTTBHR1E4cnpqMWk2NmdWMERhdVp2QlpYaW1T?=
+ =?utf-8?B?dER0SkRIZ1pBQUVlaWtPb1FEZytnaWJ5T1BCU2pSYmJQYnNVR0g4SlRIZ016?=
+ =?utf-8?B?OTVFbUMwZm1GYTV6YTNyZHM0N05kVUpSNWlobTdUbzkrZXNPcndQNWF1SzN4?=
+ =?utf-8?B?YlJoNk5XVW55dFZhV0lCTUxUcVB4N3VabFkva0tiZ3d3T2pCN1pWa1VHSHJ3?=
+ =?utf-8?B?YUJHRnE2eWc3S3hwRFhReklyYUMrSlhpc0lSNGdMY0JMWlZZT2RpT1psV29F?=
+ =?utf-8?B?cUEzZjdONElzaktyR2dGVnpDaHp5aFphRDJuQ2pEMjBlM0plRTRMcGJEWGkw?=
+ =?utf-8?B?S0E9PQ==?=
 MIME-Version: 1.0
-References: <CA+QP_P=kMBqVSfi7ktJdrayHEjMWxu0SK-1jpgJx3ho2=fxOJQ@mail.gmail.com>
- <11ffaa69-3ae5-bd0f-8570-dc0caf48912f@gmail.com> <CA+QP_PnM2bqW6U+FG6NbaQ66ES921w9EPVGu-Uf8JoPGPnW1fQ@mail.gmail.com>
- <d846abc8-cbbb-0bb4-0432-72ac15aeb7df@gmail.com> <CA+QP_P=CR4FscWA3wwM1Jj4Ng3sKCRqbL6EDA1Zo3dDMoS_vdw@mail.gmail.com>
- <436ad383-6909-585d-b161-6afa4f77b0f2@gmail.com>
-In-Reply-To: <436ad383-6909-585d-b161-6afa4f77b0f2@gmail.com>
-Date: Mon, 26 Jun 2023 22:42:16 +0530
-Message-ID: <CA+QP_PmGWhaGHh6byBe9jrh9iWN5xUmoEKOFGFfEDfYAxEZpbA@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: 6LAURA6HX2D5QWVOCIT3HN4LYJJHYHF3
-X-Message-ID-Hash: 6LAURA6HX2D5QWVOCIT3HN4LYJJHYHF3
-X-MailFrom: arhum.19eez0005@iitrpr.ac.in
+X-OriginatorOrg: csir.co.za
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: JN2P275MB0538.ZAFP275.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cbaa6ba-d276-447f-7487-08db76e448d1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2023 07:58:24.8946
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 2fd3c5d5-ddb2-4ed3-9803-f89675928df4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cpAcfwUexJiELDJwP/IfURsiEWTv/Nj8iiLEO2KdL/yFa7j8qbSEC/5VCjZCx+6NnnYGU2Fi19xQqKa5+xx6og==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JN2P275MB0651
+X-SASI-RCODE: 200
+Message-ID-Hash: MOCZGCN5VL2YEWVCM2FD7QUK2IBGR5AA
+X-Message-ID-Hash: MOCZGCN5VL2YEWVCM2FD7QUK2IBGR5AA
+X-MailFrom: LWabeke@csir.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Help Regarding Transmitting Gain of USRP N-200
+Subject: [USRP-users] Re: TwinRx in coherent setup
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6LAURA6HX2D5QWVOCIT3HN4LYJJHYHF3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QBWDC3CK4INJTN4QF7UV35ZQPTG5EU6T/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Arhum Ahmad via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Arhum Ahmad <arhum.19eez0005@iitrpr.ac.in>
-Content-Type: multipart/mixed; boundary="===============2839924500939506306=="
+Content-Type: multipart/mixed; boundary="===============4736066114863339065=="
 
---===============2839924500939506306==
-Content-Type: multipart/alternative; boundary="0000000000006ba79a05ff0b74ff"
+--===============4736066114863339065==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_JN2P275MB053832AA51DF7159F38767549527AJN2P275MB0538ZAFP_"
 
---0000000000006ba79a05ff0b74ff
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_JN2P275MB053832AA51DF7159F38767549527AJN2P275MB0538ZAFP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Sure, I will. Thanks again.
+SGkgQ2FybG8NCg0KSSBtYW5hZ2VkIHRvIGdldCBjb25zaXN0ZW50IHBoYXNlIGJldHdlZW4gY2hh
+bm5lbHMgd2hlbiB1c2luZyBVSEQzLjEzIGFuZCAzLjE1IG9uIG15IGZpcnN0IHNldHRpbmcgb2Yg
+dGhlIGZyZXF1ZW5jeSBhZnRlciBteSBhcHAgbGF1bmNoL1VIRCBpbml0IHByb2Nlc3MuIEkgYmVs
+aWV2ZSB0aGF0IHdhcyB3aXRob3V0IHRpbWVkIGNvbW1hbmRzIGZvciBmcmVxdWVuY3ksIGJ1dCBh
+IHRpbWVkIGNvbW1hbmQgdG8gc3RhcnQgc3RyZWFtaW5nLiBIb3dldmVyLCBpZiB0aGVyZWFmdGVy
+IEkgdHJpZWQgY2hhbmdpbmcgZnJlcXVlbmN5LCB3aXRoIHRpbWVkIGNvbW1hbmRzIEkgbWFuYWdl
+ZCB0byBnZXQgYSBmZXcgY2hhbmdlcyAoNDYgaWYgSSByZW1lbWJlciBjb3JyZWN0bHkpIGJlZm9y
+ZSBnZXR0aW5nIGEgc2ltaWxhciBjcmFzaCB0byBpc3N1ZSA2MDYgKEkgYW0gbm90IHN1cmUgaWYg
+dGhlaXIgcGhhc2Ugd2FzIHJlcGVhdGFibGUpLiBJZiBub3QgdXNpbmcgdGltZWQgY29tbWFuZHMs
+IEkgYWxzbyBleHBlcmllbmNlZCByYW5kb20gcGhhc2Ugc2hpZnRzIChpbiBteSBjYXNlIGl0IHdh
+cyBtdWx0aXBsZXMgb2YgOTAgZGVncmVlcywgcHJvYmFibHkgZHVlIHRvIHRoZSBkZWNpbWF0aW9u
+IHRvIDI1TVNwcyB0aGF0IEkgdXNlZCkuIEkgaGF2ZW7igJl0IGFzIHlldCBmaWd1cmVkIG91dCB3
+aGF0IHN0ZXAgaW4gdGhlIGluaXRpYWxpc2F0aW9uIHByb2Nlc3MgSSB1c2UgZG9lcyB0aGUgdHJp
+Y2sgdG8gZ2V0IGl0IGNvbnNpc3RlbnQuIFNvIG15IHdvcmthcm91bmQgd2FzIHRvIHF1aXQgbXkg
+YXBwIGFuZCBzdGFydCB1cCBhZ2FpbiBvbiB0aGUgbmV3IGZyZXF1ZW5jeSBJIG5lZWRlZCwgIGhv
+d2V2ZXIgSSByZWFsaXNlIHRoYXQgaXMgbm90IGFsd2F5cyBwcmFjdGljYWwuIChBbHNvIHNlZSBt
+eSBtZXNzYWdlIG9uIHRoaXMgbWFpbGluZyBsaXN0IHRpdGxlIOKAnFJlOiBUd2luUlggcGhhc2Ug
+c3luY2hyb25pc2F0aW9uIHVzaW5nIGRpZmZlcmVudCB2ZXJzaW9ucyBvZiBVSETigJ0gYXJvdW5k
+IDIwMjMvMDQvMjApLg0KDQpXaXRoIFVIRCA0LjAsIDQuMiBhbmQgNC40IHdoZW4gSSB0cmllZCwg
+SSBnb3QgcmFuZG9tIHBoYXNlIGV2ZW4gb24gc3RhcnR1cCAodGh1cyBlaXRoZXIgdGhlIOKAnG1h
+Z2lj4oCdIHN0YXJ0dXAgc2VxdWVuY2UgaXMgZGlmZmVyZW50IG9yIHRoZXJlIGlzIG5vIGxvbmdl
+ciBhIOKAnG1hZ2lj4oCdIHNlcXVlbmNlKS4gSSBoYXZlbuKAmXQgdHJpZWQgdGhlIHRpbWVkIGNv
+bW1hbmRzIG9uIFVIRDQuWCB0byBrbm93IGlmIEkgc3RpbGwgZ2V0IGEgZmV3IDQ2LCAxIG9yIDAg
+c3VjY2Vzc2Z1bCBjaGFuZ2VzLCBiZWZvcmUgaGl0dGluZyBpc3N1ZSA2MDYuDQoNClJlZ2FyZHMN
+Ckxlb24NCg0KRnJvbTogQ2FybG8gVmVuaWVyIDx2ZW5pZXIuY2FybG9AZ21haWwuY29tPg0KRGF0
+ZTogTW9uZGF5LCAyNiBKdW5lIDIwMjMgYXQgMTg6MTkNClRvOiBSb2IgS29zc2xlciA8cmtvc3Ns
+ZXJAbmQuZWR1Pg0KQ2M6IE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+
+LCB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+DQpTdWJqZWN0OiBbVVNSUC11c2Vyc10gUmU6IFR3aW5SeCBpbiBjb2hlcmVudCBzZXR1cA0KDQpb
+VGhlIGUtbWFpbCBzZXJ2ZXIgb2YgdGhlIHNlbmRlciBjb3VsZCBub3QgYmUgdmVyaWZpZWQgKFNQ
+RiBSZWNvcmQpXQ0KVGhhbmtzIFJvYi4NCkFjdHVhbGx5LCBwcmlvciB0byB0dW5lIHRoZSBUd2lu
+UnggSSBzZXQgdGhlIHNhbXBsaW5nIHJhdGUuDQoNCklsIGx1biAyNiBnaXUgMjAyMywgMTc6MzMg
+Um9iIEtvc3NsZXIgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1h
+aWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+IGhhIHNjcml0dG86DQpJcyB0aGVyZSBh
+IGNoYW5jZSB0aGF0IHRoZSBpc3N1ZSBpcyBjYXVzZWQgYnkgdGhlIHRpbWVkIGNvbW1hbmRzIG9j
+Y3VycmluZyBwcmlvciB0byB0aGUgInNldF9yeF9yYXRlIiBjb21tYW5kIChhcyBpbmRpY2F0ZWQg
+aW4gdGhlIGNvZGUgcHJvdmlkZWQgaW4gdGhlIGlzc3VlIHRyYWNrZXIpPyAgSSBkb24ndCBrbm93
+IGhvdyB0aGUgRERDIHJlc3BvbmRzIHRvIHRpbWVkIGNvbW1hbmRzIHByaW9yIHRvIGtub3dpbmcg
+aXRzIG91dHB1dCByYXRlLg0KUm9iDQoNCk9uIE1vbiwgSnVuIDI2LCAyMDIzIGF0IDExOjIy4oCv
+QU0gTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbTxtYWlsdG86cGF0Y2h2
+b25icmF1bkBnbWFpbC5jb20+PiB3cm90ZToNCk9uIDI2LzA2LzIwMjMgMTE6MTIsIENhcmxvIFZl
+bmllciB3cm90ZToNCkdvb2QgZXZlbmluZyB0byBldmVyeWJvZHksDQoNCkkgYW0gdHJ5aW5nIHRv
+IHVzZSBhbiBYMzAwIHdpdGggdHdvIFR3aW5SWCBpbiBhIGNvaGVyZW50IHNldHVwLg0KQWZ0ZXIg
+c3luY2hyb25pemF0aW9uLCBpbiB0aGUgY2FzZSBvZiBmaXhlZCBmcmVxdWVuY3kgb3BlcmF0aW9u
+IChubw0KcmUtdHVuaW5nKSB0aGUgcGhhc2UgZGlmZmVyZW5jZXMgYW1vbmcgdGhlIGNoYW5uZWxz
+IGFyZSBjb25zdGFudCBhbmQNCnRoZXkgcmVtYWluIGNvbnN0YW50IG92ZXIgdGltZS4NCkhvd2V2
+ZXIsIGlmIEkgcmUtdHVuZSB0aGUgVHdpblJ4IG9uIHRoZSBleGFjdCBzYW1lIGZyZXF1ZW5jeSwg
+SSBleHBlY3QNCnRoYXQgdGhlIHBoYXNlIGRpZmZlcmVuY2VzIHJlbWFpbiB0aGUgc2FtZSwgYnV0
+IGl0IGRvZXMgbm90IGhhcHBlbi4gSG93DQppcyBpdCBwb3NzaWJsZT8NCg0KVGhlIExPIHNldHRp
+bmdzIGFyZSB0aGUgZm9sbG93aW5nOg0KDQptdWx0aV91c3JwLT5zZXRfcnhfbG9fZXhwb3J0X2Vu
+YWJsZWQodHJ1ZSwNCnVoZDo6dXNycDo6bXVsdGlfdXNycDo6QUxMX0xPUywgMCk7DQptdWx0aV91
+c3JwLT5zZXRfcnhfbG9fc291cmNlKCJpbnRlcm5hbCIsIHVoZDo6dXNycDo6bXVsdGlfdXNycDo6
+QUxMX0xPUywgMCk7DQptdWx0aV91c3JwLT5zZXRfcnhfbG9fc291cmNlKCJjb21wYW5pb24iLA0K
+dWhkOjp1c3JwOjptdWx0aV91c3JwOjpBTExfTE9TLCAxKTsNCm11bHRpX3VzcnAtPnNldF9yeF9s
+b19zb3VyY2UoImV4dGVybmFsIiwgdWhkOjp1c3JwOjptdWx0aV91c3JwOjpBTExfTE9TLCAyKTsN
+Cm11bHRpX3VzcnAtPnNldF9yeF9sb19zb3VyY2UoImV4dGVybmFsIiwgdWhkOjp1c3JwOjptdWx0
+aV91c3JwOjpBTExfTE9TLCAzKTsNCg0KTW9yZW92ZXIsIGJ5IHVzaW5nIHRoZSB0aW1lZCBjb21t
+YW5kIGJlZm9yZSB0dW5pbmcgYWxsIHRoZSBjaGFubmVscw0KKGNvZGUgc25pcHBldCBhdCAiaHR0
+cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2Vfc3luYy5odG1sPGh0dHA6Ly9wdGEtc21n
+NC5jc2lyLmNvLnphOjMyMjI0Lz9kbVZ5UFRFdU1EQXhKaVkzTVRWbU1UY3paVFJrT1dJeFl6WTRa
+VDAyTkRrNVFrRkJORjgwTmpJM00xODVOREF3WHpFbUptWmxPVGRpTkdVMVpEWmtObVE0TXoweE16
+TXpKaVoxY213OWFIUjBjSE1sTTBFbE1rWWxNa1ptYVd4bGN5VXlSV1YwZEhWekpUSkZZMjl0SlRK
+R2JXRnVkV0ZzSlRKR2NHRm5aU1UxUm5ONWJtTWxNa1ZvZEcxcz4iLCAiQWxpZ24NCkxPcyBpbiB0
+aGUgZnJvbnQtZW5kIiksIEkgZ2V0IGludG8gdGhlIGlzc3VlIGF0DQooImh0dHBzOi8vZ2l0aHVi
+LmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9pc3N1ZXMvNjA2PGh0dHA6Ly9wdGEtc21nNC5jc2lyLmNv
+LnphOjMyMjI0Lz9kbVZ5UFRFdU1EQXhKaVkyT1RVeU1URTNNakEyT0dNd056Y3dZajAyTkRrNVFr
+RkJORjgwTmpJM00xODVOREF3WHpFbUpqTTRNalpqTlRVME5UTXhOVEk0TnoweE16TXpKaVoxY213
+OWFIUjBjSE1sTTBFbE1rWWxNa1puYVhSb2RXSWxNa1ZqYjIwbE1rWkZkSFIxYzFKbGMyVmhjbU5v
+SlRKR2RXaGtKVEpHYVhOemRXVnpKVEpHTmpBMj4iKSBhbmQgdGhlIFgzMDAgaXMgbm90DQp1c2Fi
+bGUgdW50aWwgYSBwb3dlci1jeWNsZS4NCkkgZ2V0IHRoZSBzYW1lIGlzc3VlcyB3aGVuIHVzaW5n
+IGJvdGggdGhlIHVoZDMuMTUuMC4wIGFuZCB0aGUgdWhkNC40LjAuMC4NCkhvcGVmdWxseSB0aGlz
+IGJ1ZyB3aWxsIGdldCBmaXhlZC4NCg0KSSB0aGluayB0aGF0IHdpdGhvdXQgdGltZWQtdHVuaW5n
+LCBldmVuIHRob3VnaCB5b3UncmUgc2hhcmluZyBMT3MsIHRoZSBEREMgcGhhc2UtYWNjdW11bGF0
+b3JzIHdpbGwgYmUNCiAgInRpY2tpbmcgb3ZlciIgYmV0d2VlbiB0aGUgaW5kaXZpZHVhbCAodW50
+aW1lZCkgdHVuaW5nIGNvbW1hbmRzLiAgU28gdGhlcmUgd2lsbCBiZSB1bnByZWRpY3RhYmxlIHBo
+YXNlDQogIGJldHdlZW4gYWxsIHRoZSBjaGFubmVscy4NCg0KDQpTaG91bGQgSSBleHBlY3QgdGhl
+IHNhbWUgcGhhc2UgZGlmZmVyZW5jZXMgd2hlbiBJIHJlLXR1bmUgdG8gdGhlIGV4YWN0DQpzYW1l
+IGZyZXF1ZW5jeSBvciBpcyBpdCBva2F5IGZvciB0aGUgcGhhc2UgZGlmZmVyZW5jZXMgdG8gY2hh
+bmdlIGFuZCBJDQphbSBtaXNzaW5nIHNvbWV0aGluZz8NCkRvIHlvdSBoYXZlIGFueSBzdWdnZXN0
+aW9uIG9uIGhvdyB0byBzb2x2ZSB0aGUgaXNzdWU/DQoNClRoYW5rcywNCg0KQmVzdCByZWdhcmRz
+LA0KQ2FybG8gVmVuaWVyDQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQoNClRvIHVu
+c3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
+b208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KDQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJz
+LWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFp
+bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBl
+bWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vy
+cy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo=
 
-On Mon, Jun 26, 2023 at 10:26=E2=80=AFPM Marcus D. Leech <patchvonbraun@gma=
-il.com>
-wrote:
+--_000_JN2P275MB053832AA51DF7159F38767549527AJN2P275MB0538ZAFP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> On 26/06/2023 12:54, Arhum Ahmad wrote:
->
-> I have updated the rfconverter_libiio file in the base of Matlab. Now I
-> can see the variation in signal power in the spectrum analyzer. However, =
-in
-> the receiver, the problem is still the same.
->
-> This is squarely a MATLAB problem at this point.  So, you'll have to use
-> those support channels rather than usrp-users
->
->
->
-> On Mon, Jun 26, 2023 at 8:36=E2=80=AFPM Marcus D. Leech <patchvonbraun@gm=
-ail.com>
-> wrote:
->
->> On 26/06/2023 09:32, Arhum Ahmad wrote:
->>
->> Thanks for the response,
->>
->> 1. I am using UBX 10-6000 MHz Rx/Tx (
->> https://www.ettus.com/all-products/ubx40/)
->> 2. Yes, I am using AGC for the processing part. The parameter values I
->> have uses are
->>                                  - DesiredPower: 2
->>                                  - AveragingLength: 50
->>                                  - MaxPowerGain: 60
->> 3. I have checked the spectrum of the signal in a separate spectruHm ana=
-lyzer,
->> there is NO change in the spectrum as I vary the gain.
->>
->> Assuming you have a complete UHD installation, you can use the
->> tx_waveforms example app to check this as well.  Since you're
->>   using MATLAB, I cannot help with that aspect.
->>
->>
->>
->> On Mon, Jun 26, 2023 at 2:58=E2=80=AFAM Marcus D. Leech <patchvonbraun@g=
-mail.com>
->> wrote:
->>
->>> On 25/06/2023 16:49, Arhum Ahmad wrote:
->>>
->>> Respected sir,
->>> I am using N-200 USRP for transmitting a signal. While transmitting, I
->>> have changed the Gain value in the SDRu transmitting block, but my
->>> signal strength at the receiver remains the same. I also stop and
->>> restart the code but the change in gain does not affect the received
->>> signal. I have tried the changing gain via both available options i.e.,
->>> input port and dialog, but it seems to have no effect on the receiver.
->>> The signal strength at the receiver remains the same. I have tried 30
->>> dB(Maximum gain) to 0 dB (minimum gain) in both cases received SNR is
->>> the same (i.e.,15 dB). I am using a wireless connection in
->>> line-of-sight, with minimum Tx gain at least a few drops in SNR should
->>> be observed. I have also tried -50dB (just checking) but no effect in
->>> the SNR is observed. The same thing I have tried using B210 as Tx, Rx
->>> signal strength does change in this case. However, while using N-200, n=
-o
->>> effect of changing the gain value is observed. Somehow gain value is
->>> fixed in N-200 while using the MATLAB SDRu block. Can you PLEASE HELP
->>> ME!!! IT IS VERY, VERY IMPORTANT.
->>>
->>> Well, neither usrp-users nor discuss-gnuradio are support lists for
->>> MATLAB.
->>>
->>> You haven't mentioned which daughter-card you are using in the N200,
->>> which would certainly help to fill in information about
->>>   what *might* be going on.
->>>
->>>
->>> Does your receiver setup use AGC?  Do you know what its set-points are?
->>>
->>> If you simply look at the spectrum on the RX end as you vary gain on th=
-e
->>> TX end, do you see a change?   At the higher end,
->>>   SNR may not change very much, depending on how it is being measured,
->>> etc.
->>>
->>>
->>>
->>
->> --
->> *Thanks and Regards*
->> *Arhum Ahmad*
->> Ph.D. Scholar, Electrical Engineering Department, IIT Ropar
->>
->> +91- <+91-7015802356>7974897279 | arhum.19eez0005@iitrpr.ac.in
->> <2016eez0009@iitrpr.ac.in>
->> Lab No. 323, Communication Research Lab, J.C.Bose Building
->>
->> * CONFIDENTIALITY NOTICE: The contents of this email message and any
->> attachments are intended solely for the addressee(s) and may contain
->> confidential and/or privileged information and may be legally protected
->> from disclosure. If you are not the intended recipient of this message o=
-r
->> their agent, or if this message has been addressed to you in error, plea=
-se
->> immediately alert the sender by reply email and then delete this message
->> and any attachments. If you are not the intended recipient, you are here=
-by
->> notified that any use, dissemination, copying, or storage of this messag=
-e
->> or its attachments is strictly prohibited. *
->>
->>
->>
->
-> --
-> *Thanks and Regards*
-> *Arhum Ahmad*
-> Ph.D. Scholar, Electrical Engineering Department, IIT Ropar
->
-> +91- <+91-7015802356>7974897279 | arhum.19eez0005@iitrpr.ac.in
-> <2016eez0009@iitrpr.ac.in>
-> Lab No. 323, Communication Research Lab, J.C.Bose Building
->
-> * CONFIDENTIALITY NOTICE: The contents of this email message and any
-> attachments are intended solely for the addressee(s) and may contain
-> confidential and/or privileged information and may be legally protected
-> from disclosure. If you are not the intended recipient of this message or
-> their agent, or if this message has been addressed to you in error, pleas=
-e
-> immediately alert the sender by reply email and then delete this message
-> and any attachments. If you are not the intended recipient, you are hereb=
-y
-> notified that any use, dissemination, copying, or storage of this message
-> or its attachments is strictly prohibited. *
->
->
->
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFz
+Ow0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
+ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
+Y207DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
+Zjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsN
+Cgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQgQ2hh
+ciI7DQoJbWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEw
+LjBwdDsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCnNwYW4uSFRNTFByZWZvcm1hdHRl
+ZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQiOw0K
+CWZvbnQtZmFtaWx5OkNvbnNvbGFzO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10
+eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0K
+CWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhw
+b3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDsNCgltc28tbGlnYXR1cmVzOm5vbmU7fQ0KQHBh
+Z2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3Mi4wcHQg
+NzIuMHB0IDcyLjBwdCA3Mi4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0
+aW9uMTt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tWkEiIGxpbms9ImJs
+dWUiIHZsaW5rPSJwdXJwbGUiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNs
+YXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkhpIENhcmxvPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5JIG1hbmFnZWQgdG8gZ2V0IGNvbnNp
+c3RlbnQgcGhhc2UgYmV0d2VlbiBjaGFubmVscyB3aGVuIHVzaW5nIFVIRDMuMTMgYW5kIDMuMTUg
+b24gbXkgZmlyc3Qgc2V0dGluZyBvZiB0aGUgZnJlcXVlbmN5IGFmdGVyIG15IGFwcCBsYXVuY2gv
+VUhEIGluaXQgcHJvY2Vzcy4gSSBiZWxpZXZlIHRoYXQgd2FzIHdpdGhvdXQNCiB0aW1lZCBjb21t
+YW5kcyBmb3IgZnJlcXVlbmN5LCBidXQgYSB0aW1lZCBjb21tYW5kIHRvIHN0YXJ0IHN0cmVhbWlu
+Zy4gSG93ZXZlciwgaWYgdGhlcmVhZnRlciBJIHRyaWVkIGNoYW5naW5nIGZyZXF1ZW5jeSwgd2l0
+aCB0aW1lZCBjb21tYW5kcyBJIG1hbmFnZWQgdG8gZ2V0IGEgZmV3IGNoYW5nZXMgKDQ2IGlmIEkg
+cmVtZW1iZXIgY29ycmVjdGx5KSBiZWZvcmUgZ2V0dGluZyBhIHNpbWlsYXIgY3Jhc2ggdG8gaXNz
+dWUgNjA2IChJIGFtIG5vdCBzdXJlDQogaWYgdGhlaXIgcGhhc2Ugd2FzIHJlcGVhdGFibGUpLiBJ
+ZiBub3QgdXNpbmcgdGltZWQgY29tbWFuZHMsIEkgYWxzbyBleHBlcmllbmNlZCByYW5kb20gcGhh
+c2Ugc2hpZnRzIChpbiBteSBjYXNlIGl0IHdhcyBtdWx0aXBsZXMgb2YgOTAgZGVncmVlcywgcHJv
+YmFibHkgZHVlIHRvIHRoZSBkZWNpbWF0aW9uIHRvIDI1TVNwcyB0aGF0IEkgdXNlZCkuIEkgaGF2
+ZW7igJl0IGFzIHlldCBmaWd1cmVkIG91dCB3aGF0IHN0ZXAgaW4gdGhlIGluaXRpYWxpc2F0aW9u
+DQogcHJvY2VzcyBJIHVzZSBkb2VzIHRoZSB0cmljayB0byBnZXQgaXQgY29uc2lzdGVudC4gU28g
+bXkgd29ya2Fyb3VuZCB3YXMgdG8gcXVpdCBteSBhcHAgYW5kIHN0YXJ0IHVwIGFnYWluIG9uIHRo
+ZSBuZXcgZnJlcXVlbmN5IEkgbmVlZGVkLCAmbmJzcDtob3dldmVyIEkgcmVhbGlzZSB0aGF0IGlz
+IG5vdCBhbHdheXMgcHJhY3RpY2FsLiAoQWxzbyBzZWUgbXkgbWVzc2FnZSBvbiB0aGlzIG1haWxp
+bmcgbGlzdCB0aXRsZSDigJxSZTogVHdpblJYIHBoYXNlIHN5bmNocm9uaXNhdGlvbg0KIHVzaW5n
+IGRpZmZlcmVudCB2ZXJzaW9ucyBvZiBVSETigJ0gYXJvdW5kIDIwMjMvMDQvMjApLjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+V2l0aCBVSEQgNC4wLCA0LjIgYW5kIDQu
+NCB3aGVuIEkgdHJpZWQsIEkgZ290IHJhbmRvbSBwaGFzZSBldmVuIG9uIHN0YXJ0dXAgKHRodXMg
+ZWl0aGVyIHRoZSDigJxtYWdpY+KAnSBzdGFydHVwIHNlcXVlbmNlIGlzIGRpZmZlcmVudCBvciB0
+aGVyZSBpcyBubyBsb25nZXIgYSDigJxtYWdpY+KAnSBzZXF1ZW5jZSkuIEkgaGF2ZW7igJl0DQog
+dHJpZWQgdGhlIHRpbWVkIGNvbW1hbmRzIG9uIFVIRDQuWCB0byBrbm93IGlmIEkgc3RpbGwgZ2V0
+IGEgZmV3IDQ2LCAxIG9yIDAgc3VjY2Vzc2Z1bCBjaGFuZ2VzLCBiZWZvcmUgaGl0dGluZyBpc3N1
+ZSA2MDYuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5SZWdhcmRzPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkxlb248bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPGRpdiBpZD0ibWFpbC1lZGl0b3ItcmVmZXJlbmNlLW1lc3NhZ2UtY29udGFpbmVy
+Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0
+REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTIuMHB0O2NvbG9yOmJsYWNrIj5Gcm9tOg0KPC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjEyLjBwdDtjb2xvcjpibGFjayI+Q2FybG8gVmVuaWVyICZsdDt2ZW5pZXIuY2FybG9AZ21h
+aWwuY29tJmd0Ozxicj4NCjxiPkRhdGU6IDwvYj5Nb25kYXksIDI2IEp1bmUgMjAyMyBhdCAxODox
+OTxicj4NCjxiPlRvOiA8L2I+Um9iIEtvc3NsZXIgJmx0O3Jrb3NzbGVyQG5kLmVkdSZndDs8YnI+
+DQo8Yj5DYzogPC9iPk1hcmN1cyBELiBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20m
+Z3Q7LCB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDogPC9iPltVU1JQLXVzZXJzXSBSZTogVHdpblJ4IGlu
+IGNvaGVyZW50IHNldHVwPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cHJlPltUaGUg
+ZS1tYWlsIHNlcnZlciBvZiB0aGUgc2VuZGVyIGNvdWxkIG5vdCBiZSB2ZXJpZmllZCAoU1BGIFJl
+Y29yZCldPG86cD48L286cD48L3ByZT4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+VGhhbmtzIFJvYi4mbmJzcDs8bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQiPkFjdHVhbGx5LCBwcmlvciB0byB0dW5lIHRoZSBUd2luUnggSSBzZXQgdGhl
+IHNhbXBsaW5nIHJhdGUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZu
+YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5JbCBsdW4gMjYgZ2l1IDIwMjMsIDE3OjMz
+IFJvYiBLb3NzbGVyIHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJtYWlsdG86dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiZndDsgaGEg
+c2NyaXR0bzo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxl
+PSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGNt
+IDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBjbSI+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPklz
+IHRoZXJlIGEgY2hhbmNlIHRoYXQgdGhlIGlzc3VlIGlzIGNhdXNlZCBieSB0aGUgdGltZWQgY29t
+bWFuZHMgb2NjdXJyaW5nIHByaW9yIHRvIHRoZSAmcXVvdDtzZXRfcnhfcmF0ZSZxdW90OyBjb21t
+YW5kIChhcyBpbmRpY2F0ZWQgaW4gdGhlIGNvZGUgcHJvdmlkZWQgaW4gdGhlIGlzc3VlIHRyYWNr
+ZXIpPyZuYnNwOyBJIGRvbid0IGtub3cgaG93IHRoZSBEREMgcmVzcG9uZHMgdG8NCiB0aW1lZCBj
+b21tYW5kcyBwcmlvciB0byBrbm93aW5nIGl0cyBvdXRwdXQgcmF0ZS48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQiPlJvYjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+T24gTW9uLCBKdW4gMjYsIDIwMjMgYXQgMTE6
+MjLigK9BTSBNYXJjdXMgRC4gTGVlY2ggJmx0OzxhIGhyZWY9Im1haWx0bzpwYXRjaHZvbmJyYXVu
+QGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnBhdGNodm9uYnJhdW5AZ21haWwuY29tPC9hPiZn
+dDsgd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHls
+ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBj
+bSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPGRp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdCI+T24gMjYvMDYvMjAyMyAxMToxMiwgQ2FybG8gVmVuaWVyIHdyb3RlOjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7
+bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZTo5LjVwdCI+R29vZCBldmVuaW5nIHRvIGV2ZXJ5Ym9keSw8YnI+DQo8
+YnI+DQpJIGFtIHRyeWluZyB0byB1c2UgYW4gWDMwMCB3aXRoIHR3byBUd2luUlggaW4gYSBjb2hl
+cmVudCBzZXR1cC48YnI+DQpBZnRlciBzeW5jaHJvbml6YXRpb24sIGluIHRoZSBjYXNlIG9mIGZp
+eGVkIGZyZXF1ZW5jeSBvcGVyYXRpb24gKG5vPGJyPg0KcmUtdHVuaW5nKSB0aGUgcGhhc2UgZGlm
+ZmVyZW5jZXMgYW1vbmcgdGhlIGNoYW5uZWxzIGFyZSBjb25zdGFudCBhbmQ8YnI+DQp0aGV5IHJl
+bWFpbiBjb25zdGFudCBvdmVyIHRpbWUuPGJyPg0KSG93ZXZlciwgaWYgSSByZS10dW5lIHRoZSBU
+d2luUnggb24gdGhlIGV4YWN0IHNhbWUgZnJlcXVlbmN5LCBJIGV4cGVjdDxicj4NCnRoYXQgdGhl
+IHBoYXNlIGRpZmZlcmVuY2VzIHJlbWFpbiB0aGUgc2FtZSwgYnV0IGl0IGRvZXMgbm90IGhhcHBl
+bi4gSG93PGJyPg0KaXMgaXQgcG9zc2libGU/PGJyPg0KPGJyPg0KVGhlIExPIHNldHRpbmdzIGFy
+ZSB0aGUgZm9sbG93aW5nOjxicj4NCjxicj4NCm11bHRpX3VzcnAtJmd0O3NldF9yeF9sb19leHBv
+cnRfZW5hYmxlZCh0cnVlLDxicj4NCnVoZDo6dXNycDo6bXVsdGlfdXNycDo6QUxMX0xPUywgMCk7
+PGJyPg0KbXVsdGlfdXNycC0mZ3Q7c2V0X3J4X2xvX3NvdXJjZSgmcXVvdDtpbnRlcm5hbCZxdW90
+OywgdWhkOjp1c3JwOjptdWx0aV91c3JwOjpBTExfTE9TLCAwKTs8YnI+DQptdWx0aV91c3JwLSZn
+dDtzZXRfcnhfbG9fc291cmNlKCZxdW90O2NvbXBhbmlvbiZxdW90Oyw8YnI+DQp1aGQ6OnVzcnA6
+Om11bHRpX3VzcnA6OkFMTF9MT1MsIDEpOzxicj4NCm11bHRpX3VzcnAtJmd0O3NldF9yeF9sb19z
+b3VyY2UoJnF1b3Q7ZXh0ZXJuYWwmcXVvdDssIHVoZDo6dXNycDo6bXVsdGlfdXNycDo6QUxMX0xP
+UywgMik7PGJyPg0KbXVsdGlfdXNycC0mZ3Q7c2V0X3J4X2xvX3NvdXJjZSgmcXVvdDtleHRlcm5h
+bCZxdW90OywgdWhkOjp1c3JwOjptdWx0aV91c3JwOjpBTExfTE9TLCAzKTs8YnI+DQo8YnI+DQpN
+b3Jlb3ZlciwgYnkgdXNpbmcgdGhlIHRpbWVkIGNvbW1hbmQgYmVmb3JlIHR1bmluZyBhbGwgdGhl
+IGNoYW5uZWxzPGJyPg0KKGNvZGUgc25pcHBldCBhdCAmcXVvdDs8L3NwYW4+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQiPjxhIGhyZWY9Imh0dHA6Ly9wdGEtc21nNC5jc2lyLmNvLnphOjMy
+MjI0Lz9kbVZ5UFRFdU1EQXhKaVkzTVRWbU1UY3paVFJrT1dJeFl6WTRaVDAyTkRrNVFrRkJORjgw
+TmpJM00xODVOREF3WHpFbUptWmxPVGRpTkdVMVpEWmtObVE0TXoweE16TXpKaVoxY213OWFIUjBj
+SE1sTTBFbE1rWWxNa1ptYVd4bGN5VXlSV1YwZEhWekpUSkZZMjl0SlRKR2JXRnVkV0ZzSlRKR2NH
+Rm5aU1UxUm5ONWJtTWxNa1ZvZEcxcyIgdGFyZ2V0PSJfYmxhbmsiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6OS41cHQ7Y29sb3I6IzQyODVGNCI+aHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFs
+L3BhZ2Vfc3luYy5odG1sPC9zcGFuPjwvYT48L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5
+LjVwdCI+JnF1b3Q7LA0KICZxdW90O0FsaWduPGJyPg0KTE9zIGluIHRoZSBmcm9udC1lbmQmcXVv
+dDspLCBJIGdldCBpbnRvIHRoZSBpc3N1ZSBhdDxicj4NCigmcXVvdDs8L3NwYW4+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxhIGhyZWY9Imh0dHA6Ly9wdGEtc21nNC5jc2lyLmNvLnph
+OjMyMjI0Lz9kbVZ5UFRFdU1EQXhKaVkyT1RVeU1URTNNakEyT0dNd056Y3dZajAyTkRrNVFrRkJO
+RjgwTmpJM00xODVOREF3WHpFbUpqTTRNalpqTlRVME5UTXhOVEk0TnoweE16TXpKaVoxY213OWFI
+UjBjSE1sTTBFbE1rWWxNa1puYVhSb2RXSWxNa1ZqYjIwbE1rWkZkSFIxYzFKbGMyVmhjbU5vSlRK
+R2RXaGtKVEpHYVhOemRXVnpKVEpHTmpBMiIgdGFyZ2V0PSJfYmxhbmsiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6OS41cHQ7Y29sb3I6IzQyODVGNCI+aHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVz
+ZWFyY2gvdWhkL2lzc3Vlcy82MDY8L3NwYW4+PC9hPjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjkuNXB0Ij4mcXVvdDspDQogYW5kIHRoZSBYMzAwIGlzIG5vdDxicj4NCnVzYWJsZSB1bnRp
+bCBhIHBvd2VyLWN5Y2xlLjxicj4NCkkgZ2V0IHRoZSBzYW1lIGlzc3VlcyB3aGVuIHVzaW5nIGJv
+dGggdGhlIHVoZDMuMTUuMC4wIGFuZCB0aGUgdWhkNC40LjAuMC48L3NwYW4+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ibG9j
+a3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQiPkhvcGVmdWxseSB0aGlzIGJ1ZyB3aWxsIGdldCBmaXhlZC48YnI+DQo8YnI+DQpJIHRoaW5r
+IHRoYXQgd2l0aG91dCB0aW1lZC10dW5pbmcsIGV2ZW4gdGhvdWdoIHlvdSdyZSBzaGFyaW5nIExP
+cywgdGhlIEREQyBwaGFzZS1hY2N1bXVsYXRvcnMgd2lsbCBiZTxicj4NCiZuYnNwOyAmcXVvdDt0
+aWNraW5nIG92ZXImcXVvdDsgYmV0d2VlbiB0aGUgaW5kaXZpZHVhbCAodW50aW1lZCkgdHVuaW5n
+IGNvbW1hbmRzLiZuYnNwOyBTbyB0aGVyZSB3aWxsIGJlIHVucHJlZGljdGFibGUgcGhhc2U8YnI+
+DQombmJzcDsgYmV0d2VlbiBhbGwgdGhlIGNoYW5uZWxzLjxicj4NCjxicj4NCjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1i
+b3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6OS41cHQiPjxicj4NClNob3VsZCBJIGV4cGVjdCB0aGUgc2FtZSBwaGFzZSBkaWZm
+ZXJlbmNlcyB3aGVuIEkgcmUtdHVuZSB0byB0aGUgZXhhY3Q8YnI+DQpzYW1lIGZyZXF1ZW5jeSBv
+ciBpcyBpdCBva2F5IGZvciB0aGUgcGhhc2UgZGlmZmVyZW5jZXMgdG8gY2hhbmdlIGFuZCBJPGJy
+Pg0KYW0gbWlzc2luZyBzb21ldGhpbmc/PGJyPg0KRG8geW91IGhhdmUgYW55IHN1Z2dlc3Rpb24g
+b24gaG93IHRvIHNvbHZlIHRoZSBpc3N1ZT88YnI+DQo8YnI+DQpUaGFua3MsPGJyPg0KPGJyPg0K
+QmVzdCByZWdhcmRzLDxicj4NCkNhcmxvIFZlbmllcjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdCI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PGJyPg0KPGJyPg0KPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHByZT5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPlVTUlAtdXNlcnMgbWFpbGluZyBs
+aXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0
+PSJfYmxhbmsiPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9wcmU+
+DQo8cHJlPlRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVz
+cnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vy
+cy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3ByZT4NCjwvYmxvY2txdW90
+ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxh
+IGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsi
+Pg0KdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2Vu
+ZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
+PC9hPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0
+YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1
+bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxl
+YXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vycy1sZWF2ZUBs
+aXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9ibG9ja3F1b3RlPg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---=20
-*Thanks and Regards*
-*Arhum Ahmad*
-Ph.D. Scholar, Electrical Engineering Department, IIT Ropar
+--_000_JN2P275MB053832AA51DF7159F38767549527AJN2P275MB0538ZAFP_--
 
-+91- <+91-7015802356>7974897279 | arhum.19eez0005@iitrpr.ac.in
-<2016eez0009@iitrpr.ac.in>
-Lab No. 323, Communication Research Lab, J.C.Bose Building
-
---=20
-**CONFIDENTIALITY NOTICE:=C2=A0The
- contents of this email message and any=20
-attachments are intended solely=20
-for the addressee(s) and may contain=20
-confidential and/or privileged=20
-information and may be legally protected=20
-from disclosure. If you are not
- the intended recipient of this message or=20
-their agent, or if this=20
-message has been addressed to you in error, please=20
-immediately alert the
- sender by reply email and then delete this message=20
-and any attachments.
- If you are not the intended recipient, you are hereby=20
-notified that any
- use, dissemination, copying, or storage of this message=20
-or its=20
-attachments is strictly prohibited.*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*
-
---0000000000006ba79a05ff0b74ff
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Sure, I will. Thanks again.</div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 26, 2023 at 10:26=
-=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">=
-patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    <div>On 26/06/2023 12:54, Arhum Ahmad wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">I have=C2=A0updated the rfconverter_libiio file in t=
-he
-        base of Matlab. Now I can see the variation=C2=A0in signal power in
-        the spectrum analyzer. However, in the receiver, the problem is
-        still the same.</div>
-    </blockquote>
-    This is squarely a MATLAB problem at this point.=C2=A0 So, you&#39;ll h=
-ave to
-    use those support channels rather than usrp-users<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 26, 2023 at
-          8:36=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbra=
-un@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <div>On 26/06/2023 09:32, Arhum Ahmad wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">Thanks for the response,
-                <div><br>
-                </div>
-                <div>1. I am using=C2=A0<span>UBX 10-6000 MHz Rx/Tx</span><=
-span>=C2=A0</span>(<a href=3D"https://www.ettus.com/all-products/ubx40/" ta=
-rget=3D"_blank">https://www.ettus.com/all-products/ubx40/</a>)</div>
-                <div>2. Yes, I am using AGC for the processing part. The
-                  parameter values I have uses are=C2=A0</div>
-                <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- Desired=
-Power: 2</div>
-                <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- Averagi=
-ngLength:
-                  50</div>
-                <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- MaxPowe=
-rGain: 60</div>
-                <div>3. I have=C2=A0checked the spectrum of the signal in a
-                  separate=C2=A0spectru<span>H</span>m=C2=A0analyzer, there=
- is NO
-                  change in the spectrum=C2=A0as I vary the gain.</div>
-              </div>
-            </blockquote>
-            Assuming you have a complete UHD installation, you can use
-            the tx_waveforms example app to check this as well.=C2=A0 Since
-            you&#39;re<br>
-            =C2=A0 using MATLAB, I cannot help with that aspect.<br>
-            <br>
-            <br>
-            <blockquote type=3D"cite"><br>
-              <div class=3D"gmail_quote">
-                <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 26, 2023
-                  at 2:58=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:=
-patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
-                  wrote:<br>
-                </div>
-                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-                  <div>
-                    <div>On 25/06/2023 16:49, Arhum Ahmad wrote:<br>
-                    </div>
-                    <blockquote type=3D"cite">
-                      <div dir=3D"ltr">Respected sir,
-                        <div><span style=3D"background-color:rgb(250,250,25=
-0);color:rgb(0,0,0);font-size:14px">I
-                            am using N-200 USRP for transmitting a
-                            signal. While transmitting,=C2=A0</span>I have<=
-span style=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:=
-14px">
-                          </span>changed<span style=3D"background-color:rgb=
-(250,250,250);color:rgb(0,0,0);font-size:14px">
-                            the Gain value </span>in the SDRu<span style=3D=
-"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">
-                            transmitting block, but my signal strength
-                            at the receiver </span>remains<span style=3D"ba=
-ckground-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">=C2=A0the
-                            same. I also stop and restart the code but
-                            the change in gain does not affect the
-                            received signal. I have tried the changing
-                            gain via both available options i.e., input
-                            port and dialog, but it </span>seems to
-                          have no effect<span style=3D"background-color:rgb=
-(250,250,250);color:rgb(0,0,0);font-size:14px">
-                            on the receiver. The signal strength at the
-                            receiver </span>remains<span style=3D"backgroun=
-d-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">=C2=A0the
-                            same. I have tried 30 dB(Maximum gain) to 0
-                            dB (minimum gain) in both cases received SNR
-                          </span>is the same<span style=3D"background-color=
-:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">
-                            (i.e.,15 dB). I am using a wireless
-                            connection in line-of-sight, with minimum Tx
-                            gain at </span>least a few<span style=3D"backgr=
-ound-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">
-                          </span>drops<span style=3D"background-color:rgb(2=
-50,250,250);color:rgb(0,0,0);font-size:14px">
-                            in SNR should be observed. I have also tried
-                            -50dB (just checking) but </span>no<span style=
-=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">
-                            effect in the SNR is observed. The same
-                            thing </span>I have<span style=3D"background-co=
-lor:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">
-                            tried using B210 as Tx, Rx signal strength
-                            does change in this case. However, while
-                            using N-200,=C2=A0</span>no<span style=3D"backg=
-round-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">
-                            effect of changing the gain value is
-                            observed. Somehow</span>=C2=A0gain<span style=
-=3D"background-color:rgb(250,250,250);color:rgb(0,0,0);font-size:14px">
-                            value is fixed in N-200 while </span>using
-                          the MATLAB<span style=3D"background-color:rgb(250=
-,250,250);color:rgb(0,0,0);font-size:14px">
-                            SDRu block. Can you PLEASE HELP ME!!! IT IS
-                            VERY, VERY IMPORTANT.</span><br>
-                        </div>
-                        <br>
-                      </div>
-                    </blockquote>
-                    Well, neither usrp-users nor discuss-gnuradio are
-                    support lists for MATLAB.<br>
-                    <br>
-                    You haven&#39;t mentioned which daughter-card you are
-                    using in the N200, which would certainly help to
-                    fill in information about<br>
-                    =C2=A0 what *might* be going on.<br>
-                    <br>
-                    <br>
-                    Does your receiver setup use AGC?=C2=A0 Do you know wha=
-t
-                    its set-points are?<br>
-                    <br>
-                    If you simply look at the spectrum on the RX end as
-                    you vary gain on the TX end, do you see a change?=C2=A0=
-=C2=A0
-                    At the higher end,<br>
-                    =C2=A0 SNR may not change very much, depending on how i=
-t
-                    is being measured, etc.=C2=A0=C2=A0 <br>
-                    <br>
-                    <br>
-                  </div>
-                </blockquote>
-              </div>
-              <br clear=3D"all">
-              <div><br>
-              </div>
-              <span class=3D"gmail_signature_prefix">-- </span><br>
-              <div dir=3D"ltr" class=3D"gmail_signature">
-                <div dir=3D"ltr">
-                  <div>
-                    <div dir=3D"ltr">
-                      <div style=3D"color:rgb(100,100,100);font-family:Aria=
-l;font-size:12px;margin-bottom:5px;margin-top:0px"><b style=3D"color:rgb(53=
-,28,117);font-family:Arial,Helvetica,sans-serif;font-size:small"><span>Than=
-ks
-                            and Regards</span></b><b><br>
-                        </b></div>
-                      <div style=3D"color:rgb(100,100,100);font-family:Aria=
-l;font-size:12px;margin-bottom:5px;margin-top:0px"><b>Arhum
-                          Ahmad</b><br>
-                        Ph.D. Scholar,=C2=A0Electrical Engineering
-                        Department, IIT Ropar</div>
-                      <table style=3D"color:rgb(100,100,100);font-family:Ar=
-ial;font-size:12px;width:470px;margin-top:5px" width=3D"470" cellspacing=3D=
-"0" cellpadding=3D"0" border=3D"0">
-                        <tbody>
-                          <tr>
-                            <td style=3D"color:rgb(141,141,141)">
-                              <p style=3D"margin:0px"><span style=3D"displa=
-y:inline-block"><a href=3D"tel:+91-7015802356" style=3D"color:rgb(141,141,1=
-41);font-family:sans-serif" target=3D"_blank">+91-</a>7974897279</span>=C2=
-=A0<span style=3D"color:rgb(69,102,142);display:inline-block">|</span>=C2=
-=A0arhum.19eez0005<span style=3D"display:inline-block"><a href=3D"mailto:20=
-16eez0009@iitrpr.ac.in" style=3D"color:rgb(141,141,141);font-family:sans-se=
-rif" target=3D"_blank">@iitrpr.ac.in</a></span></p>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style=3D"font-family:sans-serif;color:rgb(1=
-41,141,141)"><span style=3D"display:inline-block">Lab No.
-                                323, Communication Research Lab,
-                                J.C.Bose Building</span></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <b><font size=3D"1"><span><span><span>
-                        <div>
-                          <div dir=3D"ltr">
-                            <div dir=3D"ltr">
-                              <div>
-                                <div dir=3D"ltr">
-                                  <div dir=3D"ltr">
-                                    <div dir=3D"ltr">
-                                      <div dir=3D"ltr">
-                                        <div dir=3D"ltr">
-                                          <div dir=3D"ltr">
-                                            <div dir=3D"ltr">
-                                              <div dir=3D"ltr">
-                                                <div dir=3D"ltr">
-                                                  <div dir=3D"ltr">
-                                                    <div dir=3D"ltr">
-                                                      <div dir=3D"ltr">
-                                                        <div dir=3D"ltr">
-                                                          <div dir=3D"ltr">
-                                                          <div dir=3D"ltr">
-                                                          <div dir=3D"ltr">
-                                                          <div dir=3D"ltr">
-                                                          <div dir=3D"ltr">
-                                                          <div dir=3D"ltr">
-                                                          <div><span><span>=
-<span><span><i>CONFIDENTIALITY
-                                                          NOTICE:=C2=A0The
-                                                          contents of
-                                                          this email
-                                                          message and
-                                                          any
-                                                          attachments
-                                                          are intended
-                                                          solely for the
-                                                          addressee(s)
-                                                          and may
-                                                          contain
-                                                          confidential
-                                                          and/or
-                                                          privileged
-                                                          information
-                                                          and may be
-                                                          legally
-                                                          protected from
-                                                          disclosure. If
-                                                          you are not
-                                                          the intended
-                                                          recipient of
-                                                          this message
-                                                          or their
-                                                          agent, or if
-                                                          this message
-                                                          has been
-                                                          addressed to
-                                                          you in error,
-                                                          please
-                                                          immediately
-                                                          alert the
-                                                          sender by
-                                                          reply email
-                                                          and then
-                                                          delete this
-                                                          message and
-                                                          any
-                                                          attachments.
-                                                          If you are not
-                                                          the intended
-                                                          recipient, you
-                                                          are hereby
-                                                          notified that
-                                                          any use,
-                                                          dissemination,
-                                                          copying, or
-                                                          storage of
-                                                          this message
-                                                          or its
-                                                          attachments is
-                                                          strictly
-                                                          prohibited.<span>=
-</span></i></span></span></span></span></div>
-                                                          </div>
-                                                          </div>
-                                                          </div>
-                                                          </div>
-                                                          </div>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </span></span></span></font></b> </blockquote>
-            <br>
-          </div>
-        </blockquote>
-      </div>
-      <br clear=3D"all">
-      <div><br>
-      </div>
-      <span class=3D"gmail_signature_prefix">-- </span><br>
-      <div dir=3D"ltr" class=3D"gmail_signature">
-        <div dir=3D"ltr">
-          <div>
-            <div dir=3D"ltr">
-              <div style=3D"color:rgb(100,100,100);font-family:Arial;font-s=
-ize:12px;margin-bottom:5px;margin-top:0px"><b style=3D"color:rgb(53,28,117)=
-;font-family:Arial,Helvetica,sans-serif;font-size:small"><span>Thanks and R=
-egards</span></b><b><br>
-                </b></div>
-              <div style=3D"color:rgb(100,100,100);font-family:Arial;font-s=
-ize:12px;margin-bottom:5px;margin-top:0px"><b>Arhum
-                  Ahmad</b><br>
-                Ph.D. Scholar,=C2=A0Electrical Engineering Department, IIT
-                Ropar</div>
-              <table style=3D"color:rgb(100,100,100);font-family:Arial;font=
--size:12px;width:470px;margin-top:5px" width=3D"470" cellspacing=3D"0" cell=
-padding=3D"0" border=3D"0">
-                <tbody>
-                  <tr>
-                    <td style=3D"color:rgb(141,141,141)">
-                      <p style=3D"margin:0px"><span style=3D"display:inline=
--block"><a href=3D"tel:+91-7015802356" style=3D"color:rgb(141,141,141);font=
--family:sans-serif" target=3D"_blank">+91-</a>7974897279</span>=C2=A0<span =
-style=3D"color:rgb(69,102,142);display:inline-block">|</span>=C2=A0arhum.19=
-eez0005<span style=3D"display:inline-block"><a href=3D"mailto:2016eez0009@i=
-itrpr.ac.in" style=3D"color:rgb(141,141,141);font-family:sans-serif" target=
-=3D"_blank">@iitrpr.ac.in</a></span></p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style=3D"font-family:sans-serif;color:rgb(141,141,1=
-41)"><span style=3D"display:inline-block">Lab No. 323,
-                        Communication Research Lab, J.C.Bose Building</span=
-></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <b><font size=3D"1"><span><span><span>
-                <div>
-                  <div dir=3D"ltr">
-                    <div dir=3D"ltr">
-                      <div>
-                        <div dir=3D"ltr">
-                          <div dir=3D"ltr">
-                            <div dir=3D"ltr">
-                              <div dir=3D"ltr">
-                                <div dir=3D"ltr">
-                                  <div dir=3D"ltr">
-                                    <div dir=3D"ltr">
-                                      <div dir=3D"ltr">
-                                        <div dir=3D"ltr">
-                                          <div dir=3D"ltr">
-                                            <div dir=3D"ltr">
-                                              <div dir=3D"ltr">
-                                                <div dir=3D"ltr">
-                                                  <div dir=3D"ltr">
-                                                    <div dir=3D"ltr">
-                                                      <div dir=3D"ltr">
-                                                        <div dir=3D"ltr">
-                                                          <div dir=3D"ltr">
-                                                          <div dir=3D"ltr">
-                                                          <div><span><span>=
-<span><span><i>CONFIDENTIALITY
-                                                          NOTICE:=C2=A0The
-                                                          contents of
-                                                          this email
-                                                          message and
-                                                          any
-                                                          attachments
-                                                          are intended
-                                                          solely for the
-                                                          addressee(s)
-                                                          and may
-                                                          contain
-                                                          confidential
-                                                          and/or
-                                                          privileged
-                                                          information
-                                                          and may be
-                                                          legally
-                                                          protected from
-                                                          disclosure. If
-                                                          you are not
-                                                          the intended
-                                                          recipient of
-                                                          this message
-                                                          or their
-                                                          agent, or if
-                                                          this message
-                                                          has been
-                                                          addressed to
-                                                          you in error,
-                                                          please
-                                                          immediately
-                                                          alert the
-                                                          sender by
-                                                          reply email
-                                                          and then
-                                                          delete this
-                                                          message and
-                                                          any
-                                                          attachments.
-                                                          If you are not
-                                                          the intended
-                                                          recipient, you
-                                                          are hereby
-                                                          notified that
-                                                          any use,
-                                                          dissemination,
-                                                          copying, or
-                                                          storage of
-                                                          this message
-                                                          or its
-                                                          attachments is
-                                                          strictly
-                                                          prohibited.<span>=
-</span></i></span></span></span></span></div>
-                                                          </div>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </span></span></span></font></b>
-    </blockquote>
-    <br>
-  </div>
-
-</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr"><div><div dir=3D"ltr"><div style=3D"color:rgb(100,100,100);f=
-ont-family:Arial;font-size:12px;margin-bottom:5px;margin-top:0px"><b style=
-=3D"color:rgb(53,28,117);font-family:Arial,Helvetica,sans-serif;font-size:s=
-mall"><span style=3D"font-family:&quot;times new roman&quot;,serif">Thanks =
-and Regards</span></b><b><br></b></div><div style=3D"color:rgb(100,100,100)=
-;font-family:Arial;font-size:12px;margin-bottom:5px;margin-top:0px"><b>Arhu=
-m Ahmad</b><br>Ph.D. Scholar,=C2=A0Electrical Engineering Department, IIT R=
-opar</div><table width=3D"470" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" style=3D"color:rgb(100,100,100);font-family:Arial;font-size:12px;wid=
-th:470px;margin-top:5px"><tbody><tr><td style=3D"color:rgb(141,141,141)"><p=
- style=3D"margin:0px"><span style=3D"display:inline-block"><a href=3D"tel:+=
-91-7015802356" style=3D"color:rgb(141,141,141);font-family:sans-serif" targ=
-et=3D"_blank">+91-</a>7974897279</span>=C2=A0<span style=3D"color:rgb(69,10=
-2,142);display:inline-block">|</span>=C2=A0arhum.19eez0005<span style=3D"di=
-splay:inline-block"><a href=3D"mailto:2016eez0009@iitrpr.ac.in" style=3D"co=
-lor:rgb(141,141,141);font-family:sans-serif" target=3D"_blank">@iitrpr.ac.i=
-n</a></span></p></td></tr><tr><td style=3D"font-family:sans-serif;color:rgb=
-(141,141,141)"><span style=3D"display:inline-block">Lab No. 323, Communicat=
-ion Research Lab, J.C.Bose Building</span></td></tr></tbody></table></div><=
-/div></div></div>
-
-<br>
-<b><font size=3D"1"><span><span><span><div><div dir=3D"ltr"><div dir=3D"ltr=
-"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
-r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
- dir=3D"ltr"><div dir=3D"ltr"><div><span><span><span><span><i>CONFIDENTIALI=
-TY NOTICE:=C2=A0The
- contents of this email message and any attachments are intended solely=20
-for the addressee(s) and may contain confidential and/or privileged=20
-information and may be legally protected from disclosure. If you are not
- the intended recipient of this message or their agent, or if this=20
-message has been addressed to you in error, please immediately alert the
- sender by reply email and then delete this message and any attachments.
- If you are not the intended recipient, you are hereby notified that any
- use, dissemination, copying, or storage of this message or its=20
-attachments is strictly prohibited.<span></span></i></span></span></span></=
-span></div></div></div></div></div></div></div></div></div></div></div></di=
-v></div></div></div></div></div></div></div></div></div></div></div></div><=
-/span></span></span></font></b>
---0000000000006ba79a05ff0b74ff--
-
---===============2839924500939506306==
+--===============4736066114863339065==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -809,4 +472,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2839924500939506306==--
+--===============4736066114863339065==--
