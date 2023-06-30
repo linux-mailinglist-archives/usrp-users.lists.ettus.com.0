@@ -2,182 +2,277 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77CBF7432CE
-	for <lists+usrp-users@lfdr.de>; Fri, 30 Jun 2023 04:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 478FD743AED
+	for <lists+usrp-users@lfdr.de>; Fri, 30 Jun 2023 13:35:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F0F98383EC6
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Jun 2023 22:41:18 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 034A93845BC
+	for <lists+usrp-users@lfdr.de>; Fri, 30 Jun 2023 07:35:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1688092878; bh=d2Pd93d6NMCWzbYNDSC0jsb6cZ0PhhjGIjJdOfpMC9I=;
-	h=From:Date:References:In-Reply-To:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=IR90DVCZc+p2zW67Gt7PhuwveEO+Ap7j0WOjYdC1AokYeb9zi3s3qj6uPRrdJAQGb
-	 CPGGGIl2qkSOiPmLFNWz5Uf/aIN1lf//HUJgD2u21HjQE5KCVB7O20hqhrzvviZPV3
-	 M5w4KeaHBSZ2LjXnCdRIC/MBFAPGkL7rHEzz3bKPrd1gm5Fr0kTnOo14UPZLHbRkdW
-	 a7AIzJO73Q5VuxBIXYc0tBXFg33NI013FjrUAYuvDkMg6NMz0UJUYgihzCCRqviyVS
-	 WxZiuE8Ar418JCTKXpETUNfvbvnNzP85/96O0/pzx2L2oVA8htZDimzwgPaVjTPzEk
-	 81qLBSC27X5JA==
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0AE1738367B
-	for <usrp-users@lists.ettus.com>; Thu, 29 Jun 2023 22:40:25 -0400 (EDT)
+	t=1688124947; bh=xS+6JZcnRDQFdcg9MDdg1H4PD9Zh2ED25SOmjPwmBx8=;
+	h=Date:To:In-Reply-To:References:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=ItEsRGpyQ9WVfE+hhFILB2TKJ0VfprkGQTHzvtwiBcStZxTS/an6J9NA2/0TZR28l
+	 T1L4JaA0HH4T0XsmIW6mngL7oFn9W3s1Y30++ys1w/Uk1hNg6BpdOa9ceIyBH13MbL
+	 bi4kOELhvAzXJtfl3WY/2vSXQo1g56toND1u4GkqP+QAOLpiiXcqaRsYea7pGdIaDP
+	 zW+BHuhHrAuVMWB6NGQzhM7oajPbYi46MM88JtZzSmO/1D+C7INbpTGY1pukzxm+r8
+	 588G4VlmxGk/Htlwm7S9HMpjGWO629uhpUFpNdC1LraOp5Tm6dPToJjsHq0vLJVVNS
+	 6iabH/RypFoRg==
+Received: from sonic320-25.consmr.mail.bf2.yahoo.com (sonic320-25.consmr.mail.bf2.yahoo.com [74.6.128.206])
+	by mm2.emwd.com (Postfix) with ESMTPS id 24B4C383EC5
+	for <usrp-users@lists.ettus.com>; Fri, 30 Jun 2023 07:34:51 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OnKNP1Ih";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="Ufo3jvMK";
 	dkim-atps=neutral
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-76731802203so124317285a.3
-        for <usrp-users@lists.ettus.com>; Thu, 29 Jun 2023 19:40:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688092825; x=1690684825;
-        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
-         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V7a7KUzr/GqHfQfgp/sWcJJop8gfyXVezEHKZcdg8Z0=;
-        b=OnKNP1IhNekTrSCwbgHcY54COKpl96Sw7yBs+wneYShF+r2t7D2RIejiQoZ7cwRppF
-         LEd24cG7ODKyPeK8cpUgoVoaxps2jtSFNZ+IsUfrVD+loDzNwXkt6W9Z/uctURj3gKFR
-         ESy2B1ZYeeRxta/BOyCmVcakO0DkIRfUyw29/u9gJYgXyZxJSTki0QD8PIVrLSAz9hr5
-         Z4mnGqFI3TfVahAFEGjEIx9A0gHoCcJRzHRd7dR6L2sYe45DJrlDpGaldFNAe158bGWr
-         Ib8xvpFaq5ubW1jrS3nJOr3+N163rw8/viTSWGEWjigPmsUaRrjYWI/eRtRmaz+ijn/U
-         gBUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688092825; x=1690684825;
-        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
-         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V7a7KUzr/GqHfQfgp/sWcJJop8gfyXVezEHKZcdg8Z0=;
-        b=DJZGG6ZWbiPyrZWtxPzIOXBXCEIyRYVg0W3Qu/K11U59puL0XtomrGO7+KZIHuuvVZ
-         9CpAxLMFraw3esWa0p90Ok07JWkuEzbPx4ixpEFjbjE+ZkdU7UPs/2G9vpdwIYDL1bVO
-         8E7lbDaFH7tmY8ZXr2EhVOW7rgrZY4+dTv9SlR/XEa8YvUx/v6qFgYJVP2PM/8TLCzJb
-         6wOuHfldJ/f8JaN+gTUfB6H3xo6ayWyIfXfyXyS1z37uxtBJfmm0RnyYJzVlCgUEaMz3
-         EZCj2dOys5T2aiPUrIb03T7vO0R63eJ/mSv/tzfq52eMPWUbF0Bsf/358Xsb4HlptZ+I
-         rmPw==
-X-Gm-Message-State: ABy/qLYp5FdBDFe2N1duT6A08wte0r1GTF/fLI9Q1Xt9c2KN4vo6387C
-	Vejaby2D98smu718wRVxvBw=
-X-Google-Smtp-Source: APBJJlGablRFD/W880dNs7IeCuT6jIrTfvbA3rlhtvL01ZWc2uWssTk/0kZm9/buVRSfAyKKITRHQg==
-X-Received: by 2002:a05:620a:24d:b0:767:4538:d756 with SMTP id q13-20020a05620a024d00b007674538d756mr835362qkn.4.1688092825236;
-        Thu, 29 Jun 2023 19:40:25 -0700 (PDT)
-Received: from smtpclient.apple (pool-173-72-147-192.clppva.fios.verizon.net. [173.72.147.192])
-        by smtp.gmail.com with ESMTPSA id i11-20020a05620a150b00b00761ff1e23e1sm3505162qkk.109.2023.06.29.19.40.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jun 2023 19:40:24 -0700 (PDT)
-From: Paul Atreides <maud.dib1984@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Thu, 29 Jun 2023 22:40:14 -0400
-Message-Id: <A320BA15-182E-45EE-8B66-156456D9A5BC@gmail.com>
-References: <CAEXYVK7vjfMwF_kEJT+DLDhwbuoqvxBkkrC9OPh-iHjufaWxWA@mail.gmail.com>
-In-Reply-To: <CAEXYVK7vjfMwF_kEJT+DLDhwbuoqvxBkkrC9OPh-iHjufaWxWA@mail.gmail.com>
-To: Brian Padalino <bpadalino@gmail.com>
-X-Mailer: iPhone Mail (20F75)
-Message-ID-Hash: LSBXCLSMJHXKUPCIVSS5DDPESPFACUGM
-X-Message-ID-Hash: LSBXCLSMJHXKUPCIVSS5DDPESPFACUGM
-X-MailFrom: maud.dib1984@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1688124891; bh=LXevHACjfdIsDOCzIKU7oTcysJ2gbzxlkA1KXLN8JNs=; h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=Ufo3jvMK0TusY52qgLe3XHTZHhxVLojmE1iAeavLBBJoG4g7106cPtK/ICfPn+YIkh1F9WFK8AhopqYrD9iPsrxjoINTYG1M3kvI6SQk61uunt0mfnTBw+3GvAHkLo4d2QKqGgZCiEXEFS7jtSbssJDGf2e8sUr6COOkTx3KK0yLx8QsGHy0QjK/vsyu2yge1o+x2KCqUDfSrDfEKcEu19wZuT7yIhBzcunV8PqQtQaRMHcjk9BfianMKTnWfsL+6wVX+AwCjvdKhN8ZY893j3dGGuFq8tC/ppWzxxiFMwOJUsFlBpasUq0+SDXn4b7TE8d7SJpLAtVzRK7Ejh7esA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1688124891; bh=g1W15H0UEMw1KL4d1XQHO483mXH9YTl/A5Y+4R9O6Pp=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=kubpRbtnNvK6k9yu7CwJGMXxLh9Q+3nBoFBz6+t+/+AJj2uoWrUm5Vz+ud1FEIPGAtzL4LzE37g4muX7xCEcnpqTyvJJk92n8d1WVTg28wsKYyK491Upoof1aFAonj8wY/ftJ3flCq+DBLqkgWyM4NKsFAuDEJQhuBKGndvq8MsUMjFJTLT7c8ydeRD7p8fO7POL+VaFP741gin+BrqDuc70BPV3FRM5iJqGayWKt7Gx7gJGQ/QpfcFBXa1S0RjJX4FXfTx6v8DZztSNgvAjhUZb3fnzWdcCo+ZGZom6MXT5wEHntrVWaFJeM0/LB6YMlR1Cxw7gLZ8S+wcodGWwHg==
+X-YMail-OSG: .AtXKZEVM1lsTRY4BtguAWPVSqafHtCBYmgkeqadke14oV1NYQouPgDEzZgPMZD
+ zaxmpoNe8ZBjjcvQ6epgdyz1L0LGOE2Ulf_S.nWxutnuHMHlMQUEj564PxM.iWirP15qLi5aNaYo
+ sfgBkOAI.cNUn7w1kHaVipxBhaoKhjbfMZ_pmDEIJmGV1PHjsBGR67c7241uZkAso2DuTsnIC59F
+ WYvq0be6TcmZ62dV8nU0yEHKNQ6Nnv6rShj3NfW.eq8ABzxVDIzK0MqoQfVzgjtxkMGjWjHIlBJt
+ GP2QVhlIZv67GLXS7PbLngc7RVNKsczjWPrEs_weKhEF4G857.BX5JEMy6nS.ymLzLUDuYljwqAh
+ 2ANVGXxP35CPosr8yo8b0W.cZVzejHX82gW3Mv8CHd0OBzj4MOC3crKdPa73WHX4K1IURqxscUeb
+ CWkXs_eQ1vsihgW9tSERg3WILDC2V4rInaA4vO0lmiM1WNRImnwoskHGxWlMaQ_7BfMwQUzo6rrP
+ kIn61iUSgw3C7w891m08EdMcC576ULn8D4aE7FSBgY7QdG7jdH.6gkKpDWt4hSLu8uF.8_Ya.hVE
+ 9.tyOb_pnQkHIxhtEBqA5UFOrQLcwjTDK0d8_LkbZOU8jcenk_zfp4H33qwl0tonYJPoYPfIS1wI
+ VcwJKQZJJ8DTvktidlV7QU0LOzEcVMJuc79rlIWlivxXqodSD0x03wsMzP5Wfa5TVmK5Cu.rkfbS
+ 1LZRgNmwc0xEDekEktkf7jhegYKjL8XAR3n50taYvupRyBmagkfPTatuqvtH4GaVJOSeuv9zu_zb
+ DhfOKUQSCTFFGW6T17d2sHhQX20qxmUH0e94iQ4hoXv_3dZy8z2BvRObU7qv0hbVNHSAcllr2OZQ
+ 4IC3wsoH5hxby5en7oB.kgW.Fz73tNXg0jmZXbvduEAKqcWQsBN2zbFD3Lp9RoT5nVChndx1e9_L
+ DsKlQMMKCUiPSlXDR0j1YDXV4RL0_hvxD6WyN9Q402wIZGdUrkLCNkz88iTwFG8HykC7EEREkofO
+ 6FW74eKS1uK6LtM41X9SRs1Ei.g98eYvv1nHh.Oqoo7avA9MusH3wkMi.JJs5L2DiMyo7.Nfrxwu
+ g.Qx4EGwppMbwjpBxxYz1OqvtwTlOh3nsQwbXJ.Ih4qgX2w9P.K27oq5sonc9muj5todha3UodHV
+ WATY6_xKVPv9FNkKWddlj7JqbJ5NVmBhw_e1BC.q5KkR5rWNWahzyLNrRhTf738_lika1GDCdbu6
+ .5Z6YRRYrOsNCxK1W4d5_3p_YkMEmRlyP3PzY8fzML8a3q4qdzu5DFyPBEsCwDuwgxTTL_izQ1tV
+ 2Uao_AiolUeRr5exvDeilcZQaCcs7xksWlwPdc95lGU_4iIhykgdRKcReufZJSmCAtpv3nET2ppQ
+ MsxOV1aunxWGgwsYGwUy66cXBr3dWPY.fiEL8kCF5rLGm2oF0t8a1qVPoGgM_cS5atxXmH7ZHT0X
+ xf3fNisEyFnGmYQG8Df.c2ek_rLAhacxZolPPTUXn9AK.FrJKtQ1zMt2zRpheqoqPfZz1U5B5dd.
+ Zk8a.7tremJKfr75S9fiGtMzvc2gQwS8CAwN.KFHakNCNBGWDrvzFrhmztZ1ccO0Yh7Og7NdXm6O
+ eqKs_dZI6iWfE9r.z46zIRNis7_gt6VYqQI6kfcviB1hwEFkwp4haurIW_vQMk6mn6649JOPOQc0
+ NSghyw94cAqptn_Vmo502VRq33Hni7Wk4EfNO6z86coqBmTv1zLgAQKbvizX2u0qbcjxgRNM2pUU
+ EdgcIYOjajYkCSHcl.N65zIuX1CqF0qqKxVHOat1TLegF6bDgmlgf4rzzprHcrSnh.lulrn4YG_0
+ X6v217dWXf4o8D_fTXxWWpMUjm20ixgyD2XQy.sDlecKRIljHD4yZIIdDl8R8XZWK9.N9kVUnagb
+ HdRkJ39SitowTqPnCqOlA99ovddd2KmOmPNI4kRPPvjbk9JF3v1F0IOHTojj47ySNaOG737CMcEo
+ QhnQBeIwIz5XVMeBSGCTsWhlb.6AMDD6E7rV21k31cWqa0j8FbSjJmhh3fpJRA2I_foGj3RQPCP9
+ kRg2d8pj2WkpGlFagjMr6WQeDE.oXdxPS0Lfp2txnvtHlchWFO99736LaPMLYVg8QohLdN4sVGq1
+ lyCMi.ETtQ8dVV5hHBE3oKQ9_dXdCT9lJVlLZCTwky_sT6Ic2LNwd7OnMpUsEytN45EhmGAOKESp
+ NAPfG3ffMD9rGwDYzbS_gaL9Tdn1MHDK_
+X-Sonic-MF: <hwzhou@yahoo.com>
+X-Sonic-ID: a7209273-4542-4596-a7a7-db3682d0f775
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic320.consmr.mail.bf2.yahoo.com with HTTP; Fri, 30 Jun 2023 11:34:51 +0000
+Date: Fri, 30 Jun 2023 11:34:39 +0000 (UTC)
+To: Rob Kossler <rkossler@nd.edu>,
+	"Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <1137522437.419358.1688124879387@mail.yahoo.com>
+In-Reply-To: <c1998c9a-8fdd-b4e7-3908-24dd44262c1a@gmail.com>
+References: <CAHRiTbnF-aJvp9RCXAHnFgjf9kcTvEYOLjdGrKdzw421Oy3zLA@mail.gmail.com> <ed80e51a-be7f-d6c0-7a25-3c0c7d19e4d6@gmail.com> <1346881245.172465.1688045768643@mail.yahoo.com> <e3300a45-cc33-2c9c-1c80-ebb3dfe9a2c3@gmail.com> <CAB__hTR1QV=7qdSNsZLSD6hq_3Uk_buTae6tNYeo1iXBNCvFHQ@mail.gmail.com> <c1998c9a-8fdd-b4e7-3908-24dd44262c1a@gmail.com>
+MIME-Version: 1.0
+X-Mailer: WebService/1.1.21612 YMailNorrin
+Message-ID-Hash: YZGLZMPOU6DCL776DE6D2WUNP44KUWGO
+X-Message-ID-Hash: YZGLZMPOU6DCL776DE6D2WUNP44KUWGO
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: rfnoc_image_builder
+Subject: [USRP-users] Re: LO carrier phase difference
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LSBXCLSMJHXKUPCIVSS5DDPESPFACUGM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YZGLZMPOU6DCL776DE6D2WUNP44KUWGO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3291228577377181142=="
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============4888855705127044783=="
 
+--===============4888855705127044783==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_419357_1408850834.1688124879385"
 
---===============3291228577377181142==
-Content-Type: multipart/alternative; boundary=Apple-Mail-397B03D9-72E0-4CF5-86F6-E33F15288804
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-397B03D9-72E0-4CF5-86F6-E33F15288804
-Content-Type: text/html;
-	charset=utf-8
+------=_Part_419357_1408850834.1688124879385
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">I had used a build script to install some o=
-ther software that was supposed to use conda. Pretty sure that went sideways=
- cause my PYTHONPATH included python3.9, which isn=E2=80=99t anywhere on my s=
-ystem.<div>Most likely a layer 0 issue :)<br><br><div dir=3D"ltr">&lt;<span c=
-lass=3D"Apple-style-span" style=3D"-webkit-tap-highlight-color: rgba(26, 26,=
- 26, 0.296875); -webkit-composition-fill-color: rgba(175, 192, 227, 0.230469=
-); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469); ">end tran=
-smission&gt;</span></div><div dir=3D"ltr"><br><blockquote type=3D"cite">On J=
-un 29, 2023, at 19:31, Brian Padalino &lt;bpadalino@gmail.com&gt; wrote:<br>=
-<br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<=
-div dir=3D"ltr">Strange - was it split between two different UHD installatio=
-ns possibly?<div><br></div><div>Is the main UHD installation in one place wh=
-ereas the image_builder was placed somewhere else?</div><div><br></div><div>=
-I install to alternative locations so&nbsp;I don't install to /usr, so could=
- there be a UHD install issue where it installs to the system in two differe=
-nt locations?</div><div><br></div><div>Brian</div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 29, 2023 at 5:1=
-7=E2=80=AFPM Paul Atreides &lt;<a href=3D"mailto:maud.dib1984@gmail.com">mau=
-d.dib1984@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div dir=3D"ltr"><div>Thanks Brian, figured it out. Was a P=
-YTHONPATH issue. For some reason my img_builder was in /usr/local/lib/python=
-3.10/site-packages. <br></div><div>Seems to be working now.</div><div><br></=
-div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Thu, Jun 29, 2023 at 2:41=E2=80=AFPM Brian Padalino &lt=
-;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.co=
-m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr">UHD seems to want to install to local/lib/python3.10-dist-pa=
-ckages/uhd - do you have that as part of your installation?<div><br></div><d=
-iv>I have an imgbuilder directory and image_builder.py inside there.</div><d=
-iv><br></div><div>You have an issue with, specifically, from uhd.imgbuilder i=
-mport image_builder?</div><div><br></div><div>Brian</div></div><br><div clas=
-s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 29, 2023=
- at 2:34=E2=80=AFPM Paul Atreides &lt;<a href=3D"mailto:maud.dib1984@gmail.c=
-om" target=3D"_blank">maud.dib1984@gmail.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex">Yea, I=E2=80=99m an intermittent R=
-FNoC user.&nbsp; no issues building UHD, just wondering if the image builder=
- module isn=E2=80=99t getting included in the source build. <br>
-<br>
-&lt;end transmission&gt;<br>
-<br>
-&gt; On Jun 29, 2023, at 11:51, Marcus D. Leech &lt;<a href=3D"mailto:patchv=
-onbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<=
-br>
-&gt; <br>
-&gt; =EF=BB=BFOn 29/06/2023 11:44, <a href=3D"mailto:jmaloyan@umass.edu" tar=
-get=3D"_blank">jmaloyan@umass.edu</a> wrote:<br>
-&gt;&gt; <br>
-&gt;&gt; In my experience, getting UHD to run on Ubuntu 22 is a huge hassle.=
- If you can, I recommend downgrading to 20.04(but no lower) and it should in=
-stall fairly easily.<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt; I built UHD 4.4.0.0 on 22.04 just the other night, and installed it alo=
-ngside the version that comes with Ubuntu 22.04<br>
-&gt;&nbsp; &nbsp;(UHD 4.1.0.5).&nbsp; I haven't tested it extensively (becau=
-se the issue was about building it).<br>
-&gt; <br>
-&gt; Now, I'm not an RFNOC guy, so I didn't exercise any of that stuff...<br=
+ Thanks a lot for your discussion, Rob and Marcus. It is very informative.I=
+ am using=C2=A0UBX-160 daughterboard.=C2=A0
+
+Yes, my transmission is continuous during the entire test. The signal lengt=
+h is 40ms, and the same signal is repeatedly transmitted in an endless loop=
+. Timestamp is updated in each loop and is applied to the packets.Captures =
+were not continuous. Each capture started at a specific time and had limite=
+d length. The time gap between captures was random.
+I think the timed Tx and Rx commands are not related to LO because Tx and R=
+x in digital domain and LO is in analogue domain.=C2=A0
+I am interested in knowing if there is a way to make Tx LO and Rx LO phase =
+coherent within the same USRP.=C2=A0
+
+
+
+    On Thursday, 29 June 2023 at 17:19:32 BST, Marcus D. Leech <patchvonbra=
+un@gmail.com> wrote: =20
+=20
+ On 29/06/2023 11:38, Rob Kossler wrote:
+> On Thu, Jun 29, 2023 at 11:09=E2=80=AFAM Marcus D. Leech
+> <patchvonbraun@gmail.com> wrote:
+>> On 29/06/2023 09:36, zhou via USRP-users wrote:
+>> I am using X310 USRPs. I did a loopback test with this USRP, that is, Tx=
+ was connected to Rx (with a 20dB attenuator between them). This is for che=
+cking the channel status.
+>> In my test, Tx is free running without stop, and Rx is occasional. Both =
+transmission and capture are time-based, that is, signals are transmitted a=
+t specified time, and capture starts at specified time.
+>>
+>> Master clock rate: 184.32MHz
+>> Sampling rate: 184.32MHz
+>>
+>> Using the captured signals, I can calculate the channel coefficient. A f=
+ew captures were made.
+>>
+>> I expected constant channel because it was cable connection and it was i=
+n the same USRP, but I found that the constellations of the pilot signals r=
+otated when comparing different captures. I think this can be caused by the=
+ phase difference between Tx LO and Rx LO, but not sure.
+>>
+>> Questions:
+>> 1. are there independent LOs for Tx and Rx in a USRP?
+>>
+>> Yes.=C2=A0 In fact, in any realistic on-the-air scenario, your RX and TX=
+ will never be phase aligned, or even phase-coherent.
+> Although there are separate LOs, they are both disciplined to the 10
+> MHz reference. If they are set using timed commands, they can provide
+> repeatable phase (at least for some daughterboards like UBX and SBX).
+> In radar applications, phase coherent Rx/Tx is common.
 >
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com=
-" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@list=
-s.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" tar=
-get=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.ett=
-us.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</div></blockquote></div></body></html>=
+>> 2. Is the Rx LO on and off in test, that is, it starts when capture star=
+ts and stops when capture is completed? So, the LO phase offset between Tx =
+and Rx is random?
+>>
+>> I would expect the RX LO phase to random with respect to the TX every ti=
+me you start/stop the RX.
+> In the description above, you mentioned free-running Tx but you also
+> mentioned timed transmission and capture. If you are using timed Tx
+> and Rx along with the timed tuning commands, I would expect a
+> consistent phase offset (depending again on daughterboard).=C2=A0 If you
+> have free running Tx, then I would expect it to be random.
+Something else to note about X310 is that in order for timed tuning to=20
+work with the DDCs, there has to be a stream running
+ =C2=A0 through it at the time, because it gets its notions of time from th=
+e=20
+radio block and uses tagged samples running through it to
+ =C2=A0 time re-tunes precise-to-the-sample.
 
---Apple-Mail-397B03D9-72E0-4CF5-86F6-E33F15288804--
+In this case, I think we're just talking about timed *streaming*, which=20
+shouldn't touch the LOs/DDC/DUC at all.=C2=A0 However, if
+ =C2=A0 the TX is continuous, and the RX is discontinuous, the RX will be=
+=20
+picking up the TX at some random phase.
 
---===============3291228577377181142==
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+ =20
+------=_Part_419357_1408850834.1688124879385
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydpfb9a8ed8yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Thanks a lot for your discus=
+sion, Rob and Marcus. It is very informative.</div><div dir=3D"ltr" data-se=
+tdir=3D"false">I am using&nbsp;UBX-160 daughterboard.&nbsp;<br></div><div d=
+ir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"=
+false">Yes, my transmission is continuous during the entire test. The signa=
+l length is 40ms, and the same signal is repeatedly transmitted in an endle=
+ss loop. Timestamp is updated in each loop and is applied to the packets.</=
+div><div dir=3D"ltr" data-setdir=3D"false">Captures were not continuous. Ea=
+ch capture started at a specific time and had limited length. The time gap =
+between captures was random.</div><div dir=3D"ltr" data-setdir=3D"false"><b=
+r></div><div dir=3D"ltr" data-setdir=3D"false">I think the timed Tx and Rx =
+commands are not related to LO because Tx and Rx in digital domain and LO i=
+s in analogue domain.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br=
+></div><div dir=3D"ltr" data-setdir=3D"false">I am interested in knowing if=
+ there is a way to make Tx LO and Rx LO phase coherent within the same USRP=
+.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"l=
+tr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">=
+<br></div><div><br></div>
+       =20
+        </div><div id=3D"ydpd26af6c6yahoo_quoted_8415392998" class=3D"ydpd2=
+6af6c6yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                    On Thursday, 29 June 2023 at 17:19:32 BST, Marcus D. Le=
+ech &lt;patchvonbraun@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div dir=3D"ltr">On 29/06/2023 11:38, Rob Kossler wrot=
+e:<br clear=3D"none">&gt; On Thu, Jun 29, 2023 at 11:09=E2=80=AFAM Marcus D=
+. Leech<br clear=3D"none">&gt; &lt;<a shape=3D"rect" href=3D"mailto:patchvo=
+nbraun@gmail.com" rel=3D"nofollow" target=3D"_blank">patchvonbraun@gmail.co=
+m</a>&gt; wrote:<br clear=3D"none">&gt;&gt; On 29/06/2023 09:36, zhou via U=
+SRP-users wrote:<br clear=3D"none">&gt;&gt; I am using X310 USRPs. I did a =
+loopback test with this USRP, that is, Tx was connected to Rx (with a 20dB =
+attenuator between them). This is for checking the channel status.<br clear=
+=3D"none">&gt;&gt; In my test, Tx is free running without stop, and Rx is o=
+ccasional. Both transmission and capture are time-based, that is, signals a=
+re transmitted at specified time, and capture starts at specified time.<br =
+clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; Master clock rate: 184.3=
+2MHz<br clear=3D"none">&gt;&gt; Sampling rate: 184.32MHz<br clear=3D"none">=
+&gt;&gt;<br clear=3D"none">&gt;&gt; Using the captured signals, I can calcu=
+late the channel coefficient. A few captures were made.<br clear=3D"none">&=
+gt;&gt;<br clear=3D"none">&gt;&gt; I expected constant channel because it w=
+as cable connection and it was in the same USRP, but I found that the const=
+ellations of the pilot signals rotated when comparing different captures. I=
+ think this can be caused by the phase difference between Tx LO and Rx LO, =
+but not sure.<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; Questio=
+ns:<br clear=3D"none">&gt;&gt; 1. are there independent LOs for Tx and Rx i=
+n a USRP?<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; Yes.&nbsp; =
+ In fact, in any realistic on-the-air scenario, your RX and TX will never b=
+e phase aligned, or even phase-coherent.<br clear=3D"none">&gt; Although th=
+ere are separate LOs, they are both disciplined to the 10<br clear=3D"none"=
+>&gt; MHz reference. If they are set using timed commands, they can provide=
+<br clear=3D"none">&gt; repeatable phase (at least for some daughterboards =
+like UBX and SBX).<br clear=3D"none">&gt; In radar applications, phase cohe=
+rent Rx/Tx is common.<br clear=3D"none">&gt;<br clear=3D"none">&gt;&gt; 2. =
+Is the Rx LO on and off in test, that is, it starts when capture starts and=
+ stops when capture is completed? So, the LO phase offset between Tx and Rx=
+ is random?<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; I would e=
+xpect the RX LO phase to random with respect to the TX every time you start=
+/stop the RX.<br clear=3D"none">&gt; In the description above, you mentione=
+d free-running Tx but you also<br clear=3D"none">&gt; mentioned timed trans=
+mission and capture. If you are using timed Tx<br clear=3D"none">&gt; and R=
+x along with the timed tuning commands, I would expect a<br clear=3D"none">=
+&gt; consistent phase offset (depending again on daughterboard).&nbsp; If y=
+ou<br clear=3D"none">&gt; have free running Tx, then I would expect it to b=
+e random.<br clear=3D"none">Something else to note about X310 is that in or=
+der for timed tuning to <br clear=3D"none">work with the DDCs, there has to=
+ be a stream running<br clear=3D"none"> &nbsp; through it at the time, beca=
+use it gets its notions of time from the <br clear=3D"none">radio block and=
+ uses tagged samples running through it to<br clear=3D"none"> &nbsp; time r=
+e-tunes precise-to-the-sample.<br clear=3D"none"><br clear=3D"none">In this=
+ case, I think we're just talking about timed *streaming*, which <br clear=
+=3D"none">shouldn't touch the LOs/DDC/DUC at all.&nbsp; However, if<br clea=
+r=3D"none"> &nbsp; the TX is continuous, and the RX is discontinuous, the R=
+X will be <br clear=3D"none">picking up the TX at some random phase.<div cl=
+ass=3D"ydpd26af6c6yqt1316621178" id=3D"ydpd26af6c6yqtfd74140"><br clear=3D"=
+none"><br clear=3D"none">_______________________________________________<br=
+ clear=3D"none">USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto=
+:usrp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@=
+lists.ettus.com</a><br clear=3D"none">To unsubscribe send an email to <a sh=
+ape=3D"rect" href=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofoll=
+ow" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br clear=3D"none=
+"></div></div></div>
+            </div>
+        </div></body></html>
+------=_Part_419357_1408850834.1688124879385--
+
+--===============4888855705127044783==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -187,4 +282,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3291228577377181142==--
+--===============4888855705127044783==--
