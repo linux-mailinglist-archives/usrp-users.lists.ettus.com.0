@@ -2,288 +2,119 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEC6745796
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Jul 2023 10:48:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D8F745B2B
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Jul 2023 13:33:09 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6A889383CAA
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Jul 2023 04:48:11 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D9DE43844F7
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Jul 2023 07:33:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1688374091; bh=Mk2xHveEuY2jH8vYVpUgaE2feTD/S8LhFKKzpTRhA9k=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=eOw6BhCK4DxupaMZLqXZM7ujP8DhR237cZnh846viKMqt941Wgx306W7isecC8X7R
-	 V3FP5EKq6610uwEO8xIqEvoQalgCgY+m/sBo6tkLThTBXBt0Zzpn5Rv1cTR/+TPh9Q
-	 vU4tWr+KqN0eRZOzA9sImnoxROT93Z6i839LWyXOzYd/hZkuTVHT1D3LLaCKL1Fa7L
-	 DhDtFjqr6oFttNvYkMlQrxt71+1k4ss60xzBCzcMnK6ntkt0WSifk9LDnKwyA6GxcZ
-	 rG+WrzSZL0YHeWXGEp4s6HIjAtLFJUIHN5YVcsphcb9MwiSs0QMmirQwzd/69yv3Cy
-	 UaBzWlLtlVc+w==
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5FCF8383CAA
-	for <usrp-users@lists.ettus.com>; Mon,  3 Jul 2023 04:47:19 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Wklxm8di";
-	dkim-atps=neutral
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-563439ea4a2so2706445eaf.0
-        for <usrp-users@lists.ettus.com>; Mon, 03 Jul 2023 01:47:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688374038; x=1690966038;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oIKbQKe3Y7TT1HM89lzAm+CqlKuciNo6g8EKAgeiEu0=;
-        b=Wklxm8diiHHYa3KNT56fFXrrxJQq6JUo6YJhvXhzvYujr7xaJxkQ8DOoeFuE5lFu0k
-         km7yeg0FfORwKB3AhEwsKQgoYMJbaZRGP2UTzItkGiHiLZFNedAQIwcIhN5ZYk1sKlv+
-         616yS63mXRyUMIIOPuMIcy9JlHGkmkWcvO0WOi0z0UsC/MKCvVugz8RV30yoVJjRUWnl
-         VXm7q08ug4jNPS724gg5k4pKlGOLs94CCmRPKSisHvIsHl+/K+QPmscE8/NqO0S76/rz
-         VuOflCkulnHnyLgSA6HlrzC51K1pHGg5L04qzyskCZQ0qIDvvSj4fHs+QNtUAMtPGVJ6
-         NThQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688374038; x=1690966038;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oIKbQKe3Y7TT1HM89lzAm+CqlKuciNo6g8EKAgeiEu0=;
-        b=dx98uT5CC3hkTHKIGHf9r9mfrxKPVdbjfoAvnYFz3STQ8lnqK3IaPI3fPIVvZb0Qqz
-         tN9Auq8yFSjPP7UgpndPu0W8ShTweA4PFGKaFnvGgmTfM8Cwd4FFWmIea5m2SG3HtHQX
-         NX70c9TpiL++v/gwPeelG1AL6EL8gqm2D/nbfJMrKg0VlvBZgtbB5wcxEXnzIvlCSZTW
-         R4JR+/MCqNFRrblLSbj5frRx6KeTvcILP0dvNH08hbDJG0Uv6Jp2/4YeHeEvvh4PHf5M
-         58duk+aGShuYoTNXOdpO0csRZMIWLRHvBvDIYBhTLTkD5vVBhrRXxvbNiierjXoqLEJQ
-         2V9A==
-X-Gm-Message-State: AC+VfDxIj4p/HaMuh6OZScpQCQsgMN8OqqRUwWsHOeE47C7Zw7LpZHDK
-	fY7xnPdqZ8DhQ7byhatil8fSnckK0yxcma/UPZs=
-X-Google-Smtp-Source: ACHHUZ7rSVXA8UKg4+0gRqwbp62O12/c69rBN1/lbEn8gEkyFUZN0V0XpOBACWl1RwpNlH0/1hhpay+bqp5NArEj/Vw=
-X-Received: by 2002:a05:6808:2099:b0:3a0:65bc:df4b with SMTP id
- s25-20020a056808209900b003a065bcdf4bmr10570389oiw.23.1688374038339; Mon, 03
- Jul 2023 01:47:18 -0700 (PDT)
+	t=1688383987; bh=rQrHUIRlCXIQf0SurZHNeBAf9XsQehbu5KJPCvHwhKs=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=g/4DE4vpW76951m/26FKolvuJyouvsQ2vqF1NVODiCdDMq7cKh5gaIZ8OhXrWKNzi
+	 MGqGOGtC2FnPSa5Crkmil6tXw+qF7Fh9Wk5Sn6xjnffLSuC+0+GNSpV5QvC3dfPy6T
+	 6UiQK6/DNcCfQAvC1mjwJeMHif5lyRNJ9zdgjHV/QbV7/oh/cPj7o7V3smQ0WsFmDU
+	 8jn/hGs0xhnCGEfQNAy8dBRsMLTHZpYViN8t8zL4a2jN9dSn+uVvI0fT+PMWhqYZnv
+	 A8941H83b6jN1GSMoWCQGUzf2nOmglB0UarKkT798Wmy5sG3bR1HRMrnhMc8EN+q8u
+	 8O/HX4Sf765sA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 4349F383E2D
+	for <usrp-users@lists.ettus.com>; Mon,  3 Jul 2023 07:32:44 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1688383964; bh=rchrPZAxFO6umjr07bh7zpoDcISAqEY5EbD3xJRtzME=;
+	h=Date:To:From:Subject:From;
+	b=SnCcK2asJ2u10Adb1n3NH48dQsEP/6mfWIJ4thfTAG3YKsjgfKsqR6ItBAgsbc6l4
+	 NiqH8m/5dAd6yh+GRFA68aTXWfKIsub1esjOT8CyWtYBuwDdlh3j87Aaa1xjKzPbOl
+	 jmCU1Za4dfspT3tEvzDJ+Dt5WhHtqg7Zo3aYYfhPE8ClJpOtD9+8PHai21Uov1gHtS
+	 Rc7x2MMNeQTSHtiis/lVdaTEbmXjEuEiIDtDYHkpMVxVs3UX2XAATtjQPtvIHC6kCA
+	 QypBJRSbXK2QO6LtyOi6FSKYP7k0+1yVJHUvwON/+E6iPuqp6bEJExTJ2Z0YnfXzof
+	 AtQEc2ZW9PfwQ==
+Date: Mon, 3 Jul 2023 11:32:44 +0000
+To: usrp-users@lists.ettus.com
+From: jnunez@cud.uvigo.es
+Message-ID: <EsarLqoVOAiZnhnUTSwkNe1S6diOUbQVAUTVty5s@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <CAHRiTbnF-aJvp9RCXAHnFgjf9kcTvEYOLjdGrKdzw421Oy3zLA@mail.gmail.com>
- <ed80e51a-be7f-d6c0-7a25-3c0c7d19e4d6@gmail.com>
-In-Reply-To: <ed80e51a-be7f-d6c0-7a25-3c0c7d19e4d6@gmail.com>
-From: Carlo Venier <venier.carlo@gmail.com>
-Date: Mon, 3 Jul 2023 10:47:06 +0200
-Message-ID: <CAHRiTb=b0iAWJUH2enH3KcvukdFad3ipDCKH=RQ0D9=fqzsUSg@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: NPE4TI27YIUGJU42YNXY4BZNOB6HU5PL
-X-Message-ID-Hash: NPE4TI27YIUGJU42YNXY4BZNOB6HU5PL
-X-MailFrom: venier.carlo@gmail.com
+Message-ID-Hash: XQULIIPUCJJLLU3OZ4UZ2XENPQD23MPR
+X-Message-ID-Hash: XQULIIPUCJJLLU3OZ4UZ2XENPQD23MPR
+X-MailFrom: jnunez@cud.uvigo.es
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: TwinRx Spectrum shape
+Subject: [USRP-users] Understanding time differences in rx_time
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NPE4TI27YIUGJU42YNXY4BZNOB6HU5PL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XQULIIPUCJJLLU3OZ4UZ2XENPQD23MPR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5785562669452807338=="
+Content-Type: multipart/mixed; boundary="===============8625670257544688400=="
 
---===============5785562669452807338==
-Content-Type: multipart/alternative; boundary="000000000000cda37105ff913688"
+This is a multi-part message in MIME format.
 
---000000000000cda37105ff913688
-Content-Type: text/plain; charset="UTF-8"
+--===============8625670257544688400==
+Content-Type: multipart/alternative;
+ boundary="b1_EsarLqoVOAiZnhnUTSwkNe1S6diOUbQVAUTVty5s"
+Content-Transfer-Encoding: 7bit
 
-Thank you for the screenshot, Marcus. The noise floor shape you obtain has
-the same behaviour as the noise floor shape we obtain.
+This is a multi-part message in MIME format.
 
-So, assuming this is the "nominal" behaviour, do you have any equalization
-method to suggest?
+--b1_EsarLqoVOAiZnhnUTSwkNe1S6diOUbQVAUTVty5s
+Content-Type: text/plain; charset=us-ascii
 
-Regards,
+Hi USRP users!
 
-Carlo Venier
+I am using one N200 and one X310 to simultaneously capture the same signal from 2 channels. Both devices are syncronished by an external GPSDO. I am using the attached GNURadio diagram. There is some time difference between both N200 and X310 captures. When I process the files in Matlab I can check a time difference of 103.7 ms between both signals (using cross-correlation). This value matches with the value obtained by subtracting the fractional seconds part of the rx_time values of both devices.
 
-Il mer 28 giu 2023, 20:02 Marcus D. Leech <patchvonbraun@gmail.com> ha
-scritto:
+The Tag Debug block shows following information:
 
-> On 22/06/2023 05:48, Carlo Venier wrote:
->
-> Good morning,
->
-> I have some questions regarding the TwinRX daughterboard.
->
-> 1) With the following settings:
->         Master Clock Rate = 200 MHz
->         Tuning Frequency = 2450 MHz
->         Sample rate = 100 Msps
->         Gain = 93
->         Every RF connector is 50 Ohm terminated
->         LO_OFFSET disabled
->
-> I get a non-flat spectrum. In particular, the center portion of it is up
-> to 5 dB higher than at +/- 40 MHz from the tuning frequency. You can see
-> this behaviour in the attached figures.
->
-> 2) The two channels have a different behaviour below 1.8 GHz (for example
-> at 450 MHz). The spectrum of channel :1 is a lot more wavy than the
-> spectrum of the channel :0. You can see this behaviour in the attached
-> figures.
-> In any case, also below 1.8 GHz the delta between min and max level is
-> about 5 dBs.
->
-> 3) Sometimes, the DC component pops up. As the TwinRX channels are a
-> superheterodyne receivers, I don't expect that the DC component appears,
-> but it happens.
->
-> Is it possible that the TwinRX I'm using is not working properly? Or am I
-> missing some settings?
->
-> 4) Can somebody provide a screenshot of the spectrum of the TwinRx
-> channels with the same settings at 1) for the tuning frequencies of 450 MHz
-> and 2450 MHz?
->
-> Thank you.
->
->
-> Best regards,
->
-> Carlo Venier
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> Here is my test, with the input terminated, and the gain at 80dB:
->
-> http://www.ccera.ca/files/2450.png
->
-> That's for 2450MHz, 100Msps
->
-> http://www.ccera.ca/files/450.png
->
-> That's for 450MHz, 100Msps, again 80dB gain
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Tag Debug:
 
---000000000000cda37105ff913688
-Content-Type: text/html; charset="UTF-8"
+Input Stream: 00
+
+  Offset: 0  Source: usrp_source2     Key: rx_time   Value: {0 0.200122}
+
+  Offset: 0  Source: usrp_source2     Key: rx_rate   Value: 1e+07
+
+  Offset: 0  Source: usrp_source2     Key: rx_freq   Value: 4.98e+08
+
+Input Stream: 01
+
+  Offset: 0  Source: usrp_source1     Key: rx_time   Value: {4 0.0964052}
+
+  Offset: 0  Source: usrp_source1     Key: rx_rate   Value: 1e+07
+
+  Offset: 0  Source: usrp_source1     Key: rx_freq   Value: 4.98e+08
+
+My simple question is, why the seconds part has a difference of 4 seconds?
+
+--b1_EsarLqoVOAiZnhnUTSwkNe1S6diOUbQVAUTVty5s
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Thank you for the screenshot, Marcus. The noise floor sha=
-pe you obtain has the same behaviour as the noise floor shape we obtain.=C2=
-=A0<div dir=3D"auto"><br></div><div dir=3D"auto">So, assuming this is the &=
-quot;nominal&quot; behaviour, do you have any equalization method to sugges=
-t?</div><div dir=3D"auto"><br></div><div dir=3D"auto">Regards,</div><div di=
-r=3D"auto"><br></div><div dir=3D"auto">Carlo Venier</div></div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il mer 28 giu 2023=
-, 20:02 Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patc=
-hvonbraun@gmail.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
-1ex">
- =20
-   =20
- =20
-  <div>
-    <div>On 22/06/2023 05:48, Carlo Venier
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"auto"><span style=3D"font-size:12.8px">Good morning,</spa=
-n><br style=3D"font-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">I have some questions regarding
-          the TwinRX daughterboard.</span><br style=3D"font-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">1) With the following settings:</s=
-pan><br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 Master Clock Rate =3D 200
-          MHz</span><br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 Tuning Frequency =3D 2450
-          MHz</span><br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 Sample rate =3D 100 Msps</span><br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 Gain =3D 93</span><br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">=C2=A0=C2=A0 =C2=A0 =C2=A0=C2=A0 E=
-very RF connector is 50
-          Ohm terminated</span><br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=
-=A0 LO_OFFSET disabled</span><br style=3D"font-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">I get a non-flat spectrum. In
-          particular, the center portion of it is up to 5 dB higher than
-          at +/- 40 MHz from the tuning frequency. You can see this
-          behaviour in the attached figures.</span><br style=3D"font-size:1=
-2.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">2) The two channels have a
-          different behaviour below 1.8 GHz (for example at 450 MHz).
-          The spectrum of channel :1 is a lot more wavy than the
-          spectrum of the channel :0. You can see this behaviour in the
-          attached figures.</span><br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">In any case, also below 1.8 GHz
-          the delta between min and max level is about 5 dBs.</span><br sty=
-le=3D"font-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">3) Sometimes, the DC component
-          pops up. As the TwinRX channels are a superheterodyne
-          receivers, I don&#39;t expect that the DC component appears, but
-          it happens.</span><br style=3D"font-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">Is it possible that the TwinRX
-          I&#39;m using is not working properly? Or am I missing some
-          settings?</span><br style=3D"font-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">4) Can somebody provide a
-          screenshot of the spectrum of the TwinRx channels with the
-          same settings at 1) for the tuning frequencies of 450 MHz and
-          2450 MHz?</span><br style=3D"font-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">Thank you.</span><br style=3D"font=
--size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">Best regards,</span><br style=3D"f=
-ont-size:12.8px">
-        <br style=3D"font-size:12.8px">
-        <span style=3D"font-size:12.8px">Carlo Venier</span></div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
-com</a>
-</pre>
-    </blockquote>
-    Here is my test, with the input terminated, and the gain at 80dB:<br>
-    <br>
-    <a href=3D"http://www.ccera.ca/files/2450.png" target=3D"_blank" rel=3D=
-"noreferrer">http://www.ccera.ca/files/2450.png</a><br>
-    <br>
-    That&#39;s for 2450MHz, 100Msps<br>
-    <br>
-    <a href=3D"http://www.ccera.ca/files/450.png" target=3D"_blank" rel=3D"=
-noreferrer">http://www.ccera.ca/files/450.png</a><br>
-    <br>
-    That&#39;s for 450MHz, 100Msps, again 80dB gain<br>
-    <br>
-    <br>
-  </div>
+<p>Hi USRP users!</p><p>I am using one N200 and one X310 to simultaneously =
+capture the same signal from 2 channels. Both devices are syncronished by a=
+n external GPSDO. I am using the attached GNURadio diagram. There is some t=
+ime difference between both N200 and X310 captures. When I process the file=
+s in Matlab I can check a time difference of 103.7 ms between both signals =
+(using cross-correlation). This value matches with the value obtained by su=
+btracting the fractional seconds part of the rx_time values of both devices=
+.</p><p>The Tag Debug block shows following information:</p><p>Tag Debug:</=
+p><p>Input Stream: 00</p><p>  Offset: 0  Source: usrp_source2     Key: rx_t=
+ime   Value: {0 0.200122}</p><p>  Offset: 0  Source: usrp_source2     Key: =
+rx_rate   Value: 1e+07</p><p>  Offset: 0  Source: usrp_source2     Key: rx_=
+freq   Value: 4.98e+08</p><p>Input Stream: 01</p><p>  Offset: 0  Source: us=
+rp_source1     Key: rx_time   Value: {4 0.0964052}</p><p>  Offset: 0  Sourc=
+e: usrp_source1     Key: rx_rate   Value: 1e+07</p><p>  Offset: 0  Source: =
+usrp_source1     Key: rx_freq   Value: 4.98e+08</p><p>My simple question is=
+, why the seconds part has a difference of 4 seconds?</p><p><br></p><p><br>=
+</p>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
-com</a><br>
-</blockquote></div>
+--b1_EsarLqoVOAiZnhnUTSwkNe1S6diOUbQVAUTVty5s--
 
---000000000000cda37105ff913688--
-
---===============5785562669452807338==
+--===============8625670257544688400==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -293,4 +124,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5785562669452807338==--
+--===============8625670257544688400==--
