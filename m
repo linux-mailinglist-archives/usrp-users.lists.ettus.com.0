@@ -2,117 +2,111 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29D5C75826B
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Jul 2023 18:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C1C75839D
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Jul 2023 19:37:17 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 339E8384CD3
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Jul 2023 12:50:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A664F384C4A
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Jul 2023 13:37:16 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1689699000; bh=PmNLebAIr7t3cwD5PChqk5cbxaMfO0dqxv4xT7TNRuQ=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=nRJMaHzM5D7aG1KOCpeL1F7h4xEjmcxyKHAaKNFa6i9XVc29xXI0Yk0SW7y6S/vE/
-	 nCUJOiBt9m09DMdCXYKgjF9A5Y98lNwzztmaG940GpkZVIYqRHyjkfilI1+EPr5er8
-	 b2oAVEvyDNgHeih3Uj3SmuQWnuK5CgyuT1i59w01xsodkQxv8zFNUVPPn81VzAVxok
-	 1q+LfTXuUX9l7LtfuSUXqyc4F8SI40hVrWO4K2yKyL51G8LZjo1p6b6Ogf2rHoYo3B
-	 JnDMnamNF+h1lf3OyrOclQ0A2F9G1LgNTqo3tO6w50HpVzvaARgRXvQVROPkJVnBoU
-	 b2sE1GDZIfH8g==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 96BAA384BC7
-	for <usrp-users@lists.ettus.com>; Tue, 18 Jul 2023 12:49:44 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1689698984; bh=wasAIVHSFl+7a33YRpUQRGSbZ0UJKzEP43dpqqgFoZE=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=GF5I9opkcpHZ3KmNC3L1C9UuAyiAWVDoaNsXzDhq8ZzAmYB9Qklrf5VtOCl2p4bfr
-	 Ek/SE5iBHr2nPpzoCsNMagDAWeNtPnN8edOyUphF6LYhtzvKweDlDISARDpzZM5rB6
-	 hr9HTN4crohFlESFHlVus0o4EQnHdmFHqjsk/bglvh9QFj5IKOcPmK7WpwpQMGc9x2
-	 +BF3yscsxzden6Gc8wUF9VBGThqntCUKy+wOEYYEHtp7iDVl4i/2EQtBfoZ92mbxyo
-	 uVP9zjge9hpw5g4wuLuH14PHimHDvsDeFjWFeMGVmW7Ah7iQJ0RcXDQTuQXzvcoBqb
-	 uJDKHVk7EENaw==
-Date: Tue, 18 Jul 2023 16:49:44 +0000
-To: usrp-users@lists.ettus.com
-From: david.fernandes@viveris.fr
-Message-ID: <gs0AMF99lya01tqSAAW6bnkSCmMuWG5tG6ViECHHU@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: eca156f5-d124-73bd-e47c-a5abed3b5fba@gmail.com
+	t=1689701836; bh=fr7BgoPpP0QvRG3lZ+aYJXM3UlfcaQFmeEl8k0FdP5U=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=ej8rwH2h40giMwBwynJ+gDNV0pmWYgQLW1gF/jzpKSgdyJD2udPNnHQEUc/wZ8354
+	 /6sUi/66uFi0MtVzoIBb9bNiQR1VBY+Dlz7124r78FUbPPBZjC0xXrVlFW9CG/PBPV
+	 9QUNOBtGpA3OZZCtq7u1994IKyUWjvm8mOGhW1qBCPQ3Iz+8aFebLNe9rdo2XG9his
+	 RySkN3g02MMcXVHzEOiOY3XTxnztGjBXGFBysDLkHsK6YvXqfcgxbWiPO4PzxHmoLT
+	 WlEd5W2Maf5H/xQ67YYOANIzG0qXODAKwZyIxansM2PeXuYW2V28BLO1fJ90KBrr+P
+	 XMH0K5qAjx+vA==
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 97AA2384BBF
+	for <usrp-users@lists.ettus.com>; Tue, 18 Jul 2023 13:36:37 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="llliMo/c";
+	dkim-atps=neutral
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-400a39d4ffcso27205771cf.0
+        for <usrp-users@lists.ettus.com>; Tue, 18 Jul 2023 10:36:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689701797; x=1692293797;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vcttrDY1jt30+o5Lmo+yaRL518gyY/9iAk9eAuTNhpQ=;
+        b=llliMo/cErj2O6hQMb9dv0TYD5Dq2JgIpKtsVjLB1XROxLfMEA/6Xz/M3y3mvpGjwQ
+         9ta+07syY5Kl4DFQhzf0+FRlbvsbitlE2fiBhlGyAakewvp2KEtpP10LhcKm0C8/oWua
+         2vfJOX3Sq4yq0Al8FYbt9f2cwkTd5qCj9/rCU4DPT9zOBKk+CfI8aDV8dzPmFVcudRKN
+         oznqa03PkkPNPHhNZFj0/7LeMLoDf3s92KGaoBF+kCr/u87MZF3K86mPggfnKkvRpKVf
+         V2/bWG0q/Wfk28HyPK6Na/LkTX372vg/QP2cMpinzuVG7y8ExMm1FPBDt+ZH9R6LVYaA
+         LH8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689701797; x=1692293797;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vcttrDY1jt30+o5Lmo+yaRL518gyY/9iAk9eAuTNhpQ=;
+        b=QNIeZm3PFxLRTdx0sNHionpXIh89+HGYg2He6UsSuV4FsZ3qwLmMyvZl6eMdNUzdX+
+         CmkZabCWQmd4buxp/GP/6MJuaI9CWVktjHLc2sPZ3a+wy3G+wL3/cu2FWLnIlXDOKZyf
+         b6NpDRqoOOd76s9PoQZ05oaUBfrVB32oOUQL3ptxwRXgIgL+fbvutmWf2YxOLLZ9gcVR
+         W8JjanReEdxxjtxkr9VA8j94s8rQrL8o2pOEWS6ZxELV5JODUhLU03fcPiOxOV+a8IzS
+         +lWNAJK3KEHUp+s99QOy4owdM8rsymiR6dge34Wr/gi4ZPbD6mowtNdNDUnP3TFE9CmU
+         nluA==
+X-Gm-Message-State: ABy/qLZVb0du5/BAOvwpDqIonQDMSqTY2dJCDRqaXNxtUTnrhO1N5vcr
+	jrEU9vAkVJWA3AkHFj86W1/CS/Sjym0=
+X-Google-Smtp-Source: APBJJlGYXFo0Urt8/MfOfPuM/J97rSgLp4WYAKXsnoGpQXEDQlaCperwLXj7g0iGO2Kk7bxvZ9LPnw==
+X-Received: by 2002:a05:622a:1818:b0:401:dfdf:e42a with SMTP id t24-20020a05622a181800b00401dfdfe42amr14797230qtc.2.1689701796785;
+        Tue, 18 Jul 2023 10:36:36 -0700 (PDT)
+Received: from [192.168.2.175] ([174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id m14-20020ac8688e000000b00403b148670esm785344qtq.73.2023.07.18.10.36.36
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 10:36:36 -0700 (PDT)
+Message-ID: <64ac7448-9e4a-215e-3906-ebc654bb0269@gmail.com>
+Date: Tue, 18 Jul 2023 13:36:27 -0400
 MIME-Version: 1.0
-Message-ID-Hash: 3J3PQHYY3E77OOORC4YR2J75XCZMHZGF
-X-Message-ID-Hash: 3J3PQHYY3E77OOORC4YR2J75XCZMHZGF
-X-MailFrom: david.fernandes@viveris.fr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <gs0AMF99lya01tqSAAW6bnkSCmMuWG5tG6ViECHHU@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <gs0AMF99lya01tqSAAW6bnkSCmMuWG5tG6ViECHHU@lists.ettus.com>
+Message-ID-Hash: K62LIOAHIHFANUM3GMISMYPKV3QOWYUA
+X-Message-ID-Hash: K62LIOAHIHFANUM3GMISMYPKV3QOWYUA
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: num_recv_frames
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3J3PQHYY3E77OOORC4YR2J75XCZMHZGF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K62LIOAHIHFANUM3GMISMYPKV3QOWYUA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4682716282090050085=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============4682716282090050085==
-Content-Type: multipart/alternative;
- boundary="b1_gs0AMF99lya01tqSAAW6bnkSCmMuWG5tG6ViECHHU"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_gs0AMF99lya01tqSAAW6bnkSCmMuWG5tG6ViECHHU
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi Marcus,
-
-Thank you very much for your quick response.
-
-I=E2=80=99m still having troubles to understand the results of my test : =
-I call recv() once, I sleep during 10 minutes, I call recv once again. Wh=
-en I merge the samples received in both '=E2=80=9Crecv=E2=80=9D calls, I =
-see no discontinuity in the received signal. As well, I don=E2=80=99t see=
- the RAM of my host being filled up during the =E2=80=9Csleep=E2=80=9D ph=
-ase, so the samples don=E2=80=99t seem to be buffered in the host=E2=80=99=
-s buffer. So I assume the samples are being buffered in the radio during =
-the =E2=80=9Csleep=E2=80=9D phase, but I doubt it has enough capacity to =
-buffer  4Msps\*10Minutes =3D 2400 Msamples.
-
-Thanks again for your support.
-
-Regards,
-
-David
-
---b1_gs0AMF99lya01tqSAAW6bnkSCmMuWG5tG6ViECHHU
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Marcus,</p><p>Thank you very much for your quick response.</p><p>I=E2=
-=80=99m still having troubles to understand the results of my test : I ca=
-ll recv() once, I sleep during 10 minutes, I call recv once again. When I=
- merge the samples received in both '=E2=80=9Crecv=E2=80=9D calls, I see =
-no discontinuity in the received signal. As well, I don=E2=80=99t see the=
- RAM of my host being filled up during the =E2=80=9Csleep=E2=80=9D phase,=
- so the samples don=E2=80=99t seem to be buffered in the host=E2=80=99s b=
-uffer. So I assume the samples are being buffered in the radio during the=
- =E2=80=9Csleep=E2=80=9D phase, but I doubt it has enough capacity to buf=
-fer  4Msps*10Minutes =3D 2400 Msamples.</p><p>Thanks again for your suppo=
-rt.</p><p>Regards,</p><p>David</p>
-
-
---b1_gs0AMF99lya01tqSAAW6bnkSCmMuWG5tG6ViECHHU--
-
---===============4682716282090050085==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4682716282090050085==--
+T24gMTgvMDcvMjAyMyAxMjo0OSwgZGF2aWQuZmVybmFuZGVzQHZpdmVyaXMuZnIgd3JvdGU6DQo+
+DQo+IEhpIE1hcmN1cywNCj4NCj4gVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91ciBxdWljayBy
+ZXNwb25zZS4NCj4NCj4gSeKAmW0gc3RpbGwgaGF2aW5nIHRyb3VibGVzIHRvIHVuZGVyc3RhbmQg
+dGhlIHJlc3VsdHMgb2YgbXkgdGVzdCA6IEkgDQo+IGNhbGwgcmVjdigpIG9uY2UsIEkgc2xlZXAg
+ZHVyaW5nIDEwIG1pbnV0ZXMsIEkgY2FsbCByZWN2IG9uY2UgYWdhaW4uIA0KPiBXaGVuIEkgbWVy
+Z2UgdGhlIHNhbXBsZXMgcmVjZWl2ZWQgaW4gYm90aCAn4oCccmVjduKAnSBjYWxscywgSSBzZWUg
+bm8gDQo+IGRpc2NvbnRpbnVpdHkgaW4gdGhlIHJlY2VpdmVkIHNpZ25hbC4gQXMgd2VsbCwgSSBk
+b27igJl0IHNlZSB0aGUgUkFNIG9mIA0KPiBteSBob3N0IGJlaW5nIGZpbGxlZCB1cCBkdXJpbmcg
+dGhlIOKAnHNsZWVw4oCdIHBoYXNlLCBzbyB0aGUgc2FtcGxlcyBkb27igJl0IA0KPiBzZWVtIHRv
+IGJlIGJ1ZmZlcmVkIGluIHRoZSBob3N04oCZcyBidWZmZXIuIFNvIEkgYXNzdW1lIHRoZSBzYW1w
+bGVzIGFyZSANCj4gYmVpbmcgYnVmZmVyZWQgaW4gdGhlIHJhZGlvIGR1cmluZyB0aGUg4oCcc2xl
+ZXDigJ0gcGhhc2UsIGJ1dCBJIGRvdWJ0IGl0IA0KPiBoYXMgZW5vdWdoIGNhcGFjaXR5IHRvIGJ1
+ZmZlciA0TXNwcyoxME1pbnV0ZXMgPSAyNDAwIE1zYW1wbGVzLg0KPg0KPiBUaGFua3MgYWdhaW4g
+Zm9yIHlvdXIgc3VwcG9ydC4NCj4NCj4gUmVnYXJkcywNCj4NCj4gRGF2aWQNCj4NCj4NCj4gX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2Vy
+cyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJz
+Y3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0K
+V2hhdCB2YWx1ZSBpcyByZXR1cm5lZCBpbjoNCg0KY2F0IC9wcm9jL3N5cy9uZXQvY29yZS9ybWVt
+X21heA0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+ClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRv
+IHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20K
