@@ -2,284 +2,404 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D824F75FD13
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Jul 2023 19:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA2575FDBF
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Jul 2023 19:31:14 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A96A7380077
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Jul 2023 13:21:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5BFC8380A0C
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Jul 2023 13:31:13 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1690219311; bh=zthXY3Tcu13iw2SLAcb4zZEbrhl9UdfsTL2oadX1pW0=;
-	h=To:Date:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
+	t=1690219873; bh=73fUSAsmsfe9cRFZkJO8vH5kRkzce1CU7FM0yTF4Qi4=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=EXcC2+ey6OuLWSF0lnlAJ/2UMlGwP6OiOcBVS7MUffrVOd2ASrJsEjamvrmxnjEkw
-	 w2/hfGU/HfqE/kQEYoJVlBVz3lKwTiaQkVRjF3MiVry7iC6vXsAUruiLUHSX6o0w0H
-	 /Wy44QNEbzl3Dx5U+LwwpkXEnzs61tLOiJANNM+2FGZt3jC8HBizLJXLfbK7zlPuuf
-	 lJ5LhJRVuLj5QfV9etj6dbg8kpMdaGIbGypPM9EFVT5CPeuzzwGHqaNEZWS+GwABbj
-	 QENnO/Ux1Ckq1t7v+ok20GHIN1QmsQupW1/Pd5VdwZmB/bXy34IMiYlTtgrJUwAv3s
-	 lQA2f1unjLsKA==
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0DB28384A29
-	for <usrp-users@lists.ettus.com>; Mon, 24 Jul 2023 13:21:13 -0400 (EDT)
+	b=Jp9iQLI1hlWjR5IPOqmvHo/f9pPwIkaTBvnHbjXjRd/ic8aFfSdKePQolAWl7TbXP
+	 q3X+CrgyaEnDU7tpaWdBvcU7ug6XES0JyJ1BfXu61mUU52gD/wRQsA8OFGIapLrCyK
+	 ERxTD/qVtukxtE9u55SiV9rHD3YnCtrbu1Leq+kpOt6kdKads9ajMgZEhbRKFnMtgJ
+	 DVy0gppaWR3Wgs9issImIq/i4EyOyR3nqb4JZCsFiHNsNUHkSbgc+gBICjUy1lcjna
+	 Y7gNYlPNxwqZx/NL1jR1E5GGM9AIsql0f6K04iGu2iRxKUBBP/zt7pif3OOsXYTRvJ
+	 olrFFE7hDo8gA==
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 271CA380A0C
+	for <usrp-users@lists.ettus.com>; Mon, 24 Jul 2023 13:30:56 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=baesystems.com header.i=@baesystems.com header.b="Hbu8Mfwm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="P4+mR13w";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1690219274; x=1847899274;
-  h=from:to:subject:date:in-reply-to:mime-version;
-  bh=wH28io0LX+3AT+MDt0eD+UmbIfS08QNxCIvTjtW+irM=;
-  b=Hbu8MfwmLy/jMPLmAvm3ffu317qHUm4gCHj1pN8LaZ1XGR12f+02YA9D
-   1uVLn40SQ3POxb8hrsGwfdIX6JBuTwOUidKYB/JRzecjNdoseN4MPCH9l
-   OvUFZE4Lf5fyvyQ//MW1T0bzyejYUHF/2Nf/Nbu2jXmjKTe6f9pAsvsRI
-   A=;
-X-IPAS-Result: =?us-ascii?q?A2ASAQDgsb5k/0LBJQpaGgEBAQEBAQEBAQEDAQEBARIBA?=
- =?us-ascii?q?QEBAgIBAQEBSYFGgTCBdgIOgU4bhDaRWwOGOYUekjOBag8BAQEBAQEBAQEIA?=
- =?us-ascii?q?S4BFQQBAYUGAhaGJiY4EwECBAEBAQEDAgMBAQEBAQEDAQEGAQEBAQEBBgQBg?=
- =?us-ascii?q?RyFL0aCNyKDKwEBAQEDASIKXAIBCA0EBAEBFhUCAgIfBwodCAEBBAESCBOCX?=
- =?us-ascii?q?wWCFRMDMasdNXqBMhoCZbIwDYJSgUKBaYV5HgGBSQEBg2CETIJPgRWDKz6CI?=
- =?us-ascii?q?IFdCAoBEgE4FRODHIJnBIUNgkSCK4VRBQIyinMsgQgIXoFtPQINVQsLZYEYU?=
- =?us-ascii?q?jkOgTACAhE6FEoIcBsDBwOBBRAvBwQyBxYJBgkYLyUGUQctJAkTFUAEgXqBV?=
- =?us-ascii?q?gqBCD8VDhGCUSs2OBtMgmoJFQY7B0x6EDEEFBiBDAgEVCcHHhoePxESGw0FC?=
- =?us-ascii?q?CsDRB1AAwsHaT01Bg4bBgIBZ1ubE4JqEwGCHjA1DDSBBZMqAoMginGgYIFKb?=
- =?us-ascii?q?wcDhAuZF4F5hXkuF4QAjGyGUgOMF4YAmCYgkTOQew0IN4R7AgQCBAUCFoF6M?=
- =?us-ascii?q?jIqcHCCUWZSFwKiHHU7AgcBCgEBAwmKM4EVAQE?=
-IronPort-PHdr: A9a23:+BJOjRd0NdwG6W2kQa+Pnwi7lGM+ydnLVj580XLHo4xHfqnrxZn+J
- kuXvawr0AWXG9iLoKsc1KL/iOPJYSQ4+5GPsXQPItRndiQuroEopTEmG9OPEkbhLfTnPGQQF
- cVGU0J5rTngaRAGUMnxaEfPrXKs8DUcBgvwNRZvJuTyB4Xek9m72/q99pHNYghEnjqwbLB9I
- BmrsQnctNQdjJd/JKo21hbHuGZDdf5MxWNvK1KTnhL86dm18ZV+7SleuO8v+tBZX6nicKs2U
- bJXDDI9M2Ao/8LrrgXMTRGO5nQHTGoblAdDDhXf4xH7WpfxtTb6tvZ41SKHM8D6Uaw4VDK/5
- KptVRTmijoINyQh/W/XlMJ+kb5brhyiqRxxwYHUYZ2aO/Vlc6zHYd8aR3BMUtpNWyFDBI63c
- osBD/AGPeZdt4TxqUUArRq6BQmoH+PvzTlIimfr1qAn1OQuChzN0AguENwTtXjYosj+OaAIU
- eCy16bH0y/Db+9M1Tfh6YjIdhQhoeqLXbJ2asfe0lMgGB3ejlSQsozlIy2a1uEWs2SB8+VgU
- uevhnchpgpsrTeh2t0ihZPVhoIJ1F/E7yN5zZ4oKdClRkB1btGpHYdeuSyeNYZ4Td0vT3x1t
- SonxbMKp4C2cicLxZkpxBPSZfiKf5SU7h7+VeudPDR1inx5db6jgRu57EuuyvXkW8WpzFpGt
- CRIn9vWunwQ0xHe5NKLR/p880u5xDqDyxrf5+5aLUwui6bXNZ8szqQtmpcQs0nOGDL9ll/sg
- 6+MbEok//Cl6+HgYrr7uJCRL5R0igTiMqQ2ncy/HPg4PhAOX2eF/eS806Xu/Uv5QLVMlPI2l
- 7LZvZPaKMgHuqK1HhVZ0oA55BqlFDipysoXnWIHLVJeZBKIkY3pO0rULP/kCve/hkygkDZtx
- //YIr3sGojBImTZnLrvf7tx8VNQxQ49wNxF5p9ZC6kNIPfpVU/wsNzYAAU5Mwuxw+v/EtV90
- ZgRVnyVAq+FKq/SrV6I5uYrI+mXY48Vvi3wJOM/6PHwln84mUQdfbW30psSc3C0BOhpI0KcY
- Xb0hNcOCn8FvhAiQ+zylF2CTTlTam6vU64k/DE0FJqmDZvfRoCqmLGBwTy7HodOZmxfF1CMC
- mnnd5+fW/oXbCKSI9RhkiAfVbS7VYAhyQ2utBLhy7Z9MuXU/SgY5trf040/wuTJngwpvRAyR
- +CQ3mqNBSkghmoUTD8o26Z1u0VgzH+M1KF5h7pTEtkFo7sDTxwgLdvB1OFgEPj2WxndZZGEV
- Eq7WZOtBjR7BoYs2MUWJltmFs+5phTCxDaxRbIJi6GQQpcz9/SP8WL2IpM393fC0LImiR1ua
- MxFfS2bve81v1zJAITEiVnfi6eucb8b2gbH/WqY3HGSsURDFgV3VPOWDjgkekLKoIGhtQv5R
- Li0BOF/WjY=
-IronPort-Data: A9a23:JEb6aKK5qW0X1auWFE+RZpclxSXFcZb7ZxGr2PjKsXjdYENS12BSy
- 2cYCDzVaKreYWWnLd0kPd+w80NX78DVx9VqQQod+CA2RRqmiyZl6fd1jKvUF3nPRiEWZBs/t
- 63yUvGZcIZuCCW0Si6FatDJtWN72byDWo3yAevFPjEZbQJ/QU/Nszo68wICqtAu2YHR7z+l4
- 4uo+JWAYgT9gFaYD0pNg069gEI31BjNkG5A1rAOTagjlEPTkXATEKUeKcmZR5cvatAJdgISb
- 7+rIICRpgs1zT90Yj+WuuqTnnkxf1LnFVPmZky6+kSVqkMqSiQais7XPReHAKtdo23hc9tZk
- L2huXEsIOskFvWkpQgTb/VXO2JZOfZh8oKZGlemv+aj5VeBaVnzxdw7WSnaPaVAkgp2KWdO8
- /UdM2BQNkjaweS/hriyR/J9ndguKdKtN4Qa0p1i5WiBS615B8mSGOOUu7e03x9p7ixKNezZb
- ccDdXxzbRDEeBpJEl0eBYkvh/ulg2K5eDpdwL6QjfNuvTGJkVMtjdABNvKWXdCLZ9dZrH2Ro
- 13o3Gv4LjQZNO22nG/tHnWEw7WncTnAcJ8JDqX96+Vnmka7wm0IFAZQWEenvOL/gUm7M++zM
- GRNomx18u5rpRftEIeVswCEnUNodyU0A7J4e9DWIinUokYIy2513lQ5cwM=
-IronPort-HdrOrdr: A9a23:vc61lawwFOEulT+kCl5+KrPwTr1zdoMgy1knxilNoHtuE/Bw9v
- rBoB1173fJYVoqM03I+uruBEDjex7hHPdOiLX5Vo3PYOCJggGVEL0=
-X-Talos-CUID: =?us-ascii?q?9a23=3ALp0002iu1PR4dPxbM9vWzJOyvDJuMVrZl1DaHhG?=
- =?us-ascii?q?DJn9nYo2/UxiK2rxiup87?=
-X-Talos-MUID: 9a23:mtJHRASnjAeCbu6fRXSvoz1jFtVk0Z+nDX8jspoHl+yHNR1ZbmI=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="6.01,228,1684800000";
-   d="scan'208,217";a="116125745"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677542400";
-   d="scan'208,217";a="399044843"
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: Network Link Issue
-Thread-Index: Adm+SVZPutvIJoIES4SmdZC0jzeeZAAKbS8AAAgDl7A=
-Date: Mon, 24 Jul 2023 17:20:10 +0000
-In-Reply-To: <214b198d-8f64-e887-52e4-18e985c96bed@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.42.226.187]
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-403a72df0a6so25690641cf.2
+        for <usrp-users@lists.ettus.com>; Mon, 24 Jul 2023 10:30:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690219855; x=1690824655;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iinQc56qGSvxnbwbzJpGhQ1UaCy4QwTaBBYAFyMfnts=;
+        b=P4+mR13woIqhOAGB6j8cpHqzmd9FAsUTLUtv1kFhpA/fMWk+e7jnot2ptN5Nw512f6
+         ZpiJGeiKejJjokGZDA8uaaPrKPo/YcLa2SPsoFHyxuwF2yD8CzZoO8jQlfU78iYiI8im
+         JcBDWpiKYMTO7XCL7aqXMUBHhfDKnAgAiteL6hwRGl21Exl20nB3dR3Hqp4CcW1CbMLl
+         M6t4HNHov66QHeH6nVRPdA/yAPDIZc07ZHMRy+yXpudjPe3RubWD3YX8HfkCVP0fh1YP
+         M46p2yG5ycQwPj4a2NWUeCGtbDYy5nveqMMyTs40xNLSokIQ11RIcNWXir5rO46cECiu
+         3dqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690219855; x=1690824655;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=iinQc56qGSvxnbwbzJpGhQ1UaCy4QwTaBBYAFyMfnts=;
+        b=Z2Y9cPAqvIviaCk06I5k0laHHVn5dSSsnwbBObqLQmUWW1ZdIvxICJzLnVu6nhRxkM
+         iBCeaeOR/16+pXsw6ZqdPHbgdIXX3JmUixuJgNpQRAyTi7CHDz7JpWK9h63700ZBdRoi
+         rGYACqSXzFI6B2fCWZPwA9EP/Pzsb9fXVeUuDT1UErg4fNqSOXkvO/bXIaNNLwyjNFYD
+         ewupeFNibnEiqTsv3iXvU2xpqQ1MRWthLfauH/1jD3BPnyylEY3CKnjoBL/7NIfHqT/7
+         tVinueLq+FQo3K4Iel+uutn6bPWdNxQozzZVBSFxXJ0xVtPE+C0BQBuAsg8IdVTS68qY
+         1z3A==
+X-Gm-Message-State: ABy/qLb9EBWI7AMb8IREG/SXr/QXSWoCK5WQHNvMP7gueT3wONcGrATr
+	xPEyatFyBUPB40XW7jZJ4PDJrNNcIww=
+X-Google-Smtp-Source: APBJJlEa6f23Mgz+9TFu0jVb2DUuGHSkAi16+yvZGInYaHw40z8vJDXsbyyX74ZLilHxDHj+alXRhg==
+X-Received: by 2002:a05:622a:54:b0:400:84e2:74d8 with SMTP id y20-20020a05622a005400b0040084e274d8mr518678qtw.25.1690219855362;
+        Mon, 24 Jul 2023 10:30:55 -0700 (PDT)
+Received: from [192.168.2.201] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id c16-20020ac87d90000000b004054fbf9273sm2446745qtd.80.2023.07.24.10.30.54
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jul 2023 10:30:55 -0700 (PDT)
+Message-ID: <1f8320cc-8605-97f3-638d-803f40a1a41e@gmail.com>
+Date: Mon, 24 Jul 2023 13:30:50 -0400
 MIME-Version: 1.0
-Message-ID: <169021927423.4399.6815917824348768255@mm2.emwd.com>
-Message-ID-Hash: YF2CMWJ6OBFPZRWJ6PPLA2L5GTZUENT2
-X-Message-ID-Hash: YF2CMWJ6OBFPZRWJ6PPLA2L5GTZUENT2
-X-MailFrom: robert.tillson@baesystems.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <169021927423.4399.6815917824348768255@mm2.emwd.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <169021927423.4399.6815917824348768255@mm2.emwd.com>
+Message-ID-Hash: DAWACSZXLUCUHBDFYH7PZS3CCAEHQTT6
+X-Message-ID-Hash: DAWACSZXLUCUHBDFYH7PZS3CCAEHQTT6
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Network Link Issue
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YF2CMWJ6OBFPZRWJ6PPLA2L5GTZUENT2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DAWACSZXLUCUHBDFYH7PZS3CCAEHQTT6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Tillson, Bob (US) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Tillson, Bob (US)" <robert.tillson@baesystems.com>
-Content-Type: multipart/mixed; boundary="===============5759748196731140330=="
+Content-Type: multipart/mixed; boundary="===============7221185282630828933=="
 
---===============5759748196731140330==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============7221185282630828933==
 Content-Type: multipart/alternative;
-	boundary="_000_47c655a07d6e4abf8c220639c5f2a36bbaesystemscom_"
+ boundary="------------ikF5g31Dupc6xPfpxPu1dH8x"
+Content-Language: en-US
 
---_000_47c655a07d6e4abf8c220639c5f2a36bbaesystemscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------ikF5g31Dupc6xPfpxPu1dH8x
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-WWVhaCwgSSBrbm93IGl0IHdvcmtlZCBpbiB0aGUgcGFzdCwgYnV0IEkgYW0gdW5jbGVhciBvbiB0
-aGUgcGVkaWdyZWUgc2luY2UgdGhlbuKApg0KDQpJdCBkb2VzIGFwcGx5IHRvIGFsbCBkZXZpY2Vz
-IOKYuQ0KDQpGcm9tOiBNYXJjdXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0K
-U2VudDogTW9uZGF5LCBKdWx5IDI0LCAyMDIzIDE6MDkgUE0NClRvOiB1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbQ0KU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBOZXR3b3JrIExpbmsgSXNzdWUN
-Cg0KRXh0ZXJuYWwgRW1haWwgQWxlcnQNCg0KVGhpcyBlbWFpbCBoYXMgYmVlbiBzZW50IGZyb20g
-YW4gYWNjb3VudCBvdXRzaWRlIG9mIHRoZSBCQUUgU3lzdGVtcyBuZXR3b3JrLg0KUGxlYXNlIHRy
-ZWF0IHRoZSBlbWFpbCB3aXRoIGNhdXRpb24sIGVzcGVjaWFsbHkgaWYgeW91IGFyZSByZXF1ZXN0
-ZWQgdG8gY2xpY2sgb24gYSBsaW5rLCBkZWNyeXB0L29wZW4gYW4gYXR0YWNobWVudCwgb3IgZW5h
-YmxlIG1hY3Jvcy4gIEZvciBmdXJ0aGVyIGluZm9ybWF0aW9uIG9uIGhvdyB0byBzcG90IHBoaXNo
-aW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1cml0eSBPbmVTcGFjZSBQYWdl4oCdIGFuZCByZXBvcnQg
-cGhpc2hpbmcgYnkgY2xpY2tpbmcgdGhlIGJ1dHRvbiDigJxSZXBvcnQgUGhpc2hpbmfigJ0gb24g
-dGhlIE91dGxvb2sgdG9vbGJhci4NCg0KDQpPbiAyNC8wNy8yMDIzIDEyOjE2LCBUaWxsc29uLCBC
-b2IgKFVTKSB2aWEgVVNSUC11c2VycyB3cm90ZToNCkkgaGF2ZSA0IFgzMTBzIHJ1bm5pbmcgMy4x
-NC4xIChJIGtub3csIGFuIGFuY2llbnQgdmVyc2lvbikgYXR0YWNoZWQgdG8gYSBjb21wdXRlciB3
-aXRoIFVidW50dSAyMC4wNC4NCg0KVGhlIE5JQyBpcyBhbiBpbnRlbCBYNzEwIDQgcG9ydCBOSUMg
-cnVubmluZyBsYXRlc3QgZHJpdmVyICgyLjIyLjIwKSBhbmQgbGF0ZXN0IE5WTSBmaXJtd2FyZSAo
-Ny4xKS4NCg0KV2hlbiBJIGNvbm5lY3QgdGhlIGR1YWwgZW5kZWQgTklDIGNhYmxlICh0eXBpY2Fs
-IGV0dHVzIHBhcnQpLCBJIGdldCBubyBsaW5rIGxpZ2h0cyBvbiBob3N0IG9yIHgzMTAsIHNvIG9i
-dmlvdXNseSBubyBjb25uZWN0aW9uIHRvIGhvc3QuDQoNCkkga25vdyB0aGlzIGhhcyBoYXBwZW5l
-ZCBpbiBhIHZlcnkgc21hbGwgbnVtYmVyIG9mIGNhc2VzIGJlZm9yZSwganVzdCBob3Bpbmcgc29t
-ZW9uZSBoYXMgbWF5YmUgZm91bmQgYSBzb2x1dGlvbiwgbGlrZSB0aGUgbWFnaWMgY29uZmlnIHNl
-dHRpbmcgb24gdGhlIFg3MTAgTklDIG9yIHNvbWV0aGluZyBsaWtlIHRoYXQ/DQoNCk9idmlvdXNs
-eSBJIHdvdWxkIGxpa2UgdG8gbm90IGhhdmUgdG8gdXBncmFkZSBhcyBpdCBpcyBxdWl0ZSBpbXBh
-Y3RmdWwgYXQgdGhpcyBtb21lbnQgYW5kIHVuY2xlYXIgaXQgd291bGQgYWN0dWFsbHkgZml4IHRo
-ZSBwcm9ibGVtLg0KDQpBbnkgdGhvdWdodHM/DQoNClRoYW5rcywNCg0KVG8gY2xhcmlmeSAtLSB0
-aGlzIGlzIGEgY29uZmlndXJhdGlvbiB0aGF0ICpzdG9wcGVkIHdvcmtpbmcqPyAgT3IgYSBicmFu
-ZC1uZXcgY29uZmlndXJhdGlvbiB0aGF0IHlvdSdyZSB0cnlpbmcgdG8gZ2V0IHdvcmtpbmc/DQoN
-CkRvZXMgdGhpcyBhcHBseSB0byBhbGwgeW91ciBkZXZpY2VzLCBvciBqdXN0IG9uZT8NCg0K
+On 24/07/2023 13:20, Tillson, Bob (US) via USRP-users wrote:
+>
+> Yeah, I know it worked in the past, but I am unclear on the pedigree=20
+> since then=E2=80=A6
+>
+> It does apply to all devices L
+>
+Well, if you're not getting link lights on ANY of the devices plugged=20
+into that NIC, I'd be suspicious of the NIC.=C2=A0 If you aren't
+ =C2=A0 getting link on any of them, either the NIC has been hard program=
+med=20
+(via ethtool) to the wrong PHY rate, or the NIC
+ =C2=A0 is broken.
 
---_000_47c655a07d6e4abf8c220639c5f2a36bbaesystemscom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Which cables are you using?=C2=A0 Which port on the X310 machines?=C2=A0=C2=
+=A0 SFP0 is=20
+1GBit with the default firmware, and 10GBit
+ =C2=A0 otherwise.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
-MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
-IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJMdWNpZGEgU2Fu
-cyBVbmljb2RlIjsNCglwYW5vc2UtMToyIDExIDYgMiAzIDUgNCAyIDIgNDt9DQovKiBTdHlsZSBE
-ZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0K
-CXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0
-Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29I
-eXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4
-dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9s
-bG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1k
-ZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5t
-c29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1h
-bHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
-Ow0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJU
-aW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1zdHlsZS10
-eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9y
-OndpbmRvd3RleHQ7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29u
-YWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFG
-NDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglm
-b250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBp
-bjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0K
-CXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1s
-Pg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1s
-PjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpl
-eHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVs
-YXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGlu
-az0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5ZZWFoLCBJ
-IGtub3cgaXQgd29ya2VkIGluIHRoZSBwYXN0LCBidXQgSSBhbSB1bmNsZWFyIG9uIHRoZSBwZWRp
-Z3JlZSBzaW5jZSB0aGVu4oCmPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5J
-dCBkb2VzIGFwcGx5IHRvIGFsbCBkZXZpY2VzIDwvc3Bhbj4NCjxzcGFuIHN0eWxlPSJmb250LWZh
-bWlseTpXaW5nZGluZ3M7Y29sb3I6IzFGNDk3RCI+TDwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6
-IzFGNDk3RCI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxk
-aXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4w
-cHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5G
-cm9tOjwvYj4gTWFyY3VzIEQuIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsg
-PGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwgSnVseSAyNCwgMjAyMyAxOjA5IFBNPGJyPg0KPGI+
-VG86PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4NCjxiPlN1YmplY3Q6PC9iPiBb
-VVNSUC11c2Vyc10gUmU6IE5ldHdvcmsgTGluayBJc3N1ZTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+
-DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRp
-dj4NCjx0YWJsZSBjbGFzcz0iTXNvTm9ybWFsVGFibGUiIGJvcmRlcj0iMSIgY2VsbHNwYWNpbmc9
-IjAiIGNlbGxwYWRkaW5nPSIwIiB3aWR0aD0iOTclIiBzdHlsZT0id2lkdGg6OTcuMCU7bWFyZ2lu
-LWxlZnQ6NS40cHQ7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlO2JvcmRlcjpub25lIj4NCjx0Ym9k
-eT4NCjx0ciBzdHlsZT0iaGVpZ2h0OjIxLjJwdCI+DQo8dGQgd2lkdGg9Ijk3JSIgdmFsaWduPSJ0
-b3AiIHN0eWxlPSJ3aWR0aDo5Ny4wJTtib3JkZXI6c29saWQgcmVkIDEuMHB0O3BhZGRpbmc6MGlu
-IDUuNHB0IDBpbiA1LjRwdDtoZWlnaHQ6MjEuMnB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFs
-aWduPSJjZW50ZXIiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttYXJnaW4tYm90dG9t
-OjQuMHB0O3RleHQtYWxpZ246Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUiPg0KPHN0cm9uZz48dT48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjEzLjVwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LHNhbnMtc2VyaWY7Y29sb3I6cmVkIj5FeHRlcm5hbCBFbWFpbCBBbGVydDwvc3Bhbj48L3U+
-PC9zdHJvbmc+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxlPSJoZWlnaHQ6MjEuMnB0Ij4NCjx0ZCB3aWR0
-aD0iNTQ5IiB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjE1LjBpbjtib3JkZXI6c29saWQgcmVk
-IDEuMHB0O2JvcmRlci10b3A6bm9uZTtwYWRkaW5nOjBpbiA1LjRwdCAwaW4gNS40cHQ7aGVpZ2h0
-OjIxLjJwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0iY2VudGVyIiBzdHlsZT0ibXNv
-LW1hcmdpbi10b3AtYWx0OjMuMHB0O21hcmdpbi1yaWdodDowaW47bWFyZ2luLWJvdHRvbTo0LjBw
-dDttYXJnaW4tbGVmdDowaW47dGV4dC1hbGlnbjpjZW50ZXI7YmFja2dyb3VuZDp3aGl0ZSI+DQo8
-c3Ryb25nPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+VGhpcyBlbWFpbCBoYXMgYmVlbiBz
-ZW50IGZyb20gYW4gYWNjb3VudCBvdXRzaWRlIG9mIHRoZSBCQUUgU3lzdGVtcyBuZXR3b3JrLjwv
-c3Bhbj48L3N0cm9uZz48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWdu
-PSJjZW50ZXIiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttYXJnaW4tYm90dG9tOjQu
-MHB0O3RleHQtYWxpZ246Y2VudGVyIj4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQiPlBs
-ZWFzZSB0cmVhdCB0aGUgZW1haWwgd2l0aCBjYXV0aW9uLCBlc3BlY2lhbGx5IGlmIHlvdSBhcmUg
-cmVxdWVzdGVkIHRvIGNsaWNrIG9uIGEgbGluaywgZGVjcnlwdC9vcGVuIGFuIGF0dGFjaG1lbnQs
-IG9yIGVuYWJsZSBtYWNyb3MuJm5ic3A7IEZvciBmdXJ0aGVyIGluZm9ybWF0aW9uIG9uIGhvdyB0
-byBzcG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1cml0eSBPbmVTcGFjZSBQYWdl4oCd
-IGFuZCByZXBvcnQNCiBwaGlzaGluZyBieSBjbGlja2luZyB0aGUgYnV0dG9uIOKAnFJlcG9ydCBQ
-aGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
-CjwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAyNC8w
-Ny8yMDIzIDEyOjE2LCBUaWxsc29uLCBCb2IgKFVTKSB2aWEgVVNSUC11c2VycyB3cm90ZTo8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7
-bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGhhdmUgNCBYMzEw
-cyBydW5uaW5nIDMuMTQuMSAoSSBrbm93LCBhbiBhbmNpZW50IHZlcnNpb24pIGF0dGFjaGVkIHRv
-IGEgY29tcHV0ZXIgd2l0aCBVYnVudHUgMjAuMDQuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRo
-ZSBOSUMgaXMgYW4gaW50ZWwgWDcxMCA0IHBvcnQgTklDIHJ1bm5pbmcgbGF0ZXN0IGRyaXZlciAo
-Mi4yMi4yMCkgYW5kIGxhdGVzdCBOVk0gZmlybXdhcmUgKDcuMSkuPG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPldoZW4gSSBjb25uZWN0IHRoZSBkdWFsIGVuZGVkIE5JQyBjYWJsZSAodHlwaWNhbCBl
-dHR1cyBwYXJ0KSwgSSBnZXQgbm8gbGluayBsaWdodHMgb24gaG9zdCBvciB4MzEwLCBzbyBvYnZp
-b3VzbHkgbm8gY29ubmVjdGlvbiB0byBob3N0LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGtu
-b3cgdGhpcyBoYXMgaGFwcGVuZWQgaW4gYSB2ZXJ5IHNtYWxsIG51bWJlciBvZiBjYXNlcyBiZWZv
-cmUsIGp1c3QgaG9waW5nIHNvbWVvbmUgaGFzIG1heWJlIGZvdW5kIGEgc29sdXRpb24sIGxpa2Ug
-dGhlIG1hZ2ljIGNvbmZpZyBzZXR0aW5nIG9uIHRoZSBYNzEwIE5JQyBvciBzb21ldGhpbmcgbGlr
-ZSB0aGF0PzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PYnZpb3VzbHkgSSB3b3VsZCBsaWtlIHRv
-IG5vdCBoYXZlIHRvIHVwZ3JhZGUgYXMgaXQgaXMgcXVpdGUgaW1wYWN0ZnVsIGF0IHRoaXMgbW9t
-ZW50IGFuZCB1bmNsZWFyIGl0IHdvdWxkIGFjdHVhbGx5IGZpeCB0aGUgcHJvYmxlbS48bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+QW55IHRob3VnaHRzPzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5U
-aGFua3MsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtUaW1lcyBOZXcgUm9tYW4mcXVvdDss
-c2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvYmxvY2txdW90ZT4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7
-LHNlcmlmIj5UbyBjbGFyaWZ5IC0tIHRoaXMgaXMgYSBjb25maWd1cmF0aW9uIHRoYXQgKnN0b3Bw
-ZWQgd29ya2luZyo/Jm5ic3A7IE9yIGEgYnJhbmQtbmV3IGNvbmZpZ3VyYXRpb24gdGhhdCB5b3Un
-cmUgdHJ5aW5nIHRvIGdldCB3b3JraW5nPzxicj4NCjxicj4NCkRvZXMgdGhpcyBhcHBseSB0byBh
-bGwgeW91ciBkZXZpY2VzLCBvciBqdXN0IG9uZT88YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---_000_47c655a07d6e4abf8c220639c5f2a36bbaesystemscom_--
+> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+> *Sent:* Monday, July 24, 2023 1:09 PM
+> *To:* usrp-users@lists.ettus.com
+> *Subject:* [USRP-users] Re: Network Link Issue
+>
+> *_External Email Alert_*
+>
+> *This email has been sent from an account outside of the BAE Systems=20
+> network.*
+>
+> Please treat the email with caution, especially if you are requested=20
+> to click on a link, decrypt/open an attachment, or enable macros.=C2=A0=
+ For=20
+> further information on how to spot phishing, access =E2=80=9CCybersecur=
+ity=20
+> OneSpace Page=E2=80=9D and report phishing by clicking the button =E2=80=
+=9CReport=20
+> Phishing=E2=80=9D on the Outlook toolbar.
+>
+> On 24/07/2023 12:16, Tillson, Bob (US) via USRP-users wrote:
+>
+>     I have 4 X310s running 3.14.1 (I know, an ancient version)
+>     attached to a computer with Ubuntu 20.04.
+>
+>     The NIC is an intel X710 4 port NIC running latest driver
+>     (2.22.20) and latest NVM firmware (7.1).
+>
+>     When I connect the dual ended NIC cable (typical ettus part), I
+>     get no link lights on host or x310, so obviously no connection to
+>     host.
+>
+>     I know this has happened in a very small number of cases before,
+>     just hoping someone has maybe found a solution, like the magic
+>     config setting on the X710 NIC or something like that?
+>
+>     Obviously I would like to not have to upgrade as it is quite
+>     impactful at this moment and unclear it would actually fix the
+>     problem.
+>
+>     Any thoughts?
+>
+>     Thanks,
+>
+> To clarify -- this is a configuration that *stopped working*?=C2=A0 Or =
+a=20
+> brand-new configuration that you're trying to get working?
+>
+> Does this apply to all your devices, or just one?
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
 
---===============5759748196731140330==
+--------------ikF5g31Dupc6xPfpxPu1dH8x
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 24/07/2023 13:20, Tillson, Bob (US)
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:169021927423.4399.6815917824348768255@mm2.emwd.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:"Lucida Sans Unicode";
+	panose-1:2 11 6 2 3 5 4 2 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Yeah, I know=
+ it
+            worked in the past, but I am unclear on the pedigree since
+            then=E2=80=A6<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>=C2=A0<=
+/o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"color:#1F497D">It does appl=
+y
+            to all devices </span>
+          <span style=3D"font-family:Wingdings;color:#1F497D">L</span></p=
+>
+      </div>
+    </blockquote>
+    Well, if you're not getting link lights on ANY of the devices
+    plugged into that NIC, I'd be suspicious of the NIC.=C2=A0 If you are=
+n't<br>
+    =C2=A0 getting link on any of them, either the NIC has been hard
+    programmed (via ethtool) to the wrong PHY rate, or the NIC<br>
+    =C2=A0 is broken.<br>
+    <br>
+    Which cables are you using?=C2=A0 Which port on the X310 machines?=C2=
+=A0=C2=A0 SFP0
+    is 1GBit with the default firmware, and 10GBit<br>
+    =C2=A0 otherwise.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:169021927423.4399.6815917824348768255@mm2.emwd.com">
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p></o:p><=
+/span></p>
+        <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>=C2=A0<=
+/o:p></span></p>
+        <div>
+          <div style=3D"border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0in 0in 0in">
+            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
+              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
+raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
+              <b>Sent:</b> Monday, July 24, 2023 1:09 PM<br>
+              <b>To:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"ma=
+ilto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+              <b>Subject:</b> [USRP-users] Re: Network Link Issue<o:p></o=
+:p></p>
+          </div>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <table class=3D"MsoNormalTable"
+style=3D"width:97.0%;margin-left:5.4pt;border-collapse:collapse;border:no=
+ne"
+            width=3D"97%" cellspacing=3D"0" cellpadding=3D"0" border=3D"1=
+">
+            <tbody>
+              <tr style=3D"height:21.2pt">
+                <td style=3D"width:97.0%;border:solid red
+                  1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.2pt"
+                  width=3D"97%" valign=3D"top">
+                  <p class=3D"MsoNormal"
+style=3D"mso-margin-top-alt:auto;margin-bottom:4.0pt;text-align:center;ba=
+ckground:white"
+                    align=3D"center">
+                    <strong><u><span
+style=3D"font-size:13.5pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:red">External
+                          Email Alert</span></u></strong><span
+                      style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+                </td>
+              </tr>
+              <tr style=3D"height:21.2pt">
+                <td style=3D"width:15.0in;border:solid red
+                  1.0pt;border-top:none;padding:0in 5.4pt 0in
+                  5.4pt;height:21.2pt" width=3D"549" valign=3D"top">
+                  <p class=3D"MsoNormal"
+style=3D"mso-margin-top-alt:3.0pt;margin-right:0in;margin-bottom:4.0pt;ma=
+rgin-left:0in;text-align:center;background:white"
+                    align=3D"center">
+                    <strong><span
+style=3D"font-size:10.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black">This
+                        email has been sent from an account outside of
+                        the BAE Systems network.</span></strong><o:p></o:=
+p></p>
+                  <p class=3D"MsoNormal"
+                    style=3D"mso-margin-top-alt:auto;margin-bottom:4.0pt;=
+text-align:center"
+                    align=3D"center">
+                    <span style=3D"font-size:7.5pt">Please treat the emai=
+l
+                      with caution, especially if you are requested to
+                      click on a link, decrypt/open an attachment, or
+                      enable macros.=C2=A0 For further information on how=
+ to
+                      spot phishing, access =E2=80=9CCybersecurity OneSpa=
+ce
+                      Page=E2=80=9D and report phishing by clicking the b=
+utton
+                      =E2=80=9CReport Phishing=E2=80=9D on the Outlook to=
+olbar.</span><o:p></o:p></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          <div>
+            <p class=3D"MsoNormal">On 24/07/2023 12:16, Tillson, Bob (US)
+              via USRP-users wrote:<o:p></o:p></p>
+          </div>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <p class=3D"MsoNormal">I have 4 X310s running 3.14.1 (I know,
+              an ancient version) attached to a computer with Ubuntu
+              20.04.<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">The NIC is an intel X710 4 port NIC
+              running latest driver (2.22.20) and latest NVM firmware
+              (7.1).<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">When I connect the dual ended NIC cabl=
+e
+              (typical ettus part), I get no link lights on host or
+              x310, so obviously no connection to host.<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">I know this has happened in a very
+              small number of cases before, just hoping someone has
+              maybe found a solution, like the magic config setting on
+              the X710 NIC or something like that?<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Obviously I would like to not have to
+              upgrade as it is quite impactful at this moment and
+              unclear it would actually fix the problem.<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Any thoughts?<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+            <p class=3D"MsoNormal"><span
+                style=3D"font-size:12.0pt;font-family:&quot;Times New
+                Roman&quot;,serif"><o:p>=C2=A0</o:p></span></p>
+          </blockquote>
+          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span
+              style=3D"font-size:12.0pt;font-family:&quot;Times New
+              Roman&quot;,serif">To clarify -- this is a configuration
+              that *stopped working*?=C2=A0 Or a brand-new configuration =
+that
+              you're trying to get working?<br>
+              <br>
+              Does this apply to all your devices, or just one?<br>
+              <br>
+              <o:p></o:p></span></p>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------ikF5g31Dupc6xPfpxPu1dH8x--
+
+--===============7221185282630828933==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -289,4 +409,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5759748196731140330==--
+--===============7221185282630828933==--
