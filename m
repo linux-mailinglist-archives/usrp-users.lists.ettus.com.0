@@ -2,395 +2,411 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC88760A0D
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Jul 2023 08:09:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FCF1761AB9
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jul 2023 15:55:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DD275384B21
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Jul 2023 02:08:58 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F2004384BEB
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jul 2023 09:55:08 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1690265338; bh=ICoMZE+FFVEYfMvEEx3dwNMRQb/b8R/ftekAbkCRT2E=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=J7F4flO5p//0AZXNZ6oEtNOv8ugm3cev+5GfyAzx/iuFM/WLW0GU8GO1eiqWmCFTe
-	 zbfbe8+4gdtG5Rmdv++QGamg1mqbzYSGRwTXVLVv6WlGoz9mW6hXy41JTERu7cuk2s
-	 Yf+n0jOvYLkDVZ+uGt+CnKXnBLh+j0dkzmVsn9dIbjTdwP6UX95X/J6jmmtZKdGoyg
-	 wpvYM8DrQ5JPzFhLUTOO+G9mOmkcL4kY/aK1S0xK8uN2Bmbe2eZLWfcwyevrVdSVwI
-	 RKIySZHV2qIW0ChYhgYNWnCORV4AvWtNrQXHGsSivyxgVfJFTVgg7A4EkQPm3t4qb3
-	 Kt/YJqMiHIH0g==
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7E794384B1A
-	for <usrp-users@lists.ettus.com>; Tue, 25 Jul 2023 02:08:19 -0400 (EDT)
+	t=1690293308; bh=E1s3oiQin3aMFOPq0yJFTUoH2mIQqX8QNptMji51wIM=;
+	h=To:Date:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
+	 From;
+	b=0h7VS8X6P7Xmxs5ckz20btqY5Tdc/HLJgwj/FpwpIeEoWqonwSTsbA2OD3lA9vebl
+	 rNokYlVx/XdQHUdLuy41KulCbn0TgzP9JQWyKtWYUzeO5ML5uwfoFWWAmROcx9GVUT
+	 RO8bOJidCM4+TzvZ5UknxMM+UFhFL9I0n6x+xObIltAS2ZhrFRAGh/PKhFdb0+ALgg
+	 OWLAJI6dPVFsa5Va65LfRnv43Fvz2pfpJZB6ZZBJyOUcGTRTM6gvUtWFFCL5o8ktl/
+	 v2JNL9pJHCJQTgX8ipGWNOj4y5Lf99ZRteiUDanQ1tdY8i7fuiQtCOenjZHhjULB8K
+	 GTzPHJ42kd6cg==
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5ECAC384BB0
+	for <usrp-users@lists.ettus.com>; Tue, 25 Jul 2023 09:54:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=g-ecc-u-tokyo-ac-jp.20221208.gappssmtp.com header.i=@g-ecc-u-tokyo-ac-jp.20221208.gappssmtp.com header.b="JqoMIPmm";
+	dkim=pass (1024-bit key; unprotected) header.d=baesystems.com header.i=@baesystems.com header.b="VXrSKGq6";
 	dkim-atps=neutral
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-51e429e1eabso7597719a12.2
-        for <usrp-users@lists.ettus.com>; Mon, 24 Jul 2023 23:08:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=g-ecc-u-tokyo-ac-jp.20221208.gappssmtp.com; s=20221208; t=1690265298; x=1690870098;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nS3IRZkiJIwFB0tsHBunATC2Db9Nc/f5XJDn7LuAlgM=;
-        b=JqoMIPmmIK8YrhaU8Unot71yQMA/g2VANG6YGK3labzGTsFG8+24WMw3PSa1OEHxL1
-         /g3Ap0xDjindB44gHrXdiLCiYHEgADW32eOOKQSAENXBDQEpzgsp9DxiCOGfViGvPaYM
-         HQoCZ9wwJhgPHCnhQYfJkwXMwi6R67SgEMnBT9Ju8Hxfw8zgXpFiwGudAF1fwVhYWRtL
-         qMPil5U1Jt4WvuHwYh+AOo2oaSbzvOuLRTXLTTfbtdkRsAQsdd00BILyy11UueKq1e3t
-         pNvOnFp/sD8VRnwSiYf2kqAFFt5/XABk0jg7UhZ9LzXoC1lWLCfVKhZGR36BTnTNRt5+
-         kcPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690265298; x=1690870098;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nS3IRZkiJIwFB0tsHBunATC2Db9Nc/f5XJDn7LuAlgM=;
-        b=jySzWZo0MRkPLFj1lh+RqF1PAoR8GAbqQ2/XroImmuV79IFpqaT5FuJhsE7qAMxpM0
-         CtqGHbYG/L7g/xCk7GPRUrLtOuVEwIUpluTEjxa/iHMdYKUnh8hZTHcsgmVoTXRLqpcu
-         BFgbXmvmi+J533PgrLZXA85CJUj2xITDc8UZmrgdTQVPOtmOnfQuABAOzJjRkhP3dcgY
-         IGjQI6w572lybo3agM5pEgJaUs7bfgv+OMtCTUQc+PAbX9GNmGizwaUn3k5PX8blVoO/
-         lq/Y4kwisVzY9AWGyxW5R9vAAhjG630esN576u8nhczB66r1gOX3WZgKg85QzOjmB6ag
-         LyhQ==
-X-Gm-Message-State: ABy/qLYpUQYQr+l9ktwKElGqcMc+i/+cakwAFAqHp9LHoT1Nu92JiaMx
-	UTWBr/mW20X1N9aRUj6gUjXiC//l5Wq+PU00H5Vihg==
-X-Google-Smtp-Source: APBJJlFp+tOcZNo+u8okm3AsjpCfhBuTaQdjFfuOIQ3PkE85mA1O6mRsO7vcunmo/1a4wkYh/AtbQ9HuRXlEN+5V2Ew=
-X-Received: by 2002:aa7:cf93:0:b0:51e:24e1:c0e9 with SMTP id
- z19-20020aa7cf93000000b0051e24e1c0e9mr9997752edx.10.1690265298176; Mon, 24
- Jul 2023 23:08:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1690293270; x=1847973270;
+  h=from:to:subject:date:in-reply-to:mime-version;
+  bh=6C7VfiG5pUSnnW/s8TMDzgDh4mi7wuumeQDTq9d6/gM=;
+  b=VXrSKGq6UiguLLsRtqoOU43B1VTgfUQ/4gYB3hqIoeXrJVkQTTuNS2eV
+   Qb7x4wbcSo7VtiQbTu9f3CnnEjU5q0Ztrem88Nx67CqKGsVAaXgCa5Vdn
+   zS8c53/35NSL/Ytu9+wQWgQcjXwW+YZdd+jwZgkXHquWmuSOTka8YHft4
+   0=;
+X-IPAS-Result: =?us-ascii?q?A2A1AAB70r9k/0LBJQpaGgEBAQEBAQEBAQEDAQEBARIBA?=
+ =?us-ascii?q?QEBAgIBAQEBSYE1AgEBAQELAYEvgXYCDoFOG4Q2kVsDhjmFHpI0gWoPAQEBA?=
+ =?us-ascii?q?QEBAQEBCAEuARUEAQGFBgIWhicmNwYOAQIEAQEBAQMCAwEBAQEBAQMBAQYBA?=
+ =?us-ascii?q?QEBAQEGBAGBHIUvRoI3BQIDGA6DHQEBAQEDASIKISAbAgEIDQQEAQEWEgMCA?=
+ =?us-ascii?q?gIfBwkBFAkIAQEEAQcLCBMCBIJZBYIVEwMxrEY1eoEyGgJlsjANglKBQgGBa?=
+ =?us-ascii?q?IV5HgGBSQEBgViCCIRMgk+BFYMrPoIggV0ICgESAQ0rFQoJgxyCZwRPCwYGK?=
+ =?us-ascii?q?1EoQAICFQQ5BSYLKgQBAVIwBAICgj82AgICgW+DO1Q/gQMFAjJPg3g/AgKFe?=
+ =?us-ascii?q?yyBCAhfgW89Ag1UCwtlgRhSOQ6BMAICEToUSghwGwMHA4EFEC8HBC8HFgkGC?=
+ =?us-ascii?q?RgvJQZRBy0kCRMVQASBeoFWCoEFPxUOEYJSKzY4G0yCagkVBjsHTHoQMQQUG?=
+ =?us-ascii?q?IENCARUJwceGh4/ERIbDQUISwNEHUADCwdpPTUGDhsGAgFnW5sqCoJkEwGCE?=
+ =?us-ascii?q?gwwKwoMNG0YkyoCgyCKcaBggUpvBwOEC5kXgXmFeS4XhACMbIZSA4wWhgCYJ?=
+ =?us-ascii?q?iCRM5B7DQg3hHsCBAIEBQIWgXkzMipwcFCCAWZSFwKiHHU7AgcBCgEBAwmJS?=
+ =?us-ascii?q?GuBFQEB?=
+IronPort-PHdr: A9a23:yQazph2nQ0moYUBJsmDOvgMyDhhOgF0UFjAc5pdvsb9SaKPrp82kY
+ BaBo6s1xwGXFazgqNt8w9LMtK7hXWFSqb2gi1slNKJ2ahkelM8NlBYhCsPWQWfyLfrtcjBoV
+ J8aDAwt8H60K1VaF9jjbFPOvHKy8SQSGhLiPgZpO+j5AIHfg9q22uyo+pDffwpEiTu8bLhvM
+ Bi4sALdu9UMj4B/MKgx0BzJonVJe+RS22xlIE+Ykgj/6Mmt4pNt6jxctP09+cFOV6X6ZLk4Q
+ qdDDDs6KWA15dbkugfFQACS+3YTSGQWkh5PAwjY8BH3W4r6vyXmuuZh3iSRIMv7Rq02Vzu/9
+ admUB/mhjkaOT4l/m/ZicJwg6BaoB29qBNy2JTbbJ2XNPdkYq/RYdEXSGxcVchRTSxBBYa8Y
+ pMBA+QfPOZYq439p0AJrRu4HQWnGf7iyjhTiXTr2aE13fkvHQTI0Ac9GN8OqnPUo87rO6cIT
+ eC51rXIzTTHb/NSwjf9747Ifws6rv6WQ71wasrQyVIzFwzbi1WQspbpMC+S1uQIqmWW6fdrW
+ u2zhWA9sQ5xviSvydk2ionPno8Z103J+yt2zos6OdC2Rkp2bNyrHpZOqi2XKpZ6TMw8T2x2t
+ yg3y7MLtJ21cSUO1Jgr2wPTZv2af4WL7BzuSPqdLDFlj3xmYLKynwu+/VS6xuDyVMS4yktGo
+ y5Ln9XWt30A1gTf5tWbRvdn8UqtxyyD2x7N5uxFO0w4iKnWJpwnz7UtjJQcq17DETXzmEjui
+ a+WcVgr9faw5uT8Z7XmuoecN4hpigHiKqgumtKwAeA/MgUWWWib+eK826fm/U3iQ7hHjuE6n
+ rXEvJzAI8QUvLS1DBRP3Yk98Ba+Dyym0MgGknkCN1JJYg6Ij4/sO13WIfD4C+mwg0i0nTt22
+ /zKJLPsD5fXInTelLrsc6xx5k9dxQYryNBQ/ZNUCrUPIPLpXU/xscTVDgU+MwOv3ennEsl92
+ pkCWWKOBq+ZNLjSsViO5u80OOaDfpEauC39Kvg++/7hk3o5mUQHcaa12psXbWi0HvJ9LEqBe
+ 3rjns8BEXsWvgo5VOHmlUWOUSRPaHaqQ6I8+jY7BZq7DYfYXICtmKWN3DqgHpJIfGBGEUuBE
+ XPpd4WfR/cMczieLdF9kjwYSLihUJUt2g2ptA//mPJaKPHJ8HgdvJPnyN8n+vbJjVQv7jFuF
+ IGZ3miTQklwn3gUXHk7wLxiugp2zVLQ7K5jnvZ4CdlXsvZAUwMmMszB1PZiTs3pVxjaO9OEQ
+ UiratGnGi0qCN8t38IVJU16HoaeiUWJ+iOwCKIO35DNTLg5/6nclTClP89hwHbY068rlVA7R
+ ONAMGSnguh08A2FQ8aDjl6Dj+O3bqkGxwbJ9Xyf1iyDoF1FS0h7VqCPFSQCfVHO6Mni61nZZ
+ 7uvEqg8dAZd1dOZbKBNb4u6o09BQaKpBNXaZ3m2nSP4LxGCjvOxV8ugMzEH2y/QElRCjwEX+
+ W2BMyA0Dyq6snnCATl1U1noZhW/oqFFtHqnQxpsnEmxZEp72u/tkiM=
+IronPort-Data: A9a23:9Vvjh61GHwAYw52bnvbD5WRzkn2cJEfYwER7XKvMYLTBsI5bp2AOn
+ WRLCm7XOa3bY2L9fNh/aou38UkPv8eAxtIySQdp3Hw8FHgiRegppTi6wuUcGwvIc6UvmWo+t
+ 512huHodZxyFDmGzvuUGuCJhWFm0q2VTabLBufBOyRgLSdpUy5JZShLwobVuaY2x4Dga++xk
+ Ymq+ZaHZwX4g2cc3l88sspvljs+5JwehxtF5jTSVdgT1HfCmn8cCo4oJK3ZBxMUlaENQ4ZW7
+ 86apF2I1juxEyUFU7tJoZ6nGqE+eYM+CCDV4pZgtwlOtTAZzsA6+v5T2PPx8i67gR3R9zx64
+ I0lWZBd1W7FM4WU8NnxXSW0HAlFbbBCpr3LJkK7vJCq6hT5XV+1zaVxWRRe0Y0woo6bAElI9
+ foRLStdM0jb3qSwyfSxQ+R3l98/IczweogYvxmMzxmAVbB9HtaaEv6Mu4EwMDQY36iiGd7EY
+ MAUcyYpcBXEZwZIPH8dAZ8ljfy0i3zkNTZfrTp5oIJuujaPk1MvieWF3Nz9RoW7avd3uHmjm
+ V363TT7OUhHEPuy1m/Qmp6rrqqV9c/hY6oPD6egs+NxjUeI7mgSEwENE1anveSizEW5Xrpix
+ 1c8o3Jo9vd0rR3wCIejN/GlnEO5Utcnc4I4O4UHBMulk8I4Py7x6rA4cwN8
+IronPort-HdrOrdr: A9a23:NOmzNayy08ULXMFYo0xLKrPwk71zdoMgy1knxilNoH1uA8Slfq
+ +V8cjzuSWEvwr5O0tQkOxoRpPtfZq0z/cciuMs1NyZLT/bUQWTQ+8CjfqAsl+Qflybh4kts9
+ YYAtAOc6yLfCUK8beEkXfIYqdRsar3gtHc9JOuuAYaPEgaI9Aqnk0JR3fWYwIGCngGdNpJV+
+ vfl48340vmCDJnN7XidyJ1BZmf1oG7y+O5EE92V291mVv+2EL9memKRWmwrz9ueEJksJpS3R
+ nr4iKJx9SCwtLL6G74pkujyOVx6eKR8qp5dfb8t7koWwqctHeYFbQRaMyxzQVFlN2S1A==
+X-Talos-CUID: 9a23:GSXs+m61n58nRLP9ltsszx4JHp4nfnrnyHqMGmrhNkhNEbPFVgrF
+X-Talos-MUID: =?us-ascii?q?9a23=3ACDz0jA/Eu7VDWGVFu3n2yjuQf/sx0oucKmYyqqo?=
+ =?us-ascii?q?5h+vUNxcpZhO6oSviFw=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="6.01,230,1684800000";
+   d="scan'208,217";a="116477615"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677542400";
+   d="scan'208,217";a="399212498"
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: Network Link Issue
+Thread-Index: Adm+SVZPutvIJoIES4SmdZC0jzeeZAAKbS8AAAgDl7D//8YIAP/+7iYw
+Date: Tue, 25 Jul 2023 13:53:27 +0000
+In-Reply-To: <1f8320cc-8605-97f3-638d-803f40a1a41e@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.42.226.187]
 MIME-Version: 1.0
-References: <CAOcHjoKkjXQUK-w8433gJy-Cb+PdvUKmkhQ5xj=fx10cN1NyKg@mail.gmail.com>
- <CAFche=g57Ywga6p2x3O4zyiWSj660CC8gwkLYX-4x14i6fwQCQ@mail.gmail.com>
-In-Reply-To: <CAFche=g57Ywga6p2x3O4zyiWSj660CC8gwkLYX-4x14i6fwQCQ@mail.gmail.com>
-From: Aerman TUERXUN <armantursun@g.ecc.u-tokyo.ac.jp>
-Date: Tue, 25 Jul 2023 15:08:06 +0900
-Message-ID: <CAOcHjoJVc=xFaTbs4D7Zci9TT6DXHHa0TsE5bu_TETW5nqBJ7Q@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Message-ID-Hash: GKWUFVPEGM3KO7LMPLUCHE5REEBIMQSU
-X-Message-ID-Hash: GKWUFVPEGM3KO7LMPLUCHE5REEBIMQSU
-X-MailFrom: armantursun@g.ecc.u-tokyo.ac.jp
+Message-ID: <169029327060.4399.2291970609873095597@mm2.emwd.com>
+Message-ID-Hash: 4ZKXRNCQTPHRBATZ7ZGWTFOXC3KOAHB3
+X-Message-ID-Hash: 4ZKXRNCQTPHRBATZ7ZGWTFOXC3KOAHB3
+X-MailFrom: robert.tillson@baesystems.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Building Bitstream for USRP X410
+Subject: [USRP-users] Re: Network Link Issue
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GKWUFVPEGM3KO7LMPLUCHE5REEBIMQSU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4ZKXRNCQTPHRBATZ7ZGWTFOXC3KOAHB3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0504801341092680109=="
+From: "Tillson, Bob (US) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Tillson, Bob (US)" <robert.tillson@baesystems.com>
+Content-Type: multipart/mixed; boundary="===============5150000833684620308=="
 
---===============0504801341092680109==
-Content-Type: multipart/alternative; boundary="000000000000aca1f80601498e0c"
+--===============5150000833684620308==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_e6d7419619004fe6b36d1e1eac21205dbaesystemscom_"
 
---000000000000aca1f80601498e0c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_e6d7419619004fe6b36d1e1eac21205dbaesystemscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Wade,
+VGhhbmtzIGZvciBhbGwgeW91ciBzdWdnZXN0aW9ucywgdHVybnMgb3V0IHdlIGRvIGhhdmUgbXVs
+dGlwbGUgWDMxMHMgYWN0dWFsbHkgbm90IHdvcmtpbmcgYWxsIGluIHRoZSBzYW1lIHJhY2ssIGFu
+ZCBpdHMgbm90IGp1c3QgdGhlIE5JQ3Mg4pi5DQoNCkV2ZXJ5dGhpbmcgaXMgYXBwcm9wcmlhdGUg
+YW5kIEkga2luZGEgZmVsbCBpbnRvIGFuIGludGVybmV0IHRyYXAgb2YgbWFueSByZXBvcnRzIG9m
+IFg3MTBzIG5vdCBmb3JtaW5nIGxpbmssIHdoaWNoIEkgd2FzIHRoaW5raW5nIHRoZXJlIG1heSBi
+ZSBzb21lIGhpZGRlbiBrbm93bGVkZ2Ugb2YgaG93IHRvIG92ZXJjb21lIGJhc2VkIG9uIHBhc3Qg
+ZXhwZXJpZW5jZXMuDQoNClRoYW5rcyBhZ2FpbiwNCg0KRnJvbTogTWFyY3VzIEQuIExlZWNoIDxw
+YXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NClNlbnQ6IE1vbmRheSwgSnVseSAyNCwgMjAyMyAxOjMx
+IFBNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFtVU1JQLXVzZXJz
+XSBSZTogTmV0d29yayBMaW5rIElzc3VlDQoNCkV4dGVybmFsIEVtYWlsIEFsZXJ0DQoNClRoaXMg
+ZW1haWwgaGFzIGJlZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lkZSBvZiB0aGUgQkFFIFN5
+c3RlbXMgbmV0d29yay4NClBsZWFzZSB0cmVhdCB0aGUgZW1haWwgd2l0aCBjYXV0aW9uLCBlc3Bl
+Y2lhbGx5IGlmIHlvdSBhcmUgcmVxdWVzdGVkIHRvIGNsaWNrIG9uIGEgbGluaywgZGVjcnlwdC9v
+cGVuIGFuIGF0dGFjaG1lbnQsIG9yIGVuYWJsZSBtYWNyb3MuICBGb3IgZnVydGhlciBpbmZvcm1h
+dGlvbiBvbiBob3cgdG8gc3BvdCBwaGlzaGluZywgYWNjZXNzIOKAnEN5YmVyc2VjdXJpdHkgT25l
+U3BhY2UgUGFnZeKAnSBhbmQgcmVwb3J0IHBoaXNoaW5nIGJ5IGNsaWNraW5nIHRoZSBidXR0b24g
+4oCcUmVwb3J0IFBoaXNoaW5n4oCdIG9uIHRoZSBPdXRsb29rIHRvb2xiYXIuDQoNCg0KT24gMjQv
+MDcvMjAyMyAxMzoyMCwgVGlsbHNvbiwgQm9iIChVUykgdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQpZ
+ZWFoLCBJIGtub3cgaXQgd29ya2VkIGluIHRoZSBwYXN0LCBidXQgSSBhbSB1bmNsZWFyIG9uIHRo
+ZSBwZWRpZ3JlZSBzaW5jZSB0aGVu4oCmDQoNCkl0IGRvZXMgYXBwbHkgdG8gYWxsIGRldmljZXMg
+4pi5DQpXZWxsLCBpZiB5b3UncmUgbm90IGdldHRpbmcgbGluayBsaWdodHMgb24gQU5ZIG9mIHRo
+ZSBkZXZpY2VzIHBsdWdnZWQgaW50byB0aGF0IE5JQywgSSdkIGJlIHN1c3BpY2lvdXMgb2YgdGhl
+IE5JQy4gIElmIHlvdSBhcmVuJ3QNCiAgZ2V0dGluZyBsaW5rIG9uIGFueSBvZiB0aGVtLCBlaXRo
+ZXIgdGhlIE5JQyBoYXMgYmVlbiBoYXJkIHByb2dyYW1tZWQgKHZpYSBldGh0b29sKSB0byB0aGUg
+d3JvbmcgUEhZIHJhdGUsIG9yIHRoZSBOSUMNCiAgaXMgYnJva2VuLg0KDQpXaGljaCBjYWJsZXMg
+YXJlIHlvdSB1c2luZz8gIFdoaWNoIHBvcnQgb24gdGhlIFgzMTAgbWFjaGluZXM/ICAgU0ZQMCBp
+cyAxR0JpdCB3aXRoIHRoZSBkZWZhdWx0IGZpcm13YXJlLCBhbmQgMTBHQml0DQogIG90aGVyd2lz
+ZS4NCg0KDQoNCg0KRnJvbTogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNv
+bT48bWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KU2VudDogTW9uZGF5LCBKdWx5IDI0
+LCAyMDIzIDE6MDkgUE0NClRvOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBbVVNSUC11c2Vyc10gUmU6IE5ldHdv
+cmsgTGluayBJc3N1ZQ0KDQpFeHRlcm5hbCBFbWFpbCBBbGVydA0KDQpUaGlzIGVtYWlsIGhhcyBi
+ZWVuIHNlbnQgZnJvbSBhbiBhY2NvdW50IG91dHNpZGUgb2YgdGhlIEJBRSBTeXN0ZW1zIG5ldHdv
+cmsuDQpQbGVhc2UgdHJlYXQgdGhlIGVtYWlsIHdpdGggY2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5
+b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBvbiBhIGxpbmssIGRlY3J5cHQvb3BlbiBhbiBhdHRh
+Y2htZW50LCBvciBlbmFibGUgbWFjcm9zLiAgRm9yIGZ1cnRoZXIgaW5mb3JtYXRpb24gb24gaG93
+IHRvIHNwb3QgcGhpc2hpbmcsIGFjY2VzcyDigJxDeWJlcnNlY3VyaXR5IE9uZVNwYWNlIFBhZ2Xi
+gJ0gYW5kIHJlcG9ydCBwaGlzaGluZyBieSBjbGlja2luZyB0aGUgYnV0dG9uIOKAnFJlcG9ydCBQ
+aGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLg0KDQoNCk9uIDI0LzA3LzIwMjMgMTI6
+MTYsIFRpbGxzb24sIEJvYiAoVVMpIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KSSBoYXZlIDQgWDMx
+MHMgcnVubmluZyAzLjE0LjEgKEkga25vdywgYW4gYW5jaWVudCB2ZXJzaW9uKSBhdHRhY2hlZCB0
+byBhIGNvbXB1dGVyIHdpdGggVWJ1bnR1IDIwLjA0Lg0KDQpUaGUgTklDIGlzIGFuIGludGVsIFg3
+MTAgNCBwb3J0IE5JQyBydW5uaW5nIGxhdGVzdCBkcml2ZXIgKDIuMjIuMjApIGFuZCBsYXRlc3Qg
+TlZNIGZpcm13YXJlICg3LjEpLg0KDQpXaGVuIEkgY29ubmVjdCB0aGUgZHVhbCBlbmRlZCBOSUMg
+Y2FibGUgKHR5cGljYWwgZXR0dXMgcGFydCksIEkgZ2V0IG5vIGxpbmsgbGlnaHRzIG9uIGhvc3Qg
+b3IgeDMxMCwgc28gb2J2aW91c2x5IG5vIGNvbm5lY3Rpb24gdG8gaG9zdC4NCg0KSSBrbm93IHRo
+aXMgaGFzIGhhcHBlbmVkIGluIGEgdmVyeSBzbWFsbCBudW1iZXIgb2YgY2FzZXMgYmVmb3JlLCBq
+dXN0IGhvcGluZyBzb21lb25lIGhhcyBtYXliZSBmb3VuZCBhIHNvbHV0aW9uLCBsaWtlIHRoZSBt
+YWdpYyBjb25maWcgc2V0dGluZyBvbiB0aGUgWDcxMCBOSUMgb3Igc29tZXRoaW5nIGxpa2UgdGhh
+dD8NCg0KT2J2aW91c2x5IEkgd291bGQgbGlrZSB0byBub3QgaGF2ZSB0byB1cGdyYWRlIGFzIGl0
+IGlzIHF1aXRlIGltcGFjdGZ1bCBhdCB0aGlzIG1vbWVudCBhbmQgdW5jbGVhciBpdCB3b3VsZCBh
+Y3R1YWxseSBmaXggdGhlIHByb2JsZW0uDQoNCkFueSB0aG91Z2h0cz8NCg0KVGhhbmtzLA0KDQpU
+byBjbGFyaWZ5IC0tIHRoaXMgaXMgYSBjb25maWd1cmF0aW9uIHRoYXQgKnN0b3BwZWQgd29ya2lu
+Zyo/ICBPciBhIGJyYW5kLW5ldyBjb25maWd1cmF0aW9uIHRoYXQgeW91J3JlIHRyeWluZyB0byBn
+ZXQgd29ya2luZz8NCg0KRG9lcyB0aGlzIGFwcGx5IHRvIGFsbCB5b3VyIGRldmljZXMsIG9yIGp1
+c3Qgb25lPw0KDQoNCg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fDQoNClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCg0KVG8gdW5zdWJz
+Y3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxt
+YWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQoNCg==
 
-Thank you for your reply.
-I got this error when I ran "make x410_100_rfnoc_image_core".
-And I am using UHD-4.2 and Vivado 2019.1.1.
+--_000_e6d7419619004fe6b36d1e1eac21205dbaesystemscom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-How can I check the required IP version of UHD? Is there any way to know
-whether I should upgrade or downgrade the Vivado version?
-Also, I am holding a University License of Vivado, is it possible that IP
-is not available for my license?
-Thanks.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
+CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
+MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
+IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFzOw0K
+CXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1p
+bHk6Ikx1Y2lkYSBTYW5zIFVuaWNvZGUiOw0KCXBhbm9zZS0xOjIgMTEgNiAyIDMgNSA0IDIgMiA0
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiBcLHNlcmlmIjsN
+CglwYW5vc2UtMTowIDAgMCAwIDAgMCAwIDAgMCAwO30NCi8qIFN0eWxlIERlZmluaXRpb25zICov
+DQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowaW47
+DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1p
+bHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXtt
+c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRpb246
+dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28t
+c3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246dW5k
+ZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6
+IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTou
+MDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9
+DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHls
+ZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmln
+aHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsN
+Cglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlm
+O30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5F
+bWFpbFN0eWxlMjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNh
+bGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0
+ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28t
+c3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsN
+Cglmb250LWZhbWlseTpDb25zb2xhczt9DQpzcGFuLkVtYWlsU3R5bGUyMw0KCXttc28tc3R5bGUt
+dHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsN
+Cgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9y
+dC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
+OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29y
+ZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUg
+bXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2
+IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
+ZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4N
+CjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
+IkVOLVVTIiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3Jk
+U2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5
+N0QiPlRoYW5rcyBmb3IgYWxsIHlvdXIgc3VnZ2VzdGlvbnMsIHR1cm5zIG91dCB3ZSBkbyBoYXZl
+IG11bHRpcGxlIFgzMTBzIGFjdHVhbGx5IG5vdCB3b3JraW5nIGFsbCBpbiB0aGUgc2FtZSByYWNr
+LCBhbmQgaXRzIG5vdCBqdXN0IHRoZSBOSUNzDQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
+aWx5OldpbmdkaW5ncztjb2xvcjojMUY0OTdEIj5MPC9zcGFuPjxzcGFuIHN0eWxlPSJjb2xvcjoj
+MUY0OTdEIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPkV2ZXJ5dGhpbmcg
+aXMgYXBwcm9wcmlhdGUgYW5kIEkga2luZGEgZmVsbCBpbnRvIGFuIGludGVybmV0IHRyYXAgb2Yg
+bWFueSByZXBvcnRzIG9mIFg3MTBzIG5vdCBmb3JtaW5nIGxpbmssIHdoaWNoIEkgd2FzIHRoaW5r
+aW5nIHRoZXJlIG1heSBiZSBzb21lIGhpZGRlbiBrbm93bGVkZ2Ugb2YgaG93IHRvIG92ZXJjb21l
+IGJhc2VkIG9uIHBhc3QgZXhwZXJpZW5jZXMuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjoj
+MUY0OTdEIj5UaGFua3MgYWdhaW4sPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlk
+ICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48Yj5Gcm9tOjwvYj4gTWFyY3VzIEQuIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdt
+YWlsLmNvbSZndDsgPGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwgSnVseSAyNCwgMjAyMyAxOjMx
+IFBNPGJyPg0KPGI+VG86PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4NCjxiPlN1
+YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10gUmU6IE5ldHdvcmsgTGluayBJc3N1ZTxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9wPg0KPGRpdj4NCjx0YWJsZSBjbGFzcz0iTXNvTm9ybWFsVGFibGUiIGJvcmRlcj0iMSIg
+Y2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIwIiB3aWR0aD0iOTclIiBzdHlsZT0id2lkdGg6
+OTcuMCU7bWFyZ2luLWxlZnQ6NS40cHQ7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlO2JvcmRlcjpu
+b25lIj4NCjx0Ym9keT4NCjx0ciBzdHlsZT0iaGVpZ2h0OjIxLjJwdCI+DQo8dGQgd2lkdGg9Ijk3
+JSIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDo5Ny4wJTtib3JkZXI6c29saWQgcmVkIDEuMHB0
+O3BhZGRpbmc6MGluIDUuNHB0IDBpbiA1LjRwdDtoZWlnaHQ6MjEuMnB0Ij4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+YXJnaW4tYm90dG9tOjQuMHB0O3RleHQtYWxpZ246Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUiPg0K
+PHN0cm9uZz48dT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEzLjVwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6cmVkIj5FeHRlcm5hbCBFbWFpbCBBbGVy
+dDwvc3Bhbj48L3U+PC9zdHJvbmc+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxlPSJoZWlnaHQ6MjEuMnB0
+Ij4NCjx0ZCB3aWR0aD0iNTQ5IiB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjE1LjBpbjtib3Jk
+ZXI6c29saWQgcmVkIDEuMHB0O2JvcmRlci10b3A6bm9uZTtwYWRkaW5nOjBpbiA1LjRwdCAwaW4g
+NS40cHQ7aGVpZ2h0OjIxLjJwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0iY2VudGVy
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OjMuMHB0O21hcmdpbi1yaWdodDowaW47bWFyZ2lu
+LWJvdHRvbTo0LjBwdDttYXJnaW4tbGVmdDowaW47dGV4dC1hbGlnbjpjZW50ZXI7YmFja2dyb3Vu
+ZDp3aGl0ZSI+DQo8c3Ryb25nPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+VGhpcyBlbWFp
+bCBoYXMgYmVlbiBzZW50IGZyb20gYW4gYWNjb3VudCBvdXRzaWRlIG9mIHRoZSBCQUUgU3lzdGVt
+cyBuZXR3b3JrLjwvc3Bhbj48L3N0cm9uZz48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttYXJn
+aW4tYm90dG9tOjQuMHB0O3RleHQtYWxpZ246Y2VudGVyIj4NCjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6Ny41cHQiPlBsZWFzZSB0cmVhdCB0aGUgZW1haWwgd2l0aCBjYXV0aW9uLCBlc3BlY2lhbGx5
+IGlmIHlvdSBhcmUgcmVxdWVzdGVkIHRvIGNsaWNrIG9uIGEgbGluaywgZGVjcnlwdC9vcGVuIGFu
+IGF0dGFjaG1lbnQsIG9yIGVuYWJsZSBtYWNyb3MuJm5ic3A7IEZvciBmdXJ0aGVyIGluZm9ybWF0
+aW9uIG9uIGhvdyB0byBzcG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1cml0eSBPbmVT
+cGFjZSBQYWdl4oCdIGFuZCByZXBvcnQNCiBwaGlzaGluZyBieSBjbGlja2luZyB0aGUgYnV0dG9u
+IOKAnFJlcG9ydCBQaGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLjwvc3Bhbj48bzpw
+PjwvbzpwPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5PbiAyNC8wNy8yMDIzIDEzOjIwLCBUaWxsc29uLCBCb2IgKFVTKSB2aWEgVVNSUC11c2Vy
+cyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdp
+bi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+WWVhaCwgSSBrbm93IGl0IHdvcmtlZCBpbiB0aGUg
+cGFzdCwgYnV0IEkgYW0gdW5jbGVhciBvbiB0aGUgcGVkaWdyZWUgc2luY2UgdGhlbuKApjwvc3Bh
+bj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xv
+cjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+SXQgZG9lcyBhcHBseSB0byBhbGwgZGV2
+aWNlcyA8L3NwYW4+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6V2luZ2RpbmdzO2NvbG9yOiMx
+RjQ5N0QiPkw8L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVv
+dDtUaW1lcyBOZXcgUm9tYW4mcXVvdDssc2VyaWYiPldlbGwsIGlmIHlvdSdyZSBub3QgZ2V0dGlu
+ZyBsaW5rIGxpZ2h0cyBvbiBBTlkgb2YgdGhlIGRldmljZXMgcGx1Z2dlZCBpbnRvIHRoYXQgTklD
+LCBJJ2QgYmUgc3VzcGljaW91cyBvZiB0aGUgTklDLiZuYnNwOyBJZiB5b3UgYXJlbid0PGJyPg0K
+Jm5ic3A7IGdldHRpbmcgbGluayBvbiBhbnkgb2YgdGhlbSwgZWl0aGVyIHRoZSBOSUMgaGFzIGJl
+ZW4gaGFyZCBwcm9ncmFtbWVkICh2aWEgZXRodG9vbCkgdG8gdGhlIHdyb25nIFBIWSByYXRlLCBv
+ciB0aGUgTklDPGJyPg0KJm5ic3A7IGlzIGJyb2tlbi48YnI+DQo8YnI+DQpXaGljaCBjYWJsZXMg
+YXJlIHlvdSB1c2luZz8mbmJzcDsgV2hpY2ggcG9ydCBvbiB0aGUgWDMxMCBtYWNoaW5lcz8mbmJz
+cDsmbmJzcDsgU0ZQMCBpcyAxR0JpdCB3aXRoIHRoZSBkZWZhdWx0IGZpcm13YXJlLCBhbmQgMTBH
+Qml0PGJyPg0KJm5ic3A7IG90aGVyd2lzZS48YnI+DQo8YnI+DQo8YnI+DQo8YnI+DQo8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJn
+aW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xv
+cjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBzdHls
+ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4w
+cHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IE1hcmN1
+cyBELiBMZWVjaCA8YSBocmVmPSJtYWlsdG86cGF0Y2h2b25icmF1bkBnbWFpbC5jb20iPg0KJmx0
+O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0OzwvYT4gPGJyPg0KPGI+U2VudDo8L2I+IE1vbmRh
+eSwgSnVseSAyNCwgMjAyMyAxOjA5IFBNPGJyPg0KPGI+VG86PC9iPiA8YSBocmVmPSJtYWlsdG86
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9h
+Pjxicj4NCjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10gUmU6IE5ldHdvcmsgTGluayBJc3N1
+ZTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZu
+YnNwOzxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjx0YWJsZSBjbGFzcz0iTXNvTm9ybWFsVGFibGUi
+IGJvcmRlcj0iMCIgY2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIwIiB3aWR0aD0iOTclIiBz
+dHlsZT0id2lkdGg6OTcuMCU7bWFyZ2luLWxlZnQ6NS40cHQ7Ym9yZGVyLWNvbGxhcHNlOmNvbGxh
+cHNlIj4NCjx0Ym9keT4NCjx0ciBzdHlsZT0iaGVpZ2h0OjIxLjJwdCI+DQo8dGQgd2lkdGg9Ijk3
+JSIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDo5Ny4wJTtib3JkZXI6c29saWQgcmVkIDEuMHB0
+O3BhZGRpbmc6MGluIDUuNHB0IDBpbiA1LjRwdDtoZWlnaHQ6MjEuMnB0Ij4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+YXJnaW4tYm90dG9tOjQuMHB0O3RleHQtYWxpZ246Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUiPg0K
+PHN0cm9uZz48dT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEzLjVwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6cmVkIj5FeHRlcm5hbCBFbWFpbCBBbGVy
+dDwvc3Bhbj48L3U+PC9zdHJvbmc+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBz
+dHlsZT0iaGVpZ2h0OjIxLjJwdCI+DQo8dGQgd2lkdGg9IjU0OSIgdmFsaWduPSJ0b3AiIHN0eWxl
+PSJ3aWR0aDoxNS4waW47Ym9yZGVyOnNvbGlkIHJlZCAxLjBwdDtib3JkZXItdG9wOm5vbmU7cGFk
+ZGluZzowaW4gNS40cHQgMGluIDUuNHB0O2hlaWdodDoyMS4ycHQiPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgYWxpZ249ImNlbnRlciIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDozLjBwdDttYXJn
+aW4tcmlnaHQ6MGluO21hcmdpbi1ib3R0b206NC4wcHQ7bWFyZ2luLWxlZnQ6MGluO3RleHQtYWxp
+Z246Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUiPg0KPHN0cm9uZz48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6YmxhY2siPlRoaXMgZW1haWwgaGFzIGJlZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lk
+ZSBvZiB0aGUgQkFFIFN5c3RlbXMgbmV0d29yay48L3NwYW4+PC9zdHJvbmc+PG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0iY2VudGVyIiBzdHlsZT0ibXNvLW1hcmdp
+bi10b3AtYWx0OmF1dG87bWFyZ2luLWJvdHRvbTo0LjBwdDt0ZXh0LWFsaWduOmNlbnRlciI+DQo8
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjcuNXB0Ij5QbGVhc2UgdHJlYXQgdGhlIGVtYWlsIHdpdGgg
+Y2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBvbiBhIGxp
+bmssIGRlY3J5cHQvb3BlbiBhbiBhdHRhY2htZW50LCBvciBlbmFibGUgbWFjcm9zLiZuYnNwOyBG
+b3IgZnVydGhlciBpbmZvcm1hdGlvbiBvbiBob3cgdG8gc3BvdCBwaGlzaGluZywgYWNjZXNzIOKA
+nEN5YmVyc2VjdXJpdHkgT25lU3BhY2UgUGFnZeKAnSBhbmQgcmVwb3J0DQogcGhpc2hpbmcgYnkg
+Y2xpY2tpbmcgdGhlIGJ1dHRvbiDigJxSZXBvcnQgUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sg
+dG9vbGJhci48L3NwYW4+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjwvdGJvZHk+DQo8
+L3RhYmxlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMjQvMDcvMjAyMyAxMjoxNiwgVGlsbHNvbiwgQm9i
+IChVUykgdmlhIFVTUlAtdXNlcnMgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9j
+a3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+SSBoYXZlIDQgWDMxMHMgcnVubmluZyAzLjE0LjEgKEkga25vdywg
+YW4gYW5jaWVudCB2ZXJzaW9uKSBhdHRhY2hlZCB0byBhIGNvbXB1dGVyIHdpdGggVWJ1bnR1IDIw
+LjA0LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgTklDIGlzIGFuIGludGVsIFg3MTAgNCBw
+b3J0IE5JQyBydW5uaW5nIGxhdGVzdCBkcml2ZXIgKDIuMjIuMjApIGFuZCBsYXRlc3QgTlZNIGZp
+cm13YXJlICg3LjEpLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5XaGVuIEkgY29ubmVjdCB0aGUg
+ZHVhbCBlbmRlZCBOSUMgY2FibGUgKHR5cGljYWwgZXR0dXMgcGFydCksIEkgZ2V0IG5vIGxpbmsg
+bGlnaHRzIG9uIGhvc3Qgb3IgeDMxMCwgc28gb2J2aW91c2x5IG5vIGNvbm5lY3Rpb24gdG8gaG9z
+dC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBrbm93IHRoaXMgaGFzIGhhcHBlbmVkIGluIGEg
+dmVyeSBzbWFsbCBudW1iZXIgb2YgY2FzZXMgYmVmb3JlLCBqdXN0IGhvcGluZyBzb21lb25lIGhh
+cyBtYXliZSBmb3VuZCBhIHNvbHV0aW9uLCBsaWtlIHRoZSBtYWdpYyBjb25maWcgc2V0dGluZyBv
+biB0aGUgWDcxMCBOSUMgb3Igc29tZXRoaW5nIGxpa2UgdGhhdD88bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+T2J2aW91c2x5IEkgd291bGQgbGlrZSB0byBub3QgaGF2ZSB0byB1cGdyYWRlIGFzIGl0
+IGlzIHF1aXRlIGltcGFjdGZ1bCBhdCB0aGlzIG1vbWVudCBhbmQgdW5jbGVhciBpdCB3b3VsZCBh
+Y3R1YWxseSBmaXggdGhlIHByb2JsZW0uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkFueSB0aG91
+Z2h0cz88bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFuICxzZXJpZiZxdW90OyxzZXJpZiI+Jm5ic3A7PC9zcGFu
+PjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtm
+b250LWZhbWlseTomcXVvdDtUaW1lcyBOZXcgUm9tYW4gLHNlcmlmJnF1b3Q7LHNlcmlmIj5UbyBj
+bGFyaWZ5IC0tIHRoaXMgaXMgYSBjb25maWd1cmF0aW9uIHRoYXQgKnN0b3BwZWQgd29ya2luZyo/
+Jm5ic3A7IE9yIGEgYnJhbmQtbmV3IGNvbmZpZ3VyYXRpb24gdGhhdCB5b3UncmUgdHJ5aW5nIHRv
+IGdldCB3b3JraW5nPzxicj4NCjxicj4NCkRvZXMgdGhpcyBhcHBseSB0byBhbGwgeW91ciBkZXZp
+Y2VzLCBvciBqdXN0IG9uZT88YnI+DQo8YnI+DQo8YnI+DQo8L3NwYW4+PG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyxzZXJpZiI+PGJyPg0K
+PGJyPg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHByZT5fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPlVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3ByZT4NCjxw
+cmU+VG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNycC11
+c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMu
+Y29tPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtUaW1l
+cyBOZXcgUm9tYW4mcXVvdDssc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Regards,
-Arman
+--_000_e6d7419619004fe6b36d1e1eac21205dbaesystemscom_--
 
-
-On Tue, Jul 25, 2023 at 7:04=E2=80=AFAM Wade Fife <wade.fife@ettus.com> wro=
-te:
-
-> Hi,
->
-> What did you run to get this error? Which version of the UHD repo are you
-> using?
->
-> Building the FPGA requires a Vivado license, but all of the IP is include=
-d
-> with Vivado. Assuming you have a working Vivado license, please ensure yo=
-u
-> have the correct version of Vivado installed for the version of the FPGA
-> you are building. The error message you received seems to suggest the
-> version of Vivado you have installed doesn't match the version the IP is
-> expecting:
->
-> ERROR: [Common 17-69] Command failed: * IP definition '10G/25G Ethernet
-> Subsystem (3.0)' for IP 'xge_pcs_pma' (customized with software release
-> 2019.1.1) has a different revision in the IP Catalog.
->
-> If the version of the IP that's included in your Vivado installation
-> doesn't match the version of the IP that the UHD repo uses then Vivado wi=
-ll
-> "lock" the IP, causing the build to fail.
->
-> Thanks,
->
-> Wade
->
-> On Sun, Jul 23, 2023 at 12:48=E2=80=AFAM Aerman TUERXUN <
-> armantursun@g.ecc.u-tokyo.ac.jp> wrote:
->
->> Hi USRP users,
->>
->> I am trying to build a gain block on USRP X410.
->> When I tried to build bitstream for X410_XG_100, I got the following
->> errors.
->> Seems some IP is locked for USRP X410.
->> Does that mean I need to purchase the IPs for building bitstream?
->> It's odd to me that we still need to buy specific IPs to build bitsstrea=
-m
->> with RFNoC.
->> How can I build a bitstream for X410?
->> Thanks in advance.
->>
->> Environment successfully initialized.
->> BUILDER: Checking tools...
->> * GNU bash, version 5.0.17(1)-release (x86_64-pc-linux-gnu)
->> * Python 3.8.10
->> * Vivado v2019.1 (64-bit)
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
->> BUILDER: Building IP xge_pcs_pma
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
->> BUILDER: Staging IP in build directory...
->> BUILDER: Reserving IP location:
->> /uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma
->> BUILDER: Retargeting IP to part zynquplusRFSOC/xczu28dr/ffvg1517/-1/e...
->> BUILDER: Building IP...
->> [00:00:00] Executing command: vivado -mode batch -source
->> /uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log xge_pcs_pma.log
->> -nojournal
->> WARNING: [IP_Flow 19-2162] IP 'xge_pcs_pma' is locked:
->> CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the
->> following file is locked:
->> /uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_pc=
-s_pma.xci
->> CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for th=
-e
->> following file is locked:
->> /uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_pc=
-s_pma.xci
->> [00:00:09] Current task: Initialization +++ Current Phase: Starting
->> [00:00:09] Current task: Initialization +++ Current Phase: Finished
->> [00:00:09] Executing Tcl: synth_design -top xge_pcs_pma -part
->> xczu28dr-ffvg1517-1-e -mode out_of_context
->> [00:00:09] Starting Synthesis Command
->> WARNING: [Vivado_Tcl 4-391] The following IPs are missing output product=
-s
->> for Synthesis target. These output products could be required for
->> synthesis, please generate the output products using the generate_target=
- or
->> synth_ip command before running synth_design.
->> WARNING: [Vivado_Tcl 4-391] The following IPs are missing output product=
-s
->> for Implementation target. These output products could be required for
->> synthesis, please generate the output products using the generate_target=
- or
->> synth_ip command before running synth_design.
->> WARNING: [IP_Flow 19-2162] IP 'xge_pcs_pma' is locked:
->> ERROR: [Synth 8-439] module 'xge_pcs_pma' not found
->> ERROR: [Common 17-69] Command failed: Synthesis failed - please see the
->> console or run log file for details
->> ERROR: [Common 17-53] User Exception: No open design. Please open an
->> elaborated, synthesized or implemented design before executing this comm=
-and.
->> ERROR: [Common 17-53] User Exception: No open design. Please open an
->> elaborated, synthesized or implemented design before executing this comm=
-and.
->> ERROR: [Common 17-53] User Exception: No open design. Please open an
->> elaborated, synthesized or implemented design before executing this comm=
-and.
->> ERROR: [Common 17-53] User Exception: No open design. Please open an
->> elaborated, synthesized or implemented design before executing this comm=
-and.
->> ERROR: [Common 17-53] User Exception: No open design. Please open an
->> elaborated, synthesized or implemented design before executing this comm=
-and.
->> ERROR: [Common 17-53] User Exception: No open design. Please open an
->> elaborated, synthesized or implemented design before executing this comm=
-and.
->> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
->> '/uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_p=
-cs_pma.xml'
->> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
->> '/uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_p=
-cs_pma.xml'
->> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
->> '/uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_p=
-cs_pma.xml'
->> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
->> '/uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_p=
-cs_pma.xml'
->> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
->> '/uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_p=
-cs_pma.xml'
->> ERROR: [Vivado 12-398] No designs are open
->> ERROR: [Common 17-69] Command failed: * IP definition '10G/25G Ethernet
->> Subsystem (3.0)' for IP 'xge_pcs_pma' (customized with software release
->> 2019.1.1) has a different revision in the IP Catalog.
->> [00:00:23] Current task: Synthesis +++ Current Phase: Starting
->> [00:00:23] Current task: Synthesis +++ Current Phase: Finished
->> [00:00:23] Process terminated. Status: Failure
->>
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
->> Warnings:           4
->> Critical Warnings:  7
->> Errors:             10
->>
->> BUILDER: Releasing IP location:
->> /uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma
->> make[5]: *** [/uhd/fpga/usrp3/top/x400/ip/xge_pcs_pma/Makefile.inc:43:
->> /uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_pc=
-s_pma.xci.out]
->> Error 1
->> make[4]: *** [Makefile:129: X410_XG_100] Error 2
->> Built target x410_rfnoc_image_core
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
->
-
---000000000000aca1f80601498e0c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Wade,</div><div><br></div><div>Thank you for your =
-reply.</div><div>I got this error when I ran &quot;make x410_100_rfnoc_imag=
-e_core&quot;.</div><div>And I am using UHD-4.2 and Vivado 2019.1.1.</div><d=
-iv><br></div><div>How can I check the required IP version of UHD? Is there =
-any way to know whether I should upgrade or downgrade the Vivado version?<b=
-r></div><div>Also, I am holding a University License of Vivado, is it possi=
-ble that IP is not available for my license?</div><div>Thanks.</div><div><b=
-r></div><div>Regards,</div><div>Arman<br></div><div><br></div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 2=
-5, 2023 at 7:04=E2=80=AFAM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.=
-com">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi,</div><div><br></div><div>=
-What did you run to get this error? Which version of the UHD repo are you u=
-sing?<br></div><div><br></div><div>Building the FPGA requires a Vivado lice=
-nse, but all of the IP is included with Vivado. Assuming you have a working=
- Vivado license, please ensure you have the correct version of Vivado insta=
-lled for the version of the FPGA you are building. The error message you re=
-ceived seems to suggest the version of Vivado you have installed doesn&#39;=
-t match the version the IP is expecting:</div><div><br></div><div>
-ERROR: [Common 17-69] Command failed: * IP definition &#39;10G/25G Ethernet=
-=20
-Subsystem (3.0)&#39; for IP &#39;xge_pcs_pma&#39; (customized with software=
- release=20
-2019.1.1) has a different revision in the IP Catalog.</div><div><br></div><=
-div>If the version of the IP that&#39;s included in your Vivado installatio=
-n doesn&#39;t match the version of the IP that the UHD repo uses then Vivad=
-o will &quot;lock&quot; the IP, causing the build to fail. <br></div><div><=
-br></div><div>Thanks,</div><div><br></div><div>Wade<br>
-
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Sun, Jul 23, 2023 at 12:48=E2=80=AFAM Aerman TUERXUN &lt;<a href=
-=3D"mailto:armantursun@g.ecc.u-tokyo.ac.jp" target=3D"_blank">armantursun@g=
-.ecc.u-tokyo.ac.jp</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex"><div dir=3D"ltr"><div>Hi USRP users,</div><div><br></div>=
-<div>I am trying to build a gain block on USRP X410.</div><div>When I tried=
- to build bitstream for X410_XG_100, I got the following errors.</div><div>=
-Seems some IP is locked for USRP X410.</div><div>Does that mean I need to p=
-urchase the IPs for building bitstream?</div><div>It&#39;s odd to me that w=
-e still need to buy specific IPs to build bitsstream with RFNoC.</div><div>=
-How can I build a bitstream for X410?</div><div>Thanks in advance. <br></di=
-v><div><br></div><div>Environment successfully initialized.<br>BUILDER: Che=
-cking tools...<br>* GNU bash, version 5.0.17(1)-release (x86_64-pc-linux-gn=
-u)<br>* Python 3.8.10<br>* Vivado v2019.1 (64-bit)<br>=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br=
->BUILDER: Building IP xge_pcs_pma<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>BUILDER: Stagi=
-ng IP in build directory...<br>BUILDER: Reserving IP location: /uhd/fpga/us=
-rp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma<br>BUILDER: Retargeti=
-ng IP to part zynquplusRFSOC/xczu28dr/ffvg1517/-1/e...<br>BUILDER: Building=
- IP...<br>[00:00:00] Executing command: vivado -mode batch -source /uhd/fpg=
-a/usrp3/tools/scripts/viv_generate_ip.tcl -log xge_pcs_pma.log -nojournal<b=
-r>WARNING: [IP_Flow 19-2162] IP &#39;xge_pcs_pma&#39; is locked:<br>CRITICA=
-L WARNING: [filemgmt 20-1366] Unable to reset target(s) for the following f=
-ile is locked: /uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pc=
-s_pma/xge_pcs_pma.xci<br>CRITICAL WARNING: [filemgmt 20-1365] Unable to gen=
-erate target(s) for the following file is locked: /uhd/fpga/usrp3/top/x400/=
-build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_pcs_pma.xci<br>[00:00:09] Curr=
-ent task: Initialization +++ Current Phase: Starting<br>[00:00:09] Current =
-task: Initialization +++ Current Phase: Finished<br>[00:00:09] Executing Tc=
-l: synth_design -top xge_pcs_pma -part xczu28dr-ffvg1517-1-e -mode out_of_c=
-ontext<br>[00:00:09] Starting Synthesis Command<br>WARNING: [Vivado_Tcl 4-3=
-91] The following IPs are missing output products for Synthesis target. The=
-se output products could be required for synthesis, please generate the out=
-put products using the generate_target or synth_ip command before running s=
-ynth_design.<br>WARNING: [Vivado_Tcl 4-391] The following IPs are missing o=
-utput products for Implementation target. These output products could be re=
-quired for synthesis, please generate the output products using the generat=
-e_target or synth_ip command before running synth_design.<br>WARNING: [IP_F=
-low 19-2162] IP &#39;xge_pcs_pma&#39; is locked:<br>ERROR: [Synth 8-439] mo=
-dule &#39;xge_pcs_pma&#39; not found<br>ERROR: [Common 17-69] Command faile=
-d: Synthesis failed - please see the console or run log file for details<br=
->ERROR: [Common 17-53] User Exception: No open design. Please open an elabo=
-rated, synthesized or implemented design before executing this command.<br>=
-ERROR: [Common 17-53] User Exception: No open design. Please open an elabor=
-ated, synthesized or implemented design before executing this command.<br>E=
-RROR: [Common 17-53] User Exception: No open design. Please open an elabora=
-ted, synthesized or implemented design before executing this command.<br>ER=
-ROR: [Common 17-53] User Exception: No open design. Please open an elaborat=
-ed, synthesized or implemented design before executing this command.<br>ERR=
-OR: [Common 17-53] User Exception: No open design. Please open an elaborate=
-d, synthesized or implemented design before executing this command.<br>ERRO=
-R: [Common 17-53] User Exception: No open design. Please open an elaborated=
-, synthesized or implemented design before executing this command.<br>CRITI=
-CAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file &#39;/uhd/fpga=
-/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_pcs_pma.xml&#3=
-9;<br>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file &#3=
-9;/uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma/xge_pcs=
-_pma.xml&#39;<br>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized B=
-OM file &#39;/uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_=
-pma/xge_pcs_pma.xml&#39;<br>CRITICAL WARNING: [IP_Flow 19-4739] Writing unc=
-ustomized BOM file &#39;/uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-=
-1e/xge_pcs_pma/xge_pcs_pma.xml&#39;<br>CRITICAL WARNING: [IP_Flow 19-4739] =
-Writing uncustomized BOM file &#39;/uhd/fpga/usrp3/top/x400/build-ip/xczu28=
-drffvg1517-1e/xge_pcs_pma/xge_pcs_pma.xml&#39;<br>ERROR: [Vivado 12-398] No=
- designs are open<br>ERROR: [Common 17-69] Command failed: * IP definition =
-&#39;10G/25G Ethernet Subsystem (3.0)&#39; for IP &#39;xge_pcs_pma&#39; (cu=
-stomized with software release 2019.1.1) has a different revision in the IP=
- Catalog.<br>[00:00:23] Current task: Synthesis +++ Current Phase: Starting=
-<br>[00:00:23] Current task: Synthesis +++ Current Phase: Finished<br>[00:0=
-0:23] Process terminated. Status: Failure<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>Wa=
-rnings: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 4<br>Critical Warnings: =C2=A07<=
-br>Errors: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 10<br><br>BUILDER: Rel=
-easing IP location: /uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/x=
-ge_pcs_pma<br>make[5]: *** [/uhd/fpga/usrp3/top/x400/ip/xge_pcs_pma/Makefil=
-e.inc:43: /uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma=
-/xge_pcs_pma.xci.out] Error 1<br>make[4]: *** [Makefile:129: X410_XG_100] E=
-rror 2<br>Built target x410_rfnoc_image_core</div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-
---000000000000aca1f80601498e0c--
-
---===============0504801341092680109==
+--===============5150000833684620308==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -400,4 +416,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0504801341092680109==--
+--===============5150000833684620308==--
