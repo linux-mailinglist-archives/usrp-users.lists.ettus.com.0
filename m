@@ -2,311 +2,277 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96FB376405C
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jul 2023 22:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D5A7640BC
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Jul 2023 22:48:49 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 55E58384C25
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jul 2023 16:14:15 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 95E47384A9D
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Jul 2023 16:48:48 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1690402455; bh=DAMWqZUsb57XjpPZUo4QRTellkzpWITqMTBfChFm6Ro=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=FdwlKzyByMFPvNToEMuLbvnWbH233oW3ZmUI/zq//zmxayjXQe3zB8TG26M8wSznA
-	 DZZqjhqx7GTh8dzdmnotsaJdBbVmpmDnl75V5xPpn5F0Gg7poO0EDuscLzuM9QajWA
-	 28A6iq3Ev9jTnx3WcGX0AR9FsrRA91X+Meo5kHRPgwwEDhurGV7fFi9nm3WPMHSIBr
-	 3QCXcchRoaDo+8CRrp4h3SlqxntvJ5kgVF6MkTqaPqo63bdJFD/jtL+ggbOCxkK0Qi
-	 OTjkzaRAKdsksvJzY+ogzSeMMnwkuRSRs1NewZ5Ai6XkcsdNNvkvH7tZN+pYmuE9Z2
-	 ILx4gJYLtrOPg==
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5EBB5384A98
-	for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 16:13:57 -0400 (EDT)
+	t=1690404528; bh=HthY9YS0B2XRwxB6BwyDwTH3xKfU5ETapLnj3KARwYQ=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=FeBvud0IAeXAW1r1/LfxTPVenr0jqNIY7sKkK60k4lolR/rJlpxYuc4Q/rF5FCoC6
+	 6fHbo9kZScSsKO4Jf1oUQiTnOLx7JODikVsOszjXh6TEqtmKfuTmszlCaj5l/kTH1z
+	 XG6iwNz+M4CVeB314diN+wjNTNYg9Mv2KMxMW9flUGVNFZgEqlkEh2Wa9jSGa549od
+	 xSWQj7PHGNBJ4wcnSeWOAjkJSFco19MT6xzmPY6bu5xQLcqsOxhtaUC8sNvwXAbqxR
+	 mu4ejlivadJqHaVrB6bpusOS+ZIND3tYfTlmdBLJjPmNutjoRi7RxY1uiurDMNquLI
+	 XYPmHmz7StBGw==
+Received: from mx0f-00007b01.gpphosted.com (mx0f-00007b01.gpphosted.com [67.231.155.183])
+	by mm2.emwd.com (Postfix) with ESMTPS id A08293849E4
+	for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 16:48:01 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hGebeeCk";
+	dkim=pass (2048-bit key; unprotected) header.d=mitre.org header.i=@mitre.org header.b="naR3+9NC";
 	dkim-atps=neutral
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3a425ef874dso226159b6e.0
-        for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 13:13:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690402436; x=1691007236;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R5QWuqLT/XQgGOOhj/rcO0qsXTnP/o7T/AW6i9WF10w=;
-        b=hGebeeCk8tgwoUEmpAVe555/t1Zd8MRul+dUoNEiegjhoXDWP7oFP1breHjPv1Lwna
-         DCi+mcveG+oH/52tiXxbjU4yoEXIO7sYAtDN/p5kVKDBfSrimI4ucRd73b3QOVenaqjr
-         tSEMGtGSbGoV5FC+0w5Nzrtoz40sB7rueOu0uLZJ95iYCKz+8J9ZVUTfVImASbsODeS2
-         egi5BqqxTI8tFxpjxO6jmdICg/gv6iESB5sU9oxPDyvHlKif/02LAO+9f3SMhEmPdX6Z
-         UUSLy8lEig27vPVVsdhBo6k/djew2dMX3ZsWRX+C/XCow56EYT7BPez1JcUpkir34RLf
-         sWBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690402436; x=1691007236;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=R5QWuqLT/XQgGOOhj/rcO0qsXTnP/o7T/AW6i9WF10w=;
-        b=YVUx5pFMB/tVWbSYKW9641zFqaj+tLiyX5OP42+K6W1s/WhbdSh626rJZlmZvfvGln
-         dbAEc0BRNLza8qBKbNq9DuEaonp3lCZ08Ml3czDwKUyNy+Zx/a4P2q0qeGIn7+TdSeiG
-         pojj9VG/+5uhqSW9UnIov49OQFk1J0bXfIWPOCzAzCmS9MWunf9yAskm77r64E2RhP90
-         tiqcZYIcbJGalHaxyXKJU8RjKpvoX/dnX0+i9o9AuIwScMFMAoAXs3JLlIji/LOoC8se
-         8fxyUo9Ln5vDrhfY5QEyfb3TjhIT8kB5BWj89QURqZEyJ3BRm1pfjTITiEqMbVzh3X7K
-         ybKg==
-X-Gm-Message-State: ABy/qLbLuFU2jZE6NAO8xdu18u3X62x3mrQro0PjVVEmS1No8Sy9u55x
-	gfcx+BbG6wiMoc6B7Hc4l/3T87VwMQU=
-X-Google-Smtp-Source: APBJJlFzMt+qR7fOOnR1AMAUqI0Zdi39RapAFoQqHM/bMqgxCJYTNvjaJNMSFKTvEpHjp0D1BLYFVw==
-X-Received: by 2002:a05:6808:1287:b0:3a4:298f:b2e0 with SMTP id a7-20020a056808128700b003a4298fb2e0mr790076oiw.26.1690402436204;
-        Wed, 26 Jul 2023 13:13:56 -0700 (PDT)
-Received: from [192.168.2.170] ([174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id g30-20020a0caade000000b006365b23b5dfsm5349676qvb.23.2023.07.26.13.13.55
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 13:13:55 -0700 (PDT)
-Message-ID: <14381bbf-65a9-9e23-9b0c-474fdf83302b@gmail.com>
-Date: Wed, 26 Jul 2023 16:13:47 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
+Received: from pps.filterd (m0326552.ppops.net [127.0.0.1])
+	by mx0f-00007b01.gpphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36QIHrIg006533
+	for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 20:48:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitre.org; h=from : to : subject :
+ date : message-id : content-type : mime-version; s=pps1;
+ bh=bq6YXzZJeACg03S47kmHGTelUF7dhGMNwYUzbRoXp+Y=;
+ b=naR3+9NCcWaLjBjFIRJv+qMpZBRJgukbXb3tH4k4vm+ZM3x3sfExCgRgIBM29pZoMC3I
+ 98wjxzrRFCtfU09koBq6+PEBWeIdOe3kl44y4nWU7bImkWe0HuENW6YT6py6P2zpGzeT
+ IL31fLYxwYCTNtY40S8co4+ByQk6maWkjDgj3jkuUm5kGphaeTuccpHhA3+8EFQu6vx1
+ pqzMUIsmtTSCtPESyCHBE/M5EkJni0p1CRZLHTpQPHJSSGLVFq8WI6GN5rwHigkqbCny
+ a/YdQ6w9sFrv5zr0a+HHLX843SnQv0X2tGI6a+vErnSzY1BLO/eiQP3CM8nDMoiV4xh2 Mg==
+Received: from smtpyrhmv1.mitre.org ([192.52.194.175])
+	by mx0f-00007b01.gpphosted.com (PPS) with ESMTPS id 3s33d644xp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 20:48:00 +0000
+Received: from smtpxrhmv1.mitre.org (smtpxrhmv1.mitre.org [192.52.194.155])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	by smtpyrhmv1.mitre.org (Postfix) with ESMTPS id 94590413DC9
+	for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 16:48:00 -0400 (EDT)
+Received: from GCC02-DM3-obe.outbound.protection.outlook.com (mail-dm3gcc02lp2107.outbound.protection.outlook.com [104.47.65.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtpxrhmv1.mitre.org (Postfix) with ESMTPS id 6410F413DC7
+	for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 16:48:00 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ePpNQqVbGdEKutWIU3dnMpwT/h/xA7FI29QbVIrscMdVsU06GH52bQ1Eu/Gtw3PKuy1zbgeisMDgR6K2cvnGkVDnJqB02SnSodfVNM3gtaZNlixr+/G3dqfBS9MRmcFEkHDx7e8zj3naZm4p76g3e8MDYiomSgYv1nJegomaWknBto+wt+1/hU0UvhNG51CUiEJmwtuxUAUpx41zmuSK2hpxM6BVaXAdW1NCg3w9lvs9CH1w3eBvMz0ydjnl9iraLFmEurUTU5bs6Q1n5w5i/JXlHrqfIasE0znap1//7HtY8D96aGB1WjqtLDrFeDh4iU5dD9xS+yhkznkEzwmb+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bq6YXzZJeACg03S47kmHGTelUF7dhGMNwYUzbRoXp+Y=;
+ b=mQOGklkhlSB3rJgfifhqXwauJ4j+Md42bfZ8WcAycaPLL7d0l/Jv7jxobbp5IRWFnoRomLUOOL4BK3feUcaLvO8VRkW7F+SMMOZGgsHVxS3CE6mjukeTGfWoGbYH1IJ1/Ze3a4pVEs+IC6JUEr+UN2xF8aZ7HPPJXc+FZHQatMKRFH9GYWYMWmSRkUsCvEUorsjDEjkPfGMkP3VL58mzgh9YDQuOY1aiNX2MsBHEMN7kdhlKkdCZVHNTdCVejthJwj2XcRJe3i4slz5ojIR8h48gtWKpM5hk0JAJao+arqnJ0qn1Aol04jT6HT+k5Qx+u3hQRFp0+I2QWD+PCy4SrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mitre.org; dmarc=pass action=none header.from=mitre.org;
+ dkim=pass header.d=mitre.org; arc=none
+Received: from PH0PR09MB7433.namprd09.prod.outlook.com (2603:10b6:510:6a::13)
+ by SJ0PR09MB9858.namprd09.prod.outlook.com (2603:10b6:a03:461::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Wed, 26 Jul
+ 2023 20:47:59 +0000
+Received: from PH0PR09MB7433.namprd09.prod.outlook.com
+ ([fe80::98d7:7f9c:e53c:3ff7]) by PH0PR09MB7433.namprd09.prod.outlook.com
+ ([fe80::98d7:7f9c:e53c:3ff7%4]) with mapi id 15.20.6631.026; Wed, 26 Jul 2023
+ 20:47:58 +0000
+From: David J Li <dli@mitre.org>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: N310 correct choice for coherent 4 channel RX w/ 1 TX ?
+Thread-Index: AdnAAl3ZKZMLza6JRCOmj/ku85fM6g==
+Date: Wed, 26 Jul 2023 20:47:58 +0000
+Message-ID: 
+ <PH0PR09MB7433546CE3D5D14F18D7005DA800A@PH0PR09MB7433.namprd09.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <ISUI0SMv0WzNwlprilRmKRzmo6MBHrSx7DAiylwI@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <ISUI0SMv0WzNwlprilRmKRzmo6MBHrSx7DAiylwI@lists.ettus.com>
-Message-ID-Hash: WZTPNMR5AWU35RRSZNV4NPHVOCTRNV4W
-X-Message-ID-Hash: WZTPNMR5AWU35RRSZNV4NPHVOCTRNV4W
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR09MB7433:EE_|SJ0PR09MB9858:EE_
+x-ms-office365-filtering-correlation-id: 38a28875-f24a-4512-3e66-08db8e19988b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ zysqskE71VOwtkYiUc8o0NpDDAo17tr9slC90WrKbcpbhgoAr1jH2GYmPL1secagc0qmz418tp7dTESbwdbijYmiHEfPbmbIrCwiPahO9N5NYdsZH1iQc4VHGQYEpmAFeZhhrSYw/Q4Inb8WB6mx2Vw/f0vJFosBR87BDDuh2yl2GKQxbHMjnF1XhZS9l4xyE12KJ7zAenbjBkX5A2sgekyAnyTvHxwc1qGfMt9288hIMJhs/D1OT7bnnLBX6bWRYDbMHFIptW0s99QYCVqVmHilar4QFkmeXwGWa1A2/jMlb4ZfTVRBDaiXpKFv98mOR5Vtl8t5m+pDjXYUE6CkWr9kAQFtGDsegnHYuL1DvndwouDNvQDnY67hq2EiFfgYiMpK02FjL8L2Myi45MBojCO/IPk1fM5poI3B5FyVY6wPV6pcxV093ZLp/1pcLJw5N8Bqx+apqGSQdfsNmQJAzeaX/suiLA8NJXJlOKsoty4kmtx60uti57xHtHFPQIBjnpidh+0zHYS49wUs7MO8Gl59qjUOBxgUtqaj3XyLqunyQAgo8O8IAv9aLNJTl78V9rFPqwxN+A4BO55tCvQh3GibFmNSqly67J0N2mmDQ3uzZhN8RkTAIMLqliLvz6sm
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR09MB7433.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(366004)(451199021)(6506007)(26005)(8936002)(8676002)(33656002)(122000001)(66446008)(64756008)(6916009)(66556008)(498600001)(66946007)(76116006)(66476007)(9686003)(55016003)(71200400001)(7696005)(38100700002)(2906002)(38070700005)(86362001)(52536014)(186003)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?tEHcGy41ZKMmQHp7DV+A5LdRs7Nks8PhDoDb2osE2Kxu8wvgfTv+fiuoZAKU?=
+ =?us-ascii?Q?rhNG7Y7Ir+mhtWO1waj7bDFL7SU5iCUxVSYJUEkuqu+xFkOxiplFZu2NnHir?=
+ =?us-ascii?Q?3RDF676yqCmDXT52EzzwGjqTttFdjUu6bW2ImgcJbwGkq9qo61GvJrnB6rEr?=
+ =?us-ascii?Q?Adzxf4unkgHGA4EN4w7yOTEGz8c3fNHYf7Ehg4njM9b7gpOUiiKVGrY5yIC8?=
+ =?us-ascii?Q?kaLpzXeRf8FMeSQWfTsO5KvlmV0Y27ZnzgjX5BuQCgmqTI3rA3APCGf6NVAL?=
+ =?us-ascii?Q?6n35RjA5fD5Mplc3fBo/8vbMd4ZcYD+085+5E8kwZpOOP23UddxEbT+PP7/L?=
+ =?us-ascii?Q?elH5L+MqdyhTv/1JoWM97/Z0kgJelH5DqfMxEV9Y2SrZc4hZZCUrTG93bOwl?=
+ =?us-ascii?Q?xEk9lSCrokE/8vz/9/tGfgxd1j1gw7ad2byYsGSJ5BtilKLMVsP1nrSvk1fx?=
+ =?us-ascii?Q?limzNA+t+QxMY4U+kcGKgbURExlhsJYMVsbpBOgNo6ar29vcqgd9us9j7m3q?=
+ =?us-ascii?Q?cWnHsWxdVOs9FnndKaBA/rXCLtGXeDMW/4iRD8H+RXBQ6UbE8fl1jJHCC5Xk?=
+ =?us-ascii?Q?13LaKzMv0uwhceu11HZlVFfm/CjXmwHVu2s0+edTxnCt052LubFxqT7RhJj5?=
+ =?us-ascii?Q?SgX7w2WOkBraVAj1eJ1N5+vMY8XcVnauDud6nrKWF8ypSZpoxvnaNjdeitJn?=
+ =?us-ascii?Q?J7PJqjFzORH30Os5cxg+ukWmmx7hp9Qf080tXoSd8s6eldAM/U8twkcnStf1?=
+ =?us-ascii?Q?8zgU0A6vl7YstBSTqfC0xe3WwvkAvA3oePfzO1I0QnRgReyLxtP3VJH59AhX?=
+ =?us-ascii?Q?wd4k/QJjp+bgZQ324OcINCPbd9g7N0BCv/sPRqmM/ibWYJIu/DSZO2goCJVI?=
+ =?us-ascii?Q?g4M98s8d2O67tCmm7neKdkQ6piJ08nyjiWhLKvKZe4f2G+BrAaExnFlRhBcX?=
+ =?us-ascii?Q?6SETYhTvz3qcoPG0hU1j9EolzsjJ6PUHUwLf2Ya4UW4KPy3sbFSRsdt9/slO?=
+ =?us-ascii?Q?1uoFIwASndhnTwY0gPsbUJ0QXh16O3lA5OktGm4TFDgtr7es8CtIuQPWOba6?=
+ =?us-ascii?Q?JmGkuXn7se2Rhmyt452e5XtNEzJ4RuRhzhA4syckdGOURBqEdW39E08LNiU0?=
+ =?us-ascii?Q?LnU9w2igSDgRXyL6LgUDAo773uGGtJ1ibYCiWv0rldEM7ui7erGlAr+/OMKg?=
+ =?us-ascii?Q?BYhmCmuTizXlANCTnzNsjdiKqRmzUOUEC3Hp8raSYBvaZjw8uSrOeg3iCYdl?=
+ =?us-ascii?Q?wkaIcsB8435ir0uginNebf+7T8oi5fbJpYlyv+tPxccJN7ptPbLBVQc3wlpQ?=
+ =?us-ascii?Q?xsiX7zbEH/ZsKQnq1i8LlyiUepXPWGCr/h9aNAwZw9OS+xHaZXE7pjI6kRfA?=
+ =?us-ascii?Q?F6D9v97kAnD/bADDiFT/mzQbYoWi/lser6pIH+Ay2YNhMYJKOG3AW5Utr6G4?=
+ =?us-ascii?Q?VudBlK2OT/fBOYzGdJlmwgQeGv8eGzMjzh11JCULkzpFBmzStSZT4pJFve28?=
+ =?us-ascii?Q?eLSc6pleqO+he4OLN8PEX8+SxqErG6aKlvHp2QJIJFxPvp2v8W7F7iziJ5/d?=
+ =?us-ascii?Q?EUxKn7G+J32DGHklhnM=3D?=
+MIME-Version: 1.0
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 
+	qjMKwOuf+B7UK8yXDSao5l4A1vtZXkOhKp7V+8yE56pI2hgwo8QgXDKouHrAhLclzRGao+8A9bx5qX2jv3ox7YUb8jXjSfDwipP3qKtKM9WvvR/ufFKUastPfbLncsMPC6ENbZ2cPJvioua7iSVKjHyIzL7MFNSjKnBBg7oyMlfYkX7aMaOi/73+wSgPoohWWDXDKMXVeAtbQsTwa7s1EM+sH4i05YI6rQGg/QUC4+WK8u5InYtPNtUCWInUqCOdA0vF8hddChMJMssaFnbwtEwkKXzzoa+4xfprtvcG1ZtRVP32N0cH6OhQFNgUq9EmNQo/nIFYDYF7YB6p4X6sVqB5wzpYb/uTBpKrikURZWi7s6nCRQFLwTk6bBiSwsvSNt708GD+YQRCMsaVp9hOQ6g9It9n32xQSTSm7a40f9e3F3Vn2QQ94ZYL+epPtvGOE/r7Zxj8hW+q6El0yz2PTJ/X53kkQ+XDCWZCXRTOIWuvAWIEpB/hwWGLDROotm8UJ1R+wAz80yxhMsVnFL4+6Up6S1cEg3CkyhpmzODZ5zeRHArapPRprMk1v31igwV62bAUDkDxi5dBv31r6DHDNQeKF0i7h9lIHncTVaaiWKqa55sY5TbW6D5XgFpEGYjJUgwb6887AKiBZ6Omh8RHrjHapSsHRAjEqD42cp3p7e+anLCQFJDseckdzdnU1ESDmtzfHPHqQkLhotY2QreF2UJtmOUsSCJh2Hp+UyTWErUNjLaN9VT1XknbpS4Vyz67LRdoyxgovAr324jBsUYnqZ7liG5cM1U+MTSWXZLEqnU=
+X-OriginatorOrg: mitre.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR09MB7433.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38a28875-f24a-4512-3e66-08db8e19988b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2023 20:47:58.7079
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c620dc48-1d50-4952-8b39-df4d54d74d82
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR09MB9858
+X-Proofpoint-Virus-Version: vendor=nai engine=6500 definitions=10783 signatures=596816
+Message-ID-Hash: UZDVR4DQRZF7K57LT4CVQNWVAI6GAQHB
+X-Message-ID-Hash: UZDVR4DQRZF7K57LT4CVQNWVAI6GAQHB
+X-MailFrom: prvs=2571c9e455=dli@mitre.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Which optical transceivers are compatible with X410?
+Subject: [USRP-users] N310 correct choice for coherent 4 channel RX w/ 1 TX ?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WZTPNMR5AWU35RRSZNV4NPHVOCTRNV4W/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BSG3TT5P7HTZATKLPUOQSSLCCEEG3BD7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2499576685401145217=="
+Content-Type: multipart/mixed; boundary="===============6849728436155728523=="
 
-This is a multi-part message in MIME format.
---===============2499576685401145217==
-Content-Type: multipart/alternative;
- boundary="------------N0fpmSZSCkvP9zMtCcR2sx1S"
+--===============6849728436155728523==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_PH0PR09MB7433546CE3D5D14F18D7005DA800APH0PR09MB7433namp_"
 
-This is a multi-part message in MIME format.
---------------N0fpmSZSCkvP9zMtCcR2sx1S
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_PH0PR09MB7433546CE3D5D14F18D7005DA800APH0PR09MB7433namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On 26/07/2023 10:27, perper@o2.pl wrote:
->
-> There supposed to be some list of adapters that could work with X410 he=
-re:
->
-> https://kb.ettus.com/X410#100_Gigabit_Ethernet
->
-> There is this sentence in =E2=80=9CGuidance on SFP+ Adapters for Fiber=20
-> Connectivity on NI Ettus USRP X410=E2=80=9C section:
->
-> =E2=80=9CHere are is a list of known-good cables and adapters.=E2=80=9C
->
-> But there is no list after all.
->
->
-> Best Regards,
-> Piotr Krysik
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-Maybe your browser isn't rendering anything?
+Hi all,
 
-Here is the list from that web-page:
+I'm currently using a USRP N310 for an application that requires coherent 4=
+ channel RX w/ the ability to TX on 1 channel as well. In the past, I've us=
+ed USRP X310s to do 4 channel coherent RX and found the calibration process=
+ for that to be relatively straight forward using the TwinRX cards. It was =
+simply phase aligned input signals into each RX port and computing the cons=
+tant phase offset between channels and just adjusting for that factor in my=
+ processing digitally.
 
+My understanding is that this is more complicated w/ the N310. The procedur=
+e as I understand is that during initialization the N310 external LO needs =
+to be set at 5 GHz. After initialization, the external LO can be set to 2 t=
+imes the desired center freq, but that there is still a 180 deg ambiguity b=
+etween channels which would need to be figured out via calibration w/ a pha=
+se aligned input signal. Is this correct? Is there some way to shorten or o=
+ptimize this procedure?
 
-*Recommended 100 Gigabit Ethernet Bundles*
+Second question would be if the process is simpler on different USRP models=
+ akin to how the X310 w/ TwinRX cards work where you just need to compute s=
+ome calibration values once at powerup and afterwards those values hold pre=
+tty true for a long time as long as your gain/center freq don't change. Hav=
+ing the requirement of being able to TX on at least 1 channel prevents me f=
+rom using an X310 w/ TwinRX cards.
 
-  * Dual 100 Gigabit Ethernet PCIe Interface Kit, NIC and Cable
-      o ni.com part number 788216-01
-        <https://search.ni.com/nisearch/app/main/p/bot/no/ap/global/lang/=
-en/pg/1/q/788216-01/>
+Thanks,
+-David
 
-*Recommended 100 Gigabit Ethernet Cards*
-
-  * Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC (MCX516A-CCAT (PCIe Gen3
-    x16))
-      o NVIDIA=C2=AE MCX516A-CCAT ConnectX-5 EN Adapter Card 100GbE PCIe =
-Gen
-        3x16
-        <https://store.nvidia.com/en-us/networking/store/product/MCX516A-=
-CCAT/nvidiamcx516a-ccatconnectx-5enadaptercard100gbe/>
-  * Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC (MCX516A-CDAT (PCIe Gen4
-    x16))
-      o NVIDIA=C2=AE MCX516A-CCAT ConnectX-5 EN Adapter Card 100GbE PCIe =
-Gen
-        4x16
-        <https://store.nvidia.com/en-us/networking/store/product/MCX516A-=
-CDAT/nvidiamcx516a-cdatconnectx-5exenadaptercard100gbe/>
-
-*Recommended 100 Gigabit Ethernet Cables*
-
-  * Mellanox/NVIDIA 3m QSFP28 MCP1600-C003E26N
-      o NVIDIA=C2=AE MCP1600-C003E26N DAC Cable Ethernet 100GbE QSFP28 3m
-        <https://store.nvidia.com/en-us/networking/store/product/MCP1600-=
-C003E26N/nvidiamcp1600-c003e26ndaccableethernet100gbeqsfp283m/>
-      o Shorter length variants also recommended
-
-*Recommended Host PC*
-
-  * At least 15 CPU Cores
-  * At least 32 GB RAM
-  * Ubuntu 20.04 (5.4.0-89-generic kernel)
-
-*Validated Hardware and Software Configuration Examples *
-
-  * Ubuntu 20.04 (5.4.0-89-generic kernel), DPDK 19.11, with Intel(R)
-    Core(TM) i9-10920X CPU @ 3.50GHz - 24 CPU - 4.8 GHz Max CPU freq -
-    64 GB RAM. Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC (MCX516A-CCAT
-    (PCIe Gen3 x16)). Mellanox/NVIDIA 3m QSFP28 MCP1600-C003E26N cables.
-
-  * Ubuntu 20.04 (5.4.0-89-generic kernel), DPDK 20.11, with AMD Ryzen
-    Threadripper 3960X 24-Core Processor - 48 CPU - 3.6 GHz CPU freq -
-    64 GB RAM. Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC (MCX516A-CDAT
-    (PCIe Gen4 x16)). Mellanox/NVIDIA 3m QSFP28 MCP1600-C003E26N cables.
-
-
---------------N0fpmSZSCkvP9zMtCcR2sx1S
-Content-Type: text/html; charset=UTF-8
+--_000_PH0PR09MB7433546CE3D5D14F18D7005DA800APH0PR09MB7433namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 26/07/2023 10:27, <a class=3D"moz-t=
-xt-link-abbreviated" href=3D"mailto:perper@o2.pl">perper@o2.pl</a>
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:ISUI0SMv0WzNwlprilRmKRzmo6MBHrSx7DAiylwI@lists.ettus.co=
-m">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>There supposed to be some list of adapters that could work with
-        X410 here:</p>
-      <p><a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/=
-X410#100_Gigabit_Ethernet">https://kb.ettus.com/X410#100_Gigabit_Ethernet=
-</a></p>
-      <p>There is this sentence in =E2=80=9CGuidance on SFP+ Adapters for=
- Fiber
-        Connectivity on NI Ettus USRP X410=E2=80=9C section:</p>
-      <p>=E2=80=9CHere are is a list of known-good cables and adapters.=E2=
-=80=9C</p>
-      <p>But there is no list after all.</p>
-      <p><br>
-      </p>
-      <p>Best Regards,<br>
-        Piotr Krysik</p>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    Maybe your browser isn't rendering anything?<br>
-    <br>
-    Here is the list from that web-page:<br>
-    <br>
-    <br>
-    <p><b>Recommended 100 Gigabit Ethernet Bundles</b>
-    </p>
-    <ul>
-      <li> Dual 100 Gigabit Ethernet PCIe Interface Kit, NIC and Cable
-        <ul>
-          <li> <a rel=3D"nofollow" class=3D"external text"
-href=3D"https://search.ni.com/nisearch/app/main/p/bot/no/ap/global/lang/e=
-n/pg/1/q/788216-01/">ni.com
-              part number 788216-01</a></li>
-        </ul>
-      </li>
-    </ul>
-    <p><b>Recommended 100 Gigabit Ethernet Cards</b>
-    </p>
-    <ul>
-      <li> Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC (MCX516A-CCAT (PCIe
-        Gen3 x16))
-        <ul>
-          <li> <a rel=3D"nofollow" class=3D"external text"
-href=3D"https://store.nvidia.com/en-us/networking/store/product/MCX516A-C=
-CAT/nvidiamcx516a-ccatconnectx-5enadaptercard100gbe/">NVIDIA=C2=AE
-              MCX516A-CCAT ConnectX-5 EN Adapter Card 100GbE PCIe Gen
-              3x16 </a></li>
-        </ul>
-      </li>
-      <li> Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC (MCX516A-CDAT (PCIe
-        Gen4 x16))
-        <ul>
-          <li> <a rel=3D"nofollow" class=3D"external text"
-href=3D"https://store.nvidia.com/en-us/networking/store/product/MCX516A-C=
-DAT/nvidiamcx516a-cdatconnectx-5exenadaptercard100gbe/">NVIDIA=C2=AE
-              MCX516A-CCAT ConnectX-5 EN Adapter Card 100GbE PCIe Gen
-              4x16 </a></li>
-        </ul>
-      </li>
-    </ul>
-    <p><b>Recommended 100 Gigabit Ethernet Cables</b>
-    </p>
-    <ul>
-      <li> Mellanox/NVIDIA 3m QSFP28 MCP1600-C003E26N
-        <ul>
-          <li> <a rel=3D"nofollow" class=3D"external text"
-href=3D"https://store.nvidia.com/en-us/networking/store/product/MCP1600-C=
-003E26N/nvidiamcp1600-c003e26ndaccableethernet100gbeqsfp283m/">NVIDIA=C2=AE
-              MCP1600-C003E26N DAC Cable Ethernet 100GbE QSFP28 3m </a></=
-li>
-          <li> Shorter length variants also recommended</li>
-        </ul>
-      </li>
-    </ul>
-    <p><b>Recommended Host PC</b>
-    </p>
-    <ul>
-      <li> At least 15 CPU Cores</li>
-      <li> At least 32 GB RAM</li>
-      <li> Ubuntu 20.04 (5.4.0-89-generic kernel) </li>
-    </ul>
-    <p><b> Validated Hardware and Software Configuration Examples </b>
-    </p>
-    <ul>
-      <li> Ubuntu 20.04 (5.4.0-89-generic kernel), DPDK 19.11, with
-        Intel(R) Core(TM) i9-10920X CPU @ 3.50GHz - 24 CPU - 4.8 GHz Max
-        CPU freq - 64 GB RAM. Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC
-        (MCX516A-CCAT (PCIe Gen3 x16)). Mellanox/NVIDIA 3m QSFP28
-        MCP1600-C003E26N cables.</li>
-    </ul>
-    <ul>
-      <li> Ubuntu 20.04 (5.4.0-89-generic kernel), DPDK 20.11, with AMD
-        Ryzen Threadripper 3960X 24-Core Processor - 48 CPU - 3.6 GHz
-        CPU freq - 64 GB RAM. Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC
-        (MCX516A-CDAT (PCIe Gen4 x16)). Mellanox/NVIDIA 3m QSFP28
-        MCP1600-C003E26N cables.</li>
-    </ul>
-    <p><br>
-    </p>
-  </body>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m currently using a USRP N310 for an applica=
+tion that requires coherent 4 channel RX w/ the ability to TX on 1 channel =
+as well. In the past, I&#8217;ve used USRP X310s to do 4 channel coherent R=
+X and found the calibration process for that to
+ be relatively straight forward using the TwinRX cards. It was simply phase=
+ aligned input signals into each RX port and computing the constant phase o=
+ffset between channels and just adjusting for that factor in my processing =
+digitally.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">My understanding is that this is more complicated w/=
+ the N310. The procedure as I understand is that during initialization the =
+N310 external LO needs to be set at 5 GHz. After initialization, the extern=
+al LO can be set to 2 times the desired
+ center freq, but that there is still a 180 deg ambiguity between channels =
+which would need to be figured out via calibration w/ a phase aligned input=
+ signal. Is this correct? Is there some way to shorten or optimize this pro=
+cedure?
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Second question would be if the process is simpler o=
+n different USRP models akin to how the X310 w/ TwinRX cards work where you=
+ just need to compute some calibration values once at powerup and afterward=
+s those values hold pretty true for
+ a long time as long as your gain/center freq don&#8217;t change. Having th=
+e requirement of being able to TX on at least 1 channel prevents me from us=
+ing an X310 w/ TwinRX cards.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">-David<o:p></o:p></p>
+</div>
+</body>
 </html>
 
---------------N0fpmSZSCkvP9zMtCcR2sx1S--
+--_000_PH0PR09MB7433546CE3D5D14F18D7005DA800APH0PR09MB7433namp_--
 
---===============2499576685401145217==
+--===============6849728436155728523==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -316,4 +282,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2499576685401145217==--
+--===============6849728436155728523==--
