@@ -2,257 +2,342 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2A47640C7
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jul 2023 22:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A8BC764102
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Jul 2023 23:17:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5BB06383D90
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jul 2023 16:52:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AE745384BEB
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Jul 2023 17:17:46 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1690404720; bh=YDMFnGgCw2Ar+AqBVE25/xG082ij2KQMmyPR42AMNuU=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1690406266; bh=XFJE6KjvcgaW4PhMrCc2DdmDpiEDTo587s+MGGFIE1M=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=Y/T0GD90LCSKFRJ6ylK5YiGxK0rP0wQMRg4wX/hF+f+lARue9mpvpdKOJnWldczAP
-	 Lm7G/K6pmPscBaw4jHDsIUFr8zoEAx+EOH/V53FVsKBNMlJR1Zp73eS60gXyE0spdp
-	 3lLvb0X6naFOitMkJkRrifXuJ3AZjcO0VHLziYH+akGS+Jl1ImuAgUG4XQarUfhCVj
-	 SHYERm3vpLu9krMQMFG7lrBH4Lh3oA+9SfhuzsdB8fqlMw/rATPGBhDOpOQTtzJFzA
-	 xppmDhkzbenHUkwp3X3/wJBd10LbJcBkelM3h5tJjW37/rEK4+R0o/r1Sd1qj1CA2h
-	 XiEcyaYEpw+qw==
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	by mm2.emwd.com (Postfix) with ESMTPS id DAC33380B68
-	for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 16:51:24 -0400 (EDT)
+	b=To+P7+d6FJ8JZSY2wm0JmHVbRRC5YZ6V09TLOGGnBYPHNi4FaqrBxEBl+G88rUO7Q
+	 CjtoKxYN9JzimOnzqi0pgnxbGaz6oAYZznos+r8t5svZWRtb/WBZoty6BiIQsVz1jN
+	 c8m7Jrkgj+EXHXttgyXulpjg6tvmM5BwyeoBmoujLxla+7ps6Hek0Dc8r23CO5vbmR
+	 LLfl3ZUpuBqyAhiI/lVUJ9Wl7/1A0jchDzU3gkphzHTJJ6l7mWZpZ8xlxGpdAAqlqI
+	 LRX6LuGJvME8kKQyVLzrrJ6INZPSnDpWCS9/pdcjJbjnv9RR50Puv1GZmrS8h7qFPS
+	 aangHI+BR74Wg==
+Received: from mx0e-00007b01.gpphosted.com (mx0e-00007b01.gpphosted.com [67.231.147.183])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8C772384A90
+	for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 17:17:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UaUd1U/P";
+	dkim=pass (2048-bit key; unprotected) header.d=mitre.org header.i=@mitre.org header.b="D+SHhOwe";
 	dkim-atps=neutral
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-403b3273074so876391cf.1
-        for <usrp-users@lists.ettus.com>; Wed, 26 Jul 2023 13:51:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690404684; x=1691009484;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zY8WPl7v+U5U+gDhFNVJp5HJYMb5jRWB1AFcty6MhWs=;
-        b=UaUd1U/P+iWuu2QnMrNUViMTfH1cMcKeAlfTma2btzpGA/xlzqYsJ1kFpKYiRGcaXn
-         l3rujqhTAtSLtFtanbjkQFXA4LociA9pCxmwVQccMZgMBJhlrGMb2Fz2r24N3v7orhqQ
-         Rti+u5kTnfwEiKOugYZIgeiPu5yVf3xqquLSYiTUS1RbaABPnJzIPzJ/1B43qf9Y6MDg
-         3FGqV7soL/PjzLvzEnv3x67iif+4zJY1dNVVSBJJ0ejIiTBibCuVSTY4aethdoAoBRVd
-         Dn5tFt3mRVFBi0gpFqSr1neLzLMDebcTKXfI8uRLtVjMp4Ix7BSdYiHIaXDia31d90qX
-         8cqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690404684; x=1691009484;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=zY8WPl7v+U5U+gDhFNVJp5HJYMb5jRWB1AFcty6MhWs=;
-        b=g9DUsNKIanUQeFoezOSUHB40bt9GGcKQPzJm9ipcvXEVSaiduLkZhAHzvH+rPfebY8
-         SEzmZjawK+GOfTqO+Zj8GScJmJcHPQkwSyIfUBRh7stnKcNvzvqMZvQQnIElk/CqbYUx
-         1n0H9i9LPF7pxMSi8rT23CMvUSvNdiGy4LysAI7UQRoD/m4SkUu1uvk891/GBGV8cydr
-         nYQiO6/YK+4mSw7GA2pWnC+e0g/39Qoj6IImrr415Gga69eH4H+urC0r9b+OiTjtwHsu
-         jsJk0WL57ip1dPwJiRyjJPFn/PlB35UftMjzZ8W1nSw2LdhETf3r1VTe/jZXmBfQUtdr
-         EB6Q==
-X-Gm-Message-State: ABy/qLZOcl/zrdTZmVNwSNKkxwhXVfeF3Q1UkUY5BQ5NHa6lblB2M525
-	B+cNE9bvBMpGYZAKI+YtokSLlNh36bQ=
-X-Google-Smtp-Source: APBJJlFOBMi7XxMwJlguKJexK69DdRCegE1v4ZpE3YIuURfqUDP0QVmmV/x9ltuL8Ts1F6zIi9rYBA==
-X-Received: by 2002:a05:622a:1187:b0:405:3943:3a2c with SMTP id m7-20020a05622a118700b0040539433a2cmr687937qtk.31.1690404683973;
-        Wed, 26 Jul 2023 13:51:23 -0700 (PDT)
-Received: from [192.168.2.170] ([174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id ff20-20020a05622a4d9400b00403f1a7be90sm5062667qtb.88.2023.07.26.13.51.23
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 13:51:23 -0700 (PDT)
-Message-ID: <85f24be9-3286-b80d-4eed-27cf5fae5bf7@gmail.com>
-Date: Wed, 26 Jul 2023 16:51:15 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
+Received: from pps.filterd (m0326551.ppops.net [127.0.0.1])
+	by mx0f-00007b01.gpphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36QIuQhC015011;
+	Wed, 26 Jul 2023 21:17:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitre.org; h=from : to : subject :
+ date : message-id : references : in-reply-to : content-type :
+ mime-version; s=pps1; bh=qXcbvRb7PF0/4plepEzZh1dJm9/KSRl8nzkkoK1jwKw=;
+ b=D+SHhOweL0hzSMMQ0t9EEmO27N4wqaUztS+7n2M+jCmXOu9GmViIXyFs83mxZrZgZiP9
+ sOQvIdvwft+F3Gdq4+G/anQkNAeOq45t+tM5CLDVhl+iLgzyzR3knw2/W//xs2esL9PZ
+ QbYaNwJTdep5aEbuULIuoyPbRvQNAZ8LIB87wEOsjaN65wLZAUnloD843c2PpPdQezVn
+ Whe1b9ABgImRBkIpIn0c7A9Y9z7tpr3pfk8bK0dgEli3Q9miNLQBuG7071/NzYVImwLU
+ fBoeYztJnLHICueX9CHbMQ/A3fOPjNsRLHlybuSLc6gIzI1ZHCCkVb6goQQdFbAMaRuK gg==
+Received: from smtpyrhbv1.mitre.org ([198.49.146.45])
+	by mx0f-00007b01.gpphosted.com (PPS) with ESMTPS id 3s3972rxqe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Jul 2023 21:17:05 +0000
+Received: from smtpxrhbv1.mitre.org (smtpxrhbv1.mitre.org [198.49.146.55])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	by smtpyrhbv1.mitre.org (Postfix) with ESMTPS id D770F413DC7;
+	Wed, 26 Jul 2023 17:17:04 -0400 (EDT)
+Received: from GCC02-BL0-obe.outbound.protection.outlook.com (mail-bl2gcc02lp2107.outbound.protection.outlook.com [104.47.64.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtpxrhbv1.mitre.org (Postfix) with ESMTPS id B4339413DC7;
+	Wed, 26 Jul 2023 17:17:04 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WFHxfs2Kk232px6xcLZfIFsYODE6NXTHBQEYGRBHIywND6T/3QevUurbUJiGh2yRedjjOBB0hYnLIxJxCF2OuxGUWl8A8FKJ8Ncs8VDzxMt1aW7NfazNtEwq8aOvXYSo0DuIye2wID9GqZQyVsKzxfpjq1KR8YCQScHoMq7fT8RGV6vQ8WBhqIla8JHQrDzBz18HgiOVwnQModjeSOEG1N85IZirzGUQm12dlet0O0QWtf4zax9DN5IxCyYdlWMjGBPgoX1dT5fTtrRk3TscOm02P3/fVgCpgU6TzZdlRZTz7tafZG9ji5tJkh24BqvsCUUBqC5J1YUMNx5tFxp3Lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qXcbvRb7PF0/4plepEzZh1dJm9/KSRl8nzkkoK1jwKw=;
+ b=ULW2gmaZICQro47Jp6dPpzQO6dowj+u2UeWGC9H6Zojbo/nAGQUPYgScqHGhpfi0Zf/+q11OYqFcWpzuTnAHn8Qu5L176fT04ZRnhBIYW2cvbu0/nfOYiyHDdbC7llO/3CM4sfI/UPGk4bVAxAtshmRuzNfUcLTi6pRlKRHQUYO30xST412n+tSrZQjHB5+N3OZXuM62G/UEhGo6lRvoKdp9Jz3YDe7U/izwakSiLNox5P8tGRUEfVsMWvXA+DOQlI47esN1TEMAlOmGxl8/qG3zM8XXa6iy/T+N34ZCN7ZX4wVKYCqPAX8fe0bLqa5ssWEosecS4Uu5B9Qe3eUPYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mitre.org; dmarc=pass action=none header.from=mitre.org;
+ dkim=pass header.d=mitre.org; arc=none
+Received: from PH0PR09MB7433.namprd09.prod.outlook.com (2603:10b6:510:6a::13)
+ by MW4PR09MB9648.namprd09.prod.outlook.com (2603:10b6:303:1e4::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Wed, 26 Jul
+ 2023 21:17:03 +0000
+Received: from PH0PR09MB7433.namprd09.prod.outlook.com
+ ([fe80::98d7:7f9c:e53c:3ff7]) by PH0PR09MB7433.namprd09.prod.outlook.com
+ ([fe80::98d7:7f9c:e53c:3ff7%4]) with mapi id 15.20.6631.026; Wed, 26 Jul 2023
+ 21:17:03 +0000
+From: David J Li <dli@mitre.org>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
+        "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
+Thread-Topic: [EXT] [USRP-users] Re: N310 correct choice for coherent 4
+ channel RX w/ 1 TX ?
+Thread-Index: AdnAAl3ZKZMLza6JRCOmj/ku85fM6gAAI0yAAABRINA=
+Date: Wed, 26 Jul 2023 21:17:03 +0000
+Message-ID: 
+ <PH0PR09MB7433E43091B0FE111D4D2F74A800A@PH0PR09MB7433.namprd09.prod.outlook.com>
+References: 
+ <PH0PR09MB7433546CE3D5D14F18D7005DA800A@PH0PR09MB7433.namprd09.prod.outlook.com>
+ <85f24be9-3286-b80d-4eed-27cf5fae5bf7@gmail.com>
+In-Reply-To: <85f24be9-3286-b80d-4eed-27cf5fae5bf7@gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <PH0PR09MB7433546CE3D5D14F18D7005DA800A@PH0PR09MB7433.namprd09.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <PH0PR09MB7433546CE3D5D14F18D7005DA800A@PH0PR09MB7433.namprd09.prod.outlook.com>
-Message-ID-Hash: 3UQNRBI2SSNSU7RRWWBHNTUM6XIGNMT6
-X-Message-ID-Hash: 3UQNRBI2SSNSU7RRWWBHNTUM6XIGNMT6
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR09MB7433:EE_|MW4PR09MB9648:EE_
+x-ms-office365-filtering-correlation-id: 52308c25-051d-4f39-4ba1-08db8e1da856
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ uVMNtpY518c91QNYP1uSosNKMEOFlwsinHg1Y6ksyxPYeb3QUaNXkSY/i5rGdVG0X0J2/5L849GZyixjQluaoI7C5rGKsaGx4XM1qlcCuZKcLVN8WMxsK6BtRfsHjc2OTjQcA5ebMjN09BDCSlzDqnt5TfEVOKCMBxk//U3sTeZGjvvydTsJJOJ7o9Df6byKlj3eHAZ9WXDe77QrxWNTmvnm6JpTBVRuzqtMXURaLzroSxMucVVaTDxeWmNVHfc9tSDYX1eEkdJxbWRrT1zWj2nbdtmYnfdFbxnUWy2SqkR/W6X3J5aZ8Ay67ULWWA1giQiEbvqAG+ovZE06p9jG+0HZBotVyQfINu6SXZa/PkaM4ilpZL3Qn3oeOXiXqRbTC8h8HV2Fi/lNgv/Wou5Kk7+1L+jl0DOf6n+FIA7Nd4cGM6PcqJW04FyzNgC3jE+GzyXC+BylbTN8vuPyOWcLO7blTLwfgfE77WWV4Ew+4ewD3Mm1k/eo+BFaCCYVa3ej0UH7yc2ygJFZFLZHuCj34YOWenmACbLLuYOZHk13EkkoY72dYf8xQGFhf/+1UqmYOk+qszk5fm8hqCOtDjW0qX0YBEED41g49buTA+kidOiJhWNTY11uqf2XzG51iAEG
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR09MB7433.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(366004)(451199021)(86362001)(186003)(6506007)(26005)(76116006)(38070700005)(66946007)(66476007)(53546011)(64756008)(66446008)(33656002)(66556008)(9686003)(2906002)(122000001)(7696005)(66899021)(498600001)(110136005)(71200400001)(38100700002)(55016003)(8676002)(52536014)(5660300002)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?RHBaa0pySjRCSXc2b1VJTllLVmZwVGlrM0FUazJMM1crdGtESUphOVptTmVi?=
+ =?utf-8?B?QWhmTVdjRTg2aGNWSEdBNDBIYW9RQ0Vtbm9CNDVEeGdNaWg5UTU4NDNPT3c0?=
+ =?utf-8?B?V2IwaDJvQmh6cjR3bWt0TkJ3QVllZkVVR251dmRVN0IxNjRnRm5sMytIZVV4?=
+ =?utf-8?B?Zis3MGJ1UHY2cXZENVZGZ1I2dW5PYVFVbE9qcXBydzI1MVp5RkdFWWhaVFV5?=
+ =?utf-8?B?c1BxWndvMjFkZ2hlZVhKU3F6MXJvYS93eUh5WlVuQ2txUTBpOW11bFBwZHhy?=
+ =?utf-8?B?bFgzSkl6TVluN2crM1FJY2lkZlRFQmFJc0lDc0lNcnBQbmN4UVhLVEFFVlc0?=
+ =?utf-8?B?UnpVOEd0N0RQYloyNTRldUh4bW51UTJCZHZwYmxHYnREWW83UkZ4VzVHeUlT?=
+ =?utf-8?B?MWxrNHR6Yysrc3ByYXFESGNDMWUxL3NEUStmZ051OEpQYjdBaEJNMC9pNzZ2?=
+ =?utf-8?B?cHMxbG40ZE5ZbkZLZ1BacCtmRnB6TmpHbjM2S3hDMDdCUW54QTNOelRIN0ZE?=
+ =?utf-8?B?SlhPcDNLZUhjUHJIUUV4T1RnbGMrUXNsaGdQMmRsWmFBVnNPTlJxK29zcUpi?=
+ =?utf-8?B?UUU1aUtBRDRXWFpYMXE0MSs0dWo3anlGaC9PcTFCdWpVTVJ6TGo1bU84UENV?=
+ =?utf-8?B?RzhKSDZwV1oyL00veGdkRlQ4ZHlITFNWaTNGUDdYeGtWRG9jaVdsSUVGOEZP?=
+ =?utf-8?B?OElWck0wREgwODdnM0lPT0FjV1V0VU1BYVJ6VTZPUEFYYUxIbTNJRm5zRUlL?=
+ =?utf-8?B?eHpIZThVbTYwOXJaRFlzNStGdi9ZRFJFTjhyeE1rNUVxOUlYWWJTM2JETVoz?=
+ =?utf-8?B?SlJFOHh0bml1bzMxMGJ5RTlQaFA2d0RVTW01SEk2VWFKSG5IQmQwK3I0R2d2?=
+ =?utf-8?B?YUwxdTMydEZqa2phSnJZN2FEeXN0L2JiUTMvQ3F5TmtIakhsZkRrRXlFQkpF?=
+ =?utf-8?B?SHo0VCtNWHZWODZoZkFTUDdsN29HY1NiSHc5K3Mya0RTeHp0Y0R2Z3UwZjB3?=
+ =?utf-8?B?YndnWEl4MjFBb2Jua1pKekNwdFh4dVlEcjdzYXdGTFBSTmN4d0JtV1B3V1dZ?=
+ =?utf-8?B?eVVlUU9GaFpWcnJCZWhTQWtVTkxaUnhSamR4U2xrTStlQWRUdUVHN0tYZzNP?=
+ =?utf-8?B?Y0Q0M3dFUzRNeUlRZFNEOEgvbk9zdHh3dzBpQUlDc0paTHNZbjJ1U3Nia21Z?=
+ =?utf-8?B?S0NEMXo3T2RoMEx3R25SK0FCOXkvek9GdnRVbk5CQnZXZkFzdko3MnpuZjBE?=
+ =?utf-8?B?dlpXT0N2OXFUUUZwenZaMkZCRmdYYzhVM2VrSTZUM2ExWW5IR29NeEtqQ3N0?=
+ =?utf-8?B?ZlpNOXVkVHlNeTUzUkl0M01wWktoblR1TEZNRC9tNFcvNXNBaWZzNzVzTE9D?=
+ =?utf-8?B?bXVjRnpReUR6NzhJdW1IQ1ZuZDdjL3lxdytTSys4S29jVGd6NC8rdlNNMUJR?=
+ =?utf-8?B?VUdqUUlqekorRXZKTGhreVNZU1lqSCtReERVaStVU2NUS2FFTDVQMkNmVURa?=
+ =?utf-8?B?akdkM0pQdUZpRmFpSzVnbjFEZEw3eW43bjRGSzNvUnNlVncrUjRxVGo0ajBZ?=
+ =?utf-8?B?RlFtMmJ6N2J1azJ0cXJaQnBPZ2FVUzNPaWJmbHA1Y3VWYlJGS1BYbUtoYmVk?=
+ =?utf-8?B?Z3lMdmloa2xFQlNtaDdvVnl1ZGx0R1dxNHV2dzNUNzl6SU11TDFCSnNjT0lL?=
+ =?utf-8?B?blZScVUrR1Z1aDJwcVh0dlNFS0hRdmY5TE1ua1QyRXBVSm1pVllVYmVmMjFP?=
+ =?utf-8?B?RHdBZldqdTlYL2pwZVNRS3NVcDVheFlqMlh1eFh6NXVsR1lFSmp4NkVCVFli?=
+ =?utf-8?B?N0dWWXBIdVZwNkpFSFRJMzRGLzh3dk9RRXNKZ0c0RWVJU2dVUVhBeDdhaFVI?=
+ =?utf-8?B?NjRqd1BaMENQbmJKVU9TbjhpNFlRUXNudU85Z1laWGNpOFdSNzdzb0hLcThY?=
+ =?utf-8?B?U2NmbEdKbFVLZXRJUnY0OCtBSlFZVEdMWjA4VEt5bU9SUDMvVGczTlVhbHA1?=
+ =?utf-8?B?a1pPTWhRbnJ6R0ZHNmVxZkVhbWV5dGZXSXpVNElLQmdFaFFOSnQ3OXF5Ym02?=
+ =?utf-8?B?Tnh3U0w3VDR2RWZHdkV1WHhaamQ1TU9adm1FeTVFY09ndCt3aVhrKy9Rdk1B?=
+ =?utf-8?Q?P6Ac=3D?=
+MIME-Version: 1.0
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 
+	xLiqvW4qUo2tMTmeP3Ht2EvOQip2uzFJJxXeCQLF/ttPLAy+kEGbMhf4TUTQoa2n4d/G0yH4gHC8wZjbF5g30UFZnIxIqIvicUIIbXRJrxPNzAH4oNXKsbB93IDdYMek5PgtbJkOEAljw6yBXB5BBv3SWjYXpEqy3RvGxt5c0b8z34ranYZQ2FWVDJeqj2+MGiZfD08bhtQu59DipIJUhnSas/wvQWXu68X17p/d7u77VthvMxS0QBKmmaTDNjc3CZ8BaGTAro6/c80SAFENB7QaHybwvEz7lQRBPkqNwzHJuStieHSC8Qn3fRWV4ZrbFIZgmlE724Bk1bMwvKOwPjsa0HlfP0U+wusnuRAFjSawFvqMmWfJkpQndGiDNakQ5MzIimoq2I9HUYaiLTvK4v2YRm1ptnKYkafS5jaYO1+S0EwcAqcNj9TOWehCeMrkNgz7wgK5gpdZpCWOx0Wu0Hgidj8C4NODncbiFa8WiBYyHHoPDKpu/lkv7mLtEgaEs4ClyTNHKO2kdAyex9rKU8dPg3EDgctCi9s2s9Uuuv9t7IGhc2rFv5W3vzNo5b5K46aeVndMosASduCLT8Ed5o/86jbaPtWgIrEsk7npezCs4hqO67EMK4Arwr2C5U1Ru7rJj7g4KZWLO8nWb6TZFL2YCHXElGS3EL99cv+u6Vl9Gj9v5ngEpkB0X96x3YHaiW78FUcjfmrSf8YZ0akWqUP8fAE+5ERN0wAseQBbYo9Ziw8ndqKClwKVrmW+F7TpejlTRIkH0QeG6bgVrtcboS5mmsXRM9DhiEmQsHmBK1sZjMWunigbx9MWyD2SSxuI
+X-OriginatorOrg: mitre.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR09MB7433.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52308c25-051d-4f39-4ba1-08db8e1da856
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2023 21:17:03.2209
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c620dc48-1d50-4952-8b39-df4d54d74d82
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR09MB9648
+X-Proofpoint-Virus-Version: vendor=nai engine=6500 definitions=10783 signatures=596816
+Message-ID-Hash: VSI7SUGNQZE64T2VMN4JBSJEDBVJS2AU
+X-Message-ID-Hash: VSI7SUGNQZE64T2VMN4JBSJEDBVJS2AU
+X-MailFrom: prvs=2571c9e455=dli@mitre.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N310 correct choice for coherent 4 channel RX w/ 1 TX ?
+Subject: [USRP-users] Re: [EXT] Re: N310 correct choice for coherent 4 channel RX w/ 1 TX ?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3UQNRBI2SSNSU7RRWWBHNTUM6XIGNMT6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7HPGRB4OO3FXA67T6JB77QXN2WL22T6Z/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6700168517244023821=="
+Content-Type: multipart/mixed; boundary="===============5259518085055669291=="
 
-This is a multi-part message in MIME format.
---===============6700168517244023821==
-Content-Type: multipart/alternative;
- boundary="------------0nR5K0BVwGOUmLkS1UfGsRCG"
+--===============5259518085055669291==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_PH0PR09MB7433E43091B0FE111D4D2F74A800APH0PR09MB7433namp_"
 
-This is a multi-part message in MIME format.
---------------0nR5K0BVwGOUmLkS1UfGsRCG
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--_000_PH0PR09MB7433E43091B0FE111D4D2F74A800APH0PR09MB7433namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 26/07/2023 16:47, David J Li wrote:
->
-> Hi all,
->
-> I=E2=80=99m currently using a USRP N310 for an application that require=
-s=20
-> coherent 4 channel RX w/ the ability to TX on 1 channel as well. In=20
-> the past, I=E2=80=99ve used USRP X310s to do 4 channel coherent RX and =
-found=20
-> the calibration process for that to be relatively straight forward=20
-> using the TwinRX cards. It was simply phase aligned input signals into=20
-> each RX port and computing the constant phase offset between channels=20
-> and just adjusting for that factor in my processing digitally.
->
-> My understanding is that this is more complicated w/ the N310. The=20
-> procedure as I understand is that during initialization the N310=20
-> external LO needs to be set at 5 GHz. After initialization, the=20
-> external LO can be set to 2 times the desired center freq, but that=20
-> there is still a 180 deg ambiguity between channels which would need=20
-> to be figured out via calibration w/ a phase aligned input signal. Is=20
-> this correct? Is there some way to shorten or optimize this procedure?
->
-The phase ambiguity arises from the 2XLO mixing in the RFIC chips, and=20
-there's no way around it.
+VGhhbmtzIGZvciB0aGUgc3VnZ2VzdGlvbiwgTWFyY3VzLiBUaGUgTjMyMCBhbmQgTjMyMSBhcmUg
+b25seSBib3RoIDIgVFgvUlggZGV2aWNlcyBhcyBmYXIgYXMgSSBjYW4gdGVsbCwgc28gdG8gc2F0
+aXNmeSA0IFJYLCAxIFRYIGl0IGxvb2tzIGxpa2UgSSB3b3VsZCBuZWVkIDIgZGV2aWNlcy4gRG8g
+eW91IGhhcHBlbiB0byBrbm93IGlmIHRoZXJlIGlzIGFueSBvZmZpY2lhbCBkb2N1bWVudGF0aW9u
+IG9uIHVzaW5nIHRoZSBleHRlcm5hbCBMTyBmb3IgdGhlIE4zMTAgaGlkZGVuIHNvbWV3aGVyZSBv
+biB0aGUgRXR0dXMgd2lraT8gVGhlIDUgR0h6IGV4dGVybmFsIExPIGluaXRpYWwgaW5wdXQgcmVx
+dWlyZW1lbnQgZG9lc27igJl0IHNlZW0gdG8gYmUgZG9jdW1lbnRlZCBhbnl3aGVyZSBhcyBmYXIg
+YXMgSSBjYW4gdGVsbC4NCg0KRnJvbTogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdt
+YWlsLmNvbT4NClNlbnQ6IFdlZG5lc2RheSwgSnVseSAyNiwgMjAyMyA0OjUxIFBNDQpUbzogdXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFtFWFRdIFtVU1JQLXVzZXJzXSBSZTog
+TjMxMCBjb3JyZWN0IGNob2ljZSBmb3IgY29oZXJlbnQgNCBjaGFubmVsIFJYIHcvIDEgVFggPw0K
+DQoNClpqUWNtUVJZRnBmcHRCYW5uZXJFbmQNCk9uIDI2LzA3LzIwMjMgMTY6NDcsIERhdmlkIEog
+TGkgd3JvdGU6DQpIaSBhbGwsDQoNCknigJltIGN1cnJlbnRseSB1c2luZyBhIFVTUlAgTjMxMCBm
+b3IgYW4gYXBwbGljYXRpb24gdGhhdCByZXF1aXJlcyBjb2hlcmVudCA0IGNoYW5uZWwgUlggdy8g
+dGhlIGFiaWxpdHkgdG8gVFggb24gMSBjaGFubmVsIGFzIHdlbGwuIEluIHRoZSBwYXN0LCBJ4oCZ
+dmUgdXNlZCBVU1JQIFgzMTBzIHRvIGRvIDQgY2hhbm5lbCBjb2hlcmVudCBSWCBhbmQgZm91bmQg
+dGhlIGNhbGlicmF0aW9uIHByb2Nlc3MgZm9yIHRoYXQgdG8gYmUgcmVsYXRpdmVseSBzdHJhaWdo
+dCBmb3J3YXJkIHVzaW5nIHRoZSBUd2luUlggY2FyZHMuIEl0IHdhcyBzaW1wbHkgcGhhc2UgYWxp
+Z25lZCBpbnB1dCBzaWduYWxzIGludG8gZWFjaCBSWCBwb3J0IGFuZCBjb21wdXRpbmcgdGhlIGNv
+bnN0YW50IHBoYXNlIG9mZnNldCBiZXR3ZWVuIGNoYW5uZWxzIGFuZCBqdXN0IGFkanVzdGluZyBm
+b3IgdGhhdCBmYWN0b3IgaW4gbXkgcHJvY2Vzc2luZyBkaWdpdGFsbHkuDQoNCk15IHVuZGVyc3Rh
+bmRpbmcgaXMgdGhhdCB0aGlzIGlzIG1vcmUgY29tcGxpY2F0ZWQgdy8gdGhlIE4zMTAuIFRoZSBw
+cm9jZWR1cmUgYXMgSSB1bmRlcnN0YW5kIGlzIHRoYXQgZHVyaW5nIGluaXRpYWxpemF0aW9uIHRo
+ZSBOMzEwIGV4dGVybmFsIExPIG5lZWRzIHRvIGJlIHNldCBhdCA1IEdIei4gQWZ0ZXIgaW5pdGlh
+bGl6YXRpb24sIHRoZSBleHRlcm5hbCBMTyBjYW4gYmUgc2V0IHRvIDIgdGltZXMgdGhlIGRlc2ly
+ZWQgY2VudGVyIGZyZXEsIGJ1dCB0aGF0IHRoZXJlIGlzIHN0aWxsIGEgMTgwIGRlZyBhbWJpZ3Vp
+dHkgYmV0d2VlbiBjaGFubmVscyB3aGljaCB3b3VsZCBuZWVkIHRvIGJlIGZpZ3VyZWQgb3V0IHZp
+YSBjYWxpYnJhdGlvbiB3LyBhIHBoYXNlIGFsaWduZWQgaW5wdXQgc2lnbmFsLiBJcyB0aGlzIGNv
+cnJlY3Q/IElzIHRoZXJlIHNvbWUgd2F5IHRvIHNob3J0ZW4gb3Igb3B0aW1pemUgdGhpcyBwcm9j
+ZWR1cmU/DQpUaGUgcGhhc2UgYW1iaWd1aXR5IGFyaXNlcyBmcm9tIHRoZSAyWExPIG1peGluZyBp
+biB0aGUgUkZJQyBjaGlwcywgYW5kIHRoZXJlJ3Mgbm8gd2F5IGFyb3VuZCBpdC4NCg0KWW91IG1p
+Z2h0IGxvb2sgYXQgdGhlIE4zMjAvTjMyMSBmYW1pbHkgZm9yIG11bHRpLWNoYW5uZWwgY29oZXJl
+bnQgVFgvUlggYXBwbGljYXRpb25zLg0KDQoNCg0KU2Vjb25kIHF1ZXN0aW9uIHdvdWxkIGJlIGlm
+IHRoZSBwcm9jZXNzIGlzIHNpbXBsZXIgb24gZGlmZmVyZW50IFVTUlAgbW9kZWxzIGFraW4gdG8g
+aG93IHRoZSBYMzEwIHcvIFR3aW5SWCBjYXJkcyB3b3JrIHdoZXJlIHlvdSBqdXN0IG5lZWQgdG8g
+Y29tcHV0ZSBzb21lIGNhbGlicmF0aW9uIHZhbHVlcyBvbmNlIGF0IHBvd2VydXAgYW5kIGFmdGVy
+d2FyZHMgdGhvc2UgdmFsdWVzIGhvbGQgcHJldHR5IHRydWUgZm9yIGEgbG9uZyB0aW1lIGFzIGxv
+bmcgYXMgeW91ciBnYWluL2NlbnRlciBmcmVxIGRvbuKAmXQgY2hhbmdlLiBIYXZpbmcgdGhlIHJl
+cXVpcmVtZW50IG9mIGJlaW5nIGFibGUgdG8gVFggb24gYXQgbGVhc3QgMSBjaGFubmVsIHByZXZl
+bnRzIG1lIGZyb20gdXNpbmcgYW4gWDMxMCB3LyBUd2luUlggY2FyZHMuDQoNClRoYW5rcywNCi1E
+YXZpZA0KDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18NCg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KDQpUbyB1bnN1YnNjcmliZSBz
+ZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1
+c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg0K
 
-You might look at the N320/N321 family for multi-channel coherent TX/RX=20
-applications.
+--_000_PH0PR09MB7433E43091B0FE111D4D2F74A800APH0PR09MB7433namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> Second question would be if the process is simpler on different USRP=20
-> models akin to how the X310 w/ TwinRX cards work where you just need=20
-> to compute some calibration values once at powerup and afterwards=20
-> those values hold pretty true for a long time as long as your=20
-> gain/center freq don=E2=80=99t change. Having the requirement of being =
-able to=20
-> TX on at least 1 channel prevents me from using an X310 w/ TwinRX cards=
-.
->
-> Thanks,
->
-> -David
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCWZvbnQtc2l6ZTox
+MS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWxpZ2F0dXJl
+czpzdGFuZGFyZGNvbnRleHR1YWw7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28t
+c3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
+aW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhU
+TUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAw
+MXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpz
+cGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJIVE1MIFByZWZvcm1h
+dHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhU
+TUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseToiQ29uc29sYXMiLHNlcmlmOw0KCW1zby1s
+aWdhdHVyZXM6c3RhbmRhcmRjb250ZXh0dWFsO30NCnNwYW4uRW1haWxTdHlsZTIxDQoJe21zby1z
+dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
+cmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5
+cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDsNCgltc28tbGlnYXR1cmVzOm5vbmU7
+fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBp
+biAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rp
+b24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1
+bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEt
+LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzpp
+ZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtl
+bmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0i
+cHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNl
+Y3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyBmb3IgdGhlIHN1Z2dlc3Rpb24s
+IE1hcmN1cy4gVGhlIE4zMjAgYW5kIE4zMjEgYXJlIG9ubHkgYm90aCAyIFRYL1JYIGRldmljZXMg
+YXMgZmFyIGFzIEkgY2FuIHRlbGwsIHNvIHRvIHNhdGlzZnkgNCBSWCwgMSBUWCBpdCBsb29rcyBs
+aWtlIEkgd291bGQgbmVlZCAyIGRldmljZXMuIERvIHlvdSBoYXBwZW4gdG8ga25vdyBpZiB0aGVy
+ZSBpcyBhbnkgb2ZmaWNpYWwgZG9jdW1lbnRhdGlvbiBvbiB1c2luZw0KIHRoZSBleHRlcm5hbCBM
+TyBmb3IgdGhlIE4zMTAgaGlkZGVuIHNvbWV3aGVyZSBvbiB0aGUgRXR0dXMgd2lraT8gVGhlIDUg
+R0h6IGV4dGVybmFsIExPIGluaXRpYWwgaW5wdXQgcmVxdWlyZW1lbnQgZG9lc27igJl0IHNlZW0g
+dG8gYmUgZG9jdW1lbnRlZCBhbnl3aGVyZSBhcyBmYXIgYXMgSSBjYW4gdGVsbC48bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdiBz
+dHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6
+My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9
+Im1zby1saWdhdHVyZXM6bm9uZSI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJtc28tbGln
+YXR1cmVzOm5vbmUiPiBNYXJjdXMgRC4gTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29t
+Jmd0Ow0KPGJyPg0KPGI+U2VudDo8L2I+IFdlZG5lc2RheSwgSnVseSAyNiwgMjAyMyA0OjUxIFBN
+PGJyPg0KPGI+VG86PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4NCjxiPlN1Ympl
+Y3Q6PC9iPiBbRVhUXSBbVVNSUC11c2Vyc10gUmU6IE4zMTAgY29ycmVjdCBjaG9pY2UgZm9yIGNv
+aGVyZW50IDQgY2hhbm5lbCBSWCB3LyAxIFRYID88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLWxpbmUtaGVpZ2h0LWFs
+dDouNzVwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxLjBwdCI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1saW5lLWhlaWdodC1h
+bHQ6Ljc1cHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbGluZS1oZWlnaHQt
+YWx0Oi43NXB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEuMHB0O2NvbG9yOndoaXRlIj5aalFj
+bVFSWUZwZnB0QmFubmVyRW5kPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMjYvMDcvMjAyMyAxNjo0NywgRGF2aWQgSiBMaSB3cm90
+ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6
+NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSBhbGws
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPknigJltIGN1cnJlbnRseSB1c2luZyBhIFVTUlAgTjMx
+MCBmb3IgYW4gYXBwbGljYXRpb24gdGhhdCByZXF1aXJlcyBjb2hlcmVudCA0IGNoYW5uZWwgUlgg
+dy8gdGhlIGFiaWxpdHkgdG8gVFggb24gMSBjaGFubmVsIGFzIHdlbGwuIEluIHRoZSBwYXN0LCBJ
+4oCZdmUgdXNlZCBVU1JQIFgzMTBzIHRvIGRvIDQgY2hhbm5lbCBjb2hlcmVudCBSWCBhbmQgZm91
+bmQgdGhlIGNhbGlicmF0aW9uIHByb2Nlc3MgZm9yIHRoYXQgdG8NCiBiZSByZWxhdGl2ZWx5IHN0
+cmFpZ2h0IGZvcndhcmQgdXNpbmcgdGhlIFR3aW5SWCBjYXJkcy4gSXQgd2FzIHNpbXBseSBwaGFz
+ZSBhbGlnbmVkIGlucHV0IHNpZ25hbHMgaW50byBlYWNoIFJYIHBvcnQgYW5kIGNvbXB1dGluZyB0
+aGUgY29uc3RhbnQgcGhhc2Ugb2Zmc2V0IGJldHdlZW4gY2hhbm5lbHMgYW5kIGp1c3QgYWRqdXN0
+aW5nIGZvciB0aGF0IGZhY3RvciBpbiBteSBwcm9jZXNzaW5nIGRpZ2l0YWxseS4NCjxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5NeSB1bmRlcnN0YW5kaW5nIGlzIHRoYXQgdGhpcyBpcyBtb3JlIGNv
+bXBsaWNhdGVkIHcvIHRoZSBOMzEwLiBUaGUgcHJvY2VkdXJlIGFzIEkgdW5kZXJzdGFuZCBpcyB0
+aGF0IGR1cmluZyBpbml0aWFsaXphdGlvbiB0aGUgTjMxMCBleHRlcm5hbCBMTyBuZWVkcyB0byBi
+ZSBzZXQgYXQgNSBHSHouIEFmdGVyIGluaXRpYWxpemF0aW9uLCB0aGUgZXh0ZXJuYWwgTE8gY2Fu
+IGJlIHNldCB0byAyIHRpbWVzIHRoZSBkZXNpcmVkDQogY2VudGVyIGZyZXEsIGJ1dCB0aGF0IHRo
+ZXJlIGlzIHN0aWxsIGEgMTgwIGRlZyBhbWJpZ3VpdHkgYmV0d2VlbiBjaGFubmVscyB3aGljaCB3
+b3VsZCBuZWVkIHRvIGJlIGZpZ3VyZWQgb3V0IHZpYSBjYWxpYnJhdGlvbiB3LyBhIHBoYXNlIGFs
+aWduZWQgaW5wdXQgc2lnbmFsLiBJcyB0aGlzIGNvcnJlY3Q/IElzIHRoZXJlIHNvbWUgd2F5IHRv
+IHNob3J0ZW4gb3Igb3B0aW1pemUgdGhpcyBwcm9jZWR1cmU/DQo8bzpwPjwvbzpwPjwvcD4NCjwv
+YmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tbGlnYXR1
+cmVzOm5vbmUiPlRoZSBwaGFzZSBhbWJpZ3VpdHkgYXJpc2VzIGZyb20gdGhlIDJYTE8gbWl4aW5n
+IGluIHRoZSBSRklDIGNoaXBzLCBhbmQgdGhlcmUncyBubyB3YXkgYXJvdW5kIGl0Ljxicj4NCjxi
+cj4NCllvdSBtaWdodCBsb29rIGF0IHRoZSBOMzIwL04zMjEgZmFtaWx5IGZvciBtdWx0aS1jaGFu
+bmVsIGNvaGVyZW50IFRYL1JYIGFwcGxpY2F0aW9ucy48YnI+DQo8YnI+DQo8YnI+DQo8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJn
+aW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U2Vjb25kIHF1ZXN0aW9uIHdvdWxkIGJlIGlmIHRo
+ZSBwcm9jZXNzIGlzIHNpbXBsZXIgb24gZGlmZmVyZW50IFVTUlAgbW9kZWxzIGFraW4gdG8gaG93
+IHRoZSBYMzEwIHcvIFR3aW5SWCBjYXJkcyB3b3JrIHdoZXJlIHlvdSBqdXN0IG5lZWQgdG8gY29t
+cHV0ZSBzb21lIGNhbGlicmF0aW9uIHZhbHVlcyBvbmNlIGF0IHBvd2VydXAgYW5kIGFmdGVyd2Fy
+ZHMgdGhvc2UgdmFsdWVzIGhvbGQgcHJldHR5IHRydWUgZm9yDQogYSBsb25nIHRpbWUgYXMgbG9u
+ZyBhcyB5b3VyIGdhaW4vY2VudGVyIGZyZXEgZG9u4oCZdCBjaGFuZ2UuIEhhdmluZyB0aGUgcmVx
+dWlyZW1lbnQgb2YgYmVpbmcgYWJsZSB0byBUWCBvbiBhdCBsZWFzdCAxIGNoYW5uZWwgcHJldmVu
+dHMgbWUgZnJvbSB1c2luZyBhbiBYMzEwIHcvIFR3aW5SWCBjYXJkcy48bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LURh
+dmlkPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNv
+LWxpZ2F0dXJlczpub25lIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cHJl
+Pl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPG86cD48L286
+cD48L3ByZT4NCjxwcmU+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwv
+YT48bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5UbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRv
+IDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11
+c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3ByZT4NCjwvYmxvY2tx
+dW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tbGlnYXR1cmVzOm5v
+bmUiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1s
+Pg0K
 
---------------0nR5K0BVwGOUmLkS1UfGsRCG
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_PH0PR09MB7433E43091B0FE111D4D2F74A800APH0PR09MB7433namp_--
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 26/07/2023 16:47, David J Li wrote:=
-<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:PH0PR09MB7433546CE3D5D14F18D7005DA800A@PH0PR09MB7433.namprd09=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;}span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">I=E2=80=99m currently using a USRP N310 fo=
-r an
-          application that requires coherent 4 channel RX w/ the ability
-          to TX on 1 channel as well. In the past, I=E2=80=99ve used USRP=
- X310s
-          to do 4 channel coherent RX and found the calibration process
-          for that to be relatively straight forward using the TwinRX
-          cards. It was simply phase aligned input signals into each RX
-          port and computing the constant phase offset between channels
-          and just adjusting for that factor in my processing digitally.
-          <o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">My understanding is that this is more
-          complicated w/ the N310. The procedure as I understand is that
-          during initialization the N310 external LO needs to be set at
-          5 GHz. After initialization, the external LO can be set to 2
-          times the desired center freq, but that there is still a 180
-          deg ambiguity between channels which would need to be figured
-          out via calibration w/ a phase aligned input signal. Is this
-          correct? Is there some way to shorten or optimize this
-          procedure? </p>
-      </div>
-    </blockquote>
-    The phase ambiguity arises from the 2XLO mixing in the RFIC chips,
-    and there's no way around it.<br>
-    <br>
-    You might look at the N320/N321 family for multi-channel coherent
-    TX/RX applications.<br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:PH0PR09MB7433546CE3D5D14F18D7005DA800A@PH0PR09MB7433.namprd09=
-.prod.outlook.com">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Second question would be if the process is
-          simpler on different USRP models akin to how the X310 w/
-          TwinRX cards work where you just need to compute some
-          calibration values once at powerup and afterwards those values
-          hold pretty true for a long time as long as your gain/center
-          freq don=E2=80=99t change. Having the requirement of being able=
- to TX
-          on at least 1 channel prevents me from using an X310 w/ TwinRX
-          cards.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-        <p class=3D"MsoNormal">-David<o:p></o:p></p>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------0nR5K0BVwGOUmLkS1UfGsRCG--
-
---===============6700168517244023821==
+--===============5259518085055669291==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -262,4 +347,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6700168517244023821==--
+--===============5259518085055669291==--
