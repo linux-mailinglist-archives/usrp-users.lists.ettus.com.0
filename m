@@ -2,197 +2,348 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51977773306
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 00:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A65773310
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 00:48:25 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D2E18384736
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Aug 2023 18:41:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BC8B6383C09
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Aug 2023 18:48:24 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1691448070; bh=ajB1Wo5DkwEBrqq3ncMp6qU0kf/rfh3hX3jAJoOF8yg=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=yOZeHZ8UhwX67ogvDibZ6SOG2BpyDFKf+Beu7rwT2FbIBH7xtkUdUfeJBLcNA0ng4
-	 bLD7jwpPPmINv79jYvtNxpZMeRX+3ixNbBoHmQpJlYaWVVZRja/qe5TcNa7Eh36LL0
-	 lN4xC3RGt8Hvjzcij1+bdGzDVj2H6TquaiITbJY99f5pD5C0/qs6GiNOfTOIyWTiT/
-	 O9uo2A2OG8qD5u90fMc/HTVOqAEaRKsDByU7PnWTitOy3zk+hYbWjwXRJOQbU9/YlZ
-	 apVSjNzhS6a8yKLm+z7tpVqyFTKs7Tw5UGmCPTkiRcP9Vs5LpCOiUVBgmqYBWmfslo
-	 fP8P9LFk+0qNg==
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0A7F33841A3
-	for <usrp-users@lists.ettus.com>; Mon,  7 Aug 2023 18:40:37 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20221208.gappssmtp.com header.i=@ettus-com.20221208.gappssmtp.com header.b="L5uHs6E6";
-	dkim-atps=neutral
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2b9b50be31aso77268771fa.3
-        for <usrp-users@lists.ettus.com>; Mon, 07 Aug 2023 15:40:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20221208.gappssmtp.com; s=20221208; t=1691448036; x=1692052836;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GZaSOePjtOYtbieDNBKh3E//RL+D52ko2pQD8joxmuo=;
-        b=L5uHs6E69UlbZ0zl47Q3S4MOZzm1vISfNWBhhoC26BotRlGKZczyoAkydJ6/RdYBLS
-         f9S9OmsJ07TPJQLb9LWuzJPNO7wjx+NblXbUM/dHj/MBJFAYaZqD547HSe0yF6q4yWHE
-         VvjIrinPVMwHiDUJGmZ8vgtLCWRgFLyNurEg0NT0lIwMNQUdJlEBhsNyO4o2U3O0hmb/
-         F7yjgm6hrCAXddoZMDSab+clbWfFhCy4YmNjpFAg0+iDfYaZ4T9qnmg4TPNz3XfTLPSG
-         ViTvgMkQJUQyrAMhUzTZylYS7OVWN19yQ5CDoECTPoyFknXsMzJI5hPH8Zg6GFtRQfkY
-         jXag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691448036; x=1692052836;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GZaSOePjtOYtbieDNBKh3E//RL+D52ko2pQD8joxmuo=;
-        b=RP5wciOV/WtaFVCO7ea2RJr14+EFlTLXDDkvqlVcmY1wgGT9ZdhjCvbKNDo6hY6nTX
-         JTp8SmQpwd0j4PI1M/ER1ytSKrsQSKOOvTqQwycRc9nlIFq3ZrUiexNr8UO9WfsPiV/J
-         Z7uqpEKx6njWt8yZRHz6J/XjuKWMj1OoZRuoKYUAX+XAkmqjtoLMqboio75XBoovMiwM
-         igaR4BFPjdG73pxpAZRzL75svwanQNDz7CTQig4VOvLhrgNKDB9sXA8Pbci45XWP8K7b
-         t6bywPjSDKvodH4Iuwbf3c1ZCAUetjeml8y66GMaXf4+b6YVPiYJQPrPzQP2ixMLlV2r
-         Ed9A==
-X-Gm-Message-State: AOJu0Yw+tYfL9wMp50v+ZApQ+7ZHxzNYKFoa0cgEwbsGK5t2ZLzonb8u
-	TMNCC0WDYzRiiacDLSTuGHsx+TMT/6IIB5znWabpkd7s
-X-Google-Smtp-Source: AGHT+IGpnRnGTxwQ01aVWL5Q6ZfD2EjIUKy/xaT+LlPxmQY4rX2NGoqyld4g9HsY+i8OWptCgRLzQx3dEd0XHrNpyCM=
-X-Received: by 2002:a2e:9b4d:0:b0:2b9:e93e:65d9 with SMTP id
- o13-20020a2e9b4d000000b002b9e93e65d9mr6783032ljj.40.1691448036336; Mon, 07
- Aug 2023 15:40:36 -0700 (PDT)
+	t=1691448504; bh=UgI1uqUk8oGrGZTJtns+5vU49J2RBK05EbEVpXdtTW0=;
+	h=To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=LrKQfTa6YMB/8OU1WIdyIJ0YMcHLh/yZT6bGVADWLdMjTH2zGURB+2q4nrXb+FAY8
+	 PCHaJ01LwqaIqB2b6gRdg47/o2cHtUcOsAp7Wm3d07pm3S943fDU+8OeKv4KQwRtGq
+	 UA7dW8r428/vYRl5nEtKRQnigJxO4Xjo0lWJFMUgkyN3zQcCb+XHyk6wGdNUJJENIl
+	 X/LGJ4Q9r+HjmxC6LU8w+qFyug5bhqtWcnmu2OsjzDAwvW1XKXyHuB948q2FPH+WoA
+	 grz4ajFfdDmPUepVVoU3uyErTY0i8lz8viem5cSgDY7N9/2gFqk5YcMHAwcQBafla8
+	 olmxKgs0Zvi+A==
+Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [148.163.129.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0D7A7380014
+	for <usrp-users@lists.ettus.com>; Mon,  7 Aug 2023 18:47:49 -0400 (EDT)
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mail.verusresearch.net (unknown [192.139.0.227])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 8AA34600071
+	for <usrp-users@lists.ettus.com>; Mon,  7 Aug 2023 22:47:47 +0000 (UTC)
+Received: from VM-XLS-EXCH02.XLSCIENTIFIC.LAN (10.240.1.10) by
+ VM-XLS-EXCH02.XLSCIENTIFIC.LAN (10.240.1.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Mon, 7 Aug 2023 16:47:47 -0600
+Received: from VM-XLS-EXCH02.XLSCIENTIFIC.LAN ([fe80::b1c7:a947:1c53:c5b0]) by
+ VM-XLS-EXCH02.XLSCIENTIFIC.LAN ([fe80::b1c7:a947:1c53:c5b0%4]) with mapi id
+ 15.01.2308.027; Mon, 7 Aug 2023 16:47:47 -0600
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Driver for E312
+Thread-Index: AdnJgKwnCFpqlIBWQiiEyoYqcI3XpQ==
+Date: Mon, 7 Aug 2023 22:47:47 +0000
+Message-ID: <b5bf1f1390be47c492e41b6a268bc155@verusresearch.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.35.64]
+x-exclaimer-md-config: b74d8e58-262c-4eec-9a0d-85ce74772153
 MIME-Version: 1.0
-References: <5FBD3E80-E24C-42D4-A365-57A1D9DC0F86@apple.com>
-In-Reply-To: <5FBD3E80-E24C-42D4-A365-57A1D9DC0F86@apple.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Mon, 7 Aug 2023 17:40:20 -0500
-Message-ID: <CAFche=iDwo4WHP6+HXQ-EusG4PUO+GaLVysem_zKFuVX9hzMNA@mail.gmail.com>
-To: Victor Levin <vlevin@apple.com>
-Message-ID-Hash: 7QTZJCNLQFHECHTLY3BS2FCIGFRAU6J7
-X-Message-ID-Hash: 7QTZJCNLQFHECHTLY3BS2FCIGFRAU6J7
-X-MailFrom: wade.fife@ettus.com
+X-MDID: 1691448468-Lp8yL3CHew1a
+X-MDID-O: 
+ us3;ut7;1691448468;Lp8yL3CHew1a;<mushtaq.syed@verusresearch.net>;e704d01f87cea27037df32747797d545
+Message-ID-Hash: H6P7ILTBTRQFBMUDGG7EWIAKMUQB4TRB
+X-Message-ID-Hash: H6P7ILTBTRQFBMUDGG7EWIAKMUQB4TRB
+X-MailFrom: mushtaq.syed@verusresearch.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: MPM major compat number mismatch even after updating FW to latest on X410
+Subject: [USRP-users] Driver for E312
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7QTZJCNLQFHECHTLY3BS2FCIGFRAU6J7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/H6P7ILTBTRQFBMUDGG7EWIAKMUQB4TRB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2505820772355895606=="
+From: "Mushtaq A. Syed, Ph.D. via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Mushtaq A. Syed, Ph.D." <mushtaq.syed@verusresearch.net>
+Content-Type: multipart/mixed; boundary="===============6666761193233531113=="
 
---===============2505820772355895606==
-Content-Type: multipart/alternative; boundary="0000000000005cc3aa06025cefc7"
+--===============6666761193233531113==
+Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_004_b5bf1f1390be47c492e41b6a268bc155verusresearchnet_";
+	type="multipart/alternative"
 
---0000000000005cc3aa06025cefc7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_004_b5bf1f1390be47c492e41b6a268bc155verusresearchnet_
+Content-Type: multipart/alternative;
+	boundary="_000_b5bf1f1390be47c492e41b6a268bc155verusresearchnet_"
 
-I think you checked out the wrong branch. Looking at your [INFO] statement,
-it says you're using a2a04e31, which is the latest commit on master. 5.2 is
-also the version you should get from the master branch. The "4.4" hasn't
-been updated on master yet because it's not released yet.
+--_000_b5bf1f1390be47c492e41b6a268bc155verusresearchnet_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Wade
+SGk6DQogICAgICAgICAgICAgICAgV2hlcmUgY2FuIEkgZmluZCB0aGUgZHJpdmVyIGZvciB0aGUgVVNS
+UCBFMzEyPyBJIGRvd25sb2FkZWQgYW5kIHVuemlwcGVkIGVybGxjX3VoZF93aW51c2JfZHJpdmVyLnpp
+cDsgaG93ZXZlciwgdGhlcmUgaXMgbm8gbGlzdGluZyBmb3IgdGhlIEUzMTIuIEkgc2VlIGRyaXZlcnMg
+Zm9yIEIxMDAsIEIyMDAsIGFuZCBCMjA1Lg0KICAgICAgICAgICAgICAgIFRoYW5rcyBhIGxvdCENCiAg
+ICAgICAgICAgICAgICBDaGVlcnMsDQogICAgICAgICAgICAgICAgTXVzaHRhcQ0KDQotLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tDQpNdXNodGFxIFN5ZWQsIFBoLkQuDQpQcmluY2lwYWwgRGlnaXRhbCBT
+aWduYWwgUHJvY2Vzc2luZyBFbmdpbmVlcg0KVmVydXMgUmVzZWFyY2gNCg0KW2NpZDppbWFnZWZiNmE3
+NC5KUEdAYWRmYzIwMDguNDM5ODRiMjddPGh0dHA6Ly8+DQoNCkRpcmVjdCAgNTA1LTM5Ni03MTA5DQpD
+ZWxsICAgICAgNDA4LTUxNC03ODIxDQoNCjYxMDAgVXB0b3duIEJsdmQgTkUsIFN1aXRlIDI2MA0KQWxi
+dXF1ZXJxdWUsIE5ldyBNZXhpY28gODcxMTANCnZlcnVzcmVzZWFyY2gubmV0DQotLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tDQoNCg0KCk5PVElDRTogIFRoaXMgZWxlY3Ryb25pYyBtYWlsIG1lc3NhZ2Ug
+aXMgaW50ZW5kZWQgZXhjbHVzaXZlbHkgZm9yIHRoZSBpbmRpdmlkdWFsIG9yIGVudGl0eSB0byB3aGlj
+aCBpdCBpcyBhZGRyZXNzZWQuIFRoaXMgbWVzc2FnZSwgdG9nZXRoZXIgd2l0aCBhbnkgYXR0YWNobWVu
+dCwgbWF5IGNvbnRhaW4gc2Vuc2l0aXZlIG9yIHByaXZpbGVnZWQgaW5mb3JtYXRpb24uICBBbnkgdW5h
+dXRob3JpemVkIHJldmlldywgdXNlLCBwcmludGluZywgcmV0ZW50aW9uLCBjb3B5aW5nLCBkaXNjbG9z
+dXJlLCBvciBkaXN0cmlidXRpb24gb2Ygc2FpZCBlbWFpbCBpcyBzdHJpY3RseSBwcm9oaWJpdGVkLiAg
+SWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBtZXNzYWdlIGluIGVycm9yLCBwbGVhc2UgKDEpIGltbWVk
+aWF0ZWx5IGFkdmlzZSB0aGUgc2VuZGVyIGJ5IHJlcGx5IGVtYWlsIG1lc3NhZ2UgYW5kICgyKSBkZWxl
+dGUgYWxsIGNvcGllcyBvZiB0aGlzIG1lc3NhZ2U=
 
-On Fri, Aug 4, 2023 at 12:53=E2=80=AFPM Victor Levin via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+--_000_b5bf1f1390be47c492e41b6a268bc155verusresearchnet_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> Hi all,
->
-> I am using an X410 with X4_200 FPGA and latest FW as downloaded by uhd_im=
-ages_downloader -t
-> sdimg -t x4xx. This initially was working (uhd_usrp_probe and other calls
-> went through fine) using UHD 4.4.0.0 on the host.
->
-> In order to use DPDK, I pulled the UHD repo from version branch V4.4.0.0
-> and recompiled with the ENABLE_DPDK flag turned on. After doing this, I
-> sanity tested the newly compiled and installed UHD without DPDK.
->
-> Here is the output from uhd_usrp_probe:
->
-> [INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400; DPDK_21.11;
-> UHD_4.4.0.heads-v4.4.0.0-265-ga2a04e31
-> [WARNING] [PREFS] Loaded config from /root/.uhd. This location is
-> considered deprecated, consider moving your config file to /root/.config
-> instead.
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D192.168.15.2,type=3Dx4xx,product=3Dx410,serial=3D3257310,name=
-=3Dni-x4xx-3257310,fpga=3DX4_200,claimed=3DFalse,addr=3D192.168.15.2
-> [ERROR] [MPMD] MPM major compat number mismatch. Expected: 5.2 Actual:
-> 4.4. Please update the version of MPM on your USRP device.
-> Error: RuntimeError: MPM major compat number mismatch. Expected: 5.2
-> Actual: 4.4. Please update the version of MPM on your USRP device.
->
-> I don=E2=80=99t understand where 5.2 has come from. It looks like the hos=
-t UHD is
-> expecting 5.2. However the branch of UHD host that I compiled is definite=
-ly
-> UHD_4.4 as show in the first line of the output. Running uhd_images_downl=
-oader
-> again after recompiling still pulls the same sdimg file as before so
-> updating the FW again doesn=E2=80=99t help.
->
-> Anyone know what=E2=80=99s going on here?
->
-> Thanks,
-> Victor
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVybjpz
+Y2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVtYXMtbWlj
+cm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNv
+bS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvVFIvUkVDLWh0bWw0
+MCI+DQo8aGVhZD4NCjwhLS0gVGVtcGxhdGUgZ2VuZXJhdGVkIGJ5IEV4Y2xhaW1lciBTaWduYXR1cmUg
+TWFuYWdlciBFeGNoYW5nZSBFZGl0aW9uIG9uIDA0OjQ3OjQ3IE1vbmRheSwgNyBBdWd1c3QgMjAyMyAt
+LT4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFy
+c2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+UC5JbXByaW50VW5pcXVlSUQgew0KCU1B
+UkdJTjogMGNtIDBjbSAwcHQNCn0NCkxJLkltcHJpbnRVbmlxdWVJRCB7DQoJTUFSR0lOOiAwY20gMGNt
+IDBwdA0KfQ0KRElWLkltcHJpbnRVbmlxdWVJRCB7DQoJTUFSR0lOOiAwY20gMGNtIDBwdA0KfQ0KVEFC
+TEUuSW1wcmludFVuaXF1ZUlEVGFibGUgew0KCU1BUkdJTjogMGNtIDBjbSAwcHQNCn0NCkRJVi5TZWN0
+aW9uMSB7DQoJcGFnZTogU2VjdGlvbjENCn0NCjwvc3R5bGU+DQo8bWV0YSBuYW1lPSJHZW5lcmF0b3Ii
+IGNvbnRlbnQ9Ik1pY3Jvc29mdCBXb3JkIDE1IChmaWx0ZXJlZCBtZWRpdW0pIj4NCjxzdHlsZT48IS0t
+DQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlh
+IE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250
+LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8qIFN0eWxl
+IERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJ
+e21hcmdpbjowaW47DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fu
+cy1zZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21w
+b3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7
+fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1p
+bHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
+MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24x
+DQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+
+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFb
+ZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRp
+dCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3ht
+bD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSIjMDU2M0MxIiB2
+bGluaz0iIzk1NEY3MiIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13b3JkIj4NCjxwIGNsYXNzPSJJbXBy
+aW50VW5pcXVlSUQiPjwvcD4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5IaTo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyBXaGVyZSBjYW4gSSBmaW5kIHRoZSBkcml2ZXIgZm9yIHRoZSBVU1JQ
+IEUzMTI/IEkgZG93bmxvYWRlZCBhbmQgdW56aXBwZWQgZXJsbGNfdWhkX3dpbnVzYl9kcml2ZXIuemlw
+OyBob3dldmVyLCB0aGVyZSBpcyBubyBsaXN0aW5nIGZvciB0aGUgRTMxMi4gSSBzZWUgZHJpdmVycyBm
+b3IgQjEwMCwgQjIwMCwgYW5kIEIyMDUuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgVGhhbmtzIGEgbG90ITxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IENoZWVy
+cyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyBNdXNodGFxPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwPjwvcD4NCjxwIGNsYXNz
+PSJJbXByaW50VW5pcXVlSUQiPjxmb250IGZhY2U9IkV4byAyIj4tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tPGJyPg0KPC9mb250Pjxmb250IHN0eWxlPSJmb250LWZhbWlseTpFeG8gMjtmb250LXNpemU6
+MTBwdDtjb2xvcjojMDA4QTg2OyI+TXVzaHRhcTwvZm9udD48Zm9udCBjb2xvcj0iIzAwOGE4NiIgc2l6
+ZT0iNCIgZmFjZT0iRXhvIDIiPiZuYnNwOzwvZm9udD48Zm9udCBzdHlsZT0iZm9udC1mYW1pbHk6RXhv
+IDI7Zm9udC1zaXplOjEwcHQ7Y29sb3I6IzAwOEE4NjsiPlN5ZWQsIFBoLkQuPC9mb250Pjxicj4NCjxm
+b250IHN0eWxlPSJmb250LWZhbWlseTpFeG8gMjtmb250LXNpemU6OXB0OyI+UHJpbmNpcGFsIERpZ2l0
+YWwgU2lnbmFsIFByb2Nlc3NpbmcgRW5naW5lZXI8L2ZvbnQ+PGJyPg0KPGZvbnQgc2l6ZT0iMSIgZmFj
+ZT0iRXhvIDIiPjxmb250IHN0eWxlPSJmb250LWZhbWlseTpFeG8gMjtmb250LXNpemU6OXB0OyI+VmVy
+dXMgUmVzZWFyY2g8L2ZvbnQ+PC9mb250Pjxicj4NCjxicj4NCjxhIGhyZWY9Imh0dHA6Ly8iIHRhcmdl
+dD0iIj48aW1nIHdpZHRoPSIyMDIiIGhlaWdodD0iODIiIHN0eWxlPSJib3JkZXI6IDBweCBTb2xpZCA7
+ICIgc3JjPSJjaWQ6aW1hZ2VmYjZhNzQuSlBHQGFkZmMyMDA4LjQzOTg0YjI3Ij48L2E+PGJyPg0KPGJy
+Pg0KPGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5OkV4byAyO2ZvbnQtc2l6ZTo4cHQ7Y29sb3I6IzAwMDAw
+MDsiPkRpcmVjdCAmbmJzcDs8L2ZvbnQ+PGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5OkV4byAyO2ZvbnQt
+c2l6ZTo4cHQ7Y29sb3I6IzAwOEE4NjsiPjUwNS0zOTYtNzEwOTwvZm9udD48YnI+DQo8Zm9udCBzdHls
+ZT0iZm9udC1mYW1pbHk6RXhvIDI7Zm9udC1zaXplOjhwdDtjb2xvcjp3aW5kb3d0ZXh0OyI+Q2VsbCAm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDs8L2ZvbnQ+PGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5
+OkV4byAyO2ZvbnQtc2l6ZTo4cHQ7Y29sb3I6IzAwOEE4NjsiPjQwOC01MTQtNzgyMTwvZm9udD48YnI+
+DQo8YnI+DQo8Zm9udCBzaXplPSIxIiBmYWNlPSJFeG8gMiI+NjEwMCBVcHRvd24gQmx2ZCBORSwgU3Vp
+dGUgMjYwPGJyPg0KQWxidXF1ZXJxdWUsIE5ldyBNZXhpY28gODcxMTA8YnI+DQo8dT48c3Ryb25nPjxm
+b250IGNvbG9yPSIjMDBhMThhIj52ZXJ1c3Jlc2VhcmNoLm5ldDwvZm9udD48L3N0cm9uZz48L3U+PGJy
+Pg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTwvZm9udD48L3A+DQo8cCBjbGFzcz0iSW1wcmlu
+dFVuaXF1ZUlEIj4mbmJzcDs8L3A+DQo8cCBjbGFzcz0iSW1wcmludFVuaXF1ZUlEIj48L3A+DQoKPHA+
+Tk9USUNFOiZuYnNwOyBUaGlzIGVsZWN0cm9uaWMgbWFpbCBtZXNzYWdlIGlzIGludGVuZGVkIGV4Y2x1
+c2l2ZWx5IGZvciB0aGUgaW5kaXZpZHVhbCBvciBlbnRpdHkgdG8gd2hpY2ggaXQgaXMgYWRkcmVzc2Vk
+LiBUaGlzIG1lc3NhZ2UsIHRvZ2V0aGVyIHdpdGggYW55IGF0dGFjaG1lbnQsIG1heSBjb250YWluIHNl
+bnNpdGl2ZSBvciBwcml2aWxlZ2VkIGluZm9ybWF0aW9uLiZuYnNwOyBBbnkgdW5hdXRob3JpemVkIHJl
+dmlldywgdXNlLCBwcmludGluZywgcmV0ZW50aW9uLCBjb3B5aW5nLCBkaXNjbG9zdXJlLCBvciBkaXN0
+cmlidXRpb24gb2Ygc2FpZCBlbWFpbCBpcyBzdHJpY3RseSBwcm9oaWJpdGVkLiZuYnNwOyBJZiB5b3Ug
+aGF2ZSByZWNlaXZlZCB0aGlzIG1lc3NhZ2UgaW4gZXJyb3IsIHBsZWFzZSAoMSkgaW1tZWRpYXRlbHkg
+YWR2aXNlIHRoZSBzZW5kZXIgYnkgcmVwbHkgZW1haWwgbWVzc2FnZSBhbmQgKDIpIGRlbGV0ZSBhbGwg
+Y29waWVzIG9mIHRoaXMgbWVzc2FnZS48L3A+Cgo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---0000000000005cc3aa06025cefc7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_b5bf1f1390be47c492e41b6a268bc155verusresearchnet_--
 
-<div dir=3D"ltr"><div>I think you checked out the wrong branch. Looking at =
-your [INFO] statement, it says you&#39;re using a2a04e31, which is the late=
-st commit on master. 5.2 is also the version you should get from the master=
- branch. The &quot;4.4&quot; hasn&#39;t been updated on master yet because =
-it&#39;s not released yet.<br></div><div><br></div><div>Wade<br> </div></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On F=
-ri, Aug 4, 2023 at 12:53=E2=80=AFPM Victor Levin via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi al=
-l,<div><br></div><div>I am using an X410 with=C2=A0X4_200 FPGA and latest F=
-W as downloaded by <font face=3D"Menlo">uhd_images_downloader=C2=A0-t sdimg=
- -t x4xx. </font>This initially was working (uhd_usrp_probe and other calls=
- went through fine) using UHD 4.4.0.0 on the host.=C2=A0</div><div><br></di=
-v><div>In order to use DPDK, I pulled the UHD repo from version branch V4.4=
-.0.0 and recompiled with the ENABLE_DPDK flag turned on. After doing this, =
-I sanity tested the newly compiled and installed UHD without DPDK.=C2=A0</d=
-iv><div><br></div><div>Here is the output from uhd_usrp_probe:</div><div><f=
-ont face=3D"Menlo"><br></font></div><div><div><font face=3D"Menlo">[INFO] [=
-UHD] linux; GNU C++ version 11.3.0; Boost_107400; DPDK_21.11; UHD_4.4.0.hea=
-ds-v4.4.0.0-265-ga2a04e31</font></div><div><font face=3D"Menlo">[WARNING] [=
-PREFS] Loaded config from /root/.uhd. This location is considered deprecate=
-d, consider moving your config file to /root/.config instead.</font></div><=
-div><font face=3D"Menlo">[INFO] [MPMD] Initializing 1 device(s) in parallel=
- with args: mgmt_addr=3D192.168.15.2,type=3Dx4xx,product=3Dx410,serial=3D32=
-57310,name=3Dni-x4xx-3257310,fpga=3DX4_200,claimed=3DFalse,addr=3D192.168.1=
-5.2</font></div><div><font face=3D"Menlo">[ERROR] [MPMD] MPM major compat n=
-umber mismatch. Expected: 5.2 Actual: 4.4. Please update the version of MPM=
- on your USRP device.</font></div><div><font face=3D"Menlo">Error: RuntimeE=
-rror: MPM major compat number mismatch. Expected: 5.2 Actual: 4.4. Please u=
-pdate the version of MPM on your USRP device.</font></div><div><br></div><d=
-iv>I don=E2=80=99t understand where 5.2 has come from. It looks like the ho=
-st UHD is expecting 5.2. However the branch of UHD host that I compiled is =
-definitely UHD_4.4 as show in the first line of the output. Running=C2=A0<s=
-pan style=3D"font-family:Menlo">uhd_images_downloader </span>again after re=
-compiling still pulls the same sdimg file as before so updating the FW agai=
-n doesn=E2=80=99t help.=C2=A0</div></div><div><br></div><div>Anyone know wh=
-at=E2=80=99s going on here?=C2=A0</div><div><br></div><div>Thanks,</div><di=
-v>Victor</div></div>_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+--_004_b5bf1f1390be47c492e41b6a268bc155verusresearchnet_
+Content-Type: image/jpeg; name="imagefb6a74.JPG"
+Content-Description: imagefb6a74.JPG
+Content-Disposition: inline; filename="imagefb6a74.JPG"; size=8478;
+	creation-date="Mon, 07 Aug 2023 22:47:47 GMT";
+	modification-date="Mon, 07 Aug 2023 22:47:47 GMT"
+Content-ID: <imagefb6a74.JPG@adfc2008.43984b27>
+Content-Transfer-Encoding: base64
 
---0000000000005cc3aa06025cefc7--
+/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/
+4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRyUkdCIFhZWiAHzgACAAkABgAxAABhY3Nw
+TVNGVAAAAABJRUMgc1JHQgAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLUhQICAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFjcHJ0AAABUAAAADNkZXNjAAABhAAA
+AGx3dHB0AAAB8AAAABRia3B0AAACBAAAABRyWFlaAAACGAAAABRnWFlaAAACLAAAABRiWFlaAAAC
+QAAAABRkbW5kAAACVAAAAHBkbWRkAAACxAAAAIh2dWVkAAADTAAAAIZ2aWV3AAAD1AAAACRsdW1p
+AAAD+AAAABRtZWFzAAAEDAAAACR0ZWNoAAAEMAAAAAxyVFJDAAAEPAAACAxnVFJDAAAEPAAACAxi
+VFJDAAAEPAAACAx0ZXh0AAAAAENvcHlyaWdodCAoYykgMTk5OCBIZXdsZXR0LVBhY2thcmQgQ29t
+cGFueQAAZGVzYwAAAAAAAAASc1JHQiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAAABJzUkdCIElFQzYx
+OTY2LTIuMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+WFlaIAAAAAAAAPNRAAEAAAABFsxYWVogAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUA
+AAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z2Rlc2MAAAAAAAAAFklF
+QyBodHRwOi8vd3d3LmllYy5jaAAAAAAAAAAAAAAAFklFQyBodHRwOi8vd3d3LmllYy5jaAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkZXNjAAAAAAAAAC5JRUMg
+NjE5NjYtMi4xIERlZmF1bHQgUkdCIGNvbG91ciBzcGFjZSAtIHNSR0IAAAAAAAAAAAAAAC5JRUMg
+NjE5NjYtMi4xIERlZmF1bHQgUkdCIGNvbG91ciBzcGFjZSAtIHNSR0IAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAZGVzYwAAAAAAAAAsUmVmZXJlbmNlIFZpZXdpbmcgQ29uZGl0aW9uIGluIElFQzYxOTY2
+LTIuMQAAAAAAAAAAAAAALFJlZmVyZW5jZSBWaWV3aW5nIENvbmRpdGlvbiBpbiBJRUM2MTk2Ni0y
+LjEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHZpZXcAAAAAABOk/gAUXy4AEM8UAAPtzAAEEwsA
+A1yeAAAAAVhZWiAAAAAAAEwJVgBQAAAAVx/nbWVhcwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA
+Ao8AAAACc2lnIAAAAABDUlQgY3VydgAAAAAAAAQAAAAABQAKAA8AFAAZAB4AIwAoAC0AMgA3ADsA
+QABFAEoATwBUAFkAXgBjAGgAbQByAHcAfACBAIYAiwCQAJUAmgCfAKQAqQCuALIAtwC8AMEAxgDL
+ANAA1QDbAOAA5QDrAPAA9gD7AQEBBwENARMBGQEfASUBKwEyATgBPgFFAUwBUgFZAWABZwFuAXUB
+fAGDAYsBkgGaAaEBqQGxAbkBwQHJAdEB2QHhAekB8gH6AgMCDAIUAh0CJgIvAjgCQQJLAlQCXQJn
+AnECegKEAo4CmAKiAqwCtgLBAssC1QLgAusC9QMAAwsDFgMhAy0DOANDA08DWgNmA3IDfgOKA5YD
+ogOuA7oDxwPTA+AD7AP5BAYEEwQgBC0EOwRIBFUEYwRxBH4EjASaBKgEtgTEBNME4QTwBP4FDQUc
+BSsFOgVJBVgFZwV3BYYFlgWmBbUFxQXVBeUF9gYGBhYGJwY3BkgGWQZqBnsGjAadBq8GwAbRBuMG
+9QcHBxkHKwc9B08HYQd0B4YHmQesB78H0gflB/gICwgfCDIIRghaCG4IggiWCKoIvgjSCOcI+wkQ
+CSUJOglPCWQJeQmPCaQJugnPCeUJ+woRCicKPQpUCmoKgQqYCq4KxQrcCvMLCwsiCzkLUQtpC4AL
+mAuwC8gL4Qv5DBIMKgxDDFwMdQyODKcMwAzZDPMNDQ0mDUANWg10DY4NqQ3DDd4N+A4TDi4OSQ5k
+Dn8Omw62DtIO7g8JDyUPQQ9eD3oPlg+zD88P7BAJECYQQxBhEH4QmxC5ENcQ9RETETERTxFtEYwR
+qhHJEegSBxImEkUSZBKEEqMSwxLjEwMTIxNDE2MTgxOkE8UT5RQGFCcUSRRqFIsUrRTOFPAVEhU0
+FVYVeBWbFb0V4BYDFiYWSRZsFo8WshbWFvoXHRdBF2UXiReuF9IX9xgbGEAYZRiKGK8Y1Rj6GSAZ
+RRlrGZEZtxndGgQaKhpRGncanhrFGuwbFBs7G2MbihuyG9ocAhwqHFIcexyjHMwc9R0eHUcdcB2Z
+HcMd7B4WHkAeah6UHr4e6R8THz4faR+UH78f6iAVIEEgbCCYIMQg8CEcIUghdSGhIc4h+yInIlUi
+giKvIt0jCiM4I2YjlCPCI/AkHyRNJHwkqyTaJQklOCVoJZclxyX3JicmVyaHJrcm6CcYJ0kneier
+J9woDSg/KHEooijUKQYpOClrKZ0p0CoCKjUqaCqbKs8rAis2K2krnSvRLAUsOSxuLKIs1y0MLUEt
+di2rLeEuFi5MLoIuty7uLyQvWi+RL8cv/jA1MGwwpDDbMRIxSjGCMbox8jIqMmMymzLUMw0zRjN/
+M7gz8TQrNGU0njTYNRM1TTWHNcI1/TY3NnI2rjbpNyQ3YDecN9c4FDhQOIw4yDkFOUI5fzm8Ofk6
+Njp0OrI67zstO2s7qjvoPCc8ZTykPOM9Ij1hPaE94D4gPmA+oD7gPyE/YT+iP+JAI0BkQKZA50Ep
+QWpBrEHuQjBCckK1QvdDOkN9Q8BEA0RHRIpEzkUSRVVFmkXeRiJGZ0arRvBHNUd7R8BIBUhLSJFI
+10kdSWNJqUnwSjdKfUrESwxLU0uaS+JMKkxyTLpNAk1KTZNN3E4lTm5Ot08AT0lPk0/dUCdQcVC7
+UQZRUFGbUeZSMVJ8UsdTE1NfU6pT9lRCVI9U21UoVXVVwlYPVlxWqVb3V0RXklfgWC9YfVjLWRpZ
+aVm4WgdaVlqmWvVbRVuVW+VcNVyGXNZdJ114XcleGl5sXr1fD19hX7NgBWBXYKpg/GFPYaJh9WJJ
+Ypxi8GNDY5dj62RAZJRk6WU9ZZJl52Y9ZpJm6Gc9Z5Nn6Wg/aJZo7GlDaZpp8WpIap9q92tPa6dr
+/2xXbK9tCG1gbbluEm5rbsRvHm94b9FwK3CGcOBxOnGVcfByS3KmcwFzXXO4dBR0cHTMdSh1hXXh
+dj52m3b4d1Z3s3gReG54zHkqeYl553pGeqV7BHtje8J8IXyBfOF9QX2hfgF+Yn7CfyN/hH/lgEeA
+qIEKgWuBzYIwgpKC9INXg7qEHYSAhOOFR4Wrhg6GcobXhzuHn4gEiGmIzokziZmJ/opkisqLMIuW
+i/yMY4zKjTGNmI3/jmaOzo82j56QBpBukNaRP5GokhGSepLjk02TtpQglIqU9JVflcmWNJaflwqX
+dZfgmEyYuJkkmZCZ/JpomtWbQpuvnByciZz3nWSd0p5Anq6fHZ+Ln/qgaaDYoUehtqImopajBqN2
+o+akVqTHpTilqaYapoum/adup+CoUqjEqTepqaocqo+rAqt1q+msXKzQrUStuK4trqGvFq+LsACw
+dbDqsWCx1rJLssKzOLOutCW0nLUTtYq2AbZ5tvC3aLfguFm40blKucK6O7q1uy67p7whvJu9Fb2P
+vgq+hL7/v3q/9cBwwOzBZ8Hjwl/C28NYw9TEUcTOxUvFyMZGxsPHQce/yD3IvMk6ybnKOMq3yzbL
+tsw1zLXNNc21zjbOts83z7jQOdC60TzRvtI/0sHTRNPG1EnUy9VO1dHWVdbY11zX4Nhk2OjZbNnx
+2nba+9uA3AXcit0Q3ZbeHN6i3ynfr+A24L3hROHM4lPi2+Nj4+vkc+T85YTmDeaW5x/nqegy6Lzp
+RunQ6lvq5etw6/vshu0R7ZzuKO6070DvzPBY8OXxcvH/8ozzGfOn9DT0wvVQ9d72bfb794r4Gfio
++Tj5x/pX+uf7d/wH/Jj9Kf26/kv+3P9t////2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMF
+BwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcI
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCABa
+ANwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIE
+AwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJico
+KSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZ
+mqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6
+/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAEC
+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
 
---===============2505820772355895606==
+--_004_b5bf1f1390be47c492e41b6a268bc155verusresearchnet_--
+
+--===============6666761193233531113==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -202,4 +353,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2505820772355895606==--
+--===============6666761193233531113==--
