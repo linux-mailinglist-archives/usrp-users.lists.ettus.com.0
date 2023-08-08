@@ -2,162 +2,293 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17494773928
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 10:50:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 374DC773A62
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 15:17:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 341633849D1
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 04:50:23 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A895B380EE7
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 09:17:31 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1691484623; bh=5gicLQUzMwNiY/7ThEb1reLGeiLLr/rAYbxA+Aon1NA=;
-	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1691500651; bh=K14vmZIPgWW8+04As8qtl4qTmpmHvMn0TFUoCwcQR4c=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=QQEYBkXEzitdPy/rm3untxoEXzNQCJhc7nte7nUTHCANg1XM6rilF1ajwG9CRmv4d
-	 QYQq3ujn4OVlQmvu+VSNXZqk1KYFah4DZfSuw+u6HUgTiUdNxHouCEDDs7Z9x1oRUU
-	 SdzejimHFGEE9r1q/tmKm5JjSTtVYqpb6qrH5zCYx2Yh4QmfTgvWdxXyGZf4Y4yEfP
-	 NDrloGr0xy1Wc9YfWu4i3bc97cARevuy8OHDD50UlDUFFUlqFoL0ZvW6B61GzmSvsw
-	 jZC/UdxDjC5buoE6wG7K3PI3C4RjBNSCTege7Q+j+bWQ+Ihsh96ep9WE2KIgxsZc+P
-	 qmOnJHL7Ddpeg==
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2135.outbound.protection.outlook.com [40.107.21.135])
-	by mm2.emwd.com (Postfix) with ESMTPS id CFF49383C09
-	for <usrp-users@lists.ettus.com>; Tue,  8 Aug 2023 04:50:08 -0400 (EDT)
+	 From;
+	b=Pos0gyAbuROJRLfhEWqRZA/0BhVFiIiGEq6EVg/3eAcmQyiL9O1JJ9xJHDw33PvCA
+	 DHR444XsMIdFNQII2yFcj8IS0pgEyRhAJ3TB2ChJDlG8GXPAU0WzkyKBZ7h6q0/jrj
+	 lqVn7FlIhMog3tTXZjCQComoKDEQ2ofl9e1XjoSSzd7ikNNZsN5TAp7WqwkkGKRhJI
+	 nWia3nO0FHq8RDQJRrVg6S3moH3Ozgg8xddOlKskqEK/bSgwFHEbNGCHaYrHnNfOeM
+	 vLviZ+Wao+OF1Y1SrZQj6X8ETE5VWQ8RNwFqSnqbH5BGKdN8EbC+JkSzTb7eGojZde
+	 7IJaJgnu1T4ew==
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id 11D9D380E39
+	for <usrp-users@lists.ettus.com>; Tue,  8 Aug 2023 09:16:56 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="WBMvgmV9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gcv3aRW4";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K/LFYQ3/6UnsYXO0qfSYPAX2GhBgvMll5oCZrUfiiQ6cBowykYaQOmv8nfc+O4Ndt6dQNlfubrg07n1TFlJQ3MtAC92rlYZMAT/krrPG0WLidmniAYBr5Zws1whsIJbptD1tRJoKdGq94Dnp342JVMNMXdyg/jLwznrGoyjtfdwV55X8ekbpf5ezKfWhmP/cqBXarWGrkMsHRArU/G9gduHjHzDHpwi1qOjhYi6r9ynkBZCQutttnx3T9oA7OQBBFI/fgtLWWl2Eri7Ok5ubHjN5bwNdmm0kj1yk6xvtuXwmyIdwLA4f9vUI5pgN/vLAXy8u1ZkxNMUomNL0yGw0uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TcQtJL8yvPMzo3JAC6X4UEsjv/YmURD0b/HzT9BiH44=;
- b=DWIFVC9O15C0ev1BmT9Q5/+i+idSNkGwf1L9tNi7GNIKyrGhcgz+6QHP9AiCdcV53VnBOMAnkvucw0WpTjNJAx0kjqOatKuZmh6vu/qwBIa+sQsnmfPCDvY21h6cE0t+ECuD+Oju6+O5oRj7GyS92V0KjpRF0HauBFX7kslIA2SzagIPEgUaX+2XYgOZB+zEy6Dr1jYSgQlbwb3JAmrD5yiWupvWwNDPwgN6GRU0HANtf5cgYUcXzJd+GOg2WnMx5EggLqDmod0+cEVk56JH12NlIm0cKFArl9qjZukRr3puyKU/5qdLq81udYRzKTnzadf+ZhX5xZ4lZNCjJ8DAeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TcQtJL8yvPMzo3JAC6X4UEsjv/YmURD0b/HzT9BiH44=;
- b=WBMvgmV97tESQ0gqF3xzD7B7DDl1H0CV8xEdn2wGQIhaT29UgA7ffnAUKGE4K4taSq+7UfJ87bHvr1HQCkBkBzLLeMBitjy9fus6wSsijCwRvMWWwKkRWIgMIhPGk3r/nEivsmi0nvCOeUecZaRrDe+AkehMwkDJT47szfwvn1Y=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ulb.be;
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::6) by
- PA4P190MB1229.EURP190.PROD.OUTLOOK.COM (2603:10a6:102:bc::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6652.27; Tue, 8 Aug 2023 08:50:06 +0000
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::cdc0:e362:b943:dee4]) by GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::cdc0:e362:b943:dee4%4]) with mapi id 15.20.6652.026; Tue, 8 Aug 2023
- 08:50:06 +0000
-Date: Tue, 8 Aug 2023 10:50:04 +0200
-To: usrp-users@lists.ettus.com
-Message-ID: <20230808085004.v75hgpwwsbsoste4@barbe>
-Mail-Followup-To: usrp-users@lists.ettus.com
-References: <000606bb86184761902823fdb9093d73@iis.fraunhofer.de>
-Content-Disposition: inline
-In-Reply-To: <000606bb86184761902823fdb9093d73@iis.fraunhofer.de>
-X-ClientProxiedBy: AM0PR02CA0095.eurprd02.prod.outlook.com
- (2603:10a6:208:154::36) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:150:6e::6)
+Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-63d170a649eso36359486d6.3
+        for <usrp-users@lists.ettus.com>; Tue, 08 Aug 2023 06:16:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691500616; x=1692105416;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g5e5AAlx1YkTwIdc9XvOSs1wBBGeNLjf9eR7U8EyFM8=;
+        b=gcv3aRW4OspP3tRp08HZM/SkZ4b5VyayUPQodbk4FuDPW61MWxXYq7b33hNXN8HdzG
+         rS6BZWB0dPVseGoZmwam6a3FtwZKZ8V78+UDO/i+pzHtFh7Z9Yk8yyM6dGSPQTJY6sbJ
+         yorn6MN+Tg/f1j+TPuFDoZPNZBfviWdDahp6mtJt3i4Y0ABmGshCmHzBD8kFG8HUaoOe
+         kPxwBkVY9hyxgPHIT3bVcFCZrFwXEIWuSs+C2INppXLLsXmaAZeOC8q8Kt29+gvLQ/xl
+         vxupBIQt2hMbEZv8vBGJWX6elRnqdyL/npFChPbcKIxBvMPpTOYrwcetLII4cUkPD8Ne
+         SHNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691500616; x=1692105416;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=g5e5AAlx1YkTwIdc9XvOSs1wBBGeNLjf9eR7U8EyFM8=;
+        b=IRsihtFBdw+vU8whgt5EyHkQBe7t6gxB0YkQoNIAKYjfCibPGxvMR5otf3Q1Xqq9uL
+         rM3w7sCYHljoLK+yOHHGMiyRznUWpL2USLXrVPGVk+u0aH4rZhx68ez2veP6dsWTm0za
+         mL3ytQAzcfV4vUSNDPOk773LWg4bKLUOkAkOu49zmDc8+WzxbZWRwFWZ8k2xujSQ3zlW
+         Z3+W+5om/r5g5sgZ+NmPK/UcaAYWXndISTCERi0ETh17u41UWpWjxfPJCpcxcTtPtGeq
+         nxN4EbZIIQbV9jEJp3iHpgDJ0/ETn33KbSuzYtOGXfvgGv0KSx0ExMENMcrXOXU3yefs
+         HLPQ==
+X-Gm-Message-State: AOJu0Yyn7X5DbLMR4QDszAIT6eQsk1qE+KWDHl4FJ/iP5Em1HnI20aKq
+	2d90Q+fIqUkTAFCsMlpDugPY+n8Btb8=
+X-Google-Smtp-Source: AGHT+IFO6c/Oxl94Hwc5zXdA6HqFTpQ3JPpdTNISFewSJY73LNw/+Fzx/zvA29PgVgjAVYRuqQ90Wg==
+X-Received: by 2002:a05:6214:4291:b0:63d:6138:1027 with SMTP id og17-20020a056214429100b0063d61381027mr13062095qvb.42.1691500616126;
+        Tue, 08 Aug 2023 06:16:56 -0700 (PDT)
+Received: from [192.168.2.164] ([174.93.1.40])
+        by smtp.googlemail.com with ESMTPSA id w25-20020a0cb559000000b0062439f05b87sm3682631qvd.45.2023.08.08.06.16.55
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Aug 2023 06:16:55 -0700 (PDT)
+Message-ID: <d9b5f24d-d20b-6701-c828-0744b9690f37@gmail.com>
+Date: Tue, 8 Aug 2023 09:16:47 -0400
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXP190MB1848:EE_|PA4P190MB1229:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3fc584f3-65b8-46e0-fd7c-08db97ec76d3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	QSbBC9CgvW9gUc/CgCTo77aw66bL3Sso9NKHJ81CLMbxeqFvGP4LdXD/+8zde+U4CgmYxmMBI8omW+bkq12wfJkX5iwdhxtC2L/kIj8p9mC11a1tZQ8kgjYhPcwAYmkuJ/2bMp0QJFaPRmUcGoGS7cIV09rl8SBqeadQGMMWYSz25z/naXKh30+HfhH1G17rWvp9wabTdZG+rLHzp8LODaaA5OLmlah+jRdyXFxmHiWgR8avUwgwylswV2YqVJBvuEWKAglRip3OgLpwWK4TlEo24wrXU1/5pYNQbZat6HiJ7zeTkWUkQqdq10OAXj5RS3PA01juTZ0SaPLqTZPoZL3aS0/7huRLdpVRfOOZ6GSpNulWLAKF1G38CNu68U2nDjsLJtzUliubz57of94n/eVQOZIXgd72Sg3o4v3wtbivdmEhWAkPPES+oOaAGQXaTsWEpiTB6h2PMzPBYPeVT0uHZ4cSqFMW/juYopYWMh35RtVy1qZ1jy0Azdd/zN2oUoy6ZgFubX/XhTZ6R6nhNMWMUYxqOw7wJzybPDiKiwDJI4QPjBMeA7+z+bh+nLTK
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(7916004)(366004)(396003)(39860400002)(376002)(136003)(346002)(451199021)(1800799003)(186006)(83380400001)(786003)(316002)(33716001)(66476007)(41300700001)(66556008)(6916009)(6506007)(66946007)(1076003)(38100700002)(8936002)(8676002)(53546011)(6486002)(5660300002)(52116002)(6512007)(9686003)(478600001)(86362001)(4744005)(2906002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?N0tlTFRVUkU4SE5DdThlZEZlSWY3WS9xNE5aSVlGVnI1WGRJOStyK3UzQU81?=
- =?utf-8?B?ZmhjeDZhNTdobFI5UEhRQ21jT0U2b3g4VjZQRWpLWFczazhJcTg3bnpuN0hv?=
- =?utf-8?B?TU5IVFlpZDgvdDEvUHJua0wrQXJMQ0ZwUUE1UFVvcGRvbStvWkF3dndXaXps?=
- =?utf-8?B?ZjhKV1ArYXFndXhWNlpJbWwrNjVxWC8wNHR3ajhaajR0MzhPWGY5bVU2UGty?=
- =?utf-8?B?c1ljQ1JKd2Q0QjZ5L1hpbElhWmtOaytEbmhEeXRzQUc1aE4rR3BYa3NnS0d3?=
- =?utf-8?B?S3FPeHZza3dvMWpsaTBDT05PNGdUT1lrYnlXWTM5RzhCYXNTTDc0M2dSNWxR?=
- =?utf-8?B?UGxDbyszeVcreUtXRU5wbXhxajRmRit1UDJ3SlN1VmNGMDlwNmF4WmpMaFJk?=
- =?utf-8?B?Sk9qUGRtU09FUWc4TzUvMjFLWUhwTnJqUFQyaC9IUFUvTm5XODBzR1BTOU1t?=
- =?utf-8?B?cm5YZERodDZDSThrVTQ5TGtGRERtL3REd0NOL3NFWUZhTGgwdyttMXQ1MEpr?=
- =?utf-8?B?dEhLN0RuSTBvUDRPV3NMTEFHOHhMSE5SSTFRclBKZjlzWXBWdjBzWWRjdGxr?=
- =?utf-8?B?cjY4R0s2L3JiOE1vQUhoQXJpMlFvMWwxQyt2TE15cElYME1IbHVzbUd5eUZP?=
- =?utf-8?B?YnpsL04rTzQxRW1TRlFKa3N4QXZjaGlpQ0hCUEY5SkN1cGRJbVdXQVdNWEJI?=
- =?utf-8?B?SnZkbS91bnc1ZjBDeS94M1pHU1kvTlpPYnlDT1gwdTE2d2txdkQ1Z00vT3dK?=
- =?utf-8?B?eTNxejZ4QTJtenBvZFRXZVhsWU1XaWNDemRQdTFaTmpybTU2bTU2TnFaYWN5?=
- =?utf-8?B?eUxLUDRtY2JvYTZMMGVROSs3T3Q5KytvTVpNU0VxOS9ZK3NOUm5uMmt2N0h1?=
- =?utf-8?B?dmhHR0RaSHp1OFdwanpRUW84MC9INDNCOW81cDdac2RoU2xNRk5Kem5Ib1FB?=
- =?utf-8?B?SUNJTlk2b1R4VkZmRzhlVVBnQkY5Mmk3Z1RtSmxZc3JqRVJqaGhMZTBXUUs0?=
- =?utf-8?B?Rld0MFRrc1R1dVhVOUhBM2lGTis2NEszTDFJNlNERFBOOXRGYVJXYUs2Tms5?=
- =?utf-8?B?Nkk1aGw2aFhZYjlLNWhMZXo1YXlBNW4wMFhRa1J6OG5OQkpKWm5YbGNjUjVJ?=
- =?utf-8?B?WnNyVWpxVllFKzVYM05hS3FxTlREOTNaSlRxcVRHSDVxVkRVdTN0MlBUSHd4?=
- =?utf-8?B?Z1hoUnREdXRqUXBQbGZrUWNSTU9lV3N6SnBBSHk1R1dZcmc3cGhWY21iRjhy?=
- =?utf-8?B?ZjFZSjVVMUwxbzlhWG1aY1VTWkJwZERRakM2bzcwdGM2UWNFL0xIaktOUk5T?=
- =?utf-8?B?ckdJbVRxajhSQmxmNDF3dEtPdldYSkU1MEUvSzhYNTc2eFh0U1BUMjdIWlU1?=
- =?utf-8?B?czNidFgyQ1Z5WDl0eHg3VEpqMGIvQnY1UitFdG10cGh1V09zenF4eVdNWi9I?=
- =?utf-8?B?V1BDNlB6WWVnMEdBTG1QaUtsa3VFTGZKRTVWQnByOWcybUdqYkU2cHBscnNp?=
- =?utf-8?B?NmlvcDNabzNqQTM1elVyN1RrbUlGdXMzdE51aGc0REU4cmNZMks5c1lGL3lz?=
- =?utf-8?B?NElvTHduTExxd2xFNXNIT0FGRkxObWdOSmNaSk1Wa05SMWoxZXhEVTluSXM0?=
- =?utf-8?B?UUhXNDQxM3kvcmI4RnVGcU90TEliSE0rK1ZCUG1FNU9tOU53V1Fna0xDaHEv?=
- =?utf-8?B?b2xtbDV3aWlsTXJ0alpRUitlMVNtS0NXRlZwRzJUd3REVVIvcklCRU1URlNJ?=
- =?utf-8?B?ZjNYZTVqUFRyY1RtVXJyTHJUT3VtckVUdlpEd0l6Nm9GSkx1K2xwcjQwNlBu?=
- =?utf-8?B?eW05cVgzd1BrK1JZYXFPUGgxTllqRWNaRGU3b3pZUmNXais3U1gyYW40SEQ1?=
- =?utf-8?B?TXIxS2ZkZTVjQ3ZJZTVyZDlFM1pxd2toTTdNTml0WmhWY0ptZEl1eGFEVXJL?=
- =?utf-8?B?SlVqZXR1VWx3RlUvZzkyUDZyMWRqM2N6c1N1N0hxOTk3NEFFV2YrQ0liVldE?=
- =?utf-8?B?NnNDalFrRHJyVk40UURtT0dhZWR3ZFFQZklvQnBGdVRwajZOZ1R3bFc1KzJ2?=
- =?utf-8?B?RVJzdS9uNWNTK1EyeDZWTVhMS3NNQVRHTnlST1VUazhRYmpUUnVmK1VBaHNC?=
- =?utf-8?B?cjFpaUEya0ZWM3ZBbmZaMllMUFBEQ3I5RllCYW05dytlTUYxRkZtd1dxbUE0?=
- =?utf-8?B?MEFFNFF3VG0xUStkWG9oV2dDVzlqaUFXaWtpZTd6UmdlSkdDeW01MWpwUXpK?=
- =?utf-8?B?TGpTa2J5MUVTR0I0Q0NwbmtWbkl3PT0=?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3fc584f3-65b8-46e0-fd7c-08db97ec76d3
-X-MS-Exchange-CrossTenant-AuthSource: GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2023 08:50:06.6065
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gYPoigUbmMFTGaM7An9+7DlB6zHxKX7nQG5xlR8KEjjBQfdntRsE+EhaqVTR1m8gbG/3ZMxPQhk+zIvAzogdTA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4P190MB1229
-Message-ID-Hash: WHQKGOZWP6CO2Q6P6SJZUGOTATKADN5H
-X-Message-ID-Hash: WHQKGOZWP6CO2Q6P6SJZUGOTATKADN5H
-X-MailFrom: cedric.hannotier@ulb.be
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <viSAyZ66GXhV7V2Jm3fjUlq7XNuQh7OojevJXuMvmA@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <viSAyZ66GXhV7V2Jm3fjUlq7XNuQh7OojevJXuMvmA@lists.ettus.com>
+Message-ID-Hash: UX6Z5L6WGKZ4BFBJLAJPSILCXBXV5DSP
+X-Message-ID-Hash: UX6Z5L6WGKZ4BFBJLAJPSILCXBXV5DSP
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD 4.3: RFNoC image builder "ModuleNotFoundError: No module named 'uhd'"
+Subject: [USRP-users] Re: Device Serial, Name and Product ID Corruption Issue on Misusage of b2xx_fx3_utils for B210
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WHQKGOZWP6CO2Q6P6SJZUGOTATKADN5H/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UX6Z5L6WGKZ4BFBJLAJPSILCXBXV5DSP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8599121046339362342=="
 
-SGVsbG8gTHVjYSwNCg0KT24gMjAyMy0wOC0wOCAwODowMyArMDAwMCwgQmFjaG1haWVyLCBMdWNh
-IHdyb3RlOg0KPiBJIHJlY2VudGx5IGluc3RhbGxlZCB0aGUgVUhEIDQuMyBvdmVyIG15IHBhY2th
-Z2UgbWFuYWdlcjoNCj4gICAgICAgICAgICAgIHN1ZG8gYXB0IGluc3RhbGwgbGlidWhkLWRldg0K
-PiANCj4gV2hlbiB0cnlpbmcgdG8gc3RhcnQgdGhlIFJGTm9DIGltYWdlIGJ1aWxkZXIsIEkgZ2V0
-IHRoZSBmb2xsb3dpbmcgZXJyb3I6DQo+ICAgICAgICAgICAgICByZm5vY19pbWFnZV9idWlsZGVy
-IC1GIH4vZGV2L3VoZC9mcGdhIC15IC4vbjMxMF9yZm5vY19pbWFnZV9jb3JlLnltbCAtdCBOMzEw
-X1hHDQo+IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KToNCj4gICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgRmlsZSAiL3Vzci9iaW4vcmZub2NfaW1hZ2VfYnVpbGRlciIsIGxpbmUg
-MjksIGluIDxtb2R1bGU+DQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgZnJvbSB1aGQuaW1nYnVpbGRlciBpbXBvcnQgaW1hZ2VfYnVpbGRlcg0KPiBNb2R1bGVOb3RG
-b3VuZEVycm9yOiBObyBtb2R1bGUgbmFtZWQgJ3VoZCcNClsuLi5dDQo+IEl0IHNlZW1zIGxpa2Ug
-bm90aGluZyBpcyBpbnN0YWxsZWQgaW4gLi4uL3B5dGhvbjMvLi4uIG9yIC4uLi9weXRob24zLjEx
-Ly4uLi4gVGhlIE9TIEkgdXNlIGlzIERlYmlhbiAxMiB3aXRoIFB5dGhvbjMuMTEuIENvdWxkIHRo
-aXMgYmUgYSBwcm9ibGVtPyBJIHdvdWxkIGJlIHZlcnkgaGFwcHkgdG8gaGVhciBoZWxwLg0KDQpZ
-b3UgYWxzbyBuZWVkIHRvIHB1bGwgcHl0aG9uMy11aGQgdG8gZ2V0IHRoZSBVSEQgcHl0aG9uIEFQ
-SSwNCmkuZS4gc3VkbyBhcHQgaW5zdGFsbCBweXRob24zLXVoZC4NCkl0IHNlZW1zIHRoYXQgaXQg
-aXMgbm90IHB1bGxlZCBieSBkZWZhdWx0IPCfpLcuDQoNClJlZ2FyZHMNCi0tIA0KDQpDw6lkcmlj
-IEhhbm5vdGllcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpU
-byB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0
-dXMuY29tCg==
+This is a multi-part message in MIME format.
+--===============8599121046339362342==
+Content-Type: multipart/alternative;
+ boundary="------------0St2yRcbTX2t6BsA1OztD5Jl"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------0St2yRcbTX2t6BsA1OztD5Jl
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+On 08/08/2023 03:56, edenmclaughlin123@gmail.com wrote:
+>
+> Hello,
+>
+> I have an Ettus B210 device that I have been experimenting with for=20
+> some time. I had a need to turn on and off the device on a remote=20
+> host. I intended to apply the bootloader for fx3 to the device. While=20
+> playing around with the b2xx_fx3_utils, I loaded the bootloader of the=20
+> device with =E2=80=9Cusrp_b210_fpga.rpt=E2=80=9D by mistake. After foll=
+owing the steps=20
+> by Benito Horta discussed in the B200 shows up as Cypress FX3 USB=20
+> Bootloader Device FIXED steps taken=20
+> <https://usrp-users.ettus.narkive.com/7S6MYwCo/b200-shows-up-as-cypress=
+-fx3-usb-bootloader-device-fixed-steps-taken>,=20
+> I managed to recover from this situation somewhat.
+>
+> Problem:
+>
+>  *
+>
+>     Device cannot be initialized though api calls (such as from
+>     Python) or uhd_usrp_probe etc.
+>
+> Error Message:
+>
+>  *
+>
+>     "Error: RuntimeError: B200 unknown product code: 0x3120"
+>
+> Cause:
+>
+>  *
+>
+>     My suspicion is that the device mb eeprom: serial, name and
+>     product ID are corrupted (from what I understand from the error
+>     message and the uhd_find_devices output).
+>
+> Note that the uhd_find_devices output is,
+>
+> [INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400; DPDK_21.11;=20
+> UHD_4.3.0.0-release
+> --------------------------------------------------
+> -- UHD Device 0
+> --------------------------------------------------
+> Device Address:
+> =C2=A0 =C2=A0 serial: SP48A1s:
+> =C2=A0 =C2=A0 name: 6 =C2=A0 =C2=A025%
+> =C2=A0 =C2=A0 product: B2??
+> =C2=A0 =C2=A0 type: b200
+>
+> I am using UHD-4.3 and Ubuntu 22.04. I tried loading firmware, FGPA=20
+> and bootloader files using ./b2xx_fx3_utils.
+>
+> I read About the Motherboard and Daughtercard EEPROM on USRP Devices=20
+> <https://kb.ettus.com/About_the_Motherboard_and_Daughtercard_EEPROM_on_=
+USRP_Devices>=20
+> and I need guidance on using the ./usrp_burn_mb_eeprom tool. Has=20
+> anyone had anything like happened before? I worry the eeprom writes=20
+> are undoable, nevertheless, any suggestion about the issue is appreciat=
+ed.
+>
+>
+> Cheers,
+>
+> Eden.
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+What happens if you use "--read-all" on usrp_burn_mb_eeprom?
+
+That will give you a list of what it thinks the various keys in EEPROM ar=
+e.
+
+
+--------------0St2yRcbTX2t6BsA1OztD5Jl
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 08/08/2023 03:56,
+      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:edenmclaughlin=
+123@gmail.com">edenmclaughlin123@gmail.com</a> wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:viSAyZ66GXhV7V2Jm3fjUlq7XNuQh7OojevJXuMvmA@lists.ettus.=
+com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <p>Hello,</p>
+      <p>I have an Ettus B210 device that I have been experimenting with
+        for some time. I had a need to turn on and off the device on a
+        remote host. I intended to apply the bootloader for fx3 to the
+        device. While playing around with the b2xx_fx3_utils, I loaded
+        the bootloader of the device with =E2=80=9Cusrp_b210_fpga.rpt=E2=80=
+=9D by
+        mistake. After following the steps by Benito Horta discussed in
+        the <a
+href=3D"https://usrp-users.ettus.narkive.com/7S6MYwCo/b200-shows-up-as-cy=
+press-fx3-usb-bootloader-device-fixed-steps-taken"
+title=3D"https://usrp-users.ettus.narkive.com/7S6MYwCo/b200-shows-up-as-c=
+ypress-fx3-usb-bootloader-device-fixed-steps-taken"
+          moz-do-not-send=3D"true">B200 shows up as Cypress FX3 USB
+          Bootloader Device FIXED steps taken</a>, I managed to recover
+        from this situation somewhat.</p>
+      <p>Problem:</p>
+      <ul>
+        <li>
+          <p>Device cannot be initialized though api calls (such as from
+            Python) or uhd_usrp_probe etc.</p>
+        </li>
+      </ul>
+      <p>Error Message:</p>
+      <ul>
+        <li>
+          <p>"Error: RuntimeError: B200 unknown product code: 0x3120"</p>
+        </li>
+      </ul>
+      <p>Cause:</p>
+      <ul>
+        <li>
+          <p>My suspicion is that the device mb eeprom: serial, name and
+            product ID are corrupted (from what I understand from the
+            error message and the uhd_find_devices output).</p>
+        </li>
+      </ul>
+      <p>Note that the uhd_find_devices output is,</p>
+      <p>[INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400;
+        DPDK_21.11; UHD_4.3.0.0-release<br>
+        --------------------------------------------------<br>
+        -- UHD Device 0<br>
+        --------------------------------------------------<br>
+        Device Address:<br>
+        =C2=A0 =C2=A0 serial: SP48A1s: <br>
+        =C2=A0 =C2=A0 name: 6 =C2=A0 =C2=A025% =C2=A0<br>
+        =C2=A0 =C2=A0 product: B2??<br>
+        =C2=A0 =C2=A0 type: b200<br>
+        <br>
+      </p>
+      <p>I am using UHD-4.3 and Ubuntu 22.04. I tried loading firmware,
+        FGPA and bootloader files using ./b2xx_fx3_utils.</p>
+      <p>I read <a
+href=3D"https://kb.ettus.com/About_the_Motherboard_and_Daughtercard_EEPRO=
+M_on_USRP_Devices"
+title=3D"https://kb.ettus.com/About_the_Motherboard_and_Daughtercard_EEPR=
+OM_on_USRP_Devices"
+          moz-do-not-send=3D"true">About the Motherboard and Daughtercard
+          EEPROM on USRP Devices</a> and I need guidance on using the
+        ./usrp_burn_mb_eeprom tool. Has anyone had anything like
+        happened before? I worry the eeprom writes are undoable,
+        nevertheless, any suggestion about the issue is appreciated.</p>
+      <p><br>
+      </p>
+      <p>Cheers,</p>
+      <p>Eden.</p>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    What happens if you use "--read-all" on usrp_burn_mb_eeprom?<br>
+    <br>
+    That will give you a list of what it thinks the various keys in
+    EEPROM are.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------0St2yRcbTX2t6BsA1OztD5Jl--
+
+--===============8599121046339362342==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============8599121046339362342==--
