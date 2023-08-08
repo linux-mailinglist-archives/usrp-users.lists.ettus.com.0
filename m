@@ -2,275 +2,162 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044D37738CE
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 10:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17494773928
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 10:50:24 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 546AE383F00
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 04:04:06 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 341633849D1
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 04:50:23 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1691481846; bh=ErH1f+q2JAoyRkAltz7KzVQ0kM2pytUHTvvNMCIcANA=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=gBgZdGaX6/a0AfcEmbsIPe5CZqPerGvK+P7fKv6iY7lnKTpAelGJdnfqIJimQNY3q
-	 kSZMwPbrsaBTTXoz2HDgI1JJzqgLdAp4qIaEWz8VRSrKjN9el0bg/ij5TMqKh5/41n
-	 rvK7ZJw3mWl3778Cu+teWfICKFNezdCdM7q6GGtKVp/nkfbdiMSqFFZlA9cJzGG//n
-	 /xgkys3Mzvr1rgSIJ7Sz1ZjYiF/w+sT7lgCSk271YCj6ysqgxFr7rILPxred8Sub4h
-	 cFxfGXSkIvNNnidNLWxwgtlh8RVn9jwirw4xL4Xrk8gzedNyLsDM9dhfJIcqv07OrV
-	 rhsJ/ewthg+nA==
-Received: from mx-relay10-hz1.antispameurope.com (mx-relay10-hz1.antispameurope.com [94.100.132.210])
-	by mm2.emwd.com (Postfix) with ESMTPS id CE1B8383EB2
-	for <usrp-users@lists.ettus.com>; Tue,  8 Aug 2023 04:03:50 -0400 (EDT)
-Received: from mailgw1.iis.fraunhofer.de ([153.96.172.4]) by mx-relay10-hz1.antispameurope.com;
- Tue, 08 Aug 2023 10:03:48 +0200
-Received: from mail.iis.fraunhofer.de (unknown [153.96.171.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mailgw1.iis.fraunhofer.de (Postfix) with ESMTPS id 2FB59C004A
-	for <usrp-users@lists.ettus.com>; Tue,  8 Aug 2023 10:03:40 +0200 (CEST)
-Received: from mail05.iis.fhg.de (2001:638:a0a:1111::215) by mail06.iis.fhg.de
- (2001:638:a0a:1111::216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 8 Aug 2023
- 10:03:39 +0200
-Received: from mail05.iis.fhg.de ([fe80::2564:37d:9a5e:29ec]) by
- mail05.iis.fhg.de ([fe80::2564:37d:9a5e:29ec%6]) with mapi id 15.02.0986.042;
- Tue, 8 Aug 2023 10:03:39 +0200
-From: "Bachmaier, Luca" <luca.bachmaier@iis.fraunhofer.de>
-To: usrp-users <usrp-users@lists.ettus.com>
-Thread-Topic: UHD 4.3: RFNoC image builder "ModuleNotFoundError: No module
- named 'uhd'"
-Thread-Index: AdnJzjuJgNXUX+++Q4ONQSrZC+SkZA==
-Date: Tue, 8 Aug 2023 08:03:39 +0000
-Message-ID: <000606bb86184761902823fdb9093d73@iis.fraunhofer.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [153.96.171.210]
+	t=1691484623; bh=5gicLQUzMwNiY/7ThEb1reLGeiLLr/rAYbxA+Aon1NA=;
+	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=QQEYBkXEzitdPy/rm3untxoEXzNQCJhc7nte7nUTHCANg1XM6rilF1ajwG9CRmv4d
+	 QYQq3ujn4OVlQmvu+VSNXZqk1KYFah4DZfSuw+u6HUgTiUdNxHouCEDDs7Z9x1oRUU
+	 SdzejimHFGEE9r1q/tmKm5JjSTtVYqpb6qrH5zCYx2Yh4QmfTgvWdxXyGZf4Y4yEfP
+	 NDrloGr0xy1Wc9YfWu4i3bc97cARevuy8OHDD50UlDUFFUlqFoL0ZvW6B61GzmSvsw
+	 jZC/UdxDjC5buoE6wG7K3PI3C4RjBNSCTege7Q+j+bWQ+Ihsh96ep9WE2KIgxsZc+P
+	 qmOnJHL7Ddpeg==
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2135.outbound.protection.outlook.com [40.107.21.135])
+	by mm2.emwd.com (Postfix) with ESMTPS id CFF49383C09
+	for <usrp-users@lists.ettus.com>; Tue,  8 Aug 2023 04:50:08 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="WBMvgmV9";
+	dkim-atps=neutral
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K/LFYQ3/6UnsYXO0qfSYPAX2GhBgvMll5oCZrUfiiQ6cBowykYaQOmv8nfc+O4Ndt6dQNlfubrg07n1TFlJQ3MtAC92rlYZMAT/krrPG0WLidmniAYBr5Zws1whsIJbptD1tRJoKdGq94Dnp342JVMNMXdyg/jLwznrGoyjtfdwV55X8ekbpf5ezKfWhmP/cqBXarWGrkMsHRArU/G9gduHjHzDHpwi1qOjhYi6r9ynkBZCQutttnx3T9oA7OQBBFI/fgtLWWl2Eri7Ok5ubHjN5bwNdmm0kj1yk6xvtuXwmyIdwLA4f9vUI5pgN/vLAXy8u1ZkxNMUomNL0yGw0uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TcQtJL8yvPMzo3JAC6X4UEsjv/YmURD0b/HzT9BiH44=;
+ b=DWIFVC9O15C0ev1BmT9Q5/+i+idSNkGwf1L9tNi7GNIKyrGhcgz+6QHP9AiCdcV53VnBOMAnkvucw0WpTjNJAx0kjqOatKuZmh6vu/qwBIa+sQsnmfPCDvY21h6cE0t+ECuD+Oju6+O5oRj7GyS92V0KjpRF0HauBFX7kslIA2SzagIPEgUaX+2XYgOZB+zEy6Dr1jYSgQlbwb3JAmrD5yiWupvWwNDPwgN6GRU0HANtf5cgYUcXzJd+GOg2WnMx5EggLqDmod0+cEVk56JH12NlIm0cKFArl9qjZukRr3puyKU/5qdLq81udYRzKTnzadf+ZhX5xZ4lZNCjJ8DAeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
+ header.d=ulb.be; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TcQtJL8yvPMzo3JAC6X4UEsjv/YmURD0b/HzT9BiH44=;
+ b=WBMvgmV97tESQ0gqF3xzD7B7DDl1H0CV8xEdn2wGQIhaT29UgA7ffnAUKGE4K4taSq+7UfJ87bHvr1HQCkBkBzLLeMBitjy9fus6wSsijCwRvMWWwKkRWIgMIhPGk3r/nEivsmi0nvCOeUecZaRrDe+AkehMwkDJT47szfwvn1Y=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=ulb.be;
+Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::6) by
+ PA4P190MB1229.EURP190.PROD.OUTLOOK.COM (2603:10a6:102:bc::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6652.27; Tue, 8 Aug 2023 08:50:06 +0000
+Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+ ([fe80::cdc0:e362:b943:dee4]) by GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+ ([fe80::cdc0:e362:b943:dee4%4]) with mapi id 15.20.6652.026; Tue, 8 Aug 2023
+ 08:50:06 +0000
+Date: Tue, 8 Aug 2023 10:50:04 +0200
+To: usrp-users@lists.ettus.com
+Message-ID: <20230808085004.v75hgpwwsbsoste4@barbe>
+Mail-Followup-To: usrp-users@lists.ettus.com
+References: <000606bb86184761902823fdb9093d73@iis.fraunhofer.de>
+Content-Disposition: inline
+In-Reply-To: <000606bb86184761902823fdb9093d73@iis.fraunhofer.de>
+X-ClientProxiedBy: AM0PR02CA0095.eurprd02.prod.outlook.com
+ (2603:10a6:208:154::36) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:150:6e::6)
 MIME-Version: 1.0
-X-cloud-security-sender: luca.bachmaier@iis.fraunhofer.de
-X-cloud-security-recipient: usrp-users@lists.ettus.com
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Virusscan: CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay10-hz1.antispameurope.com with 7801B1126640
-X-cloud-security-connect: mailgw1.iis.fraunhofer.de[153.96.172.4], TLS=1, IP=153.96.172.4
-X-cloud-security-Digest: 532997d1e8f2c5100f8525d2eab61b7b
-X-cloud-security: scantime:4.943
-Message-ID-Hash: UCYUUAZYW7ZAI6ZFFRE2TKQ667OBOJX3
-X-Message-ID-Hash: UCYUUAZYW7ZAI6ZFFRE2TKQ667OBOJX3
-X-MailFrom: prvs=0577bb9075=luca.bachmaier@iis.fraunhofer.de
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXP190MB1848:EE_|PA4P190MB1229:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3fc584f3-65b8-46e0-fd7c-08db97ec76d3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	QSbBC9CgvW9gUc/CgCTo77aw66bL3Sso9NKHJ81CLMbxeqFvGP4LdXD/+8zde+U4CgmYxmMBI8omW+bkq12wfJkX5iwdhxtC2L/kIj8p9mC11a1tZQ8kgjYhPcwAYmkuJ/2bMp0QJFaPRmUcGoGS7cIV09rl8SBqeadQGMMWYSz25z/naXKh30+HfhH1G17rWvp9wabTdZG+rLHzp8LODaaA5OLmlah+jRdyXFxmHiWgR8avUwgwylswV2YqVJBvuEWKAglRip3OgLpwWK4TlEo24wrXU1/5pYNQbZat6HiJ7zeTkWUkQqdq10OAXj5RS3PA01juTZ0SaPLqTZPoZL3aS0/7huRLdpVRfOOZ6GSpNulWLAKF1G38CNu68U2nDjsLJtzUliubz57of94n/eVQOZIXgd72Sg3o4v3wtbivdmEhWAkPPES+oOaAGQXaTsWEpiTB6h2PMzPBYPeVT0uHZ4cSqFMW/juYopYWMh35RtVy1qZ1jy0Azdd/zN2oUoy6ZgFubX/XhTZ6R6nhNMWMUYxqOw7wJzybPDiKiwDJI4QPjBMeA7+z+bh+nLTK
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(7916004)(366004)(396003)(39860400002)(376002)(136003)(346002)(451199021)(1800799003)(186006)(83380400001)(786003)(316002)(33716001)(66476007)(41300700001)(66556008)(6916009)(6506007)(66946007)(1076003)(38100700002)(8936002)(8676002)(53546011)(6486002)(5660300002)(52116002)(6512007)(9686003)(478600001)(86362001)(4744005)(2906002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?N0tlTFRVUkU4SE5DdThlZEZlSWY3WS9xNE5aSVlGVnI1WGRJOStyK3UzQU81?=
+ =?utf-8?B?ZmhjeDZhNTdobFI5UEhRQ21jT0U2b3g4VjZQRWpLWFczazhJcTg3bnpuN0hv?=
+ =?utf-8?B?TU5IVFlpZDgvdDEvUHJua0wrQXJMQ0ZwUUE1UFVvcGRvbStvWkF3dndXaXps?=
+ =?utf-8?B?ZjhKV1ArYXFndXhWNlpJbWwrNjVxWC8wNHR3ajhaajR0MzhPWGY5bVU2UGty?=
+ =?utf-8?B?c1ljQ1JKd2Q0QjZ5L1hpbElhWmtOaytEbmhEeXRzQUc1aE4rR3BYa3NnS0d3?=
+ =?utf-8?B?S3FPeHZza3dvMWpsaTBDT05PNGdUT1lrYnlXWTM5RzhCYXNTTDc0M2dSNWxR?=
+ =?utf-8?B?UGxDbyszeVcreUtXRU5wbXhxajRmRit1UDJ3SlN1VmNGMDlwNmF4WmpMaFJk?=
+ =?utf-8?B?Sk9qUGRtU09FUWc4TzUvMjFLWUhwTnJqUFQyaC9IUFUvTm5XODBzR1BTOU1t?=
+ =?utf-8?B?cm5YZERodDZDSThrVTQ5TGtGRERtL3REd0NOL3NFWUZhTGgwdyttMXQ1MEpr?=
+ =?utf-8?B?dEhLN0RuSTBvUDRPV3NMTEFHOHhMSE5SSTFRclBKZjlzWXBWdjBzWWRjdGxr?=
+ =?utf-8?B?cjY4R0s2L3JiOE1vQUhoQXJpMlFvMWwxQyt2TE15cElYME1IbHVzbUd5eUZP?=
+ =?utf-8?B?YnpsL04rTzQxRW1TRlFKa3N4QXZjaGlpQ0hCUEY5SkN1cGRJbVdXQVdNWEJI?=
+ =?utf-8?B?SnZkbS91bnc1ZjBDeS94M1pHU1kvTlpPYnlDT1gwdTE2d2txdkQ1Z00vT3dK?=
+ =?utf-8?B?eTNxejZ4QTJtenBvZFRXZVhsWU1XaWNDemRQdTFaTmpybTU2bTU2TnFaYWN5?=
+ =?utf-8?B?eUxLUDRtY2JvYTZMMGVROSs3T3Q5KytvTVpNU0VxOS9ZK3NOUm5uMmt2N0h1?=
+ =?utf-8?B?dmhHR0RaSHp1OFdwanpRUW84MC9INDNCOW81cDdac2RoU2xNRk5Kem5Ib1FB?=
+ =?utf-8?B?SUNJTlk2b1R4VkZmRzhlVVBnQkY5Mmk3Z1RtSmxZc3JqRVJqaGhMZTBXUUs0?=
+ =?utf-8?B?Rld0MFRrc1R1dVhVOUhBM2lGTis2NEszTDFJNlNERFBOOXRGYVJXYUs2Tms5?=
+ =?utf-8?B?Nkk1aGw2aFhZYjlLNWhMZXo1YXlBNW4wMFhRa1J6OG5OQkpKWm5YbGNjUjVJ?=
+ =?utf-8?B?WnNyVWpxVllFKzVYM05hS3FxTlREOTNaSlRxcVRHSDVxVkRVdTN0MlBUSHd4?=
+ =?utf-8?B?Z1hoUnREdXRqUXBQbGZrUWNSTU9lV3N6SnBBSHk1R1dZcmc3cGhWY21iRjhy?=
+ =?utf-8?B?ZjFZSjVVMUwxbzlhWG1aY1VTWkJwZERRakM2bzcwdGM2UWNFL0xIaktOUk5T?=
+ =?utf-8?B?ckdJbVRxajhSQmxmNDF3dEtPdldYSkU1MEUvSzhYNTc2eFh0U1BUMjdIWlU1?=
+ =?utf-8?B?czNidFgyQ1Z5WDl0eHg3VEpqMGIvQnY1UitFdG10cGh1V09zenF4eVdNWi9I?=
+ =?utf-8?B?V1BDNlB6WWVnMEdBTG1QaUtsa3VFTGZKRTVWQnByOWcybUdqYkU2cHBscnNp?=
+ =?utf-8?B?NmlvcDNabzNqQTM1elVyN1RrbUlGdXMzdE51aGc0REU4cmNZMks5c1lGL3lz?=
+ =?utf-8?B?NElvTHduTExxd2xFNXNIT0FGRkxObWdOSmNaSk1Wa05SMWoxZXhEVTluSXM0?=
+ =?utf-8?B?UUhXNDQxM3kvcmI4RnVGcU90TEliSE0rK1ZCUG1FNU9tOU53V1Fna0xDaHEv?=
+ =?utf-8?B?b2xtbDV3aWlsTXJ0alpRUitlMVNtS0NXRlZwRzJUd3REVVIvcklCRU1URlNJ?=
+ =?utf-8?B?ZjNYZTVqUFRyY1RtVXJyTHJUT3VtckVUdlpEd0l6Nm9GSkx1K2xwcjQwNlBu?=
+ =?utf-8?B?eW05cVgzd1BrK1JZYXFPUGgxTllqRWNaRGU3b3pZUmNXais3U1gyYW40SEQ1?=
+ =?utf-8?B?TXIxS2ZkZTVjQ3ZJZTVyZDlFM1pxd2toTTdNTml0WmhWY0ptZEl1eGFEVXJL?=
+ =?utf-8?B?SlVqZXR1VWx3RlUvZzkyUDZyMWRqM2N6c1N1N0hxOTk3NEFFV2YrQ0liVldE?=
+ =?utf-8?B?NnNDalFrRHJyVk40UURtT0dhZWR3ZFFQZklvQnBGdVRwajZOZ1R3bFc1KzJ2?=
+ =?utf-8?B?RVJzdS9uNWNTK1EyeDZWTVhMS3NNQVRHTnlST1VUazhRYmpUUnVmK1VBaHNC?=
+ =?utf-8?B?cjFpaUEya0ZWM3ZBbmZaMllMUFBEQ3I5RllCYW05dytlTUYxRkZtd1dxbUE0?=
+ =?utf-8?B?MEFFNFF3VG0xUStkWG9oV2dDVzlqaUFXaWtpZTd6UmdlSkdDeW01MWpwUXpK?=
+ =?utf-8?B?TGpTa2J5MUVTR0I0Q0NwbmtWbkl3PT0=?=
+X-OriginatorOrg: ulb.be
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3fc584f3-65b8-46e0-fd7c-08db97ec76d3
+X-MS-Exchange-CrossTenant-AuthSource: GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2023 08:50:06.6065
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gYPoigUbmMFTGaM7An9+7DlB6zHxKX7nQG5xlR8KEjjBQfdntRsE+EhaqVTR1m8gbG/3ZMxPQhk+zIvAzogdTA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4P190MB1229
+Message-ID-Hash: WHQKGOZWP6CO2Q6P6SJZUGOTATKADN5H
+X-Message-ID-Hash: WHQKGOZWP6CO2Q6P6SJZUGOTATKADN5H
+X-MailFrom: cedric.hannotier@ulb.be
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] UHD 4.3: RFNoC image builder "ModuleNotFoundError: No module named 'uhd'"
+Subject: [USRP-users] Re: UHD 4.3: RFNoC image builder "ModuleNotFoundError: No module named 'uhd'"
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UCYUUAZYW7ZAI6ZFFRE2TKQ667OBOJX3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WHQKGOZWP6CO2Q6P6SJZUGOTATKADN5H/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2132129746716704013=="
+From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---===============2132129746716704013==
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_000606bb86184761902823fdb9093d73iisfraunhoferde_"
-
---_000_000606bb86184761902823fdb9093d73iisfraunhoferde_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hello everyone,
-
-I recently installed the UHD 4.3 over my package manager:
-             sudo apt install libuhd-dev
-
-When trying to start the RFNoC image builder, I get the following error:
-             rfnoc_image_builder -F ~/dev/uhd/fpga -y ./n310_rfnoc_image_co=
-re.yml -t N310_XG
-Traceback (most recent call last):
-                           File "/usr/bin/rfnoc_image_builder", line 29, in=
- <module>
-                                         from uhd.imgbuilder import image_b=
-uilder
-ModuleNotFoundError: No module named 'uhd'
-
-There seems to be a problem with the location of the UHD python module. uhd=
-_config_info prints the following:
-             UHD 4.3.0.0+ds1-5
-Enabled components: LibUHD, LibUHD - C API, LibUHD - Python API, Examples, =
-Utils, Tests, USB, B100, B200, USRP1, USRP2, X300, MPMD, SIM, N300, N320, E=
-320,
-E300, X400, OctoClock
-Install prefix: /usr
-Boost version: 1.74
-Libusb version: 1.0.27
-Library path: /lib/x86_64-linux-gnu
-Package path: /lib
-
-I already checked the PYTHONPATH variable, and tried looking for the module=
- myself manually. However, I am not able to find it. Looking for all folder=
-s named "uhd" in my system with "sudo find / -name "uhd"" prints the follow=
-ing:
-./usr/share/uhd
-./usr/include/uhd
-./usr/libexec/uhd
-./usr/lib/x86_64-linux-gnu/cmake/uhd
-
-It seems like nothing is installed in .../python3/... or .../python3.11/...=
-. The OS I use is Debian 12 with Python3.11. Could this be a problem? I wou=
-ld be very happy to hear help.
-
-Thank you and regards
-Luca
-
-
---_000_000606bb86184761902823fdb9093d73iisfraunhoferde_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello everyone,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I recently installed the UHD 4.=
-3 over my package manager:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sudo apt install libuhd-dev<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">When trying to start the RFNoC =
-image builder, I get the following error:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rfnoc_image_builder -F ~/dev/uhd/=
-fpga -y ./n310_rfnoc_image_core.yml -t N310_XG<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt;text-indent:35.4pt"><spa=
-n lang=3D"EN-US">Traceback (most recent call last):<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File &quot;/usr/bin/rfnoc_ima=
-ge_builder&quot;, line 29, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from uhd.imgbuilder =
-import image_builder<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt;text-indent:35.4pt"><spa=
-n lang=3D"EN-US">ModuleNotFoundError: No module named 'uhd'<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">There seems to be a problem wit=
-h the location of the UHD python module. uhd_config_info prints the followi=
-ng:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UHD 4.3.0.0&#43;ds1-5<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span lang=3D"EN-US">En=
-abled components: LibUHD, LibUHD - C API, LibUHD - Python API, Examples, Ut=
-ils, Tests, USB, B100, B200, USRP1, USRP2, X300, MPMD, SIM, N300, N320, E32=
-0,<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt;text-indent:35.4pt"><spa=
-n lang=3D"EN-US">E300, X400, OctoClock<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:35.4pt"><span lang=3D"EN-US">In=
-stall prefix: /usr<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:35.4pt"><span lang=3D"EN-US">Bo=
-ost version: 1.74<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:35.4pt"><span lang=3D"EN-US">Li=
-busb version: 1.0.27<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:35.4pt"><span lang=3D"EN-US">Li=
-brary path: /lib/x86_64-linux-gnu<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:35.4pt"><span lang=3D"EN-US">Pa=
-ckage path: /lib
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I already checked the PYTHONPAT=
-H variable, and tried looking for the module myself manually. However, I am=
- not able to find it. Looking for all folders named &#8220;uhd&#8221; in my=
- system with &#8220;sudo find / -name &#8220;uhd&#8221;&#8221; prints the
- following:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">./usr/share/uhd<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">./usr/include/uhd<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">./usr/libexec/uhd<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">./usr/lib/x86_64-linux-gnu/cmak=
-e/uhd<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">It seems like nothing is instal=
-led in &#8230;/python3/&#8230; or &#8230;/python3.11/&#8230;. The OS I use =
-is Debian 12 with Python3.11. Could this be a problem? I would be very happ=
-y to hear help.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you and regards<br>
-Luca<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
-</html>
-
---_000_000606bb86184761902823fdb9093d73iisfraunhoferde_--
-
---===============2132129746716704013==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2132129746716704013==--
+SGVsbG8gTHVjYSwNCg0KT24gMjAyMy0wOC0wOCAwODowMyArMDAwMCwgQmFjaG1haWVyLCBMdWNh
+IHdyb3RlOg0KPiBJIHJlY2VudGx5IGluc3RhbGxlZCB0aGUgVUhEIDQuMyBvdmVyIG15IHBhY2th
+Z2UgbWFuYWdlcjoNCj4gICAgICAgICAgICAgIHN1ZG8gYXB0IGluc3RhbGwgbGlidWhkLWRldg0K
+PiANCj4gV2hlbiB0cnlpbmcgdG8gc3RhcnQgdGhlIFJGTm9DIGltYWdlIGJ1aWxkZXIsIEkgZ2V0
+IHRoZSBmb2xsb3dpbmcgZXJyb3I6DQo+ICAgICAgICAgICAgICByZm5vY19pbWFnZV9idWlsZGVy
+IC1GIH4vZGV2L3VoZC9mcGdhIC15IC4vbjMxMF9yZm5vY19pbWFnZV9jb3JlLnltbCAtdCBOMzEw
+X1hHDQo+IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KToNCj4gICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgRmlsZSAiL3Vzci9iaW4vcmZub2NfaW1hZ2VfYnVpbGRlciIsIGxpbmUg
+MjksIGluIDxtb2R1bGU+DQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgZnJvbSB1aGQuaW1nYnVpbGRlciBpbXBvcnQgaW1hZ2VfYnVpbGRlcg0KPiBNb2R1bGVOb3RG
+b3VuZEVycm9yOiBObyBtb2R1bGUgbmFtZWQgJ3VoZCcNClsuLi5dDQo+IEl0IHNlZW1zIGxpa2Ug
+bm90aGluZyBpcyBpbnN0YWxsZWQgaW4gLi4uL3B5dGhvbjMvLi4uIG9yIC4uLi9weXRob24zLjEx
+Ly4uLi4gVGhlIE9TIEkgdXNlIGlzIERlYmlhbiAxMiB3aXRoIFB5dGhvbjMuMTEuIENvdWxkIHRo
+aXMgYmUgYSBwcm9ibGVtPyBJIHdvdWxkIGJlIHZlcnkgaGFwcHkgdG8gaGVhciBoZWxwLg0KDQpZ
+b3UgYWxzbyBuZWVkIHRvIHB1bGwgcHl0aG9uMy11aGQgdG8gZ2V0IHRoZSBVSEQgcHl0aG9uIEFQ
+SSwNCmkuZS4gc3VkbyBhcHQgaW5zdGFsbCBweXRob24zLXVoZC4NCkl0IHNlZW1zIHRoYXQgaXQg
+aXMgbm90IHB1bGxlZCBieSBkZWZhdWx0IPCfpLcuDQoNClJlZ2FyZHMNCi0tIA0KDQpDw6lkcmlj
+IEhhbm5vdGllcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpU
+byB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0
+dXMuY29tCg==
