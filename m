@@ -2,173 +2,186 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ECD877457E
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 20:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FBC57745A6
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 20:44:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6AECF384120
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 14:42:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9BAFA384A83
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Aug 2023 14:44:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1691520171; bh=H1msnr1qjnwEUUzrQlI8GiiQX1dvTiapmAlf/iTiaiE=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=UgNXVdNkfrFhOkvyHKEIeV3llKOFqaZ2RmUtspMP04aLh08Sdh+aPsi0J261zLDOk
-	 ykZrq/5Pc1MgjzhQZpoxXVhR2fn70Y6CyTA5KSyd+0SOitlmSKjTh1XHZ1lgPQ1fAw
-	 qnqBrGaD/gCcsUBA0vh89kXNXI90t5KHPNqypmUxyhzpC2/LEOUDoxtFwVixoTYDY4
-	 qf+sjp2cIMj73JLcS62u/zOwTQrcMSbK7QK4Zd4DabtRbF2Svub8oHqJebjYC0gjs2
-	 rQZ/F9S7iU5Yodv/yQP3AlJfZFROXHiYU+SBh+SI4OjkLFMKgkCeMiGK9N4gBYetlg
-	 xeSoT89p+LNZw==
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02olkn2033.outbound.protection.outlook.com [40.92.15.33])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0DE49383FCD
-	for <usrp-users@lists.ettus.com>; Tue,  8 Aug 2023 14:42:15 -0400 (EDT)
+	t=1691520287; bh=CXqjEx/H4jYgEH4SpV0L7Scp0N0VGkGz3J5YY9Usvv8=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=AMk6URNnv2geT7qu17NJP3M9M0E37recr5fPHG6olAvdBOu/MBJ6f/iRKODqFIoiY
+	 F74fkt96DaM/UG7geAoQ6BmPCvhW1oVefcrWDL17Qr7ToP+WezlQMxxiXBU7S9Bitt
+	 zejL+FApGpXNA6fdoEcSdqxAxCTXaqS7OsWL0SmU3PdsBPhim+Rg+TSIxsNimYyG4D
+	 gaH6bd+PLCbwmHRVN/LjhCsVaKsIHUVsFB584q3OFM0/dgm6NeBh4PDkYvxWt2siXu
+	 0hytXLMq03JnV028FKx/D7f+mDU06vjcLmpm3qcVPPxLeoj/x4ynxo9/CVvHhusP5u
+	 56AiEnrGOyVXg==
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id DFCA838400E
+	for <usrp-users@lists.ettus.com>; Tue,  8 Aug 2023 14:44:33 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="qyB99LMU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aveuNIhL";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lvRQOwpKn79WD2D61o/j1MemSgsw7qPUUUxP8lDsyEBcgbyEaBOEoCRYinUMJiRgYm1GaeY2Gyhvs2JBUSjFdaY91G1RwiFOlFxR+8MhbuO1bPz4Ox63cnJJIwcT8KBT+Ha4Pk2Vg9xb+0lxTR9muknMA+X2pAAOZmgzFnWcZOTsp6qgq0FbZEh44hXUqoRURzzqTh8cb8L63t4fsXtZgoC8qAy3w9qoGhS6BZkSCODIhEWmATh9lBAEF7EaaFAGbUxB0G1td99AKtFWFfSOV/3o5vnNGtDb9F24Keh0NeOa1RtB9vVV8sJr1/St/+TGXVsgLRoD080BRnwcSMcSkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k25wKrk1WM50KEr7gps8f/lRFwFTzsPX5E4w1Z7fu14=;
- b=moxg3r0yixzUo1x5LGKZBZ1sfynX4VuIG1fp87yiOb66MWzKxG/PnrOZMRUiwNiTis5HVyRX+e2lJEzhk7AcQAKbodTPkHMLK7IfKaoBTnqaheRXASGl0kV+Reie4r6fGo3WC7HegOUXxUycPAAxIZEAcXVg5xKrhsZGLFP8+9GXZCNs0QJKLOXTovoWDeR6Gdc4KIj1AmnA8s/yOErNVu5MNLbnKO0xyrh+6I/LWVYCCFPhBFx16ZjyndQXSPRGdFczr+su0sto1x1CVpt+z6hfbB8nh7/eBnv4tQ5fY/INtFKRgbQZY0y4HTzubWlDPPKZXZBoYQmGysBXw0Bjog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k25wKrk1WM50KEr7gps8f/lRFwFTzsPX5E4w1Z7fu14=;
- b=qyB99LMU7U1R2EEGumHBxcqUtjpGe6pSkg7BRaFeb+bd6tj6tfd0SjFtDkEoNqLZxpyPtwGUBuKdHIVFSv4VJLqJzDuRG+n+5rZI+AHjSGjbmzsfzlYK7LMn/phcfx7BKfB/NGXbYIxZmDZjM9DYK+Xx4B+hCuz2cz9IO/LYnBs26TMFB0QNrlCizqqj/s+hfFkP8RBGxwqndB2qdwuTeU9YcTcvlEiTu9+gAPKjf/g+6/R5td+ocjrOwvFnWJFQMDYvDBNEfBAIcTe44+VwP0/JDWH2S1dk7fqSiTAE6PtqQ7WgfjojvztiEP5ro+B3TCkgaU99ozabdgo+JCcs8Q==
-Received: from LV3P220MB1054.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:1d8::6)
- by DM8P220MB0343.NAMP220.PROD.OUTLOOK.COM (2603:10b6:8:3a::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6652.26; Tue, 8 Aug 2023 18:42:14 +0000
-Received: from LV3P220MB1054.NAMP220.PROD.OUTLOOK.COM
- ([fe80::8e06:35:b99f:c1bc]) by LV3P220MB1054.NAMP220.PROD.OUTLOOK.COM
- ([fe80::8e06:35:b99f:c1bc%3]) with mapi id 15.20.6652.026; Tue, 8 Aug 2023
- 18:42:14 +0000
-From: Michelle Salehi <herrmlm@hotmail.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Advice on transmitting trigger signal before pulse frequency on
- ettus x310 and GNU radio
-Thread-Index: AQHZyiejwqb6OHMa0E2VmpQg9OFJcQ==
-Date: Tue, 8 Aug 2023 18:42:14 +0000
-Message-ID: 
- <LV3P220MB1054372917627DB02D39F676AE0DA@LV3P220MB1054.NAMP220.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-tmn: [wYAQ0dQCl3tBBAJIxYttvwzrbd4uH0PK]
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: LV3P220MB1054:EE_|DM8P220MB0343:EE_
-x-ms-office365-filtering-correlation-id: 419a93fd-34bb-40ea-1c68-08db983f2f4b
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- bWgqGPDWxRIQWf3LK3v3FMOxENJ12YjXrwG2BSF4DZjy1vnR1Pw0K84Y9i6zmFyJWEvxqHyIXS0xDx1sj+wK60h5fnLGzx1TluK2OBDdgFass/WSc55LlYJyAFhXuvY14Izp4/2IslNr9CAnp6KTLXy7q1UKUtjmoc1Br2eG4CvfL/KnZY2MYwQCqKM2hxzk/AsGN2yKsOSqiYX2lHtmcyDTZ1WdwAlPvwlv93pjEmMN5EE35YXI4axd3T4TJDp1rn9Th40xNjmtSDP1BL9z55Sqx5hT8H6Ix1yEX73sFfd1ZnsNyD9te58mw6MJF3zl6NSNW3lBP6pzdM85u0v12LxXdy/P4kjOBRxLXh5WRcfv3ppagUvnLWlS0wH4Xt2gOFMbVrWckNELKPXBdT7ECJwKW0VhDNc61U63lrj4svBHC7YQHgwBwpwMqZj4P7gXd5F7aZFkPElRiBRTmrIBi/sDEf292cOHgGPWO8ySgPh0Myuvawenn1jAAIY9roRjn+d8Y9x9GBdqK7ZeOBUUGRjyGZOhTVpc3rR6oMUkmY2ggRRBcaD+WUu11/Vup5cf
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?o8MUyBdmPP+ch8VKjNgfUMOQgOdRkMuvUMOpyp3ftQ8yoL6DZLt7hN1FTT?=
- =?iso-8859-1?Q?fX3uxPqZE8jIeGwGIM0NyIFCEMn8H28Mqx6tlpUfjOzstrXojXOB7L9X5U?=
- =?iso-8859-1?Q?NDW5DSDG4qbDI1x3WbW85swOxrdShxnc5e4pIIQFlXLbJj3K2OSzq4NxXW?=
- =?iso-8859-1?Q?JTNpjlomtz9VXXcO4ATDL/55PEEliCmJF/Ih5o5947eceQAvE0vuOWd9+y?=
- =?iso-8859-1?Q?cAdF7b5Cml2mJjeySNMGklf1Lg5fTxGUkwo86AFMCk9Ycdccgbqd2LZuoj?=
- =?iso-8859-1?Q?lhhcGACYzVMecg572jA3okHEC9gmg2ziv5drWZbPQA8Z2duZOY+wZJlCAY?=
- =?iso-8859-1?Q?QaslM64gJWRl7HBoQbPfAMwcnkd4Ar5gw5qnxN+Ca3QFuvQWL9u2zBX6ed?=
- =?iso-8859-1?Q?LHegp5dAWHT63UZ+XO9nIpNuGykcqiUwKaN5t3eOI1rl9Ru/0xkotmS3x4?=
- =?iso-8859-1?Q?nOjefqyV5ROptpuqPoBHl+xm0oLA2a0ZXiB5vjF541XPXX9OstrUxPhYsz?=
- =?iso-8859-1?Q?t2Iqr/whuSMw1+KHmuC6o8sMeiIzcRstIjsQPxcNJxAqrfqwhuhse192GG?=
- =?iso-8859-1?Q?UkLEaBcEZphkkJTWC1rqznEsAArsrJSLfNSks5+VldhtLEXnIgfCIuplZV?=
- =?iso-8859-1?Q?CfQ7M9qGYOdfkk1PAUukEQgJ6HW1xDWeTOs2wZgw/RRU3sO9HM1axUgc+z?=
- =?iso-8859-1?Q?bGHQEttS7erx8gTBDBZQmauyIRy+Owe8mQhhmOFBVra9xXaqkg2z7qiOCx?=
- =?iso-8859-1?Q?mtYsqUbinF/GcyD9Zhj0xA0TaFRKnx8T63uY23U+B0SUutEqTiJLeDTf+x?=
- =?iso-8859-1?Q?Q14Jf6tyVMaeZeJVuxBJpFBpizb0d4djygah6QvoOPyQvhDJv+VgzqTkhP?=
- =?iso-8859-1?Q?DVk+46eAhEVgSe3oIL7B8GZbdlMdXlqtJot+EQBRdyZR6qQH7vsQ4Ny/gH?=
- =?iso-8859-1?Q?hHu91E1xIF5dxAbp0GTGOMt4TLysE76nYdr9PXsXEkYn7nOX/StZxV3PBt?=
- =?iso-8859-1?Q?dhMFEUgoBcAZRs/nHrxYnW+T8AY+RgNpQ/YtQTuyEzsETVtH1WjwLYAeEA?=
- =?iso-8859-1?Q?SCb14g/U6SpFY0cV5B4w0ZDSJQ9HYPzysMkDVK9FMXNb2b/vMBCyJ0Z20h?=
- =?iso-8859-1?Q?ym8xLiDRUThB8EmlkzaFf+NS08j5ghR4NXbP2ySbeXRo0EOUs93y1rXifD?=
- =?iso-8859-1?Q?dM7QEvA5F1n8K9rTXtlirDOItEF15N52OLu9ZA5fXohC0ioLYOMtNOF7Yb?=
- =?iso-8859-1?Q?E/kmONY0I6A6aAz1B+SQ=3D=3D?=
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-76754b9eac0so461075485a.0
+        for <usrp-users@lists.ettus.com>; Tue, 08 Aug 2023 11:44:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691520273; x=1692125073;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OChtDGuCh0uB07Dh4WSNbBG/t6a01OmenJb+34p8pBs=;
+        b=aveuNIhLHHZ2fJuItHbgHWyU+E4sgQyhrFQ5ywL2XnkWUEvaIYjv/3bL8PoBGzjSeX
+         qxoRzdxjmM6Ygii4BEIZlCYtkrxlGE8t5+wPxH/pvH3DpWQD8l8olnDvJhEe/w/PPYfu
+         dRf9wxreBNqJbGJQbs/hgAkMn8paDFkewdJmkhb2LXxSGL8cRytXXBlpXrQqG/JrEPlR
+         WnBDztOfdRR3UqaHl9z9SK51mAojqS3entYLMqCogUACqyYDze36k8YjsJ3p7aFi7Hst
+         DuIxx52MrEVTKcvLRfL+KP0AcG7IhgCpVo4/kOGGp4fnFaoMqu+1eXf7Hq9JjXM+jKq0
+         qMyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691520273; x=1692125073;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=OChtDGuCh0uB07Dh4WSNbBG/t6a01OmenJb+34p8pBs=;
+        b=ks71noi8dtjElXtQt1vD0kaPOvi/3ZY2TSf9t6r992mxzm/BiXFvKMHliaSh2Dyxsu
+         9HmDxcUcJB1abLlqqTFXgRfsdCfUmdOPh6gtWR+m9d6sF+neeqevUurAy6q3jw5e3H3H
+         eB4PnsyvxfVChggsnZxt9T9xKwFE/9A+Zr0MLMf2/tj8gIkFKHl6O/PvTnie8cOIxr/f
+         vluqSqp4lciRfNFLpOKQzSINXb6EjovTIH98fNavrhO6pXru3ll59Otm7tYSvfUpVcdL
+         5AzpOXxOyM+mCDEdfdsGqp2jMvgKLUduNqb23qN1YUifNxL+S9pyJr09AZv0L2jltG7y
+         a5CA==
+X-Gm-Message-State: AOJu0YzOtHvkWSxtmXD0Ywu0Nkr34edpLUMhB/M3OojCU769pzlBs83M
+	IXS1O4b3GKt++UvkPJJlrc7DdVtenj0=
+X-Google-Smtp-Source: AGHT+IHFHfswUdeHXWKpD8UyNpfCTdmRxslhfvWlff12VoOdaxLD5E4pA4ZPwa4gYwGdo4TO4kjYjQ==
+X-Received: by 2002:a05:620a:b58:b0:767:3b7d:687c with SMTP id x24-20020a05620a0b5800b007673b7d687cmr663562qkg.15.1691520272934;
+        Tue, 08 Aug 2023 11:44:32 -0700 (PDT)
+Received: from [192.168.2.164] ([174.93.1.40])
+        by smtp.googlemail.com with ESMTPSA id j11-20020a37c24b000000b0076ce5622df1sm3480682qkm.3.2023.08.08.11.44.32
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Aug 2023 11:44:32 -0700 (PDT)
+Message-ID: <5662b3fd-6aee-4484-0f8c-5817914152a5@gmail.com>
+Date: Tue, 8 Aug 2023 14:44:24 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-3458f.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LV3P220MB1054.NAMP220.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 419a93fd-34bb-40ea-1c68-08db983f2f4b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Aug 2023 18:42:14.6280
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8P220MB0343
-Message-ID-Hash: O4MTJO643D3Q7GNUJY5YOFHT6XAJFBEC
-X-Message-ID-Hash: O4MTJO643D3Q7GNUJY5YOFHT6XAJFBEC
-X-MailFrom: herrmlm@hotmail.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <LV3P220MB1054372917627DB02D39F676AE0DA@LV3P220MB1054.NAMP220.PROD.OUTLOOK.COM>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <LV3P220MB1054372917627DB02D39F676AE0DA@LV3P220MB1054.NAMP220.PROD.OUTLOOK.COM>
+Message-ID-Hash: VSNBHSY6NNKG5SW2S5C7TUN6ERIF7ZBE
+X-Message-ID-Hash: VSNBHSY6NNKG5SW2S5C7TUN6ERIF7ZBE
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Advice on transmitting trigger signal before pulse frequency on ettus x310 and GNU radio
+Subject: [USRP-users] Re: Advice on transmitting trigger signal before pulse frequency on ettus x310 and GNU radio
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QJWCOUOQUTR5R6533LV4HBEJ556SDBNO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VSNBHSY6NNKG5SW2S5C7TUN6ERIF7ZBE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3234368027395639711=="
+Content-Type: multipart/mixed; boundary="===============1516145500167308814=="
 
---===============3234368027395639711==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============1516145500167308814==
 Content-Type: multipart/alternative;
-	boundary="_000_LV3P220MB1054372917627DB02D39F676AE0DALV3P220MB1054NAMP_"
+ boundary="------------2mxs4901l23UpwNWkH3uaj3m"
+Content-Language: en-US
 
---_000_LV3P220MB1054372917627DB02D39F676AE0DALV3P220MB1054NAMP_
-Content-Type: text/plain; charset="iso-8859-1"
+This is a multi-part message in MIME format.
+--------------2mxs4901l23UpwNWkH3uaj3m
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi, I have a pulse frequency setup in GNU radio to transmit through an ettu=
-s x310.  I need to add a TTL signal right before the pulses and have it tur=
-ned off right after the pulse.  What is the best way to send this type of t=
-rigger signal on an ettus x310?
+On 08/08/2023 14:42, Michelle Salehi wrote:
+> Hi, I have a pulse frequency setup in GNU radio to transmit through an=20
+> ettus x310.=C2=A0 I need to add a TTL signal right before the pulses an=
+d=20
+> have it turned off right after the pulse.=C2=A0 What is the best way to=
+=20
+> send this type of trigger signal on an ettus x310?
+>
+> Thanks for your help,
+> Michelle
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+https://files.ettus.com/manual/page_gpio_api.html
 
-Thanks for your help,
-Michelle
+Getting access to that in a Gnu Radio flow-graph is going to require a=20
+bit of custom code on your part.
 
---_000_LV3P220MB1054372917627DB02D39F676AE0DALV3P220MB1054NAMP_
-Content-Type: text/html; charset="iso-8859-1"
+
+--------------2mxs4901l23UpwNWkH3uaj3m
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);" class=3D"elementToProof">
-Hi, I have a pulse frequency setup in GNU radio to transmit through an ettu=
-s x310.&nbsp; I need to add a TTL signal right before the pulses and have i=
-t turned off right after the pulse.&nbsp; What is the best way to send this=
- type of trigger signal on an ettus x310?</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);" class=3D"elementToProof">
-Thanks for your help,</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);" class=3D"elementToProof">
-Michelle</div>
-</body>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 08/08/2023 14:42, Michelle Salehi
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:LV3P220MB1054372917627DB02D39F676AE0DA@LV3P220MB1054.NAMP220.=
+PROD.OUTLOOK.COM">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
+rgin-bottom:0;}</style>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+        Hi, I have a pulse frequency setup in GNU radio to transmit
+        through an ettus x310.=C2=A0 I need to add a TTL signal right bef=
+ore
+        the pulses and have it turned off right after the pulse.=C2=A0 Wh=
+at
+        is the best way to send this type of trigger signal on an ettus
+        x310?</div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+        Thanks for your help,</div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+        Michelle</div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://files.ettus.com/ma=
+nual/page_gpio_api.html">https://files.ettus.com/manual/page_gpio_api.htm=
+l</a><br>
+    <br>
+    Getting access to that in a Gnu Radio flow-graph is going to require
+    a bit of custom code on your part.<br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_LV3P220MB1054372917627DB02D39F676AE0DALV3P220MB1054NAMP_--
+--------------2mxs4901l23UpwNWkH3uaj3m--
 
---===============3234368027395639711==
+--===============1516145500167308814==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -178,4 +191,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3234368027395639711==--
+--===============1516145500167308814==--
