@@ -2,276 +2,239 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE6C277CC04
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Aug 2023 13:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 284E377CD5D
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Aug 2023 15:38:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E8DD2384A94
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Aug 2023 07:50:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CA61D384B08
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Aug 2023 09:38:45 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1692100217; bh=ttMsJbbJZ/efDXS0UhsuJMkc9mEMHNys9prZwjP6FF4=;
-	h=From:In-Reply-To:Date:References:To:CC:Subject:List-Id:
+	t=1692106725; bh=V1m2PsZDQUAOA9IJq8wbua48AU+byJ5r4jedENloBZ8=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=AY0wdtb+ihDG3VBI3YnorYGr5ArcoKZyQN3rzJAaanqgONajXGDoLNgz3WsJTIV49
-	 c2UiI5UeQnJR925bi/nCiL7jmsHWiW7Nw8k+w3S/TeyIVieb5lR6tXzB5zAVEZea6J
-	 /hIuhm0brzwwoKUegHeGdQc3kUPj0lhARtEoTWGWkjoc/v6ZiGLMJElpLJ8ALIN8al
-	 6f4aJjg+0NegZOeW2kmyM2GW+f2ezArrJIOv/ZHwkMNva1fV42Cz6bs61uQB5veqBx
-	 J3KvuxjXscbq0dvVRAxuDaXf16tQnPNAFJzy2D9YvE9GSTk3+3k/Z3dLh9qeoEOt5/
-	 MYSKix2RR0V1g==
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	by mm2.emwd.com (Postfix) with ESMTPS id 74EEF380E99
-	for <usrp-users@lists.ettus.com>; Tue, 15 Aug 2023 07:49:46 -0400 (EDT)
+	b=XkL9FwIcRB+fTYniGf8SIR/NeryporJNTuEL+uxxchYvrHOPCqcaaJ1XLJ9sAchgv
+	 2MMK773TF+O9/wtdTEFaUQBfUXIQYu+mx8jyYRGoyqEm72Oj048O9H7VBMbs95bv3m
+	 2hd9g2nAJR2NdOBJR65SzOi/59nwE/mgAJABzrmvmrSscLZKs/4QWH/xq5g2XtbOoX
+	 yYmdcEtigBXuWP/sH0s4ZZQaIG9WjEMjTW4c2cmYJIcVP6W6zLqAwbG3EqpaWOxLaS
+	 KlMgpGHAWCdukuOG5FhD9USbslMA2TApIGIrhCgfE4bhIxR2ic/h/h1JePcDc6swD5
+	 kchLtMyGKcRnw==
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7CB88380F86
+	for <usrp-users@lists.ettus.com>; Tue, 15 Aug 2023 09:38:14 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nAKHyJvG";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20221208.gappssmtp.com header.i=@ettus-com.20221208.gappssmtp.com header.b="vbkOgrSO";
 	dkim-atps=neutral
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-765a7768f1dso439938585a.0
-        for <usrp-users@lists.ettus.com>; Tue, 15 Aug 2023 04:49:46 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-99c1f6f3884so739628866b.0
+        for <usrp-users@lists.ettus.com>; Tue, 15 Aug 2023 06:38:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692100185; x=1692704985;
-        h=to:references:message-id:date:cc:in-reply-to:from:subject
-         :mime-version:content-transfer-encoding:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CsxlXX5j6hJOWOcNGaR9S/jGQFbR52Wk88MYpzGj0/U=;
-        b=nAKHyJvGpk2dWM0fuoEemSVOeixJs6p9mxBq674xxUlZBpxdOvbq73qFrhKOL4TCUs
-         fw4cA270F8+J/posogORXpQ5LYR9u6z64ctH1WbYq/vW3+XGCXN7r90Tkm3iR9pvNahj
-         x7EYHJxfJGMxa4rXxWrw/WLU4MAl2gFDZEqdKP/0S9MSI/gxaaMkJ12LdOnPx0dFA/yv
-         EGfba6zCnXS8vIt7X44QwR7CU74WkEO+F81Dm2d/h8A7OArqJpcPiyhBqztVqgSmgsR4
-         CYNfhG4aI7RC1n1bLx1Wl/+VQ4I6jA/9mbcUY2XdeSZwgX4EGLmJ2ZovBEplUOHBh8O8
-         OEWw==
+        d=ettus-com.20221208.gappssmtp.com; s=20221208; t=1692106693; x=1692711493;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PGOgOkq0mdp40qodrMA48v/iT7xRxUi72VAoXGmifM4=;
+        b=vbkOgrSONLj2yqlk0u8HfkCE+EwQxbVDL37e75Mp/GSXzVfIytY1KGbVb0RiIr62rG
+         jd7s04a2Zmef0XNpIA0IMUppJQQ/El84Stc4KEzgd86usIsYtFzK9d5supi5zxgM7Otu
+         /6KsJaVnVr5vaFkn+IyGZO1lzIz4ykvB5YsE6Y5ib77vmMUblpXcolFAYMH2CDHdhfuS
+         9vgXPEVzRBJDZMxEAIJjVyLBF9qqocOzPNgp+wQ1spVOZgCVr2e7IgwUawwixmsW1v27
+         vSi6EPVXTuyRJ8XKk0/3JuFHq3Ux5tAaAKrYzDuaRgrgg0P0Aarrt4H/zUkXdnuNpBkd
+         DuSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692100185; x=1692704985;
-        h=to:references:message-id:date:cc:in-reply-to:from:subject
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CsxlXX5j6hJOWOcNGaR9S/jGQFbR52Wk88MYpzGj0/U=;
-        b=gxoSi18FRWmxu+MmPu8b7vuMIt8a7HGfw8hckWDo3swyox8SQqzCpnwlj5U9hVkGMr
-         ztScwPkEZ47cYVujnGJl49rjd1Fvp4mTxbx6VYKGltpbqOkcgEhbGqvwLqwcxFffmwe5
-         rrqWPNW6V2sS1wY8UMXJhSKoB5Iz+v58LRlRTjvzFTIjFSzylY4v15DMXrECr6wyw+j0
-         T0OuCQBf2Mu8oBnvuMU5wi44ip/qIISaeLQYX2f7MujqksDZRLQmrj4h2hGYU4nhd9I+
-         lmQm3krGOFB689doz6CWd5tWjfFQ1WdDr2dPB6RL+gOcBYgEeBBmUmk4Xg5+9N/K00kh
-         IV5g==
-X-Gm-Message-State: AOJu0YxWuJj8hlqlLM56VF8gumkjD9JajuuorghNd+b9kMjZctXZFXa2
-	yTNzf4Cr7Cmin3gWT0q+WI3uG+6QmDc=
-X-Google-Smtp-Source: AGHT+IG3DV8cF9E9/JCXFFfSJBdiR4SU5PsqUrVNRhbHshAqZBGPedBJjchQUMf/FMppSVtiR0ifXQ==
-X-Received: by 2002:a0c:e054:0:b0:63d:12bb:2ed0 with SMTP id y20-20020a0ce054000000b0063d12bb2ed0mr13404538qvk.6.1692100185366;
-        Tue, 15 Aug 2023 04:49:45 -0700 (PDT)
-Received: from smtpclient.apple (pool-173-72-147-192.clppva.fios.verizon.net. [173.72.147.192])
-        by smtp.gmail.com with ESMTPSA id v14-20020a0cdd8e000000b0063cfe9adb2csm4022526qvk.108.2023.08.15.04.49.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 04:49:45 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-From: Paul Atreides <maud.dib1984@gmail.com>
-In-Reply-To: <02b880039a9242748dc2f3b12ae5044a@iis.fraunhofer.de>
-Date: Tue, 15 Aug 2023 07:49:34 -0400
-Message-Id: <1061061D-5162-4B92-9F34-341306AB2D6F@gmail.com>
-References: <02b880039a9242748dc2f3b12ae5044a@iis.fraunhofer.de>
-To: "Bachmaier, Luca" <luca.bachmaier@iis.fraunhofer.de>
-X-Mailer: iPhone Mail (20G75)
-Message-ID-Hash: MIPDCERJFY4D7GBRVK4OXOIAUTMBAO2Z
-X-Message-ID-Hash: MIPDCERJFY4D7GBRVK4OXOIAUTMBAO2Z
-X-MailFrom: maud.dib1984@gmail.com
+        d=1e100.net; s=20221208; t=1692106693; x=1692711493;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PGOgOkq0mdp40qodrMA48v/iT7xRxUi72VAoXGmifM4=;
+        b=eJJzJpgelH1iFiLZwnCyJs7bwsYTHlCL7ECdYNoNaEbW1cIWr5JZzhEcdLIaT/Z1/C
+         r1rslPkFVGQI1KW8zsx/VQIKqlRoYre8tWFn3DdZWjigfK/sSz4bCfRsZ5LGyTbPS0vg
+         gZmWT2+Iu0ZaFAOmESN1+YmYfeSaUEfJ1lVZR2igY3Mg52Wc+zQaPUwjoC767Dtfh69a
+         eLz40ZE3S4NVelp7gNNAKyOkBDEHZj9ugt4jzNcaMhbzFSy9nDZ9JfmhtX2OJmUBIFKv
+         StANk+kJ4UUKCPmPtIvKgEcHxHeQlL549YEK9nT3tuS8k4q2Z071FF/xLT3LR2BwuvtF
+         +KFA==
+X-Gm-Message-State: AOJu0YwPq3B41X1MtggpGnBBH7b+AEjPZQ24+/cNntJnC1uVEwk9zTIj
+	bR8rf4oLgh5Jxhr/ILm12TEqctAlWAnzxa8MvRXnAacV
+X-Google-Smtp-Source: AGHT+IE1YQtA9MQsXfxBnJv+GdcTuWbfK1hv6I56ftG11Gq+D8Zs1DNLdaRPzqOLGCpZsMT3knot+6DZoOn8czJ8Jmo=
+X-Received: by 2002:a17:906:518c:b0:99d:6a8a:6010 with SMTP id
+ y12-20020a170906518c00b0099d6a8a6010mr10198369ejk.18.1692106693107; Tue, 15
+ Aug 2023 06:38:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <6c8167b2c5804f74be1fbeb1c9dd9df3@verusresearch.net> <f7232a6a-0780-4f82-917e-94101483ced4@gmail.com>
+In-Reply-To: <f7232a6a-0780-4f82-917e-94101483ced4@gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Tue, 15 Aug 2023 08:37:56 -0500
+Message-ID: <CAFche=gZ8_d9fJPE6nnM0hHSbCfoSFTm+THx7ZvTRNFEXO_eOg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: AGLZJVG7UQO7YKTDH27664GDELZVGF7B
+X-Message-ID-Hash: AGLZJVG7UQO7YKTDH27664GDELZVGF7B
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoC 4: RFNoC FFT Block in GNU Radio companion
+Subject: [USRP-users] Re: Xilinx Zynq 7020 SoC
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MIPDCERJFY4D7GBRVK4OXOIAUTMBAO2Z/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AGLZJVG7UQO7YKTDH27664GDELZVGF7B/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6431666974822811257=="
+Content-Type: multipart/mixed; boundary="===============0985784209204395305=="
 
+--===============0985784209204395305==
+Content-Type: multipart/alternative; boundary="0000000000005d7e160602f64a34"
 
---===============6431666974822811257==
-Content-Type: multipart/alternative; boundary=Apple-Mail-943A2B8F-7873-4CD4-8DF2-F4E79E83AD0C
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-943A2B8F-7873-4CD4-8DF2-F4E79E83AD0C
-Content-Type: text/html;
-	charset=utf-8
+--0000000000005d7e160602f64a34
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"><meta http-equiv=3D"conten=
-t-type" content=3D"text/html; charset=3Dutf-8">You set it in the block in gr=
-c. spp=3D256</div><div dir=3D"ltr"><br><div dir=3D"ltr">&lt;<span class=3D"A=
-pple-style-span" style=3D"-webkit-tap-highlight-color: rgba(26, 26, 26, 0.29=
-6875); -webkit-composition-fill-color: rgba(175, 192, 227, 0.230469); -webki=
-t-composition-frame-color: rgba(77, 128, 180, 0.230469); ">end transmission&=
-gt;</span></div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Aug 15, 20=
-23, at 04:19, Bachmaier, Luca &lt;luca.bachmaier@iis.fraunhofer.de&gt; wrote=
-:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
-=BF
+The Zynq SoC on the E3xx/N3xx USRPs is a 7-Series Xilinx device, so you'll
+find it with the other Xilinx 7-Series documentation. Maybe this is what
+you're looking for?
 
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style>@font-face { font-family: "Cambria Math"; }
-@font-face { font-family: Calibri; }
-p.MsoNormal, li.MsoNormal, div.MsoNormal { margin: 0cm 0cm 0.0001pt; font-si=
-ze: 11pt; font-family: Calibri, sans-serif; }
-a:link, span.MsoHyperlink { color: rgb(5, 99, 193); text-decoration: underli=
-ne; }
-a:visited, span.MsoHyperlinkFollowed { color: rgb(149, 79, 114); text-decora=
-tion: underline; }
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph { margin: 0cm 0=
-cm 0.0001pt 36pt; font-size: 11pt; font-family: Calibri, sans-serif; }
-p.msonormal0, li.msonormal0, div.msonormal0 { margin-right: 0cm; margin-left=
-: 0cm; font-size: 12pt; font-family: "Times New Roman", serif; }
-p.msochpdefault, li.msochpdefault, div.msochpdefault { margin-right: 0cm; ma=
-rgin-left: 0cm; font-size: 12pt; font-family: Calibri, sans-serif; }
-span.apple-style-span { }
-span.e-mailformatvorlage17 { font-family: Calibri, sans-serif; color: window=
-text; }
-span.E-MailFormatvorlage22 { font-family: Calibri, sans-serif; color: rgb(31=
-, 73, 125); }
-.MsoChpDefault { font-size: 10pt; }
-@page WordSection1 { size: 612pt 792pt; margin: 70.85pt 70.85pt 2cm; }
-div.WordSection1 { page: WordSection1; }</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+https://docs.xilinx.com/v/u/en-US/ug479_7Series_DSP48E1
 
+Wade
 
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D;mso-farea=
-st-language:EN-US">Hi Paul,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D;mso-farea=
-st-language:EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D;mso-farea=
-st-language:EN-US">thank you for your reply. Do you remember how you set the=
- SPP block parameter? Did you set it in a GNU Radio flowgraph, a script, or s=
-omething else?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D;mso-farea=
-st-language:EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D;mso-farea=
-st-language:EN-US">Regards<br>
-Luca<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:EN=
--US"><o:p>&nbsp;</o:p></span></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm 4=
-.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm 0=
-cm 0cm">
-<p class=3D"MsoNormal"><b>Von:</b> Paul Atreides &lt;maud.dib1984@gmail.com&=
-gt; <br>
-<b>Gesendet:</b> Montag, 14. August 2023 16:35<br>
-<b>An:</b> Bachmaier, Luca &lt;luca.bachmaier@iis.fraunhofer.de&gt;<br>
-<b>Cc:</b> usrp-users@lists.ettus.com<br>
-<b>Betreff:</b> Re: [USRP-users] RFNoC 4: RFNoC FFT Block in GNU Radio compa=
-nion<o:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Luca:<span style=3D"font-size:12.0pt"><o:p></o:p></sp=
-an></p>
-<div>
-<p class=3D"MsoNormal">At one point I was trying a Fosphor FPGA image and I r=
-emember it was important to set the spp block parameter to be equal in all t=
-he blocks that would accept that parameter. So spp=3D1024 or whatever your FF=
-T size is. That may have changed
- since 4.0 but that was the case in the past.&nbsp;<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">&lt;<span class=3D"apple-style-span">end transmission=
-&gt;</span><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><br>
-<br>
-<o:p></o:p></p>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On Aug 14, 2023, at 10=
-:29, Bachmaier, Luca &lt;<a href=3D"mailto:luca.bachmaier@iis.fraunhofer.de"=
->luca.bachmaier@iis.fraunhofer.de</a>&gt; wrote:<o:p></o:p></p>
-</blockquote>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<div>
-<p class=3D"MsoNormal">=EF=BB=BF <span style=3D"font-size:12.0pt;font-family=
-:&quot;Times New Roman&quot;,serif">
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal">Hello everyone,<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I=E2=80=99m currently developing=
- a GNU Radio flowgraph with RFNoC 4.3 which uses the RFNoC FFT block. Accord=
-ing to this workshop (</span><a href=3D"https://www.youtube.com/watch?v=3D4X=
-Xqk0yGvCI"><span lang=3D"EN-US">https://www.youtube.com/watch?v=3D4XXqk0yGvC=
-I</span></a><span lang=3D"EN-US">
- @ 18:10) there are five runtime parameters you have to set for the FFT bloc=
-k: magnitude, direction, length, fft_scaling, shift_config.</span><o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I=E2=80=99m not exactly sure whe=
-re in the flowgraph I can set these properties. E.g. is setting the =E2=80=9C=
-Block Args=E2=80=9D parameter of the FFT block to =E2=80=9Cmagnitude=3Dcompl=
-ex,direction=3D1,length=3D1024=E2=80=9D correct? If not, what is the right w=
-ay
- to set the runtime parameters?</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">After setting them as I describe=
-d I get two python errors when trying to run the flowgraph:</span><o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">1. Setting magnitude=3Dcomplex c=
-auses this:</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RuntimeError: RuntimeError: Propert=
-y magnitude:RuntimeError: Cannot convert `complex' to int!</span><o:p></o:p>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">In the flowgraph, the output of t=
-he RFNoC FFT block is connected directly to an RFNoC Rx Streamer block. It s=
-eems that all default RFNoC blocks only accept an int input. This error seem=
-s strange and that=E2=80=99s why I doubt
- that I set the magnitude parameter correctly.</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">2. No matter what parameter I se=
-t for the FFT, I get the following error:</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RuntimeError: ValueError: samples p=
-er package must not be smaller than atomic item size</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I was not able to find any suffi=
-cient information about this online unfortunately.</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I hope I was able to describe my=
- problems clearly and would be glad to receive help regarding any of those.<=
-/span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you in advance and regards=
-</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Luca</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Tim=
-es New Roman&quot;,serif">_______________________________________________<br=
+On Mon, Aug 14, 2023 at 6:34=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmai=
+l.com>
+wrote:
+
+> On 14/08/2023 18:30, Mushtaq A. Syed, Ph.D. via USRP-users wrote:
 >
-USRP-users mailing list -- </span><a href=3D"mailto:usrp-users@lists.ettus.c=
-om"><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,=
-serif">usrp-users@lists.ettus.com</span></a><span style=3D"font-size:12.0pt;=
-font-family:&quot;Times New Roman&quot;,serif"><br>
-To unsubscribe send an email to </span><a href=3D"mailto:usrp-users-leave@li=
-sts.ettus.com"><span style=3D"font-size:12.0pt;font-family:&quot;Times New R=
-oman&quot;,serif">usrp-users-leave@lists.ettus.com</span></a><span style=3D"=
-font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p></o:p><=
-/span></p>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
+> Hi:
+>
+> Where can I find documentation for the DSP modules that are present on th=
+e
+> xilinx Zynq SOC?
+>
+> Thanks a lot!
+>
+> Cheers,
+>
+> Mushtaq
+>
+>
+>
+> You are presumably talking about the Zynq on the E31x series of devices.
+> Took me a second to look up the mapping
+>   between USRP devices and the Xilinx FPGAs they use.
+>
+> To whatever extent Xilinx IP is used on USRP devices, the documentation
+> for that IP can be sourced through Xilinx, but
+>   for other bits and pieces (including "home grown" DSP machinery), for
+> the most part, the source code is the documentation.
+>   There's no separate "structured walk-through" of the FPGA
+> code--partially because it changes, often considerably, between
+>   FPGA releases, and partially because resources have never been committe=
+d
+> to create such a set of documentation.
+>
+> There are documents like this:
+>
+> https://files.ettus.com/manual/page_usrp_e3xx.html
+> https://kb.ettus.com/Ettus_USRP_E300_Embedded_Family_Getting_Started_Guid=
+es
+> https://kb.ettus.com/Ettus_USRP_E300_Embedded_Family_Hardware_Resources
+>
+> But no high-level structured walk-through of the FPGA code.
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
+--0000000000005d7e160602f64a34
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-</div></blockquote></div></body></html>=
+<div dir=3D"ltr"><div>The Zynq SoC on the E3xx/N3xx USRPs is a 7-Series Xil=
+inx device, so you&#39;ll find it with the other Xilinx 7-Series documentat=
+ion. Maybe this is what you&#39;re looking for?</div><div><br></div><div>
+<a rel=3D"nofollow" target=3D"_blank" href=3D"https://docs.xilinx.com/v/u/e=
+n-US/ug479_7Series_DSP48E1">https://docs.xilinx.com/v/u/en-US/ug479_7Series=
+_DSP48E1</a> <br></div><div><br></div><div>Wade<br></div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 14, 20=
+23 at 6:34=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@g=
+mail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 14/08/2023 18:30, Mushtaq A. Syed,
+      Ph.D. via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+     =20
+     =20
+     =20
+     =20
+      <div>
+        <p class=3D"MsoNormal">Hi:<u></u><u></u></p>
+        <p class=3D"MsoNormal" style=3D"text-indent:0.5in">Where can I find
+          documentation for the DSP modules that are present on the
+          xilinx Zynq SOC?<u></u><u></u></p>
+        <p class=3D"MsoNormal" style=3D"text-indent:0.5in">Thanks a lot!<u>=
+</u><u></u></p>
+        <p class=3D"MsoNormal" style=3D"text-indent:0.5in">Cheers,<u></u><u=
+></u></p>
+        <p class=3D"MsoNormal" style=3D"text-indent:0.5in">Mushtaq<span sty=
+le=3D"font-size:13.5pt;font-family:&quot;Arial&quot;,sans-serif;color:rgb(5=
+1,51,51)"><u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:13.5pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:rgb(51,51,51)">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          </span><u></u><u></u></p>
+      </div>
+      <br>
+    </blockquote>
+    <font face=3D"Exo 2">You are presumably talking about the Zynq on the
+      E31x series of devices.=C2=A0 Took me a second to look up the mapping=
+<br>
+      =C2=A0 between USRP devices and the Xilinx FPGAs they use.<br>
+      <br>
+      To whatever extent Xilinx IP is used on USRP devices, the
+      documentation for that IP can be sourced through Xilinx, but<br>
+      =C2=A0 for other bits and pieces (including &quot;home grown&quot; DS=
+P
+      machinery), for the most part, the source code is the
+      documentation.<br>
+      =C2=A0 There&#39;s no separate &quot;structured walk-through&quot; of=
+ the FPGA
+      code--partially because it changes, often considerably, between<br>
+      =C2=A0 FPGA releases, and partially because resources have never been
+      committed to create such a set of documentation.<br>
+      <br>
+      There are documents like this:<br>
+      <br>
+      <a href=3D"https://files.ettus.com/manual/page_usrp_e3xx.html" target=
+=3D"_blank">https://files.ettus.com/manual/page_usrp_e3xx.html</a><br>
+<a href=3D"https://kb.ettus.com/Ettus_USRP_E300_Embedded_Family_Getting_Sta=
+rted_Guides" target=3D"_blank">https://kb.ettus.com/Ettus_USRP_E300_Embedde=
+d_Family_Getting_Started_Guides</a><br>
+<a href=3D"https://kb.ettus.com/Ettus_USRP_E300_Embedded_Family_Hardware_Re=
+sources" target=3D"_blank">https://kb.ettus.com/Ettus_USRP_E300_Embedded_Fa=
+mily_Hardware_Resources</a><br>
+      <br>
+      But no high-level structured walk-through of the FPGA code.<br>
+      <br>
+      <br>
+    </font>
+  </div>
 
---Apple-Mail-943A2B8F-7873-4CD4-8DF2-F4E79E83AD0C--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---===============6431666974822811257==
+--0000000000005d7e160602f64a34--
+
+--===============0985784209204395305==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -281,4 +244,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6431666974822811257==--
+--===============0985784209204395305==--
