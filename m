@@ -2,221 +2,159 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC207839D9
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Aug 2023 08:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC01C784546
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Aug 2023 17:20:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D23BA380048
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Aug 2023 02:21:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B19F0384ABC
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Aug 2023 11:20:21 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1692685299; bh=cRTxAa8Dp5wGJ8OhDTkMA4gWg9E5OhuG46cV5lsDD+I=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=oxcK3r+yXx6aL+rpEQGdoVANNju+Eu/EIg36g0aaKunOwXMoRdpDUjl7OOwXXdCqO
-	 9JYWu5xu4nJ0f0mtjxPnlCRFUQ7l9WPb1VlEpFDp4C8D2N5H04C3UADLRwIerjb4f6
-	 0PNVytWlhkQKq449B1jyjBwfMzeTnaJFRLgWHMBNdACJv26NkXdpFqpiQTIqMb91py
-	 SHFec5d0jnPdY3qHpYKuF8uzWkFaJVsLcJ3l5NegjMRCkpDjzgACBSKnEJHrkD1INW
-	 n7sDSgw/oizRiPxwpacSShRKwzfQF18Lep0zOrvXMwjU9x2SQzN96D1tI0Ui1gnnQm
-	 40qvKKGnmD89Q==
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 97E4B384809
-	for <usrp-users@lists.ettus.com>; Tue, 22 Aug 2023 02:21:08 -0400 (EDT)
+	t=1692717621; bh=3ovgd09cpOiAOue8ck+ZNuq3qPQ7DIt9m/vskm+3mTE=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=J2ctXmu3OE1iMZCWrMMt8xoJX7SUeUOKuYFAV3dbq6PuMvwlyL78SBc+RXiw3bkKq
+	 DpK9yIakkow3CRXSQ25dxotV3ILPwFKyh/gwX0irEt+0fJLvP63gpZd6Egg+LIevmD
+	 opB4zd0Xe55jAnCNzxtVk5lMgq3O5TjXFjNvuotyP0UM0gRb1220fPnh+8YsCa3qAG
+	 nVewa6jahZqtiwj+aMhpUQLgNKWpnf1sk60hKd5isRzcOKP3OzCHwvgaKlzKqpUCOk
+	 nk7e7m5LQjx262aMOkNtpkol27NciZOT177S3DEaQqlPSfVhazFkpEeFIUPzWMDzlO
+	 RwznvtwbH/szg==
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id 353B5384546
+	for <usrp-users@lists.ettus.com>; Tue, 22 Aug 2023 11:20:09 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LgJzjQgw";
+	dkim=pass (2048-bit key; unprotected) header.d=utexas.edu header.i=@utexas.edu header.b="Lz2GGHBy";
 	dkim-atps=neutral
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-79d8edd6d99so1421639241.3
-        for <usrp-users@lists.ettus.com>; Mon, 21 Aug 2023 23:21:08 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3a7f74134e7so3278256b6e.1
+        for <usrp-users@lists.ettus.com>; Tue, 22 Aug 2023 08:20:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692685268; x=1693290068;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qvhvLh6dlO1vCymYFmxscg1g9AB6T3bxLu0IFD90uQI=;
-        b=LgJzjQgwCm+Mr/fDMeqbRfRC2rnPl4pFtKr16fapENjvf7jzfS8KMu+AIG3X0KN+fF
-         R7AX4w62V8cww5QfPwgPUsTqW8FHChlqA8xKB8Km0wp9a6+sqOxn5cRpLhgyoG9ThVgH
-         zHlgw1OZVN7+XQsSrTZ2v0bRaAnVodKQ4FcTWmmoDICjzXZlvxLT+IUImdQZQAi241WN
-         7Yz65gJCxzGgQjWHBIY3+2V7C3RXWAb5Wi69qw44q8h9cePigYbwbCAs5aJIGB35xgMZ
-         hTmqTaPJ5E3x8xFbxRWd+FOYMAGmtjbnnL48toqC2smm5sniM2B+QQaN6LjpGnxHSGUF
-         roAg==
+        d=utexas.edu; s=google; t=1692717608; x=1693322408;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=GYB8ENFotHQJ+GXcFhDbUR9X8sOxPFAjGexB52MP8AQ=;
+        b=Lz2GGHByx7lo9TPZc1zaXT9HWvsyMi3fe4w4Rrawea18HR/Ew9JhldozEsNngCr/qS
+         p4En8eiKBq9brU0gZey1IIdpqjzIgx/Gbt7TP10+3II7+V5yVoyWa6i3KLmz0t57HWx9
+         +qyg5WDQGdcP5L6zZzDQVyu5XTTjBqTGOJsMyd730Xc7+Hm+xsuLQjLog2oZ9PrKDYE1
+         qWyB67WQuZxrde3HxX7Uof7z6+nD5gNyA9EG2/U2QxOgPVo2alfr9y1stXJpFFMzeYbJ
+         0k5fxp2sscOg2nfpterR/SCOxE/+fYqwBgMYBEGPHawLwodXu9pfY8vb9zCS2fRtDQ0N
+         Kocw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692685268; x=1693290068;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qvhvLh6dlO1vCymYFmxscg1g9AB6T3bxLu0IFD90uQI=;
-        b=RGlBvL2FqSPXYZDXiBR/hD37JK+AYWuNOmQwzDv1N+ATqNdOPZUWHjueQAbctRuSy3
-         WMDj1Z4+fYK+BeVkEiLlX5UN37qVwDm0PJh4c/MZmwMM1KwE+VI6eXWkxbc5P47P6kEZ
-         Gt4hnqv3OJhgaVdrDtaI/8iNJRCigdR24xWjPIyPIUh7NnOwi1kgzgncNAHPCFwjdjkh
-         IaWmKeWPRAirQH3lDtRnUIcoed5m1MGiconFiLzcrTGEZ619WFYteigC14TVMk053QqL
-         Ort0pFF1I3IIS/tLki87RDKPZDzGarUMUzZrJpDAwtvMnNxt+xHGf1g2Rm/e4LpioH7U
-         y3KA==
-X-Gm-Message-State: AOJu0YyEdgw1wGfJzMDt7HPbPKljWXoVMQhnNWm/U1eOrBEsC7BfSOIg
-	eun60Fhv1b4kCTY//O04JUsQ8gBClYKXECItSMEBWWjedUU=
-X-Google-Smtp-Source: AGHT+IF7gybDEbEW4OmXaxlGmsDm4Xouu78R2p98EHzdXYZ9+OavZzzQs32v5L6rphCnKlICoR0vdHvzkhQKEr/KIhY=
-X-Received: by 2002:a1f:4841:0:b0:48d:5de:3061 with SMTP id
- v62-20020a1f4841000000b0048d05de3061mr6048350vka.13.1692685267699; Mon, 21
- Aug 2023 23:21:07 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692717608; x=1693322408;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GYB8ENFotHQJ+GXcFhDbUR9X8sOxPFAjGexB52MP8AQ=;
+        b=YZ/GQGhMvYRULitTTAg+MrDR+mjnGkhdQd0SUet+lySpiPmlkXIIqztRtvLkn/5MFt
+         Zga5LssxNqVv8eeyoxuNRq2tVatqVZjPLKFjM6858IWJ/iAYnM9O6PPV1mbj1IWjBF7O
+         pXYMSQ0mmG91NYEEPrLVGbVUBelfV+vCMX5Dgh40NkU5d2uuQyNJbEYAZArmMLF2WyfR
+         hFsajV94vjlyrSJeCbHGcO+FOfTg/1tTyOvtYmAcRVckUx7PQ+XwFWUuC7BRJBcOsJjC
+         U3fYGXuTI7sH4hGJ/NnHqACFbTNxu751OdpuINyjAJ6bB5fPwUb3ILwOthrgpSFMB+TJ
+         5ZmA==
+X-Gm-Message-State: AOJu0Ywes+qmpGZW4PQa63PNmYRR+QO2LBs9MUuIEB8lkDVjYyAbOYxo
+	P41yl/lcz8bJiQy8/3QNdpAeI9gX42ZJJABs3AUD3XHOYHWmtvNs4s8=
+X-Google-Smtp-Source: AGHT+IF6+mJAJ+3aOYn/Fohdylk37KfEG6sGgd3KwkCm+0Ib1+21fJa8eBQieetnZU3OS0aVvKYdexycr/zuNZ2NT98=
+X-Received: by 2002:a05:6808:8d:b0:3a7:4e0c:faa7 with SMTP id
+ s13-20020a056808008d00b003a74e0cfaa7mr12567576oic.14.1692717608265; Tue, 22
+ Aug 2023 08:20:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAA=S3PtAdQH3Ujd1X_rMwxAxL1EnaK-Xp-e=Z9ZRxjV7kKT3+A@mail.gmail.com>
- <CALooG3_i7y+2=FDf_tX1sQh+LBWJpf17Zbwea=nQPOUo+Q8g8g@mail.gmail.com>
- <CAA=S3PunNfLB6EwzKekn4jJtgag3hWTmMVD+RFTxSBwNhNV8Lw@mail.gmail.com> <CALooG38-ErGr4N1sMgx7K3yn9M9qryLdPhGVz859NUA4Oa+3yg@mail.gmail.com>
-In-Reply-To: <CALooG38-ErGr4N1sMgx7K3yn9M9qryLdPhGVz859NUA4Oa+3yg@mail.gmail.com>
-From: sp <stackprogramer@gmail.com>
-Date: Tue, 22 Aug 2023 10:50:56 +0430
-Message-ID: <CAA=S3PteN4h-aRMqiqh4nfhG41wnihR7DL52xCcKqDwYDxnrrg@mail.gmail.com>
-To: =?UTF-8?B?WWFzaXIgw5Z6w6dhbMSxaw==?= <simultaneous11@gmail.com>
-Message-ID-Hash: U43KALBKXSR3BABZONLSZOEVZUFJPTQD
-X-Message-ID-Hash: U43KALBKXSR3BABZONLSZOEVZUFJPTQD
-X-MailFrom: stackprogramer@gmail.com
+From: Zacharias M Komodromos <zackkomo@utexas.edu>
+Date: Tue, 22 Aug 2023 10:19:58 -0500
+Message-ID: <CAN+j9f4GfGO_mKqCWkozqhbm=FuTKWrH15j0U2sC0yjnzGpWfQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: IWN3E7VF6TX7IM6SXENKNEXNGLN36NHA
+X-Message-ID-Hash: IWN3E7VF6TX7IM6SXENKNEXNGLN36NHA
+X-MailFrom: zackkomo@utexas.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: why $diplay function is not work in my custom rfnoc block but
+Subject: [USRP-users] Component fpga is too new for X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/U43KALBKXSR3BABZONLSZOEVZUFJPTQD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IWN3E7VF6TX7IM6SXENKNEXNGLN36NHA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2991475021539639613=="
+Content-Type: multipart/mixed; boundary="===============2426994644002015826=="
 
---===============2991475021539639613==
-Content-Type: multipart/alternative; boundary="000000000000190d4d06037d0026"
+--===============2426994644002015826==
+Content-Type: multipart/alternative; boundary="000000000000bf0179060384874b"
 
---000000000000190d4d06037d0026
+--000000000000bf0179060384874b
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks for your explanation.
+Hello all!
 
-On Tue, Aug 22, 2023 at 10:36=E2=80=AFAM Yasir =C3=96z=C3=A7al=C4=B1k <simu=
-ltaneous11@gmail.com>
-wrote:
+I currently have a USRP X410 connected to a host through a QSFP28-to-QSFP28
+connection, and also connected to a router through the ethernet port (to
+which the host is also connected to). I am trying to get large BW captures
+with the USRP. I have been trying to use the CG_400 FPGA image which is
+fixed at 400 MHz but have been getting dropped samples.
 
-> You need to use it inside a initial begin block.
->
-> initial begin
->   $display("This ends with a new line ");
-> end
->
-> If you write like this, it will work. But don't forget that the $display
-> function is only used for simulation, but not synthesis. Therefore; it is
-> best to use it in testbench files.
->
-> Kind Regards,
-> Yasir
->
-> sp <stackprogramer@gmail.com>, 22 A=C4=9Fu 2023 Sal, 08:48 tarihinde =C5=
-=9Funu
-> yazd=C4=B1:
->
->> Thanks very much, simulation test bench sv file works but when I used
->> $display in the custom rfnoc block verilog module it have an error
->> I attached the source file of custom block
->>
->> First problem:
->> I have this error when I used $diplay system verilog (system task)
->>
->> ERROR: [VRFC 10-4982] syntax error near '$display'
->> [/home/sp/rfnoc-test/rfnoc/fpga/rfnoc_block_gain/rfnoc_block_gain.v:222]
->> ERROR: [VRFC 10-2865] module 'rfnoc_block_gain' ignored due to previous
->> errors
->> [/home/sp/rfnoc-test/rfnoc/fpga/rfnoc_block_gain/rfnoc_block_gain.v:40]
->>
->>
->>
->>
->> On Tue, Aug 22, 2023 at 9:45=E2=80=AFAM Yasir =C3=96z=C3=A7al=C4=B1k <si=
-multaneous11@gmail.com>
->> wrote:
->>
->>> Just to be clear, you mean $display function, right? If so, I have used
->>> it in my custom rfnoc block for simulation and it worked flawlessly. Ca=
-n
->>> you give a little more detail about your code?
->>>
->>> sp <stackprogramer@gmail.com>, 22 A=C4=9Fu 2023 Sal, 08:01 tarihinde =
-=C5=9Funu
->>> yazd=C4=B1:
->>>
->>>> why $diplay function is not work in my custom rfnoc block but it work
->>>> in other rfnoc blocks on usrp,
->>>> How can solve my problem?
->>>> I know that with rfnoc framework $diplay should be work in rfnoc block=
-s
->>>> but....
->>>> every thing is same other block only name of block is diff...
->>>> thanks in advance
->>>> _______________________________________________
->>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>
->>>
+I noticed on the wiki that a new flavor, UC_200, was noted, so I switched
+to the master branch on UHD and built UHD from the master branch. Once I
+tried to then flash the image on my X410 with:
 
---000000000000190d4d06037d0026
+uhd_image_loader --args type=3Dx4xx,addr=3D192.168.1.19,fpga=3DUC_200
+
+I got the following error:
+
+[ERROR] [MPM.PeriphManager] Component fpga is too new (current: 8.0.0,
+oldest compatible: 8.0.0, MPM version: current: 7.9, oldest compatible: 7.0=
+)
+
+[ERROR] [MPM.PeriphManager] MPM compatibility infos suggest that the new
+bitfile is not compatible, skipping installation. Component fpga is too new
+(current: 8.0.0, oldest compatible: 8.0.0, MPM version: current: 7.9,
+oldest compatible: 7.0)
+
+Error: RuntimeError: Error during RPC call to `update_component'. Error
+message: rpc::rpc_error during call
+
+I tried updating the X410 through a mender artifact, and also through
+=E2=80=9Cusrp_update_fs -t master,=E2=80=9C but any image I try to flash wi=
+ll produce the
+same error. When I run "uhd_config_info --version", the host returns "UHD
+4.4.0.0-265-ga2a04e31" and the x410 returns "UHD 4.4.0.0-0-g5fac246b."
+
+How should I proceed to be able to load the new images on the x410? What
+exactly needs updating and how?
+
+Thanks for the help!
+
+Zack
+
+--000000000000bf0179060384874b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks for your explanation.=C2=A0<br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 22, 2023=
- at 10:36=E2=80=AFAM Yasir =C3=96z=C3=A7al=C4=B1k &lt;<a href=3D"mailto:sim=
-ultaneous11@gmail.com">simultaneous11@gmail.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">You need to=
- use it inside a initial begin block.<div><br></div><div>initial begin</div=
-><div>=C2=A0 $display(&quot;This ends with a new line &quot;);</div><div>en=
-d</div><div><br></div><div>If you write like this, it will work. But don&#3=
-9;t forget that the $display function is only used for simulation, but not =
-synthesis. Therefore; it is best to use it in testbench files.</div><div><b=
-r></div><div>Kind Regards,</div><div>Yasir</div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">sp &lt;<a href=3D"mailto:st=
-ackprogramer@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a>&gt;,=
- 22 A=C4=9Fu 2023 Sal, 08:48 tarihinde =C5=9Funu yazd=C4=B1:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
-1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"l=
-tr">Thanks very much, simulation test bench sv file works but when I used $=
-display in the custom rfnoc block verilog module it have an error</div><div=
->I attached=C2=A0the source file of custom block</div><div dir=3D"ltr"><br>=
-</div><div dir=3D"ltr">First problem:<br><div>I have this error when I used=
- $diplay system verilog (system task)</div><div><br></div><div>ERROR: [VRFC=
- 10-4982] syntax error near &#39;$display&#39; [/home/sp/rfnoc-test/rfnoc/f=
-pga/rfnoc_block_gain/rfnoc_block_gain.v:222]<br>ERROR: [VRFC 10-2865] modul=
-e &#39;rfnoc_block_gain&#39; ignored due to previous errors [/home/sp/rfnoc=
--test/rfnoc/fpga/rfnoc_block_gain/rfnoc_block_gain.v:40]<br></div><div><br>=
-</div><div><br></div><div><br></div></div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 22, 2023 at 9:45=E2=
-=80=AFAM Yasir =C3=96z=C3=A7al=C4=B1k &lt;<a href=3D"mailto:simultaneous11@=
-gmail.com" target=3D"_blank">simultaneous11@gmail.com</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Just =
-to be clear, you mean $display function, right? If so, I have used it in my=
- custom rfnoc block for simulation and it worked flawlessly. Can you give a=
- little more detail about your code?</div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">sp &lt;<a href=3D"mailto:stackprogramer=
-@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a>&gt;, 22 A=C4=9Fu=
- 2023 Sal, 08:01 tarihinde =C5=9Funu yazd=C4=B1:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr">why $diplay function is n=
-ot work in my custom rfnoc block but it work in other rfnoc blocks on usrp,=
-<br><div>How can solve my=C2=A0problem?</div><div>I know that with rfnoc fr=
-amework $diplay should be work in rfnoc blocks but....</div><div>every thin=
-g is same other block only name of block is diff...</div><div>thanks in adv=
-ance=C2=A0<br></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+<div dir=3D"ltr">Hello all!<br><br>I currently have a USRP X410 connected t=
+o a host through a QSFP28-to-QSFP28 connection, and also connected to a rou=
+ter through the ethernet port (to which the host is also connected to). I a=
+m trying to get large BW captures with the USRP. I have been trying to use =
+the CG_400 FPGA image which is fixed at 400 MHz but have been getting dropp=
+ed samples.<br><br>I noticed on the wiki that a new flavor, UC_200, was not=
+ed, so I switched to the master branch on UHD and built UHD from the master=
+ branch. Once I tried to then flash the image on my X410 with:<br><br>uhd_i=
+mage_loader --args type=3Dx4xx,addr=3D192.168.1.19,fpga=3DUC_200<br><br>I g=
+ot the following error:<br><br>[ERROR] [MPM.PeriphManager] Component fpga i=
+s too new (current: 8.0.0, oldest compatible: 8.0.0, MPM version: current: =
+7.9, oldest compatible: 7.0)<br><br>[ERROR] [MPM.PeriphManager] MPM compati=
+bility infos suggest that the new bitfile is not compatible, skipping insta=
+llation. Component fpga is too new (current: 8.0.0, oldest compatible: 8.0.=
+0, MPM version: current: 7.9, oldest compatible: 7.0)<br><br>Error: Runtime=
+Error: Error during RPC call to `update_component&#39;. Error message: rpc:=
+:rpc_error during call<br><br>I tried updating the X410 through a mender ar=
+tifact, and also through =E2=80=9Cusrp_update_fs -t master,=E2=80=9C but an=
+y image I try to flash will produce the same error. When I run &quot;uhd_co=
+nfig_info --version&quot;, the host returns &quot;UHD 4.4.0.0-265-ga2a04e31=
+&quot; and the x410 returns &quot;UHD 4.4.0.0-0-g5fac246b.&quot;<br><br>How=
+ should I proceed to be able to load the new images on the x410? What exact=
+ly needs updating and how?<br><br>Thanks for the help!<br><br>Zack<br></div=
+>
 
---000000000000190d4d06037d0026--
+--000000000000bf0179060384874b--
 
---===============2991475021539639613==
+--===============2426994644002015826==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -226,4 +164,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2991475021539639613==--
+--===============2426994644002015826==--
