@@ -2,318 +2,364 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64BD6785A3D
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 16:17:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5C4785A56
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 16:23:39 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 56A05384B0C
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 10:17:20 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0636B384B0B
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 10:23:39 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1692800240; bh=h9qLVHkn6GEoMzxksieD4g7A6sAqzKZHM13R3S+2eU4=;
-	h=To:Date:References:In-Reply-To:CC:Subject:List-Id:List-Archive:
+	t=1692800619; bh=pIhKYEfGMwLcx0ssjdESv7SlksEP9ZDlTJoZc+1drvY=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=uULHToQU/OPdU5nDxGsaAXgBQ41T3wzoffHksXnco50dC/lhZx2jxuvnYfVIjzSCY
-	 Ve3SLIgpZ9m1OAXODXuuDCg9ky4qRb9fNrefeHH+4P4gOwyENXH+WF1/7oX7gZaAki
-	 ItzK+GsyJ8MNs1vpJN5C4jQ1L0W3xlesO/7OELd0dTXSs+Om2knhz/RzSYOb5oAqgB
-	 9dycIdE4N4jnAQ0y4Pf5SDDqoNSGq9AF8eSnrWwwXEiwjwmwafGwtNUCoM9hfY2QIQ
-	 O9cT1M+4G4xLzunLRqxlLB1CU1TZB7qJ8tHjL9xsY7+nyUNpuOc/dDR3NY0tMWcvfU
-	 UllC/qhq3OFlQ==
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0082.outbound.protection.office365.us [23.103.208.82])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7BF90380BFF
-	for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 10:16:45 -0400 (EDT)
+	 From;
+	b=tBVjjXrApno47t/eMqfZkIG4x8IpA2hNyCqg/2ZKyLDwyMwMhmXPWucz9XO4oYDzx
+	 /5Z8P/IMTWqzNwLr7eMtaPR0TEOy7flEtNfUyek30PUtPKPg+rlBRiBVhL2lU5y7As
+	 1t3376mT21p/dAfdg8bRPZYWoUMWsZjTqJ+ElFmB+HJz7E2ikIZyJNNNdNsb5609Yr
+	 kBaZXt+eyT1r6LGMsmNNTNd1U7Zl5Tv8izwghVwAZ04t/rLwxgYjnFRm3xsDEryMtM
+	 nMz1OsAXx3bs/y9HE2ei2cN6752pbFWJgQtYKfZvcANSozqQU0u5YDdK6YVsQggewC
+	 1YbL00fO2iEQg==
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id A5B44380A5D
+	for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 10:23:05 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=BRSC.com header.i=@BRSC.com header.b="wcqXFka1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jR9mcCXI";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=RSogO2w3Cssc9vfHQwPtlg/Pe4tW8VpESymaKRyzwvK3by8vnTiiPuSNSW1t2MMIQE93fCHQYyFMSTxybs+TlwogIG8x65rgrvZzk2oVKgr4Ot2kmwDVLu5oc7gESrZnkwDHFbsyx2l+oxkirgX8+3dV1gT1dw1hWaJaVhIMTxAzjPeTzSIrh+mUMH8/b7ezX3l7HWOVTryfiJQzKc4Z8B53zAwEFRjSGt3ytBLIZfo2hKf5N7FTGbQbtp+2x4YgymChnp9sWCR37SO7z7T9Vf8puJOwxCu6Udbs6IsTqKtpIhOGAZHoIwaC5B8y+EcoD6FdvMbLyzI/banQmla+OA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lb1BagO/f7TN3polVMplNprLJTemH9SmCwUnCCWL4G4=;
- b=lRlu6dO/4X+WZD3KeD3F7Uw6/+kg5E5t5UPGN9vVvWHDeAtNB/gQOjakRLqy9oOlex2YmXN0HS5J+lauWlXNQidp+LHMZlhoxRlJe8C+emVpQOiT1tXM07+zFkIKiEfi2iH6TPdwesgyj+9Ha4e6IQksGVjP26mkCYcLHwy+cOf4ysjdCeUVvoU0/5YbGjxa5lQ6aGHuSaK0qwZ50v3p/m/fZvgLereurIlNgW7LqlxW781IvT2vqo+9r/7UDIlBBKcyz0BLSEhvqkgr8bgbTs+vMV3C4k/9QK/n2E9uAedR/e4IORBIOReQADGbwsF9ci3kLHl4pPcQabxs01UUkQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=brsc.com; dmarc=pass action=none header.from=brsc.com;
- dkim=pass header.d=brsc.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=BRSC.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lb1BagO/f7TN3polVMplNprLJTemH9SmCwUnCCWL4G4=;
- b=wcqXFka1ASlO1pjeCP4qCmOLU36qe9iVELCuePe2nV1mTE1ka/3dwFMfpdLDyxBoXMM9ScBBSSeK2czH20amRbktohZwUMZIhMFo+agn11g7eQ7gz0F9K3QAgCP7SIj2cZWSy9br631TBI1QX3OxRGm8R12KwJZRrDGDsYO+hfklroBoHQSXAkxlscDLHtwnoBGLdU44x3vO1aUpdrgIssxqK84pa7yaMRZUIrVC9Iio9QFICFUIa5F5+vGzR1+LJPEVU1ukFtVAqvzjjrd0/X8obJxKsUthQQvP6K/R8TrwpXCo6D4v9GUtPYYwOTTBcHGi4LFr7YO2HGJ28tcx+Q==
-Received: from BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:16e::7)
- by BN0P110MB1766.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:16e::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26; Wed, 23 Aug
- 2023 14:16:40 +0000
-Received: from BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM
- ([fe80::d517:f40e:1339:6a81]) by BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM
- ([fe80::d517:f40e:1339:6a81%4]) with mapi id 15.20.6699.026; Wed, 23 Aug 2023
- 14:16:40 +0000
-To: Brian Padalino <bpadalino@gmail.com>
-Thread-Topic: Re: [USRP-users] Re: UHD4 segmentation fault on creating
- rx_streamer
-Thread-Index: AQHZ1cxvYj9+aTOxpkaTc4q6l/quPg==
-Date: Wed, 23 Aug 2023 14:16:40 +0000
-Message-ID: 
- <BN0P110MB10144C510EBFD9AC2016BA29D41CA@BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM>
-References: 
- <BN0P110MB1014A7659819EC201F687ED7D41FA@BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM>
- <BN0P110MB1014DC656105EF352DC4F281D41FA@BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM>
- <CAEXYVK6RjXv=aWtmTxMdOShZ+FNxNcOmYneRmSkJ-9GRh-LJqw@mail.gmail.com>
-In-Reply-To: 
- <CAEXYVK6RjXv=aWtmTxMdOShZ+FNxNcOmYneRmSkJ-9GRh-LJqw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=brsc.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN0P110MB1014:EE_|BN0P110MB1766:EE_
-x-ms-office365-filtering-correlation-id: 81a09fd3-4192-4199-32f3-08dba3e391d8
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 9QmPYQLJLvxwZnyz/ONEErjQIqLy9c3G9CJlEU39/4vV5CYMzjySPIG/WxtxqqNG0UE6TgfLtfKZG+edPO8UX0l23c0cT+mSh42GT8rwJ333schu7poRZDz0wOv2VWSvkyQrpyubry3G5DMMEjZsHrdo7oHuwnoMCSclLMMhPFYwFa3lMxsemuia1SLlk/bQpb/GTxmznsz6L01bcZxI15Eg6uC1oVKQ6BLU9JYT3yL/JwPTmZjZFUhAZ1CWAJd4Tg54x9JxAuWyo2D+lGmMcIqSTmWrmi4PjSYPH9gFL2NIl6o44kCqw+TUCV33axKsCX+MYORguhvB/kJ9aR+6JvTdFLaJw8tYdZasU0DpmmQVmvLgaRzO+/3AP5v1qA4y4UpMNp6LwyB7fZNgALQJxwg7zVftK3LN+7W9t5ocn1oG70bYCv8SXYBxpftQRTDa8aDsgpSDwiCWKSmBBqHx75sQ8D1np1mGcjZuAEdxfkqO9QHC7I6YQVO7RZSy6oEo/ohY/g2q0LCdmH2tIfDhdKMKsyscscQk72mkGRMZbg/70KqqPG3QLbXbD+t8ID/gKDExymEbSkxR5qgh6stwti8K3AXY/LEltXNIzSGfrUI=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(39830400003)(136003)(396003)(366004)(1800799009)(186009)(451199024)(5660300002)(66899024)(83380400001)(2906002)(38100700002)(38070700005)(122000001)(33656002)(86362001)(41320700001)(166002)(55016003)(41300700001)(9686003)(66446008)(66946007)(66556008)(64756008)(66476007)(76116006)(7696005)(6506007)(6916009)(53546011)(52536014)(4326008)(8936002)(8676002)(19627405001)(1015004)(966005)(508600001)(71200400001)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- zR3IefwV/Ic7lHy7jrDpVZwXhZS55zt42UVa9gd8aadQ+Rl4t/Om4H5eMtLuNsPFsaYyFqU/tFFzjzBGaWlVW6XyV7YGEpd3XPr+Z2atMKq5e5HSUkaGeNM0xZ/ZWoJpQRNcvhlwAP4ZRw4cO1NNtn7dYn2XZyfWShs7UWVTxJlYl0tMoaMgqJKxc7DYEkDSq9kdzyBI+p5QaIEe7qkIbCm4W5FzMbPOXnbQvCono+A0oHLUAK2lTshGIuCbBqnb+CPsGrUYtKvmD3bkg3PgvZy9nqkV0mceM3Yr2hutrQq4YZuw7yGCxmc4TrjCu7IhOIbICOonZQmcvYeJcOLDgxQlYPBKXuswZZEecky2GLpN7oojeKTKPA2Kz/xvobePqMQEZEzncfkvcyHdr+gc9AB3wwwBGu0EY1Lc8DT0Vlk=
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-64bd231c95cso31637896d6.1
+        for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 07:23:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692800585; x=1693405385;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g8Ccw5VqNcefHEUv68txTYRa1bdy+iRcE35DuG5TMns=;
+        b=jR9mcCXI0kkXcAQJjylgP0tYMV551jtTR4Eiwz+oGfbV3iOK23UYqINRSCeOUYDYE6
+         SebkruFL3sdWoiN2Vm8xhx7ftwig/d4GdgUUU1GdQ+khwtnol+3bzCxsRwDBcvxZ3rS7
+         /8BdVVMvqN4hf7ekEubt5LCaV/vSXHoAoR9/Bmv+nIAT7Vx4rDsi97/W7VOdd6okvJCc
+         ksgtzq/U7yNX1hJPnf5UFGxaXXqgW0YlakaxIHBiXpTWM1Qx6bwzGa5Iri6Q46AVGXtc
+         nkJ7iGFlajcB/W95MVn25MoypKSA4cEilYKdwq4oLBmwI1iymn7SeFXfbUOEQP7HAfd2
+         LHXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692800585; x=1693405385;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=g8Ccw5VqNcefHEUv68txTYRa1bdy+iRcE35DuG5TMns=;
+        b=flL+yxIDsqaUSYdERPuVQiJlYmY6aVTlfTYDBjnpNdzqOJwLuy6rRGzHyPsSyni3E2
+         E3/g+DotJsHI0crT4qQT9qilD3xNtklUsjCTJrA1PMdvMwog8E3YuT12x/7MWPe3ljCg
+         i85rQ2N6vFNomtJNxLzbC/5GRcYGNo6ZBO5TdojDd3bkbkgOEjIvHbaQyma16Ov1BXJ4
+         ECpwHsvmwMx5iG3jC7ilBaY9oV3P2dCdeXKq/CAeaAglXjarM5B9VQvqgzz/SCbbvJ11
+         wBkxN0/PEosHxCqx9S4T/hscvCQIK2qYfFHrzMQ4l7iD866A82+jzXujkX2Vab1qFms1
+         B6wQ==
+X-Gm-Message-State: AOJu0YwSURk2II+ArFTUw+OCjRILbB5KCPukXD7MgJ8ODP7sBA46lzXJ
+	2Zh/0LMPFUPwqKwpzWmJg+3KZdvbGPI=
+X-Google-Smtp-Source: AGHT+IENGdJly9r7bfX12IwavQSQESDMH7adm7CVC8G27blHkT/q67K9ZRLN7I+mRI2Ri/YSIsH0fQ==
+X-Received: by 2002:a0c:aad8:0:b0:62f:f591:1920 with SMTP id g24-20020a0caad8000000b0062ff5911920mr12090550qvb.3.1692800585043;
+        Wed, 23 Aug 2023 07:23:05 -0700 (PDT)
+Received: from [192.168.2.177] ([174.93.1.40])
+        by smtp.googlemail.com with ESMTPSA id p20-20020a0ccb94000000b0064f43efc844sm2260249qvk.32.2023.08.23.07.23.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Aug 2023 07:23:04 -0700 (PDT)
+Message-ID: <2a675d92-84a4-8644-cbaf-09d95b76d498@gmail.com>
+Date: Wed, 23 Aug 2023 10:22:54 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: BRSC.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81a09fd3-4192-4199-32f3-08dba3e391d8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2023 14:16:40.2345
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5ed13283-606a-46b1-bd4f-758a462df882
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0P110MB1766
-Message-ID-Hash: OFAEKHAYTQJEQGO4WYCA7SLT6LDLSIIT
-X-Message-ID-Hash: OFAEKHAYTQJEQGO4WYCA7SLT6LDLSIIT
-X-MailFrom: afountain@brsc.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: "Bachmaier, Luca" <luca.bachmaier@iis.fraunhofer.de>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <59e265b257f840788dd9cde7795909fe@iis.fraunhofer.de>
+ <6b0c0c05-272b-dd90-b9ba-00925bb43304@gmail.com>
+ <01a2bc9fb5604266a9886019df08a24b@iis.fraunhofer.de>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <01a2bc9fb5604266a9886019df08a24b@iis.fraunhofer.de>
+Message-ID-Hash: 5OL5OVPSA3BH5ZA3FAHLGX4IUBJ4I5HC
+X-Message-ID-Hash: 5OL5OVPSA3BH5ZA3FAHLGX4IUBJ4I5HC
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD4 segmentation fault on creating rx_streamer
+Subject: [USRP-users] Re: RFNoC: strange behavior of FFT block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MY7E24ZSW2UDKEGXZWCF7KR7BTJ36IYJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5OL5OVPSA3BH5ZA3FAHLGX4IUBJ4I5HC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Andrew Fountain via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Andrew Fountain <afountain@brsc.com>
-Content-Type: multipart/mixed; boundary="===============2039740331880454493=="
+Content-Type: multipart/mixed; boundary="===============4771157166510579009=="
 
---===============2039740331880454493==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============4771157166510579009==
 Content-Type: multipart/alternative;
-	boundary="_000_BN0P110MB10144C510EBFD9AC2016BA29D41CABN0P110MB1014NAMP_"
+ boundary="------------wUMVROXHcru8mseLLqh4Tqqv"
+Content-Language: en-US
 
---_000_BN0P110MB10144C510EBFD9AC2016BA29D41CABN0P110MB1014NAMP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------wUMVROXHcru8mseLLqh4Tqqv
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-SGV5IEJyaWFuLA0KDQpUaGFua3MgZm9yIHRoZSBpbnB1dC4gWWVhaCBtYWtpbmcgdGhlIHJ4X3N0
-cmVhbWVycyBhdCB0aGUgYmVnaW5uaW5nIGFuZCBrZWVwaW5nIHRoZW0gYXJvdW5kIHJlc29sdmVz
-IHRoZSBpc3N1ZSBpbiB0aGF0IHRlc3QgcHJvZ3JhbSAtLSBubyBzZWdmYXVsdHMgYWZ0ZXIgMTAw
-MDAgUnggaXRlcmF0aW9ucyB0b3RhbCBmcm9tIHRoZSB0d28gdGhyZWFkcy4gTWFrZXMgc2Vuc2U7
-IGlmIHRoZSBpc3N1ZSBpcyBoYXBwZW5pbmcgaW4gcnhfc3RyZWFtZXIgY3JlYXRpb24sIHRoZW4g
-d2Ugc2hvdWxkIGRvIHRoYXQgYXMgbGl0dGxlIGFzIHBvc3NpYmxlLiBXZSdkIGp1c3QgaGF2ZSB0
-byByZS1jcmVhdGUgdGhlIHN0cmVhbWVycyB3aGVuIHdlIHJlLXR1bmUgb3Igc29tZSBzdWNoLg0K
-DQpJIHdhcyBwZXJ1c2luZyB0aGUgZG9jcyBhbmQgaXQgYWxzbyBzZWVtcyBsaWtlIHRoZXJlIGlz
-IGFsc28gYSBtb3JlIGZ1bmRhbWVudGFsIG1pc3VuZGVyc3RhbmRpbmcgb24gbXkgZW5kLiBJdCBs
-b29rcyBsaWtlIHRoZXJlIGNhbiBhbHdheXMgb25seSBiZSBvbmUgUlggc3RyZWFtZXIgYXQgYSB0
-aW1lIHBlciBtdWx0aV91c3JwIG9iamVjdCBhcyBwZXIgdGhpcyBsaXR0bGUgbm90ZSBpbiB0aGUg
-ZG9jczogaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL2NsYXNzdWhkXzFfMWRldmljZS5o
-dG1sI2EwYTllMzZmMzUzZGNjZTM2YjRkZDhkMzk0Yzg4MTNlMyB1bmxlc3MgSSBtaXN1bmRlcnN0
-YW5kLiBDdXJzZXMhIFRoYXQgc2VlbXMgdG8gaW5kaWNhdGUgdGhhdCBJIGFtIHJlbHlpbmcgb24g
-dW5kZWZpbmVkIGJlaGF2aW9yIGluIGVpdGhlciBjYXNlLCBldmVuIHRob3VnaCBldmVyeXRoaW5n
-IHNlZW1zIHRvIG5vdyB3b3JrIGFzIGV4cGVjdGVkLg0KSWRlYWxseSB0aGUgVUhEIHdvdWxkIGhh
-dmUgY29tcGxhaW5lZCB0aGF0IEkgd2FzIGRvaW5nIHRoYXQhIEFoIHdlbGwuDQoNClRpbWUgdG8g
-cmUtYXJjaGl0ZWN0dXJlIHNvbWUgc3R1ZmYhIPCfmYINCg0KDQpUaGFuayB5b3UsDQpBbmRyZXcg
-Rm91bnRhaW4NCkJsYWNrIFJpdmVyIFN5c3RlbXMgQ28uLCBJbmMuDQoxNjIgR2VuZXNlZSBTdHJl
-ZXQNClV0aWNhLCBOWSAxMzUwMg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-DQpGcm9tOiBCcmlhbiBQYWRhbGlubyA8YnBhZGFsaW5vQGdtYWlsLmNvbT4NClNlbnQ6IFR1ZXNk
-YXksIEF1Z3VzdCAyMiwgMjAyMyA0OjIyIFBNDQpUbzogQW5kcmV3IEZvdW50YWluIDxhZm91bnRh
-aW5AYnJzYy5jb20+DQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBSZTogVUhENCBzZWdt
-ZW50YXRpb24gZmF1bHQgb24gY3JlYXRpbmcgcnhfc3RyZWFtZXINCg0KWW91IGRvbid0IG9mdGVu
-IGdldCBlbWFpbCBmcm9tIGJwYWRhbGlub0BnbWFpbC5jb20uIExlYXJuIHdoeSB0aGlzIGlzIGlt
-cG9ydGFudDxodHRwczovL2FrYS5tcy9MZWFybkFib3V0U2VuZGVySWRlbnRpZmljYXRpb24+DQpP
-biBUdWUsIEF1ZyAyMiwgMjAyMyBhdCA0OjE24oCvUE0gQW5kcmV3IEZvdW50YWluIHZpYSBVU1JQ
-LXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20+PiB3cm90ZToNCkhlcmUgaXMgdGhlIG91dHB1dCBvZiB0aGF0IHByb2dyYW0g
-d2l0aCBhIGRlYnVnIGJ1aWxkIG9mIFVIRCB2NC40LjAuMCAuIEl0IHNlZW1zIHRvIHBvaW50IG91
-dCB0aGlzIGxpbmUgaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvVUhE
-LTQuNC9ob3N0L2xpYi9yZm5vYy9yZm5vY19ncmFwaC5jcHAjTDM5MzxodHRwczovL3VzZzAyLnNh
-ZmVsaW5rcy5wcm90ZWN0aW9uLm9mZmljZTM2NS51cy8/dXJsPWh0dHBzJTNBJTJGJTJGZ2l0aHVi
-LmNvbSUyRkV0dHVzUmVzZWFyY2glMkZ1aGQlMkZibG9iJTJGVUhELTQuNCUyRmhvc3QlMkZsaWIl
-MkZyZm5vYyUyRnJmbm9jX2dyYXBoLmNwcCUyM0wzOTMmZGF0YT0wNSU3QzAxJTdDYWZvdW50YWlu
-JTQwYnJzYy5jb20lN0MwODBlMTNkMmJkYzc0M2Y2ZmRkZDA4ZGJhMzRkOTZiMiU3QzVlZDEzMjgz
-NjA2YTQ2YjFiZDRmNzU4YTQ2MmRmODgyJTdDMSU3QzAlN0M2MzgyODMzMjU4NjA3MDI2MDYlN0NV
-bmtub3duJTdDVFdGcGJHWnNiM2Q4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklp
-TENKQlRpSTZJazFoYVd3aUxDSlhWQ0k2TW4wJTNEJTdDMzAwMCU3QyU3QyU3QyZzZGF0YT1EZ1h5
-ZG1VVDhTeDNVdDUwQnJQTmthQlJZVGJYVFlPMk84MHpwQXUlMkYlMkZ5NCUzRCZyZXNlcnZlZD0w
-Pg0KDQpJdCBkb2Vzbid0IHNlZW0gdG8gYmUgc29tZSB3ZWlyZCB0aHJlYWRpbmcgaXNzdWUgcmVs
-YXRlZCB0byBnZXR0aW5nIG11bHRpcGxlIHJ4X3N0cmVhbWVycyBhdCB0aGUgc2FtZSB0aW1lOyBh
-ZGRpbmcgYSBsb2NrIGFyb3VuZCB0aGF0IGFjY2VzcyB0byB0aGF0IGdldF9yeF9zdHJlYW0gZnVu
-Y3Rpb24gc3RpbGwgeWllbGRzIHNlZ21lbnRhdGlvbiBmYXVsdHMgYXQgdGhlIHNhbWUgcG9pbnQg
-aW4gZ2V0X3J4X3N0cmVhbS4NCg0KQXJlIHlvdSBzdXJlPw0KDQpDYW4geW91IG1vdmUgdGhlIHN0
-cmVhbWVyIGNyZWF0aW9uIHRvIGJlIG91dHNpZGUgb2YgdGhlIGZvciBsb29wIGFuZCBqdXN0IGl0
-ZXJhdGUgb24gdGhlIHN0cmVhbSBhcmdzLCBpc3N1ZSBjb21tYW5kLCBhbmQgcmVjdigpPw0KDQpC
-cmlhbg0K
+On 23/08/2023 08:47, Bachmaier, Luca wrote:
+>
+> Are you talking about the gain of the =E2=80=9CRFNoC Rx Radio=E2=80=9D =
+block or a=20
+> software gain block before the FFT? Even with the highest possible=20
+> hardware gain it doesn=E2=80=99t seem to work.
+>
+I was thinking of the hardware gain.=C2=A0 I don't think you mentioned wh=
+at=20
+hardware you're using.
 
---_000_BN0P110MB10144C510EBFD9AC2016BA29D41CABN0P110MB1014NAMP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+You might try adding:
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiPg0KSGV5IEJyaWFuLDwv
-ZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2Es
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiIGNsYXNz
-PSJlbGVtZW50VG9Qcm9vZiI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5
-OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7
-IGNvbG9yOiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YgQ29udGVudFBhc3Rl
-ZDAiPg0KVGhhbmtzIGZvciB0aGUgaW5wdXQuIFllYWggPHNwYW4gc3R5bGU9ImRpc3BsYXk6IGlu
-bGluZSAhaW1wb3J0YW50OyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7Ij4N
-Cm1ha2luZyB0aGUgcnhfc3RyZWFtZXJzIGF0IHRoZSBiZWdpbm5pbmcgYW5kIGtlZXBpbmcgdGhl
-bSBhcm91bmQmbmJzcDs8L3NwYW4+cmVzb2x2ZXMgdGhlIGlzc3VlIGluIHRoYXQgdGVzdCBwcm9n
-cmFtIC0tIG5vIHNlZ2ZhdWx0cyBhZnRlciAxMDAwMCBSeCBpdGVyYXRpb25zIHRvdGFsIGZyb20g
-dGhlIHR3byB0aHJlYWRzLiBNYWtlcyBzZW5zZTsgaWYgdGhlIGlzc3VlIGlzIGhhcHBlbmluZyBp
-biByeF9zdHJlYW1lciBjcmVhdGlvbiwgdGhlbiB3ZSBzaG91bGQNCiBkbyB0aGF0IGFzIGxpdHRs
-ZSBhcyBwb3NzaWJsZS4gV2UnZCBqdXN0IGhhdmUgdG8gcmUtY3JlYXRlIHRoZSBzdHJlYW1lcnMg
-d2hlbiB3ZSByZS10dW5lIG9yIHNvbWUgc3VjaC48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFt
-aWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEy
-cHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YgQ29udGVudFBh
-c3RlZDAiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwg
-QXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdi
-KDAsIDAsIDApOyIgY2xhc3M9ImVsZW1lbnRUb1Byb29mIENvbnRlbnRQYXN0ZWQwIj4NCkkgd2Fz
-IHBlcnVzaW5nIHRoZSBkb2NzIGFuZCBpdCBhbHNvIHNlZW1zIGxpa2UgdGhlcmUgaXMgYWxzbyBh
-IG1vcmUgZnVuZGFtZW50YWwgbWlzdW5kZXJzdGFuZGluZyBvbiBteSBlbmQuIEl0IGxvb2tzIGxp
-a2UgdGhlcmUgY2FuIGFsd2F5cyBvbmx5IGJlIG9uZSBSWCBzdHJlYW1lciBhdCBhIHRpbWUgcGVy
-IG11bHRpX3VzcnAgb2JqZWN0IGFzIHBlciB0aGlzIGxpdHRsZSBub3RlIGluIHRoZSBkb2NzOiZu
-YnNwOzxhIGhyZWY9Imh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9jbGFzc3VoZF8xXzFk
-ZXZpY2UuaHRtbCNhMGE5ZTM2ZjM1M2RjY2UzNmI0ZGQ4ZDM5NGM4ODEzZTMiIGlkPSJMUGxuazIx
-NTk4NSI+aHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL2NsYXNzdWhkXzFfMWRldmljZS5o
-dG1sI2EwYTllMzZmMzUzZGNjZTM2YjRkZDhkMzk0Yzg4MTNlMzwvYT4mbmJzcDt1bmxlc3MNCiBJ
-IG1pc3VuZGVyc3RhbmQuIEN1cnNlcyEgVGhhdCBzZWVtcyB0byBpbmRpY2F0ZSB0aGF0IEkgYW0g
-cmVseWluZyBvbiB1bmRlZmluZWQgYmVoYXZpb3IgaW4gZWl0aGVyIGNhc2UsIGV2ZW4gdGhvdWdo
-IGV2ZXJ5dGhpbmcgc2VlbXMgdG8gbm93IHdvcmsgYXMgZXhwZWN0ZWQuPC9kaXY+DQo8ZGl2IHN0
-eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xhc3M9ImVsZW1lbnRUb1By
-b29mIENvbnRlbnRQYXN0ZWQwIj4NCklkZWFsbHkgdGhlIFVIRCB3b3VsZCBoYXZlIGNvbXBsYWlu
-ZWQgdGhhdCBJIHdhcyBkb2luZyB0aGF0ISBBaCB3ZWxsLjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9u
-dC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6
-ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiBDb250
-ZW50UGFzdGVkMCI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxp
-YnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9y
-OiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YgQ29udGVudFBhc3RlZDAiPg0K
-VGltZSB0byByZS1hcmNoaXRlY3R1cmUgc29tZSBzdHVmZiEmbmJzcDs8c3BhbiBpZD0i8J+ZgiI+
-8J+Zgjwvc3Bhbj48L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIj4NCjxkaXYgc3R5
-bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBm
-b250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRp
-diBpZD0iU2lnbmF0dXJlIj4NCjxkaXY+DQo8ZGl2PjwvZGl2Pg0KPGRpdj48L2Rpdj4NCjxkaXYg
-c3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlm
-OyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxwIHN0eWxlPSJtYXJn
-aW46MGluOyBmb250LXNpemU6MTFwdDsgZm9udC1mYW1pbHk6Q2FsaWJyaSxzYW5zLXNlcmlmIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7IGZvbnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNh
-LHNhbnMtc2VyaWYiPlRoYW5rIHlvdSw8YnI+DQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0Ij5BbmRyZXcg
-Rm91bnRhaW48YnI+DQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksSGVs
-dmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0Ij5CbGFjayBSaXZlciBTeXN0ZW1zIENv
-LiwgSW5jLjxicj4NCjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxIZWx2
-ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQiPjE2MiBHZW5lc2VlIFN0cmVldDxicj4N
-Cjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1z
-ZXJpZjsgZm9udC1zaXplOjEycHQiPlV0aWNhLCBOWSAxMzUwMiZuYnNwOzwvc3Bhbj48L3A+DQo8
-YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXYgaWQ9ImFwcGVuZG9uc2Vu
-ZCI+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZl
-dGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+
-DQo8YnI+DQo8L2Rpdj4NCjxociB0YWJpbmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5OmlubGluZS1i
-bG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9u
-dCBmYWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBjb2xv
-cjogcmdiKDAsIDAsIDApOyI+PGI+RnJvbTo8L2I+IEJyaWFuIFBhZGFsaW5vICZsdDticGFkYWxp
-bm9AZ21haWwuY29tJmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBUdWVzZGF5LCBBdWd1c3QgMjIsIDIw
-MjMgNDoyMiBQTTxicj4NCjxiPlRvOjwvYj4gQW5kcmV3IEZvdW50YWluICZsdDthZm91bnRhaW5A
-YnJzYy5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSAm
-bHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+Jm5i
-c3A7UmU6IFtVU1JQLXVzZXJzXSBSZTogVUhENCBzZWdtZW50YXRpb24gZmF1bHQgb24gY3JlYXRp
-bmcgcnhfc3RyZWFtZXI8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0K
-PHRhYmxlIGJvcmRlcj0iMCIgY2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIwIiB3aWR0aD0i
-MTAwJSIgYWxpZ249ImxlZnQiIHN0eWxlPSJib3JkZXI6MDsgZGlzcGxheTp0YWJsZTsgd2lkdGg6
-MTAwJTsgdGFibGUtbGF5b3V0OmZpeGVkOyBib3JkZXItY29sbGFwc2U6c2VwZXJhdGU7IGZsb2F0
-Om5vbmUiPg0KPHRib2R5IHN0eWxlPSJkaXNwbGF5OmJsb2NrIj4NCjx0cj4NCjx0ZCB2YWxpZ249
-Im1pZGRsZSIgd2lkdGg9IjFweCIgY2VsbHBhZGRpbmc9IjdweCAycHggN3B4IDJweCIgc3R5bGU9
-InBhZGRpbmc6IDdweCAycHg7IGJhY2tncm91bmQtY29sb3I6IHJnYigxNjYsIDE2NiwgMTY2KTsi
-Pg0KPC90ZD4NCjx0ZCB2YWxpZ249Im1pZGRsZSIgd2lkdGg9IjEwMCUiIGNlbGxwYWRkaW5nPSI3
-cHggNXB4IDdweCAxNXB4IiBzdHlsZT0id2lkdGg6IDEwMCU7IHBhZGRpbmc6IDdweCA1cHggN3B4
-IDE1cHg7IGZvbnQtZmFtaWx5OiB3Zl9zZWdvZS11aV9ub3JtYWwsICZxdW90O1NlZ29lIFVJJnF1
-b3Q7LCAmcXVvdDtTZWdvZSBXUCZxdW90OywgVGFob21hLCBBcmlhbCwgc2Fucy1zZXJpZjsgZm9u
-dC1zaXplOiAxMnB4OyBmb250LXdlaWdodDogbm9ybWFsOyB0ZXh0LWFsaWduOiBsZWZ0OyBvdmVy
-Zmxvdy13cmFwOiBicmVhay13b3JkOyBjb2xvcjogcmdiKDMzLCAzMywgMzMpOyBiYWNrZ3JvdW5k
-LWNvbG9yOiByZ2IoMjM0LCAyMzQsIDIzNCk7Ij4NCjxkaXY+WW91IGRvbid0IG9mdGVuIGdldCBl
-bWFpbCBmcm9tIGJwYWRhbGlub0BnbWFpbC5jb20uIDxhIGhyZWY9Imh0dHBzOi8vYWthLm1zL0xl
-YXJuQWJvdXRTZW5kZXJJZGVudGlmaWNhdGlvbiIgZGF0YS1hdXRoPSJOb3RBcHBsaWNhYmxlIiBp
-ZD0iT1dBYzE4N2NkM2ItMGEzOS1mMWIwLTM0ZjEtMTJhNmFiNmIzNTU1IiBjbGFzcz0iT1dBQXV0
-b0xpbmsiPg0KTGVhcm4gd2h5IHRoaXMgaXMgaW1wb3J0YW50PC9hPjwvZGl2Pg0KPC90ZD4NCjx0
-ZCB2YWxpZ249Im1pZGRsZSIgYWxpZ249ImxlZnQiIHdpZHRoPSI3NXB4IiBjZWxscGFkZGluZz0i
-N3B4IDVweCA3cHggNXB4IiBzdHlsZT0id2lkdGg6IDc1cHg7IHBhZGRpbmc6IDdweCA1cHg7IGZv
-bnQtZmFtaWx5OiB3Zl9zZWdvZS11aV9ub3JtYWwsICZxdW90O1NlZ29lIFVJJnF1b3Q7LCAmcXVv
-dDtTZWdvZSBXUCZxdW90OywgVGFob21hLCBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB4OyBmb250LXdlaWdodDogbm9ybWFsOyB0ZXh0LWFsaWduOiBsZWZ0OyBvdmVyZmxvdy13cmFw
-OiBicmVhay13b3JkOyBjb2xvcjogcmdiKDMzLCAzMywgMzMpOyBiYWNrZ3JvdW5kLWNvbG9yOiBy
-Z2IoMjM0LCAyMzQsIDIzNCk7Ij4NCjwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8
-ZGl2Pg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+T24gVHVlLCBBdWcg
-MjIsIDIwMjMgYXQgNDoxNuKAr1BNIEFuZHJldyBGb3VudGFpbiB2aWEgVVNSUC11c2VycyAmbHQ7
-PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiBpZD0iT1dBOTJkNWM4
-Y2ItZGM0Mi1jYTEyLWE5ZWQtNGIxYTc3N2Y4ZTM3IiBjbGFzcz0iT1dBQXV0b0xpbmsiPnVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiZndDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8ZGl2IGNs
-YXNzPSJ4X2dtYWlsX3F1b3RlIj4NCjxibG9ja3F1b3RlIGNsYXNzPSJ4X2dtYWlsX3F1b3RlIiBz
-dHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHggc29saWQgcmdi
-KDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2IGNsYXNzPSJ4X21zZy04NTg0
-OTIyMjM2NjA4NzQyNDI0Ij4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1p
-bHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJw
-dDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGRpdiBzdHlsZT0iZm9udC1zaXplOiAxMnB0OyBt
-YXJnaW46IDBweDsgY29sb3I6IGJsYWNrOyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAyNTUs
-IDI1NSk7Ij4NCkhlcmUgaXMgdGhlIG91dHB1dCBvZiB0aGF0IHByb2dyYW0gd2l0aCBhIGRlYnVn
-IGJ1aWxkIG9mIFVIRCB2NC40LjAuMCAuIEl0IHNlZW1zIHRvIHBvaW50IG91dCB0aGlzIGxpbmUm
-bmJzcDs8YSBocmVmPSJodHRwczovL3VzZzAyLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm9mZmljZTM2
-NS51cy8/dXJsPWh0dHBzJTNBJTJGJTJGZ2l0aHViLmNvbSUyRkV0dHVzUmVzZWFyY2glMkZ1aGQl
-MkZibG9iJTJGVUhELTQuNCUyRmhvc3QlMkZsaWIlMkZyZm5vYyUyRnJmbm9jX2dyYXBoLmNwcCUy
-M0wzOTMmYW1wO2RhdGE9MDUlN0MwMSU3Q2Fmb3VudGFpbiU0MGJyc2MuY29tJTdDMDgwZTEzZDJi
-ZGM3NDNmNmZkZGQwOGRiYTM0ZDk2YjIlN0M1ZWQxMzI4MzYwNmE0NmIxYmQ0Zjc1OGE0NjJkZjg4
-MiU3QzElN0MwJTdDNjM4MjgzMzI1ODYwNzAyNjA2JTdDVW5rbm93biU3Q1RXRnBiR1pzYjNkOGV5
-SldJam9pTUM0d0xqQXdNREFpTENKUUlqb2lWMmx1TXpJaUxDSkJUaUk2SWsxaGFXd2lMQ0pYVkNJ
-Nk1uMCUzRCU3QzMwMDAlN0MlN0MlN0MmYW1wO3NkYXRhPURnWHlkbVVUOFN4M1V0NTBCclBOa2FC
-UllUYlhUWU8yTzgwenBBdSUyRiUyRnk0JTNEJmFtcDtyZXNlcnZlZD0wIiBkYXRhLWF1dGg9Ik5v
-dEFwcGxpY2FibGUiIGlkPSJPV0FjOTU2MjUwNi0yYjY1LWJjNWEtOWM4NC03OWQ2MjEzMGNiYzEi
-IHN0eWxlPSJtYXJnaW46MHB4IiBjbGFzcz0iT1dBQXV0b0xpbmsiPmh0dHBzOi8vZ2l0aHViLmNv
-bS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL1VIRC00LjQvaG9zdC9saWIvcmZub2MvcmZub2NfZ3Jh
-cGguY3BwI0wzOTM8L2E+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LXNpemU6IDEycHQ7
-IG1hcmdpbjogMHB4OyBjb2xvcjogYmxhY2s7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1
-NSwgMjU1KTsiPg0KPGJyPg0KSXQgZG9lc24ndCBzZWVtIHRvIGJlIHNvbWUgd2VpcmQgdGhyZWFk
-aW5nIGlzc3VlIHJlbGF0ZWQgdG8gZ2V0dGluZyBtdWx0aXBsZSByeF9zdHJlYW1lcnMgYXQgdGhl
-IHNhbWUgdGltZTsgYWRkaW5nIGEgbG9jayBhcm91bmQgdGhhdCBhY2Nlc3MgdG8gdGhhdCBnZXRf
-cnhfc3RyZWFtIGZ1bmN0aW9uIHN0aWxsIHlpZWxkcyBzZWdtZW50YXRpb24gZmF1bHRzIGF0IHRo
-ZSBzYW1lIHBvaW50IGluIGdldF9yeF9zdHJlYW0uPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
-aXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5BcmUgeW91IHN1cmU/
-PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5DYW4geW91IG1vdmUgdGhlIHN0cmVhbWVy
-IGNyZWF0aW9uIHRvIGJlIG91dHNpZGUgb2YgdGhlIGZvciBsb29wIGFuZCBqdXN0IGl0ZXJhdGUg
-b24gdGhlIHN0cmVhbSBhcmdzLCBpc3N1ZSBjb21tYW5kLCBhbmQgcmVjdigpPzwvZGl2Pg0KPGRp
-dj48YnI+DQo8L2Rpdj4NCjxkaXY+QnJpYW48L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
-CjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+fft_scaling=3D2048=C2=A0 (or other values, I'm not quiet sure how this=20
+parameter works)
 
---_000_BN0P110MB10144C510EBFD9AC2016BA29D41CABN0P110MB1014NAMP_--
+To the "block args" in addition to the "length" parameter.
 
---===============2039740331880454493==
+
+> *Von:*Marcus D. Leech <patchvonbraun@gmail.com>
+> *Gesendet:* Montag, 21. August 2023 16:49
+> *An:* usrp-users@lists.ettus.com
+> *Betreff:* [USRP-users] Re: RFNoC: strange behavior of FFT block
+>
+> On 21/08/2023 09:04, Bachmaier, Luca wrote:
+>
+>     Hello everyone,
+>
+>     I=E2=80=99m currently running into issues while trying to use the R=
+FNoC
+>     FFT block in GNU Radio. A picture of my GNU Radio flowgraph and
+>     its QT GUI Vector Sink output are attached.
+>
+>     The configuration of UHD / my USRP should be correct as there are
+>     no problems when I stream the RFNoC RX Radio Data to my host and
+>     calculate the FFT on the host. However, when I try calculating the
+>     FFT on the FPGA, the output seems to make no sense. I can=E2=80=99t=
+ see a
+>     noise floor or any proper signals. There=E2=80=99s just a randomly
+>     appearing and disappearing DC spike. Other than that, the spectrum
+>     is just a flat line (see vector_sink.png).
+>
+>     I think that this problem comes from some faulty configuration of
+>     the RFNoC FFT block. Unfortuantely, I haven=E2=80=99t been able to =
+find
+>     any helpful and up-to-date information about its usage online. I
+>     would be very glad to get some help from this mailing list.
+>
+>     Thank you and regards
+>
+>     Luca
+>
+>
+>
+>     _______________________________________________
+>
+>     USRP-users mailing list --usrp-users@lists.ettus.com
+>
+>     To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+>
+> You could try increasing the gain--it may be that due to the integer=20
+> implementation of the FFT, the signal levels are dropping below
+> =C2=A0 the minimum quantization.
+>
+
+--------------wUMVROXHcru8mseLLqh4Tqqv
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 23/08/2023 08:47, Bachmaier, Luca
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:01a2bc9fb5604266a9886019df08a24b@iis.fraunhofer.de">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Vorformatiert Zchn";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}span.E-MailFormatvorlage18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}span.HTMLVorformatiertZchn
+	{mso-style-name:"HTML Vorformatiert Zchn";
+	mso-style-priority:99;
+	mso-style-link:"HTML Vorformatiert";
+	font-family:"Consolas",serif;
+	mso-fareast-language:EN-US;}span.E-MailFormatvorlage21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span style=3D"color:#1F497D" lang=3D"EN-U=
+S">Are
+            you talking about the gain of the =E2=80=9CRFNoC Rx Radio=E2=80=
+=9D block or
+            a software gain block before the FFT? Even with the highest
+            possible hardware gain it doesn=E2=80=99t seem to work.</span=
+></p>
+      </div>
+    </blockquote>
+    I was thinking of the hardware gain.=C2=A0 I don't think you mentione=
+d
+    what hardware you're using.<br>
+    <br>
+    You might try adding:<br>
+    <br>
+    fft_scaling=3D2048=C2=A0 (or other values, I'm not quiet sure how thi=
+s
+    parameter works)<br>
+    <br>
+    To the "block args" in addition to the "length" parameter.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:01a2bc9fb5604266a9886019df08a24b@iis.fraunhofer.de">
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span style=3D"color:#1F497D" lang=3D"EN-U=
+S"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</o:p></sp=
+an></p>
+        <div style=3D"border:none;border-left:solid blue 1.5pt;padding:0c=
+m
+          0cm 0cm 4.0pt">
+          <div>
+            <div style=3D"border:none;border-top:solid #E1E1E1
+              1.0pt;padding:3.0pt 0cm 0cm 0cm">
+              <p class=3D"MsoNormal"><b><span
+                    style=3D"mso-fareast-language:DE">Von:</span></b><spa=
+n
+                  style=3D"mso-fareast-language:DE"> Marcus D. Leech
+                  <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patch=
+vonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a>
+                  <br>
+                  <b>Gesendet:</b> Montag, 21. August 2023 16:49<br>
+                  <b>An:</b> <a class=3D"moz-txt-link-abbreviated" href=3D=
+"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+                  <b>Betreff:</b> [USRP-users] Re: RFNoC: strange
+                  behavior of FFT block<o:p></o:p></span></p>
+            </div>
+          </div>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          <div>
+            <p class=3D"MsoNormal">On 21/08/2023 09:04, Bachmaier, Luca
+              wrote:<span
+                style=3D"font-size:12.0pt;mso-fareast-language:DE"><o:p><=
+/o:p></span></p>
+          </div>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <p class=3D"MsoNormal">Hello everyone,<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal"><span lang=3D"EN-US">I=E2=80=99m curre=
+ntly
+                running into issues while trying to use the RFNoC FFT
+                block in GNU Radio. A picture of my GNU Radio flowgraph
+                and its QT GUI Vector Sink output are attached.</span><o:=
+p></o:p></p>
+            <p class=3D"MsoNormal"><span lang=3D"EN-US">The configuration=
+ of
+                UHD / my USRP should be correct as there are no problems
+                when I stream the RFNoC RX Radio Data to my host and
+                calculate the FFT on the host. However, when I try
+                calculating the FFT on the FPGA, the output seems to
+                make no sense. I can=E2=80=99t see a noise floor or any p=
+roper
+                signals. There=E2=80=99s just a randomly appearing and
+                disappearing DC spike. Other than that, the spectrum is
+                just a flat line (see vector_sink.png).</span><o:p></o:p>=
+</p>
+            <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><o:p=
+></o:p></p>
+            <p class=3D"MsoNormal"><span lang=3D"EN-US">I think that this
+                problem comes from some faulty configuration of the
+                RFNoC FFT block. Unfortuantely, I haven=E2=80=99t been ab=
+le to
+                find any helpful and up-to-date information about its
+                usage online. I would be very glad to get some help from
+                this mailing list.</span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><o:p=
+></o:p></p>
+            <p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you and
+                regards</span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span lang=3D"EN-US">Luca</span><o:p><=
+/o:p></p>
+            <p class=3D"MsoNormal"><span
+                style=3D"font-size:12.0pt;font-family:&quot;Times New
+                Roman&quot;,serif;mso-fareast-language:DE"><br>
+                <br>
+                <o:p></o:p></span></p>
+            <pre>_______________________________________________<o:p></o:=
+p></pre>
+            <pre>USRP-users mailing list -- <a href=3D"mailto:usrp-users@=
+lists.ettus.com" moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext"=
+>usrp-users@lists.ettus.com</a><o:p></o:p></pre>
+            <pre>To unsubscribe send an email to <a href=3D"mailto:usrp-u=
+sers-leave@lists.ettus.com" moz-do-not-send=3D"true" class=3D"moz-txt-lin=
+k-freetext">usrp-users-leave@lists.ettus.com</a><o:p></o:p></pre>
+          </blockquote>
+          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span
+              style=3D"font-size:12.0pt;font-family:&quot;Times New
+              Roman&quot;,serif;mso-fareast-language:DE">You could try
+              increasing the gain--it may be that due to the integer
+              implementation of the FFT, the signal levels are dropping
+              below<br>
+              =C2=A0 the minimum quantization.<br>
+              <br>
+              <o:p></o:p></span></p>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------wUMVROXHcru8mseLLqh4Tqqv--
+
+--===============4771157166510579009==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -323,4 +369,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2039740331880454493==--
+--===============4771157166510579009==--
