@@ -2,65 +2,65 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF5C4785A56
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 16:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC07785B8F
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 17:10:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0636B384B0B
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 10:23:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F2EE0384AAC
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 11:10:40 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1692800619; bh=pIhKYEfGMwLcx0ssjdESv7SlksEP9ZDlTJoZc+1drvY=;
+	t=1692803440; bh=thDRUA1XcpoVdPtShVLowMshWvcjvqAeWmWIMETxAgA=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=tBVjjXrApno47t/eMqfZkIG4x8IpA2hNyCqg/2ZKyLDwyMwMhmXPWucz9XO4oYDzx
-	 /5Z8P/IMTWqzNwLr7eMtaPR0TEOy7flEtNfUyek30PUtPKPg+rlBRiBVhL2lU5y7As
-	 1t3376mT21p/dAfdg8bRPZYWoUMWsZjTqJ+ElFmB+HJz7E2ikIZyJNNNdNsb5609Yr
-	 kBaZXt+eyT1r6LGMsmNNTNd1U7Zl5Tv8izwghVwAZ04t/rLwxgYjnFRm3xsDEryMtM
-	 nMz1OsAXx3bs/y9HE2ei2cN6752pbFWJgQtYKfZvcANSozqQU0u5YDdK6YVsQggewC
-	 1YbL00fO2iEQg==
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
-	by mm2.emwd.com (Postfix) with ESMTPS id A5B44380A5D
-	for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 10:23:05 -0400 (EDT)
+	b=hYPBlCX58CmkLY9iowbH6UajEuIqduh38J4e3TzJV7LXlPp6L1hu+dokj018SKhCL
+	 AcwuVGHx4xMfGL7dG7xPDng8pXKLX8fZq2m4Y+moVmQFLFFGdrkTdWTVluhWkqRzub
+	 HWYwS5/uwM+g7Tngsq9yZePjqAVhIYRSysD68VSdwoQHbGr7EwUcLIzt0xAMFiGYNN
+	 O01b56MWHGODYAvVFKMlGKgjDsYSqFBoIIJNDCRpoRRYGddYtLv+EpAejTs/+oYale
+	 ddRLmGPunK7D8CVjDYG5WfZZsKfHa0vsQ+JVGqW5QV1tyN9yUWJlejVP46s55eDIB5
+	 mpvu7uXAF0MIg==
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7F0DC383555
+	for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 11:10:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jR9mcCXI";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="rvMB/htH";
 	dkim-atps=neutral
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-64bd231c95cso31637896d6.1
-        for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 07:23:05 -0700 (PDT)
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-40a9918ec08so35855781cf.0
+        for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 08:10:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692800585; x=1693405385;
+        d=gmail.com; s=20221208; t=1692803407; x=1693408207;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=g8Ccw5VqNcefHEUv68txTYRa1bdy+iRcE35DuG5TMns=;
-        b=jR9mcCXI0kkXcAQJjylgP0tYMV551jtTR4Eiwz+oGfbV3iOK23UYqINRSCeOUYDYE6
-         SebkruFL3sdWoiN2Vm8xhx7ftwig/d4GdgUUU1GdQ+khwtnol+3bzCxsRwDBcvxZ3rS7
-         /8BdVVMvqN4hf7ekEubt5LCaV/vSXHoAoR9/Bmv+nIAT7Vx4rDsi97/W7VOdd6okvJCc
-         ksgtzq/U7yNX1hJPnf5UFGxaXXqgW0YlakaxIHBiXpTWM1Qx6bwzGa5Iri6Q46AVGXtc
-         nkJ7iGFlajcB/W95MVn25MoypKSA4cEilYKdwq4oLBmwI1iymn7SeFXfbUOEQP7HAfd2
-         LHXA==
+        bh=wBJozmokHI9MaNLYBnQwFTNxAfSb9Wj7n+bQpXcZcDs=;
+        b=rvMB/htHVBQ2qC6Ky1jKT53rTu+T2Gb1erZgGhK1HpSe9sQgJf398Va38hwb6P2I14
+         reiy+/98aDcJhnYbOZ4p9hxurTgTNml2hhvNeQYeTZYGiqPNKG1pR2WHZ7JJVi0M26CH
+         V64d0LDvuruIrmSqtal+B18lx6wyF66rDysZPgjyDAyKk6tsnKIQOFfA6SCQGk+q1iZI
+         trvaDb7ylqnGGOiQczSibgs0ELEUTdW250j2WPNmXSLf903+2NjPyKZEU+H3YFlpCehi
+         HHau5kyK/IZ50DeqrJScSpTV6xCFDvwj+5B6TRRuOnZqNbM7H2bpuexvCUkkeEIyDCXZ
+         2N9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692800585; x=1693405385;
+        d=1e100.net; s=20221208; t=1692803407; x=1693408207;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=g8Ccw5VqNcefHEUv68txTYRa1bdy+iRcE35DuG5TMns=;
-        b=flL+yxIDsqaUSYdERPuVQiJlYmY6aVTlfTYDBjnpNdzqOJwLuy6rRGzHyPsSyni3E2
-         E3/g+DotJsHI0crT4qQT9qilD3xNtklUsjCTJrA1PMdvMwog8E3YuT12x/7MWPe3ljCg
-         i85rQ2N6vFNomtJNxLzbC/5GRcYGNo6ZBO5TdojDd3bkbkgOEjIvHbaQyma16Ov1BXJ4
-         ECpwHsvmwMx5iG3jC7ilBaY9oV3P2dCdeXKq/CAeaAglXjarM5B9VQvqgzz/SCbbvJ11
-         wBkxN0/PEosHxCqx9S4T/hscvCQIK2qYfFHrzMQ4l7iD866A82+jzXujkX2Vab1qFms1
-         B6wQ==
-X-Gm-Message-State: AOJu0YwSURk2II+ArFTUw+OCjRILbB5KCPukXD7MgJ8ODP7sBA46lzXJ
-	2Zh/0LMPFUPwqKwpzWmJg+3KZdvbGPI=
-X-Google-Smtp-Source: AGHT+IENGdJly9r7bfX12IwavQSQESDMH7adm7CVC8G27blHkT/q67K9ZRLN7I+mRI2Ri/YSIsH0fQ==
-X-Received: by 2002:a0c:aad8:0:b0:62f:f591:1920 with SMTP id g24-20020a0caad8000000b0062ff5911920mr12090550qvb.3.1692800585043;
-        Wed, 23 Aug 2023 07:23:05 -0700 (PDT)
-Received: from [192.168.2.177] ([174.93.1.40])
-        by smtp.googlemail.com with ESMTPSA id p20-20020a0ccb94000000b0064f43efc844sm2260249qvk.32.2023.08.23.07.23.03
+        bh=wBJozmokHI9MaNLYBnQwFTNxAfSb9Wj7n+bQpXcZcDs=;
+        b=VZHwsIEWmMnm6EN7jSZczqQJR+0TYTEau1OSABKWw5cMMwF0MZyfkZZKSdwaD5hcQn
+         b+0PONTAPowUiPsF1m5TGsMCLSbsPUFk9X+Y+M8rihAa2XMDjkHXYZKKo3pEMaS9jpvM
+         g4KCPdCRT40+qzSfQp4wV84SEEsxcLmvroDWJqnt/5zZuiFcNh1EqJe13uIkbxD1lkn7
+         tZeUuZra+4PEQvPmCKXHpHnJ21P5LGqTn5qYE0FkWoWqFM0c9xAUAoKnBMwJgvaak0Tx
+         zCXnCE30KA1gpwCUJbLecGoJz2KWlLIcRFee8xFXyDmnyBU4WOciVEQWtGv38RrlT6F6
+         We8g==
+X-Gm-Message-State: AOJu0YwUP+e0Eb+ZxZRfI7fLZpRNHyNcNumcRqApkwDW6Ef1G+Rbnxn7
+	v/zhl8B1sFYhLwCdcgGtN0b5rgw6h+c=
+X-Google-Smtp-Source: AGHT+IEn6f8dcW0awBOBEcM+Q7uhWmz/ec0an8ZzgMPMm45qbtxI1FXbZwuPLaHt6RQD2kT/4/2ZWg==
+X-Received: by 2002:ac8:5f8b:0:b0:410:a15c:fbf1 with SMTP id j11-20020ac85f8b000000b00410a15cfbf1mr8908209qta.65.1692803406550;
+        Wed, 23 Aug 2023 08:10:06 -0700 (PDT)
+Received: from [192.168.2.161] ([174.93.1.40])
+        by smtp.googlemail.com with ESMTPSA id c15-20020ac8110f000000b00403ad6ec2e8sm3717834qtj.26.2023.08.23.08.10.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 07:23:04 -0700 (PDT)
-Message-ID: <2a675d92-84a4-8644-cbaf-09d95b76d498@gmail.com>
-Date: Wed, 23 Aug 2023 10:22:54 -0400
+        Wed, 23 Aug 2023 08:10:05 -0700 (PDT)
+Message-ID: <19890307-c368-41b7-a176-01f7c0b0f7ea@gmail.com>
+Date: Wed, 23 Aug 2023 11:09:57 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
@@ -72,31 +72,31 @@ References: <59e265b257f840788dd9cde7795909fe@iis.fraunhofer.de>
  <01a2bc9fb5604266a9886019df08a24b@iis.fraunhofer.de>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <01a2bc9fb5604266a9886019df08a24b@iis.fraunhofer.de>
-Message-ID-Hash: 5OL5OVPSA3BH5ZA3FAHLGX4IUBJ4I5HC
-X-Message-ID-Hash: 5OL5OVPSA3BH5ZA3FAHLGX4IUBJ4I5HC
+Message-ID-Hash: UEDJOGUCX3AXGCIBUG6CMNV3R4QKXNBK
+X-Message-ID-Hash: UEDJOGUCX3AXGCIBUG6CMNV3R4QKXNBK
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RFNoC: strange behavior of FFT block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5OL5OVPSA3BH5ZA3FAHLGX4IUBJ4I5HC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UEDJOGUCX3AXGCIBUG6CMNV3R4QKXNBK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4771157166510579009=="
+Content-Type: multipart/mixed; boundary="===============2919267162970110620=="
 
 This is a multi-part message in MIME format.
---===============4771157166510579009==
+--===============2919267162970110620==
 Content-Type: multipart/alternative;
- boundary="------------wUMVROXHcru8mseLLqh4Tqqv"
+ boundary="------------y08DXM7pxH1oFt8ykC9y5C0t"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------wUMVROXHcru8mseLLqh4Tqqv
+--------------y08DXM7pxH1oFt8ykC9y5C0t
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -107,16 +107,10 @@ block or a=20
 > software gain block before the FFT? Even with the highest possible=20
 > hardware gain it doesn=E2=80=99t seem to work.
 >
-I was thinking of the hardware gain.=C2=A0 I don't think you mentioned wh=
-at=20
-hardware you're using.
+So, the "fft_scaling" parameter is actually a kind of bit-mapped value,=20
+described here:
 
-You might try adding:
-
-fft_scaling=3D2048=C2=A0 (or other values, I'm not quiet sure how this=20
-parameter works)
-
-To the "block args" in addition to the "length" parameter.
+https://support.xilinx.com/s/article/1160838?language=3Den_US
 
 
 > *Von:*Marcus D. Leech <patchvonbraun@gmail.com>
@@ -165,7 +159,7 @@ find
 > =C2=A0 the minimum quantization.
 >
 
---------------wUMVROXHcru8mseLLqh4Tqqv
+--------------y08DXM7pxH1oFt8ykC9y5C0t
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -244,17 +238,12 @@ S">Are
 ></p>
       </div>
     </blockquote>
-    I was thinking of the hardware gain.=C2=A0 I don't think you mentione=
-d
-    what hardware you're using.<br>
+    So, the "fft_scaling" parameter is actually a kind of bit-mapped
+    value, described here:<br>
     <br>
-    You might try adding:<br>
-    <br>
-    fft_scaling=3D2048=C2=A0 (or other values, I'm not quiet sure how thi=
-s
-    parameter works)<br>
-    <br>
-    To the "block args" in addition to the "length" parameter.<br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://support.xilinx.com=
+/s/article/1160838?language=3Den_US">https://support.xilinx.com/s/article=
+/1160838?language=3Den_US</a><br>
     <br>
     <br>
     <blockquote type=3D"cite"
@@ -357,9 +346,9 @@ k-freetext">usrp-users-leave@lists.ettus.com</a><o:p></o:p></pre>
   </body>
 </html>
 
---------------wUMVROXHcru8mseLLqh4Tqqv--
+--------------y08DXM7pxH1oFt8ykC9y5C0t--
 
---===============4771157166510579009==
+--===============2919267162970110620==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -369,4 +358,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4771157166510579009==--
+--===============2919267162970110620==--
