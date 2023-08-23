@@ -2,150 +2,233 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B13978545E
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 11:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6E1B785804
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 14:47:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1E53138453F
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 05:36:12 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AD0423849E6
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Aug 2023 08:47:40 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1692783372; bh=ZWZBfWfZfS4COZ//T/a0/qPBkH3xWAqQpJN/RM16GrM=;
-	h=Date:From:To:In-Reply-To:References:Subject:List-Id:List-Archive:
+	t=1692794860; bh=GBIAmvQoXFBJq6osklEAD7mMmdKdlFKgRywNRxbuZyk=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=XxQrqgVnFOiqdu6y8vEtRNF9tv+iXp6+JS1fS/LJoogQvsPktQg4Zld3F937RCfRV
-	 DznosmRcORYX66Dnl20Xon80chQv2b6JvVLgWDLR0Q7ga86uksCeJTjSNmoDuSSsvh
-	 7/ORPNU0B5WMPuaPOT/DXue0pZSLrvifP8F7lyR3ZwYW9BPgI/5fDyZOxyiB6rYVOV
-	 +einqGdtPO5kTe9KFoH00Q1cJKeIeBHNp3nbDisvykfKr2OkjBLu/MC12gMMFvr8JR
-	 6KyJv8wfRkj/f/LJrAqGj7D9F/uZV8q0Sd4ZqYjuFAv6cE6lG6722tif15NoiKwkfS
-	 dv9ZtkC145Kmg==
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4E1103844DB
-	for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 05:35:57 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=g-ecc-u-tokyo-ac-jp.20221208.gappssmtp.com header.i=@g-ecc-u-tokyo-ac-jp.20221208.gappssmtp.com header.b="NpngIH+a";
-	dkim-atps=neutral
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1bc0d39b52cso36203165ad.2
-        for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 02:35:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=g-ecc-u-tokyo-ac-jp.20221208.gappssmtp.com; s=20221208; t=1692783355; x=1693388155;
-        h=mime-version:subject:references:in-reply-to:message-id:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RmYUik+la8CwinRQSdscn5uYSfybWZJiMz9Si3OP+eA=;
-        b=NpngIH+a/WlmADdWnMxszPTo36AbhSoz1K2vOTnaU6juBRABxzDNG8RPEr5p3c3/3F
-         yTHFUyONl82CwBKjeLe0hC2lXLVM1qbhS+TXUqbwlds2fDMFmqqBFkhUy9cUa50OEWMa
-         72tkrU49DJ69o3XOpMjxrgc5SAXNrjfh/6gD1bczOlhBkyLBPtmi4e9S/SxIMy0SGoUV
-         P85X/KVzqQiVUXKIikwwOIJYfgYDm4fKQUohrOdWhlOAIWuplkgO9Fx8unBs79FrbrP/
-         lR6NIRoFlxVQL3VkrO6sfoulzx4FkvUMsm/17LMmNMaWliT6nmMRX+H40Yf1q0tQToZj
-         VEXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692783355; x=1693388155;
-        h=mime-version:subject:references:in-reply-to:message-id:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RmYUik+la8CwinRQSdscn5uYSfybWZJiMz9Si3OP+eA=;
-        b=NGZFz9oL9mAG2Ql6pzhgqSxC+HBTFuBjEyG8US5R++GVMV0OVmITCCu0gZ80CpUbuZ
-         cmm8tqiIgSHwDipf9aPYOgd2SdBFi9r6TJZ14JarrfK8LMBfQDgdYsMfo2Nfce/WsRsz
-         WxyxHGlNKnTNIAH6RREogzfdPHCGnMbLg4mLrdgwrjnjDDpXlIf6CP+vIHC1DFvszpWf
-         nSTIVNTqj4DZ/eqAON9MQNRUOhOrE8QsMokTUZR4Et5MaOhVygNk6uSEMmpNunXQYilE
-         Ilu+J7HspnHdj0rHDZhNRV5EMU1f+e2U/RgYC/PEmao8p2LBmbllzTFt3BQ38QZgPh1a
-         /INA==
-X-Gm-Message-State: AOJu0YyF8K26zDHhKxBh0WYL50TOX62fS8zeGM4mxmUv7u1E6EyG/dB4
-	29lYVr3zRU9qCtJYICyfz+5BmIxdGaOQavzvfn4=
-X-Google-Smtp-Source: AGHT+IHX7eCBs1WM/GxpBdGmjoaZHJTbXL//R7/OaNn+EKwXJkw3aLf2ZJDzRr/TKwFqjykiTTKtkA==
-X-Received: by 2002:a17:903:244a:b0:1b5:561a:5ca9 with SMTP id l10-20020a170903244a00b001b5561a5ca9mr10417025pls.50.1692783355576;
-        Wed, 23 Aug 2023 02:35:55 -0700 (PDT)
-Received: from [10.100.45.203] ([157.82.128.3])
-        by smtp.gmail.com with ESMTPSA id g2-20020a170902934200b001b8052d58a0sm10433779plp.305.2023.08.23.02.35.54
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 23 Aug 2023 02:35:55 -0700 (PDT)
-Date: Wed, 23 Aug 2023 18:35:44 +0900
-From: ". AERMAN TUERXUN" <armantursun@g.ecc.u-tokyo.ac.jp>
-To: usrp-users@lists.ettus.com
-Message-ID: <7395bac7-363b-42a3-9007-496d6ac869a4@Spark>
-In-Reply-To: <0464981a-ac3d-4265-9677-5a393021b5a3@Spark>
-References: <0464981a-ac3d-4265-9677-5a393021b5a3@Spark>
-X-Readdle-Message-ID: 7395bac7-363b-42a3-9007-496d6ac869a4@Spark
+	b=PJevZwLtbxs8u9x5+ykiq3TN0bLt+jSHvGkJ93CYTuMt2+EB0o+6hzqn9hpmndEbJ
+	 Y03pYJSxL1hCo0WT7mx90v70x67piAIU2ObK3CaSuT3Be6VU5lKBPl2T0saHmDPtNr
+	 D9Zy9lWQfnynJYiul0rZzOpMv9oydqzJ9fxgSPuiYOMUE2FSk2FnDhnEjXxQQj+bO9
+	 dh3hkYKcoumNfziXwQvzsVeZCxUmUMGlKxyYRQh/c0tPaX0aYl6lTIPPMKOTqIDWTE
+	 i2rpKEhWCp3aBamfa1bWdEjMzm8pJVt7Rm8Cot7/w+CBVM731988UufdXAokoElbSv
+	 /yK5rs2fbdfQw==
+Received: from mx-relay81-hz1.antispameurope.com (mx-relay81-hz1.antispameurope.com [94.100.132.251])
+	by mm2.emwd.com (Postfix) with ESMTPS id C6ED13842E5
+	for <usrp-users@lists.ettus.com>; Wed, 23 Aug 2023 08:47:08 -0400 (EDT)
+Received: from mailgw1.iis.fraunhofer.de ([153.96.172.4]) by mx-relay81-hz1.antispameurope.com;
+ Wed, 23 Aug 2023 14:47:07 +0200
+Received: from mail.iis.fraunhofer.de (unknown [153.96.171.215])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mailgw1.iis.fraunhofer.de (Postfix) with ESMTPS id 3382DC004A;
+	Wed, 23 Aug 2023 14:47:01 +0200 (CEST)
+Received: from mail05.iis.fhg.de (2001:638:a0a:1111::215) by mail05.iis.fhg.de
+ (2001:638:a0a:1111::215) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 23 Aug
+ 2023 14:47:00 +0200
+Received: from mail05.iis.fhg.de ([fe80::2564:37d:9a5e:29ec]) by
+ mail05.iis.fhg.de ([fe80::2564:37d:9a5e:29ec%6]) with mapi id 15.02.0986.042;
+ Wed, 23 Aug 2023 14:47:00 +0200
+From: "Bachmaier, Luca" <luca.bachmaier@iis.fraunhofer.de>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: RFNoC: strange behavior of FFT block
+Thread-Index: AdnULt/igw65ib9gRUGLgGAeBkkBOv///hSA//zcfQA=
+Date: Wed, 23 Aug 2023 12:47:00 +0000
+Message-ID: <01a2bc9fb5604266a9886019df08a24b@iis.fraunhofer.de>
+References: <59e265b257f840788dd9cde7795909fe@iis.fraunhofer.de>
+ <6b0c0c05-272b-dd90-b9ba-00925bb43304@gmail.com>
+In-Reply-To: <6b0c0c05-272b-dd90-b9ba-00925bb43304@gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [153.96.171.210]
 MIME-Version: 1.0
-Message-ID-Hash: ISNPW6KCTBQJOEX5JBP6HZ5GPGJGYMKE
-X-Message-ID-Hash: ISNPW6KCTBQJOEX5JBP6HZ5GPGJGYMKE
-X-MailFrom: armantursun@g.ecc.u-tokyo.ac.jp
+X-cloud-security-sender: luca.bachmaier@iis.fraunhofer.de
+X-cloud-security-recipient: usrp-users@lists.ettus.com
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Virusscan: CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay81-hz1.antispameurope.com with 7DB1B8208F9
+X-cloud-security-connect: mailgw1.iis.fraunhofer.de[153.96.172.4], TLS=1, IP=153.96.172.4
+X-cloud-security-Digest: 419156bae504f9501b62fde7208e01b4
+X-cloud-security: scantime:2.348
+Message-ID-Hash: GVHFSCZVABM7BIJLR6XKHT2HZQSDBOKW
+X-Message-ID-Hash: GVHFSCZVABM7BIJLR6XKHT2HZQSDBOKW
+X-MailFrom: prvs=0592a120e9=luca.bachmaier@iis.fraunhofer.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] How to stream large data packet using X410
+Subject: [USRP-users] Re: RFNoC: strange behavior of FFT block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ISNPW6KCTBQJOEX5JBP6HZ5GPGJGYMKE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GVHFSCZVABM7BIJLR6XKHT2HZQSDBOKW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4430158023362618157=="
+Content-Type: multipart/mixed; boundary="===============1050324064962265962=="
 
---===============4430158023362618157==
-Content-Type: multipart/alternative; boundary="64e5d2f8_6af49984_568"
+--===============1050324064962265962==
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_01a2bc9fb5604266a9886019df08a24biisfraunhoferde_"
 
---64e5d2f8_6af49984_568
+--_000_01a2bc9fb5604266a9886019df08a24biisfraunhoferde_
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+Content-Transfer-Encoding: base64
 
-Hi all,
+QXJlIHlvdSB0YWxraW5nIGFib3V0IHRoZSBnYWluIG9mIHRoZSDigJxSRk5vQyBSeCBSYWRpb+KA
+nSBibG9jayBvciBhIHNvZnR3YXJlIGdhaW4gYmxvY2sgYmVmb3JlIHRoZSBGRlQ/IEV2ZW4gd2l0
+aCB0aGUgaGlnaGVzdCBwb3NzaWJsZSBoYXJkd2FyZSBnYWluIGl0IGRvZXNu4oCZdCBzZWVtIHRv
+IHdvcmsuDQoNClZvbjogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4N
+Ckdlc2VuZGV0OiBNb250YWcsIDIxLiBBdWd1c3QgMjAyMyAxNjo0OQ0KQW46IHVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tDQpCZXRyZWZmOiBbVVNSUC11c2Vyc10gUmU6IFJGTm9DOiBzdHJhbmdl
+IGJlaGF2aW9yIG9mIEZGVCBibG9jaw0KDQpPbiAyMS8wOC8yMDIzIDA5OjA0LCBCYWNobWFpZXIs
+IEx1Y2Egd3JvdGU6DQpIZWxsbyBldmVyeW9uZSwNCg0KSeKAmW0gY3VycmVudGx5IHJ1bm5pbmcg
+aW50byBpc3N1ZXMgd2hpbGUgdHJ5aW5nIHRvIHVzZSB0aGUgUkZOb0MgRkZUIGJsb2NrIGluIEdO
+VSBSYWRpby4gQSBwaWN0dXJlIG9mIG15IEdOVSBSYWRpbyBmbG93Z3JhcGggYW5kIGl0cyBRVCBH
+VUkgVmVjdG9yIFNpbmsgb3V0cHV0IGFyZSBhdHRhY2hlZC4NClRoZSBjb25maWd1cmF0aW9uIG9m
+IFVIRCAvIG15IFVTUlAgc2hvdWxkIGJlIGNvcnJlY3QgYXMgdGhlcmUgYXJlIG5vIHByb2JsZW1z
+IHdoZW4gSSBzdHJlYW0gdGhlIFJGTm9DIFJYIFJhZGlvIERhdGEgdG8gbXkgaG9zdCBhbmQgY2Fs
+Y3VsYXRlIHRoZSBGRlQgb24gdGhlIGhvc3QuIEhvd2V2ZXIsIHdoZW4gSSB0cnkgY2FsY3VsYXRp
+bmcgdGhlIEZGVCBvbiB0aGUgRlBHQSwgdGhlIG91dHB1dCBzZWVtcyB0byBtYWtlIG5vIHNlbnNl
+LiBJIGNhbuKAmXQgc2VlIGEgbm9pc2UgZmxvb3Igb3IgYW55IHByb3BlciBzaWduYWxzLiBUaGVy
+ZeKAmXMganVzdCBhIHJhbmRvbWx5IGFwcGVhcmluZyBhbmQgZGlzYXBwZWFyaW5nIERDIHNwaWtl
+LiBPdGhlciB0aGFuIHRoYXQsIHRoZSBzcGVjdHJ1bSBpcyBqdXN0IGEgZmxhdCBsaW5lIChzZWUg
+dmVjdG9yX3NpbmsucG5nKS4NCg0KSSB0aGluayB0aGF0IHRoaXMgcHJvYmxlbSBjb21lcyBmcm9t
+IHNvbWUgZmF1bHR5IGNvbmZpZ3VyYXRpb24gb2YgdGhlIFJGTm9DIEZGVCBibG9jay4gVW5mb3J0
+dWFudGVseSwgSSBoYXZlbuKAmXQgYmVlbiBhYmxlIHRvIGZpbmQgYW55IGhlbHBmdWwgYW5kIHVw
+LXRvLWRhdGUgaW5mb3JtYXRpb24gYWJvdXQgaXRzIHVzYWdlIG9ubGluZS4gSSB3b3VsZCBiZSB2
+ZXJ5IGdsYWQgdG8gZ2V0IHNvbWUgaGVscCBmcm9tIHRoaXMgbWFpbGluZyBsaXN0Lg0KDQpUaGFu
+ayB5b3UgYW5kIHJlZ2FyZHMNCkx1Y2ENCg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQoNClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4N
+Cg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
+LmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQpZb3Ug
+Y291bGQgdHJ5IGluY3JlYXNpbmcgdGhlIGdhaW4tLWl0IG1heSBiZSB0aGF0IGR1ZSB0byB0aGUg
+aW50ZWdlciBpbXBsZW1lbnRhdGlvbiBvZiB0aGUgRkZULCB0aGUgc2lnbmFsIGxldmVscyBhcmUg
+ZHJvcHBpbmcgYmVsb3cNCiAgdGhlIG1pbmltdW0gcXVhbnRpemF0aW9uLg0KDQo=
 
-I am currently using USRP X410 with 10G sfp+ cable.
-I need to stream large data packet at once to my custom R=46NoC block, la=
-rger than MTU.
-Is there any way to stream large packet=3F
-Now I am just using streamer.send() method to send the data in buffer. Bu=
-t after several times of sending and receiving, it keeps showing the stre=
-aming timeout error from the receiving metadata.
-I assume there is some buffering problem, but couldn=E2=80=99t figure out=
- where exactly the problem comes from.
-I guess maybe because the data size in the send buffer is larger than MTU=
-.
-Is there anyone encountered the same problem before=3F How should I do wh=
-en I need to send and receive pretty large data.
-Thank you=21
-
-Best regards,
-
---64e5d2f8_6af49984_568
+--_000_01a2bc9fb5604266a9886019df08a24biisfraunhoferde_
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+Content-Transfer-Encoding: base64
 
-<html xmlns=3D=22http://www.w3.org/1999/xhtml=22>
-<head>
-<title></title>
-</head>
-<body>
-<div name=3D=22messageBodySection=22>
-<div dir=3D=22auto=22>Hi all,<br />
-<br />
-I am currently using USRP X410 with 10G sfp+ cable.<br />
-I need to stream large data packet at once to my custom R=46NoC block, la=
-rger than MTU.<br />
-Is there any way to stream large packet=3F<br />
-Now I am just using streamer.send() method to send the data in buffer. Bu=
-t after several times of sending and receiving, it keeps showing the stre=
-aming timeout error from the receiving metadata.<br />
-I assume there is some buffering problem, but couldn=E2=80=99t figure out=
- where exactly the problem comes from.<br />
-I guess maybe because the data size in the send buffer is larger than MTU=
-.<br />
-Is there anyone encountered the same problem before=3F How should I do wh=
-en I need to send and receive pretty large data.<br />
-Thank you=21<br />
-<br />
-Best regards,</div>
-</div>
-</body>
-</html>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0
+b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
+YW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCmE6bGluaywgc3Bhbi5N
+c29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJ
+dGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5r
+Rm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4
+dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwcmUNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
+CW1zby1zdHlsZS1saW5rOiJIVE1MIFZvcmZvcm1hdGllcnQgWmNobiI7DQoJbWFyZ2luOjBjbTsN
+CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWls
+eToiQ291cmllciBOZXciO30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9ybWFsMCwgZGl2Lm1zb25v
+cm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4tdG9wLWFsdDph
+dXRvOw0KCW1hcmdpbi1yaWdodDowY207DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJ
+bWFyZ2luLWxlZnQ6MGNtOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVz
+IE5ldyBSb21hbiIsc2VyaWY7fQ0Kc3Bhbi5FLU1haWxGb3JtYXR2b3JsYWdlMTgNCgl7bXNvLXN0
+eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJ
+Y29sb3I6d2luZG93dGV4dDt9DQpzcGFuLkhUTUxWb3Jmb3JtYXRpZXJ0WmNobg0KCXttc28tc3R5
+bGUtbmFtZToiSFRNTCBWb3Jmb3JtYXRpZXJ0IFpjaG4iOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5
+OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBWb3Jmb3JtYXRpZXJ0IjsNCglmb250LWZhbWlseToi
+Q29uc29sYXMiLHNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCnNwYW4uRS1N
+YWlsRm9ybWF0dm9ybGFnZTIxDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0No
+cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBw
+dDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2lu
+OjcwLjg1cHQgNzAuODVwdCAyLjBjbSA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFn
+ZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
+OnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtl
+bmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJl
+ZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0
+PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iREUiIGxpbms9IiMwNTYz
+QzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPkFy
+ZSB5b3UgdGFsa2luZyBhYm91dCB0aGUgZ2FpbiBvZiB0aGUg4oCcUkZOb0MgUnggUmFkaW/igJ0g
+YmxvY2sgb3IgYSBzb2Z0d2FyZSBnYWluIGJsb2NrIGJlZm9yZSB0aGUgRkZUPyBFdmVuIHdpdGgg
+dGhlIGhpZ2hlc3QgcG9zc2libGUgaGFyZHdhcmUgZ2FpbiBpdCBkb2VzbuKAmXQgc2VlbSB0byB3
+b3JrLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
+bmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3Jk
+ZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGNtIDBjbSAwY20g
+NC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQg
+I0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpERSI+Vm9uOjwvc3Bh
+bj48L2I+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj4gTWFyY3VzIEQuIExl
+ZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsNCjxicj4NCjxiPkdlc2VuZGV0Ojwv
+Yj4gTW9udGFnLCAyMS4gQXVndXN0IDIwMjMgMTY6NDk8YnI+DQo8Yj5Bbjo8L2I+IHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+QmV0cmVmZjo8L2I+IFtVU1JQLXVzZXJzXSBSZTog
+UkZOb0M6IHN0cmFuZ2UgYmVoYXZpb3Igb2YgRkZUIGJsb2NrPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDIxLzA4LzIwMjMgMDk6MDQsIEJh
+Y2htYWllciwgTHVjYSB3cm90ZTo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDttc28tZmFy
+ZWFzdC1sYW5ndWFnZTpERSI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2tx
+dW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPkhlbGxvIGV2ZXJ5b25lLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBsYW5nPSJFTi1VUyI+SeKAmW0gY3VycmVudGx5IHJ1bm5pbmcgaW50byBpc3N1ZXMgd2hp
+bGUgdHJ5aW5nIHRvIHVzZSB0aGUgUkZOb0MgRkZUIGJsb2NrIGluIEdOVSBSYWRpby4gQSBwaWN0
+dXJlIG9mIG15IEdOVSBSYWRpbyBmbG93Z3JhcGggYW5kIGl0cyBRVCBHVUkgVmVjdG9yIFNpbmsg
+b3V0cHV0IGFyZSBhdHRhY2hlZC48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+VGhlIGNvbmZpZ3VyYXRpb24gb2YgVUhEIC8gbXkg
+VVNSUCBzaG91bGQgYmUgY29ycmVjdCBhcyB0aGVyZSBhcmUgbm8gcHJvYmxlbXMgd2hlbiBJIHN0
+cmVhbSB0aGUgUkZOb0MgUlggUmFkaW8gRGF0YSB0byBteSBob3N0IGFuZCBjYWxjdWxhdGUgdGhl
+IEZGVCBvbiB0aGUgaG9zdC4gSG93ZXZlciwgd2hlbiBJIHRyeSBjYWxjdWxhdGluZyB0aGUgRkZU
+IG9uIHRoZSBGUEdBLCB0aGUNCiBvdXRwdXQgc2VlbXMgdG8gbWFrZSBubyBzZW5zZS4gSSBjYW7i
+gJl0IHNlZSBhIG5vaXNlIGZsb29yIG9yIGFueSBwcm9wZXIgc2lnbmFscy4gVGhlcmXigJlzIGp1
+c3QgYSByYW5kb21seSBhcHBlYXJpbmcgYW5kIGRpc2FwcGVhcmluZyBEQyBzcGlrZS4gT3RoZXIg
+dGhhbiB0aGF0LCB0aGUgc3BlY3RydW0gaXMganVzdCBhIGZsYXQgbGluZSAoc2VlIHZlY3Rvcl9z
+aW5rLnBuZykuPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gbGFuZz0iRU4tVVMiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5JIHRoaW5rIHRoYXQgdGhpcyBwcm9ibGVtIGNv
+bWVzIGZyb20gc29tZSBmYXVsdHkgY29uZmlndXJhdGlvbiBvZiB0aGUgUkZOb0MgRkZUIGJsb2Nr
+LiBVbmZvcnR1YW50ZWx5LCBJIGhhdmVu4oCZdCBiZWVuIGFibGUgdG8gZmluZCBhbnkgaGVscGZ1
+bCBhbmQgdXAtdG8tZGF0ZSBpbmZvcm1hdGlvbiBhYm91dCBpdHMgdXNhZ2Ugb25saW5lLiBJIHdv
+dWxkIGJlIHZlcnkgZ2xhZCB0bw0KIGdldCBzb21lIGhlbHAgZnJvbSB0aGlzIG1haWxpbmcgbGlz
+dC48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
+PSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gbGFuZz0iRU4tVVMiPlRoYW5rIHlvdSBhbmQgcmVnYXJkczwvc3Bhbj48bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5MdWNhPC9z
+cGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7LHNl
+cmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cHJlPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fPG86cD48L286cD48L3ByZT4NCjxwcmU+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEg
+aHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5UbyB1bnN1YnNjcmliZSBzZW5k
+IGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
+LmNvbSI+dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3By
+ZT4NCjwvYmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90
+dG9tOjEyLjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7LHNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj5Z
+b3UgY291bGQgdHJ5IGluY3JlYXNpbmcgdGhlIGdhaW4tLWl0IG1heSBiZSB0aGF0IGR1ZSB0byB0
+aGUgaW50ZWdlciBpbXBsZW1lbnRhdGlvbiBvZiB0aGUgRkZULCB0aGUgc2lnbmFsIGxldmVscyBh
+cmUNCiBkcm9wcGluZyBiZWxvdzxicj4NCiZuYnNwOyB0aGUgbWluaW11bSBxdWFudGl6YXRpb24u
+PGJyPg0KPGJyPg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9k
+eT4NCjwvaHRtbD4NCg==
 
---64e5d2f8_6af49984_568--
+--_000_01a2bc9fb5604266a9886019df08a24biisfraunhoferde_--
 
---===============4430158023362618157==
+--===============1050324064962265962==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -155,4 +238,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4430158023362618157==--
+--===============1050324064962265962==--
