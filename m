@@ -2,285 +2,453 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9611C788C4B
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Aug 2023 17:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D689C789057
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Aug 2023 23:24:40 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B8586384D66
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Aug 2023 11:17:54 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8AA75384CFA
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Aug 2023 17:24:39 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1692976674; bh=hXZOYBLEdFHnL6aIzwMAwLhCYZinIsRh8QYRcgX5fSs=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=bloRXywzIiSJunYkZvpAhFp5s88XqGVxybZGSuVmGnt+2KnfTg3Gev6BAFxeKf3wC
-	 vsLjviGWE7aQvjZ7894ZmpRt8oBcImQZTA+awqR2saG7cF9uzgQiQedA7Dn3SAhnpS
-	 eLaGkh9bQNjtxubOY47q+GmJxDhQmXMB6LS7RXgMbohqSY0oU3R++5O4b5R/4BCadS
-	 0U1OJNSgG5x2CB2kibHvB4vx68ECdfvmR7yaY+z8AlOnkVEudtazM/2/lTjum1dqRp
-	 E3zjf2hFh1NI6cLEfAWCDDqTv6X9/Vl4H8W1zJ/nEQVg+4IzE3+4tn1lL6pljwtmnO
-	 EGJt7JWAZ0IBg==
-Received: from emp-mxpp102.dcs.leidos.com (emp-mxpp102.dcs.leidos.com [149.8.243.12])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9DA4D384CEE
-	for <usrp-users@lists.ettus.com>; Fri, 25 Aug 2023 11:17:19 -0400 (EDT)
+	t=1692998679; bh=Q18hhxrVG0uHOp5X5LL5jV1s4LiV3ValiYthdTcu9tw=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=p0sKDuWzv2Mq/LjbRGmZ0e/9ncrOaWLTAlZS08esVo6BnMeGKl5MLrgmwJXrTNxff
+	 Q9bN4D0YcJaui3dRPGmSOs23YcrFAe2bWVidRrxNlQsELScbspto24ZHF/ldk1xXhL
+	 QTsOJw67iGCRrSBvaC67TgRPmKDkleVnUAFsws/I8249w0NB9qaMdVuDo2nZfAqKjJ
+	 bw/FRC1GaNaM7pPw7t79QxZSpbwtaRB6EnSEJqh1FVURFfl7BQlVfQBGuXaSayJkY/
+	 MqrEBemarIAsjrKEMRQTux4h0heKhiY5HBCatmCLDElIsEyBFKza5RrZ5zG3eGEgjq
+	 34NO35Yv29Lng==
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8A521384CFA
+	for <usrp-users@lists.ettus.com>; Fri, 25 Aug 2023 17:24:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=dynetics.com header.i=@dynetics.com header.b="QDZ6kbJz";
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=LeidosCorpUS.onmicrosoft.us header.i=@LeidosCorpUS.onmicrosoft.us header.b="JbI12Iv2";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20221208.gappssmtp.com header.i=@ettus-com.20221208.gappssmtp.com header.b="falCOH1B";
 	dkim-atps=neutral
-Received: from pps.filterd (emp-mxpp102.dcs.leidos.com [127.0.0.1])
-	by emp-mxpp102.dcs.leidos.com (8.17.1.5/8.17.1.5) with ESMTP id 37P77FZ4027759;
-	Fri, 25 Aug 2023 10:17:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dynetics.com; h=from : to : subject
- : date : message-id : references : in-reply-to : content-type :
- mime-version; s=dynetics-2048-030121;
- bh=xUYC3xm/7eRetg4iMuuJVI7w2Wh/YyCrs+NmjLQQ6eA=;
- b=QDZ6kbJz5qSADZf9OgibULA5hI3rzZZnhrZCsZGTeU2Ym2gWD25eAPiGKqnIIm/SPRKt
- bVSICJlLDr54qTeM/v/BDJ50hBkC4DksqEoDv2uSUq+8kenvwWpj4/jg6j0hUXrlwaas
- ylRP7sKoBoiZ2SN9YE9kSIonaWML/OizlSGjH697Yp6UPFxMsHeEIl6+HabMtZqc2W9+
- /JfYYIgu6UIVtQxN9tSOYd30sXpGFKTZvGOHFsPW6i8DcDyaPsrQPcwJBytr2lHfjXl8
- usUd6JBs65Pk2Jxid23sDoq5HA9CVKG4T5ucGJbctf2Rg5qrYwSGcs3z3wauzyfgtqfs uw==
-Received: from epsp-dlp-prev21.dcs.leidos.com (EPSP-DLP-PREV21.dcs.leidos.com [10.227.23.21])
-	by emp-mxpp102.dcs.leidos.com (PPS) with ESMTPS id 3sn20wnhcr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Fri, 25 Aug 2023 10:17:18 -0500
-Received: from emp-mxpp112.dcs.leidos.com (unknown [149.8.242.102]) by EPSP-DLP-PREV21.dcs.leidos.com with smtp
-	(TLS: TLSv1/SSLv3,128bits,ECDHE-RSA-AES128-GCM-SHA256)
-	 id 67ef_da8c_efcf7dba_bc4e_4153_a400_679f453e5119;
-	Fri, 25 Aug 2023 15:17:17 +0000
-Received: from EMP-EXMR181.corp.leidos.com (EMP-EXMR181.corp.leidos.com [10.128.180.21])
-	by emp-mxpp112.dcs.leidos.com (8.17.1.5/8.17.1.5) with ESMTPS id 37PFHHFi029995
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Fri, 25 Aug 2023 10:17:17 -0500
-Received: from EMP-EXMR181.corp.leidos.com (10.128.180.21) by
- EMP-EXMR181.corp.leidos.com (10.128.180.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.2507.27; Fri, 25 Aug 2023 10:17:16 -0500
-Received: from USG02-CY1-obe.outbound.protection.office365.us (10.226.129.6)
- by EMP-EXMR181.corp.leidos.com (10.128.180.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.2507.27 via Frontend Transport; Fri, 25 Aug 2023 10:17:16 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=JxRgZWTaAqBHSnGuhfLwxHgzs+a24+rVpXS2PGxb9D11D4WNJYb+IrTPg9n6kn6JgE2nDtKkF/xAYZOeaJnHaMe0J67lNlTNHHQbe1EmZ3NwM8S7B9XEWzFthI7iXiWailE7F1JVgMbbXeIW1K2zE2mXqQy5CNHLiiMM0AJHnkOQ1crnJ79vc/bAbikJGPp3MDUe8epTXyF3e1KgeANKOzLaQr9VNKSKb4yRzZENY9yyfZg8O/+rPHVjk6NAP1O2Ab2k6p2MvHi7St5LPIq6AP8nKmAUAZ9bH4Syqj979kOiup3jYOhPOV3RvdTRiIsfkwMORKQdgVs6vqAVVQ8J8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Hu5v3EFjWUvRVgAuZBH35OIpx+WPEwpi1k4wzJPSs4=;
- b=D9dfCJahzgi6OA6p8HvLdZDcKlkXIu+1Ie521ZnpYMCekRPhQnosHX7clHdk7TjeZKwCa9OJrpyzarY4q1Ar1CNcZjY6Wp43sC3v5emHdgycxkAkGQmKLHLPZ8s6r56xrjCyCA/vFx4+Wi6Qows/lX+/Q/slDa43MYn7lq8GVazw22Tj3IQO0cDbRfX4eD9IUGU5K/ne1qQjneRjcgfIYeWpAQgHJrs051+w74QAYPohinvV9up1ZpmNcYgwiQGM+9TgP38cXZuEqA9di7d5yCv4FDrvDem+E/nKKsKAhWK3w/XeIanRXTvdDw+1yuo8sTNqOsSGfxd/iS+VsmdBnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=dynetics.com; dmarc=pass action=none header.from=dynetics.com;
- dkim=pass header.d=dynetics.com; arc=none
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-99bf3f59905so164736866b.3
+        for <usrp-users@lists.ettus.com>; Fri, 25 Aug 2023 14:24:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=LeidosCorpUS.onmicrosoft.us; s=selector1-LeidosCorpUS-onmicrosoft-us;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Hu5v3EFjWUvRVgAuZBH35OIpx+WPEwpi1k4wzJPSs4=;
- b=JbI12Iv2lEZqOlgbkkLnujjv/w+pQTZW5fXLNc3505qeX6rIbPNYCmfzOfZge1y3CLiao5jTRNP0/YwF42jsIUxEuO5+q1MsdWG23Oi6lRNw1W1g5gcC9XmIamlXsaI5go9IrDQHisAg/mVU3etxXDayyBMHubbMl8hAkGZ7PaYo7BrJC8BxstFDVWffCbI2ygso0yOU+C9RTHTOihnqYSDIeafMOz/s0+BpLNkOvqGBpchKTtWjdgSTrqpahsGjenEkFg9ZvuNpK+VOy/Vaurh1JqiYkmx+ZAw4cvDVaunXX+hvJmCk4R5hD9yW+Z9KDFsEUHkoLlISLZlkxhy4Pg==
-Received: from BN2P110MB1027.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:168::16)
- by BN2P110MB1334.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:17f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.30; Fri, 25 Aug
- 2023 15:17:15 +0000
-Received: from BN2P110MB1027.NAMP110.PROD.OUTLOOK.COM
- ([fe80::d39f:4801:14a8:6bb8]) by BN2P110MB1027.NAMP110.PROD.OUTLOOK.COM
- ([fe80::d39f:4801:14a8:6bb8%4]) with mapi id 15.20.6699.028; Fri, 25 Aug 2023
- 15:17:15 +0000
-From: "Seal, Ryan L. [US-US]" <RYAN.SEAL@dynetics.com>
-To: "perper@o2.pl" <perper@o2.pl>,
-        "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: EXTERNAL: [USRP-users] Re: X410 FPGA build failure with UHD-4.4
-Thread-Index: AQHZ12PrPsEYXBSgmUCy8w14cS7k9K/7Hpuy
-Date: Fri, 25 Aug 2023 15:17:15 +0000
-Message-ID: <BN2P110MB102798C324C33782F76A26709FE3A@BN2P110MB1027.NAMP110.PROD.OUTLOOK.COM>
-References: CAFche=jm3ZgLMg8=3Kh8oEuEN4OmE7woeBY4H5-24zHGevg-Og@mail.gmail.com
- <dTYkivvv3oZhwkXL9xtBe8prsYV92bM6YBhcMWU@lists.ettus.com>
-In-Reply-To: <dTYkivvv3oZhwkXL9xtBe8prsYV92bM6YBhcMWU@lists.ettus.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_c968a81f-7ed4-4faa-9408-9652e001dd96_Enabled=True;MSIP_Label_c968a81f-7ed4-4faa-9408-9652e001dd96_SiteId=b64da4ac-e800-4cfc-8931-e607f720a1b8;MSIP_Label_c968a81f-7ed4-4faa-9408-9652e001dd96_SetDate=2023-08-25T15:17:49.191Z;MSIP_Label_c968a81f-7ed4-4faa-9408-9652e001dd96_Name=Unrestricted;MSIP_Label_c968a81f-7ed4-4faa-9408-9652e001dd96_ContentBits=0;MSIP_Label_c968a81f-7ed4-4faa-9408-9652e001dd96_Method=Privileged;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN2P110MB1027:EE_|BN2P110MB1334:EE_
-x-ms-office365-filtering-correlation-id: d2e3a091-d07a-4c44-007a-08dba57e5d3c
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YMLd/28cuEw6bnzB7rFtUayPT+jvFk3dm1bN0k8xYCXiGReKyJZuIrHxBnirNUT1N1euAScFAX5QR91I/oBYyLWRa+LrIVBCPI79DUZqUvJs9WgYJPGCwlwpWZpp4TEOG8nF6JkHT1jafKiglq0FWwarUa5/Pdwn79TsHRUpPlpNkOD5fNvrQwJQQDILKXHu/PNch0gu2JqNmqq/dPmc2XHZROirNOizJwgY5JGT+Fz8IvoaSb8DGPZmtyVPSYfBXg/d+KVQ4wrx44Swvz+kN8O4KNAiofQ/p5VY4wID5L7JlPiWv051woh2sgk/7iKSKwWwHqKg+zARWWJU7J0bU3oAJuucY3gDhwy5YesfL2MC3szIpon8u9FkQ1DbBguNbcOEmPxuf+QxS1cNG+qxw29librbtG7x7+TybSlibIsZ5D4Kw5Sx+vCKK1KvApWyb6Tlmjzs8oRynL1/zlXXF/ZRWr9FXi7o/uu0394LZKqnHG8Lvas1lXxtrfaHp31uudH6+7GGcg19BKykItdJdsrwTLYlMOLqhNQ9+qY4wHRhm0qNslfh9T7X8vx87M7eNhqBoSnURtDYnv/UV0J0XS3qsVPFqtSjjtMp9Ulfj++rOtpbr57rjuU15kyFqxFG
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN2P110MB1027.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366004)(1800799009)(451199024)(186009)(498600001)(19627405001)(83380400001)(9686003)(66574015)(26005)(55016003)(5660300002)(52536014)(2906002)(8676002)(8936002)(38070700005)(38100700002)(122000001)(66556008)(66946007)(76116006)(66476007)(86362001)(71200400001)(64756008)(53546011)(33656002)(110136005)(7696005)(66446008)(6506007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: nOTrH0JjvaiKy9U7e0oJmCmXi/7t4Y36Pw98ePo3ySLwc5NKHwDT7MIZ9P/XNyUd4Xv6m4VdpJ82fZd53vdaYoZoDLVShkDfX0L5+Fc5SwYYUGe2aSPgujx5wDdhCdQvTrotEUB6dReXZyElI9K83Ml7hhA2vDiTNesVKcLFa4hBwrv6tC7DOG7OuDKKXZMt2hMGuEtEi5u22Op2141deHL/iU09TfHXjdM5gRhzH9FlTqKxGzthKVi4Yy7BKWKJQ4mHFa7Xk5fXx05GX7TNoW0OIHmawNoKxWoj0ixGTmFqUw8n4aRtpCDMsb6DZxAmvCx+UHitB9M9u07bB6zec0khWBB967rggyeGgTuPrGfRIcC8T5QZgfpUcfxhy2S+aMKigs+V2YdoyFimcunl9jQzeOzMZevDyHM1ji7waco=
+        d=ettus-com.20221208.gappssmtp.com; s=20221208; t=1692998646; x=1693603446;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=foBdiZ+FlNluhmfYxuKntkGCAAfPPXmn+lQtPiN6Yu0=;
+        b=falCOH1BwW2EkHJdHfUjUTYKBHi96ZYZSgNLX1WP+xe4xgFhvaAiMdvj3Muw29vaeN
+         okAIBQMfXs2QVj+xm63DpOm5tpjNYsC9OeukPaqNNiTJmjIe5K/+Py+0quQHptcnKfBG
+         Dxml/DGalXa/sKHU6gtQW6wBSE/b7QUA/6HRfCEYjVreojhs0W4zJjioUNZ+UOWYM/qL
+         E4HxhWFx/C6GiFd06vTCVgWf9wp/bTPUKn6Obk6njOD4AUd8FLMeUam4SsZMl8fijOmh
+         UeaM1JhNff0DAT0mVJiJFn2pD1Mv2BTusKItVFn4aTVm7j0UUi4n6BDVM9izLpWoWnpT
+         02Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692998646; x=1693603446;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=foBdiZ+FlNluhmfYxuKntkGCAAfPPXmn+lQtPiN6Yu0=;
+        b=LmOqKUDIdtCTapqT8EJNjIZwgjHdE2EgSvRqLb+nUwpf5h/BLmRK2bu/FyF8mu9kZU
+         9rxCEIKSbyEG6k7N1js58Zkj6Pmf+qRURahzXSzvZSataRyeom0fw4uq9c2yTzgiC0nE
+         dDHeb2TcIk1rtYknVAXsn3TExIZjZttwVe10FIwMy+ySasM6dG6KQXB4lpb+MFcURvvN
+         Gi59QEMuYGxbp76SI761i0EOJXqAUxVDe5oDHGNcaUNcNkW3fZdmhUGwq+5XiCKq5FR6
+         vXV5GcIR70Jh2pXUVRDRaOxlrlgkSyo0V2t54uQ3rrvTIeqdex2OifAv3kLbP5AqZTyR
+         VRdQ==
+X-Gm-Message-State: AOJu0YxjhwpDrKqsEtZWU7tYIUhk6EEn6dRocJK5SYjMyx8s8Rz+Epe1
+	n/C8MBfSetChfEOc7KMcPbr0nu394jexNRDjILWEBBS2NFs+1CeYd6V2VQ==
+X-Google-Smtp-Source: AGHT+IGF+sKclICmkdRVr2PZZF90UEEJvhGxPoPhHPiR8khV86jLNVqO+eT1J3jAmLpu6mylofOFZO8lE+yjHbxuT6Q=
+X-Received: by 2002:a17:906:20e:b0:9a1:c991:a514 with SMTP id
+ 14-20020a170906020e00b009a1c991a514mr8155532ejd.63.1692998646049; Fri, 25 Aug
+ 2023 14:24:06 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN2P110MB1027.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2e3a091-d07a-4c44-007a-08dba57e5d3c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Aug 2023 15:17:15.1738
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b64da4ac-e800-4cfc-8931-e607f720a1b8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN2P110MB1334
-X-OriginatorOrg: dynetics.com
-X-EmailSecurity-Header: 1
-X-RCIS-Action: ALLOW
-X-Proofpoint-ORIG-GUID: sh6qkZgPoASufOFWWfXAFOlTtnFNZeoZ
-X-Proofpoint-GUID: sh6qkZgPoASufOFWWfXAFOlTtnFNZeoZ
-X-Proofpoint-Spam-Details: rule=notspam policy=outbound score=0 lowpriorityscore=0 bulkscore=0
- adultscore=0 spamscore=0 phishscore=0 impostorscore=0 priorityscore=1501
- malwarescore=0 clxscore=1011 mlxscore=0 mlxlogscore=999 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2308250136
-Message-ID-Hash: A7IETM7KC4O57QP2PGD7WRM52Y7CYYVP
-X-Message-ID-Hash: A7IETM7KC4O57QP2PGD7WRM52Y7CYYVP
-X-MailFrom: RYAN.SEAL@dynetics.com
+References: <fZMcEuiiMIG56YAz3GaFj1i28Xuj3IRpNU29G8pEKQ@lists.ettus.com>
+ <CAFche=jm3ZgLMg8=3Kh8oEuEN4OmE7woeBY4H5-24zHGevg-Og@mail.gmail.com> <BN2P110MB10270BC017295C28908001889FE3A@BN2P110MB1027.NAMP110.PROD.OUTLOOK.COM>
+In-Reply-To: <BN2P110MB10270BC017295C28908001889FE3A@BN2P110MB1027.NAMP110.PROD.OUTLOOK.COM>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Fri, 25 Aug 2023 16:23:49 -0500
+Message-ID: <CAFche=jZMQw6a13AdRPyQN6gzddft5i7QD8tSV=61v-9jY-3hg@mail.gmail.com>
+To: "Seal, Ryan L. [US-US]" <RYAN.SEAL@dynetics.com>
+Message-ID-Hash: QSPRIKZVPVZCJOPV3APJHO6YFMGVSITJ
+X-Message-ID-Hash: QSPRIKZVPVZCJOPV3APJHO6YFMGVSITJ
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: EXTERNAL: Re: X410 FPGA build failure with UHD-4.4
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A7IETM7KC4O57QP2PGD7WRM52Y7CYYVP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QSPRIKZVPVZCJOPV3APJHO6YFMGVSITJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2734469160978245667=="
+Content-Type: multipart/mixed; boundary="===============3697508477267561841=="
 
---===============2734469160978245667==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN2P110MB102798C324C33782F76A26709FE3ABN2P110MB1027NAMP_"
+--===============3697508477267561841==
+Content-Type: multipart/alternative; boundary="000000000000e74cb40603c5f658"
 
---_000_BN2P110MB102798C324C33782F76A26709FE3ABN2P110MB1027NAMP_
-Content-Type: text/plain; charset="Windows-1252"
+--000000000000e74cb40603c5f658
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-CAUTION: This email originated from outside of Leidos. Be cautious when cli=
-cking or opening content.
+For reference, I typically install the dependencies for building UHD as
+described here:
+https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain=
+_(UHD_and_GNU_Radio)_on_Linux#Update_and_Install_dependencies
 
-Hi Piotr,
+Can you check which version of make you're using? I'm using GNU Make 4.2.1
+on Ubuntu 20.04.
 
-That's exactly what I was attempting to do, build a Vivado project. I'll ma=
-ke a note of this.
+Perhaps you could post the console output somewhere and the build.log file?
+I'm still not clear on the initial problem.
 
-Thanks for the tip.
+The dev_config.json file isn't required.
 
-Ryan
-________________________________
-From: perper@o2.pl <perper@o2.pl>
-Sent: Friday, August 25, 2023 9:52 AM
-To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: EXTERNAL: [USRP-users] Re: X410 FPGA build failure with UHD-4.4
+Wade
 
 
-Hello,
+On Fri, Aug 25, 2023 at 9:50=E2=80=AFAM Seal, Ryan L. [US-US] <
+RYAN.SEAL@dynetics.com> wrote:
 
-The undefined RFNOC_EDGE_TBL_FILE macro is a typical error when you try to =
-build a Vivado project generated for X410.
+> * CAUTION: *This email originated from outside of Leidos. Be cautious
+> when clicking or opening content.
+>
+> Hey Wade,
+>
+> Here is the sequence of events:
+>
+>    - git clone from github
+>    - git checkout UHD-4.4
+>    - cd to x400 folder
+>    - source setupenv.sh   (vivado 2021.1 with the AR patch applied)
+>    - make cleanall
+>    - make X410_X4_200 SYNTH=3D1 GUI=3D1   (<-- added those options so I c=
+ould
+>    open the block design and take a peek at the clocks and RFDC config)
+>
+> I am building on Linux Mint 20.3 Una, which is essentially Ubuntu 20.04
+> from a package perspective. I cut/pasted the dependency list from one of
+> the setup docs, all of the packages were pulled in correctly, and I can
+> talk to the X410 and run some of the example files.
+>
+> I didn't make any modifications to the repo,  I want to get a default
+> image successfully built before going any further. I've gotten through
+> synthesis now, but haven't tried implementation and bitstream generation
+> yet. I'm working from the GUI, so let me go back and check the
+> RFNOC_EDGE_TBL_FILE definition and see exactly what's going on there.
+>
+> Also, the "dev_config.json" file was missing from the x400 folder, not
+> sure if that's another generated file, or just missing from the branch.  =
+I
+> copied that from the x300 folder.
+>
+> Thanks,
+>
+> Ryan
+>
+> ------------------------------
+> *From:* Wade Fife <wade.fife@ettus.com>
+> *Sent:* Thursday, August 24, 2023 11:12 PM
+> *To:* Seal, Ryan L. [US-US] <ryan.seal@dynetics.com>
+> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* EXTERNAL: Re: [USRP-users] X410 FPGA build failure with UHD-4.=
+4
+>
+>
+> *CAUTION: *This email originated from outside of Leidos. Be cautious when
+> clicking or opening content.
+>
+> Hi Ryan,
+>
+> What was the problem/error message that suggested that folder wasn't bein=
+g
+> pulled in properly? The "syntax error" implies that the
+> `RFNOC_EDGE_TBLE_FILE definition isn't being set correctly, but the
+> makefile should pass that in based on the target you're building.
+>
+> Did you make modifications to the repo or run rfnoc_image_builder? If so,
+> maybe try building the unmodified branch first to make sure everything is
+> working. For example:
+>
+> source setupenv.sh
+> make cleanall
+> make X410_X4_200
+>
+> Also, what OS are you using to build on?
+>
+> Wade
+>
+> On Thu, Aug 24, 2023 at 11:16=E2=80=AFAM <ryan.seal@dynetics.com> wrote:
+>
+> I attempted to build an FPGA image on the UHD-4.4 branch with Vivado
+> v2021.1_AR76780 (64-bit) using:
+>
+> *make X410_X4_200 SYNTH=3D1 GUI=3D1*
+>
+> When the IP cores are generated, the following folder is not pulled in
+> properly:
+>
+> *uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma_ex/impo=
+rts
+> *
+>
+> As a temporary work-around, I was able to generate the example files from
+> the xci file in
+>
+> *uhd/fpga/usrp3/top/x400/ip/xge_pcs_pma*
+>
+> and then copied the imports into my build directory and kicked off
+> synthesis once again via GUI.
+>
+> There was also a syntax error in x410_200_rfnoc_image_core.v. The forward
+> ticks on line 182 were causing an issue:
+>
+> *localparam EDGE_TBL_FILE =3D `"`RFNOC_EDGE_TBL_FILE`";*
+>
+> Can someone provide some guidance? I=E2=80=99m not sure if I made a mista=
+ke when I
+> pulled something in, or I=E2=80=99m one of the few that attempted to buil=
+d the
+> image.
+>
+> Going forward, I need to make clock modifications and wanted to get a loo=
+k
+> at the clock structure in vivado to find the best path forward. To
+> summarize, I need to change the 245.76 clocks to 204.8. I would also like
+> to use the RFDC directly if possible (static configuration is fine). That
+> would give me what I need without the DUC/DDC RFNoC blocks. If this isn=
+=E2=80=99t
+> feasible then I=E2=80=99ll need some rate-changing filters and additional=
+ clocks to
+> adjust downstream.
+>
+> - Ryan
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
 
-The reason is that the macro is not passed correctly when synthesizing the =
-Vivado project. My workaround was to use synth_design command generated by =
-UHD X410 Makefile. An example:
-
-synth_design -top x4xx -part xczu28dr-ffvg1517-2-e -verilog_define QSFP0_0=
-=3D2 -verilog_define QSFP0_1=3D2 -verilog_define QSFP0_2=3D2 -verilog_defin=
-e QSFP0_3=3D2 -verilog_define RFBW_200M=3D1 -verilog_define X410=3D1 -veril=
-og_define GIT_HASH=3D32'hfbf186b7 -verilog_define RFNOC_EDGE_TBL_FILE=3D/ho=
-me/user/RFSoC/uhd/fpga/usrp3/top/x400/x410_200_static_router.hex -verilog_d=
-efine RFNOC_IMAGE_CORE_HDR=3Dx410_200_rfnoc_image_core.vh -verilog_define U=
-HD_FPGA_DIR=3D/home/user/RFSoC/uhd/fpga/usrp3/top/../.
-
-I don=92t remember exactly how I obtained it.
-
-Best Regards,
-Piotr Krysik
-
---_000_BN2P110MB102798C324C33782F76A26709FE3ABN2P110MB1027NAMP_
-Content-Type: text/html; charset="Windows-1252"
+--000000000000e74cb40603c5f658
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div class=3D"container-fluid" style=3D"width: 85%;">
-<div style=3D"background-color: #ffffff; width: 100%; padding: 4pt; font-si=
-ze: 10pt; line-height: 14pt; font-family: 'Arial'; color: black; text-align=
-: left; border: 2pt solid #FFA500;">
-<strong><span style=3D"color: #000000;">
-<p>CAUTION:</span> </strong>This email originated from outside of Leidos. B=
-e cautious when clicking or opening content.</p>
+<div dir=3D"ltr"><div>For reference, I typically install the dependencies f=
+or building UHD as described here:</div><div><a href=3D"https://kb.ettus.co=
+m/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio=
+)_on_Linux#Update_and_Install_dependencies">https://kb.ettus.com/Building_a=
+nd_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux#U=
+pdate_and_Install_dependencies</a></div><div><br></div><div>Can you check w=
+hich version of make you&#39;re using? I&#39;m using GNU Make 4.2.1 on Ubun=
+tu 20.04.<br></div><div><br></div><div>Perhaps you could post the console o=
+utput somewhere and the build.log file? I&#39;m still not clear on the init=
+ial problem.</div><div><br></div><div>The=20
+dev_config.json file isn&#39;t required.<br></div><div><br></div><div>Wade<=
+br></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Fri, Aug 25, 2023 at 9:50=E2=80=AFAM Seal, Ryan =
+L. [US-US] &lt;<a href=3D"mailto:RYAN.SEAL@dynetics.com">RYAN.SEAL@dynetics=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex"><div class=3D"msg-7703151084044794933">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"width:85%">
+<div style=3D"background-color:rgb(255,255,255);width:100%;padding:4pt;font=
+-size:10pt;line-height:14pt;font-family:&quot;Arial&quot;;color:black;text-=
+align:left;border:2pt solid rgb(255,165,0)">
+<strong><span style=3D"color:rgb(0,0,0)">
+<p>CAUTION:</p></span> </strong>This email originated from outside of Leido=
+s. Be cautious when clicking or opening content.
 <p></p>
 </div>
 </div>
 <div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Hi Piotr,&nbsp;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+Hey Wade,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-That's exactly what I was attempting to do, build a Vivado project. I'll ma=
-ke a note of this.&nbsp;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt;"><br>
-</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt;">Thanks for the tip.</span><br>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<span style=3D"font-size:12pt;margin:0px;color:rgb(0,0,0)">Here is the sequ=
+ence of events:</span>
+<div style=3D"font-size:12pt;margin:0px;color:rgb(0,0,0)">
+<ul>
+<li style=3D"list-style-type:&quot;- &quot;"><span style=3D"margin:0px">git=
+ clone from github</span></li><li style=3D"list-style-type:&quot;- &quot;">=
+<span style=3D"margin:0px">git checkout UHD-4.4</span></li><li style=3D"lis=
+t-style-type:&quot;- &quot;">cd to x400 folder</li><li style=3D"list-style-=
+type:&quot;- &quot;">source setupenv.sh=C2=A0 =C2=A0(vivado 2021.1 with the=
+ AR patch applied)</li><li style=3D"list-style-type:&quot;- &quot;">make cl=
+eanall</li><li style=3D"list-style-type:&quot;- &quot;">make X410_X4_200 SY=
+NTH=3D1 GUI=3D1=C2=A0 =C2=A0(&lt;-- added those options so I could open the=
+ block design and take a peek at the clocks and RFDC config)</li></ul>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt;"><br>
-</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<div id=3D"m_-7703151084044794933appendonsend" style=3D"font-size:12pt;marg=
+in:0px;color:rgb(0,0,0)">
+I am building on Linux Mint 20.3 Una, which is essentially Ubuntu 20.04 fro=
+m a package perspective. I cut/pasted the dependency list from one of the s=
+etup docs, all of the packages were pulled in correctly, and I can talk to =
+the X410 and run some of the example
+ files.=C2=A0</div>
+<span id=3D"m_-7703151084044794933appendonsend" style=3D"font-size:12pt;mar=
+gin:0px;color:rgb(0,0,0)"></span><br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+I didn&#39;t make any modifications to the repo,=C2=A0 I want to get a defa=
+ult image successfully built before going any further. I&#39;ve gotten=C2=
+=A0<span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:=
+12pt">through synthesis now, but haven&#39;t tried
+ implementation and bitstream generation yet.=C2=A0<span id=3D"m_-770315108=
+4044794933appendonsend" style=3D"font-size:12pt;margin:0px;color:rgb(0,0,0)=
+">I&#39;m working from the GUI, so let me go back and check the RFNOC_EDGE_=
+TBL_FILE definition and see exactly
+ what&#39;s going on there.=C2=A0</span><br>
+<span id=3D"m_-7703151084044794933appendonsend" style=3D"font-size:12pt;mar=
+gin:0px;color:rgb(0,0,0)"></span></span></div>
+<div id=3D"m_-7703151084044794933appendonsend" style=3D"font-family:Calibri=
+,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_-7703151084044794933appendonsend" style=3D"font-family:Calibri=
+,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Also, the &quot;dev_config.json&quot; file was missing from the x400 folder=
+, not sure if that&#39;s another generated file, or just missing from the b=
+ranch.=C2=A0 I copied that from the x300 folder.=C2=A0</div>
+<div id=3D"m_-7703151084044794933appendonsend" style=3D"font-family:Calibri=
+,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_-7703151084044794933appendonsend" style=3D"font-family:Calibri=
+,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Thanks,</div>
+<div id=3D"m_-7703151084044794933appendonsend" style=3D"font-family:Calibri=
+,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_-7703151084044794933appendonsend" style=3D"font-family:Calibri=
+,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 Ryan</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> perper@o2.pl &lt;perp=
-er@o2.pl&gt;<br>
-<b>Sent:</b> Friday, August 25, 2023 9:52 AM<br>
-<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> EXTERNAL: [USRP-users] Re: X410 FPGA build failure with UHD=
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_-7703151084044794933divRplyFwdMsg" dir=3D"ltr"><font face=3D"C=
+alibri, sans-serif" style=3D"font-size:11pt;color:rgb(0,0,0)"><b>From:</b> =
+Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade=
+.fife@ettus.com</a>&gt;<br>
+<b>Sent:</b> Thursday, August 24, 2023 11:12 PM<br>
+<b>To:</b> Seal, Ryan L. [US-US] &lt;<a href=3D"mailto:ryan.seal@dynetics.c=
+om" target=3D"_blank">ryan.seal@dynetics.com</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> EXTERNAL: Re: [USRP-users] X410 FPGA build failure with UHD=
 -4.4</font>
-<div>&nbsp;</div>
+<div>=C2=A0</div>
 </div>
 <div>
-<p>Hello,</p>
-<p>The undefined <strong>RFNOC_EDGE_TBL_FILE</strong> macro is a typical er=
-ror when you try to build a Vivado project generated for X410.</p>
-<p>The reason is that the macro is not passed correctly when synthesizing t=
-he Vivado project. My workaround was to use synth_design command generated =
-by UHD X410 Makefile. An example:</p>
-<p>synth_design -top x4xx -part xczu28dr-ffvg1517-2-e -verilog_define QSFP0=
-_0=3D2 -verilog_define QSFP0_1=3D2 -verilog_define QSFP0_2=3D2 -verilog_def=
-ine QSFP0_3=3D2 -verilog_define RFBW_200M=3D1 -verilog_define X410=3D1 -ver=
-ilog_define GIT_HASH=3D32'hfbf186b7 -verilog_define
- RFNOC_EDGE_TBL_FILE=3D/home/user/RFSoC/uhd/fpga/usrp3/top/x400/x410_200_st=
-atic_router.hex -verilog_define RFNOC_IMAGE_CORE_HDR=3Dx410_200_rfnoc_image=
-_core.vh -verilog_define UHD_FPGA_DIR=3D/home/user/RFSoC/uhd/fpga/usrp3/top=
-/../.</p>
-<p>I don=92t remember exactly how I obtained it.</p>
-<p>Best Regards,<br>
-Piotr Krysik</p>
+<div style=3D"width:85%">
+<div style=3D"width:100%;padding:4pt;font-size:10pt;line-height:14pt;font-f=
+amily:Arial;text-align:left;border:2pt solid rgb(255,165,0);color:black;bac=
+kground-color:rgb(255,255,255)">
+<strong><span style=3D"color:rgb(0,0,0)"></span></strong>
+<p><strong>CAUTION: </strong>This email originated from outside of Leidos. =
+Be cautious when clicking or opening content.</p>
+<p></p>
 </div>
 </div>
-</body>
-</html>
+<div>
+<div dir=3D"ltr">Hi Ryan,
+<div><br>
+</div>
+<div>What was the problem/error message that suggested that folder wasn&#39=
+;t being pulled in properly? The &quot;syntax error&quot; implies that the =
+`RFNOC_EDGE_TBLE_FILE definition isn&#39;t being set correctly, but the mak=
+efile should pass that in based on the target you&#39;re
+ building.</div>
+<div><br>
+</div>
+<div>Did you make modifications to the repo or run rfnoc_image_builder? If =
+so, maybe try building the unmodified=C2=A0branch first to make sure everyt=
+hing is working. For example:</div>
+<div><br>
+</div>
+<div>source setupenv.sh</div>
+<div>make cleanall</div>
+<div>make X410_X4_200</div>
+<div><br>
+</div>
+<div>Also, what OS are you using to build on?</div>
+<div><br>
+</div>
+<div>Wade</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Thu, Aug 24, 2023 at 11:16=E2=80=AFAM &lt;<a href=3D"ma=
+ilto:ryan.seal@dynetics.com" id=3D"m_-7703151084044794933OWA05757976-d757-c=
+0a4-c381-e6c90c2d0314" target=3D"_blank">ryan.seal@dynetics.com</a>&gt; wro=
+te:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<p>I attempted to build an FPGA image on the UHD-4.4 branch with Vivado v20=
+21.1_AR76780 (64-bit) using:</p>
+<p><strong>make X410_X4_200 SYNTH=3D1 GUI=3D1</strong></p>
+<p>When the IP cores are generated, the following folder is not pulled in p=
+roperly:</p>
+<p><strong>uhd/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-1e/xge_pcs_pma=
+_ex/imports
+</strong></p>
+<p>As a temporary work-around, I was able to generate the example files fro=
+m the xci file in
+</p>
+<p><strong>uhd/fpga/usrp3/top/x400/ip/xge_pcs_pma</strong></p>
+<p>and then copied the imports into my build directory and kicked off synth=
+esis once again via GUI.
+</p>
+<p>There was also a syntax error in x410_200_rfnoc_image_core.v. The forwar=
+d ticks on line 182 were causing an issue:</p>
+<p><strong>localparam EDGE_TBL_FILE =3D `&quot;`RFNOC_EDGE_TBL_FILE`&quot;;=
+</strong> </p>
+<p>Can someone provide some guidance? I=E2=80=99m not sure if I made a mist=
+ake when I pulled something in, or I=E2=80=99m one of the few that attempte=
+d to build the image.</p>
+<p>Going forward, I need to make clock modifications and wanted to get a lo=
+ok at the clock structure in vivado to find the best path forward. To summa=
+rize, I need to change the 245.76 clocks to 204.8. I would also like to use=
+ the RFDC directly if possible (static
+ configuration is fine). That would give me what I need without the DUC/DDC=
+ RFNoC blocks. If this isn=E2=80=99t feasible then I=E2=80=99ll need some r=
+ate-changing filters and additional clocks to adjust downstream.
+</p>
+<p>- Ryan</p>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" id=
+=3D"m_-7703151084044794933OWA35ebc0f7-89bf-b79f-c068-23f927c3358e" target=
+=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" id=3D"m_-7703151084044794933OWAf809bc19-e333-93b2-d14c-6c93633082a=
+3" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
 
---_000_BN2P110MB102798C324C33782F76A26709FE3ABN2P110MB1027NAMP_--
+</div></blockquote></div>
 
---===============2734469160978245667==
+--000000000000e74cb40603c5f658--
+
+--===============3697508477267561841==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -290,4 +458,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2734469160978245667==--
+--===============3697508477267561841==--
