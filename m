@@ -2,111 +2,118 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF49797DF6
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Sep 2023 23:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E11D8797ECF
+	for <lists+usrp-users@lfdr.de>; Fri,  8 Sep 2023 00:53:03 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CE4A5385065
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Sep 2023 17:32:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C93F4380A52
+	for <lists+usrp-users@lfdr.de>; Thu,  7 Sep 2023 18:53:02 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1694122344; bh=Reb9faut2q65r9Zfd/vRHmwhIoCOzvzHiZT/bqobT5Y=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=E03kV7bECG1OWwXFWm1yvHJhfCOe0xdfP7HNIdP/xYZyy5n7zKiriqG14rsm7lFcj
-	 MwAqaXVIROxVvsgZFupoEoEVYm8GBTq6uY+PLRJrkCGyiOrhmvyYZZLlKyOqyW8W/7
-	 u7KpWlzfBraQBlcHNaVVyw/+N2JTe76zxVX0iecSUyn/rsYh4rnVa9wzZcokhbUrsa
-	 CxjMAztp8zcAnASzZ//ulDFJKX1AgEHB5ofx92pFRO3hzq8eVRoqaQEccrSXitAa5i
-	 gY96xnQNAxhBLJiy8nehUU+Dwbv3PvdqoxSewywLQatKtapYvsO+KTV4vnMT2KIV4e
-	 Sjphuniti/TqQ==
-Received: from ma-mailsvcp-mx-lapp03.apple.com (ma-mailsvcp-mx-lapp03.apple.com [17.32.222.24])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8EA47384EAA
-	for <usrp-users@lists.ettus.com>; Thu,  7 Sep 2023 17:31:26 -0400 (EDT)
+	t=1694127182; bh=+3vTbKxQTCl9w+miL+BSyivhThOiNOUu1cZ0jPds+jU=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=vUbp1qabiADKHIivcIyWVyGFASVlYztb4Ld8JGs1lyLVjWG2Onq2wY8pKe1SSeVZ8
+	 wqbEtOTgiZvodM4GmH1ArQ1nnMgXUccBesSR+42x60DaQ/z/lnaRSq3uhpMJiIb1by
+	 FFhFmqllXExw0X525gIPdATe5ScS2YU36Auxm5Rp+APOJijvvPLVxavFjQBBVf62Wu
+	 eP8N3AMj4SZ/I3Haq0LCK2GPgDY2siuUQn2FlSUsudveKr4RftGwaVc4sw7IrxM3mn
+	 Kx32eEeYC+UJcbUgSicbVGVJbNHmj4dtFLOBAYTKADhUwwGGFBQqKvt6CG+xG6sdTs
+	 UyDoD8a1skUZw==
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id F279D3809F4
+	for <usrp-users@lists.ettus.com>; Thu,  7 Sep 2023 18:52:01 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=apple.com header.i=@apple.com header.b="IHFBv32m";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TJmHKIiw";
 	dkim-atps=neutral
-Received: from rn-mailsvcp-mta-lapp03.rno.apple.com
- (rn-mailsvcp-mta-lapp03.rno.apple.com [10.225.203.151])
- by ma-mailsvcp-mx-lapp03.apple.com
- (Oracle Communications Messaging Server 8.1.0.23.20230328 64bit (built Mar 28
- 2023)) with ESMTPS id <0S0M00K0GX4CGN90@ma-mailsvcp-mx-lapp03.apple.com> for
- usrp-users@lists.ettus.com; Thu, 07 Sep 2023 14:31:26 -0700 (PDT)
-X-Proofpoint-GUID: QyrJo8IQN2xSyxGz0yg4i9VV8R4IUEXo
-X-Proofpoint-ORIG-GUID: QyrJo8IQN2xSyxGz0yg4i9VV8R4IUEXo
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.601,18.0.957
- definitions=2023-09-07_13:2023-09-05,2023-09-07 signatures=0
-X-Proofpoint-Spam-Details: rule=interactive_user_notspam
- policy=interactive_user score=0 adultscore=0 malwarescore=0 mlxscore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxlogscore=460 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2309070190
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=apple.com; h=from :
- content-type : content-transfer-encoding : mime-version : subject : message-id
- : date : to; s=20180706; bh=E4x79XdC2wKdEz9iXwFUC6SBS8Zdz1w0f9nqEUYIxr0=;
- b=IHFBv32m8L2qPZZeqtC5zzkDUrxDu9k4aF2QMWjeUibzkEBm8nc5/jhaHZXbzjoUnBQW
- phwkjkpSlNohrDkg0rcrW1rw4pTqnRZzzPK6EOpH+RHuO2DcAYdusz4HCpA40UZaQi9G
- sKvXpp5i5HXrkS35lXD5Lj7I0a0k0Pcr+jUvLnpxDkk/1uopwxpbLBSr886tkhF/uUdi
- tc7HPpYb9q61eD0CsAON8vRfMNizK5pPqTSuvpC3YmLjXcr2z4MeGZ3KXOOcigr9eled
- qW0xxwaH5LqwRS1SJVjMAN5JB3yGrUetRhr2x/IsAWOaZX6R3NstPJQz8AScwYT5gmzR Mw==
-Received: from rn-mailsvcp-mmp-lapp03.rno.apple.com
- (rn-mailsvcp-mmp-lapp03.rno.apple.com [17.179.253.16])
- by rn-mailsvcp-mta-lapp03.rno.apple.com
- (Oracle Communications Messaging Server 8.1.0.23.20230328 64bit (built Mar 28
- 2023)) with ESMTPS id <0S0M00JY3X4CNK00@rn-mailsvcp-mta-lapp03.rno.apple.com>
- for usrp-users@lists.ettus.com; Thu, 07 Sep 2023 14:31:24 -0700 (PDT)
-Received: from process_milters-daemon.rn-mailsvcp-mmp-lapp03.rno.apple.com by
- rn-mailsvcp-mmp-lapp03.rno.apple.com
- (Oracle Communications Messaging Server 8.1.0.23.20230328 64bit (built Mar 28
- 2023)) id <0S0M00X00WUR6200@rn-mailsvcp-mmp-lapp03.rno.apple.com> for
- usrp-users@lists.ettus.com; Thu, 07 Sep 2023 14:31:24 -0700 (PDT)
-X-Va-A: 
-X-Va-T-CD: 3d5221d1829f6b5ea83ffe8e1331d89d
-X-Va-E-CD: b697facdf9659646f65511ea8a9552b8
-X-Va-R-CD: d2971ddb9e5e4d9acbc16818941496d9
-X-Va-ID: b3b890f6-fcf9-45a0-a66d-f2467056b2cf
-X-Va-CD: 0
-X-V-A: 
-X-V-T-CD: 3d5221d1829f6b5ea83ffe8e1331d89d
-X-V-E-CD: b697facdf9659646f65511ea8a9552b8
-X-V-R-CD: d2971ddb9e5e4d9acbc16818941496d9
-X-V-ID: cbaafe77-3bbe-45ad-b1b9-032b94a1ed75
-X-V-CD: 0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.601,18.0.957
- definitions=2023-09-07_13:2023-09-05,2023-09-07 signatures=0
-Received: from smtpclient.apple (unknown [17.234.21.232])
- by rn-mailsvcp-mmp-lapp03.rno.apple.com
- (Oracle Communications Messaging Server 8.1.0.23.20230328 64bit (built Mar 28
- 2023)) with ESMTPSA id <0S0M00D0ZX4CAW00@rn-mailsvcp-mmp-lapp03.rno.apple.com>
- for usrp-users@lists.ettus.com; Thu, 07 Sep 2023 14:31:24 -0700 (PDT)
-MIME-version: 1.0 (Mac OS X Mail 16.0 \(3731.400.51.1.1\))
-Message-id: <D6A559C5-8B6D-4970-B55D-D4D229176390@apple.com>
-Date: Thu, 07 Sep 2023 14:31:14 -0700
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-76ef653af2eso82059185a.0
+        for <usrp-users@lists.ettus.com>; Thu, 07 Sep 2023 15:52:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694127121; x=1694731921; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tBxgl0LWGnFP/UAGeslz6SWfF5bnPZYvh4EYL/Zb7bY=;
+        b=TJmHKIiwv9AbnvGnbJB1gHpglK1GT0VtTuLy+ZbFNHpO8wQ0WHfQ0hOlU/q2of7+fW
+         vbXfSfG3XKYog1jyrPh6W3sj3MKOpjE4kNkMBUOYr3LXbPWxsqQ7aZJ4ZByMAi+l7K7D
+         P77VhwhqMx8CiiKb4iB4WuqmeHZhiiepodtMWt7UknrMUxSV1toTIaI9qAm16TgMKI2U
+         It3P2skahnD8Zamw6PAGEDmIl9ZAzYO5c2UnTIChgue+YOXbSab+mxE9Z5XW40QGU30W
+         KNs+R+US3NI8/fcLpnzKde4pDoEq+ryu2OUd02+Cj9bmfyschN3ISPjmEj2TNve3WWXq
+         Tn8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694127121; x=1694731921;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tBxgl0LWGnFP/UAGeslz6SWfF5bnPZYvh4EYL/Zb7bY=;
+        b=quR5/6A/brWHbvUCXwgaLu0Pn0eTpmel9GSRxEPzuRFkYBWAFG0dXm+oOD43++4qOO
+         mwP3kZybKsaDLzB2dbII8cMzTD8KeM6f4834FOUjaFPUWZoxKXNs+zKy87yv+WRW/bDx
+         OLn4uHg8CYLkB0H0alno9tbMTXxNWt/prcmKeqgBjQbIKFx7MecZWvNWGfJRPiLN9cEO
+         rLQr9ZIXa+dvNXhMkp+X56BRBKbKrccClfsC970lqJH3O785ItROfF1A9vzunQV9xzqK
+         2qEQATvltNd5lFdrczEJRSgaa6sNXUYsDsgnOTvsa7kRIcYjz/M0BnqCUkRdbB3cCRxy
+         hHsQ==
+X-Gm-Message-State: AOJu0YxhXz9srjSMVPgORGRYk46x9YM3ZCuUAW1G4RdxnpFABwb5xB2n
+	mtgCcv/oe7Wbtd1iEbAO2clv41k64BneTg==
+X-Google-Smtp-Source: AGHT+IHNd5xg/FZMJOWuRl4MdGFwiY83VciHn4olU9HT3ATK61hsdqrLnwpInnJJAI3hMmdwVZsYgw==
+X-Received: by 2002:a05:620a:2189:b0:76f:1d46:8511 with SMTP id g9-20020a05620a218900b0076f1d468511mr916603qka.44.1694127121028;
+        Thu, 07 Sep 2023 15:52:01 -0700 (PDT)
+Received: from [192.168.2.208] (bras-base-smflon1825w-grc-08-174-93-1-40.dsl.bell.ca. [174.93.1.40])
+        by smtp.googlemail.com with ESMTPSA id u14-20020a05620a120e00b0076d1e149701sm120786qkj.115.2023.09.07.15.52.00
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Sep 2023 15:52:00 -0700 (PDT)
+Message-ID: <ec60ffa6-fbd8-2385-e930-6992256f3b29@gmail.com>
+Date: Thu, 7 Sep 2023 18:51:56 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-X-Mailer: Apple Mail (2.3731.400.51.1.1)
-Message-ID-Hash: SZNLFQGIT5BTYHU62LDKUWCKNFB7NNT2
-X-Message-ID-Hash: SZNLFQGIT5BTYHU62LDKUWCKNFB7NNT2
-X-MailFrom: vlevin@apple.com
+References: <CAA_d=hKMp2YAhGxRndpvyTtWvdVN+bjT5Kd2xsPYdsH2YJ7m5g@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAA_d=hKMp2YAhGxRndpvyTtWvdVN+bjT5Kd2xsPYdsH2YJ7m5g@mail.gmail.com>
+Message-ID-Hash: 3WJX3I4NGGUPMDM6QKPFVNFVHRHCB3EW
+X-Message-ID-Hash: 3WJX3I4NGGUPMDM6QKPFVNFVHRHCB3EW
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Can DPDK compiled UHD still work with B210/USB devices?
+Subject: [USRP-users] Re: Set the gain settings in C++ API for B210
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SZNLFQGIT5BTYHU62LDKUWCKNFB7NNT2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3WJX3I4NGGUPMDM6QKPFVNFVHRHCB3EW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Victor Levin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Victor Levin <vlevin@apple.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Hi all, 
-
-I have a system that uses X410 with DPDK but I want to also use B210 on the same host. Is there anyway to have UHD compiled with DPDK still work with B210 (USB) or is a non DPDK compiled UHD binary needed? 
-
-Thanks,
-Victor
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+T24gMDcvMDkvMjAyMyAwMDoxOCwgc3dhcG5pbCBzcml2YXN0YXZhIHdyb3RlOg0KPiBIZWxsbywg
+SSdtIGhhdmluZyBzb21lIHRyb3VibGUgd2l0aCB0aGUgVUhEIEFQSS4gSSdtIHRyeWluZyB0byBi
+dWlsZCBhIA0KPiBzaW1wbGUgcmVjZWl2ZXIgY29kZSBieSBmb2xsb3dpbmcgdGhlIGV4YW1wbGVz
+IGluIHRoZSANCj4gJ3J4X3NhbXBsZXNfdG9fZmlsZScgYW5kICdyeF90aW1lZF9zYW1wbGVzJy4g
+V2hlbiBJJ20gdXNpbmcgdGhlIA0KPiByeF9zYW1wbGVzX3RvX2ZpbGUgZXhhbXBsZSBhbmQgdHJ5
+IHRvIHNldCB0aGUgZ2FpbiBzZXR0aW5ncyB0aHJvdWdoIA0KPiB0aGUgY29tbWFuZCBsaW5lLCAo
+L3J4X3NhbXBsZXNfdG9fZmlsZSAtLWZyZXEgOThlNiAtLXJhdGUgNWU2IC0tZ2FpbiANCj4gMjAg
+LS1jaGFubmVscyAwLDEgLS1kdXJhdGlvbiAxMCB1c3JwX3NhbXBsZXMuZGF0KS4NCj4NCj4gSSBn
+ZXQgYW4gZXJyb3Igc2F5aW5nICIgUlggY2hhbm5lbCAxODQ0Njc0NDA3MzcwOTU1MTYxNSBvdXQg
+b2YgcmFuZ2UgDQo+IGZvciBjb25maWd1cmVkIFJYIGZyb250ZW5kcyIuDQo+IEJhc2ljYWxseSBJ
+IHdhbnQgdG8gYmUgYWJsZSB0byB1c2UgYm90aCByZWNlaXZlZCBjaGFubmVscyANCj4gc2ltdWx0
+YW5lb3VzbHkgYW5kIHNldCB0aGUgZ2FpbiBmb3IgYm90aCwgbGlrZSB5b3UgY2FuIGluIEdOVSBS
+YWRpbyANCj4gQ29tcGFuaW9uLiBJZiBJIGRvbid0IHNldCB0aGUgZ2FpbiB0aGVuIGl0IHJ1bnMg
+YXMgZXhwZWN0ZWQuIEkndmUgDQo+IHRyaWVkIGFkZGluZyBtb3JlIHBhcmFtZXRlcnMgc3VjaCBh
+cyAnYW50JyBhbmQgJ3N1YmRldicgYnV0IGl0IGRvZXNuJ3QgDQo+IHNlZW0gdG8gd29yay4NCj4g
+VGhhbmsgeW91DQo+DQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1s
+ZWF2ZUBsaXN0cy5ldHR1cy5jb20NCldoZW4gSSd2ZSBzZWVuIHRoaXMgYmVoYXZpb3IgaW4gdGhl
+IHBhc3QgaXQgaGFzIGJlZW4gYmVjYXVzZSB0aGUgVUhEIA0KZXhhbXBsZSBhcHBzIHdlcmUgbGlu
+a2VkIGFnYWluc3Qgb25lIHZlcnNpb24gb2YgdGhlIFVIRA0KIMKgIGxpYnJhcnksIGFuZCB0aGVu
+IGFub3RoZXIgdmVyc2lvbiBvZiB0aGF0IGxpYnJhcnkgd2FzIGluc3RhbGxlZCBvbnRvIA0KdGhl
+IHN5c3RlbSB1bmRlcm5lYXRoIHRoZW0tLXlvdSBoYXZlIGEgbGlicmFyeSB2ZXJzaW9uDQogwqAg
+bWlzLW1hdGNoLg0KDQpQb3NzaWJseSB3aGVuIHlvdSBpbnN0YWxsZWQgR251IFJhZGlvIGZyb20g
+dGhlIHBhY2thZ2VkIHJlcG9zaXRvcmllcyANCkFGVEVSIGRvaW5nIGEgbWFudWFsIGJ1aWxkIG9m
+IFVIRCwgb3Igc29tZSBvdGhlcg0KIMKgIGluY29tcGF0aWJsZSBVSEQgaW5zdGFsbC4NCg0KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUg
+c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
