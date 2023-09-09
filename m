@@ -2,109 +2,189 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F24F798063
-	for <lists+usrp-users@lfdr.de>; Fri,  8 Sep 2023 03:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BDB37997D3
+	for <lists+usrp-users@lfdr.de>; Sat,  9 Sep 2023 14:03:54 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 539C13851C1
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Sep 2023 21:59:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 99379384C74
+	for <lists+usrp-users@lfdr.de>; Sat,  9 Sep 2023 08:03:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1694138380; bh=tk2MpbEC0YVC334VCtSD23MF0GHuIzAKFnK64XxiDvM=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=sSXQ97f8YGC14YKMabOKbg5ppoOKkrbAW9xlcTMqjXZdJlaCyl4td9gqLGoopdadN
-	 eykTcOvdR95MqP0vFzGM1SkXEMRcurUHKOh1FFp4F7R/lRERqsNCjXRGraZZVu26kq
-	 kmADAZF+S+nqE7PQ7POgd7oONom68Va+Lw2j+H5t7gdZlvNBAoVedYcU5Q4As37Ybo
-	 tqdjISWEBZAjcLFXVRp1F49mvMxBR1BRqRY5f6OETS9V6+QXRekKsJ1ScHU9g7C8tC
-	 0QTh4ySw6YP2EK4LJ+9Aet6infCBBbW6oJpCFArotf9F/Au0im7THbx4FMNXoTh0gi
-	 DMJU8xXJuRBqA==
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id D74AC384E08
-	for <usrp-users@lists.ettus.com>; Thu,  7 Sep 2023 21:58:42 -0400 (EDT)
+	t=1694261032; bh=tIO6kJmpZgR+t2lPwZM1GwkkxW42rVE4tRg8ZetiD90=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=GSISlDzv6BSgnHcC/cuB/+dP5sQPchjgtqTthnDathTegsERIZoBpxQvCCmev5d1o
+	 INUD3mcOCxNLpxKBm7T2A1rDbluHyscHkvQ3rbcnoFiQbqoqKnmI9hriPshCFRqYD/
+	 PoH5oL2qiv+7a/dajdR/SASSo7Laij4rTFDE5jIgp1NezE8b27l4fJA2VGhEpEqb0R
+	 HQrjoqVq1cxMCx6wo4e2+pO3vbipVKTg2Puuq9vawijPErIoI28zm8DoPR2+to7I+i
+	 Gsz0aQxCTXEoyucUO3ZOV3wvEWg+YzdtfgIvEr4fH1kwo4vsKYfs124BJupx3YXuxl
+	 /7+skd+AEDZyA==
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 44189384812
+	for <usrp-users@lists.ettus.com>; Sat,  9 Sep 2023 08:02:56 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ghW4aVKv";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FckHZgxC";
 	dkim-atps=neutral
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5738cb00eebso959029eaf.2
-        for <usrp-users@lists.ettus.com>; Thu, 07 Sep 2023 18:58:42 -0700 (PDT)
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-490e78ae83bso1062153e0c.0
+        for <usrp-users@lists.ettus.com>; Sat, 09 Sep 2023 05:02:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694138322; x=1694743122; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9SZdp4d45q5f9hlArve1n+g1Iq5koU4YEyd++7txkJw=;
-        b=ghW4aVKvC4P5wybfgh3Kw3leR0gnsDCAw9nHJQRUvKyRCOEEICBYOoiSSUX5a8J1ou
-         TxRlb/atibUYeVah1B/0oNvusp7NV7ooOZuigulJv1nFlFB3vckUDIvq20NMRue7mDRf
-         7PUjac5WS3te0ndE7N/RxUxClprjJrXS2aoOFGOAAk4iVTv6KznoSnlJ+tQ6FfbSKkL3
-         CgNG0LlYFKx9CbP3YhZiwTXiv4B3hxlBpXzgk3xtec7AILCf9CwhBgfimuuPdc8hTumB
-         sRUDwUpx8u467o8FWdzTDFqtIbd26S6SmNT71IV2HDOylqqNwQD4rpYlx9LUNmJbi9h+
-         xjLA==
+        d=gmail.com; s=20221208; t=1694260975; x=1694865775; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Y/ujWW6PXoaJv5DhqznqVlslW2xeGP/rLSQtXvth9jY=;
+        b=FckHZgxC/VP0mysOAAEXASzoNyKsML+5oNVIdtuo0VCEEqs0JS3qjbdaYsohQT3FU5
+         FsgZX6SEo1OqUMNtgRfRiVI1qFS5a0QtjQNqMdWsjZXydotuKAAawvPh3G+wJxZunD1c
+         d8lq+T4Mr9tFjo3Tu6Vx7ZQfHXoZKA4YpRSNFU1h1cVcejA1PuSVVE+ib/qEajss5bUQ
+         jFPsCDj8ZDSct0c2RtEaUjIWAlEBBqZjMXIvrOlbYDttR5LiQz5utPRPTAIk5ImcpZv1
+         FopzUKeVkKlW9T/sTQ4mFzn+0Rco3YkzkeHozEyFDSDNhmOOk/Uce0V6AF0KpVolABbB
+         iGlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694138322; x=1694743122;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9SZdp4d45q5f9hlArve1n+g1Iq5koU4YEyd++7txkJw=;
-        b=EkKCc5clwNWClezDHhn07JaGrPVfFzkJlMhcLfgrXQ2bUm6X5DNqyWKSX4ftQ0XIdv
-         O1RzZ6FNxfjsUrWu5NroaRH5T1iRTCkfOqvpUoy7lnTXjop8/NgpqZN+adantZ00nALf
-         KCnfPI6KoEaUX5XZQSNnWS10faCH2s+3BGe/ntXO9NCvkx7T7lINU+O5mJ/msYHW3eLQ
-         MosxLNs3FIk9iSOGzFkaNPWxx2jn0s1DIozLfOpVN8p22PIZtBTCSk1EoWd5ZzH0t2D9
-         d2nDXaNeFM7P5n7zebKSNJoIzsn87HjGbzzEPM7Qn+p+NB5w38kCXjzjgOMOD86JCF7u
-         ZUqQ==
-X-Gm-Message-State: AOJu0Yw7rURO/oHC3fJpCu9ECyqtXlnspLsgdI7M2WnqolJTf5Uo64l7
-	AxHVfviRNDPNp284OBBkiR3ISLqoQT8l3w==
-X-Google-Smtp-Source: AGHT+IFM1KF6SBi9Ht+3f6CIIvMPAtCJmbVYNBrBehyuddQm7rUzW6iTLirjFG2AL9q/WJguBypXzQ==
-X-Received: by 2002:a05:6358:7e44:b0:133:a8e:6feb with SMTP id p4-20020a0563587e4400b001330a8e6febmr1196823rwm.12.1694138321868;
-        Thu, 07 Sep 2023 18:58:41 -0700 (PDT)
-Received: from [192.168.2.208] (bras-base-smflon1825w-grc-08-174-93-1-40.dsl.bell.ca. [174.93.1.40])
-        by smtp.googlemail.com with ESMTPSA id s8-20020a0ce308000000b00647120d0085sm279538qvl.69.2023.09.07.18.58.41
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Sep 2023 18:58:41 -0700 (PDT)
-Message-ID: <cd23de12-afbf-c9e0-0ac2-955fff473dc4@gmail.com>
-Date: Thu, 7 Sep 2023 21:58:40 -0400
+        d=1e100.net; s=20230601; t=1694260975; x=1694865775;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y/ujWW6PXoaJv5DhqznqVlslW2xeGP/rLSQtXvth9jY=;
+        b=pIDU7/IJghGjfcZrX0O+hFmCj/bH2PGyshV+z8R15FbpCgLk0xiXqcKFs4OG55iBl6
+         evK1xIqcoYLkTCKbIohObrc/PSv6WXH1chUtPOPrr6jRpfXa9ZQGY7NSgp3oVqpQqjpX
+         0fq6d2twtfeZz32ZR1KA8V3KmhKRubaGJgwuXP10m4IbNCoVWnh+7+zVzl1TskEmyfLH
+         4bz3pTqabdOpUzlh08w5x5vQQThGPHEU5G0ouZ+7aIbrGwC8JosaUmPTK8nSgQ9rr1uF
+         2VvFAWUtbEqsMQ/iPONlr1PfPU3TVxMMjCJF14i0wtoluwwjNydfZmofpjRLKeTpjgMh
+         Naqw==
+X-Gm-Message-State: AOJu0YxpsFbd4ZYaTrIjh5DIe5dzOFka1E3OsLjpPUlCl5Z4uc9l7ncX
+	0ARpUgvchzEAwhGfwOV0VNCYb6JC7v6Zh1FNhQZ/SJflvAXPG5nLaFU=
+X-Google-Smtp-Source: AGHT+IGyJWmi72bJgcClISw1Q8Wa3w/MP69VnycfwFNPr4f+8AhdqBSaWcIq9/iuUNTRD/n0+aMkojctN73pfItY6jY=
+X-Received: by 2002:a1f:c645:0:b0:493:7c76:bbac with SMTP id
+ w66-20020a1fc645000000b004937c76bbacmr4657385vkf.2.1694260975107; Sat, 09 Sep
+ 2023 05:02:55 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <ue30bkcCYOx0F1Qcq1qNKGl54sjfMBxCTwsFoSuPwU@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <ue30bkcCYOx0F1Qcq1qNKGl54sjfMBxCTwsFoSuPwU@lists.ettus.com>
-Message-ID-Hash: WSBMORN2NRSJJOLNKBHMBSEDE5U2VR4P
-X-Message-ID-Hash: WSBMORN2NRSJJOLNKBHMBSEDE5U2VR4P
-X-MailFrom: patchvonbraun@gmail.com
+From: sp <stackprogramer@gmail.com>
+Date: Sat, 9 Sep 2023 16:32:43 +0430
+Message-ID: <CAA=S3PvES-s7nR-3uGmxGsMCH6eg30mMeP_cFVmwSi4r2MMUhQ@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: Y63D6FHP465VZS6EMBS53M6HX3NM7GEF
+X-Message-ID-Hash: Y63D6FHP465VZS6EMBS53M6HX3NM7GEF
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Set the gain settings in C++ API for B210
+Subject: [USRP-users] Failure: ERROR:add_1 must be in range [-1,DEPTH-1]
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WSBMORN2NRSJJOLNKBHMBSEDE5U2VR4P/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y63D6FHP465VZS6EMBS53M6HX3NM7GEF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8366823802397738780=="
 
-T24gMDcvMDkvMjAyMyAyMTo1NiwgMTkyMHN3YXBuaWxAZ21haWwuY29tIHdyb3RlOg0KPg0KPiBJ
-IGhhdmUgdGhlIHZlcnNpb24gNC40LjAuMCBvbiB1YnVudHUgMjIuMDQuIEkgZm9sbG93ZWQgdGhl
-IOKAmCBCdWlsZGluZyANCj4gYW5kIEluc3RhbGxpbmcgdGhlIFVTUlAgT3Blbi1Tb3VyY2UgVG9v
-bGNoYWluIChVSEQgYW5kIEdOVSBSYWRpbykgb24gDQo+IExpbnV44oCZIGd1aWRlLCBhbmQgeWVz
-IEkgZGlkIGluc3RhbGwgR05VIFJhZGlvIGFmdGVyd2FyZHMuIEnigJlsbCB0cnkgdG8gDQo+IHVu
-aW5zdGFsbCBHTlUgUmFkaW8gdG8gc2VlIGlmIHRoYXQgZml4ZXMgdGhlIGlzc3VlLg0KPg0KPg0K
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1
-bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMu
-Y29tDQpHaXZlbiB0aGF0IHRoZSBCMjEwIGhhc24ndCBoYWQgYW55IHVwZGF0ZXMgaW4gcXVpdGUg
-c29tZSB0aW1lLCB0aGVyZSdzIA0Kbm8gcmVhc29uIHRvIGhhdmUgdGhlICJ2ZXJ5IGxhdGVzdCIg
-VUhELCBhbmQgdGhlDQogwqB2ZXJzaW9uIHRoYXQgaXMgcGFja2FnZWQgd2l0aCBVYnVudHUgc2hv
-dWxkIGJlIGp1c3QgZmluZS4NCg0KSXQncyBsaWtlbHkgdGhhdCB5b3UgaGF2ZSBhIGNvbmZsaWN0
-IGJldHdlZW4gdGhlICJpbnN0YWxsZWQgZnJvbSB0aGUgDQpkaXN0cm8gcmVwbyIgdmVyc2lvbnMg
-b2YgVUhEIGFuZCBHbnUgUmFkaW8sIGFuZCB0aGUNCiDCoCBiaXRzIGFuZCBwaWVjZXMgdGhhdCB5
-b3UgY29tcGlsZWQgYW5kIGluc3RhbGxlZCBmcm9tIHNvdXJjZS7CoCBUaGUgDQoibWl4ZWQgc3lz
-dGVtIiBzeW5kcm9tZS4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxp
-c3RzLmV0dHVzLmNvbQo=
+--===============8366823802397738780==
+Content-Type: multipart/alternative; boundary="0000000000009402f00604ebdf44"
+
+--0000000000009402f00604ebdf44
+Content-Type: text/plain; charset="UTF-8"
+
+When I added this section a CORDIC IPCORE to rfnoc gain block I faced a
+strange error Failure: ERROR:add_1 must be in the range [-1,DEPTH-1]
+How can solve this error? Anyone can guide me?
+
+wire [15:0] phase_out_tdata;
+wire phase_out_tvalid;
+wire phase_out_tready;
+
+wire [31:0] sine_out_tdata;
+wire sine_out_tlast;
+wire sine_out_tvalid;
+wire sine_out_tready;
+
+// Phase accumulator
+phase_accum phase_acc (
+.clk (ce_clk),
+.reset (ce_rst),
+.i_tdata (16'h0001), // Phase increment value
+.i_tvalid (1'b1),
+.o_tdata (phase_out_tdata),
+.o_tvalid (phase_out_tvalid),
+.o_tready (phase_out_tready)
+);
+
+// // // CORDIC rotator
+cordic_rotator cordic_inst (
+.aclk (ce_clk),
+.aresetn (~ce_rst),
+.s_axis_phase_tdata (phase_out_tdata),
+//.s_axis_phase_tlast (1'b1),
+.s_axis_phase_tvalid (phase_out_tvalid),
+.s_axis_phase_tready (phase_out_tready),
+.s_axis_cartesian_tdata ({16'd0, 16'd1}), // Initial vector
+.s_axis_cartesian_tlast (1'b1),
+.s_axis_cartesian_tvalid (phase_out_tvalid),
+.s_axis_cartesian_tready (phase_out_tready),
+.m_axis_dout_tdata ({sine_out_tdata[ 0 +: 16], // Q
+sine_out_tdata[16 +: 16]}), // I
+.m_axis_dout_tlast (sine_out_tlast),
+.m_axis_dout_tvalid (sine_out_tvalid),
+.m_axis_dout_tready (sine_out_tready)
+);
+
+--0000000000009402f00604ebdf44
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">When I added this section a CORDIC IPCORE to rfnoc gain bl=
+ock I faced a strange error=C2=A0Failure: ERROR:add_1 must be in the range =
+[-1,DEPTH-1]<div>How can solve this error? Anyone can guide me?<br><div><br=
+></div><div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mon=
+o&quot;,&quot;monospace&quot;,monospace;font-size:14px;line-height:19px;whi=
+te-space:pre"><div>  <span style=3D"color:rgb(0,0,255)">wire</span> [<span =
+style=3D"color:rgb(9,134,88)">15</span>:<span style=3D"color:rgb(9,134,88)"=
+>0</span>] phase_out_tdata;</div><div>  <span style=3D"color:rgb(0,0,255)">=
+wire</span>        phase_out_tvalid;</div><div>  <span style=3D"color:rgb(0=
+,0,255)">wire</span>        phase_out_tready;</div><br><div>  <span style=
+=3D"color:rgb(0,0,255)">wire</span> [<span style=3D"color:rgb(9,134,88)">31=
+</span>:<span style=3D"color:rgb(9,134,88)">0</span>] sine_out_tdata;</div>=
+<div>  <span style=3D"color:rgb(0,0,255)">wire</span>             sine_out_=
+tlast;</div><div>  <span style=3D"color:rgb(0,0,255)">wire</span>          =
+   sine_out_tvalid;</div><div>  <span style=3D"color:rgb(0,0,255)">wire</sp=
+an>             sine_out_tready;</div><br><div>  <span style=3D"color:rgb(0=
+,128,0)">// Phase accumulator</span></div><div>  <span style=3D"color:rgb(1=
+28,0,0)">phase_accum</span> <span style=3D"color:rgb(128,0,0)">phase_acc</s=
+pan> (</div><div>    .clk      (ce_clk),</div><div>    .reset    (ce_rst),<=
+/div><div>    .i_tdata  (<span style=3D"color:rgb(9,134,88)">16&#39;h0001</=
+span>), <span style=3D"color:rgb(0,128,0)">// Phase increment value</span><=
+/div><div>    .i_tvalid (<span style=3D"color:rgb(9,134,88)">1&#39;b1</span=
+>),</div><div>    .o_tdata  (phase_out_tdata),</div><div>    .o_tvalid (pha=
+se_out_tvalid),</div><div>    .o_tready (phase_out_tready)</div><div>  );</=
+div><br><div>  <span style=3D"color:rgb(0,128,0)">// // // CORDIC rotator</=
+span></div><div>  <span style=3D"color:rgb(128,0,0)">cordic_rotator</span> =
+<span style=3D"color:rgb(128,0,0)">cordic_inst</span> (</div><div>    .aclk=
+                    (ce_clk),</div><div>    .aresetn                 (~ce_r=
+st),</div><div>    .s_axis_phase_tdata      (phase_out_tdata),</div><div>  =
+  <span style=3D"color:rgb(0,128,0)">//.s_axis_phase_tlast     (1&#39;b1),<=
+/span></div><div>    .s_axis_phase_tvalid     (phase_out_tvalid),</div><div=
+>    .s_axis_phase_tready     (phase_out_tready),</div><div>    .s_axis_car=
+tesian_tdata  ({<span style=3D"color:rgb(9,134,88)">16&#39;d0</span>, <span=
+ style=3D"color:rgb(9,134,88)">16&#39;d1</span>}), <span style=3D"color:rgb=
+(0,128,0)">// Initial vector</span></div><div>    .s_axis_cartesian_tlast  =
+(<span style=3D"color:rgb(9,134,88)">1&#39;b1</span>),</div><div>    .s_axi=
+s_cartesian_tvalid (phase_out_tvalid),</div><div>    .s_axis_cartesian_trea=
+dy (phase_out_tready),</div><div>    .m_axis_dout_tdata       ({sine_out_td=
+ata[      <span style=3D"color:rgb(9,134,88)">0</span> +: <span style=3D"co=
+lor:rgb(9,134,88)">16</span>],   <span style=3D"color:rgb(0,128,0)">// Q</s=
+pan></div><div>                               sine_out_tdata[<span style=3D=
+"color:rgb(9,134,88)">16</span> +: <span style=3D"color:rgb(9,134,88)">16</=
+span>]}), <span style=3D"color:rgb(0,128,0)">// I</span></div><div>    .m_a=
+xis_dout_tlast       (sine_out_tlast),</div><div>    .m_axis_dout_tvalid   =
+   (sine_out_tvalid),</div><div>    .m_axis_dout_tready      (sine_out_trea=
+dy)</div><div>  );</div><div>  </div><br><br></div></div></div></div>
+
+--0000000000009402f00604ebdf44--
+
+--===============8366823802397738780==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============8366823802397738780==--
