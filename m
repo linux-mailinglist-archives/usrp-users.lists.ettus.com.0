@@ -2,748 +2,3487 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE2A79D350
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Sep 2023 16:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46E7179E2C2
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Sep 2023 10:57:05 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 022503852AF
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Sep 2023 10:10:03 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4BB6B384EAA
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Sep 2023 04:57:04 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1694527803; bh=aghabrB4w6+4aRdvINIlp+5lZEhZqHvT5ODj2tth/bs=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=ITc1fLopszgOb5K7vbhEC5+ObfVBvPQE8SDqOtL0tpjBVrZkLQbnFRflULgQhfe1I
-	 iag/7r3zKRlZ9pgPl4QfjDS3ISEwiB1fY0bPpIC80CGgxGtXsdnAqBG5BYHy3/DurP
-	 d3j2vQcfOXgrdj7IMeSi7nGcXRMrJYaPEcEO1fLOUWuKNHxv7/F+WDVzY7N/nhELye
-	 khMWm4Nq37T33Otw+8U3o965k+cUjMJhhgrZxz//yfUCAyWZyJ/u4tWGWq24N8+hWS
-	 3ajqOa4csBONKFjGYcK2IVkhcaLsivzQCtETdquO06ArQCoDe0hpkKMm141DoHvJRE
-	 hcaVE1zl+AiaA==
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4A6EC385053
-	for <usrp-users@lists.ettus.com>; Tue, 12 Sep 2023 10:09:02 -0400 (EDT)
+	t=1694595424; bh=WkNFvSv2qARZ1qcjYaI+VPwR3Jr9OGoRYkO+NzL1jdk=;
+	h=Date:From:To:CC:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=Lo4hO9eaQb3ngbcPvdTXLp0uiakYgumRK7ZoCGnTITotYrJ6YWzMm4jXbC5qx65RH
+	 lUrH0dGYrvEFWnHAcfd/KzofxkiXc5OVdkJi8FlV4yoZ9xSrBX+YvThQIPXZlImTCi
+	 B0Y1U+ZGilFrhrzpBlX0i1mMY3WxheSxp59t34HT1wFnIrkxsewhCwQoCV2nacdlty
+	 q2NY/nKGdCPjxRA51cITcV+6D90DhTtXrAAtXQGRSdgTd3pFHTxfRJO1j509fVVcau
+	 vPqtH0l4vYFqAh16upv0X4vHaq5Q6nAVhg8t7kqYqx9thrAl5Tt4n2Utid41/qrPJt
+	 tWayJT+d8xIKg==
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id D699B3842E5
+	for <usrp-users@lists.ettus.com>; Wed, 13 Sep 2023 04:55:54 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Iy4l5UPy";
+	dkim=pass (2048-bit key; unprotected) header.d=simula-no.20230601.gappssmtp.com header.i=@simula-no.20230601.gappssmtp.com header.b="wVlBstAw";
 	dkim-atps=neutral
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-412137ae07aso34906281cf.2
-        for <usrp-users@lists.ettus.com>; Tue, 12 Sep 2023 07:09:02 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2bf78950354so67549111fa.1
+        for <usrp-users@lists.ettus.com>; Wed, 13 Sep 2023 01:55:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694527741; x=1695132541; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
+        d=simula-no.20230601.gappssmtp.com; s=20230601; t=1694595353; x=1695200153; darn=lists.ettus.com;
+        h=subject:cc:to:organization:from:content-language:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ou2OLf5M0h9MDJaSQs3IrI1lH47KuEovpudusKXXnjI=;
-        b=Iy4l5UPyjeG1xLZNiVslJcvtFvgMjrg93EEhcxw+vkCeSx7bAa36GjHosUDeREr0Dl
-         WByuV8qMy8q43UXkM05o7JrYE6GIkvAzZ2pH8791y/Vv20HIX2TFQSDZvT+jKZIZcj0F
-         3czA0YnUEuTV8nHvaE0+DM29dsJA9gfDUxemuBBoQB5eIclD7Z4C16oZ5FHues0PF+LW
-         vwvri/N2aH9KNiERwjF+i4cAK/CIoBhqTtPQZ4GfSVSEUu2SeybxP4NF2umoWm2v430Y
-         tGgghe+rPLQv7eTPcphzXfK59hLeU1wAOwo/F5moYNr0m7GW2xsoxLo8D6nZ3naGRyz7
-         zcWg==
+        bh=aFGEVtOvKKA5eHrL8jYzlWwpbY6k+yxrjxA3agyPyUA=;
+        b=wVlBstAwQdAvlmEN0LyeYY6NsmVkGlHKerdGGR2/9SfHKSuXp4OzyE5prvafzyx+yh
+         jdQCpiegzzH61R8b6czeKP5KY852bblBztnZ6VReL15y/lrELNoWgl+laZH4gX6RPPID
+         5h9b4g5FhMJ3PekX6JqXSEPOIjlJHhaacJd1/SSiRHZYg5KxlfzKLgcQMKlMZMfffVuV
+         7vlNQBe3NI2AG2+UsurZaTlwNGhIGvrhOnAQXpWi9JbKu4IqCqLC2JzgaK6uGHMWeVaT
+         62o/+asic9j1rFvTk+OB6oy3dyLV8cA2oxTPn13hlAT39cafuN5fRSLHtHLkSfuKaFsw
+         c/3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694527741; x=1695132541;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
+        d=1e100.net; s=20230601; t=1694595353; x=1695200153;
+        h=subject:cc:to:organization:from:content-language:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=ou2OLf5M0h9MDJaSQs3IrI1lH47KuEovpudusKXXnjI=;
-        b=pYMwUugEnDyECfWPpKUG7wFgwefivUaTgaS5UWSNzMJb4bO+eT+vwfuyN4cJ0wU9Q2
-         aXmFfs2rYezPd9eE5G3vY1OGOwCeTSqnJvETXvh5hPcaEhdjFqP9uUee2ujy7v1vLQ6Z
-         Pd9tmqsIhXymPGXMxEpQPKaT898/U5H1jhHfgmOGroK5Lo5TLIRKiWAp5BdYxWLiyDY6
-         5WU3N7mhNfBN4huVsQfnGpxJQva9bKkXIfBGxCkrgt9c0SAMGSkleXQyfZltkPmC39yz
-         exbeRT0ZAT1kHGXUt6PHjxNq/sYT6wmW0qmjNiQiwXB9SyDywIIs2gmyDmfS94ZGoNDT
-         SIkQ==
-X-Gm-Message-State: AOJu0Yw81K/gp9iOFgYCVOW+V0geAjKXMc3U9zriZhKYf9x+DU1+DNku
-	EDS4L+ss9n/3HJQeHwFVFAhMKT3qirFTkA==
-X-Google-Smtp-Source: AGHT+IEG1h0cbt87uF7lIPuaTaKgTn2EdwI6hGrDqS7zh7fPCbgXZ7bnmb301zZBaqN0kM/6njEt1w==
-X-Received: by 2002:a05:622a:1393:b0:412:1c5f:4787 with SMTP id o19-20020a05622a139300b004121c5f4787mr13871479qtk.67.1694527741505;
-        Tue, 12 Sep 2023 07:09:01 -0700 (PDT)
-Received: from [192.168.2.200] (bras-base-smflon1825w-grc-08-174-93-1-40.dsl.bell.ca. [174.93.1.40])
-        by smtp.googlemail.com with ESMTPSA id f2-20020ac87f02000000b00411f7da6e1bsm3272693qtk.60.2023.09.12.07.09.00
+        bh=aFGEVtOvKKA5eHrL8jYzlWwpbY6k+yxrjxA3agyPyUA=;
+        b=YcA7pVW6mM1hf1B2B5sstNKrWvRj7sEayI3GEtx4qjLKJJO9tmvR5bzxwpy02iNiw9
+         sjRPh+jwj+YRm6O03qTsQfXjHRTU4HKqNANM5po7awmDGZxN7W5DXaua6LQj/87OUtnV
+         AMG7P5nOEZPxuwG90qvOoFENrr/dLsFx4aX4z32uT6qgHUWw7hiXeO3Ta0iDD+UhyELW
+         1b+MQodFSjTxZFJve6N71q7chap05/tYG+MJs01qUZSg4g1T9k05fghimLt+/oWia5Jt
+         wSPJQlJ4817cThvgrtrM4x7DmerkEARergyxRCEMKBma+XD1a3RhUfmf3nrm4pRqz0O3
+         DXFQ==
+X-Gm-Message-State: AOJu0YyUjY3jyszewtbExV29SJxEc+GVDcgBxSB+gR1b14/es45yDMW8
+	4lRB6W4VczU12kxNOXcFI+S/emCNuca5DjOvOpM=
+X-Google-Smtp-Source: AGHT+IHxcF87h+6nb8sf+Nt+vzCQbAG8Z88Z3Eoz/3PwRZXewCK7DogQd1p+1JFVKY61tkncLbg4KQ==
+X-Received: by 2002:a2e:8194:0:b0:2ba:6519:c50f with SMTP id e20-20020a2e8194000000b002ba6519c50fmr1841368ljg.52.1694595352595;
+        Wed, 13 Sep 2023 01:55:52 -0700 (PDT)
+Received: from ?IPV6:2001:700:712:52:baca:3aff:fe92:9517? ([2001:700:712:52:baca:3aff:fe92:9517])
+        by smtp.googlemail.com with ESMTPSA id z17-20020a2ebe11000000b002bfb71c076asm237447ljq.43.2023.09.13.01.55.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 07:09:01 -0700 (PDT)
-Message-ID: <6cecca2e-a7cf-63f0-b9b1-358ae4cdeb8d@gmail.com>
-Date: Tue, 12 Sep 2023 10:09:00 -0400
+        Wed, 13 Sep 2023 01:55:51 -0700 (PDT)
+Message-ID: <0b554ad0-7aad-e2e3-74e3-8b1c1598a8c8@simula.no>
+Date: Wed, 13 Sep 2023 10:55:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
 Content-Language: en-US
-To: zhou <hwzhou@yahoo.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <f775309f76844190a9c5ad474c531a08@iis.fraunhofer.de>
- <902b4da8-293d-91b3-6524-ddf2626ce4e7@gmail.com>
- <CAB__hTTCu8-43c7=_gDK6SYHkeFoq9WGKxb3tFrvJx-=bMEAWw@mail.gmail.com>
- <a6da16894f9d45b28d0352ccb0b9923a@iis.fraunhofer.de>
- <CAB__hTTAch8skU_VCX1TJoqJFnxmEDyshMR1K7ZRC9PgO0xOsw@mail.gmail.com>
- <1218602222.4259780.1694448579632@mail.yahoo.com>
- <5ebf23cd-1428-958b-ea65-21e318401568@gmail.com>
- <1518816302.133078.1694515928407@mail.yahoo.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <1518816302.133078.1694515928407@mail.yahoo.com>
-Message-ID-Hash: JHJVGRCHNK4EOP35YHBRATFO57NUUPEL
-X-Message-ID-Hash: JHJVGRCHNK4EOP35YHBRATFO57NUUPEL
-X-MailFrom: patchvonbraun@gmail.com
+From: Thomas Dreibholz <dreibh@simula.no>
+Organization: Simula Research Laboratory
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: XQUKPY7NBEOWEZCBBJDZRFS4M2BBQPQO
+X-Message-ID-Hash: XQUKPY7NBEOWEZCBBJDZRFS4M2BBQPQO
+X-MailFrom: dreibh@simula.no
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: =?UTF-8?Q?Andr=c3=a9s_Felipe_Ocampo_Palacio?= <andres@simula.no>, =?UTF-8?B?VGFyaWsgxIxpxI1pxIc=?= <tarik@simula.no>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X410 Benchmark test failure
+Subject: [USRP-users] nr-softmodem: reproducible segfault in libuhd with Ettus N310 SDR
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JHJVGRCHNK4EOP35YHBRATFO57NUUPEL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XQUKPY7NBEOWEZCBBJDZRFS4M2BBQPQO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2922667940348896477=="
+Content-Type: multipart/mixed; boundary="===============3153420311042475253=="
 
-This is a multi-part message in MIME format.
---===============2922667940348896477==
-Content-Type: multipart/alternative;
- boundary="------------1XGEqEvhW4hVFp6EQ3IBrJwg"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============3153420311042475253==
 Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------ekBIb73BPYzRM4kL9Yn2hXOe"
 
-This is a multi-part message in MIME format.
---------------1XGEqEvhW4hVFp6EQ3IBrJwg
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------ekBIb73BPYzRM4kL9Yn2hXOe
+Content-Type: multipart/mixed; boundary="------------j4DU8lThBCxp0LpKcSlVQggm";
+ protected-headers="v1"
+From: Thomas Dreibholz <dreibh@simula.no>
+To: usrp-users@lists.ettus.com
+Cc: =?UTF-8?Q?Andr=c3=a9s_Felipe_Ocampo_Palacio?= <andres@simula.no>,
+ =?UTF-8?B?VGFyaWsgxIxpxI1pxIc=?= <tarik@simula.no>
+Message-ID: <0b554ad0-7aad-e2e3-74e3-8b1c1598a8c8@simula.no>
+Subject: nr-softmodem: reproducible segfault in libuhd with Ettus N310 SDR
+
+--------------j4DU8lThBCxp0LpKcSlVQggm
+Content-Type: multipart/alternative;
+ boundary="------------fjDnRmgR50ehsKgTpClfoXad"
+
+--------------fjDnRmgR50ehsKgTpClfoXad
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-On 12/09/2023 06:52, zhou wrote:
-> Hi Marcus,
->
-> Thanks for your reply.
-> The original ring buffer is 1024 for Tx and Rx. Now I have changed=20
-> them to 4096. Still see overruns and underruns.
-> Ring parameters for enp59s0f0np0:
-> Pre-set maximums:
-> RX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08192
-> RX Mini:=C2=A0 =C2=A0 =C2=A0 =C2=A0 n/a
-> RX Jumbo:=C2=A0 =C2=A0 =C2=A0 =C2=A0n/a
-> TX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08192
-> Current hardware settings:
-> RX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096
-> RX Mini:=C2=A0 =C2=A0 =C2=A0 =C2=A0 n/a
-> RX Jumbo:=C2=A0 =C2=A0 =C2=A0 =C2=A0n/a
-> TX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096
->
->
-> Ring parameters for enp59s0f1np1:
-> Pre-set maximums:
-> RX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08192
-> RX Mini:=C2=A0 =C2=A0 =C2=A0 =C2=A0 n/a
-> RX Jumbo:=C2=A0 =C2=A0 =C2=A0 =C2=A0n/a
-> TX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08192
-> Current hardware settings:
-> RX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096
-> RX Mini:=C2=A0 =C2=A0 =C2=A0 =C2=A0 n/a
-> RX Jumbo:=C2=A0 =C2=A0 =C2=A0 =C2=A0n/a
-> TX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096
->
->
-> Benchmark rate summary:
-> =C2=A0 Num received samples:=C2=A0 =C2=A0 =C2=A012617833512
-> =C2=A0 Num dropped samples:=C2=A0 =C2=A0 =C2=A0 17321163392
-> =C2=A0 Num overruns detected:=C2=A0 =C2=A0 112
-> =C2=A0 Num transmitted samples:=C2=A0 9159225280
-> =C2=A0 Num sequence errors (Tx): 0
-> =C2=A0 Num sequence errors (Rx): 0
-> =C2=A0 Num underruns detected:=C2=A0 =C2=A0856834
-> =C2=A0 Num late commands:=C2=A0 =C2=A0 =C2=A0 =C2=A0 0
-> =C2=A0 Num timeouts (Tx):=C2=A0 =C2=A0 =C2=A0 =C2=A0 0
-> =C2=A0 Num timeouts (Rx):=C2=A0 =C2=A0 =C2=A0 =C2=A0 0
->
-> I think my computer is not fast enough for 500MHz sampling rate. The=20
-> computer I am using is Dell PowerEdge R740, CPU is Intel(R) Xeon(R)=20
-> Bronze 3106 CPU @ 1.70GHz
-> What is the recommended computer HW configuration?
->
-> Another question is UHD4.5. I tried UHD4.5, but there was MPM issue
-> The MPM software on your device is older than the FPGA you're trying to
-> use. Because you're using master, they haven't published updated
-> filesystems with the new MPM yet, but there will be a release candidate
-> very soon for UHD 4.5 you could try.
->
-> So, I have to use UHD4.4 now.
->
-> Kind regards,
-> Hongwei
->
->
->
->
->
-> On Monday, 11 September 2023 at 22:15:21 BST, Marcus D. Leech=20
-> <patchvonbraun@gmail.com> wrote:
->
->
-> On 11/09/2023 12:09, zhou via USRP-users wrote:
-> Hi all,
->
-> I just set up a system with X410 USRP. Tried to run a benchmark rate=20
-> test and saw a lot of errors. Please suggest what could be the reason=20
-> for the test failure.
-> Host is R740 (16 CPU cores) and Linux is Ubuntu 22.04 with low-latency=20
-> kernel.
-> 100G Mellanox ConnectX-6 NIC cards
->
->
->
-> $ sudo /usr/local/lib/uhd/examples/benchmark_rate=C2=A0 \
-> --args=20
-> "type=3Dx4xx,mgmt_addr=3D192.168.88.2,addr=3D192.168.20.2,master_clock_=
-rate=3D500e6"=20
-> \
-> --priority "high" \
-> --multi_streamer \
-> --duration 60 \
-> --channels "0" \
-> --rx_rate 10e6 \
-> --rx_subdev "A:0" \
-> --tx_rate 10e6 \
-> --tx_subdev "A:0"
-> [sudo] password for user:
->
-> [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11;=20
-> UHD_4.4.0.HEAD-0-g5fac246b
-> [00:00:00.000566] Creating the usrp device with:=20
-> type=3Dx4xx,mgmt_addr=3D192.168.88.2,addr=3D192.168.20.2,master_clock_r=
-ate=3D500e6...
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:=20
-> mgmt_addr=3D192.168.88.2,type=3Dx4xx,product=3Dx410,serial=3D3289B23,na=
-me=3Dni-x4xx-3289B23,fpga=3DCG_400,claimed=3DFalse,addr=3D192.168.20.2,ma=
-ster_clock_rate=3D500e6
-> [WARNING] [MPM.RPCServer] A timeout event occured!
-> [INFO] [MPM.PeriphManager] init() called with device args=20
-> `fpga=3DCG_400,master_clock_rate=3D500e6,mgmt_addr=3D192.168.88.2,name=3D=
-ni-x4xx-3289B23,product=3Dx410,clock_source=3Dinternal,time_source=3Dinte=
-rnal'.
-> Using Device: Single USRP:
-> =C2=A0 Device: X400-Series Device
-> =C2=A0 Mboard 0: x410
-> =C2=A0 RX Channel: 0
-> =C2=A0 =C2=A0 RX DSP: n/a
-> =C2=A0 =C2=A0 RX Dboard: A
-> =C2=A0 =C2=A0 RX Subdev: 0
-> =C2=A0 TX Channel: 0
-> =C2=A0 =C2=A0 TX DSP: n/a
-> =C2=A0 =C2=A0 TX Dboard: A
-> =C2=A0 =C2=A0 TX Subdev: 0
->
-> [00:00:05.797505591] Setting device timestamp to 0...
-> [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 10=20
-> MHz. Actual rate is: 500 MHz.
-> [WARNING] [MULTI_USRP] Could not set RX rate to 10.000 MHz. Actual=20
-> rate is 500.000 MHz
-> [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 10=20
-> MHz. Actual rate is: 500 MHz.
-> [WARNING] [MULTI_USRP] Could not set TX rate to 10.000 MHz. Actual=20
-> rate is 500.000 MHz
-> Setting TX spb to 1984
-> [00:00:05.799789467] Testing receive rate 500.000000 Msps on 1 channels
-> [00:00:05.801875415] Testing transmit rate 500.000000 Msps on 1 channel=
-s
-> UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUD[U00:00:06.33502762]=20
-> Detected Rx sequence error.
-> UU[D00:00:06.33952517] Detected Rx sequence error.
-> UUUU[D00:00:06.34387503] Detected Rx sequence error.
-> U[D00:00:06.34802030] Detected Rx sequence error.
-> UUUUU[D00:00:06.35212894] Detected Rx sequence error.
-> U[D00:00:06.35640910] Detected Rx sequence error.
->
->
-> Benchmark rate summary:
-> =C2=A0 Num received samples:=C2=A0 =C2=A0 =C2=A00
-> =C2=A0 Num dropped samples:=C2=A0 =C2=A0 =C2=A0 0
-> *Num overruns detected:=C2=A0 =C2=A0 596*
-> =C2=A0 Num transmitted samples:=C2=A0 10046501824
-> =C2=A0 Num sequence errors (Tx): 0
-> =C2=A0 Num sequence errors (Rx): 0
-> *Num underruns detected: =C2=A0819855*
-> =C2=A0 Num late commands:=C2=A0 =C2=A0 =C2=A0 =C2=A0 0
-> =C2=A0 Num timeouts (Tx):=C2=A0 =C2=A0 =C2=A0 =C2=A0 0
-> =C2=A0 Num timeouts (Rx):=C2=A0 =C2=A0 =C2=A0 =C2=A0 0
->
-> Done!
->
->
->
-> $ ifconfig
-> enp59s0f0np0: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 9000
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet 192.168.20.1=C2=A0 netmask 255.255.255=
-.0=C2=A0 broadcast 192.168.20.255
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet6 fe80::ba3f:d2ff:fe57:b77a prefixlen 6=
-4=C2=A0 scopeid 0x20<link>
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 ether b8:3f:d2:57:b7:7a=C2=A0 txqueuelen 10=
-00=C2=A0 (Ethernet)
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX packets 15144837=C2=A0 bytes 10188879710=
-0 (101.8 GB)
-> */RX errors 0=C2=A0 dropped 2423=C2=A0 overruns 0=C2=A0 frame 0/*
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 TX packets 12311297=C2=A0 bytes 87947193629=
- (87.9 GB)
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 TX errors 0=C2=A0 dropped 0 overruns 0 carr=
-ier 0=C2=A0 collisions 0
->
-> enp59s0f1np1: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 9000
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet 192.168.10.1=C2=A0 netmask 255.255.255=
-.0=C2=A0 broadcast 192.168.10.255
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet6 fe80::ba3f:d2ff:fe57:b77b prefixlen 6=
-4=C2=A0 scopeid 0x20<link>
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 ether b8:3f:d2:57:b7:7b=C2=A0 txqueuelen 10=
-00=C2=A0 (Ethernet)
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX packets 406107=C2=A0 bytes 2296309836 (2=
-.2 GB)
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX errors 0=C2=A0 dropped 0=C2=A0 overruns =
-0 frame 0
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 TX packets 502690=C2=A0 bytes 3421432091 (3=
-.4 GB)
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 TX errors 0=C2=A0 dropped 0 overruns 0 carr=
-ier 0=C2=A0 collisions 0
->
-> Kind regards,
-> Hongwei
->
->
-There are some validated system configurations listed here:
-
-https://kb.ettus.com/X410#100_Gigabit_Ethernet
-
-
---------------1XGEqEvhW4hVFp6EQ3IBrJwg
+SGksDQoNCkkgYW0gdHJ5aW5nIHRvIGdldCBPQUkncyBuci1zb2Z0bW9kZW0gdG8gcnVuIHdp
+dGggYW4gRXR0dXMgVVJTUCBOMzEwLCANCnVzaW5nIA0KdGFyZ2V0cy9QUk9KRUNUUy9HRU5F
+UklDLU5SLTVHQy9DT05GL2duYi5iYW5kNzguc2EuZnIxLjEwNlBSQi4yeDIudXNycG4zMTAu
+Y29uZiANCndpdGgganVzdCBoYXZpbmcgYWRhcHRlZCB0aGUgSVAgYWRkcmVzc2VzIG9mIHRo
+ZSBjb3JlIGFuZCBkZXZpY2UuIA0KUmVnYXJkbGVzcyBvZiB0cnlpbmcgd2l0aCBVSEQgNC4x
+IHRvIDQuNCwgYW5kIHJlZ2FyZGxlc3Mgb2YgdGhlIHRhZ3MgZm9yIA0KT0FJIHVzZWQgKGxh
+dGVzdCB0cmllZDogMjAyMy53MzYpLCBydW5uaW5nIG5yLXNvZnRtb2RlbSByZXByb2R1Y2li
+bHkgDQpzZWdmYXVsdHMgYWZ0ZXIgYSBmZXcgc2Vjb25kcyBpbiBsaWJ1aGQ6DQoNCm5vcm5l
+dHBwQDVnOn4vc3JjL29wZW5haXJpbnRlcmZhY2U1Zy9jbWFrZV90YXJnZXRzL3Jhbl9idWls
+ZC9idWlsZCQgc3VkbyANCm5pY2UgLW4gLTE5IGdkYiAuL25yLXNvZnRtb2RlbQ0KR05VIGdk
+YiAoVWJ1bnR1IDEyLjEtMHVidW50dTF+MjIuMDQpIDEyLjENCkNvcHlyaWdodCAoQykgMjAy
+MiBGcmVlIFNvZnR3YXJlIEZvdW5kYXRpb24sIEluYy4NCkxpY2Vuc2UgR1BMdjMrOiBHTlUg
+R1BMIHZlcnNpb24gMyBvciBsYXRlciANCjxodHRwOi8vZ251Lm9yZy9saWNlbnNlcy9ncGwu
+aHRtbD4NClRoaXMgaXMgZnJlZSBzb2Z0d2FyZTogeW91IGFyZSBmcmVlIHRvIGNoYW5nZSBh
+bmQgcmVkaXN0cmlidXRlIGl0Lg0KVGhlcmUgaXMgTk8gV0FSUkFOVFksIHRvIHRoZSBleHRl
+bnQgcGVybWl0dGVkIGJ5IGxhdy4NClR5cGUgInNob3cgY29weWluZyIgYW5kICJzaG93IHdh
+cnJhbnR5IiBmb3IgZGV0YWlscy4NClRoaXMgR0RCIHdhcyBjb25maWd1cmVkIGFzICJ4ODZf
+NjQtbGludXgtZ251Ii4NClR5cGUgInNob3cgY29uZmlndXJhdGlvbiIgZm9yIGNvbmZpZ3Vy
+YXRpb24gZGV0YWlscy4NCkZvciBidWcgcmVwb3J0aW5nIGluc3RydWN0aW9ucywgcGxlYXNl
+IHNlZToNCjxodHRwczovL3d3dy5nbnUub3JnL3NvZnR3YXJlL2dkYi9idWdzLz4uDQpGaW5k
+IHRoZSBHREIgbWFudWFsIGFuZCBvdGhlciBkb2N1bWVudGF0aW9uIHJlc291cmNlcyBvbmxp
+bmUgYXQ6DQo8aHR0cDovL3d3dy5nbnUub3JnL3NvZnR3YXJlL2dkYi9kb2N1bWVudGF0aW9u
+Lz4uDQoNCkZvciBoZWxwLCB0eXBlICJoZWxwIi4NClR5cGUgImFwcm9wb3Mgd29yZCIgdG8g
+c2VhcmNoIGZvciBjb21tYW5kcyByZWxhdGVkIHRvICJ3b3JkIi4uLg0KUmVhZGluZyBzeW1i
+b2xzIGZyb20gLi9uci1zb2Z0bW9kZW0uLi4NCihnZGIpIHJ1biAtTyANCi9ob21lL25vcm5l
+dHBwL3NyYy9vcGVuYWlyaW50ZXJmYWNlNWcvdGFyZ2V0cy9QUk9KRUNUUy9HRU5FUklDLU5S
+LTVHQy9DT05GL2duYi5iYW5kNzguc2EuZnIxLjEwNlBSQi4yeDIudXNycG4zMTAuY29uZg0K
+U3RhcnRpbmcgcHJvZ3JhbTogDQovaG9tZS9ub3JuZXRwcC9zcmMvb3BlbmFpcmludGVyZmFj
+ZTVnL2NtYWtlX3RhcmdldHMvcmFuX2J1aWxkL2J1aWxkL25yLXNvZnRtb2RlbS1PIA0KL2hv
+bWUvbm9ybmV0cHAvc3JjL29wZW5haXJpbnRlcmZhY2U1Zy90YXJnZXRzL1BST0pFQ1RTL0dF
+TkVSSUMtTlItNUdDL0NPTkYvZ25iLmJhbmQ3OC5zYS5mcjEuMTA2UFJCLjJ4Mi51c3JwbjMx
+MC5jb25mDQoNCltUaHJlYWQgZGVidWdnaW5nIHVzaW5nIGxpYnRocmVhZF9kYiBlbmFibGVk
+XQ0KVXNpbmcgaG9zdCBsaWJ0aHJlYWRfZGIgbGlicmFyeSAiL2xpYi94ODZfNjQtbGludXgt
+Z251L2xpYnRocmVhZF9kYi5zby4xIi4NCltEZXRhY2hpbmcgYWZ0ZXIgZm9yayBmcm9tIGNo
+aWxkIHByb2Nlc3MgMTE5NTAxNl0NCkNNRExJTkU6IA0KIi9ob21lL25vcm5ldHBwL3NyYy9v
+cGVuYWlyaW50ZXJmYWNlNWcvY21ha2VfdGFyZ2V0cy9yYW5fYnVpbGQvYnVpbGQvbnItc29m
+dG1vZGVtIiANCiItTyIgDQoiL2hvbWUvbm9ybmV0cHAvc3JjL29wZW5haXJpbnRlcmZhY2U1
+Zy90YXJnZXRzL1BST0pFQ1RTL0dFTkVSSUMtTlItNUdDL0NPTkYvZ25iLmJhbmQ3OC5zYS5m
+cjEuMTA2UFJCLjJ4Mi51c3JwbjMxMC5jb25mIiANCg0KW0NPTkZJR10gZ2V0IHBhcmFtZXRl
+cnMgZnJvbSBsaWJjb25maWcgDQovaG9tZS9ub3JuZXRwcC9zcmMvb3BlbmFpcmludGVyZmFj
+ZTVnL3RhcmdldHMvUFJPSkVDVFMvR0VORVJJQy1OUi01R0MvQ09ORi9nbmIuYmFuZDc4LnNh
+LmZyMS4xMDZQUkIuMngyLnVzcnBuMzEwLmNvbmYgDQpbTElCQ09ORklHXSBQYXRoIGZvciBp
+bmNsdWRlIGRpcmVjdGl2ZSBzZXQgdG86IA0KL2hvbWUvbm9ybmV0cHAvc3JjL29wZW5haXJp
+bnRlcmYNCmFjZTVnL3RhcmdldHMvUFJPSkVDVFMvR0VORVJJQy1OUi01R0MvQ09ORg0KW0NP
+TkZJR10gZnVuY3Rpb24gY29uZmlnX2xpYmNvbmZpZ19pbml0IHJldHVybmVkIDANCltDT05G
+SUddIGNvbmZpZyBtb2R1bGUgbGliY29uZmlnIGxvYWRlZA0KW0xJQkNPTkZJR10gY29uZmln
+OiAyLzIgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMiB0byBkZWZhdWx0IHZhbHVl
+KQ0KW0NPTkZJR10gZGVidWcgZmxhZ3M6IDB4MDAwMDAwMDANCltMSUJDT05GSUddIGxvZ19j
+b25maWc6IDMvMyBwYXJhbWV0ZXJzIHN1Y2Nlc3NmdWxseSBzZXQsICgxIHRvIGRlZmF1bHQg
+DQp2YWx1ZSkNCltMSUJDT05GSUddIGxvZ19jb25maWc6IDUzLzUzIHBhcmFtZXRlcnMgc3Vj
+Y2Vzc2Z1bGx5IHNldCwgKDQ2IHRvIA0KZGVmYXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGxv
+Z19jb25maWc6IDUzLzUzIHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDUzIHRvIA0K
+ZGVmYXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGxvZ19jb25maWc6IDE2LzE2IHBhcmFtZXRl
+cnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDE2IHRvIA0KZGVmYXVsdCB2YWx1ZSkNCltMSUJDT05G
+SUddIGxvZ19jb25maWc6IDE2LzE2IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDE2
+IHRvIA0KZGVmYXVsdCB2YWx1ZSkNCmxvZyBpbml0IGRvbmUNCltIV10gwqDCoCMgL2Rldi9j
+cHVfZG1hX2xhdGVuY3kgc2V0IHRvIDIgdXMNCltEZXRhY2hpbmcgYWZ0ZXIgdmZvcmsgZnJv
+bSBjaGlsZCBwcm9jZXNzIDExOTUwMTddDQpSZWFkaW5nIGluIGNvbW1hbmQtbGluZSBvcHRp
+b25zDQpbTElCQ09ORklHXSAocm9vdCk6IDQwLzQwIHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5
+IHNldCwgKDM3IHRvIGRlZmF1bHQgDQp2YWx1ZSkNCltMSUJDT05GSUddIChyb290KTogNi82
+IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDUgdG8gZGVmYXVsdCB2YWx1ZSkNCltF
+TkJfQVBQXSDCoMKgbmZhcGkgcnVubmluZyBtb2RlOiBNT05PTElUSElDDQpbR05CX0FQUF0g
+wqDCoEdldHRpbmcgR05CU1BhcmFtcw0KW0xJQkNPTkZJR10gKHJvb3QpOiAyLzIgcGFyYW1l
+dGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMCB0byBkZWZhdWx0IHZhbHVlKQ0KW0xJQkNPTkZJ
+R10gVEhSRUFEX1NUUlVDVC5bMF06IDIvMiBwYXJhbWV0ZXJzIHN1Y2Nlc3NmdWxseSBzZXQs
+ICgwIHRvIA0KZGVmYXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIFRIUkVBRF9TVFJVQ1QuWzBd
+OiAyLzIgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMCB0byANCmRlZmF1bHQgdmFs
+dWUpDQpbQ09ORklHXSBwYXJhbGxlbF9jb25mIGlzIHNldCB0byAxDQpbQ09ORklHXSB3b3Jr
+ZXJfY29uZiBpcyBzZXQgdG8gMQ0KQ29uZmlndXJhdGlvbjogbmJfcnJjX2luc3QgMSwgbmJf
+bnJfTDFfaW5zdCAxLCBuYl9ydSAxDQpbTElCQ09ORklHXSBUVHJhY2VyOiAzLzMgcGFyYW1l
+dGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMyB0byBkZWZhdWx0IHZhbHVlKQ0KY29uZmlndXJp
+bmcgZm9yIFJBVS9SUlUNCkNQVSBGcmVxIGlzIDMuMTg3NDAzDQpbSVRUSV0gwqDCoFN0YXJ0
+aW5nIGl0dGkgcXVldWU6IFRBU0tfVU5LTk9XTiBhcyB0YXNrIDANCltJVFRJXSDCoMKgU3Rh
+cnRpbmcgaXR0aSBxdWV1ZTogVEFTS19USU1FUiBhcyB0YXNrIDENCltJVFRJXSDCoMKgU3Rh
+cnRpbmcgaXR0aSBxdWV1ZTogVEFTS19MMkwxIGFzIHRhc2sgMg0KW0lUVEldIMKgwqBTdGFy
+dGluZyBpdHRpIHF1ZXVlOiBUQVNLX0JNIGFzIHRhc2sgMw0KW0lUVEldIMKgwqBTdGFydGlu
+ZyBpdHRpIHF1ZXVlOiBUQVNLX1BIWV9FTkIgYXMgdGFzayA0DQpbSVRUSV0gwqDCoFN0YXJ0
+aW5nIGl0dGkgcXVldWU6IFRBU0tfTUFDX0dOQiBhcyB0YXNrIDUNCltJVFRJXSDCoMKgU3Rh
+cnRpbmcgaXR0aSBxdWV1ZTogVEFTS19STENfRU5CIGFzIHRhc2sgNg0KW0lUVEldIMKgwqBT
+dGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX1JSQ19FTkJfTkJfSW9UIGFzIHRhc2sgNw0KW0lU
+VEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX1BEQ1BfRU5CIGFzIHRhc2sgOA0K
+W0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX1BEQ1BfR05CIGFzIHRhc2sg
+OQ0KW0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX0RBVEFfRk9SV0FSRElO
+RyBhcyB0YXNrIDEwDQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkgcXVldWU6IFRBU0tfRU5E
+X01BUktFUiBhcyB0YXNrIDExDQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkgcXVldWU6IFRB
+U0tfUlJDX0VOQiBhcyB0YXNrIDEyDQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkgcXVldWU6
+IFRBU0tfUlJDX0dOQiBhcyB0YXNrIDEzDQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkgcXVl
+dWU6IFRBU0tfUkFMX0VOQiBhcyB0YXNrIDE0DQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkg
+cXVldWU6IFRBU0tfUzFBUCBhcyB0YXNrIDE1DQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkg
+cXVldWU6IFRBU0tfTkdBUCBhcyB0YXNrIDE2DQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkg
+cXVldWU6IFRBU0tfWDJBUCBhcyB0YXNrIDE3DQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkg
+cXVldWU6IFRBU0tfTTJBUF9FTkIgYXMgdGFzayAxOA0KW0lUVEldIMKgwqBTdGFydGluZyBp
+dHRpIHF1ZXVlOiBUQVNLX00yQVBfTUNFIGFzIHRhc2sgMTkNCltJVFRJXSDCoMKgU3RhcnRp
+bmcgaXR0aSBxdWV1ZTogVEFTS19NM0FQIGFzIHRhc2sgMjANCltJVFRJXSDCoMKgU3RhcnRp
+bmcgaXR0aSBxdWV1ZTogVEFTS19NM0FQX01NRSBhcyB0YXNrIDIxDQpbSVRUSV0gwqDCoFN0
+YXJ0aW5nIGl0dGkgcXVldWU6IFRBU0tfTTNBUF9NQ0UgYXMgdGFzayAyMg0KW0lUVEldIMKg
+wqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX1NDVFAgYXMgdGFzayAyMw0KW0lUVEldIMKg
+wqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX0VOQl9BUFAgYXMgdGFzayAyNA0KW0lUVEld
+IMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX0dOQl9BUFAgYXMgdGFzayAyNQ0KW0lU
+VEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX01DRV9BUFAgYXMgdGFzayAyNg0K
+W0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX01NRV9BUFAgYXMgdGFzayAy
+Nw0KW0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX1BIWV9VRSBhcyB0YXNr
+IDI4DQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkgcXVldWU6IFRBU0tfTUFDX1VFIGFzIHRh
+c2sgMjkNCltJVFRJXSDCoMKgU3RhcnRpbmcgaXR0aSBxdWV1ZTogVEFTS19STENfVUUgYXMg
+dGFzayAzMA0KW0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX1BEQ1BfVUUg
+YXMgdGFzayAzMQ0KW0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX1JSQ19V
+RSBhcyB0YXNrIDMyDQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkgcXVldWU6IFRBU0tfUlJD
+X05SVUUgYXMgdGFzayAzMw0KW0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNL
+X05BU19VRSBhcyB0YXNrIDM0DQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkgcXVldWU6IFRB
+U0tfUkFMX1VFIGFzIHRhc2sgMzUNCltJVFRJXSDCoMKgU3RhcnRpbmcgaXR0aSBxdWV1ZTog
+VEFTS19HVFBWMV9VIGFzIHRhc2sgMzYNCltJVFRJXSDCoMKgU3RhcnRpbmcgaXR0aSBxdWV1
+ZTogVEFTS19DVV9GMSBhcyB0YXNrIDM3DQpbSVRUSV0gwqDCoFN0YXJ0aW5nIGl0dGkgcXVl
+dWU6IFRBU0tfRFVfRjEgYXMgdGFzayAzOA0KW0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1
+ZXVlOiBUQVNLX0NVQ1BfRTEgYXMgdGFzayAzOQ0KW0lUVEldIMKgwqBTdGFydGluZyBpdHRp
+IHF1ZXVlOiBUQVNLX0NVVVBfRTEgYXMgdGFzayA0MA0KW0lUVEldIMKgwqBTdGFydGluZyBp
+dHRpIHF1ZXVlOiBUQVNLX1JSQ19VRV9TSU0gYXMgdGFzayA0MQ0KW0lUVEldIMKgwqBTdGFy
+dGluZyBpdHRpIHF1ZXVlOiBUQVNLX1JSQ19HTkJfU0lNIGFzIHRhc2sgNDINCltJVFRJXSDC
+oMKgU3RhcnRpbmcgaXR0aSBxdWV1ZTogVEFTS19SUkNfTlNBX1VFIGFzIHRhc2sgNDMNCltJ
+VFRJXSDCoMKgU3RhcnRpbmcgaXR0aSBxdWV1ZTogVEFTS19SUkNfTlNBX05SVUUgYXMgdGFz
+ayA0NA0KW0lUVEldIMKgwqBTdGFydGluZyBpdHRpIHF1ZXVlOiBUQVNLX05BU19OUlVFIGFz
+IHRhc2sgNDUNCltMSUJDT05GSUddIG9wdDogMy8zIHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5
+IHNldCwgKDMgdG8gZGVmYXVsdCB2YWx1ZSkNCltPUFRdIMKgwqBPUFQgZGlzYWJsZWQNCltI
+V10gwqDCoFZlcnNpb246IEJyYW5jaDogZHJlaWJoL3NpbXVsYW1ldC10ZXN0YmVkLTVnIEFi
+cmV2LiBIYXNoOiANCmI5MTI4YjY3MzcgRGF0ZTogVHVlIFNlcCAxMiAxNjoyMDozNSAyMDIz
+ICswMjAwDQpbTlJfUEhZXSDCoMKgUkMuZ05CID0gMHg1NTU1NThmYzJjZjANCltMSUJDT05G
+SUddIChyb290KTogMi8yIHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDAgdG8gZGVm
+YXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGdOQnMuWzBdOiAyOC8yOCBwYXJhbWV0ZXJzIHN1
+Y2Nlc3NmdWxseSBzZXQsICgyMCB0byBkZWZhdWx0IA0KdmFsdWUpDQpbTlJfUEhZXSDCoMKg
+UFJCIGJsYWNrbGlzdCA1MSw1Miw1Myw1NA0KW05SX1BIWV0gwqDCoEJsYWNrbGlzdGluZyBw
+cmIgNTENCltOUl9QSFldIMKgwqBCbGFja2xpc3RpbmcgcHJiIDUyDQpbTlJfUEhZXSDCoMKg
+QmxhY2tsaXN0aW5nIHByYiA1Mw0KW05SX1BIWV0gwqDCoEJsYWNrbGlzdGluZyBwcmIgNTQN
+CltOUl9QSFldIMKgwqBDb3B5aW5nIDQgYmxhY2tsaXN0ZWQgUFJCIHRvIEwxIGNvbnRleHQN
+CltMSUJDT05GSUddIEwxcy5bMF06IDE5LzE5IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNl
+dCwgKDE2IHRvIGRlZmF1bHQgDQp2YWx1ZSkNCltQSFldIMKgwqBMMV9SWF9USFJFQURfQ09S
+RSAtMSAoMTYpDQpbUEhZXSDCoMKgVFhfQU1QID0gNTE5ICgtMzYgZEJGUykNCkluaXRpYWxp
+emluZyBub3J0aGJvdW5kIGludGVyZmFjZSBmb3IgTDENCltQSFldIMKgwqBsMV9ub3J0aF9p
+bml0X2dOQigpIFJDLm5iX25yX0wxX2luc3Q6MQ0KW1BIWV0gwqDCoEluc3RhbGxpbmcgY2Fs
+bGJhY2tzIGZvciBJRl9Nb2R1bGUgLSBVTF9pbmRpY2F0aW9uDQpbTUFDXSDCoMKgQWxsb2Nh
+dGluZyBzaGFyZWQgTDEvTDIgaW50ZXJmYWNlIHN0cnVjdHVyZSBmb3IgaW5zdGFuY2UgMCBA
+IA0KMHg1NTU1NThmYzc5ODANCltQSFldIMKgwqBsMV9ub3J0aF9pbml0X2dOQigpIFJDLmdO
+QlswXSBpbnN0YWxsaW5nIGNhbGxiYWNrcw0KW1BIWV0gwqDCoGNyZWF0ZV9nTkJfdGFza3Mo
+KSBUYXNrIHJlYWR5IGluaXRpYWxpemUgc3RydWN0dXJlcw0KW0xJQkNPTkZJR10gKHJvb3Qp
+OiAyLzIgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMCB0byBkZWZhdWx0IHZhbHVl
+KQ0KW0xJQkNPTkZJR10gZ05Ccy5bMF06IDI4LzI4IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5
+IHNldCwgKDIwIHRvIGRlZmF1bHQgDQp2YWx1ZSkNCltOUl9QSFldIMKgwqBQUkIgYmxhY2ts
+aXN0IDUxLDUyLDUzLDU0DQpbTlJfUEhZXSDCoMKgQmxhY2tsaXN0aW5nIHByYiA1MQ0KW05S
+X1BIWV0gwqDCoEJsYWNrbGlzdGluZyBwcmIgNTINCltOUl9QSFldIMKgwqBCbGFja2xpc3Rp
+bmcgcHJiIDUzDQpbTlJfUEhZXSDCoMKgQmxhY2tsaXN0aW5nIHByYiA1NA0KW05SX1BIWV0g
+wqDCoENvcHlpbmcgNCBibGFja2xpc3RlZCBQUkIgdG8gTDEgY29udGV4dA0KW0xJQkNPTkZJ
+R10gTDFzLlswXTogMTkvMTkgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMTYgdG8g
+ZGVmYXVsdCANCnZhbHVlKQ0KW1BIWV0gwqDCoEwxX1JYX1RIUkVBRF9DT1JFIC0xICgxNikN
+CltQSFldIMKgwqBUWF9BTVAgPSA1MTkgKC0zNiBkQkZTKQ0KSW5pdGlhbGl6aW5nIG5vcnRo
+Ym91bmQgaW50ZXJmYWNlIGZvciBMMQ0KW1BIWV0gwqDCoGwxX25vcnRoX2luaXRfZ05CKCkg
+UkMubmJfbnJfTDFfaW5zdDoxDQpbUEhZXSDCoMKgSW5zdGFsbGluZyBjYWxsYmFja3MgZm9y
+IElGX01vZHVsZSAtIFVMX2luZGljYXRpb24NCltQSFldIMKgwqBsMV9ub3J0aF9pbml0X2dO
+QigpIFJDLmdOQlswXSBpbnN0YWxsaW5nIGNhbGxiYWNrcw0KW0xJQkNPTkZJR10gbGlzdCBw
+cnNfY29uZmlnIG5vdCBmb3VuZCBpbiBjb25maWcgZmlsZSANCi9ob21lL25vcm5ldHBwL3Ny
+Yy9vcGVuYWlyaW50ZXJmYWNlNWcvdGFyZ2V0cy9QUk9KRUNUUy9HRU5FUklDLU5SLTVHQy9D
+T05GL2duYi5iYW5kNzguc2EuZnIxLjEwNlBSQi4yeDIudXNycG4zMTAuY29uZiANCg0KW1BI
+WV0gwqDCoE5vIHByc19jb25maWcgY29uZmlndXJhdGlvbiBmb3VuZC4uISENCltMSUJDT05G
+SUddIChyb290KTogMi8yIHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDAgdG8gZGVm
+YXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGdOQnMuWzBdOiAyOC8yOCBwYXJhbWV0ZXJzIHN1
+Y2Nlc3NmdWxseSBzZXQsICgyMCB0byBkZWZhdWx0IA0KdmFsdWUpDQpbTElCQ09ORklHXSBN
+QUNSTENzLlswXTogMzQvMzQgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMzAgdG8g
+DQpkZWZhdWx0IHZhbHVlKQ0KW0xJQkNPTkZJR10gZ05Ccy5bMF06IDI4LzI4IHBhcmFtZXRl
+cnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDIwIHRvIGRlZmF1bHQgDQp2YWx1ZSkNCltMSUJDT05G
+SUddIE1BQ1JMQ3MuWzBdOiAzNC8zNCBwYXJhbWV0ZXJzIHN1Y2Nlc3NmdWxseSBzZXQsICgz
+MCB0byANCmRlZmF1bHQgdmFsdWUpDQpbTElCQ09ORklHXSBsaXN0IGdOQnMuWzBdLkUxX0lO
+VEVSRkFDRSBub3QgZm91bmQgaW4gY29uZmlnIGZpbGUgDQovaG9tZS9ub3JuZXRwcC9zcmMv
+b3BlbmFpcmludGVyZmFjZTVnL3RhcmdldHMvUFJPSkVDVFMvR0VORVJJQy1OUi01R0MvQ09O
+Ri9nbmIuYmFuZDc4LnNhLmZyMS4xMDZQUkIuMngyLnVzcnBuMzEwLmNvbmYgDQoNCltNQUNd
+IMKgwqBbTUFJTl0gSW5pdCBmdW5jdGlvbiBzdGFydDpuYl9ucl9tYWNybGNfaW5zdD0xDQpb
+VVRJTF0gwqDCoENyZWF0aW5nIHRocmVhZCBNQUNfU1RBVFMgd2l0aCBhZmZpbml0eSAtMSBh
+bmQgcHJpb3JpdHkgMg0KW0RldGFjaGluZyBhZnRlciB2Zm9yayBmcm9tIGNoaWxkIHByb2Nl
+c3MgMTE5NTA0Ml0NCltOZXcgVGhyZWFkIDB4N2ZmZmY3MWZmNjQwIChMV1AgMTE5NTA0NCld
+DQpbTElCQ09ORklHXSBnTkJzLlswXTogMjgvMjggcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkg
+c2V0LCAoMjAgdG8gZGVmYXVsdCANCnZhbHVlKQ0KW0xJQkNPTkZJR10gTUFDUkxDcy5bMF06
+IDM0LzM0IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDMwIHRvIA0KZGVmYXVsdCB2
+YWx1ZSkNCltMSUJDT05GSUddIGxpc3QgZ05Ccy5bMF0uRTFfSU5URVJGQUNFIG5vdCBmb3Vu
+ZCBpbiBjb25maWcgZmlsZSANCi9ob21lL25vcm5ldHBwL3NyYy9vcGVuYWlyaW50ZXJmYWNl
+NWcvdGFyZ2V0cy9QUk9KRUNUUy9HRU5FUklDLU5SLTVHQy9DT05GL2duYi5iYW5kNzguc2Eu
+ZnIxLjEwNlBSQi4yeDIudXNycG4zMTAuY29uZiANCg0KW05ldyBUaHJlYWQgMHg3ZmZmZjY5
+ZmU2NDAgKExXUCAxMTk1MDQ1KV0NCltOZXcgVGhyZWFkIDB4N2ZmZmY2MWZkNjQwIChMV1Ag
+MTE5NTA0NildDQpbTmV3IFRocmVhZCAweDdmZmZmNTlmYzY0MCAoTFdQIDExOTUwNDcpXQ0K
+W1BIWV0gwqDCoEluc3RhbGxpbmcgY2FsbGJhY2tzIGZvciBJRl9Nb2R1bGUgLSBVTF9pbmRp
+Y2F0aW9uDQpbTlJfTUFDXSDCoMKgUFVTQ0ggVGFyZ2V0IDIwMCwgUFVDQ0ggVGFyZ2V0IDE1
+MCwgUFVDQ0ggRmFpbHVyZSAxMCwgUFVTQ0ggDQpGYWlsdXJlIDEwDQpbUEhZXSDCoMKgY3Jl
+YXRlX2dOQl90YXNrcygpIFJDLm5iX25yX0wxX2luc3Q6MQ0KW1BIWV0gwqDCoGwxX25vcnRo
+X2luaXRfZ05CKCkgUkMubmJfbnJfTDFfaW5zdDoxDQpbUEhZXSDCoMKgSW5zdGFsbGluZyBj
+YWxsYmFja3MgZm9yIElGX01vZHVsZSAtIFVMX2luZGljYXRpb24NCltQSFldIMKgwqBsMV9u
+b3J0aF9pbml0X2dOQigpIFJDLmdOQlswXSBpbnN0YWxsaW5nIGNhbGxiYWNrcw0KW0dOQl9B
+UFBdIMKgwqBBbGxvY2F0aW5nIGdOQl9SUkNfSU5TVCBmb3IgMSBpbnN0YW5jZXMNCltQSFld
+IMKgwqBjcmVhdGVfZ05CX3Rhc2tzKCkgUkMubmJfbnJfaW5zdDoxIFJDLm5ycnJjOjB4NTU1
+NTU4ZmRlNGUwDQpbTElCQ09ORklHXSBnTkJzLlswXTogMjgvMjggcGFyYW1ldGVycyBzdWNj
+ZXNzZnVsbHkgc2V0LCAoMjAgdG8gZGVmYXVsdCANCnZhbHVlKQ0KW0xJQkNPTkZJR10gTUFD
+UkxDcy5bMF06IDM0LzM0IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDMwIHRvIA0K
+ZGVmYXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGxpc3QgZ05Ccy5bMF0uRTFfSU5URVJGQUNF
+IG5vdCBmb3VuZCBpbiBjb25maWcgZmlsZSANCi9ob21lL25vcm5ldHBwL3NyYy9vcGVuYWly
+aW50ZXJmYWNlNWcvdGFyZ2V0cy9QUk9KRUNUUy9HRU5FUklDLU5SLTVHQy9DT05GL2duYi5i
+YW5kNzguc2EuZnIxLjEwNlBSQi4yeDIudXNycG4zMTAuY29uZiANCg0KW1BIWV0gwqDCoGNy
+ZWF0ZV9nTkJfdGFza3MoKSBDcmVhdGluZyBSUkMgaW5zdGFuY2UgDQpSQy5ucnJyY1swXTow
+eDU1NTU1OGZlMWFiMCAoMSBvZiAxKQ0KW0xJQkNPTkZJR10gKHJvb3QpOiAyLzIgcGFyYW1l
+dGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMCB0byBkZWZhdWx0IHZhbHVlKQ0KW0xJQkNPTkZJ
+R10gZ05Ccy5bMF06IDI4LzI4IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDIwIHRv
+IGRlZmF1bHQgDQp2YWx1ZSkNCltMSUJDT05GSUddIGdOQnMuWzBdLnNlcnZpbmdDZWxsQ29u
+ZmlnQ29tbW9uLlswXTogNjAvNjAgcGFyYW1ldGVycyANCnN1Y2Nlc3NmdWxseSBzZXQsICgx
+MCB0byBkZWZhdWx0IHZhbHVlKQ0KW1JSQ10gwqDCoFJlYWQgaW4gU2VydmluZ0NlbGxDb25m
+aWdDb21tb24gKFBoeXNDZWxsSWQgMCwgQUJTRlJFUVNTQiANCjYyMTMxMiwgRExCYW5kIDc4
+LCBBQlNGUkVRUE9JTlRBIDYyMDA0MCwgRExCVyANCjEwNixSQUNIX1RhcmdldFJlY2VpdmVk
+UG93ZXIgLTEwNA0KW05SX01BQ10gwqDCoE5SIGJhbmQgZHVwbGV4IHNwYWNpbmcgaXMgMCBL
+SHogKG5yX2JhbmR0YWJsZVszN10uYmFuZCA9IDc4KQ0KW1JSQ10gwqDCoGFic29sdXRlRnJl
+cXVlbmN5U1NCIDYyMTMxMiBjb3JyZXNwb25kcyB0byAzMzE5NjgwMDAwIEh6DQpbTlJfTUFD
+XSDCoMKgTlIgYmFuZCBkdXBsZXggc3BhY2luZyBpcyAwIEtIeiAobnJfYmFuZHRhYmxlWzM3
+XS5iYW5kID0gNzgpDQpbTlJfTUFDXSDCoMKgTlIgYmFuZCA3OCwgZHVwbGV4IG1vZGUgVERE
+LCBkdXBsZXggc3BhY2luZyA9IDAgS0h6DQpbTElCQ09ORklHXSBsaXN0IGdOQnMuWzBdLnNl
+cnZpbmdDZWxsQ29uZmlnRGVkaWNhdGVkIG5vdCBmb3VuZCBpbiBjb25maWcgDQpmaWxlIA0K
+L2hvbWUvbm9ybmV0cHAvc3JjL29wZW5haXJpbnRlcmZhY2U1Zy90YXJnZXRzL1BST0pFQ1RT
+L0dFTkVSSUMtTlItNUdDL0NPTkYvZ25iLmJhbmQ3OC5zYS5mcjEuMTA2UFJCLjJ4Mi51c3Jw
+bjMxMC5jb25mIA0KDQpOUlJSQyAwOiBTb3V0aGJvdW5kIFRyYW5zcG9ydCBsb2NhbF9tYWMN
+CltMSUJDT05GSUddIGdOQnMuWzBdOiAyOC8yOCBwYXJhbWV0ZXJzIHN1Y2Nlc3NmdWxseSBz
+ZXQsICgyMCB0byBkZWZhdWx0IA0KdmFsdWUpDQpbTElCQ09ORklHXSBNQUNSTENzLlswXTog
+MzQvMzQgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMzAgdG8gDQpkZWZhdWx0IHZh
+bHVlKQ0KW0xJQkNPTkZJR10gbGlzdCBnTkJzLlswXS5FMV9JTlRFUkZBQ0Ugbm90IGZvdW5k
+IGluIGNvbmZpZyBmaWxlIA0KL2hvbWUvbm9ybmV0cHAvc3JjL29wZW5haXJpbnRlcmZhY2U1
+Zy90YXJnZXRzL1BST0pFQ1RTL0dFTkVSSUMtTlItNUdDL0NPTkYvZ25iLmJhbmQ3OC5zYS5m
+cjEuMTA2UFJCLjJ4Mi51c3JwbjMxMC5jb25mIA0KDQpbTElCQ09ORklHXSBnTkJzLlswXS5w
+bG1uX2xpc3QuWzBdOiAzLzMgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMCANCnRv
+IGRlZmF1bHQgdmFsdWUpDQpbR05CX0FQUF0gwqDCoHBkc2NoX0FudGVubmFQb3J0cyBOMSAx
+DQpbR05CX0FQUF0gwqDCoHBkc2NoX0FudGVubmFQb3J0cyBOMiAxDQpbR05CX0FQUF0gwqDC
+oHBkc2NoX0FudGVubmFQb3J0cyBYUCAxDQpbR05CX0FQUF0gwqDCoHB1c2NoX0FudGVubmFQ
+b3J0cyAyDQpbR05CX0FQUF0gwqDCoG1pblRYUlhUSU1FIDINCltHTkJfQVBQXSDCoMKgU0lC
+MSBUREEgMQ0KW0dOQl9BUFBdIMKgwqBEbyBDU0ktUlMgMA0KW0dOQl9BUFBdIMKgwqBEbyBT
+UlMgMA0KW0dOQl9BUFBdIMKgwqAyNTYgUUFNOiBtYXkgYmUgb24NCltHTkJfQVBQXSDCoMKg
+U0RBUCBsYXllciBpcyBkaXNhYmxlZA0KW0dOQl9BUFBdIMKgwqBEYXRhIFJhZGlvIEJlYXJl
+ciBjb3VudCAxDQpbTElCQ09ORklHXSBzZWN1cml0eTogNC80IHBhcmFtZXRlcnMgc3VjY2Vz
+c2Z1bGx5IHNldCwgKDAgdG8gZGVmYXVsdCB2YWx1ZSkNCltHTkJfQVBQXSDCoMKgUlJDIHN0
+YXJ0aW5nIHdpdGggbm9kZSB0eXBlIDINCltHTkJfQVBQXSDCoMKgU2VuZGluZyBjb25maWd1
+cmF0aW9uIG1lc3NhZ2UgdG8gTlJfUlJDIHRhc2sNCltMSUJDT05GSUddIGdOQnMuWzBdOiAy
+OC8yOCBwYXJhbWV0ZXJzIHN1Y2Nlc3NmdWxseSBzZXQsICgyMCB0byBkZWZhdWx0IA0KdmFs
+dWUpDQpbTElCQ09ORklHXSBNQUNSTENzLlswXTogMzQvMzQgcGFyYW1ldGVycyBzdWNjZXNz
+ZnVsbHkgc2V0LCAoMzAgdG8gDQpkZWZhdWx0IHZhbHVlKQ0KW0xJQkNPTkZJR10gbGlzdCBn
+TkJzLlswXS5FMV9JTlRFUkZBQ0Ugbm90IGZvdW5kIGluIGNvbmZpZyBmaWxlIA0KL2hvbWUv
+bm9ybmV0cHAvc3JjL29wZW5haXJpbnRlcmZhY2U1Zy90YXJnZXRzL1BST0pFQ1RTL0dFTkVS
+SUMtTlItNUdDL0NPTkYvZ25iLmJhbmQ3OC5zYS5mcjEuMTA2UFJCLjJ4Mi51c3JwbjMxMC5j
+b25mIA0KDQpbTElCQ09ORklHXSBnTkJzLlswXTogMjgvMjggcGFyYW1ldGVycyBzdWNjZXNz
+ZnVsbHkgc2V0LCAoMjAgdG8gZGVmYXVsdCANCnZhbHVlKQ0KW0xJQkNPTkZJR10gTUFDUkxD
+cy5bMF06IDM0LzM0IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDMwIHRvIA0KZGVm
+YXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGxpc3QgZ05Ccy5bMF0uRTFfSU5URVJGQUNFIG5v
+dCBmb3VuZCBpbiBjb25maWcgZmlsZSANCi9ob21lL25vcm5ldHBwL3NyYy9vcGVuYWlyaW50
+ZXJmYWNlNWcvdGFyZ2V0cy9QUk9KRUNUUy9HRU5FUklDLU5SLTVHQy9DT05GL2duYi5iYW5k
+Nzguc2EuZnIxLjEwNlBSQi4yeDIudXNycG4zMTAuY29uZiANCg0KW1BEQ1BdIMKgwqBwZGNw
+IGluaXQsdXNlZ3RwDQpbTElCQ09ORklHXSBlTkJzLlswXTogMS8xIHBhcmFtZXRlcnMgc3Vj
+Y2Vzc2Z1bGx5IHNldCwgKDEgdG8gZGVmYXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGdOQnMu
+WzBdOiAxLzEgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMSB0byBkZWZhdWx0IHZh
+bHVlKQ0KW1VUSUxdIMKgwqBDcmVhdGluZyB0aHJlYWQgVEFTS19TQ1RQIHdpdGggYWZmaW5p
+dHkgLTEgYW5kIHByaW9yaXR5IDUwDQpbRGV0YWNoaW5nIGFmdGVyIHZmb3JrIGZyb20gY2hp
+bGQgcHJvY2VzcyAxMTk1MDQ4XQ0KW05ldyBUaHJlYWQgMHg3ZmZmZjUxZmI2NDAgKExXUCAx
+MTk1MDUwKV0NCltJVFRJXSDCoMKgQ3JlYXRlZCBQb3NpeCB0aHJlYWQgVEFTS19TQ1RQDQpb
+WDJBUF0gwqDCoFgyQVAgaXMgZGlzYWJsZWQuDQpbVVRJTF0gwqDCoENyZWF0aW5nIHRocmVh
+ZCBUQVNLX0dOQl9BUFAgd2l0aCBhZmZpbml0eSAtMSBhbmQgcHJpb3JpdHkgNTANCltEZXRh
+Y2hpbmcgYWZ0ZXIgdmZvcmsgZnJvbSBjaGlsZCBwcm9jZXNzIDExOTUwNTFdDQpbTmV3IFRo
+cmVhZCAweDdmZmZmNDlmYTY0MCAoTFdQIDExOTUwNTMpXQ0KW0lUVEldIMKgwqBDcmVhdGVk
+IFBvc2l4IHRocmVhZCBUQVNLX0dOQl9BUFANCltOUl9SUkNdIMKgwqBDcmVhdGluZyBOUiBS
+UkMgZ05CIFRhc2ssIHRoYXQgd2lsbCBhbHNvIGNyZWF0ZSBUQVNLUw0KW1VUSUxdIMKgwqBD
+cmVhdGluZyB0aHJlYWQgVEFTS19SUkNfR05CIHdpdGggYWZmaW5pdHkgLTEgYW5kIHByaW9y
+aXR5IDUwDQpbTElCQ09ORklHXSBnTkJzLlswXTogMjgvMjggcGFyYW1ldGVycyBzdWNjZXNz
+ZnVsbHkgc2V0LCAoMjAgdG8gZGVmYXVsdCANCnZhbHVlKQ0KW0xJQkNPTkZJR10gTUFDUkxD
+cy5bMF06IDM0LzM0IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDMwIHRvIA0KZGVm
+YXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGxpc3QgZ05Ccy5bMF0uRTFfSU5URVJGQUNFIG5v
+dCBmb3VuZCBpbiBjb25maWcgZmlsZSANCi9ob21lL25vcm5ldHBwL3NyYy9vcGVuYWlyaW50
+ZXJmYWNlNWcvdGFyZ2V0cy9QUk9KRUNUUy9HRU5FUklDLU5SLTVHQy9DT05GL2duYi5iYW5k
+Nzguc2EuZnIxLjEwNlBSQi4yeDIudXNycG4zMTAuY29uZiANCg0KW0RldGFjaGluZyBhZnRl
+ciB2Zm9yayBmcm9tIGNoaWxkIHByb2Nlc3MgMTE5NTA1NF0NCltOZXcgVGhyZWFkIDB4N2Zm
+ZmVmZmZmNjQwIChMV1AgMTE5NTA1NildDQpbSVRUSV0gwqDCoENyZWF0ZWQgUG9zaXggdGhy
+ZWFkIFRBU0tfUlJDX0dOQg0KW0xJQkNPTkZJR10gKHJvb3QpOiAyLzIgcGFyYW1ldGVycyBz
+dWNjZXNzZnVsbHkgc2V0LCAoMCB0byBkZWZhdWx0IHZhbHVlKQ0KW0xJQkNPTkZJR10gZ05C
+cy5bMF06IDI4LzI4IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDIwIHRvIGRlZmF1
+bHQgDQp2YWx1ZSkNCltOUl9SUkNdIMKgwqBFbnRlcmluZyBtYWluIGxvb3Agb2YgTlJfUlJD
+IG1lc3NhZ2UgdGFzaw0KW0xJQkNPTkZJR10gZ05Ccy5bMF0ucGxtbl9saXN0LlswXTogMy8z
+IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDAgDQp0byBkZWZhdWx0IHZhbHVlKQ0K
+W05SX1JSQ10gwqDCoFtGUkFNRSAwMDAwMF1bZ05CXVtNT0QgMDBdW1JOVEkgMF0gSW5pdC4u
+Lg0KW0dUUFVdIMKgwqBDb25maWd1cmluZyBHVFB1DQpbTlJfTUFDXSDCoMKgTlIgYmFuZCBk
+dXBsZXggc3BhY2luZyBpcyAwIEtIeiAobnJfYmFuZHRhYmxlWzM3XS5iYW5kID0gNzgpDQpb
+TElCQ09ORklHXSAocm9vdCk6IDIvMiBwYXJhbWV0ZXJzIHN1Y2Nlc3NmdWxseSBzZXQsICgw
+IHRvIGRlZmF1bHQgdmFsdWUpDQpbTlJfTUFDXSDCoMKgTlIgYmFuZCA3OCwgZHVwbGV4IG1v
+ZGUgVERELCBkdXBsZXggc3BhY2luZyA9IDAgS0h6DQpbTlJfUlJDXSDCoMKgW0ZSQU1FIDAw
+MDAwXVtnTkJdW01PRCAwMF1bUk5USSAwXSBDaGVja2luZyByZWxlYXNlDQpbTElCQ09ORklH
+XSBnTkJzLlswXS5ORVRXT1JLX0lOVEVSRkFDRVM6IDEwLzEwIHBhcmFtZXRlcnMgc3VjY2Vz
+c2Z1bGx5IA0Kc2V0LCAoMyB0byBkZWZhdWx0IHZhbHVlKQ0KW0dUUFVdIMKgwqBTQSBtb2Rl
+DQpbTlJfUlJDXSDCoMKgZG9fU0lCMjNfTlIsIHNpemUgOQ0KW05SX1JSQ10gwqDCoERvbmUg
+aW5pdF9OUl9TSQ0KW05SX01BQ10gwqDCoENvbmZpZ3VyaW5nIGNvbW1vbiBwYXJhbWV0ZXJz
+IGZyb20gTlIgU2VydmluZ0NlbGxDb25maWcNCltHVFBVXSDCoMKgQ29uZmlndXJpbmcgR1RQ
+dSBhZGRyZXNzIDogMTkyLjE2OC4yNDMuMTEsIHBvcnQgOiAyMTUyDQpbTlJfTUFDXSDCoMKg
+Y29uZmlnX2NvbW1vbigpIGRsX0JhbmR3aWR0aFA6NDANCltHVFBVXSDCoMKgSW5pdGlhbGl6
+aW5nIFVEUCBmb3IgbG9jYWwgYWRkcmVzcyAxOTIuMTY4LjI0My4xMSB3aXRoIHBvcnQgMjE1
+Mg0KW05SX01BQ10gwqDCoE5SIGJhbmQgZHVwbGV4IHNwYWNpbmcgaXMgMCBLSHogKG5yX2Jh
+bmR0YWJsZVszN10uYmFuZCA9IDc4KQ0KW05SX01BQ10gwqDCoGNvbmZpZ19jb21tb24oKSBk
+bF9CYW5kd2lkdGhQOjQwDQpbTlJfTUFDXSDCoMKgTlIgYmFuZCBkdXBsZXggc3BhY2luZyBp
+cyAwIEtIeiAobnJfYmFuZHRhYmxlWzM3XS5iYW5kID0gNzgpDQpbTlJfTUFDXSDCoMKgTlIg
+YmFuZCBkdXBsZXggc3BhY2luZyBpcyAwIEtIeiAobnJfYmFuZHRhYmxlWzM3XS5iYW5kID0g
+NzgpDQpbTlJfTUFDXSDCoMKgTlIgYmFuZCA3OCwgZHVwbGV4IG1vZGUgVERELCBkdXBsZXgg
+c3BhY2luZyA9IDAgS0h6DQpbTlJfTUFDXSDCoMKgc3NiX09mZnNldFBvaW50QSA4Niwgc3Ni
+X1N1YmNhcnJpZXJPZmZzZXQgMA0KW05SX01BQ10gwqDCoFNldCBSWCBhbnRlbm5hIG51bWJl
+ciB0byAxLCBTZXQgVFggYW50ZW5uYSBudW1iZXIgdG8gMiAobnVtIA0Kc3NiIDE6IDgwMDAw
+MDAwLDApDQpbTlJfTUFDXSDCoMKgU2V0dGluZyBUREQgY29uZmlndXJhdGlvbiBwZXJpb2Qg
+dG8gNg0KW05SX01BQ10gwqDCoFRERCBoYXMgYmVlbiBwcm9wZXJseSBjb25maWd1cmF0ZWQN
+CkRMIGZyZXF1ZW5jeSAzMzE5NjgwMDAwOiBiYW5kIDc4LCBVTCBmcmVxdWVuY3kgMzMxOTY4
+MDAwMA0KW0dUUFVdIMKgwqBDcmVhdGVkIGd0cHUgaW5zdGFuY2UgaWQ6IDk5DQpbUEhZXSDC
+oMKgREwgZnJlcXVlbmN5IDMzMTk2ODAwMDAgSHosIFVMIGZyZXF1ZW5jeSAzMzE5NjgwMDAw
+IEh6OiBiYW5kIDc4LCANCnVsZGwgb2Zmc2V0IDAgSHoNCltQSFldIMKgwqBDb25maWd1cmlu
+ZyBNSUIgZm9yIGluc3RhbmNlIDAsIDogKE5pZF9jZWxsIDAsREwgZnJlcSANCjMzMTk2ODAw
+MDAsIFVMIGZyZXEgMzMxOTY4MDAwMCkNCltQSFldIMKgwqBJbml0aWFsaXppbmcgZnJhbWUg
+cGFybXMgZm9yIG11IDEsIE5fUkIgMTA2LCBOY3AgMA0KW1BIWV0gwqDCoEluaXQ6IE5fUkJf
+REwgMTA2LCBmaXJzdF9jYXJyaWVyX29mZnNldCAxNDEyLCBuYl9wcmVmaXhfc2FtcGxlcyAN
+CjE0NCxuYl9wcmVmaXhfc2FtcGxlczAgMTc2LCBvZmRtX3N5bWJvbF9zaXplIDIwNDgNCltQ
+SFldIMKgwqBnTkIgMCBjb25maWd1cmVkDQpbTlJfTUFDXSDCoMKgc2xvdCAwIERMIDEgVUwg
+MA0KW05SX01BQ10gwqDCoHNsb3QgMSBETCAxIFVMIDANCltOUl9NQUNdIMKgwqBzbG90IDIg
+REwgMSBVTCAwDQpbTlJfTUFDXSDCoMKgc2xvdCAzIERMIDEgVUwgMA0KW05SX01BQ10gwqDC
+oHNsb3QgNCBETCAxIFVMIDANCltOUl9NQUNdIMKgwqBzbG90IDUgREwgMSBVTCAwDQpbTlJf
+TUFDXSDCoMKgc2xvdCA2IERMIDEgVUwgMA0KW05SX01BQ10gwqDCoHNsb3QgNyBETCAxIFVM
+IDENCltOUl9NQUNdIMKgwqBzbG90IDggREwgMCBVTCAxDQpbTlJfTUFDXSDCoMKgc2xvdCA5
+IERMIDAgVUwgMQ0KW05SX01BQ10gwqDCoHNsb3QgMTAgREwgMSBVTCAwDQpbTlJfTUFDXSDC
+oMKgc2xvdCAxMSBETCAxIFVMIDANCltOUl9NQUNdIMKgwqBzbG90IDEyIERMIDEgVUwgMA0K
+W05SX01BQ10gwqDCoHNsb3QgMTMgREwgMSBVTCAwDQpbTlJfTUFDXSDCoMKgc2xvdCAxNCBE
+TCAxIFVMIDANCltOUl9NQUNdIMKgwqBzbG90IDE1IERMIDEgVUwgMA0KW05SX01BQ10gwqDC
+oHNsb3QgMTYgREwgMSBVTCAwDQpbTlJfTUFDXSDCoMKgc2xvdCAxNyBETCAxIFVMIDENCltO
+Ul9NQUNdIMKgwqBzbG90IDE4IERMIDAgVUwgMQ0KW05SX01BQ10gwqDCoHNsb3QgMTkgREwg
+MCBVTCAxDQpTVEFSVCBNQUlOIFRIUkVBRFMNClJDLm5iX25yX0wxX2luc3Q6MQ0KSW5pdGlh
+bGl6aW5nIGdOQiB0aHJlYWRzIHNpbmdsZV90aHJlYWRfZmxhZzoxIHdhaXRfZm9yX3N5bmM6
+MA0KW1BIWV0gwqDCoEluaXRpYWxpemluZyBnTkIgMCBzaW5nbGVfdGhyZWFkX2ZsYWc6MQ0K
+W1BIWV0gwqDCoEluaXRpYWxpemluZyBnTkIgMA0KW1BIWV0gwqDCoFJlZ2lzdGVyaW5nIHdp
+dGggTUFDIGludGVyZmFjZSBtb2R1bGUgKGJlZm9yZSAweDU1NTU1OGZjNzk4MCkNCltQSFld
+IMKgwqBJbnN0YWxsaW5nIGNhbGxiYWNrcyBmb3IgSUZfTW9kdWxlIC0gVUxfaW5kaWNhdGlv
+bg0KW1BIWV0gwqDCoFJlZ2lzdGVyaW5nIHdpdGggTUFDIGludGVyZmFjZSBtb2R1bGUgKGFm
+dGVyIDB4NTU1NTU4ZmM3OTgwKQ0KW1BIWV0gwqDCoFNldHRpbmcgaW5kaWNhdGlvbiBsaXN0
+cw0KW1BIWV0gwqDCoFtuci1nbmIuY10gZ05CIHN0cnVjdHVyZSBhbGxvY2F0ZWQNCndhaXRf
+Z05CcygpDQpXYWl0aW5nIGZvciBnTkIgTDEgaW5zdGFuY2VzIHRvIGFsbCBnZXQgY29uZmln
+dXJlZCAuLi4gc2xlZXBpbmcgNTBtcyANCihuYl9ucl9zTDFfaW5zdCAxKQ0KZ05CIEwxIGFy
+ZSBjb25maWd1cmVkDQpBYm91dCB0byBJbml0IFJVIHRocmVhZHMgUkMubmJfUlU6MQ0KSW5p
+dGlhbGl6aW5nIFJVIHRocmVhZHMNCmNvbmZpZ3VyaW5nIFJVIGZyb20gZmlsZQ0KW0xJQkNP
+TkZJR10gUlVzLlswXTogNDMvNDMgcGFyYW1ldGVycyBzdWNjZXNzZnVsbHkgc2V0LCAoMzEg
+dG8gZGVmYXVsdCANCnZhbHVlKQ0KW0xJQkNPTkZJR10gKHJvb3QpOiAyLzIgcGFyYW1ldGVy
+cyBzdWNjZXNzZnVsbHkgc2V0LCAoMCB0byBkZWZhdWx0IHZhbHVlKQ0KW0xJQkNPTkZJR10g
+Z05Ccy5bMF06IDI4LzI4IHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDIwIHRvIGRl
+ZmF1bHQgDQp2YWx1ZSkNClNldCBSVSBtYXNrIHRvIDENCkNyZWF0aW5nIFJDLnJ1WzBdOjB4
+NTU1NTU5MDBmMmIwDQpbUEhZXSDCoMKgUlUgR1BJTyBjb250cm9sIHNldCBhcyAnZ2VuZXJp
+YycNCltQSFldIMKgwqBTZXR0aW5nIGNsb2NrIHNvdXJjZSB0byBpbnRlcm5hbA0KW1BIWV0g
+wqDCoFNldHRpbmcgdGltZSBzb3VyY2UgdG8gaW50ZXJuYWwNClNldHRpbmcgZnVuY3Rpb24g
+Zm9yIFJVIDAgdG8gZ05vZGVCXzNHUFANCltSVSAwXSBTZXR0aW5nIG5yX2ZsYWcgMCwgbnJf
+YmFuZCA3OCwgbnJfc2NzX2Zvcl9yYXN0ZXIgMQ0KW1JVIDBdIFNldHRpbmcgaGFsZi1zbG90
+IHBhcmFsbGVsaXphdGlvbiB0byAxDQpbUEhZXSDCoMKgbnVtYmVyIG9mIEwxIGluc3RhbmNl
+cyAxLCBudW1iZXIgb2YgUlUgMSwgbnVtYmVyIG9mIENQVSBjb3JlcyAyNA0KW1BIWV0gwqDC
+oERKUCAtIGRlbGV0ZSBjb2RlIGFib3ZlIHRoaXMgDQovaG9tZS9ub3JuZXRwcC9zcmMvb3Bl
+bmFpcmludGVyZmFjZTVnL2V4ZWN1dGFibGVzL25yLXJ1LmM6MTgyMA0KW1BIWV0gwqDCoENv
+cHlpbmcgZnJhbWUgcGFybXMgZnJvbSBnTkIgaW4gUkMgdG8gZ05CIDAgaW4gcnUgMCBhbmQg
+DQpmcmFtZV9wYXJtcyBpbiBydQ0KY29uZmlndXJpbmcgcnVfaWQgMCAoc3RhcnRfcmYgMHg1
+NTU1NTVmNDU1MTApDQpbUEhZXSDCoMKgU3RhcnRpbmcgcnVfdGhyZWFkIDANCltQSFldIMKg
+wqBJbml0aWFsaXppbmcgUlUgcHJvYyAwICgsc3luY2hfdG9fZXh0X2RldmljZSksDQpbVVRJ
+TF0gwqDCoENyZWF0aW5nIHRocmVhZCBydV90aHJlYWQgd2l0aCBhZmZpbml0eSAtMSBhbmQg
+cHJpb3JpdHkgOTcNCltEZXRhY2hpbmcgYWZ0ZXIgdmZvcmsgZnJvbSBjaGlsZCBwcm9jZXNz
+IDExOTUwNTddDQpbTmV3IFRocmVhZCAweDdmZmZlZjdmZTY0MCAoTFdQIDExOTUwNTkpXQ0K
+W1BIWV0gwqDCoFN0YXJ0aW5nIFJVIDAgKCxzeW5jaF90b19leHRfZGV2aWNlKSBvbiBjcHUg
+Ng0KW1BIWV0gwqDCoEluaXRpYWxpemluZyBmcmFtZSBwYXJtcyBmb3IgbXUgMSwgTl9SQiAx
+MDYsIE5jcCAwDQpbUEhZXSDCoMKgUlUgVGhyZWFkIHBvb2wgc2l6ZSAyDQpbUEhZXSDCoMKg
+SW5pdDogTl9SQl9ETCAxMDYsIGZpcnN0X2NhcnJpZXJfb2Zmc2V0IDE0MTIsIG5iX3ByZWZp
+eF9zYW1wbGVzIA0KMTQ0LG5iX3ByZWZpeF9zYW1wbGVzMCAxNzYsIG9mZG1fc3ltYm9sX3Np
+emUgMjA0OA0KW1BIWV0gwqDCoFJVIHRocmVhZC1wb29sIGNvcmUgc3RyaW5nIC0xLC0xDQpb
+UEhZXSDCoMKgZnAtPnNjcz0zMDAwMA0KY3JlYXRlIGEgdGhyZWFkIGZvciBjb3JlIC0xDQpb
+UEhZXSDCoMKgZnAtPm9mZG1fc3ltYm9sX3NpemU9MjA0OA0KW1BIWV0gwqDCoGZwLT5uYl9w
+cmVmaXhfc2FtcGxlczA9MTc2DQpbVVRJTF0gwqDCoENyZWF0aW5nIHRocmVhZCBUcG9vbDBf
+LTEgd2l0aCBhZmZpbml0eSAtMSBhbmQgcHJpb3JpdHkgNTANCltQSFldIMKgwqBmcC0+bmJf
+cHJlZml4X3NhbXBsZXM9MTQ0DQpbUEhZXSDCoMKgZnAtPnNsb3RzX3Blcl9zdWJmcmFtZT0y
+DQpbUEhZXSDCoMKgZnAtPnNhbXBsZXNfcGVyX3N1YmZyYW1lX3dDUD01NzM0NA0KW1BIWV0g
+wqDCoGZwLT5zYW1wbGVzX3Blcl9mcmFtZV93Q1A9NTczNDQwDQpbUEhZXSDCoMKgZnAtPnNh
+bXBsZXNfcGVyX3N1YmZyYW1lPTYxNDQwDQpbUEhZXSDCoMKgZnAtPnNhbXBsZXNfcGVyX2Zy
+YW1lPTYxNDQwMA0KW1BIWV0gwqDCoGZwLT5kbF9DYXJyaWVyRnJlcT0zMzE5NjgwMDAwDQpb
+UEhZXSDCoMKgZnAtPnVsX0NhcnJpZXJGcmVxPTMzMTk2ODAwMDANCltQSFldIMKgwqBTZXR0
+aW5nIFJGIGNvbmZpZyBmb3IgTl9SQiAxMDYsIE5CX1JYIDIsIE5CX1RYIDINCltQSFldIMKg
+wqBDaGFubmVsIDA6IHNldHRpbmcgdHhfZ2FpbiBvZmZzZXQgMCwgcnhfZ2FpbiBvZmZzZXQg
+NzUsIHR4X2ZyZXEgDQozMzE5NjgwMDAwIEh6LCByeF9mcmVxIDMzMTk2ODAwMDAgSHosIHR1
+bmVfb2Zmc2V0IDAgSHosIHNhbXBsZV9yYXRlIA0KNjE0NDAwMDAgSHoNCltQSFldIMKgwqBD
+aGFubmVsIDE6IHNldHRpbmcgdHhfZ2FpbiBvZmZzZXQgMCwgcnhfZ2FpbiBvZmZzZXQgNzUs
+IHR4X2ZyZXEgDQozMzE5NjgwMDAwIEh6LCByeF9mcmVxIDMzMTk2ODAwMDAgSHosIHR1bmVf
+b2Zmc2V0IDAgSHosIHNhbXBsZV9yYXRlIA0KNjE0NDAwMDAgSHoNCltQSFldIMKgwqBJbml0
+aWFsaXppbmcgUlUgc2lnbmFsIGJ1ZmZlcnMgKGlmX3NvdXRoIGxvY2FsIFJGKSBuYl90eCAy
+LCBuYl9yeCAyDQpbRGV0YWNoaW5nIGFmdGVyIHZmb3JrIGZyb20gY2hpbGQgcHJvY2VzcyAx
+MTk1MDYwXQ0KW1BIWV0gwqDCoFtJTklUXSBjb21tb24udHhkYXRhWzBdID0gMHg3ZmZmZWVk
+YTUwNDAgKDI0NTc2MDAgDQpieXRlcyxzZl9leHRlbnNpb24gMCkNCltQSFldIMKgwqBbSU5J
+VF0gY29tbW9uLnR4ZGF0YVswXSA9IDB4N2ZmZmVlZGE1MDQwDQpbUEhZXSDCoMKgW0lOSVRd
+IGNvbW1vbi50eGRhdGFbMV0gPSAweDdmZmZlZWI0YzA0MCAoMjQ1NzYwMCANCmJ5dGVzLHNm
+X2V4dGVuc2lvbiAwKQ0KW1BIWV0gwqDCoFtJTklUXSBjb21tb24udHhkYXRhWzFdID0gMHg3
+ZmZmZWViNGMwNDANCltOZXcgVGhyZWFkIDB4N2ZmZmVlYjRiNjQwIChMV1AgMTE5NTA2Mild
+DQpjcmVhdGUgYSB0aHJlYWQgZm9yIGNvcmUgLTENCltVVElMXSDCoMKgQ3JlYXRpbmcgdGhy
+ZWFkIFRwb29sMV8tMSB3aXRoIGFmZmluaXR5IC0xIGFuZCBwcmlvcml0eSA1MA0KW0RldGFj
+aGluZyBhZnRlciB2Zm9yayBmcm9tIGNoaWxkIHByb2Nlc3MgMTE5NTA2M10NCltQSFldIMKg
+wqBuYl90eCAyDQpbUEhZXSDCoMKgcnhkYXRhXzdfNWtIelswXSAweDdmZmZmNDEwOTA0MCBm
+b3IgUlUgMA0KW1BIWV0gwqDCoHJ4ZGF0YV83XzVrSHpbMV0gMHg3ZmZmZjQwMTgwNDAgZm9y
+IFJVIDANCltOZXcgVGhyZWFkIDB4N2ZmZmVkZTk4NjQwIChMV1AgMTE5NTA2NSldDQp3YWl0
+IFJVcw0KW1BIWV0gwqDCoFdhaXRpbmcgZm9yIFJVcyB0byBiZSBjb25maWd1cmVkIC4uLiBS
+Qy5ydV9tYXNrOjAxDQpbUEhZXSDCoMKgW0lOSVRdIGNvbW1vbi50eGRhdGFfQkY9IDB4N2Zm
+ZmRjMDAwYTgwICgxNiBieXRlcykNCltQSFldIMKgwqB0eGRhdGFGX0JGWzBdIDB4N2ZmZmY3
+NDMwMDQwIGZvciBSVSAwDQpbUEhZXSDCoMKgdHhkYXRhRl9CRlsxXSAweDdmZmZlZDFmZDA0
+MCBmb3IgUlUgMA0KW1BIWV0gwqDCoHJ4ZGF0YUZbMF0gMHg3ZmZmZWQxOGMwNDAgZm9yIFJV
+IDANCltQSFldIMKgwqByeGRhdGFGWzFdIDB4N2ZmZmVkMTFiMDQwIGZvciBSVSAwDQpbUEhZ
+XSDCoMKgW0lOSVRdIG5yX3BoeV9pbml0X1JVKCkgcnUtPm51bV9nTkI6MQ0KW0xJQkNPTkZJ
+R10gZGV2aWNlLnJlY3BsYXk6IDgvOCBwYXJhbWV0ZXJzIHN1Y2Nlc3NmdWxseSBzZXQsICg4
+IHRvIA0KZGVmYXVsdCB2YWx1ZSkNCltMSUJDT05GSUddIGRldmljZTogMS8xIHBhcmFtZXRl
+cnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDEgdG8gZGVmYXVsdCB2YWx1ZSkNCltMSUJDT05GSUdd
+IGxvYWRlcjogMi8yIHBhcmFtZXRlcnMgc3VjY2Vzc2Z1bGx5IHNldCwgKDIgdG8gZGVmYXVs
+dCB2YWx1ZSkNCltMSUJDT05GSUddIGxvYWRlci5vYWlfZGV2aWNlOiAyLzIgcGFyYW1ldGVy
+cyBzdWNjZXNzZnVsbHkgc2V0LCAoMSB0byANCmRlZmF1bHQgdmFsdWUpDQpzaGxpYl9wYXRo
+IGxpYm9haV9kZXZpY2Uuc28NCltMT0FERVJdIGxpYnJhcnkgbGlib2FpX2RldmljZS5zbyBz
+dWNjZXNzZnVsbHkgbG9hZGVkDQpbSFddIMKgwqBvcGVuYWlyMF9jZmdbMF0uc2RyX2FkZHJz
+ID09IA0KJ21nbXRfYWRkcj0xMC4xOTMuNC4xMTksYWRkcj0xOTIuMTY4LjEwLjIsc2Vjb25k
+X2FkZHI9MTkyLjE2OC4yMC4yLGNsb2NrX3NvdXJjZT1pbnRlcm5hbCx0aW1lX3NvdXJjZT1p
+bnRlcm5hbCcNCltIV10gwqDCoG9wZW5haXIwX2NmZ1swXS5jbG9ja19zb3VyY2UgPT0gJzAn
+IChpbnRlcm5hbCA9IDAsIGV4dGVybmFsID0gMSkNCltIV10gwqDCoFVIRCB2ZXJzaW9uIDQu
+NC4wLkhFQUQtMC1nNWZhYzI0NmIgKDQuNC4wKQ0KW0hXXSDCoMKgQ2hlY2tpbmcgZm9yIFVT
+UlAgd2l0aCBhcmdzIA0KbWdtdF9hZGRyPTEwLjE5My40LjExOSxhZGRyPTE5Mi4xNjguMTAu
+MixzZWNvbmRfYWRkcj0xOTIuMTY4LjIwLjIsY2xvY2tfc291cmNlPWludGVybmFsLHRpbWVf
+c291cmNlPWludGVybmFsDQpbTmV3IFRocmVhZCAweDdmZmZlMTFmZjY0MCAoTFdQIDExOTUw
+NjYpXQ0KW05ldyBUaHJlYWQgMHg3ZmZmZTA5ZmU2NDAgKExXUCAxMTk1MDY3KV0NCltOZXcg
+VGhyZWFkIDB4N2ZmZmQ3ZmZmNjQwIChMV1AgMTE5NTA2OCldDQpbVGhyZWFkIDB4N2ZmZmUw
+OWZlNjQwIChMV1AgMTE5NTA2NykgZXhpdGVkXQ0KW05ldyBUaHJlYWQgMHg3ZmZmY2Y3ZmU2
+NDAgKExXUCAxMTk1MDY5KV0NCltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9u
+IDExLjQuMDsgQm9vc3RfMTA3NDAwOyANClVIRF80LjQuMC5IRUFELTAtZzVmYWMyNDZiDQpb
+TmV3IFRocmVhZCAweDdmZmZkNzdmZTY0MCAoTFdQIDExOTUwNzApXQ0KW1RocmVhZCAweDdm
+ZmZkN2ZmZjY0MCAoTFdQIDExOTUwNjgpIGV4aXRlZF0NCltOZXcgVGhyZWFkIDB4N2ZmZmQ2
+ZmZkNjQwIChMV1AgMTE5NTA3MSldDQpbTmV3IFRocmVhZCAweDdmZmZkNjdmYzY0MCAoTFdQ
+IDExOTUwNzIpXQ0KW1RocmVhZCAweDdmZmZkNjdmYzY0MCAoTFdQIDExOTUwNzIpIGV4aXRl
+ZF0NCltOZXcgVGhyZWFkIDB4N2ZmZmQ1ZmZiNjQwIChMV1AgMTE5NTA3MyldDQpbTmV3IFRo
+cmVhZCAweDdmZmZkNTdmYTY0MCAoTFdQIDExOTUwNzQpXQ0KW05ldyBUaHJlYWQgMHg3ZmZm
+ZDRmZjk2NDAgKExXUCAxMTk1MDc1KV0NCltUaHJlYWQgMHg3ZmZmZDU3ZmE2NDAgKExXUCAx
+MTk1MDc0KSBleGl0ZWRdDQpbVGhyZWFkIDB4N2ZmZmQ1ZmZiNjQwIChMV1AgMTE5NTA3Mykg
+ZXhpdGVkXQ0KW1RocmVhZCAweDdmZmZkNzdmZTY0MCAoTFdQIDExOTUwNzApIGV4aXRlZF0N
+CltUaHJlYWQgMHg3ZmZmZDRmZjk2NDAgKExXUCAxMTk1MDc1KSBleGl0ZWRdDQpbVGhyZWFk
+IDB4N2ZmZmUxMWZmNjQwIChMV1AgMTE5NTA2NikgZXhpdGVkXQ0KW0hXXSDCoMKgRm91bmQg
+VVNSUCBuM3h4DQpGb3VuZCBVU1JQIG4zMTANCltEZXRhY2hpbmcgYWZ0ZXIgdmZvcmsgZnJv
+bSBjaGlsZCBwcm9jZXNzIDExOTUwNzZdDQpuZXQuY29yZS5ybWVtX21heCA9IDYyNTAwMDAw
+DQpuZXQuY29yZS53bWVtX21heCA9IDYyNTAwMDAwDQpbSU5GT10gW01QTURdIEluaXRpYWxp
+emluZyAxIGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IA0KbWdtdF9hZGRyPTEw
+LjE5My40LjExOSx0eXBlPW4zeHgscHJvZHVjdD1uMzEwLHNlcmlhbD0zMUI0MDI4LG5hbWU9
+bmktbjN4eC0zMUI0MDI4LGZwZ2E9SEcsY2xhaW1lZD1GYWxzZSxhZGRyPTE5Mi4xNjguMTAu
+MixzZWNvbmRfYWRkcj0xOTIuMTY4LjIwLjIsY2xvY2tfc291cmNlPWludGVybmFsLHRpbWVf
+DQpzb3VyY2U9aW50ZXJuYWwsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyODgwMDAwLjAwMDAwMA0K
+W05ldyBUaHJlYWQgMHg3ZmZmZDRmZjk2NDAgKExXUCAxMTk1MDc4KV0NCltOZXcgVGhyZWFk
+IDB4N2ZmZmQ1N2ZhNjQwIChMV1AgMTE5NTA3OSldDQpbTmV3IFRocmVhZCAweDdmZmZkNWZm
+YjY0MCAoTFdQIDExOTUwODApXQ0KW1dBUk5JTkddIFtNUE0uUlBDU2VydmVyXSBBIHRpbWVv
+dXQgZXZlbnQgb2NjdXJlZCENCltJTkZPXSBbTVBNLlBlcmlwaE1hbmFnZXJdIGluaXQoKSBj
+YWxsZWQgd2l0aCBkZXZpY2UgYXJncyANCmBjbG9ja19zb3VyY2U9aW50ZXJuYWwsZnBnYT1I
+RyxtYXN0ZXJfY2xvY2tfcmF0ZT0xMjI4ODAwMDAuMDAwMDAwLG1nbXRfYWRkcj0xMC4xOTMu
+NC4xMTksbmFtZT1uaS1uM3h4LTMxQjQwMjgscHJvZHVjdD1uMzEwLHNlY29uZF9hZGRyPTE5
+Mi4xNjguMjAuMix0aW1lX3NvdXJjZT1pbnRlcm5hbCcuDQpbTmV3IFRocmVhZCAweDdmZmZk
+NjdmYzY0MCAoTFdQIDExOTUwODEpXQ0KW0hXXSDCoMKgQ2xvY2sgc291cmNlIHNldCBpbiBi
+b3RoIHVzcnBfYXJncyBhbmQgaW4gY2xvY2tfc291cmNlLCBpbmdub3JpbmcgDQp0aGUgbGF0
+dGVyIQ0KW0hXXSDCoMKgVGltZSBzb3VyY2Ugc2V0IGluIGJvdGggdXNycF9hcmdzIGFuZCBp
+biB0aW1lX3NvdXJjZSwgaW5nbm9yaW5nIA0KdGhlIGxhdHRlciENCi0tIFVzaW5nIGNhbGli
+cmF0aW9uIHRhYmxlOiBjYWxpYl90YWJsZV9uMzEwDQpbSFddIMKgwqBkZXZpY2VfaW5pdCgp
+IHNhbXBsZV9yYXRlOjYxNDQwMDAwDQpbSFddIMKgwqBjYWwgMDogZnJlcSAzNTAwMDAwMDAw
+LjAwMDAwMCwgb2Zmc2V0IDAuMDAwMDAwLCBkaWZmIA0KMTgwMzIwMDAwLjAwMDAwMA0KW0hX
+XSDCoMKgY2FsIDE6IGZyZXEgMjY2MDAwMDAwMC4wMDAwMDAsIG9mZnNldCAwLjAwMDAwMCwg
+ZGlmZiANCjY1OTY4MDAwMC4wMDAwMDANCltIV10gwqDCoGNhbCAyOiBmcmVxIDIzMDAwMDAw
+MDAuMDAwMDAwLCBvZmZzZXQgMC4wMDAwMDAsIGRpZmYgDQoxMDE5NjgwMDAwLjAwMDAwMA0K
+W0hXXSDCoMKgY2FsIDM6IGZyZXEgMTg4MDAwMDAwMC4wMDAwMDAsIG9mZnNldCAwLjAwMDAw
+MCwgZGlmZiANCjE0Mzk2ODAwMDAuMDAwMDAwDQpbSFddIMKgwqBjYWwgNDogZnJlcSA4MTYw
+MDAwMDAuMDAwMDAwLCBvZmZzZXQgMC4wMDAwMDAsIGRpZmYgDQoyNTAzNjgwMDAwLjAwMDAw
+MA0KW0hXXSDCoMKgUlggR2FpbiAwIDc1LjAwMDAwMCAoMC4wMDAwMDApID0+IDc1LjAwMDAw
+MCAobWF4IDc1LjAwMDAwMCkNCltIV10gwqDCoGNhbCAwOiBmcmVxIDM1MDAwMDAwMDAuMDAw
+MDAwLCBvZmZzZXQgMC4wMDAwMDAsIGRpZmYgDQoxODAzMjAwMDAuMDAwMDAwDQpbSFddIMKg
+wqBjYWwgMTogZnJlcSAyNjYwMDAwMDAwLjAwMDAwMCwgb2Zmc2V0IDAuMDAwMDAwLCBkaWZm
+IA0KNjU5NjgwMDAwLjAwMDAwMA0KW0hXXSDCoMKgY2FsIDI6IGZyZXEgMjMwMDAwMDAwMC4w
+MDAwMDAsIG9mZnNldCAwLjAwMDAwMCwgZGlmZiANCjEwMTk2ODAwMDAuMDAwMDAwDQpbSFdd
+IMKgwqBjYWwgMzogZnJlcSAxODgwMDAwMDAwLjAwMDAwMCwgb2Zmc2V0IDAuMDAwMDAwLCBk
+aWZmIA0KMTQzOTY4MDAwMC4wMDAwMDANCltIV10gwqDCoGNhbCA0OiBmcmVxIDgxNjAwMDAw
+MC4wMDAwMDAsIG9mZnNldCAwLjAwMDAwMCwgZGlmZiANCjI1MDM2ODAwMDAuMDAwMDAwDQpb
+SFddIMKgwqBSWCBHYWluIDEgNzUuMDAwMDAwICgwLjAwMDAwMCkgPT4gNzUuMDAwMDAwICht
+YXggNzUuMDAwMDAwKQ0KW0hXXSDCoMKgVVNSUCBUWF9HQUlOOjY1LjAwIGdhaW5fcmFuZ2U6
+NjUuMDAgdHhfZ2FpbjowLjAwDQpbSFddIMKgwqBVU1JQIFRYX0dBSU46NjUuMDAgZ2Fpbl9y
+YW5nZTo2NS4wMCB0eF9nYWluOjAuMDANCltIV10gwqDCoEFjdHVhbCBtYXN0ZXIgY2xvY2s6
+IDEyMi44ODAwMDBNSHouLi4NCltIV10gwqDCoEFjdHVhbCBjbG9jayBzb3VyY2UgaW50ZXJu
+YWwuLi4NCltIV10gwqDCoEFjdHVhbCB0aW1lIHNvdXJjZSBpbnRlcm5hbC4uLg0KW0hXXSDC
+oMKgc2V0dGluZyByeCBjaGFubmVsIDANCltIV10gwqDCoHNldHRpbmcgcnggY2hhbm5lbCAx
+DQpbV0FSTklOR10gWzAvUmFkaW8jMF0gQXR0ZW1wdGluZyB0byBzZXQgdGljayByYXRlIHRv
+IDAuIFNraXBwaW5nLg0KW0hXXSDCoMKgUkYgYm9hcmQgbWF4IHBhY2tldCBzaXplIDM2OCwg
+c2l6ZSBmb3IgMTAwwrVzIGppdHRlciA2MTQ0DQpbSFddIMKgwqByeF9tYXhfbnVtX3NhbXBz
+IDM2OA0KW1dBUk5JTkddIFswL1JhZGlvIzBdIEF0dGVtcHRpbmcgdG8gc2V0IHRpY2sgcmF0
+ZSB0byAwLiBTa2lwcGluZy4NCltIV10gwqDCoFJYIENoYW5uZWwgMA0KW0hXXSDCoMKgwqDC
+oEFjdHVhbCBSWCBzYW1wbGUgcmF0ZTogNjEuNDQwMDAwTVNwcy4uLg0KW0hXXSDCoMKgwqDC
+oEFjdHVhbCBSWCBmcmVxdWVuY3k6IDMuMzE5NjgwR0h6Li4uDQpbSFddIMKgwqDCoMKgQWN0
+dWFsIFJYIGdhaW46IDc1LjAwMDAwMC4uLg0KW0hXXSDCoMKgwqDCoEFjdHVhbCBSWCBiYW5k
+d2lkdGg6IDEwMC4wMDAwMDBNLi4uDQpbSFddIMKgwqDCoMKgQWN0dWFsIFJYIGFudGVubmE6
+IFJYMi4uLg0KW0hXXSDCoMKgUlggQ2hhbm5lbCAxDQpbSFddIMKgwqDCoMKgQWN0dWFsIFJY
+IHNhbXBsZSByYXRlOiA2MS40NDAwMDBNU3BzLi4uDQpbSFddIMKgwqDCoMKgQWN0dWFsIFJY
+IGZyZXF1ZW5jeTogMy4zMTk2ODBHSHouLi4NCltIV10gwqDCoMKgwqBBY3R1YWwgUlggZ2Fp
+bjogNzUuMDAwMDAwLi4uDQpbSFddIMKgwqDCoMKgQWN0dWFsIFJYIGJhbmR3aWR0aDogMTAw
+LjAwMDAwME0uLi4NCltIV10gwqDCoMKgwqBBY3R1YWwgUlggYW50ZW5uYTogUlgyLi4uDQpb
+SFddIMKgwqBUWCBDaGFubmVsIDANCltIV10gwqDCoMKgwqBBY3R1YWwgVFggc2FtcGxlIHJh
+dGU6IDYxLjQ0MDAwME1TcHMuLi4NCltIV10gwqDCoMKgwqBBY3R1YWwgVFggZnJlcXVlbmN5
+OiAzLjMxOTY4MEdIei4uLg0KW0hXXSDCoMKgwqDCoEFjdHVhbCBUWCBnYWluOiA2NS4wMDAw
+MDAuLi4NCltIV10gwqDCoMKgwqBBY3R1YWwgVFggYmFuZHdpZHRoOiAxMDAuMDAwMDAwTS4u
+Lg0KW0hXXSDCoMKgwqDCoEFjdHVhbCBUWCBhbnRlbm5hOiBUWC9SWC4uLg0KW0hXXSDCoMKg
+wqDCoEFjdHVhbCBUWCBwYWNrZXQgc2l6ZTogMzY4DQpbSFddIMKgwqBUWCBDaGFubmVsIDEN
+CltIV10gwqDCoMKgwqBBY3R1YWwgVFggc2FtcGxlIHJhdGU6IDYxLjQ0MDAwME1TcHMuLi4N
+CltIV10gwqDCoMKgwqBBY3R1YWwgVFggZnJlcXVlbmN5OiAzLjMxOTY4MEdIei4uLg0KW0hX
+XSDCoMKgwqDCoEFjdHVhbCBUWCBnYWluOiA2NS4wMDAwMDAuLi4NCltIV10gwqDCoMKgwqBB
+Y3R1YWwgVFggYmFuZHdpZHRoOiAxMDAuMDAwMDAwTS4uLg0KW0hXXSDCoMKgwqDCoEFjdHVh
+bCBUWCBhbnRlbm5hOiBUWC9SWC4uLg0KW0hXXSDCoMKgwqDCoEFjdHVhbCBUWCBwYWNrZXQg
+c2l6ZTogMzY4DQpVc2luZyBEZXZpY2U6IFNpbmdsZSBVU1JQOg0KIMKgRGV2aWNlOiBOMzAw
+LVNlcmllcyBEZXZpY2UNCiDCoE1ib2FyZCAwOiBuMzEwDQogwqBSWCBDaGFubmVsOiAwDQog
+wqDCoMKgUlggRFNQOiAwDQogwqDCoMKgUlggRGJvYXJkOiBBDQogwqDCoMKgUlggU3ViZGV2
+OiBNYWduZXNpdW0NCiDCoFJYIENoYW5uZWw6IDENCiDCoMKgwqBSWCBEU1A6IDENCiDCoMKg
+wqBSWCBEYm9hcmQ6IEENCiDCoMKgwqBSWCBTdWJkZXY6IE1hZ25lc2l1bQ0KIMKgUlggQ2hh
+bm5lbDogMg0KIMKgwqDCoFJYIERTUDogMg0KIMKgwqDCoFJYIERib2FyZDogQg0KIMKgwqDC
+oFJYIFN1YmRldjogTWFnbmVzaXVtDQogwqBSWCBDaGFubmVsOiAzDQogwqDCoMKgUlggRFNQ
+OiAzDQogwqDCoMKgUlggRGJvYXJkOiBCDQogwqDCoMKgUlggU3ViZGV2OiBNYWduZXNpdW0N
+CiDCoFRYIENoYW5uZWw6IDANCiDCoMKgwqBUWCBEU1A6IDANCiDCoMKgwqBUWCBEYm9hcmQ6
+IEENCiDCoMKgwqBUWCBTdWJkZXY6IE1hZ25lc2l1bQ0KIMKgVFggQ2hhbm5lbDogMQ0KIMKg
+wqDCoFRYIERTUDogMQ0KIMKgwqDCoFRYIERib2FyZDogQQ0KIMKgwqDCoFRYIFN1YmRldjog
+TWFnbmVzaXVtDQogwqBUWCBDaGFubmVsOiAyDQogwqDCoMKgVFggRFNQOiAyDQogwqDCoMKg
+VFggRGJvYXJkOiBCDQogwqDCoMKgVFggU3ViZGV2OiBNYWduZXNpdW0NCiDCoFRYIENoYW5u
+ZWw6IDMNCiDCoMKgwqBUWCBEU1A6IDMNCiDCoMKgwqBUWCBEYm9hcmQ6IEINCiDCoMKgwqBU
+WCBTdWJkZXY6IE1hZ25lc2l1bQ0KDQpbSFddIMKgwqBEZXZpY2UgdGltZXN0YW1wOiAwLjE3
+Nzk4MS4uLg0KW0hXXSDCoMKgW1JBVV0gaGFzIGxvYWRlZCBVU1JQIE4zMDAgZGV2aWNlLg0K
+c2V0dXBfUlVfYnVmZmVyczogZnJhbWVfcGFybXMgPSAweDdmZmZmNzgyZDAxMA0KW1BIWV0g
+wqDCoFJVIDAgU2V0dGluZyBOX1RBX29mZnNldCB0byA4MDAgc2FtcGxlcyAoZmFjdG9yIDIu
+MDAwMDAwLCBVTCANCkZyZXEgMzMwMDYwMCwgTl9SQiAxMDYsIG11IDEpDQpbUEhZXSDCoMKg
+U2lnbmFsaW5nIG1haW4gdGhyZWFkIHRoYXQgUlUgMCBpcyByZWFkeSwgc2xfYWhlYWQgNg0K
+d2FpdGluZyBmb3Igc3luYyANCihydV90aHJlYWQsLTEvMHg1NTU1NTZhZDIwYjQsMHg1NTU1
+NTczMjlmYTAsMHg1NTU1NTczMjlmNjApDQpSQy5ydV9tYXNrOjAwDQpbUEhZXSDCoMKgUlVz
+IGNvbmZpZ3VyZWQNCkFMTCBSVXMgUkVBRFkhDQpSQy5uYl9SVToxDQpBTEwgUlVzIHJlYWR5
+IC0gaW5pdCBnTkJzDQpOb3QgTkZBUEkgbW9kZSAtIGNhbGwgaW5pdF9lTkJfYWZ0ZXJSVSgp
+DQpbUEhZXSDCoMKgaW5pdF9lTkJfYWZ0ZXJSVSgpIFJDLm5iX25yX2luc3Q6MQ0KW1BIWV0g
+wqDCoFJDLm5iX25yX0NDW2luc3Q6MF06MHg3ZmZmZjc0NjkwMTANCltQSFldIMKgwqBbZ05C
+IDBdIHBoeV9pbml0X25yX2dOQigpIEFib3V0IHRvIHdhaXQgZm9yIGdOQiB0byBiZSBjb25m
+aWd1cmVkDQpbTElCQ09ORklHXSBsb2FkZXIuZGZ0czogMi8yIHBhcmFtZXRlcnMgc3VjY2Vz
+c2Z1bGx5IHNldCwgKDEgdG8gZGVmYXVsdCANCnZhbHVlKQ0Kc2hsaWJfcGF0aCBsaWJkZnRz
+LnNvDQpbTE9BREVSXSBsaWJyYXJ5IGxpYmRmdHMuc28gc3VjY2Vzc2Z1bGx5IGxvYWRlZA0K
+W0xJQkNPTkZJR10gbG9hZGVyLmxkcGM6IDIvMiBwYXJhbWV0ZXJzIHN1Y2Nlc3NmdWxseSBz
+ZXQsICgxIHRvIGRlZmF1bHQgDQp2YWx1ZSkNCnNobGliX3BhdGggbGlibGRwYy5zbw0KW0xP
+QURFUl0gbGlicmFyeSBsaWJsZHBjLnNvIHN1Y2Nlc3NmdWxseSBsb2FkZWQNCltQSFldIMKg
+wqBJbml0aWFsaXNlIG5yIHRyYW5zcG9ydA0KW1BIWV0gwqDCoE1hcHBpbmcgUlggcG9ydHMg
+ZnJvbSAxIFJVcyB0byBnTkIgMA0KW1BIWV0gwqDCoGdOQi0+bnVtX1JVOjENCltQSFldIMKg
+wqBBdHRhY2hpbmcgUlUgMCBhbnRlbm5hIDAgdG8gZ05CIGFudGVubmEgMA0KW1BIWV0gwqDC
+oEF0dGFjaGluZyBSVSAwIGFudGVubmEgMSB0byBnTkIgYW50ZW5uYSAxDQpjcmVhdGUgYSB0
+aHJlYWQgZm9yIGNvcmUgLTENCltVVElMXSDCoMKgQ3JlYXRpbmcgdGhyZWFkIFRwb29sMF8t
+MSB3aXRoIGFmZmluaXR5IC0xIGFuZCBwcmlvcml0eSA1MA0KW0RldGFjaGluZyBhZnRlciB2
+Zm9yayBmcm9tIGNoaWxkIHByb2Nlc3MgMTE5NTA4Ml0NCltOZXcgVGhyZWFkIDB4N2ZmZjhj
+YzEzNjQwIChMV1AgMTE5NTA4NCldDQpjcmVhdGUgYSB0aHJlYWQgZm9yIGNvcmUgLTENCltV
+VElMXSDCoMKgQ3JlYXRpbmcgdGhyZWFkIFRwb29sMV8tMSB3aXRoIGFmZmluaXR5IC0xIGFu
+ZCBwcmlvcml0eSA1MA0KW0RldGFjaGluZyBhZnRlciB2Zm9yayBmcm9tIGNoaWxkIHByb2Nl
+c3MgMTE5NTA4NV0NCltOZXcgVGhyZWFkIDB4N2ZmZjhjNDEyNjQwIChMV1AgMTE5NTA4Nyld
+DQpjcmVhdGUgYSB0aHJlYWQgZm9yIGNvcmUgLTENCltVVElMXSDCoMKgQ3JlYXRpbmcgdGhy
+ZWFkIFRwb29sMl8tMSB3aXRoIGFmZmluaXR5IC0xIGFuZCBwcmlvcml0eSA1MA0KW0RldGFj
+aGluZyBhZnRlciB2Zm9yayBmcm9tIGNoaWxkIHByb2Nlc3MgMTE5NTA4OF0NCltOZXcgVGhy
+ZWFkIDB4N2ZmZjhiYzExNjQwIChMV1AgMTE5NTA5MCldDQpjcmVhdGUgYSB0aHJlYWQgZm9y
+IGNvcmUgLTENCltVVElMXSDCoMKgQ3JlYXRpbmcgdGhyZWFkIFRwb29sM18tMSB3aXRoIGFm
+ZmluaXR5IC0xIGFuZCBwcmlvcml0eSA1MA0KW0RldGFjaGluZyBhZnRlciB2Zm9yayBmcm9t
+IGNoaWxkIHByb2Nlc3MgMTE5NTA5MV0NCltOZXcgVGhyZWFkIDB4N2ZmZjhiNDEwNjQwIChM
+V1AgMTE5NTA5MyldDQpjcmVhdGUgYSB0aHJlYWQgZm9yIGNvcmUgLTENCltVVElMXSDCoMKg
+Q3JlYXRpbmcgdGhyZWFkIFRwb29sNF8tMSB3aXRoIGFmZmluaXR5IC0xIGFuZCBwcmlvcml0
+eSA1MA0KW0RldGFjaGluZyBhZnRlciB2Zm9yayBmcm9tIGNoaWxkIHByb2Nlc3MgMTE5NTA5
+NF0NCltOZXcgVGhyZWFkIDB4N2ZmZjhhYzBmNjQwIChMV1AgMTE5NTA5NildDQpjcmVhdGUg
+YSB0aHJlYWQgZm9yIGNvcmUgLTENCltVVElMXSDCoMKgQ3JlYXRpbmcgdGhyZWFkIFRwb29s
+NV8tMSB3aXRoIGFmZmluaXR5IC0xIGFuZCBwcmlvcml0eSA1MA0KW0RldGFjaGluZyBhZnRl
+ciB2Zm9yayBmcm9tIGNoaWxkIHByb2Nlc3MgMTE5NTA5N10NCltOZXcgVGhyZWFkIDB4N2Zm
+ZjhhNDBlNjQwIChMV1AgMTE5NTA5OSldDQpjcmVhdGUgYSB0aHJlYWQgZm9yIGNvcmUgLTEN
+CltVVElMXSDCoMKgQ3JlYXRpbmcgdGhyZWFkIFRwb29sNl8tMSB3aXRoIGFmZmluaXR5IC0x
+IGFuZCBwcmlvcml0eSA1MA0KW0RldGFjaGluZyBhZnRlciB2Zm9yayBmcm9tIGNoaWxkIHBy
+b2Nlc3MgMTE5NTEwMF0NCltOZXcgVGhyZWFkIDB4N2ZmZjg5YzBkNjQwIChMV1AgMTE5NTEw
+MildDQpjcmVhdGUgYSB0aHJlYWQgZm9yIGNvcmUgLTENCltVVElMXSDCoMKgQ3JlYXRpbmcg
+dGhyZWFkIFRwb29sN18tMSB3aXRoIGFmZmluaXR5IC0xIGFuZCBwcmlvcml0eSA1MA0KW0Rl
+dGFjaGluZyBhZnRlciB2Zm9yayBmcm9tIGNoaWxkIHByb2Nlc3MgMTE5NTEwM10NCltOZXcg
+VGhyZWFkIDB4N2ZmZjg5NDBjNjQwIChMV1AgMTE5NTEwNSldDQpbUEhZXSDCoMKgQ3JlYXRp
+bmcgdGhyZWFkIGZvciBUWCByZW9yZGVyaW5nIGFuZCBkaXNwYXRjaGluZyB0byBSVQ0KW1VU
+SUxdIMKgwqBDcmVhdGluZyB0aHJlYWQgdGhyZWFkX3R4X3Jlb3JkZXIgd2l0aCBhZmZpbml0
+eSAtMSBhbmQgcHJpb3JpdHkgOTcNCltEZXRhY2hpbmcgYWZ0ZXIgdmZvcmsgZnJvbSBjaGls
+ZCBwcm9jZXNzIDExOTUxMDZdDQpbTmV3IFRocmVhZCAweDdmZmY4NWFkMzY0MCAoTFdQIDEx
+OTUxMDgpXQ0KW1VUSUxdIMKgwqBDcmVhdGluZyB0aHJlYWQgTDFfc3RhdHMgd2l0aCBhZmZp
+bml0eSAtMSBhbmQgcHJpb3JpdHkgMQ0KW0RldGFjaGluZyBhZnRlciB2Zm9yayBmcm9tIGNo
+aWxkIHByb2Nlc3MgMTE5NTEwOV0NCltOZXcgVGhyZWFkIDB4N2ZmZjg1MmQyNjQwIChMV1Ag
+MTE5NTExMSldDQp3YWl0aW5nIGZvciBzeW5jIA0KKEwxX3N0YXRzX3RocmVhZCwtMS8weDU1
+NTU1NmFkMjBiNCwweDU1NTU1NzMyOWZhMCwweDU1NTU1NzMyOWY2MCkNCkFMTCBSVXMgcmVh
+ZHkgLSBBTEwgZ05CcyByZWFkeQ0KU2VuZGluZyBzeW5jIHRvIGFsbCB0aHJlYWRzDQpFbnRl
+cmluZyBJVFRJIHNpZ25hbHMgaGFuZGxlcg0KVFlQRSA8Q1RSTC1DPiBUTyBURVJNSU5BVEUN
+CmdvdCBzeW5jIChMMV9zdGF0c190aHJlYWQpDQpnb3Qgc3luYyAocnVfdGhyZWFkKQ0KW0hX
+XSDCoMKgY3VycmVudCBwcHMgYXQgMS4wMDAwMDAsIHN0YXJ0aW5nIHN0cmVhbWluZyBhdCAy
+LjAwMDAwMA0KW1BIWV0gwqDCoFJVIDAgcmYgZGV2aWNlIHJlYWR5DQpbUEhZXSDCoMKgUlUg
+MCBSRiBzdGFydGVkIG9wcF9lbmFibGVkIDANCnNsZWVwLi4uDQpzbGVlcC4uLg0Kc2xlZXAu
+Li4NCnNsZWVwLi4uDQpzbGVlcC4uLg0Kc2xlZXAuLi4NCnNsZWVwLi4uDQpzbGVlcC4uLg0K
+c2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9z
+bGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xl
+ZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVl
+cC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAu
+Li4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4u
+Lg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4N
+Ck9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0K
+c2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9z
+bGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xl
+ZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVl
+cC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAu
+Li4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4u
+Lg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4N
+Ck9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0K
+c2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9z
+bGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xl
+ZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVl
+cC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAu
+Li4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4u
+Lg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4N
+Ck9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0K
+c2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9z
+bGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xl
+ZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk9zbGVl
+cC4uLg0Kc2xlZXAuLi4NCk9zbGVlcC4uLg0Kc2xlZXAuLi4NCk8NClRocmVhZCA5ICJydV90
+aHJlYWQiIHJlY2VpdmVkIHNpZ25hbCBTSUdTRUdWLCBTZWdtZW50YXRpb24gZmF1bHQuDQpb
+U3dpdGNoaW5nIHRvIFRocmVhZCAweDdmZmZlZjdmZTY0MCAoTFdQIDEyOTIxNjgpXQ0KX19t
+ZW1tb3ZlX2F2eF91bmFsaWduZWRfZXJtcygpIGF0IA0KLi4vc3lzZGVwcy94ODZfNjQvbXVs
+dGlhcmNoL21lbW1vdmUtdmVjLXVuYWxpZ25lZC1lcm1zLlM6NTQwDQo1NDAgwqDCoMKgwqAu
+Li9zeXNkZXBzL3g4Nl82NC9tdWx0aWFyY2gvbWVtbW92ZS12ZWMtdW5hbGlnbmVkLWVybXMu
+UzogTm8gDQpzdWNoIGZpbGUgb3IgZGlyZWN0b3J5Lg0KKGdkYikgYnQNCiMwIF9fbWVtbW92
+ZV9hdnhfdW5hbGlnbmVkX2VybXMoKSBhdCANCi4uL3N5c2RlcHMveDg2XzY0L211bHRpYXJj
+aC9tZW1tb3ZlLXZlYy11bmFsaWduZWQtZXJtcy5TOjU0MA0KIzEgMHgwMDAwN2ZmZmUxY2Vk
+OWJmaW4gDQp1aGQ6OnRyYW5zcG9ydDo6cnhfc3RyZWFtZXJfaW1wbDx1aGQ6OnJmbm9jOjpj
+aGRyX3J4X2RhdGFfeHBvcnQsIA0KZmFsc2U+OjpyZWN2KHVoZDo6cmVmX3ZlY3Rvcjx2b2lk
+Kj4gY29uc3QmLCB1bnNpZ25lZCBsb25nLCANCnVoZDo6cnhfbWV0YWRhdGFfdCYsIGRvdWJs
+ZSwgYm9vbCkoKSBmcm9tIC91c3IvbG9jYWwvbGliL2xpYnVoZC5zby40LjQuMA0KIzIgMHgw
+MDAwN2ZmZmUyOWM3NjJiaW4gdHJ4X3VzcnBfcmVhZChkZXZpY2U9MHg1NTU1NWExZDk3MDAs
+IA0KcHRpbWVzdGFtcD0weDdmZmZlZjdmZDJjOCwgYnVmZj0weDdmZmZlZjdmZDFkMCwgbnNh
+bXBzPTMwNzIwLCBjYz0yKSBhdCANCi9ob21lL25vcm5ldHBwL3NyYy9vcGVuYWlyaW50ZXJm
+YWNlNWcvcmFkaW8vVVNSUC91c3JwX2xpYi5jcHA6NzU3DQojMyAweDAwMDA1NTU1NTVmOGEy
+MzVpbiByeF9yZihydT0weDU1NTU1YTFkOTI4MCwgZnJhbWU9MHg3ZmZmZWY3ZmQ3ZTgsIA0K
+c2xvdD0weDdmZmZlZjdmZDdlNCkgYXQgDQovaG9tZS9ub3JuZXRwcC9zcmMvb3BlbmFpcmlu
+dGVyZmFjZTVnL2V4ZWN1dGFibGVzL25yLXJ1LmM6NjU1DQojNCAweDAwMDA1NTU1NTVmOTU0
+MzRpbiBydV90aHJlYWQocGFyYW09MHg1NTU1NWExZDkyODApIGF0IA0KL2hvbWUvbm9ybmV0
+cHAvc3JjL29wZW5haXJpbnRlcmZhY2U1Zy9leGVjdXRhYmxlcy9uci1ydS5jOjEyNTcNCiM1
+IDB4MDAwMDdmZmZmNzI5NGI0M2luIHN0YXJ0X3RocmVhZChhcmc9PG9wdGltaXplZCBvdXQ+
+KSBhdCANCi4vbnB0bC9wdGhyZWFkX2NyZWF0ZS5jOjQ0Mg0KIzYgMHgwMDAwN2ZmZmY3MzI2
+YTAwaW4gY2xvbmUzKCkgYXQgDQouLi9zeXNkZXBzL3VuaXgvc3lzdi9saW51eC94ODZfNjQv
+Y2xvbmUzLlM6ODENCihnZGIpIHdoZXJlIGZ1bGwNCiMwIF9fbWVtbW92ZV9hdnhfdW5hbGln
+bmVkX2VybXMoKSBhdCANCi4uL3N5c2RlcHMveDg2XzY0L211bHRpYXJjaC9tZW1tb3ZlLXZl
+Yy11bmFsaWduZWQtZXJtcy5TOjU0MA0KTm8gbG9jYWxzLg0KIzEgMHgwMDAwN2ZmZmUxY2Vk
+OWJmaW4gDQp1aGQ6OnRyYW5zcG9ydDo6cnhfc3RyZWFtZXJfaW1wbDx1aGQ6OnJmbm9jOjpj
+aGRyX3J4X2RhdGFfeHBvcnQsIA0KZmFsc2U+OjpyZWN2KHVoZDo6cmVmX3ZlY3Rvcjx2b2lk
+Kj4gY29uc3QmLCB1bnNpZ25lZCBsb25nLCANCnVoZDo6cnhfbWV0YWRhdGFfdCYsIGRvdWJs
+ZSwgYm9vbCkoKSBmcm9tIC91c3IvbG9jYWwvbGliL2xpYnVoZC5zby40LjQuMA0KTm8gc3lt
+Ym9sIHRhYmxlIGluZm8gYXZhaWxhYmxlLg0KIzIgMHgwMDAwN2ZmZmUyOWM3NjJiaW4gdHJ4
+X3VzcnBfcmVhZChkZXZpY2U9MHg1NTU1NWExZDk3MDAsIA0KcHRpbWVzdGFtcD0weDdmZmZl
+ZjdmZDJjOCwgYnVmZj0weDdmZmZlZjdmZDFkMCwgbnNhbXBzPTMwNzIwLCBjYz0yKSBhdCAN
+Ci9ob21lL25vcm5ldHBwL3NyYy9vcGVuYWlyaW50ZXJmYWNlNWcvcmFkaW8vVVNSUC91c3Jw
+X2xpYi5jcHA6NzU3DQpidWZmX3B0cnM9IHN0ZDo6dmVjdG9yIG9mIGxlbmd0aCAyLCBjYXBh
+Y2l0eSAyID0gezB4N2ZmZmYwMDBmODYwLCANCjB4N2ZmZmYwMDJkODYwfQ0Kcz0gMHg3ZmZm
+ZGMwOTRhYTANCnNhbXBsZXNfcmVjZWl2ZWQ9IDI3MjIzMw0KbnNhbXBzMj0gMzg0MA0KYnVm
+Zl90bXA9IDxlcnJvciByZWFkaW5nIHZhcmlhYmxlIGJ1ZmZfdG1wICh2YWx1ZSByZXF1aXJl
+cyAyNDU3NjAgYnl0ZXMsIA0Kd2hpY2ggaXMgbW9yZSB0aGFuIG1heC12YWx1ZS1zaXplKT4N
+CihnZGIpIGJ1dCBmdWxsDQpVbmRlZmluZWQgY29tbWFuZDogImJ1dCIuIMKgVHJ5ICJoZWxw
+Ii4NCihnZGIpIGJ0IGZ1bGwNCiMwIF9fbWVtbW92ZV9hdnhfdW5hbGlnbmVkX2VybXMoKSBh
+dCANCi4uL3N5c2RlcHMveDg2XzY0L211bHRpYXJjaC9tZW1tb3ZlLXZlYy11bmFsaWduZWQt
+ZXJtcy5TOjU0MA0KTm8gbG9jYWxzLg0KIzEgMHgwMDAwN2ZmZmUxY2VkOWJmaW4gDQp1aGQ6
+OnRyYW5zcG9ydDo6cnhfc3RyZWFtZXJfaW1wbDx1aGQ6OnJmbm9jOjpjaGRyX3J4X2RhdGFf
+eHBvcnQsIA0KZmFsc2U+OjpyZWN2KHVoZDo6cmVmX3ZlY3Rvcjx2b2lkKj4gY29uc3QmLCB1
+bnNpZ25lZCBsb25nLCANCnVoZDo6cnhfbWV0YWRhdGFfdCYsIGRvdWJsZSwgYm9vbCkoKSBm
+cm9tIC91c3IvbG9jYWwvbGliL2xpYnVoZC5zby40LjQuMA0KTm8gc3ltYm9sIHRhYmxlIGlu
+Zm8gYXZhaWxhYmxlLg0KIzIgMHgwMDAwN2ZmZmUyOWM3NjJiaW4gdHJ4X3VzcnBfcmVhZChk
+ZXZpY2U9MHg1NTU1NWExZDk3MDAsIA0KcHRpbWVzdGFtcD0weDdmZmZlZjdmZDJjOCwgYnVm
+Zj0weDdmZmZlZjdmZDFkMCwgbnNhbXBzPTMwNzIwLCBjYz0yKSBhdCANCi9ob21lL25vcm5l
+dHBwL3NyYy9vcGVuYWlyaW50ZXJmYWNlNWcvcmFkaW8vVVNSUC91c3JwX2xpYi5jcHA6NzU3
+DQpidWZmX3B0cnM9IHN0ZDo6dmVjdG9yIG9mIGxlbmd0aCAyLCBjYXBhY2l0eSAyID0gezB4
+N2ZmZmYwMDBmODYwLCANCjB4N2ZmZmYwMDJkODYwfQ0Kcz0gMHg3ZmZmZGMwOTRhYTANCnNh
+bXBsZXNfcmVjZWl2ZWQ9IDI3MjIzMw0KbnNhbXBzMj0gMzg0MA0KYnVmZl90bXA9IDxlcnJv
+ciByZWFkaW5nIHZhcmlhYmxlIGJ1ZmZfdG1wICh2YWx1ZSByZXF1aXJlcyAyNDU3NjAgYnl0
+ZXMsIA0Kd2hpY2ggaXMgbW9yZSB0aGFuIG1heC12YWx1ZS1zaXplKT4NCnJlYWRfY291bnQ9
+IDANCnJ4c2hpZnQ9IDINCl9fRlVOQ1RJT05fXz0gInRyeF91c3JwX3JlYWQiDQpyZWNQbGF5
+PSAweDdmZmZkYzE4NGIzMA0KIzMgMHgwMDAwNTU1NTU1ZjhhMjM1aW4gcnhfcmYocnU9MHg1
+NTU1NWExZDkyODAsIGZyYW1lPTB4N2ZmZmVmN2ZkN2U4LCANCnNsb3Q9MHg3ZmZmZWY3ZmQ3
+ZTQpIGF0IA0KL2hvbWUvbm9ybmV0cHAvc3JjL29wZW5haXJpbnRlcmZhY2U1Zy9leGVjdXRh
+Ymxlcy9uci1ydS5jOjY1NQ0KcHJvYz0gMHg1NTU1NWExZGFlYjANCmZwPSAweDdmZmZmNzgy
+ZDAxMA0KY2ZnPSAweDU1NTU1YTFkOWRiOA0KcnhwPSB7MHg3ZmZmZWUwZjIwNDAsIDB4N2Zm
+ZmVkZTk5MDQwfQ0KcnhzPSA0MTQ2NzQ2NTc5DQppPSAyDQpzYW1wbGVzX3Blcl9zbG90PSAz
+MDcyMA0Kc2FtcGxlc19wZXJfc2xvdF9wcmV2PSAzMjc2Nw0KdHM9IDE0MDczNzIxMTUyNDY3
+Mg0Kb2xkX3RzPSAwDQpfX0ZVTkNUSU9OX189ICJyeF9yZiINCmdwc19zZWM9IDYuOTUzMzQy
+MTMwMzQzMDA2M2UtMzEwDQojNCAweDAwMDA1NTU1NTVmOTU0MzRpbiBydV90aHJlYWQocGFy
+YW09MHg1NTU1NWExZDkyODApIGF0IA0KL2hvbWUvbm9ybmV0cHAvc3JjL29wZW5haXJpbnRl
+cmZhY2U1Zy9leGVjdXRhYmxlcy9uci1ydS5jOjEyNTcNCnNsPSAwDQphYnNzbG90X3J4PSAw
+DQpydF9wcm9mX2lkeD0gMA0Kc2xvdF90eXBlPSAwDQotLVR5cGUgPFJFVD4gZm9yIG1vcmUs
+IHEgdG8gcXVpdCwgYyB0byBjb250aW51ZSB3aXRob3V0IHBhZ2luZy0tDQpydV90aHJlYWRf
+c3RhdHVzPSAwDQpydT0gMHg1NTU1NWExZDkyODANCnByb2M9IDB4NTU1NTVhMWRhZWIwDQpm
+cD0gMHg3ZmZmZjc4MmQwMTANCmdOQj0gMHg3ZmZmZjc0NjkwMTANCnJldD0gMA0Kc2xvdD0g
+MA0KZnJhbWU9IDANCnRocmVhZG5hbWU9ICJydV90aHJlYWQgMCIsICdcMDAwJyA8cmVwZWF0
+cyAyOCB0aW1lcz4NCmluaXRpYWxfd2FpdD0gMA0Kb3BwX2VuYWJsZWQwPSAwDQpjZmc9IDB4
+NTU1NTVhMWQ5Mzc4DQpfX0ZVTkNUSU9OX189ICJydV90aHJlYWQiDQpzeW5jTXNnPSAweDAN
+CnJlcz0gMHgwDQpzbG90X3N0YXJ0PSB7dHZfc2VjPSAxMTgyMTg1LCB0dl9uc2VjPSAxNDE2
+OTUwNjV9DQpzbG90X2R1cmF0aW9uPSB7dHZfc2VjPSAwLCB0dl9uc2VjPSA1MDAwMDB9DQoj
+NSAweDAwMDA3ZmZmZjcyOTRiNDNpbiBzdGFydF90aHJlYWQoYXJnPTxvcHRpbWl6ZWQgb3V0
+PikgYXQgDQouL25wdGwvcHRocmVhZF9jcmVhdGUuYzo0NDINCnJldD0gPG9wdGltaXplZCBv
+dXQ+DQpwZD0gPG9wdGltaXplZCBvdXQ+DQpvdXQ9IDxvcHRpbWl6ZWQgb3V0Pg0KdW53aW5k
+X2J1Zj0ge2NhbmNlbF9qbXBfYnVmPSB7e2ptcF9idWY9IHs0Mjk0OTY3Mjk1LCANCi0yNTEz
+NDkwNTUwNDU0NjAxODczLCAxNDA3MzcyMTE1MjQ2NzIsIDAsIDE0MDczNzM0MDA2NTg3Miwg
+DQoxNDA3Mzc0ODgzNDM4ODgsIC0yNTEzNDkwNTUwOTI3NTA5NjQ5LCAtMjUxMzQzODQ4MzQ3
+MTEyNDYyNX0sIA0KbWFza193YXNfc2F2ZWQ9IDB9fSwgcHJpdj0ge3BhZD0gezB4MCwgMHgw
+LA0KMHgwLCAweDB9LCBkYXRhPSB7cHJldj0gMHgwLCBjbGVhbnVwPSAweDAsIGNhbmNlbHR5
+cGU9IDB9fX0NCm5vdF9maXJzdF9jYWxsPSA8b3B0aW1pemVkIG91dD4NCiM2IDB4MDAwMDdm
+ZmZmNzMyNmEwMGluIGNsb25lMygpIGF0IA0KLi4vc3lzZGVwcy91bml4L3N5c3YvbGludXgv
+eDg2XzY0L2Nsb25lMy5TOjgxDQpObyBsb2NhbHMuDQooZ2RiKQ0KDQpUaGUgTjMxMCBpcyBv
+ZiBjb3Vyc2UgcmVhY2hhYmxlIG9uIGJvdGggZmlicmUgcG9ydHMgYXMgd2VsbCBhcyBvbiB0
+aGUgDQpjb3BwZXIgcG9ydCwgaS5lLiBwaW5nIHRvIGFsbCBJUCBhZGRyZXNzZXMgaXMgd29y
+a2luZy4gVGhlIE1UVSBvbiB0aGUgDQpmaWJyZSBwb3J0cyBpcyBwcm9wZXJseSBjb25maWd1
+cmVkIHRvIDkwMDAgYXMgd2VsbC4gVGhlIE4zMTAgZmlybXdhcmUgaXMgDQp1cC10by1kYXRl
+Lg0KDQpPQUkgY29tcGlsZWQgd2l0aDoNCg0KIDEuIFRyaWFsICMxOg0KICAgIGNkIH4vc3Jj
+L29wZW5haXJpbnRlcmZhY2U1Zw0KICAgIHNvdXJjZSBvYWllbnYNCiAgICAuL2NtYWtlX3Rh
+cmdldHMvYnVpbGRfb2FpIC13IFVTUlAgLWMgLS1lTkIgLS1nTkIgLS1ydW4td2l0aC1nZGIN
+CiAgICBSZWxXaXRoRGViSW5mbw0KIDIuIFRyaWFsICMyOg0KICAgIGNkIH4vc3JjL29wZW5h
+aXJpbnRlcmZhY2U1Zw0KICAgIHNvdXJjZSBvYWllbnYNCiAgICBleHBvcnQgQlVJTERfVUhE
+X0ZST01fU09VUkNFPVRydWUNCiAgICBleHBvcnQgVUhEX1ZFUlNJT049NC40LjAuMMKgwqAg
+IyAoYWxzbyB0cmllZCBkaWZmZXJlbnQgdmVyc2lvbnMgaGVyZSkNCiAgICAuL2NtYWtlX3Rh
+cmdldHMvYnVpbGRfb2FpIC1JIC13IFVTUlANCiAgICAuL2NtYWtlX3RhcmdldHMvYnVpbGRf
+b2FpIC13IFVTUlAgLWMgLS1lTkIgLS1nTkIgLS1ydW4td2l0aC1nZGINCiAgICBSZWxXaXRo
+RGViSW5mbw0KIDMuIEFsc28gdHJpZWQgd2l0aCBEZWJ1ZyBpbnN0ZWFkIG9mIFJlbFdpdGhE
+ZWJJbmZvDQoNClRoZSBwcm9ibGVtIGlzIHJlcHJvZHVjaWJsZSwgaS5lLiBJIGNhbiBlYXNp
+bHkgcHJvdmlkZSBmdXJ0aGVyIGRldGFpbHMgDQppZiBuZWNlc3NhcnkuDQoNCi0tIA0KQmVz
+dCByZWdhcmRzIC8gTWl0IGZyZXVuZGxpY2hlbiBHcsO8w59lbiAvIE1lZCB2ZW5ubGlnIGhp
+bHNlbg0KDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PQ0KICBUaG9tYXMgRHJlaWJob2x6DQoNCiAgU2lt
+dWxhTWV0IOKAlCBTaW11bGEgTWV0cm9wb2xpdGFuIENlbnRyZSBmb3IgRGlnaXRhbCBFbmdp
+bmVlcmluZw0KICBDZW50cmUgZm9yIFJlc2lsaWVudCBOZXR3b3JrcyBhbmQgQXBwbGljYXRp
+b25zDQogIFBpbGVzdHJlZGV0IDUyDQogIDAxNjcgT3NsbywgTm9yd2F5DQotLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLQ0KICBFLU1haWw6ZHJlaWJoQHNpbXVsYS5ubw0KICBIb21lcGFnZTpodHRwOi8v
+c2ltdWxhLm5vL3Blb3BsZS9kcmVpYmgNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQoNCg==
+--------------fjDnRmgR50ehsKgTpClfoXad
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <html>
   <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 12/09/2023 06:52, zhou wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1518816302.133078.1694515928407@mail.yahoo.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div class=3D"ydpe08cd28dyahoo-style-wrap"
-        style=3D"font-family:Helvetica Neue, Helvetica, Arial,
-        sans-serif;font-size:13px;">
-        <div dir=3D"ltr" data-setdir=3D"false">Hi Marcus,</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false">Thanks for your reply.</di=
-v>
-        <div dir=3D"ltr" data-setdir=3D"false">The original ring buffer i=
+    Hi,<br>
+    <br>
+    I am trying to get OAI's nr-softmodem to run with an Ettus URSP
+    N310, using
+targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.106PRB.2x2.usrpn31=
+0.conf
+    with just having adapted the IP addresses of the core and device.
+    Regardless of trying with UHD 4.1 to 4.4, and regardless of the tags
+    for OAI used (latest tried: 2023.w36), running nr-softmodem
+    reproducibly segfaults after a few seconds in libuhd:<br>
+    <br>
+    <span style=3D"font-family:monospace"><span
+        style=3D"font-weight:bold;color:#54ff54;background-color:#ffffff;=
+">nornetpp@5g</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:</span><span
+        style=3D"font-weight:bold;color:#5454ff;background-color:#ffffff;=
+">~/src/openairinterface5g/cmake_targets/ran_build/build</span><span
+        style=3D"color:#000000;background-color:#ffffff;">$ sudo nice -n
+        -19 gdb ./nr-softmodem
+      </span><br>
+      <span
+        style=3D"font-weight:bold;color:#ff54ff;background-color:#ffffff;=
+">GNU
+        gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      Copyright (C) 2022 Free Software Foundation, Inc.
+      <br>
+      License GPLv3+: GNU GPL version 3 or later
+      <a class=3D"moz-txt-link-rfc2396E" href=3D"http://gnu.org/licenses/=
+gpl.html">&lt;http://gnu.org/licenses/gpl.html&gt;</a>
+      <br>
+      This is free software: you are free to change and redistribute it.
+      <br>
+      There is NO WARRANTY, to the extent permitted by law.
+      <br>
+      Type "show copying" and "show warranty" for details.
+      <br>
+      This GDB was configured as "x86_64-linux-gnu".
+      <br>
+      Type "show configuration" for configuration details.
+      <br>
+      For bug reporting instructions, please see:
+      <br>
+      <a class=3D"moz-txt-link-rfc2396E" href=3D"https://www.gnu.org/soft=
+ware/gdb/bugs/">&lt;https://www.gnu.org/software/gdb/bugs/&gt;</a>.
+      <br>
+      Find the GDB manual and other documentation resources online at:
+      <br>
+      =C2=A0=C2=A0=C2=A0<a class=3D"moz-txt-link-rfc2396E" href=3D"http:/=
+/www.gnu.org/software/gdb/documentation/">&lt;http://www.gnu.org/software=
+/gdb/documentation/&gt;</a>.
+      <br>
+      <br>
+      For help, type "help".
+      <br>
+      Type "apropos word" to search for commands related to "word"...
+      <br>
+      Reading symbols from <span
+        style=3D"color:#18b218;background-color:#ffffff;">./nr-softmodem<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">...
+      </span><br>
+      (gdb) run -O
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf<br>
+      Starting program: <span
+        style=3D"color:#18b218;background-color:#ffffff;">/home/nornetpp/=
+src/openairinterface5g/cmake_targets/ran_build/build/nr-softmodem</span><=
+span
+        style=3D"color:#000000;background-color:#ffffff;"> -O
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf</span><br>
+      <br>
+      [Thread debugging using libthread_db enabled]
+      <br>
+      Using host libthread_db library "<span
+        style=3D"color:#18b218;background-color:#ffffff;">/lib/x86_64-lin=
+ux-gnu/libthread_db.so.1</span><span
+        style=3D"color:#000000;background-color:#ffffff;">".
+      </span><br>
+      [Detaching after fork from child process 1195016]
+      <br>
+      CMDLINE:
+"/home/nornetpp/src/openairinterface5g/cmake_targets/ran_build/build/nr-s=
+oftmodem"
+      "-O"
+"/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CO=
+NF/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf"
+      =C2=A0<br>
+      [CONFIG] get parameters from libconfig
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      [LIBCONFIG] Path for include directive set to:
+      /home/nornetpp/src/openairinterf<br>
+      ace5g/targets/PROJECTS/GENERIC-NR-5GC/CONF
+      <br>
+      [CONFIG] function config_libconfig_init returned 0
+      <br>
+      [CONFIG] config module libconfig loaded
+      <br>
+      [LIBCONFIG] config: 2/2 parameters successfully set, (2 to default
+      value)
+      <br>
+      [CONFIG] debug flags: 0x00000000
+      <br>
+      [LIBCONFIG] log_config: 3/3 parameters successfully set, (1 to
+      default value)
+      <br>
+      [LIBCONFIG] log_config: 53/53 parameters successfully set, (46 to
+      default value)
+      <br>
+      [LIBCONFIG] log_config: 53/53 parameters successfully set, (53 to
+      default value)
+      <br>
+      [LIBCONFIG] log_config: 16/16 parameters successfully set, (16 to
+      default value)
+      <br>
+      [LIBCONFIG] log_config: 16/16 parameters successfully set, (16 to
+      default value)
+      <br>
+      log init done
+      <br>
+      [HW] =C2=A0=C2=A0# /dev/cpu_dma_latency set to 2 us
+      <br>
+      [Detaching after vfork from child process 1195017]
+      <br>
+      Reading in command-line options
+      <br>
+      [LIBCONFIG] (root): 40/40 parameters successfully set, (37 to
+      default value)
+      <br>
+      [LIBCONFIG] (root): 6/6 parameters successfully set, (5 to default
+      value)
+      <br>
+      [ENB_APP] =C2=A0=C2=A0nfapi running mode: MONOLITHIC
+      <br>
+      [GNB_APP] =C2=A0=C2=A0Getting GNBSParams
+      <br>
+      [LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default
+      value)
+      <br>
+      [LIBCONFIG] THREAD_STRUCT.[0]: 2/2 parameters successfully set, (0
+      to default value)
+      <br>
+      [LIBCONFIG] THREAD_STRUCT.[0]: 2/2 parameters successfully set, (0
+      to default value)
+      <br>
+      [CONFIG] parallel_conf is set to 1
+      <br>
+      [CONFIG] worker_conf is set to 1
+      <br>
+      Configuration: nb_rrc_inst 1, nb_nr_L1_inst 1, nb_ru 1
+      <br>
+      [LIBCONFIG] TTracer: 3/3 parameters successfully set, (3 to
+      default value)
+      <br>
+      configuring for RAU/RRU
+      <br>
+      CPU Freq is 3.187403 =C2=A0<br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_UNKNOWN as task 0
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_TIMER as task 1
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_L2L1 as task 2
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_BM as task 3
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_PHY_ENB as task 4
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_MAC_GNB as task 5
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RLC_ENB as task 6
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_ENB_NB_IoT as task=
+ 7
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_PDCP_ENB as task 8
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_PDCP_GNB as task 9
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_DATA_FORWARDING as tas=
+k 10
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_END_MARKER as task 11
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_ENB as task 12
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_GNB as task 13
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RAL_ENB as task 14
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_S1AP as task 15
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_NGAP as task 16
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_X2AP as task 17
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_M2AP_ENB as task 18
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_M2AP_MCE as task 19
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_M3AP as task 20
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_M3AP_MME as task 21
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_M3AP_MCE as task 22
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_SCTP as task 23
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_ENB_APP as task 24
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_GNB_APP as task 25
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_MCE_APP as task 26
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_MME_APP as task 27
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_PHY_UE as task 28
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_MAC_UE as task 29
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RLC_UE as task 30
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_PDCP_UE as task 31
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_UE as task 32
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_NRUE as task 33
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_NAS_UE as task 34
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RAL_UE as task 35
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_GTPV1_U as task 36
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_CU_F1 as task 37
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_DU_F1 as task 38
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_CUCP_E1 as task 39
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_CUUP_E1 as task 40
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_UE_SIM as task 41
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_GNB_SIM as task 42=
+
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_NSA_UE as task 43
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_RRC_NSA_NRUE as task 4=
+4
+      <br>
+      [ITTI] =C2=A0=C2=A0Starting itti queue: TASK_NAS_NRUE as task 45
+      <br>
+      [LIBCONFIG] opt: 3/3 parameters successfully set, (3 to default
+      value)
+      <br>
+      [OPT] =C2=A0=C2=A0OPT disabled
+      <br>
+      [HW] =C2=A0=C2=A0Version: Branch: dreibh/simulamet-testbed-5g Abrev=
+=2E Hash:
+      b9128b6737 Date: Tue Sep 12 16:20:35 2023 +0200
+      <br>
+      [NR_PHY] =C2=A0=C2=A0RC.gNB =3D 0x555558fc2cf0
+      <br>
+      [LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default
+      value)
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [NR_PHY] =C2=A0=C2=A0PRB blacklist 51,52,53,54
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Blacklisting prb 51
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Blacklisting prb 52
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Blacklisting prb 53
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Blacklisting prb 54
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Copying 4 blacklisted PRB to L1 context
+      <br>
+      [LIBCONFIG] L1s.[0]: 19/19 parameters successfully set, (16 to
+      default value)
+      <br>
+      [PHY] =C2=A0=C2=A0L1_RX_THREAD_CORE -1 (16)
+      <br>
+      [PHY] =C2=A0=C2=A0TX_AMP =3D 519 (-36 dBFS)
+      <br>
+      Initializing northbound interface for L1
+      <br>
+      [PHY] =C2=A0=C2=A0l1_north_init_gNB() RC.nb_nr_L1_inst:1
+      <br>
+      [PHY] =C2=A0=C2=A0Installing callbacks for IF_Module - UL_indicatio=
+n
+      <br>
+      [MAC] =C2=A0=C2=A0Allocating shared L1/L2 interface structure for i=
+nstance 0
+      @ 0x555558fc7980
+      <br>
+      [PHY] =C2=A0=C2=A0l1_north_init_gNB() RC.gNB[0] installing callback=
 s
-          1024 for Tx and Rx. Now I have changed them to 4096. Still see
-          overruns and underruns.</div>
-        <div dir=3D"ltr" data-setdir=3D"false">
-          <div>
-            <div>Ring parameters for enp59s0f0np0:</div>
-            <div>Pre-set maximums:</div>
-            <div>RX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08192<=
-/div>
-            <div>RX Mini:=C2=A0 =C2=A0 =C2=A0 =C2=A0 n/a</div>
-            <div>RX Jumbo:=C2=A0 =C2=A0 =C2=A0 =C2=A0n/a</div>
-            <div>TX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08192<=
-/div>
-            <div>Current hardware settings:</div>
-            <div>RX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096<=
-/div>
-            <div>RX Mini:=C2=A0 =C2=A0 =C2=A0 =C2=A0 n/a</div>
-            <div>RX Jumbo:=C2=A0 =C2=A0 =C2=A0 =C2=A0n/a</div>
-            <div>TX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096<=
-/div>
-          </div>
-          <br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false">
-          <div>
-            <div>Ring parameters for enp59s0f1np1:</div>
-            <div>Pre-set maximums:</div>
-            <div>RX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08192<=
-/div>
-            <div>RX Mini:=C2=A0 =C2=A0 =C2=A0 =C2=A0 n/a</div>
-            <div>RX Jumbo:=C2=A0 =C2=A0 =C2=A0 =C2=A0n/a</div>
-            <div>TX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08192<=
-/div>
-            <div>Current hardware settings:</div>
-            <div>RX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096<=
-/div>
-            <div>RX Mini:=C2=A0 =C2=A0 =C2=A0 =C2=A0 n/a</div>
-            <div>RX Jumbo:=C2=A0 =C2=A0 =C2=A0 =C2=A0n/a</div>
-            <div>TX:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096<=
-/div>
-          </div>
-          <br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false">
-          <div>
-            <div>Benchmark rate summary:</div>
-            <div>=C2=A0 Num received samples:=C2=A0 =C2=A0 =C2=A012617833=
-512</div>
-            <div>=C2=A0 Num dropped samples:=C2=A0 =C2=A0 =C2=A0 17321163=
-392</div>
-            <div>=C2=A0 Num overruns detected:=C2=A0 =C2=A0 112</div>
-            <div>=C2=A0 Num transmitted samples:=C2=A0 9159225280</div>
-            <div>=C2=A0 Num sequence errors (Tx): 0</div>
-            <div>=C2=A0 Num sequence errors (Rx): 0</div>
-            <div>=C2=A0 Num underruns detected:=C2=A0 =C2=A0856834</div>
-            <div>=C2=A0 Num late commands:=C2=A0 =C2=A0 =C2=A0 =C2=A0 0</=
-div>
-            <div>=C2=A0 Num timeouts (Tx):=C2=A0 =C2=A0 =C2=A0 =C2=A0 0</=
-div>
-            <div>=C2=A0 Num timeouts (Rx):=C2=A0 =C2=A0 =C2=A0 =C2=A0 0</=
-div>
-            <div><br>
-            </div>
-            <div dir=3D"ltr" data-setdir=3D"false">I think my computer is
-              not fast enough for 500MHz sampling rate. The computer I
-              am using is Dell PowerEdge R740, CPU is=C2=A0<span
-                style=3D"font-family: Calibri, sans-serif; font-size:
-                11pt;">Intel(R) Xeon(R) Bronze 3106 CPU @ 1.70GHz</span><=
-span><br>
-              </span></div>
-            <div dir=3D"ltr" data-setdir=3D"false">What is the recommende=
+      <br>
+      [PHY] =C2=A0=C2=A0create_gNB_tasks() Task ready initialize structur=
+es
+      <br>
+      [LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default
+      value)
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [NR_PHY] =C2=A0=C2=A0PRB blacklist 51,52,53,54
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Blacklisting prb 51
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Blacklisting prb 52
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Blacklisting prb 53
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Blacklisting prb 54
+      <br>
+      [NR_PHY] =C2=A0=C2=A0Copying 4 blacklisted PRB to L1 context
+      <br>
+      [LIBCONFIG] L1s.[0]: 19/19 parameters successfully set, (16 to
+      default value)
+      <br>
+      [PHY] =C2=A0=C2=A0L1_RX_THREAD_CORE -1 (16)
+      <br>
+      [PHY] =C2=A0=C2=A0TX_AMP =3D 519 (-36 dBFS)
+      <br>
+      Initializing northbound interface for L1
+      <br>
+      [PHY] =C2=A0=C2=A0l1_north_init_gNB() RC.nb_nr_L1_inst:1
+      <br>
+      [PHY] =C2=A0=C2=A0Installing callbacks for IF_Module - UL_indicatio=
+n
+      <br>
+      [PHY] =C2=A0=C2=A0l1_north_init_gNB() RC.gNB[0] installing callback=
+s
+      <br>
+      [LIBCONFIG] list prs_config not found in config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      [PHY] =C2=A0=C2=A0No prs_config configuration found..!!
+      <br>
+      [LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default
+      value)
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (30 to
+      default value)
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (30 to
+      default value)
+      <br>
+      [LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      [MAC] =C2=A0=C2=A0[MAIN] Init function start:nb_nr_macrlc_inst=3D1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread MAC_STATS with affinity -1 and p=
+riority 2
+      <br>
+      [Detaching after vfork from child process 1195042]
+      <br>
+      [New Thread 0x7ffff71ff640 (LWP 1195044)]
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (30 to
+      default value)
+      <br>
+      [LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      [New Thread 0x7ffff69fe640 (LWP 1195045)]
+      <br>
+      [New Thread 0x7ffff61fd640 (LWP 1195046)]
+      <br>
+      [New Thread 0x7ffff59fc640 (LWP 1195047)]
+      <br>
+      [PHY] =C2=A0=C2=A0Installing callbacks for IF_Module - UL_indicatio=
+n
+      <br>
+      [NR_MAC] =C2=A0=C2=A0PUSCH Target 200, PUCCH Target 150, PUCCH Fail=
+ure 10,
+      PUSCH Failure 10
+      <br>
+      [PHY] =C2=A0=C2=A0create_gNB_tasks() RC.nb_nr_L1_inst:1
+      <br>
+      [PHY] =C2=A0=C2=A0l1_north_init_gNB() RC.nb_nr_L1_inst:1
+      <br>
+      [PHY] =C2=A0=C2=A0Installing callbacks for IF_Module - UL_indicatio=
+n
+      <br>
+      [PHY] =C2=A0=C2=A0l1_north_init_gNB() RC.gNB[0] installing callback=
+s
+      <br>
+      [GNB_APP] =C2=A0=C2=A0Allocating gNB_RRC_INST for 1 instances
+      <br>
+      [PHY] =C2=A0=C2=A0create_gNB_tasks() RC.nb_nr_inst:1 RC.nrrrc:0x555=
+558fde4e0
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (30 to
+      default value)
+      <br>
+      [LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      [PHY] =C2=A0=C2=A0create_gNB_tasks() Creating RRC instance
+      RC.nrrrc[0]:0x555558fe1ab0 (1 of 1)
+      <br>
+      [LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default
+      value)
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] gNBs.[0].servingCellConfigCommon.[0]: 60/60 parameters
+      successfully set, (10 to default value)
+      <br>
+      [RRC] =C2=A0=C2=A0Read in ServingCellConfigCommon (PhysCellId 0, AB=
+SFREQSSB
+      621312, DLBand 78, ABSFREQPOINTA 620040, DLBW
+      106,RACH_TargetReceivedPower -104
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band duplex spacing is 0 KHz (nr_bandtable[=
+37].band
+      =3D 78)
+      <br>
+      [RRC] =C2=A0=C2=A0absoluteFrequencySSB 621312 corresponds to 331968=
+0000 Hz
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band duplex spacing is 0 KHz (nr_bandtable[=
+37].band
+      =3D 78)
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band 78, duplex mode TDD, duplex spacing =3D=
+ 0 KHz
+      <br>
+      [LIBCONFIG] list gNBs.[0].servingCellConfigDedicated not found in
+      config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      NRRRC 0: Southbound Transport local_mac
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (30 to
+      default value)
+      <br>
+      [LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      [LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully
+      set, (0 to default value)
+      <br>
+      [GNB_APP] =C2=A0=C2=A0pdsch_AntennaPorts N1 1
+      <br>
+      [GNB_APP] =C2=A0=C2=A0pdsch_AntennaPorts N2 1
+      <br>
+      [GNB_APP] =C2=A0=C2=A0pdsch_AntennaPorts XP 1
+      <br>
+      [GNB_APP] =C2=A0=C2=A0pusch_AntennaPorts 2
+      <br>
+      [GNB_APP] =C2=A0=C2=A0minTXRXTIME 2
+      <br>
+      [GNB_APP] =C2=A0=C2=A0SIB1 TDA 1
+      <br>
+      [GNB_APP] =C2=A0=C2=A0Do CSI-RS 0
+      <br>
+      [GNB_APP] =C2=A0=C2=A0Do SRS 0
+      <br>
+      [GNB_APP] =C2=A0=C2=A0256 QAM: may be on
+      <br>
+      [GNB_APP] =C2=A0=C2=A0SDAP layer is disabled
+      <br>
+      [GNB_APP] =C2=A0=C2=A0Data Radio Bearer count 1
+      <br>
+      [LIBCONFIG] security: 4/4 parameters successfully set, (0 to
+      default value)
+      <br>
+      [GNB_APP] =C2=A0=C2=A0RRC starting with node type 2
+      <br>
+      [GNB_APP] =C2=A0=C2=A0Sending configuration message to NR_RRC task
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (30 to
+      default value)
+      <br>
+      [LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (30 to
+      default value)
+      <br>
+      [LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      [PDCP] =C2=A0=C2=A0pdcp init,usegtp =C2=A0<br>
+      [LIBCONFIG] eNBs.[0]: 1/1 parameters successfully set, (1 to
+      default value)
+      <br>
+      [LIBCONFIG] gNBs.[0]: 1/1 parameters successfully set, (1 to
+      default value)
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread TASK_SCTP with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195048]
+      <br>
+      [New Thread 0x7ffff51fb640 (LWP 1195050)]
+      <br>
+      [ITTI] =C2=A0=C2=A0Created Posix thread TASK_SCTP
+      <br>
+      [X2AP] =C2=A0=C2=A0X2AP is disabled.
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread TASK_GNB_APP with affinity -1 an=
 d
-              computer HW configuration?</div>
-            <div dir=3D"ltr" data-setdir=3D"false"><br>
-            </div>
-            <div dir=3D"ltr" data-setdir=3D"false">Another question is
-              UHD4.5. I tried UHD4.5, but there was MPM issue</div>
-          </div>
-          <div dir=3D"ltr" data-setdir=3D"false">
-            <div><span style=3D"color: rgb(36, 36, 36); font-family:
-                Cascadia Mono, Consolas, ui-monospace, Menlo, Monaco,
-                monospace; font-size: 14px;">The MPM software on your
-                device is older than the FPGA you're trying to</span><br
-                style=3D"color: rgb(36, 36, 36); font-family: Cascadia
-                Mono, Consolas, ui-monospace, Menlo, Monaco, monospace;
-                font-size: 14px;">
-              <span style=3D"color: rgb(36, 36, 36); font-family: Cascadi=
-a
-                Mono, Consolas, ui-monospace, Menlo, Monaco, monospace;
-                font-size: 14px;">use. Because you're using master, they
-                haven't published updated</span><br style=3D"color:
-                rgb(36, 36, 36); font-family: Cascadia Mono, Consolas,
-                ui-monospace, Menlo, Monaco, monospace; font-size:
-                14px;">
-              <span style=3D"color: rgb(36, 36, 36); font-family: Cascadi=
-a
-                Mono, Consolas, ui-monospace, Menlo, Monaco, monospace;
-                font-size: 14px;">filesystems with the new MPM yet, but
-                there will be a release candidate</span><br
-                style=3D"color: rgb(36, 36, 36); font-family: Cascadia
-                Mono, Consolas, ui-monospace, Menlo, Monaco, monospace;
-                font-size: 14px;">
-              <span style=3D"color: rgb(36, 36, 36); font-family: Cascadi=
-a
-                Mono, Consolas, ui-monospace, Menlo, Monaco, monospace;
-                font-size: 14px;">very soon for UHD 4.5 you could try.</s=
-pan></div>
-            <br>
-          </div>
-          So, I have to use UHD4.4 now.</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false">Kind regards,</div>
-        <div dir=3D"ltr" data-setdir=3D"false">Hongwei</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div><br>
-        </div>
-      </div>
-      <div id=3D"ydp51326884yahoo_quoted_5466677158"
-        class=3D"ydp51326884yahoo_quoted">
-        <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial,
-          sans-serif;font-size:13px;color:#26282a;">
-          <div> On Monday, 11 September 2023 at 22:15:21 BST, Marcus D.
-            Leech <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patch=
-vonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> wrote: </div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <div>
-            <div id=3D"ydp51326884yiv8403730136">
-              <div id=3D"ydp51326884yiv8403730136yqt95490"
-                class=3D"ydp51326884yiv8403730136yqt1822100583">
-                <div>
-                  <div class=3D"ydp51326884yiv8403730136moz-cite-prefix">=
-On
-                    11/09/2023 12:09, zhou via USRP-users wrote:<br
-                      clear=3D"none">
-                  </div>
-                  <blockquote type=3D"cite"> </blockquote>
-                </div>
-                <div>
-                  <div style=3D"font-family:Helvetica Neue, Helvetica,
-                    Arial, sans-serif;font-size:13px;"
-                    class=3D"ydp51326884yiv8403730136ydpecce4a95yahoo-sty=
-le-wrap">
-                    <div dir=3D"ltr">Hi all,</div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">I just set up a system with X410=C2=A0=
-<span><span
-                          style=3D"color:rgb(0, 0,
-                          0);font-family:Helvetica Neue, Helvetica,
-                          Arial, sans-serif;">USRP. Tried to run a
-                          benchmark rate test and saw a lot of errors.
-                          Please suggest what could be the reason for
-                          the test failure.</span></span></div>
-                    <div dir=3D"ltr"><span><span style=3D"color:rgb(0, 0,
-                          0);font-family:Helvetica Neue, Helvetica,
-                          Arial, sans-serif;">=C2=A0</span></span></div>
-                    <div dir=3D"ltr">Host is R740 (16 CPU cores) and Linu=
-x
-                      is Ubuntu 22.04 with low-latency kernel.</div>
-                    <div dir=3D"ltr">100G Mellanox ConnectX-6 NIC cards</=
-div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">
-                      <div>
-                        <div>$ sudo
-                          /usr/local/lib/uhd/examples/benchmark_rate=C2=A0=
- \</div>
-                        <div>--args
-"type=3Dx4xx,mgmt_addr=3D192.168.88.2,addr=3D192.168.20.2,master_clock_ra=
-te=3D500e6"
-                          \</div>
-                        <div>--priority "high" \</div>
-                        <div>--multi_streamer \</div>
-                        <div>--duration 60 \</div>
-                        <div>--channels "0" \</div>
-                        <div>--rx_rate 10e6 \</div>
-                        <div>--rx_subdev "A:0" \</div>
-                        <div>--tx_rate 10e6 \</div>
-                        <div>--tx_subdev "A:0"</div>
-                        <div>[sudo] password for user:</div>
-                        <div><br clear=3D"none">
-                        </div>
-                        <div>[INFO] [UHD] linux; GNU C++ version 11.4.0;
-                          Boost_107400; DPDK_21.11;
-                          UHD_4.4.0.HEAD-0-g5fac246b</div>
-                        <div>[00:00:00.000566] Creating the usrp device
-                          with:
-type=3Dx4xx,mgmt_addr=3D192.168.88.2,addr=3D192.168.20.2,master_clock_rat=
-e=3D500e6...</div>
-                        <div>[INFO] [MPMD] Initializing 1 device(s) in
-                          parallel with args:
-mgmt_addr=3D192.168.88.2,type=3Dx4xx,product=3Dx410,serial=3D3289B23,name=
-=3Dni-x4xx-3289B23,fpga=3DCG_400,claimed=3DFalse,addr=3D192.168.20.2,mast=
-er_clock_rate=3D500e6</div>
-                        <div>[WARNING] [MPM.RPCServer] A timeout event
-                          occured!</div>
-                        <div>[INFO] [MPM.PeriphManager] init() called
-                          with device args
-`fpga=3DCG_400,master_clock_rate=3D500e6,mgmt_addr=3D192.168.88.2,name=3D=
-ni-x4xx-3289B23,product=3Dx410,clock_source=3Dinternal,time_source=3Dinte=
-rnal'.</div>
-                        <div>Using Device: Single USRP:</div>
-                        <div>=C2=A0 Device: X400-Series Device</div>
-                        <div>=C2=A0 Mboard 0: x410</div>
-                        <div>=C2=A0 RX Channel: 0</div>
-                        <div>=C2=A0 =C2=A0 RX DSP: n/a</div>
-                        <div>=C2=A0 =C2=A0 RX Dboard: A</div>
-                        <div>=C2=A0 =C2=A0 RX Subdev: 0</div>
-                        <div>=C2=A0 TX Channel: 0</div>
-                        <div>=C2=A0 =C2=A0 TX DSP: n/a</div>
-                        <div>=C2=A0 =C2=A0 TX Dboard: A</div>
-                        <div>=C2=A0 =C2=A0 TX Subdev: 0</div>
-                        <div><br clear=3D"none">
-                        </div>
-                        <div>[00:00:05.797505591] Setting device
-                          timestamp to 0...</div>
-                        <div>[WARNING] [0/Radio#0] Requesting invalid
-                          sampling rate from device: 10 MHz. Actual rate
-                          is: 500 MHz.</div>
-                        <div>[WARNING] [MULTI_USRP] Could not set RX
-                          rate to 10.000 MHz. Actual rate is 500.000 MHz<=
-/div>
-                        <div>[WARNING] [0/Radio#0] Requesting invalid
-                          sampling rate from device: 10 MHz. Actual rate
-                          is: 500 MHz.</div>
-                        <div>[WARNING] [MULTI_USRP] Could not set TX
-                          rate to 10.000 MHz. Actual rate is 500.000 MHz<=
-/div>
-                        <div>Setting TX spb to 1984</div>
-                        <div>[00:00:05.799789467] Testing receive rate
-                          500.000000 Msps on 1 channels</div>
-                        <div>[00:00:05.801875415] Testing transmit rate
-                          500.000000 Msps on 1 channels</div>
-                        <div>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUD[U00=
-:00:06.33502762]
-                          Detected Rx sequence error.</div>
-                        <div>UU[D00:00:06.33952517] Detected Rx sequence
-                          error.</div>
-                        <div>UUUU[D00:00:06.34387503] Detected Rx
-                          sequence error.</div>
-                        <div>U[D00:00:06.34802030] Detected Rx sequence
-                          error.</div>
-                        <div>UUUUU[D00:00:06.35212894] Detected Rx
-                          sequence error.</div>
-                        <div>U[D00:00:06.35640910] Detected Rx sequence
-                          error.</div>
-                        <div><br clear=3D"none">
-                        </div>
-                      </div>
-                      <br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">
-                      <div>
-                        <div>Benchmark rate summary:</div>
-                        <div>=C2=A0 Num received samples:=C2=A0 =C2=A0 =C2=
-=A00</div>
-                        <div>=C2=A0 Num dropped samples:=C2=A0 =C2=A0 =C2=
-=A0 0</div>
-                        <div>=C2=A0 <b><font style=3D"background-color:rg=
-b(0,
-                              0, 0);" color=3D"#fdf869">Num overruns
-                              detected:=C2=A0 =C2=A0 596</font></b></div>
-                        <div>=C2=A0 Num transmitted samples:=C2=A0 100465=
-01824</div>
-                        <div>=C2=A0 Num sequence errors (Tx): 0</div>
-                        <div>=C2=A0 Num sequence errors (Rx): 0</div>
-                        <div>=C2=A0<b style=3D"background-color:rgb(0, 0,=
- 0);"><font
-                              color=3D"#fdf869"> Num underruns detected:=C2=
-=A0
-                              =C2=A0819855</font></b></div>
-                        <div>=C2=A0 Num late commands:=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 0</div>
-                        <div>=C2=A0 Num timeouts (Tx):=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 0</div>
-                        <div>=C2=A0 Num timeouts (Rx):=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 0</div>
-                        <div><br clear=3D"none">
-                        </div>
-                        <div>Done!<br clear=3D"none">
-                        </div>
-                        <div><br clear=3D"none">
-                        </div>
-                      </div>
-                      <br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">$ ifconfig</div>
-                    <div dir=3D"ltr">
-                      <div>
-                        <div>enp59s0f0np0:
-                          flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&=
-gt;=C2=A0
-                          mtu 9000</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 inet 192.168.20.=
-1=C2=A0 netmask
-                          255.255.255.0=C2=A0 broadcast 192.168.20.255</d=
-iv>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 inet6 fe80::ba3f=
-:d2ff:fe57:b77a=C2=A0
-                          prefixlen 64=C2=A0 scopeid 0x20&lt;link&gt;</di=
-v>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ether b8:3f:d2:5=
-7:b7:7a=C2=A0 txqueuelen
-                          1000=C2=A0 (Ethernet)</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 RX packets 15144=
-837=C2=A0 bytes
-                          101888797100 (101.8 GB)</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 <b><i><font
-                                style=3D"background-color:rgb(0, 0, 0);"
-                                color=3D"#fdf869">RX errors 0=C2=A0 dropp=
-ed
-                                2423=C2=A0 overruns 0=C2=A0 frame 0</font=
-></i></b></div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 TX packets 12311=
-297=C2=A0 bytes
-                          87947193629 (87.9 GB)</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 TX errors 0=C2=A0=
- dropped 0 overruns 0=C2=A0
-                          carrier 0=C2=A0 collisions 0</div>
-                        <div><br clear=3D"none">
-                        </div>
-                        <div>enp59s0f1np1:
-                          flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&=
-gt;=C2=A0
-                          mtu 9000</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 inet 192.168.10.=
-1=C2=A0 netmask
-                          255.255.255.0=C2=A0 broadcast 192.168.10.255</d=
-iv>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 inet6 fe80::ba3f=
-:d2ff:fe57:b77b=C2=A0
-                          prefixlen 64=C2=A0 scopeid 0x20&lt;link&gt;</di=
-v>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ether b8:3f:d2:5=
-7:b7:7b=C2=A0 txqueuelen
-                          1000=C2=A0 (Ethernet)</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 RX packets 40610=
-7=C2=A0 bytes 2296309836
-                          (2.2 GB)</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 RX errors 0=C2=A0=
- dropped 0=C2=A0 overruns 0=C2=A0
-                          frame 0</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 TX packets 50269=
-0=C2=A0 bytes 3421432091
-                          (3.4 GB)</div>
-                        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 TX errors 0=C2=A0=
- dropped 0 overruns 0=C2=A0
-                          carrier 0=C2=A0 collisions 0</div>
-                        <div><br clear=3D"none">
-                        </div>
-                      </div>
-                      <div dir=3D"ltr">Kind regards,</div>
-                      <div dir=3D"ltr">Hongwei</div>
-                      <div dir=3D"ltr"><br clear=3D"none">
-                      </div>
-                    </div>
-                    <br>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    There are some validated system configurations listed here:<br>
+      priority 50
+      <br>
+      [Detaching after vfork from child process 1195051]
+      <br>
+      [New Thread 0x7ffff49fa640 (LWP 1195053)]
+      <br>
+      [ITTI] =C2=A0=C2=A0Created Posix thread TASK_GNB_APP
+      <br>
+      [NR_RRC] =C2=A0=C2=A0Creating NR RRC gNB Task, that will also creat=
+e TASKS
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread TASK_RRC_GNB with affinity -1 an=
+d
+      priority 50
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (30 to
+      default value)
+      <br>
+      [LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file
+/home/nornetpp/src/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CON=
+F/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf
+      =C2=A0<br>
+      [Detaching after vfork from child process 1195054]
+      <br>
+      [New Thread 0x7fffeffff640 (LWP 1195056)]
+      <br>
+      [ITTI] =C2=A0=C2=A0Created Posix thread TASK_RRC_GNB
+      <br>
+      [LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default
+      value)
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      [NR_RRC] =C2=A0=C2=A0Entering main loop of NR_RRC message task
+      <br>
+      [LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully
+      set, (0 to default value)
+      <br>
+      [NR_RRC] =C2=A0=C2=A0[FRAME 00000][gNB][MOD 00][RNTI 0] Init...
+      <br>
+      [GTPU] =C2=A0=C2=A0Configuring GTPu
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band duplex spacing is 0 KHz (nr_bandtable[=
+37].band
+      =3D 78)
+      <br>
+      [LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default
+      value)
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band 78, duplex mode TDD, duplex spacing =3D=
+ 0 KHz
+      <br>
+      [NR_RRC] =C2=A0=C2=A0[FRAME 00000][gNB][MOD 00][RNTI 0] Checking re=
+lease =C2=A0<br>
+      [LIBCONFIG] gNBs.[0].NETWORK_INTERFACES: 10/10 parameters
+      successfully set, (3 to default value)
+      <br>
+      [GTPU] =C2=A0=C2=A0SA mode =C2=A0<br>
+      [NR_RRC] =C2=A0=C2=A0do_SIB23_NR, size 9 =C2=A0<br>
+      [NR_RRC] =C2=A0=C2=A0Done init_NR_SI
+      <br>
+      [NR_MAC] =C2=A0=C2=A0Configuring common parameters from NR ServingC=
+ellConfig
+      <br>
+      [GTPU] =C2=A0=C2=A0Configuring GTPu address : 192.168.243.11, port =
+: 2152
+      <br>
+      [NR_MAC] =C2=A0=C2=A0config_common() dl_BandwidthP:40
+      <br>
+      [GTPU] =C2=A0=C2=A0Initializing UDP for local address 192.168.243.1=
+1 with
+      port 2152
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band duplex spacing is 0 KHz (nr_bandtable[=
+37].band
+      =3D 78)
+      <br>
+      [NR_MAC] =C2=A0=C2=A0config_common() dl_BandwidthP:40
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band duplex spacing is 0 KHz (nr_bandtable[=
+37].band
+      =3D 78)
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band duplex spacing is 0 KHz (nr_bandtable[=
+37].band
+      =3D 78)
+      <br>
+      [NR_MAC] =C2=A0=C2=A0NR band 78, duplex mode TDD, duplex spacing =3D=
+ 0 KHz
+      <br>
+      [NR_MAC] =C2=A0=C2=A0ssb_OffsetPointA 86, ssb_SubcarrierOffset 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0Set RX antenna number to 1, Set TX antenna num=
+ber to 2
+      (num ssb 1: 80000000,0)
+      <br>
+      [NR_MAC] =C2=A0=C2=A0Setting TDD configuration period to 6
+      <br>
+      [NR_MAC] =C2=A0=C2=A0TDD has been properly configurated
+      <br>
+      DL frequency 3319680000: band 78, UL frequency 3319680000
+      <br>
+      [GTPU] =C2=A0=C2=A0Created gtpu instance id: 99
+      <br>
+      [PHY] =C2=A0=C2=A0DL frequency 3319680000 Hz, UL frequency 33196800=
+00 Hz:
+      band 78, uldl offset 0 Hz
+      <br>
+      <span style=3D"color:#18b218;background-color:#ffffff;">[PHY]
+        =C2=A0=C2=A0Configuring MIB for instance 0, : (Nid_cell 0,DL freq=
+
+        3319680000, UL freq 3319680000)</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      [PHY] =C2=A0=C2=A0Initializing frame parms for mu 1, N_RB 106, Ncp =
+0<span
+        style=3D"color:#18b218;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span><b=
+r>
+      <span style=3D"color:#ffff54;background-color:#ffffff;">[PHY]
+        =C2=A0=C2=A0Init: N_RB_DL 106, first_carrier_offset 1412,
+        nb_prefix_samples 144,nb_prefix_samples0 176, ofdm_symbol_size
+        2048</span><span style=3D"color:#000000;background-color:#ffffff;=
+">
+      </span><br>
+      [PHY] =C2=A0=C2=A0gNB 0 configured<span
+        style=3D"color:#ffff54;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<span
+        style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span><b=
+r>
+      [NR_MAC] =C2=A0=C2=A0slot 0 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 1 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 2 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 3 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 4 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 5 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 6 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 7 DL 1 UL 1
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 8 DL 0 UL 1
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 9 DL 0 UL 1
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 10 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 11 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 12 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 13 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 14 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 15 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 16 DL 1 UL 0
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 17 DL 1 UL 1
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 18 DL 0 UL 1
+      <br>
+      [NR_MAC] =C2=A0=C2=A0slot 19 DL 0 UL 1
+      <br>
+      START MAIN THREADS
+      <br>
+      RC.nb_nr_L1_inst:1
+      <br>
+      Initializing gNB threads single_thread_flag:1 wait_for_sync:0
+      <br>
+      [PHY] =C2=A0=C2=A0Initializing gNB 0 single_thread_flag:1
+      <br>
+      [PHY] =C2=A0=C2=A0Initializing gNB 0
+      <br>
+      [PHY] =C2=A0=C2=A0Registering with MAC interface module (before
+      0x555558fc7980)
+      <br>
+      [PHY] =C2=A0=C2=A0Installing callbacks for IF_Module - UL_indicatio=
+n
+      <br>
+      [PHY] =C2=A0=C2=A0Registering with MAC interface module (after
+      0x555558fc7980)
+      <br>
+      [PHY] =C2=A0=C2=A0Setting indication lists
+      <br>
+      [PHY] =C2=A0=C2=A0[nr-gnb.c] gNB structure allocated
+      <br>
+      wait_gNBs()
+      <br>
+      Waiting for gNB L1 instances to all get configured ... sleeping
+      50ms (nb_nr_sL1_inst 1)
+      <br>
+      gNB L1 are configured
+      <br>
+      About to Init RU threads RC.nb_RU:1
+      <br>
+      Initializing RU threads
+      <br>
+      configuring RU from file
+      <br>
+      [LIBCONFIG] RUs.[0]: 43/43 parameters successfully set, (31 to
+      default value)
+      <br>
+      [LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default
+      value)
+      <br>
+      [LIBCONFIG] gNBs.[0]: 28/28 parameters successfully set, (20 to
+      default value)
+      <br>
+      Set RU mask to 1
+      <br>
+      Creating RC.ru[0]:0x55555900f2b0
+      <br>
+      [PHY] =C2=A0=C2=A0RU GPIO control set as 'generic'
+      <br>
+      [PHY] =C2=A0=C2=A0Setting clock source to internal
+      <br>
+      [PHY] =C2=A0=C2=A0Setting time source to internal
+      <br>
+      Setting function for RU 0 to gNodeB_3GPP
+      <br>
+      [RU 0] Setting nr_flag 0, nr_band 78, nr_scs_for_raster 1
+      <br>
+      [RU 0] Setting half-slot parallelization to 1
+      <br>
+      [PHY] =C2=A0=C2=A0number of L1 instances 1, number of RU 1, number =
+of CPU
+      cores 24
+      <br>
+      <span
+        style=3D"font-weight:bold;color:#ff5454;background-color:#ffffff;=
+">[PHY]
+        =C2=A0=C2=A0DJP - delete code above this
+        /home/nornetpp/src/openairinterface5g/executables/nr-ru.c:1820</s=
+pan><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      [PHY] =C2=A0=C2=A0Copying frame parms from gNB in RC to gNB 0 in ru=
+ 0 and
+      frame_parms in ru<span
+        style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span><b=
+r>
+      configuring ru_id 0 (start_rf 0x555555f45510)
+      <br>
+      [PHY] =C2=A0=C2=A0Starting ru_thread 0
+      <br>
+      [PHY] =C2=A0=C2=A0Initializing RU proc 0 (,synch_to_ext_device),
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread ru_thread with affinity -1 and p=
+riority
+      97
+      <br>
+      [Detaching after vfork from child process 1195057]
+      <br>
+      [New Thread 0x7fffef7fe640 (LWP 1195059)]
+      <br>
+      [PHY] =C2=A0=C2=A0Starting RU 0 (,synch_to_ext_device) on cpu 6
+      <br>
+      [PHY] =C2=A0=C2=A0Initializing frame parms for mu 1, N_RB 106, Ncp =
+0
+      <br>
+      [PHY] =C2=A0=C2=A0RU Thread pool size 2
+      <br>
+      <span style=3D"color:#ffff54;background-color:#ffffff;">[PHY]
+        =C2=A0=C2=A0Init: N_RB_DL 106, first_carrier_offset 1412,
+        nb_prefix_samples 144,nb_prefix_samples0 176, ofdm_symbol_size
+        2048</span><span style=3D"color:#000000;background-color:#ffffff;=
+">
+      </span><br>
+      [PHY] =C2=A0=C2=A0RU thread-pool core string -1,-1<span
+        style=3D"color:#ffff54;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span><b=
+r>
+      [PHY] =C2=A0=C2=A0fp-&gt;scs=3D30000
+      <br>
+      create a thread for core -1
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;ofdm_symbol_size=3D2048
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;nb_prefix_samples0=3D176
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool0_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;nb_prefix_samples=3D144
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;slots_per_subframe=3D2
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;samples_per_subframe_wCP=3D57344
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;samples_per_frame_wCP=3D573440
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;samples_per_subframe=3D61440
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;samples_per_frame=3D614400
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;dl_CarrierFreq=3D3319680000
+      <br>
+      [PHY] =C2=A0=C2=A0fp-&gt;ul_CarrierFreq=3D3319680000
+      <br>
+      [PHY] =C2=A0=C2=A0Setting RF config for N_RB 106, NB_RX 2, NB_TX 2
+      <br>
+      [PHY] =C2=A0=C2=A0Channel 0: setting tx_gain offset 0, rx_gain offs=
+et 75,
+      tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0 Hz,
+      sample_rate 61440000 Hz
+      <br>
+      [PHY] =C2=A0=C2=A0Channel 1: setting tx_gain offset 0, rx_gain offs=
+et 75,
+      tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0 Hz,
+      sample_rate 61440000 Hz
+      <br>
+      [PHY] =C2=A0=C2=A0Initializing RU signal buffers (if_south local RF=
+) nb_tx
+      2, nb_rx 2
+      <br>
+      [Detaching after vfork from child process 1195060]
+      <br>
+      [PHY] =C2=A0=C2=A0[INIT] common.txdata[0] =3D 0x7fffeeda5040 (24576=
+00
+      bytes,sf_extension 0)
+      <br>
+      [PHY] =C2=A0=C2=A0[INIT] common.txdata[0] =3D 0x7fffeeda5040 =C2=A0=
+<br>
+      [PHY] =C2=A0=C2=A0[INIT] common.txdata[1] =3D 0x7fffeeb4c040 (24576=
+00
+      bytes,sf_extension 0)
+      <br>
+      [PHY] =C2=A0=C2=A0[INIT] common.txdata[1] =3D 0x7fffeeb4c040 =C2=A0=
+<br>
+      [New Thread 0x7fffeeb4b640 (LWP 1195062)]
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool1_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195063]
+      <br>
+      [PHY] =C2=A0=C2=A0nb_tx 2
+      <br>
+      [PHY] =C2=A0=C2=A0rxdata_7_5kHz[0] 0x7ffff4109040 for RU 0
+      <br>
+      [PHY] =C2=A0=C2=A0rxdata_7_5kHz[1] 0x7ffff4018040 for RU 0
+      <br>
+      [New Thread 0x7fffede98640 (LWP 1195065)]
+      <br>
+      wait RUs
+      <br>
+      [PHY] =C2=A0=C2=A0Waiting for RUs to be configured ... RC.ru_mask:0=
+1
+      <br>
+      [PHY] =C2=A0=C2=A0[INIT] common.txdata_BF=3D 0x7fffdc000a80 (16 byt=
+es)
+      <br>
+      [PHY] =C2=A0=C2=A0txdataF_BF[0] 0x7ffff7430040 for RU 0
+      <br>
+      [PHY] =C2=A0=C2=A0txdataF_BF[1] 0x7fffed1fd040 for RU 0
+      <br>
+      [PHY] =C2=A0=C2=A0rxdataF[0] 0x7fffed18c040 for RU 0
+      <br>
+      [PHY] =C2=A0=C2=A0rxdataF[1] 0x7fffed11b040 for RU 0
+      <br>
+      [PHY] =C2=A0=C2=A0[INIT] nr_phy_init_RU() ru-&gt;num_gNB:1 =C2=A0<b=
+r>
+      [LIBCONFIG] device.recplay: 8/8 parameters successfully set, (8 to
+      default value)
+      <br>
+      [LIBCONFIG] device: 1/1 parameters successfully set, (1 to default
+      value)
+      <br>
+      [LIBCONFIG] loader: 2/2 parameters successfully set, (2 to default
+      value)
+      <br>
+      [LIBCONFIG] loader.oai_device: 2/2 parameters successfully set, (1
+      to default value)
+      <br>
+      shlib_path liboai_device.so
+      <br>
+      [LOADER] library liboai_device.so successfully loaded
+      <br>
+      [HW] =C2=A0=C2=A0openair0_cfg[0].sdr_addrs =3D=3D
+'mgmt_addr=3D10.193.4.119,addr=3D192.168.10.2,second_addr=3D192.168.20.2,=
+clock_source=3Dinternal,time_source=3Dinternal'<br>
+      [HW] =C2=A0=C2=A0openair0_cfg[0].clock_source =3D=3D '0' (internal =
+=3D 0, external
+      =3D 1)
+      <br>
+      [HW] =C2=A0=C2=A0UHD version 4.4.0.HEAD-0-g5fac246b (4.4.0)
+      <br>
+      [HW] =C2=A0=C2=A0Checking for USRP with args
+mgmt_addr=3D10.193.4.119,addr=3D192.168.10.2,second_addr=3D192.168.20.2,c=
+lock_source=3Dinternal,time_source=3Dinternal<br>
+      [New Thread 0x7fffe11ff640 (LWP 1195066)]
+      <br>
+      [New Thread 0x7fffe09fe640 (LWP 1195067)]
+      <br>
+      [New Thread 0x7fffd7fff640 (LWP 1195068)]
+      <br>
+      [Thread 0x7fffe09fe640 (LWP 1195067) exited]
+      <br>
+      [New Thread 0x7fffcf7fe640 (LWP 1195069)]
+      <br>
+      <span style=3D"color:#18b218;background-color:#ffffff;">[INFO] [UHD=
+]
+      </span><span style=3D"color:#000000;background-color:#ffffff;">linu=
+x;
+        GNU C++ version 11.4.0; Boost_107400; UHD_4.4.0.HEAD-0-g5fac246b
+      </span><br>
+      [New Thread 0x7fffd77fe640 (LWP 1195070)]
+      <br>
+      [Thread 0x7fffd7fff640 (LWP 1195068) exited]
+      <br>
+      [New Thread 0x7fffd6ffd640 (LWP 1195071)]
+      <br>
+      [New Thread 0x7fffd67fc640 (LWP 1195072)]
+      <br>
+      [Thread 0x7fffd67fc640 (LWP 1195072) exited]
+      <br>
+      [New Thread 0x7fffd5ffb640 (LWP 1195073)]
+      <br>
+      [New Thread 0x7fffd57fa640 (LWP 1195074)]
+      <br>
+      [New Thread 0x7fffd4ff9640 (LWP 1195075)]
+      <br>
+      [Thread 0x7fffd57fa640 (LWP 1195074) exited]
+      <br>
+      [Thread 0x7fffd5ffb640 (LWP 1195073) exited]
+      <br>
+      [Thread 0x7fffd77fe640 (LWP 1195070) exited]
+      <br>
+      [Thread 0x7fffd4ff9640 (LWP 1195075) exited]
+      <br>
+      [Thread 0x7fffe11ff640 (LWP 1195066) exited]
+      <br>
+      [HW] =C2=A0=C2=A0Found USRP n3xx
+      <br>
+      Found USRP n310
+      <br>
+      [Detaching after vfork from child process 1195076]
+      <br>
+      net.core.rmem_max =3D 62500000
+      <br>
+      net.core.wmem_max =3D 62500000
+      <br>
+      <span style=3D"color:#18b218;background-color:#ffffff;">[INFO]
+        [MPMD] </span><span
+        style=3D"color:#000000;background-color:#ffffff;">Initializing 1
+        device(s) in parallel with args:
+mgmt_addr=3D10.193.4.119,type=3Dn3xx,product=3Dn310,serial=3D31B4028,name=
+=3Dni-n3xx-31B4028,fpga=3DHG,claimed=3DFalse,addr=3D192.168.10.2,second_a=
+ddr=3D192.168.20.2,clock_source=3Dinternal,time_</span><br>
+      source=3Dinternal,master_clock_rate=3D122880000.000000
+      <br>
+      [New Thread 0x7fffd4ff9640 (LWP 1195078)]
+      <br>
+      [New Thread 0x7fffd57fa640 (LWP 1195079)]
+      <br>
+      [New Thread 0x7fffd5ffb640 (LWP 1195080)]
+      <br>
+      <span
+        style=3D"font-weight:bold;color:#ffff54;background-color:#ffffff;=
+">[WARNING]
+        [MPM.RPCServer] </span><span
+        style=3D"color:#000000;background-color:#ffffff;">A timeout event=
+
+        occured!
+      </span><br>
+      <span style=3D"color:#18b218;background-color:#ffffff;">[INFO]
+        [MPM.PeriphManager] </span><span
+        style=3D"color:#000000;background-color:#ffffff;">init() called
+        with device args
+`clock_source=3Dinternal,fpga=3DHG,master_clock_rate=3D122880000.000000,m=
+gmt_addr=3D10.193.4.119,name=3Dni-n3xx-31B4028,product=3Dn310,second_addr=
+=3D192.168.20.2,time_source=3Dinternal'.</span><br>
+      [New Thread 0x7fffd67fc640 (LWP 1195081)]
+      <br>
+      <span style=3D"color:#ffff54;background-color:#ffffff;">[HW] =C2=A0=
+=C2=A0Clock
+        source set in both usrp_args and in clock_source, ingnoring the
+        latter!</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      <span style=3D"color:#ffff54;background-color:#ffffff;">[HW] =C2=A0=
+=C2=A0Time
+        source set in both usrp_args and in time_source, ingnoring the
+        latter!
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span><b=
+r>
+      -- Using calibration table: calib_table_n310<span
+        style=3D"color:#ffff54;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span><b=
+r>
+      [HW] =C2=A0=C2=A0device_init() sample_rate:61440000
+      <br>
+      [HW] =C2=A0=C2=A0cal 0: freq 3500000000.000000, offset 0.000000, di=
+ff
+      180320000.000000
+      <br>
+      [HW] =C2=A0=C2=A0cal 1: freq 2660000000.000000, offset 0.000000, di=
+ff
+      659680000.000000
+      <br>
+      [HW] =C2=A0=C2=A0cal 2: freq 2300000000.000000, offset 0.000000, di=
+ff
+      1019680000.000000
+      <br>
+      [HW] =C2=A0=C2=A0cal 3: freq 1880000000.000000, offset 0.000000, di=
+ff
+      1439680000.000000
+      <br>
+      [HW] =C2=A0=C2=A0cal 4: freq 816000000.000000, offset 0.000000, dif=
+f
+      2503680000.000000
+      <br>
+      [HW] =C2=A0=C2=A0RX Gain 0 75.000000 (0.000000) =3D&gt; 75.000000 (=
+max
+      75.000000)
+      <br>
+      [HW] =C2=A0=C2=A0cal 0: freq 3500000000.000000, offset 0.000000, di=
+ff
+      180320000.000000
+      <br>
+      [HW] =C2=A0=C2=A0cal 1: freq 2660000000.000000, offset 0.000000, di=
+ff
+      659680000.000000
+      <br>
+      [HW] =C2=A0=C2=A0cal 2: freq 2300000000.000000, offset 0.000000, di=
+ff
+      1019680000.000000
+      <br>
+      [HW] =C2=A0=C2=A0cal 3: freq 1880000000.000000, offset 0.000000, di=
+ff
+      1439680000.000000
+      <br>
+      [HW] =C2=A0=C2=A0cal 4: freq 816000000.000000, offset 0.000000, dif=
+f
+      2503680000.000000
+      <br>
+      [HW] =C2=A0=C2=A0RX Gain 1 75.000000 (0.000000) =3D&gt; 75.000000 (=
+max
+      75.000000)
+      <br>
+      [HW] =C2=A0=C2=A0USRP TX_GAIN:65.00 gain_range:65.00 tx_gain:0.00
+      <br>
+      [HW] =C2=A0=C2=A0USRP TX_GAIN:65.00 gain_range:65.00 tx_gain:0.00
+      <br>
+      [HW] =C2=A0=C2=A0Actual master clock: 122.880000MHz...
+      <br>
+      [HW] =C2=A0=C2=A0Actual clock source internal...
+      <br>
+      [HW] =C2=A0=C2=A0Actual time source internal...
+      <br>
+      [HW] =C2=A0=C2=A0setting rx channel 0
+      <br>
+      [HW] =C2=A0=C2=A0setting rx channel 1
+      <br>
+      <span
+        style=3D"font-weight:bold;color:#ffff54;background-color:#ffffff;=
+">[WARNING]
+        [0/Radio#0] </span><span
+        style=3D"color:#000000;background-color:#ffffff;">Attempting to
+        set tick rate to 0. Skipping.
+      </span><br>
+      [HW] =C2=A0=C2=A0RF board max packet size 368, size for 100=C2=B5s =
+jitter 6144 =C2=A0<br>
+      [HW] =C2=A0=C2=A0rx_max_num_samps 368
+      <br>
+      <span
+        style=3D"font-weight:bold;color:#ffff54;background-color:#ffffff;=
+">[WARNING]
+        [0/Radio#0] </span><span
+        style=3D"color:#000000;background-color:#ffffff;">Attempting to
+        set tick rate to 0. Skipping.
+      </span><br>
+      [HW] =C2=A0=C2=A0RX Channel 0
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX sample rate: 61.440000MSps..=
+=2E
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX frequency: 3.319680GHz...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX gain: 75.000000...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX bandwidth: 100.000000M...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX antenna: RX2...
+      <br>
+      [HW] =C2=A0=C2=A0RX Channel 1
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX sample rate: 61.440000MSps..=
+=2E
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX frequency: 3.319680GHz...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX gain: 75.000000...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX bandwidth: 100.000000M...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual RX antenna: RX2...
+      <br>
+      [HW] =C2=A0=C2=A0TX Channel 0
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX sample rate: 61.440000MSps..=
+=2E
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX frequency: 3.319680GHz...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX gain: 65.000000...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX bandwidth: 100.000000M...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX antenna: TX/RX...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX packet size: 368
+      <br>
+      [HW] =C2=A0=C2=A0TX Channel 1
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX sample rate: 61.440000MSps..=
+=2E
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX frequency: 3.319680GHz...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX gain: 65.000000...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX bandwidth: 100.000000M...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX antenna: TX/RX...
+      <br>
+      [HW] =C2=A0=C2=A0=C2=A0=C2=A0Actual TX packet size: 368
+      <br>
+      Using Device: Single USRP:
+      <br>
+      =C2=A0Device: N300-Series Device
+      <br>
+      =C2=A0Mboard 0: n310
+      <br>
+      =C2=A0RX Channel: 0
+      <br>
+      =C2=A0=C2=A0=C2=A0RX DSP: 0
+      <br>
+      =C2=A0=C2=A0=C2=A0RX Dboard: A
+      <br>
+      =C2=A0=C2=A0=C2=A0RX Subdev: Magnesium
+      <br>
+      =C2=A0RX Channel: 1
+      <br>
+      =C2=A0=C2=A0=C2=A0RX DSP: 1
+      <br>
+      =C2=A0=C2=A0=C2=A0RX Dboard: A
+      <br>
+      =C2=A0=C2=A0=C2=A0RX Subdev: Magnesium
+      <br>
+      =C2=A0RX Channel: 2
+      <br>
+      =C2=A0=C2=A0=C2=A0RX DSP: 2
+      <br>
+      =C2=A0=C2=A0=C2=A0RX Dboard: B
+      <br>
+      =C2=A0=C2=A0=C2=A0RX Subdev: Magnesium
+      <br>
+      =C2=A0RX Channel: 3
+      <br>
+      =C2=A0=C2=A0=C2=A0RX DSP: 3
+      <br>
+      =C2=A0=C2=A0=C2=A0RX Dboard: B
+      <br>
+      =C2=A0=C2=A0=C2=A0RX Subdev: Magnesium
+      <br>
+      =C2=A0TX Channel: 0
+      <br>
+      =C2=A0=C2=A0=C2=A0TX DSP: 0
+      <br>
+      =C2=A0=C2=A0=C2=A0TX Dboard: A
+      <br>
+      =C2=A0=C2=A0=C2=A0TX Subdev: Magnesium
+      <br>
+      =C2=A0TX Channel: 1
+      <br>
+      =C2=A0=C2=A0=C2=A0TX DSP: 1
+      <br>
+      =C2=A0=C2=A0=C2=A0TX Dboard: A
+      <br>
+      =C2=A0=C2=A0=C2=A0TX Subdev: Magnesium
+      <br>
+      =C2=A0TX Channel: 2
+      <br>
+      =C2=A0=C2=A0=C2=A0TX DSP: 2
+      <br>
+      =C2=A0=C2=A0=C2=A0TX Dboard: B
+      <br>
+      =C2=A0=C2=A0=C2=A0TX Subdev: Magnesium
+      <br>
+      =C2=A0TX Channel: 3
+      <br>
+      =C2=A0=C2=A0=C2=A0TX DSP: 3
+      <br>
+      =C2=A0=C2=A0=C2=A0TX Dboard: B
+      <br>
+      =C2=A0=C2=A0=C2=A0TX Subdev: Magnesium
+      <br>
+      <br>
+      [HW] =C2=A0=C2=A0Device timestamp: 0.177981...
+      <br>
+      [HW] =C2=A0=C2=A0[RAU] has loaded USRP N300 device.
+      <br>
+      setup_RU_buffers: frame_parms =3D 0x7ffff782d010
+      <br>
+      [PHY] =C2=A0=C2=A0RU 0 Setting N_TA_offset to 800 samples (factor 2=
+=2E000000,
+      UL Freq 3300600, N_RB 106, mu 1)
+      <br>
+      [PHY] =C2=A0=C2=A0Signaling main thread that RU 0 is ready, sl_ahea=
+d 6
+      <br>
+      waiting for sync
+      (ru_thread,-1/0x555556ad20b4,0x555557329fa0,0x555557329f60)
+      <br>
+      RC.ru_mask:00
+      <br>
+      [PHY] =C2=A0=C2=A0RUs configured
+      <br>
+      ALL RUs READY!
+      <br>
+      RC.nb_RU:1
+      <br>
+      ALL RUs ready - init gNBs
+      <br>
+      Not NFAPI mode - call init_eNB_afterRU()
+      <br>
+      [PHY] =C2=A0=C2=A0init_eNB_afterRU() RC.nb_nr_inst:1
+      <br>
+      [PHY] =C2=A0=C2=A0RC.nb_nr_CC[inst:0]:0x7ffff7469010
+      <br>
+      [PHY] =C2=A0=C2=A0[gNB 0] phy_init_nr_gNB() About to wait for gNB t=
+o be
+      configured
+      <br>
+      [LIBCONFIG] loader.dfts: 2/2 parameters successfully set, (1 to
+      default value)
+      <br>
+      shlib_path libdfts.so
+      <br>
+      [LOADER] library libdfts.so successfully loaded
+      <br>
+      [LIBCONFIG] loader.ldpc: 2/2 parameters successfully set, (1 to
+      default value)
+      <br>
+      shlib_path libldpc.so
+      <br>
+      [LOADER] library libldpc.so successfully loaded
+      <br>
+      [PHY] =C2=A0=C2=A0Initialise nr transport
+      <br>
+      [PHY] =C2=A0=C2=A0Mapping RX ports from 1 RUs to gNB 0
+      <br>
+      [PHY] =C2=A0=C2=A0gNB-&gt;num_RU:1
+      <br>
+      [PHY] =C2=A0=C2=A0Attaching RU 0 antenna 0 to gNB antenna 0
+      <br>
+      [PHY] =C2=A0=C2=A0Attaching RU 0 antenna 1 to gNB antenna 1
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool0_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195082]
+      <br>
+      [New Thread 0x7fff8cc13640 (LWP 1195084)]
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool1_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195085]
+      <br>
+      [New Thread 0x7fff8c412640 (LWP 1195087)]
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool2_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195088]
+      <br>
+      [New Thread 0x7fff8bc11640 (LWP 1195090)]
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool3_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195091]
+      <br>
+      [New Thread 0x7fff8b410640 (LWP 1195093)]
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool4_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195094]
+      <br>
+      [New Thread 0x7fff8ac0f640 (LWP 1195096)]
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool5_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195097]
+      <br>
+      [New Thread 0x7fff8a40e640 (LWP 1195099)]
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool6_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195100]
+      <br>
+      [New Thread 0x7fff89c0d640 (LWP 1195102)]
+      <br>
+      create a thread for core -1
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread Tpool7_-1 with affinity -1 and p=
+riority
+      50
+      <br>
+      [Detaching after vfork from child process 1195103]
+      <br>
+      [New Thread 0x7fff8940c640 (LWP 1195105)]
+      <br>
+      [PHY] =C2=A0=C2=A0Creating thread for TX reordering and dispatching=
+ to RU
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread thread_tx_reorder with affinity =
+-1 and
+      priority 97
+      <br>
+      [Detaching after vfork from child process 1195106]
+      <br>
+      [New Thread 0x7fff85ad3640 (LWP 1195108)]
+      <br>
+      [UTIL] =C2=A0=C2=A0Creating thread L1_stats with affinity -1 and pr=
+iority 1
+      <br>
+      [Detaching after vfork from child process 1195109]
+      <br>
+      [New Thread 0x7fff852d2640 (LWP 1195111)]
+      <br>
+      waiting for sync
+      (L1_stats_thread,-1/0x555556ad20b4,0x555557329fa0,0x555557329f60)
+      <br>
+      ALL RUs ready - ALL gNBs ready
+      <br>
+      Sending sync to all threads
+      <br>
+      Entering ITTI signals handler
+      <br>
+      TYPE &lt;CTRL-C&gt; TO TERMINATE
+      <br>
+      got sync (L1_stats_thread)
+      <br>
+      got sync (ru_thread)
+      <br>
+      [HW] =C2=A0=C2=A0current pps at 1.000000, starting streaming at 2.0=
+00000
+      <br>
+      [PHY] =C2=A0=C2=A0RU 0 rf device ready
+      <br>
+      [PHY] =C2=A0=C2=A0RU 0 RF started opp_enabled 0
+      <br>
+      sleep...
+      <br>
+      sleep...
+      <br>
+      sleep...
+      <br>
+      sleep...
+      <br>
+      sleep...
+      <br>
+      sleep...
+      <br>
+      sleep...
+      <br>
+      sleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      Osleep...
+      <br>
+      sleep...
+      <br>
+      O
+      <br>
+    </span><span style=3D"font-family:monospace"><span
+        style=3D"color:#000000;background-color:#ffffff;">Thread 9
+        "ru_thread" received signal SIGSEGV, Segmentation fault.
+      </span><br>
+      [Switching to Thread 0x7fffef7fe640 (LWP 1292168)]
+      <br>
+      <span style=3D"color:#b26818;background-color:#ffffff;">__memmove_a=
+vx_unaligned_erms</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> () at </span><=
+span
+        style=3D"color:#18b218;background-color:#ffffff;">../sysdeps/x86_=
+64/multiarch/memmove-vec-unaligned-erms.S</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:540
+      </span><br>
+      540 =C2=A0=C2=A0=C2=A0=C2=A0../sysdeps/x86_64/multiarch/memmove-vec=
+-unaligned-erms.S:
+      No such file or directory.
+      <br>
+      (gdb) bt
+      <br>
+      #0 =C2=A0<span style=3D"color:#b26818;background-color:#ffffff;">__=
+memmove_avx_unaligned_erms</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> () at </span><=
+span
+        style=3D"color:#18b218;background-color:#ffffff;">../sysdeps/x86_=
+64/multiarch/memmove-vec-unaligned-erms.S</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:540
+      </span><br>
+      #1 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007fffe1ced9bf</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">uhd::transport:=
+:rx_streamer_impl&lt;uhd::rfnoc::chdr_rx_data_xport,
+        false&gt;::recv(uhd::ref_vector&lt;void*&gt; const&amp;,
+        unsigned long, uhd::rx_metadata_t&amp;, double, bool)</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;"> () from </span=
+><span
+        style=3D"color:#18b218;background-color:#ffffff;">/usr/local/lib/=
+libuhd.so.4.4.0</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      #2 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007fffe29c762b</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">trx_usrp_read</=
+span><span
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">device</span><s=
+pan
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x55555a1d97=
+00,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">ptim=
+estamp</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd2=
+c8,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">buff=
+</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd1=
+d0,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">nsam=
+ps</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D30720, </spa=
+n><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">cc</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D2) at </span=
+><span
+        style=3D"color:#18b218;background-color:#ffffff;">/home/nornetpp/=
+src/openairinterface5g/radio/USRP/usrp_lib.cpp</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:757
+      </span><br>
+      #3 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+0000555555f8a235</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">rx_rf</span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">ru</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x55555a1d92=
+80,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">fram=
+e</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd7=
+e8,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">slot=
+</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd7=
+e4)
+        at </span><span style=3D"color:#18b218;background-color:#ffffff;"=
+>/home/nornetpp/src/openairinterface5g/executables/nr-ru.c</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:655
+      </span><br>
+      #4 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+0000555555f95434</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">ru_thread</span=
+><span
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">param</span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x55555a1d92=
+80)
+        at </span><span style=3D"color:#18b218;background-color:#ffffff;"=
+>/home/nornetpp/src/openairinterface5g/executables/nr-ru.c</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:1257
+      </span><br>
+      #5 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007ffff7294b43</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">start_thread</s=
+pan><span
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">arg</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">=3D&lt;optimize=
+d
+        out&gt;) at </span><span
+        style=3D"color:#18b218;background-color:#ffffff;">./nptl/pthread_=
+create.c</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:442
+      </span><br>
+      #6 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007ffff7326a00</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">clone3</span><s=
+pan
+        style=3D"color:#000000;background-color:#ffffff;"> () at </span><=
+span
+        style=3D"color:#18b218;background-color:#ffffff;">../sysdeps/unix=
+/sysv/linux/x86_64/clone3.S</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:81
+      </span><br>
+      (gdb) where full
+      <br>
+      #0 =C2=A0<span style=3D"color:#b26818;background-color:#ffffff;">__=
+memmove_avx_unaligned_erms</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> () at </span><=
+span
+        style=3D"color:#18b218;background-color:#ffffff;">../sysdeps/x86_=
+64/multiarch/memmove-vec-unaligned-erms.S</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:540
+      </span><br>
+      No locals.
+      <br>
+      #1 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007fffe1ced9bf</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">uhd::transport:=
+:rx_streamer_impl&lt;uhd::rfnoc::chdr_rx_data_xport,
+        false&gt;::recv(uhd::ref_vector&lt;void*&gt; const&amp;,
+        unsigned long, uhd::rx_metadata_t&amp;, double, bool)</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;"> () from </span=
+><span
+        style=3D"color:#18b218;background-color:#ffffff;">/usr/local/lib/=
+libuhd.so.4.4.0</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      No symbol table info available.
+      <br>
+      #2 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007fffe29c762b</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">trx_usrp_read</=
+span><span
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">device</span><s=
+pan
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x55555a1d97=
+00,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">ptim=
+estamp</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd2=
+c8,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">buff=
+</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd1=
+d0,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">nsam=
+ps</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D30720, </spa=
+n><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">cc</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D2) at </span=
+><span
+        style=3D"color:#18b218;background-color:#ffffff;">/home/nornetpp/=
+src/openairinterface5g/radio/USRP/usrp_lib.cpp</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:757
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">buff_ptrs</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D std::vecto=
+r
+        of length 2, capacity 2 =3D {</span><span
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7ffff000f860<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">, </span><span
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7ffff002d860<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">}
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">s</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7fffdc094aa0<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">samples_received</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 272233
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">nsamps2</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 3840
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">buff_tmp</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;">&lt;error
+        reading variable buff_tmp (value requires 245760 bytes, which is
+        more than max-value-size)&gt;</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      (gdb) but full
+      <br>
+      Undefined command: "but". =C2=A0Try "help".
+      <br>
+      (gdb) bt full
+      <br>
+      #0 =C2=A0<span style=3D"color:#b26818;background-color:#ffffff;">__=
+memmove_avx_unaligned_erms</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> () at </span><=
+span
+        style=3D"color:#18b218;background-color:#ffffff;">../sysdeps/x86_=
+64/multiarch/memmove-vec-unaligned-erms.S</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:540
+      </span><br>
+      No locals.
+      <br>
+      #1 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007fffe1ced9bf</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">uhd::transport:=
+:rx_streamer_impl&lt;uhd::rfnoc::chdr_rx_data_xport,
+        false&gt;::recv(uhd::ref_vector&lt;void*&gt; const&amp;,
+        unsigned long, uhd::rx_metadata_t&amp;, double, bool)</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;"> () from </span=
+><span
+        style=3D"color:#18b218;background-color:#ffffff;">/usr/local/lib/=
+libuhd.so.4.4.0</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      No symbol table info available.
+      <br>
+      #2 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007fffe29c762b</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">trx_usrp_read</=
+span><span
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">device</span><s=
+pan
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x55555a1d97=
+00,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">ptim=
+estamp</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd2=
+c8,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">buff=
+</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd1=
+d0,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">nsam=
+ps</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D30720, </spa=
+n><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">cc</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D2) at </span=
+><span
+        style=3D"color:#18b218;background-color:#ffffff;">/home/nornetpp/=
+src/openairinterface5g/radio/USRP/usrp_lib.cpp</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:757
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">buff_ptrs</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D std::vecto=
+r
+        of length 2, capacity 2 =3D {</span><span
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7ffff000f860<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">, </span><span
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7ffff002d860<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">}
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">s</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7fffdc094aa0<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">samples_received</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 272233
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">nsamps2</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 3840
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">buff_tmp</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;">&lt;error
+        reading variable buff_tmp (value requires 245760 bytes, which is
+        more than max-value-size)&gt;</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">read_count</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">rxshift</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 2
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">__FUNCTION__</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D
+        "trx_usrp_read"
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">recPlay</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7fffdc184b30<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      #3 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+0000555555f8a235</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">rx_rf</span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">ru</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x55555a1d92=
+80,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">fram=
+e</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd7=
+e8,
+      </span><span style=3D"color:#18b2b2;background-color:#ffffff;">slot=
+</span><span
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x7fffef7fd7=
+e4)
+        at </span><span style=3D"color:#18b218;background-color:#ffffff;"=
+>/home/nornetpp/src/openairinterface5g/executables/nr-ru.c</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:655
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">proc</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x55555a1daeb0<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">fp</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7ffff782d010<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">cfg</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x55555a1d9db8<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">rxp</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {</span><s=
+pan
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7fffee0f2040<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">, </span><span
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7fffede99040<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">}
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">rxs</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 4146746579=
+
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">i</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 2
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">samples_per_slot</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 30720
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">samples_per_slot_prev</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 32767
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">ts</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D
+        140737211524672
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">old_ts</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">__FUNCTION__</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D "rx_rf"
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">gps_sec</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D
+        6.9533421303430063e-310
+      </span><br>
+      #4 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+0000555555f95434</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">ru_thread</span=
+><span
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">param</span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;">=3D0x55555a1d92=
+80)
+        at </span><span style=3D"color:#18b218;background-color:#ffffff;"=
+>/home/nornetpp/src/openairinterface5g/executables/nr-ru.c</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:1257
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">sl</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">absslot_rx</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">rt_prof_idx</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">slot_type</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      --Type &lt;RET&gt; for more, q to quit, c to continue without
+      paging-- =C2=A0<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">ru_thread_status</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">ru</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x55555a1d9280<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">proc</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x55555a1daeb0<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">fp</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7ffff782d010<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">gNB</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x7ffff7469010<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">ret</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">slot</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">frame</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">threadname</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D "ru_thread=
+
+        0", '\000' &lt;repeats 28 times&gt;
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">initial_wait</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">opp_enabled0</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">cfg</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x55555a1d9378<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">__FUNCTION__</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D "ru_thread=
+"
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">syncMsg</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x0</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">res</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x0</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">slot_start</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {</span><s=
+pan
+        style=3D"color:#18b2b2;background-color:#ffffff;">tv_sec</span><s=
+pan
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 1182185, <=
+/span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">tv_nsec</span><=
+span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 141695065}=
+
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">slot_duration</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {</span><s=
+pan
+        style=3D"color:#18b2b2;background-color:#ffffff;">tv_sec</span><s=
+pan
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0, </span>=
+<span
+        style=3D"color:#18b2b2;background-color:#ffffff;">tv_nsec</span><=
+span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 500000}
+      </span><br>
+      #5 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007ffff7294b43</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">start_thread</s=
+pan><span
+        style=3D"color:#000000;background-color:#ffffff;"> (</span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">arg</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">=3D&lt;optimize=
+d
+        out&gt;) at </span><span
+        style=3D"color:#18b218;background-color:#ffffff;">./nptl/pthread_=
+create.c</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:442
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">ret</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;">&lt;optimized
+        out&gt;</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">pd</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;">&lt;optimized
+        out&gt;</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">out</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;">&lt;optimized
+        out&gt;</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">unwind_buf</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {</span><s=
+pan
+        style=3D"color:#18b2b2;background-color:#ffffff;">cancel_jmp_buf<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {{</span><=
+span
+        style=3D"color:#18b2b2;background-color:#ffffff;">jmp_buf</span><=
+span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {429496729=
+5,
+        -2513490550454601873, 140737211524672, 0, 140737340065872,
+        140737488343888, -2513490550927509649, -2513438483471124625}, </s=
+pan><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">mask_was_saved<=
+/span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0}}, </spa=
+n><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">priv</span><spa=
+n
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {</span><s=
+pan
+        style=3D"color:#18b2b2;background-color:#ffffff;">pad</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {</span><s=
+pan
+        style=3D"color:#1818b2;background-color:#ffffff;">0x0</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">, </span><span
+        style=3D"color:#1818b2;background-color:#ffffff;">0x0</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">, =C2=A0</span>=
+<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x0</spa=
+n><span
+        style=3D"color:#000000;background-color:#ffffff;">, </span><span
+        style=3D"color:#1818b2;background-color:#ffffff;">0x0</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">}, </span><span=
+
+        style=3D"color:#18b2b2;background-color:#ffffff;">data</span><spa=
+n
+        style=3D"color:#000000;background-color:#ffffff;"> =3D {</span><s=
+pan
+        style=3D"color:#18b2b2;background-color:#ffffff;">prev</span><spa=
+n
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x0</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">, </span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">cleanup</span><=
+span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#1818b2;background-color:#ffffff;">0x0</span><span=
+
+        style=3D"color:#000000;background-color:#ffffff;">, </span><span
+        style=3D"color:#18b2b2;background-color:#ffffff;">canceltype</spa=
+n><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D 0}}}
+      </span><br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b=
+2b2;background-color:#ffffff;">not_first_call</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> =3D </span><sp=
+an
+        style=3D"color:#000000;background-color:#ffffff;">&lt;optimized
+        out&gt;</span><span
+        style=3D"color:#000000;background-color:#ffffff;">
+      </span><br>
+      #6 =C2=A0<span style=3D"color:#1818b2;background-color:#ffffff;">0x=
+00007ffff7326a00</span><span
+        style=3D"color:#000000;background-color:#ffffff;"> in </span><spa=
+n
+        style=3D"color:#b26818;background-color:#ffffff;">clone3</span><s=
+pan
+        style=3D"color:#000000;background-color:#ffffff;"> () at </span><=
+span
+        style=3D"color:#18b218;background-color:#ffffff;">../sysdeps/unix=
+/sysv/linux/x86_64/clone3.S</span><span
+        style=3D"color:#000000;background-color:#ffffff;">:81
+      </span><br>
+      No locals.
+      <br>
+      (gdb)</span><span style=3D"font-family:monospace"><br>
+      <br>
+    </span>The N310 is of course reachable on both fibre ports as well
+    as on the copper port, i.e. ping to all IP addresses is working. The
+    MTU on the fibre ports is properly configured to 9000 as well. The
+    N310 firmware is up-to-date.<br>
     <br>
-    <a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/X410#=
-100_Gigabit_Ethernet">https://kb.ettus.com/X410#100_Gigabit_Ethernet</a><=
-br>
-    <br>
-    <br>
+    OAI compiled with:<br>
+    <ol>
+      <li>Trial #1:<br>
+        cd ~/src/openairinterface5g<br>
+        source oaienv<br>
+        ./cmake_targets/build_oai -w USRP -c --eNB --gNB --run-with-gdb
+        RelWithDebInfo</li>
+      <li>Trial #2:<br>
+        cd ~/src/openairinterface5g<br>
+        source oaienv<br>
+        export BUILD_UHD_FROM_SOURCE=3DTrue<br>
+        export UHD_VERSION=3D4.4.0.0=C2=A0=C2=A0 # (also tried different =
+versions
+        here)<br>
+        ./cmake_targets/build_oai -I -w USRP<br>
+        ./cmake_targets/build_oai -w USRP -c --eNB --gNB --run-with-gdb
+        RelWithDebInfo</li>
+      <li>Also tried with Debug instead of RelWithDebInfo</li>
+    </ol>
+    The problem is reproducible, i.e. I can easily provide further
+    details if necessary.<br>
+    <pre class=3D"moz-signature" cols=3D"72">
+--=20
+Best regards / Mit freundlichen Gr=C3=BC=C3=9Fen / Med vennlig hilsen
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ Thomas Dreibholz
+
+ SimulaMet =E2=80=94 Simula Metropolitan Centre for Digital Engineering
+ Centre for Resilient Networks and Applications
+ Pilestredet 52
+ 0167 Oslo, Norway
+-----------------------------------------------------------------------
+ E-Mail:     <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:dreibh@=
+simula.no">dreibh@simula.no</a>
+ Homepage:   <a class=3D"moz-txt-link-freetext" href=3D"http://simula.no/=
+people/dreibh">http://simula.no/people/dreibh</a>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</pre>
   </body>
 </html>
 
---------------1XGEqEvhW4hVFp6EQ3IBrJwg--
+--------------fjDnRmgR50ehsKgTpClfoXad--
 
---===============2922667940348896477==
+--------------j4DU8lThBCxp0LpKcSlVQggm--
+
+--------------ekBIb73BPYzRM4kL9Yn2hXOe
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsd5BAABCAAjFiEEIUEmclGNiy0YYu/vXNXRKqCHe0kFAmUBeQwFAwAAAAAACgkQXNXRKqCHe0mi
+30AAzLEqbp1gJlPFWYjh+tnWPvAGZJSm1FLT69orZfdxtXreLmJUwX96LRgK9naIHCsTlC0mSCF/
+9pnuGkq8wLBBXBZiB80wHYYQh9sX4FzMfIhFiHwq0TBVgA/ebw6A5YrLTJauBEJp+jNKPgeU7d9F
+77n+DHXvo5QTntkHVHjmwlctOQZCHw8SuWb3sYV4523RyUa5nRe+1gh9LYioqTzJO82XqhhGF06+
+FBCX3qZR5Twk9nzzDX/brRG3Y3vg85hN6Fo2ZKk/0krpBmIprIPqxvQeQeez+BmvpFmswB1LHbgx
+o8tRWdyO4/qEx/4xbyBfzGs9hsi/tsFO+cElp4lUAOVa3oS11oEN4qLt0ofLLNRaNFJzxD4oIvnB
+bn/TZa4Trz20gqlMoKXeoNawwRVvs7PE8ajEfGJmqvPSwfiM7Wlhjl/35gszFlD+nf2DvPWCMr4k
+xxO+fdT4/4z/fyLy+jHL/ORc8vlOrGnBe4ZJzfQz1ANFLRjSoznDkBBr9B6M6bx/+EbfftRIe1+j
+3qiONXUnVU3LN+Cwv/Q8+yzfwoNWPg59+QgGKvAu+OUPIG/YMQ6gMhUviCFJjaElI1CgQBwHmHea
+nXku/ToKIv9OaaRXDw9zHG+tWdKywVVRV4WqhQoVKI6U4mHhdhdXjeOb5MPrM6ih+EJD263ober4
+7qcw0J5hsG7mU1L0QafArSKWHa1xPa7zg9+CVtRqoC15RHnGE8eduzNV7833wpS2hXOObClr9e37
+yXvdLRz6q+vp5m5A6OEelpBL97vVsa4gp248ZT3jRQGNoCmsbrJGGx8zs+TDxM6uWja+YtsywM6j
+BGuVV/qXNhqe+uSQEevZz5j2aj7rCchegISnznukUuk/cJ3IpaOGrEc1dnx1pRsavCwiowoTgBMT
+psKbMWw2dY83Pc+JIhgg+xM7xSQ6oNRCwnYASdxdLxGVk0p0gxedRYKog9SUBsP48ZtTUeajV6Bf
+S9khyZ//ioTIJTsrkDFaGF6uy3+zSK1aMi4uWu0GgT3AOtFU8pzPzfKqmM+yMMXDHjURjp/2mKZs
+jqR45y93eON2W+UNDnorYPZWH61EjOwsySpF0R1YR1yRXx68+7+bvL8x8GSc1sAKxUL1kB/BivvO
+wEOXfnwRaITNIrpMNezUOwd2hLqPLmnXzXSIve7e7f9Q4VDysUAOqfPEqnGufnBArtCCW2NHOf0S
+aLEtJccNKAx6fAvnfPYJnuW5CLPeui8rZpyeFHcxg5L3pLBgixsRFeZndoattLxztAigXXQOuUDG
+994ZBN44inNepBJQXP9TmrqDaaocv7cGtcDckG0Hv+cEz/qltnl8rExwAzaddYv2EKQVNdNercfV
+Dw/HEEh2xCvpxWVwh+3rJlqTP/PT0nVMuoKGm9RJ7PeSXiZAj+IHV4uhs3b+0+5/ze7kzpp89g6v
+2FHyX8wfAeWhj174a4SZ+g6VFelThilNv6pzDUS2OqzuuK2W54GO2XU09TG1HyqzMUaF7Z6/oALG
+ZWyIKqUDEypG4VdHoINHcLXuCRRK92vJrV6ByfR1x7hXKaRKd3Riwf+ANYvGaEwinsArpbtZUoSG
+RrLaloRBr3xZDPW9mGC4uvLuH9vPc0yBNIvjeO3ID7DjwLiB60+s+yXmcCNde/goWzmWrNkmei3c
+lII4JkJ2zKTLq7iZdyGNZdgRO81toXqsAmlRyH14yoLE829OhW9TJsmZc6rIO9B+NYHjnv9EQ0eq
+LtrHPxnmz3lmrCsBi/cNk8huLhTa5RVhXRjQqFvstfs5eJ9ZeAD32GTder5XGi5JrVhhjSytW36S
+ZH6/cy86rtBPUtVPGIfWLxEKoNnTOjnwrqulSiSqePPNor5jxu/5JTfHVhyGZ9VHDf75ecLIe+09
+HqsZPZI0kWLVgaHC2lms9AmYq0JhJeNEQfHtj7HxH/fmcM1mzMTrHtE1+NEbWLQyGHa7SzvXTEvX
+CuzZNDsGystCC6XK6I3tDp1SbmMjWKyZWBR9ceMOAM74/KDwRTW1IEJHIOnapxbllnKEoz6xD4Ba
+XiuYzayPuA8zilyQ1UKtfkPYualqiSzP+kQx9MpdvlamUU6XUhKWRwU0QmgmJHnBMXE5TfMFqSF9
+z1lneqNsICLJX5Oj4lBIlfXD2veeTF9BNZZIEy/3hYANdagWTwFgUaMVNioKkdFo4ZoSHhU7QVaX
+h1gwHNm9Wg39DMV9rNysKRU8xk3v0bgprxluv5PhA8ieCq8wv8l3mvaxZx9eWXEmcaeuzKhTsBZF
+ty1AlrFw0CSmsU/+7SphVloI2FIeRRME+bwTKQ9ITkgHjYRUakcM1YF6ZyDDMasvy/W+HvsvCC1h
+w/uKKK1O7apD+CX3+hsfijbV8ELQMX5LLB+HjznwSMkZuho9oFM6jIPtZc/Qz6ffuw+fkQbs+5Om
+haP5cjb0laoalY/ishlaK/xBn9xeii41353HK363kI15oZjvy1DxviuVxvhipWiOZazcWoSjsJdn
+bBDLVTr3DIZylPS7jGvl9ImxTcvVwZsiBr/iPuwifMnvOh55hROV3uWcTDJLtl7oYNqeY3WzSs6Y
+w3yxST2j2CCHBNyv0kctQEonNT+pIu6fYNzHyjzhoOPM01UlzKVyTMnTlrVYQBcXwogw3gnC8Fhh
+PHsbECbV80u/C+EPSXp7tBjwe8ttPr+TeGKR7f7vNBzWRn7KNp75ktvvIa4T28wBAGo8DhIi5aU=
+=46oy
+-----END PGP SIGNATURE-----
+
+--------------ekBIb73BPYzRM4kL9Yn2hXOe--
+
+--===============3153420311042475253==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -753,4 +3492,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2922667940348896477==--
+--===============3153420311042475253==--
