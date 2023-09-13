@@ -2,543 +2,707 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5588079E3CD
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Sep 2023 11:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE5C079E92A
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Sep 2023 15:25:36 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 70649384ECB
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Sep 2023 05:33:28 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A06F73859A9
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Sep 2023 09:25:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1694597608; bh=Yg236dkJE3ZVyNLQpCvGtPiCUA9NAh+t44/1w2crXZo=;
-	h=Date:From:To:References:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=0PhyDWgMoK+wCINBh5Bi48gIBe9CZgUEfVroLu3KFuw14AP12mWbfwelw/Wk6fpkX
-	 Q48vz9NGhgETML/mMishSDeViRY8RFA3QFqn9+tGWLZ3htzQe6D2ylWmZ1jOzaqM5Q
-	 N0/TCvFwRqwBDEX8pkrIkHA/ki/Qym17P6hIJm9nx8/8mJflK33Dek63HNW+gX+4SF
-	 t3kF80eGCXOQZLXewO+Ux4xVUYCuFa+6KJq4JMQb8rMSNRwoWZLmXchvWS8zwaVWqR
-	 p6qwDHjf0zxb9EcYeV8NSAbSgYulaPK3VIE+erfwtG7kloocyjY3h9yNPXioZgbsA3
-	 lGLSKZl/PnSBQ==
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2E8B2384A29
-	for <usrp-users@lists.ettus.com>; Wed, 13 Sep 2023 05:32:26 -0400 (EDT)
+	t=1694611530; bh=hgzvQrEE8YqaTIljsucvZP7oflWchgE4BVNcalfvbzg=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=a3eMHJOVk/D4UUI5kr99kUPsk7iTEThEflpboL5CXWiO3RyQ4JrftGtZsPNP5DKx0
+	 rLlLeDErmCS7uUz/tQik2dknoxM/Q4mRu0JPf8s2OYzgWMh4Y6RmzBk+Wd3lobLXE6
+	 uJwqh0H5D5zP+SoJ7bQ83Ir2uwB1fNQ+PDbI9UH5NshDuUMxXIW2u3tiRVdqYiAhg2
+	 SOjwju0AZF2I30I00ZRq5wN+qpc1PhtGCyW/fSE5dWXLfu3Fchbg56GE9v0YbsPhEX
+	 /AoBuaHK/MBFgz+d1nvMG6+Psm8+AzHF9rLtmOEzyTIb1vMRqVuP2D+7+veiidN+uj
+	 ZcJTsnwOfNPdw==
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id B85E0385035
+	for <usrp-users@lists.ettus.com>; Wed, 13 Sep 2023 09:25:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=simula-no.20230601.gappssmtp.com header.i=@simula-no.20230601.gappssmtp.com header.b="OXF1XZVZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FL0fO9tJ";
 	dkim-atps=neutral
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-502984f5018so9450116e87.3
-        for <usrp-users@lists.ettus.com>; Wed, 13 Sep 2023 02:32:25 -0700 (PDT)
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-76f0807acb6so427913385a.1
+        for <usrp-users@lists.ettus.com>; Wed, 13 Sep 2023 06:25:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=simula-no.20230601.gappssmtp.com; s=20230601; t=1694597544; x=1695202344; darn=lists.ettus.com;
-        h=in-reply-to:subject:organization:references:cc:to:from
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+tZUfDsffZON1+6soxwcvdsdL95r2Hru59EtJSD67hE=;
-        b=OXF1XZVZ2HGvvE4avvVbt2Y159DsZ9omZjEmIjFyoXlJbSH2B7WVaw2g6cgv8EQvAF
-         Lj+D40Xf8Crpqotr0bZfIF41di/Q++W643P5BxL9vj9uQhhMGeq5dnltwx3YRTSGs2d1
-         Auj+MKtWSbL/w/TgElonktjnlZdtBlxDsceyXoBtyvqRu9p8nvikHOZLPGH6WEAvCEFO
-         ph34WEFsJDaqq+AmgXYkOXuBbGEYQYq3jPTHIqyPTeQFyhlKwleLBcb6unJYqsIBrhMh
-         uapsUOaY0hYEVEYeT8cyeWQf8UyCnL1U13joulvYQ5hCKMcLq2YcV1FFNY5x9Yz+XbaS
-         UKgQ==
+        d=gmail.com; s=20221208; t=1694611512; x=1695216312; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lglml6jqj1b+4qjgXwmHujebMBeJg5AtR8kRhbyFQV8=;
+        b=FL0fO9tJEBf/+FhVw+gjBAgL2ncoQPt5u4a9PbKSlEY1/Cf1wO0JrG7TbkJiI3nXRh
+         M8/1OgR8JpVxBqcB/lzVgau/VojPe8/RadBv8+PiYOjPTx6OvtHHNxkg/cWaKb03jayZ
+         PqA6F82T5+fl46/sLfmuhLK9ulrM8aWArFriJiXerWAM+CtMVxnNJ02f30x+8h3zi0m6
+         x+cWqkR+G8pL1c6X2fhJaDCK4RtK865AAezKMC/3RLkAFtC300/WAfGxZltOjBlLNAFH
+         WjBc9t0JxI6zM8S0umBDgz7VfeWyalPHOlwqURnhWZeGMFOja9hrjszMarW2hhiTxmUm
+         HiiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694597545; x=1695202345;
-        h=in-reply-to:subject:organization:references:cc:to:from
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+tZUfDsffZON1+6soxwcvdsdL95r2Hru59EtJSD67hE=;
-        b=Znv5un2PizbLljh1OWkFhJI8D92otRiHRoC2t8V3LOwZ91K3WPFYCEMTtgt3zkD7Ee
-         UhFlS8iLfvTyVN59/xMYUPyv7PaZ6/P1R1k+g5uVVyiViYJFpxfqI94NzpfKqeSJOB91
-         zZuEAAlDwTClqlWgjUI7Ars/VtTZZU8UxkC93E1An+GSmYdGZLxxFZtk8OjR38jr1dNw
-         NwiYEqUL39aFzz0D5v9UxMQ4A60gU7t5Nv81W/nsGn+WyGJWugFgbbwjq2nKYCpig6Nz
-         PGL+F40PXUkbkF0Dwg50H5uqutP6ajN8QbR+iVqiDNjqp3+x0RzrshHk9oteEb3Uj6JP
-         KaZg==
-X-Gm-Message-State: AOJu0YyKcnCADdfmajPSfozb8lvSP58PWQk2pM6bX8jm5TLa9P/ssjpN
-	FH+rAjlDvJPiJdp9I/EuXUu78Kd+f4y9Xu3WAug=
-X-Google-Smtp-Source: AGHT+IG9RSbMCC43yWvxheq6ds1YO3s0RhmimR7ortLw26za1RvB3n3dTjYZG8e5/hHCcMYn6YOTtw==
-X-Received: by 2002:a05:6512:20c4:b0:4fb:780d:2a49 with SMTP id u4-20020a05651220c400b004fb780d2a49mr1487863lfr.5.1694597544203;
-        Wed, 13 Sep 2023 02:32:24 -0700 (PDT)
-Received: from ?IPV6:2001:700:712:52:baca:3aff:fe92:9517? ([2001:700:712:52:baca:3aff:fe92:9517])
-        by smtp.googlemail.com with ESMTPSA id w4-20020a05651204c400b004ff8631d6c0sm2048333lfq.278.2023.09.13.02.32.23
+        d=1e100.net; s=20230601; t=1694611512; x=1695216312;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=lglml6jqj1b+4qjgXwmHujebMBeJg5AtR8kRhbyFQV8=;
+        b=LDXyBvfUlvD2GanekviAO5t0ZnbZwz5McuUb3n2++wBQKfRZHNj4Vj2elPYn+c0aX+
+         9+dwTiiRl+ApDTo/nBvaRxbSZlrNUBgLbUHgR/ficBAuzjsVh1BHsBmbnEUX55e2t8zq
+         wOVYAnuEiBE1CM9GhQrZhT+RIT5FGsauIbKqTJ67eL/HjSZTbFG5x+kvFRM878cWNQEc
+         hhvcqjefL1yvDxBnelezA+gJnAi8kUGFHXbl56NI9ys9/Q32vUkfRdLWthUXpDc4MDk/
+         KfsE7vBWj6usdVJE4r3/fVXZYvGh3NCCx78k80Pu/pzmO9g5Cd/ipdb5SxFJfJeXH/CE
+         4l3w==
+X-Gm-Message-State: AOJu0YzLWlRhzkO20qPzo3O7jRBqjOBhfwRE+C+dZxlVWyCEHgi2X/Zs
+	af3Vt5DnXRIduYFG/zrwFSWW9xt2eNX+hw==
+X-Google-Smtp-Source: AGHT+IFy/hGABQ1Kce3Xwnn073FpFhHAirxNgPsnn5yOD87gPbswolQ6BKbEAH9m8ytc/PxWVXl5dg==
+X-Received: by 2002:a05:620a:1aa9:b0:76c:e0c5:2f6c with SMTP id bl41-20020a05620a1aa900b0076ce0c52f6cmr2852598qkb.38.1694611511872;
+        Wed, 13 Sep 2023 06:25:11 -0700 (PDT)
+Received: from [192.168.2.208] ([174.93.1.40])
+        by smtp.googlemail.com with ESMTPSA id d9-20020a37c409000000b0076f02a91fa8sm3868498qki.52.2023.09.13.06.25.11
+        for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 02:32:23 -0700 (PDT)
-Message-ID: <48f56f6f-fc6a-e379-d0e5-c983116b46fc@simula.no>
-Date: Wed, 13 Sep 2023 11:32:12 +0200
+        Wed, 13 Sep 2023 06:25:11 -0700 (PDT)
+Message-ID: <c09e857c-3c22-6415-e320-3cfb11207295@gmail.com>
+Date: Wed, 13 Sep 2023 09:25:02 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
 Content-Language: en-US
-From: Thomas Dreibholz <dreibh@simula.no>
 To: usrp-users@lists.ettus.com
 References: <0b554ad0-7aad-e2e3-74e3-8b1c1598a8c8@simula.no>
-Organization: Simula Research Laboratory
-In-Reply-To: <0b554ad0-7aad-e2e3-74e3-8b1c1598a8c8@simula.no>
-Message-ID-Hash: VUOAKWVYCXORXHURLD6OIYVTY2KGLHHR
-X-Message-ID-Hash: VUOAKWVYCXORXHURLD6OIYVTY2KGLHHR
-X-MailFrom: dreibh@simula.no
+ <48f56f6f-fc6a-e379-d0e5-c983116b46fc@simula.no>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <48f56f6f-fc6a-e379-d0e5-c983116b46fc@simula.no>
+Message-ID-Hash: HIMB7KOHE6DCGFOXCN3OARFIJ7UEKK3O
+X-Message-ID-Hash: HIMB7KOHE6DCGFOXCN3OARFIJ7UEKK3O
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: =?UTF-8?Q?Andr=c3=a9s_Felipe_Ocampo_Palacio?= <andres@simula.no>, =?UTF-8?B?VGFyaWsgxIxpxI1pxIc=?= <tarik@simula.no>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: nr-softmodem: reproducible segfault in libuhd with Ettus N310 SDR
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VUOAKWVYCXORXHURLD6OIYVTY2KGLHHR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HIMB7KOHE6DCGFOXCN3OARFIJ7UEKK3O/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0059234255137659477=="
+Content-Type: multipart/mixed; boundary="===============7973649536693501569=="
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0059234255137659477==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------WiQTRW0tjvuydUtjhBVwUFWK"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------WiQTRW0tjvuydUtjhBVwUFWK
-Content-Type: multipart/mixed; boundary="------------gwTY8X3pLjIvBczxDuLqonNc";
- protected-headers="v1"
-From: Thomas Dreibholz <dreibh@simula.no>
-To: usrp-users@lists.ettus.com
-Cc: =?UTF-8?Q?Andr=c3=a9s_Felipe_Ocampo_Palacio?= <andres@simula.no>,
- =?UTF-8?B?VGFyaWsgxIxpxI1pxIc=?= <tarik@simula.no>
-Message-ID: <48f56f6f-fc6a-e379-d0e5-c983116b46fc@simula.no>
-Subject: Re: nr-softmodem: reproducible segfault in libuhd with Ettus N310 SDR
-References: <0b554ad0-7aad-e2e3-74e3-8b1c1598a8c8@simula.no>
-In-Reply-To: <0b554ad0-7aad-e2e3-74e3-8b1c1598a8c8@simula.no>
-
---------------gwTY8X3pLjIvBczxDuLqonNc
+This is a multi-part message in MIME format.
+--===============7973649536693501569==
 Content-Type: multipart/alternative;
- boundary="------------BlDe0Dhw3mufEO8Vu0MIrNZy"
+ boundary="------------6T0mTwOSANdvx5zDbh4FwKw8"
+Content-Language: en-US
 
---------------BlDe0Dhw3mufEO8Vu0MIrNZy
+This is a multi-part message in MIME format.
+--------------6T0mTwOSANdvx5zDbh4FwKw8
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-SGksDQoNCnRoZSBpc3N1ZSBvY2N1cnMgaW4gdGhpcyBjb2RlIChyYWRpby9VU1JQL3VzcnBf
-bGliLmNwcCBvZiBPQUkpLCBpbiB0aGUgDQpyZWQtbWFya2VkIGxpbmUgKGxpbmUgNzU3KToN
-Cg0KIMKgc2FtcGxlc19yZWNlaXZlZD0wOw0Kd2hpbGUoc2FtcGxlc19yZWNlaXZlZCAhPSBu
-c2FtcHMpIHsNCg0KaWYoY2M+MSkgew0KLy8gcmVjZWl2ZSBtdWx0aXBsZSBjaGFubmVscyAo
-ZS5nLiBSRiBBIGFuZCBSRiBCKQ0KIMKgwqDCoMKgwqBzdGQ6OnZlY3Rvcjx2b2lkKj4gYnVm
-Zl9wdHJzOw0KDQpmb3IoaW50aT0wOyBpPGNjOyBpKyspIGJ1ZmZfcHRycy5wdXNoX2JhY2so
-YnVmZl90bXBbaV0rc2FtcGxlc19yZWNlaXZlZCk7DQoqc2FtcGxlc19yZWNlaXZlZCArPSBz
-LT5yeF9zdHJlYW0tPnJlY3YoYnVmZl9wdHJzLCBuc2FtcHMsIHMtPnJ4X21kKTsgKg0KfWVs
-c2V7DQovLyByZWNlaXZlIGEgc2luZ2xlIGNoYW5uZWwgKGUuZy4gZnJvbSBjb25uZWN0b3Ig
-UkYgQSkNCg0KIMKgwqDCoMKgwqBzYW1wbGVzX3JlY2VpdmVkICs9IA0Kcy0+cnhfc3RyZWFt
-LT5yZWN2KCh2b2lkKikoKGludDMyX3QqKWJ1ZmZfdG1wWzBdK3NhbXBsZXNfcmVjZWl2ZWQp
-LA0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBuc2FtcHMtc2FtcGxlc19y
-ZWNlaXZlZCwgDQpzLT5yeF9tZCk7DQp9DQppZsKgKChzLT53YWl0X2Zvcl9maXJzdF9wcHMg
-PT0gMCkgJiYgDQoocy0+cnhfbWQuZXJyb3JfY29kZSE9dWhkOjpyeF9tZXRhZGF0YV90OjpF
-UlJPUl9DT0RFX05PTkUpKQ0KYnJlYWs7DQoNCmlmKChzLT53YWl0X2Zvcl9maXJzdF9wcHMg
-PT0gMSkgJiYgKHNhbXBsZXNfcmVjZWl2ZWQgIT0gbnNhbXBzKSkgew0KIMKgwqDCoMKgwqBw
-cmludGYoInNsZWVwLi4uXG4iKTsgLy91c2xlZXAoMTAwKTsNCn0NCn0NCg0KUmVhZGluZyB0
-aGUgY29kZSwgaXQgc2VlbXMgdG8gYmUgZm9yIHJlYWRpbmcgTiBjaGFubmVscyBhbmQgcmVh
-ZGluZyAxIA0KY2hhbm5lbC4gRm9yIHJlYWRpbmcgMSBjaGFubmVsLCB0aGUgbGVuZ3RoIGdp
-dmVuIHRvIHMtPnJ4X3N0cmVhbS0+cmVjdiANCmlzIG5zYW1wcy1zYW1wbGVzX3JlY2VpdmVk
-LiBIb3dldmVyLCBmb3IgcmVhZGluZyBOIGNoYW5uZWxzLCB0aGUgbGVuZ3RoIA0KaXMgYWx3
-YXlzIG5zYW1wcy4gU2luY2UgdGhlIGJ1ZmZlciBtYXkgaGF2ZSBhbHJlYWR5IGJlZW4gaW5j
-cmVtZW50ZWQgYnkgDQpzYW1wbGVzX3JlY2VpdmVkID4gMCwgdGhpcyBsZWFkcyB0byBvdmVy
-d3JpdGluZyB0aGUgc3RhY2suIFNvLCB0aGlzIGlzIA0KdmVyeSBsaWtlbHkgYSBidWcgaW4g
-bGlidWhkLg0KDQpDaGFuZ2luZyB0aGUgY29kZSBieToNCg0KIMKgwqDCoMKgwqAgZm9yIChp
-bnQgaT0wOyBpPGNjOyBpKyspIA0KYnVmZl9wdHJzLnB1c2hfYmFjayhidWZmX3RtcFtpXStz
-YW1wbGVzX3JlY2VpdmVkKTsNCi0gwqDCoMKgwqDCoHNhbXBsZXNfcmVjZWl2ZWQgKz0gcy0+
-cnhfc3RyZWFtLT5yZWN2KGJ1ZmZfcHRycywgbnNhbXBzLCBzLT5yeF9tZCk7DQorIMKgwqDC
-oMKgwqBzYW1wbGVzX3JlY2VpdmVkICs9IHMtPnJ4X3N0cmVhbS0+cmVjdihidWZmX3B0cnMs
-IA0KbnNhbXBzLXNhbXBsZXNfcmVjZWl2ZWQsIHMtPnJ4X21kKTsNCiDCoMKgwqDCoH0gZWxz
-ZSB7DQoNCmxldHMgbnItc29mdG1vZGVtIHByb2NlZWQgd2l0aG91dCBzZWdmYXVsdC4gQnV0
-IHRoZW4sIGl0IHByaW50cyBhIGxvdCBvZiANCnRoZXNlIGxpbmVzOg0KDQpbUEhZXSDCoMKg
-cnhfcmY6IEFza2VkIGZvciAzMDcyMCBzYW1wbGVzLCBnb3QgMjA5NDEgZnJvbSBVU1JQDQpb
-UEhZXSDCoMKgcHJvYmxlbSByZWNlaXZpbmcgc2FtcGxlcw0KTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTE9bSFdd
-IA0KIMKgwqBbcmVjdl0gcmVjZWl2ZWQgMjA5NDEgc2FtcGxlcyBvdXQgb2YgMzA3MjANCltI
-V10gwqDCoFRpbWU6IDQuMzU4NzUgcw0KRVJST1JfQ09ERV9PVkVSRkxPVyAoT3ZlcmZsb3cp
-DQoNCltQSFldIMKgwqByeF9yZjogQXNrZWQgZm9yIDMwNzIwIHNhbXBsZXMsIGdvdCAyMDk0
-MSBmcm9tIFVTUlANCltQSFldIMKgwqBwcm9ibGVtIHJlY2VpdmluZyBzYW1wbGVzDQpMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMT1tIV10gDQogwqDCoFtyZWN2XSByZWNlaXZlZCAyMDk0MSBzYW1wbGVzIG91
-dCBvZiAzMDcyMA0KW0hXXSDCoMKgVGltZTogNC40MTA1NyBzDQpFUlJPUl9DT0RFX09WRVJG
-TE9XIChPdmVyZmxvdykNCi4uLg0KDQoNCk9uIDkvMTMvMjMgMTA6NTUsIFRob21hcyBEcmVp
-YmhvbHogd3JvdGU6DQo+IEkgYW0gdHJ5aW5nIHRvIGdldCBPQUkncyBuci1zb2Z0bW9kZW0g
-dG8gcnVuIHdpdGggYW4gRXR0dXMgVVJTUCBOMzEwLCANCj4gdXNpbmcgDQo+IHRhcmdldHMv
-UFJPSkVDVFMvR0VORVJJQy1OUi01R0MvQ09ORi9nbmIuYmFuZDc4LnNhLmZyMS4xMDZQUkIu
-MngyLnVzcnBuMzEwLmNvbmYgDQo+IHdpdGgganVzdCBoYXZpbmcgYWRhcHRlZCB0aGUgSVAg
-YWRkcmVzc2VzIG9mIHRoZSBjb3JlIGFuZCBkZXZpY2UuIA0KPiBSZWdhcmRsZXNzIG9mIHRy
-eWluZyB3aXRoIFVIRCA0LjEgdG8gNC40LCBhbmQgcmVnYXJkbGVzcyBvZiB0aGUgdGFncyAN
-Cj4gZm9yIE9BSSB1c2VkIChsYXRlc3QgdHJpZWQ6IDIwMjMudzM2KSwgcnVubmluZyBuci1z
-b2Z0bW9kZW0gDQo+IHJlcHJvZHVjaWJseSBzZWdmYXVsdHMgYWZ0ZXIgYSBmZXcgc2Vjb25k
-cyBpbiBsaWJ1aGQ6IA0KDQotLSANCkJlc3QgcmVnYXJkcyAvIE1pdCBmcmV1bmRsaWNoZW4g
-R3LDvMOfZW4gLyBNZWQgdmVubmxpZyBoaWxzZW4NCg0KPT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCiAg
-VGhvbWFzIERyZWliaG9seg0KDQogIFNpbXVsYU1ldCDigJQgU2ltdWxhIE1ldHJvcG9saXRh
-biBDZW50cmUgZm9yIERpZ2l0YWwgRW5naW5lZXJpbmcNCiAgQ2VudHJlIGZvciBSZXNpbGll
-bnQgTmV0d29ya3MgYW5kIEFwcGxpY2F0aW9ucw0KICBQaWxlc3RyZWRldCA1Mg0KICAwMTY3
-IE9zbG8sIE5vcndheQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCiAgRS1NYWlsOmRyZWliaEBzaW11
-bGEubm8NCiAgSG9tZXBhZ2U6aHR0cDovL3NpbXVsYS5uby9wZW9wbGUvZHJlaWJoDQo9PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PQ0KDQo=
---------------BlDe0Dhw3mufEO8Vu0MIrNZy
+On 13/09/2023 05:32, Thomas Dreibholz wrote:
+> Hi,
+>
+> the issue occurs in this code (radio/USRP/usrp_lib.cpp of OAI), in the=20
+> red-marked line (line 757):
+>
+> =C2=A0samples_received=3D0;
+> while(samples_received !=3D nsamps) {
+>
+> if(cc>1) {
+> // receive multiple channels (e.g. RF A and RF B)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0std::vector<void*> buff_ptrs;
+>
+> for(inti=3D0; i<cc; i++) buff_ptrs.push_back(buff_tmp[i]+samples_receiv=
+ed);
+> *samples_received +=3D s->rx_stream->recv(buff_ptrs, nsamps, s->rx_md);=
+ *
+> }else{
+> // receive a single channel (e.g. from connector RF A)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0samples_received +=3D=20
+> s->rx_stream->recv((void*)((int32_t*)buff_tmp[0]+samples_received),
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0nsamps-samples_received,=20
+> s->rx_md);
+> }
+> if=C2=A0((s->wait_for_first_pps =3D=3D 0) &&=20
+> (s->rx_md.error_code!=3Duhd::rx_metadata_t::ERROR_CODE_NONE))
+> break;
+>
+> if((s->wait_for_first_pps =3D=3D 1) && (samples_received !=3D nsamps)) =
+{
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0printf("sleep...\n"); //usleep(100);
+> }
+> }
+>
+> Reading the code, it seems to be for reading N channels and reading 1=20
+> channel. For reading 1 channel, the length given to s->rx_stream->recv=20
+> is nsamps-samples_received. However, for reading N channels, the=20
+> length is always nsamps. Since the buffer may have already been=20
+> incremented by samples_received > 0, this leads to overwriting the=20
+> stack. So, this is very likely a bug in libuhd.
+>
+> Changing the code by:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (int i=3D0; i<cc; i++)=20
+> buff_ptrs.push_back(buff_tmp[i]+samples_received);
+> - =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0samples_received +=3D s->rx_stream->rec=
+v(buff_ptrs, nsamps,=20
+> s->rx_md);
+> + =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0samples_received +=3D s->rx_stream->rec=
+v(buff_ptrs,=20
+> nsamps-samples_received, s->rx_md);
+> =C2=A0=C2=A0=C2=A0=C2=A0} else {
+>
+> lets nr-softmodem proceed without segfault. But then, it prints a lot=20
+> of these lines:
+>
+> [PHY] =C2=A0=C2=A0rx_rf: Asked for 30720 samples, got 20941 from USRP
+> [PHY] =C2=A0=C2=A0problem receiving samples
+> LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLO[HW=
+]=20
+> =C2=A0=C2=A0[recv] received 20941 samples out of 30720
+> [HW] =C2=A0=C2=A0Time: 4.35875 s
+> ERROR_CODE_OVERFLOW (Overflow)
+>
+> [PHY] =C2=A0=C2=A0rx_rf: Asked for 30720 samples, got 20941 from USRP
+> [PHY] =C2=A0=C2=A0problem receiving samples
+> LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLO[HW=
+]=20
+> =C2=A0=C2=A0[recv] received 20941 samples out of 30720
+> [HW] =C2=A0=C2=A0Time: 4.41057 s
+> ERROR_CODE_OVERFLOW (Overflow)
+> ...
+>
+>
+> On 9/13/23 10:55, Thomas Dreibholz wrote:
+>> I am trying to get OAI's nr-softmodem to run with an Ettus URSP N310,=20
+>> using=20
+>> targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.106PRB.2x2.usrp=
+n310.conf=20
+>> with just having adapted the IP addresses of the core and device.=20
+>> Regardless of trying with UHD 4.1 to 4.4, and regardless of the tags=20
+>> for OAI used (latest tried: 2023.w36), running nr-softmodem=20
+>> reproducibly segfaults after a few seconds in libuhd:=20
+> --=20
+> Best regards / Mit freundlichen Gr=C3=BC=C3=9Fen / Med vennlig hilsen
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>   Thomas Dreibholz
+>
+>   SimulaMet =E2=80=94 Simula Metropolitan Centre for Digital Engineerin=
+g
+>   Centre for Resilient Networks and Applications
+>   Pilestredet 52
+>   0167 Oslo, Norway
+> -----------------------------------------------------------------------
+>   E-Mail:dreibh@simula.no
+>   Homepage:http://simula.no/people/dreibh
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+Unless I'm badly mistaken, this IS NOT a bug in UHD, but rather a bug in=20
+nr-softmodem--it's mis-managing its buffer pointers.
+ =C2=A0 Nothing that UHD can do about that.=C2=A0 C++ doesn't have run-ti=
+me bounds=20
+checking.
+
+
+--------------6T0mTwOSANdvx5zDbh4FwKw8
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWw+DQogIDxoZWFkPg0KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PVVURi04Ij4NCiAgPC9oZWFkPg0KICA8Ym9k
-eT4NCiAgICBIaSw8YnI+DQogICAgPGJyPg0KICAgIHRoZSBpc3N1ZSBvY2N1cnMgaW4gdGhp
-cyBjb2RlIChyYWRpby9VU1JQL3VzcnBfbGliLmNwcCBvZiBPQUkpLCBpbg0KICAgIHRoZSBy
-ZWQtbWFya2VkIGxpbmUgKGxpbmUgNzU3KTo8YnI+DQogICAgPGJyPg0KICAgIDxzcGFuIHN0
-eWxlPSJmb250LWZhbWlseTptb25vc3BhY2UiPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xv
-cjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPsKgc2FtcGxlc19yZWNlaXZl
-ZD08L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMxOGIyYjI7YmFja2dyb3Vu
-ZC1jb2xvcjojZmZmZmZmOyI+MDwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6
-IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij47DQogICAgICA8L3NwYW4+PGJy
-Pg0KICAgICAgwqA8c3Bhbg0KICAgICAgICBzdHlsZT0iZm9udC13ZWlnaHQ6Ym9sZDtjb2xv
-cjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPndoaWxlPC9zcGFuPjxzcGFu
-DQogICAgICAgIHN0eWxlPSJjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZm
-ZjsiPg0KICAgICAgICAoc2FtcGxlc19yZWNlaXZlZCAhPSBuc2FtcHMpIDwvc3Bhbj48c3Bh
-bg0KICAgICAgICBzdHlsZT0iY29sb3I6I2IyMThiMjtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZm
-ZmY7Ij57PC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMDAwMDAwO2JhY2tn
-cm91bmQtY29sb3I6I2ZmZmZmZjsiPg0KICAgICAgPC9zcGFuPjxicj4NCiAgICAgIDxicj4N
-CiAgICAgIMKgwqDCoDxzcGFuDQogICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2Nv
-bG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+aWY8L3NwYW4+PHNwYW4N
-CiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZm
-OyI+IChjYyZndDs8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMxOGIyYjI7
-YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+MTwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHls
-ZT0iY29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4pIDwvc3Bhbj48
-c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6I2IyMThiMjtiYWNrZ3JvdW5kLWNvbG9yOiNm
-ZmZmZmY7Ij57PC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMDAwMDAwO2Jh
-Y2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPg0KICAgICAgPC9zcGFuPjxicj4NCiAgICAgIMKg
-wqDCoMKgwqA8c3BhbiBzdHlsZT0iY29sb3I6IzE4YjIxODtiYWNrZ3JvdW5kLWNvbG9yOiNm
-ZmZmZmY7Ij4vLw0KICAgICAgICByZWNlaXZlIG11bHRpcGxlIGNoYW5uZWxzIChlLmcuIFJG
-IEEgYW5kIFJGIEIpPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMDAwMDAw
-O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPg0KICAgICAgPC9zcGFuPjxicj4NCiAgICAg
-IMKgwqDCoMKgwqBzdGQ6OnZlY3RvciZsdDs8c3Bhbg0KICAgICAgICBzdHlsZT0iZm9udC13
-ZWlnaHQ6Ym9sZDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPnZv
-aWQ8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7YmFja2dyb3Vu
-ZC1jb2xvcjojZmZmZmZmOyI+IComZ3Q7DQogICAgICAgIGJ1ZmZfcHRyczsNCiAgICAgIDwv
-c3Bhbj48YnI+DQogICAgICA8YnI+DQogICAgICDCoMKgwqDCoMKgPHNwYW4NCiAgICAgICAg
-c3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9y
-OiNmZmZmZmY7Ij5mb3I8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAw
-MDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+ICg8L3NwYW4+PHNwYW4NCiAgICAgICAg
-c3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9y
-OiNmZmZmZmY7Ij5pbnQ8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAw
-MDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+IGk9PC9zcGFuPjxzcGFuDQogICAgICAg
-IHN0eWxlPSJjb2xvcjojMThiMmIyO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPjA8L3Nw
-YW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xv
-cjojZmZmZmZmOyI+OyBpJmx0O2NjOyBpKyspDQogICAgICAgIGJ1ZmZfcHRycy5wdXNoX2Jh
-Y2soYnVmZl90bXBbaV0rc2FtcGxlc19yZWNlaXZlZCk7DQogICAgICA8L3NwYW4+PGJyPg0K
-ICAgICAgwqDCoMKgwqDCoDxmb250IGNvbG9yPSIjZmYwMDAwIj48Yj5zYW1wbGVzX3JlY2Vp
-dmVkICs9DQogICAgICAgICAgcy0mZ3Q7cnhfc3RyZWFtLSZndDtyZWN2KGJ1ZmZfcHRycywg
-bnNhbXBzLCBzLSZndDtyeF9tZCk7DQogICAgICAgIDwvYj48L2ZvbnQ+PGJyPg0KICAgICAg
-wqDCoMKgPHNwYW4gc3R5bGU9ImNvbG9yOiNiMjE4YjI7YmFja2dyb3VuZC1jb2xvcjojZmZm
-ZmZmOyI+fTwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtiYWNr
-Z3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJm
-b250LXdlaWdodDpib2xkO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZm
-OyI+ZWxzZTwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtiYWNr
-Z3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJj
-b2xvcjojYjIxOGIyO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPns8L3NwYW4+PHNwYW4N
-CiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZm
-OyI+DQogICAgICA8L3NwYW4+PGJyPg0KICAgICAgwqDCoMKgwqDCoDxzcGFuIHN0eWxlPSJj
-b2xvcjojMThiMjE4O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPi8vDQogICAgICAgIHJl
-Y2VpdmUgYSBzaW5nbGUgY2hhbm5lbCAoZS5nLiBmcm9tIGNvbm5lY3RvciBSRiBBKTwvc3Bh
-bj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9y
-OiNmZmZmZmY7Ij4NCiAgICAgIDwvc3Bhbj48YnI+DQogICAgICA8YnI+DQogICAgICDCoMKg
-wqDCoMKgc2FtcGxlc19yZWNlaXZlZCArPSBzLSZndDtyeF9zdHJlYW0tJmd0O3JlY3YoKDxz
-cGFuDQogICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2NvbG9yOiMwMDAwMDA7YmFj
-a2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+dm9pZDwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHls
-ZT0iY29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4qKSgoaW50MzJf
-dCopYnVmZl90bXBbPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMThiMmIy
-O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPjA8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5
-bGU9ImNvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+XStzYW1wbGVz
-X3JlY2VpdmVkKSwNCiAgICAgIDwvc3Bhbj48YnI+DQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgbnNhbXBzLXNhbXBsZXNfcmVjZWl2ZWQsDQogICAgICBzLSZndDtyeF9t
-ZCk7DQogICAgICA8YnI+DQogICAgICDCoMKgwqA8c3BhbiBzdHlsZT0iY29sb3I6I2IyMThi
-MjtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij59PC9zcGFuPjxzcGFuDQogICAgICAgIHN0
-eWxlPSJjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPg0KICAgICAg
-PC9zcGFuPjxicj4NCiAgICAgIMKgwqDCoDxzcGFuDQogICAgICAgIHN0eWxlPSJmb250LXdl
-aWdodDpib2xkO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+aWY8
-L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1j
-b2xvcjojZmZmZmZmOyI+DQogICAgICAgIMKgKChzLSZndDt3YWl0X2Zvcl9maXJzdF9wcHMg
-PT0gPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMThiMmIyO2JhY2tncm91
-bmQtY29sb3I6I2ZmZmZmZjsiPjA8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9y
-OiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+KSAmYW1wOyZhbXA7DQogICAg
-ICAgIChzLSZndDtyeF9tZC5lcnJvcl9jb2RlIT11aGQ6OnJ4X21ldGFkYXRhX3Q6OkVSUk9S
-X0NPREVfTk9ORSkpDQogICAgICA8L3NwYW4+PGJyPg0KICAgICAgwqDCoMKgwqDCoDxzcGFu
-DQogICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2NvbG9yOiMwMDAwMDA7YmFja2dy
-b3VuZC1jb2xvcjojZmZmZmZmOyI+YnJlYWs8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9
-ImNvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+Ow0KICAgICAgPC9z
-cGFuPjxicj4NCiAgICAgIDxicj4NCiAgICAgIMKgwqDCoDxzcGFuDQogICAgICAgIHN0eWxl
-PSJmb250LXdlaWdodDpib2xkO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZm
-ZmZmOyI+aWY8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7YmFj
-a2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+DQogICAgICAgICgocy0mZ3Q7d2FpdF9mb3JfZmly
-c3RfcHBzID09IDwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6IzE4YjJiMjti
-YWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4xPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxl
-PSJjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPikgJmFtcDsmYW1w
-Ow0KICAgICAgICAoc2FtcGxlc19yZWNlaXZlZCAhPSBuc2FtcHMpKSA8L3NwYW4+PHNwYW4N
-CiAgICAgICAgc3R5bGU9ImNvbG9yOiNiMjE4YjI7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZm
-OyI+ezwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtiYWNrZ3Jv
-dW5kLWNvbG9yOiNmZmZmZmY7Ij4NCiAgICAgIDwvc3Bhbj48YnI+DQogICAgICDCoMKgwqDC
-oMKgcHJpbnRmKDxzcGFuIHN0eWxlPSJjb2xvcjojMThiMmIyO2JhY2tncm91bmQtY29sb3I6
-I2ZmZmZmZjsiPiJzbGVlcC4uLjwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0iZm9udC13
-ZWlnaHQ6Ym9sZDtjb2xvcjojNTRmZmZmO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPlxu
-PC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMThiMmIyO2JhY2tncm91bmQt
-Y29sb3I6I2ZmZmZmZjsiPiI8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMw
-MDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+KTsgPC9zcGFuPjxzcGFuDQogICAg
-ICAgIHN0eWxlPSJjb2xvcjojMThiMjE4O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPi8v
-dXNsZWVwKDEwMCk7PC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMDAwMDAw
-O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPg0KICAgICAgPC9zcGFuPjxicj4NCiAgICAg
-IMKgwqDCoDxzcGFuIHN0eWxlPSJjb2xvcjojYjIxOGIyO2JhY2tncm91bmQtY29sb3I6I2Zm
-ZmZmZjsiPn08L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7YmFj
-a2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+DQogICAgICA8L3NwYW4+PGJyPg0KICAgICAgwqA8
-c3BhbiBzdHlsZT0iY29sb3I6I2IyMThiMjtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij59
-PC9zcGFuPjxicj4NCiAgICAgIDxzcGFuIHN0eWxlPSJjb2xvcjojMDAwMDAwO2JhY2tncm91
-bmQtY29sb3I6I2ZmZmZmZjsiPg0KICAgICAgPC9zcGFuPjwvc3Bhbj48YnI+DQogICAgUmVh
-ZGluZyB0aGUgY29kZSwgaXQgc2VlbXMgdG8gYmUgZm9yIHJlYWRpbmcgTiBjaGFubmVscyBh
-bmQgcmVhZGluZw0KICAgIDEgY2hhbm5lbC4gRm9yIHJlYWRpbmcgMSBjaGFubmVsLCB0aGUg
-bGVuZ3RoIGdpdmVuIHRvDQogICAgcy0mZ3Q7cnhfc3RyZWFtLSZndDtyZWN2IGlzIG5zYW1w
-cy1zYW1wbGVzX3JlY2VpdmVkLiBIb3dldmVyLCBmb3INCiAgICByZWFkaW5nIE4gY2hhbm5l
-bHMsIHRoZSBsZW5ndGggaXMgYWx3YXlzIG5zYW1wcy4gU2luY2UgdGhlIGJ1ZmZlcg0KICAg
-IG1heSBoYXZlIGFscmVhZHkgYmVlbiBpbmNyZW1lbnRlZCBieSBzYW1wbGVzX3JlY2VpdmVk
-ICZndDsgMCwgdGhpcw0KICAgIGxlYWRzIHRvIG92ZXJ3cml0aW5nIHRoZSBzdGFjay4gU28s
-IHRoaXMgaXMgdmVyeSBsaWtlbHkgYSBidWcgaW4NCiAgICBsaWJ1aGQuPGJyPg0KICAgIDxi
-cj4NCiAgICBDaGFuZ2luZyB0aGUgY29kZSBieTo8YnI+DQogICAgPGJyPg0KICAgIDxzcGFu
-IHN0eWxlPSJmb250LWZhbWlseTptb25vc3BhY2UiPjxzcGFuDQogICAgICAgIHN0eWxlPSJj
-b2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPiDCoMKgwqDCoMKgIGZv
-ciAoaW50DQogICAgICAgIGk9MDsgaSZsdDtjYzsgaSsrKQ0KICAgICAgICBidWZmX3B0cnMu
-cHVzaF9iYWNrKGJ1ZmZfdG1wW2ldK3NhbXBsZXNfcmVjZWl2ZWQpOw0KICAgICAgPC9zcGFu
-Pjxicj4NCiAgICAgIDxzcGFuIHN0eWxlPSJjb2xvcjojYjIxODE4O2JhY2tncm91bmQtY29s
-b3I6I2ZmZmZmZjsiPi0NCiAgICAgICAgwqDCoMKgwqDCoHNhbXBsZXNfcmVjZWl2ZWQgKz0g
-cy0mZ3Q7cnhfc3RyZWFtLSZndDtyZWN2KGJ1ZmZfcHRycywNCiAgICAgICAgbnNhbXBzLCBz
-LSZndDtyeF9tZCk7PC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMDAwMDAw
-O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPg0KICAgICAgPC9zcGFuPjxicj4NCiAgICAg
-IDxzcGFuIHN0eWxlPSJjb2xvcjojMThiMjE4O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsi
-PisNCiAgICAgICAgwqDCoMKgwqDCoHNhbXBsZXNfcmVjZWl2ZWQgKz0gcy0mZ3Q7cnhfc3Ry
-ZWFtLSZndDtyZWN2KGJ1ZmZfcHRycywNCiAgICAgICAgbnNhbXBzLXNhbXBsZXNfcmVjZWl2
-ZWQsIHMtJmd0O3J4X21kKTs8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMw
-MDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+DQogICAgICA8L3NwYW4+PGJyPg0K
-ICAgICAgwqDCoMKgwqB9IGVsc2Ugezxicj4NCiAgICAgIDxicj4NCiAgICA8L3NwYW4+bGV0
-cyBuci1zb2Z0bW9kZW0gcHJvY2VlZCB3aXRob3V0IHNlZ2ZhdWx0LiBCdXQgdGhlbiwgaXQN
-CiAgICBwcmludHMgYSBsb3Qgb2YgdGhlc2UgbGluZXM6PGJyPg0KICAgIDxicj4NCiAgICA8
-c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6bW9ub3NwYWNlIj48c3Bhbg0KICAgICAgICBzdHls
-ZT0iZm9udC13ZWlnaHQ6Ym9sZDtjb2xvcjojZmY1NDU0O2JhY2tncm91bmQtY29sb3I6I2Zm
-ZmZmZjsiPltQSFldDQogICAgICAgIMKgwqByeF9yZjogQXNrZWQgZm9yIDMwNzIwIHNhbXBs
-ZXMsIGdvdCAyMDk0MSBmcm9tIFVTUlA8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNv
-bG9yOiNiMjE4MTg7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+DQrCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJjb2xvcjojMDAw
-MDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPsKgPC9zcGFuPjxicj4NCiAgICAgIDxz
-cGFuDQogICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2NvbG9yOiNmZjU0NTQ7YmFj
-a2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+W1BIWV0NCiAgICAgICAgwqDCoHByb2JsZW0gcmVj
-ZWl2aW5nIHNhbXBsZXM8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiNiMjE4
-MTg7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+DQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoDwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtiYWNrZ3Jv
-dW5kLWNvbG9yOiNmZmZmZmY7Ij7CoDwvc3Bhbj48YnI+DQpMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTzxzcGFu
-DQogICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2NvbG9yOiNmZjU0NTQ7YmFja2dy
-b3VuZC1jb2xvcjojZmZmZmZmOyI+W0hXXQ0KICAgICAgICDCoMKgW3JlY3ZdIHJlY2VpdmVk
-IDIwOTQxIHNhbXBsZXMgb3V0IG9mIDMwNzIwPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxl
-PSJjb2xvcjojYjIxODE4O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPg0KwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqA8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7
-YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+wqA8L3NwYW4+PGJyPg0KICAgICAgPHNwYW4N
-CiAgICAgICAgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Y29sb3I6I2ZmNTQ1NDtiYWNrZ3Jv
-dW5kLWNvbG9yOiNmZmZmZmY7Ij5bSFddDQogICAgICAgIMKgwqBUaW1lOiA0LjM1ODc1IHM8
-L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiNiMjE4MTg7YmFja2dyb3VuZC1j
-b2xvcjojZmZmZmZmOyI+DQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqA8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7
-YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+wqA8L3NwYW4+PGJyPg0KICAgICAgPHNwYW4N
-CiAgICAgICAgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Y29sb3I6I2ZmNTQ1NDtiYWNrZ3Jv
-dW5kLWNvbG9yOiNmZmZmZmY7Ij5FUlJPUl9DT0RFX09WRVJGTE9XDQogICAgICAgIChPdmVy
-Zmxvdyk8L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiNiMjE4MTg7YmFja2dy
-b3VuZC1jb2xvcjojZmZmZmZmOyI+DQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oDwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5k
-LWNvbG9yOiNmZmZmZmY7Ij7CoDwvc3Bhbj48YnI+DQogICAgICA8c3BhbiBzdHlsZT0iY29s
-b3I6I2IyMTgxODtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4NCsKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPC9zcGFuPjxzcGFuDQogICAgICAgIHN0eWxlPSJj
-b2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPsKgPC9zcGFuPjxicj4N
-CiAgICAgIDxzcGFuDQogICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2NvbG9yOiNm
-ZjU0NTQ7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+W1BIWV0NCiAgICAgICAgwqDCoHJ4
-X3JmOiBBc2tlZCBmb3IgMzA3MjAgc2FtcGxlcywgZ290IDIwOTQxIGZyb20gVVNSUDwvc3Bh
-bj48c3Bhbg0KICAgICAgICBzdHlsZT0iY29sb3I6I2IyMTgxODtiYWNrZ3JvdW5kLWNvbG9y
-OiNmZmZmZmY7Ij4NCsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA8L3NwYW4+PHNwYW4N
-CiAgICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZm
-OyI+wqA8L3NwYW4+PGJyPg0KICAgICAgPHNwYW4NCiAgICAgICAgc3R5bGU9ImZvbnQtd2Vp
-Z2h0OmJvbGQ7Y29sb3I6I2ZmNTQ1NDtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5bUEhZ
-XQ0KICAgICAgICDCoMKgcHJvYmxlbSByZWNlaXZpbmcgc2FtcGxlczwvc3Bhbj48c3Bhbg0K
-ICAgICAgICBzdHlsZT0iY29sb3I6I2IyMTgxODtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7
-Ij4NCsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPC9zcGFuPjxzcGFuDQogICAgICAgIHN0
-eWxlPSJjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPsKgPC9zcGFu
-Pjxicj4NCkxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExPPHNwYW4NCiAgICAgICAgc3R5bGU9ImZvbnQtd2VpZ2h0
-OmJvbGQ7Y29sb3I6I2ZmNTQ1NDtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5bSFddDQog
-ICAgICAgIMKgwqBbcmVjdl0gcmVjZWl2ZWQgMjA5NDEgc2FtcGxlcyBvdXQgb2YgMzA3MjA8
-L3NwYW4+PHNwYW4NCiAgICAgICAgc3R5bGU9ImNvbG9yOiNiMjE4MTg7YmFja2dyb3VuZC1j
-b2xvcjojZmZmZmZmOyI+DQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDwvc3Bhbj48c3Bhbg0KICAg
-ICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij7C
-oDwvc3Bhbj48YnI+DQogICAgICA8c3Bhbg0KICAgICAgICBzdHlsZT0iZm9udC13ZWlnaHQ6
-Ym9sZDtjb2xvcjojZmY1NDU0O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPltIV10NCiAg
-ICAgICAgwqDCoFRpbWU6IDQuNDEwNTcgczwvc3Bhbj48c3Bhbg0KICAgICAgICBzdHlsZT0i
-Y29sb3I6I2IyMTgxODtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4NCsKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDwvc3Bhbj48c3Bhbg0KICAg
-ICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij7C
-oDwvc3Bhbj48YnI+DQogICAgICA8c3Bhbg0KICAgICAgICBzdHlsZT0iZm9udC13ZWlnaHQ6
-Ym9sZDtjb2xvcjojZmY1NDU0O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPkVSUk9SX0NP
-REVfT1ZFUkZMT1cNCiAgICAgICAgKE92ZXJmbG93KTwvc3Bhbj48c3Bhbg0KICAgICAgICBz
-dHlsZT0iY29sb3I6I2IyMTgxODtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4NCsKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPC9zcGFuPjxicj4NCiAgICA8L3NwYW4+Li4u
-PGJyPg0KICAgIDxicj4NCiAgICA8YnI+DQogICAgPGRpdiBjbGFzcz0ibW96LWNpdGUtcHJl
-Zml4Ij5PbiA5LzEzLzIzIDEwOjU1LCBUaG9tYXMgRHJlaWJob2x6DQogICAgICB3cm90ZTo8
-YnI+DQogICAgPC9kaXY+DQogICAgPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSINCiAgICAgIGNp
-dGU9Im1pZDowYjU1NGFkMC03YWFkLWUyZTMtNzRlMy04YjFjMTU5OGE4YzhAc2ltdWxhLm5v
-Ij4NCiAgICAgIDxtZXRhIGh0dHAtZXF1aXY9ImNvbnRlbnQtdHlwZSIgY29udGVudD0idGV4
-dC9odG1sOyBjaGFyc2V0PVVURi04Ij4NCiAgICAgIEkgYW0gdHJ5aW5nIHRvIGdldCBPQUkn
-cyBuci1zb2Z0bW9kZW0gdG8gcnVuIHdpdGggYW4gRXR0dXMgVVJTUA0KICAgICAgTjMxMCwg
-dXNpbmcNCnRhcmdldHMvUFJPSkVDVFMvR0VORVJJQy1OUi01R0MvQ09ORi9nbmIuYmFuZDc4
-LnNhLmZyMS4xMDZQUkIuMngyLnVzcnBuMzEwLmNvbmYNCiAgICAgIHdpdGgganVzdCBoYXZp
-bmcgYWRhcHRlZCB0aGUgSVAgYWRkcmVzc2VzIG9mIHRoZSBjb3JlIGFuZCBkZXZpY2UuDQog
-ICAgICBSZWdhcmRsZXNzIG9mIHRyeWluZyB3aXRoIFVIRCA0LjEgdG8gNC40LCBhbmQgcmVn
-YXJkbGVzcyBvZiB0aGUNCiAgICAgIHRhZ3MgZm9yIE9BSSB1c2VkIChsYXRlc3QgdHJpZWQ6
-IDIwMjMudzM2KSwgcnVubmluZyBuci1zb2Z0bW9kZW0NCiAgICAgIHJlcHJvZHVjaWJseSBz
-ZWdmYXVsdHMgYWZ0ZXIgYSBmZXcgc2Vjb25kcyBpbiBsaWJ1aGQ6IDwvYmxvY2txdW90ZT4N
-CiAgICA8cHJlIGNsYXNzPSJtb3otc2lnbmF0dXJlIiBjb2xzPSI3MiI+LS0gDQpCZXN0IHJl
-Z2FyZHMgLyBNaXQgZnJldW5kbGljaGVuIEdyw7zDn2VuIC8gTWVkIHZlbm5saWcgaGlsc2Vu
-DQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09DQogVGhvbWFzIERyZWliaG9seg0KDQogU2ltdWxhTWV0
-IOKAlCBTaW11bGEgTWV0cm9wb2xpdGFuIENlbnRyZSBmb3IgRGlnaXRhbCBFbmdpbmVlcmlu
-Zw0KIENlbnRyZSBmb3IgUmVzaWxpZW50IE5ldHdvcmtzIGFuZCBBcHBsaWNhdGlvbnMNCiBQ
-aWxlc3RyZWRldCA1Mg0KIDAxNjcgT3NsbywgTm9yd2F5DQotLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
-IEUtTWFpbDogICAgIDxhIGNsYXNzPSJtb3otdHh0LWxpbmstYWJicmV2aWF0ZWQiIGhyZWY9
-Im1haWx0bzpkcmVpYmhAc2ltdWxhLm5vIj5kcmVpYmhAc2ltdWxhLm5vPC9hPg0KIEhvbWVw
-YWdlOiAgIDxhIGNsYXNzPSJtb3otdHh0LWxpbmstZnJlZXRleHQiIGhyZWY9Imh0dHA6Ly9z
-aW11bGEubm8vcGVvcGxlL2RyZWliaCI+aHR0cDovL3NpbXVsYS5uby9wZW9wbGUvZHJlaWJo
-PC9hPg0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT08L3ByZT4NCiAgPC9ib2R5Pg0KPC9odG1sPg0K
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 13/09/2023 05:32, Thomas Dreibholz
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:48f56f6f-fc6a-e379-d0e5-c983116b46fc@simula.no">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      Hi,<br>
+      <br>
+      the issue occurs in this code (radio/USRP/usrp_lib.cpp of OAI), in
+      the red-marked line (line 757):<br>
+      <br>
+      <span style=3D"font-family:monospace"><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0samples=
+_received=3D</span><span
+          style=3D"color:#18b2b2;background-color:#ffffff;">0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">; </span><br>
+        =C2=A0<span
+          style=3D"font-weight:bold;color:#000000;background-color:#fffff=
+f;">while</span><span
+          style=3D"color:#000000;background-color:#ffffff;">
+          (samples_received !=3D nsamps) </span><span
+          style=3D"color:#b218b2;background-color:#ffffff;">{</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        <br>
+        =C2=A0=C2=A0=C2=A0<span
+          style=3D"font-weight:bold;color:#000000;background-color:#fffff=
+f;">if</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> (cc&gt;</spa=
+n><span
+          style=3D"color:#18b2b2;background-color:#ffffff;">1</span><span
+          style=3D"color:#000000;background-color:#ffffff;">) </span><spa=
+n
+          style=3D"color:#b218b2;background-color:#ffffff;">{</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b218;backgr=
+ound-color:#ffffff;">//
+          receive multiple channels (e.g. RF A and RF B)</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0std::vector&lt;<span
+          style=3D"font-weight:bold;color:#000000;background-color:#fffff=
+f;">void</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> *&gt;
+          buff_ptrs; </span><br>
+        <br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span
+          style=3D"font-weight:bold;color:#000000;background-color:#fffff=
+f;">for</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> (</span><spa=
+n
+style=3D"font-weight:bold;color:#000000;background-color:#ffffff;">int</s=
+pan><span
+          style=3D"color:#000000;background-color:#ffffff;"> i=3D</span><=
+span
+          style=3D"color:#18b2b2;background-color:#ffffff;">0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">; i&lt;cc;
+          i++) buff_ptrs.push_back(buff_tmp[i]+samples_received); </span>=
+<br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<font color=3D"#ff0000"><b>samples_=
+received +=3D
+            s-&gt;rx_stream-&gt;recv(buff_ptrs, nsamps, s-&gt;rx_md); </b=
+></font><br>
+        =C2=A0=C2=A0=C2=A0<span style=3D"color:#b218b2;background-color:#=
+ffffff;">}</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><span
+style=3D"font-weight:bold;color:#000000;background-color:#ffffff;">else</=
+span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><span
+          style=3D"color:#b218b2;background-color:#ffffff;">{</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span style=3D"color:#18b218;backgr=
+ound-color:#ffffff;">//
+          receive a single channel (e.g. from connector RF A)</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        <br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0samples_received +=3D s-&gt;rx_stre=
+am-&gt;recv((<span
+          style=3D"font-weight:bold;color:#000000;background-color:#fffff=
+f;">void</span><span
+          style=3D"color:#000000;background-color:#ffffff;">*)((int32_t*)=
+buff_tmp[</span><span
+          style=3D"color:#18b2b2;background-color:#ffffff;">0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">]+samples_rec=
+eived),
+        </span><br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0nsamps-samples_received,
+        s-&gt;rx_md); <br>
+        =C2=A0=C2=A0=C2=A0<span style=3D"color:#b218b2;background-color:#=
+ffffff;">}</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        =C2=A0=C2=A0=C2=A0<span
+          style=3D"font-weight:bold;color:#000000;background-color:#fffff=
+f;">if</span><span
+          style=3D"color:#000000;background-color:#ffffff;">
+          =C2=A0((s-&gt;wait_for_first_pps =3D=3D </span><span
+          style=3D"color:#18b2b2;background-color:#ffffff;">0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">) &amp;&amp;
+          (s-&gt;rx_md.error_code!=3Duhd::rx_metadata_t::ERROR_CODE_NONE)=
+)
+        </span><br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span
+          style=3D"font-weight:bold;color:#000000;background-color:#fffff=
+f;">break</span><span
+          style=3D"color:#000000;background-color:#ffffff;">; </span><br>
+        <br>
+        =C2=A0=C2=A0=C2=A0<span
+          style=3D"font-weight:bold;color:#000000;background-color:#fffff=
+f;">if</span><span
+          style=3D"color:#000000;background-color:#ffffff;">
+          ((s-&gt;wait_for_first_pps =3D=3D </span><span
+          style=3D"color:#18b2b2;background-color:#ffffff;">1</span><span
+          style=3D"color:#000000;background-color:#ffffff;">) &amp;&amp;
+          (samples_received !=3D nsamps)) </span><span
+          style=3D"color:#b218b2;background-color:#ffffff;">{</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0printf(<span
+          style=3D"color:#18b2b2;background-color:#ffffff;">"sleep...</sp=
+an><span
+style=3D"font-weight:bold;color:#54ffff;background-color:#ffffff;">\n</sp=
+an><span
+          style=3D"color:#18b2b2;background-color:#ffffff;">"</span><span
+          style=3D"color:#000000;background-color:#ffffff;">); </span><sp=
+an
+          style=3D"color:#18b218;background-color:#ffffff;">//usleep(100)=
+;</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        =C2=A0=C2=A0=C2=A0<span style=3D"color:#b218b2;background-color:#=
+ffffff;">}</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        =C2=A0<span style=3D"color:#b218b2;background-color:#ffffff;">}</=
+span><br>
+        <span style=3D"color:#000000;background-color:#ffffff;"> </span><=
+/span><br>
+      Reading the code, it seems to be for reading N channels and
+      reading 1 channel. For reading 1 channel, the length given to
+      s-&gt;rx_stream-&gt;recv is nsamps-samples_received. However, for
+      reading N channels, the length is always nsamps. Since the buffer
+      may have already been incremented by samples_received &gt; 0, this
+      leads to overwriting the stack. So, this is very likely a bug in
+      libuhd.<br>
+      <br>
+      Changing the code by:<br>
+      <br>
+      <span style=3D"font-family:monospace"><span
+          style=3D"color:#000000;background-color:#ffffff;"> =C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 for
+          (int i=3D0; i&lt;cc; i++)
+          buff_ptrs.push_back(buff_tmp[i]+samples_received); </span><br>
+        <span style=3D"color:#b21818;background-color:#ffffff;">-
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0samples_received +=3D s-&gt;rx_st=
+ream-&gt;recv(buff_ptrs,
+          nsamps, s-&gt;rx_md);</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        <span style=3D"color:#18b218;background-color:#ffffff;">+
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0samples_received +=3D s-&gt;rx_st=
+ream-&gt;recv(buff_ptrs,
+          nsamps-samples_received, s-&gt;rx_md);</span><span
+          style=3D"color:#000000;background-color:#ffffff;"> </span><br>
+        =C2=A0=C2=A0=C2=A0=C2=A0} else {<br>
+        <br>
+      </span>lets nr-softmodem proceed without segfault. But then, it
+      prints a lot of these lines:<br>
+      <br>
+      <span style=3D"font-family:monospace"><span
+          style=3D"font-weight:bold;color:#ff5454;background-color:#fffff=
+f;">[PHY]
+          =C2=A0=C2=A0rx_rf: Asked for 30720 samples, got 20941 from USRP=
+</span><span
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+        <span
+          style=3D"font-weight:bold;color:#ff5454;background-color:#fffff=
+f;">[PHY]
+          =C2=A0=C2=A0problem receiving samples</span><span
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLO<span
+style=3D"font-weight:bold;color:#ff5454;background-color:#ffffff;">[HW]
+          =C2=A0=C2=A0[recv] received 20941 samples out of 30720</span><s=
+pan
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+        <span
+          style=3D"font-weight:bold;color:#ff5454;background-color:#fffff=
+f;">[HW]
+          =C2=A0=C2=A0Time: 4.35875 s</span><span
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+        <span
+          style=3D"font-weight:bold;color:#ff5454;background-color:#fffff=
+f;">ERROR_CODE_OVERFLOW
+          (Overflow)</span><span
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+        <span style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+        <span
+          style=3D"font-weight:bold;color:#ff5454;background-color:#fffff=
+f;">[PHY]
+          =C2=A0=C2=A0rx_rf: Asked for 30720 samples, got 20941 from USRP=
+</span><span
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+        <span
+          style=3D"font-weight:bold;color:#ff5454;background-color:#fffff=
+f;">[PHY]
+          =C2=A0=C2=A0problem receiving samples</span><span
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLO<span
+style=3D"font-weight:bold;color:#ff5454;background-color:#ffffff;">[HW]
+          =C2=A0=C2=A0[recv] received 20941 samples out of 30720</span><s=
+pan
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+        <span
+          style=3D"font-weight:bold;color:#ff5454;background-color:#fffff=
+f;">[HW]
+          =C2=A0=C2=A0Time: 4.41057 s</span><span
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0</span><span
+          style=3D"color:#000000;background-color:#ffffff;">=C2=A0</span>=
+<br>
+        <span
+          style=3D"font-weight:bold;color:#ff5454;background-color:#fffff=
+f;">ERROR_CODE_OVERFLOW
+          (Overflow)</span><span
+          style=3D"color:#b21818;background-color:#ffffff;">
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><br>
+      </span>...<br>
+      <br>
+      <br>
+      <div class=3D"moz-cite-prefix">On 9/13/23 10:55, Thomas Dreibholz
+        wrote:<br>
+      </div>
+      <blockquote type=3D"cite"
+        cite=3D"mid:0b554ad0-7aad-e2e3-74e3-8b1c1598a8c8@simula.no">
+        <meta http-equiv=3D"content-type" content=3D"text/html;
+          charset=3DUTF-8">
+        I am trying to get OAI's nr-softmodem to run with an Ettus URSP
+        N310, using
+targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.106PRB.2x2.usrpn31=
+0.conf
+        with just having adapted the IP addresses of the core and
+        device. Regardless of trying with UHD 4.1 to 4.4, and regardless
+        of the tags for OAI used (latest tried: 2023.w36), running
+        nr-softmodem reproducibly segfaults after a few seconds in
+        libuhd: </blockquote>
+      <pre class=3D"moz-signature" cols=3D"72">--=20
+Best regards / Mit freundlichen Gr=C3=BC=C3=9Fen / Med vennlig hilsen
 
---------------BlDe0Dhw3mufEO8Vu0MIrNZy--
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ Thomas Dreibholz
 
---------------gwTY8X3pLjIvBczxDuLqonNc--
+ SimulaMet =E2=80=94 Simula Metropolitan Centre for Digital Engineering
+ Centre for Resilient Networks and Applications
+ Pilestredet 52
+ 0167 Oslo, Norway
+-----------------------------------------------------------------------
+ E-Mail:     <a class=3D"moz-txt-link-abbreviated moz-txt-link-freetext" =
+href=3D"mailto:dreibh@simula.no" moz-do-not-send=3D"true">dreibh@simula.n=
+o</a>
+ Homepage:   <a class=3D"moz-txt-link-freetext" href=3D"http://simula.no/=
+people/dreibh" moz-do-not-send=3D"true">http://simula.no/people/dreibh</a=
+>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</pre>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    Unless I'm badly mistaken, this IS NOT a bug in UHD, but rather a
+    bug in nr-softmodem--it's mis-managing its buffer pointers.<br>
+    =C2=A0 Nothing that UHD can do about that.=C2=A0 C++ doesn't have run=
+-time
+    bounds checking.<br>
+    <br>
+    <br>
+  </body>
+</html>
 
---------------WiQTRW0tjvuydUtjhBVwUFWK
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+--------------6T0mTwOSANdvx5zDbh4FwKw8--
 
------BEGIN PGP SIGNATURE-----
-
-wsd5BAABCAAjFiEEIUEmclGNiy0YYu/vXNXRKqCHe0kFAmUBgZwFAwAAAAAACgkQXNXRKqCHe0mf
-Vj/+J1NVsmiQtm2usa+u42SZUVymMj6rnXI8+zpELnDsLzI3gKyVkM1sBTkjAc9l69Y6W1qhkqbK
-vrnFqpE9BlYCGqvd9kWVLdXMOaxNz/umj5Kp+2DiiuEUOGSa3p/cseH+9KZEOpfOQVhYcv7VdXHH
-gTGJca4gN31bVBDi2fFiN3uQM9OuKJmLFx1y5dKMXOh+778nDqJItkjAo6NwfsO6hINh+mebRyrK
-l5IBS3Uz4TK0vEzMHhg92LAUOFqjDejoP0F32N0M3UqwFC0+JOmifyszZ4fZXvqZV9hE6P2171fS
-aQjjG7j0ZDBxkvaC1cuhv889og05H2OFJWeBqPlkxUzkXkW7zewXw6N2hJ5ePImvbm2UD8FJAbnw
-mp7K+8ZO6KC1dW9sf/KSWZ4dZpjYHyG4alf4Raev0PA7CwV0qUcrECBk0SS7HzUqMAQYcL5Usjqq
-S5C0GTK4+/SE+G5WRlW0/1DyyTNTSPvsC0LeD6UrUpQMmfnEZd664mEox5zeGKLKogeyjypEonhX
-Y676Z5U5JOJjsQYwNHRbAdZSK4YoXkLwU+9hmqRXrHo5FUDdG0OPeEJ8bS/DkVF68EuNK8MaiCw0
-vTFvzUKuIHetQmIqayugWUpV9G0xWTCJpBLhhKVJFl96XQgZqF/dAy63sim2RK1EYY3Ab5Rbs7bR
-zGnTFIGr0fk/befPMcTJFcL/41HeMqq82v4tQxzKYteVL2tG8tn4D+J2hK6PGS++uLBc44TUGiI9
-dU78zXWkVPk7ZhHaZ78P5qAWzCPBsHUSiOhQfnpFiiarAnTm7NMJK6d3gBocOC8wuWURhULnSVJl
-32FQhCrjLifZnxQyB/rw7uX533eIxh3RnKakU+xYuo1yB9jSLxncR/+EF4dzRa2xps8kzMfnnggf
-HwdP5bGSHpRKru0K1eCm9DumheZcW00Z9UkwCAJRSkk6e28xs9w9ivp3Mjn+3LjwdZ+7a8oUraTj
-9RW2sUtIUuJwB8bi0VVHqdDnwIoFC++nah62O6O55II41TSARHO2q0iZPyAUx4AIJKS8pS3jwklJ
-UqQtHwKNdnE5cPUU4hIeEkg6Xu/d8UbrBB9yI8n541DtQQiYnXcIWsf3sKuOPAnkAr0wLaz3XRho
-VuW7bEhgDB6+lqmT1xV4nwasvICGQ0MosiCrNhPRKy0k50Wis4F4C8nE++9z+62AvJNueGEOKXlU
-lJrB37Ena3C0aCY6aRYi8FJEPButIKKdk8h2ea7PVWwDYwUei0DtlbopDFtMhj95umWf3GS/4oKT
-diYRlAvE5TtOxvELbIPsIzAej9kd+BP3iBeEBcH419QUr+sh2E1JOdIQSNBcmIVWQ8XLiOq8gShC
-SbkuV9xC59MpCrUAXYC3W678c9MMB5vAi6swswi451d2KlXMAfGIqqG+UWo/htjMcgey7D1CLXl5
-JIEtHd1nT0upIoWlfwzqO5jOoi6FUiW1m2uY//xJnWvgIlbxX/MEjYaNDGE7y+GG4oatPZ0jmVBO
-rFVcljDUpyJLbyepA5dywmqbZ05GaotsGd0bspVMiyjT/UDAgqNyrDxklLEJaXGq6QI4qtcGSLOB
-0UtstP64Gg3eSzrHMpQD+Gy2efx48JzA7/80Ig5yNClaNwNwr+sIHOnxON8PwpO7nN51EmFhDdMm
-Np1X01CNqcuDD3EsPCj8uOMjyOuM3DU5Doc1NsoXdAbvEZ1bUO/ATR8f0sO0ewOUF1VI+RJn80EZ
-3DPMOdThXmAoPSTgiy/2HEbSFlNQopw9/c60gjBINEpNCS7IzBXSUj8GZYEpOMzpKr7TrhDyDfoh
-N1Ow7UVj4CfwifLaHzvGhul0CF1tU4O1ME1ocWLTZPKtKj+p5N2UTTR0iHlQDSG10Ztqz+jJPg6O
-9yfjuiIcQ/aKZZxs7FgHAYa8SfnM0PN2MPhZY+H4JiYyjkB5G9VX66HERtPQsRLnUs6ip7mhFX3h
-Bf6SrRhtCcT8p9sR9q/nojzQIHCvSQsrWYiBcymuZtj2X7LCKOb8V/u7p5Qrit6X9YRLv3zn+Wdh
-hVBX2vOi/eBIygum1c2iSn0eB/AYbMqAMPuuHfxO/9qR4a1DgOFL0KJ4kxWn5i44lEQxtRT2tEik
-I/IEdIErX2bZqDsfzE+wjlDQW52icWg/nXLS7501eAehK8MBD9VoRJgphZoChpYDENyl7ntCSu4p
-VaFk34kcTDZgaiLh0rae4yavbv/iQIo70T7GZmRXU/sinncrECArZ0naMyOuXvsEOcXOh4nLN4Wc
-9tvEbt13CwmVgMFl30oaLvFr4DXhp/8z7cy+MB1Cf62Kw0xBbL9CpTTE7mUSAn6s7mzzQfHG2/p3
-tALsymmcs7nNwI3UYeAOcZn6MBQV86SG9+82HqodueHy6cu4rLtwUm6wJZvjyvq1+aHFCubFcjNg
-UDvl183JJzlPZKiVoftohodp2/3GgAOlCJPuIjs9e7QV0w3+Xk5jySgeVkFy9+7LfoolFCqK6/7X
-VqxyvOWBsPoAGJiTfFcdgCYQEVzSaMgUh5b9uLZm0fxvaoWYLnOrWHwhHukZk69o8Xt0AE5mdvXQ
-ymAVDmqqfbtafWFFTPli4ygz7CBvgud2Es96SmHeQwoBHockKCdkv+MpgB1uu6PUDuW1xsZNLKCS
-/rUjPHyDzkQWkCVJZFR6wEwaIkACKM1vD60AXyf5RVQR41i99DD/eq523d8zn48WipOUYsSxp1o=
-=1UVX
------END PGP SIGNATURE-----
-
---------------WiQTRW0tjvuydUtjhBVwUFWK--
-
---===============0059234255137659477==
+--===============7973649536693501569==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -548,4 +712,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0059234255137659477==--
+--===============7973649536693501569==--
