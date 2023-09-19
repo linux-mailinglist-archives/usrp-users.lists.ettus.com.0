@@ -2,380 +2,160 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB4527A619A
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Sep 2023 13:44:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9017A6201
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Sep 2023 14:05:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7465C384FC0
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Sep 2023 07:44:46 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 37E1B38651F
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Sep 2023 08:05:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1695123886; bh=Ypccgz7Q171Azo3uKFJFIjYljoKxDdmPwL3LAeur+YQ=;
+	t=1695125130; bh=mDOr/I22V/J70xYI24kOH2Jg7b+LgRkNr/dnEs2sUIc=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=WYqEWhItpohgJ3l9QCQ3LRnKY2+qGchu+jpXWBl/vPPtrhyqoIMlrDubosZ1YAwZe
-	 0uLKHTtl3LavIENYgLkrU3scEZ8g8v5sQawK0Xk1zVaMs8fkad00jp22UFSmvNvVVq
-	 /CI7O3ncQME3vxhD43jNLJMZWRpr44iDY0rIrEAuCCN/YouejiX7iW8IdI1pBI8+aj
-	 RyQHBIH3pbiHttR0jdAgHKBTvKI0Huq4IoQgPo/rAqvlwjyRiFSiVXOaGPgIsY4Xam
-	 4EUH3khDFzDW5U/wxoyrmYH9tWV3OA/Gaeswc3MZ2TbisXDZsEhtrKROP4RfBbKqlt
-	 tDQTFY7Y+xJ/g==
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3CBDE384D99
-	for <usrp-users@lists.ettus.com>; Tue, 19 Sep 2023 07:44:29 -0400 (EDT)
+	b=oWDZhMFf69AKtvJk4BiCNJFgIIHtESDeJdNV10ZY/yIdyyui23xjWcszN/hDl3nA4
+	 UnCpfAhyLmal0H0O61nXecsGNgr79H32FxMvI9VBMpWlQIgfM62cXsRZxJ1sFY2lYO
+	 3BMxRrBWK68kdiMLPVtrAfNXxF+S+3qQP+wKBoEVmg3c4ePhF6HKlRX8XCjstVcMdz
+	 eBtBpRIK6mY9cjR/Rgd6qIRD1g9HCQBw2u+awrlVm6I5+nFdIdUGvuPAHoqC5Y/eh0
+	 bj+k1Bj+jMuYMyhQUuDko6cA6J2r1Boz3/zwLSKF0/Lvdh/zLsRUYORqQvNVlbL6LP
+	 pgHvl8d8olVLQ==
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id BF26B3862E0
+	for <usrp-users@lists.ettus.com>; Tue, 19 Sep 2023 08:04:20 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="ytLqaj5K";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="UqU9dy6E";
 	dkim-atps=neutral
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-9a645e54806so700175566b.0
-        for <usrp-users@lists.ettus.com>; Tue, 19 Sep 2023 04:44:29 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so7032365a12.1
+        for <usrp-users@lists.ettus.com>; Tue, 19 Sep 2023 05:04:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1695123868; x=1695728668; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wkV6AaqVktp4n/BJzDfXcQleSCh4oJ+vrMjMZJ7bXDs=;
-        b=ytLqaj5KeC41i5GoUVsxH40RopNixBcq+zJcuwa071k9SVl/0aFfwzt0LOeOF4ufNM
-         LIpODQzqZd/Wdqw9gvFFM2vTDogOeQCScIbLUYUgs1EGlucSavuLh8h14N/TadteZ6rI
-         1qDvZZ0bvtF1W5ggHQ275H3g2qUZdAVjno1h5LP1kIS0bRcKFBaWEYALevmisXqXD9Ao
-         v9ZRFu9LpJDpko8qbSLpU8KWjjJeb3aGQNcISPOp4LwIF4eZoF9mb7Hbo75U9DjxmZH/
-         vVMg+50l1P1KIJs75wtQ9NN7Rq/mXGP1U9O0GMBu1f1mC3WJiPfONzu56SfF/5iLdazm
-         onqQ==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1695125059; x=1695729859; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YzCvb0TDnZM2IMmPa+P9tQM3JPUz/br8IWRvXpyx+AA=;
+        b=UqU9dy6E5YBpFM7OGoO83zRRveoQtt7M7Jt90WHO7bnxTWarTpJ58AP1iSTLT7rqHX
+         fP4WxruiB5AJq/Uvgy/DbuT34j9uJyNfbTH9Y6ul1rdEWKdtXjI8/6GzZOQ+KCFJ9Vjx
+         JUlrAJwIDXCjHUS2o2VOBTNiePuk8Up+RTkctRTYvBH1K6CR3rjui1hCkpsQBi4jAXBD
+         y3hCFLu7Fjpdjkpe5VnvHaU3bAXbokXHUlYG7B0z8tLuSokI1Rq8aZhvNvKU3gyPB+a0
+         xPoHgQwG9yxyx2ee9zqQJtJzghcFRQxqouz3zKdpY0erT6AysBgGlYvVHFrIyBTMm7zd
+         gQpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695123868; x=1695728668;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wkV6AaqVktp4n/BJzDfXcQleSCh4oJ+vrMjMZJ7bXDs=;
-        b=MhLb52ftd58UhEksqv6+O1bTt0Bb6VtuUVrEhsDp4PsNOIiA1srniLzrlX7/+P739j
-         VHOvgmKJ48HrCB0/jxRyHfrQyG//vpLhsY8ZHBoLGzs7iPM6MVKGfFlWoy+RkFDtC3Oa
-         uH04pzzxLrwZ5KqnBQ0/WrJkynk0e+5xT96jk7T2MD57EYkCJ85DIzJSear2uASiAih/
-         YO1ul7u6GHbx5bkeIdRrCmANyc8Wdf9ktOuE6NUGFbIqSa10yVDYHEBKKMwLy236O0dj
-         CUtc0lqsr+Lk36RFhOq6ZwGYpZEyL6yu8DZ/O59i3oR90OqLqgvBeD0oQLZ49NXUw62G
-         GM3g==
-X-Gm-Message-State: AOJu0Ywkr/kyUMrX54pVjIYM0RgCcnhNdkN/1KkeEHFNfA/x9y9BdLw9
-	b1ebyamCGxB4BWRloESN2kpjeACAgOznGT6zMAD6tA==
-X-Google-Smtp-Source: AGHT+IEKdh30xkRpWzOEn0bboV6kt6sfR0LxgnY7F01+ULCT4dwmtX+dWq8TWhmZfIFezpiiVy6LSQ==
-X-Received: by 2002:a17:906:8466:b0:9ad:e180:16e3 with SMTP id hx6-20020a170906846600b009ade18016e3mr8292143ejc.37.1695123867816;
-        Tue, 19 Sep 2023 04:44:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695125059; x=1695729859;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YzCvb0TDnZM2IMmPa+P9tQM3JPUz/br8IWRvXpyx+AA=;
+        b=FwZMZZ/GPP71S2Wt9uV2Hm8hgijy+n82CCpCDrOmUNHHy/quNnq6bUxdNUriu6wqE3
+         vf4f+C6Mb/iUa0PAfakY2aTVf3x0hZZgvAnI7nl0hTUMyDvKt5HxlU5rt3Syud5Jyph7
+         rsG2Um6TQo22+z4tv8qQHRbETmLDF0pK0jPyaXX+9LI+XhgioTl3wZMuoYVkW2uNyIz+
+         Vk8B6PTGH/RTM0DA7Bh9T9VNuXEL9SPnUVNzw1icGz7VCh71Xr+V7kLJA+08oyJDZ0XS
+         LWy8vLj0Fv0eH9JxsvjyjuN17LAJOlcR1AoUZF+cl+LdcCm0FzpKYVrwMeKzmYJ/KxTx
+         Favg==
+X-Gm-Message-State: AOJu0YwbuMVII/lNNRHCg0XpF57wkrZANfXVn4KHFKxj8qLsRTLIrEKt
+	fkn69uhDDvyBbLXrvjk/TKk1HewgyO8N1i6oJ4pgRA==
+X-Google-Smtp-Source: AGHT+IHdXRrD6Qhz4w12y2TduKfNhM7LDRU8kEOSIXLp22F58BvVy0s8sfh1Xp93hlkqD9Ss+nTeZw==
+X-Received: by 2002:aa7:d74b:0:b0:522:3ef1:b1d with SMTP id a11-20020aa7d74b000000b005223ef10b1dmr8041961eds.6.1695125058815;
+        Tue, 19 Sep 2023 05:04:18 -0700 (PDT)
 Received: from ?IPV6:2001:9e8:3861:1900:10fc:1619:bea3:90d1? ([2001:9e8:3861:1900:10fc:1619:bea3:90d1])
-        by smtp.gmail.com with ESMTPSA id cf20-20020a170906b2d400b0099bd453357esm7650581ejb.41.2023.09.19.04.44.26
+        by smtp.gmail.com with ESMTPSA id z18-20020a1709060ad200b009887f4e0291sm7662906ejf.27.2023.09.19.05.04.18
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Sep 2023 04:44:27 -0700 (PDT)
-Message-ID: <98489dd8-4111-17f3-61ea-e8a8afa180de@ettus.com>
-Date: Tue, 19 Sep 2023 13:44:26 +0200
+        Tue, 19 Sep 2023 05:04:18 -0700 (PDT)
+Message-ID: <1b003a13-10d7-0e9a-bcee-9398ec0c84ed@ettus.com>
+Date: Tue, 19 Sep 2023 14:04:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
 Content-Language: en-US
 To: usrp-users@lists.ettus.com
-References: <MA0PR01MB92187ECC43DC43A0A4050C2FB6E8A@MA0PR01MB9218.INDPRD01.PROD.OUTLOOK.COM>
- <MA0PR01MB92187E3CD217ED05912CBA5BB6F1A@MA0PR01MB9218.INDPRD01.PROD.OUTLOOK.COM>
- <MA0PR01MB9218A5503D87BFF14F28AB9AB6FAA@MA0PR01MB9218.INDPRD01.PROD.OUTLOOK.COM>
+References: <8tgp67TWZySZBgo36drX2iYAR0dsvnusaC8JSP9PWxI@lists.ettus.com>
 From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-In-Reply-To: <MA0PR01MB9218A5503D87BFF14F28AB9AB6FAA@MA0PR01MB9218.INDPRD01.PROD.OUTLOOK.COM>
-Message-ID-Hash: 3U5D7WPIEHAQJKBRRB353PS2ILN3O7V5
-X-Message-ID-Hash: 3U5D7WPIEHAQJKBRRB353PS2ILN3O7V5
+In-Reply-To: <8tgp67TWZySZBgo36drX2iYAR0dsvnusaC8JSP9PWxI@lists.ettus.com>
+Message-ID-Hash: PEXI3OT4INL3AQYZSFPIW4ZN2FCEADGN
+X-Message-ID-Hash: PEXI3OT4INL3AQYZSFPIW4ZN2FCEADGN
 X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP codebase walkthrough/understanding
+Subject: [USRP-users] =?utf-8?q?Re=3A_Bypassing_U807_and_U805_=28SKY13335=E2=88=92381LF=29?=
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3U5D7WPIEHAQJKBRRB353PS2ILN3O7V5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PEXI3OT4INL3AQYZSFPIW4ZN2FCEADGN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3894378229461816878=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
---===============3894378229461816878==
-Content-Type: multipart/alternative;
- boundary="------------FjOHU5hvmmVt3MSZ0r3gLRKI"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------FjOHU5hvmmVt3MSZ0r3gLRKI
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Hi Jeyakumar,
-
-
-obviously, we'd point you to the same resources on the Ettus knowledge base that you've 
-already read, probably. So, um, can you maybe phrase this in a less open-ended way? What 
-do you need help with?
-
-
-Also: "Add AI capabilities", that makes my "underdefined term usage" meter have very high 
-readings. Please try to also narrow down what you want this to mean!
-
-
-Best,
-Marcus
-
-
-On 19.09.23 09:37, Jeyakumar K-[BL.EN.P2VLD22009] via USRP-users wrote:
-> Dear all,
->
-> Do we have any videos or can someone help me with a code walk through of USRP github 
-> codebase.
->
-> I have taken this project as my final year MTech project and would like to add AI 
-> capabilities after understanding the code.
->
-> Many thanks for your support.
->
-> Thanks
-> Jeyakumar K
->
-> ------------------------------------------------------------------------------------------
-> *From:* Jeyakumar K-[BL.EN.P2VLD22009] <bl.en.p2vld22009@bl.students.amrita.edu>
-> *Sent:* 12 September 2023 11:25
-> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* Re: Help to build and push bitstream to FPGA of USRP codebase
-> Can someone please help here.
->
-> Thanks
-> Jeyakumar
-> ------------------------------------------------------------------------------------------
-> *From:* Jeyakumar K-[BL.EN.P2VLD22009]
-> *Sent:* 05 September 2023 21:37
-> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* Help to build and push bitstream to FPGA of USRP codebase
-> Dear Users,
->
-> I tried my best following the instructions provided in build manual but the build failed 
-> with several attempts.
->
-> As part of my final year major project, I have expressed interest to work on ettus fpga 
-> open source git reporsitory for USRP hardware build on FPA and add more features.
->
-> Hence can anyone guide me to understand source code at high level and how to build them 
-> in vivado. I really appreciate all your support !
->
-> Thanks
-> Jeyakumar
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
---------------FjOHU5hvmmVt3MSZ0r3gLRKI
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Hi Jeyakumar,</p>
-    <p><br>
-    </p>
-    <p>obviously, we'd point you to the same resources on the Ettus
-      knowledge base that you've already read, probably. So, um, can you
-      maybe phrase this in a less open-ended way? What do you need help
-      with? <br>
-    </p>
-    <p><br>
-    </p>
-    <p>Also: "Add AI capabilities", that makes my "underdefined term
-      usage" meter have very high readings. Please try to also narrow
-      down what you want this to mean!</p>
-    <p><br>
-    </p>
-    <p>Best,<br>
-      Marcus</p>
-    <p><br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 19.09.23 09:37, Jeyakumar
-      K-[BL.EN.P2VLD22009] via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:MA0PR01MB9218A5503D87BFF14F28AB9AB6FAA@MA0PR01MB9218.INDPRD01=
-.PROD.OUTLOOK.COM">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Dear all,</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Do we have any videos or can someone help me with a code walk
-        through of USRP github codebase.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        I have taken this project as my final year MTech project and
-        would like to add AI capabilities after understanding the code.</=
-div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Many thanks for your support.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Thanks</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Jeyakumar K</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-      <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size: 11p=
-t;
-          color: rgb(0, 0, 0);" face=3D"Calibri, sans-serif"><b>From:</b>
-          Jeyakumar K-[BL.EN.P2VLD22009]
-          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:bl.en.p2vld22=
-009@bl.students.amrita.edu">&lt;bl.en.p2vld22009@bl.students.amrita.edu&g=
-t;</a><br>
-          <b>Sent:</b> 12 September 2023 11:25<br>
-          <b>To:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"mailto=
-:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:usrp-users@li=
-sts.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-          <b>Subject:</b> Re: Help to build and push bitstream to FPGA
-          of USRP codebase</font>
-        <div>=C2=A0</div>
-      </div>
-      <div dir=3D"ltr">
-        <div class=3D"x_elementToProof" style=3D"font-family: Calibri,
-          Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-          0, 0);">
-          Can someone please help here.</div>
-        <div class=3D"x_elementToProof" style=3D"font-family: Calibri,
-          Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-          0, 0);">
-          <br>
-        </div>
-        <div class=3D"x_elementToProof" style=3D"font-family: Calibri,
-          Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-          0, 0);">
-          Thanks</div>
-        <div class=3D"x_elementToProof" style=3D"font-family: Calibri,
-          Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-          0, 0);">
-          Jeyakumar</div>
-        <hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-        <div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:
-            11pt; color: rgb(0, 0, 0);" face=3D"Calibri, sans-serif"><b>F=
-rom:</b>
-            Jeyakumar K-[BL.EN.P2VLD22009]<br>
-            <b>Sent:</b> 05 September 2023 21:37<br>
-            <b>To:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"mail=
-to:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-            <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:usrp-users@=
-lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-            <b>Subject:</b> Help to build and push bitstream to FPGA of
-            USRP codebase</font>
-          <div>=C2=A0</div>
-        </div>
-        <div dir=3D"ltr">
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            Dear Users,</div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            <br>
-          </div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            I tried my best following the instructions provided in build
-            manual but the build failed with several attempts.</div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            <br>
-          </div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            As part of my final year major project, I have expressed
-            interest to work on ettus fpga open source git reporsitory
-            for USRP hardware build on FPA and add more features.</div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            <br>
-          </div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            Hence can anyone guide me to understand source code at high
-            level and how to build them in vivado. I really appreciate
-            all your support !</div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            <br>
-          </div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            Thanks</div>
-          <div class=3D"x_x_elementToProof" style=3D"font-family: Calibri=
-,
-            Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-            0, 0);">
-            Jeyakumar</div>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------FjOHU5hvmmVt3MSZ0r3gLRKI--
-
---===============3894378229461816878==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============3894378229461816878==--
+SGksDQoNCk9uIDE5LjA5LjIzIDA5OjI0LCBvdXphbl90c0Bob3RtYWlsLmNvbSB3cm90ZToNCj4N
+Cj4gRGVhciBNYXJjdXMsDQo+DQo+IFRoYW5rIHlvdSBmb3IgeW91ciByZXBseS4gSSB0aGluayB5
+b3VyIFJGIGVuZ2luZWVycyBoYXZlIGFuIGFpbSB0byBoYXZlIHRoZSBwYWRzIG9uIHRoZSANCj4g
+UENCIGZvciBieXBhc3NpbmcgdGhlIHN3aXRjaGVzLiBJbiBvdGhlciBjYXNlLCB3aHkgZG8geW91
+IGhhdmUgdGhlc2UgcGFkcyBpZiB0aGV5IA0KPiBoYXZlbid0IHRlc3RlZCBpZiB0aGV5IGFyZSB3
+b3JraW5nID8NCj4NCldoZW4geW91IGJ1aWxkIGEgY29tcGxleCBkZXZpY2UsIHlvdSBsZWF2ZSBv
+cHRpb25zIHRvIG1ha2UgdGhlIGJvYXJkIHdvcmsgZGlmZmVyZW50bHksIGZvciANCmV4YW1wbGUg
+Zm9yIGludmVzdGlnYXRpbmcgZmF1bHRzIGluIG1hbnVmYWN0dXJpbmcgbGF0ZXIgb24uIEhhdmlu
+ZyB0aGF0IHRyYWNlIHRoZXJlIGNvc3RzIA0KZXhhY3RseSBub3RoaW5nLiBJdHMgZXhpc3RlbmNl
+IGRvZXNuJ3QgbWVhbiBhbnlvbmUgZXZlciBpbnRlbmRlZCBpdCB0byBiZSB1c2VkIGJ5IGN1c3Rv
+bWVycyENCg0KSXQgcmVhbGx5IGRvZXNuJ3QgbWF0dGVyIOKAkyB3ZSBoYXZlIG5vIGtub3dsZWRn
+ZSBvZiB0aGUgY2hhcmFjdGVyaXN0aWNzIG9mIHRoYXQgcGF0aCwgDQpiZWNhdXNlIGl0J3Mgbm90
+IHNvbWV0aGluZyBxdWFsaWZpZWQgZm9yIHVzYWdlLiBTbywgSSBjYW4ndCBnaXZlIHlvdSBtZWFz
+dXJlbWVudHMgd2UgZG9uJ3QgDQpoYXZlLg0KDQo+IElzIGl0IHBvc3NpYmxlIGlmIHlvdSBjb3Vs
+ZCBhc2sgeW91ciBSRiBlbmdpbmVlcnMgd2hpY2ggY29tcG9uZW50IHZhbHVlcyB3ZSBuZWVkIHRv
+IA0KPiBsb2NhdGUgb24gdGhlc2UgcGFkcyA/DQo+DQpObywgc29ycnkuIFRoYXQgYm9hcmQgd2Fz
+IGRlc2lnbmVkIHNvbWUgdGVuIHllYXJzIGFnbywgbW9zdCBvZiB0aGUgZm9sa3MgdGhhdCB3ZXJl
+IGFyb3VuZCANCmJhY2sgaW4gdGhlIGRheSBoYXZlIG1vdmVkIG9uIHRvIG90aGVyIGRlcGFydG1l
+bnRzLCBhbmQgd2hhdCBkbyB5b3UgZXhwZWN0IHRvIGNvbWUgYmFjayBhcyANCmFuc3dlcj8NClRo
+ZXkgY291bGRuJ3QgcXVhbGlmeSB3aXRoIHRoZWlyIGJvYXJkLCB1c2luZyB0aGVpciBjb21wb25l
+bnRzIGFuZCB0aGVpciBzb2xkZXJpbmcgDQp0ZWNobmlxdWVzIGFuZCBxdWFsaXRpZXMgd2hhdCB5
+b3Ugd291bGQgYWNoaWV2ZSBvbiB5b3VyIGJvYXJkLiBTbywgdGhpcyBpcyByZWFsbHkgYSBtb290
+IA0KcXVlc3Rpb24gdG8gYXNrIQ0KDQpCdXQ6IEkgbWVhbiwgdGhlc2UgYXJlIGp1c3QgZHVtbXkg
+Y29ubmVjdGlvbiBwYXJ0cywgc28geW91J2Qgc3RhcnQgd2l0aCBhIDDOqSBhbmQgdGhlbiBsb29r
+IA0KYXQgU21pdGggY2hhcnRzIGZvciBsb25nIGVub3VnaCB1bnRpbCB5b3UgY29tcGVuc2F0ZWQg
+YW55IG1pc21hdGNoIGludHJvZHVjZWQgYnkgdGhlIHNtYWxsIA0KcGFpciBvZiBpbXBlZGFuY2Ug
+ZGlzY29udGludWl0aWVzIHdpdGggYSBaXzAgdHJhY2Ugb2YgZGVmaW5lZCBsZW5ndGggaW4gYmV0
+d2VlbjsgaXQgd2lsbCANCmRlcGVuZCBvbiB0aGUgZnJlcXVlbmN5Lg0KDQo+IDUwLTU0IGRCIFRY
+L1JYIGlzb2xhdGlvbiBpcyB2ZXJ5IGxvdyBhcyBhIGR5bmFtaWMgcmFuZ2Ugb2YgbWFueSBhcHBs
+aWNhdGlvbnMuDQo+DQpXZWxsLCB0aGF0J3Mgbm90IHJlYWxseSB0cnVlOyB2ZXJ5IGZldyBpbnRl
+Z3JhdGVkIHRyYW5zY2VpdmVycyBhY2hpZXZlIG1vcmUgKGZvciB0aGUgc2FtZSANCnJlYXNvbnMg
+dGhhdCB0aGUgVVNSUCBkb2Vzbid0IGFjaGlldmUgbW9yZTogeW91IGhhdmUgYSBsaW1pdGVkIG51
+bWJlciBvZiBsYXllcnMsIA0KYWZmb3JkYWJsZSBib2FyZCBzdWJzdHJhdGUsIGFuZCBhcyBNYXJj
+dXMgc2F5cywgaW50ZWdyYXRlZCB0cmFuc2NlaXZlcnMgd2l0aGluIHRoZSBzYW1lIGNoaXApLg0K
+DQpZb3UncmUgYmFya2luZyB1cCB0aGUgd3JvbmcgdHJlZSBpZiB5b3UgbmVlZCBtb3JlOiB0aGF0
+J3MgcmVhbGx5IG5vdCBzb21ldGhpbmcgdGhhdCANCmRldmljZXMgYmFzZWQgb24gY2hpcHMgdGhh
+dCBkbyBib3RoIHRoZSB0cmFuc21pdCBhbmQgcmVjZWl2ZSBzaWRlIGluIHRoZSBzYW1lIElDIHBh
+Y2thZ2UgDQpjYW4gdHlwaWNhbGx5IGFjaGlldmUgYXQgcmVhc29uYWJsZSBjb3N0Lg0KDQpUaGVy
+ZSdzIHBsZW50eSBvZiBleGFtcGxlcyBvZiBkZXZpY2VzIHdpdGggaXNvbGF0aW9ucyBubyBiZXR0
+ZXIgdGhhbiB0aGF0IHN0aWxsIHdvcmtpbmcgaW4gDQpmdWxsIGR1cGxleCAoZm9yIGV4YW1wbGUs
+IEkga25vdyBvZiBhIE11bmljaC1kZXNpZ25lZCBzZXQgb2YgV2lmaSBjaGlwc2V0cyB0aGF0IGRv
+IA0Kc2VsZi1pbnRlcmZlcmVuY2UgY2FuY2VsbGF0aW9uOyB5b3UgY2FuIGJlIHJlbGF0aXZlbHkg
+c3VyZSB0aGF0IGEgMjDigqwgd2lmaSBjYXJkIGRlc2lnbmVkIA0KYnkgYW4gT0VNIGhhcyBubyBi
+ZXR0ZXIgVFgvUlggaXNvbGF0aW9uIHRoYXQgdGhhdCkuIEl0J3MgaW4gdGhlIGVuZCBhIHF1ZXN0
+aW9uIG9mIHF1YWxpdHkgDQpvZiB5b3VyIGFsZ29yaXRobXMsIGFuZCB3aGV0aGVyIHlvdXIgZXhw
+ZWN0YXRpb25zIG1hdGNoIHRoZSBoYXJkd2FyZSB5b3UgYm91Z2h0Lg0KDQpTdXJlLCBpZiB5b3Ug
+bmVlZCB0byBidWlsZCBhIGhpZ2gtUFJGIGFpcmNyYWZ0IHJhZGFyLCB0aGlzIG1pZ2h0IGJlIHRv
+byBsaXR0bGUgaXNvbGF0aW9uIA0Kd2l0aG91dCBleHRlcm5hbCBhbXBsaWZpY2F0aW9uOyBidXQg
+bWF5YmUgdGhlIEIyeHgganVzdCBpc24ndCB0aGUgZGV2aWNlIGZvciB0aGF0IGtpbmQgb2YgDQph
+cHBsaWNhdGlvbiA6KQ0KDQo+IEZvciBvdXIgYXBwbGljYXRpb24sIHRoaXMgaXMgb3VyIG1haW4g
+cHJvYmxlbS4gVGhhdCBpcyB3aHkgd2Ugd2FudCB0byB0cnkgdG8gYnlwYXNzIGFuZCANCj4gc2Vl
+IGlmIHRoZSBpc29sYXRpb24gb2YgdGhlIGNhcmQgaW5jcmVhc2VzLg0KPg0KUmVhbGx5OiBub2Jv
+ZHkncyBzdG9wcGluZyB5b3UgZnJvbSB0cnlpbmcgb3V0LCBidXQgaW4gYWxsIGhvbmVzdHksIHVu
+bGlrZWx5IHRoYXQgeW91IGdhaW4gDQphbnl0aGluZzsgdGhhdCdzIHdoeSBJIGluZm9ybWVkIHlv
+dSBvZiB0aGF0LiBUaGUgZmFjdCBhbG9uZSB0aGF0IHlvdSBhc2tlZCBhYm91dCB0aGUgDQpjYXBh
+Y2l0b3JzIGlzIGhvbmVzdGx5IGFsc28gbm90IGEgZ3JlYXQgc2lnbiB3aGVuIGl0IGNvbWVzIHRv
+IHlvdXIgdGVhbSdzIFJGIGhhcmR3YXJlIA0KdGVzdGluZyBjYXBhYmlsaXRpZXMuIEJ1dCB5b3Ug
+YWxyZWFkeSB1c2UgdGhlIHdvcmQgInRyeSI6IHNvIHlvdSB3aWxsIGFsc28gaW5jdXIgdGhlIG9u
+dXMgDQpvZiBoYXZpbmcgdG8gbWVhc3VyZSB0aGUgb3V0cHV0LiBOb3RoaW5nIHdlIGNvdWxkIGRl
+bGl2ZXIgY291bGQgY2hhbmdlIHRoYXQsIHNvOiBiZXN0IG9mIGx1Y2shDQo+DQo+IFRoZXJlIGlz
+IG5vIGRhdGEgYWJvdXQgdGhlIFRYL1JYIGlzb2xhdGlvbiBvZiBBRDkzNjQgaW4gaXRzIGRhdGFz
+aGVldC4gVGhlcmUgaXMgc29tZSANCj4gaW5mb3JtYXRpb24gaW4gdGhlIGZvcnVtcyBpbmRpY2F0
+aW5nIHRoYXQgdGhlIFRYMS9SWDEgaXNvbGF0aW9uIGlzIG1lYXN1cmVkIGFzIDY1IGRCLg0KPg0K
+4oCmIHdoaWNoIGlzIGV4YWN0bHkgd2hhdCB0aGUgb3RoZXIgTWFyY3VzIChNYXJjdXMgTGVlY2gp
+IGFuZCBJIG5vdGVkLiBCdXQsIGFzIHNhaWQsIHRoZSANCkFEOTM2MSBpdHNlbGYgaXNuJ3QgdGhl
+IG9ubHkgdGhpbmcgd2l0aCBjcm9zc3RhbGsgaW4gYSBjb21wbGV4IHN5c3RlbSwgYW5kIHRoZSBz
+d2l0Y2ggDQpjb21iaW5hdGlvbiB3YXMgY2hvc2VuIHRvIGZpdCB0aGUgb3ZlcmFsbCBzeXN0ZW0s
+IG5vdCBqdXN0IHRoYXQgY29tcG9uZW50Lg0KDQpCZXN0LA0KTWFyY3VzIE0NCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
+aXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4g
+ZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
