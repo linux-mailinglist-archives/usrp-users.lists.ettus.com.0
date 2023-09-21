@@ -2,177 +2,237 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64247A876F
-	for <lists+usrp-users@lfdr.de>; Wed, 20 Sep 2023 16:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 601A47A9E56
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Sep 2023 22:00:55 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6523E385158
-	for <lists+usrp-users@lfdr.de>; Wed, 20 Sep 2023 10:45:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 48D6B38507F
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Sep 2023 16:00:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1695221133; bh=bDkT0bJaGbsE27baP6WZFHU/QMzwL4UvmmmpLUC84/w=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=H1jt4gG9MbsjtjHFNCYrOsLLCvQC1w8r3t0UQzejcJJviKG8e/X4rJRUVUYcDcUuf
-	 iUP76RSv3unFQJycgvnCUgDlE8KV5yAuMeLew3Ls5YWIKq4VprL0pWNzSK90tSMrv3
-	 wGWsU5gWBf3uyLI9xPvSz2ew9l4Xx+rkA2znGmN9q1FnPJHlfP/4D5mptbYLxC9xTn
-	 Mgj3CkmTWhG5qx8j3cCtNTBCLJaE+6ZrqpfEuS/RjfHbP8FhVKSpFkHCeJAd3jcvsA
-	 7XqndWba0HFD1xvXyMVFQgRdNX3YXBhO2jp7yInSINhao+M2vvN+KYljCSAHkStRFU
-	 H2BJclcTG4Ljg==
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5E0F0385145
-	for <usrp-users@lists.ettus.com>; Wed, 20 Sep 2023 10:44:45 -0400 (EDT)
+	t=1695326449; bh=wf8ruySykn01jYViZoRkM8AVOXzZ9KQHFqvkowVl16U=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=FSRLA5qUvEAbDlj1vB1C0a9YhC3TA2bXEixkqgkKhGAxcavbpNU5ABNDcTwyPTbUM
+	 gUqMX2K3vg1B5wJVMAZ29RGNJJWUi/xeDlRvPvPhY8KkYJnkkinaItRC1cPnFjUdzI
+	 rpFG71FSrGGaBdRGt2YOcJ5ILlq02bmppP6QTusCztHFL76Yjkiv6+Uz4rXD+OeM/p
+	 qxAUUZl58XOx0A/G//usSi4ppvja7Wr6CNFhl8wG3tbY87e5aZBEeUb2axWkrkQ3qM
+	 CpYenO4Fm2CT7CFg48f7g91W3admnHg6wsyy9HsXn9PjZmO1XoeV76lkJ3MOEaw9O4
+	 qhfT60Jdyqisg==
+Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0080.outbound.protection.office365.us [23.103.209.80])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0B415385047
+	for <usrp-users@lists.ettus.com>; Thu, 21 Sep 2023 16:00:32 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="rkYPYtXM";
+	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="DYgr237R";
 	dkim-atps=neutral
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ba1e9b1fa9so113994691fa.3
-        for <usrp-users@lists.ettus.com>; Wed, 20 Sep 2023 07:44:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=cjGcyzK2i3N1ftEs0r5fwsnolcCVzUgbhKXTFSDatXGm3CKjKS8J1Uo1GVWxfGjD5far2M1ryGBipXj2BZU22EjIjQOkdon7rTP2AbrrNFZ4kScOnD9RQXeaaI0KvI6uTEzu3gQZ594mX1qJ/ZOZgrykHz/ie2U1ubHvMN43LWhSBvuEsekNNlX6+h56ojZlSwdV5KN9LZV5KbTYP0CscymCtYKpjW/48drBcy0zyD06gywW3YE5dDaCuMj8NJXERY1M090DAeEeg5r5toXJLIvVdp7wEfkmPQJkdp5E4UFty9kvLxgCnSrhFlZfd26oHm6DaqoHpHItDp0j9YLIng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jHMqcCFKYXUDYrysKgsCnlw+6WwNBklEXfVZOQp6Q/E=;
+ b=CcvrexmTH1yomM1Inf/tqKqLeupMu5HxHIMeSRFf8BDL5yWXsVBQcWWGcd6z8YhlD6KATD3RNV7ZSq67mZlF5Uege9pjOjzMTjaScFzXxZBDnPgvCTpzcq0aS1+GtaoKr6JSDxCo3ulg+Xfgh7AOs+mPtJYMDyyRUXISGGX4PKwcRvS9at/8CpHCozgoluVmgrhqgaWI4hpsfWCRM8jVFyooR+JVK64RaButkS/Q2KEDKnxgZmBptgy2R/n/VGN/bfI8RkgrGZwl4J8FD5Snwjov1gnl9svhmPYdscgvNvhs5p4YnzNvrKu2gt3vsFCs7GmwBqDFisVbuvN+5R+qGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
+ header.from=synopticengineering.com; dkim=pass
+ header.d=synopticengineering.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1695221084; x=1695825884; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=BObA7b/gWIwA62DRwn8f3woGtvuBwRZNjewG4rqia+8=;
-        b=rkYPYtXMohYnh6C0diIAg5xg3Fgdvk8h0TZx8EUvq11SRMrVaqrckJd15Vo4VqPjuy
-         Jw06AfGmDBK3GxUokkIrDT71F3Kngfb2wtopYZHsp32+/q2BCOZQJkjopWsqcqkDjV9H
-         jlRn8/LJgTKPbz5Vz+Zcwr3+mrj25e1RI1xXchyMi+46N3U3EXN+QtcHjUBSupYmGGZy
-         yEuug9KsHSc2PbyYMfVZzDL9kjxzoxcEZCTPBue+61njTuq7sbQape+lMiv38aBLFpsb
-         1av1OIt0B6pqdPdXdY1R7BJFNUTzpqO077iLBMSTQl5SFoG9teghNmeSasWcAI4knq3e
-         P2AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695221084; x=1695825884;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BObA7b/gWIwA62DRwn8f3woGtvuBwRZNjewG4rqia+8=;
-        b=Jy5MCe/k7ragM8f4MrFbzw6TXrWKYrtpAT2UY57uNHtS/bB+YoBxu1/HevRYq19A+c
-         ifrfWmkILYtgiDCP0B+gJZtYoo50LP2tTAT8Q9a5qtIRXkn2vnctiSXEYtE9vEWOvZSc
-         5V/z9/VrMqoEMSZOg4hChlr6Kqe5NuDE+x/As4mQfV73uMOQ+j9+6U9bs0zcTszefCv9
-         25zIA2pziJmLMJWKhND35xfkQS7Z+BLsDRr86s+BrtOpNS+gBvOLqgVsNaS0PKhQ4z29
-         hojW1sWd6O+G8Q2qVmqIOKZih3pF6FTetTCJ8ZrJm6ywkjiUv9QTFkNItvNs4IVtvFnn
-         vk4g==
-X-Gm-Message-State: AOJu0YxQLPbt8YRvGwpPaA1PUvFmURPCk9w5ANf1A0By6TZ3OdvyZHOl
-	KKL/zi6xMZXeQ3KByGGQ3+VwZu9EyKY8TQJ9KiGrRIF8
-X-Google-Smtp-Source: AGHT+IEVXsx5V1bSyHtwgu2g/uff+NDEUubHZD7rROoymxA994SwqvYMWb6UzGI8Ddt7VhDUnEWkYAK1Sw/5HgX7e6M=
-X-Received: by 2002:a2e:9cc5:0:b0:2bc:c4ae:c565 with SMTP id
- g5-20020a2e9cc5000000b002bcc4aec565mr2424013ljj.28.1695221083674; Wed, 20 Sep
- 2023 07:44:43 -0700 (PDT)
+ d=synopticengineering.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jHMqcCFKYXUDYrysKgsCnlw+6WwNBklEXfVZOQp6Q/E=;
+ b=DYgr237RIQcDjKtLTv8RawL5BdClWXBjZeFtcHmE6yhC3A8/BhRkF/aFT3pnRSlq2ZGJZEY5Ok8PpqURoZUzrQDeUxU+u5E686kDI1QPekdO5JXYr6EY/pUKPcR25RDyM2JaOYbrMCHhetqJ/V5dFulP/dXvHNQmfJWr06Airw94/VSHSIeMjc16UHwq8D6SKnE1XPTS+KtfNABfLuKA9+bKUqVNWZJ/WUUlLxocxx9eUMltwxHRjlTmsP4nb0mkjtp0HiVjSsQ6Bn/ywRczOshcDzFdiyP+KhJf43cj8rs7jANb8MxJzOsQjjAeTa1b6vqGtUlAc7bc683lZxEFFg==
+Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:168::14)
+ by BN2P110MB1716.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:169::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.31; Thu, 21 Sep
+ 2023 20:00:30 +0000
+Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::5cc6:4077:4922:71fd]) by BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::5cc6:4077:4922:71fd%3]) with mapi id 15.20.6792.026; Thu, 21 Sep 2023
+ 20:00:29 +0000
+From: David Raeman <david@SynopticEngineering.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Toggling a panel GPIO at a specific time (via RFNoC or
+ otherwise)
+Thread-Index: AdnsxdnqUzPejFxqTpiXsRqOggvkNg==
+Date: Thu, 21 Sep 2023 20:00:29 +0000
+Message-ID: 
+ <BN2P110MB17470A026C94DFF2E9370914B7F8A@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN2P110MB1747:EE_|BN2P110MB1716:EE_
+x-ms-office365-filtering-correlation-id: c729574a-11d1-4aad-b7cf-08dbbadd6812
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ wfyyWhFTPObJ328SDvoUZEHs8fKJJAGFr4GPc8xpiebvQbtbHzA9V7IsQHRH/zcZEn/Vsf6OxrG68EJZesAO9tAchKEbH0t2VzgshUNnv2HWQeSoWK41qy8zAz9jynzhJELTWYD43Lil4Sb4AmnOJ7pOTU87M1etfffmniMzFK+/a5781F8afoS6eIZLfheHB/nGUVYuFhZFzlz0u1bi/8SpgjYa4ArlOF33XXeVKl8nzjX8th+ITTDFwIs0fkNc3Jyzs+O6eDTa0VTupBHNLZr4vpQ4oMwRKerOvhwysnlO4MwTTT8TZmV0/8nPxaCBq80lbD/HsXtOG6NU5TpkmoXVT4XpYyhKp4o1Zm+8AmPx3MNszhsN8/NNHItWmTfIMETkKydCNbzebll8e6zksvbOsPuPrMxp4d5jkLxqAaZR7dKpgRyD5osRTY2jWQRayqdC9cZ91x+d+0QN0VPK42NkxkA4iFYlroRIpvsSdR2BV6iO0Mwkal30gyP8s+GCs/03CzKDnBBF8dW8L0fix0xQHPTQ+BaF4GLY4dwE3MjZUGqZnUdbgBIr+NtQAy7TKdQpBe7rap212AjiXs/G7JZZPVdWCe8RQ9hOBZXRYQItIQmk1axtBV+VqB+YxnH6Eep731zIFUPWemJqHwlf5w==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(39830400003)(396003)(186009)(1800799009)(451199024)(55016003)(508600001)(6506007)(33656002)(26005)(7696005)(83380400001)(86362001)(6916009)(66946007)(66556008)(41320700001)(76116006)(9686003)(2906002)(66446008)(64756008)(66476007)(71200400001)(41300700001)(5660300002)(38100700002)(52536014)(38070700005)(122000001)(9326002)(8676002)(8936002)(85282002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ Qlvzm4gE5Ih7gEVsQ/J23f1R7lwXsZiWWS+jvz6wVHVvmZ58+5OIVhEcPo1TPjH9JW6gNvpa7UwLJ49i2jhhgVuv/yD+TbWCh5h9PspO9x/u4QYYqHOYpqESInEcJJiw3gB5xZ14BV1NuC7wQUFs6Htr72zC2qTHxnd0kwZ2w/7cOXEBY4hQ0aD4ChE2Pz/ZzNCs2a1064wUN48gZ7dshUpOyvtWglC/2EmKcsmEVhAgqtMh/dJDNE3BdaMGgPoBYuuQFy+10+cCKYAVpANYD2wSYStjIUoFSSVUBV9PsTIH1HLAo1LeZpwGNGHt0pw5at95EhdjuDxugfPLpl2INSSOcO/gVcb5CKzp+gQI6Iiqpt/11LkuwGQ7f8T+U0ZLvbST00rhbBLydjysfgqoI8LNUpb02tAXbktkBW05uLw=
 MIME-Version: 1.0
-References: <CAKHaR3na4NGPULYeVV6etRArggUh4Kw0pjvqVjWqNLNvUOri1A@mail.gmail.com>
-In-Reply-To: <CAKHaR3na4NGPULYeVV6etRArggUh4Kw0pjvqVjWqNLNvUOri1A@mail.gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Wed, 20 Sep 2023 09:44:27 -0500
-Message-ID: <CAFche=h0VdGK1GZ-2OF6GXVOzpxJ+M_5jS6cPxRUT=JRX_aQTQ@mail.gmail.com>
-To: Dario Pennisi <dario@iptronix.com>
-Message-ID-Hash: TBCGGXDPLVWQJYYZPH7GAEWTZC6HK3BU
-X-Message-ID-Hash: TBCGGXDPLVWQJYYZPH7GAEWTZC6HK3BU
-X-MailFrom: wade.fife@ettus.com
+X-OriginatorOrg: SynopticEngineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: c729574a-11d1-4aad-b7cf-08dbbadd6812
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2023 20:00:29.9124
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN2P110MB1716
+Message-ID-Hash: OT3LBVQYFDWZVPUS62PHFJY36DXJEFMS
+X-Message-ID-Hash: OT3LBVQYFDWZVPUS62PHFJY36DXJEFMS
+X-MailFrom: david@SynopticEngineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X440 at lower sample rates
+Subject: [USRP-users] Toggling a panel GPIO at a specific time (via RFNoC or otherwise)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TBCGGXDPLVWQJYYZPH7GAEWTZC6HK3BU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HJFLTOXZP4MCRTTBLJ76GPDVTRGT5INV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0018781783663816491=="
+Content-Type: multipart/mixed; boundary="===============4093509404175571185=="
 
---===============0018781783663816491==
-Content-Type: multipart/alternative; boundary="0000000000008239ea0605cb6a58"
+--===============4093509404175571185==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN2P110MB17470A026C94DFF2E9370914B7F8ABN2P110MB1747NAMP_"
 
---0000000000008239ea0605cb6a58
-Content-Type: text/plain; charset="UTF-8"
+--_000_BN2P110MB17470A026C94DFF2E9370914B7F8ABN2P110MB1747NAMP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Dario,
+Hello,
 
-There are other differences in the FPGA code as well, since X440 is
-designed for higher rates and channel counts. For example, the X440 doesn't
-have additional DDCs/DUCs in the FPGA fabric. I think the manual page does
-a pretty good job of summarizing the differences.
+I'm looking for advice on toggling an E320 GPIO pin at a specific uhd::time=
+_spec_t. My use case is a UHD application that starts a long transmit burst=
+ at a known timespec, then later toggles a pin at a time corresponding to t=
+he Nth sample being transmitted. The pin controls an external RF switch. I =
+recognize there will be some amount of group delay through the RFIC and int=
+ernal analog components - my goal is just to be roughly synchronous with sa=
+mples clocked out of the radio block.
 
-https://uhd.readthedocs.io/en/latest/page_usrp_x4xx.html
-https://uhd.readthedocs.io/en/latest/page_fbx.html
-https://uhd.readthedocs.io/en/latest/page_zbx.html
+As a first pass, I have a custom RFNoC block that counts valid samples from=
+ the start of burst and toggles the pin after the Nth sample (where N is pr=
+ovided in a user register). This is a poor solution because there is deep b=
+uffering downstream in the radio block, so my block sees "sample N" and tog=
+gles the pin several thousand sample-periods before it's transmitted. It is=
+n't a fixed lag that can be added as a constant - consider that if N is sma=
+ll and "sample N" is observed when the FIFO is initially being filled, the =
+toggle would occur while the corresponding sample is sitting in the back-pr=
+essured FIFO waiting for the transmit start time.
 
-Regarding the sample rates, the X440 supports configurable sample rates,
-down to 125 MSPS. So, you can do 200 MSPS without modifications, but 100
-MSPS is lower than it supports. If 100 MSPS is the rate you need, then you
-might need to use 200 MSPS then add a DDC/DUC with a custom FPGA image. I
-think this is possible, but it's not supported by default.
+Since this is synchronous manipulation of external state, and not just samp=
+les, I don't believe it will be sufficient to use CHDR header timestamps - =
+the block would also need to know current radio_time, and I'm not sure how =
+to get that in an RFNoC block..
 
-Wade
+Just wondering if I might be overlooking some simpler approach, or any advi=
+ce on how to plumb this into a custom RFNoC block.
 
-On Wed, Sep 20, 2023 at 5:31=E2=80=AFAM Dario Pennisi <dario@iptronix.com> =
-wrote:
+Thank you,
+-David
 
-> Hi,
-> i'd be interested in porting an application we developed on X410 to X440
-> and was wondering if there is any known limitation that would prevent usi=
-ng
-> X440 at 200 MSPS or even 100 MSPS (although i see support for this has be=
-en
-> discontinued also for X410 in recent UHD versions).
-> as far as i understand X440 and X410 share the same mainboard and just
-> have a different front end which would make it straightforward to port
-> code... is this correct?
-> thanks,
->
-> Dario Pennisi
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
 
---0000000000008239ea0605cb6a58
-Content-Type: text/html; charset="UTF-8"
+--_000_BN2P110MB17470A026C94DFF2E9370914B7F8ABN2P110MB1747NAMP_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Dario,</div><div><br></div><div>There are other di=
-fferences in the FPGA code as well, since X440 is designed for higher rates=
- and channel counts. For example, the X440 doesn&#39;t have additional DDCs=
-/DUCs in the FPGA fabric. I think the manual page does a pretty good job of=
- summarizing the differences.</div><div><br></div><div><a href=3D"https://u=
-hd.readthedocs.io/en/latest/page_usrp_x4xx.html">https://uhd.readthedocs.io=
-/en/latest/page_usrp_x4xx.html</a></div><div><a href=3D"https://uhd.readthe=
-docs.io/en/latest/page_fbx.html">https://uhd.readthedocs.io/en/latest/page_=
-fbx.html</a></div><div><a href=3D"https://uhd.readthedocs.io/en/latest/page=
-_zbx.html">https://uhd.readthedocs.io/en/latest/page_zbx.html</a></div><div=
-><br></div><div>Regarding the sample rates, the X440 supports configurable =
-sample rates, down to 125 MSPS. So, you can do 200 MSPS without modificatio=
-ns, but 100 MSPS is lower than it supports. If 100 MSPS is the rate you nee=
-d, then you might need to use 200 MSPS then add a DDC/DUC with a custom FPG=
-A image. I think this is possible, but it&#39;s not supported by default.</=
-div><div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 20, 2023 at 5:31=E2=80=AF=
-AM Dario Pennisi &lt;<a href=3D"mailto:dario@iptronix.com">dario@iptronix.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr">Hi,<div>i&#39;d be interested in porting an application =
-we developed on X410 to X440 and was wondering if there is any known limita=
-tion that would prevent using X440 at 200 MSPS or even 100 MSPS (although i=
- see support for this has been discontinued also for X410 in recent UHD ver=
-sions).</div><div>as far as i understand X440 and X410 share the same mainb=
-oard and just have a different front end which would make it straightforwar=
-d to port code... is this correct?</div><div>thanks,</div><div><br clear=3D=
-"all"><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><spa=
-n style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.333=
-3px">Dario Pennisi</span><br style=3D"color:rgb(0,0,0);font-family:Calibri,=
-sans-serif;font-size:13.3333px"><br></div></div></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I'm looking for advice on toggling an E320 GPIO pin =
+at a specific uhd::time_spec_t. My use case is a UHD application that start=
+s a long transmit burst at a known timespec, then later toggles a pin at a =
+time corresponding to the Nth sample
+ being transmitted. The pin controls an external RF switch. I recognize the=
+re will be some amount of group delay through the RFIC and internal analog =
+components &#8211; my goal is just to be roughly synchronous with samples c=
+locked out of the radio block.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">As a first pass, I have a custom RFNoC block that co=
+unts valid samples from the start of burst and toggles the pin after the Nt=
+h sample (where N is provided in a user register). This is a poor solution =
+because there is deep buffering downstream
+ in the radio block, so my block sees &#8220;sample N&quot; and toggles the=
+ pin several thousand sample-periods before it's transmitted. It isn&#8217;=
+t a fixed lag that can be added as a constant &#8211; consider that if N is=
+ small and &#8220;sample N&#8221; is observed when the FIFO is initially
+ being filled, the toggle would occur while the corresponding sample is sit=
+ting in the back-pressured FIFO waiting for the transmit start time.<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Since this is synchronous manipulation of external s=
+tate, and not just samples, I don&#8217;t believe it will be sufficient to =
+use CHDR header timestamps &#8211; the block would also need to know curren=
+t radio_time, and I&#8217;m not sure how to get that
+ in an RFNoC block..<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Just wondering if I might be overlooking some simple=
+r approach, or any advice on how to plumb this into a custom RFNoC block.<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you,<o:p></o:p></p>
+<p class=3D"MsoNormal">-David<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
---0000000000008239ea0605cb6a58--
+--_000_BN2P110MB17470A026C94DFF2E9370914B7F8ABN2P110MB1747NAMP_--
 
---===============0018781783663816491==
+--===============4093509404175571185==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -182,4 +242,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0018781783663816491==--
+--===============4093509404175571185==--
