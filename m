@@ -2,323 +2,370 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EF57AA1D9
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Sep 2023 23:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2D97AB49B
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Sep 2023 17:19:16 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 394E8384C13
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Sep 2023 17:07:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A4D1E384B4A
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Sep 2023 11:19:15 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1695330460; bh=9q34vHv0GGPxrYiVR7d348juhF4vOhDS8Ue0PLIfyEY=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=IySjnSFszB+1dmUdhZH2NYacljJSkDnW8IBMWkwDElyeC3RzDG20Ietj7bUcrj/Py
-	 K6VXsVzjDc3rRUP1d3rDVnrzt0/1VNQ62VdZSvbHue8fpqTImIX1dS7dodYvG3VSmM
-	 9IrTwcVpSBUFRXWdH0GtGa5fV4AC5O4hC3VS4Tezr4VUlaWXy6aMfDWIOShrACxER8
-	 3+oV6JvHMR7StNC/rM3EgFWepKuQnc8GTUF9loLPhV1U9mRuKwZ/j09MvQh4P8mAaf
-	 ua2rdK6kCIOLuFf62Z9nO/QDqHcuhl5xgGKQyXafEJVDunxfvOwEVW9ryKzPW8ahM4
-	 dBxc4u2xst6+w==
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0050.outbound.protection.office365.us [23.103.208.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id E92CC384B1F
-	for <usrp-users@lists.ettus.com>; Thu, 21 Sep 2023 17:06:49 -0400 (EDT)
+	t=1695395955; bh=MMxLLLZMxv2pMscPEL6Cd7dNJ/Mlpgj7FTx6woK61jI=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=rtA0Fi6MdSUwb2tcaoAjX/OYpZXEzje2YzOIEp7nfwdnMMNZewOXfbggET/f9zG+N
+	 d6D9kxnCnJRgrBtk6Onh4CFq6tvwh1Vg9DbLKak8fJntG9zGO1XAxmx6ymj9FYOlTB
+	 s2GzkLYMPvXBQuWhQYx+L1QMXuLWByLOuxj8LmIoOEmBRPefayTRybdBZ1bMbBmiLw
+	 UvuWwFRDuWUEJupq+mr+GQVW8P5acDpFXC92TkC+bzqGQ7sjjFCu8U5j8umn2C4wMq
+	 DhiGoCLWJ2ozPAOt/SiJVXLSQrekzJ9IxMU5mT3UsMo2DGSsMW0+t74Rd1HkIeVBih
+	 vtr9f8BPrZ4TQ==
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id F0D40384940
+	for <usrp-users@lists.ettus.com>; Fri, 22 Sep 2023 11:18:15 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="OzMnc40M";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="dW4OZvTe";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=XCBTx2EbE9RXZG3unqacjEQ09dcgJ6pIGPNTSFewpEsBWQMhSoNMWdMkWvJ+ROGaMGXIQX4Z7GA5zaLuwB2oY/y/Zq67b3wLdUtC3WX/xdLNMaQls0lyDQATTasSXOG/ClXPXvB4wdSY87fdLGjJNRXAiBf1zc4qcw2oIzNqUiu2/+jtLOzsxy5VCPyGInessDCrEksJQzK5XBC7vvLzpwrsUopee3nBPTcUFQdiXYxWzYTbYN2pm1S6Eq9hMn8waG+dgs+iKR1mxG8brMpMTkE6xhk5m+FKJs4lYL/s3Z8aCvsodf6AE0sZ38rt0RoH5gdFPjdSYcbTeGfjUPJtKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z6Rjads5FilIalMCaafXnGcYfh4L4rSsbSmVZfCl2oI=;
- b=pQsppUtV8l7qRZlCNDCFJkiE6TLXYvIXLsxwKXKa9rV8pUeNH4aOsF2JU/TioZiCJuy/MyyJg7s0XhNTRz0QS3QmpOS+iCTa8/zs1g14/xzYUTOo1neUK7s5lVsZuZyTzXB6rddzCZa1AAVYUL0fTTf5zrbs4rg9Ou2/s9tDZlMc4un8kil78mf7KJPo/2DFXZscIIrz2MmjWlp8HXpT4vzh9IrKoWSDaMgnxRfc3nIagG+DiOx3Qxr/IoO36lZhdA83wbIIYxtc02nV/ndJ8Dx+vZwOT2+flIYAoTv1PMYTYnQWxUNU4jUPzaQp2ZIrXbRFtJ0+pKXswkoG3Rjg1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5334d78c5f6so2194302a12.2
+        for <usrp-users@lists.ettus.com>; Fri, 22 Sep 2023 08:18:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z6Rjads5FilIalMCaafXnGcYfh4L4rSsbSmVZfCl2oI=;
- b=OzMnc40Mpyy8CTOdIrZi9a8KNlp3fusggOj6HIOy/61RHYvEApN7uuOEvWGqtrvFSPbJG1r39ibzi+W96IvM9znYf/vQae60i92D568qqKv16ENt6iiSVCB1nNAwq5EL0z982E8C3mE/56+Ln6uBtQbayWJXl5HB7ts1iwYm1LWZ8c+R/7j5m33irroXgzJbNzyEDBXnAduyKTs5t2voBQAF8qmdRmwiqjDy9sBycVlnBj1OnLqrA3Pf3ObMHRPCZXOeXMYh8r2GzktjsNLyZuewCnu+4gAdWbp/O6HkBIfKY1Q6Z/cEx6lkZ16EjidDKRQyddHIlhSIQcTS2KyGnA==
-Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:168::14)
- by BN2P110MB1207.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:17c::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.30; Thu, 21 Sep
- 2023 21:06:47 +0000
-Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
- ([fe80::5cc6:4077:4922:71fd]) by BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
- ([fe80::5cc6:4077:4922:71fd%3]) with mapi id 15.20.6792.026; Thu, 21 Sep 2023
- 21:06:47 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: Rob Kossler <rkossler@nd.edu>
-Thread-Topic: [USRP-users] Toggling a panel GPIO at a specific time (via RFNoC
- or otherwise)
-Thread-Index: AdnsxdnqUzPejFxqTpiXsRqOggvkNgAA//WAAADkq5A=
-Date: Thu, 21 Sep 2023 21:06:47 +0000
-Message-ID: 
- <BN2P110MB174766EB1FCCC6F93AB1AFC4B7F8A@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
-References: 
- <BN2P110MB17470A026C94DFF2E9370914B7F8A@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
- <CAB__hTQid=NqnZ7fEqn+vctkza_O1hon-NhhXzFKVq+X8_mtmA@mail.gmail.com>
-In-Reply-To: 
- <CAB__hTQid=NqnZ7fEqn+vctkza_O1hon-NhhXzFKVq+X8_mtmA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN2P110MB1747:EE_|BN2P110MB1207:EE_
-x-ms-office365-filtering-correlation-id: 14e95a12-6667-4944-0479-08dbbae6aab7
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- YstLFZQO7QuU3Sm9+nCPBLH54RAMUq8svkFiHeKKFHgZ3mvCYqY+lS16PyMT9VWY0xeQnGSCYm49DDEFkZDPc7GzMpKnnAVTIxfAA8jismMoZPpsFqPNdxpotV/E0zb3Mcz7Cz1F0FE2nRpQoJ74tQPZkmgNXAPLhiIPozBIuIha87moM8j295cJXCXPXug3aq/bWW9PxEFZU1BnPCBaAWZjl1TTrIf+QJDoxlXv40lbMyI/jDqThSw/0BOS8LC7lLHeU02cqDI+AyfFBW8/UEzjb/lshLbF6obTY/aAu96PQW9yj7FttcndxnW9cuKNIeyem6rnZKgnJgInXsunbYaMQbp/fi0QUjaBLzM8bsuHPR0wU48BfV1yu+KQHjAqiFILYfVBLvgQW8wwjyAruuFrl6PORMkz5o5/V+OM+2OwstGcKUENE3vyXPveWbXQEVyDpn4zeJcLutWgvvt1BY+BeURwuMT0w8hDUdTA7tHU1kzqLBgZO1L803KheZu6UtnuRJhKG6FMk/ZZZ+H/ST/ePZoEqsRuhMDdbxGfLDN04EwIul8iE8smS3KNUGbGwILEHyRlWAuHJJxNaIcyr+VjIkanBp/H+v+wN6UlDHFQNcUm8xFeiEwlt63zXZs3SQMQT73TdkTw+kAFpXvZug==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(39830400003)(366004)(451199024)(1800799009)(186009)(26005)(8676002)(8936002)(52536014)(55016003)(9326002)(5660300002)(9686003)(4326008)(41300700001)(122000001)(38100700002)(38070700005)(86362001)(2906002)(83380400001)(41320700001)(71200400001)(33656002)(66899024)(508600001)(53546011)(7696005)(6916009)(66946007)(64756008)(6506007)(76116006)(66476007)(66556008)(66446008)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- H0mREUTO5zkv9oazBGJfxr9OYs5ZC32vPpfxm6yiCJWXwI5zgN+2R8Vrslw5pbBSN1OWRzEr+OIQLyc28SkEeqMAlnbqRVhIlKvQmhR4Z6fki7PYwMpGczkuyRbPs4kqkBr3Ic71tAgSSwQGzflYbxRKl9ABvc9AGdkT517Nze/NrRypFbsPZtjcvAynT+5nkcmvBTaiZ3ewVSDmY3czMLVoYx+rvg9zkTgMdrg9Hg6jPLwpQuGYjC994/eNdO7Yx5Y9KDm0S1PtyAgvGq09YbB68ZBuGC6CQCCinlw7Gr+THDVeGxlDdNb51wkP8S6sZdlACZ/qzo6HVF0qC73rJ1Bf1ek7L8wtKiwIzirA4mT9wcD25RcEwlMR2/ZCiVk7kmvi0tR5xNChNORJLwuisaJXIWdsK61DpuTazCz33L8=
+        d=nd.edu; s=google; t=1695395895; x=1696000695; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2HkJC3n6lfCNTLBu/NYwC+xcwinYG7/x7uduqdUihOs=;
+        b=dW4OZvTezJQG/TUdDBNp/jNNnHRjfl7cYWP4YE+rc9/t6rs9pWncZKxlYFM2lwMkMF
+         UAeuA/RES15j8cOOOmrWhgaBJy9GJDNhAN62CXpoBJGkDSVcgci+UOcNMQDMSAfY65aS
+         fGse9MZFUvHWKX1ETUr4yzX6w7Tn610zd8Kd0T21vE+vp20MX8L0lAg2tXMGVnAiDM6X
+         Gsl03OLtUQKFRw3hLG9AS4zhUUVgGeQfztcniNLXnvw7kZ6fxpiDiu6T/jNHltI20WGB
+         SWbzppPWCzvvYhqsyMnE1yV2nfD68CUPkzzMK4pldRJDUl8ZQOFuMt7a29wSZqMW1Kjb
+         frTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695395895; x=1696000695;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2HkJC3n6lfCNTLBu/NYwC+xcwinYG7/x7uduqdUihOs=;
+        b=fQEKtvFAJytKEmZ8ozqq1uDi6+2jfE2SafYrtsHlKgxtBbdPB5wAsOQ0E/2DF0STRW
+         V57YQ0MTL9dP4neIrpSmYoOEWIFAnGuPo5BbKBytC4mZK5sk8o5JS0jOOQH48NgaT3gq
+         z7GfOuxW6KZ3NAPtl2SFUJyJQ1pqasunHp1dKr1O0XRNazByKPoFpj85+JH22F0cHpz6
+         ugGQrtsUQE42ZNOuhXbfz7o9t9p06X2j5c/XN0GDrv1XGHVjTEdXQrfBLOKHP90jp2sS
+         Unvx596SY7HcjTHKqhKcYA5rZp9Rwdwgl/BO7J5zgRu5Xe5E4jOk55+8N35N02NMYdx2
+         sdow==
+X-Gm-Message-State: AOJu0YwUOiBLYxist7f8JNYG5Lx+8SQiJRZG2rYV20AlijeSL1SKq5p1
+	Zc+bwKskzvV7Z4PbaWHWCbCwa+Z+A/Q7vAzBy4+IqKRJaRnB9a++
+X-Google-Smtp-Source: AGHT+IHr6GZWOgi0QmmqfJrhAhL2yQs1AKOnAihyKUeb7I0urM5oWLmOQ2mDr62QWKnDJsbSJ3LqOk0bPZaGSSNjHLU=
+X-Received: by 2002:aa7:cb46:0:b0:530:f856:b844 with SMTP id
+ w6-20020aa7cb46000000b00530f856b844mr8920738edt.10.1695395894690; Fri, 22 Sep
+ 2023 08:18:14 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14e95a12-6667-4944-0479-08dbbae6aab7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2023 21:06:47.1828
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN2P110MB1207
-Message-ID-Hash: KNFG763DOZPPI65VYRJFJ2OEF3SOBRNF
-X-Message-ID-Hash: KNFG763DOZPPI65VYRJFJ2OEF3SOBRNF
-X-MailFrom: david@SynopticEngineering.com
+References: <BN2P110MB17470A026C94DFF2E9370914B7F8A@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+ <CAB__hTQid=NqnZ7fEqn+vctkza_O1hon-NhhXzFKVq+X8_mtmA@mail.gmail.com> <BN2P110MB174766EB1FCCC6F93AB1AFC4B7F8A@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+In-Reply-To: <BN2P110MB174766EB1FCCC6F93AB1AFC4B7F8A@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+Date: Fri, 22 Sep 2023 11:18:03 -0400
+Message-ID: <CAB__hTQzw-repUdgpEPpfyYhDE_DBFA1==i4PQf-QOoqFmf-Zg@mail.gmail.com>
+To: David Raeman <david@synopticengineering.com>
+Message-ID-Hash: RVEALPLGFSMUHFO3BFYVQTUOKHJL2FZE
+X-Message-ID-Hash: RVEALPLGFSMUHFO3BFYVQTUOKHJL2FZE
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Toggling a panel GPIO at a specific time (via RFNoC or otherwise)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7P2DZYWNXK7ORIT7JDQ7OIIFB4SYAJWG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RVEALPLGFSMUHFO3BFYVQTUOKHJL2FZE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3806208004130338959=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============1883093984217821285=="
 
---===============3806208004130338959==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN2P110MB174766EB1FCCC6F93AB1AFC4B7F8ABN2P110MB1747NAMP_"
+--===============1883093984217821285==
+Content-Type: multipart/alternative; boundary="0000000000000eadb50605f41edb"
 
---_000_BN2P110MB174766EB1FCCC6F93AB1AFC4B7F8ABN2P110MB1747NAMP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000000eadb50605f41edb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgUm9iLA0KVGhhbmtzIGZvciB0aGUgcG9pbnRlciwgSSBoYWRu4oCZdCBjb25zaWRlcmVkIHRy
-eWluZyBzZXRfZ3Bpb19hdHRyKCkgd2l0aCBhIGNvbW1hbmQgdGltZS4gSSB3aWxsIGV4cGVyaW1l
-bnQgd2l0aCB0aGlzIGFwcHJvYWNoLi4NCg0KTXkgb25seSBtaW5vciBoZXNpdGF0aW9uIGlzIHRo
-YXQgbXkgc29mdHdhcmUgYWxzbyBkb2VzIG90aGVyIGludGVyYWN0aW9ucyB3aXRoIHRoZSByYWRp
-byBkdXJpbmcgdHJhbnNtaXNzaW9uIChzcGVjaWZpY2FsbHksIHVwZGF0aW5nIHJlZ2lzdGVycyBp
-biBvdGhlciBSRk5vQyBibG9ja3MpLCBhbmQgaXTigJlzIHVuY2xlYXIgdG8gbWUgd2hldGhlciB0
-aG9zZSBwb2tlcyBjb3VsZCBnZXQgYmxvY2tlZCBpbiBhIHF1ZXVlIGJlaGluZCBhIHRpbWVkIGNv
-bW1hbmQuIEFzc3VtaW5nIHNvLCBJIG1pZ2h0IGJlIGFibGUgdG8gc2VxdWVuY2UgaW50ZXJhY3Rp
-b25zIHRvIGF2b2lkIHRoYXQgY2FzZS4NCg0KVGhhbmtzIGFnYWluLA0KLURhdmlkDQoNCg0KRnJv
-bTogUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5kLmVkdT4NClNlbnQ6IFRodXJzZGF5LCBTZXB0ZW1i
-ZXIgMjEsIDIwMjMgNDoyNiBQTQ0KVG86IERhdmlkIFJhZW1hbiA8ZGF2aWRAU3lub3B0aWNFbmdp
-bmVlcmluZy5jb20+DQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFJl
-OiBbVVNSUC11c2Vyc10gVG9nZ2xpbmcgYSBwYW5lbCBHUElPIGF0IGEgc3BlY2lmaWMgdGltZSAo
-dmlhIFJGTm9DIG9yIG90aGVyd2lzZSkNCg0KSGkgRGF2aWQsDQpJdCBtYXkgYmUgdGhlIGNhc2Ug
-dGhhdCB0aGlzIGZ1bmN0aW9uYWxpdHkgYWxyZWFkeSBleGlzdHMgaW4gdGhlIHJhZGlvIGJsb2Nr
-IHN1Y2ggdGhhdCB5b3UgZG9uJ3QgbmVlZCBhIGN1c3RvbSBibG9jay4gIFRoZSBmdW5jdGlvbiBy
-YWRpb19jb250cm9sLT5zZXRfZ3Bpb19hdHRyKCkgcmVzcGVjdHMgdGhlIGNvbW1hbmQgdGltZS4g
-IEhlcmUgaXMgYSBwb3J0aW9uIG9mIG9uZSBvZiBteSBhcHBsaWNhdGlvbnMgdGhhdCBvdXRwdXRz
-IGEgZ3BpbyBwdWxzZSBhZnRlciBhIHNwZWNpZmllZCBkZWxheSByZWxhdGl2ZSB0byB0aGUgc3Ry
-ZWFtaW5nICdzdGFydF90aW1lJy4gIFdvdWxkIHRoaXMgd29yayBmb3IgeW91ciBjYXNlPw0KUm9i
-DQoNCiAgdWhkOjp0aW1lX3NwZWNfdCBncGlvX29uID0gc3RhcnRfdGltZSArIGdwaW9fc3RhcnQ7
-DQogIHRoaXMtPnNldF9jb21tYW5kX3RpbWUoZ3Bpb19vbiwgZ3Bpb19tYik7DQogIHRoaXMtPnNl
-dF9ncGlvX2F0dHIoZ3Bpb19wdWxzZV9iYW5rLCAiT1VUIiwgLTEsIGdwaW9fbWFzaywgZ3Bpb19t
-Yik7DQogIHRoaXMtPnNldF9jb21tYW5kX3RpbWUoZ3Bpb19vbiArIGdwaW9fZHVyYXRpb24sIGdw
-aW9fbWIpOw0KICB0aGlzLT5zZXRfZ3Bpb19hdHRyKGdwaW9fcHVsc2VfYmFuaywgIk9VVCIsIDAs
-IGdwaW9fbWFzaywgZ3Bpb19tYik7DQogIHRoaXMtPmNsZWFyX2NvbW1hbmRfdGltZShncGlvX21i
-KTsNCg0KT24gVGh1LCBTZXAgMjEsIDIwMjMgYXQgNDowMeKAr1BNIERhdmlkIFJhZW1hbiA8ZGF2
-aWRAc3lub3B0aWNlbmdpbmVlcmluZy5jb208bWFpbHRvOmRhdmlkQHN5bm9wdGljZW5naW5lZXJp
-bmcuY29tPj4gd3JvdGU6DQpIZWxsbywNCg0KSSdtIGxvb2tpbmcgZm9yIGFkdmljZSBvbiB0b2dn
-bGluZyBhbiBFMzIwIEdQSU8gcGluIGF0IGEgc3BlY2lmaWMgdWhkOjp0aW1lX3NwZWNfdC4gTXkg
-dXNlIGNhc2UgaXMgYSBVSEQgYXBwbGljYXRpb24gdGhhdCBzdGFydHMgYSBsb25nIHRyYW5zbWl0
-IGJ1cnN0IGF0IGEga25vd24gdGltZXNwZWMsIHRoZW4gbGF0ZXIgdG9nZ2xlcyBhIHBpbiBhdCBh
-IHRpbWUgY29ycmVzcG9uZGluZyB0byB0aGUgTnRoIHNhbXBsZSBiZWluZyB0cmFuc21pdHRlZC4g
-VGhlIHBpbiBjb250cm9scyBhbiBleHRlcm5hbCBSRiBzd2l0Y2guIEkgcmVjb2duaXplIHRoZXJl
-IHdpbGwgYmUgc29tZSBhbW91bnQgb2YgZ3JvdXAgZGVsYXkgdGhyb3VnaCB0aGUgUkZJQyBhbmQg
-aW50ZXJuYWwgYW5hbG9nIGNvbXBvbmVudHMg4oCTIG15IGdvYWwgaXMganVzdCB0byBiZSByb3Vn
-aGx5IHN5bmNocm9ub3VzIHdpdGggc2FtcGxlcyBjbG9ja2VkIG91dCBvZiB0aGUgcmFkaW8gYmxv
-Y2suDQoNCkFzIGEgZmlyc3QgcGFzcywgSSBoYXZlIGEgY3VzdG9tIFJGTm9DIGJsb2NrIHRoYXQg
-Y291bnRzIHZhbGlkIHNhbXBsZXMgZnJvbSB0aGUgc3RhcnQgb2YgYnVyc3QgYW5kIHRvZ2dsZXMg
-dGhlIHBpbiBhZnRlciB0aGUgTnRoIHNhbXBsZSAod2hlcmUgTiBpcyBwcm92aWRlZCBpbiBhIHVz
-ZXIgcmVnaXN0ZXIpLiBUaGlzIGlzIGEgcG9vciBzb2x1dGlvbiBiZWNhdXNlIHRoZXJlIGlzIGRl
-ZXAgYnVmZmVyaW5nIGRvd25zdHJlYW0gaW4gdGhlIHJhZGlvIGJsb2NrLCBzbyBteSBibG9jayBz
-ZWVzIOKAnHNhbXBsZSBOIiBhbmQgdG9nZ2xlcyB0aGUgcGluIHNldmVyYWwgdGhvdXNhbmQgc2Ft
-cGxlLXBlcmlvZHMgYmVmb3JlIGl0J3MgdHJhbnNtaXR0ZWQuIEl0IGlzbuKAmXQgYSBmaXhlZCBs
-YWcgdGhhdCBjYW4gYmUgYWRkZWQgYXMgYSBjb25zdGFudCDigJMgY29uc2lkZXIgdGhhdCBpZiBO
-IGlzIHNtYWxsIGFuZCDigJxzYW1wbGUgTuKAnSBpcyBvYnNlcnZlZCB3aGVuIHRoZSBGSUZPIGlz
-IGluaXRpYWxseSBiZWluZyBmaWxsZWQsIHRoZSB0b2dnbGUgd291bGQgb2NjdXIgd2hpbGUgdGhl
-IGNvcnJlc3BvbmRpbmcgc2FtcGxlIGlzIHNpdHRpbmcgaW4gdGhlIGJhY2stcHJlc3N1cmVkIEZJ
-Rk8gd2FpdGluZyBmb3IgdGhlIHRyYW5zbWl0IHN0YXJ0IHRpbWUuDQoNClNpbmNlIHRoaXMgaXMg
-c3luY2hyb25vdXMgbWFuaXB1bGF0aW9uIG9mIGV4dGVybmFsIHN0YXRlLCBhbmQgbm90IGp1c3Qg
-c2FtcGxlcywgSSBkb27igJl0IGJlbGlldmUgaXQgd2lsbCBiZSBzdWZmaWNpZW50IHRvIHVzZSBD
-SERSIGhlYWRlciB0aW1lc3RhbXBzIOKAkyB0aGUgYmxvY2sgd291bGQgYWxzbyBuZWVkIHRvIGtu
-b3cgY3VycmVudCByYWRpb190aW1lLCBhbmQgSeKAmW0gbm90IHN1cmUgaG93IHRvIGdldCB0aGF0
-IGluIGFuIFJGTm9DIGJsb2NrLi4NCg0KSnVzdCB3b25kZXJpbmcgaWYgSSBtaWdodCBiZSBvdmVy
-bG9va2luZyBzb21lIHNpbXBsZXIgYXBwcm9hY2gsIG9yIGFueSBhZHZpY2Ugb24gaG93IHRvIHBs
-dW1iIHRoaXMgaW50byBhIGN1c3RvbSBSRk5vQyBibG9jay4NCg0KVGhhbmsgeW91LA0KLURhdmlk
-DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWls
-IHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbT4NCg==
+Yes, I believe you will need to ensure monotonically increasing times in
+the Radio command queue.  Since we have a multi-threaded application, we
+cheated and simply inserted a "delay" in the thread that sets the GPIO
+pulse in order to ensure that the command entered the queue after all of
+the streaming commands.
+Rob
 
---_000_BN2P110MB174766EB1FCCC6F93AB1AFC4B7F8ABN2P110MB1747NAMP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Thu, Sep 21, 2023 at 5:06=E2=80=AFPM David Raeman <david@synopticenginee=
+ring.com>
+wrote:
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
-YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCWZvbnQtc2l6
-ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBz
-cGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsN
-Cgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1z
-dHlsZS10eXBlOnBlcnNvbmFsLWNvbXBvc2U7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMt
-c2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUt
-dHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpA
-cGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEu
-MGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7
-fQ0KLS0+PC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2
-bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGRpdiBjbGFzcz0i
-V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpIFJvYiw8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyBmb3IgdGhlIHBvaW50ZXIsIEkgaGFkbuKA
-mXQgY29uc2lkZXJlZCB0cnlpbmcgc2V0X2dwaW9fYXR0cigpIHdpdGggYSBjb21tYW5kIHRpbWUu
-IEkgd2lsbCBleHBlcmltZW50IHdpdGggdGhpcyBhcHByb2FjaC4uPG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPk15IG9ubHkgbWlub3IgaGVzaXRhdGlvbiBpcyB0aGF0IG15IHNvZnR3YXJlIGFsc28g
-ZG9lcyBvdGhlciBpbnRlcmFjdGlvbnMgd2l0aCB0aGUgcmFkaW8gZHVyaW5nIHRyYW5zbWlzc2lv
-biAoc3BlY2lmaWNhbGx5LCB1cGRhdGluZyByZWdpc3RlcnMgaW4gb3RoZXIgUkZOb0MgYmxvY2tz
-KSwgYW5kIGl04oCZcyB1bmNsZWFyIHRvIG1lIHdoZXRoZXIgdGhvc2UgcG9rZXMgY291bGQgZ2V0
-IGJsb2NrZWQgaW4gYSBxdWV1ZQ0KIGJlaGluZCBhIHRpbWVkIGNvbW1hbmQuIEFzc3VtaW5nIHNv
-LCBJIG1pZ2h0IGJlIGFibGUgdG8gc2VxdWVuY2UgaW50ZXJhY3Rpb25zIHRvIGF2b2lkIHRoYXQg
-Y2FzZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzIGFnYWluLDxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LURhdmlkPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpz
-b2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IFJvYiBLb3NzbGVyICZsdDtya29zc2xlckBuZC5lZHUm
-Z3Q7IDxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgU2VwdGVtYmVyIDIxLCAyMDIzIDQ6MjYg
-UE08YnI+DQo8Yj5Ubzo8L2I+IERhdmlkIFJhZW1hbiAmbHQ7ZGF2aWRAU3lub3B0aWNFbmdpbmVl
-cmluZy5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxi
-cj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFRvZ2dsaW5nIGEgcGFuZWwgR1BJ
-TyBhdCBhIHNwZWNpZmljIHRpbWUgKHZpYSBSRk5vQyBvciBvdGhlcndpc2UpPG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSBEYXZpZCw8bzpwPjwvbzpwPjwv
-cD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JdCBtYXkgYmUgdGhlIGNhc2UgdGhhdCB0
-aGlzIGZ1bmN0aW9uYWxpdHkgYWxyZWFkeSBleGlzdHMmbmJzcDtpbiB0aGUgcmFkaW8gYmxvY2sg
-c3VjaCB0aGF0IHlvdSBkb24ndCBuZWVkIGEgY3VzdG9tIGJsb2NrLiZuYnNwOyBUaGUgZnVuY3Rp
-b24gcmFkaW9fY29udHJvbC0mZ3Q7c2V0X2dwaW9fYXR0cigpIHJlc3BlY3RzIHRoZSBjb21tYW5k
-IHRpbWUuJm5ic3A7IEhlcmUgaXMgYSBwb3J0aW9uIG9mIG9uZSBvZiBteSBhcHBsaWNhdGlvbnMg
-dGhhdA0KIG91dHB1dHMgYSBncGlvIHB1bHNlIGFmdGVyIGEgc3BlY2lmaWVkIGRlbGF5IHJlbGF0
-aXZlIHRvIHRoZSBzdHJlYW1pbmcgJ3N0YXJ0X3RpbWUnLiZuYnNwOyBXb3VsZCB0aGlzIHdvcmsg
-Zm9yIHlvdXIgY2FzZT88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPlJvYjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVv
-dDsiPiZuYnNwOyB1aGQ6OnRpbWVfc3BlY190IGdwaW9fb24gPSBzdGFydF90aW1lICsgZ3Bpb19z
-dGFydDs8YnI+DQombmJzcDsgdGhpcy0mZ3Q7c2V0X2NvbW1hbmRfdGltZShncGlvX29uLCBncGlv
-X21iKTs8YnI+DQombmJzcDsgdGhpcy0mZ3Q7c2V0X2dwaW9fYXR0cihncGlvX3B1bHNlX2Jhbmss
-ICZxdW90O09VVCZxdW90OywgLTEsIGdwaW9fbWFzaywgZ3Bpb19tYik7PGJyPg0KJm5ic3A7IHRo
-aXMtJmd0O3NldF9jb21tYW5kX3RpbWUoZ3Bpb19vbiArIGdwaW9fZHVyYXRpb24sIGdwaW9fbWIp
-Ozxicj4NCiZuYnNwOyB0aGlzLSZndDtzZXRfZ3Bpb19hdHRyKGdwaW9fcHVsc2VfYmFuaywgJnF1
-b3Q7T1VUJnF1b3Q7LCAwLCBncGlvX21hc2ssIGdwaW9fbWIpOzxicj4NCiZuYnNwOyB0aGlzLSZn
-dDtjbGVhcl9jb21tYW5kX3RpbWUoZ3Bpb19tYik7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBUaHUsIFNlcCAyMSwgMjAyMyBh
-dCA0OjAx4oCvUE0gRGF2aWQgUmFlbWFuICZsdDs8YSBocmVmPSJtYWlsdG86ZGF2aWRAc3lub3B0
-aWNlbmdpbmVlcmluZy5jb20iPmRhdmlkQHN5bm9wdGljZW5naW5lZXJpbmcuY29tPC9hPiZndDsg
-d3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6
-bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4g
-Ni4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
-dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkhlbGxvLDxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
-aW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1h
-bHQ6YXV0byI+SSdtIGxvb2tpbmcgZm9yIGFkdmljZSBvbiB0b2dnbGluZyBhbiBFMzIwIEdQSU8g
-cGluIGF0IGEgc3BlY2lmaWMgdWhkOjp0aW1lX3NwZWNfdC4gTXkgdXNlIGNhc2UgaXMgYSBVSEQg
-YXBwbGljYXRpb24gdGhhdCBzdGFydHMgYSBsb25nIHRyYW5zbWl0IGJ1cnN0IGF0IGEga25vd24g
-dGltZXNwZWMsIHRoZW4NCiBsYXRlciB0b2dnbGVzIGEgcGluIGF0IGEgdGltZSBjb3JyZXNwb25k
-aW5nIHRvIHRoZSBOdGggc2FtcGxlIGJlaW5nIHRyYW5zbWl0dGVkLiBUaGUgcGluIGNvbnRyb2xz
-IGFuIGV4dGVybmFsIFJGIHN3aXRjaC4gSSByZWNvZ25pemUgdGhlcmUgd2lsbCBiZSBzb21lIGFt
-b3VudCBvZiBncm91cCBkZWxheSB0aHJvdWdoIHRoZSBSRklDIGFuZCBpbnRlcm5hbCBhbmFsb2cg
-Y29tcG9uZW50cyDigJMgbXkgZ29hbCBpcyBqdXN0IHRvIGJlIHJvdWdobHkgc3luY2hyb25vdXMN
-CiB3aXRoIHNhbXBsZXMgY2xvY2tlZCBvdXQgb2YgdGhlIHJhZGlvIGJsb2NrLjxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
-O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
-LWJvdHRvbS1hbHQ6YXV0byI+QXMgYSBmaXJzdCBwYXNzLCBJIGhhdmUgYSBjdXN0b20gUkZOb0Mg
-YmxvY2sgdGhhdCBjb3VudHMgdmFsaWQgc2FtcGxlcyBmcm9tIHRoZSBzdGFydCBvZiBidXJzdCBh
-bmQgdG9nZ2xlcyB0aGUgcGluIGFmdGVyIHRoZSBOdGggc2FtcGxlICh3aGVyZSBOIGlzIHByb3Zp
-ZGVkIGluIGEgdXNlciByZWdpc3RlcikuDQogVGhpcyBpcyBhIHBvb3Igc29sdXRpb24gYmVjYXVz
-ZSB0aGVyZSBpcyBkZWVwIGJ1ZmZlcmluZyBkb3duc3RyZWFtIGluIHRoZSByYWRpbyBibG9jaywg
-c28gbXkgYmxvY2sgc2VlcyDigJxzYW1wbGUgTiZxdW90OyBhbmQgdG9nZ2xlcyB0aGUgcGluIHNl
-dmVyYWwgdGhvdXNhbmQgc2FtcGxlLXBlcmlvZHMgYmVmb3JlIGl0J3MgdHJhbnNtaXR0ZWQuIEl0
-IGlzbuKAmXQgYSBmaXhlZCBsYWcgdGhhdCBjYW4gYmUgYWRkZWQgYXMgYSBjb25zdGFudCDigJMg
-Y29uc2lkZXINCiB0aGF0IGlmIE4gaXMgc21hbGwgYW5kIOKAnHNhbXBsZSBO4oCdIGlzIG9ic2Vy
-dmVkIHdoZW4gdGhlIEZJRk8gaXMgaW5pdGlhbGx5IGJlaW5nIGZpbGxlZCwgdGhlIHRvZ2dsZSB3
-b3VsZCBvY2N1ciB3aGlsZSB0aGUgY29ycmVzcG9uZGluZyBzYW1wbGUgaXMgc2l0dGluZyBpbiB0
-aGUgYmFjay1wcmVzc3VyZWQgRklGTyB3YWl0aW5nIGZvciB0aGUgdHJhbnNtaXQgc3RhcnQgdGlt
-ZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
-LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
-dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPlNpbmNlIHRoaXMgaXMgc3luY2hyb25vdXMg
-bWFuaXB1bGF0aW9uIG9mIGV4dGVybmFsIHN0YXRlLCBhbmQgbm90IGp1c3Qgc2FtcGxlcywgSSBk
-b27igJl0IGJlbGlldmUgaXQgd2lsbCBiZSBzdWZmaWNpZW50IHRvIHVzZSBDSERSIGhlYWRlciB0
-aW1lc3RhbXBzIOKAkyB0aGUgYmxvY2sgd291bGQgYWxzbyBuZWVkIHRvDQoga25vdyBjdXJyZW50
-IHJhZGlvX3RpbWUsIGFuZCBJ4oCZbSBub3Qgc3VyZSBob3cgdG8gZ2V0IHRoYXQgaW4gYW4gUkZO
-b0MgYmxvY2suLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
-by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
-cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SnVzdCB3b25kZXJpbmcgaWYg
-SSBtaWdodCBiZSBvdmVybG9va2luZyBzb21lIHNpbXBsZXIgYXBwcm9hY2gsIG9yIGFueSBhZHZp
-Y2Ugb24gaG93IHRvIHBsdW1iIHRoaXMgaW50byBhIGN1c3RvbSBSRk5vQyBibG9jay48bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6
-YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
-cmdpbi1ib3R0b20tYWx0OmF1dG8iPlRoYW5rIHlvdSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
-dHRvbS1hbHQ6YXV0byI+LURhdmlkPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJy
-Pg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1h
-aWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0K
-dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3A+DQo8L2Rp
-dj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
-bD4NCg==
+> Hi Rob,
+>
+> Thanks for the pointer, I hadn=E2=80=99t considered trying set_gpio_attr(=
+) with a
+> command time. I will experiment with this approach..
+>
+>
+>
+> My only minor hesitation is that my software also does other interactions
+> with the radio during transmission (specifically, updating registers in
+> other RFNoC blocks), and it=E2=80=99s unclear to me whether those pokes c=
+ould get
+> blocked in a queue behind a timed command. Assuming so, I might be able t=
+o
+> sequence interactions to avoid that case.
+>
+>
+>
+> Thanks again,
+>
+> -David
+>
+>
+>
+>
+>
+> *From:* Rob Kossler <rkossler@nd.edu>
+> *Sent:* Thursday, September 21, 2023 4:26 PM
+> *To:* David Raeman <david@SynopticEngineering.com>
+> *Cc:* usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Toggling a panel GPIO at a specific time (via
+> RFNoC or otherwise)
+>
+>
+>
+> Hi David,
+>
+> It may be the case that this functionality already exists in the radio
+> block such that you don't need a custom block.  The function
+> radio_control->set_gpio_attr() respects the command time.  Here is a
+> portion of one of my applications that outputs a gpio pulse after a
+> specified delay relative to the streaming 'start_time'.  Would this work
+> for your case?
+>
+> Rob
+>
+>
+>
+>   uhd::time_spec_t gpio_on =3D start_time + gpio_start;
+>   this->set_command_time(gpio_on, gpio_mb);
+>   this->set_gpio_attr(gpio_pulse_bank, "OUT", -1, gpio_mask, gpio_mb);
+>   this->set_command_time(gpio_on + gpio_duration, gpio_mb);
+>   this->set_gpio_attr(gpio_pulse_bank, "OUT", 0, gpio_mask, gpio_mb);
+>   this->clear_command_time(gpio_mb);
+>
+>
+>
+> On Thu, Sep 21, 2023 at 4:01=E2=80=AFPM David Raeman <
+> david@synopticengineering.com> wrote:
+>
+> Hello,
+>
+>
+>
+> I'm looking for advice on toggling an E320 GPIO pin at a specific
+> uhd::time_spec_t. My use case is a UHD application that starts a long
+> transmit burst at a known timespec, then later toggles a pin at a time
+> corresponding to the Nth sample being transmitted. The pin controls an
+> external RF switch. I recognize there will be some amount of group delay
+> through the RFIC and internal analog components =E2=80=93 my goal is just=
+ to be
+> roughly synchronous with samples clocked out of the radio block.
+>
+>
+>
+> As a first pass, I have a custom RFNoC block that counts valid samples
+> from the start of burst and toggles the pin after the Nth sample (where N
+> is provided in a user register). This is a poor solution because there is
+> deep buffering downstream in the radio block, so my block sees =E2=80=9Cs=
+ample N"
+> and toggles the pin several thousand sample-periods before it's
+> transmitted. It isn=E2=80=99t a fixed lag that can be added as a constant=
+ =E2=80=93
+> consider that if N is small and =E2=80=9Csample N=E2=80=9D is observed wh=
+en the FIFO is
+> initially being filled, the toggle would occur while the corresponding
+> sample is sitting in the back-pressured FIFO waiting for the transmit sta=
+rt
+> time.
+>
+>
+>
+> Since this is synchronous manipulation of external state, and not just
+> samples, I don=E2=80=99t believe it will be sufficient to use CHDR header
+> timestamps =E2=80=93 the block would also need to know current radio_time=
+, and I=E2=80=99m
+> not sure how to get that in an RFNoC block..
+>
+>
+>
+> Just wondering if I might be overlooking some simpler approach, or any
+> advice on how to plumb this into a custom RFNoC block.
+>
+>
+>
+> Thank you,
+>
+> -David
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
 
---_000_BN2P110MB174766EB1FCCC6F93AB1AFC4B7F8ABN2P110MB1747NAMP_--
+--0000000000000eadb50605f41edb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---===============3806208004130338959==
+<div dir=3D"ltr">Yes, I believe you will need to ensure monotonically incre=
+asing times in the Radio command queue.=C2=A0 Since we have a multi-threade=
+d application, we cheated and simply inserted a &quot;delay&quot; in the th=
+read that sets the GPIO pulse in order to ensure that the command entered t=
+he queue after all of the streaming commands.=C2=A0=C2=A0<div>Rob</div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
+hu, Sep 21, 2023 at 5:06=E2=80=AFPM David Raeman &lt;<a href=3D"mailto:davi=
+d@synopticengineering.com">david@synopticengineering.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg-1=
+417378548568140033">
+
+
+
+
+
+<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_-1417378548568140033WordSection1">
+<p class=3D"MsoNormal">Hi Rob,<u></u><u></u></p>
+<p class=3D"MsoNormal">Thanks for the pointer, I hadn=E2=80=99t considered =
+trying set_gpio_attr() with a command time. I will experiment with this app=
+roach..<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">My only minor hesitation is that my software also do=
+es other interactions with the radio during transmission (specifically, upd=
+ating registers in other RFNoC blocks), and it=E2=80=99s unclear to me whet=
+her those pokes could get blocked in a queue
+ behind a timed command. Assuming so, I might be able to sequence interacti=
+ons to avoid that case.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks again,<u></u><u></u></p>
+<p class=3D"MsoNormal">-David<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Rob Kossler &lt;<a href=3D"mailto:rkoss=
+ler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; <br>
+<b>Sent:</b> Thursday, September 21, 2023 4:26 PM<br>
+<b>To:</b> David Raeman &lt;david@SynopticEngineering.com&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> Re: [USRP-users] Toggling a panel GPIO at a specific time (=
+via RFNoC or otherwise)<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi David,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">It may be the case that this functionality already e=
+xists=C2=A0in the radio block such that you don&#39;t need a custom block.=
+=C2=A0 The function radio_control-&gt;set_gpio_attr() respects the command =
+time.=C2=A0 Here is a portion of one of my applications that
+ outputs a gpio pulse after a specified delay relative to the streaming &#3=
+9;start_time&#39;.=C2=A0 Would this work for your case?<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Rob<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+=C2=A0 uhd::time_spec_t gpio_on =3D start_time + gpio_start;<br>
+=C2=A0 this-&gt;set_command_time(gpio_on, gpio_mb);<br>
+=C2=A0 this-&gt;set_gpio_attr(gpio_pulse_bank, &quot;OUT&quot;, -1, gpio_ma=
+sk, gpio_mb);<br>
+=C2=A0 this-&gt;set_command_time(gpio_on + gpio_duration, gpio_mb);<br>
+=C2=A0 this-&gt;set_gpio_attr(gpio_pulse_bank, &quot;OUT&quot;, 0, gpio_mas=
+k, gpio_mb);<br>
+=C2=A0 this-&gt;clear_command_time(gpio_mb);</span><u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Thu, Sep 21, 2023 at 4:01=E2=80=AFPM David Raeman=
+ &lt;<a href=3D"mailto:david@synopticengineering.com" target=3D"_blank">dav=
+id@synopticengineering.com</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:4=
+.8pt;margin-right:0in">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">I&#39;m looking for advice on toggling an E320 GPIO =
+pin at a specific uhd::time_spec_t. My use case is a UHD application that s=
+tarts a long transmit burst at a known timespec, then
+ later toggles a pin at a time corresponding to the Nth sample being transm=
+itted. The pin controls an external RF switch. I recognize there will be so=
+me amount of group delay through the RFIC and internal analog components =
+=E2=80=93 my goal is just to be roughly synchronous
+ with samples clocked out of the radio block.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">As a first pass, I have a custom RFNoC block that co=
+unts valid samples from the start of burst and toggles the pin after the Nt=
+h sample (where N is provided in a user register).
+ This is a poor solution because there is deep buffering downstream in the =
+radio block, so my block sees =E2=80=9Csample N&quot; and toggles the pin s=
+everal thousand sample-periods before it&#39;s transmitted. It isn=E2=80=99=
+t a fixed lag that can be added as a constant =E2=80=93 consider
+ that if N is small and =E2=80=9Csample N=E2=80=9D is observed when the FIF=
+O is initially being filled, the toggle would occur while the corresponding=
+ sample is sitting in the back-pressured FIFO waiting for the transmit star=
+t time.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Since this is synchronous manipulation of external s=
+tate, and not just samples, I don=E2=80=99t believe it will be sufficient t=
+o use CHDR header timestamps =E2=80=93 the block would also need to
+ know current radio_time, and I=E2=80=99m not sure how to get that in an RF=
+NoC block..<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Just wondering if I might be overlooking some simple=
+r approach, or any advice on how to plumb this into a custom RFNoC block.<u=
+></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Thank you,<u></u><u></u></p>
+<p class=3D"MsoNormal">-David<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><u></u><u></u></p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+</div></blockquote></div>
+
+--0000000000000eadb50605f41edb--
+
+--===============1883093984217821285==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -328,4 +375,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3806208004130338959==--
+--===============1883093984217821285==--
