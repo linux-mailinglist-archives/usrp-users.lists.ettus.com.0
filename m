@@ -2,286 +2,211 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA897AD6D3
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Sep 2023 13:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E52E7AD855
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Sep 2023 14:57:18 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 06EF3384F55
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Sep 2023 07:14:36 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 561BE383F03
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Sep 2023 08:57:17 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1695640476; bh=bf1RJ5WYETVo38sA13dLp3Zf81cqD1LD2CXeKihGWsI=;
-	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=s47N09QBEG1WPENrr3qpO/hb964G8jsPMdiaxEXthUELSvvegTD54FuQlatltb0mj
-	 Cgb61GKZNQOLNjXxBWlMMFWd0DF8i2pHPOovdi5RqSK7pikXbhvkFnxSyw7DJ77gf2
-	 JzUTIdHdaa6Y1dx/aoXCGGkOpkewS4pLKSQ6gEKC3h8dx+W3TODS3b7sfiIqXrYi64
-	 yHyKbVJpA/PuyVjh4pZAIuC2WJO7I2BH8MIdHUkwiVoBYcWXpvI2QcbwbDCVPK8LZj
-	 +GHkuyTYa/Nefl1btdu+z6AIHtrH6rfdouKEHJ2A5kOqvr2ekN5J7HUlRJyxWiZv00
-	 EBrWGwlJAOe5w==
-Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
-	by mm2.emwd.com (Postfix) with ESMTPS id CF4EA38456F
-	for <usrp-users@lists.ettus.com>; Mon, 25 Sep 2023 07:14:19 -0400 (EDT)
+	t=1695646637; bh=ZqqQpRsc+N2NawsewCvoMCAmtoVUfGvsFx6+8LIgE+I=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=chHJmtEdigg5WJD6GOVtEo1OnpOKcG8oMomY6eK8fk/icB7bF0IdwX5KBRY6OtAqy
+	 QpJOX6/0aJvCiqHkWXcs1A+y6pXqXSvdWt2seUnKbeFXlD1WEESU32GFhZ9j9fLWjK
+	 lB6z4YdIteNib380crX1Ecc9nTJ6QGOZj8P+p2qlqogvxJpgvWh389nWgxcEM/hmZL
+	 5ggRyHV7fu302+Hnp/8CuDb0o102cPACqv93iO1OUmi3w8xL70xctgo8OqeDbVYfE2
+	 c/ItaQMwI+wP9wfmcEC6deuCXRz9LjP76Rm7IhUUFy7Jlg2uOxkgvcA8ObtzzfEjLQ
+	 CQ5tKNMJU2NMg==
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id C85FA383F02
+	for <usrp-users@lists.ettus.com>; Mon, 25 Sep 2023 08:57:13 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="ZfhhGN5c";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kMmSWD8y";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1695640458; x=1695899658;
-	bh=Qt23o+fdRi0wHeCaFfMItalwjezkZIndBwm+vZQF/W4=;
-	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=ZfhhGN5cAdFlgl4RjHRQi35WJ5w59DbbfmgXCO0mZkLtA8ji+eBSgL6OL++d/LWF/
-	 Ro9v3VLyMlCpeex9GiwlD9BL+7SUaW0AkSa3eWViuGuyBO1/yQ6D7GxUNrkb/0Dxi3
-	 VKAI6oadB/uk/vEWlrZCZxaTNTbPIjpwvYnzUl3yP6gjfE5WCpuhFSZ0O7gLeAEP8I
-	 PJF9nNhQUzaGhva00KIkOmxiiN/n2MH+5GCK6N8uP2TvfovFmroSZ3EQPUIboipZb0
-	 d2O4uEQ8DqvVkphi2/KZs1lGw3m4EtJzhsdqOjfRrQ/BfralwmFYWVY1OvISW1hNju
-	 ZQnM+OIuq8aFg==
-Date: Mon, 25 Sep 2023 11:14:07 +0000
-To: Ivan Zahartchuk <adray0001@gmail.com>, usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <LPN77hJUIAM81IQUZp1xm11CW9ICrKnSrtl5iK1r8zW1rfcs-c-YX678AFDaGzJn8oWaplK6HDD8hZ3K2xcZn0778_UciNylvyZEp8zbVRE=@protonmail.com>
-In-Reply-To: <CAPRRyxvSXLmRQK1g9q4CpTZFD+DG_RD=3PvfOkXYCq6GhxaFWw@mail.gmail.com>
-References: <CAPRRyxvFFoPU8cCDFigOb+obsZGtE_nNz6q8WppVyU7q3oR0Ug@mail.gmail.com> <e4e27517-f1b3-79d9-d0d2-4fb6cafda00f@ettus.com> <wTof148s-b9-o9Kr4ztrZ40XkpxeAdB1LgVYwo4yKEv0xzMDb2quQHpttubb-Ohk3nmTIXWsdRYVkgXC0DMB-Sjsl3FP3Nj28-e20PXrCo0=@protonmail.com> <fce55c5f-843c-9703-a2fa-5e339ad3224c@gmail.com> <CAPRRyxvSXLmRQK1g9q4CpTZFD+DG_RD=3PvfOkXYCq6GhxaFWw@mail.gmail.com>
-Feedback-ID: 47010692:user:proton
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-31f737b8b69so5375257f8f.3
+        for <usrp-users@lists.ettus.com>; Mon, 25 Sep 2023 05:57:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695646632; x=1696251432; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TB0hVO2Kg+vCMo1gwc5zu5DSriHQH74omxRGk5fpbEs=;
+        b=kMmSWD8y1GbIhlhttsEBXx152/k0RFtzF5J9hBUU5MUo21gcgkYye4ClqnIjqvp9r/
+         NfgoM6SnUedjWep+Ghf6wMXMIXbZNkKgnB9qC7jWEY40wD3qTkPeGRdTBapZ5jCHxeJz
+         kAJ2uAOAsLLJkl0GALSt2Rq5zour6SQMEZetZ4Q5lVw/+oBbhI9CVhNCUY7KdxASX4wO
+         G2iTc2GlnRCrQXOYWlITzAEtLY45bowfrj7hJ4wEqeI+p60LTpRyH/sNmvuVjFFXHaQd
+         JGH7X2ktkQJAMkgTiReHI8EoySoblYuX8dP7Sh1OgcFg4RuPspJuJQWeQrAYC9IDPbOT
+         yR6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695646632; x=1696251432;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TB0hVO2Kg+vCMo1gwc5zu5DSriHQH74omxRGk5fpbEs=;
+        b=C5xUXYkW4U/ST+p+XvVOZO88hxRmz+P7AuHXlOnn0Vx3bV36Y5dSsWxZKsDcTRoG3c
+         WWM95akBBjT9W8w6kSHFYQqausdk2dDlW39dM3GajsxEtMaVa55QP94SJUl+g2MS9jbG
+         oc0EZLdHxl1fL3ybaNFjFcXhQFqrfbfHWkAFef9u0eJfZ5juV/U2WeGPyknnaXpin2CQ
+         7NQl8VARr7xP+vwspzR1oRTusIzzs7wsJOq0hExf58Wur5uD1DJ2acOvod1ULxU2NkQ+
+         mY7WPKEkQzLxiPSNAYGcqMWCcdyl0wBOSiY/dthH3u4ocRpAr8j6GS2fwWATrwCSkB/B
+         QKNw==
+X-Gm-Message-State: AOJu0YyHHpkVO2aCN7qLF/vv24i1IcI3Q0U+G8N1IC47z5XORHHdmf3Q
+	kBY+UG+YdSjpM8YKM28H0LDu3RUm9FjiMp8DXtrlxuvc
+X-Google-Smtp-Source: AGHT+IGBtcntcfUv4t1P3t+mW3V5yRWtAPqiepm+657wgCiIG7hD9jrnvrCLpHjZKVxP0APCz6PTyEmoumBRqQpRHOM=
+X-Received: by 2002:a5d:526e:0:b0:31f:eed7:2fdc with SMTP id
+ l14-20020a5d526e000000b0031feed72fdcmr7266701wrc.35.1695646632252; Mon, 25
+ Sep 2023 05:57:12 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: ZCYPCMRLYH5VB67TXEGDXMMYDG7ACCXK
-X-Message-ID-Hash: ZCYPCMRLYH5VB67TXEGDXMMYDG7ACCXK
-X-MailFrom: olo1618@protonmail.com
+From: Devin Kelly <dwwkelly@gmail.com>
+Date: Mon, 25 Sep 2023 08:57:01 -0400
+Message-ID: <CAANLyuawttfqk9emcKXbJR-7NXAcL5xC-pih1xyzrh4Rcjg_QQ@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: GYTX7ZDPKGFROBUFI7G23LCTXPP7EGPO
+X-Message-ID-Hash: GYTX7ZDPKGFROBUFI7G23LCTXPP7EGPO
+X-MailFrom: dwwkelly@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP B200 Data Reception Issue on Windows 10
+Subject: [USRP-users] TX Streamer Send Time
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZCYPCMRLYH5VB67TXEGDXMMYDG7ACCXK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GYTX7ZDPKGFROBUFI7G23LCTXPP7EGPO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Olo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olo <olo1618@protonmail.com>
-Content-Type: multipart/mixed; boundary="===============4283266960515151260=="
+Content-Type: multipart/mixed; boundary="===============6542645909357421907=="
 
-This is a multi-part message in MIME format.
+--===============6542645909357421907==
+Content-Type: multipart/alternative; boundary="0000000000002e177506062e7f71"
 
---===============4283266960515151260==
-Content-Type: multipart/alternative;
- boundary="b1_ttTdDGzeTHeQ2ghcQqsuz104tQxeCir3eMFlCiDGY"
+--0000000000002e177506062e7f71
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This is a multi-part message in MIME format.
+Hello,
 
---b1_ttTdDGzeTHeQ2ghcQqsuz104tQxeCir3eMFlCiDGY
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+I have an application where I=E2=80=99m sending many short bursts to a USRP=
+ B210
+using uhd::tx_streamer.send() (link below) and I occasionally set the PPS
+time to 0 using set_time_last_pps.
 
-UGxlYXNlIGhvdyB5b3UgYWNoaWV2ZWQgbm8gbG9zc2VzIG9uIFVidW50dSA/IEkgaGF2ZSBzaWdu
-aWZpY2FudGx5IGxvd2VyIGxvc3NlcyBpbiBVYnVudHUgdG9vIGJ1dCBJIHN0aWxsIGhhdmUgc29t
-ZS4KCk9uIHVidW50dSA6CkJlbmNobWFyayByYXRlIHN1bW1hcnk6Ck51bSByZWNlaXZlZCBzYW1w
-bGVzOiAxMzExNjAwMzIKTnVtIGRyb3BwZWQgc2FtcGxlczogNjk3NDYyMzgKTnVtIG92ZXJydW5z
-IGRldGVjdGVkOiAyMDcKTnVtIHRyYW5zbWl0dGVkIHNhbXBsZXM6IDAKTnVtIHNlcXVlbmNlIGVy
-cm9ycyAoVHgpOiAwCk51bSBzZXF1ZW5jZSBlcnJvcnMgKFJ4KTogMApOdW0gdW5kZXJydW5zIGRl
-dGVjdGVkOiAwCk51bSBsYXRlIGNvbW1hbmRzOiAwCk51bSB0aW1lb3V0cyAoVHgpOiAwCk51bSB0
-aW1lb3V0cyAoUngpOiAwCgpPbiB3aW5kb3dzOgpCZW5jaG1hcmsgcmF0ZSBzdW1tYXJ5OgpOdW0g
-cmVjZWl2ZWQgc2FtcGxlczogOTUxNDYzMzgKTnVtIGRyb3BwZWQgc2FtcGxlczogMTA0ODc4MDE4
-Ck51bSBvdmVycnVucyBkZXRlY3RlZDogNTI2Ck51bSB0cmFuc21pdHRlZCBzYW1wbGVzOiAwCk51
-bSBzZXF1ZW5jZSBlcnJvcnMgKFR4KTogMApOdW0gc2VxdWVuY2UgZXJyb3JzIChSeCk6IDAKTnVt
-IHVuZGVycnVucyBkZXRlY3RlZDogMApOdW0gbGF0ZSBjb21tYW5kczogMApOdW0gdGltZW91dHMg
-KFR4KTogMCBOdW0gdGltZW91dHMgKFJ4KTogMAoKQm90aCBvbiAyMCBNSHogYmFuZHdpZHRoLgoK
-U2VudCB3aXRoIFtQcm90b24gTWFpbF0oaHR0cHM6Ly9wcm90b24ubWUvKSBzZWN1cmUgZW1haWwu
-CgotLS0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0tLQpPbiBNb25kYXksIFNlcHRlbWJlciAy
-NXRoLCAyMDIzIGF0IDExOjIwLCBJdmFuIFphaGFydGNodWsgPGFkcmF5MDAwMUBnbWFpbC5jb20+
-IHdyb3RlOgoKPiBVbmZvcnR1bmF0ZWx5LCB0aGlzIGhhcyBubyBlZmZlY3Qgb24gbG9zc2VzLgo+
-Cj4g0L/QvSwgMjUg0LLQtdGALiAyMDIz4oCv0YAuINC+IDA5OjU2IE1hcmN1cyBELiBMZWVjaCA8
-cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+INC/0LjRiNC1Ogo+Cj4+IE9uIDI1LzA5LzIwMjMgMDE6
-MjgsIE9sbyB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4+IEkgaGF2ZSBzYW1lIHByb2JsZW0uIFBs
-ZWFzZSBoYXZlIGFueW9uZSBjbHVlIHdoYXQgc2hvdWxkIEkgZG8gPyBNeSBvdXRwdXQgZnJvbSBi
-ZW5jaG1hcmtfcmF0ZSAtLXJ4X3JhdGUgMjBNSHo6Cj4+Pgo+Pj4gQmVuY2htYXJrIHJhdGUgc3Vt
-bWFyeToKPj4+IE51bSByZWNlaXZlZCBzYW1wbGVzOiA5OTkwMDc0NAo+Pj4gTnVtIGRyb3BwZWQg
-c2FtcGxlczogMTAwMzE1NDM3Cj4+PiBOdW0gb3ZlcnJ1bnMgZGV0ZWN0ZWQ6IDQ3Mgo+Pj4KPj4+
-IEltIHVzaW5nIFdpbmRvd3MgMTAgL3cgVUhEIDQuNCBvbiBCMjEwLgo+Pj4KPj4+Cj4+IFlvdSBj
-b3VsZCB1c2UgdGhlICJudW1fcmVjdl9mcmFtZXMiIGRldmljZSBhcmd1bWVudDoKPj4KPj4gbnVt
-X3JlY3ZfZnJhbWVzPTI1Ngo+Pgo+PiBTZWUgaWYgdGhhdCBtYWtlcyBhIGRpZmZlcmVuY2UuCj4+
-Cj4+Pgo+Pj4KPj4+Cj4+Pgo+Pj4gU2VudCB3aXRoIFByb3RvbiBNYWlsIHNlY3VyZSBlbWFpbC4K
-Pj4+Cj4+PiAtLS0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0tLQo+Pj4gT24gU2F0dXJkYXks
-IFNlcHRlbWJlciAyM3JkLCAyMDIzIGF0IDIzOjQwLCBNYXJjdXMgTcO8bGxlciA8bWFyY3VzLm11
-ZWxsZXJAZXR0dXMuY29tPiB3cm90ZToKPj4+Cj4+Pgo+Pj4+IFNvdW5kcyBsaWtlIHRoZSBVU0Ig
-aG9zdCBjb250cm9sbGVyJ3MgV2luZG93cyBkcml2ZXIgYW5kL29yIGNvbnRyb2xsZXIgZmlybXdh
-cmUgY29taW5nCj4+Pj4gd2l0aCB0aGF0IGRyaXZlciBsZWF2ZSB0aGluZ3MgdG8gYmUgZGVzaXJl
-ZC4gSSBob25lc3RseSBkb24ndCBoYXZlIGEgZ29vZCByZWNvbW1lbmRhdGlvbgo+Pj4+IHRoZXJl
-LCBvdGhlciB0aGFuIHRvIG1ha2Ugc3VyZSB5b3VyIFdpbmRvd3MgZHJpdmVycyBhcmUgdXAgdG8g
-ZGF0ZSDigJMgV2luZG93cyBpcyBub3QgcGVyIHNlCj4+Pj4gd29yc2UgdGhhbiBMaW51eCBhdCBV
-U0IuCj4+Pj4KPj4+PiBCZXN0LAo+Pj4+Cj4+Pj4gTWFyY3VzCj4+Pj4KPj4+PiBPbiAyMy4wOS4y
-MyAyMzoyOCwgSXZhbiBaYWhhcnRjaHVrIHdyb3RlOgo+Pj4+Cj4+Pj4+IEhlbGxvLiBJIGhhdmUg
-YW4gaXNzdWUgd2l0aCByZWFkaW5nIGRhdGEgZnJvbSB0aGUgVVNSUCBCMjAwIG9uIFdpbmRvd3Mg
-MTAuIFdoZW4gSSBydW4KPj4+Pj4gdGhlIGJlbmNobWFya19yYXRlIHdpdGggYSAyMCBNSHogcmVj
-ZXB0aW9uIGJhbmR3aWR0aCwgSSBzZWUgbG9zc2VzIG9mIG1vcmUgdGhhbiA1MAo+Pj4+PiBwZXJj
-ZW50LiBIb3dldmVyLCB0aGVyZSBhcmUgbm8gbG9zc2VzIGR1cmluZyB0cmFuc21pc3Npb24uIEkg
-aGF2ZSBmb2xsb3dlZCBhbGwgdGhlCj4+Pj4+IGluc3RydWN0aW9ucywgaW5jbHVkaW5nIG1vZGlm
-eWluZyB0aGUgcmVnaXN0cnkgYW5kIGRpc2FibGluZyBwb3dlciBtYW5hZ2VtZW50IGZvciBVU0Iu
-Cj4+Pj4+IFRoZSBzYW1lIGlzc3VlIG9jY3VycyBldmVuIHdoZW4gdXNpbmcgYW4gZXh0ZXJuYWwg
-cG93ZXIgc3VwcGx5LiBDYW4geW91IHBsZWFzZSBhZHZpc2Ugb24KPj4+Pj4gd2hhdCB0aGUgcG9z
-c2libGUgcHJvYmxlbXMgbWlnaHQgYmU/IE9uIHRoZSBzYW1lIFBDLCB3aGVuIHVzaW5nIFVidW50
-dSwgSSBjYW4gcmVjZWl2ZSA1MAo+Pj4+PiBNSHogd2l0aCBhbG1vc3Qgbm8gbG9zc2VzLgo+Pj4+
-Pgo+Pj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-Pj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bQo+Pj4+PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVA
-bGlzdHMuZXR0dXMuY29tCj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KPj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQo+Pj4+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11
-c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KPj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
-byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo+PiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
-LSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
-YWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
+Sometimes I set the PPS time to 0 when there=E2=80=99s still a burst in the=
+ USRPs
+queue.  When I do this the burst is transmitted much later than I want.
 
---b1_ttTdDGzeTHeQ2ghcQqsuz104tQxeCir3eMFlCiDGY
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+Is there a way to clear the queue on the USRP or UHD?  That is, if I send a
+TX burst in the distant future can I cancel it before it gets transmitted?
+Can I clear everything in the TX queue?
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
-cHg7Ij48YnI+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlm
-OyBmb250LXNpemU6IDE0cHg7Ij5QbGVhc2UgaG93IHlvdSBhY2hpZXZlZCBubyBsb3NzZXMgb24g
-VWJ1bnR1ID8gSSBoYXZlIHNpZ25pZmljYW50bHkgbG93ZXIgbG9zc2VzIGluIFVidW50dSB0b28g
-YnV0IEkgc3RpbGwgaGF2ZSBzb21lLiZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5
-OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PGJyPjwvZGl2PjxkaXYgc3R5
-bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+T24g
-dWJ1bnR1IDo8L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7
-IGZvbnQtc2l6ZTogMTRweDsiPjxzcGFuPkJlbmNobWFyayByYXRlIHN1bW1hcnk6PC9zcGFuPjxk
-aXY+PHNwYW4+Jm5ic3A7IE51bSByZWNlaXZlZCBzYW1wbGVzOiAmbmJzcDsgJm5ic3A7IDEzMTE2
-MDAzMjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPiZuYnNwOyBOdW0gZHJvcHBlZCBzYW1wbGVzOiAm
-bmJzcDsgJm5ic3A7ICZuYnNwOzY5NzQ2MjM4PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7
-IE51bSBvdmVycnVucyBkZXRlY3RlZDogJm5ic3A7ICZuYnNwOzIwNzwvc3Bhbj48L2Rpdj48ZGl2
-PjxzcGFuPiZuYnNwOyBOdW0gdHJhbnNtaXR0ZWQgc2FtcGxlczogJm5ic3A7MDwvc3Bhbj48L2Rp
-dj48ZGl2PjxzcGFuPiZuYnNwOyBOdW0gc2VxdWVuY2UgZXJyb3JzIChUeCk6IDA8L3NwYW4+PC9k
-aXY+PGRpdj48c3Bhbj4mbmJzcDsgTnVtIHNlcXVlbmNlIGVycm9ycyAoUngpOiAwPC9zcGFuPjwv
-ZGl2PjxkaXY+PHNwYW4+Jm5ic3A7IE51bSB1bmRlcnJ1bnMgZGV0ZWN0ZWQ6ICZuYnNwOyAwPC9z
-cGFuPjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7IE51bSBsYXRlIGNvbW1hbmRzOiAmbmJzcDsgJm5i
-c3A7ICZuYnNwOyAmbmJzcDswPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7IE51bSB0aW1l
-b3V0cyAoVHgpOiAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDswPC9zcGFuPjwvZGl2PjxkaXY+
-PHNwYW4+Jm5ic3A7IE51bSB0aW1lb3V0cyAoUngpOiAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJz
-cDswPC9zcGFuPjwvZGl2PjxzcGFuPjwvc3Bhbj48YnI+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1m
-YW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48YnI+PC9kaXY+PGRp
-diBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7
-Ij5PbiB3aW5kb3dzOiZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwg
-c2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PHNwYW4+QmVuY2htYXJrIHJhdGUgc3VtbWFy
-eTo8L3NwYW4+PGRpdj48c3Bhbj4mbmJzcDsgTnVtIHJlY2VpdmVkIHNhbXBsZXM6ICZuYnNwOyAm
-bmJzcDsgOTUxNDYzMzg8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgTnVtIGRyb3BwZWQg
-c2FtcGxlczogJm5ic3A7ICZuYnNwOyAmbmJzcDsxMDQ4NzgwMTg8L3NwYW4+PC9kaXY+PGRpdj48
-c3Bhbj4mbmJzcDsgTnVtIG92ZXJydW5zIGRldGVjdGVkOiAmbmJzcDsgJm5ic3A7NTI2PC9zcGFu
-PjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7IE51bSB0cmFuc21pdHRlZCBzYW1wbGVzOiAmbmJzcDsw
-PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7IE51bSBzZXF1ZW5jZSBlcnJvcnMgKFR4KTog
-MDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPiZuYnNwOyBOdW0gc2VxdWVuY2UgZXJyb3JzIChSeCk6
-IDA8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgTnVtIHVuZGVycnVucyBkZXRlY3RlZDog
-Jm5ic3A7IDA8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgTnVtIGxhdGUgY29tbWFuZHM6
-ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOzA8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJz
-cDsgTnVtIHRpbWVvdXRzIChUeCk6ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOzA8L3NwYW4+
-PC9kaXY+PHNwYW4+Jm5ic3A7IE51bSB0aW1lb3V0cyAoUngpOiAmbmJzcDsgJm5ic3A7ICZuYnNw
-OyAmbmJzcDswPC9zcGFuPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWws
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250
-LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48L2Rpdj48
-ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRw
-eDsiPkJvdGggb24gMjAgTUh6IGJhbmR3aWR0aC48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWls
-eTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48L2Rpdj48ZGl2IHN0
-eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxi
-cj48L2Rpdj4NCjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrIiBzdHlsZT0i
-Zm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij4NCiAgICA8
-ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay11c2VyIHByb3Rvbm1haWxfc2ln
-bmF0dXJlX2Jsb2NrLWVtcHR5Ij4NCiAgICAgICAgDQogICAgICAgICAgICA8L2Rpdj4NCiAgICAN
-CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLXByb3Rv
-biI+DQogICAgICAgIFNlbnQgd2l0aCA8YSB0YXJnZXQ9Il9ibGFuayIgaHJlZj0iaHR0cHM6Ly9w
-cm90b24ubWUvIiByZWw9Im5vb3BlbmVyIG5vcmVmZXJyZXIiPlByb3RvbiBNYWlsPC9hPiBzZWN1
-cmUgZW1haWwuDQogICAgPC9kaXY+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBB
-cmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PGJyPjwvZGl2PjxkaXYgY2xhc3M9
-InByb3Rvbm1haWxfcXVvdGUiPg0KICAgICAgICAtLS0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0t
-LS0tLTxicj4NCiAgICAgICAgT24gTW9uZGF5LCBTZXB0ZW1iZXIgMjV0aCwgMjAyMyBhdCAxMToy
-MCwgSXZhbiBaYWhhcnRjaHVrICZsdDthZHJheTAwMDFAZ21haWwuY29tJmd0OyB3cm90ZTo8YnI+
-PGJyPg0KICAgICAgICA8YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSIgdHlwZT0i
-Y2l0ZSI+DQogICAgICAgICAgICA8ZGl2IGRpcj0ibHRyIj48cHJlIGRpcj0ibHRyIiBzdHlsZT0i
-dGV4dC1hbGlnbjpsZWZ0IiBpZD0iZ21haWwtdHctdGFyZ2V0LXRleHQiIGNsYXNzPSJnbWFpbC10
-dy1kYXRhLXRleHQgZ21haWwtdHctdGV4dC1sYXJnZSBnbWFpbC10dy10YSI+PHNwYW4gbGFuZz0i
-ZW4iIGNsYXNzPSJnbWFpbC1ZMklRRmMiPlVuZm9ydHVuYXRlbHksIHRoaXMgaGFzIG5vIGVmZmVj
-dCBvbiBsb3NzZXMuPC9zcGFuPjwvcHJlPjwvZGl2Pjxicj48ZGl2IGNsYXNzPSJnbWFpbF9xdW90
-ZSI+PGRpdiBjbGFzcz0iZ21haWxfYXR0ciIgZGlyPSJsdHIiPtC/0L0sIDI1INCy0LXRgC4gMjAy
-M+KAr9GALiDQviAwOTo1NiBNYXJjdXMgRC4gTGVlY2ggJmx0OzxhIGhyZWY9Im1haWx0bzpwYXRj
-aHZvbmJyYXVuQGdtYWlsLmNvbSIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiB0
-YXJnZXQ9Il9ibGFuayI+cGF0Y2h2b25icmF1bkBnbWFpbC5jb208L2E+Jmd0OyDQv9C40YjQtTo8
-YnI+PC9kaXY+PGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDtib3Jk
-ZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTtwYWRkaW5nLWxlZnQ6MWV4IiBjbGFz
-cz0iZ21haWxfcXVvdGUiPk9uIDI1LzA5LzIwMjMgMDE6MjgsIE9sbyB2aWEgVVNSUC11c2VycyB3
-cm90ZTo8YnI+DQomZ3Q7IEkgaGF2ZSBzYW1lIHByb2JsZW0uIFBsZWFzZSBoYXZlIGFueW9uZSBj
-bHVlIHdoYXQgc2hvdWxkIEkgZG8gPyBNeSBvdXRwdXQgZnJvbSBiZW5jaG1hcmtfcmF0ZSAtLXJ4
-X3JhdGUgMjBNSHo6PGJyPg0KJmd0Ozxicj4NCiZndDsgQmVuY2htYXJrIHJhdGUgc3VtbWFyeTo8
-YnI+DQomZ3Q7ICAgIE51bSByZWNlaXZlZCBzYW1wbGVzOiAgICAgOTk5MDA3NDQ8YnI+DQomZ3Q7
-ICAgIE51bSBkcm9wcGVkIHNhbXBsZXM6ICAgICAgMTAwMzE1NDM3PGJyPg0KJmd0OyAgICBOdW0g
-b3ZlcnJ1bnMgZGV0ZWN0ZWQ6ICAgIDQ3Mjxicj4NCiZndDs8YnI+DQomZ3Q7IEltIHVzaW5nIFdp
-bmRvd3MgMTAgL3cgVUhEIDQuNCBvbiBCMjEwLjxicj4NCiZndDs8YnI+DQomZ3Q7PGJyPg0KWW91
-IGNvdWxkIHVzZSB0aGUgIm51bV9yZWN2X2ZyYW1lcyIgZGV2aWNlIGFyZ3VtZW50Ojxicj4NCjxi
-cj4NCm51bV9yZWN2X2ZyYW1lcz0yNTY8YnI+DQo8YnI+DQpTZWUgaWYgdGhhdCBtYWtlcyBhIGRp
-ZmZlcmVuY2UuPGJyPg0KPGJyPg0KPGJyPg0KJmd0Ozxicj4NCiZndDs8YnI+DQomZ3Q7PGJyPg0K
-Jmd0Ozxicj4NCiZndDsgU2VudCB3aXRoIFByb3RvbiBNYWlsIHNlY3VyZSBlbWFpbC48YnI+DQom
-Z3Q7PGJyPg0KJmd0OyAtLS0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0tLTxicj4NCiZndDsg
-T24gU2F0dXJkYXksIFNlcHRlbWJlciAyM3JkLCAyMDIzIGF0IDIzOjQwLCBNYXJjdXMgTcO8bGxl
-ciAmbHQ7PGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Im1haWx0bzptYXJjdXMubXVlbGxlckBldHR1
-cy5jb20iIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciI+bWFyY3VzLm11ZWxsZXJA
-ZXR0dXMuY29tPC9hPiZndDsgd3JvdGU6PGJyPg0KJmd0Ozxicj4NCiZndDs8YnI+DQomZ3Q7Jmd0
-OyBTb3VuZHMgbGlrZSB0aGUgVVNCIGhvc3QgY29udHJvbGxlcidzIFdpbmRvd3MgZHJpdmVyIGFu
-ZC9vciBjb250cm9sbGVyIGZpcm13YXJlIGNvbWluZzxicj4NCiZndDsmZ3Q7IHdpdGggdGhhdCBk
-cml2ZXIgbGVhdmUgdGhpbmdzIHRvIGJlIGRlc2lyZWQuIEkgaG9uZXN0bHkgZG9uJ3QgaGF2ZSBh
-IGdvb2QgcmVjb21tZW5kYXRpb248YnI+DQomZ3Q7Jmd0OyB0aGVyZSwgb3RoZXIgdGhhbiB0byBt
-YWtlIHN1cmUgeW91ciBXaW5kb3dzIGRyaXZlcnMgYXJlIHVwIHRvIGRhdGUg4oCTIFdpbmRvd3Mg
-aXMgbm90IHBlciBzZTxicj4NCiZndDsmZ3Q7IHdvcnNlIHRoYW4gTGludXggYXQgVVNCLjxicj4N
-CiZndDsmZ3Q7PGJyPg0KJmd0OyZndDsgQmVzdCw8YnI+DQomZ3Q7Jmd0Ozxicj4NCiZndDsmZ3Q7
-IE1hcmN1czxicj4NCiZndDsmZ3Q7PGJyPg0KJmd0OyZndDsgT24gMjMuMDkuMjMgMjM6MjgsIEl2
-YW4gWmFoYXJ0Y2h1ayB3cm90ZTo8YnI+DQomZ3Q7Jmd0Ozxicj4NCiZndDsmZ3Q7Jmd0OyBIZWxs
-by4gSSBoYXZlIGFuIGlzc3VlIHdpdGggcmVhZGluZyBkYXRhIGZyb20gdGhlIFVTUlAgQjIwMCBv
-biBXaW5kb3dzIDEwLiBXaGVuIEkgcnVuPGJyPg0KJmd0OyZndDsmZ3Q7IHRoZSBiZW5jaG1hcmtf
-cmF0ZSB3aXRoIGEgMjAgTUh6IHJlY2VwdGlvbiBiYW5kd2lkdGgsIEkgc2VlIGxvc3NlcyBvZiBt
-b3JlIHRoYW4gNTA8YnI+DQomZ3Q7Jmd0OyZndDsgcGVyY2VudC4gSG93ZXZlciwgdGhlcmUgYXJl
-IG5vIGxvc3NlcyBkdXJpbmcgdHJhbnNtaXNzaW9uLiBJIGhhdmUgZm9sbG93ZWQgYWxsIHRoZTxi
-cj4NCiZndDsmZ3Q7Jmd0OyBpbnN0cnVjdGlvbnMsIGluY2x1ZGluZyBtb2RpZnlpbmcgdGhlIHJl
-Z2lzdHJ5IGFuZCBkaXNhYmxpbmcgcG93ZXIgbWFuYWdlbWVudCBmb3IgVVNCLjxicj4NCiZndDsm
-Z3Q7Jmd0OyBUaGUgc2FtZSBpc3N1ZSBvY2N1cnMgZXZlbiB3aGVuIHVzaW5nIGFuIGV4dGVybmFs
-IHBvd2VyIHN1cHBseS4gQ2FuIHlvdSBwbGVhc2UgYWR2aXNlIG9uPGJyPg0KJmd0OyZndDsmZ3Q7
-IHdoYXQgdGhlIHBvc3NpYmxlIHByb2JsZW1zIG1pZ2h0IGJlPyBPbiB0aGUgc2FtZSBQQywgd2hl
-biB1c2luZyBVYnVudHUsIEkgY2FuIHJlY2VpdmUgNTA8YnI+DQomZ3Q7Jmd0OyZndDsgTUh6IHdp
-dGggYWxtb3N0IG5vIGxvc3Nlcy48YnI+DQomZ3Q7Jmd0OyZndDs8YnI+DQomZ3Q7Jmd0OyZndDsg
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQomZ3Q7
-Jmd0OyZndDsgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgdGFyZ2V0PSJfYmxhbmsiIGhy
-ZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgcmVsPSJub3JlZmVycmVyIG5v
-Zm9sbG93IG5vb3BlbmVyIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQomZ3Q7
-Jmd0OyZndDsgVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSB0YXJnZXQ9Il9ibGFu
-ayIgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiByZWw9Im5v
-cmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMu
-Y29tPC9hPjxicj4NCiZndDsmZ3Q7IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fPGJyPg0KJmd0OyZndDsgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEg
-dGFyZ2V0PSJfYmxhbmsiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIg
-cmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbTwvYT48YnI+DQomZ3Q7Jmd0OyBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxh
-IHRhcmdldD0iX2JsYW5rIiBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
-cy5jb20iIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciI+dXNycC11c2Vycy1sZWF2
-ZUBsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KJmd0OyBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXzxicj4NCiZndDsgVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
-LS0gPGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbSIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIj51c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbTwvYT48YnI+DQomZ3Q7IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8g
-PGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0
-dHVzLmNvbSIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIj51c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIHRh
-cmdldD0iX2JsYW5rIiBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHJl
-bD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b208L2E+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSB0YXJnZXQ9Il9i
-bGFuayIgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiByZWw9
-Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0
-dXMuY29tPC9hPjxicj4NCjwvYmxvY2txdW90ZT48L2Rpdj4NCg0KICAgICAgICA8L2Jsb2NrcXVv
-dGU+PGJyPg0KICAgIDwvZGl2Pg==
+I=E2=80=99ve read on this list that calling the stream destructor will do t=
+his, is
+that right? I=E2=80=99ve tried this without success.
 
+Thanks!
+Devin
 
---b1_ttTdDGzeTHeQ2ghcQqsuz104tQxeCir3eMFlCiDGY--
+--0000000000002e177506062e7f71
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---===============4283266960515151260==
+<div dir=3D"auto"><meta charset=3D"UTF-8"><span style=3D"color:rgb(0,0,0);f=
+ont-family:UICTFontTextStyleBody;font-size:17px;font-style:normal;font-vari=
+ant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text=
+-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-de=
+coration:none">Hello,</span><br style=3D"color:rgb(0,0,0);font-family:UICTF=
+ontTextStyleBody;font-size:17px;font-style:normal;font-variant-caps:normal;=
+font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text=
+-transform:none;white-space:normal;word-spacing:0px;text-decoration:none"><=
+span style=3D"color:rgb(0,0,0);font-family:UICTFontTextStyleBody;font-size:=
+17px;font-style:normal;font-variant-caps:normal;font-weight:400;letter-spac=
+ing:normal;text-align:start;text-indent:0px;text-transform:none;white-space=
+:normal;word-spacing:0px;text-decoration:none"></span><br style=3D"color:rg=
+b(0,0,0);font-family:UICTFontTextStyleBody;font-size:17px;font-style:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0=
+px;text-decoration:none"><span style=3D"color:rgb(0,0,0);font-family:UICTFo=
+ntTextStyleBody;font-size:17px;font-style:normal;font-variant-caps:normal;f=
+ont-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-=
+transform:none;white-space:normal;word-spacing:0px;text-decoration:none">I =
+have an application where I=E2=80=99m sending many short bursts to a USRP B=
+210 using uhd::tx_streamer.send() (link below) and I occasionally set the P=
+PS time to 0 using set_time_last_pps. =C2=A0</span><br style=3D"color:rgb(0=
+,0,0);font-family:UICTFontTextStyleBody;font-size:17px;font-style:normal;fo=
+nt-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:sta=
+rt;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;=
+text-decoration:none"><span style=3D"color:rgb(0,0,0);font-family:UICTFontT=
+extStyleBody;font-size:17px;font-style:normal;font-variant-caps:normal;font=
+-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tra=
+nsform:none;white-space:normal;word-spacing:0px;text-decoration:none"></spa=
+n><br style=3D"color:rgb(0,0,0);font-family:UICTFontTextStyleBody;font-size=
+:17px;font-style:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:start;text-indent:0px;text-transform:none;white-spac=
+e:normal;word-spacing:0px;text-decoration:none"><span style=3D"color:rgb(0,=
+0,0);font-family:UICTFontTextStyleBody;font-size:17px;font-style:normal;fon=
+t-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:star=
+t;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;t=
+ext-decoration:none">Sometimes I set the PPS time to 0 when there=E2=80=99s=
+ still a burst in the USRPs queue.=C2=A0 When I do this the burst is transm=
+itted much later than I want.</span><br style=3D"color:rgb(0,0,0);font-fami=
+ly:UICTFontTextStyleBody;font-size:17px;font-style:normal;font-variant-caps=
+:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:=
+0px;text-transform:none;white-space:normal;word-spacing:0px;text-decoration=
+:none"><span style=3D"color:rgb(0,0,0);font-family:UICTFontTextStyleBody;fo=
+nt-size:17px;font-style:normal;font-variant-caps:normal;font-weight:400;let=
+ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whi=
+te-space:normal;word-spacing:0px;text-decoration:none"></span><br style=3D"=
+color:rgb(0,0,0);font-family:UICTFontTextStyleBody;font-size:17px;font-styl=
+e:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;tex=
+t-align:start;text-indent:0px;text-transform:none;white-space:normal;word-s=
+pacing:0px;text-decoration:none"><span style=3D"color:rgb(0,0,0);font-famil=
+y:UICTFontTextStyleBody;font-size:17px;font-style:normal;font-variant-caps:=
+normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0=
+px;text-transform:none;white-space:normal;word-spacing:0px;text-decoration:=
+none">Is there a way to clear the queue on the USRP or UHD?=C2=A0 That is, =
+if I send a TX burst in the distant future can I cancel it before it gets t=
+ransmitted?=C2=A0 Can I clear everything in the TX queue?</span><br style=
+=3D"color:rgb(0,0,0);font-family:UICTFontTextStyleBody;font-size:17px;font-=
+style:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal=
+;text-align:start;text-indent:0px;text-transform:none;white-space:normal;wo=
+rd-spacing:0px;text-decoration:none"><span style=3D"color:rgb(0,0,0);font-f=
+amily:UICTFontTextStyleBody;font-size:17px;font-style:normal;font-variant-c=
+aps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-inde=
+nt:0px;text-transform:none;white-space:normal;word-spacing:0px;text-decorat=
+ion:none"></span><br style=3D"color:rgb(0,0,0);font-family:UICTFontTextStyl=
+eBody;font-size:17px;font-style:normal;font-variant-caps:normal;font-weight=
+:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:=
+none;white-space:normal;word-spacing:0px;text-decoration:none"><span style=
+=3D"color:rgb(0,0,0);font-family:UICTFontTextStyleBody;font-size:17px;font-=
+style:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal=
+;text-align:start;text-indent:0px;text-transform:none;white-space:normal;wo=
+rd-spacing:0px;text-decoration:none">I=E2=80=99ve read on this list that ca=
+lling the stream destructor will do this, is that right? I=E2=80=99ve tried=
+ this without success.</span><br style=3D"color:rgb(0,0,0);font-family:UICT=
+FontTextStyleBody;font-size:17px;font-style:normal;font-variant-caps:normal=
+;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;tex=
+t-transform:none;white-space:normal;word-spacing:0px;text-decoration:none">=
+<span style=3D"color:rgb(0,0,0);font-family:UICTFontTextStyleBody;font-size=
+:17px;font-style:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:start;text-indent:0px;text-transform:none;white-spac=
+e:normal;word-spacing:0px;text-decoration:none"></span><br style=3D"color:r=
+gb(0,0,0);font-family:UICTFontTextStyleBody;font-size:17px;font-style:norma=
+l;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align=
+:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:=
+0px;text-decoration:none"><span style=3D"color:rgb(0,0,0);font-family:UICTF=
+ontTextStyleBody;font-size:17px;font-style:normal;font-variant-caps:normal;=
+font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text=
+-transform:none;white-space:normal;word-spacing:0px;text-decoration:none">T=
+hanks!</span><br style=3D"color:rgb(0,0,0);font-family:UICTFontTextStyleBod=
+y;font-size:17px;font-style:normal;font-variant-caps:normal;font-weight:400=
+;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none=
+;white-space:normal;word-spacing:0px;text-decoration:none"><span style=3D"c=
+olor:rgb(0,0,0);font-family:UICTFontTextStyleBody;font-size:17px;font-style=
+:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text=
+-align:start;text-indent:0px;text-transform:none;white-space:normal;word-sp=
+acing:0px;text-decoration:none">Devin</span></div>
+
+--0000000000002e177506062e7f71--
+
+--===============6542645909357421907==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -291,4 +216,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4283266960515151260==--
+--===============6542645909357421907==--
