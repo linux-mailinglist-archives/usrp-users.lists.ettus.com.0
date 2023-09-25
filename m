@@ -2,133 +2,84 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D29C37ACF86
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Sep 2023 07:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B047AD2C8
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Sep 2023 10:11:17 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C663D3851DA
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Sep 2023 01:38:02 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 00A19384B42
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Sep 2023 04:11:16 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1695620282; bh=1o/LCsRbfrG2Or56HojOh42TdH1MvI34KqyalV/yY+s=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1695629476; bh=o42SQjSSJNmSJ0QMOpjVNV9/NnJoZsjmAbGkvEpFeZI=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=LjXpcuHTHWLnNIVhkNEU4ENZL24bDQqF3P1Vk8LFhIOTAv2DDxBwNe9wI0bGUR+2f
-	 lQTVGap0cNq+1wT04e8XrZdCUuNgtfrrMdWhfpE6favH1XfxEqbewDPExMM7dl5X9R
-	 IwHBJ8emhXz5iQrirWwQbdDJ4PA21F0il14Ih3zrP/j7kF52vdVvjTpAK02dYFPozb
-	 VsgdgAHuwcwAMLh46an1FZnYuwUj3P+BPHaN6pnt/56hcY9Y4n1+B3+2iUv6DxAPqn
-	 4YhkAEJrl/DibPGLN+JEehOYIrEoDlRsyoOSpa6IL6c0uKPDFUQUtNbdgkHFRi5zvV
-	 E4WazqUjE0lEA==
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1920A3851D9
-	for <usrp-users@lists.ettus.com>; Mon, 25 Sep 2023 01:37:59 -0400 (EDT)
+	 From:Reply-To:From;
+	b=hUO/88mvdEa7ugh2c4weVtq4WY/ud3608FsaBMho0fbeCcZt3oA6j5v2htsdvjgda
+	 saVy2Pf8eOrgXQU7q2rjON4lazCjLq/jgSLiwnKXjzumw7/C5VKHM3eQSHlf4zuLFQ
+	 epknHAoEAew/aTefycJR0DmC5w7SwtJfz2B3e72mrxehq/E8y/YwAiXNbOR2e8CAto
+	 xO0rxmQb3I1ky2PlwWqU/PWpa9pK9WpCVTvxA7G32qMhZa37twR9iU1fkSJMTD9tg+
+	 TktgbZHoXxEl0xaFHALC7RYYHvpOfvGyEe3/O5cBMM2N7YLJeTanJYQuGO6wof4xEK
+	 ySPVtl5hgGyng==
+Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
+	by mm2.emwd.com (Postfix) with ESMTPS id DB06B384933
+	for <usrp-users@lists.ettus.com>; Mon, 25 Sep 2023 04:11:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Eu6E4L0X";
+	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="a62JlgMq";
 	dkim-atps=neutral
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-4181e341841so1591381cf.1
-        for <usrp-users@lists.ettus.com>; Sun, 24 Sep 2023 22:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695620279; x=1696225079; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=62vtwNLn6la7LDeguFYYUMbHVcQdIc4j2jSE3qzyNRA=;
-        b=Eu6E4L0XVvAr2iIzasEIaFUifh8JTA3voqbv4VMhh16JTiJTlW/KQnol8Reyc+wHay
-         92tsiTPZGGCvH80zBBZVrnIspViu8Z1dJwZHfS1J3DlMz+qdFCYI2Epyt9KbO/bHBP34
-         nDkIL6HVmdUUwVyNtPKOwUo7/wOF251hJczTMhF7bTC2fWnW0CUnlQSxBSA57g5M1cCF
-         KFFzrhkb2v2CRb4SG/A/BxBKzejWJXjPWy/VGHz9/OO6KsEFPyt7xrkxs+SkomPckI8Q
-         GNmn1UQxGzsvH2il01K8oDHfOuaajLMAvXQdOK9pVkP7W6DroIetyjvU+MPnsEkHw0nZ
-         QaHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695620279; x=1696225079;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=62vtwNLn6la7LDeguFYYUMbHVcQdIc4j2jSE3qzyNRA=;
-        b=Iyh5Ud3a5RryHujLdjdWPlIwwzTaExUVV5y+OmlAjv2Nt21SwC89nzKKeqGqIRpgcI
-         VYBUEs23dZksR+eKrPbskBaIsVcl6NpjX2fqXyAN/NUv0wCyasGyA8A8q5ug4Fh6sQCm
-         Fz1HPH7UvQSRfTLoqc/svb2JRNSCD8Y+zZldQU5qlri6t8UDmMCpDV/bSFVXKcu+Na7F
-         nQAN2Q5WShDwrFI81BVWbenXeH9FZXUltibHsbKGn49nvtRQPoMaMQZi8uHS52vQbgFH
-         p/ZmesCDUslj0FOjGZLXpcDPJLg9ah0/+IGWI44ZNVn6r05bxps4RPgBgZPvFxTs8t0Y
-         mCMw==
-X-Gm-Message-State: AOJu0YyHV5uSlOmfA4usX7+7MFM7WXEOX9S/zthG6tGWNF9j/rHtLk+0
-	XrTzmKza3hj/d2vGntuX5rSp5xCutBDN3A==
-X-Google-Smtp-Source: AGHT+IGOS7SsDmAxmUIqWnm20o0xXJffPOJwg9trCaG296oqmxIiXq0ERIwOWnvshO9mChdhixyJYA==
-X-Received: by 2002:ac8:5a95:0:b0:417:98a1:3403 with SMTP id c21-20020ac85a95000000b0041798a13403mr7164793qtc.25.1695620279383;
-        Sun, 24 Sep 2023 22:37:59 -0700 (PDT)
-Received: from [192.168.2.190] ([174.93.1.40])
-        by smtp.googlemail.com with ESMTPSA id ff25-20020a05622a4d9900b0041519614354sm3569270qtb.7.2023.09.24.22.37.58
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 22:37:59 -0700 (PDT)
-Message-ID: <fce55c5f-843c-9703-a2fa-5e339ad3224c@gmail.com>
-Date: Mon, 25 Sep 2023 01:37:50 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAPRRyxvFFoPU8cCDFigOb+obsZGtE_nNz6q8WppVyU7q3oR0Ug@mail.gmail.com>
- <e4e27517-f1b3-79d9-d0d2-4fb6cafda00f@ettus.com>
- <wTof148s-b9-o9Kr4ztrZ40XkpxeAdB1LgVYwo4yKEv0xzMDb2quQHpttubb-Ohk3nmTIXWsdRYVkgXC0DMB-Sjsl3FP3Nj28-e20PXrCo0=@protonmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1695629460; x=1695888660;
+	bh=j9fJa33Gt4nnMb8K8plGMphPIi8JHHBudQTdbfDyNbY=;
+	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=a62JlgMqUWCO1bIX9TPu6HVRrFWV3Ly7HAd5FiAjiYosbLQQ+aDz7W0fyTqxjdTdH
+	 RyQ4m6Mn/D2lMiIraK3eOeyiHDjsDgOrV0jX8pIXZ5hm6iJUZ+mfgrR8PcaJEA4YY7
+	 VluwGPDc0cxiSKK+CYybuyLkKJkWt6X+y8TeBwXmST69e6czW3IDoss8aBq4KiFEZh
+	 Y/m11ppDW1cACgTOTxJH/kz8yIpaaAVty70dJlBkGux+Ewojs8N801u9F4B+ZIKbMD
+	 tCgVUFO7OiiRIk0KAtcmo7XLMCXpAVxH4MrUS3XGUDYltDgz+HaxczlYiYLomXjU/v
+	 S2xdEp9+/82DQ==
+Date: Mon, 25 Sep 2023 08:10:45 +0000
+To: =?utf-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <Et1d_sn3WJb1IWj3GnStiCZjBUU4zQR0_f8Q--VCHCIEgQJRYo9NRCJZRaRR2K81kc8q9Sd0_KzyrXuS1oj-GpzIXt1_aU2vJwHPUXlUU04=@protonmail.com>
 In-Reply-To: <wTof148s-b9-o9Kr4ztrZ40XkpxeAdB1LgVYwo4yKEv0xzMDb2quQHpttubb-Ohk3nmTIXWsdRYVkgXC0DMB-Sjsl3FP3Nj28-e20PXrCo0=@protonmail.com>
-Message-ID-Hash: 2LMDDYZP4ZRZ6HAXD6YKBWWB6O55SXOV
-X-Message-ID-Hash: 2LMDDYZP4ZRZ6HAXD6YKBWWB6O55SXOV
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAPRRyxvFFoPU8cCDFigOb+obsZGtE_nNz6q8WppVyU7q3oR0Ug@mail.gmail.com> <e4e27517-f1b3-79d9-d0d2-4fb6cafda00f@ettus.com> <wTof148s-b9-o9Kr4ztrZ40XkpxeAdB1LgVYwo4yKEv0xzMDb2quQHpttubb-Ohk3nmTIXWsdRYVkgXC0DMB-Sjsl3FP3Nj28-e20PXrCo0=@protonmail.com>
+Feedback-ID: 47010692:user:proton
+MIME-Version: 1.0
+Message-ID-Hash: HFPXAFEPHQBQFJIX4SDGFRE7VN4RVT6J
+X-Message-ID-Hash: HFPXAFEPHQBQFJIX4SDGFRE7VN4RVT6J
+X-MailFrom: olo1618@protonmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP B200 Data Reception Issue on Windows 10
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2LMDDYZP4ZRZ6HAXD6YKBWWB6O55SXOV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HFPXAFEPHQBQFJIX4SDGFRE7VN4RVT6J/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+From: Olo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olo <olo1618@protonmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-T24gMjUvMDkvMjAyMyAwMToyOCwgT2xvIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KPiBJIGhhdmUg
-c2FtZSBwcm9ibGVtLiBQbGVhc2UgaGF2ZSBhbnlvbmUgY2x1ZSB3aGF0IHNob3VsZCBJIGRvID8g
-TXkgb3V0cHV0IGZyb20gYmVuY2htYXJrX3JhdGUgLS1yeF9yYXRlIDIwTUh6Og0KPg0KPiBCZW5j
-aG1hcmsgcmF0ZSBzdW1tYXJ5Og0KPiAgICBOdW0gcmVjZWl2ZWQgc2FtcGxlczogICAgIDk5OTAw
-NzQ0DQo+ICAgIE51bSBkcm9wcGVkIHNhbXBsZXM6ICAgICAgMTAwMzE1NDM3DQo+ICAgIE51bSBv
-dmVycnVucyBkZXRlY3RlZDogICAgNDcyDQo+DQo+IEltIHVzaW5nIFdpbmRvd3MgMTAgL3cgVUhE
-IDQuNCBvbiBCMjEwLg0KPg0KPg0KWW91IGNvdWxkIHVzZSB0aGUgIm51bV9yZWN2X2ZyYW1lcyIg
-ZGV2aWNlIGFyZ3VtZW50Og0KDQpudW1fcmVjdl9mcmFtZXM9MjU2DQoNClNlZSBpZiB0aGF0IG1h
-a2VzIGEgZGlmZmVyZW5jZS4NCg0KDQo+DQo+DQo+DQo+DQo+IFNlbnQgd2l0aCBQcm90b24gTWFp
-bCBzZWN1cmUgZW1haWwuDQo+DQo+IC0tLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLS0tDQo+
-IE9uIFNhdHVyZGF5LCBTZXB0ZW1iZXIgMjNyZCwgMjAyMyBhdCAyMzo0MCwgTWFyY3VzIE3DvGxs
-ZXIgPG1hcmN1cy5tdWVsbGVyQGV0dHVzLmNvbT4gd3JvdGU6DQo+DQo+DQo+PiBTb3VuZHMgbGlr
-ZSB0aGUgVVNCIGhvc3QgY29udHJvbGxlcidzIFdpbmRvd3MgZHJpdmVyIGFuZC9vciBjb250cm9s
-bGVyIGZpcm13YXJlIGNvbWluZw0KPj4gd2l0aCB0aGF0IGRyaXZlciBsZWF2ZSB0aGluZ3MgdG8g
-YmUgZGVzaXJlZC4gSSBob25lc3RseSBkb24ndCBoYXZlIGEgZ29vZCByZWNvbW1lbmRhdGlvbg0K
-Pj4gdGhlcmUsIG90aGVyIHRoYW4gdG8gbWFrZSBzdXJlIHlvdXIgV2luZG93cyBkcml2ZXJzIGFy
-ZSB1cCB0byBkYXRlIOKAkyBXaW5kb3dzIGlzIG5vdCBwZXIgc2UNCj4+IHdvcnNlIHRoYW4gTGlu
-dXggYXQgVVNCLg0KPj4NCj4+IEJlc3QsDQo+Pg0KPj4gTWFyY3VzDQo+Pg0KPj4gT24gMjMuMDku
-MjMgMjM6MjgsIEl2YW4gWmFoYXJ0Y2h1ayB3cm90ZToNCj4+DQo+Pj4gSGVsbG8uIEkgaGF2ZSBh
-biBpc3N1ZSB3aXRoIHJlYWRpbmcgZGF0YSBmcm9tIHRoZSBVU1JQIEIyMDAgb24gV2luZG93cyAx
-MC4gV2hlbiBJIHJ1bg0KPj4+IHRoZSBiZW5jaG1hcmtfcmF0ZSB3aXRoIGEgMjAgTUh6IHJlY2Vw
-dGlvbiBiYW5kd2lkdGgsIEkgc2VlIGxvc3NlcyBvZiBtb3JlIHRoYW4gNTANCj4+PiBwZXJjZW50
-LiBIb3dldmVyLCB0aGVyZSBhcmUgbm8gbG9zc2VzIGR1cmluZyB0cmFuc21pc3Npb24uIEkgaGF2
-ZSBmb2xsb3dlZCBhbGwgdGhlDQo+Pj4gaW5zdHJ1Y3Rpb25zLCBpbmNsdWRpbmcgbW9kaWZ5aW5n
-IHRoZSByZWdpc3RyeSBhbmQgZGlzYWJsaW5nIHBvd2VyIG1hbmFnZW1lbnQgZm9yIFVTQi4NCj4+
-PiBUaGUgc2FtZSBpc3N1ZSBvY2N1cnMgZXZlbiB3aGVuIHVzaW5nIGFuIGV4dGVybmFsIHBvd2Vy
-IHN1cHBseS4gQ2FuIHlvdSBwbGVhc2UgYWR2aXNlIG9uDQo+Pj4gd2hhdCB0aGUgcG9zc2libGUg
-cHJvYmxlbXMgbWlnaHQgYmU/IE9uIHRoZSBzYW1lIFBDLCB3aGVuIHVzaW5nIFVidW50dSwgSSBj
-YW4gcmVjZWl2ZSA1MA0KPj4+IE1IeiB3aXRoIGFsbW9zdCBubyBsb3NzZXMuDQo+Pj4NCj4+PiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+IFVTUlAt
-dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+Pj4gVG8g
-dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
-LmNvbQ0KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18N
-Cj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-DQo+PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlz
-dHMuZXR0dXMuY29tDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2
-ZUBsaXN0cy5ldHR1cy5jb20NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBs
-aXN0cy5ldHR1cy5jb20K
+Im using MSI katana UF66 11UG:
+ CPU: 11th Gen Intel(R) Core(TM) i7-11800H
+ RAM: 16 GB
+ GPU: Nvidia RTX 3070
+
+I think its pretty good laptop for this job (I want only receive IQ data and store it in wav files).
+I have configured virtual enviroment (Ubuntu 22.04) so I can try linux commands to "benchmark" my laptop to see if it is able to work with B210.
+
+I found tutorial how to check RAM speed. output:
+wmic memorychip get speed
+Speed
+3200
+3200
+
+and in Device Manager I got in Display adapters >> RTX 3070 >> max link speed says 00000004   (gen 4).
+
+Can I check something else which can be a problem ??? Thank you for your help, your time and efford. It helps me a lot.
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
