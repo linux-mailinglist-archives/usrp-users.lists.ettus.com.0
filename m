@@ -2,118 +2,132 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B14367AF6C1
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Sep 2023 01:38:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95EED7AF6FE
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Sep 2023 01:57:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9AF22385376
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Sep 2023 19:38:35 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E1C3A384658
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Sep 2023 19:57:11 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1695771515; bh=xgWHt8aNOh17T424A2ERnZI1fnr+TvZEsk+wX9kn9fk=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=TtS4pFcFk2xkYQ9OfGx0QC4O6C1vBXZpdNTIJqSGiuVukkKu3PI2ykMB+TH9czlbD
-	 8Q6yXUjlsJbutWJ0u0eoRqjNK95HK1xAkWiW/Nlm5U3wMxTEfXeuU4kr36sNAqJfVg
-	 vpOHp8gfYm0kKzgmsKjkOJ7nA3IU58UfRgQcSm9xjX44xsmlYoI0LW3Qcac33ruiSR
-	 48DnP478i+IEABSGeOubWqY/TxaMY9c1oMUlK8AssA+uFqnnFO6D1vPRxVzCNbMOtT
-	 +07fRHg8eVkLFiGRPL6t3Ch3Csc7N4P1CM2tEO+oSr/nnopwVjUEkYEu42Q2HiKjpB
-	 63GsKNHzA8r3w==
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	by mm2.emwd.com (Postfix) with ESMTPS id 62F22385376
-	for <usrp-users@lists.ettus.com>; Tue, 26 Sep 2023 19:38:23 -0400 (EDT)
+	t=1695772631; bh=ACdrtNGIyiMV13qZ2i6RMacBIErgo1yQGRIPPiAypcM=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=P18gtLcqpbKaBlVsCxelJwnGWxe1W+08NClJjDmZE+QcIoX2qb+03VBL6NQRJL5Er
+	 HFX0pngbAeI8HZAo9SpCNezd77GD5LyvQwIsiCoLRU61u4EeAOZZ3z+WdT5VgqQD61
+	 nbxElvXo5CGF1Ty6UxLkKSLDfA2bC/hPndl8W2qhJvhvIpFDQClS9Z7on7LCL0dFC3
+	 3nKHaFjBdOfkk7/650O1ywr7zL/eum6FnjlbAHR74NmCE1gjHgdH02yynjAOaT5gAr
+	 fzbAmL2M71R2/TDR77BIIAdIHGjVB8PThV7e4CI2+OXOEKpSDFt9oJOTHz1SqAFjqi
+	 W4hvRY1vlFTow==
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id 020E13845D6
+	for <usrp-users@lists.ettus.com>; Tue, 26 Sep 2023 19:57:06 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BYvvwxSV";
+	dkim=pass (2048-bit key; unprotected) header.d=umich.edu header.i=@umich.edu header.b="aF2d3+lR";
 	dkim-atps=neutral
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-77412b91c41so522035585a.1
-        for <usrp-users@lists.ettus.com>; Tue, 26 Sep 2023 16:38:23 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-d868d8363e6so7388339276.2
+        for <usrp-users@lists.ettus.com>; Tue, 26 Sep 2023 16:57:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695771503; x=1696376303; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9Yuqlk4VfpVrxaBwQpP/zYXN3zpfd3/aFIJwTf3h6Yw=;
-        b=BYvvwxSV3D6AUQuwcptb9RZlvCQa5T7Hc/hoBjH62ci35/EX/bNQmi7ATGy0Djh/pj
-         tsUXrNOjcL8EJYPiF0h1Gmfka9uQYNM8F0asL8uRnGfwygU9uCHHuHbZVGDLD6Q+r6rv
-         Tf40NFmfSeSXFRz78fN3ytiv1L4mOeLwDHCAwpGK9zVVJpLQyIDm2N2eZgSizDPLBp/h
-         etlw+mBUFVt+Eef5AbyFgeT7SDCEUXwLhuzpnrL94+Xcu0qOGvkZM1EZtJlZ7klefbwL
-         Sfn7UPeqOD+vvGBQFdHVmjHNOWe7TFaSBsR7BBoSq1vS9tOUK5oAyFi1Ndbkhr/wtpvc
-         KIwQ==
+        d=umich.edu; s=google-2016-06-03; t=1695772626; x=1696377426; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8N5GEk4pJZRCRqylmEKJ20/60xh1m/xTA/twVJeiPzw=;
+        b=aF2d3+lRRt7vOB4WTSjTQNOXQtNJcBkSyXuYP2rsttjvg137AzeuO8Rvi0DKRXZ2SE
+         TabgAgpsYfTBLgLvpI5ZfsTQ3FSyJXX5nIFseG2oX5eiuEvefglkRpYRyutUrY6Z4RdU
+         S7s/xmaKpiTxnbM978zGDXfH7vHx27wp2YAOSJWzL7DWYBazx30A1l7ZN9aQttRYGvaJ
+         jPiciceVEDPaeui78Dud0HUqQFE1UcKPNhWrzHFNpCwHQIVjFJC6t0HtnBpQfIMOFqLj
+         +pJKH+DaCo2ZSsYMoHGaKcL8epYdRYSZ6JkVlfIMQ3GjQbYIUss43SYctl+AcpgMQVfj
+         ZHIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695771503; x=1696376303;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Yuqlk4VfpVrxaBwQpP/zYXN3zpfd3/aFIJwTf3h6Yw=;
-        b=XuH+ynwOY+rhcRyK4Z5ymfi46TdmNKUgnKjyxlw5gnJwjYRt1aNeDd81r0Bg9t6bin
-         K+Kz/xLvj63CmkJCvZw5tqxMRIBHwpV0kO5hjjT63aJ3zO0dBqVt6NC4pvlNJbYfICwC
-         pYbG4tKoH2EDLyg0GhkcAR81Sdl/dfkAIUYRgm4CV2zJ4+RndMKJ8R857Bq+U5odf6W4
-         cEAa4B8B3mg8yUcZyfvk5o9zvL4Vi60qV2AqVDQWySik1sqGRdKzAQVCc2hGqEKBFit8
-         4dfDSrKS8/cAh2gHa40394hI3HA/BH9eSXFrLOyN2mT5/z4SP1sL3Ns/lybmgrCBJvHW
-         IgEg==
-X-Gm-Message-State: AOJu0Yxvr60qjbkMZuHfQKVIq2vflbmaaspXHiqtcPiyWL8rqER7I1nx
-	s5ntor+q7/PbDUiqFnTG2Mg=
-X-Google-Smtp-Source: AGHT+IH7vHPbjX9K6WxVj5YUPD3MMIxuXwi44rZnSyuCMPNmQhyexMZhUtECLwVQBQJ7iVGq0nXxEg==
-X-Received: by 2002:a05:620a:2a12:b0:76f:93e:4b2f with SMTP id o18-20020a05620a2a1200b0076f093e4b2fmr345189qkp.38.1695771502645;
-        Tue, 26 Sep 2023 16:38:22 -0700 (PDT)
-Received: from [192.168.2.171] (bras-base-smflon1825w-grc-08-174-93-1-40.dsl.bell.ca. [174.93.1.40])
-        by smtp.googlemail.com with ESMTPSA id e2-20020a05620a208200b0076cda7eab11sm5029078qka.133.2023.09.26.16.38.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 16:38:22 -0700 (PDT)
-Message-ID: <4b125243-6ecf-9975-95e0-73d973f3ca04@gmail.com>
-Date: Tue, 26 Sep 2023 19:38:20 -0400
+        d=1e100.net; s=20230601; t=1695772626; x=1696377426;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8N5GEk4pJZRCRqylmEKJ20/60xh1m/xTA/twVJeiPzw=;
+        b=Xd5nfPe09CF13LxA31y60Lv7WKXAaHab/mB7gUMWBOllnSOTrBgGq3xHFAWGVzAx7b
+         0YoqvGjr5uH3ngUhn07xuJdWkwbUCuuP266izaV+tbiHPQeM+odDWbbatPyWKopuxlfd
+         7+JGmLSzf7WHbwVGiZ3AozyPMal9mzzEdLcPm7K4LNi6DjnxaDWHaclskt1YHUGdmTpA
+         D6t/FtdU/bJJz52ldb8Rm+GWn6iYqmRtC5enAr32Ef2n+6SppEvoT/gytPr2ovJv+bet
+         Jtcq52XoidyLJ9K+DUm3Ha5mLUPNKKQccBfYDJMQDeTjyouyHy9S2AEOaqvNRk8Rypfh
+         sibw==
+X-Gm-Message-State: AOJu0YwVBFx/y398niDE1vtf2EZnQTiXXphuOJ7pPu4U4ZG/SOFPZu1s
+	+9tOEz1lHeWvw2++wPbW5vaIvNcTMN+nqF4Rb1y+2L6ZArKWu3PNsIZS2A==
+X-Google-Smtp-Source: AGHT+IFIAE39Kj6Fz5ijUFQ4VyplqIXzu/OMNuCXwrd4XR0ONXLU12xijS0WXg3C/wGRYZGLKBr0cdj8ACWLaGGyNNs=
+X-Received: by 2002:a25:aca5:0:b0:d85:c21a:22c9 with SMTP id
+ x37-20020a25aca5000000b00d85c21a22c9mr398149ybi.31.1695772626175; Tue, 26 Sep
+ 2023 16:57:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Achilleas Anastasopoulos <anastas@umich.edu>, usrp-users@lists.ettus.com
-References: <CAErymBjsm1EFK_Py2RGfm7nyWzAkspg5=at5Cd+24v2XVnOkQQ@mail.gmail.com>
- <76176ec5-f739-d9dd-d85c-9f7c90f4f60d@gmail.com>
- <CAErymBgV7uNOSMUko3V2CJAo0OCe00COgqQyRMT9YDFPTEKcrw@mail.gmail.com>
- <27b80b15-d95d-e1e7-aecf-3e5541afb1b5@gmail.com>
- <CAErymBh+4WaKd8BTiwGW7uHHhbii_u6GvV52MB8UJfioDyCKEA@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAErymBh+4WaKd8BTiwGW7uHHhbii_u6GvV52MB8UJfioDyCKEA@mail.gmail.com>
-Message-ID-Hash: BXBGX66FWCF66JVPNWZREUDHEOB26XZP
-X-Message-ID-Hash: BXBGX66FWCF66JVPNWZREUDHEOB26XZP
-X-MailFrom: patchvonbraun@gmail.com
+From: Achilleas Anastasopoulos <anastas@umich.edu>
+Date: Tue, 26 Sep 2023 19:56:50 -0400
+Message-ID: <CAErymBiwZv4-RmdGWZV=o1GO8Vn_9L-2yTqjwgtz1Fna3nyf8Q@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: 7RDIJZRFKWBKF5J2T6BMFYCYBZQRAKHE
+X-Message-ID-Hash: 7RDIJZRFKWBKF5J2T6BMFYCYBZQRAKHE
+X-MailFrom: anastas@umich.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: calibration utilities
+Subject: [USRP-users] Do I need package python3-uhd when I upgrade uhd?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BXBGX66FWCF66JVPNWZREUDHEOB26XZP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7RDIJZRFKWBKF5J2T6BMFYCYBZQRAKHE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0255644318078952774=="
 
-T24gMjYvMDkvMjAyMyAxODoyMiwgQWNoaWxsZWFzIEFuYXN0YXNvcG91bG9zIHdyb3RlOg0KPiBJ
-bmRlZWQsIEkgaGF2ZSBpbnN0YWxsZWQgdWhkIG1hbnVhbGx5Og0KPg0KPiBJIHdlbnQgaGVyZSAo
-bG9uZyB0aW1lIGFnbyk6DQo+IGh0dHBzOi8vbGF1bmNocGFkLm5ldC9+ZXR0dXNyZXNlYXJjaC8r
-YXJjaGl2ZS91YnVudHUvdWhkLytwYWNrYWdlcz9maWVsZC5uYW1lX2ZpbHRlcj11aGQmZmllbGQu
-c3RhdHVzX2ZpbHRlcj1wdWJsaXNoZWQmZmllbGQuc2VyaWVzX2ZpbHRlcj1mb2NhbCANCj4gPGh0
-dHBzOi8vbGF1bmNocGFkLm5ldC9+ZXR0dXNyZXNlYXJjaC8rYXJjaGl2ZS91YnVudHUvdWhkLytw
-YWNrYWdlcz9maWVsZC5uYW1lX2ZpbHRlcj11aGQmZmllbGQuc3RhdHVzX2ZpbHRlcj1wdWJsaXNo
-ZWQmZmllbGQuc2VyaWVzX2ZpbHRlcj1mb2NhbD4NCj4gYW5kIGRvd25sb2FkIGxvY2FsbHkgZm91
-ciAqLmRlYiBmaWxlczoNCj4gLSBsaWJ1aGQ0LjIuMF80LjIuMC4wLTB1YnVudHUxX2ZvY2FsMV9h
-bWQ2NC5kZWINCj4gLSBsaWJ1aGQtZGV2XzQuMi4wLjAtMHVidW50dTFfZm9jYWwxX2FtZDY0LmRl
-Yg0KPiAtIHB5dGhvbjMtdWhkXzQuMi4wLjAtMHVidW50dTFfZm9jYWwxX2FtZDY0LmRlYg0KPiAt
-IHVoZC1ob3N0XzQuMi4wLjAtMHVidW50dTFfZm9jYWwxX2FtZDY0LmRlYg0KPiBhbmQgdGhlbiBp
-bnN0YWxsIHRoZW0gbWFudWFsbHkgdXNpbmcNCj4gc3VkbyBkcGtnIC1pIHBhdGhfdG9fZGViX2Zp
-bGUNCj4NCj4gQXJlIHRoZXNlIHBhY2thZ2VzIGluc3RhbGxpbmcgYm90aCBsaWJyYXJpZXMgQU5E
-IHV0aWxpdGllcz8NCllvdSBjYW4gdXNlIGRwa2cgLUzCoCBvbiB0aGUgcGFja2FnZSB0byBzZWUg
-d2hhdCBmaWxlcyBpdCBpbmNsdWRlcy4NCg0KPg0KPiBJIGFsc28gY2hlY2tlZCBpbsKgwqB+Ly5s
-b2NhbC9zaGFyZS91aGQvY2FsLw0KPiBhbmQgZG8gbm90IGhhdmUgYW55IGNhbCBmaWxlcyBmb3Ig
-dGhpcyBVU1JQLg0KPg0KPiBGaW5hbGx5IEkgZGlkIHdoYXQgeW91IHN1Z2dlc3RlZCAobGRkKSBp
-biB0d28gY29tcHV0ZXJzIHdoZXJlIGluIHRoZSANCj4gZmlyc3Qgb25lIEkgaGF2ZSB0aGUgcHJv
-YmxlbSBhbmQgaW4gdGhlIHNlY29uZCBvbmUgaXQgd29ya3MgYW5kIGdvdCANCj4gdGhlc2UgcmVz
-dWx0cyAod2hpY2ggc2VlbSBpZGVudGljYWwgdG8gbWUgZXhjZXB0IHRoZSBoZXggbnVtYmVycyBp
-biANCj4gcGFyZW50aGVzZXMuLi4pOg0KPg0KQXJlIHRoZSBYMzEwcyBvbiBhbGwgdGhlc2Ugc3lz
-dGVtcyBjb25maWd1cmVkIGlkZW50aWNhbGx5Pw0KDQpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAt
-dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============0255644318078952774==
+Content-Type: multipart/alternative; boundary="00000000000000de3f06064bd524"
+
+--00000000000000de3f06064bd524
+Content-Type: text/plain; charset="UTF-8"
+
+I usually install uhd from ettus binaries through the suggested method:
+
+sudo add-apt-repository ppa:ettusresearch/uhd
+sudo apt-get update
+sudo apt-get install libuhd-dev uhd-host
+
+However, looking here:
+
+https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages?field.name_filter=uhd&field.status_filter=published&field.series_filter=focal
+
+I see one more package "python3-uhd".
+
+Do I also need this package if I want to run gnuradio with USRPs and want
+to do gnuradio development as well (eg, OOT modules etc)?
+
+
+thanks
+Achilleas
+
+--00000000000000de3f06064bd524
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I usually install uhd from ettus binaries through the sugg=
+ested method:<div><br></div><div>sudo add-apt-repository ppa:ettusresearch/=
+uhd<br>sudo apt-get update<br>sudo apt-get install libuhd-dev uhd-host<br><=
+/div><div><br></div><div>However, looking here:</div><div><br></div><div><a=
+ href=3D"https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages=
+?field.name_filter=3Duhd&amp;field.status_filter=3Dpublished&amp;field.seri=
+es_filter=3Dfocal">https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd=
+/+packages?field.name_filter=3Duhd&amp;field.status_filter=3Dpublished&amp;=
+field.series_filter=3Dfocal</a><br></div><div><br></div><div>I see one more=
+ package &quot;python3-uhd&quot;.</div><div><br></div><div>Do I also need t=
+his package if I want to run gnuradio with USRPs and want to do gnuradio de=
+velopment=C2=A0as well (eg, OOT modules etc)?</div><div><br></div><div><br>=
+</div><div>thanks</div><div>Achilleas</div><div><br></div></div>
+
+--00000000000000de3f06064bd524--
+
+--===============0255644318078952774==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0255644318078952774==--
