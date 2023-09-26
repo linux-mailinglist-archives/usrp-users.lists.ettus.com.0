@@ -2,376 +2,380 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21597AE71E
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Sep 2023 09:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7657E7AF58F
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Sep 2023 22:53:21 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8B9F3384C22
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Sep 2023 03:49:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0743438533C
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Sep 2023 16:53:20 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1695714569; bh=ZqRGOobT1hyQaMQLN3n50DQO/h1OsshbvNVwelDqvtw=;
-	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=gzyTLmE4Qb8GrC6kkCfv9bABIGlCt0ROszzuVAQBPyv9k4oFMzM9EEqhLSj0j4BYB
-	 QYuo+Q5OKvH9jFfvN9sbDhvhk8PDo8ruZgNozFMj1WHwhc1CfM+HoYCBlbyG9RxTz1
-	 su4Gqr92UmNCIbtFdsUt3HnxMLMqy8BmjzmgOtqBsOAy0jxccHiFPPS0ZSt4BYC8Ez
-	 LSDCGudsrGoMtGaN8jhAby8GMWDSSXvcNR3N14nNwD4oQYerVH7bqMTRsTNFz44HBE
-	 EUAg9e08u3+F8ysC9gDtrXO8xtFqhXW/t5uWxSwxw3VTWBG40qVbwuS5nprpYLuV6r
-	 gOuWBULKdTq1Q==
-Received: from mail-40135.protonmail.ch (mail-40135.protonmail.ch [185.70.40.135])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6151C384C22
-	for <usrp-users@lists.ettus.com>; Tue, 26 Sep 2023 03:49:16 -0400 (EDT)
+	t=1695761600; bh=hu3N4u1Pe9hLjkL/zg3X5RsU3mwWMGsWsIlf3+sJSr0=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=CCPPP/kxHIY/BTNDUsFX4Ugx0U5cxIsQGa+BSMLYMMIa1pQ4RqYImdQnGkAy4XK4l
+	 OWnrOH8W3fsmR3Qw77wf5ewtnszJDeVNGmQRt411T6lVY4UP545h+uLPe6ahitPtNw
+	 7e5wNHTk5lbHJq9GGCOALlvohh57z7DCaIa2DhOsS1w6UTP6Rv0wBNmvFXl33+C36K
+	 hnjcc7BnUFzLqFDBGp6RRuoHAvVCKbo6VdsOvV+nOKdOzs2yiLpo3GijU/VS9nXAMY
+	 SXO+YHNjYXXHZz2xKfz8n7ekieJD5Eu2XAmtmvocHkdagnI1/S8YlE0GPcchyufLn8
+	 6sBmuwe54gTFg==
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6E55A38533A
+	for <usrp-users@lists.ettus.com>; Tue, 26 Sep 2023 16:53:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="k7b5fq2j";
+	dkim=pass (2048-bit key; unprotected) header.d=umich.edu header.i=@umich.edu header.b="m/k63nJk";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1695714553; x=1695973753;
-	bh=ga+f4DMvn+biJmwOUJg7ho/w39nlMaenB/zgMkAnjr0=;
-	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=k7b5fq2jPILFRzCJayHF9/IqP5nLycj0vrpRusdBp20a4V8lcL86J0pofRZpG4uxR
-	 oBMoO6xs8eDX3BRUta8KTDJBn7Eqyg4X+eCnwwk/+DviEYZ2/tDyUgNpJjb0jLzKpS
-	 ml2flEPESQ9+rh6lvHLNG/PAzAabbcDWMRk157fdL1aZK4+kWfh7PyPFGS3me2c9to
-	 SFPE/JpXLH7x06Qce2pSEX42r6ZtbBYM9nr4vxYkvqkBiGNJZZ7rNqspbDoehjvD4N
-	 nrrjtp96pqEPTgL4wwB/Xn+NRZgmiG/bKC/1mq7dJH5CAvpNWTHXnCr5EnJMiyvZnz
-	 2djg/NV7E9Z7Q==
-Date: Tue, 26 Sep 2023 07:48:54 +0000
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users <usrp-users@lists.ettus.com>, Ivan Zahartchuk <adray0001@gmail.com>
-Message-ID: <v8v8Aw3rqm6E21u86dl99H52lXJivH9m3Czbz03Vyr3dJws5Sdf3k4u-BOM6H4OeRvLCFyNKBXHN-odhx3Qf9XC9Khvcrs0UE7u2Fc_6sFg=@protonmail.com>
-In-Reply-To: <92c8c090-05c4-417e-aabe-9ded2104972e@gmail.com>
-References: <CAPRRyxvFFoPU8cCDFigOb+obsZGtE_nNz6q8WppVyU7q3oR0Ug@mail.gmail.com> <e4e27517-f1b3-79d9-d0d2-4fb6cafda00f@ettus.com> <wTof148s-b9-o9Kr4ztrZ40XkpxeAdB1LgVYwo4yKEv0xzMDb2quQHpttubb-Ohk3nmTIXWsdRYVkgXC0DMB-Sjsl3FP3Nj28-e20PXrCo0=@protonmail.com> <fce55c5f-843c-9703-a2fa-5e339ad3224c@gmail.com> <CAPRRyxvSXLmRQK1g9q4CpTZFD+DG_RD=3PvfOkXYCq6GhxaFWw@mail.gmail.com> <LPN77hJUIAM81IQUZp1xm11CW9ICrKnSrtl5iK1r8zW1rfcs-c-YX678AFDaGzJn8oWaplK6HDD8hZ3K2xcZn0778_UciNylvyZEp8zbVRE=@protonmail.com> <92c8c090-05c4-417e-aabe-9ded2104972e@gmail.com>
-Feedback-ID: 47010692:user:proton
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-d865db5b4c7so8015898276.1
+        for <usrp-users@lists.ettus.com>; Tue, 26 Sep 2023 13:53:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=umich.edu; s=google-2016-06-03; t=1695761596; x=1696366396; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hmoTg5UHGcEmo6BhZN3WWrD6qD5OkoIVJR2EWtv5bsw=;
+        b=m/k63nJkLogBQeB+8SIs22Ndldywr7nozkKK/Rgtym5bW9t8CL3nF1aF35F3dtM0yL
+         Bmnlrz0aW0eCpPyHWLmKOVzklGeLyfzn6R6Z/2XLDw3C6QaJotvDZ8uEWtSe57zDEmVk
+         sTInOZTpc0honFC8+5aAgJt11G6Q0sfCJIDmRqT1dawFUVcguDf97PcpaZcNJ5KWhGmr
+         82h/vyfL7YbOhKd7cZjDcrSedRqq8oyljTswlXgGZMup2iu4GZjO9+3fy891cIO3pknc
+         DwzKCwgp0AEln6Jab0MHOPV3I+CS1Udoc0TZFxXPJP0QCBAsgSYHX31PCXYMyE/1uPfT
+         QQOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695761596; x=1696366396;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hmoTg5UHGcEmo6BhZN3WWrD6qD5OkoIVJR2EWtv5bsw=;
+        b=EJk0CO+RNyyaLBwyS8TEFDPL0sgjb04e6jJTcHxkbTR1jKOg8Am2yyNb7laaIFKocD
+         R/XwrOg6BJcf1bfx0kpFyhh3oC6Cw/H0prKW+Wt3XzV2VD4C2heYVSBrwYWX3/mJjtR5
+         5SS6vQWvZoTYpXJVCYSwO2QIf19Ql95eGXWw1fjv6kCja77kCcDzPGBvaLPrXfs48KMl
+         eJeonR5gSy+eIqLtBjT1xhUsfRf1jOrEvcDOk6REwQM8BQP35p/N3EMR6jgkZxyNAqHz
+         OPo6oTM2Q5JC+UB5tI3Ga3bMcF/cilKBleuL4bbr1ifB3mlwc11da7HhCZsUbtGK2sce
+         4TCw==
+X-Gm-Message-State: AOJu0Yx8ONZxLApctQy33bYuSMomK9IazLhEly5HGAfIitZijdYJ6+JZ
+	S3AkrV0GlCNuAAEo6d8OHROUpg6iCegO3KrPM5rP6QZ0kJkbrtsGyd8=
+X-Google-Smtp-Source: AGHT+IEZhB2UY14+VnTTqLXF7Y6aBnl4EICBOWnV9CzV91wH98bf77IpZINC8HNeNVaemKCQ7Ea5gHEv/ZmJanYqmMw=
+X-Received: by 2002:a25:df97:0:b0:d78:3e:4cca with SMTP id w145-20020a25df97000000b00d78003e4ccamr65542ybg.10.1695761595628;
+ Tue, 26 Sep 2023 13:53:15 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: 2ABFFTFW6BDBSVFLYXJ5G527VPK5N4AN
-X-Message-ID-Hash: 2ABFFTFW6BDBSVFLYXJ5G527VPK5N4AN
-X-MailFrom: olo1618@protonmail.com
+From: Achilleas Anastasopoulos <anastas@umich.edu>
+Date: Tue, 26 Sep 2023 16:53:00 -0400
+Message-ID: <CAErymBjsm1EFK_Py2RGfm7nyWzAkspg5=at5Cd+24v2XVnOkQQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: RV7453AJNTQAQ3KB4XGHHDHAVEWI7MUU
+X-Message-ID-Hash: RV7453AJNTQAQ3KB4XGHHDHAVEWI7MUU
+X-MailFrom: anastas@umich.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP B200 Data Reception Issue on Windows 10
+Subject: [USRP-users] calibration utilities
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2ABFFTFW6BDBSVFLYXJ5G527VPK5N4AN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RV7453AJNTQAQ3KB4XGHHDHAVEWI7MUU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Olo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olo <olo1618@protonmail.com>
-Content-Type: multipart/mixed; boundary="===============0839666005393978132=="
+Content-Type: multipart/mixed; boundary="===============7342374644286033238=="
 
-This is a multi-part message in MIME format.
+--===============7342374644286033238==
+Content-Type: multipart/alternative; boundary="00000000000088160a06064943e5"
 
---===============0839666005393978132==
-Content-Type: multipart/alternative;
- boundary="b1_FWRJ5zarC4giQHQbZ7PwNcjtnbWsLNvAweO2p1DpG28"
+--00000000000088160a06064943e5
+Content-Type: text/plain; charset="UTF-8"
 
-This is a multi-part message in MIME format.
+Hi all,
 
---b1_FWRJ5zarC4giQHQbZ7PwNcjtnbWsLNvAweO2p1DpG28
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+I have installed gnuradio/uhd in 10 computers in a lab (almost identical
+setups).
+These are  Ubuntu 20.04.4 LTS focal
+The connected USRPs (X300) work fine in all 10 computers.
 
-SSdsbCBtYWtlIGR1YWwgYm9vdCBsYXB0b3Agd2l0aCBXaW5kb3dzIDEwIGFuZCBVYnVudHUgMjIu
-MDQgYW5kIG1heWJlIGl0IHdpbGwgd29yay4gUGxlYXNlIEl2YW4gd2hhdCBkaWQgeW91IGRvIHRv
-IGhhdmUgbm8gZGF0YSBsb3NzZXMgb24gdWJ1bnR1ID8KCi0tLS0tLS0gT3JpZ2luYWwgTWVzc2Fn
-ZSAtLS0tLS0tCk9uIE1vbmRheSwgU2VwdGVtYmVyIDI1dGgsIDIwMjMgYXQgMTU6MTcsIE1hcmN1
-cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+IHdyb3RlOgoKPiBPbiAyNS8wOS8y
-MDIzIDA3OjE0LCBPbG8gdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4KPj4gUGxlYXNlIGhvdyB5b3Ug
-YWNoaWV2ZWQgbm8gbG9zc2VzIG9uIFVidW50dSA/IEkgaGF2ZSBzaWduaWZpY2FudGx5IGxvd2Vy
-IGxvc3NlcyBpbiBVYnVudHUgdG9vIGJ1dCBJIHN0aWxsIGhhdmUgc29tZS4KPj4KPj4gT24gdWJ1
-bnR1IDoKPj4gQmVuY2htYXJrIHJhdGUgc3VtbWFyeToKPj4gTnVtIHJlY2VpdmVkIHNhbXBsZXM6
-IDEzMTE2MDAzMgo+PiBOdW0gZHJvcHBlZCBzYW1wbGVzOiA2OTc0NjIzOAo+PiBOdW0gb3ZlcnJ1
-bnMgZGV0ZWN0ZWQ6IDIwNwo+PiBOdW0gdHJhbnNtaXR0ZWQgc2FtcGxlczogMAo+PiBOdW0gc2Vx
-dWVuY2UgZXJyb3JzIChUeCk6IDAKPj4gTnVtIHNlcXVlbmNlIGVycm9ycyAoUngpOiAwCj4+IE51
-bSB1bmRlcnJ1bnMgZGV0ZWN0ZWQ6IDAKPj4gTnVtIGxhdGUgY29tbWFuZHM6IDAKPj4gTnVtIHRp
-bWVvdXRzIChUeCk6IDAKPj4gTnVtIHRpbWVvdXRzIChSeCk6IDAKPj4KPj4gT24gd2luZG93czoK
-Pj4gQmVuY2htYXJrIHJhdGUgc3VtbWFyeToKPj4gTnVtIHJlY2VpdmVkIHNhbXBsZXM6IDk1MTQ2
-MzM4Cj4+IE51bSBkcm9wcGVkIHNhbXBsZXM6IDEwNDg3ODAxOAo+PiBOdW0gb3ZlcnJ1bnMgZGV0
-ZWN0ZWQ6IDUyNgo+PiBOdW0gdHJhbnNtaXR0ZWQgc2FtcGxlczogMAo+PiBOdW0gc2VxdWVuY2Ug
-ZXJyb3JzIChUeCk6IDAKPj4gTnVtIHNlcXVlbmNlIGVycm9ycyAoUngpOiAwCj4+IE51bSB1bmRl
-cnJ1bnMgZGV0ZWN0ZWQ6IDAKPj4gTnVtIGxhdGUgY29tbWFuZHM6IDAKPj4gTnVtIHRpbWVvdXRz
-IChUeCk6IDAgIE51bSB0aW1lb3V0cyAoUngpOiAwCj4+Cj4+IEJvdGggb24gMjAgTUh6IGJhbmR3
-aWR0aC4KPgo+IElmIHlvdSdyZSB1c2luZyB0aGUgIm51bV9yZWN2X2ZyYW1lcz0yNTYiLCB0aGVu
-IG15IGd1ZXNzIGlzIHRoYXQgeW91J3JlIHJ1bm5pbmcgeW91ciBDUFUgaW4gImVjb25vbXkiIG1v
-ZGUuIE9uIFVidW50dQo+IHVzZSB0aGUgQ1BVIEZyZXF1ZW5jeSBNb25pdG9yIGFwcCAob3Igd2hh
-dGV2ZXIgeW91ciBkZXNrdG9wIHByZWZlcmVuY2UgY2FsbHMgaXQpIHRvIHR1cm4gaXQgdG8gInBl
-cmZvcm1hbmNlIiBtb2RlLgo+IERvbid0IGtub3cgaG93IHRvIGRvIHRoYXQgb24gV2luZG93cy4K
-Pgo+IFNlZToKPgo+IGh0dHBzOi8va2IuZXR0dXMuY29tL1VTUlBfSG9zdF9QZXJmb3JtYW5jZV9U
-dW5pbmdfVGlwc19hbmRfVHJpY2tzCj4KPj4gU2VudCB3aXRoIFtQcm90b24gTWFpbF0oaHR0cHM6
-Ly9wcm90b24ubWUvKSBzZWN1cmUgZW1haWwuCj4+Cj4+IC0tLS0tLS0gT3JpZ2luYWwgTWVzc2Fn
-ZSAtLS0tLS0tCj4+IE9uIE1vbmRheSwgU2VwdGVtYmVyIDI1dGgsIDIwMjMgYXQgMTE6MjAsIEl2
-YW4gWmFoYXJ0Y2h1ayBbPGFkcmF5MDAwMUBnbWFpbC5jb20+XShtYWlsdG86YWRyYXkwMDAxQGdt
-YWlsLmNvbSkgd3JvdGU6Cj4+Cj4+PiBVbmZvcnR1bmF0ZWx5LCB0aGlzIGhhcyBubyBlZmZlY3Qg
-b24gbG9zc2VzLgo+Pj4KPj4+INC/0L0sIDI1INCy0LXRgC4gMjAyM+KAr9GALiDQviAwOTo1NiBN
-YXJjdXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPiDQv9C40YjQtToKPj4+Cj4+
-Pj4gT24gMjUvMDkvMjAyMyAwMToyOCwgT2xvIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+Pj4+PiBJ
-IGhhdmUgc2FtZSBwcm9ibGVtLiBQbGVhc2UgaGF2ZSBhbnlvbmUgY2x1ZSB3aGF0IHNob3VsZCBJ
-IGRvID8gTXkgb3V0cHV0IGZyb20gYmVuY2htYXJrX3JhdGUgLS1yeF9yYXRlIDIwTUh6Ogo+Pj4+
-Pgo+Pj4+PiBCZW5jaG1hcmsgcmF0ZSBzdW1tYXJ5Ogo+Pj4+PiBOdW0gcmVjZWl2ZWQgc2FtcGxl
-czogOTk5MDA3NDQKPj4+Pj4gTnVtIGRyb3BwZWQgc2FtcGxlczogMTAwMzE1NDM3Cj4+Pj4+IE51
-bSBvdmVycnVucyBkZXRlY3RlZDogNDcyCj4+Pj4+Cj4+Pj4+IEltIHVzaW5nIFdpbmRvd3MgMTAg
-L3cgVUhEIDQuNCBvbiBCMjEwLgo+Pj4+Pgo+Pj4+Pgo+Pj4+IFlvdSBjb3VsZCB1c2UgdGhlICJu
-dW1fcmVjdl9mcmFtZXMiIGRldmljZSBhcmd1bWVudDoKPj4+Pgo+Pj4+IG51bV9yZWN2X2ZyYW1l
-cz0yNTYKPj4+Pgo+Pj4+IFNlZSBpZiB0aGF0IG1ha2VzIGEgZGlmZmVyZW5jZS4KPj4+Pgo+Pj4+
-Pgo+Pj4+Pgo+Pj4+Pgo+Pj4+Pgo+Pj4+PiBTZW50IHdpdGggUHJvdG9uIE1haWwgc2VjdXJlIGVt
-YWlsLgo+Pj4+Pgo+Pj4+PiAtLS0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0tLQo+Pj4+PiBP
-biBTYXR1cmRheSwgU2VwdGVtYmVyIDIzcmQsIDIwMjMgYXQgMjM6NDAsIE1hcmN1cyBNw7xsbGVy
-IDxtYXJjdXMubXVlbGxlckBldHR1cy5jb20+IHdyb3RlOgo+Pj4+Pgo+Pj4+Pgo+Pj4+Pj4gU291
-bmRzIGxpa2UgdGhlIFVTQiBob3N0IGNvbnRyb2xsZXIncyBXaW5kb3dzIGRyaXZlciBhbmQvb3Ig
-Y29udHJvbGxlciBmaXJtd2FyZSBjb21pbmcKPj4+Pj4+IHdpdGggdGhhdCBkcml2ZXIgbGVhdmUg
-dGhpbmdzIHRvIGJlIGRlc2lyZWQuIEkgaG9uZXN0bHkgZG9uJ3QgaGF2ZSBhIGdvb2QgcmVjb21t
-ZW5kYXRpb24KPj4+Pj4+IHRoZXJlLCBvdGhlciB0aGFuIHRvIG1ha2Ugc3VyZSB5b3VyIFdpbmRv
-d3MgZHJpdmVycyBhcmUgdXAgdG8gZGF0ZSDigJMgV2luZG93cyBpcyBub3QgcGVyIHNlCj4+Pj4+
-PiB3b3JzZSB0aGFuIExpbnV4IGF0IFVTQi4KPj4+Pj4+Cj4+Pj4+PiBCZXN0LAo+Pj4+Pj4KPj4+
-Pj4+IE1hcmN1cwo+Pj4+Pj4KPj4+Pj4+IE9uIDIzLjA5LjIzIDIzOjI4LCBJdmFuIFphaGFydGNo
-dWsgd3JvdGU6Cj4+Pj4+Pgo+Pj4+Pj4+IEhlbGxvLiBJIGhhdmUgYW4gaXNzdWUgd2l0aCByZWFk
-aW5nIGRhdGEgZnJvbSB0aGUgVVNSUCBCMjAwIG9uIFdpbmRvd3MgMTAuIFdoZW4gSSBydW4KPj4+
-Pj4+PiB0aGUgYmVuY2htYXJrX3JhdGUgd2l0aCBhIDIwIE1IeiByZWNlcHRpb24gYmFuZHdpZHRo
-LCBJIHNlZSBsb3NzZXMgb2YgbW9yZSB0aGFuIDUwCj4+Pj4+Pj4gcGVyY2VudC4gSG93ZXZlciwg
-dGhlcmUgYXJlIG5vIGxvc3NlcyBkdXJpbmcgdHJhbnNtaXNzaW9uLiBJIGhhdmUgZm9sbG93ZWQg
-YWxsIHRoZQo+Pj4+Pj4+IGluc3RydWN0aW9ucywgaW5jbHVkaW5nIG1vZGlmeWluZyB0aGUgcmVn
-aXN0cnkgYW5kIGRpc2FibGluZyBwb3dlciBtYW5hZ2VtZW50IGZvciBVU0IuCj4+Pj4+Pj4gVGhl
-IHNhbWUgaXNzdWUgb2NjdXJzIGV2ZW4gd2hlbiB1c2luZyBhbiBleHRlcm5hbCBwb3dlciBzdXBw
-bHkuIENhbiB5b3UgcGxlYXNlIGFkdmlzZSBvbgo+Pj4+Pj4+IHdoYXQgdGhlIHBvc3NpYmxlIHBy
-b2JsZW1zIG1pZ2h0IGJlPyBPbiB0aGUgc2FtZSBQQywgd2hlbiB1c2luZyBVYnVudHUsIEkgY2Fu
-IHJlY2VpdmUgNTAKPj4+Pj4+PiBNSHogd2l0aCBhbG1vc3Qgbm8gbG9zc2VzLgo+Pj4+Pj4+Cj4+
-Pj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+
-Pj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bQo+Pj4+Pj4+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2
-ZUBsaXN0cy5ldHR1cy5jb20KPj4+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCj4+Pj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4+Pj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
-byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo+Pj4+PiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4+PiBVU1JQLXVzZXJzIG1haWxpbmcg
-bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4+PiBUbyB1bnN1YnNjcmliZSBz
-ZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCj4+Pj4gX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+PiBVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4+IFRvIHVu
-c3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
-b20KPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0KPj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20KPj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0bwo+PiB1c3JwLXVzZXJzLWxlYXZl
-QGxpc3RzLmV0dHVzLmNvbQ==
+However, two of them result in a core dump when trying to use calibrating
+utilities as follows:
 
---b1_FWRJ5zarC4giQHQbZ7PwNcjtnbWsLNvAweO2p1DpG28
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+$ uhd_cal_tx_dc_offset
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
-cHg7Ij5JJ2xsIG1ha2UgZHVhbCBib290IGxhcHRvcCB3aXRoIFdpbmRvd3MgMTAgYW5kIFVidW50
-dSAyMi4wNCBhbmQmbmJzcDs8c3Bhbj5tYXliZSBpdCB3aWxsIHdvcmsuIFBsZWFzZSBJdmFuIDxz
-cGFuPjxzcGFuPndoYXQgZGlkIHlvdSBkbyB0byBoYXZlIG5vIGRhdGEgbG9zc2VzIG9uIHVidW50
-dSA/Jm5ic3A7PC9zcGFuPjwvc3Bhbj48L3NwYW4+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1p
-bHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48YnI+PC9kaXY+PGRpdiBj
-bGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2siIHN0eWxlPSJmb250LWZhbWlseTogQXJp
-YWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJm
-b250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48L2Rp
-dj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3F1b3RlIj4NCiAgICAgICAgLS0tLS0tLSBPcmlnaW5h
-bCBNZXNzYWdlIC0tLS0tLS08YnI+DQogICAgICAgIE9uIE1vbmRheSwgU2VwdGVtYmVyIDI1dGgs
-IDIwMjMgYXQgMTU6MTcsIE1hcmN1cyBELiBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5j
-b20mZ3Q7IHdyb3RlOjxicj48YnI+DQogICAgICAgIDxibG9ja3F1b3RlIGNsYXNzPSJwcm90b25t
-YWlsX3F1b3RlIiB0eXBlPSJjaXRlIj4NCiAgICAgICAgICAgIA0KICAgIDxkaXYgY2xhc3M9Im1v
-ei1jaXRlLXByZWZpeCI+T24gMjUvMDkvMjAyMyAwNzoxNCwgT2xvIHZpYSBVU1JQLXVzZXJzDQog
-ICAgICB3cm90ZTo8YnI+DQogICAgPC9kaXY+DQogICAgPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+
-DQogICAgICANCiAgICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJp
-ZjsgZm9udC1zaXplOiAxNHB4OyI+PGJyPg0KICAgICAgPC9kaXY+DQogICAgICA8ZGl2IHN0eWxl
-PSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPlBsZWFz
-ZQ0KICAgICAgICBob3cgeW91IGFjaGlldmVkIG5vIGxvc3NlcyBvbiBVYnVudHUgPyBJIGhhdmUg
-c2lnbmlmaWNhbnRseQ0KICAgICAgICBsb3dlciBsb3NzZXMgaW4gVWJ1bnR1IHRvbyBidXQgSSBz
-dGlsbCBoYXZlIHNvbWUuIDwvZGl2Pg0KICAgICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFy
-aWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48YnI+DQogICAgICA8L2Rpdj4NCiAg
-ICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
-OiAxNHB4OyI+T24NCiAgICAgICAgdWJ1bnR1IDo8L2Rpdj4NCiAgICAgIDxkaXYgc3R5bGU9ImZv
-bnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PHNwYW4+QmVu
-Y2htYXJrDQogICAgICAgICAgcmF0ZSBzdW1tYXJ5Ojwvc3Bhbj4NCiAgICAgICAgPGRpdj48c3Bh
-bj4gIE51bSByZWNlaXZlZCBzYW1wbGVzOiAgICAgMTMxMTYwMDMyPC9zcGFuPjwvZGl2Pg0KICAg
-ICAgICA8ZGl2PjxzcGFuPiAgTnVtIGRyb3BwZWQgc2FtcGxlczogICAgICA2OTc0NjIzODwvc3Bh
-bj48L2Rpdj4NCiAgICAgICAgPGRpdj48c3Bhbj4gIE51bSBvdmVycnVucyBkZXRlY3RlZDogICAg
-MjA3PC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2PjxzcGFuPiAgTnVtIHRyYW5zbWl0dGVkIHNh
-bXBsZXM6ICAwPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2PjxzcGFuPiAgTnVtIHNlcXVlbmNl
-IGVycm9ycyAoVHgpOiAwPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2PjxzcGFuPiAgTnVtIHNl
-cXVlbmNlIGVycm9ycyAoUngpOiAwPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2PjxzcGFuPiAg
-TnVtIHVuZGVycnVucyBkZXRlY3RlZDogICAwPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2Pjxz
-cGFuPiAgTnVtIGxhdGUgY29tbWFuZHM6ICAgICAgICAwPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8
-ZGl2PjxzcGFuPiAgTnVtIHRpbWVvdXRzIChUeCk6ICAgICAgICAwPC9zcGFuPjwvZGl2Pg0KICAg
-ICAgICA8ZGl2PjxzcGFuPiAgTnVtIHRpbWVvdXRzIChSeCk6ICAgICAgICAwPC9zcGFuPjwvZGl2
-Pg0KICAgICAgICA8c3Bhbj48L3NwYW4+PGJyPg0KICAgICAgPC9kaXY+DQogICAgICA8ZGl2IHN0
-eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxi
-cj4NCiAgICAgIDwvZGl2Pg0KICAgICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBz
-YW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij5Pbg0KICAgICAgICB3aW5kb3dzOiA8L2Rpdj4N
-CiAgICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1z
-aXplOiAxNHB4OyI+PHNwYW4+QmVuY2htYXJrDQogICAgICAgICAgcmF0ZSBzdW1tYXJ5Ojwvc3Bh
-bj4NCiAgICAgICAgPGRpdj48c3Bhbj4gIE51bSByZWNlaXZlZCBzYW1wbGVzOiAgICAgOTUxNDYz
-Mzg8L3NwYW4+PC9kaXY+DQogICAgICAgIDxkaXY+PHNwYW4+ICBOdW0gZHJvcHBlZCBzYW1wbGVz
-OiAgICAgIDEwNDg3ODAxODwvc3Bhbj48L2Rpdj4NCiAgICAgICAgPGRpdj48c3Bhbj4gIE51bSBv
-dmVycnVucyBkZXRlY3RlZDogICAgNTI2PC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2PjxzcGFu
-PiAgTnVtIHRyYW5zbWl0dGVkIHNhbXBsZXM6ICAwPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2
-PjxzcGFuPiAgTnVtIHNlcXVlbmNlIGVycm9ycyAoVHgpOiAwPC9zcGFuPjwvZGl2Pg0KICAgICAg
-ICA8ZGl2PjxzcGFuPiAgTnVtIHNlcXVlbmNlIGVycm9ycyAoUngpOiAwPC9zcGFuPjwvZGl2Pg0K
-ICAgICAgICA8ZGl2PjxzcGFuPiAgTnVtIHVuZGVycnVucyBkZXRlY3RlZDogICAwPC9zcGFuPjwv
-ZGl2Pg0KICAgICAgICA8ZGl2PjxzcGFuPiAgTnVtIGxhdGUgY29tbWFuZHM6ICAgICAgICAwPC9z
-cGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2PjxzcGFuPiAgTnVtIHRpbWVvdXRzIChUeCk6ICAgICAg
-ICAwPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8c3Bhbj4gIE51bSB0aW1lb3V0cyAoUngpOiAgICAg
-ICAgMDwvc3Bhbj48YnI+DQogICAgICA8L2Rpdj4NCiAgICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFt
-aWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PGJyPg0KICAgICAgPC9k
-aXY+DQogICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZv
-bnQtc2l6ZTogMTRweDsiPjxicj4NCiAgICAgIDwvZGl2Pg0KICAgICAgPGRpdiBzdHlsZT0iZm9u
-dC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij5Cb3RoDQogICAg
-ICAgIG9uIDIwIE1IeiBiYW5kd2lkdGguPC9kaXY+DQogICAgICA8ZGl2IHN0eWxlPSJmb250LWZh
-bWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj4NCiAgICAgIDwv
-ZGl2Pg0KICAgICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBm
-b250LXNpemU6IDE0cHg7Ij48YnI+DQogICAgICA8L2Rpdj4NCiAgICA8L2Jsb2NrcXVvdGU+DQog
-ICAgSWYgeW91J3JlIHVzaW5nIHRoZSAibnVtX3JlY3ZfZnJhbWVzPTI1NiIsIHRoZW4gbXkgZ3Vl
-c3MgaXMgdGhhdA0KICAgIHlvdSdyZSBydW5uaW5nIHlvdXIgQ1BVIGluICJlY29ub215IiBtb2Rl
-LiAgT24gVWJ1bnR1PGJyPg0KICAgICAgdXNlIHRoZSBDUFUgRnJlcXVlbmN5IE1vbml0b3IgYXBw
-IChvciB3aGF0ZXZlciB5b3VyIGRlc2t0b3ANCiAgICBwcmVmZXJlbmNlIGNhbGxzIGl0KSB0byB0
-dXJuIGl0IHRvICJwZXJmb3JtYW5jZSIgbW9kZS48YnI+DQogICAgICBEb24ndCBrbm93IGhvdyB0
-byBkbyB0aGF0IG9uIFdpbmRvd3MuPGJyPg0KICAgIDxicj4NCiAgICBTZWU6PGJyPg0KICAgIDxi
-cj4NCiAgICA8YSBocmVmPSJodHRwczovL2tiLmV0dHVzLmNvbS9VU1JQX0hvc3RfUGVyZm9ybWFu
-Y2VfVHVuaW5nX1RpcHNfYW5kX1RyaWNrcyIgY2xhc3M9Im1vei10eHQtbGluay1mcmVldGV4dCIg
-cmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6
-Ly9rYi5ldHR1cy5jb20vVVNSUF9Ib3N0X1BlcmZvcm1hbmNlX1R1bmluZ19UaXBzX2FuZF9Ucmlj
-a3M8L2E+PGJyPg0KICAgIDxicj4NCiAgICA8YnI+DQogICAgICA8YnI+DQogICAgPGJsb2NrcXVv
-dGUgdHlwZT0iY2l0ZSI+DQogICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsDQog
-ICAgICAgIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiIGNsYXNzPSJwcm90b25tYWlsX3Np
-Z25hdHVyZV9ibG9jayI+DQogICAgICAgIDxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJl
-X2Jsb2NrLXVzZXINCiAgICAgICAgICBwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1lbXB0eSI+
-IDwvZGl2Pg0KICAgICAgICA8ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1w
-cm90b24iPiBTZW50IHdpdGggPGEgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiBo
-cmVmPSJodHRwczovL3Byb3Rvbi5tZS8iIHRhcmdldD0iX2JsYW5rIj5Qcm90b24gTWFpbDwvYT4g
-c2VjdXJlDQogICAgICAgICAgZW1haWwuIDwvZGl2Pg0KICAgICAgPC9kaXY+DQogICAgICA8ZGl2
-IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsi
-Pjxicj4NCiAgICAgIDwvZGl2Pg0KICAgICAgPGRpdiBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSI+
-IC0tLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLS0tPGJyPg0KICAgICAgICBPbiBNb25kYXks
-IFNlcHRlbWJlciAyNXRoLCAyMDIzIGF0IDExOjIwLCBJdmFuIFphaGFydGNodWsNCiAgICAgICAg
-PGEgaHJlZj0ibWFpbHRvOmFkcmF5MDAwMUBnbWFpbC5jb20iIGNsYXNzPSJtb3otdHh0LWxpbmst
-cmZjMjM5NkUiIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIgdGFyZ2V0PSJfYmxh
-bmsiPiZsdDthZHJheTAwMDFAZ21haWwuY29tJmd0OzwvYT4gd3JvdGU6PGJyPg0KICAgICAgICA8
-YnI+DQogICAgICAgIDxibG9ja3F1b3RlIHR5cGU9ImNpdGUiIGNsYXNzPSJwcm90b25tYWlsX3F1
-b3RlIj4NCiAgICAgICAgICA8ZGl2IGRpcj0ibHRyIj4NCiAgICAgICAgICAgIDxwcmUgY2xhc3M9
-ImdtYWlsLXR3LWRhdGEtdGV4dCBnbWFpbC10dy10ZXh0LWxhcmdlIGdtYWlsLXR3LXRhIiBpZD0i
-Z21haWwtdHctdGFyZ2V0LXRleHQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiIGRpcj0ibHRyIj48
-c3BhbiBsYW5nPSJlbiIgY2xhc3M9ImdtYWlsLVkySVFGYyI+VW5mb3J0dW5hdGVseSwgdGhpcyBo
-YXMgbm8gZWZmZWN0IG9uIGxvc3Nlcy48L3NwYW4+PC9wcmU+DQogICAgICAgICAgPC9kaXY+DQog
-ICAgICAgICAgPGJyPg0KICAgICAgICAgIDxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj4NCiAgICAg
-ICAgICAgIDxkaXYgZGlyPSJsdHIiIGNsYXNzPSJnbWFpbF9hdHRyIj7Qv9C9LCAyNSDQstC10YAu
-IDIwMjPigK/RgC4g0L4NCiAgICAgICAgICAgICAgMDk6NTYgTWFyY3VzIEQuIExlZWNoICZsdDs8
-YSBjbGFzcz0ibW96LXR4dC1saW5rLWZyZWV0ZXh0IiB0YXJnZXQ9Il9ibGFuayIgcmVsPSJub3Jl
-ZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiBocmVmPSJtYWlsdG86cGF0Y2h2b25icmF1bkBnbWFp
-bC5jb20iPnBhdGNodm9uYnJhdW5AZ21haWwuY29tPC9hPiZndDsNCiAgICAgICAgICAgICAg0L/Q
-uNGI0LU6PGJyPg0KICAgICAgICAgICAgPC9kaXY+DQogICAgICAgICAgICA8YmxvY2txdW90ZSBj
-bGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7Ym9yZGVy
-LWxlZnQ6MXB4DQogICAgICAgICAgICAgIHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7cGFkZGluZy1s
-ZWZ0OjFleCI+T24gMjUvMDkvMjAyMyAwMToyOCwgT2xvIHZpYQ0KICAgICAgICAgICAgICBVU1JQ
-LXVzZXJzIHdyb3RlOjxicj4NCiAgICAgICAgICAgICAgJmd0OyBJIGhhdmUgc2FtZSBwcm9ibGVt
-LiBQbGVhc2UgaGF2ZSBhbnlvbmUgY2x1ZSB3aGF0DQogICAgICAgICAgICAgIHNob3VsZCBJIGRv
-ID8gTXkgb3V0cHV0IGZyb20gYmVuY2htYXJrX3JhdGUgLS1yeF9yYXRlDQogICAgICAgICAgICAg
-IDIwTUh6Ojxicj4NCiAgICAgICAgICAgICAgJmd0Ozxicj4NCiAgICAgICAgICAgICAgJmd0OyBC
-ZW5jaG1hcmsgcmF0ZSBzdW1tYXJ5Ojxicj4NCiAgICAgICAgICAgICAgJmd0OyBOdW0gcmVjZWl2
-ZWQgc2FtcGxlczogOTk5MDA3NDQ8YnI+DQogICAgICAgICAgICAgICZndDsgTnVtIGRyb3BwZWQg
-c2FtcGxlczogMTAwMzE1NDM3PGJyPg0KICAgICAgICAgICAgICAmZ3Q7IE51bSBvdmVycnVucyBk
-ZXRlY3RlZDogNDcyPGJyPg0KICAgICAgICAgICAgICAmZ3Q7PGJyPg0KICAgICAgICAgICAgICAm
-Z3Q7IEltIHVzaW5nIFdpbmRvd3MgMTAgL3cgVUhEIDQuNCBvbiBCMjEwLjxicj4NCiAgICAgICAg
-ICAgICAgJmd0Ozxicj4NCiAgICAgICAgICAgICAgJmd0Ozxicj4NCiAgICAgICAgICAgICAgWW91
-IGNvdWxkIHVzZSB0aGUgIm51bV9yZWN2X2ZyYW1lcyIgZGV2aWNlIGFyZ3VtZW50Ojxicj4NCiAg
-ICAgICAgICAgICAgPGJyPg0KICAgICAgICAgICAgICBudW1fcmVjdl9mcmFtZXM9MjU2PGJyPg0K
-ICAgICAgICAgICAgICA8YnI+DQogICAgICAgICAgICAgIFNlZSBpZiB0aGF0IG1ha2VzIGEgZGlm
-ZmVyZW5jZS48YnI+DQogICAgICAgICAgICAgIDxicj4NCiAgICAgICAgICAgICAgPGJyPg0KICAg
-ICAgICAgICAgICAmZ3Q7PGJyPg0KICAgICAgICAgICAgICAmZ3Q7PGJyPg0KICAgICAgICAgICAg
-ICAmZ3Q7PGJyPg0KICAgICAgICAgICAgICAmZ3Q7PGJyPg0KICAgICAgICAgICAgICAmZ3Q7IFNl
-bnQgd2l0aCBQcm90b24gTWFpbCBzZWN1cmUgZW1haWwuPGJyPg0KICAgICAgICAgICAgICAmZ3Q7
-PGJyPg0KICAgICAgICAgICAgICAmZ3Q7IC0tLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLS0t
-PGJyPg0KICAgICAgICAgICAgICAmZ3Q7IE9uIFNhdHVyZGF5LCBTZXB0ZW1iZXIgMjNyZCwgMjAy
-MyBhdCAyMzo0MCwgTWFyY3VzDQogICAgICAgICAgICAgIE3DvGxsZXIgJmx0OzxhIGNsYXNzPSJt
-b3otdHh0LWxpbmstZnJlZXRleHQiIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIg
-aHJlZj0ibWFpbHRvOm1hcmN1cy5tdWVsbGVyQGV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPm1h
-cmN1cy5tdWVsbGVyQGV0dHVzLmNvbTwvYT4mZ3Q7DQogICAgICAgICAgICAgIHdyb3RlOjxicj4N
-CiAgICAgICAgICAgICAgJmd0Ozxicj4NCiAgICAgICAgICAgICAgJmd0Ozxicj4NCiAgICAgICAg
-ICAgICAgJmd0OyZndDsgU291bmRzIGxpa2UgdGhlIFVTQiBob3N0IGNvbnRyb2xsZXIncyBXaW5k
-b3dzDQogICAgICAgICAgICAgIGRyaXZlciBhbmQvb3IgY29udHJvbGxlciBmaXJtd2FyZSBjb21p
-bmc8YnI+DQogICAgICAgICAgICAgICZndDsmZ3Q7IHdpdGggdGhhdCBkcml2ZXIgbGVhdmUgdGhp
-bmdzIHRvIGJlIGRlc2lyZWQuIEkNCiAgICAgICAgICAgICAgaG9uZXN0bHkgZG9uJ3QgaGF2ZSBh
-IGdvb2QgcmVjb21tZW5kYXRpb248YnI+DQogICAgICAgICAgICAgICZndDsmZ3Q7IHRoZXJlLCBv
-dGhlciB0aGFuIHRvIG1ha2Ugc3VyZSB5b3VyIFdpbmRvd3MNCiAgICAgICAgICAgICAgZHJpdmVy
-cyBhcmUgdXAgdG8gZGF0ZSDigJMgV2luZG93cyBpcyBub3QgcGVyIHNlPGJyPg0KICAgICAgICAg
-ICAgICAmZ3Q7Jmd0OyB3b3JzZSB0aGFuIExpbnV4IGF0IFVTQi48YnI+DQogICAgICAgICAgICAg
-ICZndDsmZ3Q7PGJyPg0KICAgICAgICAgICAgICAmZ3Q7Jmd0OyBCZXN0LDxicj4NCiAgICAgICAg
-ICAgICAgJmd0OyZndDs8YnI+DQogICAgICAgICAgICAgICZndDsmZ3Q7IE1hcmN1czxicj4NCiAg
-ICAgICAgICAgICAgJmd0OyZndDs8YnI+DQogICAgICAgICAgICAgICZndDsmZ3Q7IE9uIDIzLjA5
-LjIzIDIzOjI4LCBJdmFuIFphaGFydGNodWsgd3JvdGU6PGJyPg0KICAgICAgICAgICAgICAmZ3Q7
-Jmd0Ozxicj4NCiAgICAgICAgICAgICAgJmd0OyZndDsmZ3Q7IEhlbGxvLiBJIGhhdmUgYW4gaXNz
-dWUgd2l0aCByZWFkaW5nIGRhdGEgZnJvbQ0KICAgICAgICAgICAgICB0aGUgVVNSUCBCMjAwIG9u
-IFdpbmRvd3MgMTAuIFdoZW4gSSBydW48YnI+DQogICAgICAgICAgICAgICZndDsmZ3Q7Jmd0OyB0
-aGUgYmVuY2htYXJrX3JhdGUgd2l0aCBhIDIwIE1IeiByZWNlcHRpb24NCiAgICAgICAgICAgICAg
-YmFuZHdpZHRoLCBJIHNlZSBsb3NzZXMgb2YgbW9yZSB0aGFuIDUwPGJyPg0KICAgICAgICAgICAg
-ICAmZ3Q7Jmd0OyZndDsgcGVyY2VudC4gSG93ZXZlciwgdGhlcmUgYXJlIG5vIGxvc3NlcyBkdXJp
-bmcNCiAgICAgICAgICAgICAgdHJhbnNtaXNzaW9uLiBJIGhhdmUgZm9sbG93ZWQgYWxsIHRoZTxi
-cj4NCiAgICAgICAgICAgICAgJmd0OyZndDsmZ3Q7IGluc3RydWN0aW9ucywgaW5jbHVkaW5nIG1v
-ZGlmeWluZyB0aGUNCiAgICAgICAgICAgICAgcmVnaXN0cnkgYW5kIGRpc2FibGluZyBwb3dlciBt
-YW5hZ2VtZW50IGZvciBVU0IuPGJyPg0KICAgICAgICAgICAgICAmZ3Q7Jmd0OyZndDsgVGhlIHNh
-bWUgaXNzdWUgb2NjdXJzIGV2ZW4gd2hlbiB1c2luZyBhbg0KICAgICAgICAgICAgICBleHRlcm5h
-bCBwb3dlciBzdXBwbHkuIENhbiB5b3UgcGxlYXNlIGFkdmlzZSBvbjxicj4NCiAgICAgICAgICAg
-ICAgJmd0OyZndDsmZ3Q7IHdoYXQgdGhlIHBvc3NpYmxlIHByb2JsZW1zIG1pZ2h0IGJlPyBPbiB0
-aGUNCiAgICAgICAgICAgICAgc2FtZSBQQywgd2hlbiB1c2luZyBVYnVudHUsIEkgY2FuIHJlY2Vp
-dmUgNTA8YnI+DQogICAgICAgICAgICAgICZndDsmZ3Q7Jmd0OyBNSHogd2l0aCBhbG1vc3Qgbm8g
-bG9zc2VzLjxicj4NCiAgICAgICAgICAgICAgJmd0OyZndDsmZ3Q7PGJyPg0KICAgICAgICAgICAg
-ICAmZ3Q7Jmd0OyZndDsNCiAgICAgICAgICAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX188YnI+DQogICAgICAgICAgICAgICZndDsmZ3Q7Jmd0OyBVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBjbGFzcz0ibW96LXR4dC1saW5rLWZyZWV0ZXh0IiBy
-ZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tPC9hPjxicj4NCiAgICAgICAgICAgICAgJmd0OyZndDsmZ3Q7IFRvIHVuc3Vic2NyaWJlIHNl
-bmQgYW4gZW1haWwgdG8gPGEgY2xhc3M9Im1vei10eHQtbGluay1mcmVldGV4dCIgcmVsPSJub3Jl
-ZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBs
-aXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0
-dHVzLmNvbTwvYT48YnI+DQogICAgICAgICAgICAgICZndDsmZ3Q7IF9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KICAgICAgICAgICAgICAmZ3Q7Jmd0
-OyBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBjbGFzcz0ibW96LXR4dC1saW5rLWZyZWV0
-ZXh0IiByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiIGhyZWY9Im1haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPC9hPjxicj4NCiAgICAgICAgICAgICAgJmd0OyZndDsgVG8gdW5zdWJzY3JpYmUg
-c2VuZCBhbiBlbWFpbCB0byA8YSBjbGFzcz0ibW96LXR4dC1saW5rLWZyZWV0ZXh0IiByZWw9Im5v
-cmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZl
-QGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
-ZXR0dXMuY29tPC9hPjxicj4NCiAgICAgICAgICAgICAgJmd0OyBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NCiAgICAgICAgICAgICAgJmd0OyBVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBjbGFzcz0ibW96LXR4dC1saW5rLWZyZWV0ZXh0IiBy
-ZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tPC9hPjxicj4NCiAgICAgICAgICAgICAgJmd0OyBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
-YWlsIHRvIDxhIGNsYXNzPSJtb3otdHh0LWxpbmstZnJlZXRleHQiIHJlbD0ibm9yZWZlcnJlciBu
-b2ZvbGxvdyBub29wZW5lciIgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0
-dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208
-L2E+PGJyPg0KICAgICAgICAgICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXzxicj4NCiAgICAgICAgICAgICAgVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
-LS0gPGEgY2xhc3M9Im1vei10eHQtbGluay1mcmVldGV4dCIgcmVsPSJub3JlZmVycmVyIG5vZm9s
-bG93IG5vb3BlbmVyIiBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRh
-cmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQogICAgICAg
-ICAgICAgIFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgY2xhc3M9Im1vei10eHQt
-bGluay1mcmVldGV4dCIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiBocmVmPSJt
-YWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51
-c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQogICAgICAgICAgICA8L2Js
-b2NrcXVvdGU+DQogICAgICAgICAgPC9kaXY+DQogICAgICAgIDwvYmxvY2txdW90ZT4NCiAgICAg
-ICAgPGJyPg0KICAgICAgPC9kaXY+DQogICAgICA8YnI+DQogICAgICA8ZmllbGRzZXQgY2xhc3M9
-Im1vei1taW1lLWF0dGFjaG1lbnQtaGVhZGVyIj48L2ZpZWxkc2V0Pg0KICAgICAgPHByZSBjbGFz
-cz0ibW96LXF1b3RlLXByZSI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgY2xhc3M9Im1vei10eHQtbGluay1hYmJyZXZpYXRlZCIg
-cmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRv
-IDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgY2xhc3M9
-Im1vei10eHQtbGluay1hYmJyZXZpYXRlZCIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3Bl
-bmVyIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+
-DQo8L3ByZT4NCiAgICA8L2Jsb2NrcXVvdGU+DQogICAgPGJyPg0KICANCg0KDQogICAgICAgIDwv
-YmxvY2txdW90ZT48YnI+DQogICAgPC9kaXY+
+Creating the usrp device with: ,ignore_cal_file=1,ignore-cal-file=1...
+[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+UHD_4.2.0.0-0ubuntu1~focal1
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 1472 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+Running calibration for UBX TX
+Daughterboard serial: 3158306
+Calibration frequency range: 10 MHz -> 6000 MHz
+Dterminate called without an active exception
+Aborted (core dumped)
 
 
---b1_FWRJ5zarC4giQHQbZ7PwNcjtnbWsLNvAweO2p1DpG28--
+I found some similar questions on the Internet but not any definite answers.
+Are there any ideas on how to proceed with investigating that?
 
---===============0839666005393978132==
+thanks
+Achilleas
+
+
+
+
+FYI:
+
+$ uhd_find_devices
+[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+UHD_4.2.0.0-0ubuntu1~focal1
+--------------------------------------------------
+-- UHD Device 0
+--------------------------------------------------
+Device Address:
+    serial: 315C6B2
+    addr: 192.168.10.2
+    addr: 192.168.40.2
+    fpga: HG
+    name:
+    product: X310
+    type: x300
+
+Also:
+
+$ uhd_usrp_probe
+[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+UHD_4.2.0.0-0ubuntu1~focal1
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 1472 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+  _____________________________________________________
+ /
+|       Device: X-Series Device
+|     _____________________________________________________
+|    /
+|   |       Mboard: X310
+|   |   revision: 11
+|   |   revision_compat: 7
+|   |   product: 30818
+|   |   mac-addr0: 00:80:2f:22:64:6c
+|   |   mac-addr1: 00:80:2f:22:64:6d
+|   |   gateway: 192.168.10.1
+|   |   ip-addr0: 192.168.10.2
+|   |   subnet0: 255.255.255.0
+|   |   ip-addr1: 192.168.20.2
+|   |   subnet1: 255.255.255.0
+|   |   ip-addr2: 192.168.30.2
+|   |   subnet2: 255.255.255.0
+|   |   ip-addr3: 192.168.40.2
+|   |   subnet3: 255.255.255.0
+|   |   serial: 315C6B2
+|   |   FW Version: 6.0
+|   |   FPGA Version: 38.0
+|   |   FPGA git hash: be53058
+|   |   RFNoC capable: Yes
+|   |
+|   |   Time sources:  internal, external, gpsdo
+|   |   Clock sources: internal, external, gpsdo
+|   |   Sensors: ref_locked
+|     _____________________________________________________
+|    /
+|   |       RFNoC blocks on this device:
+|   |
+|   |   * 0/DDC#0
+|   |   * 0/DDC#1
+|   |   * 0/DUC#0
+|   |   * 0/DUC#1
+|   |   * 0/Radio#0
+|   |   * 0/Radio#1
+|   |   * 0/Replay#0
+|     _____________________________________________________
+|    /
+|   |       Static connections on this device:
+|   |
+|   |   * 0/SEP#0:0==>0/DUC#0:0
+|   |   * 0/DUC#0:0==>0/Radio#0:0
+|   |   * 0/Radio#0:0==>0/DDC#0:0
+|   |   * 0/DDC#0:0==>0/SEP#0:0
+|   |   * 0/Radio#0:1==>0/DDC#0:1
+|   |   * 0/DDC#0:1==>0/SEP#1:0
+|   |   * 0/SEP#2:0==>0/DUC#1:0
+|   |   * 0/DUC#1:0==>0/Radio#1:0
+|   |   * 0/Radio#1:0==>0/DDC#1:0
+|   |   * 0/DDC#1:0==>0/SEP#2:0
+|   |   * 0/Radio#1:1==>0/DDC#1:1
+|   |   * 0/DDC#1:1==>0/SEP#3:0
+|   |   * 0/SEP#4:0==>0/Replay#0:0
+|   |   * 0/Replay#0:0==>0/SEP#4:0
+|   |   * 0/SEP#5:0==>0/Replay#0:1
+|   |   * 0/Replay#0:1==>0/SEP#5:0
+|     _____________________________________________________
+|    /
+|   |       TX Dboard: 0/Radio#0
+|   |   ID: UBX-160 v2 (0x007d)
+|   |   Serial: 3158306
+|   |     _____________________________________________________
+|   |    /
+|   |   |       TX Frontend: 0
+|   |   |   Name: UBX TX
+|   |   |   Antennas: TX/RX, CAL
+|   |   |   Sensors: lo_locked
+|   |   |   Freq range: 10.000 to 6000.000 MHz
+|   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+|   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+|   |   |   Connection Type: QI
+|   |   |   Uses LO offset: No
+|     _____________________________________________________
+|    /
+|   |       RX Dboard: 0/Radio#0
+|   |   ID: UBX-160 v2 (0x007e)
+|   |   Serial: 3158306
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RX Frontend: 0
+|   |   |   Name: UBX RX
+|   |   |   Antennas: TX/RX, RX2, CAL
+|   |   |   Sensors: lo_locked
+|   |   |   Freq range: 10.000 to 6000.000 MHz
+|   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+|   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+|   |   |   Connection Type: IQ
+|   |   |   Uses LO offset: No
+|     _____________________________________________________
+|    /
+|   |       TX Dboard: 0/Radio#1
+|   |     _____________________________________________________
+|   |    /
+|   |   |       TX Frontend: 0
+|   |   |   Name: Unknown (0xffff) - 0
+|   |   |   Antennas:
+|   |   |   Sensors:
+|   |   |   Freq range: 0.000 to 0.000 MHz
+|   |   |   Gain Elements: None
+|   |   |   Bandwidth range: 0.0 to 0.0 step 0.0 Hz
+|   |   |   Connection Type: IQ
+|   |   |   Uses LO offset: No
+|     _____________________________________________________
+|    /
+|   |       RX Dboard: 0/Radio#1
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RX Frontend: 0
+|   |   |   Name: Unknown (0xffff) - 0
+|   |   |   Antennas:
+|   |   |   Sensors:
+|   |   |   Freq range: 0.000 to 0.000 MHz
+|   |   |   Gain Elements: None
+|   |   |   Bandwidth range: 0.0 to 0.0 step 0.0 Hz
+|   |   |   Connection Type: IQ
+|   |   |   Uses LO offset: No
+
+--00000000000088160a06064943e5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I have installed gnu=
+radio/uhd in 10 computers in a lab (almost identical setups).</div><div>The=
+se are=C2=A0 Ubuntu 20.04.4 LTS focal=C2=A0</div><div>The connected USRPs (=
+X300) work fine in all 10 computers.</div><div><br></div><div>However, two =
+of them result in a core dump when trying to use calibrating utilities as f=
+ollows:</div><div><br></div>$ uhd_cal_tx_dc_offset<br><br>Creating the usrp=
+ device with: ,ignore_cal_file=3D1,ignore-cal-file=3D1...<br>[INFO] [UHD] l=
+inux; GNU C++ version 9.4.0; Boost_107100; UHD_4.2.0.0-0ubuntu1~focal1<br>[=
+INFO] [X300] X300 initialization sequence...<br>[INFO] [X300] Maximum frame=
+ size: 1472 bytes.<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>Running cali=
+bration for UBX TX<br>Daughterboard serial: 3158306<br>Calibration frequenc=
+y range: 10 MHz -&gt; 6000 MHz<br>Dterminate called without an active excep=
+tion<br>Aborted (core dumped)<br><div><br></div><div><br></div><div><div>I =
+found some similar questions on the Internet but not any definite answers.<=
+/div><div>Are there any ideas on how to proceed with investigating that?</d=
+iv><div><br></div><div>thanks</div><div>Achilleas</div><div><br></div></div=
+><div><br></div><div><br></div><div><br></div><div>FYI:</div><div><br></div=
+><div>$ uhd_find_devices<br>[INFO] [UHD] linux; GNU C++ version 9.4.0; Boos=
+t_107100; UHD_4.2.0.0-0ubuntu1~focal1<br>----------------------------------=
+----------------<br>-- UHD Device 0<br>------------------------------------=
+--------------<br>Device Address:<br>=C2=A0 =C2=A0 serial: 315C6B2<br>=C2=
+=A0 =C2=A0 addr: 192.168.10.2<br>=C2=A0 =C2=A0 addr: 192.168.40.2<br>=C2=A0=
+ =C2=A0 fpga: HG<br>=C2=A0 =C2=A0 name:<br>=C2=A0 =C2=A0 product: X310<br>=
+=C2=A0 =C2=A0 type: x300<br></div><div><br></div><div>Also:</div><div><br><=
+/div><div>$ uhd_usrp_probe</div>[INFO] [UHD] linux; GNU C++ version 9.4.0; =
+Boost_107100; UHD_4.2.0.0-0ubuntu1~focal1<br>[INFO] [X300] X300 initializat=
+ion sequence...<br>[INFO] [X300] Maximum frame size: 1472 bytes.<br>[INFO] =
+[X300] Radio 1x clock: 200 MHz<br>=C2=A0 __________________________________=
+___________________<br>=C2=A0/<br>| =C2=A0 =C2=A0 =C2=A0 Device: X-Series D=
+evice<br>| =C2=A0 =C2=A0 __________________________________________________=
+___<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Mboard: X310<br>=
+| =C2=A0 | =C2=A0 revision: 11<br>| =C2=A0 | =C2=A0 revision_compat: 7<br>|=
+ =C2=A0 | =C2=A0 product: 30818<br>| =C2=A0 | =C2=A0 mac-addr0: 00:80:2f:22=
+:64:6c<br>| =C2=A0 | =C2=A0 mac-addr1: 00:80:2f:22:64:6d<br>| =C2=A0 | =C2=
+=A0 gateway: 192.168.10.1<br>| =C2=A0 | =C2=A0 ip-addr0: 192.168.10.2<br>| =
+=C2=A0 | =C2=A0 subnet0: 255.255.255.0<br>| =C2=A0 | =C2=A0 ip-addr1: 192.1=
+68.20.2<br>| =C2=A0 | =C2=A0 subnet1: 255.255.255.0<br>| =C2=A0 | =C2=A0 ip=
+-addr2: 192.168.30.2<br>| =C2=A0 | =C2=A0 subnet2: 255.255.255.0<br>| =C2=
+=A0 | =C2=A0 ip-addr3: 192.168.40.2<br>| =C2=A0 | =C2=A0 subnet3: 255.255.2=
+55.0<br>| =C2=A0 | =C2=A0 serial: 315C6B2<br>| =C2=A0 | =C2=A0 FW Version: =
+6.0<br>| =C2=A0 | =C2=A0 FPGA Version: 38.0<br>| =C2=A0 | =C2=A0 FPGA git h=
+ash: be53058<br>| =C2=A0 | =C2=A0 RFNoC capable: Yes<br>| =C2=A0 |<br>| =C2=
+=A0 | =C2=A0 Time sources: =C2=A0internal, external, gpsdo<br>| =C2=A0 | =
+=C2=A0 Clock sources: internal, external, gpsdo<br>| =C2=A0 | =C2=A0 Sensor=
+s: ref_locked<br>| =C2=A0 =C2=A0 __________________________________________=
+___________<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RFNoC bl=
+ocks on this device:<br>| =C2=A0 |<br>| =C2=A0 | =C2=A0 * 0/DDC#0<br>| =C2=
+=A0 | =C2=A0 * 0/DDC#1<br>| =C2=A0 | =C2=A0 * 0/DUC#0<br>| =C2=A0 | =C2=A0 =
+* 0/DUC#1<br>| =C2=A0 | =C2=A0 * 0/Radio#0<br>| =C2=A0 | =C2=A0 * 0/Radio#1=
+<br>| =C2=A0 | =C2=A0 * 0/Replay#0<br>| =C2=A0 =C2=A0 _____________________=
+________________________________<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =
+=C2=A0 =C2=A0 Static connections on this device:<br>| =C2=A0 |<br>| =C2=A0 =
+| =C2=A0 * 0/SEP#0:0=3D=3D&gt;0/DUC#0:0<br>| =C2=A0 | =C2=A0 * 0/DUC#0:0=3D=
+=3D&gt;0/Radio#0:0<br>| =C2=A0 | =C2=A0 * 0/Radio#0:0=3D=3D&gt;0/DDC#0:0<br=
+>| =C2=A0 | =C2=A0 * 0/DDC#0:0=3D=3D&gt;0/SEP#0:0<br>| =C2=A0 | =C2=A0 * 0/=
+Radio#0:1=3D=3D&gt;0/DDC#0:1<br>| =C2=A0 | =C2=A0 * 0/DDC#0:1=3D=3D&gt;0/SE=
+P#1:0<br>| =C2=A0 | =C2=A0 * 0/SEP#2:0=3D=3D&gt;0/DUC#1:0<br>| =C2=A0 | =C2=
+=A0 * 0/DUC#1:0=3D=3D&gt;0/Radio#1:0<br>| =C2=A0 | =C2=A0 * 0/Radio#1:0=3D=
+=3D&gt;0/DDC#1:0<br>| =C2=A0 | =C2=A0 * 0/DDC#1:0=3D=3D&gt;0/SEP#2:0<br>| =
+=C2=A0 | =C2=A0 * 0/Radio#1:1=3D=3D&gt;0/DDC#1:1<br>| =C2=A0 | =C2=A0 * 0/D=
+DC#1:1=3D=3D&gt;0/SEP#3:0<br>| =C2=A0 | =C2=A0 * 0/SEP#4:0=3D=3D&gt;0/Repla=
+y#0:0<br>| =C2=A0 | =C2=A0 * 0/Replay#0:0=3D=3D&gt;0/SEP#4:0<br>| =C2=A0 | =
+=C2=A0 * 0/SEP#5:0=3D=3D&gt;0/Replay#0:1<br>| =C2=A0 | =C2=A0 * 0/Replay#0:=
+1=3D=3D&gt;0/SEP#5:0<br>| =C2=A0 =C2=A0 ___________________________________=
+__________________<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 T=
+X Dboard: 0/Radio#0<br>| =C2=A0 | =C2=A0 ID: UBX-160 v2 (0x007d)<br>| =C2=
+=A0 | =C2=A0 Serial: 3158306<br>| =C2=A0 | =C2=A0 =C2=A0 __________________=
+___________________________________<br>| =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=
+=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 0<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 Name: UBX TX<br>| =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX, CAL<br>|=
+ =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 =
+Freq range: 10.000 to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 Gain range=
+ PGA0: 0.0 to 31.5 step 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 Bandwidth rang=
+e: 160000000.0 to 160000000.0 step 0.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 Con=
+nection Type: QI<br>| =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>| =C2=
+=A0 =C2=A0 _____________________________________________________<br>| =C2=
+=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Dboard: 0/Radio#0<br>| =
+=C2=A0 | =C2=A0 ID: UBX-160 v2 (0x007e)<br>| =C2=A0 | =C2=A0 Serial: 315830=
+6<br>| =C2=A0 | =C2=A0 =C2=A0 _____________________________________________=
+________<br>| =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =
+=C2=A0 RX Frontend: 0<br>| =C2=A0 | =C2=A0 | =C2=A0 Name: UBX RX<br>| =C2=
+=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX, RX2, CAL<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 Sensors: lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 Freq range: 10.000 to =
+6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA0: 0.0 to 31.5 ste=
+p 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 160000000.0 to 1600=
+00000.0 step 0.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>| =C2=A0 =C2=A0 ____________=
+_________________________________________<br>| =C2=A0 =C2=A0/<br>| =C2=A0 |=
+ =C2=A0 =C2=A0 =C2=A0 TX Dboard: 0/Radio#1<br>| =C2=A0 | =C2=A0 =C2=A0 ____=
+_________________________________________________<br>| =C2=A0 | =C2=A0 =C2=
+=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 0<br>| =C2=A0=
+ | =C2=A0 | =C2=A0 Name: Unknown (0xffff) - 0<br>| =C2=A0 | =C2=A0 | =C2=A0=
+ Antennas:<br>| =C2=A0 | =C2=A0 | =C2=A0 Sensors:<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 Freq range: 0.000 to 0.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 Gain El=
+ements: None<br>| =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 0.0 to 0.0 step=
+ 0.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 Uses LO offset: No<br>| =C2=A0 =C2=A0 ________________________=
+_____________________________<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=
+=A0 =C2=A0 RX Dboard: 0/Radio#1<br>| =C2=A0 | =C2=A0 =C2=A0 _______________=
+______________________________________<br>| =C2=A0 | =C2=A0 =C2=A0/<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 0<br>| =C2=A0 | =C2=A0 =
+| =C2=A0 Name: Unknown (0xffff) - 0<br>| =C2=A0 | =C2=A0 | =C2=A0 Antennas:=
+<br>| =C2=A0 | =C2=A0 | =C2=A0 Sensors:<br>| =C2=A0 | =C2=A0 | =C2=A0 Freq =
+range: 0.000 to 0.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 Gain Elements: None=
+<br>| =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 0.0 to 0.0 step 0.0 Hz<br>|=
+ =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =C2=A0 | =C2=A0 | =C2=A0=
+ Uses LO offset: No<br><div><br></div><div><br></div><div><br></div><div><b=
+r></div></div>
+
+--00000000000088160a06064943e5--
+
+--===============7342374644286033238==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -381,4 +385,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0839666005393978132==--
+--===============7342374644286033238==--
