@@ -2,217 +2,208 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202427B1033
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Sep 2023 02:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE517B1228
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Sep 2023 07:33:05 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F082A3846CA
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Sep 2023 20:59:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4773638486F
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Sep 2023 01:33:04 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1695862740; bh=V/tIM3+D+VVIKcZa/JFF17PRNLtNb4WTiNnb9ruGXzs=;
-	h=References:In-Reply-To:Date:To:Subject:List-Id:List-Archive:
+	t=1695879184; bh=5qQBj+pV1d10E3a+onNz3NxBo8k7jszzmdja1alvxeo=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From:Reply-To:From;
-	b=ToMtZRXBR2I/i2d7jfG7IvgBENsV3BITH/iIhtMF2nAhZVdzIa1dkhF9Cs2qPIJa1
-	 T3AsPSeeguK8OmyJJdI9byCkY5qDjvB/KfkeW8vWb5frWxTAeH2IQr1Z8EgoocerNL
-	 8qsD2qquuynim3uWf0l5VPuabAVcpjeSOd0PaTeCXprCRVUkFKBsvonAQYgYpCNRQ8
-	 b/U4plb0HL/qZSuWzOh5VdnRHtUzRiy6fhlL0HU+sGE3SB+sLBBPhXwI2Jt8osS1jv
-	 Bwb8q6yf70ksxwoXApt2DRM6RtTsEuBhXwyuO4SRqfzMaAHaiuL+w518EqcRCvKP4j
-	 4JfWTLF0k6LSA==
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id B91AC38468F
-	for <usrp-users@lists.ettus.com>; Wed, 27 Sep 2023 20:58:56 -0400 (EDT)
+	b=DRxwa1cs5nY0ubgMNXkCA6fDJv729wIrVsY/buZ3zAKU85rRbuz/uxFKWg17TJJoi
+	 mcoxEnqJ3p2FhJ9k5HfsMswZrZG4u/Z5zLIgXeIP/5Xq6xpatcPFC+zK7aDLsA9ex/
+	 nEpltTXHZ0muIKQeWHfJKso8M4gVN+rxtRzpHogrU2GYuQCOmEs6vDz7AqFlzb/afr
+	 a6cFF2QWaTWqMhUf0my89mpXWo1ae5RdZVA7Zh/iaAy3Ff18S9mpnVzWdODe/qPvh9
+	 6PWRAU4bwAcEbnqImvoztxw6eQ7pSa96PBngRQZEH+/GyOxKoMNkiQyFVbfwmoHn/g
+	 F3meRTvqIjBFg==
+Received: from mail-4318.protonmail.ch (mail-4318.protonmail.ch [185.70.43.18])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9DD2538468F
+	for <usrp-users@lists.ettus.com>; Thu, 28 Sep 2023 01:32:49 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="kZitXRKr";
+	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="yEBi8ZjW";
 	dkim-atps=neutral
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-530bc7c5bc3so15208798a12.1
-        for <usrp-users@lists.ettus.com>; Wed, 27 Sep 2023 17:58:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1695862735; x=1696467535; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wIVjm/xIQMzoAhgVJFjQHxi7/rQUOrTbowTnZvG2gR8=;
-        b=kZitXRKrvxI5mH04WPidNvysLTgi0qH3E6+WhwjIANthP3L34YaZho/iOVSsq2/SF3
-         yE+xR9CHmzhc0vBWQ+sarQBG3cOnJgirRyICqmW30A+bN+ER44WtLS74M300nMOtiX/w
-         MgOMvqMGvdZT0tkwwoYfIyXXBjh85HxeiGkAWWDA+MXgfPABd6edzIvXSr9+xZPrI0bg
-         xBOdVEYPGWkvU4mggf+9mEcfFzYbFxDVWIR2d3zR6KawlJ7kvGGyF8+7sbFNOqqAHP0E
-         OdiO1m0Rm2EWEq1aSk6ey9ir/qTj3Oiw+w9lU+0wnp5IlVb2r1jaPGDXkh9wdVxxWDup
-         mdeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695862735; x=1696467535;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wIVjm/xIQMzoAhgVJFjQHxi7/rQUOrTbowTnZvG2gR8=;
-        b=Bv+DTRiBx5oB6tSJ4tYVK937ZH6J2OjFLLwhM/JydlW7HcksuoiQmH9rfPGYRyeLoR
-         DY01BxD9r6zWeVolnzsmBSSvtMhbACuWgjYpxHfP99GvDqkFV8dKLm8YeQOtJ8Lzk7XI
-         xNBjgTtpvqpjq2VAnUId5RHaQg2Vo3rE+uyDbyp8g8e8uRgSt0CVs5AgFuT9t6JkLCq3
-         ORtzze0LWqpflNlQIHEM0ACf0cXqCBBaiHjy83oAFuENM5fsZNNih9Ngr1PMA8iG08zG
-         332O8/mb2KjzTqDJ3jiOCXwfdQ9NMJrcZXIxGBDI8X4O7YlznRl2bzcyDsefMlKX4yWf
-         mOhQ==
-X-Gm-Message-State: AOJu0YzpmglxjgJXH5Berlxq3dGIEIH2CH+AGEslsKhGODME9gZFnTcz
-	ddibLLkGo05p3z+liEV47OiI0SsWPpItgyK68JjiVRnBYS8oSwhQ
-X-Google-Smtp-Source: AGHT+IEr1DkRVQPCl3jXOaIZWhjHJmTuGKFi+itJvZVo1XzMgG5JC/QSBq9malUs93l6yv5gbvYLMpaODZdF2hX0JGg=
-X-Received: by 2002:aa7:d498:0:b0:533:87c9:4a81 with SMTP id
- b24-20020aa7d498000000b0053387c94a81mr3320018edr.29.1695862734873; Wed, 27
- Sep 2023 17:58:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1695879167; x=1696138367;
+	bh=AP25z43u629aPGIsXLMbP6icE5tcDlq1yxOg49jtjcM=;
+	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=yEBi8ZjWB+vVWKo/DJ14YBhYq1bfn9SUCKifLLiAvlULkfZBqSEtfk61EsuJipxjK
+	 l/Sj1sAiSBnPE2yYyM4hWV4wbgRACnbfDiFRfXX9BnTVK72k+pFCHUoQxod77WoY59
+	 n0aHYUaCV+jU4AMYFqFKdJSBUQ7K0xSY5G9t2Tkj8oYz92UDJaWe9KeIN+Ja4vyma/
+	 0j5+rYhzvwk+FFzOjO7DXlIzEx2kWanHWaslDzH4ZrysGKVt5+DYSRlgUm/csKbXMR
+	 UbGixPKCnval96wX4bw/kKjfbLwb4JQh9/JwzeHMYJo+iwrAHxeTi9vhGZNHNCv4LA
+	 A5M1SOqjeBV2w==
+Date: Thu, 28 Sep 2023 05:32:36 +0000
+To: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <OYr_-R5MKz5FSjRi7EhC0ap5VQOaIG-hisy9BqUdG02IS1YSi6MSjxg61YK6N7JjyD2o-Siilu3JKy9Mgc3GHo3oDoc0O9U-KQ_6oWpduy8=@protonmail.com>
+In-Reply-To: <CAB__hTTbaXGNPp1X3tqPao+7rKEZDC2DotvK50m8765s3KV6kg@mail.gmail.com>
+References: <zP5lDefL4PI9LPxwTGSK8UXVw3M0v1GMJGaTNXYu0icvrj4DczzMUJDcogRl9IrqJ4x2_oQRfHftMRAaL-PmItJupVbQlvjBYz213OUciJU=@protonmail.com> <c777ab9b-0284-af3a-8de4-12f607649082@gmail.com> <CAB__hTTbaXGNPp1X3tqPao+7rKEZDC2DotvK50m8765s3KV6kg@mail.gmail.com>
+Feedback-ID: 47010692:user:proton
 MIME-Version: 1.0
-References: <zP5lDefL4PI9LPxwTGSK8UXVw3M0v1GMJGaTNXYu0icvrj4DczzMUJDcogRl9IrqJ4x2_oQRfHftMRAaL-PmItJupVbQlvjBYz213OUciJU=@protonmail.com>
- <c777ab9b-0284-af3a-8de4-12f607649082@gmail.com>
-In-Reply-To: <c777ab9b-0284-af3a-8de4-12f607649082@gmail.com>
-Date: Wed, 27 Sep 2023 20:58:43 -0400
-Message-ID: <CAB__hTTbaXGNPp1X3tqPao+7rKEZDC2DotvK50m8765s3KV6kg@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: YC3GXX7FVLCAH6IAB3OVNXIV32SADQFL
-X-Message-ID-Hash: YC3GXX7FVLCAH6IAB3OVNXIV32SADQFL
-X-MailFrom: rkossler@nd.edu
+Message-ID-Hash: M6QZ6Y4FYB5EFFAVTS5QOENNOC7CH3FT
+X-Message-ID-Hash: M6QZ6Y4FYB5EFFAVTS5QOENNOC7CH3FT
+X-MailFrom: olo1618@protonmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: 10Gb Eth to X310 via PCIe Card Expansion Systems
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YC3GXX7FVLCAH6IAB3OVNXIV32SADQFL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M6QZ6Y4FYB5EFFAVTS5QOENNOC7CH3FT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============4893307168098440784=="
+From: Olo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olo <olo1618@protonmail.com>
+Content-Type: multipart/mixed; boundary="===============5582951806592350856=="
 
---===============4893307168098440784==
-Content-Type: multipart/alternative; boundary="000000000000e6955b060660cf7e"
+This is a multi-part message in MIME format.
 
---000000000000e6955b060660cf7e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============5582951806592350856==
+Content-Type: multipart/alternative;
+ boundary="b1_K6BJJrjnGJHER26LqNNYTKNUoPkAThzjBZLWOBI"
 
-On Wed, Sep 27, 2023 at 5:47=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmai=
-l.com>
-wrote:
+This is a multi-part message in MIME format.
 
-> On 27/09/2023 05:15, Olo via USRP-users wrote:
->
-> Hello,
-> I want to connect X310 with my laptop through 10Gb eth connection and I
-> want to ask:
->
->    1. If *Intel* *X710* (Dual 10Gb card) with *Sonnttech Echo Express SE
->    I* (PCIe Card Expansion Systems) (
->    https://www.sonnettech.com/product/echo-express-se1-tb3/overview.html)
->    will work (or if you have any experience with it).
->    2. Which card do you recommend me to use? (In documentation for 10G
->    eth connection (https://files.ettus.com/manual/page_usrp_x3x0.html) it
->    is recommended to use *Intel* *X520-DA2* card but you only sell on
->    your website *X710-DA2 card* ).
->
->
-> Thank you for your answear.
-> Olo
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> There are a large number of Intel X520-DA1 and DA2 cards available on
-> Amazon--with SFP interfaces.  ANY of those should work.
->   I picked one up a couple of years ago and it worked out of the box.
-> Might have been a 10GTek card, but I can't precisely recall.
->
+--b1_K6BJJrjnGJHER26LqNNYTKNUoPkAThzjBZLWOBI
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-I have successfully used several Intel 10Gbe (and even a Mellanox 25Gbe)
-NICs with a Sonnet Echo Express SEL (half height, half length) chassis.
-Even though the Intel cards such as the X520-DA2 and XL710 are not listed
-on the compatibility list, they seem to work fine as far as I can tell. One
-limiting factor is the number of lanes.  Thunderbolt 3 is Gen3x4 (4
-lanes).  Some Intel cards (e.g., X520-DA2) are Gen2x8.  Thus, this will
-connect to your laptop as Gen2x4 with the corresponding data rate limits
-<https://en.wikipedia.org/wiki/PCI_Express#History_and_revisions> (16Gbps).
-If you are using only a single 10Gbe link, this is not an issue.  So, you
-may want to opt for a NIC with Gen3 capability.
-Rob
+VGhhbmsgeW91IFJvYiwgdGhpcyBoZWxwZWQgbWUgYSBsb3QuCgpIYXZlIGEgbmljZSBkYXkuCk9s
+bwoKLS0tLS0tLSBPcmlnaW5hbCBNZXNzYWdlIC0tLS0tLS0KT24gVGh1cnNkYXksIFNlcHRlbWJl
+ciAyOHRoLCAyMDIzIGF0IDI6NTgsIFJvYiBLb3NzbGVyIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cgo+IE9uIFdlZCwgU2VwIDI3LCAyMDIzIGF0IDU6
+NDfigK9QTSBNYXJjdXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPiB3cm90ZToK
+Pgo+PiBPbiAyNy8wOS8yMDIzIDA1OjE1LCBPbG8gdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+Cj4+
+PiBIZWxsbywKPj4+IEkgd2FudCB0byBjb25uZWN0IFgzMTAgd2l0aCBteSBsYXB0b3AgdGhyb3Vn
+aCAxMEdiIGV0aCBjb25uZWN0aW9uIGFuZCBJIHdhbnQgdG8gYXNrOgo+Pj4KPj4+IC0gSWYgSW50
+ZWwgWDcxMCAoRHVhbCAxMEdiIGNhcmQpIHdpdGggU29ubnR0ZWNoIEVjaG8gRXhwcmVzcyBTRSBJ
+IChQQ0llIENhcmQgRXhwYW5zaW9uIFN5c3RlbXMpIChodHRwczovL3d3dy5zb25uZXR0ZWNoLmNv
+bS9wcm9kdWN0L2VjaG8tZXhwcmVzcy1zZTEtdGIzL292ZXJ2aWV3Lmh0bWwpIHdpbGwgd29yayAo
+b3IgaWYgeW91IGhhdmUgYW55IGV4cGVyaWVuY2Ugd2l0aCBpdCkuCj4+PiAtIFdoaWNoIGNhcmQg
+ZG8geW91IHJlY29tbWVuZCBtZSB0byB1c2U/IChJbiBkb2N1bWVudGF0aW9uIGZvciAxMEcgZXRo
+IGNvbm5lY3Rpb24gKGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3VzcnBfeDN4
+MC5odG1sKSBpdCBpcyByZWNvbW1lbmRlZCB0byB1c2UgSW50ZWwgWDUyMC1EQTIgY2FyZCBidXQg
+eW91IG9ubHlzZWxsIG9uIHlvdXIgd2Vic2l0ZSBYNzEwLURBMiBjYXJkICkuCj4+Pgo+Pj4gVGhh
+bmsgeW91IGZvciB5b3VyIGFuc3dlYXIuCj4+PiBPbG8KPj4+Cj4+PiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxp
+c3QgLS0KPj4+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+PiBUbyB1bnN1YnNjcmliZSBz
+ZW5kIGFuIGVtYWlsIHRvCj4+PiB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo+Pgo+
+PiBUaGVyZSBhcmUgYSBsYXJnZSBudW1iZXIgb2YgSW50ZWwgWDUyMC1EQTEgYW5kIERBMiBjYXJk
+cyBhdmFpbGFibGUgb24gQW1hem9uLS13aXRoIFNGUCBpbnRlcmZhY2VzLiBBTlkgb2YgdGhvc2Ug
+c2hvdWxkIHdvcmsuCj4+IEkgcGlja2VkIG9uZSB1cCBhIGNvdXBsZSBvZiB5ZWFycyBhZ28gYW5k
+IGl0IHdvcmtlZCBvdXQgb2YgdGhlIGJveC4gTWlnaHQgaGF2ZSBiZWVuIGEgMTBHVGVrIGNhcmQs
+IGJ1dCBJIGNhbid0IHByZWNpc2VseSByZWNhbGwuCj4KPiBJIGhhdmUgc3VjY2Vzc2Z1bGx5IHVz
+ZWQgc2V2ZXJhbCBJbnRlbCAxMEdiZSAoYW5kIGV2ZW4gYSBNZWxsYW5veCAyNUdiZSkgTklDcyB3
+aXRoIGEgU29ubmV0IEVjaG8gRXhwcmVzcyBTRUwgKGhhbGYgaGVpZ2h0LCBoYWxmIGxlbmd0aCkg
+Y2hhc3Npcy4gRXZlbiB0aG91Z2ggdGhlIEludGVsIGNhcmRzIHN1Y2ggYXMgdGhlIFg1MjAtREEy
+IGFuZCBYTDcxMCBhcmUgbm90IGxpc3RlZCBvbiB0aGUgY29tcGF0aWJpbGl0eSBsaXN0LCB0aGV5
+IHNlZW0gdG8gd29yayBmaW5lIGFzIGZhciBhcyBJIGNhbiB0ZWxsLiBPbmUgbGltaXRpbmcgZmFj
+dG9yIGlzIHRoZSBudW1iZXIgb2YgbGFuZXMuIFRodW5kZXJib2x0IDMgaXMgR2VuM3g0ICg0IGxh
+bmVzKS4gU29tZSBJbnRlbCBjYXJkcyAoZS5nLiwgWDUyMC1EQTIpIGFyZSBHZW4yeDguIFRodXMs
+IHRoaXMgd2lsbCBjb25uZWN0IHRvIHlvdXIgbGFwdG9wIGFzIEdlbjJ4NCB3aXRoIHRoZSBjb3Jy
+ZXNwb25kaW5nIFtkYXRhIHJhdGUgbGltaXRzXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lr
+aS9QQ0lfRXhwcmVzcyNIaXN0b3J5X2FuZF9yZXZpc2lvbnMpICgxNkdicHMpLiBJZiB5b3UgYXJl
+IHVzaW5nIG9ubHkgYSBzaW5nbGUgMTBHYmUgbGluaywgdGhpcyBpcyBub3QgYW4gaXNzdWUuIFNv
+LCB5b3UgbWF5IHdhbnQgdG8gb3B0IGZvciBhIE5JQyB3aXRoIEdlbjMgY2FwYWJpbGl0eS4KPiBS
+b2I=
 
---000000000000e6955b060660cf7e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--b1_K6BJJrjnGJHER26LqNNYTKNUoPkAThzjBZLWOBI
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 27, 2023 at 5:47=E2=80=AF=
-PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonb=
-raun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">
- =20
-   =20
- =20
-  <div>
-    <div>On 27/09/2023 05:15, Olo via USRP-users
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div style=3D"font-family:Arial,sans-serif;font-size:14px">Hello,</di=
-v>
-      <div style=3D"font-family:Arial,sans-serif;font-size:14px">I
-        want to connect X310 with my laptop through 10Gb eth connection
-        and I want to ask:</div>
-      <div style=3D"font-family:Arial,sans-serif;font-size:14px">
-        <ol>
-          <li>If <b>Intel</b> <b>X710</b>=C2=A0(Dual 10Gb card) with <b>Son=
-nttech
-              Echo Express SE I</b>=C2=A0(<span>PCIe Card Expansion Systems=
-</span>)
-            (<span><a rel=3D"noreferrer nofollow noopener" href=3D"https://=
-www.sonnettech.com/product/echo-express-se1-tb3/overview.html" target=3D"_b=
-lank">https://www.sonnettech.com/product/echo-express-se1-tb3/overview.html=
-</a></span>)
-            will work (or if you have any experience with it).</li>
-          <li>Which card do you recommend me to use? (In documentation
-            for 10G eth connection (<span><a rel=3D"noreferrer nofollow noo=
-pener" href=3D"https://files.ettus.com/manual/page_usrp_x3x0.html" target=
-=3D"_blank">https://files.ettus.com/manual/page_usrp_x3x0.html</a></span>)
-            it is recommended to use <b>Intel</b>=C2=A0<b>X520<span style=
-=3D"background-color:rgb(255,255,255);display:inline">-DA2</span></b> card =
-but you=C2=A0<span style=3D"background-color:rgb(255,255,255);display:inlin=
-e">only<span>=C2=A0</span></span>sell on your
-            website=C2=A0<b>X710-DA2 card</b> ).</li>
-        </ol>
-        <div><br>
-        </div>
-        <div><span>Thank you for your answear.=C2=A0</span></div>
-        <div><span>Olo</span></div>
-      </div>
-      <div style=3D"font-family:Arial,sans-serif;font-size:14px">
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    There are a large number of Intel X520-DA1 and DA2 cards available
-    on Amazon--with SFP interfaces.=C2=A0 ANY of those should work.<br>
-    =C2=A0 I picked one up a couple of years ago and it worked out of the
-    box.=C2=A0 Might have been a 10GTek card, but I can&#39;t precisely rec=
-all.<br></div></blockquote><div><br></div><div>I have successfully used sev=
-eral Intel 10Gbe (and even a Mellanox 25Gbe) NICs with a Sonnet Echo Expres=
-s=C2=A0SEL (half height, half length) chassis. Even though the Intel cards =
-such as the X520-DA2 and XL710 are not listed on the compatibility list, th=
-ey seem to work fine as far as I can tell. One limiting factor is the numbe=
-r of lanes.=C2=A0 Thunderbolt 3 is Gen3x4 (4 lanes).=C2=A0 Some Intel cards=
- (e.g., X520-DA2) are Gen2x8.=C2=A0 Thus, this will connect to your laptop =
-as Gen2x4 with the corresponding <a href=3D"https://en.wikipedia.org/wiki/P=
-CI_Express#History_and_revisions">data rate limits</a>=C2=A0(16Gbps).=C2=A0=
- If you are using only a single 10Gbe link, this is not an issue.=C2=A0 So,=
- you may want to opt for a NIC with Gen3 capability.</div><div>Rob</div></d=
-iv></div>
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7Ij5UaGFuayB5b3UgUm9iLCB0aGlzIGhlbHBlZCBtZSBhIGxvdC48L2Rpdj48ZGl2IHN0eWxl
+PSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48
+L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6
+ZTogMTRweDsiPkhhdmUgYSBuaWNlIGRheS48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTog
+QXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPk9sbzwvZGl2PjxkaXYgc3R5bGU9
+ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PGJyPjwv
+ZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrIiBzdHlsZT0iZm9udC1m
+YW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij4NCjwvZGl2Pg0KPGRp
+diBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7
+Ij48YnI+PC9kaXY+PGRpdiBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSI+DQogICAgICAgIC0tLS0t
+LS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLS0tPGJyPg0KICAgICAgICBPbiBUaHVyc2RheSwgU2Vw
+dGVtYmVyIDI4dGgsIDIwMjMgYXQgMjo1OCwgUm9iIEtvc3NsZXIgdmlhIFVTUlAtdXNlcnMgJmx0
+O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0OyB3cm90ZTo8YnI+PGJyPg0KICAgICAgICA8
+YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSIgdHlwZT0iY2l0ZSI+DQogICAgICAg
+ICAgICA8ZGl2IGRpcj0ibHRyIj48ZGl2IGRpcj0ibHRyIj48YnI+PC9kaXY+PGJyPjxkaXYgY2xh
+c3M9ImdtYWlsX3F1b3RlIj48ZGl2IGNsYXNzPSJnbWFpbF9hdHRyIiBkaXI9Imx0ciI+T24gV2Vk
+LCBTZXAgMjcsIDIwMjMgYXQgNTo0N+KAr1BNIE1hcmN1cyBELiBMZWVjaCAmbHQ7PGEgaHJlZj0i
+bWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tIiByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cg
+bm9vcGVuZXIiIHRhcmdldD0iX2JsYW5rIj5wYXRjaHZvbmJyYXVuQGdtYWlsLmNvbTwvYT4mZ3Q7
+IHdyb3RlOjxicj48L2Rpdj48YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAu
+OGV4O2JvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwyMDQpO3BhZGRpbmctbGVmdDox
+ZXgiIGNsYXNzPSJnbWFpbF9xdW90ZSI+DQoNCg0KDQogIDxkaXY+DQogICAgPGRpdj5PbiAyNy8w
+OS8yMDIzIDA1OjE1LCBPbG8gdmlhIFVTUlAtdXNlcnMNCiAgICAgIHdyb3RlOjxicj4NCiAgICA8
+L2Rpdj4NCiAgICA8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCg0KICAgICAgPGRpdiBzdHlsZT0i
+Zm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTRweCI+SGVsbG8sPC9kaXY+
+DQogICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6
+ZToxNHB4Ij5JDQogICAgICAgIHdhbnQgdG8gY29ubmVjdCBYMzEwIHdpdGggbXkgbGFwdG9wIHRo
+cm91Z2ggMTBHYiBldGggY29ubmVjdGlvbg0KICAgICAgICBhbmQgSSB3YW50IHRvIGFzazo8L2Rp
+dj4NCiAgICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1z
+aXplOjE0cHgiPg0KICAgICAgICA8b2w+DQogICAgICAgICAgPGxpPklmIDxiPkludGVsPC9iPiA8
+Yj5YNzEwPC9iPiAoRHVhbCAxMEdiIGNhcmQpIHdpdGggPGI+U29ubnR0ZWNoDQogICAgICAgICAg
+ICAgIEVjaG8gRXhwcmVzcyBTRSBJPC9iPiAoPHNwYW4+UENJZSBDYXJkIEV4cGFuc2lvbiBTeXN0
+ZW1zPC9zcGFuPikNCiAgICAgICAgICAgICg8c3Bhbj48YSB0YXJnZXQ9Il9ibGFuayIgaHJlZj0i
+aHR0cHM6Ly93d3cuc29ubmV0dGVjaC5jb20vcHJvZHVjdC9lY2hvLWV4cHJlc3Mtc2UxLXRiMy9v
+dmVydmlldy5odG1sIiByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiPmh0dHBzOi8v
+d3d3LnNvbm5ldHRlY2guY29tL3Byb2R1Y3QvZWNoby1leHByZXNzLXNlMS10YjMvb3ZlcnZpZXcu
+aHRtbDwvYT48L3NwYW4+KQ0KICAgICAgICAgICAgd2lsbCB3b3JrIChvciBpZiB5b3UgaGF2ZSBh
+bnkgZXhwZXJpZW5jZSB3aXRoIGl0KS48L2xpPg0KICAgICAgICAgIDxsaT5XaGljaCBjYXJkIGRv
+IHlvdSByZWNvbW1lbmQgbWUgdG8gdXNlPyAoSW4gZG9jdW1lbnRhdGlvbg0KICAgICAgICAgICAg
+Zm9yIDEwRyBldGggY29ubmVjdGlvbiAoPHNwYW4+PGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0
+dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3VzcnBfeDN4MC5odG1sIiByZWw9Im5v
+cmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiPmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVh
+bC9wYWdlX3VzcnBfeDN4MC5odG1sPC9hPjwvc3Bhbj4pDQogICAgICAgICAgICBpdCBpcyByZWNv
+bW1lbmRlZCB0byB1c2UgPGI+SW50ZWw8L2I+IDxiPlg1MjA8c3BhbiBzdHlsZT0iYmFja2dyb3Vu
+ZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpO2Rpc3BsYXk6aW5saW5lIj4tREEyPC9zcGFuPjwvYj4g
+Y2FyZCBidXQgeW91IDxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1
+NSk7ZGlzcGxheTppbmxpbmUiPm9ubHk8c3Bhbj4gPC9zcGFuPjwvc3Bhbj5zZWxsIG9uIHlvdXIN
+CiAgICAgICAgICAgIHdlYnNpdGUgPGI+WDcxMC1EQTIgY2FyZDwvYj4gKS48L2xpPg0KICAgICAg
+ICA8L29sPg0KICAgICAgICA8ZGl2Pjxicj4NCiAgICAgICAgPC9kaXY+DQogICAgICAgIDxkaXY+
+PHNwYW4+VGhhbmsgeW91IGZvciB5b3VyIGFuc3dlYXIuIDwvc3Bhbj48L2Rpdj4NCiAgICAgICAg
+PGRpdj48c3Bhbj5PbG88L3NwYW4+PC9kaXY+DQogICAgICA8L2Rpdj4NCiAgICAgIDxkaXYgc3R5
+bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE0cHgiPg0KICAgICAg
+PC9kaXY+DQogICAgICA8YnI+DQogICAgICA8ZmllbGRzZXQ+PC9maWVsZHNldD4NCiAgICAgIDxw
+cmU+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIHRhcmdldD0iX2JsYW5rIiBocmVmPSJtYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5l
+ciI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
+IGVtYWlsIHRvIDxhIHRhcmdldD0iX2JsYW5rIiBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2
+ZUBsaXN0cy5ldHR1cy5jb20iIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciI+dXNy
+cC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+DQo8L3ByZT4NCiAgICA8L2Jsb2NrcXVv
+dGU+DQogICAgVGhlcmUgYXJlIGEgbGFyZ2UgbnVtYmVyIG9mIEludGVsIFg1MjAtREExIGFuZCBE
+QTIgY2FyZHMgYXZhaWxhYmxlDQogICAgb24gQW1hem9uLS13aXRoIFNGUCBpbnRlcmZhY2VzLiAg
+QU5ZIG9mIHRob3NlIHNob3VsZCB3b3JrLjxicj4NCiAgICAgIEkgcGlja2VkIG9uZSB1cCBhIGNv
+dXBsZSBvZiB5ZWFycyBhZ28gYW5kIGl0IHdvcmtlZCBvdXQgb2YgdGhlDQogICAgYm94LiAgTWln
+aHQgaGF2ZSBiZWVuIGEgMTBHVGVrIGNhcmQsIGJ1dCBJIGNhbid0IHByZWNpc2VseSByZWNhbGwu
+PGJyPjwvZGl2PjwvYmxvY2txdW90ZT48ZGl2Pjxicj48L2Rpdj48ZGl2PkkgaGF2ZSBzdWNjZXNz
+ZnVsbHkgdXNlZCBzZXZlcmFsIEludGVsIDEwR2JlIChhbmQgZXZlbiBhIE1lbGxhbm94IDI1R2Jl
+KSBOSUNzIHdpdGggYSBTb25uZXQgRWNobyBFeHByZXNzIFNFTCAoaGFsZiBoZWlnaHQsIGhhbGYg
+bGVuZ3RoKSBjaGFzc2lzLiBFdmVuIHRob3VnaCB0aGUgSW50ZWwgY2FyZHMgc3VjaCBhcyB0aGUg
+WDUyMC1EQTIgYW5kIFhMNzEwIGFyZSBub3QgbGlzdGVkIG9uIHRoZSBjb21wYXRpYmlsaXR5IGxp
+c3QsIHRoZXkgc2VlbSB0byB3b3JrIGZpbmUgYXMgZmFyIGFzIEkgY2FuIHRlbGwuIE9uZSBsaW1p
+dGluZyBmYWN0b3IgaXMgdGhlIG51bWJlciBvZiBsYW5lcy4gIFRodW5kZXJib2x0IDMgaXMgR2Vu
+M3g0ICg0IGxhbmVzKS4gIFNvbWUgSW50ZWwgY2FyZHMgKGUuZy4sIFg1MjAtREEyKSBhcmUgR2Vu
+Mng4LiAgVGh1cywgdGhpcyB3aWxsIGNvbm5lY3QgdG8geW91ciBsYXB0b3AgYXMgR2VuMng0IHdp
+dGggdGhlIGNvcnJlc3BvbmRpbmcgPGEgaHJlZj0iaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dp
+a2kvUENJX0V4cHJlc3MjSGlzdG9yeV9hbmRfcmV2aXNpb25zIiByZWw9Im5vcmVmZXJyZXIgbm9m
+b2xsb3cgbm9vcGVuZXIiIHRhcmdldD0iX2JsYW5rIj5kYXRhIHJhdGUgbGltaXRzPC9hPiAoMTZH
+YnBzKS4gIElmIHlvdSBhcmUgdXNpbmcgb25seSBhIHNpbmdsZSAxMEdiZSBsaW5rLCB0aGlzIGlz
+IG5vdCBhbiBpc3N1ZS4gIFNvLCB5b3UgbWF5IHdhbnQgdG8gb3B0IGZvciBhIE5JQyB3aXRoIEdl
+bjMgY2FwYWJpbGl0eS48L2Rpdj48ZGl2PlJvYjwvZGl2PjwvZGl2PjwvZGl2Pg0KDQogICAgICAg
+IDwvYmxvY2txdW90ZT48YnI+DQogICAgPC9kaXY+
 
---000000000000e6955b060660cf7e--
 
---===============4893307168098440784==
+--b1_K6BJJrjnGJHER26LqNNYTKNUoPkAThzjBZLWOBI--
+
+--===============5582951806592350856==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,4 +213,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4893307168098440784==--
+--===============5582951806592350856==--
