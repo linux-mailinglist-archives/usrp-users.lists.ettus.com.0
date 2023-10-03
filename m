@@ -2,249 +2,80 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B19AC7B5469
-	for <lists+usrp-users@lfdr.de>; Mon,  2 Oct 2023 16:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE5737B715F
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 20:55:36 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D391738555C
-	for <lists+usrp-users@lfdr.de>; Mon,  2 Oct 2023 10:04:55 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AF07E38527F
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 14:55:35 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1696255495; bh=cwaIaZRjG3/kmajxAgYZ9h+58X17DAfguxnySu43IS4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=i23Yr7rGO+ZQoGLa9M4mSZ3eEmMADZbxK+TAmr3XOOqa9PNGatvNN2iuot5MhG2uX
-	 WAiDKbgw/RIplB8QAMgTEQ1yNeI27n2wlOj2xxE2m6hyCxWPIlJN0Pv6TVGDO2jrqB
-	 GWU0Y3jtIleNjUrVXb+ESNjAyDuC+LuYNt7Nj1V3FwMm7BIi9tShs8eVfODk6yhD9X
-	 Ggw9CfdaLTFMjpXBmhFMr1f1negfvo17WzTl8fc2JPcjGkFlm5Ks/epsupn2RSPf8Z
-	 wNBxH+j0gCfoKTTRJnXPO4cJUTQlKfB/4bF3zTMr5I0M4qOuA/LhqX7Y7OUBjDw00j
-	 OX9jVK/3zco5w==
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5FF123808E7
-	for <usrp-users@lists.ettus.com>; Mon,  2 Oct 2023 10:03:59 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SxKzFfg3";
-	dkim-atps=neutral
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4190890d201so54450751cf.2
-        for <usrp-users@lists.ettus.com>; Mon, 02 Oct 2023 07:03:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696255438; x=1696860238; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=b1x4tg9HKsex4NhwUUhRDT7ZvVZ2PGr6LSphKA5JJKU=;
-        b=SxKzFfg3AgbbcPuSHnj9Wro0bqdthuVw15+AjsdAsiGEg31oe5E518pyZqcZFSfaDS
-         3lLE0EyUSA6xBgn0/rnut8uA6F3CVN26UNiuUhUUPgsks0QJbK4AYZaVISkc/LpN1WMF
-         kZjOGuuyR41Hnm8gAxfy6I5gSSAQLV33Uvdd41uhX6tTxe22usDvczjatLgB8GZ/UKVO
-         C+Q8XKBqcfFds7VXlAQ+pCrF39sZVC92eJuPabJAoBLk0gGPOdhwyPA0GX2EmmTG7STH
-         KHQUXoNB993qx3DHUN9o8l9bB045N27W8cohxOvmd97hBMORmvV9xHfwxXi8PQBuU8tX
-         vIHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696255438; x=1696860238;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=b1x4tg9HKsex4NhwUUhRDT7ZvVZ2PGr6LSphKA5JJKU=;
-        b=YNhOcUWE2Crabl9K6m6RNTT+xYmZGasumB4hlMwC+NOVBbNny8iwnENH2a5GL6D9KP
-         kAlSijdmp5Evy8DWO2w+Qp7NeU6XZEqj16ZzoWQLjS/22F/oz0UZd7NRsHZ8LhKTmyhq
-         kvt4WUtBFD4BMeOIlrVsX1jPqMjHxh+RxZud5oOj49LmhwjZJqOoVQtphu63ZEPaxNIQ
-         nE1yGzHQfpMTjrAEopX0rOM5qdsBPUYLXLdExztydx8qofEeP31za2CqnVIxo0YgNdoR
-         N7sU2KoHPKED3xCKxKLXk2EUqTO+q9OmNOd8baE6OOKK9gNvUW94hBIIx93PSox9seTA
-         B8+w==
-X-Gm-Message-State: AOJu0YwwzVf3F7NgSCSuc/55f2LYAQ5ch4eQc33fqI3paU1+62cuGLnl
-	JBc9AyEON7Yg9qT4gfqG900uYoqLyUw=
-X-Google-Smtp-Source: AGHT+IGOhkBRk14vx72k0fwHV2/l0cYDF/8Xn5MbaUDkl+X5DXk31IAlpDb6t766QdD05Xz6aqF02A==
-X-Received: by 2002:a0c:c346:0:b0:656:4e60:8ceb with SMTP id j6-20020a0cc346000000b006564e608cebmr9801341qvi.24.1696255438233;
-        Mon, 02 Oct 2023 07:03:58 -0700 (PDT)
-Received: from [192.168.2.133] ([174.93.1.40])
-        by smtp.googlemail.com with ESMTPSA id jm11-20020ad45ecb000000b00658266be23fsm7993693qvb.41.2023.10.02.07.03.57
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Oct 2023 07:03:57 -0700 (PDT)
-Message-ID: <eb80a5b9-cab8-5f06-a732-d0a64f7ae1bf@gmail.com>
-Date: Mon, 2 Oct 2023 10:03:49 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
+	t=1696359335; bh=7UkzHoC6hBDoXve3OfTOY53aCJ1M1h9SiSN9rAxdJnU=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=Evyc5GrYzuBdK2UaAP7tn/tBxgKadLmEygzoXrdKF2Qi880lVvQCWTAoH9Ste07E0
+	 HA9q8yXzI+IhFa5dYaH8D0Hyw3vZ4O7JbVF3PKhpGNZzsuVtQ666XVpPKBEZoh/RP9
+	 X+ThK5JGWCgih5ktizEKgjMAHpV+eaJoamR0r1vX+ISgInC0uDvGQLq6ccmON5Qezi
+	 NfgnGiLlOoeT2YDuYWALWq01/aRf7Y00yHIVLPVnPFthWo7KlzUuoDSit5b6j76Hyk
+	 v7HqTLpU2zLx9Fsft/qPvS18B+S47XNjgVNTa55skJIzfuFH2oMC+ZP3uR51wLgIyj
+	 4kAmzTqBMRv4Q==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 319CE385041
+	for <usrp-users@lists.ettus.com>; Tue,  3 Oct 2023 14:54:39 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1696359279; bh=bu888bfA+/xvH5eHwH3XLD88oF8r8elIIDf0bdLeX6c=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=aJTXYc6zqh90p936ZyeZaT6WwGs9gCVFLEEWmp2z9GMH+IoSzq8iE6hSQdmWBfKM/
+	 Q30bdGQySop+FM2hVF0rcaf9A1eGQxXIaBxJaa5vZvjqd3QuyoaUDSRnfIk3Dq52kv
+	 YZC6kzat6iNDPnnc/zi1rZl2JVGVCdfMmLLzFYvHd7Mv5jLSLu/k+zUIee1i2ZUmJ+
+	 3zj3+hQmO9k0ewa3yseZk0652++GkY0N14w0PrG4ie2jiWBduURmRquMk/hAKHE+E4
+	 XnPb2PjWKstqz0LPl5Pm+phb71mYSnP/CEmUCgNrQdlyJLmjcbjSefYtpiH2bNpeQf
+	 gnYkn6RrgjL0w==
+Date: Tue, 3 Oct 2023 18:54:39 +0000
 To: usrp-users@lists.ettus.com
-References: <ItJHGFl0F9Yik2zVTTAqo8IlUSvaxZ844OAlhdYaA@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <ItJHGFl0F9Yik2zVTTAqo8IlUSvaxZ844OAlhdYaA@lists.ettus.com>
-Message-ID-Hash: FP5UYHGY5WMV3WG5NZQCERNXU53HBGA6
-X-Message-ID-Hash: FP5UYHGY5WMV3WG5NZQCERNXU53HBGA6
-X-MailFrom: patchvonbraun@gmail.com
+From: blakebaldwin@uvic.ca
+Message-ID: <iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: Y0CWTyNWUl1wkvP41EdGFCEjCP3CwUkrnlclzbf3g@lists.ettus.com
+MIME-Version: 1.0
+Message-ID-Hash: 7MXSD2UGE2PBQGZX763BXJXR65VWRLCR
+X-Message-ID-Hash: 7MXSD2UGE2PBQGZX763BXJXR65VWRLCR
+X-MailFrom: blakebaldwin@uvic.ca
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Ettus, USRP N310, MPM major compat number mismatch error
+Subject: [USRP-users] Re: B210 Channel B control for GPIO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FP5UYHGY5WMV3WG5NZQCERNXU53HBGA6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7MXSD2UGE2PBQGZX763BXJXR65VWRLCR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7092984074429809998=="
+Content-Type: multipart/mixed; boundary="===============2632615297659898131=="
 
 This is a multi-part message in MIME format.
---===============7092984074429809998==
+
+--===============2632615297659898131==
 Content-Type: multipart/alternative;
- boundary="------------9fqD7zB3CzioS00RLJAXIkT2"
-Content-Language: en-US
+ boundary="b1_iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ"
+Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
---------------9fqD7zB3CzioS00RLJAXIkT2
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 02/10/2023 07:46, usama.khurram@hotmail.com wrote:
->
-> Thanks, I applied, also downloaded something using this 
-> URL(https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card) 
-> for my N3XX, now Folder is updated but still getting the same error. 
-> Please help me once again.
->
-> usama@modena:~$ uhd_usrp_probe
->
-> [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; 
-> UHD_4.0.0.0-240-gb38c9d83
->
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: 
-> mgmt_addr=192.168.30.212,type=n3xx,product=n310,serial=319841E,claimed=False,addr=192.168.30.212
->
-> [WARNING] [MPM.RPCServer] A timeout event occured!
->
-> [WARNING] [MPM.PeriphManager] Cannot run deinit(), device was never 
-> fully initialized!
->
-> Error: rpc::timeout: Timeout of 2000ms while calling RPC function 
-> 'set_device_id'
->
-> usama@modena:~$ uhd_usrp_probe
->
-> [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; 
-> UHD_4.0.0.0-240-gb38c9d83
->
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: 
-> mgmt_addr=192.168.30.212,type=n3xx,product=n310,serial=319841E,claimed=True,addr=192.168.30.212
->
-> [WARNING] [MPM.RPCServer] A timeout event occured!
->
-> [WARNING] [MPM.PeriphManager] Cannot run deinit(), device was never 
-> fully initialized!
->
-> Error: rpc::timeout: Timeout of 2000ms while calling RPC function 
-> 'set_device_id'
->
-> usama@modena:~$ sudo uhd_images_downloader --type n310 --type sdimg
->
-> [sudo] password for usama:
->
-> [INFO] Using base URL: https://files.ettus.com/binaries/cache/
->
-> [INFO] Images destination: /usr/local/share/uhd/images
->
-> [INFO] No targets matching '['n310', 'sdimg']'
->
-> usama@modena:~$ sudo uhd_images_downloader -t sdimg -t n3xx
->
-> [INFO] Using base URL: https://files.ettus.com/binaries/cache/
->
-> [INFO] Images destination: /usr/local/share/uhd/images
->
-> [INFO] Target n3xx_common_sdimg_default is up to date.
->
-> usama@modena:~$ sudo uhd_images_downloader -t sdimg -t n3xx
->
-> [INFO] Using base URL: https://files.ettus.com/binaries/cache/
->
-> [INFO] Images destination: /usr/local/share/uhd/images
->
-> *[INFO] Target n3xx_common_sdimg_default is up to date.*
->
-> usama@modena:~$
->
->
-> long wave ultraviolet wavelength_______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-Once you have the image, you have to program it onto the uSD card on the 
-N310.
+--b1_iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ
+Content-Type: text/plain; charset=us-ascii
+
+Hello, I am revisiting this issue again in hopes of someone with more familiarity seeing it this time. To reiterate my problem, I am trying to get the GPIO pins controlled by the ATR tied to transmitting and receiving on either channel A or channel B on the USRP B210. Currently I only have it working on channel A. I have tried all of the functions related to the banks and sources and can not find an option which allows me to do this. When trying to run these to change the sources, or even running the get_gpio_srcs, it results in an error message. I feel like I am missing something with either the sources or banks but I can not figure out what. Any help is appreciated, thanks.
+
+--b1_iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ
+Content-Type: text/html; charset=us-ascii
+
+<p>Hello, I am revisiting this issue again in hopes of someone with more familiarity seeing it this time. To reiterate my problem, I am trying to get the GPIO pins controlled by the ATR tied to transmitting and receiving on either channel A or channel B on the USRP B210. Currently I only have it working on channel A. I have tried all of the functions related to the banks and sources and can not find an option which allows me to do this. When trying to run these to change the sources, or even running the get_gpio_srcs, it results in an error message. I feel like I am missing something with either the sources or banks but I can not figure out what. Any help is appreciated, thanks.</p>
 
 
---------------9fqD7zB3CzioS00RLJAXIkT2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+--b1_iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ--
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 02/10/2023 07:46,
-      <a class="moz-txt-link-abbreviated" href="mailto:usama.khurram@hotmail.com">usama.khurram@hotmail.com</a> wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:ItJHGFl0F9Yik2zVTTAqo8IlUSvaxZ844OAlhdYaA@lists.ettus.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <p>Thanks, I applied, also downloaded something using this
-URL(<a class="moz-txt-link-freetext" href="https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card">https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card</a>)
-        for my N3XX, now Folder is updated but still getting the same
-        error. Please help me once again.<br>
-        <br>
-        usama@modena:~$ uhd_usrp_probe</p>
-      <p>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
-        UHD_4.0.0.0-240-gb38c9d83</p>
-      <p>[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-mgmt_addr=192.168.30.212,type=n3xx,product=n310,serial=319841E,claimed=False,addr=192.168.30.212</p>
-      <p>[WARNING] [MPM.RPCServer] A timeout event occured!</p>
-      <p>[WARNING] [MPM.PeriphManager] Cannot run deinit(), device was
-        never fully initialized!</p>
-      <p>Error: rpc::timeout: Timeout of 2000ms while calling RPC
-        function 'set_device_id'</p>
-      <p>usama@modena:~$ uhd_usrp_probe</p>
-      <p>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
-        UHD_4.0.0.0-240-gb38c9d83</p>
-      <p>[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-mgmt_addr=192.168.30.212,type=n3xx,product=n310,serial=319841E,claimed=True,addr=192.168.30.212</p>
-      <p>[WARNING] [MPM.RPCServer] A timeout event occured!</p>
-      <p>[WARNING] [MPM.PeriphManager] Cannot run deinit(), device was
-        never fully initialized!</p>
-      <p>Error: rpc::timeout: Timeout of 2000ms while calling RPC
-        function 'set_device_id'</p>
-      <p>usama@modena:~$ sudo uhd_images_downloader --type n310 --type
-        sdimg</p>
-      <p>[sudo] password for usama: </p>
-      <p>[INFO] Using base URL: <a class="moz-txt-link-freetext" href="https://files.ettus.com/binaries/cache/">https://files.ettus.com/binaries/cache/</a></p>
-      <p>[INFO] Images destination: /usr/local/share/uhd/images</p>
-      <p>[INFO] No targets matching '['n310', 'sdimg']'</p>
-      <p>usama@modena:~$ sudo uhd_images_downloader -t sdimg -t n3xx</p>
-      <p>[INFO] Using base URL: <a class="moz-txt-link-freetext" href="https://files.ettus.com/binaries/cache/">https://files.ettus.com/binaries/cache/</a></p>
-      <p>[INFO] Images destination: /usr/local/share/uhd/images</p>
-      <p>[INFO] Target n3xx_common_sdimg_default is up to date.</p>
-      <p>usama@modena:~$ sudo uhd_images_downloader -t sdimg -t n3xx</p>
-      <p>[INFO] Using base URL: <a class="moz-txt-link-freetext" href="https://files.ettus.com/binaries/cache/">https://files.ettus.com/binaries/cache/</a></p>
-      <p>[INFO] Images destination: /usr/local/share/uhd/images</p>
-      <p><strong>[INFO] Target n3xx_common_sdimg_default is up to date.</strong></p>
-      <p>usama@modena:~$</p>
-      <br>
-      <fieldset class="moz-mime-attachment-header"></fieldset>
-      <pre class="moz-quote-pre" wrap="">long wave ultraviolet wavelength_______________________________________________
-USRP-users mailing list -- <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class="moz-txt-link-abbreviated" href="mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    Once you have the image, you have to program it onto the uSD card on
-    the N310.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------9fqD7zB3CzioS00RLJAXIkT2--
-
---===============7092984074429809998==
+--===============2632615297659898131==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -254,4 +85,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7092984074429809998==--
+--===============2632615297659898131==--
