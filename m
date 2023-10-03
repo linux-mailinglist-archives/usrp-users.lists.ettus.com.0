@@ -2,87 +2,112 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE5737B715F
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 20:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B5F17B727D
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 22:31:15 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AF07E38527F
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 14:55:35 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 91240384C2F
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 16:31:14 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1696359335; bh=7UkzHoC6hBDoXve3OfTOY53aCJ1M1h9SiSN9rAxdJnU=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=Evyc5GrYzuBdK2UaAP7tn/tBxgKadLmEygzoXrdKF2Qi880lVvQCWTAoH9Ste07E0
-	 HA9q8yXzI+IhFa5dYaH8D0Hyw3vZ4O7JbVF3PKhpGNZzsuVtQ666XVpPKBEZoh/RP9
-	 X+ThK5JGWCgih5ktizEKgjMAHpV+eaJoamR0r1vX+ISgInC0uDvGQLq6ccmON5Qezi
-	 NfgnGiLlOoeT2YDuYWALWq01/aRf7Y00yHIVLPVnPFthWo7KlzUuoDSit5b6j76Hyk
-	 v7HqTLpU2zLx9Fsft/qPvS18B+S47XNjgVNTa55skJIzfuFH2oMC+ZP3uR51wLgIyj
-	 4kAmzTqBMRv4Q==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 319CE385041
-	for <usrp-users@lists.ettus.com>; Tue,  3 Oct 2023 14:54:39 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1696359279; bh=bu888bfA+/xvH5eHwH3XLD88oF8r8elIIDf0bdLeX6c=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=aJTXYc6zqh90p936ZyeZaT6WwGs9gCVFLEEWmp2z9GMH+IoSzq8iE6hSQdmWBfKM/
-	 Q30bdGQySop+FM2hVF0rcaf9A1eGQxXIaBxJaa5vZvjqd3QuyoaUDSRnfIk3Dq52kv
-	 YZC6kzat6iNDPnnc/zi1rZl2JVGVCdfMmLLzFYvHd7Mv5jLSLu/k+zUIee1i2ZUmJ+
-	 3zj3+hQmO9k0ewa3yseZk0652++GkY0N14w0PrG4ie2jiWBduURmRquMk/hAKHE+E4
-	 XnPb2PjWKstqz0LPl5Pm+phb71mYSnP/CEmUCgNrQdlyJLmjcbjSefYtpiH2bNpeQf
-	 gnYkn6RrgjL0w==
-Date: Tue, 3 Oct 2023 18:54:39 +0000
-To: usrp-users@lists.ettus.com
-From: blakebaldwin@uvic.ca
-Message-ID: <iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: Y0CWTyNWUl1wkvP41EdGFCEjCP3CwUkrnlclzbf3g@lists.ettus.com
+	t=1696365074; bh=zjLkSeN5Eem0H4LQk505f0He/T+fCc5Ux47h+IXnFnQ=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=JqRNhbxcBcUygKP+7L/ocIGUGINlgjGDiFyDSVpGl5w8JUBUAZcO+mmx7oe2agdWo
+	 FZF9twc6ssOUuArcLZt01NenFVIIL85pJDJ2gDiwclxKzZfTjswPdu8db8GoxfX+Fq
+	 UgEX8JCUVbpLuEaZoc6uGkmGyOnIzCvUt5pn4l3o7W+LB+iCnohNdOnHZJ5RPclztX
+	 7J+BDhVToVA2IxN6aylJk1Ltvbai84fIu5vEWRDPGuqPlSo8rtyF8mNOOYr00e9BAk
+	 iA1jTy0J7ja1gKw3r/tT9n5wOV5kvkMEslsoNlo1SlwCu7JFYlGZ7f8Y5S4AJdDeh+
+	 JEOe/FpsfgUBg==
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id D611B3840C0
+	for <usrp-users@lists.ettus.com>; Tue,  3 Oct 2023 16:30:17 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Egbk14cA";
+	dkim-atps=neutral
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-66437c96caeso8991176d6.3
+        for <usrp-users@lists.ettus.com>; Tue, 03 Oct 2023 13:30:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696365017; x=1696969817; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WC1Dw+cLkpoW6PLhq2eg/9cg0cGIle03x7oMKQsZwxI=;
+        b=Egbk14cAOCTnuMYOddkay4kV/5R5oVJYWvp7AXhwuFV+C0DXQVmeaLMO69fpP/Tr5/
+         Q9A9Y+GNn6P1R0QTUWUTx8dWo28UN7uMLxUCv82qijYs1HN/u4S+ZHadcnnLmtGIvtbO
+         uIO+HFEA3ZiEAIf4MGFPbTfspA7js3XYQa9xPrp6g7l33leqElqcYjNEXLQaKks0ieci
+         7b9reAVBdERRle2b4xP3QloejZo32UPlLrcKnXv2wpZFWLb2HnxhdvAsHdAfbINLlGaf
+         wTdVTQ3mhD6fINMvsg7pIEKlgTka39SAgab+xRshJLXP9AEx5kxNC0KEICdzPzSaPx7J
+         xvGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696365017; x=1696969817;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WC1Dw+cLkpoW6PLhq2eg/9cg0cGIle03x7oMKQsZwxI=;
+        b=X8lMXFrw3iiayaxL7hpxyfGU9HVPz+CvKCanHJOi6c/UM1BQXyBlkjed6Wc7VJc9wg
+         KadfQEqx1OTM5cYqmvKh+cRXCRREdEiHUD7HnjPpi9uQbZbYStjPEIdKOSXZSNURFo83
+         HxeT+BcfbWfdfFp9rv3TYWAeht7o5POs4R1HpT40lnnf7I8bgitYkBE3I6Vi3oapHSB3
+         Z7NTQjsNDQgpxfEUl/sglhwBKXb5MBSHe0arJIB5kK8riV3XtgnwACzRm+oKXe4IfsDh
+         Dh2EtkpI/MdLlywCGUiFTIv1ByG3FDTsIBWG71kn3sM0u4tg7jU4VUs81c9ltlKxzA5S
+         YCIg==
+X-Gm-Message-State: AOJu0Yz5ADeKIwrgtQZ94MEuahQ0bMsygdxrqkOHqxPfdu8eV0uj20mJ
+	7rU1rhdSljWTZ1Sku28v/DtIeKxwtss=
+X-Google-Smtp-Source: AGHT+IFcFfNgmi58J0v0oIdIVdCBXD86fIZn0yaIesauow89MtuzoUQAfu6rcWbn8IpCXtOTQqmC/A==
+X-Received: by 2002:a0c:8e45:0:b0:658:6f71:1920 with SMTP id w5-20020a0c8e45000000b006586f711920mr363251qvb.38.1696365017029;
+        Tue, 03 Oct 2023 13:30:17 -0700 (PDT)
+Received: from [192.168.2.134] (bras-base-smflon1825w-grc-08-174-93-1-40.dsl.bell.ca. [174.93.1.40])
+        by smtp.googlemail.com with ESMTPSA id f25-20020a0caa99000000b0065aff6b49afsm768444qvb.110.2023.10.03.13.30.16
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Oct 2023 13:30:16 -0700 (PDT)
+Message-ID: <54f648b9-2878-18f1-df86-c43102a09560@gmail.com>
+Date: Tue, 3 Oct 2023 16:30:16 -0400
 MIME-Version: 1.0
-Message-ID-Hash: 7MXSD2UGE2PBQGZX763BXJXR65VWRLCR
-X-Message-ID-Hash: 7MXSD2UGE2PBQGZX763BXJXR65VWRLCR
-X-MailFrom: blakebaldwin@uvic.ca
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ@lists.ettus.com>
+Message-ID-Hash: CWLRWTGWCEHNYYJ2ZL2P5VEQU26FSLKD
+X-Message-ID-Hash: CWLRWTGWCEHNYYJ2ZL2P5VEQU26FSLKD
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: B210 Channel B control for GPIO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7MXSD2UGE2PBQGZX763BXJXR65VWRLCR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CWLRWTGWCEHNYYJ2ZL2P5VEQU26FSLKD/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2632615297659898131=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============2632615297659898131==
-Content-Type: multipart/alternative;
- boundary="b1_iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ
-Content-Type: text/plain; charset=us-ascii
-
-Hello, I am revisiting this issue again in hopes of someone with more familiarity seeing it this time. To reiterate my problem, I am trying to get the GPIO pins controlled by the ATR tied to transmitting and receiving on either channel A or channel B on the USRP B210. Currently I only have it working on channel A. I have tried all of the functions related to the banks and sources and can not find an option which allows me to do this. When trying to run these to change the sources, or even running the get_gpio_srcs, it results in an error message. I feel like I am missing something with either the sources or banks but I can not figure out what. Any help is appreciated, thanks.
-
---b1_iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ
-Content-Type: text/html; charset=us-ascii
-
-<p>Hello, I am revisiting this issue again in hopes of someone with more familiarity seeing it this time. To reiterate my problem, I am trying to get the GPIO pins controlled by the ATR tied to transmitting and receiving on either channel A or channel B on the USRP B210. Currently I only have it working on channel A. I have tried all of the functions related to the banks and sources and can not find an option which allows me to do this. When trying to run these to change the sources, or even running the get_gpio_srcs, it results in an error message. I feel like I am missing something with either the sources or banks but I can not figure out what. Any help is appreciated, thanks.</p>
-
-
---b1_iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ--
-
---===============2632615297659898131==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2632615297659898131==--
+T24gMDMvMTAvMjAyMyAxNDo1NCwgYmxha2ViYWxkd2luQHV2aWMuY2Egd3JvdGU6DQo+DQo+IEhl
+bGxvLCBJIGFtIHJldmlzaXRpbmcgdGhpcyBpc3N1ZSBhZ2FpbiBpbiBob3BlcyBvZiBzb21lb25l
+IHdpdGggbW9yZSANCj4gZmFtaWxpYXJpdHkgc2VlaW5nIGl0IHRoaXMgdGltZS4gVG8gcmVpdGVy
+YXRlIG15IHByb2JsZW0sIEkgYW0gdHJ5aW5nIA0KPiB0byBnZXQgdGhlIEdQSU8gcGlucyBjb250
+cm9sbGVkIGJ5IHRoZSBBVFIgdGllZCB0byB0cmFuc21pdHRpbmcgYW5kIA0KPiByZWNlaXZpbmcg
+b24gZWl0aGVyIGNoYW5uZWwgQSBvciBjaGFubmVsIEIgb24gdGhlIFVTUlAgQjIxMC4gQ3VycmVu
+dGx5IA0KPiBJIG9ubHkgaGF2ZSBpdCB3b3JraW5nIG9uIGNoYW5uZWwgQS4gSSBoYXZlIHRyaWVk
+IGFsbCBvZiB0aGUgZnVuY3Rpb25zIA0KPiByZWxhdGVkIHRvIHRoZSBiYW5rcyBhbmQgc291cmNl
+cyBhbmQgY2FuIG5vdCBmaW5kIGFuIG9wdGlvbiB3aGljaCANCj4gYWxsb3dzIG1lIHRvIGRvIHRo
+aXMuIFdoZW4gdHJ5aW5nIHRvIHJ1biB0aGVzZSB0byBjaGFuZ2UgdGhlIHNvdXJjZXMsIA0KPiBv
+ciBldmVuIHJ1bm5pbmcgdGhlIGdldF9ncGlvX3NyY3MsIGl0IHJlc3VsdHMgaW4gYW4gZXJyb3Ig
+bWVzc2FnZS4gSSANCj4gZmVlbCBsaWtlIEkgYW0gbWlzc2luZyBzb21ldGhpbmcgd2l0aCBlaXRo
+ZXIgdGhlIHNvdXJjZXMgb3IgYmFua3MgYnV0IA0KPiBJIGNhbiBub3QgZmlndXJlIG91dCB3aGF0
+LiBBbnkgaGVscCBpcyBhcHByZWNpYXRlZCwgdGhhbmtzLg0KPg0KPg0KPiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5k
+IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpZb3UgbWlnaHQg
+bG9vayBhdCB0aGUgImdwaW8uY3BwIiBleGFtcGxlIGluIHRoZSBzb3VyY2UgY29kZS4gU29tZXRo
+aW5nIA0KdGhhdCBpdCBub3RlcyBvbiBteSBCMjEwIGhlcmUgaXMgdGhhdCAiZ2V0X2dwaW9fc3Jj
+KCkiIGlzDQogwqAgbm90IGltcGxlbWVudGVkIGZvciB0aGVzZSByYWRpb3MuDQoNCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQg
+YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
