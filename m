@@ -2,112 +2,170 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5F17B727D
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 22:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1C067B747D
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Oct 2023 01:06:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 91240384C2F
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 16:31:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9E8223857F8
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Oct 2023 19:05:59 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1696365074; bh=zjLkSeN5Eem0H4LQk505f0He/T+fCc5Ux47h+IXnFnQ=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=JqRNhbxcBcUygKP+7L/ocIGUGINlgjGDiFyDSVpGl5w8JUBUAZcO+mmx7oe2agdWo
-	 FZF9twc6ssOUuArcLZt01NenFVIIL85pJDJ2gDiwclxKzZfTjswPdu8db8GoxfX+Fq
-	 UgEX8JCUVbpLuEaZoc6uGkmGyOnIzCvUt5pn4l3o7W+LB+iCnohNdOnHZJ5RPclztX
-	 7J+BDhVToVA2IxN6aylJk1Ltvbai84fIu5vEWRDPGuqPlSo8rtyF8mNOOYr00e9BAk
-	 iA1jTy0J7ja1gKw3r/tT9n5wOV5kvkMEslsoNlo1SlwCu7JFYlGZ7f8Y5S4AJdDeh+
-	 JEOe/FpsfgUBg==
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
-	by mm2.emwd.com (Postfix) with ESMTPS id D611B3840C0
-	for <usrp-users@lists.ettus.com>; Tue,  3 Oct 2023 16:30:17 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Egbk14cA";
-	dkim-atps=neutral
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-66437c96caeso8991176d6.3
-        for <usrp-users@lists.ettus.com>; Tue, 03 Oct 2023 13:30:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696365017; x=1696969817; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WC1Dw+cLkpoW6PLhq2eg/9cg0cGIle03x7oMKQsZwxI=;
-        b=Egbk14cAOCTnuMYOddkay4kV/5R5oVJYWvp7AXhwuFV+C0DXQVmeaLMO69fpP/Tr5/
-         Q9A9Y+GNn6P1R0QTUWUTx8dWo28UN7uMLxUCv82qijYs1HN/u4S+ZHadcnnLmtGIvtbO
-         uIO+HFEA3ZiEAIf4MGFPbTfspA7js3XYQa9xPrp6g7l33leqElqcYjNEXLQaKks0ieci
-         7b9reAVBdERRle2b4xP3QloejZo32UPlLrcKnXv2wpZFWLb2HnxhdvAsHdAfbINLlGaf
-         wTdVTQ3mhD6fINMvsg7pIEKlgTka39SAgab+xRshJLXP9AEx5kxNC0KEICdzPzSaPx7J
-         xvGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696365017; x=1696969817;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WC1Dw+cLkpoW6PLhq2eg/9cg0cGIle03x7oMKQsZwxI=;
-        b=X8lMXFrw3iiayaxL7hpxyfGU9HVPz+CvKCanHJOi6c/UM1BQXyBlkjed6Wc7VJc9wg
-         KadfQEqx1OTM5cYqmvKh+cRXCRREdEiHUD7HnjPpi9uQbZbYStjPEIdKOSXZSNURFo83
-         HxeT+BcfbWfdfFp9rv3TYWAeht7o5POs4R1HpT40lnnf7I8bgitYkBE3I6Vi3oapHSB3
-         Z7NTQjsNDQgpxfEUl/sglhwBKXb5MBSHe0arJIB5kK8riV3XtgnwACzRm+oKXe4IfsDh
-         Dh2EtkpI/MdLlywCGUiFTIv1ByG3FDTsIBWG71kn3sM0u4tg7jU4VUs81c9ltlKxzA5S
-         YCIg==
-X-Gm-Message-State: AOJu0Yz5ADeKIwrgtQZ94MEuahQ0bMsygdxrqkOHqxPfdu8eV0uj20mJ
-	7rU1rhdSljWTZ1Sku28v/DtIeKxwtss=
-X-Google-Smtp-Source: AGHT+IFcFfNgmi58J0v0oIdIVdCBXD86fIZn0yaIesauow89MtuzoUQAfu6rcWbn8IpCXtOTQqmC/A==
-X-Received: by 2002:a0c:8e45:0:b0:658:6f71:1920 with SMTP id w5-20020a0c8e45000000b006586f711920mr363251qvb.38.1696365017029;
-        Tue, 03 Oct 2023 13:30:17 -0700 (PDT)
-Received: from [192.168.2.134] (bras-base-smflon1825w-grc-08-174-93-1-40.dsl.bell.ca. [174.93.1.40])
-        by smtp.googlemail.com with ESMTPSA id f25-20020a0caa99000000b0065aff6b49afsm768444qvb.110.2023.10.03.13.30.16
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Oct 2023 13:30:16 -0700 (PDT)
-Message-ID: <54f648b9-2878-18f1-df86-c43102a09560@gmail.com>
-Date: Tue, 3 Oct 2023 16:30:16 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
+	t=1696374359; bh=0E3w2bD3YkeiGDUOgw5KWeZBXpoVdpx+tm8+D8q7q0s=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=VqfkiVaFJqxKz3u5j33yPRAZ0ZFl7zMc1GuvvssCq+U2mCIkCYY2aSgSYpgDKKgba
+	 7IuTvjB5Q+eSATUsGoDSHaiGnub2NsNbpGFILIvhKxyz7Ix0FWddA0xbPdXz0WILdM
+	 9GxK3B+FUAZ4uN+nWui2Pmhno1cByA4grabSOVlg8A8Cpt2bf/pML6hEtnGG+4rPL8
+	 b6saak0Jg1PKGykj4he6iNRjRKaoBy6QOiVc4tl6WQuU7wGLCeqHaIYVf9IpYJxRkW
+	 Y0ldmYg3pi7mwZR1APbSabgFiKom374VQyn913LXonCu0cmE2he8BYntZHCHf8pX+P
+	 QrM02u+bO7pEA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id D1691384A9B
+	for <usrp-users@lists.ettus.com>; Tue,  3 Oct 2023 19:05:03 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1696374303; bh=PVgKqjyOxKU712x+O17pmrMBQbHS9QImLRdWMj8qZG4=;
+	h=Date:To:From:Subject:From;
+	b=mATlO818xo2cIeYF05/WZjKq25rxrd3dpKmm6rg/RWddnVmDUZ68cUE/tDkxn/ycQ
+	 zOIsAn2zetDYFle3+oi/WxzZFYzkJWI83PO484huAB6qhbHso0rr0NfkOJ4ShVgCIr
+	 oz4nE7iOQA1qAHzsEIMrZubYAqDMFkyv8GPpSCWBYkfpRh8oa5FaECoOMRry3hV1AV
+	 8zQuZ7jt89F5UQKXhkouBmAgW8pyiiA+mu2gWFY2ahYgTx7K6PFv8e/DEOUEjVLqzR
+	 YulgnfsmWdhWgqRW8BnYpu+FdheUKUDndpcVsmDPph97LQs+8ww8ljmH8CvU0yCS9m
+	 /Nc7vEPl4pyAQ==
+Date: Tue, 3 Oct 2023 23:05:03 +0000
 To: usrp-users@lists.ettus.com
-References: <iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <iz6i3QZ3RxYkBuUIXtqZR2mdcy8vyJE5mQWpNVx4AQ@lists.ettus.com>
-Message-ID-Hash: CWLRWTGWCEHNYYJ2ZL2P5VEQU26FSLKD
-X-Message-ID-Hash: CWLRWTGWCEHNYYJ2ZL2P5VEQU26FSLKD
-X-MailFrom: patchvonbraun@gmail.com
+From: jmaloyan@umass.edu
+Message-ID: <iB9BWiQeClrqDetmuP1KHQz5xH3HA29DfqZykXk75zk@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: 7RXOLJWFUVIG5MILTFW2WYB6PMDUBHLR
+X-Message-ID-Hash: 7RXOLJWFUVIG5MILTFW2WYB6PMDUBHLR
+X-MailFrom: jmaloyan@umass.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B210 Channel B control for GPIO
+Subject: [USRP-users] RFDC initialization in UHD 4.5.0.0 for x410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CWLRWTGWCEHNYYJ2ZL2P5VEQU26FSLKD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7RXOLJWFUVIG5MILTFW2WYB6PMDUBHLR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5740064110775503279=="
 
-T24gMDMvMTAvMjAyMyAxNDo1NCwgYmxha2ViYWxkd2luQHV2aWMuY2Egd3JvdGU6DQo+DQo+IEhl
-bGxvLCBJIGFtIHJldmlzaXRpbmcgdGhpcyBpc3N1ZSBhZ2FpbiBpbiBob3BlcyBvZiBzb21lb25l
-IHdpdGggbW9yZSANCj4gZmFtaWxpYXJpdHkgc2VlaW5nIGl0IHRoaXMgdGltZS4gVG8gcmVpdGVy
-YXRlIG15IHByb2JsZW0sIEkgYW0gdHJ5aW5nIA0KPiB0byBnZXQgdGhlIEdQSU8gcGlucyBjb250
-cm9sbGVkIGJ5IHRoZSBBVFIgdGllZCB0byB0cmFuc21pdHRpbmcgYW5kIA0KPiByZWNlaXZpbmcg
-b24gZWl0aGVyIGNoYW5uZWwgQSBvciBjaGFubmVsIEIgb24gdGhlIFVTUlAgQjIxMC4gQ3VycmVu
-dGx5IA0KPiBJIG9ubHkgaGF2ZSBpdCB3b3JraW5nIG9uIGNoYW5uZWwgQS4gSSBoYXZlIHRyaWVk
-IGFsbCBvZiB0aGUgZnVuY3Rpb25zIA0KPiByZWxhdGVkIHRvIHRoZSBiYW5rcyBhbmQgc291cmNl
-cyBhbmQgY2FuIG5vdCBmaW5kIGFuIG9wdGlvbiB3aGljaCANCj4gYWxsb3dzIG1lIHRvIGRvIHRo
-aXMuIFdoZW4gdHJ5aW5nIHRvIHJ1biB0aGVzZSB0byBjaGFuZ2UgdGhlIHNvdXJjZXMsIA0KPiBv
-ciBldmVuIHJ1bm5pbmcgdGhlIGdldF9ncGlvX3NyY3MsIGl0IHJlc3VsdHMgaW4gYW4gZXJyb3Ig
-bWVzc2FnZS4gSSANCj4gZmVlbCBsaWtlIEkgYW0gbWlzc2luZyBzb21ldGhpbmcgd2l0aCBlaXRo
-ZXIgdGhlIHNvdXJjZXMgb3IgYmFua3MgYnV0IA0KPiBJIGNhbiBub3QgZmlndXJlIG91dCB3aGF0
-LiBBbnkgaGVscCBpcyBhcHByZWNpYXRlZCwgdGhhbmtzLg0KPg0KPg0KPiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcg
-bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5k
-IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpZb3UgbWlnaHQg
-bG9vayBhdCB0aGUgImdwaW8uY3BwIiBleGFtcGxlIGluIHRoZSBzb3VyY2UgY29kZS4gU29tZXRo
-aW5nIA0KdGhhdCBpdCBub3RlcyBvbiBteSBCMjEwIGhlcmUgaXMgdGhhdCAiZ2V0X2dwaW9fc3Jj
-KCkiIGlzDQogwqAgbm90IGltcGxlbWVudGVkIGZvciB0aGVzZSByYWRpb3MuDQoNCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGlu
-ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQg
-YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+This is a multi-part message in MIME format.
+
+--===============5740064110775503279==
+Content-Type: multipart/alternative;
+ boundary="b1_iB9BWiQeClrqDetmuP1KHQz5xH3HA29DfqZykXk75zk"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_iB9BWiQeClrqDetmuP1KHQz5xH3HA29DfqZykXk75zk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+\
+Hello,\
+My application requires that I edit the RFDC applications, however, I am =
+confused about how the UHD C++ API interfaces with the RFDC on the RFSoC.=
+\
+It appears when I make the RFNoC graph, the namespace x400_radio_control_=
+impl is called, which starts the process of programming the RFDC as well =
+as running Self Calibration. For reference, I instantiate my graph simila=
+r to the examples
+
+\
+`//Create RFNoC graph`\
+`std::cout << std::endl;`\
+`std::cout << "Creating the RFNoC graph with args: " << args << std::endl=
+;`\
+`auto graph =3D uhd::rfnoc::rfnoc_graph::make(args);`\
+`=E2=80=A6`\
+`auto radio_rx_ctrl =3D graph->get_block<uhd::rfnoc::radio_control>(radio=
+_rx_ctrl_id);`
+
+\
+I have been able to trace up to rfnoc_graph.cpp, where once a graph is co=
+mmited, it starts to create an object for each NoC. Following the RFNOC l=
+ogs that print after the UHD 4.5 update, I found where the log =E2=80=9C\=
+[INFO\] \[0/Radio#0\] Calibrating channel 0=E2=80=9D came from, which was=
+ found in x400_radio_control.cpp. So now, I am led to believe that whenev=
+er the radio block is instantiated, the RFDC properties get instantiated =
+as well.=20
+
+\
+After this part, is where my confusion starts=E2=80=A6\
+After following the logs which appear right before the RFNoC logs regardi=
+ng calibration, specifically
+
+\
+`[INFO] [MPM.PeriphManager.ClkMgr] Using Clock Configuration:`\
+`DB0: Master Clock Rate: 491.52 MSps @Converter Rate 2.94912 GHz`\
+`DB1: Master Clock Rate: 491.52 MSps @Converter Rate 2.94912 GHz`=20
+
+\
+it seems there is a file x4xx_clock_mgr.py which supposedly sets the mast=
+er clock rate and the converter rate, which is called by x4xx.py. x4xx.py=
+ also calls another function in x4xx_clock_policy.py, which seems to be t=
+he function of interest as it sets the properties on the RFDC, albeit har=
+dcoded. The problem is I have not been able to trace how I get from x400_=
+radio_control.cpp to x4xx.py.=20
+
+\
+In short, am I correct that there is a trace between x400_radio_control.c=
+pp and x4xx.py trace, and if so, where in the UHD C++ API does it call a =
+python file, specifically the x4xx.py?=20
+
+\
+Thanks\
+Joe
+
+--b1_iB9BWiQeClrqDetmuP1KHQz5xH3HA29DfqZykXk75zk
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p><br>Hello,<br>My application requires that I edit the RFDC applications,=
+ however, I am confused about how the UHD C++ API interfaces with the RFDC =
+on the RFSoC.<br>It appears when I make the RFNoC graph, the namespace x400=
+_radio_control_impl is called, which starts the process of programming the =
+RFDC as well as running Self Calibration. For reference, I instantiate my g=
+raph similar to the examples</p><p><br><code>//Create RFNoC graph<br>std::c=
+out &lt;&lt; std::endl;<br>std::cout &lt;&lt; "Creating the RFNoC graph wit=
+h args: " &lt;&lt; args &lt;&lt; std::endl;<br>auto graph =3D uhd::rfnoc::r=
+fnoc_graph::make(args);<br>=E2=80=A6<br>auto radio_rx_ctrl =3D graph-&gt;ge=
+t_block&lt;uhd::rfnoc::radio_control&gt;(radio_rx_ctrl_id);</code></p><p><b=
+r>I have been able to trace up to rfnoc_graph.cpp, where once a graph is co=
+mmited, it starts to create an object for each NoC. Following the RFNOC log=
+s that print after the UHD 4.5 update, I found where the log =E2=80=9C[INFO=
+] [0/Radio#0] Calibrating channel 0=E2=80=9D came from, which was found in =
+x400_radio_control.cpp. So now, I am led to believe that whenever the radio=
+ block is instantiated, the RFDC properties get instantiated as well. </p><=
+p><br>After this part, is where my confusion starts=E2=80=A6<br>After follo=
+wing the logs which appear right before the RFNoC logs regarding calibratio=
+n, specifically</p><p><br><code>[INFO] [MPM.PeriphManager.ClkMgr] Using Clo=
+ck Configuration:<br>DB0: Master Clock Rate: 491.52 MSps @Converter Rate 2.=
+94912 GHz<br>DB1: Master Clock Rate: 491.52 MSps @Converter Rate 2.94912 GH=
+z</code> </p><p><br>it seems there is a file x4xx_clock_mgr.py which suppos=
+edly sets the master clock rate and the converter rate, which is called by =
+x4xx.py. x4xx.py also calls another function in x4xx_clock_policy.py, which=
+ seems to be the function of interest as it sets the properties on the RFDC=
+, albeit hardcoded. The problem is I have not been able to trace how I get =
+from x400_radio_control.cpp to x4xx.py. </p><p><br>In short, am I correct t=
+hat there is a trace between x400_radio_control.cpp and x4xx.py trace, and =
+if so, where in the UHD C++ API does it call a python file, specifically th=
+e x4xx.py? </p><p><br>Thanks<br>Joe<br><br><br></p>
+
+--b1_iB9BWiQeClrqDetmuP1KHQz5xH3HA29DfqZykXk75zk--
+
+--===============5740064110775503279==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5740064110775503279==--
