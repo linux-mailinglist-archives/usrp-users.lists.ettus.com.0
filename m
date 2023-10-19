@@ -2,616 +2,428 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEBA37CF498
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Oct 2023 12:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBDB37CF602
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Oct 2023 13:01:37 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7E8003858FD
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Oct 2023 06:04:35 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6A816385138
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Oct 2023 07:01:36 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1697709875; bh=bFCclQqDBoCSC+RW8IR4IKymKaN3aCptnGwoBWp88Gc=;
-	h=To:Date:CC:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=sCiKIYHvxJDaCBlHPCvQFdX81+VAYWhM7klYENRk8OP6C/dppCaOFKitTPeVNYD0u
-	 A05lrfWCsbLLERpK9pOmIb3XTapz20HFZfbKijKmLi4SteWVXUg06pAYkmzv91iDKW
-	 NLmc4bPs8TyHM1MjRRn4kOvIxtoaTRh3EYDyGAbFCeil8Tgt73jRYrIjNTzSb6OcS2
-	 1pemop2o42SYqXTbxSpcUgBznyHkHA4Bn5HSgtTeN3y8sodm+Dlo/xGMjTGKE+J0Em
-	 PnZsfM3qrErCAkAKEPpFRDE+Y6xp6cHKL83otLEZlFiTv6IwdKddmXMtLMM5Gjqekl
-	 Bsl+6kkheHn2Q==
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2125.outbound.protection.outlook.com [40.107.105.125])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2BE8C3857CE
-	for <usrp-users@lists.ettus.com>; Thu, 19 Oct 2023 06:03:13 -0400 (EDT)
+	t=1697713296; bh=hMy3EY3dcc97riGljX3ZoLOdIJB1qMTT5xwS8T+/Dis=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=QtOZkVtNtcUXK/yq1iFbD+gTKcRC+AJ9h/ZKW2iJt6COrRT45paaZEj81PHOH/p4i
+	 TWD0nx8ZZlXODjgVj7RGfIEhOI2UzKfckC+bmhtSEOR6yGGRjNGTHBF0Z7xz6EfK2Z
+	 GJXqsIk0G38dxzD9rXG4N6UwnGMlKCHaKQf0wKw7YXCYPDWObDKb2rYXbYawRTN4rZ
+	 tEvwYBdK/MNWK5zuI1nQA/Vvx4435wHI2YY6IR9kHaWSdHJwmysQp91ozEGlZyzShh
+	 0w3J1ZVz+p57ZFlUPRyel1mOMMyTBPE/BNbOEf0+gFss1T0v9YOy19jJnXTeidwlte
+	 A3G09xKK4pqYA==
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 80245385837
+	for <usrp-users@lists.ettus.com>; Thu, 19 Oct 2023 07:00:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=inetum.com header.i=@inetum.com header.b="bbTx7P62";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="byA6wZsb";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UxQOaUsETAmQmtpskjcSMEfPVgp7ciu9r5FQtOWJm52YmNm1PLZGNTVW/cpY8LVs7wRC3sJMeuibzkjYH7EvdVGZd133ODPejz+NoU/FErtKmMsiESw59lNNdz1KEQZf6CSz2lv0VTtnuF1foxOT0TQkNt3AucmASZfKxSXqUqEklzop1pNn7XCtEbeeHTqsVA//KHDWwEh8x2BbRnlOJ6fAvwRPa5FRhDh/nOASnDlwDmqgC7eqNREZe/msagQQbgRuLImn4zCXSrAduH1EndSFxH6GTFKeOTFVQqsiRr/3vWMCnr/3HtI4pDr0KWapzau8YDbzVIDxRkNL9Zd4ug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VkImaAVcmA7s6nA8BRv0mW7qGbBH39F4/YUVyS+ojUk=;
- b=PmwXvEqDhD8x0ERCNqLRlqOeAShu01K5XXT6Q53x/XvLR0070Yy0Vp8iLHlTGcD0vh9+wAvHHO1vV2+XmQuMIFtPf8WYY2yIZIMR04XcrMs93O+ro2TMx6B7jDE9KtVGphG6oqSZ258m2BrDcQDzCCVagBbKN01mpi7H2kyOueCl0c+2R0lTsmwnpMjjhY2G1RzH7D4sAd+tvSlU0tbnMwizqN1D+F7tnqt2vZl0ejyCLsi7hSzYaI8Z3kHAcAbWhQfjHr95obdBxhQmarBb6axXZEtmv/3Sa9LFYdJxnDOj06AildXxPJHwtLzAusJrkgr75pNnnbYJNC5auQSKGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=inetum.com; dmarc=pass action=none header.from=inetum.com;
- dkim=pass header.d=inetum.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inetum.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VkImaAVcmA7s6nA8BRv0mW7qGbBH39F4/YUVyS+ojUk=;
- b=bbTx7P62aBBmMndSI+g81KPexDfqBFHBsE1FBpQtqOu9wOCeR5fKCUoMIe7ItAQ+u7gK6ZCchRGuAeNY3aOdGDTo1YgLtIlW/pxEXYNgnde9EP3Zh7XINgIYxN0HZ2abfzjYgIBCLsmPMo7kfCb25TytyBslqTUvMuqz0P4yiheInU0K4HRBDnez7GFnIzwXYlJvPFP5dbP/DVAXiSpW+2fzRxXwcHTBF6mb1p8ErFL6uxlDw/GLbAup8yTelHvgVpQVNdIb4aIHqEe0mXOGl3MffPQNAO5KDBYzGRQ7yeRKqpTjU0k85/m2JdL3HgiGKu3J3/cTxCJ1jL/6xQmidg==
-Received: from AS8PR05MB8849.eurprd05.prod.outlook.com (2603:10a6:20b:424::21)
- by DB9PR05MB7995.eurprd05.prod.outlook.com (2603:10a6:10:251::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24; Thu, 19 Oct
- 2023 10:03:11 +0000
-Received: from AS8PR05MB8849.eurprd05.prod.outlook.com
- ([fe80::16b4:d9be:1a8:c120]) by AS8PR05MB8849.eurprd05.prod.outlook.com
- ([fe80::16b4:d9be:1a8:c120%7]) with mapi id 15.20.6907.022; Thu, 19 Oct 2023
- 10:03:11 +0000
-To: "support@ettus.com" <support@ettus.com>
-Thread-Topic: Inetum company (Spain) technical support: Ettus USRP X440 & USRP
- X410 SDRs
-Thread-Index: AdoCc043SBTi4UyJS6uAD4V4g3t6dw==
-Date: Thu, 19 Oct 2023 10:03:11 +0000
-Message-ID: 
- <AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4A@AS8PR05MB8849.eurprd05.prod.outlook.com>
-Accept-Language: es-ES, en-US
-Content-Language: es-ES
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-msip_labels: 
- MSIP_Label_6c04a875-6eb2-484b-a14b-e2519851b720_ActionId=4bb0bb4e-dd72-4f2e-8866-75cb963186f5;MSIP_Label_6c04a875-6eb2-484b-a14b-e2519851b720_ContentBits=0;MSIP_Label_6c04a875-6eb2-484b-a14b-e2519851b720_Enabled=true;MSIP_Label_6c04a875-6eb2-484b-a14b-e2519851b720_Method=Standard;MSIP_Label_6c04a875-6eb2-484b-a14b-e2519851b720_Name=External;MSIP_Label_6c04a875-6eb2-484b-a14b-e2519851b720_SetDate=2023-10-19T09:06:14Z;MSIP_Label_6c04a875-6eb2-484b-a14b-e2519851b720_SiteId=14cb4ab4-62b8-45a2-a944-e225383ee1f9;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=inetum.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR05MB8849:EE_|DB9PR05MB7995:EE_
-x-ms-office365-filtering-correlation-id: c459495b-cf0e-4b75-dbb4-08dbd08a9a48
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- xagk7/SLTpdMt56sjtcGDNMkwdlOa/c+csTHNEG9A0df66EuW2UqsRY/m+qoqaOZ2iB92RqhXGO54MKPCydTJf/cp15DI7sGxZDCmnA9fjyvyC3czsAA//Fq9HIufNSHUdhpSDekT7xP48SlbvAKuk2MBzXrjTlDwS/9dd2EuGnazizLRr3dKRk9ALXzvyuQ1Enc7ywfEATC8AK7hsyxn+RfSzieI0AcbzwP5sJ0MZoh5AKDWyVFZVWlSGepAhXkqyaiHZftFd04lmsdkkmmOdEOLkIyFKWzlnDzASsdwUNri/y9Vz50siMHkm3q7VO6UMmj9AfAENWYKsVJMUD0/dPcGv3Qof9/qE976Q88GLNm+eDx3+bRtrgnuErm9F/UFjlsWmWnvUUgcRF/gT0jlpbkptQPFtdLeqBeYlYbuIPKzakb5gKlSHyc0ad5hmB+dtWb+40mOMCYN77eOPDrwNKL22xWyPWXR7X67x5Lt6j677DyXZBrJ+RfRiGOi6tWGtGMVXlc0GYnEt91HvErztfpf5fFdWv/Xd7uc/cYhMkoxqAu2T2pPeXtP/1XyltnA1VS7ZewNzG1T9cgcNA7ZaYz4+ws0Gj5bsYaVwxlPwD1Dkp18W1ELOVgbJeVg93y01h0zjX5B/vRWcExtb7pxw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR05MB8849.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(366004)(136003)(39860400002)(376002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(33656002)(4326008)(5660300002)(86362001)(8936002)(2906002)(52536014)(8676002)(41300700001)(71200400001)(19627235002)(38070700005)(66574015)(45080400002)(478600001)(9686003)(7696005)(6506007)(38100700002)(166002)(122000001)(83380400001)(99936003)(26005)(66946007)(66476007)(54906003)(64756008)(66556008)(66446008)(76116006)(55016003)(316002)(6916009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?2EzHVwRC+VaPnCtIJNoTwEYBfOlzTl89ldGlB8CMhiWH6ulNqNb37xAASE?=
- =?iso-8859-1?Q?jVhop2ohvIQVCZpVqYh8vpe/BU+gYFuPzxmqlEbsWReSCSG9tK41SMftPk?=
- =?iso-8859-1?Q?UGnwYx5v0mx1QXl0vTLhYD5qMQOnVvokVa8MYSwq2D1esjz4I9JFoZR4Nx?=
- =?iso-8859-1?Q?8f32EVI1xL/kojDObr6f4EooTl6ao8Lfbt8yUnN+8XAYTRRp9E0eoWvya4?=
- =?iso-8859-1?Q?qUKidyzRF2kLHsoMG+DxuAUADeOOV2lJlHQm3hWsnJm/0gQwcgykbF+Xa4?=
- =?iso-8859-1?Q?y05yVaOQZ3XSpdVI/CzSBNd/h8vC4ytYTek2F43dRG8yBSAXkpp+oLKHUJ?=
- =?iso-8859-1?Q?lA5AajHZIcBVOu/ZQbP/iEbXieF5qtOX0pU6uMOL/hjnSR+ZOzto0t0hFc?=
- =?iso-8859-1?Q?nTSwIjOYJKPaTwfPoFB7XHTYdKUq2zeuAB6FJp77ZMzKLc5H+VgRR3rVAv?=
- =?iso-8859-1?Q?pGAohrT0U972AbxKcqzfN53j+NelBPRH0Ovn1Ct6APE1sU6TkJwlJf4GoY?=
- =?iso-8859-1?Q?DwgKJ40my/UmqWyh00tkRHDM1tKtNMhbm+kiMwz1GdpceAQjcM3/q5Y1zQ?=
- =?iso-8859-1?Q?h77n5Q4djB+VlDU323U0lCyGHpczmxbj1yJ02riuJJcBGbqksWXnVXQZrx?=
- =?iso-8859-1?Q?TY+i5HQYz/YqiE6TXGAgYL55mhijA3bh+AfoOhCyJ8v22y1N/ppoH4fkKo?=
- =?iso-8859-1?Q?91hL2XBicd/E/hmKo0VG1KMJRtIeiGAq7zTSSpEbcrxx9tE9Li5gyOtMQf?=
- =?iso-8859-1?Q?WTYqWno4AXqfYf95wbbjwn5NSXEgV9JCcJ8A8u/ZreOoX5BMpUXTIgw4BW?=
- =?iso-8859-1?Q?qjbDAKKUuzpXfxmzjqV4YWLfjw1qoWf1tEviHm/RV6RL2xEVEqQQm7nfMv?=
- =?iso-8859-1?Q?J4+4FfZUNiIvw5vIaxIDThk3Tc9vI9nGr9jBGvZ7wWnRnrAvTnmxh8Mp6C?=
- =?iso-8859-1?Q?hj/9sn2b0JM0f9SoD+bf+A5bvdof56/iYSx1ti4GWrpLmGU3Q3O8d2rVXI?=
- =?iso-8859-1?Q?Mqlu6Er1RB7xWz1Ta5VciQnen1HkM0jgCUsTlJ48dMyMMO5K1G7ixegl0A?=
- =?iso-8859-1?Q?5IZe350S7435uWnoEWD++hWuupG9ENR61Bha6fWoCAhJJwWHJpzOPpequq?=
- =?iso-8859-1?Q?YGwToxBH+O7o2xchimadJA2K2QdRoHNn7MkiZxttxt2euUSsww/z+pF2P2?=
- =?iso-8859-1?Q?sGIAY4vTTlRxWWJjSoI4ylHKexPR8jgS++sHU4/eWGvjVTVlzWW6TpZoeT?=
- =?iso-8859-1?Q?X8754DbQe5xSCqdlTf/vr6LxZ+MT2y3lYJy77wQbdNaTlSxFLMhmrCcGSE?=
- =?iso-8859-1?Q?P7LDoLOU07hnTj2EH6cOnrii1Cou9v+aMH7vDom297mj7TZT25DMfs/e3l?=
- =?iso-8859-1?Q?cPUvjkx34zgeDYI3W0mjjPI2pOxQoUzYbgnN2o1EBAXQyAedlFdUpfeMIW?=
- =?iso-8859-1?Q?YEoExuIlhdZu8FmhXqhw0ygmhbqQEY06QTpoGJc7h0Evvu4JK3tLqwBZmy?=
- =?iso-8859-1?Q?GGnFkUKjPBEOhIschzVBedHtAMkf+aWRUFdt+P0hzkdUBnx/oKD28pvNIx?=
- =?iso-8859-1?Q?gNJONy9XAdoCGwEOFEqZaTYl0LZHbNJf/U113DBpon02yXV6Mj5Nf/rxyp?=
- =?iso-8859-1?Q?Z4qULhLZEZkteZfiGfMbUbORTK6Pg2vtAN?=
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-53dd752685fso13486112a12.3
+        for <usrp-users@lists.ettus.com>; Thu, 19 Oct 2023 04:00:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697713215; x=1698318015; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lyegEobKghZWEyB1suD1BBlkOFHDKGHbEyubIe6aMFM=;
+        b=byA6wZsbZ5ddrB0iTuZkDdMNXhhzUuSUX93tJBzgStYjiFoMAK8HkVmflNYrtS8nGI
+         AhV4lUlQwihHNHny5BVoWxGgMAnYPKL35Mvg6FT+DdC5nPA8fcZEDPDK0BSb17jgKJhe
+         ik33ile312wn94xDEnkP+gz8KlULD1l0co64Rnx1oG+QbdvpvA61I3MTpQ1NG+8dsnta
+         snuK0W0PFiqyRPwVHMQcoDTDZFVARaZLbPmhu/JMHAMSPyFX+PXw1ahn2Jiz/LyxvDgz
+         QqLeFCH2uOVv5vSS3zQWkn6dgFChUdc/h6J8cENZvEL0UuvD9Dh8YTVEl9T7h2SQeVy8
+         n1Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697713215; x=1698318015;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lyegEobKghZWEyB1suD1BBlkOFHDKGHbEyubIe6aMFM=;
+        b=FW3DCIWCK0E5UEo6nVGqK71KME1RkcXxueg+k5KZYLwMyNImDNDQ4MDcBmGmeV1Gwc
+         TfWgsX6YfVrIGQYWNDeQtXVdcJqJGQ5CBCSksWfPXZZbEdrsCC7XZlzS7s4/whZW38tN
+         bFvIslI3mYyJnJRrIfCc9D/ELXkYl7nyjvxYFhKm0mGGBM6B3Ew+S/+ECyRW/O5GqUof
+         l7oiVYGBA2ust6SWyYif4ZtdHf6zpl6Y3GutX01cCnwd2Tb9gSk9XjKSHcd/NqtCqm/q
+         OY35rgWiC4ybVGMFvk764pwOw63PnImTKH9scmsNUQ0VLNMz7t4ITRnj7XXY0oEbd1lD
+         ao1w==
+X-Gm-Message-State: AOJu0YxpaenW+9nztTxiEnIovBPZ4iggyx1CqDL3H9i5ZjKHyR0FWAZj
+	iqo7ZDik+HC8Qe7ANtQ+BmTCD6tlfWHsZaOvq37+dyA=
+X-Google-Smtp-Source: AGHT+IEb3y2bJ9UCATAtjp52vnx6dRAnY/B0laacgcxnyd+fuYExaZO3gHWg9+sVnZN6CxvaT/KyfeKjOb0yuslNvFo=
+X-Received: by 2002:a17:907:3608:b0:9a1:c370:1af2 with SMTP id
+ bk8-20020a170907360800b009a1c3701af2mr1331275ejc.3.1697713214415; Thu, 19 Oct
+ 2023 04:00:14 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: inetum.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR05MB8849.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c459495b-cf0e-4b75-dbb4-08dbd08a9a48
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Oct 2023 10:03:11.4982
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 14cb4ab4-62b8-45a2-a944-e225383ee1f9
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: z8Tli+K1WzawwkWql8a1KVeDKOggYHicOAE9tkYsdqUPMGVshidvHQ/wrFnp3z2gnBmUxLSejux6aUYtjWWy+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR05MB7995
-Message-ID-Hash: PCRKT7E43SWOIFUGEXZ7JI2K6IDHV24N
-X-Message-ID-Hash: PCRKT7E43SWOIFUGEXZ7JI2K6IDHV24N
-X-MailFrom: pablo.mico@inetum.com
+References: <AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4A@AS8PR05MB8849.eurprd05.prod.outlook.com>
+In-Reply-To: <AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4A@AS8PR05MB8849.eurprd05.prod.outlook.com>
+From: =?UTF-8?B?WWFzaXIgw5Z6w6dhbMSxaw==?= <simultaneous11@gmail.com>
+Date: Thu, 19 Oct 2023 14:00:02 +0300
+Message-ID: <CALooG38c1Q3dhcP-vwx6iC6khpM227nyzJ5DvTEQW5QZJ+8fwg@mail.gmail.com>
+To: Mico-Soler Pablo <pablo.mico@inetum.com>
+Message-ID-Hash: T2BU4LS75DSDKGE23JGRDJ7NFW6SDA7Z
+X-Message-ID-Hash: T2BU4LS75DSDKGE23JGRDJ7NFW6SDA7Z
+X-MailFrom: simultaneous11@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, "quotes@ni.com" <quotes@ni.com>
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Inetum company (Spain) technical support: Ettus USRP X440 & USRP X410 SDRs
+Subject: [USRP-users] Re: Inetum company (Spain) technical support: Ettus USRP X440 & USRP X410 SDRs
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NFDMRDNR2LRIJPU2P4ZZQEQ7GX3PXD67/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T2BU4LS75DSDKGE23JGRDJ7NFW6SDA7Z/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Mico-Soler Pablo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mico-Soler Pablo <pablo.mico@inetum.com>
-Content-Type: multipart/mixed; boundary="===============5328329248300174556=="
+Content-Type: multipart/mixed; boundary="===============3566432199482160491=="
 
---===============5328329248300174556==
-Content-Language: es-ES
-Content-Type: multipart/related;
-	boundary="_005_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_";
-	type="multipart/alternative"
+--===============3566432199482160491==
+Content-Type: multipart/related; boundary="000000000000139a1906080fa9bc"
 
---_005_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_
-Content-Type: multipart/alternative;
-	boundary="_000_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_"
+--000000000000139a1906080fa9bc
+Content-Type: multipart/alternative; boundary="000000000000139a1806080fa9bb"
 
---_000_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000139a1806080fa9bb
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Dear Mr/Mrs,
+Hello,
+Regarding X440;
+1. If you want to use instantaneous 1.6 GHz bandwidth, then you can use
+only 2 channels. If you want to use 8 channels, you need to lower the
+bandwidth to 400 MHz. Therefore; total bandwidth cannot be larger than 3.2
+GHz.
+2. Since they use the direct sampling capability of ZU28, Nyquist rates
+apply depending on sampling frequency. Therefore; 1630 - 3230 may not be
+possible. But I am not sure about this.
+3. Maximum instantaneous bandwidth for a channel you can get is 1.6 GHz.
+But as I said, you can only use 2 channels in this configuration.
+4 -5. I don't think you can do that. If you want to reach those
+frequencies, maybe you can consider buying an RF frontend.
+6.
+https://www.ni.com/docs/en-US/bundle/ettus-usrp-x440-specs/page/specs.html
+7. It is not possible. You should choose TX/RX0 or RX1 for each channel.
+But you can switch the receiver channel between them during runtime.
+8. X440 is already an 8 channel version of X410 with some limitations.
 
-Please let me to introduce myself.
-My name is Pablo and I am RF engineer for INETUM company (Madrid, Spain).
+Mico-Soler Pablo via USRP-users <usrp-users@lists.ettus.com>, 19 Eki 2023
+Per, 13:04 tarihinde =C5=9Funu yazd=C4=B1:
 
-We are designing a wideband RF receiver and we have found your USRP X440 an=
-d X410 SDRs at your website.
-Our thinking is that they would be suitable for our system.
-On the other hand, we have several technical questions that we would like t=
-o ask you.
+> Dear Mr/Mrs,
+>
+>
+>
+> Please let me to introduce myself.
+>
+> My name is Pablo and I am RF engineer for INETUM company (Madrid, Spain).
+>
+>
+>
+> We are designing a wideband RF receiver and we have found your USRP X440
+> and X410 SDRs at your website.
+>
+> Our thinking is that they would be suitable for our system.
+>
+> On the other hand, we have several technical questions that we would like
+> to ask you.
+>
+>
+> Regarding X440, ETTUS USRP X440 (8 TX AND 8 RX, 1.6 GHZ BW, 30 MHZ TO 4
+> GHZ SDR, GPSDO):
+>
+>    1. If each channel has a bandwidth up 1.6GHz, why the total
+>    instantaneous bandwidth is 3.2GHz if it has 8 channels (1.6GHz*8channe=
+ls >
+>    3.2GHz)?
+>    2. Regarding =E2=80=9C*IF-Bandwidth combination limitations apply due =
+to
+>    Nyquist zones and gaps=E2=80=9D*,
+>       1. If we tune CH1 at 830MHz, are we going to be able to detect all
+>       the spectrum from 30-1630MHz?
+>       2. If we tune CH2 at 2430MHz, are we going to be able to detect all
+>       the spectrum from 1630-3230MHz?
+>       3. If we tune CH3 at 4000MHz, are we going to be able to detect all
+>       the spectrum from 3230-4000MHz?
+>    3. Which the real maximum channel BW?
+>    4. Is it possible to decrease the minimum frequency down to 20MHz?
+>    5. Is it possible to increase the maximum frequency up to 6GHz?
+>    6. Could you provide the USRP X440 datasheet to see their RF/Digital
+>    performance parameters?
+>
+>
+> Regarding X410, ETTUS USRP X410 (4 TX/RX Channels, 400 MHz BW, Zynq US+
+> RFSoC ZU28DR)
+>
+>    1. Is it possible to configure RX0 as an extra receiver channel, so
+>    instead of having 4 receiving channels [RF0 (RX1), RF1 (RX1)] & [RF0
+>    (RX1), RF1 (RX1)] (Fig 1), we could have 8 receiving channels (Fig 2)?
+>    2. If previous question is not possible, do you have in your roadmap
+>    to develop an X410 version with 8 channels?
+>
+> Fig 1.
+>
+> Fig 2. Thank you very much in advanced. Looking forward to hearing your
+> reply. Best,
+>
+>
+> -------------------------------------------------------------------------=
+-------
+>
+> *Inetum *
+>
+>
+>
+> *Pablo Mic=C3=B3 Soler*
+>
+> RF Engineer
+>
+> Seguridad Electr=C3=B3nica y Defensa | Divisi=C3=B3n de Ingenier=C3=ADa y=
+ Analytics
+> *Electronic Security & Defence | Engineering & Analytics Division*
+>
+>
+>
+> +34 695645619 (Ext.)
+>
+> Calle Mar=C3=ADa de Portugal 9 =E2=80=93 11 (Edificio 1)
+>
+> 28050 Madrid, Espa=C3=B1a
+>
+>
+>
+> *pablo.mico@inetum.com <pablo.mico@inetum.com>*
+>
+> *inetum.com* <https://inetum.world/es>
+>
+> Facebook / Twitter <https://twitter.com/inetum_world> / LinkedIn
+> <https://www.linkedin.com/company/inetum> / Instagram
+> <https://www.instagram.com/inetum_world/> / YouTube
+> <https://www.youtube.com/channel/UCuIIEM1MyZ_K6IZg2E2KYtA>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-Regarding X440, ETTUS USRP X440 (8 TX AND 8 RX, 1.6 GHZ BW, 30 MHZ TO 4 GHZ=
- SDR, GPSDO):
-
-  1.  If each channel has a bandwidth up 1.6GHz, why the total instantaneou=
-s bandwidth is 3.2GHz if it has 8 channels (1.6GHz*8channels > 3.2GHz)?
-  2.  Regarding "IF-Bandwidth combination limitations apply due to Nyquist =
-zones and gaps",
-     *   If we tune CH1 at 830MHz, are we going to be able to detect all th=
-e spectrum from 30-1630MHz?
-     *   If we tune CH2 at 2430MHz, are we going to be able to detect all t=
-he spectrum from 1630-3230MHz?
-     *   If we tune CH3 at 4000MHz, are we going to be able to detect all t=
-he spectrum from 3230-4000MHz?
-  3.  Which the real maximum channel BW?
-  4.  Is it possible to decrease the minimum frequency down to 20MHz?
-  5.  Is it possible to increase the maximum frequency up to 6GHz?
-  6.  Could you provide the USRP X440 datasheet to see their RF/Digital per=
-formance parameters?
-
-
-
-Regarding X410, ETTUS USRP X410 (4 TX/RX Channels, 400 MHz BW, Zynq US+ RFS=
-oC ZU28DR)
-
-  1.  Is it possible to configure RX0 as an extra receiver channel, so inst=
-ead of having 4 receiving channels [RF0 (RX1), RF1 (RX1)] & [RF0 (RX1), RF1=
- (RX1)] (Fig 1), we could have 8 receiving channels (Fig 2)?
-  2.  If previous question is not possible, do you have in your roadmap to =
-develop an X410 version with 8 channels?
-[cid:image001.png@01DA027F.AEF9F590]
-Fig 1.
-[cid:image002.png@01DA0280.13934920]
-Fig 2.
-Thank you very much in advanced.
-Looking forward to hearing your reply.
-Best,
----------------------------------------------------------------------------=
------
-Inetum
-
-Pablo Mic=F3 Soler
-RF Engineer
-Seguridad Electr=F3nica y Defensa | Divisi=F3n de Ingenier=EDa y Analytics
-Electronic Security & Defence | Engineering & Analytics Division
-
-+34 695645619 (Ext.)
-Calle Mar=EDa de Portugal 9 - 11 (Edificio 1)
-28050 Madrid, Espa=F1a
-
-pablo.mico@inetum.com<mailto:pablo.mico@inetum.com>
-inetum.com<https://inetum.world/es>
-Facebook / Twitter<https://twitter.com/inetum_world> / LinkedIn<https://www=
-.linkedin.com/company/inetum> / Instagram<https://www.instagram.com/inetum_=
-world/> / YouTube<https://www.youtube.com/channel/UCuIIEM1MyZ_K6IZg2E2KYtA>
-
-
---_000_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_
-Content-Type: text/html; charset="iso-8859-1"
+--000000000000139a1806080fa9bb
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Source Sans Pro";
-	panose-1:2 11 5 3 3 4 3 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;
-	mso-fareast-language:EN-US;}
-h2
-	{mso-style-priority:9;
-	mso-style-link:"T=EDtulo 2 Car";
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:18.0pt;
-	font-family:"Calibri",sans-serif;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;
-	mso-fareast-language:EN-US;}
-span.EstiloCorreo17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.Ttulo2Car
-	{mso-style-name:"T=EDtulo 2 Car";
-	mso-style-priority:9;
-	mso-style-link:"T=EDtulo 2";
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:none;
-	mso-fareast-language:ES;
-	font-weight:bold;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1540778667;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1046438154 201981967 201981977 201981979 201981967 =
-201981977 201981979 201981967 201981977 201981979;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1
-	{mso-list-id:1808694154;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2020119470 201981967 201981977 201981979 201981967 2=
-01981977 201981979 201981967 201981977 201981979;}
-@list l1:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"ES" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
-ak-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Dear Mr/Mrs,<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<div dir=3D"ltr">Hello,<div>Regarding X440;</div><div>1. If you want to use=
+ instantaneous 1.6 GHz bandwidth, then you can use only 2 channels. If you =
+want to use 8 channels, you need to lower the bandwidth=C2=A0to 400 MHz. Th=
+erefore; total bandwidth cannot be larger than 3.2 GHz.</div><div>2. Since =
+they use the direct sampling capability of ZU28, Nyquist rates apply depend=
+ing=C2=A0on sampling frequency. Therefore; 1630 - 3230 may not be possible.=
+ But I am not sure about this.</div><div>3. Maximum instantaneous bandwidth=
+ for a channel you can get is 1.6 GHz. But as=C2=A0I said, you can only use=
+ 2 channels in this configuration.</div><div>4 -5. I don&#39;t think you ca=
+n do that. If you want to reach those frequencies, maybe you can consider b=
+uying an RF frontend.</div><div>6.=C2=A0<a href=3D"https://www.ni.com/docs/=
+en-US/bundle/ettus-usrp-x440-specs/page/specs.html">https://www.ni.com/docs=
+/en-US/bundle/ettus-usrp-x440-specs/page/specs.html</a></div><div>7. It is =
+not possible. You should choose TX/RX0 or RX1 for each channel. But you can=
+ switch the receiver channel between them during runtime.</div><div>8. X440=
+ is already an 8 channel version of X410 with some limitations.</div></div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Mico-S=
+oler Pablo via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
+>usrp-users@lists.ettus.com</a>&gt;, 19 Eki 2023 Per, 13:04 tarihinde =C5=
+=9Funu yazd=C4=B1:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div class=3D"msg4978469006034764516">
+
+
+
+
+
+<div lang=3D"ES" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_-1476255911877875423WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Dear Mr/Mrs,<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Please let me to introduce myse=
-lf.<o:p></o:p></span></p>
+lf.<u></u><u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">My name is Pablo and I am RF en=
-gineer for INETUM company (Madrid, Spain).<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+gineer for INETUM company (Madrid, Spain).<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">We are designing a wideband RF =
 receiver and we have found your USRP X440 and X410 SDRs at your website.
-<o:p></o:p></span></p>
+<u></u><u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Our thinking is that they would=
- be suitable for our system.<o:p></o:p></span></p>
+ be suitable for our system.<u></u><u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">On the other hand, we have seve=
-ral technical questions that we would like to ask you.<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<h2 style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margin-bottom:11.25pt;=
-margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-fareast-language:EN-US;f=
-ont-weight:normal">Regarding
-</span><span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-fareast-language:=
-EN-US">X440, ETTUS USRP X440 (8 TX AND 8 RX, 1.6 GHZ BW, 30 MHZ TO 4 GHZ SD=
-R, GPSDO):<o:p></o:p></span></h2>
+ral technical questions that we would like to ask you.<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<h2 style=3D"margin-right:0cm;margin-bottom:11.25pt;margin-left:0cm">
+<span lang=3D"EN-US" style=3D"font-size:11pt;font-weight:normal">Regarding
+</span><span lang=3D"EN-US" style=3D"font-size:11pt">X440, ETTUS USRP X440 =
+(8 TX AND 8 RX, 1.6 GHZ BW, 30 MHZ TO 4 GHZ SDR, GPSDO):<u></u><u></u></spa=
+n></h2>
 <ol style=3D"margin-top:0cm" start=3D"1" type=3D"1">
-<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l1 level1 =
-lfo1"><span lang=3D"EN-US">If each channel has a bandwidth up 1.6GHz, why t=
-he total instantaneous bandwidth is 3.2GHz if it has 8 channels (1.6GHz*8ch=
-annels &gt; 3.2GHz)?<o:p></o:p></span></li><li class=3D"MsoListParagraph" s=
-tyle=3D"margin-left:0cm;mso-list:l1 level1 lfo1"><span lang=3D"EN-US">Regar=
-ding &#8220;<i>IF-Bandwidth combination limitations apply due to Nyquist zo=
-nes and gaps&#8221;</i>,<o:p></o:p></span></li><ol style=3D"margin-top:0cm"=
- start=3D"1" type=3D"a">
-<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l1 level2 =
-lfo1"><span lang=3D"EN-US">If we tune CH1 at 830MHz, are we going to be abl=
-e to detect all the spectrum from 30-1630MHz?<o:p></o:p></span></li><li cla=
-ss=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l1 level2 lfo1"><=
-span lang=3D"EN-US">If we tune CH2 at 2430MHz, are we going to be able to d=
-etect all the spectrum from 1630-3230MHz?<o:p></o:p></span></li><li class=
-=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l1 level2 lfo1"><sp=
-an lang=3D"EN-US">If we tune CH3 at 4000MHz, are we going to be able to det=
-ect all the spectrum from 3230-4000MHz?<o:p></o:p></span></li></ol>
-<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l1 level1 =
-lfo1"><span lang=3D"EN-US">Which the real maximum channel BW?<o:p></o:p></s=
-pan></li><li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l=
-1 level1 lfo1"><span lang=3D"EN-US">Is it possible to decrease the minimum =
-frequency down to 20MHz?<o:p></o:p></span></li><li class=3D"MsoListParagrap=
-h" style=3D"margin-left:0cm;mso-list:l1 level1 lfo1"><span lang=3D"EN-US">I=
-s it possible to increase the maximum frequency up to 6GHz?<o:p></o:p></spa=
-n></li><li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l1 =
-level1 lfo1"><span lang=3D"EN-US">Could you provide the USRP X440 datasheet=
- to see their RF/Digital performance parameters?<o:p></o:p></span></li></ol=
->
-<p class=3D"MsoListParagraph"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span>=
-</p>
-<h2 style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margin-bottom:11.25pt;=
-margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-fareast-language:EN-US;f=
-ont-weight:normal">Regarding
-</span><span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-fareast-language:=
-EN-US">X410, ETTUS USRP X410 (4 TX/RX Channels, 400 MHz BW, Zynq US+ RFSoC =
-ZU28DR)<o:p></o:p></span></h2>
+<li class=3D"m_-1476255911877875423MsoListParagraph" style=3D"margin-left:0=
+cm"><span lang=3D"EN-US">If each channel has a bandwidth up 1.6GHz, why the=
+ total instantaneous bandwidth is 3.2GHz if it has 8 channels (1.6GHz*8chan=
+nels &gt; 3.2GHz)?<u></u><u></u></span></li><li class=3D"m_-147625591187787=
+5423MsoListParagraph" style=3D"margin-left:0cm"><span lang=3D"EN-US">Regard=
+ing =E2=80=9C<i>IF-Bandwidth combination limitations apply due to Nyquist z=
+ones and gaps=E2=80=9D</i>,<u></u><u></u></span></li><ol style=3D"margin-to=
+p:0cm" start=3D"1" type=3D"a">
+<li class=3D"m_-1476255911877875423MsoListParagraph" style=3D"margin-left:0=
+cm"><span lang=3D"EN-US">If we tune CH1 at 830MHz, are we going to be able =
+to detect all the spectrum from 30-1630MHz?<u></u><u></u></span></li><li cl=
+ass=3D"m_-1476255911877875423MsoListParagraph" style=3D"margin-left:0cm"><s=
+pan lang=3D"EN-US">If we tune CH2 at 2430MHz, are we going to be able to de=
+tect all the spectrum from 1630-3230MHz?<u></u><u></u></span></li><li class=
+=3D"m_-1476255911877875423MsoListParagraph" style=3D"margin-left:0cm"><span=
+ lang=3D"EN-US">If we tune CH3 at 4000MHz, are we going to be able to detec=
+t all the spectrum from 3230-4000MHz?<u></u><u></u></span></li></ol>
+<li class=3D"m_-1476255911877875423MsoListParagraph" style=3D"margin-left:0=
+cm"><span lang=3D"EN-US">Which the real maximum channel BW?<u></u><u></u></=
+span></li><li class=3D"m_-1476255911877875423MsoListParagraph" style=3D"mar=
+gin-left:0cm"><span lang=3D"EN-US">Is it possible to decrease the minimum f=
+requency down to 20MHz?<u></u><u></u></span></li><li class=3D"m_-1476255911=
+877875423MsoListParagraph" style=3D"margin-left:0cm"><span lang=3D"EN-US">I=
+s it possible to increase the maximum frequency up to 6GHz?<u></u><u></u></=
+span></li><li class=3D"m_-1476255911877875423MsoListParagraph" style=3D"mar=
+gin-left:0cm"><span lang=3D"EN-US">Could you provide the USRP X440 datashee=
+t to see their RF/Digital performance parameters?<u></u><u></u></span></li>=
+</ol>
+<p class=3D"m_-1476255911877875423MsoListParagraph"><span lang=3D"EN-US"><u=
+></u>=C2=A0<u></u></span></p>
+<h2 style=3D"margin-right:0cm;margin-bottom:11.25pt;margin-left:0cm">
+<span lang=3D"EN-US" style=3D"font-size:11pt;font-weight:normal">Regarding
+</span><span lang=3D"EN-US" style=3D"font-size:11pt">X410, ETTUS USRP X410 =
+(4 TX/RX Channels, 400 MHz BW, Zynq US+ RFSoC ZU28DR)<u></u><u></u></span><=
+/h2>
 <ol style=3D"margin-top:0cm" start=3D"7" type=3D"1">
-<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l1 level1 =
-lfo1"><span lang=3D"EN-US" style=3D"font-family:&quot;Source Sans Pro&quot;=
-,sans-serif;color:#333333">Is it possible to configure RX0 as an extra rece=
-iver channel, so instead of having 4 receiving channels
-<span style=3D"background:yellow;mso-highlight:yellow">[RF0 (RX1), RF1 (RX1=
-)]</span> &amp;
-<span style=3D"background:lime;mso-highlight:lime">[RF0 (RX1), RF1 (RX1)]</=
-span> (Fig 1), we could have 8 receiving channels (Fig 2)?</span><span lang=
-=3D"EN-US"><o:p></o:p></span></li><li class=3D"MsoListParagraph" style=3D"m=
-argin-left:0cm;mso-list:l1 level1 lfo1"><span lang=3D"EN-US" style=3D"font-=
-family:&quot;Source Sans Pro&quot;,sans-serif;color:#333333">If previous qu=
-estion is not possible, do you have in your roadmap to develop an X410 vers=
-ion with
- 8 channels?</span><span lang=3D"EN-US"><o:p></o:p></span></li></ol>
-<p class=3D"MsoNormal"><img width=3D"828" height=3D"178" style=3D"width:8.6=
-25in;height:1.8541in" id=3D"Imagen_x0020_1" src=3D"cid:image001.png@01DA027=
-F.AEF9F590"><span lang=3D"EN-US"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Fig 1.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><img width=3D"834" height=3D"179" style=3D"width:8.6=
-875in;height:1.8611in" id=3D"Imagen_x0020_2" src=3D"cid:image002.png@01DA02=
-80.13934920"><span lang=3D"EN-US"><o:p></o:p></span></p>
-<h2 style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margin-bottom:11.25pt;=
-margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-fareast-language:EN-US;f=
-ont-weight:normal">Fig 2.<o:p></o:p></span></h2>
-<h2 style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margin-bottom:11.25pt;=
-margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-fareast-language:EN-US;f=
-ont-weight:normal">Thank you very much in advanced.<o:p></o:p></span></h2>
-<h2 style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margin-bottom:11.25pt;=
-margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-fareast-language:EN-US;f=
-ont-weight:normal">Looking forward to hearing your reply.<o:p></o:p></span>=
-</h2>
-<h2 style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margin-bottom:11.25pt;=
-margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-fareast-language:EN-US;f=
-ont-weight:normal">Best,</span><span lang=3D"EN-US" style=3D"font-size:11.0=
-pt;mso-fareast-language:EN-US"><o:p></o:p></span></h2>
+<li class=3D"m_-1476255911877875423MsoListParagraph" style=3D"margin-left:0=
+cm"><span lang=3D"EN-US" style=3D"font-family:&quot;Source Sans Pro&quot;,s=
+ans-serif;color:rgb(51,51,51)">Is it possible to configure RX0 as an extra =
+receiver channel, so instead of having 4 receiving channels
+<span style=3D"background:yellow">[RF0 (RX1), RF1 (RX1)]</span> &amp;
+<span style=3D"background:lime">[RF0 (RX1), RF1 (RX1)]</span> (Fig 1), we c=
+ould have 8 receiving channels (Fig 2)?</span><span lang=3D"EN-US"><u></u><=
+u></u></span></li><li class=3D"m_-1476255911877875423MsoListParagraph" styl=
+e=3D"margin-left:0cm"><span lang=3D"EN-US" style=3D"font-family:&quot;Sourc=
+e Sans Pro&quot;,sans-serif;color:rgb(51,51,51)">If previous question is no=
+t possible, do you have in your roadmap to develop an X410 version with
+ 8 channels?</span><span lang=3D"EN-US"><u></u><u></u></span></li></ol>
+<p class=3D"MsoNormal"><img width=3D"828" height=3D"178" style=3D"width: 8.=
+625in; height: 1.8541in;" id=3D"m_-1476255911877875423Imagen_x0020_1" src=
+=3D"cid:18b4781986c4cff311"><span lang=3D"EN-US"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Fig 1.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><img width=3D"834" height=3D"179" style=3D"width: 8.=
+6875in; height: 1.8611in;" id=3D"m_-1476255911877875423Imagen_x0020_2" src=
+=3D"cid:18b4781986c5b16b22"><span lang=3D"EN-US"><u></u><u></u></span></p>
+<h2 style=3D"margin-right:0cm;margin-bottom:11.25pt;margin-left:0cm">
+<span lang=3D"EN-US" style=3D"font-size:11pt;font-weight:normal">Fig 2.<u><=
+/u><u></u></span></h2>
+<h2 style=3D"margin-right:0cm;margin-bottom:11.25pt;margin-left:0cm">
+<span lang=3D"EN-US" style=3D"font-size:11pt;font-weight:normal">Thank you =
+very much in advanced.<u></u><u></u></span></h2>
+<h2 style=3D"margin-right:0cm;margin-bottom:11.25pt;margin-left:0cm">
+<span lang=3D"EN-US" style=3D"font-size:11pt;font-weight:normal">Looking fo=
+rward to hearing your reply.<u></u><u></u></span></h2>
+<h2 style=3D"margin-right:0cm;margin-bottom:11.25pt;margin-left:0cm">
+<span lang=3D"EN-US" style=3D"font-size:11pt;font-weight:normal">Best,</spa=
+n><span lang=3D"EN-US" style=3D"font-size:11pt"><u></u><u></u></span></h2>
 <p class=3D"MsoNormal" style=3D"background:white"><span lang=3D"EN-US" styl=
-e=3D"font-family:&quot;Verdana&quot;,sans-serif;color:#201F1E;mso-ligatures=
-:none;mso-fareast-language:ES">--------------------------------------------=
-------------------------------------</span><span lang=3D"EN-US" style=3D"co=
-lor:#201F1E;mso-ligatures:none;mso-fareast-language:ES"><o:p></o:p></span><=
-/p>
+e=3D"font-family:Verdana,sans-serif;color:rgb(32,31,30)">------------------=
+--------------------------------------------------------------</span><span =
+lang=3D"EN-US" style=3D"color:rgb(32,31,30)"><u></u><u></u></span></p>
 <p class=3D"MsoNormal" style=3D"background:white"><b><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#=
-232D4B;mso-ligatures:none;mso-fareast-language:ES">Inetum&nbsp;</span></b><=
-span lang=3D"EN-US" style=3D"color:#201F1E;mso-ligatures:none;mso-fareast-l=
-anguage:ES"><o:p></o:p></span></p>
+tyle=3D"font-size:12pt;font-family:Verdana,sans-serif;color:rgb(35,45,75)">=
+Inetum=C2=A0</span></b><span lang=3D"EN-US" style=3D"color:rgb(32,31,30)"><=
+u></u><u></u></span></p>
 <p class=3D"MsoNormal" style=3D"background:white"><span lang=3D"EN-US" styl=
-e=3D"font-family:&quot;Verdana&quot;,sans-serif;color:#201F1E;mso-ligatures=
-:none;mso-fareast-language:ES">&nbsp;</span><span lang=3D"EN-US" style=3D"c=
-olor:#201F1E;mso-ligatures:none;mso-fareast-language:ES"><o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:12.0pt;fo=
-nt-family:&quot;Verdana&quot;,sans-serif;color:#232D4B;mso-ligatures:none;m=
-so-fareast-language:ES">Pablo Mic=F3 Soler</span></b><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;mso-ligatures:none;mso-fareast-language:ES"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span lang=3D"EN-US" styl=
-e=3D"font-size:9.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D=
-4B;mso-ligatures:none;mso-fareast-language:ES">RF Engineer</span><span lang=
-=3D"EN-US" style=3D"color:#201F1E;mso-ligatures:none;mso-fareast-language:E=
-S"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
-9.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D4B;mso-ligature=
-s:none;mso-fareast-language:ES">Seguridad Electr=F3nica y Defensa | Divisi=
-=F3n de Ingenier=EDa y Analytics<br>
-<i>Electronic Security &amp; Defence | Engineering &amp; Analytics Division=
-</i></span><span style=3D"color:#201F1E;mso-ligatures:none;mso-fareast-lang=
-uage:ES"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:#201=
-F1E;mso-ligatures:none;mso-fareast-language:ES"><o:p>&nbsp;</o:p></span></p=
+e=3D"font-family:Verdana,sans-serif;color:rgb(32,31,30)">=C2=A0</span><span=
+ lang=3D"EN-US" style=3D"color:rgb(32,31,30)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:12pt;font=
+-family:Verdana,sans-serif;color:rgb(35,45,75)">Pablo Mic=C3=B3 Soler</span=
+></b><span lang=3D"EN-US" style=3D"font-size:12pt"><u></u><u></u></span></p=
 >
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
-9.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D4B;mso-ligature=
-s:none;mso-fareast-language:ES">+34 695645619 (Ext.)</span><span style=3D"c=
-olor:#201F1E;mso-ligatures:none;mso-fareast-language:ES"><o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
-9.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D4B;background:w=
-hite;mso-ligatures:none;mso-fareast-language:ES">Calle Mar=EDa de Portugal =
-9 &#8211; 11 (Edificio 1)</span><span style=3D"color:#201F1E;mso-ligatures:=
-none;mso-fareast-language:ES"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
-9.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D4B;background:w=
-hite;mso-ligatures:none;mso-fareast-language:ES">28050 Madrid, Espa=F1a</sp=
-an><span style=3D"color:#201F1E;mso-ligatures:none;mso-fareast-language:ES"=
-><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-famil=
-y:&quot;Verdana&quot;,sans-serif;color:#201F1E;mso-ligatures:none;mso-farea=
-st-language:ES">&nbsp;</span><span style=3D"color:#201F1E;mso-ligatures:non=
-e;mso-fareast-language:ES"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><b><span style=3D"font-fa=
-mily:&quot;Verdana&quot;,sans-serif;color:black;background:white;mso-ligatu=
-res:none;mso-fareast-language:ES"><a href=3D"mailto:pablo.mico@inetum.com">=
-<span style=3D"color:#0563C1">pablo.mico@inetum.com</span></a></span></b><s=
-pan style=3D"color:#201F1E;mso-ligatures:none;mso-fareast-language:ES"><o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:blac=
-k;mso-ligatures:none;mso-fareast-language:ES"><a href=3D"https://inetum.wor=
-ld/es"><b><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:&quot;=
-Verdana&quot;,sans-serif;color:#F04641">inetum.com</span></b></a></span><sp=
-an lang=3D"EN-US" style=3D"color:#201F1E;mso-ligatures:none;mso-fareast-lan=
-guage:ES"><o:p></o:p></span></p>
 <p class=3D"MsoNormal" style=3D"background:white"><span lang=3D"EN-US" styl=
-e=3D"font-size:8.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D=
-4B;mso-ligatures:none;mso-fareast-language:ES">Facebook /
-</span><span style=3D"color:black;mso-ligatures:none;mso-fareast-language:E=
-S"><a href=3D"https://twitter.com/inetum_world"><span lang=3D"EN-US" style=
-=3D"font-size:8.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D4=
-B">Twitter</span></a></span><span lang=3D"EN-US" style=3D"font-size:8.0pt;f=
-ont-family:&quot;Verdana&quot;,sans-serif;color:#232D4B;mso-ligatures:none;=
-mso-fareast-language:ES">&nbsp;/
-</span><span style=3D"color:black;mso-ligatures:none;mso-fareast-language:E=
-S"><a href=3D"https://www.linkedin.com/company/inetum"><span lang=3D"EN-US"=
- style=3D"font-size:8.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:=
-#232D4B">LinkedIn</span></a></span><span lang=3D"EN-US" style=3D"font-size:=
-8.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D4B;mso-ligature=
-s:none;mso-fareast-language:ES">&nbsp;/
-</span><span style=3D"color:black;mso-ligatures:none;mso-fareast-language:E=
-S"><a href=3D"https://www.instagram.com/inetum_world/"><span lang=3D"EN-US"=
- style=3D"font-size:8.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:=
-#232D4B">Instagram</span></a></span><span lang=3D"EN-US" style=3D"font-size=
-:8.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#232D4B;mso-ligatur=
-es:none;mso-fareast-language:ES">&nbsp;/
-</span><span style=3D"color:black;mso-ligatures:none;mso-fareast-language:E=
-S"><a href=3D"https://www.youtube.com/channel/UCuIIEM1MyZ_K6IZg2E2KYtA"><sp=
-an lang=3D"EN-US" style=3D"font-size:8.0pt;font-family:&quot;Verdana&quot;,=
-sans-serif;color:blue">YouTube</span></a></span><span lang=3D"EN-US" style=
-=3D"color:#201F1E;mso-ligatures:none;mso-fareast-language:ES"><o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+e=3D"font-size:9pt;font-family:Verdana,sans-serif;color:rgb(35,45,75)">RF E=
+ngineer</span><span lang=3D"EN-US" style=3D"color:rgb(32,31,30)"><u></u><u>=
+</u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+9pt;font-family:Verdana,sans-serif;color:rgb(35,45,75)">Seguridad Electr=C3=
+=B3nica y Defensa | Divisi=C3=B3n de Ingenier=C3=ADa y Analytics<br>
+<i>Electronic Security &amp; Defence | Engineering &amp; Analytics Division=
+</i></span><span style=3D"color:rgb(32,31,30)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:rgb(=
+32,31,30)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+9pt;font-family:Verdana,sans-serif;color:rgb(35,45,75)">+34 695645619 (Ext.=
+)</span><span style=3D"color:rgb(32,31,30)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+9pt;font-family:Verdana,sans-serif;color:rgb(35,45,75);background:white">Ca=
+lle Mar=C3=ADa de Portugal 9 =E2=80=93 11 (Edificio 1)</span><span style=3D=
+"color:rgb(32,31,30)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+9pt;font-family:Verdana,sans-serif;color:rgb(35,45,75);background:white">28=
+050 Madrid, Espa=C3=B1a</span><span style=3D"color:rgb(32,31,30)"><u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-famil=
+y:Verdana,sans-serif;color:rgb(32,31,30)">=C2=A0</span><span style=3D"color=
+:rgb(32,31,30)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><b><span style=3D"font-fa=
+mily:Verdana,sans-serif;color:black;background:white"><a href=3D"mailto:pab=
+lo.mico@inetum.com" target=3D"_blank"><span style=3D"color:rgb(5,99,193)">p=
+ablo.mico@inetum.com</span></a></span></b><span style=3D"color:rgb(32,31,30=
+)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:blac=
+k"><a href=3D"https://inetum.world/es" target=3D"_blank"><b><span lang=3D"E=
+N-US" style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:rgb(240,=
+70,65)">inetum.com</span></b></a></span><span lang=3D"EN-US" style=3D"color=
+:rgb(32,31,30)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span lang=3D"EN-US" styl=
+e=3D"font-size:8pt;font-family:Verdana,sans-serif;color:rgb(35,45,75)">Face=
+book /
+</span><span style=3D"color:black"><a href=3D"https://twitter.com/inetum_wo=
+rld" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:8pt;font-fam=
+ily:Verdana,sans-serif;color:rgb(35,45,75)">Twitter</span></a></span><span =
+lang=3D"EN-US" style=3D"font-size:8pt;font-family:Verdana,sans-serif;color:=
+rgb(35,45,75)">=C2=A0/
+</span><span style=3D"color:black"><a href=3D"https://www.linkedin.com/comp=
+any/inetum" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:8pt;f=
+ont-family:Verdana,sans-serif;color:rgb(35,45,75)">LinkedIn</span></a></spa=
+n><span lang=3D"EN-US" style=3D"font-size:8pt;font-family:Verdana,sans-seri=
+f;color:rgb(35,45,75)">=C2=A0/
+</span><span style=3D"color:black"><a href=3D"https://www.instagram.com/ine=
+tum_world/" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:8pt;f=
+ont-family:Verdana,sans-serif;color:rgb(35,45,75)">Instagram</span></a></sp=
+an><span lang=3D"EN-US" style=3D"font-size:8pt;font-family:Verdana,sans-ser=
+if;color:rgb(35,45,75)">=C2=A0/
+</span><span style=3D"color:black"><a href=3D"https://www.youtube.com/chann=
+el/UCuIIEM1MyZ_K6IZg2E2KYtA" target=3D"_blank"><span lang=3D"EN-US" style=
+=3D"font-size:8pt;font-family:Verdana,sans-serif;color:blue">YouTube</span>=
+</a></span><span lang=3D"EN-US" style=3D"color:rgb(32,31,30)"><u></u><u></u=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 </div>
-</body>
-</html>
+</div>
 
---_000_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
 
---_005_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_
+--000000000000139a1806080fa9bb--
+
+--000000000000139a1906080fa9bc
 Content-Type: image/png; name="image001.png"
-Content-Description: image001.png
-Content-Disposition: inline; filename="image001.png"; size=345825;
-	creation-date="Thu, 19 Oct 2023 10:03:10 GMT";
-	modification-date="Thu, 19 Oct 2023 10:03:11 GMT"
-Content-ID: <image001.png@01DA027F.AEF9F590>
+Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
+Content-ID: <18b4781986c4cff311>
+X-Attachment-Id: 18b4781986c4cff311
 
 iVBORw0KGgoAAAANSUhEUgAABNkAAAELCAIAAABrhMczAAAAAXNSR0IArs4c6QAA/8pJREFUeF7s
 /deTndma3omlN0gH772pQpnj2swhm5xucmY4hgyOzAxDEVJII90qQrrQX9DihUYRipjQhf4BhUIm
@@ -6681,15 +6493,12 @@ zgqSbITzRqTa7YLB9k3lxW4Pz13TpZ0XtmzBRjbpVefBv9ZAsIct+yLsqHXQ7VUxOp9N3PLeJaNx
 5Z7zsMONRvVx5/mcLVfyJV822Ls94NXaJBuTrw/5/23RPW/kfIBkWL54+zG2YYDngwAzM9mkJIwT
 lwi97Wnp/7W26IYYzLK+sb0tWlSOTWZas+OiQoNIy4Zo+SsysY2+Mo3/A9Zr/NtuWJSGAAAAAElF
 TkSuQmCC
-
---_005_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_
+--000000000000139a1906080fa9bc
 Content-Type: image/png; name="image002.png"
-Content-Description: image002.png
-Content-Disposition: inline; filename="image002.png"; size=338946;
-	creation-date="Thu, 19 Oct 2023 10:03:11 GMT";
-	modification-date="Thu, 19 Oct 2023 10:03:11 GMT"
-Content-ID: <image002.png@01DA0280.13934920>
+Content-Disposition: inline; filename="image002.png"
 Content-Transfer-Encoding: base64
+Content-ID: <18b4781986c5b16b22>
+X-Attachment-Id: 18b4781986c5b16b22
 
 iVBORw0KGgoAAAANSUhEUgAABOIAAAEMCAIAAADmko5EAAAAAXNSR0IArs4c6QAA/8pJREFUeF7s
 /emPntm63ocVay7WTBbneei5++x9hn00HescxZIlS4jsJArywUicfAyQAPkPsuMARoAARj7kLwjg
@@ -12638,10 +12447,9 @@ fGCfJrtag9nF65e7p7exK/ZjgVaDYj8Gc3bb3CdkyyeV753ZZUh/i6Zug067KFfbtL/umVxm/c1S
 3QaqZ4qzJdD+lJJ+V89kF/aRi6sdW95m/f46nvnvo8SvxlIv9GqM2gXCO475rwNF/zaLTwcCCYb/
 DQ8/nSXYp15W8659Gs+Oze7CUXfs+m+vf2YhsE886q+Mds7K8u24NOuW4Kx0elbAu6+d7gJGLNw2
 3u3/H5r7kxUQHrCkAAAAAElFTkSuQmCC
+--000000000000139a1906080fa9bc--
 
---_005_AS8PR05MB8849BEE66963EFD03ED9CD3EEDD4AAS8PR05MB8849eurp_--
-
---===============5328329248300174556==
+--===============3566432199482160491==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -12651,4 +12459,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5328329248300174556==--
+--===============3566432199482160491==--
