@@ -2,66 +2,66 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6CCE7CFDD8
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Oct 2023 17:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 639D27D030B
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Oct 2023 22:09:24 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E8719385BBA
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Oct 2023 11:28:32 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 25FB93855E3
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Oct 2023 16:09:23 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1697729312; bh=TfY8n5+NyGJK906z+NWqKgMA3/PWWZQh6VjshJKser4=;
+	t=1697746163; bh=C6Pm3TKm3lBvLT45n9cRb9a3vxKaQHbTpNc72Rxc0NE=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=METcs5eovQlr3ak3Xq3i75iIuLKOSs4I3asVZft3Xbp/AjBgcmPPj0vXquhDoyrFy
-	 dqgzYszrx8uOYLMBlAipjH9M6rq97QCbj5navjqfZ0BM7Q/YNyP/oDcVidjsAX9MdJ
-	 d6WGgu2ouS7t3yF82HFkDkgRdEnD6ZvbodsDBMjcazFod+jApffUIkSizLFk9+60oS
-	 6sHy/Kl38kcXj24dhAF1N/xsvaYIJ2OE+iLdrDICYfK037un/AhA/3PrxD9YLoBdqD
-	 4bBkV4AZfKyLOIUfDzHpjwLwNgwv+phhVkFdXjttBEH3DvA2ezY2c9E1UDtYugcZgx
-	 w9ZhK4ZgytORQ==
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id B1902385B50
-	for <usrp-users@lists.ettus.com>; Thu, 19 Oct 2023 11:28:16 -0400 (EDT)
+	b=OUNqqAwWHIsdkWm801si0u3t/DtOTww6fKd/EcRuypMQI6B3TKyHNy8mwVOhzAhjG
+	 OTOqiZuFxKIwp68ncoQYpYLuL+rt91g0Ih+aBAXp5XvB/AY0dWMROT87OdTzNtOyVy
+	 5KwlzzS1Rxn4OmC0CYO88TPbyEe9PkBcksznc6cWeCT4E3vD19Tsvw/I4vbAPc5yHf
+	 Bc0baJTOV5sZsg8chOjbTFYR9sm8oTCtaAZyv9Rfrxw3ExPxzk06wgShW48yBQc6zZ
+	 aoJXdQO6QJYj0uCgrpzWiSr9cTx/wWlRwIrAOjVCejjMAAkNLgUeg/ln+LFnXrAkK8
+	 c4H98rT806D1Q==
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4B2563855C2
+	for <usrp-users@lists.ettus.com>; Thu, 19 Oct 2023 16:08:26 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ECz2JwiY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WiHxmj7G";
 	dkim-atps=neutral
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-65b0e623189so48064416d6.1
-        for <usrp-users@lists.ettus.com>; Thu, 19 Oct 2023 08:28:16 -0700 (PDT)
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7788ebea620so1722085a.3
+        for <usrp-users@lists.ettus.com>; Thu, 19 Oct 2023 13:08:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697729296; x=1698334096; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1697746105; x=1698350905; darn=lists.ettus.com;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CGm7FexacWF2AWJ+bEG7zxDz0XGpU22HYouPQqN4ri8=;
-        b=ECz2JwiYoosMNF6MvN/EzymjCH0Psop0LFi3g8JiW2iUg62e6Mmj0eqHwWndWLhLE3
-         J6PXqkLuaiWXVa4tYq14iEFVwJo9sbMQR+jUTKdySHTDe/uQLC/M40hiIqnZSbwc4JeJ
-         0cXwvR1LJ5VrK8RLqQPeIvLUtPza8iSsSXH0KIlEdf4wvfNYC3TfGs3wp+NedZsFL1OF
-         7MkcG0xyvQ7KAKEstfU+BrFWpG2GmMewWADdnHQpzCTdRc4+Ya9pfLHjn9zna/QXfh0l
-         nIIRDrT9w4olbCVDipnD4bmk60cuM6JvBUqbyjsii7+UJxBnKopjWZRT9fXpIOT09wgE
-         Qpeg==
+        bh=YzmRd3O3tg6fHp1QijaSxBwowguoav+UfYDZIsFf5CM=;
+        b=WiHxmj7GYF/67QC+UvlIr3vh//H9fdIslLkPy02W6QwwbC44jhqmDdSi31rPKce8Es
+         DNZEajhfbAgYXIJoK4xMlHBzpL2S6wLDPaUdESsPeQM6YuurzC9dSpHjwM6wm+H6sTjE
+         qJAQVt9J2OTgmkIagK/F/VW1x1Y2Zu8kUnTzBcehfoLQeeMjQv+44hGS1DFEuGZm7PRw
+         Bpn/T6J5jTz9vUajeZyF/Z/ER3FH+1CJMbWWRf0zgUcE4JZOVN/iYW5xhxxyuUrXeLxn
+         3ElKhP8O30HK+jvq/KU+EQ8s5ao0O4J1GltkLFtP2sh6U4lETpmJBQILD2LN6C0v7r98
+         3xIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697729296; x=1698334096;
+        d=1e100.net; s=20230601; t=1697746105; x=1698350905;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=CGm7FexacWF2AWJ+bEG7zxDz0XGpU22HYouPQqN4ri8=;
-        b=EQwQJ3VMDe91YvtXtihek8QpCsFf3woAcrlYE8Ej4UXVB0DOBtu3+23fc5KIV9fLN5
-         Hbqd6lx/U+Uz2hruuPuzq5yRJUzVI487tgyL4AjiwuYUxWSKSpi/w7MjehP/ZLDmSqJm
-         6YLBhFd7bDNXod/rOTk2qHnavHvulE5rljPgJSosN0HD6nljUIkN7VwTY9DhcUiTNeDI
-         PayqfYHSfqqsZlDR02NHRpm5LSCPrSd7LTEurNp8jAyK6OBdmaQnGQwQyMgel/l0CpeA
-         F71klchQPyTFvbWbMGB2gXMNSwQckBym7+Gf+5UYTG+PQF0uffkjsJYPvEs3WGfJ86Lk
-         02+g==
-X-Gm-Message-State: AOJu0YyU1np2QTA6hPsXjdJdJpFbe0Amgen5cXdPO3PPIQzIQ6mnVgEA
-	K53tVdvJZRsHrSM24kjjCjMLwEJXreY=
-X-Google-Smtp-Source: AGHT+IHhecwHelOC3njWFkWY8806VlAbroIRVxQHmvsu4dVAUhojl7T3wKSgFuB+ivSTdc6gLZAaYA==
-X-Received: by 2002:a05:6214:29cc:b0:66d:4191:91ee with SMTP id gh12-20020a05621429cc00b0066d419191eemr2342158qvb.51.1697729295411;
-        Thu, 19 Oct 2023 08:28:15 -0700 (PDT)
-Received: from [192.168.2.200] (bras-base-smflon1825w-grc-06-174-88-54-173.dsl.bell.ca. [174.88.54.173])
-        by smtp.googlemail.com with ESMTPSA id k19-20020a05621414f300b0065aff6b49afsm855331qvw.110.2023.10.19.08.28.14
+        bh=YzmRd3O3tg6fHp1QijaSxBwowguoav+UfYDZIsFf5CM=;
+        b=VZilySM6IuSbL6SwbYoBIjHGLdLpfL2GW69vcgyfYNcOsf8lmf/ZyNtlG14eftIOWb
+         FEdhjN1sR4g7NXXdZkVHTgrwoWeVoMpM40ZLzoM10mCL2ueP3vVSLPNHcUPiAs6zVoLq
+         X+JEIcRskKxky8muwp6gkmMltJgCBl/L201aEL3CwrKknWLoKXE+JdAIDAuoKKHpjdcS
+         QDninzRY2h5+Q7ra1IQLOCGSMTc+MFSaZlhzD34lO3st4brAVUKCd+CAqhbvUop9jRre
+         9pLkxAN2JFnYA3EO1tL3O9HgG2SO24H0ZZ8G2VQYC0+tzepwpln8tlrRwU9CaGctVZrg
+         8d7g==
+X-Gm-Message-State: AOJu0YzC1N58Y/o0ooW1VKeoXzpl2jG7rX/3OLfcbja+et6Eg/3Ks0FF
+	05mdm2140/zHvItwaoQr/r8YivZGHe8=
+X-Google-Smtp-Source: AGHT+IFcNWAP1CZPcYH/at31GuyiaopT/7ad5Nav2xW6ludPdeeJO5zzuLYXdzHsH9dk6okfPbLH+A==
+X-Received: by 2002:a05:620a:c93:b0:777:258e:f7a5 with SMTP id q19-20020a05620a0c9300b00777258ef7a5mr2842255qki.23.1697746105455;
+        Thu, 19 Oct 2023 13:08:25 -0700 (PDT)
+Received: from [192.168.2.200] ([174.88.54.173])
+        by smtp.googlemail.com with ESMTPSA id j17-20020a05620a001100b0077703f31496sm63840qki.92.2023.10.19.13.08.24
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 08:28:15 -0700 (PDT)
-Message-ID: <d2ef36a4-0f8e-43d3-a60b-b68e0260e650@gmail.com>
-Date: Thu, 19 Oct 2023 11:28:12 -0400
+        Thu, 19 Oct 2023 13:08:25 -0700 (PDT)
+Message-ID: <3b01f9fc-b1f6-471c-ab64-049eb8f8f57b@gmail.com>
+Date: Thu, 19 Oct 2023 16:08:16 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
@@ -69,33 +69,33 @@ To: usrp-users@lists.ettus.com
 References: <ovYQpFUtXEiOiKWnub6xbegXzRrCkULxJshchz1B4Ks@lists.ettus.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <ovYQpFUtXEiOiKWnub6xbegXzRrCkULxJshchz1B4Ks@lists.ettus.com>
-Message-ID-Hash: GIQLRTI2QIBSSTMDTAPVOWWSU4GFHD6Z
-X-Message-ID-Hash: GIQLRTI2QIBSSTMDTAPVOWWSU4GFHD6Z
+Message-ID-Hash: 5P767NG5JL7P4INZRV2WHJ7Z4VPXJWJZ
+X-Message-ID-Hash: 5P767NG5JL7P4INZRV2WHJ7Z4VPXJWJZ
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP X310 Error: Unknown setting registry name: CORDIC_FREQ
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GIQLRTI2QIBSSTMDTAPVOWWSU4GFHD6Z/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5P767NG5JL7P4INZRV2WHJ7Z4VPXJWJZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5159254285228413638=="
+Content-Type: multipart/mixed; boundary="===============1631867738299651936=="
 
 This is a multi-part message in MIME format.
---===============5159254285228413638==
+--===============1631867738299651936==
 Content-Type: multipart/alternative;
- boundary="------------GIXFzSFOdG3MsGc96T4ga0Ay"
+ boundary="------------TWX6cv0NzmJVKa0KnBnvRQiz"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------GIXFzSFOdG3MsGc96T4ga0Ay
+--------------TWX6cv0NzmJVKa0KnBnvRQiz
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
 On 19/10/2023 11:19, mmason@mitre.org wrote:
 >
@@ -104,70 +104,55 @@ On 19/10/2023 11:19, mmason@mitre.org wrote:
 > _______________________________________________
 > USRP-users mailing list --usrp-users@lists.ettus.com
 > To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-I'll note that you're running a version of UHD that is *years and years*=20
-obsolete.=C2=A0=C2=A0 It may be the case that the firmware on
- =C2=A0 your device has a slight "mismatch" with the host library -- perh=
-aps=20
-because some custom work had been done on the
- =C2=A0 firmware?
+You're running an *ancient* version of UHD on an *ancient* version of 
+RedHat Linux.
 
-Regardless, I'd suggest upgrading to *at least* UHD 3.15
+I'd suggest, if possible updating everything to something more modern.
 
 
---------------GIXFzSFOdG3MsGc96T4ga0Ay
+--------------TWX6cv0NzmJVKa0KnBnvRQiz
 Content-Type: multipart/related;
- boundary="------------hTzP0EXM7bR0rD5m5C0ltpzz"
+ boundary="------------i1qcUYwFzlZpdGEn70fq7Srs"
 
---------------hTzP0EXM7bR0rD5m5C0ltpzz
+--------------i1qcUYwFzlZpdGEn70fq7Srs
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 19/10/2023 11:19, <a class=3D"moz-t=
-xt-link-abbreviated" href=3D"mailto:mmason@mitre.org">mmason@mitre.org</a=
->
+    <div class="moz-cite-prefix">On 19/10/2023 11:19, <a class="moz-txt-link-abbreviated" href="mailto:mmason@mitre.org">mmason@mitre.org</a>
       wrote:<br>
     </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:ovYQpFUtXEiOiKWnub6xbegXzRrCkULxJshchz1B4Ks@lists.ettus.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p><img src=3D"cid:part1.W38gRCcH.BAsaQIeo@gmail.com" alt=3D""
-          draggable=3D"true" class=3D"" contenteditable=3D"false"><br>
+    <blockquote type="cite"
+cite="mid:ovYQpFUtXEiOiKWnub6xbegXzRrCkULxJshchz1B4Ks@lists.ettus.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <p><img src="cid:part1.yDvcovNU.nzYY0uGu@gmail.com" alt=""
+          draggable="true" class="" contenteditable="false"><br>
       </p>
       <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
+      <fieldset class="moz-mime-attachment-header"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+USRP-users mailing list -- <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class="moz-txt-link-abbreviated" href="mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettus.com</a>
 </pre>
     </blockquote>
-    I'll note that you're running a version of UHD that is *years and
-    years* obsolete.=C2=A0=C2=A0 It may be the case that the firmware on<=
-br>
-    =C2=A0 your device has a slight "mismatch" with the host library --
-    perhaps because some custom work had been done on the<br>
-    =C2=A0 firmware?<br>
+    You're running an *ancient* version of UHD on an *ancient* version
+    of RedHat Linux.<br>
     <br>
-    Regardless, I'd suggest upgrading to *at least* UHD 3.15<br>
+    I'd suggest, if possible updating everything to something more
+    modern.<br>
     <br>
     <br>
   </body>
 </html>
---------------hTzP0EXM7bR0rD5m5C0ltpzz
+--------------i1qcUYwFzlZpdGEn70fq7Srs
 Content-Type: image/png; name="embed0"
 Content-Disposition: inline; filename="embed0"
-Content-Id: <part1.W38gRCcH.BAsaQIeo@gmail.com>
+Content-Id: <part1.yDvcovNU.nzYY0uGu@gmail.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAABCIAAAFXCAYAAAB3Bu+GAAAAAXNSR0IArs4c6QAAAARnQU1B
@@ -4634,11 +4619,11 @@ drvfZPqNefcLaSH9e056yum//tf/iv/8n//zz+Urzc9bSAtpIS2khbSQFtL//5Jiz9+eO9/K
 /w3e/3/+Lyz9z/8XXuL915n+gOlPmP6S6S+YFJd+g0nliks/wzSf7vy0EKMupIW0kH4dkjYf
 fud3fge/9Vu/xfv/C/9fXFpt5p4dgfQAAAAASUVORK5CYII=
 
---------------hTzP0EXM7bR0rD5m5C0ltpzz--
+--------------i1qcUYwFzlZpdGEn70fq7Srs--
 
---------------GIXFzSFOdG3MsGc96T4ga0Ay--
+--------------TWX6cv0NzmJVKa0KnBnvRQiz--
 
---===============5159254285228413638==
+--===============1631867738299651936==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -4648,4 +4633,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5159254285228413638==--
+--===============1631867738299651936==--
