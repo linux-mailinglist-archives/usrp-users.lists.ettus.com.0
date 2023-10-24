@@ -2,158 +2,181 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A5267D511C
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Oct 2023 15:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A5D17D53B0
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Oct 2023 16:12:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E69003851A2
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Oct 2023 09:12:01 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F289238597C
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Oct 2023 10:12:20 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1698153121; bh=gAeRdImphThHhpfghIWuikKJmRASA8y0pCZMYlFfsGQ=;
+	t=1698156740; bh=4IJHYsMAnaa6il35x+B9aaELgZ09Sb/xTAUB2o0y/cc=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=hWvdEMOdaXYfdl1+86GmEK62ERS6xuD0KJGkyknSe2ziBincOqk5lPYQC1PXxuYC5
-	 5s9ifEMTGIHUyorsZsmvuRlp/X0JRaXgr5Nz/2j1DGhZ/mUffIa/U+GFuqXc6y3kUU
-	 y2BTRVlu3XKSTqj4o6eVjHocxUiIvGZSh1gkSCdndcIYwI3MCDD/SGRRJX7wlVb2bP
-	 yjwXasaz5hHkhT7oykMlUwTZVOsy1omxdYczIAcCE7G7lCdqTGKWaBirMcy+isby3v
-	 uLseAD8j63BuHqvrmyCj9GEk8hRqVD3VEr4EqS64+6GK7uupiCBkUx3nHLZ/Sn3NQI
-	 SeO9Vpj8NjpOg==
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 68582384CE8
-	for <usrp-users@lists.ettus.com>; Tue, 24 Oct 2023 09:11:32 -0400 (EDT)
+	b=0xY8b07gSqQteLmsjlK4K1+lJnvpyeGpyPfLB18Wed7GgJpNtMl6yWOBD141g+S3y
+	 r0f6/q7E6RlERcIN6KkotheUYuTXl0pbUc5r0wnuI1VTT+v6QJMHg5Va35qoWNze4q
+	 AYjeVuuDMgqLYu21nrgsiCwNQh9JREKjGoxqJymxeV1O/eFsLNk+A7GAQYr2AyyP+W
+	 AdqW+pXHu0ujKgSrtIEhFuBFUPQ8zzO6rBxPoMsURkkyQpFX/THhQO1u0X+zgbWNzC
+	 WsiFVb2uUmrOIP+wAe6DZLAUvDEznuAYHhs+aFh+5dNZql5oi6gon7/Jiu5vo0y7mS
+	 +kpciiUNefiow==
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id 648F23858D1
+	for <usrp-users@lists.ettus.com>; Tue, 24 Oct 2023 10:11:51 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="J8ZWYMiI";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hBvMfjVZ";
 	dkim-atps=neutral
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-9ad8a822508so668891666b.0
-        for <usrp-users@lists.ettus.com>; Tue, 24 Oct 2023 06:11:32 -0700 (PDT)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1c9d3a21f7aso37710445ad.2
+        for <usrp-users@lists.ettus.com>; Tue, 24 Oct 2023 07:11:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1698153091; x=1698757891; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1698156710; x=1698761510; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d0FgDwJYW+0AT7gaxruMT5rPQO/HQ9ILHotP0WkmOn0=;
-        b=J8ZWYMiI8hgYi8eSPgfi+xTbIpyGcZfRTaBBPYcneyePYp4JK5mPfrtS0ODb78iWFE
-         q3/ubFP8XpKxO2ts0FWRrpCrGt2iyqd2MdJ2ckUbF/MIyXvZQqjOXggmkjhbPRfNMXQz
-         NlfW4Z28mx3TLBinsUp3otAyJXCcArWdOlypajgHdskkYaMYatBq02XSvlMoN2IzPy2i
-         LijXuqRFgxF8r6+SkM3o/4fsB6I1AFObqZPiFIrBTtFusGkja/wYI+FiU27wLf4m/gWN
-         XbZo537DsobgndgG4jc5zjLcxaGSKk4UnXBXOk7wnqNapvFDx05vLYTa06+ITuSBG+vY
-         ssbQ==
+        bh=KKTji6t9le3QRkcz9EkNA5Ai3PaXaFpeJOQhKihpRN0=;
+        b=hBvMfjVZNgT/KMvHmFD3GnVXfxW7ed1qT2q4v582zNc+tT73e2krlB3za/7LaTJIXD
+         G/PVEYTxvMH3JDTy2OlJlXr6WVZTbnrfqiKi+QvvzPSvrUxFL0VQQASIm3z0ID9Mpsze
+         j6ocMozuzBWyYy5H+eLj9YWn0tC5hIb+wd7sRB8g19ZF0qpK644Yd2/RL0vDKPHjvuHc
+         trhPLZKGmk0g6tpKG6LTwzRlwEWVEsn3WwgXhIS3N77UtZeRCQobdmCI1kiUbgW/x88P
+         gan/GdC7tMFLgZTCXvYhPMZQt7IIQ1so9xA+nNw7OaJWE9S4xObN/xfCBpgxihmImAZ5
+         RRRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698153091; x=1698757891;
+        d=1e100.net; s=20230601; t=1698156710; x=1698761510;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=d0FgDwJYW+0AT7gaxruMT5rPQO/HQ9ILHotP0WkmOn0=;
-        b=HbknJksCNAmlshEqVn6svehfOGKzswh5mxWjratDfxpMn2P6Q8DIMuc9ygjt5+6BVc
-         HFV4FNH+IGqYb1U2QEg58i3ZGmYDEDNqPw3qcT6Gqaq78PB/oh6eeyDnFVr6Ib13m2mj
-         FR62BocbGOrp3DQt6h8S1T+nIeeKYdQ+oVisfzvlPnIGxvQorsbvppNbJcAPPvIXBA25
-         JGHu7r8wY+aLYrC2hcHVrzx4PPQwK7XXQUdpeNG1LgiYYJc3iSA/O2YG1WOUlLy21qfy
-         rNw9QaTopZhBgwRR25N3A8cZszaUzsDhflWV6DoPohAGdtY8xMeMa0r6hvQsRjmQdSj8
-         tlRw==
-X-Gm-Message-State: AOJu0Yyh5JUtAa/vni/iy9hy5zxgPkDXBCE4eDs86MXpCay0nIW3l1j1
-	qWlCHW8/ltbdwGor1D29SrQzLD4+bXdw+1LXyJr4q5djNu/ec+XXowQ=
-X-Google-Smtp-Source: AGHT+IEV5CpGe/NaqqJXQ8G85iZCsOELZdBv2zcVQjrrHW5efPr1SplN7iz7/R6DWmZHVW5V3+baoV5YKFAvmpvrv9Y=
-X-Received: by 2002:a17:907:2dab:b0:9b9:b12c:133d with SMTP id
- gt43-20020a1709072dab00b009b9b12c133dmr9315798ejc.53.1698153090827; Tue, 24
- Oct 2023 06:11:30 -0700 (PDT)
+        bh=KKTji6t9le3QRkcz9EkNA5Ai3PaXaFpeJOQhKihpRN0=;
+        b=qiT2Yam97XQP3Pk4BpDOuWQuczqMRgIFNyUSwsWG65uTq9lmIS9Ht2Ju5+3KE588iQ
+         uZo9QGkK2nX9IL3hQMLRe7MMftO3jrUszTgFxIrN9fygXfYMya6jPyGTwps5XFUSTePG
+         oJOc16biyx82W2XkmnDkQdTo7Mbw1+U9mmUa001d6IneIerMxRuEBzXKn1D6d8L5bNQ3
+         fRNbL8MBFH2RABxlQNhDhTj2ZSzmUO2/QU4rFPZxtcFQM+KhcBAihNda2uYV7aFC+Z3l
+         93W5dA6QJW69J8ibwHHavDYQ4Bbh+OjU6BsHSM6JAa+Kt4hAEVRwRIpMRSWWj0ux4X8/
+         CjAg==
+X-Gm-Message-State: AOJu0YwqqJSTyL+FsG1tS5nembaV4qxA7UYSZGd1afPyfuj4QJi2eMDF
+	C2v4Cn1WXgjer5HiprRwM9uYGR6UGvXg4eq7mhPKRfHpy9c=
+X-Google-Smtp-Source: AGHT+IF2enxfkfz6gSvxF6IdYdH81ofwBbweUPJz1HXr8EfwwxWvrMr4zlroWaeth5xG1hwGfe8gamLHUsrQO6i19sI=
+X-Received: by 2002:a17:90a:8c10:b0:27c:f2e5:a82 with SMTP id
+ a16-20020a17090a8c1000b0027cf2e50a82mr12602967pjo.15.1698156709955; Tue, 24
+ Oct 2023 07:11:49 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAG16vQUqqTvLCYh9f+83o1m_BdJ3V+-YJy76iJB8ochk5d+vwg@mail.gmail.com>
-In-Reply-To: <CAG16vQUqqTvLCYh9f+83o1m_BdJ3V+-YJy76iJB8ochk5d+vwg@mail.gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Tue, 24 Oct 2023 08:11:13 -0500
-Message-ID: <CAFche=hrDJDB_c_C=TGDV8G+7FxrU+x2+i9F83E0qd3_XR2y4Q@mail.gmail.com>
-To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
-Message-ID-Hash: BTBHM53JVNVMKQDQTAF6VFVXLWUSA5W3
-X-Message-ID-Hash: BTBHM53JVNVMKQDQTAF6VFVXLWUSA5W3
-X-MailFrom: wade.fife@ettus.com
+ <CAFche=hrDJDB_c_C=TGDV8G+7FxrU+x2+i9F83E0qd3_XR2y4Q@mail.gmail.com>
+In-Reply-To: <CAFche=hrDJDB_c_C=TGDV8G+7FxrU+x2+i9F83E0qd3_XR2y4Q@mail.gmail.com>
+From: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Date: Tue, 24 Oct 2023 16:11:37 +0200
+Message-ID: <CAG16vQWMjdLh4i5OqVv8a8UBiCnhABjGDOHN_558C_wm5YygUg@mail.gmail.com>
+To: Wade Fife <wade.fife@ettus.com>
+Message-ID-Hash: 2RU33FN6PEZYOYVLQ7SQQS77G6XV6JLQ
+X-Message-ID-Hash: 2RU33FN6PEZYOYVLQ7SQQS77G6XV6JLQ
+X-MailFrom: mamuki92@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: JTAG connection for E320
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BTBHM53JVNVMKQDQTAF6VFVXLWUSA5W3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2RU33FN6PEZYOYVLQ7SQQS77G6XV6JLQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3946700001662444865=="
+Content-Type: multipart/mixed; boundary="===============6068769098188949974=="
 
---===============3946700001662444865==
-Content-Type: multipart/related; boundary="000000000000c107760608761317"
+--===============6068769098188949974==
+Content-Type: multipart/related; boundary="00000000000078745e060876eb3f"
 
---000000000000c107760608761317
-Content-Type: multipart/alternative; boundary="000000000000c107750608761316"
+--00000000000078745e060876eb3f
+Content-Type: multipart/alternative; boundary="00000000000078745c060876eb3e"
 
---000000000000c107750608761316
+--00000000000078745c060876eb3e
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-It sounds like you did the right things. Did you disconnect and reconnect
-the USB port? Maybe try a reboot of your host computer and power cycle the
-E320? Is the E320 working otherwise?
+Hi Wade,
 
-Wade
+It turns out that rebooting the computer was the answer. The trick never
+gets old :)
 
-On Tue, Oct 24, 2023 at 4:35=E2=80=AFAM Maria Mu=C3=B1oz <mamuki92@gmail.co=
-m> wrote:
+Thanks!
 
-> Hi all,
->
-> I'm trying to connect to the E320 via JTAG from Vivado GUI, but Vivado
-> does not recognize the hardware.
->
-> I have connected the USB cable to the JTAG port of the E320, and I can se=
+Kind Regards,
+
+Maria
+
+El mar, 24 oct 2023 a las 15:11, Wade Fife (<wade.fife@ettus.com>) escribi=
+=C3=B3:
+
+> It sounds like you did the right things. Did you disconnect and reconnect
+> the USB port? Maybe try a reboot of your host computer and power cycle th=
 e
-> the device listed in my /dev/serial/by-id/ path:
+> E320? Is the E320 working otherwise?
 >
-> [image: image.png]
+> Wade
 >
-> As I'm using Linux, I have also installed the cable drivers following thi=
-s
-> diligent note:
-> https://digilent.com/reference/programmable-logic/guides/install-cable-dr=
-ivers
+> On Tue, Oct 24, 2023 at 4:35=E2=80=AFAM Maria Mu=C3=B1oz <mamuki92@gmail.=
+com> wrote:
 >
-> When I open the hardware manager in Vivado it says that no hardware targe=
+>> Hi all,
+>>
+>> I'm trying to connect to the E320 via JTAG from Vivado GUI, but Vivado
+>> does not recognize the hardware.
+>>
+>> I have connected the USB cable to the JTAG port of the E320, and I can
+>> see the device listed in my /dev/serial/by-id/ path:
+>>
+>> [image: image.png]
+>>
+>> As I'm using Linux, I have also installed the cable drivers following
+>> this diligent note:
+>> https://digilent.com/reference/programmable-logic/guides/install-cable-d=
+rivers
+>>
+>> When I open the hardware manager in Vivado it says that no hardware
+>> target is open:
+>> [image: image.png]
+>>
+>> If  I try to click "open target" and then "autoconnect", a localhost por=
 t
-> is open:
-> [image: image.png]
->
-> If  I try to click "open target" and then "autoconnect", a localhost port
-> connection appears but no target is recognized from this open port:
-> [image: image.png]
->
-> Do I need to configure something else so that Vivado can recognize E320?
->
-> Kind Regards,
->
-> Maria
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> connection appears but no target is recognized from this open port:
+>> [image: image.png]
+>>
+>> Do I need to configure something else so that Vivado can recognize E320?
+>>
+>> Kind Regards,
+>>
+>> Maria
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 >
 
---000000000000c107750608761316
+--00000000000078745c060876eb3e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>It sounds like you did the right things. Did you disc=
-onnect and reconnect the USB port? Maybe try a reboot of your host computer=
- and power cycle the E320? Is the E320 working otherwise?<br></div><div><br=
-></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Tue, Oct 24, 2023 at 4:35=E2=80=AFAM Maria Mu=
-=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com">mamuki92@gmail.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr">Hi all,<div><br></div><div>I&#39;m trying to connect to the E320=
- via JTAG from Vivado GUI, but Vivado does not recognize the hardware.</div=
-><div><br></div><div>I have connected the USB cable to the JTAG port of the=
- E320, and I can see the device listed in my /dev/serial/by-id/ path:</div>=
-<div><br></div><div><img src=3D"cid:ii_lo44mufv2" alt=3D"image.png" width=
+<div dir=3D"ltr">Hi Wade,<div><br></div><div>It turns out that rebooting th=
+e computer was the answer.=C2=A0The trick never gets old :)</div><div><br><=
+/div><div>Thanks!</div><div><br></div><div>Kind Regards,</div><div><br></di=
+v><div>Maria</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">El mar, 24 oct 2023 a las 15:11, Wade Fife (&lt;<a href=
+=3D"mailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt;) escribi=C3=B3:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+"><div>It sounds like you did the right things. Did you disconnect and reco=
+nnect the USB port? Maybe try a reboot of your host computer and power cycl=
+e the E320? Is the E320 working otherwise?<br></div><div><br></div><div>Wad=
+e<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Tue, Oct 24, 2023 at 4:35=E2=80=AFAM Maria Mu=C3=B1oz &lt;<a =
+href=3D"mailto:mamuki92@gmail.com" target=3D"_blank">mamuki92@gmail.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr">Hi all,<div><br></div><div>I&#39;m trying to connect to the E3=
+20 via JTAG from Vivado GUI, but Vivado does not recognize the hardware.</d=
+iv><div><br></div><div>I have connected the USB cable to the JTAG port of t=
+he E320, and I can see the device listed in my /dev/serial/by-id/ path:</di=
+v><div><br></div><div><img src=3D"cid:ii_lo44mufv2" alt=3D"image.png" width=
 =3D"562" height=3D"16"><br></div><div><br></div><div>As I&#39;m using Linux=
 , I have also installed the cable drivers following this diligent note:=C2=
 =A0<a href=3D"https://digilent.com/reference/programmable-logic/guides/inst=
@@ -174,10 +197,11 @@ rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---000000000000c107750608761316--
+--00000000000078745c060876eb3e--
 
---000000000000c107760608761317
+--00000000000078745e060876eb3f
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -740,7 +764,7 @@ Bho68L/3+CLn/3X7/q3zoarWv6uF1GEtZQvcA+4CV0PtOnDr9zjHd66z39qPyHd+434UmaeIbUVs
 IGIDfwQbMKDJ6XSGPHcAP36T1yTGSe+CwZAz+G5nfi8Q8d0ffff973WQP40vfXdqIu//A94AdC38
 rvZdIOODYBME74XafQg2/gcc03f7HXkfAWQRG4jYQMQGfpcNfAs0BQkG/QYoCTCJcVKO0/87aAo/
 ev+21z8NPPR7jTICkiKAImIDERuI2EDEBiI28B/aBv43GKNb2ilfaWYAAAAASUVORK5CYII=
---000000000000c107760608761317
+--00000000000078745e060876eb3f
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2000,7 +2024,7 @@ EX99DKjWTftr/5soSbZaU2soNuSX8Z3UdXjzBUnomGsiYLy1NAa3p28Tv6bDRXpIwF0hxg8r1MCk
 pgBZtaa3kg/m5UPCa6XzLyFpyoCHiYaWTpbeyOqJX1a3vZOTr9EQvmc5ls461J4HLMPBzMoIh+q2
 55QB+3qILDnhpMyw3FZn22rxzp6XAcvJ+my+Ovtm3j9Ufle9wWHpfBnGf08LjQ3IlTS/gjLJ9I5s
 Rg5HMZZMOpJ3QswB/v/35X8DoMWB/aVTgX0AAAAASUVORK5CYII=
---000000000000c107760608761317
+--00000000000078745e060876eb3f
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -4081,9 +4105,9 @@ tetwG5TeH6+X34mtcLlG1mGVQjRBDqy6K8Er8GmcEMXQ4oHhDqzd5fe8jZ9TeUlf/4z1TPXdG3Ro
 8plUB7z2OtATHqO/9u9vvMbX62h+5zvBydhT6XkNOzMg/43fYe9/7L3oT5IT6Wdffw3cU/q/1382
 fe+fdb70PW/1yjWkB8CsA6GAoG4feMUPspZIiQ1N9cFbffc7/X/6PF8rg29c03f6/W/1uf8DAZhD
 p6u6NsEAAAAASUVORK5CYII=
---000000000000c107760608761317--
+--00000000000078745e060876eb3f--
 
---===============3946700001662444865==
+--===============6068769098188949974==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -4093,4 +4117,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3946700001662444865==--
+--===============6068769098188949974==--
