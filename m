@@ -2,118 +2,132 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C5A7DC3A7
-	for <lists+usrp-users@lfdr.de>; Tue, 31 Oct 2023 01:38:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5AF87DC97C
+	for <lists+usrp-users@lfdr.de>; Tue, 31 Oct 2023 10:28:41 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A052F385E92
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Oct 2023 20:38:30 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 591AF38547C
+	for <lists+usrp-users@lfdr.de>; Tue, 31 Oct 2023 05:28:40 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1698712710; bh=cuP6zt3LOPa8b7jlf+ILj3kX3zDaSrETEXmz/wTup8U=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=PAsRoWjhT2UUWN9Cimh2Ps2qypqp3KNArmiCvZTqKBuhygRJi+O7F5wgLLOf7bOiM
-	 98szkHEcrdVH1h37pTqkhDNhs5h5mlA3G7TTQh6Wt1XU/n45wmt6+2RA5jWml9DhJ4
-	 Qs/OG1BGxr6zQT+/lWh9oVuOwbUl0OaMNhvWduyc6u2HF0BKoYjqZeW/8r7lBiYU0J
-	 lfYTikCOsFruZsxls82F1msRlSgEPNXv4JmV0t0BjdABH6EKNqvC8XYw1k/G/qSJlM
-	 5+5yFC7RMtdsQnZp8IYBWMb6eHxzA/4yjtq7nzdzAMGIdEYBApIS4DlAWoLw6iPkpI
-	 SdIvMbRKGCWWQ==
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5EBEF385E74
-	for <usrp-users@lists.ettus.com>; Mon, 30 Oct 2023 20:37:59 -0400 (EDT)
+	t=1698744520; bh=zJniKc5aYobh5SZAphIesqjx7X//lPxhokX8/SWkKDA=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=A0OUMT5AW+ImZ7DOABBImuBR+/zlUgYMojZoZQOymPBlLLR+26WiWQ7npgzbqSIF9
+	 yUnkkg+91LXjA3Y6M8FDZ5u+4CrPK5GlA0oevtT9xQuMt6JeRlwprA/RlMU0alWzfs
+	 vB+YIG4HKXD2VpgBeHp8y/ypQU/1xysfGPv1cNX1UTh5FytClIVHqw+kmP3kptmFDt
+	 gWF9ECLQSy/GfQQT7wT5kUbMknj45FAyAQ6ciDY45bmQ2ZNu1tAWhgTWzHHejRYN5W
+	 vnfLVZWzXmcKSl7YCstU73pmldXVyC7Nlx61RMCS+rHTcFIfEOY8OAsJmdPJzg2Dt1
+	 7yoePZz2iafdg==
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 73EC538541D
+	for <usrp-users@lists.ettus.com>; Tue, 31 Oct 2023 05:28:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="E0An+Eb7";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nHGvWy72";
 	dkim-atps=neutral
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-66d060aa2a4so36346166d6.2
-        for <usrp-users@lists.ettus.com>; Mon, 30 Oct 2023 17:37:59 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-9d0b4dfd60dso553450166b.1
+        for <usrp-users@lists.ettus.com>; Tue, 31 Oct 2023 02:28:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698712678; x=1699317478; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+pLPT/vF+UQEl35dzH2hV6IT+Pshi+4WJizf1KNvptY=;
-        b=E0An+Eb7t1Q3INvpPV8AYFISMvmWLM0wAGm13Dp0u3Kq4z91GFnOHZx+s7Z0ZeimcO
-         Tp92Z9my4FEJv9MBDjej6Yl9BzcBKBu1bsI5EORVqNe2Fjm3ZCuJvV6tuOtiw/+US92Y
-         qbHbXmC75fFtIGh3FrcK+Ek0C/BbUZoC7m5p0da1Lmj2IEvXvlHU2c3pZJdsligAH23R
-         6XoLV/RqTSgR6XUW1qYGGC2/+qGHaPxrV5rOhjaCoUP+NYYyyZYawDBZy65JE0OKwTax
-         pLoux6qMyAKQwU8XSw9cg405oFWryW4j0F9qA4+He4RaqJ6R6Ja34z9hI4d+NRxusPOA
-         CO7A==
+        d=gmail.com; s=20230601; t=1698744495; x=1699349295; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=08f21jl5SUR97Gn5ZsY5bRdeE2I7Wa8Elf04h2wDau8=;
+        b=nHGvWy72k7FGxLf07lR67AnYQ55VmV6j5TlzH04oiOr6yw5cDMZUKkWJOFHzewzK20
+         faAYrYNiAQnp6ycukJEyhA6tL3mfQKp0ZndvbhV197LM7Y3eYfiYM+nttIqI7y4pKVru
+         67qiAULhKNUBVkWidEJcPhKKOA04LNQDesWUR+Vg2FyA1gIJSS2yVVPUiLgYLRi4JBpH
+         8veclRCskuG8pPGHsw9Qqm3t2yZdAGBAwjrMoGchtXw7ww5vQ8P99vPcrSXKI/q/V53O
+         lJzujLUOV1cSs/+6iSrTDrTy03gywEG+gr3hN9SXXa1W+eZig+CM/O007111YEc0ZGOg
+         ywzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698712678; x=1699317478;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+pLPT/vF+UQEl35dzH2hV6IT+Pshi+4WJizf1KNvptY=;
-        b=S8C8vsDVV6u/dSlk+4jv/yjV3h0lPWUiRqKjL52bFFIpbfphn/akclki00y8nqMVY9
-         wXGQWjfguhgW0QgtWEM7j2mn8cktGO1WqbNUC4bzyITyW62BxFmNNr0CeYcdmLoEq3PU
-         gYCV3H9m2n1zDQoBFJ/vMSQzFch2TunpKCOtDPLhrujVuAXLPy3OoGSu/gKxqz+haYeu
-         UxtHQZZAYy+7AoHPKN67WKr9Z+hDhbFwi6F+XhmuUs+8u9KdEW5EK/1nhtMmanOdLBtR
-         gI7klbNZitBXRAsnaMTB1SKI3QoyFjvldbHf1FqN6ZMOFF1bogsV3drcNf0kgKgteZHA
-         OEfg==
-X-Gm-Message-State: AOJu0YxZXC1Kg2Pcn8+q1BdNJtOfjebLZoV76IXtcM2msDuyiDcHrQ4+
-	nkExndK2ft8zc48hLoLxxO9q3QbwFrc=
-X-Google-Smtp-Source: AGHT+IGfJBR4KpTlHDhGaTcFBAicniycDTbpCWF3mzRd8hnce+AMPug/NY1Hm5Smv5tRVCmtpgvk5A==
-X-Received: by 2002:a05:6214:1d2c:b0:671:fcd3:1cc2 with SMTP id f12-20020a0562141d2c00b00671fcd31cc2mr7059766qvd.65.1698712678476;
-        Mon, 30 Oct 2023 17:37:58 -0700 (PDT)
-Received: from [192.168.2.182] ([174.88.54.173])
-        by smtp.googlemail.com with ESMTPSA id nf4-20020a0562143b8400b00655d6d31470sm71450qvb.43.2023.10.30.17.37.58
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 17:37:58 -0700 (PDT)
-Message-ID: <f9f8bf22-aceb-4fed-bbce-046d16154d5d@gmail.com>
-Date: Mon, 30 Oct 2023 20:37:49 -0400
+        d=1e100.net; s=20230601; t=1698744495; x=1699349295;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=08f21jl5SUR97Gn5ZsY5bRdeE2I7Wa8Elf04h2wDau8=;
+        b=eaNR8Cq7YqRdbY91lIJIXLx/F+AKFszc3C8k3vtTBrCF5zUUVrSy1FAUGSPPIh+GLW
+         O6m0tSgIlO3qxJGfxsdeam75DaW0sJ4YSc0U+WACiJA+5Ciq+qzjXaUA4RpapE93Z31o
+         75syENAUeKk2A79D5GdsWg3GGx/W69cbDp7Uo/0ckDaKgIgNhjtDHLLrEuBfF66Cxs7W
+         7dTo8mB/sOZnxZZ4aj9FNWRt/sQ+uoPTbnwF7/6y4iReRGRRdTIXX1jJwBh+MVxnMfpO
+         /CGI2NmwXq93aRjlDepnT4wX3C6C4wX6QitROJIeRCkfuxGHSL7z7TXg1hIbuGzT2YgL
+         o8kg==
+X-Gm-Message-State: AOJu0Yxm9aihx/w/pRWxniHP7zB/TnUxAXg2GyVNUktnBMD/mzE/DQ3F
+	ljxP+aSN0jzwGPjdM3PjOl0isX+iVDRG0RYRP5qX8I41
+X-Google-Smtp-Source: AGHT+IFwz3T2qj8bew8fWEnGLBc/BWJAK9V96/uvmmwmEYKEMV4h+lHdIOXlGIOEweQxrHFKfT0Uw0XjNgcPg+G0HfY=
+X-Received: by 2002:a17:906:7146:b0:9d3:afe1:b3e5 with SMTP id
+ z6-20020a170906714600b009d3afe1b3e5mr3907359ejj.75.1698744494933; Tue, 31 Oct
+ 2023 02:28:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+From: cyberphox <cyberphox@gmail.com>
+Date: Tue, 31 Oct 2023 09:28:04 +0000
+Message-ID: <CAOkUcSvJhKr-==9CN_P4yNibExh1rgHxifHM697-4Utewb0Hqg@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <CAPiksU=3Uf62wdyiym_PvVbwmpjkufs+MHRP-XERT2aL_yA=FA@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAPiksU=3Uf62wdyiym_PvVbwmpjkufs+MHRP-XERT2aL_yA=FA@mail.gmail.com>
-Message-ID-Hash: MXRW5ZPTP45A2BJ4V6AV3U5A6DQPBGGP
-X-Message-ID-Hash: MXRW5ZPTP45A2BJ4V6AV3U5A6DQPBGGP
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: CHEXKNFMBIVUYOOHHNGY4MZP6RKQXR37
+X-Message-ID-Hash: CHEXKNFMBIVUYOOHHNGY4MZP6RKQXR37
+X-MailFrom: cyberphox@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Frequency Spacing for IQ Calibrations
+Subject: [USRP-users] FPGA bit file binary differences with GIT commit (X300)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MXRW5ZPTP45A2BJ4V6AV3U5A6DQPBGGP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CHEXKNFMBIVUYOOHHNGY4MZP6RKQXR37/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============9111715595524784810=="
 
-T24gMzAvMTAvMjAyMyAyMDoyNSwgQmlsbCBEb3dlciB3cm90ZToNCj4gSGVsbG8sDQo+DQo+IFdo
-YXQgZG9lcyBFdHR1cyByZWNvbW1lbmQgZm9yIHRoZSBmcmVxdWVuY3nCoHNwYWNpbmcgZm9yIHRo
-ZSBJUSBjYWxzIA0KPiBhbmQgaG93IGRvZXMgdGhlIFNEUiBhcHBseSB0aGUgY2FsaWJyYXRpb25z
-IHRvIHRoZSBTRFI/DQpUaGV5J3JlIGFwcGxpZWQgdG8gdGhlIERVQy9EREMgbWFjaGluZXJ5IGlu
-IHRoZSBGUEdBLCBiYXNlZCBvbiB5b3VyIA0KdHVuZWQgZnJlcXVlbmN5Lg0KPg0KPiBEbyB5b3Ug
-cmVjb21tZW5kwqBhIGNhbGlicmF0aW9uIHNwYWNpbmcgb2YgTnlxdWlzdCBzbyB0d2ljZSB0aGUg
-DQo+IGJhbmR3aWR0aCBmb3IgdGhlIGZyZXF1ZW5jeSBzcGFjaW5nPw0KSSB0aGluayB0aGF0IHdv
-dWxkIGRlcGVuZCBvbiB0aGUgaGFyZHdhcmUgaW4gcXVlc3Rpb24uwqAgSS9RIGNvcnJlY3Rpb25z
-IA0KYXJlIGRlc2lnbmVkIHRvIGNvbXBlbnNhdGUgZm9yIHNsaWdodGx5LWltcGVyZmVjdA0KIMKg
-IHBoYXNlIGFuZCBhbXBsaXR1ZGUgYmFsYW5jZSBpbiBjb21wbGV4LWJhc2ViYW5kIG1peGVycy7C
-oCBEaWZmZXJlbnQgDQpoYXJkd2FyZSBmYW1pbGllcyB1c2UgZGlmZmVyZW50IG1peGVycywgd2l0
-aCBkaWZmZXJlbnQNCiDCoCBkZWdyZWVzIG9mIHBoYXNlL2FtcGxpdHVkZSBpbWJhbGFuY2UgZGVw
-ZW5kaW5nIG9uIHdoYXQgdGhleSdyZSBiZWluZyANCmFza2VkIHRvIGRvLg0KPg0KPiBUaGVuIGhv
-dyBkb2VzIHRoZSBTRFIgYXBwbHkgdGhlIElRIGNhbD/CoCBGb3IgaW5zdGFuY2XCoGlmIEkgY2hp
-cnAgDQo+IGFjcm9zcyBhIGJhbmR3aWR0aCBkb2VzIHRoZSBTRFIgcGljayBhbmQgSVEgY2FswqBu
-ZWFyIHRoZSBjZW50ZXIgb2YgdGhlIA0KPiBiYW5kIG9yIGludGVycG9sYXRlIGJldHdlZW4gdHdv
-IGNhbGlicmF0aW9uIGZyZXF1ZW5jaWVzPw0KSUYgeW91J3JlIGNoaXJwaW5nIGluIGJhc2ViYW5k
-LCBpdCB3aWxsIGJlIGFwcGx5aW5nIGNvcnJlY3Rpb25zIGJhc2VkIA0KcHVyZWx5IG9uIHlvdXIg
-dHVuZWTCoCBmcmVxdWVuY3kuwqAgQW55IHRpbWUgeW91IHR1bmUsIGl0DQogwqAgaW50ZXJwb2xh
-dGVzIHRoZSBjb3JyZWN0aW9ucyBiYXNlZCBvbiB0aGUgSS9RIGNvcnJlY3Rpb25zIHRhYmxlLiBC
-dXQgDQppZiB5b3UgaGF2ZSBhIHN3ZXB0IGJhc2ViYW5kLCBpdCBoYXMgbm8gaWRlYSB0aGF0IGlz
-DQogwqAgZ29pbmcgb24uwqAgRm9yIGJyb2FkLWJhbmQgbWl4ZXJzLCBjb3JyZWN0aW9ucyB1c3Vh
-bGx5IGRvbid0IGhhdmUgdG8gDQpiZSBzdXBlci1maW5lLWdyYWluZWQuDQoNCg0KPg0KPiBUaGFu
-ayB5b3UgZm9yIHlvdXIgaGVscCwNCj4NCj4gQmlsbA0KPg0KPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
-LSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
-YWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
-LSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWls
-IHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============9111715595524784810==
+Content-Type: multipart/alternative; boundary="0000000000002f4d220608ffc69b"
+
+--0000000000002f4d220608ffc69b
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all,
+
+We have built our own RFNOC block and are trying to do a clean build and
+compare the generated bit file against the original files from the FPGA
+developer.
+
+I would like to know if the bitfile generated has some dependency with the
+GIT commit in some way.
+
+Basically if I take the file changes from my colleague and build the FPGA
+starting from the same reference branch, create my own working branch off
+this and copy them in, build the FPGA I get the same bitfile binary with
+only the date/time stamp difference.  Once I commit the changes and then
+build it once again, the bitfile has a lot of differences.
+
+Thanks for taking time to read this.
+
+All the best
+marino
+
+--0000000000002f4d220608ffc69b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<div><br></div><div>We have built our own RFNOC blo=
+ck and are trying to do a clean build and compare the generated bit file ag=
+ainst the original files from the FPGA developer.=C2=A0=C2=A0</div><div><br=
+></div><div>I would like to know if the bitfile generated has some dependen=
+cy with the GIT commit in some way.</div><div><br></div><div>Basically if I=
+ take the file changes from my colleague=C2=A0and build the FPGA starting f=
+rom the same reference branch, create my own working branch off this and co=
+py them in, build the FPGA I get the same bitfile binary with only the date=
+/time stamp difference.=C2=A0 Once I commit the changes and then build it o=
+nce again, the bitfile has a lot of differences.</div><div><br></div><div>T=
+hanks for taking time to read this.</div><div><br></div><div>All the=C2=A0b=
+est</div><div>marino</div></div>
+
+--0000000000002f4d220608ffc69b--
+
+--===============9111715595524784810==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============9111715595524784810==--
