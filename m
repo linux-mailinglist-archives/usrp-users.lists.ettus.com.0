@@ -2,283 +2,304 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B34E17DE5E2
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Nov 2023 19:12:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 017637DE6F3
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Nov 2023 21:49:28 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BE8C6385A4F
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Nov 2023 14:12:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B059D3855FF
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Nov 2023 16:49:27 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1698862371; bh=uaBFy+s8Nq6JKIphVyQkwtWEyO06K5Tc/ipjlysXnfo=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=Qia0Z5FP6Ch68fS+rdrPZw9rv+XIFyP06N7tQkL9bSLxD/IQF74fg/T3CD6FW2DyV
-	 14LvyfXqGzELKtBlezrBVi8img0SEhdRK4hsQJD60OPSe9jxwxnehU3LQ4r76w/Iu9
-	 TQwfsVzsx5aXRpL7uinkI0WgSBAJKhLOiDA73Ndsjx7+yIxzEVtBSHA+gw4vMykBJs
-	 fTOaoTE4Tt32fPjdIrlwc97lRHErbMf9iHWhACO3J162YmROTjQDI3whEvrynlFUYe
-	 laPt72jNQlnLUWODQPXMHsr5z1G7dzcW2cHUnkgJn8D7GswdvYN8h6Q0KeRFHAyogD
-	 nX8cfz73X2QWw==
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 03B7E385A03
-	for <usrp-users@lists.ettus.com>; Wed,  1 Nov 2023 14:12:18 -0400 (EDT)
+	t=1698871767; bh=7lEEnIrkKyZlX/X9qDyfURnIUAWRe4YzbPfmfnbF6iU=;
+	h=To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=CRkp8zA2EoRIQvifa3C0zWOIm6cMI4MxNDTW9iQmT7e4M3Eo9wptdNhe2kifcTxNr
+	 QyEtS7o8tt+2HYuGz19CmUJ7QCotBjUgk820lWslFc69ESWke2Czdt+Hl5hhwwV+qO
+	 XAZClWofgnmNIyq2HBo5NlmH4qhx+Xmtd1oYCDJEpq1OYd216r1i8wE8hhIi5ikUKH
+	 blqFUTQbKmjYcW602mgTMP2dTOKO/6zsu/hUmnsXk2WvzWRCVbpc0ERgOwwos/5Igz
+	 pWWi9LC7WuNfgANOAqaqoJnik0lUOpo4DBxRerJgGd+FbSPGAe77mOdDCQLAvB9fOS
+	 rTKFU7ljmhKdw==
+Received: from mx0e-0020b901.pphosted.com (mx0e-0020b901.pphosted.com [67.231.147.103])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6DB3A3851B9
+	for <usrp-users@lists.ettus.com>; Wed,  1 Nov 2023 16:48:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Eelpnqzc";
+	dkim=pass (2048-bit key; unprotected) header.d=jpl.nasa.gov header.i=@jpl.nasa.gov header.b="O7suMgwu";
+	dkim=pass (1024-bit key; unprotected) header.d=JPL365PROD.onmicrosoft.com header.i=@JPL365PROD.onmicrosoft.com header.b="BQqYVeyb";
 	dkim-atps=neutral
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-41cbd2cf3bbso10065741cf.0
-        for <usrp-users@lists.ettus.com>; Wed, 01 Nov 2023 11:12:18 -0700 (PDT)
+Received: from pps.filterd (m0196083.ppops.net [127.0.0.1])
+	by mx0e-0020b901.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A1KFYHP015508
+	for <usrp-users@lists.ettus.com>; Wed, 1 Nov 2023 20:48:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jpl.nasa.gov; h=from : to : subject
+ : date : message-id : content-type : mime-version; s=InSight1906;
+ bh=uUOxejrghBtdXIyjuk3ops5YZmeOBvRwy72PSpgke8M=;
+ b=O7suMgwuX+iwTL3iQN4jI7gdYe31II2IsMMZlp1mHVfztgMWq7Oq8EYYGlG5s0aMQ+of
+ s9akTdFJ+4ugiMV2keaIDRGoGJMHqeWhMsYhMvMMwTxZyWg9JUuYS0io3ZbT2oxwKOjc
+ +AksXepZpBhfR9gwMQhc3mW6fdfeDYUAb3YnbKtLD8hkqqvDhQoOz5Wn+1ThDBpBFcOz
+ ZEJz7tmW12RIJYLytiOjKhKJHSnphzC359LqH/QPqfydxKs3aprbVZygvN/XAw96CTm0
+ gBy11swzvzNrO1K2ciNHq0jJdWnXbjkp9gvEWQMjLz3HEBw181IEyYUg02KtT2PET7Na Zg==
+Received: from mail.jpl.nasa.gov (smtp.jpl.nasa.gov [128.149.137.103])
+	by mx0e-0020b901.pphosted.com (PPS) with ESMTPS id 3u1c4rgvcn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <usrp-users@lists.ettus.com>; Wed, 01 Nov 2023 20:48:50 +0000
+Received: from ice-ex-mdc02.RES.AD.JPL (ice-ex-mdc02.jpl.nasa.gov [128.149.155.142])
+	by smtp.jpl.nasa.gov (Sentrion-MTA-4.5.6/Sentrion-MTA-4.5.6) with ESMTPS id 3A1Kmn7q228316
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits) verified FAIL)
+	for <usrp-users@lists.ettus.com>; Wed, 1 Nov 2023 20:48:50 GMT
+Received: from ice-ex-sn01.RES.AD.JPL (137.79.100.48) by
+ ice-ex-mdc02.RES.AD.JPL (128.149.155.142) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.6; Wed, 1 Nov 2023 13:48:49 -0700
+Received: from ice-ex-sn01.RES.AD.JPL (137.79.100.48) by
+ ice-ex-sn01.RES.AD.JPL (137.79.100.48) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Wed, 1 Nov 2023 13:48:49 -0700
+Received: from GCC02-BL0-obe.outbound.protection.outlook.com (137.78.153.23)
+ by ice-ex-sn01.RES.AD.JPL (137.79.100.48) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32 via Frontend Transport; Wed, 1 Nov 2023 13:48:49 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZgMm1WqCBVNWAyhg05h7iBBAzAjvgTkLFqclP2TQwzGIZLz8t730EwuksPuCWhc5WRnTa7nbz+fqiJqpWdTZpl3t/vKB133mfd38/cvw0JpkZktdaCfNIbG5TBZwgjS9M215nVsCYg4yNZfN5EKAxon+e/g9Q5258/QwRTUoUN8unVlwhjMVBzQSGHTmaeBuuVwovWNx/VHwt8pQ9wuc9D3BNTC7r0azJwYpgPZpUNCp2mcTRyD8ufkNoN+QqgJpmRd2C+YKITyPg5iNyz7yYOKlWFKLl4wFRoOnieoCx2D/0THX5u6rJL7VfT2o+w3MlovSThsduogV6adhVwvqaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uUOxejrghBtdXIyjuk3ops5YZmeOBvRwy72PSpgke8M=;
+ b=gkJfIA5l5kF5425UOP55Fras84bLfCDrHgTF24qj9R+XPcSiBL/f0gQ7rWiyjXV/C41efbomSfumMa0HmhXjO6j2ntZpFf58J8Z8S6HYbJLsL+kI24EknpeCU19vW/Aw5rtKLSZhmm3Q1GZjAopsOJa4QzYewJqNbHFhNCa/DU/9OKYpYK1Bc0GlDcWnNrWW4jZ8JVqn2Q2WmQ5Wn1U/iZNGw8/EYoYKQQ7IWAJdKlur96l253Pz/Pd6BgfP3cB9XZWzDZNQimChgu4QZ80MtO0I3ck/LUMMwLNkRpdXivsH6+Nj3aV+4COuIT+dH1dCe4dyT2fLnemoyaM3WmtHbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=jpl.nasa.gov; dmarc=pass action=none header.from=jpl.nasa.gov;
+ dkim=pass header.d=jpl.nasa.gov; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698862338; x=1699467138; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t1jVUeqDiRAHj6+09ey4j/S5Ud0xtz0bdeftU+qi7B4=;
-        b=EelpnqzcppWbTjHq8Kbdp4TbdWa1HN4s/w11BToXhw+uHD/S//3JMuuRrXZtZOoKz3
-         tF1y9UULQ0PsdG3N14Ryd637I8JfDFuIZvmI8JNpd41H8Jz2rCH4dDmCUeux5JzSzmUI
-         1m69mqRzNsdg/ZMYdX2TYNndhbz7xEsE8SOg0YSsRcTxh9JLpTHgzk5Kazf9IECu493z
-         gjFWhBJ2ukpY/XJQ0hgm/3akjreQQg/QUVI/jYYoBzyV4ADt+ZvmI1IdWL29Lt/jtSYn
-         aHJt1Jdt8rIaUyUwiZASzQBo9zbWQknDs59MYBmsiRxEBhUOX4x2ItazQyzq+qKMSdNL
-         nYNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698862338; x=1699467138;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=t1jVUeqDiRAHj6+09ey4j/S5Ud0xtz0bdeftU+qi7B4=;
-        b=n3W/uvvjE1rV4HOQ6knQzX55y92dvuuzhr834F7Ehy/l99nb7YjruwTqpbY0k8TiSm
-         GpNX1oLM4HzBxn9JbnH83rZnekTpAx54k+oEIRTUWnsW3bYjvEm7ItH2ehdA+V4gRsGe
-         jtJ2xW2wUQfFErVtDaGVl7tk5Vp1QK9xruFgMXPA4CQ1xrP7ODm5AjIlF7V1bjw9hySN
-         8blOdXYZtM16NydzD2vAOu2sneS2Icu0z1Ohfx0UnGirxhyI58/2UESqr+QevwtbhKmP
-         o0cBiIcfnBJh3FxpDZYkHQ2/Gg7EG7b9+ND7Pr0lhJqftE2lhXy3k71ae9RzT7j5uaYs
-         5iSg==
-X-Gm-Message-State: AOJu0YzyrnAx0CdrkNBBDSMIPjAY5iNYqVnQRW+1UUmv6HGajR8exiJA
-	utQFUql3PMHdNwHDWYD5JZcOJ3YRfa8=
-X-Google-Smtp-Source: AGHT+IHbYdiYryoLxDLn0K9hKiWpTK/M0L5cvya/TF0ChgUM9RhccE0hvMZhS5O2hvtwn0Bz0vO86w==
-X-Received: by 2002:a05:6214:2308:b0:66f:a356:b5dc with SMTP id gc8-20020a056214230800b0066fa356b5dcmr8323996qvb.12.1698862338200;
-        Wed, 01 Nov 2023 11:12:18 -0700 (PDT)
-Received: from [192.168.2.182] (bras-base-smflon1825w-grc-06-174-88-54-173.dsl.bell.ca. [174.88.54.173])
-        by smtp.googlemail.com with ESMTPSA id ek20-20020ad45994000000b0065b0554ae78sm1656675qvb.100.2023.11.01.11.12.17
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Nov 2023 11:12:17 -0700 (PDT)
-Message-ID: <6de2ef9b-3783-4a0f-8cb7-28b4e40a720f@gmail.com>
-Date: Wed, 1 Nov 2023 14:12:17 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+ d=JPL365PROD.onmicrosoft.com; s=selector1-JPL365PROD-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uUOxejrghBtdXIyjuk3ops5YZmeOBvRwy72PSpgke8M=;
+ b=BQqYVeybA7FJemdAQSysBQl15MjZtlkGTebgy9Ixxzw3Hc88aej483KArt6/Nzcc1f41uYK6vslQ/Lf2bitXsfmI6AafXIHkEBOBrUXGwi3RfsyElj2DOPgkwozGDZ8zualcYfZKILWtGF4wadKFG2QpRLRLxy9SNJ6YEHdXhw4=
+Received: from SA1PR09MB9275.namprd09.prod.outlook.com (2603:10b6:806:282::21)
+ by SJ0PR09MB6478.namprd09.prod.outlook.com (2603:10b6:a03:262::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.19; Wed, 1 Nov
+ 2023 20:48:44 +0000
+Received: from SA1PR09MB9275.namprd09.prod.outlook.com
+ ([fe80::eae2:ab27:615c:2fa6]) by SA1PR09MB9275.namprd09.prod.outlook.com
+ ([fe80::eae2:ab27:615c:2fa6%6]) with mapi id 15.20.6954.019; Wed, 1 Nov 2023
+ 20:48:44 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: RFNoC/MPM: No valid clock index given (63)
+Thread-Index: AQHaDQMsvdW4LwIoPE6Mw90rjbyaFw==
+Date: Wed, 1 Nov 2023 20:48:15 +0000
+Message-ID: <SA1PR09MB92757C9D9BC4C0FE1C24AFB792A7A@SA1PR09MB9275.namprd09.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAPiksU=3anXULG=CWy-D9ELrYNyxArWzQmWbZyH67k0-GcOLnw@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAPiksU=3anXULG=CWy-D9ELrYNyxArWzQmWbZyH67k0-GcOLnw@mail.gmail.com>
-Message-ID-Hash: YMWJDIYWKSUKTX3WSJVCMXWO4CFPIMWZ
-X-Message-ID-Hash: YMWJDIYWKSUKTX3WSJVCMXWO4CFPIMWZ
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA1PR09MB9275:EE_|SJ0PR09MB6478:EE_
+x-ms-office365-filtering-correlation-id: b026c727-9e44-4761-97aa-08dbdb1bf053
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: k+EupyJv5LFU+9DJXz+IpReSdyou7j/2VAYQwk6iBfpMl+cMD3/4yyH/Zxv4aYfiwF5xs3S0RXPH0UZlF17SqGCAc007xXhCx9e7PbgvyE+ySFWmKIkcJtu6cijZdoiENer1rJ030INeqZP3S5mKN1Os2dZcOdERpA+FcnJkiCkVM5SWh9GIOY9ktpQqVHiD51z/TQ2UD1eSML72T81FHP9uPqEMzX7X7Wn8S6uSrPZpBegmh16Zs0knvJdu+0FoRfe9xDzDhyOAhUvn2ilXUKyoU140m4Pr5gchxibpa2tW+E/edyomBUA/kwkwhmomBE/iitrtsKmepfPeCy4+q+q5225yx9dWPDS/BqC4wvUe+Fu5YAlgdgr1/yQJAhD0J3YB6HOAVwZPUNA1S3N/mKN0j2ghvuQ4GQTALldIyOTAZ4tVTjGzX1ZF9tqUud7Nf1FLOXyP4bo21rdu00q6/F4cE0iUUMmR1wKw3strc4bCI2TylYPr8l6Z+3B+j6UUpz1jZsToUr+WiQCcrjMeDEZ+WdNKRU1s7NozstlG64Pzeyxamx/zcVH+x2duUtEwMzTUH2SsoteHQYGn3cXiMsHDE6/gtj3VsBuyaTBFbfU=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR09MB9275.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(230922051799003)(1800799009)(451199024)(186009)(122000001)(38100700002)(6506007)(7696005)(498600001)(9686003)(66556008)(76116006)(66946007)(66446008)(52536014)(966005)(5660300002)(8936002)(6666004)(8676002)(71200400001)(33656002)(55016003)(86362001)(166002)(6916009)(26005)(64756008)(83380400001)(2906002)(66476007)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?8KHQAXTTCzkPQcfRBaOBpkEG17HtUrW9Obg6LLus7sN1a3ZAOShj9j+a?=
+ =?Windows-1252?Q?pr9kGFhMDUMQLXr99PdVxkpKNg3dxIyTBP8GnujHcq37AEK1TF9R+QFE?=
+ =?Windows-1252?Q?JrFOPQ/7FUKt3Bmf+l1jHL7GWYYnVHVYfHM8NFa8mbV94MwmH6UD6ROB?=
+ =?Windows-1252?Q?oY/jb9BLOFLarcYARb3BeC8JWyjF+K/JPLTWTAdCyoje1cJbhxcLFuAI?=
+ =?Windows-1252?Q?EJ6DjlU725HStGR/60fEIQSslhfpUrmzN3zWSw0jkjSqnGngX9SeJilQ?=
+ =?Windows-1252?Q?yy6cQHRvy3dGJIbfKXv5GqAtKYf7hXidJDDAb8toP7pMMaf/W2PHoo/L?=
+ =?Windows-1252?Q?DM+VXLvtKdG3Dlin43llOzQU6o+r4INkgScDjR9T/IE0WoTU/u/JyiBX?=
+ =?Windows-1252?Q?Q2dGFzL18B1L++NJmEx0fELJKtMnKVZpjsFmZxcDZagfkq+gPUVbtYE3?=
+ =?Windows-1252?Q?HJdFprpHdXeZ8PxkaGT6ld+oNXjEYZ1rUAYDaVfe6+r2mYS8XMrHi4DV?=
+ =?Windows-1252?Q?X8j9+h66TrfxLtAJvlstx1vs/9vEQi1yZVLaVxOsI7Q2zcMUIUIVs1zG?=
+ =?Windows-1252?Q?gDnr5+RDxMjc6Rz94AymjjMUWiWCu4QPI34nF5vgGHBIbQ25AVrF5JSM?=
+ =?Windows-1252?Q?SYuo1poO2ZTyLouhzkC4UHjNU+jFjDiuvhO3YA/IK4p5OPIq4N/1BcWH?=
+ =?Windows-1252?Q?7S2DuQOScJYjvdKQ/bvqOE+RDmRgeQOb3FPnv/Ca2eql7vySBs+iYOOC?=
+ =?Windows-1252?Q?4auzVX+jasuBl1NqnB4nL5JOaQuMgENBYeGQ/9jdD5MMLUvzJ1JncK4Z?=
+ =?Windows-1252?Q?7dJ7rNobfzhfwqch4cYJM9HWFI6WOM/6x7NiSvlXj2SCrMRHVT9GNTQY?=
+ =?Windows-1252?Q?EHg4dJjgrMY/I8JJZhsbJp5JllfOf5GDLm40nfuxrjlykJcU7Ivx89sd?=
+ =?Windows-1252?Q?lqpXwyHAb+cEg/U7W/rwu8h1YzgVdOumejMpmmI+dxWja6c2uf3PNnmK?=
+ =?Windows-1252?Q?wK3t8Wrj2dZRSmp7lwJQ+EId0nKNJKJhLTMSA8QaeWxNLanzs+borEU/?=
+ =?Windows-1252?Q?6mgLm3aOy8YUORCxcukxAKro7SRnkWvgT8jzHqJggRdLDVx4yJnhe/Xn?=
+ =?Windows-1252?Q?JLVOEaHvJQCxwUgGSHv35qwFril6w3TIRthkyYtahdi81uMf6asDpiVI?=
+ =?Windows-1252?Q?wjJOqjJomT8JbG+KK0slo1lfCvLgX5LY8Mbvj/n40g+sropfTpbvt2+T?=
+ =?Windows-1252?Q?sdWf6Z/UWdKLkwQmr6GTqVEBCEjQJu4XaNTiNdU3TV7wUTy2HoJF5L1W?=
+ =?Windows-1252?Q?r9Ky5MKLUEJJrFV/G08+m/n8AXO5JKODpSFMcmOeAmaZuZGzYpgME7lj?=
+ =?Windows-1252?Q?W/wuHSDd877VBI43GozYmstGyCwd4QNgEzySgF+GIJiaQHNg2BKxnaKS?=
+ =?Windows-1252?Q?/+tjY421GnHTjvje41aBwGkpxa2+zeK1R/CzyDKHDzUOu0PTGxqPoBRa?=
+ =?Windows-1252?Q?8lIPrhV3cypkPBHcxXWgJqeq0fb3LCOLOicRmCvvbGHzycVpPm9bsfAf?=
+ =?Windows-1252?Q?krfOEDmLXynB93NaXx7sIyPQ/b4CTnS/ah61U1VM4nSG0glqmjSYCOPf?=
+ =?Windows-1252?Q?h251wji6n2FwMJs536HuI6J3dOiR1YVxjluNwr4ZEQSghGiPaSoINUOK?=
+ =?Windows-1252?Q?qVLOtJknNAp/mYjzr3cFpIedC4ZloKcvbNBvEvNsHMRpMDoqC4hiDg?=
+ =?Windows-1252?Q?=3D=3D?=
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR09MB9275.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b026c727-9e44-4761-97aa-08dbdb1bf053
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Nov 2023 20:48:44.5062
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 545921e0-10ef-4398-8713-9832ac563dad
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR09MB6478
+X-OriginatorOrg: jpl.nasa.gov
+X-Source-IP: ice-ex-mdc02.jpl.nasa.gov [128.149.155.142]
+X-Source-Sender: zachary.s.rohde@jpl.nasa.gov
+X-AUTH: Authorized
+X-Proofpoint-GUID: p2qsraMvz3Efllcquv6lwF2Tia1L6Hho
+X-Proofpoint-ORIG-GUID: p2qsraMvz3Efllcquv6lwF2Tia1L6Hho
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-01_19,2023-11-01_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
+ phishscore=0 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ adultscore=0 mlxlogscore=999 priorityscore=1501 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310240000
+ definitions=main-2311010154
+Message-ID-Hash: PR3ZINHCOWKTV5W22SRE7TI32J22FYTV
+X-Message-ID-Hash: PR3ZINHCOWKTV5W22SRE7TI32J22FYTV
+X-MailFrom: zachary.s.rohde@jpl.nasa.gov
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320 and N321 IQ calibrations
+Subject: [USRP-users] RFNoC/MPM: No valid clock index given (63)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YMWJDIYWKSUKTX3WSJVCMXWO4CFPIMWZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PR3ZINHCOWKTV5W22SRE7TI32J22FYTV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1722642633749508241=="
+From: "Rohde, Zach (US 333G) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Rohde, Zach (US 333G)" <zachary.s.rohde@jpl.nasa.gov>
+Content-Type: multipart/mixed; boundary="===============4784962388941037044=="
 
-This is a multi-part message in MIME format.
---===============1722642633749508241==
-Content-Type: multipart/alternative;
- boundary="------------qF7PpOEpZ2eO6nlXJHUUr5VK"
+--===============4784962388941037044==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SA1PR09MB92757C9D9BC4C0FE1C24AFB792A7ASA1PR09MB9275namp_"
 
-This is a multi-part message in MIME format.
---------------qF7PpOEpZ2eO6nlXJHUUr5VK
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_SA1PR09MB92757C9D9BC4C0FE1C24AFB792A7ASA1PR09MB9275namp_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-On 01/11/2023 14:04, Bill Dower wrote:
-> Hi Dr. Dickens,
->
-> Reviewing the=C2=A0IQ calibration procedures, linked below, I came acro=
-ss=20
-> this section which generated a few questions which are below the copy=20
-> and pasted sections.
->
-> https://files.ettus.com/manual/page_calibration.html
->
->
->   ---
->
->
->   Frontend Corrections
->
-> The calibrations for IQ imbalance and DC offset compensation rely on=20
-> frontend correction logic that is located in the FPGA.
->
-> Note that USRP E310, E320, N320, and B200-Series use a dedicated RFIC=20
-> which does its own calibration. For those, any calibrations are very=20
-> device-specific and are not covered in this section.
->
->
->   ---
->
-I think the reference above to N320 is a typo.=C2=A0 The N*310* uses a=20
-dedicated RFIC (AD9371 AFAIR).=C2=A0=C2=A0 The N320/321 use a more
- =C2=A0 "conventional" RF PLL/MIXER design.
+I am trying the new UHD 4.6 X440 X4_200 image and I am running into this er=
+ror after updating the host UHD and flashing the USRP FPGA and FW:
 
->
-> First I would assume this statement is true for the N321 if it is true=20
-> for the N320.=C2=A0 Is that correct?=C2=A0 Or is this incorrectly state=
-d about=20
-> the N320 because the schematic does not appear to have an RFIC?
->
-> If the first question is true for the N320 and N321, then:
->
-> Where do I find more information about the N320 and N321's dedicated=20
-> RFIC IQ calibrations and DC offset?
->
-> If I ran the calibrations mentioned in the linked page for the N320=20
-> and N321 what would be the effect on the SDR if they were applied?=C2=A0=
-=20
-> Would these SDR's ignore the calibration file?
->
-> Thank=C2=A0you,
->
-> Bill
->
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+[ERROR] [MPMD::MB_IFACE] Automatic clock detection requested, but no valid =
+clock index given (63). Make sure FPGA bitfile is up to date!
+[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: RuntimeEr=
+ror: NotImplementedError: Automatic clock detection requested, but no valid=
+ clock index given (63). Make sure FPGA bitfile is up to date!
 
---------------qF7PpOEpZ2eO6nlXJHUUr5VK
-Content-Type: text/html; charset=UTF-8
+This only happens on the X4_200 image in UHD 4.6, it does not happen with t=
+he X4_400 image.
+
+My best guess after scanning through the changes is this is the offending c=
+ommit:
+https://github.com/EttusResearch/uhd/commit/f215af2ccde6420b685b4ca493c8bd7=
+1d28781cb
+Looks like x440_200_rfnoc_image_core.yml<https://github.com/EttusResearch/u=
+hd/blob/UHD-4.6/fpga/usrp3/top/x400/x440_200_rfnoc_image_core.yml> was not =
+updated with the new =93ctrl_clock: _device_.rfnoc_ctrl=94 and =93timebase_=
+clock: _device_.radio=94 parameters for some reason. This makes the generat=
+ed Verilog not possess the =93.CTRL_CLK_IDX        (1)=94 and =93.TB_CLK_ID=
+X          (4)=94 variables. I believe that is what then causes mpmd_mb_ifa=
+ce.cpp<https://github.com/EttusResearch/uhd/blob/c2dd6c1d9989289fc78820d6a7=
+0994c3a3a73dc1/host/lib/usrp/mpmd/mpmd_mb_iface.cpp#L178> to error during r=
+untime.
+
+Thanks,
+Zach
+
+--_000_SA1PR09MB92757C9D9BC4C0FE1C24AFB792A7ASA1PR09MB9275namp_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 01/11/2023 14:04, Bill Dower wrote:=
-<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAPiksU=3D3anXULG=3DCWy-D9ELrYNyxArWzQmWbZyH67k0-GcOLnw@mail.=
-gmail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">Hi Dr. Dickens,<br>
-        <br>
-        Reviewing the=C2=A0IQ calibration procedures, linked below, I cam=
-e
-        across this section which generated a few questions which are
-        below the copy and pasted sections.=C2=A0
-        <div><br>
-        </div>
-        <div><a
-            href=3D"https://files.ettus.com/manual/page_calibration.html"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">http=
-s://files.ettus.com/manual/page_calibration.html</a></div>
-        <div>
-          <h1
-style=3D"margin-right:15px;color:rgb(0,0,0);font-family:Roboto,sans-serif=
-">---</h1>
-          <h1
-style=3D"margin-right:15px;color:rgb(0,0,0);font-family:Roboto,sans-serif=
-">Frontend
-            Corrections</h1>
-          <p
-style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-=
-variant-alternates:normal;font-kerning:auto;font-feature-settings:normal;=
-font-stretch:normal;font-size:14px;line-height:22px;font-family:Roboto,sa=
-ns-serif;color:rgb(0,0,0)">The
-            calibrations for IQ imbalance and DC offset compensation
-            rely on frontend correction logic that is located in the
-            FPGA.</p>
-          <p
-style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-=
-variant-alternates:normal;font-kerning:auto;font-feature-settings:normal;=
-font-stretch:normal;font-size:14px;line-height:22px;font-family:Roboto,sa=
-ns-serif;color:rgb(0,0,0)">Note
-            that USRP E310, E320, N320, and B200-Series use a dedicated
-            RFIC which does its own calibration. For those, any
-            calibrations are very device-specific and are not covered in
-            this section.</p>
-          <h1
-style=3D"margin-right:15px;color:rgb(0,0,0);font-family:Roboto,sans-serif=
-">---</h1>
-        </div>
-      </div>
-    </blockquote>
-    I think the reference above to N320 is a typo.=C2=A0 The N*310* uses =
-a
-    dedicated RFIC (AD9371 AFAIR).=C2=A0=C2=A0 The N320/321 use a more<br=
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.truncate
+	{mso-style-name:truncate;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I am trying the new UHD 4.6 X440 X4_200 image and I =
+am running into this error after updating the host UHD and flashing the USR=
+P FPGA and FW:</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">[ERROR] [MPMD::MB_IFACE] Automatic clock detection r=
+equested, but no valid clock index given (63). Make sure FPGA bitfile is up=
+ to date!</p>
+<p class=3D"MsoNormal">[ERROR] [RFNOC::GRAPH] Caught exception while initia=
+lizing graph: RuntimeError: NotImplementedError: Automatic clock detection =
+requested, but no valid clock index given (63). Make sure FPGA bitfile is u=
+p to date!</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">This only happens on the X4_200 image in UHD 4.6, it=
+ does not happen with the X4_400 image.</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">My best guess after scanning through the changes is =
+this is the offending commit:</p>
+<p class=3D"MsoNormal"><a href=3D"https://github.com/EttusResearch/uhd/comm=
+it/f215af2ccde6420b685b4ca493c8bd71d28781cb">https://github.com/EttusResear=
+ch/uhd/commit/f215af2ccde6420b685b4ca493c8bd71d28781cb</a></p>
+<p class=3D"MsoNormal">Looks like <a href=3D"https://github.com/EttusResear=
+ch/uhd/blob/UHD-4.6/fpga/usrp3/top/x400/x440_200_rfnoc_image_core.yml">
+x440_200_rfnoc_image_core.yml</a> was not updated with the new =93ctrl_cloc=
+k: _device_.rfnoc_ctrl=94 and =93timebase_clock: _device_.radio=94 paramete=
+rs for some reason. This makes the generated Verilog not possess the =93.CT=
+RL_CLK_IDX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1)=94 and =93.TB_CLK_=
+IDX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ (4)=94 variables. I believe that is what then causes <span class=3D"trunca=
+te"><a href=3D"https://github.com/EttusResearch/uhd/blob/c2dd6c1d9989289fc7=
+8820d6a70994c3a3a73dc1/host/lib/usrp/mpmd/mpmd_mb_iface.cpp#L178" title=3D"=
+host/lib/usrp/mpmd/mpmd_mb_iface.cpp">mpmd_mb_iface.cpp</a>
+ to error during runtime.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span class=3D"truncate"><o:p>&nbsp;</o:p></span></p=
 >
-    =C2=A0 "conventional" RF PLL/MIXER design.<br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAPiksU=3D3anXULG=3DCWy-D9ELrYNyxArWzQmWbZyH67k0-GcOLnw@mail.=
-gmail.com">
-      <div dir=3D"ltr">
-        <div>
-          <div><br>
-          </div>
-          <div>First I would assume this statement is true for the N321
-            if it is true for the N320.=C2=A0 Is that correct?=C2=A0 Or i=
-s this
-            incorrectly stated about the N320 because the schematic does
-            not appear to have an RFIC?</div>
-          <div><br>
-          </div>
-          <div>If the first question is true for the N320 and N321,
-            then:</div>
-          <div><br>
-          </div>
-          <div>Where do I find more information about the N320 and
-            N321's dedicated RFIC IQ calibrations and DC offset?</div>
-          <div><br>
-          </div>
-          <div>If I ran the calibrations mentioned in the linked page
-            for the N320 and N321 what would be the effect on the SDR if
-            they were applied?=C2=A0 Would these SDR's ignore the calibra=
-tion
-            file?</div>
-          <div><br>
-          </div>
-          <div>Thank=C2=A0you,<br>
-            <br>
-            Bill</div>
-          <p
-style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-=
-variant-alternates:normal;font-kerning:auto;font-feature-settings:normal;=
-font-stretch:normal;font-size:14px;line-height:22px;font-family:Roboto,sa=
-ns-serif;color:rgb(0,0,0)"><br>
-          </p>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
+<p class=3D"MsoNormal"><span class=3D"truncate">Thanks,<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span class=3D"truncate">Zach</span></p>
+</div>
+</body>
 </html>
 
---------------qF7PpOEpZ2eO6nlXJHUUr5VK--
+--_000_SA1PR09MB92757C9D9BC4C0FE1C24AFB792A7ASA1PR09MB9275namp_--
 
---===============1722642633749508241==
+--===============4784962388941037044==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -288,4 +309,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1722642633749508241==--
+--===============4784962388941037044==--
