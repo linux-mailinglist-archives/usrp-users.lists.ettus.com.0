@@ -2,429 +2,229 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD867DE7F7
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Nov 2023 23:16:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 915D27DFDD1
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Nov 2023 02:57:58 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D2A9338595E
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Nov 2023 18:16:53 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1612638499E
+	for <lists+usrp-users@lfdr.de>; Thu,  2 Nov 2023 21:57:57 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1698877013; bh=V74Nokv0jOvQ/P40itHlrb6MkLPzTRaSMr5NOH++Dis=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=y82hs1SWJqM7gmhy+VX4iMc0PX9vVdwX2uRMrDy16T04tLpAVaR7mvIy04QZvEZC4
-	 MnC0K0OzFmphe6DRq3Zd8ZJRr77b3pyoiyzYR6Q3dUAWphjR+F31hpBjbXhpojPXD3
-	 3tt1hyegTe09b8/87oh0o5SP+8g8UTZB19XrRXz/HW/Qlo4F6fPmjo1lmhfRzHv1Fe
-	 Lz/KwNaD1+u68ElHBipT1OlQEzXRxqZkXvfPaQjMizqqsloJ+nSCipOpsni4nRqRSn
-	 0xbMGjL6u0M7wcmDc7pe9xV4vGggc/oMVdTDuWnmrRkPXm5rtv3YGa3YPArdsnBbk2
-	 uOUHzRpL6x6yA==
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 27E9E3854A3
-	for <usrp-users@lists.ettus.com>; Wed,  1 Nov 2023 18:15:54 -0400 (EDT)
+	t=1698976677; bh=/2CptY3LGUDi8nZehaJasiC3jwhPV+bSDZcaxSRamw4=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=CFL4UrKIRrPWl6o1J9D9vFgdhojARvp2TUNe8itZtwJldwp+0PI42ZxKfRYL7Ckke
+	 cFH0Ph9ZzsW39H47Ec+U1Bsf9duqKk5jFQE6yuldkP7UTdm0oUKImflrNLGOGsznDF
+	 dbbyJFht+5/8O+Vsk63GYlP3j2kt0RZhJ/XrCYLBYfYjrp9qb9/18n1kJ7mQHmPByr
+	 DXSwds3r0PmAQacAyxN4kYXywDzufjbMs1005dTYSyuBROqo1GN8kzWiwzH7cxVcne
+	 uR8lR1apnBKeNKJrYtcksyf6MZjqNB4caaqFma70ZtWxjD3QBeS2GDYF0Hog1gwZ+H
+	 fAaQLCCk6CoBQ==
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9F588383BCE
+	for <usrp-users@lists.ettus.com>; Thu,  2 Nov 2023 21:57:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c9wQ4AKx";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="WI38DUBs";
 	dkim-atps=neutral
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-778711ee748so14453985a.2
-        for <usrp-users@lists.ettus.com>; Wed, 01 Nov 2023 15:15:54 -0700 (PDT)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-542d654d03cso2511581a12.1
+        for <usrp-users@lists.ettus.com>; Thu, 02 Nov 2023 18:57:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698876953; x=1699481753; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/FN6A6N9gkr9DDzsb/UR8cPaiV587rxUoi0sN8mx51Q=;
-        b=c9wQ4AKxiR2WngIAsbdMYMuXbLLJ+gsJpg+WZjZy63BeR5ZHdMJX3q7A/u5iOPBwQH
-         2kl9x7wbP4SbfFheeBD5brzsmj2exoWFqo5DzCr+yYWngyA5P64KJ/bJrmdnuVUc5C5v
-         6Lok5Rj4sLJ1zEHFscXi8knEbDTBligYs7Y7832wlHAQIJiIzTkocLfZ2wKY/9Ix67jq
-         Uz0hfgJLik0EK8p4f9MjfnNbjB/IQLVBnm2HjqIUZXMkcghLQCmzJlBhhcRrmOm6txzL
-         6NUWhB1nBjTP7pKD9mgo9mfsrMZauH1I1eOuLzA0aKO/J1y33chnSRB21nmo8ZiJSztT
-         RCdw==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1698976621; x=1699581421; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zYpc+lmz3lIRoIhQptrjhcoAu/BLGGWEO5PBlxoGrgQ=;
+        b=WI38DUBsV3ZBzDCm5ymf4bbHodOhMBLz+ujKM4a145VCg6te3VtRhaApdDYAVrh1li
+         ijTn6BqiPsKjfNjSFcifaVh6V2Oap3/ag8XidpbUFfCERSc3GBkcmg7HD5Dn0yh7qUwA
+         FuUMUVFS54Pm1LAMgZG6ADG1ZR3Gc/5p5syviWMJO9ApDD1Mp8+gSP1PirhoZq0aAp+0
+         5JrlfHIzHOOfN+7oZ/CJ4qKJY3yF0eR74B6LgjYhxCUz3EBf9MuJ/eJqgrVWJ8rJCSts
+         Cj2vw+Sw0jIokk7aYHOgbXsSn84RlAx3c6OzsvABld2xKLNLA7lvR5gv03b3Ag874BZS
+         aV/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698876953; x=1699481753;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/FN6A6N9gkr9DDzsb/UR8cPaiV587rxUoi0sN8mx51Q=;
-        b=Zrp5l2p2apgwMeCOYd9Qnf7wMzwJIXoxAJ/81RBcrkkZL/BMTCb+GMPnAStpZ73iwa
-         1LJaZ7Ca8Nozh9B+/i9/HgRUMaw9eMkM3qES+gss28B+e3YoRX9ZZ0n83RYjHgf3N3eO
-         jsy2Entl/w9VnZglB7lfjIal/S6SMK4hFC0tamgHmdYuMM6uyBGEhhqLmF51TFQMtGid
-         D0s+1+O5fxMMacfBU0Nj6E74wCF5UWef/9Vq4yPbN7lAMkiIACjTeVb4LJUGyjikZXC1
-         AxJKY3l7y0yo8fMoKIu2xfyUg5XofU+Slx64c6QI71Owqr5YfeXX7LxyydxV69N1aysO
-         1q0w==
-X-Gm-Message-State: AOJu0YwlxedNUrkgEdpmve2OLPv8IIuo/z8S14flaTMIp+QevE2SRvxp
-	fbYXqNddXZcM/rlN/3OjJts=
-X-Google-Smtp-Source: AGHT+IEAkWdKD5lHIcTB5ZHfyFV1LUUeJirqrfiBOj3UeFG+QdLleDWU9Io7t0AfHZQNs3OH/Btnog==
-X-Received: by 2002:a05:620a:24d3:b0:778:b30b:9834 with SMTP id m19-20020a05620a24d300b00778b30b9834mr19566051qkn.33.1698876953465;
-        Wed, 01 Nov 2023 15:15:53 -0700 (PDT)
-Received: from [192.168.2.182] (bras-base-smflon1825w-grc-06-174-88-54-173.dsl.bell.ca. [174.88.54.173])
-        by smtp.googlemail.com with ESMTPSA id l9-20020a05620a0c0900b0077580becd52sm1819601qki.103.2023.11.01.15.15.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Nov 2023 15:15:53 -0700 (PDT)
-Message-ID: <7b722d43-7cf6-42e2-808f-f62937494a80@gmail.com>
-Date: Wed, 1 Nov 2023 18:15:49 -0400
+        d=1e100.net; s=20230601; t=1698976621; x=1699581421;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zYpc+lmz3lIRoIhQptrjhcoAu/BLGGWEO5PBlxoGrgQ=;
+        b=JOfuQJrnUpT+cFaIxL+HDv04XbELtPfoUvhS574kH7hXnCu23j/lc9yWVlJAEy7Hfp
+         YsIybtNeFt4SBaKPHStqAnanqXxqmz92/c2lDR8rCBYhUZfeUzjbmIYHoeh1NEzwaz/n
+         xxHjVhc30R2Zv7n27YSWSqSrok1UtPlyWVhicl1T4EP8CAOsCJDNYAIDOGK5Fk53EhJw
+         f5b3NcyXryWjBm4p437zL35pJkLxyzKh3Q99HJ9/3RixVH9QSfgJzYHuymCULwHlf0MH
+         n/11WG1Y5ndnqmXzb4twK79KLYRx1CCp3yW70yGeHhpzngAEYlFWatJUgAKn2PKSxCYa
+         qIcA==
+X-Gm-Message-State: AOJu0Yy5FAiAst/1bhUd4UjgaRy3zERYJcOxilrujw6t22SUSSIJckn7
+	Fzyh8Tys2fr//LBJHV7uog/zjcs1WEcbZvX0a60aotjv
+X-Google-Smtp-Source: AGHT+IFlwTcWbzGGra6vvkOsXgmkngg9lHoel7fksYOZb+HHnJAV/fN8FpNEmuqz4hgTiKI+HUE7QGJlil5qcuwWmdY=
+X-Received: by 2002:a17:907:968c:b0:9be:2469:bdf5 with SMTP id
+ hd12-20020a170907968c00b009be2469bdf5mr6074224ejc.15.1698976621166; Thu, 02
+ Nov 2023 18:57:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "Alvin.Begaye@gd-ms.com" <Alvin.Begaye@gd-ms.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <BN2P110MB0948CE39707B3966A22ACAE5CAA7A@BN2P110MB0948.NAMP110.PROD.OUTLOOK.COM>
- <fda9b390-0dc0-470a-bf84-ce16e2d5742d@gmail.com>
- <BN2P110MB0948BDD32B607C714324FD4FCAA7A@BN2P110MB0948.NAMP110.PROD.OUTLOOK.COM>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <BN2P110MB0948BDD32B607C714324FD4FCAA7A@BN2P110MB0948.NAMP110.PROD.OUTLOOK.COM>
-Message-ID-Hash: Z32SA54HXJLFSZVULTPZWCSJZTYEEIDU
-X-Message-ID-Hash: Z32SA54HXJLFSZVULTPZWCSJZTYEEIDU
-X-MailFrom: patchvonbraun@gmail.com
+References: <SA1PR09MB92757C9D9BC4C0FE1C24AFB792A7A@SA1PR09MB9275.namprd09.prod.outlook.com>
+In-Reply-To: <SA1PR09MB92757C9D9BC4C0FE1C24AFB792A7A@SA1PR09MB9275.namprd09.prod.outlook.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Thu, 2 Nov 2023 20:56:44 -0500
+Message-ID: <CAFche=h1ps0GMDO=PTkYFF2FP4GYZ+J5ciiZz6d4NoSXQcjUgg@mail.gmail.com>
+To: "Rohde, Zach (US 333G)" <zachary.s.rohde@jpl.nasa.gov>
+Message-ID-Hash: PBWYZZMOZUJQ7KFGGEFJA5SI5CDAH6F2
+X-Message-ID-Hash: PBWYZZMOZUJQ7KFGGEFJA5SI5CDAH6F2
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X410 gui
+Subject: [USRP-users] Re: RFNoC/MPM: No valid clock index given (63)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z32SA54HXJLFSZVULTPZWCSJZTYEEIDU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PBWYZZMOZUJQ7KFGGEFJA5SI5CDAH6F2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6781107388417823586=="
+Content-Type: multipart/mixed; boundary="===============4843765732053059793=="
 
-This is a multi-part message in MIME format.
---===============6781107388417823586==
-Content-Type: multipart/alternative;
- boundary="------------0USbuiRhDgqhWxT1fRZ2njZH"
-Content-Language: en-US
+--===============4843765732053059793==
+Content-Type: multipart/alternative; boundary="000000000000fc9b15060935d175"
 
-This is a multi-part message in MIME format.
---------------0USbuiRhDgqhWxT1fRZ2njZH
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000fc9b15060935d175
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 01/11/2023 18:08, Alvin.Begaye@gd-ms.com wrote:
->
-> Thanks.=C2=A0 we just noticed these in /usr/bin
->
-> uhd_adc_self_cal uhd_cal_tx_iq_balance=C2=A0 uhd_find_devices=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=20
-> uhd_rx_cfile uhd_siggen_gui
->
-> uhd_cal_rx_iq_balance uhd_config_info=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 uhd_image_loader=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
-> uhd_rx_nogui uhd_usrp_probe
->
-> uhd_cal_tx_dc_offset *uhd_fft *uhd_images_downloader uhd_siggen
->
-> when I looked at uhd_fft as an example it is a gui app, I thought=20
-> perhaps there as VNC, or xserver that needed to be configured.=C2=A0=C2=
-=A0 Even=20
-> uhd_siggen_gui suggest there is a GUI.=C2=A0 =C2=A0=C2=A0If these aren=E2=
-=80=99t part of the=20
-> normal install, I=E2=80=99m not sure how they got there I would have to=
- do=20
-> some digging, just got excited that we could actually see an FFT=20
-> visually. I assume we can not run uhd_fft based on your response.
->
-It turns out that Ettus/NI have gone back to packaging GR on the system=20
-images, which I think is why uhd_fft is there.
- =C2=A0 You might look at using ssh -X=C2=A0 to support that.=C2=A0 I don=
-'t think=20
-Ettus/NI package openvnc or TigerVNC or any of the others
- =C2=A0=C2=A0 on the system image...
+Thanks for reporting Zach. This will be fixed soon.
 
+Thanks,
 
-But really, you can just install Gnu Radio + relevant UHD on your *HOST*=20
-and do things from there.=C2=A0 For one, you get MUCH MUCH
- =C2=A0 higher sample-rate performance that way--the CPU on the X410 (and=
-=20
-other USRPs that have an embedded Linux) is not
- =C2=A0 terribly powerful.
+Wade
 
+On Wed, Nov 1, 2023 at 3:49=E2=80=AFPM Rohde, Zach (US 333G) via USRP-users=
+ <
+usrp-users@lists.ettus.com> wrote:
 
-> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Sent:* Wednesday, November 1, 2023 2:34 PM
-> *To:* usrp-users@lists.ettus.com
-> *Subject:* [USRP-users] Re: X410 gui
->
-> *External E-mail *--- CAUTION: This email originated from outside=20
-> GDMS. Do not click links or open attachments unless you recognize the=20
-> sender and know the content is safe.
->
-> On 01/11/2023 17:03, Alvin.Begaye--- via USRP-users wrote:
->
->     Is there a GUI interface to the X410? I noticed there are some
->     gnuradio type programs when I ssh into it.=C2=A0 How are those exec=
-uted?
->
->     Thank You!
->
->      1. *Alvin*
->
-> The Linux image running on the X410 is there largely to run MPM to=20
-> control the radio hardware you should NOT
-> =C2=A0 think of it as a place to host your applications.=C2=A0 It's not=
- powerful=20
-> enough, and AFAIR, Ettus/NI DO NOT install
-> =C2=A0 Gnu Radio by default on the filesystem image.
->
-> You may be thinking of some of the example programs, which would be in=20
-> /usr/lib/uhd/examples.=C2=A0 They don't use
-> =C2=A0 Gnu Radio and I think only one of them has an interface that cou=
-ld=20
-> even remotely be called "GUI"--the "curses_fft"
-> =C2=A0 example.
+> I am trying the new UHD 4.6 X440 X4_200 image and I am running into this
+> error after updating the host UHD and flashing the USRP FPGA and FW:
 >
 >
 >
+> [ERROR] [MPMD::MB_IFACE] Automatic clock detection requested, but no vali=
+d
+> clock index given (63). Make sure FPGA bitfile is up to date!
+>
+> [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
+> RuntimeError: NotImplementedError: Automatic clock detection requested, b=
+ut
+> no valid clock index given (63). Make sure FPGA bitfile is up to date!
 >
 >
->     _______________________________________________
 >
->     USRP-users mailing list --usrp-users@lists.ettus.com
+> This only happens on the X4_200 image in UHD 4.6, it does not happen with
+> the X4_400 image.
 >
->     To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+>
+>
+> My best guess after scanning through the changes is this is the offending
+> commit:
+>
+>
+> https://github.com/EttusResearch/uhd/commit/f215af2ccde6420b685b4ca493c8b=
+d71d28781cb
+>
+> Looks like x440_200_rfnoc_image_core.yml
+> <https://github.com/EttusResearch/uhd/blob/UHD-4.6/fpga/usrp3/top/x400/x4=
+40_200_rfnoc_image_core.yml>
+> was not updated with the new =E2=80=9Cctrl_clock: _device_.rfnoc_ctrl=E2=
+=80=9D and
+> =E2=80=9Ctimebase_clock: _device_.radio=E2=80=9D parameters for some reas=
+on. This makes the
+> generated Verilog not possess the =E2=80=9C.CTRL_CLK_IDX        (1)=E2=80=
+=9D and
+> =E2=80=9C.TB_CLK_IDX          (4)=E2=80=9D variables. I believe that is w=
+hat then causes
+> mpmd_mb_iface.cpp
+> <https://github.com/EttusResearch/uhd/blob/c2dd6c1d9989289fc78820d6a70994=
+c3a3a73dc1/host/lib/usrp/mpmd/mpmd_mb_iface.cpp#L178>
+> to error during runtime.
+>
+>
+>
+> Thanks,
+>
+> Zach
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---------------0USbuiRhDgqhWxT1fRZ2njZH
-Content-Type: text/html; charset=UTF-8
+--000000000000fc9b15060935d175
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 01/11/2023 18:08,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:Alvin.Begaye@g=
-d-ms.com">Alvin.Begaye@gd-ms.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:BN2P110MB0948BDD32B607C714324FD4FCAA7A@BN2P110MB0948.NAMP110.=
-PROD.OUTLOOK.COM">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator"
-        content=3D"Microsoft Word 15 (filtered medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}@font-face
-	{font-family:"Segoe UI";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}p.MsoListParagraph, li.MsoListParagraph, div.=
-MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;}span.EmailStyle23
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}ol
-	{margin-bottom:0in;}ul
-	{margin-bottom:0in;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Thanks.=C2=A0 we just noticed these in /us=
-r/bin<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal"
-style=3D"mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;ma=
-rgin-left:0in;text-autospace:none">
-          <span
-style=3D"font-size:10.0pt;font-family:&quot;Segoe UI&quot;,sans-serif;col=
-or:black">uhd_adc_self_cal=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-            uhd_cal_tx_iq_balance=C2=A0 uhd_find_devices=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 uhd_rx_cfile=C2=A0
-            uhd_siggen_gui</span><o:p></o:p></p>
-        <p class=3D"MsoNormal"
-style=3D"mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;ma=
-rgin-left:0in;text-autospace:none">
-          <span
-style=3D"font-size:10.0pt;font-family:&quot;Segoe UI&quot;,sans-serif;col=
-or:black">uhd_cal_rx_iq_balance=C2=A0
-            uhd_config_info=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uhd=
-_image_loader=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uhd_rx_nogui=C2=A0
-            uhd_usrp_probe</span><o:p></o:p></p>
-        <p class=3D"MsoNormal"
-style=3D"mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;ma=
-rgin-left:0in;text-autospace:none">
-          <span
-style=3D"font-size:10.0pt;font-family:&quot;Segoe UI&quot;,sans-serif;col=
-or:black">uhd_cal_tx_dc_offset=C2=A0=C2=A0
-            <b>uhd_fft=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </b>uhd_images_downloader=C2=A0
-            uhd_siggen</span><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">when I looked at uhd_fft as an example it
-          is a gui app, I thought perhaps there as VNC, or xserver that
-          needed to be configured.=C2=A0=C2=A0 Even uhd_siggen_gui sugges=
-t there
-          is a GUI.=C2=A0 =C2=A0=C2=A0If these aren=E2=80=99t part of the=
- normal install, I=E2=80=99m
-          not sure how they got there I would have to do some digging,=C2=
-=A0
-          just got excited that we could actually see an FFT visually.=C2=
-=A0=C2=A0
-          I assume we can not run uhd_fft based on your response.</p>
-      </div>
-    </blockquote>
-    It turns out that Ettus/NI have gone back to packaging GR on the
-    system images, which I think is why uhd_fft is there.<br>
-    =C2=A0 You might look at using ssh -X=C2=A0 to support that.=C2=A0 I =
-don't think
-    Ettus/NI package openvnc or TigerVNC or any of the others<br>
-    =C2=A0=C2=A0 on the system image...<br>
-    <br>
-    <br>
-    But really, you can just install Gnu Radio + relevant UHD on your
-    *HOST* and do things from there.=C2=A0 For one, you get MUCH MUCH<br>
-    =C2=A0 higher sample-rate performance that way--the CPU on the X410 (=
-and
-    other USRPs that have an embedded Linux) is not<br>
-    =C2=A0 terribly powerful.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:BN2P110MB0948BDD32B607C714324FD4FCAA7A@BN2P110MB0948.NAMP110.=
-PROD.OUTLOOK.COM">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <div
-style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0in=
- 0in">
-            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
-raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
-              <b>Sent:</b> Wednesday, November 1, 2023 2:34 PM<br>
-              <b>To:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"ma=
-ilto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-              <b>Subject:</b> [USRP-users] Re: X410 gui<o:p></o:p></p>
-          </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <table class=3D"MsoNormalTable" style=3D"background:#3F7FBF"
-            cellpadding=3D"0" border=3D"0">
-            <tbody>
-              <tr>
-                <td style=3D"padding:.75pt .75pt .75pt .75pt">
-                  <p class=3D"MsoNormal"
-style=3D"mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ce=
-nter;line-height:12.0pt"
-                    align=3D"center">
-                    <strong><span
-style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;colo=
-r:yellow">External
-                        E-mail
-                      </span></strong><span
-style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;colo=
-r:yellow">---
-                      CAUTION: This email originated from outside GDMS.
-                      Do not click links or open attachments unless you
-                      recognize the sender and know the content is safe.
-                    </span><o:p></o:p></p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p class=3D"MsoNormal">=C2=A0 <o:p></o:p></p>
-          <div>
-            <p class=3D"MsoNormal">On 01/11/2023 17:03, Alvin.Begaye---
-              via USRP-users wrote:<o:p></o:p></p>
-          </div>
-          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-            <p class=3D"MsoNormal">Is there a GUI interface to the X410?=C2=
-=A0=C2=A0
-              I noticed there are some gnuradio type programs when I ssh
-              into it.=C2=A0 How are those executed?<o:p></o:p></p>
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <p class=3D"MsoNormal">Thank You!<o:p></o:p></p>
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <ol style=3D"margin-top:0in" type=3D"1" start=3D"1">
-              <li class=3D"MsoListParagraph"
-style=3D"color:black;margin-left:0in;mso-list:l1 level1 lfo3;background:w=
-hite;vertical-align:top">
-                <b>Alvin</b><o:p></o:p></li>
-            </ol>
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          </blockquote>
-          <p class=3D"MsoNormal">The Linux image running on the X410 is
-            there largely to run MPM to control the radio hardware you
-            should NOT<br>
-            =C2=A0 think of it as a place to host your applications.=C2=A0=
- It's
-            not powerful enough, and AFAIR, Ettus/NI DO NOT install<br>
-            =C2=A0 Gnu Radio by default on the filesystem image.<br>
-            <br>
-            You may be thinking of some of the example programs, which
-            would be in /usr/lib/uhd/examples.=C2=A0 They don't use<br>
-            =C2=A0 Gnu Radio and I think only one of them has an interfac=
-e
-            that could even remotely be called "GUI"--the "curses_fft"<br=
->
-            =C2=A0 example.<br>
-            <br>
-            <br>
-            <br>
-            <o:p></o:p></p>
-          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-            <p class=3D"MsoNormal"><br>
-              <br>
-              <o:p></o:p></p>
-            <pre>_______________________________________________<o:p></o:=
-p></pre>
-            <pre>USRP-users mailing list -- <a
-            href=3D"mailto:usrp-users@lists.ettus.com"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
--users@lists.ettus.com</a><o:p></o:p></pre>
-            <pre>To unsubscribe send an email to <a
-            href=3D"mailto:usrp-users-leave@lists.ettus.com"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
--users-leave@lists.ettus.com</a><o:p></o:p></pre>
-          </blockquote>
-          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div>Thanks for reporting Zach. This will be fixed soon.</=
+div><div><br></div><div>Thanks,</div><div><br></div><div>Wade<br></div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On W=
+ed, Nov 1, 2023 at 3:49=E2=80=AFPM Rohde, Zach (US 333G) via USRP-users &lt=
+;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv class=3D"msg6601935264411705829">
 
---------------0USbuiRhDgqhWxT1fRZ2njZH--
 
---===============6781107388417823586==
+
+
+
+<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_-1032049923996145445WordSection1">
+<p class=3D"MsoNormal">I am trying the new UHD 4.6 X440 X4_200 image and I =
+am running into this error after updating the host UHD and flashing the USR=
+P FPGA and FW:</p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">[ERROR] [MPMD::MB_IFACE] Automatic clock detection r=
+equested, but no valid clock index given (63). Make sure FPGA bitfile is up=
+ to date!</p>
+<p class=3D"MsoNormal">[ERROR] [RFNOC::GRAPH] Caught exception while initia=
+lizing graph: RuntimeError: NotImplementedError: Automatic clock detection =
+requested, but no valid clock index given (63). Make sure FPGA bitfile is u=
+p to date!</p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">This only happens on the X4_200 image in UHD 4.6, it=
+ does not happen with the X4_400 image.</p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">My best guess after scanning through the changes is =
+this is the offending commit:</p>
+<p class=3D"MsoNormal"><a href=3D"https://github.com/EttusResearch/uhd/comm=
+it/f215af2ccde6420b685b4ca493c8bd71d28781cb" target=3D"_blank">https://gith=
+ub.com/EttusResearch/uhd/commit/f215af2ccde6420b685b4ca493c8bd71d28781cb</a=
+></p>
+<p class=3D"MsoNormal">Looks like <a href=3D"https://github.com/EttusResear=
+ch/uhd/blob/UHD-4.6/fpga/usrp3/top/x400/x440_200_rfnoc_image_core.yml" targ=
+et=3D"_blank">
+x440_200_rfnoc_image_core.yml</a> was not updated with the new =E2=80=9Cctr=
+l_clock: _device_.rfnoc_ctrl=E2=80=9D and =E2=80=9Ctimebase_clock: _device_=
+.radio=E2=80=9D parameters for some reason. This makes the generated Verilo=
+g not possess the =E2=80=9C.CTRL_CLK_IDX=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 (1)=E2=80=9D and =E2=80=9C.TB_CLK_IDX=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+ (4)=E2=80=9D variables. I believe that is what then causes <span class=3D"=
+m_-1032049923996145445truncate"><a href=3D"https://github.com/EttusResearch=
+/uhd/blob/c2dd6c1d9989289fc78820d6a70994c3a3a73dc1/host/lib/usrp/mpmd/mpmd_=
+mb_iface.cpp#L178" title=3D"host/lib/usrp/mpmd/mpmd_mb_iface.cpp" target=3D=
+"_blank">mpmd_mb_iface.cpp</a>
+ to error during runtime.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span class=3D"m_-1032049923996145445truncate"><u></=
+u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span class=3D"m_-1032049923996145445truncate">Thank=
+s,<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span class=3D"m_-1032049923996145445truncate">Zach<=
+/span></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--000000000000fc9b15060935d175--
+
+--===============4843765732053059793==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -434,4 +234,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6781107388417823586==--
+--===============4843765732053059793==--
