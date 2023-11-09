@@ -2,572 +2,198 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99DD37E6C9B
-	for <lists+usrp-users@lfdr.de>; Thu,  9 Nov 2023 15:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 415D97E6CBA
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Nov 2023 15:58:50 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C61AB38503F
-	for <lists+usrp-users@lfdr.de>; Thu,  9 Nov 2023 09:46:57 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 455AB385518
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Nov 2023 09:58:49 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1699541217; bh=94ZBhCyA8v0TlTZucitlVByFhphyEVxefi1xRIEesK8=;
-	h=To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=T20O6HjfPWYReO1W3n5Kg19J0OSq9aRu4reJjqF8oAM6af6E7JbuLtpL6s+Fq+GfX
-	 gysO9uVzAbzLUfESVXKTIgS//UxgagfMAyRo12IuHZf9EgxMrOt8pk2dqC4IfQThPD
-	 e64/gDFlvNfMBg5g0lYZFYgFgfUCW0mm/vcAbQiCtLS+LxvNGk249fwcy4UCKX3zAN
-	 1F+0R/u0VL1LCoVrd/jLUX5aP3hsn6dVW6K6aSjikPX762YTBXYH49CXFpI3xuyv42
-	 RSedEUjfwsEH0CAFYo9qdEcGizlWNMZhyvkKEcyrjdMQXJ9tv+zF7TbfWwx11t0vje
-	 dn0jCiPJMsA8A==
-Received: from USMLB1RNPMX02POUT.l3harris.com (usmlb1rnpmx02pout.l3harris.com [192.52.235.39])
-	by mm2.emwd.com (Postfix) with ESMTPS id 09E10385198
-	for <usrp-users@lists.ettus.com>; Thu,  9 Nov 2023 09:46:17 -0500 (EST)
+	t=1699541929; bh=ddNGuhaTborC6B2l+JwOH4kPb5R0vs/b7gPNw04Q6QI=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=qJapfx4hJfusLAV5EDUVlqf+pVXvKrSBEyNH3OPTCNNksguQWHO6GiOy54VZGYDNH
+	 5F0QOCCcmUTcSh/+tkisCmhlwac6XG1ncvpYZ76i78oUcvLV30C184cqSi+noz+jpF
+	 h76zTIH7f9APJ/X5xHjLPMNH2XXMIcZMJZMrH9a2qSql6zBQW8EzPchPkfuLuSVL/f
+	 UvAT9GqOxjRbgRi919kSgGWzYHdTRkb17LDq/8YsQvz2NGyF6K5qHitt8d6WydL1/p
+	 bCn0cRJjp2Ie5bdrLhcxtKCz686c14Or93HRXE2IRi3MrxzpOXMaVROmeCijKQUPdm
+	 64vpFsAjy2ZUQ==
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 79DA93854CF
+	for <usrp-users@lists.ettus.com>; Thu,  9 Nov 2023 09:58:13 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=l3harris.com header.i=@l3harris.com header.b="Zc5iuyoy";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ufzjxmfq";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=l3harris.com; i=@l3harris.com; q=dns/txt; s=mail;
-  t=1699541178; x=1731077178;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=vw1NWSAETd0KioOq5NcYmkpP4BzTtFI8RujodRtpPs0=;
-  b=Zc5iuyoywDLpbWdKkdBoNx6FBTwPGeahqxASymiJ160XLoUspKMljdB5
-   IV8l9mfn9700JWBersdWl1PENsFeP5e+ShpXX1Uas/DM06Oj7cpE5d2Jx
-   28iUUl1OYQWTBhMVbx4ZOw9DZIAsDzDY6X29LWb98c5ZWhc6PzVZiOzAW
-   A9jwOtF0H7VVkURhQxLbtdAyMzCgqdxC/zNXc2wpLUE/OTKG/DyjFB+us
-   bE9BEhARkD/KxwfauCVtduW0gIFL88rdQmS41wuYJUME0NjgpFEqcXxIH
-   dV+jwZ6vg+hs7FnqKDlUQc13/D2chPyV1kVbt4mhyIjBEXfh8qtlt3Tgd
-   A==;
-IronPort-SDR: DxztQs0cIlZDudLP+4joklAE77D3lB34OA9Hf1WslfeBqm1Qy88Tgh3tk4jOJ/+wNKy5j6xa+N
- KWHqBv4GBi/S40auQpM4yNjQpAu4HkxApvDqFsNJN+2WyfXhbcWejXbDrnUvisidw6If2WG/Tu
- 0caqxQGR1LAIwk5iXFXYLjCcXxxoJjL/S3agqZSSX3OCCqiMcIaV4u1LyURZdHKfuMDKULIDyk
- 2PzV/C+XABPMVdc+1EvHUMBn28YdZgNHtLIUlvU8/iAU4Sj18xrjQ/Vdb6+U+bZ3OicOYAI3j/
- 6wf7/qA8bBCsTVie757FAAY7
-X-IronPort-AV: E=Sophos;i="6.03,289,1694736000";
-   d="scan'208,217";a="117083540"
-Received: from unknown (HELO USMLB1RNPRT01POUT.l3harris.com) ([10.64.225.3])
-  by USMLB1RNPMX02POUT.l3harris.com with ESMTP; 09 Nov 2023 14:46:17 +0000
-X-filenames: 
-X-filesizes: None
-X-filetypes: 
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,289,1694736000";
-   d="scan'208,217";a="160303468"
-Received: from win-p1001189.rootforest.com (HELO mail.l3t.com) ([10.95.128.15])
-  by USMLB1RNPRT01POUT.l3harris.com with ESMTP; 09 Nov 2023 14:45:58 +0000
-Received: from WIN-P1001190.rootforest.com (10.95.128.16) by
- WIN-P1001189.rootforest.com (10.95.128.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20; Thu, 9 Nov 2023 14:45:58 +0000
-Received: from WIN-P1001190.rootforest.com ([fe80::2d95:977c:a951:823]) by
- WIN-P1001190.rootforest.com ([fe80::2d95:977c:a951:823%8]) with mapi id
- 15.02.1118.020; Thu, 9 Nov 2023 14:45:58 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Ettus Transmit Sample Streaming
-Thread-Index: AdoTGy4xaW3XthWTR82HnfeJ9i8nUw==
-Date: Thu, 9 Nov 2023 14:45:57 +0000
-Message-ID: <657abf57860f42a89ed48d996d60af45@L3Harris.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.64.232.2]
+Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-66fbcaf03c6so6041316d6.1
+        for <usrp-users@lists.ettus.com>; Thu, 09 Nov 2023 06:58:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699541893; x=1700146693; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qvASidQ2hTy8p1DH6pIsViXDTMob5sJ4fTLkSJj50jo=;
+        b=UfzjxmfqKb0pxLnPdoTTK0Z4YZS73ZC3qk3f28DcStCduXvsukpr6aSuAjkqTTwKTO
+         6u+fgOWTsHN4TNFEcpfE7eMgcyfgE/ZuMYwxV2FL0dq2v4qad4xXYxtf7i/sTxPfrxbO
+         cGFwEbruJ2h8tspOLvhIigN3ngmqQ/Tnn3oRkW5PdnSc8M4w2mEN/Ik/xKfZsumA/S1O
+         CwNgCRyYjZ3F3etJafgLZH/faymo0Ly+di8ncx3K+hbbsV1QgZxEQhx+sXTpLEV4OkGg
+         p8tK6Zs/fA8pEoRnsGN2IrsampQhYDiXNStlvvUgVCxTOxC7s1Au4Fjt0+y1wSLQibP4
+         4VUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699541893; x=1700146693;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=qvASidQ2hTy8p1DH6pIsViXDTMob5sJ4fTLkSJj50jo=;
+        b=mSzOOeUG6xoorbJ7Xzd2lWtKTIReDjPlak6WMdTA7Chmy6f7z/JCQ76svbRCx94R/n
+         leWM7LBsYCL82AhJg3GvSQ0xdcG3/1ZVJdVUfrsoVEP+0wUJ44rUPeO1MV8ErI1uKX2W
+         krpMop++CoucOn4C+XQzSZi334iYt81mEIZailtkk1K6dt2dw1NCeryVEKbjfskAExMX
+         q2Z+diGflY/ptRnBRHuNeJoDiixafLddrRawqWhd1XppT8PVJQcrhmYO9G1W3oQrQxtd
+         swgbpU/B59dYSwVLOZIA1g5nM+AW9XMTDFIInfOxSyjMvsItTFHsfiLLr3gcbsugGibi
+         GAxg==
+X-Gm-Message-State: AOJu0YyiWKV/p+gllS84FiEa/ElSTcNprdeY/PIx5RQ76q6NGRziXmq4
+	iOjI5mobNKDWhIzT/033hBVPJ/jzMKQ=
+X-Google-Smtp-Source: AGHT+IHq83uycsi9dtorVcMaa5rf8nxlj8iMr7MLPApkDnzw7S6lhoXcL8iLuPHFr3zj9BDJbHMpvw==
+X-Received: by 2002:ad4:5c89:0:b0:671:2c4f:3e2e with SMTP id o9-20020ad45c89000000b006712c4f3e2emr5350654qvh.61.1699541892701;
+        Thu, 09 Nov 2023 06:58:12 -0800 (PST)
+Received: from [192.168.2.196] ([174.88.54.173])
+        by smtp.googlemail.com with ESMTPSA id n14-20020a0cfbce000000b006575372c845sm2127298qvp.119.2023.11.09.06.58.12
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Nov 2023 06:58:12 -0800 (PST)
+Message-ID: <b2eab66d-72f9-4e69-b152-9923c321608f@gmail.com>
+Date: Thu, 9 Nov 2023 09:58:03 -0500
 MIME-Version: 1.0
-Message-ID-Hash: EIW4JIKKUX27YGJV4F6WEEW7YOJSQMXM
-X-Message-ID-Hash: EIW4JIKKUX27YGJV4F6WEEW7YOJSQMXM
-X-MailFrom: prvs=670c2a63e=matthew.swannick@l3harris.com
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <nM70OdyxB4MaincaXfOdQwE1C1tTDpJkUaJE1C4OKK0@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <nM70OdyxB4MaincaXfOdQwE1C1tTDpJkUaJE1C4OKK0@lists.ettus.com>
+Message-ID-Hash: UDEJNWMMX4FCHWBRX2D2UZNM7IOBKPG3
+X-Message-ID-Hash: UDEJNWMMX4FCHWBRX2D2UZNM7IOBKPG3
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Ettus Transmit Sample Streaming
+Subject: [USRP-users] Re: X310 not working
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EIW4JIKKUX27YGJV4F6WEEW7YOJSQMXM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UDEJNWMMX4FCHWBRX2D2UZNM7IOBKPG3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Swannick, Matthew (FP) - IC via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Swannick, Matthew (FP) - IC" <matthew.swannick@L3Harris.com>
-Content-Type: multipart/mixed; boundary="===============8411052508765428473=="
+Content-Type: multipart/mixed; boundary="===============3595040493115605637=="
 
---===============8411052508765428473==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============3595040493115605637==
 Content-Type: multipart/alternative;
-	boundary="_000_657abf57860f42a89ed48d996d60af45L3Harriscom_"
+ boundary="------------4bNlNKEFoJeChn5zksh6TLIk"
+Content-Language: en-US
 
---_000_657abf57860f42a89ed48d996d60af45L3Harriscom_
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
+This is a multi-part message in MIME format.
+--------------4bNlNKEFoJeChn5zksh6TLIk
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-I have previously sent the same message via e-mail so please discard one of=
- the messages.
-I am performing testing of transmit streaming using Ettus SDRs and encounte=
-ring underruns, which I would like to eliminate.
-I believe the problem is related to the rate at which samples are being rea=
-d from the storage or host OS scheduling (rather than configuration of the =
-Ettus itself), but was wondering whether you may still have some suggestion=
-s please.
-I am doing the following:
+On 09/11/2023 09:26, dixitmn6@gmail.com wrote:
+>
+> Hello support team and members,
+>
+> Recently tested the USRP x310 using uhd_usrp_probe command. However,=20
+> it did not seem to work.
+> The SFP port does not seem to blink after connected to LAN cable. The=20
+> USRP was also not pingable.
+> Hence I tried the device recovery manual=20
+> <https://kb.ettus.com/X300/X310_Device_Recovery>. After successfully=20
+> programming through the JTAG port, the ping didnt work so did not=20
+> proceed with the uhd_image downloader flashing. However the lsusb was=20
+> finally able to detect the network change, but even after setting the=20
+> ip of the host machine as 192.168.10.1, the USRP is still not=20
+> pingable. The wireshark is also not able to detect any ARP requests=20
+> from the USRP. I am pretty sure that the SFP is reliable since it is=20
+> purchased from the ettus support itself.
+>
+> What could be the issue?
+>
+Not sure what "lsusb" has to do with this situation?=C2=A0=C2=A0 The USRP=
+ X310=20
+communicates via ethernet.
 
-*         5 * Ettus B205mini SDRs are connected to a Linux based host compu=
-ter via 5 independent USB 3.0 connections.
-
-*         The host is simultaneously streaming samples to each of the 5 SDR=
-s.
-
-*         The samples are being streamed from 5 different sample files, one=
- file for each SDR.
-
-*         The sample files are stored on a fast SSD on the host.
-
-*         The SDRs are transmitting at different sample rates (between 20MH=
-z and 55MHz).
-
-*         The code being run by the host is based on the Ettus example prog=
-ram - tx_samples_from_file.cpp, but has been enhanced to run 5 separate tra=
-nsmit streamers simultaneously.
-The problem:
-
-*         For debug purposes the streaming code running on the host measure=
-s the time taken to read each buffer of samples from the SSD.
-
-*         Some of the times taken to perform a read can be quite high - a f=
-ew 1000us. This causes the underruns.
-
-*         The average time to read a buffer is much smaller than this - jus=
-t a few us. So the vast majority of reads are fast enough and do not underr=
-un.
-
-*         There is a large variety in the buffer read times - I would like =
-the buffer read times to be consistent, which should eliminate the underrun=
-s.
-
-*         The measurements show that the SSD/USB/host CPU, etc, are fundame=
-ntally fast enough, but some individual reads of the sample buffer can be s=
-low.
-
-*         I believe I can fix this in software via a queuing system to coun=
-ter the variations in read times, but would prefer to find a root cause and=
- if possible fix the source of the high read times.
-I was wondering whether Ettus could have encountered this sort of thing bef=
-ore and whether there are any suggestions please?
-Hopefully the description makes sense, please let me know if any further in=
-formation would be useful.
-Many thanks
-Matthew Swannick
-
-
- =
-
-
-CONFIDENTIALITY NOTICE: This email and any attachments are for the sole use=
- of the intended recipient and may contain material that is proprietary, co=
-nfidential, privileged or otherwise legally protected or restricted under a=
-pplicable laws. Any review, disclosure, distributing or other use without e=
-xpressed permission of the sender is strictly prohibited. If you are not th=
-e intended recipient, please contact the sender and delete all copies witho=
-ut reading, printing, or saving.
+What type of computer do you have, and more importantly, what type of=20
+Ethernet interface does it have?=C2=A0=C2=A0 Which SFP module
+ =C2=A0 did you purchase? Is it for copper or optical, and for what rates=
+?=C2=A0=C2=A0=C2=A0=20
+With the default FPGA image, the X310 supports 1Gbe on
+ =C2=A0 the SFP0 and 10GBe on the SFP1.=C2=A0=C2=A0=C2=A0 If this is a ne=
+w device, it's very=20
+likely that your initial problem was a networking issue,
+ =C2=A0 and doing device recovery was completely unnecessary.
 
 
 
-L3Harris Technologies UK Limited is a private company registered in England=
- with the company number 11111631 whose registered office is at 100 New Bri=
-dge Street, London, United Kingdom, EC4V 6JA.
-
-
-
-For information on our Privacy & Cookie Policies, please visit our website:=
- https://www.l3harris.com/en-gb/privacy-policy
-
---_000_657abf57860f42a89ed48d996d60af45L3Harriscom_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
+--------------4bNlNKEFoJeChn5zksh6TLIk
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:8.0pt;
-	margin-left:0cm;
-	line-height:105%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:8.0pt;
-	margin-left:36.0pt;
-	mso-add-space:auto;
-	line-height:105%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParag=
-raphCxSpFirst
-	{mso-style-priority:34;
-	mso-style-type:export-only;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	mso-add-space:auto;
-	line-height:105%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListPar=
-agraphCxSpMiddle
-	{mso-style-priority:34;
-	mso-style-type:export-only;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	mso-add-space:auto;
-	line-height:105%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagra=
-phCxSpLast
-	{mso-style-priority:34;
-	mso-style-type:export-only;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:8.0pt;
-	margin-left:36.0pt;
-	mso-add-space:auto;
-	line-height:105%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:290332640;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1035485176 134807553 134807555 134807557 134807553 1=
-34807555 134807557 134807553 134807555 134807557;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:1210653508;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1927544224 134807553 134807555 134807557 134807553 =
-134807555 134807557 134807553 134807555 134807557;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">I have previously sent the same message via e-mail s=
-o please discard one of the messages.<o:p></o:p></p>
-<p class=3D"MsoNormal">I am performing testing of transmit streaming using =
-Ettus SDRs and encountering underruns, which I would like to eliminate.
-<o:p></o:p></p>
-<p class=3D"MsoNormal">I believe the problem is related to the rate at whic=
-h samples are being read from the storage or host OS scheduling (rather tha=
-n configuration of the Ettus itself), but was wondering whether you may sti=
-ll have some suggestions please.<o:p></o:p></p>
-<p class=3D"MsoNormal">I am doing the following:&nbsp; <o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpFirst" style=3D"text-indent:-18.0pt;mso-lis=
-t:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>5 * Ettus B205mini SDRs are connected to a L=
-inux based host computer via 5 independent USB 3.0 connections.
-<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpMiddle" style=3D"text-indent:-18.0pt;mso-li=
-st:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>The host is simultaneously streaming samples=
- to each of the 5 SDRs.
-<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpMiddle" style=3D"text-indent:-18.0pt;mso-li=
-st:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>The samples are being streamed from 5 differ=
-ent sample files, one file for each SDR.<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpMiddle" style=3D"text-indent:-18.0pt;mso-li=
-st:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>The sample files are stored on a fast SSD on=
- the host.<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpMiddle" style=3D"text-indent:-18.0pt;mso-li=
-st:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>The SDRs are transmitting at different sampl=
-e rates (between 20MHz and 55MHz).<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpLast" style=3D"text-indent:-18.0pt;mso-list=
-:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>The code being run by the host is based on t=
-he Ettus example program - tx_samples_from_file.cpp, but has been enhanced =
-to run 5 separate transmit streamers simultaneously.<o:p></o:p></p>
-<p class=3D"MsoNormal">The problem:<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpFirst" style=3D"text-indent:-18.0pt;mso-lis=
-t:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>For debug purposes the streaming code runnin=
-g on the host measures the time taken to read each buffer of samples from t=
-he SSD.<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpMiddle" style=3D"text-indent:-18.0pt;mso-li=
-st:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Some of the times taken to perform a read ca=
-n be quite high &#8211; a few 1000us. This causes the underruns.<o:p></o:p>=
-</p>
-<p class=3D"MsoListParagraphCxSpMiddle" style=3D"text-indent:-18.0pt;mso-li=
-st:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>The average time to read a buffer is much sm=
-aller than this - just a few us. So the vast majority of reads are fast eno=
-ugh and do not underrun.<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpMiddle" style=3D"text-indent:-18.0pt;mso-li=
-st:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>There is a large variety in the buffer read =
-times - I would like the buffer read times to be consistent, which should e=
-liminate the underruns.<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpMiddle" style=3D"text-indent:-18.0pt;mso-li=
-st:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>The measurements show that the SSD/USB/host =
-CPU, etc, are fundamentally fast enough, but some individual reads of the s=
-ample buffer can be slow.<o:p></o:p></p>
-<p class=3D"MsoListParagraphCxSpLast" style=3D"text-indent:-18.0pt;mso-list=
-:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>I believe I can fix this in software via a q=
-ueuing system to counter the variations in read times, but would prefer to =
-find a root cause and if possible fix the source of the high read times.<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">I was wondering whether Ettus could have encountered=
- this sort of thing before and whether there are any suggestions please?<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">Hopefully the description makes sense, please let me=
- know if any further information would be useful.<o:p></o:p></p>
-<p class=3D"MsoNormal">Many thanks<o:p></o:p></p>
-<p class=3D"MsoNormal">Matthew Swannick&nbsp; <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br><span>&nbsp;</span><div>CONFIDENTIALITY NOTICE: This email and any atta=
-chments are for the sole use of the intended recipient and may contain mate=
-rial that is proprietary, confidential, privileged or otherwise legally pro=
-tected or restricted under applicable laws. Any review, disclosure, distrib=
-uting or other use without expressed permission of the sender is strictly p=
-rohibited. If you are not the intended recipient, please contact the sender=
- and delete all copies without reading, printing, or saving.<div><br><div>L=
-3Harris Technologies UK Limited is a private company registered in England =
-with the company number 11111631 whose registered office is at 100 New Brid=
-ge Street, London, United Kingdom, EC4V 6JA.<div><br><div>For information o=
-n our Privacy &amp; Cookie Policies, please visit our website: https://www.=
-l3harris.com/en-gb/privacy-policy</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 09/11/2023 09:26, <a class=3D"moz-t=
+xt-link-abbreviated" href=3D"mailto:dixitmn6@gmail.com">dixitmn6@gmail.co=
+m</a>
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:nM70OdyxB4MaincaXfOdQwE1C1tTDpJkUaJE1C4OKK0@lists.ettus.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <p>Hello support team and members,</p>
+      <p>Recently tested the USRP x310 using uhd_usrp_probe command.
+        However, it did not seem to work.<br>
+        The SFP port does not seem to blink after connected to LAN
+        cable. The USRP was also not pingable.<br>
+        Hence I tried the <a
+          href=3D"https://kb.ettus.com/X300/X310_Device_Recovery" title=3D=
+""
+          moz-do-not-send=3D"true">device recovery manual</a>. After
+        successfully programming through the JTAG port, the ping didnt
+        work so did not proceed with the uhd_image downloader flashing.
+        However the lsusb was finally able to detect the network change,
+        but even after setting the ip of the host machine as
+        192.168.10.1, the USRP is still not pingable. The wireshark is
+        also not able to detect any ARP requests from the USRP. I am
+        pretty sure that the SFP is reliable since it is purchased from
+        the ettus support itself.</p>
+      <p>What could be the issue?</p>
+    </blockquote>
+    Not sure what "lsusb" has to do with this situation?=C2=A0=C2=A0 The =
+USRP X310
+    communicates via ethernet.<br>
+    <br>
+    What type of computer do you have, and more importantly, what type
+    of Ethernet interface does it have?=C2=A0=C2=A0 Which SFP module<br>
+    =C2=A0 did you purchase? Is it for copper or optical, and for what
+    rates?=C2=A0=C2=A0=C2=A0 With the default FPGA image, the X310 suppor=
+ts 1Gbe on<br>
+    =C2=A0 the SFP0 and 10GBe on the SFP1.=C2=A0=C2=A0=C2=A0 If this is a=
+ new device, it's
+    very likely that your initial problem was a networking issue,<br>
+    =C2=A0 and doing device recovery was completely unnecessary.<br>
+    <br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_657abf57860f42a89ed48d996d60af45L3Harriscom_--
+--------------4bNlNKEFoJeChn5zksh6TLIk--
 
---===============8411052508765428473==
+--===============3595040493115605637==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -577,4 +203,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8411052508765428473==--
+--===============3595040493115605637==--
