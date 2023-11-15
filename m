@@ -2,110 +2,144 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7D87EC8ED
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Nov 2023 17:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C63D57ECACC
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Nov 2023 19:55:09 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C7534384DA3
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Nov 2023 11:50:14 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id CD3CC38493E
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Nov 2023 13:55:08 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1700067014; bh=TWLJfw0+RuSzJvSrXUF6H+bqVoM5Zx6CsUiUG6JWL2s=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=bPaYZNfqSNcHIuH/RU9wtmxm7yJfux90G3+oeTD63nn+wzMP1JP6FalsyWelHR37V
-	 NlfnfS/EqiKvEScVyqc3Zo/JyTfSN5lH4oY8rCHso8XmoxvM6UT9iCFCwDu7Qptcqe
-	 TtOOXjnvqtXRt7BDPuICrJ/42uDN6WL6OaeOiGRNGEMj2FiS5kKMwkZ2xGgNNnkM2S
-	 qZs1lpALtMAI8JcMgL+Hedcvl06UThE3PO2AaXwYA30QkRGUr27dCdX2zyxDaGpYDy
-	 /e/1TYd0yq3QE5tuwIzOHi8E9m+ZcnAuRnsihgH6RkK1YrgmtVC7YP6JhQu1rNVI0m
-	 dOldFObGaFXHQ==
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id C77CB3848FC
-	for <usrp-users@lists.ettus.com>; Wed, 15 Nov 2023 11:49:38 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NxS4qB+1";
-	dkim-atps=neutral
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1f4e17c1edfso2536138fac.0
-        for <usrp-users@lists.ettus.com>; Wed, 15 Nov 2023 08:49:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700066978; x=1700671778; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KqpZ3E/fSiLSi3WVAIMPfbN6fcbC31eD9ABG8ApMENw=;
-        b=NxS4qB+1ipbPhNtfstGJ42FvNI7ikz7RhtKpVZ4zWNq0XsZEzMFM0kGX+Dv4/b3S7u
-         K3DA++wKhrklzmRXlF2ghqvQkmEbEpI/abNPXM15KIBMU2lVOlJKLNjyQH/soU6e4fAz
-         MS7AV+h4Q7PuHxick7Ausl8NJkPKxeevmamYdjSdSi5tmnCUmY+P6/bySJ37aiXKfIPW
-         PK/bxk3SZbfDDIyU17wskOlKR6e8dmsNiAFqoFikRPwpXfZLKgHXl3PH3ddhq0zfKzrj
-         nZZh3d++ZdYp0BknM9OanbzcoVt/BFw82Y0FOuu7piwNla4ptfNAhZPkPq/NHDHSFkzE
-         srmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700066978; x=1700671778;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KqpZ3E/fSiLSi3WVAIMPfbN6fcbC31eD9ABG8ApMENw=;
-        b=vApB3L2UCCghC741UD6HP9Ms+w1xsJs0nwiUFDgdYDPZXusLdqsckzFaHOBrSPO8pC
-         bJ7Wl+8+mGBVzWXIAFataEzUOMLDGohUOTFiMNuXDNW4UQNpKJ90VO6NoGl5LPN2weLs
-         6ZwRVxDGN6/Uwp3ec8KqwQh3cNbNIaaSOKimC1pAyHHZzYLgC34aaQXP0etaemFy5bJ1
-         Mh4Ay6efdB2Q3U3IDwFJ25vSoQCVTqL7zYfHx2EOKNsT5/A5A5pMhQXE3rehnkyWwv5X
-         L4MyxqMwukarYmG2TVdDdtjehYkMhB10PeNaHO46wL2fD9PrSkrRd/taO9uk85da+6rm
-         ZMWA==
-X-Gm-Message-State: AOJu0YwSB4clkT+9MYsehnaAvZmXvW98O1cywp0skinlmPYIWPYfWy8l
-	JhSTGbTs3q0WWBQLh6bwckaEQjSWZvM=
-X-Google-Smtp-Source: AGHT+IGTW9/c8phgIADXbhetEYAjLUCsu6S2e0g3+xy4kpllT3++UE8ACUF0KDLF6kSAIkaR+2r7hA==
-X-Received: by 2002:a05:6871:4503:b0:1ef:b62d:24c9 with SMTP id nj3-20020a056871450300b001efb62d24c9mr17485904oab.5.1700066977771;
-        Wed, 15 Nov 2023 08:49:37 -0800 (PST)
-Received: from [192.168.2.176] ([174.88.54.173])
-        by smtp.googlemail.com with ESMTPSA id d13-20020ac851cd000000b0041b25ebc190sm3660631qtn.44.2023.11.15.08.49.37
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Nov 2023 08:49:37 -0800 (PST)
-Message-ID: <c65bc559-49ab-4b82-8545-40580957906e@gmail.com>
-Date: Wed, 15 Nov 2023 11:49:28 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+	t=1700074508; bh=YzI2zjaqIQ3j1F8JaN4b/gLtOK6gAGbTUu18i7G/bTA=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=prJSnAlpiVkytl/Q4A5aB1HdeqLW/EKrYKv6I5bEiL8DH5Ug73ps3Ud7JbeN+yyZ/
+	 1rES1tJTbZ9SJxMkgNvvTp9WQgdaPdw/5qWc22Vd2RV+lKJPDNO7F4983mHqIuKejF
+	 kyCkK386YRaWREvu/9t8wYOeYTSkxVE6Le3Blv+0bbIneEews5IclPdbCBo6HjVIUo
+	 Fpk0rHYcRjRRD1C2bn/MfSbgo5nqSdMvz/qY2g+rvHgYy9WpxWhpGqngne/9KdgBjD
+	 lqbHZWlWkCLvZZsi12sLnvmNgyQQcDHeEigTLT2Yg8T0slKamvCrW6kwFOTp/6YZvO
+	 BX3dnyKrbGqvA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 2FCC5384921
+	for <usrp-users@lists.ettus.com>; Wed, 15 Nov 2023 13:54:51 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1700074491; bh=enMCEwEAUIT8cT9IAGkqgWGQTbtuqWz5aDJxCOKZpQU=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=xDqz1fvOq7PfnPLVuAndssYvt4wWfyyaqBGaoY8gYswMEjPRcyY61C9k1phcbm73k
+	 629zhgb0s33/jjBnqCMcfJaq21sY74TEGmuXhVRZKRHejNGO4XEckJBG9II9+qWNqT
+	 C3wX/IDJ3wtZX/lC+mgDLTX9ST4UvTmg9+2IXiN9JElcPC7NwqKlUDugG9GQiEufmx
+	 1cxTx8hlYt+MJQHw90x56kj8iBrAHVnNB8eaoBtvSlr/7Wfpc1O1wHg1jwscYuknNq
+	 HIZLmKkmQ/K/iklRT8jEHp1sehs0oqV019qFDdL/zuyn1eUdA8ymdC3M+DIvIwOj8x
+	 3cqd5s4E2ulgQ==
+Date: Wed, 15 Nov 2023 18:54:51 +0000
 To: usrp-users@lists.ettus.com
-References: <Rn55QcvHihsytTc1qHbVmjvphA0dIfwkHBKdEAFmg@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <Rn55QcvHihsytTc1qHbVmjvphA0dIfwkHBKdEAFmg@lists.ettus.com>
-Message-ID-Hash: FHTGTFRCXLRIKYVETYUGWTP2GOHRLBBS
-X-Message-ID-Hash: FHTGTFRCXLRIKYVETYUGWTP2GOHRLBBS
-X-MailFrom: patchvonbraun@gmail.com
+From: jmaloyan@umass.edu
+Message-ID: <G4WoAsBKwV6sDkkMhozMRarTEkfNz1TqJTT3KfWU4@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: c65bc559-49ab-4b82-8545-40580957906e@gmail.com
+MIME-Version: 1.0
+Message-ID-Hash: UWZAT75VPAS4ONSMVQSZL5VJ23UFLAOA
+X-Message-ID-Hash: UWZAT75VPAS4ONSMVQSZL5VJ23UFLAOA
+X-MailFrom: jmaloyan@umass.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: x410 stuck in reboot
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FHTGTFRCXLRIKYVETYUGWTP2GOHRLBBS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UWZAT75VPAS4ONSMVQSZL5VJ23UFLAOA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8326674845364328255=="
 
-T24gMTUvMTEvMjAyMyAwOTo0MCwgam1hbG95YW5AdW1hc3MuZWR1IHdyb3RlOg0KPg0KPiBQcmV2
-aW91c2x5IEkgd2FzIHVuYWJsZSB0byBsb2cgaW50byBsaW51eCBkdWUgdG8gdGhlIGJvb3QgbG9v
-cC4gDQo+IEhvd2V2ZXIsIGFmdGVyIHJlZmxhc2hpbmcgdGhlIGVNTUMgd2l0aCB0aGUgDQo+IGZp
-bGVzeXN0ZW0oaHR0cHM6Ly9rYi5ldHR1cy5jb20vVVNSUF9YNDEwL1g0NDBfR2V0dGluZ19TdGFy
-dGVkX0d1aWRlI0ZsYXNoaW5nX3RoZV9lTU1DKSANCj4gSSBhbSBhYmxlIHRvIG5vdyBsb2cgaW50
-byBsaW51eCwgYnV0IG9ubHkgdGhyb3VnaCBDb25zb2xlIEpUQUcNCj4NCj4gSSBjYW4gTk9UIGhv
-d2V2ZXIsIGxvZyBpbiB2aWEgU0ZQIG9yIHRoZSAxR2IgZXRoZXJuZXQuIFRoaXMgd2hvbGUgDQo+
-IHByb2JsZW0gc3RhcnRlZCBhZnRlciBJIHRyaWVkIHRvIHVwbG9hZCBhbiBGUEdBIGJpdHN0cmVh
-bSB0byB0aGUgDQo+IGV0dHVzLCBpcyBpdCBwb3NzaWJsZSB0aGUgeDQxMCByZWxpZXMgb24gdGhl
-IEZQR0EgYml0c3RyZWFtIHRvIA0KPiBjb21tdW5pY2F0ZSBvdmVyIFNGUC8xIEdiIGV0aGVybmV0
-IGF0IGFsbD8NCj4NCklmIHRoZSBpbXBsZW1lbnRhdGlvbiBpcyBsaWtlIG90aGVyLCBzaW1pbGFy
-LCByYWRpb3MsIHRoZW4sIHllcy4gVGhlIFNGUCANCjEwRyBpbXBsZW1lbnRhdGlvbiBNQUMgaXMg
-ZG9uZSBpbiB0aGUgRlBHQSBjb2RlLCBhbmQgaWYNCiDCoCB0aGF0IEZQR0EgY29kZSBpcyBub3Qg
-d29ya2luZywgdGhlbiB0aGF0IHdvdWxkIGNhdXNlIHRoZSBTRlAgY29tbXMgdG8gDQpub3Qgd29y
-ay7CoCBJJ20gbm90IHN1cmUgb24gdGhlIFg0MTAgd2hldGhlciB0aGUNCiDCoCAxRyBSSi00NSBt
-YW5hZ2VtZW50IHBvcnQgaXMgImhhcmR3YXJlIGluaGVyZW50IiBvciBub3QuDQoNCg0KPg0KPiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1
-YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
-DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNj
-cmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+This is a multi-part message in MIME format.
+
+--===============8326674845364328255==
+Content-Type: multipart/alternative;
+ boundary="b1_G4WoAsBKwV6sDkkMhozMRarTEkfNz1TqJTT3KfWU4"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_G4WoAsBKwV6sDkkMhozMRarTEkfNz1TqJTT3KfWU4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+I do have access to two x410s. The bitstream I tried to upload on this cu=
+rrently none working device was CG bitstream, when prior to this it was a=
+n X4 bitstream. Im obviously hesitant to try something similar on the wor=
+king device right now, but my current guess right now is that ssh is not =
+starting.
+
+For example, if I use `systemctl -l --type service --all|grep ssh`   , i =
+get the following for the non-working and working x410s
+
+Non-working:
+
+\* sshd.service                           not-found inactive dead    sshd=
+.service                               =20
+
+sshd@0.service                         loaded    inactive dead    OpenSSH=
+ Per-Connection Daemon              =20
+
+sshdgenkeys.service                    loaded    active   exited  OpenSSH=
+ Key Generation
+
+Working :
+
+=E2=97=8F sshd.service                                      not-found ina=
+ctive dead    sshd.service                                     =20
+
+  sshd@3-192.168.10.2:22-192.168.10.1:45278.service loaded    active   ru=
+nning OpenSSH Per-Connection Daemon (192.168.10.1:45278)
+
+  sshdgenkeys.service                               loaded    active   ex=
+ited  OpenSSH Key Generation
+
+It appears the sshd session was able to start on the working device, but =
+for whatever reason-even after re-flashing- the non-working device is una=
+ble to start ssh, though I am not sure how to manually start it.
+
+I have tried using `systemctl` to start it, but I just get met with an er=
+ror that the sshd service is not found
+
+--b1_G4WoAsBKwV6sDkkMhozMRarTEkfNz1TqJTT3KfWU4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>I do have access to two x410s. The bitstream I tried to upload on this c=
+urrently none working device was CG bitstream, when prior to this it was an=
+ X4 bitstream. Im obviously hesitant to try something similar on the workin=
+g device right now, but my current guess right now is that ssh is not start=
+ing.</p><p><br></p><p>For example, if I use <code>systemctl -l --type servi=
+ce --all|grep ssh</code>   , i get the following for the non-working and wo=
+rking x410s</p><p>Non-working:</p><p>* sshd.service                        =
+   not-found inactive dead    sshd.service                                <=
+/p><p>sshd@0.service                         loaded    inactive dead    Ope=
+nSSH Per-Connection Daemon               </p><p>sshdgenkeys.service        =
+            loaded    active   exited  OpenSSH Key Generation</p><p>Working=
+ :</p><p>=E2=97=8F sshd.service                                      not-fo=
+und inactive dead    sshd.service                                      </p>=
+<p>  sshd@3-192.168.10.2:22-192.168.10.1:45278.service loaded    active   r=
+unning OpenSSH Per-Connection Daemon (192.168.10.1:45278)</p><p>  sshdgenke=
+ys.service                               loaded    active   exited  OpenSSH=
+ Key Generation</p><p>It appears the sshd session was able to start on the =
+working device, but for whatever reason-even after re-flashing- the non-wor=
+king device is unable to start ssh, though I am not sure how to manually st=
+art it.</p><p>I have tried using <code>systemctl</code> to start it, but I =
+just get met with an error that the sshd service is not found </p>
+
+--b1_G4WoAsBKwV6sDkkMhozMRarTEkfNz1TqJTT3KfWU4--
+
+--===============8326674845364328255==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============8326674845364328255==--
