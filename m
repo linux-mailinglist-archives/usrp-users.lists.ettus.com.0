@@ -2,66 +2,66 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 034757F545A
-	for <lists+usrp-users@lfdr.de>; Thu, 23 Nov 2023 00:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4B37F5530
+	for <lists+usrp-users@lfdr.de>; Thu, 23 Nov 2023 01:13:47 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4998A38613C
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Nov 2023 18:14:34 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 07C0F38649A
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Nov 2023 19:13:47 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1700694874; bh=2bV88CbHQtTX0tu2Bx4LVwiReABAJyi5mMwyyMeuGg0=;
+	t=1700698427; bh=zCS8dMU0Gh/a9WJR/3qK5twTpITCiFHaMMG/vl27lVI=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=cnwf4jZq6ISm1zCzLgWt+OkqGF5yiDYWRrK7O3xSAJ77jen3fr8sUZIJy+OmsjYuf
-	 Yj+dZldd7hs9LCEsmN8C/Kx+ScjZCnQham9Lp6BV7CIX/GjBU8hHdQzJENg1qxnQ1C
-	 xYcXoPz7wDtGoDiFeHNn4rQcBSPcEWpapwbu5MA5qeXuv/gD2Z9PWWUjvbYGmy2h3A
-	 E7tcSBaCfxbkJz5U2wKEp709brDbmq8jOej6QcRrf49eEM7+wtZwGQnFiDPL2Q56NM
-	 9qOxVaFDj/2U+8VOvI5XnsqUpRcCCVcXKUwO7eMwxsQXdVZ04IDHoOKjyd6ZZ6ptto
-	 IkVA8cSFnMOyw==
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8D9B8385F81
-	for <usrp-users@lists.ettus.com>; Wed, 22 Nov 2023 18:13:53 -0500 (EST)
+	b=rh1GZyMa7lOl5deYvSEqHCVAZ2nTrWo3h87u1xqpMhRh0QJm1uxAKle6EW8RjV9pA
+	 r2LcV40W3y6ANxgfY3QiNlfdALof+syrzJtUbDp+h7KGaDjuQfrkPYLrDSpGx4P7BF
+	 l/zxv/rj9Nq8f/0i7MPjqV1A/XXHis4l8jR2T0GfopM0H+1PkohafOl4Et6/wZG/ez
+	 adCKq+fCZzdBfacAWSuOd1XRIjf0dHzSCglusM1av4UbTG1T6ZZXR7h6J5+n7YX1P7
+	 tSRme59X0ivN+TDj/YTX+1j7NpXz/MYDrkcY+P42m1gEdXnFR6jTC0oNFfG4lN88sQ
+	 NiFjIMjb6AUaA==
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 865133863FC
+	for <usrp-users@lists.ettus.com>; Wed, 22 Nov 2023 19:13:07 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UMnZUhdd";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hMZWqMOx";
 	dkim-atps=neutral
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-77d66c7af31so88487985a.1
-        for <usrp-users@lists.ettus.com>; Wed, 22 Nov 2023 15:13:53 -0800 (PST)
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-58d12b53293so212529eaf.0
+        for <usrp-users@lists.ettus.com>; Wed, 22 Nov 2023 16:13:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700694832; x=1701299632; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1700698386; x=1701303186; darn=lists.ettus.com;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=U/553KxypRVT/GVzIBm5RqVswZR2Ccgt83FbJQPh2Xg=;
-        b=UMnZUhddH61Y0H9dpdjBH6p5hqdrigIUCLgEysCcLQUEiKtuxT7Cc34tC9jHzqf5Sj
-         C4+hfBqYq4F6wZnai0grHwZ5meZhtyp0Q6JZN5wPLg2SrCc5V5oRZpAvrC+YYjM9XIl3
-         DsTADHFQXWhuFRVLahu8RAj3/bqB1VhBWLeM2+qmdxUgG01InazP5qQsFfvpL+Kr/h/3
-         9Xty3FfiD7Bg75n6qi7IaT2xuYZeZ6WAnVMgMylQMI3mMj3qA6W7Ndw3XgrX8Yx05PcP
-         1wCzbCvdwVvnsrnSsfYhi9lyHYRF2Qh+Zo7bftz45vGa1J6W887859uRY/sAeW+3NB+o
-         muEg==
+        bh=FLfkd12N7b0og7ZuaZxadl64ouP7kiOfTSJ99B/HBrg=;
+        b=hMZWqMOxu5G4jUPXBSSJY184Uyg0BiRqOgNLx5OwEJ1OeFpVb5zNixeCva1/wkZ13P
+         mMvumuzT2rtwQtfGpXPGFuueDA1UwQkpLk4hmrX5pAmybzbg56LcTu5A+zxaMcOw4b62
+         qcqwB0kxqBrbJT+TxUSAYVZyF0Y9Lwy9s7cMGYKXsK/1oCtU0ReW6ekRpc6MYX/hmAbS
+         i2tJiccXoFUsvI5fhJApb48OzF4y+KVLAi+fmqVevuVlzG+NMThO3GTTQKyb1ca29VZZ
+         tUSXc2/s3oo1xUjfFxvHFaoAbJYl+LiSjSEOqi2gsxxhivr8MG5WnAnx9jU+VeSRDqHH
+         r5tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700694832; x=1701299632;
+        d=1e100.net; s=20230601; t=1700698386; x=1701303186;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=U/553KxypRVT/GVzIBm5RqVswZR2Ccgt83FbJQPh2Xg=;
-        b=oZFv1lDajhiYxbLwYH7QPaDVWOuxDncGC7YdiChYPKFdYYTyCT4jzDo4Phhw9JnXzt
-         JCSVKkEOyzKR5Sw+CNPQh5zeGKDxHlXQps2VTs2lJ4JmCHVaD1yu3MlxqrULN3kP4vP/
-         Jh15POYvSk9lCHbLp3ZcFm9tW5m6I0BCn/V1htJxY+HndFvOl7rLsLxbdTwFQqbNDidP
-         uBQeR1VrR4q77aJfV+nHRz+39UkveaOLFs2v2JrhUzKWCAU+NBxXD2e2c+8cfSAvhG+V
-         MbrSkOGcjtYwNN26sxUbr8rQW8+mEf7DLqQfJYOTD9V5+j6lBdS4R2fFfUu6hPqLjIZ9
-         n8Hw==
-X-Gm-Message-State: AOJu0Yx7zOWDhXBsYIx3k10So5btgEZmJ7qcFSmOHX0tUNa6IASJDQHG
-	ISwxGhKj6ewpyZIYsxwBOlA08bXU9MQ=
-X-Google-Smtp-Source: AGHT+IHgZjM4VTyJawq/G6QkjtS5EKi/nvuOBIjRbUJC1/9l0xsYjLIRypXdE2AVyILmFUS0xnXLjg==
-X-Received: by 2002:a05:620a:55a7:b0:77d:5d1a:b4a9 with SMTP id vr7-20020a05620a55a700b0077d5d1ab4a9mr1435460qkn.39.1700694832475;
-        Wed, 22 Nov 2023 15:13:52 -0800 (PST)
+        bh=FLfkd12N7b0og7ZuaZxadl64ouP7kiOfTSJ99B/HBrg=;
+        b=nz68pK+t13rSr84VROWVRxUtjaZEaxJn2xkdMX4rpbeyuStUFe2umsMF+DRvav4HUK
+         we66Id9DMxdMnFmFVoLYEtkCtpz1TBZ9W6iSv4YRKrCGxNkdd4nKn6I1YKRjBcQUZewO
+         vfX0AObgtpJmsdjaZEKZPT3E5iRFE1wqbA2GaQ3d/3lzF2L+zYzdAdWE3yM1CcQnua2y
+         eQPZZWSP6rRtZr48NGuqqgzZLEfzNDWWVh51xmkLVADak4QOqGFpu9da7U6hRx29AL23
+         CeMtotDA/GFmzrAel6+u9Wh3rsLesKEw9SqQI/I9E3wvWuo6IT+51FwZJMhcTzP3ZWMQ
+         XbaA==
+X-Gm-Message-State: AOJu0YyT30q9mTPUJ0+L52rurRKklJYLTr98KNn8CB5Giwrjz+th0uaz
+	3LGo5RNjbayZ60mK/CzJAfFUiWnQu8c=
+X-Google-Smtp-Source: AGHT+IGpLyE83Jd6xop6dI6gCcVLGBQB9irLPF5Ob9CeAOiW1/U8aMxiWK65r8KrvXqAayN4z/28Yw==
+X-Received: by 2002:a05:6358:2783:b0:16d:bcfa:e0cf with SMTP id l3-20020a056358278300b0016dbcfae0cfmr4141821rwb.30.1700698385591;
+        Wed, 22 Nov 2023 16:13:05 -0800 (PST)
 Received: from [192.168.2.170] ([174.93.0.146])
-        by smtp.googlemail.com with ESMTPSA id rb4-20020a05620a8d0400b0077d5c6a5c52sm258682qkn.69.2023.11.22.15.13.51
+        by smtp.googlemail.com with ESMTPSA id o3-20020a0ce403000000b0067804c17fe6sm17906qvl.107.2023.11.22.16.13.04
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 15:13:51 -0800 (PST)
-Message-ID: <93421550-8134-4e56-ae52-2c10c7b3d84c@gmail.com>
-Date: Wed, 22 Nov 2023 18:13:42 -0500
+        Wed, 22 Nov 2023 16:13:04 -0800 (PST)
+Message-ID: <07eab2ed-977b-482e-88ee-6d80830bba66@gmail.com>
+Date: Wed, 22 Nov 2023 19:13:04 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
@@ -69,31 +69,31 @@ To: usrp-users@lists.ettus.com
 References: <SJ0PR09MB91268B36574FD7BECA6F4D0EECBAA@SJ0PR09MB9126.namprd09.prod.outlook.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <SJ0PR09MB91268B36574FD7BECA6F4D0EECBAA@SJ0PR09MB9126.namprd09.prod.outlook.com>
-Message-ID-Hash: EQHL46FY6E2V5B6LZHOLLG5YOWNKC4FW
-X-Message-ID-Hash: EQHL46FY6E2V5B6LZHOLLG5YOWNKC4FW
+Message-ID-Hash: FRHEZIFBUHM6B4JGDOGVBXQZZNQBO3PA
+X-Message-ID-Hash: FRHEZIFBUHM6B4JGDOGVBXQZZNQBO3PA
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Problem (bug) with N321 external clock
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EQHL46FY6E2V5B6LZHOLLG5YOWNKC4FW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FRHEZIFBUHM6B4JGDOGVBXQZZNQBO3PA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3441306121659388559=="
+Content-Type: multipart/mixed; boundary="===============6132352070839490172=="
 
 This is a multi-part message in MIME format.
---===============3441306121659388559==
+--===============6132352070839490172==
 Content-Type: multipart/alternative;
- boundary="------------IrX4JMIxJhHV106jo6xAv8gC"
+ boundary="------------Hzy9r8bu1NYqUu700wbWPLge"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------IrX4JMIxJhHV106jo6xAv8gC
+--------------Hzy9r8bu1NYqUu700wbWPLge
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -145,23 +145,14 @@ ace=20
 > Any suggestions?
 >
 > Thanks.
-The divergence on the X310 at low offsets is much worse compared to the=20
-external reference than on the N321 -- in both cases,
- =C2=A0 the reference dBc/Hz at 100Hz offset, where your markers are, are=
-=20
-about the same.=C2=A0=C2=A0=C2=A0 What this suggests to me, is that the
- =C2=A0 on-board clock n the N321 is much better than the on-board clock =
-on=20
-the X310.=C2=A0 But that will require some diving into
- =C2=A0 the schematics...
+Do you have a phase-noise plot for the GPSDO in question?
 
 
-
---------------IrX4JMIxJhHV106jo6xAv8gC
+--------------Hzy9r8bu1NYqUu700wbWPLge
 Content-Type: multipart/related;
- boundary="------------3CtLcnOeHQTQzHAorCESFY0X"
+ boundary="------------scakKdcHRujIdf1JBkN8LRYT"
 
---------------3CtLcnOeHQTQzHAorCESFY0X
+--------------scakKdcHRujIdf1JBkN8LRYT
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -329,7 +320,7 @@ ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);"
 48"
             size=3D"384835" contenttype=3D"image/png"
             data-outlook-trace=3D"F:1|T:1"
-            src=3D"cid:part1.0E4Oiytw.l3bic0Yu@gmail.com"><br>
+            src=3D"cid:part1.ra1dWW6f.l7Z2CS2y@gmail.com"><br>
         </div>
         <div
 style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
@@ -352,7 +343,7 @@ ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);"
 22"
             size=3D"519387" contenttype=3D"image/png"
             data-outlook-trace=3D"F:1|T:1"
-            src=3D"cid:part2.f40Wo09F.CZ80HaN1@gmail.com"><br>
+            src=3D"cid:part2.0x0y9ZtG.HXg0pXFw@gmail.com"><br>
         </div>
         <div
 style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
@@ -378,32 +369,15 @@ ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);"
           Thanks.</div>
       </div>
     </blockquote>
-    The divergence on the X310 at low offsets is much worse compared to
-    the external reference than on the N321 -- in both cases,<br>
-    =C2=A0 the reference dBc/Hz at 100Hz offset, where your markers are, =
-are
-    about the same.=C2=A0=C2=A0=C2=A0 What this suggests to me, is that t=
-he<br>
-    =C2=A0 on-board clock n the N321 is much better than the on-board clo=
-ck
-    on the X310.=C2=A0 But that will require some diving into<br>
-    =C2=A0 the schematics...<br>
+    Do you have a phase-noise plot for the GPSDO in question?<br>
     <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:SJ0PR09MB91268B36574FD7BECA6F4D0EECBAA@SJ0PR09MB9126.namprd09=
-.prod.outlook.com">
-      <div class=3D"elementToProof"><span style=3D"white-space: pre-wrap"=
->
-</span></div>
-    </blockquote>
     <br>
   </body>
 </html>
---------------3CtLcnOeHQTQzHAorCESFY0X
+--------------scakKdcHRujIdf1JBkN8LRYT
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
-Content-Id: <part1.0E4Oiytw.l3bic0Yu@gmail.com>
+Content-Id: <part1.ra1dWW6f.l7Z2CS2y@gmail.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAfEAAAHACAYAAACyFFF1AAAAAXNSR0IArs4c6QAAAARnQU1B
@@ -7533,10 +7507,10 @@ noCEepEFuufHgTB0PRQ3yFOQr937+PwJpR9OO3iO0nfA0D3SlC1UGMQ9vLtQnkLp+zOUdihN
 f98fhN8bVn5wX3H4gwvieDiF8WeG/ND7hIHbMUsFpPju4Xt6Qbhw2fh13XfHX48UCu8uHDY4
 5tDDqS+8CqMrQVw9N6jUV+lRW7jwMkaFCe57n/rBsQ6C9NSP/L33/MJJK1wQLYiDGmjaEnxv
 nvgThN2NoyOz/wMBhufTSAtEBQAAAABJRU5ErkJggg==
---------------3CtLcnOeHQTQzHAorCESFY0X
+--------------scakKdcHRujIdf1JBkN8LRYT
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
-Content-Id: <part2.f40Wo09F.CZ80HaN1@gmail.com>
+Content-Id: <part2.0x0y9ZtG.HXg0pXFw@gmail.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAkUAAAIKCAYAAAAtcDt4AAAAAXNSR0IArs4c6QAAAARnQU1B
@@ -17159,11 +17133,11 @@ ZHJxCsPgi7x1OXOnKXThXrGIhmwJRy9/lo2bSJffCO8X8khXyk4Er4O8cW+M4uYnTPIW4+E9
 ft5iHBSlBAoSXZhD3ih05pP8cfHLHSZoYU+mx0n5Es/v78hjwS3+spm+xQSNRfb/Adt6AezK
 jkqdAAAAAElFTkSuQmCC
 
---------------3CtLcnOeHQTQzHAorCESFY0X--
+--------------scakKdcHRujIdf1JBkN8LRYT--
 
---------------IrX4JMIxJhHV106jo6xAv8gC--
+--------------Hzy9r8bu1NYqUu700wbWPLge--
 
---===============3441306121659388559==
+--===============6132352070839490172==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -17173,4 +17147,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3441306121659388559==--
+--===============6132352070839490172==--
