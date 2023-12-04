@@ -2,192 +2,181 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E0D803558
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 14:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3FA0803A0E
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 17:21:37 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BF87A384D0F
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 08:48:22 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 83969384BF3
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 11:21:36 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1701697702; bh=hvMPAljpWrslm1rpQCqGqY59C5z0OyHZ4oGC86RkYG4=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=qx518EK96y25ptn1jkce5Zrulz59O4TQcy/c5cFRbMGLN25whhGSrJDNogynh63Km
-	 x6r2aAVJJbf+fD9oMSBgL9DWPhRcacG5Sr8fsraOFzax/02yo6z552+KBhZn4xDEW7
-	 KsuRdgCClPUYl3i4CznoxAIn1DobNSbTbA9tZZCha7qRb7wzF1HERkWM1yD78jGADE
-	 mjaw7qhDVSdFcbt2BdWPou9fO2W3ce+GaOf+eazZjjfjc9wLn+zoxyQ/j+SIo2XtcI
-	 wysQ1haBSmADGQBdvCjKtZMzs2xaBLBud2qs/NNpxLhuIFkMz9wBUK/Uz3+3CdMLtV
-	 YzC+FB+Knxljw==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AC5CC3830F2
-	for <usrp-users@lists.ettus.com>; Mon,  4 Dec 2023 08:47:31 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1701697651; bh=5palhkfcWnylCG9lhiWzCKVV5PM6kFAQeaSyqIx+RiU=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=NF/ptWA9QHtGsS9737YWatdibBtSBqcALvm3ZPa7s6wSU9EnhKZ/boTw1zyPnMU7z
-	 GizAXPddLYbnuAq59dul9cocNIX333gazHg25l1fP/53k4Hco0PKQ498oUk4tLcKOA
-	 iG9/4zrua2CHu4ezo9aC6tl898DJo/kZPa9GU8rYH73CG9JKRW0HGtoHIUQGRN1Z2s
-	 eD2OVNZqyUe66rXgl4TopcSeHAyQvDIlLv+riU1qEY8gB39Iezhk/8jCZJwX6mg2Yp
-	 B41iVVcVoBrYkywku8+41fj9Nhhox0MSaZUwPJXN9ba87Lxfdv46m4oOWe03KVxWX0
-	 JDOq4UanDCjbg==
-Date: Mon, 4 Dec 2023 13:47:31 +0000
-To: usrp-users@lists.ettus.com
-From: purva.joshi@phd.unipi.it
-Message-ID: <4uVmt5iObZFOmwzxogIAD4WNphOveekYOoaBTCapk@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 135302A5-7887-412D-A202-59E76EDFE670@gmail.com
+	t=1701706896; bh=obvYz9eL5lnuNPUToto2z0ZfH8SBldg8Lr8YCPPue10=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=O0FdHAARdPxa89t3cNeqJsbKjQhSJoLuY8fgACp+baGLlxsNVerUuXwMatma+e3jR
+	 JgB744yD95MxPA9HZX7jRRPEA361v3b+DTxdEHDKglRFehcxU7mU3FozyAsxPFzyr4
+	 b4kmxGuOWWjka/g9P1McTbXTWdM7YxSb0BbB25vL+DHC72hr3xj50H9uAXu5hZruRU
+	 rA4BY9SE4aTQjQowBFDRuhEnAQyefCcgXswNgSK/Oy7RgSz/mTBSpow5gqsbStZNtS
+	 EYGlp/dbLOi7TyB9vIeJOnsJrx7gmFz/seaEjp6EPnLQILoIzY0PMTfXVpZq42aGG/
+	 8YjrP6Pg3jjyA==
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 61C53383B8C
+	for <usrp-users@lists.ettus.com>; Mon,  4 Dec 2023 11:20:42 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="gCBzLFmR";
+	dkim-atps=neutral
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50bfd3a5b54so894711e87.3
+        for <usrp-users@lists.ettus.com>; Mon, 04 Dec 2023 08:20:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google; t=1701706841; x=1702311641; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=76nswmZqCyB2yU6n2hD6SY+JEdRsrG8G4QEgyOrYCzw=;
+        b=gCBzLFmRT+Q9JoskEQA6UGNELx9z5TK0qodpWiYqTra0QTvX/G/XoRYALZo95PaE3o
+         S121Rs+/jEts/LkIBy7KhlkiTuBPuXDFUP/PkW9V02+jSiehEWuhIE2insRcajDKDtOZ
+         rtaMG7il+tpyFQ/ekk/UU7UO9SMI7IXExLZkUu8kQmuCMatgfYiz5ZS+eWZ6ShTXd+xe
+         gO0Y0iu8JwwibLr+8vy1Ifd+DFQdZOTaOriqF1F+lU13+SS9HIOQCPKz0Fu9xeACuFKB
+         48UPxf3J5kv6h4aZ7TvR+a12Qb+vvVxj95nOJKtC9PdP+kuPq9C/odRdEslD7/IpVegQ
+         xZmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701706841; x=1702311641;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=76nswmZqCyB2yU6n2hD6SY+JEdRsrG8G4QEgyOrYCzw=;
+        b=wB+E9+ku9ZdcF06JQgShs3t5xuo8m56JtIXacZWNb0Zzb6ZnWDVtXppeQ6uo3Z0Cgh
+         JvSRO/8D2yfgLb2gyEZ2aZ9eK2DxEKxag+/8mxiCViiTgN3nfQhrM+hQ5IwFVj/HGYjE
+         wnZcb8MdkwuMUk6dyVJ49l/j43QLbeWeiB9U6xuozV78hiJ+/kJNZ3u5nTYi6OvQdS/K
+         ZZa/2GnQqNZ4CG5RQckU3wnhxilooZWwo/5qjy0zbV3urJEqFOkGLY+Muj6yVaJ9tenU
+         iPXQGbA8QjFUMbWWwTSIVognbRKgXl3PRD9cYXGvqvS9Q52K8JN+HbT4+myZQ5c4Xqh+
+         9CuQ==
+X-Gm-Message-State: AOJu0YzYSdg582hPstn3xQ1W2DpV6E5dlq8mAwR1fS+ctG3KVQtvBB30
+	ooNm5wKVQI9oqLQ8Pi52uQJTaSQroUmgYyxWRCT8BfdpzukTygCb
+X-Google-Smtp-Source: AGHT+IGC2mJpBUNELk/JL+CxdexyqqMM8rfsjRaa5zCYfifkAzPbg9AkedLwoLGMmn1ng8YMLZVftYur7rQMoCFiCQM=
+X-Received: by 2002:ac2:5333:0:b0:50b:eef5:55fa with SMTP id
+ f19-20020ac25333000000b0050beef555famr1176375lfh.30.1701706840659; Mon, 04
+ Dec 2023 08:20:40 -0800 (PST)
 MIME-Version: 1.0
-Message-ID-Hash: RU2LSDYXTEPXR3E5TXUSWSSPE5FKQWTO
-X-Message-ID-Hash: RU2LSDYXTEPXR3E5TXUSWSSPE5FKQWTO
-X-MailFrom: purva.joshi@phd.unipi.it
+References: <74F79145-1C6F-46A1-BD35-1B1C9E8AAD4A@mytum.de>
+In-Reply-To: <74F79145-1C6F-46A1-BD35-1B1C9E8AAD4A@mytum.de>
+Date: Mon, 4 Dec 2023 11:20:29 -0500
+Message-ID: <CAB__hTQOucfe4Os6L+Wkc6gy7GvbzFrSjZP+QoV7vF2Q7asHaQ@mail.gmail.com>
+To: Xianglong Wang <xianglong.wang@tum.de>
+Message-ID-Hash: EMJBL7N656OIDQWW643BF7TUQEINK7A6
+X-Message-ID-Hash: EMJBL7N656OIDQWW643BF7TUQEINK7A6
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP N310 no device found
+Subject: [USRP-users] Re: RFNoC: RX & TX triggering for RFNoC block only flowgraph
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RU2LSDYXTEPXR3E5TXUSWSSPE5FKQWTO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EMJBL7N656OIDQWW643BF7TUQEINK7A6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3438681197346091035=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============5785335632032206459=="
 
-This is a multi-part message in MIME format.
+--===============5785335632032206459==
+Content-Type: multipart/alternative; boundary="000000000000c046fd060bb17f52"
 
---===============3438681197346091035==
-Content-Type: multipart/alternative;
- boundary="b1_4uVmt5iObZFOmwzxogIAD4WNphOveekYOoaBTCapk"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_4uVmt5iObZFOmwzxogIAD4WNphOveekYOoaBTCapk
-Content-Type: text/plain; charset=us-ascii
-
-Output of ifconfig:
-
-**enp1s0f0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9000**
-
-        **inet 192.168.20.2  netmask 255.255.255.0  broadcast 192.168.20.255**
-
-        **inet6 fe80::f19:8894:c467:688d  prefixlen 64  scopeid 0x20<link>**
-
-        **ether f8:f2:1e:41:49:d4  txqueuelen 1000  (Ethernet)**
-
-        **RX packets 6  bytes 1444 (1.4 KB)**
-
-        **RX errors 0  dropped 0  overruns 0  frame 0**
-
-        **TX packets 20  bytes 2675 (2.6 KB)**
-
-        **TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0**
-
-enp1s0f1: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
-
-        ether f8:f2:1e:41:49:d5  txqueuelen 1000  (Ethernet)
-
-        RX packets 0  bytes 0 (0.0 B)
-
-        RX errors 0  dropped 0  overruns 0  frame 0
-
-        TX packets 0  bytes 0 (0.0 B)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-enp4s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-
-        inet 131.114.52.179  netmask 255.255.252.0  broadcast 131.114.55.255
-
-        inet6 fe80::36ae:b44d:431f:f99  prefixlen 64  scopeid 0x20<link>
-
-        ether 04:d4:c4:a9:ab:b2  txqueuelen 1000  (Ethernet)
-
-        RX packets 2907134  bytes 289367402 (289.3 MB)
-
-        RX errors 0  dropped 0  overruns 0  frame 0
-
-        TX packets 78367  bytes 23270497 (23.2 MB)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-
-        inet 127.0.0.1  netmask 255.0.0.0
-
-        inet6 ::1  prefixlen 128  scopeid 0x10<host>
-
-        loop  txqueuelen 1000  (Local Loopback)
-
-        RX packets 121516  bytes 2614645259 (2.6 GB)
-
-        RX errors 0  dropped 0  overruns 0  frame 0
-
-        TX packets 121516  bytes 2614645259 (2.6 GB)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-lxcbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
-
-        inet 10.0.3.1  netmask 255.255.255.0  broadcast 0.0.0.0
-
-        ether 00:16:3e:00:00:00  txqueuelen 1000  (Ethernet)
-
-        RX packets 0  bytes 0 (0.0 B)
-
-        RX errors 0  dropped 0  overruns 0  frame 0
-
-        TX packets 0  bytes 0 (0.0 B)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-Output of uhd_config_info --version
-
-UHD 4.0.0.0-240-gb38c9d83
-
---b1_4uVmt5iObZFOmwzxogIAD4WNphOveekYOoaBTCapk
-Content-Type: text/html; charset=us-ascii
+--000000000000c046fd060bb17f52
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Output of ifconfig:</p><p><strong>enp1s0f0: flags=3D4163&lt;UP,BROADCAST=
-,RUNNING,MULTICAST&gt;  mtu 9000</strong></p><p><strong>        inet 192.16=
-8.20.2  netmask 255.255.255.0  broadcast 192.168.20.255</strong></p><p><str=
-ong>        inet6 fe80::f19:8894:c467:688d  prefixlen 64  scopeid 0x20&lt;l=
-ink&gt;</strong></p><p><strong>        ether f8:f2:1e:41:49:d4  txqueuelen =
-1000  (Ethernet)</strong></p><p><strong>        RX packets 6  bytes 1444 (1=
-.4 KB)</strong></p><p><strong>        RX errors 0  dropped 0  overruns 0  f=
-rame 0</strong></p><p><strong>        TX packets 20  bytes 2675 (2.6 KB)</s=
-trong></p><p><strong>        TX errors 0  dropped 0 overruns 0  carrier 0  =
-collisions 0</strong></p><p>enp1s0f1: flags=3D4099&lt;UP,BROADCAST,MULTICAS=
-T&gt;  mtu 1500</p><p>        ether f8:f2:1e:41:49:d5  txqueuelen 1000  (Et=
-hernet)</p><p>        RX packets 0  bytes 0 (0.0 B)</p><p>        RX errors=
- 0  dropped 0  overruns 0  frame 0</p><p>        TX packets 0  bytes 0 (0.0=
- B)</p><p>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions =
-0</p><p>enp4s0: flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 150=
-0</p><p>        inet 131.114.52.179  netmask 255.255.252.0  broadcast 131.1=
-14.55.255</p><p>        inet6 fe80::36ae:b44d:431f:f99  prefixlen 64  scope=
-id 0x20&lt;link&gt;</p><p>        ether 04:d4:c4:a9:ab:b2  txqueuelen 1000 =
- (Ethernet)</p><p>        RX packets 2907134  bytes 289367402 (289.3 MB)</p=
-><p>        RX errors 0  dropped 0  overruns 0  frame 0</p><p>        TX pa=
-ckets 78367  bytes 23270497 (23.2 MB)</p><p>        TX errors 0  dropped 0 =
-overruns 0  carrier 0  collisions 0</p><p>lo: flags=3D73&lt;UP,LOOPBACK,RUN=
-NING&gt;  mtu 65536</p><p>        inet 127.0.0.1  netmask 255.0.0.0</p><p> =
-       inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</p><p>        loo=
-p  txqueuelen 1000  (Local Loopback)</p><p>        RX packets 121516  bytes=
- 2614645259 (2.6 GB)</p><p>        RX errors 0  dropped 0  overruns 0  fram=
-e 0</p><p>        TX packets 121516  bytes 2614645259 (2.6 GB)</p><p>      =
-  TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</p><p>lxcbr0: =
-flags=3D4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500</p><p>        inet 10.=
-0.3.1  netmask 255.255.255.0  broadcast 0.0.0.0</p><p>        ether 00:16:3=
-e:00:00:00  txqueuelen 1000  (Ethernet)</p><p>        RX packets 0  bytes 0=
- (0.0 B)</p><p>        RX errors 0  dropped 0  overruns 0  frame 0</p><p>  =
-      TX packets 0  bytes 0 (0.0 B)</p><p>        TX errors 0  dropped 0 ov=
-erruns 0  carrier 0  collisions 0</p><p><br></p><p>Output of uhd_config_inf=
-o --version</p><p>UHD 4.0.0.0-240-gb38c9d83</p>
+Hi Xianglong,
+The thread you provided is pretty old.  On recent UHD versions (including
+4.4), it is possible to work directly without the splitstream block (i.e.,
+Radio-Rx =3D> custom block =3D> Radio-Tx).  You may need to handle time sta=
+mps
+- if your Radio-Rx is inserting time stamps, they will by definition arrive
+"Late" to the Radio-Tx if your custom block does not adjust them.  You also
+might need to define your RFNoC graph with one edge as a "back edge" or
+something like that so that the RFNoC graph does not loop.
 
---b1_4uVmt5iObZFOmwzxogIAD4WNphOveekYOoaBTCapk--
+You may find it easier to get this working outside of gnuradio - perhaps
+using the rfnoc_radio_loopback example
+<https://github.com/EttusResearch/uhd/blob/master/host/examples/rfnoc_radio=
+_loopback.cpp>
+or a modification of this for your custom block.
+Rob
 
---===============3438681197346091035==
+On Sun, Dec 3, 2023 at 12:24=E2=80=AFPM Xianglong Wang <xianglong.wang@tum.=
+de>
+wrote:
+
+> Dear All,
+>
+> I am using UHD 4.4 and GNURadio 3.10 and I am trying to set up an RX-TX
+> passthrough flow graph as discussed in this thread (
+> https://lists.ettus.com/empathy/thread/MJKCCJEVNJKJOIRORPWDI6Z5WZNHSR3B?h=
+ash=3DMJKCCJEVNJKJOIRORPWDI6Z5WZNHSR3B#MJKCCJEVNJKJOIRORPWDI6Z5WZNHSR3B
+> ).
+>
+>  However, my flow graph is not working either, and when I add the split
+> streamer as said in the thread, only the RX works, but the TX does not. H=
+ow
+> can I get both RX and TX to work with such a flow graph? Thanks in advanc=
+e.
+>
+> Kind regards,
+> Xianglong
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000c046fd060bb17f52
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Xianglong,<div>The thread you provided is pretty old.=
+=C2=A0 On recent UHD versions (including 4.4), it is possible to work direc=
+tly without the splitstream block (i.e., Radio-Rx =3D&gt; custom block =3D&=
+gt; Radio-Tx).=C2=A0 You may need to handle time stamps - if your Radio-Rx =
+is inserting time stamps, they will by definition arrive &quot;Late&quot; t=
+o the Radio-Tx if your custom block does not adjust them.=C2=A0 You also mi=
+ght need to define your RFNoC graph with one edge as a &quot;back edge&quot=
+; or something like that so that the RFNoC graph does not loop.</div><div><=
+br></div><div>You may find it easier to get this working outside of gnuradi=
+o - perhaps using the <a href=3D"https://github.com/EttusResearch/uhd/blob/=
+master/host/examples/rfnoc_radio_loopback.cpp">rfnoc_radio_loopback example=
+</a> or a modification of this for your custom block.</div><div>Rob</div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Sun, Dec 3, 2023 at 12:24=E2=80=AFPM Xianglong Wang &lt;<a href=3D"mailto:=
+xianglong.wang@tum.de" target=3D"_blank">xianglong.wang@tum.de</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Dear All,<br>
+<br>
+I am using UHD 4.4 and GNURadio 3.10 and I am trying to set up an RX-TX pas=
+sthrough flow graph as discussed in this thread (<a href=3D"https://lists.e=
+ttus.com/empathy/thread/MJKCCJEVNJKJOIRORPWDI6Z5WZNHSR3B?hash=3DMJKCCJEVNJK=
+JOIRORPWDI6Z5WZNHSR3B#MJKCCJEVNJKJOIRORPWDI6Z5WZNHSR3B" rel=3D"noreferrer" =
+target=3D"_blank">https://lists.ettus.com/empathy/thread/MJKCCJEVNJKJOIRORP=
+WDI6Z5WZNHSR3B?hash=3DMJKCCJEVNJKJOIRORPWDI6Z5WZNHSR3B#MJKCCJEVNJKJOIRORPWD=
+I6Z5WZNHSR3B</a>).<br>
+<br>
+=C2=A0However, my flow graph is not working either, and when I add the spli=
+t streamer as said in the thread, only the RX works, but the TX does not. H=
+ow can I get both RX and TX to work with such a flow graph? Thanks in advan=
+ce.<br>
+<br>
+Kind regards,<br>
+Xianglong<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000c046fd060bb17f52--
+
+--===============5785335632032206459==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -197,4 +186,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3438681197346091035==--
+--===============5785335632032206459==--
