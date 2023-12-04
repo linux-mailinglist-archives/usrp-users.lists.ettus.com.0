@@ -2,94 +2,102 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B006E802DA0
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 09:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC0A803098
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 11:39:20 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4DD04384C69
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 03:53:46 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E5F2F384A75
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 05:39:19 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1701680026; bh=Q3HUdGnGVLvfHG/QDPMiJ3qYIt1/7frlLZTa/KNOlDo=;
+	t=1701686359; bh=gWTceO0v9FbkdocqkxNZkjS6YruF1hFDZT1OuZGCIPs=;
 	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=Y0cZLjQel0EkWOoRzt+Xd0fnuPT+OeHTxS+SJeaNAtXgKsWOYyxP6h+0Xeot4k09y
-	 Zeso2vD/C7qWbuG1ZjWEVwePKbe9Ck0bmziU50LDwc0HGogGNkoDZNe2JuXQ7XMR2P
-	 EViX3DUaugc494Zu/hrk5h/RglW2bF88cSInIexGGsrM4zn6tByA2I2wbYVe2pAtmO
-	 W5MSGa8U3/bg/h+NPbCY2fdPMH9F5PFqHq8KLHmcDihXWmBb180zEaBZdfIcx6VB6R
-	 kdPO5+ZprDK1hnPcLpbHyNH2MXCmy6o9bAYQV720E3QviW/1Oe59W+uup5rEH7H3Ne
-	 6Loaf0mvOeBcA==
+	b=U6tCRb6SiDX4cOu2gU7q/kWObiwuCHNXf91/m9+k1hk7lfL2fMJWCPa1G6GjRxsaD
+	 h9vR22apZe81SA74UTkRuIVJcxxxvEZqdtqZD+G02k4ApnIOxUkN7DNu0ej+8/U1WN
+	 fyFBXoqOz98JP2E03SHeM90TwTp70nDMxsr9IAGw4tluIwNyXZQuhn+zi7tM+XhNwH
+	 NCYk3Yrgm0bc9XLYhm7oQL/rkjM4VDZrddQDNAoypThu1bYcrq+t9M9YZKzDFvkOGL
+	 xzTOozjcBNCwEq4OBugKupYGR6HGcg7U6zT0d8AC/yO40VTXQ32QYy2AEZSTa0wzyZ
+	 E4Gj3oAPv9GRg==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C3F7A38456E
-	for <usrp-users@lists.ettus.com>; Mon,  4 Dec 2023 03:52:55 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 37C6B384699
+	for <usrp-users@lists.ettus.com>; Mon,  4 Dec 2023 05:38:55 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1701679975; bh=x2RaPwTuthrsdImQJsdRM5cYbBNk6lFq38Rv/sbMcpY=;
+	t=1701686335; bh=4ckcClauOzZiFNPjtX0IBf7qivBUJL5w7cyaSmupGBo=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=Rw938v+KfSfh4P5qt95vqDJC70I1OG2G+sGK4eF4R/6Tw7AwqDrEso+hkp8IV7RS/
-	 V1WIEg0x0y8UOsrMxetz7E7YD8SKE5I0PHbQTuYySBNyIPv7L7AHgaaFstIwYc0+2+
-	 fwEz4eeRHGnbO4hmkssogXdzcwanPN10mH9+wcThlDsTo3zFDfG39e96lb1qs8suc7
-	 2nh7Ryf2Utc2ChhzuyGbINCnXukwVKWbY68WHOxkcZGQMIrXLJsovz13pwiASnB1Ev
-	 a8Kiw2d4iElhcFvW6ujWJQxk+wPoeEhuROCxv9hUKmtdUZYLw2wAwXF2M8MQn6i0Wj
-	 VnNTbdHmO1f7Q==
-Date: Mon, 4 Dec 2023 08:52:55 +0000
+	b=VNhLoYLyXU5494l5gRvcPiN70HbDt8FX5cQRUBkxQmH6xF7oXsid1y2UyifPnyZEj
+	 9wK9dVdcbb3K+jE41CWPUCn3FMmKf/oZbGhR8FnCFvyAqXDM/ipbjh7mjmme7j+kt6
+	 IU9KYLQY3a5KXVliAaCbMadlwPOujo4FnCtnzbdPSEA6YVMJk982QbV9s8sZzImgyL
+	 V+WXWdo+AYHYJnyYpOCx/UeiAFG6e3nKn9P44XnvumDZHrqhHpqEmKPGmUSNDO2A6I
+	 7HyoIZPGrdxKul+B4kjmI6ps3h0BHKasz/PuKuV8Tt9zeZI0oL7QJAuS26MGVN+UI0
+	 yjb5fe7dghaXw==
+Date: Mon, 4 Dec 2023 10:38:55 +0000
 To: usrp-users@lists.ettus.com
-From: purva.joshi@phd.unipi.it
-Message-ID: <6ViSPAl8QcFRgCF2NKuNSFEm7c2yLU9h6QECYKPgI@lists.ettus.com>
+From: enrico.petraglio@heig-vd.ch
+Message-ID: <uaYam1ZqUi7RoFWGkDIrPqJgrH8lntEHw02dmCJqt4@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 2ea210ca-e947-4a44-8520-7d3db0a019ef@gmail.com
+In-Reply-To: CAFche=ipqeVtQR+v+Pq=8s-F49xuFU7kzfRJWc0ELbWXqdjWPw@mail.gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: UWKX53JFRXKKSNNQNLQLF2IBPEM74BOW
-X-Message-ID-Hash: UWKX53JFRXKKSNNQNLQLF2IBPEM74BOW
-X-MailFrom: purva.joshi@phd.unipi.it
+Message-ID-Hash: 4UYH72UURPWT2WNRQSFX5LONMRRR3I7F
+X-Message-ID-Hash: 4UYH72UURPWT2WNRQSFX5LONMRRR3I7F
+X-MailFrom: enrico.petraglio@heig-vd.ch
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP N310 no device found
+Subject: [USRP-users] Re: rfnoc_image_builder error with uhd4.6
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UWKX53JFRXKKSNNQNLQLF2IBPEM74BOW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4UYH72UURPWT2WNRQSFX5LONMRRR3I7F/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1409154944138406797=="
+Content-Type: multipart/mixed; boundary="===============3628729507194951345=="
 
 This is a multi-part message in MIME format.
 
---===============1409154944138406797==
+--===============3628729507194951345==
 Content-Type: multipart/alternative;
- boundary="b1_6ViSPAl8QcFRgCF2NKuNSFEm7c2yLU9h6QECYKPgI"
+ boundary="b1_uaYam1ZqUi7RoFWGkDIrPqJgrH8lntEHw02dmCJqt4"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_6ViSPAl8QcFRgCF2NKuNSFEm7c2yLU9h6QECYKPgI
+--b1_uaYam1ZqUi7RoFWGkDIrPqJgrH8lntEHw02dmCJqt4
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Dear Marcus,
+Hello Wade,=20
 
-Sorry for late reply. I have connected USRP through SFP0 port using 10Gig=
-a Ethernet card. For pinging, I have set the IP address by manually, whic=
-h is as per guidelines of ETTUS =E2=80=9CGetting started Guidelines=E2=80=
-=9D. It is new device, but my professor used this device before in Ubuntu=
- 16.04 in same desktop, but now it is disconnected. Hope to hear from you=
- soon. Thanks.
+Thanks to your remarks I=E2=80=99ve figured out that the tool was referri=
+ng to the image_builde.py file in the wrong directory.=20
 
---b1_6ViSPAl8QcFRgCF2NKuNSFEm7c2yLU9h6QECYKPgI
+It appears that UHD4.6 installs its files in :
+
+/usr/local/lib/python3.10/site-packages since the previous version I had =
+installed the same files in /usr/local/lib/python3/dist-packages
+
+I have updated my PYTHONPATH in order to fix the issue.
+
+Thank you
+
+Enrico
+
+--b1_uaYam1ZqUi7RoFWGkDIrPqJgrH8lntEHw02dmCJqt4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p>Dear Marcus,</p><p>Sorry for late reply. I have connected USRP through=
- SFP0 port using 10Giga Ethernet card. For pinging, I have set the IP add=
-ress by manually, which is as per guidelines of ETTUS =E2=80=9CGetting st=
-arted Guidelines=E2=80=9D. It is new device, but my professor used this d=
-evice before in Ubuntu 16.04 in same desktop, but now it is disconnected.=
- Hope to hear from you soon. Thanks. </p>
+<p>Hello Wade, </p><p>Thanks to your remarks I=E2=80=99ve figured out tha=
+t the tool was referring to the image_builde.py file in the wrong directo=
+ry. </p><p>It appears that UHD4.6 installs its files in :</p><p>/usr/loca=
+l/lib/python3.10/site-packages since the previous version I had installed=
+ the same files in /usr/local/lib/python3/dist-packages</p><p>I have upda=
+ted my PYTHONPATH in order to fix the issue.</p><p><br></p><p>Thank you</=
+p><p><br></p><p>Enrico</p>
 
 
---b1_6ViSPAl8QcFRgCF2NKuNSFEm7c2yLU9h6QECYKPgI--
+--b1_uaYam1ZqUi7RoFWGkDIrPqJgrH8lntEHw02dmCJqt4--
 
---===============1409154944138406797==
+--===============3628729507194951345==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +107,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1409154944138406797==--
+--===============3628729507194951345==--
