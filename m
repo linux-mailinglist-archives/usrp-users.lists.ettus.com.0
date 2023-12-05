@@ -2,205 +2,158 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BCBD8042DE
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Dec 2023 00:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC3DD804CB6
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Dec 2023 09:39:11 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 42192384CE4
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Dec 2023 18:51:34 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 71C62384EBD
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Dec 2023 03:39:10 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1701733894; bh=I2iwMI8F/GTt22+HjyDfxuiwDk5N7DLOuDD9C21wRto=;
+	t=1701765550; bh=6S2Dxigq96haa8hLhcR+kiSJHdYgdJuEQ4TfJivEh/8=;
 	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=xSjfigTNxn+QD5DfpG44apoyM0c8KVp7SF8GQvBCPJID3axLgfXeG+op6t2GgXDLT
-	 XdPw2fHvvepbZIH2g+TmkYkMvVtcVMEfiUJ+ix68TWNUrK1stV7tGKl/40woiNqrW9
-	 EGeHkq5dFIFwA30t2WuBGkLWGIrn+t0awQ4y7MGFcIoUdNkB779SdOZuRXrAhDhQdw
-	 jRAdNUdPYWjcRzsGgXCSsXDfrfqyszzepXVyEzsXPTay7b77MVxrRy5BjDIlGdbvV9
-	 uTS3J4+t23ISkw39LpRJawcFZmfqj+RUPgtVnMB7VTJWyzfU41pAEOYtGHEjxrszxY
-	 dIB6meAfbzM8A==
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 26CA63848E7
-	for <usrp-users@lists.ettus.com>; Mon,  4 Dec 2023 18:50:45 -0500 (EST)
+	b=t1cBqlyaYXiO83m4ode0K+xk9AY7rwtj/441n37K4hYcc2RxSxEdUme+0VTnTleLX
+	 o+pvKp96vzTJSUicr7U0lVHy9YMbduwf31SzXk0MeON2jTbi+D2GVLnhVvG/pA2Vwf
+	 hSgwCHHJ1m5YNYUaa8fxViezACp4uV3Ho8oMm/LqbkIJWXBDVr9R/Io24glN/5arAI
+	 6X1QoY9/ENSBjCMuu20keD2UHLNNGr3jljVa9f4+1LPcJD1cHGMXKatr4tmOx06wbq
+	 CJC4IKso1DFU0kj8LWWRtCsyVkwuoqjkoLuzjqcTPepsi4aa2Sxs4DKfxbxZndmB8t
+	 Jzad056U4n8XA==
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2EC2D384DBC
+	for <usrp-users@lists.ettus.com>; Tue,  5 Dec 2023 03:38:43 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="nbU3dI6K";
+	dkim=pass (2048-bit key; unprotected) header.d=g.ecc.u-tokyo.ac.jp header.i=@g.ecc.u-tokyo.ac.jp header.b="Rjf7OBU0";
 	dkim-atps=neutral
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-67a9febb2bfso29505426d6.1
-        for <usrp-users@lists.ettus.com>; Mon, 04 Dec 2023 15:50:45 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-54ba86ae133so5562318a12.2
+        for <usrp-users@lists.ettus.com>; Tue, 05 Dec 2023 00:38:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1701733844; x=1702338644; darn=lists.ettus.com;
+        d=g.ecc.u-tokyo.ac.jp; s=google; t=1701765521; x=1702370321; darn=lists.ettus.com;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=ynMEFsN1VzJ4wwmmFnbC50p261vLekEn4qq2J70h8PI=;
-        b=nbU3dI6K2ivNr9nq1XjjN96G4N5ZBNaNgnvlaJ2YBT6yfrXAWC5no/nPtuJxInjUOX
-         hDXm3gt2DPlxMikFsa+5PX/2KTVQSnNgxVZ/aahwkKlSQEwRyUfPgarQvXsleH5Z+7JJ
-         ktN7JV2/z+aVzaAlNnG75/4BC8Uge0ONIEaRh1Hq14Y2+4P2VCsBa7mxeG4hu+nQLPzl
-         oISrhfjsj5nZU+4b4MovyF68AhIbifXcmI7xwXvrGNn/E9eGYDWUFLqpeZKF4+MmQvmy
-         RDtkSyP5Q1kAZ3DksyYm194Hbl1SbynEiFaG6dj46j1lnZSzDkAVwxafgY0T8AQ3IGty
-         DGRQ==
+        bh=//uJshNiSRVGMQkHe1gkeiojBTglK82orj52gZXl8ww=;
+        b=Rjf7OBU0vSBQr4bdUMwK3IDs7RIwn384RkmgRcGjeNNsI7G3o/iDs1a8YcR6Sdy+30
+         RfOepsxJpSTHlXVJp9Ka9HpGuvvInmJ3dbmWeMkmI2LVbmPSbPrWSkm7KbHIQi+jFzJU
+         I5yTuLMG8HlcoKCT8tV46tvSqO5eQ6qu+L1TwJegdeEMm2GZ1Kv4EJrFP+Sb2wU/kNAI
+         rKjQqNGfl4lXO5nmnlTJw3AAYg9hmXSe4raOKoP8WaZ6EhpBJS+qrh4GgD7gnIUjm6OG
+         8loCinPTmXF76V9Yqf8ZfFy16SuJoX8UtgDtjCCa7WgpPHfh6z5m/CqUJYv7OOQYQbCh
+         +oDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701733844; x=1702338644;
+        d=1e100.net; s=20230601; t=1701765521; x=1702370321;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ynMEFsN1VzJ4wwmmFnbC50p261vLekEn4qq2J70h8PI=;
-        b=fr1UWMj8yAinqh5hZazUwHi/OSyQhB4EaK2IkkpkbOZH20SK0ZDsETuQ+YJR1NWvGe
-         e4COs/GSkemhU5RLPxqZsv22X/FvpuFmRQYAIux+XUdp2wnn9iiGVZacvlEdii7AR0lo
-         ZaYQW3YjjPIMbBAc3psTLJJ65tUIsZs6S82xg5xMhYzLH5ZIsDFK4tZjx9Z/qaX5ntzu
-         uGEffO5LQMQb2VMAoghjrxADDwwfA7/tu3/QaeS6CacrC3I5ZbwyNqC7Y/8onKG0IA1/
-         w8VSnXz+OtZc7VqEl2tGmdqDdcZ535XOj4Ku6MpuVMmssgh3Kzfxo0uIptPPzBClrSXe
-         ZAgw==
-X-Gm-Message-State: AOJu0YyDn/oBzPKI6ALQXNoyPM/pAddwPAXreeGzTv3aqim8hpHQCpnn
-	xK3tGXAisAJvdkG/hSD6Y7OWn16kJqCMEIY+lWwlL2YVbRsrXNFnN/uM2Q==
-X-Google-Smtp-Source: AGHT+IHy0iivVhOphJDFh5hePLmGy6vV/7x9zT6TxAGxtu6v1UCmdyAOro4EsHbbs3maqZHcXnnyOrm/ktM7rFXlR9g=
-X-Received: by 2002:a0c:ee86:0:b0:67a:bb2b:9180 with SMTP id
- u6-20020a0cee86000000b0067abb2b9180mr381089qvr.70.1701733844227; Mon, 04 Dec
- 2023 15:50:44 -0800 (PST)
+        bh=//uJshNiSRVGMQkHe1gkeiojBTglK82orj52gZXl8ww=;
+        b=mw0XgScoyXIh2X+ZzmNptAshdXfiKcOi8Sef2awO9hEw5pySSQ6/oTNk3emA8uAsNW
+         zsyM8jQVn97Ysb//4lq5a07X7jEiBGESLGU2DLQUgXiDs4Pan/2VCCAEo9/MBVZRbz+A
+         uD/IEwfija05kaIIMoVHUR1q5bTg8vCtBlSmnt87cVHomx89t3lj6Tie9PIv87gf6uhO
+         OH8l1AupKA0jiSI82E1d7GqsVcZfXM1uYcgezLbI2Od8emq1Zhykj642zHJ0JsUCBwUx
+         RB5rsMSNU9lr2qEL2M/dPXCseRJNArAqITmyRP+WXppEOHAV6qdQ8vdvTJKq7lUqcYJz
+         mf1Q==
+X-Gm-Message-State: AOJu0YzTBsZf9SbIl93FVIU531JlUd+24UbPTrKlbAzornLq95rWuwEv
+	HWpa+HDmtp55KYz5KYRIhgAfO/vJNcE5VRsk6biav1T5xWbr4OmO0i4=
+X-Google-Smtp-Source: AGHT+IHBVaze5o/qmheV7F73byFy8FuYuIFPOxUkj/4QHZ5ICWIXLFPYY6Oq5NOfpuZEazgsjR+9Ev4QK1TVQ158Ik4=
+X-Received: by 2002:a50:cdc9:0:b0:54c:4837:903f with SMTP id
+ h9-20020a50cdc9000000b0054c4837903fmr3889997edj.55.1701765521455; Tue, 05 Dec
+ 2023 00:38:41 -0800 (PST)
 MIME-Version: 1.0
-From: Ettus Research Technical Support <support@ettus.com>
-Date: Mon, 4 Dec 2023 17:50:08 -0600
-Message-ID: <CACSOXP06eTXEkqOHDoOoaM-K-k1rFB9dqwRBgVw9YXNLEVkHYA@mail.gmail.com>
+From: Aerman TUERXUN <armantursun@g.ecc.u-tokyo.ac.jp>
+Date: Tue, 5 Dec 2023 17:38:30 +0900
+Message-ID: <CAOcHjoLpCBMWLUafr=w3yrH7=-Mrhes-1tPma5jTBc8n=KL4Sw@mail.gmail.com>
 To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: WDJSBFIH5OD3RNVYYQL74OBVUGD4NURM
-X-Message-ID-Hash: WDJSBFIH5OD3RNVYYQL74OBVUGD4NURM
-X-MailFrom: support@ettus.com
+Message-ID-Hash: A5HH6U2GVW5WTJ3C75OV2JJUK4IZY7S3
+X-Message-ID-Hash: A5HH6U2GVW5WTJ3C75OV2JJUK4IZY7S3
+X-MailFrom: armantursun@g.ecc.u-tokyo.ac.jp
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Announcement of Ettus Research Technical Support Changes, Effective 1 January 2024
+Subject: [USRP-users] Multi-process DPDK support in UHD
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WDJSBFIH5OD3RNVYYQL74OBVUGD4NURM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A5HH6U2GVW5WTJ3C75OV2JJUK4IZY7S3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5395428905740203964=="
+Content-Type: multipart/mixed; boundary="===============4173835358478792091=="
 
---===============5395428905740203964==
-Content-Type: multipart/alternative; boundary="00000000000049afcb060bb7c96b"
+--===============4173835358478792091==
+Content-Type: multipart/alternative; boundary="00000000000065d833060bbf29cf"
 
---00000000000049afcb060bb7c96b
+--00000000000065d833060bbf29cf
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Community:
+Hi all,
 
-We would like to announce a change in the way that NI / Ettus Research
-provides technical support. Starting on 1 January 2024, direct email-based
-technical support using the "support@ettus.com" email address will be
-disabled, and we will transition to the NI Service Request Manager (SRM) to
-provide direct technical support, which will become the primary way to
-obtain technical support for NI/Ettus USRP hardware and software. We will
-continue to monitor and respond to emails sent to "support@ettus.com"
-through 31 December 2023.
+I have a problem using multi USRPs with multi-processes.
+I need to use two USRPs connected to a single host, and there are two
+applications that invoke two USRP with DPDK enabled.
+The first application successfully started, however when I ran the second
+one, it gave me the following error message.
+I learned that DPDK supports multi-process, and it needs to be set with
+--file-prefix.
+But I couldn't find any reference for UHD to use multi-DPDK.
+Does anyone have any knowledge about this? How can I use multiple USRP with
+DPDK in a multi-processing scenario?
+Thank you in advance.
 
-To obtain technical support through NI Service Request Manager (SRM),
-please visit the NI Technical Support Website at [1]. From there, you can
-access NI SRM and submit your service request in three steps:
+[WARNING] [PREFS] Loaded config from /root/.uhd. This location is
+considered deprecated, consider moving your config file to /root/.config
+instead.
+EAL: Detected 8 lcore(s)
+EAL: Detected 1 NUMA nodes
+EAL: Cannot create lock on '/var/run/dpdk/rte/config'. Is another primary
+process running?
+EAL: FATAL: Cannot init config
+EAL: Cannot init config
+[ERROR] [DPDK] Error with EAL initialization
+[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL
+initialization
+EAL: FATAL: already called initialization.
+EAL: already called initialization.
+[ERROR] [DPDK] Error with EAL initialization
+[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL
+initialization
+terminate called after throwing an instance of 'uhd::key_error'
+  what():  LookupError: KeyError: No devices found for ----->
+Device Address:
+    addr: 192.168.50.2
+    mgmt_addr: 192.168.10.50
+    use_dpdk: 1
 
-Step 1: Visit the NI Technical Support Website at [1], and scroll down to
-"Request Support", and click "Open A Service Request". You will be prompted
-to log in with your NI account. If you do not yet have an NI account, then
-you will need to create one, which includes providing valid serial
-number(s) for your NI/Ettus product(s). For more information about this,
-please visit the page at [2].
+Aborted
 
-Step 2: Select the desired service (either "Request Technical Support" or
-"Repair"). To start an RMA for a USRP device, log in to NI SRM, and select
-"Repair".
-
-Step 3: Enter your USRP model number(s) under "Supported Hardware Models",
-and click "Next" to proceed. Someone from the NI/Ettus technical support
-team will respond to your query within 24 to 48 hours (within two business
-days).
-
-For more details about how to open a service request, please visit the page
-at [3].
-
-The NI/Ettus USRP hardware is entitled to the NI Hardware Warranty Program,
-which includes one year of standard technical support. To learn more about
-this program, please visit the Hardware Service Programs page at [4].
-
-Please reference the Technical Support page [5], and specifically the Email
-page [6] and the NI SRM page [7], on the Ettus Research Knowledge Base (KB).
-
-Free technical support options are available through the SDR community
-mailing lists, including this one. The mailing lists are a free
-community-driven resource that may be monitored by NI / Ettus Research
-employees as well as by other experts in the community.
-
-
-[1] https://www.ni.com/en/support.html
-
-[2] https://www.ni.com/en/shop/resources/creating-account.html
-
-[3] https://knowledge.ni.com/KnowledgeArticleDetails?id=kA03q000000x20LCAQ
-
-[4]
-https://www.ni.com/en/shop/services/hardware/hardware-service-programs.html
-
-[5] https://kb.ettus.com/Technical_Support
-
-[6] https://kb.ettus.com/Email
-
-[7] https://kb.ettus.com/NI_SRM
-
-[8] https://kb.ettus.com/Mailing_Lists
-
---00000000000049afcb060bb7c96b
+--00000000000065d833060bbf29cf
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D""><font face=3D"mono=
-space">Hello Community:<br><br>We would like to announce a change in the wa=
-y that NI / Ettus Research provides technical support. Starting on 1 Januar=
-y 2024, direct email-based technical support using the &quot;<a href=3D"mai=
-lto:support@ettus.com">support@ettus.com</a>&quot; email address will be di=
-sabled, and we will transition to the NI Service Request Manager (SRM) to p=
-rovide direct technical support, which will become the primary way to obtai=
-n technical support for NI/Ettus USRP hardware and software. We will contin=
-ue to monitor and respond to emails sent to &quot;<a href=3D"mailto:support=
-@ettus.com">support@ettus.com</a>&quot; through 31 December 2023.<br><br>To=
- obtain technical support through NI Service Request Manager (SRM), please =
-visit the NI Technical Support Website at [1]. From there, you can access N=
-I SRM and submit your service request in three steps:<br><br>Step 1: Visit =
-the NI Technical Support Website at [1], and scroll down to &quot;Request S=
-upport&quot;, and click &quot;Open A Service Request&quot;. You will be pro=
-mpted to log in with your NI account. If you do not yet have an NI account,=
- then you will need to create one, which includes providing valid serial nu=
-mber(s) for your NI/Ettus product(s). For more information about this, plea=
-se visit the page at [2].<br><br>Step 2: Select the desired service (either=
- &quot;Request Technical Support&quot; or &quot;Repair&quot;). To start an =
-RMA for a USRP device, log in to NI SRM, and select &quot;Repair&quot;.<br>=
-<br>Step 3: Enter your USRP model number(s) under &quot;Supported Hardware =
-Models&quot;, and click &quot;Next&quot; to proceed. Someone from the NI/Et=
-tus technical support team will respond to your query within 24 to 48 hours=
- (within two business days).<br><br>For more details about how to open a se=
-rvice request, please visit the page at [3].<br><br>The NI/Ettus USRP hardw=
-are is entitled to the NI Hardware Warranty Program, which includes one yea=
-r of standard technical support. To learn more about this program, please v=
-isit the Hardware Service Programs page at [4].<br><br>Please reference the=
- Technical Support page [5], and specifically the Email page [6] and the NI=
- SRM page [7], on the Ettus Research Knowledge Base (KB).<br><br>Free techn=
-ical support options are available through the SDR community mailing lists,=
- including this one. The mailing lists are a free community-driven resource=
- that may be monitored by NI / Ettus Research employees as well as by other=
- experts in the community.<br><br><br>[1] <a href=3D"https://www.ni.com/en/=
-support.html">https://www.ni.com/en/support.html</a><br><br>[2] <a href=3D"=
-https://www.ni.com/en/shop/resources/creating-account.html">https://www.ni.=
-com/en/shop/resources/creating-account.html</a><br><br>[3] <a href=3D"https=
-://knowledge.ni.com/KnowledgeArticleDetails?id=3DkA03q000000x20LCAQ">https:=
-//knowledge.ni.com/KnowledgeArticleDetails?id=3DkA03q000000x20LCAQ</a><br><=
-br>[4] <a href=3D"https://www.ni.com/en/shop/services/hardware/hardware-ser=
-vice-programs.html">https://www.ni.com/en/shop/services/hardware/hardware-s=
-ervice-programs.html</a><br><br>[5] <a href=3D"https://kb.ettus.com/Technic=
-al_Support">https://kb.ettus.com/Technical_Support</a><br><br>[6] <a href=
-=3D"https://kb.ettus.com/Email">https://kb.ettus.com/Email</a><br><br>[7] <=
-a href=3D"https://kb.ettus.com/NI_SRM">https://kb.ettus.com/NI_SRM</a><br><=
-br>[8] <a href=3D"https://kb.ettus.com/Mailing_Lists">https://kb.ettus.com/=
-Mailing_Lists</a><br><br></font><br></div></div>
+<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I have a problem usi=
+ng multi USRPs with multi-processes.</div><div>I need to use two USRPs conn=
+ected to a single host, and there are two applications that invoke two USRP=
+ with DPDK enabled.</div><div>The first application successfully started, h=
+owever when I ran the second one, it gave me the following error message. <=
+br></div><div>I learned that DPDK supports multi-process, and it needs to b=
+e set with <code class=3D"gmail-docutils gmail-literal"><span class=3D"gmai=
+l-pre">--file-prefix.</span></code></div><div>But I couldn&#39;t find any r=
+eference for UHD to use multi-DPDK.</div><div>Does anyone have any knowledg=
+e about this? How can I use multiple USRP with DPDK in a multi-processing s=
+cenario?</div><div>Thank you in advance. <br></div><div><br></div><div>[WAR=
+NING] [PREFS] Loaded config from /root/.uhd. This location is considered de=
+precated, consider moving your config file to /root/.config instead.<br>EAL=
+: Detected 8 lcore(s)<br>EAL: Detected 1 NUMA nodes<br>EAL: Cannot create l=
+ock on &#39;/var/run/dpdk/rte/config&#39;. Is another primary process runni=
+ng?<br>EAL: FATAL: Cannot init config<br>EAL: Cannot init config<br>[ERROR]=
+ [DPDK] Error with EAL initialization<br>[ERROR] [UHD] Device discovery err=
+or: RuntimeError: Error with EAL initialization<br>EAL: FATAL: already call=
+ed initialization.<br>EAL: already called initialization.<br>[ERROR] [DPDK]=
+ Error with EAL initialization<br>[ERROR] [X300] X300 Network discovery err=
+or RuntimeError: Error with EAL initialization<br>terminate called after th=
+rowing an instance of &#39;uhd::key_error&#39;<br>=C2=A0 what(): =C2=A0Look=
+upError: KeyError: No devices found for -----&gt;<br>Device Address:<br>=C2=
+=A0 =C2=A0 addr: 192.168.50.2<br>=C2=A0 =C2=A0 mgmt_addr: 192.168.10.50<br>=
+=C2=A0 =C2=A0 use_dpdk: 1<br><br>Aborted</div></div>
 
---00000000000049afcb060bb7c96b--
+--00000000000065d833060bbf29cf--
 
---===============5395428905740203964==
+--===============4173835358478792091==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -210,4 +163,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5395428905740203964==--
+--===============4173835358478792091==--
