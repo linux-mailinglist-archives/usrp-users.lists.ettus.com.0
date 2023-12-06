@@ -2,159 +2,121 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7931980515A
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Dec 2023 11:56:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48E488065B3
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Dec 2023 04:39:23 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 35C89384CA9
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Dec 2023 05:56:15 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 18B32384CA9
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Dec 2023 22:39:22 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1701773775; bh=Ldd6eLP8r00QYqm5R+IrT/7FYb5fo0I2rbGMWttp7P8=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=JOw9lnInKEvHFNi8Fr1jFFCkHM6UGM5+J8X3EPykcaqCd8wgC1q+pzEd6/WdjTZIj
-	 prTMKnu/DHs/SC8I59mNPUI3GwvqrinR+WufjlVsf4uTGHioPH4oab7Is1M/bSTHhI
-	 OmiMRhHC+sMhEkpAKs4RFFuHI+44Xeg+XTE/s3KSdnUXE6NdTzSz0R7euEgK+nK1Uu
-	 3sGK4Hd7G9KAHpJKnaW3OCiqHf5QPOghId5UbSMnqOSZ6j27DIgPwytQnNNLt6bsXM
-	 l/lzVoPBRKxISWoxHJPSDIcrQzv3xpB4zIgUhOxATB/xG+bCxjBTc3C2SVv1yHNrAK
-	 WKfaOjbDXj35Q==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AE540383E42
-	for <usrp-users@lists.ettus.com>; Tue,  5 Dec 2023 05:55:22 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1701773722; bh=AIIY8MA2bc1a4Do2tFWET1TpObwPG3PdRsUerciX2hk=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=AIAmvs085W1W5W9Z5LqYqTc5E2+Aj2dKdZl4+uG1n/N7DPlnZn0PEoYXs0kwdQVRC
-	 D8zCsPGGkSB74I8z2C6c40VwAZm+qhAG3wIogkxDonU7o/mpk59f1ftIj8eBISzgy6
-	 XC8nrDg6xqLoV0hgvnia+R8S1nzz19oZU8XP2KbfRjEEwOOB12YqY18QtChEr8cF7v
-	 ftuAmZA5Myg6L28lh31tNlQl5AUTyboPYuj1fiPJ3yAbNnL7gkRHK+lE/AW4+6HG2f
-	 GGIBMIK9isZeOWrNYH+wQMrD0CiBnREe+CcRUd5cE/WpIEJdiOfsK5qNrn+NoBPA3U
-	 xMW05wh+GaUQA==
-Date: Tue, 5 Dec 2023 10:55:22 +0000
-To: usrp-users@lists.ettus.com
-From: purva.joshi@phd.unipi.it
-Message-ID: <rFMafK87Ucrl5VAwqQ1LgFlLFvENKjyue6tFcDvH2L4@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 579fcca7-82f8-40f7-9366-c196e67eccf2@gmail.com
+	t=1701833962; bh=KzFTMmISEdf0PgFywCHl6f52Ko6jikM1He0QMvCIdus=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=BfVZXDZpaFpiTO0Z133sgJaedpNVSblgGGayGa9TyqQtoHsimiRnXNOGKnz3vQiX4
+	 iNvFSZW75cpcAnpurg+Ozy4w2zaWqEratkiJsqTXYBuGt/FHgbeHT/zbFIZvxdPmTA
+	 MJ3bF4FZT48o7VOb3yfXa8Nmb81RsrJvzTqeY4odUXKjb6RxWfQehjRUJ0DxTW/0U7
+	 GWHVZ1xwFMECjugLn0ZkVC7tb/fGY4vZsJZVW9SVxw9JHnkHkFvZNSgeUBbNCNw0u8
+	 dw9VuMFdbTyjveNLaHV4tpa4de+9A1OthQ44oSs0v65jbniORrIxhqcPwtRAlQ+FEQ
+	 rWA0szVQpFx/A==
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id D94BB384BBA
+	for <usrp-users@lists.ettus.com>; Tue,  5 Dec 2023 22:38:33 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="j1/e+Sgo";
+	dkim-atps=neutral
+Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-77d63b733e4so399790885a.2
+        for <usrp-users@lists.ettus.com>; Tue, 05 Dec 2023 19:38:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701833913; x=1702438713; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CfqTx7tO5+49JTuKSPttM6wNgkwpLCj6L6eR6CcRasE=;
+        b=j1/e+Sgo28stu7QYb/Tn6+k3FPPz05FWbg9ceGQCwFFx1xlzwM9Y2u+c8ysUCt5mQ3
+         RBGzqnpWg7EoNFX9/2t0i/2QdkzOxRebZ/CuKjksol/53/5nmisSdOgFvwlOVQ14rcVR
+         mKCnnTk6y6A+qwEWO8z+BkerOXY6H7tt4v51ArqwCZ5pq0MRu3jZK3ub8ikv0L5O6sVu
+         Kd4MGhvv4b+EhK2eOxXRAEvv+2aTQJd3j3Gd8ZdttZbQm7nfrDMyJfTDnjff3MV/KRHk
+         FLnxtCLjaNxq2OCt23h2H8n6BF3nHgE//Ma099plhv5TNzTJiEokENDeIEkv+kOdoRoD
+         1q3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701833913; x=1702438713;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CfqTx7tO5+49JTuKSPttM6wNgkwpLCj6L6eR6CcRasE=;
+        b=ClLd2I2x6nfFEYE7Pewgtqm9J+qIfkR51anEd2kaJ1Ur8e/agAEaUR0E1tMM0f/IlH
+         bT9IRXEq83dMGbZYZ5Aw7ODyqR+OfIsElxJ1/YKBs+Dk6lBRrAWx7jzkLwH3SDpCjGnB
+         ymcBHqY/XGSoGoYD1RJl5XRCVsw1By5OnY1kBsjegz+aDK6r3mC/abcjDvnXtFOzap7h
+         pii5Gn9wDoTDPFalnfvWfgKTEsNT6U8fXXdkDOH+5yabJ1oqxmd1+Zsm5FVku2nB8iQ2
+         kVWL2jX9GlUVApDJ9b8DcyLkYoTVLLeXO4dJiC5uTzJ0Phnjp7GV4u/kL+IZNggRsuT7
+         7sGg==
+X-Gm-Message-State: AOJu0YzVvN3BJXrAB/D5+ZstgZSGsE3a4WKNIbk/gMNp+zObdtCOb4/q
+	A7fHmYtJliO8oQzBPfbmwdaS1K9TFWc=
+X-Google-Smtp-Source: AGHT+IEkAOT3oqDcf2wNtVcEQAUwDtV4/MPojq7Y0kSC2amwM+P29MMrJ6RCTnddi7TTpTtqvFxyYQ==
+X-Received: by 2002:a05:620a:bcd:b0:77f:d5e:f929 with SMTP id s13-20020a05620a0bcd00b0077f0d5ef929mr292347qki.91.1701833912985;
+        Tue, 05 Dec 2023 19:38:32 -0800 (PST)
+Received: from [192.168.2.170] ([174.93.0.146])
+        by smtp.googlemail.com with ESMTPSA id bn6-20020a05620a2ac600b0077dcaba6709sm5492868qkb.135.2023.12.05.19.38.32
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Dec 2023 19:38:32 -0800 (PST)
+Message-ID: <90f41253-2eee-416f-a1df-893c658f3aff@gmail.com>
+Date: Tue, 5 Dec 2023 22:38:24 -0500
 MIME-Version: 1.0
-Message-ID-Hash: LE6PH47RACG5Y52ZUQIUPY6XBQ5NEL4T
-X-Message-ID-Hash: LE6PH47RACG5Y52ZUQIUPY6XBQ5NEL4T
-X-MailFrom: purva.joshi@phd.unipi.it
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <rFMafK87Ucrl5VAwqQ1LgFlLFvENKjyue6tFcDvH2L4@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <rFMafK87Ucrl5VAwqQ1LgFlLFvENKjyue6tFcDvH2L4@lists.ettus.com>
+Message-ID-Hash: AV24T2NCEEWJKI66ODCKBEPP3N2SVW3M
+X-Message-ID-Hash: AV24T2NCEEWJKI66ODCKBEPP3N2SVW3M
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP N310 no device found
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LE6PH47RACG5Y52ZUQIUPY6XBQ5NEL4T/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AV24T2NCEEWJKI66ODCKBEPP3N2SVW3M/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0924728880008343115=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============0924728880008343115==
-Content-Type: multipart/alternative;
- boundary="b1_rFMafK87Ucrl5VAwqQ1LgFlLFvENKjyue6tFcDvH2L4"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_rFMafK87Ucrl5VAwqQ1LgFlLFvENKjyue6tFcDvH2L4
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Many many thanks Marcus. You are really great. I can find my device.=20
-
-The output of =E2=80=9Cuhd_find_devices=E2=80=9D is
-
-\[INFO\] \[UHD\] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-=
-240-gb38c9d83
-
-\--------------------------------------------------
-
-\-- UHD Device 0
-
-\--------------------------------------------------
-
-Device Address:
-
-    serial: 319822B
-
-    addr: 192.168.20.2
-
-    claimed: False
-
-    mgmt_addr: 192.168.20.2
-
-    product: n310
-
-    type: n3xx
-
-and output of =E2=80=9Cuhd_usrp_probe=E2=80=9D is \[INFO\] \[UHD\] linux;=
- GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-240-gb38c9d83
-
-\[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_ad=
-dr=3D192.168.20.2,type=3Dn3xx,product=3Dn310,serial=3D319822B,claimed=3DF=
-alse,addr=3D192.168.20.2
-
-\[INFO\] \[MPM.main\] Launching USRP/MPM, version: 3.14.1.1-g0347a6d8
-
-\[INFO\] \[MPM.main\] Spawning RPC process...
-
-\[INFO\] \[MPM.PeriphManager\] Device serial number: 319822B
-
-\[INFO\] \[MPM.PeriphManager\] Initialized 2 daughterboard(s).
-
-\[INFO\] \[MPM.PeriphManager\] init() called with device args \`clock_sou=
-rce=3Dinternal,time_source=3Dinternal'.
-
-\[INFO\] \[MPM.RPCServer\] RPC server ready!
-
-\[INFO\] \[MPM.RPCServer\] Spawning watchdog task...
-
-Error: rpc::timeout: Timeout of 2000ms while calling RPC function 'set_de=
-vice_id'
-
-I am really grateful.
-
---b1_rFMafK87Ucrl5VAwqQ1LgFlLFvENKjyue6tFcDvH2L4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Many many thanks Marcus. You are really great. I can find my device. </p=
-><p>The output of =E2=80=9Cuhd_find_devices=E2=80=9D is</p><p>[INFO] [UHD] =
-linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-240-gb38c9d83</p><p=
->--------------------------------------------------</p><p>-- UHD Device 0</=
-p><p>--------------------------------------------------</p><p>Device Addres=
-s:</p><p>    serial: 319822B</p><p>    addr: 192.168.20.2</p><p>    claimed=
-: False</p><p>    mgmt_addr: 192.168.20.2</p><p>    product: n310</p><p>   =
- type: n3xx</p><p>and output of =E2=80=9Cuhd_usrp_probe=E2=80=9D is [INFO] =
-[UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-240-gb38c9d83=
-</p><p>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_a=
-ddr=3D192.168.20.2,type=3Dn3xx,product=3Dn310,serial=3D319822B,claimed=3DFa=
-lse,addr=3D192.168.20.2</p><p>[INFO] [MPM.main] Launching USRP/MPM, version=
-: 3.14.1.1-g0347a6d8</p><p>[INFO] [MPM.main] Spawning RPC process...</p><p>=
-[INFO] [MPM.PeriphManager] Device serial number: 319822B</p><p>[INFO] [MPM.=
-PeriphManager] Initialized 2 daughterboard(s).</p><p>[INFO] [MPM.PeriphMana=
-ger] init() called with device args `clock_source=3Dinternal,time_source=3D=
-internal'.</p><p>[INFO] [MPM.RPCServer] RPC server ready!</p><p>[INFO] [MPM=
-.RPCServer] Spawning watchdog task...</p><p>Error: rpc::timeout: Timeout of=
- 2000ms while calling RPC function 'set_device_id'</p><p><br></p><p>I am re=
-ally grateful. </p>
-
---b1_rFMafK87Ucrl5VAwqQ1LgFlLFvENKjyue6tFcDvH2L4--
-
---===============0924728880008343115==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============0924728880008343115==--
+T24gMDUvMTIvMjAyMyAwNTo1NSwgcHVydmEuam9zaGlAcGhkLnVuaXBpLml0IHdyb3RlOg0KPg0K
+PiBNYW55IG1hbnkgdGhhbmtzIE1hcmN1cy4gWW91IGFyZSByZWFsbHkgZ3JlYXQuIEkgY2FuIGZp
+bmQgbXkgZGV2aWNlLg0KPg0KR2xhZCBpdCB3b3JrZWQgb3V0IGZvciB5b3UuDQoNCg0KPiBUaGUg
+b3V0cHV0IG9mIOKAnHVoZF9maW5kX2RldmljZXPigJ0gaXMNCj4NCj4gW0lORk9dIFtVSERdIGxp
+bnV4OyBHTlUgQysrIHZlcnNpb24gNy41LjA7IEJvb3N0XzEwNjUwMTsgDQo+IFVIRF80LjAuMC4w
+LTI0MC1nYjM4YzlkODMNCj4NCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0NCj4NCj4gLS0gVUhEIERldmljZSAwDQo+DQo+IC0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+DQo+IERldmljZSBBZGRyZXNz
+Og0KPg0KPiBzZXJpYWw6IDMxOTgyMkINCj4NCj4gYWRkcjogMTkyLjE2OC4yMC4yDQo+DQo+IGNs
+YWltZWQ6IEZhbHNlDQo+DQo+IG1nbXRfYWRkcjogMTkyLjE2OC4yMC4yDQo+DQo+IHByb2R1Y3Q6
+IG4zMTANCj4NCj4gdHlwZTogbjN4eA0KPg0KPiBhbmQgb3V0cHV0IG9mIOKAnHVoZF91c3JwX3By
+b2Jl4oCdIGlzIFtJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIA0KPiA3LjUuMDsg
+Qm9vc3RfMTA2NTAxOyBVSERfNC4wLjAuMC0yNDAtZ2IzOGM5ZDgzDQo+DQo+IFtJTkZPXSBbTVBN
+RF0gSW5pdGlhbGl6aW5nIDEgZGV2aWNlKHMpIGluIHBhcmFsbGVsIHdpdGggYXJnczogDQo+IG1n
+bXRfYWRkcj0xOTIuMTY4LjIwLjIsdHlwZT1uM3h4LHByb2R1Y3Q9bjMxMCxzZXJpYWw9MzE5ODIy
+QixjbGFpbWVkPUZhbHNlLGFkZHI9MTkyLjE2OC4yMC4yDQo+DQo+IFtJTkZPXSBbTVBNLm1haW5d
+IExhdW5jaGluZyBVU1JQL01QTSwgdmVyc2lvbjogMy4xNC4xLjEtZzAzNDdhNmQ4DQo+DQo+IFtJ
+TkZPXSBbTVBNLm1haW5dIFNwYXduaW5nIFJQQyBwcm9jZXNzLi4uDQo+DQo+IFtJTkZPXSBbTVBN
+LlBlcmlwaE1hbmFnZXJdIERldmljZSBzZXJpYWwgbnVtYmVyOiAzMTk4MjJCDQo+DQo+IFtJTkZP
+XSBbTVBNLlBlcmlwaE1hbmFnZXJdIEluaXRpYWxpemVkIDIgZGF1Z2h0ZXJib2FyZChzKS4NCj4N
+Cj4gW0lORk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBh
+cmdzIA0KPiBgY2xvY2tfc291cmNlPWludGVybmFsLHRpbWVfc291cmNlPWludGVybmFsJy4NCj4N
+Cj4gW0lORk9dIFtNUE0uUlBDU2VydmVyXSBSUEMgc2VydmVyIHJlYWR5IQ0KPg0KPiBbSU5GT10g
+W01QTS5SUENTZXJ2ZXJdIFNwYXduaW5nIHdhdGNoZG9nIHRhc2suLi4NCj4NCj4gRXJyb3I6IHJw
+Yzo6dGltZW91dDogVGltZW91dCBvZiAyMDAwbXMgd2hpbGUgY2FsbGluZyBSUEMgZnVuY3Rpb24g
+DQo+ICdzZXRfZGV2aWNlX2lkJw0KPg0KPg0KPiBJIGFtIHJlYWxseSBncmF0ZWZ1bC4NCj4NCj4N
+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8g
+dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
+LmNvbQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5z
+dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
+bQo=
