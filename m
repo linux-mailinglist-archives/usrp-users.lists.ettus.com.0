@@ -2,165 +2,206 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2633481792E
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Dec 2023 18:52:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E75481794F
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Dec 2023 18:59:25 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DDF9C3856C8
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Dec 2023 12:52:13 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id CD9DA385883
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Dec 2023 12:59:24 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1702921933; bh=OzAvhkoh5E0omM4TDP0819hzgIwA+obnHxUeS/5H+z0=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	t=1702922364; bh=OH6TuJPt13Fqel6UGsudmcYl9c2vww+Tj7tD4u0e35A=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=rDPI6Rykc8onoE13cwY66jMausgG1LRLHA2s25/IvnXpi/GdTu8b/G7YUttFDMv0B
-	 sdq1qFrJZRukVNiGWg7LX5zo/Tnix3ICfWm39wvgi6/tWzpn9QrELO67SQOLCuUNNl
-	 h59sPRhqh7ig3Vq7qRq43W5t41bSFYRYs94sconS8V+Taz/0M2y8ZI3gbB1xguGlif
-	 R3vsAL0dD1osQeD29P0Zat3h1BKm/O3jS1kRf5HqVPow1PY9ZYmp81A9QLmrNjJdAc
-	 fRIg6evkyd5AXdI82etUFK4rYa9LYO0kQpdxSLFk8Biijiwvc4CpPcrCOvhBTNJnw0
-	 hKaRmEfPZxRAQ==
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id 288AE385366
-	for <usrp-users@lists.ettus.com>; Mon, 18 Dec 2023 12:51:32 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WFc8GanU";
-	dkim-atps=neutral
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3b9e2a5e8faso1463134b6e.1
-        for <usrp-users@lists.ettus.com>; Mon, 18 Dec 2023 09:51:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702921891; x=1703526691; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=unrHkiVjQizr4MqnmCRnWL/7LjuRXrJ1c207PDTGWMY=;
-        b=WFc8GanU6s3l3p45ZEELeCUxyk2Du2Jx40uF1Qy9M/khpFqLaVE4I5zIfUchu0D8V9
-         7kaLY6HnQPwKxZzvp8HoQZ8hscZLc4nPaiDmDDAmPz8T/2Qjvw+QlKJ7mx7jtJM7R1vV
-         QnGnhLZkkMZXPsZnyihs1t7DNikd500yjyB98oVp6eWp1IPsKIFHE4G2tFYZzi/3reJE
-         cPR/HITPwSXjP9KP/GKn/DWSB1fZcnwQgGDp9inBYdfev24cdB/91OcwzuKh8XnIx4qM
-         KbDbQi89XcEg4PvSUBSF5yqO1RsY/jO5s0p85H3i3y9MEBB5bWneNlkCJLnmNKTm5CoW
-         aFoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702921891; x=1703526691;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=unrHkiVjQizr4MqnmCRnWL/7LjuRXrJ1c207PDTGWMY=;
-        b=ejRNaLfqsCnDuNZflOYfd6DHhg+/tLZVPCQCxCncaAsplDxu9JkBLi1z3BKnShmxnF
-         6KrCLcNIK/+/9sTy/Fyh8suXw6CK0/uti2CTN9yDzmA4SnJRy14kaBhjoROUb/ATel2j
-         GaR4J1WjLwDaLef4QyoY9+L55YsxMtAssQezLUTJ6avi/DSaEbV9pF0vH2n210wGg7u4
-         YAS+GYfYpv0Z+W3MrrCGu3wJR/AIDHXhO0fMk9RAYOIJl6Vcvk/uSOTI+BD6Rdcp/T/D
-         BLtXbL+OZ6/AEMPKSrQNS990MeMzeBdvL1lQ0muxF3p4QsSNTURBxmYkXXo0PlrVNMDz
-         MIFA==
-X-Gm-Message-State: AOJu0YyrCFi7ZUQAvAzjbdaW2RKNh2Z+iOtA6clSUNr/vFr1FlcTePS4
-	HV8fKJlgjxdvhLW/uPT8O0/sva5SK2z05SYaBIT7ddSX
-X-Google-Smtp-Source: AGHT+IFqa8evlWiq3SfS6/XhMUUFRaTOtJxR56zf9/GUNFW3O52mOiSMge3gNEN5wQ+hwzUa738SCBnzYnvO1WuTsVs=
-X-Received: by 2002:a05:6808:f8b:b0:3ba:2508:abb1 with SMTP id
- o11-20020a0568080f8b00b003ba2508abb1mr3874962oiw.55.1702921891259; Mon, 18
- Dec 2023 09:51:31 -0800 (PST)
-MIME-Version: 1.0
-From: German Farinas <german.farinas@gmail.com>
-Date: Mon, 18 Dec 2023 12:51:19 -0500
-Message-ID: <CAJx0LdU6RtiRxq=DveYK84-aOxC5xFONDFEYTrn0RK6H0_MBCg@mail.gmail.com>
+	b=kP6+orrLjJrfP/8XW0e6gKAKrsFUYhADgsnqA7IqNfUtBNb0SXD4rzQbo7BHj0Gko
+	 9xH95O9INpXj3QOKgcIz6AnjvmXgR7r6HmvIN7Zv1P35NsMryYpvWi07aOa82hb9uk
+	 hB+ifGkC2yCXp5ieU44s2O9rkKMtjuBqsVKgdsC5zLPM3tLgOBOBqVb1PWdxUZCerV
+	 UNn9qPlubRvtH09VeSnHbQRJSkOdXf0xOWR8pvfppt/e9CsDevrrJF8/ENlOjPLUuV
+	 GO+KDvbG+NUXVjsaqs8H5StqQXttrgEN0a2VSBNm3HD/d5tTug6DvJNnze/RgO1Yp6
+	 LgcXrjc/oP6bQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 9778A38557A
+	for <usrp-users@lists.ettus.com>; Mon, 18 Dec 2023 12:58:52 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1702922332; bh=+94cmFEtJkGNnh7eCJWTMKa7srxRoaOeMOyGp9FZs8o=;
+	h=Date:To:From:Subject:From;
+	b=XJUT2S8XFujXGmpFg23kzkueBaebyJNEKxDLYO3UzdVNBueCjKfao2UYT0NTxcmw4
+	 KWdZr29pxf/oZKHF5h3VE2d810e2GBtQ6yUsybHw5lELgRafFX5rYo33eZft7Bozmq
+	 meI+T4EZCbP0ILowtDYWkhvYS0GI9VKEnn1sM8JI4e2JGio6i9lckdVc8Ld+7B3rRd
+	 BLHZjLCUAH/JXCfjoF5+ooI4lvJFFxnxLo7tHI47R4KsdaS3uEhcJ9sHJaJuT4W8Hu
+	 BCwhCxnW73wb+lRQGyTSXax2bJt9Z2PCIaU/gCMRfij82AfAweLRFk6Q9hsyC4bIr6
+	 XUUs+odwKX89A==
+Date: Mon, 18 Dec 2023 17:58:52 +0000
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: DKVBRRYD3QM6F3VXYDZGXMFBXAKL4EQ6
-X-Message-ID-Hash: DKVBRRYD3QM6F3VXYDZGXMFBXAKL4EQ6
-X-MailFrom: german.farinas@gmail.com
+From: engr.muhd.hassan@gmail.com
+Message-ID: <yL7ewvrNPW8xuPnq2TlzX26mCtThu262PFZdoCLHOE4@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: ZHPOQ26GFG6DRMPBFCABH4QSVL52QBXR
+X-Message-ID-Hash: ZHPOQ26GFG6DRMPBFCABH4QSVL52QBXR
+X-MailFrom: engr.muhd.hassan@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Building fpga image with online one Ethernet interface
+Subject: [USRP-users] Error: RuntimeError: Failure to create rfnoc_graph.
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DKVBRRYD3QM6F3VXYDZGXMFBXAKL4EQ6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZHPOQ26GFG6DRMPBFCABH4QSVL52QBXR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8685441309688172622=="
+Content-Type: multipart/mixed; boundary="===============7841232075317479106=="
 
---===============8685441309688172622==
-Content-Type: multipart/alternative; boundary="00000000000068aae8060ccc6617"
+This is a multi-part message in MIME format.
 
---00000000000068aae8060ccc6617
-Content-Type: text/plain; charset="UTF-8"
+--===============7841232075317479106==
+Content-Type: multipart/alternative;
+ boundary="b1_yL7ewvrNPW8xuPnq2TlzX26mCtThu262PFZdoCLHOE4"
+Content-Transfer-Encoding: 7bit
 
-Hello All,
+This is a multi-part message in MIME format.
 
-I have a USRP x300 and I want to build my custom image. I would like to
-drive an array of 4 Tx/Rx antennas in the HF band for ionospheric research,
-i.e beam steering monostatic pulse radar.
-
-This is my idea for a custom built:
-
-Since I will use 4 daughterboards 2 LFTX and 2 LFRX mounted on the X300.
-Each LFTX or LFRX have 2 port that can be used independently or as a single
-I/Q input. I will use it independently. Then, I will have available 4 Rx
-ports and 4 Tx ports. The Radio connections would be the following:
-
-For the receiver chain: Radio 0 port 0, Radio 0 port 1, Radio 0 port 2 and
-Radio 0 port 3 would be connected to an adder, the output of the adder to a
-DDC chain, and the output of the DDC chain to a streamer. In that way all 4
-Rx signal would be summed before passing through the DDC chain and I would
-save space in FPGA.
-
-For the transmitter chain the only difference is that I would connect the
-output of the DUC to a delay line filter and from there extract the 4
-outputs to the 4 Tx ports available on the daughterboards. This delay line
-should be configurable since from there I would change the steering of the
-beam.
-
-Also I would like to use only one 1Gb Ethernet and not both, so I could
-save FPGA space. In summary this would be the rfnoc blocks: 2 Radio
-interfaces, 1 DDC, 1DUC, 1 custom delay line block, and only 1Gb interface.
-I think this may occupy less space than the default image.  One of the many
-doubts that I have is about the radio interfaces, in the default image
-these radio interfaces have only 2 port, for example Radio 0:0 and Radio
-0:1, but I would need also Radio 0:2 and Radio 0:3. The same for Radio 1: 0
-to 3. Because I will use all the ports availables in the doughterboards.
-
-I know this is a general and tricky question and I apologize in advance.
-But any any help would be very appreciated.
-
-Best,
-German
-
---00000000000068aae8060ccc6617
-Content-Type: text/html; charset="UTF-8"
+--b1_yL7ewvrNPW8xuPnq2TlzX26mCtThu262PFZdoCLHOE4
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hello All,<div dir=3D"auto"><br></div><div dir=3D"auto">I=
- have a USRP x300 and I want to build my custom image. I would like to driv=
-e an array of 4 Tx/Rx antennas in the HF band for ionospheric research, i.e=
- beam steering monostatic pulse radar.</div><div dir=3D"auto"><br></div><di=
-v dir=3D"auto">This is my idea for a custom built:</div><div dir=3D"auto"><=
-br></div><div dir=3D"auto">Since I will use 4 daughterboards 2 LFTX and 2 L=
-FRX mounted on the X300. Each LFTX or LFRX have 2 port that can be used ind=
-ependently or as a single I/Q input. I will use it independently. Then, I w=
-ill have available 4 Rx ports and 4 Tx ports. The Radio connections would b=
-e the following:=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">F=
-or the receiver chain: Radio 0 port 0, Radio 0 port 1, Radio 0 port 2 and R=
-adio 0 port 3 would be connected to an adder, the output of the adder to a =
-DDC chain, and the output of the DDC chain to a streamer. In that way all 4=
- Rx signal would be summed before passing through the DDC chain and I would=
- save space in FPGA.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"aut=
-o">For the transmitter chain the only difference is that I would connect th=
-e output of the DUC to a delay line filter and from there extract the 4 out=
-puts to the 4 Tx ports available on the daughterboards. This delay line sho=
-uld be configurable since from there I would change the steering of the bea=
-m.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Also I would like to =
-use only one 1Gb Ethernet and not both, so I could save FPGA space. In summ=
-ary this would be the rfnoc blocks: 2 Radio interfaces, 1 DDC, 1DUC, 1 cust=
-om delay line block, and only 1Gb interface. I think this may occupy less s=
-pace than the default image.=C2=A0 One of the many doubts that I have is ab=
-out the radio interfaces, in the default image these radio interfaces have =
-only 2 port, for example Radio 0:0 and Radio 0:1, but I would need also Rad=
-io 0:2 and Radio 0:3. The same for Radio 1: 0 to 3. Because I will use all =
-the ports availables in the doughterboards.</div><div dir=3D"auto"><br></di=
-v><div dir=3D"auto">I know this is a general and tricky question and I apol=
-ogize in advance. But any any help would be very appreciated.</div><div dir=
-=3D"auto"><br></div><div dir=3D"auto">Best,</div><div dir=3D"auto">German</=
-div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div></div>
+Hi All,=20
 
---00000000000068aae8060ccc6617--
+I am trying to run this command =E2=80=9Cuhd_image_loader --args type=3De=
+3xx,adr=3D192.168.10.2 --fpga-path=3D/home/grcusrp/uhd/fpga/usrp3/top/e31=
+x/build-E310_SG3/e31x.bit=E2=80=9D
 
---===============8685441309688172622==
+But I get error which is =E2=80=9CError: RuntimeError: Failure to create =
+rfnoc_graph=E2=80=9D.
+
+the whole output is =E2=80=9C\[INFO\] \[UHD\] linux; GNU C++ version 9.4.=
+0; Boost_107100; UHD_4.4.0.HEAD-0-g5fac246b
+
+\[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_ad=
+dr=3D192.168.10.2,type=3De3xx,product=3De310_sg3,serial=3D31370FC,name=3D=
+ni-e31x-31370FC,fpga=3Dn/a,claimed=3DFalse,addr=3D192.168.10.2,skip_init=3D=
+1
+
+\[INFO\] \[MPMD\] Claimed device without full initialization.
+
+\[INFO\] \[MPMD IMAGE LOADER\] Starting update. This may take a while.
+
+\[INFO\] \[MPM.PeriphManager\] Installing component \`fpga'
+
+\[INFO\] \[MPM.PeriphManager\] Installing component \`dts'
+
+\[INFO\] \[MPMD IMAGE LOADER\] Update component function succeeded.
+
+\[INFO\] \[MPM.RPCServer\] Resetting peripheral manager.
+
+\[WARNING\] \[MPM.PeriphManager\] Skipping HW/SW compatibility check!
+
+\[INFO\] \[MPM.PeriphManager\] Device serial number: 31370FC
+
+\[WARNING\] \[MPM.PeriphManager\] Found more EEPROM paths than daughterbo=
+ards. Ignoring some of them.
+
+\[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_ad=
+dr=3D192.168.10.2,type=3De3xx,product=3De310_sg3,serial=3D31370FC,name=3D=
+ni-e31x-31370FC,fpga=3Dn/a,claimed=3DFalse,addr=3D192.168.10.2,adr=3D192.=
+168.10.2,find_all=3D1
+
+\[WARNING\] \[MPM.PeriphManager\] Cannot run deinit(), device was never f=
+ully initialized!
+
+\[INFO\] \[MPM.PeriphManager\] init() called with device args \`adr=3D192=
+.168.10.2,find_all=3D1,fpga=3Dn/a,mgmt_addr=3D192.168.10.2,name=3Dni-e31x=
+-31370FC,product=3De310_sg3'.
+
+\[WARNING\] \[RFNOC::GRAPH\] One or more blocks timed out during flush!
+
+\[INFO\] \[0/Radio#0\] Performing CODEC loopback test on channel 0 ...=20
+
+\[INFO\] \[0/Radio#0\] CODEC loopback test passed
+
+\[INFO\] \[0/Radio#0\] Performing CODEC loopback test on channel 1 ...=20
+
+\[INFO\] \[0/Radio#0\] CODEC loopback test passed
+
+\[ERROR\] \[RFNOC::GRAPH\] Error during initialization of block 0/Replay#=
+0!
+
+\[ERROR\] \[RFNOC::GRAPH\] Caught exception while initializing graph: Rfn=
+ocError: OpTimeout: Control operation timed out waiting for ACK
+
+Error: RuntimeError: Failure to create rfnoc_graph.=E2=80=9D
+
+I am trying to build an fpga image with RFNoC. I have YML file which incl=
+udes replay block which I copied to the folder (uhd/fpga/usrp3/top/e31x)
+
+I have executed this command =E2=80=9Crfnoc_image_builder -y ./e310_rfnoc=
+_image_core.yml -t E310_SG3 --fpga-dir \~/uhd/fpga/=E2=80=9D.
+
+After this command I got no errors but warnings. result is=20
+
+Warnings:           1073
+
+Critical Warnings:  125
+
+Errors:             0
+
+make\[1\]: Leaving directory '/home/grcusrp/uhd/fpga/usrp3/top/e31x'
+
+Exporting bitstream file...
+
+Exporting build report...
+
+Build DONE ... E310_SG3=E2=80=9D
+
+--b1_yL7ewvrNPW8xuPnq2TlzX26mCtThu262PFZdoCLHOE4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi All, </p><p><br></p><p>I am trying to run this command =E2=80=9Cuhd_i=
+mage_loader --args type=3De3xx,adr=3D192.168.10.2 --fpga-path=3D/home/grcus=
+rp/uhd/fpga/usrp3/top/e31x/build-E310_SG3/e31x.bit=E2=80=9D</p><p><br></p><=
+p>But I get error which is =E2=80=9CError: RuntimeError: Failure to create =
+rfnoc_graph=E2=80=9D.</p><p>the whole output is =E2=80=9C[INFO] [UHD] linux=
+; GNU C++ version 9.4.0; Boost_107100; UHD_4.4.0.HEAD-0-g5fac246b</p><p>[IN=
+FO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D192.=
+168.10.2,type=3De3xx,product=3De310_sg3,serial=3D31370FC,name=3Dni-e31x-313=
+70FC,fpga=3Dn/a,claimed=3DFalse,addr=3D192.168.10.2,skip_init=3D1</p><p>[IN=
+FO] [MPMD] Claimed device without full initialization.</p><p>[INFO] [MPMD I=
+MAGE LOADER] Starting update. This may take a while.</p><p>[INFO] [MPM.Peri=
+phManager] Installing component `fpga'</p><p>[INFO] [MPM.PeriphManager] Ins=
+talling component `dts'</p><p>[INFO] [MPMD IMAGE LOADER] Update component f=
+unction succeeded.</p><p>[INFO] [MPM.RPCServer] Resetting peripheral manage=
+r.</p><p>[WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility check!<=
+/p><p>[INFO] [MPM.PeriphManager] Device serial number: 31370FC</p><p>[WARNI=
+NG] [MPM.PeriphManager] Found more EEPROM paths than daughterboards. Ignori=
+ng some of them.</p><p>[INFO] [MPMD] Initializing 1 device(s) in parallel w=
+ith args: mgmt_addr=3D192.168.10.2,type=3De3xx,product=3De310_sg3,serial=3D=
+31370FC,name=3Dni-e31x-31370FC,fpga=3Dn/a,claimed=3DFalse,addr=3D192.168.10=
+.2,adr=3D192.168.10.2,find_all=3D1</p><p>[WARNING] [MPM.PeriphManager] Cann=
+ot run deinit(), device was never fully initialized!</p><p>[INFO] [MPM.Peri=
+phManager] init() called with device args `adr=3D192.168.10.2,find_all=3D1,=
+fpga=3Dn/a,mgmt_addr=3D192.168.10.2,name=3Dni-e31x-31370FC,product=3De310_s=
+g3'.</p><p>[WARNING] [RFNOC::GRAPH] One or more blocks timed out during flu=
+sh!</p><p>[INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ..=
+. </p><p>[INFO] [0/Radio#0] CODEC loopback test passed</p><p>[INFO] [0/Radi=
+o#0] Performing CODEC loopback test on channel 1 ... </p><p>[INFO] [0/Radio=
+#0] CODEC loopback test passed</p><p>[ERROR] [RFNOC::GRAPH] Error during in=
+itialization of block 0/Replay#0!</p><p>[ERROR] [RFNOC::GRAPH] Caught excep=
+tion while initializing graph: RfnocError: OpTimeout: Control operation tim=
+ed out waiting for ACK</p><p>Error: RuntimeError: Failure to create rfnoc_g=
+raph.=E2=80=9D</p><p><br></p><p>I am trying to build an fpga image with RFN=
+oC. I have YML file which includes replay block which I copied to the folde=
+r (uhd/fpga/usrp3/top/e31x)</p><p>I have executed this command =E2=80=9Crfn=
+oc_image_builder -y ./e310_rfnoc_image_core.yml -t E310_SG3 --fpga-dir ~/uh=
+d/fpga/=E2=80=9D.</p><p><br></p><p>After this command I got no errors but w=
+arnings. result is </p><p>Warnings:           1073</p><p>Critical Warnings:=
+  125</p><p>Errors:             0</p><p>make[1]: Leaving directory '/home/g=
+rcusrp/uhd/fpga/usrp3/top/e31x'</p><p>Exporting bitstream file...</p><p>Exp=
+orting build report...</p><p>Build DONE ... E310_SG3=E2=80=9D</p>
+
+--b1_yL7ewvrNPW8xuPnq2TlzX26mCtThu262PFZdoCLHOE4--
+
+--===============7841232075317479106==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -170,4 +211,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8685441309688172622==--
+--===============7841232075317479106==--
