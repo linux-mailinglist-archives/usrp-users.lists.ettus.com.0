@@ -2,193 +2,228 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5DB5817C3E
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Dec 2023 21:49:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E241817C97
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Dec 2023 22:23:24 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7F6CF385E9A
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Dec 2023 15:49:12 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 6CDFB385720
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Dec 2023 16:23:23 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1702932552; bh=gomBIE4wDAujUiRWkUoRCbBUT8pgs0Jw5ruPk/mGZkI=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	t=1702934603; bh=BeQ1Wpk5MJCa5LboEpWDEBhmgPka7sOFRjOnBiQegxE=;
+	h=From:Date:References:To:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=v49b2YBudEbSCc9tmSwh+D0m+qMiGAITUMRGpTfqLgDUOHZ1cLUXT5Vq/NrJzjeEC
-	 5Y5aFfs94q0f3dFlCH1Y7MMsHqTmjc2IjmkdRsUHYry5/Mr7+Bvsrc/N5uwlnTqIHG
-	 suXzhv24MNezu32R3tOqVoiWI75fiY6z1xKxNYT7Im92wm+43cGg4vVZiDNJ0RYBTE
-	 Fik1HYR5DBiNZte8QCZpN2Jd6uE7qCuVxqE0OB0izosfUvI5SkCXn1Op4bHJWc/G2M
-	 hUM9+ncih5bBA7cllKsPjRm90j5Szqxa6waU1iIW2AQJcjveo9r4GBnmoRJUqgga3U
-	 705fX3fp/59DA==
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id EA5F6385D38
-	for <usrp-users@lists.ettus.com>; Mon, 18 Dec 2023 15:48:40 -0500 (EST)
+	 From;
+	b=Yd9JkRkzDMRhIn2qjvtTHPDGeT1+458g1flhoNYhlYcqo/REsKkMXEq0p4GHp2eOr
+	 O1XuIYT3pIeJvhMZ/bhDNknfAm7ZkDWpeQ6GfFsgMdhZ+bLe7dQDku0d2h3uyMqKsD
+	 vqNea0i0ActC6omBYYFNCOu7IFejlPgFuldgUmMlxkPEkkCFhECbTVbOB3nTJUT/jL
+	 ThnUn05wAPLTSta5tfqDdQ5AO+i65NfPw2U4wX/QvXtzT2Bft7S4jYhbhL2qWO/jdx
+	 vMCbG+EDOlJzRkmqKfwvjyZnrVoomGYkef49t7h7Y1G9MeGZ9+oHU+UG7+gHvBqsSq
+	 4iKkwbnw8XRig==
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id F2B6A3856E3
+	for <usrp-users@lists.ettus.com>; Mon, 18 Dec 2023 16:22:49 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="kfQ/PgeQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VG91lsKx";
 	dkim-atps=neutral
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-54c5d041c23so4347908a12.2
-        for <usrp-users@lists.ettus.com>; Mon, 18 Dec 2023 12:48:40 -0800 (PST)
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-77f37d19b6fso244752685a.2
+        for <usrp-users@lists.ettus.com>; Mon, 18 Dec 2023 13:22:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1702932520; x=1703537320; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vgWUefj9C8wWbYoWEoUjnPktQxAb6XHXL6hjbZnUWSg=;
-        b=kfQ/PgeQOxdcCz7lndb5fSc89qgYYfDqtswuBEJINq57XdoC2gmiCnCfrd3FjzBV2L
-         Bh9Ymi5uf6HHIaFbruyhIVIS/0PvmmXUfQyUNgppmRwj24PPkTUGKZV89xpsioYGvn87
-         WwHfnfGE/AIvISNyvqgsleWpV2V5OLyAYpnG/X3j9ucQhpa0q90cvLYI8UlfGYNDNyVf
-         i8jamy8bsl1ELoGXW5HbPE6t0tetd7DjUCr4a96kSpp2XEkbGK/I6dbWMeXtPM44VxlX
-         7WC0oC9sV47q41ug3KLNf2bEioncZ5HK54OvxC66/QbfrF3K4ypHJfp5M9gwuV9YxDuQ
-         Rbkw==
+        d=gmail.com; s=20230601; t=1702934569; x=1703539369; darn=lists.ettus.com;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version:from
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4XOUuUU7Ux3oy+0iTF45HjSnmKroECw6OcmcQ1TRj8g=;
+        b=VG91lsKxG63p2BWG5wMM4pTOuPgpmYWrv3Hs8raHDJSrsRlkebPvGeKIXSLV1R/hVU
+         ssZjwgvGJeB84sNm3SP+8tOBbRzTgvh0MH0WGxqfuw+G0lpAvU4xZJC4JHj2wADBuk6K
+         waGbXDXLW/uVSD9tom5TJZ5fTpAVu2rlTjoajKWZh7aeWNyntN3OTeaNmN05ffd7sTFO
+         zbIUoh3pPUED9XXXkc2KMyWo3w6znW5pcpbfPxrsrEb9rlrs+fe1t70zdbBjgYXyQzSv
+         QqJL8gfN4Rywz5q2DalscKi1kgdnvU1bUlY5qnjAxObBWPUTWk0KUbBujSqYR1MKPubC
+         douA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702932520; x=1703537320;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vgWUefj9C8wWbYoWEoUjnPktQxAb6XHXL6hjbZnUWSg=;
-        b=HuNcNc4xafvfiSPCfw2xNRPyOi9RguYxpuNLO7/9Zeksy/l2R9nCCNdTOVDrgdGiQG
-         AA4oKYhV1avnp45XHidmyrJxJaSMgCjLAi+qxDd18iqokQtIsUs0B5XrVLLAikH4lM7j
-         NJqdW1M3ILfWIhtrD/ySOMHpKRYqXmy0EbMOjkKN1Pw+cBZmsh09aC9fCQpgYY+8YpfO
-         Ld/SFdgOg16/bcZrQ76IPbWoO0WrcQdC1Ka+KTOskqccdybuRFR/1hq6bmYmgVhpe4QM
-         TbVq3GNULysOhINZnIdXy+f8j+f73Qe4ccZUicaN0MdtdDSCBlDrY2Y9wYH5w+vEJOJl
-         2zWw==
-X-Gm-Message-State: AOJu0YxNhv2gtaowfZshuTbrtkTZmOhXl1pHZDd/LfsvSHIfi7prQiq4
-	+7ejW1XlWpIVR2XPLE8cXyURy5Oc6398vvdPu5b2nw==
-X-Google-Smtp-Source: AGHT+IFDb5Ee68X2UiB0u6RtJhe/JCb9GDDkpALmL7sxGvesisa+DA28tkQx6tAkC+1WOfXmNqWnU6FBmUUjYc+tT9c=
-X-Received: by 2002:a50:d71c:0:b0:54b:2894:d1d8 with SMTP id
- t28-20020a50d71c000000b0054b2894d1d8mr2335547edi.27.1702932519551; Mon, 18
- Dec 2023 12:48:39 -0800 (PST)
-MIME-Version: 1.0
-References: <3jJQVyb91CYSPn8GBPkmvkJyjsKEJDKpTEPzIqF9hE@lists.ettus.com>
-In-Reply-To: <3jJQVyb91CYSPn8GBPkmvkJyjsKEJDKpTEPzIqF9hE@lists.ettus.com>
-Date: Mon, 18 Dec 2023 14:48:28 -0600
-Message-ID: <CAB__hTTTB5Ew-3BW9u=-3c-gLxJmy6ZRDG9CsdpjLXxFs2JdOg@mail.gmail.com>
-To: engr.muhd.hassan@gmail.com
-Message-ID-Hash: HDK6GEWXNGO3T3ITZYEU62XNLCNEMCUQ
-X-Message-ID-Hash: HDK6GEWXNGO3T3ITZYEU62XNLCNEMCUQ
-X-MailFrom: rkossler@nd.edu
+        d=1e100.net; s=20230601; t=1702934569; x=1703539369;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4XOUuUU7Ux3oy+0iTF45HjSnmKroECw6OcmcQ1TRj8g=;
+        b=MUt0UMvsu90ZEeIL+PB4aMziSVGmYPW/5CQVVdPQW+mNPnvj54OqQJqxdcXStcuXQ5
+         /pBt+QbuNrAdcshWs/ZcsneLG1/YqfQzcCHuMYJiQDAsk0Pbyu1DqsgUm8yg1IfIIwFI
+         Uufl70j1jmlwuRzZHcOBxSg8AoMKiQ3QyId7rTCR4FfpnAtYBYm7wEnsXsvE9PUbvES5
+         foYC62A8W4NaVaxsQ7WUKXmyoCCcCiIWxbFYl41zU//mI3UBz1v6KQb/xif1GOmiv/cc
+         pSw9/A2RAzLOayeCHkXK41bixR6L4pbq28+58JdyCR9XtN9+UCfWFuh5GyEer/mKKmja
+         01Xw==
+X-Gm-Message-State: AOJu0YyucAYTIq3CxSal+CHqPkb7nEK7Mu2qupDIEyKN/7e3IkYoyq4X
+	L8oPMgd17RQGXe2gLdHWzhA+goPoV1Q=
+X-Google-Smtp-Source: AGHT+IEX8Ij1uR1lMOkj3W4mhN92iKs92DlmCWaYweI5k5JMjhTY2UAxSXnqnDcP0ijYm7xvLB4Skg==
+X-Received: by 2002:a05:620a:1361:b0:77f:ad35:dc33 with SMTP id d1-20020a05620a136100b0077fad35dc33mr8385345qkl.65.1702934568817;
+        Mon, 18 Dec 2023 13:22:48 -0800 (PST)
+Received: from smtpclient.apple ([2601:140:8c00:6500:56b:17dc:a542:ad5b])
+        by smtp.gmail.com with ESMTPSA id dw28-20020a05620a601c00b0077f0dcac136sm8651283qkb.11.2023.12.18.13.22.48
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 18 Dec 2023 13:22:48 -0800 (PST)
+From: Richard Stanley <richardlstanley@gmail.com>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.300.61.1.2\))
+Date: Mon, 18 Dec 2023 16:22:47 -0500
+References: <CAJx0LdU6RtiRxq=DveYK84-aOxC5xFONDFEYTrn0RK6H0_MBCg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+In-Reply-To: <CAJx0LdU6RtiRxq=DveYK84-aOxC5xFONDFEYTrn0RK6H0_MBCg@mail.gmail.com>
+Message-Id: <18FF5062-4702-46B8-85A7-97816B04AFDF@gmail.com>
+X-Mailer: Apple Mail (2.3774.300.61.1.2)
+Message-ID-Hash: UP7MOOGAXPYIWEMZSASMEHBEG5LV3AB7
+X-Message-ID-Hash: UP7MOOGAXPYIWEMZSASMEHBEG5LV3AB7
+X-MailFrom: richardlstanley@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Error: RuntimeError: Failure to create rfnoc_graph.
+Subject: [USRP-users] Re: Building fpga image with online one Ethernet interface
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HDK6GEWXNGO3T3ITZYEU62XNLCNEMCUQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UP7MOOGAXPYIWEMZSASMEHBEG5LV3AB7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============0992006628424124506=="
+Content-Type: multipart/mixed; boundary="===============5806052946189826264=="
 
---===============0992006628424124506==
-Content-Type: multipart/alternative; boundary="000000000000e7e455060ccedf13"
 
---000000000000e7e455060ccedf13
-Content-Type: text/plain; charset="UTF-8"
+--===============5806052946189826264==
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_2E25D564-80D9-4D90-AB98-6B4393770219"
+
+
+--Apple-Mail=_2E25D564-80D9-4D90-AB98-6B4393770219
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Hi Muhammad,
-Originally, you had some build errors such that the design "didn't fit" on
-the FPGA.  How did you fix these?  From previous experience, I discovered
-that it was necessary to use the option DRAM=3D1 when building the E31x wit=
-h
-the Replay block.  I see that in your YML, this option is included in the
-"default target" but I am wondering if it was not used on your specific
-build because you specified the option "-t E310_SG3".  Perhaps if you
-rebuild without specifying the target option it will use the default which
-will include DRAM=3D1.
+Hi,
 
-But, even if you successfully attempt the build with the DRAM=3D1 option,
-there is a reasonable chance that the build will fail because the design
-may be too big for the FPGA. In this case, you may want to build with
-"static linking" as in the YML file that I previously sent.
-Rob
+It may help to review "Table 2 - Ettus Research Daughterboard =
+Characteristics=E2=80=9D at =
+https://kb.ettus.com/Selecting_a_RF_Daughterboard=20
+
+In short, BasicRX/LFRX can be configured for dual Rx. I=E2=80=99ve done =
+this using the existing UHD image in an X310 to get 4 channel phase =
+coherent reception in GNU Radio. But, LFTX and BasicTX boards can do =
+only 1 Tx, so max of 2 Tx in an X310. Someone who knows RFNoC and Ettus =
+gear could comment on what would need to change to accomplish your goal =
+for Tx.
+
+HTH,
+Richard
+
+On Dec 18, 2023, at 12:51, German Farinas <german.farinas@gmail.com> =
+wrote:
+
+Hello All,
+
+I have a USRP x300 and I want to build my custom image. I would like to =
+drive an array of 4 Tx/Rx antennas in the HF band for ionospheric =
+research, i.e beam steering monostatic pulse radar.
+
+This is my idea for a custom built:
+
+Since I will use 4 daughterboards 2 LFTX and 2 LFRX mounted on the X300. =
+Each LFTX or LFRX have 2 port that can be used independently or as a =
+single I/Q input. I will use it independently. Then, I will have =
+available 4 Rx ports and 4 Tx ports. The Radio connections would be the =
+following:=20
+
+For the receiver chain: Radio 0 port 0, Radio 0 port 1, Radio 0 port 2 =
+and Radio 0 port 3 would be connected to an adder, the output of the =
+adder to a DDC chain, and the output of the DDC chain to a streamer. In =
+that way all 4 Rx signal would be summed before passing through the DDC =
+chain and I would save space in FPGA.=20
+
+For the transmitter chain the only difference is that I would connect =
+the output of the DUC to a delay line filter and from there extract the =
+4 outputs to the 4 Tx ports available on the daughterboards. This delay =
+line should be configurable since from there I would change the steering =
+of the beam.
+
+Also I would like to use only one 1Gb Ethernet and not both, so I could =
+save FPGA space. In summary this would be the rfnoc blocks: 2 Radio =
+interfaces, 1 DDC, 1DUC, 1 custom delay line block, and only 1Gb =
+interface. I think this may occupy less space than the default image.  =
+One of the many doubts that I have is about the radio interfaces, in the =
+default image these radio interfaces have only 2 port, for example Radio =
+0:0 and Radio 0:1, but I would need also Radio 0:2 and Radio 0:3. The =
+same for Radio 1: 0 to 3. Because I will use all the ports availables in =
+the doughterboards.
+
+I know this is a general and tricky question and I apologize in advance. =
+But any any help would be very appreciated.
+
+Best,
+German
 
 
-On Mon, Dec 18, 2023 at 1:13=E2=80=AFPM <engr.muhd.hassan@gmail.com> wrote:
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
-> Dear Rob,
->
->
-> I have following bit files generated at the same time.
->
->    1.
->
->    named =E2=80=9Cusrp_e310_sg3_fpga.bit=E2=80=9D. this file is in build =
-folder
->    2.
->
->    named =E2=80=9Ce31x.bit=E2=80=9D. which is in =E2=80=9Cbuild-E310_SG3=
-=E2=80=9D
->
-> build-E310_SG3 folder and build folder, both are in e31x folder.
->
->
-> I tried to run both these files and get same error.
->
-> the commands are. 1. uhd_image_loader --args type=3De3xx,adr=3D192.168.10=
-.2
-> --fpga-path=3D/home/grcusrp/uhd/fpga/usrp3/top/e31x/build-E310_SG3/e31x.b=
-it
->
->
->
->    1.
->
->    uhd_image_loader --args type=3De3xx,adr=3D192.168.10.2
->    --fpga-path=3D/home/grcusrp/uhd/fpga/usrp3/top/e31x/build/usrp_e310_sg=
-3_fpga.bit
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
 
---000000000000e7e455060ccedf13
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail=_2E25D564-80D9-4D90-AB98-6B4393770219
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<div dir=3D"ltr"><div>Hi Muhammad,</div><div>Originally, you had some build=
- errors such that the design &quot;didn&#39;t fit&quot; on the FPGA.=C2=A0 =
-How did you fix these?=C2=A0 From previous experience, I discovered that it=
- was necessary to use the option DRAM=3D1 when building the E31x with the R=
-eplay block.=C2=A0 I see that in your YML, this option is included in the &=
-quot;default target&quot; but I am wondering if it was not used on your spe=
-cific build because you specified the option &quot;-t E310_SG3&quot;.=C2=A0=
- Perhaps=C2=A0if you rebuild without specifying the target option it will u=
-se the default which will include DRAM=3D1.</div><div><br></div><div>But, e=
-ven if you successfully=C2=A0attempt the build with the=C2=A0DRAM=3D1 optio=
-n, there is a reasonable chance that the build will fail because the design=
- may be too big for the FPGA. In this case, you may want to build with &quo=
-t;static linking&quot; as in the YML file that I previously sent.</div><div=
->Rob</div><div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
-ass=3D"gmail_attr">On Mon, Dec 18, 2023 at 1:13=E2=80=AFPM &lt;<a href=3D"m=
-ailto:engr.muhd.hassan@gmail.com" target=3D"_blank">engr.muhd.hassan@gmail.=
-com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><p>Dear Rob,</p><p><br></p><p>I have following bit files generated at th=
-e same time.</p><ol><li><p>named =E2=80=9Cusrp_e310_sg3_fpga.bit=E2=80=9D. =
-this file is in build folder</p></li><li><p>named =E2=80=9Ce31x.bit=E2=80=
-=9D. which is in =E2=80=9Cbuild-E310_SG3=E2=80=9D</p></li></ol><p>build-E31=
-0_SG3 folder and build folder, both are in e31x folder.</p><p><br></p><p>I =
-tried to run both these files and get same error. </p><p>the commands are. =
-1. uhd_image_loader --args type=3De3xx,adr=3D192.168.10.2 --fpga-path=3D/ho=
-me/grcusrp/uhd/fpga/usrp3/top/e31x/build-E310_SG3/e31x.bit</p><p><br></p><o=
-l start=3D"2"><li><p>uhd_image_loader --args type=3De3xx,adr=3D192.168.10.2=
- --fpga-path=3D/home/grcusrp/uhd/fpga/usrp3/top/e31x/build/usrp_e310_sg3_fp=
-ga.bit</p></li></ol>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: =
+after-white-space;">Hi,<div><br></div><div>It may help to review "Table =
+2 - Ettus Research Daughterboard Characteristics=E2=80=9D at&nbsp;<a =
+href=3D"https://kb.ettus.com/Selecting_a_RF_Daughterboard">https://kb.ettu=
+s.com/Selecting_a_RF_Daughterboard</a>&nbsp;</div><div><br></div><div>In =
+short, BasicRX/LFRX can be configured for dual Rx. I=E2=80=99ve done =
+this using the existing UHD image in an X310 to get 4 channel phase =
+coherent reception in GNU Radio. But, LFTX and BasicTX boards can do =
+only 1 Tx, so max of 2 Tx in an X310. Someone who knows RFNoC and Ettus =
+gear could comment on what would need to change to accomplish your goal =
+for Tx.</div><div><br></div><div>HTH,</div><div>Richard<br =
+id=3D"lineBreakAtBeginningOfMessage"><div><br><div>On Dec 18, 2023, at =
+12:51, German Farinas &lt;german.farinas@gmail.com&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><div dir=3D"auto">Hello =
+All,<div dir=3D"auto"><br></div><div dir=3D"auto">I have a USRP x300 and =
+I want to build my custom image. I would like to drive an array of 4 =
+Tx/Rx antennas in the HF band for ionospheric research, i.e beam =
+steering monostatic pulse radar.</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">This is my idea for a custom built:</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Since I will use 4 =
+daughterboards 2 LFTX and 2 LFRX mounted on the X300. Each LFTX or LFRX =
+have 2 port that can be used independently or as a single I/Q input. I =
+will use it independently. Then, I will have available 4 Rx ports and 4 =
+Tx ports. The Radio connections would be the following:&nbsp;</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">For the receiver chain: Radio 0 =
+port 0, Radio 0 port 1, Radio 0 port 2 and Radio 0 port 3 would be =
+connected to an adder, the output of the adder to a DDC chain, and the =
+output of the DDC chain to a streamer. In that way all 4 Rx signal would =
+be summed before passing through the DDC chain and I would save space in =
+FPGA.&nbsp;</div><div dir=3D"auto"><br></div><div dir=3D"auto">For the =
+transmitter chain the only difference is that I would connect the output =
+of the DUC to a delay line filter and from there extract the 4 outputs =
+to the 4 Tx ports available on the daughterboards. This delay line =
+should be configurable since from there I would change the steering of =
+the beam.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Also I =
+would like to use only one 1Gb Ethernet and not both, so I could save =
+FPGA space. In summary this would be the rfnoc blocks: 2 Radio =
+interfaces, 1 DDC, 1DUC, 1 custom delay line block, and only 1Gb =
+interface. I think this may occupy less space than the default =
+image.&nbsp; One of the many doubts that I have is about the radio =
+interfaces, in the default image these radio interfaces have only 2 =
+port, for example Radio 0:0 and Radio 0:1, but I would need also Radio =
+0:2 and Radio 0:3. The same for Radio 1: 0 to 3. Because I will use all =
+the ports availables in the doughterboards.</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">I know this is a general and =
+tricky question and I apologize in advance. But any any help would be =
+very appreciated.</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">Best,</div><div dir=3D"auto">German</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto"><br></div></div>
+_______________________________________________<br>USRP-users mailing =
+list -- usrp-users@lists.ettus.com<br>To unsubscribe send an email to =
+usrp-users-leave@lists.ettus.com<br></div></div><br></div></body></html>=
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
+--Apple-Mail=_2E25D564-80D9-4D90-AB98-6B4393770219--
 
---000000000000e7e455060ccedf13--
-
---===============0992006628424124506==
+--===============5806052946189826264==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -198,4 +233,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0992006628424124506==--
+--===============5806052946189826264==--
