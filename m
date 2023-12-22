@@ -2,256 +2,132 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14CB481BCEC
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Dec 2023 18:20:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C97D381CAB8
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Dec 2023 14:29:46 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B686238523C
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Dec 2023 12:20:35 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 879BC384F0E
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Dec 2023 08:29:45 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1703179235; bh=RKchV6xWgrfNMuC4AfwbWRyxFxQkHyzC66B4kEYLNNA=;
-	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=D2BUUnkFET4ywrq+Pk888wDtHkfh9qhupwVnLmcn06W+H8N36ULrzPe9j6c53RxEZ
-	 983gVmSpgBgNJkyvdhNEr63Ldxa4XetRa5YGLCbr2hpZDWHrB+wEs9DLjzugVp6ggB
-	 7AoPb/RWVYxqdAr2V0e+68NNa4DOGQT+SNYfyfjK4lkJeUx/ZrirqujftbD7WTAhaa
-	 QrIHy9yC590IpYKvOOUoNB0nWM70/Q0hT9UTiGm1IfP5eCES2EMwXgkWnWi8tc1ct8
-	 e6BR2a1tMxhi4mYO+c11Yn4a3wsNBavtZnXUZzblebz7klWH0YmoLog6BvMUoTYdt4
-	 3+f6onuiKB4Cw==
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	by mm2.emwd.com (Postfix) with ESMTPS id 88D753851E2
-	for <usrp-users@lists.ettus.com>; Thu, 21 Dec 2023 12:19:54 -0500 (EST)
+	t=1703251785; bh=8zk4NiO2dkw+dcFEPVtB4df5MdOhQ2IFZYOz3Ef1pAs=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=QP3jElkcMkdfUoCNi5xKyEYlHkxvuSqgEDr6DUSDxF1qiAN21uS4GnfFCSF0Gsd3m
+	 WmGE5/GQXULyyKeFLTFHv1XcG701e3gDtYkWWFxDiIY+o6fMUYzjdTu5X5qxVFpIj1
+	 fHhulMCTEXuVaTM503sgcsQI55jTTTWZxtGX3S71opDRHG9IKYHBA41ldYeP3s5uQ7
+	 FsmSHeq2IZA5dBSe3N0FOrG2aUDxev3eI+jZAOc2ObU27QAaN6bTnKUyNm3iVtI6oA
+	 OF0MND89IugxrUEVJ1Gpu0Zs9VoioBeAwxXlE7kq73Gd7O92oodR3iB4UjafYol1O2
+	 S+TH5iYBswhkA==
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7B5723849C4
+	for <usrp-users@lists.ettus.com>; Fri, 22 Dec 2023 08:29:03 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XeLgmKUL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kaEa2idj";
 	dkim-atps=neutral
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3ba46a19689so826468b6e.3
-        for <usrp-users@lists.ettus.com>; Thu, 21 Dec 2023 09:19:54 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e49a0b5caso2280287e87.0
+        for <usrp-users@lists.ettus.com>; Fri, 22 Dec 2023 05:29:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703179193; x=1703783993; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HiTpuvnlj3r9m0+unnHKTjx5YvSL2oPhnl3pHDoybbk=;
-        b=XeLgmKUL9N3uTrmUF1X9deGp4TMvsVWPTji1jOHJ0Am+H4ilLftWGnzNiAclzhuNVA
-         D5doJWRkv8nzdtQ2o6vnyzixSSfLy5O+f7NMw8V0yu2YtQdq39A4xuVSvaRY24IgdUj3
-         sHQzFAoOCu1WDHdyCYqm+N0dlzFfmFm9GbQ0MYLuncCv6bXDvD0StEDEX5B23EP8PEH3
-         whAcIEYbLWzdi/SbB6Xa+vcIAyJJHxVXcQMgQrHyVoqKxGSogSqZVdKn2/7wocTFz+cN
-         d1+mLbKiHfXqmj2J/MnNOmsZu3E0tEGK8XREcJNMFx6RPDpW4CCe7pdI0LIwql3GNylZ
-         yZdw==
+        d=gmail.com; s=20230601; t=1703251742; x=1703856542; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=yO1yGke8I1c1jfEbiaAIzVTCF3HobhDq99JazbhgGDU=;
+        b=kaEa2idjFEs3/mXM6F+rxxPiCySTgQ5jUPW/L3mtFhzm8GIxgUorzRiGNBdz3WlGz+
+         wM4iOK6CBfvGPE+F1KDkpS4JOq3H+oH3HhWYWupt4ygPUtySuGtu+Qn0yjmJtZeyu0v8
+         /CYcF+4q92x7ngBOzJRhklD1xHKMS1oA93WqxNtwBQ9O+ShFZnLqpYVAomYiuGa2RdJS
+         zsU8vAoyQfMKGp6/Xwm+k0NpQ7Z1vio7OCVpAIWX+6zLzl15vfbUw7jVT6XOpVq/GyX0
+         H13w/YZ4s7PmWEKu3iJwplbv6WucvKfyKbPO9LElcl8Ni1lIVgOgeMAr/kFPWZv78nYb
+         ziDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703179193; x=1703783993;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HiTpuvnlj3r9m0+unnHKTjx5YvSL2oPhnl3pHDoybbk=;
-        b=tnd+c9hnCccnbe+9NVi03RpA9+bd932imSyLpEnjfuBT0fAbUZAFjbT/EJ6TpMtsZ0
-         TcXnI0hmoxXKnXctDQ0/WCOM0Rx0B2CeQR9C3m4ghRrWue58xCyXQr1SKwQbTgv5BqKl
-         eJrQqllq6MIbbsj1VK5AQNfcgtOxxY24nhA4dzMSwgOoSJ+Eg+FNkF1VEnbWUXLauBDz
-         7R+XSRW9qB3yu3RjrPi38kie2CnzkVYIvurM3r2oijDIVlXAXlfAIc6Z9n1PyTaDV4XI
-         ToFRhWgKkedPuS01WBYxGaGmFAw9iEt7gefRgsGL52L8axqe+Wkf7vm4olr4uuAk+Skw
-         Oaqw==
-X-Gm-Message-State: AOJu0Yzi74HbSEPoaZivg6TN/WJg2BAarGgRpmxk5Xdp+xAWD/a8grbE
-	aIJS7V6a6SxDd2hpBIxZ3t54FzqlSC7U/IAt6rbD9eWDKOnxy5gm
-X-Google-Smtp-Source: AGHT+IE/ydTozU8QaCNM/3/PCwPqMSZxYELWJaP0fFk8tPPh0ccuWov1EmrLdksZprlDSaZqFI+4UCTjY5I4EJ6rDNc=
-X-Received: by 2002:a05:6870:41d5:b0:1fb:a96:bd76 with SMTP id
- z21-20020a05687041d500b001fb0a96bd76mr157666oac.15.1703179193356; Thu, 21 Dec
- 2023 09:19:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703251742; x=1703856542;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yO1yGke8I1c1jfEbiaAIzVTCF3HobhDq99JazbhgGDU=;
+        b=R3KMUaQeGq8OTGMy2/FgigOF3aL26sFn+SjcdmlPwKyBa1atc69cGJGPfjgLzdWM6W
+         SoIrU7QgsWa6oH9L1Jan2XmUec80rBv24XjwA/h9uJale5PIWLBWtOCR6L3RH606AqR5
+         z4cT45AxekmmggJ6aOBWYGiWD3RpeelG0hpalWxsu4RoMCBTu/R3t+uhDYGKUCNJ3Jep
+         NbcT1c4E2oVZ/vloYCf78xqFLgbbJ2WQJzRYTHpeZXYkiyA2VZT7n7Xh+BpKfvAXlp/m
+         b7YdEE3p4Ohon8NFSSeilWca2kLDxHcxrGxziCZHvem4E0YmGeGnIUKX8OaBJnQk/ax7
+         zoFw==
+X-Gm-Message-State: AOJu0YypQgbEeY0JvKHwUXYCXCI625gZcRrQz1c0/Ft79Qkx/SWa8Bhw
+	+55MWEv3PnVQmt2ng67HbDxg4jJpfcv9qhtt0+5YRrnyJe/mBc5Q
+X-Google-Smtp-Source: AGHT+IEYwUc8qV2KNyJabXVueg9P0J0zJhJlJXIhEZLzhMc11YfIIEdxDFg7lwuKHn8MZXP8kUOLMtiFSwx0W52T4uU=
+X-Received: by 2002:a19:6716:0:b0:50e:3909:fd25 with SMTP id
+ b22-20020a196716000000b0050e3909fd25mr630833lfc.79.1703251741210; Fri, 22 Dec
+ 2023 05:29:01 -0800 (PST)
 MIME-Version: 1.0
-References: <CAJx0LdUcyGiZ8MP+-TOrt+xXZHBV7dZvaUzZHcDAwFq-b+Af=Q@mail.gmail.com>
-In-Reply-To: <CAJx0LdUcyGiZ8MP+-TOrt+xXZHBV7dZvaUzZHcDAwFq-b+Af=Q@mail.gmail.com>
-From: German Farinas <german.farinas@gmail.com>
-Date: Thu, 21 Dec 2023 12:19:42 -0500
-Message-ID: <CAJx0LdUVDmit9OQbUyViFhSg5Wo8oJVVv6mFov6B6z7OVFcONw@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: FJIU4IEEABBLEOJKYCH2FLTCDQJJMSJI
-X-Message-ID-Hash: FJIU4IEEABBLEOJKYCH2FLTCDQJJMSJI
-X-MailFrom: german.farinas@gmail.com
+From: sp <stackprogramer@gmail.com>
+Date: Fri, 22 Dec 2023 16:58:49 +0330
+Message-ID: <CAA=S3PtuJYN95M4fCbdW+Pd6LghU-Wb0fjB57EvZMhbzFgOWYg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: YNVBBLOVTMFY4R72VS5IIUZBWYHYNHPQ
+X-Message-ID-Hash: YNVBBLOVTMFY4R72VS5IIUZBWYHYNHPQ
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: CRITICAL WARNING: [Vivado 12-1790] Evaluation License Warning: This design contains one or more evaluation cores that will cease to function after a certain period of time. This design should NOT be used in production systems.
+Subject: [USRP-users] How can solve this error in RFNOC: RfnocError: ResolveError: Attempting to overwrite property `freq@USER:0'
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FJIU4IEEABBLEOJKYCH2FLTCDQJJMSJI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YNVBBLOVTMFY4R72VS5IIUZBWYHYNHPQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4771759880364513630=="
+Content-Type: multipart/mixed; boundary="===============8906146782735026621=="
 
---===============4771759880364513630==
-Content-Type: multipart/alternative; boundary="000000000000cf1931060d084e84"
+--===============8906146782735026621==
+Content-Type: multipart/alternative; boundary="000000000000ff7c10060d193261"
 
---000000000000cf1931060d084e84
+--000000000000ff7c10060d193261
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Update on this. Looking at the build log I found this:
+When I want to use RFNOC block in USRP I am faced with errors.....How can
+solve it? can anyone help? thanks in advance
 
-Evaluation cores found in this design:
-    IP core 'ten_gig_eth_pcs_pma' (ten_gig_eth_pcs_pma_v6_0_19) was
-generated using a design_linking license.
+[WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+> [ERROR] [RFNOC::GRAPH::DETAIL] 0/DDC#0: RfnocError: ResolveError:
+> Attempting to overwrite property `freq@USER:0' with a new value after it
+> was locked!
+> Traceback (most recent call last):
+>   File "/home/sp/Downloads/rfnoc45.py", line 211, in <module>
+>     main()
+>   File "/home/sp/Downloads/rfnoc45.py", line 189, in main
+>     tb.start()
+>   File "/usr/local/lib/python3/dist-packages/gnuradio/gr/top_block.py",
+> line 111, in start
+>     top_block_start_unlocked(self._impl, max_noutput_items)
+>   File "/usr/local/lib/python3/dist-packages/gnuradio/gr/runtime_swig.py",
+> line 4832, in top_block_start_unlocked
+>     return _runtime_swig.top_block_start_unlocked(r, max_noutput_items)
+> RuntimeError: RfnocError: ResolveError: Attempting to overwrite property
+> `freq@USER:0' with a new value after it was locked!
 
-Resolution: If a new IP Core license was added, in order for the new
-license to be picked up, the current netlist needs to be updated by
-resetting and re-generating the IP output products before bitstream
-generation.
-
-How do I regenerate the IP core?
-
-Best,
-German
-
-On Wed, Dec 20, 2023 at 10:48=E2=80=AFPM German Farinas <german.farinas@gma=
-il.com>
-wrote:
-
-> Hello,
->
-> I ran the example in this guide (
-> https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0) to add a new
-> FFT RFNoC block. I modify the default yaml file and run the following
-> command:
->
-> rfnoc_image_builder -y x300_with_fft.yml -t X300_HG -F ../../../
->
-> Everything went well and the bitstream file was successfully generated. I
-> uploaded to my USRP X300 with the following command: uhd_image_loader
-> --args "type=3Dx300,addr=3D192.168.10.2" --fpga-path
-> ./build/usrp_x300_fpga_HG.bin
->
-> after loading the new image this is the output to the *uhd_usrp_probe
-> --args type=3Dx300* command:
->
-> RFNoC blocks on this device:
-> |   |
-> |   |   * 0/DDC#0
-> |   |   * 0/DDC#1
-> |   |   * 0/DUC#0
-> |   |   * 0/DUC#1
-> |   |   * 0/FFT#0
-> |   |   * 0/Radio#0
-> |   |   * 0/Radio#1
-> |   |   * 0/Replay#0
-> |     _____________________________________________________
-> |    /
-> |   |       Static connections on this device:
-> |   |
-> |   |   * 0/SEP#0:0=3D=3D>0/DUC#0:0
-> |   |   * 0/DUC#0:0=3D=3D>0/Radio#0:0
-> |   |   * 0/Radio#0:0=3D=3D>0/DDC#0:0
-> |   |   * 0/DDC#0:0=3D=3D>0/SEP#0:0
-> |   |   * 0/Radio#0:1=3D=3D>0/DDC#0:1
-> |   |   * 0/DDC#0:1=3D=3D>0/SEP#1:0
-> |   |   * 0/SEP#2:0=3D=3D>0/DUC#1:0
-> |   |   * 0/DUC#1:0=3D=3D>0/Radio#1:0
-> |   |   * 0/Radio#1:0=3D=3D>0/DDC#1:0
-> |   |   * 0/DDC#1:0=3D=3D>0/SEP#2:0
-> |   |   * 0/Radio#1:1=3D=3D>0/DDC#1:1
-> |   |   * 0/DDC#1:1=3D=3D>0/SEP#3:0
-> |   |   * 0/SEP#4:0=3D=3D>0/Replay#0:0
-> |   |   * 0/Replay#0:0=3D=3D>0/SEP#4:0
-> |   |   * 0/SEP#5:0=3D=3D>0/Replay#0:1
-> |   |   * 0/Replay#0:1=3D=3D>0/SEP#5:0
-> |   |   * 0/SEP#6:0=3D=3D>0/FFT#0:0
-> |   |   * 0/FFT#0:0=3D=3D>0/SEP#6:0
->
-> Everything apparently looks good because the FFT was inserted. However
-> during the last phase of the vivado tools flow, after synthesis, place,
-> route, etc, during the *BUILDER: Writing bitfile *phase it issues the
-> following supposedly critical warning:
->
-> *CRITICAL WARNING: [Vivado 12-1790] Evaluation License Warning: This
-> design contains one or more evaluation cores that will cease to function
-> after a certain period of time. This design should NOT be used in
-> production systems.*
->
-> I think it may be the FFT IP core but I am not sure. I have Vivado
-> v2021.1_AR76780 ML with an Enterprise Edition license. The version is 202=
-1
-> because this is the version supported by Ettus for building FPGA images. =
-My
-> license goes up to 2023.1 limit, but this should not affect me because I =
-am
-> using the 2021 version. I compiled the default images and I don't recall
-> receiving this critical warning.
->
-> Anyone had the same issue? Any help or explanation to this? Is this
-> something I should worry about ?
->
-> Best regards,
-> German
->
->
-
---000000000000cf1931060d084e84
+--000000000000ff7c10060d193261
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Update on this. Looking at the build log I found this:<div=
-><br></div><div>Evaluation cores found in this design:<br>=C2=A0 =C2=A0 IP =
-core &#39;ten_gig_eth_pcs_pma&#39; (ten_gig_eth_pcs_pma_v6_0_19) was genera=
-ted using a design_linking license.<br><br>Resolution: If a new IP Core lic=
-ense was added, in order for the new license to be picked up, the current n=
-etlist needs to be updated by resetting and re-generating the IP output pro=
-ducts before bitstream generation.<br></div><div><br></div><div>How do I re=
-generate the IP core?</div><div><br></div><div>Best,</div><div>German</div>=
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Wed, Dec 20, 2023 at 10:48=E2=80=AFPM German Farinas &lt;<a href=3D"mail=
-to:german.farinas@gmail.com">german.farinas@gmail.com</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hello=
-,<div><br></div><div>I ran the example in this guide (<a href=3D"https://kb=
-.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0" target=3D"_blank">https:/=
-/kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0</a>) to add a new FFT R=
-FNoC block. I modify the default yaml file and run the following command:</=
-div><div><br></div><div>rfnoc_image_builder -y x300_with_fft.yml -t X300_HG=
- -F ../../../<br></div><div><br></div><div>Everything went well and the bit=
-stream=C2=A0file was successfully=C2=A0generated. I uploaded=C2=A0to my USR=
-P X300 with the following command: uhd_image_loader --args &quot;type=3Dx30=
-0,addr=3D192.168.10.2&quot; --fpga-path ./build/usrp_x300_fpga_HG.bin</div>=
-<div><br></div><div>after loading the new image this is the output to the <=
-i>uhd_usrp_probe --args type=3Dx300</i> command:</div><div><br></div><div>R=
-FNoC blocks on this device:<br>| =C2=A0 | =C2=A0 <br>| =C2=A0 | =C2=A0 * 0/=
-DDC#0<br>| =C2=A0 | =C2=A0 * 0/DDC#1<br>| =C2=A0 | =C2=A0 * 0/DUC#0<br>| =
-=C2=A0 | =C2=A0 * 0/DUC#1<br>| =C2=A0 | =C2=A0 * 0/FFT#0<br>| =C2=A0 | =C2=
-=A0 * 0/Radio#0<br>| =C2=A0 | =C2=A0 * 0/Radio#1<br>| =C2=A0 | =C2=A0 * 0/R=
-eplay#0<br>| =C2=A0 =C2=A0 ________________________________________________=
-_____<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Static connect=
-ions on this device:<br>| =C2=A0 | =C2=A0 <br>| =C2=A0 | =C2=A0 * 0/SEP#0:0=
-=3D=3D&gt;0/DUC#0:0<br>| =C2=A0 | =C2=A0 * 0/DUC#0:0=3D=3D&gt;0/Radio#0:0<b=
-r>| =C2=A0 | =C2=A0 * 0/Radio#0:0=3D=3D&gt;0/DDC#0:0<br>| =C2=A0 | =C2=A0 *=
- 0/DDC#0:0=3D=3D&gt;0/SEP#0:0<br>| =C2=A0 | =C2=A0 * 0/Radio#0:1=3D=3D&gt;0=
-/DDC#0:1<br>| =C2=A0 | =C2=A0 * 0/DDC#0:1=3D=3D&gt;0/SEP#1:0<br>| =C2=A0 | =
-=C2=A0 * 0/SEP#2:0=3D=3D&gt;0/DUC#1:0<br>| =C2=A0 | =C2=A0 * 0/DUC#1:0=3D=
-=3D&gt;0/Radio#1:0<br>| =C2=A0 | =C2=A0 * 0/Radio#1:0=3D=3D&gt;0/DDC#1:0<br=
->| =C2=A0 | =C2=A0 * 0/DDC#1:0=3D=3D&gt;0/SEP#2:0<br>| =C2=A0 | =C2=A0 * 0/=
-Radio#1:1=3D=3D&gt;0/DDC#1:1<br>| =C2=A0 | =C2=A0 * 0/DDC#1:1=3D=3D&gt;0/SE=
-P#3:0<br>| =C2=A0 | =C2=A0 * 0/SEP#4:0=3D=3D&gt;0/Replay#0:0<br>| =C2=A0 | =
-=C2=A0 * 0/Replay#0:0=3D=3D&gt;0/SEP#4:0<br>| =C2=A0 | =C2=A0 * 0/SEP#5:0=
-=3D=3D&gt;0/Replay#0:1<br>| =C2=A0 | =C2=A0 * 0/Replay#0:1=3D=3D&gt;0/SEP#5=
-:0<br>| =C2=A0 | =C2=A0 * 0/SEP#6:0=3D=3D&gt;0/FFT#0:0<br>| =C2=A0 | =C2=A0=
- * 0/FFT#0:0=3D=3D&gt;0/SEP#6:0<br></div><div><br></div><div>Everything app=
-arently=C2=A0looks good because the FFT was inserted. However during the<b>=
-=C2=A0</b>last phase of the vivado tools flow, after synthesis, place, rout=
-e, etc, during the=C2=A0<b>BUILDER: Writing bitfile </b>phase it issues the=
- following supposedly=C2=A0critical warning:</div><div><br></div><div><i>CR=
-ITICAL WARNING: [Vivado 12-1790] Evaluation License Warning: This design co=
-ntains one or more evaluation cores that will cease to function after a cer=
-tain period of time. This design should NOT be used in production systems.<=
-/i><br></div><div><i><br></i></div><div>I think it may be the FFT IP core b=
-ut I am not sure. I have Vivado v2021.1_AR76780 ML with an Enterprise Editi=
-on license. The version is 2021 because this is the version supported by Et=
-tus for building FPGA images. My license goes up to 2023.1 limit, but this =
-should not affect me because I am using the 2021 version. I compiled the de=
-fault images and I don&#39;t=C2=A0recall receiving this critical warning.</=
-div><div><br></div><div>Anyone had the same issue? Any help or explanation=
-=C2=A0to this? Is this something I should worry about ?</div><div><br></div=
-><div>Best regards,</div><div>German</div><div><br></div></div>
-</blockquote></div>
+<div dir=3D"ltr"><div>When I want to use RFNOC block in USRP I am faced wit=
+h errors.....How can solve it? can anyone help? thanks in advance</div><div=
+><br></div><div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">[WARNING]=
+ [0/Radio#0] Attempting to set tick rate to 0. Skipping.<br>[ERROR] [RFNOC:=
+:GRAPH::DETAIL] 0/DDC#0: RfnocError: ResolveError: Attempting to overwrite =
+property `freq@USER:0&#39; with a new value after it was locked!<br>Traceba=
+ck (most recent call last):<br>=C2=A0 File &quot;/home/sp/Downloads/rfnoc45=
+.py&quot;, line 211, in &lt;module&gt;<br>=C2=A0 =C2=A0 main()<br>=C2=A0 Fi=
+le &quot;/home/sp/Downloads/rfnoc45.py&quot;, line 189, in main<br>=C2=A0 =
+=C2=A0 tb.start()<br>=C2=A0 File &quot;/usr/local/lib/python3/dist-packages=
+/gnuradio/gr/top_block.py&quot;, line 111, in start<br>=C2=A0 =C2=A0 top_bl=
+ock_start_unlocked(self._impl, max_noutput_items)<br>=C2=A0 File &quot;/usr=
+/local/lib/python3/dist-packages/gnuradio/gr/runtime_swig.py&quot;, line 48=
+32, in top_block_start_unlocked<br>=C2=A0 =C2=A0 return _runtime_swig.top_b=
+lock_start_unlocked(r, max_noutput_items)<br>RuntimeError: RfnocError: Reso=
+lveError: Attempting to overwrite property `freq@USER:0&#39; with a new val=
+ue after it was locked!</blockquote><br></div></div>
 
---000000000000cf1931060d084e84--
+--000000000000ff7c10060d193261--
 
---===============4771759880364513630==
+--===============8906146782735026621==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -261,4 +137,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4771759880364513630==--
+--===============8906146782735026621==--
