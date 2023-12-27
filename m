@@ -2,210 +2,216 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C46CC81EE45
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Dec 2023 11:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B68A181EE53
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Dec 2023 11:48:35 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 07DFA38508A
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Dec 2023 05:40:47 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id CCA2E38509C
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Dec 2023 05:48:34 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1703673647; bh=X8KFTyn/izQfgZOKSO1WUm0oQhH2u03a6kJ1tlhVp4c=;
-	h=To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=MUz/eVJwwbdV78N9lcCas+iOqxBVrBmxkJ6KnNgm2FPOZ9at9VlgN4raN3KfP/0B6
-	 /3yDMVLo09yCzUfK51Rlz0tPmkdK2KE6LulgZAmmYZLghOR3tLzJdZP0TqrLC5yhv3
-	 RyJJZSQADfq/sRSiTVK1N0eJfyqCCGQNI3fWi7r+Z1/dFSe3BOL7Im1tMgofLtlIVT
-	 oZv5kUsgBRtZyg9NYAWO5y1dXtys4tkZLdHUTbRA32LwuqkwTi0Kimly3eRx6m7BZn
-	 ir3TtWeQNjeXXaBjU5m+ec3yHoff7RB9TRVi5+FMBYFoR32kMgmxZdyCWe48aEk1g4
-	 11fQYVOApqzhQ==
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01on2061.outbound.protection.outlook.com [40.107.222.61])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9F382383E26
-	for <usrp-users@lists.ettus.com>; Wed, 27 Dec 2023 05:39:51 -0500 (EST)
+	t=1703674114; bh=laP8aQz9j0Hb1Q6D8B86t7s1IaccJJk0GULDcfU3sVU=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=k3/9+O8hEmMHROcgTFknQXb5//FMLpPwgkFs8HUbe8PpMpVrMofGifgk0DBwwEAUv
+	 Jejq6NO1m86EJgfK1tAWLT3TQIkfPQIAeILN9F1i64nBwXm+mbjcsdEZxgntWcbC20
+	 XmkI6PzWaMmJ9/30KGadO3kv6cW/PF9hwLhUjRGd6fDoSQr9g3adWXqKij6exKM3la
+	 NIM45bdOJmaHwhizTr21qB3+Mpr8wnPHgtzTUSOsKMBaJMzOnJyD9X1EFCR+SFZE9O
+	 sAR5qo0tVdqA2mDR9O17WTMZ/87EXk0HCwxfq1vby6iTCRg7fFfB/yQVyAYgf2Ta6h
+	 BNTqGAHzam/tw==
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 44735384FFF
+	for <usrp-users@lists.ettus.com>; Wed, 27 Dec 2023 05:48:07 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=mobiveil.co.in header.i=@mobiveil.co.in header.b="MM9D+NXm";
+	dkim=pass (1024-bit key; unprotected) header.d=iitrpr.ac.in header.i=@iitrpr.ac.in header.b="Fi89LDzp";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S1QRjDPMIIAMuiS1MrL8VtZ39UV/Fe37PIkG/n4FE9jYICkGUXWqCmQM4xwixzOzfGX98lC8w8t8/shzi2ZT071Rdg+4pGweoWX3hBxXga0wheMFgiNIvfZVj8nyoKH7DUgnFzlI+UJqL7gLl8vHfJ/b1dBzhVtT7OPMTLv9RISfAApy+K1oYdugByKVgjbYYf57Qe55gZIyVPcod2fwOJwg6noEpugSZthiM+LWhmcn2McjCqD53YLQuzXovZCBTqO9E2Avul7PITxE+DK+/LQvOHWi3bYo2D6UQXNwx7hrkFM9z3o5ev4Oiw3QTmSesJJR5kiCZAYsif8klu3PKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TyoA3fTnEO1stIIhGUIXqchJLbabAVpq3ncjS057QpA=;
- b=Rg+dRQ4P7gZohVmfHQ5igeXIk15jWWq8BOm3DtEzXcwdZdr5dowTLx3ReCIbF7ZJwzyXmJezhwIgmuAvD9pu4NfatWHoV4gxy/RgXtSOUUaTAP3oBV6L2KHikJNWvmEh6R2o/djokvuAzMo7Nnl8pDQpCqPo+hgDZvE4lhiz9KnRsG33yi05m/4rYV/pfjrD5IRPSWKNOwJw6NWsJrTDm7u5S1VTF+U6ph+iGRlTP1rINsYPBgOGwO8yoPISxZef8oLk4DjX7MdUhKfZVUz8lvTpI96Bs/4A8rJMrpZyC4NOHnY95E62gOOrE9nCi7qPbCU83T6EkmKEnmoO3rWSIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mobiveil.co.in; dmarc=pass action=none
- header.from=mobiveil.co.in; dkim=pass header.d=mobiveil.co.in; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mobiveil.co.in;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TyoA3fTnEO1stIIhGUIXqchJLbabAVpq3ncjS057QpA=;
- b=MM9D+NXmHlXKkr1VzV7QkAKD8pj1dukpQHTWcfzBdQfewCUPKoJKcX8ZjWd0TaCdcQoYiz0zKU6mt/2KHd5TblZoMtzA0s4F1vDWYu+gwSaoVJWf7zx8eg+f5w5swMlDExUZ8pCu9OWO9eVT+S7jJM/G5we8qPiTZrt8jiL+LUPMnpwv+GtEb4nCgCIUFROxhfMptw7mbytIiKdUtJXKFfQp6/aqaLcr+fyT+fMwvumRBaew2sOvxgN8ZqlL7WZ1WuRQ1EUWAFj4f5FZATAf+U/lwpPZlOBgvMwAaLkLxFppmIKOc8X8xKkuA4mBdrthANLcCQRpZcpk3lQeWrLEeQ==
-Received: from BMXPR01MB3558.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:5f::20)
- by MAZPR01MB6214.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:4d::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.27; Wed, 27 Dec
- 2023 10:39:46 +0000
-Received: from BMXPR01MB3558.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::a7ab:a187:ceac:fa3f]) by BMXPR01MB3558.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::a7ab:a187:ceac:fa3f%6]) with mapi id 15.20.7113.027; Wed, 27 Dec 2023
- 10:39:46 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: WIFI Accesspoint for B210
-Thread-Index: AQHaOLCo2neBbGtL2U6awl9Qcwnq2g==
-Date: Wed, 27 Dec 2023 10:39:46 +0000
-Message-ID: 
- <BMXPR01MB35586505648133E016DAD48CD69FA@BMXPR01MB3558.INDPRD01.PROD.OUTLOOK.COM>
-Accept-Language: en-IN, en-US
-Content-Language: en-IN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mobiveil.co.in;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BMXPR01MB3558:EE_|MAZPR01MB6214:EE_
-x-ms-office365-filtering-correlation-id: 3dce04eb-f954-44e8-8edd-08dc06c824fe
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- bF/twU7ePT37vjYn0squcnbMhmzs+h8G8fLtVCezjWSflAdE3rLmGn5oOoDcYW28i/bZxJnTMj7O1m5aOy0nQEQxWQJualDT0Isso/9/QHBLl9iCC7SkiiCV+NMy4mEq+sRZQcv/A1bq1nQNr9982rE9FAG6uD1iriSxq8QUoMwrazpq/P8ET1u5n9xfk8jKNF34XOrtgNmmAZmZxby5OKKWjHRMddx9swgJoHkifckA6fotqn8XZ10AazEpxhMkXaTWel89eo0mUa1SJgJFJR8BB4cs/KpTeRNDUWTizN06H/BKUz480qtVn4yxEcBa4bfb4lAHj2W843rrIVDSGkAU6cbvzMIsHCSgrwAXIAuobJti144nfxaZm4mD1FZ+E6V4OLh0Q4F+hXvII7ky0Zr37V+/CdRyQwzd+2qb+YfEiGd6Qq1xduvuQP9YZMOOtwFoSBkYrHFP0bGWX58w4V5gsFR6F38IXHQrmHHvqW1AqbSFHknMPkW9s5ZRrZcY7NqbK664HbzUSclf6wgE1VgAB7be6Fzt1sBvpkOvuTMpA3RiuyusWYuuAlFlXed+DxMV+oBaBV/FoR+CIrOF3bcJjwvejy21NMOFiGrYn0Vxe1v1NuuJj5Rt3gQMEM42FnWI3bSNRiVSgmXx4rWq6a92ZNWQeGnDq5afJ8eca+4=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BMXPR01MB3558.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(396003)(39840400004)(376002)(346002)(230473577357003)(230373577357003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(38070700009)(83380400001)(64756008)(6916009)(66446008)(66556008)(316002)(66476007)(66946007)(76116006)(6506007)(52536014)(8676002)(8936002)(71200400001)(9686003)(7696005)(55236004)(478600001)(38100700002)(26005)(41300700001)(122000001)(5660300002)(2906002)(4744005)(19627405001)(33656002)(86362001)(55016003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?51uPSHtSl6gT3CanTgaiIkFVgYBfGdSZCAUfH3C83vZCmeuZFPNitxqULQ?=
- =?iso-8859-1?Q?HHlZPTErRsVRTD+Oy+nhdlLGkhgWpm6+jT5RrhVxxPtycbs0DBFwvDavK+?=
- =?iso-8859-1?Q?McMEpanpA8U9Sx+OiqxrmKcf0eGa6iZQ+tUgKyH+RRj5T44pVrg/DY33Zx?=
- =?iso-8859-1?Q?HGw2p1xlvL25Font25XQXLikvNwci6wUcVpj7klEHA2NIYVpt95J807O8V?=
- =?iso-8859-1?Q?hxxjREtr68TjDE1vAAkH+OvbVtAGo5hH41r4Zqysh8ffOhyOO/ERM0xyf5?=
- =?iso-8859-1?Q?qPvLKitaEsPm2rTiU113PNDjgtBHqPlLnQga4olHpmPPzz2SIjNK5V/tNz?=
- =?iso-8859-1?Q?Ah+bQDZdm38vgoZT9ukwZ4JKM5v/IqaNhijQdcmn27CSoPCYTLabuYexDg?=
- =?iso-8859-1?Q?yOzy+EhU+hZz+v6ddYU+dQbhM23uTOhT7nkd+00yfKfMwQ2BNlUiC3ePC7?=
- =?iso-8859-1?Q?0eXCY1mQR5opOyGG1ww/k+Ted/7RxI5LjwqGI43O1WQApttCN5+A02l3BO?=
- =?iso-8859-1?Q?P/sv5GNfwtn1Zx/EzStLDtZKnxhgS4NaP8tfgSDKZfbqD4xFQ4aPzMCBFW?=
- =?iso-8859-1?Q?eiMM69CtRnRhm+Ei14tLt88Fc0Eldg0FsH+EsjeWJN8K/xcNqb16qgukxJ?=
- =?iso-8859-1?Q?tO+kEqsFOBRLfCF4buLoW0VMg0oitiMgfgekevhj07T+NE2/YYpcE07ucc?=
- =?iso-8859-1?Q?3Sy62M5owo9rcRBX/1Dsqu+D1gEI3in8Ccc9pNOW4Y+VMCzzeunEinX1QT?=
- =?iso-8859-1?Q?b3ppoBkTFseRCocNV1xNMNAOIiyANSPrZKftYNn9VvUp2Wz9s+8HrIhELf?=
- =?iso-8859-1?Q?DOs+cD5EMSYlex/hxeAAhbCP1MKvKvEH/HfRwvCEpI/k2HqbSUlEAMKkVW?=
- =?iso-8859-1?Q?MAguqEKhVszuTl77zBV+HhB2KSnv+M7OSSceTLh/mW89q1D1fSM1c/aheK?=
- =?iso-8859-1?Q?EoKt4+i2fe4oZ56rszGmEZRXHBaFeh1PCy5ODQVZ5jLT9jRvEzSDdh06lV?=
- =?iso-8859-1?Q?1HTaVf2m6xdmCrI/u3eeL7ZPx3p7Smdv83vEjFTWcOaH+F/Nj8eU268RIX?=
- =?iso-8859-1?Q?DQZ31oTWRKS3+oAdaRSGrryUf8axWM0zYk3OS0GJuOEAw6XZhB4gFx+9Z1?=
- =?iso-8859-1?Q?LfXdzXbAADR9VAF46xld9NuV+D7E0Cxl7GdFgaOib7FuutXr8DCdgp7WEL?=
- =?iso-8859-1?Q?wC/dIaQXepmYwQL/hS3COzf0mYseckmdCB19cyNDfoJXYixbBGMhPGnesu?=
- =?iso-8859-1?Q?1sqkdfV6fEA9+yF6B8OmHknEqEBuCYdrLxA+2hYsEtTL6FfC2c0IDk9zih?=
- =?iso-8859-1?Q?Ofi+uv1BTn0THxaAKSe0485h4XRInht1btUEgV/Aj0zIsa4K9lUXZb//Ne?=
- =?iso-8859-1?Q?bIDPAaQU7cfTzeSKodXxT2R4k3rvmOhLZJOUaPuj4zDKb/N3pafgMPJrt5?=
- =?iso-8859-1?Q?WVQG/QS8qCTFEs4NOOIRNGgvXJRIxs5HjXEZJHQiz4BsnZZeDd5hxmjfis?=
- =?iso-8859-1?Q?oiU4wZL+G/ZKR0u0NjSp/STCalnDCQ3FR0hgd2uLJkoMkagKNe2QAobS2K?=
- =?iso-8859-1?Q?KwtxMDa/SKtuUZcSH8KX2OBXogYjBh4AGa8cjqyMZiMQ9X2ok4iES5uEXz?=
- =?iso-8859-1?Q?az744Q7U/DcMKXu3lmTBw27S7sBf6sQbBz7uT++zYRTE5vTUv0y/pXiA?=
- =?iso-8859-1?Q?=3D=3D?=
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a26fa26e7aeso176096566b.3
+        for <usrp-users@lists.ettus.com>; Wed, 27 Dec 2023 02:48:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=iitrpr.ac.in; s=google; t=1703674086; x=1704278886; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JPXZQOHje+o8mUXX7mFJcqkHHx7b0PiMUC19qd9xmrI=;
+        b=Fi89LDzplU4nFqJCbEPlxqtpUWkf6876KliS7jiaMYMKVCAIwAmvQkoJfmv6h/F81o
+         1nOHWea+beqqqnigtN0BvHRUGjn049tNIjB0GXcILmL9UZ5xkPsILZHUvyby0glfqMfQ
+         eTQ39La25MuGjX/Pgq8yMID37GnylSK1ptkho=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703674086; x=1704278886;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JPXZQOHje+o8mUXX7mFJcqkHHx7b0PiMUC19qd9xmrI=;
+        b=sUnurTpQ4uPgHd0SbwbRGO+J0AGEtVX59hfQIHRQAjBmFH0H7MDmABjs7zyJVjOagJ
+         R9OlJtJYlYFzeU+eGC+gYMy/S5Ta+tyrogRN4V4qwoD0xsFZBChs9KXX8ySHc2emlgRe
+         aLkviu4hMrvzFwFLvPhliKErFUGQ8j+06YcOL5GEY7PpAk3ddH0W+c51UVj7rzqvlbAp
+         lrkCCpyI862+zvrHOIAuLji8Jtm7sVfEp+sm2Qzgp0c66Jgzof8RdM5ZcFn6JRDwJlv3
+         yFVHv9ryMtldzh/vR6mPKlPQZyszENeFmxXHY8AmNN+gq7pceNbsRcfHnx6/jjAabOER
+         mifQ==
+X-Gm-Message-State: AOJu0YyT7p+RuSSU+FRJPD3cNsLX4/pBjn3Tyjx7H2cUUKlusIzkQEkA
+	QJHGzxLZ2x0qmm0mfhkY/AHL2J9Adt2r3YEyvYkfN9qgTyL9gE3xXnMs4KtQVsJRKKeohVaGzdD
+	YS9BVtvg1tiFeCYITk4CJE6Vsh0fbUGFisNoa7Ihh8+eRtqICy0g=
+X-Google-Smtp-Source: AGHT+IGFUSaofh99KgZyUDatJ1XQMcaUJSI3udpHJKdKTaT2Qk9nRfhbWnRbSWxOZPdp6THDk/rR4zJMfXe8In91edQ=
+X-Received: by 2002:a17:906:134a:b0:a26:8683:bc6c with SMTP id
+ x10-20020a170906134a00b00a268683bc6cmr3529724ejb.36.1703674085803; Wed, 27
+ Dec 2023 02:48:05 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: mobiveil.co.in
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BMXPR01MB3558.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3dce04eb-f954-44e8-8edd-08dc06c824fe
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Dec 2023 10:39:46.3584
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: fc646429-760a-4f9d-81fc-c568b17eb1c2
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 96cr6hBBAEarl1HxOAmZwxTBuntv+CATQxxj+Q1qD2ZNLs2jtmW/wM7HTH9L7a1WsNNl1ZYI88bXlI5C1nj7Vmlz7VedSmKRA5svetRekb4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAZPR01MB6214
-Message-ID-Hash: NNDAJXAHCMZA7I3D5QJE7FDEA4X5E7XB
-X-Message-ID-Hash: NNDAJXAHCMZA7I3D5QJE7FDEA4X5E7XB
-X-MailFrom: k.sivaneshkumar@mobiveil.co.in
+References: <BMXPR01MB35586505648133E016DAD48CD69FA@BMXPR01MB3558.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <BMXPR01MB35586505648133E016DAD48CD69FA@BMXPR01MB3558.INDPRD01.PROD.OUTLOOK.COM>
+Date: Wed, 27 Dec 2023 16:17:55 +0530
+Message-ID: <CA+QP_Pn7y+6sPGHt3DM+_NJfnSDaEPfTLWjokXQyAErKvTmwHQ@mail.gmail.com>
+To: Sivanesh Kumar K <k.sivaneshkumar@mobiveil.co.in>
+Message-ID-Hash: P5SBDBCPEGQYWGDBLHVXNXF2USBEQK6E
+X-Message-ID-Hash: P5SBDBCPEGQYWGDBLHVXNXF2USBEQK6E
+X-MailFrom: arhum.19eez0005@iitrpr.ac.in
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] WIFI Accesspoint for B210
+Subject: [USRP-users] Re: WIFI Accesspoint for B210
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5YGD5TOMO5264A7ECTLDLRZI34NZNDB5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P5SBDBCPEGQYWGDBLHVXNXF2USBEQK6E/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Sivanesh Kumar K via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sivanesh Kumar K <k.sivaneshkumar@mobiveil.co.in>
-Content-Type: multipart/mixed; boundary="===============5075452045090724359=="
+From: Arhum Ahmad via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Arhum Ahmad <arhum.19eez0005@iitrpr.ac.in>
+Content-Type: multipart/mixed; boundary="===============5338581153849811439=="
 
---===============5075452045090724359==
-Content-Language: en-IN
-Content-Type: multipart/alternative;
-	boundary="_000_BMXPR01MB35586505648133E016DAD48CD69FABMXPR01MB3558INDP_"
+--===============5338581153849811439==
+Content-Type: multipart/alternative; boundary="000000000000b2f0aa060d7b8869"
 
---_000_BMXPR01MB35586505648133E016DAD48CD69FABMXPR01MB3558INDP_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000b2f0aa060d7b8869
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi team,
+What are the specs of your PC or the system you want to employ it on?
 
-I need to convert USRP b210 to access point to broadcast as a wifi signal w=
-ithich is connected to 5G core via N3iwf.
+On Wed, Dec 27, 2023 at 4:10=E2=80=AFPM Sivanesh Kumar K via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-please help me to give some document to how to convert USRP as an access po=
-int.
+> Hi team,
+>
+> I need to convert USRP b210 to access point to broadcast as a wifi signal
+> withich is connected to 5G core via N3iwf.
+>
+> please help me to give some document to how to convert USRP as an access
+> point.
+>
+> Regards,
+> Sivaneshkumar K
+> Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any
+> attachments, is for the sole use of the intended recipient(s) and may
+> contain proprietary confidential or privileged information or otherwise b=
+e
+> protected by law. Any unauthorized review, use, disclosure or distributio=
+n
+> is prohibited. If you are not the intended recipient, please notify the
+> sender and destroy all copies and the original message.
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-Regards,
-Sivaneshkumar K
-Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any a=
-ttachments, is for the sole use of the intended recipient(s) and may contai=
-n proprietary confidential or privileged information or otherwise be protec=
-ted by law. Any unauthorized review, use, disclosure or distribution is pro=
-hibited. If you are not the intended recipient, please notify the sender an=
-d destroy all copies and the original message.
 
---_000_BMXPR01MB35586505648133E016DAD48CD69FABMXPR01MB3558INDP_
-Content-Type: text/html; charset="iso-8859-1"
+--=20
+*Thanks and Regards*
+*Arhum Ahmad*
+Ph.D. Scholar, Electrical Engineering Department, IIT Ropar
+
++91- <+91-7015802356>7974897279 | arhum.19eez0005@iitrpr.ac.in
+<2016eez0009@iitrpr.ac.in>
+Lab No. 323, Communication Research Lab, J.C.Bose Building
+
+--=20
+**CONFIDENTIALITY NOTICE:=C2=A0The
+ contents of this email message and any=20
+attachments are intended solely=20
+for the addressee(s) and may contain=20
+confidential and/or privileged=20
+information and may be legally protected=20
+from disclosure. If you are not
+ the intended recipient of this message or=20
+their agent, or if this=20
+message has been addressed to you in error, please=20
+immediately alert the
+ sender by reply email and then delete this message=20
+and any attachments.
+ If you are not the intended recipient, you are hereby=20
+notified that any
+ use, dissemination, copying, or storage of this message=20
+or its=20
+attachments is strictly prohibited.*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*
+
+--000000000000b2f0aa060d7b8869
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
+<div dir=3D"ltr">What are the specs of your PC or the system you want to em=
+ploy=C2=A0it on?=C2=A0</div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Wed, Dec 27, 2023 at 4:10=E2=80=AFPM Sivanesh Kuma=
+r K via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><div class=3D"msg-5783256323157886799">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 Hi team,</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 I need to convert USRP b210 to access point to broadcast as a wifi signal w=
 ithich is connected to 5G core via N3iwf.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 please help me to give some document to how to convert USRP as an access po=
 int.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 Regards,</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 Sivaneshkumar K<br>
 </div>
 Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any a=
@@ -215,12 +221,59 @@ ted by law. Any unauthorized review,
  use, disclosure or distribution is prohibited. If you are not the intended=
  recipient, please notify the sender and destroy all copies and the origina=
 l message.
-</body>
-</html>
+</div>
 
---_000_BMXPR01MB35586505648133E016DAD48CD69FABMXPR01MB3558INDP_--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gm=
+ail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signatu=
+re"><div dir=3D"ltr"><div><div dir=3D"ltr"><div style=3D"color:rgb(100,100,=
+100);font-family:Arial;font-size:12px;margin-bottom:5px;margin-top:0px"><b =
+style=3D"color:rgb(53,28,117);font-family:Arial,Helvetica,sans-serif;font-s=
+ize:small"><span style=3D"font-family:&quot;times new roman&quot;,serif">Th=
+anks and Regards</span></b><b><br></b></div><div style=3D"color:rgb(100,100=
+,100);font-family:Arial;font-size:12px;margin-bottom:5px;margin-top:0px"><b=
+>Arhum Ahmad</b><br>Ph.D. Scholar,=C2=A0Electrical Engineering Department, =
+IIT Ropar</div><table width=3D"470" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" style=3D"color:rgb(100,100,100);font-family:Arial;font-size:12px;=
+width:470px;margin-top:5px"><tbody><tr><td style=3D"color:rgb(141,141,141)"=
+><p style=3D"margin:0px"><span style=3D"display:inline-block"><a href=3D"te=
+l:+91-7015802356" style=3D"color:rgb(141,141,141);font-family:sans-serif" t=
+arget=3D"_blank">+91-</a>7974897279</span>=C2=A0<span style=3D"color:rgb(69=
+,102,142);display:inline-block">|</span>=C2=A0arhum.19eez0005<span style=3D=
+"display:inline-block"><a href=3D"mailto:2016eez0009@iitrpr.ac.in" style=3D=
+"color:rgb(141,141,141);font-family:sans-serif" target=3D"_blank">@iitrpr.a=
+c.in</a></span></p></td></tr><tr><td style=3D"font-family:sans-serif;color:=
+rgb(141,141,141)"><span style=3D"display:inline-block">Lab No. 323, Communi=
+cation Research Lab, J.C.Bose Building</span></td></tr></tbody></table></di=
+v></div></div></div>
 
---===============5075452045090724359==
+<br>
+<b><font size=3D"1"><span><span><span><div><div dir=3D"ltr"><div dir=3D"ltr=
+"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div><span><span><span><span><i>CONFIDENTIALI=
+TY NOTICE:=C2=A0The
+ contents of this email message and any attachments are intended solely=20
+for the addressee(s) and may contain confidential and/or privileged=20
+information and may be legally protected from disclosure. If you are not
+ the intended recipient of this message or their agent, or if this=20
+message has been addressed to you in error, please immediately alert the
+ sender by reply email and then delete this message and any attachments.
+ If you are not the intended recipient, you are hereby notified that any
+ use, dissemination, copying, or storage of this message or its=20
+attachments is strictly prohibited.<span></span></i></span></span></span></=
+span></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/span></span></span></font></b>
+--000000000000b2f0aa060d7b8869--
+
+--===============5338581153849811439==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -230,4 +283,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5075452045090724359==--
+--===============5338581153849811439==--
