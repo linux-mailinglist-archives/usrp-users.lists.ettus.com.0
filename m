@@ -2,70 +2,69 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422AB824714
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Jan 2024 18:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A573824737
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Jan 2024 18:20:16 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 38B4D385CDA
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Jan 2024 12:17:01 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 6CB06385ED5
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Jan 2024 12:20:15 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1704388621; bh=w/5ePpB4PKgJD6mueOmWYElGjQXiZbSXlq3je/LMLfA=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=yacMJ/S9+ko4Ixih0v6Izi6mnzE0Qa7rluHqJL4ZnbU9LBV07E3c0VHVzEMbaeKdq
-	 F+ptb9+1dbdRFT7Wkpby9tF3eBr2D2KQHYem7c1d4V0mnvpGrlzoibu0g7sh3cAujY
-	 xGt+9/eti9iyr6cK7LPj8FbcMI3GY0mv7xQJVlKoa0s/DiMF9NvpG+4MFPo2mz/PVz
-	 KLSoqARHoKVTW/Zv6ZsE/MGZ5UiTLrXj/Y4fWcrrfZqp9b+RAX2yjAp1AN016OtsA5
-	 tPruhp8yNmpEK8TQLuSCq4lTopHKZ+wdMhBftc8SNNrK+5aPSTusVNMztVsR/FXnEq
-	 pGgJzCiCvl+Og==
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id CEA33385C57
-	for <usrp-users@lists.ettus.com>; Thu,  4 Jan 2024 12:16:39 -0500 (EST)
+	t=1704388815; bh=/EnvAKLTxVoNX1Wl1L9NL5d89U7QkIQhwHCodsw1gqI=;
+	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=uqKLabDSq1vNBb4VB5Msn0xyTY1fmYD+qsMmZnXGppJLfn2y7ymXol5opTzJr8Qm1
+	 Z/XxfTEIKZXNonft53WdT8uimuU19HZJuoodAGEsoPE1MkJIQ6OW6un/yDJ/KMPaHo
+	 ZSW2kVEZeB0CWGXKyEySR4aNnDLt4zgCKXlG6Za1U6+1O56/hVYZ6IOXc9CE4MiOFj
+	 kU32MSlcm7bVbVWyHu3v5uMTgbUhs9EutSAoRZu9aBqSouCogMqSr6b/4SY1X/7kfV
+	 sXhYObHpKuyzh4iPTwdPcEtEvarqznRDvsHtI9dBZgoCXOCAJ7zroQMqXB67ZGTflB
+	 yAbqPxhs8CX6g==
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id 16165380EE5
+	for <usrp-users@lists.ettus.com>; Thu,  4 Jan 2024 12:19:27 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ch8oinwB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mxLdbsGX";
 	dkim-atps=neutral
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-427f4407624so3691821cf.3
-        for <usrp-users@lists.ettus.com>; Thu, 04 Jan 2024 09:16:39 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3bbce1202ebso480177b6e.2
+        for <usrp-users@lists.ettus.com>; Thu, 04 Jan 2024 09:19:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704388599; x=1704993399; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t3+45XsTC3FF/RLbGd6rktB/lhHuFejyaKCgQwwvw7M=;
-        b=Ch8oinwBQ+ovtkg0moDGXKnHNtWS2cKbre0/qsy1s0o/rd2rcMfqPZkga3YIuJR/c6
-         GQCwQoFK1mJXSJzOK2wOm66mElS/+8aSdr2T23qGlxTKT9qjZBXkqhAToETpR2UPgcXV
-         McsoQEoNqTvbeNkfepJx/Q1fWtr2hb6LM3MnumHDckMGFjn/F2Y5J7AGoL/i4mJlm4fP
-         WeZxi8sZRj35nzO8Blj1cH11ptC/59coXWgTxv0IHGs197RjiahAsPnMxSs4qlGR5HL6
-         n1abMQ3cSxVVVcFqOJOLcrn+QrwIFhybqcnIYZQFzrVgVcskXa9wZBp+TcEfMeEi+3ls
-         HiYw==
+        d=gmail.com; s=20230601; t=1704388767; x=1704993567; darn=lists.ettus.com;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=egcdeJeHrOz0OVopZlxQzntVe36JFY15my798r+1YP8=;
+        b=mxLdbsGXKlZSh6Ynj2CfFyVvB/H9rlVJ9NKOSvXpT5H3/QoXKzqBOS65EU7Ndh6vcx
+         g+wUkpMNVIhLgHzFV8Ce5WMqGXLYUnIZehtRw4P6qgpn3UNoB8KiCF7TU+V3/L8+Ve9q
+         E95LErw6WYhR3STsMOnYtRJ5vt+YncvlT4JgJf1EfDiO5lI4rZQz9lfW0+bjFx1kT2s5
+         zQKQMpJJ5huyw9ozc+s7xdwOrix1XgJSeo5aKaqwwj0RaRj100bvZx6Ryq9GyfulSXVn
+         I3e86hbhL8aSbrOsb7YaR79YlRmkOclTjuOCVXtTU7SfSJHeIm3dLADt/0R1Vlzkkx34
+         13PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704388599; x=1704993399;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=t3+45XsTC3FF/RLbGd6rktB/lhHuFejyaKCgQwwvw7M=;
-        b=HjXX/5jVedzb7lZvF4GKNhuIXSHA5GfvO10ssw4ePoC02thOH5S8gM0sgi+f9mjQq2
-         EQw4YhJnyz4VrXOpEf+XV4wx1IOI9u4+eGYAd7hEC29plDLS/1Mykpa83TIEx07RCX8Q
-         c+jY24xL2OEr0HepC3wB+tiJdd7pkTgigj+ZXMJzmPpAAM7tOkzKKU4zo5iAxA4wVvy4
-         pYaeqF98drU6yu46YqamampCGM4JLZz9BK+9m8xMPNkg7XrlFKPLAPGCVez6iD6B9+Cn
-         4Ikn+rN+B/UyKz4LIJzRBrNw2WRFuwpuUL2ZxY5I3u8kw24i1a0DN1UDaMzUJVPNs6r7
-         1VrQ==
-X-Gm-Message-State: AOJu0Yw2FeR83/1a1wtu6P895sUUnEfdtMhr2cM48JwX331aTJtpIuu5
-	WMHQoovcc5pq+CMhq1L4cIBtNQ8McKY=
-X-Google-Smtp-Source: AGHT+IEt0rqQx36Z86ociotWppusUQbT6dH0E81mtMkXYZb87iyeH3bHKfP4StpRWz+T6qxDKyaESA==
-X-Received: by 2002:a05:622a:1490:b0:427:7c88:fc26 with SMTP id t16-20020a05622a149000b004277c88fc26mr1055973qtx.32.1704388598998;
-        Thu, 04 Jan 2024 09:16:38 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704388767; x=1704993567;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=egcdeJeHrOz0OVopZlxQzntVe36JFY15my798r+1YP8=;
+        b=MbSTFIZbUUBQertlezT/WtD+vOl0Cx3+u6P1Me4s8Z1rxXwWR0llcN4IyQfrutwYX6
+         yQ090R5Y8bWirGiKM/J7V3E9unYsCB2rOyrxGr/tZ6bfXXYc4LJ2ZI/CfbNPpkXJGfWA
+         PwnYHgxwXe949c9+x2vvGXmWHV25cit9YG/ow8uihPvq++zbaJX4R3Ei8CZGu1waDgtY
+         UJcAKNH/+ZKL+oc3QRbLBvRXLyVzSgHv80zOaAo6RyL3gESPdvYJFaWP9zE5xyQsQV7c
+         Srcix3s+gi4jdTlAGTu7JoXf/78AnpuZTaFTdvl2f+GyTSyaqWU5ZHTVDCufVw7dGYpF
+         dWtg==
+X-Gm-Message-State: AOJu0YwRHEvIKUxp7Kl4haSzy/XZwl3Qjww6Bm9MtZrMExCYZOecmX5x
+	O3+TaQRHLYH6sbQ/0YE4Boo=
+X-Google-Smtp-Source: AGHT+IFZKd6nj4VIkoP+0oECPWE7nG1tA7ef/qHkawGV/CGor7KmljuiXXX1Pl2JF/fky69f0We9SQ==
+X-Received: by 2002:a05:6808:2389:b0:3bc:258a:a207 with SMTP id bp9-20020a056808238900b003bc258aa207mr1157612oib.61.1704388766947;
+        Thu, 04 Jan 2024 09:19:26 -0800 (PST)
 Received: from [192.168.2.170] ([174.93.0.146])
-        by smtp.googlemail.com with ESMTPSA id u11-20020ac8750b000000b00419732075b4sm15298015qtq.84.2024.01.04.09.16.38
-        for <usrp-users@lists.ettus.com>
+        by smtp.googlemail.com with ESMTPSA id el2-20020ad459c2000000b0067f19dce377sm4358010qvb.30.2024.01.04.09.19.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 09:16:38 -0800 (PST)
-Message-ID: <1aec86e6-941b-487b-a19f-5f77f7840b6f@gmail.com>
-Date: Thu, 4 Jan 2024 12:16:28 -0500
+        Thu, 04 Jan 2024 09:19:26 -0800 (PST)
+Message-ID: <2450dbae-7c61-40f1-a075-265ed94ba872@gmail.com>
+Date: Thu, 4 Jan 2024 12:19:17 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
+To: =?UTF-8?Q?Francisco_Gallardo_l=C3=B3pez?= <f.gallardo.lopez@gmail.com>
 References: <CAEtk-vVSDd-Z1dCHnkK7waNz_sZA+H0kw1=KfUZma3v+tt0o_g@mail.gmail.com>
  <6f64b040-17c9-465c-bb59-b413078b0063@gmail.com>
  <CAEtk-vVu13KZvEJjWDoh81HQsU2F4-pdH1bhj6CX=XEb_8nZ2Q@mail.gmail.com>
@@ -74,92 +73,81 @@ References: <CAEtk-vVSDd-Z1dCHnkK7waNz_sZA+H0kw1=KfUZma3v+tt0o_g@mail.gmail.com>
  <CAEtk-vV46+F989gjwQk+cYbTazefyzfqA2jcf9o+fRGuVckdwg@mail.gmail.com>
  <CAEtk-vUOLcJw6FQJ-FwywssByadWMtKZ9r8S1_ekiAZfMd1hCg@mail.gmail.com>
  <CAEXYVK7xYonGbTnoEBr+E7D=pyeS7DMo2-EDLYsuC2Jfpe7s4w@mail.gmail.com>
- <CAEtk-vUomTZvsdHHSw8oEN-HSjU4AYbU3hq0+UG=FJfSDwnAKQ@mail.gmail.com>
+ <ead29a87-ce7b-43f9-af57-f4181587224a@gmail.com>
+ <CAEtk-vWKzqfDZk+9oTg6SXJQyt5psBCxyfe=YW6XR4Q8-yCmhg@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAEtk-vUomTZvsdHHSw8oEN-HSjU4AYbU3hq0+UG=FJfSDwnAKQ@mail.gmail.com>
-Message-ID-Hash: SFQLMRIWRBFF6CR2MYDAIDMWS53QLKYI
-X-Message-ID-Hash: SFQLMRIWRBFF6CR2MYDAIDMWS53QLKYI
+In-Reply-To: <CAEtk-vWKzqfDZk+9oTg6SXJQyt5psBCxyfe=YW6XR4Q8-yCmhg@mail.gmail.com>
+Message-ID-Hash: 2SRPYLQ4OAGWXYMACOF7FV2IKM6CPWXQ
+X-Message-ID-Hash: 2SRPYLQ4OAGWXYMACOF7FV2IKM6CPWXQ
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Strange interference
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SFQLMRIWRBFF6CR2MYDAIDMWS53QLKYI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2SRPYLQ4OAGWXYMACOF7FV2IKM6CPWXQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3371625409593131018=="
+Content-Type: multipart/mixed; boundary="===============9105417238680354135=="
 
 This is a multi-part message in MIME format.
---===============3371625409593131018==
+--===============9105417238680354135==
 Content-Type: multipart/alternative;
- boundary="------------Bfl0V7IwI0Qt4SD3yP6keWne"
+ boundary="------------fzajzRUyZQWqDS3sqitKZkRG"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------Bfl0V7IwI0Qt4SD3yP6keWne
+--------------fzajzRUyZQWqDS3sqitKZkRG
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 04/01/2024 10:54, Francisco Gallardo l=C3=B3pez wrote:
-> Hi Brian,
->
-> Yes sir, precisely each 80 MHz... You found the root cause.
->
-> Shit, that is a considerable inconvenience. I saw the spike gets=20
-> stronger or weaker depending on whether the USRP box is opened.=20
-> Actually, it is weaker when opened. I will check whether I can=20
-> improvise some shielding directly in the board itself.
->
-> Any suggestions here?
-This STRONGLY suggests that the mechanism is radiative coupling. The box=20
-acts as a waveguide cavity at certain frequency
- =C2=A0 ranges.=C2=A0 Lining the box with carbon-foam RF absorber will he=
-lp.
-
-This also explains why my observations show the spur as considerably=20
-weaker--I'm using an ad-hoc box from Hammond that
- =C2=A0 is quite a bit larger than the factory box.
-
+On 04/01/2024 12:14, Francisco Gallardo l=C3=B3pez wrote:
+> Q: Do you have a GPSTCXO installed in the B210?
+No.
 
 >
-> Thanks!
-> Fran
+> El jue, 4 ene 2024 a las 17:30, Marcus D. Leech=20
+> (<patchvonbraun@gmail.com>) escribi=C3=B3:
+>
+>     On 04/01/2024 10:00, Brian Padalino wrote:
+>>     On Thu, Jan 4, 2024 at 8:52=E2=80=AFAM Francisco Gallardo l=C3=B3p=
+ez
+>>     <f.gallardo.lopez@gmail.com> wrote:
+>>
+>>         As for the USB2, I just tried. It is still there (see
+>>         attached (you can see the USB type in the terminal))
+>>
+>>         Screenshot from 2024-01-04 13-31-53.png
+>>
+>>
+>>     1560 MHz is the 39th harmonic of the 40 MHz reference used in the
+>>     device.
+>>
+>>     Check to see if you have interference spikes every 80 MHz or so.
+>>
+>>     Brian
+>>
+>     I also see a spike at 1560, but nowhere near as loud -- perhaps
+>     8dB off the noise floor.=C2=A0=C2=A0 I used offset tuning of exactl=
+y half the
+>     =C2=A0 sample rate, and it went away.
 >
 >
-> On Thu, Jan 4, 2024, 16:00 Brian Padalino <bpadalino@gmail.com> wrote:
+>     _______________________________________________
+>     USRP-users mailing list -- usrp-users@lists.ettus.com
+>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
->     On Thu, Jan 4, 2024 at 8:52=E2=80=AFAM Francisco Gallardo l=C3=B3pe=
-z
->     <f.gallardo.lopez@gmail.com> wrote:
->
->         As for the USB2, I just tried. It is still there (see attached
->         (you can see the USB type in the terminal))
->
->         Screenshot from 2024-01-04 13-31-53.png
->
->
->     1560 MHz is the 39th harmonic of the 40 MHz reference used in the
->     device.
->
->     Check to see if you have interference spikes every 80 MHz or so.
->
->     Brian
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
 
---------------Bfl0V7IwI0Qt4SD3yP6keWne
+--------------fzajzRUyZQWqDS3sqitKZkRG
 Content-Type: multipart/related;
- boundary="------------oe0ft0BsWdbCJkHaX0k0HNID"
+ boundary="------------1VmpnjIkAmy4thx5u0tsiDjo"
 
---------------oe0ft0BsWdbCJkHaX0k0HNID
+--------------1VmpnjIkAmy4thx5u0tsiDjo
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -170,73 +158,47 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 04/01/2024 10:54, Francisco Gallard=
+    <div class=3D"moz-cite-prefix">On 04/01/2024 12:14, Francisco Gallard=
 o
       l=C3=B3pez wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:CAEtk-vUomTZvsdHHSw8oEN-HSjU4AYbU3hq0+UG=3DFJfSDwnAKQ@mail.gm=
+cite=3D"mid:CAEtk-vWKzqfDZk+9oTg6SXJQyt5psBCxyfe=3DYW6XR4Q8-yCmhg@mail.gm=
 ail.com">
       <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
 TF-8">
-      <div dir=3D"auto">
-        <div>Hi Brian,
-          <div dir=3D"auto"><br>
-          </div>
-          <div dir=3D"auto">Yes sir, precisely each 80 MHz... You found
-            the root cause.</div>
-          <div dir=3D"auto"><br>
-          </div>
-          <div dir=3D"auto">Shit, that is a considerable inconvenience. I
-            saw the spike gets stronger or weaker depending on whether
-            the USRP box is opened. Actually, it is weaker when opened.
-            I will check whether I can improvise some shielding directly
-            in the board itself.=C2=A0</div>
-          <div dir=3D"auto"><br>
-          </div>
-          <div dir=3D"auto">Any suggestions here?</div>
-        </div>
-      </div>
+      <div dir=3D"ltr">Q: Do you have a GPSTCXO installed in the B210?</d=
+iv>
     </blockquote>
-    This STRONGLY suggests that the mechanism is radiative coupling.=C2=A0
-    The box acts as a waveguide cavity at certain frequency<br>
-    =C2=A0 ranges.=C2=A0 Lining the box with carbon-foam RF absorber will=
- help.<br>
-    <br>
-    This also explains why my observations show the spur as considerably
-    weaker--I'm using an ad-hoc box from Hammond that<br>
-    =C2=A0 is quite a bit larger than the factory box.<br>
-    <br>
+    No.<br>
     <br>
     <blockquote type=3D"cite"
-cite=3D"mid:CAEtk-vUomTZvsdHHSw8oEN-HSjU4AYbU3hq0+UG=3DFJfSDwnAKQ@mail.gm=
-ail.com">
-      <div dir=3D"auto">
-        <div>
-          <div dir=3D"auto"><br>
-          </div>
-          <div dir=3D"auto">Thanks!</div>
-          <div dir=3D"auto">Fran</div>
-          <br>
-          <br>
-          <div class=3D"gmail_quote">
-            <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 4, 2024, 16=
-:00
-              Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com"
-                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
-bpadalino@gmail.com</a>&gt;
-              wrote:<br>
+cite=3D"mid:CAEtk-vWKzqfDZk+9oTg6SXJQyt5psBCxyfe=3DYW6XR4Q8-yCmhg@mail.gm=
+ail.com"><br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">El jue, 4 ene 2024 a las
+          17:30, Marcus D. Leech (&lt;<a
+            href=3D"mailto:patchvonbraun@gmail.com" moz-do-not-send=3D"tr=
+ue"
+            class=3D"moz-txt-link-freetext">patchvonbraun@gmail.com</a>&g=
+t;)
+          escribi=C3=B3:<br>
+        </div>
+        <blockquote class=3D"gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">
+          <div>
+            <div>On 04/01/2024 10:00, Brian Padalino wrote:<br>
             </div>
-            <blockquote class=3D"gmail_quote"
-style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+            <blockquote type=3D"cite">
               <div dir=3D"ltr">
                 <div dir=3D"ltr">On Thu, Jan 4, 2024 at 8:52=E2=80=AFAM F=
 rancisco
                   Gallardo l=C3=B3pez &lt;<a
                     href=3D"mailto:f.gallardo.lopez@gmail.com"
-                    target=3D"_blank" rel=3D"noreferrer"
-                    moz-do-not-send=3D"true" class=3D"moz-txt-link-freete=
-xt">f.gallardo.lopez@gmail.com</a>&gt;
+                    target=3D"_blank" moz-do-not-send=3D"true"
+                    class=3D"moz-txt-link-freetext">f.gallardo.lopez@gmai=
+l.com</a>&gt;
                   wrote:<br>
                 </div>
                 <div class=3D"gmail_quote">
@@ -250,7 +212,7 @@ padding-left:1ex">
                       <div><br>
                       </div>
                       <div><img
-                          src=3D"cid:part1.PBZrdPkb.PW8EQDqC@gmail.com"
+                          src=3D"cid:part1.8gu7DeZc.gvzETHAP@gmail.com"
                           alt=3D"Screenshot from 2024-01-04 13-31-53.png"
                           class=3D"" width=3D"578" height=3D"285"><br>
                       </div>
@@ -269,29 +231,37 @@ padding-left:1ex">
                   <div>Brian</div>
                 </div>
               </div>
+              <br>
             </blockquote>
+            I also see a spike at 1560, but nowhere near as loud --
+            perhaps 8dB off the noise floor.=C2=A0=C2=A0 I used offset tu=
+ning of
+            exactly half the<br>
+            =C2=A0 sample rate, and it went away.<br>
+            <br>
+            <br>
           </div>
-        </div>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a
+            href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
+-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a
+            href=3D"mailto:usrp-users-leave@lists.ettus.com"
+            target=3D"_blank" moz-do-not-send=3D"true"
+            class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettus.=
+com</a><br>
+        </blockquote>
       </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
     </blockquote>
     <br>
   </body>
 </html>
---------------oe0ft0BsWdbCJkHaX0k0HNID
+--------------1VmpnjIkAmy4thx5u0tsiDjo
 Content-Type: image/png; name="Screenshot from 2024-01-04 13-31-53.png"
 Content-Disposition: inline; filename="Screenshot from 2024-01-04
  13-31-53.png"
-Content-Id: <part1.PBZrdPkb.PW8EQDqC@gmail.com>
+Content-Id: <part1.8gu7DeZc.gvzETHAP@gmail.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAABzwAAAOQCAYAAABM8Qf5AAAABHNCSVQICAgIfAhkiAAAABl0
@@ -2841,11 +2811,11 @@ hBBCCCGEEEIIIYSoTw1zwtMcRun4DpQHVP5bq91klt6sBcXvtQBAiTtI2ILcWnawDnn53P+n
 qGFceecDDH74RZqE+qAVZ5O2fT0f9JnB5lxZASuEEEIIIYQQQgghhBBCCHE5avhb2gohhBBC
 CCGEEEIIIYQQQgghLktGtrT9fwAkwUFfVs5RAAAAAElFTkSuQmCC
 
---------------oe0ft0BsWdbCJkHaX0k0HNID--
+--------------1VmpnjIkAmy4thx5u0tsiDjo--
 
---------------Bfl0V7IwI0Qt4SD3yP6keWne--
+--------------fzajzRUyZQWqDS3sqitKZkRG--
 
---===============3371625409593131018==
+--===============9105417238680354135==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2855,4 +2825,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3371625409593131018==--
+--===============9105417238680354135==--
