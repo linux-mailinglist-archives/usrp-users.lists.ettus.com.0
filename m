@@ -2,133 +2,165 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E02AE824455
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Jan 2024 16:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AEB982457F
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Jan 2024 16:56:06 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B103238518B
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Jan 2024 10:01:05 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E010B385279
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Jan 2024 10:56:04 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1704380465; bh=0GlZPPlZ4IB8kxfZcWFwpOZDabejsQsEHB90C/1g2Ow=;
+	t=1704383764; bh=UgO6c31zmGK+qZgMJVAlrq12fZlLZb+YxL+nrsxxNC8=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=PZuivOsCZgkjBM437ddAXZyW/X89NLf021vIURbRFYmwxmoK2t02AdnQnOLtQvahl
-	 4B+gI7eNBW5uusOK7vm7atUilCvShkZHJTSa3DU/LWyKehB2c/FSydOb9LRsqNuOT+
-	 9NPOUGSxg+ksaVX5PxDIJ/YJd7gAd/tudhZPy8DWuLZ6F1vvWIluX6K0yOgmDbjnz+
-	 5jTxvlA5YxCXFi6y1fMGBuo4Reos3a6DhmBHg9B1HM1H5zlI40m1qoAY7+mQn/JQwv
-	 8GUnyA8xAhYkrrtYstC3V/5eJNAhjLSCwv2cKs6ST1YPwdYn5t8IY8YxAatmqkGiAX
-	 gGhx9JQ8ryq/A==
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id B05CA384CFE
-	for <usrp-users@lists.ettus.com>; Thu,  4 Jan 2024 10:00:20 -0500 (EST)
+	b=KuEYGY0ICxfRymhnH5O6KZY4uqTY3dqUaPsVA5DqY4akqHrm1ElUYqX/9dT8W4xuc
+	 rhkoiOUtHoWOFKZ3N5uL64Vm6IUqYgEektrsscgts+x4MCA63IJ7/mrR0a1miQbw44
+	 +vacnBtYdyb3xc2MH81+Wv4Oby2F2BydQNI/qb8WzpAa3mzgZ0qtvKzQYPC8poSpm5
+	 ky5odgBXdOV95R3R3X+PHxbyR/O0J49MDvU4ET0rZZKrI+wMViz0UuB5MIK6eLKSLp
+	 QsdyHzy+TyYDacHnDY25vDm4BXbviebatsy5x0fV0Se67UzjamEiCqdQdaOo90/qga
+	 V5mHXwEBKq3Tw==
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id 48CEC385274
+	for <usrp-users@lists.ettus.com>; Thu,  4 Jan 2024 10:55:05 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MjG15eXM";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HCW8gXGj";
 	dkim-atps=neutral
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55642663ac4so737117a12.1
-        for <usrp-users@lists.ettus.com>; Thu, 04 Jan 2024 07:00:20 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40d4a7f0c4dso6284475e9.1
+        for <usrp-users@lists.ettus.com>; Thu, 04 Jan 2024 07:55:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704380419; x=1704985219; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1704383704; x=1704988504; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YIhiJzgp90I0AzLdckC8T57b+6fcNLt63wUgdmvqhgc=;
-        b=MjG15eXMJzPPzmVzWxwg80gATVN/g1hc16j/XT+7Ravhe2fXY8odaOyHlXAa4yRMfN
-         2r7rGtLKqtZkEqJ2po76QkTH+v1EelDfeyxpCqpKWL9ECmptPusRLi/4cH/d5RbANeWu
-         8CSfiPB7gTTVIv5TayB2dvZq2bMvE9gSeUdslqvrs6pGCAPJdH3pgdRKEY9t3zuzj3vP
-         TeBWZATgp8+tqJgkLKcq5xZcoNn9FS88zpP5NCO0wsRcTl2fsZdQ5AAcKI/RuzCecgUC
-         tlQISFolz/PsaInxH7xeMzwtYOxFhQ6y5OzpCcad20DyEUQFok7DsM8fAdHK7DcISuZh
-         ENYg==
+        bh=OZz96Msmi1XJdnmwnNVfueXwaBz+xXjXm200eV6l1AY=;
+        b=HCW8gXGjLbjudLaZ1FiUPuaAN4puhsgFfJmTCGsniqcWAOkFPeTs/AbBBarQV+FxUo
+         pm9qw+mvCGGMoCq2vZL+E1VOAC2o5slWhat/YMS60SnZdz8uIa2EjtsxhyxtIBeULLYK
+         MBJonPn1Vg+dJ3gr9Urs9wvGUOm6aNP7vh5wZUQ6/GkkIDMJNVkljeGwCjpC5UEqJ2LX
+         sJqeF0bJGRNcaob0X4WlQG+x163r8HLO7E/oEw4eEqqJjZ0jKWUljkLRIW0qf2GQWXse
+         MdKUpr5f6HcB9MlQxiiyHAUdga1/NPrDIRfddduyO6VsG1ZgheMr3PaOl4oEKn/ISrb3
+         KITg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704380419; x=1704985219;
+        d=1e100.net; s=20230601; t=1704383704; x=1704988504;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YIhiJzgp90I0AzLdckC8T57b+6fcNLt63wUgdmvqhgc=;
-        b=atXTEPblbQnFZ3XZyIYzyIrooUNwws9kt6QJtSMA69tJaqkaMbDqM8zMc61e+HPSgr
-         RrR4zB2KqRcbeGDRl32o/tcO3eq0cjKwBtXOwBN6Pm5rOIihNdjhdZacE7/kDlNQJC47
-         MGu2+z3ht4tsYrqQhVTWx3Mv0LQNMTDSsfx6G9Lr8A9C9tQHlvXSpsXn4kARhA/8XOvO
-         d9Y8IkoK2Utxbf+ovcL3OZarqWCcWgKkC2suHsIpzz+zt4C5aI1hqidRVMpnZWIbuWQx
-         9TEn+Tyg/+SqahnED3nBprTbfD4YH9FqnRKXKtpBEXe184k7ZL+BJD1A1m9D5rOIvgb1
-         QXGA==
-X-Gm-Message-State: AOJu0YxNfSqb2CUjVIeq3KPe8um8Z5Yooyi1AhKdDdRTgM8Ti+S9whJb
-	uRQ/5JlAYolnJGN5xTv0a6/Znypb3/c8pAzTVnDZOuVJ
-X-Google-Smtp-Source: AGHT+IEbkbCz/tx5Npa/hIR7nVaW0Qddil7YKR3hJiPdFE2a5NjtavqroxTRSd6fcJuVFT7XXRXtbB9sXpVW7sc2mrk=
-X-Received: by 2002:a17:907:9348:b0:a28:e870:97b1 with SMTP id
- bv8-20020a170907934800b00a28e87097b1mr407501ejc.131.1704380418546; Thu, 04
- Jan 2024 07:00:18 -0800 (PST)
+        bh=OZz96Msmi1XJdnmwnNVfueXwaBz+xXjXm200eV6l1AY=;
+        b=iIdj0IROX3pgGWD5/3A+VkZ89JVL0VyzP/f+MsTJONtus66xd+YzOKtLZfc/h6vlee
+         ZR6fCXCgzLGQBIb9Wp1fqei8KQQFMhYltnbx8yCgJXZ6aAQ3PINILAn1YUwzY69XNspO
+         r8CeXa7GcCUA/gOuV8FLKXn/tRmVGRNBKrysPC0fKwLWd+HWBER9i9+G3NLhKRLlDsYu
+         fkIh6kARqRGWl4/x6zjPBNRqW21M1r0SMc1veKfRzEsokGypvkS8jmZy/3DS013wj5HL
+         cxdxYFVpQO0HM+e2TLlRAUF6K3PsoBF7jqxguGqMGwDgH0CkzHHPEa1fkdUTg/KViTJ5
+         UsnA==
+X-Gm-Message-State: AOJu0YydZCyMCRvvx1/bvyCJRQGaiBrHI1DEbvfibKXvGu1Upr/Fe0aX
+	wxYIc7nDt0d6wXxnEJAklt0BlO5vMPTIfxC0FEa/kwLc2XQ=
+X-Google-Smtp-Source: AGHT+IF4QsXmSjSvQdxcnP1F2NM59qwUFWpCwZ8T94GPhT6Mh/yToXj36E0zO+cUAGs1q/t6LG7iD5JeGWtdIxLKRKI=
+X-Received: by 2002:adf:e5c6:0:b0:336:97eb:8a33 with SMTP id
+ a6-20020adfe5c6000000b0033697eb8a33mr451351wrn.83.1704383703458; Thu, 04 Jan
+ 2024 07:55:03 -0800 (PST)
 MIME-Version: 1.0
 References: <CAEtk-vVSDd-Z1dCHnkK7waNz_sZA+H0kw1=KfUZma3v+tt0o_g@mail.gmail.com>
  <6f64b040-17c9-465c-bb59-b413078b0063@gmail.com> <CAEtk-vVu13KZvEJjWDoh81HQsU2F4-pdH1bhj6CX=XEb_8nZ2Q@mail.gmail.com>
  <CAEtk-vW-1roA6c5Oe_w_eFz6E1i3asA+dVA+FsJ5k91iRu727A@mail.gmail.com>
  <5cf86fa5-9035-435e-bf73-d44485795d12@ettus.com> <CAEtk-vV46+F989gjwQk+cYbTazefyzfqA2jcf9o+fRGuVckdwg@mail.gmail.com>
- <CAEtk-vUOLcJw6FQJ-FwywssByadWMtKZ9r8S1_ekiAZfMd1hCg@mail.gmail.com>
-In-Reply-To: <CAEtk-vUOLcJw6FQJ-FwywssByadWMtKZ9r8S1_ekiAZfMd1hCg@mail.gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Thu, 4 Jan 2024 10:00:06 -0500
-Message-ID: <CAEXYVK7xYonGbTnoEBr+E7D=pyeS7DMo2-EDLYsuC2Jfpe7s4w@mail.gmail.com>
-To: =?UTF-8?Q?Francisco_Gallardo_l=C3=B3pez?= <f.gallardo.lopez@gmail.com>
-Message-ID-Hash: OPBGAOTGI6VJR2OI5QYQKOBAIQADFIRE
-X-Message-ID-Hash: OPBGAOTGI6VJR2OI5QYQKOBAIQADFIRE
-X-MailFrom: bpadalino@gmail.com
+ <CAEtk-vUOLcJw6FQJ-FwywssByadWMtKZ9r8S1_ekiAZfMd1hCg@mail.gmail.com> <CAEXYVK7xYonGbTnoEBr+E7D=pyeS7DMo2-EDLYsuC2Jfpe7s4w@mail.gmail.com>
+In-Reply-To: <CAEXYVK7xYonGbTnoEBr+E7D=pyeS7DMo2-EDLYsuC2Jfpe7s4w@mail.gmail.com>
+From: =?UTF-8?Q?Francisco_Gallardo_l=C3=B3pez?= <f.gallardo.lopez@gmail.com>
+Date: Thu, 4 Jan 2024 16:54:52 +0100
+Message-ID: <CAEtk-vUomTZvsdHHSw8oEN-HSjU4AYbU3hq0+UG=FJfSDwnAKQ@mail.gmail.com>
+To: Brian Padalino <bpadalino@gmail.com>
+Message-ID-Hash: LX2IRL6QTCEJOXDYYIHYYXSE3YWOT4JB
+X-Message-ID-Hash: LX2IRL6QTCEJOXDYYIHYYXSE3YWOT4JB
+X-MailFrom: f.gallardo.lopez@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Strange interference
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OPBGAOTGI6VJR2OI5QYQKOBAIQADFIRE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LX2IRL6QTCEJOXDYYIHYYXSE3YWOT4JB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8440481425194870037=="
+Content-Type: multipart/mixed; boundary="===============0526601726220536367=="
 
---===============8440481425194870037==
-Content-Type: multipart/related; boundary="00000000000068fb3f060e1ffd43"
+--===============0526601726220536367==
+Content-Type: multipart/related; boundary="00000000000034c70c060e20c1cd"
 
---00000000000068fb3f060e1ffd43
-Content-Type: multipart/alternative; boundary="00000000000068fb3d060e1ffd42"
+--00000000000034c70c060e20c1cd
+Content-Type: multipart/alternative; boundary="00000000000034c70b060e20c1cc"
 
---00000000000068fb3d060e1ffd42
+--00000000000034c70b060e20c1cc
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 4, 2024 at 8:52=E2=80=AFAM Francisco Gallardo l=C3=B3pez <
-f.gallardo.lopez@gmail.com> wrote:
+Hi Brian,
 
-> As for the USB2, I just tried. It is still there (see attached (you can
-> see the USB type in the terminal))
+Yes sir, precisely each 80 MHz... You found the root cause.
+
+Shit, that is a considerable inconvenience. I saw the spike gets stronger
+or weaker depending on whether the USRP box is opened. Actually, it is
+weaker when opened. I will check whether I can improvise some shielding
+directly in the board itself.
+
+Any suggestions here?
+
+Thanks!
+Fran
+
+
+On Thu, Jan 4, 2024, 16:00 Brian Padalino <bpadalino@gmail.com> wrote:
+
+> On Thu, Jan 4, 2024 at 8:52=E2=80=AFAM Francisco Gallardo l=C3=B3pez <
+> f.gallardo.lopez@gmail.com> wrote:
 >
-> [image: Screenshot from 2024-01-04 13-31-53.png]
+>> As for the USB2, I just tried. It is still there (see attached (you can
+>> see the USB type in the terminal))
+>>
+>> [image: Screenshot from 2024-01-04 13-31-53.png]
+>>
+>
+> 1560 MHz is the 39th harmonic of the 40 MHz reference used in the device.
+>
+> Check to see if you have interference spikes every 80 MHz or so.
+>
+> Brian
 >
 
-1560 MHz is the 39th harmonic of the 40 MHz reference used in the device.
-
-Check to see if you have interference spikes every 80 MHz or so.
-
-Brian
-
---00000000000068fb3d060e1ffd42
+--00000000000034c70b060e20c1cc
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Jan 4, 2024 at 8:52=E2=80=AFAM Fr=
-ancisco Gallardo l=C3=B3pez &lt;<a href=3D"mailto:f.gallardo.lopez@gmail.co=
-m">f.gallardo.lopez@gmail.com</a>&gt; wrote:<br></div><div class=3D"gmail_q=
-uote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><d=
-iv>As for the USB2, I just tried. It is still there (see attached (you can =
-see the USB type in the terminal))</div><div><br></div><div><img src=3D"cid=
-:ii_lqz6tm331" alt=3D"Screenshot from 2024-01-04 13-31-53.png" width=3D"578=
-" height=3D"285"><br></div></div></blockquote><div><br></div><div>1560 MHz =
-is the 39th harmonic of the 40 MHz reference used in the device.</div><div>=
-<br></div><div>Check to see if you have interference spikes every 80 MHz or=
- so.</div><div><br></div><div>Brian</div></div></div>
+<div dir=3D"auto"><div>Hi Brian,<div dir=3D"auto"><br></div><div dir=3D"aut=
+o">Yes sir, precisely each 80 MHz... You found the root cause.</div><div di=
+r=3D"auto"><br></div><div dir=3D"auto">Shit, that is a considerable inconve=
+nience. I saw the spike gets stronger or weaker depending on whether the US=
+RP box is opened. Actually, it is weaker when opened. I will check whether =
+I can improvise some shielding directly in the board itself.=C2=A0</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">Any suggestions here?</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Thanks!</div><div dir=3D"auto">Fra=
+n</div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Thu, Jan 4, 2024, 16:00 Brian Padalino &lt;<a href=3D"mailto:bpadal=
+ino@gmail.com">bpadalino@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
+ding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Thu, Jan 4, 2024 at 8:5=
+2=E2=80=AFAM Francisco Gallardo l=C3=B3pez &lt;<a href=3D"mailto:f.gallardo=
+.lopez@gmail.com" target=3D"_blank" rel=3D"noreferrer">f.gallardo.lopez@gma=
+il.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>As for the USB2, I j=
+ust tried. It is still there (see attached (you can see the USB type in the=
+ terminal))</div><div><br></div><div><img src=3D"cid:ii_lqz6tm331" alt=3D"S=
+creenshot from 2024-01-04 13-31-53.png" width=3D"578" height=3D"285"><br></=
+div></div></blockquote><div><br></div><div>1560 MHz is the 39th harmonic of=
+ the 40 MHz reference used in the device.</div><div><br></div><div>Check to=
+ see if you have interference spikes every 80 MHz or so.</div><div><br></di=
+v><div>Brian</div></div></div>
+</blockquote></div></div></div>
 
---00000000000068fb3d060e1ffd42--
+--00000000000034c70b060e20c1cc--
 
---00000000000068fb3f060e1ffd43
+--00000000000034c70c060e20c1cd
 Content-Type: image/png; name="Screenshot from 2024-01-04 13-31-53.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2024-01-04 13-31-53.png"
@@ -2548,9 +2580,9 @@ fm+vBKvVuV8e1JYDmRn/EnnDujH2W1vNBwghhBBCCCGEEEIIIYQQQojfjaDQ4Co/Ly44u6zKXF+d
 a0N5AawQQgghhBBCCCGEEEIIIYSoTw1zwtMcRun4DpQHVP5bq91klt6sBcXvtQBAiTtI2ILcWnaw
 Dnn53P+nqGFceecDDH74RZqE+qAVZ5O2fT0f9JnB5lxZASuEEEIIIYQQQgghhBBCCHE5avhb2goh
 hBBCCCGEEEIIIYQQQgghLktGtrT9fwAkwUFfVs5RAAAAAElFTkSuQmCC
---00000000000068fb3f060e1ffd43--
+--00000000000034c70c060e20c1cd--
 
---===============8440481425194870037==
+--===============0526601726220536367==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2560,4 +2592,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8440481425194870037==--
+--===============0526601726220536367==--
