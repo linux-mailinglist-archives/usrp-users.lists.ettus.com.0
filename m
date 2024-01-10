@@ -2,360 +2,539 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A58E982A3C5
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Jan 2024 23:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F81182A3CD
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Jan 2024 23:16:24 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 73BF5385698
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Jan 2024 17:06:30 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 9C95338577E
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Jan 2024 17:16:23 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1704924390; bh=lT1relLyaW9X76PIo67qefrC6HjdnnkVfmGlUQSbVSk=;
-	h=To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1704924983; bh=VKe9v2f6Og2ryJ5FBJ9LIBJi+yuETg/k3rb2tG75Ge4=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=QVgKhU9pOcNCza0nT6ip3rx/iuUIvIZd9h9en7Syr5k//rAcDt2P1WzXY9yYT29dF
-	 YVj7303yGN7oOiLhXJF3frQf9BrKGW6I2i6ZLwHzLclWzy8mDZ6bWcc8NGYTRdYwzu
-	 +CZixWs/8mKGKABMPS/wKJ05c/HuiUGWQ4joKRAWw1hNKygRv/AHQXTl9RgbXVTQed
-	 KNi/vF5eFY9pveQ/Xyb6g1uLbEOhMkcaxSDDNxTzQbm/RPV5tHA7IGOEuvATzxdjSN
-	 SKr/n6OLMrPl0zway03cHsLsmGI+3yzxw4CVDCZVpUpfp8eWX+bzlzpL8p8+41mfIr
-	 zqcwmEFCKOpkw==
-Received: from mx0a-002bf101.pphosted.com (mx0a-002bf101.pphosted.com [148.163.151.36])
-	by mm2.emwd.com (Postfix) with ESMTPS id BE6C63852BA
-	for <usrp-users@lists.ettus.com>; Wed, 10 Jan 2024 17:05:53 -0500 (EST)
+	 From;
+	b=zwCzK9Iuq1RTy5iJlnCZzaB/L0slazj7flbGvahjLFFu5Nyvjn22uchwVkYlEP9Wg
+	 K+BfLSFD2v3SXzw+HxmkCbXtZ58T81eLE6+ZvqpS9llG1aNuir+NB/XXCTq2dQGNG1
+	 /zhonBTkhtUvpsL/pHO7jE3JhzSx2prRbylTDxq/Y6/Ze2/xkt+ot5gbHiSAIoSK4t
+	 Ti4luhcDUi0B/e+9IEMiVtIqOqDceFQ3BAH7fEFLZVNcDt6qa5UpEqgCO7Wnr0D8Os
+	 Ilf4zVjuIKTCmGs90zrSNSoA+DpAKOMzVfR1lVhydALqJQjOgH4LhsiYP0AKIRk+0b
+	 iLN9KL1o3q7QQ==
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id A92573856A0
+	for <usrp-users@lists.ettus.com>; Wed, 10 Jan 2024 17:15:47 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=curtisswright.com header.i=@curtisswright.com header.b="SvCLcJ4l";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KFh6EVAW";
 	dkim-atps=neutral
-Received: from pps.filterd (m0123023.ppops.net [127.0.0.1])
-	by mx0a-002bf101.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40AAo2i2011979;
-	Wed, 10 Jan 2024 17:05:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	curtisswright.com; h=from:to:subject:date:message-id:references
-	:in-reply-to:content-type:mime-version; s=pps042021; bh=ActC5NEv
-	Q3oAmYFD3BVE9BgGF55LPbshXrgcpcQ1di0=; b=SvCLcJ4le8vtxiGd01jYwGEj
-	ea+WqTnMHAMTjslxfH95Ks/dSY+U/3jXPQmzuvVHtdi7O7NguilX79PP0Mix9IDU
-	Hv3j6pb2L4pGiV85R1+zB76mRrwgHGCfGEvac7Lse6QbydlXANtpSPwd+X32rEER
-	YX9FYIY3kQHJiY06YYK6wDRYQj6p0s+LGDMaV4XwC+yJw9bGStG3SJ0vC5riZ/Uh
-	zpG3/8SN8hCvuJ2GRChA9uF1i85UtBrNx7JEIggi8ho0LpiYAnwhfMq/aWOsLa9+
-	PhRzxrUqTXLKKrm1Z2n5FFKon6gXlRPKUiMMmxlAczEe2faPW9J1RJI8aEZQ2Q==
-Received: from useiedge1902.curtisswright.com ([67.23.50.86])
-	by mx0a-002bf101.pphosted.com (PPS) with ESMTPS id 3vhfs7s4tg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Jan 2024 17:05:51 -0500 (EST)
-Received: from USEIMAIL1902.ATL.CW.LOCAL (10.100.42.78) by
- useiedge1902.curtisswright.com (10.102.200.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 10 Jan 2024 17:05:48 -0500
-Received: from USEIMAIL1903.ATL.CW.LOCAL (10.100.42.79) by
- USEIMAIL1902.ATL.CW.LOCAL (10.100.42.78) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 10 Jan 2024 17:05:49 -0500
-Received: from USEIMAIL1903.ATL.CW.LOCAL ([fe80::dfdb:8466:4d70:e1b6]) by
- USEIMAIL1903.ATL.CW.LOCAL ([fe80::dfdb:8466:4d70:e1b6%13]) with mapi id
- 15.02.1258.028; Wed, 10 Jan 2024 17:05:49 -0500
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
-        "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: E320 Full Enclosed Serial Console [EXTERNAL]
-Thread-Index: AQHaRA5z+EHCngGmCU6tc8Oy3ixtILDTlhTwgABXJ4D//6yAkA==
-Date: Wed, 10 Jan 2024 22:05:49 +0000
-Message-ID: <560add163b054e1b8454938d54cd3f55@curtisswright.com>
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7831389c7daso379631785a.2
+        for <usrp-users@lists.ettus.com>; Wed, 10 Jan 2024 14:15:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704924947; x=1705529747; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iCJlurUT9AsMUPHcBQlyYkIHuZVkWSYjxWbOkKOx4vM=;
+        b=KFh6EVAWh/MsPjN8C9Jgt52z55XCURlBbhWVeYoyq3LTWe/EbtgoUH3Rwo3fvzbXqd
+         IW9Rgfb8UFN2A9jh6mjlKoPIBWvn1flh2zuofu4moPYd86zIauStGKlFoI1xY18aH3Im
+         HB4zSOpYRIP/goEmhZORhbYH+qPOvJa+f27DtqtD4q5ENYXTVduxOc/f90GwZAHFlSxd
+         AOdkRa218eOsajANyRMN3DZ3eLKYWPxPAPXmJhRQd3uGsbK0ql1ZzoeWH/2lJTS6uXOw
+         6A51BJ/CKNWvDgbU0Va9XbDjvjq9u6fCe9caDyMo28fituMqYu8O9MEEAT3/rg5G9HWY
+         8NiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704924947; x=1705529747;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=iCJlurUT9AsMUPHcBQlyYkIHuZVkWSYjxWbOkKOx4vM=;
+        b=JkBvhsAbmMQmsKhtiz1nKJyD1YnagP4FbCsc6+EG1aqC0kMiEDq1zJz/TyuE/dG0+l
+         WkH2tLe+V4QtK5HuEMsNRFv/UOGjYeX+Dhm80AubDDDQwmVe3LHKHO+mzas+Sl7QlKev
+         vZl7gh0Dx3DeDmwPWd1KcyscppENtJ53sgS9utKy8xq8TI6GJ7HTAvTljfrDrWsNy5wL
+         piiZKwlM8GNa5Qe4oro3X1XNEjIJ8qxwO9kJMUmbdJgj2BaNrTAq6iHg21af8IFdzMVC
+         ZH8cSqaWBvXMKvYJ4NlN8FQmyIADqr5ikob4zrjq0V58d+jOG18vQdBcadPETrnQg3uZ
+         TjVQ==
+X-Gm-Message-State: AOJu0YzlDgTfu3wbTpZsgsxP1SQBaRu7V1G4gobzKjBu3D8ejtY4FTRl
+	5EuY8qBJ2ZhZ6f+ShIbsaXdUpa8un1M=
+X-Google-Smtp-Source: AGHT+IFyYpfLYRXO4U8osGB9F2A40Te3zrgydQ6uljrb+rbfmsY7/+nhtsJcKy2/fzHN3ubDZlNR1g==
+X-Received: by 2002:a05:620a:f:b0:783:1e4c:b601 with SMTP id j15-20020a05620a000f00b007831e4cb601mr339431qki.25.1704924946912;
+        Wed, 10 Jan 2024 14:15:46 -0800 (PST)
+Received: from [192.168.2.170] ([174.93.0.146])
+        by smtp.googlemail.com with ESMTPSA id po26-20020a05620a385a00b0078319e86873sm1916794qkn.14.2024.01.10.14.15.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jan 2024 14:15:46 -0800 (PST)
+Message-ID: <d184c511-bdf2-4bbb-91cb-a4c1b8412727@gmail.com>
+Date: Wed, 10 Jan 2024 17:15:37 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: "Jimenez, Samuel" <sjimenez@curtisswright.com>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <224b1c6c97e246349b3344c199353309@curtisswright.com>
  <a0aed50d-f79d-477f-9ab6-9e32eee251d2@gmail.com>
  <56f3ab9fb49d48f1ab5da7ccdad71f11@curtisswright.com>
  <99ee9f2c-6b31-4faa-8560-3685517f42ce@gmail.com>
-In-Reply-To: <99ee9f2c-6b31-4faa-8560-3685517f42ce@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_a5df92d3-bc41-4011-84ae-24af45e15272_Enabled=true;
- MSIP_Label_a5df92d3-bc41-4011-84ae-24af45e15272_SetDate=2024-01-10T22:05:48Z;
- MSIP_Label_a5df92d3-bc41-4011-84ae-24af45e15272_Method=Standard;
- MSIP_Label_a5df92d3-bc41-4011-84ae-24af45e15272_Name=a5df92d3-bc41-4011-84ae-24af45e15272;
- MSIP_Label_a5df92d3-bc41-4011-84ae-24af45e15272_SiteId=079132a0-3864-4413-a77e-c26f1fb47e37;
- MSIP_Label_a5df92d3-bc41-4011-84ae-24af45e15272_ActionId=5e231d96-57f4-4ddd-b3ff-2a657f91966d;
- MSIP_Label_a5df92d3-bc41-4011-84ae-24af45e15272_ContentBits=0
-x-originating-ip: [10.15.201.25]
-MIME-Version: 1.0
-X-Proofpoint-GUID: ztcl-RN51vIlRYdsvALI4fKhGwgkboX-
-X-Proofpoint-ORIG-GUID: ztcl-RN51vIlRYdsvALI4fKhGwgkboX-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-02_01,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 bulkscore=0
- mlxlogscore=999 adultscore=0 malwarescore=0 spamscore=0 mlxscore=0
- clxscore=1015 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2401100175
-Message-ID-Hash: BBFWCT3XYULWAA64HT3NBMT62IR4MY5O
-X-Message-ID-Hash: BBFWCT3XYULWAA64HT3NBMT62IR4MY5O
-X-MailFrom: prvs=4739279ded=sjimenez@curtisswright.com
+ <560add163b054e1b8454938d54cd3f55@curtisswright.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <560add163b054e1b8454938d54cd3f55@curtisswright.com>
+Message-ID-Hash: ZFPTVUT7QS6UFDS2K4X4HSPXY2W6A2TR
+X-Message-ID-Hash: ZFPTVUT7QS6UFDS2K4X4HSPXY2W6A2TR
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: E320 Full Enclosed Serial Console [EXTERNAL]
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BBFWCT3XYULWAA64HT3NBMT62IR4MY5O/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZFPTVUT7QS6UFDS2K4X4HSPXY2W6A2TR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Jimenez, Samuel via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Jimenez, Samuel" <sjimenez@curtisswright.com>
-Content-Type: multipart/mixed; boundary="===============6680417693307548390=="
+Content-Type: multipart/mixed; boundary="===============2199593364802340752=="
 
---===============6680417693307548390==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============2199593364802340752==
 Content-Type: multipart/alternative;
-	boundary="_000_560add163b054e1b8454938d54cd3f55curtisswrightcom_"
+ boundary="------------uM6jv0RX70TdxIlZm8UqkA0W"
+Content-Language: en-US
 
---_000_560add163b054e1b8454938d54cd3f55curtisswrightcom_
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"
+This is a multi-part message in MIME format.
+--------------uM6jv0RX70TdxIlZm8UqkA0W
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-VGhpcyBpcyB3aGF0IEkgaGF2ZToNCg0KJCBscyAtbCAvZGV2L3NlcmlhbC9ieS1pZC8NCnRvdGFs
-IDANCmxyd3hyd3hyd3ggMSByb290IHJvb3QgMTMgSmFuIDEwIDE2OjQ5IHVzYi1EaWdpbGVudF9E
-aWdpbGVudF9VU0JfRGV2aWNlXzI1MTYzNTFFODgyRi1pZjAwLXBvcnQwIC0+IC4uLy4uL3R0eVVT
-QjANCmxyd3hyd3hyd3ggMSByb290IHJvb3QgMTMgSmFuIDEwIDE2OjQ5IHVzYi1EaWdpbGVudF9E
-aWdpbGVudF9VU0JfRGV2aWNlXzI1MTYzNTFFODgyRi1pZjAxLXBvcnQwIC0+IC4uLy4uL3R0eVVT
-QjENCg0KU2FtdWVsIEppbWVuZXoNClNvZnR3YXJlIERldiBFbmdpbmVlciwgU3IuDQoNCkN1cnRp
-c3MtV3JpZ2h0DQoyMDEzMCBMYWtldmlldyBDZW50ZXIgUGxhemEsIFN1aXRlIDIwMCwgQXNoYnVy
-biwgVkEgMjAxNDcgVW5pdGVkIFN0YXRlcw0KVDogNzAzLjg0MC42NzMxDQpzamltZW5lekBjdXJ0
-aXNzd3JpZ2h0LmNvbTxtYWlsdG86c2ppbWVuZXpAY3VydGlzc3dyaWdodC5jb20+IHwgd3d3LmN1
-cnRpc3N3cmlnaHRkcy5jb20NCg0KRnJvbTogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVu
-QGdtYWlsLmNvbT4NClNlbnQ6IFdlZG5lc2RheSwgSmFudWFyeSAxMCwgMjAyNCA1OjAzIFBNDQpU
-bzogSmltZW5leiwgU2FtdWVsIDxzamltZW5lekBjdXJ0aXNzd3JpZ2h0LmNvbT47IHVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIFJlOiBFMzIwIEZ1
-bGwgRW5jbG9zZWQgU2VyaWFsIENvbnNvbGUgW0VYVEVSTkFMXQ0KDQpXQVJOSU5HOiBUaGlzIG1l
-c3NhZ2UgY2FtZSBmcm9tIGFuIGV4dGVybmFsIHNvdXJjZS4gUGxlYXNlIGV4ZXJjaXNlIGNhdXRp
-b24gYW5kIHByb3BlciBqdWRnbWVudCB3aGVuIG9wZW5pbmcgYW55IGF0dGFjaG1lbnRzLCBjbGlj
-a2luZyBsaW5rcyBvciByZXNwb25kaW5nIHRvIHRoaXMgbWVzc2FnZS4NCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fDQoNCk9uIDEwLzAxLzIwMjQgMTY6NTYsIEppbWVuZXosIFNhbXVl
-bCB3cm90ZToNCkhlbGxvIGFuZCB0aGFuayB5b3UgZm9yIHRoZSBwcm9tcHQgcmVwbHkuDQoNCkkg
-c2VlIHR0eVVTQjAgYW5kIHR0eVVTQjEgYnV0IHRoZXkgYXJlIHBvaW50aW5nIHRvIOKAnERpZ2ls
-ZW504oCdIHBvcnRzIGFzIHNob3duIGJlbG93Lg0KDQrigJwNCmxzIC1sIC9kZXYvc2VyaWFsL2J5
-LWlkL3VzYi1EaWdpbGVudF9EaWdpbGVudF9VU0JfRGV2aWNlXzI1MTYzNTFFODgyRi1pZjAqDQps
-cnd4cnd4cnd4IDEgcm9vdCByb290IDEzIEphbiAxMCAxNjo0OSAvZGV2L3NlcmlhbC9ieS1pZC91
-c2ItRGlnaWxlbnRfRGlnaWxlbnRfVVNCX0RldmljZV8yNTE2MzUxRTg4MkYtaWYwMC1wb3J0MCAt
-PiAuLi8uLi90dHlVU0IwDQpscnd4cnd4cnd4IDEgcm9vdCByb290IDEzIEphbiAxMCAxNjo0OSAv
-ZGV2L3NlcmlhbC9ieS1pZC91c2ItRGlnaWxlbnRfRGlnaWxlbnRfVVNCX0RldmljZV8yNTE2MzUx
-RTg4MkYtaWYwMS1wb3J0MCAtPiAuLi8uLi90dHlVU0IxDQrigJwNCg0KSSBhc3N1bWUgaXQgc2hv
-dWxkIGluc3RlYWQgYmUgc29tZXRoaW5nIGxpa2Ug4oCcdXNiLVNpbGljb25fTGFic19DUDIxMDVf
-RHVhbF9VU0JfdG9fVUFSVOKApuKAnSBidXQgbm90IHN1cmUuDQoNCg0KU2FtdWVsIEppbWVuZXoN
-ClNvZnR3YXJlIERldiBFbmdpbmVlciwgU3IuDQoNCkN1cnRpc3MtV3JpZ2h0DQoyMDEzMCBMYWtl
-dmlldyBDZW50ZXIgUGxhemEsIFN1aXRlIDIwMCwgQXNoYnVybiwgVkEgMjAxNDcgVW5pdGVkIFN0
-YXRlcw0KVDogNzAzLjg0MC42NzMxDQpzamltZW5lekBjdXJ0aXNzd3JpZ2h0LmNvbTxtYWlsdG86
-c2ppbWVuZXpAY3VydGlzc3dyaWdodC5jb20+IHwgd3d3LmN1cnRpc3N3cmlnaHRkcy5jb208aHR0
-cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHA6L3d3dy5jdXJ0aXNzd3JpZ2h0ZHMuY29tX187
-ISFOVnE5ZGZoek15SHFUdyFtQ3hIaXJ2WnNGend5QjdxNVQwdkd3Q1NCRy1vWENIdUZ2cTFwTVBj
-b3c1Vk1fRVlaWHg0R1lVa09uaGhjckF6V0RrSG1oY1FWMElzblM0bkI1cHUtQ3BlVmpDNCQ+DQoN
-ClNlZSB0aGUgZG9jdW1lbnRzIGhlcmU6DQoNCmh0dHBzOi8va2IuZXR0dXMuY29tL0UzMjBfR2V0
-dGluZ19TdGFydGVkX0d1aWRlI1NldHRpbmdfdXBfYV9TZXJpYWxfQ29uc29sZV9Db25uZWN0aW9u
-PGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwczova2IuZXR0dXMuY29tL0UzMjBfR2V0
-dGluZ19TdGFydGVkX0d1aWRlKlNldHRpbmdfdXBfYV9TZXJpYWxfQ29uc29sZV9Db25uZWN0aW9u
-X187SXchIU5WcTlkZmh6TXlIcVR3IW1DeEhpcnZac0Z6d3lCN3E1VDB2R3dDU0JHLW9YQ0h1RnZx
-MXBNUGNvdzVWTV9FWVpYeDRHWVVrT25oaGNyQXpXRGtIbWhjUVYwSXNuUzRuQjVwdS1BRXd3UUcw
-JD4NCg0KV2hhdCBkb2VzOg0KDQpscyAtbCAvZGV2L3NlcmlhbC9ieS1pZA0KDQpSZXR1cm4/DQoN
-CgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tClRoaXMgZS1tYWlsIGFuZCBhbnkgZmlsZXMgdHJhbnNtaXR0ZWQgd2l0
-aCBpdCBhcmUgcHJvcHJpZXRhcnkgYW5kIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIHVzZSBvZiB0
-aGUgaW5kaXZpZHVhbCBvciBlbnRpdHkgdG8gd2hvbSB0aGV5IGFyZSBhZGRyZXNzZWQuIElmIHlv
-dSBoYXZlIHJlYXNvbiB0byBiZWxpZXZlIHRoYXQgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBlLW1h
-aWwgaW4gZXJyb3IsIHBsZWFzZSBub3RpZnkgdGhlIHNlbmRlciBhbmQgZGVzdHJveSB0aGlzIGUt
-bWFpbCBhbmQgYW55IGF0dGFjaGVkIGZpbGVzLiBQbGVhc2Ugbm90ZSB0aGF0IGFueSB2aWV3cyBv
-ciBvcGluaW9ucyBwcmVzZW50ZWQgaW4gdGhpcyBlLW1haWwgYXJlIHNvbGVseSB0aG9zZSBvZiB0
-aGUgYXV0aG9yIGFuZCBkbyBub3QgbmVjZXNzYXJpbHkgcmVwcmVzZW50IHRob3NlIG9mIHRoZSBD
-dXJ0aXNzLVdyaWdodCBDb3Jwb3JhdGlvbiBvciBhbnkgb2YgaXRzIHN1YnNpZGlhcmllcy4gRG9j
-dW1lbnRzIGF0dGFjaGVkIGhlcmV0byBtYXkgY29udGFpbiB0ZWNobm9sb2d5IHN1YmplY3QgdG8g
-Z292ZXJubWVudCBleHBvcnQgcmVndWxhdGlvbnMuIFJlY2lwaWVudCBpcyBzb2xlbHkgcmVzcG9u
-c2libGUgZm9yIGVuc3VyaW5nIHRoYXQgYW55IHJlLWV4cG9ydCwgdHJhbnNmZXIgb3IgZGlzY2xv
-c3VyZSBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIGluIGFjY29yZGFuY2Ugd2l0aCBhcHBsaWNhYmxl
-IGdvdmVybm1lbnQgZXhwb3J0IHJlZ3VsYXRpb25zLiBUaGUgcmVjaXBpZW50IHNob3VsZCBjaGVj
-ayB0aGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIGZvciB0aGUgcHJlc2VuY2Ugb2Ygdmly
-dXNlcy4gQ3VydGlzcy1XcmlnaHQgQ29ycG9yYXRpb24gYW5kIGl0cyBzdWJzaWRpYXJpZXMgYWNj
-ZXB0IG5vIGxpYWJpbGl0eSBmb3IgYW55IGRhbWFnZSBjYXVzZWQgYnkgYW55IHZpcnVzIHRyYW5z
-bWl0dGVkIGJ5IHRoaXMgZS1tYWlsLgogCkZvciBpbmZvcm1hdGlvbiBhYm91dCBob3cgd2UgcHJv
-Y2VzcyBwZXJzb25hbCBkYXRhIGFuZCBtb25pdG9yIGNvbW11bmljYXRpb25zLCBwbGVhc2Ugdmlz
-aXQgIGh0dHBzOi8vd3d3LmN1cnRpc3N3cmlnaHQuY29tL3ByaXZhY3ktbm90aWNlL2RlZmF1bHQu
-YXNweAo=
+On 10/01/2024 17:05, Jimenez, Samuel wrote:
+>
+> This is what I have:
+>
+> $ ls -l /dev/serial/by-id/
+>
+> total 0
+>
+> lrwxrwxrwx 1 root root 13 Jan 10 16:49=20
+> usb-Digilent_Digilent_USB_Device_2516351E882F-if00-port0 -> ../../ttyUS=
+B0
+>
+> lrwxrwxrwx 1 root root 13 Jan 10 16:49=20
+> usb-Digilent_Digilent_USB_Device_2516351E882F-if01-port0 -> ../../ttyUS=
+B1
+>
+> *Samuel Jimenez***
+>
+> Software Dev Engineer, Sr.
+>
+> *Curtiss-Wright*
+>
+> 20130 Lakeview Center Plaza, Suite 200, Ashburn, VA 20147 United States
+>
+> T: 703.840.6731
+>
+> sjimenez@curtisswright.com | www.curtisswrightds.com
+>
+Hmm, I don't know then.=C2=A0 I don't have an E320 in my local stash of=20
+USRPs, so I'm going by the E310.
 
---_000_560add163b054e1b8454938d54cd3f55curtisswrightcom_
-Content-Transfer-Encoding: base64
-Content-Type: text/html; charset="utf-8"
+The document for the serial interface for the E320 clearly indicates=20
+that there should be two serial ports--one for the
+ =C2=A0 STM32 ("if00") and one for the ARM ("if01").=C2=A0 Which looks li=
+ke on=20
+your system is mapped to /dev/ttyUSB0 and /dev/ttyUSB1.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
-ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
-YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
-I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
-W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
-DQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYg
-MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIg
-MTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q29uc29sYXM7
-DQoJcGFub3NlLTE6MiAxMSA2IDkgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMg
-Ki8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBp
-bjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
-Ow0KCW1zby1saWdhdHVyZXM6c3RhbmRhcmRjb250ZXh0dWFsO30NCmE6bGluaywgc3Bhbi5Nc29I
-eXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1k
-ZWNvcmF0aW9uOnVuZGVybGluZTt9DQpjb2RlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglm
-b250LWZhbWlseToiQ291cmllciBOZXciO30NCnNwYW4uRW1haWxTdHlsZTIyDQoJe21zby1zdHls
-ZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
-Ow0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6
-ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDsNCgltc28tbGlnYXR1cmVzOm5vbmU7fQ0K
-QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
-LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
-O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
-IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
-ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
-cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
-Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
-cGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
-b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoaXMgaXMgd2hhdCBJIGhhdmU6PG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPiQgbHMgLWwgL2Rldi9zZXJpYWwvYnktaWQvPG86cD48L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj50b3RhbCAwPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5scnd4cnd4cnd4IDEgcm9vdCByb290IDEzIEphbiAxMCAxNjo0OSB1c2ItRGln
-aWxlbnRfRGlnaWxlbnRfVVNCX0RldmljZV8yNTE2MzUxRTg4MkYtaWYwMC1wb3J0MCAtJmd0OyAu
-Li8uLi90dHlVU0IwPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5scnd4cnd4
-cnd4IDEgcm9vdCByb290IDEzIEphbiAxMCAxNjo0OSB1c2ItRGlnaWxlbnRfRGlnaWxlbnRfVVNC
-X0RldmljZV8yNTE2MzUxRTg4MkYtaWYwMS1wb3J0MCAtJmd0OyAuLi8uLi90dHlVU0IxPG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+U2FtdWVsIEppbWVuZXo8L3Nw
-YW4+PC9iPjxiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOmJsYWNrO21zby1saWdhdHVyZXM6bm9uZSI+PG86cD48L286cD48L3NwYW4+
-PC9iPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2si
-PlNvZnR3YXJlIERldiBFbmdpbmVlciwgU3IuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xv
-cjpibGFjayI+Q3VydGlzcy1XcmlnaHQ8bzpwPjwvbzpwPjwvc3Bhbj48L2I+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+MjAxMzAgTGFrZXZpZXcg
-Q2VudGVyIFBsYXphLCBTdWl0ZSAyMDAsIEFzaGJ1cm4sIFZBIDIwMTQ3IFVuaXRlZCBTdGF0ZXM8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlm
-O2NvbG9yOmJsYWNrIj5UOiA3MDMuODQwLjY3MzENCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPjxhIGhyZWY9Im1h
-aWx0bzpzamltZW5lekBjdXJ0aXNzd3JpZ2h0LmNvbSI+c2ppbWVuZXpAY3VydGlzc3dyaWdodC5j
-b208L2E+IHwNCjxhIGhyZWY9Ind3dy5jdXJ0aXNzd3JpZ2h0ZHMuY29tIj53d3cuY3VydGlzc3dy
-aWdodGRzLmNvbTwvYT48L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRl
-cjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAw
-aW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJtc28tbGlnYXR1
-cmVzOm5vbmUiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0ibXNvLWxpZ2F0dXJlczpub25l
-Ij4gTWFyY3VzIEQuIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsNCjxicj4N
-CjxiPlNlbnQ6PC9iPiBXZWRuZXNkYXksIEphbnVhcnkgMTAsIDIwMjQgNTowMyBQTTxicj4NCjxi
-PlRvOjwvYj4gSmltZW5leiwgU2FtdWVsICZsdDtzamltZW5lekBjdXJ0aXNzd3JpZ2h0LmNvbSZn
-dDs7IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBb
-VVNSUC11c2Vyc10gUmU6IEUzMjAgRnVsbCBFbmNsb3NlZCBTZXJpYWwgQ29uc29sZSBbRVhURVJO
-QUxdPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxiPjxzcGFuIHN0eWxlPSJjb2xvcjpyZWQiPldBUk5JTkc6PC9zcGFuPjwvYj48c3BhbiBzdHls
-ZT0iY29sb3I6cmVkIj4gVGhpcyBtZXNzYWdlIGNhbWUgZnJvbSBhbiBleHRlcm5hbCBzb3VyY2Uu
-IFBsZWFzZSBleGVyY2lzZSBjYXV0aW9uIGFuZCBwcm9wZXIganVkZ21lbnQgd2hlbiBvcGVuaW5n
-IGFueSBhdHRhY2htZW50cywgY2xpY2tpbmcgbGlua3Mgb3IgcmVzcG9uZGluZyB0byB0aGlzIG1l
-c3NhZ2UuPC9zcGFuPjxzcGFuIHN0eWxlPSJtc28tbGlnYXR1cmVzOm5vbmUiPjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxkaXYgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImNlbnRlciIgc3R5bGU9
-InRleHQtYWxpZ246Y2VudGVyIj4NCjxociBzaXplPSIyIiB3aWR0aD0iMTAwJSIgYWxpZ249ImNl
-bnRlciI+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
-Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMTAvMDEvMjAyNCAxNjo1
-NiwgSmltZW5leiwgU2FtdWVsIHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2tx
-dW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPkhlbGxvIGFuZCB0aGFuayB5b3UgZm9yIHRoZSBwcm9tcHQgcmVwbHku
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgc2VlIHR0eVVTQjAgYW5kIHR0eVVTQjEgYnV0IHRo
-ZXkgYXJlIHBvaW50aW5nIHRvIOKAnERpZ2lsZW504oCdIHBvcnRzIGFzIHNob3duIGJlbG93Lg0K
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPuKAnDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+bHMgLWwgL2Rldi9zZXJpYWwvYnktaWQvdXNiLURpZ2lsZW50X0RpZ2lsZW50X1VT
-Ql9EZXZpY2VfMjUxNjM1MUU4ODJGLWlmMCo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPmxyd3hyd3hyd3ggMSByb290IHJvb3QgMTMgSmFuIDEwIDE2OjQ5IC9kZXYvc2VyaWFs
-L2J5LWlkL3VzYi1EaWdpbGVudF9EaWdpbGVudF9VU0JfRGV2aWNlXzI1MTYzNTFFODgyRi1pZjAw
-LXBvcnQwIC0mZ3Q7IC4uLy4uL3R0eVVTQjA8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPmxyd3hyd3hyd3ggMSByb290IHJvb3QgMTMgSmFuIDEwIDE2OjQ5IC9kZXYvc2VyaWFs
-L2J5LWlkL3VzYi1EaWdpbGVudF9EaWdpbGVudF9VU0JfRGV2aWNlXzI1MTYzNTFFODgyRi1pZjAx
-LXBvcnQwIC0mZ3Q7IC4uLy4uL3R0eVVTQjE8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPuKAnDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFzc3VtZSBpdCBzaG91bGQgaW5z
-dGVhZCBiZSBzb21ldGhpbmcgbGlrZSDigJx1c2ItU2lsaWNvbl9MYWJzX0NQMjEwNV9EdWFsX1VT
-Ql90b19VQVJU4oCm4oCdIGJ1dCBub3Qgc3VyZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5i
-c3A7PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4g
-c3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6Ymxh
-Y2siPlNhbXVlbCBKaW1lbmV6PC9zcGFuPjwvYj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPlNvZnR3YXJlIERldiBFbmdpbmVl
-ciwgU3IuPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fu
-cy1zZXJpZjtjb2xvcjpibGFjayI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+Q3VydGlzcy1Xcmln
-aHQ8L3NwYW4+PC9iPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fu
-cy1zZXJpZjtjb2xvcjpibGFjayI+MjAxMzAgTGFrZXZpZXcgQ2VudGVyIFBsYXphLCBTdWl0ZSAy
-MDAsIEFzaGJ1cm4sIFZBIDIwMTQ3IFVuaXRlZCBTdGF0ZXM8L3NwYW4+PG86cD48L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250
-LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5UOiA3MDMu
-ODQwLjY3MzENCjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7
-LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPjxhIGhyZWY9Im1haWx0bzpzamltZW5lekBjdXJ0aXNz
-d3JpZ2h0LmNvbSI+c2ppbWVuZXpAY3VydGlzc3dyaWdodC5jb208L2E+IHwNCjxhIGhyZWY9Imh0
-dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwOi93d3cuY3VydGlzc3dyaWdodGRzLmNvbV9f
-OyEhTlZxOWRmaHpNeUhxVHchbUN4SGlydlpzRnp3eUI3cTVUMHZHd0NTQkctb1hDSHVGdnExcE1Q
-Y293NVZNX0VZWlh4NEdZVWtPbmhoY3JBeldEa0htaGNRVjBJc25TNG5CNXB1LUNwZVZqQzQkIj4N
-Cnd3dy5jdXJ0aXNzd3JpZ2h0ZHMuY29tPC9hPjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0
-b206MTIuMHB0Ij48c3BhbiBzdHlsZT0ibXNvLWxpZ2F0dXJlczpub25lIj48YnI+DQpTZWUgdGhl
-IGRvY3VtZW50cyBoZXJlOjxicj4NCjxicj4NCjxhIGhyZWY9Imh0dHBzOi8vdXJsZGVmZW5zZS5j
-b20vdjMvX19odHRwczova2IuZXR0dXMuY29tL0UzMjBfR2V0dGluZ19TdGFydGVkX0d1aWRlKlNl
-dHRpbmdfdXBfYV9TZXJpYWxfQ29uc29sZV9Db25uZWN0aW9uX187SXchIU5WcTlkZmh6TXlIcVR3
-IW1DeEhpcnZac0Z6d3lCN3E1VDB2R3dDU0JHLW9YQ0h1RnZxMXBNUGNvdzVWTV9FWVpYeDRHWVVr
-T25oaGNyQXpXRGtIbWhjUVYwSXNuUzRuQjVwdS1BRXd3UUcwJCI+aHR0cHM6Ly9rYi5ldHR1cy5j
-b20vRTMyMF9HZXR0aW5nX1N0YXJ0ZWRfR3VpZGUjU2V0dGluZ191cF9hX1NlcmlhbF9Db25zb2xl
-X0Nvbm5lY3Rpb248L2E+PGJyPg0KPGJyPg0KV2hhdCBkb2VzOjxicj4NCjxicj4NCjwvc3Bhbj48
-Y29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDttc28tbGlnYXR1cmVzOm5vbmUiPmxz
-IC1sIC9kZXYvc2VyaWFsL2J5LWlkPC9zcGFuPjwvY29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Ozttc28tbGlnYXR1cmVz
-Om5vbmUiPjxicj4NCjxicj4NCjwvc3Bhbj48Y29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE4
-LjBwdDttc28tbGlnYXR1cmVzOm5vbmUiPlJldHVybj88L3NwYW4+PC9jb2RlPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O21z
-by1saWdhdHVyZXM6bm9uZSI+PGJyPg0KPGJyPg0KPC9zcGFuPjxzcGFuIHN0eWxlPSJtc28tbGln
-YXR1cmVzOm5vbmUiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KCjxIUj5UaGlzIGUt
-bWFpbCBhbmQgYW55IGZpbGVzIHRyYW5zbWl0dGVkIHdpdGggaXQgYXJlIHByb3ByaWV0YXJ5IGFu
-ZCBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSB1c2Ugb2YgdGhlIGluZGl2aWR1YWwgb3IgZW50aXR5
-IHRvIHdob20gdGhleSBhcmUgYWRkcmVzc2VkLiBJZiB5b3UgaGF2ZSByZWFzb24gdG8gYmVsaWV2
-ZSB0aGF0IHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZS1tYWlsIGluIGVycm9yLCBwbGVhc2Ugbm90
-aWZ5IHRoZSBzZW5kZXIgYW5kIGRlc3Ryb3kgdGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2hlZCBm
-aWxlcy4gUGxlYXNlIG5vdGUgdGhhdCBhbnkgdmlld3Mgb3Igb3BpbmlvbnMgcHJlc2VudGVkIGlu
-IHRoaXMgZS1tYWlsIGFyZSBzb2xlbHkgdGhvc2Ugb2YgdGhlIGF1dGhvciBhbmQgZG8gbm90IG5l
-Y2Vzc2FyaWx5IHJlcHJlc2VudCB0aG9zZSBvZiB0aGUgQ3VydGlzcy1XcmlnaHQgQ29ycG9yYXRp
-b24gb3IgYW55IG9mIGl0cyBzdWJzaWRpYXJpZXMuIERvY3VtZW50cyBhdHRhY2hlZCBoZXJldG8g
-bWF5IGNvbnRhaW4gdGVjaG5vbG9neSBzdWJqZWN0IHRvIGdvdmVybm1lbnQgZXhwb3J0IHJlZ3Vs
-YXRpb25zLiBSZWNpcGllbnQgaXMgc29sZWx5IHJlc3BvbnNpYmxlIGZvciBlbnN1cmluZyB0aGF0
-IGFueSByZS1leHBvcnQsIHRyYW5zZmVyIG9yIGRpc2Nsb3N1cmUgb2YgdGhpcyBpbmZvcm1hdGlv
-biBpcyBpbiBhY2NvcmRhbmNlIHdpdGggYXBwbGljYWJsZSBnb3Zlcm5tZW50IGV4cG9ydCByZWd1
-bGF0aW9ucy4gVGhlIHJlY2lwaWVudCBzaG91bGQgY2hlY2sgdGhpcyBlLW1haWwgYW5kIGFueSBh
-dHRhY2htZW50cyBmb3IgdGhlIHByZXNlbmNlIG9mIHZpcnVzZXMuIEN1cnRpc3MtV3JpZ2h0IENv
-cnBvcmF0aW9uIGFuZCBpdHMgc3Vic2lkaWFyaWVzIGFjY2VwdCBubyBsaWFiaWxpdHkgZm9yIGFu
-eSBkYW1hZ2UgY2F1c2VkIGJ5IGFueSB2aXJ1cyB0cmFuc21pdHRlZCBieSB0aGlzIGUtbWFpbC48
-QlI+CiA8QlI+CkZvciBpbmZvcm1hdGlvbiBhYm91dCBob3cgd2UgcHJvY2VzcyBwZXJzb25hbCBk
-YXRhIGFuZCBtb25pdG9yIGNvbW11bmljYXRpb25zLCBwbGVhc2UgdmlzaXQgIGh0dHBzOi8vd3d3
-LmN1cnRpc3N3cmlnaHQuY29tL3ByaXZhY3ktbm90aWNlL2RlZmF1bHQuYXNweDxCUj4KPC9ib2R5
-Pg0KPC9odG1sPg0K
+Modern Linux systems (like latest Ubuntu) will automatically put your=20
+ordinary user in group "dialout", and the rules for
+ =C2=A0 serial ports will make the ports owned by group "dialout' so you=20
+won't need root privileges to access them from "screen" or
+ =C2=A0 "minicom" and the like.
 
---_000_560add163b054e1b8454938d54cd3f55curtisswrightcom_--
+> *From:*Marcus D. Leech <patchvonbraun@gmail.com>
+> *Sent:* Wednesday, January 10, 2024 5:03 PM
+> *To:* Jimenez, Samuel <sjimenez@curtisswright.com>;=20
+> usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Re: E320 Full Enclosed Serial Console=20
+> [EXTERNAL]
+>
+> *WARNING:*This message came from an external source. Please exercise=20
+> caution and proper judgment when opening any attachments, clicking=20
+> links or responding to this message.
+>
+> -----------------------------------------------------------------------=
+-
+>
+> On 10/01/2024 16:56, Jimenez, Samuel wrote:
+>
+>     Hello and thank you for the prompt reply.
+>
+>     I see ttyUSB0 and ttyUSB1 but they are pointing to =E2=80=9CDigilen=
+t=E2=80=9D
+>     ports as shown below.
+>
+>     =E2=80=9C
+>
+>     ls -l
+>     /dev/serial/by-id/usb-Digilent_Digilent_USB_Device_2516351E882F-if0=
+*
+>
+>     lrwxrwxrwx 1 root root 13 Jan 10 16:49
+>     /dev/serial/by-id/usb-Digilent_Digilent_USB_Device_2516351E882F-if0=
+0-port0
+>     -> ../../ttyUSB0
+>
+>     lrwxrwxrwx 1 root root 13 Jan 10 16:49
+>     /dev/serial/by-id/usb-Digilent_Digilent_USB_Device_2516351E882F-if0=
+1-port0
+>     -> ../../ttyUSB1
+>
+>     =E2=80=9C
+>
+>     I assume it should instead be something like
+>     =E2=80=9Cusb-Silicon_Labs_CP2105_Dual_USB_to_UART=E2=80=A6=E2=80=9D=
+ but not sure.
+>
+>     *Samuel Jimenez*
+>
+>     Software Dev Engineer, Sr.
+>
+>     *Curtiss-Wright*
+>
+>     20130 Lakeview Center Plaza, Suite 200, Ashburn, VA 20147 United
+>     States
+>
+>     T: 703.840.6731
+>
+>     sjimenez@curtisswright.com | www.curtisswrightds.com
+>     <https://urldefense.com/v3/__http:/www.curtisswrightds.com__;!!NVq9=
+dfhzMyHqTw!mCxHirvZsFzwyB7q5T0vGwCSBG-oXCHuFvq1pMPcow5VM_EYZXx4GYUkOnhhcr=
+AzWDkHmhcQV0IsnS4nB5pu-CpeVjC4$>
+>
+>
+> See the documents here:
+>
+> https://kb.ettus.com/E320_Getting_Started_Guide#Setting_up_a_Serial_Con=
+sole_Connection=20
+> <https://urldefense.com/v3/__https:/kb.ettus.com/E320_Getting_Started_G=
+uide*Setting_up_a_Serial_Console_Connection__;Iw!!NVq9dfhzMyHqTw!mCxHirvZ=
+sFzwyB7q5T0vGwCSBG-oXCHuFvq1pMPcow5VM_EYZXx4GYUkOnhhcrAzWDkHmhcQV0IsnS4nB=
+5pu-AEwwQG0$>
+>
+> What does:
+>
+> |ls -l /dev/serial/by-id|
+>
+> |Return?|
+>
+> -----------------------------------------------------------------------=
+-
+> This e-mail and any files transmitted with it are proprietary and=20
+> intended solely for the use of the individual or entity to whom they=20
+> are addressed. If you have reason to believe that you have received=20
+> this e-mail in error, please notify the sender and destroy this e-mail=20
+> and any attached files. Please note that any views or opinions=20
+> presented in this e-mail are solely those of the author and do not=20
+> necessarily represent those of the Curtiss-Wright Corporation or any=20
+> of its subsidiaries. Documents attached hereto may contain technology=20
+> subject to government export regulations. Recipient is solely=20
+> responsible for ensuring that any re-export, transfer or disclosure of=20
+> this information is in accordance with applicable government export=20
+> regulations. The recipient should check this e-mail and any=20
+> attachments for the presence of viruses. Curtiss-Wright Corporation=20
+> and its subsidiaries accept no liability for any damage caused by any=20
+> virus transmitted by this e-mail.
+>
+> For information about how we process personal data and monitor=20
+> communications, please visit=20
+> https://www.curtisswright.com/privacy-notice/default.aspx
 
---===============6680417693307548390==
+--------------uM6jv0RX70TdxIlZm8UqkA0W
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 10/01/2024 17:05, Jimenez, Samuel
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:560add163b054e1b8454938d54cd3f55@curtisswright.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator"
+        content=3D"Microsoft Word 15 (filtered medium)">
+      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]-->
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}code
+	{mso-style-priority:99;
+	font-family:"Courier New";}span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">This is what I have:<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">$ ls -l /dev/serial/by-id/<o:p></o:p></p>
+        <p class=3D"MsoNormal">total 0<o:p></o:p></p>
+        <p class=3D"MsoNormal">lrwxrwxrwx 1 root root 13 Jan 10 16:49
+          usb-Digilent_Digilent_USB_Device_2516351E882F-if00-port0 -&gt;
+          ../../ttyUSB0<o:p></o:p></p>
+        <p class=3D"MsoNormal">lrwxrwxrwx 1 root root 13 Jan 10 16:49
+          usb-Digilent_Digilent_USB_Device_2516351E882F-if01-port0 -&gt;
+          ../../ttyUSB1<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <p class=3D"MsoNormal"><b><span
+style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">Samuel
+                Jimenez</span></b><b><span
+style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black;mso-ligatur=
+es:none"><o:p></o:p></span></b></p>
+          <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">Software
+              Dev Engineer, Sr.<o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black"><o:p>=C2=A0</o:p></span></p>
+          <p class=3D"MsoNormal"><b><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">Curtiss-Wright<o:p></o:p></span></b></p>
+          <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">20130
+              Lakeview Center Plaza, Suite 200, Ashburn, VA 20147 United
+              States<o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">T:
+              703.840.6731
+              <o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black"><a
+                href=3D"mailto:sjimenez@curtisswright.com"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+sjimenez@curtisswright.com</a>
+              |
+              <a href=3D"www.curtisswrightds.com" moz-do-not-send=3D"true=
+"
+                class=3D"moz-txt-link-freetext">www.curtisswrightds.com</=
+a></span></p>
+        </div>
+      </div>
+    </blockquote>
+    Hmm, I don't know then.=C2=A0 I don't have an E320 in my local stash =
+of
+    USRPs, so I'm going by the E310.<br>
+    <br>
+    The document for the serial interface for the E320 clearly indicates
+    that there should be two serial ports--one for the<br>
+    =C2=A0 STM32 ("if00") and one for the ARM ("if01").=C2=A0 Which looks=
+ like on
+    your system is mapped to /dev/ttyUSB0 and /dev/ttyUSB1.<br>
+    <br>
+    Modern Linux systems (like latest Ubuntu) will automatically put
+    your ordinary user in group "dialout", and the rules for<br>
+    =C2=A0 serial ports will make the ports owned by group "dialout' so y=
+ou
+    won't need root privileges to access them from "screen" or<br>
+    =C2=A0 "minicom" and the like.<br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:560add163b054e1b8454938d54cd3f55@curtisswright.com">
+      <div class=3D"WordSection1">
+        <div>
+          <p class=3D"MsoNormal"><o:p></o:p></p>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <div
+style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0in=
+ 0in">
+            <p class=3D"MsoNormal"><b><span style=3D"mso-ligatures:none">=
+From:</span></b><span
+                style=3D"mso-ligatures:none"> Marcus D. Leech
+                <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvo=
+nbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a>
+                <br>
+                <b>Sent:</b> Wednesday, January 10, 2024 5:03 PM<br>
+                <b>To:</b> Jimenez, Samuel
+                <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:sjimene=
+z@curtisswright.com">&lt;sjimenez@curtisswright.com&gt;</a>;
+                <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:usrp=
+-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+                <b>Subject:</b> Re: [USRP-users] Re: E320 Full Enclosed
+                Serial Console [EXTERNAL]<o:p></o:p></span></p>
+          </div>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <p class=3D"MsoNormal"><b><span style=3D"color:red">WARNING:</s=
+pan></b><span
+              style=3D"color:red"> This message came from an external
+              source. Please exercise caution and proper judgment when
+              opening any attachments, clicking links or responding to
+              this message.</span><span style=3D"mso-ligatures:none"><o:p=
+></o:p></span></p>
+          <div class=3D"MsoNormal" style=3D"text-align:center"
+            align=3D"center">
+            <hr width=3D"100%" size=3D"2" align=3D"center">
+          </div>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        </div>
+        <div>
+          <p class=3D"MsoNormal">On 10/01/2024 16:56, Jimenez, Samuel
+            wrote:<o:p></o:p></p>
+        </div>
+        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+          <p class=3D"MsoNormal">Hello and thank you for the prompt reply=
+.<o:p></o:p></p>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <p class=3D"MsoNormal">I see ttyUSB0 and ttyUSB1 but they are
+            pointing to =E2=80=9CDigilent=E2=80=9D ports as shown below.
+            <o:p></o:p></p>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <p class=3D"MsoNormal">=E2=80=9C<o:p></o:p></p>
+          <p class=3D"MsoNormal">ls -l
+            /dev/serial/by-id/usb-Digilent_Digilent_USB_Device_2516351E88=
+2F-if0*<o:p></o:p></p>
+          <p class=3D"MsoNormal">lrwxrwxrwx 1 root root 13 Jan 10 16:49
+/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_2516351E882F-if00-port=
+0
+            -&gt; ../../ttyUSB0<o:p></o:p></p>
+          <p class=3D"MsoNormal">lrwxrwxrwx 1 root root 13 Jan 10 16:49
+/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_2516351E882F-if01-port=
+0
+            -&gt; ../../ttyUSB1<o:p></o:p></p>
+          <p class=3D"MsoNormal">=E2=80=9C<o:p></o:p></p>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <p class=3D"MsoNormal">I assume it should instead be something
+            like =E2=80=9Cusb-Silicon_Labs_CP2105_Dual_USB_to_UART=E2=80=A6=
+=E2=80=9D but not
+            sure.<o:p></o:p></p>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <div>
+            <p class=3D"MsoNormal"><b><span
+style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">Samuel
+                  Jimenez</span></b><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">Software
+                Dev Engineer, Sr.</span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">=C2=A0</span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><b><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">Curtiss-Wright</span></b><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">20130
+                Lakeview Center Plaza, Suite 200, Ashburn, VA 20147
+                United States</span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">T:
+                703.840.6731
+              </span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black"><a
+                  href=3D"mailto:sjimenez@curtisswright.com"
+                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
+">sjimenez@curtisswright.com</a>
+                |
+                <a
+href=3D"https://urldefense.com/v3/__http:/www.curtisswrightds.com__;!!NVq=
+9dfhzMyHqTw!mCxHirvZsFzwyB7q5T0vGwCSBG-oXCHuFvq1pMPcow5VM_EYZXx4GYUkOnhhc=
+rAzWDkHmhcQV0IsnS4nB5pu-CpeVjC4$"
+                  moz-do-not-send=3D"true">
+                  www.curtisswrightds.com</a></span><o:p></o:p></p>
+          </div>
+        </blockquote>
+        <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span
+            style=3D"mso-ligatures:none"><br>
+            See the documents here:<br>
+            <br>
+            <a
+href=3D"https://urldefense.com/v3/__https:/kb.ettus.com/E320_Getting_Star=
+ted_Guide*Setting_up_a_Serial_Console_Connection__;Iw!!NVq9dfhzMyHqTw!mCx=
+HirvZsFzwyB7q5T0vGwCSBG-oXCHuFvq1pMPcow5VM_EYZXx4GYUkOnhhcrAzWDkHmhcQV0Is=
+nS4nB5pu-AEwwQG0$"
+              moz-do-not-send=3D"true">https://kb.ettus.com/E320_Getting_=
+Started_Guide#Setting_up_a_Serial_Console_Connection</a><br>
+            <br>
+            What does:<br>
+            <br>
+          </span><code><span style=3D"font-size:10.0pt;mso-ligatures:none=
+">ls
+              -l /dev/serial/by-id</span></code><span
+style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;mso-ligatur=
+es:none"><br>
+            <br>
+          </span><code><span style=3D"font-size:18.0pt;mso-ligatures:none=
+">Return?</span></code><span
+style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;mso-ligatur=
+es:none"><br>
+            <br>
+          </span><span style=3D"mso-ligatures:none"><o:p></o:p></span></p=
+>
+      </div>
+      <hr>This e-mail and any files transmitted with it are proprietary
+      and intended solely for the use of the individual or entity to
+      whom they are addressed. If you have reason to believe that you
+      have received this e-mail in error, please notify the sender and
+      destroy this e-mail and any attached files. Please note that any
+      views or opinions presented in this e-mail are solely those of the
+      author and do not necessarily represent those of the
+      Curtiss-Wright Corporation or any of its subsidiaries. Documents
+      attached hereto may contain technology subject to government
+      export regulations. Recipient is solely responsible for ensuring
+      that any re-export, transfer or disclosure of this information is
+      in accordance with applicable government export regulations. The
+      recipient should check this e-mail and any attachments for the
+      presence of viruses. Curtiss-Wright Corporation and its
+      subsidiaries accept no liability for any damage caused by any
+      virus transmitted by this e-mail.<br>
+      <br>
+      For information about how we process personal data and monitor
+      communications, please visit
+      <a class=3D"moz-txt-link-freetext" href=3D"https://www.curtisswrigh=
+t.com/privacy-notice/default.aspx">https://www.curtisswright.com/privacy-=
+notice/default.aspx</a><br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------uM6jv0RX70TdxIlZm8UqkA0W--
+
+--===============2199593364802340752==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -365,4 +544,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6680417693307548390==--
+--===============2199593364802340752==--
