@@ -2,169 +2,109 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9A4682B211
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jan 2024 16:47:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2BE82BD5C
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jan 2024 10:37:43 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4E772384B02
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jan 2024 10:47:08 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 645AC384C0F
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jan 2024 04:37:42 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1704988028; bh=+yb36rR4Op/8HiYhWvX09jYO+2wOAe78O8IRIxPUxko=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=YjGgsXiJajG0gt/A61HXZQXFgjS/RkfkpzDuyBl8Hl86gVkj1/PQqQ3pMMBY2NBtP
-	 JrAhU5zMC0LZhkjzjPC0zFLsiqbmgIZd9nxzJkIgUaXOoOFYxD11a8FIeEB7XE6srg
-	 t1d9OVyLEjboUmQJCiurZGCOk6oi+HNB3+bM/PQFIe3E4IbRWA8z0mm4pekwL30YIQ
-	 d8dMK4HK3C04rJ6FHX61Je8x3Ng8FtYigtSja9KpbKO71b6zLZrJru7hkCAlABeDrt
-	 1GNdR6DmBdDjEg0JCy+u9jqaXcVDFicyYSQ/vpHKhdGjWQahN66iISAojcckIcSPwl
-	 DaMEY9cySCyLg==
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id BFF0F383C33
-	for <usrp-users@lists.ettus.com>; Thu, 11 Jan 2024 10:46:31 -0500 (EST)
+	t=1705052262; bh=lGvVpi3z7zTeurFnGXZVmkuSNSKjWc6JkLDwQy1/3IU=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=0RREga1W3BInux8SEVTANyjBAN7upJAGN/apSuONOpI0DxyRXcEd46rMznYHcv/le
+	 A3X9t0tipzZ7GY3xAeDmZ8jb+gJAH6ptTKfCHLpfSTIWWky039S6qjyIjy7+jl5vTV
+	 QPGAQF2EWyW61orwEpjLeEi4Yp3qD9lRuwOo1VWwEHo1dhB7EMryvUcdYShKgh4Dxy
+	 qDRYeXQSvLrMx2lcX9hDNNMC6EXgg3uvW+dW71VAuR2Kc8HRJn2VT0aqXHTU0pzXA0
+	 3KKbRLdMZXqkliwte14Ha1/UQmIoKL+WvhOdF5d0xaAd5VW3ZsVz4jHHPfLuPrKM4S
+	 jW3Cbxw76ikJw==
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9B3B5384BEB
+	for <usrp-users@lists.ettus.com>; Fri, 12 Jan 2024 04:37:38 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="y8IURv1f";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RissqehR";
 	dkim-atps=neutral
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dbed71baa91so4225254276.0
-        for <usrp-users@lists.ettus.com>; Thu, 11 Jan 2024 07:46:31 -0800 (PST)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3606dc4fdf2so32185365ab.0
+        for <usrp-users@lists.ettus.com>; Fri, 12 Jan 2024 01:37:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1704987991; x=1705592791; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ltdWSAsxa8CoPTuuEKvW7Z70eR9M6KOvwbzB5BMl4h4=;
-        b=y8IURv1fBV6OBKHTdD9XmvpKM6dm9Gj19coHz7ACWfr2sHZH3G8fSvd8etIoD5knZc
-         g/mg8hb/+xSY/+8ZTg1/30IwLs8RXoi/NPuosZllPbb3TLB2/55cE0qdaFEYLdW5ZiYF
-         j6E2yAN4yzfxfJH9ZV80qDC96NykMpM8+1cwToqTJ8ihqtMK7SmqVhIOEEmtxzdQB/HO
-         +5jM2kVQBR4zquLUzqLSE9BuKI6i/UJxCgOOuXxbPiK8vshovm4Uu5V9E29rUOtBCy/L
-         64WhKPiCAMRnaStCBC7KsmUUhsV3PFl6H5PUfglOoPgJf9ZiWCQX7w4TLiDRQkV1wE6c
-         WLfw==
+        d=gmail.com; s=20230601; t=1705052258; x=1705657058; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=X9KSl3dNvJ893IA8wfwKAkTieFtLrDNITnlJhyuhcI0=;
+        b=RissqehRlwAPtwla0H34CVzHv1Pks88wq5LEBOKj2ZROuZ/eJh3gB/JATd64uL15Qt
+         0CuhNgFciARVP2bCfLiOsN3AyhfejXxhwfpKEuvCFwsWYcyGf86yZOwMs5eTQtyAeiTx
+         TUZ9vhJFjKFAfZ0ifBET9Lb9YWRs7gujc2xIkg8+M+t+rQBVnuu2tVr80C4eKJ78eLCl
+         Dd3HD1LfGEJCays5up6zwq9Bc2Tsfirxv35ZYqZG7bHZ5iIMNsNukiBU2hZla1Mk7cua
+         s8nYDJbXXRzRAalYXu7zxrqZ2c3uWj8a/4DuLWZzskIu0HWqbewE58udTxwm7aNpEO7H
+         KQvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704987991; x=1705592791;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ltdWSAsxa8CoPTuuEKvW7Z70eR9M6KOvwbzB5BMl4h4=;
-        b=csl7wryPhqDgLEwkZq7Juasgu3e2lm8BJGwnyjMh7aeukAg6gdjLbSzVPhWHyvmqaJ
-         ofsYWL5epUjFavmWG9DT+hALu/zFvDVVj/yJA1F8sf3ZUlUrz5X23s9nDmhXXIBAfFYt
-         rpt8bbzzwLRthgqjJaNrtwrHbG4wHCuUZU3Cnfrdvh1/7kkR3DbtnRpnzXAE/gEHR3LB
-         Ujqiwov+YSygj6h38UhLt8zsMuPPeIh0N3L81+6L5RGcsyTYrhBBNqp2pW/S5TQoMDHr
-         p3yPdOOcaunILFnzBaXDqd/zJaJUpV6/kSlnB7j+iosFFgK4OfkvFWrQkrvbj9k8EbB0
-         lNiw==
-X-Gm-Message-State: AOJu0Yz+TBN7Rv+1l7LIx/L23RVqtMsONomHJXPzmn6Wm6OJSep8xhak
-	NC3vJ7+IsEiyhlHnqjeu2Qb1YxgDpNC3vilAnhrUNQXBZD/9uATr
-X-Google-Smtp-Source: AGHT+IHCy4NRyS6JI6fmJiZyKXqnCz0PodqPFKG1FfSpwV1qiAyqfwPE1Kzl+0KXp/xjRn92U99RBTYVD2RZLZ9y6Fg=
-X-Received: by 2002:a25:8042:0:b0:dbd:83db:6ba4 with SMTP id
- a2-20020a258042000000b00dbd83db6ba4mr1157003ybn.110.1704987990971; Thu, 11
- Jan 2024 07:46:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705052258; x=1705657058;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X9KSl3dNvJ893IA8wfwKAkTieFtLrDNITnlJhyuhcI0=;
+        b=gvt9tvV4OOSfqN8KmZtxwS8HM+nTIohXSiFU61O6CU/gBrLWdsCtx35KVxTwMVZIXl
+         7KW7EuNmDFrIh0rtdCa3dFBClaKO0Rg9PzyC72eKHcqdmfOVtVHmd85YxTlgXgh7W2MW
+         UgBe/oomwX7jNh7gYXFgcfyrN3wM71OaBvOafSzWSGNmZOSxA/+1DjtAapNYPj7XK+sN
+         0VLml4tms3K4Y59JgC2ezfONu5e4CGZez7UruY1CYzuHci9bhJXVg91UVgbB0wYShcMo
+         EMspWdq2JtE4EScI2jMkj0l0HMFjCrBCw9uYV4fhkvjnADH8XYLvdRD9igyZD1kezU/d
+         ElLA==
+X-Gm-Message-State: AOJu0Yyd7drPwpnDQ/hepw3KJGgHIHPwCKpErEbXY+xw3i1LRRiLSxkT
+	YwNaIZzshWZwcYHRSllF691KZZqXYvsg/xH4CzD1USJe
+X-Google-Smtp-Source: AGHT+IHi0dX75jy+B8FA8DMk17zIHLa0jagD2IG9+Y3XemCMeThc38EFO+wNVKMaqdAIrTx+p0SzppimGs/48viJwBM=
+X-Received: by 2002:a5e:cb42:0:b0:7bf:2a8b:5531 with SMTP id
+ h2-20020a5ecb42000000b007bf2a8b5531mr37885iok.34.1705052257760; Fri, 12 Jan
+ 2024 01:37:37 -0800 (PST)
 MIME-Version: 1.0
-References: <9KOjCmwUHbMAfT0J0L1LfR26A5WC08yoWPGg0aBc58@lists.ettus.com>
-In-Reply-To: <9KOjCmwUHbMAfT0J0L1LfR26A5WC08yoWPGg0aBc58@lists.ettus.com>
-From: Michael Dickens <michael.dickens@ettus.com>
-Date: Thu, 11 Jan 2024 10:46:19 -0500
-Message-ID: <CAGNhwTORcgcdxCYtS2zHYJmcLaosB6T=LPqrbxkKB05fmEpkXA@mail.gmail.com>
-To: jmaloyan@umass.edu
-Message-ID-Hash: B6FSLQPXVQ63DGKJGQO6BISDETGBAZG4
-X-Message-ID-Hash: B6FSLQPXVQ63DGKJGQO6BISDETGBAZG4
-X-MailFrom: michael.dickens@ettus.com
+From: Alin Stoica <alinstoica1234567@gmail.com>
+Date: Fri, 12 Jan 2024 11:37:27 +0200
+Message-ID: <CAArU_bE6h0B5C2xu5ArFc3LOswYFBdRst4aJYX_euCoNQyckhw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: EDZCH3OK6OPQVRRJVJAI5VLXFAOZXXZS
+X-Message-ID-Hash: EDZCH3OK6OPQVRRJVJAI5VLXFAOZXXZS
+X-MailFrom: alinstoica1234567@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Benchmarking x410 with Mellanox with DPDK
+Subject: [USRP-users] USRP E310 capabilities
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/B6FSLQPXVQ63DGKJGQO6BISDETGBAZG4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EDZCH3OK6OPQVRRJVJAI5VLXFAOZXXZS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0309355596635126136=="
+Content-Type: multipart/mixed; boundary="===============3106435133636868812=="
 
---===============0309355596635126136==
-Content-Type: multipart/alternative; boundary="0000000000008c6deb060ead737e"
+--===============3106435133636868812==
+Content-Type: multipart/alternative; boundary="00000000000025bcff060ebc6a68"
 
---0000000000008c6deb060ead737e
+--00000000000025bcff060ebc6a68
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thanks for reporting back your success & how you got there! - MLD
+Hello,
+I have a question about my USRP E310 capabilities.
+How many mega samples per second can tx and rx support (i.e. msps) As far
+as I know the architecture has changed since UHD version 4.0 and there are
+a lot of drops to 4 msps when running benchmark. the UHD 3.15 versions
+support a bit more msps though, somewhere around 6-7, more msps leads to
+underruns from what I have noticed. If I use UHD 3.09 could I get more mega
+samples per second?
 
-
-On Mon, Jan 8, 2024 at 11:55=E2=80=AFAM <jmaloyan@umass.edu> wrote:
-
-> I should have updated this chain a bit ago. But I managed to solve the
-> issue a few days ago.
->
-> I managed to get it to work and there is a few things that went wrong tha=
-t
-> when I fixed the problem was solved=E2=80=A6
->
-> It is mentioned in the tutorials that the =E2=80=9Cuhd.conf=E2=80=9D file=
- needs to specify
-> exactly the amount of ports being used to stream data. Well additionally,
-> you need to specify no =E2=80=9Cextra=E2=80=9D cores. For example, if you=
- are using 1 QSFP
-> port for data streaming, you may use =E2=80=9Cdpdk_corelist=3D2,3=E2=80=
-=9D, then use
-> =E2=80=9Cdpdk_lcore=3D3=E2=80=9D for the first address.
->
-> Secondly, and I am not immediately at my desk to test this, but I have a
-> suspicion that the order of the arguments matter. =E2=80=9Cmgmt_addr=E2=
-=80=9D must be
-> specified prior to =E2=80=9Caddr=E2=80=9D. Also, it helps to define the R=
-F-45 port
-> statically.
->
-> Hope this helps. Here is an example of a command that worked.
->
-> ./benchmark_rate --rx_rate 245.76e6 --rx_channels 0 --tx_rate 245.76e6
-> --tx_channels 0 --args
-> "mgmt_addr=3D192.168.1.184,addr=3D192.168.10.2,use_dpdk=3D1"
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000008c6deb060ead737e
+--00000000000025bcff060ebc6a68
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks for reporting back your success=C2=A0&amp; how you =
-got there! - MLD<div><div><div dir=3D"ltr" class=3D"gmail_signature" data-s=
-martmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
-ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"border:0px;font-stretc=
-h:inherit;line-height:inherit;margin:0px;padding:0px;vertical-align:baselin=
-e;color:rgb(0,0,0)"><br></div></div></div></div></div></div></div></div></d=
-iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Mon, Jan 8, 2024 at 11:55=E2=80=AFAM &lt;<a href=3D"mailto:jmaloyan@u=
-mass.edu">jmaloyan@umass.edu</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><p>I should have updated this chain a bit ago. =
-But I managed to solve the issue a few days ago.</p><p>I managed to get it =
-to work and there is a few things that went wrong that when I fixed the pro=
-blem was solved=E2=80=A6</p><p>It is mentioned in the tutorials that the =
-=E2=80=9Cuhd.conf=E2=80=9D file needs to specify exactly the amount of port=
-s being used to stream data. Well additionally, you need to specify no =E2=
-=80=9Cextra=E2=80=9D cores. For example, if you are using 1 QSFP port for d=
-ata streaming, you may use =E2=80=9Cdpdk_corelist=3D2,3=E2=80=9D, then use =
-=E2=80=9Cdpdk_lcore=3D3=E2=80=9D for the first address.</p><p>Secondly, and=
- I am not immediately at my desk to test this, but I have a suspicion that =
-the order of the arguments matter. =E2=80=9Cmgmt_addr=E2=80=9D must be spec=
-ified prior to =E2=80=9Caddr=E2=80=9D. Also, it helps to define the RF-45 p=
-ort statically.</p><p>Hope this helps. Here is an example of a command that=
- worked.</p><p>./benchmark_rate --rx_rate 245.76e6 --rx_channels 0 --tx_rat=
-e 245.76e6 --tx_channels 0 --args &quot;mgmt_addr=3D192.168.1.184,addr=3D19=
-2.168.10.2,use_dpdk=3D1&quot;</p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<div dir=3D"auto">Hello,<div dir=3D"auto">I have a question about my USRP E=
+310 capabilities.</div><div dir=3D"auto">How many mega samples per second c=
+an tx and rx support (i.e. msps) As far as I know the architecture has chan=
+ged since UHD version 4.0 and there are a lot of drops to 4 msps when runni=
+ng benchmark. the UHD 3.15 versions support a bit more msps though, somewhe=
+re around 6-7, more msps leads to underruns from what I have noticed. If I =
+use UHD 3.09 could I get more mega samples per second?</div></div>
 
---0000000000008c6deb060ead737e--
+--00000000000025bcff060ebc6a68--
 
---===============0309355596635126136==
+--===============3106435133636868812==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -174,4 +114,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0309355596635126136==--
+--===============3106435133636868812==--
