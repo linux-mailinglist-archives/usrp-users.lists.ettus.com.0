@@ -2,660 +2,891 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E979B82F2EF
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Jan 2024 18:12:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBE2882FC77
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Jan 2024 23:20:57 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6DA8F38479B
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Jan 2024 12:12:20 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4A811385586
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Jan 2024 17:20:56 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1705425140; bh=WuLvdZqU6P1ZW2kdbVjub2E6puT4GWHkP+a3MFG417Q=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=H6yrSMm3AGVOLJxGA5K6tSTQ6fGPNXBhfCyPYeACtWbkFX6DSnMMLTnWN7ZstlL5Q
-	 CWbLSnUAb4VG06FO3w+VV+k6KOHWT2JjUtwOF0B4/5B1BEbZ2i8CQt0laKhQCZCyzO
-	 kPj9WVgLRvJd0YyhIlXFrk00csdBxxDomzfwx/3sC4K0X37L5Ab1hmXhUB+BHXSkem
-	 ncGSMObLlZwmQZ7xYEcspbUFHq30G4O8AFsL3CV/brpTnl8UcpsH50mlWcHPp/ZdL9
-	 BeHYwkR/Fn2w5vN3HVTrp5kPWMxg/VN+ewiDf1umd0MGnJIu7BoORv3PxG5I0F6kbR
-	 0lbeS5bCUISGA==
-Received: from email5-west.aero.org (email5-west.aero.org [130.221.16.30])
-	by mm2.emwd.com (Postfix) with ESMTPS id 34F35383CF2
-	for <usrp-users@lists.ettus.com>; Tue, 16 Jan 2024 12:11:18 -0500 (EST)
+	t=1705443656; bh=LuL4LKaKdr8T4IAcwaHXMPzcy80f55XnXWA7o4KFDVQ=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=ZTIpsqsV/mz7l4UUy21mKs/0gPzEVGCDnIyPb2hw31o9ePkeCyLD39nou1/11HDWP
+	 JOeKQ19kRI+jaHzRS/neIKbU+kVq/mhOhnbPi4ovfVJIbUXneiLjkk9jP9ajUx7H42
+	 GKCdfKsuIqJ4AJ6gZ2+T4swotK+C/27AmtXfoviyyDfTR63o5yN1fjM7mZyjpPFpDO
+	 9mvTBJchfKDLatI099Tn/miHEg7Vu5+yoQ5LhCm74l5kb/a1GOOmwsVsGNkbf5MXgt
+	 sCpbU3TvJPW5DCwzzaMxQA/+q2QHTNd7R0kI8tDyj/Wm/s5olxrqhMi9FBc1hHGUrL
+	 Rda5fSxRGK5Yw==
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 846D938518F
+	for <usrp-users@lists.ettus.com>; Tue, 16 Jan 2024 17:19:57 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="C28HI0kf";
-	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="qzsubNjm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UvIIob4z";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
-  t=1705425079; x=1736961079;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:mime-version;
-  bh=d4IqOoxMZ83T+oW0v0RWxboLeJGwcWcrVCBlxFT4g+s=;
-  b=C28HI0kfZVWXYvIqW7CZVeGw51Qah4j+ECSOmO0j8fs26xIkhSMXeqQA
-   7ivqv7GoDyfPqNySjYLloNFrrK1sx39ag12S8PagyJKnUow1eVAFaKW9G
-   y3Tmdk2QhrRwnC8v+1J37KltF+zpuKTXGPPsj+RAm+4GNOgSy1am4W9py
-   M=;
-x-SBRS: 3.5
-x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="3928441"
-X-IronPort-AV: E=Sophos;i="6.05,199,1701158400";
-   d="scan'208,217";a="3928441"
-X-IPAS-Result: =?us-ascii?q?A2EpAAB0t6Zlh2VBL2hXAw4PAQEBAQkBEgEFBQGBewgBC?=
- =?us-ascii?q?wGBNQGBAnqBYYRTiB2JRgOeAhSBEQNQBg8BAQEBAQEBAQEHAi4BFQQBAQMEh?=
- =?us-ascii?q?H8CFocxJzQJDgECBAEBAQEDAgMBAQEBAQEIAQEBBQEBAQEBBwQBAgIQAQEBA?=
- =?us-ascii?q?SIXBw4QJ4VsDYN5gR4BAQEBAQEBAQEBAQEdAjVTAQEBAQMBIh0BAQwgCwEPA?=
- =?us-ascii?q?gEIDgMEAQEhBwMCAgIlCQEUCQgCBAgGBQgVBIJfghgNBwMxs2F6gTKBAYIKA?=
- =?us-ascii?q?QEGBASwHBhggWEJgUgBg2aEGhoBBWNmAQGDd4RbNoFVRIEVQoFJgR8+hA4BE?=
- =?us-ascii?q?gEjBg8IAhURgxQ5gi9dgwU1AgYoLAsdQC0FGgI5IQIFX2ADHwKBYoFFgRQKF?=
- =?us-ascii?q?wICAgICAgMCITIRCRB2MB0GCWGBR4NaVHwjA34IBFwPGw8eNxEQEw0DCG4dA?=
- =?us-ascii?q?hEiPAMFAwQyChIMCyEFVQNDBkkLAwIaBQMDBIEwBQ0aAhAaBgwmAwMSSQIQF?=
- =?us-ascii?q?AM4AwMGAwoxAzBVQQxQA2UfFhwJPA8MGgIbHg0nIwIsQAMRBRACFgMkFgQ2E?=
- =?us-ascii?q?QkLJgMqBjoCEgwGBgldJhYJBCUDCAQDVAMjdBEDBAoDFAcLB3uBWgkDRB1AA?=
- =?us-ascii?q?wttPTUUGwUEgTYFk1WDFRmBFUyBJSgLOhgUkm8OJYMuixmOSJRGNAeEFIFbB?=
- =?us-ascii?q?gyIdY5GiCQXqhKYUqMihR8CBAIEBQIOCIFjaBQqcDMaMEOCAWZSGQ9WinKCW?=
- =?us-ascii?q?AwNCYNWjzRFdgI5AgcBCgEBAwmKaAEB?=
-IronPort-PHdr: A9a23:zHZMaBxPqjPKelTXCzPangc9DxPP8534PQ8Qv5wgjb8GMqGu5I/rM
- 0GX4/JxxETIUoPW57Mh6aLWvqnsVHZG7cOHt3YPI5BJXgUO3MMRmQFoCcWZCEr9efjtaSFyH
- MlLWFJ/uX+hNk0AEcvkYBvVuHLhhQM=
-IronPort-Data: A9a23:465RsaByUOtWqBVW/6vjw5YqxClBgxIJ4kV8jS/XYbTApGslgjwBz
- 2JJCGmGPKuIZTGkf9sjatiwo0sDvZfVx9RjTANkpHpgZkwRpJueD7x1DKtR0wB+jyHnZBg6h
- ynLQoCYdKjYaFeC+E/1WlTGhSAkhPzVLlbEILeYfHo3HGeIcQ954Tp7gek1n4V0ttawBgKJq
- LvartbWULOf82Yc3lk8teTb9XuDgNyo4GlE5gVnO6gR1LPjvyB94Kw3dPnZw0TQH9E88t6SH
- 47r0Ly/92XFyBYhYvvNfmHTLyXm6paLVeS/oiI+t5qK23CulQRrukoPD8fwXG8M49m/t40ok
- o0V7fRcfi9yVkHEsLx1vxC1iEiSN4UekFPMCSDXXcB+UyQq2pYjqhljJBheAGEWxgp4KUZH9
- bs8C2hXVwvArOOt45OEYbNhv/12eaEHPKtH0p1h5R7yJq58BLzmGODN79Ie2yosjMdTG/qYf
- 9AedTdkcBXHZVtIJ0sTD5U92uyvgxETcRUB8A7T+fVxvTWVlVQouFTuGIO9ltiiSNhak0CV4
- G3c9nXnDwsyPdGFznyC6H3EaurnxnKhCN5OTdVU8NZKikGKz30ZEyYWdmO+4sGFskeXRINmf
- hl8Fi0G9vNoqBPDosPGdwCjumbBowURQcF4F+wh9BrLx7bI/h3fDW8BJhZba9s9r8s7XxQs2
- hmEk86BONB0mLicSHbY+rLPoji5YXIRNTVbPXZCShYZ6d7+po11lgjIUttoDK+yiJvyBC30x
- DeJ6iM5gt3/kPLnyY2c9FCApxH0/KHSDSU0/Sb2YUn/4zpAMdvNi5OT1XDX6vNJLYC8R1aHv
- WQZl8X20AzoJcHc/MBqaLRVdIxF98q43CvgbUmD9qTNGhyo8n+nOIxVuz51Lx8zNt5eIGewJ
- kjOpQlW+ZlfemOwarN6aJ6wDMJsyrX8EdPiVbbfad8mjnlNmO2vo34Gia24hjuFfK0QfUcXZ
- MzznSGEUCpyNEif5GDqL9rxKJdyrszE+UvdRIrg0zOs2qeEaXieRN8taQTWM7tlt//b/lWMq
- r6z0vdmLT0OCIUShQGGqeYuwawicSBhW/gaVuQLKLHfeVo+SAnN9deLmexwJ9wNc1tpehfgp
- SrnBhAwJKvXgHzMMwKRbX5/ILjoR44XkJ7IFX1EALpc4FB6OdzHxP5HKfMfJOB7nMQ9l6IcZ
- 6deIa2oXK8QIgkrDhxGMPERWqQ5KE/07e9PVgL5CAUCk2lIG1WSq4K5Lla1qkHjzEOf7KMDn
- lFp7SuDKbJreuioJJ++hC6Hp79pgUUgpQ==
-IronPort-HdrOrdr: A9a23:wAJQGKD1D5ZuJEXlHeg5sceALOsnbusQ8zAXPh9KJCC9I/bzqy
- nxpp8mPEfP+U0ssHFJo6HiBEDyewKnyXcV2/hbAV7GZmXbUQSTXeZfBOfZogEIXheOjtK1tp
- 0QOZSWaueAa2SS5PySiGbXLz9j+qj/zEnCv5a9854Zd3APV0gW1XYdNu/0KC1LbTgDIaB8OI
- uX58JBqTblU28QdN6HCn4MWPWGj8HXlbr9CCR2SyIP2U2rt3eF+bT6Gx+X0lM1SDVU24ov9m
- DDjkjQ+rijifem0RXRvlWjoKi+2eGRhOerNvb8yvT9GQ+cyTpAUb4RGoFq8gpF4t1Ho2xa7e
- Uk6y1QQ/ibrUmhM11d6CGdpTUJ3FsVmgDf4E7djn35rcPjQjUmT8JHmIJCaxPcr1Etpddmzc
- twrhSkXrdsfGf9dR7Glq/1fgAvklDxrWspkOYVgXAaWYwCaKVJpYha+E9OCp8PEC/z9YhiSY
- BVfYnhzecTdUnfY2HSv2FpztDpVnMvHg2eSkxHvsCOyTBZkH1w0kNdzs0CmXUL8o47VvB/lq
- 35G7UtkKsLQt4dbKp7CutEScyrCnbVSRaJK26WKUSPLtBzB5sMke+E3FwY3pDYRHVT9upCpH
- 3oaiIpiVIP
-X-Talos-CUID: =?us-ascii?q?9a23=3Ay+NB+miDXZsR4jmmBcUJOCrOQDJuVXTdi1PzexW?=
- =?us-ascii?q?BEiVCSaa2aGC7oq5dqp87?=
-X-Talos-MUID: 9a23:gtfHZwjYp3PfvdbwiV53/MMpFM10+q2/Als2kbY+voq8CRR5EijMtWHi
-Received: from mail-dm3gcc02lp2101.outbound.protection.outlook.com (HELO GCC02-DM3-obe.outbound.protection.outlook.com) ([104.47.65.101])
-  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2024 09:11:16 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cRz9QfUFTcpg5GTFC82xZJH1K7oNeFu18Q0po0KusxS8OKR3Ho5geHAz0GZ7yWzRGuRuf1HazaZJJyV2pcGV+IuehuhDwJ5odsCuuJsJFvnEii4Q+fPAFn7vMr/KHKkmnjKSIgtL827frDd5OiCygdWNIBpo+RjZi5RHT6hlyJj1ByTprHPrwO8BZiTRIdkalF7tX7lQypzApb4TcomXIt2SDxT5ssb/4MrOVCbmwzzKeJAbm0aGwXu371+hPpTvl48RzR2RmN2lwU9QSlDNp4z+s2/q9gHPnGh2U64BcL22kFJpn9gYkviEu5JmnbE8qTSBX70iOWj351gNugVZHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d4IqOoxMZ83T+oW0v0RWxboLeJGwcWcrVCBlxFT4g+s=;
- b=oMATy2+y8YCui8NIuDOQgDjMuRISDEWH/LgAmPbN4chWpxmH2Cf+SpMp/XjoBal8fUOo0GJ0uoxOd9EJrK5mUXYb2sWCEC14y1MtSvzUgy9oyGTncmCdZrAxsZWk6pPVIYhkb1h+dRnk96SQiAu+A/JDFmA8mY6lsNACGjoc5BGh17cEb734uPGm7NmfpmxbhPiGGBv7k4jkuYjeiGeSJEy3Z2xRyQt4JvYQOcA5VE6loTTVEJBwMG0OE8AYO1GMp2+De5Kz2aMsRYgo/xSFd7nc8LobL8YubqDU4g5pQhD/CQIcfoKSC6oShm6y8sIeDxCtsXYNlOGeoHA+N8JxyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
- dkim=pass header.d=aero.org; arc=none
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-68137bf3636so44255056d6.1
+        for <usrp-users@lists.ettus.com>; Tue, 16 Jan 2024 14:19:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d4IqOoxMZ83T+oW0v0RWxboLeJGwcWcrVCBlxFT4g+s=;
- b=qzsubNjmCQvYBw3jhVsXKcJ5Nr0GEj98P09G6Bx3MjQWIHoeBJGcfXwZfJ3zd9lgZTiSTmhXwRFojOHy01QBmk9I6T1vWtBfzIbOd03jvPZuy+1e/16bXKEAGaHNMWCnphCEfyGqXL3TgrkwfaazsogHS51cmB/rIotSEjwPRaw=
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
- by SJ0PR09MB10163.namprd09.prod.outlook.com (2603:10b6:a03:466::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.29; Tue, 16 Jan
- 2024 17:10:58 +0000
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::978f:8b23:1f3:6301]) by SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::978f:8b23:1f3:6301%7]) with mapi id 15.20.7202.020; Tue, 16 Jan 2024
- 17:10:58 +0000
-From: Eugene Grayver <eugene.grayver@aero.org>
-To: Rob Kossler <rkossler@nd.edu>
-Thread-Topic: [USRP-users] Bug/problem aligning PPS to samples
-Thread-Index: AQHaRZ1ms6Jxb+MNakOUR00bkntjL7DbpP4AgAEMylM=
-Date: Tue, 16 Jan 2024 17:10:58 +0000
-Message-ID: 
- <SJ0PR09MB912651618314E3BC38064198EC732@SJ0PR09MB9126.namprd09.prod.outlook.com>
-References: 
- <SJ0PR09MB9126D8AC39D16B934989FD27EC6F2@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <CAB__hTTLD0gOihqFKzWWrZA7VSTJixjZ+Q=d14i2dNZH0-8Wiw@mail.gmail.com>
-In-Reply-To: 
- <CAB__hTTLD0gOihqFKzWWrZA7VSTJixjZ+Q=d14i2dNZH0-8Wiw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aero.org;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|SJ0PR09MB10163:EE_
-x-ms-office365-filtering-correlation-id: 932f7cc2-8d7f-4bd2-e71c-08dc16b61bd4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- rnmTWufQjIhXTjtrtGAGOBkUwUALWd0KoWarhyeu3tJ0GrI/Puz2IqCdss7RCIQpgZ7Z3Lg6uWURSuS8DGpVbJOXQcq6B/JodIb9vXRukRcb+dxuho3Bo/zIJZFw4M9boguRBjd/3BF4YgEeI1l+cxh2ya2mcLr/eglbrtuMPLTJ/ysjGyO1D4db07UrMcFtskKIO2Zn1ZwvB7W7lZ5yTmiMbuoCOus2S/KiQnRO/9z5rJaBogt69BhDWzn76y6jc7zGeXxOCox++YC4eNra9dNnJk9OSIAOHgjgbpLQN4iUSQEzbnfc/mPAcjuyZJmLdsAZztAfyDiqZ8pvFQpSrZqQZzyyMkdFuVt976rr0ojOJfqgY25t3x/Z4D7nTwS/lJwcRd5ouuf8FtY1CYMrQEl9A9t8cdig7B15H26EA1Q6fINZjjIWlU+QX7oiY5K2I6hrS0UDHR0fTvp+q4V4QNbVHdykd4kdxQfByWQXxz6cYIhmesC8fFAD2GAbnaaZD0eOSi3VtDhDeUr9HRyVJGmpmdOLuFq599PXl5OpWsWCvUGLYK5OWOoutnqJMCscEPrwk3wRVf5Ve2kuQeDcj6NhN3j8+OkIR/uaR3F0ZMa2i/62AJRElldIb+9YFBVCJ3AgEJ4Pavv0eLpULACnCgK9NGK5JVg7O49q2YRwecQ=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(230173577357003)(230922051799003)(230273577357003)(186009)(1800799012)(451199024)(19627405001)(38070700009)(55016003)(66899024)(83380400001)(498600001)(4326008)(52536014)(5660300002)(66476007)(8936002)(8676002)(66556008)(66946007)(64756008)(6506007)(54906003)(66446008)(6916009)(91956017)(71200400001)(9686003)(76116006)(26005)(44832011)(107886003)(122000001)(38100700002)(53546011)(7696005)(86362001)(2906002)(33656002)(40140700001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?eU5CNGJZZzQrZUJxWlRjVEdkL2ppZ2Q3aHRmVFRER1BsdVZSZkpRdHFDcDFP?=
- =?utf-8?B?WjFmMjl4aFZrNUh6RklUeEZMd0dnazRBenpiSzBkNEVmbHRxYUFXNVk4am1t?=
- =?utf-8?B?THNPN29LMWZhMFBlR0svZ3VnYnhpZkFrMmI0eHFNdFpZcUp4dzZJajU5WW5v?=
- =?utf-8?B?VGd0WWlTa0RTSGtla3V6U0hoaWJibjFRbU5kY2h4eWkxTmlDNEsxVUVQS09V?=
- =?utf-8?B?UGZuNEZJMXhSWVMrckxxaHBSdVdHQStNQlZXc3AvM3ZXSEh6Y1RvQnpPOC9a?=
- =?utf-8?B?Mm9sMEZCdFA2cDZMelRoei9lN0xxak1mNWVMWC84Ky9UN2pybUk4TE53blJo?=
- =?utf-8?B?bHBkOXQ1RmpXcTF4UE5zMEw5WGZUVGtLaFZYMVRrQmduMDhUclhLWlhzZXV4?=
- =?utf-8?B?cTFVZjRmaFpGQ1JKYnlkQUZadVhvUFVaYThUTE9QTGpwbk14bjkvSHlJVTJk?=
- =?utf-8?B?MGdJN0ZLVFVWSWJHS0lhQ3djMVdhUjIxaVhZRGs0U1c1NVIyRUUwUWc4VjJS?=
- =?utf-8?B?bDZRVERZSUNtQjRZMTZkS2dWQlpsK3k1c0tRK0MxVENjZkhoMmU4VUdhRFQr?=
- =?utf-8?B?V3dNelRTaEtNTFVjUmJjb2FkZGd4em1QTHc2Uis4dDF2RDRLWlQ2K3JsTWVC?=
- =?utf-8?B?K0dZUmJ3cUFHLytSdU1jRnVqN25mUnZLeUYrNW84OVlkczJwSWs1cUJMdUhx?=
- =?utf-8?B?S0UxSm12VnZBT1VFVzVhZ2l5M0lxam9GNnZVclBHSXNIbDlyYWZ2QnNseWt4?=
- =?utf-8?B?MG1VNEFhSmU2VVd6aUo3cmtUTEdVNUR4UG1qa3Q2MDM3OTM3anVVNDdDZERF?=
- =?utf-8?B?OGoxY1EvYWlTY1JHQ1l5Z3VmVkxES3E3U294TzdSM0h1REpTYVhWRFdwbzJr?=
- =?utf-8?B?WjloQjR1bnlpYXJJT0FIdHhWbDVtQS9yWXhyNzNDTjlyTW1CRXhCOTM5cjRN?=
- =?utf-8?B?TDlmZ1J0eE9KYnAzTDdIWGE3Y0VpN0tpbXNtQXhjN1k1dFhuTnhWQytrMU9F?=
- =?utf-8?B?TCszR1ROT0t3d2gyQnVON3NnSFc2Q3F4WlFxYzVIZEdDQ1dOcUxRdHdzbVVj?=
- =?utf-8?B?ZnFYMmlWWlhPUzZQczJOYkI0UjdRaEZPT2dTQS9FN2Z5WWtobUVHUEs3Y0V2?=
- =?utf-8?B?bmRlMlhlVlE3ZGY1T2tZYUpNNkoxQUQxVnBISmtBNlhNZjBKY2d1Y05YcUZk?=
- =?utf-8?B?VnNZSU5oRHVtczNrc2JEM1E5WkdHY0hCbVdFbEV3SnpuT2d4TnVBbzkzeTVy?=
- =?utf-8?B?T1pKcHBQSzh5Um9CekxtQjUzMEtIbXAreldacjNQMGtWOG1rekc0MGVPbE9D?=
- =?utf-8?B?cFEyMTV2TUE4UUN3TDJIRDhYZWdDWFhHNWl2bldZaGJGODNaVkFYTElQSWQv?=
- =?utf-8?B?Z1haUys5amI1cmlyYW5aOTBGa0dXTmw4a3R1RGhuNm9yOEM3UEZtU3kyTnJC?=
- =?utf-8?B?WGJFekJtUkhTVXkyb09aTzUzOTN4SEE0K3pscjZnLzJvQUxWV3RyRDdNaWNP?=
- =?utf-8?B?OVAxYXFpaDh1KzNZL2pRai9ZQWticnZyMUhqdXpQWTlpWWJEWkp5c3hrcG0w?=
- =?utf-8?B?WnV2ekFNbENSM1NzZGZIL2JuY2JGZlZLdkh6NmpZTnBNMy9PeUxSRjlPek1W?=
- =?utf-8?B?bUR6NWR6T3RIUit0bjJja3lwa0tsYTQzc0ZwOFhHSlZ6NXlzWlFUaERaZXdX?=
- =?utf-8?B?M2tYbFFsNzRHdU5WY3Z3VXprOGZEOEJ6STY5MXFsV1d3RVNaejJqbk1KM0Nm?=
- =?utf-8?B?TG8zWGRVTDUvaWJOSEhxc1ZIYWVvUFdsS1FCSU9uNjJHeVNvcGJLakNRWita?=
- =?utf-8?B?TVhST2ZEZDVYRVN5SWl4VElkS2JiQkdwbGZ3VytrSCtiV0V0MStaSEh2bXB5?=
- =?utf-8?B?Rm10VEcrTjVNMWc5cTBRR01NTTRTeHBnallVVVdSR2NQSXBiLzcrNmFSbytn?=
- =?utf-8?B?V2tCL1lLRDRsa1gya1R3NHVKOGtLV05sS2ZScVcwWHhzVUpXQ3Z0NzVYTjNt?=
- =?utf-8?B?eExFSVJPY0FrNENFOFFBVGx6RzhkMldHZHVVdVRzYUUzL1cxVTVVNnVFK0F5?=
- =?utf-8?B?dlp5NFlQb3hKZU1uVzRwRVBjZURuZHYvSWFsb0lPNk03UWdRN0kxZzNoUzVU?=
- =?utf-8?Q?DNDw=3D?=
+        d=gmail.com; s=20230601; t=1705443597; x=1706048397; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ot4plVU5a3leI+Oql5+13i3uLa5TWhtqZn4LGsA3B8M=;
+        b=UvIIob4zpNZk6gh0oBwO2r6xpf/56ImozcGJVWyev7+lNnYJeMdwYJkkZ3+Rnq3zRi
+         NXmgPAjSySupX+RpESOog5zJXEYK3y/ANeIOfxJ9s6RAWMbfYchooi7gLcp7T+fz8274
+         YtuheiVvjQ3pCNjaoHyvTuGIro5iBItchgFg2blvNfNEelWxm7fcqDhCe3UYwgtoeoBF
+         yaJSEuEgjzHB9ObB0II9KJDNZnokh48IPEXSfxo4ELGap+nFEo4AMK0PwCdB//vpc+3b
+         hS07es5IHUIj6y2OEe3LkPdnOIVgCGlj0v6P9gvZ4xT1Em/cDzG7FaIWwhyDis8irM7X
+         qbtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705443597; x=1706048397;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ot4plVU5a3leI+Oql5+13i3uLa5TWhtqZn4LGsA3B8M=;
+        b=G6SUNp/HZnRIhTAKKKFBueT0pJAVxXG5dhDMQogNzGZjT2fChikzd/CP7cKz6Cl/nc
+         /27yprEL1DuvV4uOq9cspF71mmZC7nRv1VNuN6MzDebidRZXlJLX2tL0NP/zoNwudaM1
+         bsBgsuNrVJgYBGhClPsKWbBIT1i1cQzkS+adp4+bT5o2kNgCjjimvTbwoodz1H72Ldjq
+         V5f0GTVZ00SGgb4bVmw3d+lU0K4JMJF2MwFzQutbsoX8zKhD84ZSc9k4lUJLnM90YiRM
+         WCGmYqL8iaGLlHVgmC8/59iPxP5w0BZmT/KcKtufmv+nBiXbIYEtLbgAaf0t9BsUeNb+
+         UOew==
+X-Gm-Message-State: AOJu0YxQAvoXCWgTXZBMtx0M4RPyOHe7TmUZu5jJgnk7GavWz/gd3HXd
+	oqI7nIynl/srfdlovdij9w2sBffIZOY=
+X-Google-Smtp-Source: AGHT+IGb4ebbXf+VRDbaepXAXz0Gr19zgbXzMbvg8CG302+lSyfv1/UPYijnvsQSR0F1rz/9uwDb8g==
+X-Received: by 2002:a0c:aa1d:0:b0:680:4515:30af with SMTP id d29-20020a0caa1d000000b00680451530afmr7678598qvb.91.1705443596732;
+        Tue, 16 Jan 2024 14:19:56 -0800 (PST)
+Received: from [192.168.2.170] (bras-base-smflon1825w-grc-07-174-93-0-146.dsl.bell.ca. [174.93.0.146])
+        by smtp.googlemail.com with ESMTPSA id dz12-20020ad4588c000000b00680ee17f108sm4540190qvb.49.2024.01.16.14.19.56
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jan 2024 14:19:56 -0800 (PST)
+Message-ID: <ded4e7b8-1b3c-479c-bb28-23710b9ffdf0@gmail.com>
+Date: Tue, 16 Jan 2024 17:19:55 -0500
 MIME-Version: 1.0
-X-OriginatorOrg: aero.org
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 932f7cc2-8d7f-4bd2-e71c-08dc16b61bd4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jan 2024 17:10:58.6157
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR09MB10163
-Message-ID-Hash: 7XFEPXGRIPLD6PKIBDTEEYXEGOUWEMTE
-X-Message-ID-Hash: 7XFEPXGRIPLD6PKIBDTEEYXEGOUWEMTE
-X-MailFrom: prvs=73881046f=eugene.grayver@aero.org
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <SJ0PR09MB9126D8AC39D16B934989FD27EC6F2@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <CAB__hTTLD0gOihqFKzWWrZA7VSTJixjZ+Q=d14i2dNZH0-8Wiw@mail.gmail.com>
+ <SJ0PR09MB912651618314E3BC38064198EC732@SJ0PR09MB9126.namprd09.prod.outlook.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <SJ0PR09MB912651618314E3BC38064198EC732@SJ0PR09MB9126.namprd09.prod.outlook.com>
+Message-ID-Hash: CZ7MMEOVU4DTVN3QJWRLV5HKMNEKYET5
+X-Message-ID-Hash: CZ7MMEOVU4DTVN3QJWRLV5HKMNEKYET5
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>, Mark Kubiak <mark.kubiak@aero.org>, Jason W Zheng <jason.w.zheng@aero.org>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Bug/problem aligning PPS to samples
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4BNMI4KOYL2S6PMJQ7TG53V7UPK4ZXO3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CZ7MMEOVU4DTVN3QJWRLV5HKMNEKYET5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5943927711206277547=="
+Content-Type: multipart/mixed; boundary="===============0714117159710563396=="
 
---===============5943927711206277547==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============0714117159710563396==
 Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR09MB912651618314E3BC38064198EC732SJ0PR09MB9126namp_"
+ boundary="------------THToCLvqQb3QDzpEMvvKob9l"
+Content-Language: en-US
 
---_000_SJ0PR09MB912651618314E3BC38064198EC732SJ0PR09MB9126namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------THToCLvqQb3QDzpEMvvKob9l
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-SGksDQoNClRoZXJlIHNob3VsZCBiZSBzb21lIGRlbGF5LCBidXQgaXQgc2hvdWxkIGJlIG9uIHRo
-ZSBvcmRlciBvZiBhIGZldyBjbG9jayBjeWNsZXMgKEFEQy9EQUMgbGF0ZW5jeSkuICBGb3IgdGhl
-IE4zMjEgd2UgYXJlIG9ic2VydmluZyAxMDB1cywgY29ycmVzcG9uZGluZyB0byB+MjAwMCBzYW1w
-bGVzLiAgVGhlIFgzMTAgZGVsYXkgaXMgfjF1cywgd2hpY2ggY29ycmVzcG9uZHMgdG8gMjAgc2Ft
-cGxlcy4gIFN0aWxsIGEgbG90IGhpZ2hlciB0aGFuIEkgd291bGQgZXhwZWN0IGp1c3QgZHVlIHRv
-IEFEQy9EQUMuICBUaGUgZGVsYXkgY2hhbmdlcyBhcyBhIGZ1bmN0aW9uIG9mIHRoZSBzYW1wbGUg
-cmF0ZS4gIElmIHRoZSBzeW5jaHJvbml6YXRpb24gaXMgYWZ0ZXIgdGhlIEREQyAoYXMgSSB0aGlu
-ayBpdCBpcyksIEkgd291bGQgZXhwZWN0IHRoZSBkZWxheSB0byBiZSBpbmRlcGVuZGVudCBvZiB0
-aGUgZGVjaW1hdGlvbiByYXRpby4NCg0KV2UgYXJlIGRvaW5nIHRoZSBjYWxpYnJhdGlvbiBhbmQg
-d2lsbCB1c2UgdGhhdCB0byBjb21wZW5zYXRlLCBidXQgSSB0aGluayB0aGlzIGlzIHNvbWV0aGlu
-ZyB0aGF0IGNhbiBiZSBtaXRpZ2F0ZWQgKHRvIDwxdXMpIGluIHRoZSBGUEdBLg0KDQpFdWdlbmUu
-DQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX18NCg0KRXVnZW5lIEdyYXl2ZXIsIFBoLkQu
-DQpBZXJvc3BhY2UgQ29ycC4sIFByaW5jaXBhbCBFbmdpbmVlcg0KVGVsOiAzMTAuMzM2LjEyNzQN
-Cl9fX19fX19fX19fX19fX19fX19fX19fXw0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXw0KRnJvbTogUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5kLmVkdT4NClNlbnQ6IE1vbmRheSwg
-SmFudWFyeSAxNSwgMjAyNCA1OjA1IFBNDQpUbzogRXVnZW5lIEdyYXl2ZXIgPGV1Z2VuZS5ncmF5
-dmVyQGFlcm8ub3JnPg0KQ2M6IHVzcnAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-PjsgTWFyayBLdWJpYWsgPG1hcmsua3ViaWFrQGFlcm8ub3JnPjsgSmFzb24gVyBaaGVuZyA8amFz
-b24udy56aGVuZ0BhZXJvLm9yZz4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gQnVnL3Byb2Js
-ZW0gYWxpZ25pbmcgUFBTIHRvIHNhbXBsZXMNCg0KSGkgRXVnZW5lLA0KQXJlIHlvdSBleHBlY3Rp
-bmcgdGhhdCB0aGUgUkYgb3V0cHV0IChmb3IgVHggY2FzZSkgc2hvdWxkIGJlIHN5bmNlZCB0byB0
-aGUgUFBTICJhdCB0aGUgUkYgb3V0cHV0IGNvbm5lY3RvciI/ICBJdCBpcyBteSB1bmRlcnN0YW5k
-aW5nIHRoYXQgdGhlIHN5bmMgb2NjdXJzIGF0IHNvbWUgcGxhY2UgaW4gdGhlIEZQR0EgbG9naWMg
-Zm9yIHRoZSAicmFkaW8iIGJsb2NrLiBUaGVyZSB3aWxsIGJlIGRlbGF5IGFzIHRoaXMgZ29lcyB0
-aHJvdWdoIEQvQSBhbmQgUkYgY2hhaW4uICBTYW1lIGluIHJldmVyc2UgZm9yIFJ4LiAgQXMgbG9u
-ZyBhcyB5b3UgZ2V0IGEgY29uc2lzdGVudCBkZWxheSAoZm9yIGEgZ2l2ZW4gc2FtcGxlIHJhdGUp
-LCBjYW4geW91IGNhbGlicmF0ZSBhbmQgdGhlbiBjaG9vc2UgYSBwbGF5b3V0IHRpbWUgdGhhdCBz
-eW5jcyB0aGUgUkYgcHVsc2UgdG8gdGhlIFBQUyBwdWxzZT8NClJvYg0KDQpPbiBGcmksIEphbiAx
-MiwgMjAyNCBhdCA0OjM44oCvUE0gRXVnZW5lIEdyYXl2ZXIgPGV1Z2VuZS5ncmF5dmVyQGFlcm8u
-b3JnPG1haWx0bzpldWdlbmUuZ3JheXZlckBhZXJvLm9yZz4+IHdyb3RlOg0KSGVsbG8sDQoNClRo
-ZXJlIGFwcGVhcnMgdG8gYmUgYSBidWcgcmVsYXRlZCB0byBhbGlnbm1lbnQgb2YgdGhlIFBQUyB0
-byBzYW1wbGVzLiAgVGhlIGlzc3VlIGFwcGxpZXMgdG8gYm90aCBUWCBhbmQgUlggYW5kIHdhcyBy
-ZXBsaWNhdGVkIG9uIE4zMjEgYW5kIFgzMTAgdXNpbmcgVURIIDMuMTUgYW5kIDQuNi4gIEl0IHRo
-ZXJlZm9yZSBhcHBlYXJzIHRvIGJlIGFuIEZQR0EgaXNzdWUuDQoNClRYIGV4cGVyaW1lbnQNCi0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KICAqICAgVVNSUCBpcyBwcm92aWRlZCB3aXRo
-IGV4dGVybmFsIFBQUyBhbmQgMTAgTUh6DQogICogICBUaGUgUFBTIGlucHV0IGlzIHNwbGl0IGFu
-ZCBnb2VzIHRvIHRoZSBVU1JQIGFuZCBhIHNjb3BlDQogICogICBUaGUgVVNSUCBvdXRwdXQgZ29l
-cyB0byBhIHNjb3BlDQogICogICBVU1JQIG91dHB1dHMgYSBmaWxlDQogICAgICoNCkZpcnN0IDEw
-MDAgc2FtcGxlcyBhcmUgMSwgcmVtYWluaW5nIGFyZSB6ZXJvDQogICAgICogICBGaWxlIHNpemUg
-PSBzYW1wbGUgcmF0ZSAoaS5lLiByZXBlYXRzIGV2ZXJ5IHNlY29uZCkNCiAgKiAgIFNldHVwIHRo
-ZSBleHBlcmltZW50IHVzaW5nIGJvdGg6DQogICAgICogICBHUiBmaWxlX3NvdXJjZSArIHVzcnBf
-c2luaw0KICAgICAgICAqICAgU3luYyB0byB1bmtub3duIFBQUw0KICAgICAgICAqICAgdXNycC5z
-ZXRfc3RhcnRfdGltZSg1KQ0KICAgICAqICAgU3RhbmRhbG9uZSBDKysgYXBwbGljYXRpb24gKGJh
-c2VkIG9uIHR4X3NhbXBsZXNfZnJvbV9maWxlKQ0KICAgICAgICAqICAgQWRkZWQgY29kZSB0byBz
-ZXRfdGltZV91bmtub3duX3BwcygwKSwgdGhlbiBzZXQgc3RhcnQgdGltZSB1c2luZyBtZXRhZGF0
-YSB0byA1DQoNClJlc3VsdHM6DQoNCiAgKiAgIFRoZSBVU1JQIG91dHB1dCBpcyBkZWxheWVkIHJl
-bGF0aXZlIHRvIHRoZSBQUFMgYXMgb2JzZXJ2ZWQgb24gdGhlIHNjb3BlDQogICogICBUaGUgZGVs
-YXkgaXMgfjEuMiB1cyBmb3IgWDMxMCBhbmQgfjEwMHVzIGZvciBOMzIxDQogICogICBUaGUgZGVs
-YXkgY2hhbmdlcyBzbGlnaHRseSAoPDF1cykgZGVwZW5kaW5nIG9uIHRoZSBzYW1wbGUgcmF0ZSAo
-ZS5nLiAxMCBNc3BzIHZzIDIwIE1zcHMpDQoNClJYIGV4cGVyaW1lbnQNCi0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0NCg0KICAqICAgVVNSUCBpcyBwcm92aWRlZCB3aXRoIGV4dGVybmFsIFBQ
-UyBhbmQgMTAgTUh6DQogICoNClVTUlAgaW5wdXQgaXMgYSBwdWxzZSAoZ2VuZXJhdGVkIHVzaW5n
-IHRlY2huaXF1ZSBhYm92ZSkgdGhhdCByZXBlYXRzIGV2ZXJ5IHNlY29uZA0KICAgICAqDQpQdWxz
-ZSBpcyBhbGlnbmVkIHRvIFBQUywgdmVyaWZpZWQgdXNpbmcgYSBzY29wZQ0KICAqDQpVU1JQIHJl
-Y29yZHMgc2FtcGxlcyBzdGFydGluZyBvbiBhIHNlY29uZCBib3VuZGFyeSAodGltZV90KDUpKQ0K
-ICAgICAqDQpHUiB1c3JwX3NvdXJjZSArIGZpbGVfc2luaw0KICAgICAqDQpzdGFuZGFsb25lIEMr
-KyBhcHBsaWNhdGlvbiAoYmFzZWQgb24gcnhfc2FtcGxlc190b19maWxlKQ0KICAgICAgICAqICAg
-QWRkZWQgY29kZSB0byBzZXRfdGltZV91bmtub3duX3BwcygwKSwgdGhlbiBzZXQgc3RhcnQgdGlt
-ZSB1c2luZyBtZXRhZGF0YSB0byA1DQogICoNClJlY29yZGVkIHNhbXBsZXMgYXJlIGFuYWx5emVk
-IHRvIGZpbmQgdGhlIGZpcnN0ICdsYXJnZScgdmFsdWUNCg0KUmVzdWx0cw0KDQogICogICBSZWNv
-cmRpbmcgYXBwZWFycyB0byBzdGFydCBsYXRlIHJlbGF0aXZlIHRvIFBQUyAob25seSB2ZXJpZmll
-ZCBvbiBOMzIxLCBkZWxheSBpcyB+MTAwIHVzLCBzYW1lIGFzIGZvciB0aGUgVFggZGVsYXkpDQoN
-ClRob3VnaHRzDQoNCiAgKiAgIEkgcmVjYWxsICh5ZWFycyBhZ28pIHRoZXJlIHdhcyBhIGZpeCB0
-byBhIHNpbWlsYXIgcHJvYmxlbS4gIFRoZSBGUEdBIHdhcyBtb2RpZmllZCB0byB0cmlnZ2VyIEFE
-Qy9EQUMgc2FtcGxlcyBhZnRlciB0aGUgRERDIHJhdGhlciB0aGFuIGJlZm9yZS4gIERpZCBpdCBy
-ZWdyZXNzIGF0IHNvbWUgcG9pbnQ/DQoNCiAgKiAgIFRoZSBkZWxheXMgYXJlIHZlcnkgY29uc2lz
-dGVudCwgaW5kaWNhdGluZyB0aGF0IHRoZSBQUFMgaXMgaW4gZmFjdCBiZWluZyB1c2VkIChpLmUu
-IGl0IGlzIG5vdCByYW5kb20pLg0KDQogICogICBXZSByYW4gc29tZSBleHBlcmltZW50cyB0byBh
-bmFseXplIHRoZSBzdGFiaWxpdHkgYW5kIGFjY3VyYWN5IG9mIHJlbGF0aXZlIHRpbWluZyBiZXR3
-ZWVuIFJYIGFuZCBUWCAoaS5lLiB0dXJuLWFyb3VuZCkgd2hlbiB0aGUgc3RhcnQgdGltZSBmb3Ig
-VFggYW5kIFJYIGFyZSBzcGVjaWZpZWQuICBUaGUgcmVzdWx0cyBhcmUgZXhjZWxsZW50IOKAkyBk
-ZWxheSBpcyBzdGFibGUgYW5kIGFjY3VyYXRlIHRvIDwgMTAwIHBzLg0KDQpUaGlzIHNlZW1zIGxp
-a2UgYSBzaW1wbGUgdGhpbmcgdG8gZml4IGluIHRoZSBGUEdBIOKAkyB0aGVyZSBpcyBubyByZWFz
-b24gZm9yIHRoZSBkZWxheSB0byBiZSA+IDEgc2FtcGxlIGNsb2NrLg0KDQpFdWdlbmUuDQoNCg0K
-X19fX19fX19fX19fX19fX19fX19fX19fDQoNCkV1Z2VuZSBHcmF5dmVyLCBQaC5ELg0KQWVyb3Nw
-YWNlIENvcnAuLCBQcmluY2lwYWwgRW5naW5lZXINClRlbDogMzEwLjMzNi4xMjc0DQpfX19fX19f
-X19fX19fX19fX19fX19fX18NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFp
-bHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0K
+On 16/01/2024 12:10, Eugene Grayver wrote:
+> Hi,
+>
+> There should be some delay, but it should be on the order of a few=20
+> clock cycles (ADC/DAC latency).=C2=A0 For the N321 we are observing 100=
+us,=20
+> corresponding to ~2000 samples.=C2=A0 The X310 delay is ~1us, which=20
+> corresponds to 20 samples.=C2=A0 Still a lot higher than I would expect=
+=20
+> just due to ADC/DAC.=C2=A0 The delay changes as a function of the sampl=
+e=20
+> rate.=C2=A0 If the synchronization is after the DDC (as I think it is),=
+ I=20
+> would expect the delay to be independent of the decimation ratio.
+>
+> We are doing the calibration and will use that to compensate, but I=20
+> think this is something that can be mitigated (to <1us) in the FPGA.
+>
+> Eugene.
+I don't think the timed streaming has *ever* been at the DAC--DUC or=20
+ADC--DDC interface.=C2=A0 From what I understand, timestamps
+ =C2=A0 have *always* been assigned (in the RX case) as samples come off =
+the=20
+DDC, and correspondingly for the other direction.
 
---_000_SJ0PR09MB912651618314E3BC38064198EC732SJ0PR09MB9126namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Different sample rates will necessarily determine the DDC filter depth=20
+that is being used, and the rate that some of it is
+ =C2=A0 clocked at.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
-Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpIaSw8L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1l
-bnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQs
-IEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9u
-dC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYg
-Y2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19F
-bWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpUaGVyZSBz
-aG91bGQgYmUgc29tZSBkZWxheSwgYnV0IGl0IHNob3VsZCBiZSBvbiB0aGUgb3JkZXIgb2YgYSBm
-ZXcgY2xvY2sgY3ljbGVzIChBREMvREFDIGxhdGVuY3kpLiZuYnNwOyBGb3IgdGhlIE4zMjEgd2Ug
-YXJlIG9ic2VydmluZyAxMDB1cywgY29ycmVzcG9uZGluZyB0byB+MjAwMCBzYW1wbGVzLiZuYnNw
-OyBUaGUgWDMxMCBkZWxheSBpcyB+MXVzLCB3aGljaCBjb3JyZXNwb25kcyB0byAyMCBzYW1wbGVz
-LiZuYnNwOyBTdGlsbCBhIGxvdCBoaWdoZXIgdGhhbiBJIHdvdWxkDQogZXhwZWN0IGp1c3QgZHVl
-IHRvIEFEQy9EQUMuJm5ic3A7IFRoZSBkZWxheSBjaGFuZ2VzIGFzIGEgZnVuY3Rpb24gb2YgdGhl
-IHNhbXBsZSByYXRlLiZuYnNwOyBJZiB0aGUgc3luY2hyb25pemF0aW9uIGlzIGFmdGVyIHRoZSBE
-REMgKGFzIEkgdGhpbmsgaXQgaXMpLCBJIHdvdWxkIGV4cGVjdCB0aGUgZGVsYXkgdG8gYmUgaW5k
-ZXBlbmRlbnQgb2YgdGhlIGRlY2ltYXRpb24gcmF0aW8uJm5ic3A7Jm5ic3A7PC9kaXY+DQo8ZGl2
-IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3Nf
-RW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0K
-PC9kaXY+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBB
-cHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBI
-ZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAw
-KTsiPg0KV2UgYXJlIGRvaW5nIHRoZSBjYWxpYnJhdGlvbiBhbmQgd2lsbCB1c2UgdGhhdCB0byBj
-b21wZW5zYXRlLCBidXQgSSB0aGluayB0aGlzIGlzIHNvbWV0aGluZyB0aGF0IGNhbiBiZSBtaXRp
-Z2F0ZWQgKHRvICZsdDsxdXMpIGluIHRoZSBGUEdBLjwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVu
-dFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwg
-QXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250
-LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBj
-bGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0Vt
-YmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5z
-LXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkV1Z2VuZS48
-L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFw
-dG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhl
-bHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDAp
-OyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9u
-dC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2Us
-IENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjog
-cmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgaWQ9IlNpZ25hdHVyZSI+DQo8ZGl2
-IGlkPSJkaXZ0YWdkZWZhdWx0d3JhcHBlciIgZGlyPSJsdHIiIHN0eWxlPSJjb2xvcjpyZ2IoMCww
-LDApOyBmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250
-LXNpemU6MTJwdDsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NCjxwPjxzcGFu
-IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTMuMzNw
-eDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPl9fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48
-c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEw
-cHQ7IGNvbG9yOiBibGFjazsiPjxicj4NCjwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEwcHQ7IGNvbG9yOiBibGFj
-azsiPkV1Z2VuZSBHcmF5dmVyLCBQaC5ELjxicj4NCkFlcm9zcGFjZSBDb3JwLiwgUHJpbmNpcGFs
-IEVuZ2luZWVyPGJyPg0KVGVsOiAzMTAuMzM2LjEyNzQ8YnI+DQpfX19fX19fX19fX19fX19fX19f
-X19fX188L3NwYW4+PGJyPg0KPC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXYgaWQ9ImFwcGVuZG9u
-c2VuZCI+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIg
-dGFiaW5kZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBm
-YWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOjExcHQiIGNvbG9yPSIj
-MDAwMDAwIj48Yj5Gcm9tOjwvYj4gUm9iIEtvc3NsZXIgJmx0O3Jrb3NzbGVyQG5kLmVkdSZndDs8
-YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBKYW51YXJ5IDE1LCAyMDI0IDU6MDUgUE08YnI+DQo8
-Yj5Ubzo8L2I+IEV1Z2VuZSBHcmF5dmVyICZsdDtldWdlbmUuZ3JheXZlckBhZXJvLm9yZyZndDs8
-YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNlcnMgJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-Jmd0OzsgTWFyayBLdWJpYWsgJmx0O21hcmsua3ViaWFrQGFlcm8ub3JnJmd0OzsgSmFzb24gVyBa
-aGVuZyAmbHQ7amFzb24udy56aGVuZ0BhZXJvLm9yZyZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4g
-UmU6IFtVU1JQLXVzZXJzXSBCdWcvcHJvYmxlbSBhbGlnbmluZyBQUFMgdG8gc2FtcGxlczwvZm9u
-dD4NCjxkaXY+Jm5ic3A7PC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRyIj5IaSBF
-dWdlbmUsDQo8ZGl2PkFyZSB5b3UgZXhwZWN0aW5nIHRoYXQgdGhlIFJGIG91dHB1dCAoZm9yIFR4
-IGNhc2UpIHNob3VsZCBiZSBzeW5jZWQgdG8gdGhlIFBQUyAmcXVvdDthdCB0aGUgUkYgb3V0cHV0
-IGNvbm5lY3RvciZxdW90Oz8mbmJzcDsgSXQgaXMgbXkgdW5kZXJzdGFuZGluZyB0aGF0IHRoZSBz
-eW5jIG9jY3VycyBhdCBzb21lIHBsYWNlIGluIHRoZSBGUEdBIGxvZ2ljIGZvciB0aGUgJnF1b3Q7
-cmFkaW8mcXVvdDsgYmxvY2suIFRoZXJlIHdpbGwgYmUgZGVsYXkgYXMgdGhpcyBnb2VzIHRocm91
-Z2ggRC9BDQogYW5kIFJGIGNoYWluLiZuYnNwOyBTYW1lIGluIHJldmVyc2UgZm9yIFJ4LiZuYnNw
-OyBBcyBsb25nIGFzIHlvdSBnZXQgYSBjb25zaXN0ZW50IGRlbGF5IChmb3IgYSBnaXZlbiBzYW1w
-bGUgcmF0ZSksIGNhbiB5b3UgY2FsaWJyYXRlIGFuZCB0aGVuIGNob29zZSBhIHBsYXlvdXQgdGlt
-ZSB0aGF0IHN5bmNzIHRoZSBSRiBwdWxzZSB0byB0aGUgUFBTIHB1bHNlPzwvZGl2Pg0KPGRpdj5S
-b2I8L2Rpdj4NCjwvZGl2Pg0KPGJyPg0KPGRpdiBjbGFzcz0ieF9nbWFpbF9xdW90ZSI+DQo8ZGl2
-IGRpcj0ibHRyIiBjbGFzcz0ieF9nbWFpbF9hdHRyIj5PbiBGcmksIEphbiAxMiwgMjAyNCBhdCA0
-OjM44oCvUE0gRXVnZW5lIEdyYXl2ZXIgJmx0OzxhIGhyZWY9Im1haWx0bzpldWdlbmUuZ3JheXZl
-ckBhZXJvLm9yZyI+ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmc8L2E+Jmd0OyB3cm90ZTo8YnI+DQo8
-L2Rpdj4NCjxibG9ja3F1b3RlIGNsYXNzPSJ4X2dtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBw
-eCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTsg
-cGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2IGNsYXNzPSJ4X21zZy0yMjk0MzAwMTk0MDY4MDM5MTIy
-Ij4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3Nf
-RW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1z
-ZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSGVsbG8sPC9kaXY+DQo8
-ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNG
-b250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsg
-Y29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5
-OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVs
-dmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NClRo
-ZXJlIGFwcGVhcnMgdG8gYmUgYSBidWcgcmVsYXRlZCB0byBhbGlnbm1lbnQgb2YgdGhlIFBQUyB0
-byBzYW1wbGVzLiZuYnNwOyBUaGUgaXNzdWUgYXBwbGllcyB0byBib3RoIFRYIGFuZCBSWCBhbmQg
-d2FzIHJlcGxpY2F0ZWQgb24gTjMyMSBhbmQgWDMxMCB1c2luZyBVREggMy4xNSBhbmQgNC42LiZu
-YnNwOyBJdCB0aGVyZWZvcmUgYXBwZWFycyB0byBiZSBhbiBGUEdBIGlzc3VlLjwvZGl2Pg0KPGRp
-diBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9u
-dFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNv
-bG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpB
-cHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZl
-dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8Yj5U
-WCBleHBlcmltZW50PC9iPjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0
-b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLTwvZGl2Pg0KPHVsIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6ZGlzYyI+
-DQo8bGkgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19N
-U0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0
-OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRv
-c19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5z
-LXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+VVNSUCBpcyBwcm92aWRl
-ZCB3aXRoIGV4dGVybmFsIFBQUyBhbmQgMTAgTUh6PGJyPg0KPC9zcGFuPjwvbGk+PGxpIHN0eWxl
-PSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2Vydmlj
-ZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdi
-KDAsMCwwKSI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRG
-b250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9u
-dC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPlRoZSBQUFMgaW5wdXQgaXMgc3BsaXQgYW5k
-IGdvZXMgdG8gdGhlIFVTUlAgYW5kIGEgc2NvcGU8L3NwYW4+PC9saT48bGkgc3R5bGU9ImZvbnQt
-ZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGli
-cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
-Ij4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0
-b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6
-MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+VGhlIFVTUlAgb3V0cHV0IGdvZXMgdG8gYSBzY29wZTwv
-c3Bhbj48L2xpPjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250
-LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1z
-aXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFw
-dG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0
-aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj5VU1JQIG91
-dHB1dHMgYSBmaWxlPC9zcGFuPjwvbGk+PHVsIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6Y2lyY2xl
-Ij4NCjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9z
-X01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEy
-cHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0
-b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRp
-Y2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPkZpcnN0IDEw
-MDAgc2FtcGxlcyBhcmUgMSwgcmVtYWluaW5nIGFyZSB6ZXJvPC9zcGFuPjwvZGl2Pg0KPC9saT48
-bGkgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0Zv
-bnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBj
-b2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19F
-bWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNl
-cmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+RmlsZSBzaXplID0gc2FtcGxl
-IHJhdGUgKGkuZS4gcmVwZWF0cyBldmVyeSBzZWNvbmQpPC9zcGFuPjwvbGk+PC91bD4NCjxsaSBz
-dHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNl
-cnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9y
-OnJnYigwLDAsMCkiPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVk
-ZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7
-IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj5TZXR1cCB0aGUgZXhwZXJpbWVudCB1
-c2luZyBib3RoOjwvc3Bhbj48L2xpPjx1bCBzdHlsZT0ibGlzdC1zdHlsZS10eXBlOmNpcmNsZSI+
-DQo8bGkgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19N
-U0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0
-OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRv
-c19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5z
-LXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+R1IgZmlsZV9zb3VyY2Ug
-KyB1c3JwX3Npbms8L3NwYW4+PC9saT48dWwgc3R5bGU9Imxpc3Qtc3R5bGUtdHlwZTpzcXVhcmUi
-Pg0KPGxpIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3Nf
-TVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJw
-dDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0
-b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPlN5bmMgdG8gdW5rbm93
-biBQUFM8L3NwYW4+PC9saT48bGkgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVk
-ZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7
-IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuIHN0eWxlPSJmb250LWZh
-bWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJp
-LEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+
-dXNycC5zZXRfc3RhcnRfdGltZSg1KTwvc3Bhbj48L2xpPjwvdWw+DQo8bGkgc3R5bGU9ImZvbnQt
-ZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGli
-cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
-Ij4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0
-b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6
-MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+U3RhbmRhbG9uZSBDKysgYXBwbGljYXRpb24gKGJhc2Vk
-IG9uIHR4X3NhbXBsZXNfZnJvbV9maWxlKTwvc3Bhbj48L2xpPjx1bCBzdHlsZT0ibGlzdC1zdHls
-ZS10eXBlOnNxdWFyZSI+DQo8bGkgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVk
-ZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7
-IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuIHN0eWxlPSJmb250LWZh
-bWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJp
-LEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+
-QWRkZWQgY29kZSB0byBzZXRfdGltZV91bmtub3duX3BwcygwKSwgdGhlbiBzZXQgc3RhcnQgdGlt
-ZSB1c2luZyBtZXRhZGF0YSB0byA1PC9zcGFuPjwvbGk+PC91bD4NCjwvdWw+DQo8L3VsPg0KPGRp
-dj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9z
-X01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEy
-cHQ7IGNvbG9yOnJnYigwLDAsMCkiPlJlc3VsdHM6PC9zcGFuPjwvZGl2Pg0KPHVsIHN0eWxlPSJs
-aXN0LXN0eWxlLXR5cGU6ZGlzYyI+DQo8bGkgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9z
-X0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMt
-c2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuIHN0eWxlPSJm
-b250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxD
-YWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAs
-MCwwKSI+VGhlIFVTUlAgb3V0cHV0IGlzIGRlbGF5ZWQgcmVsYXRpdmUgdG8gdGhlIFBQUyBhcyBv
-YnNlcnZlZCBvbiB0aGUgc2NvcGU8L3NwYW4+PC9saT48bGkgc3R5bGU9ImZvbnQtZmFtaWx5OkFw
-dG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0
-aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFu
-IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250
-U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
-b3I6cmdiKDAsMCwwKSI+VGhlIGRlbGF5IGlzIH4xLjIgdXMgZm9yIFgzMTAgYW5kIH4xMDB1cyBm
-b3IgTjMyMTwvc3Bhbj48L2xpPjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1i
-ZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJp
-ZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPHNwYW4gc3R5bGU9ImZvbnQt
-ZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGli
-cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
-Ij5UaGUgZGVsYXkgY2hhbmdlcyBzbGlnaHRseSAoJmx0OzF1cykgZGVwZW5kaW5nIG9uIHRoZSBz
-YW1wbGUgcmF0ZSAoZS5nLiAxMCBNc3BzIHZzIDIwIE1zcHMpPC9zcGFuPjwvbGk+PC91bD4NCjxk
-aXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRv
-c19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
-MnB0OyBjb2xvcjpyZ2IoMCwwLDApIj48YnI+DQo8L3NwYW4+PC9kaXY+DQo8ZGl2PjxzcGFuIHN0
-eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2Vy
-dmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6
-cmdiKDAsMCwwKSI+PGI+UlggZXhwZXJpbWVudDwvYj48L3NwYW4+PC9kaXY+DQo8ZGl2PjxzcGFu
-IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250
-U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
-b3I6cmdiKDAsMCwwKSI+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTwvc3Bhbj48L2Rpdj4N
-Cjx1bCBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0OyBsaXN0LXN0eWxlLXR5cGU6ZGlzYyI+DQo8bGkg
-c3R5bGU9ImxldHRlci1zcGFjaW5nOm5vcm1hbDsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1i
-ZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJp
-ZjsgZm9udC1zaXplOjEycHQ7IGZvbnQtd2VpZ2h0OjQwMDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8
-c3BhbiBzdHlsZT0ibGV0dGVyLXNwYWNpbmc6bm9ybWFsOyBmb250LWZhbWlseTpBcHRvcyxBcHRv
-c19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5z
-LXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgZm9udC13ZWlnaHQ6NDAw
-Ij5VU1JQIGlzIHByb3ZpZGVkIHdpdGggZXh0ZXJuYWwgUFBTIGFuZCAxMCBNSHo8L3NwYW4+PC9s
-aT48bGkgc3R5bGU9ImxldHRlci1zcGFjaW5nOm5vcm1hbDsgZm9udC1mYW1pbHk6QXB0b3MsQXB0
-b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGZvbnQtd2VpZ2h0OjQwMDsgY29sb3I6cmdiKDAsMCww
-KSI+DQo8ZGl2PjxzcGFuIHN0eWxlPSJsZXR0ZXItc3BhY2luZzpub3JtYWw7IGZvbnQtZmFtaWx5
-OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVs
-dmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBmb250
-LXdlaWdodDo0MDAiPlVTUlAgaW5wdXQgaXMgYSBwdWxzZSAoZ2VuZXJhdGVkIHVzaW5nIHRlY2hu
-aXF1ZSBhYm92ZSkgdGhhdCByZXBlYXRzIGV2ZXJ5IHNlY29uZDwvc3Bhbj48L2Rpdj4NCjwvbGk+
-PHVsIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6Y2lyY2xlIj4NCjxsaSBzdHlsZT0ibGV0dGVyLXNw
-YWNpbmc6bm9ybWFsOyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3Nf
-TVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJw
-dDsgZm9udC13ZWlnaHQ6NDAwOyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxkaXY+PHNwYW4gc3R5bGU9
-ImxldHRlci1zcGFjaW5nOm5vcm1hbDsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRG
-b250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9u
-dC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IGZvbnQtd2VpZ2h0OjQwMCI+UHVsc2UgaXMg
-YWxpZ25lZCB0byBQUFMsIHZlcmlmaWVkIHVzaW5nIGEgc2NvcGU8L3NwYW4+PC9kaXY+DQo8L2xp
-PjwvdWw+DQo8bGkgc3R5bGU9ImxldHRlci1zcGFjaW5nOm5vcm1hbDsgZm9udC1mYW1pbHk6QXB0
-b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRp
-Y2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGZvbnQtd2VpZ2h0OjQwMDsgY29sb3I6cmdi
-KDAsMCwwKSI+DQo8ZGl2PjxzcGFuIHN0eWxlPSJsZXR0ZXItc3BhY2luZzpub3JtYWw7IGZvbnQt
-ZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGli
-cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
-OyBmb250LXdlaWdodDo0MDAiPlVTUlAgcmVjb3JkcyBzYW1wbGVzIHN0YXJ0aW5nIG9uIGEgc2Vj
-b25kIGJvdW5kYXJ5ICh0aW1lX3QoNSkpPC9zcGFuPjwvZGl2Pg0KPC9saT48dWwgc3R5bGU9Imxp
-c3Qtc3R5bGUtdHlwZTpjaXJjbGUiPg0KPGxpIHN0eWxlPSJsZXR0ZXItc3BhY2luZzpub3JtYWw7
-IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNl
-LENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBmb250LXdlaWdo
-dDo0MDA7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGRpdj48c3BhbiBzdHlsZT0ibGV0dGVyLXNwYWNp
-bmc6bm9ybWFsOyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNG
-b250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsg
-Y29sb3I6cmdiKDAsMCwwKTsgZm9udC13ZWlnaHQ6NDAwIj5HUiB1c3JwX3NvdXJjZSArIGZpbGVf
-c2luazwvc3Bhbj48L2Rpdj4NCjwvbGk+PGxpIHN0eWxlPSJsZXR0ZXItc3BhY2luZzpub3JtYWw7
-IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNl
-LENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBmb250LXdlaWdo
-dDo0MDA7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGRpdj48c3BhbiBzdHlsZT0ibGV0dGVyLXNwYWNp
-bmc6bm9ybWFsOyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNG
-b250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsg
-Y29sb3I6cmdiKDAsMCwwKTsgZm9udC13ZWlnaHQ6NDAwIj5zdGFuZGFsb25lIEMrKyBhcHBsaWNh
-dGlvbiAoYmFzZWQgb24gcnhfc2FtcGxlc190b19maWxlKTwvc3Bhbj48L2Rpdj4NCjwvbGk+PHVs
-IHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6c3F1YXJlIj4NCjxsaSBzdHlsZT0ibGV0dGVyLXNwYWNp
-bmc6bm9ybWFsOyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNG
-b250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsg
-Zm9udC13ZWlnaHQ6NDAwOyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuIHN0eWxlPSJsZXR0ZXIt
-c3BhY2luZzpub3JtYWw7IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRv
-c19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
-MnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBmb250LXdlaWdodDo0MDAiPkFkZGVkIGNvZGUgdG8gc2V0
-X3RpbWVfdW5rbm93bl9wcHMoMCksIHRoZW4gc2V0IHN0YXJ0IHRpbWUgdXNpbmcgbWV0YWRhdGEg
-dG8gNTwvc3Bhbj48L2xpPjwvdWw+DQo8L3VsPg0KPGxpIHN0eWxlPSJsZXR0ZXItc3BhY2luZzpu
-b3JtYWw7IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRT
-ZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBmb250
-LXdlaWdodDo0MDA7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGRpdj48c3BhbiBzdHlsZT0ibGV0dGVy
-LXNwYWNpbmc6bm9ybWFsOyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0
-b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6
-MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgZm9udC13ZWlnaHQ6NDAwIj5SZWNvcmRlZCBzYW1wbGVz
-IGFyZSBhbmFseXplZCB0byBmaW5kIHRoZSBmaXJzdCAnbGFyZ2UnIHZhbHVlPC9zcGFuPjwvZGl2
-Pg0KPC9saT48L3VsPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRk
-ZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPHNwYW4gc3R5bGU9ImxldHRlci1z
-cGFjaW5nOm5vcm1hbDsgZm9udC13ZWlnaHQ6NDAwIj5SZXN1bHRzPC9zcGFuPjwvZGl2Pg0KPHVs
-IHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6ZGlzYyI+DQo8bGkgc3R5bGU9ImZvbnQtZmFtaWx5OkFw
-dG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0
-aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFu
-IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250
-U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
-b3I6cmdiKDAsMCwwKSI+UmVjb3JkaW5nIGFwcGVhcnMgdG8gc3RhcnQgbGF0ZSByZWxhdGl2ZSB0
-byBQUFMgKG9ubHkgdmVyaWZpZWQgb24gTjMyMSwgZGVsYXkgaXMgfjEwMCB1cywgc2FtZSBhcyBm
-b3IgdGhlIFRYIGRlbGF5KTwvc3Bhbj48L2xpPjwvdWw+DQo8ZGl2PjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxp
-YnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCww
-KSI+PGJyPg0KPC9zcGFuPjwvZGl2Pg0KPGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0
-b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRp
-Y2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPjxiPlRob3Vn
-aHRzPC9iPjwvc3Bhbj48L2Rpdj4NCjxkaXY+DQo8dWw+DQo8bGkgc3R5bGU9ImZvbnQtc2l6ZTox
-MnB0OyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2Vy
-dmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBjb2xvcjpyZ2IoMCwwLDApOyBsaXN0
-LXN0eWxlLXR5cGU6ZGlzYyI+DQo8c3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3Ms
-QXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Es
-c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPkkgcmVjYWxsICh5
-ZWFycyBhZ28pIHRoZXJlIHdhcyBhIGZpeCB0byBhIHNpbWlsYXIgcHJvYmxlbS4mbmJzcDsgVGhl
-IEZQR0Egd2FzIG1vZGlmaWVkIHRvIHRyaWdnZXIgQURDL0RBQyBzYW1wbGVzIGFmdGVyIHRoZQ0K
-IEREQyByYXRoZXIgdGhhbiBiZWZvcmUuJm5ic3A7IERpZCBpdCByZWdyZXNzIGF0IHNvbWUgcG9p
-bnQ/PC9zcGFuPjxicj4NCjwvc3Bhbj48L2xpPjwvdWw+DQo8L2Rpdj4NCjxkaXY+DQo8dWw+DQo8
-bGkgc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRl
-ZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBj
-b2xvcjpyZ2IoMCwwLDApOyBsaXN0LXN0eWxlLXR5cGU6ZGlzYyI+DQo8c3Bhbj48c3BhbiBzdHls
-ZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZp
-Y2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJn
-YigwLDAsMCkiPlRoZSBkZWxheXMgYXJlIHZlcnkgY29uc2lzdGVudCwgaW5kaWNhdGluZyB0aGF0
-IHRoZSBQUFMgaXMgaW4gZmFjdCBiZWluZyB1c2VkIChpLmUuIGl0IGlzIG5vdCByYW5kb20pLjwv
-c3Bhbj48YnI+DQo8L3NwYW4+PC9saT48L3VsPg0KPC9kaXY+DQo8ZGl2Pg0KPHVsPg0KPGxpIHN0
-eWxlPSJsaXN0LXN0eWxlLXR5cGU6ZGlzYyI+PHNwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
-OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVs
-dmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj5XZSBy
-YW4gc29tZSBleHBlcmltZW50cyB0byBhbmFseXplIHRoZSBzdGFiaWxpdHkgYW5kIGFjY3VyYWN5
-IG9mDQo8Yj5yZWxhdGl2ZTwvYj4mbmJzcDt0aW1pbmcgYmV0d2VlbiBSWCBhbmQgVFggKGkuZS4g
-dHVybi1hcm91bmQpIHdoZW4gdGhlIHN0YXJ0IHRpbWUgZm9yIFRYIGFuZCBSWCBhcmUgc3BlY2lm
-aWVkLiZuYnNwOyBUaGUgcmVzdWx0cyBhcmUgZXhjZWxsZW50IOKAkyBkZWxheSBpcyBzdGFibGUg
-YW5kIGFjY3VyYXRlIHRvICZsdDsgMTAwIHBzLjwvc3Bhbj48YnI+DQo8L3NwYW4+PC9saT48L3Vs
-Pg0KPGRpdj48c3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRk
-ZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPjxicj4NCjwvc3Bhbj48L3NwYW4+PC9k
-aXY+DQo8L2Rpdj4NCjxkaXY+PHNwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFw
-dG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj5UaGlzIHNlZW1zIGxp
-a2UgYSBzaW1wbGUgdGhpbmcgdG8gZml4IGluIHRoZSBGUEdBIOKAkyB0aGVyZSBpcyBubyByZWFz
-b24gZm9yIHRoZSBkZWxheSB0byBiZSAmZ3Q7IDEgc2FtcGxlIGNsb2NrLjwvc3Bhbj48L3NwYW4+
-PC9kaXY+DQo8ZGl2PjxzcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19F
-bWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNl
-cmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+PGJyPg0KPC9zcGFuPjwvc3Bh
-bj48L2Rpdj4NCjxkaXY+PHNwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9z
-X0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMt
-c2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj5FdWdlbmUuPC9zcGFuPjwv
-c3Bhbj48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVk
-Rm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
-bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBpZD0i
-eF9tXy04OTkxNTg4NzU1NTMzMDEzMzY0U2lnbmF0dXJlIj4NCjxkaXYgaWQ9InhfbV8tODk5MTU4
-ODc1NTUzMzAxMzM2NGRpdnRhZ2RlZmF1bHR3cmFwcGVyIiBkaXI9Imx0ciIgc3R5bGU9ImNvbG9y
-OnJnYigwLDAsMCk7IGZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2Vy
-aWY7IGZvbnQtc2l6ZToxMnB0OyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0K
-PHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
-My4zM3B4OyBjb2xvcjpyZ2IoMCwwLDApIj5fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMHB0
-OyBjb2xvcjpibGFjayI+PGJyPg0KPC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LWZh
-bWlseTpBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6MTBwdDsgY29sb3I6YmxhY2siPkV1Z2Vu
-ZSBHcmF5dmVyLCBQaC5ELjxicj4NCkFlcm9zcGFjZSBDb3JwLiwgUHJpbmNpcGFsIEVuZ2luZWVy
-PGJyPg0KVGVsOiAzMTAuMzM2LjEyNzQ8YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX188L3Nw
-YW4+PGJyPg0KPC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
-dCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0i
-X2JsYW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlz
-dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0
-dHVzLmNvbTwvYT48YnI+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8
-L2JvZHk+DQo8L2h0bWw+DQo=
+Having things like timed-commands account for DUC/DDC group delays=20
+requires that either host-side UHD have a more
+ =C2=A0 intimate understanding of FPGA implementation details than it=20
+currently has, OR, the FPGA needs some understanding.
 
---_000_SJ0PR09MB912651618314E3BC38064198EC732SJ0PR09MB9126namp_--
+Also, since the decision was made a LONG time ago as to at what "plane"=20
+the timestamps apply, changing it "mid-stream"
+ =C2=A0 would break a lot of existing code.
 
---===============5943927711206277547==
+Now, having said all that, (A) I'm not an Ettus/NI R&D person, so I'm=20
+just guessing about motivations for the architecture.
+
+Also, 100usec seems like waaay longer than you'd expect just due to=20
+DDC/DUC group delay, and I wonder if there's something
+ =C2=A0 else going on, like subtleties about when you do time synchroniza=
+tion=20
+and master-clock rate changes.=C2=A0 I recall that there's
+ =C2=A0 some "gotchas" there.=C2=A0 Like if you clock-synch, and THEN=C2=A0=
+ change the=20
+master clock rate, there can be some weirdness
+ =C2=A0 because the increment quantum changes across master-clock rate=20
+changes for the time-stamp clocks.
+
+
+>
+>
+> ________________________
+>
+> Eugene Grayver, Ph.D.
+> Aerospace Corp., Principal Engineer
+> Tel: 310.336.1274
+> ________________________
+>
+> -----------------------------------------------------------------------=
+-
+> *From:* Rob Kossler <rkossler@nd.edu>
+> *Sent:* Monday, January 15, 2024 5:05 PM
+> *To:* Eugene Grayver <eugene.grayver@aero.org>
+> *Cc:* usrp-users <usrp-users@lists.ettus.com>; Mark Kubiak=20
+> <mark.kubiak@aero.org>; Jason W Zheng <jason.w.zheng@aero.org>
+> *Subject:* Re: [USRP-users] Bug/problem aligning PPS to samples
+> Hi Eugene,
+> Are you expecting that the RF output (for Tx case) should be synced to=20
+> the PPS "at the RF output connector"?=C2=A0 It is my understanding that=
+ the=20
+> sync occurs at some place in the FPGA logic for the "radio" block.=20
+> There will be delay as this goes through D/A and RF chain.=C2=A0 Same i=
+n=20
+> reverse for Rx.=C2=A0 As long as you get a consistent delay (for a give=
+n=20
+> sample rate), can you calibrate and then choose a playout time that=20
+> syncs the RF pulse to the PPS pulse?
+> Rob
+>
+> On Fri, Jan 12, 2024 at 4:38=E2=80=AFPM Eugene Grayver=20
+> <eugene.grayver@aero.org> wrote:
+>
+>     Hello,
+>
+>     There appears to be a bug related to alignment of the PPS to
+>     samples.=C2=A0 The issue applies to both TX and RX and was replicat=
+ed
+>     on N321 and X310 using UDH 3.15 and 4.6.=C2=A0 It therefore appears=
+ to
+>     be an FPGA issue.
+>
+>     *TX experiment*
+>     ----------------------------
+>
+>       * USRP is provided with external PPS and 10 MHz
+>       * The PPS input is split and goes to the USRP and a scope
+>       * The USRP output goes to a scope
+>       * USRP outputs a file
+>          o
+>             First 1000 samples are 1, remaining are zero
+>           o File size =3D sample rate (i.e. repeats every second)
+>       * Setup the experiment using both:
+>           o GR file_source + usrp_sink
+>               + Sync to unknown PPS
+>               + usrp.set_start_time(5)
+>           o Standalone C++ application (based on tx_samples_from_file)
+>               + Added code to set_time_unknown_pps(0), then set start
+>                 time using metadata to 5
+>
+>     Results:
+>
+>       * The USRP output is delayed relative to the PPS as observed on
+>         the scope
+>       * The delay is ~1.2 us for X310 and ~100us for N321
+>       * The delay changes slightly (<1us) depending on the sample rate
+>         (e.g. 10 Msps vs 20 Msps)
+>
+>
+>     *RX experiment*
+>     ----------------------------
+>
+>       * USRP is provided with external PPS and 10 MHz
+>      *
+>         USRP input is a pulse (generated using technique above) that
+>         repeats every second
+>          o
+>             Pulse is aligned to PPS, verified using a scope
+>      *
+>         USRP records samples starting on a second boundary (time_t(5))
+>          o
+>             GR usrp_source + file_sink
+>          o
+>             standalone C++ application (based on rx_samples_to_file)
+>               + Added code to set_time_unknown_pps(0), then set start
+>                 time using metadata to 5
+>      *
+>         Recorded samples are analyzed to find the first 'large' value
+>
+>     Results
+>
+>       * Recording appears to start late relative to PPS (only verified
+>         on N321, delay is ~100 us, same as for the TX delay)
+>
+>
+>     *Thoughts*
+>
+>       * I recall (years ago) there was a fix to a similar problem.=C2=A0
+>         The FPGA was modified to trigger ADC/DAC samples after the DDC
+>         rather than before.=C2=A0 Did it regress at some point?
+>
+>       * The delays are very consistent, indicating that the PPS is in
+>         fact being used (i.e. it is not random).
+>
+>       * We ran some experiments to analyze the stability and accuracy
+>         of *relative*=C2=A0timing between RX and TX (i.e. turn-around) =
+when
+>         the start time for TX and RX are specified.=C2=A0 The results a=
+re
+>         excellent =E2=80=93 delay is stable and accurate to < 100 ps.
+>
+>
+>     This seems like a simple thing to fix in the FPGA =E2=80=93 there i=
+s no
+>     reason for the delay to be > 1 sample clock.
+>
+>     Eugene.
+>
+>     ________________________
+>
+>     Eugene Grayver, Ph.D.
+>     Aerospace Corp., Principal Engineer
+>     Tel: 310.336.1274
+>     ________________________
+>
+>     _______________________________________________
+>     USRP-users mailing list -- usrp-users@lists.ettus.com
+>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+
+--------------THToCLvqQb3QDzpEMvvKob9l
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 16/01/2024 12:10, Eugene Grayver
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:SJ0PR09MB912651618314E3BC38064198EC732@SJ0PR09MB9126.namprd09=
+.prod.outlook.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
+rgin-bottom:0;}</style>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        Hi,</div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        There should be some delay, but it should be on the order of a
+        few clock cycles (ADC/DAC latency).=C2=A0 For the N321 we are
+        observing 100us, corresponding to ~2000 samples.=C2=A0 The X310 d=
+elay
+        is ~1us, which corresponds to 20 samples.=C2=A0 Still a lot highe=
+r
+        than I would expect just due to ADC/DAC.=C2=A0 The delay changes =
+as a
+        function of the sample rate.=C2=A0 If the synchronization is afte=
+r
+        the DDC (as I think it is), I would expect the delay to be
+        independent of the decimation ratio.=C2=A0=C2=A0</div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        We are doing the calibration and will use that to compensate,
+        but I think this is something that can be mitigated (to &lt;1us)
+        in the FPGA.</div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        Eugene.</div>
+    </blockquote>
+    I don't think the timed streaming has *ever* been at the DAC--DUC or
+    ADC--DDC interface.=C2=A0 From what I understand, timestamps<br>
+    =C2=A0 have *always* been assigned (in the RX case) as samples come o=
+ff
+    the DDC, and correspondingly for the other direction.<br>
+    <br>
+    Different sample rates will necessarily determine the DDC filter
+    depth that is being used, and the rate that some of it is<br>
+    =C2=A0 clocked at.<br>
+    <br>
+    Having things like timed-commands account for DUC/DDC group delays
+    requires that either host-side UHD have a more<br>
+    =C2=A0 intimate understanding of FPGA implementation details than it
+    currently has, OR, the FPGA needs some understanding.<br>
+    <br>
+    Also, since the decision was made a LONG time ago as to at what
+    "plane" the timestamps apply, changing it "mid-stream"<br>
+    =C2=A0 would break a lot of existing code.<br>
+    <br>
+    Now, having said all that, (A) I'm not an Ettus/NI R&amp;D person,
+    so I'm just guessing about motivations for the architecture.<br>
+    <br>
+    Also, 100usec seems like waaay longer than you'd expect just due to
+    DDC/DUC group delay, and I wonder if there's something<br>
+    =C2=A0 else going on, like subtleties about when you do time
+    synchronization and master-clock rate changes.=C2=A0 I recall that
+    there's<br>
+    =C2=A0 some "gotchas" there.=C2=A0 Like if you clock-synch, and THEN=C2=
+=A0 change
+    the master clock rate, there can be some weirdness<br>
+    =C2=A0 because the increment quantum changes across master-clock rate
+    changes for the time-stamp clocks.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:SJ0PR09MB912651618314E3BC38064198EC732@SJ0PR09MB9126.namprd09=
+.prod.outlook.com">
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div id=3D"Signature">
+        <div id=3D"divtagdefaultwrapper" dir=3D"ltr"
+style=3D"color:rgb(0,0,0); font-family:Calibri,Arial,Helvetica,sans-serif=
+; font-size:12pt; background-color:rgb(255,255,255)">
+          <p><span
+style=3D"font-family: Arial, sans-serif; font-size: 13.33px; color: rgb(0=
+, 0, 0);">________________________</span><span
+style=3D"font-family: Arial, sans-serif; font-size: 10pt; color: black;">=
+<br>
+            </span></p>
+          <p><span
+style=3D"font-family: Arial, sans-serif; font-size: 10pt; color: black;">=
+Eugene
+              Grayver, Ph.D.<br>
+              Aerospace Corp., Principal Engineer<br>
+              Tel: 310.336.1274<br>
+              ________________________</span><br>
+          </p>
+        </div>
+      </div>
+      <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+      <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt=
+"
+          face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Rob
+          Kossler <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:rkoss=
+ler@nd.edu">&lt;rkossler@nd.edu&gt;</a><br>
+          <b>Sent:</b> Monday, January 15, 2024 5:05 PM<br>
+          <b>To:</b> Eugene Grayver <a class=3D"moz-txt-link-rfc2396E" hr=
+ef=3D"mailto:eugene.grayver@aero.org">&lt;eugene.grayver@aero.org&gt;</a>=
+<br>
+          <b>Cc:</b> usrp-users <a class=3D"moz-txt-link-rfc2396E" href=3D=
+"mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a=
+>; Mark
+          Kubiak <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:mark.k=
+ubiak@aero.org">&lt;mark.kubiak@aero.org&gt;</a>; Jason W Zheng
+          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:jason.w.zheng=
+@aero.org">&lt;jason.w.zheng@aero.org&gt;</a><br>
+          <b>Subject:</b> Re: [USRP-users] Bug/problem aligning PPS to
+          samples</font>
+        <div>=C2=A0</div>
+      </div>
+      <div>
+        <div dir=3D"ltr">Hi Eugene,
+          <div>Are you expecting that the RF output (for Tx case) should
+            be synced to the PPS "at the RF output connector"?=C2=A0 It i=
+s my
+            understanding that the sync occurs at some place in the FPGA
+            logic for the "radio" block. There will be delay as this
+            goes through D/A and RF chain.=C2=A0 Same in reverse for Rx.=C2=
+=A0 As
+            long as you get a consistent delay (for a given sample
+            rate), can you calibrate and then choose a playout time that
+            syncs the RF pulse to the PPS pulse?</div>
+          <div>Rob</div>
+        </div>
+        <br>
+        <div class=3D"x_gmail_quote">
+          <div dir=3D"ltr" class=3D"x_gmail_attr">On Fri, Jan 12, 2024 at
+            4:38=E2=80=AFPM Eugene Grayver &lt;<a
+              href=3D"mailto:eugene.grayver@aero.org"
+              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">eu=
+gene.grayver@aero.org</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class=3D"x_gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(204,204,204)=
+; padding-left:1ex">
+            <div class=3D"x_msg-2294300194068039122">
+              <div dir=3D"ltr">
+                <div
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                  Hello,</div>
+                <div
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                  <br>
+                </div>
+                <div
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                  There appears to be a bug related to alignment of the
+                  PPS to samples.=C2=A0 The issue applies to both TX and =
+RX
+                  and was replicated on N321 and X310 using UDH 3.15 and
+                  4.6.=C2=A0 It therefore appears to be an FPGA issue.</d=
+iv>
+                <div
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                  <br>
+                </div>
+                <div
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                  <b>TX experiment</b></div>
+                <div
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                  ----------------------------</div>
+                <ul style=3D"list-style-type:disc">
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">USRP
+                      is provided with external PPS and 10 MHz<br>
+                    </span></li>
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">The
+                      PPS input is split and goes to the USRP and a
+                      scope</span></li>
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">The
+                      USRP output goes to a scope</span></li>
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">USRP
+                      outputs a file</span></li>
+                  <ul style=3D"list-style-type:circle">
+                    <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                      <div><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">First
+                          1000 samples are 1, remaining are zero</span></=
+div>
+                    </li>
+                    <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                      <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">File
+                        size =3D sample rate (i.e. repeats every second)<=
+/span></li>
+                  </ul>
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">Setup
+                      the experiment using both:</span></li>
+                  <ul style=3D"list-style-type:circle">
+                    <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                      <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">GR
+                        file_source + usrp_sink</span></li>
+                    <ul style=3D"list-style-type:square">
+                      <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                        <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">Sync
+                          to unknown PPS</span></li>
+                      <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                        <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">usrp.set_start_t=
+ime(5)</span></li>
+                    </ul>
+                    <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                      <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">Standalone
+                        C++ application (based on tx_samples_from_file)</=
+span></li>
+                    <ul style=3D"list-style-type:square">
+                      <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                        <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">Added
+                          code to set_time_unknown_pps(0), then set
+                          start time using metadata to 5</span></li>
+                    </ul>
+                  </ul>
+                </ul>
+                <div><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">Results:</span><=
+/div>
+                <ul style=3D"list-style-type:disc">
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">The
+                      USRP output is delayed relative to the PPS as
+                      observed on the scope</span></li>
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">The
+                      delay is ~1.2 us for X310 and ~100us for N321</span=
+></li>
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">The
+                      delay changes slightly (&lt;1us) depending on the
+                      sample rate (e.g. 10 Msps vs 20 Msps)</span></li>
+                </ul>
+                <div><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)"><br>
+                  </span></div>
+                <div><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)"><b>RX
+                      experiment</b></span></div>
+                <div><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">----------------=
+------------</span></div>
+                <ul style=3D"text-align:left; list-style-type:disc">
+                  <li
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; font-weight=
+:400; color:rgb(0,0,0)">
+                    <span
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0=
+,0,0); font-weight:400">USRP
+                      is provided with external PPS and 10 MHz</span></li=
+>
+                  <li
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; font-weight=
+:400; color:rgb(0,0,0)">
+                    <div><span
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0=
+,0,0); font-weight:400">USRP
+                        input is a pulse (generated using technique
+                        above) that repeats every second</span></div>
+                  </li>
+                  <ul style=3D"list-style-type:circle">
+                    <li
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; font-weight=
+:400; color:rgb(0,0,0)">
+                      <div><span
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0=
+,0,0); font-weight:400">Pulse
+                          is aligned to PPS, verified using a scope</span=
+></div>
+                    </li>
+                  </ul>
+                  <li
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; font-weight=
+:400; color:rgb(0,0,0)">
+                    <div><span
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0=
+,0,0); font-weight:400">USRP
+                        records samples starting on a second boundary
+                        (time_t(5))</span></div>
+                  </li>
+                  <ul style=3D"list-style-type:circle">
+                    <li
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; font-weight=
+:400; color:rgb(0,0,0)">
+                      <div><span
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0=
+,0,0); font-weight:400">GR
+                          usrp_source + file_sink</span></div>
+                    </li>
+                    <li
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; font-weight=
+:400; color:rgb(0,0,0)">
+                      <div><span
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0=
+,0,0); font-weight:400">standalone
+                          C++ application (based on rx_samples_to_file)</=
+span></div>
+                    </li>
+                    <ul style=3D"list-style-type:square">
+                      <li
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; font-weight=
+:400; color:rgb(0,0,0)">
+                        <span
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0=
+,0,0); font-weight:400">Added
+                          code to set_time_unknown_pps(0), then set
+                          start time using metadata to 5</span></li>
+                    </ul>
+                  </ul>
+                  <li
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; font-weight=
+:400; color:rgb(0,0,0)">
+                    <div><span
+style=3D"letter-spacing:normal; font-family:Aptos,Aptos_EmbeddedFont,Apto=
+s_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0=
+,0,0); font-weight:400">Recorded
+                        samples are analyzed to find the first 'large'
+                        value</span></div>
+                  </li>
+                </ul>
+                <div
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                  <span style=3D"letter-spacing:normal; font-weight:400">=
+Results</span></div>
+                <ul style=3D"list-style-type:disc">
+                  <li
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                    <span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">Recording
+                      appears to start late relative to PPS (only
+                      verified on N321, delay is ~100 us, same as for
+                      the TX delay)</span></li>
+                </ul>
+                <div><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)"><br>
+                  </span></div>
+                <div><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)"><b>Thoughts</b><=
+/span></div>
+                <div>
+                  <ul>
+                    <li
+style=3D"font-size:12pt; font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFon=
+tService,Calibri,Helvetica,sans-serif; color:rgb(0,0,0); list-style-type:=
+disc">
+                      <span><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">I
+                          recall (years ago) there was a fix to a
+                          similar problem.=C2=A0 The FPGA was modified to
+                          trigger ADC/DAC samples after the DDC rather
+                          than before.=C2=A0 Did it regress at some point=
+?</span><br>
+                      </span></li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li
+style=3D"font-size:12pt; font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFon=
+tService,Calibri,Helvetica,sans-serif; color:rgb(0,0,0); list-style-type:=
+disc">
+                      <span><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">The
+                          delays are very consistent, indicating that
+                          the PPS is in fact being used (i.e. it is not
+                          random).</span><br>
+                      </span></li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li style=3D"list-style-type:disc"><span><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">We
+                          ran some experiments to analyze the stability
+                          and accuracy of
+                          <b>relative</b>=C2=A0timing between RX and TX (=
+i.e.
+                          turn-around) when the start time for TX and RX
+                          are specified.=C2=A0 The results are excellent =
+=E2=80=93
+                          delay is stable and accurate to &lt; 100 ps.</s=
+pan><br>
+                      </span></li>
+                  </ul>
+                  <div><span><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)"><br>
+                      </span></span></div>
+                </div>
+                <div><span><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">This
+                      seems like a simple thing to fix in the FPGA =E2=80=
+=93
+                      there is no reason for the delay to be &gt; 1
+                      sample clock.</span></span></div>
+                <div><span><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)"><br>
+                    </span></span></div>
+                <div><span><span
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">Eugene.</span></=
+span></div>
+                <div
+style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
+,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+                  <br>
+                </div>
+                <div id=3D"x_m_-8991588755533013364Signature">
+                  <div id=3D"x_m_-8991588755533013364divtagdefaultwrapper=
+"
+                    dir=3D"ltr"
+style=3D"color:rgb(0,0,0); font-family:Calibri,Arial,Helvetica,sans-serif=
+; font-size:12pt; background-color:rgb(255,255,255)">
+                    <p><span
+style=3D"font-family:Arial,sans-serif; font-size:13.33px; color:rgb(0,0,0=
+)">________________________</span><span
+style=3D"font-family:Arial,sans-serif; font-size:10pt; color:black"><br>
+                      </span></p>
+                    <p><span
+style=3D"font-family:Arial,sans-serif; font-size:10pt; color:black">Eugen=
+e
+                        Grayver, Ph.D.<br>
+                        Aerospace Corp., Principal Engineer<br>
+                        Tel: 310.336.1274<br>
+                        ________________________</span><br>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              _______________________________________________<br>
+              USRP-users mailing list -- <a
+                href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
+                usrp-users@lists.ettus.com</a><br>
+              To unsubscribe send an email to <a
+                href=3D"mailto:usrp-users-leave@lists.ettus.com"
+                target=3D"_blank" moz-do-not-send=3D"true"
+                class=3D"moz-txt-link-freetext">
+                usrp-users-leave@lists.ettus.com</a><br>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------THToCLvqQb3QDzpEMvvKob9l--
+
+--===============0714117159710563396==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -665,4 +896,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5943927711206277547==--
+--===============0714117159710563396==--
