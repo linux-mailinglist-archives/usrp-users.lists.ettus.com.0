@@ -2,230 +2,106 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DC98830A9D
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jan 2024 17:12:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6409830EA1
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jan 2024 22:28:31 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EED9C3810A7
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jan 2024 11:12:14 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 5AA9F384E7A
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jan 2024 16:28:30 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1705507934; bh=UYrh08rFs3rOkibApJnbGgfFT9+22qKe9YpmtwRKK28=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=eFSBujKYVaWfUnzHHg2fWof9HJBBN5AUmB8ZgkyF/5LEfvIR1gbgLSKhg3D5TXw3y
-	 EX5UZoQlyNSmTDaTJoi48IS0hmVmNQnbTLtoqvBpW02uNaMhbsJkpl73iNiDMAfV0c
-	 QrqkrBPlxYklurKaytwQHAaQcMYL5JSdDG0y+NNdkv7Fjkf4p1VnKl/eP7t8pNsNvr
-	 44sBGVi5rZ9xUPnIGBIov4fMv4+dMTij/XD8hEQoYmQDWagM8EpmgVFjlkfWFZuU4a
-	 8kxJRGeMjukd+OY8Ua1anst+ygH/76SAT2AyZmKpQpzuI1IGIfPUJ12nJYYpFDOppD
-	 LTpe4N9IXpNng==
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 47CC3380EE5
-	for <usrp-users@lists.ettus.com>; Wed, 17 Jan 2024 11:11:40 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JwvecDEp";
-	dkim-atps=neutral
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7831806c527so1044758285a.3
-        for <usrp-users@lists.ettus.com>; Wed, 17 Jan 2024 08:11:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705507899; x=1706112699; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nO4JixfcUOvPxFoWV/PYvLJg281JtlT5b1Vsif2ZZ34=;
-        b=JwvecDEpMNjqVgZt0HL9EkiBWqpCS600Jc53D18/2CeWYRsVpUZH6M4h+js/t1HtHg
-         wXWDkkUNrplqommmLbUrTDgrQDnu+gbUqVB2xNj76z0WgsdhoUqzoVUdADgywFg65zzb
-         uiaSnr1NnSY5HQqNzCo6LaGaxi0WdehKLycrM0pwoKcQClYrluFR5m3yB6FG6ppCKwQc
-         n9M5xa1zH4OSURuChZr2P+Q5c6Xg6FzvG4RuOTqhzbvREW1cb1PV92ZUKdjqL2b9LGD2
-         8zutAAxEMgTZ8RUUhmS9IyHBBDohmCb6Ghz8trcAaaF+CFdnzW3zRSyIRz7xyWth+VPj
-         hWPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705507899; x=1706112699;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=nO4JixfcUOvPxFoWV/PYvLJg281JtlT5b1Vsif2ZZ34=;
-        b=DjgDBud258FvCCR+rTErD4G00dham7FpfbplBL2uDeVkUznCpVezEXavPQEwRGaAwb
-         7WPS0aeQDArjknZUlGPxCvPu81yks/Opqhx2+tKXNu7gBKSUUEpNCXga5maHcHFRdqzv
-         ubiOnoCL31Af7b38UgmMhm/+Sh8mxSGnv290ZvGyRjtaIwe8Z+u6KKMN+XFCn7h12HCt
-         W2vFC7BtbSWaPJMlKMKvz3AsJKbGwVdARvvxMu5BpzeNB0c5BgD77tWXYVp4FO0CfmiB
-         ia0UWsZtqeZXO0YSlgWvehzFc7l5KXxwD+A08jEuoXuKZF5Wgn3wvXIcBhpgOX0lfMHc
-         0SpQ==
-X-Gm-Message-State: AOJu0YxkWCwkD+5ScaIxrBvli2zi+NetDW+UiIKMibQzzyhAHKlf+B/A
-	cfX+bj91wrwSKAOTaxT0vk6XOZD53m0=
-X-Google-Smtp-Source: AGHT+IEH6I/tUy7g+7aTTTWLIJsR15HI9XeUx4MbG4ludit3IKYpxnnOh2i7C1r9kB5CbzSnxWN8WA==
-X-Received: by 2002:a05:620a:1a0e:b0:783:3891:f222 with SMTP id bk14-20020a05620a1a0e00b007833891f222mr11391692qkb.9.1705507899465;
-        Wed, 17 Jan 2024 08:11:39 -0800 (PST)
-Received: from [192.168.2.170] ([174.93.0.146])
-        by smtp.googlemail.com with ESMTPSA id g7-20020a05620a218700b00783273e2de8sm4598789qka.121.2024.01.17.08.11.38
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jan 2024 08:11:39 -0800 (PST)
-Message-ID: <18adfa5d-7099-433c-9c13-b4d23a089480@gmail.com>
-Date: Wed, 17 Jan 2024 11:11:30 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+	t=1705526910; bh=ECrJw5IamtvAu+5oeZYwuoqWOK2IvEuyGtPxiDXUR+c=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=07MrKJFIWIMTkKITMNTmYFTzTV1y3Wp3MkXfKLQdWnL/R3QboKc1iVeiqUYvXqSB4
+	 bqQLfdRHQUKDZAMDZePFI+lTgxQQQUemSSSL+qlYbc2slsd1sEesGPDB2VMM0fjNkp
+	 UBNa5m0SHHefGh1Y3bTx/4AZZw5XQTj+oNRzz26eKN7NLoVZSY0yUTAh+1myIvFl0g
+	 KJ05cD/kC4wUcgAXrxp6aTBUNpOGYbxt8mA3lxlnOWuWWUHUqyAfgBE29yacuxetsH
+	 pyH5OXEs18IK2txvEmtKHK4Y3tdi0eJRA0v8AYc7tQ/I1Yy0QOKSBdcvWJGnYbzYZZ
+	 BUh/mEXNphjdQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 35E10380E39
+	for <usrp-users@lists.ettus.com>; Wed, 17 Jan 2024 16:27:29 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1705526849; bh=YvEb/BBC0TMc3mrF4NngrmkhqtaMe/SJv7oQGYjloK4=;
+	h=Date:To:From:Subject:From;
+	b=SAt+hYJTR68N3cZ0CELr7Zul4LrpNUZWeXgIN/xGqVKZRYVchOk2syU9rBU27t1Vn
+	 MSbMjdNezKst7bzG2Yb4Fa/NZD0KlX/CpQMJFqFMKEsbLMfhcFATmnAI/x5drTHqb7
+	 Vtzm84S7X8BDZUb+2UFJnX8XocaHRrWNd05HjDHX8B8j0YOz0iSNLVXZsTcgrawwfy
+	 Hn6VOCRikXsF0nQXGCn9UUM1vfEjRQtyOYWkG0PeH5Q+ITSls+V3IqPW5uVkOZQMwf
+	 YJpVswEechhWi1fqK+t3wi835zdRVgBXSVtU1JBYbOKRp+NjVJ8MWgmq9DSOpK4+Tm
+	 TFTv0SSZl8+dQ==
+Date: Wed, 17 Jan 2024 21:27:29 +0000
 To: usrp-users@lists.ettus.com
-References: <YZ0xkbmW8jjYE8RqhmwKCKO6Eqs1LtwMR9EEEwJXBY@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <YZ0xkbmW8jjYE8RqhmwKCKO6Eqs1LtwMR9EEEwJXBY@lists.ettus.com>
-Message-ID-Hash: IAJEM65MGEVP4F54PDJ6LTE7UKKKQPVL
-X-Message-ID-Hash: IAJEM65MGEVP4F54PDJ6LTE7UKKKQPVL
-X-MailFrom: patchvonbraun@gmail.com
+From: mgannet@gmail.com
+Message-ID: <NKqr4WAlcMvkqFZYOGKlfxhx6BDM2GMqLct2TeGsOIg@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: ZBRKKWLVPD3XG2D5AD2PJX7OUK7N3DPR
+X-Message-ID-Hash: ZBRKKWLVPD3XG2D5AD2PJX7OUK7N3DPR
+X-MailFrom: mgannet@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Synchronize UBX-40 v1 Vs WBX-v3 + simple GDB
+Subject: [USRP-users] x310 BasicRX Daughterboard GPIO pins in Ethernet Payload
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IAJEM65MGEVP4F54PDJ6LTE7UKKKQPVL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZBRKKWLVPD3XG2D5AD2PJX7OUK7N3DPR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5352811381663491283=="
+Content-Type: multipart/mixed; boundary="===============3139736810855553947=="
 
 This is a multi-part message in MIME format.
---===============5352811381663491283==
+
+--===============3139736810855553947==
 Content-Type: multipart/alternative;
- boundary="------------Wq5hUtxLncdn0CDr7vpbt1Mv"
-Content-Language: en-US
+ boundary="b1_NKqr4WAlcMvkqFZYOGKlfxhx6BDM2GMqLct2TeGsOIg"
+Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
---------------Wq5hUtxLncdn0CDr7vpbt1Mv
-Content-Type: text/plain; charset=UTF-8; format=flowed
+
+--b1_NKqr4WAlcMvkqFZYOGKlfxhx6BDM2GMqLct2TeGsOIg
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 17/01/2024 04:57, je.amghar@gmail.com wrote:
->
-> Hi,
-> I am currently conducting frequency synchronization tests on two USRP=20
-> X310 devices, each equipped with different daughterboards =E2=80=93 the=
- first=20
-> with a UBX-40 v1 Dboard and the second with a WBX-v3 simple GDB=20
-> Dboard. In my setup, I am using an R&S SMF 100A generator to produce a=20
-> sine wave spanning a frequency range from 700MHz to 910MHz. To=20
-> visualize the signals, I am utilizing GNU Radio with a QT GUI Time=20
-> Sink block.
->
-> However, I have encountered an interesting observation: the=20
-> synchronization between the two devices seems to work effectively only=20
-> at specific frequencies, with distinct step sizes. For instance:
->
->  *
->
->     For the WBX daughterboard, synchronization is successful at 704,
->     736, 768, 800, 832, 864, and 896 MHz, showing a consistent step of
->     32 MHz between frequencies.
->
->  *
->
->     On the other hand, with the UBX daughterboard, synchronization is
->     achieved at 704, 768, 832, and 896 MHz, but with a larger step
->     size of 64 MHz.
->
-> I am puzzled by the disparities between the daughterboards and the=20
-> origin of these step values (32 MHz and 64 MHz). Moreover, I have=20
-> previously conducted similar tests using an NI2900 (B200), and it=20
-> exhibited synchronization across the entire frequency range with a=20
-> 1MHz step.
->
-> I am seeking insights into the reasons behind these specific=20
-> synchronization frequencies, the observed step sizes, and potential=20
-> differences in the daughterboard characteristics or configuration=20
-> parameters that might contribute to this behavior. Any guidance or=20
-> suggestions to optimize the setup would be greatly appreciated.
->
-> Thank you.
-> Jea
->
-I think we're going to need more information on what it is you mean by=20
-"frequency synchronization", and exactly what you're
- =C2=A0 measuring, and what your test setup is.
+Greetings,
 
-Are you measuring phase-coherence between boards of a different=20
-architecture?=C2=A0 What exactly are you measuring?
+With the UHD 4.x and the radio being a block in the RFNOC, is there a way=
+ to write the signals input to the GPIO pins of a BasicRX daughterboard t=
+o the Ethernet payload?  I understand they can be used to control the rad=
+io, but I=E2=80=99d like to see their state in an output binary stream (s=
+uch as chA.dat) on a host machine.
 
-Are your X310 referenced to a common 10Mhz clock?
+In UHD 3.9, our FPGA source was modified to accomplish this.  That source=
+ was significantly different as it appears to pre-date the RFNOC.  The gp=
+io_atr module was a submodule instantiated under the radio module all ins=
+ide the x300_core.  But now it appears the gpio_atr instantiation is outs=
+ide of the rfnoc_radio_block instance.
 
+Thank you,
 
---------------Wq5hUtxLncdn0CDr7vpbt1Mv
+Mark Gannet
+
+--b1_NKqr4WAlcMvkqFZYOGKlfxhx6BDM2GMqLct2TeGsOIg
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 17/01/2024 04:57,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:je.amghar@gmai=
-l.com">je.amghar@gmail.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:YZ0xkbmW8jjYE8RqhmwKCKO6Eqs1LtwMR9EEEwJXBY@lists.ettus.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Hi,<br>
-        I am currently conducting frequency synchronization tests on two
-        USRP X310 devices, each equipped with different daughterboards =E2=
-=80=93
-        the first with a UBX-40 v1 Dboard and the second with a WBX-v3
-        simple GDB Dboard. In my setup, I am using an R&amp;S SMF 100A
-        generator to produce a sine wave spanning a frequency range from
-        700MHz to 910MHz. To visualize the signals, I am utilizing GNU
-        Radio with a QT GUI Time Sink block.</p>
-      <p>However, I have encountered an interesting observation: the
-        synchronization between the two devices seems to work
-        effectively only at specific frequencies, with distinct step
-        sizes. For instance:</p>
-      <ul>
-        <li>
-          <p>For the WBX daughterboard, synchronization is successful at
-            704, 736, 768, 800, 832, 864, and 896 MHz, showing a
-            consistent step of 32 MHz between frequencies.</p>
-        </li>
-        <li>
-          <p>On the other hand, with the UBX daughterboard,
-            synchronization is achieved at 704, 768, 832, and 896 MHz,
-            but with a larger step size of 64 MHz.</p>
-        </li>
-      </ul>
-      <p>I am puzzled by the disparities between the daughterboards and
-        the origin of these step values (32 MHz and 64 MHz). Moreover, I
-        have previously conducted similar tests using an NI2900 (B200),
-        and it exhibited synchronization across the entire frequency
-        range with a 1MHz step.</p>
-      <p>I am seeking insights into the reasons behind these specific
-        synchronization frequencies, the observed step sizes, and
-        potential differences in the daughterboard characteristics or
-        configuration parameters that might contribute to this behavior.
-        Any guidance or suggestions to optimize the setup would be
-        greatly appreciated.<br>
-        <br>
-        Thank you.<br>
-        Jea</p>
-    </blockquote>
-    I think we're going to need more information on what it is you mean=C2=
-=A0
-    by "frequency synchronization", and exactly what you're<br>
-    =C2=A0 measuring, and what your test setup is.<br>
-    <br>
-    Are you measuring phase-coherence between boards of a different
-    architecture?=C2=A0 What exactly are you measuring?<br>
-    <br>
-    Are your X310 referenced to a common 10Mhz clock?<br>
-    <br>
-    <br>
-  </body>
-</html>
+<p>Greetings,</p><p>With the UHD 4.x and the radio being a block in the R=
+FNOC, is there a way to write the signals input to the GPIO pins of a Bas=
+icRX daughterboard to the Ethernet payload?  I understand they can be use=
+d to control the radio, but I=E2=80=99d like to see their state in an out=
+put binary stream (such as chA.dat) on a host machine.</p><p>In UHD 3.9, =
+our FPGA source was modified to accomplish this.  That source was signifi=
+cantly different as it appears to pre-date the RFNOC.  The gpio_atr modul=
+e was a submodule instantiated under the radio module all inside the x300=
+_core.  But now it appears the gpio_atr instantiation is outside of the r=
+fnoc_radio_block instance.</p><p>Thank you,</p><p>Mark Gannet</p>
 
---------------Wq5hUtxLncdn0CDr7vpbt1Mv--
 
---===============5352811381663491283==
+--b1_NKqr4WAlcMvkqFZYOGKlfxhx6BDM2GMqLct2TeGsOIg--
+
+--===============3139736810855553947==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -235,4 +111,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5352811381663491283==--
+--===============3139736810855553947==--
