@@ -2,115 +2,224 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF0984098C
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jan 2024 16:17:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 421B38409A1
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jan 2024 16:19:04 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8A9653850C8
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jan 2024 10:17:44 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 93FFB385166
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jan 2024 10:19:03 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1706541464; bh=aEIgsBcwtmtvnJuPnNayR0hVxKgJZu6BWGF+c/Z0+3w=;
+	t=1706541543; bh=VoerkxO7WS2JUK1aZm0oeUugvBWRdLYH3pml5/hiwIE=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=qGuG7pyFxVG9kh9RhNa5CQmfyuJI5YQXCSJiw9m7Rh0Fr1JmsK+bECWnVA6m92Hc1
-	 Sx9RogH/6FKSY3zQW2NOibMhHGmcliNOtWhmwPJWU2OWUDihg27hLuS7Bv1gpKmFbb
-	 EiBIX+5uEBqnVRpQFgHxf0RDpNwd6pJ/GduJZBObV8ELndk0APl32rLCA7vPVtLeEv
-	 1K/Iq/jVmQAh1jJRJZWMXU4HFUEWBfxSBaT4Z8zC9lcPnADYXMY+NMzem37UhnspqD
-	 f76+dNqvI9fw1VTGsmuLFv7oYqybYx+xGaCwi1pdt3msOC8+TB3GUcLgsXqyfNrj/F
-	 cfbBaeh+1Yt3w==
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 19A6A384DA9
-	for <usrp-users@lists.ettus.com>; Mon, 29 Jan 2024 10:16:48 -0500 (EST)
+	b=Z2TCsicBXcVADuvX5XB3Kzq8SMoWxoUIRVMwyAZ7crEjFY12ZBEZ79B/TsionJG7s
+	 mHTRDvMdDCs3v9Ekq9SWsEbEWHoOWlS/ZGllKl+CnTgAudyeTiw5yApj3+whtWCf0r
+	 E+wbcSK17KC3DfgXo2Z280PEHSr7m/c9w3CTAujyGxyIsLyPKVqgVCFKulGPOk4Zbc
+	 IVfCbY0iuQmqQRmdx3glM6Aba+0/t+/Yd2nWXA8q3EXRdliz042oREuKmx5eE6Wi5D
+	 zqinDlqfsOJZZ8SOLmVtIp59d8Mjxg1yKtD7uO46aA0A/+fmE+s1eIyRtY72zkwNTZ
+	 bqD7erOe9Isdw==
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0F9DD384DDA
+	for <usrp-users@lists.ettus.com>; Mon, 29 Jan 2024 10:18:30 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Hx6Nwrjy";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="FJ5UeRXz";
 	dkim-atps=neutral
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a2f79e79f0cso334481066b.2
-        for <usrp-users@lists.ettus.com>; Mon, 29 Jan 2024 07:16:48 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55ee9805da7so1636683a12.3
+        for <usrp-users@lists.ettus.com>; Mon, 29 Jan 2024 07:18:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1706541407; x=1707146207; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=snoPG+8VfUsKVtSrUKFGfDWCDA2jR2qs53KcBqN65k4=;
-        b=Hx6NwrjyF0T1O4zDN1RSzWM8iKQO+zJYIHxsiIxrB/Dn20SulcVe67oO/uj7jj2sKz
-         05D2vYg1gCo+mnquGvu08lkNPBWrUTIdaVszMKh9ATw21XoNy+n9SEdVsfhFlRR4c6gL
-         J6ky8o0ISrJDN+2wqf9B+go2fMTrarQC/Lrq9MASoGXIoM6Pm/oW6zfMrART/J4Wbci7
-         0FBy+QGhNQlzRx5Q/x+awD6MzHooRUpXqRz2yYnoy5USdWf4bAGrUoI9efDZ7epcsT5t
-         bapLvflxaU4tHfTitjdLlA3cemmVXYjr+I91DYU6gTgEY0Eanh7BOqOeYyTNt+xqwJWJ
-         iZAQ==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1706541509; x=1707146309; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A+0GhLNEz0zE7njEUX0ZHxZe4gdPAHo0pybRZ5kMD2I=;
+        b=FJ5UeRXzI9EXQrg+DNPhkdf/cPTqs9XN3/5k2IeMDbMtpNk0/nY0RAqa5Lr3ezJY+i
+         JrZygdjNl0qBbaIQLohO39IPaUPJxHhRjiL49T0rw0OB/PxjhKUlV9co9zxXzaSyJuUT
+         OPes8uag1MuUJJTn53+f11K4C9+t55xolXgJUARUlj4yEXiDJ3E/S/pwymPsTNMn3ogL
+         zupQfyngauNzYd1yOonSvlXTiK/DcOMHZe2tWrHECIXhSem++VEyt5q7l8Ux9XFvRTC1
+         49MlbVesE/9KziM089kLXY9g1xcDqV3f7j1RK4Tdnvf1nuMB5e1pux7wV2O2WYIzUeVR
+         Vk9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706541407; x=1707146207;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=snoPG+8VfUsKVtSrUKFGfDWCDA2jR2qs53KcBqN65k4=;
-        b=WWO611oB70pLm0/1ckrjWGtHxn3LvDxRhnk39FC6zc1oQz208jav45SiCD4NemSP5n
-         jk7h9kr761hnPSCqqcgZQzGb3B5s3XoippVTXF14Eq+2+guu9Mwi0OMF47DNNO4tsdQo
-         545QT0ZcrAbMkEyb25rTZ0mc9RoUVxJIIuJoWe+H+bMgC/msOToT1zZukJk/4cTnj4iH
-         z/oqclM9PiHlhCnlX1wj0j9Gsn9j8KL5PG0GMBhbKYv0J7HRYj1/lLBOsTRCGzSEaGJq
-         tCZ8RvvqObDtVpe7s+NnL1+0v30ELOG81YAt5CrXdHEK+XcsnuhnTSubIpkR6E9Rrej7
-         1xIA==
-X-Gm-Message-State: AOJu0YxX/ck6161hu0jUTVDxVEnIYX39d2v99CtDN2AAkqN5SH/mrHnp
-	kwtjQbRrWzskrmRACORfqvFltt11HtUKRtTkV76L+eRF0Waq/9zn1Y+e18dfSkTGNXIR/f+6DVJ
-	mlJY=
-X-Google-Smtp-Source: AGHT+IExC+fgvl1y4/Vxf3ImGr5TfNw/0kY4doEMHSCaJHyNK5kxN3dT3zWiX13OD+D5uNc0Pe2tUQ==
-X-Received: by 2002:a17:906:5ac8:b0:a35:eaf5:4d87 with SMTP id x8-20020a1709065ac800b00a35eaf54d87mr1012721ejs.62.1706541407252;
-        Mon, 29 Jan 2024 07:16:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706541509; x=1707146309;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=A+0GhLNEz0zE7njEUX0ZHxZe4gdPAHo0pybRZ5kMD2I=;
+        b=kQMfjnElmKwp3fWPgD0uJrxQtciYy/zFVS3xYC7aQ+Ugg5SbYbuWmHfTNTK5FTqgPZ
+         ue3+R/JU4vl6P9ZQgeQtyZu/KhcWNE/DbbpHIDZdihTgIF4fXovS1HeuV4iZ+jWTLGuL
+         l1liNm0FKTPMsaH3txJOJfZqQMzJDShOalTX7eR+Npv9XO2OUCEXakuUEUfkG6URpPIc
+         hnQA09Ee6JIb12Q+5U3xCXDYLqwoNYtUqX9BhJpPULYbkJh/+c/UfmQ1sqNcoYCS0azz
+         YsbvTwFy/Fmn1WBMaCl+qeAGa8rZtBWZ8lI6KipGyKoVGaQn7rppFtOEXB/a2Vbzxotv
+         g3tQ==
+X-Gm-Message-State: AOJu0Yx1ZW3Bz+pJbQtM+eBGZIQuxA5mlPken0SptcwgAYBNnxrB9YpU
+	Y0qz96Qmugub6EbwAKqWDrU+7xofoV5kKMHV8pJlwL/oZmFf1GBrz6niyRsIch2OPK3fy8SuygL
+	ZMP8=
+X-Google-Smtp-Source: AGHT+IEr7+eDuh45aw8Yb2hTj4bs/jw8tQg/p2DtTlEpcxnKS563zdDVe3F5hhf7YKFBS2CR6ivNxw==
+X-Received: by 2002:a17:906:4719:b0:a31:4c0a:dafe with SMTP id y25-20020a170906471900b00a314c0adafemr4153244ejq.72.1706541509218;
+        Mon, 29 Jan 2024 07:18:29 -0800 (PST)
 Received: from ?IPV6:2001:16b8:cc76:8d00:10fc:1619:bea3:90d1? ([2001:16b8:cc76:8d00:10fc:1619:bea3:90d1])
-        by smtp.gmail.com with ESMTPSA id a13-20020a1709066d4d00b00a35a5fe8b87sm1528943ejt.16.2024.01.29.07.16.46
+        by smtp.gmail.com with ESMTPSA id h17-20020a17090634d100b00a312651ff8dsm4021968ejb.157.2024.01.29.07.18.28
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 07:16:47 -0800 (PST)
-Message-ID: <865a09b1-dcd6-4182-ab49-1f33273abf27@ettus.com>
-Date: Mon, 29 Jan 2024 16:16:46 +0100
+        Mon, 29 Jan 2024 07:18:29 -0800 (PST)
+Message-ID: <c984a2ff-cf65-48b8-acfb-4534becc383a@ettus.com>
+Date: Mon, 29 Jan 2024 16:18:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
 To: usrp-users@lists.ettus.com
-References: <NKqr4WAlcMvkqFZYOGKlfxhx6BDM2GMqLct2TeGsOIg@lists.ettus.com>
+References: <CAKHaR3kbcmH8o01pSb=S6SppD51TyJjsVYxBwG+KbSdrX+1sEA@mail.gmail.com>
 From: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-In-Reply-To: <NKqr4WAlcMvkqFZYOGKlfxhx6BDM2GMqLct2TeGsOIg@lists.ettus.com>
-Message-ID-Hash: T2XIJIKY76JL6PJTVJI4VDFW5JBJTCRA
-X-Message-ID-Hash: T2XIJIKY76JL6PJTVJI4VDFW5JBJTCRA
+In-Reply-To: <CAKHaR3kbcmH8o01pSb=S6SppD51TyJjsVYxBwG+KbSdrX+1sEA@mail.gmail.com>
+Message-ID-Hash: FKXTNQKUEMZ3BOMJDUPMLSTK64QKWW6D
+X-Message-ID-Hash: FKXTNQKUEMZ3BOMJDUPMLSTK64QKWW6D
 X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x310 BasicRX Daughterboard GPIO pins in Ethernet Payload
+Subject: [USRP-users] Re: rfnocmodtool
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T2XIJIKY76JL6PJTVJI4VDFW5JBJTCRA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FKXTNQKUEMZ3BOMJDUPMLSTK64QKWW6D/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0399618598063622889=="
 
-SGVsbG8gTWFyaywNCg0KSSdtIGFmcmFpZCB0aGVyZSBpc24ndCBhIHN0cmFpZ2h0Zm9yd2FyZCB3
-YXkgb2YgZG9pbmcgdGhhdDsgY2FuJ3QgcmVhbGx5IHRoaW5rIG9mIGEgd2F5IA0KdGhhdCB3b3Vs
-ZCBlbmFibGUgdGhhdCBzaG9ydCBvZiBpbnZlbnRpbmcgYW5vdGhlciAicmFkaW8gYmxvY2siLXN0
-eWxlIFJGTm9DIGNvcmUgdGhhdCANCmhhbmRsZXMgdGhlc2UgR1BJT3MgYXMgc2VwYXJhdGUgY2hh
-bm5lbHM7IGFuZCB0aGF0IHdvdWxkIGJlIGEgcHJldHR5IGJpZyBlbmRlYXZvdXIuDQoNCkJlc3Qs
-DQpNYXJjdXMNCg0KT24gMTcuMDEuMjQgMjI6MjcsIG1nYW5uZXRAZ21haWwuY29tIHdyb3RlOg0K
-Pg0KPiBHcmVldGluZ3MsDQo+DQo+IFdpdGggdGhlIFVIRCA0LnggYW5kIHRoZSByYWRpbyBiZWlu
-ZyBhIGJsb2NrIGluIHRoZSBSRk5PQywgaXMgdGhlcmUgYSB3YXkgdG8gd3JpdGUgdGhlIA0KPiBz
-aWduYWxzIGlucHV0IHRvIHRoZSBHUElPIHBpbnMgb2YgYSBCYXNpY1JYIGRhdWdodGVyYm9hcmQg
-dG8gdGhlIEV0aGVybmV0IHBheWxvYWQ/IEkgDQo+IHVuZGVyc3RhbmQgdGhleSBjYW4gYmUgdXNl
-ZCB0byBjb250cm9sIHRoZSByYWRpbywgYnV0IEnigJlkIGxpa2UgdG8gc2VlIHRoZWlyIHN0YXRl
-IGluIGFuIA0KPiBvdXRwdXQgYmluYXJ5IHN0cmVhbSAoc3VjaCBhcyBjaEEuZGF0KSBvbiBhIGhv
-c3QgbWFjaGluZS4NCj4NCj4gSW4gVUhEIDMuOSwgb3VyIEZQR0Egc291cmNlIHdhcyBtb2RpZmll
-ZCB0byBhY2NvbXBsaXNoIHRoaXMuIFRoYXQgc291cmNlIHdhcyANCj4gc2lnbmlmaWNhbnRseSBk
-aWZmZXJlbnQgYXMgaXQgYXBwZWFycyB0byBwcmUtZGF0ZSB0aGUgUkZOT0MuIFRoZSBncGlvX2F0
-ciBtb2R1bGUgd2FzIGEgDQo+IHN1Ym1vZHVsZSBpbnN0YW50aWF0ZWQgdW5kZXIgdGhlIHJhZGlv
-IG1vZHVsZSBhbGwgaW5zaWRlIHRoZSB4MzAwX2NvcmUuIEJ1dCBub3cgaXQgDQo+IGFwcGVhcnMg
-dGhlIGdwaW9fYXRyIGluc3RhbnRpYXRpb24gaXMgb3V0c2lkZSBvZiB0aGUgcmZub2NfcmFkaW9f
-YmxvY2sgaW5zdGFuY2UuDQo+DQo+IFRoYW5rIHlvdSwNCj4NCj4gTWFyayBHYW5uZXQNCj4NCj4N
-Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNS
-UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8g
-dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
-LmNvbQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1
-YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
-Cg==
+This is a multi-part message in MIME format.
+--===============0399618598063622889==
+Content-Type: multipart/alternative;
+ boundary="------------iqda8XgHK7ejl2QnwhDF0hOS"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------iqda8XgHK7ejl2QnwhDF0hOS
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+Hi Dario,
+
+you're right, that currently doesn't exist. R&D is aware of that, and fro=
+m what I hear=20
+through the grapevine, it's something that they want to re-establish func=
+tionally (don't=20
+know whether that means "forward-porting" the old tool or writing a new o=
+ne).
+
+Alas, there's nothing that we could currently give you, sorry.
+
+Best,
+Marcus
+
+On 22.01.24 17:37, Dario Pennisi wrote:
+> Hi,
+> i have been using RFNoC for quite some time and am now starting a new p=
+roject based on=20
+> UHD4.5. in the past i used rfnocmodtool=C2=A0which was very useful but =
+i can see that in=20
+> gnuradio 3.10 gr-ettus is not required anymore but at the same time the=
+re's no=20
+> replacement for rfnocmodtool, at least that i found.
+> also, gr-ettus seem a bit outdated with regards to UHD and some files h=
+ave been moved to=20
+> UHD repository (for example the simulation script)
+> since support for gnuradio 3.10 seem to be still in early stage i'm goi=
+ng to stay with=20
+> 3.8 but i wonder if rfnocmodtool from gr-ettus is still the best way to=
+ create an OOT=20
+> block and eventually what is going to be its replacement in the future.
+> thanks,
+>
+> Dario Pennisi
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+--------------iqda8XgHK7ejl2QnwhDF0hOS
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <p>Hi Dario,</p>
+    <p>you're right, that currently doesn't exist. R&amp;D is aware of
+      that, and from what I hear through the grapevine, it's something
+      that they want to re-establish functionally (don't know whether
+      that means "forward-porting" the old tool or writing a new one).</p=
+>
+    <p>Alas, there's nothing that we could currently give you, sorry.</p>
+    <p>Best,<br>
+      Marcus<br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 22.01.24 17:37, Dario Pennisi wrote=
+:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAKHaR3kbcmH8o01pSb=3DS6SppD51TyJjsVYxBwG+KbSdrX+1sEA@mail.gm=
+ail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">Hi,
+        <div>i have been using RFNoC for quite some time and am now
+          starting a new project based on UHD4.5. in the past i used
+          rfnocmodtool=C2=A0which was very useful but i can see that in
+          gnuradio 3.10 gr-ettus is not required anymore but at the same
+          time there's no replacement for rfnocmodtool, at least that i
+          found.</div>
+        <div>also, gr-ettus seem a bit outdated with regards to UHD and
+          some files have been moved to UHD repository (for example the
+          simulation script)</div>
+        <div>since support for gnuradio 3.10 seem to be still in early
+          stage i'm going to stay with 3.8 but i wonder if rfnocmodtool
+          from gr-ettus is still the best way to create an OOT block and
+          eventually what is going to be its replacement in the future.</=
+div>
+        <div>thanks,</div>
+        <div><br clear=3D"all">
+          <div>
+            <div dir=3D"ltr" class=3D"gmail_signature"
+              data-smartmail=3D"gmail_signature">
+              <div dir=3D"ltr"><span
+style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.333=
+3px">Dario
+                  Pennisi</span></div>
+              <div dir=3D"ltr"><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------iqda8XgHK7ejl2QnwhDF0hOS--
+
+--===============0399618598063622889==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0399618598063622889==--
