@@ -2,142 +2,156 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 421B38409A1
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jan 2024 16:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E728409DC
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jan 2024 16:26:33 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 93FFB385166
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jan 2024 10:19:03 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 100F4384C1E
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jan 2024 10:26:33 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1706541543; bh=VoerkxO7WS2JUK1aZm0oeUugvBWRdLYH3pml5/hiwIE=;
+	t=1706541993; bh=8FOtFsT+Oo1b2EtD1lY1u+eGgEeDOpQX1t/tfeAMe8c=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=Z2TCsicBXcVADuvX5XB3Kzq8SMoWxoUIRVMwyAZ7crEjFY12ZBEZ79B/TsionJG7s
-	 mHTRDvMdDCs3v9Ekq9SWsEbEWHoOWlS/ZGllKl+CnTgAudyeTiw5yApj3+whtWCf0r
-	 E+wbcSK17KC3DfgXo2Z280PEHSr7m/c9w3CTAujyGxyIsLyPKVqgVCFKulGPOk4Zbc
-	 IVfCbY0iuQmqQRmdx3glM6Aba+0/t+/Yd2nWXA8q3EXRdliz042oREuKmx5eE6Wi5D
-	 zqinDlqfsOJZZ8SOLmVtIp59d8Mjxg1yKtD7uO46aA0A/+fmE+s1eIyRtY72zkwNTZ
-	 bqD7erOe9Isdw==
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0F9DD384DDA
-	for <usrp-users@lists.ettus.com>; Mon, 29 Jan 2024 10:18:30 -0500 (EST)
+	b=TwiBN4tZiuFqCPTyTQG2JoFJBAsFis9nsjvXAVz6D9xF1EadlB14A+EzI7X98Vspm
+	 jHSpY8hDscAjiKAYxNQw7TQDaQP2t+/CuneJnJZaARcK4CK2j2chzyRIWOB89jR7aC
+	 A8UVoStSRsGE70RH5BMg0xoC0pvjhDQTJZNGbKCRNvE1sMND6qIIckblBAjl7r9lpG
+	 dr7w8V+koSqFkGXGh6y8rXf6wRyUrZI5B3UzY2Li/bUmZ9cqXuasyjAmnEdGSWsRFm
+	 Bm7/zxlll07uCyf58o3rQ1Uwf2987hIX5xH1nLI7VsmiKHhlOu6/RTV+o1325q+I3b
+	 DA8LfSouowzTQ==
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 49A06384DAF
+	for <usrp-users@lists.ettus.com>; Mon, 29 Jan 2024 10:25:58 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="FJ5UeRXz";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="UYL5BrKy";
 	dkim-atps=neutral
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55ee9805da7so1636683a12.3
-        for <usrp-users@lists.ettus.com>; Mon, 29 Jan 2024 07:18:30 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e8d3b29f2so38946935e9.1
+        for <usrp-users@lists.ettus.com>; Mon, 29 Jan 2024 07:25:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1706541509; x=1707146309; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1706541957; x=1707146757; darn=lists.ettus.com;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=A+0GhLNEz0zE7njEUX0ZHxZe4gdPAHo0pybRZ5kMD2I=;
-        b=FJ5UeRXzI9EXQrg+DNPhkdf/cPTqs9XN3/5k2IeMDbMtpNk0/nY0RAqa5Lr3ezJY+i
-         JrZygdjNl0qBbaIQLohO39IPaUPJxHhRjiL49T0rw0OB/PxjhKUlV9co9zxXzaSyJuUT
-         OPes8uag1MuUJJTn53+f11K4C9+t55xolXgJUARUlj4yEXiDJ3E/S/pwymPsTNMn3ogL
-         zupQfyngauNzYd1yOonSvlXTiK/DcOMHZe2tWrHECIXhSem++VEyt5q7l8Ux9XFvRTC1
-         49MlbVesE/9KziM089kLXY9g1xcDqV3f7j1RK4Tdnvf1nuMB5e1pux7wV2O2WYIzUeVR
-         Vk9Q==
+        bh=hGh+F6pWZ2yKfdamqG/H7xfeVgqwaGimYqNP9z0xDdw=;
+        b=UYL5BrKyldG+KAsoLj5kskfJzusy5ECL8yrH6CrGXmssf5hVXm8qKdtnaOi3+SCyAy
+         RyNVpYqZ+ZDcop1dl5RL/E+ye39n8PlH3u6jddFSW8LpqSMTMAc/IVFlBiWhqNVSA5IZ
+         Y93ZsCsFsrYkWZBD5Yu3ynePmuplm82Di/WrStGw+e/APfMDxmehq9+4Kh8QxDc2kOus
+         VqyvvnaYDt2mk4J1mDz53PZo9HatwI1YyZPKMyUH7IgP3MW0h6JwCyyj8drKtXkAKmUM
+         G4z0zt8p7vhfnyF2t3Dv9pwimwJHfCNTKxcF8epxTN3JrA4TVNNa0NJBRqv/SPBxyfwi
+         ooRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706541509; x=1707146309;
+        d=1e100.net; s=20230601; t=1706541957; x=1707146757;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=A+0GhLNEz0zE7njEUX0ZHxZe4gdPAHo0pybRZ5kMD2I=;
-        b=kQMfjnElmKwp3fWPgD0uJrxQtciYy/zFVS3xYC7aQ+Ugg5SbYbuWmHfTNTK5FTqgPZ
-         ue3+R/JU4vl6P9ZQgeQtyZu/KhcWNE/DbbpHIDZdihTgIF4fXovS1HeuV4iZ+jWTLGuL
-         l1liNm0FKTPMsaH3txJOJfZqQMzJDShOalTX7eR+Npv9XO2OUCEXakuUEUfkG6URpPIc
-         hnQA09Ee6JIb12Q+5U3xCXDYLqwoNYtUqX9BhJpPULYbkJh/+c/UfmQ1sqNcoYCS0azz
-         YsbvTwFy/Fmn1WBMaCl+qeAGa8rZtBWZ8lI6KipGyKoVGaQn7rppFtOEXB/a2Vbzxotv
-         g3tQ==
-X-Gm-Message-State: AOJu0Yx1ZW3Bz+pJbQtM+eBGZIQuxA5mlPken0SptcwgAYBNnxrB9YpU
-	Y0qz96Qmugub6EbwAKqWDrU+7xofoV5kKMHV8pJlwL/oZmFf1GBrz6niyRsIch2OPK3fy8SuygL
-	ZMP8=
-X-Google-Smtp-Source: AGHT+IEr7+eDuh45aw8Yb2hTj4bs/jw8tQg/p2DtTlEpcxnKS563zdDVe3F5hhf7YKFBS2CR6ivNxw==
-X-Received: by 2002:a17:906:4719:b0:a31:4c0a:dafe with SMTP id y25-20020a170906471900b00a314c0adafemr4153244ejq.72.1706541509218;
-        Mon, 29 Jan 2024 07:18:29 -0800 (PST)
+        bh=hGh+F6pWZ2yKfdamqG/H7xfeVgqwaGimYqNP9z0xDdw=;
+        b=PX/FVKSghO8wAalhXbUTQ4BFvWnJ3cR7Dge8kQQVy9SK7ey67RGMwhporuhIaN/C+C
+         s4kDAJL9xAELjLWTpc+ozy9jp2Fg8ZJjL+x8+kh5kd/OdMjQ7IwLnExSuf6WY5udX4BI
+         YhJNCDWQvtZLQP9DMIvacAqGlppw8nN0WdTY7HS8xjMbcDGUsiVcWNenuCJWVS3QhWwN
+         NX7lWL8Cwh+VOrLrjh2YXqKGz81DFWPVu9iQlm15KmjzkSUTdVjTegb6irIYwz1Jgsye
+         LTm3lje0fPIIETQf+D6IxIuWwTTti3oCu5nN4h40gxEsbjDGfaSVe/2gtfT2OQ4XCZ8/
+         /VyQ==
+X-Gm-Message-State: AOJu0YzT3/UsQGsN4i299rYLTd9bzzV8luYAOw0M2KZ4MyXK9duDQwMR
+	XmoXdVUY/FbLbhUT9Wo5mXoXe9w7WV9zwKvvPff/k1WAquz9rLtPh8w8uuCeE8bm+Ic9CeRD5x/
+	jiOU=
+X-Google-Smtp-Source: AGHT+IHT5NTB6DqmyV2jRsLyx/aG+y9xoueqGLhxSbUI/Y6OgY5tE5epEs37pO6zFSHzYV7W40AA5w==
+X-Received: by 2002:a05:600c:154e:b0:40e:46c5:8ea5 with SMTP id f14-20020a05600c154e00b0040e46c58ea5mr4776883wmg.29.1706541956853;
+        Mon, 29 Jan 2024 07:25:56 -0800 (PST)
 Received: from ?IPV6:2001:16b8:cc76:8d00:10fc:1619:bea3:90d1? ([2001:16b8:cc76:8d00:10fc:1619:bea3:90d1])
-        by smtp.gmail.com with ESMTPSA id h17-20020a17090634d100b00a312651ff8dsm4021968ejb.157.2024.01.29.07.18.28
+        by smtp.gmail.com with ESMTPSA id az10-20020a05600c600a00b0040efac60829sm1876082wmb.12.2024.01.29.07.25.56
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 07:18:29 -0800 (PST)
-Message-ID: <c984a2ff-cf65-48b8-acfb-4534becc383a@ettus.com>
-Date: Mon, 29 Jan 2024 16:18:28 +0100
+        Mon, 29 Jan 2024 07:25:56 -0800 (PST)
+Message-ID: <da8d7b79-0c03-4e27-b3c7-9f3782654e55@ettus.com>
+Date: Mon, 29 Jan 2024 16:25:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
 To: usrp-users@lists.ettus.com
-References: <CAKHaR3kbcmH8o01pSb=S6SppD51TyJjsVYxBwG+KbSdrX+1sEA@mail.gmail.com>
+References: <FR0P281MB1594B76468309C977AE7C42AD4752@FR0P281MB1594.DEUP281.PROD.OUTLOOK.COM>
 From: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-In-Reply-To: <CAKHaR3kbcmH8o01pSb=S6SppD51TyJjsVYxBwG+KbSdrX+1sEA@mail.gmail.com>
-Message-ID-Hash: FKXTNQKUEMZ3BOMJDUPMLSTK64QKWW6D
-X-Message-ID-Hash: FKXTNQKUEMZ3BOMJDUPMLSTK64QKWW6D
+In-Reply-To: <FR0P281MB1594B76468309C977AE7C42AD4752@FR0P281MB1594.DEUP281.PROD.OUTLOOK.COM>
+Message-ID-Hash: ILUXG3BD34SEMO2FTNLW6AKI6WCSTZ3M
+X-Message-ID-Hash: ILUXG3BD34SEMO2FTNLW6AKI6WCSTZ3M
 X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: rfnocmodtool
+Subject: [USRP-users] Re: Problems with QPSK Modulation on USRP X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FKXTNQKUEMZ3BOMJDUPMLSTK64QKWW6D/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ILUXG3BD34SEMO2FTNLW6AKI6WCSTZ3M/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0399618598063622889=="
+Content-Type: multipart/mixed; boundary="===============4243153657231032983=="
 
 This is a multi-part message in MIME format.
---===============0399618598063622889==
+--===============4243153657231032983==
 Content-Type: multipart/alternative;
- boundary="------------iqda8XgHK7ejl2QnwhDF0hOS"
+ boundary="------------ejf6KBeGg0oXh4cShiY6pzUg"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------iqda8XgHK7ejl2QnwhDF0hOS
+--------------ejf6KBeGg0oXh4cShiY6pzUg
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi Dario,
+Hi Olivia,
 
-you're right, that currently doesn't exist. R&D is aware of that, and fro=
-m what I hear=20
-through the grapevine, it's something that they want to re-establish func=
-tionally (don't=20
-know whether that means "forward-porting" the old tool or writing a new o=
-ne).
+I was able to make your flow graph build just beautifully, simply by addi=
+ng a "new" UHD=20
+USRP Sink and UHD USRP Source block, and manually copying the settings ov=
+er from the=20
+original blocks, then removing them.
 
-Alas, there's nothing that we could currently give you, sorry.
+I'll guess it's a problem caused by changes to the USRP Blocks between wh=
+en the flowgraph=20
+was originally made and your current version of GNU Radio.
 
 Best,
-Marcus
+Marcus :)
 
-On 22.01.24 17:37, Dario Pennisi wrote:
-> Hi,
-> i have been using RFNoC for quite some time and am now starting a new p=
-roject based on=20
-> UHD4.5. in the past i used rfnocmodtool=C2=A0which was very useful but =
-i can see that in=20
-> gnuradio 3.10 gr-ettus is not required anymore but at the same time the=
-re's no=20
-> replacement for rfnocmodtool, at least that i found.
-> also, gr-ettus seem a bit outdated with regards to UHD and some files h=
-ave been moved to=20
-> UHD repository (for example the simulation script)
-> since support for gnuradio 3.10 seem to be still in early stage i'm goi=
-ng to stay with=20
-> 3.8 but i wonder if rfnocmodtool from gr-ettus is still the best way to=
- create an OOT=20
-> block and eventually what is going to be its replacement in the future.
-> thanks,
+On 22.01.24 16:08, Mammadova, Olivia wrote:
 >
-> Dario Pennisi
+> Dear USRP-Users Team,
+>
+> i am recently working on USRP X410 using the =C2=A0Mellanox MCX516A-CCA=
+T ConnectX(R)-5 EN=20
+> Networkcard and the FPGA Image UC_200 with the latest UHD Version 4.6 a=
+nd GNU Radio=20
+> version 3.10.8.0. The Ubuntu version of the computer is 22.04.3. I want=
+ed to send QPSK=20
+> modulated symbols to USRP X410, but i get lot of errors and don=E2=80=99=
+t know how to fix the=20
+> errors related to radiconda/lib/python3.10/site-packages/gnuradio/grc=E2=
+=80=A6 . =C2=A0When i use=20
+> Virtual Sink and Virtual Source and Throttle =C2=A0instead the real UHD=
+ Sink and Source=20
+> respectively, i am getting QPSK Constellation Diagramms on the Transmit=
+ter and Receiver=20
+> Sites. -but when i am trying to apply it on real hardware USRP X410, i =
+get errors.=C2=A0 It=20
+> seems like some dependencies are damaged. I installed everything by usi=
+ng conda.
+>
+> I am sending you QPSK_test.grc and two screenshots of errors after simu=
+lation. Would you=20
+> like to have a look at the simulation and screenshots and help me to fi=
+x the errors?
+>
+> Thank you in advance!
+>
+> Best regards,
+>
+> Olivia Mammadova
 >
 >
 > _______________________________________________
 > USRP-users mailing list --usrp-users@lists.ettus.com
 > To unsubscribe send an email tousrp-users-leave@lists.ettus.com
---------------iqda8XgHK7ejl2QnwhDF0hOS
+--------------ejf6KBeGg0oXh4cShiY6pzUg
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -148,53 +162,88 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <p>Hi Dario,</p>
-    <p>you're right, that currently doesn't exist. R&amp;D is aware of
-      that, and from what I hear through the grapevine, it's something
-      that they want to re-establish functionally (don't know whether
-      that means "forward-porting" the old tool or writing a new one).</p=
->
-    <p>Alas, there's nothing that we could currently give you, sorry.</p>
+    <p>Hi Olivia,</p>
+    <p>I was able to make your flow graph build just beautifully, simply
+      by adding a "new" UHD USRP Sink and UHD USRP Source block, and
+      manually copying the settings over from the original blocks, then
+      removing them.</p>
+    <p>I'll guess it's a problem caused by changes to the USRP Blocks
+      between when the flowgraph was originally made and your current
+      version of GNU Radio.</p>
     <p>Best,<br>
-      Marcus<br>
+      Marcus :)<br>
     </p>
-    <div class=3D"moz-cite-prefix">On 22.01.24 17:37, Dario Pennisi wrote=
-:<br>
+    <div class=3D"moz-cite-prefix">On 22.01.24 16:08, Mammadova, Olivia
+      wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:CAKHaR3kbcmH8o01pSb=3DS6SppD51TyJjsVYxBwG+KbSdrX+1sEA@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+cite=3D"mid:FR0P281MB1594B76468309C977AE7C42AD4752@FR0P281MB1594.DEUP281.=
+PROD.OUTLOOK.COM">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
 TF-8">
-      <div dir=3D"ltr">Hi,
-        <div>i have been using RFNoC for quite some time and am now
-          starting a new project based on UHD4.5. in the past i used
-          rfnocmodtool=C2=A0which was very useful but i can see that in
-          gnuradio 3.10 gr-ettus is not required anymore but at the same
-          time there's no replacement for rfnocmodtool, at least that i
-          found.</div>
-        <div>also, gr-ettus seem a bit outdated with regards to UHD and
-          some files have been moved to UHD repository (for example the
-          simulation script)</div>
-        <div>since support for gnuradio 3.10 seem to be still in early
-          stage i'm going to stay with 3.8 but i wonder if rfnocmodtool
-          from gr-ettus is still the best way to create an OOT block and
-          eventually what is going to be its replacement in the future.</=
-div>
-        <div>thanks,</div>
-        <div><br clear=3D"all">
-          <div>
-            <div dir=3D"ltr" class=3D"gmail_signature"
-              data-smartmail=3D"gmail_signature">
-              <div dir=3D"ltr"><span
-style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.333=
-3px">Dario
-                  Pennisi</span></div>
-              <div dir=3D"ltr"><br>
-              </div>
-            </div>
-          </div>
-        </div>
+      <meta name=3D"Generator"
+        content=3D"Microsoft Word 15 (filtered medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Dear USRP-Users Team,<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">i am recently working on USRP X410 using
+          the =C2=A0Mellanox MCX516A-CCAT ConnectX(R)-5 EN Networkcard an=
+d
+          the FPGA Image UC_200 with the latest UHD Version 4.6 and GNU
+          Radio version 3.10.8.0. The Ubuntu version of the computer is
+          22.04.3. I wanted to send QPSK modulated symbols to USRP X410,
+          but i get lot of errors and don=E2=80=99t know how to fix the e=
+rrors
+          related to
+          radiconda/lib/python3.10/site-packages/gnuradio/grc=E2=80=A6 . =
+=C2=A0When i
+          use Virtual Sink and Virtual Source and Throttle =C2=A0instead =
+the
+          real UHD Sink and Source respectively, i am getting QPSK
+          Constellation Diagramms on the Transmitter and Receiver Sites.
+          -but when i am trying to apply it on real hardware USRP X410,
+          i get errors.=C2=A0 It seems like some dependencies are damaged=
+. I
+          installed everything by using conda. <o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">I am sending you QPSK_test.grc and two
+          screenshots of errors after simulation. Would you like to have
+          a look at the simulation and screenshots and help me to fix
+          the errors?<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Thank you in advance!<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Olivia Mammadova<o:p></o:p></p>
       </div>
       <br>
       <fieldset class=3D"moz-mime-attachment-header"></fieldset>
@@ -210,9 +259,9 @@ s.com</a>
   </body>
 </html>
 
---------------iqda8XgHK7ejl2QnwhDF0hOS--
+--------------ejf6KBeGg0oXh4cShiY6pzUg--
 
---===============0399618598063622889==
+--===============4243153657231032983==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,4 +271,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0399618598063622889==--
+--===============4243153657231032983==--
