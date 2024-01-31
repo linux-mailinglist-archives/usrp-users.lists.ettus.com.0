@@ -2,543 +2,234 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75560842ADB
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Jan 2024 18:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC3298440E9
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Jan 2024 14:44:22 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 120E4384C19
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Jan 2024 12:26:40 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8983F385544
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Jan 2024 08:44:21 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1706635600; bh=uQfadSV/10icgdO38rnLj3mflYzo1MElYgkMX+H4Ye4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=dJBnBgLSZhdCZUuETuXtNFV9bGuOqPtsQycaL8EWjhbuTHSGanyXovgIwqXFps++e
-	 QqPWO1/Z+R1XGbeG7EizysBwhroQyS/w0bAI/B1p/K6gjbpxdp3ZATZduJAgqj0ke+
-	 ugfY/2x+4/+tt2mNbGOH3XoDsCuDk6pH4E+ufOpbxuNgqbiw/uaAwSQObJSqn38LeJ
-	 pr7UDX691Prq5Ft/BcL19ofN1sCIPm1sWTDlGubARPN1nNS/FrFRKvzJo61HracwQe
-	 9OtMksUj6lFvHuAywT9oZucY/NTTdCSXfEyk4Kom7xrGx+GIeJifadKHt+yZv12VQ3
-	 RsnQ802gLYIEg==
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id C7743384B0D
-	for <usrp-users@lists.ettus.com>; Tue, 30 Jan 2024 12:25:41 -0500 (EST)
+	t=1706708661; bh=Z1II6RBzAuddUU7ytTAbQr6iy6nFEwMcXiJa1NhX0Hc=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=g7dQ8yyHWgTc+FyKldNJ+W//m06g/RbZ1/ABQxw++tmCFvv7P8GDhwX9bzbtgIcuy
+	 shYdDgm9BO/CMbBhxo+fjqeVyMVFVEWLZI5MOKr5O+BhZ7mEw7fDAFOPOMPZon/vLA
+	 RbC9PyFRZ9q0gpkTl8Hh9x/MaSceBsobVk7d+XnZ6nV7D6nzuV3OWnhbEFujFLKzAC
+	 p4M/KA1Z4XwPCsHcIJ/w2tyipI86+E6SX8f5UrHsxhmGGm0xMxf56qdJliQZTEGGxf
+	 fsP5PiuSX+GFOPTuMtrzlv2sISkKRuWKrQDAhxbw2IHvFe9WLnEnQVOvS21EOySx3T
+	 Nt7hhH2V7LUDA==
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2109.outbound.protection.outlook.com [40.107.6.109])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5E5CE380C80
+	for <usrp-users@lists.ettus.com>; Wed, 31 Jan 2024 08:43:23 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BTrwSe6a";
+	dkim=pass (1024-bit key; unprotected) header.d=dfkide.onmicrosoft.com header.i=@dfkide.onmicrosoft.com header.b="jsEOP13j";
 	dkim-atps=neutral
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-68c3ac1fdb9so25195386d6.2
-        for <usrp-users@lists.ettus.com>; Tue, 30 Jan 2024 09:25:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aw8HDBaiPbBcM4XUAwVhlkZi3YuMFNj73WajuuzR8Zp0DGv7lvw4TTG1HWKfoKw/bzXcrTEQNJbpz5F9xk7BEVJah2XeJ395wO9qeQVHmBRUb3wWZ9hdyotJ6ixinUWZSXH5Wvj6LZYXB671TGoeheuIS9MgEI557au9gls3D4yhZ7rE6I68J6B+noyDypc/7CYHLeelewEbDIv8teFPBQQ2znIfbOV1uLz5DTMsVi4MxKettMxPTR0rzAuWA/3cND6yQ5w5PBG8UB5MBfif8seoNTCr0T3NKOAiBZjeE2+1J5vxzq3nNSr0YxK6Q90LT+YTI0Bor6tLJGcQwW76DA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LnE/qURWAWu+RLu8TtSVPJwz+lhkWFMAUESGYmiMlFk=;
+ b=Hrgu5TcnnQsRWw5n5lOGskb7QlE56950K04MSPHj65o8ds0SIf1rTylpYhgZ0idtMDjnl1ATKxgUelRLtfC00bjQSKV+R4d0xSsuMtXFLeHWQii72mCMzgdYZfO96axm23EwF4ojfCE8JYmd5wyiTvxDi04C6oGskMPIMg6cZS2ChsIymLrOSTOc/FbsPxqj/BVjmzNpNGUvKPUj3z9xdH0oQ+bEP8OM2I+7cdfb40HDKe0HVp+RkxpJ76qgnINYw1UigWH//LJ3YEu7/lerfGK8fKABPU9sSxGeRQCKeK0WPtQv8yc10GRSoQ9upEF6i7XRsHHOFRxmgZo6rbLdxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=dfki.de; dmarc=pass action=none header.from=dfki.de; dkim=pass
+ header.d=dfki.de; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706635541; x=1707240341; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vXY4S88fj5qKq0XEPlIRSOoARLpDRkXYLtPusq+lEh0=;
-        b=BTrwSe6aaP89s3i2HmGX6DAdHBLYgKXMSi3xtz4wjhH8cP4xm9L7K4ZfNMtsdjAOuf
-         crw0KlvUmvQ7aLakc4B/IW2TThKW0U7OI+0V+bDTD3CV24uhvGztdqF4ruYdbic0rzlS
-         AF17rSTckJcqeFxwuxGrf6zRZzbVBWkpSZB2BZxzf2JR7toopVI7rYfVqh0gHsAm0N6/
-         0laRjG6txgVf6M4aQA0cc2tlbBcgedOkKujUCbv4vLTw8Njb7FoYfRkAOROMGKBOt6z1
-         SQBgEusxLnOcoj3MVtNbcpbUhuU40kUa0JA/3jo6GyN3vZH/6ycFm2rSyxrptFwzGnNO
-         zPcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706635541; x=1707240341;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vXY4S88fj5qKq0XEPlIRSOoARLpDRkXYLtPusq+lEh0=;
-        b=b0u69VqjhNohTCloxC8MfHypbXPtVK1msKbYBSXRx8TkL4babbp79bfq/9r/aUiP5N
-         nksxtcXPQkT0SUpuu4bH2fB8O0PlYcSCnE2tOqrRgtXzABLC5TZRLa+bng8Pz2ciLNNC
-         CN/8gaTv0M0mjnwJwbsUCZtT1MwbnoDkAJrWivBaxCkDO7hsLb+SGr/N8iC21NWOcZO2
-         1qTmd5PZwptfDT31IRxDSgTyktbxc5+IJSxTbMHrfDjP4oy77l8PGNJ12rKWktzgXnxd
-         mbVmmnaCMqsDAnUjC7Qbgg1QUaZ2zoaNy17N32wW8BOkm3cF0oqxLXuFEcpnqj/Qv6C/
-         5Eyw==
-X-Gm-Message-State: AOJu0YwSorTFz86FRGusHzmfY4YkldU3EftvmKhlqv0oiJKRR8hT2aNo
-	b/SkPU1bfMPOXjhpEdDKL/3JPKmxoIrxXLZzEM5zkqLaVdlkTx5m30tmw5GU
-X-Google-Smtp-Source: AGHT+IE8h8i0lpUfURD9ZZuLsDAbqG8mlUqiPmDEq8SgyxuFNPnMB6WGvStwx00cwC4Y3xv5vp6MOQ==
-X-Received: by 2002:ad4:5742:0:b0:686:ab99:cd0c with SMTP id q2-20020ad45742000000b00686ab99cd0cmr144800qvx.23.1706635540812;
-        Tue, 30 Jan 2024 09:25:40 -0800 (PST)
-Received: from [192.168.2.170] ([174.93.0.146])
-        by smtp.googlemail.com with ESMTPSA id 11-20020a0562140dcb00b0068c5116af11sm1845293qvt.142.2024.01.30.09.25.40
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 09:25:40 -0800 (PST)
-Message-ID: <a091ea9a-e517-4086-8b32-a5fa901298a0@gmail.com>
-Date: Tue, 30 Jan 2024 12:25:31 -0500
+ d=dfkide.onmicrosoft.com; s=selector2-dfkide-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LnE/qURWAWu+RLu8TtSVPJwz+lhkWFMAUESGYmiMlFk=;
+ b=jsEOP13j1CALFIdV2nT5MXvZlTJElpuzx0O3ti4ZdfOwBSmNq0vR5MPtitXPRRzfaQMm2Jz7NmPz38/tZ/sdDv7REi/oJwQX7kVKFuSNdxktSB402kvC+hlou/YUwJ9gnt5kLJG6kVo5d/2qyWcf7YpX7ZBBeIxAfzr1J9/k9/E=
+Received: from AM8PR06MB7138.eurprd06.prod.outlook.com (2603:10a6:20b:1d7::19)
+ by VI1PR06MB6829.eurprd06.prod.outlook.com (2603:10a6:800:18d::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23; Wed, 31 Jan
+ 2024 13:43:19 +0000
+Received: from AM8PR06MB7138.eurprd06.prod.outlook.com
+ ([fe80::5235:f8ee:d089:8f2a]) by AM8PR06MB7138.eurprd06.prod.outlook.com
+ ([fe80::5235:f8ee:d089:8f2a%6]) with mapi id 15.20.7249.017; Wed, 31 Jan 2024
+ 13:43:18 +0000
+From: Till Ruppert <till.ruppert@dfki.de>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Detecting overruns with USRP N321/N320 and refarch-multich
+ examples at 200 MHz sample rate
+Thread-Index: AdpUS2S0r2Vgx2AfS8eMoy1jCil8Iw==
+Date: Wed, 31 Jan 2024 13:43:18 +0000
+Message-ID: 
+ <AM8PR06MB7138A772918962574E98B8BB827C2@AM8PR06MB7138.eurprd06.prod.outlook.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=dfki.de;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM8PR06MB7138:EE_|VI1PR06MB6829:EE_
+x-ms-office365-filtering-correlation-id: 9b798ed0-b46e-46ad-dc75-08dc2262956a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ qS5AVcFSj/q1Mz+NREVdE7P1QoHpuDC+al2zxeqKGKlIStv9+okXWmevJfM+ImHeTASAzYGjov1nVKuIDvG3i97HERSaxtzDz+lXvVlOX4ULbd3uWnKNQ2npqYHSHusZVif2NQWlHt8BnEyGMKLHKs2N4jdbgevwbL1aazfZqS9GDn0BM3DllZf3UX2VzEeW9blKSZo8xZx4B4w1dJeEnQ7iNTTgQnfWyKYJKnm33OtZsIC5LOzisQrMn6hzyHskkF8aWF0kyLzZJn2Pv2g8Z7f5xLMKJoBxS+iyIv+wwGtm4kzzKy/ued8aebRRBQdFG3YxNW3zrLOJ2MylFm28OgThGNRq8qXyJYrhvYLzvfl6vAsoRBpjylMAMWQSI358sBvZnkj31qYhL76TSCmhB+J3EVZZux9eZEZiSaMdFrzgElEENdGqmjYd1SLBNbNDgdRMB/pvqhaHl0tHK1S+BF973eNCfe9KLXuZKI7t5wz41mGhI8X0wCIIwDb8V9yOtVV71guhXelN7ogKb+8OGtBa+EWjLqE2bllNLBwvz/GfmFX6/280leMP1Ou3/T3jzS+jJqT2rJapORdX1fPmvpAweyCUB4ouqjw7ggDXRRB6oKHCyx24qCvqrCO3qMbm
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR06MB7138.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(346002)(366004)(396003)(376002)(136003)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(26005)(55016003)(41300700001)(478600001)(38070700009)(64756008)(786003)(6916009)(66446008)(316002)(66556008)(66476007)(7696005)(9686003)(6506007)(83380400001)(71200400001)(38100700002)(122000001)(66946007)(5660300002)(33656002)(2906002)(44832011)(8936002)(4744005)(76116006)(86362001)(19627235002)(8676002)(52536014);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?OyjLW64HiwKARoCkbCB5U3gh9jX7ereRqKjefii3IaN4FDD/toN44TInPKKI?=
+ =?us-ascii?Q?Qwqi1tyMvIhfaPTV9HN8fERFoWkr0cEitdLxpFOkXziODvBFUWk3VLf8ExaW?=
+ =?us-ascii?Q?ZYBNvALLlwm0LxGlrRXyaN/rVnBHtP7w82UM/V3ZMtyiweE3XXIX0zuTnu1i?=
+ =?us-ascii?Q?6q7lQt8TnC9S+oHAQF0clPsAJ9ZofOf9g5kG6vQoS/LMV/kkveX08KB3phab?=
+ =?us-ascii?Q?Bg/3QGlvB1GvKilD4P7GBLTGI8hxnFt91w83NgtU5rvIecX2qk/I1U1jcwyT?=
+ =?us-ascii?Q?O3254KhMA1AUDzbA10q4YAAvaSElXKuZAsAUWcB3zqzn9bd4YwhvfikV1VwO?=
+ =?us-ascii?Q?tIx22343U6wPvmayYbOLNiMTRhp6ioNnLmTq3GTq5atAYCj9fQtMzoh7SCPt?=
+ =?us-ascii?Q?kKxkDXhToS+urZWHeuampNEq7F//Tz39osoEaZ5BMhe4EsoJCus90R7Q1DqP?=
+ =?us-ascii?Q?+1ZNd/+gqGW4n9q2NgeEWyxGkyXgVspdKopiWQ5uWGrAb2tTymVLrOJVAk74?=
+ =?us-ascii?Q?EVAHtBhMmTlmXHvSxEJ/KtR4fxaK3w1pfkUmqXXY94YE1D8H4mWnuI41lf5I?=
+ =?us-ascii?Q?n8dd2v3r4LwUIHnc6vlcsvNsrtoTCInea82mCT4Ku+K53KYC4bfJi4LsigCR?=
+ =?us-ascii?Q?6D3oVsuE5pvelfI6gOPDimoAxe8pcv2FZ+oyWdUp7rB1bEpR9JIiZi5RdURN?=
+ =?us-ascii?Q?yZaeVLEkZU9IWtYsA+ZVA9d1SDoytzwrJ5Lsm7lB87mfed8aQuaYlP8QnLmf?=
+ =?us-ascii?Q?NvuBQHPDohTGObiPio73iMavNkG+JoTCOS+Ej74MlXUnOlW1NnSZXId81Gjp?=
+ =?us-ascii?Q?l1Jb3UQU2Oy/GgWFlKjV6HtQPRvUicimhuMZ7qQhoejOcqaRGxPCp6zdyaT/?=
+ =?us-ascii?Q?y/908ip4Yhje39/RKLlaiw2Pgnh5QTOnYXCxs2KY2ylbdq5ZObwi+57LI/oR?=
+ =?us-ascii?Q?ctEtnpm9FwS1ZsD5Xi6J6sUa31nVP8Ob3eYPVp7qKDhgy+FidL/f/x34jggh?=
+ =?us-ascii?Q?W8F13x/xAfPhknJy1nmJChOn4zzxFHTw06fZoeDW2gVNUwdERLa7Py9xa56K?=
+ =?us-ascii?Q?VCP1McXREWw+/zKcCdRRsB3fyWCYrQ2nL6w//K5CowBo9vVls1Ff8srcZGWQ?=
+ =?us-ascii?Q?ibcy+G6tr/BbaUGRhuwOLHrlFFEntZ4OvGWR1sg3vC5IdPRs0uURxJpLj1Pm?=
+ =?us-ascii?Q?IaQcOSiWYmG+F6ah0wAI7H9LlAYs3pjzirSAHUytXFuTOx/QeK9x/gkZ+VPa?=
+ =?us-ascii?Q?clEoVGYUlxIHKYK6BLNm+y+UJZVNkbExH6DCdMLEu9tI2+n4xhCouMsko8JH?=
+ =?us-ascii?Q?d9afhwpo1DU6/ixmnzPIEhDAcl9U40MahyBgK9Vs3Xx+amKRlERaTrfGRD9J?=
+ =?us-ascii?Q?7j2wWM3eWUJwB0V66LzIUT48NQ/922PwqXvDOgcjNpfYoNRXZFVOieyHAnyg?=
+ =?us-ascii?Q?RKeJ0JAfM2tFjp+/JPh7M4f9spJCfQSp98rxhdSzPM3fzq+kPmf9C1nU5aUo?=
+ =?us-ascii?Q?fOgCub0w02c4V0v/J3qesKXEMPq657ILQwJd8asYsjCSSXhdfRtOox+juV0c?=
+ =?us-ascii?Q?4KLfv01SLcl2jQwQdnA=3D?=
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <BN8PR05MB5971F338F42E2F9B91C913B08C7E2@BN8PR05MB5971.namprd05.prod.outlook.com>
- <22168a60-61a4-43bb-afec-a1e74d874961@ettus.com>
- <BN8PR05MB59713B441A1180206D4900B68C7E2@BN8PR05MB5971.namprd05.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <BN8PR05MB59713B441A1180206D4900B68C7E2@BN8PR05MB5971.namprd05.prod.outlook.com>
-Message-ID-Hash: T5QUK6DKJSW7PRXQE6DJ6KTQKTOFA67V
-X-Message-ID-Hash: T5QUK6DKJSW7PRXQE6DJ6KTQKTOFA67V
-X-MailFrom: patchvonbraun@gmail.com
+X-OriginatorOrg: dfki.de
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR06MB7138.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b798ed0-b46e-46ad-dc75-08dc2262956a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2024 13:43:18.8528
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 61a9f1bd-7ea0-4068-b231-bb4a6bfcb700
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DH+WLxZCMbAMFC9FYZljuNMoVQX1mk3e1zUuOzVPfqE5gbbIxsMoHddhb6khvjyF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR06MB6829
+Message-ID-Hash: L24ZRRQ57CDA2YWEFHM6PSRU3BMDBZFU
+X-Message-ID-Hash: L24ZRRQ57CDA2YWEFHM6PSRU3BMDBZFU
+X-MailFrom: till.ruppert@dfki.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x310 USRP -- Performance questions
+Subject: [USRP-users] Detecting overruns with USRP N321/N320 and refarch-multich examples at 200 MHz sample rate
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T5QUK6DKJSW7PRXQE6DJ6KTQKTOFA67V/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NRREY2R5FC625YU4XVM77EYZCW4S6BE6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7898370330900485311=="
+Content-Type: multipart/mixed; boundary="===============7459211970474688917=="
 
-This is a multi-part message in MIME format.
---===============7898370330900485311==
+--===============7459211970474688917==
+Content-Language: de-DE
 Content-Type: multipart/alternative;
- boundary="------------0DuFCP9NskuyqnNTgFxvchG9"
-Content-Language: en-US
+	boundary="_000_AM8PR06MB7138A772918962574E98B8BB827C2AM8PR06MB7138eurp_"
 
-This is a multi-part message in MIME format.
---------------0DuFCP9NskuyqnNTgFxvchG9
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_AM8PR06MB7138A772918962574E98B8BB827C2AM8PR06MB7138eurp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On 29/01/2024 12:20, Arnaldo Sans wrote:
->
-> Hello Marcus,
->
-> Thank you for your quick response... I am attaching a pdf of the email=20
-> because I suspect that my screenshots are not making -it to you.
->
-> Here are the TX and RX graphs available on the Ettus URL I mentioned=20
-> in my initial email...
->
-> Below are the RX plots:
->
->  1. Receiver performance =E2=80=93 Gain, IQ Balance, DC Offset, Input I=
-P3,
->     Input IP2 and Noise Figure) with a swept Gain range from 0 dB to
->     37.5 dB,=C2=A0at a fixed frequency, 5800 MHz
->  2. Receiver performance=C2=A0=E2=80=93 (Gain,=C2=A0IQ Balance, DC Offs=
-et, Input IP3,
->     Input IP2 and Noise Figure) with a swept frequency range from 10
->     MHz to 6 GHz with a fixed Gain of 0.00 dB.
->
-> Below are the TX plots:
->
->  1. Receiver performance =E2=80=93 Gain, IQ Balance, DC Offset, Output =
-IP3,
->     Output IP2 and Noise Figure) with a swept Gain range from 0 dB to
->     37.5=C2=A0dB,=C2=A0at a fixed frequency, 5800 MHz
->  2. Receiver performance=C2=A0=E2=80=93 (Gain,=C2=A0IQ Balance, DC Offs=
-et, Output IP3,
->     Output IP2 and Noise Figure) with a swept frequency range from 10
->     MHz to 6 GHz with a fixed Gain of 0.00 dB.
->
-> I would like to know the input power, Pin?
->
-> Regarding the attenuators, below is a screenshot from the Ettus URL.=C2=
-=A0=20
-> I would=C2=A0like to know more about what appear to be fixed attenuator=
-s=20
-> and how they are used and managed.=C2=A0 According to the data sheet I=20
-> think I understand how the variable attenuator is being=C2=A0used and=20
-> managed; if there is any documentation that provides additional=20
-> details that would be very much appreciated.
->
-> *It is my understanding that the HMC624LP4E is a 6-bits, 0.5 dB steps=20
-> digital step attenuator. This means I can control as much as 31.5 dB=20
-> gain in 0.5dB steps yet the measurements show gain values up to 37.5=20
-> dB. Where are the extra 6 dB of gain control coming from?*
->
-> Regarding the request for a theory of operation documentation=E2=80=A6 =
-this is=20
-> because currently I am only looking at block diagrams and schematics =E2=
-=80=93=20
-> often time many questions can be answered by a theory of operation=20
-> document.=C2=A0 I there another URL that has the documents?
->
-> Thank=C2=A0you, I appreciate you help.
->
-> Regards,
-> AJ
->
-> -----------------------------------------------------------------------=
--
-> *From:*=C2=A0Marcus M=C3=BCller <marcus.mueller@ettus.com>
-> *Sent:*=C2=A0Monday, January 29, 2024 10:11 AM
-> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:*=C2=A0[USRP-users] Re: x310 USRP -- Performance questions
->
-> *Note: This message originated from outside the FIU Faculty/Staff=20
-> email system.*
->
->
-> Hi Arnaldo,
->
->
-> On 29.01.24 14:23, Arnaldo Sans wrote:
->
->     Are there any details about what the measurement conditions were
->     used to accomplished both the Rx and Tx measurements... e.g. input
->     power etc.?
->
-> Which measurements specifically are you referring to? For most of the=20
-> RX figures, input power is the actual measured quantity, of sorts?
->
->     Regarding the block diagram... I see various attenuators... that I
->     would like to better understand I have placed green boxes around
->     the attenuators
->
-> So, what would you like to understand about these attenuators?
->
->     Is there a theory of operations document / URL for the x310?
->
-> I think you're mostly looking at it; could you specify that question a=20
-> bit, please?
->
->
-> Best regards,
-> Marcus
->
->
->
-There's no "structured walk-through" of the various hardware designs.=C2=A0=
-=C2=A0=C2=A0=20
-The schematics and the block-diagrams and the
- =C2=A0 FPGA source code, and the host-side source code, and the API=20
-documentation, and the growing collection of app-notes
- =C2=A0 are what there is.
+Hello everyone,
 
-I'm also not sure how the "37.5dB" was obtained in testing, and TBH, the=20
-person who did these tests is, AFAIR, long-gone
- =C2=A0 from the Emerson/NI/Ettus world.
+just wanted to ask if anyone has tried the example codes from refarch-multi=
+ch with 200 MHz sample rate.
+My experience with it is that overruns are detected even though I only set =
+two receive channels.
+I also tried it with DPDK, but that doesn't change anything.
+I'm just surprised that benchmark_rate works without an overrun.
+If anyone knows anything about this or has any suggestions, I would be plea=
+sed to hear from you.
 
-The small fixed attenuators are likely there to buffer against=20
-reflections from filters that follow, and/or to assure that
- =C2=A0 the max Pout cannot exceed some regulatory limit even with the=20
-variable attenuator turned up to maximum.
+Best regards
+Till
 
-The UBX is a two-stage (again, AFAIR) superheterodyne design, with the=20
-2nd conversion stage being direct-conversion,
- =C2=A0 which is what is sampled by the ADCs on the motherboard.=C2=A0 I =
-believe=20
-that converse is true for the TX side.=C2=A0=C2=A0 But since
- =C2=A0 my main application for my own applications is radio astronomy, I=
-=20
-only rarely "care" about the TX side of things.
-
-On TX, signals start out as quadrature baseband signals, and if they are=20
-between 500MHz and 6GHz, the sum gets
- =C2=A0 presented directly to the RFPA output stage.=C2=A0 If under 500MH=
-z,=20
-there's a 2nd conversion stage before being
- =C2=A0 presented to the RPGA output stage.
-
-
-
---------------0DuFCP9NskuyqnNTgFxvchG9
-Content-Type: text/html; charset=UTF-8
+--_000_AM8PR06MB7138A772918962574E98B8BB827C2AM8PR06MB7138eurp_
+Content-Type: text/html; charset="us-ascii"
+Content-ID: <D6663D6D1416334A9EAFCF5486BC1890@1>
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 29/01/2024 12:20, Arnaldo Sans
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:BN8PR05MB59713B441A1180206D4900B68C7E2@BN8PR05MB5971.namprd05=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <p style=3D"margin-top: 0px; margin-bottom: 0px;"><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">Hello
-          Marcus,</span></p>
-      <p><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">=C2=A0=
-</span></p>
-      <p class=3D"elementToProof"><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-Thank
-          you for your quick response... I am attaching a pdf of the
-          email because I suspect that my screenshots are not making -it
-          to you.</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-=C2=A0</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-Here
-          are the TX and RX graphs available on the Ettus URL I
-          mentioned in my initial email...</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-=C2=A0</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-Below
-          are the RX plots:=C2=A0=C2=A0</span></p>
-      <ol data-listchain=3D"__List_Chain_109"
-        style=3D"list-style-type: decimal;" start=3D"1">
-        <li
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-          <span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: black;">Receiver
-            performance =E2=80=93
-          </span><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">Gain,
-            IQ Balance, DC Offset, Input IP3, Input IP2 and Noise
-            Figure) with a swept Gain range from 0 dB to 37.5 dB,=C2=A0at=
- a
-            fixed frequency, 5800 MHz</span></li>
-        <li
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0); margin=
--bottom: 12pt;"
-          class=3D"elementToProof">
-          <span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: black; background-co=
-lor: white;">Receiver
-            performance=C2=A0=E2=80=93 (Gain,</span><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">=C2=A0=
-IQ
-            Balance, DC Offset, Input IP3, Input IP2 and Noise Figure)
-            with a swept frequency range from 10 MHz to 6 GHz with a
-            fixed Gain of 0.00 dB.</span></li>
-      </ol>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-=C2=A0</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-Below
-          are the TX plots:=C2=A0=C2=A0</span></p>
-      <ol data-listchain=3D"__List_Chain_110"
-        style=3D"list-style-type: decimal;" start=3D"1">
-        <li
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-          <span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: black;">Receiver
-            performance =E2=80=93 Gain, IQ Balance, DC Offset, Output IP3=
-,
-            Output IP2 and Noise Figure) with a swept Gain range from 0
-            dB to </span><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">37.5=C2=
-=A0dB,=C2=A0at
-            a fixed frequency, 5800 MHz</span></li>
-        <li
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-          <span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: black; background-co=
-lor: white;">Receiver
-            performance=C2=A0=E2=80=93 (Gain,</span><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">=C2=A0=
-IQ
-            Balance, DC Offset, Output IP3, Output IP2 and Noise Figure)
-            with a swept frequency range from 10 MHz to 6 GHz with a
-            fixed Gain of 0.00 dB.</span></li>
-      </ol>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-=C2=A0</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black; b=
-ackground-color: yellow;">I
-          would like to know the input power, Pin?</span><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-=C2=A0=C2=A0</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-=C2=A0</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-Regarding
-          the attenuators, below is a screenshot from the Ettus URL.=C2=A0=
- I
-          would=C2=A0like to know more about what appear to be fixed
-          attenuators and how they are used and managed.=C2=A0 According =
-to
-          the data sheet I think I understand how the variable
-          attenuator is being=C2=A0used and managed; if there is any
-          documentation that provides additional details that would be
-          very much appreciated.</span></p>
-      <p class=3D"elementToProof"><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: black;">=
-=C2=A0</span></p>
-      <p><span
-style=3D"font-family: Aptos, sans-serif; font-size: 11pt; color: rgb(0, 0=
-, 0); background-color: yellow;"><b>It
-            is my understanding that the HMC624LP4E is a 6-bits, 0.5 dB
-            steps digital step attenuator. This means I can control as
-            much as 31.5 dB gain in 0.5dB steps yet the measurements
-            show gain values up to 37.5 dB. Where are the extra 6 dB of
-            gain control coming from?</b></span></p>
-      <p><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">=C2=A0=
-</span></p>
-      <p><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">Regar=
-ding
-          the request for a theory of operation documentation=E2=80=A6 th=
-is is
-          because currently I am only looking at block diagrams and
-          schematics =E2=80=93 often time many questions can be answered =
-by a
-          theory of operation document.=C2=A0 I there another URL that ha=
-s
-          the documents?</span></p>
-      <p><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">=C2=A0=
-</span></p>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-        Thank=C2=A0you, I appreciate you help.</div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-        Regards,</div>
-      <div class=3D"elementToProof"><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">AJ</s=
-pan></div>
-      <div
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <hr style=3D"display: inline-block; width: 98%;">
-      <div dir=3D"ltr" id=3D"divRplyFwdMsg"><span
-style=3D"font-family: Calibri, sans-serif; font-size: 11pt; color: rgb(0,=
- 0, 0);"><b>From:</b>=C2=A0Marcus
-          M=C3=BCller <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:m=
-arcus.mueller@ettus.com">&lt;marcus.mueller@ettus.com&gt;</a><br>
-          <b>Sent:</b>=C2=A0Monday, January 29, 2024 10:11 AM<br>
-          <b>To:</b>=C2=A0<a class=3D"moz-txt-link-abbreviated" href=3D"m=
-ailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:usrp-users@li=
-sts.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-          <b>Subject:</b>=C2=A0[USRP-users] Re: x310 USRP -- Performance
-          questions</span>
-        <div>=C2=A0</div>
-      </div>
-      <p
-style=3D"text-align: center; margin: 0px auto; padding: 5px; border-width=
-: 1px; border-style: solid; border-color: black; width: 65%; color: red;"=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-        <b>Note: This message originated from outside the FIU
-          Faculty/Staff email system.</b></p>
-      <br>
-      <p style=3D"margin-top: 0px; margin-bottom: 0px;">Hi Arnaldo,</p>
-      <p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
-      </p>
-      <div>On 29.01.24 14:23, Arnaldo Sans wrote:</div>
-      <blockquote>
-        <div>A<span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">re
-            there any details about what the measurement conditions were
-          </span><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 14.6667px; color: rgb(0, 0, 0); b=
-ackground-color: rgb(255, 255, 255);">used
-            to accomplished both the Rx and Tx measurements</span><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">...
-            e.g. input power etc.?</span></div>
-      </blockquote>
-      Which measurements specifically are you referring to? For most of
-      the RX figures, input power is the actual measured quantity, of
-      sorts?<br>
-      <blockquote><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">Regar=
-ding
-          the block diagram... I see various attenuators... that I would
-          like to better understand I have placed green boxes around the
-          attenuators</span></blockquote>
-      So, what would you like to understand about these attenuators?<br>
-      <blockquote><span
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 14.6667px; color: rgb(0, 0, 0); b=
-ackground-color: rgb(255, 255, 255);">Is
-          there a theory of operations document / URL for the x310?</span=
-></blockquote>
-      <p style=3D"margin-top: 0px; margin-bottom: 0px;">I think you're
-        mostly looking at it; could you specify that question a bit,
-        please?</p>
-      <p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
-      </p>
-      <p style=3D"margin-top: 0px; margin-bottom: 0px;">Best regards,<br>
-        Marcus</p>
-      <br>
-      <br>
-    </blockquote>
-    There's no "structured walk-through" of the various hardware
-    designs.=C2=A0=C2=A0=C2=A0 The schematics and the block-diagrams and =
-the<br>
-    =C2=A0 FPGA source code, and the host-side source code, and the API
-    documentation, and the growing collection of app-notes<br>
-    =C2=A0 are what there is.<br>
-    <br>
-    I'm also not sure how the "37.5dB" was obtained in testing, and TBH,
-    the person who did these tests is, AFAIR, long-gone<br>
-    =C2=A0 from the Emerson/NI/Ettus world.<br>
-    <br>
-    The small fixed attenuators are likely there to buffer against
-    reflections from filters that follow, and/or to assure that<br>
-    =C2=A0 the max Pout cannot exceed some regulatory limit even with the
-    variable attenuator turned up to maximum.<br>
-    <br>
-    The UBX is a two-stage (again, AFAIR) superheterodyne design, with
-    the 2nd conversion stage being direct-conversion,<br>
-    =C2=A0 which is what is sampled by the ADCs on the motherboard.=C2=A0=
- I
-    believe that converse is true for the TX side.=C2=A0=C2=A0 But since<=
-br>
-    =C2=A0 my main application for my own applications is radio astronomy=
-, I
-    only rarely "care" about the TX side of things.<br>
-    <br>
-    On TX, signals start out as quadrature baseband signals, and if they
-    are between 500MHz and 6GHz, the sum gets<br>
-    =C2=A0 presented directly to the RFPA output stage.=C2=A0 If under 50=
-0MHz,
-    there's a 2nd conversion stage before being<br>
-    =C2=A0 presented to the RPGA output stage.<br>
-    <br>
-    <br>
-    <br>
-  </body>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.E-MailFormatvorlage18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
+ak-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello everyone,<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">just wanted to ask if anyone ha=
+s tried the example codes from refarch-multich with 200 MHz sample rate.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">My experience with it is that o=
+verruns are detected even though I only set two receive channels.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I also tried it with DPDK, but =
+that doesn't change anything.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I'm just surprised that benchma=
+rk_rate works without an overrun.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">If anyone knows anything about =
+this or has any suggestions, I would be pleased to hear from you.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Till <o:p></o:p></span></p>
+</div>
+</body>
 </html>
 
---------------0DuFCP9NskuyqnNTgFxvchG9--
+--_000_AM8PR06MB7138A772918962574E98B8BB827C2AM8PR06MB7138eurp_--
 
---===============7898370330900485311==
+--===============7459211970474688917==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -548,4 +239,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7898370330900485311==--
+--===============7459211970474688917==--
