@@ -2,231 +2,326 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C426585062E
-	for <lists+usrp-users@lfdr.de>; Sat, 10 Feb 2024 21:05:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 471A385079E
+	for <lists+usrp-users@lfdr.de>; Sun, 11 Feb 2024 03:11:48 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C7A1438456F
-	for <lists+usrp-users@lfdr.de>; Sat, 10 Feb 2024 15:05:27 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 14DE53853E9
+	for <lists+usrp-users@lfdr.de>; Sat, 10 Feb 2024 21:11:47 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1707595527; bh=GIMKUAmx41jfVkZBgyGtVDJrKzoY/tt/Qk1cCSjC2UA=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=06819tP38ZX9jhWwgHVLNyYEG7xYrJSwHbKV23/IZA52MBGPFHh/Hds22uOLg0ZXx
-	 ytHJ3cpeY3DEt91CBxTUh4ivVT9FIRbEmImJ2Uc8rCozejP8jtUICpCtnajr2TNYiJ
-	 zxLm9H6w151/YndjbvtX/Xf1r7Vl5uifIqOFSSRpV5jZh6dhxQ94swg/YBZwbE3OBb
-	 xYQY3BFFkpN4Qm3K2ZKD8r4WHY7sBiPzDWHz41aTjkuhkBMtr5wPBDh9yXcpVe1BSO
-	 Vew8HnC6EwD0uoVUMV0mIATD5+cwi2Sxxw9CgTdpedNeVXmadjPdf/RLCsHURlJd/F
-	 W5u4IpOxlY65Q==
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5C441380B3B
-	for <usrp-users@lists.ettus.com>; Sat, 10 Feb 2024 15:04:24 -0500 (EST)
+	t=1707617507; bh=HGfiUS1DPwmxXrXJNjopCB2NFxMJW24hJNvA6kMmWfY=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=p3ChDqeLSccnZ1YuYx/uFED5aPyiSRihGB8hsDUy8YPRqt4YyvZ23X2Wq6MX3xYu5
+	 DdT5acz/qhepbIujcLVirHRn6m9sfT2kew24O6lAihvRd1unBZIabc/nD0rH7L6jkE
+	 +gswp+UZGtIKqtdSUHSNzE6LJqLe64aRWy7kUMlQze5xW5FF+/jlFPFoS72iyF+ePg
+	 JWl7VK3S4FCdTqNKxiFxIYpk2UiTqwApsQ8V9vEuGcOPJQ86TKbGXKNscrZIhwbyaf
+	 2rsLgr2O5gtuv4DMR/qBH7F83DilPGHFX6DkxOce5mRvEb3TeDbylor5Feu1R2/DEY
+	 Ct0vtoJcH+btg==
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9477F38539F
+	for <usrp-users@lists.ettus.com>; Sat, 10 Feb 2024 21:10:50 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Zmg9ZtZr";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Fj7fCAvn";
 	dkim-atps=neutral
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a293f2280c7so282560066b.1
-        for <usrp-users@lists.ettus.com>; Sat, 10 Feb 2024 12:04:24 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-56003c97d98so2617182a12.3
+        for <usrp-users@lists.ettus.com>; Sat, 10 Feb 2024 18:10:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707595463; x=1708200263; darn=lists.ettus.com;
+        d=nd.edu; s=google; t=1707617449; x=1708222249; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d0MXkTRviwLwkqDI6a0LTVHcHBU72Ddrt/90b3I5Ac4=;
-        b=Zmg9ZtZrTdSQx25JNzvAxBA2XxjxpGjPUhpXgcLD2tlHRFdcjTP0Z7YSf8mxAI8bRf
-         YQwjnjc6p3Z7KRrebuPgc5nKS9VI5DEn5gybyinqaVz+BRLW4NkLwDLpZlDA76O+zNqE
-         3OA49+JVejIrqYST4XbjkMxuLWygxAikD8TqWJ4eAK/RtPys6iBkhptkbvCIqVdtGDr2
-         jLiLWnkdSvlHOtEn2247IwNpQIsqpOKwVZsE8Nqhy4OlL9+E1CCFVd+tRIBQcVu2s65K
-         mFEv9AEA7gdetZ9sh1EA8VYdX59POGtAW5zSAq3bY/QSpchvQdjsJBxDje8SQN9lq09a
-         P03A==
+        bh=xJRgEGpUMxFiOCi+8Qv46xV7GfWJvy21J2jnJEUrA/g=;
+        b=Fj7fCAvnC/xd+K4b53GuD1g6thoiwVtdQMs+mf4cUMsLRFa+bKeYhv+K/my486Kcf8
+         VqUo6LoK2hirD7cphVWP0vbobUYTpNbTmD9N0VB9gM1pWul4bZOMzAGhyBroIjzGwziC
+         asXsc21NvH6jjlj+mZgeiex3+Ai7eCbkEhIgbLSw21MOpALqSRLlQ/UwNDN2Y53ZkGJZ
+         GQbI0QotCT0Mkbv/Ku00drVedp5YNXBPiYuiGM8Ll3jq1nRbFvrQ6OtZHAiNdk4J228X
+         Pwa5r6sj6IV7vSM84fkhyOSrgZX+tEcncWEaCFCoXny26AOb0qoXGArz+MlO9WY322OQ
+         3qBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707595463; x=1708200263;
+        d=1e100.net; s=20230601; t=1707617449; x=1708222249;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=d0MXkTRviwLwkqDI6a0LTVHcHBU72Ddrt/90b3I5Ac4=;
-        b=Xdi6avFkBm0rcTxvzDEg1jNrRc0bwdJ9FilrtHFN3CxyhX/lPeSUvGZBzcCSQl70Sd
-         mAl4affAtHmnYiryXQRvs2sILAowtdkRLwa3nn1DyzQauhwg8mZ8YX1hoCLXweOlNxiW
-         og/Nc5+EKyG0Zv5h9T1gPcw9Q1XlhCInY9n/+P78u6i1F05m+RNJEnYCCc/EhDl0xmnD
-         7aFq8QcVHokjUAeUH6adC6RifMmUtZnJz7ZX572dSVCuCOhUr+vdnR4Xqepda2fD87ki
-         QLx9jdcYI3G7M73/tSwycsCHwoIArVrni23/jDZUmpMIbvlRrY1qQoHWwBHvWQWoDZiA
-         FfHQ==
-X-Gm-Message-State: AOJu0YyA6CcxYaflg5MiQ5iOeoIjIGVP6xD7Q5FPFL3jts6HAtnzYL8T
-	SfJj2SCkyZX/PDQmu3SlOKMFOM8alK1B6EIk1BYApt0A4+ZUw5wc6nXtQU6j5Oldw3O8PA4OP75
-	fauvHQi77ajviJN0fAEAXVYqOnbzpuvdtTBNdSw==
-X-Google-Smtp-Source: AGHT+IHfvuCEibzJ6eFcKDOVWOoKGXLGQiqcOOriL9X9qUHuFbY7NxSJn4RLm+AeXvMbukqpeHVk98d3z8o2z4fdUGE=
-X-Received: by 2002:a17:906:d96f:b0:a35:b808:8f1d with SMTP id
- rp15-20020a170906d96f00b00a35b8088f1dmr2154192ejb.67.1707595462933; Sat, 10
- Feb 2024 12:04:22 -0800 (PST)
+        bh=xJRgEGpUMxFiOCi+8Qv46xV7GfWJvy21J2jnJEUrA/g=;
+        b=TZeI+2K65ojiaXZfT3YaeZxgUL+HGTMj5RgRevMc9vBYzhFWhCnVQ2+MmBqw9TVW3Q
+         TNaTq0hMz3tMLub4IPnqFB0z13f17ecCqK8LafU2mUJO8o7gXg/akdkYWOeFBHRJif0A
+         24Omwto5Vpbv1JAlUwwzthM0jPpQRzmviN/AHqVpv6qW9VUndsShWuVYHj+3KDDOuDuo
+         CXqZNJCtyggp30QXQYRxMCaErb7q1uLsucciDYPKfGTwAa/F82r6TJetX7n8uulK7GCr
+         q92PbrSbIC5kxDfyqzMXIs1ZTP9OLm8i8PKnsfc+1hlZeskL5buVtb54zcGLoeDQyBh+
+         xt7Q==
+X-Gm-Message-State: AOJu0YybLDgrSamde5mAB9GO4qAeFSB+noj65RIrcI2YkMQBoVBYmKKt
+	kBhkySEfuG+ounLZX8/K3DaWntyAUU/GSq/sXnQaJU9TwJTSJUTayoGnjichCDE8rWyRlLX6e8z
+	EevBGpkC4f5dLxW68s1+pxfysBdpv69pHaeNY
+X-Google-Smtp-Source: AGHT+IGbKIjb5fqZn5FT6HRPzazeOHqG96KpidnIAOsXOkd1fccQWhUK4/Pe5hTA8yoE0ZfD9MfaLu8P1EGARaed0DA=
+X-Received: by 2002:a05:6402:31a1:b0:561:8918:9f5d with SMTP id
+ dj1-20020a05640231a100b0056189189f5dmr799238edb.20.1707617449235; Sat, 10 Feb
+ 2024 18:10:49 -0800 (PST)
 MIME-Version: 1.0
-References: <CAEMZVF1F6HOVdSDfwBHX0byNdt1MqRZXnyem_zZAJDMNWRE-Rg@mail.gmail.com>
-In-Reply-To: <CAEMZVF1F6HOVdSDfwBHX0byNdt1MqRZXnyem_zZAJDMNWRE-Rg@mail.gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Sat, 10 Feb 2024 15:04:11 -0500
-Message-ID: <CAEXYVK51qodaxMvZrQXPTP9u5+_zueXdn38bo5XBZ5NzZHdOhQ@mail.gmail.com>
-To: Chris <gaytanc4@gmail.com>
-Message-ID-Hash: 5JXCSAWOZJ6UEOSK3IPXZCIVS277B2SF
-X-Message-ID-Hash: 5JXCSAWOZJ6UEOSK3IPXZCIVS277B2SF
-X-MailFrom: bpadalino@gmail.com
+References: <fQ2AEeHqk1f2jwuhe1oZOqHucYzNbsPIesuyY5qKrvg@lists.ettus.com>
+ <CAB__hTTTNSCg+HskvWrFTbaXhXoJgK5Gq7ihF2d5uqYPpMyYcg@mail.gmail.com> <b70389b0-ae5c-45d7-9b5e-037cc2637980@gmail.com>
+In-Reply-To: <b70389b0-ae5c-45d7-9b5e-037cc2637980@gmail.com>
+Date: Sat, 10 Feb 2024 21:10:37 -0500
+Message-ID: <CAB__hTR+LsHS-CzjaU9jPHoVFz5RaP6FBZLY1cd9o1OT1qx_Kw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: AEH46LS64KKIYHWQKEH2UTAUMFBK4W65
+X-Message-ID-Hash: AEH46LS64KKIYHWQKEH2UTAUMFBK4W65
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNOC Tutorial
+Subject: [USRP-users] Re: X310/UBX Tx tuning issue introduced UHD 4.4?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5JXCSAWOZJ6UEOSK3IPXZCIVS277B2SF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AEH46LS64KKIYHWQKEH2UTAUMFBK4W65/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5309928852835522509=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============7092131711095493002=="
 
---===============5309928852835522509==
-Content-Type: multipart/alternative; boundary="000000000000fcffba06110c8cf6"
+--===============7092131711095493002==
+Content-Type: multipart/alternative; boundary="00000000000079da3b061111ab03"
 
---000000000000fcffba06110c8cf6
+--00000000000079da3b061111ab03
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Feb 10, 2024 at 2:47=E2=80=AFPM Chris <gaytanc4@gmail.com> wrote:
+But it should. This is basic functionality that is completely broken. The
+commit to fix it is simple.
 
-> All, I am trying to offload some of my processing power onto my X310's
-> FPGA. I have the environment set up but still find myself confused on how
-> to build the out of tree block. I was able to add a block and I'm not sur=
-e
-> what to do next?
+On Fri, Feb 9, 2024 at 10:06=E2=80=AFAM Marcus D. Leech <patchvonbraun@gmai=
+l.com>
+wrote:
+
+> On 09/02/2024 09:07, Rob Kossler via USRP-users wrote:
+>
+> This is fixed in 4.5 and 4.6.  Are you able to switch?
+> Rob
+>
+> I'll add that it's unlikely for the fix to get back-ported to 4.4 at this
+> point.
 >
 >
-> My design process is as follows: Matlab, get HDL code for DSP algorithms,
-> and deploy it on the RFNOC?
 >
-> My goal is to start out with implementing an adaptive filter on the FPGA.
-> When I looked in the FIR filter .v example I wasn't able to match how thi=
-s
-> code works with the rfnoc environment. When I add my new oot block I have
-> the verilog code similar to the gain block example but not sure what else
-> needs to be changed besides dropping in the verilog code into the
-> newly_added_oot_block.v
 >
-> Is there any more documentation I can follow to make sure I am following
-> the right path?
+> On Fri, Feb 9, 2024 at 5:04=E2=80=AFAM <speik@hs-bremen.de> wrote:
+>
+>> Hi,
+>>
+>> I am facing the same problem.
+>>
+>> I am on a Linux machine and hardware is an X300 with a UBX160.
+>>
+>> When I am above 500 MHz the actual carrier freq becomes about 2000 MHz
+>> smaller.
+>>
+>> I checked it with the uhd example script  tx_waveforms that comes with
+>> the uhd install. Below is the output. Note that actual frequency is
+>> negative. There is no output at 915 MHz on a spectrum analyzer. Below 50=
+0
+>> MHz everything is fine.
+>>
+>> Same happens when using Gnuradio.
+>>
+>>  Thanks
+>>
+>> Soren
+>>
+>>
+>> ------------------------------
+>>
+>> $ ./tx_waveforms --freq 915e6 --rate 5e6 --gain 0
+>>
+>> Creating the usrp device with: ...
+>> [INFO] [UHD] linux; GNU C++ version 13.1.0; Boost_107400;
+>> UHD_4.4.0.0+ds1-4
+>> [INFO] [X300] X300 initialization sequence...
+>> [INFO] [X300] Maximum frame size: 1472 bytes.
+>> [INFO] [X300] Radio 1x clock: 200 MHz
+>> Using Device: Single USRP:
+>> Device: X-Series Device
+>> Mboard 0: X300
+>> RX Channel: 0
+>> RX DSP: 0
+>> RX Dboard: A
+>> RX Subdev: UBX RX
+>> RX Channel: 1
+>> RX DSP: 1
+>> RX Dboard: B
+>> RX Subdev: Unknown (0xffff) - 0
+>> TX Channel: 0
+>> TX DSP: 0
+>> TX Dboard: A
+>> TX Subdev: UBX TX
+>> TX Channel: 1
+>> TX DSP: 1
+>> TX Dboard: B
+>> TX Subdev: Unknown (0xffff) - 0
+>>
+>> Setting TX Rate: 5.000000 Msps...
+>> Actual TX Rate: 5.000000 Msps...
+>>
+>> Setting TX Freq: 915.000000 MHz...
+>> Setting TX LO Offset: 0.000000 MHz...
+>> Actual TX Freq: -1085.000002 MHz...
+>>
+>> Setting TX Gain: 0.000000 dB...
+>> Actual TX Gain: 0.000000 dB...
+>>
+>> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+>> Setting device timestamp to 0...
+>> Checking TX: TXLO: locked ...
+>> Press Ctrl + C to stop streaming...
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
-Using the rfnoc_image_builder tool isn't the most straightforward thing to
-do, but it is a decent path.
-
-First, I typically set things up in my environment as follows:
-
-  export UHD_FPGA_DIR=3D/path/to/uhd/fpga
-  export VIVADO_PATH=3D/path/to/Vivado
-  export RFNOC_OOT=3D/path/to/oot
-
-In the OOT directory, there are a few directories:
-  - blocks: The yml definitions of your custom blocks
-  - icores: The yml definitions of your entire RFNoC image, similar to the
-default Ettus core:
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/x310_r=
-fnoc_image_core.yml
-  - fpga: The FPGA source for each of the RFNoC blocks
-
-In the fpga directory, I have a Makefile.srcs which simply looks like:
-
-  RFNOC_FPGA_DIR :=3D $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-  include $(RFNOC_FPGA_DIR)/rfnoc_block_first/Makefile.srcs
-  include $(RFNOC_FPGA_DIR)/rfnoc_block_second/Makefile.srcs
-
-So the above has two blocks that want to be included with the possibility
-to build.  In each of my block directories, where the actual code lives,
-there is another Makefile.srcs:
-
-  RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath $(lastword
-$(MAKEFILE_LIST)))), rfnoc_block_first.v someother.v another.v)
-
-So just a list of sources
-
-When everything is in place and is working well, then I invoke the
-rfnoc_image_builder as such:
-
-  rfnoc_image_builder -F $UHD_FPGA_DIR -I $RFNOC_OOT -y
-$RFNOC_OOT/icores/x310_rfnoc_custom_config.yml --vivado-path $VIVADO _PATH
--t X310_XG -l DEBUG
-
-The DEBUG prints more logging information about connections made during the
-RFNoC core generation.
-
-If things are completely successful, then you'll get an FPGA image popped
-out at the end.  If there are issues with sources or other problems, then
-you'll get some log you can try to find.
-
-Note that I believe you can issue multiple -I to pull in disparate OOT
-blocks and use them with the same icore yml file.
-
-Good luck.  I hope this was helpful.
-
-Brian
-
---000000000000fcffba06110c8cf6
+--00000000000079da3b061111ab03
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Sat, Feb 10, 2024 at 2:47=E2=80=AFPM C=
-hris &lt;<a href=3D"mailto:gaytanc4@gmail.com">gaytanc4@gmail.com</a>&gt; w=
-rote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div dir=3D"auto">All, I am trying to offload some of my p=
-rocessing power onto my X310&#39;s FPGA. I have the environment set up but =
-still find myself confused on how to build the out of tree block. I was abl=
-e to add a block and I&#39;m not sure what to do next?<div dir=3D"auto"><br=
-></div><div dir=3D"auto"><br></div><div dir=3D"auto">My design process is a=
-s follows: Matlab, get HDL code for DSP algorithms, and deploy it on the RF=
-NOC?</div><div dir=3D"auto"><br></div><div dir=3D"auto">My goal is to start=
- out with implementing an adaptive filter on the FPGA. When I looked in the=
- FIR filter .v example I wasn&#39;t able to match how this code works with =
-the rfnoc environment. When I add my new oot block I have the verilog code =
-similar to the gain block example but not sure what else needs to be change=
-d besides dropping in the verilog code into the newly_added_oot_block.v=C2=
-=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Is there any more do=
-cumentation I can follow to make sure I am following the right path?</div><=
-/div></blockquote><div><br></div><div>Using the rfnoc_image_builder tool is=
-n&#39;t the most straightforward thing to do, but it is a decent path.</div=
-><div><br></div><div>First, I typically set things up in my environment as =
-follows:</div><div><br></div><div>=C2=A0 export UHD_FPGA_DIR=3D/path/to/uhd=
-/fpga</div><div>=C2=A0 export VIVADO_PATH=3D/path/to/Vivado</div><div>=C2=
-=A0 export RFNOC_OOT=3D/path/to/oot</div><div><br></div><div>In the OOT dir=
-ectory, there are a few directories:</div><div>=C2=A0 - blocks: The yml def=
-initions of your custom blocks</div><div>=C2=A0 - icores: The yml definitio=
-ns of your entire RFNoC image, similar to the default Ettus core:=C2=A0<a h=
-ref=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300=
-/x310_rfnoc_image_core.yml">https://github.com/EttusResearch/uhd/blob/maste=
-r/fpga/usrp3/top/x300/x310_rfnoc_image_core.yml</a></div><div>=C2=A0 - fpga=
-: The FPGA source for each of the RFNoC blocks</div><div><br></div><div>In =
-the fpga directory, I have a Makefile.srcs which simply looks like:</div><d=
-iv><br></div><div>=C2=A0 RFNOC_FPGA_DIR :=3D $(dir $(abspath $(lastword $(M=
-AKEFILE_LIST))))</div><div>=C2=A0 include $(RFNOC_FPGA_DIR)/rfnoc_block_fir=
-st/Makefile.srcs</div><div>=C2=A0 include $(RFNOC_FPGA_DIR)/rfnoc_block_sec=
-ond/Makefile.srcs</div><div><br></div><div>So the above has two blocks that=
- want to be included with the possibility to build.=C2=A0 In each of my blo=
-ck directories, where the actual code lives, there is another Makefile.srcs=
-:</div><div><br></div><div>=C2=A0 RFNOC_OOT_SRCS=C2=A0+=3D $(addprefix $(di=
-r $(abspath $(lastword $(MAKEFILE_LIST)))), rfnoc_block_first.v someother.v=
-=C2=A0another.v)</div><div><br></div><div>So just a list of sources=C2=A0</=
-div><div><br></div><div>When everything is in place and is working well, th=
-en I invoke the rfnoc_image_builder as such:</div><div><br></div><div>=C2=
-=A0 rfnoc_image_builder -F $UHD_FPGA_DIR -I $RFNOC_OOT -y $RFNOC_OOT/icores=
-/x310_rfnoc_custom_config.yml --vivado-path $VIVADO _PATH -t X310_XG -l DEB=
-UG</div><div><br></div><div>The DEBUG prints more logging information about=
- connections made during the RFNoC core generation.</div><div><br></div><di=
-v>If things are completely successful, then you&#39;ll get an FPGA image po=
-pped out at the end.=C2=A0 If there are issues with sources or other proble=
-ms, then you&#39;ll get some log you can try to find.</div><div><br></div><=
-div>Note that I believe you can issue multiple -I to pull in disparate OOT =
-blocks and use them with the same icore yml file.</div><div><br></div><div>=
-Good luck.=C2=A0 I hope this was helpful.</div><div><br></div><div>Brian</d=
-iv></div></div>
+<div dir=3D"auto">But it should. This is basic functionality that is comple=
+tely broken. The commit to fix it is simple.=C2=A0</div><div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Feb 9, 2024 =
+at 10:06=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gma=
+il.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;bo=
+rder-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">=
+<u></u>
 
---000000000000fcffba06110c8cf6--
+ =20
+   =20
+ =20
+  <div>
+    <div>On 09/02/2024 09:07, Rob Kossler via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">This is fixed in 4.5 and 4.6.=C2=A0 Are you able to
+        switch?
+        <div>Rob</div>
+      </div>
+    </blockquote>
+    I&#39;ll add that it&#39;s unlikely for the fix to get back-ported to 4=
+.4 at
+    this point.</div><div><br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"><br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Feb 9, 2024 at 5:04=
+=E2=80=AFAM
+          &lt;<a href=3D"mailto:speik@hs-bremen.de" target=3D"_blank">speik=
+@hs-bremen.de</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-left=
+-color:rgb(204,204,204)">
+          <p>Hi,</p>
+          <p>I am facing the same problem.</p>
+          <p>I am on a Linux machine and hardware is an X300 with a
+            UBX160.</p>
+          <p>When I am above 500 MHz the actual carrier freq becomes
+            about 2000 MHz smaller. </p>
+          <p>I checked it with the uhd example script=C2=A0 tx_waveforms th=
+at
+            comes with the uhd install. Below is the output. Note that
+            actual frequency is negative. There is no output at 915 MHz
+            on a spectrum analyzer. Below 500 MHz everything is fine.</p>
+          <p>Same happens when using Gnuradio. </p>
+          <p>=C2=A0Thanks</p>
+          <p>Soren</p>
+          <p>=C2=A0</p>
+          <div>
+            <hr></div>
+          <p>$ ./tx_waveforms --freq 915e6 --rate 5e6 --gain 0</p>
+          <p>Creating the usrp device with: ...<br>
+            [INFO] [UHD] linux; GNU C++ version 13.1.0; Boost_107400;
+            UHD_4.4.0.0+ds1-4<br>
+            [INFO] [X300] X300 initialization sequence...<br>
+            [INFO] [X300] Maximum frame size: 1472 bytes.<br>
+            [INFO] [X300] Radio 1x clock: 200 MHz<br>
+            Using Device: Single USRP:<br>
+            Device: X-Series Device<br>
+            Mboard 0: X300<br>
+            RX Channel: 0<br>
+            RX DSP: 0<br>
+            RX Dboard: A<br>
+            RX Subdev: UBX RX<br>
+            RX Channel: 1<br>
+            RX DSP: 1<br>
+            RX Dboard: B<br>
+            RX Subdev: Unknown (0xffff) - 0<br>
+            TX Channel: 0<br>
+            TX DSP: 0<br>
+            TX Dboard: A<br>
+            TX Subdev: UBX TX<br>
+            TX Channel: 1<br>
+            TX DSP: 1<br>
+            TX Dboard: B<br>
+            TX Subdev: Unknown (0xffff) - 0</p>
+          <p>Setting TX Rate: 5.000000 Msps...<br>
+            Actual TX Rate: 5.000000 Msps...</p>
+          <p>Setting TX Freq: 915.000000 MHz...<br>
+            Setting TX LO Offset: 0.000000 MHz...<br>
+            Actual TX Freq: -1085.000002 MHz...</p>
+          <p>Setting TX Gain: 0.000000 dB...<br>
+            Actual TX Gain: 0.000000 dB...</p>
+          <p>[WARNING] [0/Radio#0] Attempting to set tick rate to 0.
+            Skipping.<br>
+            Setting device timestamp to 0...<br>
+            Checking TX: TXLO: locked ...<br>
+            Press Ctrl + C to stop streaming...</p>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
+us.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a href=3D"mailto:usrp-users-leav=
+e@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><b=
+r>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset></fieldset>
+      <pre style=3D"font-family:monospace">________________________________=
+_______________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank" style=3D"font-family:monospace">usrp-users@lists.ettus.com<=
+/a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank" style=3D"font-family:monospace">usrp-users-leave=
+@lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </div>
 
---===============5309928852835522509==
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--00000000000079da3b061111ab03--
+
+--===============7092131711095493002==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -236,4 +331,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5309928852835522509==--
+--===============7092131711095493002==--
