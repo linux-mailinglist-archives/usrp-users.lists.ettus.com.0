@@ -2,131 +2,113 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B37258519C1
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Feb 2024 17:42:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79085851AD8
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Feb 2024 18:10:06 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 76E96384C3F
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Feb 2024 11:42:24 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 32D8C385068
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Feb 2024 12:10:05 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1707756144; bh=E9YL1YIRdM7fnqkQ2vbbe6tW2z1CV0AlTFv63GT+Ft0=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=xFl9Fc0gD4yo33EhTptf9tfgeaX1bPkiORJcrB7ZY/o9VZbmX/6cbPh2XrYqLzxbg
-	 fB9CHO00oEbd6MLrKcU9VP438dPWhgRyWXcqar7f0EEFV172xkm4sWD1RXLHwRk3Ia
-	 BwUlsQ1Y7yghTOjnl18dQyOed9E3Lqbn4r0byAudc5H5KAUEZ8uiWukC+Yb2HQMfZy
-	 fIgPwSOOBPA0CluACW4J+/EgHj1DQlkBISuodQ3lWhxLJfKHvL4VHjbgFeUfV6J7IZ
-	 4Qvit9aY9jZd2JATMtTE/oMeytIZl77uoSlM7UDwaCxKwjleejz/7rKSz/ucwWN7AK
-	 +iY3kjFeytkrw==
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 98DA9384AC3
-	for <usrp-users@lists.ettus.com>; Mon, 12 Feb 2024 11:42:18 -0500 (EST)
+	t=1707757805; bh=I9DrhvXlO16UC0trV3R4KgbDdTCuiogpsN75dzkriL8=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=A3Qbq0oFVc8J144ZspSNtQJFMwRKVCcvmnSeIannc5VJJydyNQfEXMAkawOZsHEaT
+	 LBNqMIecQvwKTbrqV13YavmyW1Xn9rtJdga4CnSG8V4MkBEnYz6U9zHg9kSc+kGVMS
+	 clj/zL9SqfBeJ9HvTPOk80JySeFM1b+Jy70VQe2Fi6M2yTfJMuXF0Ntak/oa74RDtI
+	 vJHKY0D9pur98D/dd8tfP21TsrYXOzNnX8jFI8aUJTxxxMnV60MXCVVzy40Kgfl5jA
+	 ZD9SifH8dajtx74NGuSP2ZlOoKZpl72+gdSh2g9/6OUCwQINbGR19xOBlwwR4u39/H
+	 DaUCsf5PQCeig==
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 54437384C38
+	for <usrp-users@lists.ettus.com>; Mon, 12 Feb 2024 12:09:59 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Mtb3bwrd";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EXHvS+Je";
 	dkim-atps=neutral
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-558f523c072so5259488a12.2
-        for <usrp-users@lists.ettus.com>; Mon, 12 Feb 2024 08:42:18 -0800 (PST)
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-68cc2a389a9so23246616d6.1
+        for <usrp-users@lists.ettus.com>; Mon, 12 Feb 2024 09:09:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707756137; x=1708360937; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=RWx/jYlLk+H03V5jEi9GuX37W0shLwPpAbtrR5y93cE=;
-        b=Mtb3bwrd6G/7u3QBapUhse2zvm20xKWeqSbFwjYkD3xCR6vNGgzxvcEkh8b3BubBeJ
-         R6Bb4f8C55xy6Tbs7V2EwLBIP5LYgdC4H/C3O1a3MpcVkaiRgRzU0xE/jw43MUzq87k1
-         Pfc4Gov679AUBWCWol4HckYL8sOQxjW6vYmSWFF+ammVUdnmn0WhaGvBKG9Lo9wyFfIv
-         Ro/ERbv08/Z/+titd/BAPxyZ2eayUW5IzWV3JFxphAAkIb2ABTC4jv+NA4w0CuKsycVQ
-         sgbOH8kghtA6oXAUBZiv6pkcnmE8B5Fzzwb52/EGxS7k6TdK/hBpp9oxiuRgzhvONe7F
-         1hdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707756137; x=1708360937;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20230601; t=1707757798; x=1708362598; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RWx/jYlLk+H03V5jEi9GuX37W0shLwPpAbtrR5y93cE=;
-        b=T4+YCJVw06vETjIfjSL36t6wHHV+kV8k6uASUxTmuo6w4bo/kLBNiV2N7qC5jp7QQI
-         T8AfhHD/1YKHgTLH5XlxrmG7d6eT3hCQfag3erz+POEmgJEfyXKsTkWRRebHD303oQVk
-         LvpaPMWDT+ZXTt3YDRDNxZjcfoQbpu/6Pdti2whHoYYPg8Kf/Oy2UU1YNiQlWZ8Wmez5
-         1AsB/HducRhYydPOE5U0ms0/BB5FutnRVn+uFUHxU4YCSDTiDn0DaUIMY8vJiRHQjlWp
-         CNzsAMRQsng4v66+I3qARkXH+s/ZKkR9/HLDQflKA9pU2CCNdyIrJch0f+pbFlJSvgl5
-         KRDQ==
-X-Gm-Message-State: AOJu0Yz5LtDtvAyjYHwBQTS0KKaLxk1ZFScMchmAylCRF9SPNUzNZtfz
-	FsDJm3mMQtF8//KahlMC/0IGAH/rFT1r60DMl12J35vqYSuzl8sFij6HwonuztelAwMH0DhN706
-	m/295xmlPgHIk8a4SU6AXvY/H3NFkVSX7GCs=
-X-Google-Smtp-Source: AGHT+IEbpo4QcLRZjD3M5XRuRTZOSnjGztJE0ecEzc+6ba/cDgNQHQrTPzcyaSug9PBnbtYJ03M1AaEXRvIa3vXiIT0=
-X-Received: by 2002:a05:6402:281:b0:560:4e74:20a4 with SMTP id
- l1-20020a056402028100b005604e7420a4mr5469567edv.34.1707756137073; Mon, 12 Feb
- 2024 08:42:17 -0800 (PST)
+        bh=nhcAnzDsyM42OZDJDIZVRGNFT/ZKw2rD9ZiboXD+8Pk=;
+        b=EXHvS+Je6TPkP35nQKHCRLwLooHW3lnsEvQuabJAN7XLJJy4QUHCzLrkRWe0Wy3c+I
+         7MLqKmfVvjgtBDTpM5JuAjJ6gASwPGp37N4dO+t6D0SbiRNVmU14kcMe9K9FsAamqw0K
+         p03ltGZzvnmfD5iamOsRk55EA9VA9IlRPcvSLYNiamN0ceJEWmw36SHFZqqNn7FE9+uR
+         ZEYjCg7bJEbzAGMfmXq5eN+EEkNNDB3N34cXN/YW4sCjQXm0nUQqrx3OLBygB/KLpcZ2
+         zwUIL/xMl8Oy1epGo9pxfaIC2dkb9OkYDp8OjBUkqYQ3kz6QPwCtnZ2iz3G/P8O8IXZn
+         EkVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707757798; x=1708362598;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nhcAnzDsyM42OZDJDIZVRGNFT/ZKw2rD9ZiboXD+8Pk=;
+        b=GUpWSGLiLAhn4Zyy+1GRlxqOHN3W5hvKPWAlkNUWIWoRZJrJTWeiCNvW6YGbeAIPnR
+         IiGtwMA4ijXcBdQfEkfOW8n9Ts8774NnOss1OsCYRqy84nCJ8PDo5EahK9WWzDitWaIZ
+         5apAhj1H3Z5fr7wwCM+of+bc0it1xR9Lx4p9EZwYp7v+gAZt9/GeQC2Bls4RJvmr7EHP
+         V0VWUmsNWMA7OnpVg3nTTapEJYJUYddNLPhquA1lIro82JihTv5GhNMxs+tuzqDNYf8U
+         Ee7oR+8hJbcUX1Qv9KUdE+Kp4tLfh4F3FAkd05iwWvOPuhbK4L5RHrj+2Y5m8qCA+oqJ
+         8SNw==
+X-Gm-Message-State: AOJu0YwxYToZormV0YxrgbEvbEQLR63JGP8DIzRfeJWLs5qRIiZUWm/H
+	cNbCffKg1XUnVh5qk4Wn8WOodrsSLWf4SzqS4hL0V7rRRUNVAWQdcuY70Sbr
+X-Google-Smtp-Source: AGHT+IHIRzgB7ZZMOabBvYYgBqlfooCQgVaZjmWlqykWDNrY1pDiXHiFy4mXll1Fb+Snzw6GdR18cA==
+X-Received: by 2002:ad4:4e0c:0:b0:68c:ccc7:ce96 with SMTP id dl12-20020ad44e0c000000b0068cccc7ce96mr207437qvb.10.1707757798545;
+        Mon, 12 Feb 2024 09:09:58 -0800 (PST)
+Received: from [192.168.2.170] (bras-base-smflon1825w-grc-07-174-93-0-146.dsl.bell.ca. [174.93.0.146])
+        by smtp.googlemail.com with ESMTPSA id bo10-20020a05621414aa00b0068ccb492b1dsm328491qvb.141.2024.02.12.09.09.58
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 09:09:58 -0800 (PST)
+Message-ID: <650c94c1-cec0-4162-91f3-03335456ce75@gmail.com>
+Date: Mon, 12 Feb 2024 12:09:57 -0500
 MIME-Version: 1.0
-From: Muhammad Hassan <engr.muhd.hassan@gmail.com>
-Date: Mon, 12 Feb 2024 16:42:06 +0000
-Message-ID: <CACDPEcM6_ypEBhJG0mPAGUTFAKjESbEYCsk6QNnOQGVhW1Syxg@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: UC2LFMFZAFMBSDIPLN2UU5XXLG2HJDUB
-X-Message-ID-Hash: UC2LFMFZAFMBSDIPLN2UU5XXLG2HJDUB
-X-MailFrom: engr.muhd.hassan@gmail.com
+References: <CACDPEcM6_ypEBhJG0mPAGUTFAKjESbEYCsk6QNnOQGVhW1Syxg@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CACDPEcM6_ypEBhJG0mPAGUTFAKjESbEYCsk6QNnOQGVhW1Syxg@mail.gmail.com>
+Message-ID-Hash: OBVOVN3U7WXBV7Q4GED6GRMPXBD43KU5
+X-Message-ID-Hash: OBVOVN3U7WXBV7Q4GED6GRMPXBD43KU5
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] USRP B205 mini as a transmitter
+Subject: [USRP-users] Re: USRP B205 mini as a transmitter
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UC2LFMFZAFMBSDIPLN2UU5XXLG2HJDUB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OBVOVN3U7WXBV7Q4GED6GRMPXBD43KU5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8312128732679883246=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============8312128732679883246==
-Content-Type: multipart/alternative; boundary="000000000000e9d420061131f52e"
-
---000000000000e9d420061131f52e
-Content-Type: text/plain; charset="UTF-8"
-
-Hi everybody, I am using SURP b205 as transmitter. I am trying to transmit
-pulse. I get following error. can anybody help. I am new user.
-
-Error:Error reported by S-function 'usrp_interface_sfuntx' in
-'untitled/SDRu Transmitter/usrp_interface_sfuntx':
-Could not execute UHD driver command in 'createDriver_c': Could not create
-a UHD driver using IP addr '3136D21'.  Attach a device at the specified
-address, correct the specified address to match an already attached device,
-or continue to work in off-line mode.
-Error from UHD: LookupError: KeyError: No devices found for ----->
-Device Address:
-    serial: 3136D21
-    recv_frame_size: 20000000
-    master_clock_rate: 32000000
-
-Regards
-Hassan
-
---000000000000e9d420061131f52e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi everybody, I am using SURP b205 as transmitter. I am tr=
-ying to transmit pulse. I get following error. can anybody help.=C2=A0I am =
-new user.<div><br></div><div>Error:Error reported by S-function &#39;usrp_i=
-nterface_sfuntx&#39; in &#39;untitled/SDRu Transmitter/usrp_interface_sfunt=
-x&#39;:<br>Could not execute UHD driver command in &#39;createDriver_c&#39;=
-: Could not create a UHD driver using IP addr &#39;3136D21&#39;.=C2=A0 Atta=
-ch a device at the specified address, correct the specified address to matc=
-h an already attached device, or continue to work in off-line mode. =C2=A0<=
-br>Error from UHD: LookupError: KeyError: No devices found for -----&gt;<br=
->Device Address:<br>=C2=A0 =C2=A0 serial: 3136D21<br>=C2=A0 =C2=A0 recv_fra=
-me_size: 20000000<br>=C2=A0 =C2=A0 master_clock_rate: 32000000<br></div><di=
-v><br></div><div>Regards</div><div>Hassan</div></div>
-
---000000000000e9d420061131f52e--
-
---===============8312128732679883246==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============8312128732679883246==--
+T24gMTIvMDIvMjAyNCAxMTo0MiwgTXVoYW1tYWQgSGFzc2FuIHdyb3RlOg0KPiBIaSBldmVyeWJv
+ZHksIEkgYW0gdXNpbmcgU1VSUCBiMjA1IGFzIHRyYW5zbWl0dGVyLiBJIGFtIHRyeWluZyB0byAN
+Cj4gdHJhbnNtaXQgcHVsc2UuIEkgZ2V0IGZvbGxvd2luZyBlcnJvci4gY2FuIGFueWJvZHkgaGVs
+cC7CoEkgYW0gbmV3IHVzZXIuDQo+DQo+IEVycm9yOkVycm9yIHJlcG9ydGVkIGJ5IFMtZnVuY3Rp
+b24gJ3VzcnBfaW50ZXJmYWNlX3NmdW50eCcgaW4gDQo+ICd1bnRpdGxlZC9TRFJ1IFRyYW5zbWl0
+dGVyL3VzcnBfaW50ZXJmYWNlX3NmdW50eCc6DQo+IENvdWxkIG5vdCBleGVjdXRlIFVIRCBkcml2
+ZXIgY29tbWFuZCBpbiAnY3JlYXRlRHJpdmVyX2MnOiBDb3VsZCBub3QgDQo+IGNyZWF0ZSBhIFVI
+RCBkcml2ZXIgdXNpbmcgSVAgYWRkciAnMzEzNkQyMScuwqAgQXR0YWNoIGEgZGV2aWNlIGF0IHRo
+ZSANCj4gc3BlY2lmaWVkIGFkZHJlc3MsIGNvcnJlY3QgdGhlIHNwZWNpZmllZCBhZGRyZXNzIHRv
+IG1hdGNoIGFuIGFscmVhZHkgDQo+IGF0dGFjaGVkIGRldmljZSwgb3IgY29udGludWUgdG8gd29y
+ayBpbiBvZmYtbGluZSBtb2RlLg0KPiBFcnJvciBmcm9tIFVIRDogTG9va3VwRXJyb3I6IEtleUVy
+cm9yOiBObyBkZXZpY2VzIGZvdW5kIGZvciAtLS0tLT4NCj4gRGV2aWNlIEFkZHJlc3M6DQo+IMKg
+IMKgIHNlcmlhbDogMzEzNkQyMQ0KPiDCoCDCoCByZWN2X2ZyYW1lX3NpemU6IDIwMDAwMDAwDQo+
+IMKgIMKgIG1hc3Rlcl9jbG9ja19yYXRlOiAzMjAwMDAwMA0KPg0KPiBSZWdhcmRzDQo+IEhhc3Nh
+bg0KPg0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0K
+PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
+ZXR0dXMuY29tDQpJIHRoaW5rIHlvdSdyZSBwcm9iYWJseSB1c2luZyBNYXRsYWIgaGVyZT8NCg0K
+WW91J2xsIG5lZWQgdG8gbG9vayBpbnRvIGhvdyBNYXRsYWIgc3VwcG9ydHMgZGV2aWNlIGlkZW50
+aWZpY2F0aW9uIA0Kc3ludGF4IC0tIGl0J3MgY2xlYXJseSB0aGlua2luZyB5b3Ugd2FudCB0byB0
+YWxrIHRvIGFuIElQLWNvbm5lY3RlZA0KIMKgIGRldmljZXMsIHdoaWNoIHRoZSBCMjA1IGlzIG5v
+dC4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5z
+dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
+bQo=
