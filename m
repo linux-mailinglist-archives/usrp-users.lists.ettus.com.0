@@ -2,65 +2,65 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D88B85942B
-	for <lists+usrp-users@lfdr.de>; Sun, 18 Feb 2024 03:49:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3740B859441
+	for <lists+usrp-users@lfdr.de>; Sun, 18 Feb 2024 03:57:46 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6C390383B63
-	for <lists+usrp-users@lfdr.de>; Sat, 17 Feb 2024 21:49:58 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4D90E381555
+	for <lists+usrp-users@lfdr.de>; Sat, 17 Feb 2024 21:57:45 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1708224598; bh=f/IPtD5sjL+P9m1q5vhQSnH7MCy3EJZImw7dvjotd/U=;
+	t=1708225065; bh=kXovQWEJ6aY0pQpGRDrsk/Az5a3DXv/m6CJ/4TBZAbA=;
 	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=h6jm05dszuc6QUZmDgfPyZVnl1R6Thxpax5rPb+S7Vvys/0gcwGXUvZk7smu5++I3
-	 P1ZkO5EQim0i9k/h8MNde9rwdGaTRNwB7b/tIxewPOF7ShE+zZNEXs04ZfmFrNFxYg
-	 DUkGstEmaqXGrqBUZkShBtmk1508k2QJvdVtusTynkjAtRe4Hna7L6a0yYtRHevkMB
-	 sUPPE5Upu/wwICwyFFFCBoV4dAn4ZXb5W8XIQNCM0jqUD9eoW6W5FniRDMFwmaW5S6
-	 8SobY+YnuJRow/AWAsnoBIXFBJCpMpn7VsXrApTqDlKxOeBUn2s/SJGfzyN+Lg0lgK
-	 qhfjZlFqcQUig==
+	b=PdX8hn/gT4BjKcDfntL1mJYx1NudoaZzxibsY+o78L0DR24dMGC8UAufc6FzNq3bD
+	 97lkDIxi766qvvswLWNjGfZHN9HFZpblZdWcuYHRsIxtf4oCw8QXxieJzLwdAImGS5
+	 pg9/eKVX8MILAieqiAAC6kG5uh/Y2BITMIowmDBk4NrSbzhmwkn5/dce/ke/WIW1sA
+	 ZkzT2NgBlz9JhieDyWtm5JYYtgJBmSC7en0wLafo4Li/w+HxB7ti0PB/CfKa4h7b4X
+	 PUvey4k2OjlNrGUbGaGFQ8NkNyZ2OpYwL0ii4RRhAnlAB61AWSKIPr1WQ5A0Bvw543
+	 1Zxo3Bx2KD7tA==
 Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id C3BAB381555
-	for <usrp-users@lists.ettus.com>; Sat, 17 Feb 2024 21:49:24 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTPS id 73FFC380AC7
+	for <usrp-users@lists.ettus.com>; Sat, 17 Feb 2024 21:57:11 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N4TdaxvW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Kscwf4GT";
 	dkim-atps=neutral
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-429de32dad9so20854601cf.2
-        for <usrp-users@lists.ettus.com>; Sat, 17 Feb 2024 18:49:24 -0800 (PST)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-42a029c8e76so24831601cf.2
+        for <usrp-users@lists.ettus.com>; Sat, 17 Feb 2024 18:57:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708224564; x=1708829364; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1708225031; x=1708829831; darn=lists.ettus.com;
         h=in-reply-to:from:references:cc:to:content-language:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4EGTjHi8Hnelm1+C8oVBVK2azvkcPZkSe6T39W0TcLY=;
-        b=N4TdaxvWxxVqtyOVBVQQ/BO56r3if9Jbe8YXdmGrBucy9ZE6gvNKSfPX3nSruyho5k
-         2Kj/71+bImCnR9RHBkqo437DfCaUoH3lKXBGjlETHntwYWLbvpXEdYM4vFxQsdUmd416
-         LtQnur7I/ytzVYTqCMj6XwyCq0GjoABW8m4bEZaVs/dP6PpB83TJl2z/4ttiPDJIA8XQ
-         2bUMM9/ypVzjAvrC4pG7VOJVwjyVTILK6f85QnXQ+uoZo+KazeM7CJHyDYlUNrwGZ371
-         i1x8u0/gb58xkC/HrNBjP3LHl2PkpHRb5n/Kt/vB18/ezUpRq8P7Wpa2f01rnXo5eeuv
-         W4gg==
+        bh=hiB4SUN99BFOtgdSb8vpiAdQdsbvuJOkcMxDtEgMJLk=;
+        b=Kscwf4GTMvtqltTsRO/AL9Zm6/QCeQell7FnYrj3nKkBqakNs9Qz59MfwFIDw06PGG
+         3KhvqMEW5BdFaaW3iCUG7W5fXH6nwCID7vJLNzrxRH6qlx7SUzfOxxlGvKQ+wqcPjsUE
+         R08K0KcckxBwhSYbYpvRPgtToSXR43fWAB96qghvvgl0RCdw6h1o55fWBlEqBp1VU4S6
+         S7xSezKZYTWRUkr2omWfwBau7jddc+w9neAPbEVc42jivDuXzFTWJ8sn544uYzD6KPW1
+         pHQPzYYQcSp2oRzMCAjHdgOOszcDCL2DHe22Rhz9m+SNToTn/fAIYqZLmEbwFihzZvK5
+         zHtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708224564; x=1708829364;
+        d=1e100.net; s=20230601; t=1708225031; x=1708829831;
         h=in-reply-to:from:references:cc:to:content-language:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=4EGTjHi8Hnelm1+C8oVBVK2azvkcPZkSe6T39W0TcLY=;
-        b=nB4gce/bA4Nx9D7hN1NXsjU9VsEMgUWKyS31pV54o1grBpCQ1IDuDPbgIDaXX3YwCb
-         FzdeFZlMfkxibDdzZev/vdorS7rBIjnW5Kd6QtM+0WZAETxzeeBuYN7IXYshjKnR51C/
-         lABDsZAHB4fFgbyPn5QUTg5CjoqmMQ3z79SyptkTuc+vefIIesY6AjXG4+w5Hx4KLwYt
-         aOZvWKiaKYfirrSie2AULdiy3f1u5LL7fropvQ1fJGitVeTa0jhZHt8TScAO4kbsvvzp
-         KsHQXPyKX41wcFaNc5Uk9SZEjDUvvgTijG7nAXwF+KdclpjTWykAA81hqunK0k8Dp+C3
-         dYYA==
-X-Gm-Message-State: AOJu0YzMfJ9WmJlSQ4+InMh/5oyf8Ky9QJ8GK4iXpR7CkkZVZpR1MGcc
-	c06gncLBQ30f68q1jG/K3Nm6YSXmo/hFV1W2FG4Jph1+Haiy/RC9
-X-Google-Smtp-Source: AGHT+IE7O500lwiNvRSeTLp4KqlgBZ4L01KSj77BHcvaZw7HXFly35dCHBoY1QqTGosKRtvmNgXieg==
-X-Received: by 2002:ac8:4e93:0:b0:42c:5d43:53cd with SMTP id 19-20020ac84e93000000b0042c5d4353cdmr11656358qtp.29.1708224563993;
-        Sat, 17 Feb 2024 18:49:23 -0800 (PST)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-07-174-93-0-146.dsl.bell.ca. [174.93.0.146])
-        by smtp.googlemail.com with ESMTPSA id y14-20020ac8524e000000b0042c774f882asm1323769qtn.73.2024.02.17.18.49.23
+        bh=hiB4SUN99BFOtgdSb8vpiAdQdsbvuJOkcMxDtEgMJLk=;
+        b=qM01lECAXJge8CNDpPZ3/uiaybEmi2zXwm2V8TFTo1FW6PRjyqhF8UcGi6wrISDLCG
+         Ls9gLpMW2B0q9Oe+EFqsPCVbbomHei1wk6/vkM/XxId1ao5hVhtOWPb852gHjwemnZaY
+         e4tjf54gukOEsY7xQSOeZPMDeVXBolMaveyOMtQ1uY/h9EIvYFXUgijben7Y3hCm4Gac
+         IB6BGCC0Uc6YlTlDAfT0T+TQZ19IxNqPklYYiao2S9dy3f6bhNeAXXKi3WodOxVMPFQN
+         wwRDGZXPkVzFGfszZu703+cJLeKmiU6ZTfFbQoinXKcNOdhaQMxNvQL1oRMqi93LXGg5
+         7eGw==
+X-Gm-Message-State: AOJu0YwkrmpZeRtCVYfaOanf0BwtZncslDMZPR3KZFSW0RDBGrAfZCU4
+	w+eTddA3+tqIq8uaawmJz6G9GUy6MJQAeBQgw2B3yjHIiPYd5Pe5ZTQoAAOy2D0=
+X-Google-Smtp-Source: AGHT+IG7IqTOzBz+ZwrFau1z+nMnUZ7NHNaW6aW3HSh7rFneEQl3ptir1iD8z8e61BdJIwRgV8Msgg==
+X-Received: by 2002:ac8:7d04:0:b0:42c:953:81e7 with SMTP id g4-20020ac87d04000000b0042c095381e7mr11633572qtb.55.1708225030943;
+        Sat, 17 Feb 2024 18:57:10 -0800 (PST)
+Received: from [192.168.2.170] ([174.93.0.146])
+        by smtp.googlemail.com with ESMTPSA id m15-20020ae9e00f000000b00785d82e0567sm1303933qkk.29.2024.02.17.18.57.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 18:49:23 -0800 (PST)
-Message-ID: <c42254d7-dbcd-4df4-a160-32ca569f05fd@gmail.com>
-Date: Sat, 17 Feb 2024 21:49:17 -0500
+        Sat, 17 Feb 2024 18:57:10 -0800 (PST)
+Message-ID: <cab295b9-3b63-4cf0-a8c6-96f1c7bf7a27@gmail.com>
+Date: Sat, 17 Feb 2024 21:57:01 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
@@ -68,8 +68,8 @@ To: Jim Grubb <jimgrubb@me.com>
 References: <5D55EFB0-EF85-4C1C-8BF8-FDDF7B39E812@me.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <5D55EFB0-EF85-4C1C-8BF8-FDDF7B39E812@me.com>
-Message-ID-Hash: T43NV2BIQEE4XRGXTVX7GDDRFMXSKOOF
-X-Message-ID-Hash: T43NV2BIQEE4XRGXTVX7GDDRFMXSKOOF
+Message-ID-Hash: CVYNUUPOAQ5IPUZSQIVXACOPY6CU4WL5
+X-Message-ID-Hash: CVYNUUPOAQ5IPUZSQIVXACOPY6CU4WL5
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
@@ -77,23 +77,23 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Running uhd 4.1 and still having the issue
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T43NV2BIQEE4XRGXTVX7GDDRFMXSKOOF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CVYNUUPOAQ5IPUZSQIVXACOPY6CU4WL5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4331982881678557719=="
+Content-Type: multipart/mixed; boundary="===============7563794826439147016=="
 
 This is a multi-part message in MIME format.
---===============4331982881678557719==
+--===============7563794826439147016==
 Content-Type: multipart/alternative;
- boundary="------------rZZ1Eo65RTI8etB3QodAjSbB"
+ boundary="------------Z0ooByufzalwk8EMZXnMk5xA"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------rZZ1Eo65RTI8etB3QodAjSbB
+--------------Z0ooByufzalwk8EMZXnMk5xA
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -135,11 +135,14 @@ On 17/02/2024 21:44, Jim Grubb wrote:
 > =C2=A0 at ./host/lib/usrp/b200/b200_radio_ctrl_core.cpp:228
 >
 >
-If you unplug the device, and re-do the "probe", does it load the=20
-firmware and FPGA image normally?
+The other thing that just occurred to me is that your host controller=20
+may not be supplying enough power.=C2=A0 This should "never"
+ =C2=A0 happen these days, but you might try using one of those "Y" USB=20
+cables that can provide extra power from another USB port
+ =C2=A0 to a downstream device.
 
 
---------------rZZ1Eo65RTI8etB3QodAjSbB
+--------------Z0ooByufzalwk8EMZXnMk5xA
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -229,16 +232,21 @@ ont></div>
       <div><br>
       </div>
     </blockquote>
-    If you unplug the device, and re-do the "probe", does it load the
-    firmware and FPGA image normally?<br>
+    The other thing that just occurred to me is that your host
+    controller may not be supplying enough power.=C2=A0 This should "neve=
+r"<br>
+    =C2=A0 happen these days, but you might try using one of those "Y" US=
+B
+    cables that can provide extra power from another USB port<br>
+    =C2=A0 to a downstream device.<br>
     <br>
     <br>
   </body>
 </html>
 
---------------rZZ1Eo65RTI8etB3QodAjSbB--
+--------------Z0ooByufzalwk8EMZXnMk5xA--
 
---===============4331982881678557719==
+--===============7563794826439147016==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -248,4 +256,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4331982881678557719==--
+--===============7563794826439147016==--
