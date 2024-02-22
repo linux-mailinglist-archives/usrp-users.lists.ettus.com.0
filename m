@@ -2,282 +2,212 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C083860571
-	for <lists+usrp-users@lfdr.de>; Thu, 22 Feb 2024 23:09:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C39BC86064A
+	for <lists+usrp-users@lfdr.de>; Fri, 23 Feb 2024 00:14:01 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A5BA33850C3
-	for <lists+usrp-users@lfdr.de>; Thu, 22 Feb 2024 17:09:29 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id CB1E638511C
+	for <lists+usrp-users@lfdr.de>; Thu, 22 Feb 2024 18:14:00 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1708639769; bh=vDYUXKIocHCYHP/MKopQi7ZzIoob+EFTHye+T291Auc=;
-	h=To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=qKfaDbaRMb+HBZer1ttLz9UcnWMb6LqH+i1W+D86Em1CebZglOHcJxPhKVkzJEHFW
-	 fNvkcYrhoLBDGoLRwx1l7mL6ccl/BR6OnaHXPBP3NYbKaqretafe01ykq84htFtFvh
-	 W9u2JTm5c+QHf0Rzjcwc6XptHOpFjbYrnbVUYp3muCVkWxaCBtdlx8kDGrDMmuPcxd
-	 L9Dp9lm5xS8+5qqPEIvqDcMGT07eWUlIgNPrf+EHYnbq0qqXLf/gMOoWSVKrgzDCcb
-	 KP/fDJvtsxFhIoIGsbPoj4Wl5wf4dfcqlwUXhAGNbsc4+wAlgBC2ucucGcJhkgUFdT
-	 ISLNafpQ2rEcw==
-Received: from mx0f-0020b901.pphosted.com (mx0f-0020b901.pphosted.com [67.231.155.103])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0C845384EBD
-	for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 17:08:31 -0500 (EST)
+	t=1708643640; bh=Er7MRPBJHfKXuPn5i9DnqJWTuvlOl/TIHYD/cKdhQis=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=LGtAkv1DYp9CNKcu6B1/YxxMByJtkV0GcmWmApPYOR5Ncb0ha5WC/iFfYJVd7CHza
+	 HUi1M4d4kab87EeJ9U99afCCf1G/pwNaSw7P2o2YE5lW2xhqNgvrA1dQefwJ/DaWlH
+	 /hrGLvDLzvxaPQrGvvYJnYmK5YKOcuBsdY6ct3AYDWPAitBSHtCD8pu2XtwhhSvga4
+	 7JNohN9yuTf7YOc8bhdhunLe+AQ6MuZiQIDJYS8dT0KFZw8lLpC4Owh4+L+9vpYKX5
+	 W2meTzpVYtGH6pBITT310ljWnQiHu9ZU14qp4K/LUe/id1rK3JUNDKXjSpsLjcHml8
+	 7Vz6QGIFex3FQ==
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9D1BD384DF5
+	for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 18:13:01 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=jpl.nasa.gov header.i=@jpl.nasa.gov header.b="6WiX8QPr";
-	dkim=pass (1024-bit key; unprotected) header.d=JPL365PROD.onmicrosoft.com header.i=@JPL365PROD.onmicrosoft.com header.b="OIaJ4gSM";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="NBi+5CCL";
 	dkim-atps=neutral
-Received: from pps.filterd (m0196084.ppops.net [127.0.0.1])
-	by mx0e-0020b901.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 41MLl5fM022798
-	for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 22:08:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jpl.nasa.gov; h=from : to : subject
- : date : message-id : content-type : mime-version; s=InSight1906;
- bh=u2+QZ/Rj1qXB8L8IG0+09mNaCiFgNQFxpGS6E2D9ZJ4=;
- b=6WiX8QPrkvTpx/ZmFCEFPK5sL6GlAv7F58TiKOXqnB7/aQ9SkjMz/YiQvKClllCOMYS+
- wwG+ZBZYfEdZtaqu82PrvYoFoGBPVtlEeBq/WsFigsFhGhjKY/9KIA+/J4e+TmdPZNiT
- D/oFgDVgmPEYdvNlNMVJiRKdiOQ32YIlkDby6sOegD0zBXAjLGZKkh2U6pNcB7S3gSlm
- /F7OuaD+/BXd0YCbG8byOymvnRH7ocB7ppSewt0MzeE+GqKzQ7rKP/Nk+vgIDZCQUthf
- XMXJigjcVmcT8FCHmsRuc/lRoyv5eo0nGU8ZTIgj9m0ZEvUalUDArfpGrcsousmaWXJv Yg==
-Received: from mail.jpl.nasa.gov (smtp.jpl.nasa.gov [128.149.137.102])
-	by mx0e-0020b901.pphosted.com (PPS) with ESMTPS id 3wamhy985a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 22:08:30 +0000
-Received: from ice-ex-mdc02.RES.AD.JPL (ice-ex-mdc02.jpl.nasa.gov [128.149.155.142])
-	by smtp.jpl.nasa.gov (Sentrion-MTA-4.5.9/Sentrion-MTA-4.5.9) with ESMTPS id 41MM8TPx024408
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits) verified FAIL)
-	for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 22:08:29 GMT
-Received: from ice-ex-sn02.RES.AD.JPL (137.79.100.49) by
- ice-ex-mdc02.RES.AD.JPL (128.149.155.142) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 22 Feb 2024 14:08:28 -0800
-Received: from ice-ex-sn01.RES.AD.JPL (137.79.100.48) by
- ice-ex-sn02.RES.AD.JPL (137.79.100.49) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 22 Feb 2024 14:08:28 -0800
-Received: from GCC02-BL0-obe.outbound.protection.outlook.com (137.78.153.23)
- by ice-ex-sn01.RES.AD.JPL (137.79.100.48) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 14:08:27 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JcwL2IeJL33AHoPIFMVqbHASEyvPer7Q24Kl8lP+obeRKOKep1S/zIJzR1F8/legDh8C6cdUd/Ezhpu6UJkycp9xg21GrZIxT17mIwyduwsecMSCvDwLcpJC+iB4lC4SJLMkWCB+b7hxdCnEl6lQ9vY5dA6wnfKiQIOjpez8diXyKmLAgVQ0Fx9L9leRPFXCzbzs8VWnIbK37B7xHczHb/gR/oKPbmC0yQdqbWvaMB9wc3pXBI4wLxVrkzdpGDHf6DYNOmVvKeqq7KHeom8MjO1MjyozO3EZbDNSTnbxJLCZJoUw7xhTGMlSRismZIqhJ/ifykIT5Exyudcz1oKgLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u2+QZ/Rj1qXB8L8IG0+09mNaCiFgNQFxpGS6E2D9ZJ4=;
- b=nT15ly9Bkbs9gG8nt3BAx54TZNNDaKA5v4YFun9dXPzqPPCTeiJC4blyV6g6pjRlNd9fQRzzK4H2BiAkWG+hoyAIvQz3sZt3dKb9RO0Iq0Fv5CEfB/bj2wia+qxT/hC2npPpUOH1jAIWxyxoRTxhqDGeXU4KN4j4tdP1lrBDLQ5JDjLcNTobTqzxAarbsTOsTeyWVad50KTsW7kkTUo0jQnSLXKOcEeNFeeS2GB9KKIM+UwLszi+mP2inUjdNjBkDgSrVScPK9z5ryrfNPii7n1rKI8HbTbJR1FuRSnZlZzOA+wdxfOVv6OAhd8e75n11/02wUFE/TCGo7MT1sQPPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=jpl.nasa.gov; dmarc=pass action=none header.from=jpl.nasa.gov;
- dkim=pass header.d=jpl.nasa.gov; arc=none
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-564647bcdbfso158754a12.2
+        for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 15:13:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=JPL365PROD.onmicrosoft.com; s=selector1-JPL365PROD-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u2+QZ/Rj1qXB8L8IG0+09mNaCiFgNQFxpGS6E2D9ZJ4=;
- b=OIaJ4gSMPRtyCjMqb+01YsFLk4wDvCVOsIsDBfiv+HIwzPNMfdjy60pCacctZF+7lYFalyG0XMBSRpUbeqDEKL3GHoqhoJTqcVJW/Cq6aooOfCvAfeMsH+hix6A+gr1mFiUppLoUCY25Wpqq21bEz0I/qxamxIoA3k7vjqrcqqQ=
-Received: from SA1PR09MB9275.namprd09.prod.outlook.com (2603:10b6:806:282::21)
- by SJ0PR09MB10469.namprd09.prod.outlook.com (2603:10b6:a03:50f::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.24; Thu, 22 Feb
- 2024 22:08:25 +0000
-Received: from SA1PR09MB9275.namprd09.prod.outlook.com
- ([fe80::7a:7fef:a423:496a]) by SA1PR09MB9275.namprd09.prod.outlook.com
- ([fe80::7a:7fef:a423:496a%4]) with mapi id 15.20.7316.023; Thu, 22 Feb 2024
- 22:08:25 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Multiple Streamers
-Thread-Index: AQHaZdpW2Xkk3x2LfU6gYKMT5CfG8A==
-Date: Thu, 22 Feb 2024 22:08:21 +0000
-Message-ID: <SA1PR09MB9275DEEA7594782B53D7CEC392562@SA1PR09MB9275.namprd09.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR09MB9275:EE_|SJ0PR09MB10469:EE_
-x-ms-office365-filtering-correlation-id: bfb9d55e-bedd-4f02-e5d3-08dc33f2ca9e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 02WDb1xep9QgMBJCxhuxuNvZzUl8RXTAtVwVW8Zi6cp6XABOBv4MXEyGFdLxQd+LyvkuEqoOdLIlUMmgFRuFlAue+kBKi7KvTSRuQA/W6pp9mxW+kHCj7fn6+iI3m5Bym4rT7LA6fSF7EpGhSgmcp22RtVMh/KktRNJ8ZfJIOz+WnZ0BY7Uq/u1+67DWeLUC9zaOw/zhUVRFDOfI7SfTlT35EixOndh8VvQKUiKNWTJLore6OrzjPhnPqHYtXEiLvHiNUtkOouKJ5pwhoHCoctJ7nTuCMd7HnBTcrG2v4VGYZtgpIDDnH4hzivI5nNoDs35nz8oAOyH6s4CsqXbr0vVNaAus1yXVlQxsBmkMWT+A3Qe/2pBcwY6rpncSMa3iT4s94Hb+J5rI/Ot8QyepcwTQMDP93SjF4nUE3793+AHbkUZ/FekHbPpOz1zkmUTF3n/r0dtrJLK37Nd95BANPMuf91S1aG6QuymnFMA2bDl2SByBPJc+E7U9uhNiPTpx+8xHqJOunv+wADzJ9YrK3flxjdiD04yOCVA3CmAJ+9lvlkd9Wf7YioaSOM64G5OEMxiU3OYcrrdsgsPOuu8CcE4WlOKegE5Jh4kj7ADDgYI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR09MB9275.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(230273577357003)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?JDbh8hvWX6ZXZF+tD1Bzs3ykjlO5cdC8FMGFQjbc7/697XS0fLviBrIj?=
- =?Windows-1252?Q?Kr03Fp/V2bG4WtT/k2mvE60xTTEH+W1vR+C+4zHkQ8X5YkGUlAB45XUI?=
- =?Windows-1252?Q?8Dos+cNkRp8CcQt/ysPu0bDdMKnCTrZV+0AIKyYUkIzZnh5XKGc+Sb8T?=
- =?Windows-1252?Q?0sCelB/nxFPsa+g7JmtQogivUbjUUzSGsPoM1aAFq7x5IQ4gpxniDDTd?=
- =?Windows-1252?Q?4VKiS9KjoV/4qIeBAoYxRGb5zxxaqHwRYf6/VuwtZPxOS1AgBcbLW82G?=
- =?Windows-1252?Q?LdKQPQyt2tkum4wpJFKayaVHtkk3CfrqJT2ipfieoYYb32MF5rCyPULx?=
- =?Windows-1252?Q?dwmLnOCeHU7g8PCWerqE3nqTOdTAbmXJTZImFJasgdleFw3lq94tzw3R?=
- =?Windows-1252?Q?vQhE25oloczVpe48uO2FYUVeRLvsK3ERKfb2mCyfXoZVWhJPq5g+MySU?=
- =?Windows-1252?Q?3zx8awUTGr+R4MzKwN9p6cK9jcTAuoCcD+JMuPLxzW3rgOn75SI+kM0N?=
- =?Windows-1252?Q?cDjPbCt4kq6EEiVeRjcSZeizziliCAlYZmzs29sy9R9P3nj2dKowZZH0?=
- =?Windows-1252?Q?zMZHfaHmi4sVrwzAEhvJrLoWiCn5g1fTwzJrBvrhefCVf+IfIx9EMlfJ?=
- =?Windows-1252?Q?mM7NttuL2lkyPBBS0YPilDAIyexy2X0kh8hvmPR+MbIIHhTkU74frRjH?=
- =?Windows-1252?Q?plqNh2abeMRRFOWmjidVx9g3DHh6ykTMytbFsWbwXUETBtdoHIfCII/M?=
- =?Windows-1252?Q?rrc4MqyecVQwIUXF/XySMMhfYRRQDbfFpFe3iWHf9cjR2o0tPNrOWcfZ?=
- =?Windows-1252?Q?X6zg6JNZAvGYispCAdreR+D3bRqY39I9ez60j+KX4q7cx1TYH4Oy7wn8?=
- =?Windows-1252?Q?jgnKlxeLDMhtzxOItlhqZsMGduxAn9xvRqq9vnXXNhbFUfKWAHHpSiul?=
- =?Windows-1252?Q?tkzwDUCYXOx3ZYuhcW6hPqrrpl/MaNq0y1BnaZMiuVPLEGhIClPdSpT6?=
- =?Windows-1252?Q?UfvIt/FZZ6Px5cM+pj7yKVDheTCuKXivIHIrJeEz+jP5FE2W3UHxDoCh?=
- =?Windows-1252?Q?kCzeqdXmeWbJvElCmXXIJaEnDMrJ6zMAkmla/FYKqrQJuXlj0Xgjtq1O?=
- =?Windows-1252?Q?I/Mwq2LJjxxibYpuo2x1ZARxtOYnS0OeR4rpnrzP+I7R45olczuO+z0b?=
- =?Windows-1252?Q?i9lA9LnAHyGD/YH7BSqmBUxjgKVwtYDAHw6k4ECME+0CZjgo3ImBW3CL?=
- =?Windows-1252?Q?h2icm8t7KbGrBb2rQ8PeGilx9wNZHL9lZTjULUfsy+riUQRayzM4ncDK?=
- =?Windows-1252?Q?oT+alFne5/HZF9MBiw4Q2iV8UXZ3k9UJpdv9gO5ZV8hVSj4+IaN8OwwI?=
- =?Windows-1252?Q?1Q/lgwbJFshteySy3Yoq175UdyEd4vCuLpiL4K24Ir97X+3mqphpqREq?=
- =?Windows-1252?Q?ce6kuIyBFb6u2MrpUZhZGObuiT9Wm+bB5QMjvk2GNIOhrR//zj11U3Sv?=
- =?Windows-1252?Q?JiZLS2vN8aUdQzIOmjakJihVz3cZrmI5izmulA+OpuXhHEcSsEwogs+D?=
- =?Windows-1252?Q?VcWiW7aJM0rv2bTSLxlWQ7PI5m/jqj4f5lt6ssfTbyRe10WD0w+LTVE7?=
- =?Windows-1252?Q?05QMtVJqpaY1Ne4VCS+TsDPfAa9+4KQcCnapltYGomKrSLlNIi+3jbzl?=
- =?Windows-1252?Q?buxIuJZ7uDKKOpvsQAsfWZRZQmmhLWAc6vztZkri33bs5CKekz2gsg?=
- =?Windows-1252?Q?=3D=3D?=
+        d=nd.edu; s=google; t=1708643580; x=1709248380; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rso/ytq7BuhqkURb/7+BxmhJtr0uFNhXKSNBDQu6vkw=;
+        b=NBi+5CCLc3tmNVqlURyhLpl8AOeWqvu8odZe3Vjv1OrtzH3z/dYBE+UfQySmSPVBT5
+         rrcwlUrn8W/FWr7qMu0f4XyGnhtZAiBWnKHsCbfvZc6nihe8C+b3QJDkLwKIkpKEZLKo
+         7VINYj0DtBUvAaM6Ejh7Xk1OeJmyYYX6sVPZJYVVYsu16l+2MR/8+7GXmCGiqRXy7qX5
+         /2WG08RtuCLhQ3nTk3l4jJ6Ra0p1q2OziisFd45h1nM2ZQ08L7OY0KYkAbeIQca+p+HN
+         TsGTMfYKcwbF/XMA8NbN+kCT83cEo/4LSHXBQKhA8CFI5F8n2US/6prbAoYWN/bZk1rp
+         d+7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708643580; x=1709248380;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Rso/ytq7BuhqkURb/7+BxmhJtr0uFNhXKSNBDQu6vkw=;
+        b=beEuTwnJDyUE49wv6qiGZEcJMBfeya5IP3EyDDO8+Dp09++tsjDNOwBxX2tBoyoIuG
+         ihOkS/BeWlmXINdbAes+RWM7OLAYMQPOOmsmhkGV2D0O0BlYPY4T5XTAgaDY6o+srwEU
+         ABC/FNruPft4rIyC4QB1S3W8ZjB7ZgH7YDr1j3lWJZvyfcd0pS0iVIW9TKgN+9kx1Hk9
+         VLb2tFh0nVB8Zg4HMutLLH6Jkxs+12br4t2X5RsZqaMQ/9eabBfIn5kdRr24oUMhALpL
+         m+iE10cP4RWXb41iVpiJ4Se9PQur50jfyB5XEqVHmSIQP4YIVMuDuuNUUdWnx1nDtLjv
+         KP7g==
+X-Gm-Message-State: AOJu0Ywx/w0hmGQX4skshGn8l4ht0vuvfhGyzx/wm0pErCUPkDu3a6To
+	kk9AkSL24PviGQNn+V68BLxVlA7xkg6dQcPm0XBdr/1nhLRQs7XAwXRvHj13gYbdAi/YuXfxctq
+	jf80hKdn3Po2F1ARlkgO/9cv1IGIw4RyxPYeBC8I0e92vgEI=
+X-Google-Smtp-Source: AGHT+IGDvm0hyMh600SLyfW47BaxBfQrh3Ray9KKalzxbjob7QGtkqM7IpxyajHDKN8xFZIXSlJxpgn8kZZzZusWzNk=
+X-Received: by 2002:aa7:d60f:0:b0:564:6b09:92f6 with SMTP id
+ c15-20020aa7d60f000000b005646b0992f6mr110395edr.18.1708643580245; Thu, 22 Feb
+ 2024 15:13:00 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR09MB9275.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bfb9d55e-bedd-4f02-e5d3-08dc33f2ca9e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2024 22:08:25.3964
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 545921e0-10ef-4398-8713-9832ac563dad
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR09MB10469
-X-OriginatorOrg: jpl.nasa.gov
-X-Source-IP: ice-ex-mdc02.jpl.nasa.gov [128.149.155.142]
-X-Source-Sender: zachary.s.rohde@jpl.nasa.gov
-X-AUTH: Authorized
-X-Proofpoint-GUID: WuQ0iP8X8AKSU4BD76ucjAFXLAN12WqV
-X-Proofpoint-ORIG-GUID: WuQ0iP8X8AKSU4BD76ucjAFXLAN12WqV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-22_15,2024-02-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0
- priorityscore=1501 mlxscore=0 spamscore=0 adultscore=0 mlxlogscore=999
- impostorscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2311290000 definitions=main-2402220171
-Message-ID-Hash: OIZKCZNIFMFLEKQHH62UWHKHSRRNUCFB
-X-Message-ID-Hash: OIZKCZNIFMFLEKQHH62UWHKHSRRNUCFB
-X-MailFrom: zachary.s.rohde@jpl.nasa.gov
+References: <SA1PR09MB9275DEEA7594782B53D7CEC392562@SA1PR09MB9275.namprd09.prod.outlook.com>
+In-Reply-To: <SA1PR09MB9275DEEA7594782B53D7CEC392562@SA1PR09MB9275.namprd09.prod.outlook.com>
+Date: Thu, 22 Feb 2024 18:12:48 -0500
+Message-ID: <CAB__hTQ9jGweT4cd9Uyj2Brp2MSAzPkexAiOevmuCsWktMkivA@mail.gmail.com>
+To: "Rohde, Zach (US 333G)" <zachary.s.rohde@jpl.nasa.gov>
+Message-ID-Hash: LZJ5V63JHGZIHDQYNKY6PNORVPY6DDX5
+X-Message-ID-Hash: LZJ5V63JHGZIHDQYNKY6PNORVPY6DDX5
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Multiple Streamers
+Subject: [USRP-users] Re: Multiple Streamers
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OIZKCZNIFMFLEKQHH62UWHKHSRRNUCFB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LZJ5V63JHGZIHDQYNKY6PNORVPY6DDX5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Rohde, Zach (US 333G) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Rohde, Zach (US 333G)" <zachary.s.rohde@jpl.nasa.gov>
-Content-Type: multipart/mixed; boundary="===============5332512360616684854=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============7467129923520557532=="
 
---===============5332512360616684854==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SA1PR09MB9275DEEA7594782B53D7CEC392562SA1PR09MB9275namp_"
+--===============7467129923520557532==
+Content-Type: multipart/alternative; boundary="000000000000a617260612009517"
 
---_000_SA1PR09MB9275DEEA7594782B53D7CEC392562SA1PR09MB9275namp_
-Content-Type: text/plain; charset="Windows-1252"
+--000000000000a617260612009517
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Zach,
+There can definitely be multiple tx streamers (& rx streamers).  Take a
+look at the Ettus rx_samples_to_file example which does this with rx
+streamers. You are probably doing everything right already.  The
+documentation might be just poorly worded such that maybe it should say
+that you can only have one streamer per channel.
+Rob
 
-I have been running tests with multiple TX channels so that each channel ca=
-n run at a different sample rate, using multiple calls to get_tx_stream() t=
-o generate a unique streamer for each thread. This has been successful usin=
-g the X440 and results in no errors or warnings.
+On Thu, Feb 22, 2024 at 5:08=E2=80=AFPM Rohde, Zach (US 333G) via USRP-user=
+s <
+usrp-users@lists.ettus.com> wrote:
 
-My question is the documentation<https://files.ettus.com/manual/classuhd_1_=
-1device.html#a66d1bf289dd03a03df3860f3eee578c0> states: =93Note: There can =
-always only be one streamer. When calling get_tx_stream() a second time, th=
-e first streamer must be destroyed beforehand.=94 Is this true? Why am I no=
-t seeing any undefined behavior or errors/warnings?
+> Hello,
+>
+>
+>
+> I have been running tests with multiple TX channels so that each channel
+> can run at a different sample rate, using multiple calls to get_tx_stream=
+()
+> to generate a unique streamer for each thread. This has been successful
+> using the X440 and results in no errors or warnings.
+>
+>
+>
+> My question is the documentation
+> <https://files.ettus.com/manual/classuhd_1_1device.html#a66d1bf289dd03a03=
+df3860f3eee578c0>
+> states: =E2=80=9CNote: There can always only be one streamer. When callin=
+g
+> get_tx_stream() a second time, the first streamer must be destroyed
+> beforehand.=E2=80=9D Is this true? Why am I not seeing any undefined beha=
+vior or
+> errors/warnings?
+>
+>
+>
+> In the documentation for multi_usrp_rfnoc
+> <https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/multi_usr=
+p_rfnoc.cpp#L78>,
+> I noticed a documentation stub that mentioned, =E2=80=9CIf there is only =
+ever one
+> Tx streamer, this will work as expected. For multiple streamers, only the
+> last streamer's async messages will make it through.=E2=80=9D So, it seem=
+s the
+> documentation is sort of contradicting one another on whether multiple TX
+> streams are allowed.
+>
+>
+>
+> Thanks,
+>
+> Zach
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-In the documentation for multi_usrp_rfnoc<https://github.com/EttusResearch/=
-uhd/blob/master/host/lib/usrp/multi_usrp_rfnoc.cpp#L78>, I noticed a docume=
-ntation stub that mentioned, =93If there is only ever one Tx streamer, this=
- will work as expected. For multiple streamers, only the last streamer's as=
-ync messages will make it through.=94 So, it seems the documentation is sor=
-t of contradicting one another on whether multiple TX streams are allowed.
-
-Thanks,
-Zach
-
---_000_SA1PR09MB9275DEEA7594782B53D7CEC392562SA1PR09MB9275namp_
-Content-Type: text/html; charset="Windows-1252"
+--000000000000a617260612009517
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-0=
-0AA00C14882" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" x=
-mlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style>
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
+<div dir=3D"ltr">Hi Zach,<div>There can definitely be multiple tx streamers=
+ (&amp; rx streamers).=C2=A0 Take a look at the Ettus rx_samples_to_file ex=
+ample which does this with rx streamers. You are probably doing everything =
+right already.=C2=A0 The documentation might be just poorly worded such tha=
+t maybe it should say that you can only have one streamer per channel.</div=
+><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Feb 22, 2024 at 5:08=E2=80=AFPM Rohde, Zach (US 333=
+G) via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-us=
+ers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex"><div class=3D"msg3832231064655142379">
+
+
+
+
+
+<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_-6980986093345291933WordSection1">
 <p class=3D"MsoNormal">Hello,</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">I have been running tests with multiple TX channels =
 so that each channel can run at a different sample rate, using multiple cal=
 ls to get_tx_stream() to generate a unique streamer for each thread. This h=
 as been successful using the X440
  and results in no errors or warnings.</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">My question is <a href=3D"https://files.ettus.com/ma=
-nual/classuhd_1_1device.html#a66d1bf289dd03a03df3860f3eee578c0">
-the documentation</a> states: =93Note: There can always only be one streame=
-r. When calling get_tx_stream() a second time, the first streamer must be d=
-estroyed beforehand.=94 Is this true? Why am I not seeing any undefined beh=
-avior or errors/warnings?</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+nual/classuhd_1_1device.html#a66d1bf289dd03a03df3860f3eee578c0" target=3D"_=
+blank">
+the documentation</a> states: =E2=80=9CNote: There can always only be one s=
+treamer. When calling get_tx_stream() a second time, the first streamer mus=
+t be destroyed beforehand.=E2=80=9D Is this true? Why am I not seeing any u=
+ndefined behavior or errors/warnings?</p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">In the <a href=3D"https://github.com/EttusResearch/u=
-hd/blob/master/host/lib/usrp/multi_usrp_rfnoc.cpp#L78">
+hd/blob/master/host/lib/usrp/multi_usrp_rfnoc.cpp#L78" target=3D"_blank">
 documentation for multi_usrp_rfnoc</a>, I noticed a documentation stub that=
- mentioned, =93If there is only ever one Tx streamer, this will work as exp=
-ected. For multiple streamers, only the last streamer's async messages will=
- make it through.=94 So, it seems the
+ mentioned, =E2=80=9CIf there is only ever one Tx streamer, this will work =
+as expected. For multiple streamers, only the last streamer&#39;s async mes=
+sages will make it through.=E2=80=9D So, it seems the
  documentation is sort of contradicting one another on whether multiple TX =
 streams are allowed.</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">Thanks,</p>
 <p class=3D"MsoNormal">Zach</p>
 </div>
-</body>
-</html>
+</div>
 
---_000_SA1PR09MB9275DEEA7594782B53D7CEC392562SA1PR09MB9275namp_--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
 
---===============5332512360616684854==
+--000000000000a617260612009517--
+
+--===============7467129923520557532==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -287,4 +217,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5332512360616684854==--
+--===============7467129923520557532==--
