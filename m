@@ -2,212 +2,379 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39BC86064A
-	for <lists+usrp-users@lfdr.de>; Fri, 23 Feb 2024 00:14:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD8048606AE
+	for <lists+usrp-users@lfdr.de>; Fri, 23 Feb 2024 00:22:04 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CB1E638511C
-	for <lists+usrp-users@lfdr.de>; Thu, 22 Feb 2024 18:14:00 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id B920B384EAD
+	for <lists+usrp-users@lfdr.de>; Thu, 22 Feb 2024 18:22:03 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1708643640; bh=Er7MRPBJHfKXuPn5i9DnqJWTuvlOl/TIHYD/cKdhQis=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	t=1708644123; bh=SeD2wW4IuHyIkwal/7x+bWKUt0WGTH5m+zQI63ITZz8=;
+	h=To:Date:References:In-Reply-To:CC:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From:Reply-To:From;
-	b=LGtAkv1DYp9CNKcu6B1/YxxMByJtkV0GcmWmApPYOR5Ncb0ha5WC/iFfYJVd7CHza
-	 HUi1M4d4kab87EeJ9U99afCCf1G/pwNaSw7P2o2YE5lW2xhqNgvrA1dQefwJ/DaWlH
-	 /hrGLvDLzvxaPQrGvvYJnYmK5YKOcuBsdY6ct3AYDWPAitBSHtCD8pu2XtwhhSvga4
-	 7JNohN9yuTf7YOc8bhdhunLe+AQ6MuZiQIDJYS8dT0KFZw8lLpC4Owh4+L+9vpYKX5
-	 W2meTzpVYtGH6pBITT310ljWnQiHu9ZU14qp4K/LUe/id1rK3JUNDKXjSpsLjcHml8
-	 7Vz6QGIFex3FQ==
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9D1BD384DF5
-	for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 18:13:01 -0500 (EST)
+	b=wraX5lhL0pDnfmFElVDNv60DwCkitGiZN7EWAw1w/eGz/s64TN4YrCyhKknDFH+9x
+	 v+w9cYnVYu4wuWK/sXVzLavQMtdvSCsZVTf4W2ahjLCZNH6YPh5rR2L1FO+uoiPnR1
+	 hrEicGBP2iqxidYR4T4opQen83ehih3RvI9jsPlt/8EvCvRC70Kers/LHsQ5kaJWXA
+	 RK9JkG1BoRUkdQ4vlL9r9m4t1E2VziduGCAz0vf1TwAqE9uhHlnEmZNi2YiZOmC9Z+
+	 Y6UnCXKuQbIsv93dzTZ2EA9zz0XGOTfstdjUO7Enk6covzLZ69/Gb1b7IlnIMTlO8O
+	 LUNyDYd2APeng==
+Received: from mx0f-0020b901.pphosted.com (mx0f-0020b901.pphosted.com [67.231.155.103])
+	by mm2.emwd.com (Postfix) with ESMTPS id CEAB038512D
+	for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 18:20:59 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="NBi+5CCL";
+	dkim=pass (2048-bit key; unprotected) header.d=jpl.nasa.gov header.i=@jpl.nasa.gov header.b="nW1FOBCj";
+	dkim=pass (1024-bit key; unprotected) header.d=JPL365PROD.onmicrosoft.com header.i=@JPL365PROD.onmicrosoft.com header.b="YWbhaElF";
 	dkim-atps=neutral
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-564647bcdbfso158754a12.2
-        for <usrp-users@lists.ettus.com>; Thu, 22 Feb 2024 15:13:01 -0800 (PST)
+Received: from pps.filterd (m0196084.ppops.net [127.0.0.1])
+	by mx0e-0020b901.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 41MLmeqe025205;
+	Thu, 22 Feb 2024 23:20:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jpl.nasa.gov; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=InSight1906;
+ bh=5gZJ1jwyyWBd9ThzNxjPQUcKcRbBOHm6qZtnFZ4ep6c=;
+ b=nW1FOBCjt+IJ97tnIpCmP14BvPvRbyYUZHFkb12GuKhCVUA8S/e0K52tx7ZBc+v2vGh/
+ Q5zAxEupsuWUoA7ovL/UcLvqc2UvpG4LAtiQzXDiSLAHaF5RxFYLaK702iueNvaVQ2yB
+ 9cJ/78vHUbO8X/7psZNvC243CNycf76nXSv6lfxLnmhWqMVM9b43RMyARJXmgojtWR3x
+ CWgTkvqL0K3QPoMLOiQVKljsBWwPIzfF5ySxeCzDVmLK4ktOZmlyQYYvJkiFFDSFnfxJ
+ AdJ+huhAObYATOumooQR8t4Bb47s4ZvzOgJKGdL+I0FOfCnwXYW93t15R/EuNgXy4OKt Mw==
+Received: from mail.jpl.nasa.gov (smtp.jpl.nasa.gov [128.149.137.103])
+	by mx0e-0020b901.pphosted.com (PPS) with ESMTPS id 3wamhy9ewb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Feb 2024 23:20:58 +0000
+Received: from ice-ex-mdc01.RES.AD.JPL (ice-ex-mdc01.jpl.nasa.gov [128.149.155.141])
+	by smtp.jpl.nasa.gov (Sentrion-MTA-4.5.9/Sentrion-MTA-4.5.9) with ESMTPS id 41MNKvOh142900
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits) verified FAIL);
+	Thu, 22 Feb 2024 23:20:57 GMT
+Received: from ice-ex-sn01.RES.AD.JPL (137.79.100.48) by
+ ice-ex-mdc01.RES.AD.JPL (128.149.155.141) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 22 Feb 2024 15:20:57 -0800
+Received: from ice-ex-sn02.RES.AD.JPL (137.79.100.49) by
+ ice-ex-sn01.RES.AD.JPL (137.79.100.48) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 22 Feb 2024 15:20:57 -0800
+Received: from GCC02-DM3-obe.outbound.protection.outlook.com (137.78.153.23)
+ by ice-ex-sn02.RES.AD.JPL (137.79.100.49) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 15:20:56 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=geHsGTx2is76PPTmkDlVrmSHRxORti2tU6wE6KMiBQI0NqaG1oDlGRongXtLYodeX62aS9+ygRuH9lm7AycmDxwc7JDbmCWsKD7G9eOvXOVHeFZKBKzfbSpWXCpeGDv3Zrn/enQt7F44SGxkLuA9ma6eoDuxwrIt3tD7N6OyB40QLvruFxU9E87PzFec97o0o80TgZaeXST8p0g20GF0waM0WIaK9iwxR8ved6ttLXkaAO2KD0ExzDqKWPjMhwYWWUY2uEbDWoAQg1hlCv3mIQ+WfloFlJxmf578H4YpqLyE89w8raljSQrNQBw1usD6y64LyhIPYfzQagZjI4ycUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5gZJ1jwyyWBd9ThzNxjPQUcKcRbBOHm6qZtnFZ4ep6c=;
+ b=N8o+n4Q3L/P1CmfevvFeytySxSIWU3j9bDh+5xeBqAaRuyI2QdHbUkBMN4n8BNrumneiJ0FEw+g7TR4doI15EIJrYF+zJUIczDhzoM5jQxxwzRcLqcSa4VNY7VUnrLexxHaGFVebXJY9KLpN3GJJ2c5cOTz9M8097T9A+QcPJvL/0qne6LkbgIs+/R5YSz9YYimFqLvrx8POWj1UlPDqxS4LwtUogd5/EagF03pZcw90YDV0ePT/TWASjRFsHpMXN1Nao/TqCO45M8V/8u8zG+vpW3hfkXdtUngBDiORusGNEF/kHqcDn+S3EciQq9eaET/h23sXjOo/b0rKw/nrjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=jpl.nasa.gov; dmarc=pass action=none header.from=jpl.nasa.gov;
+ dkim=pass header.d=jpl.nasa.gov; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1708643580; x=1709248380; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rso/ytq7BuhqkURb/7+BxmhJtr0uFNhXKSNBDQu6vkw=;
-        b=NBi+5CCLc3tmNVqlURyhLpl8AOeWqvu8odZe3Vjv1OrtzH3z/dYBE+UfQySmSPVBT5
-         rrcwlUrn8W/FWr7qMu0f4XyGnhtZAiBWnKHsCbfvZc6nihe8C+b3QJDkLwKIkpKEZLKo
-         7VINYj0DtBUvAaM6Ejh7Xk1OeJmyYYX6sVPZJYVVYsu16l+2MR/8+7GXmCGiqRXy7qX5
-         /2WG08RtuCLhQ3nTk3l4jJ6Ra0p1q2OziisFd45h1nM2ZQ08L7OY0KYkAbeIQca+p+HN
-         TsGTMfYKcwbF/XMA8NbN+kCT83cEo/4LSHXBQKhA8CFI5F8n2US/6prbAoYWN/bZk1rp
-         d+7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708643580; x=1709248380;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Rso/ytq7BuhqkURb/7+BxmhJtr0uFNhXKSNBDQu6vkw=;
-        b=beEuTwnJDyUE49wv6qiGZEcJMBfeya5IP3EyDDO8+Dp09++tsjDNOwBxX2tBoyoIuG
-         ihOkS/BeWlmXINdbAes+RWM7OLAYMQPOOmsmhkGV2D0O0BlYPY4T5XTAgaDY6o+srwEU
-         ABC/FNruPft4rIyC4QB1S3W8ZjB7ZgH7YDr1j3lWJZvyfcd0pS0iVIW9TKgN+9kx1Hk9
-         VLb2tFh0nVB8Zg4HMutLLH6Jkxs+12br4t2X5RsZqaMQ/9eabBfIn5kdRr24oUMhALpL
-         m+iE10cP4RWXb41iVpiJ4Se9PQur50jfyB5XEqVHmSIQP4YIVMuDuuNUUdWnx1nDtLjv
-         KP7g==
-X-Gm-Message-State: AOJu0Ywx/w0hmGQX4skshGn8l4ht0vuvfhGyzx/wm0pErCUPkDu3a6To
-	kk9AkSL24PviGQNn+V68BLxVlA7xkg6dQcPm0XBdr/1nhLRQs7XAwXRvHj13gYbdAi/YuXfxctq
-	jf80hKdn3Po2F1ARlkgO/9cv1IGIw4RyxPYeBC8I0e92vgEI=
-X-Google-Smtp-Source: AGHT+IGDvm0hyMh600SLyfW47BaxBfQrh3Ray9KKalzxbjob7QGtkqM7IpxyajHDKN8xFZIXSlJxpgn8kZZzZusWzNk=
-X-Received: by 2002:aa7:d60f:0:b0:564:6b09:92f6 with SMTP id
- c15-20020aa7d60f000000b005646b0992f6mr110395edr.18.1708643580245; Thu, 22 Feb
- 2024 15:13:00 -0800 (PST)
-MIME-Version: 1.0
+ d=JPL365PROD.onmicrosoft.com; s=selector1-JPL365PROD-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5gZJ1jwyyWBd9ThzNxjPQUcKcRbBOHm6qZtnFZ4ep6c=;
+ b=YWbhaElF+U9Ry6UCFPqfuQ+8Q6+uWUDuyegg4HZvO7FLCRlk7pcPjSaa4SQvOYB3Dkvt09q9O4AgjGXf7408dmahS4whRo4vKSkGm72utXY4NqbcxYn26t4JHthJqHslG43KjN28YROBikpeRM1Ljh2AzMSKe1TZBirf2hvkZ9Q=
+Received: from SA1PR09MB9275.namprd09.prod.outlook.com (2603:10b6:806:282::21)
+ by SJ0PR09MB6239.namprd09.prod.outlook.com (2603:10b6:a03:263::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.27; Thu, 22 Feb
+ 2024 23:20:55 +0000
+Received: from SA1PR09MB9275.namprd09.prod.outlook.com
+ ([fe80::7a:7fef:a423:496a]) by SA1PR09MB9275.namprd09.prod.outlook.com
+ ([fe80::7a:7fef:a423:496a%4]) with mapi id 15.20.7316.023; Thu, 22 Feb 2024
+ 23:20:55 +0000
+To: Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [EXTERNAL] Re: [USRP-users] Multiple Streamers
+Thread-Index: AQHaZdpW2Xkk3x2LfU6gYKMT5CfG8LEW/ZgAgAABhVk=
+Date: Thu, 22 Feb 2024 23:20:43 +0000
+Message-ID: <SA1PR09MB9275492D17EA18AAE90BACC092562@SA1PR09MB9275.namprd09.prod.outlook.com>
 References: <SA1PR09MB9275DEEA7594782B53D7CEC392562@SA1PR09MB9275.namprd09.prod.outlook.com>
-In-Reply-To: <SA1PR09MB9275DEEA7594782B53D7CEC392562@SA1PR09MB9275.namprd09.prod.outlook.com>
-Date: Thu, 22 Feb 2024 18:12:48 -0500
-Message-ID: <CAB__hTQ9jGweT4cd9Uyj2Brp2MSAzPkexAiOevmuCsWktMkivA@mail.gmail.com>
-To: "Rohde, Zach (US 333G)" <zachary.s.rohde@jpl.nasa.gov>
-Message-ID-Hash: LZJ5V63JHGZIHDQYNKY6PNORVPY6DDX5
-X-Message-ID-Hash: LZJ5V63JHGZIHDQYNKY6PNORVPY6DDX5
-X-MailFrom: rkossler@nd.edu
+ <CAB__hTQ9jGweT4cd9Uyj2Brp2MSAzPkexAiOevmuCsWktMkivA@mail.gmail.com>
+In-Reply-To: <CAB__hTQ9jGweT4cd9Uyj2Brp2MSAzPkexAiOevmuCsWktMkivA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA1PR09MB9275:EE_|SJ0PR09MB6239:EE_
+x-ms-office365-filtering-correlation-id: 291b80fe-c98b-4e94-7fef-08dc33fceb74
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: pP4mJpqvmFB+XlCnBGlPxjaWVOOxiQ0SoIAt2fl7FwLE9hps56P5fStFbxafT5kadArgpKh+g/9m6SCjafVfFmKapL0EiUpjHJLyW3S0cZr+8PEZpKP42BcR5ZlW97egjF1tCpvcNh5IDrVQoKaI0jgh+XJhnjoHddUOYs7dbvLMh2s5cjmFLyBFC3M9pxuVofcWMtVE1PSxK1ci25RMMxaxKiXDi3IjfxC+My0o54XWMO31kPk6DFCAq6RilEyGge4AgPm0oZi8CE1Qyo/2vL1ZPVLdlMTh07JkrWGgy9Mn3IzIgpf3VnQgLx162t7I4uod8UEKVrFLVY1RIYFglERQDjl998gCV/0gCQPxaFMcYu5RdvqjZkYo3pUY8qkWZhXAlvzLNPAwDYCrdTDl9dh7bsb24GKX1j1IUnTuY0rzNiF7DM4Ne0DygPJL5ZbHbfHL733U530ySOdrWg2oIAui427GrrSPBu6n6nNM75sQA0aOei3w0dy+DZcd1fj6IyNLa54qj4renq+PwsObavmJ407kf+ZBzK1LO7TusyvgAw3jJiu0hbDovVDu54xWMzXsv2OMX5KYkE0YHlCE765FNgKVTv+G4XT0+X2QElo=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR09MB9275.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(230273577357003)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dThzT1YvR05qdENBVUhybHFuVU9ob3ZCR1hjOEpwdWRCSFdLSVNwMU01dFRU?=
+ =?utf-8?B?WVBIRkN4eXN1dnBXM1lVajl0c0VjTi9lcE55cnBIOTR1OTZWMU5yWTZUSFpF?=
+ =?utf-8?B?N0M2ZXY0V3RWcmFWMmVqMHlpbU5keDFwY2ZIQjJ1ZkNGbjhGWkdhLzhnRzRS?=
+ =?utf-8?B?MmFPRDFrbytkZ0paa0FOckYrOThWVTB4b3VGOGhXSG9LQS9ISktHVTdoRUlD?=
+ =?utf-8?B?Y29YWWV3Y1RqcSswZVhaRnY4dkJ2R1JyZ3BlbmdFTEYybHgzN3dJUkdxcHky?=
+ =?utf-8?B?SW40K0J3Y3lGUGtjSmRnWnZ0UWhwS0pHMzdOdW1oam5nTUFGTDltY08yOHR4?=
+ =?utf-8?B?WEtxNUZ2YW1wcGozRjYybU5DNCtjeTl6OWRaTHBQN3lOemVMSWZpbUlDeFdp?=
+ =?utf-8?B?dnhGTEoxdEdsVy83Q2R2a1VUNlZPQVJPYXdIcEc4SXRqbHdsRlR3ZSs5Y3JO?=
+ =?utf-8?B?V1h4eUltcW1keUcySjBiUFVHQ05MbEdYSTFHdWJhT01hc3lnRUJKUm5yU3Qv?=
+ =?utf-8?B?UkZZd2Q3bnh1Y0dmZWE3VUc4a1RSMHRzamx3ZVBhL3kwK0Z1MGhZVmd1cEo1?=
+ =?utf-8?B?aWxMRG1sZ3RLZ0hSaTdWZlIzdjY3aWpuN3VVZkZYQkJqMk4vR1NkNzRkTTcx?=
+ =?utf-8?B?Q0NVUGd2SzlENFF6RWRvekNiM2QzMkJYZ3hlTFh0ZDNKSVliblljODJFTnpV?=
+ =?utf-8?B?anJxcXRPR3ZkNFR2KzBRUXU0dzgveXlIR01QNzZ0UzdOQzZaa3ArZmthb0ln?=
+ =?utf-8?B?R2FpL3ROaEJKaERHQkF6VUk2RWVWbllsR28vSTllZ0E5dmFaWkdRYjkvYzB5?=
+ =?utf-8?B?QnBwZHB4R0VVbmcyQlFwMEFPOXZpb1FHbnhjeXI4dmNlQjhUVUN0QkVqcXBH?=
+ =?utf-8?B?YUVrRlJDbHB3QlRGWFJpdlgrUzl1NS9TNGJ0dUhFd0N3U2dvUy9ZdjZZb2Y5?=
+ =?utf-8?B?djZYTUlMcDhrenh1ckF3T0FyWkd1SW9ZdUhMRkg4Qmlhc3FyR0hMQm5uZ1hZ?=
+ =?utf-8?B?dzg0NGhXMHJXNGdhQXZieFJlNnN5aVZpK0ZxVmc5NDJvUENzdUxiTGRNVE1w?=
+ =?utf-8?B?QnYyejE2WWdUWEh0Q0JLVEhEZG1rN1pubXNqSGJsWGZvblBHKzhiYzYzcUNr?=
+ =?utf-8?B?WDQxUko5SVl0S1VQUHhrNFZiMHRVeDBFTzVtSFRwREZaeks2TW0zNXJ2WmRD?=
+ =?utf-8?B?MXFEMm5wUUxEdXAxR1l6WFM1TlI5NDJiYlZTTVVNUXpuOWhmdmRYMDRydmZR?=
+ =?utf-8?B?SS9wSUxNQXNtMUp0NjRqTk85ZHA4czRVaFFHck1hSnRkWG5hMXlIS21mc09l?=
+ =?utf-8?B?MC9uNXhaampXUHR5cTl6cjNGaWl6RHkvb1N0b1JQMXRyWUw1VndaTjBxbUNV?=
+ =?utf-8?B?U3lFRENQQVloNzZ6emZiQVVUaXFNcVBqdktqcldyMXlycVF0eTQzTCtEYnIv?=
+ =?utf-8?B?eGJEMmF5TjdFSXlXNFJkOHgrbGhuZjhMdXZqc0YyOC8yZnpDRkZpTktMejFZ?=
+ =?utf-8?B?UzQ3ajZhYW5JcmVoVTUwSkpEaXNIU05iY2F0UEE0UHk0MDdDczY2Z2tBaGw0?=
+ =?utf-8?B?clBNTWQ2dWV0L0xMRkp4UDFiRjJpK3lveG1ibEtnaEVaOUVDenNybDA5MzIz?=
+ =?utf-8?B?Tkg5OGgzSzN1dGliT1ZOWlBOS29FZjlZeVQ3VVdIbjlvT3l5bkliTzNBV29l?=
+ =?utf-8?B?L2NlOW9zYVpFQVhwMGwwenUrcU8vS1Uwdk9JckVlOHhqR1ZwUERuYnlGSjdO?=
+ =?utf-8?B?aEhhOFdVQ1ZxMHZOR2FzNENuQmxNbTEzUFJIZG9nNUExV0lFaE85Q2JEaWho?=
+ =?utf-8?B?ZnJXN2lSMWEvNnI2NTNyMkI5eU9DREREVisrWXJrRmdNeWlwazREZVVUT0dh?=
+ =?utf-8?B?U0hUdEZSOEdoZEdBVkZ6cGJvd2lLVXk4VGNCY1luR2QxWDhtY1FwVTZkTzdw?=
+ =?utf-8?B?aTRnODU2WXp3bkFXYnR3VE0za3hQdzVCTGNYNFFvMVJnN0VrNmpYVWdUc2I0?=
+ =?utf-8?B?SllWVWhFUkhiS3RSWk50dUlGZWIzZjBCKzk1a250bXhQcnNGVTdPQkx2Mjla?=
+ =?utf-8?B?VzNIcGh1QmgrNFpuVnV5RzRMcjFZcGdwUDNTS3h6RHFIRGQ2K1E5R3Q0TnV0?=
+ =?utf-8?B?dnVyc1ZremV6VGpJbkl4eTBmZVdFWDFOWE9VYTlMbHNoaWxXVVNjRHZqdTNo?=
+ =?utf-8?B?MkE9PQ==?=
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR09MB9275.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 291b80fe-c98b-4e94-7fef-08dc33fceb74
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2024 23:20:55.4508
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 545921e0-10ef-4398-8713-9832ac563dad
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR09MB6239
+X-OriginatorOrg: jpl.nasa.gov
+X-Source-IP: ice-ex-mdc01.jpl.nasa.gov [128.149.155.141]
+X-Source-Sender: zachary.s.rohde@jpl.nasa.gov
+X-AUTH: Authorized
+X-Proofpoint-GUID: m4RcPBFKQgXKbwXIKIVDDCOJo2TU5avW
+X-Proofpoint-ORIG-GUID: m4RcPBFKQgXKbwXIKIVDDCOJo2TU5avW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-22_15,2024-02-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0
+ priorityscore=1501 mlxscore=0 spamscore=0 adultscore=0 mlxlogscore=999
+ impostorscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311290000 definitions=main-2402220179
+Message-ID-Hash: SQPORWJVCQO3PRYTZAM7LGEUYFLG4EI7
+X-Message-ID-Hash: SQPORWJVCQO3PRYTZAM7LGEUYFLG4EI7
+X-MailFrom: zachary.s.rohde@jpl.nasa.gov
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Multiple Streamers
+Subject: [USRP-users] Re: [EXTERNAL] Re: Multiple Streamers
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LZJ5V63JHGZIHDQYNKY6PNORVPY6DDX5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SQPORWJVCQO3PRYTZAM7LGEUYFLG4EI7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============7467129923520557532=="
+From: "Rohde, Zach (US 333G) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Rohde, Zach (US 333G)" <zachary.s.rohde@jpl.nasa.gov>
+Content-Type: multipart/mixed; boundary="===============8677632372827449722=="
 
---===============7467129923520557532==
-Content-Type: multipart/alternative; boundary="000000000000a617260612009517"
+--===============8677632372827449722==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SA1PR09MB9275492D17EA18AAE90BACC092562SA1PR09MB9275namp_"
 
---000000000000a617260612009517
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_SA1PR09MB9275492D17EA18AAE90BACC092562SA1PR09MB9275namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Zach,
-There can definitely be multiple tx streamers (& rx streamers).  Take a
-look at the Ettus rx_samples_to_file example which does this with rx
-streamers. You are probably doing everything right already.  The
-documentation might be just poorly worded such that maybe it should say
-that you can only have one streamer per channel.
-Rob
+VGhhbmtzIFJvYi4gSSBhZ3JlZS4gVGhlIGRvY3VtZW50YXRpb24gbmVlZHMgdG8gYmUgcmV3b3Jk
+ZWQgdG8sIOKAnE5vdGU6IFRoZXJlIGNhbiBhbHdheXMgb25seSBiZSBvbmUgc3RyZWFtZXIgcGVy
+IGNoYW5uZWzigKbigJ0uIFRoYXQgd291bGQgcHJvYmFibHkgaGVscCBwZW9wbGUgb3V0Lg0KDQpS
+ZWdhcmRzLA0KWmFjaA0KDQpGcm9tOiBSb2IgS29zc2xlciA8cmtvc3NsZXJAbmQuZWR1Pg0KRGF0
+ZTogVGh1cnNkYXksIEZlYnJ1YXJ5IDIyLCAyMDI0IGF0IDM6MTPigK9QTQ0KVG86IFJvaGRlLCBa
+YWNoIChVUyAzMzNHKSA8emFjaGFyeS5zLnJvaGRlQGpwbC5uYXNhLmdvdj4NCkNjOiB1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbSA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0
+OiBbRVhURVJOQUxdIFJlOiBbVVNSUC11c2Vyc10gTXVsdGlwbGUgU3RyZWFtZXJzDQpIaSBaYWNo
+LA0KVGhlcmUgY2FuIGRlZmluaXRlbHkgYmUgbXVsdGlwbGUgdHggc3RyZWFtZXJzICgmIHJ4IHN0
+cmVhbWVycykuICBUYWtlIGEgbG9vayBhdCB0aGUgRXR0dXMgcnhfc2FtcGxlc190b19maWxlIGV4
+YW1wbGUgd2hpY2ggZG9lcyB0aGlzIHdpdGggcnggc3RyZWFtZXJzLiBZb3UgYXJlIHByb2JhYmx5
+IGRvaW5nIGV2ZXJ5dGhpbmcgcmlnaHQgYWxyZWFkeS4gIFRoZSBkb2N1bWVudGF0aW9uIG1pZ2h0
+IGJlIGp1c3QgcG9vcmx5IHdvcmRlZCBzdWNoIHRoYXQgbWF5YmUgaXQgc2hvdWxkIHNheSB0aGF0
+IHlvdSBjYW4gb25seSBoYXZlIG9uZSBzdHJlYW1lciBwZXIgY2hhbm5lbC4NClJvYg0KDQpPbiBU
+aHUsIEZlYiAyMiwgMjAyNCBhdCA1OjA44oCvUE0gUm9oZGUsIFphY2ggKFVTIDMzM0cpIHZpYSBV
+U1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20+PiB3cm90ZToNCkhlbGxvLA0KDQpJIGhhdmUgYmVlbiBydW5uaW5nIHRl
+c3RzIHdpdGggbXVsdGlwbGUgVFggY2hhbm5lbHMgc28gdGhhdCBlYWNoIGNoYW5uZWwgY2FuIHJ1
+biBhdCBhIGRpZmZlcmVudCBzYW1wbGUgcmF0ZSwgdXNpbmcgbXVsdGlwbGUgY2FsbHMgdG8gZ2V0
+X3R4X3N0cmVhbSgpIHRvIGdlbmVyYXRlIGEgdW5pcXVlIHN0cmVhbWVyIGZvciBlYWNoIHRocmVh
+ZC4gVGhpcyBoYXMgYmVlbiBzdWNjZXNzZnVsIHVzaW5nIHRoZSBYNDQwIGFuZCByZXN1bHRzIGlu
+IG5vIGVycm9ycyBvciB3YXJuaW5ncy4NCg0KTXkgcXVlc3Rpb24gaXMgdGhlIGRvY3VtZW50YXRp
+b248aHR0cHM6Ly91cmxkZWZlbnNlLnVzL3YzL19faHR0cHM6L2ZpbGVzLmV0dHVzLmNvbS9tYW51
+YWwvY2xhc3N1aGRfMV8xZGV2aWNlLmh0bWwqYTY2ZDFiZjI4OWRkMDNhMDNkZjM4NjBmM2VlZTU3
+OGMwX187SXchIVB2QkR0bzZIczRXYlZ1dTchTVhFZkhPN0xhRUVTTTFnWTBlOUxSc2stZHBXVEls
+ejk5cFZRTWgyd2g2ZlZWNkZSRGp0MjNhY1lFaEx0alJ1QUpsM3RqZkRGdEdGa2FVUDZyQVY5OUY1
+SHBDVSQ+IHN0YXRlczog4oCcTm90ZTogVGhlcmUgY2FuIGFsd2F5cyBvbmx5IGJlIG9uZSBzdHJl
+YW1lci4gV2hlbiBjYWxsaW5nIGdldF90eF9zdHJlYW0oKSBhIHNlY29uZCB0aW1lLCB0aGUgZmly
+c3Qgc3RyZWFtZXIgbXVzdCBiZSBkZXN0cm95ZWQgYmVmb3JlaGFuZC7igJ0gSXMgdGhpcyB0cnVl
+PyBXaHkgYW0gSSBub3Qgc2VlaW5nIGFueSB1bmRlZmluZWQgYmVoYXZpb3Igb3IgZXJyb3JzL3dh
+cm5pbmdzPw0KDQpJbiB0aGUgZG9jdW1lbnRhdGlvbiBmb3IgbXVsdGlfdXNycF9yZm5vYzxodHRw
+czovL3VybGRlZmVuc2UudXMvdjMvX19odHRwczovZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3Vo
+ZC9ibG9iL21hc3Rlci9ob3N0L2xpYi91c3JwL211bHRpX3VzcnBfcmZub2MuY3BwKkw3OF9fO0l3
+ISFQdkJEdG82SHM0V2JWdXU3IU1YRWZITzdMYUVFU00xZ1kwZTlMUnNrLWRwV1RJbHo5OXBWUU1o
+MndoNmZWVjZGUkRqdDIzYWNZRWhMdGpSdUFKbDN0amZERnRHRmthVVA2ckFWOUZfTU1ydmckPiwg
+SSBub3RpY2VkIGEgZG9jdW1lbnRhdGlvbiBzdHViIHRoYXQgbWVudGlvbmVkLCDigJxJZiB0aGVy
+ZSBpcyBvbmx5IGV2ZXIgb25lIFR4IHN0cmVhbWVyLCB0aGlzIHdpbGwgd29yayBhcyBleHBlY3Rl
+ZC4gRm9yIG11bHRpcGxlIHN0cmVhbWVycywgb25seSB0aGUgbGFzdCBzdHJlYW1lcidzIGFzeW5j
+IG1lc3NhZ2VzIHdpbGwgbWFrZSBpdCB0aHJvdWdoLuKAnSBTbywgaXQgc2VlbXMgdGhlIGRvY3Vt
+ZW50YXRpb24gaXMgc29ydCBvZiBjb250cmFkaWN0aW5nIG9uZSBhbm90aGVyIG9uIHdoZXRoZXIg
+bXVsdGlwbGUgVFggc3RyZWFtcyBhcmUgYWxsb3dlZC4NCg0KVGhhbmtzLA0KWmFjaA0KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11
+c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
+ZXR0dXMuY29tPg0K
 
-On Thu, Feb 22, 2024 at 5:08=E2=80=AFPM Rohde, Zach (US 333G) via USRP-user=
-s <
-usrp-users@lists.ettus.com> wrote:
+--_000_SA1PR09MB9275492D17EA18AAE90BACC092562SA1PR09MB9275namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> Hello,
->
->
->
-> I have been running tests with multiple TX channels so that each channel
-> can run at a different sample rate, using multiple calls to get_tx_stream=
-()
-> to generate a unique streamer for each thread. This has been successful
-> using the X440 and results in no errors or warnings.
->
->
->
-> My question is the documentation
-> <https://files.ettus.com/manual/classuhd_1_1device.html#a66d1bf289dd03a03=
-df3860f3eee578c0>
-> states: =E2=80=9CNote: There can always only be one streamer. When callin=
-g
-> get_tx_stream() a second time, the first streamer must be destroyed
-> beforehand.=E2=80=9D Is this true? Why am I not seeing any undefined beha=
-vior or
-> errors/warnings?
->
->
->
-> In the documentation for multi_usrp_rfnoc
-> <https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/multi_usr=
-p_rfnoc.cpp#L78>,
-> I noticed a documentation stub that mentioned, =E2=80=9CIf there is only =
-ever one
-> Tx streamer, this will work as expected. For multiple streamers, only the
-> last streamer's async messages will make it through.=E2=80=9D So, it seem=
-s the
-> documentation is sort of contradicting one another on whether multiple TX
-> streams are allowed.
->
->
->
-> Thanks,
->
-> Zach
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczpkdD0i
+dXVpZDpDMkY0MTAxMC02NUIzLTExZDEtQTI5Ri0wMEFBMDBDMTQ4ODIiIHhtbG5zOm09Imh0dHA6
+Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vb2ZmaWNlLzIwMDQvMTIvb21tbCIgeG1sbnM9Imh0dHA6
+Ly93d3cudzMub3JnL1RSL1JFQy1odG1sNDAiPg0KPGhlYWQ+DQo8bWV0YSBodHRwLWVxdWl2PSJD
+b250ZW50LVR5cGUiIGNvbnRlbnQ9InRleHQvaHRtbDsgY2hhcnNldD11dGYtOCI+DQo8bWV0YSBu
+YW1lPSJHZW5lcmF0b3IiIGNvbnRlbnQ9Ik1pY3Jvc29mdCBXb3JkIDE1IChmaWx0ZXJlZCBtZWRp
+dW0pIj4NCjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUg
+NSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6QXB0b3M7DQoJcGFu
+b3NlLTE6MiAxMSAwIDQgMiAyIDIgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAu
+TXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglm
+b250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6
+bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
+OmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0K
+CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
+c2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1z
+dHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJbXNvLWxpZ2F0dXJl
+czpub25lO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJn
+aW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldv
+cmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxp
+bms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8
+ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQiPlRoYW5rcyBSb2IuIEkgYWdyZWUuIFRoZSBkb2N1bWVudGF0
+aW9uIG5lZWRzIHRvIGJlIHJld29yZGVkIHRvLCDigJw8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQiPk5vdGU6IFRoZXJlIGNhbiBhbHdheXMgb25seSBiZSBvbmUgc3RyZWFtZXIg
+cGVyIGNoYW5uZWzigKbigJ0uIFRoYXQgd291bGQgcHJvYmFibHkgaGVscCBwZW9wbGUgb3V0Ljxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+UmVnYXJkcyw8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdCI+WmFjaDwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXYgaWQ9Im1h
+aWwtZWRpdG9yLXJlZmVyZW5jZS1tZXNzYWdlLWNvbnRhaW5lciI+DQo8ZGl2Pg0KPGRpdiBzdHls
+ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4w
+cHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0
+b206MTIuMHB0Ij48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTom
+cXVvdDtBcHRvcyZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5Gcm9tOg0KPC9zcGFuPjwv
+Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtBcHRvcyZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5Sb2IgS29zc2xlciAmbHQ7cmtvc3NsZXJAbmQu
+ZWR1Jmd0Ozxicj4NCjxiPkRhdGU6IDwvYj5UaHVyc2RheSwgRmVicnVhcnkgMjIsIDIwMjQgYXQg
+MzoxMzwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVv
+dDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj7igK88L3NwYW4+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXB0b3MmcXVvdDssc2Fucy1z
+ZXJpZjtjb2xvcjpibGFjayI+UE08YnI+DQo8Yj5UbzogPC9iPlJvaGRlLCBaYWNoIChVUyAzMzNH
+KSAmbHQ7emFjaGFyeS5zLnJvaGRlQGpwbC5uYXNhLmdvdiZndDs8YnI+DQo8Yj5DYzogPC9iPnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZn
+dDs8YnI+DQo8Yj5TdWJqZWN0OiA8L2I+W0VYVEVSTkFMXSBSZTogW1VTUlAtdXNlcnNdIE11bHRp
+cGxlIFN0cmVhbWVyczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5IaSBaYWNoLDxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdCI+VGhlcmUgY2FuIGRlZmluaXRlbHkgYmUgbXVsdGlwbGUg
+dHggc3RyZWFtZXJzICgmYW1wOyByeCBzdHJlYW1lcnMpLiZuYnNwOyBUYWtlIGEgbG9vayBhdCB0
+aGUgRXR0dXMgcnhfc2FtcGxlc190b19maWxlIGV4YW1wbGUgd2hpY2ggZG9lcyB0aGlzIHdpdGgg
+cnggc3RyZWFtZXJzLiBZb3UgYXJlIHByb2JhYmx5IGRvaW5nIGV2ZXJ5dGhpbmcgcmlnaHQgYWxy
+ZWFkeS4mbmJzcDsgVGhlDQogZG9jdW1lbnRhdGlvbiBtaWdodCBiZSBqdXN0IHBvb3JseSB3b3Jk
+ZWQgc3VjaCB0aGF0IG1heWJlIGl0IHNob3VsZCBzYXkgdGhhdCB5b3UgY2FuIG9ubHkgaGF2ZSBv
+bmUgc3RyZWFtZXIgcGVyIGNoYW5uZWwuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
+PlJvYjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdCI+T24gVGh1LCBGZWIgMjIsIDIwMjQgYXQgNTowOOKAr1BNIFJv
+aGRlLCBaYWNoIChVUyAzMzNHKSB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4m
+Z3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5
+bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzow
+aW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxk
+aXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQiPkhlbGxvLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
+bS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPiZuYnNwOzxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQiPkkgaGF2ZSBiZWVuIHJ1bm5pbmcgdGVzdHMgd2l0aCBtdWx0aXBsZSBUWCBj
+aGFubmVscyBzbyB0aGF0IGVhY2ggY2hhbm5lbCBjYW4gcnVuIGF0IGEgZGlmZmVyZW50IHNhbXBs
+ZSByYXRlLCB1c2luZyBtdWx0aXBsZSBjYWxscyB0byBnZXRfdHhfc3RyZWFtKCkNCiB0byBnZW5l
+cmF0ZSBhIHVuaXF1ZSBzdHJlYW1lciBmb3IgZWFjaCB0aHJlYWQuIFRoaXMgaGFzIGJlZW4gc3Vj
+Y2Vzc2Z1bCB1c2luZyB0aGUgWDQ0MCBhbmQgcmVzdWx0cyBpbiBubyBlcnJvcnMgb3Igd2Fybmlu
+Z3MuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
+aW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+TXkgcXVl
+c3Rpb24gaXMNCjxhIGhyZWY9Imh0dHBzOi8vdXJsZGVmZW5zZS51cy92My9fX2h0dHBzOi9maWxl
+cy5ldHR1cy5jb20vbWFudWFsL2NsYXNzdWhkXzFfMWRldmljZS5odG1sKmE2NmQxYmYyODlkZDAz
+YTAzZGYzODYwZjNlZWU1NzhjMF9fO0l3ISFQdkJEdG82SHM0V2JWdXU3IU1YRWZITzdMYUVFU00x
+Z1kwZTlMUnNrLWRwV1RJbHo5OXBWUU1oMndoNmZWVjZGUkRqdDIzYWNZRWhMdGpSdUFKbDN0amZE
+RnRHRmthVVA2ckFWOTlGNUhwQ1UkIiB0YXJnZXQ9Il9ibGFuayI+DQp0aGUgZG9jdW1lbnRhdGlv
+bjwvYT4gc3RhdGVzOiDigJxOb3RlOiBUaGVyZSBjYW4gYWx3YXlzIG9ubHkgYmUgb25lIHN0cmVh
+bWVyLiBXaGVuIGNhbGxpbmcgZ2V0X3R4X3N0cmVhbSgpIGEgc2Vjb25kIHRpbWUsIHRoZSBmaXJz
+dCBzdHJlYW1lciBtdXN0IGJlIGRlc3Ryb3llZCBiZWZvcmVoYW5kLuKAnSBJcyB0aGlzIHRydWU/
+IFdoeSBhbSBJIG5vdCBzZWVpbmcgYW55IHVuZGVmaW5lZCBiZWhhdmlvciBvciBlcnJvcnMvd2Fy
+bmluZ3M/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+SW4g
+dGhlDQo8YSBocmVmPSJodHRwczovL3VybGRlZmVuc2UudXMvdjMvX19odHRwczovZ2l0aHViLmNv
+bS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9ob3N0L2xpYi91c3JwL211bHRpX3VzcnBf
+cmZub2MuY3BwKkw3OF9fO0l3ISFQdkJEdG82SHM0V2JWdXU3IU1YRWZITzdMYUVFU00xZ1kwZTlM
+UnNrLWRwV1RJbHo5OXBWUU1oMndoNmZWVjZGUkRqdDIzYWNZRWhMdGpSdUFKbDN0amZERnRHRmth
+VVA2ckFWOUZfTU1ydmckIiB0YXJnZXQ9Il9ibGFuayI+DQpkb2N1bWVudGF0aW9uIGZvciBtdWx0
+aV91c3JwX3Jmbm9jPC9hPiwgSSBub3RpY2VkIGEgZG9jdW1lbnRhdGlvbiBzdHViIHRoYXQgbWVu
+dGlvbmVkLCDigJxJZiB0aGVyZSBpcyBvbmx5IGV2ZXIgb25lIFR4IHN0cmVhbWVyLCB0aGlzIHdp
+bGwgd29yayBhcyBleHBlY3RlZC4gRm9yIG11bHRpcGxlIHN0cmVhbWVycywgb25seSB0aGUgbGFz
+dCBzdHJlYW1lcidzIGFzeW5jIG1lc3NhZ2VzIHdpbGwgbWFrZSBpdCB0aHJvdWdoLuKAnSBTbywg
+aXQgc2VlbXMgdGhlDQogZG9jdW1lbnRhdGlvbiBpcyBzb3J0IG9mIGNvbnRyYWRpY3Rpbmcgb25l
+IGFub3RoZXIgb24gd2hldGhlciBtdWx0aXBsZSBUWCBzdHJlYW1zIGFyZSBhbGxvd2VkLjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQiPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
+bS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPlRoYW5rcyw8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0Ij5aYWNoPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJy
+Pg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNycC11
+c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnMt
+bGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8
+L2h0bWw+DQo=
 
---000000000000a617260612009517
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_SA1PR09MB9275492D17EA18AAE90BACC092562SA1PR09MB9275namp_--
 
-<div dir=3D"ltr">Hi Zach,<div>There can definitely be multiple tx streamers=
- (&amp; rx streamers).=C2=A0 Take a look at the Ettus rx_samples_to_file ex=
-ample which does this with rx streamers. You are probably doing everything =
-right already.=C2=A0 The documentation might be just poorly worded such tha=
-t maybe it should say that you can only have one streamer per channel.</div=
-><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, Feb 22, 2024 at 5:08=E2=80=AFPM Rohde, Zach (US 333=
-G) via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-us=
-ers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div class=3D"msg3832231064655142379">
-
-
-
-
-
-<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
-<div class=3D"m_-6980986093345291933WordSection1">
-<p class=3D"MsoNormal">Hello,</p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I have been running tests with multiple TX channels =
-so that each channel can run at a different sample rate, using multiple cal=
-ls to get_tx_stream() to generate a unique streamer for each thread. This h=
-as been successful using the X440
- and results in no errors or warnings.</p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">My question is <a href=3D"https://files.ettus.com/ma=
-nual/classuhd_1_1device.html#a66d1bf289dd03a03df3860f3eee578c0" target=3D"_=
-blank">
-the documentation</a> states: =E2=80=9CNote: There can always only be one s=
-treamer. When calling get_tx_stream() a second time, the first streamer mus=
-t be destroyed beforehand.=E2=80=9D Is this true? Why am I not seeing any u=
-ndefined behavior or errors/warnings?</p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">In the <a href=3D"https://github.com/EttusResearch/u=
-hd/blob/master/host/lib/usrp/multi_usrp_rfnoc.cpp#L78" target=3D"_blank">
-documentation for multi_usrp_rfnoc</a>, I noticed a documentation stub that=
- mentioned, =E2=80=9CIf there is only ever one Tx streamer, this will work =
-as expected. For multiple streamers, only the last streamer&#39;s async mes=
-sages will make it through.=E2=80=9D So, it seems the
- documentation is sort of contradicting one another on whether multiple TX =
-streams are allowed.</p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks,</p>
-<p class=3D"MsoNormal">Zach</p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</div></blockquote></div>
-
---000000000000a617260612009517--
-
---===============7467129923520557532==
+--===============8677632372827449722==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -217,4 +384,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7467129923520557532==--
+--===============8677632372827449722==--
