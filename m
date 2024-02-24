@@ -2,382 +2,385 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D091B862162
-	for <lists+usrp-users@lfdr.de>; Sat, 24 Feb 2024 01:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA1A18624D6
+	for <lists+usrp-users@lfdr.de>; Sat, 24 Feb 2024 13:10:15 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AD1DC384FEC
-	for <lists+usrp-users@lfdr.de>; Fri, 23 Feb 2024 19:59:46 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 3DF27384FA0
+	for <lists+usrp-users@lfdr.de>; Sat, 24 Feb 2024 07:10:14 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1708736386; bh=xebKwffQdzNXDeseV29tQb05ur4fv7jQ9GmOiLPPbCY=;
-	h=From:To:References:In-Reply-To:Date:Subject:List-Id:List-Archive:
+	t=1708776614; bh=xymWE6zYx13q1MbNkcFhb96Ip5loSGHBJygyYSxN69M=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=tq0odGOV/NDbmAOt586tpo+KaE2BofiJ+Y37TleTcN8VHjP33WPUlRCad9oXjexdB
-	 4z+I2tFGhQ1YjHbvHLzsT+1T5BpwRXZ/+RfMoQ7s5iz1zbQ+OvRBpJjk+yjCd4a/HO
-	 oGcsA3um0gORf+9rOjI8LTOrY4Wr8tS3xF8iDTrH5l6lp7nLu0MRSfpik6H3wUlc0i
-	 n+xWXe8NwzvekeK/CwuccabUYMORDXZwCl2fXkm1ZxOOlxz8ca0mf/2224LG8ahp0n
-	 pnzacDD+la4O2gfCCIzGP1GOYxgbsR2GGdFG4BkuwJ9JjouWUdeBXzN+MO2GoaiPlE
-	 3v1hJ0GdARShw==
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 00BA5384F75
-	for <usrp-users@lists.ettus.com>; Fri, 23 Feb 2024 19:58:45 -0500 (EST)
+	 From:Reply-To:From;
+	b=PHI8yYOSUBNtZcxB+em1UiRpOQloGzluu75lPBtUzhI6QFGv7XsHcIocjA8k03fNa
+	 lhkoJ3kWKOFBDlEN14b0R7ptXraQbESgGAMzFkITWQJ3s+t8PI1vZXS+Cc4POmAfDt
+	 /+y5K5XKNiLBv9VKZ5pn82Fy2zb6B6Kg0TF5rcfpC3Bv6c4aBRQAH/7ZOsHQ+tVxnr
+	 1hzubnPcWkQNF0SJZjmAl5zR7eNlbMxy66AG9hvgvl4cBrGAGRJmLh7Hj5dA0qR2gf
+	 YKImNCguHPbsFoTmOtPsfh3J+nbL3W0xTgV1fSPzE6nYmlzIRS7pEU8vLg+3+jXMoP
+	 dmZgqIOih6IQA==
+Received: from sonic314-13.consmr.mail.bf2.yahoo.com (sonic314-13.consmr.mail.bf2.yahoo.com [74.6.132.123])
+	by mm2.emwd.com (Postfix) with ESMTPS id 48B2B384FA0
+	for <usrp-users@lists.ettus.com>; Sat, 24 Feb 2024 07:09:05 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JIuCg4PR";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="B0gP2ziT";
 	dkim-atps=neutral
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1dc1ff697f9so12248765ad.0
-        for <usrp-users@lists.ettus.com>; Fri, 23 Feb 2024 16:58:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708736325; x=1709341125; darn=lists.ettus.com;
-        h=disposition-notification-to:content-language:thread-index
-         :mime-version:message-id:date:subject:in-reply-to:references:to:from
-         :return-receipt-to:from:to:cc:subject:date:message-id:reply-to;
-        bh=VmThzpBmqUdV/2VbaY41P3ozkty+pgv8jE0akzRGvPE=;
-        b=JIuCg4PRrxAj0t2zsWI7qsSPe6PvvpyGgZpKLay8ksjCQH2xBoxr8YyUME8fNmuUAv
-         Q/TfoO+FMUBsPSlY+/9UbZi3fDgu3gMECidRgYVpCqnOGWRRqxA6ABuuyVfJuaGylhmw
-         WuUejY48lPa2NETiCtf3IGaC1e5DdYuuZ9giuDsKtELkl7T1eOEoaex73VlymU8XckJZ
-         8/5iTA/FgxAP6LT37PXs7ACVYz5nXZe95IeYUKkHDKegXC6H4OBOZHvMRSmANFviNsRG
-         CSJfqFhJUJANCj5IsTn4gAKaNuPhBMjz/FvfZ/Z+GdacvJeAKUIGHJyqjDJNiVKpmCcI
-         0LAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708736325; x=1709341125;
-        h=disposition-notification-to:content-language:thread-index
-         :mime-version:message-id:date:subject:in-reply-to:references:to:from
-         :return-receipt-to:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VmThzpBmqUdV/2VbaY41P3ozkty+pgv8jE0akzRGvPE=;
-        b=aXaC1xNYQ7AOYEAA1xs7EJsaeRvs6q3TCLjFrr3VYRuGkhBgjbpdX1q+d2+e10LwGC
-         fsh2+JKmzILiK7drbWMFNo0LRfVhA5xOJD6nj52HYR0uZUd3riMOKqkCj/nIRcGSWypg
-         K4yJxeaZH9BvJ9BxXqWhEAwIdmBh/ah+uYmndtS7AqROEnaU7GcyV05gPaons1Aep1E0
-         +yKxy4J+UIelFQEQnlrJFPwLISTiWgxJBjE51O1h7Sb3ZcQpEP1rpyjj5KVLi2Z2llhy
-         VBxNXkYwuRsTM3TnVqfN24Vlsr7OWQo2GEbzn7YjzsqBVq7Afuu+wRZVmJdvit8p5aBE
-         dg1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXoJpzGngaQram0JCf/gxVhx7t6dctrw6+i7e5hvHgVZ4iKZx641xDXLt7wPfVggm5gO1u7bkNppaYgjEz8te2LFe5DtXxjmNsZxg==
-X-Gm-Message-State: AOJu0YzKGflXFlA0Vlno7WFErR+QaS4935/KUKXMbv5Bv7VrUhMKLE3K
-	NNA/7+Ys/0X/YnfgUomxR+Sw3KhE3+dMaqT9GpArHgg8pFGUrmoX
-X-Google-Smtp-Source: AGHT+IHRXpbbAUwKrfrj9zKEYWjAC+EjJbqaUWSQ97XwIqt13ex9ytOaRci2gF7RPXlqAQcUBpVfJQ==
-X-Received: by 2002:a17:902:8c8c:b0:1db:fad5:26ad with SMTP id t12-20020a1709028c8c00b001dbfad526admr1410213plo.51.1708736324441;
-        Fri, 23 Feb 2024 16:58:44 -0800 (PST)
-Received: from DESKTOPF6HH3I0 ([2804:14d:1087:8236:e873:eedb:29e8:83d5])
-        by smtp.gmail.com with ESMTPSA id n3-20020a1709026a8300b001d8dd636705sm25676plk.190.2024.02.23.16.58.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 23 Feb 2024 16:58:43 -0800 (PST)
-From: "Pedro Vieira \(Gmail - Geral\)" <pav.vieira@gmail.com>
-To: "'zhou'" <hwzhou@yahoo.com>,
-	<usrp-users@lists.ettus.com>
-References: <CAO_U4K7iMNWLhLRdWozsXxNQHd0xvp611f7LXQQhSe=-hz+ong@mail.gmail.com> <1464756341.27900.1708721099612@mail.yahoo.com>
-In-Reply-To: <1464756341.27900.1708721099612@mail.yahoo.com>
-Date: Fri, 23 Feb 2024 21:58:40 -0300
-Message-ID: <!&!AAAAAAAAAAAuAAAAAAAAAAxXouO5T5tEtC+ch5uVV4UBACOpHMELik5ErQ+ioQtu/d8AAAAAA48AABAAAAAxIdtGbEIMTq2GLSCB/zTCAQAAAAA=@gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1708776544; bh=EKJBem6fQMKquIx9HMsbn3VB5gEZUf8rnxOM4T9+6yY=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=B0gP2ziTlsGaX9F0CGUhx0uSVHvlsFYQ17/skC+TonSO8ueHnuvrYhH4l+lbmJSAGXazyJJBKCcK0+j5tKLHWdDeRzmx47jYgZEJv1B0uDts1SNSXFunH9tna71kduaCh3hhMC5cZZggEmCXGEY1VB6WX1EkADnztX4YDuPKSeEmo0Tsj2OYK1583CD3lEBsT6c6J9YC+A65fhmhRWsSludAZT3KAhOOvqLwNFR2/Yf4dhhyEsh2/l62zE94P0xi2jZKRFJOc6T91Vhv1QdOJN9p/ai81xtiPE5dfUHX5tlspZGP+3gjPEyqHr4HHdCWN1MrNffM54c+AOvJWEUG5w==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1708776544; bh=TGjFDxvDJ+Vk1zFxZdq3iwyUFxfJxiA+xTQyu5DkHFO=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=rx5P4Yd/vxM6Mm9ffbvKSlyijqyEF1TN4A1BtkUE5sPr5ISFN2xHlhU12pzOTbXI4vwvp9G85rOVIKC56xzjeGeCRn4cZClVChBJQ2M4jJiE/IxHDsdlNOfpzomy+jPi53o9ZkAOOb4ZGUua93eoYhF0pgYDItgKLhUPw/EnB3rFYxuOlifqxfKngv/wCKLlLPvXUJZ0LeNf4vYfCPdpdfkfoFCqVYisOHNzX0i3Sh2iWhkOWXHYnngKZ+3+rNRrhAkYyJCyX1hjNt1BLtmXjcWky1Za7OJtWZUQ5gN4zn6T2duFWuSnaYIH1R3F1OFXQUbr9RqjkSXPGKQV7qafJA==
+X-YMail-OSG: FofuYisVM1k8oalvFaHQgxLsAPlW2mduZCEJihnjWzXnpfrjoEqo_Ph5Lk_Mozt
+ I7PhAgFYqH0WZJhYeTHCHl1nhW0bmhSOuZPAFgBWlFwMNd.q4UiC5fXnMnExOgNTgfIGYqFcwRjI
+ trmR7kWen4C_T2K5ODkP6vAVlEp_z0YM9ZklsaHMvkWo.phQ5gfOFZr7P5LA3ovaVM0eH1FvTgO4
+ SThRfRc.FWGg5l5Q5SgIHvKvZRbP_diqXODxJDj2zRzqbK0UABgUYAtsoJrxOhAkf29PDtVqHETW
+ 5Twsmnnursv.sVdS..eUcBD4pqUjf3UAjU94JJ.BHvYZJ2lAPGHIRFlATCl0PnNmS_H1FW1Fjdcn
+ Vu3vpnOOjon4pqoK6N4IDFeOXM24CeY6q8Sw9wTV12.J9zrWDaux1eVSgmY3RZMGlQAEe3SkF7dw
+ SMrbkgi5x_CXr5TEuvX_tf8zbgrMQBofzmgW2b4AA_QzHy_mK0M.BUqP9XJhrgfc1wxo0LkP2Pdv
+ FIfvNVLG4ApFN.Vm4ooScmI9OmXQvIrlQ6GYzYFbez8BV6TsS3MFrUaxSXlG1k6sP0bB9.06IsbM
+ XEA.AgVx96hTUZpEB8XWq2Gf4c0sD2I.kqociwdW9MiHMatiglNf0DZCdUoO2ppN5PMvHSv1eJ_L
+ vvoGLPHHbHh3yaiGkVajxcYBvch0gat7NZ9.YupwXlyCpngLTLFoi0rmLQyGwwvsFKYsf5mm7U1K
+ b1qE3KccUvEAD_PDo7ipzf6zpTwwcro.yrAzg1ZIu5USOPJiNwJEZVAd4y96_5rCusNbRW.BI1Uh
+ eycQQInI28.q6qjWjk4PUu4BQOYb_7cdZN6C1NWzUYjjhxraxDklWHt3eNlTXeY4OsFkyCzoZKn4
+ p0bd5r8dbE0GQySAigdi5sa4bfuiVLUNh7TkippBb9sOb0kYaGgCtoysoBER7WeMIJW51U57tT4L
+ AsOCuF_3VUTZFHkR5G7dnzBwxndelYPDSYRSpdPVhhiuFoFtH5EmpmI1qy05Rh4GWpgZU_p953P5
+ UuhAF3uz41khePhpviLXx1aZwBxlrrUNJppeZbgXxBl8XniK01G57ddZtcsYbVP8cyJCuvqm45CO
+ pjTFPD57Fg_olkPOmJuY_dGndkeSYCTYpGW7guRn8zxIK3VVTFrwPvwN9iS1zLalIWNqJug1lZFw
+ vxA6mQJ7NRHP8e1UE1pfhPw0rhAug8GA11ANeMSDC.jtU6.YJI0cM5Y8vPH2Em5UpY28KZxj8E3s
+ buVIuiqzAX4RYMGCKkwfcDBlXy2L2eZrnepgEfU6g06nYFBdecY4bDQngYu_GpvarsPHwbDBRaMq
+ oe4nmZSL5rXVvyc7IbYG_crjkbURIzktQUaUTagd1ejiP6tPfta2wMQ8YAXPVenPL2DdjneMylPp
+ 8.BmCEz4maXoyU014Ln6FWCc6MK3QaqaYNYxkdopW_LbX1LqeIzRCWWSU0sEyLlplieuEBYTrSfg
+ ZCW3HDgdB0Rt4Uw9nA1XDQzzuqwUfZ3J8kBgp3gNd.Bxy8ePN74kHL2ZuzkHVu3aDjiuQyhuu3oL
+ 8f9Luhrhee8jYgQ9g..np47MrRUYQxRsQnKxN96TWfNyuB.zFtcgq0GnklB8Ct6lQ.q9zLrne7i3
+ YVZjVttNJEqoLRNGyb5Q6KlPGQMAtYsRr9JvOS.GYrCmgVUzKDOXLBi7euTV0EVsLOFp18Nmpo52
+ A6aFi6CznWqwJ95FP2T.VnnyRJG.95XiYFJ55HK7MSJ05ZmfWwOlMXYvesmAPi.Zg__mddlgC_II
+ 0YUXpeuitVSLW03jGcZNCFefCkg1m6DCPx3y1K.JdtUBtWQ3JBAF8efPC_Fy3dlNabLtYQOJrF4N
+ A1qeTQX..NX8hEKoBqz8I5ROs_bhTLof4T7TvRR9zSKGDNDeEPXwCZs7v5WBBcepPR17BfzAjkiB
+ k8bcZvAcw3PQ95UkJrzOW_aVEQGoPSw8ih2vWr8z3J3gMgwRKurmupSaemESFVxy6peHbxrvFpPp
+ TLp6h8J6j_F_WcD8EdfmCKvRyStW8YFE7BYYBGk94TYixUOQtq2fvOY.oVBfGh8NH5UaMl64DMEk
+ 6ypLOmx1XToMRTYTBdX1GefehbN1X93jd0XPFC9EsIpjFfo8cbN7y227SY1gvNHQd95XvTJUnIh1
+ Yg9l6QfJKVHP1gWXm9HWgmofnerZeI1eIu4IlYdsUGYcGFNNDPDskhLVvVfkIOcPWFA9jaOWJkI0
+ R6gSgNwOxCRPvHCPy6z28BYRbsyzQI3wqgLfPP71j4EHFt7l8bwq4iXr8
+X-Sonic-MF: <hwzhou@yahoo.com>
+X-Sonic-ID: 7a9e8a22-831a-433b-b66f-d46ecf06528c
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.bf2.yahoo.com with HTTP; Sat, 24 Feb 2024 12:09:04 +0000
+Date: Sat, 24 Feb 2024 12:08:59 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+	"Pedro Vieira (Gmail - Geral)" <pav.vieira@gmail.com>
+Message-ID: <170328188.112406.1708776539657@mail.yahoo.com>
+In-Reply-To: <!&!AAAAAAAAAAAuAAAAAAAAAAxXouO5T5tEtC+ch5uVV4UBACOpHMELik5ErQ+ioQtu/d8AAAAAA48AABAAAAAxIdtGbEIMTq2GLSCB/zTCAQAAAAA=@gmail.com>
+References: <CAO_U4K7iMNWLhLRdWozsXxNQHd0xvp611f7LXQQhSe=-hz+ong@mail.gmail.com> <1464756341.27900.1708721099612@mail.yahoo.com> <!&!AAAAAAAAAAAuAAAAAAAAAAxXouO5T5tEtC+ch5uVV4UBACOpHMELik5ErQ+ioQtu/d8AAAAAA48AABAAAAAxIdtGbEIMTq2GLSCB/zTCAQAAAAA=@gmail.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJH0hjsZDG1OoXw7MWFmhRJPUPGrQFYH4XosDMS2OA=
-Content-Language: pt-br
-Message-ID-Hash: C3MBEQCFKSAP2FRJW76VZ744PFWTESUO
-X-Message-ID-Hash: C3MBEQCFKSAP2FRJW76VZ744PFWTESUO
-X-MailFrom: pav.vieira@gmail.com
+Content-Type: multipart/mixed;
+	boundary="----=_Part_112405_908495930.1708776539657"
+X-Mailer: WebService/1.1.22103 YMailNorrin
+Message-ID-Hash: FRI5KDWMJB74EBVTO4GVHUW33SE7OL6E
+X-Message-ID-Hash: FRI5KDWMJB74EBVTO4GVHUW33SE7OL6E
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] RES: OFDM signal transmission by x310 presents a peak
+Subject: [USRP-users] Re: RES: OFDM signal transmission by x310 presents a peak
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/C3MBEQCFKSAP2FRJW76VZ744PFWTESUO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FRI5KDWMJB74EBVTO4GVHUW33SE7OL6E/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0798987221782856284=="
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
 
-This is a multipart message in MIME format.
-
---===============0798987221782856284==
-Content-Type: multipart/related;
-	boundary="----=_NextPart_000_0A9B_01DA66A3.772F9380"
-Content-Language: pt-br
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0A9B_01DA66A3.772F9380
+------=_Part_112405_908495930.1708776539657
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_0A9C_01DA66A3.772F9380"
+	boundary="----=_Part_112404_1026630439.1708776539608"
 
-
-------=_NextPart_001_0A9C_01DA66A3.772F9380
-Content-Type: text/plain;
-	charset="UTF-8"
+------=_Part_112404_1026630439.1708776539608
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+ Hi Pedro,
+Interestingly, just found Marcus answered a similar question a few years ba=
+ck:=C2=A0https://dsp.stackexchange.com/questions/30562/large-spike-at-the-c=
+enter-frequency-when-using-ettus-x310
+
+Your calibration range is pretty small. I normally calibrate from 500M - 6G=
+ such that it can support multiple applications. It will take some time, bu=
+t calibrating 1G should be quick.
+USRP may not be able to generate LO exactly at 3.5GHz. In such case, it wil=
+l try to generate LO as close as possible.=C2=A0
+Which UHD version are you using?=C2=A0
+What are the master clock rate and sampling rate?
+If calibration doesn't have any effect on your received signal, the USRP de=
+vice may be faulty, or the analyzer is problematic.=C2=A0A few things you c=
+an try:1. send 0s and you may see just a spike at the centre without signal=
+;2. allocate your modulation symbols to one side, lower or upper, of the OF=
+DM resource grid, the signal spectrum will go to one side and should not be=
+ impacted by the central spike;3. Use USRP as receiver. Loop back Tx to Rx =
+of the same USRP. Plot the spectrum of the received signal to see if there =
+is central spike.=C2=A0
+Kind regards,Hongwei
+
+
+    On Saturday, 24 February 2024 at 00:59:34 GMT, Pedro Vieira (Gmail - Ge=
+ral) <pav.vieira@gmail.com> wrote: =20
+=20
+=20
 Thank you for the quick response.
 
-=20
+ =C2=A0
 
-Based on the information received, it was possible to begin to =
-understand what was happening:
+Based on the information received, it was possible to begin to understand w=
+hat was happening:
 
 1) Proceed with self-calibration:=20
 
-uhd_cal_tx_dc_offset --verbose --freq_start=3D3.45e+9 =
---freq_stop=3D3.55e+9 --freq_step=3D1e+6 --subdev=3DA:0
+uhd_cal_tx_dc_offset --verbose --freq_start=3D3.45e+9 --freq_stop=3D3.55e+9=
+ --freq_step=3D1e+6 --subdev=3DA:0
 
-uhd_cal_tx_dc_offset --verbose --freq_start=3D3.45e+9 =
---freq_stop=3D3.55e+9 --freq_step=3D1e+6 --subdev=3DB:0=20
+uhd_cal_tx_dc_offset --verbose --freq_start=3D3.45e+9 --freq_stop=3D3.55e+9=
+ --freq_step=3D1e+6 --subdev=3DB:0=20
 
-=20
+ =C2=A0
 
 Calibration files were generated: tx_dc_F5B3E5.cal and tx_dc_F59F87.cal=20
 
-=20
+ =C2=A0
 
-2) In the uhd library I found the command uhd.types.TuneRequest. And in =
-the gnuradio library the command is the suggested example: =
-uhd.tune_request().
+2) In the uhd library I found the command uhd.types.TuneRequest. And in the=
+ gnuradio library the command is the suggested example: uhd.tune_request().
 
 However, I didn't notice any changes (see below)
 
-=20
+ =C2=A0
 
 Any ideas what I might be overlooking? Thank you in advance.
 
-=20
+ =C2=A0
 
-=20
+ =C2=A0
 
-=20
+ =C2=A0
 
 
 
-=20
+ =C2=A0
 
-=20
+ =C2=A0
 
-=20
+ =C2=A0
 
-=20
+ =C2=A0
 
 De: zhou <hwzhou@yahoo.com>=20
 Enviada em: sexta-feira, 23 de fevereiro de 2024 17:45
 Para: usrp-users@lists.ettus.com; Pedro Vieira <pav.vieira@gmail.com>
-Assunto: Re: [USRP-users] OFDM signal transmission by x310 presents a =
-peak
+Assunto: Re: [USRP-users] OFDM signal transmission by x310 presents a peak
 
-=20
+ =C2=A0
 
 Hi Pedro,
 
-=20
+ =C2=A0
 
-It could be DC leakage. Try to run the calibration commands. For X310, =
-you need to loopback connect Tx and Rx antennas with 30dB attenuators.
+It could be DC leakage. Try to run the calibration commands. For X310, you =
+need to loopback connect Tx and Rx antennas with 30dB attenuators.
 
-=20
+ =C2=A0
 
 Regards,
 
 Hongwei
 
-=20
+ =C2=A0
 
-=20
+ =C2=A0
 
-=20
+ =C2=A0
 
-On Friday, 23 February 2024 at 01:52:37 GMT, Pedro Vieira =
-<pav.vieira@gmail.com <mailto:pav.vieira@gmail.com> > wrote:=20
+On Friday, 23 February 2024 at 01:52:37 GMT, Pedro Vieira <pav.vieira@gmail=
+.com> wrote:=20
 
-=20
+ =C2=A0
 
-=20
+ =C2=A0
 
-An ofdm signal, which is generated in python, presents a peak in the =
-central part of the spectrum.  What could it be?
+An ofdm signal, which is generated in python, presents a peak in the centra=
+l part of the spectrum.=C2=A0 What could it be?
 
 This same behavior appears on USRP X310 and HackRFOne.
 
 _______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>=20
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com =
-<mailto:usrp-users-leave@lists.ettus.com>=20
-
-
-------=_NextPart_001_0A9C_01DA66A3.772F9380
-Content-Type: text/html;
-	charset="UTF-8"
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+ =20
+------=_Part_112404_1026630439.1708776539608
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><!--[if =
-!mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Helvetica;
-	panose-1:2 11 6 4 2 2 2 2 2 4;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-span.EstiloDeEmail19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DPT-BR link=3Dblue =
-vlink=3Dpurple style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Thank you =
-for the quick response.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Based on =
-the information received, it was possible to begin to understand what =
-was happening:<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>1) Proceed =
-with self-calibration: <o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>uhd_cal_tx_=
-dc_offset --verbose --freq_start=3D3.45e+9 --freq_stop=3D3.55e+9 =
---freq_step=3D1e+6 --subdev=3DA:0<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>uhd_cal_tx_=
-dc_offset --verbose --freq_start=3D3.45e+9 --freq_stop=3D3.55e+9 =
---freq_step=3D1e+6 --subdev=3DB:0 <o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Calibration=
- files were generated: tx_dc_F5B3E5.cal and tx_dc_F59F87.cal =
-<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>2) In the =
-uhd library I found the command uhd.types.TuneRequest. And in the =
-gnuradio library the command is the suggested example: =
-uhd.tune_request().<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>However, I =
-didn't notice any changes (see below)<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Any ideas =
-what I might be overlooking? Thank you in =
-advance.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><img width=3D774 height=3D435 =
-style=3D'width:8.0625in;height:4.5312in' id=3D"Imagem_x0020_1" =
-src=3D"cid:image003.jpg@01DA66A3.75CFB560"><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p></o:p>=
-</span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p><div><div style=3D'border:none;border-top:solid #E1E1E1 =
-1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>De: zhou =
-&lt;hwzhou@yahoo.com&gt; <br></span><b>Enviada em:</b> sexta-feira, 23 =
-de fevereiro de 2024 17:45<br><b>Para:</b> usrp-users@lists.ettus.com; =
-Pedro Vieira &lt;pav.vieira@gmail.com&gt;<br><b>Assunto:</b> Re: =
-[USRP-users] OFDM signal transmission by x310 presents a =
-peak<o:p></o:p></p></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Hi =
-Pedro,<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>It could =
-be DC leakage. Try to run the calibration commands. For X310, you need =
-to loopback connect Tx and Rx antennas with 30dB =
-attenuators.<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Regards,<o:=
-p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Hongwei<o:p=
-></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div></div><div =
-id=3D"ydp78e768d5yahoo_quoted_9655145202"><div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif;color:#26282=
-A'>On Friday, 23 February 2024 at 01:52:37 GMT, Pedro Vieira &lt;<a =
-href=3D"mailto:pav.vieira@gmail.com">pav.vieira@gmail.com</a>&gt; wrote: =
-<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif;color:#26282=
-A'><o:p>&nbsp;</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif;color:#26282=
-A'><o:p>&nbsp;</o:p></span></p></div><div><div =
-id=3Dydp78e768d5yiv5836597356><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif;color:#26282=
-A'>An ofdm signal, which is generated in python, presents a peak in the =
-central part of the spectrum.&nbsp; What could it =
-be?<o:p></o:p></span></p><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif;color:#26282=
-A'>This same behavior appears on USRP X310 and =
-HackRFOne.<o:p></o:p></span></p></div></div></div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif;color:#26282=
-A'>_______________________________________________<br>USRP-users mailing =
-list -- <a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send =
-an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" =
-target=3D"_blank">usrp-users-leave@lists.ettus.com</a><o:p></o:p></span><=
-/p></div></div></div></div></body></html>
-------=_NextPart_001_0A9C_01DA66A3.772F9380--
+<html><head></head><body><div class=3D"ydpcb0b04b1yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Pedro,</div><div dir=3D"l=
+tr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">=
+Interestingly, just found Marcus answered a similar question a few years ba=
+ck:&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><a href=3D"https://ds=
+p.stackexchange.com/questions/30562/large-spike-at-the-center-frequency-whe=
+n-using-ettus-x310" rel=3D"nofollow" target=3D"_blank" class=3D"">https://d=
+sp.stackexchange.com/questions/30562/large-spike-at-the-center-frequency-wh=
+en-using-ettus-x310</a><br></div><div><br></div><div dir=3D"ltr" data-setdi=
+r=3D"false">Your calibration range is pretty small. I normally calibrate fr=
+om 500M - 6G such that it can support multiple applications. It will take s=
+ome time, but calibrating 1G should be quick.</div><div dir=3D"ltr" data-se=
+tdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">USRP may no=
+t be able to generate LO exactly at 3.5GHz. In such case, it will try to ge=
+nerate LO as close as possible.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"=
+false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Which UHD version a=
+re you using?&nbsp;<br></div><div dir=3D"ltr" data-setdir=3D"false">What ar=
+e the master clock rate and sampling rate?</div><div dir=3D"ltr" data-setdi=
+r=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">If calibration=
+ doesn't have any effect on your received signal, the USRP device may be fa=
+ulty, or the analyzer is problematic.</div><div dir=3D"ltr" data-setdir=3D"=
+false">&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false">A few things you =
+can try:</div><div dir=3D"ltr" data-setdir=3D"false">1. send 0s and you may=
+ see just a spike at the centre without signal;</div><div dir=3D"ltr" data-=
+setdir=3D"false">2. allocate your modulation symbols to one side, lower or =
+upper, of the OFDM resource grid, the signal spectrum will go to one side a=
+nd should not be impacted by the central spike;</div><div dir=3D"ltr" data-=
+setdir=3D"false">3. Use USRP as receiver. Loop back Tx to Rx of the same US=
+RP. Plot the spectrum of the received signal to see if there is central spi=
+ke.&nbsp;</div><div><br></div><div dir=3D"ltr" data-setdir=3D"false">Kind r=
+egards,</div><div dir=3D"ltr" data-setdir=3D"false">Hongwei</div><div dir=
+=3D"ltr" data-setdir=3D"false"><br></div><div><br></div><div><br></div>
+       =20
+        </div><div id=3D"ydp37551550yahoo_quoted_8897038592" class=3D"ydp37=
+551550yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                    On Saturday, 24 February 2024 at 00:59:34 GMT, Pedro Vi=
+eira (Gmail - Geral) &lt;pav.vieira@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp37551550yiv8148934235"><div><div class=
+=3D"ydp37551550yiv8148934235WordSection1"><p class=3D"ydp37551550yiv8148934=
+235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
+ns-serif;">Thank you for the quick response.</span></p><p class=3D"ydp37551=
+550yiv8148934235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;f=
+ont-family:sans-serif;"> &nbsp;</span></p><p class=3D"ydp37551550yiv8148934=
+235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
+ns-serif;">Based on the information received, it was possible to begin to u=
+nderstand what was happening:</span></p><p class=3D"ydp37551550yiv814893423=
+5MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans=
+-serif;">1) Proceed with self-calibration: </span></p><p class=3D"ydp375515=
+50yiv8148934235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;fo=
+nt-family:sans-serif;">uhd_cal_tx_dc_offset --verbose --freq_start=3D3.45e+=
+9 --freq_stop=3D3.55e+9 --freq_step=3D1e+6 --subdev=3DA:0</span></p><p clas=
+s=3D"ydp37551550yiv8148934235MsoNormal"><span lang=3D"EN-US" style=3D"font-=
+size:10.0pt;font-family:sans-serif;">uhd_cal_tx_dc_offset --verbose --freq_=
+start=3D3.45e+9 --freq_stop=3D3.55e+9 --freq_step=3D1e+6 --subdev=3DB:0 </s=
+pan></p><p class=3D"ydp37551550yiv8148934235MsoNormal"><span lang=3D"EN-US"=
+ style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p><p cl=
+ass=3D"ydp37551550yiv8148934235MsoNormal"><span lang=3D"EN-US" style=3D"fon=
+t-size:10.0pt;font-family:sans-serif;">Calibration files were generated: tx=
+_dc_F5B3E5.cal and tx_dc_F59F87.cal </span></p><p class=3D"ydp37551550yiv81=
+48934235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-fami=
+ly:sans-serif;"> &nbsp;</span></p><p class=3D"ydp37551550yiv8148934235MsoNo=
+rmal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif=
+;">2) In the uhd library I found the command uhd.types.TuneRequest. And in =
+the gnuradio library the command is the suggested example: uhd.tune_request=
+().</span></p><p class=3D"ydp37551550yiv8148934235MsoNormal"><span lang=3D"=
+EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">However, I didn't=
+ notice any changes (see below)</span></p><p class=3D"ydp37551550yiv8148934=
+235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
+ns-serif;"> &nbsp;</span></p><p class=3D"ydp37551550yiv8148934235MsoNormal"=
+><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">An=
+y ideas what I might be overlooking? Thank you in advance.</span></p><p cla=
+ss=3D"ydp37551550yiv8148934235MsoNormal"><span lang=3D"EN-US" style=3D"font=
+-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p><p class=3D"ydp3755=
+1550yiv8148934235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;=
+font-family:sans-serif;"> &nbsp;</span></p><p class=3D"ydp37551550yiv814893=
+4235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:s=
+ans-serif;"> &nbsp;</span></p><p class=3D"ydp37551550yiv8148934235MsoNormal=
+"><img id=3D"ydp37551550yiv8148934235Imagem_x0020_1" style=3D"width: 774px;=
+ max-width: 774px;" src=3D"cid:pxHp0D3SBPKJX0c4oP6F"><span lang=3D"EN-US" s=
+tyle=3D"font-size:10.0pt;font-family:sans-serif;"></span></p><p class=3D"yd=
+p37551550yiv8148934235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10=
+.0pt;font-family:sans-serif;"> &nbsp;</span></p><p class=3D"ydp37551550yiv8=
+148934235MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-fam=
+ily:sans-serif;"> &nbsp;</span></p><p class=3D"ydp37551550yiv8148934235MsoN=
+ormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-seri=
+f;"> &nbsp;</span></p><p class=3D"ydp37551550yiv8148934235MsoNormal"><span =
+lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</=
+span></p><div id=3D"ydp37551550yiv8148934235yqt04558" class=3D"ydp37551550y=
+iv8148934235yqt9183106292"><div><div style=3D"border:none;border-top:solid =
+#E1E1E1 1.0pt;padding:3.0pt 0cm 0cm 0cm;"><p class=3D"ydp37551550yiv8148934=
+235MsoNormal"><span style=3D"font-size:10.0pt;font-family:sans-serif;">De: =
+zhou &lt;hwzhou@yahoo.com&gt; <br clear=3D"none"></span><b>Enviada em:</b> =
+sexta-feira, 23 de fevereiro de 2024 17:45<br clear=3D"none"><b>Para:</b> u=
+srp-users@lists.ettus.com; Pedro Vieira &lt;pav.vieira@gmail.com&gt;<br cle=
+ar=3D"none"><b>Assunto:</b> Re: [USRP-users] OFDM signal transmission by x3=
+10 presents a peak</p></div></div><p class=3D"ydp37551550yiv8148934235MsoNo=
+rmal"> &nbsp;</p><div><div><p class=3D"ydp37551550yiv8148934235MsoNormal"><=
+span style=3D"font-size:10.0pt;font-family:sans-serif;">Hi Pedro,</span></p=
+></div><div><p class=3D"ydp37551550yiv8148934235MsoNormal"><span style=3D"f=
+ont-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div><div><p cl=
+ass=3D"ydp37551550yiv8148934235MsoNormal"><span style=3D"font-size:10.0pt;f=
+ont-family:sans-serif;">It could be DC leakage. Try to run the calibration =
+commands. For X310, you need to loopback connect Tx and Rx antennas with 30=
+dB attenuators.</span></p></div><div><p class=3D"ydp37551550yiv8148934235Ms=
+oNormal"><span style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</=
+span></p></div><div><p class=3D"ydp37551550yiv8148934235MsoNormal"><span st=
+yle=3D"font-size:10.0pt;font-family:sans-serif;">Regards,</span></p></div><=
+div><p class=3D"ydp37551550yiv8148934235MsoNormal"><span style=3D"font-size=
+:10.0pt;font-family:sans-serif;">Hongwei</span></p></div><div><p class=3D"y=
+dp37551550yiv8148934235MsoNormal"><span style=3D"font-size:10.0pt;font-fami=
+ly:sans-serif;"> &nbsp;</span></p></div><div><p class=3D"ydp37551550yiv8148=
+934235MsoNormal"><span style=3D"font-size:10.0pt;font-family:sans-serif;"> =
+&nbsp;</span></p></div><div><p class=3D"ydp37551550yiv8148934235MsoNormal">=
+<span style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p>=
+</div></div><div id=3D"ydp37551550yiv8148934235ydp78e768d5yahoo_quoted_9655=
+145202"><div><div><p class=3D"ydp37551550yiv8148934235MsoNormal"><span styl=
+e=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">On Friday, 23 =
+February 2024 at 01:52:37 GMT, Pedro Vieira &lt;<a shape=3D"rect" href=3D"m=
+ailto:pav.vieira@gmail.com" rel=3D"nofollow" target=3D"_blank">pav.vieira@g=
+mail.com</a>&gt; wrote: </span></p></div><div><p class=3D"ydp37551550yiv814=
+8934235MsoNormal"><span style=3D"font-size:10.0pt;font-family:sans-serif;co=
+lor:#26282A;"> &nbsp;</span></p></div><div><p class=3D"ydp37551550yiv814893=
+4235MsoNormal"><span style=3D"font-size:10.0pt;font-family:sans-serif;color=
+:#26282A;"> &nbsp;</span></p></div><div><div id=3D"ydp37551550yiv8148934235=
+ydp78e768d5yiv5836597356"><div><p class=3D"ydp37551550yiv8148934235MsoNorma=
+l"><span style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">A=
+n ofdm signal, which is generated in python, presents a peak in the central=
+ part of the spectrum.&nbsp; What could it be?</span></p><div><p class=3D"y=
+dp37551550yiv8148934235MsoNormal"><span style=3D"font-size:10.0pt;font-fami=
+ly:sans-serif;color:#26282A;">This same behavior appears on USRP X310 and H=
+ackRFOne.</span></p></div></div></div><p class=3D"ydp37551550yiv8148934235M=
+soNormal"><span style=3D"font-size:10.0pt;font-family:sans-serif;color:#262=
+82A;">_______________________________________________<br clear=3D"none">USR=
+P-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists.e=
+ttus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com</a>=
+<br clear=3D"none">To unsubscribe send an email to <a shape=3D"rect" href=
+=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_bl=
+ank">usrp-users-leave@lists.ettus.com</a></span></p></div></div></div></div=
+></div></div></div><div class=3D"ydp37551550yqt9183106292" id=3D"ydp3755155=
+0yqt95402">_______________________________________________<br clear=3D"none=
+">USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@li=
+sts.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.co=
+m</a><br clear=3D"none">To unsubscribe send an email to <a shape=3D"rect" h=
+ref=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"=
+_blank">usrp-users-leave@lists.ettus.com</a><br clear=3D"none"></div></div>
+            </div>
+        </div></body></html>
+------=_Part_112404_1026630439.1708776539608--
 
-------=_NextPart_000_0A9B_01DA66A3.772F9380
-Content-Type: image/jpeg;
-	name="image003.jpg"
+------=_Part_112405_908495930.1708776539657
+Content-Type: image/jpeg
 Content-Transfer-Encoding: base64
-Content-ID: <image003.jpg@01DA66A3.75CFB560>
+Content-Disposition: inline; filename="image003.jpg"
+Content-ID: <pxHp0D3SBPKJX0c4oP6F>
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIf
 IiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7
@@ -1222,9 +1225,7 @@ zGrunOx3ZY0UUpBHcvbjnrS5oorI1HryfwNEYBIz60UUDHFF9P1pQikcj9aKKBDhEmOn604RJg/L
 J/rDRRXNV+I6KXwjKQ0UViajW6VUvvuxckfP2+lFFMRC8agScdIt34561UZm88DJwSV69s0UUAED
 Nw2452+tFFFMR//Z
 
-------=_NextPart_000_0A9B_01DA66A3.772F9380--
-
---===============0798987221782856284==
+------=_Part_112405_908495930.1708776539657
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1234,4 +1235,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0798987221782856284==--
+------=_Part_112405_908495930.1708776539657--
