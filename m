@@ -2,114 +2,112 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995458628C5
-	for <lists+usrp-users@lfdr.de>; Sun, 25 Feb 2024 03:12:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91A098628EA
+	for <lists+usrp-users@lfdr.de>; Sun, 25 Feb 2024 03:56:46 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8273338508D
-	for <lists+usrp-users@lfdr.de>; Sat, 24 Feb 2024 21:12:23 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 77B78384FB3
+	for <lists+usrp-users@lfdr.de>; Sat, 24 Feb 2024 21:56:45 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1708827143; bh=qiY/VYcQ0SF/RaCGJu7YCIOIH0P4UHJQE2Cjiy2BG2A=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=ysnRecYlRDUIrbW83konxTcr8gWl8KtRsBJ3EwOmrhvGk63h7ILkTS2auJ4J2Iu62
-	 5ilJ0FOqQPjwktHBaRwPBTfIL7istOSfaHAzmAQMP88M/W/fpDpM7ygy0bCxQOZgMt
-	 SU+PssNYqgdMomTf0SX+kbh/OR1xRSbnezu4LmDqCHQIVjSZwZLYydPvFIpIk733UO
-	 WZwhYHDX/aWNwPvlYt9Y1GfL4K/IwgOroVQwI/ve68LNZz9gj3zn1t3qkOCFS3PBHh
-	 jDEBzTdpWeqC+w3rm55hqRgJ9degW5ZJwiPYxbrAQres/jvMxKx65J508PZiI4S9vM
-	 z47NONOayDIIA==
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 99744383CF2
-	for <usrp-users@lists.ettus.com>; Sat, 24 Feb 2024 21:12:06 -0500 (EST)
+	t=1708829805; bh=88cbEBzIk1Lmy3eo/7l6TqrWFpAwbj6T/gP+J/6mg+M=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=aUaPnLRMAax8MGRpBjtboo6ZnDgldMcZW+NlsYSJbD2SNebPgJO93PKwOH6tQbTqf
+	 wUwhbTX9H9SURFbEc778FTuuWi576SPps+aXaRj6DuXnT3NWltYDgjhVLhy+jOpxk/
+	 0brFtRbfYDVpFTngzwPodMha/g3fhfje7RXD0AryAoQfrhTsvbLBifGz40TanBdCdD
+	 NDmVfrPA+Jq60FhMhuKo0kVhpSQn9LztxmAQOwPQIgLeJIo2XyrSa1AikNaIu0g/4g
+	 hfFDjCegSgvWZ8pV/7ckESDZ8mrprWyax10k5nJbIJ6hPeZGXcyVXoVb3haDHzzjtm
+	 fUAkeMTJUlk3Q==
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 996B6384E2B
+	for <usrp-users@lists.ettus.com>; Sat, 24 Feb 2024 21:55:55 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QZp+/Zri";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="e1ezY2xq";
 	dkim-atps=neutral
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5cfb8126375so745183a12.1
-        for <usrp-users@lists.ettus.com>; Sat, 24 Feb 2024 18:12:06 -0800 (PST)
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-787bc70dfc7so90350785a.2
+        for <usrp-users@lists.ettus.com>; Sat, 24 Feb 2024 18:55:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708827125; x=1709431925; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=f5ea/yfSHVkn5isSGi9dk7RpLHLAROxkFQLH594ITEg=;
-        b=QZp+/ZriuCZbxGILRhwu2pSHnhOuFLmm4IHejsNhEw0iGdrbTy3a736UMQ34Rki5yh
-         wvJCNLqodzGg6cXhYaPxCi56TFlXSW6PSr8xY3qKuSv66d2wGYRAlkEQXQOGnEWlzfQ4
-         UbAq1Dmw50hlWzyHcTvIskVp1ldFUlDwBXhrXoMgkAHF3IlXIpZa7AEqLqXMOFDvb3et
-         xnNU/vCfmZA/QCdLh/LOj2/InoGLdTlUuvHLocLniUdlaYpZ2mZkJenmCzjVC6qAlHEt
-         aQKDCM/r+fuByxrWebttSG6hskgywUDcTXgXmXkDtnuHOVqPbuXQzql6/pT/fqvifFHJ
-         xzZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708827125; x=1709431925;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20230601; t=1708829754; x=1709434554; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f5ea/yfSHVkn5isSGi9dk7RpLHLAROxkFQLH594ITEg=;
-        b=Usa/zVvcJN8PBTl5aHfWIq+BHRwXse213KiVw1xz9hhIKHjxqR/YV4vnqrRzy383lP
-         VZWvpR380w4XLicwDw1iYv867ACVv81R4GZ0qHQzE3GtWdLURivFA9dvFn4TH0bFOggB
-         ISDNDNk39c1tsnktteFYsJG6kwHz9NuBo++M9SFYcjLBp/b+wpeflHOG4zgI23mBeGW1
-         OGAHaCaBpNJMav6+ypppziGcSsY6/hFx5mt9gf+iSBY9IqnKX5YKyt9DVXnxkRNvHld6
-         MWKmJMUpHlk6zhWZTxFAzL+EOK0cNdT7RHCvXatrx3Yu7V/d36jXoaICbkdM8h4vLg/P
-         hWQw==
-X-Gm-Message-State: AOJu0YzALH0kJqi/qdVK/PP5fJzjxBVw9PN6Fcn8RZPJZnVUE95dUIVv
-	HHBSu3OiOyaUc6ZIRkmuBIwnO6E0Wzh3ve3VK9mjzbHhfd0tQhYKcQzAH+Q07fL05e+0yJtLdnW
-	1BFaW+NadqtzZ4X0+Jjhr4ENdOvh8pkoY
-X-Google-Smtp-Source: AGHT+IF0VbVUvqmQOGysOSONCDS9rXAeWiW9JGNcKWbhb5bQh/r3KJFroO0oqTpAgesEKhI5Ig1LI1ilXyrCjqZCbmE=
-X-Received: by 2002:a17:90a:6787:b0:298:c3b4:f6ab with SMTP id
- o7-20020a17090a678700b00298c3b4f6abmr2818473pjj.2.1708827125207; Sat, 24 Feb
- 2024 18:12:05 -0800 (PST)
+        bh=7Sdwr5mL7ZWIy2+90vUUOXVt6KA8VqfNEo5fTtTzb84=;
+        b=e1ezY2xqNg3MIdIOWK9Mxgh77DTuAMeKw34mDlqhc7PwgcYDOj350qHfguolaQAuVE
+         y+M1Gc+LOp5jvlrBPLRQSzc3PWGx3q27HcBRYPBZbt5Fo25E1ahCbnxoXmuoGfD5wgB3
+         7RZDHSnGFbsoUUeGJBKwJIaFoTXN2uz+TZe3wgNh68QI9CiS1cP6j0dTMIW1uU5Z+nwf
+         ISv24XGBrLkece0YFn9YtyYHXvWYU+ghOGSMLfRfp0x2dXEwm19lm8LUNb+tjp4Y8sEx
+         GPfFnimSBFJoYNCTVv4aoMz+ChP+6W1WktpGA+tNFzZ9Q0P+CKLzDNfTMUGWmxorIYcT
+         1R2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708829754; x=1709434554;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7Sdwr5mL7ZWIy2+90vUUOXVt6KA8VqfNEo5fTtTzb84=;
+        b=ssBlADCgrs0Udk//Ivo8qXjs10bDXWjbtmDPCh9fD+VVtkrvejE6TDsHTYN3VhnewD
+         wP5nZF7UO9c3EqMOt5V1yn8sO+28pdTDv7a2uNcEGgw1OuvHpdiKFVJVt8wvXD02IRkR
+         jqSXTQfzqHfwkz+H9NdCgSTYRqJP3+Ltsd4oTvTGYtO2ML+1bh2sn8K1c/4Ia2ZxmKJq
+         +VUlUnjDINp+dljvEJd5tzg+SHxPfK362JjA00oZwbh52kk+FA0Wpeb99fiLU95/Nbpd
+         uDiw7nwRWGuxaVBhyD1IWn+zIkDKvlUtbFGT2yY2rlLznmz+JWkZqr8A7E0TbHB9Kn12
+         jDwA==
+X-Gm-Message-State: AOJu0YzKnPyMXDNTJVnsTUQ0Oor47MvbjLuq9zMSSFR6Yv7+852e2BFo
+	tr9horoc5AG1OrpC2AMJYfgo9w2f9rNtJZWaxnRtcUsGHokKk408lFNyLpGPc1c=
+X-Google-Smtp-Source: AGHT+IE84fZe4waB5ovO46f5OYZo67Eb7NRGOTUGA9Ctju96xj6H3u1EXY9eMYKkfeQakPTNxBj2wQ==
+X-Received: by 2002:ac8:51d0:0:b0:42e:74a0:64cd with SMTP id d16-20020ac851d0000000b0042e74a064cdmr2538699qtn.60.1708829754519;
+        Sat, 24 Feb 2024 18:55:54 -0800 (PST)
+Received: from [192.168.2.170] ([174.93.0.146])
+        by smtp.googlemail.com with ESMTPSA id n14-20020a05622a040e00b0042c524de19asm1122007qtx.58.2024.02.24.18.55.54
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Feb 2024 18:55:54 -0800 (PST)
+Message-ID: <5bd1af36-b192-4719-a1a6-e30fee6438b6@gmail.com>
+Date: Sat, 24 Feb 2024 21:55:44 -0500
 MIME-Version: 1.0
-From: Ethan C <ethanclarke365@gmail.com>
-Date: Sat, 24 Feb 2024 18:11:51 -0800
-Message-ID: <CAM0spwpOGFZoQj5Ej4q1rXU7O54KpPKHRgOY=Ps2XHfAOEVVfQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: AMY4X2J5UB66H63N4DN577QYU2EYDQMU
-X-Message-ID-Hash: AMY4X2J5UB66H63N4DN577QYU2EYDQMU
-X-MailFrom: ethanclarke365@gmail.com
+References: <CAM0spwpOGFZoQj5Ej4q1rXU7O54KpPKHRgOY=Ps2XHfAOEVVfQ@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAM0spwpOGFZoQj5Ej4q1rXU7O54KpPKHRgOY=Ps2XHfAOEVVfQ@mail.gmail.com>
+Message-ID-Hash: 4JZEIPYY5ISN3SUXJYXOIZFAAVATMBQO
+X-Message-ID-Hash: 4JZEIPYY5ISN3SUXJYXOIZFAAVATMBQO
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E310 cable for GPIO connector
+Subject: [USRP-users] Re: E310 cable for GPIO connector
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AMY4X2J5UB66H63N4DN577QYU2EYDQMU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4JZEIPYY5ISN3SUXJYXOIZFAAVATMBQO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7541353713152405666=="
-
---===============7541353713152405666==
-Content-Type: multipart/alternative; boundary="000000000000c7d9cc06122b51ad"
-
---000000000000c7d9cc06122b51ad
-Content-Type: text/plain; charset="UTF-8"
-
-Hello all,
-I am looking for the part number for the GPIO connector (J12) on an E310.
-So that I may buy a cable to connect to it. I can't find any information
-online nor on the physical connector itself on the E310 I have.
-
-Thanks,
-Ethan VA7MNK
-
---000000000000c7d9cc06122b51ad
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello all,</div><div>I am looking for the part number=
- for the GPIO connector (J12) on an E310. So that I may buy a cable to conn=
-ect to it. I can&#39;t find any information online nor on the physical conn=
-ector itself on the E310 I have.<br></div><div><br></div><div>Thanks,</div>=
-<div>Ethan VA7MNK<br></div></div>
-
---000000000000c7d9cc06122b51ad--
-
---===============7541353713152405666==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"; format="flowed"
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
+On 24/02/2024 21:11, Ethan C wrote:
+> Hello all,
+> I am looking for the part number for the GPIO connector (J12) on an 
+> E310. So that I may buy a cable to connect to it. I can't find any 
+> information online nor on the physical connector itself on the E310 I 
+> have.
+>
+> Thanks,
+> Ethan VA7MNK
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+Pinout is here:
+
+https://files.ettus.com/manual_archive/v3.15.0.0/html/page_gpio_api.html
+
+I believe the connector on the board is:
+
+https://www.digikey.ca/en/products/detail/hirose-electric-co-ltd/DF20F-10DP-1V-56/951498
 
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============7541353713152405666==--
