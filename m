@@ -2,114 +2,107 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CC6686279B
-	for <lists+usrp-users@lfdr.de>; Sat, 24 Feb 2024 21:51:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 995458628C5
+	for <lists+usrp-users@lfdr.de>; Sun, 25 Feb 2024 03:12:24 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BB32D38502B
-	for <lists+usrp-users@lfdr.de>; Sat, 24 Feb 2024 15:51:20 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8273338508D
+	for <lists+usrp-users@lfdr.de>; Sat, 24 Feb 2024 21:12:23 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1708807880; bh=TjDUqVC+GofJGe2xZa9DKbKuNEF9L6WiKFp6XI00xGg=;
-	h=Date:To:References:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
-	 From;
-	b=fQGXTipmP5Z+k9EPlCr+enjGGk8HQ6hLA3fRNf3GBsbwJ7FmQvYcDtw+OHHaYmzxh
-	 68RzRwVblcum/VCl5PCi/GnEPs9UWAFux5zVXdVbtRYfECQPjyRm3D36v8ACSXjQZm
-	 TLCuD3DXS4n9jvy/6CtpIhkzUCGDN6KG0JkcGefGRyWGiY7bQVEko+rlpw705gweNy
-	 TPaRt04LHxnclJH1dEqDTB91Y9zBuxrK9bu5PJjCJiKEojXEPhYbZTavBbxA3Ibkp0
-	 +NO8+w/Xkg/YhawXjNeTHOxwHG0XX9EeJwYj1gfRogAdp2TY0CtadbQTaeP+Tj4FlF
-	 Cmtjuu3EEXY4w==
-Received: from sonic319-26.consmr.mail.bf2.yahoo.com (sonic319-26.consmr.mail.bf2.yahoo.com [74.6.131.81])
-	by mm2.emwd.com (Postfix) with ESMTPS id 234AD384C3A
-	for <usrp-users@lists.ettus.com>; Sat, 24 Feb 2024 15:50:22 -0500 (EST)
+	t=1708827143; bh=qiY/VYcQ0SF/RaCGJu7YCIOIH0P4UHJQE2Cjiy2BG2A=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=ysnRecYlRDUIrbW83konxTcr8gWl8KtRsBJ3EwOmrhvGk63h7ILkTS2auJ4J2Iu62
+	 5ilJ0FOqQPjwktHBaRwPBTfIL7istOSfaHAzmAQMP88M/W/fpDpM7ygy0bCxQOZgMt
+	 SU+PssNYqgdMomTf0SX+kbh/OR1xRSbnezu4LmDqCHQIVjSZwZLYydPvFIpIk733UO
+	 WZwhYHDX/aWNwPvlYt9Y1GfL4K/IwgOroVQwI/ve68LNZz9gj3zn1t3qkOCFS3PBHh
+	 jDEBzTdpWeqC+w3rm55hqRgJ9degW5ZJwiPYxbrAQres/jvMxKx65J508PZiI4S9vM
+	 z47NONOayDIIA==
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id 99744383CF2
+	for <usrp-users@lists.ettus.com>; Sat, 24 Feb 2024 21:12:06 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="BEjmaPEv";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QZp+/Zri";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1708807822; bh=iZuymSoD+ANgKnzivXOBhTLoEc9BGJxkygc2YRM8jsk=; h=Date:From:Reply-To:To:Subject:References:From:Subject:Reply-To; b=BEjmaPEv5rUyYUdSdsw4FPdL295DK5vDMElsyQA512ogARGKF9UWyWnnGSVeTLjoMVHbLMHXd2S/o/ltRpUDQTHeuiRsIdmIiXF8PdVPfQpCJvvZ+LrWnCXTgta5NCBNjRN9I1w9hHAkcIIxRq4hYu2RiVR3dpSYRyenH75ZAfBz9ina+W4aLyVo5o0Ehhej7Buy+jPO3R8zqZSGniHmDv+MPNoSysErYCFnZ9SJ4SbXbsR4EWgXhOzYRPOMbpbMiAahuzHXx/usl5Vn2ZRq8lgpUu2UaJAkvcMyZNI8VL1m9N1JFTvAzoQA/mncrmzFNGnzZW7taSm/hwm6/zUO5A==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1708807822; bh=CWd0W5ZgGkaqiSnPoK4qkU1oJeBQ1ns8e6ACEVf84ZC=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=VwfLZIF58frr0BwUmTIPo6L47eLI/pdkc0WOZ5HQV4Fy5w9joVgkzehDRVRn6k59qaGEtl0v5ZF/TLQn6Iy+lSbm98+RJgSDhbOGETzJIlGgyLa89xiMgya6NZefkb43YfmzP2j1NOsCeGyYftxIeaNjIHSSsnOAdsvrgk5PAkCBpCRNvOAE64i/mddiH1S1zpL/TRfcAcwdcUStYTN9rEDKntyQzHnkz+pHAfEKW1cOQrjCOPoi3QOAy0omSgll19JdHZIrvL5Cq7/OtBXWNpBo3+aB7NJseRQkYj21bZOuyYQdQDmAAT6g3TpWoZ7bYdNG5ZGm2KrI1rn/Tb7srQ==
-X-YMail-OSG: j1CjhqwVM1lNEHDwp1P8.W9O_RSHs5TDK.tGJ1KyEaNqkK235WK1rk_CSlMh.1c
- Q9ShYn_gZeXaLieFFjVZTWBIWk7fNfT7X8IGUPWCQKR6FCjcyQRZHEDESB4BjUcoBeXpDZMJWSGG
- MfSku4oWUhoyBi4HiCLnTwI30CdTvA1m2EEIB9Jy3N3.TOreWPSazBILWPJHuIB3lO.F6moaTbaK
- Gr4KRGU6BGUmRNms5XHZFArkFSLIkxQ1py9v1rUbbUsD.oJGxRNGtGTtoc5zO2Vapa8jMNZiz4OL
- XeZeS4iIm7mbBjrwhSZmIoayhyK0ZqAuYBS1PURLhkEHCehMBFTXzClfbN3SHBFo7oy4oKHFCycA
- t9W9ZvFxx8clULwNK_J_9kFzSBSLsbN8ry5lx5_e7p4wyt5tcZLbwDt5PbsJKosnCSzshK1qAY7U
- hWkDyaMvFjZfSeUZf4XHgvZKnTnbBw6djM0A0bNoJBhy3hOPw._HFALSGQYZ9XNi5AAEAR1JyLhg
- iv2UROb6p7RGG.yiIY_nIbVQMbOUMg7K8tbTViCsJ4_S2qyvJqH3HNVPhLwN1qAbiLRFZ0xl9_yG
- nsQlXTYv8205l50vj0aCRCMKIoZju9FkINT7pMcqSNfriBqfMceZSiihzuSM2u.__.14YRQslq5j
- QxW3JlNYFnubBfxUhGSqFYHr.RCz5ClsqyDziEnyKddnBz9hLdIgnMo9713rj9gAGUeEeXIWQj7P
- 8YYnrv7RvBo3TKeekGjlVpbXC_BGJ8MV0k.xnKWfJEqbawpg.LWmYA6lB4hUBm710GPQncEXEKN2
- uBqUmrFhg7LzPigy4Ya.Gb0rfXcQvBYkcQXnY0i4xssHiDqviawOo2IY0HGYo1Gq6ZSslFnVlRd8
- ONn8It_MW0MAP5EuvLdsTrzPUODBWJDMNzBLMtANXOQGTX2QyzxIgS4ao3YS0gUpAEbwocFVm9b6
- DdnKh460TOlGM3RDZFVvuCy8TgRHS_Nw.Xirywx7_3oUA7y4VzyEybt3H3_l_j_W4A.rSKZRvg7S
- U0GgWrZahwXOdkbzLJWY1L9lvfeqD0.xi7cFTmGWmpjvFyKOzN49eSW3KLggPEFDO3_fpxMNVMCJ
- 31SoALNPbQ.ACcHNhnpnY7wD.Cb4aDuA_iBq4uTky.Euc0AxfyAy5j8BVj1OUymdhOkgnAU9_zVI
- 4D4XAJYzAuXMkWRE2dPYH5Pd.bTX9vHrA6pob9g8rpKqWnQe1RUwfFJTDaIJdiwYgKW.tacmEs4r
- yfK3eIlN2ilOO7nZLhyzmgbIsbr10HqUyAvhq.RGonmarpKlNFH.xKt_KIlajxTl_Qoy_iLS3w7N
- UN3GaJ1UEF49Tx11_9JkuOQ9MnFsYCiMdpXTuJ.nw547q6uYK4hIaNO2Rz70dgCRkOb8VDtyS0LP
- G.qzoZNTQzlBDpezJ2MKw_W9quxDTXGtO5_0c43Sad0VOkGdLEoybO_ARuNyLcRGadgggey9drjY
- TerLOHgKaRMDQned_wJ4HfCy_xJj4ItgS0RPtC9.QpRl8XD_77F_kjXhiEQtz7m4y6poOh9mXJKr
- 9LBkq7EbLRVQDZU5B..Rg1K4uZelSEIAKOT0GFhrNk.I0FRrB.B1JmVeSk.S9ExPUX8OOVBZllFP
- ePsbTHCwNIfeM7tDcv6gsJ6Zoa4zX4hIWS5YID4g6DtiznjJCPgwnu1P2xGyP9yI9t7frmY5syVX
- Sa_.czCuzMINryurfiuUbggi4UTi2BfDpZo7b8z6Z6dxxTCUI0148oUL_II.bdnlKtTdHADICgny
- jO30lmFJ8NXu3zI1gU_SvR5l2by7UuMI2KMRV6BuXzkIHPPjMf.us0fIDfZGEm1RkhirQ1zCE1ph
- hXFxKdllw0zF5aZW6mwAKH5PFhdC4tWcfY81Z23W8AXLseVGTUq2mxgm4ADa1COyZ6qN_uYEo6cF
- .PTdS6iGjcwoSiPC.mnzWxnkgu8k7H8xFK2Ijb6MDWfLPmEw4mAhgcUcZz4hAJ__o2qQdsfz_rUY
- BYEQdjHvbJzehshEWNRvzDT1Uvd6pE0yTt1_JQNNW8zsj8b_OSrc3iQpwXSCyp_tBR.lAFs4ywOZ
- Wi0PL6seP79zbzC2cXRFfuFb6IJxO.D9EXy5cpR07pYBpTxOBFCUWERcxIDe6SG3RsmZZlnqYni0
- qvf_kj72FFvh9toYVrsa0B4QKy5eQzxQ7tko9DohyJSxXITgcE4vbsnt01RCW0ZHawJZOe0YhoL6
- _joglSpsynH6z3ay8_qgaBxZnKEDS3b1t.emvTKQkjoJMSkFTUux028gIEVqSRlT5bVJCm2mlR4b
- nv1yNfdbguvcTv9peukg3XL2IVIX6EXI0cejGCCFjsSuLJTGwLLxYV5zI0ACuha7RARTSgiqFdVk
- 1ai7KV3XoJkDv_XPZkz07SgH4oCgym20hVcMN
-X-Sonic-MF: <amirhosein_naseri@yahoo.com>
-X-Sonic-ID: 86295328-32f7-4f9e-a787-dc1086e61ca3
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic319.consmr.mail.bf2.yahoo.com with HTTP; Sat, 24 Feb 2024 20:50:22 +0000
-Date: Sat, 24 Feb 2024 20:50:13 +0000 (UTC)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <594483410.184130.1708807813286@mail.yahoo.com>
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5cfb8126375so745183a12.1
+        for <usrp-users@lists.ettus.com>; Sat, 24 Feb 2024 18:12:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708827125; x=1709431925; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=f5ea/yfSHVkn5isSGi9dk7RpLHLAROxkFQLH594ITEg=;
+        b=QZp+/ZriuCZbxGILRhwu2pSHnhOuFLmm4IHejsNhEw0iGdrbTy3a736UMQ34Rki5yh
+         wvJCNLqodzGg6cXhYaPxCi56TFlXSW6PSr8xY3qKuSv66d2wGYRAlkEQXQOGnEWlzfQ4
+         UbAq1Dmw50hlWzyHcTvIskVp1ldFUlDwBXhrXoMgkAHF3IlXIpZa7AEqLqXMOFDvb3et
+         xnNU/vCfmZA/QCdLh/LOj2/InoGLdTlUuvHLocLniUdlaYpZ2mZkJenmCzjVC6qAlHEt
+         aQKDCM/r+fuByxrWebttSG6hskgywUDcTXgXmXkDtnuHOVqPbuXQzql6/pT/fqvifFHJ
+         xzZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708827125; x=1709431925;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f5ea/yfSHVkn5isSGi9dk7RpLHLAROxkFQLH594ITEg=;
+        b=Usa/zVvcJN8PBTl5aHfWIq+BHRwXse213KiVw1xz9hhIKHjxqR/YV4vnqrRzy383lP
+         VZWvpR380w4XLicwDw1iYv867ACVv81R4GZ0qHQzE3GtWdLURivFA9dvFn4TH0bFOggB
+         ISDNDNk39c1tsnktteFYsJG6kwHz9NuBo++M9SFYcjLBp/b+wpeflHOG4zgI23mBeGW1
+         OGAHaCaBpNJMav6+ypppziGcSsY6/hFx5mt9gf+iSBY9IqnKX5YKyt9DVXnxkRNvHld6
+         MWKmJMUpHlk6zhWZTxFAzL+EOK0cNdT7RHCvXatrx3Yu7V/d36jXoaICbkdM8h4vLg/P
+         hWQw==
+X-Gm-Message-State: AOJu0YzALH0kJqi/qdVK/PP5fJzjxBVw9PN6Fcn8RZPJZnVUE95dUIVv
+	HHBSu3OiOyaUc6ZIRkmuBIwnO6E0Wzh3ve3VK9mjzbHhfd0tQhYKcQzAH+Q07fL05e+0yJtLdnW
+	1BFaW+NadqtzZ4X0+Jjhr4ENdOvh8pkoY
+X-Google-Smtp-Source: AGHT+IF0VbVUvqmQOGysOSONCDS9rXAeWiW9JGNcKWbhb5bQh/r3KJFroO0oqTpAgesEKhI5Ig1LI1ilXyrCjqZCbmE=
+X-Received: by 2002:a17:90a:6787:b0:298:c3b4:f6ab with SMTP id
+ o7-20020a17090a678700b00298c3b4f6abmr2818473pjj.2.1708827125207; Sat, 24 Feb
+ 2024 18:12:05 -0800 (PST)
 MIME-Version: 1.0
-References: <594483410.184130.1708807813286.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.22103 YahooMailAndroidMobile
-Message-ID-Hash: FPZAPGWQDH3D3LD4ASVTPY2UVYBU5A4W
-X-Message-ID-Hash: FPZAPGWQDH3D3LD4ASVTPY2UVYBU5A4W
-X-MailFrom: amirhosein_naseri@yahoo.com
+From: Ethan C <ethanclarke365@gmail.com>
+Date: Sat, 24 Feb 2024 18:11:51 -0800
+Message-ID: <CAM0spwpOGFZoQj5Ej4q1rXU7O54KpPKHRgOY=Ps2XHfAOEVVfQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: AMY4X2J5UB66H63N4DN577QYU2EYDQMU
+X-Message-ID-Hash: AMY4X2J5UB66H63N4DN577QYU2EYDQMU
+X-MailFrom: ethanclarke365@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Building rfnoc image
+Subject: [USRP-users] E310 cable for GPIO connector
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FPZAPGWQDH3D3LD4ASVTPY2UVYBU5A4W/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AMY4X2J5UB66H63N4DN577QYU2EYDQMU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Amirhosein naseri via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Amirhosein naseri <amirhosein_naseri@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============6445070670578660954=="
+Content-Type: multipart/mixed; boundary="===============7541353713152405666=="
 
---===============6445070670578660954==
-Content-Type: multipart/alternative;
-	boundary="----=_Part_184129_1594630553.1708807813285"
+--===============7541353713152405666==
+Content-Type: multipart/alternative; boundary="000000000000c7d9cc06122b51ad"
 
-------=_Part_184129_1594630553.1708807813285
-Content-Type: text/plain; charset=UTF-8
+--000000000000c7d9cc06122b51ad
+Content-Type: text/plain; charset="UTF-8"
+
+Hello all,
+I am looking for the part number for the GPIO connector (J12) on an E310.
+So that I may buy a cable to connect to it. I can't find any information
+online nor on the physical connector itself on the E310 I have.
+
+Thanks,
+Ethan VA7MNK
+
+--000000000000c7d9cc06122b51ad
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi everyone
-I want to build my custom rfnoc image in vivado , and based on some tutoria=
-l did this with running uhd_image_builder.py .But after sometime I got the =
-below error :
-Could not read script '../usrp3/tools/scripts/viv_generate_hls_ip.tcl'
+<div dir=3D"ltr"><div>Hello all,</div><div>I am looking for the part number=
+ for the GPIO connector (J12) on an E310. So that I may buy a cable to conn=
+ect to it. I can&#39;t find any information online nor on the physical conn=
+ector itself on the E310 I have.<br></div><div><br></div><div>Thanks,</div>=
+<div>Ethan VA7MNK<br></div></div>
 
-Does anyone know about this?=C2=A0
-------=_Part_184129_1594630553.1708807813285
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+--000000000000c7d9cc06122b51ad--
 
-<div id="ymail_android_signature">Hi everyone</div><div id="ymail_android_signature"><br></div><div id="ymail_android_signature">I want to build my custom rfnoc image in vivado , and based on some tutorial did this with running uhd_image_builder.py .</div><div id="ymail_android_signature">But after sometime I got the below error :</div><div id="ymail_android_signature"><br></div><div id="ymail_android_signature">Could not read script '../usrp3/tools/scripts/viv_generate_hls_ip.tcl'</div><div id="ymail_android_signature"><br></div><div id="ymail_android_signature"><br></div><div id="ymail_android_signature">Does anyone know about this?&nbsp;</div>
-------=_Part_184129_1594630553.1708807813285--
-
---===============6445070670578660954==
+--===============7541353713152405666==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +112,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6445070670578660954==--
+--===============7541353713152405666==--
