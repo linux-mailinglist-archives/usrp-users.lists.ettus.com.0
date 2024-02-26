@@ -2,128 +2,137 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3DB867FFC
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Feb 2024 19:46:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D339868007
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Feb 2024 19:48:25 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 39B1B3850FB
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Feb 2024 13:46:35 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 16F2338508E
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Feb 2024 13:48:24 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1708973195; bh=6/ZtJCzW91bORDXFnEFHBRBNE4aT0GKeTJHrIGmPe8c=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=M9L/xAVheH9QfdBozGcUbUsrdHGV2nkwNkrw2WiKwWubDkWyp51mY6hr4vHquGogk
-	 dw7HgLSO39iUPcYe6InY6paPyZhkX8C1vId0/MNXn3+AyfOu7RQb45G2TqfrF6aXbG
-	 +dkV1ffuGuiXyuNWZUWtSysAcBoQvaDw7dohzIswRHm+LyZkqw3xuc8WOJQ3/22P2R
-	 +9vQeiYCvZTpbudz1NeSZEwa2iPGAA2ywdnVi4JPth0cNtBCIK1lCLu4PFVhq1IXGS
-	 fOTDxCvlQTdZcutkPSmCR/Hvw0q7ynjAWfRE1gcYmuoESBArLpjLRzWGH/lzExG6nQ
-	 qL5VWCcC91syg==
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id A7D00385050
-	for <usrp-users@lists.ettus.com>; Mon, 26 Feb 2024 13:46:04 -0500 (EST)
+	t=1708973304; bh=uUvA90SNl1O1GfiYAMX+ZVOYiTw1fCI/z4mXhwlduCs=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=k5IqnUt6YbNz+bXBXDh4f3pmLVgzn7WVeFj5AmCHimvGv4H8u19ghGpp/jCDwbKI7
+	 UIhPXkMc7uF6u27CsR7u2wo4MwHhPRahZSX4PjOrS+3XTRjLjCr2JkMV4+Ivnr2Yth
+	 E5zxN9VkV3kxdo9uHkYgxenP1NvPsFret8A2qy1KTKNeEGoyGKA/jNtryt7EhINbxj
+	 t05DbGLd+McU6Z6zScNTmL2vcArUYW5ldSsNqq7Il9D8Rp9uGsLqmlI1h0UYnqC/BL
+	 jl0XQBELpshCggI5249TtyrO7KPIpKYl92ia5rIlfOnKitmTMziWqQc08H9auQeEKV
+	 AAh6QWPFe9KQg==
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0383338486F
+	for <usrp-users@lists.ettus.com>; Mon, 26 Feb 2024 13:48:15 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CiXP5DKD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZXasczcG";
 	dkim-atps=neutral
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-29ada55f73fso87653a91.0
-        for <usrp-users@lists.ettus.com>; Mon, 26 Feb 2024 10:46:04 -0800 (PST)
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-42e8ea2caedso3848881cf.3
+        for <usrp-users@lists.ettus.com>; Mon, 26 Feb 2024 10:48:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708973163; x=1709577963; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hg9SSpJ7vGfAPNwxbZu4LdUEVmqLJ/Rrsjd54cud2Rc=;
-        b=CiXP5DKD+Pk56QtwWEy9VxpGX9MxrbwWjRP6LC/8z45+5H9fhnV2IebFWLlF9+9zfM
-         3ZjRk9DExciroKEQitKgEXA94DLB2eaCD1wHdugkYMovm0ibnNQ5Ccd5Z/GkSl82Cc57
-         L45znM9XgpBjeWpoFtVX4lgp8TrxMcPTvmj56RWcNRE6lIrdgzsY4yF/rK9Ug1IyKJz3
-         oXnB7buEIxgTbDQCwaISMIPG6wITDCZSB1Rd9ohTZgp5EK1WyO4hHVOMU/Ahk2q+hnXN
-         bAdMBVR8hXeNzZfgDly7knrrsbwoI9vz4RHQhZnheNDVAnHCSGU4dKFgfIG6H3k2QwO9
-         zmtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708973163; x=1709577963;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1708973295; x=1709578095; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Hg9SSpJ7vGfAPNwxbZu4LdUEVmqLJ/Rrsjd54cud2Rc=;
-        b=FrTm1s487Vvg5Y4o2A0O+Rfznju2ARBtBipSx9WAVYI7R67rBJWWvHeC3oOZEK1YfM
-         XJw1X6T/WSNWlHnNIrhEw+ZsjzD7tekdIDfjfAGbjHajqw5gSGvm6XQ6FC3ePskuH1Kx
-         WW3vaL07q1NUwbdq+4ku9WToHdZ83Y5JvPH+zDa0CGL1mPYFc0hYMlzxWZ/xgVoVnGUo
-         XJ+ocV/A+v1NZpO4DrjoeyCMKdPh3e8kG4SbkjuHiUpAxciimu7l64mC+LBSlT+KlIZE
-         dRNfVRpa5FefZW2LvsWrUzjx2NawU5j8qIBRm/yTlehuuwP2lZS2Tzx99NJj59LauNvX
-         EF2A==
-X-Gm-Message-State: AOJu0Yzk/XTSkx/tWtnD1Yvpdxby8Ioy9McrWPxknAXg6X6VMlBH68kC
-	2rNEkXZLae23VS+wT4pu0ZKKt1f0d9dqHRQh1o+rd+q7blulwKwgNuHKFqXA0HPE+Jiym5ZO6y9
-	dm4HxAdQlM8eWB422BvToi2KEvQ8=
-X-Google-Smtp-Source: AGHT+IHNbzayUPr/b6Rm7ZtJ+bRkytBausepXMPBgPPkbWsyfvAOEUN14gWfMkC+Btu/pmJl6W0nwdOW07OkGHp0t0s=
-X-Received: by 2002:a17:90a:4ca7:b0:299:dddb:3a92 with SMTP id
- k36-20020a17090a4ca700b00299dddb3a92mr6084065pjh.1.1708973163443; Mon, 26 Feb
- 2024 10:46:03 -0800 (PST)
+        bh=UTYfr2BZUc0FXk1EAe1Q5mYS68s4lREovpx0tr2lAgs=;
+        b=ZXasczcGPrF0MGveW0QA/hedmMeu8xcZp45i6BTdmNyUlEKw8V1W4S+EyYHtBJA66b
+         EMGmcLYOilxAw188kPhtkzfYstYVNT6VqAfmaFd7V8s4hDFKVRtAvgUO/a8SWdmT2z0Y
+         xc7Y7tzCLKjwPhASsTAUdT6hg4a4Xk7G3qo3vvOR3+fBa/nCFGA6Mt8A3wjOscLfoX6Y
+         2NC3llhaZxPZLwl4Yp1RfJsy/rdhCKU2PBlMOLsYzoLbcVCXZ336UXzYpP+yXQVDuDPB
+         CEBnvSbT7AOtJX407fdLmYqYHK62W90y70h9JxSBW0w9jPQsdKZ4lH1lqnxQOLJdJ6f/
+         h2+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708973295; x=1709578095;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=UTYfr2BZUc0FXk1EAe1Q5mYS68s4lREovpx0tr2lAgs=;
+        b=GTTrjoPn6LKhBQXGAJx/wrK+qlD998T35wgTpBFex0gaplkzDEdImssIsPdorTI3cb
+         qAgzhD8MPRb8JzWbFB+ao86vfsFgRhgWpnAh4mlDOTCdTQNBXzmA+IspYdU8DZJ6QTd5
+         p3SvDrowv0582VzdQRqc+jHAZLlAyCAXFxFk7rrfWQ2RtEXvDal5tIQSG6EMtBZsT0fb
+         phnJWs04FkK3A3GSAX6mlSGSWrh6uVpzWO7nn/rm185doFqdVq3j5fgQHg54yqginBHN
+         ATd604p0el36Hmv/RFHl8FnXW3Drox+1spsRItOd9ds68+zQPOCZwT0YvTq2r1eXGloO
+         /lNg==
+X-Gm-Message-State: AOJu0Yy7bGQnakRAsRQvVPnfPz62qB7SVv9lUNfODZcgEEmNJnYDPv1V
+	h82blg4hhtoz38pvPyCzOckST9GTQulTPu5wsEVBte2Uclsl+EapmILykN+56XI=
+X-Google-Smtp-Source: AGHT+IFlai1GkpnsgTWVfAHnlVwKNfux/iu1or7VK+dDpOZSLF4iSHwsNHXzu/0+Nc9vwvZOpick+Q==
+X-Received: by 2002:ac8:5f92:0:b0:42e:8f05:97b9 with SMTP id j18-20020ac85f92000000b0042e8f0597b9mr2046108qta.46.1708973295227;
+        Mon, 26 Feb 2024 10:48:15 -0800 (PST)
+Received: from [192.168.2.170] ([174.93.0.156])
+        by smtp.googlemail.com with ESMTPSA id c21-20020ac85195000000b0042e2eb24b42sm2722522qtn.22.2024.02.26.10.48.14
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 10:48:15 -0800 (PST)
+Message-ID: <73ddc24a-ab2e-4889-a7b5-bfd9bff3aa00@gmail.com>
+Date: Mon, 26 Feb 2024 13:48:06 -0500
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
 References: <CAM0spwpOGFZoQj5Ej4q1rXU7O54KpPKHRgOY=Ps2XHfAOEVVfQ@mail.gmail.com>
  <227461359.311534.1708896891513@mail.yahoo.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <227461359.311534.1708896891513@mail.yahoo.com>
-From: Ethan C <ethanclarke365@gmail.com>
-Date: Mon, 26 Feb 2024 10:45:51 -0800
-Message-ID: <CAM0spwrNVQf59mC6vRjivoRm1ASCTUJfbGeehHvRtZXyD5r=TA@mail.gmail.com>
-To: Ray Roberge <rayroberge@yahoo.com>
-Message-ID-Hash: AUKJHKKJNL5HAXCOJ4ZPUAO6FVFZ7UQB
-X-Message-ID-Hash: AUKJHKKJNL5HAXCOJ4ZPUAO6FVFZ7UQB
-X-MailFrom: ethanclarke365@gmail.com
+Message-ID-Hash: XW2BTMNG3Z6P35AJHHRD7NT52GSC623C
+X-Message-ID-Hash: XW2BTMNG3Z6P35AJHHRD7NT52GSC623C
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: E310 cable for GPIO connector
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AUKJHKKJNL5HAXCOJ4ZPUAO6FVFZ7UQB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XW2BTMNG3Z6P35AJHHRD7NT52GSC623C/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4712102996443846944=="
+Content-Type: multipart/mixed; boundary="===============3321241059726210398=="
 
---===============4712102996443846944==
-Content-Type: multipart/alternative; boundary="000000000000567cb606124d5237"
+This is a multi-part message in MIME format.
+--===============3321241059726210398==
+Content-Type: multipart/alternative;
+ boundary="------------wm559huYr7EbGe8rwiSdGvuD"
+Content-Language: en-US
 
---000000000000567cb606124d5237
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------wm559huYr7EbGe8rwiSdGvuD
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-That's some great info. Thanks Ray!
-
-On Sun, Feb 25, 2024 at 1:35=E2=80=AFPM Ray Roberge <rayroberge@yahoo.com> =
-wrote:
-
+On 25/02/2024 16:34, Ray Roberge via USRP-users wrote:
 > Ethan,
 >
-> I could never find any pre-wired cable assemblies for the E310 connector,
-> but the housing and female pins are cheaply available:
+> I could never find any pre-wired cable assemblies for the E310=20
+> connector, but the housing and female pins are cheaply available:
 >
-> DF20A-10DS-1C Housing........................Digikey P/N: H3143-ND  $0.30
-> each
+> DF20A-10DS-1C Housing........................Digikey P/N: H3143-ND=20
+> $0.30 each
 >
-> DF20F-2830SCFA Female Pin............... Digikey P/N: H3148CT-ND   $0.10
-> each
+> DF20F-2830SCFA Female Pin............... Digikey P/N: H3148CT-ND=C2=A0=20
+> =C2=A0$0.10 each
 >
-> The crimping tool that is commercially used is very expensive:
-> https://www.mouser.com/ProductDetail/Hirose-Connector/HT302-DF20B-2830S?q=
-s=3D7H2Jq%252ByxpJL7ruPcF4WDUg%3D%3D
+> The crimping tool that is commercially used is very=20
+> expensive:https://www.mouser.com/ProductDetail/Hirose-Connector/HT302-D=
+F20B-2830S?qs=3D7H2Jq%252ByxpJL7ruPcF4WDUg%3D%3D=20
 > . You might try an alternative crimper, they work.
 >
 > Good Luck,
 > Ray
+Mother of sweet baby Cthulu that's expensive!
+
+
 >
 >
 >
 >
-> On Saturday, February 24, 2024 at 09:12:48 PM EST, Ethan C <
-> ethanclarke365@gmail.com> wrote:
+> On Saturday, February 24, 2024 at 09:12:48 PM EST, Ethan C=20
+> <ethanclarke365@gmail.com> wrote:
 >
 >
 > Hello all,
-> I am looking for the part number for the GPIO connector (J12) on an E310.
-> So that I may buy a cable to connect to it. I can't find any information
-> online nor on the physical connector itself on the E310 I have.
+> I am looking for the part number for the GPIO connector (J12) on an=20
+> E310. So that I may buy a cable to connect to it. I can't find any=20
+> information online nor on the physical connector itself on the E310 I=20
+> have.
 >
 > Thanks,
 > Ethan VA7MNK
@@ -131,77 +140,175 @@ s=3D7H2Jq%252ByxpJL7ruPcF4WDUg%3D%3D
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
 
---000000000000567cb606124d5237
-Content-Type: text/html; charset="UTF-8"
+--------------wm559huYr7EbGe8rwiSdGvuD
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">That&#39;s some great info. Thanks Ray!<br></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Feb 25,=
- 2024 at 1:35=E2=80=AFPM Ray Roberge &lt;<a href=3D"mailto:rayroberge@yahoo=
-.com">rayroberge@yahoo.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div><div style=3D"font-family:Helvetica Neue,Hel=
-vetica,Arial,sans-serif;font-size:16px"><div></div>
-        <div dir=3D"ltr"><div dir=3D"ltr"><span style=3D"font-family:Helvet=
-ica Neue,Helvetica,Arial,sans-serif">Ethan,</span></div><div dir=3D"ltr"><s=
-pan style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif"><br></s=
-pan></div><div dir=3D"ltr"><span style=3D"font-family:Helvetica Neue,Helvet=
-ica,Arial,sans-serif">I could never find any pre-wired cable assemblies for=
- the E310 connector, but the housing and female pins are cheaply available:=
-</span><div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif"=
-><br clear=3D"none"></div><div style=3D"font-family:Helvetica Neue,Helvetic=
-a,Arial,sans-serif">DF20A-10DS-1C Housing........................Digikey P/=
-N: H3143-ND=C2=A0 $0.30 each</div><div style=3D"font-family:Helvetica Neue,=
-Helvetica,Arial,sans-serif"><br clear=3D"none"></div><div style=3D"font-fam=
-ily:Helvetica Neue,Helvetica,Arial,sans-serif">DF20F-2830SCFA Female Pin...=
-............ Digikey P/N: H3148CT-ND=C2=A0 =C2=A0$0.10 each</div></div><div=
- style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif"><br></div>=
-<div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif" dir=3D=
-"ltr">The crimping tool that is commercially used is very expensive:<span><=
-span style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif">=C2=A0=
-</span></span><a href=3D"https://www.mouser.com/ProductDetail/Hirose-Connec=
-tor/HT302-DF20B-2830S?qs=3D7H2Jq%252ByxpJL7ruPcF4WDUg%3D%3D" rel=3D"nofollo=
-w" target=3D"_blank">https://www.mouser.com/ProductDetail/Hirose-Connector/=
-HT302-DF20B-2830S?qs=3D7H2Jq%252ByxpJL7ruPcF4WDUg%3D%3D</a>=C2=A0 . You mig=
-ht try an alternative crimper, they work.</div><div style=3D"font-family:He=
-lvetica Neue,Helvetica,Arial,sans-serif" dir=3D"ltr"><br></div><div style=
-=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif" dir=3D"ltr">Good=
- Luck,</div><div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-s=
-erif" dir=3D"ltr">Ray</div><div style=3D"font-family:Helvetica Neue,Helveti=
-ca,Arial,sans-serif" dir=3D"ltr"><br></div><div style=3D"font-family:Helvet=
-ica Neue,Helvetica,Arial,sans-serif" dir=3D"ltr"><br></div><br></div><div><=
-br></div>
-       =20
-        </div><div id=3D"m_4034972618255084812ydp49cface0yahoo_quoted_96114=
-20279">
-            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
-Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
-               =20
-                <div>
-                    On Saturday, February 24, 2024 at 09:12:48 PM EST, Etha=
-n C &lt;<a href=3D"mailto:ethanclarke365@gmail.com" target=3D"_blank">ethan=
-clarke365@gmail.com</a>&gt; wrote:
-                </div>
-                <div><br></div>
-                <div><br></div>
-                <div><div id=3D"m_4034972618255084812ydp49cface0yiv48212969=
-82"><div dir=3D"ltr"><div>Hello all,</div><div>I am looking for the part nu=
-mber for the GPIO connector (J12) on an E310. So that I may buy a cable to =
-connect to it. I can&#39;t find any information online nor on the physical =
-connector itself on the E310 I have.<br></div><div><br></div><div>Thanks,</=
-div><div>Ethan VA7MNK<br></div></div>
-</div>_______________________________________________<br>USRP-users mailing=
- list -- <a href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"nofollow" tar=
-get=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send an ema=
-il to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" =
-target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br></div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 25/02/2024 16:34, Ray Roberge via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:227461359.311534.1708896891513@mail.yahoo.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div class=3D"ydp72819637yahoo-style-wrap"
+style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-si=
+ze:16px;">
+        <div dir=3D"ltr" data-setdir=3D"false">
+          <div dir=3D"ltr" data-setdir=3D"false"><span
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">Etha=
+n,</span></div>
+          <div dir=3D"ltr" data-setdir=3D"false"><span
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"><br>
+            </span></div>
+          <div dir=3D"ltr" data-setdir=3D"false"><span
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">I
+              could never find any pre-wired cable assemblies for the
+              E310 connector, but the housing and female pins are
+              cheaply available:</span>
+            <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"><br
+                clear=3D"none">
             </div>
-        </div></div></blockquote></div>
+            <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">DF20=
+A-10DS-1C
+              Housing........................Digikey P/N: H3143-ND=C2=A0
+              $0.30 each</div>
+            <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"><br
+                clear=3D"none">
+            </div>
+            <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">DF20=
+F-2830SCFA
+              Female Pin............... Digikey P/N: H3148CT-ND=C2=A0 =C2=
+=A0$0.10
+              each</div>
+          </div>
+          <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"><br>
+          </div>
+          <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"
+            dir=3D"ltr" data-setdir=3D"false">The crimping tool that is
+            commercially used is very expensive:<span><span
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">=C2=A0=
+</span></span><a
+href=3D"https://www.mouser.com/ProductDetail/Hirose-Connector/HT302-DF20B=
+-2830S?qs=3D7H2Jq%252ByxpJL7ruPcF4WDUg%3D%3D"
+              rel=3D"nofollow" target=3D"_blank" moz-do-not-send=3D"true"
+              class=3D"moz-txt-link-freetext">https://www.mouser.com/Prod=
+uctDetail/Hirose-Connector/HT302-DF20B-2830S?qs=3D7H2Jq%252ByxpJL7ruPcF4W=
+DUg%3D%3D</a>=C2=A0
+            . You might try an alternative crimper, they work.</div>
+          <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"
+            dir=3D"ltr" data-setdir=3D"false"><br>
+          </div>
+          <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"
+            dir=3D"ltr" data-setdir=3D"false">Good Luck,</div>
+          <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"
+            dir=3D"ltr" data-setdir=3D"false">Ray</div>
+        </div>
+      </div>
+    </blockquote>
+    Mother of sweet baby Cthulu that's expensive!<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:227461359.311534.1708896891513@mail.yahoo.com">
+      <div class=3D"ydp72819637yahoo-style-wrap"
+style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-si=
+ze:16px;">
+        <div dir=3D"ltr" data-setdir=3D"false">
+          <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"
+            dir=3D"ltr" data-setdir=3D"false"><br>
+          </div>
+          <div
+style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"
+            dir=3D"ltr" data-setdir=3D"false"><br>
+          </div>
+          <br>
+        </div>
+        <div><br>
+        </div>
+      </div>
+      <div id=3D"ydp49cface0yahoo_quoted_9611420279"
+        class=3D"ydp49cface0yahoo_quoted">
+        <div
+style=3D"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-=
+size:13px;color:#26282a;">
+          <div> On Saturday, February 24, 2024 at 09:12:48 PM EST, Ethan
+            C <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:ethanclar=
+ke365@gmail.com">&lt;ethanclarke365@gmail.com&gt;</a> wrote: </div>
+          <div><br>
+          </div>
+          <div><br>
+          </div>
+          <div>
+            <div id=3D"ydp49cface0yiv4821296982">
+              <div dir=3D"ltr">
+                <div>Hello all,</div>
+                <div>I am looking for the part number for the GPIO
+                  connector (J12) on an E310. So that I may buy a cable
+                  to connect to it. I can't find any information online
+                  nor on the physical connector itself on the E310 I
+                  have.<br>
+                </div>
+                <div><br>
+                </div>
+                <div>Thanks,</div>
+                <div>Ethan VA7MNK<br>
+                </div>
+              </div>
+            </div>
+            _______________________________________________<br>
+            USRP-users mailing list -- <a
+              href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"nofollow"
+              target=3D"_blank" moz-do-not-send=3D"true"
+              class=3D"moz-txt-link-freetext">usrp-users@lists.ettus.com<=
+/a><br>
+            To unsubscribe send an email to <a
+              href=3D"mailto:usrp-users-leave@lists.ettus.com"
+              rel=3D"nofollow" target=3D"_blank" moz-do-not-send=3D"true"
+              class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettu=
+s.com</a><br>
+          </div>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---000000000000567cb606124d5237--
+--------------wm559huYr7EbGe8rwiSdGvuD--
 
---===============4712102996443846944==
+--===============3321241059726210398==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -211,4 +318,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4712102996443846944==--
+--===============3321241059726210398==--
