@@ -2,75 +2,75 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C7A286C679
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Feb 2024 11:11:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0211086C920
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Feb 2024 13:23:35 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C0434384FFF
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Feb 2024 05:11:23 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8774038502B
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Feb 2024 07:23:33 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1709201483; bh=Fp6aJtVM6aWHrSK4oPPj0C7zMj+qOi+iz+ZloUkNzug=;
+	t=1709209413; bh=LMKmJWlnHAs1zNowZXpWjC4g2a+blbyYrJ0KUSOtVbY=;
 	h=Date:To:In-Reply-To:References:CC:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From:Reply-To:From;
-	b=VT4b5DS8uSN6hXtJewRsqXqijxOGD3cPu8QfF3jWtjSV/0o1OhnLfdWD6J0RgaeiH
-	 UsZczSY7oA0EDxAcV9keH7qSAHjc+XS2n6ncAwaYVWUJdWdBP222bjVYzBx/5w0iSR
-	 mPheOrhjVfAyaAQibSywzihuUqcPiXDm0vZJxmFNOK1pMKyKa71GePo7DF1EvvIbeU
-	 zm9/3crsULnpJ9I/BfFjb8Yqj5bOXUJQjB2AAxfSy62WK9gljNN+rGNXuqJZvXDWia
-	 i5mnRTQfAaVbt3go/l+IunvuAoGlEZ/LrLEs/zUFsyjPm7SV6D/3WxL0yw7r7aKjt2
-	 qcYSwxgOYHPgg==
-Received: from sonic304-56.consmr.mail.bf2.yahoo.com (sonic304-56.consmr.mail.bf2.yahoo.com [74.6.128.31])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4832E384EE6
-	for <usrp-users@lists.ettus.com>; Thu, 29 Feb 2024 05:10:42 -0500 (EST)
+	b=EmQ5PIcQMbccSnk77gcSAiVS9nWF9rEUkIMAjI5bWTMASzWfMfhyCnUbj2FRPrLzH
+	 BDydmzmoxrCACEXx/q9KUMo/j9ZokVYdhXF3Ep4arN2tiHkMHEUggkbasLTTKlEaf4
+	 hLHqeHaO77uMlN3oE88xO66+eNww9KcfFEORKDujbr3oxFqTcfxqpd4nBlyDkIpPka
+	 WkhgPIX2T03f7t/dBWP0WgbZBQVxyMHm1DgNxjBco/vCUIGhuMNR/GVsAO5l+ozGii
+	 2tmHfty9/LBmEt/BEDeAgbEHTXQQYzYjoZiWP0dfa0L5BJsLGOJ33fdyD6/qAn3VsU
+	 eHxYJF7xPcyTQ==
+Received: from sonic310-13.consmr.mail.bf2.yahoo.com (sonic310-13.consmr.mail.bf2.yahoo.com [74.6.135.123])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1327C3848EC
+	for <usrp-users@lists.ettus.com>; Thu, 29 Feb 2024 07:22:57 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="AW7i6Ry1";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="rMBWeYz1";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1709201441; bh=BSZbbk3SbVJLLPDkPsbfRThRNcKCHjrd/9StYLQZtrk=; h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=AW7i6Ry1SgFcDkxrXVOKqWBpe3ST19v8p4cnBD3Xz5k0XS3e5wLWxDEl8HY/DDdUURhwP1ERSBVEcOphvs1krKcBezY0uLlSrj4d38QyuX1xNFan7pJM5piq04KzVjI6UMqNNuNJ/Jw+8xbV2HzDr2qmFbQX/UdC8uLrdiFt3Nyt0NPfdBLk2Tzf8aX3MeJuSLO1ko0Wt47NYJJ9kzmEmX/KLPASNl8DQNys8/vR6TW1uJc3lh+JOBO+SGoF16XYDZu5/4XyHA1LOIhVPg6KD1ptFmA4Sgd2nSLgyXiiv8XqS3ukbWetz7puc95XotQo58vprrYiyIn/wNfjh7M/CQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1709201441; bh=bGIvUdOps2mlUdnSgllZqpj7aTJZQa8umYS/Gq0eVjy=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=W33IpZb1PfaJj9Ok57JJvZkD4SRNhXezwPU89qJGwzdLBZeuB1lSbLzGREXRI5uk49HYNY2tDJ2B8IqRBOTYCk2cSeQQSAimSOkjY1qA13N7k/l/Ub9RwpdkHqV8QirQAokRS73Ry6Nhfbp08jZv7joADTmiFsJ/HZ65guDOJR4c50a7nd4hbbp8IHYJPZhrUt/5AgjoeNm/ZJsCGNbjzVEQrzI7I51EK8DbbF+4j0kcc0sTBIwdODrR3aCkbZyb5Uod8wlr0Cri0z2NcSclP/ahZLtObdI0F72PyqMnhiF1oFt0pXiVDUeylZsYV0hDtWfGkTRc0SRNavv5A/BX4w==
-X-YMail-OSG: 3lEdIsQVM1k4YdA8IEmGE2k.VRU1ZAyHeU_rbbzzvFR65UT_8S_Jrp10hPcWJJ1
- KhnuhQYNgOXd28xlaw6vboeAiN8QfI5QTkjbcqRu9FksWg4cg5yV5Ccw_ySE2Jx2XDqeX1wHjshW
- VdJZSVdCnOtCOXwurmgGW9NIEV4lucZrJlRAGgn_k_EGfRkDoEP9gmBDYiCNoHVroo6VVWcZFVkA
- SBINSkvTIFbl9tDBfjd8dJSdjYHbe2tty9HwLGNKa3SSXpeAQ6jWZNeFFRw3ZJ4.NH.xVE0vySst
- mbrWpMtWjnoMAmMrlh5b9rhNtdH8_DNaY_I3ismLwH4eWPXsnSJQGpYPk0nH2p530anMcQbpVwYH
- CIwFAigkRB.dFwmz8NcCT_EZp.UzPzJzV9S6vuzVY8yGkMStx02RhBiUhCx0f7ouPLmkKMIEl1Fn
- VoEMhxtXepQRYQa16vyfxLo1ZqMGW9UTS6XenOv7uF_rUAN8HjtlFxJRvBxKzr5Uzzp8jxzr7xq5
- ZNbqK9vK3Lj49rIhOVV0hCTLlBBQFCVW375vPVJpziiXXAEyPTeCjyFuuI5KWiLFsN97cwQ3KMjo
- j4LKWXtbzHqyGu7ueuMnKHKa50sqXIyg1.ibZVfjlPDrONm5UhiAKalgCaHYaCWgzXxK4qt7d_tV
- 7iF8B4tBHIGrwi6HyljpvqnUZ7TF3jt5y2dlxamhV0xrmGrGIoITU1YNbk0tlD3kBtzqScxSrPOa
- 8LKK7G4XmYU45r.rIZvDU08nUn1ofgBAdGw9HrJNYNBQ6r0DMFSEzq5P9pFyC8ca85SjJ4LZWrx8
- nA_MJ8BL_lHrz2rmlbt5hFVwVPPKU6mR86NrFXS5AhlY1pkdjtDztfTvN8lR3Za8KBtYnJOSvfjH
- 7pV_VHw3sydcGt6UDONMMUQDi2inwJx5OKWp2HXFTNAdAgcH6DdTClLtGlpW9AMVxFBP_Q6FrXf_
- .OiWQWG.dRBa8K4PZ40IiMir5jOPcu.3kRhOCDhq5lNGo4IU6ogDgXK0kDdx_NbfrC1877BLGxy3
- GwK5eib4YukrcIWb78Oq_1GAziUBuRyuyZmHWvtW_9khh9ZQLH6P6oPR3T5aTbjj03utHmpsYY4B
- rV4_ndFnS3mfuO5im2.jW3wSB0wCa.R30gfzQMrJ.Z0UewVf1DbRNCNAr9JK7iBTWHcd.z.FKKQp
- KU4eaVBcpVecBXjPYn_XViumd0E6svI9lzYj9z0Vjp4ssmm8myKGhfaBLR9tUEfC6A1wE8fEiv5V
- LC5TuHnuV8dacPGHej76UMcvooEF2.pR9XkDeoYOBxfxpmROrDnnswsHda0hqB7VoeFDYOgsNvNG
- DxkfGs.q9kPKrnVDYQZxta.MvUCb1X_vL5VvkNzN7IUfqiaUsV56Wft71EAIgwcsqjS.Pwe_wxwK
- hHA0Tg1_9RM6GyjQHtH7ZGZ0K8tVj2wfOivlxgtVuVphM5GmbxV1TR2wiiPGMxSkLYUspAgKbUAp
- uby_BTm7TAT24XjFHKchnajHTGURzCOeosadAQo6O5PB6hXGnmNgo6VTjsH1_GD4jK7f0JZAuU5n
- 0MXaSuAIloGozEj1lI0ugKhClPSv0ksXwGRI3yPfY.SVCGvBScDhcM4iGRNOzCiMOXCQ4JG6tBnk
- qQmWfKybb3Dh3DU5JJzvmHmpXleEu0ssO9S87VHqYvXDl9DGz0SgTsEd651bFZlt9dn8VOeH1WIc
- 3Z2Lk42vhn6gHcoL817EkSl7xMQTiA8PzVC8cKwqkzjvM4nRH6y9z7LmbFlJq3sMG6tmMSoEPixd
- F.ujilGOb57KLnlVQBu5_CJNA_qg.xxYiIORWmUAxWq_RQakRkmN1gP4fF4CeV87iRyllgLtyeuE
- S1OVzf1o2XNIQbgOhkb0VFeGrkmb0zgcCJuHpbeTlL1NSMBcXbaEOivhX88ks6qilPg6yCvb9a4j
- qyTyMy8jIu9saT5vOxtGAJd2j7GOjw9F.1trpoRk71ttxuIv1SV7al38yPHn26SbVAnpi9cgq3cc
- v4F5kLOBXfH7yA7cHWW3ZmFSa8IrdR363e1q3Bm4Uf8tj1KueP64kwJ2eH_Va0wb8drRHeOAxihF
- DwPdDpS_mthljIU8FJacbB2b8Y2011xyRVarapuQSK98NUUANsPx7JrtqvzKm_WSc.VSjGA.ztK5
- GJosZ4uoKGrvbyKThXbc7UaJcceTeGTEQKN4kIzWkYqvloo8NDDqV6S3oTQYv1LdKnsM_5B7Z60K
- 0tDrQ3gc8C9baCxqATxq8zqBP9aWGJiah1iFfXE3asleDlzw-
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1709209376; bh=Xb4uTvzu+1LNh4xwM9M0JRZIE7F0SBRiLghnAty4zYE=; h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=rMBWeYz1fEV71Usj4MUVdzpIxt9KpJsrmRfwbORB2l9z1VIkOa6vMOoatTUAJH7F5GxjULEuBl2W+S9mXC/IgjzFSkg3d6AaDnNOB81KJBZTY7NvU3Fn37uhBaojO4yRKAxY7RrjQ9CoyU9eDn/GigJAJeKJXYCLoVzzPBgQruYHd6LjOcq3QoQUFO5SNBIjPo+jP0p2Ojs9KASR6gi3Iusapjan5l1/4HtqpSyOnADFZq3kp9j680OZuZtaKonJpcEQtg4EQhCZU7dZ1TqzUc1InX8iIakhMcxYknJpPqyDjn8IxvL0bPtgi7uqxlkQ5/QcCa+fQ49deyA5l60LfQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1709209376; bh=G9083MBLX/6pdjMakxzmmWFrleUJ1kFQ4HID44+oMhO=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=sW+MXUNoievFpMk3gabWGrALwqcNmX3zA5HE3mNCAtWtdIK/0OGiogNJqI0HYabdv6UPaaa/RzJylbwqtjfdiLwpbYtO9cqLCABGwAVoVBKYWl86guS79QbHaFog8YvnAJWGkCVHkLoir63z8PY1bmzCrCiJCtEBoP2BKjcPRIvOBlwX3GFZaN4vHbCzCCMBgLiDfkM6vidOGnxiZMXtzdw5IZY013m0fkRCvn11sEtu1E5u+9p75kVpc2OLIVFK+IPcXnLi1cgxbHdcNkDVdKOzAQS3w0jqBDC4FyYZ+VSlZuReMM/5IVGdjxo4phKNx8ahNIwrOlBtDNlhOTo9Rw==
+X-YMail-OSG: EtouG48VM1k_G96ilzdnf0MDEuX.pt9Eh74sUqdIjiJhG10cs1o6CsuDmwzIOlJ
+ 0W6P4rq0tL18TqO1sVXqMWCyZM9Q3NdrhDnkTwYEXELxCv4oJU_z0XsAALMTZ2WDyNRNs5SpxXIM
+ flOaBxqSu9UlS2nItyePFIFTbHlZD32aKFTseIBwc76x9VoVMfwcd2YZkrD0uT9rJxNEALbqpEQG
+ JncwKjZ12lczUKte7r5Slu95pBIs0mWHrfPVs5SQBjqRbKLKlH1BcM1hwjTgkIkqMTelINVPJo6U
+ LlcAPyd82xL0uHz.zFfw4EtgOjaJSfinKUZdYfFHrQ89mStK8MMpPSTIjT_ZQuKwNVtWd6KGSdRj
+ B_JrXrd8VqBOGhaCd_skFl2I6Fn88YNhDxvQZFHt6igYvKMPvc_6bfNwP34UvH0XCK4JVscxAOXf
+ 0JJ5UyRhd6m8MH7Yd8nnUxCXZZLbEEu2rCYscB2fKgaaak6S_Gn5pEIvaQKnNv0Qo3twUF9HnFC5
+ PzjBvoAuTxmcxYLUHv98nDDzrsTZt2gBdIMqVug.Nqv2chtd6YEFm7AAIgtmoBRjc2twlKZxK4Ka
+ aFxbWmrKEbtduvuvH.YX.bcjgvd7FiF92vlOQYfBzxYpDrnxDwZWbkLfuVWwDY2gxjF1K46R0iVB
+ QwDte5Ue8SpjFE.4KtJy_mnYg4p.WyaSrYZLcstb053SaKZ4PH8Ow4h9uVE.Ie_aMX_lXby8F8.l
+ 7kKvhEVVajgCS8QXSFxp.G2WbvpdmG2v5fqmng49DTCmaUC2UiBXjb6ARVZSbJywhp4P_a5NFLvB
+ YDi37swnQ1AWlPbza_kSEkfBKSSQ0.r9j0QxKlIRkgTUsUC9jk53ZJu7g_oMBKIyPjkNZZBi90nr
+ 3kWXe9vZjROm4IDa1XeCyUjPXd1avIVHb8KgA7UTnLTLDzXO5evleOjfhwNlxll3qL.OqIv8nM.a
+ kidqPIaBm.wZll6nfziQXRA2gOf5xv9SlGd2_M88hvO_J410blM7WMuBauOV5VDV6ORQZytpjVgw
+ 8a9h6ZFwpIqAFh77q_vdxl3nIsSVH4eyCzz988umJoAiYs_Z1UXmYq.epAeystiElWu_8DrgvP7j
+ kjP.5EycWGInvyNOdCIJPRFvoixKC0RCwbiCws4P04cGLNSkh1GO9rvYe2HPZJYcpBiVbNQ9.118
+ tgRu8PWox_oFXFOZySug3K5G3lfS1CpSMU5xSvrCpGsGiesd_baG7m86qhPxKkEiGMFaxahIAcgC
+ 9Y2SctuUKIrf9TDwWwV1sGY5ST.9_1zroMqDo3tt8wGHW6w4lP_WaZHkIM37wPCkTtWhG1QVkrxu
+ 2hAl278NVzepqsAsZqcEXlx7rVqUwWF04.X87Z2YcfmlfOUEl1lt30ElxEMOjq_REdD4Ezy5jeG7
+ mBWWWbiOQndbvjOtPy8_bvi42acbtv4fDqNIbEYEKIZc4WmrxIY1UjKnNuXk_FLcEH2CxF7TpSCa
+ 4DjhiWNin1R_w9PG9WcQzQtx_ek5XYK5mT.y43kXRMuRgn7uDye0LtpgKxcuDaGc_nwZkkQUOfcp
+ ssQxE_oBHBMYn757eFTgkE0fEiea5kZc8qEYW3rteZK_nB5Vfu5ioW2QFDppATXN96ksPoJkp3uD
+ W_am3Sh7imbgU8s_TF30ulgwX2K7.1ack.O0BTPw_dvqvH8KBmlh2nOcN4wsqwUOFbTvsXWrPDCd
+ lsHe6o_84O16m1NsuULCn9izzDSzQV8le4KwxaVfTvpEVBtGnVwkj_c6wWaWRNgK3eFvL2eT7ilB
+ XYerYGauSnFM4mRr3ZMWygYUNaSRkppOqxfYSgjd3iT64BtD8nA4SHgyKcIolWwl13AuHWzMQePk
+ JToZcNMgGinAEjhNOp.corokqVPbHkjnNsf.f.P0QZ08Ww9zH1WkTsJWLZ.tO3W1TpewI78.LmEd
+ oIJ_JEYQzM11bUeaVf4ZHjhPWPdt7gA5heHLty8.ON8r6KANxkIHd0SQmKc4JORiSVqWIjUWVGNm
+ IB1ibxfMPsrw8UutPh4DxHNRHg75E1gxLSsOcgwMuHmMyKiKbgYXU_94F09DGkg6k9gEjAxeQkod
+ lTAHVLJLybO_odoL8_JDzWBzxM.8UIMYbkYKscPVEdl.9mCduQ7q0vqnFAjQ0jcsQa.2HPiTg2y9
+ st3lmXXTpdRp_W1LyRd5yy0cN6Po5RlRk68hKsP_b7Np18OgQNOA9JEsfQCuBe7.upNxPkmXWXuR
+ 3M0RWM6HQaNAj4RKQqYhIboleF.q0Zp4jOyeuRDVWq37hH2PE60cU5w--
 X-Sonic-MF: <hwzhou@yahoo.com>
-X-Sonic-ID: 178a9a9e-8454-4d8e-874a-2b498940fda6
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.bf2.yahoo.com with HTTP; Thu, 29 Feb 2024 10:10:41 +0000
-Date: Thu, 29 Feb 2024 10:10:38 +0000 (UTC)
+X-Sonic-ID: 1da9d558-1401-49d7-856f-d7f39445120d
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.bf2.yahoo.com with HTTP; Thu, 29 Feb 2024 12:22:56 +0000
+Date: Thu, 29 Feb 2024 12:22:49 +0000 (UTC)
 To: "Pedro Vieira (Gmail - Geral)" <pav.vieira@gmail.com>
-Message-ID: <187644312.1292817.1709201438316@mail.yahoo.com>
-In-Reply-To: <!&!AAAAAAAAAAAuAAAAAAAAAAxXouO5T5tEtC+ch5uVV4UBAMO2jhD3dRHOtM0AqgC7tuYAAAAAAA4AABAAAAD+slDzh8SRRLoGqFKD/uVAAQAAAAA=@gmail.com>
-References: <CAO_U4K7iMNWLhLRdWozsXxNQHd0xvp611f7LXQQhSe=-hz+ong@mail.gmail.com> <1464756341.27900.1708721099612@mail.yahoo.com> <!&!AAAAAAAAAAAuAAAAAAAAAAxXouO5T5tEtC+ch5uVV4UBACOpHMELik5ErQ+ioQtu/d8AAAAAA48AABAAAAAxIdtGbEIMTq2GLSCB/zTCAQAAAAA=@gmail.com> <170328188.112406.1708776539657@mail.yahoo.com> <!&!AAAAAAAAAAAuAAAAAAAAAAxXouO5T5tEtC+ch5uVV4UBAMO2jhD3dRHOtM0AqgC7tuYAAAAAAA4AABAAAAD+slDzh8SRRLoGqFKD/uVAAQAAAAA=@gmail.com>
+Message-ID: <1814522190.1313040.1709209370726@mail.yahoo.com>
+In-Reply-To: <187644312.1292817.1709201438316@mail.yahoo.com>
+References: <CAO_U4K7iMNWLhLRdWozsXxNQHd0xvp611f7LXQQhSe=-hz+ong@mail.gmail.com> <1464756341.27900.1708721099612@mail.yahoo.com> <!&!AAAAAAAAAAAuAAAAAAAAAAxXouO5T5tEtC+ch5uVV4UBACOpHMELik5ErQ+ioQtu/d8AAAAAA48AABAAAAAxIdtGbEIMTq2GLSCB/zTCAQAAAAA=@gmail.com> <170328188.112406.1708776539657@mail.yahoo.com> <!&!AAAAAAAAAAAuAAAAAAAAAAxXouO5T5tEtC+ch5uVV4UBAMO2jhD3dRHOtM0AqgC7tuYAAAAAAA4AABAAAAD+slDzh8SRRLoGqFKD/uVAAQAAAAA=@gmail.com> <187644312.1292817.1709201438316@mail.yahoo.com>
 MIME-Version: 1.0
 Content-Type: multipart/mixed;
-	boundary="----=_Part_1292816_885265566.1709201438316"
+	boundary="----=_Part_1313039_292702313.1709209370725"
 X-Mailer: WebService/1.1.22103 YMailNorrin
-Message-ID-Hash: 7BIZBQT7RPJP35Q2NSTUETTYS24IPE3J
-X-Message-ID-Hash: 7BIZBQT7RPJP35Q2NSTUETTYS24IPE3J
+Message-ID-Hash: GLLMVCLCDVHGY5IS3FEE7TVWKONQP7Y4
+X-Message-ID-Hash: GLLMVCLCDVHGY5IS3FEE7TVWKONQP7Y4
 X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
@@ -78,7 +78,7 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RES: RES: OFDM signal transmission by x310 presents a peak
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7BIZBQT7RPJP35Q2NSTUETTYS24IPE3J/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GLLMVCLCDVHGY5IS3FEE7TVWKONQP7Y4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
@@ -88,15 +88,30 @@ List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
 From: zhou via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: zhou <hwzhou@yahoo.com>
 
-------=_Part_1292816_885265566.1709201438316
+------=_Part_1313039_292702313.1709209370725
 Content-Type: multipart/alternative;
-	boundary="----=_Part_1292815_1958201298.1709201438232"
+	boundary="----=_Part_1313038_394967990.1709209369876"
 
-------=_Part_1292815_1958201298.1709201438232
+------=_Part_1313038_394967990.1709209369876
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
  Hi Pedro,
+I plot the spectrum of your baseband signal based on your configuration and=
+ signal file. It seems that you have avoided DC in resource allocation. It =
+is weird that you are seeing a big spike at DC location in analyzer.Can you=
+ loopback USRP tx and rx and use USRP itself to capture the signal? then pl=
+ot the spectrum. If there is no spike in this capture, then the problem is =
+in analyzer side.
+
+
+Regards,Hongwei
+
+
+    On Thursday, 29 February 2024 at 10:11:06 GMT, zhou via USRP-users <usr=
+p-users@lists.ettus.com> wrote: =20
+=20
+  Hi Pedro,
 I don't use the Python interface so I am not experienced on it.DC leakage c=
 an happen on both Tx side and Rx side, that is, in your current setup, it c=
 an be in USRP or in the spectrum analyzer.The spike in your spectrum is abo=
@@ -348,397 +363,1047 @@ To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+  _______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
  =20
-------=_Part_1292815_1958201298.1709201438232
+------=_Part_1313038_394967990.1709209369876
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div class=3D"ydp3e77d3d9yahoo-style-wrap" style=
+<html><head></head><body><div class=3D"ydp22ab07ceyahoo-style-wrap" style=
 =3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
 ;"><div></div>
         <div dir=3D"ltr" data-setdir=3D"false">Hi Pedro,</div><div dir=3D"l=
-tr" data-setdir=3D"false"><span><span style=3D"color: rgb(38, 40, 42); font=
--family: Helvetica Neue, Helvetica, Arial, sans-serif;"><br></span></span><=
-/div><div dir=3D"ltr" data-setdir=3D"false">I don't use the Python interfac=
-e so I am not experienced on it.</div><div dir=3D"ltr" data-setdir=3D"false=
-">DC leakage can happen on both Tx side and Rx side, that is, in your curre=
-nt setup, it can be in USRP or in the spectrum analyzer.</div><div dir=3D"l=
-tr" data-setdir=3D"false">The spike in your spectrum is about 20dBm higher =
-than the signal, which is pretty significant. Normally, DC is not so big. M=
-aybe you have put extra power at DC?</div><div dir=3D"ltr" data-setdir=3D"f=
-alse">Can you plot the spectrum of the original baseband signal?&nbsp;</div=
-><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-set=
-dir=3D"false"><span><span style=3D"color: rgb(38, 40, 42); font-family: san=
-s-serif; font-size: 13.3333px;">Marcus is the expert to answer USRP questio=
-ns. <span><span style=3D"color: rgb(38, 40, 42); font-family: sans-serif; f=
-ont-size: 13.3333px;">Marcus, c</span></span>ould you please shed any light=
- on this?</span></span><br></div><div dir=3D"ltr" data-setdir=3D"false"><br=
-></div><div dir=3D"ltr" data-setdir=3D"false">Regards,</div><div dir=3D"ltr=
-" data-setdir=3D"false">Hongwei</div><div dir=3D"ltr" data-setdir=3D"false"=
-><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div><br></div>
+tr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">=
+I plot the spectrum of your baseband signal based on your configuration and=
+ signal file. It seems that you have avoided DC in resource allocation. It =
+is weird that you are seeing a big spike at DC location in analyzer.</div><=
+div dir=3D"ltr" data-setdir=3D"false">Can you loopback USRP tx and rx and u=
+se USRP itself to capture the signal? then plot the spectrum. If there is n=
+o spike in this capture, then the problem is in analyzer side.</div><div di=
+r=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"f=
+alse"><img title=3D"Inline image" alt=3D"Inline image" src=3D"cid:557789f7-=
+fe0a-5aed-4d2f-2df5a4c46975@yahoo.com" class=3D"yahoo-inline-image" draggab=
+le=3D"false" style=3D"max-width: 400px; width: 50%;" data-id=3D"<557789f7-f=
+e0a-5aed-4d2f-2df5a4c46975@yahoo.com>"><br><span></span><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">Regards,</div><div dir=3D"ltr" data-setdir=
+=3D"false">Hongwei</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><d=
+iv dir=3D"ltr" data-setdir=3D"false"><br></div><div><br></div>
        =20
-        </div><div id=3D"ydp800c4677yahoo_quoted_9411634948" class=3D"ydp80=
-0c4677yahoo_quoted">
+        </div><div id=3D"ydpb84964e5yahoo_quoted_0028220924" class=3D"ydpb8=
+4964e5yahoo_quoted">
             <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
 ans-serif;font-size:13px;color:#26282a;">
                =20
                 <div>
-                    On Wednesday, 28 February 2024 at 01:14:38 GMT, Pedro V=
-ieira (Gmail - Geral) &lt;pav.vieira@gmail.com&gt; wrote:
+                    On Thursday, 29 February 2024 at 10:11:06 GMT, zhou via=
+ USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:
                 </div>
                 <div><br></div>
                 <div><br></div>
-                <div><div id=3D"ydp800c4677yiv9433216350"><div><div class=
-=3D"ydp800c4677yiv9433216350WordSection1"><p class=3D"ydp800c4677yiv9433216=
-350MsoNormal"><span lang=3D"EN-US">Dear Hongwei, and Ron:</span></p><p clas=
-s=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span>=
-</p><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">Tha=
-nk you for the comments and suggestions.</span></p><p class=3D"ydp800c4677y=
-iv9433216350MsoNormal"><span lang=3D"EN-US">I've been working on some confi=
-gurations, but still with the presence of the spark/spike. It also seems to=
- me that it could be something related to the generation of the OFDM signal=
-..</span></p><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"E=
-N-US">Any suggestion?</span></p><p class=3D"ydp800c4677yiv9433216350MsoNorm=
-al"><span lang=3D"EN-US"> &nbsp;</span></p><p class=3D"ydp800c4677yiv943321=
-6350MsoNormal"><span lang=3D"EN-US">Attach the code I use and the signal fi=
-le, in case you have the opportunity to check.</span></p><p class=3D"ydp800=
-c4677yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><p clas=
-s=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">The master clo=
-ck rate is 200 Msps and the sampling rate is 25 Msps</span></p><p class=3D"=
-ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><=
-p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">Some of =
-the features of the equipment and programs I am using are:</span></p><ul st=
-yle=3D"margin-top:0cm;" type=3D"disc"><li style=3D"margin-left:0cm;" class=
-=3D"ydp800c4677yiv9433216350MsoListParagraph"><span lang=3D"EN-US">I'm usin=
-g the Spyder IDE version 5.5.1</span></li><li style=3D"margin-left:0cm;" cl=
-ass=3D"ydp800c4677yiv9433216350MsoListParagraph"><span lang=3D"EN-US">UHD l=
-ibrary version: 4.6.0.0</span></li></ul><p class=3D"ydp800c4677yiv943321635=
-0MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><p class=3D"ydp800c4677y=
-iv9433216350MsoNormal"><span lang=3D"EN-US">usrp.get_usrp_tx_info()</span><=
-/p><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">Oct[=
-134]:</span></p><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=
-=3D"EN-US">{'mboard_id': 'X310',</span></p><p class=3D"ydp800c4677yiv943321=
-6350MsoNormal"><span lang=3D"EN-US">&nbsp; 'mboard_name': '',</span></p><p =
-class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'mb=
-oard_serial': 'F61798',</span></p><p class=3D"ydp800c4677yiv9433216350MsoNo=
-rmal"><span lang=3D"EN-US">&nbsp; 'module_serial': 'F61798',</span></p><p c=
-lass=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'tx_=
-antenna': 'TX/RX',</span></p><p class=3D"ydp800c4677yiv9433216350MsoNormal"=
-><span lang=3D"EN-US">&nbsp; 'tx_id': 'CBX (0x0066)',</span></p><p class=3D=
-"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'tx_ref_pow=
-er_key': 'x3xx_pwr_generic_tx_tx+rx',</span></p><p class=3D"ydp800c4677yiv9=
-433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'tx_ref_power_serial': 'F5B=
-3E5#0',</span></p><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=
-=3D"EN-US">&nbsp; 'tx_serial': 'F5B3E5',</span></p><p class=3D"ydp800c4677y=
-iv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'tx_subdev_name': 'CBX T=
-X',</span></p><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"=
-EN-US">&nbsp; 'tx_subdev_spec': 'A:0 B:0'}</span></p><p class=3D"ydp800c467=
-7yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><p class=3D=
-"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">Kind regards and t=
-hank you in advance,</span></p><p class=3D"ydp800c4677yiv9433216350MsoNorma=
-l"><span lang=3D"EN-US">Pedro A.</span></p><p class=3D"ydp800c4677yiv943321=
-6350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><p class=3D"ydp800c46=
-77yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><p class=
-=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span><=
-/p><div><div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.=
-0pt 0cm 0cm 0cm;"><div id=3D"ydp800c4677yiv9433216350yqtfd26727" class=3D"y=
-dp800c4677yiv9433216350yqt3718617676"><p class=3D"ydp800c4677yiv9433216350M=
-soNormal"><b>De:</b> zhou &lt;hwzhou@yahoo.com&gt; <br clear=3D"none"><b>En=
-viada em:</b> s=C3=A1bado, 24 de fevereiro de 2024 09:09<br clear=3D"none">=
-<b>Para:</b> usrp-users@lists.ettus.com; Pedro Vieira (Gmail - Geral) &lt;p=
-av.vieira@gmail.com&gt;<br clear=3D"none"><b>Assunto:</b> Re: [USRP-users] =
-RES: OFDM signal transmission by x310 presents a peak</p></div></div></div>=
-<div id=3D"ydp800c4677yiv9433216350yqtfd32379" class=3D"ydp800c4677yiv94332=
-16350yqt3718617676"><p class=3D"ydp800c4677yiv9433216350MsoNormal"> &nbsp;<=
-/p><div><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"E=
-N-US" style=3D"font-size:10.0pt;font-family:sans-serif;">Hi Pedro,</span></=
-p></div><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"E=
-N-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p>=
-</div><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-=
-US" style=3D"font-size:10.0pt;font-family:sans-serif;">Interestingly, just =
-found Marcus answered a similar question a few years back:&nbsp;</span></p>=
-</div><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><a shape=3D"rect"=
- href=3D"https://dsp.stackexchange.com/questions/30562/large-spike-at-the-c=
-enter-frequency-when-using-ettus-x310" rel=3D"nofollow" target=3D"_blank"><=
-span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">http=
-s://dsp.stackexchange.com/questions/30562/large-spike-at-the-center-frequen=
-cy-when-using-ettus-x310</span></a><span lang=3D"EN-US" style=3D"font-size:=
-10.0pt;font-family:sans-serif;"></span></p></div><div><p class=3D"ydp800c46=
-77yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;fo=
-nt-family:sans-serif;"> &nbsp;</span></p></div><div><p class=3D"ydp800c4677=
-yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font=
--family:sans-serif;">Your calibration range is pretty small. I normally cal=
-ibrate from 500M - 6G such that it can support multiple applications. It wi=
-ll take some time, but calibrating 1G should be quick.</span></p></div><div=
-><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div><div>=
-<p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;">USRP may not be able to gener=
-ate LO exactly at 3.5GHz. In such case, it will try to generate LO as close=
- as possible.&nbsp;</span></p></div><div><p class=3D"ydp800c4677yiv94332163=
-50MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:san=
-s-serif;"> &nbsp;</span></p></div><div><p class=3D"ydp800c4677yiv9433216350=
+                <div><div id=3D"ydpb84964e5yiv8226486287"><div><div style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;" class=3D"ydpb84964e5yiv8226486287ydp3e77d3d9yahoo-style-wrap"><div></div=
+>
+        <div dir=3D"ltr">Hi Pedro,</div><div dir=3D"ltr"><span><span style=
+=3D"color:rgb(38, 40, 42);font-family:Helvetica Neue, Helvetica, Arial, san=
+s-serif;"><br clear=3D"none"></span></span></div><div dir=3D"ltr">I don't u=
+se the Python interface so I am not experienced on it.</div><div dir=3D"ltr=
+">DC leakage can happen on both Tx side and Rx side, that is, in your curre=
+nt setup, it can be in USRP or in the spectrum analyzer.</div><div dir=3D"l=
+tr">The spike in your spectrum is about 20dBm higher than the signal, which=
+ is pretty significant. Normally, DC is not so big. Maybe you have put extr=
+a power at DC?</div><div dir=3D"ltr">Can you plot the spectrum of the origi=
+nal baseband signal?&nbsp;</div><div dir=3D"ltr"><br clear=3D"none"></div><=
+div dir=3D"ltr"><span><span style=3D"color:rgb(38, 40, 42);font-family:sans=
+-serif;font-size:13.3333px;">Marcus is the expert to answer USRP questions.=
+ <span><span style=3D"color:rgb(38, 40, 42);font-family:sans-serif;font-siz=
+e:13.3333px;">Marcus, c</span></span>ould you please shed any light on this=
+?</span></span><br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"=
+></div><div dir=3D"ltr">Regards,</div><div dir=3D"ltr">Hongwei</div><div di=
+r=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></di=
+v><div><br clear=3D"none"></div>
+       =20
+        </div><div id=3D"ydpb84964e5yiv8226486287ydp800c4677yahoo_quoted_94=
+11634948" class=3D"ydpb84964e5yiv8226486287ydp800c4677yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div id=3D"ydpb84964e5yiv8226486287yqtfd19290" class=3D"ydp=
+b84964e5yiv8226486287yqt1759316513"><div>
+                    On Wednesday, 28 February 2024 at 01:14:38 GMT, Pedro V=
+ieira (Gmail - Geral) &lt;pav.vieira@gmail.com&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpb84964e5yiv8226486287ydp800c4677yiv94332=
+16350"><div><div class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350W=
+ordSection1"><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350Ms=
+oNormal"><span lang=3D"EN-US">Dear Hongwei, and Ron:</span></p><p class=3D"=
+ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN=
+-US"> &nbsp;</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv94=
+33216350MsoNormal"><span lang=3D"EN-US">Thank you for the comments and sugg=
+estions.</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943321=
+6350MsoNormal"><span lang=3D"EN-US">I've been working on some configuration=
+s, but still with the presence of the spark/spike. It also seems to me that=
+ it could be something related to the generation of the OFDM signal..</span=
+></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"=
+><span lang=3D"EN-US">Any suggestion?</span></p><p class=3D"ydpb84964e5yiv8=
+226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</s=
+pan></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNorm=
+al"><span lang=3D"EN-US">Attach the code I use and the signal file, in case=
+ you have the opportunity to check.</span></p><p class=3D"ydpb84964e5yiv822=
+6486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</spa=
+n></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal=
+"><span lang=3D"EN-US">The master clock rate is 200 Msps and the sampling r=
+ate is 25 Msps</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv=
+9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><p class=3D"ydp=
+b84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US=
+">Some of the features of the equipment and programs I am using are:</span>=
+</p><ul style=3D"margin-top:0cm;" type=3D"disc"><li style=3D"margin-left:0c=
+m;" class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoListParagra=
+ph"><span lang=3D"EN-US">I'm using the Spyder IDE version 5.5.1</span></li>=
+<li style=3D"margin-left:0cm;" class=3D"ydpb84964e5yiv8226486287ydp800c4677=
+yiv9433216350MsoListParagraph"><span lang=3D"EN-US">UHD library version: 4.=
+6.0.0</span></li></ul><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943=
+3216350MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><p class=3D"ydpb84=
+964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">u=
+srp.get_usrp_tx_info()</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800=
+c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">Oct[134]:</span></p><p cl=
+ass=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lan=
+g=3D"EN-US">{'mboard_id': 'X310',</span></p><p class=3D"ydpb84964e5yiv82264=
+86287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'mboard=
+_name': '',</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943=
+3216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'mboard_serial': 'F61798',</s=
+pan></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNorm=
+al"><span lang=3D"EN-US">&nbsp; 'module_serial': 'F61798',</span></p><p cla=
+ss=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=
+=3D"EN-US">&nbsp; 'tx_antenna': 'TX/RX',</span></p><p class=3D"ydpb84964e5y=
+iv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; =
+'tx_id': 'CBX (0x0066)',</span></p><p class=3D"ydpb84964e5yiv8226486287ydp8=
+00c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'tx_ref_power_ke=
+y': 'x3xx_pwr_generic_tx_tx+rx',</span></p><p class=3D"ydpb84964e5yiv822648=
+6287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'tx_ref_=
+power_serial': 'F5B3E5#0',</span></p><p class=3D"ydpb84964e5yiv8226486287yd=
+p800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US">&nbsp; 'tx_serial': '=
+F5B3E5',</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943321=
+6350MsoNormal"><span lang=3D"EN-US">&nbsp; 'tx_subdev_name': 'CBX TX',</spa=
+n></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal=
+"><span lang=3D"EN-US">&nbsp; 'tx_subdev_spec': 'A:0 B:0'}</span></p><p cla=
+ss=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=
+=3D"EN-US"> &nbsp;</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c467=
+7yiv9433216350MsoNormal"><span lang=3D"EN-US">Kind regards and thank you in=
+ advance,</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv94332=
+16350MsoNormal"><span lang=3D"EN-US">Pedro A.</span></p><p class=3D"ydpb849=
+64e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US"> &=
+nbsp;</span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943321635=
+0MsoNormal"><span lang=3D"EN-US"> &nbsp;</span></p><p class=3D"ydpb84964e5y=
+iv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US"> &nbsp;=
+</span></p><div><div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;pa=
+dding:3.0pt 0cm 0cm 0cm;"><div id=3D"ydpb84964e5yiv8226486287ydp800c4677yiv=
+9433216350yqtfd26727" class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943321=
+6350yqt3718617676"><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943321=
+6350MsoNormal"><b>De:</b> zhou &lt;hwzhou@yahoo.com&gt; <br clear=3D"none">=
+<b>Enviada em:</b> s=C3=A1bado, 24 de fevereiro de 2024 09:09<br clear=3D"n=
+one"><b>Para:</b> usrp-users@lists.ettus.com; Pedro Vieira (Gmail - Geral) =
+&lt;pav.vieira@gmail.com&gt;<br clear=3D"none"><b>Assunto:</b> Re: [USRP-us=
+ers] RES: OFDM signal transmission by x310 presents a peak</p></div></div><=
+/div><div id=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350yqtfd32379"=
+ class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350yqt3718617676"><p=
+ class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"> &nbsp=
+;</p><div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350=
 MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-=
-serif;">Which UHD version are you using?&nbsp;</span></p></div><div><p clas=
-s=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-=
-size:10.0pt;font-family:sans-serif;">What are the master clock rate and sam=
-pling rate?</span></p></div><div><p class=3D"ydp800c4677yiv9433216350MsoNor=
-mal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;=
-"> &nbsp;</span></p></div><div><p class=3D"ydp800c4677yiv9433216350MsoNorma=
+serif;">Hi Pedro,</span></p></div><div><p class=3D"ydpb84964e5yiv8226486287=
+ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:=
+10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div><div><p class=3D"yd=
+pb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-U=
+S" style=3D"font-size:10.0pt;font-family:sans-serif;">Interestingly, just f=
+ound Marcus answered a similar question a few years back:&nbsp;</span></p><=
+/div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNo=
+rmal"><a shape=3D"rect" href=3D"https://dsp.stackexchange.com/questions/305=
+62/large-spike-at-the-center-frequency-when-using-ettus-x310" rel=3D"nofoll=
+ow" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-f=
+amily:sans-serif;">https://dsp.stackexchange.com/questions/30562/large-spik=
+e-at-the-center-frequency-when-using-ettus-x310</span></a><span lang=3D"EN-=
+US" style=3D"font-size:10.0pt;font-family:sans-serif;"></span></p></div><di=
+v><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><s=
+pan lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbs=
+p;</span></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9=
+433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-fam=
+ily:sans-serif;">Your calibration range is pretty small. I normally calibra=
+te from 500M - 6G such that it can support multiple applications. It will t=
+ake some time, but calibrating 1G should be quick.</span></p></div><div><p =
+class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span l=
+ang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</s=
+pan></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943321=
+6350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:s=
+ans-serif;">USRP may not be able to generate LO exactly at 3.5GHz. In such =
+case, it will try to generate LO as close as possible.&nbsp;</span></p></di=
+v><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNorma=
 l"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">=
-If calibration doesn't have any effect on your received signal, the USRP de=
-vice may be faulty, or the analyzer is problematic.</span></p></div><div><p=
- class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"=
-font-size:10.0pt;font-family:sans-serif;">&nbsp;</span></p></div><div><p cl=
-ass=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"fon=
-t-size:10.0pt;font-family:sans-serif;">A few things you can try:</span></p>=
-</div><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-=
-US" style=3D"font-size:10.0pt;font-family:sans-serif;">1. send 0s and you m=
-ay see just a spike at the centre without signal;</span></p></div><div><p c=
-lass=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"fo=
-nt-size:10.0pt;font-family:sans-serif;">2. allocate your modulation symbols=
- to one side, lower or upper, of the OFDM resource grid, the signal spectru=
-m will go to one side and should not be impacted by the central spike;</spa=
-n></p></div><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=
-=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">3. Use USRP a=
-s receiver. Loop back Tx to Rx of the same USRP. Plot the spectrum of the r=
-eceived signal to see if there is central spike.&nbsp;</span></p></div><div=
-><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div><div>=
-<p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;">Kind regards,</span></p></div=
-><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" s=
-tyle=3D"font-size:10.0pt;font-family:sans-serif;">Hongwei</span></p></div><=
-div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" sty=
-le=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div><di=
-v><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div><div>=
-<p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div></div=
-><div id=3D"ydp800c4677yiv9433216350ydp37551550yahoo_quoted_8897038592"><di=
-v><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" =
-style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">On Saturda=
-y, 24 February 2024 at 00:59:34 GMT, Pedro Vieira (Gmail - Geral) &lt;</spa=
-n><a shape=3D"rect" href=3D"mailto:pav.vieira@gmail.com" rel=3D"nofollow" t=
-arget=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family=
-:sans-serif;">pav.vieira@gmail.com</span></a><span lang=3D"EN-US" style=3D"=
-font-size:10.0pt;font-family:sans-serif;color:#26282A;">&gt; wrote: </span>=
-</p></div><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><span lang=3D=
-"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"> &=
-nbsp;</span></p></div><div><p class=3D"ydp800c4677yiv9433216350MsoNormal"><=
-span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:=
-#26282A;"> &nbsp;</span></p></div><div><div id=3D"ydp800c4677yiv9433216350y=
-dp37551550yiv8148934235"><div><div><p class=3D"ydp800c4677yiv9433216350ydp3=
-7551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0=
-pt;font-family:sans-serif;color:#26282A;">Thank you for the quick response.=
-</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-seri=
-f;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv9433216350ydp3755155=
-0yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;fon=
-t-family:sans-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p><p c=
-lass=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span la=
-ng=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A=
-;">Based on the information received, it was possible to begin to understan=
-d what was happening:</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;=
-font-family:sans-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yi=
-v9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D=
-"font-size:10.0pt;font-family:sans-serif;color:#26282A;">1) Proceed with se=
-lf-calibration: </span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:sans-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv9433=
-216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font=
--size:10.0pt;font-family:sans-serif;color:#26282A;">uhd_cal_tx_dc_offset --=
-verbose --freq_start=3D3.45e+9 --freq_stop=3D3.55e+9 --freq_step=3D1e+6 --s=
-ubdev=3DA:0</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-famil=
-y:sans-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv943321635=
-0ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size=
-:10.0pt;font-family:sans-serif;color:#26282A;">uhd_cal_tx_dc_offset --verbo=
-se --freq_start=3D3.45e+9 --freq_stop=3D3.55e+9 --freq_step=3D1e+6 --subdev=
-=3DB:0 </span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
-ns-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv9433216350ydp=
-37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.=
-0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US=
-" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span><=
-/p><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><=
-span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:=
-#26282A;">Calibration files were generated: tx_dc_F5B3E5.cal and tx_dc_F59F=
-87.cal </span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
-ns-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv9433216350ydp=
-37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.=
-0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US=
-" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span><=
-/p><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><=
-span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:=
-#26282A;">2) In the uhd library I found the command uhd.types.TuneRequest. =
-And in the gnuradio library the command is the suggested example: uhd.tune_=
-request().</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family=
-:sans-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv9433216350=
-ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:=
-10.0pt;font-family:sans-serif;color:#26282A;">However, I didn't notice any =
-changes (see below)</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;fo=
-nt-family:sans-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv9=
-433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"f=
-ont-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span l=
-ang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282=
-A;"></span></p><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235=
-msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-=
-serif;color:#26282A;">Any ideas what I might be overlooking? Thank you in a=
-dvance.</span><span style=3D"font-size:10.0pt;font-family:sans-serif;color:=
-#26282A;"></span></p><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148=
-934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family=
-:sans-serif;color:#26282A;">&nbsp;</span><span style=3D"font-size:10.0pt;fo=
-nt-family:sans-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv9=
-433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"f=
-ont-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span s=
-tyle=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p>=
-<p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26=
-282A;">&nbsp;</span><span style=3D"font-size:10.0pt;font-family:sans-serif;=
-color:#26282A;"></span></p><p class=3D"ydp800c4677yiv9433216350ydp37551550y=
-iv8148934235msonormal"><span style=3D"font-size:10.0pt;font-family:sans-ser=
-if;color:#26282A;"><img id=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934=
-235Imagem_x0020_1" border=3D"0" style=3D"width: 774px; max-width: 774px;" s=
-rc=3D"cid:ScbfKc8YOhFwXOFQzGtW"></span><span style=3D"font-size:10.0pt;font=
--family:sans-serif;color:#26282A;"></span></p><p class=3D"ydp800c4677yiv943=
-3216350ydp37551550yiv8148934235msonormal"><span style=3D"font-size:10.0pt;f=
-ont-family:sans-serif;color:#26282A;">&nbsp;</span><span style=3D"font-size=
-:10.0pt;font-family:sans-serif;color:#26282A;"></span></p><p class=3D"ydp80=
-0c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span style=3D"font-s=
-ize:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span style=
-=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p><p c=
-lass=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span st=
-yle=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span=
-><span style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></s=
-pan></p><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonorm=
-al"><span style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">=
-&nbsp;</span><span style=3D"font-size:10.0pt;font-family:sans-serif;color:#=
-26282A;"></span></p><div id=3D"ydp800c4677yiv9433216350ydp37551550yiv814893=
-4235yqt04558"><div><div style=3D"border:none;border-top:solid #E1E1E1 1.0pt=
-;padding:3.0pt 0cm 0cm 0cm;"><p class=3D"ydp800c4677yiv9433216350ydp3755155=
-0yiv8148934235msonormal"><span style=3D"font-size:10.0pt;font-family:sans-s=
-erif;color:#26282A;">De: zhou &lt;</span><a shape=3D"rect" href=3D"mailto:h=
-wzhou@yahoo.com" rel=3D"nofollow" target=3D"_blank"><span style=3D"font-siz=
-e:10.0pt;font-family:sans-serif;">hwzhou@yahoo.com</span></a><span style=3D=
-"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&gt; <br clear=3D"=
-none"></span><b><span style=3D"font-size:10.0pt;font-family:sans-serif;colo=
-r:#26282A;">Enviada em:</span></b><span style=3D"font-size:10.0pt;font-fami=
-ly:sans-serif;color:#26282A;"> sexta-feira, 23 de fevereiro de 2024 17:45<b=
-r clear=3D"none"><b>Para:</b> </span><a shape=3D"rect" href=3D"mailto:usrp-=
-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank"><span style=3D"fo=
-nt-size:10.0pt;font-family:sans-serif;">usrp-users@lists.ettus.com</span></=
-a><span style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">; =
-Pedro Vieira &lt;</span><a shape=3D"rect" href=3D"mailto:pav.vieira@gmail.c=
-om" rel=3D"nofollow" target=3D"_blank"><span style=3D"font-size:10.0pt;font=
--family:sans-serif;">pav.vieira@gmail.com</span></a><span style=3D"font-siz=
-e:10.0pt;font-family:sans-serif;color:#26282A;">&gt;<br clear=3D"none"><b>A=
-ssunto:</b> Re: [USRP-users] OFDM signal transmission by x310 presents a pe=
-ak</span></p></div></div><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv=
-8148934235msonormal"><span style=3D"font-size:10.0pt;font-family:sans-serif=
-;color:#26282A;">&nbsp;</span></p><div><div><p class=3D"ydp800c4677yiv94332=
-16350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-=
-size:10.0pt;font-family:sans-serif;color:#26282A;">Hi Pedro,</span><span la=
-ng=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A=
-;"></span></p></div><div><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv=
-8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-fa=
-mily:sans-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=3D"=
-font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></div><d=
-iv><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><=
-span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:=
-#26282A;">It could be DC leakage. Try to run the calibration commands. For =
-X310, you need to loopback connect Tx and Rx antennas with 30dB attenuators=
-.</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-ser=
-if;color:#26282A;"></span></p></div><div><p class=3D"ydp800c4677yiv94332163=
-50ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-siz=
-e:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span lang=3D"=
-EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></s=
-pan></p></div><div><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv814893=
-4235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:s=
-ans-serif;color:#26282A;">Regards,</span><span lang=3D"EN-US" style=3D"font=
--size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></div><div><=
-p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span=
- lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#262=
-82A;">Hongwei</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-fam=
-ily:sans-serif;color:#26282A;"></span></p></div><div><p class=3D"ydp800c467=
-7yiv9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><s=
-pan lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#=
-26282A;"></span></p></div><div><p class=3D"ydp800c4677yiv9433216350ydp37551=
-550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;f=
-ont-family:sans-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" sty=
-le=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></=
-div><div><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonor=
+ &nbsp;</span></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c467=
+7yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;fon=
+t-family:sans-serif;">Which UHD version are you using?&nbsp;</span></p></di=
+v><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNorma=
+l"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">=
+What are the master clock rate and sampling rate?</span></p></div><div><p c=
+lass=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span la=
+ng=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</sp=
+an></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216=
+350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
+ns-serif;">If calibration doesn't have any effect on your received signal, =
+the USRP device may be faulty, or the analyzer is problematic.</span></p></=
+div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNor=
 mal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;=
-color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=3D"font-size:10.0pt=
-;font-family:sans-serif;color:#26282A;"></span></p></div></div><div id=3D"y=
-dp800c4677yiv9433216350ydp37551550yiv8148934235ydp78e768d5yahoo_quoted_9655=
-145202"><div><div><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934=
-235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
-ns-serif;color:#26282A;">On Friday, 23 February 2024 at 01:52:37 GMT, Pedro=
- Vieira &lt;</span><a shape=3D"rect" href=3D"mailto:pav.vieira@gmail.com" r=
+">&nbsp;</span></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c46=
+77yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;fo=
+nt-family:sans-serif;">A few things you can try:</span></p></div><div><p cl=
+ass=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lan=
+g=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">1. send 0s a=
+nd you may see just a spike at the centre without signal;</span></p></div><=
+div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal">=
+<span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">2. =
+allocate your modulation symbols to one side, lower or upper, of the OFDM r=
+esource grid, the signal spectrum will go to one side and should not be imp=
+acted by the central spike;</span></p></div><div><p class=3D"ydpb84964e5yiv=
+8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"=
+font-size:10.0pt;font-family:sans-serif;">3. Use USRP as receiver. Loop bac=
+k Tx to Rx of the same USRP. Plot the spectrum of the received signal to se=
+e if there is central spike.&nbsp;</span></p></div><div><p class=3D"ydpb849=
+64e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" st=
+yle=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div><d=
+iv><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><=
+span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">Kind=
+ regards,</span></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4=
+677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;f=
+ont-family:sans-serif;">Hongwei</span></p></div><div><p class=3D"ydpb84964e=
+5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=
+=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p></div><div>=
+<p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><spa=
+n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;=
+</span></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv943=
+3216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-famil=
+y:sans-serif;"> &nbsp;</span></p></div></div><div id=3D"ydpb84964e5yiv82264=
+86287ydp800c4677yiv9433216350ydp37551550yahoo_quoted_8897038592"><div><div>=
+<p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><spa=
+n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26=
+282A;">On Saturday, 24 February 2024 at 00:59:34 GMT, Pedro Vieira (Gmail -=
+ Geral) &lt;</span><a shape=3D"rect" href=3D"mailto:pav.vieira@gmail.com" r=
 el=3D"nofollow" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:1=
 0.0pt;font-family:sans-serif;">pav.vieira@gmail.com</span></a><span lang=3D=
 "EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&g=
-t; wrote: </span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family=
-:sans-serif;color:#26282A;"></span></p></div><div><p class=3D"ydp800c4677yi=
+t; wrote: </span></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp800c=
+4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;=
+font-family:sans-serif;color:#26282A;"> &nbsp;</span></p></div><div><p clas=
+s=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350MsoNormal"><span lang=
+=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"=
+> &nbsp;</span></p></div><div><div id=3D"ydpb84964e5yiv8226486287ydp800c467=
+7yiv9433216350ydp37551550yiv8148934235"><div><div><p class=3D"ydpb84964e5yi=
+v8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span=
+ lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#262=
+82A;">Thank you for the quick response.</span><span lang=3D"EN-US" style=3D=
+"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p><p clas=
+s=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv81489342=
+35msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:san=
+s-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=3D"font-siz=
+e:10.0pt;font-family:sans-serif;color:#26282A;"></span></p><p class=3D"ydpb=
+84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonorm=
+al"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;c=
+olor:#26282A;">Based on the information received, it was possible to begin =
+to understand what was happening:</span><span lang=3D"EN-US" style=3D"font-=
+size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p><p class=3D"y=
+dpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235mson=
+ormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-seri=
+f;color:#26282A;">1) Proceed with self-calibration: </span><span lang=3D"EN=
+-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></spa=
+n></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp375515=
+50yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;fo=
+nt-family:sans-serif;color:#26282A;">uhd_cal_tx_dc_offset --verbose --freq_=
+start=3D3.45e+9 --freq_stop=3D3.55e+9 --freq_step=3D1e+6 --subdev=3DA:0</sp=
+an><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;co=
+lor:#26282A;"></span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv=
+9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"=
+font-size:10.0pt;font-family:sans-serif;color:#26282A;">uhd_cal_tx_dc_offse=
+t --verbose --freq_start=3D3.45e+9 --freq_stop=3D3.55e+9 --freq_step=3D1e+6=
+ --subdev=3DB:0 </span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:sans-serif;color:#26282A;"></span></p><p class=3D"ydpb84964e5yiv8226=
+486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span lang=
+=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"=
+>&nbsp;</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
+ns-serif;color:#26282A;"></span></p><p class=3D"ydpb84964e5yiv8226486287ydp=
+800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US=
+" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">Calibrat=
+ion files were generated: tx_dc_F5B3E5.cal and tx_dc_F59F87.cal </span><spa=
+n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26=
+282A;"></span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216=
+350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-si=
+ze:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span lang=3D=
+"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></=
+span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp375=
+51550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt=
+;font-family:sans-serif;color:#26282A;">2) In the uhd library I found the c=
+ommand uhd.types.TuneRequest. And in the gnuradio library the command is th=
+e suggested example: uhd.tune_request().</span><span lang=3D"EN-US" style=
+=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p><p c=
+lass=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv81489=
+34235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:=
+sans-serif;color:#26282A;">However, I didn't notice any changes (see below)=
+</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-seri=
+f;color:#26282A;"></span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c467=
+7yiv9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=
+=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><s=
+pan lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#=
+26282A;"></span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv94332=
+16350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-=
+size:10.0pt;font-family:sans-serif;color:#26282A;">Any ideas what I might b=
+e overlooking? Thank you in advance.</span><span style=3D"font-size:10.0pt;=
+font-family:sans-serif;color:#26282A;"></span></p><p class=3D"ydpb84964e5yi=
+v8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span=
+ lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#262=
+82A;">&nbsp;</span><span style=3D"font-size:10.0pt;font-family:sans-serif;c=
+olor:#26282A;"></span></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yi=
 v9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D=
 "font-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span=
- lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#262=
-82A;"></span></p></div><div><p class=3D"ydp800c4677yiv9433216350ydp37551550=
-yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font=
--family:sans-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></di=
-v><div><div id=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235ydp78e768=
-d5yiv5836597356"><div><p class=3D"ydp800c4677yiv9433216350ydp37551550yiv814=
-8934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-famil=
-y:sans-serif;color:#26282A;">An ofdm signal, which is generated in python, =
-presents a peak in the central part of the spectrum.&nbsp; What could it be=
-?</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-ser=
-if;color:#26282A;"></span></p><div><p class=3D"ydp800c4677yiv9433216350ydp3=
-7551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0=
-pt;font-family:sans-serif;color:#26282A;">This same behavior appears on USR=
-P X310 and HackRFOne.</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;=
-font-family:sans-serif;color:#26282A;"></span></p></div></div></div><p clas=
-s=3D"ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span lang=
-=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"=
->_______________________________________________<br clear=3D"none">USRP-use=
-rs mailing list -- </span><a shape=3D"rect" href=3D"mailto:usrp-users@lists=
-.ettus.com" rel=3D"nofollow" target=3D"_blank"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;">usrp-users@lists.ettus.com</s=
-pan></a><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-ser=
-if;color:#26282A;"><br clear=3D"none">To unsubscribe send an email to </spa=
-n><a shape=3D"rect" href=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D=
-"nofollow" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:10.0pt=
-;font-family:sans-serif;">usrp-users-leave@lists.ettus.com</span></a><span =
-lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#2628=
-2A;"></span></p></div></div></div></div></div></div></div><div id=3D"ydp800=
-c4677yiv9433216350ydp37551550yqt95402"><p class=3D"ydp800c4677yiv9433216350=
-MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-=
-serif;color:#26282A;">_______________________________________________<br cl=
-ear=3D"none">USRP-users mailing list -- </span><a shape=3D"rect" href=3D"ma=
-ilto:usrp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank"><span l=
-ang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">usrp-users=
-@lists.ettus.com</span></a><span lang=3D"EN-US" style=3D"font-size:10.0pt;f=
-ont-family:sans-serif;color:#26282A;"><br clear=3D"none">To unsubscribe sen=
-d an email to </span><a shape=3D"rect" href=3D"mailto:usrp-users-leave@list=
-s.ettus.com" rel=3D"nofollow" target=3D"_blank"><span lang=3D"EN-US" style=
-=3D"font-size:10.0pt;font-family:sans-serif;">usrp-users-leave@lists.ettus.=
-com</span></a><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
-ns-serif;color:#26282A;"></span></p></div></div></div></div></div></div></d=
-iv></div><div class=3D"ydp800c4677yqt3718617676" id=3D"ydp800c4677yqtfd8373=
-9">_______________________________________________<br clear=3D"none">USRP-u=
-sers mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists.ettu=
-s.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com</a><br=
- clear=3D"none">To unsubscribe send an email to <a shape=3D"rect" href=3D"m=
-ailto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">=
-usrp-users-leave@lists.ettus.com</a><br clear=3D"none"></div></div>
+ style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></=
+p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yi=
+v8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-f=
+amily:sans-serif;color:#26282A;">&nbsp;</span><span style=3D"font-size:10.0=
+pt;font-family:sans-serif;color:#26282A;"></span></p><p class=3D"ydpb84964e=
+5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><s=
+pan style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"><img i=
+d=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv81489342=
+35Imagem_x0020_1" border=3D"0" style=3D"width:774px;max-width:774px;" src=
+=3D"cid:fLvqA0ghk008f7Mz0ERv"></span><span style=3D"font-size:10.0pt;font-f=
+amily:sans-serif;color:#26282A;"></span></p><p class=3D"ydpb84964e5yiv82264=
+86287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span style=
+=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><s=
+pan style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span=
+></p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp3755155=
+0yiv8148934235msonormal"><span style=3D"font-size:10.0pt;font-family:sans-s=
+erif;color:#26282A;">&nbsp;</span><span style=3D"font-size:10.0pt;font-fami=
+ly:sans-serif;color:#26282A;"></span></p><p class=3D"ydpb84964e5yiv82264862=
+87ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span style=3D=
+"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</span><span=
+ style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></=
+p><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yi=
+v8148934235msonormal"><span style=3D"font-size:10.0pt;font-family:sans-seri=
+f;color:#26282A;">&nbsp;</span><span style=3D"font-size:10.0pt;font-family:=
+sans-serif;color:#26282A;"></span></p><div id=3D"ydpb84964e5yiv8226486287yd=
+p800c4677yiv9433216350ydp37551550yiv8148934235yqt04558"><div><div style=3D"=
+border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm 0cm 0cm;"><p c=
+lass=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv81489=
+34235msonormal"><span style=3D"font-size:10.0pt;font-family:sans-serif;colo=
+r:#26282A;">De: zhou &lt;</span><a shape=3D"rect" href=3D"mailto:hwzhou@yah=
+oo.com" rel=3D"nofollow" target=3D"_blank"><span style=3D"font-size:10.0pt;=
+font-family:sans-serif;">hwzhou@yahoo.com</span></a><span style=3D"font-siz=
+e:10.0pt;font-family:sans-serif;color:#26282A;">&gt; <br clear=3D"none"></s=
+pan><b><span style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A=
+;">Enviada em:</span></b><span style=3D"font-size:10.0pt;font-family:sans-s=
+erif;color:#26282A;"> sexta-feira, 23 de fevereiro de 2024 17:45<br clear=
+=3D"none"><b>Para:</b> </span><a shape=3D"rect" href=3D"mailto:usrp-users@l=
+ists.ettus.com" rel=3D"nofollow" target=3D"_blank"><span style=3D"font-size=
+:10.0pt;font-family:sans-serif;">usrp-users@lists.ettus.com</span></a><span=
+ style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">; Pedro V=
+ieira &lt;</span><a shape=3D"rect" href=3D"mailto:pav.vieira@gmail.com" rel=
+=3D"nofollow" target=3D"_blank"><span style=3D"font-size:10.0pt;font-family=
+:sans-serif;">pav.vieira@gmail.com</span></a><span style=3D"font-size:10.0p=
+t;font-family:sans-serif;color:#26282A;">&gt;<br clear=3D"none"><b>Assunto:=
+</b> Re: [USRP-users] OFDM signal transmission by x310 presents a peak</spa=
+n></p></div></div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216=
+350ydp37551550yiv8148934235msonormal"><span style=3D"font-size:10.0pt;font-=
+family:sans-serif;color:#26282A;">&nbsp;</span></p><div><div><p class=3D"yd=
+pb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msono=
+rmal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif=
+;color:#26282A;">Hi Pedro,</span><span lang=3D"EN-US" style=3D"font-size:10=
+.0pt;font-family:sans-serif;color:#26282A;"></span></p></div><div><p class=
+=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv814893423=
+5msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans=
+-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=3D"font-size=
+:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></div><div><p cla=
+ss=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934=
+235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
+ns-serif;color:#26282A;">It could be DC leakage. Try to run the calibration=
+ commands. For X310, you need to loopback connect Tx and Rx antennas with 3=
+0dB attenuators.</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:sans-serif;color:#26282A;"></span></p></div><div><p class=3D"ydpb849=
+64e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"=
+><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;colo=
+r:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;fon=
+t-family:sans-serif;color:#26282A;"></span></p></div><div><p class=3D"ydpb8=
+4964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonorma=
+l"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;co=
+lor:#26282A;">Regards,</span><span lang=3D"EN-US" style=3D"font-size:10.0pt=
+;font-family:sans-serif;color:#26282A;"></span></p></div><div><p class=3D"y=
+dpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235mson=
+ormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-seri=
+f;color:#26282A;">Hongwei</span><span lang=3D"EN-US" style=3D"font-size:10.=
+0pt;font-family:sans-serif;color:#26282A;"></span></p></div><div><p class=
+=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv814893423=
+5msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans=
+-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=3D"font-size=
+:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></div><div><p cla=
+ss=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934=
+235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
+ns-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=3D"font-si=
+ze:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></div><div><p c=
+lass=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv81489=
+34235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:=
+sans-serif;color:#26282A;">&nbsp;</span><span lang=3D"EN-US" style=3D"font-=
+size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></div></div><=
+div id=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv814=
+8934235ydp78e768d5yahoo_quoted_9655145202"><div><div><p class=3D"ydpb84964e=
+5yiv8226486287ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><s=
+pan lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#=
+26282A;">On Friday, 23 February 2024 at 01:52:37 GMT, Pedro Vieira &lt;</sp=
+an><a shape=3D"rect" href=3D"mailto:pav.vieira@gmail.com" rel=3D"nofollow" =
+target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-famil=
+y:sans-serif;">pav.vieira@gmail.com</span></a><span lang=3D"EN-US" style=3D=
+"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&gt; wrote: </span=
+><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;colo=
+r:#26282A;"></span></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp80=
+0c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" =
+style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</sp=
+an><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;co=
+lor:#26282A;"></span></p></div><div><p class=3D"ydpb84964e5yiv8226486287ydp=
+800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US=
+" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">&nbsp;</=
+span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;=
+color:#26282A;"></span></p></div><div><div id=3D"ydpb84964e5yiv8226486287yd=
+p800c4677yiv9433216350ydp37551550yiv8148934235ydp78e768d5yiv5836597356"><di=
+v><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433216350ydp37551550yi=
+v8148934235msonormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-f=
+amily:sans-serif;color:#26282A;">An ofdm signal, which is generated in pyth=
+on, presents a peak in the central part of the spectrum.&nbsp; What could i=
+t be?</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans=
+-serif;color:#26282A;"></span></p><div><p class=3D"ydpb84964e5yiv8226486287=
+ydp800c4677yiv9433216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN=
+-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;">This =
+same behavior appears on USRP X310 and HackRFOne.</span><span lang=3D"EN-US=
+" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span><=
+/p></div></div></div><p class=3D"ydpb84964e5yiv8226486287ydp800c4677yiv9433=
+216350ydp37551550yiv8148934235msonormal"><span lang=3D"EN-US" style=3D"font=
+-size:10.0pt;font-family:sans-serif;color:#26282A;">_______________________=
+________________________<br clear=3D"none">USRP-users mailing list -- </spa=
+n><a shape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"nofol=
+low" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:sans-serif;">usrp-users@lists.ettus.com</span></a><span lang=3D"EN-U=
+S" style=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"><br cle=
+ar=3D"none">To unsubscribe send an email to </span><a shape=3D"rect" href=
+=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_bl=
+ank"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;=
+">usrp-users-leave@lists.ettus.com</span></a><span lang=3D"EN-US" style=3D"=
+font-size:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></div></=
+div></div></div></div></div></div><div id=3D"ydpb84964e5yiv8226486287ydp800=
+c4677yiv9433216350ydp37551550yqt95402"><p class=3D"ydpb84964e5yiv8226486287=
+ydp800c4677yiv9433216350MsoNormal"><span lang=3D"EN-US" style=3D"font-size:=
+10.0pt;font-family:sans-serif;color:#26282A;">_____________________________=
+__________________<br clear=3D"none">USRP-users mailing list -- </span><a s=
+hape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"nofollow" t=
+arget=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family=
+:sans-serif;">usrp-users@lists.ettus.com</span></a><span lang=3D"EN-US" sty=
+le=3D"font-size:10.0pt;font-family:sans-serif;color:#26282A;"><br clear=3D"=
+none">To unsubscribe send an email to </span><a shape=3D"rect" href=3D"mail=
+to:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank"><sp=
+an lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">usrp-u=
+sers-leave@lists.ettus.com</span></a><span lang=3D"EN-US" style=3D"font-siz=
+e:10.0pt;font-family:sans-serif;color:#26282A;"></span></p></div></div></di=
+v></div></div></div></div></div><div id=3D"ydpb84964e5yiv8226486287ydp800c4=
+677yqtfd83739" class=3D"ydpb84964e5yiv8226486287ydp800c4677yqt3718617676">_=
+______________________________________________<br clear=3D"none">USRP-users=
+ mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.co=
+m" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com</a><br cle=
+ar=3D"none">To unsubscribe send an email to <a shape=3D"rect" href=3D"mailt=
+o:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp=
+-users-leave@lists.ettus.com</a><br clear=3D"none"></div></div>
+            </div></div><div id=3D"ydpb84964e5yiv8226486287yqtfd88367" clas=
+s=3D"ydpb84964e5yiv8226486287yqt1759316513">
+        </div></div></div></div><div class=3D"ydpb84964e5yqt1759316513" id=
+=3D"ydpb84964e5yqtfd26352">_______________________________________________<=
+br clear=3D"none">USRP-users mailing list -- <a shape=3D"rect" href=3D"mail=
+to:usrp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-user=
+s@lists.ettus.com</a><br clear=3D"none">To unsubscribe send an email to <a =
+shape=3D"rect" href=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofo=
+llow" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br clear=3D"no=
+ne"></div></div>
             </div>
         </div></body></html>
-------=_Part_1292815_1958201298.1709201438232--
+------=_Part_1313038_394967990.1709209369876--
 
-------=_Part_1292816_885265566.1709201438316
+------=_Part_1313039_292702313.1709209370725
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="1709208735070blob.jpg"
+Content-ID: <557789f7-fe0a-5aed-4d2f-2df5a4c46975@yahoo.com>
+
+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
+gEAGgf8AE8n4NaDLehMAAAAASUVORK5CYII=
+
+------=_Part_1313039_292702313.1709209370725
 Content-Type: image/jpeg
 Content-Transfer-Encoding: base64
 Content-Disposition: inline; filename="image001.jpg"
-Content-ID: <ScbfKc8YOhFwXOFQzGtW>
+Content-ID: <fLvqA0ghk008f7Mz0ERv>
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIf
 IiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7
@@ -1583,7 +2248,7 @@ zGrunOx3ZY0UUpBHcvbjnrS5oorI1HryfwNEYBIz60UUDHFF9P1pQikcj9aKKBDhEmOn604RJg/L
 J/rDRRXNV+I6KXwjKQ0UViajW6VUvvuxckfP2+lFFMRC8agScdIt34561UZm88DJwSV69s0UUAED
 Nw2452+tFFFMR//Z
 
-------=_Part_1292816_885265566.1709201438316
+------=_Part_1313039_292702313.1709209370725
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1593,4 +2258,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
-------=_Part_1292816_885265566.1709201438316--
+------=_Part_1313039_292702313.1709209370725--
