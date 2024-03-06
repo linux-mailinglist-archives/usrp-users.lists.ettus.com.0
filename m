@@ -2,180 +2,442 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0644F8737DA
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Mar 2024 14:38:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACC4D874004
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Mar 2024 19:57:10 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7652C385306
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Mar 2024 08:38:19 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 5D654384ECE
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Mar 2024 13:57:09 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1709732299; bh=0Qb4b7h5GyzebIS/1uwAsWw9Mqk10g5KFIxqJF/jTkI=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=GiN/YNRktKa5LJU8S0hGuKL2kjjHmS/WxhNR3oHPDpqVgBeACBZlmmimedUyao8Ll
-	 Wb/iePPWQZ4G0CIEhcL/ClCDSRfYiqDr1+K+RD6UV1T0lTgTuOhT5cdPrlIq+Tk2VE
-	 o1E31OZ8kmRJNTkBinXAvkQ06pB/t+Nigk0OscFewK/16xNBfWIrrZ1qS3QyaepwJe
-	 E66SF+7a6OVdkc6guyTjEcK2AwB9IonDe9aDdgV86eCYFgM04Wexj3Ku/Ob6PCd/tt
-	 LqH4O7Pta9WpgKVbhef0gQv/k9iEr70fmRgY1IX/MVJEMmNfAwPIuyPnQwOtk2Tczj
-	 FbXIoRHUGvGVw==
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 36F9D385108
-	for <usrp-users@lists.ettus.com>; Wed,  6 Mar 2024 08:37:40 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="d5+fNTk1";
-	dkim-atps=neutral
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a456ab934eeso121063866b.0
-        for <usrp-users@lists.ettus.com>; Wed, 06 Mar 2024 05:37:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1709732259; x=1710337059; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gubHEZ0doDoG4dv5QyMCTBal8+eJOWGiABqa5ZBZAfg=;
-        b=d5+fNTk1aBbZebRqY3WrxByngjK8Nq7DCf0Jwcy8sEzvkj/doft0oLLwyHBD2GWy6L
-         lxmXapYRX+BL3FbUPY03reJNNjAdRRswqQz7gs1HiqeEMDN7TcsRLKup2F/uPNkm3oSk
-         U027MWLF8P4K+5tgSLo2guS9oc/1P6pZQehI3UBFIC9TVhjrHLeKRTFCm5ezYonTfIks
-         9hMr0/BLhxPMx0Yhw2JJGk0F25UFtF+64x9oyTYjlfCp87c9ytzp+lpEthfZQeK7Bh5r
-         dgYgQtsp04Qg7sjUpUDNOzbv+WaHdhsqyr+q9yk1gL3VPUrLO+fYOfYnn7x0JKGpzsSW
-         Hz6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709732259; x=1710337059;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gubHEZ0doDoG4dv5QyMCTBal8+eJOWGiABqa5ZBZAfg=;
-        b=gs6Ry3kHNjPsiOW4vErsoQ3MZlDTlZL35CY23wQPtqGnhM4glK0QLo//v+jada6Ux+
-         vBqPc5YUWIsFrmwF3EGSd+C9iOPN7/GdUwDk2nXmZ6y3gYBOi/3j/xvpi82S3ZP4hIrd
-         hKrDw1UGUEaBTsbSEJt2EMHTTdgGzZVpuiLiKEAEhKPO9JjeT/61ATxr5u7o4qo3ZYbO
-         pR3R+L17+1bQDH/TPx4nwHp2YqvUAOy3Ksbnbpfa4Dv0XqMIWGQZVQwQTVsI4bbEUF2J
-         ZXGfWnAciJR6ClacaVBzLX8Mv5RsyzBVvSBOPznGJSw73/3ZhALmME9996LNZQOmCM8P
-         XRmA==
-X-Gm-Message-State: AOJu0YzKaAUmqiN+5vlPO8yJqOdn2bmQ+uTOfPRGpzdamXATR9og1pi6
-	QjIGp32zd7ka0+EGvkCLfpbGCL5QEOzadQ0YrvpV2W2b9KhJbztGNsJNcdSgYp210oakD9de1pp
-	CwmLXQSszrl6XPjIObqGl/uKBfZo4p/5QhTj9wSMM
-X-Google-Smtp-Source: AGHT+IF4tTfPwjFe9qE5jZokVlz2vNkxSjzBpmr0T5/IZ/6fVnPc+6hxq3TtD7qrkV1SsdtnrZ8PmQuMg1hyQA/IlH0=
-X-Received: by 2002:a17:906:4895:b0:a45:a736:eaf4 with SMTP id
- v21-20020a170906489500b00a45a736eaf4mr2946151ejq.72.1709732259092; Wed, 06
- Mar 2024 05:37:39 -0800 (PST)
+	t=1709751429; bh=wqgS/+s9eaGRaP+vMM5KVTf+JeFxNVbbXn+CYVgCOJk=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=vEEIKrMuNeA6r0sDBC4CIgf6E7X7O6ayrZZSV0h0zXNFKNeQBmv/EMfGNGR+UAP06
+	 OZBVtEBpnsiB40oVc3gioJ2iSOrUheBbm+khAjfaBoOYlIidCfYIODhZd0hLnQbMDi
+	 NbJD/icy4xqt7FEXdhaqvNiYhB3S0bQLdZPwLUP8voLkSKvChN1gl0zxHvNvOPXG1L
+	 7UEROQJMkRAhgzcul+n4hhOBye+BMi4hSTsmdU4BYig3Klyx4h+iN0enSHvDK8P57A
+	 n9NAnq6zgabgVjC7mdazdi0vgnjapVpyiG/EKuc2/Bo5Rvu800STtxcSfueGhn9fwu
+	 pM6tYtMVrnZ6g==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id DD74F385458
+	for <usrp-users@lists.ettus.com>; Wed,  6 Mar 2024 13:56:27 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1709751387; bh=3+iEowIdA5+2v4yUKf55pTHmonV3jg6QnF81lucg0aA=;
+	h=Date:To:From:Subject:From;
+	b=A0qw2zwAZf4qUcAud0MPmxY5p86d6dw4YEs1EQ1wmTqQ3BUt+wXFc1yIzbqR3UIhl
+	 SQAQ6S/iV7IBY5f/TwB4Mb/lNpooAnYzJfc8/+9kOTVKxzNSV5U93FNLoVnsSIF6OU
+	 nKL0OtAfe+KLXDHZLqfUCQ37puEWrYUdWDmfPenKMw6l5meufc5vxUeag3ZXxuao+Q
+	 RkDe+kT2BK/8w+pIkBlyrYRihxdcVPxgNYZUkzoFROFFj0iGfdM/S/ib/0MXG74fXw
+	 3c6x2kjjIzphEwwMe3CcQjEVDqU5e38AMaZRexEoHZ9qAkMQVbRTvHPDJcMN5OVH/O
+	 18g0O3zjySq4A==
+Date: Wed, 6 Mar 2024 18:56:27 +0000
+To: usrp-users@lists.ettus.com
+From: yguruprasad@umass.edu
+Message-ID: <0QjLtfoB7vJ1n5o4oNhIYFuuPo7Zph9js0YW14Gw@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <CAKHaR3nZa=rZZqQZyw+KYkZukKzN=5BjNkh8=6OQ81-i43yXsw@mail.gmail.com>
-In-Reply-To: <CAKHaR3nZa=rZZqQZyw+KYkZukKzN=5BjNkh8=6OQ81-i43yXsw@mail.gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Wed, 6 Mar 2024 07:37:23 -0600
-Message-ID: <CAFche=hUs2WbQ9tc++UXFbS99kdPYOfXRxQ7BNvYR6Q=dKtHSA@mail.gmail.com>
-To: Dario Pennisi <dario@iptronix.com>
-Message-ID-Hash: 3AFTCKH5FZTLQHJR5VKQK4XYD4GUM5QJ
-X-Message-ID-Hash: 3AFTCKH5FZTLQHJR5VKQK4XYD4GUM5QJ
-X-MailFrom: wade.fife@ettus.com
+Message-ID-Hash: 3WFKX622XEU5QMESXAOLZPFFNBBVPTS4
+X-Message-ID-Hash: 3WFKX622XEU5QMESXAOLZPFFNBBVPTS4
+X-MailFrom: yguruprasad@umass.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: question about X410 _d images and CHDR width
+Subject: [USRP-users] X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3AFTCKH5FZTLQHJR5VKQK4XYD4GUM5QJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3WFKX622XEU5QMESXAOLZPFFNBBVPTS4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5149160917685970335=="
+Content-Type: multipart/mixed; boundary="===============1457797616026065264=="
 
---===============5149160917685970335==
-Content-Type: multipart/alternative; boundary="000000000000f6f8080612fe0f21"
+This is a multi-part message in MIME format.
 
---000000000000f6f8080612fe0f21
-Content-Type: text/plain; charset="UTF-8"
+--===============1457797616026065264==
+Content-Type: multipart/alternative;
+ boundary="b1_0QjLtfoB7vJ1n5o4oNhIYFuuPo7Zph9js0YW14Gw"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_0QjLtfoB7vJ1n5o4oNhIYFuuPo7Zph9js0YW14Gw
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hi Dario,
+Could some help me if this is working as expected?
 
-The _d version is optimized for use with DRAM and the non-_d version is
-optimized for streaming to a connected host computer over 100 GbE. On the
-non-DRAM versions, the wider CHDR width gets applied to the stream
-endpoints, which connect to the host computer via 100 GbE. In testing we've
-found that PCs have a really hard time keeping up at high rates, so that
-width is necessary to minimize any slowdown through the 100 GbE link.
-Effectively, the 512-bit is sized to handle 100 GbE, not the RF BW.
+\
+./bin/txrx_loopback_to_file --tx-args addr=3D192.168.10.2 --rx-args addr=3D=
+192.168.10.2 --tx-rate 100e6 --rx-rate 6.5e6 --tx-freq 20e6 --rx-freq 18e6
 
-Regarding the MTU, the first thought that comes to mind is that the MTU
-size also includes the packet headers. So if your payload is MTU size, you
-may not have left enough room for the packet headers.
+Creating the transmit usrp device with: addr=3D192.168.10.2...
 
-Wade
+\[INFO\] \[UHD\] linux; GNU C++ version 8.5.0 20210514 (Red Hat 8.5.0-20); =
+Boost_106600; UHD_4.2.0.1-0-g321295fb
 
-On Mon, Mar 4, 2024 at 10:25=E2=80=AFAM Dario Pennisi <dario@iptronix.com> =
-wrote:
+\[INFO\] \[X300\] X300 initialization sequence...
 
-> Hi,
-> i'm working on an X410 image that needs to run at 400 MHz (500 MSPS). i
-> see there are two templates one called X410_400 and one called X410_400_d=
-.
-> the first one has CHDR_W set to 512 which seems quite oversized while
-> X410_400_d has CHRD_W set to 128
-> if i'm not wrong bus clock in both cases is set to run at over 200 MHz so
-> sending 4 samples per clock should be more than enough so why does the on=
-e
-> with 512 bits exist?
->
-> as a secondary note i'm having some trouble with my block which is a
-> signal generator that connects through static routes to radios. in this
-> case if i set packet length equal to MTU radios won't output anything
-> whereas if i set them to output MTU/2 it seems to work.. any hint?
->
-> thanks,
-> Dario Pennisi
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+\[INFO\] \[X300\] Maximum frame size: 1472 bytes.
 
---000000000000f6f8080612fe0f21
-Content-Type: text/html; charset="UTF-8"
+\[INFO\] \[GPS\] Found an internal GPSDO: LC_XO, Firmware Rev 1.101
+
+\[INFO\] \[X300\] Radio 1x clock: 200 MHz
+
+\[INFO\] \[0/KeepOneInN#0\] Setting default MTU forward policy.
+
+Creating the receive usrp device with: addr=3D192.168.10.2...
+
+Using TX Device: Single USRP:
+
+  Device: X-Series Device
+
+  Mboard 0: X310
+
+  RX Channel: 0
+
+    RX DSP: 0
+
+    RX Dboard: A
+
+    RX Subdev: BasicRX (0)
+
+  RX Channel: 1
+
+    RX DSP: 1
+
+    RX Dboard: A
+
+    RX Subdev: BasicRX (1)
+
+  RX Channel: 2
+
+    RX DSP: 2
+
+    RX Dboard: B
+
+    RX Subdev: Unknown (0xffff) - 0
+
+  TX Channel: 0
+
+    TX DSP: 0
+
+    TX Dboard: A
+
+    TX Subdev: BasicTX (0)
+
+  TX Channel: 1
+
+    TX DSP: 1
+
+    TX Dboard: B
+
+    TX Subdev: Unknown (0xffff) - 0
+
+Using RX Device: Single USRP:
+
+  Device: X-Series Device
+
+  Mboard 0: X310
+
+  RX Channel: 0
+
+    RX DSP: 0
+
+    RX Dboard: A
+
+    RX Subdev: BasicRX (0)
+
+  RX Channel: 1
+
+    RX DSP: 1
+
+    RX Dboard: A
+
+    RX Subdev: BasicRX (1)
+
+  RX Channel: 2
+
+    RX DSP: 2
+
+    RX Dboard: B
+
+    RX Subdev: Unknown (0xffff) - 0
+
+  TX Channel: 0
+
+    TX DSP: 0
+
+    TX Dboard: A
+
+    TX Subdev: BasicTX (0)
+
+  TX Channel: 1
+
+    TX DSP: 1
+
+    TX Dboard: B
+
+    TX Subdev: Unknown (0xffff) - 0
+
+Setting TX Rate: 100.000000 Msps...
+
+Actual TX Rate: 100.000000 Msps...
+
+Setting RX Rate: 6.500000 Msps...
+
+\[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user should ex=
+pect passband CIC rolloff.
+
+Select an even decimation to ensure that a halfband filter is enabled.
+
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8 =
+will enable 3 halfbands.
+
+decimation =3D dsp_rate/samp_rate -> 31
+
+\[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user should ex=
+pect passband CIC rolloff.
+
+Select an even decimation to ensure that a halfband filter is enabled.
+
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8 =
+will enable 3 halfbands.
+
+decimation =3D dsp_rate/samp_rate -> 31
+
+\[WARNING\] \[MULTI_USRP\] Could not set RX rate to 6.500 MHz. Actual rate =
+is 6.452 MHz
+
+\[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user should ex=
+pect passband CIC rolloff.
+
+Select an even decimation to ensure that a halfband filter is enabled.
+
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8 =
+will enable 3 halfbands.
+
+decimation =3D dsp_rate/samp_rate -> 31
+
+\[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user should ex=
+pect passband CIC rolloff.
+
+Select an even decimation to ensure that a halfband filter is enabled.
+
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8 =
+will enable 3 halfbands.
+
+decimation =3D dsp_rate/samp_rate -> 31
+
+\[WARNING\] \[MULTI_USRP\] Could not set RX rate to 6.500 MHz. Actual rate =
+is 6.452 MHz
+
+\[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user should ex=
+pect passband CIC rolloff.
+
+Select an even decimation to ensure that a halfband filter is enabled.
+
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8 =
+will enable 3 halfbands.
+
+decimation =3D dsp_rate/samp_rate -> 31
+
+\[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user should ex=
+pect passband CIC rolloff.
+
+Select an even decimation to ensure that a halfband filter is enabled.
+
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8 =
+will enable 3 halfbands.
+
+decimation =3D dsp_rate/samp_rate -> 31
+
+\[WARNING\] \[MULTI_USRP\] Could not set RX rate to 6.500 MHz. Actual rate =
+is 6.452 MHz
+
+Actual RX Rate: 6.451613 Msps...
+
+Setting TX Freq: 20.000000 MHz...
+
+Actual TX Freq: 20.000005 MHz...
+
+Setting RX Freq: 18.000000 MHz...
+
+Actual RX Freq: 17.999995 MHz...
+
+\[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
+
+Press Ctrl + C to stop streaming...
+
+Setting device timestamp to 0...
+
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUU^CUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+
+Done!
+--b1_0QjLtfoB7vJ1n5o4oNhIYFuuPo7Zph9js0YW14Gw
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Dario,</div><div><br></div><div>The _d version is =
-optimized for use with DRAM and the non-_d version is optimized for streami=
-ng to a connected host computer over 100 GbE. On the non-DRAM versions, the=
- wider CHDR width gets applied to the stream endpoints, which connect to th=
-e host computer via 100 GbE. In testing we&#39;ve found that PCs have a rea=
-lly hard time keeping up at high rates, so that width is necessary to minim=
-ize any slowdown through the 100 GbE link. Effectively, the 512-bit is size=
-d to handle 100 GbE, not the RF BW.</div><div><br></div><div>Regarding the =
-MTU, the first thought that comes to mind is that the MTU size also include=
-s the packet headers. So if your payload is MTU size, you may not have left=
- enough room for the packet headers.=C2=A0 <br></div><div><br></div><div>Wa=
-de<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
-gmail_attr">On Mon, Mar 4, 2024 at 10:25=E2=80=AFAM Dario Pennisi &lt;<a hr=
-ef=3D"mailto:dario@iptronix.com">dario@iptronix.com</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<div=
->i&#39;m working on an X410 image that needs to run at 400 MHz (500 MSPS). =
-i see there are two templates one called X410_400 and one called X410_400_d=
-. the first one has CHDR_W set to 512 which seems quite oversized while X41=
-0_400_d has CHRD_W set to 128</div><div>if i&#39;m not wrong bus clock in b=
-oth cases is set to run at over 200 MHz so sending 4 samples per clock shou=
-ld be more than enough so why does the one with 512 bits exist?</div><div><=
-br></div><div>as a secondary note i&#39;m having some trouble with my block=
- which is a signal generator that connects=C2=A0through static routes to ra=
-dios. in this case if i set packet length equal to MTU radios won&#39;t out=
-put anything whereas if i set them to output MTU/2 it seems to work.. any h=
-int?</div><div><br></div><div>thanks,</div><div><div><div dir=3D"ltr" class=
-=3D"gmail_signature"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-=
-family:Calibri,sans-serif;font-size:13.3333px">Dario Pennisi</span><br styl=
-e=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.3333px"><=
-br></div></div></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<p>Could some help me if this is working as expected?</p><p><br>./bin/txrx_=
+loopback_to_file --tx-args addr=3D192.168.10.2 --rx-args addr=3D192.168.10.=
+2 --tx-rate 100e6 --rx-rate 6.5e6 --tx-freq 20e6 --rx-freq 18e6</p><p>Creat=
+ing the transmit usrp device with: addr=3D192.168.10.2...</p><p>[INFO] [UHD=
+] linux; GNU C++ version 8.5.0 20210514 (Red Hat 8.5.0-20); Boost_106600; U=
+HD_4.2.0.1-0-g321295fb</p><p>[INFO] [X300] X300 initialization sequence...<=
+/p><p>[INFO] [X300] Maximum frame size: 1472 bytes.</p><p>[INFO] [GPS] Foun=
+d an internal GPSDO: LC_XO, Firmware Rev 1.101</p><p>[INFO] [X300] Radio 1x=
+ clock: 200 MHz</p><p>[INFO] [0/KeepOneInN#0] Setting default MTU forward p=
+olicy.</p><p>Creating the receive usrp device with: addr=3D192.168.10.2...<=
+/p><p>Using TX Device: Single USRP:</p><p>  Device: X-Series Device</p><p> =
+ Mboard 0: X310</p><p>  RX Channel: 0</p><p>    RX DSP: 0</p><p>    RX Dboa=
+rd: A</p><p>    RX Subdev: BasicRX (0)</p><p>  RX Channel: 1</p><p>    RX D=
+SP: 1</p><p>    RX Dboard: A</p><p>    RX Subdev: BasicRX (1)</p><p>  RX Ch=
+annel: 2</p><p>    RX DSP: 2</p><p>    RX Dboard: B</p><p>    RX Subdev: Un=
+known (0xffff) - 0</p><p>  TX Channel: 0</p><p>    TX DSP: 0</p><p>    TX D=
+board: A</p><p>    TX Subdev: BasicTX (0)</p><p>  TX Channel: 1</p><p>    T=
+X DSP: 1</p><p>    TX Dboard: B</p><p>    TX Subdev: Unknown (0xffff) - 0</=
+p><p>Using RX Device: Single USRP:</p><p>  Device: X-Series Device</p><p>  =
+Mboard 0: X310</p><p>  RX Channel: 0</p><p>    RX DSP: 0</p><p>    RX Dboar=
+d: A</p><p>    RX Subdev: BasicRX (0)</p><p>  RX Channel: 1</p><p>    RX DS=
+P: 1</p><p>    RX Dboard: A</p><p>    RX Subdev: BasicRX (1)</p><p>  RX Cha=
+nnel: 2</p><p>    RX DSP: 2</p><p>    RX Dboard: B</p><p>    RX Subdev: Unk=
+nown (0xffff) - 0</p><p>  TX Channel: 0</p><p>    TX DSP: 0</p><p>    TX Db=
+oard: A</p><p>    TX Subdev: BasicTX (0)</p><p>  TX Channel: 1</p><p>    TX=
+ DSP: 1</p><p>    TX Dboard: B</p><p>    TX Subdev: Unknown (0xffff) - 0</p=
+><p>Setting TX Rate: 100.000000 Msps...</p><p>Actual TX Rate: 100.000000 Ms=
+ps...</p><p>Setting RX Rate: 6.500000 Msps...</p><p>[WARNING] [0/DDC#0] The=
+ requested decimation is odd; the user should expect passband CIC rolloff.<=
+/p><p>Select an even decimation to ensure that a halfband filter is enabled=
+.</p><p>Decimations factorable by 4 will enable 2 halfbands, those factorab=
+le by 8 will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&=
+gt; 31</p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the user =
+should expect passband CIC rolloff.</p><p>Select an even decimation to ensu=
+re that a halfband filter is enabled.</p><p>Decimations factorable by 4 wil=
+l enable 2 halfbands, those factorable by 8 will enable 3 halfbands.</p><p>=
+decimation =3D dsp_rate/samp_rate -&gt; 31</p><p>[WARNING] [MULTI_USRP] Cou=
+ld not set RX rate to 6.500 MHz. Actual rate is 6.452 MHz</p><p>[WARNING] [=
+0/DDC#0] The requested decimation is odd; the user should expect passband C=
+IC rolloff.</p><p>Select an even decimation to ensure that a halfband filte=
+r is enabled.</p><p>Decimations factorable by 4 will enable 2 halfbands, th=
+ose factorable by 8 will enable 3 halfbands.</p><p>decimation =3D dsp_rate/=
+samp_rate -&gt; 31</p><p>[WARNING] [0/DDC#0] The requested decimation is od=
+d; the user should expect passband CIC rolloff.</p><p>Select an even decima=
+tion to ensure that a halfband filter is enabled.</p><p>Decimations factora=
+ble by 4 will enable 2 halfbands, those factorable by 8 will enable 3 halfb=
+ands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 31</p><p>[WARNING] [MUL=
+TI_USRP] Could not set RX rate to 6.500 MHz. Actual rate is 6.452 MHz</p><p=
+>[WARNING] [0/DDC#1] The requested decimation is odd; the user should expec=
+t passband CIC rolloff.</p><p>Select an even decimation to ensure that a ha=
+lfband filter is enabled.</p><p>Decimations factorable by 4 will enable 2 h=
+alfbands, those factorable by 8 will enable 3 halfbands.</p><p>decimation =
+=3D dsp_rate/samp_rate -&gt; 31</p><p>[WARNING] [0/DDC#1] The requested dec=
+imation is odd; the user should expect passband CIC rolloff.</p><p>Select a=
+n even decimation to ensure that a halfband filter is enabled.</p><p>Decima=
+tions factorable by 4 will enable 2 halfbands, those factorable by 8 will e=
+nable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 31</p><p>[=
+WARNING] [MULTI_USRP] Could not set RX rate to 6.500 MHz. Actual rate is 6.=
+452 MHz</p><p>Actual RX Rate: 6.451613 Msps...</p><p>Setting TX Freq: 20.00=
+0000 MHz...</p><p>Actual TX Freq: 20.000005 MHz...</p><p>Setting RX Freq: 1=
+8.000000 MHz...</p><p>Actual RX Freq: 17.999995 MHz...</p><p>[WARNING] [0/R=
+adio#0] Attempting to set tick rate to 0. Skipping.</p><p>Press Ctrl + C to=
+ stop streaming...</p><p>Setting device timestamp to 0...</p><p>UUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUU^CUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</p><p>Done!</p>
 
---000000000000f6f8080612fe0f21--
+--b1_0QjLtfoB7vJ1n5o4oNhIYFuuPo7Zph9js0YW14Gw--
 
---===============5149160917685970335==
+--===============1457797616026065264==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,4 +447,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5149160917685970335==--
+--===============1457797616026065264==--
