@@ -2,331 +2,346 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8509879EE0
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Mar 2024 23:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 123BB879FB1
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Mar 2024 00:32:27 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E5454385740
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Mar 2024 18:36:34 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3929F3851F7
+	for <lists+usrp-users@lfdr.de>; Tue, 12 Mar 2024 19:32:26 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1710282994; bh=CBao91TAFpV3tAlUATtH3y8WaCtnPCkqoJJLOc2BaMU=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=haaCDjm12xybmxYy4uRFaQcCkTMym9pbeRnM2YTlOss9Be+Ptm0vE11rC6htADyCL
-	 5bveoClHuVARk8dkU67+6VCsjb3sDTFOQHUAwBnSLj7Y+V1RxswXofv+O14kXz2fg3
-	 YJLH45ICBcdaRiJu41rk3K/4WMp/ugivReyMEKStwSw6/GUm0kLPVVvv3EeoBJkEqZ
-	 +gzUfU05zr5QxCbMvRgl1vo8yh0ZglydExVcVaGgc/2JXu/qqAtTeqNb4DNpS/S543
-	 TKrPOVajAO+Xm+qh6RQn5UAm1tnT9aQSet9m/jxBDSEGQBAAOCA7jGo1g41dAUmrqP
-	 YGqoCxn4QYDDA==
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id F273038568B
-	for <usrp-users@lists.ettus.com>; Tue, 12 Mar 2024 18:36:15 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cKA5IZCV";
-	dkim-atps=neutral
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3c1e992f069so3082961b6e.3
-        for <usrp-users@lists.ettus.com>; Tue, 12 Mar 2024 15:36:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710282975; x=1710887775; darn=lists.ettus.com;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qbid0SfNrZcJYm4jnaFSbb9pUuudsA1fjJVZ1rgMLy8=;
-        b=cKA5IZCVqca2f3YRM6+haseFuJcrTcgWunipVrgHzpSn30wJIhEre1ZSYnk2vgHfVd
-         CQ5cIGBmtekT4dPU7jE9Zt0aU5I9HNbiHgZcOSMqJOwZph7ZA1rkLg5uUI1RDOGltjld
-         17S1NHINO3vbwtrsd6bXkcQ2NB0mIL5vspOQVMV52soRqUwFRmkoHddqjv/hLAn6MMMu
-         Z7rtpUIi2b4FJBsOjksE8NlK1Eb77MVx7sbYRP8s3xhDFECjySyKMCPbN4Mx6zuMFOJy
-         3xG+fmSIMdTTOJvzVGycBmxwof2V4kixWpB3rswPaA6kM5lR/z6t/BPqM5dkHw0Nh3Vv
-         185w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710282975; x=1710887775;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qbid0SfNrZcJYm4jnaFSbb9pUuudsA1fjJVZ1rgMLy8=;
-        b=vTdnbSfiXVGvHmPzkSzbuOs1xwJcWe6mhPgpwcM7gc6B6eeegunRNfbhGxccXGoFJ5
-         EyNk209e+jxAudrs/ISe2XlTFtwnD7Qro46gWEqRM99/nBH9IBPcgMMvdjJMAXbRhfj3
-         7vp+YYjMEJFMqaOJ/Nqc0k2CsjPcv1fiL1U8hHZhc6Q/A+TD5+G4sm5Fb4N4higCaCM6
-         kXXuR6nVuk4M1V2Aq0y9qOohQn8xULziiRQpr+8tBY71Yt4MDd35yGP40C524AhkER5C
-         s6advCbMpV8Ix2BHJ+AaAkBCpab/KPaJR98fDGjhOyI2oNom+VPuJkN6kJTvRgf9yxk5
-         4ILw==
-X-Gm-Message-State: AOJu0YxkewcR615OA4Bz8Uds29IrT/38LpBuA9LiWUh5nBadiOqzxcJJ
-	w/WI3IEaXVGMI7NK+um3X2U7+/Azx414ZWe7uktX4FPNf1mnTHjS
-X-Google-Smtp-Source: AGHT+IEXO7BY/4UuCfbnddvdsjuHpsjuQOv6pBaSNBe4eYj5WCUwgHP/pl44UVQOqQx+kCDvc7xfJg==
-X-Received: by 2002:a05:6808:2189:b0:3c1:f6cc:4fd2 with SMTP id be9-20020a056808218900b003c1f6cc4fd2mr14032447oib.4.1710282975182;
-        Tue, 12 Mar 2024 15:36:15 -0700 (PDT)
-Received: from [192.168.2.170] ([174.93.0.156])
-        by smtp.googlemail.com with ESMTPSA id g2-20020ac85d42000000b0042f3fa77602sm3209152qtx.2.2024.03.12.15.36.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 15:36:14 -0700 (PDT)
-Message-ID: <b6c84580-352b-4aa1-a75a-f19dac6228d4@gmail.com>
-Date: Tue, 12 Mar 2024 18:36:06 -0400
+	t=1710286346; bh=KQYA2SQ9F1M+lzugTqxnBoAiYIWnFoU5qpPLjIk6uss=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=gA0TNpHXIbt6b9zH08b83SVbFkqNLCR3vot0+UuAUf7bjsLMxYofv72o+2nCAmxE5
+	 gDvTMlUBR2v7AY9qZLeLVpBFkRENo7B88M7g/KmB45T0XU6fDlP6DDgHlRjIG7Fzby
+	 92aPsYB5rzWaYJsWx0Ll75P4gkjyQZ6csSXFsXlHzPwrfPQvY5SUo9OMZkTP8aY0kQ
+	 Joe0ZlSDGQDiQq8qoP7Ippenzgz8S5u+T5w6Slu7zPOwtR5lht3u3lfg7R9LyW43Q/
+	 lNdfrbGcNChBUhLZvQ9ozxRu0ruuzeu2ssiDo1rALYP25MeOVMdtrKinZYY41kXBhu
+	 Po5/3nTyujsgQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id F033C3851F6
+	for <usrp-users@lists.ettus.com>; Tue, 12 Mar 2024 19:31:51 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1710286312; bh=A/mOAeoA4FuQRR8dipl9TEusSGhq/T7TkUrtl9Ds4h0=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=tUpH2sBLDHeYiaX1ihLmf4R7LEynP51H2BN5iMIdAySLpnaTZMzhSypXhzhcRTieb
+	 fWh5dKYiL+qVoh/xTFXWqbfuGjhIvVl2MaJRFRC+zZiwDAm4dtXYGlFG1ybMI9uvys
+	 xdqqsQqE2Wo4XgN1k3yXh+fdgnivqN8Auqucmj+dqu2cZIUtNcFc8AkEAGLRC78AmQ
+	 e2jiKu1HvAeLjeCND6lb2TvuQtYUpRxjcS4hm2dD1ipKBPCB5OTexDCfZgplpSXnup
+	 1aHXsWioOwl0V/YD4Vzi1PgSxFkwAD+hqTCBWAk+CZOiA2nLfG7GS5E2CMLapr1+lp
+	 4Db6XkLmizx5g==
+Date: Tue, 12 Mar 2024 23:31:51 +0000
+To: usrp-users@lists.ettus.com
+From: brian.diaz.476@my.csun.edu
+Message-ID: <LpoxD6yaGRJogaqgYyeB1BuF9bekEOW7UDa0U0RQ0@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: PH0PR04MB831124CD632DB3EF7ECD8542F3272@PH0PR04MB8311.namprd04.prod.outlook.com
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Rob Kossler <rkossler@nd.edu>
-References: <bTN1Tg4QsmScf6SLVRoATiBNT2bp2o6x0s58Z8iA@lists.ettus.com>
- <d4e756e8-5874-48bd-97a6-64bc96b41ac2@gmail.com>
- <CAB__hTTbksjFybT9FEu2GahUYJoZtH3owd-zkzxDaWFVTRj2kA@mail.gmail.com>
- <CAB__hTQW4UuE9eaK5wn6eu4AbSE1ew-zrGO5JiR0kZA2hpwkaQ@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTQW4UuE9eaK5wn6eu4AbSE1ew-zrGO5JiR0kZA2hpwkaQ@mail.gmail.com>
-Message-ID-Hash: DKXS3GQJATAYJIYDJOS5EWKGNWBQBWAI
-X-Message-ID-Hash: DKXS3GQJATAYJIYDJOS5EWKGNWBQBWAI
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: IWAITWM2U6TXW4C3NH5BLGUJUHUBL4U5
+X-Message-ID-Hash: IWAITWM2U6TXW4C3NH5BLGUJUHUBL4U5
+X-MailFrom: brian.diaz.476@my.csun.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Extending duration of high-rate captures with the X410
+Subject: [USRP-users] Re: USRP N310 "NoneType" error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DKXS3GQJATAYJIYDJOS5EWKGNWBQBWAI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IWAITWM2U6TXW4C3NH5BLGUJUHUBL4U5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6832418258377633654=="
+Content-Type: multipart/mixed; boundary="===============6677378850677383459=="
 
 This is a multi-part message in MIME format.
---===============6832418258377633654==
+
+--===============6677378850677383459==
 Content-Type: multipart/alternative;
- boundary="------------05Yfd0JAGLwE03nNOHBewWUL"
-Content-Language: en-US
+ boundary="b1_LpoxD6yaGRJogaqgYyeB1BuF9bekEOW7UDa0U0RQ0"
+Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
---------------05Yfd0JAGLwE03nNOHBewWUL
-Content-Type: text/plain; charset=UTF-8; format=flowed
+
+--b1_LpoxD6yaGRJogaqgYyeB1BuF9bekEOW7UDa0U0RQ0
+Content-Type: text/plain; charset=us-ascii
+
+Hello Martin, 
+
+I ran both commands and got this as a result. 
+
+root@ni-n3xx-3177E63:\~# systemctl stop usrp-hwd
+
+root@ni-n3xx-3177E63:\~# usrp_hwd.py -v
+
+\[MPM.main\] \[INFO\] Launching USRP/MPM, version: 4.6.0.0-g50fa3baa
+
+\[MPM.main\] \[INFO\] Spawning RPC process...
+
+\[MPM.main\] \[DEBUG\] RPC process has PID: 571
+
+\[MPM.main\] \[INFO\] Spawning discovery process...
+
+\[MPM.main\] \[DEBUG\] Discovery process has PID: 572
+
+\[MPM.main\] \[INFO\] Processes launched. Registering signal handlers.
+
+\[MPM.PeriphManager\] \[INFO\] Device serial number: 3177E63
+
+\[MPM.PeriphManager\] \[DEBUG\] Reading EEPROM info for dboard 0...
+
+\[MPM.PeriphManager\] \[DEBUG\] Found dboard PID in EEPROM: 0x0150
+
+\[MPM.PeriphManager\] \[DEBUG\] Reading EEPROM info for dboard 1...
+
+\[MPM.PeriphManager\] \[DEBUG\] Found dboard PID in EEPROM: 0x0150
+
+\[MPM.PeriphManager\] \[DEBUG\] Motherboard requests device tree overlays: \['n310'\]
+
+\[MPM.DTO\] \[DEBUG\] Overlay \`n310' was already applied, not applying again.
+
+\[MPM.PeriphManager\] \[DEBUG\] Using default args: {}
+
+\[MPM.PeriphManager\] \[DEBUG\] Initializing dboard 0...
+
+\[MPM.dboardManager\] \[DEBUG\] spidev device node map: {'cpld': '/dev/spidev0.0', 'lmk': '/dev/spidev0.1', 'mykonos': '/dev/spidev0.2', 'phase_dac': '/dev/spidev0.3'}
+
+\[MPM.Magnesium-0\] \[DEBUG\] Loading C++ drivers...
+
+\[MPM.Magnesium-0\] \[DEBUG\] AD9371: ARM version: 184.72.95 Release API version: 1.5.1.3565 Device revision: 7
+
+\[MPM.Magnesium-0.CPLD\] \[DEBUG\] Initializing CPLD...
+
+\[MPM.Magnesium-0.CPLD\] \[DEBUG\] CPLD Signature: 0xCAFE Revision: 5.0 Date code: 0x18010408
+
+\[MPM.PeriphManager\] \[DEBUG\] Initializing dboard 1...
+
+\[MPM.dboardManager\] \[DEBUG\] spidev device node map: {'cpld': '/dev/spidev1.0', 'lmk': '/dev/spidev1.1', 'mykonos': '/dev/spidev1.2', 'phase_dac': '/dev/spidev1.3'}
+
+\[MPM.Magnesium-1\] \[DEBUG\] Loading C++ drivers...
+
+\[MPM.Magnesium-1\] \[DEBUG\] AD9371: ARM version: 5.1.1 Release API version: 1.5.1.3565 Device revision: 4
+
+\[MPM.Magnesium-1.CPLD\] \[DEBUG\] Initializing CPLD...
+
+\[MPM.Magnesium-1.CPLD\] \[DEBUG\] CPLD Signature: 0xCAFE Revision: 5.0 Date code: 0x18010408
+
+\[MPM.PeriphManager\] \[INFO\] Initialized 2 daughterboard(s).
+
+\[MPM.PeriphManager\] \[DEBUG\] Actual FPGA compat number: 8.2
+
+\[MPM.PeriphManager\] \[DEBUG\] Minor compat ahead of expected compat for component 'FPGA'. Expected: 8.1 Actual: 8.2
+
+\[MPM.PeriphManager\] \[DEBUG\] FPGA supports the following features: remote_udp_streaming
+
+\[MPM.PeriphManager\] \[DEBUG\] Setting clock source to \`internal'
+
+\[MPM.PeriphManager\] \[DEBUG\] Reference clock source is: internal
+
+\[MPM.PeriphManager\] \[DEBUG\] Reference clock frequency is: 25.0 MHz
+
+\[MPM.PeriphManager\] \[DEBUG\] Setting time source to \`internal'
+
+\[MPM.PeriphManager.MBRegs\] \[DEBUG\] Setting time source to internal (25 MHz reference)...
+
+\[MPM.PeriphManager\] \[DEBUG\] Updating mboard FPGA type info to HG
+
+\[MPM.PeriphManager\] \[DEBUG\] Found the following GPIO sources: PS,RF0,RF1,RF2,RF3
+
+\[MPM.PeriphManager.UDP.UDP\] \[DEBUG\] Found CHDR interfaces: \`sfp0, int0'
+
+\[MPM.PeriphManager\] \[DEBUG\] Device info: {'type': 'n3xx', 'pid': '16962', 'serial': '3177E63', 'rev': '6', 'eeprom_version': '2', 'mpm_sw_version': '4.6.0.0-g50fa3baa', 'fs_version': '20231113194400', 'mender_artifact': 'v4.6.0.0_n3xx', 'dboard_0_pid': '336', 'dboard_0_serial': b'319803C', 'dboard_1_pid': '336', 'dboard_1_serial': b'317532F', 'product': 'n310'}
+
+\[MPM.PeriphManager\] \[INFO\] init() called with device args \`clock_source=internal,time_source=internal'.
+
+\[MPM.PeriphManager.UDP.UDP\] \[DEBUG\] Found CHDR interfaces: \`sfp0, int0'
+
+\[MPM.misc-enet-regs0\] \[DEBUG\] Setting my own IP address to \`192.168.10.2'
+
+\[MPM.misc-enet-int-regs\] \[DEBUG\] Setting my own IP address to \`169.254.0.1'
+
+\[MPM.misc-enet-int-regs\] \[DEBUG\] Setting internal MAC address to \`00:01:02:03:04:05'
+
+\[MPM.misc-enet-int-regs\] \[DEBUG\] Setting internal IP address to \`169.254.0.2'
+
+\[MPM.misc-enet-int-regs\] \[DEBUG\] Setting internal Mode
+
+\[MPM.PeriphManager.XportAdapterMgr@sfp0\] \[DEBUG\] Transport adapter compat number: 1.0 Capabilities: rx_hdr_removal, rx_routing Node instance: 0
+
+\[MPM.PeriphManager\] \[DEBUG\] Loaded transport adapter managers for the following interfaces: sfp0
+
+\[MPM.PeriphManager\] \[DEBUG\] Initializing dboards in parallel...
+
+\[MPM.Magnesium-0\] \[DEBUG\] init() called with args \`clock_source=internal,time_source=internal'
+
+\[MPM.Magnesium-0\] \[DEBUG\] Updating master clock rate to 125.00 MHz!
+
+\[MPM.Magnesium-1\] \[DEBUG\] init() called with args \`clock_source=internal,time_source=internal'
+
+\[MPM.Magnesium-1\] \[DEBUG\] Updating master clock rate to 125.00 MHz!
+
+\[MPM.Magnesium-0.init\] \[DEBUG\] Reset Dboard Clocking and JESD204B interfaces...
+
+\[MPM.Magnesium-0.init.LMK04828\] \[DEBUG\] Using reference clock frequency: 25.0 MHz
+
+\[MPM.Magnesium-0.init.LMK04828\] \[DEBUG\] Using master clock frequency: 125.0 MHz
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] Reset Dboard Clocking and JESD204B interfaces...
+
+\[MPM.Magnesium-1.init.LMK04828\] \[DEBUG\] Using reference clock frequency: 25.0 MHz
+
+\[MPM.Magnesium-1.init.LMK04828\] \[DEBUG\] Using master clock frequency: 125.0 MHz
+
+\[MPM.Magnesium-0.init.LMK04828\] \[DEBUG\] Clocks Initialized and PLLs Locked!
+
+\[MPM.Sync-0\] \[DEBUG\] Starting clock synchronization...
+
+\[MPM.Sync-0\] \[DEBUG\] Configuring the TDC...
+
+\[MPM.Magnesium-1.init.LMK04828\] \[DEBUG\] Clocks Initialized and PLLs Locked!
+
+\[MPM.Sync-1\] \[DEBUG\] Starting clock synchronization...
+
+\[MPM.Sync-1\] \[DEBUG\] Configuring the TDC...
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] Residual synchronization error: 56.3 ps.
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] Sample Clock Synchronization Complete!
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] Sample Clocks and Phase DAC Configured Successfully!
+
+\[MPM.NIJESD204bCore-1\] \[DEBUG\] Disabling the eye scan circuitry in the PMA for the GTXs...
+
+\[MPM.Magnesium-1.CPLD\] \[DEBUG\] Resetting AD9371!
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] Setting up LO source..
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] RX LO source is set at internal
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] TX LO source is set at internal
+
+\[MPM.Magnesium-0.init\] \[DEBUG\] Residual synchronization error: 54.8 ps.
+
+\[MPM.Magnesium-0.init\] \[DEBUG\] Sample Clock Synchronization Complete!
+
+\[MPM.Magnesium-0.init\] \[DEBUG\] Sample Clocks and Phase DAC Configured Successfully!
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] args\[init_cals\]=0x4DFF
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] args\[tracking_cals\]=0xC3
+
+\[MPM.Magnesium-1.init\] \[DEBUG\] JESD204B Link Initialization & Training Complete
+
+\[MPM.PeriphManager\] \[WARNING\] Failed to initialize device on boot: RuntimeError: ARM Mailbox Busy. Command not executed in MYKONOS_sendArmCommand()
+
+\[MPM.PeriphManager.UDP.UDP\] \[DEBUG\] Found CHDR interfaces: \`sfp0'
+
+\[MPM.RPCServer\] \[DEBUG\] Registered 66 motherboard methods, 130 daughterboard methods.
+
+\[MPM.RPCServer\] \[INFO\] RPC server ready!
+
+--b1_LpoxD6yaGRJogaqgYyeB1BuF9bekEOW7UDa0U0RQ0
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-On 12/03/2024 17:59, Rob Kossler wrote:
-> I think I am mistaken. If you are only streaming a single channel, the=20
-> --multi_streamer option will likely not change a thing. I was assuming=20
-> you had multiple channels.
-> Rob
-Indeed, the problem doesn't appear to be "getting samples off the wire=20
-and into the application" (as evidenced by
- =C2=A0 the benchmark_rate runs), but rather "doing things with those sam=
-ples=20
-after that".
+<p>Hello Martin, </p><p>I ran both commands and got this as a result. </p><=
+p>root@ni-n3xx-3177E63:~# systemctl stop usrp-hwd</p><p>root@ni-n3xx-3177E6=
+3:~# usrp_hwd.py -v</p><p>[MPM.main] [INFO] Launching USRP/MPM, version: 4.=
+6.0.0-g50fa3baa</p><p>[MPM.main] [INFO] Spawning RPC process...</p><p>[MPM.=
+main] [DEBUG] RPC process has PID: 571</p><p>[MPM.main] [INFO] Spawning dis=
+covery process...</p><p>[MPM.main] [DEBUG] Discovery process has PID: 572</=
+p><p>[MPM.main] [INFO] Processes launched. Registering signal handlers.</p>=
+<p>[MPM.PeriphManager] [INFO] Device serial number: 3177E63</p><p>[MPM.Peri=
+phManager] [DEBUG] Reading EEPROM info for dboard 0...</p><p>[MPM.PeriphMan=
+ager] [DEBUG] Found dboard PID in EEPROM: 0x0150</p><p>[MPM.PeriphManager] =
+[DEBUG] Reading EEPROM info for dboard 1...</p><p>[MPM.PeriphManager] [DEBU=
+G] Found dboard PID in EEPROM: 0x0150</p><p>[MPM.PeriphManager] [DEBUG] Mot=
+herboard requests device tree overlays: ['n310']</p><p>[MPM.DTO] [DEBUG] Ov=
+erlay `n310' was already applied, not applying again.</p><p>[MPM.PeriphMana=
+ger] [DEBUG] Using default args: {}</p><p>[MPM.PeriphManager] [DEBUG] Initi=
+alizing dboard 0...</p><p>[MPM.dboardManager] [DEBUG] spidev device node ma=
+p: {'cpld': '/dev/spidev0.0', 'lmk': '/dev/spidev0.1', 'mykonos': '/dev/spi=
+dev0.2', 'phase_dac': '/dev/spidev0.3'}</p><p>[MPM.Magnesium-0] [DEBUG] Loa=
+ding C++ drivers...</p><p>[MPM.Magnesium-0] [DEBUG] AD9371: ARM version: 18=
+4.72.95 Release API version: 1.5.1.3565 Device revision: 7</p><p>[MPM.Magne=
+sium-0.CPLD] [DEBUG] Initializing CPLD...</p><p>[MPM.Magnesium-0.CPLD] [DEB=
+UG] CPLD Signature: 0xCAFE Revision: 5.0 Date code: 0x18010408</p><p>[MPM.P=
+eriphManager] [DEBUG] Initializing dboard 1...</p><p>[MPM.dboardManager] [D=
+EBUG] spidev device node map: {'cpld': '/dev/spidev1.0', 'lmk': '/dev/spide=
+v1.1', 'mykonos': '/dev/spidev1.2', 'phase_dac': '/dev/spidev1.3'}</p><p>[M=
+PM.Magnesium-1] [DEBUG] Loading C++ drivers...</p><p>[MPM.Magnesium-1] [DEB=
+UG] AD9371: ARM version: 5.1.1 Release API version: 1.5.1.3565 Device revis=
+ion: 4</p><p>[MPM.Magnesium-1.CPLD] [DEBUG] Initializing CPLD...</p><p>[MPM=
+.Magnesium-1.CPLD] [DEBUG] CPLD Signature: 0xCAFE Revision: 5.0 Date code: =
+0x18010408</p><p>[MPM.PeriphManager] [INFO] Initialized 2 daughterboard(s).=
+</p><p>[MPM.PeriphManager] [DEBUG] Actual FPGA compat number: 8.2</p><p>[MP=
+M.PeriphManager] [DEBUG] Minor compat ahead of expected compat for componen=
+t 'FPGA'. Expected: 8.1 Actual: 8.2</p><p>[MPM.PeriphManager] [DEBUG] FPGA =
+supports the following features: remote_udp_streaming</p><p>[MPM.PeriphMana=
+ger] [DEBUG] Setting clock source to `internal'</p><p>[MPM.PeriphManager] [=
+DEBUG] Reference clock source is: internal</p><p>[MPM.PeriphManager] [DEBUG=
+] Reference clock frequency is: 25.0 MHz</p><p>[MPM.PeriphManager] [DEBUG] =
+Setting time source to `internal'</p><p>[MPM.PeriphManager.MBRegs] [DEBUG] =
+Setting time source to internal (25 MHz reference)...</p><p>[MPM.PeriphMana=
+ger] [DEBUG] Updating mboard FPGA type info to HG</p><p>[MPM.PeriphManager]=
+ [DEBUG] Found the following GPIO sources: PS,RF0,RF1,RF2,RF3</p><p>[MPM.Pe=
+riphManager.UDP.UDP] [DEBUG] Found CHDR interfaces: `sfp0, int0'</p><p>[MPM=
+.PeriphManager] [DEBUG] Device info: {'type': 'n3xx', 'pid': '16962', 'seri=
+al': '3177E63', 'rev': '6', 'eeprom_version': '2', 'mpm_sw_version': '4.6.0=
+.0-g50fa3baa', 'fs_version': '20231113194400', 'mender_artifact': 'v4.6.0.0=
+_n3xx', 'dboard_0_pid': '336', 'dboard_0_serial': b'319803C', 'dboard_1_pid=
+': '336', 'dboard_1_serial': b'317532F', 'product': 'n310'}</p><p>[MPM.Peri=
+phManager] [INFO] init() called with device args `clock_source=3Dinternal,t=
+ime_source=3Dinternal'.</p><p>[MPM.PeriphManager.UDP.UDP] [DEBUG] Found CHD=
+R interfaces: `sfp0, int0'</p><p>[MPM.misc-enet-regs0] [DEBUG] Setting my o=
+wn IP address to `192.168.10.2'</p><p>[MPM.misc-enet-int-regs] [DEBUG] Sett=
+ing my own IP address to `169.254.0.1'</p><p>[MPM.misc-enet-int-regs] [DEBU=
+G] Setting internal MAC address to `00:01:02:03:04:05'</p><p>[MPM.misc-enet=
+-int-regs] [DEBUG] Setting internal IP address to `169.254.0.2'</p><p>[MPM.=
+misc-enet-int-regs] [DEBUG] Setting internal Mode</p><p>[MPM.PeriphManager.=
+XportAdapterMgr@sfp0] [DEBUG] Transport adapter compat number: 1.0 Capabili=
+ties: rx_hdr_removal, rx_routing Node instance: 0</p><p>[MPM.PeriphManager]=
+ [DEBUG] Loaded transport adapter managers for the following interfaces: sf=
+p0</p><p>[MPM.PeriphManager] [DEBUG] Initializing dboards in parallel...</p=
+><p>[MPM.Magnesium-0] [DEBUG] init() called with args `clock_source=3Dinter=
+nal,time_source=3Dinternal'</p><p>[MPM.Magnesium-0] [DEBUG] Updating master=
+ clock rate to 125.00 MHz!</p><p>[MPM.Magnesium-1] [DEBUG] init() called wi=
+th args `clock_source=3Dinternal,time_source=3Dinternal'</p><p>[MPM.Magnesi=
+um-1] [DEBUG] Updating master clock rate to 125.00 MHz!</p><p>[MPM.Magnesiu=
+m-0.init] [DEBUG] Reset Dboard Clocking and JESD204B interfaces...</p><p>[M=
+PM.Magnesium-0.init.LMK04828] [DEBUG] Using reference clock frequency: 25.0=
+ MHz</p><p>[MPM.Magnesium-0.init.LMK04828] [DEBUG] Using master clock frequ=
+ency: 125.0 MHz</p><p>[MPM.Magnesium-1.init] [DEBUG] Reset Dboard Clocking =
+and JESD204B interfaces...</p><p>[MPM.Magnesium-1.init.LMK04828] [DEBUG] Us=
+ing reference clock frequency: 25.0 MHz</p><p>[MPM.Magnesium-1.init.LMK0482=
+8] [DEBUG] Using master clock frequency: 125.0 MHz</p><p>[MPM.Magnesium-0.i=
+nit.LMK04828] [DEBUG] Clocks Initialized and PLLs Locked!</p><p>[MPM.Sync-0=
+] [DEBUG] Starting clock synchronization...</p><p>[MPM.Sync-0] [DEBUG] Conf=
+iguring the TDC...</p><p>[MPM.Magnesium-1.init.LMK04828] [DEBUG] Clocks Ini=
+tialized and PLLs Locked!</p><p>[MPM.Sync-1] [DEBUG] Starting clock synchro=
+nization...</p><p>[MPM.Sync-1] [DEBUG] Configuring the TDC...</p><p>[MPM.Ma=
+gnesium-1.init] [DEBUG] Residual synchronization error: 56.3 ps.</p><p>[MPM=
+.Magnesium-1.init] [DEBUG] Sample Clock Synchronization Complete!</p><p>[MP=
+M.Magnesium-1.init] [DEBUG] Sample Clocks and Phase DAC Configured Successf=
+ully!</p><p>[MPM.NIJESD204bCore-1] [DEBUG] Disabling the eye scan circuitry=
+ in the PMA for the GTXs...</p><p>[MPM.Magnesium-1.CPLD] [DEBUG] Resetting =
+AD9371!</p><p>[MPM.Magnesium-1.init] [DEBUG] Setting up LO source..</p><p>[=
+MPM.Magnesium-1.init] [DEBUG] RX LO source is set at internal</p><p>[MPM.Ma=
+gnesium-1.init] [DEBUG] TX LO source is set at internal</p><p>[MPM.Magnesiu=
+m-0.init] [DEBUG] Residual synchronization error: 54.8 ps.</p><p>[MPM.Magne=
+sium-0.init] [DEBUG] Sample Clock Synchronization Complete!</p><p>[MPM.Magn=
+esium-0.init] [DEBUG] Sample Clocks and Phase DAC Configured Successfully!<=
+/p><p>[MPM.Magnesium-1.init] [DEBUG] args[init_cals]=3D0x4DFF</p><p>[MPM.Ma=
+gnesium-1.init] [DEBUG] args[tracking_cals]=3D0xC3</p><p>[MPM.Magnesium-1.i=
+nit] [DEBUG] JESD204B Link Initialization &amp; Training Complete</p><p>[MP=
+M.PeriphManager] [WARNING] Failed to initialize device on boot: RuntimeErro=
+r: ARM Mailbox Busy. Command not executed in MYKONOS_sendArmCommand()</p><p=
+>[MPM.PeriphManager.UDP.UDP] [DEBUG] Found CHDR interfaces: `sfp0'</p><p>[M=
+PM.RPCServer] [DEBUG] Registered 66 motherboard methods, 130 daughterboard =
+methods.</p><p>[MPM.RPCServer] [INFO] RPC server ready!</p>
 
-Writing 2Gbyte/second through the filesystem interface to the kernel=20
-is....challenging.
+--b1_LpoxD6yaGRJogaqgYyeB1BuF9bekEOW7UDa0U0RQ0--
 
-
->
-> On Tue, Mar 12, 2024 at 5:40=E2=80=AFPM Rob Kossler <rkossler@nd.edu> w=
-rote:
->
->     Your mount command with tmpfs looks correct. Here is what mine is
->     in my /etc/fstab file (with 264GB avail RAM)
->     tmpfs =C2=A0/media/ramfolder/ =C2=A0tmpfs =C2=A0rw,nosuid,nodev,siz=
-e=3D200G =C2=A0 0 =C2=A00
->
->     You might want to try rx_samples_to_file with the --multi_streamer
->     option. I expect you will get better performance.=C2=A0 Also, you c=
-an
->     take your RAM FS size higher from 8G to probably 60G if you want
->     to try bigger recording depths.
->     Rob
->
->     On Tue, Mar 12, 2024 at 5:13=E2=80=AFPM Marcus D. Leech
->     <patchvonbraun@gmail.com> wrote:
->
->         On 12/03/2024 16:11, zackkomo@utexas.edu wrote:
->>
->>         Hey Rob and Marcus,
->>
->>         Thanks for the responses! I have a basic understanding of
->>         linux, but am not very experienced. I tried the following to
->>         create the RAM filesystem:
->>
->>         |sudo mount -t tmpfs -o size=3D8G tmpfs /mnt/tmpfs/|
->>         |sudo mount -t ramfs -o size=3D8G ramfs /mnt/ramfs/ |
->>
->>         And ran the rx_samples_to_file, once with --file
->>         /mnt/tmpfs/test.bin, and once with --file
->>         /mnt/ramfs/test.bin, both times still getting o=E2=80=99s for =
-overruns.
->>
->>         By my calculations, at ~500 M complex samples per second,
->>         each complex sample 4 bytes (defaulting to short for I and
->>         Q), that means just 1 second of capturing equates to 2 GB of
->>         data. My system has 64 GB of RAM. Am I creating the RAM
->>         filesystem correctly? Am I using it correctly?
->>
->>
->>
->>         _______________________________________________
->>         USRP-users mailing list --usrp-users@lists.ettus.com
->>         To unsubscribe send an email tousrp-users-leave@lists.ettus.co=
-m
->         Assuming that you did a "sudo mkdir of /mnt/ramfs"
->         beforehand,=C2=A0 this should work.
->
->
->         _______________________________________________
->         USRP-users mailing list -- usrp-users@lists.ettus.com
->         To unsubscribe send an email to usrp-users-leave@lists.ettus.co=
-m
->
-
---------------05Yfd0JAGLwE03nNOHBewWUL
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 12/03/2024 17:59, Rob Kossler wrote=
-:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTQW4UuE9eaK5wn6eu4AbSE1ew-zrGO5JiR0kZA2hpwkaQ@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">I think I am mistaken. If you are only streaming a
-        single channel, the --multi_streamer option will likely not
-        change a thing. I was assuming you had multiple channels.=C2=A0
-        <div>Rob</div>
-      </div>
-    </blockquote>
-    Indeed, the problem doesn't appear to be "getting samples off the
-    wire and into the application" (as evidenced by<br>
-    =C2=A0 the benchmark_rate runs), but rather "doing things with those
-    samples after that".<br>
-    <br>
-    Writing 2Gbyte/second through the filesystem interface to the kernel
-    is....challenging.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTQW4UuE9eaK5wn6eu4AbSE1ew-zrGO5JiR0kZA2hpwkaQ@mail.gmai=
-l.com"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 12, 2024 at
-          5:40=E2=80=AFPM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.e=
-du"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">rkos=
-sler@nd.edu</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote"
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
-          <div dir=3D"ltr">
-            <div>Your mount command with tmpfs looks correct. Here is
-              what mine is in my /etc/fstab file (with 264GB avail RAM)</=
-div>
-            <div>tmpfs =C2=A0/media/ramfolder/ =C2=A0tmpfs
-              =C2=A0rw,nosuid,nodev,size=3D200G =C2=A0 0 =C2=A00<br>
-            </div>
-            <div><br>
-            </div>
-            <div>You might want to try rx_samples_to_file with the
-              --multi_streamer option. I expect you will get better
-              performance.=C2=A0 Also, you can take your RAM FS size high=
-er
-              from 8G to probably 60G if you want to try bigger
-              recording depths.</div>
-            <div>Rob</div>
-            <br>
-            <div class=3D"gmail_quote">
-              <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 12, 2024 =
-at
-                5:13=E2=80=AFPM Marcus D. Leech &lt;<a
-                  href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blan=
-k"
-                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
-">patchvonbraun@gmail.com</a>&gt;
-                wrote:<br>
-              </div>
-              <blockquote class=3D"gmail_quote"
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
-                <div>
-                  <div>On 12/03/2024 16:11, <a
-                      href=3D"mailto:zackkomo@utexas.edu" target=3D"_blan=
-k"
-                      moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">zackkomo@utexas.edu=
-</a>
-                    wrote:<br>
-                  </div>
-                  <blockquote type=3D"cite">
-                    <p>Hey Rob and Marcus,</p>
-                    <p>Thanks for the responses! I have a basic
-                      understanding of linux, but am not very
-                      experienced. I tried the following to create the
-                      RAM filesystem:</p>
-                    <pre><code>sudo mount -t tmpfs -o size=3D8G tmpfs /mn=
-t/tmpfs/</code></pre>
-                    <pre><code>sudo mount -t ramfs -o size=3D8G ramfs /mn=
-t/ramfs/
-
-</code></pre>
-                    <p>And ran the rx_samples_to_file, once with --file
-                      /mnt/tmpfs/test.bin, and once with --file
-                      /mnt/ramfs/test.bin, both times still getting o=E2=80=
-=99s
-                      for overruns.</p>
-                    <p>By my calculations, at ~500 M complex samples per
-                      second, each complex sample 4 bytes (defaulting to
-                      short for I and Q), that means just 1 second of
-                      capturing equates to 2 GB of data. My system has
-                      64 GB of RAM. Am I creating the RAM filesystem
-                      correctly? Am I using it correctly?</p>
-                    <p><br>
-                    </p>
-                    <br>
-                    <fieldset></fieldset>
-                    <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com"
-                    target=3D"_blank" moz-do-not-send=3D"true"
-                    class=3D"moz-txt-link-freetext">usrp-users@lists.ettu=
-s.com</a>
-To unsubscribe send an email to <a
-                    href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                    target=3D"_blank" moz-do-not-send=3D"true"
-                    class=3D"moz-txt-link-freetext">usrp-users-leave@list=
-s.ettus.com</a>
-</pre>
-                  </blockquote>
-                  Assuming that you did a "sudo mkdir of /mnt/ramfs"
-                  beforehand,=C2=A0 this should work.<br>
-                  <br>
-                  <br>
-                </div>
-                _______________________________________________<br>
-                USRP-users mailing list -- <a
-                  href=3D"mailto:usrp-users@lists.ettus.com"
-                  target=3D"_blank" moz-do-not-send=3D"true"
-                  class=3D"moz-txt-link-freetext">usrp-users@lists.ettus.=
-com</a><br>
-                To unsubscribe send an email to <a
-                  href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                  target=3D"_blank" moz-do-not-send=3D"true"
-                  class=3D"moz-txt-link-freetext">usrp-users-leave@lists.=
-ettus.com</a><br>
-              </blockquote>
-            </div>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------05Yfd0JAGLwE03nNOHBewWUL--
-
---===============6832418258377633654==
+--===============6677378850677383459==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -336,4 +351,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6832418258377633654==--
+--===============6677378850677383459==--
