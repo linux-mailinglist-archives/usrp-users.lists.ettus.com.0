@@ -2,174 +2,224 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E581A87A70C
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Mar 2024 12:24:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 872D987A82A
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Mar 2024 14:19:07 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B624E384DDA
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Mar 2024 07:24:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8ABFB384F2F
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Mar 2024 09:19:06 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1710329091; bh=qYKq+ywnTSkucCkcAH61GZR2DlaLlxWGzVizhJk+hEs=;
-	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=ZVs3k8n54CGkTGMK3XWFklqcO1yZD+wQnk7bkv9XFe2PruaOaUYIsrsnapjq/0ejX
-	 aq0eSEtf3Uu8gYY3mVEcwWFrx5Nd/b5yHPtuGuc8O61NBNeptakv+av/n2gZBqLvMQ
-	 89JO6cbsSJ5Z1ktrdyNTsahZb8LTxOlILGfs0aDumEFtuGQjX19NzJb5Jr8olVNBto
-	 FzmwZEMpCzlRNtFmyfd8B8miLkj+PlAlhPiWa68BrIFaTcCJ/MhYVQbFP5Rn+hIuxZ
-	 /DTAr8bK529hFqCJ75Qm/bYXJ/2TDOcyD3dxne5ZyG9U222GvN1vCWKvbP1xY9naik
-	 X9SbWf/OF1HYQ==
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2131.outbound.protection.outlook.com [40.107.20.131])
-	by mm2.emwd.com (Postfix) with ESMTPS id F2CE938490B
-	for <usrp-users@lists.ettus.com>; Wed, 13 Mar 2024 07:24:00 -0400 (EDT)
+	t=1710335946; bh=IYOJWkcxVw0eUMBdu35sekUveEe8Ta3R8OVr/6PA2rk=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=P+f8L0aJUvK2yfx2NsHhMiAhWJYDQjA6yEQ4A5w5NFmwV177q+AsiFdzop8CQQM/R
+	 SrT6KN/s/4KHB2pVMpTwtBCW7jKFS4HT4iA9VI3RT9+mrPTJGBusGbAZG/DiQ49Clu
+	 pmsKZZRnxlk/hGd2UgZv4Ixk5As2cIeLC9NL0Uc1pGzgkzxOjthGkuU4OP8xxiATsW
+	 +RR1oF2HJ/jIxj08a85BNmiRFS/EvimoDq2xVJlfR+diBrPaUj2gcAoJXbYw0HsnBM
+	 zWEwI6r+JH0mBJU08J49edSln/boV50afMV6sux1xmUYQwWa7fpXpUfaU+mRwe4u+e
+	 1fENJeFEpOE7g==
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05olkn2072.outbound.protection.outlook.com [40.92.89.72])
+	by mm2.emwd.com (Postfix) with ESMTPS id B6B97384F1B
+	for <usrp-users@lists.ettus.com>; Wed, 13 Mar 2024 09:18:26 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="vkmmUTtG";
+	dkim=pass (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="Q1KgklRH";
 	dkim-atps=neutral
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=USQg7vkbf187zZ5kknNDPDL2XAP5dPGoLAUW3izcSCleBOKIBrlUHJectyTG1CmUVrv04bfn+y0P1tdVBrMYfZv9ZNmWMOT/kcASfQixcF46u53QdsVCG+turRP6reHm1MD9Vc3Uv6FufzNHsNSlD5dmgxIrVQhUSFh8nsqL+WE8e0O7WovT6I/B+YPHv6wfMe4Nq0PNFiyMy5/ZY7XYjWXhM00yKi6cuLRnS8MwRIFTS9+O8l42PGqtkD7PywQ42Uv3ZE9sfTBq1KzjuDQhWjg4C3TLNSpclwy1zbsxiQ1bFAzEjwkM2wKu71kvJSB2xiJ8YPiePy1b1bi30bXXfA==
+ b=PDHO988ZKQHlZu4itiFVTegHW2pzB6ycNE/nr8q7csGBxjWqlEjsNYn7eu8xs+p02lroO7wBIfo9UA8RFTe7QEWcCXgiAdXvM27crCoV2Mov3bvQWBaNutekgYeYh599CHiJOjKSQyVqRmxbBVJZvqyC93JUHa7ui9c7Vy4jIj2BkXteVlEyRk43H1ghya+fwHjKiLyCgz1rGreAsSbIE/L93xBGgpqICvo766BcEqnG5O0DTweDCzO1z4SVWmlgNKW2MY5b+hYcVZdl805035W02HqSg/2Q1cj/TyJhTyHUS79AQOWwYoGrkuBZ71flroLl8WRot4098GUFhJQC9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H1toYW2ulxye6f4OQnfGOwbUZOUj/IREL+ZZ3QEUhJM=;
- b=fqKBHmSQTpE1aOnL+9nv912d0pnsp7eZPTaITGDgVJJ9woAIfQVNZ/MjGIi2XNUGCHHofCZjhgoihP5SYnas+NtJ+Py16xHkqVLApe+66AZyJAKVxHRnkxOr4rbNo06JKsDWijInThCxa9C6GoOOPlcbXYOTb6vhgJx2is+dqHeYd+gqa3/etc3NanzBXyYwkF00VTbARbpAFDkpTrmwEiZK6uFX45//aUo4kwI39n2yIKbkHNk+Ws1fihMZ+UQwSj4sWLQjE1RsuJQKaHh7mI4SYqh0VlGR1PkS5iTOqqgjwj6mork6CUQaUOkE8mlXcT/4SNJjvbHakJueV43A3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
+ bh=knJHsku/QPwPSaXdZ6FaMvgou40TNJc3JP0ntbGl0NE=;
+ b=GtCTmSuqHJVHA9dZXAAbgjOevjw1FBAespyI0tpvQowg2WE6JxlhnGpq6397jx+QVBciv2tN8cc8FcfOozcOpZi0WG0N38WQB5K3rgd6SC1Xb5n94uimd6y6SiSGc/e5l0KQaPIJeP1eYhtfGKscAW4fEOo5twBkaXv+rl1pIoLLwcnWaCAZqBt2z/+w6SDESfKnrgNshj/ygOVTlisyo9rwxf3lpBwYaaN8Zix211m8okt00McztRZEvpCbbf4OjmUu7kP+h8HS3u+uLrv5TDxbwfzkg3UBqQ9reFEtRxLIg1k9VDW5t6Za3P9qldT6GrBwWW2w5bq3dV1l+K1I3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H1toYW2ulxye6f4OQnfGOwbUZOUj/IREL+ZZ3QEUhJM=;
- b=vkmmUTtG0lFZwRUuMoHYZ/neuhfsjIOH04ZsuURXCuAtbuPXT7JRufuTwfmGSUuNtFUutujeSNYqqoh5raUZA9DFIlNJI1JFScKm0nNCIjhzsguyAdVVA7uOP2rSh4h4uGbdjztB4RN/g1WIcTKGIj+j7SL96v0wAcCEWUBzjuQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ulb.be;
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::6) by
- DBBP190MB2059.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:52a::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7362.33; Wed, 13 Mar 2024 11:23:59 +0000
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::5f6b:c76a:2ff8:c5f4]) by GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::5f6b:c76a:2ff8:c5f4%7]) with mapi id 15.20.7362.035; Wed, 13 Mar 2024
- 11:23:58 +0000
-Date: Wed, 13 Mar 2024 12:23:54 +0100
-To: usrp-users@lists.ettus.com
-Message-ID: <f2r6jo6kwht3mfsk52g5ggwohrfj5flmnq5ubmh6gjl4c2mnpw@3rpnopiaxdsq>
-Mail-Followup-To: usrp-users@lists.ettus.com
-References: <i4YK3LcfmM4ImG5JVhHgBbgs8ipREMNff81XucLqg@lists.ettus.com>
-Content-Disposition: inline
-In-Reply-To: <i4YK3LcfmM4ImG5JVhHgBbgs8ipREMNff81XucLqg@lists.ettus.com>
-X-ClientProxiedBy: AM9P192CA0024.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:20b:21d::29) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:150:6e::6)
+ bh=knJHsku/QPwPSaXdZ6FaMvgou40TNJc3JP0ntbGl0NE=;
+ b=Q1KgklRH/34AbDH3MJ1Cz1Cg1seHgGAQu9+bE7xVrY7jUPFKfui283OReQnqqganr0+Yh9xBlsKnFLjWHa5OgbwQLhqp6xQEMSl6QJd6D4k3NM9W6wZRxrvwmowySBMbbqP0yYutxZm/fDh6X3OmSvILOEciVTTX4sc9+1/goXlg8EDROBrF7kjX1Db3baKo7G9PV81EarAnanPK7TQUv+zjRjLxsl7LB3poLOhP+K3TLfJnYDUWUgx/UqAxkFKaele0Yt0m+sBFeGvsgWtDffI8uwX6uWzGw0TAoKkGliQcAgpO8rAC9nYmxa30wYqXBrWizm3bKUGlYprmuerFCw==
+Received: from PAWP192MB2150.EURP192.PROD.OUTLOOK.COM (2603:10a6:102:358::8)
+ by AM8P192MB0978.EURP192.PROD.OUTLOOK.COM (2603:10a6:20b:1e9::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Wed, 13 Mar
+ 2024 13:18:25 +0000
+Received: from PAWP192MB2150.EURP192.PROD.OUTLOOK.COM
+ ([fe80::6efa:b54b:96bf:e85b]) by PAWP192MB2150.EURP192.PROD.OUTLOOK.COM
+ ([fe80::6efa:b54b:96bf:e85b%4]) with mapi id 15.20.7362.035; Wed, 13 Mar 2024
+ 13:18:25 +0000
+From: Tim Vancauwenbergh <tim.vancauwenbergh@hotmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: B210: synchronise USRP Sink & USRP Source blocks in GNU RC
+Thread-Index: AQHadUXvcNFWd4pDWEqwVLtrqhov/w==
+Date: Wed, 13 Mar 2024 13:18:25 +0000
+Message-ID: 
+ <PAWP192MB21509697372FC12333801419992A2@PAWP192MB2150.EURP192.PROD.OUTLOOK.COM>
+Accept-Language: nl-BE, en-US
+Content-Language: nl-BE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [0WPR7mTcxnfEGy0t4dJXDVzvR/q3p8II]
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAWP192MB2150:EE_|AM8P192MB0978:EE_
+x-ms-office365-filtering-correlation-id: 6800b51d-75b6-4806-9bfb-08dc4360106e
+x-ms-exchange-slblob-mailprops: 
+ 9IecXKUgicDyadF/9QYgeQisirINYHF+GHt4RI/BJz5HQPYttGquhBnkhCVcOXK/+xfnn4LGYt2qhZswskU1fJ7qQI7YAwzmNvdjcPXeD52TZK1y5jefhMt1DxNwlFCdupmco8TiPjOOvfFaT0Tb7MEA2uBcV7WTjdmvTb7r4IaRx5scUXDbvbfDz7E1W14HuFX3MZKF1KixtN1kgCmRX3cVOChyiR/IDPiEUdeCOa2q7oZlI15dXCON+tJeSXFizX+Oq34LLFtxORNbtZ4JrqXAF3hz0+TYbUCzaaZfBbq5tyDpy3fcwRsJA5edYXGuZymf9mgdjq0b89/mqsm1i2lP/IBjjNtAsKxKjH0KFNoEPM9D4VXD9H6dK5rRqyhyuWPGywzaSmEaHGGn3FguY+ThpW2J2ukd4gHXch3iOtfQ8da99cOXtBhOeJpcnZdQyWkvjmj7LNwWnTzhqRmj4EutwfIDVeWofbwsEANoEpXcjGRJTjUY2WguXZEfqkSNpx/08iuMNGzYpvyVMCy2Tq01XBGMe/MQ/EZkDLrfTdcih/2/g5r8QdHRUIt5F9IHGevXUPKfmsNLLB80TzMsSglN3PsCaSOcM4b6BDZYiGADtxkSsJuWgD9HamXY5b9/RBB8JqxBkVMJU9MLwQ+lL6nV9o86ahgMzjltS43e54LS/jR+EYf6MmgFHxEe8fWnmmbtVqQt026KuapOTjYujI0dXfUyjqguvBW9hUUVRMaFs3sPtKt27A==
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ pcJ3k11T6Whk5rsjwOQY4/DRBCZTlPMj2nZV/bOHrCrxziQ+dhEcTalXbWqfZu9EDFBVzfI/t5o5dOJPL4ah6y4rOvoLbhVIimMsCYBL2ApCQhgi9LlmCPwPMZ+z9xZgi8S1CVDTFO9dcM1cWfUU5RTqsN0MiJL0BIllIfqPwy9lMshyWL6DaKQ4TWNe2pySV1W0WV6/szGa8rxncbr2Wp9zRtQsXp331pBDia8pOBph24Vc6ZZx+PhF/5iGkv+USI3CrkCItwGZmjSTnmxCIiTdaZlCVqiXuifosP/XpWG4BtjVCvjO3jCJ5aFIUkK73x5bM+hyO4+DG4TR7ZXJU/YsXFD47rrC3xr9cFDBVEqznRMUEh9Rdn2VbSak0MKvJzCmRNC8mejAPX1K1kOqd693KGaJRYaMoxQBJf3rPMZKvyD6jCO8UAAMi1ToJTvZI9+tM3ZDMQFaU0Vj15rhXn8icZc4MWGBAebEd50kSdsFQMlOr3GE0DSO+K6asLVpNiHe4MlsdUtO36oVURH56fhobff2MGhmMAnhonTMcHmgTQlTEfjVrqIbx4cqhqdg
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?1DADDWvCN3cjp2x6JJIiNL/cm7NW2Y8sdSxhC6cZmZEXigF+Fn+JDAtMf/WB?=
+ =?us-ascii?Q?Qu9zkWwbLcgeDTx2XUiNqI5DA7lr336ROua74BLn6XchI7+dtLCw/m/Jh7ue?=
+ =?us-ascii?Q?9ZKRL76vpPKPGFaTObtQf/xBy+LMsYUTBehjUp+sYbqFkGEmx+BBXa/2E5wx?=
+ =?us-ascii?Q?H5dPKa0kE+ofVPzOSQNpGJ4K/vtHmiR/7/VE0lu+LoOP/A6FgaqkGyzpdG/v?=
+ =?us-ascii?Q?T9jUtIsWGXF7MmdIiAXxkuXkOlFKGoPbUa/uMWh+xmf39eKZPW9iy69QtH2r?=
+ =?us-ascii?Q?+vcT1mrXBqZol7T4NF7wEHG3+iIxpDBx8WlQJvvhfkZw9+Ejhw9HHGXvGjnH?=
+ =?us-ascii?Q?wcc3Xaz6PvpxZzW1kPCCj4c3oG4LgRlAPuLktjhZhqHktsRYZ5XYiV20QvtF?=
+ =?us-ascii?Q?bDHHeRdnEiphTBNelUq3M+d3yDRe54m9MjtA+MVauT2NBMkuz4ypTMSnn/KF?=
+ =?us-ascii?Q?Ltybm/syhigqzCmhNLxM3qlnBV9KtFPH4/+/HTQSIHJ72EBxwTSXG40PEVvT?=
+ =?us-ascii?Q?imIw52UcbrGteuvnaVzR0yXAq29ESEsB/xLd3emHdBMuWhnq3HevJAVBWcLA?=
+ =?us-ascii?Q?p36NJordG2lK0LFQGMo/RSQS11f6Xfh8JpMGgXYF3uUjwEgmAwW69o4guoyj?=
+ =?us-ascii?Q?w/R3Oc4zdT2Uhuye20kaA83fWOog1uM59/nUCby7afmMVhBE93Z/ea0wD7J5?=
+ =?us-ascii?Q?4DR2wuS3UIt7iKwmgwxsGUZdPSeH6qZz0p4n12d3MYdf9cKHlN7S6mfxo4gK?=
+ =?us-ascii?Q?wVu4fIu28qGkg98CScaE/oEFVyIGruNWK6c/n+KQacnD3y1PGKMzsquhnqv+?=
+ =?us-ascii?Q?DzPc8IcPynmtfLH3l514L2TtZDYWZup0386cWJD82FEQfVo+sPNbA42hGsDA?=
+ =?us-ascii?Q?5q14LlJE3yzoIenk7tjlo+2TxzoSaItAiizdttJulQ+SNXbdbxug+nm8Mfy2?=
+ =?us-ascii?Q?ctZ6Rnt0Ce8Tn21gVbNYpj9qbYbehCwpT2F90yCvVvHSYlpNKCMrQYBk92/H?=
+ =?us-ascii?Q?0C7hflQ7gFnR+jhM1a4ZMkJy9UMLxOTHZYtsCTqg+FjyAkXUgU3+5PcsWITq?=
+ =?us-ascii?Q?X1G33Low9kSP/Sl5fhJccKi+dgGXGU+Yczbdt0kI8A6NT4ErewL386No59sc?=
+ =?us-ascii?Q?kTNYENlWpBGOsJ3ZP7yT+lQ22lgyjZwBiRceIGRGbOH3OncVKQfMquCe1uI+?=
+ =?us-ascii?Q?btfc0S2yEoLqfKOpY9FnT/s68NjUkwFVseADSZr6vldMywfPT4PVv2JfTYtx?=
+ =?us-ascii?Q?511DfBtlQbdslN033/O42Qc/X2n6e7zdNFyzyYroXQ=3D=3D?=
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXP190MB1848:EE_|DBBP190MB2059:EE_
-X-MS-Office365-Filtering-Correlation-Id: fdbb15ea-afd8-4915-3a2d-08dc435013b4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	L/YfPIoPKc4rYKip201XwmWFBLN7Jbx2DRyE535ovn/PeY6yha4zONizKLIrRhHL5xYgMFrAfjPhDB5I3V+A0YFNpLBFL7fv0uo+7ZGy5f1IzfrhpfG9nPHGIjRqIaYFikR9RJFTlIjpyBDlrij2bbyvnycOM4dHJZEL+h4Xijc0xNOSnrk+QJx72CAKKhPXbVQJs/ndm4CXGcvFnNOLgn9VS48eTXh1osMHpUyCpQBv+f75U4+ntiA+FoNospu2ZAn0PoAdQkC1l1uoSxFGY7H7NAaTK41LHnX4TE9GnN7B95LexnvjWGqn6DWxOlnxiwp/PxwstAlCYJwvYWZJMxQncj2z60glb5Wwa7c422cHIhSFvvkPGchhRrsLIjNz0SOKzyOje0Kmhlz4fKh94NWoXcE5X9/qppB1UzCTNer0PS+S7ZEvM8KNFOL15T2A6KAMLgNJXypHAT++zc6xULGbF5o+nB3ibj5l0jwoDtnlyW6K/5ABa8LfLjfA1Fr4tL/a783mom1V7+5AnEmmwyNZlSr9hHp05fCFyeTVKLUbUDkHSLi0dhiDu9iuC1R2T5hPFa4R/XQjG9D/vMYzYq5rNTCiLX/n8mhm9ST8riQ=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(1800799015);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?N2RqUERYNHBYY3RrVElXMmtDSXRqem8yZDZpMzd6TXg2cW45VnFheWhzVzZj?=
- =?utf-8?B?bktKMHM1RDFyZVJIaG95WDRWSnJCS24yeURsQjlHQnhaTnZnZGxXcFBJVndu?=
- =?utf-8?B?RUNKN3ZpNk9FMFE4akdkZ2RQTTZvUmJJS2ZxYU53NEZ2RmxKSzYyWllNSGky?=
- =?utf-8?B?Qm9mcXFmaFRveGt3bzZBUXA2V0xwTGhyRjZHSU12eTNVMHk2VzY5OWcxa1Zy?=
- =?utf-8?B?RmYra2FraTZNK3pXK3J6bFVtaHFVaUJKNGxUUk1jc0JjVVU2TUpmaXBpaVJw?=
- =?utf-8?B?OFlPSndIbWM2U0hxMHgxNmljVkx0RVI5elA0dXdMWkFUaVpmeWh0cStuc1Rk?=
- =?utf-8?B?b2JaNTBQOWRCTDZEUkgrQk1FejEyaTJleVFDMS9TZG9nNlpIWmphbm9kaUJS?=
- =?utf-8?B?ZllMcU90SUlkYXJJM0I5cVlyTmVhREhJY1BGTFJ2TDY3cysyWTJSM0JZcklh?=
- =?utf-8?B?VGdTZnFTSnJUTysxR2NDZWQ3SjVnd3l6OUFQK2RaUUV0d25FMU1BcE8vbGVr?=
- =?utf-8?B?c09MeXJHY0NVN2Z1dHMyYnlkKzJsSFJraGxJT083aGxYSTBGZzRqMy8xR0dR?=
- =?utf-8?B?Slc0OW1mRzB5c0xrR2VRdjJsd293ejIzWmNnRmNEV3AybHBXYkNWWFVwTUZ0?=
- =?utf-8?B?Vkx6STNwRWlGeW5CV3gvRkZwdDhQUDJyTVR5ZXJ1dEFmNS9tUy9iemk5TjdM?=
- =?utf-8?B?elJtRXE3ZXFvdmMzb1h4M3B0akg2cE9MTTQyOEphbHE4WUJ4RWNWK0hkYUFj?=
- =?utf-8?B?dldlazQwK1FHbmVXTlZZMmFURXJ4Y0xEYTd0UTV0RVZTai9HTG5KbXV4bTNR?=
- =?utf-8?B?U1hpdkV2aTV2ZzZqRjUzc1BRUXRqSWZSVW52U2tmNXRObkF3MjJwNWkzUmdI?=
- =?utf-8?B?UWVQK2pHdG53QmNYQlFDSzRCY2t0eGFVZTNWWFY4eE9jWG01bjVQK2U3dE5j?=
- =?utf-8?B?T1djcG1rNW1ZYUp4a0JUTGdQd1dlcUJIOUgrN0ZnRTg2cTBrbWV2OHdSTm5x?=
- =?utf-8?B?UVJsQlB3YVEySmY1WlRJZU9nZjFLZk9ma2NwT1Q5bklGWTBqMU0yYThDbDky?=
- =?utf-8?B?WFVhMGJlbWdiZ2crdDRhTnRrMThBSmZLUlZZZk5hWU1jSi82cDZRYzBKU1Fq?=
- =?utf-8?B?UXVNbVkxQithZnNlSm04MnhFZ2kvTUZyNkhqek5wSU5ib1EyUEszVWhSb0hR?=
- =?utf-8?B?cW5IcDNTTEw3THZKblJta0ZNRU04S3ZYRVJtV1lnT1RiQnpqRGtsTVZMb3Yx?=
- =?utf-8?B?NTI1Mk9seVJ1OGM2TmJOc21MdlRZeVh2U0ZCLzJnbklYckYyVlAwMnFuQTlC?=
- =?utf-8?B?bk02b3haZkt2dXBVYkNvZFFISHRyOWNHYkdXNzJGYVdjcmpTVzFGNXR4Rk8z?=
- =?utf-8?B?VUhHeDFiNk9EVFhScGRiQmpVMTYxZUt0UVJCWXlIQlhQbGhQOFJwY1dzYmdo?=
- =?utf-8?B?QTF2K2lGWUdMMFVBUWt5Z3hOOFBwVm9OdWtTTCtJYUxzTVQ2NXZ6c1h1VGlm?=
- =?utf-8?B?MUkyYjVmUmluemZEd0w4d2R5a1FXd0s0UnVyY1RLdEFoYVY1VStRU05YWkRx?=
- =?utf-8?B?QUhGMlNzeHJPZWtvZEMwbksrc1NNNit4YjRuL3Q3ZWd1OHlwQ0Z4Rk80OHJU?=
- =?utf-8?B?MGgrb3JyL3RHbHREWnhNRGd0MFZLUWpiRVZuOWc3Z2R6RkV4OTJLR1VsdGFv?=
- =?utf-8?B?Zko0QUhDODJ0TDVqbngyaUpibFNzS3dzQ25iRHF2UmMxdmVhS2ZtWSs2VVlT?=
- =?utf-8?B?N0RMKzJmbjdRUnphTTdXUkxjTEU4bWZDYlhjV3JSMTB0UU9MUVZPVVZZSFVF?=
- =?utf-8?B?Y3J5a2lIcFJ2TU1YTlhFQktVblh0VGJ5ZVpuZ0h0dzYyTk1UL21hMlRiRDJ1?=
- =?utf-8?B?US80cjZ4N0o5eE0wc1ppcHdsRzhRc05jSWhrT05xb0JtUzNyb0M4aEJQdXBp?=
- =?utf-8?B?V2ZpOHA4c1BIVHpORGFKSWR2NzVtQXdqazJtbXJjSnlWTCtmNW4xY1NSMDBR?=
- =?utf-8?B?M3ExNmYrTzZxT3g0Zk0ybVlzZFIxemlKT25uR2FRTUNKUW1LMm5zejc4NVkv?=
- =?utf-8?B?SlZUelRTYkVXM3JxTDN1cW52V0ZTcEQwYWt5M0grdld0WjFRamZ3N1hFb2dr?=
- =?utf-8?B?eWtBb3MrTzRpeEdLSGhHRFNPWFBONzdZL3VrMlFLcThDb29IVFMrbnBFQTRM?=
- =?utf-8?B?VXNxVkJzTUF2OWVQSkdRKzFnWmhUaHEvR01MbkVmeEpNcU80YUFMYXh1anF5?=
- =?utf-8?B?SnR3QzFWQytXTlhoWnMvaUh5NG5BPT0=?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: fdbb15ea-afd8-4915-3a2d-08dc435013b4
-X-MS-Exchange-CrossTenant-AuthSource: GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-fb43a.templateTenant
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2024 11:23:58.8507
+X-MS-Exchange-CrossTenant-AuthSource: PAWP192MB2150.EURP192.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6800b51d-75b6-4806-9bfb-08dc4360106e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2024 13:18:25.1217
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: o9FOyL0+nq61cbGlsBBYpgUXUpeFgqh/eKuwkR7HoMfhLzoKzGN5nIVuoHRALKb1bdCaebDhtGjpFgwsILnHLA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBP190MB2059
-Message-ID-Hash: LCSRM5UCKGGJMAMKF3C4ZRB64L63QS4F
-X-Message-ID-Hash: LCSRM5UCKGGJMAMKF3C4ZRB64L63QS4F
-X-MailFrom: cedric.hannotier@ulb.be
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8P192MB0978
+Message-ID-Hash: 3BWJHSBQPBEVGLHF5VTGKA3QDAES2C42
+X-Message-ID-Hash: 3BWJHSBQPBEVGLHF5VTGKA3QDAES2C42
+X-MailFrom: tim.vancauwenbergh@hotmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Non-Unique Device MAC Address's After Mender F.S. Update
+Subject: [USRP-users] B210: synchronise USRP Sink & USRP Source blocks in GNU RC
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LCSRM5UCKGGJMAMKF3C4ZRB64L63QS4F/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MLD2PLUQPMXYPX3M4CMX5WFEI3FTYLLP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5825220639851901015=="
 
-SGksDQoNCk9uIDIwMjQtMDMtMTEgMTU6NDIgKzAwMDAsIGVkZW5tY2xhdWdobGluMTIzQGdtYWls
-LmNvbSB3cm90ZToNCj4gV2UgaGFkIGEgbmVlZCBmb3IgYSBtdWx0aXBsZSBkZXZpY2UgLSBzaW5n
-bGUgc3VibmV0IHNldHVwLiBBZnRlcg0KPiB1cGRhdGluZyBtdWx0aXBsZSBFMzIw4oCZcyB0byBh
-IG5ld2VyIFVIRCB2ZXJzaW9uLCBtZSBhbmQgbXkgY29sbGVhZ3VlLA0KPiB3ZSByZWFsaXplZCB0
-aGF0IGFsbCBvZiB0aGUgZGV2aWNlcyBzaGFyZSBhIGNvbW1vbiBNQUMgYWRkcmVzcy4gVGhpcw0K
-PiByZXN1bHRzIGluIHVuc3RhYmxlIGNvbm5lY3Rpb25zIHdpdGhpbiB0aGUgbmV0d29yay4gQXMg
-Zm9yIGluIFt0aGlzDQo+IHRocmVhZF0oaHR0cHM6Ly9saXN0cy5ldHR1cy5jb20vZW1wYXRoeS90
-aHJlYWQvUE9ZVVlOQjRSSDVNRlBBRFBGWVRTTExLVkFXVDY0TTY/aGFzaD1QT1lVWU5CNFJINU1G
-UEFEUEZZVFNMTEtWQVdUNjRNNiNQT1lVWU5CNFJINU1GUEFEUEZZVFNMTEtWQVdUNjRNNg0KPiAi
-RTMxMDogQ2hhbmdlIE1BQyBBZGRyZXNzPyAiKSBpcyB0aGVyZSBhIG5vbi10aGlyZCBwYXJ0eSwg
-RXR0dXMNCj4gc3VwcG9ydGVkLCBob21lZ3Jvd24gd2F5IG9mIHJlc3RvcmluZy91cGRhdGluZyB0
-aGUgTUFDIGFkZHJlc3Mgb2YgYQ0KPiBuZXR3b3JrIGRldmljZSwgc3BlY2lmaWNhbGx5IEUzMjA/
-DQoNCkl0IHNlZW1zIHRoYXQgbmV0d29yayBpcyBtYW5hZ2VkIGJ5IHN5c3RlbWQtbmV0d29ya2Qu
-DQpTbywgSSBndWVzcyBpbiB0aGUgbWVhbnRpbWUsDQp5b3UgY291bGQgY2hhbmdlIG5ldHdvcmtk
-IGNvbmZpZ3VyYXRpb25zIHRvIGFzc2lnbiBhIGRpZmZlcmVudCBNQUMgYWRkcmVzcy4NCkZyb20g
-WzFdLCB0aGUgY29uZmlndXJhdGlvbiBzaG91bGQgYmUgaW4gL2RhdGEvbmV0d29yay8uDQpZb3Ug
-Y291bGQgbW9kaWZ5IHRoZSBmaWxlIGhhbmRsaW5nIHRoYXQgbmV0d29yayBpbnRlcmZhY2UNCihp
-LmUuIGlmIHRoZSBpbnRlcmZhY2UgaXMgZXRoMCwgdGhlbiB0aGUgZmlsZSBzaG91bGQgaGF2ZSAn
-TmFtZT1ldGgwJyksDQpieSBhZGRpbmc6DQpbTGlua10NCk1BQ0FkZHJlc3M9PHVuaXF1ZU1BQ0Fk
-ZHJlc3M+DQoNCkkgZ3Vlc3MgdGhhdCBpZiB0aGUgZmlsZSBkb2VzIG5vdCBleGlzdCwNCmNvcHkg
-cGFzdGluZyB0aGUgb25lIGZyb20gWzFdIHNob3VsZCBiZSBmaW5lICg/KQ0KDQpPciB5b3UgY291
-bGQgYWRkL21vZGlmeSBhIDxuYW1lPi5saW5rIHdpdGggYSBjb3JyZWN0IFtNYXRjaF0gYW5kIGEN
-CltMaW5rXQ0KTUFDQWRkcmVzc1BvbGljeT08cGVyc2lzdGVudHxyYW5kb20+DQoNCmFuZCBsZXQg
-c3lzdGVtZC1uZXR3b3JrZCBnZW5lcmF0ZSBhIE1BQyBhZGRyZXNzLg0KDQpSZWxldmFudCBkb2N1
-bWVudGF0aW9uczoNCmh0dHBzOi8vbWFuLmFyY2hsaW51eC5vcmcvbWFuL3N5c3RlbWQubmV0d29y
-ay41LmVuDQpodHRwczovL21hbi5hcmNobGludXgub3JnL21hbi9zeXN0ZW1kLmxpbmsuNS5lbg0K
-aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvU3lzdGVtZC1uZXR3b3JrZA0KDQpbMV0g
-aHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfdXNycF9lM3h4Lmh0bWwjZTN4eF9n
-ZXR0aW5nX3N0YXJ0ZWRfY29ubmVjdGl2aXR5DQoNCkJlc3QgcmVnYXJkcw0KLS0gDQoNCkPDqWRy
-aWMgSGFubm90aWVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-ClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5l
-dHR1cy5jb20K
+--===============5825220639851901015==
+Content-Language: nl-BE
+Content-Type: multipart/alternative;
+	boundary="_000_PAWP192MB21509697372FC12333801419992A2PAWP192MB2150EURP_"
+
+--_000_PAWP192MB21509697372FC12333801419992A2PAWP192MB2150EURP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Dear
+
+I am using a B210 in a loopback configuration to achieve delay measurements=
+.
+Currently, a basic software setup is made in GNU Radio Companion, consistin=
+g of a UHD: USRP Sink block (TX) and an UHD: USRP Source block (RX).
+
+I generate a pulse every few milliseconds. When starting the flow, there is=
+ a clear delay between the transmitted pulse and the received pulse when vi=
+sualised in a QT GUI Time sink. I suppose this is due to the delay between =
+providing a sample to the USRP sink block and the actual transmission + the=
+ delay on the receiver side.
+
+
+Is there a method to make sure both sink and source blocks start at exactly=
+ the same time or at least can be visually synced? The delay seems to vary =
+every time the flowgraph is run. In this loopback configuration, the delay =
+between TX and RX should be 0. When adding a lengthy cable it should no lon=
+ger match.
+
+In the sink and source blocks I have set the sync setting to PC Clock on ne=
+xt PPS, and left the start time at its default.
+
+Any ideas how to get a good sync?
+
+Best regards,
+
+Tim Vancauwenbergh
+
+--_000_PAWP192MB21509697372FC12333801419992A2PAWP192MB2150EURP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"auto">Dear</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I am using a B210 in a loopback configuration to achieve =
+delay measurements.</div>
+<div dir=3D"auto">Currently, a basic software setup is made in GNU Radio Co=
+mpanion, consisting of a UHD: USRP Sink block (TX) and an UHD: USRP Source =
+block (RX).</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I generate a pulse every few milliseconds. When starting =
+the flow, there is a clear delay between the transmitted pulse and the rece=
+ived pulse when visualised in a QT GUI Time sink. I suppose this is due to =
+the delay between providing a sample
+ to the USRP sink block and the actual transmission + the delay on the rece=
+iver side.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Is there a method to make sure both sink and source block=
+s start at exactly the same time or at least can be visually synced? The de=
+lay seems to vary every time the flowgraph is run.<span style=3D"font-size:=
+ 12pt;">&nbsp;In this loopback configuration,
+ the delay between TX and RX should be 0. When adding a lengthy cable it sh=
+ould no longer match.</span></div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">In the sink and source blocks I have set the sync setting=
+ to PC Clock on next PPS, and left the start time at its default.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Any ideas how to get a good sync?</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Best regards,</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Tim Vancauwenbergh</div>
+</body>
+</html>
+
+--_000_PAWP192MB21509697372FC12333801419992A2PAWP192MB2150EURP_--
+
+--===============5825220639851901015==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5825220639851901015==--
