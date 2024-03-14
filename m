@@ -2,227 +2,124 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E33787BF58
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Mar 2024 15:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BCAC87C195
+	for <lists+usrp-users@lfdr.de>; Thu, 14 Mar 2024 17:57:45 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 72BA4385295
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Mar 2024 10:56:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7D15438537A
+	for <lists+usrp-users@lfdr.de>; Thu, 14 Mar 2024 12:57:44 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1710428170; bh=Cf3TnB28/NqWzOc6r10GLSk1RqK7/Ci6GepsMIWzzMQ=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=M+Y9jsDSGAB/rhxlMMu2WdB0QB+IxU6llxRNeLzUhp/VzSJmsOxrP0FdJxVnXSPKU
-	 Qu4/sXyXLODPf+aebtFAn8x+9JgxxYaMLN57k6fzzGrD6C1CmdVBpvHBKe+rqn6/Wi
-	 nFbWa1wzGH4B7PxhC1WgkrYLHpoLPl7YlQ+mw5OjvsG9GiC6NXtkKOn2IYOfv8nTn1
-	 +unpj82Y+rc2pr2/zYMlt3HVp2/BkRyqqu3ukLfh1hPBhbGzqr9NUR0J2i/NXdgWjs
-	 iJUktqOaVNktG8k3I4j/CpGYNOniqio1s7MQihmQVvPj6S/szzRhi9WY95U1MmqlA6
-	 5nivVYKiKjyMw==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2C3B938500A
-	for <usrp-users@lists.ettus.com>; Thu, 14 Mar 2024 10:55:21 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1710428121; bh=uOxuqmC4O489+2743KFZO6or1WnFoK+eCYh4XyZ7XzY=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=enqXxdnS3ii9iQzTHrNbCFtIq+kWE6s5aqRyyKGpli9aGyzIxC9RyHOpN2+s07T9j
-	 9TkxokxCpWDDu3y1EQEtHlPXEY2jhopDmGE1wp8cgk9SiEppOalJuwEnJm8g/fEXv7
-	 1cwyUIuPqwGIXI7Ee6WRI2HFcE+lkc5rgA8CAelHUltizIDnB/hGkaklEqwgsPABn5
-	 h2R3PGEXR4hPTYPyVgpI20I/wlv4m01lqHBJDIcjrVNpm3a8LTy8HrXjwSvjsxVC8p
-	 0w7aEmAOYMme/TUpMhcyfqck1JrMRC7NytWX5BljL1PYuHHNLJXRRskosBWNxyWXBS
-	 /FOaFQKmWQupQ==
-Date: Thu, 14 Mar 2024 14:55:21 +0000
+	t=1710435464; bh=Zu4GQxNJYRfBhrMmOILhmGJtATr2iMY5X4Fja4X/P8k=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=Ey0vghb3IVHYyAwRxT+yWeda+VmgV4QdE9xB4NNgOjWEjHCIf+DrU74035lbyuj/N
+	 VmUbHB8e7ifhBzwli9cZ+LDzyfcVWu9OU2Q8MhQPlq9kXnXPMoyXOx7wo8POekYQHU
+	 Un+gdv8JlzVJPhfenKWkZxjeEndNwB0wTx7Grl71I6znFh16wHBd54dIROE8PWGv86
+	 KotRCmrrAr4veNd8/p5F2ZmpWmP/jI1kXuu8Fgl1ClqGSIRdF1X8fIkXd2DVHwtc0F
+	 J39YJ88GF86iJKsav+e0Egv9xD+9G0zgauATYG/tcH2YbwQ9hpcscrYz619dW7Wbcf
+	 cy9+P7wrPU0SA==
+Received: from ms11p00im-qufo17281601.me.com (ms11p00im-qufo17281601.me.com [17.58.38.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 37F0F38524F
+	for <usrp-users@lists.ettus.com>; Thu, 14 Mar 2024 12:56:54 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=me.com header.i=@me.com header.b="TUXDtqGV";
+	dkim-atps=neutral
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+	t=1710435413; bh=qc0RxqOGXHD2BvU3EOfqbCL8Ozu/vKbcSxUR4iXnQgo=;
+	h=From:Content-Type:Mime-Version:Subject:Message-Id:Date:To;
+	b=TUXDtqGVnEExwKAEsSt7fw1GZLdO5MRhNY9/RBVfm0kofd1yySC9uNCexAmn7FkdM
+	 4ETciVrkS0T7nIJhY7jLeJSKpe9vrkF/vC/OPx/AF/lY4gHhyJzZ5hjk7pHblzEkII
+	 nhL4YvmKj7YjLnTnxNidzzDEZ3R6eInffrdSOlb+hvjqCUCxPiDmK8uJtAHlHYFWqZ
+	 s1pdI1k7oNk9tecJggP8gyht4DnVOfBhR9WBMpnZYfB0TjwEAMuf+J+bypSc6Ytrt6
+	 z7ao3YInjqFnA46HtPmHaJaXUo34vTNJJNyohyzfpWYUCSIPtwK6wmLTKr1pGh4SUn
+	 nDj3pnjrM8a2Q==
+Received: from smtpclient.apple (ms11p00im-dlb-asmtpmailmevip.me.com [17.57.154.19])
+	by ms11p00im-qufo17281601.me.com (Postfix) with ESMTPSA id EF565AA08A7
+	for <usrp-users@lists.ettus.com>; Thu, 14 Mar 2024 16:56:52 +0000 (UTC)
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
+Message-Id: <D4276B0A-B6FC-43E8-9DAB-CA51FFFA86AC@me.com>
+Date: Thu, 14 Mar 2024 09:56:40 -0700
 To: usrp-users@lists.ettus.com
-From: zackkomo@utexas.edu
-Message-ID: <yNBXUYQosdUA6cLC6Z9QFc8QuvTuuIAh8Ohorf0UoU@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CABfZwcekxBdPL2O=oPbfj8ngE5Bw-nkOFnPuCK23af0vAAtwTQ@mail.gmail.com
-MIME-Version: 1.0
-Message-ID-Hash: HRZYSSINJPJASOX33MQZLSOWBYS67OYT
-X-Message-ID-Hash: HRZYSSINJPJASOX33MQZLSOWBYS67OYT
-X-MailFrom: zackkomo@utexas.edu
+X-Mailer: Apple Mail (2.3774.400.31)
+X-Proofpoint-GUID: _fVNCdWe4USwZEJ3sHQB7I6KQRfDzrhM
+X-Proofpoint-ORIG-GUID: _fVNCdWe4USwZEJ3sHQB7I6KQRfDzrhM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-14_13,2024-03-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015 malwarescore=0
+ spamscore=0 mlxscore=0 phishscore=0 suspectscore=0 bulkscore=0
+ mlxlogscore=596 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2308100000 definitions=main-2403140128
+Message-ID-Hash: KPBYM7NFWYCOXGHNNH5UCMODLRE7AI6L
+X-Message-ID-Hash: KPBYM7NFWYCOXGHNNH5UCMODLRE7AI6L
+X-MailFrom: jimgrubb@me.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Get DPDK working with UHD 4.6 with USRP x410
+Subject: [USRP-users] NI 2944 to USRP X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HRZYSSINJPJASOX33MQZLSOWBYS67OYT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KPBYM7NFWYCOXGHNNH5UCMODLRE7AI6L/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5546717649850487133=="
+From: Jim Grubb via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jim Grubb <jimgrubb@me.com>
+Content-Type: multipart/mixed; boundary="===============3024165647565001235=="
 
-This is a multi-part message in MIME format.
 
---===============5546717649850487133==
+--===============3024165647565001235==
 Content-Type: multipart/alternative;
- boundary="b1_yNBXUYQosdUA6cLC6Z9QFc8QuvTuuIAh8Ohorf0UoU"
-Content-Transfer-Encoding: 7bit
+	boundary="Apple-Mail=_00766DFE-9754-4143-A70A-59D30064CC19"
 
-This is a multi-part message in MIME format.
 
---b1_yNBXUYQosdUA6cLC6Z9QFc8QuvTuuIAh8Ohorf0UoU
-Content-Type: text/plain; charset=UTF-8
+--Apple-Mail=_00766DFE-9754-4143-A70A-59D30064CC19
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Hi Mikio,
+I have an NI 2944 which I would like to use with gnu radio. =20
 
-Below are the contents of =C2=A0/etc/default/grub
+I found the kb article describing how to load the X310 FPGA image here:
 
-```
-# If you change this file, run 'update-grub' afterwards to update
-```
+https://kb.ettus.com/Running_UHD_and_GNU_Radio_on_NI_USRP-RIO
 
-```
-# /boot/grub/grub.cfg.
-```
+I=E2=80=99d like to know how to find the IP address for the SFP+ 10G E =
+port.  Is there a default address provisioned?  Does the box use DHCP =
+and try to get its address from a DHCP server?
 
-```
-# For full documentation of the options in this file, see:
-```
+Thanks for any advice you can give me to make the conversion go =
+smoothly.
 
-```
-#   info -f grub -n 'Simple configuration'
-```
+Best,
+Jim
 
-```
-GRUB_DEFAULT=3D0
-```
 
-```
-GRUB_TIMEOUT_STYLE=3Dhidden
-```
-
-```
-GRUB_TIMEOUT=3D0
-```
-
-```
-GRUB_DISTRIBUTOR=3D`lsb_release -i -s 2> /dev/null || echo Debian`
-```
-
-```
-GRUB_CMDLINE_LINUX_DEFAULT=3D"quiet splash iommu=3Dpt intel_iommu=3Don hu=
-gepages=3D2048 pti=3Doff spectre_v2=3Doff l1tf=3Doff nospec_store_bypass_=
-disable no_stf_barrier"
-```
-
-```
-GRUB_CMDLINE_LINUX=3D""
-```
-
-```
-# Uncomment to enable BadRAM filtering, modify to suit your needs
-```
-
-```
-# This works with Linux (no patch required) and with any kernel that obta=
-ins
-```
-
-```
-# the memory map information from GRUB (GNU Mach, kernel of FreeBSD ...)
-```
-
-```
-#GRUB_BADRAM=3D"0x01234567,0xfefefefe,0x89abcdef,0xefefefef"
-```
-
-```
-# Uncomment to disable graphical terminal (grub-pc only)
-```
-
-```
-#GRUB_TERMINAL=3Dconsole
-```
-
-```
-# The resolution used on graphical terminal
-```
-
-```
-# note that you can use only modes which your graphic card supports via V=
-BE
-```
-
-```
-# you can see them in real GRUB with the command `vbeinfo'
-```
-
-```
-#GRUB_GFXMODE=3D640x480
-```
-
-```
-# Uncomment if you don't want GRUB to pass "root=3DUUID=3Dxxx" parameter =
-to Linux
-```
-
-```
-#GRUB_DISABLE_LINUX_UUID=3Dtrue
-```
-
-```
-# Uncomment to disable generation of recovery mode menu entries
-```
-
-```
-#GRUB_DISABLE_RECOVERY=3D"true"
-```
-
-```
-# Uncomment to get a beep at grub start
-```
-
-```
-#GRUB_INIT_TUNE=3D"480 440 1"
-```
-
-I=E2=80=99m assuming you want to check the GRUB_CMDLINE_LINUX_DEFAULT? Is=
- hugepages=3D2048 correct for hugepages?
-
-Thanks!
-
-Zack
-
---b1_yNBXUYQosdUA6cLC6Z9QFc8QuvTuuIAh8Ohorf0UoU
-Content-Type: text/html; charset=UTF-8
+--Apple-Mail=_00766DFE-9754-4143-A70A-59D30064CC19
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<p>Hi Mikio,</p><p>Below are the contents of &nbsp;/etc/default/grub</p><pr=
-e><code># If you change this file, run 'update-grub' afterwards to update</=
-code></pre><pre><code># /boot/grub/grub.cfg.</code></pre><pre><code># For f=
-ull documentation of the options in this file, see:</code></pre><pre><code>=
-#   info -f grub -n 'Simple configuration'</code></pre><pre><code>GRUB_DEFA=
-ULT=3D0</code></pre><pre><code>GRUB_TIMEOUT_STYLE=3Dhidden</code></pre><pre=
-><code>GRUB_TIMEOUT=3D0</code></pre><pre><code>GRUB_DISTRIBUTOR=3D`lsb_rele=
-ase -i -s 2&gt; /dev/null || echo Debian`</code></pre><pre><code>GRUB_CMDLI=
-NE_LINUX_DEFAULT=3D"quiet splash iommu=3Dpt intel_iommu=3Don hugepages=3D20=
-48 pti=3Doff spectre_v2=3Doff l1tf=3Doff nospec_store_bypass_disable no_stf=
-_barrier"</code></pre><pre><code>GRUB_CMDLINE_LINUX=3D""</code></pre><pre><=
-code># Uncomment to enable BadRAM filtering, modify to suit your needs</cod=
-e></pre><pre><code># This works with Linux (no patch required) and with any=
- kernel that obtains</code></pre><pre><code># the memory map information fr=
-om GRUB (GNU Mach, kernel of FreeBSD ...)</code></pre><pre><code>#GRUB_BADR=
-AM=3D"0x01234567,0xfefefefe,0x89abcdef,0xefefefef"</code></pre><pre><code>#=
- Uncomment to disable graphical terminal (grub-pc only)</code></pre><pre><c=
-ode>#GRUB_TERMINAL=3Dconsole</code></pre><pre><code># The resolution used o=
-n graphical terminal</code></pre><pre><code># note that you can use only mo=
-des which your graphic card supports via VBE</code></pre><pre><code># you c=
-an see them in real GRUB with the command `vbeinfo'</code></pre><pre><code>=
-#GRUB_GFXMODE=3D640x480</code></pre><pre><code># Uncomment if you don't wan=
-t GRUB to pass "root=3DUUID=3Dxxx" parameter to Linux</code></pre><pre><cod=
-e>#GRUB_DISABLE_LINUX_UUID=3Dtrue</code></pre><pre><code># Uncomment to dis=
-able generation of recovery mode menu entries</code></pre><pre><code>#GRUB_=
-DISABLE_RECOVERY=3D"true"</code></pre><pre><code># Uncomment to get a beep =
-at grub start</code></pre><pre><code>#GRUB_INIT_TUNE=3D"480 440 1"</code></=
-pre><p>I=E2=80=99m assuming you want to check the GRUB_CMDLINE_LINUX_DEFAUL=
-T? Is hugepages=3D2048 correct for hugepages?</p><p>Thanks!</p><p>Zack</p>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">I have an NI =
+2944 which I would like to use with gnu radio. =
+&nbsp;<div><br></div><div>I found the kb article describing how to load =
+the X310 FPGA image here:</div><div><br></div><div><a =
+href=3D"https://kb.ettus.com/Running_UHD_and_GNU_Radio_on_NI_USRP-RIO">htt=
+ps://kb.ettus.com/Running_UHD_and_GNU_Radio_on_NI_USRP-RIO</a></div><div><=
+br></div><div>I=E2=80=99d like to know how to find the IP address for =
+the SFP+ 10G E port. &nbsp;Is there a default address provisioned? =
+&nbsp;Does the box use DHCP and try to get its address from a DHCP =
+server?</div><div><br></div><div>Thanks for any advice you can give me =
+to make the conversion go =
+smoothly.</div><div><br></div><div>Best,</div><div>Jim</div><div><br></div=
+></body></html>=
 
---b1_yNBXUYQosdUA6cLC6Z9QFc8QuvTuuIAh8Ohorf0UoU--
+--Apple-Mail=_00766DFE-9754-4143-A70A-59D30064CC19--
 
---===============5546717649850487133==
+--===============3024165647565001235==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -232,4 +129,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5546717649850487133==--
+--===============3024165647565001235==--
