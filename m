@@ -2,131 +2,106 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BCAC87C195
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Mar 2024 17:57:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7016987C1B6
+	for <lists+usrp-users@lfdr.de>; Thu, 14 Mar 2024 17:59:56 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7D15438537A
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Mar 2024 12:57:44 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7EFE4385365
+	for <lists+usrp-users@lfdr.de>; Thu, 14 Mar 2024 12:59:55 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1710435464; bh=Zu4GQxNJYRfBhrMmOILhmGJtATr2iMY5X4Fja4X/P8k=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=Ey0vghb3IVHYyAwRxT+yWeda+VmgV4QdE9xB4NNgOjWEjHCIf+DrU74035lbyuj/N
-	 VmUbHB8e7ifhBzwli9cZ+LDzyfcVWu9OU2Q8MhQPlq9kXnXPMoyXOx7wo8POekYQHU
-	 Un+gdv8JlzVJPhfenKWkZxjeEndNwB0wTx7Grl71I6znFh16wHBd54dIROE8PWGv86
-	 KotRCmrrAr4veNd8/p5F2ZmpWmP/jI1kXuu8Fgl1ClqGSIRdF1X8fIkXd2DVHwtc0F
-	 J39YJ88GF86iJKsav+e0Egv9xD+9G0zgauATYG/tcH2YbwQ9hpcscrYz619dW7Wbcf
-	 cy9+P7wrPU0SA==
-Received: from ms11p00im-qufo17281601.me.com (ms11p00im-qufo17281601.me.com [17.58.38.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 37F0F38524F
-	for <usrp-users@lists.ettus.com>; Thu, 14 Mar 2024 12:56:54 -0400 (EDT)
+	t=1710435595; bh=c3h4GtThrE7U7PrvIFYCDVbHYA2dLGNms7+GUvQa8CQ=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=ddiw/RXZYHG541pmWd3e35mZxUsdq6H5ZKSTomMpobV8AbXn41HR8KrlSZnT3+cuB
+	 L4qVja0z5RZuae6ect15EHNvOzZgaAvBX5qzXI11Hot7yqsJ8/QA1pvGI1lUBC+Mbl
+	 gS0KnLAiOzn3rDhCw87sT+JriTBhD7Feg3A0SmgmlFAR32j1MamxE9QbWMaGJQC0d1
+	 o8bn9wP4pgpiezxEBiZ8pxDoQQSzcfIoS8d5G3tm3hvV+OH9f4yjWlfJmE74JSFnl+
+	 GclsyKqwheN4eBUN/AraLi8Sgql08UPBSwjUtfW6f85jQx1OuKfAzcoZPva75suRFO
+	 PILdbTeJmSbIg==
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 24B8B38455A
+	for <usrp-users@lists.ettus.com>; Thu, 14 Mar 2024 12:59:06 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=me.com header.i=@me.com header.b="TUXDtqGV";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="C86w5tdt";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-	t=1710435413; bh=qc0RxqOGXHD2BvU3EOfqbCL8Ozu/vKbcSxUR4iXnQgo=;
-	h=From:Content-Type:Mime-Version:Subject:Message-Id:Date:To;
-	b=TUXDtqGVnEExwKAEsSt7fw1GZLdO5MRhNY9/RBVfm0kofd1yySC9uNCexAmn7FkdM
-	 4ETciVrkS0T7nIJhY7jLeJSKpe9vrkF/vC/OPx/AF/lY4gHhyJzZ5hjk7pHblzEkII
-	 nhL4YvmKj7YjLnTnxNidzzDEZ3R6eInffrdSOlb+hvjqCUCxPiDmK8uJtAHlHYFWqZ
-	 s1pdI1k7oNk9tecJggP8gyht4DnVOfBhR9WBMpnZYfB0TjwEAMuf+J+bypSc6Ytrt6
-	 z7ao3YInjqFnA46HtPmHaJaXUo34vTNJJNyohyzfpWYUCSIPtwK6wmLTKr1pGh4SUn
-	 nDj3pnjrM8a2Q==
-Received: from smtpclient.apple (ms11p00im-dlb-asmtpmailmevip.me.com [17.57.154.19])
-	by ms11p00im-qufo17281601.me.com (Postfix) with ESMTPSA id EF565AA08A7
-	for <usrp-users@lists.ettus.com>; Thu, 14 Mar 2024 16:56:52 +0000 (UTC)
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
-Message-Id: <D4276B0A-B6FC-43E8-9DAB-CA51FFFA86AC@me.com>
-Date: Thu, 14 Mar 2024 09:56:40 -0700
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7882d713f6fso57274185a.0
+        for <usrp-users@lists.ettus.com>; Thu, 14 Mar 2024 09:59:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710435545; x=1711040345; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tqEZAGsHWGsXGep1cDn2N9mayxglR8E8bcStEmQxQDM=;
+        b=C86w5tdthYbQDNioHq5ExJgKiptzoqQ0/d6tuhx7lDWNetRY9pzOdkRjFdRJp/SZ+Y
+         liqtgYzOLENFFUG6nCWXgjjmEMyK0IX8YzFlefqhnJtBThs0hKNm4l+U9MWhpDncVmSb
+         PBnslsUmUxdIQ/PxtteLjDmNoQk/Yd11ldOU2BJ5xKKi6no/i72c/TbA/w0jjyQ6utUs
+         IdEwiuI4BAGzzDJ00iozgqHdOSq+zRxZVIDUnDNA0nI3aavXSqAt+hDjdR/2AS8QGLmk
+         bdpu3+5RiE7qJlaT3RKJot2z8Rb95DMAnZ1m7knZhiPp+PHZGwFZSKQel0lRh1s8+T4L
+         V4dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710435545; x=1711040345;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tqEZAGsHWGsXGep1cDn2N9mayxglR8E8bcStEmQxQDM=;
+        b=A+0t1m41jJ5S138HEiI3s/fEvg/FYaMJM3kDpKeDbgy30C4/jUfi6UEXzokwP2z+0T
+         XY1O4Bn8tuySG3HJBs4a7OMyc1aWEmJHRSJlbEgW8gO3YXIXahS7YD8Ufpw+ikbKjDay
+         l20HIF9VXcCuTm5+DyAr68SeLqcDO0J/gM+msCRRziiVPIxii1vcbT2kmb+k/9cNgR+Z
+         VCGou7Yhh3y2oPe6oTsdOxtqj+nb6by3QxApjlh8esmNtP+ifw1fhBlNrPU4jwBMOBuV
+         yZK5wSo7qsYem4kzPmHUM0a0TPJ2ZvstZKeg5p68l/VkbGDiolXrnHPoE++OfL8wvNez
+         yN4w==
+X-Gm-Message-State: AOJu0YwBla+irm5fBB9fXLJie0nkmyV/dfivSe5bEIZWqmXjkaukhMrf
+	wTiw0VPCj+awC/M0ggoE13YZKSypVmhGiWon3IZfs/0af7M+kguXKQmlj5keZ8g=
+X-Google-Smtp-Source: AGHT+IHyUvY4Yf5+rWXTzJroHp2lCRBKpTA/lv1fDfgVmThLKngWhQ3zLb6iU8YMCZk1yHnfW1hPjg==
+X-Received: by 2002:a05:620a:5d98:b0:787:ef0f:f809 with SMTP id xx24-20020a05620a5d9800b00787ef0ff809mr2511497qkn.24.1710435542524;
+        Thu, 14 Mar 2024 09:59:02 -0700 (PDT)
+Received: from [192.168.2.170] ([174.93.0.156])
+        by smtp.googlemail.com with ESMTPSA id f28-20020a05620a12fc00b00788258a8888sm1023211qkl.48.2024.03.14.09.59.01
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Mar 2024 09:59:02 -0700 (PDT)
+Message-ID: <403f1e1f-5e3c-4e01-864c-c4fe3ac68cc6@gmail.com>
+Date: Thu, 14 Mar 2024 12:58:53 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-X-Mailer: Apple Mail (2.3774.400.31)
-X-Proofpoint-GUID: _fVNCdWe4USwZEJ3sHQB7I6KQRfDzrhM
-X-Proofpoint-ORIG-GUID: _fVNCdWe4USwZEJ3sHQB7I6KQRfDzrhM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-14_13,2024-03-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015 malwarescore=0
- spamscore=0 mlxscore=0 phishscore=0 suspectscore=0 bulkscore=0
- mlxlogscore=596 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2308100000 definitions=main-2403140128
-Message-ID-Hash: KPBYM7NFWYCOXGHNNH5UCMODLRE7AI6L
-X-Message-ID-Hash: KPBYM7NFWYCOXGHNNH5UCMODLRE7AI6L
-X-MailFrom: jimgrubb@me.com
+References: <D4276B0A-B6FC-43E8-9DAB-CA51FFFA86AC@me.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <D4276B0A-B6FC-43E8-9DAB-CA51FFFA86AC@me.com>
+Message-ID-Hash: N2URAW6A7AC5BRPYAPJD6K3UZFI23F5W
+X-Message-ID-Hash: N2URAW6A7AC5BRPYAPJD6K3UZFI23F5W
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] NI 2944 to USRP X310
+Subject: [USRP-users] Re: NI 2944 to USRP X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KPBYM7NFWYCOXGHNNH5UCMODLRE7AI6L/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N2URAW6A7AC5BRPYAPJD6K3UZFI23F5W/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Jim Grubb via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jim Grubb <jimgrubb@me.com>
-Content-Type: multipart/mixed; boundary="===============3024165647565001235=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-
---===============3024165647565001235==
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_00766DFE-9754-4143-A70A-59D30064CC19"
-
-
---Apple-Mail=_00766DFE-9754-4143-A70A-59D30064CC19
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-I have an NI 2944 which I would like to use with gnu radio. =20
-
-I found the kb article describing how to load the X310 FPGA image here:
-
-https://kb.ettus.com/Running_UHD_and_GNU_Radio_on_NI_USRP-RIO
-
-I=E2=80=99d like to know how to find the IP address for the SFP+ 10G E =
-port.  Is there a default address provisioned?  Does the box use DHCP =
-and try to get its address from a DHCP server?
-
-Thanks for any advice you can give me to make the conversion go =
-smoothly.
-
-Best,
-Jim
-
-
---Apple-Mail=_00766DFE-9754-4143-A70A-59D30064CC19
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;">I have an NI =
-2944 which I would like to use with gnu radio. =
-&nbsp;<div><br></div><div>I found the kb article describing how to load =
-the X310 FPGA image here:</div><div><br></div><div><a =
-href=3D"https://kb.ettus.com/Running_UHD_and_GNU_Radio_on_NI_USRP-RIO">htt=
-ps://kb.ettus.com/Running_UHD_and_GNU_Radio_on_NI_USRP-RIO</a></div><div><=
-br></div><div>I=E2=80=99d like to know how to find the IP address for =
-the SFP+ 10G E port. &nbsp;Is there a default address provisioned? =
-&nbsp;Does the box use DHCP and try to get its address from a DHCP =
-server?</div><div><br></div><div>Thanks for any advice you can give me =
-to make the conversion go =
-smoothly.</div><div><br></div><div>Best,</div><div>Jim</div><div><br></div=
-></body></html>=
-
---Apple-Mail=_00766DFE-9754-4143-A70A-59D30064CC19--
-
---===============3024165647565001235==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============3024165647565001235==--
+T24gMTQvMDMvMjAyNCAxMjo1NiwgSmltIEdydWJiIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KPiBJ
+IGhhdmUgYW4gTkkgMjk0NCB3aGljaCBJIHdvdWxkIGxpa2UgdG8gdXNlIHdpdGggZ251IHJhZGlv
+Lg0KPg0KPiBJIGZvdW5kIHRoZSBrYiBhcnRpY2xlIGRlc2NyaWJpbmcgaG93IHRvIGxvYWQgdGhl
+IFgzMTAgRlBHQSBpbWFnZSBoZXJlOg0KPg0KPiBodHRwczovL2tiLmV0dHVzLmNvbS9SdW5uaW5n
+X1VIRF9hbmRfR05VX1JhZGlvX29uX05JX1VTUlAtUklPDQo+DQo+IEnigJlkIGxpa2UgdG8ga25v
+dyBob3cgdG8gZmluZCB0aGUgSVAgYWRkcmVzcyBmb3IgdGhlIFNGUCsgMTBHIEUgcG9ydC4gDQo+
+IMKgSXMgdGhlcmUgYSBkZWZhdWx0IGFkZHJlc3MgcHJvdmlzaW9uZWQ/IMKgRG9lcyB0aGUgYm94
+IHVzZSBESENQIGFuZCANCj4gdHJ5IHRvIGdldCBpdHMgYWRkcmVzcyBmcm9tIGEgREhDUCBzZXJ2
+ZXI/DQo+DQo+IFRoYW5rcyBmb3IgYW55IGFkdmljZSB5b3UgY2FuIGdpdmUgbWUgdG8gbWFrZSB0
+aGUgY29udmVyc2lvbiBnbyBzbW9vdGhseS4NCj4NCj4gQmVzdCwNCj4gSmltDQo+DQo+DQo+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vi
+c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20N
+Cmh0dHBzOi8va2IuZXR0dXMuY29tL1gzMDAvWDMxMF9HZXR0aW5nX1N0YXJ0ZWRfR3VpZGVzDQoN
+Cmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3VzcnBfeDN4MC5odG1sDQoNCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
+bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJl
+IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
