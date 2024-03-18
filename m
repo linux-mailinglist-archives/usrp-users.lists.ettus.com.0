@@ -2,127 +2,128 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F181187E94A
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Mar 2024 13:27:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2808187EB64
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Mar 2024 15:48:58 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 96CFB380097
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Mar 2024 08:27:34 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2663C385376
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Mar 2024 10:48:57 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1710764854; bh=BAvqlFYVsZ+VRVV2UPDCtXAND+vN2I14T/xYseaRB90=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=p/Jtu9V34nk9hF1ygsAweEW/ZrtsFpZhF3/1WOVbFpmZErcYiTbv/0aT+YSHDfUbf
-	 E3CzT2D1uCKrNPLNxYge98oQQXpPkB42FBP+8fKTKkMmKTqz+qxBuWZkGrNGFnUdPm
-	 tEOiUBNl9NosnzeCH/LL5ONdLfqnIBO9GUjBdrlmNtdjdKrhY4kVXjMIsl3QprJhje
-	 5Nsqq0f6XbHzCYlZvailbJRC8zDXrjzhebtjkbTyNv4SpcvWbJCkFm0e+MlDScOzYl
-	 xfuEZqMxQS/0OHnichOU+o2ZUHwD59YOUBfc3/5N50aD/RHZ6Hb0PhFbpz9Eh5V6dT
-	 +dpezuzeAgfJg==
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 03CA23849F5
-	for <usrp-users@lists.ettus.com>; Mon, 18 Mar 2024 08:27:00 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="QltHEv1u";
-	dkim-atps=neutral
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a46a7208eedso241433666b.0
-        for <usrp-users@lists.ettus.com>; Mon, 18 Mar 2024 05:27:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1710764819; x=1711369619; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=U4arcjjuGFS7jBXNWmx/VvG8MWcqd/7tc/Fc42tjFEk=;
-        b=QltHEv1uxoEgedGC0sD8xqhYKcDH3p3cQJN+0ZIHKpt9EUfcspQPmFeNyVxPE6Bnj3
-         qBTsk8pKoJM1rgS4nkN6FOQ/f3cqQHXRjLDfFry5vI5HPfB69clZuBMRKOSDypNCh2J1
-         lWJike1TZiXYE6eqRw4fgUntmiJtJ7Y5pLptLrSbtAaDo5xfCKzEiNQ0AuT4/cPCLq9S
-         PIj9FHngvZIWvYB5FS+2h9iJYE6p7PaokMKYN1kx+XK1XcJf2oQ1N40VDQueQufsiqpW
-         4eAWRgw+AauZj3itJQEgar36/bBwY1JHcTvopJ1jQMwzVJYn1HcA/nDWHpxKi+qcoDIl
-         MDUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710764819; x=1711369619;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U4arcjjuGFS7jBXNWmx/VvG8MWcqd/7tc/Fc42tjFEk=;
-        b=vU2fsTplarfSSvpuL9je2vxIcGYE1IDSnifAcH7XnEyoMvJZlrm/H2usIml2En2gZZ
-         YSGAUq/QBQbRMM42vnvYKwUgYrclK6SiqCmRiA9TOYuOsGVtQ+l9WNiGNOUsyFE8UjH4
-         K/qOmvztXm+kZj6KUjChxFCfbzuPjBQtXfI9Mcpo/hGI5LiwNtYvmAukWOk5m0ynBg/v
-         mIfvFELcUGWTRrAgIe1spzkVyJMz6uyxCG5yiBe+ENN7uCQWblxf8Qy0PvQ37jFaMSwE
-         DO98J7+OYoQ+z/Mlx5fUjPA6lWovzznPfG65pUhw3H7GecqpAgpx35i/EWEA6jbn537R
-         Gkpw==
-X-Gm-Message-State: AOJu0Yx9wp48x4Ujdmfl30OqEv1//A4rdxCQoEJMBWCxBDCLegi7Qh0Z
-	Gv4MLvPb0D3S+nWCXTj498ndwtO93huitpUUw75R567SAsggGi4e5VLuKeNH3O81fV7uF8PupO+
-	EKek=
-X-Google-Smtp-Source: AGHT+IE65tvUzZ1UeporMv0nOqBPbiwV0YyDW6+qEJCJP8TOFA882D8rA7kZQpuqimsAHbv+sIf2JA==
-X-Received: by 2002:a17:907:724f:b0:a46:70d1:dda6 with SMTP id ds15-20020a170907724f00b00a4670d1dda6mr8829781ejc.28.1710764819474;
-        Mon, 18 Mar 2024 05:26:59 -0700 (PDT)
-Received: from ?IPV6:2001:16b8:cc6b:bb00:10fc:1619:bea3:90d1? ([2001:16b8:cc6b:bb00:10fc:1619:bea3:90d1])
-        by smtp.gmail.com with ESMTPSA id h21-20020a17090619d500b00a46447348e8sm4801516ejd.191.2024.03.18.05.26.58
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 05:26:58 -0700 (PDT)
-Message-ID: <7e17b80b-ca5c-44dc-baba-14101cb115d4@ettus.com>
-Date: Mon, 18 Mar 2024 13:26:58 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	t=1710773337; bh=FcGeSKcczEBKY+MPI18fu8L2V7hG81Kx+q9z5zWadNw=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=Bl2V0DdLVsBBNiM9JZwuuhtWDvITBeSX0FLdj4zOPw1Fe6jUa294ImoefOd2+OTQ7
+	 CWVWZVvU98de2BigYCL/r/8wL/vGPAkx9yHxuKYz1Y7OkMI+X24AEl8W/WDWxj4y0x
+	 p4PrbJmoSJbC26vJu8Er3Z2ov1xQk4b9DyGdGsXvXyoGA/DrJ1Z91J3/AcCJcPjBtm
+	 zVjq13trHIK9jBBbqZX1WbFOkfvLGKjVBUWzG2Wql2qeWmX/1xhbb3kw7xERuLWNue
+	 yuJ6MEEywwvuLN020QtuEtiGlyKGPMEcG9bT+A8SmVFUQjPIMj+wu/NjuoeehmdjNi
+	 ejVXLXaRHS8eg==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id CD34038532B
+	for <usrp-users@lists.ettus.com>; Mon, 18 Mar 2024 10:48:20 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1710773300; bh=pHvl0YoAcZ7XgeCAwNyR90v6a2mU5HSZ9pSAQ0jWcMo=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=ronrFfWv0sjVKn+QsU1e9Ooqq1Gcs6/8oCBNNIIWgZRfySaWcJVpZxAkPx2rkp/Aj
+	 Lx8mqTapKUN4sKJt5ZNHPRNy09vnRhrykoJ7YOXgMuRQpA0WrqZVSh0dI5jFmnlBo3
+	 w/W9ZrokhsGGCITG6HURuCJzML0C8r5Mom/EGujOkj6yEix88kDc9+kdCCQ+0kOvwC
+	 5ZVxfUmlOAUX9JrvNCBm6vCbeH0+oM+Ks7WBRwSMH5Iw3mv/OezDBpWWiJnoCVDcLB
+	 WZK/Vl5MDNDQPxjooepofrqTvZ0eazjWC62UxnjnoQ5/+meJ0zIM+XFJxyGP2joJEn
+	 6NVDArsgRJAUQ==
+Date: Mon, 18 Mar 2024 14:48:20 +0000
 To: usrp-users@lists.ettus.com
-References: <oxvzWQcpaF4Nt4AYAgLogLm8vsAQTIN66HbtIHkA@lists.ettus.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-In-Reply-To: <oxvzWQcpaF4Nt4AYAgLogLm8vsAQTIN66HbtIHkA@lists.ettus.com>
-Message-ID-Hash: OZ5WY3VF4LEHWZRJHJ73S6Z5FHQ7OOVW
-X-Message-ID-Hash: OZ5WY3VF4LEHWZRJHJ73S6Z5FHQ7OOVW
-X-MailFrom: marcus.mueller@ettus.com
+From: a.lapini@ifac.cnr.it
+Message-ID: <30V0zXNQWpRnVb6jq1bxCrf85h4pl97tIlYaK1V0@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: gDl51suQwnMbsbrRcQHMmd2UQ8OtkbgQsdMTWS3DE@lists.ettus.com
+MIME-Version: 1.0
+Message-ID-Hash: TSB26RAH7PJRZ2PHKLF4BLFCAX5P7QYR
+X-Message-ID-Hash: TSB26RAH7PJRZ2PHKLF4BLFCAX5P7QYR
+X-MailFrom: a.lapini@ifac.cnr.it
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP B210 GPS bias-tee Current Limit
+Subject: [USRP-users] Re: RFNOC Python API for timed GPIO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OZ5WY3VF4LEHWZRJHJ73S6Z5FHQ7OOVW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TSB26RAH7PJRZ2PHKLF4BLFCAX5P7QYR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Type: multipart/mixed; boundary="===============0392086816847375875=="
+
+This is a multi-part message in MIME format.
+
+--===============0392086816847375875==
+Content-Type: multipart/alternative;
+ boundary="b1_30V0zXNQWpRnVb6jq1bxCrf85h4pl97tIlYaK1V0"
 Content-Transfer-Encoding: 7bit
 
-Hi John,
+This is a multi-part message in MIME format.
 
-the B2x0 motherboard just connects the GPSDO's antenna pin to the SMA connector on the 
-back of the board, directly [1, p1 J101].
+--b1_30V0zXNQWpRnVb6jq1bxCrf85h4pl97tIlYaK1V0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-So, the part you need to inspect for current capabilities here is the GPSDO. I don't have 
-the exact numbers at hand right now, but assume up to at most 40 mA.
+After spending some time, I arrived at the following conclusions (thanks =
+also to Jonathon Pendlum):
 
-Essentially, the GPSDO for these devices is a modification of the LC_XO fom Lackson Labs 
-Technologies; its hardware properties would apply [2, p. 3]; I can't however not guarantee 
-that it reaches the full 40 mA; I don't know whether that's a guaranteed property for how 
-things play out as used in the USRP.
+a) =E2=80=9Cset_command_time()=E2=80=9D and =E2=80=9Cclear_command_time()=
+=E2=80=9D are available in Python API of UHD 4.6, also for RFNOC interfac=
+e.
 
-What are you trying to power with this? This bias voltage is really only intended to drive 
-an LNA, and owing to the sensitivity of the GPS receiver, such an LNA would not need much 
-current.
+b) The non-intuitive part is that, given the following sequence of comman=
+ds:
 
-Best regards,
-Marcus
+    1) radio_control_block.set_command_time(radio_control_block.get_time_=
+now() + 10, 0)
 
-[1] https://files.ettus.com/schematics/b200/b210.pdf
-[2] https://www.jackson-labs.com/assets/uploads/main/LC_XO_Manual.pdf
+    2) COMMAND_A
 
-On 18.03.24 08:24, johnhigginsgis@gmail.com wrote:
->
-> What is the maximum current that the B210 provide to the GPS antenna?
->
-> Is the biasing current provided by the GPSDO or via some onboard bias tee on the B210 PCB?
->
-> Best regards,
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+    3) radio_control_block.clear_command_time(0)
+
+    4) COMMAND_B
+
+will make COMMAND_A to be executed after 10 seconds and COMMAND_B just af=
+ter COMMAND_A. The Radio block (and all RFNoC blocks in general) has only=
+ one command FIFO. When a timed command is sent, it is put in the block's=
+ command FIFO and all subsequent commands (timed or untimed) will be bloc=
+ked by that timed command. In this sense, "clear_command_time()" has no e=
+ffect.
+
+I hope this will be useful for other users.
+
+--b1_30V0zXNQWpRnVb6jq1bxCrf85h4pl97tIlYaK1V0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>After spending some time, I arrived at the following conclusions (than=
+ks also to Jonathon Pendlum):</p><p>a) =E2=80=9Cset_command_time()=E2=80=9D=
+ and =E2=80=9Cclear_command_time()=E2=80=9D are available in Python API o=
+f UHD 4.6, also for RFNOC interface.</p><p>b) The non-intuitive part is t=
+hat, given the following sequence of commands:</p><p>    1) radio_control=
+_block.set_command_time(radio_control_block.get_time_now() + 10, 0)</p><p=
+>    2) COMMAND_A</p><p>    3) radio_control_block.clear_command_time(0)<=
+/p><p>    4) COMMAND_B</p><p>will make COMMAND_A to be executed after 10 =
+seconds and COMMAND_B just after COMMAND_A. The Radio block (and all RFNo=
+C blocks in general) has only one command FIFO. When a timed command is s=
+ent, it is put in the block's command FIFO and all subsequent commands (t=
+imed or untimed) will be blocked by that timed command. In this sense, "c=
+lear_command_time()" has no effect.</p><p>I hope this will be useful for =
+other users.</p><p><br></p>
+
+
+--b1_30V0zXNQWpRnVb6jq1bxCrf85h4pl97tIlYaK1V0--
+
+--===============0392086816847375875==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0392086816847375875==--
