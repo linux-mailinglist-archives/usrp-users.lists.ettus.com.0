@@ -2,507 +2,968 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE628AA84A
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Apr 2024 08:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C428AB48F
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Apr 2024 19:54:27 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 158C2385BE8
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Apr 2024 02:11:48 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B589C386101
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Apr 2024 13:54:25 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1713507108; bh=1j9ihnUyEoUFTi9Ol6fzAsvCjPyu6+cs3eokswLwxNA=;
-	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
+	t=1713549265; bh=DSIAWjI+Ansu5GoqYlsL0TMmBAcsyA6kko9pTBBddvU=;
+	h=From:To:References:In-Reply-To:Date:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=ARp/6JFPIv74JnTUE6SiU9T/S0gbHV+N6EK87uLZFX5ybB3kyTaeyK4ZjPIHRGn9X
-	 ooGpXHfxIh4PoWVDhJIafs6mru65jD4Zf9SYEt6S5qoutFQz/accKSXQ5pW+bIeNtd
-	 cXKhb3rPu03UxUA1klSpbpfV4rPRLqTEGyWI+PyLxI/DEcZP0fGPnTGp0pSB9o2J81
-	 Cgcq1xI7IWRIM/Xka4vdAcoCTzWjtOaDdp3U1aHKFfDBdHbCeJUeG1gtzblqoA84KB
-	 IpdJllw56J47hRea98oeN7KCTJboxyFmsZF2Tmv4cxhHYa0POovGCBGBHyUVxXWOeO
-	 255uTLPlCGdqQ==
-Received: from sonic321-28.consmr.mail.bf2.yahoo.com (sonic321-28.consmr.mail.bf2.yahoo.com [74.6.133.83])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4D735385291
-	for <usrp-users@lists.ettus.com>; Fri, 19 Apr 2024 02:11:40 -0400 (EDT)
+	 From;
+	b=z4v7ve/jWq3yVBflJVdfC03HC/U7iHb1fxpXwaetxWRoIVVySNYUonWVE9vh/yMT1
+	 CQsO0qTz4qBKjfxhY44ciOIuzVNrBbbwUEjgd4t9w5rQ/1LWP5Qa85/cF4+c5Cjg2G
+	 wovjNGcpj8XA5vrIiAO+nykyX4Z1APxcemlll/iuTUcATL0BuP2lnVwAVqeuTswUjV
+	 llyAHDUB2oyW3BE8lwrzbPHmmpJg1US1mYoXVZR3lvG+DjfKf/sJAGhsx06UhjGocU
+	 swUAVrRIevB2kaGslnhNF2Zvp0DokokTUTqb6Cr/XECyPxuQwE9QSEKDahIE67KOzx
+	 DE7B9lqniq/TA==
+Received: from mta-102a.earthlink-vadesecure.net (mta-102b.earthlink-vadesecure.net [51.81.61.67])
+	by mm2.emwd.com (Postfix) with ESMTPS id 011643860F8
+	for <usrp-users@lists.ettus.com>; Fri, 19 Apr 2024 13:54:14 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="ElcskGsL";
+	dkim=pass (2048-bit key; unprotected) header.d=earthlink.net header.i=@earthlink.net header.b="bXdP+V4y";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1713507100; bh=dL12Cm2/f/Rlgs+Tqbq3swvOD/VZJRH8qPHe7MfVxTQ=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=ElcskGsLIISCNBxfmQX+N3WKAbL9gHyXCgPdIKaqqyYvwM7qb2vrD1wlMWpdNnTxkxiQE+m1x8pbtZGeTqnXm7Cy0Kq/aKYcC8vrstqfk1Bi9b5oH8QQNqaVU9sz7KWqNdQASxrmzKZ2AaFHkUvWAxBpa/Lf+1kMD5k1Wbs9DsQ1ktcoQnLj6v6s3FAb5HxHT2vohICK3b0TPMITbg1AIxlFFnxWdZXEMbVO+DBSj9SGN4IncpeLgF9u4voBxfgIpBSjswBlQO/yKtgF/RsK8A+mOM/tOXYpx0BCiPUSQECbZRbGsz/aXartswulIrG3ZUQglhcq2D+R0D3uksA/GA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1713507100; bh=A1iJjJisZ4HuqpdO17d5dO4VEC8Dulc7wPW9FXBVlqr=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=ilsEwj/xie1zvJGNBa99P7tcdhS18mwxWyDkcatve9yuiuIYBXw5rzVNIfuA8Aw4i61eTyehMSERWdSjoKBTp/TzR8NdOGaa9lK7DO3bh94kJ0UiAuBmN/Mj704t7HT/W39zMDTOCfghr8oyFsTHiTxEjpWKVXtpFcIOoySPyOTPVi2odZ5EGSegV3C16JG70d3gsC0BYRxQJbDgFtRSx/p3rG81aeI4BMJrHJmZWkPN9XjLaOMq4+3Oa/fN/EKWcT2hD6DWKzUFyGUiQWRCCVLlq58Lr5dlpxgT34ukwlTAIpgQ7wQ6qQPZkckcxOEeNeLIgw/5OvBQPQDPGc6cHw==
-X-YMail-OSG: mkvrLyQVM1lVqgTcUz90z_QZnvqtJ75qR6dZ2v_T_RKroR08IZliE3pUtIFugU_
- QGmFcVbRbPtzwurW.qezOgNHss5RBsE9HYMU93JIFeBzbml7sfEbHVqO1ijoRfL5Cw1gxe2VVtL4
- QQ7ezsYHczSWf7Eq1Jk5qWJFHKM2PyPnThXcpeKgKX6wu6.vicLEHM0oI05NREIMf4gg7_G5B.5q
- BqR1TFf9U2vBlj6L0DrhxHRwr.3YByaOmzkVp2pu6LFjZn_jFpZgBAeHZNkwafQhQkYpYjC0CY6F
- .6899CYa0eM4G9FAddoQZcAJZcwTdU0EvWUaKAMCi4deM.8kJjNIbAirg8_STQcbbd64629.dzKX
- TfKDokC.SxCn1OuDCRFHlHmAzI4azlHWSWTCpY5xnUhwMQbV9Se0waRHnLv7mfAR3PNXw3GjMTEF
- riUhYfn4dCZ9kKLOiG4Q13z1p_3DrB4qzsq7TTfHj7Ervbz47elCoCRA2DmqtvhPRuokgHIbbA2j
- PwN432Vtq1_hTGcUjEYKrjNOVAbYLmzag1LzCv.cKzVjMeRr3Kle2NWBJ2nEFYg0140bNn8QM63Z
- KMT9x.UtnoKf9KLx_H7JNmx28rO_R4zBFjhvedRNzGYJ5nmfwtvSLTl.ie452QgZ2uecV7Y3zMDt
- ChkYjj__gfAzHO41dP5lvmY2yirqNvNhUUDEh_bN6v1UvpT.b0UJNL185YiSAYT85CxI.bkPgkMK
- HdmA6UvxLCKAXq5mIoaXtd1ATJmvUpdtsroJnOO7mbmeFb8kBPX26CPNxK9MYUiNQY8Sy5aH.jGd
- .Re7_uquXEmZQPbfkqFcIaay.i4kyWCMPvYs.XgNlohYf9CXGTWS3HYrXWPTRsK.lQAI5.PpXY68
- ppSfyuZLfLNaPsAC8vmObW4EPSrTbjquCQutjKsAkjBYaI7VapWpdFOUSqa10XDvlPwQa3MX4S9h
- IAlhumjyvIkbknO5wWSHM4uAUnbIrXEtSjOhA8WNIm1Ic6IVTS7_PB3vLsrovj_HZQqdDQhrOrrY
- yy0h27keS4A7ySgOYKbht2QF8Q45tLHKLzybx7Z92yVsXy7zKPqsj8RQpBz6mIg4wCqJ579bS7tn
- kx2X7pzRf_yQFJii7hBesJimnYocqlH9hMyA1Zcfrjv6mt80cjlcC..ku.eemJ_SrtMG3tecGe.r
- uqbHr6N0UdNHjcCK_pW6zo1ceWOe87x5W4fEpG95rwLYfbKN_tTC7jOCFVAiSWMiWryMACIwG.uH
- PaW6bi_dGQt4t9DK.2kMnsaecUOJWb3SvXf0jOJ6GW9suOeM7sSXyjf_ZvujNhdFY5DuzeqFplHG
- 5gORjoXldg08tQ1pcYoSvEvMwTHd2hYD5_..GeEFSrZM0l7nijZ9W3GoE_Sd2KLUNGpaXooL5jtX
- jMjhKdt6rBFTWIGcePZQgkzQeJnlrL.eQLrEgR581VdM43Vr9uAQ6T1cTWrc7nRHEV8V1.CSsV4q
- gYaltngw_X0qlHEoslEkGLUCQKBxNQb.vyuX2EFtQkOr1OBEf5TD.QNe92nfsABrPKlMnJJ4Y6p4
- eDnkqJDd0x40DgwQmXq5tSZwzcorqOX6u1S4mbUgk47bZjo.54p_UbenlaOZa5DcJXcqi7weDxnQ
- 9z_ZQVEVcn19rPoFLqM0t7KKfTYvt58JvbFPzdqYtTe4n9ZX_dOfT2CVivrqkvFhmbncDsxEcTDg
- UnnSx.Nx8haOUOAJqMkDSTlFzj8K799wSQ4NzCk3abXyU2L6v5uFWtu19ongxXf1JD2pEEYYsm8G
- VPC1K.3Ds8Bdqh6eMWn1v.dHCG4xFbrdahubPWOxtvj5RqUWf.Cif3N0Gy0MEVuu3.jbfag_qrOi
- Z9nYxwgk8E59iYysJoDcgtkRi4tVGg__kUnXHwub7Re6EtihK4w85cCsDG1DXsDarnemfz8hkJa1
- sXXzw9dwAcF_Tat0N90sIZ9ElV3b.wJDYLfUlTb8s.x8BxXak8gdAa.TR2447ozgkZgUNvh8OWn.
- GA1uoOjjbiOqppPR0XYlp95ysoMWUtGKSLre9Y9upJDQdnCWkPTXwhkpEjjjrey7_QBH4S9XJPuX
- ZsX.zeYTzkEQTOc6nED_J4cCQjjVRzVucInaPY9AqP5MM4gH_Xrv.d6pCTh_DuhClUvOqcGDm84y
- DY1ngSNqhn3AqZrlBWcj2prH_tw7zzb_PTJ1PJ1MdzTaHGygGfqSwhM.7IG3kxlr9ZrXmY1.Fwv4
- aAL2AniQcI9ZRPcfr0s3SyZnGsqY9MLXySXkrxl0bgFYluZELTMQiPYAE7GinD_as_jENvxOcE20
- -
-X-Sonic-MF: <hwzhou@yahoo.com>
-X-Sonic-ID: f7f54690-fd1b-44e7-8d7f-12c182c93814
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic321.consmr.mail.bf2.yahoo.com with HTTP; Fri, 19 Apr 2024 06:11:40 +0000
-Date: Fri, 19 Apr 2024 06:11:36 +0000 (UTC)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
-	Martin Anderseck <martin.anderseck@ni.com>
-Message-ID: <957328707.611895.1713507097044@mail.yahoo.com>
-In-Reply-To: <PH0PR04MB83115908F44B4BB9C7FB8713F30E2@PH0PR04MB8311.namprd04.prod.outlook.com>
-References: <94eb78b8-6ea4-4e04-86d1-918b3b5c1d65@gmail.com> <39cd3dd5-d55f-4fe8-88a1-0e5de4a7c082@localhost> <1697372280.342024.1713419690912@mail.yahoo.com> <PH0PR04MB83115908F44B4BB9C7FB8713F30E2@PH0PR04MB8311.namprd04.prod.outlook.com>
+DKIM-Signature: v=1; a=rsa-sha256; bh=2k06KFbSBMOk4Nq7X0niPDZ42WbviyWGPmduR+
+ QLxHg=; c=relaxed/relaxed; d=earthlink.net; h=from:reply-to:subject:
+ date:to:cc:resent-date:resent-from:resent-to:resent-cc:in-reply-to:
+ references:list-id:list-help:list-unsubscribe:list-subscribe:list-post:
+ list-owner:list-archive; q=dns/txt; s=dk12062016; t=1713549254;
+ x=1714154054; b=bXdP+V4yVJGIZdvPR60b0sUryPQJGm7rlCmZJm2IUB+KFq05a/MmUWH
+ GqQGdJ79KGwehsxM97Xyu8QgQvfqHtdvCC28iV4meVWeyv6+6bHIMGd+07FsloK4eUsickz
+ gaCYkZCdtmUO9gScA2d56KlSD4zo6Oom+yJJcHnZv/zKoeXrwPAqoq/DpXbvrmqgUj5rQi2
+ 7HRDBnnFWYhc56aljl96KBypJ3IrDSIUJpvn/KXeJwiQyFTeVygwBVGswL+aVEMNvFcyT9W
+ xsQEgZuWbJTvXGsZ0HdwIzYuoF7gz19hX19A2jBtZZQaHieArZDMyssKIEotEcSundaY7F1
+ NMg==
+Authentication-Results: earthlink-vadesecure.net;
+ auth=pass smtp.auth=fullbandwidth@earthlink.net smtp.mailfrom=SAustin@CriticalSoftwareSystems.com;
+Received: from Win10Pro32BitVM ([73.133.62.234])
+ by vsel1nmtao02p.internal.vadesecure.com with ngmta
+ id bd8ae679-17c7bff7b57068f2; Fri, 19 Apr 2024 17:54:14 +0000
+From: "Stuart Austin" <SAustin@CriticalSoftwareSystems.com>
+To: <usrp-users@lists.ettus.com>
+References: <94eb78b8-6ea4-4e04-86d1-918b3b5c1d65@gmail.com> <39cd3dd5-d55f-4fe8-88a1-0e5de4a7c082@localhost> <1697372280.342024.1713419690912@mail.yahoo.com> <PH0PR04MB83115908F44B4BB9C7FB8713F30E2@PH0PR04MB8311.namprd04.prod.outlook.com> <957328707.611895.1713507097044@mail.yahoo.com>
+In-Reply-To: <957328707.611895.1713507097044@mail.yahoo.com>
+Date: Fri, 19 Apr 2024 13:54:13 -0400
+Organization: Critical Software Systems
+Message-ID: <027501da9282$97676370$c6362a50$@com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
-	boundary="----=_Part_611894_1430504169.1713507097043"
-X-Mailer: WebService/1.1.22256 YMailNorrin
-Message-ID-Hash: UD2U4PWSU53AJQMNV2DX6C3PB7EZTTN5
-X-Message-ID-Hash: UD2U4PWSU53AJQMNV2DX6C3PB7EZTTN5
-X-MailFrom: hwzhou@yahoo.com
+X-Mailer: Microsoft Office Outlook 12.0
+Content-Language: en-us
+Thread-Index: AdqSIH3qNUeySdaESrmzau2WA0HKrgAYeZpg
+Message-ID-Hash: I7Z6VGCUUETXVBXR4OXPBSW3DTB27FJT
+X-Message-ID-Hash: I7Z6VGCUUETXVBXR4OXPBSW3DTB27FJT
+X-MailFrom: SAustin@CriticalSoftwareSystems.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Unbalanced power among antennas in X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UD2U4PWSU53AJQMNV2DX6C3PB7EZTTN5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/I7Z6VGCUUETXVBXR4OXPBSW3DTB27FJT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: zhou via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============8600599444049255855=="
 
-------=_Part_611894_1430504169.1713507097043
+This is a multipart message in MIME format.
+
+--===============8600599444049255855==
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0276_01DA9261.1055C370"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0276_01DA9261.1055C370
 Content-Type: multipart/alternative;
-	boundary="----=_Part_611893_404643858.1713507096968"
+	boundary="----=_NextPart_001_0277_01DA9261.1055C370"
 
-------=_Part_611893_404643858.1713507096968
-Content-Type: text/plain; charset=UTF-8
+
+------=_NextPart_001_0277_01DA9261.1055C370
+Content-Type: text/plain;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
- Hi Martin,
-Thanks for mentioning the ADC self-cal. It seems that I misunderstood it. I=
- will do a proper calibration.
+I=E2=80=99m curious as to whether the oscillators on each of the four =
+channels are not sync=E2=80=99d to a common reference =E2=80=93 either =
+an internal or external source?
+
+=20
+
+Thanks
+
+Stuart Austin
+
+=20
+
+From: zhou via USRP-users [mailto:usrp-users@lists.ettus.com]=20
+Sent: Friday, April 19, 2024 2:12 AM
+To: usrp-users@lists.ettus.com; Martin Anderseck
+Subject: [USRP-users] Re: Unbalanced power among antennas in X410
+
+=20
+
+Hi Martin,
+
+=20
+
+Thanks for mentioning the ADC self-cal. It seems that I misunderstood =
+it. I will do a proper calibration.
+
+=20
+
 Yes, the loopback connection is on the front panel.
-The same cos(t)+i*sin(t) is transmitted=C2=A0on all four antennas simultane=
-ously with timed command. The receive command is also timed. I can accept t=
-hat there is phase offset between antennas because paths can be different s=
-lightly, for example, the RF cable length can be slightly different. As lon=
-g as the offset is constant over the time, it is not a worry. I measured ph=
-ase vs time. It is stable. Now, I want to know how to adjust the phase on i=
-ndividual antennas.=C2=A0
-Kind regards,H.
-   _______________________________________________
+
+=20
+
+The same cos(t)+i*sin(t) is transmitted on all four antennas =
+simultaneously with timed command. The receive command is also timed. I =
+can accept that there is phase offset between antennas because paths can =
+be different slightly, for example, the RF cable length can be slightly =
+different. As long as the offset is constant over the time, it is not a =
+worry. I measured phase vs time. It is stable. Now, I want to know how =
+to adjust the phase on individual antennas.=20
+
+=20
+
+Kind regards,
+
+H.
+
+=20
+
+_______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-   On Thursday, 18 April 2024 at 14:00:44 BST, Martin Anderseck <martin.and=
-erseck@ni.com> wrote: =20
- You mention that self-calibration for each channel is running. Please don=
-=E2=80=99t get wrong what this calibration is doing. This ADC self-cal is o=
-nly responsible for reducing unwanted spurs in the ADCs as described here: =
+
+On Thursday, 18 April 2024 at 14:00:44 BST, Martin Anderseck =
+<martin.anderseck@ni.com> wrote:=20
+
+=20
+
+You mention that self-calibration for each channel is running. Please =
+don=E2=80=99t get wrong what this calibration is doing. This ADC =
+self-cal is only responsible for reducing unwanted spurs in the ADCs as =
+described here:  =
+<https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_adc_self_cal> =
 https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_adc_self_cal
 
 =20
-This ADC self-cal, however, will not handle any power differences. From wha=
-t you write it=E2=80=99s not possible to get absolute power values, so the =
-relative differences are impossible to get, too. Since those devices are SD=
-Rs and not dedicated measurement equipment it is expected that there may be=
- differences (not huge ones though, please see the specs for getting an imp=
-ression in figures 2 and 4:https://www.ni.com/docs/de-DE/bundle/ettus-usrp-=
-x410-specs/page/specs.html). If the existing accuracy is insufficient, it i=
-s possible to use the power API:https://files.ettus.com/manual/page_zbx.htm=
-l#zbx_pwr_cal
+
+This ADC self-cal, however, will not handle any power differences. From =
+what you write it=E2=80=99s not possible to get absolute power values, =
+so the relative differences are impossible to get, too. Since those =
+devices are SDRs and not dedicated measurement equipment it is expected =
+that there may be differences (not huge ones though, please see the =
+specs for getting an impression in figures 2 and 4: =
+https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x410-specs/page/specs.htm=
+l). If the existing accuracy is insufficient, it is possible to use the =
+power API: https://files.ettus.com/manual/page_zbx.html#zbx_pwr_cal
+
 =20
- =C2=A0
+
+You mention you used a loopback connection. Does that mean that you =
+connected cables to the front panel connectors for this? To exclude them =
+from the issue you might try using the internal loopback =
+=E2=80=9Cantenna=E2=80=9D for both the RX and TX path (see =
+get_rx_antennas() for a list of antennas). This will use the internal =
+loopback that is on the daughterboard for each channel. When using the =
+internal loopback ensure you have compensated the lack of the 30 dB =
+attenuator (e.g. by reducing the  gain on the TX side) as typically in =
+an external loopback you would use 30 dB attenuation =
+(https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#Proper_Care_an=
+d_Handling).=20
+
 =20
-You mention you used a loopback connection. Does that mean that you connect=
-ed cables to the front panel connectors for this? To exclude them from the =
-issue you might try using the internal loopback =E2=80=9Cantenna=E2=80=9D f=
-or both the RX and TX path (see get_rx_antennas() for a list of antennas). =
-This will use the internal loopback that is on the daughterboard for each c=
-hannel. When using the internal loopback ensure you have compensated the la=
-ck of the 30 dB attenuator (e.g. by reducing the=C2=A0 gain on the TX side)=
- as typically in an external loopback you would use 30 dB attenuation (http=
-s://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#Proper_Care_and_Handl=
-ing).
+
+For the phase difference: You don=E2=80=99t mention how you start the =
+signal generation. I guess timed commands are what you=E2=80=99re =
+missing: =
+https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UH=
+D
+
 =20
- =C2=A0
-=20
-For the phase difference: You don=E2=80=99t mention how you start the signa=
-l generation. I guess timed commands are what you=E2=80=99re missing:https:=
-//kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD
-=20
- =C2=A0
-=20
+
 I hope that gets you a bit further.
+
 =20
- =C2=A0
-=20
+
 Best regards,
-=20
+
 Martin
+
 =20
- =C2=A0
-=20
-From: zhou via USRP-users <usrp-users@lists.ettus.com>
+
+From: zhou via USRP-users <usrp-users@lists.ettus.com>=20
 Sent: Thursday, April 18, 2024 7:55 AM
 To: usrp-users@lists.ettus.com
 Subject: [USRP-users] Unbalanced power among antennas in X410
+
 =20
- =C2=A0
-=20
+
 Hi All,
+
 =20
- =C2=A0
+
+I am using X410 with UHD 4.5. There are 4 Tx and 4 Rx in this unit. I am =
+checking the RF signal by using loopback connection, that is, Tx is =
+connected to Rx in the same USRP. .
+
 =20
-I am using X410 with UHD 4.5. There are 4 Tx and 4 Rx in this unit. I am ch=
-ecking the RF signal by using loopback connection, that is, Tx is connected=
- to Rx in the same USRP. .
+
+The same single tone signal is transmitted on all 4 Tx antennas, but I =
+find that the received power levels are significantly different among =
+antennas as shown in plot below. There are two ZBX daughterboards in =
+X410; ant0 and ant1 in the 1st board and ant2 and ant3 in the 2nd. It =
+seems that in the same daughterboard, power in the 1st antenna is higher =
+than the 2nd antenna.
+
 =20
- =C2=A0
+
+The carrier frequency is 7GHz. Sampling rate 491.52MHz. In every test, =
+UHD does self calibration for each channel.
+
+Apart from power difference, there is also phase difference between =
+antennas.
+
 =20
-The same single tone signal is transmitted on all 4 Tx antennas, but I find=
- that the received power levels are significantly different among antennas =
-as shown in plot below. There are two ZBX daughterboards in X410; ant0 and =
-ant1 in the 1st board and ant2 and ant3 in the 2nd. It seems that in the sa=
-me daughterboard, power in the 1st antenna is higher than the 2nd antenna.
-=20
- =C2=A0
-=20
-The carrier frequency is 7GHz. Sampling rate 491.52MHz. In every test, UHD =
-does self calibration for each channel.
-=20
-Apart from power difference, there is also phase difference between antenna=
-s.
-=20
- =C2=A0
-=20
+
 How to make tx power closer between antennas?
-=20
+
 And, is there a way to adjust the carrier phase for individual antenna?
-=20
- =C2=A0
-=20
- =C2=A0
+
 =20
 
 =20
- =C2=A0
+
+Inline image
+
 =20
+
 Thanks for any suggestion.
-=20
- =C2=A0
-=20
-Kind regards,
-=20
-Hongwei
-=20
- =C2=A0
-=20
- =C2=A0
- National Instruments Dresden GmbH; Gesch=C3=A4ftsf=C3=BChrer (Managing Dir=
-ectors): John Stanton McElroy, Albert Edward Percival III, Kathleen Spurck;=
- Sitz (Registered Office): Dresden; HRB (Commercial Register No.): 22081; R=
-egistergericht (Registration Court): Dresden
 
-This email and any attachments are intended only for the person to whom thi=
-s email is addressed and may contain confidential and/or privileged informa=
-tion. If you received this email in error, please do not disclose the conte=
-nts to anyone, but notify the sender by return email and delete this email =
-(and any attachments) from your system.
-------=_Part_611893_404643858.1713507096968
-Content-Type: text/html; charset=UTF-8
+=20
+
+Kind regards,
+
+Hongwei
+
+=20
+
+=20
+
+National Instruments Dresden GmbH; Gesch=C3=A4ftsf=C3=BChrer (Managing =
+Directors): John Stanton McElroy, Albert Edward Percival III, Kathleen =
+Spurck; Sitz (Registered Office): Dresden; HRB (Commercial Register =
+No.): 22081; Registergericht (Registration Court): Dresden
+
+This email and any attachments are intended only for the person to whom =
+this email is addressed and may contain confidential and/or privileged =
+information. If you received this email in error, please do not disclose =
+the contents to anyone, but notify the sender by return email and delete =
+this email (and any attachments) from your system.=20
+
+
+------=_NextPart_001_0277_01DA9261.1055C370
+Content-Type: text/html;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div class=3D"ydpbd3ee571yahoo-style-wrap" style=
-=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
-;"><div id=3D"ydpbd3ee571yiv8952928816"><div><div style=3D"font-family:Helv=
-etica Neue, Helvetica, Arial, sans-serif;font-size:13px;" class=3D"ydpbd3ee=
-571yiv8952928816ydp72b82cdayahoo-style-wrap"><div></div>
-        <div dir=3D"ltr">Hi Martin,</div><div dir=3D"ltr"><br clear=3D"none=
-"></div><div dir=3D"ltr" data-setdir=3D"false">Thanks for mentioning the AD=
-C self-cal. It seems that I misunderstood it. I will do a proper calibratio=
-n.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" d=
-ata-setdir=3D"false">Yes, the loopback connection is on the front panel.</d=
-iv><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-s=
-etdir=3D"false">The same cos(t)+i*sin(t) is <span><span style=3D"color: rgb=
-(0, 0, 0); font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">tran=
-smitted&nbsp;</span></span>on all four antennas simultaneously with timed c=
-ommand. The receive command is also timed. I can accept that there is phase=
- offset between antennas because paths can be different slightly, for examp=
-le, the RF cable length can be slightly different. As long as the offset is=
- constant over the time, it is not a worry. I measured phase vs time. It is=
- stable. Now, I want to know how to adjust the phase on individual antennas=
-.&nbsp;</div><div><br clear=3D"none"></div><div dir=3D"ltr" data-setdir=3D"=
-false">Kind regards,</div><div dir=3D"ltr" data-setdir=3D"false">H.</div><d=
-iv dir=3D"ltr" data-setdir=3D"false"><br></div>
-       =20
-        </div><div id=3D"ydpbd3ee571yiv8952928816ydp6c886d43yahoo_quoted_34=
-68651997" class=3D"ydpbd3ee571yiv8952928816ydp6c886d43yahoo_quoted">
-            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
-ans-serif;font-size:13px;color:#26282a;">
-               =20
-                <div><div id=3D"ydpbd3ee571yiv8952928816ydp6c886d43yqt90210=
-" class=3D"ydpbd3ee571yiv8952928816ydp6c886d43yqt7440430705">______________=
-_________________________________<br clear=3D"none">USRP-users mailing list=
- -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"nof=
-ollow" target=3D"_blank">usrp-users@lists.ettus.com</a><br clear=3D"none">T=
-o unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:usrp-users-=
-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users-leave@=
-lists.ettus.com</a><br clear=3D"none"></div></div>
-            </div>
-        </div></div></div></div><div id=3D"ydp6f413f0cyiv8952928816yqt41707=
-" class=3D"ydp6f413f0cyiv8952928816yqt3874024442"><div>
-                        On Thursday, 18 April 2024 at 14:00:44 BST, Martin =
-Anderseck &lt;martin.anderseck@ni.com&gt; wrote:
-                    </div>
-                    <div><br clear=3D"none"></div>
-                    <div><span style=3D"font-size:11pt;">You mention that s=
-elf-calibration for each channel is running. Please don=E2=80=99t get wrong=
- what this calibration is doing. This ADC self-cal is only responsible for =
-reducing
- unwanted spurs in the ADCs as described here: </span><a shape=3D"rect" hre=
-f=3D"https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_adc_self_cal" =
-style=3D"font-size:11pt;" class=3D"ydp6f413f0cyiv8952928816" rel=3D"nofollo=
-w" target=3D"_blank">
-https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_adc_self_cal</a><br=
- clear=3D"none"></div><div><br clear=3D"none"></div></div><div id=3D"ydp6f4=
-13f0cyiv8952928816yqt15681" class=3D"ydp6f413f0cyiv8952928816yqt3874024442"=
-><div id=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760"><div class=3D=
-"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760WordSection1">=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;">This ADC self-cal, however, wi=
-ll not handle any power differences. From what you write it=E2=80=99s not p=
-ossible to get absolute power values, so the relative differences are
- impossible to get, too. Since those devices are SDRs and not dedicated mea=
-surement equipment it is expected that there may be differences (not huge o=
-nes though, please see the specs for getting an impression in figures 2 and=
- 4:
-<a shape=3D"rect" href=3D"https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x=
-410-specs/page/specs.html" rel=3D"nofollow" target=3D"_blank">
-https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x410-specs/page/specs.html<=
-/a>). If the existing accuracy is insufficient, it is possible to use the p=
-ower API:
-<a shape=3D"rect" href=3D"https://files.ettus.com/manual/page_zbx.html#zbx_=
-pwr_cal" rel=3D"nofollow" target=3D"_blank">https://files.ettus.com/manual/=
-page_zbx.html#zbx_pwr_cal</a></span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;"> &nbsp;</span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;">You mention you used a loopbac=
-k connection. Does that mean that you connected cables to the front panel c=
-onnectors for this? To exclude them from the issue you might
- try using the internal loopback =E2=80=9Cantenna=E2=80=9D for both the RX =
-and TX path (see get_rx_antennas() for a list of antennas). This will use t=
-he internal loopback that is on the daughterboard for each channel. When us=
-ing the internal loopback ensure you have compensated
- the lack of the 30 dB attenuator (e.g. by reducing the&nbsp; gain on the T=
-X side) as typically in an external loopback you would use 30 dB attenuatio=
-n (<a shape=3D"rect" href=3D"https://kb.ettus.com/USRP_X410/X440_Getting_St=
-arted_Guide#Proper_Care_and_Handling" rel=3D"nofollow" target=3D"_blank">ht=
-tps://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#Proper_Care_and_Han=
-dling</a>).
-</span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;"> &nbsp;</span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;">For the phase difference: You =
-don=E2=80=99t mention how you start the signal generation. I guess timed co=
-mmands are what you=E2=80=99re missing:
-<a shape=3D"rect" href=3D"https://kb.ettus.com/Synchronizing_USRP_Events_Us=
-ing_Timed_Commands_in_UHD" rel=3D"nofollow" target=3D"_blank">
-https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD<=
-/a></span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;"> &nbsp;</span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;">I hope that gets you a bit fur=
-ther.</span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;"> &nbsp;</span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;">Best regards,</span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;">Martin</span></p>=20
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:11.0pt;"> &nbsp;</span></p>=20
-<div id=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760yqt35043" class=
-=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760yqt7440430705"><div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in;">
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><b><=
-span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:sans-serif;">From=
-:</span></b><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:sans=
--serif;"> zhou via USRP-users &lt;usrp-users@lists.ettus.com&gt;
-<br clear=3D"none">
-<b>Sent:</b> Thursday, April 18, 2024 7:55 AM<br clear=3D"none">
-<b>To:</b> usrp-users@lists.ettus.com<br clear=3D"none">
-<b>Subject:</b> [USRP-users] Unbalanced power among antennas in X410</span>=
-</p>=20
-</div>
-</div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US"> &nbsp;</span></p>=20
-<div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">Hi All,=
-</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;=
-</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">I am us=
-ing X410 with UHD 4.5. There are 4 Tx and 4 Rx in this unit. I am checking =
-the RF signal by using loopback connection, that is, Tx is connected to Rx
- in the same USRP. .</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;=
-</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">The sam=
-e single tone signal is transmitted on all 4 Tx antennas, but I find that t=
-he received power levels are significantly different among antennas as show=
-n
- in plot below. There are two ZBX daughterboards in X410; ant0 and ant1 in =
-the 1st board and ant2 and ant3 in the 2nd. It seems that in the same daugh=
-terboard, power in the 1st antenna is higher than the 2nd antenna.</span></=
-p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;=
-</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:bla=
-ck;">The carrier frequency is 7GHz. Sampling rate 491.52MHz. In every test,=
- UHD does self calibration for each channel.</span><span lang=3D"EN-US" sty=
-le=3D"font-size:10.0pt;font-family:sans-serif;"></span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:bla=
-ck;">Apart from power difference, there is also phase difference between an=
-tennas.</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sa=
-ns-serif;"></span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;=
-</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:bla=
-ck;">How to make tx power closer between antennas?</span><span lang=3D"EN-U=
-S" style=3D"font-size:10.0pt;font-family:sans-serif;"></span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;color:bla=
-ck;">And, is there a way to adjust the carrier phase for individual antenna=
-?</span><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-ser=
-if;"></span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;=
-</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;=
-</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n style=3D"font-size:10.0pt;font-family:sans-serif;"><img id=3D"ydp6f413f0c=
-yiv8952928816ydp6c886d43yiv9526375760Picture_x0020_1" border=3D"0" style=3D=
-"width:701px;max-width:701px;" src=3D"cid:89a48b98-7b2f-e1f2-85f0-efb03f15e=
-b3c@yahoo.com" alt=3D"Inline image" data-inlineimagemanipulating=3D"true" c=
-lass=3D""></span><span style=3D"font-size:10.0pt;font-family:sans-serif;"><=
-/span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">Thanks =
-for any suggestion.</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;=
-</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:sans-serif;">Kind re=
-gards,</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n style=3D"font-size:10.0pt;font-family:sans-serif;">Hongwei</span></p>=20
-</div>
-<div>
-<p style=3D"margin-bottom:12.0pt;" class=3D"ydp6f413f0cyiv8952928816ydp6c88=
-6d43yiv9526375760MsoNormal"><span style=3D"font-size:10.0pt;font-family:san=
-s-serif;"> &nbsp;</span></p>=20
-</div>
-<div>
-<p class=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760MsoNormal"><spa=
-n style=3D"font-size:10.0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
-</div>
-</div></div>
-</div>
-National Instruments Dresden GmbH; Gesch=C3=A4ftsf=C3=BChrer (Managing Dire=
-ctors): John Stanton McElroy, Albert Edward Percival III, Kathleen Spurck; =
-Sitz (Registered Office): Dresden; HRB (Commercial Register No.): 22081; Re=
-gistergericht (Registration Court): Dresden<br clear=3D"none">
-<br clear=3D"none">
-This email and any attachments are intended only for the person to whom thi=
-s email is addressed and may contain confidential and/or privileged informa=
-tion. If you received this email in error, please do not disclose the conte=
-nts to anyone, but notify the sender
- by return email and delete this email (and any attachments) from your syst=
-em.
-</div></div></body></html>
-------=_Part_611893_404643858.1713507096968--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
 
-------=_Part_611894_1430504169.1713507097043
-Content-Type: image/png
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal, =
+li.ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal, =
+div.ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal
+	=
+{mso-style-name:ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal=
+;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DSection1>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>I=E2=80=99m curious as to whether the oscillators on each =
+of the four
+channels are not sync=E2=80=99d to a common reference =E2=80=93 either =
+an internal or external
+source?<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>Thanks<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>Stuart Austin<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
+0in 0in 0in'>
+
+<p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> zhou via =
+USRP-users
+[mailto:usrp-users@lists.ettus.com] <br>
+<b>Sent:</b> Friday, April 19, 2024 2:12 AM<br>
+<b>To:</b> usrp-users@lists.ettus.com; Martin Anderseck<br>
+<b>Subject:</b> [USRP-users] Re: Unbalanced power among antennas in =
+X410<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<div>
+
+<div id=3Dydpbd3ee571yiv8952928816>
+
+<div>
+
+<div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>Hi
+Martin,<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'><o:p>&nbs=
+p;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>Thanks
+for mentioning the ADC self-cal. It seems that I misunderstood it. I =
+will do a
+proper calibration.<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'><o:p>&nbs=
+p;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>Yes,
+the loopback connection is on the front panel.<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'><o:p>&nbs=
+p;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>The
+same cos(t)+i*sin(t) is <span =
+style=3D'color:black'>transmitted&nbsp;</span>on
+all four antennas simultaneously with timed command. The receive command =
+is
+also timed. I can accept that there is phase offset between antennas =
+because
+paths can be different slightly, for example, the RF cable length can be
+slightly different. As long as the offset is constant over the time, it =
+is not
+a worry. I measured phase vs time. It is stable. Now, I want to know how =
+to
+adjust the phase on individual antennas.&nbsp;<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'><o:p>&nbs=
+p;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>Kind
+regards,<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>H.<o:p></=
+o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'><o:p>&nbs=
+p;</o:p></span></p>
+
+</div>
+
+</div>
+
+<div id=3D"ydpbd3ee571yiv8952928816ydp6c886d43yahoo_quoted_3468651997">
+
+<div>
+
+<div>
+
+<div id=3Dydpbd3ee571yiv8952928816ydp6c886d43yqt90210>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com"
+target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a
+href=3D"mailto:usrp-users-leave@lists.ettus.com" =
+target=3D"_blank">usrp-users-leave@lists.ettus.com</a><o:p></o:p></span><=
+/p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id=3Dydp6f413f0cyiv8952928816yqt41707>
+
+<div>
+
+<p class=3DMsoNormal>On Thursday, 18 April 2024 at 14:00:44 BST, Martin =
+Anderseck
+&lt;martin.anderseck@ni.com&gt; wrote: <o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt'>You mention that
+self-calibration for each channel is running. Please don=E2=80=99t get =
+wrong what this
+calibration is doing. This ADC self-cal is only responsible for reducing
+unwanted spurs in the ADCs as described here: </span><a
+href=3D"https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_adc_self_=
+cal"
+target=3D"_blank"><span =
+style=3D'font-size:11.0pt'>https://files.ettus.com/manual/page_usrp_x4xx.=
+html#x4xx_adc_self_cal</span></a><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</div>
+
+<div id=3Dydp6f413f0cyiv8952928816yqt15681>
+
+<div id=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>This ADC self-cal, however, will not handle =
+any power
+differences. From what you write it=E2=80=99s not possible to get =
+absolute power
+values, so the relative differences are impossible to get, too. Since =
+those
+devices are SDRs and not dedicated measurement equipment it is expected =
+that
+there may be differences (not huge ones though, please see the specs for
+getting an impression in figures 2 and 4: <a
+href=3D"https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x410-specs/page/s=
+pecs.html"
+target=3D"_blank">https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x410-sp=
+ecs/page/specs.html</a>).
+If the existing accuracy is insufficient, it is possible to use the =
+power API: <a
+href=3D"https://files.ettus.com/manual/page_zbx.html#zbx_pwr_cal" =
+target=3D"_blank">https://files.ettus.com/manual/page_zbx.html#zbx_pwr_ca=
+l</a></span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>&nbsp;</span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>You mention you used a loopback connection. =
+Does that
+mean that you connected cables to the front panel connectors for this? =
+To
+exclude them from the issue you might try using the internal loopback =
+=E2=80=9Cantenna=E2=80=9D
+for both the RX and TX path (see get_rx_antennas() for a list of =
+antennas).
+This will use the internal loopback that is on the daughterboard for =
+each channel.
+When using the internal loopback ensure you have compensated the lack of =
+the 30
+dB attenuator (e.g. by reducing the&nbsp; gain on the TX side) as =
+typically in
+an external loopback you would use 30 dB attenuation (<a
+href=3D"https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#Proper_=
+Care_and_Handling"
+target=3D"_blank">https://kb.ettus.com/USRP_X410/X440_Getting_Started_Gui=
+de#Proper_Care_and_Handling</a>).
+</span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>&nbsp;</span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>For the phase difference: You don=E2=80=99t =
+mention how you
+start the signal generation. I guess timed commands are what =
+you=E2=80=99re missing: <a
+href=3D"https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Comman=
+ds_in_UHD"
+target=3D"_blank">https://kb.ettus.com/Synchronizing_USRP_Events_Using_Ti=
+med_Commands_in_UHD</a></span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>&nbsp;</span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>I hope that gets you a bit =
+further.</span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>&nbsp;</span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>Best regards,</span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>Martin</span><o:p></o:p></p>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:11.0pt'>&nbsp;</span><o:p></o:p></p>
+
+<div id=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760yqt35043>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt =
+0in 0in 0in'>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><b><spa=
+n
+style=3D'font-size:11.0pt;font-family:"Arial","sans-serif"'>From:</span><=
+/b><span
+style=3D'font-size:11.0pt;font-family:"Arial","sans-serif"'> zhou via =
+USRP-users
+&lt;usrp-users@lists.ettus.com&gt; <br>
+<b>Sent:</b> Thursday, April 18, 2024 7:55 AM<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [USRP-users] Unbalanced power among antennas in =
+X410</span><o:p></o:p></p>
+
+</div>
+
+</div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal>&nbsp;<=
+o:p></o:p></p>
+
+<div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>Hi =
+All,</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>I am using =
+X410 with
+UHD 4.5. There are 4 Tx and 4 Rx in this unit. I am checking the RF =
+signal by
+using loopback connection, that is, Tx is connected to Rx in the same =
+USRP. .</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>The same =
+single tone
+signal is transmitted on all 4 Tx antennas, but I find that the received =
+power
+levels are significantly different among antennas as shown in plot =
+below. There
+are two ZBX daughterboards in X410; ant0 and ant1 in the 1st board and =
+ant2 and
+ant3 in the 2nd. It seems that in the same daughterboard, power in the =
+1st
+antenna is higher than the 2nd antenna.</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>T=
+he
+carrier frequency is 7GHz. Sampling rate 491.52MHz. In every test, UHD =
+does
+self calibration for each channel.</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>A=
+part
+from power difference, there is also phase difference between =
+antennas.</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>H=
+ow to
+make tx power closer between antennas?</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>A=
+nd, is
+there a way to adjust the carrier phase for individual =
+antenna?</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'><img =
+border=3D0
+width=3D701 height=3D513
+id=3D"ydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760Picture_x0020_1"
+src=3D"cid:image001.png@01DA9261.0FB87200" alt=3D"Inline =
+image"></span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>Thanks for =
+any
+suggestion.</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>Kind =
+regards,</span><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>Hongwei</span=
+><o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal
+style=3D'margin-bottom:12.0pt'><span =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p =
+class=3Dydp6f413f0cyiv8952928816ydp6c886d43yiv9526375760msonormal><span
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>&nbsp;</span>=
+<o:p></o:p></p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal>National Instruments Dresden GmbH; =
+Gesch=C3=A4ftsf=C3=BChrer (Managing
+Directors): John Stanton McElroy, Albert Edward Percival III, Kathleen =
+Spurck;
+Sitz (Registered Office): Dresden; HRB (Commercial Register No.): 22081;
+Registergericht (Registration Court): Dresden<br>
+<br>
+This email and any attachments are intended only for the person to whom =
+this
+email is addressed and may contain confidential and/or privileged =
+information.
+If you received this email in error, please do not disclose the contents =
+to
+anyone, but notify the sender by return email and delete this email (and =
+any
+attachments) from your system. <o:p></o:p></p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+
+------=_NextPart_001_0277_01DA9261.1055C370--
+
+------=_NextPart_000_0276_01DA9261.1055C370
+Content-Type: image/png;
+	name="image001.png"
 Content-Transfer-Encoding: base64
-Content-Disposition: inline; filename="image001.png"
-Content-ID: <89a48b98-7b2f-e1f2-85f0-efb03f15eb3c@yahoo.com>
+Content-ID: <image001.png@01DA9261.0FB87200>
 
 iVBORw0KGgoAAAANSUhEUgAAAr0AAAIBCAYAAABELAfWAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAAFxEAABcRAcom8z8AAP+lSURBVHhe7P0HfJRXt+UNTs98M/NN99d9+7vd
@@ -2625,7 +3086,9 @@ Np5rleB9fPjecrzwPhjXMs6VnMvuJU6NayCv5T3jf99vXTPeX+P8y8+B3k5UlOhVKBQKhUKhUJg9
 SvQqFAqFQqFQKMweJXoVCoVCoVAoFGaPEr0KhUKhUCgUCrNHiV6FQqFQKBQKhZkD/P+oJGWfERIq
 cgAAAABJRU5ErkJggg==
 
-------=_Part_611894_1430504169.1713507097043
+------=_NextPart_000_0276_01DA9261.1055C370--
+
+--===============8600599444049255855==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2635,4 +3098,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
-------=_Part_611894_1430504169.1713507097043--
+--===============8600599444049255855==--
