@@ -2,182 +2,240 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA908AC5C4
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Apr 2024 09:43:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5258AC676
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Apr 2024 10:14:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3F9653857E1
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Apr 2024 03:43:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 357993857B4
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Apr 2024 04:14:06 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1713771794; bh=pcxyFmCtOKfgE01IdKiUwBFliaQbUprED82a1qNBWuc=;
+	t=1713773646; bh=3cEi3lWJFITN+QRrm46YNAcIFvlx2rnCkHoQxZaUijY=;
 	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=SdK/3Z0N+M1cFenk8Dl2uyKpxQ5aXlY+HzB9wXZkCTHIiRNwQBVdoFkiklUYIyDBS
-	 W/+f1T88F0gi1fJBD7X44BupyKJEaaAETtHPeippUKSifdYpKlt8fbrFCAjXpn7Anl
-	 bYRJUD/t8/1if26ZVW3WAY4t6wpOtJyXF8afSF01lOOZVySb8/PeI+jptJjKs70iyX
-	 DSzfzPcyIGvpza0KSMxfbDp3Nl4TIGaQ2dM5xFDgdQrSlycg6bX9ej99eqEkRoS2H3
-	 xK4qt/+w0URDeMo/GOFzZga0n0B26XQUeFuu2rOoojoLN9so3jsnucUmlsASEUZ+C5
-	 4fTcGQsfIXLiQ==
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2089.outbound.protection.outlook.com [40.107.102.89])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6E19C385772
-	for <usrp-users@lists.ettus.com>; Mon, 22 Apr 2024 03:42:47 -0400 (EDT)
+	b=jLFxaSrtZzpvQuIfexRD8hYfybYVqLVWRgRz5N65LvOEsJTVo6KcQlmqPiNRBPb4p
+	 dHB+280K4WlMVO030iX5rLqWEp617y90FLiuTxh8DrRITFUtcXY2fzFp+aGuepRb5M
+	 2JBFT88GHou+AudmXKIezpSAS9SL17rNJN968mNa05Z7roxrwYWPpZ2Xus7+Fbu2Dl
+	 Q2tGb1T1wnHYh75m/TrOweHdKOQ+mJQX0r6MOwc1twr0pz6oKMgoCjGRiCnhYqGh4S
+	 pv3KO4Wd36SLgwYhQMNE0D/8jYT06PmDxb1CNCNxnRGxvxz2F7hIsh+Rfm4QP30fsE
+	 fBG0/3Fg6/1qw==
+Received: from DEU01-BE0-obe.outbound.protection.outlook.com (mail-be0deu01on2110.outbound.protection.outlook.com [40.107.127.110])
+	by mm2.emwd.com (Postfix) with ESMTPS id 28F5938562A
+	for <usrp-users@lists.ettus.com>; Mon, 22 Apr 2024 04:13:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=ni.com header.i=@ni.com header.b="Xs5UMuSG";
+	dkim=pass (1024-bit key; unprotected) header.d=barkhauseninstitut.onmicrosoft.com header.i=@barkhauseninstitut.onmicrosoft.com header.b="HNvSOZt9";
 	dkim-atps=neutral
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nF5KHTJhgfj9oeb/sQKr//bvOeBK51VB1W+ITQKl1aWMeB/QnnrYjQm6Og2c+wc55i2CEMng7LS3/4mokrycb6BhlN7W0HsaGvQDC6+ltsiLHJtL6XF12eCuFTaeo3OZx0P7Rs4ckhO0PortVUIqI6GL28mturD2v/0YOyRZ/7J0C1n6fOQFBrTWiHhAoQJuw0rvt2d0QZ90G3HrfwSavhlGe3haz/BncyVMgORe5LJLS2CwoG80Pw9Z7o62cQCsTMh8VDei6yh6/HZy3To1NEjI+8c2ASOy2x2Eshdu+hInALu+giT2rrfDlMhkE9YkWCAF1xigo2vIkQ6IuEgApg==
+ b=OnqufAB4hNmt9mi7Aq44GBkkAfroI+0XKQFJggW/5/eGQu8sKeFmA9/wBeCLgmzNpKcszobkuFOE+SABwMg2+kbt4Z+DHvILT4dglb+LFw7KrkCi5tRKNkFSoKblatWZYpr0q1eaBqMmxF1WEia+PVMWPq6WHIzn9+1z7FwJQlozKPZ5b2zZ30uWuCqf5K5dSQW9MnPin0aae6NoTwZ+9uQ40iFpGgszWKkhAs3GYgRa7qNDa2EWdqeDzMPrvNAak138rUoAeO/95e+cN4y0RCnOYsaf9ZyM4Vvi/TWHRLjc6gb7m15e3PsXTTotoSCT9uCLk/1i/EpmXyFv/88bEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QuwYMZZKbyA1x992ACPZRv8KWX5Blihmt6w9mSbTINA=;
- b=WiJPEacWOEKP3iqzFeUyJwiy0P8P3VUd81PUh0cmemcff8Icz/acCr+PpWgd2sxhvF0tA49l+ha6TI9u4lNl7nHw8KnCFjcCj68//NSnIQAnPba6LVi5qVVsxMLsVcKXJX1pdXyUK0XnswAOOgPgLv38UbEc1PyjCM0EGL/WTG1bc2Qd/N9SWzuBHQvkYTivx+3gmvjHqL8o4Q6RA18FuYguuY3f0qbKTH7UEiADN4WmBfgtQ5W4AX5PXa+yOfrvxWRLx9EtnIwFfHKah/H8gwYlpAuHLgCwDK+60sOWaZ1GEEdcV+vFRkHZ9wgj2OeedM9eGTU8NP2kIpykA8HKdQ==
+ bh=LAXUvUwiM6X8WVZr3q5/rz/czDExDUmlFFq4zdDSkVE=;
+ b=FUBetEIGCeQ07wXPREBFgU3IH7ukdpGaDf/HGeJK8XkCy5w3VSjsp1gl6+S/6/0aU8ZRIwEk44PLDgulh9Il6qEzskI7AFR8RKv3/ZdJZWtFlRi8m4ZKlBg97eWZ/iLN4pgeTrFIb2ex61IYc/nCQpVRFD0nt/CgJwvc3yxSal/GUL+kDgs0G6r/IJWYCT8qk7UBfGPI9H05JQSsDskaxOmS0JTVMuRSOiD5MtezKAqQoNyz3u4nArwM4pyTCBNJ+IS1B75YOKnHQtWUby6QKh2Vwugdzom5oBtvVUR/OV3r5ekBeucIw1ut7u1qYgZzFnQpGLXyhFnfhuN8sHwiJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ni.com; s=selector1;
+ smtp.mailfrom=barkhauseninstitut.org; dmarc=pass action=none
+ header.from=barkhauseninstitut.org; dkim=pass
+ header.d=barkhauseninstitut.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=barkhauseninstitut.onmicrosoft.com;
+ s=selector2-barkhauseninstitut-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QuwYMZZKbyA1x992ACPZRv8KWX5Blihmt6w9mSbTINA=;
- b=Xs5UMuSGPDU8EaRQyOArMN8Z0HyaP42uXirZikik0USzu1YruIhryErn8tMpY60jJFTiHWRnfw0ErnK/gkMZev46uL1fzdk8050cX+Lwxi/fj3ZyYCdcAQXeKMlMP+RdpY4S/ftWyyNnxTMw5i4Zuk7Cpza93m0ORh8yiXr5QYo=
-Received: from DM8PR04MB7848.namprd04.prod.outlook.com (2603:10b6:8:26::13) by
- DM6PR04MB6858.namprd04.prod.outlook.com (2603:10b6:5:242::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7472.44; Mon, 22 Apr 2024 07:42:43 +0000
-Received: from DM8PR04MB7848.namprd04.prod.outlook.com
- ([fe80::3615:f040:e01e:4327]) by DM8PR04MB7848.namprd04.prod.outlook.com
- ([fe80::3615:f040:e01e:4327%4]) with mapi id 15.20.7472.044; Mon, 22 Apr 2024
- 07:42:43 +0000
-From: Lars Amsel <lars.amsel@ni.com>
-To: "Chapman, Christian - 0664 - MITLL" <Christian.Chapman@ll.mit.edu>,
-	"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+ bh=LAXUvUwiM6X8WVZr3q5/rz/czDExDUmlFFq4zdDSkVE=;
+ b=HNvSOZt97KhH2hUxgkY1FyW7uoV9xZIyqfi/ogY7Thygm+yrpLu9P9hLIIDlaTcnAo2s79rh/57GVc4iuuCH21Oa9PX84wKKxDZ8+6iCUJZUTlTGDxrSRQMO2NbTs08najJxIyPN3JAcvY+B7cCSSRAZrao3YeO1HaVWRFxjitQ=
+Received: from FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:3b::14)
+ by BEZP281MB2833.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10:70::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Mon, 22 Apr
+ 2024 08:13:36 +0000
+Received: from FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::9f0a:eda6:8e24:7d7c]) by FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::9f0a:eda6:8e24:7d7c%5]) with mapi id 15.20.7472.044; Mon, 22 Apr 2024
+ 08:13:36 +0000
+From: =?Windows-1252?Q?Maximilian_Matth=E9?=
+	<maximilian.matthe@barkhauseninstitut.org>
+To: Lars Amsel <lars.amsel@ni.com>, "Chapman, Christian - 0664 - MITLL"
+	<Christian.Chapman@ll.mit.edu>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
 Thread-Topic: Transmitting on both X300 channels without streaming samples
-Thread-Index: AdqR0XUuU7CBF8e5QPe+8RY7OngB/wAyCzRm
-Date: Mon, 22 Apr 2024 07:42:43 +0000
+Thread-Index: AdqR0XUuU7CBF8e5QPe+8RY7OngB/wAyCzRmAHx+Hbw=
+Date: Mon, 22 Apr 2024 08:13:36 +0000
 Message-ID: 
- <DM8PR04MB7848A9206F2A6C0349723592E6122@DM8PR04MB7848.namprd04.prod.outlook.com>
+ <FR2P281MB23326974D9DECF991BCCD66690122@FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM>
 References: 
  <PH1P110MB123645553A1002F6C034706FD90EA@PH1P110MB1236.NAMP110.PROD.OUTLOOK.COM>
+ <DM8PR04MB7848A9206F2A6C0349723592E6122@DM8PR04MB7848.namprd04.prod.outlook.com>
 In-Reply-To: 
- <PH1P110MB123645553A1002F6C034706FD90EA@PH1P110MB1236.NAMP110.PROD.OUTLOOK.COM>
-Accept-Language: en-DE, en-US
+ <DM8PR04MB7848A9206F2A6C0349723592E6122@DM8PR04MB7848.namprd04.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
 X-Hashtags: #NewslettersPlus
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 msip_labels: 
- MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_ContentBits=0;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Enabled=True;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Method=Standard;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Name=Internal;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_SetDate=2024-04-20T18:11:28.951Z;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_SiteId=87ba1f9a-44cd-43a6-b008-6fdb45a5204e;
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ni.com;
+ header.d=none;dmarc=none action=none header.from=barkhauseninstitut.org;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR04MB7848:EE_|DM6PR04MB6858:EE_
-x-ms-office365-filtering-correlation-id: 85dad326-55ad-438f-998c-08dc629fcb9f
-x-ni-monitor: EOP Exclude NI Domains ETR True
+x-ms-traffictypediagnostic: FR2P281MB2332:EE_|BEZP281MB2833:EE_
+x-ms-office365-filtering-correlation-id: 258bbb2d-12d3-429c-c39a-08dc62a41c34
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- =?us-ascii?Q?/xsxqks416jNpg4ss0b6sklHNXaP8CYfe7vS4dg7ChshRGLwVF7A8RSZuSbm?=
- =?us-ascii?Q?kjNv2Cezmfp9fd0kVh8yv0WC1shuq2PTHOtm5fyUu0nhFHLndAF6S21dE59G?=
- =?us-ascii?Q?qyGY6XQfuz74nuJlQLT8Bgzic0hEkO7aM/lRgPMJDA8qDLDXemJ7Wxz872Qc?=
- =?us-ascii?Q?05qbdQUZszuJud8/4vm7pweWKjb/5n9OmoQLVBZX2pZ5rUWNodac8EVxeztc?=
- =?us-ascii?Q?qO+RtWrH3J5LMHre82pGafLhVkPU3Rr1QwKAiICiht4PC1dUe9+sHliAo7Zd?=
- =?us-ascii?Q?ompthbE4lKmlLlNB1AYUjk5eCOETanLtB3PH1HT4WD5R+4GeyAc1ri4xgrjj?=
- =?us-ascii?Q?pZsyiQ56tMKWsmbilW2NnK9LYGChHTIm3O+dUDjeK2+rCcJ4QFojfyc49KK/?=
- =?us-ascii?Q?6/NWqGG4BqYU4z448z0YNVQL6l6rmTNuvBBlQb+atR8DkYsXwCDSDeZF/JEo?=
- =?us-ascii?Q?5hhYWv94W6b7eB5O4lo7FwX0AK5AyYubxGEFmbKpARY1UnuV/kPnwQn0lCCH?=
- =?us-ascii?Q?g7X053S/xKKi0ydXHTlzxghPtyI2kuxCEJtyQcMh0Jwr2ux3Pk0AoBh33Cmy?=
- =?us-ascii?Q?/hjD2ocnE7BxGdVhkxheWEcxY85W3cGSCfJZBP4UIsiUpBD5yXj7YVZvuCrN?=
- =?us-ascii?Q?XsnpAsFof4Hl8icO8yvP0p7ao6BlkhNZYowhL3m0NC6ge/LGDH3CRuLkdGb0?=
- =?us-ascii?Q?BvpIgzIrrXoMxptiFFHljKptZG8A7W4cKFIXSTOpiNPd4D6ubmY5eor/B6RF?=
- =?us-ascii?Q?ObZ757nKgZvlzxhbVVb28B7O0cs0woukzfTri0f3TsUUb1m6c/domQFNvmRJ?=
- =?us-ascii?Q?qrx5KOz6EIkcgPU6xGsmZk2Px1xgsybbUgb/umO511mZ8dzlJd+ReJdQQQ0H?=
- =?us-ascii?Q?3nZnnHufAJcJrYZL6wLOPPhQFqp81k6W8XWE85t9izpI6r1fPasBWZnKvUR6?=
- =?us-ascii?Q?DtwLj0y+dqcBuAL4UEoKzA7DIbBiQxr7w7O7fhr3DctByjjbJa9pc8v0OKhX?=
- =?us-ascii?Q?T87D9iPoTyGMeSSUhrCg902t55ijkz23dBSrIKPnv607GtIPxd5Bj3UcIYRS?=
- =?us-ascii?Q?vkpiZm6MBGi3AYiJPL6gXuyAF1Tu+M9KQ46i0tiyvyWI4HPQJPPcxnx+vtS2?=
- =?us-ascii?Q?iHqrDULQwanmkY6GuZ3ZuTiAske50lex8r51ypxWqVDJ5X9Lm8h3qVMAbuNs?=
- =?us-ascii?Q?PrTpp/M1RtOjGG2MJCK6wB0guuIUnOf7uu/j1qgeMmZdo+LAiEJQ87nRxUtX?=
- =?us-ascii?Q?uDb96/xMzT8nNPpAmibijtlTJoJYllmXNjx2qXek8Lnx2hKXdOG903wkx6wd?=
- =?us-ascii?Q?05Y=3D?=
+ =?Windows-1252?Q?wMQV0I70hZ40zz2bhD/AVQcC6Tm73luzIOoTZ27j4NHWy2Cqv4ljOiqK?=
+ =?Windows-1252?Q?zQBbwf7XrVxH8YuycEnIL3QdRmourl3IBRuoC50wMPcxa3pgFvQXlFFG?=
+ =?Windows-1252?Q?/zC45xlAwjxMduWoGDicAU45bXluaU5KlcD47HFVxI45hbm+rcxw9pyk?=
+ =?Windows-1252?Q?SAQ1IDGVAgJpeJS4eGsCedNX94MlsJ+VuHmmJNd84YbZ7Cwwt6lAEfhE?=
+ =?Windows-1252?Q?A/pIScbloJOpNOsxh5H4ImbGpJyZCFR5j1fR1t4m4PZWaOSC0QZm1xiQ?=
+ =?Windows-1252?Q?WmXbfLkqCIBbs+5NsBnKxz33Vq+xQ5J5Y0USw1Yi0WF0va+VyCykSC9e?=
+ =?Windows-1252?Q?27AI9nGtW6AH4ekcfYvkHJju5BW9ZpISAOm0D4QY/R4cA/yBh2fUv0b7?=
+ =?Windows-1252?Q?sA2bgtzLRwjQzVVAhLettvihS4z5VuoUREbWqPUXZ4ezjUKHND7cb5c6?=
+ =?Windows-1252?Q?5dm0lpG7sXhvlHecpUD3/YuC3PIiRNK4AyI68HBWqZ6gUGN9GciysXIi?=
+ =?Windows-1252?Q?JxVzinc6dt4dOa/XSC4Ij15unBTYSUsrTsfEgJ5mX3aM1/B9/1iMTR8l?=
+ =?Windows-1252?Q?z6SGM3Z2vu9Iw+DyJ/1IpKY0mAWExw/+p5TFlkscljOFdQlX8odKJHtB?=
+ =?Windows-1252?Q?SQIZYGV0KX03uwVYcvA7IHQB326zdh2wB3djzEErX7zvZCbJ51Vmt5pU?=
+ =?Windows-1252?Q?lcNjP5YN5s/4dcaPQT7GdGmeQUzuweaGga3yf7qKJGLzlYik7B7uFmei?=
+ =?Windows-1252?Q?1n5dxIakTqPBHv8D+uSiVT8mMB0VJlSahcmlBkITOTtqR9Z14cbIrKLR?=
+ =?Windows-1252?Q?/ev1GVeJF1a6pg7/J+0N1BZhQcKi8rbVx3MiOthF8VTmsNWGSuHLT7tZ?=
+ =?Windows-1252?Q?W047Bay6PNJwMxeFqXbhK0gr440Monx2Smxd2GHFETR0uZxl9mPiTzsv?=
+ =?Windows-1252?Q?bG5vKJ00YEpAemABzY42gnwtUE25vBZIV/xBp6meKh/nt3QzPM27lnys?=
+ =?Windows-1252?Q?zfuKwyMf5nNPf5HMNmS0coQiqHUnD4R1L8C1MGqHLGnICTCxQUTui3um?=
+ =?Windows-1252?Q?/+o/UAU/0mdUHPdzggfVrQ/aGGdb18soGVHNTAWXV4+kAZuSjtYH7HxA?=
+ =?Windows-1252?Q?oorra2Dw2rVCSIHnlrARBmzb9wd4g6FxC0o3b8vC39CkLioKuFZZPKin?=
+ =?Windows-1252?Q?ZaGZWK3VDeAZpw0pjNiT5uHF6xUBwyeaNliyjj4NOmNbea6Eqxij2uDh?=
+ =?Windows-1252?Q?iAyiklqMBAkSMjpEE6bWT+Ox4TIhIvfpb8sTGMzL61eKnvE5sgUGADNZ?=
+ =?Windows-1252?Q?l5j/oMWiwuoVskDbtB8DiOASUHw7LnIXueBiKbyK/tJFfroQ44XPgJ3A?=
+ =?Windows-1252?Q?QvqDEjBgg88jrg=3D=3D?=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR04MB7848.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(38070700009);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(38070700009);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?rkBMDTgBKINFU4HjxB/dPd7IqT3qc/LD+t0z/iyclM1/DyfCXzIlFX3WKsss?=
- =?us-ascii?Q?IYh+EJooQWZiCd3TpMwmaNRfZFkiMvUFALMSS6kaXWOpZamSTfj4Xxwm6fWu?=
- =?us-ascii?Q?zdDFRYjcza0YUn975XAsX0pnqt4bZYD6HJrGd2PSgIvPtGlnxKSehGFMR7v1?=
- =?us-ascii?Q?GyICA8kdqqfDtOd+jAC/N8kuuIEz6MgXDivqhunnYk8PVGco+MEBfKzd8FZQ?=
- =?us-ascii?Q?6+A/dEVTnHE8h1T6WQZ24Mw/Rgvi7Fu2RYGIN+kU6FR7wvhI8Li7IVBrSGwU?=
- =?us-ascii?Q?TlP7s82GxD6pZoWn3psiFUbLN4af8hd2BZUgA+zP20kP0FZjCHuqSZAWRA0u?=
- =?us-ascii?Q?qvwfpGGZpv77bUizL33cdLvU++SGtDWj/ktOqne8KMcwqq5jvUTO4KwhnqeW?=
- =?us-ascii?Q?mZiGgtdcrFubk062E94ZLv52OMtAtJul+Lt+t7yx01a3iVr3sSaBE5WukFxj?=
- =?us-ascii?Q?fXn9xfxUEsmbD+0MlKkjW1CmsqWl3fK5k0jql69nm4g/ixFxC15ZX21AyoMa?=
- =?us-ascii?Q?NvZSTu1S2ULOy3u4JRZrUHjzDV1mFyaozbBX8X3nJ9vzDKcSV1+mapt4OgYj?=
- =?us-ascii?Q?hCNmT3XhvjXRCEHPNkBdpLvBvIbBePXvTPdQMG/qsUg6Kj/g1Kp3CeURspzC?=
- =?us-ascii?Q?Nnky7KEPGxQShjyS2ldR+pZ9dxxXcbzZR8CTBlCzKAqWkqzxKqjMIZxYEvuJ?=
- =?us-ascii?Q?S8QDaJ1bqC5aHU5exUKTN/qXw0c9Tl2RhdWv7VmnpkG6JW66dWiS++eZi91o?=
- =?us-ascii?Q?cHpachdlDsEI95+oyCTk5+lLqeVxEa7F0WJtqg5EjmjhK9/lmeTt/lKP2PVo?=
- =?us-ascii?Q?FTYhM57WSNy45n6e40ps3MIY0uHuLQBbn5opn0ItkpBDCmrborWHJRke60OS?=
- =?us-ascii?Q?Kx28G1LJKbrUJ2BweYOJ7s6NLlGjhgDzezt3140oIPlMub2QhHabrxGmpCXB?=
- =?us-ascii?Q?MRmIpLNe9NMb8nCsCiCpGT/bMufIhMW8exA31jmE3psmlsAa1ASvyQX9P9+N?=
- =?us-ascii?Q?oivO3NFX5q4inzqTANoEMwTSIg+DtLkXcS50o25k6twlwyo7+zdPKtc4NUJ8?=
- =?us-ascii?Q?8M8fYCrdxwwEZKqtR4QBOPFZcgLGFeIr70ONDawSX1WsmyaZQQ0TNB8fsxoo?=
- =?us-ascii?Q?5bX+fWfdBg6d1Tzt1GZK29Z9sBsGz7Nf0sY+AGni97IR1KjpR4r1sebpXcWT?=
- =?us-ascii?Q?1xX1g/kMNyGuQU8unoN+7g2zs88Mo+FXbC8OaygdzWnsQHZ0A96AB337ZIdk?=
- =?us-ascii?Q?zbDXxF1Bngk2MTZNkNU1GibOExLyktSe38Smx/aPJLNSN9rBSphO7yN7jneP?=
- =?us-ascii?Q?Z9lbXq3GyTD2/lqRQ4pEREtsbUTut0xYofFK0sPcpRCtmMt1p1OvQOHaXYfC?=
- =?us-ascii?Q?Xd9B91oImNOreN5lIQGMx0IuvCF4UuigBSOO3O6kQYP1Hri+Pe8cdx4K7inH?=
- =?us-ascii?Q?uBf+WooYyzcb+CxhoLnY/R7n2o0jNxnA28/xUGp8QM4WLDu8sqeVXmFy6i9C?=
- =?us-ascii?Q?VFtwBAPu41tZhtYQ8s4bTQaEQiRoL426YXhwHXpHLsD2Dl85/YSTQekQ9T7i?=
- =?us-ascii?Q?QkB8A7WRXE/E9Mg5B30=3D?=
+ =?Windows-1252?Q?tsEm97UbamIQVMNgBDOspTF4jucnC7btfPSWE1ALqsKQWxQ6isVVxeUt?=
+ =?Windows-1252?Q?Fij0jAXuLfMG1npba/7TdenSoycUvMw8A1D555iwQupJKEurL7Xj7bBy?=
+ =?Windows-1252?Q?uhRb8T1VnZLuLvblHoIwwRozEjZEdeKH9M4gcU/BriB1dzKZqrk5mkUi?=
+ =?Windows-1252?Q?5qy7WjQX4y1ox7/nLmSzJYDSgeltvcll+HiwiYJXdyX59xrzT0UQTLpV?=
+ =?Windows-1252?Q?DnR0uuv0Q5r64D5shOXjxzQdJ0coU8nSotYxbnXWwFVP8rh35+Jg52j1?=
+ =?Windows-1252?Q?Mc/+0uDm3osAIGkMn4WVw3ya7Uon40LBt/2BvXTcfPXXFqlxsLcyRl/5?=
+ =?Windows-1252?Q?F4lYTfD+Qd91enKx0JgY4UvG4ESF9NjKQSuOr3O5rvU7CBLGU5Z6RHTc?=
+ =?Windows-1252?Q?5Qp6LK9fD4Ubsfg8+dy0kE4A+RueqWm0J9ESmy2xr28tz7931QAWl6Id?=
+ =?Windows-1252?Q?3HdduIKJRPRgxfw4ywauQmvCpYueySQSi4r75ZAlg4c3s5SUoWJicLxr?=
+ =?Windows-1252?Q?hR/KOs7HAcD/c9SkRTcPXa+IQQMmXdQM4fkfrF4HWw9pLZlpHEn3MOiP?=
+ =?Windows-1252?Q?7CivoLNJCkCmNFVsU2a4XhTVRFwZ78kuBlIY2bE1h5kAjF3bNcsZWovy?=
+ =?Windows-1252?Q?54hnPxkaqvRPpvaDv38zkMn9RTdG4/S0aU6McNmlkv7nS1F0Zz1aHwU1?=
+ =?Windows-1252?Q?LxRJpj1vWUmSE9HI7d2aGOAVz79NQT1AjWYRFbLRCgLQ3A7aVpwd2jOl?=
+ =?Windows-1252?Q?AsnwmEE3NFpGJz2yuztXR8UiplwiBDV9xPKphHm+FGASQkUyu/tzPBSU?=
+ =?Windows-1252?Q?fweVeCzVrnb1z5ukhywtopFtnAXcrdRAiR7NHVjLonE39ogI0hnKmwSR?=
+ =?Windows-1252?Q?CSlX2L+jZISkeZeVgaDRWf6tZGBcuI7+4Oe3bFode1mQxbwOpSkOd1DT?=
+ =?Windows-1252?Q?NyHkoBCi4ksgqocjgFhHSqdDPc+C8wtSkrXeHq8b4o4V5/XVQbfthRP1?=
+ =?Windows-1252?Q?2btk+9ukeYh03HnOdLglO9B/gCaPbpsT4rGQcSja3jPfoReOo0hm+UdR?=
+ =?Windows-1252?Q?utYeZvgUcw0/4LunYp0G+qx+yYPAP1qFx5jrAPbyuHK6DaxdTLsHGwtm?=
+ =?Windows-1252?Q?qWPP8Mk4M0qrKiyr7zn2dCkg2QfOcMPmZxvCtjPY1XUAdDltxnd5SKq7?=
+ =?Windows-1252?Q?R27Q6JpKK3gpuK/NJPobWaVebTp6A5gzZaCqg0CARS8UwO/UpL+vSdeH?=
+ =?Windows-1252?Q?NSxbXzetkgCv5IEWqPLvmG1r2DkAPIXPw2UQIJSIVRcg2qdz9PZE6bSG?=
+ =?Windows-1252?Q?LNt91tt1gP7HuwsNoWkQijEvMExidsxxYrJ0foAl1ESDscz5ESwlJEZD?=
+ =?Windows-1252?Q?UGM0Qa8VqCV5xgjBvenMWK/1QmkU2s4farUEG1JFavs/IU5Dgh/Fx6PE?=
+ =?Windows-1252?Q?w97L9hGmvzEZVABexUGfA2S/+EvhgNM0B216738V7JyhJNH+p51Swov9?=
+ =?Windows-1252?Q?9ZF3kkcp0YjnFZvNHfSYar0+vUbvaBNDhcTzLNtomcgL+vDolZ4Y0NB/?=
+ =?Windows-1252?Q?KQJdxCzASo1O8oGiDh0nCMQgHruEaqky/c2QHAE8PM0ptruuSBkzSt5H?=
+ =?Windows-1252?Q?8XINJ4f4TrP5jWpcDkjSnIpNuz9KF8vVsjn47r2eKJ6JaD6IBtOMAqFb?=
+ =?Windows-1252?Q?pRw9sGNhVazj75d5ovZpup9synxF6hcWEcVniQX9Z2LBx9adLFgyk0n9?=
+ =?Windows-1252?Q?b7ao5I1xDo6h8dLn+1Q=3D?=
 MIME-Version: 1.0
-X-OriginatorOrg: ni.com
+X-OriginatorOrg: barkhauseninstitut.org
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR04MB7848.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85dad326-55ad-438f-998c-08dc629fcb9f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Apr 2024 07:42:43.4949
+X-MS-Exchange-CrossTenant-AuthSource: FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 258bbb2d-12d3-429c-c39a-08dc62a41c34
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Apr 2024 08:13:36.6530
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-id: 00487172-018a-4fb0-b279-f756ac552ea7
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: S6WLUuKPXY2iwqISTxgNE8VsUlsMlQw54YmmUsXTcUXSwqM++FudOhyu+p1n8JMvuJawRT6TM/vR2PtrC0f/ZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB6858
-Message-ID-Hash: ID32S4JX4X73D73ZOOIB44NEP2HAEYTS
-X-Message-ID-Hash: ID32S4JX4X73D73ZOOIB44NEP2HAEYTS
-X-MailFrom: lars.amsel@ni.com
+X-MS-Exchange-CrossTenant-userprincipalname: EBDkHn5SrxxepdieK+DclUr+rNDljgcdVE7wfpXbs+pr9/2eVqV8eqlO834lBGVH1kdng8dYvOM8XKHp/uXKGeOxCWqaFd0rt08qf7XqIojLiUrhu12oWlCqEoOJkAEI4cxIm8xwVujwlceVxVeiiw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BEZP281MB2833
+Message-ID-Hash: 6R4SBWSIQVI4BZMMZ5PW25XR4GNOLDW5
+X-Message-ID-Hash: 6R4SBWSIQVI4BZMMZ5PW25XR4GNOLDW5
+X-MailFrom: maximilian.matthe@barkhauseninstitut.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Transmitting on both X300 channels without streaming samples
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GNAAGZBHH6RORU3EZRS6WADBHPGIFOMI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZZGWZXMYS6NFQXOTSFPUBYSSMYY37TQF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1449608760630136116=="
+Content-Type: multipart/mixed; boundary="===============3570060202977710552=="
 
---===============1449608760630136116==
+--===============3570060202977710552==
 Content-Language: en-US
 Content-Type: multipart/related;
-	boundary="_005_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_";
+	boundary="_005_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_";
 	type="multipart/alternative"
 
---_005_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_
+--_005_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_
 Content-Type: multipart/alternative;
-	boundary="_000_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_"
+	boundary="_000_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_"
 
---_000_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_
-Content-Type: text/plain; charset="us-ascii"
+--_000_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
+Hi Christian,
+
+regarding your approach, I have developed a library [1] on top of UHD4.5 wh=
+ich can do exactly this, but would need some small modifications. The libra=
+ry allows to stream data slowly into the FPGA's replay block DRAM and then =
+stream it from the DRAM to the Radio with full sample rate. Also, the other=
+ way is possible (i.e. record from radio to DRAM, and then afterwards slowl=
+y to the host). Depending on the amount of RAM and sample rate, several sec=
+onds of data can be transmitted, also periodically.
+
+Currently, the number of TX samples is artificially limited to 200k [2] (a =
+limitation I faced at X410), but this should not be an issue for X310. The =
+documentation for the library is focussed on X410, but I have tested it usi=
+ng NI-2974, which is essentially a combination of X310 and a normal PC. So,=
+ maybe you can give it a try. What you need to do is perform the steps for =
+installing the Server [3] (without `make install`) and then start the serve=
+r manually with `python start_usrp_server.py --uhd-ip <your-x310-ip> --usrp=
+-type x310`. If you want to give it a try, I can try to help you setting up=
+ the library.
+
+Maximilian Matthe
+
+[1] https://github.com/Barkhausen-Institut/usrp_uhd_wrapper
+[2] https://github.com/Barkhausen-Institut/usrp_uhd_wrapper/blob/b63752734f=
+103d7f3744947efdad927c0d33c36c/uhd_wrapper/lib/usrp.hpp#L64
+[3]
+
+
+Maximilian Matthe
+
+Head of Engineering Lab
+
+maximilian.matthe@barkhauseninstitut.org
+
+Tel.: +49 173 4509667
+
+________________________________
+From: Lars Amsel <lars.amsel@ni.com>
+Sent: Monday, April 22, 2024 9:42 AM
+To: Chapman, Christian - 0664 - MITLL <Christian.Chapman@ll.mit.edu>; usrp-=
+users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Re: Transmitting on both X300 channels without stream=
+ing samples
+
+
 Christian,
+
+
 
 you did not mention what version of UHD you are using, so I assume you use =
 something recent. UHD has a replay block that is shipped with the default i=
 mages (if the USRP has sufficient resources), see here: https://kb.ettus.co=
 m/Using_the_RFNoC_Replay_Block_in_UHD_4. So your X300 is able to do it.
+
+
 
 The replay block always manages all the memory, and you are free to divide =
 the available memory into portions for different tasks. So you could split =
@@ -190,9 +248,14 @@ ould be to download two signals and do two play calls to play each signal t=
 o one of the radios. You might want to  use a timed command here to ensure =
 both signals start at the same time.
 
+
+
 Regards
 
+
+
 Lars
+
 
 
 [NI]<https://www.ni.com/r/zf03uz>
@@ -219,29 +282,32 @@ SW Discipline
 INTERNAL - NI CONFIDENTIAL
 
 ________________________________
+
 From: Chapman, Christian - 0664 - MITLL <Christian.Chapman@ll.mit.edu>
 Sent: Thursday, 18 April 2024 23:08
 To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
 Subject: [USRP-users] Transmitting on both X300 channels without streaming =
 samples
 
+
+
 You don't often get email from christian.chapman@ll.mit.edu. Learn why this=
  is important<https://aka.ms/LearnAboutSenderIdentification>
 
-Hi, I'm interested in using an X300 to repeat several 100 ms of >100 MHz sa=
-mples, a different signal on both channels, and my host computer can't stre=
-am samples into the X300 continuously.
+Hi, I=92m interested in using an X300 to repeat several 100 ms of >100 MHz =
+samples, a different signal on both channels, and my host computer can=92t =
+stream samples into the X300 continuously.
 
 It would seem the RFNoC replay block could serve this need, but according t=
 o a thread from Thomas Harder on a very similar question[1] some firmware c=
 hange is required.
 
-Thomas seems to have settled on the approach I can't use: his samples are s=
-treamed continuously via 10G Ethernet.
+Thomas seems to have settled on the approach I can=92t use: his samples are=
+ streamed continuously via 10G Ethernet.
 
-If I understand properly, Rob Kossler's txarb block can serve this need, bu=
-t I can't find it published it anywhere. Do I have to recreate something si=
-milar to do what I need?
+If I understand properly, Rob Kossler=92s txarb block can serve this need, =
+but I can=92t find it published it anywhere. Do I have to recreate somethin=
+g similar to do what I need?
 
 More broadly, has anyone done this and/or have simpler solutions appeared i=
 n the last few years?
@@ -256,10 +322,10 @@ Thank you,
 
 Christian
 
-National Instruments Dresden GmbH; Gesch?ftsf?hrer (Managing Directors): Jo=
-hn Stanton McElroy, Albert Edward Percival III, Kathleen Spurck; Sitz (Regi=
-stered Office): Dresden; HRB (Commercial Register No.): 22081; Registergeri=
-cht (Registration Court): Dresden
+National Instruments Dresden GmbH; Gesch=E4ftsf=FChrer (Managing Directors)=
+: John Stanton McElroy, Albert Edward Percival III, Kathleen Spurck; Sitz (=
+Registered Office): Dresden; HRB (Commercial Register No.): 22081; Register=
+gericht (Registration Court): Dresden
 
 This email and any attachments are intended only for the person to whom thi=
 s email is addressed and may contain confidential and/or privileged informa=
@@ -267,86 +333,187 @@ tion. If you received this email in error, please do not disclose the conte=
 nts to anyone, but notify the sender by return email and delete this email =
 (and any attachments) from your system.
 
---_000_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_
-Content-Type: text/html; charset="us-ascii"
+
+Barkhausen Institut
+www.barkhauseninstitut.org
+
+
+Barkhausen Institut gGmbH | Sitz: Schweriner Str. 1, 01067 Dresden, Germany=
+ | Registergericht: Amtsgericht Dresden, HRB 37267 | Gesch=E4ftsf=FChrer: P=
+rof. Dr. Gerhard Fettweis, Dr. Tim Hentschel | Vorsitzender der Gesellschaf=
+terdelegation: Jan Gerken
+
+Hinweise zum Datenschutz und zur Verarbeitung Ihrer Daten finden Sie unter:=
+ https://barkhauseninstitut.org/data-privacy
+
+This email and any attachments are intended only for the person to whom thi=
+s email is addressed and may contain confidential and/or privileged informa=
+tion. If you received this email in error, please do not disclose the conte=
+nts to anyone, but notify the sender by return email and delete this email =
+(and any attachments) from your system. Information on data protection and =
+processing of your personal information: https://barkhauseninstitut.org/dat=
+a-privacy
+
+
+--_000_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hi Christian,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+regarding your approach, I have developed a library [1] on top of UHD4.5 wh=
+ich can do exactly this, but would need some small modifications. The libra=
+ry allows to stream data slowly into the FPGA's replay block DRAM and then =
+stream it from the DRAM to the Radio
+ with full sample rate. Also, the other way is possible (i.e. record from r=
+adio to DRAM, and then afterwards slowly to the host). Depending on the amo=
+unt of RAM and sample rate, several seconds of data can be transmitted, als=
+o periodically.</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Currently, the number of TX samples is artificially limited to 200k [2] (a =
+limitation I faced at X410), but this should not be an issue for X310. The =
+documentation for the library is focussed on X410, but I have tested it usi=
+ng NI-2974, which is essentially
+ a combination of X310 and a normal PC. So, maybe you can give it a try. Wh=
+at you need to do is perform the steps for installing the Server [3] (witho=
+ut `make install`) and then start the server manually with `python start_us=
+rp_server.py --uhd-ip &lt;your-x310-ip&gt;
+ --usrp-type x310`. If you want to give it a try, I can try to help you set=
+ting up the library.</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Maximilian Matthe</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+[1] <a href=3D"https://github.com/Barkhausen-Institut/usrp_uhd_wrapper" id=
+=3D"LPlnk737203">
+https://github.com/Barkhausen-Institut/usrp_uhd_wrapper</a></div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+[2] <a href=3D"https://github.com/Barkhausen-Institut/usrp_uhd_wrapper/blob=
+/b63752734f103d7f3744947efdad927c0d33c36c/uhd_wrapper/lib/usrp.hpp#L64" id=
+=3D"LPlnk186058">
+https://github.com/Barkhausen-Institut/usrp_uhd_wrapper/blob/b63752734f103d=
+7f3744947efdad927c0d33c36c/uhd_wrapper/lib/usrp.hpp#L64</a></div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+[3]</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<div style=3D"font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sa=
+ns-serif" dir=3D"ltr" id=3D"divtagdefaultwrapper">
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Maximilian Matthe</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Head of Engineering Lab</=
+p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">maximilian.matthe@barkhau=
+seninstitut.org</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Tel.: +49 173 4509667<br>
+</p>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Lars Amsel &lt;lars.a=
+msel@ni.com&gt;<br>
+<b>Sent:</b> Monday, April 22, 2024 9:42 AM<br>
+<b>To:</b> Chapman, Christian - 0664 - MITLL &lt;Christian.Chapman@ll.mit.e=
+du&gt;; usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> [USRP-users] Re: Transmitting on both X300 channels without=
+ streaming samples</font>
+<div>&nbsp;</div>
+</div>
+<style>
+<!--
 @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
+	{font-family:"Cambria Math"}
 @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
+	{font-family:Calibri}
 @font-face
-	{font-family:Aptos;}
+	{font-family:Aptos}
 @font-face
-	{font-family:"Segoe UI";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{font-family:"Segoe UI"}
+p.x_MsoNormal, li.x_MsoNormal, div.x_MsoNormal
 	{margin:0cm;
 	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-span.EmailStyle19
-	{mso-style-type:personal-compose;
-	font-family:"Times New Roman",serif;
-	color:black;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
+	font-family:"Aptos",sans-serif}
+a:link, span.x_MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
+span.x_EmailStyle19
+	{font-family:"Times New Roman",serif;
+	color:black}
+.x_MsoChpDefault
+	{font-size:10.0pt}
 @page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break-w=
-ord">
-<div class=3D"WordSection1">
+	{margin:70.85pt 70.85pt 2.0cm 70.85pt}
+div.x_WordSection1
+	{}
+-->
+</style>
+<div lang=3D"DE" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break-wo=
+rd">
+<div class=3D"x_WordSection1">
 <div>
-<p class=3D"MsoNormal"><span style=3D"color:black">Christian,<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:black"><o:p>&nbsp;</o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black">you did n=
-ot mention what version of UHD you are using, so I assume you use something=
- recent. UHD has a replay block that is shipped with the default images (if=
- the USRP has sufficient resources), see
- here: <a href=3D"https://kb.ettus.com/Using_the_RFNoC_Replay_Block_in_UHD_=
-4">https://kb.ettus.com/Using_the_RFNoC_Replay_Block_in_UHD_4</a>. So your =
-X300 is able to do it.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black">The repla=
-y block always manages all the memory, and you are free to divide the avail=
-able memory into portions for different tasks. So you could split it in hal=
-f, download two TX signals to each half
+<p class=3D"x_MsoNormal"><span style=3D"color:black">Christian,</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"color:black">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US" style=3D"color:black">you did=
+ not mention what version of UHD you are using, so I assume you use somethi=
+ng recent. UHD has a replay block that is shipped with the default images (=
+if the USRP has sufficient resources),
+ see here: <a href=3D"https://kb.ettus.com/Using_the_RFNoC_Replay_Block_in_=
+UHD_4">https://kb.ettus.com/Using_the_RFNoC_Replay_Block_in_UHD_4</a>. So y=
+our X300 is able to do it.
+</span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US" style=3D"color:black">&nbsp;<=
+/span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US" style=3D"color:black">The rep=
+lay block always manages all the memory, and you are free to divide the ava=
+ilable memory into portions for different tasks. So you could split it in h=
+alf, download two TX signals to each half
  and then play one to each radio. Beside the good introduction linked above=
 , you might also want to take a look at the Python TX waveform example
 <a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/examples/p=
@@ -356,87 +523,87 @@ veforms.py</a>. This example (with the -dram option) contains most of what =
 you need. The necessary extension would be to download two signals and do t=
 wo play calls to play each signal
  to one of the radios. You might want to &nbsp;use a timed command here to =
-ensure both signals start at the same time.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black">Regards<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black">Lars<o:p>=
-</o:p></span></p>
+ensure both signals start at the same time.</span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US" style=3D"color:black">&nbsp;<=
+/span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US" style=3D"color:black">Regards=
+</span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US" style=3D"color:black">&nbsp;<=
+/span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US" style=3D"color:black">Lars</s=
+pan></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black"><o:p>&nbs=
-p;</o:p></span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US" style=3D"color:black">&nbsp;<=
+/span></p>
 </div>
-<div id=3D"Signature">
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" width=3D"450" style=3D"width:337.5pt;border-collapse:collapse">
+<div id=3D"x_Signature">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" width=3D"450" style=3D"width:337.5pt; border-collapse:collapse">
 <tbody>
 <tr>
-<td width=3D"450" style=3D"width:337.5pt;padding:0cm 0cm 0cm 0cm">
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" width=3D"450" style=3D"width:337.5pt;border-collapse:collapse">
+<td width=3D"450" style=3D"width:337.5pt; padding:0cm 0cm 0cm 0cm">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" width=3D"450" style=3D"width:337.5pt; border-collapse:collapse">
 <tbody>
 <tr>
-<td width=3D"450" valign=3D"top" style=3D"width:337.5pt;padding:0cm 0cm 0cm=
- 0cm">
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" width=3D"450" style=3D"width:337.5pt;border-collapse:collapse">
+<td width=3D"450" valign=3D"top" style=3D"width:337.5pt; padding:0cm 0cm 0c=
+m 0cm">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" width=3D"450" style=3D"width:337.5pt; border-collapse:collapse">
 <tbody>
 <tr style=3D"height:75.0pt">
-<td width=3D"100" valign=3D"top" style=3D"width:75.0pt;padding:0cm 0cm 0cm =
-0cm;height:75.0pt">
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" width=3D"100" style=3D"width:75.0pt;border-collapse:collapse">
+<td width=3D"100" valign=3D"top" style=3D"width:75.0pt; padding:0cm 0cm 0cm=
+ 0cm; height:75.0pt">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" width=3D"100" style=3D"width:75.0pt; border-collapse:collapse">
 <tbody>
 <tr style=3D"height:60.0pt">
-<td width=3D"80" style=3D"width:60.0pt;padding:0cm 0cm 0cm 0cm;height:60.0p=
-t">
+<td width=3D"80" style=3D"width:60.0pt; padding:0cm 0cm 0cm 0cm; height:60.=
+0pt">
 <p align=3D"center" style=3D"text-align:center"><a href=3D"https://www.ni.c=
-om/r/zf03uz"><span style=3D"font-size:1.0pt;font-family:&quot;Calibri&quot;=
-,sans-serif;color:black;text-decoration:none"><img border=3D"0" width=3D"80=
-" height=3D"80" style=3D"width:.8333in;height:.8333in" id=3D"Picture_x0020_=
-1" src=3D"cid:c5f89e5e-3baf-48a8-a353-fd11c0c0f896" alt=3D"NI"></span></a><=
-o:p></o:p></p>
+om/r/zf03uz"><span style=3D"font-size:1.0pt; font-family:&quot;Calibri&quot=
+;,sans-serif; color:black; text-decoration:none"><img border=3D"0" width=3D=
+"80" height=3D"80" id=3D"x_Picture_x0020_1" alt=3D"NI" style=3D"width:.8333=
+in; height:.8333in" data-outlook-trace=3D"F:1|T:1" src=3D"cid:c5f89e5e-3baf=
+-48a8-a353-fd11c0c0f896"></span></a></p>
 </td>
-<td width=3D"20" style=3D"width:15.0pt;padding:0cm 0cm 0cm 0cm;height:60.0p=
-t">
-<p><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif=
-">&nbsp;</span><o:p></o:p></p>
+<td width=3D"20" style=3D"width:15.0pt; padding:0cm 0cm 0cm 0cm; height:60.=
+0pt">
+<p><span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,sans-seri=
+f">&nbsp;</span></p>
 </td>
 </tr>
 <tr style=3D"height:15.0pt">
-<td width=3D"80" style=3D"width:60.0pt;padding:0cm 0cm 0cm 0cm;height:15.0p=
-t">
-<p><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif=
-">&nbsp;</span><o:p></o:p></p>
+<td width=3D"80" style=3D"width:60.0pt; padding:0cm 0cm 0cm 0cm; height:15.=
+0pt">
+<p><span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,sans-seri=
+f">&nbsp;</span></p>
 </td>
-<td width=3D"20" style=3D"width:15.0pt;padding:0cm 0cm 0cm 0cm;height:15.0p=
-t">
-<p><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif=
-">&nbsp;</span><o:p></o:p></p>
+<td width=3D"20" style=3D"width:15.0pt; padding:0cm 0cm 0cm 0cm; height:15.=
+0pt">
+<p><span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,sans-seri=
+f">&nbsp;</span></p>
 </td>
 </tr>
 </tbody>
 </table>
 </td>
-<td width=3D"350" valign=3D"top" style=3D"width:262.5pt;padding:0cm 0cm 0cm=
- 0cm;height:75.0pt">
+<td width=3D"350" valign=3D"top" style=3D"width:262.5pt; padding:0cm 0cm 0c=
+m 0cm; height:75.0pt">
 <p style=3D"margin-bottom:4.5pt"><b><span lang=3D"EN-US" style=3D"font-size=
-:10.0pt;font-family:&quot;Arial&quot;,sans-serif">Lars Amsel</span></b><spa=
-n lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif">&nbsp;<br>
+:10.0pt; font-family:&quot;Arial&quot;,sans-serif">Lars Amsel</span></b><sp=
+an lang=3D"EN-US" style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,=
+sans-serif">&nbsp;<br>
 Principal Software Engineer<br>
-SW Discipline</span><span lang=3D"EN-US"><o:p></o:p></span></p>
-<p><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif=
-;color:black"><a href=3D"tel:+49351206931427"><span style=3D"color:black">+=
-49351206931427</span></a></span><span style=3D"font-size:10.0pt;font-family=
-:&quot;Arial&quot;,sans-serif">&nbsp;&nbsp;|&nbsp;
+SW Discipline</span><span lang=3D"EN-US"></span></p>
+<p><span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,sans-seri=
+f; color:black"><a href=3D"tel:+49351206931427"><span style=3D"color:black"=
+>+49351206931427</span></a></span><span style=3D"font-size:10.0pt; font-fam=
+ily:&quot;Arial&quot;,sans-serif">&nbsp;&nbsp;|&nbsp;
 <span style=3D"color:black"><a href=3D"https://www.ni.com/" title=3D"https:=
-//www.ni.com"><span style=3D"color:black">ni.com</span></a></span></span><o=
-:p></o:p></p>
+//www.ni.com"><span style=3D"color:black">ni.com</span></a></span></span></=
+p>
 </td>
 </tr>
 </tbody>
@@ -444,13 +611,12 @@ SW Discipline</span><span lang=3D"EN-US"><o:p></o:p></span></p>
 </td>
 </tr>
 <tr style=3D"height:59.25pt">
-<td width=3D"542" valign=3D"top" style=3D"width:406.5pt;padding:0cm 0cm 0cm=
- 0cm;height:59.25pt">
+<td width=3D"542" valign=3D"top" style=3D"width:406.5pt; padding:0cm 0cm 0c=
+m 0cm; height:59.25pt">
 <p><span style=3D"font-size:1.0pt"><img border=3D"0" width=3D"266" height=
-=3D"38" style=3D"width:2.7708in;height:.3958in" id=3D"Picture_x0020_2" src=
-=3D"cid:c68a155d-4b64-4925-8947-0f8c2833cf3a" alt=3D"National Instruments=
-=0A=
-is now NI."></span><o:p></o:p></p>
+=3D"38" id=3D"x_Picture_x0020_2" alt=3D"National Instruments=0A=
+is now NI." style=3D"width:2.7708in; height:.3958in" data-outlook-trace=3D"=
+F:1|T:1" src=3D"cid:c68a155d-4b64-4925-8947-0f8c2833cf3a"></span></p>
 </td>
 </tr>
 </tbody>
@@ -459,113 +625,143 @@ is now NI."></span><o:p></o:p></p>
 </tr>
 </tbody>
 </table>
-<p>&nbsp;<o:p></o:p></p>
-<p>&nbsp;<o:p></o:p></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 </div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><br>
-<p style=3D"font-family:Calibri;font-size:10pt;color:#000000;margin:5pt;fon=
-t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+<div class=3D"x_MsoNormal" align=3D"center" style=3D"text-align:center"><br=
+>
+<p align=3D"Left" style=3D"font-family:Calibri; font-size:10pt; color:#0000=
+00; margin:5pt; font-style:normal; font-weight:normal; text-decoration:none=
+">
 INTERNAL - NI CONFIDENTIAL<br>
 </p>
 <hr size=3D"2" width=3D"98%" align=3D"center">
 </div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt;fo=
-nt-family:&quot;Calibri&quot;,sans-serif;color:black">From:</span></b><span=
- lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,s=
-ans-serif;color:black">&nbsp;Chapman, Christian - 0664 - MITLL &lt;Christia=
-n.Chapman@ll.mit.edu&gt;<br>
+<div id=3D"x_divRplyFwdMsg">
+<p class=3D"x_MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt;=
+ font-family:&quot;Calibri&quot;,sans-serif; color:black">From:</span></b><=
+span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibri&qu=
+ot;,sans-serif; color:black">&nbsp;Chapman, Christian - 0664 - MITLL
+ &lt;Christian.Chapman@ll.mit.edu&gt;<br>
 <b>Sent:</b>&nbsp;Thursday, 18 April 2024 23:08<br>
 <b>To:</b>&nbsp;usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&g=
 t;<br>
 <b>Subject:</b>&nbsp;[USRP-users] Transmitting on both X300 channels withou=
 t streaming samples</span><span lang=3D"EN-US">
-<o:p></o:p></span></p>
+</span></p>
 <div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"x_MsoNormal"><span lang=3D"EN-US">&nbsp;</span></p>
 </div>
 </div>
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" align=3D"left" width=3D"100%" style=3D"width:100.0%;border-collapse:=
-collapse;display:table;border-spacing: 0px;box-sizing: border-box">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" align=3D"left" width=3D"100%" style=3D"width:100.0%; border-collaps=
+e:collapse; display:table; border-spacing:0px; box-sizing:border-box">
 <tbody>
 <tr>
-<td width=3D"1" style=3D"width:.75pt;background:#A6A6A6;padding:5.25pt 1.5p=
-t 5.25pt 1.5pt">
+<td width=3D"1" style=3D"width:.75pt; background:#A6A6A6; padding:5.25pt 1.=
+5pt 5.25pt 1.5pt">
 </td>
-<td width=3D"100%" style=3D"width:100.0%;background:#EAEAEA;padding:5.25pt =
-3.75pt 5.25pt 11.25pt">
-<p class=3D"MsoNormal" style=3D"mso-element:frame;mso-element-frame-hspace:=
-2.25pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-el=
-ement-anchor-horizontal:column;mso-height-rule:exactly">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Segoe UI&qu=
-ot;,sans-serif;color:#212121">You don't often get email from christian.chap=
-man@ll.mit.edu.
-</span><span style=3D"font-size:9.0pt;font-family:&quot;Segoe UI&quot;,sans=
--serif;color:#212121"><a href=3D"https://aka.ms/LearnAboutSenderIdentificat=
-ion">Learn why this is important</a><o:p></o:p></span></p>
+<td width=3D"100%" style=3D"width:100.0%; background:#EAEAEA; padding:5.25p=
+t 3.75pt 5.25pt 11.25pt">
+<p class=3D"x_MsoNormal" style=3D""><span lang=3D"EN-US" style=3D"font-size=
+:9.0pt; font-family:&quot;Segoe UI&quot;,sans-serif; color:#212121">You don=
+'t often get email from christian.chapman@ll.mit.edu.
+</span><span style=3D"font-size:9.0pt; font-family:&quot;Segoe UI&quot;,san=
+s-serif; color:#212121"><a href=3D"https://aka.ms/LearnAboutSenderIdentific=
+ation">Learn why this is important</a></span></p>
 </td>
-<td width=3D"75" style=3D"width:56.25pt;background:#EAEAEA;padding:5.25pt 3=
-.75pt 5.25pt 3.75pt">
+<td width=3D"75" style=3D"width:56.25pt; background:#EAEAEA; padding:5.25pt=
+ 3.75pt 5.25pt 3.75pt">
 </td>
 </tr>
 </tbody>
 </table>
-<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
-&quot;,sans-serif">Hi, I&#8217;m interested in using an X300 to repeat seve=
-ral 100 ms of &gt;100 MHz samples, a different signal on both channels, and=
- my host computer can&#8217;t stream samples into the X300 continuously.<o:=
-p></o:p></span></p>
-<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
-&quot;,sans-serif">It would seem the RFNoC replay block could serve this ne=
-ed, but according to a thread from Thomas Harder on a very similar question=
-[1] some firmware change is required.<o:p></o:p></span></p>
-<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
-&quot;,sans-serif">Thomas seems to have settled on the approach I can&#8217=
-;t use: his samples are streamed continuously via 10G Ethernet.<o:p></o:p><=
-/span></p>
-<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
-&quot;,sans-serif">If I understand properly, Rob Kossler&#8217;s txarb bloc=
-k can serve this need, but I can&#8217;t find it published it anywhere. Do =
-I have to recreate something similar to do what I need?<o:p></o:p></span></=
-p>
-<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
-&quot;,sans-serif">More broadly, has anyone done this and/or have simpler s=
-olutions appeared in the last few years?<o:p></o:p></span></p>
-<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
-&quot;,sans-serif">&nbsp;<o:p></o:p></span></p>
-<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
-&quot;,sans-serif">[1]: transmitting on two channels with replay block, msg=
-09472<o:p></o:p></span></p>
-<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
-&quot;,sans-serif">&nbsp;<o:p></o:p></span></p>
-<p><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
-if">Thank you,<o:p></o:p></span></p>
-<p><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
-if">Christian<o:p></o:p></span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibr=
+i&quot;,sans-serif">Hi, I=92m interested in using an X300 to repeat several=
+ 100 ms of &gt;100 MHz samples, a different signal on both channels, and my=
+ host computer can=92t stream samples into the X300 continuously.</span></p=
+>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibr=
+i&quot;,sans-serif">It would seem the RFNoC replay block could serve this n=
+eed, but according to a thread from Thomas Harder on a very similar questio=
+n[1] some firmware change is required.</span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibr=
+i&quot;,sans-serif">Thomas seems to have settled on the approach I can=92t =
+use: his samples are streamed continuously via 10G Ethernet.</span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibr=
+i&quot;,sans-serif">If I understand properly, Rob Kossler=92s txarb block c=
+an serve this need, but I can=92t find it published it anywhere. Do I have =
+to recreate something similar to do what I need?</span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibr=
+i&quot;,sans-serif">More broadly, has anyone done this and/or have simpler =
+solutions appeared in the last few years?</span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibr=
+i&quot;,sans-serif">&nbsp;</span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibr=
+i&quot;,sans-serif">[1]: transmitting on two channels with replay block, ms=
+g09472</span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt; font-family:&quot;Calibr=
+i&quot;,sans-serif">&nbsp;</span></p>
+<p><span style=3D"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-se=
+rif">Thank you,</span></p>
+<p><span style=3D"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-se=
+rif">Christian</span></p>
 </div>
-National Instruments Dresden GmbH; Gesch&auml;ftsf&uuml;hrer (Managing Dire=
-ctors): John Stanton McElroy, Albert Edward Percival III, Kathleen Spurck; =
-Sitz (Registered Office): Dresden; HRB (Commercial Register No.): 22081; Re=
-gistergericht (Registration Court): Dresden<br>
+National Instruments Dresden GmbH; Gesch=E4ftsf=FChrer (Managing Directors)=
+: John Stanton McElroy, Albert Edward Percival III, Kathleen Spurck; Sitz (=
+Registered Office): Dresden; HRB (Commercial Register No.): 22081; Register=
+gericht (Registration Court): Dresden<br>
 <br>
 This email and any attachments are intended only for the person to whom thi=
 s email is addressed and may contain confidential and/or privileged informa=
 tion. If you received this email in error, please do not disclose the conte=
 nts to anyone, but notify the sender
  by return email and delete this email (and any attachments) from your syst=
-em.
+em. </div>
+<div>
+<p style=3D"font-size: 11pt; font-family: Calibri, sans-serif, serif, &quot=
+;EmojiFont&quot;; margin: 0px;">
+<br>
+<br>
+<b>Barkhausen Institut</b> <br>
+www.barkhauseninstitut.org <br>
+<br>
+</p>
+<p style=3D"font-size: 11pt; font-family: Calibri, sans-serif, serif, &quot=
+;EmojiFont&quot;; margin: 0px;">
+<span style=3D"font-size:9pt;" lang=3D"de-DE">Barkhausen Institut gGmbH | S=
+itz: Schweriner Str. 1, 01067 Dresden, Germany | Registergericht: Amtsgeric=
+ht Dresden, HRB 37267 | Gesch=E4ftsf=FChrer: Prof. Dr. Gerhard Fettweis, Dr=
+. Tim Hentschel | Vorsitzender der Gesellschafterdelegation:
+ Jan Gerken <br>
+<br>
+Hinweise zum Datenschutz und zur Verarbeitung Ihrer Daten finden Sie unter:=
+ https://barkhauseninstitut.org/data-privacy
+<br>
+<br>
+</span><span style=3D"font-size:9pt;" lang=3D"en-US">This email and any att=
+achments are intended only for the person to whom this email is addressed a=
+nd may contain confidential and/or privileged information. If you received =
+this email in error, please do not disclose
+ the contents to anyone, but notify the sender by return email and delete t=
+his email (and any attachments) from your system. Information on data prote=
+ction and processing of your personal information: https://barkhauseninstit=
+ut.org/data-privacy
+<br>
+<br>
+</span></p>
+</div>
 </body>
 </html>
 
---_000_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_--
+--_000_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_--
 
---_005_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_
+--_005_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_
 Content-Type: image/png; name="Outlook-NI.png"
 Content-Description: Outlook-NI.png
 Content-Disposition: inline; filename="Outlook-NI.png"; size=1704;
 	creation-date="Fri, 19 Apr 2024 20:40:10 GMT";
-	modification-date="Mon, 22 Apr 2024 07:42:42 GMT"
+	modification-date="Mon, 22 Apr 2024 08:03:47 GMT"
 Content-ID: <c5f89e5e-3baf-48a8-a353-fd11c0c0f896>
 Content-Transfer-Encoding: base64
 
@@ -600,12 +796,12 @@ f7dVZ9xXuqyEM7Ksb7dtzbIz8V7Refzv4x5X4s8vvUF63bn4du3rh84Nre025/1rpjhL8dUIqgXf
 ooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQooCQ
 ooCQooCQooCQooCQooCQooCQooCQooCQooAQyrK/AAKzFtHKVJyKAAAAAElFTkSuQmCC
 
---_005_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_
+--_005_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_
 Content-Type: image/png; name="Outlook-National I.png"
 Content-Description: Outlook-National I.png
 Content-Disposition: inline; filename="Outlook-National I.png"; size=13664;
 	creation-date="Fri, 19 Apr 2024 20:40:10 GMT";
-	modification-date="Mon, 22 Apr 2024 07:42:42 GMT"
+	modification-date="Mon, 22 Apr 2024 08:03:47 GMT"
 Content-ID: <c68a155d-4b64-4925-8947-0f8c2833cf3a>
 Content-Transfer-Encoding: base64
 
@@ -850,9 +1046,9 @@ goBCg4v6XBN4DP9jcqlL8L4oLvjOlPop8chIjUd9saQlxtRYdJBoa4Ts7sgQx+Zx1bG16NBoNBpN
 bfG3CA+NRqPRaDTHJlp4aDQaTRUw905XJQBSo9H40MJDo9FoqgADERmYykDgIzHHiUZT1/hbgks1
 Go3maIbDIunt4NtCqzICQ6PRAP8H3mVYQXFs2osAAAAASUVORK5CYII=
 
---_005_DM8PR04MB7848A9206F2A6C0349723592E6122DM8PR04MB7848namp_--
+--_005_FR2P281MB23326974D9DECF991BCCD66690122FR2P281MB2332DEUP_--
 
---===============1449608760630136116==
+--===============3570060202977710552==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -862,4 +1058,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1449608760630136116==--
+--===============3570060202977710552==--
