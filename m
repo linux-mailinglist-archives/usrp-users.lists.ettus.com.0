@@ -2,258 +2,147 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F21B78B8F70
-	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2024 20:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17A9C8B8F8D
+	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2024 20:31:37 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BBEC43852D2
-	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2024 14:12:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EC0E13852D2
+	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2024 14:31:35 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1714587163; bh=HRRnqMWtJYCguU3HvNthvuRdpbsI7galO9VXvphObH0=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=SkhcQW61K5RjY66Mh5nAhYOGZOxoZF1vGhzg8Ro+aQ02b4pIY2DbYr3rtjuV6l/0w
-	 eovwE/yJMXKP7kLKPDz7XbULl9g9y9VLwUdxPde1iC7K/M3itwOozBWtunW1nQo8Y4
-	 G+VEKQTSBJVMdKlxo4/hQEvEMwLHvoN76ykvmk1M8sk6Kr0j3h48WRGSnJ/uCiK6bw
-	 i8bpDHjdyKZqw8SMsSCgCxh0S4t7Wt+IkU8ZCokZ/15MNZIbMmOjFeIZ+BDGHNj8z4
-	 6zQxF5rz9vXbnbXz9kZfMUaqlF1vzByYzsGuIHq1vSAwjkr13ElN+iz2Ke2GIt6o5U
-	 pks3R63lsh0Ug==
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	by mm2.emwd.com (Postfix) with ESMTPS id E9FCB385244
-	for <usrp-users@lists.ettus.com>; Wed,  1 May 2024 14:12:05 -0400 (EDT)
+	t=1714588295; bh=3VwJOgz74ihQZIX3y0k2Bnn6R0sqPqyzLFnnyiq05xM=;
+	h=From:Date:References:In-Reply-To:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=k8uJz1r8YuZno+No9shM38ieir6dZ9w+0tUShBz0fb2wV/SmCjW47R+2f+IYKtmxt
+	 0q/J7IrybcR24owpTX4PL3zT1D+CDHomb93LzQlEW+WVUm3qYQn8bKXNobc7E47KOd
+	 1tOgGrq09CUz/yTUcMfh2BVL9y6HVlNeYXwHmyqJYo7fWNqUF2SjY0zP+OxXnjCIcv
+	 B031VtpEJ3rB7yxcCVDXYGIItF0QC4f7HXmE1dFBL6wPFc57jx+L2CKE/UjOPQ21h1
+	 TnT6GwtvIlLuiyrKvDp1UgPHiGvLayn/yQKrSlQtbIBadHRjdLaxW83uS3kshFSfRn
+	 6vAbeTL+6G1yw==
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 39325384DEC
+	for <usrp-users@lists.ettus.com>; Wed,  1 May 2024 14:31:00 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Q5I4votn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R95XhMQq";
 	dkim-atps=neutral
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2df848f9325so59618251fa.1
-        for <usrp-users@lists.ettus.com>; Wed, 01 May 2024 11:12:05 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-23d5df2d600so584224fac.3
+        for <usrp-users@lists.ettus.com>; Wed, 01 May 2024 11:31:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1714587124; x=1715191924; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7LxXEJpxt9iBxq5nkxXm2/aD0tx5z5TmBlMdBKDvFgc=;
-        b=Q5I4votn7RDiNMeWUPELwUBIpm5oxuaRalUe2+6CtgRjmNkcyypg3nZWaUJSi0w+bt
-         vVHjRcwA20LjEwkVw1hZZJiiMxPfI0vHZFVq9CmBUEqrXx3uDwNGlQVAmvnzT/GbUfaZ
-         /uqgROUNisELbF3ACDx9Sem1S7TMNIyAEoWpQE1OB3XfbUob7ieOswvBrZ/PGi+HJocK
-         YRgqYc3WPPCvylFcQjfzsWwzVIoyNNCuGtanZVxS9I6KEE1RhQKVBXmWGo9NSV6KmDR9
-         Dhzt2A7XfXLbgRTZUzR7R7x8pY9sF4L8ufqIYc376DaWwTmYUII7oNhsv8Hn8az94kTq
-         D5zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714587124; x=1715191924;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1714588259; x=1715193059; darn=lists.ettus.com;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7LxXEJpxt9iBxq5nkxXm2/aD0tx5z5TmBlMdBKDvFgc=;
-        b=aQvLCte+GRB9hS+5hx8MWYkKTHBjVTDOzZ+2DS7zZ501HSrYaBJPoXhu/vCO9sHe8V
-         9URaABZnmOggGp8NqZUYgjV/aLOo2kP2M7bsz2yD1gQn2ptrhrTQ4O6umlIrVgb8dZ0K
-         wlZUm0V/7oimGpizDjU4E+BCSw527pZoh5B8l9o8jL/LZjdKNf/4d42Q/oiyK44Mtxr3
-         FUglQKzulhh2HgMfNHKm3MfTeLG+n5oWgf9gLHiwLG78dD6/gb+8uY/bu3G7XYLyw61g
-         SRq6773sohCzARAxKZ5Q96Xny50EGjnV6jAAYEBJ33oQ1tzZC09AMf7IAQ8jKLWLuOZt
-         1bxQ==
-X-Gm-Message-State: AOJu0YwtZqbbwVIIW8uoXRP4i9al+wft2HDAuabmSSN7s4wdY65CD7CK
-	+ICwAatnwQN/iqTlbDEoRzNtm8PaoPWdVzuSvR5qUMzoR2C6651EBWEI/cufuSCVbYmXvVzqW2s
-	Zrax6kY9I8/1KqZRX3Iwpz/NBZMdPLlfoPJfr
-X-Google-Smtp-Source: AGHT+IF353z1rkqIYGhYE//5BTW9eDaW8f0pzKVYylCL2W2iuq4nQ9qLmEsE9wrVQ+h938UYDqy+exus0Uas7VZL1NE=
-X-Received: by 2002:ac2:5f19:0:b0:51d:c1b:25d0 with SMTP id
- 25-20020ac25f19000000b0051d0c1b25d0mr2162267lfq.61.1714587124398; Wed, 01 May
- 2024 11:12:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <cdtTV11LZcbycAba6FylJhXzGxw6LtAueUDKuK-fOlL99PmaJFkQwL0fC823Ei3lQb1TL__kVHpUqYvAGDSPq1DqdYVA8MWcNNpZLHaFEGA=@protonmail.com>
- <e39abf8d-6490-481e-bbbc-b89593e88d2f@gmail.com> <336160565.3149887.1714566315941@mail.yahoo.com>
- <8fb7d502-818c-41e8-a5d7-455fa7778e38@gmail.com> <236821295.3178397.1714572681617@mail.yahoo.com>
- <d1a9560c-99c6-423b-ba10-26f08ee1b82e@gmail.com> <1458949585.3180965.1714575608497@mail.yahoo.com>
-In-Reply-To: <1458949585.3180965.1714575608497@mail.yahoo.com>
-Date: Wed, 1 May 2024 14:11:53 -0400
-Message-ID: <CAB__hTRpzWoOC2n5NkSCkTbQeQxcz6XBv2ZFc_B1f_xKH+0ZoQ@mail.gmail.com>
-To: zhou <hwzhou@yahoo.com>
-Message-ID-Hash: W64CXPZW4YOIBS2CRIT5NC5W4EVC5MO2
-X-Message-ID-Hash: W64CXPZW4YOIBS2CRIT5NC5W4EVC5MO2
-X-MailFrom: rkossler@nd.edu
+        bh=ZkSLfwHVGRx+ZqTTqoSYYppXzbreDjA3hbbh83as5mA=;
+        b=R95XhMQqqvQNiDXDLuLPiNeTpUv4O5LY7rHNdjpmYju+cUJgRDRqu3oFCJveNCyOqU
+         CuZWIMitFnpU+nYqUEn3cU0uhyOWteCLlrmAuVzEz86pOkI7AxP7iqGXIZKXqjjcagqy
+         t9Lgi4a1iI+ZgO2GoraFpcKdC9qg0udjpvqtLXAU7pGX9O8ps0SIS87IB+bQwz69aXKV
+         nkGkZxtVYPeQKgaIGyqFrrQTbi1A3J1ae3nTwZ259Gk0+lOcAhsn3pfyYVL/47Jszoj6
+         WVfW51Z3UDKLIsYJe/aRmKxNX9RFzwoeYaSJatv2kxK3CE46KsMzXx+EKK55KSLXtDkv
+         nonQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714588259; x=1715193059;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZkSLfwHVGRx+ZqTTqoSYYppXzbreDjA3hbbh83as5mA=;
+        b=jwt1bK0enRenhlZ6RxXivagK+oztadyPv34iy1AFv0vHSFggQqmf+l3fBazj7liLAQ
+         qhOIPtXPvzMb2SXAvw3uI5Fj1Sx1sWnGH07K6qeQqnocHvh13VfkUAaLJP7ZLYRG6/tl
+         tz/iw0wf2+reNXf5fsEdMdyfvXyrmWvwNyjaai7OSf0sDKWGgfz1euf7nfviSqggoK5A
+         fLFDptD04I+//Cinc6qmKBK/1S1+BTtsrX38UQDNYI4QqJwjWOF2m5OeRPeUdpmtwSIQ
+         8J9Cp6Ph1gY+nDTQ2+76N4m3WuvA3vUrqTZi5U7k2kA534aw25gA0ueGd/1q5nKNhYeG
+         Ehhg==
+X-Forwarded-Encrypted: i=1; AJvYcCXLdiRfGA9je+c4PfbEmSPM7m/XHziXwfDi4AnhLIY4OLYIlXXGcczrfmnnV+vTtJMz2flGVI1OO3ymNIbs+K32Jy6ioYAgIVegVA==
+X-Gm-Message-State: AOJu0YxW4hV4PK8vd6d9jF9GGTCMbTuoNkYA/YtjPa2NfyBSexBNxUo/
+	bSrkn+uYISNLpKWaVP9GxPjjzUts4IFJPwNSXmGA2BzfX7F9ROzp
+X-Google-Smtp-Source: AGHT+IFHYeNGrCXWKwmJ9N0XrqhoMONHrnn9U4FDxwspv0BrhojATlCTflBv3V99FHiFp4bR/0XpdA==
+X-Received: by 2002:a05:6870:4192:b0:22e:c504:74af with SMTP id y18-20020a056870419200b0022ec50474afmr3292174oac.20.1714588259347;
+        Wed, 01 May 2024 11:30:59 -0700 (PDT)
+Received: from smtpclient.apple ([2605:b100:d46:76fc:35c9:69a4:49b5:692c])
+        by smtp.gmail.com with ESMTPSA id i4-20020a05620a144400b0078d5e60b52esm12520297qkl.114.2024.05.01.11.30.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 May 2024 11:30:59 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Wed, 1 May 2024 14:30:41 -0400
+Message-Id: <155E31E7-253D-4E99-90A8-36328625FB42@gmail.com>
+References: <CAB__hTRpzWoOC2n5NkSCkTbQeQxcz6XBv2ZFc_B1f_xKH+0ZoQ@mail.gmail.com>
+In-Reply-To: <CAB__hTRpzWoOC2n5NkSCkTbQeQxcz6XBv2ZFc_B1f_xKH+0ZoQ@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+X-Mailer: iPhone Mail (20D67)
+Message-ID-Hash: U3HCHFYW3AVUWXL4YZFN6J2ZLBA43NV5
+X-Message-ID-Hash: U3HCHFYW3AVUWXL4YZFN6J2ZLBA43NV5
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, "Marcus D. Leech" <patchvonbraun@gmail.com>
+CC: zhou <hwzhou@yahoo.com>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Freq synchronization between
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/W64CXPZW4YOIBS2CRIT5NC5W4EVC5MO2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/U3HCHFYW3AVUWXL4YZFN6J2ZLBA43NV5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8818882196475718383=="
+Content-Type: multipart/mixed; boundary="===============9196868208823606561=="
 
---===============8818882196475718383==
-Content-Type: multipart/alternative; boundary="0000000000007cf8d90617686cdd"
 
---0000000000007cf8d90617686cdd
-Content-Type: text/plain; charset="UTF-8"
+--===============9196868208823606561==
+Content-Type: multipart/alternative; boundary=Apple-Mail-052B99B0-1383-4F42-9C58-043D09A4DB0C
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-052B99B0-1383-4F42-9C58-043D09A4DB0C
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-The 10 MHz ref supplied to each X310 device is used in a PLL in each device
-to obtain the 10MHz ref used for that device (and for disciplining the
-various LOs on the device). Thus, there is a relative phase "wobble"
-between the 10MHz ref signals used on each device as each PLL continuously
-adjusts to maintain disciplined output.  Over time, this averages out to
-zero. But, instantaneously, it is not. So, my question is: how
-instantaneous is your phase measurement?  If you instead calculate a phase
-averaged over numerous samples, can you get a consistent result? From your
-plot, it looks like this is true.
-Rob
-
-On Wed, May 1, 2024 at 11:04=E2=80=AFAM zhou via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
->
->
-> On Wednesday, 1 May 2024 at 15:15:12 BST, Marcus D. Leech <
-> patchvonbraun@gmail.com> wrote:
->
->
-> On 01/05/2024 10:11, zhou via USRP-users wrote:
->
-> Hi Marcus,
->
-> Thanks for your response.
->
-> "Are you setting up clocking identically for both USRPs?   That is settin=
-g
-> the reference clock to "external" and the 1PPS source to "external" on bo=
-th
-> devices?   Are you using a single multi_usrp object for all RX channels?"
->
-> Yes, I use multi_usrp multi_usrp::make(
-> 'addr0=3D192.168.12.2,second_addr0=3D192.168.13.2,addr1=3D192.168.14.2,se=
-cond_addr1=3D192.168.15.2,master_clock_rate=3D184.32e6'
-> )
->
-> "external" set for both ref and pps:
-> usrp->set_clock_source("external")
-> usrp->set_time_source("external")
-> I think this should automatically set both devices.
->
-> "What type of daughtercards are in your X310?"
-> UBX
->
-> Kind regards.
->
-> And, to clarify, this is an Octoclock-G, and not a plain Octoclock ?
->
-> It is OctoClock GPSDO, and Internal is used.
->
->
->
->
-> On Wednesday, 1 May 2024 at 14:19:44 BST, Marcus D. Leech
-> <patchvonbraun@gmail.com> <patchvonbraun@gmail.com> wrote:
->
->
-> On 01/05/2024 08:25, zhou via USRP-users wrote:
->
-> Hi All,
->
-> I am trying to use 4Rx and 4Tx antennas from two X310 USRPs. I hope the
-> received signals have stable phase relationship but they don't seem to be=
-.
-> I am wondering why and how to fix it.
->
-> I measured the phase using the connection as below:
-> [image: Inline image]
-> cos(t)+i*sin(t) signal is split into and received on four Rx antennas. Tw=
-o
-> X310s are connected to the same OctoClock for 10MHz Ref and PPS. Tx and R=
-x
-> commands are all timed. The measurement results are as below:
->
->
-> The Tx signal is continuous during test. I measured phase every second fo=
-r
-> 20 sec. In the 2nd USRP, the phases are stable on both antennas while it =
-is
-> not in the 1st. If I change the Tx signal to the 1st USRP, then the resul=
-ts
-> swap - phases become stable in the 1st USRP and unstable in the 2nd.
->
-> My first though was that there might be small CFO between USRPs even
-> though both are connected to the OctoClock, but CFO should have caused
-> linear change. Here, the phase offset is not linear and kind of random
-> within 20 second measurement.
->
-> What can be the reason? Any suggestion will be appreciated.
->
-> Kind regards,
-> H.
-> Are you setting up clocking identically for both USRPs?   That is setting
-> the reference clock to "external" and the 1PPS source to "external" on bo=
-th
-> devices?   Are you using a single multi_usrp object for all RX channels?
->
-> What type of daughtercards are in your X310?
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000007cf8d90617686cdd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>The 10 MHz ref supplied to each X310 device is used i=
-n a PLL in each device to obtain the 10MHz ref used for that device (and fo=
-r disciplining the various LOs on the device). Thus, there is a relative ph=
-ase &quot;wobble&quot; between the 10MHz ref signals used on each device as=
- each PLL continuously adjusts to maintain disciplined output.=C2=A0 Over t=
-ime, this averages out to zero. But, instantaneously, it is not. So, my que=
-stion is: how instantaneous is your phase measurement?=C2=A0 If you instead=
- calculate a phase averaged over numerous samples, can you get a consistent=
- result? From your plot, it looks like this is true.<br></div><div>Rob<br><=
-/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
-n Wed, May 1, 2024 at 11:04=E2=80=AFAM zhou via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div style=
-=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:13px"><=
-div></div>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">This is true of any pair of PLL synthesizer=
+s even when using a shared reference.<div><br></div><div>My next question wa=
+s going to be =E2=80=9Chow is phase measured?=E2=80=9D<br><br><div dir=3D"lt=
+r">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">O=
+n May 1, 2024, at 2:12 PM, Rob Kossler &lt;rkossler@nd.edu&gt; wrote:<br><br=
+></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div=
+ dir=3D"ltr"><div>The 10 MHz ref supplied to each X310 device is used in a P=
+LL in each device to obtain the 10MHz ref used for that device (and for disc=
+iplining the various LOs on the device). Thus, there is a relative phase "wo=
+bble" between the 10MHz ref signals used on each device as each PLL continuo=
+usly adjusts to maintain disciplined output.&nbsp; Over time, this averages o=
+ut to zero. But, instantaneously, it is not. So, my question is: how instant=
+aneous is your phase measurement?&nbsp; If you instead calculate a phase ave=
+raged over numerous samples, can you get a consistent result? =46rom your pl=
+ot, it looks like this is true.<br></div><div>Rob<br></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 1, 2024 at 1=
+1:04=E2=80=AFAM zhou via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.e=
+ttus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div><div style=3D"font-family:Helvetica N=
+eue,Helvetica,Arial,sans-serif;font-size:13px"><div></div>
         <div><br></div><div><br></div>
        =20
-        </div><div id=3D"m_-3650333112459443087ydpc994c9a6yahoo_quoted_5461=
-441577">
-            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
-Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
+        </div><div id=3D"m_-3650333112459443087ydpc994c9a6yahoo_quoted_54614=
+41577">
+            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,A=
+rial,sans-serif;font-size:13px;color:rgb(38,40,42)">
                =20
                 <div>
-                        On Wednesday, 1 May 2024 at 15:15:12 BST, Marcus D.=
- Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">pat=
-chvonbraun@gmail.com</a>&gt; wrote:
+                        On Wednesday, 1 May 2024 at 15:15:12 BST, Marcus D. L=
+eech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchv=
+onbraun@gmail.com</a>&gt; wrote:
                     </div>
                     <div><br></div>
                     <div><br></div>
                =20
                =20
-                <div><div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751=
-442"><div>
+                <div><div id=3D"m_-3650333112459443087ydpc994c9a6yiv43497514=
+42"><div>
     <div>On 01/05/2024 10:11, zhou via
       USRP-users wrote:<br clear=3D"none">
     </div>
     <blockquote type=3D"cite">
-      </blockquote></div><div><div style=3D"font-family:Helvetica Neue,Helv=
-etica,Arial,sans-serif;font-size:13px">
+      </blockquote></div><div><div style=3D"font-family:Helvetica Neue,Helve=
+tica,Arial,sans-serif;font-size:13px">
         <div dir=3D"ltr">Hi Marcus,</div>
         <div dir=3D"ltr"><br clear=3D"none">
         </div>
@@ -261,41 +150,39 @@ etica,Arial,sans-serif;font-size:13px">
         <div dir=3D"ltr"><br clear=3D"none">
         </div>
         <div dir=3D"ltr">
-          <div><span style=3D"color:rgb(38,40,42);font-family:Helvetica Neu=
-e,Helvetica,Arial,sans-serif">&quot;Are
-              you setting up clocking identically for both USRPs?=C2=A0=C2=
-=A0 That
-              is setting the reference clock to &quot;external&quot; and th=
-e 1PPS
-              source to &quot;external&quot; on both devices?=C2=A0=C2=A0 A=
-re you using a
-              single multi_usrp object for all RX channels?&quot;</span></d=
-iv>
+          <div><span style=3D"color:rgb(38,40,42);font-family:Helvetica Neue=
+,Helvetica,Arial,sans-serif">"Are
+              you setting up clocking identically for both USRPs?&nbsp;&nbsp=
+; That
+              is setting the reference clock to "external" and the 1PPS
+              source to "external" on both devices?&nbsp;&nbsp; Are you usin=
+g a
+              single multi_usrp object for all RX channels?"</span></div>
           <div><br clear=3D"none">
           </div>
           <div dir=3D"ltr">Yes, I use multi_usrp
-            multi_usrp::make(<span>&#39;addr0=3D192.168.12.2,second_addr0=
-=3D192.168.13.2,addr1=3D192.168.14.2,second_addr1=3D192.168.15.2,master_clo=
-ck_rate=3D184.32e6&#39;</span>)<br clear=3D"none" style=3D"color:rgb(38,40,=
-42);font-family:Helvetica Neue,Helvetica,Arial,sans-serif">
-            =C2=A0<br clear=3D"none">
-            <span><span style=3D"color:rgb(0,0,0);font-family:Helvetica Neu=
-e,Helvetica,Arial,sans-serif">&quot;external&quot;
+            multi_usrp::make(<span>'addr0=3D192.168.12.2,second_addr0=3D192.=
+168.13.2,addr1=3D192.168.14.2,second_addr1=3D192.168.15.2,master_clock_rate=3D=
+184.32e6'</span>)<br clear=3D"none" style=3D"color:rgb(38,40,42);font-family=
+:Helvetica Neue,Helvetica,Arial,sans-serif">
+            &nbsp;<br clear=3D"none">
+            <span><span style=3D"color:rgb(0,0,0);font-family:Helvetica Neue=
+,Helvetica,Arial,sans-serif">"external"
                 set for both ref and pps:</span></span></div>
-          <div dir=3D"ltr"><span>usrp-&gt;set_clock_source(&quot;external&q=
-uot;)</span></div>
-          <div dir=3D"ltr"><span>usrp-&gt;set_time_source(<span><span style=
-=3D"color:rgb(0,0,0);font-family:Helvetica Neue,Helvetica,Arial,sans-serif"=
->&quot;external&quot;)</span></span></span><br clear=3D"none">
-            I think this should automatically set both devices.<br clear=3D=
-"none">
-            <br clear=3D"none" style=3D"color:rgb(38,40,42);font-family:Hel=
-vetica Neue,Helvetica,Arial,sans-serif">
-            <span style=3D"color:rgb(38,40,42);font-family:Helvetica Neue,H=
-elvetica,Arial,sans-serif">&quot;What
-              type of daughtercards are in your X310?&quot;</span><br clear=
-=3D"none" style=3D"color:rgb(38,40,42);font-family:Helvetica Neue,Helvetica=
-,Arial,sans-serif">
+          <div dir=3D"ltr"><span>usrp-&gt;set_clock_source("external")</span=
+></div>
+          <div dir=3D"ltr"><span>usrp-&gt;set_time_source(<span><span style=3D=
+"color:rgb(0,0,0);font-family:Helvetica Neue,Helvetica,Arial,sans-serif">"ex=
+ternal")</span></span></span><br clear=3D"none">
+            I think this should automatically set both devices.<br clear=3D"=
+none">
+            <br clear=3D"none" style=3D"color:rgb(38,40,42);font-family:Helv=
+etica Neue,Helvetica,Arial,sans-serif">
+            <span style=3D"color:rgb(38,40,42);font-family:Helvetica Neue,He=
+lvetica,Arial,sans-serif">"What
+              type of daughtercards are in your X310?"</span><br clear=3D"no=
+ne" style=3D"color:rgb(38,40,42);font-family:Helvetica Neue,Helvetica,Arial,=
+sans-serif">
           </div>
           UBX</div>
         <div dir=3D"ltr"><br clear=3D"none">
@@ -305,71 +192,72 @@ elvetica,Arial,sans-serif">&quot;What
         </div>
       </div>
    =20
-    And, to clarify, this is an Octoclock-G, and not a plain Octoclock ?<di=
-v id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442yqtfd85029" dir=3D"lt=
-r"><br></div><div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442yqtfd=
-85029" dir=3D"ltr">It is OctoClock GPSDO, and Internal is used.=C2=A0<br cl=
-ear=3D"none">
+    And, to clarify, this is an Octoclock-G, and not a plain Octoclock ?<div=
+ id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442yqtfd85029" dir=3D"ltr"=
+><br></div><div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442yqtfd850=
+29" dir=3D"ltr">It is OctoClock GPSDO, and Internal is used.&nbsp;<br clear=3D=
+"none">
     <br clear=3D"none">
     <br clear=3D"none">
     <blockquote type=3D"cite">
-      <div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif;f=
-ont-size:13px">
+      <div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif;fo=
+nt-size:13px">
         <div><br clear=3D"none">
         </div>
         <div><br clear=3D"none">
         </div>
       </div>
-      <div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442ydp5189b7afy=
-ahoo_quoted_4632613607">
-        <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Aria=
-l,sans-serif;font-size:13px;color:rgb(38,40,42)">
+      <div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442ydp5189b7afya=
+hoo_quoted_4632613607">
+        <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial=
+,sans-serif;font-size:13px;color:rgb(38,40,42)">
           <div> On Wednesday, 1 May 2024 at 14:19:44 BST, Marcus D.
-            Leech <a shape=3D"rect" href=3D"mailto:patchvonbraun@gmail.com"=
- rel=3D"nofollow" target=3D"_blank">&lt;patchvonbraun@gmail.com&gt;</a> wro=
-te: </div>
+            Leech <a shape=3D"rect" href=3D"mailto:patchvonbraun@gmail.com" r=
+el=3D"nofollow" target=3D"_blank">&lt;patchvonbraun@gmail.com&gt;</a> wrote:=
+ </div>
           <div><br clear=3D"none">
           </div>
           <div><br clear=3D"none">
           </div>
           <div>
-            <div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442ydp518=
-9b7afyiv7691143590">
-              <div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442ydp5=
-189b7afyiv7691143590yqt92825">
+            <div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442ydp5189=
+b7afyiv7691143590">
+              <div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442ydp51=
+89b7afyiv7691143590yqt92825">
                 <div>
                   <div>On
-                    01/05/2024 08:25, zhou via USRP-users wrote:<br clear=
-=3D"none">
+                    01/05/2024 08:25, zhou via USRP-users wrote:<br clear=3D=
+"none">
                   </div>
                   <blockquote type=3D"cite"> </blockquote>
                 </div>
                 <div>
-                  <div style=3D"font-family:Helvetica Neue,Helvetica,Arial,=
-sans-serif;font-size:13px">
+                  <div style=3D"font-family:Helvetica Neue,Helvetica,Arial,s=
+ans-serif;font-size:13px">
                     <div dir=3D"ltr">Hi All,</div>
                     <div dir=3D"ltr"><br clear=3D"none">
                     </div>
                     <div dir=3D"ltr">I am trying to use 4Rx and 4Tx
                       antennas from two X310 USRPs. I hope the received
                       signals have stable phase relationship but they
-                      don&#39;t seem to be. I am wondering why and how to
+                      don't seem to be. I am wondering why and how to
                       fix it.</div>
                     <div dir=3D"ltr"><br clear=3D"none">
                     </div>
                     <div dir=3D"ltr">I measured the phase using the
                       connection as below:</div>
-                    <div dir=3D"ltr"><img title=3D"Inline image" alt=3D"Inl=
-ine image" style=3D"max-width: 800px;"><br clear=3D"none">
+                    <div dir=3D"ltr"><img title=3D"Inline image" alt=3D"Inli=
+ne image" style=3D"max-width: 800px;" data-unique-identifier=3D""><br clear=3D=
+"none">
                     </div>
                     <div dir=3D"ltr">cos(t)+i*sin(t) signal is split into
-                      and received on four Rx antennas.=C2=A0<span><span st=
-yle=3D"color:rgb(0,0,0);font-family:Helvetica Neue,Helvetica,Arial,sans-ser=
-if">Two
+                      and received on four Rx antennas.&nbsp;<span><span sty=
+le=3D"color:rgb(0,0,0);font-family:Helvetica Neue,Helvetica,Arial,sans-serif=
+">Two
                           X310s are connected to the same OctoClock for
                           10MHz Ref and PPS. Tx and Rx commands are all
-                          timed. The measurement results are as below:</spa=
-n></span></div>
+                          timed. The measurement results are as below:</span=
+></span></div>
                     <div dir=3D"ltr"><br clear=3D"none">
                     </div>
                     <div dir=3D"ltr"><br clear=3D"none">
@@ -397,29 +285,28 @@ n></span></div>
                     <div dir=3D"ltr">H.</div>
                   </div>
                   Are you setting up clocking identically for both
-                  USRPs?=C2=A0=C2=A0 That is setting the reference clock to
-                  &quot;external&quot; and the 1PPS source to &quot;externa=
-l&quot; on both
-                  devices?=C2=A0=C2=A0 Are you using a single multi_usrp ob=
-ject
+                  USRPs?&nbsp;&nbsp; That is setting the reference clock to
+                  "external" and the 1PPS source to "external" on both
+                  devices?&nbsp;&nbsp; Are you using a single multi_usrp obj=
+ect
                   for all RX channels?<br clear=3D"none">
                   <br clear=3D"none">
-                  What type of daughtercards are in your X310?<br clear=3D"=
-none">
+                  What type of daughtercards are in your X310?<br clear=3D"n=
+one">
                   <br clear=3D"none">
                   <br clear=3D"none">
                 </div>
               </div>
             </div>
-            <div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442ydp518=
-9b7afyqt89423">_______________________________________________<br clear=3D"=
-none">
-              USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:u=
-srp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@li=
-sts.ettus.com</a><br clear=3D"none">
-              To unsubscribe send an email to <a shape=3D"rect" href=3D"mai=
-lto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">us=
-rp-users-leave@lists.ettus.com</a><br clear=3D"none">
+            <div id=3D"m_-3650333112459443087ydpc994c9a6yiv4349751442ydp5189=
+b7afyqt89423">_______________________________________________<br clear=3D"no=
+ne">
+              USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:us=
+rp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@list=
+s.ettus.com</a><br clear=3D"none">
+              To unsubscribe send an email to <a shape=3D"rect" href=3D"mail=
+to:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp=
+-users-leave@lists.ettus.com</a><br clear=3D"none">
             </div>
           </div>
         </div>
@@ -427,33 +314,34 @@ rp-users-leave@lists.ettus.com</a><br clear=3D"none">
       <br clear=3D"none">
       <fieldset></fieldset>
       <pre>_______________________________________________
-USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@list=
-s.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com<=
-/a>
-To unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:usrp-users=
--leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users-leave=
-@lists.ettus.com</a>
+USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists=
+.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com</a=
+>
+To unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:usrp-users-=
+leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users-leave@l=
+ists.ettus.com</a>
 </pre>
     </blockquote>
     <br clear=3D"none">
-  </div></div></div><div id=3D"m_-3650333112459443087ydpc994c9a6yqtfd03165"=
->_______________________________________________<br clear=3D"none">USRP-use=
-rs mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.=
-com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com</a><br c=
-lear=3D"none">To unsubscribe send an email to <a shape=3D"rect" href=3D"mai=
-lto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">us=
-rp-users-leave@lists.ettus.com</a><br clear=3D"none"></div></div>
+  </div></div></div><div id=3D"m_-3650333112459443087ydpc994c9a6yqtfd03165">=
+_______________________________________________<br clear=3D"none">USRP-users=
+ mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.com=
+" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com</a><br clear=
+=3D"none">To unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:u=
+srp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-use=
+rs-leave@lists.ettus.com</a><br clear=3D"none"></div></div>
             </div>
         </div></div>_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" tar=
+get=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.ett=
+us.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div></div>
+</div></blockquote></div></body></html>=
 
---0000000000007cf8d90617686cdd--
+--Apple-Mail-052B99B0-1383-4F42-9C58-043D09A4DB0C--
 
---===============8818882196475718383==
+--===============9196868208823606561==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -463,4 +351,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8818882196475718383==--
+--===============9196868208823606561==--
