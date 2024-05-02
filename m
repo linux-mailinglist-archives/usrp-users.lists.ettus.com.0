@@ -2,588 +2,529 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F228B932F
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 03:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 104718B960F
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 10:02:09 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 62470385605
-	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2024 21:46:45 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CB9EC3850DF
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 04:02:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1714614405; bh=ayOf0C8QWQUwuQsDlWP9ZJiptjrIK/rlZ7VCHR5tlnA=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=TbV9E9XVG9w61I+MeOAsZobCyLN5x8sYrtIuclnhDvrEiwEmNRindybI/qtnH7+0q
-	 nh9rrKpw0NxztePnwOPeb5/TaGGdNPsPWFxToe5XS+011ooV4asGdNfY7/mgQcNP8K
-	 iCbTeR+C1l+GvP7twPn6nMb1eZAsPCZZ+ASEAz7esWgpK0+43KnjFoKLokzjWSyoUV
-	 9JCr0pkL3nNiKQtqTbENoIqPWB+XQKZhQNRtAulS3HZH220DRVRf6Y+M3NZ0W89LbW
-	 HFaTk7nClNvNHHz+mhIlfPAevOBnZ3QfMRq5Ieh1oktEyrFKhWfdC0FyJ7mK4t38Oa
-	 lHAIF1ORBk3HQ==
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2D437385152
-	for <usrp-users@lists.ettus.com>; Wed,  1 May 2024 21:46:13 -0400 (EDT)
+	t=1714636927; bh=IBhmmROMM9wbd1OF+PR0wPtRQicAGAOSBHK3Nvrbkp0=;
+	h=Date:To:In-Reply-To:References:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=YVvAX1R5f7x6g79rGMjEEXCh7mR3zTgGhtQ1jyQBIs1Ui0DjBIZnZ/Ksdo4OZpac4
+	 ABX9FLDtPEG6+RbGt33mWR2T+UFO0UTQU79zzRdCo+i9MlM/mSivZK4XnbGUVzbhfl
+	 yh2v+riOJj825frsUkolwXt/I7nA3reHVBZptseUPoILwxmM1UMNfilx0+gxFUEsLL
+	 Hm7YC4tycWcP4oSDgHuufWFxWdarkZpq+SDmmeQR9Zu92I1bOtBuWpRH2Mp0bHfZOc
+	 VycbGRlYfrgSeEi78OLiRKzkO95kP6125BF3cp/Y+yuinM8OwIW2dJG7SecoGHgGSE
+	 aASqojhpk4HHQ==
+Received: from sonic314-15.consmr.mail.bf2.yahoo.com (sonic314-15.consmr.mail.bf2.yahoo.com [74.6.132.125])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8973B384DED
+	for <usrp-users@lists.ettus.com>; Thu,  2 May 2024 04:01:32 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Hs3+yvPk";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="APj+voC8";
 	dkim-atps=neutral
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2b34be0a43fso116740a91.1
-        for <usrp-users@lists.ettus.com>; Wed, 01 May 2024 18:46:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714614372; x=1715219172; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=At75aP7XHhy64scZlBm2t3zjxPK9NH4lrn1jb8qEKYM=;
-        b=Hs3+yvPk3zMX5I/gb/FqxFaTX+S8A0cmcAkrYUg0Ryiso+MDnzK7sTOIf0nSYX251W
-         fUdItHQ1/KiG/r3u7oOixxITpKUtDcunkgEkmZ/y/G51/PQskTS1UTiioGCBoFtlyU5r
-         jyzPTrtwN6gnf/PHxupSKKpeP+9FzIXHbbtonzuDf2zhO1E1XMENDlTbUXTS0GUuuzpS
-         f/oNta611ry284XiLzF6tlpBILXUWaKwGKIk8K21nQ2a55kq6Lx3/f/eBIIYoN1RxmcX
-         v4TnSTJP2sV/wAAr0kr1pAMVen+C7PAfctIo9I8jzmhc9ekFmpOg41aj/AHYCN1gTfoe
-         qYpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714614372; x=1715219172;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=At75aP7XHhy64scZlBm2t3zjxPK9NH4lrn1jb8qEKYM=;
-        b=BTd2jApgdkwDdQAISxBtVBd4RUjk8ExFQqureT9KguDMXxeAbpvbxYUvBk8s/a+Pdi
-         XBXzKDCxw7r3K+1+TzmBmKTy71aa+LCZxRCvshjZN0gMBPTCg6uSdsx/XMLd1rm3jgF4
-         l/yY3Z8LilZ0Mb8N6Snt8xYrC3yXhi4BRDcUfsgrQMNkEqona1rKKFLuqCL5MlRrs+I5
-         6qFmYFJw1uAn19WP0spYERANgTnehbidTHmfPNg2Ti72SThsGZAiRF7WuZpiIpwjHKxJ
-         txAMeZbPgrP2WL4MSLoirnDHzVF8ZwGgknZlPJnlAYLROBb0WQqD1pr84plDnvI0FD4I
-         55+g==
-X-Gm-Message-State: AOJu0Yx09z9RMZJanRaBT2nAzxtN8RIwp+VSYPZrN1ivw2GwcMs7hgtb
-	z1DRjeZXzPEg8rKW+50LTgGpfG99gZt56PyVvvQFifXilpBGIKVqcYU9OLtfawd32T2nkisZART
-	cKoAVI0+/q7868ZIE7vgjsWE3Lvfgv4U8
-X-Google-Smtp-Source: AGHT+IFzwMp7NyUHs5FGOoQnDIxEoxN8hh2RKLTkkEDv+puTZ23LTBBeK6S0VO9ASUJWL9oFmZnw922JEASomkiwePE=
-X-Received: by 2002:a17:90b:50c7:b0:2a5:3249:d230 with SMTP id
- sb7-20020a17090b50c700b002a53249d230mr4361892pjb.3.1714614371866; Wed, 01 May
- 2024 18:46:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1714636891; bh=n8IT2P/R9kDLZ+yk28afB7qQmfmP6GWC/51jWEasWi8=; h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=APj+voC8oUGeb6lTFbLnhnd4kBCyRIZkBlLpWtcbiXW/MwqoHlNQ+luLas4rP0nOxufIXUc8GJzpEWOluFmnP5rGUTmZM1sLb0J2YX6pLMBem0q3pEQ3bJqZakm5Xw4T9lVNwbkrzqx68HJ/OE9J1mB1MVP+2CrRjZsSCOGTSaT+RfcPnBaagQWJpVD4PhbBzaSqsSGFChm8Ha2VIG4tL7wkxcS8hv97N9OfDXvjHf1ua04sEa/KJ3WMpTp9A5Pr8V7+r9x4maDa+H+ZxiRrrZz7R1ViTy4YW6GePopqHOkEzIOsw2wOTg29mGiPwKZ0s+aXZu8CdP8VaMPLyR7wMg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1714636891; bh=QOQpEqCRs3WlxjfaSjhkdy8aiOBMA4Tu505+7c2VpS7=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=ceRtNf8vQ4D4TfniCOHx44x5NFdL/iCvvc6uWSSfGuDb54bAlvaJCWTWNhX5NDpSVSvf0KzS/VKsFuxZKRrA7laFaQ0hb0ZDr/dK1FI6N+0bt8QbASm23yRSMW6k16zfv7LUz+PhSTS+qpn+lezOq/6pfeZy0n+5jSIRnW6gDTu/xAn2D2jnoW2E+0fmT/SMYImX8nqpqdu3UbBavoDFKMBDplPBTedU/WlsS44KqUq90KGHZ3Mh5IKqU94HUouqgW7bxJdftw41OnBHR38MarcSwxEz6a8ZRRUonS1R42RrfEmnif6HMuRaieRxyAtjlZmZ0BT8cUgY946rYO67WA==
+X-YMail-OSG: Gmf_xFYVM1nxNgzXe1zvmJmlcVzcMNJWH4gUWPnZakUpq0MfLso38FGPveSnGNx
+ TjK5HRA.imK59P0.HDagJqclAQdOCh7Vq08g8U9a4.0AbCW8A_p1i0FPM_8JUQA_ISqz6DX.1vMO
+ N.IfZbz4zhpXrt7Qwb2.zT6rk_z5ehfhkc4t.b6DBzU5dkxXlfH.l6t6mf1HnsXw1hbDQaUx1Lh1
+ RWAQ66TaGuCbCXkJfdm1ZvKKLrDBoN0.F5fdbYrUUl4vrnKoyo3lzKTmWXdvcg_TDKw3FMUaCf6D
+ LjO_p2rHREKpkX9Z7i0CdKGE5aDHCdhQPbGQ7k6Km6qRpiB8FlyJRQXV43nY6JpLL8u0.ypBjCUT
+ 7qKS_4V7HtHJgQxDzkCEeeRdkw22EwOBryPIsDnGR1Ws7GpZ8g0ILJxeKgJl6G0t9t0YzGcS13JO
+ x01oaizLLOGDxeqq1qmyFH9xyNnQG55e83JNdfH.P_jPzF2.brpFTJ9oz.tQssAfBTciIK0BjB6B
+ Bav9jQ9H3T9eREGJBUFQGL3jISpolwWOw2iZx5rc.l8NEqODN2mYJgpzH4AEcAHLHgJuWus15KN1
+ CawRtOfNXW8.yU._ZicKnU2.erhZS2bB1RhK2l0t2jd7xs1vhvtgGvCAHButHqxI.KN1T34PTYhY
+ 5acdX8dAad9_bdhK.f56wLq_mtbwfuF73Fn01fh_7bbh8ARP5HmZyPaf3GXeGjYSXUuDYQ74ztCf
+ 0.JkVZhEnGnRhQep7p.rrKycZMyNL38gBIRvMuaJbspwgUFhztYdc373jAeIdDVVL0fUZ2l_._Wp
+ QRUCRq3JDkaB7VGT25dmJl_3QjPbrnwNBp0Qpn4W9WdjqOZu0Oyb4AobQYy6vrKxTVkopKmec95m
+ pLZfjDvsMfhhJWpj0UpintSijKNRGWT_cmoVoj_GdmuqA_z9mdtzAWs6CIOgiJpNEcEnm1ntTjR6
+ u71rjzBe5SPmd62oeMuyd_ngU4yCJOw2DyTZAfBY5Z9w2IJ2Y2B90qDp4Qx6Cidh_GMjT6x7ah0z
+ lJjfE5Tbc_w2ymcZkrXH3HHMZKoLOg.iJrnKp_ioQ11ivu3wJ3dZYWuwwY.H1tsMn9nKnLbUVJNJ
+ 1vzZUf_8TSXWSPNiA7nXakI0_Z4SZvMzXMTBcWIKo6h_DM.vuRnxc85sxwrGJj.8UdNvsNALAUGc
+ O..2vj4y6YQ.lW68eYUBMgek2iT490wB7w9.qwINtMN49QhVLTnhdOx57hLxAanwRJKvYG4eCHpG
+ Y89kbFJ1uPNN.1dxjMxztPlTX6zlToVVREUk9OSew_kk0b31YMnhHFF0My3plSUajni71exAiWck
+ _RffF_LnheO2xpLQfG.a6wjfyTCQTBmNwU.EaixNU4KC.4zHH4LtNWBg3xrehg8h7abCPjROJqmI
+ zdBDx3fuy5mZZLRyFNFwHAJDV0dGghI9sOJWKl5jKJVlniUK4H8ffveaYWnw_xKW0afxmip1NDL5
+ xx6mmK2dGmgeRG2CFjzF_HHBskIriGqceJTx28O__BVTAUtOhazIZ9taQ5RnlmoIUPatGxm1hYbT
+ 4Z7jOPniFnLG4UUi5zDJmG02n6z9Yqk3wuoQ7sFPh1BLLPzOWx.0KjDaWDRjSOfdQ_svQNdRAtrj
+ lnSZXT25uzmnXESs9ACCbxED0LfRwzqUl.c_zdv_Q5p35qZhWI8iz2bQfMQaUfXTMTnQAv5DZjr.
+ rYdZ1oChwhD5HDAfDGp37v3duzCZzvBz6BY0oojx9gsKLevAbHet97cbXJ51sKA604btN2jdgBNN
+ wp_YxWT_DSleqnLrXCaQ0Z_RDrfWzZpBfQPjNMZIFXtXqZIuU2hhmsPt1U0PDIte87OO5IX9LZLr
+ fOT5G6DF1qy40TPfX0vJ3owfY1DfYU4gv8IvmfyDSCTZVBfJjbKb.c23ci54kWG2_HK6KuX9WgdW
+ Olg.mlV9JeyuGkRcrOob.zHOK4Y5p7UM30GF7JCyGkcyNWquWLFTHFNibYoNFN02as_Ew15D7mR1
+ xSPJyyk2koT.dq0.MldL5eCEFlat7fkgjYDMG6ewZpJnAnAimoSH0pscdLpWSGq1EqFulpQm5OAm
+ 0zdxbc6zIWhJ5WrXcJ2STyd7mHngkllszQsH5knfgQrztDcoM6tac93u_DnpV.hP627yvuZUlQT1
+ oB9zwuZayvfZ.AkORzZBsMMvILwz33iaqIzhDpp4TtBZMAYFQLW53.jC5zgYWFr63CsHGoQyPzgv
+ V843gLCG_Ya1wfxXHjGu082LmtV_.
+X-Sonic-MF: <hwzhou@yahoo.com>
+X-Sonic-ID: 473e01ad-a780-49aa-aa21-baeb71d5b04e
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.bf2.yahoo.com with HTTP; Thu, 2 May 2024 08:01:31 +0000
+Date: Thu, 2 May 2024 08:01:25 +0000 (UTC)
+To: Rob Kossler <rkossler@nd.edu>, Marcus D Leech <patchvonbraun@gmail.com>
+Message-ID: <2081932982.3351179.1714636885969@mail.yahoo.com>
+In-Reply-To: <A274BA7F-FCBD-489E-8251-D1265CB2E3D5@gmail.com>
+References: <CAB__hTRpzWoOC2n5NkSCkTbQeQxcz6XBv2ZFc_B1f_xKH+0ZoQ@mail.gmail.com> <A274BA7F-FCBD-489E-8251-D1265CB2E3D5@gmail.com>
 MIME-Version: 1.0
-From: Ethan C <ethanclarke365@gmail.com>
-Date: Wed, 1 May 2024 18:46:00 -0700
-Message-ID: <CAM0spwrUqtQj3_CXi7n2NQJZhLXKDOhcpxnir7HEU2jToe0dvQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: 4NYA3DOXOZLOYLQDLT5D4CIFRCI5ASFG
-X-Message-ID-Hash: 4NYA3DOXOZLOYLQDLT5D4CIFRCI5ASFG
-X-MailFrom: ethanclarke365@gmail.com
+X-Mailer: WebService/1.1.22256 YMailNorrin
+Message-ID-Hash: 45WB35FYR7SQR5RPYSLBHHIO5CXFQJ4H
+X-Message-ID-Hash: 45WB35FYR7SQR5RPYSLBHHIO5CXFQJ4H
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E310 GPIO ATR not working
+Subject: [USRP-users] Re: Freq synchronization between two X310s
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4NYA3DOXOZLOYLQDLT5D4CIFRCI5ASFG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/45WB35FYR7SQR5RPYSLBHHIO5CXFQJ4H/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0125035476141217442=="
-
---===============0125035476141217442==
-Content-Type: multipart/alternative; boundary="0000000000008fe0a306176ec491"
-
---0000000000008fe0a306176ec491
-Content-Type: text/plain; charset="UTF-8"
-
-I'm trying to use the GPIO ATR functionality on an E310 using a 'Python
-Snippet' block in Gnuradio. I have code that works this way for a B210 and
-am adapting it to work for the E310. However, I have not had any success.
-The get_gpio_attr READBACK attribute (reads back input GPIOs but can also
-read which output pins are high) print statements indicate GPIO data pin 6
-should be high but there is nothing there when checked with a voltmeter.
-I'm happy to provide any additional information.
-Thanks,
-Ethan
-
-E310 GPIO ATR code
-
-####################################
-
-#   CHANGING GPIO STATE FOR E310   #
-
-####################################
-
-import uhd
-
-ATR_GPIO_MASK = 0b111111
-
-# 1=atr 0=manual
-
-ATR_CTRL = 0b111111
-
-# 1=output 0=input
-
-ATR_DDR = 0b111111
-
-# 1=high on 0=nothing
-
-ATR_0X = 0b100000
-
-ATR_RX = 0b010000
-
-ATR_TX = 0b001000
-
-ATR_XX = 0b000100
-
-# find usrp device
-
-USRP_E310 = uhd.usrp.MultiUSRP('serial=F644E0')
-
-# find usrp gpio port name
-
-BANK_NAME = USRP_E310.get_gpio_banks(0)[0]
-
-print('\n\n')
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'CTRL') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'DDR') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'OUT') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'ATR_0X') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'ATR_RX') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'ATR_TX') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'ATR_XX') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'READBACK') )
-
-print('\n\n')
-
-# configure gpio for atr operation
-
-USRP_E310.set_gpio_attr(BANK_NAME, 'CTRL', ATR_CTRL, ATR_GPIO_MASK)
-
-USRP_E310.set_gpio_attr(BANK_NAME, 'DDR', ATR_DDR, ATR_GPIO_MASK)
-
-USRP_E310.set_gpio_attr(BANK_NAME, 'ATR_0X', ATR_0X, ATR_GPIO_MASK)
-
-USRP_E310.set_gpio_attr(BANK_NAME, 'ATR_RX', ATR_RX, ATR_GPIO_MASK)
-
-USRP_E310.set_gpio_attr(BANK_NAME, 'ATR_TX', ATR_TX, ATR_GPIO_MASK)
-
-USRP_E310.set_gpio_attr(BANK_NAME, 'ATR_XX', ATR_XX, ATR_GPIO_MASK)
-
-print('\n\n')
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'CTRL') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'DDR') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'OUT') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'ATR_0X') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'ATR_RX') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'ATR_TX') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'ATR_XX') )
-
-print( USRP_E310.get_gpio_attr(BANK_NAME, 'READBACK') )
-
-print('\n\n')
-
-
-Print statement outputs
-
-0
-
-4294967295
-
-0
-
-0
-
-0
-
-0
-
-0
-
-0
-
-63 < CTRL
-
-4294967295 < DDR
-
-0 < OUT
-
-32 < 0X (idle) set for pin 6
-
-16 < RX set for pin 5
-
-8 < TX set for pin 4
-
-4 < XX (full duplex) set for pin 3
-
-32 < READBACK detects high on pin 6
-
---0000000000008fe0a306176ec491
-Content-Type: text/html; charset="UTF-8"
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============5638006337456590548=="
+
+--===============5638006337456590548==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_3351178_2019249056.1714636885966"
+
+------=_Part_3351178_2019249056.1714636885966
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I&#39;m trying to use the GPIO ATR functionality on a=
-n E310 using a &#39;Python Snippet&#39; block in Gnuradio. I have code that=
- works this way for a B210 and am adapting it to work for the E310. However=
-, I have not had any success. The get_gpio_attr READBACK attribute (reads b=
-ack input GPIOs but can also read which output pins are high) print stateme=
-nts indicate GPIO data pin 6 should be high but there is nothing there when=
- checked with a voltmeter.</div><div>I&#39;m happy to provide any additiona=
-l information.</div><div>Thanks,</div><div>Ethan<br></div><div><br></div><d=
-iv><font size=3D"4" style=3D"background-color:rgb(238,238,238)">E310 GPIO A=
-TR code</font><br></div><div>
-<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" =
-id=3D"gmail-docs-internal-guid-901347c3-7fff-838f-d2f5-63fb5fbbb693"><font =
-style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-=
-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;=
-font-variant:normal;text-decoration:none;vertical-align:baseline;white-spac=
-e:pre-wrap">####################################</span></font></p><p dir=3D=
-"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font sty=
-le=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-fam=
-ily:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;fon=
-t-variant:normal;text-decoration:none;vertical-align:baseline;white-space:p=
-re-wrap"># =C2=A0 </span><span style=3D"font-family:Arial,sans-serif;color:=
-rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-decor=
-ation:none;vertical-align:baseline;white-space:pre-wrap"><span class=3D"gma=
-il-Apple-tab-span" style=3D"white-space:pre">	</span></span><span style=3D"=
-font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:no=
-rmal;font-variant:normal;text-decoration:none;vertical-align:baseline;white=
--space:pre-wrap">CHANGING GPIO STATE FOR E310 =C2=A0 </span><span style=3D"=
-font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:no=
-rmal;font-variant:normal;text-decoration:none;vertical-align:baseline;white=
--space:pre-wrap"><span class=3D"gmail-Apple-tab-span" style=3D"white-space:=
-pre">	</span></span><span style=3D"font-family:Arial,sans-serif;color:rgb(0=
-,0,0);font-weight:400;font-style:normal;font-variant:normal;text-decoration=
-:none;vertical-align:baseline;white-space:pre-wrap">#</span></font></p><p d=
-ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><fon=
-t style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"fon=
-t-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:norma=
-l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
-ace:pre-wrap">####################################</span></font></p><font s=
-tyle=3D"background-color:rgb(238,238,238)" size=3D"2"><br></font><p dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font styl=
-e=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-fami=
-ly:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font=
--variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
-e-wrap">import uhd</span></font></p><p dir=3D"ltr" style=3D"line-height:1.3=
-8;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238=
-,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb=
-(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-decorati=
-on:none;vertical-align:baseline;white-space:pre-wrap">ATR_GPIO_MASK =3D 0b1=
-11111</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
-0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238,238,238)" si=
-ze=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-=
-weight:400;font-style:normal;font-variant:normal;text-decoration:none;verti=
-cal-align:baseline;white-space:pre-wrap"># 1=3Datr 0=3Dmanual</span></font>=
-</p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0=
-pt"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><span styl=
-e=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-sty=
-le:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;=
-white-space:pre-wrap">ATR_CTRL =3D 0b111111</span></font></p><p dir=3D"ltr"=
- style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D=
-"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:A=
-rial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-var=
-iant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wr=
-ap"># 1=3Doutput 0=3Dinput</span></font></p><p dir=3D"ltr" style=3D"line-he=
-ight:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-color=
-:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;c=
-olor:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-=
-decoration:none;vertical-align:baseline;white-space:pre-wrap">ATR_DDR =3D 0=
-b111111</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
-p:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238,238,238)" =
-size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);fon=
-t-weight:400;font-style:normal;font-variant:normal;text-decoration:none;ver=
-tical-align:baseline;white-space:pre-wrap"># 1=3Dhigh on</span><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-styl=
-e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
-hite-space:pre-wrap"><span class=3D"gmail-Apple-tab-span" style=3D"white-sp=
-ace:pre">	</span></span><span style=3D"font-family:Arial,sans-serif;color:r=
-gb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-decora=
-tion:none;vertical-align:baseline;white-space:pre-wrap">0=3Dnothing</span><=
-/font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bo=
-ttom:0pt"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><spa=
-n style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;fo=
-nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:bas=
-eline;white-space:pre-wrap">ATR_0X =3D 0b100000</span></font></p><p dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font styl=
-e=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-fami=
-ly:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font=
--variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
-e-wrap">ATR_RX =3D 0b010000</span></font></p><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-colo=
-r:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;=
-color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text=
--decoration:none;vertical-align:baseline;white-space:pre-wrap">ATR_TX =3D 0=
-b001000</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
-p:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238,238,238)" =
-size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);fon=
-t-weight:400;font-style:normal;font-variant:normal;text-decoration:none;ver=
-tical-align:baseline;white-space:pre-wrap">ATR_XX =3D 0b000100</span></font=
-></p><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><br></fon=
-t><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
-"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-styl=
-e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
-hite-space:pre-wrap"># find usrp device</span></font></p><p dir=3D"ltr" sty=
-le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"bac=
-kground-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial=
-,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant=
-:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">=
-USRP_E310 =3D uhd.usrp.MultiUSRP(&#39;serial=3DF644E0&#39;)</span></font></=
-p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
-"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-styl=
-e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
-hite-space:pre-wrap"># find usrp gpio port name</span></font></p><p dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font styl=
-e=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-fami=
-ly:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font=
--variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
-e-wrap">BANK_NAME =3D USRP_E310.get_gpio_banks(0)[0]</span></font></p><font=
- style=3D"background-color:rgb(238,238,238)" size=3D"2"><br></font><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font =
-style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-=
-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;=
-font-variant:normal;text-decoration:none;vertical-align:baseline;white-spac=
-e:pre-wrap">print(&#39;\n\n&#39;)</span></font></p><p dir=3D"ltr" style=3D"=
-line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"backgroun=
-d-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-=
-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:norma=
-l;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">print(=
- USRP_E310.get_gpio_attr(BANK_NAME, &#39;CTRL&#39;) )</span></font></p><p d=
-ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><fon=
-t style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"fon=
-t-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:norma=
-l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
-ace:pre-wrap">print( USRP_E310.get_gpio_attr(BANK_NAME, &#39;DDR&#39;) )</s=
-pan></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
-in-bottom:0pt"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"=
-><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:4=
-00;font-style:normal;font-variant:normal;text-decoration:none;vertical-alig=
-n:baseline;white-space:pre-wrap">print( USRP_E310.get_gpio_attr(BANK_NAME, =
-&#39;OUT&#39;) )</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38;=
-margin-top:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238,2=
-38,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb(0=
-,0,0);font-weight:400;font-style:normal;font-variant:normal;text-decoration=
-:none;vertical-align:baseline;white-space:pre-wrap">print( USRP_E310.get_gp=
-io_attr(BANK_NAME, &#39;ATR_0X&#39;) )</span></font></p><p dir=3D"ltr" styl=
-e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"back=
-ground-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,=
-sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:=
-normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">p=
-rint( USRP_E310.get_gpio_attr(BANK_NAME, &#39;ATR_RX&#39;) )</span></font><=
-/p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
-t"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-styl=
-e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
-hite-space:pre-wrap">print( USRP_E310.get_gpio_attr(BANK_NAME, &#39;ATR_TX&=
-#39;) )</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
-p:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238,238,238)" =
-size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);fon=
-t-weight:400;font-style:normal;font-variant:normal;text-decoration:none;ver=
-tical-align:baseline;white-space:pre-wrap">print( USRP_E310.get_gpio_attr(B=
-ANK_NAME, &#39;ATR_XX&#39;) )</span></font></p><p dir=3D"ltr" style=3D"line=
--height:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-co=
-lor:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-seri=
-f;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;te=
-xt-decoration:none;vertical-align:baseline;white-space:pre-wrap">print( USR=
-P_E310.get_gpio_attr(BANK_NAME, &#39;READBACK&#39;) )</span></font></p><p d=
-ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><fon=
-t style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"fon=
-t-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:norma=
-l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
-ace:pre-wrap">print(&#39;\n\n&#39;)</span></font></p><font style=3D"backgro=
-und-color:rgb(238,238,238)" size=3D"2"><br></font><p dir=3D"ltr" style=3D"l=
-ine-height:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"background=
--color:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-s=
-erif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal=
-;text-decoration:none;vertical-align:baseline;white-space:pre-wrap"># confi=
-gure gpio for atr operation</span></font></p><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-colo=
-r:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;=
-color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text=
--decoration:none;vertical-align:baseline;white-space:pre-wrap">USRP_E310.se=
-t_gpio_attr(BANK_NAME, &#39;CTRL&#39;, ATR_CTRL, ATR_GPIO_MASK)</span></fon=
-t></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
-:0pt"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><span st=
-yle=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-s=
-tyle:normal;font-variant:normal;text-decoration:none;vertical-align:baselin=
-e;white-space:pre-wrap">USRP_E310.set_gpio_attr(BANK_NAME, &#39;DDR&#39;, A=
-TR_DDR, ATR_GPIO_MASK)</span></font></p><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb=
-(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;color=
-:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-deco=
-ration:none;vertical-align:baseline;white-space:pre-wrap">USRP_E310.set_gpi=
-o_attr(BANK_NAME, &#39;ATR_0X&#39;, ATR_0X, ATR_GPIO_MASK)</span></font></p=
-><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"=
-><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-styl=
-e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
-hite-space:pre-wrap">USRP_E310.set_gpio_attr(BANK_NAME, &#39;ATR_RX&#39;, A=
-TR_RX, ATR_GPIO_MASK)</span></font></p><p dir=3D"ltr" style=3D"line-height:=
-1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(=
-238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:=
-rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-decor=
-ation:none;vertical-align:baseline;white-space:pre-wrap">USRP_E310.set_gpio=
-_attr(BANK_NAME, &#39;ATR_TX&#39;, ATR_TX, ATR_GPIO_MASK)</span></font></p>=
-<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt">=
-<font style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D=
-"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:n=
-ormal;font-variant:normal;text-decoration:none;vertical-align:baseline;whit=
-e-space:pre-wrap">USRP_E310.set_gpio_attr(BANK_NAME, &#39;ATR_XX&#39;, ATR_=
-XX, ATR_GPIO_MASK)</span></font></p><font style=3D"background-color:rgb(238=
-,238,238)" size=3D"2"><br></font><p dir=3D"ltr" style=3D"line-height:1.38;m=
-argin-top:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238,23=
-8,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb(0,=
-0,0);font-weight:400;font-style:normal;font-variant:normal;text-decoration:=
-none;vertical-align:baseline;white-space:pre-wrap">print(&#39;\n\n&#39;)</s=
-pan></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
-in-bottom:0pt"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"=
-><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:4=
-00;font-style:normal;font-variant:normal;text-decoration:none;vertical-alig=
-n:baseline;white-space:pre-wrap">print( USRP_E310.get_gpio_attr(BANK_NAME, =
-&#39;CTRL&#39;) )</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38=
-;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238,=
-238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb(=
-0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-decoratio=
-n:none;vertical-align:baseline;white-space:pre-wrap">print( USRP_E310.get_g=
-pio_attr(BANK_NAME, &#39;DDR&#39;) )</span></font></p><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"backg=
-round-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,s=
-ans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:n=
-ormal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">pr=
-int( USRP_E310.get_gpio_attr(BANK_NAME, &#39;OUT&#39;) )</span></font></p><=
-p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><=
-font style=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"=
-font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:no=
-rmal;font-variant:normal;text-decoration:none;vertical-align:baseline;white=
--space:pre-wrap">print( USRP_E310.get_gpio_attr(BANK_NAME, &#39;ATR_0X&#39;=
-) )</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
-t;margin-bottom:0pt"><font style=3D"background-color:rgb(238,238,238)" size=
-=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-we=
-ight:400;font-style:normal;font-variant:normal;text-decoration:none;vertica=
-l-align:baseline;white-space:pre-wrap">print( USRP_E310.get_gpio_attr(BANK_=
-NAME, &#39;ATR_RX&#39;) )</span></font></p><p dir=3D"ltr" style=3D"line-hei=
-ght:1.38;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-color:=
-rgb(238,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;co=
-lor:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-d=
-ecoration:none;vertical-align:baseline;white-space:pre-wrap">print( USRP_E3=
-10.get_gpio_attr(BANK_NAME, &#39;ATR_TX&#39;) )</span></font></p><p dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font styl=
-e=3D"background-color:rgb(238,238,238)" size=3D"2"><span style=3D"font-fami=
-ly:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font=
--variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
-e-wrap">print( USRP_E310.get_gpio_attr(BANK_NAME, &#39;ATR_XX&#39;) )</span=
-></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-=
-bottom:0pt"><font style=3D"background-color:rgb(238,238,238)" size=3D"2"><s=
-pan style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;=
-font-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
-aseline;white-space:pre-wrap">print( USRP_E310.get_gpio_attr(BANK_NAME, &#3=
-9;READBACK&#39;) )</span></font></p><p dir=3D"ltr" style=3D"line-height:1.3=
-8;margin-top:0pt;margin-bottom:0pt"><font style=3D"background-color:rgb(238=
-,238,238)" size=3D"2"><span style=3D"font-family:Arial,sans-serif;color:rgb=
-(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-decorati=
-on:none;vertical-align:baseline;white-space:pre-wrap">print(&#39;\n\n&#39;)=
-</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
-argin-bottom:0pt"><font size=3D"1" style=3D"background-color:rgb(204,204,20=
-4)"><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weigh=
-t:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-a=
-lign:baseline;white-space:pre-wrap"><br></span></font></p><p dir=3D"ltr" st=
-yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt">
-</p><div><font size=3D"4" style=3D"background-color:rgb(238,238,238)">Print=
- statement outputs</font><br></div><div>
-<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" =
-id=3D"gmail-docs-internal-guid-f1d294b9-7fff-1f42-dea4-cd9d03834b6f"><font =
-size=3D"2" style=3D"background-color:rgb(238,238,238)"><span style=3D"font-=
-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;=
-font-variant:normal;text-decoration:none;vertical-align:baseline;white-spac=
-e:pre-wrap">0</span></font></p><p dir=3D"ltr" style=3D"line-height:1.38;mar=
-gin-top:0pt;margin-bottom:0pt"><font size=3D"2" style=3D"background-color:r=
-gb(238,238,238)"><span style=3D"font-family:Arial,sans-serif;color:rgb(0,0,=
-0);font-weight:400;font-style:normal;font-variant:normal;text-decoration:no=
-ne;vertical-align:baseline;white-space:pre-wrap">4294967295</span></font></=
-p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
-"><font size=3D"2" style=3D"background-color:rgb(238,238,238)"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-styl=
-e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
-hite-space:pre-wrap">0</span></font></p><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt"><font size=3D"2" style=3D"backgroun=
-d-color:rgb(238,238,238)"><span style=3D"font-family:Arial,sans-serif;color=
-:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-deco=
-ration:none;vertical-align:baseline;white-space:pre-wrap">0</span></font></=
-p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
-"><font size=3D"2" style=3D"background-color:rgb(238,238,238)"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-styl=
-e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
-hite-space:pre-wrap">0</span></font></p><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt"><font size=3D"2" style=3D"backgroun=
-d-color:rgb(238,238,238)"><span style=3D"font-family:Arial,sans-serif;color=
-:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-deco=
-ration:none;vertical-align:baseline;white-space:pre-wrap">0</span></font></=
-p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
-"><font size=3D"2" style=3D"background-color:rgb(238,238,238)"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-styl=
-e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
-hite-space:pre-wrap">0</span></font></p><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt"><font size=3D"2" style=3D"backgroun=
-d-color:rgb(238,238,238)"><span style=3D"font-family:Arial,sans-serif;color=
-:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-deco=
-ration:none;vertical-align:baseline;white-space:pre-wrap">0</span></font></=
-p><font size=3D"2" style=3D"background-color:rgb(238,238,238)"><br></font><=
-p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font size=3D=
-"2" style=3D"background-color:rgb(238,238,238)"><span style=3D"font-family:=
-Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-va=
-riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
-rap">63                   &lt; CTRL</span></font></p><p style=3D"line-heigh=
-t:1.38;margin-top:0pt;margin-bottom:0pt"><font size=3D"2" style=3D"backgrou=
-nd-color:rgb(238,238,238)"><span style=3D"font-family:Arial,sans-serif;colo=
-r:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;text-dec=
-oration:none;vertical-align:baseline;white-space:pre-wrap">4294967295   &lt=
-; DDR</span></font></p><p style=3D"line-height:1.38;margin-top:0pt;margin-b=
-ottom:0pt"><font size=3D"2" style=3D"background-color:rgb(238,238,238)"><sp=
-an style=3D"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;f=
-ont-style:normal;font-variant:normal;text-decoration:none;vertical-align:ba=
-seline;white-space:pre-wrap">0                     &lt; OUT</span></font></=
-p><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font size=
-=3D"2" style=3D"background-color:rgb(238,238,238)"><span style=3D"font-fami=
-ly:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font=
--variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
-e-wrap">32                   &lt; 0X (idle) set for pin 6</span></font></p>=
-<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font size=
-=3D"2" style=3D"background-color:rgb(238,238,238)"><span style=3D"font-fami=
-ly:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font=
--variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
-e-wrap">16                   &lt; RX set for pin 5</span></font></p><p styl=
-e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font size=3D"2" st=
-yle=3D"background-color:rgb(238,238,238)"><span style=3D"font-family:Arial,=
-sans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:=
-normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">8=
-                     &lt; TX set for pin 4</span></font></p><p style=3D"lin=
-e-height:1.38;margin-top:0pt;margin-bottom:0pt"><font size=3D"2" style=3D"b=
-ackground-color:rgb(238,238,238)"><span style=3D"font-family:Arial,sans-ser=
-if;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:normal;t=
-ext-decoration:none;vertical-align:baseline;white-space:pre-wrap">4        =
-             &lt; XX (full duplex) set for pin 3</span></font></p><p style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font size=3D"2" sty=
-le=3D"background-color:rgb(238,238,238)"><span style=3D"font-family:Arial,s=
-ans-serif;color:rgb(0,0,0);font-weight:400;font-style:normal;font-variant:n=
-ormal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">32=
-                   &lt; READBACK detects high on pin 6</span></font></p>
+ Thanks, Rob and Marcus.
+A single tone is repeatedly transmitted to make a continuous stream out of =
+the Tx antenna. It is periodically sampled in Rx; the interval is about 1s.=
+ The sample time is aligned with the beginning of the transmitted signal to=
+ make sure we sample at the same time across antennas. We calculate the ang=
+le of the first complex sample of capture to evaluate the signal phase.=C2=
+=A0
+I agree with you that there can be some phase wobble between the 10M ref si=
+gnals applied to PLLs in two devices because of temperature or other random=
+ factors, however, inside a USRP, there are four independent PLLs for 2 Tx =
+and 2 Rx. The 10M ref signals to them should also be wobbling. But my measu=
+rements show that within the same USRP, phase is pretty stable between Tx a=
+nd Rx. Any explanation on this?=C2=A0
+Kind regards.Hongwei
 
-</div>
+    On Wednesday, 1 May 2024 at 20:34:15 BST, Marcus D Leech <patchvonbraun=
+@gmail.com> wrote: =20
+=20
+ It=E2=80=99s also why you can=E2=80=99t get tight instantaneous phase alig=
+nment between two GPSDO devices even when on the same antenna.=C2=A0
 
-<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt">=
-<font size=3D"1" style=3D"background-color:rgb(204,204,204)"><span style=3D=
-"font-family:Arial,sans-serif;color:rgb(0,0,0);font-weight:400;font-style:n=
-ormal;font-variant:normal;text-decoration:none;vertical-align:baseline;whit=
-e-space:pre-wrap"><br></span></font></p>
+Sent from my iPhone
 
-</div></div>
+On May 1, 2024, at 2:12 PM, Rob Kossler <rkossler@nd.edu> wrote:
 
---0000000000008fe0a306176ec491--
 
---===============0125035476141217442==
+
+=EF=BB=BFThe 10 MHz ref supplied to each X310 device is used in a PLL in ea=
+ch device to obtain the 10MHz ref used for that device (and for disciplinin=
+g the various LOs on the device). Thus, there is a relative phase "wobble" =
+between the 10MHz ref signals used on each device as each PLL continuously =
+adjusts to maintain disciplined output.=C2=A0 Over time, this averages out =
+to zero. But, instantaneously, it is not. So, my question is: how instantan=
+eous is your phase measurement?=C2=A0 If you instead calculate a phase aver=
+aged over numerous samples, can you get a consistent result? From your plot=
+, it looks like this is true.
+Rob
+
+On Wed, May 1, 2024 at 11:04=E2=80=AFAM zhou via USRP-users <usrp-users@lis=
+ts.ettus.com> wrote:
+
+=20
+
+    On Wednesday, 1 May 2024 at 15:15:12 BST, Marcus D. Leech <patchvonbrau=
+n@gmail.com> wrote: =20
+=20
+  On 01/05/2024 10:11, zhou via USRP-users wrote:
+ =20
+=20
+ Hi Marcus,=20
+  Thanks for your response.=20
+   "Are you setting up clocking identically for both USRPs?=C2=A0=C2=A0 Tha=
+t is setting the reference clock to "external" and the 1PPS source to "exte=
+rnal" on both devices?=C2=A0=C2=A0 Are you using a single multi_usrp object=
+ for all RX channels?"=20
+  Yes, I use multi_usrp multi_usrp::make('addr0=3D192.168.12.2,second_addr0=
+=3D192.168.13.2,addr1=3D192.168.14.2,second_addr1=3D192.168.15.2,master_clo=
+ck_rate=3D184.32e6')
+ =C2=A0
+ "external" set for both ref and pps: usrp->set_clock_source("external") us=
+rp->set_time_source("external")
+ I think this should automatically set both devices.
+=20
+ "What type of daughtercards are in your X310?"
+  UBX=20
+  Kind regards.=20
+   And, to clarify, this is an Octoclock-G, and not a plain Octoclock ?
+It is OctoClock GPSDO, and Internal is used.=C2=A0
+=20
+=20
+=20
+ =20
+ =20
+      On Wednesday, 1 May 2024 at 14:19:44 BST, Marcus D. Leech <patchvonbr=
+aun@gmail.com> wrote: =20
+ =20
+      On 01/05/2024 08:25, zhou via USRP-users wrote:
+ =20
+=20
+    Hi All,=20
+  I am trying to use 4Rx and 4Tx antennas from two X310 USRPs. I hope the r=
+eceived signals have stable phase relationship but they don't seem to be. I=
+ am wondering why and how to fix it.=20
+  I measured the phase using the connection as below:=20
+  cos(t)+i*sin(t) signal is split into and received on four Rx antennas.=C2=
+=A0Two X310s are connected to the same OctoClock for 10MHz Ref and PPS. Tx =
+and Rx commands are all timed. The measurement results are as below:=20
+ =20
+ The Tx signal is continuous during test. I measured phase every second for=
+ 20 sec. In the 2nd USRP, the phases are stable on both antennas while it i=
+s not in the 1st. If I change the Tx signal to the 1st USRP, then the resul=
+ts swap - phases become stable in the 1st USRP and unstable in the 2nd.=20
+  My first though was that there might be small CFO between USRPs even thou=
+gh both are connected to the OctoClock, but CFO should have caused linear c=
+hange. Here, the phase offset is not linear and kind of random within 20 se=
+cond measurement.=20
+  What can be the reason? Any suggestion will be appreciated.
+=20
+ Kind regards, H.  Are you setting up clocking identically for both USRPs?=
+=C2=A0=C2=A0 That is setting the reference clock to "external" and the 1PPS=
+ source to "external" on both devices?=C2=A0=C2=A0 Are you using a single m=
+ulti_usrp object for all RX channels?
+=20
+ What type of daughtercards are in your X310?
+=20
+=20
+    _______________________________________________
+ USRP-users mailing list -- usrp-users@lists.ettus.com
+ To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+    =20
+  _______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+=20
+=20
+ _______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+  _______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+ =20
+------=_Part_3351178_2019249056.1714636885966
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp3054b301yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Thanks, Rob and Marcus.</div=
+><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-set=
+dir=3D"false">A single tone is repeatedly transmitted to make a continuous =
+stream out of the Tx antenna. It is periodically sampled in Rx; the interva=
+l is about 1s. The sample time is aligned with the beginning of the transmi=
+tted signal to make sure we sample at the same time across antennas. We cal=
+culate the angle of the first complex sample of capture to evaluate the sig=
+nal phase.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div=
+ dir=3D"ltr" data-setdir=3D"false">I agree with you that there can be some =
+phase wobble between the 10M ref signals applied to PLLs in two devices bec=
+ause of temperature or other random factors, however, inside a USRP, there =
+are four independent PLLs for 2 Tx and 2 Rx. The 10M ref signals to them sh=
+ould also be wobbling. But my measurements show that within the same USRP, =
+phase is pretty stable between Tx and Rx. Any explanation on this?&nbsp;</d=
+iv><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-s=
+etdir=3D"false">Kind regards.</div><div dir=3D"ltr" data-setdir=3D"false">H=
+ongwei</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div><br></div=
+>
+       =20
+        </div><div id=3D"ydp10566da0yahoo_quoted_5052093146" class=3D"ydp10=
+566da0yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                        On Wednesday, 1 May 2024 at 20:34:15 BST, Marcus D =
+Leech &lt;patchvonbraun@gmail.com&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div id=3D"ydp10566da0yiv8756072813"><div>It=E2=80=99s=
+ also why you can=E2=80=99t get tight instantaneous phase alignment between=
+ two GPSDO devices even when on the same antenna.&nbsp;<br clear=3D"none"><=
+br clear=3D"none"><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr=
+"><div id=3D"ydp10566da0yiv8756072813yqtfd74024" class=3D"ydp10566da0yiv875=
+6072813yqt5458153538"><br clear=3D"none"><blockquote type=3D"cite">On May 1=
+, 2024, at 2:12 PM, Rob Kossler &lt;rkossler@nd.edu&gt; wrote:<br clear=3D"=
+none"><br clear=3D"none"></blockquote></div></div><div id=3D"ydp10566da0yiv=
+8756072813yqtfd96757" class=3D"ydp10566da0yiv8756072813yqt5458153538"><bloc=
+kquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>The 10=
+ MHz ref supplied to each X310 device is used in a PLL in each device to ob=
+tain the 10MHz ref used for that device (and for disciplining the various L=
+Os on the device). Thus, there is a relative phase "wobble" between the 10M=
+Hz ref signals used on each device as each PLL continuously adjusts to main=
+tain disciplined output.&nbsp; Over time, this averages out to zero. But, i=
+nstantaneously, it is not. So, my question is: how instantaneous is your ph=
+ase measurement?&nbsp; If you instead calculate a phase averaged over numer=
+ous samples, can you get a consistent result? From your plot, it looks like=
+ this is true.<br clear=3D"none"></div><div>Rob<br clear=3D"none"></div><br=
+ clear=3D"none"><div class=3D"ydp10566da0yiv8756072813gmail_quote"><div dir=
+=3D"ltr" class=3D"ydp10566da0yiv8756072813gmail_attr">On Wed, May 1, 2024 a=
+t 11:04=E2=80=AFAM zhou via USRP-users &lt;<a shape=3D"rect" href=3D"mailto=
+:usrp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@=
+lists.ettus.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex;" class=3D"ydp10566da0yiv8756072813gmail_quote"><div><div style=3D"f=
+ont-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><d=
+iv></div>
+        <div><br clear=3D"none"></div><div><br clear=3D"none"></div>
+       =20
+        </div><div id=3D"ydp10566da0yiv8756072813m_-3650333112459443087ydpc=
+994c9a6yahoo_quoted_5461441577">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;color:rgb(38,40,42);">
+               =20
+                <div>
+                        On Wednesday, 1 May 2024 at 15:15:12 BST, Marcus D.=
+ Leech &lt;<a shape=3D"rect" href=3D"mailto:patchvonbraun@gmail.com" rel=3D=
+"nofollow" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:
+                    </div>
+                    <div><br clear=3D"none"></div>
+                    <div><br clear=3D"none"></div>
+               =20
+               =20
+                <div><div id=3D"ydp10566da0yiv8756072813m_-3650333112459443=
+087ydpc994c9a6yiv4349751442"><div>
+    <div>On 01/05/2024 10:11, zhou via
+      USRP-users wrote:<br clear=3D"none">
+    </div>
+    <blockquote type=3D"cite">
+      </blockquote></div><div><div style=3D"font-family:Helvetica Neue, Hel=
+vetica, Arial, sans-serif;font-size:13px;">
+        <div dir=3D"ltr">Hi Marcus,</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">Thanks for your response.</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">
+          <div><span style=3D"color:rgb(38,40,42);font-family:Helvetica Neu=
+e, Helvetica, Arial, sans-serif;">"Are
+              you setting up clocking identically for both USRPs?&nbsp;&nbs=
+p; That
+              is setting the reference clock to "external" and the 1PPS
+              source to "external" on both devices?&nbsp;&nbsp; Are you usi=
+ng a
+              single multi_usrp object for all RX channels?"</span></div>
+          <div><br clear=3D"none">
+          </div>
+          <div dir=3D"ltr">Yes, I use multi_usrp
+            multi_usrp::make(<span>'addr0=3D192.168.12.2,second_addr0=3D192=
+.168.13.2,addr1=3D192.168.14.2,second_addr1=3D192.168.15.2,master_clock_rat=
+e=3D184.32e6'</span>)<br clear=3D"none" style=3D"color:rgb(38,40,42);font-f=
+amily:Helvetica Neue, Helvetica, Arial, sans-serif;">
+            &nbsp;<br clear=3D"none">
+            <span><span style=3D"color:rgb(0,0,0);font-family:Helvetica Neu=
+e, Helvetica, Arial, sans-serif;">"external"
+                set for both ref and pps:</span></span></div>
+          <div dir=3D"ltr"><span>usrp-&gt;set_clock_source("external")</spa=
+n></div>
+          <div dir=3D"ltr"><span>usrp-&gt;set_time_source(<span><span style=
+=3D"color:rgb(0,0,0);font-family:Helvetica Neue, Helvetica, Arial, sans-ser=
+if;">"external")</span></span></span><br clear=3D"none">
+            I think this should automatically set both devices.<br clear=3D=
+"none">
+            <br clear=3D"none" style=3D"color:rgb(38,40,42);font-family:Hel=
+vetica Neue, Helvetica, Arial, sans-serif;">
+            <span style=3D"color:rgb(38,40,42);font-family:Helvetica Neue, =
+Helvetica, Arial, sans-serif;">"What
+              type of daughtercards are in your X310?"</span><br clear=3D"n=
+one" style=3D"color:rgb(38,40,42);font-family:Helvetica Neue, Helvetica, Ar=
+ial, sans-serif;">
+          </div>
+          UBX</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">Kind regards.</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+      </div>
+   =20
+    And, to clarify, this is an Octoclock-G, and not a plain Octoclock ?<di=
+v dir=3D"ltr" id=3D"ydp10566da0yiv8756072813m_-3650333112459443087ydpc994c9=
+a6yiv4349751442yqtfd85029"><br clear=3D"none"></div><div dir=3D"ltr" id=3D"=
+ydp10566da0yiv8756072813m_-3650333112459443087ydpc994c9a6yiv4349751442yqtfd=
+85029">It is OctoClock GPSDO, and Internal is used.&nbsp;<br clear=3D"none"=
+>
+    <br clear=3D"none">
+    <br clear=3D"none">
+    <blockquote type=3D"cite">
+      <div style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-seri=
+f;font-size:13px;">
+        <div><br clear=3D"none">
+        </div>
+        <div><br clear=3D"none">
+        </div>
+      </div>
+      <div id=3D"ydp10566da0yiv8756072813m_-3650333112459443087ydpc994c9a6y=
+iv4349751442ydp5189b7afyahoo_quoted_4632613607">
+        <div style=3D"font-family:Helvetica, Arial, sans-serif;font-size:13=
+px;color:rgb(38,40,42);">
+          <div> On Wednesday, 1 May 2024 at 14:19:44 BST, Marcus D.
+            Leech <a shape=3D"rect" href=3D"mailto:patchvonbraun@gmail.com"=
+ rel=3D"nofollow" target=3D"_blank">&lt;patchvonbraun@gmail.com&gt;</a> wro=
+te: </div>
+          <div><br clear=3D"none">
+          </div>
+          <div><br clear=3D"none">
+          </div>
+          <div>
+            <div id=3D"ydp10566da0yiv8756072813m_-3650333112459443087ydpc99=
+4c9a6yiv4349751442ydp5189b7afyiv7691143590">
+              <div id=3D"ydp10566da0yiv8756072813m_-3650333112459443087ydpc=
+994c9a6yiv4349751442ydp5189b7afyiv7691143590yqt92825">
+                <div>
+                  <div>On
+                    01/05/2024 08:25, zhou via USRP-users wrote:<br clear=
+=3D"none">
+                  </div>
+                  <blockquote type=3D"cite"> </blockquote>
+                </div>
+                <div>
+                  <div style=3D"font-family:Helvetica Neue, Helvetica, Aria=
+l, sans-serif;font-size:13px;">
+                    <div dir=3D"ltr">Hi All,</div>
+                    <div dir=3D"ltr"><br clear=3D"none">
+                    </div>
+                    <div dir=3D"ltr">I am trying to use 4Rx and 4Tx
+                      antennas from two X310 USRPs. I hope the received
+                      signals have stable phase relationship but they
+                      don't seem to be. I am wondering why and how to
+                      fix it.</div>
+                    <div dir=3D"ltr"><br clear=3D"none">
+                    </div>
+                    <div dir=3D"ltr">I measured the phase using the
+                      connection as below:</div>
+                    <div dir=3D"ltr"><img title=3D"Inline image" alt=3D"Inl=
+ine image" style=3D"max-width:800px;" data-inlineimagemanipulating=3D"true"=
+><br clear=3D"none">
+                    </div>
+                    <div dir=3D"ltr">cos(t)+i*sin(t) signal is split into
+                      and received on four Rx antennas.&nbsp;<span><span st=
+yle=3D"color:rgb(0,0,0);font-family:Helvetica Neue, Helvetica, Arial, sans-=
+serif;">Two
+                          X310s are connected to the same OctoClock for
+                          10MHz Ref and PPS. Tx and Rx commands are all
+                          timed. The measurement results are as below:</spa=
+n></span></div>
+                    <div dir=3D"ltr"><br clear=3D"none">
+                    </div>
+                    <div dir=3D"ltr"><br clear=3D"none">
+                      <span></span>The Tx signal is continuous during
+                      test. I measured phase every second for 20 sec. In
+                      the 2nd USRP, the phases are stable on both
+                      antennas while it is not in the 1st. If I change
+                      the Tx signal to the 1st USRP, then the results
+                      swap - phases become stable in the 1st USRP and
+                      unstable in the 2nd.</div>
+                    <div dir=3D"ltr"><br clear=3D"none">
+                    </div>
+                    <div dir=3D"ltr">My first though was that there might
+                      be small CFO between USRPs even though both are
+                      connected to the OctoClock, but CFO should have
+                      caused linear change. Here, the phase offset is
+                      not linear and kind of random within 20 second
+                      measurement.</div>
+                    <div dir=3D"ltr"><br clear=3D"none">
+                    </div>
+                    <div dir=3D"ltr">What can be the reason? Any
+                      suggestion will be appreciated.<br clear=3D"none">
+                      <span></span><br clear=3D"none">
+                      <span></span>Kind regards,</div>
+                    <div dir=3D"ltr">H.</div>
+                  </div>
+                  Are you setting up clocking identically for both
+                  USRPs?&nbsp;&nbsp; That is setting the reference clock to
+                  "external" and the 1PPS source to "external" on both
+                  devices?&nbsp;&nbsp; Are you using a single multi_usrp ob=
+ject
+                  for all RX channels?<br clear=3D"none">
+                  <br clear=3D"none">
+                  What type of daughtercards are in your X310?<br clear=3D"=
+none">
+                  <br clear=3D"none">
+                  <br clear=3D"none">
+                </div>
+              </div>
+            </div>
+            <div id=3D"ydp10566da0yiv8756072813m_-3650333112459443087ydpc99=
+4c9a6yiv4349751442ydp5189b7afyqt89423">____________________________________=
+___________<br clear=3D"none">
+              USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:u=
+srp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@li=
+sts.ettus.com</a><br clear=3D"none">
+              To unsubscribe send an email to <a shape=3D"rect" href=3D"mai=
+lto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">us=
+rp-users-leave@lists.ettus.com</a><br clear=3D"none">
+            </div>
+          </div>
+        </div>
+      </div>
+      <br clear=3D"none">
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@list=
+s.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com<=
+/a>
+To unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:usrp-users=
+-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users-leave=
+@lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br clear=3D"none">
+  </div></div></div><div id=3D"ydp10566da0yiv8756072813m_-36503331124594430=
+87ydpc994c9a6yqtfd03165">_______________________________________________<br=
+ clear=3D"none">USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto=
+:usrp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@=
+lists.ettus.com</a><br clear=3D"none">To unsubscribe send an email to <a sh=
+ape=3D"rect" href=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofoll=
+ow" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br clear=3D"none=
+"></div></div>
+            </div>
+        </div></div>_______________________________________________<br clea=
+r=3D"none">
+USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@list=
+s.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com<=
+/a><br clear=3D"none">
+To unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:usrp-users=
+-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users-leave=
+@lists.ettus.com</a><br clear=3D"none">
+</blockquote></div></div>
+</div></blockquote></div></div></div><div class=3D"ydp10566da0yqt5458153538=
+" id=3D"ydp10566da0yqtfd43156">____________________________________________=
+___<br clear=3D"none">USRP-users mailing list -- <a shape=3D"rect" href=3D"=
+mailto:usrp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-=
+users@lists.ettus.com</a><br clear=3D"none">To unsubscribe send an email to=
+ <a shape=3D"rect" href=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"=
+nofollow" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br clear=
+=3D"none"></div></div>
+            </div>
+        </div></body></html>
+------=_Part_3351178_2019249056.1714636885966--
+
+--===============5638006337456590548==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -593,4 +534,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0125035476141217442==--
+--===============5638006337456590548==--
