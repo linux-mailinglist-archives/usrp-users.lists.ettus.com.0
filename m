@@ -2,344 +2,273 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CF008B9A6C
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 14:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5358B9AD5
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 14:26:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EA3703852EC
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 08:07:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DA5403855F9
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 08:26:11 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1714651644; bh=csjmIyjYj4k2ZSsIypOz6UWbHJlrkx9bCoZ+T12j8Ao=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1714652771; bh=nQRGwi9YO3Ntdtlf7IAyOoaxyq+0ecPRKf0SH4uQsAI=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=aqnrLffrlwvOzJD0F83MsbvlEROEhZELo+un05BIxDAWRGLDCdK9fzhVTCOiGvjWB
-	 QaT7CGgTqs5f5srTPDRiPEZh9rvo5oETXZO5wkc7kZ5jtOxptZCVgSh7Ntrpvvyg8J
-	 RrwLeFwzSFCLITvv2q37M8N/KJHSpJh140a0Wq+lSoSOuXWmJarwYgWWQjho+UMoy8
-	 qMAIma9UB7ndR/O81Y0081Krs1u0kAec0l3bgIGS2ftxDV3WokW0LnXveKSPALFOvW
-	 au5H2L6rWJYsOWa+pp8uWiVJnQrCHmCrY0nIK66zTCeK7lwpkR+Rshh891j+djOKSP
-	 KCIiDJa5F3SLw==
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	by mm2.emwd.com (Postfix) with ESMTPS id CE1823852EC
-	for <usrp-users@lists.ettus.com>; Thu,  2 May 2024 08:06:54 -0400 (EDT)
+	 From:Reply-To:From;
+	b=Wc3ntzeisalu2hVpElZR1mBp4Zv22YNWPgAmbvUAeDYDbeVpLAC3ulozK9BBPjjlo
+	 qftK/EwkeRI0Ki0ntsyigGpo+8zDn5FyiEKNZy4jOYoTJlmRBEEx+IZWYHwV/xVdjq
+	 yIUn1VKHJG8ARgsFq0p6gHtlY1UU1XPc8w9C3qt/rOkXe/abcL6e3YS15BygYNWmmD
+	 WpZbqKseddu2W0JHMuxdQklMGcDHW+T8pidFQI6zH3OibAluq18p/qZpi8at1bc6eJ
+	 vw8ierODM7ulb7Il/GLYUIve9uLa1M5S92OO/QV2pS5Z11ey4UOQ6FOnwGhn+rpb55
+	 ysT6tslctH7vQ==
+Received: from mail-40135.protonmail.ch (mail-40135.protonmail.ch [185.70.40.135])
+	by mm2.emwd.com (Postfix) with ESMTPS id 54DD938549A
+	for <usrp-users@lists.ettus.com>; Thu,  2 May 2024 08:25:59 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Yxgz+a/g";
+	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="ZE8RGBYv";
 	dkim-atps=neutral
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-792706dbdc6so48453685a.0
-        for <usrp-users@lists.ettus.com>; Thu, 02 May 2024 05:06:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714651614; x=1715256414; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PERLLT4ZnTGBuxIRqTJrF67A4QMKqWynfU6s6bEjV4A=;
-        b=Yxgz+a/grVlID/oUbJ40qxhDcUteBs+PxtSkHB1vpEPZrF3eMKeAIPLGmU39z+2vW4
-         4ZDVMBfebeUL8J48JbH0i9KL2WqevcTNzaaPytTil9j1auSQnbYtJ0wlGpM0fzcI7y/1
-         05/AU2MkDZybb7Hd6+oQee16K+DigzB0sjUd8UVumOsQLFFs2J/kJhPeQuE+xpZ6uLTV
-         r70Yc9sOgVzUj55hNrEhQvB7GPjyMb2HXnOIQCxIA4Z24IclMuybMc3XbZn4crnJpXHh
-         bA+y3IuVo1Ax7d/YPi1pudT8wtVqmNqKw/vwq4TLZFUOf1mYothGBLb+I5AwTBBZtbfU
-         wUGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714651614; x=1715256414;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=PERLLT4ZnTGBuxIRqTJrF67A4QMKqWynfU6s6bEjV4A=;
-        b=W6DYenoxKymxUtGiR77kYou4Va15DcWEB9O5GVEh4y09GyipefVuqD8kT29LDgVHsK
-         7EosTF91U8Q653lLOCax4RwM/MLcp3BRRsQbx3tNl4LLYmQm8UuEXV18b7YKa3zf/wz1
-         MdQjh6GuBY9+y0Fdl27feRcso/gMmHa3sY2vRl1D3RPsSgB761oRQtupq9Sa+jB22mtP
-         6yItnA91eG0FJBTdCWcsdSGth7F2BMR0nqcNwGr5vyAKqLvCftcDySF042bU4hUDr1Gv
-         laa/Lqk3svRqOpPB72vyyMFuabfeXTI7/YndzsTzd0zROWm3ga5IEBTlEJDxpvQsdSMo
-         XBJw==
-X-Gm-Message-State: AOJu0Yzr+5RoXx/UUkLmkvPaqRd7P+GY0D1wJj2CAxz8Vq0aiobac2Wx
-	h/QCBAu/lruA3LfOx60i19VK4oKt2txyeiHdsVJGOOOeMtC6CL9BT6rdXA==
-X-Google-Smtp-Source: AGHT+IHaOZZWxQYapIjOz/ECfNgEFjK45jQbbw26Mnu9cEm/a9OqgX+0yST7BW06Xkvzlp0nymJkvQ==
-X-Received: by 2002:a05:622a:4a0e:b0:437:9c7e:ab1f with SMTP id fv14-20020a05622a4a0e00b004379c7eab1fmr5214548qtb.33.1714651613716;
-        Thu, 02 May 2024 05:06:53 -0700 (PDT)
-Received: from [192.168.2.170] ([174.93.0.192])
-        by smtp.googlemail.com with ESMTPSA id fe13-20020a05622a4d4d00b0043842dc662esm416146qtb.4.2024.05.02.05.06.52
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 May 2024 05:06:53 -0700 (PDT)
-Message-ID: <2dc3efed-dfec-4dfb-8001-66c5b1594a5e@gmail.com>
-Date: Thu, 2 May 2024 08:06:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1714652757; x=1714911957;
+	bh=SQPScMww8vbsczBBoDRk6cAFesUemBBLj8jVeG/loW4=;
+	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=ZE8RGBYvAVuFo42R2IwXw57YBM4I5/Wuj4q56QMzoZdBmuma5jXWXsMsIFwpXsK3Y
+	 xr7zvji0w2koYE9tF1x/TRYen2vnlW6HvyT7rD9DRMdAcKKQ6Clnj3XPwny0QhgSt3
+	 OAZ9yvOI1Hk76imf+ETuuKaRInq81Zt8DqlibmHhRwmuXfvr9zQdaTySHoMgEPfAMW
+	 sX7NIlOSaIIpi3ZUXbXp/H5265cDWN7yzEb8SVtQdZ1kjYyVrAAtizJluoRgR3pT6V
+	 weH2ZEaLJ3FjiSBDy7w1IHCxZoQ8aRKrXUM5wI+KvxaT+6nwkCZSMZPbXBgTULmhql
+	 eS3iyI/kgK2BQ==
+Date: Thu, 02 May 2024 12:25:52 +0000
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <ofLvyt2nUzIzOye0wyTDlEWxcMd4xU3GqdEfVySaSjs1BUu-XXU6PUa2FU8FInF_dHB9-lP07Yy42TkHr6U9Knl-6eB-alZSfgEFkwK267s=@protonmail.com>
+In-Reply-To: <rg_135JfFMqvTtC5sE6K7yKUL6MJLKmhinWi5RjjNnYPSMfbYjt6Pt9bgzpDhSC-ttGO7BYYZj4YH3y3luA5uROyruafHIjJSIoxmoOfteE=@protonmail.com>
+References: <cdtTV11LZcbycAba6FylJhXzGxw6LtAueUDKuK-fOlL99PmaJFkQwL0fC823Ei3lQb1TL__kVHpUqYvAGDSPq1DqdYVA8MWcNNpZLHaFEGA=@protonmail.com> <rg_135JfFMqvTtC5sE6K7yKUL6MJLKmhinWi5RjjNnYPSMfbYjt6Pt9bgzpDhSC-ttGO7BYYZj4YH3y3luA5uROyruafHIjJSIoxmoOfteE=@protonmail.com>
+Feedback-ID: 47010692:user:proton
+X-Pm-Message-ID: d5fda0d7f9d5a9db4fdf37afc774abfceb690f69
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <cdtTV11LZcbycAba6FylJhXzGxw6LtAueUDKuK-fOlL99PmaJFkQwL0fC823Ei3lQb1TL__kVHpUqYvAGDSPq1DqdYVA8MWcNNpZLHaFEGA=@protonmail.com>
- <rg_135JfFMqvTtC5sE6K7yKUL6MJLKmhinWi5RjjNnYPSMfbYjt6Pt9bgzpDhSC-ttGO7BYYZj4YH3y3luA5uROyruafHIjJSIoxmoOfteE=@protonmail.com>
- <AcczyJwEYkF6JtBjb6tuJZMFv24ablefxF9EMeHtfEHyimk8q58jf1mXvDZKv1w-nXKTGZvmmflaV-qmJGZT1f7Ok3GgbAttgjjujkL24mk=@protonmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <AcczyJwEYkF6JtBjb6tuJZMFv24ablefxF9EMeHtfEHyimk8q58jf1mXvDZKv1w-nXKTGZvmmflaV-qmJGZT1f7Ok3GgbAttgjjujkL24mk=@protonmail.com>
-Message-ID-Hash: 2BDGUSCNR4ATFQMYMGO3WTGR3REKIX2I
-X-Message-ID-Hash: 2BDGUSCNR4ATFQMYMGO3WTGR3REKIX2I
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: 6W2F5GPIM75QTLKFB4OMV6CTFMM3QJBU
+X-Message-ID-Hash: 6W2F5GPIM75QTLKFB4OMV6CTFMM3QJBU
+X-MailFrom: olo1618@protonmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Quick question about tuning USRP B210 for sweep spectrum
+Subject: [USRP-users] Quick question about tuning USRP B210 for sweep spectrum
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2BDGUSCNR4ATFQMYMGO3WTGR3REKIX2I/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6W2F5GPIM75QTLKFB4OMV6CTFMM3QJBU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2450592836281892571=="
+From: Olo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olo <olo1618@protonmail.com>
+Content-Type: multipart/mixed; boundary="===============0440377855397310351=="
 
 This is a multi-part message in MIME format.
---===============2450592836281892571==
+
+--===============0440377855397310351==
 Content-Type: multipart/alternative;
- boundary="------------jgky9lBU0Sm1DKTeKzVV8rsE"
-Content-Language: en-US
+ boundary="b1_dM3B8JiLLh9RgokDsCHYU7GpmysqUPbyDZlJS6N0"
 
 This is a multi-part message in MIME format.
---------------jgky9lBU0Sm1DKTeKzVV8rsE
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
 
-On 02/05/2024 07:38, Olo via USRP-users wrote:
-> Goal is to find the limits. The HackRF for example can do 8GHz per=20
-> second sweep. So lets consider that as example.
-Assuming 20Mhz/tuning (I think HackRF supports a maximum of 20Mhz=20
-bandwidth), that's 2.5msec/tuning.
+--b1_dM3B8JiLLh9RgokDsCHYU7GpmysqUPbyDZlJS6N0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-The X310 with the TwinRX can support 80MHz of bandwidth, and the=20
-synthesizer probably locks in under
- =C2=A0 2msec for 250MHz jump in frequency.
+SSBnb3QgOEdIeiBpbmZvIGZyb206Cmh0dHBzOi8vd3d3LnJ0bC1zZHIuY29tL2hhY2tyZi1zd2Vl
+cC1zcGVjdHJ1bS1hbmFseXplci13aW5kb3dzLwoKSSB3YW50IHRvIGV4cHJlc3MgbXkgZ3JhdGl0
+dWRlIGZvciB5b3VyIHByb21wdCByZXNwb25zZXMgYW5kIGFzc2lzdGFuY2UgdGh1cyBmYXIuIFlv
+dXIgc3VwcG9ydCBoYXMgYmVlbiB2YWx1YWJsZS4KCkhvd2V2ZXIsIEkgaGF2ZSBhIHNwZWNpZmlj
+IHF1ZXJ5IHJlZ2FyZGluZyBvcHRpbWl6aW5nIHBlcmZvcm1hbmNlIGZvciBhIHBhcnRpY3VsYXIg
+Z29hbC4gSW4gdGhlIEdpdEh1YiByZXBvc2l0b3J5IHVuZGVyIHVoZC9ob3N0L2V4YW1wbGVzL3R3
+aW5yeF9mcmVxX2hvcHBpbmcuY3BwLCB5b3UgbWVudGlvbmVkIHRoZSBpbXBvcnRhbmNlIG9mIGRp
+cmVjdGx5IHNldHRpbmcgdGhlIExPIGZyZXF1ZW5jeSBmb3IgYmV0dGVyIHBlcmZvcm1hbmNlLiBB
+ZGRpdGlvbmFsbHksIHlvdSBkZXNjcmliZWQgYSBtZXRob2Qgb2YgYWNjZXNzaW5nIHRoZSBMTyB3
+aGVyZWluIG9uZSBMTyBpcyBzZXQgZm9yIHRyYW5zbWlzc2lvbiB3aGlsZSBhbm90aGVyIG9wZXJh
+dGVzIGZvciByZWNlcHRpb24gc2ltdWx0YW5lb3VzbHkuIElzIHRoaXMgcmVjb21tZW5kZWQgd2F5
+IHRvIG1ha2Ugc3dlZXAgc3BlY3RydW0gKHdpdGggeDMxMCk/CgpJJ20gY3VyaW91cyBpZiB0aGVy
+ZSBhcmUgbW9yZSBzdWNoIHRlY2huaXF1ZXMgb3IgdHJpY2tzIHRvIGFjaGlldmUgb3B0aW1hbCBw
+ZXJmb3JtYW5jZS4KVGhhbmsgeW91IG9uY2UgYWdhaW4gZm9yIHlvdXIgYXR0ZW50aW9uIHRvIHRo
+aXMgbWF0dGVyLgpPbG8KCk9uIFdlZG5lc2RheSwgTWF5IDFzdCwgMjAyNCBhdCAyMDo0MiwgT2xv
+IHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cgo+IFdv
+dWxkIGl0IGJlIHBvc3NpYmxlLCB3aXRoIHRoZSBVU1JQIFgzMTAgd2l0aCBUd2luUlggKG9yIHR3
+byBUd2luUlggdW5pdHMpLCB0byBhY2hpZXZlIHRoZSBtZW50aW9uZWQgZ29hbD8gSWYgc28sIGNv
+dWxkIHlvdSBwbGVhc2UgZXhwbGFpbiB0aGUgYXBwcm9hY2ggdG8gYWNjb21wbGlzaCB0aGlzPyBU
+aGFuayB5b3UuCj4KPiBPbiBUdWVzZGF5LCBBcHJpbCAzMHRoLCAyMDI0IGF0IDk6MjAsIE9sbyA8
+b2xvMTYxOEBwcm90b25tYWlsLmNvbT4gd3JvdGU6Cj4KPj4gSGkgdGhlcmUsCj4+Cj4+IEknbSBV
+U1JQIEIyMTAgZm9yIGEgcHJvamVjdC4gSSdtIHRyeWluZyB0byBtYWtlIGEgc3dlZXAgc3BlY3Ry
+dW0gYW5hbHl6ZXIgdGhhdCBzY2FucyBmcmVxdWVuY2llcyBxdWlja2x5LiBDdXJyZW50bHksIEkn
+bSB0dW5pbmcgZnJlcXVlbmNpZXMgbGlrZSB0aGlzICh3aGljaCBpcyBJIHRoaW5rIHRoZSBtYWlu
+IGlzc3VlKToKPj4KPj4gdHVuZV9yZXF1ZXN0Cj4+Cj4+ID0KPj4KPj4gdWhkLnR5cGVzLgo+Pgo+
+PiBUdW5lUmVxdWVzdAo+Pgo+PiAoCj4+Cj4+IHNlbGYKPj4KPj4gLnN0ZXBzCj4+Cj4+IFsKPj4K
+Pj4gc2VsZgo+Pgo+PiAuaQo+Pgo+PiBdCj4+Cj4+ICwKPj4KPj4gMS4wCj4+Cj4+ICkKPj4KPj4g
+cmVzdWx0Cj4+Cj4+ID0KPj4KPj4gc2VsZgo+Pgo+PiAudXNycF9kZXZpY2UuCj4+Cj4+IHNldF9y
+eF9mcmVxCj4+Cj4+ICgKPj4KPj4gdHVuZV9yZXF1ZXN0Cj4+Cj4+ICwKPj4KPj4gc2VsZgo+Pgo+
+PiAucnhfaW5mby5jaAo+Pgo+PiApCj4+Cj4+IEknbSBwcm9ncmFtbWluZyBpdCBpbiBQeVF0LCBh
+bmQgSSd2ZSBjcmVhdGVkIGEgc3RyZWFtIGxpa2UgdGhpczoKPj4KPj4gc2VsZi5zdHJlYW1fY21k
+X3N0YXJ0ID0gdWhkLnR5cGVzLlN0cmVhbUNNRCh1aGQudHlwZXMuU3RyZWFtTW9kZS5udW1fZG9u
+ZSkKPj4KPj4gLgo+Pgo+PiAoQmVjYXVzZQo+Pgo+PiBJJ3ZlIG5vdGljZWQgdGhhdCBmb3IgYSBj
+b250aW51b3VzIHN0cmVhbSwgaXQgdGFrZXMgZXRlcm5pdHkgdG8gcmV0dW5lLikKPj4KPj4gRG8g
+eW91IGhhdmUgYW55IHRpcHMgb24gaG93IHRvIGRvIHRoaXMgZmFzdGVyPyBBbnkgYWR2aWNlIG9y
+IGNvZGUgZXhhbXBsZXMgd291bGQgYmUgcmVhbGx5IGhlbHBmdWwuCj4+Cj4+IFRoYW5rcyBhIGxv
+dCwKPj4gT2xvLg==
+
+--b1_dM3B8JiLLh9RgokDsCHYU7GpmysqUPbyDZlJS6N0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7Ij48c3Bhbj5JIGdvdCA4R0h6IGluZm8gZnJvbTo8YnI+PGEgdGFyZ2V0PSJfYmxhbmsiIHJl
+bD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIgaHJlZj0iaHR0cHM6Ly93d3cucnRsLXNk
+ci5jb20vaGFja3JmLXN3ZWVwLXNwZWN0cnVtLWFuYWx5emVyLXdpbmRvd3MvIj5odHRwczovL3d3
+dy5ydGwtc2RyLmNvbS9oYWNrcmYtc3dlZXAtc3BlY3RydW0tYW5hbHl6ZXItd2luZG93cy88L2E+
+PC9zcGFuPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2Vy
+aWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48L2Rpdj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3Np
+Z25hdHVyZV9ibG9jayIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9u
+dC1zaXplOiAxNHB4OyI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IiI+PHNwYW4gc3R5bGU9ImRpc3Bs
+YXk6IGlubGluZSAhaW1wb3J0YW50OyBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPkkg
+d2FudCB0byBleHByZXNzIG15IGdyYXRpdHVkZSBmb3IgeW91ciBwcm9tcHQgcmVzcG9uc2VzIGFu
+ZCBhc3Npc3RhbmNlIHRodXMgZmFyLiBZb3VyIHN1cHBvcnQgaGFzIGJlZW4gdmFsdWFibGUuDQo8
+L3NwYW4+PGJyPjxwIHN0eWxlPSJib3JkZXI6IDBweCBzb2xpZCByZ2IoMjI3LCAyMjcsIDIyNyk7
+IGJveC1zaXppbmc6IGJvcmRlci1ib3g7IG1hcmdpbjogMS4yNWVtIDBweDsiPjxzcGFuIHN0eWxl
+PSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1o
+ZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPkhvd2V2ZXIsIEkgaGF2ZSBhIHNwZWNp
+ZmljIHF1ZXJ5IHJlZ2FyZGluZyBvcHRpbWl6aW5nIHBlcmZvcm1hbmNlIGZvciBhIHBhcnRpY3Vs
+YXIgZ29hbC4gSW4gdGhlIEdpdEh1YiByZXBvc2l0b3J5IHVuZGVyIDwvc3Bhbj48Zm9udCBmYWNl
+PSJTw7ZobmUgTW9ubywgTW9uYWNvLCBBbmRhbGUgTW9ubywgVWJ1bnR1IE1vbm8sIG1vbm9zcGFj
+ZSI+PHNwYW4gc3R5bGU9ImJvcmRlci1zdHlsZTogc29saWQ7IGJvcmRlci1jb2xvcjogcmdiKDIy
+NywgMjI3LCAyMjcpOyBib3JkZXItaW1hZ2U6IGluaXRpYWw7IGJveC1zaXppbmc6IGJvcmRlci1i
+b3g7IGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5l
+LWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+PGIgc3R5bGU9ImxpbmUtaGVpZ2h0
+OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij51aGQvaG9zdC9leGFtcGxlcy90d2lucnhfZnJl
+cV9ob3BwaW5nLmNwcDwvYj48L3NwYW4+PC9mb250PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTog
+QXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsg
+Zm9udC13ZWlnaHQ6IDQwMDsiPiwgeW91IG1lbnRpb25lZCB0aGUgaW1wb3J0YW5jZSBvZiBkaXJl
+Y3RseSBzZXR0aW5nIHRoZSBMTyBmcmVxdWVuY3kgZm9yIGJldHRlciBwZXJmb3JtYW5jZS4gQWRk
+aXRpb25hbGx5LCB5b3UgZGVzY3JpYmVkIGEgbWV0aG9kIG9mIGFjY2Vzc2luZyB0aGUgTE8gd2hl
+cmVpbiBvbmUgTE8gaXMgc2V0IGZvciB0cmFuc21pc3Npb24gd2hpbGUgYW5vdGhlciBvcGVyYXRl
+cyBmb3IgcmVjZXB0aW9uIHNpbXVsdGFuZW91c2x5LiZuYnNwOzxzcGFuPklzIHRoaXMgcmVjb21t
+ZW5kZWQ8L3NwYW4+Jm5ic3A7d2F5IHRvIG1ha2Ugc3dlZXAgc3BlY3RydW0gKHdpdGggeDMxMCk/
+Jm5ic3A7PC9zcGFuPjwvcD48cCBzdHlsZT0iYm9yZGVyOiAwcHggc29saWQgcmdiKDIyNywgMjI3
+LCAyMjcpOyBib3gtc2l6aW5nOiBib3JkZXItYm94OyBtYXJnaW46IDEuMjVlbSAwcHg7Ij48c3Bh
+biBzdHlsZT0ibGluZS1oZWlnaHQ6IG5vcm1hbDsiPjxmb250IGZhY2U9IkFyaWFsLCBzYW5zLXNl
+cmlmIj5JJ20gY3VyaW91cyBpZiB0aGVyZSBhcmUgbW9yZSBzdWNoIHRlY2huaXF1ZXMgb3IgdHJp
+Y2tzIHRvIGFjaGlldmUgb3B0aW1hbCBwZXJmb3JtYW5jZS48L2ZvbnQ+PGJyPjxzcGFuIHN0eWxl
+PSJkaXNwbGF5OiBpbmxpbmUgIWltcG9ydGFudDsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNl
+cmlmOyBmb250LXNpemU6IDE0cHg7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5UaGFuayB5b3Ugb25jZSBh
+Z2FpbiBmb3IgeW91ciBhdHRlbnRpb24gdG8gdGhpcyBtYXR0ZXIuPGJyPjwvc3Bhbj48YnI+T2xv
+PC9zcGFuPjwvcD48YnI+PC9kaXY+PGRpdiBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSI+DQogICAg
+ICAgIE9uIFdlZG5lc2RheSwgTWF5IDFzdCwgMjAyNCBhdCAyMDo0MiwgT2xvIHZpYSBVU1JQLXVz
+ZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgd3JvdGU6PGJyPg0KICAgICAg
+ICA8YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSIgdHlwZT0iY2l0ZSI+DQogICAg
+ICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZTogMTRweDsiPjxzcGFuPldvdWxkIGl0IGJlIHBvc3NpYmxlLCB3aXRoIHRoZSBVU1JQIFgz
+MTAgd2l0aCBUd2luUlggKG9yIHR3byBUd2luUlggdW5pdHMpLCB0byBhY2hpZXZlIHRoZSBtZW50
+aW9uZWQgZ29hbD8gSWYgc28sIGNvdWxkIHlvdSBwbGVhc2UgZXhwbGFpbiB0aGUgYXBwcm9hY2gg
+dG8gYWNjb21wbGlzaCB0aGlzPyBUaGFuayB5b3UuPC9zcGFuPjxicj48L2Rpdj4NCjxkaXYgc3R5
+bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PGJy
+PjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1haWxfcXVvdGUiPg0KICAgICAgICBPbiBUdWVzZGF5
+LCBBcHJpbCAzMHRoLCAyMDI0IGF0IDk6MjAsIE9sbyAmbHQ7b2xvMTYxOEBwcm90b25tYWlsLmNv
+bSZndDsgd3JvdGU6PGJyPg0KICAgICAgICA8YmxvY2txdW90ZSB0eXBlPSJjaXRlIiBjbGFzcz0i
+cHJvdG9ubWFpbF9xdW90ZSI+DQogICAgICAgICAgICA8ZGl2IHN0eWxlPSIiPjxwIHN0eWxlPSJi
+b3JkZXI6IDBweCBzb2xpZCByZ2IoMjI3LCAyMjcsIDIyNyk7IGJveC1zaXppbmc6IGJvcmRlci1i
+b3g7IG1hcmdpbjogMS4yNWVtIDBweDsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWws
+IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13
+ZWlnaHQ6IDQwMDsiPkhpIHRoZXJlLDwvc3Bhbj48L3A+PHAgc3R5bGU9ImJvcmRlcjogMHB4IHNv
+bGlkIHJnYigyMjcsIDIyNywgMjI3KTsgYm94LXNpemluZzogYm9yZGVyLWJveDsgbWFyZ2luOiAx
+LjI1ZW0gMHB4OyI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsg
+Zm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+
+SSdtIFVTUlAgQjIxMCBmb3IgYSBwcm9qZWN0LiBJJ20gdHJ5aW5nIHRvIG1ha2UgYSBzd2VlcCBz
+cGVjdHJ1bSBhbmFseXplciB0aGF0IHNjYW5zIGZyZXF1ZW5jaWVzIHF1aWNrbHkuIEN1cnJlbnRs
+eSwgSSdtIHR1bmluZyBmcmVxdWVuY2llcyBsaWtlIHRoaXMgKHdoaWNoIGlzIEkgdGhpbmsgdGhl
+IG1haW4gaXNzdWUpOjwvc3Bhbj48L3A+PGRpdiBzdHlsZT0iIj48cHJlIHN0eWxlPSIiPjxzcGFu
+IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsg
+bGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPnR1bmVfcmVxdWVzdCA8L3Nw
+YW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
+OiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+PSA8L3NwYW4+
+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
+NHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+dWhkLnR5cGVzLjwv
+c3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNp
+emU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5UdW5lUmVx
+dWVzdDwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBm
+b250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij4o
+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPnNlbGY8
+L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1z
+aXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+LnN0ZXBz
+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPls8L3Nw
+YW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
+OiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+c2VsZjwvc3Bh
+bj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
+IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij4uaTwvc3Bhbj48
+c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5dPC9zcGFuPjxzcGFu
+IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsg
+bGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPiwgPC9zcGFuPjxzcGFuIHN0
+eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGlu
+ZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPjEuMDwvc3Bhbj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUt
+aGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij4pPC9zcGFuPjxicj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUt
+aGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5yZXN1bHQgPC9zcGFuPjxzcGFuIHN0
+eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGlu
+ZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPj0gPC9zcGFuPjxzcGFuIHN0eWxl
+PSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1o
+ZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPnNlbGY8L3NwYW4+PHNwYW4gc3R5bGU9
+ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhl
+aWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+LnVzcnBfZGV2aWNlLjwvc3Bhbj48c3Bh
+biBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7
+IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5zZXRfcnhfZnJlcTwvc3Bh
+bj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
+IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij4oPC9zcGFuPjxz
+cGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRw
+eDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPnR1bmVfcmVxdWVzdDwv
+c3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNp
+emU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij4sIDwvc3Bh
+bj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
+IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5zZWxmPC9zcGFu
+PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTog
+MTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPi5yeF9pbmZvLmNo
+PC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogbm9ybWFsOyI+PGZvbnQgZmFjZT0iQXJp
+YWwsIHNhbnMtc2VyaWYiPikNCg0KPC9mb250PjxzcGFuIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUg
+IWltcG9ydGFudDsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5JJ20gcHJvZ3JhbW1pbmcgaXQgaW4gUHlRdCwgYW5kIEkn
+dmUgY3JlYXRlZCBhIHN0cmVhbSBsaWtlIHRoaXM6IDwvc3Bhbj48L3NwYW4+PC9wcmU+PHByZSBz
+dHlsZT0iIj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IG5vcm1hbDsiPjxzcGFuIHN0eWxlPSJi
+b3JkZXItc3R5bGU6IHNvbGlkOyBib3JkZXItY29sb3I6IHJnYigyMjcsIDIyNywgMjI3KTsgYm9y
+ZGVyLWltYWdlOiBpbml0aWFsOyBib3gtc2l6aW5nOiBib3JkZXItYm94OyBmb250LWZhbWlseTog
+QXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgZm9udC13ZWlnaHQ6IDQwMDsiPnNl
+bGYuc3RyZWFtX2NtZF9zdGFydCA9IHVoZC50eXBlcy5TdHJlYW1DTUQodWhkLnR5cGVzLlN0cmVh
+bU1vZGUubnVtX2RvbmUpPC9zcGFuPjxzcGFuIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUgIWltcG9y
+dGFudDsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGZv
+bnQtd2VpZ2h0OiA0MDA7Ij4uIDwvc3Bhbj48L3NwYW4+PC9wcmU+PHByZSBzdHlsZT0iIj48c3Bh
+biBzdHlsZT0ibGluZS1oZWlnaHQ6IG5vcm1hbDsiPjxzcGFuIHN0eWxlPSJkaXNwbGF5OiBpbmxp
+bmUgIWltcG9ydGFudDsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
+IDE0cHg7IGZvbnQtd2VpZ2h0OiA0MDA7Ij4oQmVjYXVzZSA8c3Bhbj5JJ3ZlIG5vdGljZWQgdGhh
+dCBmb3IgYSBjb250aW51b3VzIHN0cmVhbSwgaXQgdGFrZXMgZXRlcm5pdHkgdG8gcmV0dW5lLik8
+L3NwYW4+PC9zcGFuPjwvc3Bhbj48L3ByZT48cHJlIHN0eWxlPSIiPjxzcGFuIHN0eWxlPSJsaW5l
+LWhlaWdodDogbm9ybWFsOyI+PHNwYW4gc3R5bGU9ImRpc3BsYXk6IGlubGluZSAhaW1wb3J0YW50
+OyBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgZm9udC13
+ZWlnaHQ6IDQwMDsiPkRvIHlvdSBoYXZlIGFueSB0aXBzIG9uIGhvdyB0byBkbyB0aGlzIGZhc3Rl
+cj8gQW55IGFkdmljZSBvciBjb2RlIGV4YW1wbGVzIHdvdWxkIGJlIHJlYWxseSBoZWxwZnVsLjwv
+c3Bhbj4NCjwvc3Bhbj48L3ByZT48L2Rpdj48c3BhbiBzdHlsZT0iZGlzcGxheTogaW5saW5lICFp
+bXBvcnRhbnQ7IGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4
+OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+PGRpdiBzdHlsZT0iIj48
+c3BhbiBzdHlsZT0iZGlzcGxheTogaW5saW5lICFpbXBvcnRhbnQ7IGZvbnQtZmFtaWx5OiBBcmlh
+bCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250
+LXdlaWdodDogNDAwOyI+PGJyPjwvc3Bhbj48L2Rpdj5UaGFua3MgYSBsb3QsPGJyPjwvc3Bhbj48
+YnI+T2xvLjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsg
+Zm9udC1zaXplOiAxNHB4OyI+PGJyPjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0
+dXJlX2Jsb2NrIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNp
+emU6IDE0cHg7Ij4NCjwvZGl2Pg0KDQogICAgICAgIDwvYmxvY2txdW90ZT48YnI+DQogICAgPC9k
+aXY+DQogICAgICAgIDwvYmxvY2txdW90ZT48YnI+DQogICAgPC9kaXY+
 
 
-> On Wednesday, May 1st, 2024 at 20:42, Olo via USRP-users=20
-> <usrp-users@lists.ettus.com> wrote:
->> Would it be possible, with the USRP X310 with TwinRX (or two TwinRX=20
->> units), to achieve the mentioned goal? If so, could you please=20
->> explain the approach to accomplish this? Thank you.
->>
->> On Tuesday, April 30th, 2024 at 9:20, Olo <olo1618@protonmail.com> wro=
-te:
->>>
->>> Hi there,
->>>
->>> I'm USRP B210 for a project. I'm trying to make a sweep spectrum=20
->>> analyzer that scans frequencies quickly. Currently, I'm tuning=20
->>> frequencies like this (which is I think the main issue):
->>>
->>> tune_request =3D uhd.types.TuneRequest(self.steps[self.i], 1.0)
->>> result =3D self.usrp_device.set_rx_freq(tune_request, self.rx_info.ch=
-)=20
->>> I'm programming it in PyQt, and I've created a stream like this:
->>> self.stream_cmd_start =3D=20
->>> uhd.types.StreamCMD(uhd.types.StreamMode.num_done).
->>> (Because I've noticed that for a continuous stream, it takes=20
->>> eternity to retune.)
->>> Do you have any tips on how to do this faster? Any advice or code=20
->>> examples would be really helpful.
->>>
->>> Thanks a lot,
->>>
->>> Olo.
->>>
->>
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+--b1_dM3B8JiLLh9RgokDsCHYU7GpmysqUPbyDZlJS6N0--
 
---------------jgky9lBU0Sm1DKTeKzVV8rsE
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 02/05/2024 07:38, Olo via USRP-user=
-s
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:AcczyJwEYkF6JtBjb6tuJZMFv24ablefxF9EMeHtfEHyimk8q58jf1mXvDZKv=
-1w-nXKTGZvmmflaV-qmJGZT1f7Ok3GgbAttgjjujkL24mk=3D@protonmail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div style=3D"font-family: Arial, sans-serif; font-size: 14px;">Goa=
-l
-        is to find the limits. The HackRF for example can do 8GHz per
-        second sweep. So lets consider that as example.</div>
-    </blockquote>
-    Assuming 20Mhz/tuning (I think HackRF supports a maximum of 20Mhz
-    bandwidth), that's 2.5msec/tuning.<br>
-    <br>
-    The X310 with the TwinRX can support 80MHz of bandwidth, and the
-    synthesizer probably locks in under<br>
-    =C2=A0 2msec for 250MHz jump in frequency.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:AcczyJwEYkF6JtBjb6tuJZMFv24ablefxF9EMeHtfEHyimk8q58jf1mXvDZKv=
-1w-nXKTGZvmmflaV-qmJGZT1f7Ok3GgbAttgjjujkL24mk=3D@protonmail.com">
-      <div class=3D"protonmail_quote"> On Wednesday, May 1st, 2024 at
-        20:42, Olo via USRP-users <a class=3D"moz-txt-link-rfc2396E" href=
-=3D"mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;=
-</a>
-        wrote:<br>
-        <blockquote class=3D"protonmail_quote" type=3D"cite">
-          <div style=3D"font-family: Arial, sans-serif; font-size: 14px;"=
-><span>Would
-              it be possible, with the USRP X310 with TwinRX (or two
-              TwinRX units), to achieve the mentioned goal? If so, could
-              you please explain the approach to accomplish this? Thank
-              you.</span><br>
-          </div>
-          <div style=3D"font-family: Arial, sans-serif; font-size: 14px;"=
-><br>
-          </div>
-          <div class=3D"protonmail_quote"> On Tuesday, April 30th, 2024 a=
-t
-            9:20, Olo <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:o=
-lo1618@protonmail.com">&lt;olo1618@protonmail.com&gt;</a> wrote:<br>
-            <blockquote type=3D"cite" class=3D"protonmail_quote">
-              <div style=3D"">
-                <p
-style=3D"border: 0px solid rgb(227, 227, 227); box-sizing: border-box; ma=
-rgin: 1.25em 0px;"><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Hi
-                    there,</span></p>
-                <p
-style=3D"border: 0px solid rgb(227, 227, 227); box-sizing: border-box; ma=
-rgin: 1.25em 0px;"><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">I'm
-                    USRP B210 for a project. I'm trying to make a sweep
-                    spectrum analyzer that scans frequencies quickly.
-                    Currently, I'm tuning frequencies like this (which
-                    is I think the main issue):</span></p>
-                <div style=3D"">
-                  <pre style=3D""><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">tune_request </span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">=3D </span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">uhd.types.</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">TuneRequest</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">(</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">self</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">.steps</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">[</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">self</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">.i</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">]</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">, </span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">1.0</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">)</span>
-<span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">result </span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">=3D </span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">self</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">.usrp_device.</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">set_rx_freq</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">(</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">tune_request</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">, </span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">self</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">.rx_info.ch</span><span
-                  style=3D"line-height: normal;"><font
-                  face=3D"Arial, sans-serif">)
-
-</font><span
-style=3D"display: inline !important; font-family: Arial, sans-serif; font=
--size: 14px; font-weight: 400;">I'm programming it in PyQt, and I've crea=
-ted a stream like this: </span></span></pre>
-                  <pre style=3D""><span style=3D"line-height: normal;"><s=
-pan
-style=3D"border-style: solid; border-color: rgb(227, 227, 227); border-im=
-age: initial; box-sizing: border-box; font-family: Arial, sans-serif; fon=
-t-size: 14px; font-weight: 400;">self.stream_cmd_start =3D uhd.types.Stre=
-amCMD(uhd.types.StreamMode.num_done)</span><span
-style=3D"display: inline !important; font-family: Arial, sans-serif; font=
--size: 14px; font-weight: 400;">. </span></span></pre>
-                  <pre style=3D""><span style=3D"line-height: normal;"><s=
-pan
-style=3D"display: inline !important; font-family: Arial, sans-serif; font=
--size: 14px; font-weight: 400;">(Because <span>I've noticed that for a co=
-ntinuous stream, it takes eternity to retune.)</span></span></span></pre>
-                  <pre style=3D""><span style=3D"line-height: normal;"><s=
-pan
-style=3D"display: inline !important; font-family: Arial, sans-serif; font=
--size: 14px; font-weight: 400;">Do you have any tips on how to do this fa=
-ster? Any advice or code examples would be really helpful.</span>
-</span></pre>
-                </div>
-                <span
-style=3D"display: inline !important; font-family: Arial, sans-serif; font=
--size: 14px; line-height: normal; font-weight: 400;">
-                  <div style=3D""><span
-style=3D"display: inline !important; font-family: Arial, sans-serif; font=
--size: 14px; line-height: normal; font-weight: 400;"><br>
-                    </span></div>
-                  Thanks a lot,<br>
-                </span><br>
-                Olo.</div>
-              <div
-                style=3D"font-family: Arial, sans-serif; font-size: 14px;=
-"><br>
-              </div>
-              <div class=3D"protonmail_signature_block"
-                style=3D"font-family: Arial, sans-serif; font-size: 14px;=
-">
-              </div>
-            </blockquote>
-            <br>
-          </div>
-        </blockquote>
-        <br>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------jgky9lBU0Sm1DKTeKzVV8rsE--
-
---===============2450592836281892571==
+--===============0440377855397310351==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -349,4 +278,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2450592836281892571==--
+--===============0440377855397310351==--
