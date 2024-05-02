@@ -2,593 +2,418 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EDFB8B9B68
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 15:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15FA68B9B9C
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 15:27:06 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F0FF53852E7
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 09:15:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 534A638579A
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2024 09:27:05 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1714655733; bh=bQOpz3cnUWtcX7qtiWh1S/t2yS3+6FMYcjGaoJdjP8U=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=NUFEV12Poh5ksm1tgHKdbGZEKMXBNFpkRPkTnisukqt5x8zACmfj1mYRC/Bxz/Kss
-	 LMyPxI1bSL60PCrPX+woQ1g24SBMV0fjvOg39+Wnqq7ox5T+x9jRLzj0VgJs46YnHg
-	 4owDVeQaFeAO/wLKsT+47/Mm/m9qv3N5v2PTxRz9D1qQ4g7Og+0KHPMuNHz7ILNsJl
-	 UJL7GevA5PlBsKCyh7k31BkWlgB3qg59vTCVxx5b5f6L3w8sncLqOmfw1Q9EbyjeAh
-	 Th3+TZgnE9psAPGEcpesgnDzPxsmXTWGoLVSC34gd7LWjPOSYObKMCsbWnPHzFZBOX
-	 aJJeuVZcuz2XQ==
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 680FB3852B1
-	for <usrp-users@lists.ettus.com>; Thu,  2 May 2024 09:14:55 -0400 (EDT)
+	t=1714656425; bh=vc8QvWatxzBA10jsnmwRU01gcWNZPshXSZemo/KEkGU=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=DG5/zjsqlStV1QDzuMkwD5xjCNN/mPmou94rpAgGHInpPWIkBfD9lJVwB3Zzrv9ri
+	 K28/ffHfL5Trrb6M7FFBWkJnURM0PEw/kFIduqwG9hxneMyQN28ZuqzjOtRVu29vh/
+	 3QS/54bTYPP+qbs4D183mQbSEBzdghZjvnUKmfsRCGkxe4r3QzIiJHkMEIkKPWqQLp
+	 p+aajLlrYKSWCONpPJT8ijeLjAug9aQU4/fYBnbxwYUHYr/0eb+pllI5UqhN59i+Tm
+	 6qfS9KJHLb9JfjpF+/vnDBHCJzuyE1+qOHUGGQcapmC+IJd8mspd1QCQQ88ijhhs9d
+	 xGWmNkNYQKkjw==
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 52A0C3856DB
+	for <usrp-users@lists.ettus.com>; Thu,  2 May 2024 09:26:29 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Ij8Y3Ccb";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fFHJyjSn";
 	dkim-atps=neutral
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-572baf393ddso1583351a12.1
-        for <usrp-users@lists.ettus.com>; Thu, 02 May 2024 06:14:55 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a58fc650f8fso574197066b.1
+        for <usrp-users@lists.ettus.com>; Thu, 02 May 2024 06:26:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1714655694; x=1715260494; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1714656388; x=1715261188; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ou2M3i8rgaVdMaVlgW2C0IOPrWLt977jcbytGU/TfsU=;
-        b=Ij8Y3CcbylMIaOZHyfhX3Oj3OHE/EkdQCOiR+uyU7m9OkXgx1wF4t0FYnpjO2/uKP+
-         Bf3jFR9dNMHgms0y0Cyi41pd3rtksx/UC7SE5o1cviUHU43p0PpEXFsUqZaIWdGn8r7s
-         oBMcswfcuaOTgAxbbkJ+ldoTW4ikebyCC0rb9oCBZ8L1mnT0XGeb0cIkGMQlsiUGgw/n
-         ZXA1rR0suHxA2DKvwCkcFDucvrpgxh8H0D1xqQ+TcZrTNbo2qkKtVKEFluerFUWdEeBM
-         ma/2ESn4lRabKZf5rsgErQzm44Sm+rFwPDip09nV9rVclzExKs75ZuJQqjUFpyEyagDs
-         Z5Lg==
+        bh=p/5YV5szy4DzaKHQK+d/tjMZL25MVckOwhHAiI+LOBg=;
+        b=fFHJyjSn98Z9WftEb70efvad8+/gZFKMcR24sV/UID3Otyhwn3SUbcGGU8s+3h780r
+         q+kkHxuwkTEggES663KU/gJ5C5bHL36inRBCvqsTeu6ph3PUT8+jAHnO2tHghMIvngJ2
+         ADFXzqiJjraH89Nte/fuucxrji9CN4VMeF9zalWlpoRSedDZi1zCFtzCI4JWL9LkCt1r
+         yqL8k2jq0zD2w1XesC2kXacW60iRY3PRqO58z8Bvi8ximtIlhqW2YKy2Lu92nPiL3LB+
+         UZe8vuiP2Fkb/ukVdTomtSOuklpU+oDPPnGB5bNvIJ/oAb4L/bj+KStB1lczrEyfwqrM
+         cMrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714655694; x=1715260494;
+        d=1e100.net; s=20230601; t=1714656388; x=1715261188;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ou2M3i8rgaVdMaVlgW2C0IOPrWLt977jcbytGU/TfsU=;
-        b=ipCvKSZyLeg+zeLWpxRGXOX/1qgdHZHmoar5OmOuqwkCyklmWTctGXjFBg526v2XYr
-         xGHaHmDwXCl8PdWJpaNQ6C5MlGsguhl2zGt0BSSDhFOiILpkA8Z8w0SW+ABZhfESVrbN
-         DBeSLgVMl1pS2moiCtvwXJnzjxY/2jT9C/Nutb96Xd8RPhye2oQ3IHsivo07AMWBKHo1
-         T7+1TmtBeqrkurQbVE3m9yGw5ShFxwuOVSXb+LRQ0j7wEBBxB6VDAoxp9hzL8X9Y7Cv4
-         bU+b48vlTf3kGYeRfC8es9hEwiVlx3TiZisVQhPhluegV4mqDYQvNSbVjRf9xtx8TA+V
-         Csvg==
-X-Forwarded-Encrypted: i=1; AJvYcCWND5DgJWuUfDfgyh3nUkQZ5u5JgSEzbD7rvSl6dJoefJqWim3M4VxVqANtkIUYC71JmgPYIKQFcS8flqAiVlsuvjH4WgSuiNFriw==
-X-Gm-Message-State: AOJu0YxqFbOQxnXbkDar7KVSrzUDyjKQyEQptVN3PDCdKsMG91SFtbw3
-	TTE7Kw7i1xN5sl8SKuWwT8X//r4ImyxXTC6qq5nAHoDwuo8x/Q7fUjobXyuq7/0WbG+rYha9OBu
-	l9UuipkR9WbxaFAY5uzosvUXrDi8cz/biudC+
-X-Google-Smtp-Source: AGHT+IGYCMJ0uuQRugY7jQfuKEyTy4WWjHOYaPnN2OW1HlfIXv+ilh/q2T+4LnBjwCYxCtZn7af9PBGCWUC2eN3Z2CI=
-X-Received: by 2002:a50:9f69:0:b0:56e:1dda:5c2a with SMTP id
- b96-20020a509f69000000b0056e1dda5c2amr2005222edf.16.1714655694076; Thu, 02
- May 2024 06:14:54 -0700 (PDT)
+        bh=p/5YV5szy4DzaKHQK+d/tjMZL25MVckOwhHAiI+LOBg=;
+        b=JBpHDKcorW7Wwyvc/JlfCuQMZe+OtI3xUEXw9pUTvccRFTA0nBL7gXohyhMB0nPK6u
+         IrFUY3dhJVK0ZJwCByG7G6ZPkS0D9ThuHsBUHvp47fskQWaTYRPOk28ZcT411l9n1McN
+         /fhqiM1hsLYFzqfqGwklOkY6QafjcuflqjfNVJT5Jjaz1qUb4phHnOqgD+A0EwGJHhVu
+         Jl9KcrelkBxI9FTtOh1bUoLM9bmIvJ38xpWAe8tw1qainUpTz1MHreNJ1nH7voywKqC/
+         nCTzQ/b9LkZNQ4QQB81G4Xe+RVnLx9774w13SGyCxnuuMstiPUdzmu5OgxEZymO7i4uk
+         Mt6A==
+X-Gm-Message-State: AOJu0YzbHiaZRpKjNkYHscyNHEXfGoRLpj5tTQlGORkTkuw+KIqPSC/d
+	wk0It1H/co1PGLjZLJ/zmCTAqGljj5wx80ukpe2JYr881VkOttExINiqQ4WpahNs2TwjQ6NtnMz
+	IaERSClAV1zZBgNFpj66C587qglUljQ==
+X-Google-Smtp-Source: AGHT+IHzh+4f6rCu48CyAItDbaOBPP8ceJRYcPFEOg0ynu4pcOw3jirs7nPhiyp+kWm+GNka9BUlE5KI18s083ePkh4=
+X-Received: by 2002:a17:906:19ca:b0:a58:871f:8eb0 with SMTP id
+ h10-20020a17090619ca00b00a58871f8eb0mr4038767ejd.7.1714656387400; Thu, 02 May
+ 2024 06:26:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAB__hTRpzWoOC2n5NkSCkTbQeQxcz6XBv2ZFc_B1f_xKH+0ZoQ@mail.gmail.com>
- <A274BA7F-FCBD-489E-8251-D1265CB2E3D5@gmail.com> <2081932982.3351179.1714636885969@mail.yahoo.com>
-In-Reply-To: <2081932982.3351179.1714636885969@mail.yahoo.com>
-Date: Thu, 2 May 2024 09:14:42 -0400
-Message-ID: <CAB__hTRhN8ug8Mo2ErdAnqBg1SHsp8tQO9zXcSDx0wkcO98=xg@mail.gmail.com>
-To: zhou <hwzhou@yahoo.com>
-Message-ID-Hash: RPBTTIK533L25MSUVXEVSTHTMBL3YHG7
-X-Message-ID-Hash: RPBTTIK533L25MSUVXEVSTHTMBL3YHG7
-X-MailFrom: rkossler@nd.edu
+References: <cdtTV11LZcbycAba6FylJhXzGxw6LtAueUDKuK-fOlL99PmaJFkQwL0fC823Ei3lQb1TL__kVHpUqYvAGDSPq1DqdYVA8MWcNNpZLHaFEGA=@protonmail.com>
+ <rg_135JfFMqvTtC5sE6K7yKUL6MJLKmhinWi5RjjNnYPSMfbYjt6Pt9bgzpDhSC-ttGO7BYYZj4YH3y3luA5uROyruafHIjJSIoxmoOfteE=@protonmail.com>
+ <ofLvyt2nUzIzOye0wyTDlEWxcMd4xU3GqdEfVySaSjs1BUu-XXU6PUa2FU8FInF_dHB9-lP07Yy42TkHr6U9Knl-6eB-alZSfgEFkwK267s=@protonmail.com>
+ <a1e07aa1-99fe-4a58-b9e8-3dd4a7395804@gmail.com>
+In-Reply-To: <a1e07aa1-99fe-4a58-b9e8-3dd4a7395804@gmail.com>
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Thu, 2 May 2024 09:26:15 -0400
+Message-ID: <CAEXYVK7YFtjRRXU9HOkBrn1PePENoRBSqZh3z2K2Me-02+Qkxw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: 3XFUOMGI5RGHMZEKGTPPFJYVWADXQIWF
+X-Message-ID-Hash: 3XFUOMGI5RGHMZEKGTPPFJYVWADXQIWF
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Marcus D Leech <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Freq synchronization between two X310s
+Subject: [USRP-users] Re: Quick question about tuning USRP B210 for sweep spectrum
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RPBTTIK533L25MSUVXEVSTHTMBL3YHG7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3XFUOMGI5RGHMZEKGTPPFJYVWADXQIWF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============2050297893833258000=="
+Content-Type: multipart/mixed; boundary="===============3337804209497601522=="
 
---===============2050297893833258000==
-Content-Type: multipart/alternative; boundary="0000000000008f44b306177863f3"
+--===============3337804209497601522==
+Content-Type: multipart/alternative; boundary="000000000000e20cb10617788c19"
 
---0000000000008f44b306177863f3
+--000000000000e20cb10617788c19
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hongwei,
-In addition to the PLL that tracks the external 10MHz ref to produce the
-internal 10 MHz ref, there are the four PLLs that track the internal 10 MHz
-ref to produce the four LO signals (2Tx/2Rx) as you mentioned.  But, the
-phase variation from the LO PLLs is much less - I don't really know
-the reason for this. This is why you see less noisy results for the cases
-where the transmit and receive channels are on one device.
+Something to note regarding the TwinRX is that changing frequency on one
+channel has an effect on the other channel of the same card.  I ran into
+this a few years ago and never found a resolution.
 
-However, even in the one device case, if you compare the phase stability of
-a system with "shared LO" such as can be implemented with X310/TwinRx,
-N310, or N321 systems, you will see that the relative phase is
-significantly less noisy on these devices as compared to the X310/UBX
-one-device results ("stable" results) in your case.
-Rob
+My goal was to sweep with one channel and stare with the other.  The
+staring channel had too many artifacts from the sweeping channel to be
+useful for my application.
 
-On Thu, May 2, 2024 at 4:01=E2=80=AFAM zhou <hwzhou@yahoo.com> wrote:
+Also, the TwinRX is pretty flat for around 80 MHz of BW.
 
-> Thanks, Rob and Marcus.
+Brian
+
+On Thu, May 2, 2024 at 8:41=E2=80=AFAM Marcus D. Leech <patchvonbraun@gmail=
+.com>
+wrote:
+
+> On 02/05/2024 08:25, Olo via USRP-users wrote:
 >
-> A single tone is repeatedly transmitted to make a continuous stream out o=
-f
-> the Tx antenna. It is periodically sampled in Rx; the interval is about 1=
-s.
-> The sample time is aligned with the beginning of the transmitted signal t=
-o
-> make sure we sample at the same time across antennas. We calculate the
-> angle of the first complex sample of capture to evaluate the signal phase=
-.
+> I got 8GHz info from:
+> https://www.rtl-sdr.com/hackrf-sweep-spectrum-analyzer-windows/
 >
-> I agree with you that there can be some phase wobble between the 10M ref
-> signals applied to PLLs in two devices because of temperature or other
-> random factors, however, inside a USRP, there are four independent PLLs f=
-or
-> 2 Tx and 2 Rx. The 10M ref signals to them should also be wobbling. But m=
-y
-> measurements show that within the same USRP, phase is pretty stable betwe=
-en
-> Tx and Rx. Any explanation on this?
+> I want to express my gratitude for your prompt responses and assistance
+> thus far. Your support has been valuable.
 >
-> Kind regards.
-> Hongwei
+> However, I have a specific query regarding optimizing performance for a
+> particular goal. In the GitHub repository under
+> *uhd/host/examples/twinrx_freq_hopping.cpp*, you mentioned the importance
+> of directly setting the LO frequency for better performance. Additionally=
+,
+> you described a method of accessing the LO wherein one LO is set for
+> transmission while another operates for reception simultaneously. Is this
+> recommended way to make sweep spectrum (with x310)?
+>
+> I didn't write twinrx_freq_hopping.cpp, and furthermore, it has no
+> transmit capability at all.
+>
+> I'm curious if there are more such techniques or tricks to achieve optima=
+l
+> performance.
+> Thank you once again for your attention to this matter.
+>
+> Given that the X310 supports 2 TwinRX cards, that could give you up to
+> 200MHz of instantaneous bandwidth if each channel
+>   (2 channels per TwinRX) is delivering 50Mhz of bandwidth.  With
+> 5msec/hop (as shown in twinrx_freq_hopping), that's
+>   40GHz/second.
 >
 >
-> On Wednesday, 1 May 2024 at 20:34:15 BST, Marcus D Leech <
-> patchvonbraun@gmail.com> wrote:
 >
+> Olo
 >
-> It=E2=80=99s also why you can=E2=80=99t get tight instantaneous phase ali=
-gnment between
-> two GPSDO devices even when on the same antenna.
+> On Wednesday, May 1st, 2024 at 20:42, Olo via USRP-users
+> <usrp-users@lists.ettus.com> <usrp-users@lists.ettus.com> wrote:
 >
-> Sent from my iPhone
->
-> On May 1, 2024, at 2:12 PM, Rob Kossler <rkossler@nd.edu> wrote:
->
-> =EF=BB=BF
-> The 10 MHz ref supplied to each X310 device is used in a PLL in each
-> device to obtain the 10MHz ref used for that device (and for disciplining
-> the various LOs on the device). Thus, there is a relative phase "wobble"
-> between the 10MHz ref signals used on each device as each PLL continuousl=
-y
-> adjusts to maintain disciplined output.  Over time, this averages out to
-> zero. But, instantaneously, it is not. So, my question is: how
-> instantaneous is your phase measurement?  If you instead calculate a phas=
+> Would it be possible, with the USRP X310 with TwinRX (or two TwinRX
+> units), to achieve the mentioned goal? If so, could you please explain th=
 e
-> averaged over numerous samples, can you get a consistent result? From you=
-r
-> plot, it looks like this is true.
-> Rob
+> approach to accomplish this? Thank you.
 >
-> On Wed, May 1, 2024 at 11:04=E2=80=AFAM zhou via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
+> On Tuesday, April 30th, 2024 at 9:20, Olo <olo1618@protonmail.com>
+> <olo1618@protonmail.com> wrote:
 >
+> Hi there,
 >
->
-> On Wednesday, 1 May 2024 at 15:15:12 BST, Marcus D. Leech <
-> patchvonbraun@gmail.com> wrote:
->
->
-> On 01/05/2024 10:11, zhou via USRP-users wrote:
->
-> Hi Marcus,
->
-> Thanks for your response.
->
-> "Are you setting up clocking identically for both USRPs?   That is settin=
-g
-> the reference clock to "external" and the 1PPS source to "external" on bo=
-th
-> devices?   Are you using a single multi_usrp object for all RX channels?"
->
-> Yes, I use multi_usrp multi_usrp::make(
-> 'addr0=3D192.168.12.2,second_addr0=3D192.168.13.2,addr1=3D192.168.14.2,se=
-cond_addr1=3D192.168.15.2,master_clock_rate=3D184.32e6'
-> )
->
-> "external" set for both ref and pps:
-> usrp->set_clock_source("external")
-> usrp->set_time_source("external")
-> I think this should automatically set both devices.
->
-> "What type of daughtercards are in your X310?"
-> UBX
->
-> Kind regards.
->
-> And, to clarify, this is an Octoclock-G, and not a plain Octoclock ?
->
-> It is OctoClock GPSDO, and Internal is used.
->
->
->
->
-> On Wednesday, 1 May 2024 at 14:19:44 BST, Marcus D. Leech
-> <patchvonbraun@gmail.com> <patchvonbraun@gmail.com> wrote:
->
->
-> On 01/05/2024 08:25, zhou via USRP-users wrote:
->
-> Hi All,
->
-> I am trying to use 4Rx and 4Tx antennas from two X310 USRPs. I hope the
-> received signals have stable phase relationship but they don't seem to be=
-.
-> I am wondering why and how to fix it.
->
-> I measured the phase using the connection as below:
-> [image: Inline image]
-> cos(t)+i*sin(t) signal is split into and received on four Rx antennas. Tw=
-o
-> X310s are connected to the same OctoClock for 10MHz Ref and PPS. Tx and R=
-x
-> commands are all timed. The measurement results are as below:
->
->
-> The Tx signal is continuous during test. I measured phase every second fo=
-r
-> 20 sec. In the 2nd USRP, the phases are stable on both antennas while it =
+> I'm USRP B210 for a project. I'm trying to make a sweep spectrum analyzer
+> that scans frequencies quickly. Currently, I'm tuning frequencies like th=
 is
-> not in the 1st. If I change the Tx signal to the 1st USRP, then the resul=
-ts
-> swap - phases become stable in the 1st USRP and unstable in the 2nd.
+> (which is I think the main issue):
 >
-> My first though was that there might be small CFO between USRPs even
-> though both are connected to the OctoClock, but CFO should have caused
-> linear change. Here, the phase offset is not linear and kind of random
-> within 20 second measurement.
+> tune_request =3D uhd.types.TuneRequest(self.steps[self.i], 1.0)result =3D=
+ self.usrp_device.set_rx_freq(tune_request, self.rx_info.ch)
+> I'm programming it in PyQt, and I've created a stream like this:
 >
-> What can be the reason? Any suggestion will be appreciated.
+> self.stream_cmd_start =3D uhd.types.StreamCMD(uhd.types.StreamMode.num_do=
+ne).
 >
-> Kind regards,
-> H.
-> Are you setting up clocking identically for both USRPs?   That is setting
-> the reference clock to "external" and the 1PPS source to "external" on bo=
-th
-> devices?   Are you using a single multi_usrp object for all RX channels?
+> (Because I've noticed that for a continuous stream, it takes eternity to =
+retune.)
 >
-> What type of daughtercards are in your X310?
+> Do you have any tips on how to do this faster? Any advice or code example=
+s would be really helpful.
 >
 >
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> Thanks a lot,
 >
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> Olo.
+>
+>
 >
 >
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 >
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---0000000000008f44b306177863f3
+--000000000000e20cb10617788c19
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hongwei,</div><div>In addition to the PLL that tracks=
- the external 10MHz ref to produce the internal 10 MHz ref, there are the f=
-our PLLs that track the internal 10 MHz ref to produce the four LO signals =
-(2Tx/2Rx) as you mentioned.=C2=A0 But, the phase variation from the LO PLLs=
- is much less - I don&#39;t really know the=C2=A0reason for this. This is w=
-hy you see less noisy results for the cases where the transmit and receive =
-channels are on one device.=C2=A0</div><div><br></div><div>However, even in=
- the one device case, if you compare the phase stability of a system with &=
-quot;shared LO&quot; such as can be implemented with X310/TwinRx, N310, or =
-N321 systems, you will see that the relative phase is significantly less no=
-isy on these devices as compared to the X310/UBX one-device results (&quot;=
-stable&quot; results) in your case.</div><div>Rob</div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 2, 2024 at 4:0=
-1=E2=80=AFAM zhou &lt;<a href=3D"mailto:hwzhou@yahoo.com">hwzhou@yahoo.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sa=
-ns-serif;font-size:13px"><div></div>
-        <div dir=3D"ltr">Thanks, Rob and Marcus.</div><div dir=3D"ltr"><br>=
-</div><div dir=3D"ltr">A single tone is repeatedly transmitted to make a co=
-ntinuous stream out of the Tx antenna. It is periodically sampled in Rx; th=
-e interval is about 1s. The sample time is aligned with the beginning of th=
-e transmitted signal to make sure we sample at the same time across antenna=
-s. We calculate the angle of the first complex sample of capture to evaluat=
-e the signal phase.=C2=A0</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">=
-I agree with you that there can be some phase wobble between the 10M ref si=
-gnals applied to PLLs in two devices because of temperature or other random=
- factors, however, inside a USRP, there are four independent PLLs for 2 Tx =
-and 2 Rx. The 10M ref signals to them should also be wobbling. But my measu=
-rements show that within the same USRP, phase is pretty stable between Tx a=
-nd Rx. Any explanation on this?=C2=A0</div><div dir=3D"ltr"><br></div><div =
-dir=3D"ltr">Kind regards.</div><div dir=3D"ltr">Hongwei</div><div dir=3D"lt=
-r"><br></div><div><br></div>
-       =20
-        </div><div id=3D"m_6553024948920657376ydp10566da0yahoo_quoted_50520=
-93146">
-            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
-Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
-               =20
-                <div>
-                        On Wednesday, 1 May 2024 at 20:34:15 BST, Marcus D =
-Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patc=
-hvonbraun@gmail.com</a>&gt; wrote:
-                    </div>
-                    <div><br></div>
-                    <div><br></div>
-               =20
-               =20
-                <div><div id=3D"m_6553024948920657376ydp10566da0yiv87560728=
-13"><div>It=E2=80=99s also why you can=E2=80=99t get tight instantaneous ph=
-ase alignment between two GPSDO devices even when on the same antenna.=C2=
-=A0<br clear=3D"none"><br clear=3D"none"><div dir=3D"ltr">Sent from my iPho=
-ne</div><div dir=3D"ltr"><div id=3D"m_6553024948920657376ydp10566da0yiv8756=
-072813yqtfd74024"><br clear=3D"none"><blockquote type=3D"cite">On May 1, 20=
-24, at 2:12 PM, Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=
-=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br clear=3D"none"><br clear=3D"n=
-one"></blockquote></div></div><div id=3D"m_6553024948920657376ydp10566da0yi=
-v8756072813yqtfd96757"><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF=
-<div dir=3D"ltr"><div>The 10 MHz ref supplied to each X310 device is used i=
-n a PLL in each device to obtain the 10MHz ref used for that device (and fo=
-r disciplining the various LOs on the device). Thus, there is a relative ph=
-ase &quot;wobble&quot; between the 10MHz ref signals used on each device as=
- each PLL continuously adjusts to maintain disciplined output.=C2=A0 Over t=
-ime, this averages out to zero. But, instantaneously, it is not. So, my que=
-stion is: how instantaneous is your phase measurement?=C2=A0 If you instead=
- calculate a phase averaged over numerous samples, can you get a consistent=
- result? From your plot, it looks like this is true.<br clear=3D"none"></di=
-v><div>Rob<br clear=3D"none"></div><br clear=3D"none"><div><div dir=3D"ltr"=
->On Wed, May 1, 2024 at 11:04=E2=80=AFAM zhou via USRP-users &lt;<a shape=
-=3D"rect" href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"nofollow" targe=
-t=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br clear=3D"none"></=
-div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb=
-(204,204,204);padding-left:1ex"><div><div style=3D"font-family:&quot;Helvet=
-ica Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px"><div></div>
-        <div><br clear=3D"none"></div><div><br clear=3D"none"></div>
-       =20
-        </div><div id=3D"m_6553024948920657376ydp10566da0yiv8756072813m_-36=
-50333112459443087ydpc994c9a6yahoo_quoted_5461441577">
-            <div style=3D"font-family:Helvetica,Arial,sans-serif;font-size:=
-13px;color:rgb(38,40,42)">
-               =20
-                <div>
-                        On Wednesday, 1 May 2024 at 15:15:12 BST, Marcus D.=
- Leech &lt;<a shape=3D"rect" href=3D"mailto:patchvonbraun@gmail.com" rel=3D=
-"nofollow" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:
-                    </div>
-                    <div><br clear=3D"none"></div>
-                    <div><br clear=3D"none"></div>
-               =20
-               =20
-                <div><div id=3D"m_6553024948920657376ydp10566da0yiv87560728=
-13m_-3650333112459443087ydpc994c9a6yiv4349751442"><div>
-    <div>On 01/05/2024 10:11, zhou via
-      USRP-users wrote:<br clear=3D"none">
+<div dir=3D"ltr">Something to note regarding the TwinRX is that changing fr=
+equency on one channel has an effect on the other channel of the same card.=
+=C2=A0 I ran into this a few years ago and never found a resolution.<div><b=
+r></div><div>My goal was to sweep with one channel and stare with the other=
+.=C2=A0 The staring channel had too many artifacts from the sweeping channe=
+l to=C2=A0be useful for my application.</div><div><br></div><div>Also, the=
+=C2=A0TwinRX is pretty flat for around 80 MHz of BW.</div><div><br></div><d=
+iv>Brian</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, May 2, 2024 at 8:41=E2=80=AFAM Marcus D. Leech &lt;=
+<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><u></u>
+
+ =20
+   =20
+ =20
+  <div>
+    <div>On 02/05/2024 08:25, Olo via USRP-users
+      wrote:<br>
     </div>
     <blockquote type=3D"cite">
-      </blockquote></div><div><div style=3D"font-family:&quot;Helvetica Neu=
-e&quot;,Helvetica,Arial,sans-serif;font-size:13px">
-        <div dir=3D"ltr">Hi Marcus,</div>
-        <div dir=3D"ltr"><br clear=3D"none">
-        </div>
-        <div dir=3D"ltr">Thanks for your response.</div>
-        <div dir=3D"ltr"><br clear=3D"none">
-        </div>
-        <div dir=3D"ltr">
-          <div><span style=3D"color:rgb(38,40,42);font-family:&quot;Helveti=
-ca Neue&quot;,Helvetica,Arial,sans-serif">&quot;Are
-              you setting up clocking identically for both USRPs?=C2=A0=C2=
-=A0 That
-              is setting the reference clock to &quot;external&quot; and th=
-e 1PPS
-              source to &quot;external&quot; on both devices?=C2=A0=C2=A0 A=
-re you using a
-              single multi_usrp object for all RX channels?&quot;</span></d=
-iv>
-          <div><br clear=3D"none">
-          </div>
-          <div dir=3D"ltr">Yes, I use multi_usrp
-            multi_usrp::make(<span>&#39;addr0=3D192.168.12.2,second_addr0=
-=3D192.168.13.2,addr1=3D192.168.14.2,second_addr1=3D192.168.15.2,master_clo=
-ck_rate=3D184.32e6&#39;</span>)<br clear=3D"none" style=3D"color:rgb(38,40,=
-42);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif">
-            =C2=A0<br clear=3D"none">
-            <span><span style=3D"color:rgb(0,0,0);font-family:&quot;Helveti=
-ca Neue&quot;,Helvetica,Arial,sans-serif">&quot;external&quot;
-                set for both ref and pps:</span></span></div>
-          <div dir=3D"ltr"><span>usrp-&gt;set_clock_source(&quot;external&q=
-uot;)</span></div>
-          <div dir=3D"ltr"><span>usrp-&gt;set_time_source(<span><span style=
-=3D"color:rgb(0,0,0);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial=
-,sans-serif">&quot;external&quot;)</span></span></span><br clear=3D"none">
-            I think this should automatically set both devices.<br clear=3D=
-"none">
-            <br clear=3D"none" style=3D"color:rgb(38,40,42);font-family:&qu=
-ot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif">
-            <span style=3D"color:rgb(38,40,42);font-family:&quot;Helvetica =
-Neue&quot;,Helvetica,Arial,sans-serif">&quot;What
-              type of daughtercards are in your X310?&quot;</span><br clear=
-=3D"none" style=3D"color:rgb(38,40,42);font-family:&quot;Helvetica Neue&quo=
-t;,Helvetica,Arial,sans-serif">
-          </div>
-          UBX</div>
-        <div dir=3D"ltr"><br clear=3D"none">
-        </div>
-        <div dir=3D"ltr">Kind regards.</div>
-        <div dir=3D"ltr"><br clear=3D"none">
-        </div>
+     =20
+      <div style=3D"font-family:Arial,sans-serif;font-size:14px"><span>I
+          got 8GHz info from:<br>
+          <a rel=3D"noreferrer nofollow noopener" href=3D"https://www.rtl-s=
+dr.com/hackrf-sweep-spectrum-analyzer-windows/" target=3D"_blank">https://w=
+ww.rtl-sdr.com/hackrf-sweep-spectrum-analyzer-windows/</a></span><br>
       </div>
-   =20
-    And, to clarify, this is an Octoclock-G, and not a plain Octoclock ?<di=
-v dir=3D"ltr" id=3D"m_6553024948920657376ydp10566da0yiv8756072813m_-3650333=
-112459443087ydpc994c9a6yiv4349751442yqtfd85029"><br clear=3D"none"></div><d=
-iv dir=3D"ltr" id=3D"m_6553024948920657376ydp10566da0yiv8756072813m_-365033=
-3112459443087ydpc994c9a6yiv4349751442yqtfd85029">It is OctoClock GPSDO, and=
- Internal is used.=C2=A0<br clear=3D"none">
-    <br clear=3D"none">
-    <br clear=3D"none">
+      <div style=3D"font-family:Arial,sans-serif;font-size:14px"><br>
+      </div>
+      <div style=3D"font-family:Arial,sans-serif;font-size:14px">
+      </div>
+      <div><span style=3D"font-family:Arial,sans-serif;font-size:14px;line-=
+height:normal;font-weight:400;display:inline">I
+          want to express my gratitude for your prompt responses and
+          assistance thus far. Your support has been valuable.
+        </span><br>
+        <p style=3D"border:0px solid rgb(227,227,227);box-sizing:border-box=
+;margin:1.25em 0px"><span style=3D"font-family:Arial,sans-serif;font-size:1=
+4px;line-height:normal;font-weight:400">However,
+            I have a specific query regarding optimizing performance for
+            a particular goal. In the GitHub repository under </span><font =
+face=3D"S=C3=B6hne Mono, Monaco, Andale Mono, Ubuntu Mono, monospace"><span=
+ style=3D"border-style:solid;border-color:rgb(227,227,227);box-sizing:borde=
+r-box;font-family:Arial,sans-serif;font-size:14px;line-height:normal;font-w=
+eight:400"><b style=3D"line-height:normal;font-weight:400">uhd/host/example=
+s/twinrx_freq_hopping.cpp</b></span></font><span style=3D"font-family:Arial=
+,sans-serif;font-size:14px;line-height:normal;font-weight:400">,
+            you mentioned the importance of directly setting the LO
+            frequency for better performance. Additionally, you
+            described a method of accessing the LO wherein one LO is set
+            for transmission while another operates for reception
+            simultaneously.=C2=A0<span>Is this recommended</span>=C2=A0way =
+to make
+            sweep spectrum (with x310)? <br>
+          </span></p>
+      </div>
+    </blockquote>
+    I didn&#39;t write twinrx_freq_hopping.cpp, and furthermore, it has no
+    transmit capability at all.<br>
+    <br>
     <blockquote type=3D"cite">
-      <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,=
-sans-serif;font-size:13px">
-        <div><br clear=3D"none">
-        </div>
-        <div><br clear=3D"none">
-        </div>
+      <div>
+        <p style=3D"border:0px solid rgb(227,227,227);box-sizing:border-box=
+;margin:1.25em 0px"><span style=3D"line-height:normal"><font face=3D"Arial,=
+ sans-serif">I&#39;m
+              curious if there are more such techniques or tricks to
+              achieve optimal performance.</font><br>
+            <span style=3D"font-family:Arial,sans-serif;font-size:14px;font=
+-weight:400;display:inline">Thank
+              you once again for your attention to this matter.<br>
+            </span></span></p>
       </div>
-      <div id=3D"m_6553024948920657376ydp10566da0yiv8756072813m_-3650333112=
-459443087ydpc994c9a6yiv4349751442ydp5189b7afyahoo_quoted_4632613607">
-        <div style=3D"font-family:Helvetica,Arial,sans-serif;font-size:13px=
-;color:rgb(38,40,42)">
-          <div> On Wednesday, 1 May 2024 at 14:19:44 BST, Marcus D.
-            Leech <a shape=3D"rect" href=3D"mailto:patchvonbraun@gmail.com"=
- rel=3D"nofollow" target=3D"_blank">&lt;patchvonbraun@gmail.com&gt;</a> wro=
-te: </div>
-          <div><br clear=3D"none">
+    </blockquote>
+    Given that the X310 supports 2 TwinRX cards, that could give you up
+    to 200MHz of instantaneous bandwidth if each channel<br>
+    =C2=A0 (2 channels per TwinRX) is delivering 50Mhz of bandwidth.=C2=A0 =
+With
+    5msec/hop (as shown in twinrx_freq_hopping), that&#39;s<br>
+    =C2=A0 40GHz/second.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div>
+        <p style=3D"border:0px solid rgb(227,227,227);box-sizing:border-box=
+;margin:1.25em 0px"><span style=3D"line-height:normal"><br>
+            Olo</span></p>
+        <br>
+      </div>
+      <div> On Wednesday, May 1st, 2024 at
+        20:42, Olo via USRP-users <a href=3D"mailto:usrp-users@lists.ettus.=
+com" target=3D"_blank">&lt;usrp-users@lists.ettus.com&gt;</a>
+        wrote:<br>
+        <blockquote type=3D"cite">
+          <div style=3D"font-family:Arial,sans-serif;font-size:14px"><span>=
+Would
+              it be possible, with the USRP X310 with TwinRX (or two
+              TwinRX units), to achieve the mentioned goal? If so, could
+              you please explain the approach to accomplish this? Thank
+              you.</span><br>
           </div>
-          <div><br clear=3D"none">
+          <div style=3D"font-family:Arial,sans-serif;font-size:14px"><br>
           </div>
-          <div>
-            <div id=3D"m_6553024948920657376ydp10566da0yiv8756072813m_-3650=
-333112459443087ydpc994c9a6yiv4349751442ydp5189b7afyiv7691143590">
-              <div id=3D"m_6553024948920657376ydp10566da0yiv8756072813m_-36=
-50333112459443087ydpc994c9a6yiv4349751442ydp5189b7afyiv7691143590yqt92825">
+          <div> On Tuesday, April 30th, 2024 at
+            9:20, Olo <a href=3D"mailto:olo1618@protonmail.com" target=3D"_=
+blank">&lt;olo1618@protonmail.com&gt;</a> wrote:<br>
+            <blockquote type=3D"cite">
+              <div>
+                <p style=3D"border:0px solid rgb(227,227,227);box-sizing:bo=
+rder-box;margin:1.25em 0px"><span style=3D"font-family:Arial,sans-serif;fon=
+t-size:14px;line-height:normal;font-weight:400">Hi
+                    there,</span></p>
+                <p style=3D"border:0px solid rgb(227,227,227);box-sizing:bo=
+rder-box;margin:1.25em 0px"><span style=3D"font-family:Arial,sans-serif;fon=
+t-size:14px;line-height:normal;font-weight:400">I&#39;m
+                    USRP B210 for a project. I&#39;m trying to make a sweep
+                    spectrum analyzer that scans frequencies quickly.
+                    Currently, I&#39;m tuning frequencies like this (which
+                    is I think the main issue):</span></p>
                 <div>
-                  <div>On
-                    01/05/2024 08:25, zhou via USRP-users wrote:<br clear=
-=3D"none">
-                  </div>
-                  <blockquote type=3D"cite"> </blockquote>
+                  <pre><span style=3D"font-family:Arial,sans-serif;font-siz=
+e:14px;line-height:normal;font-weight:400">tune_request </span><span style=
+=3D"font-family:Arial,sans-serif;font-size:14px;line-height:normal;font-wei=
+ght:400">=3D </span><span style=3D"font-family:Arial,sans-serif;font-size:1=
+4px;line-height:normal;font-weight:400">uhd.types.</span><span style=3D"fon=
+t-family:Arial,sans-serif;font-size:14px;line-height:normal;font-weight:400=
+">TuneRequest</span><span style=3D"font-family:Arial,sans-serif;font-size:1=
+4px;line-height:normal;font-weight:400">(</span><span style=3D"font-family:=
+Arial,sans-serif;font-size:14px;line-height:normal;font-weight:400">self</s=
+pan><span style=3D"font-family:Arial,sans-serif;font-size:14px;line-height:=
+normal;font-weight:400">.steps</span><span style=3D"font-family:Arial,sans-=
+serif;font-size:14px;line-height:normal;font-weight:400">[</span><span styl=
+e=3D"font-family:Arial,sans-serif;font-size:14px;line-height:normal;font-we=
+ight:400">self</span><span style=3D"font-family:Arial,sans-serif;font-size:=
+14px;line-height:normal;font-weight:400">.i</span><span style=3D"font-famil=
+y:Arial,sans-serif;font-size:14px;line-height:normal;font-weight:400">]</sp=
+an><span style=3D"font-family:Arial,sans-serif;font-size:14px;line-height:n=
+ormal;font-weight:400">, </span><span style=3D"font-family:Arial,sans-serif=
+;font-size:14px;line-height:normal;font-weight:400">1.0</span><span style=
+=3D"font-family:Arial,sans-serif;font-size:14px;line-height:normal;font-wei=
+ght:400">)</span>
+<span style=3D"font-family:Arial,sans-serif;font-size:14px;line-height:norm=
+al;font-weight:400">result </span><span style=3D"font-family:Arial,sans-ser=
+if;font-size:14px;line-height:normal;font-weight:400">=3D </span><span styl=
+e=3D"font-family:Arial,sans-serif;font-size:14px;line-height:normal;font-we=
+ight:400">self</span><span style=3D"font-family:Arial,sans-serif;font-size:=
+14px;line-height:normal;font-weight:400">.usrp_device.</span><span style=3D=
+"font-family:Arial,sans-serif;font-size:14px;line-height:normal;font-weight=
+:400">set_rx_freq</span><span style=3D"font-family:Arial,sans-serif;font-si=
+ze:14px;line-height:normal;font-weight:400">(</span><span style=3D"font-fam=
+ily:Arial,sans-serif;font-size:14px;line-height:normal;font-weight:400">tun=
+e_request</span><span style=3D"font-family:Arial,sans-serif;font-size:14px;=
+line-height:normal;font-weight:400">, </span><span style=3D"font-family:Ari=
+al,sans-serif;font-size:14px;line-height:normal;font-weight:400">self</span=
+><span style=3D"font-family:Arial,sans-serif;font-size:14px;line-height:nor=
+mal;font-weight:400">.<a href=3D"http://rx_info.ch" target=3D"_blank">rx_in=
+fo.ch</a></span><span style=3D"line-height:normal"><font face=3D"Arial, san=
+s-serif">)
+
+</font><span style=3D"font-family:Arial,sans-serif;font-size:14px;font-weig=
+ht:400;display:inline">I&#39;m programming it in PyQt, and I&#39;ve created=
+ a stream like this: </span></span></pre>
+                  <pre><span style=3D"line-height:normal"><span style=3D"bo=
+rder-style:solid;border-color:rgb(227,227,227);box-sizing:border-box;font-f=
+amily:Arial,sans-serif;font-size:14px;font-weight:400">self.stream_cmd_star=
+t =3D uhd.types.StreamCMD(uhd.types.StreamMode.num_done)</span><span style=
+=3D"font-family:Arial,sans-serif;font-size:14px;font-weight:400;display:inl=
+ine">. </span></span></pre>
+                  <pre><span style=3D"line-height:normal"><span style=3D"fo=
+nt-family:Arial,sans-serif;font-size:14px;font-weight:400;display:inline">(=
+Because <span>I&#39;ve noticed that for a continuous stream, it takes etern=
+ity to retune.)</span></span></span></pre>
+                  <pre><span style=3D"line-height:normal"><span style=3D"fo=
+nt-family:Arial,sans-serif;font-size:14px;font-weight:400;display:inline">D=
+o you have any tips on how to do this faster? Any advice or code examples w=
+ould be really helpful.</span>
+</span></pre>
                 </div>
-                <div>
-                  <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helv=
-etica,Arial,sans-serif;font-size:13px">
-                    <div dir=3D"ltr">Hi All,</div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">I am trying to use 4Rx and 4Tx
-                      antennas from two X310 USRPs. I hope the received
-                      signals have stable phase relationship but they
-                      don&#39;t seem to be. I am wondering why and how to
-                      fix it.</div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">I measured the phase using the
-                      connection as below:</div>
-                    <div dir=3D"ltr"><img title=3D"Inline image" alt=3D"Inl=
-ine image" style=3D"max-width: 800px;"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">cos(t)+i*sin(t) signal is split into
-                      and received on four Rx antennas.=C2=A0<span><span st=
-yle=3D"color:rgb(0,0,0);font-family:&quot;Helvetica Neue&quot;,Helvetica,Ar=
-ial,sans-serif">Two
-                          X310s are connected to the same OctoClock for
-                          10MHz Ref and PPS. Tx and Rx commands are all
-                          timed. The measurement results are as below:</spa=
-n></span></div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                      <span></span>The Tx signal is continuous during
-                      test. I measured phase every second for 20 sec. In
-                      the 2nd USRP, the phases are stable on both
-                      antennas while it is not in the 1st. If I change
-                      the Tx signal to the 1st USRP, then the results
-                      swap - phases become stable in the 1st USRP and
-                      unstable in the 2nd.</div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">My first though was that there might
-                      be small CFO between USRPs even though both are
-                      connected to the OctoClock, but CFO should have
-                      caused linear change. Here, the phase offset is
-                      not linear and kind of random within 20 second
-                      measurement.</div>
-                    <div dir=3D"ltr"><br clear=3D"none">
-                    </div>
-                    <div dir=3D"ltr">What can be the reason? Any
-                      suggestion will be appreciated.<br clear=3D"none">
-                      <span></span><br clear=3D"none">
-                      <span></span>Kind regards,</div>
-                    <div dir=3D"ltr">H.</div>
-                  </div>
-                  Are you setting up clocking identically for both
-                  USRPs?=C2=A0=C2=A0 That is setting the reference clock to
-                  &quot;external&quot; and the 1PPS source to &quot;externa=
-l&quot; on both
-                  devices?=C2=A0=C2=A0 Are you using a single multi_usrp ob=
-ject
-                  for all RX channels?<br clear=3D"none">
-                  <br clear=3D"none">
-                  What type of daughtercards are in your X310?<br clear=3D"=
-none">
-                  <br clear=3D"none">
-                  <br clear=3D"none">
-                </div>
+                <span style=3D"font-family:Arial,sans-serif;font-size:14px;=
+line-height:normal;font-weight:400;display:inline">
+                  <div><span style=3D"font-family:Arial,sans-serif;font-siz=
+e:14px;line-height:normal;font-weight:400;display:inline"><br>
+                    </span></div>
+                  Thanks a lot,<br>
+                </span><br>
+                Olo.</div>
+              <div style=3D"font-family:Arial,sans-serif;font-size:14px"><b=
+r>
               </div>
-            </div>
-            <div id=3D"m_6553024948920657376ydp10566da0yiv8756072813m_-3650=
-333112459443087ydpc994c9a6yiv4349751442ydp5189b7afyqt89423">_______________=
-________________________________<br clear=3D"none">
-              USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:u=
-srp-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@li=
-sts.ettus.com</a><br clear=3D"none">
-              To unsubscribe send an email to <a shape=3D"rect" href=3D"mai=
-lto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">us=
-rp-users-leave@lists.ettus.com</a><br clear=3D"none">
-            </div>
+              <div style=3D"font-family:Arial,sans-serif;font-size:14px">
+              </div>
+            </blockquote>
+            <br>
           </div>
-        </div>
+        </blockquote>
+        <br>
       </div>
-      <br clear=3D"none">
+      <br>
       <fieldset></fieldset>
       <pre>_______________________________________________
-USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@list=
-s.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com<=
-/a>
-To unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:usrp-users=
--leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users-leave=
-@lists.ettus.com</a>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
 </pre>
     </blockquote>
-    <br clear=3D"none">
-  </div></div></div><div id=3D"m_6553024948920657376ydp10566da0yiv875607281=
-3m_-3650333112459443087ydpc994c9a6yqtfd03165">_____________________________=
-__________________<br clear=3D"none">USRP-users mailing list -- <a shape=3D=
-"rect" href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"nofollow" target=
-=3D"_blank">usrp-users@lists.ettus.com</a><br clear=3D"none">To unsubscribe=
- send an email to <a shape=3D"rect" href=3D"mailto:usrp-users-leave@lists.e=
-ttus.com" rel=3D"nofollow" target=3D"_blank">usrp-users-leave@lists.ettus.c=
-om</a><br clear=3D"none"></div></div>
-            </div>
-        </div></div>_______________________________________________<br clea=
-r=3D"none">
-USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@list=
-s.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com<=
-/a><br clear=3D"none">
-To unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:usrp-users=
--leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users-leave=
-@lists.ettus.com</a><br clear=3D"none">
-</blockquote></div></div>
-</div></blockquote></div></div></div><div id=3D"m_6553024948920657376ydp105=
-66da0yqtfd43156">_______________________________________________<br clear=
-=3D"none">USRP-users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-=
-users@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.=
-ettus.com</a><br clear=3D"none">To unsubscribe send an email to <a shape=3D=
-"rect" href=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" ta=
-rget=3D"_blank">usrp-users-leave@lists.ettus.com</a><br clear=3D"none"></di=
-v></div>
-            </div>
-        </div></div></blockquote></div></div>
+    <br>
+  </div>
 
---0000000000008f44b306177863f3--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---===============2050297893833258000==
+--000000000000e20cb10617788c19--
+
+--===============3337804209497601522==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -598,4 +423,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2050297893833258000==--
+--===============3337804209497601522==--
