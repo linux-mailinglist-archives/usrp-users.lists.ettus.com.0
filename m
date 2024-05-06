@@ -2,118 +2,305 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CE08BC3BB
-	for <lists+usrp-users@lfdr.de>; Sun,  5 May 2024 22:46:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE6D8BCD37
+	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 13:57:24 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E4A14384616
-	for <lists+usrp-users@lfdr.de>; Sun,  5 May 2024 16:46:55 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AE8C7384D3B
+	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 07:57:22 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1714942015; bh=vxtoVajhjUtALfl0lW3iXhuUIbPVeofYhOciQylenNI=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=rj++XYu7bz4Nd7wh4gYne3XrBiAR3AcHudj9b5PBAjxzOCNZLmEBUatPgl9pYcQEM
-	 iIP2WFsvYJFEjTuctSe7c0U3JOSi06JOFOWFjMNCSo3r1khNBIZW9/bdTI+9PGPTTr
-	 cePQE5X8P2enKq+Wru4ccu5bAJ6L8mIlpH5lokrJeQbo3yOwvRv02c8YoCZlDBtebt
-	 NRPN56939jWo+MHRc1tIsPw4ht14fvHLe9Ga7xoNiH9TBS0gcyNyHD3e4pjiq9mjpr
-	 4Pt6Q+qDpxEvSi/cepSABjb5tZ9VyNNWnaGxfJNjvO6GPfnkzGtR6Q94hbWzIWxbNz
-	 hwoAyLtlm0wEw==
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2D17B383B81
-	for <usrp-users@lists.ettus.com>; Sun,  5 May 2024 16:46:26 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g2EmNRyX";
-	dkim-atps=neutral
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-78ef9ce897bso115765585a.0
-        for <usrp-users@lists.ettus.com>; Sun, 05 May 2024 13:46:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714941986; x=1715546786; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EJYPDrqBmWZ1jE4EHpILYyq8ltimTDxsTcIt+EQ9O3Q=;
-        b=g2EmNRyXVzUtC/N27016YnbznKG0Q0IMlj1lFSA7hiL4UD/veVTw4XQx6uL0hJIrU8
-         VpZSUJArJsL/U8E8VaR+Z2P0ZcDBe1EAOQ0T4ltac8/QUJRSxMYrZXxyPQ47+n9rzZT+
-         RE3hlc+xB/NvYZLCQXRiwypODE+Ulf0RWsKJtTyCIEykyvpg69zyH2NcLSK5AlKEJHnq
-         bOND3PXwlVcicpx1lOlzsFaEgRFHHdHsdJXAr77fZLaVVtXC18/2W/+Da6dcrzepx4S+
-         BYNfuEHrR4mqHZtcj25GWCW8UJAvqjgVOuLXJPjizzKv+bD7PKVTAebTIrIZzzCXBl6N
-         A4QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714941986; x=1715546786;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EJYPDrqBmWZ1jE4EHpILYyq8ltimTDxsTcIt+EQ9O3Q=;
-        b=aKXyfMEJ0UsqKZxJ2eR7GXSS/fFCX3s+S5kfqpQahYIRfv/YaSqOh9VrLZa1I91XbU
-         QHCfb7FDaoZss1LpCUanlS7U8S6tpXuAGs/ain3SRIRqs8lNAuUCjfpE2NC8jLzjZax8
-         r1PNLTL/Gyvmu9EMjB0VvukmTxxWmLunUMpuSUsEyuc9FwqQGi197Hr3/CZmhscur4eC
-         A36+wlsaFX+CkekynV18QL0S6IIl5tfucKfL4Vo3Bw9SEiJyvbzX6DNsv8KAkaFcR40W
-         iP52g5T3fJrb24OKgCTZ3aosW8KS2RFU9BjawboqBtw/yxW/4u8ABTOSmS9s7B2V8Ih7
-         lFuw==
-X-Gm-Message-State: AOJu0YxEpsT5M9C6FN/nU9KFA+Y7jNCUH6QSnRWSRoGk1rm8CxcDPJXi
-	xw1W6J9uWAYDbDWyJ55Rg+/zpZbLCuvgZDKAcAmPAdRSVsNQt+KNspYU9Q==
-X-Google-Smtp-Source: AGHT+IF86Bzo4cMTkUuy6N4Pn0TFvstCsyyGf7ENeBijGYOpESJHbN+pz2PDmAgx5frwVj1NZwui5Q==
-X-Received: by 2002:a05:622a:94:b0:43a:62ac:5888 with SMTP id o20-20020a05622a009400b0043a62ac5888mr9792995qtw.13.1714941985855;
-        Sun, 05 May 2024 13:46:25 -0700 (PDT)
-Received: from [192.168.2.170] ([174.93.0.192])
-        by smtp.googlemail.com with ESMTPSA id ff22-20020a05622a4d9600b0043a0acc96e4sm4345716qtb.30.2024.05.05.13.46.25
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 May 2024 13:46:25 -0700 (PDT)
-Message-ID: <4df3d6df-b7d3-43b6-a4d6-68b1bbdc3486@gmail.com>
-Date: Sun, 5 May 2024 16:46:16 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+	t=1714996642; bh=fy5+wf6sRlgFSB5z7ISqOrqQoBK7/uLIQw+wqxUxKlM=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=FtEZo2ZGCd0OeG+ppvE152tQkdrElpfIvwsUrJ+mN4nDDPfHu7cRv8BlotzmtyEcy
+	 UGMRTpq20BAQbVDBx3bDcHwSqV5NLTLNcli6jXuJIdcU5LC5NPimSZ0SmAosVFj2Rd
+	 9CWHjgx/nARzBaGbkTZewxOYOdqIINdEcEnT3VmZJx4QgJz8yOLJ28zh5BmC1lt9OI
+	 vwPTmVbNVa4hRRmwnGG0I/PjyH4L0P3ROty7kGfBGGgIudLkZ8JIHm8szZXAEDkL3w
+	 RWZkh3vJVVvaDxHl/5hsg4Mf6VSwtJ290fkevn/qDdsqBCfQe1fZPtzhNDGR2o5+zK
+	 hlm+Lxv5WJ0dw==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 7AF27383671
+	for <usrp-users@lists.ettus.com>; Mon,  6 May 2024 07:56:23 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1714996583; bh=gUxz8uUkgxpWTOEGVMsGguA7+mtsiKAx9aTDbd0YS2Q=;
+	h=Date:To:From:Subject:From;
+	b=bwaU89Ywj6jdZsOdYS6Mw5Tuo6YYl31AM8DoXXC0g6vZY7by2etN/PZ6vsEyTBfiS
+	 rJC79gL2Kpl5q3NnE32/v547JuZdy1MEFrkyZ5xiC3CjnuuAOUa0s8WSlguo0LucUf
+	 B4J6rwLfaBSQZQYL7lZl9lsgNdCeGTbKW8P/zsxd7/wkc2AHzicjIoIu3p9CfR9SRB
+	 PICdf8z8kXYCr/hoz9wC44QVY45WSzxGZpogDui5/D68sK3Jm4kkB86eiMYXYjtuFe
+	 MH+gmO3GxEdC94zAVkphdwAAnnhoKd8XlS7KtYIp1TspUZOOD0qoQtJC+mkdbfqFiO
+	 wBr+wnIYrrAmQ==
+Date: Mon, 6 May 2024 11:56:23 +0000
 To: usrp-users@lists.ettus.com
-References: <VULdau3WpJoUrqZUJXWIJAj1F1uG6S8Yd17gPfqx8@lists.ettus.com>
- <14e82baa-39e1-4364-8914-a079b1e45d25@gmail.com>
- <5de6679c-80f4-4f42-9ee8-b224ade27fdb@ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <5de6679c-80f4-4f42-9ee8-b224ade27fdb@ettus.com>
-Message-ID-Hash: HQZ7IXUS4BMAHXASAH36SPLVPKQNFOHG
-X-Message-ID-Hash: HQZ7IXUS4BMAHXASAH36SPLVPKQNFOHG
-X-MailFrom: patchvonbraun@gmail.com
+From: jmaloyan@umass.edu
+Message-ID: <LSGJxDDsy4QXMcwYn1TUlS3rs5jdW6Ps0ZXdYDNE@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: XPGSMJTQGOQ67U45WPQ2L7R5OZTNVKQ4
+X-Message-ID-Hash: XPGSMJTQGOQ67U45WPQ2L7R5OZTNVKQ4
+X-MailFrom: jmaloyan@umass.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Sharing one UHD device across multiple hosts
+Subject: [USRP-users] DPDK error : net_mlx5: port 1 empty mbuf pool
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HQZ7IXUS4BMAHXASAH36SPLVPKQNFOHG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XPGSMJTQGOQ67U45WPQ2L7R5OZTNVKQ4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8523324319158857280=="
 
-T24gMDUvMDUvMjAyNCAxNjowMCwgTWFyY3VzIE3DvGxsZXIgd3JvdGU6DQo+IFRoYXQgYWx0ZXJu
-YXRlIHN0cmVhbWluZyB0YXJnZXQgZnVuY3Rpb25hbGl0eSByZS1lbWVyZ2VkIGluIGxhdGVyIFVI
-RCANCj4gdmVyc2lvbnMgZm9yIFJGTm9DLXN1cHBvcnRlZCBkZXZpY2VzLg0KSXMgdGhlcmUgYW4g
-ZXhhbXBsZSBvZiB0aGlzIHNvbWV3aGVyZT/CoCBJIG9ubHkgdmFndWVseSByZW1lbWJlciBzZWVp
-bmcgDQp0aGlzLi4uDQoNCg0KPg0KPiBPbiAwNS4wNS4yNCAxNzozNSwgTWFyY3VzIEQuIExlZWNo
-IHdyb3RlOg0KPj4gT24gMDUvMDUvMjAyNCAxMToyNywgam1hbG95YW5AdW1hc3MuZWR1IHdyb3Rl
-Og0KPj4+DQo+Pj4gSGVsbG8sDQo+Pj4NCj4+PiBJIGFtIHdvbmRlcmluZyBpZiBpdCBpcyBwb3Nz
-aWJsZSB0byBhbGxvdyBhbm90aGVyIGhvc3QgZGV2aWNlIHRvIA0KPj4+IHN0YXJ0IGEgc2Vzc2lv
-biB3aXRoIGFuIHg0MTAgYWZ0ZXIgaXQgYWxyZWFkeSBoYXMgYSBzZXNzaW9uIHdpdGggYSANCj4+
-PiBkaWZmZXJlbnQgaG9zdCBkZXZpY2UuIEluIG90aGVyIHdvcmRzLCBtdWx0aXBsZSBkZXZpY2Vz
-IHNoYXJpbmcgb25lIA0KPj4+IFVTUlAgZGV2aWNlIGF0IHRoZSBzYW1lIHRpbWUuDQo+Pj4NCj4+
-PiBJIGtub3cgaXQgaXMgcG9zc2libGUgdG8g4oCcaGlqYWNr4oCdIGEgc2Vzc2lvbiB0byBwZXJm
-b3JtIHNvbWUgbXBtIA0KPj4+IGZ1bmN0aW9ucywgYnV0IEkgd291bGQgbGlrZSB0byBzdHJlYW0g
-c2VwYXJhdGUgY2hhbm5lbHMgb24gdGhlIHg0MTAgDQo+Pj4gZGV2aWNlIGFjcm9zcyBzZXBhcmF0
-ZSBob3N0IGRldmljZXMuDQo+Pj4NCj4+Pg0KPj4gSSBkb24ndCBiZWxpZXZlIHRoYXQgdGhlcmUn
-cyBhbnkgc3VjaCBmZWF0dXJlIGJ1aWx0LWluIHRvIFVIRC4gVGhlIA0KPj4gVVNSUCBOMnh4IGhh
-cyBhbiAiYWx0ZXJuYXRpdmUgc3RyZWFtIGRlc3RpbmF0aW9uIiBBUEksIGJ1dA0KPj4gwqAgdGhh
-dCBkaWQgbm90IG1ha2UgaXQgaW50byBmdXR1cmUgVVNSUHMgYXMgZmFyIGFzIEkga25vdy4NCj4+
-DQo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4g
-VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4+
-IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5l
-dHR1cy5jb20NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxp
-c3RzLmV0dHVzLmNvbQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
-LmV0dHVzLmNvbQo=
+This is a multi-part message in MIME format.
+
+--===============8523324319158857280==
+Content-Type: multipart/alternative;
+ boundary="b1_LSGJxDDsy4QXMcwYn1TUlS3rs5jdW6Ps0ZXdYDNE"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_LSGJxDDsy4QXMcwYn1TUlS3rs5jdW6Ps0ZXdYDNE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+I am currently getting the following error when I try to run dpdk=E2=80=A6
+
+`net_mlx5: port 1 empty mbuf pool`
+
+`net_mlx5: port 1 Rx queue allocation failed: Cannot allocate memory`
+
+I am wondering if anyone has gotten a similar issue and how they fixed it=
+. I double checked my uhd.conf and made sure my driver was in the right p=
+lace, but things seem fine. Additionally, I believe dpdk-devbind.py shows=
+ the correct output. Below is the full output of the error, my uhd.conf, =
+and dpdk-devbind
+
+`sudo uhd_find_devices --args "addr=3D192.168.10.2,second_addr=3D192.168.=
+20.2,mgmt_addr=3D192.168.1.184,use_dpdk=3D1"`
+
+`[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; DPDK_19.11; UHD=
+_4.5.0.HEAD-0-g471af98f`
+
+`EAL: Detected 32 lcore(s)`
+
+`EAL: Detected 1 NUMA nodes`
+
+`EAL: Multi-process socket /var/run/dpdk/rte/mp_socket`
+
+`EAL: Selected IOVA mode 'VA'`
+
+`EAL: No available hugepages reported in hugepages-1048576kB`
+
+`EAL: Probing VFIO support...`
+
+`EAL: VFIO support initialized`
+
+`EAL: PCI device 0000:06:00.0 on NUMA socket -1`
+
+`EAL:   probe driver: 15b3:1017 net_mlx5`
+
+`EAL: PCI device 0000:06:00.1 on NUMA socket -1`
+
+`EAL:   probe driver: 15b3:1017 net_mlx5`
+
+`net_mlx5: port 1 empty mbuf pool`
+
+`net_mlx5: port 1 Rx queue allocation failed: Cannot allocate memory`
+
+`[ERROR] [DPDK] Port 1: Could not start device`
+
+`EAL: FATAL: already called initialization.`
+
+`EAL: already called initialization.`
+
+`[ERROR] [DPDK] Error with EAL initialization`
+
+`[ERROR] [UHD] Device discovery error: RuntimeError: DPDK: Failure to sta=
+rt device`
+
+`[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL=
+ initialization`
+
+`No UHD Devices Found`
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94-
+
+`python3 /usr/bin/dpdk-devbind.py --status`
+
+`Network devices using kernel driver`
+
+`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D`
+
+`0000:00:14.3 'Device 7a70' if=3Dwlp0s20f3 drv=3Diwlwifi unused=3Dvfio-pc=
+i *Active*`
+
+`0000:06:00.0 'MT27800 Family [ConnectX-5] 1017' if=3Denp6s0f0np0 drv=3Dm=
+lx5_core unused=3Dvfio-pci *Active*`
+
+`0000:06:00.1 'MT27800 Family [ConnectX-5] 1017' if=3Denp6s0f1np1 drv=3Dm=
+lx5_core unused=3Dvfio-pci *Active*`
+
+`0000:09:00.0 'Device 125c' if=3Deno2 drv=3Digc unused=3Dvfio-pci `
+
+`No 'Baseband' devices detected`
+
+`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D`
+
+`No 'Crypto' devices detected`
+
+`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D`
+
+`No 'Eventdev' devices detected`
+
+`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D`
+
+`No 'Mempool' devices detected`
+
+`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D`
+
+`No 'Compress' devices detected`
+
+`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D`
+
+`No 'Misc (rawdev)' devices detected`
+
+`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D`
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94
+
+`[use_dpdk=3D1]`
+
+`dpdk_mtu=3D9000`
+
+`dpdk_driver=3D/usr/lib/x86_64-linux-gnu/dpdk/pmds-20.0/`
+
+`dpdk_corelist=3D8,9,10`
+
+`dpdk_num_mbufs=3D4095`
+
+`dpdk_mbuf_cache_size=3D315`
+
+`[dpdk_mac=3Db8:3f:d2:bc:52:8a]`
+
+`dpdk_lcore =3D 9`
+
+`dpdk_ipv4 =3D 192.168.10.1/24`
+
+`dpdk_num_desc =3D 4096`
+
+`[dpdk_mac=3Db8:3f:d2:bc:52:8b]`
+
+`dpdk_lcore =3D 10`
+
+`dpdk_ipv4 =3D 192.168.20.1/24`
+
+`dpdk_num_desc =3D 4096`
+
+--b1_LSGJxDDsy4QXMcwYn1TUlS3rs5jdW6Ps0ZXdYDNE
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hello,</p><p><br></p><p>I am currently getting the following error when =
+I try to run dpdk=E2=80=A6</p><p><code>net_mlx5: port 1 empty mbuf pool</co=
+de></p><p><code>net_mlx5: port 1 Rx queue allocation failed: Cannot allocat=
+e memory</code></p><p>I am wondering if anyone has gotten a similar issue a=
+nd how they fixed it. I double checked my uhd.conf and made sure my driver =
+was in the right place, but things seem fine. Additionally, I believe dpdk-=
+devbind.py shows the correct output. Below is the full output of the error,=
+ my uhd.conf, and dpdk-devbind</p><p><br></p><p><code>sudo uhd_find_devices=
+ --args "addr=3D192.168.10.2,second_addr=3D192.168.20.2,mgmt_addr=3D192.168=
+.1.184,use_dpdk=3D1"</code></p><p><code>[INFO] [UHD] linux; GNU C++ version=
+ 9.4.0; Boost_107100; DPDK_19.11; UHD_4.5.0.HEAD-0-g471af98f</code></p><p><=
+code>EAL: Detected 32 lcore(s)</code></p><p><code>EAL: Detected 1 NUMA node=
+s</code></p><p><code>EAL: Multi-process socket /var/run/dpdk/rte/mp_socket<=
+/code></p><p><code>EAL: Selected IOVA mode 'VA'</code></p><p><code>EAL: No =
+available hugepages reported in hugepages-1048576kB</code></p><p><code>EAL:=
+ Probing VFIO support...</code></p><p><code>EAL: VFIO support initialized</=
+code></p><p><code>EAL: PCI device 0000:06:00.0 on NUMA socket -1</code></p>=
+<p><code>EAL:   probe driver: 15b3:1017 net_mlx5</code></p><p><code>EAL: PC=
+I device 0000:06:00.1 on NUMA socket -1</code></p><p><code>EAL:   probe dri=
+ver: 15b3:1017 net_mlx5</code></p><p><code>net_mlx5: port 1 empty mbuf pool=
+</code></p><p><code>net_mlx5: port 1 Rx queue allocation failed: Cannot all=
+ocate memory</code></p><p><code>[ERROR] [DPDK] Port 1: Could not start devi=
+ce</code></p><p><code>EAL: FATAL: already called initialization.</code></p>=
+<p><code>EAL: already called initialization.</code></p><p><code>[ERROR] [DP=
+DK] Error with EAL initialization</code></p><p><code>[ERROR] [UHD] Device d=
+iscovery error: RuntimeError: DPDK: Failure to start device</code></p><p><c=
+ode>[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EA=
+L initialization</code></p><p><code>No UHD Devices Found</code></p><p>=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94-</p><p><cod=
+e>python3 /usr/bin/dpdk-devbind.py --status</code></p><p><code>Network devi=
+ces using kernel driver</code></p><p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+</code></p><p><code>0000:00:14.3 'Device 7a70' if=3Dwlp0s20f3 drv=3Diwlwifi=
+ unused=3Dvfio-pci *Active*</code></p><p><code>0000:06:00.0 'MT27800 Family=
+ [ConnectX-5] 1017' if=3Denp6s0f0np0 drv=3Dmlx5_core unused=3Dvfio-pci *Act=
+ive*</code></p><p><code>0000:06:00.1 'MT27800 Family [ConnectX-5] 1017' if=
+=3Denp6s0f1np1 drv=3Dmlx5_core unused=3Dvfio-pci *Active*</code></p><p><cod=
+e>0000:09:00.0 'Device 125c' if=3Deno2 drv=3Digc unused=3Dvfio-pci </code><=
+/p><p><code>No 'Baseband' devices detected</code></p><p><code>=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D</code></p><p><code>No 'Crypto' devices detected</code></p><p><code>=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D</code></p><p><code>No 'Eventdev' devices detected</code></p><p><code=
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D</code></p><p><code>No 'Mempool' devices detected</code><=
+/p><p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D</code></p><p><code>No 'Compress' devices detected<=
+/code></p><p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p><p><code>No 'Misc (rawdev)' =
+devices detected</code></p><p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></=
+p><p>=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94</p><p><code>[use_dpdk=3D1]</code></p><=
+p><code>dpdk_mtu=3D9000</code></p><p><code>dpdk_driver=3D/usr/lib/x86_64-li=
+nux-gnu/dpdk/pmds-20.0/</code></p><p><code>dpdk_corelist=3D8,9,10</code></p=
+><p><code>dpdk_num_mbufs=3D4095</code></p><p><code>dpdk_mbuf_cache_size=3D3=
+15</code></p><p><code>[dpdk_mac=3Db8:3f:d2:bc:52:8a]</code></p><p><code>dpd=
+k_lcore =3D 9</code></p><p><code>dpdk_ipv4 =3D 192.168.10.1/24</code></p><p=
+><code>dpdk_num_desc =3D 4096</code></p><p><code>[dpdk_mac=3Db8:3f:d2:bc:52=
+:8b]</code></p><p><code>dpdk_lcore =3D 10</code></p><p><code>dpdk_ipv4 =3D =
+192.168.20.1/24</code></p><p><code>dpdk_num_desc =3D 4096</code></p><p><br>=
+</p><p><br></p><p><br></p>
+
+--b1_LSGJxDDsy4QXMcwYn1TUlS3rs5jdW6Ps0ZXdYDNE--
+
+--===============8523324319158857280==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============8523324319158857280==--
