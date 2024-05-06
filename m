@@ -2,99 +2,163 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD248BCEF2
-	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 15:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBAAE8BCF4A
+	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 15:41:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 635D0384AFF
-	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 09:31:30 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 01B8A38531E
+	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 09:41:22 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1715002290; bh=/x68W+OecvFNgWsjdVei+dAy2TN9jVWxKsChB+YuMlE=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=PB+OX8w/w82XG+fVfFt5/eongXkGSGLJQ+LZ5eXTVMcQPGBN1U7xGGLJZ2zGgGo36
-	 z471PdPmQKo8xMrBCFaXV5fIOMn7eVrQAj2uTTn3JfFyRTiN3mQBgwvZ0b2AD1730R
-	 piK18g623W47enPO334fsD7Cd+3FnKzhjEPQ4jSjNxlzsC4dCr/c0GxxvZIWJrnQKu
-	 uxZe+IiMNasxRunqA9c/VyFaYyepw3T2C4MtS8zJCIpm5iDk5SKCgz9HTKSZnyzHrR
-	 6zB244Y8UQZbFxMYRJlDLFJgWgcYkiEDLCgRPLxUNGmHWs+gKQxJlOTiu3eyWMsof0
-	 XcOa1ox9VRLeQ==
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7288E3849FB
-	for <usrp-users@lists.ettus.com>; Mon,  6 May 2024 09:30:58 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XRLL9Q72";
-	dkim-atps=neutral
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-792639cf4faso226260185a.1
-        for <usrp-users@lists.ettus.com>; Mon, 06 May 2024 06:30:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715002257; x=1715607057; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tHvnLaOOyDdezIMjGaMy8uFQYD4hPcjwqgF2FETb3kY=;
-        b=XRLL9Q72FtPiG+YsdZSnL8E9yMDFjTOlgLJKGr5Ii1Xl+GvTefP7xgRMulfUuUtWV8
-         636DUwjd9j+NQvezW6KrdNVdFzP2p+As98+5Jl+eE0QaSPoqJsXE1jpUvdWJCA9xqwuA
-         lbwrpuzUL/LaGdY4kRJWrtNKC7h+b2NXqtYl5ymjxou5Hy2HS5m1l7ySJJbPXpgqhKD7
-         WqyYieImqhdfq/oxv7q1npWVCU4cmJ/TCkLiwHGniAlRHqvQNGnf8Eee05ZE/b5EfoQX
-         fMTXvGgFA9bL4DH0SFxalzp1x2hpg2Mcv14dfvAab3i2/TUdwg1EUjiXIyzJ0xjW6JpZ
-         HtMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715002257; x=1715607057;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tHvnLaOOyDdezIMjGaMy8uFQYD4hPcjwqgF2FETb3kY=;
-        b=BRSrK9aMbh2Nja4KslJQjXY5VpZCt6MDer/znwTQ11sJY5Dd26VyyCaT4Lrx771DXY
-         y3BEEnDeISZ5z0oKCE83FqArvp1csnIcf0AXb66Azoas95uMU7dL+GOuqABvIeEetbxU
-         eCifvGRx2lves1F/VYMOu9dsDqYcJVvze6eYcFtDcb8mQvHOaB9Jna/0u9i85/SmJJHr
-         dJpZnfDV85MS7rq6SfYJbjCcFG0GD9RA62lzSLQA7hejKJaHVxi7YG58mjMmpSi/dZP2
-         s9QOTtvtxTQotG/hgwYN7WhDQmxMF51iThw3B0UTZW8m4/RfwOgyC8D86ejrS9Oyp47Y
-         Ld2g==
-X-Gm-Message-State: AOJu0YzNTL4MogA+0SE5b60UySEtHRVw687VuAjnj03fS6WCUla2oiDF
-	kynhSzjIIny5nwMF8e8GHQW6kLMt+Jr43iL9mxjv1rvh0x/ZG5Z2DS0OEQ==
-X-Google-Smtp-Source: AGHT+IFPDO0yYeUFvoqHZO5MDRT+EtDxGbLZgeCWq5oWjuEffF9AAxMu2iaZFDlxa/kx+Hig29kIag==
-X-Received: by 2002:a05:6214:e86:b0:6a0:b461:ba6 with SMTP id hf6-20020a0562140e8600b006a0b4610ba6mr12961495qvb.8.1715002257365;
-        Mon, 06 May 2024 06:30:57 -0700 (PDT)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-07-174-93-0-192.dsl.bell.ca. [174.93.0.192])
-        by smtp.googlemail.com with ESMTPSA id db9-20020a056214170900b006a1174f2942sm2836945qvb.30.2024.05.06.06.30.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 May 2024 06:30:57 -0700 (PDT)
-Message-ID: <9af5057b-2cee-4ac3-8fe1-1eab340981e0@gmail.com>
-Date: Mon, 6 May 2024 09:30:48 -0400
+	t=1715002882; bh=G6V6Ob7d+jaFYI9CmOSrFhlPOvyocXNDyMvfRvOIxWs=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=qu9NJUlo/IAX5dlp7OVRfUYTy1GzPCuGpFc/LtmCaUJ/xn5TxYOiz2BzVNIQVvHKu
+	 SxRDzhOLomY6FE7USE9NjgSyVnjohkuLNtMrtkFKxe6yU6z/btjM88XQyK1ZPXOF1m
+	 2d5rK4ZeePFhT8cbVjW0a4vdXjwftpNspk0gcFluWzezBzBB+53ODuwMo1Gm1Zc88g
+	 lYiECEMMAqBfCx/JIsOhnyA42tFLAG9SwzwmHLB6Eql3amCKJQ+pRCP7NeamHBl3s0
+	 znM1dmg1fFYgdxsY7etsvXl+HBjiwuBC5IBCUfZ4J/UAu7xQskOE2mc1UdHOXwJmWE
+	 VOpnmX2fDEb/Q==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id D1788384D80
+	for <usrp-users@lists.ettus.com>; Mon,  6 May 2024 09:40:19 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1715002819; bh=UUYL+ly+YOMIzgqeFMbimJT4Z4B7IL2H2hRyuhtfPEY=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=V9jalZUOC9h5hvIhh9H57nOZTgSHkL8IKAf9oH8e+j4BMKm83q3eOyVCQj45z053a
+	 US1f7EMRL3Phc1CUwVxuFBwDpEyk+/7RH2nYP4DXWpubdXv/b3wnioc7hcqzyBLSa3
+	 r3X1pTDjU+JfWMYksN/PyaoP+AhvVp2/PoGIUwDwuOFz8GaNR6g3L3WCqqAeqwyLGX
+	 KFZnFNMa1kCbzrXPmUM4eOmtUdTjbUB/PTvHpLPLtXDYKE02piKjRqOYbXzE2BEg2n
+	 RkyIvyHBsGJdzQHlRzhdvUvMt/VwsRClkILgSSI5DgJcrfF/F9zcgzghfY9dy7w4nl
+	 vMwO0EEZdFPlQ==
+Date: Mon, 6 May 2024 13:40:19 +0000
+To: usrp-users@lists.ettus.com
+From: jmaloyan@umass.edu
+Message-ID: <Kit7AxvjUZy2mxDa1KwY84trYfoF6WmeLNuRIs4s7c@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: Se6DLJAlVXBlO09uwQtLmb8z3jdc3ac4iIfpygP9g@lists.ettus.com
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Rob Kossler <rkossler@nd.edu>
-References: <VULdau3WpJoUrqZUJXWIJAj1F1uG6S8Yd17gPfqx8@lists.ettus.com>
- <14e82baa-39e1-4364-8914-a079b1e45d25@gmail.com>
- <5de6679c-80f4-4f42-9ee8-b224ade27fdb@ettus.com>
- <4df3d6df-b7d3-43b6-a4d6-68b1bbdc3486@gmail.com>
- <CAB__hTQnfzp9-Ni_KqY3EmEcO8iKdWuHHxEcwGTnTJx=KAbCbQ@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTQnfzp9-Ni_KqY3EmEcO8iKdWuHHxEcwGTnTJx=KAbCbQ@mail.gmail.com>
-Message-ID-Hash: KMM2JSRALYN6RMZMQCQURZB542QPAP3E
-X-Message-ID-Hash: KMM2JSRALYN6RMZMQCQURZB542QPAP3E
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: QZY3VQHA434G6XSNLYHC7AY462SZEVS3
+X-Message-ID-Hash: QZY3VQHA434G6XSNLYHC7AY462SZEVS3
+X-MailFrom: jmaloyan@umass.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Sharing one UHD device across multiple hosts
+Subject: [USRP-users] Re: DPDK error : net_mlx5: port 1 empty mbuf pool
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KMM2JSRALYN6RMZMQCQURZB542QPAP3E/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QZY3VQHA434G6XSNLYHC7AY462SZEVS3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4450618879225730110=="
 
-T24gMDYvMDUvMjAyNCAwOToxNywgUm9iIEtvc3NsZXIgd3JvdGU6DQo+DQo+IGh0dHBzOi8vZmls
-ZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3N0cmVhbS5odG1sI3N0cmVhbV9yZW1vdGUNClRoYW5r
-cywgUm9iLsKgIEkgc3RpbGwgaGFkICJBbHRlcm5hdGl2ZSBTdHJlYW0gRGVzdGluYXRpb24iIGlu
-IG15IGhlYWQsIA0Kd2hpY2ggZnJ1c3RyYXRlZCBteSBzZWFyY2guDQoNCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
-IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
-aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+This is a multi-part message in MIME format.
+
+--===============4450618879225730110==
+Content-Type: multipart/alternative;
+ boundary="b1_Kit7AxvjUZy2mxDa1KwY84trYfoF6WmeLNuRIs4s7c"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_Kit7AxvjUZy2mxDa1KwY84trYfoF6WmeLNuRIs4s7c
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+After removing the lines you mentioned it seems it is now able to return =
+successfully=E2=80=A6
+
+`sudo uhd_find_devices --args "addr=3D192.168.10.2,second_addr=3D192.168.=
+20.2,mgmt_addr=3D192.168.1.184,use_dpdk=3D1"`
+
+`[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; DPDK_19.11; UHD=
+_4.5.0.HEAD-0-g471af98f`
+
+`EAL: Detected 32 lcore(s)`
+
+`EAL: Detected 1 NUMA nodes`
+
+`EAL: Multi-process socket /var/run/dpdk/rte/mp_socket`
+
+`EAL: Selected IOVA mode 'VA'`
+
+`EAL: No available hugepages reported in hugepages-1048576kB`
+
+`EAL: Probing VFIO support...`
+
+`EAL: VFIO support initialized`
+
+`EAL: PCI device 0000:06:00.0 on NUMA socket -1`
+
+`EAL:   probe driver: 15b3:1017 net_mlx5`
+
+`EAL: PCI device 0000:06:00.1 on NUMA socket -1`
+
+`EAL:   probe driver: 15b3:1017 net_mlx5`
+
+`--------------------------------------------------`
+
+`-- UHD Device 0`
+
+`--------------------------------------------------`
+
+`Device Address:`
+
+`    serial: 329053B`
+
+`    claimed: False`
+
+`    fpga: CG_400`
+
+`    mgmt_addr: 192.168.1.184`
+
+`    name: ni-x4xx-329053B`
+
+`    product: x410`
+
+`    type: x4xx`
+
+Thanks. Also, I am using a custom image, however, the same issue persiste=
+d when I was trying with the default CG_400 x410 image
+
+--b1_Kit7AxvjUZy2mxDa1KwY84trYfoF6WmeLNuRIs4s7c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>After removing the lines you mentioned it seems it is now able to return=
+ successfully=E2=80=A6</p><p><br></p><p><code>sudo uhd_find_devices --args =
+"addr=3D192.168.10.2,second_addr=3D192.168.20.2,mgmt_addr=3D192.168.1.184,u=
+se_dpdk=3D1"</code></p><p><code>[INFO] [UHD] linux; GNU C++ version 9.4.0; =
+Boost_107100; DPDK_19.11; UHD_4.5.0.HEAD-0-g471af98f</code></p><p><code>EAL=
+: Detected 32 lcore(s)</code></p><p><code>EAL: Detected 1 NUMA nodes</code>=
+</p><p><code>EAL: Multi-process socket /var/run/dpdk/rte/mp_socket</code></=
+p><p><code>EAL: Selected IOVA mode 'VA'</code></p><p><code>EAL: No availabl=
+e hugepages reported in hugepages-1048576kB</code></p><p><code>EAL: Probing=
+ VFIO support...</code></p><p><code>EAL: VFIO support initialized</code></p=
+><p><code>EAL: PCI device 0000:06:00.0 on NUMA socket -1</code></p><p><code=
+>EAL:   probe driver: 15b3:1017 net_mlx5</code></p><p><code>EAL: PCI device=
+ 0000:06:00.1 on NUMA socket -1</code></p><p><code>EAL:   probe driver: 15b=
+3:1017 net_mlx5</code></p><p><code>----------------------------------------=
+----------</code></p><p><code>-- UHD Device 0</code></p><p><code>----------=
+----------------------------------------</code></p><p><code>Device Address:=
+</code></p><p><code>    serial: 329053B</code></p><p><code>    claimed: Fal=
+se</code></p><p><code>    fpga: CG_400</code></p><p><code>    mgmt_addr: 19=
+2.168.1.184</code></p><p><code>    name: ni-x4xx-329053B</code></p><p><code=
+>    product: x410</code></p><p><code>    type: x4xx</code></p><p>Thanks. A=
+lso, I am using a custom image, however, the same issue persisted when I wa=
+s trying with the default CG_400 x410 image</p>
+
+--b1_Kit7AxvjUZy2mxDa1KwY84trYfoF6WmeLNuRIs4s7c--
+
+--===============4450618879225730110==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4450618879225730110==--
