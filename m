@@ -2,126 +2,197 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D398BD43C
-	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 19:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E17D8BD989
+	for <lists+usrp-users@lfdr.de>; Tue,  7 May 2024 04:48:38 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E2B5E385532
-	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 13:58:53 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F4202384D7D
+	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2024 22:48:36 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1715018333; bh=JxWEf7iHKRBoSfseBNk7hvlzB87MZI5zC3+sZrLXgd4=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=w6lamydxPYpl7ri8MkLZ4Z2lPQWRHiGG1JbUO5cdJBTDjoB8FVr66ewYysOBheKBw
-	 ohJhfFkYbsMft6yx4c1iW+R8u/evr2/dq+L0dpxlxDGsu+0cX5DS7ltjvfDaG306+d
-	 zySSgy1DfuyVJ7uiChfYeGp4EpRZYau8uz7Q9LitmIoigVz/o2iaLY90yXdzp6tY39
-	 6dzG5mMTj6/ooty6PKr1mdxOxf2dXAzPyPxjzplNJ8RipdiR5EKhgIVE1Xdi76rkKU
-	 rS0Y8sm5Q1LP/rpI1nDjritLye4X4wXWgZfX/w+jGv/1jJCGvnlcQ8fsu78SbJoBKb
-	 HKnGFEekcZ7yg==
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 16238383B15
-	for <usrp-users@lists.ettus.com>; Mon,  6 May 2024 13:56:27 -0400 (EDT)
+	t=1715050116; bh=6oVMccWfxbt1OzriWKReX0PKrJg5Me+yd2EoNuKM1AI=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=X4SFtjvQ2CIzgDg06ZaPtz4OsWj1dbsyF568XZvyZ+4EklvN8MedvnrrX3DmSdpft
+	 mn9UhTlZG+AwqwVxb1ao+NNBG/vhbPLqUqlAOPktEm4kMKFupro1vefiP3jtB5LRYV
+	 tP6EZQij2phqJh9g3IyAlDtvNKPX/HqRG7UbeGwF7sq++a3ZFd8Lppqfd4b4rDa59J
+	 P2ovFGY7pbVaFuOV8km8jkB3hGlvk8MZjVzhTbm/mkIcOAEOL+oLb2yzBHN62qzB/N
+	 5WlS68j2fcbBeMRz5DdTz9X3E0qZjwTMd17ocdV7gTpWUpCl7MNtPPk+iJYPkwuSZd
+	 rFzLadA7NhFTw==
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 94DD43814AE
+	for <usrp-users@lists.ettus.com>; Mon,  6 May 2024 22:48:04 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="YYOYlI8Z";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="vaLtWQbA";
 	dkim-atps=neutral
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2dac77cdf43so28141961fa.2
-        for <usrp-users@lists.ettus.com>; Mon, 06 May 2024 10:56:27 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5210684cee6so818885e87.0
+        for <usrp-users@lists.ettus.com>; Mon, 06 May 2024 19:48:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1715018186; x=1715622986; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WLt+t+rIoJquBavzknXXlzc9HwWMW7PLlhtgmIjx7js=;
-        b=YYOYlI8ZZXnLYmv/pbe/9h19Fq0p3PZNium4Rpc/AzUsRA4Hgrw7SPy5pUSjUcfrj6
-         d7wRRurP4mindSPs8HbQayAAVnPACfTxeHRc8HgjF4gyr1oT5AXbUxifEhyj514Cn89N
-         lTevjudujDmqFagHE1+ThpiDxPHQMuUy8DQJRIYdmDfSD2Du2eTg/7YRDATlXIFAjdKb
-         C5QHUiYNVbxjHDc4lbEotddfrU59sFJH+HRSoWbeIg51S5NYekIBcWHNLURbwKSa5EBf
-         kZeNmex+bbJq0r7jN11faiSId4uFnfotk5h+vkuTXQrGmhBjXK9t6VUJXC10ThFdb+IB
-         FUvA==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1715050083; x=1715654883; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y4ISUko44Tg8puZeNQmxX2YOcE762svBtUTIhxHh6h8=;
+        b=vaLtWQbALeNMVZNaPKcWrmjgTfsxH/IyFSc61ggx7SIzSgv7kLXcu3vaTKgQgMSPS5
+         j+r/8azdz+t3YFipmlyf/7Ja10YkvmplJovcdElsyWkdNWjE4mluo5Jo0CIK3d0C08Y3
+         G1tcx65RZ4InsvFbIm7IpnFKLOWAgt8TdPqQVIA7ra0R0LqAvfMNm9jT83goO9XV7PwP
+         i7vBpmhqMp0iUADdG5DjUAbE/fw40z1FBNBKkVe/NEuodDF2vbxp4x8KR1mO5GrjP1At
+         ZajJyMHThFWjfusRRptdwuyx8R0S0rFw4USYn9+a3ZC50UKVHm+3NkJ0uIDsaWZ6zCK6
+         8nvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715018186; x=1715622986;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WLt+t+rIoJquBavzknXXlzc9HwWMW7PLlhtgmIjx7js=;
-        b=OvRJ13pnQZMp2Ntye35DyLH9LMwdpAlScc/hiv9b2KG9ZNErMSm9asStfCwIWUEoyU
-         3TN2qMW+XWPio/9uOHSOsim3jQC3vgPcalLfpaS1pCKm+UnUDXb5lEwuUsGH4N3vlA/i
-         bP8+oq5lC6EOuGL2cfwjQIqRQVBMZ6QJoDEDLlHHDFp3KrR0tx/Y0dZOkJITeTSNcHPd
-         GJMsiCptVXdSimxAUy0hJCNOdwra5clRFlOIbsovUe1TeznW3z7G7SbcXk+bV+/yuWJe
-         lLG/adonR3RrpgPTQZm6s27qHtuGORPveoTpK45RnbdZjLBC3zfJ3XU4ha1a8mVfeqFW
-         IsyQ==
-X-Gm-Message-State: AOJu0YzFyBza5QRihS2busyDhV8pR03OaUj9Bx78AKkpVkrFX4rLJimw
-	eV/tO48Pahm9bztOXIPkFb+wFc99LP7QkHo1qfHnHmRo7rUWhcxcoYfiRzNWdB7uC5P4iN6dxva
-	76L7xtdoBV7j5bmMlveuPP6re1+NCczbrQLJJVgJLL0MR+dSYGZbtoi4/
-X-Google-Smtp-Source: AGHT+IGTN3XP4WIfKMR0b+Gu2HQoWBMmooFnomMFWO5mLoM8XNNOBzIXsGS0GnDcoLlDtlNw+N4HusewfT6sUe6BJxc=
-X-Received: by 2002:a05:651c:152:b0:2df:e705:7b4 with SMTP id
- c18-20020a05651c015200b002dfe70507b4mr7452645ljd.10.1715018185792; Mon, 06
- May 2024 10:56:25 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715050083; x=1715654883;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y4ISUko44Tg8puZeNQmxX2YOcE762svBtUTIhxHh6h8=;
+        b=ToHBCXJyOuSNKli2uMQW19ak2tfiymC8gSBb1aAzgWvq+XRTPjUaEjrmD6twHJw6Z7
+         IKF72YzKusbH6zDhA80SaXzGcb48u8XiBbhztbB1CAedW4OwqkWwWVzwFLg1Nb6pgua0
+         N3lXqN088GY86/IkklVzHTHtrGzEtWoqz/jQoG6vrwjvZ7/WGHYIppe57bPsStCSlGq9
+         HHc7/c/bVSe1j9Dt9AlOq5BS5C+CIjXbeICo2HmJ477co4yi8Oy0DjQiT0j5dCi6L9KF
+         RubU5SB3ULWE8cAKT3Q0+bEWUnLYX0FJz/6Uw1J95T4w2dpqqhafV8s4VDbp0Pmo75DJ
+         EOQA==
+X-Gm-Message-State: AOJu0YxP/xVJZsVhljN9zWzC6rBJtlWvxvPGcT4oDAd4JCFZxgN3KVxF
+	GyWXilSfGv1z30/RmRhKiI2koBE3nAWOykyU2W/3hB5tjqRFU3dLsjfGMEWyIwPNgHdfWN3aIZn
+	aTU3W+5OM0tguCxS3QbXFpVtR08+AdykXVUnkXKxQcFk8Hhi+4P5umA==
+X-Google-Smtp-Source: AGHT+IE09ksZ9Q/LZ6zn9g4KPeEdshUJ/YiS7pimLpbIfNs1hEQ/jG1idVBCdZUOiiQmNlRD8fDqAV9KHE+ObgKMV/8=
+X-Received: by 2002:a05:6512:7c:b0:51c:22fb:182f with SMTP id
+ i28-20020a056512007c00b0051c22fb182fmr7726046lfo.13.1715050082840; Mon, 06
+ May 2024 19:48:02 -0700 (PDT)
 MIME-Version: 1.0
-From: Neel Pandeya <neel.pandeya@ettus.com>
-Date: Mon, 6 May 2024 12:55:49 -0500
-Message-ID: <CACaXmv8Endp2JhbgOVQ8wsCMxrP6edY1PnvfKegQMdM5n2VnHw@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: X4DQEUMDFIEWK5RTIU4KEB4OOATE67BY
-X-Message-ID-Hash: X4DQEUMDFIEWK5RTIU4KEB4OOATE67BY
-X-MailFrom: neel.pandeya@ettus.com
+References: <DNuSIv2syTvH2LUJuh07JV4yEakEkELPJlc6BasqQYI@lists.ettus.com>
+In-Reply-To: <DNuSIv2syTvH2LUJuh07JV4yEakEkELPJlc6BasqQYI@lists.ettus.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Mon, 6 May 2024 21:47:45 -0500
+Message-ID: <CAFche=h0M6+Dq_SnoBb8M7UBAude95nCDutkZk92faC=5VZXzQ@mail.gmail.com>
+To: ettus@basti.rocks
+Message-ID-Hash: FFKI3V6QJTIHMVFYOIPYZK7D3KIDMTOS
+X-Message-ID-Hash: FFKI3V6QJTIHMVFYOIPYZK7D3KIDMTOS
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] NEWSDR on Friday May 31 at WPI (updated agenda!)
+Subject: [USRP-users] Re: RFNoC FFT block on X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/X4DQEUMDFIEWK5RTIU4KEB4OOATE67BY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FFKI3V6QJTIHMVFYOIPYZK7D3KIDMTOS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1727399937795315344=="
+Content-Type: multipart/mixed; boundary="===============5395402633159352448=="
 
---===============1727399937795315344==
-Content-Type: multipart/alternative; boundary="000000000000bf7e320617ccc910"
+--===============5395402633159352448==
+Content-Type: multipart/alternative; boundary="000000000000f5d3da0617d4362c"
 
---000000000000bf7e320617ccc910
+--000000000000f5d3da0617d4362c
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The agenda has been updated!
+Hi Sebastian,
 
-The New England Workshop on Software Defined Radio (NEWSDR) will be held at
-Worcester Polytechnic Institute (WPI) on Friday May 31, in Worcester,
-Massachusetts, USA.
+You might be using an old YAML file and tring to apply it to a new version
+of UHD. Take a look at the YAML file for the version of the FPGA closest to
+what you want. For example, here's the default X410 image in UHD 4.6:
 
-There will also be a tutorial session on the evening before on Thursday May
-30.
+https://github.com/EttusResearch/uhddev/blob/UHD-4.6/fpga/usrp3/top/x400/x4=
+10_200_rfnoc_image_core.yml
 
-The event is free, but advance registration is required.
+Here's the same YAML with the DRAM commented out and a single FFT block
+added:
 
-To learn more about this event and to register, please visit our website at
-the link below.
+https://drive.google.com/file/d/1TojBea56ZuPpXTYUIsgQRDg7F-EbVtWH/view?usp=
+=3Dsharing
 
-We are still interested in poster presentation submissions, so please
-consider submitting.
+You'll probably want to tailor this to your use case.
 
-*https://newsdr.org/workshops/newsdr2024/
-<https://newsdr.org/workshops/newsdr2024/>*
+Wade
 
---000000000000bf7e320617ccc910
+On Mon, May 6, 2024 at 7:03=E2=80=AFAM <ettus@basti.rocks> wrote:
+
+> Hello Piotr, hello everybody,
+>
+> i am working with the USRP X410 as well and want to get the FFT Block to
+> work in RFNoC.
+>
+> I have tried to use the yml as it is, but the Plausibility check failed,
+> which i could resolve by editing the line 143 =E2=80=9Cdram=E2=80=9D -> =
+=E2=80=9Cdram0=E2=80=9D. I guess
+> this was a typo.
+>
+> After 2 h or so i had a .bit file and tried to flash it. However it
+> doesn=E2=80=99t work and i get the following Message:
+>
+> [ERROR] [MPMD::MB_IFACE] Automatic clock detection requested, but no vali=
+d clock index given (63). Make sure FPGA bitfile is up to date!
+>
+> [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Runtime=
+Error: NotImplementedError: Automatic clock detection requested, but no val=
+id clock index given (63). Make sure FPGA bitfile is up to date!
+>
+> Do you have any idea what the problem is or can you provide me your
+> working yml file?
+>
+> Please note that i have no in depth experience with FPGA development or
+> RFNoC and only tried to follow the available guides.
+>
+>
+> Best Regards,
+> Sebastian
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000f5d3da0617d4362c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D""><font face=3D"verd=
-ana, sans-serif">The agenda has been updated!<br><br>The New England Worksh=
-op on Software Defined Radio (NEWSDR) will be held at<br>Worcester Polytech=
-nic Institute (WPI) on Friday May 31, in Worcester, Massachusetts, USA.<br>=
-<br>There will also be a tutorial session on the evening before on Thursday=
- May 30.<br><br>The event is free, but advance registration is required.<br=
-><br>To learn more about this event and to register, please visit our websi=
-te at the link below.<br><br>We are still interested in poster presentation=
- submissions, so please consider submitting.<br><br><b><a href=3D"https://n=
-ewsdr.org/workshops/newsdr2024/">https://newsdr.org/workshops/newsdr2024/</=
-a></b></font><br></div><div class=3D"gmail_default" style=3D""><font face=
-=3D"verdana, sans-serif"><b><br></b></font></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Sebastian,</div><div dir=3D"ltr"><br><=
+/div><div dir=3D"ltr">You might be using an old YAML file and tring to appl=
+y it to a new version of UHD. Take a look at the YAML file for the version =
+of the FPGA closest to what you want. For example, here&#39;s the default X=
+410 image in UHD 4.6:</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><a h=
+ref=3D"https://github.com/EttusResearch/uhddev/blob/UHD-4.6/fpga/usrp3/top/=
+x400/x410_200_rfnoc_image_core.yml">https://github.com/EttusResearch/uhddev=
+/blob/UHD-4.6/fpga/usrp3/top/x400/x410_200_rfnoc_image_core.yml</a></div><d=
+iv dir=3D"ltr"><br></div><div>Here&#39;s the same YAML with the DRAM commen=
+ted out and a single FFT block added:</div><div><br></div><div><a href=3D"h=
+ttps://drive.google.com/file/d/1TojBea56ZuPpXTYUIsgQRDg7F-EbVtWH/view?usp=
+=3Dsharing">https://drive.google.com/file/d/1TojBea56ZuPpXTYUIsgQRDg7F-EbVt=
+WH/view?usp=3Dsharing</a></div><div><br></div><div>You&#39;ll probably want=
+ to tailor this to your use case.<br></div><div><br></div><div>Wade<br></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On M=
+on, May 6, 2024 at 7:03=E2=80=AFAM &lt;ettus@basti.rocks&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hello Piotr, hello e=
+verybody,</p><p>i am working with the USRP X410 as well and want to get the=
+ FFT Block to work in RFNoC. </p><p>I have tried to use the yml as it is, b=
+ut the Plausibility check failed, which i could resolve by editing the line=
+ 143 =E2=80=9Cdram=E2=80=9D -&gt; =E2=80=9Cdram0=E2=80=9D. I guess this was=
+ a typo.</p><p>After 2 h or so i had a .bit file and tried to flash it. How=
+ever it doesn=E2=80=99t work and i get the following Message:</p><pre><code=
+>[ERROR] [MPMD::MB_IFACE] Automatic clock detection requested, but no valid=
+ clock index given (63). Make sure FPGA bitfile is up to date!</code></pre>=
+<pre><code>[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph=
+: RuntimeError: NotImplementedError: Automatic clock detection requested, b=
+ut no valid clock index given (63). Make sure FPGA bitfile is up to date!</=
+code></pre><p>Do you have any idea what the problem is or can you provide m=
+e your working yml file?</p><p>Please note that i have no in depth experien=
+ce with FPGA development or RFNoC and only tried to follow the available gu=
+ides.  </p><p><br></p><p>Best Regards,<br>Sebastian</p><pre><code><br></cod=
+e></pre>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
 
---000000000000bf7e320617ccc910--
+--000000000000f5d3da0617d4362c--
 
---===============1727399937795315344==
+--===============5395402633159352448==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,4 +202,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1727399937795315344==--
+--===============5395402633159352448==--
