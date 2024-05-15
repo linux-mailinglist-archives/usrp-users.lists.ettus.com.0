@@ -2,158 +2,245 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5498C8C050C
-	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2024 21:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7488C6D59
+	for <lists+usrp-users@lfdr.de>; Wed, 15 May 2024 22:42:23 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3DD2F385B50
-	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2024 15:30:54 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 051B8384B54
+	for <lists+usrp-users@lfdr.de>; Wed, 15 May 2024 16:42:22 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1715196654; bh=QTFRbgf/NMSALnMCu/0GK+qI965eJDqNeKH/9BB2zB4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=WatWdO1XqqcpKy9LJEb3Qyt9BfUb0VpGg5a1qLOVggNYLOA+QlZM/2nZ1uXgdNRIz
-	 5pclcnaOahHrKC2LZDcBOzs3NnePtPrLDO/eXsv4PEBG/9oxWE8HD+o3JLd7rDmJ/0
-	 GsokF4AkBHuclw9OYwUjkgVbXnwiP3wccrpnfHbxN0tLnlEpbhwfKKeGoxp1ryHhvV
-	 xrVMshzYARJGdCyhKy70I9CsnIk0cVCbFKxXanDOWnGCiPaiAucvtOhOpus/EL2Ipo
-	 9eSMrEhV2oXJEvBOrCxfmuToEWXBh06AbRw7Rci8hy+OLCM/zhXf4HkDRIeKB2ndkf
-	 Wc7lBAHpY8zSw==
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7283E3854E4
-	for <usrp-users@lists.ettus.com>; Wed,  8 May 2024 15:28:41 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dNaMZUw5";
-	dkim-atps=neutral
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7928c54e945so4972885a.2
-        for <usrp-users@lists.ettus.com>; Wed, 08 May 2024 12:28:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715196520; x=1715801320; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Tz1ftmS2l+8EUb5KQbaIotkhGkWXLFIALwepBpfsFRc=;
-        b=dNaMZUw5da7Gjg/6Ttv38/f6UKlFr5lMjQlQmqQG6po6kMflWsSuwCoUuY0FIy3S09
-         s+FIIrcyLcBokysIjB6s27nnodzUm8eJR+VUHV4pSKNcvD9TxuP0S+BZRYrqcLXusWyn
-         6NpJdGNETWrEUkmq7daNm258VYxEg4gIVk8Xai3fbsA0JMnj76maTer7SAvRPTOXGksI
-         srNhVMwvt7H8Ucnw2eLFrokDiBOOBD621vuZPu5mm94/scX6VsPRpPaMTc4LcCfn5CD2
-         4MoZbJTkkf5bYrhK17SNSldXKX6Ww9p73h3aia51We6Gvcf4LWTrhMLC3wD2qeQIfB5T
-         Hg4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715196520; x=1715801320;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Tz1ftmS2l+8EUb5KQbaIotkhGkWXLFIALwepBpfsFRc=;
-        b=R3sK6tOycSaVNP2GEiX9GnnrFXQ7puyIVKBehjYJJM10bVBtK4o22buXBMHbaeIu3g
-         rcwNYKWgp7VNMlZOGCbelbAXMDslWSQo1CrqN2o/oPZvcjDklS60L0BYMYHkKt/gaXke
-         83GyFdc3dXxOU7Q/gRK7+paszfuJjRPLamWYzhuJ4gfCTzzCFIgMthHwIko0CxPdnyC7
-         PX+wR7/8MbVpkZbM41I8opqYgIbwbdLfcyJXJ2lkgV/+AE+pc/pS0V7x1PcD7R1gT6Jj
-         UHpwE7m6HfLzk8WrqaB+xqoJWw5L/+EtGk1n213MS/S4XRACpt3gV3CgAGst6fauScd6
-         dhWA==
-X-Gm-Message-State: AOJu0YxDzvtH96X9nRLNFxSgp/0f63wvYMffvO/o6D6bc8pv5e4BOnCa
-	nmTiuL1BLN1sJz6YvQRT1S7Cq4o7SV9Mxt8/MFsEb24X9b0jnYksdtt+Ug==
-X-Google-Smtp-Source: AGHT+IFlxdSq4Yb61AvllDifJrZs/fKXSorlGfmtF0SdEJubN3labTDLSDR9LfREhZ0lXmE19QP0IQ==
-X-Received: by 2002:a05:622a:301:b0:43a:e61a:ddde with SMTP id d75a77b69052e-43dbef8aef5mr41078161cf.48.1715196520458;
-        Wed, 08 May 2024 12:28:40 -0700 (PDT)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-07-174-93-0-192.dsl.bell.ca. [174.93.0.192])
-        by smtp.googlemail.com with ESMTPSA id o18-20020ac86992000000b0043d4245dd4csm4675776qtq.84.2024.05.08.12.28.39
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 May 2024 12:28:40 -0700 (PDT)
-Message-ID: <e316f0de-c616-4e65-8b59-25d94787ee66@gmail.com>
-Date: Wed, 8 May 2024 15:28:38 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+	t=1715805742; bh=4c6xhtIFW17mmv2FnGViT16+dBOqe/Ovdn22agk9eh4=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=S/6SVynLM5M5H7P5FiLRHCf9lMezZAHfIZtHY9udkc5u1PS83asrxyjgiENWvP1CK
+	 9/QsbJM5EAkyufSUbKU0IPsgyrD0wqJoN6i0O5+tZbwpVge2Mzp1NdQ1jophkZU09l
+	 La+bwPeT8V2jJSBRvTJAjm1Ry/MFs9ZPWMADoxR85YvTltVxAQFaVDgHZk9hSuZTuO
+	 lojYnM1WwkGf4Ad3jwKp6ICrg3/6+pGZa0a4EiyGSW0YO9/TaEVstp5xn8fRQK//XD
+	 B0P1KcyK8df3qtcT4LNauxuMQOacPv+p23FCc8YOH2tF8D5B4ygXqdp6Td8/eNx/xX
+	 eCJ4/QoUfi+RA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 09B07384616
+	for <usrp-users@lists.ettus.com>; Wed, 15 May 2024 16:41:58 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1715805718; bh=ccOTFQhXj7LKhfHhqnb0jeI8OAe3MtpyHJKTQNVIoXY=;
+	h=Date:To:From:Subject:From;
+	b=cgcAXb1xUkxB9KZDR54ZP18ve8eNh6U1cNRWOhX3RjkWnMPaeZOnfrevVnz36wGwA
+	 v+SiC40f24VLggePkmpQu896BmADPb0EThqS7b+cUAlRHfv74DoBNFno6gMAKakd4n
+	 wk2RUKMTgHVDBabrLlWk51Xyf7+5HRLOZ3cINAGuCN4EXaGK476QTXQwXHQ7shqMza
+	 AUH9GdRX11SesNXgiU2CnYob0tkAOpJPu7tkNQ3KRdNvLSSsATQE7BcKimOv6whHGD
+	 7jMqyNDzXb1/oQGAc3o9geG1mpSMOt6QGHiAEGtq47jVukFigwrpRg9mNeBOmU+m36
+	 yXJyqKwIdpZLQ==
+Date: Wed, 15 May 2024 20:41:58 +0000
 To: usrp-users@lists.ettus.com
-References: <SJ0PR09MB91266A91F40313213FF95E77ECE52@SJ0PR09MB9126.namprd09.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <SJ0PR09MB91266A91F40313213FF95E77ECE52@SJ0PR09MB9126.namprd09.prod.outlook.com>
-Message-ID-Hash: BDQ5D5YHU66APEY5MABX4CHIPI74J6HE
-X-Message-ID-Hash: BDQ5D5YHU66APEY5MABX4CHIPI74J6HE
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID: <1Jv8EbBoOfNKYemyM7yM8ykQ4BwoyZvcKXYwiroegA@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: 2JYP4CKEHLJYZHCV6DI4KOCJ6USAVSB6
+X-Message-ID-Hash: 2JYP4CKEHLJYZHCV6DI4KOCJ6USAVSB6
+X-MailFrom: smm223@ucsd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Power output on the N321 LO OUT
+Subject: [USRP-users] RFNoC socket error on X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BDQ5D5YHU66APEY5MABX4CHIPI74J6HE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2JYP4CKEHLJYZHCV6DI4KOCJ6USAVSB6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1726686201916370765=="
+From: smm223--- via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: smm223@ucsd.edu
+Content-Type: multipart/mixed; boundary="===============1339347803970344657=="
 
 This is a multi-part message in MIME format.
---===============1726686201916370765==
+
+--===============1339347803970344657==
 Content-Type: multipart/alternative;
- boundary="------------QTuNQlElwGhS3w0EetcZsbZm"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------QTuNQlElwGhS3w0EetcZsbZm
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ boundary="b1_1Jv8EbBoOfNKYemyM7yM8ykQ4BwoyZvcKXYwiroegA"
 Content-Transfer-Encoding: 7bit
 
-On 08/05/2024 15:21, Eugene Grayver wrote:
-> What power level can I expect on the N321 LO output at 2 GHz? Thanks.
+This is a multi-part message in MIME format.
+
+--b1_1Jv8EbBoOfNKYemyM7yM8ykQ4BwoyZvcKXYwiroegA
+Content-Type: text/plain; charset=us-ascii
+
+Hi all,
+
+I am trying to setup an X410 with a 4x10G NIC on the PC. After configuring the IP addresses, `uhd_find_devices `identifies the USRP without any issues. The output of `uhd_find_devices `is the following: 
+
+> \[INFO\] \[UHD\] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11; UHD_4.6.0.HEAD-0-g50fa3baa
 >
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-Somewhere between +3dBm and +7dBm -- enough to drive the LO *IN* ports 
-on N320, etc.
+> \--------------------------------------------------
+>
+> \-- UHD Device 0
+>
+> \--------------------------------------------------
+>
+> Device Address:
+>
+>     serial: 327B85D
+>
+>     addr: 192.168.11.2
+>
+>     claimed: False
+>
+>     fpga: X4_200
+>
+>     mgmt_addr: 192.168.10.2
+>
+>     mgmt_addr: 192.168.11.2
+>
+>     mgmt_addr: 192.168.12.2
+>
+>     mgmt_addr: 192.168.13.2
+>
+>     name: ni-x4xx-327B85D
+>
+>     product: x410
+>
+>     type: x4xx
 
+When I run `uhd_usrp_probe`, I am facing the following error:
 
---------------QTuNQlElwGhS3w0EetcZsbZm
-Content-Type: text/html; charset=UTF-8
+> \[INFO\] \[UHD\] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11; UHD_4.6.0.HEAD-0-g50fa3baa
+>
+> \[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.13.2,type=x4xx,product=x410,serial=327B85D,name=ni-x4xx-327B85D,fpga=X4_200,claimed=False,addr=192.168.11.2
+>
+> \[INFO\] \[MPM.PeriphManager\] init() called with device args \`fpga=X4_200,mgmt_addr=192.168.13.2,name=ni-x4xx-327B85D,product=x410,clock_source=internal,time_source=internal,initializing=True'.
+>
+> \[WARNING\] \[UDP\] The send buffer could not be resized sufficiently.
+>
+> Target sock buff size: 25000000 bytes.
+>
+> Actual sock buff size: 1048576 bytes.
+>
+> See the transport application notes on buffer resizing.
+>
+> Please run: sudo sysctl -w net.core.wmem_max=25000000
+>
+> \[ERROR\] \[RFNOC::MGMT\] EnvironmentError: IOError: recv error on socket: Connection refused
+>
+> \[ERROR\] \[RFNOC::GRAPH\] IO Error during GSM initialization. EnvironmentError: IOError: recv error on socket: Connection refused
+>
+> \[ERROR\] \[RFNOC::GRAPH\] Caught exception while initializing graph: EnvironmentError: IOError: recv error on socket: Connection refused
+>
+> Error: RuntimeError: Failure to create rfnoc_graph.
+
+The same error pops up when I try to flash a new image. 
+
+> \~$ uhd_image_loader --args type=x4xx,addr=192.168.12.2,fpga=X4_200
+>
+> \[INFO\] \[UHD\] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11; UHD_4.6.0.HEAD-0-g50fa3baa
+>
+> \[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.12.2,type=x4xx,product=x410,serial=327B85D,name=ni-x4xx-327B85D,fpga=X4_200,claimed=False,skip_init=1
+>
+> \[INFO\] \[MPMD\] Claimed device without full initialization.
+>
+> \[INFO\] \[MPMD IMAGE LOADER\] Starting update. This may take a while.
+>
+> \[INFO\] \[MPM.PeriphManager\] Installing component \`fpga'
+>
+> \[INFO\] \[MPM.PeriphManager\] Installing component \`dts'
+>
+> \[INFO\] \[MPM.RPCServer\] Resetting peripheral manager.
+>
+> \[INFO\] \[MPM.PeriphManager\] Device serial number: 3274839
+>
+> \[INFO\] \[MPM.PeriphManager.ClkMgr\] Using Clock Configuration:
+>
+> DB0: Master Clock Rate: 245.76 MSps @Converter Rate 2.94912 GHz
+>
+> DB1: Master Clock Rate: 245.76 MSps @Converter Rate 2.94912 GHz
+>
+> \[INFO\] \[MPM.PeriphManager\] Initialized 2 daughterboard(s).
+>
+> \[INFO\] \[MPM.PeriphManager\] init() called with device args \`boot_init=True,clock_source=internal,time_source=internal,initializing=True'.
+>
+> \[INFO\] \[MPMD IMAGE LOADER\] Update component function succeeded.
+>
+> \[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.12.2,type=x4xx,product=x410,serial=327B85D,name=ni-x4xx-327B85D,fpga=X4_200,claimed=False,addr=192.168.12.2,find_all=1
+>
+> \[INFO\] \[MPM.PeriphManager\] init() called with device args \`find_all=1,fpga=X4_200,mgmt_addr=192.168.12.2,name=ni-x4xx-327B85D,product=x410,clock_source=internal,time_source=internal,initializing=True'.
+>
+> \[ERROR\] \[RFNOC::MGMT\] EnvironmentError: IOError: recv error on socket: Connection refused
+>
+> \[ERROR\] \[RFNOC::GRAPH\] IO Error during GSM initialization. EnvironmentError: IOError: recv error on socket: Connection refused
+>
+> \[ERROR\] \[RFNOC::GRAPH\] Caught exception while initializing graph: EnvironmentError: IOError: recv error on socket: Connection refused
+>
+> Error: RuntimeError: Failure to create rfnoc_graph.
+
+What could be the possible issues? Greatly appreciate you help!
+
+--b1_1Jv8EbBoOfNKYemyM7yM8ykQ4BwoyZvcKXYwiroegA
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 08/05/2024 15:21, Eugene Grayver
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:SJ0PR09MB91266A91F40313213FF95E77ECE52@SJ0PR09MB9126.namprd09=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        What power level can I expect on the N321 LO output at 2 GHz?=C2=A0
-        Thanks.</div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    Somewhere between +3dBm and +7dBm -- enough to drive the LO *IN*
-    ports on N320, etc.<br>
-    <br>
-    <br>
-  </body>
-</html>
+<p>Hi all,</p><p>I am trying to setup an X410 with a 4x10G NIC on the PC. A=
+fter configuring the IP addresses, <code>uhd_find_devices </code>identifies=
+ the USRP without any issues. The output of <code>uhd_find_devices </code>i=
+s the following: </p><blockquote><p>[INFO] [UHD] linux; GNU C++ version 11.=
+4.0; Boost_107400; DPDK_21.11; UHD_4.6.0.HEAD-0-g50fa3baa</p><p>-----------=
+---------------------------------------</p><p>-- UHD Device 0</p><p>-------=
+-------------------------------------------</p><p>Device Address:</p><p>   =
+ serial: 327B85D</p><p>    addr: 192.168.11.2</p><p>    claimed: False</p><=
+p>    fpga: X4_200</p><p>    mgmt_addr: 192.168.10.2</p><p>    mgmt_addr: 1=
+92.168.11.2</p><p>    mgmt_addr: 192.168.12.2</p><p>    mgmt_addr: 192.168.=
+13.2</p><p>    name: ni-x4xx-327B85D</p><p>    product: x410</p><p>    type=
+: x4xx</p></blockquote><p>When I run <code>uhd_usrp_probe</code>, I am faci=
+ng the following error:</p><blockquote><p>[INFO] [UHD] linux; GNU C++ versi=
+on 11.4.0; Boost_107400; DPDK_21.11; UHD_4.6.0.HEAD-0-g50fa3baa</p><p>[INFO=
+] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D192.16=
+8.13.2,type=3Dx4xx,product=3Dx410,serial=3D327B85D,name=3Dni-x4xx-327B85D,f=
+pga=3DX4_200,claimed=3DFalse,addr=3D192.168.11.2</p><p>[INFO] [MPM.PeriphMa=
+nager] init() called with device args `fpga=3DX4_200,mgmt_addr=3D192.168.13=
+.2,name=3Dni-x4xx-327B85D,product=3Dx410,clock_source=3Dinternal,time_sourc=
+e=3Dinternal,initializing=3DTrue'.</p><p>[WARNING] [UDP] The send buffer co=
+uld not be resized sufficiently.</p><p>Target sock buff size: 25000000 byte=
+s.</p><p>Actual sock buff size: 1048576 bytes.</p><p>See the transport appl=
+ication notes on buffer resizing.</p><p>Please run: sudo sysctl -w net.core=
+.wmem_max=3D25000000</p><p>[ERROR] [RFNOC::MGMT] EnvironmentError: IOError:=
+ recv error on socket: Connection refused</p><p>[ERROR] [RFNOC::GRAPH] IO E=
+rror during GSM initialization. EnvironmentError: IOError: recv error on so=
+cket: Connection refused</p><p>[ERROR] [RFNOC::GRAPH] Caught exception whil=
+e initializing graph: EnvironmentError: IOError: recv error on socket: Conn=
+ection refused</p><p>Error: RuntimeError: Failure to create rfnoc_graph.</p=
+></blockquote><p>The same error pops up when I try to flash a new image. </=
+p><blockquote><p>~$ uhd_image_loader --args type=3Dx4xx,addr=3D192.168.12.2=
+,fpga=3DX4_200</p><p>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_1074=
+00; DPDK_21.11; UHD_4.6.0.HEAD-0-g50fa3baa</p><p>[INFO] [MPMD] Initializing=
+ 1 device(s) in parallel with args: mgmt_addr=3D192.168.12.2,type=3Dx4xx,pr=
+oduct=3Dx410,serial=3D327B85D,name=3Dni-x4xx-327B85D,fpga=3DX4_200,claimed=
+=3DFalse,skip_init=3D1</p><p>[INFO] [MPMD] Claimed device without full init=
+ialization.</p><p>[INFO] [MPMD IMAGE LOADER] Starting update. This may take=
+ a while.</p><p>[INFO] [MPM.PeriphManager] Installing component `fpga'</p><=
+p>[INFO] [MPM.PeriphManager] Installing component `dts'</p><p>[INFO] [MPM.R=
+PCServer] Resetting peripheral manager.</p><p>[INFO] [MPM.PeriphManager] De=
+vice serial number: 3274839</p><p>[INFO] [MPM.PeriphManager.ClkMgr] Using C=
+lock Configuration:</p><p>DB0: Master Clock Rate: 245.76 MSps @Converter Ra=
+te 2.94912 GHz</p><p>DB1: Master Clock Rate: 245.76 MSps @Converter Rate 2.=
+94912 GHz</p><p>[INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).<=
+/p><p>[INFO] [MPM.PeriphManager] init() called with device args `boot_init=
+=3DTrue,clock_source=3Dinternal,time_source=3Dinternal,initializing=3DTrue'=
+.</p><p>[INFO] [MPMD IMAGE LOADER] Update component function succeeded.</p>=
+<p>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=
+=3D192.168.12.2,type=3Dx4xx,product=3Dx410,serial=3D327B85D,name=3Dni-x4xx-=
+327B85D,fpga=3DX4_200,claimed=3DFalse,addr=3D192.168.12.2,find_all=3D1</p><=
+p>[INFO] [MPM.PeriphManager] init() called with device args `find_all=3D1,f=
+pga=3DX4_200,mgmt_addr=3D192.168.12.2,name=3Dni-x4xx-327B85D,product=3Dx410=
+,clock_source=3Dinternal,time_source=3Dinternal,initializing=3DTrue'.</p><p=
+>[ERROR] [RFNOC::MGMT] EnvironmentError: IOError: recv error on socket: Con=
+nection refused</p><p>[ERROR] [RFNOC::GRAPH] IO Error during GSM initializa=
+tion. EnvironmentError: IOError: recv error on socket: Connection refused</=
+p><p>[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Envi=
+ronmentError: IOError: recv error on socket: Connection refused</p><p>Error=
+: RuntimeError: Failure to create rfnoc_graph.</p></blockquote><p>What coul=
+d be the possible issues? Greatly appreciate you help! </p>
 
---------------QTuNQlElwGhS3w0EetcZsbZm--
+--b1_1Jv8EbBoOfNKYemyM7yM8ykQ4BwoyZvcKXYwiroegA--
 
---===============1726686201916370765==
+--===============1339347803970344657==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -163,4 +250,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1726686201916370765==--
+--===============1339347803970344657==--
