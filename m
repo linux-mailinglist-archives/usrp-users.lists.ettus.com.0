@@ -2,189 +2,381 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCF728D385A
-	for <lists+usrp-users@lfdr.de>; Wed, 29 May 2024 15:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 422DF8D45A8
+	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2024 08:57:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CCBA43857CD
-	for <lists+usrp-users@lfdr.de>; Wed, 29 May 2024 09:49:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E1922385673
+	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2024 02:56:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1716990596; bh=syGJnpXj/CLN5aFUKENCCxplewUYk1+yFPuk+orbBi0=;
-	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1717052218; bh=dr03wAtq+hWQndS/rUS3sFIttv2DOg0b7mWxrDET04U=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From:Reply-To:From;
-	b=WyKN6Bm1luHoxlWZ4G4rhUtoSyTqjmk4XA1FllkuErjqLUgYrsEPjIEaf/Ebq+oOp
-	 WmV2NLVPXWHVzYwrTLVQy8dUb5hZzoz6bNGRYqkGhZSEvHODm8Es9uAVw5y2Zwcyyc
-	 qNW55zfeCNJW8ebBZIW5eBUn2GSZbRlc22i1dEix2o/AQND1JYyazb5xwBeQI4NQPu
-	 pHXrgMy321/wXYY9Q43xHkmXTxLmHm/6A6O6bBFDKNas6K+G56KPYBp47p3rGHZqs4
-	 X9VBxtMgFe1hOwYGUo+NSMO6K1JGJYcUof1nVWzkyt8ZVyfCwMx9HhlrutE2GWbMkq
-	 cwmYw8Svvgvyw==
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2108.outbound.protection.outlook.com [40.107.7.108])
-	by mm2.emwd.com (Postfix) with ESMTPS id AEEAC3857A4
-	for <usrp-users@lists.ettus.com>; Wed, 29 May 2024 09:49:07 -0400 (EDT)
+	b=K3t8E9V0WtuAYXIuVwPThJZhTgMh8uJ0qH/qwJyvHTsqAITEugKYuxd04TbTAanm0
+	 ylk2Ekdiu+L7kNXkD2ILNVxuBZBktJ1YueinEjBcEmh1KLvzVvgMJj/q+4O1FMPB0N
+	 GT7jmJlMCZnBFSNFX/9wsUBFcJSuZagPErsNLskujcDjqBYd0on8aNX/BkLHEAIHmf
+	 kBCFXwZ+JHpCsZdV0hYIOO4cmuuwD635F/ZqoAbxuNGk92liOb7/Lkq5spOpj1sdFW
+	 ChPoadYI7YSIhcqkQrYXDTiZukuF7m+ErjMfxp17yOcXtX/aXU7TrdbcI/NtWaYCIt
+	 9UaSgmuWed9DA==
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3E02A385673
+	for <usrp-users@lists.ettus.com>; Thu, 30 May 2024 02:56:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="lKjknjJL";
+	dkim=pass (2048-bit key; unprotected) header.d=ncsu.edu header.i=@ncsu.edu header.b="f8LYeLc/";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SLG8WXRTdes05MPnXgbhxs7v/OwuAwPBDgyTVH5Cql95Lo3EHEmhVSPpQaPX0zgSiaNeHV+9242y3IXuYgKTP+dAkvtizgDwqQBxjG5GuWKW889t4kUIhMlOo3knDFt2sxIgl23JPePRDxOy7fZxIaqRxMWJTQFt76bYnKtFOlXvsuixK6L3YFYVk+vpFwO3tgs3HuJqwrO9B3xTeoPHF8T1kN8c0m8/Fz+iRGgCSeIRsEjoWqhx2BBOwDvau8pKSNHGsKl+Yg70KbJWm5oDP0wq0xZ4lXE4kejaoiYga4s/tvtAZ4sVAJO/INAWWrNxgVUJ0IF6Ii7dJ1t/l/zMhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EqTW4haapDsn40Q4uTBQNTGd+E2cojXRDlHvjHEAq3o=;
- b=LwMX+cB8s+HJ9uAR3n+LRkjaR/q3b71eS6UOlpHIfArZu52TkaDbTpGsTibVp2/24DTOB9ObGBVwiBoj9ue9LaArKrt3P9hMjVWn8uB6LX4Nrgl1Wv2sweV+q8e1gz+kDwNc0a71zQsiWngjIhJcKfP0a2HH6/uhUwrNfrYNJv0Mrp3WTYNJamfI1A5Pxuz27a3HxjwC3smp67kIcb5/HrQpHuSncqQT/7hNM6F4iRZ0CGEvwwxRVnodzedQtrq2WOFGPrULxei/8pbz6iJy9807hJCnCJRa2674G9ZnVlQnSkFPuxvwg1IeH3FWeUO/DqL81lCivr6C4aDcfdJdyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EqTW4haapDsn40Q4uTBQNTGd+E2cojXRDlHvjHEAq3o=;
- b=lKjknjJLqky3yV2rPwq+GYQ3fkVjqCqGg9Z4UPxhgM+YUR83RdfaOKJ90cheCdM5WH7HnifM19LGJRW7cOlB19l4DIuV4Aw0DhRkDTmWPB8hGklrX0DDhjrDxXKRWC1CGiQ/l/ESiZbmahRIUXoCSZTXf4khkIn1YtxelGRs8Ho=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ulb.be;
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::6) by
- PA4P190MB1216.EURP190.PROD.OUTLOOK.COM (2603:10a6:102:10e::24) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7611.22; Wed, 29 May 2024 13:49:05 +0000
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::2ea0:4254:b809:a957]) by GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::2ea0:4254:b809:a957%4]) with mapi id 15.20.7611.025; Wed, 29 May 2024
- 13:49:04 +0000
-Date: Wed, 29 May 2024 15:49:03 +0200
-To: usrp-users@lists.ettus.com
-Message-ID: <7g4l4dc7eeisexvghhl5udr3claawxcyrtzzeoxx367i5jwzgg@vu4u6jnrhwyw>
-Mail-Followup-To: usrp-users@lists.ettus.com
-References: <mZZj2cd8CVH8GK5b5m07VRwrvH34HiHCbxOSjUyDS0@lists.ettus.com>
-Content-Disposition: inline
-In-Reply-To: <mZZj2cd8CVH8GK5b5m07VRwrvH34HiHCbxOSjUyDS0@lists.ettus.com>
-X-ClientProxiedBy: AS4PR10CA0030.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d8::11) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:150:6e::6)
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-4e97a672dadso227437e0c.2
+        for <usrp-users@lists.ettus.com>; Wed, 29 May 2024 23:56:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ncsu.edu; s=google; t=1717052171; x=1717656971; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WiHBrqlkmLQdtVguww2+x9/0AQ1b/bbuWvDfPumull4=;
+        b=f8LYeLc/acJb2ZmgUyj4XKRhuFMRWhqc9VMmzxd0RIg0rDUB7tdUQ/9J1Z8LZHr4wq
+         GnYBnw7Va2hYgjfE1i0eIVCU/v1+XG94DVfclgNq741zIRk0ALNENOr0KorFgm5dYE2J
+         IG8DlcYWn//tOIiI2m2qo6kZEIk56SQuON+6dh9D+AyU+OL4uaTd7G5hNQYQzWVfUKOQ
+         kWOnNKBtNPJTFRfNqHlsWUZMd/lUFLA2EoF+ujFdqamZL0FDursNRC19hnBanZaFkHmd
+         R0fFBSRuJY0Co+80d3MPfGc8It6VPqMk5b6P+P9vzsQfxpfJTZAPpDTsmhIvWm2JyO/F
+         LF6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717052171; x=1717656971;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WiHBrqlkmLQdtVguww2+x9/0AQ1b/bbuWvDfPumull4=;
+        b=R1nyLeVQWE8MqVsiA3q4tozK11QQxct1Kx7hNGlsLd2yhFG9oobgiq9L45kliuRCrP
+         sdCX4u8ltbeLbVk7Ppd41uWeYVjx279YHDbxHVRIsyvQbS40ePZi87uOxdEINmdJ9uG/
+         K8qxaHKz8W6hf3xFkIfCMe0EWRhfy5PtdKrkNJnmIz2Ow5ckyyra1Pn6IGzWjrBYg1Dm
+         TvGbkb19IuA7WqnF+SWWHJXf9AM/LLuxUYZLgqXK0hlkD4/GryevJv+TzrCDKQtY+ygR
+         /LBi0WXzu8mh8vrY58ozNNAZdKriZ3B5OwF+eJTGNtyB8H8WJtqjljr9iXEtSw+p8Zpo
+         Pe7g==
+X-Gm-Message-State: AOJu0YxGc1LuxAbMP410rRtOguYs2H5+vvma8/De3lMCStl+5cyoooF9
+	pOnNFAPM202gVZ6MURcs1I5yUbunpiJZbFmek/TkGsdMaRJZqAmjxq9xpfgF5Xa0nl9w+92x/tg
+	hV0tNopkBmNXpTiD7bQJZtYp7SOHCn90UJW8K
+X-Google-Smtp-Source: AGHT+IGU8qTnUWtB61IweyUIItJWdZ6bgGtJsArNcTEy37cq4puFKhBmmj6Sxx+jHdDRl7dNBrSEiNn8xV2Cdk2W0GU=
+X-Received: by 2002:a05:6122:3091:b0:4d3:3952:1d1a with SMTP id
+ 71dfb90a1353d-4eaf219fdffmr1476249e0c.4.1717052169861; Wed, 29 May 2024
+ 23:56:09 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXP190MB1848:EE_|PA4P190MB1216:EE_
-X-MS-Office365-Filtering-Correlation-Id: 12ead700-49ad-4480-c716-08dc7fe61abc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|52116005|1800799015|376005;
-X-Microsoft-Antispam-Message-Info: 
-	=?iso-8859-1?Q?nlzsFx2awRmymf4/E318chAgTkfyPDFuua6ssDjXc7H40LWG+Dq4VpMWCf?=
- =?iso-8859-1?Q?wf7jKQCKyvprGRk7SkkALK+Pm3n25TBu0+/vonPbkvj3mxBfkMAoJ/w/PG?=
- =?iso-8859-1?Q?MZv2Xp3onErg2supQD/AUJgRCi/b8fr6i93+BpR5RAf2omKjia9C+jJoW0?=
- =?iso-8859-1?Q?OSuWX7+yh5m+DGsSWZJiFTP9QFWMqQ6Ed9RAmWPx+WsNWRdwW4XynAsbRI?=
- =?iso-8859-1?Q?3f8+lxBZ+zWxxvdCDEeuPfLOl+CwNyI1VgxIfcOtqv3rZfFJ0gu/IlNem6?=
- =?iso-8859-1?Q?11U17152A5ia8jTm5iRWRx6/s83tRNdAPzaZGcVZQmxm80ZyZvlffOjpQN?=
- =?iso-8859-1?Q?0BLE/wK+SIKy0lW96bTt5b8mCZlNR7mETsrxCPptyd2djN8mgOH0D+XJF7?=
- =?iso-8859-1?Q?ctf+ZiifbXyNRtwQp0eguDI3dM3d2Z6Npl3ergzSL7dxoDVH6Yg+iBM9Vx?=
- =?iso-8859-1?Q?BvLYr1NIaOh544QaBZ+adlVv4yWKjvVVPpcMgHc+DQV+s8PL6IUC5dOP0v?=
- =?iso-8859-1?Q?31dbjb2pY7dWfbqwrxdLr2t0ih+SntXzEHPvhIKP7qEWDq/KB4iAJfS+78?=
- =?iso-8859-1?Q?eCtayMr45KXibCTu4fwXWXU8vmR9G0nq+c7DtBif/PWFJiu+atzU0xiSos?=
- =?iso-8859-1?Q?l/G95YepOBzlY2oHotsNtjMZRtfCY6wAgAk8O8EQ4htIagLweSh5oz8wBA?=
- =?iso-8859-1?Q?Bo161pSs6q+aXT21UYosf5vfm+k1d8jKw3keEbefiDh+Em1XDulbiRKsin?=
- =?iso-8859-1?Q?vxGNjwscp9giG2UsPqOZQoWiXVoxtB8qiyErX4PWuHHN2PH6LIlI8sAPWv?=
- =?iso-8859-1?Q?p3MKAKDcfeoyT0su3YSt3MaY4RPJOXh2dSTyqd6CpQf9Zz301kFD9y6TiH?=
- =?iso-8859-1?Q?vnR+lCEzKCng5RYUGoho2KGaDGUtZ0ksFKnuqapo97QH9h4q11ZzExkICg?=
- =?iso-8859-1?Q?+OyJ0kWfePU5WkSBhVKAjXRRR56j828b3iUmjj/4eG86kvh1dFyqLyHqSW?=
- =?iso-8859-1?Q?wnQ1r/q3xh4LKqTIf/PIpQOMriq/GCcZEuf9t5tJq8oe9+hWEd45QLngd2?=
- =?iso-8859-1?Q?u3Zi1nw2sVDHrpT+8wXMeiu5Mol7Lzd5WZY/lrpEVnx1sv3yjOz++JXujh?=
- =?iso-8859-1?Q?cc3P+IlY/N51yL1BsJqRIWuCvexaeairtyq8ux+8zXxhV+TYwxBEBTSn7z?=
- =?iso-8859-1?Q?VjfyvA+aGSpBouL8PdOynmBbdYzNW15XQAi8PKwR+L5TkiVnSVOhB0/ccV?=
- =?iso-8859-1?Q?0XIS/vVfxcoBF0giPPeMhFv9cvJsvaFCC5LpgDT9k=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366007)(52116005)(1800799015)(376005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?iso-8859-1?Q?DsvHEjyG7t/GVZCD/qKXOjHFPkyipIHRzi1TeoBSwWjvQlARL1FjXOe9hO?=
- =?iso-8859-1?Q?06xhJc9x/3DkrsFgr4hH4X7SMrVyV9AI8QMhN7PBmEQbj+8MbTiow057Vi?=
- =?iso-8859-1?Q?UQslM7E/CHBAP/ja2HfpTR8aRPYvhJ6St2xzj0P8X42LMq3MKsGOtXMIXA?=
- =?iso-8859-1?Q?omjCmfdQkumjwS/qhsb7TmoZMedUwttAIv2ZNNaA9oRpcsEgatqov7sL6R?=
- =?iso-8859-1?Q?nrduxCA9vqtbnoaYFwHHYQbdAnkoemFBfAgSgyQbgpsX0KJ4XPNsZnjDo7?=
- =?iso-8859-1?Q?F/YyuECrvBb5JtK/+BuAmRaSs70ufxtPRQEePozLVoL3e+myJFCEIKOiOh?=
- =?iso-8859-1?Q?MCdPQ/3N1CdQzjJ/Wx3OxqCM8pSlwbdk6xsVM8Qui8dgkBwVR5RxMr3MuG?=
- =?iso-8859-1?Q?8U32XgiRhpjP2fSYVzyrlGbpaMDIjqlXUnvbLvpatp5W6RpC5urnSHzU/0?=
- =?iso-8859-1?Q?EsIRbg/CnrsPhz8SesKVU9RLHtryaiaqwxBI5XaTZQKD4jTP0VlZnWk9CR?=
- =?iso-8859-1?Q?I5z8mZDxxXrpRQuQVblMzWpb3t7zEkQ3DL4u2RTKUN7U8RpmHB8QNroLhR?=
- =?iso-8859-1?Q?k6+IRQv2dkDzdhutAX7BHvrAnlwe5muCnyuzX4YJXszqrCuUU7HKKOj6YM?=
- =?iso-8859-1?Q?Y8Q4INNewlDhVbRQapH3n3Nu0LGWZI8oCmokWpDDM0ywXSK6tbJG+hHllS?=
- =?iso-8859-1?Q?HPkw1TIBHe9UU7owJqsY/uXrrfqNpy+D0XbyICyAF1t8ppbptTkXrQfOrX?=
- =?iso-8859-1?Q?cVWpeaA3cPCuuc7inmvF1x6UrUaB3ivIyTuv5xiLRnBoAt6DEDEq4cuTqO?=
- =?iso-8859-1?Q?mqkjDI0IYIjm2iuuzS1FbBKffIr+N+XqvfBHXXlzJW3pvCv9JizDjGswRE?=
- =?iso-8859-1?Q?mMXkJd8PaxUUp45FQQIVxBGeMyIAI5v2Qt/4fOq7jHrbsCKRqVm0kU0y0r?=
- =?iso-8859-1?Q?+BYDTJVYiqRduwiQZ1ytLsAcXYi+M44dSsUvnGzo8T/mWunID5zjLLrAF8?=
- =?iso-8859-1?Q?O3RSZWfDQmmXC5o1B8wOAKyu5u+ERoB5A6Ozu7O5jrDLxgCXanxmqe2CKV?=
- =?iso-8859-1?Q?BvxTFBmcTiXk/2TlBiSgcZ0GaW7HNdryo2Ue9vfYQiCiaAOKn+MGBkxUZk?=
- =?iso-8859-1?Q?Zu8uJWWN2NCMppAMk0oz/N8sYLEweSZKzOyeRak4nlh7k0cHyxSg6Gykg7?=
- =?iso-8859-1?Q?s87HV1k6LHUvcKHyHHniKIkb/OtexmnsYE2mQSRQxip31ymOZGFwnPQ9hY?=
- =?iso-8859-1?Q?bZARIWDflOgpyP22LzqS+/N8ROc80kcEHfveYez48QLbuh9/5a8rAyH/RA?=
- =?iso-8859-1?Q?PC9Im79nfX9er8iW65YqRcrtKTFjbY7jvvp2jgkKMVCkEaKs2zsfVqMWOn?=
- =?iso-8859-1?Q?6CrHyrKT0yOreAOYuRQIz2Gi1zyheJMiUqopbdyXWW8cOT9aO36IxwgNQs?=
- =?iso-8859-1?Q?lkT+zYduwoB7CUJBaNkvB1hI976y6PwPEsKmF02OgS5I5Mf22Ui8u0zgaU?=
- =?iso-8859-1?Q?+ExrpyGKycDUDSDNBm6xsd4EBcQPLTuz0gpSDEYG+8J83wze5O9ivfgrLj?=
- =?iso-8859-1?Q?e8TLxVNzOBf2W/cFcggqcfdQ8PI3VhXn3hfXf6cVKTWNZIhcubVw6n3qbx?=
- =?iso-8859-1?Q?DI4AEKNxC9Pd+DO9xE8C8TzJQFc5c9REp+8ext+cQS6LtI0IOnPUX7YhAG?=
- =?iso-8859-1?Q?fVAtoS5mVxMNjaVcd//EZJljKJFiE01jX6tT2G+BEN+gJG4qMgox8ioMXZ?=
- =?iso-8859-1?Q?LEvA=3D=3D?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12ead700-49ad-4480-c716-08dc7fe61abc
-X-MS-Exchange-CrossTenant-AuthSource: GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2024 13:49:04.9268
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OGhi1pp+ItYBWgDwThbCO3DeRpJazQtx989zRZqTvbKRXY816ws4hcX65QaPO+I5kL63K/nxnXvnJI1Wt1buyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4P190MB1216
-Message-ID-Hash: BC74BCHSB5KOJOOAXKX36E6XSOGDRPCX
-X-Message-ID-Hash: BC74BCHSB5KOJOOAXKX36E6XSOGDRPCX
-X-MailFrom: cedric.hannotier@ulb.be
+References: <0a7f729d226c41f6a8c95d8077852ea1@hhi.fraunhofer.de>
+In-Reply-To: <0a7f729d226c41f6a8c95d8077852ea1@hhi.fraunhofer.de>
+Date: Thu, 30 May 2024 02:55:59 -0400
+Message-ID: <CANvw1+RF+MvhZeaEYjyiNTC_=vB4aAeUQ3PcT4omt49b43ymiw@mail.gmail.com>
+To: "Kaya, Altug" <altug.kaya@hhi.fraunhofer.de>
+Message-ID-Hash: M27QV3CFLBIBKCZOHTX7XRPVPBH5UTS7
+X-Message-ID-Hash: M27QV3CFLBIBKCZOHTX7XRPVPBH5UTS7
+X-MailFrom: agurses@ncsu.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: uhd unable to find header files.
+Subject: [USRP-users] Re: Building UHD From Source With Enabled DPDK
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BC74BCHSB5KOJOOAXKX36E6XSOGDRPCX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M27QV3CFLBIBKCZOHTX7XRPVPBH5UTS7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
+From: Anil Gurses via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Anil Gurses <agurses@ncsu.edu>
+Content-Type: multipart/mixed; boundary="===============6062194021756478382=="
+
+--===============6062194021756478382==
+Content-Type: multipart/alternative; boundary="000000000000a555670619a65c3e"
+
+--000000000000a555670619a65c3e
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Altug,
 
-On 2024-05-29 11:32 +0000, je.amghar@gmail.com wrote:
-> After developing a C++ program and placing it in
-> **`/uhd/host/utils`**, I included it in **`CMakeLists.txt`**. However,
-> when attempting to build the program using **`make`** within
-> **`/uhd/host/build`**, UHD is reporting that it's unable to locate the
-> C++ library I've used, specifically when including
-> <libserial/SerialStream.h> and <libserial/SerialPort.h> (libserial
-> library).\
-> \
-> How can I specify to UHD the location of the libraries I utilize in my
-> programs?\
+This issue might be related cmake version. Which version of cmake you are
+using?
 
-I think you have to add another `target_link_libraries` [1] in the CMakeLis=
-ts,
-or modify the one already there ([2] or [3], depending on which set you
-included your file).
-I.e. one of these two:
- - add `target_link_libraries(<filename_without_extension> serial)`
- - append `serial` in [2] or [3]
+From the uhd/host/cmake/Modules/FindDPDK.cmake file,
 
-[1] https://cmake.org/cmake/help/latest/command/target_link_libraries.html
-[2] https://github.com/EttusResearch/uhd/blob/041eef3472e0440730708053d47b1=
-fb7b793c682/host/utils/CMakeLists.txt#L120
-[3] https://github.com/EttusResearch/uhd/blob/041eef3472e0440730708053d47b1=
-fb7b793c682/host/utils/CMakeLists.txt#L188
+    set(DPDK_VERSION "${DPDK_VERSION_MAJOR}.${DPDK_VERSION_MINOR}"
+PARENT_SCOPE)
 
-Best regards
---=20
+Somehow, your _MAJOR and _MINOR variables are not set. You should check
+whether the rte_version.h file is reachable by printing DPDK_VERSION_STR
+variable located at uhd/host/cmake/Modules/FindDPDK.cmake:24 . If it's
+reachable, please check the REGEX can parse the expression set in lines 26
+and 29.
 
-C=E9dric Hannotier
+Please let me know if you have any questions.
+
+PS. Your email was flagged as spam, that's probably why nobody has seen it
+until now. Fyi
+
+
+A.
+
+On Fri, May 17, 2024 at 2:13=E2=80=AFPM Kaya, Altug <altug.kaya@hhi.fraunho=
+fer.de>
+wrote:
+
+> Dear USRP Users Mailing List Members,
+>
+>
+>
+> I am following the guide called =E2=80=9CGetting Started with DPDK and UH=
+D -
+> Ettus Knowledge Base
+> <https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD#Enable_hugepages>=
+=E2=80=9D
+> in order to run applications on USRP X440 with DPDK. As it is recommended=
+,
+> I installed DPDK via the system-provided installer: sudo apt install dpdk
+> dpdk-dev . After the verification with dpdk-proc-info -v, the RTE Version
+> is shown as =E2=80=98DPDK 21.11.6=E2=80=99
+>
+>
+>
+> Then, I cloned the UHD v4.6.0.0 to my home directory in order to build UH=
+D
+> from source. However, when I run the cmake ../ command the DPDK was
+> listed under the =E2=80=9CUHD disabled components=E2=80=9D and there were=
+ no errors.
+> Nevertheless, there were some messages related with DPDK:
+>
+>
+>
+> CMake Warning (dev) at
+> /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake:477
+> (message):
+>
+> =E2=80=98find_package()=E2=80=99 specify a version range but the module D=
+PDK does not
+>
+> support this capability. Only the lower endpoint of the range will be
+>
+> used.
+>
+>      Call Stack (most recent call first):
+>
+>            cmake/Modules/FindDPDK.cmake:86
+> (find_package_hangle_standard_args)
+>
+>            lib/CMakeLists.txt:63 (find_package)
+>
+>       This warning is for project developers. Use -Wno-dev to suppress it=
+.
+>
+>
+>
+> -- Could NOT find DPDK: Found unsuitable version =E2=80=9C.=E2=80=9D, but=
+ required is at
+> least =E2=80=9C18.11=E2=80=9D (found /usr/include/dpdk;/usr/include/x86_6=
+4-linux-gnu/dpdk)
+>
+>
+>
+> I checked uhd/host/lib/FindDPDK.cmake and edited the line 63 from find_pa=
+ckage(DPDK
+> 18.11=E2=80=A621.11) to find_package(DPDK 21.11.6). Then the warning mess=
+ages
+> disappeared in the output of cmake ../ and only the message below remains=
+:
+>
+>
+>
+> -- Could NOT find DPDK: Found unsuitable version =E2=80=9C.=E2=80=9D, but=
+ required is at
+> least =E2=80=9C21.11.6=E2=80=9D (found /usr/include/dpdk;/usr/include/x86=
+_64-linux-gnu/dpdk)
+>
+>
+>
+> I also tried to edit usr/include/dpdk/rte_version.h and
+> /usr/include/x86_64-linux-gnu/dpdk/rte_config.h in order to get around of
+> the version =E2=80=9C.=E2=80=9D message. However, I failed.
+>
+>
+>
+> What should I do to see the DPDK under =E2=80=9CUHD enabled components=E2=
+=80=9D after
+> writing the build files with cmake ../   ?
+>
+>
+>
+> Best Regards,
+>
+> Altug KAYA
+>
+>
+>
+> P.S. Please find the specifications of my workstation down below:
+>
+>    - OS: Ubuntu 22.04.4 LTS (with Linux 5.15.0-107 kernel)
+>    - MBO: ASUS Pro WS WRX90E-SAGE SE
+>    - CPU: AMD Ryzen Threadripper PRO 7975WX
+>    - RAM: 8x32GB RDIMM Samsung DDR5-4800
+>    - SSD:2TB Samsung 990 Pro PCIe Gen4
+>    - Network Card: Mellanox MCX516A-CDAT ConnectX-5 Ex (PCIe 4.0 x16)
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000a555670619a65c3e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Altug,</div><div><br></div><div>This issue might b=
+e related cmake version. Which version of cmake you are using?<br></div><di=
+v><br>From the=C2=A0uhd/host/cmake/Modules/FindDPDK.cmake file,</div><div><=
+br></div><div>=C2=A0 =C2=A0 set(DPDK_VERSION &quot;${DPDK_VERSION_MAJOR}.${=
+DPDK_VERSION_MINOR}&quot; PARENT_SCOPE)</div><div><br></div><div>Somehow, y=
+our _MAJOR and _MINOR variables are not set. You should check whether the r=
+te_version.h file is reachable by printing DPDK_VERSION_STR variable locate=
+d at uhd/host/cmake/Modules/FindDPDK.cmake:24 . If it&#39;s reachable, plea=
+se check the REGEX can parse the expression set in lines 26 and 29. <br></d=
+iv><div><br></div><div>Please let me know if you have any questions. <br></=
+div><div><br></div><div>PS. Your email was flagged as spam, that&#39;s prob=
+ably why nobody has seen it until now. Fyi<br></div><div><div><br></div><di=
+v><br></div><div>A.<br></div></div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Fri, May 17, 2024 at 2:13=E2=80=AFPM =
+Kaya, Altug &lt;<a href=3D"mailto:altug.kaya@hhi.fraunhofer.de">altug.kaya@=
+hhi.fraunhofer.de</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div class=3D"msg2147470507459323628">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"m_2147470507459323628WordSection1">
+<p class=3D"MsoNormal">Dear USRP Users Mailing List Members,<u></u><u></u><=
+/p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I am following the guide called =E2=80=9C<a href=3D"=
+https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD#Enable_hugepages" ta=
+rget=3D"_blank">Getting Started with DPDK and UHD - Ettus Knowledge Base</a=
+>=E2=80=9D in order to run applications on USRP X440 with DPDK. As it
+ is recommended, I installed DPDK via the system-provided installer: <span =
+style=3D"font-family:&quot;Courier New&quot;">
+sudo apt install dpdk dpdk-dev</span> . After the verification with <span s=
+tyle=3D"font-family:&quot;Courier New&quot;">
+dpdk-proc-info -v</span>, the RTE Version is shown as =E2=80=98DPDK 21.11.6=
+=E2=80=99<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Then, I cloned the UHD v4.6.0.0 to my home directory=
+ in order to build UHD from source. However, when I run the
+<span style=3D"font-family:&quot;Courier New&quot;">cmake ../ </span>comman=
+d the DPDK was listed under the =E2=80=9CUHD disabled components=E2=80=9D a=
+nd there were no errors. Nevertheless, there were some messages related wit=
+h DPDK:<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in"><span style=3D"font-fami=
+ly:&quot;Courier New&quot;">CMake Warning (dev) at /usr/share/cmake-3.22/Mo=
+dules/FindPackageHandleStandardArgs.cmake:477 (message):<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal" style=3D"margin-left:1in"><span style=3D"font-family=
+:&quot;Courier New&quot;">=E2=80=98find_package()=E2=80=99 specify a versio=
+n range but the module DPDK does not
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:1in"><span style=3D"font-family=
+:&quot;Courier New&quot;">support this capability. Only the lower endpoint =
+of the range will be
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:1in"><span style=3D"font-family=
+:&quot;Courier New&quot;">used.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+=C2=A0=C2=A0=C2=A0=C2=A0 Call Stack (most recent call first):<u></u><u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cmake/Modules/=
+FindDPDK.cmake:86 (find_package_hangle_standard_args)<u></u><u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lib/CMakeLists=
+.txt:63 (find_package)<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This warning is for project developers. Use =
+-Wno-dev to suppress it.<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:0.5in"><span style=3D"font-fami=
+ly:&quot;Courier New&quot;"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:0.5in"><span style=3D"font-fami=
+ly:&quot;Courier New&quot;">-- Could NOT find DPDK: Found unsuitable versio=
+n =E2=80=9C.=E2=80=9D, but required is at least =E2=80=9C18.11=E2=80=9D (fo=
+und /usr/include/dpdk;/usr/include/x86_64-linux-gnu/dpdk)<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I checked uhd/host/lib/FindDPDK.cmake and edited the=
+ line 63 from
+<span style=3D"font-family:&quot;Courier New&quot;">find_package(DPDK 18.11=
+=E2=80=A621.11)</span> to <span style=3D"font-family:&quot;Courier New&quot=
+;">
+find_package(DPDK 21.11.6)</span>. Then the warning messages disappeared in=
+ the output of
+<span style=3D"font-family:&quot;Courier New&quot;">cmake ../</span> and on=
+ly the message below remains:<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal" style=3D"text-indent:0.5in"><span style=3D"font-fami=
+ly:&quot;Courier New&quot;">-- Could NOT find DPDK: Found unsuitable versio=
+n =E2=80=9C.=E2=80=9D, but required is at least =E2=80=9C21.11.6=E2=80=9D (=
+found /usr/include/dpdk;/usr/include/x86_64-linux-gnu/dpdk)<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:0.5in"><span style=3D"font-fami=
+ly:&quot;Courier New&quot;"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal">I also tried to edit usr/include/dpdk/rte_version.h =
+and /usr/include/x86_64-linux-gnu/dpdk/rte_config.h in order to get around =
+of the
+<span style=3D"font-family:&quot;Courier New&quot;">version =E2=80=9C.=E2=
+=80=9D</span> message. However, I failed.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">What should I do to see the DPDK under =E2=80=9CUHD =
+enabled components=E2=80=9D after writing the build files with
+<span style=3D"font-family:&quot;Courier New&quot;">cmake ../</span>=C2=A0=
+=C2=A0 ?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Best Regards,<u></u><u></u></p>
+<p class=3D"MsoNormal">Altug KAYA<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">P.S. Please find the specifications of my workstatio=
+n down below:<u></u><u></u></p>
+<ul style=3D"margin-top:0in" type=3D"disc">
+<li class=3D"m_2147470507459323628MsoListParagraph" style=3D"margin-left:0i=
+n">OS: Ubuntu 22.04.4 LTS (with Linux 5.15.0-107 kernel)<u></u><u></u></li>=
+<li class=3D"m_2147470507459323628MsoListParagraph" style=3D"margin-left:0i=
+n">MBO: ASUS Pro WS WRX90E-SAGE SE<u></u><u></u></li><li class=3D"m_2147470=
+507459323628MsoListParagraph" style=3D"margin-left:0in">CPU: AMD Ryzen Thre=
+adripper PRO 7975WX<u></u><u></u></li><li class=3D"m_2147470507459323628Mso=
+ListParagraph" style=3D"margin-left:0in"><span lang=3D"DE">RAM: 8x32GB RDIM=
+M Samsung DDR5-4800<u></u><u></u></span></li><li class=3D"m_214747050745932=
+3628MsoListParagraph" style=3D"margin-left:0in"><span lang=3D"DE">SSD:2TB S=
+amsung 990 Pro PCIe Gen4<u></u><u></u></span></li><li class=3D"m_2147470507=
+459323628MsoListParagraph" style=3D"margin-left:0in">Network Card: Mellanox=
+ MCX516A-CDAT ConnectX-5 Ex (PCIe 4.0 x16)<u></u><u></u></li></ul>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--000000000000a555670619a65c3e--
+
+--===============6062194021756478382==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6062194021756478382==--
