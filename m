@@ -2,238 +2,181 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79AD98D6B16
-	for <lists+usrp-users@lfdr.de>; Fri, 31 May 2024 22:49:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5138FB399
+	for <lists+usrp-users@lfdr.de>; Tue,  4 Jun 2024 15:24:28 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 488E738579D
-	for <lists+usrp-users@lfdr.de>; Fri, 31 May 2024 16:49:35 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5C3BF38501F
+	for <lists+usrp-users@lfdr.de>; Tue,  4 Jun 2024 09:24:27 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1717188575; bh=MTEyMQUYAPz8rnsZK4p7x9Q/rFeuEuMPvYm8AiG5Cwo=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=fCj46SNnJR0AYK4mMzxrEBXJa37XU+1kDQblVqy2QwA1axDYNGClMZctqRQj7ckN1
-	 fiVRrcQ4YZom94aRrDoKGhNk7VOoo3wDtRQDdT+C9QvD5lznucs+1CYOYIasmxJwKg
-	 Q93/f/K8uFrzhCzqAmGVJhtneJxiF20MNMuwITSSOVgDDm3uRLwKAhYV0uavcfSCwK
-	 ctCAsgW6A+SSj3ZjyrhkH7TYKPhh2ybweEg5KDYWc7ocaVdrDw8AI6M34YAUvZGkbt
-	 GSWRV9b4I7X2X1pNfHArQx6aTbZcfbbJWWceqT7yJViDhUfsRsPvJd1lQaMs0ndiCy
-	 e9Nc1zP737MjA==
-Received: from ma-mailsvcp-mx-lapp03.apple.com (ma-mailsvcp-mx-lapp03.apple.com [17.32.222.24])
-	by mm2.emwd.com (Postfix) with ESMTPS id C9C98385620
-	for <usrp-users@lists.ettus.com>; Fri, 31 May 2024 16:49:13 -0400 (EDT)
+	t=1717507467; bh=XeIdmzitmVufbgS0FsGSXe6zN6xQu1KdFjno3bdns00=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=G/ZvTDUCZTc19hAZKOgip2MI7pyx/vs5iYBUGZs6eQRyn2Ln8/gG7rwEROOUujZzp
+	 ZRQZmyc7uKSjtvuUw0IvOUhMeLWCtEaBJLXnk3iVCWU31HqwRyhaw3lChqe74mMHh7
+	 q7CK/mbBgozmjzaD+EAJjy+8Y4RCfi+RBw2DnnRkHmpYr5LgcjxeCFqSBAsY4qzygj
+	 eN0il4VVGz3mJcReW0vVh3m6GDw1wj+mqQs2l1ixi8AXSdrnxxf463/1Lyus/SWLs5
+	 FmKpXas5FYolQ8GKU0qoF6rFmlneUU3e1No5y4DiiNSDroXstb9kZQM5gzEpLptAEm
+	 0omWvijrv89UA==
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01olkn2056.outbound.protection.outlook.com [40.92.66.56])
+	by mm2.emwd.com (Postfix) with ESMTPS id E3485384FFF
+	for <usrp-users@lists.ettus.com>; Tue,  4 Jun 2024 09:23:38 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=apple.com header.i=@apple.com header.b="hdt4BiOB";
+	dkim=pass (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="KfPbxEZ1";
 	dkim-atps=neutral
-Received: from rn-mailsvcp-mta-lapp01.rno.apple.com
- (rn-mailsvcp-mta-lapp01.rno.apple.com [10.225.203.149])
- by ma-mailsvcp-mx-lapp03.apple.com
- (Oracle Communications Messaging Server 8.1.0.23.20230328 64bit (built Mar 28
- 2023)) with ESMTPS id <0SED00VHFB60XJ10@ma-mailsvcp-mx-lapp03.apple.com> for
- usrp-users@lists.ettus.com; Fri, 31 May 2024 13:49:13 -0700 (PDT)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-31_14,2024-05-30_01,2024-05-17_01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=apple.com;
- h=content-type : date : from : message-id : mime-version : subject : to;
- s=20180706; bh=Bqsj9vJwkA3Fspe4a1xSPJF4sJx5a8sH7j+lXYbTV88=;
- b=hdt4BiOBnhynSB0lxlZPEK7GQgpRSC8mZhmVnCtrPZCSxr+/f2dOxz84xqactCmSrwLI
- 2x5k8KYUd/EBukG6sdaNq/T87uSiA7O4cKNHULTj+CtIUB4toYObvRHmASGpG8wRNtEo
- 6Sw/5sa1nwUvS02SlNWgzQON7cEyGqASo+Dvzz4/NUmEVQZj7KTPcKrmg2cyfNWk1Edb
- mZDjkJl/EvVRcz731VIiA0vqtlHtmRj5tPrVh0eD6plp6YtAMru67d1+l97uFfvPvwUm
- 87QMKPh0E0hvYAz6c2Jyq0lfS+T3Tnv6d1CtFSbf256xilHlOQRqa6meQ8nJ04R6MAri uQ==
-Received: from rn-mailsvcp-policy-lapp01.rno.apple.com
- (rn-mailsvcp-policy-lapp01.rno.apple.com [17.179.253.18])
- by rn-mailsvcp-mta-lapp01.rno.apple.com
- (Oracle Communications Messaging Server 8.1.0.23.20230328 64bit (built Mar 28
- 2023)) with ESMTPS id <0SED00DVSB60X860@rn-mailsvcp-mta-lapp01.rno.apple.com>
- for usrp-users@lists.ettus.com; Fri, 31 May 2024 13:49:12 -0700 (PDT)
-Received: from process_milters-daemon.rn-mailsvcp-policy-lapp01.rno.apple.com
- by rn-mailsvcp-policy-lapp01.rno.apple.com
- (Oracle Communications Messaging Server 8.1.0.22.20230228 64bit (built Feb 28
- 2023)) id <0SED00K00B17Y700@rn-mailsvcp-policy-lapp01.rno.apple.com> for
- usrp-users@lists.ettus.com; Fri, 31 May 2024 13:49:12 -0700 (PDT)
-X-Va-A: 
-X-Va-T-CD: 3d5221d1829f6b5ea83ffe8e1331d89d
-X-Va-E-CD: 25ce5ac884e04ed24638a24528edd524
-X-Va-R-CD: a7b38143bb03b0fffcece4c1a91f4356
-X-Va-ID: b6c24659-cae1-45f1-8476-02fcf26530b6
-X-Va-CD: 0
-X-V-A: 
-X-V-T-CD: 3d5221d1829f6b5ea83ffe8e1331d89d
-X-V-E-CD: 25ce5ac884e04ed24638a24528edd524
-X-V-R-CD: a7b38143bb03b0fffcece4c1a91f4356
-X-V-ID: b9cdd351-105c-4514-95b6-50fdb41c533c
-X-V-CD: 0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-31_14,2024-05-30_01,2024-05-17_01
-Received: from smtpclient.apple ([17.11.230.160])
- by rn-mailsvcp-policy-lapp01.rno.apple.com
- (Oracle Communications Messaging Server 8.1.0.22.20230228 64bit (built Feb 28
- 2023))
- with ESMTPSA id <0SED00I4KB5Z8I00@rn-mailsvcp-policy-lapp01.rno.apple.com> for
- usrp-users@lists.ettus.com; Fri, 31 May 2024 13:49:11 -0700 (PDT)
-MIME-version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
-Message-id: <25F6545E-1375-4EFD-A780-398D92F12BD8@apple.com>
-Date: Fri, 31 May 2024 13:49:01 -0700
-To: usrp-users@lists.ettus.com
-X-Mailer: Apple Mail (2.3774.500.171.1.1)
-Message-ID-Hash: YDIA24CXRJIZUGLZGX6SHXWX76JFP7KE
-X-Message-ID-Hash: YDIA24CXRJIZUGLZGX6SHXWX76JFP7KE
-X-MailFrom: vlevin@apple.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UkkduCWIJifFCqTCUvHeBm08nmBKJP7rYgp3X/oE/e3sm7JzkXc2o6bsnvOPuVj3jIjerGWa6JUGpa/IJhByJkLMqS+1R0zGgxR1HHJo718A1DFcbQNskqrDBBc0EBrhld2EbKwFpPy62Nx2kqIpjGfIlg/YdNvjoR3GsNF9fRxh98woq/lobF/4rXLBJfsIP54LfJX6O4NrVpAOo9jjI0tLgFz0f+5G+D9Gv41gQciB9dY/JaH7qpOC6DVvKoBmBTOBQPLLo+Z3hTiKPzSuUHPgkLhb4vxeY25kQxugCL56EhjZZNj/3BNUluvJGGHZhpgAraOJgPlKfJh34EAbGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q4FHtCru0bkO4Cg/6Typmg62egT9WwUrYiNL1leSinM=;
+ b=MI7r0HCiIwDk7BCd4d4uzDWDNkvmAg4fW7wSx5jw4QboJX9liIzgSdpX/W4nVMQfsafkW0KSUw3Ir+OkVOAjmJBgzz8tT3DitVf+ojodRmOxddxiicAw80k9+JQkDPF9BRia9gJzV9fTj6+qOUKg3Ja7K9+31j+bRPVcRJB66vrrd9DZ3TLfS2LjI6hZJgnNG1SG2KJS080pQpUy7e14aFTv/6xwepmoPRV1kZvpKQNXqFo7+33vhW2g5SeMbm2GblszeOxDZMMgYUmFgjqmZOXgwGukHoE1Tw0U6CBdsOysCScG9iWd44TWWINKCNGVN/MgIBgkQ18nVl9Eg+KuqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q4FHtCru0bkO4Cg/6Typmg62egT9WwUrYiNL1leSinM=;
+ b=KfPbxEZ1B/pB3IvyPGWnq2ppd+Kcq2sM+CRN9hPLlS1kYOIJXnea2TBuZjhletWFueQN8y/3Hof7lD2StTY6eYRbiIPEaXKM4z5LvkFaviT5ukMffy1aFZBOK5Y3n5GH4sm2jUfpEyfVXh5tE0z5MbyWp4Gy0UiPsebUO52m3pg1+EV40+7o7bef8WYGW/NcfPjBgnCIC8im6q38JDfpOOWVrs9l57a0u/DaDfIE5RaCxP6ls+9maU02uXNa0y//7E5D1lQOSRd9T9yDuzGLYpR8DPyBhhZO/E4FumwO0oNSvIHZUIIj3DzzbSWIUe/FSQv8xgXj2rtPTf7OrLJQkw==
+Received: from AS8P194MB1893.EURP194.PROD.OUTLOOK.COM (2603:10a6:20b:52c::9)
+ by VE1P194MB0927.EURP194.PROD.OUTLOOK.COM (2603:10a6:800:14b::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.27; Tue, 4 Jun
+ 2024 13:23:37 +0000
+Received: from AS8P194MB1893.EURP194.PROD.OUTLOOK.COM
+ ([fe80::6cb:f993:c6cf:5b5e]) by AS8P194MB1893.EURP194.PROD.OUTLOOK.COM
+ ([fe80::6cb:f993:c6cf:5b5e%7]) with mapi id 15.20.7633.021; Tue, 4 Jun 2024
+ 13:23:37 +0000
+From: Moussa GUEMDANI <guemdani23@hotmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: usrp x310
+Thread-Index: AQHatoJAN58kdDfGXkainz1d2IMkCQ==
+Date: Tue, 4 Jun 2024 13:23:37 +0000
+Message-ID: 
+ <AS8P194MB189394551E5E2FF60681279DFCF82@AS8P194MB1893.EURP194.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, fr-FR, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [i/o2igZiyO21aakjz/0s/qubOK03a1Q5jiXmKuY2pg8=]
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8P194MB1893:EE_|VE1P194MB0927:EE_
+x-ms-office365-filtering-correlation-id: 8b856ac2-fc60-4a0a-1918-08dc84998aaa
+x-microsoft-antispam: 
+ BCL:0;ARA:14566002|461199019|102099023|440099019|3412199016;
+x-microsoft-antispam-message-info: 
+ /6cSsKBDPA2kiM7jv/v8uGGkZAZ58K6qUkJD+/OpaZfVPMRG7lV4KS/QiCfNc7l/1+t52lml81sEWPZlWRCIsCGoMBv01GbGz08wv1bitFbfGFHX/Nl2DceuwdPzWVJ4DvtqOGoFjIGrWGHcAeMoSIOxQkr6qeAseUgL5nU2IPwzZ1OO20srmvVV96pPzie3dVfIBTGQtties/KVPuuzcp3YZeWuw0UgaTRi4b3DtG01kCi18mFt7yFAYkoRaj2H49sVlCraxsJbyyFNcz2gUdnrSI2IMcDosK/uk9I3kzMsZNfOTDS0w9OIObEMJDywFVLCNFGLBwJhF5Sjt1XpA3n5P/5BE7sMv8YGiwsunqdkvgitLcBI8MRjwktVEYl1rKyLPH7dceM/Fd8OmEYOV5y59H+vtTmpghJmDHYaDlShk76i9kKsGeQ1QdzPPQn/U8TWxklv9qW3yjd5ZdHdl+ifRv2d37TLP7sK1cGqxrXvfhKj9E8OJp/K/bXKjLrvFr9lREkQYteaAYnlNsog5b+DPSydWBIVtymlWUi+jgsqoBrP6jkccPntchutRX5e
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?IN/7dCxzBHtH3c+YtvRoPPWt9Ri9GdB8A0M7oV3IwRPyOmm52VClDWQNrp?=
+ =?iso-8859-1?Q?jNAv0eYFPrZkxR4DlKrRhbFmweQ9U9Ne9P4jlJXTgfezT1jU6otPsM+OdD?=
+ =?iso-8859-1?Q?QcTaKQspYPx2OZtyIconWnMiR91519YxfKfhMJDc+VEVpeCbbIOF+7N6aq?=
+ =?iso-8859-1?Q?ugd6hefT21nhimL83KAYXB5Y/xsCSeDiWjD4Ypq3sLaadLaHxBEj9BAHGU?=
+ =?iso-8859-1?Q?7GCcj/qq1WP/WrHRrSZugToOtLkcIBu0GZUkzZIHrxiKrBc9u2/6oMcVIj?=
+ =?iso-8859-1?Q?ZnSZafiwoi/L1GgBvdaZLcvDbPKKMEm3VvWkO6+IWx0exkAoysOdEHd4z7?=
+ =?iso-8859-1?Q?MAQ2PNs0qoO8FlZBru9/FjUkaUtXEmqr/tUss6J8uG5rGv6dtGxjPAOhGI?=
+ =?iso-8859-1?Q?SR8C/724ygGXP18H+eALJTfbf+2j4C8RItIves8ZpYUi2YkZlHbl54wmzA?=
+ =?iso-8859-1?Q?yojQdMtBK/GuTvpsqxAJHxry8DYY+RsdDo7fF8lEd+yvy3BZZhycYS9HDB?=
+ =?iso-8859-1?Q?EU5X1QnSvt0/Okhg5B9iSMK3oB85gi8gFikt9SKylRgSIRKblOXoFXWF4q?=
+ =?iso-8859-1?Q?IIK/4uSGp9x6Rf4kb3WvQSnkKJIycLuRR2rhD9GyL3UTHVkhAa0r2XfEoV?=
+ =?iso-8859-1?Q?7QS05tWjsVD56eJsWnvLZfIT+dQx8DbVoO1VdWYzpBvkGRPhz0BrWOAU+F?=
+ =?iso-8859-1?Q?7KDMA9FreATC/5yqT5EIUOQjALszNYfvDQ0hdug3aFrHEh8k3rNVljjXsh?=
+ =?iso-8859-1?Q?FX5cnpCQ3AnLOziUp+yT+sE2CYpAOcx4vT5z3T+xYMnFTJtH0c93CcwGPc?=
+ =?iso-8859-1?Q?1VbD4MP9YCRUIHsDalj9FPeagAfJmaqRB2E8CP7/X1JbnHWyiSMbBqu2/t?=
+ =?iso-8859-1?Q?31gcg5EG+EHz9Kr85jTuoRglV/4lqYUxfh0O87Qpocw3DVxuDVtZ7JrxO3?=
+ =?iso-8859-1?Q?2A5QTfoVFOZbZwBD75c+c64VxVeIzkxn/nIg4IFI44ErtPZTylAAurltxT?=
+ =?iso-8859-1?Q?rwJH37hIvTFmiSdV2nWFw3KA0O0xzaXt7j5n7kqyPa6UQ4ENMxtERirmu3?=
+ =?iso-8859-1?Q?CGWlPuloWtxHXyVbzS9ykdF+S8Dhkt0BUrvSenh/Ey4Lvg2VHHK1QcSfjB?=
+ =?iso-8859-1?Q?5yU0cY51hp0gDJW9a1GDDHy4jAu3vswDWN/lc6V35qAdIX3R4WMAqfbZs/?=
+ =?iso-8859-1?Q?dy0uwD/RsqVIGZOmTQcTTFTRBxhmRMEVVEUSXkSZsiFCnR8RFKzFpONNXU?=
+ =?iso-8859-1?Q?3+0Gb4vhiE1mG2nvtHzB2QV9A7dNCz7ekqmLxdCIXz2BYNOFaGc/Cp8M5t?=
+ =?iso-8859-1?Q?VJ+v?=
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-84264.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8P194MB1893.EURP194.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b856ac2-fc60-4a0a-1918-08dc84998aaa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2024 13:23:37.0813
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1P194MB0927
+Message-ID-Hash: 5CNOXTZI56UGBRGDV2PQFW5DRLMYYFIB
+X-Message-ID-Hash: 5CNOXTZI56UGBRGDV2PQFW5DRLMYYFIB
+X-MailFrom: guemdani23@hotmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] DPDK hangs when core 0 is not in uhd.conf
+Subject: [USRP-users] usrp x310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YDIA24CXRJIZUGLZGX6SHXWX76JFP7KE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TJFMMDGOM6IJNZ2K7DJLL4ES26WYKA6V/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Victor Levin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Victor Levin <vlevin@apple.com>
-Content-Type: multipart/mixed; boundary="===============3075547563698004208=="
+Content-Type: multipart/mixed; boundary="===============7998714088013319127=="
 
+--===============7998714088013319127==
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_AS8P194MB189394551E5E2FF60681279DFCF82AS8P194MB1893EURP_"
 
---===============3075547563698004208==
-Content-type: multipart/alternative;
- boundary="Apple-Mail=_CFFEAD9D-5E6C-4D4A-8EDC-F64FE50BFE0E"
-
-
---Apple-Mail=_CFFEAD9D-5E6C-4D4A-8EDC-F64FE50BFE0E
+--_000_AS8P194MB189394551E5E2FF60681279DFCF82AS8P194MB1893EURP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
-Hi all,=20
+Hello,
 
-When I have core 0 in the uhd.conf file all is well and benchmark_rate =
-works as expected. When core 0 is removed from the conf file below, the =
-benchmark_rate call hangs.=20
+I would like to know if I can use the usrp x310 as an O-RU, connected to a =
+CU/DU via openfronthaul interface, (split 7.2x)
 
-> [use_dpdk=3D1]
-> dpdk_mtu=3D9000
-> dpdk_corelist=3D0,17,31,79
-> dpdk_num_mbufs=3D4095
->=20
-> [dpdk_mac=3D40:a6:b7:b0:5e:81]
-> dpdk_lcore =3D 31
-> dpdk_ipv4 =3D 192.168.13.1/24
+Best regards
+Moussa
 
-
-
-Here=E2=80=99s where the system hangs when core 0 is removed from the =
-list. Any ideas why this could be happening?
-
-> /home# /usr/lib/uhd/examples/benchmark_rate --rx_rate 122.88e6 =
---rx_subdev "A:0 B:0" --rx_channels 0 --tx_rate 122.88e6 --tx_subdev =
-"A:0 B:0" --tx_channels 0 --args =
-"addr=3D192.168.13.13,mgmt_addr=3D192.168.12.12,master_clock_rate=3D245.76=
-e6,use_dpdk=3D1"
->=20
-> [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11; =
-UHD_4.6.0.HEAD-0-g50fa3baa
-> EAL: Detected CPU lcores: 96
-> EAL: Detected NUMA nodes: 2
-> EAL: Detected shared linkage of DPDK
-> EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
-> EAL: Selected IOVA mode 'PA'
-> EAL: No available 2048 kB hugepages reported
-> EAL: VFIO support initialized
-> EAL: Probe PCI driver: net_ice (8086:1592) device: 0000:98:00.1 =
-(socket 1)
-> ice_load_pkg_type(): Active package is: 1.3.28.0, ICE OS Default =
-Package (double VLAN mode)
-> EAL: Cannot open /dev/vfio/141: Device or resource busy
-> EAL: Failed to open VFIO group 141
-> EAL: Requested device 0000:b1:00.1 cannot be used
-> EAL: Cannot open /dev/vfio/142: Device or resource busy
-> EAL: Failed to open VFIO group 142
-> EAL: Requested device 0000:b2:00.0 cannot be used
-> TELEMETRY: No legacy callbacks, legacy socket not created
-> ice_set_rx_function(): Using AVX2 OFFLOAD Vector Scattered Rx (port =
-0).
-> ice_set_tx_function(): Using AVX2 OFFLOAD Vector Tx (port 0).
->=20
-Thanks,
-Victor
-
-
---Apple-Mail=_CFFEAD9D-5E6C-4D4A-8EDC-F64FE50BFE0E
+--_000_AS8P194MB189394551E5E2FF60681279DFCF82AS8P194MB1893EURP_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;"><div><div>Hi =
-all,&nbsp;</div><div><br></div><div>When I have core 0 in the uhd.conf =
-file all is well and benchmark_rate works as expected. When core 0 is =
-removed from the conf file below, the benchmark_rate call =
-hangs.&nbsp;</div><div><br></div><div><div></div><blockquote =
-type=3D"cite"><div><font =
-face=3D"Menlo">[use_dpdk=3D1]</font></div><div><font =
-face=3D"Menlo">dpdk_mtu=3D9000</font></div><div><font =
-face=3D"Menlo">dpdk_corelist=3D<b>0</b>,17,31,79</font></div><div><font =
-face=3D"Menlo">dpdk_num_mbufs=3D4095</font></div><div><font =
-face=3D"Menlo"><br></font></div><div><font =
-face=3D"Menlo">[dpdk_mac=3D40:a6:b7:b0:5e:81]</font></div><div><font =
-face=3D"Menlo">dpdk_lcore =3D 31</font></div><div><font =
-face=3D"Menlo">dpdk_ipv4 =3D =
-192.168.13.1/24</font></div></blockquote></div><div><br></div><div><br></d=
-iv><div>Here=E2=80=99s where the system hangs when core 0 is removed =
-from the list. Any ideas why this could be =
-happening?</div><div><br></div><div></div></div><blockquote =
-type=3D"cite"><div><div><font face=3D"Menlo">/home# =
-/usr/lib/uhd/examples/benchmark_rate --rx_rate 122.88e6 --rx_subdev "A:0 =
-B:0" --rx_channels 0 --tx_rate 122.88e6 --tx_subdev "A:0 B:0" =
---tx_channels 0 --args =
-"addr=3D192.168.13.13,mgmt_addr=3D192.168.12.12,master_clock_rate=3D245.76=
-e6,use_dpdk=3D1"</font></div><div><font =
-face=3D"Menlo"><br></font></div><div><font face=3D"Menlo">[INFO] [UHD] =
-linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11; =
-UHD_4.6.0.HEAD-0-g50fa3baa</font></div><div><font face=3D"Menlo">EAL: =
-Detected CPU lcores: 96</font></div><div><font face=3D"Menlo">EAL: =
-Detected NUMA nodes: 2</font></div><div><font face=3D"Menlo">EAL: =
-Detected shared linkage of DPDK</font></div><div><font face=3D"Menlo">EAL:=
- Multi-process socket /var/run/dpdk/rte/mp_socket</font></div><div><font =
-face=3D"Menlo">EAL: Selected IOVA mode 'PA'</font></div><div><font =
-face=3D"Menlo">EAL: No available 2048 kB hugepages =
-reported</font></div><div><font face=3D"Menlo">EAL: VFIO support =
-initialized</font></div><div><font face=3D"Menlo">EAL: Probe PCI driver: =
-net_ice (8086:1592) device: 0000:98:00.1 (socket =
-1)</font></div><div><font face=3D"Menlo">ice_load_pkg_type(): Active =
-package is: 1.3.28.0, ICE OS Default Package (double VLAN =
-mode)</font></div><div><font face=3D"Menlo">EAL: Cannot open =
-/dev/vfio/141: Device or resource busy</font></div><div><font =
-face=3D"Menlo">EAL: Failed to open VFIO group 141</font></div><div><font =
-face=3D"Menlo">EAL: Requested device 0000:b1:00.1 cannot be =
-used</font></div><div><font face=3D"Menlo">EAL: Cannot open =
-/dev/vfio/142: Device or resource busy</font></div><div><font =
-face=3D"Menlo">EAL: Failed to open VFIO group 142</font></div><div><font =
-face=3D"Menlo">EAL: Requested device 0000:b2:00.0 cannot be =
-used</font></div><div><font face=3D"Menlo">TELEMETRY: No legacy =
-callbacks, legacy socket not created</font></div><div><font =
-face=3D"Menlo">ice_set_rx_function(): Using AVX2 OFFLOAD Vector =
-Scattered Rx (port 0).</font></div><div><font =
-face=3D"Menlo">ice_set_tx_function(): Using AVX2 OFFLOAD Vector Tx (port =
-0).</font></div></div><br></blockquote><div>
-<div dir=3D"auto" style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, =
-0); letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; overflow-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: =
-after-white-space;"><div>Thanks,</div><div>Victor</div></div>
-
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Hello,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
 </div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+I would like to know if I can use the usrp x310 as an O-RU, connected to a =
+CU/DU via openfronthaul&nbsp;interface, (split 7.2x)</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Best regards</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Moussa</div>
+</body>
+</html>
 
-<br></body></html>=
+--_000_AS8P194MB189394551E5E2FF60681279DFCF82AS8P194MB1893EURP_--
 
---Apple-Mail=_CFFEAD9D-5E6C-4D4A-8EDC-F64FE50BFE0E--
-
---===============3075547563698004208==
+--===============7998714088013319127==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -243,4 +186,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3075547563698004208==--
+--===============7998714088013319127==--
