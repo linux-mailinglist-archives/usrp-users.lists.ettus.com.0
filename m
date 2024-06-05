@@ -2,213 +2,182 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603088FBBB3
-	for <lists+usrp-users@lfdr.de>; Tue,  4 Jun 2024 20:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D078FCCF2
+	for <lists+usrp-users@lfdr.de>; Wed,  5 Jun 2024 14:33:20 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EBB7838530C
-	for <lists+usrp-users@lfdr.de>; Tue,  4 Jun 2024 14:31:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5B5C13841A0
+	for <lists+usrp-users@lfdr.de>; Wed,  5 Jun 2024 08:33:19 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1717525919; bh=FnDDjWQEsT0jOR9vPdlcyqWItL+7h4qKRts7OtZQlY0=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=yOchT5uFJ53M1twv4Y5bQ0TDhbijiIdKywmXWEGrbmzPmYg3Bx1azVh2JoCZyho5/
-	 eu/Vo9wMB11PfkeuT4uy9CNYw0gXFca1npIItQkHh5+iT2TCU32N+PWhWa/UabuElG
-	 I1J2nqACmlgk1H/FU+Mf+o432wV52uRpx0qVRD45sf2poxkNEJlytJpHl4C/PoZkEw
-	 P0WbU3++ydhYJveE1YF6n9IsEf6uiTKvh73Ox4DkxPvKffhQVGaL8aMS8lohE2LRWp
-	 3n/460wcmN6ISZCSCylJqGEY0HdIB9wXO7iNm4auuTkWZIp8OwSQbbT2FRWf+580SD
-	 oPlt3byb4h/Dw==
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1FE623852F8
-	for <usrp-users@lists.ettus.com>; Tue,  4 Jun 2024 14:31:28 -0400 (EDT)
+	t=1717590799; bh=1vNbAz2WRXPFc/wFhO0hZJ/Bq1MmkbIgEsL6QrK2pvo=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=EJr6CZ9J8A4lafbbbjXXmPk0qVWcojFc368PzBRbvz172z2ZwCQgNCyJjyWS9vd7p
+	 AEDPQ1lmI9FInwFKy0NRhtOBU3BT4+CkfoxFJChb8wQzzwVdLhaBRVe+yoHCOhBeF8
+	 svWcIZgkHcoL69RdVyXUOwaiTbnL1yqqsE/GgoA1nTxk48Dz8fJWGfPHHRnHhzafay
+	 Pm5nhhElgoYKQr7szROXZoS8TwGICye+NmpU//duSR538xASeSORfSHR/rDJFa7vEE
+	 c1+PEYk5rIvuC8o6Lgff/JyVJJo5fGys9X5VjywiJItdogaSNL/FArRPa88VwA3AU8
+	 X5rJXTu4I0iPw==
+Received: from sonic305-2.consmr.mail.bf2.yahoo.com (sonic305-2.consmr.mail.bf2.yahoo.com [74.6.133.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 346003845CF
+	for <usrp-users@lists.ettus.com>; Wed,  5 Jun 2024 08:32:28 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="J6MT3FfK";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="OdA6cuHI";
 	dkim-atps=neutral
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2eaa794eb9fso45980381fa.2
-        for <usrp-users@lists.ettus.com>; Tue, 04 Jun 2024 11:31:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1717525887; x=1718130687; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6n5L/4LReVHsKyEp+BkQwiL6eVN4yhpZ5xxuFfL/p1Q=;
-        b=J6MT3FfKYdQKmYNC3oM0xa59eu5hyGmjZ/RUDj7V+DegJxetJ1sts946t2x8K+RBBP
-         8YIY58hwJqM2GpYiXttzXhrVpAdn9REJEximQV7jc04+nx3Z5yqPI12AG+xG7IkrjHt5
-         yB8QCWAPr0592GSanbZC0YrF7eUSxXSH0v5EwTGDDhAWYw8sFnaY/3sPdgm9DqOKnLCl
-         kA46oxjt5D1Y52MKOhxE1ZNl6g+vo3CkHs9HSiN/8SVec/boaDyrXRtUAaKxVZfLAL4w
-         7pHW3Og3lTLERUdaMCqbWYSSgzinpK40mQZbE3qvn5OQKcSaXWhrfUJ2Mblv3jeYEAW0
-         Ksmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717525887; x=1718130687;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6n5L/4LReVHsKyEp+BkQwiL6eVN4yhpZ5xxuFfL/p1Q=;
-        b=jjWMG5wlWR2hPh9/leDibAHAIRLXlnCL9HKoQL5hjbtuM9Ev400Z7J338p25fSZHaD
-         lpz/zHIKQdoXxL/eGWfJUHrFvdxSI7gn/DkJg47wZvjd/0GaRuLFrOqWnnmV2PNWRU5D
-         vr5vHKtwIpcO19mwCl3eJ7VRhUgNQM5dY6nLHjCLg/ORh3OCAVp3znFL0HWLELMwNvWe
-         j4FnSjxypxFz88Fzrn0wysrkoAA+G2anHWcQI/a9PkWa12XlG8Hop+Iz3dFYtFnc0MPq
-         TBlpVeTzvWZI6BGekhtBR1FNK6ew+aB3exjBMTPCJGZGaNs30/5cVZuUfVcYkD6VD8Nb
-         ufDQ==
-X-Gm-Message-State: AOJu0YxRN1Wcw1W5PFGai9RYIgODY0a4E2MlkK9vrafX+OveZBYiHRef
-	H203SQu1Yl4F1e9xcReB/qxn2QdIXWe4UOSy7YwVPuScriu+fFTtFmIha2Hw/Bi7GMmnfOquiOU
-	+2Vj21sZW2xrObi80JEkJ0tiq/kXGptunJkSaDeg/LNpK/ZkQvjWw9A==
-X-Google-Smtp-Source: AGHT+IFx6+AMACz3SxRzqWPpt/1IpU9+DukkfJu08IqvBg1hqDPM1kheBm0Q8N8HmKutXktcUf4M6oHm5p0Qt10r8ZY=
-X-Received: by 2002:a2e:96c3:0:b0:2ea:8abf:3a5e with SMTP id
- 38308e7fff4ca-2eac79ecddemr681451fa.24.1717525886590; Tue, 04 Jun 2024
- 11:31:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <AS8P194MB189394551E5E2FF60681279DFCF82@AS8P194MB1893.EURP194.PROD.OUTLOOK.COM>
- <7464804b-a2da-453a-9a0b-9ce91d0c294b@gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1717590746; bh=I1KVk2DK1MnPFQvduLf8aufd8/i0a1jFBRNBBDrbCgw=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=OdA6cuHIbEP0UFmwT3xu5R+ufYD7DDaAImCHjvswbziTOF/JirSW1KxdFOGRVi7x5UxlchghBeZD8HUN+GdRMZtgOQ9axWMIoWkRE0L14ceUXm9Mvc4rWiQCkRhccKOc5blqzRqDEJ27oJoZ7aAle76+kLPEYxTgp/q7AMoY6QaWRI31Ca2j/wINv1wjunh7GQp0zwGo5qH5Fuf4zh6kDaGGtQtb2sGWE3qA4M8lDR08AAdOLjnuRjjFEZV+KxrJMg1fNty1/if2dZc3Pr/FIH25rcw8ENu3UIWXzIKkJr1mjevuX+CufU7rfRJ35+Dy34M+TQTvKeMrDrKIRld3Vw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1717590746; bh=5PzSV8La+Eh2dnoicJ2AbNEUJ1TPTdQnZ+zd0Ya/TuZ=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=Cib7lqtr31GP1J0EK9LRPxX5PguPbIT+zxH2E/GaD3TeYX+gcIUPjG7iVa6EQL+sFb4HbZeYgQ7cSUgvf8FUycl1G/3A4noKNHiXVp/cF+3PfVwxa6omXDfNbUoir0TXFJ+ZiNEwb1kk5mtRyWtERkG+hskDKlVU3J7y0VM/+9uU/OFUaTR64XvM4YKHsH9IYNirIitO27UHGNkUR2sHqHHC7Po3fSwwSBHD+wzGBp66XXFVMYu5KikRB0i5P02xt+Jcwfq+UbQs54XxQ9HqJ/W2T5qG+WjDu7f52lJOJyOGWawI/7XLfEJFnMPx0Z7rFpL3AD/cMIKevF9E1UqmZg==
+X-YMail-OSG: zI4Jr6cVM1m6vanxO70kRctT4sGkG.hRq5cx4p5zl3mk2vYDljoY_5_8z06XLTn
+ wiYFK1wIEe8HJozzop8uUHwzT3NwRGdReGxVAqF3mBj9KscgVeFyWPR_96e_3lbYByueFjiVyimR
+ .5jJ9kofoSMTbR_Uk4p7zoI6lRj1pk.c7KuniwFrsPmAeL8_4JajB.6sg.blsGfDKQ4wPEuVbMcA
+ vpE1wW4d7M6YKBrFEaAqsEwkMGD_WvBvy.6OlhkQ8GqfcZDs2_o8Zbfg24E9k5VYbMVTjClF.M4a
+ ZrYOUOKjvcl8WMPZiR3Yh4k9rhpNFycJ_eRjMx7VzztWpqYl1zw4DmL5H.xtku3Re3bqlxB58UYN
+ 2DbKFyegPJhfX5BAdRyxddHJP.sMJ6Y3.IWFAbJq26NWtxDWbKnwXHvERGRO4wypNgQNv0GwZ.e1
+ JbKNvlXdg4rgFItt9zhrB3Fe0MfhfvvxppdM_7q3LRx40.FdiaeT74cB.Rf.oR7XBk0U5fHBSujA
+ 14Ag.w7mCC9AoYst0RYOnU5CVOU1PpitXp8dTgy5A_rJW2pu9W_JPupzQyT0xjnhOC9rwD2cpgtq
+ _iU3tnaHrgjgbnPbHMuECPXVscZEL.IWvkPry9WfColREbh6Jt8Rws7IwplmCeqK9EjWJjZ92XXF
+ mkTS4vxxyPPLfTNJVF8379xNm40cisovAiqmWmgoKy0QU.SqmZ5QYSbINrsCNGjX_WH.IA127qXR
+ 3RLzw._jaX_5YIaGtbaiAx6pJcu.JqeFcnE9LTD7dM8m6pbgOwSD5CJVKv13EeniUs5gEAu4hu.o
+ 9Q4h4yvdlQ1A9DlH9RgivTIwtPpDiYSJHmv321LII21sXC41UF4i6eOE0YZpSxCNnnS5tGbXilEm
+ 0oI7_Gq2yhlZ4O2kYJcAlzJ.1Aj5MnNTmx52Ty9ULygdJd35TFYY6TK4S8Mv7Fn69woKufy5yg1D
+ ln3G_tz9B1q7cDym51g7rJydKzf8HqawnHC3C2DJJZZqaRI1G.UeDgrU9PRtWYZdMiRFTi472Ojk
+ pZDIeT7wHMwvHeZ5dIfCXP0lTKoJvVxlrJyh43w190sKVMxLH1TILYpPHyDe992rTSlVbA3BrYPg
+ 5Wc3Plw5wc2duspQg1z8fsX.xaEaeiEu3fcBn6X3PRUwN.IJvSDzk94y_s.OGsHk9ZnmR9M3ZuaD
+ K7tkvmDSsjbPdsYlfFf_.zIhY.FHw6aGBjFKnE71tb0hw_Pt.A7.vuTD0Og5FSXFSkqEX8dddiLh
+ y5kJuTXFzLIuMHi_vJ.TyJ8YJWMNqCutpnt2fZW2gDk1wOMhJ0BDTHwcSPaypWPpAd7ToDoCV76j
+ iMvvjyWpJPRPAvu9BiyTYFyuRIG1dsHQE_2UaXNVfVfoPt9bKHNESUl68Dh4nxg6R0uvz1j7GOjc
+ HxT_R5ioy5cg_4B8AwTRGjRPOrouFE2eanjVt_4D8ere7f4u6N25fDM8BLUv1DSrss3Nk1YWreol
+ v_Q5wrtcrtZUN8.gEtrsNFtjVcSiuS7S8t3oOmTALnWcl95omdKXPoR9IchpC2IDAfzfiWrNZ1R1
+ 5ozrYVy6_91O25FrF8KhIfxg6oHT.Vmk9TiNh0hbl3M5K3e8FftU6Mom5uQffLsU94GOYJ0LaL.F
+ kgD1PfJO3LJTUmywtjEkH5saSwc3MxqD4xpXlJyUOy0jcCrWbM_t98upQSw1qeBSNdwqApnxdGxb
+ KP9C07O5BmGiRd3MhYl3XSk1ZaE4iu02Jkx9mOXhM8LZDlDzUTmT9ZWvyRlIP2w7V8RtA2W5hXhN
+ oJlu.o1tQZfFwMGAIN9Gp0Cy8e0Wix8lXCpiNGGpweEiMXAaK9OKKAnUwEENMqkndsSH55l6a324
+ i0GNBkzLN0CAmHu.Xunepoi1LWU_zK_56ZLow51Jjnuj0xXWBj.AEn.BgDtYdDeGXLYBDzF4og45
+ pec.WIJtnlkqax9O.NNkS5..H5rBlr7sXyoBOUakUlIeoq_TxrmoB277MD.YgvPncjlc6rcHOmZI
+ V39ERAlFZAJ5RdB5YviiD_vLngeBnMKk5_ksw0SYneDz2TIO9QDVmCR8lCQ.lBmj1kK5XPjv9gNx
+ 3G8OuDqkODjQE4W6yIDY5x53HSTvZCaCY9pPn_C14UiiaVCv_8E18hFcQEV3qItI0NPrvCRfVxNZ
+ LDmVSvPaq1s00I8XIIOfPnZhmydMA9Qx_QjROT1LSebcaxSeRJ1WqgFMqH.IbrCpSBvonB0q2kej
+ gHxZK_6Asca3Z1F6EB.TOMgvyXDT4qaxTJg--
+X-Sonic-MF: <hwzhou@yahoo.com>
+X-Sonic-ID: 102abce3-43f8-42e5-ab75-063f82d88e1b
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic305.consmr.mail.bf2.yahoo.com with HTTP; Wed, 5 Jun 2024 12:32:26 +0000
+Date: Wed, 5 Jun 2024 12:32:23 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1776937472.1162106.1717590743172@mail.yahoo.com>
 In-Reply-To: <7464804b-a2da-453a-9a0b-9ce91d0c294b@gmail.com>
-From: Neel Pandeya <neel.pandeya@ettus.com>
-Date: Tue, 4 Jun 2024 13:30:50 -0500
-Message-ID: <CACaXmv_BOVsVWYBKXmTn0iFW0xjF4q7m5uueoJb7UL8hCb3bYg@mail.gmail.com>
-To: guemdani23@hotmail.com
-Message-ID-Hash: 3AXOUBXAQNRXS7K4TUH246HI62SW74TI
-X-Message-ID-Hash: 3AXOUBXAQNRXS7K4TUH246HI62SW74TI
-X-MailFrom: neel.pandeya@ettus.com
+References: <AS8P194MB189394551E5E2FF60681279DFCF82@AS8P194MB1893.EURP194.PROD.OUTLOOK.COM> <7464804b-a2da-453a-9a0b-9ce91d0c294b@gmail.com>
+MIME-Version: 1.0
+X-Mailer: WebService/1.1.22407 YMailNorrin
+Message-ID-Hash: FDQM5EHT4VMLTXKVQ7RP4JXDECD5CZL2
+X-Message-ID-Hash: FDQM5EHT4VMLTXKVQ7RP4JXDECD5CZL2
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: usrp x310
+Subject: [USRP-users] Big network Latency on 100G port in X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3AXOUBXAQNRXS7K4TUH246HI62SW74TI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FDQM5EHT4VMLTXKVQ7RP4JXDECD5CZL2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2937583306328336357=="
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============4812554675741838510=="
 
---===============2937583306328336357==
-Content-Type: multipart/alternative; boundary="0000000000005cfd19061a14a8fc"
+--===============4812554675741838510==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_1162105_2064533486.1717590743171"
 
---0000000000005cfd19061a14a8fc
-Content-Type: text/plain; charset="UTF-8"
-
-Hello Moussa:
-
-No, the NI ORAN O-RU is being implemented only on the USRP X410.
-
-Please let me know if you have any further questions.
-
---Neel Pandeya
-
-
-On Tue, 4 Jun 2024 at 08:58, Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 04/06/2024 09:23, Moussa GUEMDANI wrote:
->
-> Hello,
->
-> I would like to know if I can use the usrp x310 as an O-RU, connected to a
-> CU/DU via openfronthaul interface, (split 7.2x)
->
-> Best regards
-> Moussa
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> There is this:
->
-> https://openairinterface.org/wp-content/uploads/2023/11/Neel-Pandeya-NI.pdf
->
-> I'll ask Neel if there's an implementation for X310.
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000005cfd19061a14a8fc
-Content-Type: text/html; charset="UTF-8"
+------=_Part_1162105_2064533486.1717590743171
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif">Hello=C2=A0Moussa:</div><div class=3D"gmail_de=
-fault" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gma=
-il_default" style=3D"font-family:verdana,sans-serif">No,=C2=A0the=C2=A0NI O=
-RAN O-RU is being implemented only on the USRP X410.</div><div class=3D"gma=
-il_default" style=3D"font-family:verdana,sans-serif"><br></div><div class=
-=3D"gmail_default" style=3D"font-family:verdana,sans-serif">Please let me k=
-now if you have any further questions.</div><div class=3D"gmail_default" st=
-yle=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_defaul=
-t" style=3D"font-family:verdana,sans-serif">--Neel Pandeya</div><div class=
-=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tu=
-e, 4 Jun 2024 at 08:58, Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun=
-@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><u></u>
+ Hi All,
+I am using MCX516A-CCAT for X410 USRP. It has three network ports, two for =
+100Gb QSFP and one for 1Gb ethernet. They are directly connected to host. S=
+urprisingly, I find much bigger latency on the 100Gb link than the 1Gb link=
+ when ping them. I didn't notice this before.
+Then I checked X310. Its latency is also pretty big compared to the 1Gb por=
+t:=C2=A0rtt min/avg/max/mdev =3D 0.341/0.539/0.793/0.187 ms
+Why is the latency in 100Gb bigger than 1Gb port?
+~$ uhd_find_devices[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400=
+; DPDK_21.11; UHD_4.5.0.0-0-g471af98f--------------------------------------=
+-------------- UHD Device 0------------------------------------------------=
+--Device Address:=C2=A0 =C2=A0 serial: 3289B23=C2=A0 =C2=A0 addr: 192.168.2=
+0.2=C2=A0 =C2=A0 claimed: False=C2=A0 =C2=A0 fpga: CG_400=C2=A0 =C2=A0 mgmt=
+_addr: 192.168.10.2=C2=A0 =C2=A0 mgmt_addr: 192.168.20.2=C2=A0 =C2=A0 mgmt_=
+addr: 192.168.6.66=C2=A0 =C2=A0 name: ni-x4xx-3289B23=C2=A0 =C2=A0 product:=
+ x410=C2=A0 =C2=A0 type: x4xx
+~$ ping 192.168.10.2PING 192.168.10.2 (192.168.10.2) 56(84) bytes of data.6=
+4 bytes from 192.168.10.2: icmp_seq=3D1 ttl=3D64 time=3D0.998 ms64 bytes fr=
+om 192.168.10.2: icmp_seq=3D2 ttl=3D64 time=3D0.888 ms64 bytes from 192.168=
+.10.2: icmp_seq=3D3 ttl=3D64 time=3D0.886 ms64 bytes from 192.168.10.2: icm=
+p_seq=3D4 ttl=3D64 time=3D0.894 ms^C--- 192.168.10.2 ping statistics ---4 p=
+ackets transmitted, 4 received, 0% packet loss, time 3036msrtt min/avg/max/=
+mdev =3D 0.886/0.916/0.998/0.047 ms~$ ping 192.168.6.66PING 192.168.6.66 (1=
+92.168.6.66) 56(84) bytes of data.64 bytes from 192.168.6.66: icmp_seq=3D1 =
+ttl=3D64 time=3D0.180 ms64 bytes from 192.168.6.66: icmp_seq=3D2 ttl=3D64 t=
+ime=3D0.143 ms64 bytes from 192.168.6.66: icmp_seq=3D3 ttl=3D64 time=3D0.11=
+5 ms64 bytes from 192.168.6.66: icmp_seq=3D4 ttl=3D64 time=3D0.119 ms^C--- =
+192.168.6.66 ping statistics ---4 packets transmitted, 4 received, 0% packe=
+t loss, time 3080msrtt min/avg/max/mdev =3D 0.115/0.139/0.180/0.025 ms
 
- =20
-   =20
- =20
-  <div>
-    <div>On 04/06/2024 09:23, Moussa GUEMDANI
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-     =20
-      <div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-        Hello,</div>
-      <div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-        I would like to know if I can use the usrp x310 as an O-RU,
-        connected to a CU/DU via openfronthaul=C2=A0interface, (split 7.2x)=
-</div>
-      <div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-        Best regards</div>
-      <div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-        Moussa</div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    There is this:<br>
-    <br>
-<a href=3D"https://openairinterface.org/wp-content/uploads/2023/11/Neel-Pan=
-deya-NI.pdf" target=3D"_blank">https://openairinterface.org/wp-content/uplo=
-ads/2023/11/Neel-Pandeya-NI.pdf</a><br>
-    <br>
-    I&#39;ll ask Neel if there&#39;s an implementation for X310.<br>
-    <br>
-    <br>
-  </div>
+Thanks,H.
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
 
---0000000000005cfd19061a14a8fc--
+------=_Part_1162105_2064533486.1717590743171
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---===============2937583306328336357==
+<html><head></head><body><div class=3D"ydp63709d82yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi All,</div><div dir=3D"ltr=
+" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I =
+am using MCX516A-CCAT for X410 USRP. It has three network ports, two for 10=
+0Gb QSFP and one for 1Gb ethernet. They are directly connected to host. Sur=
+prisingly, I find much bigger latency on the 100Gb link than the 1Gb link w=
+hen ping them. I didn't notice this before.</div><div dir=3D"ltr" data-setd=
+ir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Then I checke=
+d X310. Its latency is also pretty big compared to the 1Gb port:&nbsp;<span=
+>rtt min/avg/max/mdev =3D 0.341/0.539/0.793/0.187 ms</span></div><div dir=
+=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"fa=
+lse">Why is the latency in 100Gb bigger than 1Gb port?</div><div dir=3D"ltr=
+" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><d=
+iv><div dir=3D"ltr" data-setdir=3D"false"><div><div>~$ uhd_find_devices</di=
+v><div>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11=
+; UHD_4.5.0.0-0-g471af98f</div><div>---------------------------------------=
+-----------</div><div>-- UHD Device 0</div><div>---------------------------=
+-----------------------</div><div>Device Address:</div><div>&nbsp; &nbsp; s=
+erial: 3289B23</div><div>&nbsp; &nbsp; addr: 192.168.20.2</div><div>&nbsp; =
+&nbsp; claimed: False</div><div>&nbsp; &nbsp; fpga: CG_400</div><div>&nbsp;=
+ &nbsp; mgmt_addr: 192.168.10.2</div><div>&nbsp; &nbsp; mgmt_addr: 192.168.=
+20.2</div><div>&nbsp; &nbsp; mgmt_addr: 192.168.6.66</div><div>&nbsp; &nbsp=
+; name: ni-x4xx-3289B23</div><div>&nbsp; &nbsp; product: x410</div><div>&nb=
+sp; &nbsp; type: x4xx</div><div><br></div><div>~$ ping 192.168.10.2</div><d=
+iv>PING 192.168.10.2 (192.168.10.2) 56(84) bytes of data.</div><div>64 byte=
+s from 192.168.10.2: icmp_seq=3D1 ttl=3D64 time=3D0.998 ms</div><div>64 byt=
+es from 192.168.10.2: icmp_seq=3D2 ttl=3D64 time=3D0.888 ms</div><div>64 by=
+tes from 192.168.10.2: icmp_seq=3D3 ttl=3D64 time=3D0.886 ms</div><div>64 b=
+ytes from 192.168.10.2: icmp_seq=3D4 ttl=3D64 time=3D0.894 ms</div><div>^C<=
+/div><div>--- 192.168.10.2 ping statistics ---</div><div>4 packets transmit=
+ted, 4 received, 0% packet loss, time 3036ms</div><div>rtt min/avg/max/mdev=
+ =3D 0.886/0.916/0.998/0.047 ms</div><div>~$ ping 192.168.6.66</div><div>PI=
+NG 192.168.6.66 (192.168.6.66) 56(84) bytes of data.</div><div>64 bytes fro=
+m 192.168.6.66: icmp_seq=3D1 ttl=3D64 time=3D0.180 ms</div><div>64 bytes fr=
+om 192.168.6.66: icmp_seq=3D2 ttl=3D64 time=3D0.143 ms</div><div>64 bytes f=
+rom 192.168.6.66: icmp_seq=3D3 ttl=3D64 time=3D0.115 ms</div><div>64 bytes =
+from 192.168.6.66: icmp_seq=3D4 ttl=3D64 time=3D0.119 ms</div><div>^C</div>=
+<div>--- 192.168.6.66 ping statistics ---</div><div>4 packets transmitted, =
+4 received, 0% packet loss, time 3080ms</div><div>rtt min/avg/max/mdev =3D =
+0.115/0.139/0.180/0.025 ms</div><div><br></div></div><br></div><div dir=3D"=
+ltr" data-setdir=3D"false">Thanks,</div><div dir=3D"ltr" data-setdir=3D"fal=
+se">H.</div><div><br></div></div><br></div></div></body></html>
+------=_Part_1162105_2064533486.1717590743171--
+
+--===============4812554675741838510==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -218,4 +187,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2937583306328336357==--
+--===============4812554675741838510==--
