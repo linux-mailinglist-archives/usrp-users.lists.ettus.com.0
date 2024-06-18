@@ -2,106 +2,218 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D8C390C0AD
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Jun 2024 02:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA5D90C0E4
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Jun 2024 03:04:05 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EB0D738549A
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Jun 2024 20:48:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9A99338550B
+	for <lists+usrp-users@lfdr.de>; Mon, 17 Jun 2024 21:04:04 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1718671694; bh=P2WTINf4haTfJa2MQAfzwvJc4pK/RYpEJpKkqu9idYE=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=L8Bc1Z4vBrJatHoW5fEov/CB4QqAFFZcjV5noHiFvVTjf8DzZ8fz0JYXSIiNO9vQ7
-	 +9n706UBLaH1VKkFzMuSSEqF5n1TL1eq+fv/TkbVlz/x+EbwHbz9NsPqRe0A3xIfdE
-	 Qsm2ZqnGgRuhdDM0DtosUS8Xlfo8+u9ovV5mlJsqC1kKUuN9y0X/V30xzVACLaTVbZ
-	 wtQHftIPZ5e7GccpsOJk6SoMn8DPbfWOOUqcpC3a0klq0wEw9dQNV4GCKhVjeYjAqV
-	 ixRHm9aL/0Yyp2Qh8eAFEC/mj/Lbo9cttb51IYTIbSzRQaOQcoucS01BrXmDJs5gvF
-	 x6aPWm50/nm/w==
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4044F385094
-	for <usrp-users@lists.ettus.com>; Mon, 17 Jun 2024 20:47:12 -0400 (EDT)
+	t=1718672644; bh=6rWpens4FhtXeUX5t7P+Ll95hDFb0A2u4be8BM4Q2I8=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=LJi9uVyAw6x8r0pZJoIqCqCTKhkQB7TFMJ956B3PkdtCGaUp6Or3TlfYPWbxQ14WR
+	 zNVUd3NItqiOFBSlqdAuGlvl4P5Jn7HHFETJQpYGgOInluYcqDlxnzPtCGrbDn3EIg
+	 TTmmZ+arU2pkiiMSxNJbpDoUyspbAR79bx6sTiXGu3jIDzQOeVLdNJjxRkEEKlBjrg
+	 wuC1p2Z039+dyh3yH8kx58POHgrpMNDkWznZxAE1LTiRrnF2unSS+7Phu0Y5Q/EW7f
+	 fYikdeA4MZY7+cdZp/Jbskb2lSy713Ttr43KBZScTptQdbH9Zw4yh6W+kZeuTKyf35
+	 VcpZ8DD878ZCA==
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id BA49A384AF7
+	for <usrp-users@lists.ettus.com>; Mon, 17 Jun 2024 21:02:53 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZeHUvJ6E";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="O+q/82J4";
 	dkim-atps=neutral
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3d21c4eec2dso2603188b6e.1
-        for <usrp-users@lists.ettus.com>; Mon, 17 Jun 2024 17:47:12 -0700 (PDT)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52bc121fb1eso5789702e87.1
+        for <usrp-users@lists.ettus.com>; Mon, 17 Jun 2024 18:02:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718671631; x=1719276431; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OFbDgWfZ+rEmmtjIPGTsa8btKJqz701Pz3anaoJU0a4=;
-        b=ZeHUvJ6EkHjUBxBqe0ekvCz44FDwKojrUQ30RHGyIuVV6CMvrAyTM7w0kAmSOCrRnw
-         pSmOp8j/wfn6GMzdgSYndQboUDEmAgrdINiSpYW/jMDG+y86iQO2mZQ6Qw2CxVaYv2Bb
-         MrP02DF92OuKGNAtCYQYfaWLcRAmXNtKQh26Tshk41Ezd1/iVqvnIpjvCo4OC1/1l/6f
-         NjIsmhNMPskjhdHZBJjaSU6mIVQ+0CYHo2KMFUcJ8iZP4/j27O1qwKcro5ZIpPhlnpod
-         LfHs1xz51qKpEIqe/27remift9V6viQukyyOlDFaBatpByjXXFepFEjVhWSK7wsvMH4Z
-         ex+g==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1718672572; x=1719277372; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RNJpWi2NnTUFlKCapzYUWVmZRXdJVpp1W7Dthhac+nw=;
+        b=O+q/82J45BCF3DmCCJ32Zeec3ISttKVrjkSVNd+haWgGB30lIb8lYnim9k8N0d2asc
+         c0I6KidjwbvpO7c5MnI4jW2wijn1QbN2K2di3acW6rdxyaoyNiX5H/ktLU7XsoHu/Hv5
+         qydwFGlqAVr5TPqP3UIQWCgkcI+xFYk0QBp1Rp9fwUZorMsFTVny8JLNgr0EOxuLI+wO
+         rg+yaTiJFvq4bdiT8gfJAQH/+snfbHg/UkY1/EMvMcc5ozh9YNUAGidqWDSB35r39FgX
+         XX+pvXDCiDv0/O5ZKsXl8ZRcUq174nXWIh26VVU4K4duf4DGx9uMpnx838v/SS9UTx6T
+         c40Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718671631; x=1719276431;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OFbDgWfZ+rEmmtjIPGTsa8btKJqz701Pz3anaoJU0a4=;
-        b=oIQFIDzUFIDA+na5htO7E1JT/qu/73doba2rT/QbqA3BNWT4LG+3r33VZsufd8H4Px
-         lEjExkEQ+/TkpMa8mxI+oAkEIhasPtJ8QjKwsDUlvHjMHN20pgaWZExkDOCvVo82UjB+
-         IwnscVfKZLGiqiPcGoVZbRvcThbgnCtdK/Omd9FW0BKk/ypfk0EIAasmEt9Ed+26bc/O
-         4RG24u6amjwzExKjJuzrwuB73XVCgIcSws4y+fxfykCL+kQThgRCObkWOhm4DAGWSI8e
-         t7rDBwiDiUhnKZcGBVzzg1/9gyoGPDGL315yjxb5AwJ6P+ZC8rJZoLpASCpNuYFFc2Mb
-         yJKQ==
-X-Gm-Message-State: AOJu0YzCxZICiLoW2Qvay7pbAzDGYj/2WE7vmJGdDfi1l6HLe5ay/6VR
-	naFvuo+uPEmIWRr5tapdQPeNFOsHOhBHIEutYyf532opBlhROeR+r8ujEQ==
-X-Google-Smtp-Source: AGHT+IEVU8yA4ynvWr/9xBDQ1Mzfv58VP0gVB4W/jXWvsvS6qAs/HUJ+y76HPWRUe9ab5h/6DrIKcA==
-X-Received: by 2002:a05:6808:2381:b0:3d2:200b:9258 with SMTP id 5614622812f47-3d24e8cc565mr12932130b6e.14.1718671631234;
-        Mon, 17 Jun 2024 17:47:11 -0700 (PDT)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-07-174-93-0-192.dsl.bell.ca. [174.93.0.192])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-798aaecc7f3sm476193185a.43.2024.06.17.17.47.10
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 17:47:10 -0700 (PDT)
-Message-ID: <4e9892d2-863e-4464-87ab-36d23df2dc19@gmail.com>
-Date: Mon, 17 Jun 2024 20:47:10 -0400
+        d=1e100.net; s=20230601; t=1718672572; x=1719277372;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RNJpWi2NnTUFlKCapzYUWVmZRXdJVpp1W7Dthhac+nw=;
+        b=Pw9Kc0rPtcB5mdLKDx/e/Gfq9JnOGPY0oLOtG0tpGOoyfD+5TBS9fprsOW/+BLdnWg
+         CK+hJc3I9Eh/TgEsNCbHv44jwxNZMK0v8YSSixrwh8OW33B8x5eudBmct2ynE0E1f20h
+         obYRzyHLSeY7N46FZiLIjGjiRfmMcaYQ4kEPppgUO8Y35TSz6D+pNJbdqaTlIm18OOLY
+         KncOrP50kMZO2cWClpS+31x0UrMPb2gQeJu1osn2t+V7mLNBfBfu8jBA0YPeeAZqsHNl
+         nIuLSY3Xo9cKHzec8g6GAmIZnDW7k5qzsH7IY+hkJlJMw063+yRr26T78emSsVRiURTs
+         QDIw==
+X-Gm-Message-State: AOJu0YyYKCePNyP8su6no+5mKM/8SfvT9dbY71iGBKrocXjc9Ck07vD4
+	m2aUuPSVWfkVY3Mqd8PU+l5Zuurhsl0KCh2fDRMI9MoaiFdPEbyl1LqAGYBkehPr4vMnCvGxxM6
+	WmuBB22bjkt6DCYPjPj9AIVUKj9dxghmDMaySaFLZQVhD41K7KYo=
+X-Google-Smtp-Source: AGHT+IGqZCev2MG5Q8JkEla6XnkHB9BCdIIcT2CuNCHH1mZTpJph09EL56NkT31kg6/1Cs2ZaNVZPxsUZA2FTqtK6qw=
+X-Received: by 2002:ac2:4342:0:b0:52c:989a:a786 with SMTP id
+ 2adb3069b0e04-52ca6e9a776mr5897426e87.69.1718672572360; Mon, 17 Jun 2024
+ 18:02:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <DBf1x17WGIqH4QirbWWApwVW9TwmgjFzIQmwhZAyj0@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <DBf1x17WGIqH4QirbWWApwVW9TwmgjFzIQmwhZAyj0@lists.ettus.com>
-Message-ID-Hash: Q6CPQ7FMWGD6QMYAI26RGCHBL3XQ6GQB
-X-Message-ID-Hash: Q6CPQ7FMWGD6QMYAI26RGCHBL3XQ6GQB
-X-MailFrom: patchvonbraun@gmail.com
+References: <DBf1x17WGIqH4QirbWWApwVW9TwmgjFzIQmwhZAyj0@lists.ettus.com> <4e9892d2-863e-4464-87ab-36d23df2dc19@gmail.com>
+In-Reply-To: <4e9892d2-863e-4464-87ab-36d23df2dc19@gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Mon, 17 Jun 2024 20:02:41 -0500
+Message-ID: <CAFche=jVO9XT1Ab7++sFYkFoVDQo0mmrt1ZMOAVw9zm4-owzgA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: BKU3YQFXPYDA2NVYIRVDCJRNSCSZYNPU
+X-Message-ID-Hash: BKU3YQFXPYDA2NVYIRVDCJRNSCSZYNPU
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: x310 Not Sending Jumbo Packets (>8000 bytes) as 1 Packet on 10GigE
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Q6CPQ7FMWGD6QMYAI26RGCHBL3XQ6GQB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BKU3YQFXPYDA2NVYIRVDCJRNSCSZYNPU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0647028290617426016=="
 
-T24gMTcvMDYvMjAyNCAyMDoyOSwgY2pvaG5zb25Ac2VycmFub3N5c3RlbXMuY29tIHdyb3RlOg0K
-Pg0KPiBJdCBpcyB0aGUgc3dpdGNoIHRoYXQgaXMgaW50ZXJuYWwgdG8geW91IGhhcmR3YXJlIG9u
-IFVTUlAtMjk3NC4NCj4NCj4gWW91IGNhbiBzZWUgdGhlIHN3aXRjaCBiZWxvdyAoZnJvbSB5b3Vy
-IGRvY3VtZW50YXRpb24pLiBJ4oCZbSBzZW5kaW5nIA0KPiBmcm9tIHRoZSBTQkMgKFNpbmdsZSBi
-b2FyZCBjb21wdXRlcikgc2hvd24gaW4gdGhlIGRpYWdyYW0uDQo+DQo+DQo+IGh0dHBzOi8va2Iu
-ZXR0dXMuY29tL0ZpbGU6Mjk3NF9ibGtfZGlhX2hpTGV2ZWxfdjAxLnBuZw0KPg0KPg0KPg0KPiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1
-YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
-DQpJbnRlcmVzdGluZ2x5IGVub3VnaCwgSSBqdXN0IHRyaWVkIGEgcGluZyAtcyA4MTAwIG9uIG15
-IFgzMTAsIGFuZCB0aGVuIGEgDQpwaW5nIC1zIDgxMDUsIGFuZCB0aGUgODEwNSBmYWlsZWQuwqAg
-TG9va2luZyBhdA0KIMKgIHByZXZpb3VzIGxvZyBtZXNzYWdlcyBmb3IgbXkgYXBwbGljYXRpb24g
-aXQgYWxzbyBjbGFpbXMgODAwMCBieXRlIA0KbWF4aW11bSBmcmFtZSBzaXplLCBzbyB0aGlzIG1h
-eSBiZSBhIGxpbWl0YXRpb24NCiDCoCBpbiB0aGUgUEhZL01BQyBpbXBsZW1lbnRhdGlvbiBpbiB0
-aGUgWDMxMCBGUEdBLg0KDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
-QGxpc3RzLmV0dHVzLmNvbQo=
+--===============0647028290617426016==
+Content-Type: multipart/alternative; boundary="0000000000002945d5061b1fa435"
+
+--0000000000002945d5061b1fa435
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+8192 bytes is the maximum frame size supported by the FPGA, but that's
+including all headers. So the actual RF data payload that you can send is
+less than this, typically closer to 8000 bytes. I often set my SPP to 1996
+out of habit since this is usually a pretty safe number with jumbo frames.
+The driver attempts to determine the biggest MTU supported automatically.
+
+Thanks,
+
+Wade
+
+
+
+
+On Mon, Jun 17, 2024, 7:47=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmail.=
+com>
+wrote:
+
+> On 17/06/2024 20:29, cjohnson@serranosystems.com wrote:
+> >
+> > It is the switch that is internal to you hardware on USRP-2974.
+> >
+> > You can see the switch below (from your documentation). I=E2=80=99m sen=
+ding
+> > from the SBC (Single board computer) shown in the diagram.
+> >
+> >
+> > https://kb.ettus.com/File:2974_blk_dia_hiLevel_v01.png
+> >
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> Interestingly enough, I just tried a ping -s 8100 on my X310, and then a
+> ping -s 8105, and the 8105 failed.  Looking at
+>    previous log messages for my application it also claims 8000 byte
+> maximum frame size, so this may be a limitation
+>    in the PHY/MAC implementation in the X310 FPGA.
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000002945d5061b1fa435
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi all,<div dir=3D"auto"><br><div dir=3D"auto">8192 bytes=
+ is the maximum frame size supported by the FPGA, but that&#39;s including =
+all headers. So the actual RF data payload that you can send is less than t=
+his, typically closer to 8000 bytes. I often set my SPP to 1996 out of habi=
+t since this is usually a pretty safe number with jumbo frames. The driver =
+attempts to determine the biggest MTU supported automatically.</div><div di=
+r=3D"auto"><br></div><div dir=3D"auto">Thanks,</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Wade<br><div dir=3D"auto"><div dir=3D"auto"><div dir=
+=3D"auto"><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto"><div dir=3D=
+"auto"><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"au=
+to"><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto"=
+><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto"><d=
+iv dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto"><br><=
+div dir=3D"auto"><br><div dir=3D"auto"><div dir=3D"auto"><br></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Mon, Jun 17, 2024, 7:47=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"ma=
+ilto:patchvonbraun@gmail.com" target=3D"_blank" rel=3D"noreferrer">patchvon=
+braun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On 1=
+7/06/2024 20:29, <a href=3D"mailto:cjohnson@serranosystems.com" rel=3D"nore=
+ferrer noreferrer" target=3D"_blank">cjohnson@serranosystems.com</a> wrote:=
+<br>
+&gt;<br>
+&gt; It is the switch that is internal to you hardware on USRP-2974.<br>
+&gt;<br>
+&gt; You can see the switch below (from your documentation). I=E2=80=99m se=
+nding <br>
+&gt; from the SBC (Single board computer) shown in the diagram.<br>
+&gt;<br>
+&gt;<br>
+&gt; <a href=3D"https://kb.ettus.com/File:2974_blk_dia_hiLevel_v01.png" rel=
+=3D"noreferrer noreferrer noreferrer" target=3D"_blank">https://kb.ettus.co=
+m/File:2974_blk_dia_hiLevel_v01.png</a><br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" rel=3D"noreferrer noreferrer" target=3D"_blank">usrp-users@lists.ettus.c=
+om</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">usrp-users-le=
+ave@lists.ettus.com</a><br>
+Interestingly enough, I just tried a ping -s 8100 on my X310, and then a <b=
+r>
+ping -s 8105, and the 8105 failed.=C2=A0 Looking at<br>
+=C2=A0=C2=A0 previous log messages for my application it also claims 8000 b=
+yte <br>
+maximum frame size, so this may be a limitation<br>
+=C2=A0=C2=A0 in the PHY/MAC implementation in the X310 FPGA.<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
+l=3D"noreferrer noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a=
+><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">usrp-users-leave@l=
+ists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000002945d5061b1fa435--
+
+--===============0647028290617426016==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0647028290617426016==--
