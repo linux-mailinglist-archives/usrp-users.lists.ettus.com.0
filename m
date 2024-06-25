@@ -2,281 +2,147 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA911916561
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2024 12:39:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD1C4916574
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2024 12:43:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7F63C384EF1
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2024 06:39:57 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 03222384FD8
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2024 06:43:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1719311997; bh=lE/b7s7DAfEYIltTRhNOEopkXHL2PayXJ9o6hV9LcUI=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=uiPmI3s2C1bLpnjMXkHry/K64xwx1nj76khw4f+zJPoPOFi8RAtGJuJrkkVotme7Y
-	 B6OWbd517A28wqRQje/YkSFjP4dMpQ6qoaIZv9wiUqSys9Z5MBMjrrTvnWv3cRj10T
-	 3Dq4CPNTDm7bv0KT+PxSZd0P0uYFO9TQheil7FFAzZQL7x6gFaUHgnO0dch+6sRtf0
-	 Nb6RTJF9DIS0B6+4FSBvELVVqHBiXUBQtRpfdJJvC9t7odyj+mgVfbmUxasQONPqDV
-	 CcbvQz+eML4qXO7PXDaK5oYzGBPq4cqndxGa5E1nJ4Cl6Hslm5CIUqU2jeWIGdnfFx
-	 PXnnb5eQ4C+Mw==
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 213FB384D48
-	for <usrp-users@lists.ettus.com>; Tue, 25 Jun 2024 06:39:16 -0400 (EDT)
+	t=1719312227; bh=6OnnEhZkEe5FxyBlRCiTKh+5gT5zN6WyavjiZ5W1Ka0=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=pNnwO3zQZFaIKlImUQ4cz0YzWBEVwgJXC7tcDgmOWjzAKHvijh1S407s64KnJK5gk
+	 z+6U+wcJaku9gXP2DZa/uDj8FynvEdyrmjufwa+kv3MFMWbqZ/b70ymCQL0/N2xgKL
+	 qZ3m8xvMOBhzi9Fnn97EgAurrs0In8edU4/hjS32l7lZpczrRzFnk5HXZ7DGaKv9Q0
+	 xNK0uOgqArJot+YgOIU0Sq/Cs2yyezd+NEU5/PMiigxgmY65e/X/xTK42Pter1uItU
+	 DbkF+gO5spuk1jFY/5T0ww7MmhTsperReebNVtDrBoAR2iwIABb+fgSW+yK7k4sTGs
+	 l6S/rqFnmutlQ==
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6AD65384D6F
+	for <usrp-users@lists.ettus.com>; Tue, 25 Jun 2024 06:43:01 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="iOc3RReB";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="ppDG0mtQ";
 	dkim-atps=neutral
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57cbc2a2496so6132183a12.0
-        for <usrp-users@lists.ettus.com>; Tue, 25 Jun 2024 03:39:16 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a727d9dd367so15648766b.3
+        for <usrp-users@lists.ettus.com>; Tue, 25 Jun 2024 03:43:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1719311955; x=1719916755; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=sInprMG0xbHyjT0KJA3cmNReM3WDn/CzIgeZwpsnNig=;
-        b=iOc3RReBJiY13zvWJu6QcEaruBoAH+yoMUMAFr9SiACNPA32Lwugw9IxqYME6PIYM6
-         LrIjZMn0pDVyU2crOOvfQOfn6G1BoaPC1JmSr7y3M2UbpaIlCTVU5TdDmJErrZV5OTZt
-         TsdqtORKkltpsWlpo+xJ9ybm6zdCMnTxb2YexrC9q2tAQkhSIlSjBB9tyEAVmUcTY0jg
-         nzINmCR5w6TQSU4TmoD+87cbDxSGrN+jrdfiJ6xY0hQbJMcrnQ52s98+KrnFJuS4oVKS
-         Vs00OkjU0Qe9eG3V4719xxhmdu1QDttoWMRRFEn1pkxtPN7m6P4ZVYYGPIcFfm4/DyqA
-         lT2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719311955; x=1719916755;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1719312180; x=1719916980; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sInprMG0xbHyjT0KJA3cmNReM3WDn/CzIgeZwpsnNig=;
-        b=umBMbfaTPkYWit+Ng0PVxoefrJg/6O+T3T/vBHPNLKkXj2MCZvttQLWN66KmBOzDVx
-         vZet3bKJp0E9WnrqzUTU5d1WL7j6wW1ud4FFEoR9VLYtIZENBf6E7XBFPHJ4ZCJedQNx
-         ckh9v9Ju5yz/KA4AlWB51WF7MgpXVKfWIwEzWgewNiwZJN2p9ixo7S069t89rs9L8eU7
-         vLitQY2a2PYjhTYxJlsQPgLYmGdcb0xLlN7LpfIq3e97mXGD7qsjjnLfmBdzJ7Un3crb
-         HUv82x3EYOZlEexGyaco08/0eCDWUTgn4TZ66RrA9YR8e5S5bqzWAiZb4SK/wCshIjc+
-         D/mg==
-X-Gm-Message-State: AOJu0YzzTeVUY3h1CPjRsGPJIBVdsTaDd7i4u7lEcVdkS5zUddUDBpVH
-	GLUxUN9ntyWAEIzu3XamuM20quQNGFdy+JAJvxi7j5J50H6P+y7KaMpJSuKkZxIF5Q8naIgzfht
-	7cv/loG/unoObrTew7+M+FGtSz1nFaJj0C8KUopFKep27UI6l4+1Nzg==
-X-Google-Smtp-Source: AGHT+IEVoGf1K+BljuRTMv2wT3JgTuQZcXtQA8APfoBOkvamP6bR5J9tx1SAGrjDUiQ5CdqcT34Z2tHnsRhVBvU3H2s=
-X-Received: by 2002:a50:f604:0:b0:57c:ad11:e759 with SMTP id
- 4fb4d7f45d1cf-57d4bdbe905mr6255065a12.28.1719311955453; Tue, 25 Jun 2024
- 03:39:15 -0700 (PDT)
+        bh=otr1vSBagOqte1boNAubP9Jer28mAE3CeP/RkXANIPk=;
+        b=ppDG0mtQrwdVb1zgETHsl45KUV1C8DgcsDnQaf0hMkawe28VCA9ostxrIOpPONZHo0
+         RCZM5qTmIwoQmaMVd43C0NHuWn+sTQxmqF+HFisq+s/XdmlITM9pUI34A3xNergvS+Ey
+         JS7MNssFcViZUyxro5JwPZwNOcl6iubK2S/nqECLkQM7API6XdcDKIb73YN8+AB2Awuh
+         xTNVwdntwHhDuLKLZNVqPXEE8qqvVpQFsM/XmB/LWxgBvi2Ve+ZQkwhvwwJ/mq1y0wRD
+         I84s8jfgEAR9Av6+XDC/u0TUTwulEWx4C78VirEuxD2S36wl+gBrdzhcM3U/e0ZFaZRJ
+         Dvsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719312180; x=1719916980;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=otr1vSBagOqte1boNAubP9Jer28mAE3CeP/RkXANIPk=;
+        b=n4n+In4sEcEbIxUwqSzsZ2igjIgEbwlmx989X+4LR01o9Ly3ilSs4PJBpKcBdiV1LF
+         FOO3uWVBJ46KbC7WHiCgRnLT22DmfRGudKGPmZLWJVLMZ1k5ObMjxG1TYtTqmOAvjZPn
+         KyBTSfh+LABLvMHtlxe50Z27tumMUfxiRBR//66MOwhX5ZBzG/oOwfwJP5NfN2zXdbp+
+         0hZJf4tiX/lLeyFmP/S1iNOKDxJeFvYCddPzwdJFyL8lTLstLLyrKQgU6NI//YLhBfP9
+         RaLtgTsyWl4svDoBQZfpNPd/E/S5Mai5blHkdn7Uc9GyJmhoYw1RExM0rllWR5vb3u7s
+         LCSA==
+X-Gm-Message-State: AOJu0YyTaEyyDwjRY21k89eiONzSilzifLoI0qWo1rRlanNdXFfwois9
+	iZXxALNKqpNS8lzE2TzkiXPBkEJIqx4d1CsZUQBa1eOpQA/6IS7AhOyaUpOLhpl5S4rG2Ht7/l8
+	whedUgxWKALWhw9jvi3yEdF5j7ORF8ISwx1+lXr9F8j/y+rUg6FQyjA==
+X-Google-Smtp-Source: AGHT+IEuCHp/4lNkKjS0dHOeYr6IQD+rPGBm/ecu6ug1kFMbopdin46bDFXaO2PMU6jwkZZbW5pPswo8OKf1uFzHJTE=
+X-Received: by 2002:a17:907:d38b:b0:a72:506f:5910 with SMTP id
+ a640c23a62f3a-a72506f5975mr535491466b.41.1719312179816; Tue, 25 Jun 2024
+ 03:42:59 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAKHaR3=8BVEqujkPk7b9N5bfwqGS=EzsAdcP6e5=qKVwgxvoXg@mail.gmail.com>
+In-Reply-To: <CAKHaR3=8BVEqujkPk7b9N5bfwqGS=EzsAdcP6e5=qKVwgxvoXg@mail.gmail.com>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 25 Jun 2024 12:39:03 +0200
-Message-ID: <CAFOi1A6CyYPFX-TB6YFhVFOvA1Xhpawf0HwBVAUT4wFi9V2kxQ@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: HTTALIHZKX7JP7D5IV4E3OHDJT4NGFQD
-X-Message-ID-Hash: HTTALIHZKX7JP7D5IV4E3OHDJT4NGFQD
+Date: Tue, 25 Jun 2024 12:42:48 +0200
+Message-ID: <CAFOi1A6OZbXZpLD4_UV4mOPChjsLrdVbjtA_=TKRgG_iYOej1g@mail.gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: 6OJHMVGFXTK2HY7QECCNA5V36XV3GC55
+X-Message-ID-Hash: 6OJHMVGFXTK2HY7QECCNA5V36XV3GC55
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] RFNoC Image Builder
+Subject: [USRP-users] Re: kas and meta-ettus
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HTTALIHZKX7JP7D5IV4E3OHDJT4NGFQD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6OJHMVGFXTK2HY7QECCNA5V36XV3GC55/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9024952968263069760=="
+Content-Type: multipart/mixed; boundary="===============5153524137301963081=="
 
---===============9024952968263069760==
-Content-Type: multipart/alternative; boundary="0000000000005d00be061bb482ba"
+--===============5153524137301963081==
+Content-Type: multipart/alternative; boundary="000000000000bc814e061bb48fb2"
 
---0000000000005d00be061bb482ba
+--000000000000bc814e061bb48fb2
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+Hi Dennis,
 
-As you may have seen from the 4.7-RC1 release announcements, we have a
-bunch of updates to the RFNoC image builder. I would like to provide some
-context around those.
+we are using kas 4.0 for development.
 
-First, we are not yet ready to ship a new version of RFNoC modtool. With
-the deprecation of gr-ettus as the way to ship that tool, we have a bunch
-of work ahead of us to integrate a new modtool into UHD, and we're not
-there yet.
+--M
 
-However, the image builder has had some major improvements. Many of those
-are simply usability improvements: You'll notice the logging output looks
-different, and we have tried to improve the error messages. This is, to a
-large extent, done by allowing custom checks within block descriptor YAMLs
-as well as BSP YAMLs. For example, if you leave important bus connections
-unconnected in an RFNoC image core file, then you will now get a warning,
-and must confirm that you know what you're doing if you want the image
-builder to proceed to build a bitfile.
+On Mon, Jun 24, 2024 at 4:10=E2=80=AFPM Dario Pennisi <dario@iptronix.com> =
+wrote:
 
-One thing you'll notice is that you now must use the image builder to build
-FPGA bitfiles, and can no longer directly build bitfiles by running
-commands like "make X410_X4_400". This may be annoying for people who like
-to build the stock images, but it makes many things simpler: Now, there is
-a single way (i.e., calling rfnoc_image_builder) that will make bitfiles.
-Besides, we no longer have to check in intermediate build artifacts (e.g.,
-the image core auto-generated Verilog) into git, which can cause conflicts
-or confusion.
-Side note: If you don't like having install all of UHD, because you just
-need the image builder, run `cmake -DENABLE_LIBUHD=OFF
--DENABLE_PYMOD_UTILS=ON` to just install the image builder and some other
-Python-based utilities.
+> Hi,
+> i just realized a new version of meta-ettus using
+> kirkstone/uhd-4.7/gnuradio 3.10 has been released and wanted to give it a
+> go but i'm struggling to fund the right version of kas to use. so far i'v=
+e
+> been using kas 2.6.3 for the zeus version(s) but now i have all sorts of
+> errors with that and with newer releases (haven't tried them all yet)
+> any hint?
+> thanks,
+>
+> Dario Pennisi
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-Probably the biggest new feature is the fact that in the X4x0 series,
-transport adapters are now part of the image core. That means that you must
-choose which transports you want to use in the YAML file, instead of by
-specifying a build target.
-For example, if you wanted the 10GbE version of the X410, or the 100 GbE
-version, you would either build the X410_X4_400 or X410_CG_400 target. Now,
-there is only one target (X410) but you modify the YAML file to choose a
-single 10 GbE, quadruple 10 GbE, or 100 GbE per QSFP port (of course, you
-may also leave them unconnected). The main reason this is useful is because
-it allows you to put custom blocks or transport adapters that use the QSFP
-ports into your designs.
-Note that on other devices than X4x0 devices, the previous behaviour is
-still in place. For example, on X310, you can't define the transport
-adapters through the YAML files.
-
-There is a downside to this feature: If you use a pre-4.7 image core file
-(which does not specify transport adapters), then you would end up with a
-bitfile that can't communicate with the outside. You may have guessed it:
-We added more checks to make it hard for that to happen, the image builder
-would give you a very obvious warning in that case.
-
-Another interesting feature is the ability to add custom Verilog modules.
-These also require a YAML file to describe them, but can be used to consume
-or write to IO ports, generate custom clocks, or whatever else you want to
-do.
-
-Some other random features:
-- Better use of parameters, which can be referenced in YAML files. For
-example, you can create an IO port with variable width, and make the width
-a parameter.
-- Better inclusion/exclusion of build files based on what you need (e.g.,
-if you build a bitfile without DDC, then no DDC IP will be included)
-- Define IO signatures in any module. If you write a block with custom IO
-signatures, just include the IO signatures in the block YAML.
-- Custom paths for build, IP, and output. This means you don't have to
-write anything inside the RFNoC source tree.
-- The "build" directory stores all artifacts that get auto-generated during
-build time. For debugging, you may manually edit these files and use the
---reuse option on rfnoc_image_builder to make sure your manual changes
-don't get overwritten.
-- Use inheritance to share info between similar image core files.
-- Separate edge files are no longer used.
-
-One item that might trigger some questions is the new "secure image core"
-feature. This is a response to a feature request to allow mixing
-proprietary and open-source blocks. Note that we are not going to use that
-as part of standard bitfiles: All blocks that get shipped with UHD will
-remain open-source and modifiable (well, as much as possible, we do use
-Vivado and AMD/Xilinx IP). There may be blocks in the future (not part of
-UHD) that make use of these secure cores.
-
-
-Going Forward
-============
-
-These improvements to rfnoc_image_builder are a first step to making the
-whole RFNoC image building process more user-friendly and less wading
-through code examples and trial-and-error. Part of this process will also
-be a renewed modtool (and also, work on the blocktool), but that's further
-down the line.
-
-The reason we started working on things in this order is what we perceive
-as the priority in how people engage in using RFNoC: There are more people
-interested in building custom bitfiles with standard blocks (e.g., adding
-an FFT, adding a filter) than there are people writing their own blocks --
-but even those who do write their own blocks need to use the image builder.
-
-I'll leave it at that. This is a good place to ask questions about these
-updates -- I'll try and cover them!
-
-Cheers,
-Martin
-
---0000000000005d00be061bb482ba
+--000000000000bc814e061bb48fb2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>As you may have seen=
- from the 4.7-RC1 release announcements, we have a bunch of updates to the =
-RFNoC image builder. I would like to provide some context around those.</di=
-v><div><br></div><div>First, we are not yet ready to ship a new version of =
-RFNoC modtool. With the deprecation of gr-ettus as the way to ship that too=
-l, we have a bunch of work ahead of us to integrate a new modtool into UHD,=
- and we&#39;re not there yet.</div><div><br></div><div>However, the image b=
-uilder has had some major improvements. Many of those are simply usability =
-improvements: You&#39;ll notice the logging output looks different, and we =
-have tried to improve the error messages. This is, to a large extent, done =
-by allowing custom checks within block descriptor YAMLs as well as BSP YAML=
-s. For example, if you leave important bus connections unconnected in an RF=
-NoC image core file, then you will now get a warning, and must confirm that=
- you know what you&#39;re doing if you want the image builder to proceed to=
- build a bitfile.</div><div><br></div><div>One thing you&#39;ll notice is t=
-hat you now must use the image builder to build FPGA bitfiles, and can no l=
-onger directly build bitfiles by running commands like &quot;make X410_X4_4=
-00&quot;. This may be annoying for people who like to build the stock image=
-s, but it makes many things simpler: Now, there is a single way (i.e., call=
-ing rfnoc_image_builder) that will make bitfiles. Besides, we no longer hav=
-e to check in intermediate build artifacts (e.g., the image core auto-gener=
-ated Verilog) into git, which can cause conflicts or confusion.</div><div>S=
-ide note: If you don&#39;t like having install all of UHD, because you just=
- need the image builder, run `cmake -DENABLE_LIBUHD=3DOFF -DENABLE_PYMOD_UT=
-ILS=3DON` to just install the image builder and some other Python-based uti=
-lities.<br></div><div><br></div><div>Probably the biggest new feature is th=
-e fact that in the X4x0 series, transport adapters are now part of the imag=
-e core. That means that you must choose which transports you want to use in=
- the YAML file, instead of by specifying a build target.</div><div>For exam=
-ple, if you wanted the 10GbE version of the X410, or the 100 GbE version, y=
-ou would either build the X410_X4_400 or X410_CG_400 target. Now, there is =
-only one target (X410) but you modify the YAML file to choose a single 10 G=
-bE, quadruple 10 GbE, or 100 GbE per QSFP port (of course, you may also lea=
-ve them unconnected). The main reason this is useful is because it allows y=
-ou to put custom blocks or transport adapters that use the QSFP ports into =
-your designs.</div><div>Note that on other devices than X4x0 devices, the p=
-revious behaviour is still in place. For example, on X310, you can&#39;t de=
-fine the transport adapters through the YAML files.</div><div><br></div><di=
-v>There is a downside to this feature: If you use a pre-4.7 image core file=
- (which does not specify transport adapters), then you would end up with a =
-bitfile that can&#39;t communicate with the outside. You may have guessed i=
-t: We added more checks to make it hard for that to happen, the image build=
-er would give you a very obvious warning in that case.<br></div><div><br></=
-div><div>Another interesting feature is the ability to add custom Verilog m=
-odules. These also require a YAML file to describe them, but can be used to=
- consume or write to IO ports, generate custom clocks, or whatever else you=
- want to do.</div><div><br></div><div>Some other random features:</div><div=
->- Better use of parameters, which can be referenced in YAML files. For exa=
-mple, you can create an IO port with variable width, and make the width a p=
-arameter.</div><div>- Better inclusion/exclusion of build files based on wh=
-at you need (e.g., if you build a bitfile without DDC, then no DDC IP will =
-be included)</div><div>- Define IO signatures in any module. If you write a=
- block with custom IO signatures, just include the IO signatures in the blo=
-ck YAML.</div><div>- Custom paths for build, IP, and output. This means you=
- don&#39;t have to write anything inside the RFNoC source tree.</div><div>-=
- The &quot;build&quot; directory stores all artifacts that get auto-generat=
-ed during build time. For debugging, you may manually edit these files and =
-use the --reuse option on rfnoc_image_builder to make sure your manual chan=
-ges don&#39;t get overwritten.</div><div>- Use inheritance to share info be=
-tween similar image core files.</div><div>- Separate edge files are no long=
-er used.</div><div><br></div><div>One item that might trigger some question=
-s is the new &quot;secure image core&quot; feature. This is a response to a=
- feature request to allow mixing proprietary and open-source blocks. Note t=
-hat we are not going to use that as part of standard bitfiles: All blocks t=
-hat get shipped with UHD will remain open-source and modifiable (well, as m=
-uch as possible, we do use Vivado and AMD/Xilinx IP). There may be blocks i=
-n the future (not part of UHD) that make use of these secure cores.</div><d=
-iv><br></div><div><br></div><div>Going Forward</div><div>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D</div><div><br></div><div>These improvements to rfnoc_ima=
-ge_builder are a first step to making the whole RFNoC image building proces=
-s more user-friendly and less wading through code examples and trial-and-er=
-ror. Part of this process will also be a renewed modtool (and also, work on=
- the blocktool), but that&#39;s further down the line.</div><div><br></div>=
-<div>The reason we started working on things in this order is what we perce=
-ive as the priority in how people engage in using RFNoC: There are more peo=
-ple interested in building custom bitfiles with standard blocks (e.g., addi=
-ng an FFT, adding a filter) than there are people writing their own blocks =
--- but even those who do write their own blocks need to use the image build=
-er.</div><div><br></div><div>I&#39;ll leave it at that. This is a good plac=
-e to ask questions about these updates -- I&#39;ll try and cover them!</div=
-><div><br></div><div>Cheers,</div><div>Martin<br></div></div>
+<div dir=3D"ltr"><div>Hi Dennis,</div><div><br></div><div>we are using kas =
+4.0 for development.</div><div><br></div><div>--M<br></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 24, =
+2024 at 4:10=E2=80=AFPM Dario Pennisi &lt;<a href=3D"mailto:dario@iptronix.=
+com">dario@iptronix.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr">Hi,<div>i just realized a new versi=
+on of meta-ettus using kirkstone/uhd-4.7/gnuradio 3.10 has been released an=
+d wanted to give it a go but i&#39;m struggling to fund the right version o=
+f kas to use. so far i&#39;ve been using kas 2.6.3 for the zeus version(s) =
+but now i have all sorts of errors with that and with newer releases (haven=
+&#39;t tried them all yet)</div><div>any hint?</div><div>thanks,</div><div>=
+<br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=
+=3D"ltr"><span style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;fon=
+t-size:13.3333px">Dario Pennisi</span><br style=3D"color:rgb(0,0,0);font-fa=
+mily:Calibri,sans-serif;font-size:13.3333px"><br></div></div></div></div></=
+div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---0000000000005d00be061bb482ba--
+--000000000000bc814e061bb48fb2--
 
---===============9024952968263069760==
+--===============5153524137301963081==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -286,4 +152,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9024952968263069760==--
+--===============5153524137301963081==--
