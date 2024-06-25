@@ -2,256 +2,245 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A85A915B8E
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2024 03:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B76AF915DEB
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2024 07:07:15 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id ED2B83814AE
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Jun 2024 21:18:15 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9958E38529F
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2024 01:07:14 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1719278295; bh=oC+auTS637SfghZVnLAYtv/terLh8N4wE8zfo3B1fT8=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=IcoZYU6xxiFGI0PwH52aEhYYWYnIaxNjtmVzp2MGupdaibLt5T4hd7pbkrsIHwvbp
-	 MisuG2J7DbRSko3O5CpVP0uThX69S4NWhJPphctZ5rOPQfeSmIRIcNQC/qT2dYKZQZ
-	 Toh6TBUOrmjQ4oglm0QbuI97IX+ZHyayAJNwdgDPFT3gEo90hZmL3xVHIQ1NaFY1Ut
-	 x+H2IbhSJHrM9b7Ifh+BF+JNaWtyrxcpc+HDN97nLMQDdu2t7QNpQaRsWZ0xeoh9KV
-	 vKp84kGTmizr8NsYdBc/ThjjNtNClFIt3nUoDoBeIJ4DX+o6cOJy4amEJyUU1czC9y
-	 emXXXTGgwsjjA==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5D0963811AF
-	for <usrp-users@lists.ettus.com>; Mon, 24 Jun 2024 21:17:38 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1719278258; bh=DbkuF0PdSKsiP5VH1GPxMShsMbjlgpke4gwx2mJnvWA=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=p+9SEpFV9+Ftp93c+29AMQWvNguK957faQJDfuS6xzDs1edRlzf8dzw1tpEEp9a7e
-	 jtAUIicQv5uB3rtBc4+Hfds3L9FfhjVqf4ccTUrsfSl0KTneuRD9i02L8PAykAbaO2
-	 6wW2gE8Je2KykQf55WuYeGezZx5ApoMErxaxh0LJ/qAz06+0Z86zUmoYkJc6LJV2zr
-	 hpo9OziMgNOE1DagGmALBgsZ70/B1HSESFxGsKZO6PH6ezmACvROFmDKDq3f+TpGsc
-	 KvgvErLt/aZ6yuZPzrDXz4kZueF6gT4UmqllX6DDd7bQ1lWM6eNhivCsBsQumWhcyT
-	 8DglkzP3/dZnQ==
-Date: Tue, 25 Jun 2024 01:17:38 +0000
-To: usrp-users@lists.ettus.com
-From: cjohnson@serranosystems.com
-Message-ID: <BaB1RFmtvUcDD6ALPNv6sI09WVwEFa2vHftD4r9zU@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAFche=jpd5-uZMS2DrH03JetcXvvhOnEaitooJX2jkdATpp83A@mail.gmail.com
+	t=1719292034; bh=Qh3+GtHhhtbmZjF/ZswryQbAxBXPT4lNFvVCWQYbH7s=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=vrZSh/sez8pQlwoO9IS20cPtuLX8khHFNOf9wHQeWyibPi31dWG7Wn38nz7nQvM8R
+	 MGtRL6nxUs5fKtMz+v7qBJKeAQokviS64q/LcfmBGmFk6tnm4sN2qgTMTAaxtBx/ND
+	 zGwQlfQOE+4d90ZmceDbOJAIrlEcqeBle++XCINH/ouoeS+e7U5+n0y0BEY/AoOKrN
+	 zlMDQeACYF30xilnFC/kYwUyLCubrViH0ntVhSGXmBRRK5dlg/6br9nST8cPNo0uTc
+	 UZ4n/NCeZJtn1duWSn6HvOdCNg6pWzJfWTwVzgz/5T+dVpm6RSbVq8X8Z8qGtiyvrh
+	 zGpUaOnodlSxw==
+Received: from mail-40141.protonmail.ch (mail-40141.protonmail.ch [185.70.40.141])
+	by mm2.emwd.com (Postfix) with ESMTPS id A35F23813F4
+	for <usrp-users@lists.ettus.com>; Tue, 25 Jun 2024 01:06:25 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="EKfPsUoT";
+	dkim-atps=neutral
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1719291984; x=1719551184;
+	bh=XrH39AAVl/pgkZzNfFgsxraBLko2mDJpe7O0px7TGJY=;
+	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=EKfPsUoTi5hqfvj9u1a/IdBa+vPBzle4YvW/Wf2g7KDZTwAoMZEXGpXZMq52h4qip
+	 4iUxzOx4F5gxU7jMOSUIEbiZZNZnQ7UlJZ/J80YmOmVlZCZRsoD9NLAX8tRFt7b91z
+	 mxmJsmQo6dEfBf1TigUvkA3U5Em+eM0c2KkwaXkUNkxYPfS4mNPSqtupm4frQCtxxP
+	 5fMUfh5NRV/W5eyqXgFmlQ7SU7zMuNC7mNSsHkntpCCc7xjp4bQ3YslHXJsuvER2wM
+	 fBoWG0oNzoVpzQjBaF7sxLcUYuwCBHXP/vVq4vhC3dzYEAap9XKpB7f2Ci7d3yZKSt
+	 4vDxJlZN7MImA==
+Date: Tue, 25 Jun 2024 05:06:18 +0000
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <3cj8gouvP6oPIcCw0bgMPEP0BQMsvnsCz3VxWiUsjzjyjwsz7NynnoYOHn3-wYckKIwYqDQdCGQD-vJBLAejt0Kd5DIMqShrZrGZmseZVGg=@protonmail.com>
+Feedback-ID: 47010692:user:proton
+X-Pm-Message-ID: c8b490e9949bd00f0777ffe31e6c0915bfa019b8
 MIME-Version: 1.0
-Message-ID-Hash: 2MCHG77SP5JRGIQZYUUS4YXSFBIL4IGP
-X-Message-ID-Hash: 2MCHG77SP5JRGIQZYUUS4YXSFBIL4IGP
-X-MailFrom: cjohnson@serranosystems.com
+Message-ID-Hash: TCO4ILWBFP3TNBXX6PZKFOXQMVQMW2N2
+X-Message-ID-Hash: TCO4ILWBFP3TNBXX6PZKFOXQMVQMW2N2
+X-MailFrom: olo1618@protonmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x310 Not Sending Jumbo Packets (>8000 bytes) as 1 Packet on 10GigE
+Subject: [USRP-users] Clarification on Benchmark Rate Testing for USRP X310 with two TwinRX
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2MCHG77SP5JRGIQZYUUS4YXSFBIL4IGP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TCO4ILWBFP3TNBXX6PZKFOXQMVQMW2N2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1767479284879976884=="
+From: Olo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olo <olo1618@protonmail.com>
+Content-Type: multipart/mixed; boundary="===============3195282750766482789=="
 
 This is a multi-part message in MIME format.
 
---===============1767479284879976884==
+--===============3195282750766482789==
 Content-Type: multipart/alternative;
- boundary="b1_BaB1RFmtvUcDD6ALPNv6sI09WVwEFa2vHftD4r9zU"
-Content-Transfer-Encoding: 7bit
+ boundary="b1_5pVy7Xw4ueBwcLwGlfw4G3VeJ7zg7Uox1f57rPvbM"
 
 This is a multi-part message in MIME format.
 
---b1_BaB1RFmtvUcDD6ALPNv6sI09WVwEFa2vHftD4r9zU
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--b1_5pVy7Xw4ueBwcLwGlfw4G3VeJ7zg7Uox1f57rPvbM
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Hi Wade,
+RGVhciBFdHR1cyBSZXNlYXJjaCBTdXBwb3J0IFRlYW0sCgpJIGhvcGUgdGhpcyBtZXNzYWdlIGZp
+bmRzIHlvdSB3ZWxsLgoKSSBhbSBjdXJyZW50bHkgd29ya2luZyB3aXRoIGEgVVNSUCBYMzEwIGVx
+dWlwcGVkIHdpdGggVHdpblJYIGRhdWdodGVyYm9hcmRzIGFuZCBoYXZlIHNvbWUgcXVlc3Rpb25z
+IHJlZ2FyZGluZyB0aGViZW5jaG1hcmtfcmF0ZWNvbW1hbmQgYW5kIGl0cyBpbXBsaWNhdGlvbnMg
+b24gb3ZlcmFsbCBiYW5kd2lkdGggdXNhZ2UuCgpXaGVuIEkgZXhlY3V0ZSB0aGUgZm9sbG93aW5n
+IGNvbW1hbmQ6CgouL2JlbmNobWFya19yYXRlLS1hcmdzPSJhZGRyPTxmaXJzdF9pcD4sc2Vjb25k
+X2FkZHI9PHNlY29uZF9pcD4iLS1jaGFubmVscyIwLDEsMiwzIi0tcnhfcmF0ZTEwMGU2LS1kdXJh
+dGlvbjMwCgphbSBJIHRlc3RpbmcgYSBjb21iaW5lZCBiYW5kd2lkdGggb2YgNHgxMDAgTUh6LCB3
+aGljaCB0b3RhbHMgNDAwIE1Iej8KClNpbWlsYXJseSwgd2hlbiBJIHJ1bjoKCi4vYmVuY2htYXJr
+X3JhdGUtLWFyZ3M9ImFkZHI9PGZpcnN0X2lwPixzZWNvbmRfYWRkcj08c2Vjb25kX2lwPiItLWNo
+YW5uZWxzIjAsMiItLXJ4X3JhdGUyMDBlNi0tZHVyYXRpb24zMAoKZG9lcyB0aGlzIGFsc28gZXF1
+YXRlIHRvIGEgdG90YWwgYmFuZHdpZHRoIG9mIDQwMCBNSHo/CgpIb3dldmVyLCBmb3IgdGhlIGNv
+bW1hbmQ6CgouL2JlbmNobWFya19yYXRlLS1hcmdzPSJhZGRyPTxmaXJzdF9pcD4sc2Vjb25kX2Fk
+ZHI9PHNlY29uZF9pcD4iLS1jaGFubmVscyIwLDEiLS1yeF9yYXRlMjAwZTYtLWR1cmF0aW9uMzAK
+CmRvZXMgdGhpcyBvbmx5IHRlc3QgMjAwIE1IeiBiZWNhdXNlIGl0IGlzIG9wZXJhdGluZyB0aHJv
+dWdoIGp1c3Qgb25lIFR3aW5SWD8KCkkgd2FudCB0byBlbnN1cmUgdGhhdCBJIGZ1bGx5IHVuZGVy
+c3RhbmQgaG93IHRoZSBiYW5kd2lkdGggaXMgYmVpbmcgdXRpbGl6ZWQgYW5kIHRlc3RlZCBhY3Jv
+c3MgdGhlIGRpZmZlcmVudCBjb25maWd1cmF0aW9ucy4KClRoYW5rIHlvdSBpbiBhZHZhbmNlIGZv
+ciB5b3VyIGFzc2lzdGFuY2UuCgpCZXN0IHJlZ2FyZHMsCk9sby4=
 
-I am now receiving =E2=80=9CU=E2=80=9D instead of =E2=80=9CL=E2=80=9D.  T=
-hey don=E2=80=99t come out on the console that often, but it is =E2=80=9C=
-bad=E2=80=9D if I see any.\
-In addition, I did add a priority to the thread, you can see below (takes=
- on a value between 0.0-100.0).\
-I also tried setting the buffer to 10\*1996.\
-None of these efforts helped.\
-Any suggestions on how I can get this to work without losing packets, or =
-timing?  FYI usrp->set_tx_rate(200e6).\
-(Below is code, below that is the console output)
+--b1_5pVy7Xw4ueBwcLwGlfw4G3VeJ7zg7Uox1f57rPvbM
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-```
-// Main function to simulate packet transmission
-void transmit_packets_timespec(uhd::usrp::multi_usrp::sptr usrp, uhd::tx_=
-streamer::sptr tx_stream, std::atomic<bool> &gps_locked, double rate) {
-    uhd::tx_metadata_t md;
-    md.start_of_burst =3D true;
-    md.end_of_burst =3D false;
-    md.has_time_spec =3D true;
-
-    // Attempt to set the thread priority
-    bool success =3D uhd::set_thread_priority_safe(0.90, true);
-    if (success) {
-        std::cout << "uhd::set_thread_priority_safe::Thread priority succ=
-essfully set." << std::endl;
-    } else {
-        std::cout << "uhd::set_thread_priority_safe::Failed to set thread=
- priority." << std::endl;
-    }
-
-    std::vector<std::complex<int16_t>> buffer(1996);=20
-
-    std::cout << "Start transmit_packets_timespec()" << std::endl;
-    std::cout << "Packet size: " << buffer.size() * sizeof(std::complex<i=
-nt16_t>) << " bytes" << std::endl;
-
-    // Get and print the maximum number of samples per packet
-    size_t max_num_samps =3D tx_stream->get_max_num_samps();
-    std::cout << "Max number of samples per packet: " << max_num_samps <<=
- std::endl;
-
-    // Initialize timestamp
-    md.time_spec =3D uhd::time_spec_t(usrp->get_time_now().get_full_secs(=
-) + 1.0); // Start 1 second in the future
-
-    while (true) {
-
-        size_t num_tx_samps =3D tx_stream->send(&buffer.front(), buffer.s=
-ize(), md);
-
-        if (num_tx_samps < buffer.size()) {
-            dropped_packets++;
-        } else {
-            transmitted_packets++;
-        }
-
-        //md.time_spec =3D md.time_spec + uhd::time_spec_t(buffer.size() =
-/ rate);
-        md.has_time_spec =3D false;
-
-        md.start_of_burst =3D false;
-    }
-
-    // Mark end of burst
-    md.end_of_burst =3D true;
-    tx_stream->send("", 0, md);
-}
-```
-
-**CONSOLE OUTPUT:**
-
-sudo ./tx_timed_samples_perf=20
-\[INFO\] \[UHD\] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.6.0.0-=
-1-ga9f0b4c7
-\[INFO\] \[X300\] X300 initialization sequence...
-
-\[INFO\] \[X300\] Maximum frame size: 8000 bytes.
-\[INFO\] \[GPS\] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
-\[INFO\] \[X300\] Radio 1x clock: 200 MHz
-Actual TX Rate: 200.000000 Msps
-Actual TX Freq: 1223.000003 MHz
-Actual TX Gain: 20.000000 dB
-Actual TX Bandwidth: 200.000000 MHz
-\[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
-Using transmit_packets_timespec()
-uhd::set_thread_priority_safe::Thread priority successfully set.
-Start transmit_packets_timespec()
-Packet size: 7984 bytes
-Max number of samples per packet: 1996
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
-
---b1_BaB1RFmtvUcDD6ALPNv6sI09WVwEFa2vHftD4r9zU
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Wade,</p><p>I am now receiving =E2=80=9CU=E2=80=9D instead of =E2=80=
-=9CL=E2=80=9D.  They don=E2=80=99t come out on the console that often, bu=
-t it is =E2=80=9Cbad=E2=80=9D if I see any.<br>In addition, I did add a p=
-riority to the thread, you can see below (takes on a value between 0.0-10=
-0.0).<br>I also tried setting the buffer to 10*1996.<br>None of these eff=
-orts helped.<br>Any suggestions on how I can get this to work without los=
-ing packets, or timing?  FYI usrp-&gt;set_tx_rate(200e6).<br>(Below is co=
-de, below that is the console output)</p><pre><code>// Main function to s=
-imulate packet transmission
-void transmit_packets_timespec(uhd::usrp::multi_usrp::sptr usrp, uhd::tx_=
-streamer::sptr tx_stream, std::atomic&lt;bool&gt; &amp;gps_locked, double=
- rate) {
-    uhd::tx_metadata_t md;
-    md.start_of_burst =3D true;
-    md.end_of_burst =3D false;
-    md.has_time_spec =3D true;
-
-    // Attempt to set the thread priority
-    bool success =3D uhd::set_thread_priority_safe(0.90, true);
-    if (success) {
-        std::cout &lt;&lt; "uhd::set_thread_priority_safe::Thread priorit=
-y successfully set." &lt;&lt; std::endl;
-    } else {
-        std::cout &lt;&lt; "uhd::set_thread_priority_safe::Failed to set =
-thread priority." &lt;&lt; std::endl;
-    }
-
-    std::vector&lt;std::complex&lt;int16_t&gt;&gt; buffer(1996);=20
-
-    std::cout &lt;&lt; "Start transmit_packets_timespec()" &lt;&lt; std::=
-endl;
-    std::cout &lt;&lt; "Packet size: " &lt;&lt; buffer.size() * sizeof(st=
-d::complex&lt;int16_t&gt;) &lt;&lt; " bytes" &lt;&lt; std::endl;
-
-    // Get and print the maximum number of samples per packet
-    size_t max_num_samps =3D tx_stream-&gt;get_max_num_samps();
-    std::cout &lt;&lt; "Max number of samples per packet: " &lt;&lt; max_=
-num_samps &lt;&lt; std::endl;
-
-    // Initialize timestamp
-    md.time_spec =3D uhd::time_spec_t(usrp-&gt;get_time_now().get_full_se=
-cs() + 1.0); // Start 1 second in the future
-
-    while (true) {
-
-        size_t num_tx_samps =3D tx_stream-&gt;send(&amp;buffer.front(), b=
-uffer.size(), md);
-
-        if (num_tx_samps &lt; buffer.size()) {
-            dropped_packets++;
-        } else {
-            transmitted_packets++;
-        }
-
-        //md.time_spec =3D md.time_spec + uhd::time_spec_t(buffer.size() =
-/ rate);
-        md.has_time_spec =3D false;
-
-        md.start_of_burst =3D false;
-    }
-
-    // Mark end of burst
-    md.end_of_burst =3D true;
-    tx_stream-&gt;send("", 0, md);
-}</code></pre><p><strong>CONSOLE OUTPUT:</strong>
-<br></p><p>sudo ./tx_timed_samples_perf=20
-[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.6.0.0-1-ga=
-9f0b4c7
-[INFO] [X300] X300 initialization sequence...
-
-[INFO] [X300] Maximum frame size: 8000 bytes.
-[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
-[INFO] [X300] Radio 1x clock: 200 MHz
-Actual TX Rate: 200.000000 Msps
-Actual TX Freq: 1223.000003 MHz
-Actual TX Gain: 20.000000 dB
-Actual TX Bandwidth: 200.000000 MHz
-[WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
-Using transmit_packets_timespec()
-uhd::set_thread_priority_safe::Thread priority successfully set.
-Start transmit_packets_timespec()
-Packet size: 7984 bytes
-Max number of samples per packet: 1996
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</p>
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7Ij48L2Rpdj48ZGl2IHN0eWxlPSJsaW5lLWhlaWdodDoxLjU7c2Nyb2xsYmFyLXdpZHRoOnRo
+aW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+PHAg
+c3R5bGU9ImZvbnQtc2l6ZToxZW07bWFyZ2luOjFlbSAwcHg7c2Nyb2xsYmFyLXdpZHRoOnRoaW47
+c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+RGVhciBF
+dHR1cyBSZXNlYXJjaCBTdXBwb3J0IFRlYW0sPC9wPjxwIHN0eWxlPSJmb250LXNpemU6MWVtO21h
+cmdpbjoxZW0gMHB4O3Njcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAs
+IDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPkkgaG9wZSB0aGlzIG1lc3NhZ2UgZmluZHMgeW91
+IHdlbGwuPC9wPjxwIHN0eWxlPSJmb250LXNpemU6MWVtO21hcmdpbjoxZW0gMHB4O3Njcm9sbGJh
+ci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwg
+MCwgMCkiPkkgYW0gY3VycmVudGx5IHdvcmtpbmcgd2l0aCBhIFVTUlAgWDMxMCBlcXVpcHBlZCB3
+aXRoIFR3aW5SWCBkYXVnaHRlcmJvYXJkcyBhbmQgaGF2ZSBzb21lIHF1ZXN0aW9ucyByZWdhcmRp
+bmcgdGhlPHNwYW4+Jm5ic3A7PC9zcGFuPjxjb2RlIHN0eWxlPSJmb250LWZhbWlseTogdWktbW9u
+b3NwYWNlLCBTRk1vbm8tUmVndWxhciwgTWVubG8sIE1vbmFjbywgQ29uc29sYXMsICZxdW90O0xp
+YmVyYXRpb24gTW9ubyZxdW90OywgJnF1b3Q7Q291cmllciBOZXcmcXVvdDssIG1vbm9zcGFjZTsg
+d2hpdGUtc3BhY2U6IHByZS13cmFwOyBsaW5lLWhlaWdodDogMTsgc2Nyb2xsYmFyLXdpZHRoOiB0
+aGluOyBzY3JvbGxiYXItY29sb3I6IHJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKTsg
+YmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwKTsiPmJlbmNobWFya19yYXRlPC9jb2Rl
+PjxzcGFuPiZuYnNwOzwvc3Bhbj5jb21tYW5kIGFuZCBpdHMgaW1wbGljYXRpb25zIG9uIG92ZXJh
+bGwgYmFuZHdpZHRoIHVzYWdlLjwvcD48cCBzdHlsZT0iZm9udC1zaXplOjFlbTttYXJnaW46MWVt
+IDBweDtzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAw
+KSByZ2JhKDAsIDAsIDAsIDApIj5XaGVuIEkgZXhlY3V0ZSB0aGUgZm9sbG93aW5nIGNvbW1hbmQ6
+PC9wPi4vYmVuY2htYXJrX3JhdGU8c3Bhbj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9InNjcm9s
+bGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwg
+MCwgMCwgMCkiPi0tYXJnczwvc3Bhbj49ImFkZHI9Jmx0O2ZpcnN0X2lwJmd0OyxzZWNvbmRfYWRk
+cj0mbHQ7c2Vjb25kX2lwJmd0OyI8c3Bhbj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9InNjcm9s
+bGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwg
+MCwgMCwgMCkiPi0tY2hhbm5lbHM8L3NwYW4+PHNwYW4+Jm5ic3A7PC9zcGFuPjxiIHN0eWxlPSJz
+Y3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAwKSByZ2Jh
+KDAsIDAsIDAsIDApIj4iPHNwYW4gc3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJh
+ci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjA8L3NwYW4+LDxzcGFu
+IHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAw
+LCAwKSByZ2JhKDAsIDAsIDAsIDApIj4xPC9zcGFuPiw8c3BhbiBzdHlsZT0ic2Nyb2xsYmFyLXdp
+ZHRoOnRoaW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAw
+KSI+Mjwvc3Bhbj4sPHNwYW4gc3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1j
+b2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjM8L3NwYW4+IjwvYj48c3Bh
+bj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJh
+ci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPi0tcnhfcmF0ZTwvc3Bh
+bj48c3Bhbj4mbmJzcDs8L3NwYW4+PGIgc3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9s
+bGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjxzcGFuIHN0eWxl
+PSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAwKSBy
+Z2JhKDAsIDAsIDAsIDApIj4xMDA8L3NwYW4+ZTY8L2I+PHNwYW4+Jm5ic3A7PC9zcGFuPjxzcGFu
+IHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAw
+LCAwKSByZ2JhKDAsIDAsIDAsIDApIj4tLWR1cmF0aW9uPC9zcGFuPjxzcGFuPiZuYnNwOzwvc3Bh
+bj48c3BhbiBzdHlsZT0ic2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEo
+MCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+MzA8L3NwYW4+PGJyIHN0eWxlPSJzY3JvbGxi
+YXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAs
+IDAsIDApIj48L2Rpdj48ZGl2IHN0eWxlPSJsaW5lLWhlaWdodDoxLjU7c2Nyb2xsYmFyLXdpZHRo
+OnRoaW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+
+PHAgc3R5bGU9ImZvbnQtc2l6ZToxZW07bWFyZ2luOjFlbSAwcHg7c2Nyb2xsYmFyLXdpZHRoOnRo
+aW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+YW0g
+SSB0ZXN0aW5nIGEgY29tYmluZWQgYmFuZHdpZHRoIG9mIDR4MTAwIE1Ieiwgd2hpY2ggdG90YWxz
+IDQwMCBNSHo/PC9wPjxwIHN0eWxlPSJmb250LXNpemU6MWVtO21hcmdpbjoxZW0gMHB4O3Njcm9s
+bGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwg
+MCwgMCwgMCkiPlNpbWlsYXJseSwgd2hlbiBJIHJ1bjo8L3A+Li9iZW5jaG1hcmtfcmF0ZTxzcGFu
+PiZuYnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0ic2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Nyb2xsYmFy
+LWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+LS1hcmdzPC9zcGFuPj0i
+YWRkcj0mbHQ7Zmlyc3RfaXAmZ3Q7LHNlY29uZF9hZGRyPSZsdDtzZWNvbmRfaXAmZ3Q7IjxzcGFu
+PiZuYnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0ic2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Nyb2xsYmFy
+LWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+LS1jaGFubmVsczwvc3Bh
+bj48c3Bhbj4mbmJzcDs8L3NwYW4+PGIgc3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9s
+bGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPiI8c3BhbiBzdHls
+ZT0ic2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkg
+cmdiYSgwLCAwLCAwLCAwKSI+MDwvc3Bhbj4sPHNwYW4gc3R5bGU9InNjcm9sbGJhci13aWR0aDp0
+aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjI8
+L3NwYW4+IjwvYj48c3Bhbj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9InNjcm9sbGJhci13aWR0
+aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCki
+Pi0tcnhfcmF0ZTwvc3Bhbj48c3Bhbj4mbmJzcDs8L3NwYW4+PGIgc3R5bGU9InNjcm9sbGJhci13
+aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwg
+MCkiPjxzcGFuIHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdi
+YSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj4yMDA8L3NwYW4+ZTY8L2I+PHNwYW4+Jm5i
+c3A7PC9zcGFuPjxzcGFuIHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29s
+b3I6cmdiYSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj4tLWR1cmF0aW9uPC9zcGFuPjxz
+cGFuPiZuYnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0ic2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Nyb2xs
+YmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+MzA8L3NwYW4+PGJy
+IHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAw
+LCAwKSByZ2JhKDAsIDAsIDAsIDApIj48L2Rpdj48ZGl2IHN0eWxlPSJsaW5lLWhlaWdodDoxLjU7
+c2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdi
+YSgwLCAwLCAwLCAwKSI+PHNwYW4gc3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJh
+ci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjxzcGFuIHN0eWxlPSJz
+Y3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAwKSByZ2Jh
+KDAsIDAsIDAsIDApIj48YnIgc3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1j
+b2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjwvc3Bhbj48L3NwYW4+PC9k
+aXY+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS41O3Njcm9sbGJhci13aWR0aDp0aGluO3Njcm9s
+bGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjxwIHN0eWxlPSJm
+b250LXNpemU6MWVtO21hcmdpbjoxZW0gMHB4O3Njcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJh
+ci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPmRvZXMgdGhpcyBhbHNv
+IGVxdWF0ZSB0byBhIHRvdGFsIGJhbmR3aWR0aCBvZiA0MDAgTUh6PzwvcD48cCBzdHlsZT0iZm9u
+dC1zaXplOjFlbTttYXJnaW46MWVtIDBweDtzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXIt
+Y29sb3I6cmdiYSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj5Ib3dldmVyLCBmb3IgdGhl
+IGNvbW1hbmQ6PC9wPi4vYmVuY2htYXJrX3JhdGU8c3Bhbj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5
+bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDAp
+IHJnYmEoMCwgMCwgMCwgMCkiPi0tYXJnczwvc3Bhbj49ImFkZHI9Jmx0O2ZpcnN0X2lwJmd0Oyxz
+ZWNvbmRfYWRkcj0mbHQ7c2Vjb25kX2lwJmd0OyI8c3Bhbj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5
+bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDAp
+IHJnYmEoMCwgMCwgMCwgMCkiPi0tY2hhbm5lbHM8L3NwYW4+PHNwYW4+Jm5ic3A7PC9zcGFuPjxi
+IHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAw
+LCAwKSByZ2JhKDAsIDAsIDAsIDApIj4iPHNwYW4gc3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGlu
+O3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjA8L3Nw
+YW4+LDxzcGFuIHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdi
+YSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj4xPC9zcGFuPiI8L2I+PHNwYW4+Jm5ic3A7
+PC9zcGFuPjxzcGFuIHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6
+cmdiYSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj4tLXJ4X3JhdGU8L3NwYW4+PHNwYW4+
+Jm5ic3A7PC9zcGFuPjxiIHN0eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29s
+b3I6cmdiYSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj48c3BhbiBzdHlsZT0ic2Nyb2xs
+YmFyLXdpZHRoOnRoaW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAw
+LCAwLCAwKSI+MjAwPC9zcGFuPmU2PC9iPjxzcGFuPiZuYnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0i
+c2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdi
+YSgwLCAwLCAwLCAwKSI+LS1kdXJhdGlvbjwvc3Bhbj48c3Bhbj4mbmJzcDs8L3NwYW4+PHNwYW4g
+c3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAs
+IDApIHJnYmEoMCwgMCwgMCwgMCkiPjMwPC9zcGFuPjxiciBzdHlsZT0ic2Nyb2xsYmFyLXdpZHRo
+OnRoaW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+
+PC9kaXY+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS41O3Njcm9sbGJhci13aWR0aDp0aGluO3Nj
+cm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEoMCwgMCwgMCwgMCkiPjxzcGFuIHN0
+eWxlPSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAw
+KSByZ2JhKDAsIDAsIDAsIDApIj48c3BhbiBzdHlsZT0ic2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Ny
+b2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+PGJyIHN0eWxl
+PSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAwKSBy
+Z2JhKDAsIDAsIDAsIDApIj48L3NwYW4+PC9zcGFuPjwvZGl2PjxkaXYgc3R5bGU9ImxpbmUtaGVp
+Z2h0OjEuNTtzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAw
+LCAwKSByZ2JhKDAsIDAsIDAsIDApIj48c3BhbiBzdHlsZT0ic2Nyb2xsYmFyLXdpZHRoOnRoaW47
+c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+PHNwYW4g
+c3R5bGU9InNjcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAs
+IDApIHJnYmEoMCwgMCwgMCwgMCkiPjxwIHN0eWxlPSJmb250LXNpemU6MWVtO21hcmdpbjoxZW0g
+MHB4O3Njcm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDAp
+IHJnYmEoMCwgMCwgMCwgMCkiPmRvZXMgdGhpcyBvbmx5IHRlc3QgMjAwIE1IeiBiZWNhdXNlIGl0
+IGlzIG9wZXJhdGluZyB0aHJvdWdoIGp1c3Qgb25lIFR3aW5SWD88L3A+PHAgc3R5bGU9ImZvbnQt
+c2l6ZToxZW07bWFyZ2luOjFlbSAwcHg7c2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Nyb2xsYmFyLWNv
+bG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+SSB3YW50IHRvIGVuc3VyZSB0
+aGF0IEkgZnVsbHkgdW5kZXJzdGFuZCBob3cgdGhlIGJhbmR3aWR0aCBpcyBiZWluZyB1dGlsaXpl
+ZCBhbmQgdGVzdGVkIGFjcm9zcyB0aGUgZGlmZmVyZW50IGNvbmZpZ3VyYXRpb25zLjwvcD48cCBz
+dHlsZT0iZm9udC1zaXplOjFlbTttYXJnaW46MWVtIDBweDtzY3JvbGxiYXItd2lkdGg6dGhpbjtz
+Y3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj5UaGFuayB5
+b3UgaW4gYWR2YW5jZSBmb3IgeW91ciBhc3Npc3RhbmNlLjwvcD48cCBzdHlsZT0iZm9udC1zaXpl
+OjFlbTttYXJnaW46MWVtIDBweDtzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6
+cmdiYSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj5CZXN0IHJlZ2FyZHMsPGJyIHN0eWxl
+PSJzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAwKSBy
+Z2JhKDAsIDAsIDAsIDApIj5PbG8uPC9wPjwvc3Bhbj48L3NwYW4+PC9kaXY+PGRpdiBjbGFzcz0i
+cHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2siIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNh
+bnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0
+dXJlX2Jsb2NrLXByb3RvbiI+DQogICAgPC9kaXY+DQo8L2Rpdj4NCg==
 
 
---b1_BaB1RFmtvUcDD6ALPNv6sI09WVwEFa2vHftD4r9zU--
+--b1_5pVy7Xw4ueBwcLwGlfw4G3VeJ7zg7Uox1f57rPvbM--
 
---===============1767479284879976884==
+--===============3195282750766482789==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -261,4 +250,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1767479284879976884==--
+--===============3195282750766482789==--
