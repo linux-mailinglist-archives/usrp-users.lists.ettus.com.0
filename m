@@ -2,223 +2,152 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3EC991779D
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jun 2024 06:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 521EF917C5A
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Jun 2024 11:24:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B9B5E38549A
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jun 2024 00:51:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 071C03855F6
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Jun 2024 05:24:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1719377497; bh=Kav2QZVIki/H4ew/5YjqO2NEXQdp4934Xk1QK73znkE=;
-	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=snTVSwGrOf5xgZNr8CeLlATyAnN82nJHTxAtFIl3A7hUhvLLWa1K7RdLlW8y4E/qd
-	 ctJsk5w+R5roULgBu3hn5wuL4Fdmq4JaLxJI61whF6CwBZg674mNivlozOWQjoVwmi
-	 euhL9I5G5cOI5DUzV8deGQRWh4eDyQyc0SS7fdwJMt6NSumZsg0YakSuW+wDAoilTw
-	 CR56t0oxwu7ZOeQWRBMDfwUY6TdEX8yPQSHTx6bNG2eK3X1XD7jE5kovBRevHsVmvG
-	 qU7ECOXbCVK1+T8TD/2ie6z53cbgpbJ/wKDp6zL3gFiqW4Wus9iQRXPMjh72quBYzY
-	 /DSAc3LDoEO4w==
-Received: from mail-43167.protonmail.ch (mail-43167.protonmail.ch [185.70.43.167])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4E88D3853D9
-	for <usrp-users@lists.ettus.com>; Wed, 26 Jun 2024 00:50:58 -0400 (EDT)
+	t=1719393849; bh=AnPITmF6yQKKj9E8OpbSts/S+/Gx9uINym0XSch7zCg=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=D/z0LB8g2IhsS50B0BNfI20QUu6+o6ajaBx8M67HtZT4/LwUq4Pjq1rEh1v3vBDQM
+	 i4hckR+2hajd/CcKXm/sDExHV3FMbBIBy+GH1ryfWJGPPOksg0ATb849VTVThfsEse
+	 97kh338FgZKSZ9dLp1Yk332a0JzOGC5x0dapBEjBaaWaP9Y811h1hKMtplAJUr4ZNI
+	 e+uUR2uv/wYN/mE5GjRZ7Emy4+fOfLw038T5IaZoLbVQKUQWTJNRedx2afKCndpatO
+	 yxS82aXOqQdWZ0hPMVKoYJy//sGZcnYxNHHid7vHNOL3GFht1oDS1akETxWXCX19TL
+	 zaIkEhOeg27ig==
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 07219384779
+	for <usrp-users@lists.ettus.com>; Wed, 26 Jun 2024 05:23:43 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="qTbe0SM6";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="NNIMQt3u";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1719377456; x=1719636656;
-	bh=GPHbOKl3RXGjku/XlrrwIbTZt6N+qz1UTh0vxCF2JTE=;
-	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=qTbe0SM672Zn78wBpTZzWButtC7WpNZVNYn3oARv7WV9l5f04EJI1b8GPBpzU472C
-	 GxpvWhqMjxRyl7CVq1N6virkeO2NBvjQLpltkuHijx2AxM9xnuSv7Uqs3Zy6hjAq1I
-	 RKwSWnUKl0v2A/GmlLFZ+bXrJ494lqixh+YZ//UqRTUxwaxtss7aOK7IP13bgq+pBP
-	 99UPGhahInbFX6WpUAb2Pl8+WviW171/HJaMyhTt55sbhf8yc0QXRMkjF19l3yBdpx
-	 vF6l2D0pe8vGcoVkHm5k/pa5XsALZ36MQeyuFlglUS1wpX5tZ0HkRPTEyAwlTV3YDh
-	 KEJklUULNc7RA==
-Date: Wed, 26 Jun 2024 04:50:52 +0000
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <lipjO127VfagcNKPNeeto8O2cbocBN1mwWu-aEhco26IkMh5uYMnbajhQVJ1s7_VO2L52lZNEbNhOMmz8FIDpSmHYcd6dfLVzgQd8BPLGq0=@protonmail.com>
-In-Reply-To: <CAFOi1A7an4Tn=-X3HSJ0xC86Wi1+xtCvkDu=SSNdkzVjfSzCrg@mail.gmail.com>
-References: <_4kdSpsp43uA23Twys44Eh47XROibC7bGW1EtuHVazp72VtZNIzis015AGTjDHX6Gf-vkZ9BDq2Zu1nSgoW4oYJHHDJog31BbkZm38TcJ9E=@protonmail.com> <CAFOi1A7an4Tn=-X3HSJ0xC86Wi1+xtCvkDu=SSNdkzVjfSzCrg@mail.gmail.com>
-Feedback-ID: 47010692:user:proton
-X-Pm-Message-ID: 8a477bb1b9dd4b56da1aca72e59272ba85da52bb
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a7252bfe773so392196766b.1
+        for <usrp-users@lists.ettus.com>; Wed, 26 Jun 2024 02:23:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1719393823; x=1719998623; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8vWb2KNzbbdhg538HgVsPITa6zafMS7dd/2ci2gqMYM=;
+        b=NNIMQt3uzIMnpAmuW0o29bK8mtzmFJBTHOEBRh5lcjBY9jLCNg8qrHvnma6PUZXQIs
+         JVrMQIA12XH97iK7mXzHjAwSWNnOXEfm5GI2REh+wY7c7t9S/PTYtLWZO7kYFAmHvUc3
+         GcolCbZPgbgH2URvKH1q2Ikly+OAeQdrb2D/bqmM6HkKUxeh6H2jNGoiHsznCOKL2gy6
+         SY5l6GfnWMl63wVa4bZKRqpf9YxMAj11hMgHN3Xg9xzxLbL92DPTvBQx1Hb0Rarb9Zpy
+         ZbFCvieGYx9Z/1TVhj/YUCatc59q98XedB1dH/XGBo3FzQi8+PNbLiNlQgk3ac1qVtBq
+         eD7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719393823; x=1719998623;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8vWb2KNzbbdhg538HgVsPITa6zafMS7dd/2ci2gqMYM=;
+        b=XjPoQXBjBV9c+OHcZ4d1fcKb8RYP0nL+khQFBJiucZcNtxii98kRkPsCa8Rfhl1GgE
+         yjH2BPKhIh5t5ePZg/SYXuFufc+zlBebIrxtt7m466p62wveA66adWWZB3/kC+x2uQe3
+         0x7stQ+Dot2nnwKbPTaVt3P3xcNurP7Ea4GHNAPIlz2x6JRQnlrO40Mvzas08xp80i0x
+         4L+NNVpe+yA8w4OAcJVd/TO3DuXpuQtTlIXlUNIErwH3jG+MhME3cvytEf5Yp9QOhZy/
+         HbkoxESxx/KhG0PuCaFZYa73NUgRP0799AIe2gVUs0XLNpP0n++9dhadcpJBt7P0FHHb
+         NmiA==
+X-Gm-Message-State: AOJu0YwbJO6WGJlOe42p5xkOmY9ldu9oFmboOVdEbupfzVbqPtCkzOST
+	imIST5MAa7HH+X1mwBMEUIk/f85DvhhVSm03nYBXl7RTib35n/2ZIzCc7lxdcWBErRcEYDScAcK
+	q1CosJBm8lDQEjkGtqO1on2VZU64XJviFZ7y/Ybsn
+X-Google-Smtp-Source: AGHT+IGkEmjTRWr+o4VBvD+1GRq9WNXZANp8PM5EbRqmEbJ/PjPLH4p9g4935EzWXISq5Z/+wPY5M992zU0TXTPrzQ8=
+X-Received: by 2002:a17:906:99d0:b0:a72:5ba0:193e with SMTP id
+ a640c23a62f3a-a725ba022aamr491505666b.61.1719393822648; Wed, 26 Jun 2024
+ 02:23:42 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: T6SPEIHZDNZ7UVKKD5ZTN2NNS27LFINM
-X-Message-ID-Hash: T6SPEIHZDNZ7UVKKD5ZTN2NNS27LFINM
-X-MailFrom: olo1618@protonmail.com
+References: <_4kdSpsp43uA23Twys44Eh47XROibC7bGW1EtuHVazp72VtZNIzis015AGTjDHX6Gf-vkZ9BDq2Zu1nSgoW4oYJHHDJog31BbkZm38TcJ9E=@protonmail.com>
+ <CAFOi1A7an4Tn=-X3HSJ0xC86Wi1+xtCvkDu=SSNdkzVjfSzCrg@mail.gmail.com> <lipjO127VfagcNKPNeeto8O2cbocBN1mwWu-aEhco26IkMh5uYMnbajhQVJ1s7_VO2L52lZNEbNhOMmz8FIDpSmHYcd6dfLVzgQd8BPLGq0=@protonmail.com>
+In-Reply-To: <lipjO127VfagcNKPNeeto8O2cbocBN1mwWu-aEhco26IkMh5uYMnbajhQVJ1s7_VO2L52lZNEbNhOMmz8FIDpSmHYcd6dfLVzgQd8BPLGq0=@protonmail.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Wed, 26 Jun 2024 11:23:31 +0200
+Message-ID: <CAFOi1A5hipHriJb7iP=R-LjDLmCx+3YKDZBf=X758s-_Sy8_hw@mail.gmail.com>
+To: Olo <olo1618@protonmail.com>
+Message-ID-Hash: YR5TTYCZM2DNQ5AGJLCOUSIXHL7DPIUC
+X-Message-ID-Hash: YR5TTYCZM2DNQ5AGJLCOUSIXHL7DPIUC
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Clarification on Benchmark Rate Testing for USRP X310 with two TwinRX
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T6SPEIHZDNZ7UVKKD5ZTN2NNS27LFINM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YR5TTYCZM2DNQ5AGJLCOUSIXHL7DPIUC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Olo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olo <olo1618@protonmail.com>
-Content-Type: multipart/mixed; boundary="===============0930197596966350555=="
+Content-Type: multipart/mixed; boundary="===============3260940444517324951=="
 
-This is a multi-part message in MIME format.
+--===============3260940444517324951==
+Content-Type: multipart/alternative; boundary="000000000000074987061bc7924a"
 
---===============0930197596966350555==
-Content-Type: multipart/alternative;
- boundary="b1_27kHRlq4yc88n2Y4sSIm044zkAjGYaMWh5FAgSqI"
+--000000000000074987061bc7924a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This is a multi-part message in MIME format.
+On Wed, Jun 26, 2024 at 6:52=E2=80=AFAM Olo via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
---b1_27kHRlq4yc88n2Y4sSIm044zkAjGYaMWh5FAgSqI
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+> I understand that each TwinRX daughterboard provides two independently
+> tunable channels, each capable of 80 MHz bandwidth. With two TwinRX
+> daughterboards installed, I should be able to achieve a total of 320 MHz
+> across four channels (4x80 MHz).
+>
+> Could you please confirm if this understanding is correct?
+>
 
-SSB1bmRlcnN0YW5kIHRoYXQgZWFjaCBUd2luUlggZGF1Z2h0ZXJib2FyZCBwcm92aWRlcyB0d28g
-aW5kZXBlbmRlbnRseSB0dW5hYmxlIGNoYW5uZWxzLCBlYWNoIGNhcGFibGUgb2YgODAgTUh6IGJh
-bmR3aWR0aC4gV2l0aCB0d28gVHdpblJYIGRhdWdodGVyYm9hcmRzIGluc3RhbGxlZCwgSSBzaG91
-bGQgYmUgYWJsZSB0byBhY2hpZXZlIGEgdG90YWwgb2YgMzIwIE1IeiBhY3Jvc3MgZm91ciBjaGFu
-bmVscyAoNHg4MCBNSHopLgoKQ291bGQgeW91IHBsZWFzZSBjb25maXJtIGlmIHRoaXMgdW5kZXJz
-dGFuZGluZyBpcyBjb3JyZWN0PwoKQWRkaXRpb25hbGx5LCBJIHdvdWxkIGFwcHJlY2lhdGUgeW91
-ciBndWlkYW5jZSBvbiBzb2Z0d2FyZSByZWNvbW1lbmRhdGlvbnMgdG8gY29udHJvbCB0aGUgWDMx
-MCB3aXRoIHRoaXMgc2V0dXAuIFNwZWNpZmljYWxseSwgSSBhbSBsb29raW5nIGZvciBzb2Z0d2Fy
-ZSB0aGF0IGFsbG93cyBtZSB0byBtYW5hZ2UgdGhlIHR1bmFibGUgY2hhbm5lbHMgaW5kZXBlbmRl
-bnRseSB3aXRob3V0IGludGVyZmVyZW5jZSBiZXR3ZWVuIHRoZW0uCgpUaGFuayB5b3UgaW4gYWR2
-YW5jZSBmb3IgeW91ciBhc3Npc3RhbmNlLgoKT24gVHVlc2RheSwgSnVuZSAyNXRoLCAyMDI0IGF0
-IDEyOjQ3LCBNYXJ0aW4gQnJhdW4gPG1hcnRpbi5icmF1bkBldHR1cy5jb20+IHdyb3RlOgoKPiBP
-biBXZWQsIEp1biAxOSwgMjAyNCBhdCA4OjM34oCvQU0gT2xvIHZpYSBVU1JQLXVzZXJzIDx1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4KPj4gV2hlbiBJIGV4ZWN1dGUgdGhlIGZv
-bGxvd2luZyBjb21tYW5kOgo+Pgo+PiAuL2JlbmNobWFya19yYXRlIC0tYXJncz0iYWRkcj08Zmly
-c3RfaXA+LHNlY29uZF9hZGRyPTxzZWNvbmRfaXA+IiAtLWNoYW5uZWxzICIwLDEsMiwzIiAtLXJ4
-X3JhdGUgMTAwZTYgLS1kdXJhdGlvbiAzMAo+Pgo+PiBhbSBJIHRlc3RpbmcgYSBjb21iaW5lZCBi
-YW5kd2lkdGggb2YgNHgxMDAgTUh6LCB3aGljaCB0b3RhbHMgNDAwIE1Iej8KPgo+IFlvdSBnZXQg
-NHgxMDBNc3BzLiBUaGUgYWN0dWFsIGFuYWxvZyBiYW5kd2lkdGggaXMgb25seSA4MCBNSHogcGVy
-IGNoYW5uZWwsIGJ1dCB0aGUgcmF0ZSBpcyAxMDAgTXNwcy4KPgo+PiBTaW1pbGFybHksIHdoZW4g
-SSBydW46Cj4+Cj4+IC4vYmVuY2htYXJrX3JhdGUgLS1hcmdzPSJhZGRyPTxmaXJzdF9pcD4sc2Vj
-b25kX2FkZHI9PHNlY29uZF9pcD4iIC0tY2hhbm5lbHMgIjAsMiIgLS1yeF9yYXRlIDIwMGU2IC0t
-ZHVyYXRpb24gMzAKPgo+PiBkb2VzIHRoaXMgYWxzbyBlcXVhdGUgdG8gYSB0b3RhbCBiYW5kd2lk
-dGggb2YgNDAwIE1Iej8KPgo+IFRvdGFsIHNhbXBsaW5nIHJhdGUgaXMgNDAwIE1zcHMsIGJ1dCB5
-b3Ugc3RpbGwgb25seSBnZXQgdXNlZnVsIGJhbmR3aWR0aCBvZiA4MCBNSHogcGVyIGNoYW5uZWwu
-Cj4KPj4gSG93ZXZlciwgZm9yIHRoZSBjb21tYW5kOgo+Pgo+PiAuL2JlbmNobWFya19yYXRlIC0t
-YXJncz0iYWRkcj08Zmlyc3RfaXA+LHNlY29uZF9hZGRyPTxzZWNvbmRfaXA+IiAtLWNoYW5uZWxz
-ICIwLDEiIC0tcnhfcmF0ZSAyMDBlNiAtLWR1cmF0aW9uIDMwCj4+Cj4+IGRvZXMgdGhpcyBvbmx5
-IHRlc3QgMjAwIE1IeiBiZWNhdXNlIGl0IGlzIG9wZXJhdGluZyB0aHJvdWdoIGp1c3Qgb25lIFR3
-aW5SWD8KPj4KPj4gSSB3YW50IHRvIGVuc3VyZSB0aGF0IEkgZnVsbHkgdW5kZXJzdGFuZCBob3cg
-dGhlIGJhbmR3aWR0aCBpcyBiZWluZyB1dGlsaXplZCBhbmQgdGVzdGVkIGFjcm9zcyB0aGUgZGlm
-ZmVyZW50IGNvbmZpZ3VyYXRpb25zLgo+Cj4gTm8gdGhpcyBpcyByZWFsbHkgdGhlIHNhbWUgYXMg
-YWJvdmUuIFlvdXIgZm91ciBjaGFubmVscyBpbiBhIDJ4VHdpblJYIHNldHVwIGFyZSBpbmRlcGVu
-ZGVudGx5IHR1bmFibGUuCj4KPiAtLU0KPgo+PiBUaGFuayB5b3UgaW4gYWR2YW5jZSBmb3IgeW91
-ciBhc3Npc3RhbmNlLgo+Pgo+PiBCZXN0IHJlZ2FyZHMsCj4+IE9sby4KPj4KPj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gVVNSUC11c2VycyBtYWls
-aW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4gVG8gdW5zdWJzY3JpYmUg
-c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ==
+Yes.
 
---b1_27kHRlq4yc88n2Y4sSIm044zkAjGYaMWh5FAgSqI
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+> Additionally, I would appreciate your guidance on software recommendation=
+s
+> to control the X310 with this setup. Specifically, I am looking for
+> software that allows me to manage the tunable channels independently
+> without interference between them.
+>
+>
+Start by reading the example twinrx_freq_hopping.cpp in the UHD repo. For
+the most part, TwinRX behaves like any other daughterboard, except for the
+whole companion-mode and LO-sharing.
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
-cHg7Ij48L2Rpdj48ZGl2IHN0eWxlPSJsaW5lLWhlaWdodDoxLjU7c2Nyb2xsYmFyLXdpZHRoOnRo
-aW47c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+PHAg
-c3R5bGU9ImZvbnQtc2l6ZToxZW07bWFyZ2luOjFlbSAwcHg7c2Nyb2xsYmFyLXdpZHRoOnRoaW47
-c2Nyb2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKSI+SSB1bmRl
-cnN0YW5kIHRoYXQgZWFjaCBUd2luUlggZGF1Z2h0ZXJib2FyZCBwcm92aWRlcyB0d28gaW5kZXBl
-bmRlbnRseSB0dW5hYmxlIGNoYW5uZWxzLCBlYWNoIGNhcGFibGUgb2YgODAgTUh6IGJhbmR3aWR0
-aC4gV2l0aCB0d28gVHdpblJYIGRhdWdodGVyYm9hcmRzIGluc3RhbGxlZCwgSSBzaG91bGQgYmUg
-YWJsZSB0byBhY2hpZXZlIGEgdG90YWwgb2YgMzIwIE1IeiBhY3Jvc3MgZm91ciBjaGFubmVscyAo
-NHg4MCBNSHopLjwvcD48cCBzdHlsZT0iZm9udC1zaXplOjFlbTttYXJnaW46MWVtIDBweDtzY3Jv
-bGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdiYSgwLCAwLCAwLCAwKSByZ2JhKDAs
-IDAsIDAsIDApIj5Db3VsZCB5b3UgcGxlYXNlIGNvbmZpcm0gaWYgdGhpcyB1bmRlcnN0YW5kaW5n
-IGlzIGNvcnJlY3Q/PC9wPjxwIHN0eWxlPSJmb250LXNpemU6MWVtO21hcmdpbjoxZW0gMHB4O3Nj
-cm9sbGJhci13aWR0aDp0aGluO3Njcm9sbGJhci1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApIHJnYmEo
-MCwgMCwgMCwgMCkiPkFkZGl0aW9uYWxseSwgSSB3b3VsZCBhcHByZWNpYXRlIHlvdXIgZ3VpZGFu
-Y2Ugb24gc29mdHdhcmUgcmVjb21tZW5kYXRpb25zIHRvIGNvbnRyb2wgdGhlIFgzMTAgd2l0aCB0
-aGlzIHNldHVwLiBTcGVjaWZpY2FsbHksIEkgYW0gbG9va2luZyBmb3Igc29mdHdhcmUgdGhhdCBh
-bGxvd3MgbWUgdG8gbWFuYWdlIHRoZSB0dW5hYmxlIGNoYW5uZWxzIGluZGVwZW5kZW50bHkgd2l0
-aG91dCBpbnRlcmZlcmVuY2UgYmV0d2VlbiB0aGVtLjwvcD48cCBzdHlsZT0iZm9udC1zaXplOjFl
-bTttYXJnaW46MWVtIDBweDtzY3JvbGxiYXItd2lkdGg6dGhpbjtzY3JvbGxiYXItY29sb3I6cmdi
-YSgwLCAwLCAwLCAwKSByZ2JhKDAsIDAsIDAsIDApIj5UaGFuayB5b3UgaW4gYWR2YW5jZSBmb3Ig
-eW91ciBhc3Npc3RhbmNlLjwvcD48c3BhbiBzdHlsZT0ic2Nyb2xsYmFyLXdpZHRoOnRoaW47c2Ny
-b2xsYmFyLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCkgcmdiYSgwLCAwLCAwLCAwKTtmb250LWZhbWls
-eTpzeXN0ZW0tdWksIHNhbnMtc2VyaWY7ZGlzcGxheTppbmxpbmUgIWltcG9ydGFudCI+PC9zcGFu
-PjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1z
-aXplOiAxNHB4OyI+PGJyPjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1haWxfcXVvdGUiPg0KICAg
-ICAgICBPbiBUdWVzZGF5LCBKdW5lIDI1dGgsIDIwMjQgYXQgMTI6NDcsIE1hcnRpbiBCcmF1biAm
-bHQ7bWFydGluLmJyYXVuQGV0dHVzLmNvbSZndDsgd3JvdGU6PGJyPg0KICAgICAgICA8YmxvY2tx
-dW90ZSB0eXBlPSJjaXRlIiBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSI+DQogICAgICAgICAgICA8
-ZGl2IGRpcj0ibHRyIj48ZGl2IGRpcj0ibHRyIj48YnI+PC9kaXY+PGJyPjxkaXYgY2xhc3M9Imdt
-YWlsX3F1b3RlIj48ZGl2IGRpcj0ibHRyIiBjbGFzcz0iZ21haWxfYXR0ciI+T24gV2VkLCBKdW4g
-MTksIDIwMjQgYXQgODozN+KAr0FNIE9sbyB2aWEgVVNSUC11c2VycyAmbHQ7PGEgdGFyZ2V0PSJf
-YmxhbmsiIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIgaHJlZj0ibWFpbHRvOnVz
-cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4m
-Z3Q7IHdyb3RlOjxicj48L2Rpdj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxl
-PSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7Ym9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQs
-MjA0LDIwNCk7cGFkZGluZy1sZWZ0OjFleCI+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWws
-c2Fucy1zZXJpZjtmb250LXNpemU6MTRweCI+PGJyPjxwPldoZW4gSSBleGVjdXRlIHRoZSBmb2xs
-b3dpbmcgY29tbWFuZDo8L3A+Li9iZW5jaG1hcmtfcmF0ZSA8c3Bhbj4tLWFyZ3M8L3NwYW4+PSJh
-ZGRyPSZsdDtmaXJzdF9pcCZndDssc2Vjb25kX2FkZHI9Jmx0O3NlY29uZF9pcCZndDsiIDxzcGFu
-Pi0tY2hhbm5lbHM8L3NwYW4+IDxiPiI8c3Bhbj4wPC9zcGFuPiw8c3Bhbj4xPC9zcGFuPiw8c3Bh
-bj4yPC9zcGFuPiw8c3Bhbj4zPC9zcGFuPiI8L2I+IDxzcGFuPi0tcnhfcmF0ZTwvc3Bhbj4gPGI+
-PHNwYW4+MTAwPC9zcGFuPmU2PC9iPiA8c3Bhbj4tLWR1cmF0aW9uPC9zcGFuPiA8c3Bhbj4zMDwv
-c3Bhbj48YnI+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjtm
-b250LXNpemU6MTRweCI+PHA+YW0gSSB0ZXN0aW5nIGEgY29tYmluZWQgYmFuZHdpZHRoIG9mIDR4
-MTAwIE1Ieiwgd2hpY2ggdG90YWxzIDQwMCBNSHo/PC9wPjwvZGl2PjwvYmxvY2txdW90ZT48ZGl2
-Pjxicj48L2Rpdj48ZGl2PllvdSBnZXQgNHgxMDBNc3BzLiBUaGUgYWN0dWFsIGFuYWxvZyBiYW5k
-d2lkdGggaXMgb25seSA4MCBNSHogcGVyIGNoYW5uZWwsIGJ1dCB0aGUgcmF0ZSBpcyAxMDAgTXNw
-cy48YnI+PC9kaXY+PGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2lu
-OjBweCAwcHggMHB4IDAuOGV4O2JvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwyMDQp
-O3BhZGRpbmctbGVmdDoxZXgiPjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2Vy
-aWY7Zm9udC1zaXplOjE0cHgiPjxwPlNpbWlsYXJseSwgd2hlbiBJIHJ1bjo8L3A+Li9iZW5jaG1h
-cmtfcmF0ZSA8c3Bhbj4tLWFyZ3M8L3NwYW4+PSJhZGRyPSZsdDtmaXJzdF9pcCZndDssc2Vjb25k
-X2FkZHI9Jmx0O3NlY29uZF9pcCZndDsiIDxzcGFuPi0tY2hhbm5lbHM8L3NwYW4+IDxiPiI8c3Bh
-bj4wPC9zcGFuPiw8c3Bhbj4yPC9zcGFuPiI8L2I+IDxzcGFuPi0tcnhfcmF0ZTwvc3Bhbj4gPGI+
-PHNwYW4+MjAwPC9zcGFuPmU2PC9iPiA8c3Bhbj4tLWR1cmF0aW9uPC9zcGFuPiA8c3Bhbj4zMDwv
-c3Bhbj48L2Rpdj48L2Jsb2NrcXVvdGU+PGRpdj48YnI+PC9kaXY+PGJsb2NrcXVvdGUgY2xhc3M9
-ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4O2JvcmRlci1sZWZ0
-OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwyMDQpO3BhZGRpbmctbGVmdDoxZXgiPjxkaXYgc3R5bGU9
-ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE0cHgiPjxwPmRvZXMgdGhp
-cyBhbHNvIGVxdWF0ZSB0byBhIHRvdGFsIGJhbmR3aWR0aCBvZiA0MDAgTUh6PzwvcD48L2Rpdj48
-L2Jsb2NrcXVvdGU+PGRpdj4NClRvdGFsIHNhbXBsaW5nIHJhdGUgaXMgNDAwIE1zcHMsIGJ1dCB5
-b3Ugc3RpbGwgb25seSBnZXQgdXNlZnVsIGJhbmR3aWR0aCBvZiAgODAgTUh6IHBlciBjaGFubmVs
-LiAgPGJyPjwvZGl2PjxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdp
-bjowcHggMHB4IDBweCAwLjhleDtib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0
-KTtwYWRkaW5nLWxlZnQ6MWV4Ij48ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbCxzYW5zLXNl
-cmlmO2ZvbnQtc2l6ZToxNHB4Ij48cD5Ib3dldmVyLCBmb3IgdGhlIGNvbW1hbmQ6PC9wPi4vYmVu
-Y2htYXJrX3JhdGUgPHNwYW4+LS1hcmdzPC9zcGFuPj0iYWRkcj0mbHQ7Zmlyc3RfaXAmZ3Q7LHNl
-Y29uZF9hZGRyPSZsdDtzZWNvbmRfaXAmZ3Q7IiA8c3Bhbj4tLWNoYW5uZWxzPC9zcGFuPiA8Yj4i
-PHNwYW4+MDwvc3Bhbj4sPHNwYW4+MTwvc3Bhbj4iPC9iPiA8c3Bhbj4tLXJ4X3JhdGU8L3NwYW4+
-IDxiPjxzcGFuPjIwMDwvc3Bhbj5lNjwvYj4gPHNwYW4+LS1kdXJhdGlvbjwvc3Bhbj4gPHNwYW4+
-MzA8L3NwYW4+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2Vy
-aWY7Zm9udC1zaXplOjE0cHgiPjxzcGFuPjxzcGFuPjxicj48L3NwYW4+PC9zcGFuPjwvZGl2Pjxk
-aXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE0cHgiPjxz
-cGFuPjxzcGFuPjxwPmRvZXMgdGhpcyBvbmx5IHRlc3QgMjAwIE1IeiBiZWNhdXNlIGl0IGlzIG9w
-ZXJhdGluZyB0aHJvdWdoIGp1c3Qgb25lIFR3aW5SWD88L3A+PHA+SSB3YW50IHRvIGVuc3VyZSB0
-aGF0IEkgZnVsbHkgdW5kZXJzdGFuZCBob3cgdGhlIGJhbmR3aWR0aCBpcyBiZWluZyB1dGlsaXpl
-ZCBhbmQgdGVzdGVkIGFjcm9zcyB0aGUgZGlmZmVyZW50IGNvbmZpZ3VyYXRpb25zLjwvcD48L3Nw
-YW4+PC9zcGFuPjwvZGl2PjwvYmxvY2txdW90ZT48ZGl2Pk5vIHRoaXMgaXMgcmVhbGx5IHRoZSBz
-YW1lIGFzIGFib3ZlLiBZb3VyIGZvdXIgY2hhbm5lbHMgaW4gYSAyeFR3aW5SWCBzZXR1cCBhcmUg
-aW5kZXBlbmRlbnRseSB0dW5hYmxlLjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+LS1NIDxicj48
-L2Rpdj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4IDBw
-eCAwcHggMC44ZXg7Ym9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7cGFkZGlu
-Zy1sZWZ0OjFleCI+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjtmb250
-LXNpemU6MTRweCI+PHNwYW4+PHNwYW4+PHA+VGhhbmsgeW91IGluIGFkdmFuY2UgZm9yIHlvdXIg
-YXNzaXN0YW5jZS48L3A+PHA+QmVzdCByZWdhcmRzLDxicj5PbG8uPC9wPjxicj48L3NwYW4+PC9z
-cGFuPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1z
-aXplOjE0cHgiPg0KPC9kaXY+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIHJlbD0ibm9yZWZl
-cnJlciBub2ZvbGxvdyBub29wZW5lciIgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJy
-Pg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSByZWw9Im5vcmVmZXJyZXIgbm9m
-b2xsb3cgbm9vcGVuZXIiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
-LmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9h
-Pjxicj4NCjwvYmxvY2txdW90ZT48L2Rpdj48L2Rpdj4NCg0KICAgICAgICA8L2Jsb2NrcXVvdGU+
-PGJyPg0KICAgIDwvZGl2Pg==
+Happy RXing,
 
+--M
 
---b1_27kHRlq4yc88n2Y4sSIm044zkAjGYaMWh5FAgSqI--
+--000000000000074987061bc7924a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---===============0930197596966350555==
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 26, 2024 at 6:52=E2=80=AF=
+AM Olo via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usr=
+p-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div style=3D"font-family:Arial,sans-serif;font-size=
+:14px"></div><div style=3D"line-height:1.5"><p style=3D"font-size:1em;margi=
+n:1em 0px">I understand that each TwinRX daughterboard provides two indepen=
+dently tunable channels, each capable of 80 MHz bandwidth. With two TwinRX =
+daughterboards installed, I should be able to achieve a total of 320 MHz ac=
+ross four channels (4x80 MHz).</p><p style=3D"font-size:1em;margin:1em 0px"=
+>Could you please confirm if this understanding is correct?</p></div></bloc=
+kquote><div><br></div><div>Yes. <br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div style=3D"line-height:1.5"><p style=3D"font-size:1em;m=
+argin:1em 0px">Additionally, I would appreciate your guidance on software r=
+ecommendations to control the X310 with this setup. Specifically, I am look=
+ing for software that allows me to manage the tunable channels independentl=
+y without interference between them.</p><br></div></blockquote><div><br></d=
+iv><div>Start by reading the example twinrx_freq_hopping.cpp in the UHD rep=
+o. For the most part, TwinRX behaves like any other daughterboard, except f=
+or the whole companion-mode and LO-sharing.</div><div><br></div><div>Happy =
+RXing,</div><div><br></div><div>--M <br></div></div></div>
+
+--000000000000074987061bc7924a--
+
+--===============3260940444517324951==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -228,4 +157,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0930197596966350555==--
+--===============3260940444517324951==--
