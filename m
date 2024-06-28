@@ -2,384 +2,363 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFD7091C2F9
-	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2024 17:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3F3F91C37E
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2024 18:13:14 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8E149385928
-	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2024 11:53:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 97ECA381466
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2024 12:13:13 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1719589980; bh=8YNGMCRFhenHRJVcOH0Cj4pcZdOxGJcxHr/VeqQHcyo=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	t=1719591193; bh=Fv15mxm/fE4sQaepVkcoAlW0QEwpCcPG+Y0ml4Ch/cQ=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=JTfjKUN1s/fIoVPysCShLTB+aW8gQB2T+j+QknxlkHaRYSA4WPNnXtnfm9fu0eeZk
-	 H4uMuRDfNG/XBHJ77a1mn7K14URAuXGzJ3bIFtZFFpfy8w/iOaQCq2c0J7TMBx6fKs
-	 f801DQ/RmgrFikYcpYOMjbH06h4cTH8h9x7pte7s86YH+YMaRJRQ6LO6wxZBHjYI0G
-	 JEQt2CFDAMHAAO72Qu6cCdmKKoD35vfnLHcsY2vvRF8r/pRGWxqtJCIIxlwYYWn9k/
-	 vJoVqnz4uGTjUb8qd03GDUglUFjDOX6S/IQCQ5Mw6w3NsfBsZ1VwDl1MKqhTUe9Z3s
-	 YSwIRw9Uknnvg==
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2137.outbound.protection.outlook.com [40.107.236.137])
-	by mm2.emwd.com (Postfix) with ESMTPS id BE450385833
-	for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2024 11:52:33 -0400 (EDT)
+	b=ilOl1L4LXXRyiXTF+S7AuOQnLs7e9mfn2l/a9D+iMjtPFsYD5r6DJYz2peFhZMQzO
+	 xCJS1XekHfFbLMc5ny/JI4rHHFl36uXuZxX/FVe42rGPWWC1xzxHnCtLh12xkBHZSB
+	 lB3Y3fVcw4MnfC/RLVDo4C6yTcIfVb8fcD34b3PWLPe79HD4+0FNPSkeFhmEjBn8YX
+	 ylqzJm/IQmKQg6OONQ3qCDsAkJ1DT5SOQS1EXIbi7ZDZ1y8qkgh1Kopfpw/NJ34D1L
+	 YWcn5J7tf/02XqjAzSGYVbsDmbiJ1FRQvnRqgUKmBECc4xWTvyTNfyaXyAS/QQUHHf
+	 TmFq8iSDv7F3A==
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4F495384BA6
+	for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2024 12:12:47 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=mit.edu header.i=@mit.edu header.b="C4P9rmEc";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="vmEPp+sY";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a/BK+jOx+DVzhLGAzhrrsIz9BEOIGaJFc/gl+szT40J0+BqPvxLXYjXjWOc5bt/PeCTRWekUlKHOYJ00mCOFHMrPRe4Doq4w/KN4XwXi3LLAsda4GV7lNCvqRx9gJkzL4uQITDe5JrXrdvbvlup8dwPSRVVf4GeYDlg8LSF/FG4i6EE9EU6GAo8mz078dzj7LghOhPmQ6inX0u72zuwZ5jQlMKKz06lBQW4g8a+pXZ2aInWZd+F7izBbVUib0NP/ERNZ2wDSJoCEB3aIr93+1LqO/1pddYbAUGOtjbTLva2zZNiYNwjbUFpOzP6ToWzlOQuUg+gjPhiGAlQpiIGKow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mTVeJVLjEMCjhzEJ0P6XA0TB1hhsv9wwi9C9q2crggc=;
- b=bqC0W5j2hNTw1bkjpDze2RMCzLpm+qJeebQUmrIhfQ3DBnOddWOM6j6+c0/zkN8XBwqsbmJCfs3D82LWBFGLvpZiBXI+IOzAEGMMt2j7mhFvJc1C9uO6DQHxrMoqxEMReKktkNuIt5c+3SUIR42axIfNntQwvTSvyXYVoH4u68PMz6rK31MCqrEKd2buh0Ho+FpPvRYZ52Hkye4rFN7f7A2bmSBbKzfhtYuv0afTjXqmGrujrgxjqLrbkLKeQDmlPJjLsGkq2iANXN+IdmnxXnhXh0cOJQUL7FlAfMxeQA9+c6f1KzNhrKsnPxLgnXvxv58+QBYKwnOAk6rT5Ft3kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mit.edu; dmarc=pass action=none header.from=mit.edu; dkim=pass
- header.d=mit.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mit.edu; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mTVeJVLjEMCjhzEJ0P6XA0TB1hhsv9wwi9C9q2crggc=;
- b=C4P9rmEciEd/bLGxm2btHWd1vSznzlVPfLupVwtdkvqZchoxVqwW4Ckmj2nXNNHCyje0W5bR+QWFvHFsIjq6gaKMj4E8FH4RysvH4CyXeSQqiPuUby8QVi1YFYaJNcVtlwAG7xlahPsa6gL/vGwCYSxo2fxMFz/XIpiA3bmnB3o=
-Received: from SA3PR01MB7967.prod.exchangelabs.com (2603:10b6:806:31e::15) by
- SA0PR01MB6137.prod.exchangelabs.com (2603:10b6:806:e1::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7698.33; Fri, 28 Jun 2024 15:52:31 +0000
-Received: from SA3PR01MB7967.prod.exchangelabs.com
- ([fe80::7183:ac2d:2f81:9945]) by SA3PR01MB7967.prod.exchangelabs.com
- ([fe80::7183:ac2d:2f81:9945%3]) with mapi id 15.20.7698.033; Fri, 28 Jun 2024
- 15:52:31 +0000
-From: Mark Rosenbaum <m_rosen@mit.edu>
-To: Martin Braun <martin.braun@ettus.com>
-Thread-Topic: [USRP-users] Bricked B210 due to wiped EEPROM
-Thread-Index: AQHayMDDsGWnrckqmk+JIb/EeEpSdrHc6QiAgAA9As6AACwMgIAAAUGu
-Date: Fri, 28 Jun 2024 15:52:31 +0000
-Message-ID: 
- <SA3PR01MB7967631BE9CD4F7EFC384E3C87D02@SA3PR01MB7967.prod.exchangelabs.com>
-References: 
- <DS0PR01MB79635F144100CD6C4EDE94E087D72@DS0PR01MB7963.prod.exchangelabs.com>
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-585e774fd3dso1109975a12.0
+        for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2024 09:12:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1719591166; x=1720195966; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z4Yv9b3ePypJKhOHbBuYobMd6oqdmIzZ6gpW6SMLrus=;
+        b=vmEPp+sYtUpnOKFIWG+CbzV7SQRLk30UkkthOGeU0K/G/1bnLR7hOPznOvAIgBMTKC
+         ks5aTj2PgtpXppo/k4CfsrYscHMhILH9qz0oVbTD55YS2diRW6Iq+YOVCLtIOdFJsjKu
+         ZYdLut8OWKLiS63qkpSjNKrHLGO5l9lHVsFTq0Ic356l0Bq3d0zRuBKZJa95LTSl3qor
+         JbuPBl8dGMMUcqbWvDNbYt2VEZ62DGaEqIBo5W+5S6d+RRyJhqWdHxzI6xzuaaeSpqmx
+         L7X1v7bsHCF7H4rloFqhnMr9SXfgGD9xFf8co5+0z8NwwVydFTbYnDxXzOHGdEid+Puj
+         in9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719591166; x=1720195966;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z4Yv9b3ePypJKhOHbBuYobMd6oqdmIzZ6gpW6SMLrus=;
+        b=bQbTkesxId75JN+4JpT7jLNt1HlX+OF53LceU4+6nTj/6bz3rn40HVs+zVDux0h5Kh
+         VkkskYrErP5zhN/OcSzEh8BmNAm1C1CjgCeOkFHjAXhJ45tQARa6cR5710OaVgAeIJET
+         2NElP8HbP4m4LFWiBvW3mzLuUt6SpNRK8yTPlHU55u6PKvtrpLyeZmUw99gtj133DchG
+         axZazg8iFLuEckPH7De0bHvTcLmrR1Iw+38xePpGgoUA6yWsosww5AgUOMkWTyDjBF8M
+         7pnfb1xICcKK+slgDDSIGAMllo1ENXyIsQ0eYyqBwWLoJ5IBsyBOCc1l6neNYDaVbkbK
+         X48A==
+X-Gm-Message-State: AOJu0Yx7YI3Y9LPXHB3Twviw8mliFM6opzMk8SRMYXqSUr/PPRpIrrlo
+	YxnPXtqY6GQ+t5BWl/QJGiNqlQ5fgOMbrgdBLOpt4zSR77SWqiA43wDO/ud6XdIvXJZ1oM60cUP
+	604vXWxh1alpZ222aBjGn6YXa+eV2UNqmnzuA1F8Lpdauqe1az5g=
+X-Google-Smtp-Source: AGHT+IHVTboE/C2TDY3CQw3GT1feD16InryV5JmbaLXC4ccAeH69yhsTrZIlvNqoxvzyt5bumVkGrITyAM3mUdzFWPA=
+X-Received: by 2002:a17:907:d311:b0:a72:7603:49ef with SMTP id
+ a640c23a62f3a-a7276034ab6mr868596466b.35.1719591166148; Fri, 28 Jun 2024
+ 09:12:46 -0700 (PDT)
+MIME-Version: 1.0
+References: <DS0PR01MB79635F144100CD6C4EDE94E087D72@DS0PR01MB7963.prod.exchangelabs.com>
  <CAFOi1A72R2wVz+i7qMLpxYw+1xAwLMhw55emCDQJvCnx3F6FHQ@mail.gmail.com>
  <SA3PR01MB796705BF695CA698FB45A75F87D02@SA3PR01MB7967.prod.exchangelabs.com>
- <CAFOi1A7Ru1JSLE3BrsKpJCs3eFYMy_iSb-7eRCxfAMSt1B_BqA@mail.gmail.com>
-In-Reply-To: 
- <CAFOi1A7Ru1JSLE3BrsKpJCs3eFYMy_iSb-7eRCxfAMSt1B_BqA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mit.edu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA3PR01MB7967:EE_|SA0PR01MB6137:EE_
-x-ms-office365-filtering-correlation-id: dc54954d-73a2-4eca-5b2c-08dc978a51bc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|376014|1800799024|366016|4022899009|38070700018;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?SnpHcVZUU3ZMRXh1VW1nd1NkaVovc04xZFI5K3lXdVJVVFNlc3d1Rnlzajg3?=
- =?utf-8?B?WFhtWmN0dU5INDg1KzdHV1ZqbGVZalhYRFgzQjdEd25zakFFTkRwRkxxVng5?=
- =?utf-8?B?Z2tobk5VamQ4aitHZjFYK1lnSVBKcndhbm1PeGM5U0RUUGxudW9kY0srd3Jo?=
- =?utf-8?B?L3IwZkVjVXZwZWx4SW9QRklvaGFyRnQySFI5amtxcU9IWFNXRXNIK1JQamgr?=
- =?utf-8?B?UlZrZGpxcTBzR2xPbGY4cjhpSm5lcVZkQTc3Rzc2VkovK29UM09qTS9CMUs2?=
- =?utf-8?B?djZTYTF6UmVHVlN0c0laWWVSankwTHNFVEZxMkNRRUx0WHpQL2xKVWV0NFJI?=
- =?utf-8?B?b2pJRGdOZUpiaDU4Wk9LRlBlK0NieUxvdUtYOWFIYXpYRHBtTVl1MmN0RTJm?=
- =?utf-8?B?NXVtbk5PMEcraEc4SjNoVWI1bXlGYW9GQ1NaRW5yWWtGZlE5bTl6RStUK0th?=
- =?utf-8?B?TFpmcFBIK2p3L2duQlE2dWhwdFpoRS9mRFBmT0hUOTVZQVFHYms3VURQYk9J?=
- =?utf-8?B?dFlxdkFJaW9ES3gxS0dlMmdjbHY0cXhmbzFTai9JR3VnUlZpRHRuaXdseG5j?=
- =?utf-8?B?RHlDMS8xRHFHQWwxN1plKzhtb2kwQzVRcldqczNTZms5OVRkNi94d0VpUlZ6?=
- =?utf-8?B?NDZSWmsyMGh1S21MQSt3NkxvMm1ZQ2cweXZqRXNkS3IxSG1YaGNXMkpyS1h6?=
- =?utf-8?B?T0ltczFDcVN0OWhWNVlaYm5VcDZlcUNBZW0yWFR0eEx4VGdDNE5KUjRUOVgx?=
- =?utf-8?B?RjdlSUdkUXJ4ZzBlNUN6UFJURjYybjZLU0JPdXZqODBQa3h3VGtnWVRBcWlH?=
- =?utf-8?B?Ym41OXpHMjlHaDZOSTNTWVd3MnZXb0Uya0JxOWdTeFZTbWY0WmtnNzl0SFpM?=
- =?utf-8?B?a0MyR2VNTiszK2lCKzRCUVBaNWI1OFFQb2kwcGx6RVJlQm5zUXU2SXBlQklD?=
- =?utf-8?B?OVJWWmVBckxER1dYRWUycVdXVWJJeVJKOHR3Qkk4YkJEeTNCS3RDQzRpK3Y4?=
- =?utf-8?B?YUpLQXJvUEdRVTVpZmZyQWR0QkdDbXROdU5iUVR6V0lNaHJxNkVnU3J0cFUx?=
- =?utf-8?B?aTdIYXowdHRnTDVhUEdJWXpBeCs1MUw3UERobHJBNWdJZHIrZkdoYlVudU1W?=
- =?utf-8?B?RjBzQ2pRTXlCbDg2S1BDRXFHYWdNRWh0REhBR1lFNzZpZUtXZUlGcTlPWExr?=
- =?utf-8?B?anBEV01PT3p5ZWVYUnVham9PalZWL29lUlZ0RllSY3BxYnVGdFV5Y1BSbzMw?=
- =?utf-8?B?WXRhTTFDTkxSVUZEcDRCcjJ2eFFsYnZxb1pDOVpZWjFVT3Bvd3k0UkRveVZi?=
- =?utf-8?B?bzVEcm53eGRLQXE4dVkvSlVCUnlVaVM0Z2hENVdSYkRxaEsvbXRNY052NFJ5?=
- =?utf-8?B?Qnh4MzFsWnllQy9TUC9QRERCa1c0M2N1QjVHRVJmRVpWVUVhSnArY3I3QU1I?=
- =?utf-8?B?QVYvbldDZDBoUm5maXpybk9BSlZYS3NkaHpkZllUbGtSS3dKQXNiQzFVQi9R?=
- =?utf-8?B?by9RY1d4TUZsREw4cmdReHlTWUxhTndDaURPVTlMR1FVZmwzZnJhbzlPdVlB?=
- =?utf-8?B?WFg1TGQ2bm15ZXY0b2lXNkd3b0k3UVJ5dUQ4UjY4ME9HelhjbE1SRVBMZGdO?=
- =?utf-8?B?VG1OYkRVaDAwaFo4ZU1LTW5oK1JucTdSYUp4VmJnclArWHYwOFVIeFBnQjI4?=
- =?utf-8?B?eGM4UmRtRFVuRUJOYUlQTlMrREd1V3ZWam9pUHhNcEYxTVd1czN1WjlIWXdQ?=
- =?utf-8?B?K1pXYXhZdmFQWTRicDFFWGljUVkwMUVEUVRvbjRzUXhDNGxvY1I1cFZpcitn?=
- =?utf-8?Q?kfA0RCKqc7Ah9w7A9GNYKk6doo2+kYtzmg35c=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA3PR01MB7967.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(4022899009)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?RzNFaUovREI5NzRsZVdRem1Ja1ZmTW5nbERyVzNYVXNrNVhkNk5LeWRnTmcr?=
- =?utf-8?B?ZE13ZnZodTFWSkFKUXZkK0xmUVlpUG5MOE53K1dSR2o4MlNYUU9QQmY1azMv?=
- =?utf-8?B?ZzZjUWlWSWVCc3d0bzJib2dvTXU5c3QramxTU3ZSM05zcGdwSnFHZVVVRmhr?=
- =?utf-8?B?a1BpV1UvcXdkWnY3ejc2V0JQS1BLMFpWWW5XUlo0TlN0enV6S0pQSW94OU5O?=
- =?utf-8?B?M3Q4RWVWbmMrbkZadTRxTktPVG9vSlpLUWFYeHBiQ0IwR1FlSGZTQmkvazhn?=
- =?utf-8?B?ZjRNQmFBWVZkbFpIREZ6VHIyS3BBa29GS1ZqdGhreStnQjMzbWJ3RG9yMFJJ?=
- =?utf-8?B?V3ZxWDREQlY3NUVrZWVPK3ZhWjBWZW96R0dtVm1Gb3hRemIvekwrZDhrRm84?=
- =?utf-8?B?TnpIdXh3Y0p1UnVGVHNjWHFQS1RpWXg1UlJ5T0tJMmxodElNT3dWMnVZYzRJ?=
- =?utf-8?B?Kyt2dHQ4bW5HRjBsS1lTM2toT3ZYTkFVc1NCZHZ2U0ZlVnBiU3pJeEtVK1p6?=
- =?utf-8?B?U2l5VlhDWndSaGZieXRnTlcwSlZLalZLVXRnV2RVWWpkak1XQjNZWjZNdFJt?=
- =?utf-8?B?RUJ1Y2QvK0pYd25SWFk0dzZtMk03THBrM2ZrWEtEb3VpQ2o2dkR1d205Um1O?=
- =?utf-8?B?VFRJcDUzc1JoYUFtZ05wN2o2ZjMxdlY1bFNnNDVzaTM3NHZwU1lYUTZ3OVJa?=
- =?utf-8?B?MmFqMEJMcXhDMmYrTnhpdkZFMUIvUEtIeVlDZThtQ0FRK3IwM1RySFBjdHor?=
- =?utf-8?B?azFTbWhVeG0wWmFOa3hOR2c0L3RCck1LWDhRenYvQ3NzLzFJOEV3c0xNbTdR?=
- =?utf-8?B?WFo3OWtHZFBYWEJSWjI0ME15ZGtjeW1jb2NJN0gwUFVEbXNQS2FzOHRuTmMx?=
- =?utf-8?B?OHFVNTcyeUExSHo0bnExNEYxY0hRMHRoQjhFcTRYZHQ2VGwxNXM2ZHhhY0pl?=
- =?utf-8?B?WXRjaGpaS1dGRVZGTDlvc251YlBXcDd4OG1zNDFTR1RvTmF2UDJVV3Y1UVRY?=
- =?utf-8?B?RG9uaFFjVjZiSWRRd2FDNUJRNFMwMTh0dXNxR0dRZnpUSmFlbWZvY3lJeld5?=
- =?utf-8?B?UmZ0RHcxdk5YbGtSWVd2eEd3cDdGamNGbmpZSzZuTGt3dUNkalhMVnRKRHRm?=
- =?utf-8?B?ejJBRXlqZHM4Q2t0SGUvVzhWa2ZUelBVTkpSLzRWVDluTXpTREJCRnE2enNN?=
- =?utf-8?B?em9teUZPaU5mTjhuOC8ycGp4YXhvR2tMaFU2ZmVOSEkrQWRkaDdORHNUaGph?=
- =?utf-8?B?WG5jWXFIUUtORk9iVGhORFU5dEJ1dWg4NDI1eW9ZT3BmSUIwUHB4VVJzVDlK?=
- =?utf-8?B?MW1JR01nVzlpWmlCVHA1cDJBQndyc2NoVm9XYlVyNTZNaDFBblYxaS81UzdV?=
- =?utf-8?B?OXNJTnpGTHg4ckVOQ3Z1WDhMU2dyUzdGZWRaVkU1a29wQ0xnU1gzbGlkZ0JX?=
- =?utf-8?B?TldzVTY3VEFpVTJSSitVbk1UWFhYN1NGV243SG9FSk9XWkRnUUhUQVpUbWNL?=
- =?utf-8?B?RTVleTB4a29BTXQyTnF1VU0zZzZQU3YxZXVha3Z6T1FUbEUwT2plWkxJYW13?=
- =?utf-8?B?V1NDRDdpUUl6eTUvNHMxQjdQQURSTVYrUjJrOEdxcUFoTFY3Wk5yRVh3cEpO?=
- =?utf-8?B?OVZtNGY1U3JJclE2NkQrSUVpUFA0bmxyc2tydG5TMm0yT0FFN2lubzBQcmpH?=
- =?utf-8?B?SWNPeGVVWmlTekUxaHJ3bzhpaHpIS1lOTWQ1MThEMUJkQ2tRR3J0SEpINEZI?=
- =?utf-8?B?bTZSNW5uTFdVVklKbFJVeGprcGJ1TWJlK3RjaTVkWDMwSXJGaU1xZXdGVC93?=
- =?utf-8?B?elpIcjhCV1lNbEFYQXNvSkxrS1MvbG91OFpXendZcU5yaVc0WTY0NGpESFJX?=
- =?utf-8?B?RWlocjN2eXZrWitlSjNnM3RORmt5YkMzeUNEaFVOVSs2MXJ5eXBWdG85RW9Y?=
- =?utf-8?B?Y3YrMHdrZjdVWW1KRGVWRUl0VFpHZndYRkdEeUxJMWZQZDJrMTlnazJyckYw?=
- =?utf-8?B?L055cGxURW9aQ0M3ZytZOHVMLzV1Mk5lZk1QWDdzcWlJZVdlUFFRelQ4aW9W?=
- =?utf-8?B?L1lXY1N0d1FOVFpSMVFpNit1dTBZdE1Gb0J1RXZZTkxoNVJ4RFBXK3U3TTRG?=
- =?utf-8?Q?1zDM=3D?=
-MIME-Version: 1.0
-X-OriginatorOrg: mit.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA3PR01MB7967.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc54954d-73a2-4eca-5b2c-08dc978a51bc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2024 15:52:31.2327
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 64afd9ba-0ecf-4acf-bc36-935f6235ba8b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TKQ+klPS74ZYgj0hGJlCSIyGc94oB9G7zgy0JC8/3jfFKbopLd2HmbmQzR45ceRi
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR01MB6137
-Message-ID-Hash: 4CRHA52YIWTUGGWL2DS7HY3XWZXB2AVS
-X-Message-ID-Hash: 4CRHA52YIWTUGGWL2DS7HY3XWZXB2AVS
-X-MailFrom: m_rosen@mit.edu
+ <CAFOi1A7Ru1JSLE3BrsKpJCs3eFYMy_iSb-7eRCxfAMSt1B_BqA@mail.gmail.com> <SA3PR01MB7967631BE9CD4F7EFC384E3C87D02@SA3PR01MB7967.prod.exchangelabs.com>
+In-Reply-To: <SA3PR01MB7967631BE9CD4F7EFC384E3C87D02@SA3PR01MB7967.prod.exchangelabs.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Fri, 28 Jun 2024 18:12:34 +0200
+Message-ID: <CAFOi1A5XYtiE1RCEz5Ktond=5byycLWArvehG-qgLcBEFJySMQ@mail.gmail.com>
+To: Mark Rosenbaum <m_rosen@mit.edu>
+Message-ID-Hash: ZVF4HV5C2UYQXRBFRVQOERH3BPZWSAQF
+X-Message-ID-Hash: ZVF4HV5C2UYQXRBFRVQOERH3BPZWSAQF
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Bricked B210 due to wiped EEPROM
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4XBQYTMPBF2KZJEZAHOXSJU3GJF7ZYRC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZVF4HV5C2UYQXRBFRVQOERH3BPZWSAQF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5031383258872377959=="
+Content-Type: multipart/mixed; boundary="===============2417994256924850584=="
 
---===============5031383258872377959==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SA3PR01MB7967631BE9CD4F7EFC384E3C87D02SA3PR01MB7967prod_"
+--===============2417994256924850584==
+Content-Type: multipart/alternative; boundary="0000000000009e1ad1061bf584b3"
 
---_000_SA3PR01MB7967631BE9CD4F7EFC384E3C87D02SA3PR01MB7967prod_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000009e1ad1061bf584b3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-TWFydGluLA0KSnVzdCB0cmllZCBleGFjdGx5IHRoYXQgdG8gbm8gYXZhaWwuICBHaXZlcyB0aGUg
-ZXhhY3Qgc2FtZSBlcnJvci4gIElzIHRoZXJlIGFueSB3YXkgdG8gbWF5YmUgbW9kaWZ5IHRoZSBw
-cm9ncmFtIGFuZCByZWNvbXBpbGUgdG8gYnlwYXNzIGVycm9yL3Byb2R1Y3QgY29kZSBjaGVja2lu
-Zz8gIEl0IGxvb2tzIHRvIG1lIGxpa2UgdGhlIGNoZWNrIGlzIGZvdW5kIG9uIGxpbmUgMTQ5IG9m
-IGIyMDBfaW1wbC5jcHAoaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2Iv
-YTVlZDE4NzJiZTZkMGZjMzZkZTlhN2UwYjUwODkzM2RhMWYxMTliYy9ob3N0L2xpYi91c3JwL2Iy
-MDAvYjIwMF9pbXBsLmNwcCNMMTQ5QzEtTDE0OUMzKSwgYnV0IEkgbWF5IGJlIHdyb25nLg0KLS0N
-Ck1hcmsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBNYXJ0aW4gQnJh
-dW4gPG1hcnRpbi5icmF1bkBldHR1cy5jb20+DQpTZW50OiBGcmlkYXksIEp1bmUgMjgsIDIwMjQg
-MTE6NDIgQU0NClRvOiBNYXJrIFJvc2VuYmF1bSA8bV9yb3NlbkBtaXQuZWR1Pg0KU3ViamVjdDog
-UmU6IFtVU1JQLXVzZXJzXSBCcmlja2VkIEIyMTAgZHVlIHRvIHdpcGVkIEVFUFJPTQ0KDQpUcnkg
-c3BlY2lmeWluZyBhYnNvbHV0ZWx5IGV2ZXJ5dGhpbmcgb24gdGhlIGNvbW1hbmQgbGluZToNCg0K
-DQouL3VzcnBfYnVybl9tYl9lZXByb20gLS1hcmdzPSJmcGdhPS9wYXRoL3RvL2ZwZ2EvdXNycF9i
-MjEwX2ZwZ2EuYmluIiAtLXZhbHVlcyByZXZpc2lvbj08UkVWPixwcm9kdWN0PTxQUk9EVUNUX0lE
-PixzZXJpYWw9PFNFUklBTD4sbmFtZT0iYjIwMG5hbWUiDQoNCg0KU2VyaWFsIG51bWJlciBpcyBv
-biB0aGUgUENCLiBQUk9EVUNUX0lEIGlzIDEsIEkgdGhpbmsgZm9yIEIyMTAgKHNlZSBodHRwczov
-L2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9saWIvdXNycC9i
-MjAwL2IyMDBfaWZhY2UuaHBwI0wyMCkuIFJldmlzaW9uIGlzIGVuY29kZWQgc29tZXdoZXJlIG9u
-IHRoZSBQQ0IsIEknbSBub3Qgc3VyZSAtLSBqdXN0IHB1dCA1IGhlcmUgYW5kIHNlZSBpZiB0aGlu
-Z3Mgd29yay4gTmFtZSBpcyB1cCB0byB5b3Ugb2YgY291cnNlLg0KDQoNClRoZSBtb3N0IGltcG9y
-dGFudCB0aGluZyBpcyB0aGUgY29ycmVjdCBGUEdBIGJpbi1maWxlLg0KDQoNCi0tTQ0KDQpPbiBG
-cmksIEp1biAyOCwgMjAyNCBhdCAzOjA14oCvUE0gTWFyayBSb3NlbmJhdW0gPG1fcm9zZW5AbWl0
-LmVkdTxtYWlsdG86bV9yb3NlbkBtaXQuZWR1Pj4gd3JvdGU6DQpIZXkgTWFydGluLA0KVHJpZWQg
-dGhhdCBhcyBhbG1vc3QgYSBmaXJzdCB0aGluZyBhZnRlciB0aGUgaXNzdWUgb2NjdXJyZWQuICBU
-aGUgY29tbWFuZCBzdWNjZXNzZnVsbHkgcnVucyB3aXRoIG5vIGVycm9yIGJ1dCB0aGUgc2FtZSBp
-c3N1ZSBwZXJzaXN0cywgd2hlcmUgYW55IG90aGVyIGNvbW1hbmQgZ2l2ZXMgbWUgdGhlICJFcnJv
-cjogUnVudGltZUVycm9yOiBCMjAwIHVua25vd24gcHJvZHVjdCBjb2RlOiAweGUzZTAiIG1lc3Nh
-Z2UuDQotLQ0KTWFyaw0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IE1h
-cnRpbiBCcmF1biA8bWFydGluLmJyYXVuQGV0dHVzLmNvbTxtYWlsdG86bWFydGluLmJyYXVuQGV0
-dHVzLmNvbT4+DQpTZW50OiBGcmlkYXksIEp1bmUgMjgsIDIwMjQgNToyNiBBTQ0KVG86IE1hcmsg
-Um9zZW5iYXVtIDxtX3Jvc2VuQG1pdC5lZHU8bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4+DQpDYzog
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tPiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPj4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gQnJpY2tlZCBCMjEwIGR1ZSB0
-byB3aXBlZCBFRVBST00NCg0KSGkgTWFyaywNCg0KYjJ4eF9meDNfdXRpbHMgLS1pbml0LWRldmlj
-ZSBpcyB5b3VyIGZyaWVuZC4gQWZ0ZXIgeW91IHJ1biB0aGF0LCB5b3UgY2FuIHJ1biBgdXNycF9i
-dXJuX21iX2VlcHJvbWAgYWdhaW4gdG8gY29uZmlndXJlIHNlcmlhbCBudW1iZXIgZXRjLg0KDQot
-LU0NCg0KT24gVGh1LCBKdW4gMjcsIDIwMjQgYXQgODo0NeKAr1BNIE1hcmsgUm9zZW5iYXVtIDxt
-X3Jvc2VuQG1pdC5lZHU8bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4+IHdyb3RlOg0KSGkgQWxsLA0K
-SSB3YXMgcmVjZW50bHkgd29ya2luZyBvbiBmaXhpbmcgYW4gaXNzdWUgd2l0aCBteSBCMjEwIGFu
-ZCBhY2NpZGVudGFsbHkgcmUtZmxhc2hlZCB0aGUgYm9vdGxvYWRlci4gSW4gdGhlIHByb2Nlc3Mg
-aXQgc2VlbXMgdG8gaGF2ZSBmdWxseSB3aXBlZCB0aGUgRUVQUk9NIGFuZCBub3cgd2hlbiBhdHRl
-bXB0aW5nIHRvIHBlcmZvcm0gYW55IGFjdGlvbiBvbiB0aGUgZGV2aWNlIEkgZ2V0IHRoZSBmb2xs
-b3dpbmcgZXJyb3I6DQoiRXJyb3I6IFJ1bnRpbWVFcnJvcjogQjIwMCB1bmtub3duIHByb2R1Y3Qg
-Y29kZTogMHhlM2UwIi4NCklzIHRoZXJlIGFueSB3YXkgdG8gZ28gYmFjayBhbmQgcmUtZmxhc2gg
-dGhlIG9yaWdpbmFsIHZhbHVlcz8gIEkndmUgdHJpZWQgdG8gdXNlIHRoZSB1c3JwX2J1cm5fbWJf
-ZWVwcm9tIGNvbW1hbmQgd2l0aCB0aGUgcmVjb3Zlcl9tYl9lZXByb20gYnV0IGl0IHN0aWxsIGZh
-aWxzIHdpdGggdGhlIHNhbWUgZXJyb3IuDQpUaGFua3MsDQpNYXJrDQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
-LS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
-QGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+
-DQo=
+Yeah that's probably the last resort. Just hard-code all product IDs and
+whatnot until it works. Good luck!
 
---_000_SA3PR01MB7967631BE9CD4F7EFC384E3C87D02SA3PR01MB7967prod_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--M
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
-Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpNYXJ0aW4sPC9kaXY+DQo8ZGl2IGNsYXNzPSJl
-bGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRG
-b250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7
-IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KSnVzdCB0cmllZCBleGFj
-dGx5IHRoYXQgdG8gbm8mbmJzcDthdmFpbC4mbmJzcDsgR2l2ZXMgdGhlIGV4YWN0IHNhbWUgZXJy
-b3IuJm5ic3A7IElzIHRoZXJlIGFueSB3YXkgdG8gbWF5YmUgbW9kaWZ5IHRoZSBwcm9ncmFtIGFu
-ZCByZWNvbXBpbGUgdG8gYnlwYXNzIGVycm9yL3Byb2R1Y3QgY29kZSBjaGVja2luZz8mbmJzcDsg
-SXQgbG9va3MgdG8gbWUgbGlrZSB0aGUgY2hlY2sgaXMgZm91bmQgb24gbGluZSAxNDkgb2YgYjIw
-MF9pbXBsLmNwcCg8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQv
-YmxvYi9hNWVkMTg3MmJlNmQwZmMzNmRlOWE3ZTBiNTA4OTMzZGExZjExOWJjL2hvc3QvbGliL3Vz
-cnAvYjIwMC9iMjAwX2ltcGwuY3BwI0wxNDlDMS1MMTQ5QzMiIGlkPSJMUGxuazM5NDkzNSIgY2xh
-c3M9Ik9XQUF1dG9MaW5rIj5odHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxv
-Yi9hNWVkMTg3MmJlNmQwZmMzNmRlOWE3ZTBiNTA4OTMzZGExZjExOWJjL2hvc3QvbGliL3VzcnAv
-YjIwMC9iMjAwX2ltcGwuY3BwI0wxNDlDMS1MMTQ5QzM8L2E+KSwmbmJzcDtidXQNCiBJIG1heSBi
-ZSB3cm9uZy48L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1m
-YW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENh
-bGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdi
-KDAsIDAsIDApOyI+DQotLTwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxl
-PSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2Vy
-dmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCk1hcms8L2Rpdj4NCjxkaXYgaWQ9ImFwcGVuZG9uc2VuZCI+
-PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5k
-ZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJD
-YWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOjExcHQiIGNvbG9yPSIjMDAwMDAw
-Ij48Yj5Gcm9tOjwvYj4gTWFydGluIEJyYXVuICZsdDttYXJ0aW4uYnJhdW5AZXR0dXMuY29tJmd0
-Ozxicj4NCjxiPlNlbnQ6PC9iPiBGcmlkYXksIEp1bmUgMjgsIDIwMjQgMTE6NDIgQU08YnI+DQo8
-Yj5Ubzo8L2I+IE1hcmsgUm9zZW5iYXVtICZsdDttX3Jvc2VuQG1pdC5lZHUmZ3Q7PGJyPg0KPGI+
-U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gQnJpY2tlZCBCMjEwIGR1ZSB0byB3aXBlZCBF
-RVBST008L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9
-Imx0ciI+DQo8ZGl2PlRyeSBzcGVjaWZ5aW5nIGFic29sdXRlbHkgZXZlcnl0aGluZyBvbiB0aGUg
-Y29tbWFuZCBsaW5lOjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+DQo8cHJlIGNsYXNz
-PSJ4X2dtYWlsLW5vdHJhbnNsYXRlIj48Y29kZT4uL3VzcnBfYnVybl9tYl9lZXByb20gLS1hcmdz
-PSZxdW90O2ZwZ2E9L3BhdGgvdG8vZnBnYS91c3JwX2IyMTBfZnBnYS5iaW4mcXVvdDsgLS12YWx1
-ZXMgcmV2aXNpb249Jmx0O1JFViZndDsscHJvZHVjdD0mbHQ7UFJPRFVDVF9JRCZndDssc2VyaWFs
-PSZsdDtTRVJJQUwmZ3Q7LG5hbWU9JnF1b3Q7YjIwMG5hbWUmcXVvdDs8YnI+PGJyPjwvY29kZT48
-L3ByZT4NCjxwcmUgY2xhc3M9InhfZ21haWwtbm90cmFuc2xhdGUiPjxjb2RlPlNlcmlhbCBudW1i
-ZXIgaXMgb24gdGhlIFBDQi4gUFJPRFVDVF9JRCBpcyAxLCBJIHRoaW5rIGZvciBCMjEwIChzZWUg
-PC9jb2RlPjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9i
-L21hc3Rlci9ob3N0L2xpYi91c3JwL2IyMDAvYjIwMF9pZmFjZS5ocHAjTDIwIj5odHRwczovL2dp
-dGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9saWIvdXNycC9iMjAw
-L2IyMDBfaWZhY2UuaHBwI0wyMDwvYT4pLiBSZXZpc2lvbiBpcyBlbmNvZGVkIHNvbWV3aGVyZSBv
-biB0aGUgUENCLCBJJ20gbm90IHN1cmUgLS0ganVzdCBwdXQgNSBoZXJlIGFuZCBzZWUgaWYgdGhp
-bmdzIHdvcmsuIE5hbWUgaXMgdXAgdG8geW91IG9mIGNvdXJzZS48YnI+PGJyPjwvcHJlPg0KPHBy
-ZSBjbGFzcz0ieF9nbWFpbC1ub3RyYW5zbGF0ZSI+VGhlIG1vc3QgaW1wb3J0YW50IHRoaW5nIGlz
-IHRoZSBjb3JyZWN0IEZQR0EgYmluLWZpbGUuPGJyPjxicj48L3ByZT4NCjxwcmUgY2xhc3M9Inhf
-Z21haWwtbm90cmFuc2xhdGUiPi0tTTxicj48L3ByZT4NCjwvZGl2Pg0KPC9kaXY+DQo8YnI+DQo8
-ZGl2IGNsYXNzPSJ4X2dtYWlsX3F1b3RlIj4NCjxkaXYgZGlyPSJsdHIiIGNsYXNzPSJ4X2dtYWls
-X2F0dHIiPk9uIEZyaSwgSnVuIDI4LCAyMDI0IGF0IDM6MDXigK9QTSBNYXJrIFJvc2VuYmF1bSAm
-bHQ7PGEgaHJlZj0ibWFpbHRvOm1fcm9zZW5AbWl0LmVkdSI+bV9yb3NlbkBtaXQuZWR1PC9hPiZn
-dDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBjbGFzcz0ieF9nbWFpbF9xdW90ZSIg
-c3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJn
-YigyMDQsMjA0LDIwNCk7IHBhZGRpbmctbGVmdDoxZXgiPg0KPGRpdiBjbGFzcz0ieF9tc2ctODY4
-NDU4OTE1NzMxMTAwNDMxMSI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9InRleHQtYWxp
-Z246bGVmdDsgdGV4dC1pbmRlbnQ6MHB4OyBtYXJnaW46MHB4OyBmb250LWZhbWlseTpBcHRvcyxB
-cHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxz
-YW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpIZXkgTWFydGlu
-LCZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0OyB0ZXh0LWluZGVudDow
-cHg7IG1hcmdpbjowcHg7IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRv
-c19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
-MnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NClRyaWVkIHRoYXQgYXMgYWxtb3N0IGEgZmlyc3QgdGhp
-bmcgYWZ0ZXIgdGhlIGlzc3VlIG9jY3VycmVkLiZuYnNwOyBUaGUgY29tbWFuZCBzdWNjZXNzZnVs
-bHkgcnVucyB3aXRoIG5vIGVycm9yIGJ1dCB0aGUgc2FtZSBpc3N1ZSBwZXJzaXN0cywgd2hlcmUg
-YW55IG90aGVyIGNvbW1hbmQgZ2l2ZXMgbWUgdGhlICZxdW90O0Vycm9yOiBSdW50aW1lRXJyb3I6
-IEIyMDAgdW5rbm93biBwcm9kdWN0IGNvZGU6IDB4ZTNlMCZxdW90OyBtZXNzYWdlLjwvZGl2Pg0K
-PGRpdiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0OyB0ZXh0LWluZGVudDowcHg7IG1hcmdpbjowcHg7
-IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNl
-LENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2Io
-MCwwLDApIj4NCi0tPC9kaXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQ7IHRleHQtaW5k
-ZW50OjBweDsgbWFyZ2luOjBweDsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250
-LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1z
-aXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KTWFyayZuYnNwOzwvZGl2Pg0KPGRpdiBpZD0i
-eF9tXy04Njg0NTg5MTU3MzExMDA0MzExYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0i
-ZGlzcGxheTppbmxpbmUtYmxvY2s7IHdpZHRoOjk4JSI+DQo8ZGl2IGlkPSJ4X21fLTg2ODQ1ODkx
-NTczMTEwMDQzMTFkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwg
-c2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAiIHN0eWxlPSJmb250LXNpemU6MTFwdCI+PGI+RnJv
-bTo8L2I+IE1hcnRpbiBCcmF1biAmbHQ7PGEgaHJlZj0ibWFpbHRvOm1hcnRpbi5icmF1bkBldHR1
-cy5jb20iIHRhcmdldD0iX2JsYW5rIj5tYXJ0aW4uYnJhdW5AZXR0dXMuY29tPC9hPiZndDs8YnI+
-DQo8Yj5TZW50OjwvYj4gRnJpZGF5LCBKdW5lIDI4LCAyMDI0IDU6MjYgQU08YnI+DQo8Yj5Ubzo8
-L2I+IE1hcmsgUm9zZW5iYXVtICZsdDs8YSBocmVmPSJtYWlsdG86bV9yb3NlbkBtaXQuZWR1IiB0
-YXJnZXQ9Il9ibGFuayI+bV9yb3NlbkBtaXQuZWR1PC9hPiZndDs8YnI+DQo8Yj5DYzo8L2I+IDxh
-IGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsi
-PnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb208L2E+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIEJy
-aWNrZWQgQjIxMCBkdWUgdG8gd2lwZWQgRUVQUk9NPC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4N
-CjwvZGl2Pg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj5IaSBNYXJrLDwvZGl2Pg0KPGRp
-dj48YnI+DQo8L2Rpdj4NCjxkaXY+YjJ4eF9meDNfdXRpbHMgLS1pbml0LWRldmljZSBpcyB5b3Vy
-IGZyaWVuZC4gQWZ0ZXIgeW91IHJ1biB0aGF0LCB5b3UgY2FuIHJ1biBgdXNycF9idXJuX21iX2Vl
-cHJvbWAgYWdhaW4gdG8gY29uZmlndXJlIHNlcmlhbCBudW1iZXIgZXRjLjwvZGl2Pg0KPGRpdj48
-YnI+DQo8L2Rpdj4NCjxkaXY+LS1NPGJyPg0KPC9kaXY+DQo8L2Rpdj4NCjxicj4NCjxkaXY+DQo8
-ZGl2IGRpcj0ibHRyIj5PbiBUaHUsIEp1biAyNywgMjAyNCBhdCA4OjQ14oCvUE0gTWFyayBSb3Nl
-bmJhdW0gJmx0OzxhIGhyZWY9Im1haWx0bzptX3Jvc2VuQG1pdC5lZHUiIHRhcmdldD0iX2JsYW5r
-Ij5tX3Jvc2VuQG1pdC5lZHU8L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3Rl
-IHN0eWxlPSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xpZCBy
-Z2IoMjA0LDIwNCwyMDQpOyBwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRy
-Ij4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRv
-c19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
-MnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkhpIEFsbCw8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQt
-ZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGli
-cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
-Ij4NCkkgd2FzIHJlY2VudGx5IHdvcmtpbmcgb24gZml4aW5nIGFuIGlzc3VlIHdpdGggbXkgQjIx
-MCBhbmQgYWNjaWRlbnRhbGx5IHJlLWZsYXNoZWQgdGhlIGJvb3Rsb2FkZXIuIEluIHRoZSBwcm9j
-ZXNzIGl0IHNlZW1zIHRvIGhhdmUgZnVsbHkgd2lwZWQgdGhlIEVFUFJPTSBhbmQgbm93IHdoZW4g
-YXR0ZW1wdGluZyB0byBwZXJmb3JtIGFueSBhY3Rpb24gb24gdGhlIGRldmljZSBJIGdldCB0aGUg
-Zm9sbG93aW5nIGVycm9yOjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0
-b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KJnF1b3Q7RXJyb3I6
-IFJ1bnRpbWVFcnJvcjogQjIwMCB1bmtub3duIHByb2R1Y3QgY29kZTogMHhlM2UwJnF1b3Q7Ljwv
-ZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFw
-dG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXpl
-OjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSXMgdGhlcmUgYW55IHdheSB0byBnbyBiYWNrIGFu
-ZCByZS1mbGFzaCB0aGUgb3JpZ2luYWwgdmFsdWVzPyZuYnNwOyBJJ3ZlIHRyaWVkIHRvIHVzZSB0
-aGUgdXNycF9idXJuX21iX2VlcHJvbSBjb21tYW5kIHdpdGggdGhlIHJlY292ZXJfbWJfZWVwcm9t
-IGJ1dCBpdCBzdGlsbCBmYWlscyB3aXRoIHRoZSBzYW1lIGVycm9yLjwvZGl2Pg0KPGRpdiBzdHls
-ZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZp
-Y2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJn
-YigwLDAsMCkiPg0KVGhhbmtzLDwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3Ms
-QXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Es
-c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KTWFyazwvZGl2
-Pg0KPC9kaXY+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb208L2E+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVm
-PSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5r
-Ij4NCnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjwvZGl2Pg0KPC9i
-bG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+
-DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+On Fri, Jun 28, 2024 at 5:52=E2=80=AFPM Mark Rosenbaum <m_rosen@mit.edu> wr=
+ote:
 
---_000_SA3PR01MB7967631BE9CD4F7EFC384E3C87D02SA3PR01MB7967prod_--
+> Martin,
+> Just tried exactly that to no avail.  Gives the exact same error.  Is
+> there any way to maybe modify the program and recompile to bypass
+> error/product code checking?  It looks to me like the check is found on
+> line 149 of b200_impl.cpp(
+> https://github.com/EttusResearch/uhd/blob/a5ed1872be6d0fc36de9a7e0b508933=
+da1f119bc/host/lib/usrp/b200/b200_impl.cpp#L149C1-L149C3), but
+> I may be wrong.
+> --
+> Mark
+> ------------------------------
+> *From:* Martin Braun <martin.braun@ettus.com>
+> *Sent:* Friday, June 28, 2024 11:42 AM
+> *To:* Mark Rosenbaum <m_rosen@mit.edu>
+> *Subject:* Re: [USRP-users] Bricked B210 due to wiped EEPROM
+>
+> Try specifying absolutely everything on the command line:
+>
+> ./usrp_burn_mb_eeprom --args=3D"fpga=3D/path/to/fpga/usrp_b210_fpga.bin" =
+--values revision=3D<REV>,product=3D<PRODUCT_ID>,serial=3D<SERIAL>,name=3D"=
+b200name"
+>
+> Serial number is on the PCB. PRODUCT_ID is 1, I think for B210 (see https=
+://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/b200/b200_iface.h=
+pp#L20). Revision is encoded somewhere on the PCB, I'm not sure -- just put=
+ 5 here and see if things work. Name is up to you of course.
+>
+> The most important thing is the correct FPGA bin-file.
+>
+> --M
+>
+>
+> On Fri, Jun 28, 2024 at 3:05=E2=80=AFPM Mark Rosenbaum <m_rosen@mit.edu> =
+wrote:
+>
+> Hey Martin,
+> Tried that as almost a first thing after the issue occurred.  The command
+> successfully runs with no error but the same issue persists, where any
+> other command gives me the "Error: RuntimeError: B200 unknown product cod=
+e:
+> 0xe3e0" message.
+> --
+> Mark
+> ------------------------------
+> *From:* Martin Braun <martin.braun@ettus.com>
+> *Sent:* Friday, June 28, 2024 5:26 AM
+> *To:* Mark Rosenbaum <m_rosen@mit.edu>
+> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* Re: [USRP-users] Bricked B210 due to wiped EEPROM
+>
+> Hi Mark,
+>
+> b2xx_fx3_utils --init-device is your friend. After you run that, you can
+> run `usrp_burn_mb_eeprom` again to configure serial number etc.
+>
+> --M
+>
+> On Thu, Jun 27, 2024 at 8:45=E2=80=AFPM Mark Rosenbaum <m_rosen@mit.edu> =
+wrote:
+>
+> Hi All,
+> I was recently working on fixing an issue with my B210 and accidentally
+> re-flashed the bootloader. In the process it seems to have fully wiped th=
+e
+> EEPROM and now when attempting to perform any action on the device I get
+> the following error:
+> "Error: RuntimeError: B200 unknown product code: 0xe3e0".
+> Is there any way to go back and re-flash the original values?  I've tried
+> to use the usrp_burn_mb_eeprom command with the recover_mb_eeprom but it
+> still fails with the same error.
+> Thanks,
+> Mark
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
 
---===============5031383258872377959==
+--0000000000009e1ad1061bf584b3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Yeah that&#39;s probably the last resort. Just hard-c=
+ode all product IDs and whatnot until it works. Good luck!</div><div><br></=
+div><div>--M<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Fri, Jun 28, 2024 at 5:52=E2=80=AFPM Mark Rosenbau=
+m &lt;<a href=3D"mailto:m_rosen@mit.edu">m_rosen@mit.edu</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg52=
+7617589268171985">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Martin,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Just tried exactly that to no=C2=A0avail.=C2=A0 Gives the exact same error.=
+=C2=A0 Is there any way to maybe modify the program and recompile to bypass=
+ error/product code checking?=C2=A0 It looks to me like the check is found =
+on line 149 of b200_impl.cpp(<a href=3D"https://github.com/EttusResearch/uh=
+d/blob/a5ed1872be6d0fc36de9a7e0b508933da1f119bc/host/lib/usrp/b200/b200_imp=
+l.cpp#L149C1-L149C3" id=3D"m_527617589268171985LPlnk394935" target=3D"_blan=
+k">https://github.com/EttusResearch/uhd/blob/a5ed1872be6d0fc36de9a7e0b50893=
+3da1f119bc/host/lib/usrp/b200/b200_impl.cpp#L149C1-L149C3</a>),=C2=A0but
+ I may be wrong.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+--</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Mark</div>
+<div id=3D"m_527617589268171985appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_527617589268171985divRplyFwdMsg" dir=3D"ltr"><font face=3D"Cal=
+ibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> M=
+artin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank"=
+>martin.braun@ettus.com</a>&gt;<br>
+<b>Sent:</b> Friday, June 28, 2024 11:42 AM<br>
+<b>To:</b> Mark Rosenbaum &lt;<a href=3D"mailto:m_rosen@mit.edu" target=3D"=
+_blank">m_rosen@mit.edu</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Bricked B210 due to wiped EEPROM</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div>Try specifying absolutely everything on the command line:</div>
+<div><br>
+</div>
+<div>
+<pre><code>./usrp_burn_mb_eeprom --args=3D&quot;fpga=3D/path/to/fpga/usrp_b=
+210_fpga.bin&quot; --values revision=3D&lt;REV&gt;,product=3D&lt;PRODUCT_ID=
+&gt;,serial=3D&lt;SERIAL&gt;,name=3D&quot;b200name&quot;<br><br></code></pr=
+e>
+<pre><code>Serial number is on the PCB. PRODUCT_ID is 1, I think for B210 (=
+see </code><a href=3D"https://github.com/EttusResearch/uhd/blob/master/host=
+/lib/usrp/b200/b200_iface.hpp#L20" target=3D"_blank">https://github.com/Ett=
+usResearch/uhd/blob/master/host/lib/usrp/b200/b200_iface.hpp#L20</a>). Revi=
+sion is encoded somewhere on the PCB, I&#39;m not sure -- just put 5 here a=
+nd see if things work. Name is up to you of course.<br><br></pre>
+<pre>The most important thing is the correct FPGA bin-file.<br><br></pre>
+<pre>--M<br></pre>
+</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Fri, Jun 28, 2024 at 3:05=E2=80=AFPM Mark Rosenbaum &lt=
+;<a href=3D"mailto:m_rosen@mit.edu" target=3D"_blank">m_rosen@mit.edu</a>&g=
+t; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+Hey Martin,=C2=A0</div>
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+Tried that as almost a first thing after the issue occurred.=C2=A0 The comm=
+and successfully runs with no error but the same issue persists, where any =
+other command gives me the &quot;Error: RuntimeError: B200 unknown product =
+code: 0xe3e0&quot; message.</div>
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+--</div>
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+Mark=C2=A0</div>
+<div id=3D"m_527617589268171985x_m_-8684589157311004311appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_527617589268171985x_m_-8684589157311004311divRplyFwdMsg" dir=
+=3D"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font=
+-size:11pt"><b>From:</b> Martin Braun &lt;<a href=3D"mailto:martin.braun@et=
+tus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt;<br>
+<b>Sent:</b> Friday, June 28, 2024 5:26 AM<br>
+<b>To:</b> Mark Rosenbaum &lt;<a href=3D"mailto:m_rosen@mit.edu" target=3D"=
+_blank">m_rosen@mit.edu</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Bricked B210 due to wiped EEPROM</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div>Hi Mark,</div>
+<div><br>
+</div>
+<div>b2xx_fx3_utils --init-device is your friend. After you run that, you c=
+an run `usrp_burn_mb_eeprom` again to configure serial number etc.</div>
+<div><br>
+</div>
+<div>--M<br>
+</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Thu, Jun 27, 2024 at 8:45=E2=80=AFPM Mark Rosenbaum &lt=
+;<a href=3D"mailto:m_rosen@mit.edu" target=3D"_blank">m_rosen@mit.edu</a>&g=
+t; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Hi All,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I was recently working on fixing an issue with my B210 and accidentally re-=
+flashed the bootloader. In the process it seems to have fully wiped the EEP=
+ROM and now when attempting to perform any action on the device I get the f=
+ollowing error:</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+&quot;Error: RuntimeError: B200 unknown product code: 0xe3e0&quot;.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Is there any way to go back and re-flash the original values?=C2=A0 I&#39;v=
+e tried to use the usrp_burn_mb_eeprom command with the recover_mb_eeprom b=
+ut it still fails with the same error.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Thanks,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Mark</div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+
+</div></blockquote></div>
+
+--0000000000009e1ad1061bf584b3--
+
+--===============2417994256924850584==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -389,4 +368,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5031383258872377959==--
+--===============2417994256924850584==--
