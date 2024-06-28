@@ -2,296 +2,384 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A328891BFAE
-	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2024 15:38:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD7091C2F9
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2024 17:53:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 370A63858D6
-	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2024 09:38:26 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8E149385928
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2024 11:53:00 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1719581906; bh=RyAaEuDwQH1j88CErQXrkoPJTogZ5HNXlKKu9laBwm0=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=eG263H8WNLVmAiFZ9ZOcZfM1797D9c7pKcckH7oO6XVNexLxb1i7oyfShMuhNaldS
-	 oGoLvxkWy62c6tUYgZgWZrKehLYqn0Qa8LtlYlLJatg38osgfo3Uf64AJ9c6CUKfve
-	 odWmmJnwkdoYbyP6OJKHZLJbV7jJN9Rd9HwCMiIXmX2LTSB/zgUpYCl5Ih5rNFzyLE
-	 lF9rxduyTKmJ+0K2e3cg6ZmtsJaf0f4Jd87tjrZUpYpfw/lM4rAnyIQq3L5DVNAo+E
-	 FvXTYK10FwYVwXErwWiKY+KU6bFq7oJacmU6TgQWSYDLsQZeMofghJqI+bCyLjXhXp
-	 WU4xD0XoVEYqg==
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 04A253855FB
-	for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2024 09:37:44 -0400 (EDT)
+	t=1719589980; bh=8YNGMCRFhenHRJVcOH0Cj4pcZdOxGJcxHr/VeqQHcyo=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=JTfjKUN1s/fIoVPysCShLTB+aW8gQB2T+j+QknxlkHaRYSA4WPNnXtnfm9fu0eeZk
+	 H4uMuRDfNG/XBHJ77a1mn7K14URAuXGzJ3bIFtZFFpfy8w/iOaQCq2c0J7TMBx6fKs
+	 f801DQ/RmgrFikYcpYOMjbH06h4cTH8h9x7pte7s86YH+YMaRJRQ6LO6wxZBHjYI0G
+	 JEQt2CFDAMHAAO72Qu6cCdmKKoD35vfnLHcsY2vvRF8r/pRGWxqtJCIIxlwYYWn9k/
+	 vJoVqnz4uGTjUb8qd03GDUglUFjDOX6S/IQCQ5Mw6w3NsfBsZ1VwDl1MKqhTUe9Z3s
+	 YSwIRw9Uknnvg==
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2137.outbound.protection.outlook.com [40.107.236.137])
+	by mm2.emwd.com (Postfix) with ESMTPS id BE450385833
+	for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2024 11:52:33 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eZlj1lNG";
+	dkim=pass (1024-bit key; unprotected) header.d=mit.edu header.i=@mit.edu header.b="C4P9rmEc";
 	dkim-atps=neutral
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-79c0c19ff02so58730085a.1
-        for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2024 06:37:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719581864; x=1720186664; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2mgCKEsoSuoYxaS4sGPCqdMZHg3yJz5kfoVbepiH7F4=;
-        b=eZlj1lNGbjgHjgpGMbjfH8V+2Joi7NFzazsSxbCSC0nJ3PWDTR8fqhDNoYLWKRHeeJ
-         RmwbFwEffxqJOIuXNZ2eReDOcF92+JdZTx0uZBgydYex7CNi8NnXwzK3Siw2aFJncly8
-         glt7rIckaFFLsYiqv4jNOAbQFyHkaYkD3pAr5wAWhqnuihroV7m4wQo6NuCsBWQbzchF
-         m3ns1+hTqdb216F/0zjo15S0dvZWc2VkkNY5EQoVvziC7FvNTlp3ZNttJ7hBG8T2E7gs
-         CULA0aKcueWcG0LrEjRaoR+LfFwvzTlsuQ3HTYX2EvwSKDHhY4JzUJSBCodDcKv3Ilkz
-         VViw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719581864; x=1720186664;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2mgCKEsoSuoYxaS4sGPCqdMZHg3yJz5kfoVbepiH7F4=;
-        b=BwcbAtB/vGzf2K27N/KUPNcWComUx1qP3CworYNPx3Soj2lYpCEpQHjUpX3Tf/ReWM
-         Fva2rkD8av35foDT3CKbeOiQuLD6RGVcebXdz9VjVjMXpOFQy+/Av3fggGy19crrU+BR
-         UaB3az1BxkMTzjmB3XRzXymmnqsUx+OGvVoug+7Z7HUwXJbhJCuf6M/vV5t4m2m2c5/l
-         m3ftb93TxTj+CuBlOIDSENbHholSDs303JD1wKqJZNVdwmsYwJg485wkcCVl5d/iQrLC
-         gB+CqZMwpGW6qIdBuR8z9pi2S4wLrlAAowxqd1rKYh36OB7uMHLWCawTlNBrETdhCvv2
-         6mow==
-X-Gm-Message-State: AOJu0YyzH7N1tw4lUX4bag34peqY3y43341C2PzRRrRwU5T9ctufA5Sh
-	hqmFZfEvjbuFx1TNtptvC75tf9alNaE0DKZU29y5RAIDockzN/C1GW9O4Q==
-X-Google-Smtp-Source: AGHT+IFl+5DcWqc0Twm1Z4vO588lAmfrbY2jH2JRKCdBjcHx5ZyUGgtYeURXU2cZUvd+Dyn82StbpQ==
-X-Received: by 2002:a05:620a:408e:b0:795:47d4:5f2c with SMTP id af79cd13be357-79be6f10f3emr2238593185a.49.1719581863833;
-        Fri, 28 Jun 2024 06:37:43 -0700 (PDT)
-Received: from [192.168.2.170] ([64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-79d6926001dsm73822485a.4.2024.06.28.06.37.42
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jun 2024 06:37:42 -0700 (PDT)
-Message-ID: <b938ab03-a170-4391-b379-b55dcce97518@gmail.com>
-Date: Fri, 28 Jun 2024 09:37:31 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a/BK+jOx+DVzhLGAzhrrsIz9BEOIGaJFc/gl+szT40J0+BqPvxLXYjXjWOc5bt/PeCTRWekUlKHOYJ00mCOFHMrPRe4Doq4w/KN4XwXi3LLAsda4GV7lNCvqRx9gJkzL4uQITDe5JrXrdvbvlup8dwPSRVVf4GeYDlg8LSF/FG4i6EE9EU6GAo8mz078dzj7LghOhPmQ6inX0u72zuwZ5jQlMKKz06lBQW4g8a+pXZ2aInWZd+F7izBbVUib0NP/ERNZ2wDSJoCEB3aIr93+1LqO/1pddYbAUGOtjbTLva2zZNiYNwjbUFpOzP6ToWzlOQuUg+gjPhiGAlQpiIGKow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mTVeJVLjEMCjhzEJ0P6XA0TB1hhsv9wwi9C9q2crggc=;
+ b=bqC0W5j2hNTw1bkjpDze2RMCzLpm+qJeebQUmrIhfQ3DBnOddWOM6j6+c0/zkN8XBwqsbmJCfs3D82LWBFGLvpZiBXI+IOzAEGMMt2j7mhFvJc1C9uO6DQHxrMoqxEMReKktkNuIt5c+3SUIR42axIfNntQwvTSvyXYVoH4u68PMz6rK31MCqrEKd2buh0Ho+FpPvRYZ52Hkye4rFN7f7A2bmSBbKzfhtYuv0afTjXqmGrujrgxjqLrbkLKeQDmlPJjLsGkq2iANXN+IdmnxXnhXh0cOJQUL7FlAfMxeQA9+c6f1KzNhrKsnPxLgnXvxv58+QBYKwnOAk6rT5Ft3kw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mit.edu; dmarc=pass action=none header.from=mit.edu; dkim=pass
+ header.d=mit.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mit.edu; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mTVeJVLjEMCjhzEJ0P6XA0TB1hhsv9wwi9C9q2crggc=;
+ b=C4P9rmEciEd/bLGxm2btHWd1vSznzlVPfLupVwtdkvqZchoxVqwW4Ckmj2nXNNHCyje0W5bR+QWFvHFsIjq6gaKMj4E8FH4RysvH4CyXeSQqiPuUby8QVi1YFYaJNcVtlwAG7xlahPsa6gL/vGwCYSxo2fxMFz/XIpiA3bmnB3o=
+Received: from SA3PR01MB7967.prod.exchangelabs.com (2603:10b6:806:31e::15) by
+ SA0PR01MB6137.prod.exchangelabs.com (2603:10b6:806:e1::16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7698.33; Fri, 28 Jun 2024 15:52:31 +0000
+Received: from SA3PR01MB7967.prod.exchangelabs.com
+ ([fe80::7183:ac2d:2f81:9945]) by SA3PR01MB7967.prod.exchangelabs.com
+ ([fe80::7183:ac2d:2f81:9945%3]) with mapi id 15.20.7698.033; Fri, 28 Jun 2024
+ 15:52:31 +0000
+From: Mark Rosenbaum <m_rosen@mit.edu>
+To: Martin Braun <martin.braun@ettus.com>
+Thread-Topic: [USRP-users] Bricked B210 due to wiped EEPROM
+Thread-Index: AQHayMDDsGWnrckqmk+JIb/EeEpSdrHc6QiAgAA9As6AACwMgIAAAUGu
+Date: Fri, 28 Jun 2024 15:52:31 +0000
+Message-ID: 
+ <SA3PR01MB7967631BE9CD4F7EFC384E3C87D02@SA3PR01MB7967.prod.exchangelabs.com>
+References: 
+ <DS0PR01MB79635F144100CD6C4EDE94E087D72@DS0PR01MB7963.prod.exchangelabs.com>
+ <CAFOi1A72R2wVz+i7qMLpxYw+1xAwLMhw55emCDQJvCnx3F6FHQ@mail.gmail.com>
+ <SA3PR01MB796705BF695CA698FB45A75F87D02@SA3PR01MB7967.prod.exchangelabs.com>
+ <CAFOi1A7Ru1JSLE3BrsKpJCs3eFYMy_iSb-7eRCxfAMSt1B_BqA@mail.gmail.com>
+In-Reply-To: 
+ <CAFOi1A7Ru1JSLE3BrsKpJCs3eFYMy_iSb-7eRCxfAMSt1B_BqA@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <RmAlOPxmfbUJYH2Mizc2jE284ofJ3IvOUGkMgjpElg@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <RmAlOPxmfbUJYH2Mizc2jE284ofJ3IvOUGkMgjpElg@lists.ettus.com>
-Message-ID-Hash: MCJOZLTP4I6UQDTRPQJD6SYV3MSDRA2W
-X-Message-ID-Hash: MCJOZLTP4I6UQDTRPQJD6SYV3MSDRA2W
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mit.edu;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA3PR01MB7967:EE_|SA0PR01MB6137:EE_
+x-ms-office365-filtering-correlation-id: dc54954d-73a2-4eca-5b2c-08dc978a51bc
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|376014|1800799024|366016|4022899009|38070700018;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?SnpHcVZUU3ZMRXh1VW1nd1NkaVovc04xZFI5K3lXdVJVVFNlc3d1Rnlzajg3?=
+ =?utf-8?B?WFhtWmN0dU5INDg1KzdHV1ZqbGVZalhYRFgzQjdEd25zakFFTkRwRkxxVng5?=
+ =?utf-8?B?Z2tobk5VamQ4aitHZjFYK1lnSVBKcndhbm1PeGM5U0RUUGxudW9kY0srd3Jo?=
+ =?utf-8?B?L3IwZkVjVXZwZWx4SW9QRklvaGFyRnQySFI5amtxcU9IWFNXRXNIK1JQamgr?=
+ =?utf-8?B?UlZrZGpxcTBzR2xPbGY4cjhpSm5lcVZkQTc3Rzc2VkovK29UM09qTS9CMUs2?=
+ =?utf-8?B?djZTYTF6UmVHVlN0c0laWWVSankwTHNFVEZxMkNRRUx0WHpQL2xKVWV0NFJI?=
+ =?utf-8?B?b2pJRGdOZUpiaDU4Wk9LRlBlK0NieUxvdUtYOWFIYXpYRHBtTVl1MmN0RTJm?=
+ =?utf-8?B?NXVtbk5PMEcraEc4SjNoVWI1bXlGYW9GQ1NaRW5yWWtGZlE5bTl6RStUK0th?=
+ =?utf-8?B?TFpmcFBIK2p3L2duQlE2dWhwdFpoRS9mRFBmT0hUOTVZQVFHYms3VURQYk9J?=
+ =?utf-8?B?dFlxdkFJaW9ES3gxS0dlMmdjbHY0cXhmbzFTai9JR3VnUlZpRHRuaXdseG5j?=
+ =?utf-8?B?RHlDMS8xRHFHQWwxN1plKzhtb2kwQzVRcldqczNTZms5OVRkNi94d0VpUlZ6?=
+ =?utf-8?B?NDZSWmsyMGh1S21MQSt3NkxvMm1ZQ2cweXZqRXNkS3IxSG1YaGNXMkpyS1h6?=
+ =?utf-8?B?T0ltczFDcVN0OWhWNVlaYm5VcDZlcUNBZW0yWFR0eEx4VGdDNE5KUjRUOVgx?=
+ =?utf-8?B?RjdlSUdkUXJ4ZzBlNUN6UFJURjYybjZLU0JPdXZqODBQa3h3VGtnWVRBcWlH?=
+ =?utf-8?B?Ym41OXpHMjlHaDZOSTNTWVd3MnZXb0Uya0JxOWdTeFZTbWY0WmtnNzl0SFpM?=
+ =?utf-8?B?a0MyR2VNTiszK2lCKzRCUVBaNWI1OFFQb2kwcGx6RVJlQm5zUXU2SXBlQklD?=
+ =?utf-8?B?OVJWWmVBckxER1dYRWUycVdXVWJJeVJKOHR3Qkk4YkJEeTNCS3RDQzRpK3Y4?=
+ =?utf-8?B?YUpLQXJvUEdRVTVpZmZyQWR0QkdDbXROdU5iUVR6V0lNaHJxNkVnU3J0cFUx?=
+ =?utf-8?B?aTdIYXowdHRnTDVhUEdJWXpBeCs1MUw3UERobHJBNWdJZHIrZkdoYlVudU1W?=
+ =?utf-8?B?RjBzQ2pRTXlCbDg2S1BDRXFHYWdNRWh0REhBR1lFNzZpZUtXZUlGcTlPWExr?=
+ =?utf-8?B?anBEV01PT3p5ZWVYUnVham9PalZWL29lUlZ0RllSY3BxYnVGdFV5Y1BSbzMw?=
+ =?utf-8?B?WXRhTTFDTkxSVUZEcDRCcjJ2eFFsYnZxb1pDOVpZWjFVT3Bvd3k0UkRveVZi?=
+ =?utf-8?B?bzVEcm53eGRLQXE4dVkvSlVCUnlVaVM0Z2hENVdSYkRxaEsvbXRNY052NFJ5?=
+ =?utf-8?B?Qnh4MzFsWnllQy9TUC9QRERCa1c0M2N1QjVHRVJmRVpWVUVhSnArY3I3QU1I?=
+ =?utf-8?B?QVYvbldDZDBoUm5maXpybk9BSlZYS3NkaHpkZllUbGtSS3dKQXNiQzFVQi9R?=
+ =?utf-8?B?by9RY1d4TUZsREw4cmdReHlTWUxhTndDaURPVTlMR1FVZmwzZnJhbzlPdVlB?=
+ =?utf-8?B?WFg1TGQ2bm15ZXY0b2lXNkd3b0k3UVJ5dUQ4UjY4ME9HelhjbE1SRVBMZGdO?=
+ =?utf-8?B?VG1OYkRVaDAwaFo4ZU1LTW5oK1JucTdSYUp4VmJnclArWHYwOFVIeFBnQjI4?=
+ =?utf-8?B?eGM4UmRtRFVuRUJOYUlQTlMrREd1V3ZWam9pUHhNcEYxTVd1czN1WjlIWXdQ?=
+ =?utf-8?B?K1pXYXhZdmFQWTRicDFFWGljUVkwMUVEUVRvbjRzUXhDNGxvY1I1cFZpcitn?=
+ =?utf-8?Q?kfA0RCKqc7Ah9w7A9GNYKk6doo2+kYtzmg35c=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA3PR01MB7967.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(4022899009)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?RzNFaUovREI5NzRsZVdRem1Ja1ZmTW5nbERyVzNYVXNrNVhkNk5LeWRnTmcr?=
+ =?utf-8?B?ZE13ZnZodTFWSkFKUXZkK0xmUVlpUG5MOE53K1dSR2o4MlNYUU9QQmY1azMv?=
+ =?utf-8?B?ZzZjUWlWSWVCc3d0bzJib2dvTXU5c3QramxTU3ZSM05zcGdwSnFHZVVVRmhr?=
+ =?utf-8?B?a1BpV1UvcXdkWnY3ejc2V0JQS1BLMFpWWW5XUlo0TlN0enV6S0pQSW94OU5O?=
+ =?utf-8?B?M3Q4RWVWbmMrbkZadTRxTktPVG9vSlpLUWFYeHBiQ0IwR1FlSGZTQmkvazhn?=
+ =?utf-8?B?ZjRNQmFBWVZkbFpIREZ6VHIyS3BBa29GS1ZqdGhreStnQjMzbWJ3RG9yMFJJ?=
+ =?utf-8?B?V3ZxWDREQlY3NUVrZWVPK3ZhWjBWZW96R0dtVm1Gb3hRemIvekwrZDhrRm84?=
+ =?utf-8?B?TnpIdXh3Y0p1UnVGVHNjWHFQS1RpWXg1UlJ5T0tJMmxodElNT3dWMnVZYzRJ?=
+ =?utf-8?B?Kyt2dHQ4bW5HRjBsS1lTM2toT3ZYTkFVc1NCZHZ2U0ZlVnBiU3pJeEtVK1p6?=
+ =?utf-8?B?U2l5VlhDWndSaGZieXRnTlcwSlZLalZLVXRnV2RVWWpkak1XQjNZWjZNdFJt?=
+ =?utf-8?B?RUJ1Y2QvK0pYd25SWFk0dzZtMk03THBrM2ZrWEtEb3VpQ2o2dkR1d205Um1O?=
+ =?utf-8?B?VFRJcDUzc1JoYUFtZ05wN2o2ZjMxdlY1bFNnNDVzaTM3NHZwU1lYUTZ3OVJa?=
+ =?utf-8?B?MmFqMEJMcXhDMmYrTnhpdkZFMUIvUEtIeVlDZThtQ0FRK3IwM1RySFBjdHor?=
+ =?utf-8?B?azFTbWhVeG0wWmFOa3hOR2c0L3RCck1LWDhRenYvQ3NzLzFJOEV3c0xNbTdR?=
+ =?utf-8?B?WFo3OWtHZFBYWEJSWjI0ME15ZGtjeW1jb2NJN0gwUFVEbXNQS2FzOHRuTmMx?=
+ =?utf-8?B?OHFVNTcyeUExSHo0bnExNEYxY0hRMHRoQjhFcTRYZHQ2VGwxNXM2ZHhhY0pl?=
+ =?utf-8?B?WXRjaGpaS1dGRVZGTDlvc251YlBXcDd4OG1zNDFTR1RvTmF2UDJVV3Y1UVRY?=
+ =?utf-8?B?RG9uaFFjVjZiSWRRd2FDNUJRNFMwMTh0dXNxR0dRZnpUSmFlbWZvY3lJeld5?=
+ =?utf-8?B?UmZ0RHcxdk5YbGtSWVd2eEd3cDdGamNGbmpZSzZuTGt3dUNkalhMVnRKRHRm?=
+ =?utf-8?B?ejJBRXlqZHM4Q2t0SGUvVzhWa2ZUelBVTkpSLzRWVDluTXpTREJCRnE2enNN?=
+ =?utf-8?B?em9teUZPaU5mTjhuOC8ycGp4YXhvR2tMaFU2ZmVOSEkrQWRkaDdORHNUaGph?=
+ =?utf-8?B?WG5jWXFIUUtORk9iVGhORFU5dEJ1dWg4NDI1eW9ZT3BmSUIwUHB4VVJzVDlK?=
+ =?utf-8?B?MW1JR01nVzlpWmlCVHA1cDJBQndyc2NoVm9XYlVyNTZNaDFBblYxaS81UzdV?=
+ =?utf-8?B?OXNJTnpGTHg4ckVOQ3Z1WDhMU2dyUzdGZWRaVkU1a29wQ0xnU1gzbGlkZ0JX?=
+ =?utf-8?B?TldzVTY3VEFpVTJSSitVbk1UWFhYN1NGV243SG9FSk9XWkRnUUhUQVpUbWNL?=
+ =?utf-8?B?RTVleTB4a29BTXQyTnF1VU0zZzZQU3YxZXVha3Z6T1FUbEUwT2plWkxJYW13?=
+ =?utf-8?B?V1NDRDdpUUl6eTUvNHMxQjdQQURSTVYrUjJrOEdxcUFoTFY3Wk5yRVh3cEpO?=
+ =?utf-8?B?OVZtNGY1U3JJclE2NkQrSUVpUFA0bmxyc2tydG5TMm0yT0FFN2lubzBQcmpH?=
+ =?utf-8?B?SWNPeGVVWmlTekUxaHJ3bzhpaHpIS1lOTWQ1MThEMUJkQ2tRR3J0SEpINEZI?=
+ =?utf-8?B?bTZSNW5uTFdVVklKbFJVeGprcGJ1TWJlK3RjaTVkWDMwSXJGaU1xZXdGVC93?=
+ =?utf-8?B?elpIcjhCV1lNbEFYQXNvSkxrS1MvbG91OFpXendZcU5yaVc0WTY0NGpESFJX?=
+ =?utf-8?B?RWlocjN2eXZrWitlSjNnM3RORmt5YkMzeUNEaFVOVSs2MXJ5eXBWdG85RW9Y?=
+ =?utf-8?B?Y3YrMHdrZjdVWW1KRGVWRUl0VFpHZndYRkdEeUxJMWZQZDJrMTlnazJyckYw?=
+ =?utf-8?B?L055cGxURW9aQ0M3ZytZOHVMLzV1Mk5lZk1QWDdzcWlJZVdlUFFRelQ4aW9W?=
+ =?utf-8?B?L1lXY1N0d1FOVFpSMVFpNit1dTBZdE1Gb0J1RXZZTkxoNVJ4RFBXK3U3TTRG?=
+ =?utf-8?Q?1zDM=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: mit.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR01MB7967.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc54954d-73a2-4eca-5b2c-08dc978a51bc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2024 15:52:31.2327
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 64afd9ba-0ecf-4acf-bc36-935f6235ba8b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TKQ+klPS74ZYgj0hGJlCSIyGc94oB9G7zgy0JC8/3jfFKbopLd2HmbmQzR45ceRi
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR01MB6137
+Message-ID-Hash: 4CRHA52YIWTUGGWL2DS7HY3XWZXB2AVS
+X-Message-ID-Hash: 4CRHA52YIWTUGGWL2DS7HY3XWZXB2AVS
+X-MailFrom: m_rosen@mit.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x310 Not Sending Jumbo Packets (>8000 bytes) as 1 Packet on 10GigE
+Subject: [USRP-users] Re: Bricked B210 due to wiped EEPROM
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MCJOZLTP4I6UQDTRPQJD6SYV3MSDRA2W/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4XBQYTMPBF2KZJEZAHOXSJU3GJF7ZYRC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2245839130323696044=="
+Content-Type: multipart/mixed; boundary="===============5031383258872377959=="
 
-This is a multi-part message in MIME format.
---===============2245839130323696044==
-Content-Type: multipart/alternative;
- boundary="------------gsN2ZItc95L3GQzjEMOYjL8T"
+--===============5031383258872377959==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SA3PR01MB7967631BE9CD4F7EFC384E3C87D02SA3PR01MB7967prod_"
 
-This is a multi-part message in MIME format.
---------------gsN2ZItc95L3GQzjEMOYjL8T
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--_000_SA3PR01MB7967631BE9CD4F7EFC384E3C87D02SA3PR01MB7967prod_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 28/06/2024 00:44, cjohnson@serranosystems.com wrote:
->
-> Here is some interesting info that I could not explain.
->
->  *
->
->     *Ran on server at 200Msps, got S=E2=80=99s with uhd thread priority=
- at 0.90*
->
->  *
->
->     *Ran on server at 100Msps, got S=E2=80=99s with uhd thread priority=
- at 0.90*
->
->  *
->
->     *Ran on server at 6.25Msps, got S=E2=80=99s with uhd thread priorit=
-y at 0.90*
->
-> Why would I get S=E2=80=99s at 6.25Msps boggles my mind. This is the=20
-> 192.168.30.2 address.
->
-On a hunch, try dropping the MTU on your host PC to 8000, and retrying.=C2=
-=A0=20
-Also, try running the
- =C2=A0 "benchmark_rate" example, at various --tx_rates=C2=A0 to see wher=
-e it=20
-starts running into trouble.
+TWFydGluLA0KSnVzdCB0cmllZCBleGFjdGx5IHRoYXQgdG8gbm8gYXZhaWwuICBHaXZlcyB0aGUg
+ZXhhY3Qgc2FtZSBlcnJvci4gIElzIHRoZXJlIGFueSB3YXkgdG8gbWF5YmUgbW9kaWZ5IHRoZSBw
+cm9ncmFtIGFuZCByZWNvbXBpbGUgdG8gYnlwYXNzIGVycm9yL3Byb2R1Y3QgY29kZSBjaGVja2lu
+Zz8gIEl0IGxvb2tzIHRvIG1lIGxpa2UgdGhlIGNoZWNrIGlzIGZvdW5kIG9uIGxpbmUgMTQ5IG9m
+IGIyMDBfaW1wbC5jcHAoaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2Iv
+YTVlZDE4NzJiZTZkMGZjMzZkZTlhN2UwYjUwODkzM2RhMWYxMTliYy9ob3N0L2xpYi91c3JwL2Iy
+MDAvYjIwMF9pbXBsLmNwcCNMMTQ5QzEtTDE0OUMzKSwgYnV0IEkgbWF5IGJlIHdyb25nLg0KLS0N
+Ck1hcmsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBNYXJ0aW4gQnJh
+dW4gPG1hcnRpbi5icmF1bkBldHR1cy5jb20+DQpTZW50OiBGcmlkYXksIEp1bmUgMjgsIDIwMjQg
+MTE6NDIgQU0NClRvOiBNYXJrIFJvc2VuYmF1bSA8bV9yb3NlbkBtaXQuZWR1Pg0KU3ViamVjdDog
+UmU6IFtVU1JQLXVzZXJzXSBCcmlja2VkIEIyMTAgZHVlIHRvIHdpcGVkIEVFUFJPTQ0KDQpUcnkg
+c3BlY2lmeWluZyBhYnNvbHV0ZWx5IGV2ZXJ5dGhpbmcgb24gdGhlIGNvbW1hbmQgbGluZToNCg0K
+DQouL3VzcnBfYnVybl9tYl9lZXByb20gLS1hcmdzPSJmcGdhPS9wYXRoL3RvL2ZwZ2EvdXNycF9i
+MjEwX2ZwZ2EuYmluIiAtLXZhbHVlcyByZXZpc2lvbj08UkVWPixwcm9kdWN0PTxQUk9EVUNUX0lE
+PixzZXJpYWw9PFNFUklBTD4sbmFtZT0iYjIwMG5hbWUiDQoNCg0KU2VyaWFsIG51bWJlciBpcyBv
+biB0aGUgUENCLiBQUk9EVUNUX0lEIGlzIDEsIEkgdGhpbmsgZm9yIEIyMTAgKHNlZSBodHRwczov
+L2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9saWIvdXNycC9i
+MjAwL2IyMDBfaWZhY2UuaHBwI0wyMCkuIFJldmlzaW9uIGlzIGVuY29kZWQgc29tZXdoZXJlIG9u
+IHRoZSBQQ0IsIEknbSBub3Qgc3VyZSAtLSBqdXN0IHB1dCA1IGhlcmUgYW5kIHNlZSBpZiB0aGlu
+Z3Mgd29yay4gTmFtZSBpcyB1cCB0byB5b3Ugb2YgY291cnNlLg0KDQoNClRoZSBtb3N0IGltcG9y
+dGFudCB0aGluZyBpcyB0aGUgY29ycmVjdCBGUEdBIGJpbi1maWxlLg0KDQoNCi0tTQ0KDQpPbiBG
+cmksIEp1biAyOCwgMjAyNCBhdCAzOjA14oCvUE0gTWFyayBSb3NlbmJhdW0gPG1fcm9zZW5AbWl0
+LmVkdTxtYWlsdG86bV9yb3NlbkBtaXQuZWR1Pj4gd3JvdGU6DQpIZXkgTWFydGluLA0KVHJpZWQg
+dGhhdCBhcyBhbG1vc3QgYSBmaXJzdCB0aGluZyBhZnRlciB0aGUgaXNzdWUgb2NjdXJyZWQuICBU
+aGUgY29tbWFuZCBzdWNjZXNzZnVsbHkgcnVucyB3aXRoIG5vIGVycm9yIGJ1dCB0aGUgc2FtZSBp
+c3N1ZSBwZXJzaXN0cywgd2hlcmUgYW55IG90aGVyIGNvbW1hbmQgZ2l2ZXMgbWUgdGhlICJFcnJv
+cjogUnVudGltZUVycm9yOiBCMjAwIHVua25vd24gcHJvZHVjdCBjb2RlOiAweGUzZTAiIG1lc3Nh
+Z2UuDQotLQ0KTWFyaw0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IE1h
+cnRpbiBCcmF1biA8bWFydGluLmJyYXVuQGV0dHVzLmNvbTxtYWlsdG86bWFydGluLmJyYXVuQGV0
+dHVzLmNvbT4+DQpTZW50OiBGcmlkYXksIEp1bmUgMjgsIDIwMjQgNToyNiBBTQ0KVG86IE1hcmsg
+Um9zZW5iYXVtIDxtX3Jvc2VuQG1pdC5lZHU8bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4+DQpDYzog
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPj4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gQnJpY2tlZCBCMjEwIGR1ZSB0
+byB3aXBlZCBFRVBST00NCg0KSGkgTWFyaywNCg0KYjJ4eF9meDNfdXRpbHMgLS1pbml0LWRldmlj
+ZSBpcyB5b3VyIGZyaWVuZC4gQWZ0ZXIgeW91IHJ1biB0aGF0LCB5b3UgY2FuIHJ1biBgdXNycF9i
+dXJuX21iX2VlcHJvbWAgYWdhaW4gdG8gY29uZmlndXJlIHNlcmlhbCBudW1iZXIgZXRjLg0KDQot
+LU0NCg0KT24gVGh1LCBKdW4gMjcsIDIwMjQgYXQgODo0NeKAr1BNIE1hcmsgUm9zZW5iYXVtIDxt
+X3Jvc2VuQG1pdC5lZHU8bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4+IHdyb3RlOg0KSGkgQWxsLA0K
+SSB3YXMgcmVjZW50bHkgd29ya2luZyBvbiBmaXhpbmcgYW4gaXNzdWUgd2l0aCBteSBCMjEwIGFu
+ZCBhY2NpZGVudGFsbHkgcmUtZmxhc2hlZCB0aGUgYm9vdGxvYWRlci4gSW4gdGhlIHByb2Nlc3Mg
+aXQgc2VlbXMgdG8gaGF2ZSBmdWxseSB3aXBlZCB0aGUgRUVQUk9NIGFuZCBub3cgd2hlbiBhdHRl
+bXB0aW5nIHRvIHBlcmZvcm0gYW55IGFjdGlvbiBvbiB0aGUgZGV2aWNlIEkgZ2V0IHRoZSBmb2xs
+b3dpbmcgZXJyb3I6DQoiRXJyb3I6IFJ1bnRpbWVFcnJvcjogQjIwMCB1bmtub3duIHByb2R1Y3Qg
+Y29kZTogMHhlM2UwIi4NCklzIHRoZXJlIGFueSB3YXkgdG8gZ28gYmFjayBhbmQgcmUtZmxhc2gg
+dGhlIG9yaWdpbmFsIHZhbHVlcz8gIEkndmUgdHJpZWQgdG8gdXNlIHRoZSB1c3JwX2J1cm5fbWJf
+ZWVwcm9tIGNvbW1hbmQgd2l0aCB0aGUgcmVjb3Zlcl9tYl9lZXByb20gYnV0IGl0IHN0aWxsIGZh
+aWxzIHdpdGggdGhlIHNhbWUgZXJyb3IuDQpUaGFua3MsDQpNYXJrDQpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
+LS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
+QGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+
+DQo=
 
->
-> Then on the USRP PC (I think you called it a SOM), keeping mind this=20
-> is a 2974, with IP 192.168.40.2 address. Remember this is an internal=20
-> switch.
->
->  *
->
->     *Ran on USRP PC at 200Msps, got U=E2=80=99s with uhd thread priorit=
-y at 0.90*
->
->  *
->
->     *Ran on USRP PC at 100Msps, no U=E2=80=99s after 12 min with uhd th=
-read
->     priority at 0.90*
->
-> Notice NO U=E2=80=99s for 100Msps.
->
-> *While doing this, I noticed some odd behavior.* With Tx running on=20
-> 40.2 (the USRP PC), I could not start a test on 30.2 (on the server).=C2=
-=A0=20
-> 30.2 would give an error
->
-> Error: LookupError: KeyError: No devices found for ----->
->
-> Empty Device Address
->
-> Also doing this: uhd_usrp_probe
->
-> [INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400; UHD_4.4.0
->
-> Error: LookupError: KeyError: No devices found for ----->
->
-> Empty Device Address
->
-> They should run independently?
->
->
-The radio can only support a single session at a time.=C2=A0=C2=A0 Trying=
- to run=20
-two sessions from two different host computers
- =C2=A0 is absolutely not possible.
+--_000_SA3PR01MB7967631BE9CD4F7EFC384E3C87D02SA3PR01MB7967prod_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
+IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
+Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
+MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpNYXJ0aW4sPC9kaXY+DQo8ZGl2IGNsYXNzPSJl
+bGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRG
+b250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7
+IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KSnVzdCB0cmllZCBleGFj
+dGx5IHRoYXQgdG8gbm8mbmJzcDthdmFpbC4mbmJzcDsgR2l2ZXMgdGhlIGV4YWN0IHNhbWUgZXJy
+b3IuJm5ic3A7IElzIHRoZXJlIGFueSB3YXkgdG8gbWF5YmUgbW9kaWZ5IHRoZSBwcm9ncmFtIGFu
+ZCByZWNvbXBpbGUgdG8gYnlwYXNzIGVycm9yL3Byb2R1Y3QgY29kZSBjaGVja2luZz8mbmJzcDsg
+SXQgbG9va3MgdG8gbWUgbGlrZSB0aGUgY2hlY2sgaXMgZm91bmQgb24gbGluZSAxNDkgb2YgYjIw
+MF9pbXBsLmNwcCg8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQv
+YmxvYi9hNWVkMTg3MmJlNmQwZmMzNmRlOWE3ZTBiNTA4OTMzZGExZjExOWJjL2hvc3QvbGliL3Vz
+cnAvYjIwMC9iMjAwX2ltcGwuY3BwI0wxNDlDMS1MMTQ5QzMiIGlkPSJMUGxuazM5NDkzNSIgY2xh
+c3M9Ik9XQUF1dG9MaW5rIj5odHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxv
+Yi9hNWVkMTg3MmJlNmQwZmMzNmRlOWE3ZTBiNTA4OTMzZGExZjExOWJjL2hvc3QvbGliL3VzcnAv
+YjIwMC9iMjAwX2ltcGwuY3BwI0wxNDlDMS1MMTQ5QzM8L2E+KSwmbmJzcDtidXQNCiBJIG1heSBi
+ZSB3cm9uZy48L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1m
+YW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENh
+bGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdi
+KDAsIDAsIDApOyI+DQotLTwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxl
+PSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2Vy
+dmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
+bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCk1hcms8L2Rpdj4NCjxkaXYgaWQ9ImFwcGVuZG9uc2VuZCI+
+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5k
+ZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJD
+YWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOjExcHQiIGNvbG9yPSIjMDAwMDAw
+Ij48Yj5Gcm9tOjwvYj4gTWFydGluIEJyYXVuICZsdDttYXJ0aW4uYnJhdW5AZXR0dXMuY29tJmd0
+Ozxicj4NCjxiPlNlbnQ6PC9iPiBGcmlkYXksIEp1bmUgMjgsIDIwMjQgMTE6NDIgQU08YnI+DQo8
+Yj5Ubzo8L2I+IE1hcmsgUm9zZW5iYXVtICZsdDttX3Jvc2VuQG1pdC5lZHUmZ3Q7PGJyPg0KPGI+
+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gQnJpY2tlZCBCMjEwIGR1ZSB0byB3aXBlZCBF
+RVBST008L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9
+Imx0ciI+DQo8ZGl2PlRyeSBzcGVjaWZ5aW5nIGFic29sdXRlbHkgZXZlcnl0aGluZyBvbiB0aGUg
+Y29tbWFuZCBsaW5lOjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+DQo8cHJlIGNsYXNz
+PSJ4X2dtYWlsLW5vdHJhbnNsYXRlIj48Y29kZT4uL3VzcnBfYnVybl9tYl9lZXByb20gLS1hcmdz
+PSZxdW90O2ZwZ2E9L3BhdGgvdG8vZnBnYS91c3JwX2IyMTBfZnBnYS5iaW4mcXVvdDsgLS12YWx1
+ZXMgcmV2aXNpb249Jmx0O1JFViZndDsscHJvZHVjdD0mbHQ7UFJPRFVDVF9JRCZndDssc2VyaWFs
+PSZsdDtTRVJJQUwmZ3Q7LG5hbWU9JnF1b3Q7YjIwMG5hbWUmcXVvdDs8YnI+PGJyPjwvY29kZT48
+L3ByZT4NCjxwcmUgY2xhc3M9InhfZ21haWwtbm90cmFuc2xhdGUiPjxjb2RlPlNlcmlhbCBudW1i
+ZXIgaXMgb24gdGhlIFBDQi4gUFJPRFVDVF9JRCBpcyAxLCBJIHRoaW5rIGZvciBCMjEwIChzZWUg
+PC9jb2RlPjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9i
+L21hc3Rlci9ob3N0L2xpYi91c3JwL2IyMDAvYjIwMF9pZmFjZS5ocHAjTDIwIj5odHRwczovL2dp
+dGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9saWIvdXNycC9iMjAw
+L2IyMDBfaWZhY2UuaHBwI0wyMDwvYT4pLiBSZXZpc2lvbiBpcyBlbmNvZGVkIHNvbWV3aGVyZSBv
+biB0aGUgUENCLCBJJ20gbm90IHN1cmUgLS0ganVzdCBwdXQgNSBoZXJlIGFuZCBzZWUgaWYgdGhp
+bmdzIHdvcmsuIE5hbWUgaXMgdXAgdG8geW91IG9mIGNvdXJzZS48YnI+PGJyPjwvcHJlPg0KPHBy
+ZSBjbGFzcz0ieF9nbWFpbC1ub3RyYW5zbGF0ZSI+VGhlIG1vc3QgaW1wb3J0YW50IHRoaW5nIGlz
+IHRoZSBjb3JyZWN0IEZQR0EgYmluLWZpbGUuPGJyPjxicj48L3ByZT4NCjxwcmUgY2xhc3M9Inhf
+Z21haWwtbm90cmFuc2xhdGUiPi0tTTxicj48L3ByZT4NCjwvZGl2Pg0KPC9kaXY+DQo8YnI+DQo8
+ZGl2IGNsYXNzPSJ4X2dtYWlsX3F1b3RlIj4NCjxkaXYgZGlyPSJsdHIiIGNsYXNzPSJ4X2dtYWls
+X2F0dHIiPk9uIEZyaSwgSnVuIDI4LCAyMDI0IGF0IDM6MDXigK9QTSBNYXJrIFJvc2VuYmF1bSAm
+bHQ7PGEgaHJlZj0ibWFpbHRvOm1fcm9zZW5AbWl0LmVkdSI+bV9yb3NlbkBtaXQuZWR1PC9hPiZn
+dDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBjbGFzcz0ieF9nbWFpbF9xdW90ZSIg
+c3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJn
+YigyMDQsMjA0LDIwNCk7IHBhZGRpbmctbGVmdDoxZXgiPg0KPGRpdiBjbGFzcz0ieF9tc2ctODY4
+NDU4OTE1NzMxMTAwNDMxMSI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9InRleHQtYWxp
+Z246bGVmdDsgdGV4dC1pbmRlbnQ6MHB4OyBtYXJnaW46MHB4OyBmb250LWZhbWlseTpBcHRvcyxB
+cHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxz
+YW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpIZXkgTWFydGlu
+LCZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0OyB0ZXh0LWluZGVudDow
+cHg7IG1hcmdpbjowcHg7IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRv
+c19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
+MnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NClRyaWVkIHRoYXQgYXMgYWxtb3N0IGEgZmlyc3QgdGhp
+bmcgYWZ0ZXIgdGhlIGlzc3VlIG9jY3VycmVkLiZuYnNwOyBUaGUgY29tbWFuZCBzdWNjZXNzZnVs
+bHkgcnVucyB3aXRoIG5vIGVycm9yIGJ1dCB0aGUgc2FtZSBpc3N1ZSBwZXJzaXN0cywgd2hlcmUg
+YW55IG90aGVyIGNvbW1hbmQgZ2l2ZXMgbWUgdGhlICZxdW90O0Vycm9yOiBSdW50aW1lRXJyb3I6
+IEIyMDAgdW5rbm93biBwcm9kdWN0IGNvZGU6IDB4ZTNlMCZxdW90OyBtZXNzYWdlLjwvZGl2Pg0K
+PGRpdiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0OyB0ZXh0LWluZGVudDowcHg7IG1hcmdpbjowcHg7
+IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNl
+LENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2Io
+MCwwLDApIj4NCi0tPC9kaXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQ7IHRleHQtaW5k
+ZW50OjBweDsgbWFyZ2luOjBweDsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250
+LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1z
+aXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KTWFyayZuYnNwOzwvZGl2Pg0KPGRpdiBpZD0i
+eF9tXy04Njg0NTg5MTU3MzExMDA0MzExYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0i
+ZGlzcGxheTppbmxpbmUtYmxvY2s7IHdpZHRoOjk4JSI+DQo8ZGl2IGlkPSJ4X21fLTg2ODQ1ODkx
+NTczMTEwMDQzMTFkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwg
+c2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAiIHN0eWxlPSJmb250LXNpemU6MTFwdCI+PGI+RnJv
+bTo8L2I+IE1hcnRpbiBCcmF1biAmbHQ7PGEgaHJlZj0ibWFpbHRvOm1hcnRpbi5icmF1bkBldHR1
+cy5jb20iIHRhcmdldD0iX2JsYW5rIj5tYXJ0aW4uYnJhdW5AZXR0dXMuY29tPC9hPiZndDs8YnI+
+DQo8Yj5TZW50OjwvYj4gRnJpZGF5LCBKdW5lIDI4LCAyMDI0IDU6MjYgQU08YnI+DQo8Yj5Ubzo8
+L2I+IE1hcmsgUm9zZW5iYXVtICZsdDs8YSBocmVmPSJtYWlsdG86bV9yb3NlbkBtaXQuZWR1IiB0
+YXJnZXQ9Il9ibGFuayI+bV9yb3NlbkBtaXQuZWR1PC9hPiZndDs8YnI+DQo8Yj5DYzo8L2I+IDxh
+IGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsi
+PnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb208L2E+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIEJy
+aWNrZWQgQjIxMCBkdWUgdG8gd2lwZWQgRUVQUk9NPC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4N
+CjwvZGl2Pg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj5IaSBNYXJrLDwvZGl2Pg0KPGRp
+dj48YnI+DQo8L2Rpdj4NCjxkaXY+YjJ4eF9meDNfdXRpbHMgLS1pbml0LWRldmljZSBpcyB5b3Vy
+IGZyaWVuZC4gQWZ0ZXIgeW91IHJ1biB0aGF0LCB5b3UgY2FuIHJ1biBgdXNycF9idXJuX21iX2Vl
+cHJvbWAgYWdhaW4gdG8gY29uZmlndXJlIHNlcmlhbCBudW1iZXIgZXRjLjwvZGl2Pg0KPGRpdj48
+YnI+DQo8L2Rpdj4NCjxkaXY+LS1NPGJyPg0KPC9kaXY+DQo8L2Rpdj4NCjxicj4NCjxkaXY+DQo8
+ZGl2IGRpcj0ibHRyIj5PbiBUaHUsIEp1biAyNywgMjAyNCBhdCA4OjQ14oCvUE0gTWFyayBSb3Nl
+bmJhdW0gJmx0OzxhIGhyZWY9Im1haWx0bzptX3Jvc2VuQG1pdC5lZHUiIHRhcmdldD0iX2JsYW5r
+Ij5tX3Jvc2VuQG1pdC5lZHU8L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3Rl
+IHN0eWxlPSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xpZCBy
+Z2IoMjA0LDIwNCwyMDQpOyBwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRy
+Ij4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRv
+c19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
+MnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkhpIEFsbCw8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQt
+ZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGli
+cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
+Ij4NCkkgd2FzIHJlY2VudGx5IHdvcmtpbmcgb24gZml4aW5nIGFuIGlzc3VlIHdpdGggbXkgQjIx
+MCBhbmQgYWNjaWRlbnRhbGx5IHJlLWZsYXNoZWQgdGhlIGJvb3Rsb2FkZXIuIEluIHRoZSBwcm9j
+ZXNzIGl0IHNlZW1zIHRvIGhhdmUgZnVsbHkgd2lwZWQgdGhlIEVFUFJPTSBhbmQgbm93IHdoZW4g
+YXR0ZW1wdGluZyB0byBwZXJmb3JtIGFueSBhY3Rpb24gb24gdGhlIGRldmljZSBJIGdldCB0aGUg
+Zm9sbG93aW5nIGVycm9yOjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0
+b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fu
+cy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KJnF1b3Q7RXJyb3I6
+IFJ1bnRpbWVFcnJvcjogQjIwMCB1bmtub3duIHByb2R1Y3QgY29kZTogMHhlM2UwJnF1b3Q7Ljwv
+ZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFw
+dG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXpl
+OjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSXMgdGhlcmUgYW55IHdheSB0byBnbyBiYWNrIGFu
+ZCByZS1mbGFzaCB0aGUgb3JpZ2luYWwgdmFsdWVzPyZuYnNwOyBJJ3ZlIHRyaWVkIHRvIHVzZSB0
+aGUgdXNycF9idXJuX21iX2VlcHJvbSBjb21tYW5kIHdpdGggdGhlIHJlY292ZXJfbWJfZWVwcm9t
+IGJ1dCBpdCBzdGlsbCBmYWlscyB3aXRoIHRoZSBzYW1lIGVycm9yLjwvZGl2Pg0KPGRpdiBzdHls
+ZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZp
+Y2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJn
+YigwLDAsMCkiPg0KVGhhbmtzLDwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3Ms
+QXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Es
+c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KTWFyazwvZGl2
+Pg0KPC9kaXY+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb208L2E+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVm
+PSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5r
+Ij4NCnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjwvZGl2Pg0KPC9i
+bG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+--_000_SA3PR01MB7967631BE9CD4F7EFC384E3C87D02SA3PR01MB7967prod_--
 
---------------gsN2ZItc95L3GQzjEMOYjL8T
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 28/06/2024 00:44,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:cjohnson@serra=
-nosystems.com">cjohnson@serranosystems.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:RmAlOPxmfbUJYH2Mizc2jE284ofJ3IvOUGkMgjpElg@lists.ettus.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Here is some interesting info that I could not explain. </p>
-      <ul>
-        <li>
-          <p><strong>Ran on server at 200Msps, got S=E2=80=99s with uhd t=
-hread
-              priority at 0.90</strong></p>
-        </li>
-        <li>
-          <p><strong>Ran on server at 100Msps, got S=E2=80=99s with uhd t=
-hread
-              priority at 0.90</strong></p>
-        </li>
-        <li>
-          <p><strong>Ran on server at 6.25Msps, got S=E2=80=99s with uhd =
-thread
-              priority at 0.90</strong></p>
-        </li>
-      </ul>
-      <p>Why would I get S=E2=80=99s at 6.25Msps boggles my mind. This is=
- the
-        192.168.30.2 address.</p>
-    </blockquote>
-    On a hunch, try dropping the MTU on your host PC to 8000, and
-    retrying.=C2=A0 Also, try running the<br>
-    =C2=A0 "benchmark_rate" example, at various --tx_rates=C2=A0 to see w=
-here it
-    starts running into trouble.<br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:RmAlOPxmfbUJYH2Mizc2jE284ofJ3IvOUGkMgjpElg@lists.ettus.com">
-      <p><br>
-      </p>
-      <p>Then on the USRP PC (I think you called it a SOM), keeping mind
-        this is a 2974, with IP 192.168.40.2 address. Remember this is
-        an internal switch.</p>
-      <ul>
-        <li>
-          <p><strong>Ran on USRP PC at 200Msps, got U=E2=80=99s with uhd =
-thread
-              priority at 0.90</strong></p>
-        </li>
-        <li>
-          <p><strong>Ran on USRP PC at 100Msps, no U=E2=80=99s after 12 m=
-in with
-              uhd thread priority at 0.90</strong></p>
-        </li>
-      </ul>
-      <p>Notice NO U=E2=80=99s for 100Msps.</p>
-      <p><strong>While doing this, I noticed some odd behavior.</strong>=C2=
-=A0
-        With Tx running on 40.2 (the USRP PC), I could not start a test
-        on 30.2 (on the server).=C2=A0 30.2 would give an error</p>
-      <p>Error: LookupError: KeyError: No devices found for -----&gt;</p>
-      <p>Empty Device Address</p>
-      <p>Also doing this: uhd_usrp_probe</p>
-      <p>[INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400;
-        UHD_4.4.0</p>
-      <p>Error: LookupError: KeyError: No devices found for -----&gt;</p>
-      <p>Empty Device Address</p>
-      <p>They should run independently?</p>
-      <p><br>
-      </p>
-    </blockquote>
-    The radio can only support a single session at a time.=C2=A0=C2=A0 Tr=
-ying to
-    run two sessions from two different host computers<br>
-    =C2=A0 is absolutely not possible.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:RmAlOPxmfbUJYH2Mizc2jE284ofJ3IvOUGkMgjpElg@lists.ettus.com">
-      <p><br>
-      </p>
-      <p><br>
-      </p>
-      <p><br>
-      </p>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------gsN2ZItc95L3GQzjEMOYjL8T--
-
---===============2245839130323696044==
+--===============5031383258872377959==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -301,4 +389,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2245839130323696044==--
+--===============5031383258872377959==--
