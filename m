@@ -2,71 +2,60 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F29D291E20D
-	for <lists+usrp-users@lfdr.de>; Mon,  1 Jul 2024 16:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AED191E25A
+	for <lists+usrp-users@lfdr.de>; Mon,  1 Jul 2024 16:25:25 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D283F3850CD
-	for <lists+usrp-users@lfdr.de>; Mon,  1 Jul 2024 10:14:15 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6266138535C
+	for <lists+usrp-users@lfdr.de>; Mon,  1 Jul 2024 10:25:24 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1719843255; bh=3ehthZFEdnasvTyhCFsRPI/OnngT4NOAhoMS0a6Spv0=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1719843924; bh=o31g6yR8TgsBIePwv4gmLtFVM6FYEoQjljCAY3MXPbI=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=L4GnfG/rFK3hxSRFGajA8WS8E0xTEjKChW5eBczftakWwIYs/7UTbNYg1FzlzeOQP
-	 5IVip/5c9Kd8E4nwwxaKCPoZNN6WovV+DKDH1T2TJQ/F3FUt9sFxplop6pssaV55oL
-	 RddWBcTDerMU6KX4lM/mgTwedudEcTHAhmpyxZqyov0YKlxOpmyufAfMeXKEQ1vpSn
-	 ik/m89tIrNwK6vdIuhneQ1SGYWIixHKZp6TiOmpXyQDXlsBLVGsF4nRfeDdX2ww+pr
-	 pKqz5q5G4zPE8sxMk2YHUW53Xe69829KfTyL8ZkClAqTEMIzusCKhvu5Ok+N5ig/U2
-	 6fZHiDGXVbDhA==
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id C4869385309
-	for <usrp-users@lists.ettus.com>; Mon,  1 Jul 2024 10:13:35 -0400 (EDT)
+	b=Qwlrm434USIvFeBuLu9NiVxi6atQf2FF3f7pUmqvdMBLjFKOZdGE8q8qB5Gkelm9x
+	 92e8UwiY2s3AmmqKzqHnsNNSlAnkCUYZrBoxsjISCJp3rtyGasQAq4FMh3Y3hmXGmR
+	 YWydOtAipRJJvbfUOe4pt4Wb0z2QCDweWRpStuA4WnaXJqpDV9FQkuNCvevUl4om3W
+	 7NVS5EryeoCHm+FLp/Q9zyoYR8hMTq8s29FDW4Uh52AothNCcg5Yonkb2uXcAuhR7W
+	 vOigDMnX/Kf3dO/6aDIIdv7nJdIEbd5SNIQfoGkQGOK6CO8r/BQC2kNjYQtvVQXY9x
+	 /Qqr96o5xlSDA==
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2109.outbound.protection.outlook.com [40.107.93.109])
+	by mm2.emwd.com (Postfix) with ESMTPS id B99F5385356
+	for <usrp-users@lists.ettus.com>; Mon,  1 Jul 2024 10:24:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="O3HARpJ8";
+	dkim=pass (1024-bit key; unprotected) header.d=mit.edu header.i=@mit.edu header.b="QWrEx9Pc";
 	dkim-atps=neutral
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1f9aeb96b93so20419075ad.3
-        for <usrp-users@lists.ettus.com>; Mon, 01 Jul 2024 07:13:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1719843214; x=1720448014; darn=lists.ettus.com;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=utFfSI0QaJ1qlhMxgvjXeEn9re5YEqettQBvbtUqwKg=;
-        b=O3HARpJ8Rk82MoarHZYo1N4EuoxJ3aVFetcOdjjCzzSZjYR9QYSI/IyocJ7sz1iqRX
-         HcXjdmkNzLkehAsh3swAyYLshutzrbLnDBljvn8OQV1O0TRp65W5Ti4EmL3pG5ZK0Wz5
-         S5y5CxLvCj55khXpzT11cDaeRl7m/cdc4Vrx1rZhQuUfqPdi6pK7s0yHNDNfSGK/OlB4
-         oQmXCXujJaPcZdyleEEFx2qSsu5wh+bm8ddYPOv7Zkl6Wx8NTAPAsaM5Dh3vdm31htue
-         7dQCHQiuXqSilhrycB/uklsZ6kBtp349Co8M+5xRPAQIwHTTLt5abYSmhrzjShKr3tme
-         ZW+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719843214; x=1720448014;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=utFfSI0QaJ1qlhMxgvjXeEn9re5YEqettQBvbtUqwKg=;
-        b=ZSmWaiRbQNCE/qUEZi+bdBQKL3Ym0SvwVTxgjttT5IcZ6xVKYTTff8L9LA1WI7YiUm
-         eAIyWlfG3s+KCjQLqfaVgvKcOuDcnGBmL54o36medM3LDwXzz/ZaruA85AZVQ0v9lSMj
-         ehu2Ac+MxAEwrwe7uDvhaiKPDYQYr9s5t1XCtzZeK/XfiuJA4TSnLQGzljffETF9Io/O
-         eE+0JfQcoPDIsmgD+2MMjyL3o75nCj+Xc7gIOguGUW/DI7tnGPk8IxDCLPnRhrqLwNQp
-         BXQ3SBOgw6y53lEltdyN6iw4KCn5k78j17bLEAAkU3Z1HdTLd0RywR+ih/N/QUn7X37z
-         4g7A==
-X-Gm-Message-State: AOJu0Yxh9R1UA2Scpf94LpRIsQEeef3Ogsp9H0axWahFPp1/Iy9UHBUg
-	Vwr7qJHLCTleDV+qArHbU1Se8TRUsunAL9fP+pmjLw2vuMp1wPG1xC933t8VVtuounkFC4wUdJe
-	vq40=
-X-Google-Smtp-Source: AGHT+IHQVsnPtDMZvg/otyRW1V3iUy1peqYcfatUpgox4KIOJreOnwMwyhzuWtWo0462RFXe5daESA==
-X-Received: by 2002:a17:902:f688:b0:1f9:b121:35f0 with SMTP id d9443c01a7336-1fadbce7c45mr62125415ad.54.1719843213685;
-        Mon, 01 Jul 2024 07:13:33 -0700 (PDT)
-Received: from ?IPV6:2001:16b8:cc4f:6e00:67cd:53b6:da7:527e? ([2001:16b8:cc4f:6e00:67cd:53b6:da7:527e])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac10d1bd8sm65390755ad.10.2024.07.01.07.13.31
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 07:13:32 -0700 (PDT)
-Message-ID: <5112d27f-bc84-4f21-9329-0fc6e77831ea@ettus.com>
-Date: Mon, 1 Jul 2024 16:13:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
-References: <DS0PR01MB79635F144100CD6C4EDE94E087D72@DS0PR01MB7963.prod.exchangelabs.com>
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GDmYlSRJGcxBSvvhGE4/KwccbQ2L+aoUPKmi5B59K3aLtg640S7vmMd77WPdU4Zli43d6F2QQrnwucwf82tuUyl5ikMbH7IXyODjq7XVK92Dp6t2jITwUvUZtce/SPZKLxouJ0ANTQ43oq2OnxCXrReux71BLBmoGO/vskh3UulVTCjc8/+AhDR9cbkUaeCpuy5zuxg4mXKlN4mnhuJRLLQ3MdfeYEpvue+Vg3p7yJEgZ1iUwLy9qNX7x2UqTXBqdQycehEvnySLDnRLmgftNoDu9OqXi02zTWFys0/KRub2bbFrNzt2VtJ4SezQCqlLRPfo4XCdwNYTnX2Y288SsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NS4sZqjCqbRmzWLQ9tcX+xbaU/9VVCEI+Fco+bHoMCw=;
+ b=QHYCOJ0IfhNx2ej8JcHvnTVYuWMb67ghM76YTD+2NhOhSsbT5Ai43xhyzIcLvtttZeuIn0Q5LJywgcjd4Qpf3uRc3rcxtKD1aNF5UVzb1H7/kTcwJ4SzMbXxpZoI75yYWs6Oh7FpEzm4E8J/T+/+GtRqabT1BrJbqHg0Lw9PEjlN+7C8F8VjhYzVirYFZOedDFNYV996LOFFUn5iL9gF0FFCh30TisI1gODPPvqBDjba4X6igBsSgY0STCznIQ5+rUce1u/BIPg43EWrXaV8cbPyfj4pJjKkNJ2E1d7W3SYM1kFqErNmnaBp5FZOiflRQGqiVIfA1Sv73kIDpo7kqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mit.edu; dmarc=pass action=none header.from=mit.edu; dkim=pass
+ header.d=mit.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mit.edu; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NS4sZqjCqbRmzWLQ9tcX+xbaU/9VVCEI+Fco+bHoMCw=;
+ b=QWrEx9PcpqpJzAVdUsJkpbW2akwfMNtXWLhy7VD8WVGsS5tDW8OffZjQ4D45gUlzxQ9vlvjNkcr3K5qHhi5JOZdnyYFvudSiBYPknL45cmzYk/qnq9YYbz2EGvVtfJNzwX7JNL2rCrO54bL+4dEw/TV3vG90LwHkI925eN7Fne4=
+Received: from DS0PR01MB7963.prod.exchangelabs.com (2603:10b6:8:14d::12) by
+ MN0PR01MB7707.prod.exchangelabs.com (2603:10b6:208:37a::22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7719.29; Mon, 1 Jul 2024 14:24:39 +0000
+Received: from DS0PR01MB7963.prod.exchangelabs.com
+ ([fe80::b45c:3f9d:c118:fa14]) by DS0PR01MB7963.prod.exchangelabs.com
+ ([fe80::b45c:3f9d:c118:fa14%4]) with mapi id 15.20.7719.029; Mon, 1 Jul 2024
+ 14:24:39 +0000
+From: Mark Rosenbaum <m_rosen@mit.edu>
+To: =?utf-8?B?TWFyY3VzIE3DvGxsZXI=?= <marcus.mueller@ettus.com>,
+	"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: Bricked B210 due to wiped EEPROM
+Thread-Index: AQHay8DuFuFEFZTO3ESxfKXZdk4dirHh7TrX
+Date: Mon, 1 Jul 2024 14:24:38 +0000
+Message-ID: 
+ <DS0PR01MB796345751E7D472005BFDC1287D32@DS0PR01MB7963.prod.exchangelabs.com>
+References: 
+ <DS0PR01MB79635F144100CD6C4EDE94E087D72@DS0PR01MB7963.prod.exchangelabs.com>
  <CAFOi1A72R2wVz+i7qMLpxYw+1xAwLMhw55emCDQJvCnx3F6FHQ@mail.gmail.com>
  <SA3PR01MB796705BF695CA698FB45A75F87D02@SA3PR01MB7967.prod.exchangelabs.com>
  <CAFOi1A7Ru1JSLE3BrsKpJCs3eFYMy_iSb-7eRCxfAMSt1B_BqA@mail.gmail.com>
@@ -75,700 +64,531 @@ References: <DS0PR01MB79635F144100CD6C4EDE94E087D72@DS0PR01MB7963.prod.exchangel
  <SA3PR01MB79678C8840C684BD0CDB128187D02@SA3PR01MB7967.prod.exchangelabs.com>
  <CAFOi1A5QMRn6cqA0Ctdtwfs3QSzfze9OSe+BrYV=2rM-X1o73Q@mail.gmail.com>
  <DS0PR01MB79634DAAC6C5BAF0BE0A848C87D32@DS0PR01MB7963.prod.exchangelabs.com>
+ <5112d27f-bc84-4f21-9329-0fc6e77831ea@ettus.com>
+In-Reply-To: <5112d27f-bc84-4f21-9329-0fc6e77831ea@ettus.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-In-Reply-To: <DS0PR01MB79634DAAC6C5BAF0BE0A848C87D32@DS0PR01MB7963.prod.exchangelabs.com>
-Message-ID-Hash: 3FFMQDZ4QXDPGUVSH2S5WEGRIGEUQ6TC
-X-Message-ID-Hash: 3FFMQDZ4QXDPGUVSH2S5WEGRIGEUQ6TC
-X-MailFrom: marcus.mueller@ettus.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mit.edu;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR01MB7963:EE_|MN0PR01MB7707:EE_
+x-ms-office365-filtering-correlation-id: c1f9ce8b-8404-42f7-11a7-08dc99d98a76
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|376014|1800799024|366016|4022899009|38070700018;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?cUxjR0dmSXJ3T0I1UnY4UVNxOHNsZ3RYTzhwOXdQbjY5dG1oZjBOSkhYb3NI?=
+ =?utf-8?B?eWoxaDA5c3NjQkQ5R2xjMFRIQ0tTYk8vRTRmTTFpVFY2Mkx4Vm1lTmtlTko3?=
+ =?utf-8?B?RXBkOHRrb3FJWDlCeFdyYUFMd2FXTTJTYXF2SS9aSUVFbGd5YmtNN0gwcHQ2?=
+ =?utf-8?B?MWxxZk8yRS9kUWQxcDVJS0pwRGgrUENUNEc5TjBpdHI3RXpoL1N1UlVvUlNj?=
+ =?utf-8?B?SVl6eUZWUThFL3JsVWl1NVJ3cld1LzVKM3FmU2l4UnBZaWhZUWxabFN1N3Rx?=
+ =?utf-8?B?d2hYTE5mZjlNRWVFaHZEbHFpMjhBVzFybkN4L1U4WHhhZGh0OXloWGdjYTZr?=
+ =?utf-8?B?MFZnRFU4YURUcmU5NkJJWkFDcjZ4M0E4VjFEU3kzY3RvVHUvQzlNR2RWWHo4?=
+ =?utf-8?B?bTBHeG95bGdUMjN0Q0YyZ0xTS0Z4ekZ5c1VuVDZFeG85OStrMkFjdmlVUU9C?=
+ =?utf-8?B?OGdnMUh4WW1WUW9YL1dhVGxlaDBkSHMrRm10UWpZbUVnWVhRQk0wZllibWpY?=
+ =?utf-8?B?QXRESHRiSDZ2Ny9kZnBZYktacjR1UnNLallrVHFIaDlpT3BiNzBzS3cxYWZG?=
+ =?utf-8?B?ZElMc0pWcHpxWi93dnJxU3FVU3FLTWdaWTUydnVsRlVtc29ZdnVlaWZoeTJk?=
+ =?utf-8?B?aURPWU9RbThMbTZyZ2MrK1kwdWJTMytsNE9zemR0T0lUdCsxcEJTUnRxaWcy?=
+ =?utf-8?B?TXVkekNSbHFWN1A1djRhRWJ3WXF3TjRZc24yeEVubTNHNVhtdHloTlhlb0JY?=
+ =?utf-8?B?RnFQRzZvaElmRXBMVjZCL05oRm5nOXpuUWhucjdpd2g3V3RSTTlZZzFOd0E5?=
+ =?utf-8?B?ckcwczI3YXRkdWgrUDdDaXIyZU1ubzc5MTRzN284M0d5MTBUTkdCRVBEVlow?=
+ =?utf-8?B?djd1dDZ3clZDQUF6UW1KSXE2Y1JSVm1KanFCSFQ4MnJaT0JUZk1tdXora0ZK?=
+ =?utf-8?B?RlM0a3NlYkY4VWZjV2tid1dMOElidHhxb2xtWXV0OEpqalY0SHNYVG9FOS9v?=
+ =?utf-8?B?LzRlZ1pxUVJvckx1TGxjMGltb0VacGtSeWJZL2dDektiRi9HdnQ4dTV5NGNk?=
+ =?utf-8?B?S0RRY1hUOWZaZWVnWk5GeU03SWFyNXlpeFloWjlEaCtKaEt6OFdkZUJkaGJp?=
+ =?utf-8?B?enpENUVHYzRCalFSOVNHSUFYaWYybGo2eE9ZUTMyeC9PSlMwNjU5aThvN1Nk?=
+ =?utf-8?B?Y1hxY1hOQ2hnNHU4Y3d0QWJJVzZYNnNncWFXcWtKQVc3U0dCVlpPd3NWZE1K?=
+ =?utf-8?B?NlJQMGJ0Sko0UEJlN1pUVkZkT0E5THNRVUlpblcwMUwzV1RyR0huL1V1WjJk?=
+ =?utf-8?B?WHhENW9hc3EzVEU4eTRNbGRZR3IyRWRldVVnYkFHSGY5VHh4SzBzVTdPdWlR?=
+ =?utf-8?B?ZEdvY0xFbXpyc1lLU0dmY0dhOXBTNUhPVkFSWFpESmJ4UjZLUFF2TFJmUWcy?=
+ =?utf-8?B?VDFEV3dLekNpSk1TSG8yek1oVTFuRVFQbWhObnJtWDhVU1I0Ui8yUTRRRGpG?=
+ =?utf-8?B?ZlI1ZS9Ec1JvNDB5QmYwZjR0TWVFamhaR0h0NVRYeVFrcnpDVEkrZTh0aXR6?=
+ =?utf-8?B?K2FaN2NEOURhenBHdFNJQUk3Z2pqRUl6aE03VG55aUZ0R2dDVE9JVDZpa2Zp?=
+ =?utf-8?B?eDVQa251dWdMeU5ycEorVVpaK0FyZ2Q5eHRzNmNrMXdpWXh5cHZnVkUzVXRJ?=
+ =?utf-8?B?ejE4QytDWExSclZocWZZcitjR1NEWWl5anROcGxhV09tZXdzK1kwRzhENHB3?=
+ =?utf-8?B?Z1VnUlhEWnVKenRWYzRqZW0xbXpONVBxSlJWVnM4ZFp4Z25MRW1ZZXM0T2ln?=
+ =?utf-8?Q?s//qZiKit7d0+rMhIxBpChjqvhbxxvkYwj0jY=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR01MB7963.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(4022899009)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?NHFMWmJIRzhPYk95QjZ0OXJMK0tYNW9FdGgyTDM4QnFrZFFCUm84NUk1cjdi?=
+ =?utf-8?B?cGZRdlB3d0NENkZRUm4reWJUYnlJbXZvZmZqY2s1Nk40eGoxNThWaFpmWHJa?=
+ =?utf-8?B?bmdGRVVxVUdiNWNldjkyd0NqSFg1ZTU2czljeEJ0c3R3VzZVLzRSVVo5N3p6?=
+ =?utf-8?B?aXFVTWpvUy9ZTnVZOW42T3lpMXMrYUhhRjhSNnRKK2pUSE4zSFlxR2VMNy9W?=
+ =?utf-8?B?bE1iOW03eHBmWmVKNjRLeGJvYkZwQnVvZjZlQk9yMDkxM1dQSjdZYU9VMkRz?=
+ =?utf-8?B?S2dXZW1vNGFCemNheVVNNkQybUJnSjNIVTNpWm0xS3FQU01jVUV1Q3VtTFNk?=
+ =?utf-8?B?SEw1bm00Z2tOd2dDdnFDaVBaLytDZkdxMDEwdkJHekJUTlZ5SEEyWHVLOXlJ?=
+ =?utf-8?B?bzJETmNmeEdyWWJGTTQxaGtJVS9yekZyVnlWbDYyVGFiMlIrNzBJckpJTDNz?=
+ =?utf-8?B?eHQ1T29QZXhGMmlLQjJyWXhIYXo2MXpYa3JKK0VzclRyYVhMWk1zV2JYbjN1?=
+ =?utf-8?B?bXdjT0tFdFRCdEwyN1M1ZXlnR25QUi9ZZkhzVEUzUkhjWlZGY2ZNT1czd3BU?=
+ =?utf-8?B?NzcyWHZDS1A3bkk5QXFwdC9yT1N2MVQvbVNRKzFhUHF1QTBFeEFjSGNWQzlQ?=
+ =?utf-8?B?alVqbTJKR0N3ZjJYbk54RDF6V2VRRDRvSkFmUis2QXorQ2Z0UXFrRElDdlZp?=
+ =?utf-8?B?OHZLZVNzdmcycTM0YU4ySFhHRlBwazJYL2tNdGVrblFkZVMycHVOT1lvdXZm?=
+ =?utf-8?B?VE91T1FrYjNkMHZQZTUwWldVemZnaWswSG44eVFpRTN5aWxlaEFXWVcwR3Ft?=
+ =?utf-8?B?NmtqV3ordHowUUozRUFGLzAwM1BSc01UZithYjNBekI1TVJ6aXgyTGN3VzRB?=
+ =?utf-8?B?MkFiaU5aTDZzMWJacllQTXdhYWg5Q1dsM2NuN3E2YWEwdUJuWWx1QlVycVZ6?=
+ =?utf-8?B?L05ZODNENXVWeDhFRzF5NnplbEJKOEdoejBsRmdtLzRIdXg0Vy9pKytvTHVZ?=
+ =?utf-8?B?WTVpU3lybVFRM2RsSUorTjZxeUV6ZTF1YXgwVnhqTU1XbG5GTzREais3S0s5?=
+ =?utf-8?B?YmZNNEtrMmtZbDRxczJ3MHBwTmdyb2ViblI3VU9BckRxeGtjK1dvU0YvRVFR?=
+ =?utf-8?B?TjZ0V05tK3NxcHcvd2ZZQ29ZZU5tRjZqYWRoM3ZXTDVwd2xLb2p6WC9FUDBw?=
+ =?utf-8?B?cmhQNXJEdlhldUdmVzRadExpL2Y1K2YwNE5pWEx2bFpzTnc4L2p4WHVmYndF?=
+ =?utf-8?B?bGpWRDRmcitlRUlLTXhMTXYvdlVmdkJtZjJXS1VHTWRrS3Izc1NoM1lrWWFH?=
+ =?utf-8?B?ZGFzcHdic0kxZi82STRiVGxMcmp4MFdISFpzMEhLRlJMeVdNNnBIaGEvVVEx?=
+ =?utf-8?B?TXZIdjhuYmE3UUhvbDZWMnovcVpIZUlHR1RicEN4V0VQdkhQaDNNL0g1VkRE?=
+ =?utf-8?B?L29SMllVNFpXQlpRc29wRXN5YnZsc1lWRWE5TTZYVDBXUHI1aDh6Q1NuNmZw?=
+ =?utf-8?B?eVljenBJZnhiQk9SWmVQZWp0VXlrRHFMSEJUQ09VejEwNXZqYjYva2J1NE9t?=
+ =?utf-8?B?S2JwVDVmeEJ2cXZlS0FYbWtRa0RkenNNZW5xOWJGWG4relNsNW1UQkI3WEht?=
+ =?utf-8?B?UlcrVk9laWUzT3BRZlA0MHQyZG5SYmRza1V4YlU0QTdRR2JOdElVUkExOXlI?=
+ =?utf-8?B?YmJwVTFDTE8xQzhqcEs0UzYybzYvd3pXSExvU0YyV1I2WTNPcEJNTU5lUlg2?=
+ =?utf-8?B?Y2VqdlJTa1BsSzZvSCtXbzFJdXJNdDN5VWdBa08zNGxocVQzc1c1V01DbUlx?=
+ =?utf-8?B?dHIwUEl2ekUzUnVrd2duQzN3K0luczk5Sy9yWU9NNnQvWE5mOWFmZHFpaUNj?=
+ =?utf-8?B?VjRnZGIremllWXVEZmNXWWJWRGxDeE0vUjBQQmVqVGY3cVdzbCs0ZTRSTWYr?=
+ =?utf-8?B?WnI3TUVDRkt4MWxQd2tMa1BjcGFVeVkrdmRJdVBvNlE5WkpEdktnNlVETWRD?=
+ =?utf-8?B?OGZMNkc0bzZsVnZJbWErendQQnFhY1pZSmZuZ05OYmRmZFYvRy81ZXJxbGJi?=
+ =?utf-8?B?WUVsRWVjUFQzYVQ1TGllSWNVZHpYVWZJOW0vTzdabzVtV0tUMHh4NU9yZ3Rp?=
+ =?utf-8?Q?Bzcw=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: mit.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR01MB7963.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1f9ce8b-8404-42f7-11a7-08dc99d98a76
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2024 14:24:38.9697
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 64afd9ba-0ecf-4acf-bc36-935f6235ba8b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7LpK3yPEMxXmd76A8B7/xQaC3oh0WJ0Rc+0ey+JwT8jYMT7qQCl7W6WToRqZoYfo
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR01MB7707
+Message-ID-Hash: XMWEFWVHJD46NTIKWJ4WG2LDYKO6ASCL
+X-Message-ID-Hash: XMWEFWVHJD46NTIKWJ4WG2LDYKO6ASCL
+X-MailFrom: m_rosen@mit.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Bricked B210 due to wiped EEPROM
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3FFMQDZ4QXDPGUVSH2S5WEGRIGEUQ6TC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VUUHX5OVPYIIWNLR2W4SZHYY3ONWFZNI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6586411478005093267=="
+Content-Type: multipart/mixed; boundary="===============7143012267099555802=="
 
-This is a multi-part message in MIME format.
---===============6586411478005093267==
-Content-Type: multipart/alternative;
- boundary="------------ut9MMQwzs5Zmv4635zdF0Ybh"
+--===============7143012267099555802==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DS0PR01MB796345751E7D472005BFDC1287D32DS0PR01MB7963prod_"
 
-This is a multi-part message in MIME format.
---------------ut9MMQwzs5Zmv4635zdF0Ybh
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--_000_DS0PR01MB796345751E7D472005BFDC1287D32DS0PR01MB7963prod_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Mark,
+TWFyY3VzLA0KDQpZaWtlcywgZ290IGl0LiAgSSdsbCBrZWVwIHdvcmtpbmcgYXQgaXQgZm9yIGEg
+Yml0IGJlZm9yZSBJIGdpdmUgdXAgYnV0IGl0IGRvZXNuJ3Qgc291bmQgbGlrZSBJJ2xsIGhhdmUg
+bXVjaCBsdWNrLg0KDQpUaGFua3MgZm9yIGFsbCB0aGUgaGVscCB5b3UndmUgZ2l2ZW4sDQpNYXJr
+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KRnJvbTogTWFyY3VzIE3DvGxsZXIg
+PG1hcmN1cy5tdWVsbGVyQGV0dHVzLmNvbT4NClNlbnQ6IE1vbmRheSwgSnVseSAxLCAyMDI0IDEw
+OjEzIEFNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPg0KU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBCcmlja2VkIEIyMTAgZHVlIHRv
+IHdpcGVkIEVFUFJPTQ0KDQoNCkhpIE1hcmssDQoNCg0KQm9hcmQgcmV2aXNpb24gaXMgcmVsYXRp
+dmVseSBlYXN5IHRvIG5hcnJvdyBkb3duOiBpcyB5b3VyIGJvYXJkIHdoaXRlIG9yIGdyZWVuPyBJ
+ZiBncmVlbiwgeWVhaCwgNSwgdmVyeSBsaWtlbHkuDQoNCg0KPiBJcyB0aGVyZSBhbnkgd2F5IHRv
+IGRlYnVnIHdoYXQgdGhlIGlzc3VlIHRydWx5IGlzPw0KDQoNCmdvaW5nIHRvIGJlIGhhcmQ7IHVz
+dWFsbHksIHRoaXMgaXMgdGhlIHBvaW50IHdoZXJlIHdlIGhvbmVzdGx5IHNheSB3ZSBjYW4ndC4N
+Cg0KDQpKdXN0IHRvIGdpdmUgeW91IGFuIHVuZGVyc3RhbmRpbmcsIDUgPT0gRlgzX1NUQVRFX1VO
+Q09ORklHVVJFRC4gWW91IGNhbiBmaW5kIGFsbCB0aGUgcGF0aHMgd2hlcmUgdGhhdCBjYW4gaW4g
+YjIwMF9tYWluLmMgaW4gdGhlIHVoZC9maXJtd2FyZSBzb3VyY2UgdHJlZS4gVGhpcyBtaWdodCBi
+ZSBzb21ldGhpbmcgYXMgZnVuZGFtZW50YWwgYXMgdGhlIEZQR0EgbmV2ZXIgc2lnbmFsbGluZyBp
+dCBmaW5pc2hlZCBwcm9ncmFtbWluZy4gVGhhdCB3b3VsZCB1c3VhbGx5IGluZGljYXRlIGEgaGFy
+ZHdhcmUgZmFpbHVyZSB0aGF0ICptaWdodCogYmUgZml4YWJsZSBieSByZXdvcmtpbmcgdGhlIGJv
+YXJkLCBvciBieSByZXBsYWNpbmcgdGhlIEZQR0EsIG9yIHJlcGxhY2luZyB0aGUgRlgzLCBvciBi
+eSBzb21ldGhpbmcgZWxzZS4NCg0KDQpTb3JyeSwNCk1hcmN1cw0KDQoNCg0KT24gMDEuMDcuMjQg
+MTU6MzksIE1hcmsgUm9zZW5iYXVtIHdyb3RlOg0KRGFybiwgdGhhdCdzIHJlYWxseSB1bmZvcnR1
+bmF0ZS4gIElzIHRoZXJlIGFueSB3YXkgdG8gZGVidWcgd2hhdCB0aGUgaXNzdWUgdHJ1bHkgaXM/
+DQotLQ0KTWFyaw0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IE1hcnRp
+biBCcmF1biA8bWFydGluLmJyYXVuQGV0dHVzLmNvbT48bWFpbHRvOm1hcnRpbi5icmF1bkBldHR1
+cy5jb20+DQpTZW50OiBNb25kYXksIEp1bHkgMSwgMjAyNCAzOjUyIEFNDQpUbzogTWFyayBSb3Nl
+bmJhdW0gPG1fcm9zZW5AbWl0LmVkdT48bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4NCkNjOiB1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT48bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBCcmlja2VkIEIyMTAgZHVlIHRvIHdp
+cGVkIEVFUFJPTQ0KDQpTb3JyeSwgdGhhdCBlcnJvciBjYW4gbWVhbiBhIGJ1bmNoIG9mIHRoaW5n
+cy4gSXQgbWlnaHQgYmUgZmF1bHR5IGhhcmR3YXJlLCB1bmZvcnR1bmF0ZWx5Lg0KDQotLU0NCg0K
+T24gRnJpLCBKdW4gMjgsIDIwMjQgYXQgNjoxOeKAr1BNIE1hcmsgUm9zZW5iYXVtIDxtX3Jvc2Vu
+QG1pdC5lZHU8bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4+IHdyb3RlOg0KTWFydGluLA0KSSBhY3R1
+YWxseSByZS1yYW4gdGhlIGNvbW1hbmQgeW91IGFza2VkIG1lIHRvbyBhZ2FpbiBqdXN0IHRvIG1h
+a2Ugc3VyZSBhbmQgSSBoYXZlIGEgZGlmZmVyZW50IGVycm9yIG5vdyEoTm90IHN1cmUgaWYgdGhh
+dCdzIGdvb2Qgb3IgYmFkIHRob3VnaC4pICBUaGUgbmV3IGVycm9yIGlzIGFjdHVhbGx5IG15IG9y
+aWdpbmFsIGVycm9yIEkgd2FzIHRyeWluZyB0byBmaXggd2hpY2ggZ290IG1lIGludG8gdGhpcyB3
+aG9sZSBtZXNzLiBUaGUgbWVzc2FnZSBpcyAiRXJyb3I6IFJ1bnRpbWVFcnJvcjogZngzIGlzIGlu
+IHN0YXRlIDUiLiAgQW55IGlkZWEgd2hlcmUgdG8gZ28gZnJvbSBoZXJlPw0KLS0NCk1hcmsNCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBNYXJ0aW4gQnJhdW4gPG1hcnRp
+bi5icmF1bkBldHR1cy5jb208bWFpbHRvOm1hcnRpbi5icmF1bkBldHR1cy5jb20+Pg0KU2VudDog
+RnJpZGF5LCBKdW5lIDI4LCAyMDI0IDEyOjEyIFBNDQpUbzogTWFyayBSb3NlbmJhdW0gPG1fcm9z
+ZW5AbWl0LmVkdTxtYWlsdG86bV9yb3NlbkBtaXQuZWR1Pj4NCkNjOiB1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IDx1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0KU3Vi
+amVjdDogUmU6IFtVU1JQLXVzZXJzXSBCcmlja2VkIEIyMTAgZHVlIHRvIHdpcGVkIEVFUFJPTQ0K
+DQpZZWFoIHRoYXQncyBwcm9iYWJseSB0aGUgbGFzdCByZXNvcnQuIEp1c3QgaGFyZC1jb2RlIGFs
+bCBwcm9kdWN0IElEcyBhbmQgd2hhdG5vdCB1bnRpbCBpdCB3b3Jrcy4gR29vZCBsdWNrIQ0KDQot
+LU0NCg0KT24gRnJpLCBKdW4gMjgsIDIwMjQgYXQgNTo1MuKAr1BNIE1hcmsgUm9zZW5iYXVtIDxt
+X3Jvc2VuQG1pdC5lZHU8bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4+IHdyb3RlOg0KTWFydGluLA0K
+SnVzdCB0cmllZCBleGFjdGx5IHRoYXQgdG8gbm8gYXZhaWwuICBHaXZlcyB0aGUgZXhhY3Qgc2Ft
+ZSBlcnJvci4gIElzIHRoZXJlIGFueSB3YXkgdG8gbWF5YmUgbW9kaWZ5IHRoZSBwcm9ncmFtIGFu
+ZCByZWNvbXBpbGUgdG8gYnlwYXNzIGVycm9yL3Byb2R1Y3QgY29kZSBjaGVja2luZz8gIEl0IGxv
+b2tzIHRvIG1lIGxpa2UgdGhlIGNoZWNrIGlzIGZvdW5kIG9uIGxpbmUgMTQ5IG9mIGIyMDBfaW1w
+bC5jcHAoaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvYTVlZDE4NzJi
+ZTZkMGZjMzZkZTlhN2UwYjUwODkzM2RhMWYxMTliYy9ob3N0L2xpYi91c3JwL2IyMDAvYjIwMF9p
+bXBsLmNwcCNMMTQ5QzEtTDE0OUMzKSwgYnV0IEkgbWF5IGJlIHdyb25nLg0KLS0NCk1hcmsNCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBNYXJ0aW4gQnJhdW4gPG1hcnRp
+bi5icmF1bkBldHR1cy5jb208bWFpbHRvOm1hcnRpbi5icmF1bkBldHR1cy5jb20+Pg0KU2VudDog
+RnJpZGF5LCBKdW5lIDI4LCAyMDI0IDExOjQyIEFNDQpUbzogTWFyayBSb3NlbmJhdW0gPG1fcm9z
+ZW5AbWl0LmVkdTxtYWlsdG86bV9yb3NlbkBtaXQuZWR1Pj4NClN1YmplY3Q6IFJlOiBbVVNSUC11
+c2Vyc10gQnJpY2tlZCBCMjEwIGR1ZSB0byB3aXBlZCBFRVBST00NCg0KVHJ5IHNwZWNpZnlpbmcg
+YWJzb2x1dGVseSBldmVyeXRoaW5nIG9uIHRoZSBjb21tYW5kIGxpbmU6DQoNCg0KLi91c3JwX2J1
+cm5fbWJfZWVwcm9tIC0tYXJncz0iZnBnYT0vcGF0aC90by9mcGdhL3VzcnBfYjIxMF9mcGdhLmJp
+biIgLS12YWx1ZXMgcmV2aXNpb249PFJFVj4scHJvZHVjdD08UFJPRFVDVF9JRD4sc2VyaWFsPTxT
+RVJJQUw+LG5hbWU9ImIyMDBuYW1lIg0KDQoNCg0KU2VyaWFsIG51bWJlciBpcyBvbiB0aGUgUENC
+LiBQUk9EVUNUX0lEIGlzIDEsIEkgdGhpbmsgZm9yIEIyMTAgKHNlZSBodHRwczovL2dpdGh1Yi5j
+b20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9saWIvdXNycC9iMjAwL2IyMDBf
+aWZhY2UuaHBwI0wyMCkuIFJldmlzaW9uIGlzIGVuY29kZWQgc29tZXdoZXJlIG9uIHRoZSBQQ0Is
+IEknbSBub3Qgc3VyZSAtLSBqdXN0IHB1dCA1IGhlcmUgYW5kIHNlZSBpZiB0aGluZ3Mgd29yay4g
+TmFtZSBpcyB1cCB0byB5b3Ugb2YgY291cnNlLg0KDQoNCg0KVGhlIG1vc3QgaW1wb3J0YW50IHRo
+aW5nIGlzIHRoZSBjb3JyZWN0IEZQR0EgYmluLWZpbGUuDQoNCg0KDQotLU0NCg0KDQpPbiBGcmks
+IEp1biAyOCwgMjAyNCBhdCAzOjA14oCvUE0gTWFyayBSb3NlbmJhdW0gPG1fcm9zZW5AbWl0LmVk
+dTxtYWlsdG86bV9yb3NlbkBtaXQuZWR1Pj4gd3JvdGU6DQpIZXkgTWFydGluLA0KVHJpZWQgdGhh
+dCBhcyBhbG1vc3QgYSBmaXJzdCB0aGluZyBhZnRlciB0aGUgaXNzdWUgb2NjdXJyZWQuICBUaGUg
+Y29tbWFuZCBzdWNjZXNzZnVsbHkgcnVucyB3aXRoIG5vIGVycm9yIGJ1dCB0aGUgc2FtZSBpc3N1
+ZSBwZXJzaXN0cywgd2hlcmUgYW55IG90aGVyIGNvbW1hbmQgZ2l2ZXMgbWUgdGhlICJFcnJvcjog
+UnVudGltZUVycm9yOiBCMjAwIHVua25vd24gcHJvZHVjdCBjb2RlOiAweGUzZTAiIG1lc3NhZ2Uu
+DQotLQ0KTWFyaw0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IE1hcnRp
+biBCcmF1biA8bWFydGluLmJyYXVuQGV0dHVzLmNvbTxtYWlsdG86bWFydGluLmJyYXVuQGV0dHVz
+LmNvbT4+DQpTZW50OiBGcmlkYXksIEp1bmUgMjgsIDIwMjQgNToyNiBBTQ0KVG86IE1hcmsgUm9z
+ZW5iYXVtIDxtX3Jvc2VuQG1pdC5lZHU8bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4+DQpDYzogdXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+PiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPj4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gQnJpY2tlZCBCMjEwIGR1ZSB0byB3
+aXBlZCBFRVBST00NCg0KSGkgTWFyaywNCg0KYjJ4eF9meDNfdXRpbHMgLS1pbml0LWRldmljZSBp
+cyB5b3VyIGZyaWVuZC4gQWZ0ZXIgeW91IHJ1biB0aGF0LCB5b3UgY2FuIHJ1biBgdXNycF9idXJu
+X21iX2VlcHJvbWAgYWdhaW4gdG8gY29uZmlndXJlIHNlcmlhbCBudW1iZXIgZXRjLg0KDQotLU0N
+Cg0KT24gVGh1LCBKdW4gMjcsIDIwMjQgYXQgODo0NeKAr1BNIE1hcmsgUm9zZW5iYXVtIDxtX3Jv
+c2VuQG1pdC5lZHU8bWFpbHRvOm1fcm9zZW5AbWl0LmVkdT4+IHdyb3RlOg0KSGkgQWxsLA0KSSB3
+YXMgcmVjZW50bHkgd29ya2luZyBvbiBmaXhpbmcgYW4gaXNzdWUgd2l0aCBteSBCMjEwIGFuZCBh
+Y2NpZGVudGFsbHkgcmUtZmxhc2hlZCB0aGUgYm9vdGxvYWRlci4gSW4gdGhlIHByb2Nlc3MgaXQg
+c2VlbXMgdG8gaGF2ZSBmdWxseSB3aXBlZCB0aGUgRUVQUk9NIGFuZCBub3cgd2hlbiBhdHRlbXB0
+aW5nIHRvIHBlcmZvcm0gYW55IGFjdGlvbiBvbiB0aGUgZGV2aWNlIEkgZ2V0IHRoZSBmb2xsb3dp
+bmcgZXJyb3I6DQoiRXJyb3I6IFJ1bnRpbWVFcnJvcjogQjIwMCB1bmtub3duIHByb2R1Y3QgY29k
+ZTogMHhlM2UwIi4NCklzIHRoZXJlIGFueSB3YXkgdG8gZ28gYmFjayBhbmQgcmUtZmxhc2ggdGhl
+IG9yaWdpbmFsIHZhbHVlcz8gIEkndmUgdHJpZWQgdG8gdXNlIHRoZSB1c3JwX2J1cm5fbWJfZWVw
+cm9tIGNvbW1hbmQgd2l0aCB0aGUgcmVjb3Zlcl9tYl9lZXByb20gYnV0IGl0IHN0aWxsIGZhaWxz
+IHdpdGggdGhlIHNhbWUgZXJyb3IuDQpUaGFua3MsDQpNYXJrDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxp
+c3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQoN
+Cg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFp
+bCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1s
+ZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQoNCg==
 
+--_000_DS0PR01MB796345751E7D472005BFDC1287D32DS0PR01MB7963prod_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Board revision is relatively easy to narrow down: is your board white or =
-green? If green,=20
-yeah, 5, very likely.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
+IiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgdGV4dC1pbmRlbnQ6IDBweDsgbWFyZ2luOiAwcHg7
+IGZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2
+aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29s
+b3I6IHJnYigwLCAwLCAwKTsiPg0KTWFyY3VzLDwvZGl2Pg0KPGRpdiBzdHlsZT0idGV4dC1hbGln
+bjogbGVmdDsgdGV4dC1pbmRlbnQ6IDBweDsgbWFyZ2luOiAwcHg7IGZvbnQtZmFtaWx5OiBBcHRv
+cywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2
+ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsi
+Pg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWluZGVu
+dDogMHB4OyBtYXJnaW46IDBweDsgZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZv
+bnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsg
+Zm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpZaWtlcywgZ290IGl0LiZu
+YnNwOyBJJ2xsIGtlZXAgd29ya2luZyBhdCBpdCBmb3IgYSBiaXQgYmVmb3JlIEkgZ2l2ZSB1cCBi
+dXQgaXQgZG9lc24ndCBzb3VuZCBsaWtlIEknbGwgaGF2ZSBtdWNoIGx1Y2suJm5ic3A7Jm5ic3A7
+PC9kaXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWluZGVudDogMHB4OyBt
+YXJnaW46IDBweDsgZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9z
+X01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
+OiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9
+InRleHQtYWxpZ246IGxlZnQ7IHRleHQtaW5kZW50OiAwcHg7IG1hcmdpbjogMHB4OyBmb250LWZh
+bWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2Fs
+aWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2Io
+MCwgMCwgMCk7Ij4NClRoYW5rcyBmb3IgYWxsIHRoZSBoZWxwIHlvdSd2ZSBnaXZlbiw8L2Rpdj4N
+CjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgdGV4
+dC1pbmRlbnQ6IDBweDsgbWFyZ2luOiAwcHg7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1i
+ZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMt
+c2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KTWFyayZuYnNw
+OzwvZGl2Pg0KPGRpdiBpZD0iYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxh
+eTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIiB0YWJpbmRleD0iLTEiPg0KPGRpdiBpZD0iZGl2UnBs
+eUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIHN0eWxl
+PSJmb250LXNpemU6MTFwdCIgY29sb3I9IiMwMDAwMDAiPjxiPkZyb206PC9iPiBNYXJjdXMgTcO8
+bGxlciAmbHQ7bWFyY3VzLm11ZWxsZXJAZXR0dXMuY29tJmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBN
+b25kYXksIEp1bHkgMSwgMjAyNCAxMDoxMyBBTTxicj4NCjxiPlRvOjwvYj4gdXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20gJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxi
+PlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10gUmU6IEJyaWNrZWQgQjIxMCBkdWUgdG8gd2lwZWQg
+RUVQUk9NPC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwPkhpIE1h
+cmssPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+Qm9hcmQgcmV2aXNpb24gaXMgcmVsYXRpdmVseSBl
+YXN5IHRvIG5hcnJvdyBkb3duOiBpcyB5b3VyIGJvYXJkIHdoaXRlIG9yIGdyZWVuPyBJZiBncmVl
+biwgeWVhaCwgNSwgdmVyeSBsaWtlbHkuDQo8YnI+DQo8L3A+DQo8cD48YnI+DQo8L3A+DQo8cD4m
+Z3Q7IElzIHRoZXJlIGFueSB3YXkgdG8gZGVidWcgd2hhdCB0aGUgaXNzdWUgdHJ1bHkgaXM/PC9w
+Pg0KPHA+PGJyPg0KPC9wPg0KPHA+Z29pbmcgdG8gYmUgaGFyZDsgdXN1YWxseSwgdGhpcyBpcyB0
+aGUgcG9pbnQgd2hlcmUgd2UgaG9uZXN0bHkgc2F5IHdlIGNhbid0LiA8YnI+DQo8L3A+DQo8cD48
+YnI+DQo8L3A+DQo8cD5KdXN0IHRvIGdpdmUgeW91IGFuIHVuZGVyc3RhbmRpbmcsIDUgPT0gRlgz
+X1NUQVRFX1VOQ09ORklHVVJFRC4gWW91IGNhbiBmaW5kIGFsbCB0aGUgcGF0aHMgd2hlcmUgdGhh
+dCBjYW4gaW4gYjIwMF9tYWluLmMgaW4gdGhlIHVoZC9maXJtd2FyZSBzb3VyY2UgdHJlZS4gVGhp
+cyBtaWdodCBiZSBzb21ldGhpbmcgYXMgZnVuZGFtZW50YWwgYXMgdGhlIEZQR0EgbmV2ZXIgc2ln
+bmFsbGluZyBpdCBmaW5pc2hlZCBwcm9ncmFtbWluZy4gVGhhdCB3b3VsZA0KIHVzdWFsbHkgaW5k
+aWNhdGUgYSBoYXJkd2FyZSBmYWlsdXJlIHRoYXQgKm1pZ2h0KiBiZSBmaXhhYmxlIGJ5IHJld29y
+a2luZyB0aGUgYm9hcmQsIG9yIGJ5IHJlcGxhY2luZyB0aGUgRlBHQSwgb3IgcmVwbGFjaW5nIHRo
+ZSBGWDMsIG9yIGJ5IHNvbWV0aGluZyBlbHNlLg0KPGJyPg0KPC9wPg0KPHA+PGJyPg0KPC9wPg0K
+PHA+U29ycnksPGJyPg0KTWFyY3VzPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+PGJyPg0KPC9wPg0K
+PGRpdiBjbGFzcz0ieF9tb3otY2l0ZS1wcmVmaXgiPk9uIDAxLjA3LjI0IDE1OjM5LCBNYXJrIFJv
+c2VuYmF1bSB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPjxzdHls
+ZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9ImRpc3BsYXk6bm9uZSI+DQo8IS0tDQpwDQoJe21hcmdp
+bi10b3A6MDsNCgltYXJnaW4tYm90dG9tOjB9DQotLT4NCjwvc3R5bGU+DQo8ZGl2IGNsYXNzPSJ4
+X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRG
+b250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9u
+dC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KRGFybiwgdGhhdCdzIHJlYWxseSB1bmZv
+cnR1bmF0ZS4mbmJzcDsgSXMgdGhlcmUgYW55IHdheSB0byBkZWJ1ZyB3aGF0IHRoZSBpc3N1ZSB0
+cnVseSBpcz88L2Rpdj4NCjxkaXYgY2xhc3M9InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250
+LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxp
+YnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCww
+KSI+DQotLTwvZGl2Pg0KPGRpdiBjbGFzcz0ieF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQt
+ZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGli
+cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
+Ij4NCk1hcms8L2Rpdj4NCjxociB0YWJpbmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5OmlubGluZS1i
+bG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9InhfZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxm
+b250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIGNvbG9yPSIjMDAwMDAwIiBzdHlsZT0iZm9u
+dC1zaXplOjExcHQiPjxiPkZyb206PC9iPiBNYXJ0aW4gQnJhdW4NCjxhIGNsYXNzPSJ4X21vei10
+eHQtbGluay1yZmMyMzk2RSIgaHJlZj0ibWFpbHRvOm1hcnRpbi5icmF1bkBldHR1cy5jb20iPiZs
+dDttYXJ0aW4uYnJhdW5AZXR0dXMuY29tJmd0OzwvYT48YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5
+LCBKdWx5IDEsIDIwMjQgMzo1MiBBTTxicj4NCjxiPlRvOjwvYj4gTWFyayBSb3NlbmJhdW0gPGEg
+Y2xhc3M9InhfbW96LXR4dC1saW5rLXJmYzIzOTZFIiBocmVmPSJtYWlsdG86bV9yb3NlbkBtaXQu
+ZWR1Ij4NCiZsdDttX3Jvc2VuQG1pdC5lZHUmZ3Q7PC9hPjxicj4NCjxiPkNjOjwvYj4gPGEgY2xh
+c3M9InhfbW96LXR4dC1saW5rLWFiYnJldmlhdGVkIiBocmVmPSJtYWlsdG86dXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20iPg0KdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+IDxhIGNsYXNz
+PSJ4X21vei10eHQtbGluay1yZmMyMzk2RSIgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tIj4NCiZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8L2E+PGJyPg0K
+PGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gQnJpY2tlZCBCMjEwIGR1ZSB0byB3aXBl
+ZCBFRVBST008L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBk
+aXI9Imx0ciI+DQo8ZGl2PlNvcnJ5LCB0aGF0IGVycm9yIGNhbiBtZWFuIGEgYnVuY2ggb2YgdGhp
+bmdzLiBJdCBtaWdodCBiZSBmYXVsdHkgaGFyZHdhcmUsIHVuZm9ydHVuYXRlbHkuPC9kaXY+DQo8
+ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4tLU08YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPGJyPg0KPGRp
+diBjbGFzcz0ieF94X2dtYWlsX3F1b3RlIj4NCjxkaXYgZGlyPSJsdHIiIGNsYXNzPSJ4X3hfZ21h
+aWxfYXR0ciI+T24gRnJpLCBKdW4gMjgsIDIwMjQgYXQgNjoxOeKAr1BNIE1hcmsgUm9zZW5iYXVt
+ICZsdDs8YSBocmVmPSJtYWlsdG86bV9yb3NlbkBtaXQuZWR1IiBjbGFzcz0ieF9tb3otdHh0LWxp
+bmstZnJlZXRleHQiPm1fcm9zZW5AbWl0LmVkdTwvYT4mZ3Q7IHdyb3RlOjxicj4NCjwvZGl2Pg0K
+PGJsb2NrcXVvdGUgY2xhc3M9InhfeF9nbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowcHggMHB4
+IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7IHBhZGRp
+bmctbGVmdDoxZXgiPg0KPGRpdiBjbGFzcz0ieF94X21zZy0xNjIzNDIyMTU1MDA2NjI4NTQwIj4N
+CjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0OyB0ZXh0LWluZGVu
+dDowcHg7IG1hcmdpbjowcHg7IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxB
+cHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6
+ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCk1hcnRpbiw8L2Rpdj4NCjxkaXYgc3R5bGU9InRl
+eHQtYWxpZ246bGVmdDsgdGV4dC1pbmRlbnQ6MHB4OyBtYXJnaW46MHB4OyBmb250LWZhbWlseTpB
+cHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZl
+dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpJIGFj
+dHVhbGx5IHJlLXJhbiB0aGUgY29tbWFuZCB5b3UgYXNrZWQgbWUgdG9vIGFnYWluIGp1c3QgdG8g
+bWFrZSBzdXJlIGFuZCBJIGhhdmUgYSBkaWZmZXJlbnQgZXJyb3Igbm93IShOb3Qgc3VyZSBpZiB0
+aGF0J3MgZ29vZCBvciBiYWQgdGhvdWdoLikmbmJzcDsgVGhlIG5ldyBlcnJvciBpcyBhY3R1YWxs
+eSBteSBvcmlnaW5hbCBlcnJvciBJIHdhcyB0cnlpbmcgdG8gZml4IHdoaWNoIGdvdCBtZSBpbnRv
+IHRoaXMgd2hvbGUgbWVzcy4gVGhlIG1lc3NhZ2UNCiBpcyAmcXVvdDtFcnJvcjogUnVudGltZUVy
+cm9yOiBmeDMgaXMgaW4gc3RhdGUgNSZxdW90Oy4mbmJzcDsgQW55IGlkZWEgd2hlcmUgdG8gZ28g
+ZnJvbSZuYnNwO2hlcmU/PC9kaXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQ7IHRleHQt
+aW5kZW50OjBweDsgbWFyZ2luOjBweDsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRG
+b250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9u
+dC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KLS08L2Rpdj4NCjxkaXYgc3R5bGU9InRl
+eHQtYWxpZ246bGVmdDsgdGV4dC1pbmRlbnQ6MHB4OyBtYXJnaW46MHB4OyBmb250LWZhbWlseTpB
+cHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZl
+dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpNYXJr
+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrOyB3aWR0aDo5OCUiPg0KPGRp
+diBpZD0ieF94X21fLTE2MjM0MjIxNTUwMDY2Mjg1NDBkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+
+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAiIHN0eWxlPSJm
+b250LXNpemU6MTFwdCI+PGI+RnJvbTo8L2I+IE1hcnRpbiBCcmF1biAmbHQ7PGEgaHJlZj0ibWFp
+bHRvOm1hcnRpbi5icmF1bkBldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0ieF9tb3ot
+dHh0LWxpbmstZnJlZXRleHQiPm1hcnRpbi5icmF1bkBldHR1cy5jb208L2E+Jmd0Ozxicj4NCjxi
+PlNlbnQ6PC9iPiBGcmlkYXksIEp1bmUgMjgsIDIwMjQgMTI6MTIgUE08YnI+DQo8Yj5Ubzo8L2I+
+IE1hcmsgUm9zZW5iYXVtICZsdDs8YSBocmVmPSJtYWlsdG86bV9yb3NlbkBtaXQuZWR1IiB0YXJn
+ZXQ9Il9ibGFuayIgY2xhc3M9InhfbW96LXR4dC1saW5rLWZyZWV0ZXh0Ij5tX3Jvc2VuQG1pdC5l
+ZHU8L2E+Jmd0Ozxicj4NCjxiPkNjOjwvYj4gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayIgY2xhc3M9InhfbW96LXR4dC1saW5rLWZyZWV0
+ZXh0Ij4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiAmbHQ7PGEgaHJlZj0ibWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayIgY2xhc3M9InhfbW96
+LXR4dC1saW5rLWZyZWV0ZXh0Ij51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7PGJy
+Pg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gQnJpY2tlZCBCMjEwIGR1ZSB0byB3
+aXBlZCBFRVBST008L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRp
+diBkaXI9Imx0ciI+DQo8ZGl2PlllYWggdGhhdCdzIHByb2JhYmx5IHRoZSBsYXN0IHJlc29ydC4g
+SnVzdCBoYXJkLWNvZGUgYWxsIHByb2R1Y3QgSURzIGFuZCB3aGF0bm90IHVudGlsIGl0IHdvcmtz
+LiBHb29kIGx1Y2shPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4tLU08YnI+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPGJyPg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPk9uIEZyaSwgSnVuIDI4LCAy
+MDI0IGF0IDU6NTLigK9QTSBNYXJrIFJvc2VuYmF1bSAmbHQ7PGEgaHJlZj0ibWFpbHRvOm1fcm9z
+ZW5AbWl0LmVkdSIgdGFyZ2V0PSJfYmxhbmsiIGNsYXNzPSJ4X21vei10eHQtbGluay1mcmVldGV4
+dCI+bV9yb3NlbkBtaXQuZWR1PC9hPiZndDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90
+ZSBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHggc29saWQg
+cmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0
+ciI+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0
+b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6
+MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpNYXJ0aW4sPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250
+LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxp
+YnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCww
+KSI+DQpKdXN0IHRyaWVkIGV4YWN0bHkgdGhhdCB0byBubyZuYnNwO2F2YWlsLiZuYnNwOyBHaXZl
+cyB0aGUgZXhhY3Qgc2FtZSBlcnJvci4mbmJzcDsgSXMgdGhlcmUgYW55IHdheSB0byBtYXliZSBt
+b2RpZnkgdGhlIHByb2dyYW0gYW5kIHJlY29tcGlsZSB0byBieXBhc3MgZXJyb3IvcHJvZHVjdCBj
+b2RlIGNoZWNraW5nPyZuYnNwOyBJdCBsb29rcyB0byBtZSBsaWtlIHRoZSBjaGVjayBpcyBmb3Vu
+ZCBvbiBsaW5lIDE0OSBvZiBiMjAwX2ltcGwuY3BwKDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNv
+bS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL2E1ZWQxODcyYmU2ZDBmYzM2ZGU5YTdlMGI1MDg5MzNk
+YTFmMTE5YmMvaG9zdC9saWIvdXNycC9iMjAwL2IyMDBfaW1wbC5jcHAjTDE0OUMxLUwxNDlDMyIg
+aWQ9InhfeF9tXy0xNjIzNDIyMTU1MDA2NjI4NTQweF9tXzUyNzYxNzU4OTI2ODE3MTk4NUxQbG5r
+Mzk0OTM1IiB0YXJnZXQ9Il9ibGFuayIgY2xhc3M9InhfbW96LXR4dC1saW5rLWZyZWV0ZXh0Ij5o
+dHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9hNWVkMTg3MmJlNmQwZmMz
+NmRlOWE3ZTBiNTA4OTMzZGExZjExOWJjL2hvc3QvbGliL3VzcnAvYjIwMC9iMjAwX2ltcGwuY3Bw
+I0wxNDlDMS1MMTQ5QzM8L2E+KSwmbmJzcDtidXQNCiBJIG1heSBiZSB3cm9uZy48L2Rpdj4NCjxk
+aXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0Zv
+bnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBj
+b2xvcjpyZ2IoMCwwLDApIj4NCi0tPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRv
+cyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGlj
+YSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpNYXJrPC9k
+aXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrOyB3aWR0aDo5OCUiPg0KPGRpdiBp
+ZD0ieF94X21fLTE2MjM0MjIxNTUwMDY2Mjg1NDB4X21fNTI3NjE3NTg5MjY4MTcxOTg1ZGl2UnBs
+eUZ3ZE1zZyIgZGlyPSJsdHIiPg0KPGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgY29s
+b3I9IiMwMDAwMDAiIHN0eWxlPSJmb250LXNpemU6MTFwdCI+PGI+RnJvbTo8L2I+IE1hcnRpbiBC
+cmF1biAmbHQ7PGEgaHJlZj0ibWFpbHRvOm1hcnRpbi5icmF1bkBldHR1cy5jb20iIHRhcmdldD0i
+X2JsYW5rIiBjbGFzcz0ieF9tb3otdHh0LWxpbmstZnJlZXRleHQiPm1hcnRpbi5icmF1bkBldHR1
+cy5jb208L2E+Jmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBGcmlkYXksIEp1bmUgMjgsIDIwMjQgMTE6
+NDIgQU08YnI+DQo8Yj5Ubzo8L2I+IE1hcmsgUm9zZW5iYXVtICZsdDs8YSBocmVmPSJtYWlsdG86
+bV9yb3NlbkBtaXQuZWR1IiB0YXJnZXQ9Il9ibGFuayIgY2xhc3M9InhfbW96LXR4dC1saW5rLWZy
+ZWV0ZXh0Ij5tX3Jvc2VuQG1pdC5lZHU8L2E+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTog
+W1VTUlAtdXNlcnNdIEJyaWNrZWQgQjIxMCBkdWUgdG8gd2lwZWQgRUVQUk9NPC9mb250Pg0KPGRp
+dj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj5Ucnkg
+c3BlY2lmeWluZyBhYnNvbHV0ZWx5IGV2ZXJ5dGhpbmcgb24gdGhlIGNvbW1hbmQgbGluZTo8L2Rp
+dj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pg0KPHByZT48Y29kZT4uL3VzcnBfYnVybl9tYl9l
+ZXByb20gLS1hcmdzPSZxdW90O2ZwZ2E9L3BhdGgvdG8vZnBnYS91c3JwX2IyMTBfZnBnYS5iaW4m
+cXVvdDsgLS12YWx1ZXMgcmV2aXNpb249Jmx0O1JFViZndDsscHJvZHVjdD0mbHQ7UFJPRFVDVF9J
+RCZndDssc2VyaWFsPSZsdDtTRVJJQUwmZ3Q7LG5hbWU9JnF1b3Q7YjIwMG5hbWUmcXVvdDsNCg0K
+PC9jb2RlPjwvcHJlPg0KPHByZT48Y29kZT5TZXJpYWwgbnVtYmVyIGlzIG9uIHRoZSBQQ0IuIFBS
+T0RVQ1RfSUQgaXMgMSwgSSB0aGluayBmb3IgQjIxMCAoc2VlIDwvY29kZT48YSBocmVmPSJodHRw
+czovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9saWIvdXNy
+cC9iMjAwL2IyMDBfaWZhY2UuaHBwI0wyMCIgdGFyZ2V0PSJfYmxhbmsiIGNsYXNzPSJ4X21vei10
+eHQtbGluay1mcmVldGV4dCI+aHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Js
+b2IvbWFzdGVyL2hvc3QvbGliL3VzcnAvYjIwMC9iMjAwX2lmYWNlLmhwcCNMMjA8L2E+KS4gUmV2
+aXNpb24gaXMgZW5jb2RlZCBzb21ld2hlcmUgb24gdGhlIFBDQiwgSSdtIG5vdCBzdXJlIC0tIGp1
+c3QgcHV0IDUgaGVyZSBhbmQgc2VlIGlmIHRoaW5ncyB3b3JrLiBOYW1lIGlzIHVwIHRvIHlvdSBv
+ZiBjb3Vyc2UuDQoNCjwvcHJlPg0KPHByZT5UaGUgbW9zdCBpbXBvcnRhbnQgdGhpbmcgaXMgdGhl
+IGNvcnJlY3QgRlBHQSBiaW4tZmlsZS4NCg0KPC9wcmU+DQo8cHJlPi0tTQ0KPC9wcmU+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPGJyPg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPk9uIEZyaSwgSnVuIDI4LCAy
+MDI0IGF0IDM6MDXigK9QTSBNYXJrIFJvc2VuYmF1bSAmbHQ7PGEgaHJlZj0ibWFpbHRvOm1fcm9z
+ZW5AbWl0LmVkdSIgdGFyZ2V0PSJfYmxhbmsiIGNsYXNzPSJ4X21vei10eHQtbGluay1mcmVldGV4
+dCI+bV9yb3NlbkBtaXQuZWR1PC9hPiZndDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90
+ZSBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHggc29saWQg
+cmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0
+ciI+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQ7IHRleHQtaW5kZW50OjBweDsgbWFyZ2lu
+OjBweDsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNl
+cnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9y
+OnJnYigwLDAsMCkiPg0KSGV5IE1hcnRpbiwmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9InRleHQt
+YWxpZ246bGVmdDsgdGV4dC1pbmRlbnQ6MHB4OyBtYXJnaW46MHB4OyBmb250LWZhbWlseTpBcHRv
+cyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGlj
+YSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpUcmllZCB0
+aGF0IGFzIGFsbW9zdCBhIGZpcnN0IHRoaW5nIGFmdGVyIHRoZSBpc3N1ZSBvY2N1cnJlZC4mbmJz
+cDsgVGhlIGNvbW1hbmQgc3VjY2Vzc2Z1bGx5IHJ1bnMgd2l0aCBubyBlcnJvciBidXQgdGhlIHNh
+bWUgaXNzdWUgcGVyc2lzdHMsIHdoZXJlIGFueSBvdGhlciBjb21tYW5kIGdpdmVzIG1lIHRoZSAm
+cXVvdDtFcnJvcjogUnVudGltZUVycm9yOiBCMjAwIHVua25vd24gcHJvZHVjdCBjb2RlOiAweGUz
+ZTAmcXVvdDsgbWVzc2FnZS48L2Rpdj4NCjxkaXYgc3R5bGU9InRleHQtYWxpZ246bGVmdDsgdGV4
+dC1pbmRlbnQ6MHB4OyBtYXJnaW46MHB4OyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRl
+ZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBm
+b250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQotLTwvZGl2Pg0KPGRpdiBzdHlsZT0i
+dGV4dC1hbGlnbjpsZWZ0OyB0ZXh0LWluZGVudDowcHg7IG1hcmdpbjowcHg7IGZvbnQtZmFtaWx5
+OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVs
+dmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCk1h
+cmsmbmJzcDs8L2Rpdj4NCjxkaXYgaWQ9InhfeF9tXy0xNjIzNDIyMTU1MDA2NjI4NTQweF9tXzUy
+NzYxNzU4OTI2ODE3MTk4NXhfbV8tODY4NDU4OTE1NzMxMTAwNDMxMWFwcGVuZG9uc2VuZCI+DQo8
+L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7IHdpZHRoOjk4JSI+DQo8ZGl2
+IGlkPSJ4X3hfbV8tMTYyMzQyMjE1NTAwNjYyODU0MHhfbV81Mjc2MTc1ODkyNjgxNzE5ODV4X21f
+LTg2ODQ1ODkxNTczMTEwMDQzMTFkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+DQo8Zm9udCBmYWNl
+PSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBjb2xvcj0iIzAwMDAwMCIgc3R5bGU9ImZvbnQtc2l6ZTox
+MXB0Ij48Yj5Gcm9tOjwvYj4gTWFydGluIEJyYXVuICZsdDs8YSBocmVmPSJtYWlsdG86bWFydGlu
+LmJyYXVuQGV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiIGNsYXNzPSJ4X21vei10eHQtbGluay1m
+cmVldGV4dCI+bWFydGluLmJyYXVuQGV0dHVzLmNvbTwvYT4mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+
+IEZyaWRheSwgSnVuZSAyOCwgMjAyNCA1OjI2IEFNPGJyPg0KPGI+VG86PC9iPiBNYXJrIFJvc2Vu
+YmF1bSAmbHQ7PGEgaHJlZj0ibWFpbHRvOm1fcm9zZW5AbWl0LmVkdSIgdGFyZ2V0PSJfYmxhbmsi
+IGNsYXNzPSJ4X21vei10eHQtbGluay1mcmVldGV4dCI+bV9yb3NlbkBtaXQuZWR1PC9hPiZndDs8
+YnI+DQo8Yj5DYzo8L2I+IDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bSIgdGFyZ2V0PSJfYmxhbmsiIGNsYXNzPSJ4X21vei10eHQtbGluay1mcmVldGV4dCI+DQp1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4gJmx0OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiIGNsYXNzPSJ4X21vei10eHQtbGluay1m
+cmVldGV4dCI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0Ozxicj4NCjxiPlN1Ympl
+Y3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIEJyaWNrZWQgQjIxMCBkdWUgdG8gd2lwZWQgRUVQUk9N
+PC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIi
+Pg0KPGRpdj5IaSBNYXJrLDwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+YjJ4eF9meDNf
+dXRpbHMgLS1pbml0LWRldmljZSBpcyB5b3VyIGZyaWVuZC4gQWZ0ZXIgeW91IHJ1biB0aGF0LCB5
+b3UgY2FuIHJ1biBgdXNycF9idXJuX21iX2VlcHJvbWAgYWdhaW4gdG8gY29uZmlndXJlIHNlcmlh
+bCBudW1iZXIgZXRjLjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+LS1NPGJyPg0KPC9k
+aXY+DQo8L2Rpdj4NCjxicj4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRyIj5PbiBUaHUsIEp1biAyNywg
+MjAyNCBhdCA4OjQ14oCvUE0gTWFyayBSb3NlbmJhdW0gJmx0OzxhIGhyZWY9Im1haWx0bzptX3Jv
+c2VuQG1pdC5lZHUiIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0ieF9tb3otdHh0LWxpbmstZnJlZXRl
+eHQiPm1fcm9zZW5AbWl0LmVkdTwvYT4mZ3Q7IHdyb3RlOjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVv
+dGUgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlk
+IHJnYigyMDQsMjA0LDIwNCk7IHBhZGRpbmctbGVmdDoxZXgiPg0KPGRpdj4NCjxkaXYgZGlyPSJs
+dHIiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFw
+dG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXpl
+OjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSGkgQWxsLDwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9u
+dC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2Fs
+aWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAs
+MCkiPg0KSSB3YXMgcmVjZW50bHkgd29ya2luZyBvbiBmaXhpbmcgYW4gaXNzdWUgd2l0aCBteSBC
+MjEwIGFuZCBhY2NpZGVudGFsbHkgcmUtZmxhc2hlZCB0aGUgYm9vdGxvYWRlci4gSW4gdGhlIHBy
+b2Nlc3MgaXQgc2VlbXMgdG8gaGF2ZSBmdWxseSB3aXBlZCB0aGUgRUVQUk9NIGFuZCBub3cgd2hl
+biBhdHRlbXB0aW5nIHRvIHBlcmZvcm0gYW55IGFjdGlvbiBvbiB0aGUgZGV2aWNlIEkgZ2V0IHRo
+ZSBmb2xsb3dpbmcgZXJyb3I6PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxB
+cHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxz
+YW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQomcXVvdDtFcnJv
+cjogUnVudGltZUVycm9yOiBCMjAwIHVua25vd24gcHJvZHVjdCBjb2RlOiAweGUzZTAmcXVvdDsu
+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQs
+QXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNp
+emU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpJcyB0aGVyZSBhbnkgd2F5IHRvIGdvIGJhY2sg
+YW5kIHJlLWZsYXNoIHRoZSBvcmlnaW5hbCB2YWx1ZXM/Jm5ic3A7IEkndmUgdHJpZWQgdG8gdXNl
+IHRoZSB1c3JwX2J1cm5fbWJfZWVwcm9tIGNvbW1hbmQgd2l0aCB0aGUgcmVjb3Zlcl9tYl9lZXBy
+b20gYnV0IGl0IHN0aWxsIGZhaWxzIHdpdGggdGhlIHNhbWUgZXJyb3IuPC9kaXY+DQo8ZGl2IHN0
+eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2Vy
+dmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6
+cmdiKDAsMCwwKSI+DQpUaGFua3MsPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRv
+cyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGlj
+YSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpNYXJrPC9k
+aXY+DQo8L2Rpdj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayIgY2xhc3M9InhfbW96LXR4dC1s
+aW5rLWZyZWV0ZXh0Ij4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NClRvIHVu
+c3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVh
+dmVAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayIgY2xhc3M9InhfbW96LXR4dC1saW5r
+LWZyZWV0ZXh0Ij4NCnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjwv
+ZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Js
+b2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4N
+CjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8
+L2Rpdj4NCjxicj4NCjxmaWVsZHNldCBjbGFzcz0ieF9tb3otbWltZS1hdHRhY2htZW50LWhlYWRl
+ciI+PC9maWVsZHNldD4NCjxwcmUgY2xhc3M9InhfbW96LXF1b3RlLXByZSI+X19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBs
+aXN0IC0tIDxhIGNsYXNzPSJ4X21vei10eHQtbGluay1hYmJyZXZpYXRlZCIgaHJlZj0ibWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwv
+YT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgY2xhc3M9InhfbW96LXR4dC1s
+aW5rLWFiYnJldmlhdGVkIiBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20iPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPg0KPC9wcmU+DQo8L2Js
+b2NrcXVvdGU+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
+--_000_DS0PR01MB796345751E7D472005BFDC1287D32DS0PR01MB7963prod_--
 
- > Is there any way to debug what the issue truly is?
-
-
-going to be hard; usually, this is the point where we honestly say we can=
-'t.
-
-
-Just to give you an understanding, 5 =3D=3D FX3_STATE_UNCONFIGURED. You c=
-an find all the paths=20
-where that can in b200_main.c in the uhd/firmware source tree. This might=
- be something as=20
-fundamental as the FPGA never signalling it finished programming. That wo=
-uld usually=20
-indicate a hardware failure that *might* be fixable by reworking the boar=
-d, or by=20
-replacing the FPGA, or replacing the FX3, or by something else.
-
-
-Sorry,
-Marcus
-
-
-
-On 01.07.24 15:39, Mark Rosenbaum wrote:
-> Darn, that's really unfortunate.=C2=A0 Is there any way to debug what t=
-he issue truly is?
-> --
-> Mark
-> -----------------------------------------------------------------------=
--------------------
-> *From:* Martin Braun <martin.braun@ettus.com>
-> *Sent:* Monday, July 1, 2024 3:52 AM
-> *To:* Mark Rosenbaum <m_rosen@mit.edu>
-> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] Bricked B210 due to wiped EEPROM
-> Sorry, that error can mean a bunch of things. It might be faulty hardwa=
-re, unfortunately.
->
-> --M
->
-> On Fri, Jun 28, 2024 at 6:19=E2=80=AFPM Mark Rosenbaum <m_rosen@mit.edu=
-> wrote:
->
->     Martin,
->     I actually re-ran the command you asked me too again just to make s=
-ure and I have a
->     different error now!(Not sure if that's good or bad though.)=C2=A0 =
-The new error is
->     actually my original error I was trying to fix which got me into th=
-is whole mess.
->     The message is "Error: RuntimeError: fx3 is in state 5".=C2=A0 Any =
-idea where to go
->     from=C2=A0here?
->     --
->     Mark
->     -------------------------------------------------------------------=
------------------------
->     *From:* Martin Braun <martin.braun@ettus.com>
->     *Sent:* Friday, June 28, 2024 12:12 PM
->     *To:* Mark Rosenbaum <m_rosen@mit.edu>
->     *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
->     *Subject:* Re: [USRP-users] Bricked B210 due to wiped EEPROM
->     Yeah that's probably the last resort. Just hard-code all product ID=
-s and whatnot
->     until it works. Good luck!
->
->     --M
->
->     On Fri, Jun 28, 2024 at 5:52=E2=80=AFPM Mark Rosenbaum <m_rosen@mit=
-.edu> wrote:
->
->         Martin,
->         Just tried exactly that to no=C2=A0avail.=C2=A0 Gives the exact=
- same error.=C2=A0 Is there any
->         way to maybe modify the program and recompile to bypass error/p=
-roduct code
->         checking?=C2=A0 It looks to me like the check is found on line =
-149 of
->         b200_impl.cpp(https://github.com/EttusResearch/uhd/blob/a5ed187=
-2be6d0fc36de9a7e0b508933da1f119bc/host/lib/usrp/b200/b200_impl.cpp#L149C1=
--L149C3),=C2=A0but
->         I may be wrong.
->         --
->         Mark
->         ---------------------------------------------------------------=
----------------------------
->         *From:* Martin Braun <martin.braun@ettus.com>
->         *Sent:* Friday, June 28, 2024 11:42 AM
->         *To:* Mark Rosenbaum <m_rosen@mit.edu>
->         *Subject:* Re: [USRP-users] Bricked B210 due to wiped EEPROM
->         Try specifying absolutely everything on the command line:
->
->         |./usrp_burn_mb_eeprom --args=3D"fpga=3D/path/to/fpga/usrp_b210=
-_fpga.bin" --values
->         revision=3D<REV>,product=3D<PRODUCT_ID>,serial=3D<SERIAL>,name=3D=
-"b200name" |
->
->         |Serial number is on the PCB. PRODUCT_ID is 1, I think for B210=
- (see |https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/b20=
-0/b200_iface.hpp#L20). Revision is encoded somewhere on the PCB, I'm not =
-sure -- just put 5 here and see if things work. Name is up to you of cour=
-se.
->
->         The most important thing is the correct FPGA bin-file.
->
->         --M
->
->
->         On Fri, Jun 28, 2024 at 3:05=E2=80=AFPM Mark Rosenbaum <m_rosen=
-@mit.edu> wrote:
->
->             Hey Martin,
->             Tried that as almost a first thing after the issue occurred=
-.=C2=A0 The command
->             successfully runs with no error but the same issue persists=
-, where any other
->             command gives me the "Error: RuntimeError: B200 unknown pro=
-duct code:
->             0xe3e0" message.
->             --
->             Mark
->             -----------------------------------------------------------=
--------------------------------
->             *From:* Martin Braun <martin.braun@ettus.com>
->             *Sent:* Friday, June 28, 2024 5:26 AM
->             *To:* Mark Rosenbaum <m_rosen@mit.edu>
->             *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.co=
-m>
->             *Subject:* Re: [USRP-users] Bricked B210 due to wiped EEPRO=
-M
->             Hi Mark,
->
->             b2xx_fx3_utils --init-device is your friend. After you run =
-that, you can run
->             `usrp_burn_mb_eeprom` again to configure serial number etc.
->
->             --M
->
->             On Thu, Jun 27, 2024 at 8:45=E2=80=AFPM Mark Rosenbaum <m_r=
-osen@mit.edu> wrote:
->
->                 Hi All,
->                 I was recently working on fixing an issue with my B210 =
-and accidentally
->                 re-flashed the bootloader. In the process it seems to h=
-ave fully wiped
->                 the EEPROM and now when attempting to perform any actio=
-n on the device I
->                 get the following error:
->                 "Error: RuntimeError: B200 unknown product code: 0xe3e0=
-".
->                 Is there any way to go back and re-flash the original v=
-alues?=C2=A0 I've
->                 tried to use the usrp_burn_mb_eeprom command with the r=
-ecover_mb_eeprom
->                 but it still fails with the same error.
->                 Thanks,
->                 Mark
->                 _______________________________________________
->                 USRP-users mailing list -- usrp-users@lists.ettus.com
->                 To unsubscribe send an email to usrp-users-leave@lists.=
-ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
---------------ut9MMQwzs5Zmv4635zdF0Ybh
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Hi Mark,</p>
-    <p><br>
-    </p>
-    <p>Board revision is relatively easy to narrow down: is your board
-      white or green? If green, yeah, 5, very likely. <br>
-    </p>
-    <p><br>
-    </p>
-    <p>&gt; Is there any way to debug what the issue truly is?</p>
-    <p><br>
-    </p>
-    <p>going to be hard; usually, this is the point where we honestly
-      say we can't. <br>
-    </p>
-    <p><br>
-    </p>
-    <p>Just to give you an understanding, 5 =3D=3D FX3_STATE_UNCONFIGURED=
-.
-      You can find all the paths where that can in b200_main.c in the
-      uhd/firmware source tree. This might be something as fundamental
-      as the FPGA never signalling it finished programming. That would
-      usually indicate a hardware failure that *might* be fixable by
-      reworking the board, or by replacing the FPGA, or replacing the
-      FX3, or by something else. <br>
-    </p>
-    <p><br>
-    </p>
-    <p>Sorry,<br>
-      Marcus</p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 01.07.24 15:39, Mark Rosenbaum
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:DS0PR01MB79634DAAC6C5BAF0BE0A848C87D32@DS0PR01MB7963.prod.exc=
-hangelabs.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        Darn, that's really unfortunate.=C2=A0 Is there any way to debug =
-what
-        the issue truly is?</div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        --</div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        Mark</div>
-      <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-      <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt=
-"
-          face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Mar=
-tin
-          Braun <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:martin.=
-braun@ettus.com">&lt;martin.braun@ettus.com&gt;</a><br>
-          <b>Sent:</b> Monday, July 1, 2024 3:52 AM<br>
-          <b>To:</b> Mark Rosenbaum <a class=3D"moz-txt-link-rfc2396E" hr=
-ef=3D"mailto:m_rosen@mit.edu">&lt;m_rosen@mit.edu&gt;</a><br>
-          <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"mailto=
-:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:usrp-users@li=
-sts.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-          <b>Subject:</b> Re: [USRP-users] Bricked B210 due to wiped
-          EEPROM</font>
-        <div>=C2=A0</div>
-      </div>
-      <div>
-        <div dir=3D"ltr">
-          <div>Sorry, that error can mean a bunch of things. It might be
-            faulty hardware, unfortunately.</div>
-          <div><br>
-          </div>
-          <div>--M<br>
-          </div>
-        </div>
-        <br>
-        <div class=3D"x_gmail_quote">
-          <div dir=3D"ltr" class=3D"x_gmail_attr">On Fri, Jun 28, 2024 at
-            6:19=E2=80=AFPM Mark Rosenbaum &lt;<a href=3D"mailto:m_rosen@=
-mit.edu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">m_=
-rosen@mit.edu</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"x_gmail_quote"
-style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(204,204,204)=
-; padding-left:1ex">
-            <div class=3D"x_msg-1623422155006628540">
-              <div dir=3D"ltr">
-                <div
-style=3D"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,=
-Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
--size:12pt; color:rgb(0,0,0)">
-                  Martin,</div>
-                <div
-style=3D"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,=
-Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
--size:12pt; color:rgb(0,0,0)">
-                  I actually re-ran the command you asked me too again
-                  just to make sure and I have a different error
-                  now!(Not sure if that's good or bad though.)=C2=A0 The =
-new
-                  error is actually my original error I was trying to
-                  fix which got me into this whole mess. The message is
-                  "Error: RuntimeError: fx3 is in state 5".=C2=A0 Any ide=
-a
-                  where to go from=C2=A0here?</div>
-                <div
-style=3D"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,=
-Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
--size:12pt; color:rgb(0,0,0)">
-                  --</div>
-                <div
-style=3D"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,=
-Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
--size:12pt; color:rgb(0,0,0)">
-                  Mark</div>
-                <hr style=3D"display:inline-block; width:98%">
-                <div id=3D"x_m_-1623422155006628540divRplyFwdMsg"
-                  dir=3D"ltr"><font style=3D"font-size:11pt"
-                    face=3D"Calibri, sans-serif" color=3D"#000000"><b>Fro=
-m:</b>
-                    Martin Braun &lt;<a
-                      href=3D"mailto:martin.braun@ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">martin.braun@ettus.=
-com</a>&gt;<br>
-                    <b>Sent:</b> Friday, June 28, 2024 12:12 PM<br>
-                    <b>To:</b> Mark Rosenbaum &lt;<a
-                      href=3D"mailto:m_rosen@mit.edu" target=3D"_blank"
-                      moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">m_rosen@mit.edu</a>=
-&gt;<br>
-                    <b>Cc:</b> <a
-                      href=3D"mailto:usrp-users@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">usrp-users@lists.et=
-tus.com</a>
-                    &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">usrp-users@lists.et=
-tus.com</a>&gt;<br>
-                    <b>Subject:</b> Re: [USRP-users] Bricked B210 due to
-                    wiped EEPROM</font>
-                  <div>=C2=A0</div>
-                </div>
-                <div>
-                  <div dir=3D"ltr">
-                    <div>Yeah that's probably the last resort. Just
-                      hard-code all product IDs and whatnot until it
-                      works. Good luck!</div>
-                    <div><br>
-                    </div>
-                    <div>--M<br>
-                    </div>
-                  </div>
-                  <br>
-                  <div>
-                    <div dir=3D"ltr">On Fri, Jun 28, 2024 at 5:52=E2=80=AF=
-PM Mark
-                      Rosenbaum &lt;<a href=3D"mailto:m_rosen@mit.edu"
-                        target=3D"_blank" moz-do-not-send=3D"true"
-                        class=3D"moz-txt-link-freetext">m_rosen@mit.edu</=
-a>&gt;
-                      wrote:<br>
-                    </div>
-                    <blockquote
-style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(204,204,204)=
-; padding-left:1ex">
-                      <div>
-                        <div dir=3D"ltr">
-                          <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                            Martin,</div>
-                          <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                            Just tried exactly that to no=C2=A0avail.=C2=A0=
- Gives
-                            the exact same error.=C2=A0 Is there any way =
-to
-                            maybe modify the program and recompile to
-                            bypass error/product code checking?=C2=A0 It
-                            looks to me like the check is found on line
-                            149 of b200_impl.cpp(<a
-href=3D"https://github.com/EttusResearch/uhd/blob/a5ed1872be6d0fc36de9a7e=
-0b508933da1f119bc/host/lib/usrp/b200/b200_impl.cpp#L149C1-L149C3"
-id=3D"x_m_-1623422155006628540x_m_527617589268171985LPlnk394935"
-                              target=3D"_blank" moz-do-not-send=3D"true"
-                              class=3D"moz-txt-link-freetext">https://git=
-hub.com/EttusResearch/uhd/blob/a5ed1872be6d0fc36de9a7e0b508933da1f119bc/h=
-ost/lib/usrp/b200/b200_impl.cpp#L149C1-L149C3</a>),=C2=A0but
-                            I may be wrong.</div>
-                          <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                            --</div>
-                          <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                            Mark</div>
-                          <hr style=3D"display:inline-block; width:98%">
-                          <div
-id=3D"x_m_-1623422155006628540x_m_527617589268171985divRplyFwdMsg"
-                            dir=3D"ltr"><font style=3D"font-size:11pt"
-                              face=3D"Calibri, sans-serif" color=3D"#0000=
-00"><b>From:</b>
-                              Martin Braun &lt;<a
-                                href=3D"mailto:martin.braun@ettus.com"
-                                target=3D"_blank" moz-do-not-send=3D"true=
-"
-                                class=3D"moz-txt-link-freetext">martin.br=
-aun@ettus.com</a>&gt;<br>
-                              <b>Sent:</b> Friday, June 28, 2024 11:42
-                              AM<br>
-                              <b>To:</b> Mark Rosenbaum &lt;<a
-                                href=3D"mailto:m_rosen@mit.edu"
-                                target=3D"_blank" moz-do-not-send=3D"true=
-"
-                                class=3D"moz-txt-link-freetext">m_rosen@m=
-it.edu</a>&gt;<br>
-                              <b>Subject:</b> Re: [USRP-users] Bricked
-                              B210 due to wiped EEPROM</font>
-                            <div>=C2=A0</div>
-                          </div>
-                          <div>
-                            <div dir=3D"ltr">
-                              <div>Try specifying absolutely everything
-                                on the command line:</div>
-                              <div><br>
-                              </div>
-                              <div>
-                                <pre><code>./usrp_burn_mb_eeprom --args=3D=
-"fpga=3D/path/to/fpga/usrp_b210_fpga.bin" --values revision=3D&lt;REV&gt;=
-,product=3D&lt;PRODUCT_ID&gt;,serial=3D&lt;SERIAL&gt;,name=3D"b200name"
-
-</code></pre>
-                                <pre><code>Serial number is on the PCB. P=
-RODUCT_ID is 1, I think for B210 (see </code><a
-href=3D"https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/b2=
-00/b200_iface.hpp#L20"
-                                target=3D"_blank" moz-do-not-send=3D"true=
-"
-                                class=3D"moz-txt-link-freetext">https://g=
-ithub.com/EttusResearch/uhd/blob/master/host/lib/usrp/b200/b200_iface.hpp=
-#L20</a>). Revision is encoded somewhere on the PCB, I'm not sure -- just=
- put 5 here and see if things work. Name is up to you of course.
-
-</pre>
-                                <pre>The most important thing is the corr=
-ect FPGA bin-file.
-
-</pre>
-                                <pre>--M
-</pre>
-                              </div>
-                            </div>
-                            <br>
-                            <div>
-                              <div dir=3D"ltr">On Fri, Jun 28, 2024 at
-                                3:05=E2=80=AFPM Mark Rosenbaum &lt;<a
-                                  href=3D"mailto:m_rosen@mit.edu"
-                                  target=3D"_blank" moz-do-not-send=3D"tr=
-ue"
-                                  class=3D"moz-txt-link-freetext">m_rosen=
-@mit.edu</a>&gt;
-                                wrote:<br>
-                              </div>
-                              <blockquote
-style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(204,204,204)=
-; padding-left:1ex">
-                                <div>
-                                  <div dir=3D"ltr">
-                                    <div
-style=3D"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,=
-Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
--size:12pt; color:rgb(0,0,0)">
-                                      Hey Martin,=C2=A0</div>
-                                    <div
-style=3D"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,=
-Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
--size:12pt; color:rgb(0,0,0)">
-                                      Tried that as almost a first thing
-                                      after the issue occurred.=C2=A0 The
-                                      command successfully runs with no
-                                      error but the same issue persists,
-                                      where any other command gives me
-                                      the "Error: RuntimeError: B200
-                                      unknown product code: 0xe3e0"
-                                      message.</div>
-                                    <div
-style=3D"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,=
-Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
--size:12pt; color:rgb(0,0,0)">
-                                      --</div>
-                                    <div
-style=3D"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,=
-Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
--size:12pt; color:rgb(0,0,0)">
-                                      Mark=C2=A0</div>
-                                    <div
-id=3D"x_m_-1623422155006628540x_m_527617589268171985x_m_-8684589157311004=
-311appendonsend">
-                                    </div>
-                                    <hr
-style=3D"display:inline-block; width:98%">
-                                    <div
-id=3D"x_m_-1623422155006628540x_m_527617589268171985x_m_-8684589157311004=
-311divRplyFwdMsg"
-                                      dir=3D"ltr">
-                                      <font style=3D"font-size:11pt"
-                                        face=3D"Calibri, sans-serif"
-                                        color=3D"#000000"><b>From:</b>
-                                        Martin Braun &lt;<a
-href=3D"mailto:martin.braun@ettus.com" target=3D"_blank"
-                                          moz-do-not-send=3D"true"
-                                          class=3D"moz-txt-link-freetext"=
->martin.braun@ettus.com</a>&gt;<br>
-                                        <b>Sent:</b> Friday, June 28,
-                                        2024 5:26 AM<br>
-                                        <b>To:</b> Mark Rosenbaum &lt;<a
-                                          href=3D"mailto:m_rosen@mit.edu"
-                                          target=3D"_blank"
-                                          moz-do-not-send=3D"true"
-                                          class=3D"moz-txt-link-freetext"=
->m_rosen@mit.edu</a>&gt;<br>
-                                        <b>Cc:</b> <a
-href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
-                                          moz-do-not-send=3D"true"
-                                          class=3D"moz-txt-link-freetext"=
->usrp-users@lists.ettus.com</a>
-                                        &lt;<a
-href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
-                                          moz-do-not-send=3D"true"
-                                          class=3D"moz-txt-link-freetext"=
->usrp-users@lists.ettus.com</a>&gt;<br>
-                                        <b>Subject:</b> Re: [USRP-users]
-                                        Bricked B210 due to wiped EEPROM<=
-/font>
-                                      <div>=C2=A0</div>
-                                    </div>
-                                    <div>
-                                      <div dir=3D"ltr">
-                                        <div>Hi Mark,</div>
-                                        <div><br>
-                                        </div>
-                                        <div>b2xx_fx3_utils
-                                          --init-device is your friend.
-                                          After you run that, you can
-                                          run `usrp_burn_mb_eeprom`
-                                          again to configure serial
-                                          number etc.</div>
-                                        <div><br>
-                                        </div>
-                                        <div>--M<br>
-                                        </div>
-                                      </div>
-                                      <br>
-                                      <div>
-                                        <div dir=3D"ltr">On Thu, Jun 27,
-                                          2024 at 8:45=E2=80=AFPM Mark Ro=
-senbaum
-                                          &lt;<a
-href=3D"mailto:m_rosen@mit.edu" target=3D"_blank" moz-do-not-send=3D"true=
-"
-class=3D"moz-txt-link-freetext">m_rosen@mit.edu</a>&gt; wrote:<br>
-                                        </div>
-                                        <blockquote
-style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(204,204,204)=
-; padding-left:1ex">
-                                          <div>
-                                            <div dir=3D"ltr">
-                                              <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                                                Hi All,</div>
-                                              <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                                                I was recently working
-                                                on fixing an issue with
-                                                my B210 and accidentally
-                                                re-flashed the
-                                                bootloader. In the
-                                                process it seems to have
-                                                fully wiped the EEPROM
-                                                and now when attempting
-                                                to perform any action on
-                                                the device I get the
-                                                following error:</div>
-                                              <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                                                "Error: RuntimeError:
-                                                B200 unknown product
-                                                code: 0xe3e0".</div>
-                                              <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                                                Is there any way to go
-                                                back and re-flash the
-                                                original values?=C2=A0 I'=
-ve
-                                                tried to use the
-                                                usrp_burn_mb_eeprom
-                                                command with the
-                                                recover_mb_eeprom but it
-                                                still fails with the
-                                                same error.</div>
-                                              <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                                                Thanks,</div>
-                                              <div
-style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
-,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-                                                Mark</div>
-                                            </div>
-_______________________________________________<br>
-                                            USRP-users mailing list -- <a
-href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
-                                              moz-do-not-send=3D"true"
-class=3D"moz-txt-link-freetext">
-                                              usrp-users@lists.ettus.com<=
-/a><br>
-                                            To unsubscribe send an email
-                                            to <a
-href=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank"
-                                              moz-do-not-send=3D"true"
-class=3D"moz-txt-link-freetext">
-usrp-users-leave@lists.ettus.com</a><br>
-                                          </div>
-                                        </blockquote>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </blockquote>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </blockquote>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------ut9MMQwzs5Zmv4635zdF0Ybh--
-
---===============6586411478005093267==
+--===============7143012267099555802==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -778,4 +598,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6586411478005093267==--
+--===============7143012267099555802==--
