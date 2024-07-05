@@ -2,1446 +2,541 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E5C928673
-	for <lists+usrp-users@lfdr.de>; Fri,  5 Jul 2024 12:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E09B92889B
+	for <lists+usrp-users@lfdr.de>; Fri,  5 Jul 2024 14:20:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D2FF638516E
-	for <lists+usrp-users@lfdr.de>; Fri,  5 Jul 2024 06:10:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 136B2384ACE
+	for <lists+usrp-users@lfdr.de>; Fri,  5 Jul 2024 08:20:06 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1720174242; bh=XBejjjEq4YqaWK6jy+4gzHXOrKo+JIaiIgcly+OzM/U=;
-	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=Crnk260zwsLP6+rQz0PFI9ARa+mvbxFQ6V7E2Nf+lov2gTeNAlrr3tjgygtd32zz1
-	 3vyCz8/NpYDbH/sUjooR0EF6nsPPC9lVhzsZr33DAt+YEQMp/kIdZDOWQeFlCNzu8u
-	 yKKg7LKC1gCrQnti2U8F2NpuNMjLw+T14FrA/kvA8q6y6L7UW6w0lBVL0+k5WaSCR+
-	 5LyabJ42+4yMjcIDRT7LzfCtrxq7oCCVgN5CIzPO9hBwIZkGPf2S0Y7S6ELpZqAJCJ
-	 coYLU1UupoypM0zA24jPj88RA9rVDkF8UWq2L6ELO7yzfRmTSmAH2bPDgVfKJ7VQ7l
-	 hy10d1J8o5WVw==
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 77ED5384A27
-	for <usrp-users@lists.ettus.com>; Fri,  5 Jul 2024 06:10:05 -0400 (EDT)
+	t=1720182006; bh=IxePFulxyQnB9rKyGGStwcEQ95sdOoPdNrLbMSIG3lQ=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=iGb60wKCJ2DSjXOY8r9F+Kw8LqNiO1Hq8j1kGWMLZs6FPXtIxXQZ2+4DJaHFlq8rW
+	 owouwZWR9LHrBHNVrNZte8C82ImKoV227krrK/SNt4yosJfyIwyjYbOr5/cRwSkWyc
+	 X0VqrfUl36sp8GrUPmJBhyl4LXswVlucj1Z8wgVd0JW099iLamq9dE00kMOjgJWUXC
+	 9E5UrU9zH5TjQp2QfMwZtGII2JcN+KWSTkzvBwvH7eKSWpMOrdG9oM6sH7aL7V1Rip
+	 cCGGflLFdoE8AUpMcoArgWfERpgkU2J1DwMT111/Ozc8Phq0GeahZPmug9RLfC9T+4
+	 lzW4n52gvR/Wg==
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0EFE7384AB8
+	for <usrp-users@lists.ettus.com>; Fri,  5 Jul 2024 08:19:20 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="qYKRhp73";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cDoM0PbF";
 	dkim-atps=neutral
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-58be2b8b6b2so1837990a12.3
-        for <usrp-users@lists.ettus.com>; Fri, 05 Jul 2024 03:10:05 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-63bc513ade5so12529487b3.3
+        for <usrp-users@lists.ettus.com>; Fri, 05 Jul 2024 05:19:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1720174204; x=1720779004; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=622xFgzvHNxT2N2PzvACjAC/FT0jdBVS4HBoOP6szDk=;
-        b=qYKRhp73Txil4PUeKLts1gYcUkzzGJfyLHet/6fcw+oih0L0YzUpo1C4oxJ9vM/pbu
-         8nYlmLujI/ReCZSLn7lVNTEAOzaSb+53eFjO+PsNJUcK6GsOLnna+l8vgKtBC6mplh/D
-         KjhZnI/iqH2gDOne4iJJSvlki3qTigu4Ah/HMJrTR7grElG7VuwFNp+pHc5+WipAxYhg
-         D9gcd/uA2aRpYDBPfAWEFt5YQvcXr2YmFgH7MDS2/mLF/QetX8maUdW5iJ293QmqGZd5
-         FOXbMwKCfGgHMMQ5HXY70S7+kV+75f66BqGS5nBiZZpBasGIdhUgxb+Z+JcP9lM3bBoQ
-         MpKw==
+        d=gmail.com; s=20230601; t=1720181960; x=1720786760; darn=lists.ettus.com;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yYJieCgQY9fZ2h5GS4QSff7MctPxBNTPXx+nt5yfgUg=;
+        b=cDoM0PbFxgn659qDI+X3NfSAvYDj8hFjlf2nFcqnduIM6t+jEZOmeCo3KzpV1DApek
+         AUoGgyILNDuVBfIXxuzGp9CjvBBq4Fska8ILMqSBlZrxAC+omRYtYAB3LGCexg2ORAp4
+         Z1P5YFMp+34SfqUPUB9QbqBUw8t4jJdAUwz4M/olghvSBhrdzKH/pis2KbeMjoSHeMn4
+         1pGYVMA9Vkl83GKMh49z3JKNKLzlR8arUbV7+IX6qHesldIS5DM4Z7bmgyDLKBl16zlW
+         qLz0jSuaVhQFklP7rOhzvMsMLxO1+keGRkoYlp/nhnZ3egmlhRfjHimNspU6uuw8AXov
+         vs5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720174204; x=1720779004;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=622xFgzvHNxT2N2PzvACjAC/FT0jdBVS4HBoOP6szDk=;
-        b=b8kWY94QM1xNT411HfIAqQXIMkdabBnEuZeBO4jXbhQjAQjnCkadvcnASTlmBf7G9N
-         4AmGYrZihmIF4b7qmyJi5zdbmKH5pW9pQjF7iRvSQN9Zj95rCcJZ6YEm7syGHOFnD6WJ
-         jc9zBBzhmdFDR050uD82nNlkWmN0o+O3yuifT3j9uDAWwZOkiBm5uCvRTJA13lrDajYU
-         XskyOvQKv21f2DEdDG5ojRLZZpvQ9ll8ZQLcYq1LN0C22svDXb2AMhKfzokDVcx9SCuw
-         fpKOaR8l68kkOPiFuNR6OPc+cKp5OCVjDMRi6LahhnKoaPlc2IYxjuc8iUWZeeNepcsE
-         Y5Kg==
-X-Gm-Message-State: AOJu0YwRYj7XPCSCDejm7cY9s61idUBjhr9ojOqzeSdpM1ACK77+nDzU
-	wcZfQPfe7P8O0apxgJagMPzqbJs5E2fxRB14MNSRZ9Q1f6oWV6MO0hMrUtruz7TAbh1VOtt2zB8
-	FK9FJ5DPXsf6/oHEqq0SKcUEGTWC4H7PbvF96TK5w1ImDU1LLT0M=
-X-Google-Smtp-Source: AGHT+IFZJapczX4dVSPbVMZ6ZjYSyjPINOVYl+2gctIzT8FbtZ3hDnAY82GR3ce0xVF3A6Eq3pVNb0J8ecWYwesMTW4=
-X-Received: by 2002:a17:906:1282:b0:a6f:e66a:1d3f with SMTP id
- a640c23a62f3a-a77ba47935cmr296841866b.32.1720174203881; Fri, 05 Jul 2024
- 03:10:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1720181960; x=1720786760;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yYJieCgQY9fZ2h5GS4QSff7MctPxBNTPXx+nt5yfgUg=;
+        b=CZEQ9jN0boe+2yzS1pGqniwfdn1FcxEEPwyB2RwCnd7a7s6k6qG48z7m1uMlpPEr3R
+         h2rhYCrIA54BWf5CpP8dSZQjZZqIi9cmFRn+CqrMVZQd5mgjghYBQfdTWnB1w+8LzsFM
+         uIWIaaylK2BzOd1pa6Xeo3wNzVlaGDiRcDylZ0GVldHxJVBCeAZv80DAUv5nrh05fn/+
+         gqOrJLw8wSAIf7KHWrxN+/PuGpKmcByA9Wip5zx/Peqs2+UK1MXU3RCDBWvsagi3433n
+         SfAthBB7RW4We03BT/rxLloTka/LxaE5rvDyX0J7oCb+PI0cy/xiAhGNX3XW5db7PWG0
+         OR7w==
+X-Gm-Message-State: AOJu0YwpyDjM31uet8PFqk3DUbgYa+NPxeacLU36w6kNeHG+cY14lm2l
+	fYAz8GlTF7JCSgSFm3JTqtoNeqFPoVF0TbkKP0QMCvVs0ReDb+IvdS03fENT/s4EdVTXN2u8jKz
+	M5qX0W78m4h90/DFtpW55w1lUBIc=
+X-Google-Smtp-Source: AGHT+IGhjfHhtd+fzwI2t3GPMjlB8x13SbsWOy7dExwCD+mzkMmpxZ4zcdTofOSKJh8SecitJv9QgidpvLU2EZqKJEk=
+X-Received: by 2002:a81:fe0a:0:b0:64b:44b4:e13 with SMTP id
+ 00721157ae682-652d67c21b9mr45195617b3.28.1720181959978; Fri, 05 Jul 2024
+ 05:19:19 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAHVeOW9OFSppSaKtL2MrFQuAE8Uvf1cvZimizcqYxipZr9-_zQ@mail.gmail.com>
- <CAHVeOW_2cbLrrPjen2-05yWj426Gfp6MJb+LLhj-efdR7AJbgg@mail.gmail.com>
-In-Reply-To: <CAHVeOW_2cbLrrPjen2-05yWj426Gfp6MJb+LLhj-efdR7AJbgg@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Fri, 5 Jul 2024 12:09:52 +0200
-Message-ID: <CAFOi1A5T+Zs+f2tXhNtxa5ePuq3H28AimME7HfT8USN97krgDQ@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: LRHFQNTC65XKJ4MJSIDOUCYQVHB2NQKZ
-X-Message-ID-Hash: LRHFQNTC65XKJ4MJSIDOUCYQVHB2NQKZ
-X-MailFrom: martin.braun@ettus.com
+ <CAHVeOW_2cbLrrPjen2-05yWj426Gfp6MJb+LLhj-efdR7AJbgg@mail.gmail.com> <CAFOi1A5T+Zs+f2tXhNtxa5ePuq3H28AimME7HfT8USN97krgDQ@mail.gmail.com>
+In-Reply-To: <CAFOi1A5T+Zs+f2tXhNtxa5ePuq3H28AimME7HfT8USN97krgDQ@mail.gmail.com>
+From: Chris Gorman <chrisjohgorman@gmail.com>
+Date: Fri, 5 Jul 2024 08:19:07 -0400
+Message-ID: <CAHVeOW9Jfjj_qxgGfv3SH0q8sDbn25HtnTPCGXxD7L5pj846WA@mail.gmail.com>
+To: Martin Braun <martin.braun@ettus.com>
+Message-ID-Hash: LGES3ZTEBL4WGHXNYE4FRDI6J4LFB2WH
+X-Message-ID-Hash: LGES3ZTEBL4WGHXNYE4FRDI6J4LFB2WH
+X-MailFrom: chrisjohgorman@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Build error for UHD 4.7.0.0-0-ga5ed1872 on mingw64
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LRHFQNTC65XKJ4MJSIDOUCYQVHB2NQKZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LGES3ZTEBL4WGHXNYE4FRDI6J4LFB2WH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2456527283587861743=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---===============2456527283587861743==
-Content-Type: multipart/alternative; boundary="0000000000005fe977061c7d4404"
-
---0000000000005fe977061c7d4404
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Chris,
-
-thanks for reporting back! mingw is not one of the compilers we test with
-(it's not so long ago that it didn't even support std::thread and couldn't
-compile UHD at all).
-
-But this fix is something we can add permanently to UHD. In fact,  I think
-this include should come first in all the tests, but it seems not to be a
-problem for most of them.
-
-Cheers,
-M
-
-On Thu, Jul 4, 2024 at 10:26=E2=80=AFPM Chris Gorman <chrisjohgorman@gmail.=
-com>
-wrote:
-
-> Hello all,
->
-> Just a follow up email in case someone else tries to build a msys2
-> package for libuhd and gets the same error.  The fix was to invert the
-> include order and have <boost/test/unit_test.hpp> included before
-> <uhdlib/utils//isatty.hpp>.
->
-> diff --git a/host/tests/isatty_test.cpp b/host/tests/isatty_test.cpp
-> index 99da27fd1..de1b4e110 100644
-> --- a/host/tests/isatty_test.cpp
-> +++ b/host/tests/isatty_test.cpp
-> @@ -3,9 +3,8 @@
->  //
->  // SPDX-License-Identifier: GPL-3.0-or-later
->  //
-> -
-> -#include <uhdlib/utils/isatty.hpp>
->  #include <boost/test/unit_test.hpp>
-> +#include <uhdlib/utils/isatty.hpp>
->  #include <cstdio>
->  #include <iostream>
->
-> I also ran into a linker error and fixed it by inverting the order in
-> which two libraries occurred on the command line.
->
-> diff --git a/host/tests/CMakeLists.txt b/host/tests/CMakeLists.txt
-> index bac599811..682ce01c2 100644
-> --- a/host/tests/CMakeLists.txt
-> +++ b/host/tests/CMakeLists.txt
-> @@ -97,7 +97,7 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/common=
-")
->  foreach(test_source ${test_sources})
->      get_filename_component(test_name ${test_source} NAME_WE)
->      add_executable(${test_name} ${test_source})
-> -    target_link_libraries(${test_name} uhd uhd_test ${Boost_LIBRARIES})
-> +    target_link_libraries(${test_name} uhd_test uhd ${Boost_LIBRARIES})
->      UHD_ADD_TEST(${test_name} ${test_name})
->      UHD_INSTALL(TARGETS ${test_name} RUNTIME DESTINATION
-> ${PKG_LIB_DIR}/tests COMPONENT tests)
->  endforeach(test_source)
-> @@ -106,7 +106,7 @@ endforeach(test_source)
->  foreach(benchmark_source ${benchmark_sources})
->      get_filename_component(benchmark_name ${benchmark_source} NAME_WE)
->      add_executable(${benchmark_name} ${benchmark_source})
-> -    target_link_libraries(${benchmark_name} uhd uhd_test
-> ${Boost_LIBRARIES})
-> +    target_link_libraries(${benchmark_name} uhd_test uhd
-> ${Boost_LIBRARIES})
->      UHD_INSTALL(TARGETS ${benchmark_name} RUNTIME DESTINATION
-> ${PKG_LIB_DIR}/tests COMPONENT tests)
->  endforeach(benchmark_source)
->
-> Thanks for your time.
->
-> Chris
->
-> On Tue, Jul 2, 2024 at 10:13=E2=80=AFAM Chris Gorman <chrisjohgorman@gmai=
-l.com>
-> wrote:
-> >
-> > Hello USRP users,
-> >
-> > I'm trying to update my build from 4.6.0.0 to 4.7.0.0 for UHD on
-> > msys2/mingw64.  During the build I get the following error...
-> >
-> > $ C:\msys64\mingw64\bin\c++.exe
-> > -DBOOST_ASIO_DISABLE_STD_EXPERIMENTAL_STRING_VIEW
-> > -DBOOST_ASIO_DISABLE_STD_STRING_VIEW -DBOOST_ATOMIC_DYN_LINK
-> > -DBOOST_ATOMIC_NO_LIB -DBOOST_CHRONO_DYN_LINK -DBOOST_CHRONO_NO_LIB
-> > -DBOOST_DATE_TIME_DYN_LINK -DBOOST_DATE_TIME_NO_LIB
-> > -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_FILESYSTEM_DYN_LINK
-> > -DBOOST_FILESYSTEM_NO_LIB -DBOOST_PROGRAM_OPTIONS_DYN_LINK
-> > -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SERIALIZATION_DYN_LINK
-> > -DBOOST_SERIALIZATION_NO_LIB -DBOOST_SYSTEM_DYN_LINK
-> > -DBOOST_SYSTEM_NO_LIB -DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN
-> > -DBOOST_THREAD_DYN_LINK -DBOOST_THREAD_NO_LIB
-> > -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK
-> > -DBOOST_UNIT_TEST_FRAMEWORK_NO_LIB -DHAVE_CONFIG_H -DNOMINMAX
-> > -DUHD_LOG_CONSOLE_COLOR -DUHD_LOG_CONSOLE_LEVEL=3D2
-> > -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_MIN_LEVEL=3D1 -D_WIN32_WINNT=3D0x050=
-1
-> > -IC:/msys64/home/chris/src/uhd/host/build/include
-> > -IC:/msys64/home/chris/src/uhd/host/include
-> > -IC:/msys64/home/chris/src/uhd/host/lib/include
-> > -IC:/msys64/home/chris/src/uhd/host/build/lib/include
-> > -IC:/msys64/home/chris/src/uhd/host/tests/common
-> > -IC:/msys64/home/chris/src/uhd/host/build/lib/rfnoc
-> > -IC:/msys64/home/chris/src/uhd/host/lib/rfnoc
-> > -IC:/msys64/home/chris/src/uhd/host/build/lib/ic_reg_maps
-> > -IC:/msys64/home/chris/src/uhd/host/lib/deps/rpclib/include
-> > -IC:/msys64/home/chris/src/uhd/host/lib/deps/flatbuffers/include
-> > -IC:/msys64/home/chris/src/uhd/host/build/_cmrc/include -O3 -DNDEBUG
-> > -std=3Dgnu++14   -Wall -Wextra -Wsign-compare -MD -MT
-> > tests/CMakeFiles/isatty_test.dir/isatty_test.cpp.obj -MF
-> > tests\CMakeFiles\isatty_test.dir\isatty_test.cpp.obj.d -o
-> > tests/CMakeFiles/isatty_test.dir/isatty_test.cpp.obj -c
-> > C:/msys64/home/chris/src/uhd/host/tests/isatty_test.cpp
-> > In file included from
-> > C:/msys64/mingw64/include/boost/assert/source_location.hpp:15,
-> >                  from
-> C:/msys64/mingw64/include/boost/exception/exception.hpp:9,
-> >                  from
-> C:/msys64/mingw64/include/boost/throw_exception.hpp:21,
-> >                  from
-> > C:/msys64/mingw64/include/boost/smart_ptr/detail/shared_count.hpp:31,
-> >                  from
-> > C:/msys64/mingw64/include/boost/smart_ptr/shared_ptr.hpp:18,
-> >                  from C:/msys64/mingw64/include/boost/shared_ptr.hpp:17=
-,
-> >                  from
-> > C:/msys64/mingw64/include/boost/test/tools/assertion_result.hpp:21,
-> >                  from
-> > C:/msys64/mingw64/include/boost/test/tools/old/impl.hpp:20,
-> >                  from
-> C:/msys64/mingw64/include/boost/test/test_tools.hpp:46,
-> >                  from
-> C:/msys64/mingw64/include/boost/test/unit_test.hpp:18,
-> >                  from
-> C:/msys64/home/chris/src/uhd/host/tests/isatty_test.cpp:8:
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:78:11: error: 'memchr'
-> > has not been declared in '::'
-> >    78 |   using ::memchr;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:79:11: error: 'memcmp'
-> > has not been declared in '::'
-> >    79 |   using ::memcmp;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:82:11: error: 'memset'
-> > has not been declared in '::'
-> >    82 |   using ::memset;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:83:11: error: 'strcat'
-> > has not been declared in '::'
-> >    83 |   using ::strcat;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:84:11: error: 'strcmp'
-> > has not been declared in '::'
-> >    84 |   using ::strcmp;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:85:11: error: 'strcoll'
-> > has not been declared in '::'
-> >    85 |   using ::strcoll;
-> >       |           ^~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:86:11: error: 'strcpy'
-> > has not been declared in '::'
-> >    86 |   using ::strcpy;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:87:11: error: 'strcspn'
-> > has not been declared in '::'
-> >    87 |   using ::strcspn;
-> >       |           ^~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:88:11: error: 'strerror'
-> > has not been declared in '::'
-> >    88 |   using ::strerror;
-> >       |           ^~~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:89:11: error: 'strlen'
-> > has not been declared in '::'
-> >    89 |   using ::strlen;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:90:11: error: 'strncat'
-> > has not been declared in '::'
-> >    90 |   using ::strncat;
-> >       |           ^~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:91:11: error: 'strncmp'
-> > has not been declared in '::'
-> >    91 |   using ::strncmp;
-> >       |           ^~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:92:11: error: 'strncpy'
-> > has not been declared in '::'
-> >    92 |   using ::strncpy;
-> >       |           ^~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:93:11: error: 'strspn'
-> > has not been declared in '::'
-> >    93 |   using ::strspn;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:95:11: error: 'strtok'
-> > has not been declared in '::'
-> >    95 |   using ::strtok;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:97:11: error: 'strxfrm'
-> > has not been declared in '::'
-> >    97 |   using ::strxfrm;
-> >       |           ^~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:98:11: error: 'strchr'
-> > has not been declared in '::'
-> >    98 |   using ::strchr;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:99:11: error: 'strpbrk'
-> > has not been declared in '::'
-> >    99 |   using ::strpbrk;
-> >       |           ^~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:100:11: error: 'strrchr'
-> > has not been declared in '::'
-> >   100 |   using ::strrchr;
-> >       |           ^~~~~~~
-> > C:/msys64/mingw64/include/c++/14.1.0/cstring:101:11: error: 'strstr'
-> > has not been declared in '::'
-> >   101 |   using ::strstr;
-> >       |           ^~~~~~
-> > C:/msys64/mingw64/include/boost/assert/source_location.hpp: In
-> > function 'bool boost::operator=3D=3D(const source_location&, const
-> > source_location&)':
-> > C:/msys64/mingw64/include/boost/assert/source_location.hpp:126:21:
-> > error: 'strcmp' is not a member of 'std'; did you mean 'strchr'?
-> >   126 |         return std::strcmp( s1.file_, s2.file_ ) =3D=3D 0 &&
-> > std::strcmp( s1.function_, s2.function_ ) =3D=3D 0 && s1.line_ =3D=3D s=
-2.line_
-> > && s1.column_ =3D=3D s2.column_;
-> >       |                     ^~~~~~
-> >       |                     strchr
-> > C:/msys64/mingw64/include/boost/assert/source_location.hpp:126:63:
-> > error: 'strcmp' is not a member of 'std'; did you mean 'strchr'?
-> >   126 |         return std::strcmp( s1.file_, s2.file_ ) =3D=3D 0 &&
-> > std::strcmp( s1.function_, s2.function_ ) =3D=3D 0 && s1.line_ =3D=3D s=
-2.line_
-> > && s1.column_ =3D=3D s2.column_;
-> >       |
->  ^~~~~~
-> >       |
->  strchr
-> > In file included from
-> C:/msys64/mingw64/include/boost/mpl/for_each.hpp:29,
-> >                  from
-> > C:/msys64/mingw64/include/boost/test/tree/test_case_template.hpp:28,
-> >                  from
-> > C:/msys64/mingw64/include/boost/test/unit_test_suite.hpp:19,
-> >                  from
-> C:/msys64/mingw64/include/boost/test/unit_test.hpp:19:
-> > C:/msys64/mingw64/include/boost/utility/value_init.hpp: In constructor
-> > 'boost::detail::zero_init::zero_init(void*, std::size_t)':
-> > C:/msys64/mingw64/include/boost/utility/value_init.hpp:73:12: error:
-> > 'memset' is not a member of 'std'; did you mean 'wmemset'?
-> >    73 |       std::memset( p, 0, n );
-> >       |            ^~~~~~
-> >       |            wmemset
-> >
-> > It looks like I'm including something I shouldn't, but I don't know wha=
-t.
-> >
-> > My cmake build log is ...
-> >
-> > $ cmake -DCMAKE_INSTALL_PREFIX=3Dc:/msys64/mingw64 -DENABLE_PYTHON_API=
-=3DON
-> ..
-> > --
-> > -- Configuring the Python interpreter...
-> > -- Manually determining build Python version...
-> > -- Python interpreter: C:/msys64/mingw64/bin/python3.11.exe Version:
-> 3.11.9
-> > -- Override with: -DPYTHON_EXECUTABLE=3D<path-to-python>
-> > -- Manually determining runtime Python version...
-> > -- Python runtime interpreter: C:/msys64/mingw64/bin/python3.11.exe
-> > Version: 3.11.9
-> > -- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D<path-to-python>
-> > -- Finding Python Libraries...
-> > CMake Warning (dev) at cmake/Modules/UHDPython.cmake:313 (find_package)=
-:
-> >   Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs
-> modules
-> >   are removed.  Run "cmake --help-policy CMP0148" for policy details.
-> Use
-> >   the cmake_policy command to set the policy and suppress this warning.
-> >
-> > Call Stack (most recent call first):
-> >   cmake/Modules/UHDVersion.cmake:9 (include)
-> >   cmake/Modules/UHDPackage.cmake:9 (include)
-> >   CMakeLists.txt:107 (include)
-> > This warning is for project developers.  Use -Wno-dev to suppress it.
-> >
-> > -- Python Libraries: C:/msys64/mingw64/lib/libpython3.11.dll.a
-> > -- Python include directories: C:/msys64/mingw64/include/python3.11
-> > -- pybind11::lto disabled (problems with undefined symbols for MinGW fo=
-r
-> now)
-> > -- pybind11::thin_lto disabled (problems with undefined symbols for
-> > MinGW for now)
-> > -- Operating on master branch.
-> > -- Using UHD Images Directory: C:\msys64\mingw64\share\uhd\images
-> > -- Build type not specified: defaulting to release.
-> > --
-> > -- Configuring Boost C++ Libraries...
-> > --
-> > -- Checking for Boost version 1.65 or greater
-> > --   Looking for required Boost components...
-> > --   Enabling Boost Error Code Header Only
-> > --     Disabling boost::asio use of std::string_view
-> > --   Boost version: 1.85.0
-> > --   Boost include directories: C:/msys64/mingw64/include
-> > --   Boost library directories: C:/msys64/mingw64/lib
-> > --   Boost libraries:
-> >
-> Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;B=
-oost::serialization;Boost::thread;Boost::unit_test_framework;Boost::system
-> > -- Looking for Boost version 1.65 or greater - found
-> > --
-> > -- Python checking for compatible Python version
-> > -- Python checking for compatible Python version - 3.11.9 satisfies
-> > minimum required version 3.7
-> > --
-> > -- Python checking for Mako templates module
-> > -- Python checking for Mako templates module - 1.3.5 satisfies minimum
-> > required version 0.4.2
-> > --
-> > -- Python checking for requests module
-> > -- Python checking for requests module - 2.32.2 satisfies minimum
-> > required version 2.0
-> > --
-> > -- Python checking for numpy module
-> > -- Python checking for numpy module - 1.26.4 satisfies minimum
-> > required version 1.11
-> > --
-> > -- Python checking for ruamel.yaml module
-> > -- Python checking for ruamel.yaml module - 0.18.6 satisfies minimum
-> > required version 0.15
-> > --
-> > -- Configuring LibUHD support...
-> > --   Dependency Boost_FOUND =3D TRUE
-> > --   Dependency HAVE_PYTHON_MODULE_MAKO =3D TRUE
-> > --   Enabling LibUHD support.
-> > --   Override with -DENABLE_LIBUHD=3DON/OFF
-> > --
-> > -- Configuring LibUHD - C API support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Enabling LibUHD - C API support.
-> > --   Override with -DENABLE_C_API=3DON/OFF
-> > --
-> > -- Configuring LibUHD - Python API support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency HAVE_PYTHON_MODULE_NUMPY =3D TRUE
-> > --   Dependency HAVE_PYTHON_LIBS =3D TRUE
-> > --   Enabling LibUHD - Python API support.
-> > --   Override with -DENABLE_PYTHON_API=3DON/OFF
-> > --
-> > -- Configuring Examples support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Enabling Examples support.
-> > --   Override with -DENABLE_EXAMPLES=3DON/OFF
-> > --
-> > -- Configuring Utils support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Enabling Utils support.
-> > --   Override with -DENABLE_UTILS=3DON/OFF
-> > --
-> > -- Configuring Tests support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Enabling Tests support.
-> > --   Override with -DENABLE_TESTS=3DON/OFF
-> > --
-> > -- Configuring Python Module (Utils only) support...
-> > --   Dependency HAVE_PYTHON_MODULE_NUMPY =3D TRUE
-> > --   Dependency HAVE_PYTHON_MODULE_MAKO =3D TRUE
-> > --   Dependency HAVE_PYTHON_MODULE_YAML =3D TRUE
-> > --   Enabling Python Module (Utils only) support.
-> > --   Override with -DENABLE_PYMOD_UTILS=3DON/OFF
-> > --
-> > CMake Warning (dev) at
-> >
-> C:/msys64/mingw64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake=
-:447
-> > (message):
-> >   `find_package()` specify a version range but the module DPDK does not
-> >   support this capability.  Only the lower endpoint of the range will b=
-e
-> >   used.
-> > Call Stack (most recent call first):
-> >   cmake/Modules/FindDPDK.cmake:86 (find_package_handle_standard_args)
-> >   lib/CMakeLists.txt:63 (find_package)
-> > This warning is for project developers.  Use -Wno-dev to suppress it.
-> >
-> > -- Could NOT find DPDK (missing: DPDK_INCLUDE_DIRS DPDK_LIBRARIES)
-> > (Required is at least version "18.11")
-> > --
-> > -- Configuring USB support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency LIBUSB_FOUND =3D TRUE
-> > --   Enabling USB support.
-> > --   Override with -DENABLE_USB=3DON/OFF
-> > --
-> > -- Configuring B100 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_USB =3D ON
-> > --   Enabling B100 support.
-> > --   Override with -DENABLE_B100=3DON/OFF
-> > --
-> > -- Configuring B200 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_USB =3D ON
-> > --   Enabling B200 support.
-> > --   Override with -DENABLE_B200=3DON/OFF
-> > --
-> > -- Configuring USRP1 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_USB =3D ON
-> > --   Enabling USRP1 support.
-> > --   Override with -DENABLE_USRP1=3DON/OFF
-> > --
-> > -- Configuring USRP2 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Enabling USRP2 support.
-> > --   Override with -DENABLE_USRP2=3DON/OFF
-> > --
-> > -- Configuring X300 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Enabling X300 support.
-> > --   Override with -DENABLE_X300=3DON/OFF
-> > --
-> > -- Configuring MPMD support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Enabling MPMD support.
-> > --   Override with -DENABLE_MPMD=3DON/OFF
-> > --
-> > -- Configuring SIM support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_MPMD =3D ON
-> > --   Dependency ENABLE_PYTHON_API =3D ON
-> > --   Enabling SIM support.
-> > --   Override with -DENABLE_SIM=3DON/OFF
-> > --
-> > -- Configuring N300 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_MPMD =3D ON
-> > --   Enabling N300 support.
-> > --   Override with -DENABLE_N300=3DON/OFF
-> > --
-> > -- Configuring N320 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_MPMD =3D ON
-> > --   Enabling N320 support.
-> > --   Override with -DENABLE_N320=3DON/OFF
-> > --
-> > -- Configuring E320 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_MPMD =3D ON
-> > --   Enabling E320 support.
-> > --   Override with -DENABLE_E320=3DON/OFF
-> > --
-> > -- Configuring E300 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_MPMD =3D ON
-> > --   Enabling E300 support.
-> > --   Override with -DENABLE_E300=3DON/OFF
-> > --
-> > -- Configuring X400 support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Dependency ENABLE_MPMD =3D ON
-> > --   Enabling X400 support.
-> > --   Override with -DENABLE_X400=3DON/OFF
-> > --
-> > -- Configuring OctoClock support...
-> > --   Dependency ENABLE_LIBUHD =3D ON
-> > --   Enabling OctoClock support.
-> > --   Override with -DENABLE_OCTOCLOCK=3DON/OFF
-> > --
-> > -- Configuring DPDK support...
-> > --   Dependency ENABLE_MPMD =3D ON
-> > --   Dependency DPDK_FOUND =3D FALSE
-> > --   Disabling DPDK support.
-> > --   Override with -DENABLE_DPDK=3DON/OFF
-> > --
-> > --
-> > -- Configuring priority scheduling...
-> > --   Priority scheduling supported through pthread_setschedparam.
-> > --   Setting thread names is supported through pthread_setname_np.
-> > --   Setting thread affinity is supported through windows
-> SetThreadAffinityMask.
-> > --
-> > -- Configuring module loading...
-> > --   Module loading supported through LoadLibrary.
-> > --
-> > -- Configuring atomics support...
-> > --   Atomics support is built-in, no linking required.
-> > --
-> > -- Processing NI-RIO FPGA LVBITX Bitstreams...
-> > --   Using x300.lvbitx_base for codegen
-> > --   Using x310.lvbitx_base for codegen
-> > --
-> > -- USB support enabled via libusb.
-> > --
-> > -- Configuring interface address discovery...
-> > --   Interface address discovery supported through
-> SIO_GET_INTERFACE_LIST.
-> > --
-> > -- Loading build info.
-> > CMake Deprecation Warning at cmake/Modules/CMakeRC.cmake:63
-> > (cmake_minimum_required):
-> >   Compatibility with CMake < 3.5 will be removed from a future version =
-of
-> >   CMake.
-> >
-> >   Update the VERSION argument <min> value or use a ...<max> suffix to
-> tell
-> >   CMake that the project does not need compatibility with older version=
-s.
-> > Call Stack (most recent call first):
-> >   lib/rc/CMakeLists.txt:7 (include)
-> >
-> >
-> > --
-> > -- Adding B2XX device test target
-> > -- Adding X3x0 device test target
-> > -- Adding E3XX device test target
-> > -- Adding N3XX device test target
-> > -- Adding E32x device test target
-> > -- Adding X410 device test target
-> > -- Adding X440 device test target
-> > --
-> > --
-> > -- Configuring Manual support...
-> > --   Dependency DOXYGEN_FOUND =3D YES
-> > --   Enabling Manual support.
-> > --   Override with -DENABLE_MANUAL=3DON/OFF
-> > --
-> > -- Configuring API/Doxygen support...
-> > --   Dependency DOXYGEN_FOUND =3D YES
-> > --   Enabling API/Doxygen support.
-> > --   Override with -DENABLE_DOXYGEN=3DON/OFF
-> > --
-> > -- Found GZip: C:/msys64/usr/bin/gzip.exe
-> > --
-> > -- Compressed Man Pages enabled
-> > --   Override with -DENABLE_MAN_PAGE_COMPRESSION=3DON/OFF
-> > --
-> > -- Configuring Man Pages support...
-> > --   Dependency NOT_WIN32 =3D
-> > --   Dependency GZIP_FOUND =3D TRUE
-> > --   Disabling Man Pages support.
-> > --   Override with -DENABLE_MAN_PAGES=3DON/OFF
-> > -- Using Pybind11 from: C:/msys64/mingw64/include
-> > --
-> > -- Python checking for gevent module
-> > -- Python checking for gevent module - "import gevent" failed (is it
-> installed?)
-> > --
-> > -- Python checking for mprpc module
-> > -- Python checking for mprpc module - "import mprpc" failed (is it
-> installed?)
-> > --
-> > -- Python checking for pyudev module
-> > -- Python checking for pyudev module - "import pyudev" failed (is it
-> installed?)
-> > --
-> > -- Python checking for pyroute2 module
-> > -- Python checking for pyroute2 module - "import pyroute2" failed (is
-> > it installed?)
-> > -- MPM unit test Python package prerequisites not met; skipping
-> > --
-> > --
-> > -- Python checking for virtual environment
-> > -- Python checking for virtual environment - "assert sys.prefix !=3D
-> > sys.base_prefix" failed
-> > -- Installing 'uhd' Python module to:
-> > C:/msys64/mingw64/lib/python3.11/site-packages
-> > --
-> > -- ######################################################
-> > -- # UHD enabled components
-> > -- ######################################################
-> > --   * LibUHD
-> > --   * LibUHD - C API
-> > --   * LibUHD - Python API
-> > --   * Examples
-> > --   * Utils
-> > --   * Tests
-> > --   * Python Module (Utils only)
-> > --   * USB
-> > --   * B100
-> > --   * B200
-> > --   * USRP1
-> > --   * USRP2
-> > --   * X300
-> > --   * MPMD
-> > --   * SIM
-> > --   * N300
-> > --   * N320
-> > --   * E320
-> > --   * E300
-> > --   * X400
-> > --   * OctoClock
-> > --   * Manual
-> > --   * API/Doxygen
-> > --
-> > -- ######################################################
-> > -- # UHD disabled components
-> > -- ######################################################
-> > --   * DPDK
-> > --   * Man Pages
-> > --
-> > -- ******************************************************
-> > -- * You are building the UHD development master branch.
-> > -- * For production code, we recommend our stable,
-> > -- * releases or using the release branch (maint).
-> > -- ******************************************************
-> > -- Building version: 4.7.0.0-0-ga5ed1872
-> > -- Using install prefix: C:/msys64/mingw64
-> > -- Configuring done (3.7s)
-> > -- Generating done (0.7s)
-> > -- Build files have been written to:
-> C:/msys64/home/chris/src/uhd/host/build
-> >
-> > I'm also applying a patch to get it to build.  It was needed for
-> > 4.6.0.0 and I've had to make some tweaks.  None of the files touched
-> > by the patch are part of the error, but I'll include it for
-> > completeness.
-> >
-> > Thanks in advance,
-> >
-> > Chris
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000005fe977061c7d4404
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Chris,</div><div><br></div><div>thanks for reporti=
-ng back! mingw is not one of the compilers we test with (it&#39;s not so lo=
-ng ago that it didn&#39;t even support std::thread and couldn&#39;t compile=
- UHD at all).</div><div><br></div><div>But this fix is something we can add=
- permanently to UHD. In fact,=C2=A0 I think this include should come first =
-in all the tests, but it seems not to be a problem for most of them.</div><=
-div><br></div><div>Cheers,</div><div>M<br></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 4, 2024 at 10:2=
-6=E2=80=AFPM Chris Gorman &lt;<a href=3D"mailto:chrisjohgorman@gmail.com">c=
-hrisjohgorman@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex">Hello all,<br>
-<br>
-Just a follow up email in case someone else tries to build a msys2<br>
-package for libuhd and gets the same error.=C2=A0 The fix was to invert the=
-<br>
-include order and have &lt;boost/test/unit_test.hpp&gt; included before<br>
-&lt;uhdlib/utils//isatty.hpp&gt;.<br>
-<br>
-diff --git a/host/tests/isatty_test.cpp b/host/tests/isatty_test.cpp<br>
-index 99da27fd1..de1b4e110 100644<br>
---- a/host/tests/isatty_test.cpp<br>
-+++ b/host/tests/isatty_test.cpp<br>
-@@ -3,9 +3,8 @@<br>
-=C2=A0//<br>
-=C2=A0// SPDX-License-Identifier: GPL-3.0-or-later<br>
-=C2=A0//<br>
--<br>
--#include &lt;uhdlib/utils/isatty.hpp&gt;<br>
-=C2=A0#include &lt;boost/test/unit_test.hpp&gt;<br>
-+#include &lt;uhdlib/utils/isatty.hpp&gt;<br>
-=C2=A0#include &lt;cstdio&gt;<br>
-=C2=A0#include &lt;iostream&gt;<br>
-<br>
-I also ran into a linker error and fixed it by inverting the order in<br>
-which two libraries occurred on the command line.<br>
-<br>
-diff --git a/host/tests/CMakeLists.txt b/host/tests/CMakeLists.txt<br>
-index bac599811..682ce01c2 100644<br>
---- a/host/tests/CMakeLists.txt<br>
-+++ b/host/tests/CMakeLists.txt<br>
-@@ -97,7 +97,7 @@ include_directories(&quot;${CMAKE_CURRENT_SOURCE_DIR}/com=
-mon&quot;)<br>
-=C2=A0foreach(test_source ${test_sources})<br>
-=C2=A0 =C2=A0 =C2=A0get_filename_component(test_name ${test_source} NAME_WE=
-)<br>
-=C2=A0 =C2=A0 =C2=A0add_executable(${test_name} ${test_source})<br>
--=C2=A0 =C2=A0 target_link_libraries(${test_name} uhd uhd_test ${Boost_LIBR=
-ARIES})<br>
-+=C2=A0 =C2=A0 target_link_libraries(${test_name} uhd_test uhd ${Boost_LIBR=
-ARIES})<br>
-=C2=A0 =C2=A0 =C2=A0UHD_ADD_TEST(${test_name} ${test_name})<br>
-=C2=A0 =C2=A0 =C2=A0UHD_INSTALL(TARGETS ${test_name} RUNTIME DESTINATION<br=
->
-${PKG_LIB_DIR}/tests COMPONENT tests)<br>
-=C2=A0endforeach(test_source)<br>
-@@ -106,7 +106,7 @@ endforeach(test_source)<br>
-=C2=A0foreach(benchmark_source ${benchmark_sources})<br>
-=C2=A0 =C2=A0 =C2=A0get_filename_component(benchmark_name ${benchmark_sourc=
-e} NAME_WE)<br>
-=C2=A0 =C2=A0 =C2=A0add_executable(${benchmark_name} ${benchmark_source})<b=
-r>
--=C2=A0 =C2=A0 target_link_libraries(${benchmark_name} uhd uhd_test ${Boost=
-_LIBRARIES})<br>
-+=C2=A0 =C2=A0 target_link_libraries(${benchmark_name} uhd_test uhd ${Boost=
-_LIBRARIES})<br>
-=C2=A0 =C2=A0 =C2=A0UHD_INSTALL(TARGETS ${benchmark_name} RUNTIME DESTINATI=
-ON<br>
-${PKG_LIB_DIR}/tests COMPONENT tests)<br>
-=C2=A0endforeach(benchmark_source)<br>
-<br>
-Thanks for your time.<br>
-<br>
-Chris<br>
-<br>
-On Tue, Jul 2, 2024 at 10:13=E2=80=AFAM Chris Gorman &lt;<a href=3D"mailto:=
-chrisjohgorman@gmail.com" target=3D"_blank">chrisjohgorman@gmail.com</a>&gt=
-; wrote:<br>
-&gt;<br>
-&gt; Hello USRP users,<br>
-&gt;<br>
-&gt; I&#39;m trying to update my build from 4.6.0.0 to 4.7.0.0 for UHD on<b=
-r>
-&gt; msys2/mingw64.=C2=A0 During the build I get the following error...<br>
-&gt;<br>
-&gt; $ C:\msys64\mingw64\bin\c++.exe<br>
-&gt; -DBOOST_ASIO_DISABLE_STD_EXPERIMENTAL_STRING_VIEW<br>
-&gt; -DBOOST_ASIO_DISABLE_STD_STRING_VIEW -DBOOST_ATOMIC_DYN_LINK<br>
-&gt; -DBOOST_ATOMIC_NO_LIB -DBOOST_CHRONO_DYN_LINK -DBOOST_CHRONO_NO_LIB<br=
->
-&gt; -DBOOST_DATE_TIME_DYN_LINK -DBOOST_DATE_TIME_NO_LIB<br>
-&gt; -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_FILESYSTEM_DYN_LINK<br>
-&gt; -DBOOST_FILESYSTEM_NO_LIB -DBOOST_PROGRAM_OPTIONS_DYN_LINK<br>
-&gt; -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_SERIALIZATION_DYN_LINK<br>
-&gt; -DBOOST_SERIALIZATION_NO_LIB -DBOOST_SYSTEM_DYN_LINK<br>
-&gt; -DBOOST_SYSTEM_NO_LIB -DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN<br>
-&gt; -DBOOST_THREAD_DYN_LINK -DBOOST_THREAD_NO_LIB<br>
-&gt; -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK<br>
-&gt; -DBOOST_UNIT_TEST_FRAMEWORK_NO_LIB -DHAVE_CONFIG_H -DNOMINMAX<br>
-&gt; -DUHD_LOG_CONSOLE_COLOR -DUHD_LOG_CONSOLE_LEVEL=3D2<br>
-&gt; -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_MIN_LEVEL=3D1 -D_WIN32_WINNT=3D0x05=
-01<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/build/include<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/include<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/lib/include<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/build/lib/include<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/tests/common<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/build/lib/rfnoc<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/lib/rfnoc<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/build/lib/ic_reg_maps<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/lib/deps/rpclib/include<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/lib/deps/flatbuffers/include<br>
-&gt; -IC:/msys64/home/chris/src/uhd/host/build/_cmrc/include -O3 -DNDEBUG<b=
-r>
-&gt; -std=3Dgnu++14=C2=A0 =C2=A0-Wall -Wextra -Wsign-compare -MD -MT<br>
-&gt; tests/CMakeFiles/isatty_test.dir/isatty_test.cpp.obj -MF<br>
-&gt; tests\CMakeFiles\isatty_test.dir\isatty_test.cpp.obj.d -o<br>
-&gt; tests/CMakeFiles/isatty_test.dir/isatty_test.cpp.obj -c<br>
-&gt; C:/msys64/home/chris/src/uhd/host/tests/isatty_test.cpp<br>
-&gt; In file included from<br>
-&gt; C:/msys64/mingw64/include/boost/assert/source_location.hpp:15,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from C:/=
-msys64/mingw64/include/boost/exception/exception.hpp:9,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from C:/=
-msys64/mingw64/include/boost/throw_exception.hpp:21,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from<br>
-&gt; C:/msys64/mingw64/include/boost/smart_ptr/detail/shared_count.hpp:31,<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from<br>
-&gt; C:/msys64/mingw64/include/boost/smart_ptr/shared_ptr.hpp:18,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from C:/=
-msys64/mingw64/include/boost/shared_ptr.hpp:17,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from<br>
-&gt; C:/msys64/mingw64/include/boost/test/tools/assertion_result.hpp:21,<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from<br>
-&gt; C:/msys64/mingw64/include/boost/test/tools/old/impl.hpp:20,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from C:/=
-msys64/mingw64/include/boost/test/test_tools.hpp:46,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from C:/=
-msys64/mingw64/include/boost/test/unit_test.hpp:18,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from C:/=
-msys64/home/chris/src/uhd/host/tests/isatty_test.cpp:8:<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:78:11: error: &#39;memchr=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 78 |=C2=A0 =C2=A0using ::memchr;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:79:11: error: &#39;memcmp=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 79 |=C2=A0 =C2=A0using ::memcmp;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:82:11: error: &#39;memset=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 82 |=C2=A0 =C2=A0using ::memset;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:83:11: error: &#39;strcat=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 83 |=C2=A0 =C2=A0using ::strcat;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:84:11: error: &#39;strcmp=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 84 |=C2=A0 =C2=A0using ::strcmp;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:85:11: error: &#39;strcol=
-l&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 85 |=C2=A0 =C2=A0using ::strcoll;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:86:11: error: &#39;strcpy=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 86 |=C2=A0 =C2=A0using ::strcpy;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:87:11: error: &#39;strcsp=
-n&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 87 |=C2=A0 =C2=A0using ::strcspn;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:88:11: error: &#39;strerr=
-or&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 88 |=C2=A0 =C2=A0using ::strerror;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:89:11: error: &#39;strlen=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 89 |=C2=A0 =C2=A0using ::strlen;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:90:11: error: &#39;strnca=
-t&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 90 |=C2=A0 =C2=A0using ::strncat;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:91:11: error: &#39;strncm=
-p&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 91 |=C2=A0 =C2=A0using ::strncmp;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:92:11: error: &#39;strncp=
-y&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 92 |=C2=A0 =C2=A0using ::strncpy;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:93:11: error: &#39;strspn=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 93 |=C2=A0 =C2=A0using ::strspn;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:95:11: error: &#39;strtok=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 95 |=C2=A0 =C2=A0using ::strtok;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:97:11: error: &#39;strxfr=
-m&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 97 |=C2=A0 =C2=A0using ::strxfrm;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:98:11: error: &#39;strchr=
-&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 98 |=C2=A0 =C2=A0using ::strchr;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:99:11: error: &#39;strpbr=
-k&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0 99 |=C2=A0 =C2=A0using ::strpbrk;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:100:11: error: &#39;strrc=
-hr&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0100 |=C2=A0 =C2=A0using ::strrchr;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~~<br>
-&gt; C:/msys64/mingw64/include/c++/14.1.0/cstring:101:11: error: &#39;strst=
-r&#39;<br>
-&gt; has not been declared in &#39;::&#39;<br>
-&gt;=C2=A0 =C2=A0101 |=C2=A0 =C2=A0using ::strstr;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~=
-~~~~<br>
-&gt; C:/msys64/mingw64/include/boost/assert/source_location.hpp: In<br>
-&gt; function &#39;bool boost::operator=3D=3D(const source_location&amp;, c=
-onst<br>
-&gt; source_location&amp;)&#39;:<br>
-&gt; C:/msys64/mingw64/include/boost/assert/source_location.hpp:126:21:<br>
-&gt; error: &#39;strcmp&#39; is not a member of &#39;std&#39;; did you mean=
- &#39;strchr&#39;?<br>
-&gt;=C2=A0 =C2=A0126 |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return std::strcmp(=
- s1.file_, s2.file_ ) =3D=3D 0 &amp;&amp;<br>
-&gt; std::strcmp( s1.function_, s2.function_ ) =3D=3D 0 &amp;&amp; s1.line_=
- =3D=3D s2.line_<br>
-&gt; &amp;&amp; s1.column_ =3D=3D s2.column_;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0strchr<br>
-&gt; C:/msys64/mingw64/include/boost/assert/source_location.hpp:126:63:<br>
-&gt; error: &#39;strcmp&#39; is not a member of &#39;std&#39;; did you mean=
- &#39;strchr&#39;?<br>
-&gt;=C2=A0 =C2=A0126 |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return std::strcmp(=
- s1.file_, s2.file_ ) =3D=3D 0 &amp;&amp;<br>
-&gt; std::strcmp( s1.function_, s2.function_ ) =3D=3D 0 &amp;&amp; s1.line_=
- =3D=3D s2.line_<br>
-&gt; &amp;&amp; s1.column_ =3D=3D s2.column_;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0strchr<br>
-&gt; In file included from C:/msys64/mingw64/include/boost/mpl/for_each.hpp=
-:29,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from<br>
-&gt; C:/msys64/mingw64/include/boost/test/tree/test_case_template.hpp:28,<b=
-r>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from<br>
-&gt; C:/msys64/mingw64/include/boost/test/unit_test_suite.hpp:19,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 from C:/=
-msys64/mingw64/include/boost/test/unit_test.hpp:19:<br>
-&gt; C:/msys64/mingw64/include/boost/utility/value_init.hpp: In constructor=
-<br>
-&gt; &#39;boost::detail::zero_init::zero_init(void*, std::size_t)&#39;:<br>
-&gt; C:/msys64/mingw64/include/boost/utility/value_init.hpp:73:12: error:<b=
-r>
-&gt; &#39;memset&#39; is not a member of &#39;std&#39;; did you mean &#39;w=
-memset&#39;?<br>
-&gt;=C2=A0 =C2=A0 73 |=C2=A0 =C2=A0 =C2=A0 =C2=A0std::memset( p, 0, n );<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^=
-~~~~~<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 w=
-memset<br>
-&gt;<br>
-&gt; It looks like I&#39;m including something I shouldn&#39;t, but I don&#=
-39;t know what.<br>
-&gt;<br>
-&gt; My cmake build log is ...<br>
-&gt;<br>
-&gt; $ cmake -DCMAKE_INSTALL_PREFIX=3Dc:/msys64/mingw64 -DENABLE_PYTHON_API=
-=3DON ..<br>
-&gt; --<br>
-&gt; -- Configuring the Python interpreter...<br>
-&gt; -- Manually determining build Python version...<br>
-&gt; -- Python interpreter: C:/msys64/mingw64/bin/python3.11.exe Version: 3=
-.11.9<br>
-&gt; -- Override with: -DPYTHON_EXECUTABLE=3D&lt;path-to-python&gt;<br>
-&gt; -- Manually determining runtime Python version...<br>
-&gt; -- Python runtime interpreter: C:/msys64/mingw64/bin/python3.11.exe<br=
->
-&gt; Version: 3.11.9<br>
-&gt; -- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D&lt;path-to-python&gt;=
-<br>
-&gt; -- Finding Python Libraries...<br>
-&gt; CMake Warning (dev) at cmake/Modules/UHDPython.cmake:313 (find_package=
-):<br>
-&gt;=C2=A0 =C2=A0Policy CMP0148 is not set: The FindPythonInterp and FindPy=
-thonLibs modules<br>
-&gt;=C2=A0 =C2=A0are removed.=C2=A0 Run &quot;cmake --help-policy CMP0148&q=
-uot; for policy details.=C2=A0 Use<br>
-&gt;=C2=A0 =C2=A0the cmake_policy command to set the policy and suppress th=
-is warning.<br>
-&gt;<br>
-&gt; Call Stack (most recent call first):<br>
-&gt;=C2=A0 =C2=A0cmake/Modules/UHDVersion.cmake:9 (include)<br>
-&gt;=C2=A0 =C2=A0cmake/Modules/UHDPackage.cmake:9 (include)<br>
-&gt;=C2=A0 =C2=A0CMakeLists.txt:107 (include)<br>
-&gt; This warning is for project developers.=C2=A0 Use -Wno-dev to suppress=
- it.<br>
-&gt;<br>
-&gt; -- Python Libraries: C:/msys64/mingw64/lib/libpython3.11.dll.a<br>
-&gt; -- Python include directories: C:/msys64/mingw64/include/python3.11<br=
->
-&gt; -- pybind11::lto disabled (problems with undefined symbols for MinGW f=
-or now)<br>
-&gt; -- pybind11::thin_lto disabled (problems with undefined symbols for<br=
->
-&gt; MinGW for now)<br>
-&gt; -- Operating on master branch.<br>
-&gt; -- Using UHD Images Directory: C:\msys64\mingw64\share\uhd\images<br>
-&gt; -- Build type not specified: defaulting to release.<br>
-&gt; --<br>
-&gt; -- Configuring Boost C++ Libraries...<br>
-&gt; --<br>
-&gt; -- Checking for Boost version 1.65 or greater<br>
-&gt; --=C2=A0 =C2=A0Looking for required Boost components...<br>
-&gt; --=C2=A0 =C2=A0Enabling Boost Error Code Header Only<br>
-&gt; --=C2=A0 =C2=A0 =C2=A0Disabling boost::asio use of std::string_view<br=
->
-&gt; --=C2=A0 =C2=A0Boost version: 1.85.0<br>
-&gt; --=C2=A0 =C2=A0Boost include directories: C:/msys64/mingw64/include<br=
->
-&gt; --=C2=A0 =C2=A0Boost library directories: C:/msys64/mingw64/lib<br>
-&gt; --=C2=A0 =C2=A0Boost libraries:<br>
-&gt; Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_option=
-s;Boost::serialization;Boost::thread;Boost::unit_test_framework;Boost::syst=
-em<br>
-&gt; -- Looking for Boost version 1.65 or greater - found<br>
-&gt; --<br>
-&gt; -- Python checking for compatible Python version<br>
-&gt; -- Python checking for compatible Python version - 3.11.9 satisfies<br=
->
-&gt; minimum required version 3.7<br>
-&gt; --<br>
-&gt; -- Python checking for Mako templates module<br>
-&gt; -- Python checking for Mako templates module - 1.3.5 satisfies minimum=
-<br>
-&gt; required version 0.4.2<br>
-&gt; --<br>
-&gt; -- Python checking for requests module<br>
-&gt; -- Python checking for requests module - 2.32.2 satisfies minimum<br>
-&gt; required version 2.0<br>
-&gt; --<br>
-&gt; -- Python checking for numpy module<br>
-&gt; -- Python checking for numpy module - 1.26.4 satisfies minimum<br>
-&gt; required version 1.11<br>
-&gt; --<br>
-&gt; -- Python checking for ruamel.yaml module<br>
-&gt; -- Python checking for ruamel.yaml module - 0.18.6 satisfies minimum<b=
-r>
-&gt; required version 0.15<br>
-&gt; --<br>
-&gt; -- Configuring LibUHD support...<br>
-&gt; --=C2=A0 =C2=A0Dependency Boost_FOUND =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Dependency HAVE_PYTHON_MODULE_MAKO =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Enabling LibUHD support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_LIBUHD=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring LibUHD - C API support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling LibUHD - C API support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_C_API=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring LibUHD - Python API support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency HAVE_PYTHON_MODULE_NUMPY =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Dependency HAVE_PYTHON_LIBS =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Enabling LibUHD - Python API support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_PYTHON_API=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring Examples support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling Examples support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_EXAMPLES=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring Utils support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling Utils support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_UTILS=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring Tests support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling Tests support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_TESTS=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring Python Module (Utils only) support...<br>
-&gt; --=C2=A0 =C2=A0Dependency HAVE_PYTHON_MODULE_NUMPY =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Dependency HAVE_PYTHON_MODULE_MAKO =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Dependency HAVE_PYTHON_MODULE_YAML =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Enabling Python Module (Utils only) support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_PYMOD_UTILS=3DON/OFF<br>
-&gt; --<br>
-&gt; CMake Warning (dev) at<br>
-&gt; C:/msys64/mingw64/share/cmake/Modules/FindPackageHandleStandardArgs.cm=
-ake:447<br>
-&gt; (message):<br>
-&gt;=C2=A0 =C2=A0`find_package()` specify a version range but the module DP=
-DK does not<br>
-&gt;=C2=A0 =C2=A0support this capability.=C2=A0 Only the lower endpoint of =
-the range will be<br>
-&gt;=C2=A0 =C2=A0used.<br>
-&gt; Call Stack (most recent call first):<br>
-&gt;=C2=A0 =C2=A0cmake/Modules/FindDPDK.cmake:86 (find_package_handle_stand=
-ard_args)<br>
-&gt;=C2=A0 =C2=A0lib/CMakeLists.txt:63 (find_package)<br>
-&gt; This warning is for project developers.=C2=A0 Use -Wno-dev to suppress=
- it.<br>
-&gt;<br>
-&gt; -- Could NOT find DPDK (missing: DPDK_INCLUDE_DIRS DPDK_LIBRARIES)<br>
-&gt; (Required is at least version &quot;18.11&quot;)<br>
-&gt; --<br>
-&gt; -- Configuring USB support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency LIBUSB_FOUND =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Enabling USB support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_USB=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring B100 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_USB =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling B100 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_B100=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring B200 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_USB =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling B200 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_B200=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring USRP1 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_USB =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling USRP1 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_USRP1=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring USRP2 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling USRP2 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_USRP2=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring X300 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling X300 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_X300=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring MPMD support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling MPMD support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_MPMD=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring SIM support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_MPMD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_PYTHON_API =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling SIM support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_SIM=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring N300 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_MPMD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling N300 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_N300=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring N320 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_MPMD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling N320 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_N320=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring E320 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_MPMD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling E320 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_E320=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring E300 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_MPMD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling E300 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_E300=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring X400 support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_MPMD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling X400 support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_X400=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring OctoClock support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_LIBUHD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Enabling OctoClock support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_OCTOCLOCK=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring DPDK support...<br>
-&gt; --=C2=A0 =C2=A0Dependency ENABLE_MPMD =3D ON<br>
-&gt; --=C2=A0 =C2=A0Dependency DPDK_FOUND =3D FALSE<br>
-&gt; --=C2=A0 =C2=A0Disabling DPDK support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_DPDK=3DON/OFF<br>
-&gt; --<br>
-&gt; --<br>
-&gt; -- Configuring priority scheduling...<br>
-&gt; --=C2=A0 =C2=A0Priority scheduling supported through pthread_setschedp=
-aram.<br>
-&gt; --=C2=A0 =C2=A0Setting thread names is supported through pthread_setna=
-me_np.<br>
-&gt; --=C2=A0 =C2=A0Setting thread affinity is supported through windows Se=
-tThreadAffinityMask.<br>
-&gt; --<br>
-&gt; -- Configuring module loading...<br>
-&gt; --=C2=A0 =C2=A0Module loading supported through LoadLibrary.<br>
-&gt; --<br>
-&gt; -- Configuring atomics support...<br>
-&gt; --=C2=A0 =C2=A0Atomics support is built-in, no linking required.<br>
-&gt; --<br>
-&gt; -- Processing NI-RIO FPGA LVBITX Bitstreams...<br>
-&gt; --=C2=A0 =C2=A0Using x300.lvbitx_base for codegen<br>
-&gt; --=C2=A0 =C2=A0Using x310.lvbitx_base for codegen<br>
-&gt; --<br>
-&gt; -- USB support enabled via libusb.<br>
-&gt; --<br>
-&gt; -- Configuring interface address discovery...<br>
-&gt; --=C2=A0 =C2=A0Interface address discovery supported through SIO_GET_I=
-NTERFACE_LIST.<br>
-&gt; --<br>
-&gt; -- Loading build info.<br>
-&gt; CMake Deprecation Warning at cmake/Modules/CMakeRC.cmake:63<br>
-&gt; (cmake_minimum_required):<br>
-&gt;=C2=A0 =C2=A0Compatibility with CMake &lt; 3.5 will be removed from a f=
-uture version of<br>
-&gt;=C2=A0 =C2=A0CMake.<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0Update the VERSION argument &lt;min&gt; value or use a ...=
-&lt;max&gt; suffix to tell<br>
-&gt;=C2=A0 =C2=A0CMake that the project does not need compatibility with ol=
-der versions.<br>
-&gt; Call Stack (most recent call first):<br>
-&gt;=C2=A0 =C2=A0lib/rc/CMakeLists.txt:7 (include)<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; -- Adding B2XX device test target<br>
-&gt; -- Adding X3x0 device test target<br>
-&gt; -- Adding E3XX device test target<br>
-&gt; -- Adding N3XX device test target<br>
-&gt; -- Adding E32x device test target<br>
-&gt; -- Adding X410 device test target<br>
-&gt; -- Adding X440 device test target<br>
-&gt; --<br>
-&gt; --<br>
-&gt; -- Configuring Manual support...<br>
-&gt; --=C2=A0 =C2=A0Dependency DOXYGEN_FOUND =3D YES<br>
-&gt; --=C2=A0 =C2=A0Enabling Manual support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_MANUAL=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Configuring API/Doxygen support...<br>
-&gt; --=C2=A0 =C2=A0Dependency DOXYGEN_FOUND =3D YES<br>
-&gt; --=C2=A0 =C2=A0Enabling API/Doxygen support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_DOXYGEN=3DON/OFF<br>
-&gt; --<br>
-&gt; -- Found GZip: C:/msys64/usr/bin/gzip.exe<br>
-&gt; --<br>
-&gt; -- Compressed Man Pages enabled<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_MAN_PAGE_COMPRESSION=3DON/OFF<br=
->
-&gt; --<br>
-&gt; -- Configuring Man Pages support...<br>
-&gt; --=C2=A0 =C2=A0Dependency NOT_WIN32 =3D<br>
-&gt; --=C2=A0 =C2=A0Dependency GZIP_FOUND =3D TRUE<br>
-&gt; --=C2=A0 =C2=A0Disabling Man Pages support.<br>
-&gt; --=C2=A0 =C2=A0Override with -DENABLE_MAN_PAGES=3DON/OFF<br>
-&gt; -- Using Pybind11 from: C:/msys64/mingw64/include<br>
-&gt; --<br>
-&gt; -- Python checking for gevent module<br>
-&gt; -- Python checking for gevent module - &quot;import gevent&quot; faile=
-d (is it installed?)<br>
-&gt; --<br>
-&gt; -- Python checking for mprpc module<br>
-&gt; -- Python checking for mprpc module - &quot;import mprpc&quot; failed =
-(is it installed?)<br>
-&gt; --<br>
-&gt; -- Python checking for pyudev module<br>
-&gt; -- Python checking for pyudev module - &quot;import pyudev&quot; faile=
-d (is it installed?)<br>
-&gt; --<br>
-&gt; -- Python checking for pyroute2 module<br>
-&gt; -- Python checking for pyroute2 module - &quot;import pyroute2&quot; f=
-ailed (is<br>
-&gt; it installed?)<br>
-&gt; -- MPM unit test Python package prerequisites not met; skipping<br>
-&gt; --<br>
-&gt; --<br>
-&gt; -- Python checking for virtual environment<br>
-&gt; -- Python checking for virtual environment - &quot;assert sys.prefix !=
-=3D<br>
-&gt; sys.base_prefix&quot; failed<br>
-&gt; -- Installing &#39;uhd&#39; Python module to:<br>
-&gt; C:/msys64/mingw64/lib/python3.11/site-packages<br>
-&gt; --<br>
-&gt; -- ######################################################<br>
-&gt; -- # UHD enabled components<br>
-&gt; -- ######################################################<br>
-&gt; --=C2=A0 =C2=A0* LibUHD<br>
-&gt; --=C2=A0 =C2=A0* LibUHD - C API<br>
-&gt; --=C2=A0 =C2=A0* LibUHD - Python API<br>
-&gt; --=C2=A0 =C2=A0* Examples<br>
-&gt; --=C2=A0 =C2=A0* Utils<br>
-&gt; --=C2=A0 =C2=A0* Tests<br>
-&gt; --=C2=A0 =C2=A0* Python Module (Utils only)<br>
-&gt; --=C2=A0 =C2=A0* USB<br>
-&gt; --=C2=A0 =C2=A0* B100<br>
-&gt; --=C2=A0 =C2=A0* B200<br>
-&gt; --=C2=A0 =C2=A0* USRP1<br>
-&gt; --=C2=A0 =C2=A0* USRP2<br>
-&gt; --=C2=A0 =C2=A0* X300<br>
-&gt; --=C2=A0 =C2=A0* MPMD<br>
-&gt; --=C2=A0 =C2=A0* SIM<br>
-&gt; --=C2=A0 =C2=A0* N300<br>
-&gt; --=C2=A0 =C2=A0* N320<br>
-&gt; --=C2=A0 =C2=A0* E320<br>
-&gt; --=C2=A0 =C2=A0* E300<br>
-&gt; --=C2=A0 =C2=A0* X400<br>
-&gt; --=C2=A0 =C2=A0* OctoClock<br>
-&gt; --=C2=A0 =C2=A0* Manual<br>
-&gt; --=C2=A0 =C2=A0* API/Doxygen<br>
-&gt; --<br>
-&gt; -- ######################################################<br>
-&gt; -- # UHD disabled components<br>
-&gt; -- ######################################################<br>
-&gt; --=C2=A0 =C2=A0* DPDK<br>
-&gt; --=C2=A0 =C2=A0* Man Pages<br>
-&gt; --<br>
-&gt; -- ******************************************************<br>
-&gt; -- * You are building the UHD development master branch.<br>
-&gt; -- * For production code, we recommend our stable,<br>
-&gt; -- * releases or using the release branch (maint).<br>
-&gt; -- ******************************************************<br>
-&gt; -- Building version: 4.7.0.0-0-ga5ed1872<br>
-&gt; -- Using install prefix: C:/msys64/mingw64<br>
-&gt; -- Configuring done (3.7s)<br>
-&gt; -- Generating done (0.7s)<br>
-&gt; -- Build files have been written to: C:/msys64/home/chris/src/uhd/host=
-/build<br>
-&gt;<br>
-&gt; I&#39;m also applying a patch to get it to build.=C2=A0 It was needed =
-for<br>
-&gt; 4.6.0.0 and I&#39;ve had to make some tweaks.=C2=A0 None of the files =
-touched<br>
-&gt; by the patch are part of the error, but I&#39;ll include it for<br>
-&gt; completeness.<br>
-&gt;<br>
-&gt; Thanks in advance,<br>
-&gt;<br>
-&gt; Chris<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000005fe977061c7d4404--
-
---===============2456527283587861743==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2456527283587861743==--
+SGkgTWFydGluLA0KDQpUaGVyZSBhcmUgc29tZSBwcm9ibGVtcyB3aXRoIHRoaXMgYnVpbGQuICBJ
+IGhhZCB0byBkaXNhYmxlIHRocmVhZA0KbmFtaW5nIGluIHVoZDo6c2V0X3RocmVhZF9uYW1lIGNh
+bGxzIHRvIHB0aHJlYWRfc2V0bmFtZV9ucC4gIEkgc2hvdWxkDQpwcm9iYWJseSByZS1lbmFibGUg
+aXQgYW5kIHNldCBIQVZFX1RIUkVBRF9TRVROQU1FX0RVTU1ZIGluc3RlYWQgb2YNCmRpc2FibGlu
+ZyBpdCB2aWEgY29tbWVudC4gIEkgY291bGRuJ3QgZ2V0IHRlc3RzIHRvIHdvcmsuICBJIGhhZCBh
+IGhhbmcNCndoZW4gcnVubmluZyBvbmUgb2YgdGhlbSwgc28gSSBkaXNhYmxlZCB0ZXN0aW5nIGlu
+IHRoZSBidWlsZCBhcyBpdCBpcw0KZG9uZSBpbiB0aGUgYXJjaCBQS0dCVUlMRCBmaWxlLiAgQWdh
+aW4gSSBzaG91bGQgcHJvYmFibHkgc2V0IGENCmN0ZXN0X3RpbWVvdXQgb2Ygc2F5IDEyMCBzZWNv
+bmRzIGFuZCByZWRvIHRoZSB0ZXN0aW5nLiAgT3RoZXJ3aXNlDQptc3lzMi9taW5ndyB3b3JrZWQu
+ICBJJ20gaW4gdGhlIHByb2Nlc3Mgb2YgdHJ5aW5nIHRvIGdldCBhIHB1bGwNCnJlcXVlc3Qgd2l0
+aCBsaWJ1aGQgYW5kIHRoZSByZXN0IG9mIGdudXJhZGlvIGludG8gbXN5czIvbWluZ3cuDQoNCkFs
+bCB0aGUgYmVzdCwNCg0KQ2hyaXMNCg0KT24gRnJpLCBKdWwgNSwgMjAyNCBhdCA2OjEw4oCvQU0g
+TWFydGluIEJyYXVuIDxtYXJ0aW4uYnJhdW5AZXR0dXMuY29tPiB3cm90ZToNCj4NCj4gSGkgQ2hy
+aXMsDQo+DQo+IHRoYW5rcyBmb3IgcmVwb3J0aW5nIGJhY2shIG1pbmd3IGlzIG5vdCBvbmUgb2Yg
+dGhlIGNvbXBpbGVycyB3ZSB0ZXN0IHdpdGggKGl0J3Mgbm90IHNvIGxvbmcgYWdvIHRoYXQgaXQg
+ZGlkbid0IGV2ZW4gc3VwcG9ydCBzdGQ6OnRocmVhZCBhbmQgY291bGRuJ3QgY29tcGlsZSBVSEQg
+YXQgYWxsKS4NCj4NCj4gQnV0IHRoaXMgZml4IGlzIHNvbWV0aGluZyB3ZSBjYW4gYWRkIHBlcm1h
+bmVudGx5IHRvIFVIRC4gSW4gZmFjdCwgIEkgdGhpbmsgdGhpcyBpbmNsdWRlIHNob3VsZCBjb21l
+IGZpcnN0IGluIGFsbCB0aGUgdGVzdHMsIGJ1dCBpdCBzZWVtcyBub3QgdG8gYmUgYSBwcm9ibGVt
+IGZvciBtb3N0IG9mIHRoZW0uDQo+DQo+IENoZWVycywNCj4gTQ0KPg0KPiBPbiBUaHUsIEp1bCA0
+LCAyMDI0IGF0IDEwOjI24oCvUE0gQ2hyaXMgR29ybWFuIDxjaHJpc2pvaGdvcm1hbkBnbWFpbC5j
+b20+IHdyb3RlOg0KPj4NCj4+IEhlbGxvIGFsbCwNCj4+DQo+PiBKdXN0IGEgZm9sbG93IHVwIGVt
+YWlsIGluIGNhc2Ugc29tZW9uZSBlbHNlIHRyaWVzIHRvIGJ1aWxkIGEgbXN5czINCj4+IHBhY2th
+Z2UgZm9yIGxpYnVoZCBhbmQgZ2V0cyB0aGUgc2FtZSBlcnJvci4gIFRoZSBmaXggd2FzIHRvIGlu
+dmVydCB0aGUNCj4+IGluY2x1ZGUgb3JkZXIgYW5kIGhhdmUgPGJvb3N0L3Rlc3QvdW5pdF90ZXN0
+LmhwcD4gaW5jbHVkZWQgYmVmb3JlDQo+PiA8dWhkbGliL3V0aWxzLy9pc2F0dHkuaHBwPi4NCj4+
+DQo+PiBkaWZmIC0tZ2l0IGEvaG9zdC90ZXN0cy9pc2F0dHlfdGVzdC5jcHAgYi9ob3N0L3Rlc3Rz
+L2lzYXR0eV90ZXN0LmNwcA0KPj4gaW5kZXggOTlkYTI3ZmQxLi5kZTFiNGUxMTAgMTAwNjQ0DQo+
+PiAtLS0gYS9ob3N0L3Rlc3RzL2lzYXR0eV90ZXN0LmNwcA0KPj4gKysrIGIvaG9zdC90ZXN0cy9p
+c2F0dHlfdGVzdC5jcHANCj4+IEBAIC0zLDkgKzMsOCBAQA0KPj4gIC8vDQo+PiAgLy8gU1BEWC1M
+aWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAtb3ItbGF0ZXINCj4+ICAvLw0KPj4gLQ0KPj4gLSNp
+bmNsdWRlIDx1aGRsaWIvdXRpbHMvaXNhdHR5LmhwcD4NCj4+ICAjaW5jbHVkZSA8Ym9vc3QvdGVz
+dC91bml0X3Rlc3QuaHBwPg0KPj4gKyNpbmNsdWRlIDx1aGRsaWIvdXRpbHMvaXNhdHR5LmhwcD4N
+Cj4+ICAjaW5jbHVkZSA8Y3N0ZGlvPg0KPj4gICNpbmNsdWRlIDxpb3N0cmVhbT4NCj4+DQo+PiBJ
+IGFsc28gcmFuIGludG8gYSBsaW5rZXIgZXJyb3IgYW5kIGZpeGVkIGl0IGJ5IGludmVydGluZyB0
+aGUgb3JkZXIgaW4NCj4+IHdoaWNoIHR3byBsaWJyYXJpZXMgb2NjdXJyZWQgb24gdGhlIGNvbW1h
+bmQgbGluZS4NCj4+DQo+PiBkaWZmIC0tZ2l0IGEvaG9zdC90ZXN0cy9DTWFrZUxpc3RzLnR4dCBi
+L2hvc3QvdGVzdHMvQ01ha2VMaXN0cy50eHQNCj4+IGluZGV4IGJhYzU5OTgxMS4uNjgyY2UwMWMy
+IDEwMDY0NA0KPj4gLS0tIGEvaG9zdC90ZXN0cy9DTWFrZUxpc3RzLnR4dA0KPj4gKysrIGIvaG9z
+dC90ZXN0cy9DTWFrZUxpc3RzLnR4dA0KPj4gQEAgLTk3LDcgKzk3LDcgQEAgaW5jbHVkZV9kaXJl
+Y3RvcmllcygiJHtDTUFLRV9DVVJSRU5UX1NPVVJDRV9ESVJ9L2NvbW1vbiIpDQo+PiAgZm9yZWFj
+aCh0ZXN0X3NvdXJjZSAke3Rlc3Rfc291cmNlc30pDQo+PiAgICAgIGdldF9maWxlbmFtZV9jb21w
+b25lbnQodGVzdF9uYW1lICR7dGVzdF9zb3VyY2V9IE5BTUVfV0UpDQo+PiAgICAgIGFkZF9leGVj
+dXRhYmxlKCR7dGVzdF9uYW1lfSAke3Rlc3Rfc291cmNlfSkNCj4+IC0gICAgdGFyZ2V0X2xpbmtf
+bGlicmFyaWVzKCR7dGVzdF9uYW1lfSB1aGQgdWhkX3Rlc3QgJHtCb29zdF9MSUJSQVJJRVN9KQ0K
+Pj4gKyAgICB0YXJnZXRfbGlua19saWJyYXJpZXMoJHt0ZXN0X25hbWV9IHVoZF90ZXN0IHVoZCAk
+e0Jvb3N0X0xJQlJBUklFU30pDQo+PiAgICAgIFVIRF9BRERfVEVTVCgke3Rlc3RfbmFtZX0gJHt0
+ZXN0X25hbWV9KQ0KPj4gICAgICBVSERfSU5TVEFMTChUQVJHRVRTICR7dGVzdF9uYW1lfSBSVU5U
+SU1FIERFU1RJTkFUSU9ODQo+PiAke1BLR19MSUJfRElSfS90ZXN0cyBDT01QT05FTlQgdGVzdHMp
+DQo+PiAgZW5kZm9yZWFjaCh0ZXN0X3NvdXJjZSkNCj4+IEBAIC0xMDYsNyArMTA2LDcgQEAgZW5k
+Zm9yZWFjaCh0ZXN0X3NvdXJjZSkNCj4+ICBmb3JlYWNoKGJlbmNobWFya19zb3VyY2UgJHtiZW5j
+aG1hcmtfc291cmNlc30pDQo+PiAgICAgIGdldF9maWxlbmFtZV9jb21wb25lbnQoYmVuY2htYXJr
+X25hbWUgJHtiZW5jaG1hcmtfc291cmNlfSBOQU1FX1dFKQ0KPj4gICAgICBhZGRfZXhlY3V0YWJs
+ZSgke2JlbmNobWFya19uYW1lfSAke2JlbmNobWFya19zb3VyY2V9KQ0KPj4gLSAgICB0YXJnZXRf
+bGlua19saWJyYXJpZXMoJHtiZW5jaG1hcmtfbmFtZX0gdWhkIHVoZF90ZXN0ICR7Qm9vc3RfTElC
+UkFSSUVTfSkNCj4+ICsgICAgdGFyZ2V0X2xpbmtfbGlicmFyaWVzKCR7YmVuY2htYXJrX25hbWV9
+IHVoZF90ZXN0IHVoZCAke0Jvb3N0X0xJQlJBUklFU30pDQo+PiAgICAgIFVIRF9JTlNUQUxMKFRB
+UkdFVFMgJHtiZW5jaG1hcmtfbmFtZX0gUlVOVElNRSBERVNUSU5BVElPTg0KPj4gJHtQS0dfTElC
+X0RJUn0vdGVzdHMgQ09NUE9ORU5UIHRlc3RzKQ0KPj4gIGVuZGZvcmVhY2goYmVuY2htYXJrX3Nv
+dXJjZSkNCj4+DQo+PiBUaGFua3MgZm9yIHlvdXIgdGltZS4NCj4+DQo+PiBDaHJpcw0KPj4NCj4+
+IE9uIFR1ZSwgSnVsIDIsIDIwMjQgYXQgMTA6MTPigK9BTSBDaHJpcyBHb3JtYW4gPGNocmlzam9o
+Z29ybWFuQGdtYWlsLmNvbT4gd3JvdGU6DQo+PiA+DQo+PiA+IEhlbGxvIFVTUlAgdXNlcnMsDQo+
+PiA+DQo+PiA+IEknbSB0cnlpbmcgdG8gdXBkYXRlIG15IGJ1aWxkIGZyb20gNC42LjAuMCB0byA0
+LjcuMC4wIGZvciBVSEQgb24NCj4+ID4gbXN5czIvbWluZ3c2NC4gIER1cmluZyB0aGUgYnVpbGQg
+SSBnZXQgdGhlIGZvbGxvd2luZyBlcnJvci4uLg0KPj4gPg0KPj4gPiAkIEM6XG1zeXM2NFxtaW5n
+dzY0XGJpblxjKysuZXhlDQo+PiA+IC1EQk9PU1RfQVNJT19ESVNBQkxFX1NURF9FWFBFUklNRU5U
+QUxfU1RSSU5HX1ZJRVcNCj4+ID4gLURCT09TVF9BU0lPX0RJU0FCTEVfU1REX1NUUklOR19WSUVX
+IC1EQk9PU1RfQVRPTUlDX0RZTl9MSU5LDQo+PiA+IC1EQk9PU1RfQVRPTUlDX05PX0xJQiAtREJP
+T1NUX0NIUk9OT19EWU5fTElOSyAtREJPT1NUX0NIUk9OT19OT19MSUINCj4+ID4gLURCT09TVF9E
+QVRFX1RJTUVfRFlOX0xJTksgLURCT09TVF9EQVRFX1RJTUVfTk9fTElCDQo+PiA+IC1EQk9PU1Rf
+RVJST1JfQ09ERV9IRUFERVJfT05MWSAtREJPT1NUX0ZJTEVTWVNURU1fRFlOX0xJTksNCj4+ID4g
+LURCT09TVF9GSUxFU1lTVEVNX05PX0xJQiAtREJPT1NUX1BST0dSQU1fT1BUSU9OU19EWU5fTElO
+Sw0KPj4gPiAtREJPT1NUX1BST0dSQU1fT1BUSU9OU19OT19MSUIgLURCT09TVF9TRVJJQUxJWkFU
+SU9OX0RZTl9MSU5LDQo+PiA+IC1EQk9PU1RfU0VSSUFMSVpBVElPTl9OT19MSUIgLURCT09TVF9T
+WVNURU1fRFlOX0xJTksNCj4+ID4gLURCT09TVF9TWVNURU1fTk9fTElCIC1EQk9PU1RfVEVTVF9E
+WU5fTElOSyAtREJPT1NUX1RFU1RfTUFJTg0KPj4gPiAtREJPT1NUX1RIUkVBRF9EWU5fTElOSyAt
+REJPT1NUX1RIUkVBRF9OT19MSUINCj4+ID4gLURCT09TVF9VTklUX1RFU1RfRlJBTUVXT1JLX0RZ
+Tl9MSU5LDQo+PiA+IC1EQk9PU1RfVU5JVF9URVNUX0ZSQU1FV09SS19OT19MSUIgLURIQVZFX0NP
+TkZJR19IIC1ETk9NSU5NQVgNCj4+ID4gLURVSERfTE9HX0NPTlNPTEVfQ09MT1IgLURVSERfTE9H
+X0NPTlNPTEVfTEVWRUw9Mg0KPj4gPiAtRFVIRF9MT0dfRklMRV9MRVZFTD0yIC1EVUhEX0xPR19N
+SU5fTEVWRUw9MSAtRF9XSU4zMl9XSU5OVD0weDA1MDENCj4+ID4gLUlDOi9tc3lzNjQvaG9tZS9j
+aHJpcy9zcmMvdWhkL2hvc3QvYnVpbGQvaW5jbHVkZQ0KPj4gPiAtSUM6L21zeXM2NC9ob21lL2No
+cmlzL3NyYy91aGQvaG9zdC9pbmNsdWRlDQo+PiA+IC1JQzovbXN5czY0L2hvbWUvY2hyaXMvc3Jj
+L3VoZC9ob3N0L2xpYi9pbmNsdWRlDQo+PiA+IC1JQzovbXN5czY0L2hvbWUvY2hyaXMvc3JjL3Vo
+ZC9ob3N0L2J1aWxkL2xpYi9pbmNsdWRlDQo+PiA+IC1JQzovbXN5czY0L2hvbWUvY2hyaXMvc3Jj
+L3VoZC9ob3N0L3Rlc3RzL2NvbW1vbg0KPj4gPiAtSUM6L21zeXM2NC9ob21lL2NocmlzL3NyYy91
+aGQvaG9zdC9idWlsZC9saWIvcmZub2MNCj4+ID4gLUlDOi9tc3lzNjQvaG9tZS9jaHJpcy9zcmMv
+dWhkL2hvc3QvbGliL3Jmbm9jDQo+PiA+IC1JQzovbXN5czY0L2hvbWUvY2hyaXMvc3JjL3VoZC9o
+b3N0L2J1aWxkL2xpYi9pY19yZWdfbWFwcw0KPj4gPiAtSUM6L21zeXM2NC9ob21lL2NocmlzL3Ny
+Yy91aGQvaG9zdC9saWIvZGVwcy9ycGNsaWIvaW5jbHVkZQ0KPj4gPiAtSUM6L21zeXM2NC9ob21l
+L2NocmlzL3NyYy91aGQvaG9zdC9saWIvZGVwcy9mbGF0YnVmZmVycy9pbmNsdWRlDQo+PiA+IC1J
+QzovbXN5czY0L2hvbWUvY2hyaXMvc3JjL3VoZC9ob3N0L2J1aWxkL19jbXJjL2luY2x1ZGUgLU8z
+IC1ETkRFQlVHDQo+PiA+IC1zdGQ9Z251KysxNCAgIC1XYWxsIC1XZXh0cmEgLVdzaWduLWNvbXBh
+cmUgLU1EIC1NVA0KPj4gPiB0ZXN0cy9DTWFrZUZpbGVzL2lzYXR0eV90ZXN0LmRpci9pc2F0dHlf
+dGVzdC5jcHAub2JqIC1NRg0KPj4gPiB0ZXN0c1xDTWFrZUZpbGVzXGlzYXR0eV90ZXN0LmRpclxp
+c2F0dHlfdGVzdC5jcHAub2JqLmQgLW8NCj4+ID4gdGVzdHMvQ01ha2VGaWxlcy9pc2F0dHlfdGVz
+dC5kaXIvaXNhdHR5X3Rlc3QuY3BwLm9iaiAtYw0KPj4gPiBDOi9tc3lzNjQvaG9tZS9jaHJpcy9z
+cmMvdWhkL2hvc3QvdGVzdHMvaXNhdHR5X3Rlc3QuY3BwDQo+PiA+IEluIGZpbGUgaW5jbHVkZWQg
+ZnJvbQ0KPj4gPiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRlL2Jvb3N0L2Fzc2VydC9zb3VyY2Vf
+bG9jYXRpb24uaHBwOjE1LA0KPj4gPiAgICAgICAgICAgICAgICAgIGZyb20gQzovbXN5czY0L21p
+bmd3NjQvaW5jbHVkZS9ib29zdC9leGNlcHRpb24vZXhjZXB0aW9uLmhwcDo5LA0KPj4gPiAgICAg
+ICAgICAgICAgICAgIGZyb20gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9ib29zdC90aHJvd19l
+eGNlcHRpb24uaHBwOjIxLA0KPj4gPiAgICAgICAgICAgICAgICAgIGZyb20NCj4+ID4gQzovbXN5
+czY0L21pbmd3NjQvaW5jbHVkZS9ib29zdC9zbWFydF9wdHIvZGV0YWlsL3NoYXJlZF9jb3VudC5o
+cHA6MzEsDQo+PiA+ICAgICAgICAgICAgICAgICAgZnJvbQ0KPj4gPiBDOi9tc3lzNjQvbWluZ3c2
+NC9pbmNsdWRlL2Jvb3N0L3NtYXJ0X3B0ci9zaGFyZWRfcHRyLmhwcDoxOCwNCj4+ID4gICAgICAg
+ICAgICAgICAgICBmcm9tIEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYm9vc3Qvc2hhcmVkX3B0
+ci5ocHA6MTcsDQo+PiA+ICAgICAgICAgICAgICAgICAgZnJvbQ0KPj4gPiBDOi9tc3lzNjQvbWlu
+Z3c2NC9pbmNsdWRlL2Jvb3N0L3Rlc3QvdG9vbHMvYXNzZXJ0aW9uX3Jlc3VsdC5ocHA6MjEsDQo+
+PiA+ICAgICAgICAgICAgICAgICAgZnJvbQ0KPj4gPiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRl
+L2Jvb3N0L3Rlc3QvdG9vbHMvb2xkL2ltcGwuaHBwOjIwLA0KPj4gPiAgICAgICAgICAgICAgICAg
+IGZyb20gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9ib29zdC90ZXN0L3Rlc3RfdG9vbHMuaHBw
+OjQ2LA0KPj4gPiAgICAgICAgICAgICAgICAgIGZyb20gQzovbXN5czY0L21pbmd3NjQvaW5jbHVk
+ZS9ib29zdC90ZXN0L3VuaXRfdGVzdC5ocHA6MTgsDQo+PiA+ICAgICAgICAgICAgICAgICAgZnJv
+bSBDOi9tc3lzNjQvaG9tZS9jaHJpcy9zcmMvdWhkL2hvc3QvdGVzdHMvaXNhdHR5X3Rlc3QuY3Bw
+Ojg6DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYysrLzE0LjEuMC9jc3RyaW5nOjc4
+OjExOiBlcnJvcjogJ21lbWNocicNCj4+ID4gaGFzIG5vdCBiZWVuIGRlY2xhcmVkIGluICc6OicN
+Cj4+ID4gICAgNzggfCAgIHVzaW5nIDo6bWVtY2hyOw0KPj4gPiAgICAgICB8ICAgICAgICAgICBe
+fn5+fn4NCj4+ID4gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9jKysvMTQuMS4wL2NzdHJpbmc6
+Nzk6MTE6IGVycm9yOiAnbWVtY21wJw0KPj4gPiBoYXMgbm90IGJlZW4gZGVjbGFyZWQgaW4gJzo6
+Jw0KPj4gPiAgICA3OSB8ICAgdXNpbmcgOjptZW1jbXA7DQo+PiA+ICAgICAgIHwgICAgICAgICAg
+IF5+fn5+fg0KPj4gPiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRlL2MrKy8xNC4xLjAvY3N0cmlu
+Zzo4MjoxMTogZXJyb3I6ICdtZW1zZXQnDQo+PiA+IGhhcyBub3QgYmVlbiBkZWNsYXJlZCBpbiAn
+OjonDQo+PiA+ICAgIDgyIHwgICB1c2luZyA6Om1lbXNldDsNCj4+ID4gICAgICAgfCAgICAgICAg
+ICAgXn5+fn5+DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYysrLzE0LjEuMC9jc3Ry
+aW5nOjgzOjExOiBlcnJvcjogJ3N0cmNhdCcNCj4+ID4gaGFzIG5vdCBiZWVuIGRlY2xhcmVkIGlu
+ICc6OicNCj4+ID4gICAgODMgfCAgIHVzaW5nIDo6c3RyY2F0Ow0KPj4gPiAgICAgICB8ICAgICAg
+ICAgICBefn5+fn4NCj4+ID4gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9jKysvMTQuMS4wL2Nz
+dHJpbmc6ODQ6MTE6IGVycm9yOiAnc3RyY21wJw0KPj4gPiBoYXMgbm90IGJlZW4gZGVjbGFyZWQg
+aW4gJzo6Jw0KPj4gPiAgICA4NCB8ICAgdXNpbmcgOjpzdHJjbXA7DQo+PiA+ICAgICAgIHwgICAg
+ICAgICAgIF5+fn5+fg0KPj4gPiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRlL2MrKy8xNC4xLjAv
+Y3N0cmluZzo4NToxMTogZXJyb3I6ICdzdHJjb2xsJw0KPj4gPiBoYXMgbm90IGJlZW4gZGVjbGFy
+ZWQgaW4gJzo6Jw0KPj4gPiAgICA4NSB8ICAgdXNpbmcgOjpzdHJjb2xsOw0KPj4gPiAgICAgICB8
+ICAgICAgICAgICBefn5+fn5+DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYysrLzE0
+LjEuMC9jc3RyaW5nOjg2OjExOiBlcnJvcjogJ3N0cmNweScNCj4+ID4gaGFzIG5vdCBiZWVuIGRl
+Y2xhcmVkIGluICc6OicNCj4+ID4gICAgODYgfCAgIHVzaW5nIDo6c3RyY3B5Ow0KPj4gPiAgICAg
+ICB8ICAgICAgICAgICBefn5+fn4NCj4+ID4gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9jKysv
+MTQuMS4wL2NzdHJpbmc6ODc6MTE6IGVycm9yOiAnc3RyY3NwbicNCj4+ID4gaGFzIG5vdCBiZWVu
+IGRlY2xhcmVkIGluICc6OicNCj4+ID4gICAgODcgfCAgIHVzaW5nIDo6c3RyY3NwbjsNCj4+ID4g
+ICAgICAgfCAgICAgICAgICAgXn5+fn5+fg0KPj4gPiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRl
+L2MrKy8xNC4xLjAvY3N0cmluZzo4ODoxMTogZXJyb3I6ICdzdHJlcnJvcicNCj4+ID4gaGFzIG5v
+dCBiZWVuIGRlY2xhcmVkIGluICc6OicNCj4+ID4gICAgODggfCAgIHVzaW5nIDo6c3RyZXJyb3I7
+DQo+PiA+ICAgICAgIHwgICAgICAgICAgIF5+fn5+fn5+DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0
+L2luY2x1ZGUvYysrLzE0LjEuMC9jc3RyaW5nOjg5OjExOiBlcnJvcjogJ3N0cmxlbicNCj4+ID4g
+aGFzIG5vdCBiZWVuIGRlY2xhcmVkIGluICc6OicNCj4+ID4gICAgODkgfCAgIHVzaW5nIDo6c3Ry
+bGVuOw0KPj4gPiAgICAgICB8ICAgICAgICAgICBefn5+fn4NCj4+ID4gQzovbXN5czY0L21pbmd3
+NjQvaW5jbHVkZS9jKysvMTQuMS4wL2NzdHJpbmc6OTA6MTE6IGVycm9yOiAnc3RybmNhdCcNCj4+
+ID4gaGFzIG5vdCBiZWVuIGRlY2xhcmVkIGluICc6OicNCj4+ID4gICAgOTAgfCAgIHVzaW5nIDo6
+c3RybmNhdDsNCj4+ID4gICAgICAgfCAgICAgICAgICAgXn5+fn5+fg0KPj4gPiBDOi9tc3lzNjQv
+bWluZ3c2NC9pbmNsdWRlL2MrKy8xNC4xLjAvY3N0cmluZzo5MToxMTogZXJyb3I6ICdzdHJuY21w
+Jw0KPj4gPiBoYXMgbm90IGJlZW4gZGVjbGFyZWQgaW4gJzo6Jw0KPj4gPiAgICA5MSB8ICAgdXNp
+bmcgOjpzdHJuY21wOw0KPj4gPiAgICAgICB8ICAgICAgICAgICBefn5+fn5+DQo+PiA+IEM6L21z
+eXM2NC9taW5ndzY0L2luY2x1ZGUvYysrLzE0LjEuMC9jc3RyaW5nOjkyOjExOiBlcnJvcjogJ3N0
+cm5jcHknDQo+PiA+IGhhcyBub3QgYmVlbiBkZWNsYXJlZCBpbiAnOjonDQo+PiA+ICAgIDkyIHwg
+ICB1c2luZyA6OnN0cm5jcHk7DQo+PiA+ICAgICAgIHwgICAgICAgICAgIF5+fn5+fn4NCj4+ID4g
+QzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9jKysvMTQuMS4wL2NzdHJpbmc6OTM6MTE6IGVycm9y
+OiAnc3Ryc3BuJw0KPj4gPiBoYXMgbm90IGJlZW4gZGVjbGFyZWQgaW4gJzo6Jw0KPj4gPiAgICA5
+MyB8ICAgdXNpbmcgOjpzdHJzcG47DQo+PiA+ICAgICAgIHwgICAgICAgICAgIF5+fn5+fg0KPj4g
+PiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRlL2MrKy8xNC4xLjAvY3N0cmluZzo5NToxMTogZXJy
+b3I6ICdzdHJ0b2snDQo+PiA+IGhhcyBub3QgYmVlbiBkZWNsYXJlZCBpbiAnOjonDQo+PiA+ICAg
+IDk1IHwgICB1c2luZyA6OnN0cnRvazsNCj4+ID4gICAgICAgfCAgICAgICAgICAgXn5+fn5+DQo+
+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYysrLzE0LjEuMC9jc3RyaW5nOjk3OjExOiBl
+cnJvcjogJ3N0cnhmcm0nDQo+PiA+IGhhcyBub3QgYmVlbiBkZWNsYXJlZCBpbiAnOjonDQo+PiA+
+ICAgIDk3IHwgICB1c2luZyA6OnN0cnhmcm07DQo+PiA+ICAgICAgIHwgICAgICAgICAgIF5+fn5+
+fn4NCj4+ID4gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9jKysvMTQuMS4wL2NzdHJpbmc6OTg6
+MTE6IGVycm9yOiAnc3RyY2hyJw0KPj4gPiBoYXMgbm90IGJlZW4gZGVjbGFyZWQgaW4gJzo6Jw0K
+Pj4gPiAgICA5OCB8ICAgdXNpbmcgOjpzdHJjaHI7DQo+PiA+ICAgICAgIHwgICAgICAgICAgIF5+
+fn5+fg0KPj4gPiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRlL2MrKy8xNC4xLjAvY3N0cmluZzo5
+OToxMTogZXJyb3I6ICdzdHJwYnJrJw0KPj4gPiBoYXMgbm90IGJlZW4gZGVjbGFyZWQgaW4gJzo6
+Jw0KPj4gPiAgICA5OSB8ICAgdXNpbmcgOjpzdHJwYnJrOw0KPj4gPiAgICAgICB8ICAgICAgICAg
+ICBefn5+fn5+DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYysrLzE0LjEuMC9jc3Ry
+aW5nOjEwMDoxMTogZXJyb3I6ICdzdHJyY2hyJw0KPj4gPiBoYXMgbm90IGJlZW4gZGVjbGFyZWQg
+aW4gJzo6Jw0KPj4gPiAgIDEwMCB8ICAgdXNpbmcgOjpzdHJyY2hyOw0KPj4gPiAgICAgICB8ICAg
+ICAgICAgICBefn5+fn5+DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYysrLzE0LjEu
+MC9jc3RyaW5nOjEwMToxMTogZXJyb3I6ICdzdHJzdHInDQo+PiA+IGhhcyBub3QgYmVlbiBkZWNs
+YXJlZCBpbiAnOjonDQo+PiA+ICAgMTAxIHwgICB1c2luZyA6OnN0cnN0cjsNCj4+ID4gICAgICAg
+fCAgICAgICAgICAgXn5+fn5+DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYm9vc3Qv
+YXNzZXJ0L3NvdXJjZV9sb2NhdGlvbi5ocHA6IEluDQo+PiA+IGZ1bmN0aW9uICdib29sIGJvb3N0
+OjpvcGVyYXRvcj09KGNvbnN0IHNvdXJjZV9sb2NhdGlvbiYsIGNvbnN0DQo+PiA+IHNvdXJjZV9s
+b2NhdGlvbiYpJzoNCj4+ID4gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9ib29zdC9hc3NlcnQv
+c291cmNlX2xvY2F0aW9uLmhwcDoxMjY6MjE6DQo+PiA+IGVycm9yOiAnc3RyY21wJyBpcyBub3Qg
+YSBtZW1iZXIgb2YgJ3N0ZCc7IGRpZCB5b3UgbWVhbiAnc3RyY2hyJz8NCj4+ID4gICAxMjYgfCAg
+ICAgICAgIHJldHVybiBzdGQ6OnN0cmNtcCggczEuZmlsZV8sIHMyLmZpbGVfICkgPT0gMCAmJg0K
+Pj4gPiBzdGQ6OnN0cmNtcCggczEuZnVuY3Rpb25fLCBzMi5mdW5jdGlvbl8gKSA9PSAwICYmIHMx
+LmxpbmVfID09IHMyLmxpbmVfDQo+PiA+ICYmIHMxLmNvbHVtbl8gPT0gczIuY29sdW1uXzsNCj4+
+ID4gICAgICAgfCAgICAgICAgICAgICAgICAgICAgIF5+fn5+fg0KPj4gPiAgICAgICB8ICAgICAg
+ICAgICAgICAgICAgICAgc3RyY2hyDQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYm9v
+c3QvYXNzZXJ0L3NvdXJjZV9sb2NhdGlvbi5ocHA6MTI2OjYzOg0KPj4gPiBlcnJvcjogJ3N0cmNt
+cCcgaXMgbm90IGEgbWVtYmVyIG9mICdzdGQnOyBkaWQgeW91IG1lYW4gJ3N0cmNocic/DQo+PiA+
+ICAgMTI2IHwgICAgICAgICByZXR1cm4gc3RkOjpzdHJjbXAoIHMxLmZpbGVfLCBzMi5maWxlXyAp
+ID09IDAgJiYNCj4+ID4gc3RkOjpzdHJjbXAoIHMxLmZ1bmN0aW9uXywgczIuZnVuY3Rpb25fICkg
+PT0gMCAmJiBzMS5saW5lXyA9PSBzMi5saW5lXw0KPj4gPiAmJiBzMS5jb2x1bW5fID09IHMyLmNv
+bHVtbl87DQo+PiA+ICAgICAgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn4NCj4+ID4gICAgICAgfCAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cmNo
+cg0KPj4gPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9i
+b29zdC9tcGwvZm9yX2VhY2guaHBwOjI5LA0KPj4gPiAgICAgICAgICAgICAgICAgIGZyb20NCj4+
+ID4gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9ib29zdC90ZXN0L3RyZWUvdGVzdF9jYXNlX3Rl
+bXBsYXRlLmhwcDoyOCwNCj4+ID4gICAgICAgICAgICAgICAgICBmcm9tDQo+PiA+IEM6L21zeXM2
+NC9taW5ndzY0L2luY2x1ZGUvYm9vc3QvdGVzdC91bml0X3Rlc3Rfc3VpdGUuaHBwOjE5LA0KPj4g
+PiAgICAgICAgICAgICAgICAgIGZyb20gQzovbXN5czY0L21pbmd3NjQvaW5jbHVkZS9ib29zdC90
+ZXN0L3VuaXRfdGVzdC5ocHA6MTk6DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2luY2x1ZGUvYm9v
+c3QvdXRpbGl0eS92YWx1ZV9pbml0LmhwcDogSW4gY29uc3RydWN0b3INCj4+ID4gJ2Jvb3N0Ojpk
+ZXRhaWw6Onplcm9faW5pdDo6emVyb19pbml0KHZvaWQqLCBzdGQ6OnNpemVfdCknOg0KPj4gPiBD
+Oi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRlL2Jvb3N0L3V0aWxpdHkvdmFsdWVfaW5pdC5ocHA6NzM6
+MTI6IGVycm9yOg0KPj4gPiAnbWVtc2V0JyBpcyBub3QgYSBtZW1iZXIgb2YgJ3N0ZCc7IGRpZCB5
+b3UgbWVhbiAnd21lbXNldCc/DQo+PiA+ICAgIDczIHwgICAgICAgc3RkOjptZW1zZXQoIHAsIDAs
+IG4gKTsNCj4+ID4gICAgICAgfCAgICAgICAgICAgIF5+fn5+fg0KPj4gPiAgICAgICB8ICAgICAg
+ICAgICAgd21lbXNldA0KPj4gPg0KPj4gPiBJdCBsb29rcyBsaWtlIEknbSBpbmNsdWRpbmcgc29t
+ZXRoaW5nIEkgc2hvdWxkbid0LCBidXQgSSBkb24ndCBrbm93IHdoYXQuDQo+PiA+DQo+PiA+IE15
+IGNtYWtlIGJ1aWxkIGxvZyBpcyAuLi4NCj4+ID4NCj4+ID4gJCBjbWFrZSAtRENNQUtFX0lOU1RB
+TExfUFJFRklYPWM6L21zeXM2NC9taW5ndzY0IC1ERU5BQkxFX1BZVEhPTl9BUEk9T04gLi4NCj4+
+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgdGhlIFB5dGhvbiBpbnRlcnByZXRlci4uLg0KPj4g
+PiAtLSBNYW51YWxseSBkZXRlcm1pbmluZyBidWlsZCBQeXRob24gdmVyc2lvbi4uLg0KPj4gPiAt
+LSBQeXRob24gaW50ZXJwcmV0ZXI6IEM6L21zeXM2NC9taW5ndzY0L2Jpbi9weXRob24zLjExLmV4
+ZSBWZXJzaW9uOiAzLjExLjkNCj4+ID4gLS0gT3ZlcnJpZGUgd2l0aDogLURQWVRIT05fRVhFQ1VU
+QUJMRT08cGF0aC10by1weXRob24+DQo+PiA+IC0tIE1hbnVhbGx5IGRldGVybWluaW5nIHJ1bnRp
+bWUgUHl0aG9uIHZlcnNpb24uLi4NCj4+ID4gLS0gUHl0aG9uIHJ1bnRpbWUgaW50ZXJwcmV0ZXI6
+IEM6L21zeXM2NC9taW5ndzY0L2Jpbi9weXRob24zLjExLmV4ZQ0KPj4gPiBWZXJzaW9uOiAzLjEx
+LjkNCj4+ID4gLS0gT3ZlcnJpZGUgd2l0aDogLURSVU5USU1FX1BZVEhPTl9FWEVDVVRBQkxFPTxw
+YXRoLXRvLXB5dGhvbj4NCj4+ID4gLS0gRmluZGluZyBQeXRob24gTGlicmFyaWVzLi4uDQo+PiA+
+IENNYWtlIFdhcm5pbmcgKGRldikgYXQgY21ha2UvTW9kdWxlcy9VSERQeXRob24uY21ha2U6MzEz
+IChmaW5kX3BhY2thZ2UpOg0KPj4gPiAgIFBvbGljeSBDTVAwMTQ4IGlzIG5vdCBzZXQ6IFRoZSBG
+aW5kUHl0aG9uSW50ZXJwIGFuZCBGaW5kUHl0aG9uTGlicyBtb2R1bGVzDQo+PiA+ICAgYXJlIHJl
+bW92ZWQuICBSdW4gImNtYWtlIC0taGVscC1wb2xpY3kgQ01QMDE0OCIgZm9yIHBvbGljeSBkZXRh
+aWxzLiAgVXNlDQo+PiA+ICAgdGhlIGNtYWtlX3BvbGljeSBjb21tYW5kIHRvIHNldCB0aGUgcG9s
+aWN5IGFuZCBzdXBwcmVzcyB0aGlzIHdhcm5pbmcuDQo+PiA+DQo+PiA+IENhbGwgU3RhY2sgKG1v
+c3QgcmVjZW50IGNhbGwgZmlyc3QpOg0KPj4gPiAgIGNtYWtlL01vZHVsZXMvVUhEVmVyc2lvbi5j
+bWFrZTo5IChpbmNsdWRlKQ0KPj4gPiAgIGNtYWtlL01vZHVsZXMvVUhEUGFja2FnZS5jbWFrZTo5
+IChpbmNsdWRlKQ0KPj4gPiAgIENNYWtlTGlzdHMudHh0OjEwNyAoaW5jbHVkZSkNCj4+ID4gVGhp
+cyB3YXJuaW5nIGlzIGZvciBwcm9qZWN0IGRldmVsb3BlcnMuICBVc2UgLVduby1kZXYgdG8gc3Vw
+cHJlc3MgaXQuDQo+PiA+DQo+PiA+IC0tIFB5dGhvbiBMaWJyYXJpZXM6IEM6L21zeXM2NC9taW5n
+dzY0L2xpYi9saWJweXRob24zLjExLmRsbC5hDQo+PiA+IC0tIFB5dGhvbiBpbmNsdWRlIGRpcmVj
+dG9yaWVzOiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRlL3B5dGhvbjMuMTENCj4+ID4gLS0gcHli
+aW5kMTE6Omx0byBkaXNhYmxlZCAocHJvYmxlbXMgd2l0aCB1bmRlZmluZWQgc3ltYm9scyBmb3Ig
+TWluR1cgZm9yIG5vdykNCj4+ID4gLS0gcHliaW5kMTE6OnRoaW5fbHRvIGRpc2FibGVkIChwcm9i
+bGVtcyB3aXRoIHVuZGVmaW5lZCBzeW1ib2xzIGZvcg0KPj4gPiBNaW5HVyBmb3Igbm93KQ0KPj4g
+PiAtLSBPcGVyYXRpbmcgb24gbWFzdGVyIGJyYW5jaC4NCj4+ID4gLS0gVXNpbmcgVUhEIEltYWdl
+cyBEaXJlY3Rvcnk6IEM6XG1zeXM2NFxtaW5ndzY0XHNoYXJlXHVoZFxpbWFnZXMNCj4+ID4gLS0g
+QnVpbGQgdHlwZSBub3Qgc3BlY2lmaWVkOiBkZWZhdWx0aW5nIHRvIHJlbGVhc2UuDQo+PiA+IC0t
+DQo+PiA+IC0tIENvbmZpZ3VyaW5nIEJvb3N0IEMrKyBMaWJyYXJpZXMuLi4NCj4+ID4gLS0NCj4+
+ID4gLS0gQ2hlY2tpbmcgZm9yIEJvb3N0IHZlcnNpb24gMS42NSBvciBncmVhdGVyDQo+PiA+IC0t
+ICAgTG9va2luZyBmb3IgcmVxdWlyZWQgQm9vc3QgY29tcG9uZW50cy4uLg0KPj4gPiAtLSAgIEVu
+YWJsaW5nIEJvb3N0IEVycm9yIENvZGUgSGVhZGVyIE9ubHkNCj4+ID4gLS0gICAgIERpc2FibGlu
+ZyBib29zdDo6YXNpbyB1c2Ugb2Ygc3RkOjpzdHJpbmdfdmlldw0KPj4gPiAtLSAgIEJvb3N0IHZl
+cnNpb246IDEuODUuMA0KPj4gPiAtLSAgIEJvb3N0IGluY2x1ZGUgZGlyZWN0b3JpZXM6IEM6L21z
+eXM2NC9taW5ndzY0L2luY2x1ZGUNCj4+ID4gLS0gICBCb29zdCBsaWJyYXJ5IGRpcmVjdG9yaWVz
+OiBDOi9tc3lzNjQvbWluZ3c2NC9saWINCj4+ID4gLS0gICBCb29zdCBsaWJyYXJpZXM6DQo+PiA+
+IEJvb3N0OjpjaHJvbm87Qm9vc3Q6OmRhdGVfdGltZTtCb29zdDo6ZmlsZXN5c3RlbTtCb29zdDo6
+cHJvZ3JhbV9vcHRpb25zO0Jvb3N0OjpzZXJpYWxpemF0aW9uO0Jvb3N0Ojp0aHJlYWQ7Qm9vc3Q6
+OnVuaXRfdGVzdF9mcmFtZXdvcms7Qm9vc3Q6OnN5c3RlbQ0KPj4gPiAtLSBMb29raW5nIGZvciBC
+b29zdCB2ZXJzaW9uIDEuNjUgb3IgZ3JlYXRlciAtIGZvdW5kDQo+PiA+IC0tDQo+PiA+IC0tIFB5
+dGhvbiBjaGVja2luZyBmb3IgY29tcGF0aWJsZSBQeXRob24gdmVyc2lvbg0KPj4gPiAtLSBQeXRo
+b24gY2hlY2tpbmcgZm9yIGNvbXBhdGlibGUgUHl0aG9uIHZlcnNpb24gLSAzLjExLjkgc2F0aXNm
+aWVzDQo+PiA+IG1pbmltdW0gcmVxdWlyZWQgdmVyc2lvbiAzLjcNCj4+ID4gLS0NCj4+ID4gLS0g
+UHl0aG9uIGNoZWNraW5nIGZvciBNYWtvIHRlbXBsYXRlcyBtb2R1bGUNCj4+ID4gLS0gUHl0aG9u
+IGNoZWNraW5nIGZvciBNYWtvIHRlbXBsYXRlcyBtb2R1bGUgLSAxLjMuNSBzYXRpc2ZpZXMgbWlu
+aW11bQ0KPj4gPiByZXF1aXJlZCB2ZXJzaW9uIDAuNC4yDQo+PiA+IC0tDQo+PiA+IC0tIFB5dGhv
+biBjaGVja2luZyBmb3IgcmVxdWVzdHMgbW9kdWxlDQo+PiA+IC0tIFB5dGhvbiBjaGVja2luZyBm
+b3IgcmVxdWVzdHMgbW9kdWxlIC0gMi4zMi4yIHNhdGlzZmllcyBtaW5pbXVtDQo+PiA+IHJlcXVp
+cmVkIHZlcnNpb24gMi4wDQo+PiA+IC0tDQo+PiA+IC0tIFB5dGhvbiBjaGVja2luZyBmb3IgbnVt
+cHkgbW9kdWxlDQo+PiA+IC0tIFB5dGhvbiBjaGVja2luZyBmb3IgbnVtcHkgbW9kdWxlIC0gMS4y
+Ni40IHNhdGlzZmllcyBtaW5pbXVtDQo+PiA+IHJlcXVpcmVkIHZlcnNpb24gMS4xMQ0KPj4gPiAt
+LQ0KPj4gPiAtLSBQeXRob24gY2hlY2tpbmcgZm9yIHJ1YW1lbC55YW1sIG1vZHVsZQ0KPj4gPiAt
+LSBQeXRob24gY2hlY2tpbmcgZm9yIHJ1YW1lbC55YW1sIG1vZHVsZSAtIDAuMTguNiBzYXRpc2Zp
+ZXMgbWluaW11bQ0KPj4gPiByZXF1aXJlZCB2ZXJzaW9uIDAuMTUNCj4+ID4gLS0NCj4+ID4gLS0g
+Q29uZmlndXJpbmcgTGliVUhEIHN1cHBvcnQuLi4NCj4+ID4gLS0gICBEZXBlbmRlbmN5IEJvb3N0
+X0ZPVU5EID0gVFJVRQ0KPj4gPiAtLSAgIERlcGVuZGVuY3kgSEFWRV9QWVRIT05fTU9EVUxFX01B
+S08gPSBUUlVFDQo+PiA+IC0tICAgRW5hYmxpbmcgTGliVUhEIHN1cHBvcnQuDQo+PiA+IC0tICAg
+T3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9MSUJVSEQ9T04vT0ZGDQo+PiA+IC0tDQo+PiA+IC0tIENv
+bmZpZ3VyaW5nIExpYlVIRCAtIEMgQVBJIHN1cHBvcnQuLi4NCj4+ID4gLS0gICBEZXBlbmRlbmN5
+IEVOQUJMRV9MSUJVSEQgPSBPTg0KPj4gPiAtLSAgIEVuYWJsaW5nIExpYlVIRCAtIEMgQVBJIHN1
+cHBvcnQuDQo+PiA+IC0tICAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9DX0FQST1PTi9PRkYNCj4+
+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgTGliVUhEIC0gUHl0aG9uIEFQSSBzdXBwb3J0Li4u
+DQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTElCVUhEID0gT04NCj4+ID4gLS0gICBEZXBl
+bmRlbmN5IEhBVkVfUFlUSE9OX01PRFVMRV9OVU1QWSA9IFRSVUUNCj4+ID4gLS0gICBEZXBlbmRl
+bmN5IEhBVkVfUFlUSE9OX0xJQlMgPSBUUlVFDQo+PiA+IC0tICAgRW5hYmxpbmcgTGliVUhEIC0g
+UHl0aG9uIEFQSSBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfUFlU
+SE9OX0FQST1PTi9PRkYNCj4+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgRXhhbXBsZXMgc3Vw
+cG9ydC4uLg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRU5BQkxFX0xJQlVIRCA9IE9ODQo+PiA+IC0t
+ICAgRW5hYmxpbmcgRXhhbXBsZXMgc3VwcG9ydC4NCj4+ID4gLS0gICBPdmVycmlkZSB3aXRoIC1E
+RU5BQkxFX0VYQU1QTEVTPU9OL09GRg0KPj4gPiAtLQ0KPj4gPiAtLSBDb25maWd1cmluZyBVdGls
+cyBzdXBwb3J0Li4uDQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTElCVUhEID0gT04NCj4+
+ID4gLS0gICBFbmFibGluZyBVdGlscyBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJyaWRlIHdpdGgg
+LURFTkFCTEVfVVRJTFM9T04vT0ZGDQo+PiA+IC0tDQo+PiA+IC0tIENvbmZpZ3VyaW5nIFRlc3Rz
+IHN1cHBvcnQuLi4NCj4+ID4gLS0gICBEZXBlbmRlbmN5IEVOQUJMRV9MSUJVSEQgPSBPTg0KPj4g
+PiAtLSAgIEVuYWJsaW5nIFRlc3RzIHN1cHBvcnQuDQo+PiA+IC0tICAgT3ZlcnJpZGUgd2l0aCAt
+REVOQUJMRV9URVNUUz1PTi9PRkYNCj4+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgUHl0aG9u
+IE1vZHVsZSAoVXRpbHMgb25seSkgc3VwcG9ydC4uLg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgSEFW
+RV9QWVRIT05fTU9EVUxFX05VTVBZID0gVFJVRQ0KPj4gPiAtLSAgIERlcGVuZGVuY3kgSEFWRV9Q
+WVRIT05fTU9EVUxFX01BS08gPSBUUlVFDQo+PiA+IC0tICAgRGVwZW5kZW5jeSBIQVZFX1BZVEhP
+Tl9NT0RVTEVfWUFNTCA9IFRSVUUNCj4+ID4gLS0gICBFbmFibGluZyBQeXRob24gTW9kdWxlIChV
+dGlscyBvbmx5KSBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfUFlN
+T0RfVVRJTFM9T04vT0ZGDQo+PiA+IC0tDQo+PiA+IENNYWtlIFdhcm5pbmcgKGRldikgYXQNCj4+
+ID4gQzovbXN5czY0L21pbmd3NjQvc2hhcmUvY21ha2UvTW9kdWxlcy9GaW5kUGFja2FnZUhhbmRs
+ZVN0YW5kYXJkQXJncy5jbWFrZTo0NDcNCj4+ID4gKG1lc3NhZ2UpOg0KPj4gPiAgIGBmaW5kX3Bh
+Y2thZ2UoKWAgc3BlY2lmeSBhIHZlcnNpb24gcmFuZ2UgYnV0IHRoZSBtb2R1bGUgRFBESyBkb2Vz
+IG5vdA0KPj4gPiAgIHN1cHBvcnQgdGhpcyBjYXBhYmlsaXR5LiAgT25seSB0aGUgbG93ZXIgZW5k
+cG9pbnQgb2YgdGhlIHJhbmdlIHdpbGwgYmUNCj4+ID4gICB1c2VkLg0KPj4gPiBDYWxsIFN0YWNr
+IChtb3N0IHJlY2VudCBjYWxsIGZpcnN0KToNCj4+ID4gICBjbWFrZS9Nb2R1bGVzL0ZpbmREUERL
+LmNtYWtlOjg2IChmaW5kX3BhY2thZ2VfaGFuZGxlX3N0YW5kYXJkX2FyZ3MpDQo+PiA+ICAgbGli
+L0NNYWtlTGlzdHMudHh0OjYzIChmaW5kX3BhY2thZ2UpDQo+PiA+IFRoaXMgd2FybmluZyBpcyBm
+b3IgcHJvamVjdCBkZXZlbG9wZXJzLiAgVXNlIC1Xbm8tZGV2IHRvIHN1cHByZXNzIGl0Lg0KPj4g
+Pg0KPj4gPiAtLSBDb3VsZCBOT1QgZmluZCBEUERLIChtaXNzaW5nOiBEUERLX0lOQ0xVREVfRElS
+UyBEUERLX0xJQlJBUklFUykNCj4+ID4gKFJlcXVpcmVkIGlzIGF0IGxlYXN0IHZlcnNpb24gIjE4
+LjExIikNCj4+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgVVNCIHN1cHBvcnQuLi4NCj4+ID4g
+LS0gICBEZXBlbmRlbmN5IEVOQUJMRV9MSUJVSEQgPSBPTg0KPj4gPiAtLSAgIERlcGVuZGVuY3kg
+TElCVVNCX0ZPVU5EID0gVFJVRQ0KPj4gPiAtLSAgIEVuYWJsaW5nIFVTQiBzdXBwb3J0Lg0KPj4g
+PiAtLSAgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfVVNCPU9OL09GRg0KPj4gPiAtLQ0KPj4gPiAt
+LSBDb25maWd1cmluZyBCMTAwIHN1cHBvcnQuLi4NCj4+ID4gLS0gICBEZXBlbmRlbmN5IEVOQUJM
+RV9MSUJVSEQgPSBPTg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRU5BQkxFX1VTQiA9IE9ODQo+PiA+
+IC0tICAgRW5hYmxpbmcgQjEwMCBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJyaWRlIHdpdGggLURF
+TkFCTEVfQjEwMD1PTi9PRkYNCj4+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgQjIwMCBzdXBw
+b3J0Li4uDQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTElCVUhEID0gT04NCj4+ID4gLS0g
+ICBEZXBlbmRlbmN5IEVOQUJMRV9VU0IgPSBPTg0KPj4gPiAtLSAgIEVuYWJsaW5nIEIyMDAgc3Vw
+cG9ydC4NCj4+ID4gLS0gICBPdmVycmlkZSB3aXRoIC1ERU5BQkxFX0IyMDA9T04vT0ZGDQo+PiA+
+IC0tDQo+PiA+IC0tIENvbmZpZ3VyaW5nIFVTUlAxIHN1cHBvcnQuLi4NCj4+ID4gLS0gICBEZXBl
+bmRlbmN5IEVOQUJMRV9MSUJVSEQgPSBPTg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRU5BQkxFX1VT
+QiA9IE9ODQo+PiA+IC0tICAgRW5hYmxpbmcgVVNSUDEgc3VwcG9ydC4NCj4+ID4gLS0gICBPdmVy
+cmlkZSB3aXRoIC1ERU5BQkxFX1VTUlAxPU9OL09GRg0KPj4gPiAtLQ0KPj4gPiAtLSBDb25maWd1
+cmluZyBVU1JQMiBzdXBwb3J0Li4uDQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTElCVUhE
+ID0gT04NCj4+ID4gLS0gICBFbmFibGluZyBVU1JQMiBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJy
+aWRlIHdpdGggLURFTkFCTEVfVVNSUDI9T04vT0ZGDQo+PiA+IC0tDQo+PiA+IC0tIENvbmZpZ3Vy
+aW5nIFgzMDAgc3VwcG9ydC4uLg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRU5BQkxFX0xJQlVIRCA9
+IE9ODQo+PiA+IC0tICAgRW5hYmxpbmcgWDMwMCBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJyaWRl
+IHdpdGggLURFTkFCTEVfWDMwMD1PTi9PRkYNCj4+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcg
+TVBNRCBzdXBwb3J0Li4uDQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTElCVUhEID0gT04N
+Cj4+ID4gLS0gICBFbmFibGluZyBNUE1EIHN1cHBvcnQuDQo+PiA+IC0tICAgT3ZlcnJpZGUgd2l0
+aCAtREVOQUJMRV9NUE1EPU9OL09GRg0KPj4gPiAtLQ0KPj4gPiAtLSBDb25maWd1cmluZyBTSU0g
+c3VwcG9ydC4uLg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRU5BQkxFX0xJQlVIRCA9IE9ODQo+PiA+
+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTVBNRCA9IE9ODQo+PiA+IC0tICAgRGVwZW5kZW5jeSBF
+TkFCTEVfUFlUSE9OX0FQSSA9IE9ODQo+PiA+IC0tICAgRW5hYmxpbmcgU0lNIHN1cHBvcnQuDQo+
+PiA+IC0tICAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9TSU09T04vT0ZGDQo+PiA+IC0tDQo+PiA+
+IC0tIENvbmZpZ3VyaW5nIE4zMDAgc3VwcG9ydC4uLg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRU5B
+QkxFX0xJQlVIRCA9IE9ODQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTVBNRCA9IE9ODQo+
+PiA+IC0tICAgRW5hYmxpbmcgTjMwMCBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJyaWRlIHdpdGgg
+LURFTkFCTEVfTjMwMD1PTi9PRkYNCj4+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgTjMyMCBz
+dXBwb3J0Li4uDQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTElCVUhEID0gT04NCj4+ID4g
+LS0gICBEZXBlbmRlbmN5IEVOQUJMRV9NUE1EID0gT04NCj4+ID4gLS0gICBFbmFibGluZyBOMzIw
+IHN1cHBvcnQuDQo+PiA+IC0tICAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9OMzIwPU9OL09GRg0K
+Pj4gPiAtLQ0KPj4gPiAtLSBDb25maWd1cmluZyBFMzIwIHN1cHBvcnQuLi4NCj4+ID4gLS0gICBE
+ZXBlbmRlbmN5IEVOQUJMRV9MSUJVSEQgPSBPTg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRU5BQkxF
+X01QTUQgPSBPTg0KPj4gPiAtLSAgIEVuYWJsaW5nIEUzMjAgc3VwcG9ydC4NCj4+ID4gLS0gICBP
+dmVycmlkZSB3aXRoIC1ERU5BQkxFX0UzMjA9T04vT0ZGDQo+PiA+IC0tDQo+PiA+IC0tIENvbmZp
+Z3VyaW5nIEUzMDAgc3VwcG9ydC4uLg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRU5BQkxFX0xJQlVI
+RCA9IE9ODQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTVBNRCA9IE9ODQo+PiA+IC0tICAg
+RW5hYmxpbmcgRTMwMCBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVf
+RTMwMD1PTi9PRkYNCj4+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgWDQwMCBzdXBwb3J0Li4u
+DQo+PiA+IC0tICAgRGVwZW5kZW5jeSBFTkFCTEVfTElCVUhEID0gT04NCj4+ID4gLS0gICBEZXBl
+bmRlbmN5IEVOQUJMRV9NUE1EID0gT04NCj4+ID4gLS0gICBFbmFibGluZyBYNDAwIHN1cHBvcnQu
+DQo+PiA+IC0tICAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9YNDAwPU9OL09GRg0KPj4gPiAtLQ0K
+Pj4gPiAtLSBDb25maWd1cmluZyBPY3RvQ2xvY2sgc3VwcG9ydC4uLg0KPj4gPiAtLSAgIERlcGVu
+ZGVuY3kgRU5BQkxFX0xJQlVIRCA9IE9ODQo+PiA+IC0tICAgRW5hYmxpbmcgT2N0b0Nsb2NrIHN1
+cHBvcnQuDQo+PiA+IC0tICAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9PQ1RPQ0xPQ0s9T04vT0ZG
+DQo+PiA+IC0tDQo+PiA+IC0tIENvbmZpZ3VyaW5nIERQREsgc3VwcG9ydC4uLg0KPj4gPiAtLSAg
+IERlcGVuZGVuY3kgRU5BQkxFX01QTUQgPSBPTg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRFBES19G
+T1VORCA9IEZBTFNFDQo+PiA+IC0tICAgRGlzYWJsaW5nIERQREsgc3VwcG9ydC4NCj4+ID4gLS0g
+ICBPdmVycmlkZSB3aXRoIC1ERU5BQkxFX0RQREs9T04vT0ZGDQo+PiA+IC0tDQo+PiA+IC0tDQo+
+PiA+IC0tIENvbmZpZ3VyaW5nIHByaW9yaXR5IHNjaGVkdWxpbmcuLi4NCj4+ID4gLS0gICBQcmlv
+cml0eSBzY2hlZHVsaW5nIHN1cHBvcnRlZCB0aHJvdWdoIHB0aHJlYWRfc2V0c2NoZWRwYXJhbS4N
+Cj4+ID4gLS0gICBTZXR0aW5nIHRocmVhZCBuYW1lcyBpcyBzdXBwb3J0ZWQgdGhyb3VnaCBwdGhy
+ZWFkX3NldG5hbWVfbnAuDQo+PiA+IC0tICAgU2V0dGluZyB0aHJlYWQgYWZmaW5pdHkgaXMgc3Vw
+cG9ydGVkIHRocm91Z2ggd2luZG93cyBTZXRUaHJlYWRBZmZpbml0eU1hc2suDQo+PiA+IC0tDQo+
+PiA+IC0tIENvbmZpZ3VyaW5nIG1vZHVsZSBsb2FkaW5nLi4uDQo+PiA+IC0tICAgTW9kdWxlIGxv
+YWRpbmcgc3VwcG9ydGVkIHRocm91Z2ggTG9hZExpYnJhcnkuDQo+PiA+IC0tDQo+PiA+IC0tIENv
+bmZpZ3VyaW5nIGF0b21pY3Mgc3VwcG9ydC4uLg0KPj4gPiAtLSAgIEF0b21pY3Mgc3VwcG9ydCBp
+cyBidWlsdC1pbiwgbm8gbGlua2luZyByZXF1aXJlZC4NCj4+ID4gLS0NCj4+ID4gLS0gUHJvY2Vz
+c2luZyBOSS1SSU8gRlBHQSBMVkJJVFggQml0c3RyZWFtcy4uLg0KPj4gPiAtLSAgIFVzaW5nIHgz
+MDAubHZiaXR4X2Jhc2UgZm9yIGNvZGVnZW4NCj4+ID4gLS0gICBVc2luZyB4MzEwLmx2Yml0eF9i
+YXNlIGZvciBjb2RlZ2VuDQo+PiA+IC0tDQo+PiA+IC0tIFVTQiBzdXBwb3J0IGVuYWJsZWQgdmlh
+IGxpYnVzYi4NCj4+ID4gLS0NCj4+ID4gLS0gQ29uZmlndXJpbmcgaW50ZXJmYWNlIGFkZHJlc3Mg
+ZGlzY292ZXJ5Li4uDQo+PiA+IC0tICAgSW50ZXJmYWNlIGFkZHJlc3MgZGlzY292ZXJ5IHN1cHBv
+cnRlZCB0aHJvdWdoIFNJT19HRVRfSU5URVJGQUNFX0xJU1QuDQo+PiA+IC0tDQo+PiA+IC0tIExv
+YWRpbmcgYnVpbGQgaW5mby4NCj4+ID4gQ01ha2UgRGVwcmVjYXRpb24gV2FybmluZyBhdCBjbWFr
+ZS9Nb2R1bGVzL0NNYWtlUkMuY21ha2U6NjMNCj4+ID4gKGNtYWtlX21pbmltdW1fcmVxdWlyZWQp
+Og0KPj4gPiAgIENvbXBhdGliaWxpdHkgd2l0aCBDTWFrZSA8IDMuNSB3aWxsIGJlIHJlbW92ZWQg
+ZnJvbSBhIGZ1dHVyZSB2ZXJzaW9uIG9mDQo+PiA+ICAgQ01ha2UuDQo+PiA+DQo+PiA+ICAgVXBk
+YXRlIHRoZSBWRVJTSU9OIGFyZ3VtZW50IDxtaW4+IHZhbHVlIG9yIHVzZSBhIC4uLjxtYXg+IHN1
+ZmZpeCB0byB0ZWxsDQo+PiA+ICAgQ01ha2UgdGhhdCB0aGUgcHJvamVjdCBkb2VzIG5vdCBuZWVk
+IGNvbXBhdGliaWxpdHkgd2l0aCBvbGRlciB2ZXJzaW9ucy4NCj4+ID4gQ2FsbCBTdGFjayAobW9z
+dCByZWNlbnQgY2FsbCBmaXJzdCk6DQo+PiA+ICAgbGliL3JjL0NNYWtlTGlzdHMudHh0OjcgKGlu
+Y2x1ZGUpDQo+PiA+DQo+PiA+DQo+PiA+IC0tDQo+PiA+IC0tIEFkZGluZyBCMlhYIGRldmljZSB0
+ZXN0IHRhcmdldA0KPj4gPiAtLSBBZGRpbmcgWDN4MCBkZXZpY2UgdGVzdCB0YXJnZXQNCj4+ID4g
+LS0gQWRkaW5nIEUzWFggZGV2aWNlIHRlc3QgdGFyZ2V0DQo+PiA+IC0tIEFkZGluZyBOM1hYIGRl
+dmljZSB0ZXN0IHRhcmdldA0KPj4gPiAtLSBBZGRpbmcgRTMyeCBkZXZpY2UgdGVzdCB0YXJnZXQN
+Cj4+ID4gLS0gQWRkaW5nIFg0MTAgZGV2aWNlIHRlc3QgdGFyZ2V0DQo+PiA+IC0tIEFkZGluZyBY
+NDQwIGRldmljZSB0ZXN0IHRhcmdldA0KPj4gPiAtLQ0KPj4gPiAtLQ0KPj4gPiAtLSBDb25maWd1
+cmluZyBNYW51YWwgc3VwcG9ydC4uLg0KPj4gPiAtLSAgIERlcGVuZGVuY3kgRE9YWUdFTl9GT1VO
+RCA9IFlFUw0KPj4gPiAtLSAgIEVuYWJsaW5nIE1hbnVhbCBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92
+ZXJyaWRlIHdpdGggLURFTkFCTEVfTUFOVUFMPU9OL09GRg0KPj4gPiAtLQ0KPj4gPiAtLSBDb25m
+aWd1cmluZyBBUEkvRG94eWdlbiBzdXBwb3J0Li4uDQo+PiA+IC0tICAgRGVwZW5kZW5jeSBET1hZ
+R0VOX0ZPVU5EID0gWUVTDQo+PiA+IC0tICAgRW5hYmxpbmcgQVBJL0RveHlnZW4gc3VwcG9ydC4N
+Cj4+ID4gLS0gICBPdmVycmlkZSB3aXRoIC1ERU5BQkxFX0RPWFlHRU49T04vT0ZGDQo+PiA+IC0t
+DQo+PiA+IC0tIEZvdW5kIEdaaXA6IEM6L21zeXM2NC91c3IvYmluL2d6aXAuZXhlDQo+PiA+IC0t
+DQo+PiA+IC0tIENvbXByZXNzZWQgTWFuIFBhZ2VzIGVuYWJsZWQNCj4+ID4gLS0gICBPdmVycmlk
+ZSB3aXRoIC1ERU5BQkxFX01BTl9QQUdFX0NPTVBSRVNTSU9OPU9OL09GRg0KPj4gPiAtLQ0KPj4g
+PiAtLSBDb25maWd1cmluZyBNYW4gUGFnZXMgc3VwcG9ydC4uLg0KPj4gPiAtLSAgIERlcGVuZGVu
+Y3kgTk9UX1dJTjMyID0NCj4+ID4gLS0gICBEZXBlbmRlbmN5IEdaSVBfRk9VTkQgPSBUUlVFDQo+
+PiA+IC0tICAgRGlzYWJsaW5nIE1hbiBQYWdlcyBzdXBwb3J0Lg0KPj4gPiAtLSAgIE92ZXJyaWRl
+IHdpdGggLURFTkFCTEVfTUFOX1BBR0VTPU9OL09GRg0KPj4gPiAtLSBVc2luZyBQeWJpbmQxMSBm
+cm9tOiBDOi9tc3lzNjQvbWluZ3c2NC9pbmNsdWRlDQo+PiA+IC0tDQo+PiA+IC0tIFB5dGhvbiBj
+aGVja2luZyBmb3IgZ2V2ZW50IG1vZHVsZQ0KPj4gPiAtLSBQeXRob24gY2hlY2tpbmcgZm9yIGdl
+dmVudCBtb2R1bGUgLSAiaW1wb3J0IGdldmVudCIgZmFpbGVkIChpcyBpdCBpbnN0YWxsZWQ/KQ0K
+Pj4gPiAtLQ0KPj4gPiAtLSBQeXRob24gY2hlY2tpbmcgZm9yIG1wcnBjIG1vZHVsZQ0KPj4gPiAt
+LSBQeXRob24gY2hlY2tpbmcgZm9yIG1wcnBjIG1vZHVsZSAtICJpbXBvcnQgbXBycGMiIGZhaWxl
+ZCAoaXMgaXQgaW5zdGFsbGVkPykNCj4+ID4gLS0NCj4+ID4gLS0gUHl0aG9uIGNoZWNraW5nIGZv
+ciBweXVkZXYgbW9kdWxlDQo+PiA+IC0tIFB5dGhvbiBjaGVja2luZyBmb3IgcHl1ZGV2IG1vZHVs
+ZSAtICJpbXBvcnQgcHl1ZGV2IiBmYWlsZWQgKGlzIGl0IGluc3RhbGxlZD8pDQo+PiA+IC0tDQo+
+PiA+IC0tIFB5dGhvbiBjaGVja2luZyBmb3IgcHlyb3V0ZTIgbW9kdWxlDQo+PiA+IC0tIFB5dGhv
+biBjaGVja2luZyBmb3IgcHlyb3V0ZTIgbW9kdWxlIC0gImltcG9ydCBweXJvdXRlMiIgZmFpbGVk
+IChpcw0KPj4gPiBpdCBpbnN0YWxsZWQ/KQ0KPj4gPiAtLSBNUE0gdW5pdCB0ZXN0IFB5dGhvbiBw
+YWNrYWdlIHByZXJlcXVpc2l0ZXMgbm90IG1ldDsgc2tpcHBpbmcNCj4+ID4gLS0NCj4+ID4gLS0N
+Cj4+ID4gLS0gUHl0aG9uIGNoZWNraW5nIGZvciB2aXJ0dWFsIGVudmlyb25tZW50DQo+PiA+IC0t
+IFB5dGhvbiBjaGVja2luZyBmb3IgdmlydHVhbCBlbnZpcm9ubWVudCAtICJhc3NlcnQgc3lzLnBy
+ZWZpeCAhPQ0KPj4gPiBzeXMuYmFzZV9wcmVmaXgiIGZhaWxlZA0KPj4gPiAtLSBJbnN0YWxsaW5n
+ICd1aGQnIFB5dGhvbiBtb2R1bGUgdG86DQo+PiA+IEM6L21zeXM2NC9taW5ndzY0L2xpYi9weXRo
+b24zLjExL3NpdGUtcGFja2FnZXMNCj4+ID4gLS0NCj4+ID4gLS0gIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjDQo+PiA+IC0tICMgVUhEIGVuYWJs
+ZWQgY29tcG9uZW50cw0KPj4gPiAtLSAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMNCj4+ID4gLS0gICAqIExpYlVIRA0KPj4gPiAtLSAgICogTGli
+VUhEIC0gQyBBUEkNCj4+ID4gLS0gICAqIExpYlVIRCAtIFB5dGhvbiBBUEkNCj4+ID4gLS0gICAq
+IEV4YW1wbGVzDQo+PiA+IC0tICAgKiBVdGlscw0KPj4gPiAtLSAgICogVGVzdHMNCj4+ID4gLS0g
+ICAqIFB5dGhvbiBNb2R1bGUgKFV0aWxzIG9ubHkpDQo+PiA+IC0tICAgKiBVU0INCj4+ID4gLS0g
+ICAqIEIxMDANCj4+ID4gLS0gICAqIEIyMDANCj4+ID4gLS0gICAqIFVTUlAxDQo+PiA+IC0tICAg
+KiBVU1JQMg0KPj4gPiAtLSAgICogWDMwMA0KPj4gPiAtLSAgICogTVBNRA0KPj4gPiAtLSAgICog
+U0lNDQo+PiA+IC0tICAgKiBOMzAwDQo+PiA+IC0tICAgKiBOMzIwDQo+PiA+IC0tICAgKiBFMzIw
+DQo+PiA+IC0tICAgKiBFMzAwDQo+PiA+IC0tICAgKiBYNDAwDQo+PiA+IC0tICAgKiBPY3RvQ2xv
+Y2sNCj4+ID4gLS0gICAqIE1hbnVhbA0KPj4gPiAtLSAgICogQVBJL0RveHlnZW4NCj4+ID4gLS0N
+Cj4+ID4gLS0gIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjDQo+PiA+IC0tICMgVUhEIGRpc2FibGVkIGNvbXBvbmVudHMNCj4+ID4gLS0gIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjDQo+PiA+IC0t
+ICAgKiBEUERLDQo+PiA+IC0tICAgKiBNYW4gUGFnZXMNCj4+ID4gLS0NCj4+ID4gLS0gKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQo+PiA+IC0t
+ICogWW91IGFyZSBidWlsZGluZyB0aGUgVUhEIGRldmVsb3BtZW50IG1hc3RlciBicmFuY2guDQo+
+PiA+IC0tICogRm9yIHByb2R1Y3Rpb24gY29kZSwgd2UgcmVjb21tZW5kIG91ciBzdGFibGUsDQo+
+PiA+IC0tICogcmVsZWFzZXMgb3IgdXNpbmcgdGhlIHJlbGVhc2UgYnJhbmNoIChtYWludCkuDQo+
+PiA+IC0tICoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKg0KPj4gPiAtLSBCdWlsZGluZyB2ZXJzaW9uOiA0LjcuMC4wLTAtZ2E1ZWQxODcyDQo+PiA+
+IC0tIFVzaW5nIGluc3RhbGwgcHJlZml4OiBDOi9tc3lzNjQvbWluZ3c2NA0KPj4gPiAtLSBDb25m
+aWd1cmluZyBkb25lICgzLjdzKQ0KPj4gPiAtLSBHZW5lcmF0aW5nIGRvbmUgKDAuN3MpDQo+PiA+
+IC0tIEJ1aWxkIGZpbGVzIGhhdmUgYmVlbiB3cml0dGVuIHRvOiBDOi9tc3lzNjQvaG9tZS9jaHJp
+cy9zcmMvdWhkL2hvc3QvYnVpbGQNCj4+ID4NCj4+ID4gSSdtIGFsc28gYXBwbHlpbmcgYSBwYXRj
+aCB0byBnZXQgaXQgdG8gYnVpbGQuICBJdCB3YXMgbmVlZGVkIGZvcg0KPj4gPiA0LjYuMC4wIGFu
+ZCBJJ3ZlIGhhZCB0byBtYWtlIHNvbWUgdHdlYWtzLiAgTm9uZSBvZiB0aGUgZmlsZXMgdG91Y2hl
+ZA0KPj4gPiBieSB0aGUgcGF0Y2ggYXJlIHBhcnQgb2YgdGhlIGVycm9yLCBidXQgSSdsbCBpbmNs
+dWRlIGl0IGZvcg0KPj4gPiBjb21wbGV0ZW5lc3MuDQo+PiA+DQo+PiA+IFRoYW5rcyBpbiBhZHZh
+bmNlLA0KPj4gPg0KPj4gPiBDaHJpcw0KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18NCj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tDQo+PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVz
+cnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+DQo+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
+aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
+byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
