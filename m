@@ -2,189 +2,191 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 864E8933F52
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jul 2024 17:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3476934004
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jul 2024 17:51:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5FD54385914
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jul 2024 11:12:19 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0CB9F3859DA
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jul 2024 11:51:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1721229139; bh=Qe8Kx5sLdNvbBEj+Fa3osn2L3njJxBqC5XqFAZTCRNc=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1721231469; bh=kk4VnWnIvOwzQN6AbZXzvQ+0PnOYyxCpghRJJoGIXAI=;
+	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=YfGrBJyUDbhWWch8YsRKSzoMcbf/T/jYCToa8wYhEk7IHu5mmcg2gJYkxydNusROz
-	 dQWmtU6J/6uHc2u0qY3OvhNKd5O2T4s7gkw8ZQc0CyvCbZAb9geGqhxBjyZh6WSP+H
-	 316OJww7LWvcRMNCMnK8vpattrXEXdNBAo1STaByNW1Cvg5Djmak14zK1HbTvQmdDL
-	 oP/PADIYMuzcp1RvDL+aq6eXsSpJcdhH80tyF83FPPbid3aWcH99ENa9eNXkO47Rwa
-	 n46ruQqXFLPud0WJTLq7KjQy62S+rgO2Z/AP5HC7ZrFzhsZWncwTNcJ3HxbjrZLnmg
-	 ZMttn9KWdMUYg==
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id C59D43858E4
-	for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2024 11:12:03 -0400 (EDT)
+	 From:Reply-To:From;
+	b=FI8Qwd9EGOJ7jSIqdG+LVowpI4leY6PWxLxwhWPqQzqTw7WekFwKMmLMtU3nt8GPc
+	 hNk5/gWOsjKZY+eQjOuecXqBuDCqbWsrMmIetUAffIp8dmAZ6uSSABITCvOP4H7dwM
+	 1XHubDrtkztlh67mUYe1LCUrfgIyaflxrArLQZlSsYuLv+tkjIcocFZK3CdHYhfgb0
+	 stUTdxKN7VqTKr1f55Mr/F/G/afJgyWBenBMK75hArdPaaXmFc025wA3zBrLLug0Jr
+	 The5tUYhheOVXi/vtbXZYk0zxVEfaoJANpoWtlvcDGuRGh3OWvHaMOOuMA00hpAsKp
+	 oY7BMbwiTXcog==
+Received: from resqmta-c2p-570503.sys.comcast.net (resqmta-c2p-570503.sys.comcast.net [96.102.19.37])
+	by mm2.emwd.com (Postfix) with ESMTPS id C1B9138595C
+	for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2024 11:50:53 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="D03ST0ik";
+	dkim=pass (2048-bit key; unprotected) header.d=comcast.net header.i=@comcast.net header.b="qPNfVXo4";
 	dkim-atps=neutral
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-79f16c85da0so463564785a.2
-        for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2024 08:12:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721229123; x=1721833923; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4QhMbHWOX2pgW2pvwG7T7toqSGM7ZJumjh64t06ajxE=;
-        b=D03ST0iksm3X0t6cIP/2cuddWY7yy/xL9oAP1E6jVVOLKV5sC6QlX6W6b4dtUS9tiH
-         R88fUhkbaaZqGufkApPqcLfnVH9vb/SFEVt9nMtFDKjkVbqeqBbEKB96jAD0AvxDvQr4
-         oNF+jv9mLuMnUyhvvP3kXw4zbd5o7rh1fTNlwzqKVFGImV9u4BKgMq/4xc7jSaTSB4AH
-         pXqndY4cDdtwZOhvuCb9Y1IK8Uy+U/uDkuw+hTCAPhb/+D6AmQuEFXxTYzdoqygiW27J
-         ZK0h3l26NE/4eq1I1aexuPmOoqpHHz6vjb4UvJjH8WJB6AHwFYY6CdQBy9Da6GFyMh/3
-         47Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721229123; x=1721833923;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=4QhMbHWOX2pgW2pvwG7T7toqSGM7ZJumjh64t06ajxE=;
-        b=UfBoRvl3msHek6swi819kBCO0ng/qxUchef408N/jIWvPfhvjBcmQdWBaGfP+rqzzO
-         q5P8WCVYEDKvlz+F60O1VQPnGdDIGCc082hAFAY1yW1luuvHU/Mnlu2jSZyuw3rPrsPj
-         pD/TuT3i9KDrCMVz6OlAf8S0prU8s35HYZW/vQZWyTe/hU231DC3/9x1WE64ZN9Xv52g
-         fWpJs91StZ980j0Lcozt5D0W+gcGkgEsFen+L5KIvcjMyYeWHr6WXBJvP0pbLS6ffe3z
-         wa3GjsG0dIYVfM6v05O7UqkRnL1xUAd2On9JESSZlbdXHq8YCX54W6dUsgeY8VEFpwGl
-         q0Qw==
-X-Gm-Message-State: AOJu0YxsHKRgctFUtQmpz2gJy7DxH4ONyBvQJFbKqJJJ0lFV+xOcaZ9W
-	KT4HYCbeNRJ0NbNtAxkBPmCOvsvzQBWK/WZK0kUGHt1JevQuBX/S8Lwfpw==
-X-Google-Smtp-Source: AGHT+IHG8VA2AboQL3scIGkQThEq8ZUCUZ8dsCx/BUJSEEK4vlbff9WAFzX6nWYBpYKu6xc0ptuftQ==
-X-Received: by 2002:a05:620a:2453:b0:79f:f30:6443 with SMTP id af79cd13be357-7a18746e079mr207478185a.35.1721229122452;
-        Wed, 17 Jul 2024 08:12:02 -0700 (PDT)
-Received: from [192.168.2.170] ([64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7a160c6dc76sm411959685a.106.2024.07.17.08.12.01
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jul 2024 08:12:01 -0700 (PDT)
-Message-ID: <068de6f9-22ef-46c8-b471-d4fb1e9883f4@gmail.com>
-Date: Wed, 17 Jul 2024 11:11:50 -0400
+Received: from resomta-c2p-555921.sys.comcast.net ([96.102.18.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by resqmta-c2p-570503.sys.comcast.net with ESMTPS
+	id U48HsobStz4otU6vcsjmB6; Wed, 17 Jul 2024 15:50:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=20190202a; t=1721231453;
+	bh=igZ9CV3gX6JZtRxKbqLhqbVWZOwu/rEmgFx2ZiRs+mQ=;
+	h=Received:Received:Content-Type:Message-ID:Date:MIME-Version:
+	 Subject:To:From:Xfinity-Spam-Result;
+	b=qPNfVXo4BaNLJUEe4zHdn4bCSpTk9a8YDjSCNeLuCVFgMsGKuxt3reZBODDNseKtG
+	 EK4/5x1v88j6CU8wmG5dznYthSWClEss8mbeJipT+gWue6rriFcB2lqTwCG8SD4DDk
+	 jxIkUqvMk6EAC3oSzTllvWQkcjKqFcNibyEW5OiIQJZQ73MOEqzoWpvAZYkIPV1xno
+	 C4Qc73IQ1DmRO5T9kQ+BdwFcA+XH41sGyJyPst7cj2sPvcHweWDJxEHQ86P8nFOVhD
+	 QH7k68BTyriLOyzaBaEnGI5aKcVp3VNIeto2xpXu7tUvWuRSw/0F0kPH76GcAO2fTO
+	 PbK5MGlJUIgYg==
+Received: from [IPV6:2601:647:4b00:aafb:c18f:ca52:4ed:c8fa]
+ ([IPv6:2601:647:4b00:aafb:c18f:ca52:4ed:c8fa])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by resomta-c2p-555921.sys.comcast.net with ESMTPSA
+	id U6vasN9vjNwzHU6vbsAnPf; Wed, 17 Jul 2024 15:50:52 +0000
+Message-ID: <8486eb97-5f6a-41b9-b8af-98849aa7a44e@comcast.net>
+Date: Wed, 17 Jul 2024 08:50:50 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Content-Language: en-US
 To: usrp-users@lists.ettus.com
 References: <GV1P193MB229549AF4487D944E9A71C7DCBA32@GV1P193MB2295.EURP193.PROD.OUTLOOK.COM>
  <cf0ee27c-5059-41f8-9ac5-7cea7db9fcdc@comcast.net>
  <GV1P193MB22953B182EDF6D1EF9CDB869CBA32@GV1P193MB2295.EURP193.PROD.OUTLOOK.COM>
  <40fea92b-9616-4dba-a70f-8a10906317fd@comcast.net>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <40fea92b-9616-4dba-a70f-8a10906317fd@comcast.net>
-Message-ID-Hash: GTCZJA7JEO6B2TW6E3ZSKCTXGEP7OMUQ
-X-Message-ID-Hash: GTCZJA7JEO6B2TW6E3ZSKCTXGEP7OMUQ
-X-MailFrom: patchvonbraun@gmail.com
+ <068de6f9-22ef-46c8-b471-d4fb1e9883f4@gmail.com>
+Content-Language: en-US
+In-Reply-To: <068de6f9-22ef-46c8-b471-d4fb1e9883f4@gmail.com>
+X-CMAE-Envelope: MS4xfLF0+pq/LnqUOyqsEDc8JZgGEOCw1Z/EbhCM9aBIcGZ25W+gNr/LIXCC0MTOQ45reOlwz8xryDK+xojlklQQ2XKecCiZSsr5RRES9bcRel0sXqDzdZ8h
+ un4JwVwF7Lpko4+BxM/f6vnXTVSj/sEWkzwv0SlXMOU2o47BtYfaBVZN4fUZ7ejw4GLFM5mhWYqBagPxJtHIBrOj+JHiXD6FtnNHDFuz/LFGkk/xh/F51LNo
+ pR4voyApaAanMozIvFctij8qsZ6Uomik0brP8mPOKtE0FUhCQOgbphWgM+od6cCC
+Message-ID-Hash: 6ODUU22GTKEFSIEGAS66VFBBMQGVBFGE
+X-Message-ID-Hash: 6ODUU22GTKEFSIEGAS66VFBBMQGVBFGE
+X-MailFrom: w6rz@comcast.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Replicas out of band in OFDM signal (N210+CBX)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GTCZJA7JEO6B2TW6E3ZSKCTXGEP7OMUQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6ODUU22GTKEFSIEGAS66VFBBMQGVBFGE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0702769984954614772=="
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Type: multipart/mixed; boundary="===============2431859833803292669=="
 
 This is a multi-part message in MIME format.
---===============0702769984954614772==
+--===============2431859833803292669==
 Content-Type: multipart/alternative;
- boundary="------------35mGExYGAoZw3D3T2607AcBD"
+ boundary="------------0hmbuMJdDmINdTzvz1UYPiW6"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------35mGExYGAoZw3D3T2607AcBD
+--------------0hmbuMJdDmINdTzvz1UYPiW6
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 17/07/2024 10:05, Ron Economos via USRP-users wrote:
->
-> Yeah, I think UHD sets it to some calculated value that can't be=20
-> overwritten.
->
-Many daughtercards for USRP platforms that take daughtercards have fixed=20
-analog bandwidth.
-
-On the CBX, there's a balanced elliptical filter giving 40MHz of analog=20
-bandwidth.
+The alias filter is at baseband. It would be on the N210
 
 
->
-> BTW, here's what the spectrum looks like with a very wide analog=20
-> filter. So the default bandwidth setting on the N210/CBX is just a=20
-> little too wide to fully suppress that first alias.
->
->
-> OFDM alias
->
->
-> Ron
->
->
-> On 7/17/24 06:39, Brais Ares Fern=C3=A1ndez wrote:
->> Hello, Ron. Thank you for the answer.
+Ron
+
+
+On 7/17/24 08:11, Marcus D. Leech wrote:
+> On 17/07/2024 10:05, Ron Economos via USRP-users wrote:
 >>
->> I've already tried but it seems to do nothing:
+>> Yeah, I think UHD sets it to some calculated value that can't be=20
+>> overwritten.
 >>
->> $ sudo /lib/uhd/examples/tx_samples_from_file --freq 1500e6 --rate=20
->> 10e6 --gain 20 *--bw 10e6*=C2=A0--type float --file ~/OFDMsignal.raw=20
->> --args=3D"name=3Dsdr1"
+> Many daughtercards for USRP platforms that take daughtercards have=20
+> fixed analog bandwidth.
+>
+> On the CBX, there's a balanced elliptical filter giving 40MHz of=20
+> analog bandwidth.
+>
+>
 >>
->> I even tried weird values like 100e3 or 100e6, but no apparent effect=20
->> over the spectrum at all.
->> ----------------------------------------------------------------------=
---
->> *De:* Ron Economos via USRP-users <usrp-users@lists.ettus.com>
->> *Enviado:* mi=C3=A9rcoles, 17 de julio de 2024 15:00
->> *Para:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
->> *Asunto:* [USRP-users] Re: Replicas out of band in OFDM signal=20
->> (N210+CBX)
+>> BTW, here's what the spectrum looks like with a very wide analog=20
+>> filter. So the default bandwidth setting on the N210/CBX is just a=20
+>> little too wide to fully suppress that first alias.
 >>
->> Those are aliases. Try setting the analog bandwidth with the --bw=20
->> parameter.
+>>
+>> OFDM alias
 >>
 >>
 >> Ron
 >>
 >>
->> On 7/17/24 03:58, Brais Ares Fern=C3=A1ndez wrote:
->>> Hello,
+>> On 7/17/24 06:39, Brais Ares Fern=C3=A1ndez wrote:
+>>> Hello, Ron. Thank you for the answer.
 >>>
->>> This might be a common effect=C2=A0but I don't comprehend why it happ=
-ens=20
->>> and if it is avoidable.
->>>
->>> I'm using a N210+CBX to transmit a 10 MSPS *OFDM signal*, with Fc =3D=
-=20
->>> 1.5 GHz. When transmitting, I can see some kind of "replicas" at=20
->>> +-7.5 MHz from Fc, always with a 40 dBc difference.
+>>> I've already tried but it seems to do nothing:
 >>>
 >>> $ sudo /lib/uhd/examples/tx_samples_from_file --freq 1500e6 --rate=20
->>> 10e6 --gain 20 --type float --file ~/OFDMsignal.raw --args=3D"name=3D=
+>>> 10e6 --gain 20 *--bw 10e6*=C2=A0--type float --file ~/OFDMsignal.raw=20
+>>> --args=3D"name=3Dsdr1"
+>>>
+>>> I even tried weird values like 100e3 or 100e6, but no apparent=20
+>>> effect over the spectrum at all.
+>>> ---------------------------------------------------------------------=
+---
+>>> *De:* Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+>>> *Enviado:* mi=C3=A9rcoles, 17 de julio de 2024 15:00
+>>> *Para:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+>>> *Asunto:* [USRP-users] Re: Replicas out of band in OFDM signal=20
+>>> (N210+CBX)
+>>>
+>>> Those are aliases. Try setting the analog bandwidth with the --bw=20
+>>> parameter.
+>>>
+>>>
+>>> Ron
+>>>
+>>>
+>>> On 7/17/24 03:58, Brais Ares Fern=C3=A1ndez wrote:
+>>>> Hello,
+>>>>
+>>>> This might be a common effect=C2=A0but I don't comprehend why it hap=
+pens=20
+>>>> and if it is avoidable.
+>>>>
+>>>> I'm using a N210+CBX to transmit a 10 MSPS *OFDM signal*, with Fc =3D=
+=20
+>>>> 1.5 GHz. When transmitting, I can see some kind of "replicas" at=20
+>>>> +-7.5 MHz from Fc, always with a 40 dBc difference.
+>>>>
+>>>> $ sudo /lib/uhd/examples/tx_samples_from_file --freq 1500e6 --rate=20
+>>>> 10e6 --gain 20 --type float --file ~/OFDMsignal.raw --args=3D"name=3D=
 sdr1"
->>>
->>>
->>> I've already tried changing lo_offset and executing the calibration=20
->>> utilities for IQ imbalance, but none of that seems related to the=20
->>> problem.
->>>
->>> Could anyone provide any insight?
->>>
->>> Regards.
->>>
+>>>>
+>>>>
+>>>> I've already tried changing lo_offset and executing the calibration=20
+>>>> utilities for IQ imbalance, but none of that seems related to the=20
+>>>> problem.
+>>>>
+>>>> Could anyone provide any insight?
+>>>>
+>>>> Regards.
+>>>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list --usrp-users@lists.ettus.com
+>> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+>
 >
 > _______________________________________________
 > USRP-users mailing list --usrp-users@lists.ettus.com
 > To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-
---------------35mGExYGAoZw3D3T2607AcBD
+--------------0hmbuMJdDmINdTzvz1UYPiW6
 Content-Type: multipart/related;
- boundary="------------afev0YZxESv92h9eFJFv4KLx"
+ boundary="------------3r5ogk61LMKXjhYO7ylox5iu"
 
---------------afev0YZxESv92h9eFJFv4KLx
+--------------3r5ogk61LMKXjhYO7ylox5iu
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -195,213 +197,249 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 17/07/2024 10:05, Ron Economos via
-      USRP-users wrote:<br>
+    <p>The alias filter is at baseband. It would be on the N210</p>
+    <p><br>
+    </p>
+    <p>Ron<br>
+    </p>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 7/17/24 08:11, Marcus D. Leech
+      wrote:<br>
     </div>
     <blockquote type=3D"cite"
-      cite=3D"mid:40fea92b-9616-4dba-a70f-8a10906317fd@comcast.net">
+      cite=3D"mid:068de6f9-22ef-46c8-b471-d4fb1e9883f4@gmail.com">
       <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
 TF-8">
-      <p>Yeah, I think UHD sets it to some calculated value that can't
-        be overwritten.</p>
-    </blockquote>
-    Many daughtercards for USRP platforms that take daughtercards have
-    fixed analog bandwidth.<br>
-    <br>
-    On the CBX, there's a balanced elliptical filter giving 40MHz of
-    analog bandwidth.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:40fea92b-9616-4dba-a70f-8a10906317fd@comcast.net">
-      <p><br>
-      </p>
-      <p>BTW, here's what the spectrum looks like with a very wide
-        analog filter. So the default bandwidth setting on the N210/CBX
-        is just a little too wide to fully suppress that first alias.<br>
-      </p>
-      <p><br>
-      </p>
-      <img moz-do-not-send=3D"false"
-        src=3D"cid:part1.B3nioXwz.9Sjy5BTd@gmail.com" alt=3D"OFDM alias"
-        class=3D"" width=3D"800" height=3D"480">
-      <p><br>
-      </p>
-      <p>Ron<br>
-      </p>
-      <div class=3D"moz-cite-prefix"><br>
-      </div>
-      <div class=3D"moz-cite-prefix">On 7/17/24 06:39, Brais Ares
-        Fern=C3=A1ndez wrote:<br>
+      <div class=3D"moz-cite-prefix">On 17/07/2024 10:05, Ron Economos vi=
+a
+        USRP-users wrote:<br>
       </div>
       <blockquote type=3D"cite"
-cite=3D"mid:GV1P193MB22953B182EDF6D1EF9CDB869CBA32@GV1P193MB2295.EURP193.=
-PROD.OUTLOOK.COM">
+        cite=3D"mid:40fea92b-9616-4dba-a70f-8a10906317fd@comcast.net">
         <meta http-equiv=3D"Content-Type"
           content=3D"text/html; charset=3DUTF-8">
-        <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;=
-margin-bottom:0;}</style>
-        <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-          Hello, Ron. Thank you for the answer.</div>
-        <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-          <br>
+        <p>Yeah, I think UHD sets it to some calculated value that can't
+          be overwritten.</p>
+      </blockquote>
+      Many daughtercards for USRP platforms that take daughtercards have
+      fixed analog bandwidth.<br>
+      <br>
+      On the CBX, there's a balanced elliptical filter giving 40MHz of
+      analog bandwidth.<br>
+      <br>
+      <br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:40fea92b-9616-4dba-a70f-8a10906317fd@comcast.net">
+        <p><br>
+        </p>
+        <p>BTW, here's what the spectrum looks like with a very wide
+          analog filter. So the default bandwidth setting on the
+          N210/CBX is just a little too wide to fully suppress that
+          first alias.<br>
+        </p>
+        <p><br>
+        </p>
+        <img moz-do-not-send=3D"false"
+          src=3D"cid:part1.Ujfov0D4.MXEZiQpQ@comcast.net" alt=3D"OFDM ali=
+as"
+          class=3D"" width=3D"800" height=3D"480">
+        <p><br>
+        </p>
+        <p>Ron<br>
+        </p>
+        <div class=3D"moz-cite-prefix"><br>
         </div>
-        <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-          I've already tried but it seems to do nothing:</div>
-        <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-          <br>
+        <div class=3D"moz-cite-prefix">On 7/17/24 06:39, Brais Ares
+          Fern=C3=A1ndez wrote:<br>
         </div>
-        <div class=3D"elementToProof"
+        <blockquote type=3D"cite"
+cite=3D"mid:GV1P193MB22953B182EDF6D1EF9CDB869CBA32@GV1P193MB2295.EURP193.=
+PROD.OUTLOOK.COM">
+          <meta http-equiv=3D"Content-Type"
+            content=3D"text/html; charset=3DUTF-8">
+          <style type=3D"text/css" style=3D"display:none;">P {margin-top:=
+0;margin-bottom:0;}</style>
+          <div class=3D"elementToProof"
 style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
 ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-          $ sudo /lib/uhd/examples/tx_samples_from_file --freq 1500e6
-          --rate 10e6 --gain 20 <b>--bw 10e6</b>=C2=A0--type float --file
-          ~/OFDMsignal.raw --args=3D"name=3Dsdr1"</div>
-        <div class=3D"elementToProof"
+            Hello, Ron. Thank you for the answer.</div>
+          <div class=3D"elementToProof"
 style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
 ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-          <br>
-        </div>
-        <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-          I even tried weird values like 100e3 or 100e6, but no apparent
-          effect over the spectrum at all.</div>
-        <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-        <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11=
-pt"
-            face=3D"Calibri, sans-serif" color=3D"#000000"><b>De:</b> Ron
-            Economos via USRP-users <a class=3D"moz-txt-link-rfc2396E"
-              href=3D"mailto:usrp-users@lists.ettus.com"
-              moz-do-not-send=3D"true">&lt;usrp-users@lists.ettus.com&gt;=
-</a><br>
-            <b>Enviado:</b> mi=C3=A9rcoles, 17 de julio de 2024 15:00<br>
-            <b>Para:</b> <a
-              class=3D"moz-txt-link-abbreviated moz-txt-link-freetext"
-              href=3D"mailto:usrp-users@lists.ettus.com"
-              moz-do-not-send=3D"true">usrp-users@lists.ettus.com</a> <a
-              class=3D"moz-txt-link-rfc2396E"
-              href=3D"mailto:usrp-users@lists.ettus.com"
-              moz-do-not-send=3D"true">&lt;usrp-users@lists.ettus.com&gt;=
-</a><br>
-            <b>Asunto:</b> [USRP-users] Re: Replicas out of band in OFDM
-            signal (N210+CBX)</font>
-          <div>=C2=A0</div>
-        </div>
-        <div>
-          <p>Those are aliases. Try setting the analog bandwidth with
-            the --bw parameter.<br>
-          </p>
-          <p><br>
-          </p>
-          <p>Ron<br>
-          </p>
-          <p><br>
-          </p>
-          <div class=3D"x_moz-cite-prefix">On 7/17/24 03:58, Brais Ares
-            Fern=C3=A1ndez wrote:<br>
+            <br>
           </div>
-          <blockquote type=3D"cite">
-            <style type=3D"text/css" style=3D"display:none">p
+          <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+            I've already tried but it seems to do nothing:</div>
+          <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+            <br>
+          </div>
+          <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+            $ sudo /lib/uhd/examples/tx_samples_from_file --freq 1500e6
+            --rate 10e6 --gain 20 <b>--bw 10e6</b>=C2=A0--type float --fi=
+le
+            ~/OFDMsignal.raw --args=3D"name=3Dsdr1"</div>
+          <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+            <br>
+          </div>
+          <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+            I even tried weird values like 100e3 or 100e6, but no
+            apparent effect over the spectrum at all.</div>
+          <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+          <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:=
+11pt"
+              face=3D"Calibri, sans-serif" color=3D"#000000"><b>De:</b> R=
+on
+              Economos via USRP-users <a class=3D"moz-txt-link-rfc2396E"
+                href=3D"mailto:usrp-users@lists.ettus.com"
+                moz-do-not-send=3D"true">&lt;usrp-users@lists.ettus.com&g=
+t;</a><br>
+              <b>Enviado:</b> mi=C3=A9rcoles, 17 de julio de 2024 15:00<b=
+r>
+              <b>Para:</b> <a
+                class=3D"moz-txt-link-abbreviated moz-txt-link-freetext"
+                href=3D"mailto:usrp-users@lists.ettus.com"
+                moz-do-not-send=3D"true">usrp-users@lists.ettus.com</a> <=
+a
+                class=3D"moz-txt-link-rfc2396E"
+                href=3D"mailto:usrp-users@lists.ettus.com"
+                moz-do-not-send=3D"true">&lt;usrp-users@lists.ettus.com&g=
+t;</a><br>
+              <b>Asunto:</b> [USRP-users] Re: Replicas out of band in
+              OFDM signal (N210+CBX)</font>
+            <div>=C2=A0</div>
+          </div>
+          <div>
+            <p>Those are aliases. Try setting the analog bandwidth with
+              the --bw parameter.<br>
+            </p>
+            <p><br>
+            </p>
+            <p>Ron<br>
+            </p>
+            <p><br>
+            </p>
+            <div class=3D"x_moz-cite-prefix">On 7/17/24 03:58, Brais Ares
+              Fern=C3=A1ndez wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <style type=3D"text/css" style=3D"display:none">p
 	{margin-top:0;
 	margin-bottom:0}</style>
-            <div class=3D"x_elementToProof"
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              Hello,</div>
-            <div class=3D"x_elementToProof"
+                Hello,</div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <br>
-            </div>
-            <div class=3D"x_elementToProof"
+                <br>
+              </div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              This might be a common effect=C2=A0but I don't comprehend w=
-hy
-              it happens and if it is avoidable.</div>
-            <div class=3D"x_elementToProof"
+                This might be a common effect=C2=A0but I don't comprehend=
+ why
+                it happens and if it is avoidable.</div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <br>
-            </div>
-            <div class=3D"x_elementToProof"
+                <br>
+              </div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              I'm using a N210+CBX to transmit a 10 MSPS <b>OFDM signal</=
-b>,
-              with Fc =3D 1.5 GHz. When transmitting, I can see some kind
-              of "replicas" at +-7.5 MHz from Fc, always with a 40 dBc
-              difference.</div>
-            <div class=3D"x_elementToProof"
+                I'm using a N210+CBX to transmit a 10 MSPS <b>OFDM
+                  signal</b>, with Fc =3D 1.5 GHz. When transmitting, I
+                can see some kind of "replicas" at +-7.5 MHz from Fc,
+                always with a 40 dBc difference.</div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <br>
-            </div>
-            <div class=3D"x_elementToProof"
+                <br>
+              </div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              $ sudo /lib/uhd/examples/tx_samples_from_file --freq
-              1500e6 --rate 10e6 --gain 20 --type float --file
-              ~/OFDMsignal.raw --args=3D"name=3Dsdr1"</div>
-            <div class=3D"x_elementToProof"
+                $ sudo /lib/uhd/examples/tx_samples_from_file --freq
+                1500e6 --rate 10e6 --gain 20 --type float --file
+                ~/OFDMsignal.raw --args=3D"name=3Dsdr1"</div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <br>
-            </div>
-            <div class=3D"x_elementToProof"
+                <br>
+              </div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <span><img id=3D"x_image_0" size=3D"1237865" class=3D""
-                  style=3D"width:418px; height:273px"
-                  data-outlook-trace=3D"F:2|T:2"
-                  src=3D"cid:part2.OJOTXxHZ.qrqEMRIL@gmail.com"
-                  width=3D"418" height=3D"273"></span></div>
-            <div class=3D"x_elementToProof"
+                <span><img id=3D"x_image_0" size=3D"1237865" class=3D""
+                    style=3D"width:418px; height:273px"
+                    data-outlook-trace=3D"F:2|T:2"
+                    src=3D"cid:part2.t0J4nDWB.JRa56N7e@comcast.net"
+                    width=3D"418" height=3D"273"></span></div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <br>
-            </div>
-            <div class=3D"x_elementToProof"
+                <br>
+              </div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              I've already tried changing lo_offset and executing the
-              calibration utilities for IQ imbalance, but none of that
-              seems related to the problem.</div>
-            <div class=3D"x_elementToProof"
+                I've already tried changing lo_offset and executing the
+                calibration utilities for IQ imbalance, but none of that
+                seems related to the problem.</div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <br>
-            </div>
-            <div class=3D"x_elementToProof"
+                <br>
+              </div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              Could anyone provide any insight?</div>
-            <div class=3D"x_elementToProof"
+                Could anyone provide any insight?</div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <br>
-            </div>
-            <div class=3D"x_elementToProof"
+                <br>
+              </div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              Regards.</div>
-            <div class=3D"x_elementToProof"
+                Regards.</div>
+              <div class=3D"x_elementToProof"
 style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri=
 ,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-              <span style=3D"white-space:pre-wrap"></span></div>
-            <fieldset class=3D"x_moz-mime-attachment-header"></fieldset>
-          </blockquote>
-        </div>
+                <span style=3D"white-space:pre-wrap"></span></div>
+              <fieldset class=3D"x_moz-mime-attachment-header"></fieldset=
+>
+            </blockquote>
+          </div>
+        </blockquote>
+        <br>
+        <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+        <pre class=3D"moz-quote-pre" wrap=3D"">__________________________=
+_____________________
+USRP-users mailing list -- <a
+        class=3D"moz-txt-link-abbreviated moz-txt-link-freetext"
+        href=3D"mailto:usrp-users@lists.ettus.com" moz-do-not-send=3D"tru=
+e">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a
+        class=3D"moz-txt-link-abbreviated moz-txt-link-freetext"
+        href=3D"mailto:usrp-users-leave@lists.ettus.com"
+        moz-do-not-send=3D"true">usrp-users-leave@lists.ettus.com</a>
+</pre>
       </blockquote>
+      <br>
       <br>
       <fieldset class=3D"moz-mime-attachment-header"></fieldset>
       <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
@@ -413,13 +451,12 @@ f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
 s.com</a>
 </pre>
     </blockquote>
-    <br>
   </body>
 </html>
---------------afev0YZxESv92h9eFJFv4KLx
+--------------3r5ogk61LMKXjhYO7ylox5iu
 Content-Type: image/png; name="alias28.png"
 Content-Disposition: inline; filename="alias28.png"
-Content-Id: <part1.B3nioXwz.9Sjy5BTd@gmail.com>
+Content-Id: <part1.Ujfov0D4.MXEZiQpQ@comcast.net>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAyAAAAHgCAIAAADSZZ6iAAAABGdBTUEAALGPC/xhBQAAAAFz
@@ -829,10 +866,10 @@ hKN40/K2QRIJ/5sxM0/ovzLJs0v3WRjoA5JwQxgeXYQAAKDo9CarXs1XhWrWImABAABkjIAF
 AACQMQIWAABAxghYAAAAGSNgAQAAZIyABQAAkLH/H7ybvyxVqvY3AAAAJXRFWHRkYXRlOmNy
 ZWF0ZQAyMDE1LTAxLTExVDE0OjE1OjAyLTA4OjAwMb83OgAAACV0RVh0ZGF0ZTptb2RpZnkA
 MjAxNS0wMS0xMVQxNDoxNTowMC0wODowMNd9nq8AAAAASUVORK5CYII=
---------------afev0YZxESv92h9eFJFv4KLx
+--------------3r5ogk61LMKXjhYO7ylox5iu
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
-Content-Id: <part2.OJOTXxHZ.qrqEMRIL@gmail.com>
+Content-Id: <part2.t0J4nDWB.JRa56N7e@comcast.net>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAABGsAAALiCAYAAABuRlu3AAAAAXNSR0IArs4c6QAAAARnQU1B
@@ -23760,11 +23797,11 @@ jakxCUT6Cq1v7Mfg8DWGi27oR05FHtIAybRs+NTfNLAO9ALoUhfIo/cilBS0cwaild3AIF8B
 NydoFUg9Ib/bRPUBfnrPXSWibISRQ7rbKwILjLdw0ebpCKDadc1h4XPJHCdiOTgBOjGvLS4u
 tv8AlzvxMupFXEkAAAAASUVORK5CYII=
 
---------------afev0YZxESv92h9eFJFv4KLx--
+--------------3r5ogk61LMKXjhYO7ylox5iu--
 
---------------35mGExYGAoZw3D3T2607AcBD--
+--------------0hmbuMJdDmINdTzvz1UYPiW6--
 
---===============0702769984954614772==
+--===============2431859833803292669==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -23774,4 +23811,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0702769984954614772==--
+--===============2431859833803292669==--
