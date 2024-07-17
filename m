@@ -2,421 +2,555 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8AE89331C5
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Jul 2024 21:24:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD2E093383F
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jul 2024 09:50:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9846A3851A3
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Jul 2024 15:24:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 88419385603
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jul 2024 03:50:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1721157857; bh=WyPEnw4d6WhcjO7IWuWKfOwC78Qt0VlBJUD1eWhFrwU=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=Il8l1rC4gVuvbnUVITFoLjMjXR+ncv1FacimlOzqzmNXjM4Z4ZeoQdScxuErWU60+
-	 wTGDJ0SlKZ+KsRuZAIGQxNh8YnzA2/c7gAgslMg+P1ueAsh5ZDZQSaL8+3AKE9zJNT
-	 kIilkPK+QYBWESA9p2HVbgWFABwR292bUw2mp207gFNopj48HcRP3KNNmkQcjx+ZF9
-	 Qz5v8/ICjXlDgCxBsRFlZNNE2ouTul8jhJGwIINlVJqsoBNoBhaNSSIznJ0iGY03AR
-	 p3z5+AUF5Dp4kD+igTKPPVpsPmhzia8qZZN8GEjS9Z8ZY2Ei/mjsOc0VLyZeCalW2j
-	 phVGwJK0PA0Tg==
-Received: from aplegw02.jhuapl.edu (aplegw02.jhuapl.edu [128.244.251.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8C3B0385658
-	for <usrp-users@lists.ettus.com>; Tue, 16 Jul 2024 15:23:09 -0400 (EDT)
+	t=1721202609; bh=6sOV5aa26mjTRpPy58SRZDbkvP2pEtUOMaBrMcbuiuE=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=NcocJJg1JJnl/0XIgyrnOlF2Smzz2iGKo1H2RBVDAvPQhqJgy47shLMt+rxmh74+N
+	 x8MGnXjrTVvdZC3BgFZR0dQIVloMBC/x+k8DbNw4ULHE62Xfq3ErNVwhUOVdYzQZ1+
+	 vPaRuD+kuLRhRHNjW/p/macFTA5eob8BvPF0+lFPp+ENqRdBqNyy5gKavJvvAJZkyQ
+	 ZbrprbZxfTeWE57crH07i2zP30aVijWjwPnINCPKnJMRfcQRq67Kq/vKx0GYfwXhXK
+	 r0bM3c8AM58hnnRPMiwhwVcJseSuaEPOiXE15UtmFL1y0fSp1FD5UnBK4OEqruD2J7
+	 2o4Bn7iQlWudA==
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id 169A738553B
+	for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2024 03:48:56 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=jhuapl.edu header.i=@jhuapl.edu header.b="bWwbZZm+";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="RF5YVjpm";
 	dkim-atps=neutral
-Received: from pps.filterd (aplegw02.jhuapl.edu [127.0.0.1])
-	by aplegw02.jhuapl.edu (8.17.1.19/8.17.1.19) with ESMTP id 46GI7DGL028505
-	for <usrp-users@lists.ettus.com>; Tue, 16 Jul 2024 15:23:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jhuapl.edu; h=content-type : date :
- from : message-id : mime-version : subject : to; s=JHUAPLDec2018;
- bh=DwRZihksrFtIcoej/UBUN9l3BJ0ZI/wEPQ/U+PfJVHQ=;
- b=bWwbZZm+t+7gTQ3pyUb2LSB+pxNGSNsgJM5yWM0OHW3gptfWaIevWZC9QrTGOaWJXFl8
- xgc5uPVCs+QX9GCm/yuNe4sMyIQ9ia9snuyAuE5idUiOwUgJln6nlsJru+kKSy3/zmCs
- hskoLfhJ2Cu3/clOWcnwvkXGxTM0L4HX3EsoAxHS+c4pJ7zqzBaqccZzkZpdu66YMin9
- Kf6kmESP30zDHc+P7e4x1sAUBcu8dJwuaxfPg1vy3fJxtfilSpKcewG6NOqGZeXOEAmk
- tLI2Jz7Wf96kDFI+8fjXr3b+iAIZ/KxNWqiEZVDFE2/kwMqVAPHTu7JVroggpP5Tfpb3 vA==
-Received: from aplex29.dom1.jhuapl.edu (aplex29.dom1.jhuapl.edu [10.114.162.14])
-	by aplegw02.jhuapl.edu (PPS) with ESMTPS id 40dwf1r49e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Tue, 16 Jul 2024 15:23:09 -0400
-Received: from APLEX23.dom1.jhuapl.edu (10.114.162.8) by
- APLEX29.dom1.jhuapl.edu (10.114.162.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Tue, 16 Jul 2024 15:23:08 -0400
-Received: from APLEX23.dom1.jhuapl.edu ([fe80::be6f:c892:1575:da1e]) by
- APLEX23.dom1.jhuapl.edu ([fe80::be6f:c892:1575:da1e%10]) with mapi id
- 15.02.1544.011; Tue, 16 Jul 2024 15:23:08 -0400
-From: "Mahmood, Hamza" <Hamza.Mahmood@jhuapl.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: X410 Debug and Support
-Thread-Index: AdrXsEm8Mhx74a38QXSaVrvAeLxUsg==
-Date: Tue, 16 Jul 2024 19:23:08 +0000
-Message-ID: <470b57073ce44b189f4e1c9d3187d047@jhuapl.edu>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.114.162.19]
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a77e85cb9b4so687131166b.0
+        for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2024 00:48:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1721202535; x=1721807335; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=N5wTl4NpXgs5JeuaWUOgtVIrxjFJl1Tm13G700uN4Xo=;
+        b=RF5YVjpmBfV5vAIE14YQUFxwWDkO7YHhod8VwXW1D0cYvxP4eqhkVjSAG6bOKndwnl
+         MSrrw63wDRkyezVXiGZZLvcpVwbsjhANFOy1uTyy6CRs6b0Jm331abX964G8TLI4m+zR
+         65kvPrLvLYKm4V33cE5coqxMcjN8AEfNtvYtQT4MTJgr9o7+SnPOjkbS9NWu0O9mf+Uv
+         85BHO6SIDXkld/3Y6Zw/yvp7o1NfFYcAGveTXH+zHEKdmYw6DwrWoYy2OpKidiSUW8Yz
+         AGj2LcSvmKX6NqFWfgWVeU14qE4BrSeh/48+11Vg0EfgM6UzC3TOVn3OPj07CVxZDPaF
+         wnNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721202535; x=1721807335;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N5wTl4NpXgs5JeuaWUOgtVIrxjFJl1Tm13G700uN4Xo=;
+        b=QETrL8xezqKX6Y+2oH++KxwCgvnjbVQhy7UUHZKOg+ewZuU5gEsfGTFdqmwIFQeElC
+         c2gVvAp8Xk7ooAZif/j2qUlhpy+ZYXlTA8mKLBVMMgXtukOrBAmSai026hng9A9A6Zgw
+         2wqplnSuLORfbfNCI6OIfm984Y3GVz3iMwG9cLDOdPpO9/N/3FWm26d5YOVFDelpgs1X
+         sA8ZWqdMXse5pLD6bT5emYrX4VS5GQyftyiOyf+M5R0EB42CUzw/++tn8wsQpd1fD4Vd
+         cnelQDcFRY7c+H+yukg5zTf0DOkJOghE1mIlthjCd+YjlxTApYPcpv8chnB57oTZHSNq
+         k+6Q==
+X-Gm-Message-State: AOJu0YwkraXWhsUjbgZiMvM9PXpi5Sv8KXxuVIdjGAu2uD4E6wRLOPwZ
+	pQdR/1X7NxrN//XrZCGAYc+pMf38YdrhCfhqhox5oGnUpO0rO7xjokPQIRR76v0HcmZOxJhtLIo
+	hashOsjjoZCx/VQjIYWNQyAhepRVKjIua8pj6v782jGGjNdSh0oLHnQ==
+X-Google-Smtp-Source: AGHT+IFGB3rfVV7pTgk47rCE1hl5bMTOLrGlwz7ci4m4JZzAznlPr/TABEuCL48z/iVQnOTRwE+QYo4EYxfKC7Bgb/w=
+X-Received: by 2002:a17:906:3999:b0:a6f:6126:18aa with SMTP id
+ a640c23a62f3a-a7a01354b7bmr55763966b.67.1721202535195; Wed, 17 Jul 2024
+ 00:48:55 -0700 (PDT)
 MIME-Version: 1.0
-X-CrossPremisesHeadersFilteredBySendConnector: APLEX29.dom1.jhuapl.edu
-X-OrganizationHeadersPreserved: APLEX29.dom1.jhuapl.edu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-15_19,2024-07-16_02,2024-05-17_01
-Message-ID-Hash: UYU3457TRF6TPTWCC5JRKCVYGPEPGPHG
-X-Message-ID-Hash: UYU3457TRF6TPTWCC5JRKCVYGPEPGPHG
-X-MailFrom: Hamza.Mahmood@jhuapl.edu
+References: <470b57073ce44b189f4e1c9d3187d047@jhuapl.edu>
+In-Reply-To: <470b57073ce44b189f4e1c9d3187d047@jhuapl.edu>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Wed, 17 Jul 2024 09:48:43 +0200
+Message-ID: <CAFOi1A7PdYco=41+YMmmd3COjgtFQrXC_=AjzkmdMw=kNFYHNw@mail.gmail.com>
+To: "Mahmood, Hamza" <Hamza.Mahmood@jhuapl.edu>
+Message-ID-Hash: 4UWCLPILEPUDKSLSZM6V45YKBYAR6RPJ
+X-Message-ID-Hash: 4UWCLPILEPUDKSLSZM6V45YKBYAR6RPJ
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] X410 Debug and Support
+Subject: [USRP-users] Re: X410 Debug and Support
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UYU3457TRF6TPTWCC5JRKCVYGPEPGPHG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4UWCLPILEPUDKSLSZM6V45YKBYAR6RPJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1358068237320362826=="
+Content-Type: multipart/mixed; boundary="===============4474270561671882188=="
 
---===============1358068237320362826==
-Content-Language: en-US
-Content-Type: multipart/related;
-	boundary="_004_470b57073ce44b189f4e1c9d3187d047jhuapledu_";
-	type="multipart/alternative"
+--===============4474270561671882188==
+Content-Type: multipart/related; boundary="000000000000b2aa61061d6cb186"
 
---_004_470b57073ce44b189f4e1c9d3187d047jhuapledu_
-Content-Type: multipart/alternative;
-	boundary="_000_470b57073ce44b189f4e1c9d3187d047jhuapledu_"
+--000000000000b2aa61061d6cb186
+Content-Type: multipart/alternative; boundary="000000000000b2aa5c061d6cb185"
 
---_000_470b57073ce44b189f4e1c9d3187d047jhuapledu_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000b2aa5c061d6cb185
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-We are using an NI Ettus USRP X410 SDR. We have been successful in programm=
-ing the FPGA images that are default UHD designs as well as our own custom =
-FPGA design utilizing a singular RFNoC block.
-Once we integrated our FPGA Design which includes an ILA to view what the s=
-ignal looks like at the input/output of our block we observed a tone that w=
-ould be generated any time the stream command would be set, regardless if a=
- tone was present or not.
-[cid:image001.png@01DAD794.0F1FE0D0]
-The SW used was based of the rfnoc_rx_to_file script, with the addition sol=
-ely being specifying the RFNoC block added. Other than that the script was =
-not changed. It was observed that the frequency of the unknown tone would c=
-hange as the LO was tuned via the "freq" flag.
-We then reverted to the default FPGA design usrp_x410_fpga_CG_400.bit and r=
-an some of the benchmark tests provided (https://kb.ettus.com/Verifying_the=
-_Operation_of_the_USRP_Using_UHD_and_GNU_Radio#Benchmarking_your_system).
-Below are the commands and results:
-benchmark_rate --args type=3D"x4xx,addr=3D192.168.1.123" --rx_rate 491.52e6=
- --tx_rate 491.52e6
+Hi,
 
-[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.4.0.HEAD-0-g=
-5fac246b
-[00:00:00.000395] Creating the usrp device with: type=3Dx4xx,addr=3D192.168=
-.1.123...
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.1.123,type=3Dx4xx,product=3Dx410,serial=3D328B3AD,name=3Dni-x4xx-328=
-B3AD,fpga=3DCG_400,claimed=3DFalse,addr=3D192.168.1.123
-[WARNING] [MPM.RPCServer] A timeout event occured!
-[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DCG_400,mg=
-mt_addr=3D192.168.1.123,name=3Dni-x4xx-328B3AD,product=3Dx410,clock_source=
-=3Dinternal,time_source=3Dinternal'.
-Using Device: Single USRP:
-  Device: X400-Series Device
-  Mboard 0: x410
-  RX Channel: 0
-    RX DSP: n/a
-    RX Dboard: A
-    RX Subdev: 0
-  RX Channel: 1
-    RX DSP: n/a
-    RX Dboard: A
-    RX Subdev: 1
-  RX Channel: 2
-    RX DSP: n/a
-    RX Dboard: B
-    RX Subdev: 0
-  RX Channel: 3
-    RX DSP: n/a
-    RX Dboard: B
-    RX Subdev: 1
-  TX Channel: 0
-    TX DSP: n/a
-    TX Dboard: A
-    TX Subdev: 0
-  TX Channel: 1
-    TX DSP: n/a
-    TX Dboard: A
-    TX Subdev: 1
-  TX Channel: 2
-    TX DSP: n/a
-    TX Dboard: B
-    TX Subdev: 0
-  TX Channel: 3
-    TX DSP: n/a
-    TX Dboard: B
-    TX Subdev: 1
+some pointers:
 
-[00:00:03.633884524] Setting device timestamp to 0...
-Setting TX spp to 352
-[00:00:03.680705900] Testing receive rate 491.520000 Msps on 1 channels
-[00:00:03.687798660] Testing transmit rate 491.520000 Msps on 1 channels
-OUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUO[00:00:13.802629374] Benchmark =
-complete.
+- It would probably help figuring out stable streaming before moving on.
+You can start with a 200 MHz image and drop the sampling rate. The
+192.168.1.123 interface, is that a 100 GbE interface? Because the RX
+streaming rate info at the end almost seems like you're using the RJ45 1GbE
+interface (which is fine -- but you can't stream to/from a radio on a 400
+MHz image that way)
+- I'm not sure about the tone, but when you RX without your block into a
+GUI application (like uhd_fft, gqrx, or, if you're being super
+minimalistic, rx_ascii_art_dft), do you see a tone in the spectrum? Maybe
+it's some naturally occurring leakage. ILAs are great tools, but not always
+ideal for detailed analysis of signals. There are a bunch of LOs and
+there's a DDS in the RFSoC, but the DDS shouldn't be present here.
+- If your FPGA isn't too full, put your custom block on its own stream
+endpoints. Then you can stream data directly to the block and back for
+testing with better control over your input vectors.
 
 
-Benchmark rate summary:
-  Num received samples:     2052512
-  Num dropped samples:      4905369254
-  Num overruns detected:    65
-  Num transmitted samples:  259443008
-  Num sequence errors (Tx): 0
-  Num sequence errors (Rx): 0
-  Num underruns detected:   2529
-  Num late commands:        0
-  Num timeouts (Tx):        0
-  Num timeouts (Rx):        0
+--M
 
+On Tue, Jul 16, 2024 at 9:23=E2=80=AFPM Mahmood, Hamza <Hamza.Mahmood@jhuap=
+l.edu>
+wrote:
 
-Done!
-RFNOC TO FILE COMMAND
-rfnoc_rx_to_file --args type=3Dx4xx,addr=3D192.168.1.123 --rate 491520000 -=
--radio-id 0 radio-chan 1 --ant RX1 --freq 10000000 --null --progress
-
-Creating the RFNoC graph with args: type=3Dx4xx,addr=3D192.168.1.123
-[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.4.0.HEAD-0-g=
-5fac246b
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.1.123,type=3Dx4xx,product=3Dx410,serial=3D328B3AD,name=3Dni-x4xx-328=
-B3AD,fpga=3DCG_400,claimed=3DFalse,addr=3D192.168.1.123
-[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DCG_400,mg=
-mt_addr=3D192.168.1.123,name=3Dni-x4xx-328B3AD,product=3Dx410,clock_source=
-=3Dinternal,time_source=3Dinternal'.
-Using radio 0, channel 0
-Requesting RX Freq: 10 MHz...
-Actual RX Freq: 10 MHz...
-
-Waiting for "lo_locked": ++++++++++ locked.
-
-Using streamer args:
-Active connections:
-* 0/Radio#0:0-->RxStreamer#0:0
-Requesting RX Rate: 491.52 Msps...
-Setting rate on radio block!
-Actual RX Rate: 491.52 Msps...
-
-Press Ctrl + C to stop streaming...
-Issuing stream cmd
-OGot an overflow indication. Please consider the following:
-  Your write medium must sustain a rate of 1966.08MB/s.
-  Dropped samples will not be written to the file.
-  Please modify this example for your purposes.
-  This message will not appear again.
-OOOOOOOOOOOOOOOOOO      0.611378 MSps
-OOOOOOOOOOOOOOOOOOO     0.591188 MSps
-OOOOOOOOOOOOOOOOOOO     0.591123 MSps
-OOOOOOOOOOOOOOOOOOO     0.591482 MSps
-OOOOOOOOOOOOOOOOOOO     0.591422 MSps
-OOOOOOOOOOOOOOOOOOO     0.589247 MSps
-OOOOOOOOOOOOOOOOOOO     0.590293 MSps
-OOOOOOOOOOOOOOOOOOO     0.591623 MSps
-OOOOOOOOOOOOOOOOOOO     0.590881 MSps
-OOOOOOOOOOOOOOOOOOO     0.590878 MSps
-OOOOOOOOOOOOOOOOOOO     0.592178 MSps
-OOOOOOOOOOOOOOOOOOO     0.591354 MSps
-OOOOOOOOOOOOOOOOOOO     0.590965 MSps
-OOOOOOOOOOOOOOOOOOO     0.591035 MSps
-OOOOOOOOOOOOOOOOOOO     0.591483 MSps
-OOOOOOOOOOOOOOOOOOO     0.591056 MSps
-OOOOOOOOOOOOOOOOOOO     0.591314 MSps
-^C
-Issuing stop stream cmd
-
-Done!
-
-The main question is where is the tone originating from when streaming if n=
-ot through the signal generator, is there some internal DDS being configure=
-d upon tuning? Or what other scripts can be used to verify using the RFNoC =
-SW API. Thanks!
-
-
-
---_000_470b57073ce44b189f4e1c9d3187d047jhuapledu_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hello,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+> We are using an NI Ettus USRP X410 SDR. We have been successful in
+> programming the FPGA images that are default UHD designs as well as our o=
+wn
+> custom FPGA design utilizing a singular RFNoC block.
+>
+> Once we integrated our FPGA Design which includes an ILA to view what the
+> signal looks like at the input/output of our block we observed a tone tha=
+t
+> would be generated any time the stream command would be set, regardless i=
+f
+> a tone was present or not.
+>
+> The SW used was based of the rfnoc_rx_to_file script, with the addition
+> solely being specifying the RFNoC block added. Other than that the script
+> was not changed. It was observed that the frequency of the unknown tone
+> would change as the LO was tuned via the =E2=80=9Cfreq=E2=80=9D flag.
+>
+> We then reverted to the default FPGA design usrp_x410_fpga_CG_400.bit and
+> ran some of the benchmark tests provided (
+> https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GN=
+U_Radio#Benchmarking_your_system
+> ).
+>
+> Below are the commands and results:
+>
+> benchmark_rate --args type=3D"x4xx,addr=3D192.168.1.123" --rx_rate 491.52=
+e6
+> --tx_rate 491.52e6
+>
+>
+>
+> [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+> UHD_4.4.0.HEAD-0-g5fac246b
+>
+> [00:00:00.000395] Creating the usrp device with:
+> type=3Dx4xx,addr=3D192.168.1.123...
+>
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+> mgmt_addr=3D192.168.1.123,type=3Dx4xx,product=3Dx410,serial=3D328B3AD,nam=
+e=3Dni-x4xx-328B3AD,fpga=3DCG_400,claimed=3DFalse,addr=3D192.168.1.123
+>
+> [WARNING] [MPM.RPCServer] A timeout event occured!
+>
+> [INFO] [MPM.PeriphManager] init() called with device args
+> `fpga=3DCG_400,mgmt_addr=3D192.168.1.123,name=3Dni-x4xx-328B3AD,product=
+=3Dx410,clock_source=3Dinternal,time_source=3Dinternal'.
+>
+> Using Device: Single USRP:
+>
+>   Device: X400-Series Device
+>
+>   Mboard 0: x410
+>
+>   RX Channel: 0
+>
+>     RX DSP: n/a
+>
+>     RX Dboard: A
+>
+>     RX Subdev: 0
+>
+>   RX Channel: 1
+>
+>     RX DSP: n/a
+>
+>     RX Dboard: A
+>
+>     RX Subdev: 1
+>
+>   RX Channel: 2
+>
+>     RX DSP: n/a
+>
+>     RX Dboard: B
+>
+>     RX Subdev: 0
+>
+>   RX Channel: 3
+>
+>     RX DSP: n/a
+>
+>     RX Dboard: B
+>
+>     RX Subdev: 1
+>
+>   TX Channel: 0
+>
+>     TX DSP: n/a
+>
+>     TX Dboard: A
+>
+>     TX Subdev: 0
+>
+>   TX Channel: 1
+>
+>     TX DSP: n/a
+>
+>     TX Dboard: A
+>
+>     TX Subdev: 1
+>
+>   TX Channel: 2
+>
+>     TX DSP: n/a
+>
+>     TX Dboard: B
+>
+>     TX Subdev: 0
+>
+>   TX Channel: 3
+>
+>     TX DSP: n/a
+>
+>     TX Dboard: B
+>
+>     TX Subdev: 1
+>
+>
+>
+> [00:00:03.633884524] Setting device timestamp to 0...
+>
+> Setting TX spp to 352
+>
+> [00:00:03.680705900] Testing receive rate 491.520000 Msps on 1 channels
+>
+> [00:00:03.687798660] Testing transmit rate 491.520000 Msps on 1 channels
+>
+> OUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+OUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUO=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUO=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUO[00:00:13.802629374]
+> Benchmark complete.
+>
+>
+>
+>
+>
+> Benchmark rate summary:
+>
+>   Num received samples:     2052512
+>
+>   Num dropped samples:      4905369254
+>
+>   Num overruns detected:    65
+>
+>   Num transmitted samples:  259443008
+>
+>   Num sequence errors (Tx): 0
+>
+>   Num sequence errors (Rx): 0
+>
+>   Num underruns detected:   2529
+>
+>   Num late commands:        0
+>
+>   Num timeouts (Tx):        0
+>
+>   Num timeouts (Rx):        0
+>
+>
+>
+>
+>
+> Done!
+>
+> *RFNOC TO FILE COMMAND*
+>
+> rfnoc_rx_to_file --args type=3Dx4xx,addr=3D192.168.1.123 --rate 491520000
+> --radio-id 0 radio-chan 1 --ant RX1 --freq 10000000 --null --progress
+>
+>
+>
+> Creating the RFNoC graph with args: type=3Dx4xx,addr=3D192.168.1.123
+>
+> [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+> UHD_4.4.0.HEAD-0-g5fac246b
+>
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+> mgmt_addr=3D192.168.1.123,type=3Dx4xx,product=3Dx410,serial=3D328B3AD,nam=
+e=3Dni-x4xx-328B3AD,fpga=3DCG_400,claimed=3DFalse,addr=3D192.168.1.123
+>
+> [INFO] [MPM.PeriphManager] init() called with device args
+> `fpga=3DCG_400,mgmt_addr=3D192.168.1.123,name=3Dni-x4xx-328B3AD,product=
+=3Dx410,clock_source=3Dinternal,time_source=3Dinternal'.
+>
+> Using radio 0, channel 0
+>
+> Requesting RX Freq: 10 MHz...
+>
+> Actual RX Freq: 10 MHz...
+>
+>
+>
+> Waiting for "lo_locked": ++++++++++ locked.
+>
+>
+>
+> Using streamer args:
+>
+> Active connections:
+>
+> * 0/Radio#0:0-->RxStreamer#0:0
+>
+> Requesting RX Rate: 491.52 Msps...
+>
+> Setting rate on radio block!
+>
+> Actual RX Rate: 491.52 Msps...
+>
+>
+>
+> Press Ctrl + C to stop streaming...
+>
+> Issuing stream cmd
+>
+> OGot an overflow indication. Please consider the following:
+>
+>   Your write medium must sustain a rate of 1966.08MB/s.
+>
+>   Dropped samples will not be written to the file.
+>
+>   Please modify this example for your purposes.
+>
+>   This message will not appear again.
+>
+> OOOOOOOOOOOOOOOOOO      0.611378 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591188 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591123 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591482 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591422 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.589247 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.590293 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591623 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.590881 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.590878 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.592178 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591354 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.590965 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591035 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591483 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591056 MSps
+>
+> OOOOOOOOOOOOOOOOOOO     0.591314 MSps
+>
+> ^C
+>
+> Issuing stop stream cmd
+>
+>
+>
+> Done!
+>
+>
+>
+> The main question is where is the tone originating from when streaming if
+> not through the signal generator, is there some internal DDS being
+> configured upon tuning? Or what other scripts can be used to verify using
+> the RFNoC SW API. Thanks!
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000b2aa5c061d6cb185
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>some pointers:</div><div=
+><br></div><div>- It would probably help figuring out stable streaming befo=
+re moving on. You can start with a 200 MHz image and drop the sampling rate=
+. The 192.168.1.123 interface, is that a 100 GbE interface? Because the RX =
+streaming rate info at the end almost seems like you&#39;re using the RJ45 =
+1GbE interface (which is fine -- but you can&#39;t stream to/from a radio o=
+n a 400 MHz image that way)</div><div>- I&#39;m not sure about the tone, bu=
+t when you RX without your block into a GUI application (like uhd_fft, gqrx=
+, or, if you&#39;re being super minimalistic, rx_ascii_art_dft), do you see=
+ a tone in the spectrum? Maybe it&#39;s some naturally occurring leakage. I=
+LAs are great tools, but not always ideal for detailed analysis of signals.=
+ There are a bunch of LOs and there&#39;s a DDS in the RFSoC, but the DDS s=
+houldn&#39;t be present here.</div><div>- If your FPGA isn&#39;t too full, =
+put your custom block on its own stream endpoints. Then you can stream data=
+ directly to the block and back for testing with better control over your i=
+nput vectors.</div><div><br></div><div><br></div><div>--M<br></div></div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, =
+Jul 16, 2024 at 9:23=E2=80=AFPM Mahmood, Hamza &lt;<a href=3D"mailto:Hamza.=
+Mahmood@jhuapl.edu" target=3D"_blank">Hamza.Mahmood@jhuapl.edu</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
+
+
+
+
+
+<div lang=3D"EN-US">
+<div>
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
 <p class=3D"MsoNormal">We are using an NI Ettus USRP X410 SDR. We have been=
  successful in programming the FPGA images that are default UHD designs as =
 well as our own custom FPGA design utilizing a singular RFNoC block.
-<o:p></o:p></p>
+<u></u><u></u></p>
 <p class=3D"MsoNormal">Once we integrated our FPGA Design which includes an=
  ILA to view what the signal looks like at the input/output of our block we=
  observed a tone that would be generated any time the stream command would =
 be set, regardless if a tone was present
- or not.&nbsp; <o:p></o:p></p>
-<p class=3D"MsoNormal"><img width=3D"624" height=3D"234" style=3D"width:6.5=
-in;height:2.4375in" id=3D"Picture_x0020_1" src=3D"cid:image001.png@01DAD794=
-.0F1FE0D0"><o:p></o:p></p>
+ or not.=C2=A0 <u></u><u></u></p>
+<p class=3D"MsoNormal"><img width=3D"624" height=3D"234" style=3D"width: 6.=
+5in; height: 2.4375in;" id=3D"m_-5558532006589528115m_-1789004884124473948P=
+icture_x0020_1" src=3D"cid:ii_190bfa46bd34cff311"><u></u><u></u></p>
 <p class=3D"MsoNormal">The SW used was based of the rfnoc_rx_to_file script=
 , with the addition solely being specifying the RFNoC block added. Other th=
 an that the script was not changed. It was observed that the frequency of t=
 he unknown tone would change as the
- LO was tuned via the &#8220;freq&#8221; flag. <o:p></o:p></p>
+ LO was tuned via the =E2=80=9Cfreq=E2=80=9D flag. <u></u><u></u></p>
 <p class=3D"MsoNormal">We then reverted to the default FPGA design usrp_x41=
 0_fpga_CG_400.bit and ran some of the benchmark tests provided (<a href=3D"=
 https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GNU_=
-Radio#Benchmarking_your_system">https://kb.ettus.com/Verifying_the_Operatio=
-n_of_the_USRP_Using_UHD_and_GNU_Radio#Benchmarking_your_system</a>).<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">Below are the commands and results:<o:p></o:p></p>
+Radio#Benchmarking_your_system" target=3D"_blank">https://kb.ettus.com/Veri=
+fying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio#Benchmarking_your_s=
+ystem</a>).<u></u><u></u></p>
+<p class=3D"MsoNormal">Below are the commands and results:<u></u><u></u></p=
+>
 <p class=3D"MsoNormal">benchmark_rate --args type=3D&quot;x4xx,addr=3D192.1=
-68.1.123&quot; --rx_rate 491.52e6 --tx_rate 491.52e6<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C&#43;&#43; version 9.4.0; B=
-oost_107100; UHD_4.4.0.HEAD-0-g5fac246b<o:p></o:p></p>
+68.1.123&quot; --rx_rate 491.52e6 --tx_rate 491.52e6<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107=
+100; UHD_4.4.0.HEAD-0-g5fac246b<u></u><u></u></p>
 <p class=3D"MsoNormal">[00:00:00.000395] Creating the usrp device with: typ=
-e=3Dx4xx,addr=3D192.168.1.123...<o:p></o:p></p>
+e=3Dx4xx,addr=3D192.168.1.123...<u></u><u></u></p>
 <p class=3D"MsoNormal">[INFO] [MPMD] Initializing 1 device(s) in parallel w=
 ith args: mgmt_addr=3D192.168.1.123,type=3Dx4xx,product=3Dx410,serial=3D328=
 B3AD,name=3Dni-x4xx-328B3AD,fpga=3DCG_400,claimed=3DFalse,addr=3D192.168.1.=
-123<o:p></o:p></p>
-<p class=3D"MsoNormal">[WARNING] [MPM.RPCServer] A timeout event occured!<o=
-:p></o:p></p>
+123<u></u><u></u></p>
+<p class=3D"MsoNormal">[WARNING] [MPM.RPCServer] A timeout event occured!<u=
+></u><u></u></p>
 <p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] init() called with device=
  args `fpga=3DCG_400,mgmt_addr=3D192.168.1.123,name=3Dni-x4xx-328B3AD,produ=
-ct=3Dx410,clock_source=3Dinternal,time_source=3Dinternal'.<o:p></o:p></p>
-<p class=3D"MsoNormal">Using Device: Single USRP:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Device: X400-Series Device<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Mboard 0: x410<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; RX Channel: 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX DSP: n/a<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX Dboard: A<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX Subdev: 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; RX Channel: 1<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX DSP: n/a<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX Dboard: A<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX Subdev: 1<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; RX Channel: 2<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX DSP: n/a<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX Dboard: B<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX Subdev: 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; RX Channel: 3<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX DSP: n/a<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX Dboard: B<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; RX Subdev: 1<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; TX Channel: 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX DSP: n/a<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX Dboard: A<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX Subdev: 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; TX Channel: 1<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX DSP: n/a<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX Dboard: A<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX Subdev: 1<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; TX Channel: 2<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX DSP: n/a<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX Dboard: B<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX Subdev: 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; TX Channel: 3<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX DSP: n/a<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX Dboard: B<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; TX Subdev: 1<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+ct=3Dx410,clock_source=3Dinternal,time_source=3Dinternal&#39;.<u></u><u></u=
+></p>
+<p class=3D"MsoNormal">Using Device: Single USRP:<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Device: X400-Series Device<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Mboard 0: x410<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 RX Channel: 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX DSP: n/a<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX Dboard: A<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX Subdev: 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 RX Channel: 1<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX DSP: n/a<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX Dboard: A<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX Subdev: 1<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 RX Channel: 2<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX DSP: n/a<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX Dboard: B<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX Subdev: 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 RX Channel: 3<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX DSP: n/a<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX Dboard: B<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 RX Subdev: 1<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 TX Channel: 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX DSP: n/a<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX Dboard: A<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX Subdev: 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 TX Channel: 1<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX DSP: n/a<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX Dboard: A<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX Subdev: 1<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 TX Channel: 2<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX DSP: n/a<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX Dboard: B<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX Subdev: 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 TX Channel: 3<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX DSP: n/a<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX Dboard: B<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 TX Subdev: 1<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">[00:00:03.633884524] Setting device timestamp to 0..=
-.<o:p></o:p></p>
-<p class=3D"MsoNormal">Setting TX spp to 352<o:p></o:p></p>
+.<u></u><u></u></p>
+<p class=3D"MsoNormal">Setting TX spp to 352<u></u><u></u></p>
 <p class=3D"MsoNormal">[00:00:03.680705900] Testing receive rate 491.520000=
- Msps on 1 channels<o:p></o:p></p>
+ Msps on 1 channels<u></u><u></u></p>
 <p class=3D"MsoNormal">[00:00:03.687798660] Testing transmit rate 491.52000=
-0 Msps on 1 channels<o:p></o:p></p>
+0 Msps on 1 channels<u></u><u></u></p>
 <p class=3D"MsoNormal">OUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
 UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
 UUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUU=
@@ -453,133 +587,138 @@ UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
 OUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
 UUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUO[00:00:1=
 3.802629374]
- Benchmark complete.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Benchmark rate summary:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num received samples:&nbsp;&nbsp;&nbsp;&nbsp;=
- 2052512<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num dropped samples:&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; 4905369254<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num overruns detected:&nbsp;&nbsp;&nbsp; 65<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num transmitted samples:&nbsp; 259443008<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num sequence errors (Tx): 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num sequence errors (Rx): 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num underruns detected:&nbsp;&nbsp; 2529<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num late commands:&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num timeouts (Tx):&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; 0<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Num timeouts (Rx):&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; 0<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Done!<o:p></o:p></p>
-<p class=3D"MsoNormal"><b>RFNOC TO FILE COMMAND<o:p></o:p></b></p>
+ Benchmark complete.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Benchmark rate summary:<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num received samples:=C2=A0=C2=A0=C2=A0=C2=A0=
+ 2052512<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num dropped samples:=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 4905369254<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num overruns detected:=C2=A0=C2=A0=C2=A0 65<u=
+></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num transmitted samples:=C2=A0 259443008<u></=
+u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num sequence errors (Tx): 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num sequence errors (Rx): 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num underruns detected:=C2=A0=C2=A0 2529<u></=
+u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num late commands:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num timeouts (Tx):=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Num timeouts (Rx):=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 0<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Done!<u></u><u></u></p>
+<p class=3D"MsoNormal"><b>RFNOC TO FILE COMMAND<u></u><u></u></b></p>
 <p class=3D"MsoNormal">rfnoc_rx_to_file --args type=3Dx4xx,addr=3D192.168.1=
 .123 --rate 491520000 --radio-id 0 radio-chan 1 --ant RX1 --freq 10000000 -=
--null --progress<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+-null --progress<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">Creating the RFNoC graph with args: type=3Dx4xx,addr=
-=3D192.168.1.123<o:p></o:p></p>
-<p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C&#43;&#43; version 9.4.0; B=
-oost_107100; UHD_4.4.0.HEAD-0-g5fac246b<o:p></o:p></p>
+=3D192.168.1.123<u></u><u></u></p>
+<p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107=
+100; UHD_4.4.0.HEAD-0-g5fac246b<u></u><u></u></p>
 <p class=3D"MsoNormal">[INFO] [MPMD] Initializing 1 device(s) in parallel w=
 ith args: mgmt_addr=3D192.168.1.123,type=3Dx4xx,product=3Dx410,serial=3D328=
 B3AD,name=3Dni-x4xx-328B3AD,fpga=3DCG_400,claimed=3DFalse,addr=3D192.168.1.=
-123<o:p></o:p></p>
+123<u></u><u></u></p>
 <p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] init() called with device=
  args `fpga=3DCG_400,mgmt_addr=3D192.168.1.123,name=3Dni-x4xx-328B3AD,produ=
-ct=3Dx410,clock_source=3Dinternal,time_source=3Dinternal'.<o:p></o:p></p>
-<p class=3D"MsoNormal">Using radio 0, channel 0<o:p></o:p></p>
-<p class=3D"MsoNormal">Requesting RX Freq: 10 MHz...<o:p></o:p></p>
-<p class=3D"MsoNormal">Actual RX Freq: 10 MHz...<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Waiting for &quot;lo_locked&quot;: &#43;&#43;&#43;&#=
-43;&#43;&#43;&#43;&#43;&#43;&#43; locked.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Using streamer args:<o:p></o:p></p>
-<p class=3D"MsoNormal">Active connections:<o:p></o:p></p>
-<p class=3D"MsoNormal">* 0/Radio#0:0--&gt;RxStreamer#0:0<o:p></o:p></p>
-<p class=3D"MsoNormal">Requesting RX Rate: 491.52 Msps...<o:p></o:p></p>
-<p class=3D"MsoNormal">Setting rate on radio block!<o:p></o:p></p>
-<p class=3D"MsoNormal">Actual RX Rate: 491.52 Msps...<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Press Ctrl &#43; C to stop streaming...<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">Issuing stream cmd<o:p></o:p></p>
-<p class=3D"MsoNormal">OGot an overflow indication. Please consider the fol=
-lowing:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Your write medium must sustain a rate of 1966=
-.08MB/s.<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Dropped samples will not be written to the fi=
-le.<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Please modify this example for your purposes.=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; This message will not appear again.<o:p></o:p=
+ct=3Dx410,clock_source=3Dinternal,time_source=3Dinternal&#39;.<u></u><u></u=
 ></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.6=
-11378 MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591188=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591123=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591482=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591422=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.589247=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.590293=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591623=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.590881=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.590878=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.592178=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591354=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.590965=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591035=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591483=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591056=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO&nbsp;&nbsp;&nbsp;&nbsp; 0.591314=
- MSps<o:p></o:p></p>
-<p class=3D"MsoNormal">^C<o:p></o:p></p>
-<p class=3D"MsoNormal">Issuing stop stream cmd<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Done!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Using radio 0, channel 0<u></u><u></u></p>
+<p class=3D"MsoNormal">Requesting RX Freq: 10 MHz...<u></u><u></u></p>
+<p class=3D"MsoNormal">Actual RX Freq: 10 MHz...<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Waiting for &quot;lo_locked&quot;: ++++++++++ locked=
+.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Using streamer args:<u></u><u></u></p>
+<p class=3D"MsoNormal">Active connections:<u></u><u></u></p>
+<p class=3D"MsoNormal">* 0/Radio#0:0--&gt;RxStreamer#0:0<u></u><u></u></p>
+<p class=3D"MsoNormal">Requesting RX Rate: 491.52 Msps...<u></u><u></u></p>
+<p class=3D"MsoNormal">Setting rate on radio block!<u></u><u></u></p>
+<p class=3D"MsoNormal">Actual RX Rate: 491.52 Msps...<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Press Ctrl + C to stop streaming...<u></u><u></u></p=
+>
+<p class=3D"MsoNormal">Issuing stream cmd<u></u><u></u></p>
+<p class=3D"MsoNormal">OGot an overflow indication. Please consider the fol=
+lowing:<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Your write medium must sustain a rate of 1966=
+.08MB/s.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Dropped samples will not be written to the fi=
+le.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 Please modify this example for your purposes.=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 This message will not appear again.<u></u><u>=
+</u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.6=
+11378 MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591188=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591123=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591482=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591422=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.589247=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.590293=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591623=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.590881=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.590878=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.592178=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591354=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.590965=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591035=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591483=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591056=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">OOOOOOOOOOOOOOOOOOO=C2=A0=C2=A0=C2=A0=C2=A0 0.591314=
+ MSps<u></u><u></u></p>
+<p class=3D"MsoNormal">^C<u></u><u></u></p>
+<p class=3D"MsoNormal">Issuing stop stream cmd<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Done!<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">The main question is where is the tone originating f=
 rom when streaming if not through the signal generator, is there some inter=
 nal DDS being configured upon tuning? Or what other scripts can be used to =
-verify using the RFNoC SW API. Thanks!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+verify using the RFNoC SW API. Thanks!<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
-</body>
-</html>
+</div>
 
---_000_470b57073ce44b189f4e1c9d3187d047jhuapledu_--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
 
---_004_470b57073ce44b189f4e1c9d3187d047jhuapledu_
+--000000000000b2aa5c061d6cb185--
+
+--000000000000b2aa61061d6cb186
 Content-Type: image/png; name="image001.png"
-Content-Description: image001.png
-Content-Disposition: inline; filename="image001.png"; size=123049;
-	creation-date="Tue, 16 Jul 2024 19:23:08 GMT";
-	modification-date="Tue, 16 Jul 2024 19:23:08 GMT"
-Content-ID: <image001.png@01DAD794.0F1FE0D0>
+Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
+Content-ID: <ii_190bfa46bd34cff311>
+X-Attachment-Id: ii_190bfa46bd34cff311
 
 iVBORw0KGgoAAAANSUhEUgAABSgAAAHuCAYAAACcb+IyAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAP+lSURBVHhe7P0HfJzXeeeL/2YGgxm0Qe+9VxIE
@@ -2740,10 +2879,9 @@ M6DxhB2DdAjC54WrDA1HWJZooPO0+vBewbezrAvTp0/XjquFWUdOnTp12/E0jJMVFRWIiYnBypUr
 kZqaqrejjIf1ijoQ46QgCIIgCIIgfMZEcwdBmGzEQCkI9wH9/f1obGzURpjQ0FAkJyd7NKIQHk7M
 Q4mNra3cgirbUIUvArdm3I8HXbOs8wM58fHxOn7cgs16crsGSq4KbWho0Csw6Q+PS6A/njDqFX8S
 qVeCIAiCIAiCcCOch040phaEzw/w/wf+YYUWXQ+ZngAAAABJRU5ErkJggg==
+--000000000000b2aa61061d6cb186--
 
---_004_470b57073ce44b189f4e1c9d3187d047jhuapledu_--
-
---===============1358068237320362826==
+--===============4474270561671882188==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2753,4 +2891,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1358068237320362826==--
+--===============4474270561671882188==--
