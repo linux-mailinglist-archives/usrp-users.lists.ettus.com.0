@@ -2,464 +2,247 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A20F9384A0
-	for <lists+usrp-users@lfdr.de>; Sun, 21 Jul 2024 14:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE56E938A41
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Jul 2024 09:40:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DDFBA38581B
-	for <lists+usrp-users@lfdr.de>; Sun, 21 Jul 2024 08:52:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5C191385549
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Jul 2024 03:40:08 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1721566349; bh=8s+uA882zPA1g38L86zi40n4KQcvpuFD5b9VDhFgvsY=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=BGW/4+g94j2WId8KnGMAyz3zM9XOaBqCvDRtbzjrvYMBWLrMCxG1lTWvYOVSd2ArB
-	 FZTyeHk29+du77wJMFUBF/Pk6PTWtFRg5XCwb6oI4KkweUw56vxK1H7juYJftTJZg3
-	 QZftVmffAnuw98sXNKQT0h9QYXB7AWqxn0DOL5OLR6mb0v6j77pFI8MsQLod/+TAto
-	 06JocHS6p4LWvXmIPQaTG/Eh83+nsmGm/nl/jXafQy3c/RL0COKgHZgFSnEtrB3KGA
-	 HZb3dbPnehOIqcyMI5nmYnqb60fhfU9rxMSo374e4JlSPg8jtIrwZ55lLaXx2JgaWl
-	 SjwmSBROrcTMg==
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3A99E38549A
-	for <usrp-users@lists.ettus.com>; Sun, 21 Jul 2024 08:51:51 -0400 (EDT)
+	t=1721634008; bh=PqgyI2MDKjax7qMA56O9JpeJ1UOS0rzqv9TSXkFkgzA=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=UmxAGdv6Bz37dJY6m7b+OlW1E3vol4pCyGqet53qJC82ZTywUIguzMkQI3CgODyt2
+	 6IOZ4T28kCaKgAzCvlZPefJ3ck6OqrX0JaomBW7Ljy0uun0q4rnIdbR75XvbkPaVmw
+	 1e7dXTXsxcNmsDVMpkfYtQicpx2C0SXDB8Tze2s6GI03WaK5opTYutqhOHyRegkqqd
+	 k42jxK8IAVcGaQP0UkvaSDljCo+HjEmjU2Vdm+h64IxpzGq+Z6icRFZ1w/WVinXomt
+	 4cUfOC3Dhkc+6L92ZkHoNq2ulq5KNC945GYiYCVFFglIxsRRjirjr9RyaCq+TVKkpE
+	 zCth1NqpmhIFA==
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id DCB7D38550F
+	for <usrp-users@lists.ettus.com>; Mon, 22 Jul 2024 03:39:37 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PQ4UzppY";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="pccayvrH";
 	dkim-atps=neutral
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-79f15e7c89cso196559885a.1
-        for <usrp-users@lists.ettus.com>; Sun, 21 Jul 2024 05:51:51 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52efa9500e0so1480950e87.3
+        for <usrp-users@lists.ettus.com>; Mon, 22 Jul 2024 00:39:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721566310; x=1722171110; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=b5vpFNfMD4EGYYezXQZvj/OsA0GB0/MgacKuYChIR6c=;
-        b=PQ4UzppYg5JixEZ5odqFw0n9PlwfAkbC9mekfvHsNzzI3zyWiYlG/pib0oNXgyXO+B
-         hplviOgSk1z7HxuIHiRwuY9+mHpipd4aF5pmm9vpI30s8Sfo/NDMYvgNNqtfWHDncAN1
-         sOP03QL8rtk8YsXyOordMa+r5hjIlCs31mDKfL5H+AMOQdPU2MT+E0kNmBEohtYMuQGO
-         hDq8rz6xFJIrC/KMQOvb+3O96Pe3XkhmPQFcUdoGP+7k8338CXy55hZW0+TEXcrWJoFC
-         GDQe3u45sB2vol3/Y3VXlIOaHzsb9OCKla6RyZUtr4oE8csz+qqUFJY4iODCbhj5IkuZ
-         3RRA==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1721633976; x=1722238776; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zT44rhPQYqPwXcww5sswh1GfxqyXVZDmAeCkdv+b9UU=;
+        b=pccayvrHrrSpcmwQDiOAR99eOV7EQog0pp7CrlKkvuaEd9SrGWmP5mUvcxb/H9TDWZ
+         e/8KOs67gs7Oh2gSTFy8xTzty8K7vqYn202x5CjQis9LjCv3fn/37IzkqESNsfaMtR8a
+         8cdEZ3nRzd21dQw8Iawu1v7I4m69s7RFHAv8v7CnT1+9rh76f+hlmuOYHKaKVydo0FH2
+         ZMEZgxm31he4906caH5lO0eSRjXHbGrHm5Mo2csreEhNWvfVJn+OB8El26ZpbA8yFGTL
+         sSFQaDgPyA4Q9X67kU9kDkGpzyKDOZiTSCN4zmDXs/oW3TAbu9xaNP382PRJXqoQtpoO
+         RwVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721566310; x=1722171110;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=b5vpFNfMD4EGYYezXQZvj/OsA0GB0/MgacKuYChIR6c=;
-        b=FhadaZm756CtyZjjuXpnbekNJ0OgU7G0R5ueG4nUKCi45V32UkCypebDhh76xR6y71
-         lGb2Jj8z5/r0aFqFnTsFdkn9ssUOYviSkhID4P+m4BjZyXs1kMIi9bKwqEhVP/b+lLZq
-         9T/75U8aDG/3hM629qlDQX5U8v3JFGrFqcszrYWaXLKIGdWRlLlSFmYl1BCAw5PLAlym
-         TOeziJc2h6bJuVpI6NfxQr7Wnfj/IM+AlOJ+61OOZhXqfYbO/YuijAE5zdg8QqRu1Elz
-         0nOQjWNiFcHkLRfquiJmTbU5T1P6Mp3HrBAKA18vPh9pbSLQvo4Q4nqZ8x+umL/A7kD+
-         4Gtw==
-X-Gm-Message-State: AOJu0YwPjdQxwD2RWd4BFgf+X75KyTe2PCMF5M8XIHbLXXNpwCyMn9e8
-	70HcWL3zCQUsUpClevA30AjDKXWo1MBUvDy/Rc0/bNc9yXRwA2nL6wlVFQ==
-X-Google-Smtp-Source: AGHT+IERJj9MkII5kZZkWlVU+r8JBcshqWEuyaBNBuwiD7JaHE8vQc58cjEI9zMhCo1gXCW6WaS+6w==
-X-Received: by 2002:ad4:5b88:0:b0:6b5:475:d1ad with SMTP id 6a1803df08f44-6b95a74d25fmr54644016d6.34.1721566309781;
-        Sun, 21 Jul 2024 05:51:49 -0700 (PDT)
-Received: from [192.168.2.170] (bas1-toronto12-64-231-212-86.dsl.bell.ca. [64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6b963f2ba92sm11826466d6.5.2024.07.21.05.51.49
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jul 2024 05:51:49 -0700 (PDT)
-Message-ID: <82dcadcf-c91e-4a20-8183-908b9e9bc754@gmail.com>
-Date: Sun, 21 Jul 2024 08:51:48 -0400
+        d=1e100.net; s=20230601; t=1721633976; x=1722238776;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zT44rhPQYqPwXcww5sswh1GfxqyXVZDmAeCkdv+b9UU=;
+        b=ZP6v+4yhFSuytl/RGberu6m+Je7DjdutMV98AlFfb9pZM+QcvJlQB1c7Hic6hDB1Ri
+         GbiFPKNGkFmybdAPQjSl+pCeQ0U3GpTLNuJuu7hnRVoAQ8L0ab3EBS/UaYl5FLU9A4ab
+         alWQNTecCLBdbmF4Sp2VOXxAeGwgiFTKINmyGltic4SLRpvDviMcvYdz87sCAdEoS4ct
+         nP+WL0XBE9+ibnELFeVIy2Y5FcfAuxi9yI4MlWgqTYGwwjk5KHbn9uZYKwU7lQjM52XW
+         Q8u7pCVhyasEYuBDgcTpvgnPc6hlXEy0yrRd5XXlfLHzmdTf9X2P5plxR+484Bbwcopc
+         EwZw==
+X-Gm-Message-State: AOJu0YysylC3S717MWLr2D1O7TardTBoO5RdS4QcCLRP6p2y2W+Lb4Lz
+	Iwte0CM5ZNmgVesFbr5DOYIkmakHZECohU30SpW4duO2jQt9jccOfFYvxZ1CWt7BMd7fY8X63NG
+	a0f0/lxtLg1YyzTHNpCV7ngjOQiJcGsG8Y3rj3tBsCrnVaJ2uSN8=
+X-Google-Smtp-Source: AGHT+IEnRkZ4OlE3IJaboR5XI3ESC20cgDX3bfXMfPxpclMYdUndyg650UZGPOHmqseirj1cQihcPJfw7haVki0x3Qo=
+X-Received: by 2002:a05:6512:1585:b0:52c:de3a:839f with SMTP id
+ 2adb3069b0e04-52efb63cda3mr3519164e87.20.1721633976093; Mon, 22 Jul 2024
+ 00:39:36 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <QIyvCHwp8kBVi1TvJgnrcn2x06Y6cMIemA86rwFCOyE@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <QIyvCHwp8kBVi1TvJgnrcn2x06Y6cMIemA86rwFCOyE@lists.ettus.com>
-Message-ID-Hash: HMH3V5X32ZTONPDTB2TT62ZTF4VXN4XY
-X-Message-ID-Hash: HMH3V5X32ZTONPDTB2TT62ZTF4VXN4XY
-X-MailFrom: patchvonbraun@gmail.com
+References: <PH0PR01MB6620BD29E83DF9073330E747DAAF2@PH0PR01MB6620.prod.exchangelabs.com>
+In-Reply-To: <PH0PR01MB6620BD29E83DF9073330E747DAAF2@PH0PR01MB6620.prod.exchangelabs.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Mon, 22 Jul 2024 09:39:23 +0200
+Message-ID: <CAFOi1A467a9bN29QJDQp-yKn_NWJN2-9+RX80p-tNJc_Sztg0A@mail.gmail.com>
+To: "Natanzi, Milad" <snatanzi@wpi.edu>
+Message-ID-Hash: SSI5I6DT7SWC4U7NGGB77OCZOUIO4XZT
+X-Message-ID-Hash: SSI5I6DT7SWC4U7NGGB77OCZOUIO4XZT
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X310 Buffers - 200Msps
+Subject: [USRP-users] Re: Connecting Multiple USRP N310 to a Computer via SFP-enabled Switch for OAI 5G Setup
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HMH3V5X32ZTONPDTB2TT62ZTF4VXN4XY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SSI5I6DT7SWC4U7NGGB77OCZOUIO4XZT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5366337269434747349=="
+Content-Type: multipart/mixed; boundary="===============4302081330199031959=="
 
-This is a multi-part message in MIME format.
---===============5366337269434747349==
-Content-Type: multipart/alternative;
- boundary="------------vibk0ay5UnxlXQh5d0tdvBdz"
-Content-Language: en-US
+--===============4302081330199031959==
+Content-Type: multipart/alternative; boundary="000000000000942878061dd125c4"
 
-This is a multi-part message in MIME format.
---------------vibk0ay5UnxlXQh5d0tdvBdz
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000942878061dd125c4
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 20/07/2024 14:37, cjohnson@serranosystems.com wrote:
->
-> Dear Ettus Support Team,
->
-> I hope this message finds you well. We are currently using the X310=20
-> (FPGA 39.2) with a 10GigE interface, handling 1996 samples (4 bytes=20
-> each) per packet. Despite following all recommended setup tips and=20
-> tricks for the USRP and our Linux box, we occasionally encounter =E2=80=
-=9CU=E2=80=9D=20
-> (underflow) indicators. Below are additional setup notes for your=20
-> reference.
->
->
->       Our Questions and Requests:
->
-> 1.
->
->     *FPGA Rx Buffer Size:*
->
->      *
->
->         What is the FPGA Rx buffer size on the X310?
->
->      *
->
->         I understand that this value cannot be set from the host side
->         and requires changes to the FPGA source. Could you confirm
->         this understanding?
->
-> 2.
->
->     *Setting and Getting Host Parameters:*
->
->      *
->
->         We are interested in setting and getting the values of three
->         specific host parameters: |num_send_frames|,
->         |send_frame_size|, and |send_buff_size|.
->
->      *
->
->         The Ettus documentation for "Transport Notes" mentions that
->         values can be specified using device arguments, which
->         configure the transport, overriding the default values chosen
->         by UHD.
->
->      *
->
->         How do we properly set and verify these values? The UHD API
->         does not provide a direct method to retrieve these parameters,
->         making it unclear if they are set correctly.
->
-They are set as *device arguments*, NOT *stream arguments*.=C2=A0 See any=
- of=20
-the examples that take a --args
- =C2=A0 parameters.
+Hi,
 
-https://files.ettus.com/manual/page_configuration.html
+yes, you can, but keep in mind that switches can be additional causes for
+packet loss/reordering/other things, and potentially add latency. For 10
+GbE you typically have a managed switch, and you should be able to
+configure it (e.g., some switches have a configuration for maintaining
+packet order). But in principle, there's nothing wrong with using a switch.
 
-It is true that there is no API that allows you to query their state.
+--M
 
+On Sun, Jul 21, 2024 at 6:09=E2=80=AFAM Natanzi, Milad <snatanzi@wpi.edu> w=
+rote:
 
-> 1.
->      *
->
->         For example, using |stream_args.args["foo"] =3D "512";| does no=
-t
->         indicate an error, so setting |num_send_frames| in the same
->         way does not guarantee that the value is applied. How can we
->         ensure these settings are correctly applied?
->
-> 2.
->
->     *Suggestions for Mitigating Underflow ("U") Issues:*
->
->      *
->
->         Could you provide suggestions on how to adjust our
->         configuration or other potential fixes to eliminate the "U"
->         indicators?
+> Hello,
 >
 >
->       Setup Notes:
->
->  *
->
->     *Operating System:* Ubuntu 20.04 Linux with Real Time scheduler at
->     a very high priority (-81).
->
->  *
->
->     *Hardware Specifications:*
->
->      o
->
->         64 cores / 4 GPUs / >250GB RAM running at 3.5 GHz.
->
->      o
->
->         Example analysis for CPU 63:
->
->         |yamlCopy codedriver: intel_cpufreq CPUs which run at the same
->         hardware frequency: 63 CPUs which need to have their frequency
->         coordinated by software: 63 maximum transition latency: 20.0
->         us. hardware limits: 800 MHz - 3.50 GHz available cpufreq
->         governors: conservative, ondemand, userspace, powersave,
->         performance, schedutil current policy: frequency should be
->         within 800 MHz and 3.50 GHz. The governor "performance" may
->         decide which speed to use within this range. current CPU
->         frequency is 3.50 GHz. |
->
->  *
->
->     *Software Settings:*
->
->      o
->
->         Based on your recommendations, we
->
->      o
->
->         See thread
->         https://lists.ettus.com/empathy/thread/P5LALBA6HSLEDTND4Z6IGTSZ=
-TEG3P5GX
->
->      o
->
->         =E2=80=9CFor the first version can you try setting has_time_spe=
-c to
->         false after the
->         first packet is sent, and don't bother to set the time_spec on
->         subsequent
->         packets within a burst? The time_spec should really only be
->         for the first
->         packet. The radio will ignore the timestamp on the subsequent
->         packets
->         within a burst, and I noticed we set has_time_spec to false
->         after the first
->         packet in our benchmark_rate example.=E2=80=9D
->
->      o
->
->         https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tric=
-ks
->         , not using DPDK.
->
-> Thank you for your assistance and support. We look forward to your=20
-> guidance on these issues.
+> I am setting up a RAN with OAI gNB installation and have the following
+> hardware configuration:
 >
 >
-Given that you have done all the above, and the performance of your=20
-system, the only other thing to try is DPDK, assuming
- =C2=A0 that you have a network card that can support DPDK.
-
+>
+>    - *3 USRP N310 devices* with 10G SFP ports
+>    - *1 computer* for RAN (OAI gNB installation)
+>    - *1 computer* for OAI core
+>    - *1 Dell server* for training and other task and I would like to
+>    connect this server also to the RAN and Core, all equipped with 10G SF=
+P
+>    ports
+>
+> I want to connect all three USRP N310 devices to a single computer, which
+> will act as the RAN. My question is:
+>
+> *Can I use an SFP-enabled switch to connect all these devices?*
+>
+> *Setup Details:*
+>
+>    - All USRP devices connect to the SFP-enabled switch.
+>    - The switch then connects to the two PCs (RAN and Core) and the
+>    server, all via SFP 10G ports.
+>
+> I would appreciate any guidance on the feasibility of this setup and any
+> recommendations on specific switch models or additional considerations I
+> should keep in mind
+>
+>
+> Thanks.
+>
+>    Milad
+>
 >
 > _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---------------vibk0ay5UnxlXQh5d0tdvBdz
-Content-Type: text/html; charset=UTF-8
+--000000000000942878061dd125c4
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 20/07/2024 14:37,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:cjohnson@serra=
-nosystems.com">cjohnson@serranosystems.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:QIyvCHwp8kBVi1TvJgnrcn2x06Y6cMIemA86rwFCOyE@lists.ettus.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Dear Ettus Support Team,</p>
-      <p>I hope this message finds you well. We are currently using the
-        X310 (FPGA 39.2) with a 10GigE interface, handling 1996 samples
-        (4 bytes each) per packet. Despite following all recommended
-        setup tips and tricks for the USRP and our Linux box, we
-        occasionally encounter =E2=80=9CU=E2=80=9D (underflow) indicators=
-. Below are
-        additional setup notes for your reference.</p>
-      <h3>Our Questions and Requests:</h3>
-      <ol>
-        <li>
-          <p><strong>FPGA Rx Buffer Size:</strong></p>
-          <ul>
-            <li>
-              <p>What is the FPGA Rx buffer size on the X310?</p>
-            </li>
-            <li>
-              <p>I understand that this value cannot be set from the
-                host side and requires changes to the FPGA source. Could
-                you confirm this understanding?</p>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <p><strong>Setting and Getting Host Parameters:</strong></p>
-          <ul>
-            <li>
-              <p>We are interested in setting and getting the values of
-                three specific host parameters: <code>num_send_frames</co=
-de>,
-                <code>send_frame_size</code>, and <code>send_buff_size</c=
-ode>.</p>
-            </li>
-            <li>
-              <p>The Ettus documentation for "Transport Notes" mentions
-                that values can be specified using device arguments,
-                which configure the transport, overriding the default
-                values chosen by UHD.</p>
-            </li>
-            <li>
-              <p>How do we properly set and verify these values? The UHD
-                API does not provide a direct method to retrieve these
-                parameters, making it unclear if they are set correctly.<=
-/p>
-            </li>
-          </ul>
-        </li>
-      </ol>
-    </blockquote>
-    They are set as *device arguments*, NOT *stream arguments*.=C2=A0 See=
- any
-    of the examples that take a --args<br>
-    =C2=A0 parameters.<br>
-    <br>
-    <a class=3D"moz-txt-link-freetext" href=3D"https://files.ettus.com/ma=
-nual/page_configuration.html">https://files.ettus.com/manual/page_configu=
-ration.html</a><br>
-    <br>
-    It is true that there is no API that allows you to query their
-    state.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:QIyvCHwp8kBVi1TvJgnrcn2x06Y6cMIemA86rwFCOyE@lists.ettus.com">
-      <ol>
-        <li>
-          <ul>
-            <li>
-              <p>For example, using <code>stream_args.args["foo"] =3D
-                  "512";</code> does not indicate an error, so setting <c=
-ode>num_send_frames</code>
-                in the same way does not guarantee that the value is
-                applied. How can we ensure these settings are correctly
-                applied?</p>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <p><strong>Suggestions for Mitigating Underflow ("U") Issues:</=
-strong></p>
-          <ul>
-            <li>
-              <p>Could you provide suggestions on how to adjust our
-                configuration or other potential fixes to eliminate the
-                "U" indicators?</p>
-            </li>
-          </ul>
-        </li>
-      </ol>
-      <h3>Setup Notes:</h3>
-      <ul>
-        <li>
-          <p><strong>Operating System:</strong> Ubuntu 20.04 Linux with
-            Real Time scheduler at a very high priority (-81).</p>
-        </li>
-        <li>
-          <p><strong>Hardware Specifications:</strong></p>
-          <ul>
-            <li>
-              <p>64 cores / 4 GPUs / &gt;250GB RAM running at 3.5 GHz.</p=
->
-            </li>
-            <li>
-              <p>Example analysis for CPU 63:</p>
-              <pre><code>yamlCopy codedriver: intel_cpufreq
-CPUs which run at the same hardware frequency: 63
-CPUs which need to have their frequency coordinated by software: 63
-maximum transition latency: 20.0 us.
-hardware limits: 800 MHz - 3.50 GHz
-available cpufreq governors: conservative, ondemand, userspace, powersave=
-, performance, schedutil
-current policy: frequency should be within 800 MHz and 3.50 GHz.
-                The governor "performance" may decide which speed to use =
-within this range.
-current CPU frequency is 3.50 GHz.
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>yes, you can, but keep i=
+n mind that switches can be additional causes for packet loss/reordering/ot=
+her things, and potentially add latency. For 10 GbE you typically have a ma=
+naged switch, and you should be able to configure it (e.g., some switches h=
+ave a configuration for maintaining packet order). But in principle, there&=
+#39;s nothing wrong with using a switch.</div><div><br></div><div>--M<br></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Sun, Jul 21, 2024 at 6:09=E2=80=AFAM Natanzi, Milad &lt;<a href=3D"m=
+ailto:snatanzi@wpi.edu">snatanzi@wpi.edu</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><div class=3D"msg463652253978427595=
+6">
 
-</code></pre>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <p><strong>Software Settings:</strong></p>
-          <ul>
-            <li>
-              <p>Based on your recommendations, we </p>
-            </li>
-            <li>
-              <p>See thread
-                <a class=3D"moz-txt-link-freetext" href=3D"https://lists.=
-ettus.com/empathy/thread/P5LALBA6HSLEDTND4Z6IGTSZTEG3P5GX">https://lists.=
-ettus.com/empathy/thread/P5LALBA6HSLEDTND4Z6IGTSZTEG3P5GX</a></p>
-            </li>
-            <li>
-              <p>=E2=80=9CFor the first version can you try setting
-                has_time_spec to false after the<br>
-                first packet is sent, and don't bother to set the
-                time_spec on subsequent<br>
-                packets within a burst? The time_spec should really only
-                be for the first<br>
-                packet. The radio will ignore the timestamp on the
-                subsequent packets<br>
-                within a burst, and I noticed we set has_time_spec to
-                false after the first<br>
-                packet in our benchmark_rate example.=E2=80=9D</p>
-            </li>
-            <li>
-              <p><a class=3D"moz-txt-link-freetext" href=3D"https://kb.et=
-tus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks">https://kb.ettus.co=
-m/USRP_Host_Performance_Tuning_Tips_and_Tricks</a>
-                , not using DPDK.</p>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <p>Thank you for your assistance and support. We look forward to
-        your guidance on these issues.</p>
-      <p><br>
-      </p>
-    </blockquote>
-    Given that you have done all the above, and the performance of your
-    system, the only other thing to try is DPDK, assuming<br>
-    =C2=A0 that you have a network card that can support DPDK.<br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:QIyvCHwp8kBVi1TvJgnrcn2x06Y6cMIemA86rwFCOyE@lists.ettus.com">
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
 
---------------vibk0ay5UnxlXQh5d0tdvBdz--
 
---===============5366337269434747349==
+
+
+<div lang=3D"EN-IE" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_4636522539784275956WordSection1">
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:Helvetica;color:rgb(51,51,51)">Hello,</span><span style=3D=
+"color:rgb(33,33,33)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:Helvetica;color:rgb(51,51,51)"><br>
+I am setting up a RAN with OAI gNB installation and have the following hard=
+ware configuration:</span><span style=3D"color:rgb(33,33,33)"><u></u><u></u=
+></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:Helvetica;color:rgb(51,51,51)">=C2=A0</span><span style=3D=
+"color:rgb(33,33,33)"><u></u><u></u></span></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoNormal" style=3D"color:rgb(51,51,51);margin-bottom:6pt;back=
+ground:white">
+<b><span style=3D"font-size:12pt;font-family:Helvetica">3 USRP N310 devices=
+</span></b><span style=3D"font-size:12pt;font-family:Helvetica">=C2=A0with =
+10G SFP ports</span><span><u></u><u></u></span></li><li class=3D"MsoNormal"=
+ style=3D"color:rgb(51,51,51);margin-bottom:6pt;background:white">
+<b><span style=3D"font-size:12pt;font-family:Helvetica">1 computer</span></=
+b><span style=3D"font-size:12pt;font-family:Helvetica">=C2=A0for RAN (OAI g=
+NB installation)</span><span><u></u><u></u></span></li><li class=3D"MsoNorm=
+al" style=3D"color:rgb(51,51,51);margin-bottom:6pt;background:white">
+<b><span style=3D"font-size:12pt;font-family:Helvetica">1 computer</span></=
+b><span style=3D"font-size:12pt;font-family:Helvetica">=C2=A0for OAI core</=
+span><span><u></u><u></u></span></li><li class=3D"MsoNormal" style=3D"color=
+:rgb(51,51,51);margin-bottom:6pt;background:white">
+<b><span style=3D"font-size:12pt;font-family:Helvetica">1 Dell server</span=
+></b><span style=3D"font-size:12pt;font-family:Helvetica">=C2=A0for trainin=
+g and other task and
+ I would like to connect this server also to the RAN and Core, all equipped=
+ with 10G SFP ports</span><span><u></u><u></u></span></li></ul>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:Helvetica;color:rgb(51,51,51)">I want to connect all three=
+ USRP N310 devices to a single computer, which will act as the RAN. My
+ question is:</span><span style=3D"color:rgb(33,33,33)"><u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal" style=3D"background:white"><b><span style=3D"font-si=
+ze:12pt;font-family:Helvetica;color:rgb(51,51,51)">Can I use an SFP-enabled=
+ switch to connect all these devices?</span></b><span style=3D"color:rgb(33=
+,33,33)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><b><span style=3D"font-si=
+ze:12pt;font-family:Helvetica;color:rgb(51,51,51)">Setup Details:</span></b=
+><span style=3D"color:rgb(33,33,33)"><u></u><u></u></span></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoNormal" style=3D"color:rgb(51,51,51);margin-bottom:6pt;back=
+ground:white">
+<span style=3D"font-size:12pt;font-family:Helvetica">All USRP devices conne=
+ct to the SFP-enabled switch.</span><span><u></u><u></u></span></li><li cla=
+ss=3D"MsoNormal" style=3D"color:rgb(51,51,51);margin-bottom:6pt;background:=
+white">
+<span style=3D"font-size:12pt;font-family:Helvetica">The switch then connec=
+ts to the two PCs (RAN and Core) and the server, all via SFP 10G ports.</sp=
+an><span><u></u><u></u></span></li></ul>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:Helvetica;color:rgb(51,51,51)">I would appreciate any guid=
+ance on the feasibility of this setup and any recommendations on specific
+ switch models or additional considerations I should keep in mind</span><sp=
+an style=3D"color:rgb(33,33,33)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:Helvetica;color:rgb(51,51,51)"><br>
+Thanks.</span><span style=3D"color:rgb(33,33,33)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(33,33,33)">=C2=A0=C2=A0 Mil=
+ad<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--000000000000942878061dd125c4--
+
+--===============4302081330199031959==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -469,4 +252,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5366337269434747349==--
+--===============4302081330199031959==--
