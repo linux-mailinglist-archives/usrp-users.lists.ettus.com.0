@@ -2,111 +2,242 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F4B93A4C8
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2024 19:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F208693A589
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2024 20:25:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 098DF385A58
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2024 13:16:19 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1159D3859D1
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2024 14:25:33 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1721754979; bh=epm2VyT2o0kYWaVFxQniBBNTsSQi8rjMwRvGL0bRxhw=;
+	t=1721759133; bh=SFBhvDUFX17wk1slbxjoKvbq9v7rS2eW+gJN3SHs6IQ=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=gOwQxrFItiK2D2wIbFTMYTOzT19JJE9LVZKA7w+yXJ2V70xnOZ+4umSOAXWRKKdOj
-	 do/fMiiHwqAXaNt6HYhb7N/Q6ZqiUksckHy3NMB/tFlCY69sgijJmXRNyoQUwcpXEz
-	 9FmtdfUGMbgRJ+RZJcmklzMQ+1b00fGJWmkOZFhZ2HpA/ORzfsib5Y3cZvnBzeZCId
-	 4Y1WnG2aBcyM67ug7wB/LojFBh9Zad0XPYEiF15/qxqZK3XHF+U0Vw5ntOQ8XPOzpe
-	 5Shw4wh10klAfo/1WnMyU+TbJ3+0ss3V0/+ja0zEShc37XTa92QnM8InAWmdJYBxjZ
-	 monUb11GXlbAQ==
-Received: from mx-p1.obspm.fr (mx-p1.obspm.fr [145.238.193.20])
-	by mm2.emwd.com (Postfix) with ESMTPS id 632403859DD
-	for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 13:15:24 -0400 (EDT)
+	b=x4GMXBdiCM+p9Lpn0WZlQ+X/S8RP5oiTvbJjip+RwJbNiBxH9WG22uplv31XA8r5g
+	 zvS7RSfNRCjtHBrJTOMKRoYRG2uoComlGEQFZwWY6f9hRmDesoUZRRSZuGGPzBp4IG
+	 VnoXLe7vwps8JboP5MxgEriN9bL7IdhcKNY7z1m3nOCP33ccF29nyx7YUWB0YOLpHa
+	 Qhyy7EqG13IYIOSQqHCc7spKo4XGgehqc4n4tn/1cTII9cvv5WokYPVQS6APUBQawR
+	 YOLF+NaOdhXtPOGmT4xttphXau/ooKgyTS7XYwqRM0rgJCAPwWKiJT9kfmmWVMZ+lh
+	 GTVvdSy4KV/3A==
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0497D385966
+	for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 14:24:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=obspm.fr header.i=@obspm.fr header.b="joU1NxS2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KkMHeClz";
 	dkim-atps=neutral
-X-AuthUser: lecoq
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=obspm.fr; s=mail;
-	t=1721754922; bh=KLWgRP3obbP61p8AJ+TxCWIkHtXLWxhSWdntLU2E1lk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=joU1NxS2rwvJls3JRFpsP2E9LxwMAADNzYUgOLg+NlU8BzNmZP3aUK++Lc39y7xry
-	 ZRaLLiwQhX0EVVvJDz8aC1vJwfEzugzLe+CjRSAFjfcaTvpryS4KwDxAB2OJuqfWro
-	 jtRZtKoW4OIhO6pKVaRko2fTqPe71GANJvEB20mS46brmkVQlCvtxGgrFTrQKZTpcj
-	 0X3UkA0NJ6gB9Oz2qESb1KzNG6lOSHN9Eq9fGO0UqFe9Jfh6wrms12x8Lfk7S54qFP
-	 TCSCb6FIQUVEdPKIVH5VnAV0407YL2tAArHH5eioOhSAsfErzO1A4oV6lUnY0Z6SrL
-	 CkxeScMtLesJg==
-Received: from [192.168.1.30] (lfbn-lyo-1-372-175.w2-7.abo.wanadoo.fr [2.7.201.175])
-	(authenticated bits=0)
-	by mx-p1.obspm.fr (8.15.2/8.15.2/DIO Observatoire de Paris - 15/04/10) with ESMTPSA id 46NHFLZw1288562
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 19:15:22 +0200
-Message-ID: <66fc4d80-c059-405a-9a14-3f7f53e747f1@obspm.fr>
-Date: Tue, 23 Jul 2024 19:15:20 +0200
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-66a1842b452so40909707b3.3
+        for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 11:24:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721759080; x=1722363880; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EBVNJLSkKXRI4F92MojaELiz3YbYbkP5WcmvxwnzQ5w=;
+        b=KkMHeClzJ4YJebzYb9rzuBdp9p6lJ+i8afFSeJOvHaKdfNw1igjKHjbpkdXQVS0isD
+         nBqnvvtaxYyhYUCYDxos4OfGtLUNr5IUZHuR0ajBYeAWsY6xE+42PR9y1ZtHk1KFJTgR
+         bpO1VKOG/P7PoyjNewYhT+EO6HCXvZCIqUY5N95uSIm/3dVVuDNbTafUJKPJZJHYpds8
+         QvUaqqnFPBM0OtczH90PgEC2IgLaL0DjUZQMZfzrnpCZoQOBeAtOLmMI/OzbWO5UQCE9
+         O9z23js9VvJ1PG/pfZNqDO/n8UNgQf/pxaqs2BWz1CHRvzmYJGbNH7lnuEQXl32qUP92
+         GCkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721759080; x=1722363880;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=EBVNJLSkKXRI4F92MojaELiz3YbYbkP5WcmvxwnzQ5w=;
+        b=leU8RipXGuBixALUBI1CshIjieZIsXy7L5wzX6zOdG8h6Bnv6qKfjURNgFUr/lHWUR
+         urgBjx0FUWhCkC7tCiZwiX9S10cTD2Mbso0P3Mahu+LK/3MdOXy/jRofUvOuCmqCMXKY
+         tS7uhsChG2HD3ediVA7JcpJIfrnXsbNauzumST3jBkOP59pS3p1/KhhLR1EWFLdqWU9k
+         0+VC+Y/IQSyirN275j+A+UKP0toxKyegCXBXZ+HwrQqbx33Soct76egwXPr5StMINt6c
+         l5zeiAuUsP21cRL7qYVqhUecjw/UJlVOEJ6xl3fTRYpAGQfUitJGlNMv8XWgUQTpnW3W
+         QACg==
+X-Gm-Message-State: AOJu0YwFVOj5McXz7dZfJ0+rdL1RARfb/+U7Atxvx8+ekDMKnFBA2FE9
+	GJIifT4p1NKKxYvSTU09oz5ZCUmVohzDgPM78gK+HmxBzko+MMRa5Kg2mw==
+X-Google-Smtp-Source: AGHT+IF4Q9wBzz4aSXiJmS2mtvG9qK+Xsvhly/hYImxv6cyUT6esWyOyU/DEwiN8FKrjGrDBhEeJXw==
+X-Received: by 2002:a05:690c:2c83:b0:65f:9451:13dd with SMTP id 00721157ae682-671f55b492bmr6539527b3.42.1721759079934;
+        Tue, 23 Jul 2024 11:24:39 -0700 (PDT)
+Received: from [192.168.211.247] ([142.183.237.33])
+        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6b7b20e9204sm47579346d6.33.2024.07.23.11.24.39
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jul 2024 11:24:39 -0700 (PDT)
+Message-ID: <d53b4426-7d8a-4549-8d71-7fc02b1cf997@gmail.com>
+Date: Tue, 23 Jul 2024 14:24:38 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
-References: <YVhburlEwqYkoh6RysZwjV88YBZaiZK2feRZmvCSJYo@lists.ettus.com>
- <116ed2b0-3e83-410b-8075-01f1afa25037@gmail.com>
- <CAFOi1A4Z+P_VX5X37=BCg47xCvQh7vOTF72ydOhn8xrUxvTROg@mail.gmail.com>
- <848ee7e8-827c-43db-9497-519cd809cc57@gmail.com>
 Content-Language: en-US
-From: Yann Le Coq <yann.lecoq@obspm.fr>
-In-Reply-To: <848ee7e8-827c-43db-9497-519cd809cc57@gmail.com>
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.6.2 (mx-p1.obspm.fr [145.238.193.20]); Tue, 23 Jul 2024 19:15:22 +0200 (CEST)
-X-Virus-Scanned: clamav-milter 0.103.10 at mx-p1
-X-Virus-Status: Clean
-Message-ID-Hash: OASZ6Y4YKDJYYGP6ZJUHL445GPQMRGA4
-X-Message-ID-Hash: OASZ6Y4YKDJYYGP6ZJUHL445GPQMRGA4
-X-MailFrom: yann.lecoq@obspm.fr
+To: usrp-users@lists.ettus.com
+References: <5f14a3e6-a2aa-4a58-9e00-7c2466e5971b@gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <5f14a3e6-a2aa-4a58-9e00-7c2466e5971b@gmail.com>
+Message-ID-Hash: EY5RFBFAUFEYPMHXCR46WMRM7OFDISHO
+X-Message-ID-Hash: EY5RFBFAUFEYPMHXCR46WMRM7OFDISHO
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X310 Buffers - 200Msps
+Subject: [USRP-users] Re: White Rabbit and N310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OASZ6Y4YKDJYYGP6ZJUHL445GPQMRGA4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EY5RFBFAUFEYPMHXCR46WMRM7OFDISHO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============3969725767195980357=="
 
-SGksDQoNCklmIHlvdSBoYXZlbid0IGRvbmUgaXQgYWxyZWFkeSAoSSBhbSBub3Qgc3VyZSBmcm9t
-IHlvdXIgb3JpZ2luYWwgcG9zdCksIA0KeW91IG1heSB3YW50IHRvIHRyeSB1c2luZyBpc29sY3B1
-IHRvIHJlbW92ZSBtb3N0IGNvcmVzIGZyb20gdGhlIGdlbmVyYWwgDQpPUyB1c2UsIGFuZCBkZWRp
-Y2F0ZSB0aGVtIHRvIHRoZSB0aHJlYWRzIGluIHlvdXIgcHJvY2VzcyB0aGF0IHByb2R1Y2UgDQp0
-aGUgc2FtcGxlcy4gVXNpbmcgY29yZSBhZmZpbml0eSBmb3IgdGhhdCwgYXMgd2VsbCBhcyB0byBw
-cmV2ZW50IHRoZSANCnNjaGVkdWxlciBmcm9tIGp1bXBpbmcgc2VtaS1yYW5kb21seSBhIHRocmVh
-ZCBmcm9tIG9uZSBjb3JlIHRvIGFub3RoZXIgDQpvbmUsIHdlIGdvdCB2ZXJ5IHNpZ25pZmljYW50
-IGltcHJvdmVtZW50cyBvdmVyIGEgc2ltaWxhciBzaXR1YXRpb24gd2hlcmUgDQoiVSIgd291bGQg
-b2NjdXIgcmFuZG9tbHkgZnJvbSB0aW1lIHRvIHRpbWUuDQoNCkFsc28sIGFzIG1lbnRpb25lZCBp
-biB0aGUgb25saW5lICJ0aXBzIGFuZCB0cmlja3MiLCBkZS1hY3RpdmF0aW5nIA0KaHlwZXJ0aHJl
-YWRpbmcgaXMgYW4gaW1wb3J0YW50IG1vdmUgaW4gdGhhdCBkaXJlY3Rpb24sIGFuZCBvbmNlIGl0
-IGlzIA0KZG9uZSwgdXNpbmcgY3B1LWZyZXEtc2V0IHRvIGZvcmNlIGFsbCByZWxldmFudCBjb3Jl
-cyBhdCBtYXggc3BlZWQgaXMgDQphbHNvIHVzZWZ1bCAoYW5kIHNvIGZhciB3ZSBoYXZlbid0IGJs
-b3duIHVwIGFueXRoaW5nIGFmdGVyIG1vbnRocyBvZiANCmNvbnRpbnVvdXMgdXNlLi4uKS4NCg0K
-Tm90ZSB0aGF0IGluIG91ciBjYXNlLCB0aGVzZSB0cmlja3Mgd2VyZSBwcm92ZW4gZWZmaWNpZW50
-IG9uIGEgR251UmFkaW8gDQpwcm9jZXNzLCB3aGljaCBpcyBoaWdobHkgbXVsdGktdGhyZWFkZWQu
-IFdlIGRpZCwgaG93ZXZlciwgc3BlbmQgDQpzaWduaWZpY2FudCB0aW1lIGZpbmUgdHVuaW5nIGJ5
-IGhhbmQgdGhlIGFsbG9jYXRpb24gb2YgdGhyZWFkcyB0byBjb3JlcyANCnRvIG9wdGltaXplIHRo
-ZSBmaW5hbCByZXN1bHQuIEFzIHlvdXIgbWFjaGluZSBoYXMgbWFueSBjb3JlcywgSSBndWVzcyBp
-dCANCmNvdWxkIGJlIHNpbWlsYXJseSB1c2VmdWwgaW4geW91ciBjYXNlLg0KDQpCZXN0LA0KDQot
-WWFubg0KDQpMZSAyMy8wNy8yMDI0IMOgIDEzOjExLCBNYXJjdXMgRC4gTGVlY2ggYSDDqWNyaXTC
-oDoNCj4gT24gMjMvMDcvMjAyNCAwNTo0OCwgTWFydGluIEJyYXVuIHdyb3RlOg0KPj4gQ2hlY2sg
-dGhpcyBvdXQ6IA0KPj4gaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2Iv
-bWFzdGVyL2hvc3QvZXhhbXBsZXMvcmZub2MtZXhhbXBsZS9pY29yZXMveDMxMF9yZm5vY19pbWFn
-ZV9jb3JlLnltbCNMMTYtTDM1DQo+Pg0KPj4gVW5pdCBpcyBieXRlcy4gWW91IGNhbiB0cnkgYW5k
-IGluY3JlYXNlIGl0IGJ1dCB5b3UgbWlnaHQgaGF2ZSB0byANCj4+IHJlbW92ZSBzdHVmZiBmcm9t
-IHRoZSBkZXNpZ24uDQo+Pg0KPj4gTm90ZSB0aGF0IEkgdGhpbmsgb2YgdGhlbSBhcyAidHggYnVm
-ZmVycyIgKGJlY2F1c2Ugc3RyZWFtZXIgLT4gU0VQIC0+IA0KPj4gVFggcmFkaW8gaXMgd2hlcmUg
-dGhleSBnZXQgdXNlZCkgYnV0IEknbSBhIHJhZGlvIGd1eSwgbm90IGFuIEZQR0EgZ3V5Lg0KPj4N
-Cj4+IC0tTQ0KPiBUaGFua3MsIE1hcnRpbi4NCj4NCj4gSSB3aWxsIG9waW5lIHRoYXQgaW5jcmVh
-c2luZyB0aGUgYnVmZmVycyBvbiB0aGUgcmFkaW8gbWF5IG5vdCBoZWxwIA0KPiB3aXRoICJVIiBw
-cm9ibGVtcywgc2luY2Ugc2FpZCBwcm9ibGVtIGlzIGFib3V0DQo+IMKgIHRoZSBob3N0IGJlaW5n
-IHVuYWJsZSB0byBkZWxpdmVyIHNhbXBsZXMgaW4gdGltZS7CoCBOb3QgY2xlYXIgdGhhdCANCj4g
-bWFraW5nIHRoZSBidWZmZXJzIGJpZ2dlciBvbiB0aGUgKnJhZGlvKg0KPiDCoCB3aWxsIGhlbHAg
-d2l0aCB0aGF0Lg0KPg0KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlz
-dHMuZXR0dXMuY29tCg==
+This is a multi-part message in MIME format.
+--===============3969725767195980357==
+Content-Type: multipart/alternative;
+ boundary="------------w4bk12lEBkkBiO0mlAZgfhYX"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------w4bk12lEBkkBiO0mlAZgfhYX
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+On 23/07/2024 11:12, Giuseppe Santaromita wrote:
+>
+> Hi all,
+>
+> I need to use some N310s with White Rabbit (WR) and I have some questio=
+n:
+>
+> Why in "Features" here (N310): link=20
+> <https://www.ettus.com/all-products/usrp-n310/> there is no White=20
+> Rabbit, while here (N321): link=20
+> <https://www.ettus.com/all-products/usrp-n321/> yes? Here: link=20
+> <https://kb.ettus.com/Using_Ethernet-Based_Synchronization_on_the_USRP%=
+E2%84%A2_N3xx_Devices>=20
+> the link talk about the N3xx generic. So, seems to be an error on the=20
+> website?
+>
+> Here link=20
+> <https://kb.ettus.com/Using_Ethernet-Based_Synchronization_on_the_USRP%=
+E2%84%A2_N3xx_Devices>=20
+> I find: "The USRP N3xx use the SFP+ 0 port for White Rabbit and SFP+ 1=20
+> port for IQ streaming. This port configuration requires the White=20
+> Rabbit =E2=80=9CWX=E2=80=9D FPGA bitfile".
+>
+> Here link=20
+> <https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Du=
+al_10Gb_Streaming_SFP_Ports_0.2F1>=20
+> says that all possible FPGA are XG, HG and WG. How about the WX? Is=20
+> WG? Is the same? Was a typo?
+>
+> Again, same link, says that "The XG FPGA image must be loaded for SFP=20
+> Port 0 to operate at 10 Gb speeds. If the HG image is loaded, the port=20
+> will be unresponsive at 10 Gb speeds". How about the WG?
+>
+> It is sure that White Rabbit can work with the N310? If the WX FPGA=20
+> it's flashed, teoretically I can use one=C2=A0 SFP+ port for WR and one=
+=20
+> SFP+ port for I/Q streaming. I need to be sure that the speed of the=20
+> second port is 10 GbE (and not reduced to 1 GbE).
+>
+> Thanks in advance
+>
+> Giuseppe
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+According to my contacts, the N310_WX indeed puts WR on sfp0, and 10GiGe=20
+on sfp1.
+
+
+--------------w4bk12lEBkkBiO0mlAZgfhYX
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 23/07/2024 11:12, Giuseppe
+      Santaromita wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5f14a3e6-a2aa-4a58-9e00-7c2466e5971b@gmail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <p>Hi all,<br>
+      </p>
+      <p>I need to use some N310s with White Rabbit (WR) and I have some
+        question:</p>
+      <p>Why in "Features" here (N310): <a
+          href=3D"https://www.ettus.com/all-products/usrp-n310/"
+          moz-do-not-send=3D"true">link</a> there is no White Rabbit,
+        while here (N321): <a
+          href=3D"https://www.ettus.com/all-products/usrp-n321/"
+          moz-do-not-send=3D"true">link</a> yes? Here: <a
+href=3D"https://kb.ettus.com/Using_Ethernet-Based_Synchronization_on_the_=
+USRP%E2%84%A2_N3xx_Devices"
+          moz-do-not-send=3D"true">link</a> the link talk about the N3xx
+        generic. So, seems to be an error on the website?<br>
+        <br>
+        Here <a
+href=3D"https://kb.ettus.com/Using_Ethernet-Based_Synchronization_on_the_=
+USRP%E2%84%A2_N3xx_Devices"
+          moz-do-not-send=3D"true">link</a> I find: "The USRP N3xx use th=
+e
+        SFP+ 0 port for White Rabbit and SFP+ 1 port for IQ streaming.
+        This port configuration requires the White Rabbit =E2=80=9CWX=E2=80=
+=9D FPGA
+        bitfile".=C2=A0</p>
+      <p>Here <a
+href=3D"https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Gui=
+de#Dual_10Gb_Streaming_SFP_Ports_0.2F1"
+          moz-do-not-send=3D"true">link</a> says that all possible FPGA
+        are XG, HG and WG. How about the WX? Is WG? Is the same? Was a
+        typo?<br>
+      </p>
+      <p>Again, same link, says that "The XG FPGA image must be loaded
+        for SFP Port 0 to operate at 10 Gb speeds. If the HG image is
+        loaded, the port will be unresponsive at 10 Gb speeds". How
+        about the WG?</p>
+      <p>It is sure that White Rabbit can work with the N310? If the WX
+        FPGA it's flashed, teoretically I can use one=C2=A0 SFP+ port for=
+ WR
+        and one SFP+ port for I/Q streaming. I need to be sure that the
+        speed of the second port is 10 GbE (and not reduced to 1 GbE).</p=
+>
+      <p>Thanks in advance</p>
+      <p>Giuseppe<br>
+      </p>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    According to my contacts, the N310_WX indeed puts WR on sfp0, and
+    10GiGe on sfp1.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------w4bk12lEBkkBiO0mlAZgfhYX--
+
+--===============3969725767195980357==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============3969725767195980357==--
