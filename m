@@ -2,148 +2,448 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3C7939CD4
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2024 10:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4565F939E13
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2024 11:39:49 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3542C38596F
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2024 04:36:11 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3E2CC385821
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2024 05:39:48 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1721723771; bh=ICoJxpEVJQ8DhdsCeR6O7Nv8B0JQfs9yTev6eIN3DOg=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=MGt2IjsS6BgNroygsiC7fHvIFgDNNwAUaf7hP9hu4L7GNeRwbdLHAj9BJajjq+GYv
-	 GEDn0IwY7XaNDBKjEnlIgATrhgJgoD9zL4C4fSJ88mFifCyhIh+EMEUeEzh774fVek
-	 XWwerEDLSfWkjOYKkmJyGzO90UJYcyvl5dJnyoVLx+knFdDXPcrZeKVfCCyz93eCo9
-	 glQf6xYNVt0jcqxA7C9rDqZzyZK0ry5RyEZ1mfXCy0Jxi5io1ROYhjlWZ4ozppQpyc
-	 lTcf+f15Uwn1bMz1MqC/sIsfJoB90fmV8gF0xmSGW5vqxbmoh2+d+6sj7ABxCSwKUB
-	 ZTbHupsK4DulQ==
-Received: from sfmail01.tubitak.gov.tr (sfmail01.tubitak.gov.tr [193.140.80.192])
-	by mm2.emwd.com (Postfix) with ESMTPS id 36AE33856AB
-	for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 04:35:19 -0400 (EDT)
+	t=1721727588; bh=Hy537FIgR0h9DHAOMuYWfnyssvF2jweCG8hFRiXjL3Q=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=ke2d3rSt6vdETLTVV7TlL7x+qxp/oxpDYk2b7i64V1NHd1gc9fwnIL2Gcz5IurdJ6
+	 5U1AGLrnV1Wyv1nSSdEH/zrkgrqy9E7/uPnn8AqqeypNG3CxSf6F0Xb9U+jj8H7DO8
+	 WJw5Ebn+XUvEHEVJ5vIJY/382TtWMANT5bjmch5Ym1OMkiLgtvZyTxTq/WgZdzYASQ
+	 KO3a5j16nTnMk6vbuelfpQVCKo6utflq9laddAqpw4WWkEolHIz743ZGB839ns9IUf
+	 3AkTFEE55yIjudziPyxOaXBfgtgcadAWuXt6u7ikCz3+2nSsAhmS3QdKhlAKvcPm9/
+	 pdQFSULGw0gAA==
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7E7173857DC
+	for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 05:39:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=tubitak.gov.tr header.i=@tubitak.gov.tr header.b="D7/md/LE";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Voh0Z3Yo";
 	dkim-atps=neutral
-X-ASG-Debug-ID: 1721723716-0f24755d039f3e0001-5wTQH4
-Received: from mta02.tubitak.gov.tr (mta02.tubitak.gov.tr [193.140.13.216]) by sfmail01.tubitak.gov.tr with ESMTP id ls0OWjupYx6Qko4E (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO) for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 11:35:16 +0300 (EAT)
-X-Barracuda-Envelope-From: emre.yildiz@tubitak.gov.tr
-X-Barracuda-Effective-Source-IP: mta02.tubitak.gov.tr[193.140.13.216]
-X-Barracuda-Apparent-Source-IP: 193.140.13.216
-Received: from localhost (localhost [127.0.0.1])
-	by mta02.tubitak.gov.tr (Postfix) with ESMTP id 0406C22983E
-	for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 11:35:16 +0300 (+03)
-Received: from mta02.tubitak.gov.tr ([127.0.0.1])
- by localhost (mta02.tubitak.gov.tr [127.0.0.1]) (amavis, port 10032)
- with ESMTP id yPn9x5rBrMKq for <usrp-users@lists.ettus.com>;
- Tue, 23 Jul 2024 11:35:15 +0300 (+03)
-Received: from localhost (localhost [127.0.0.1])
-	by mta02.tubitak.gov.tr (Postfix) with ESMTP id C719021A6D7
-	for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 11:35:15 +0300 (+03)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mta02.tubitak.gov.tr C719021A6D7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tubitak.gov.tr;
-	s=3CB53094-0179-11EB-B19A-889BD1D29365; t=1721723715;
-	bh=/f7tDpmTkQcK6qC/S/mN1oVMYXogVI38eOn+Xc10BE4=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=D7/md/LEuUHIPOwb5LPBekcZOh4votpfG5SPy10IwENG/xPd1JwwCPGZSiUTsZvLr
-	 Tlv8c6tRVvVKL7f8UG1F/5FTsMNlzXc7JcO6Pywbtf0/tyZ+cPRparRh2VVsABD40d
-	 xqXzEiQsN2vsDBkSaFzOYd2z9vNi4dYj2+hcuBCVtGAt69uqEGSfR7n5wEyrOi9vbR
-	 uhnP7wfEBMzhUlupGEGPE2FJsxm+RrGGsZ8q42QXYfBG5FFTg0oyFMlDCkezCnNAPT
-	 aRoR40OQZeH2L1Th1IaaTSaT5jAmJhgPoUBuQ2Lptrzp7hC//fYvVXDflgvcWm3GCC
-	 h4gwP0KC6XTbQ==
-X-Virus-Scanned: amavis at mta02.tubitak.gov.tr
-Received: from mta02.tubitak.gov.tr ([127.0.0.1])
- by localhost (mta02.tubitak.gov.tr [127.0.0.1]) (amavis, port 10026)
- with ESMTP id C0jAQ7TQvzD8 for <usrp-users@lists.ettus.com>;
- Tue, 23 Jul 2024 11:35:15 +0300 (+03)
-Received: from mail03.tubitak.gov.tr (mail03.tubitak.gov.tr [10.250.10.121])
-	by mta02.tubitak.gov.tr (Postfix) with ESMTP id A5A5922983E
-	for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 11:35:15 +0300 (+03)
-Date: Tue, 23 Jul 2024 11:35:15 +0300 (TRT)
-To: usrp-users@lists.ettus.com
-Message-ID: <488162280.16396629.1721723715565.JavaMail.zimbra@tubitak.gov.tr>
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a7a9e25008aso43098266b.0
+        for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2024 02:39:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1721727564; x=1722332364; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+c7F2QARvtYc9uR71xY41UUhZoP11W7TxVOePK/oBT0=;
+        b=Voh0Z3Yo+MdNTygm+wxSp4ZQN8hyULqyqlgZD9KYwXG5A4VVJk/UbVK5pQ2y5m/zU2
+         b+lr7lPQmd1YvA4K7GPtNBhbA81sut4OwzkcT2g3QLyGXnZj1dMHpW7aw3q/TuTnhB6x
+         npVgFmMnXzh6xAEKAae6VTdF3ooAx8GXVVkecFGK0PGeeUIZWptkvwBPNiVvu6qiFxcR
+         c359ex5bYROh8nobDrcqxk7Ut3OjFwGzM24wOzu+r6wNwiRbmTJG2G/Ne6rEwr+pfqfX
+         BHG3WBP9Nj/0/m8Pu1CEXh4r+QQE+mtDV8xGercjsfd2f4ZQeJUiEAofeSHvXylQUNBq
+         lNJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721727564; x=1722332364;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+c7F2QARvtYc9uR71xY41UUhZoP11W7TxVOePK/oBT0=;
+        b=o36QPu+097PZPeD5onpvXEitPw+kenepmGCbp+PHpnk9U3Y2h6eXDCoch9QwSRtKb/
+         8MywkXTVGIma0cEt1MyEmaY9vHGZI1Ya/qSIjVNUEuduwJhu9KJErZp8rSWLqyPVPz2E
+         Whkw+FsZh5yWXyc4gV8U6xkPpCfu8OntMQmzvRyakd+XrUZUgqvw9VYzTi5I12gO9M8M
+         S4m3NaFs56IZUkotXDq2/2fva2Xilsam4IdlDpq+hV0lcrbcJ9t3PGHwdsJ4cwxFfXYw
+         Iyq3pIBURaOodvp230j8eq4ZyaqOXb5kfn/hE3UHHZD9/bDueEmfbFkdrcnaL4B+RHL2
+         Ov1A==
+X-Gm-Message-State: AOJu0YzMewg2w7TZC7L8r01bt69Q84Xci6kYPABNRdF5NFi7fPboxaJe
+	OvK751cRkvqYUTqR9yLLLKccD7j14o0STzjl8SfxHJ6V5MT1vPBK4WFq8j2PvbEp9iszdd5Paq1
+	IvZ+5Us6xha5ShDVlj7qrUF3PnAwq4haRw7wAG3lx9Y6OYLg2KII=
+X-Google-Smtp-Source: AGHT+IGRsvKC0vQPuuV7WH3fEjdWGtAl8HAY00IWarcnvGDyxtFkHSqE7FGnbqAsoZKxjYSdVaD/Tf82hTO5+wVUSAI=
+X-Received: by 2002:a17:906:dc8f:b0:a6f:392d:51a9 with SMTP id
+ a640c23a62f3a-a7a4bfe6b79mr704347666b.14.1721727564038; Tue, 23 Jul 2024
+ 02:39:24 -0700 (PDT)
 MIME-Version: 1.0
-X-ASG-Orig-Subj: E320_XG_ETH Vitis or SDK development
-Thread-Index: PuZnx0AQZTly2UJ1hFjSv/FK20sUSA==
-Thread-Topic: E320_XG_ETH Vitis or SDK development
-X-Barracuda-Connect: mta02.tubitak.gov.tr[193.140.13.216]
-X-Barracuda-Start-Time: 1721723716
-X-Barracuda-Encrypted: TLS_AES_256_GCM_SHA384
-X-Barracuda-URL: https://193.140.80.192:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at tubitak.gov.tr
-X-Barracuda-Scan-Msg-Size: 1961
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.0527 1.0000 -1.6828
-X-Barracuda-Spam-Score: -1.68
-X-Barracuda-Spam-Status: No, SCORE=-1.68 using global scores of TAG_LEVEL=1000.0 QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.128009
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-Message-ID-Hash: RAEZC5Q5Z4VMOPF2P5HVZXMDXTZZINIE
-X-Message-ID-Hash: RAEZC5Q5Z4VMOPF2P5HVZXMDXTZZINIE
-X-MailFrom: emre.yildiz@tubitak.gov.tr
+References: <NWEOMJoQHs5syUP2xXOuLIoOUTl1kHS8QoUxtv6uA@lists.ettus.com>
+In-Reply-To: <NWEOMJoQHs5syUP2xXOuLIoOUTl1kHS8QoUxtv6uA@lists.ettus.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Tue, 23 Jul 2024 11:39:13 +0200
+Message-ID: <CAFOi1A5RG1fvdvakrMF5ac3zVNSkpyj9=qiYrT-s1vS9DK02QA@mail.gmail.com>
+To: cyberphox@gmail.com
+Message-ID-Hash: P6PPQ6MB7SQT645WMZQDBIIXXMS5KAB7
+X-Message-ID-Hash: P6PPQ6MB7SQT645WMZQDBIIXXMS5KAB7
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E320_XG_ETH Vitis or SDK development
+Subject: [USRP-users] Re: Building rfnoc-example FPGA - UHD 4.7
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RAEZC5Q5Z4VMOPF2P5HVZXMDXTZZINIE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P6PPQ6MB7SQT645WMZQDBIIXXMS5KAB7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?Emre_YILDIZ_=28B=C4=B0LGEM_=C4=B0LTAREN=29_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: Emre YILDIZ =?utf-8?Q?=28B=C4=B0LGEM_=C4=B0LTAREN=29?= <emre.yildiz@tubitak.gov.tr>
-Content-Type: multipart/mixed; boundary="===============0341478567686872643=="
+Content-Type: multipart/mixed; boundary="===============8152829603556746277=="
 
---===============0341478567686872643==
-Content-Type: multipart/alternative;
-	boundary="=_8f4a583c-8a14-4a6d-bac0-d55aa14bd599"
+--===============8152829603556746277==
+Content-Type: multipart/alternative; boundary="000000000000dad9ff061de6ef70"
 
---=_8f4a583c-8a14-4a6d-bac0-d55aa14bd599
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-Dear USRP users and Ettus support team , 
-
-
-
-I synthesized your Vivado project for XG Ethernet from the E320 FPGA folder. I noticed that the AXI crossbar connects the e320_core design with the e320_ps side. I understand that the e320_core design processes commands based on timestamps. However, I could not find an example project for Vitis that helps me understand how this is controlled on the SDK or Vitis side. 
-
-Specifically, I observed that the e320_core part is connected to the m_axi_xbar which maps to the address range 0x4001_0000 to 0x4001_3FFF. I believe the timekeeper accesses this range with specific offsets, but please correct me if I am wrong. 
-
-I am aiming to develop and deploy a design on the board using Vitis. 
-
-Could you please assist me with this? 
-
-
-Thank you. 
-
---=_8f4a583c-8a14-4a6d-bac0-d55aa14bd599
-Content-Type: text/html; charset=utf-8
+--000000000000dad9ff061de6ef70
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><body><div style=3D"font-family: arial, helvetica, sans-serif; font-s=
-ize: 12pt; color: #000000"><div>Dear USRP users and Ettus support team ,</d=
-iv><div><br><p style=3D"margin: 0px;" data-mce-style=3D"margin: 0px;">I syn=
-thesized your Vivado project for XG Ethernet from the E320 FPGA folder. I n=
-oticed that the AXI crossbar connects the e320_core design with the e320_ps=
- side. I understand that the e320_core design processes commands based on t=
-imestamps. However, I could not find an example project for Vitis that help=
-s me understand how this is controlled on the SDK or Vitis side.</p><p styl=
-e=3D"margin: 0px;" data-mce-style=3D"margin: 0px;">Specifically, I observed=
- that the e320_core part is connected to the m_axi_xbar which maps to the a=
-ddress range 0x4001_0000 to 0x4001_3FFF. I believe the timekeeper accesses =
-this range with specific offsets, but please correct me if I am wrong.</p><=
-p style=3D"margin: 0px;" data-mce-style=3D"margin: 0px;">I am aiming to dev=
-elop and deploy a design on the board using Vitis. <br><br>Could you please=
- assist me with this?</p><p style=3D"margin: 0px;" data-mce-style=3D"margin=
-: 0px;"><br>Thank you.</p></div></div></body></html>
---=_8f4a583c-8a14-4a6d-bac0-d55aa14bd599--
+Hi Marino,
 
---===============0341478567686872643==
+you can use --ignore-warnings for this case. We have a fix in the pipeline
+for this issue.
+
+An explanation: There's nothing broken here, but we've added a *lot* more
+checks to rfnoc_image_builder in the latest version of UHD, and we've made
+it harder to accidentally build broken designs. This example slipped
+through the cracks because we added some more checks close to the 4.7
+release. But like I said, the YAML is not actually broken, you can build
+this particular bitfile with --ignore-warnings. Of course, we don't
+generally recommend that!
+
+--M
+
+On Mon, Jul 22, 2024 at 5:31=E2=80=AFPM <cyberphox@gmail.com> wrote:
+
+> Further to my last message:
+>
+> After reading this:
+>
+>
+> https://lists.ettus.com/empathy/thread/FZYNEWJQYBKFJWC5LASSD5LOL6J765KU?h=
+ash=3D5JXCSAWOZJ6UEOSK3IPXZCIVS277B2SF#5JXCSAWOZJ6UEOSK3IPXZCIVS277B2SF
+>
+> I tried this:
+>
+> export UHD_FPGA_DIR=3D~/git/uhd/fpga/
+>
+> export RFNOC_OOT=3D~/git/uhd/host/examples/rfnoc-example
+>
+> cd fpga/usrp3/top/x300/
+>
+> source setupenv.sh
+>
+> rfnoc_image_builder -F $UHD_FPGA_DIR -I $RFNOC_OOT -y $RFNOC_OOT/icores/x=
+310_rfnoc_image_core.yml -t X310_XG -l DEBUG
+>
+>
+> gssltest@gssltest-sff:~/git/uhd/fpga/usrp3/top/x300$ rfnoc_image_builder
+> -F $UHD_FPGA_DIR -I $RFNOC_OOT -y
+> $RFNOC_OOT/icores/x310_rfnoc_image_core.yml -t X310_XG -l DEBUG
+>
+> [debug] Loading configuration
+> /home/gssltest/git/uhd/host/examples/rfnoc-example/icores/x310_rfnoc_imag=
+e_core.yml...
+>
+> [debug] Configuration successful loaded.
+>
+> [debug] Validating against schema rfnoc_imagebuilder_args...
+>
+> [debug] Using schema file
+> /usr/local/share/uhd/rfnoc/core/rfnoc_imagebuilder_args.json.
+>
+> [debug] Configuration successful validated.
+>
+> Using FPGA directory /home/gssltest/git/uhd/fpga
+>
+> Selected device: x310
+>
+> [debug] Image core name: x310_rfnoc_image_core
+>
+> [debug] Using build artifacts directory:
+> /home/gssltest/git/uhd/host/examples/rfnoc-example/icores/build-x310_rfno=
+c_image_core
+>
+> Build artifacts directory already exists (contents will be overwritten).
+>
+> [debug] Looking for block descriptors in:
+>
+> [debug] /usr/local/share/uhd/rfnoc/blocks
+>
+> [debug] /home/gssltest/git/uhd/host/examples/rfnoc-example/blocks
+>
+> [debug] Adding file siggen.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file radio.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file axi_ram_fifo.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file null_src_sink.yml (/usr/local/share/uhd/rfnoc/blocks)=
+.
+>
+> [debug] Adding file logpwr.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file fosphor.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file fft_1x64.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file replay.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file addsub.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file license_check.yml (/usr/local/share/uhd/rfnoc/blocks)=
+.
+>
+> [debug] Adding file fir_filter.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file split_stream.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file duc.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file window.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file ddc.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file siggen_sff.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file switchboard.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file moving_avg.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file vector_iir.yml (/usr/local/share/uhd/rfnoc/blocks).
+>
+> [debug] Adding file keep_one_in_n.yml (/usr/local/share/uhd/rfnoc/blocks)=
+.
+>
+> [debug] Adding file gain.yml
+> (/home/gssltest/git/uhd/host/examples/rfnoc-example/blocks).
+>
+> [debug] Looking for module descriptors in:
+>
+> [debug] /usr/local/share/uhd/rfnoc/modules
+>
+> [debug] /home/gssltest/git/uhd/host/examples/rfnoc-example/modules
+>
+> [debug] Adding file device_dna.yml (/usr/local/share/uhd/rfnoc/modules).
+>
+> [debug] Looking for transport_adapter descriptors in:
+>
+> [debug] /usr/local/share/uhd/rfnoc/transport_adapters
+>
+> [debug]
+> /home/gssltest/git/uhd/host/examples/rfnoc-example/transport_adapters
+>
+> [debug] Adding file x4xx_eth.yml
+> (/usr/local/share/uhd/rfnoc/transport_adapters).
+>
+> [debug] Adding file chdr_dma.yml
+> (/usr/local/share/uhd/rfnoc/transport_adapters).
+>
+> [debug] Looking for include descriptors in:
+>
+> [debug] /usr/local/share/uhd/rfnoc/includes
+>
+> [debug] /home/gssltest/git/uhd/host/examples/rfnoc-example/includes
+>
+> [debug] Using io_signatures.yml from /usr/local/share/uhd/rfnoc/core.
+>
+> [debug] Loaded 9 IO signatures
+>
+> [debug] ctrlport [core]
+>
+> [debug] timekeeper [core]
+>
+> [debug] radio [core]
+>
+> [debug] axi4_mm [core]
+>
+> [debug] axis_chdr [core]
+>
+> [debug] pps [core]
+>
+> [debug] device_dna [device_dna.yml]
+>
+> [debug] x4xx_qsfp [x4xx_eth.yml]
+>
+> [debug] license_enable [license_check.yml]
+>
+> [debug] Using x310_bsp.yml from /usr/local/share/uhd/rfnoc/core.
+>
+> [debug] Populating config with default secure core.
+>
+> [debug] Assigning clock index 11 to clock _device_.radio.
+>
+> [debug] Assigning clock index 12 to clock _device_.ce.
+>
+> [debug] Assigning clock index 13 to clock _device_.dram.
+>
+> [debug] Adding required clock not present in BSP: rfnoc_ctrl
+>
+> [debug] Adding required clock not present in BSP: rfnoc_chdr
+>
+> =E2=9A=A0 Block port radio0.in_1 is not connected
+>
+> =E2=9A=A0 Block port radio1.in_1 is not connected
+>
+> [debug] Generating edge table...
+>
+> [debug] ep0-out0 (1,0) =3D> duc0-in_0 (6,0)
+>
+> [debug] duc0-out_0 (6,0) =3D> radio0-in_0 (8,0)
+>
+> [debug] radio0-out_0 (8,0) =3D> ddc0-in_0 (7,0)
+>
+> [debug] ddc0-out_0 (7,0) =3D> ep0-in0 (1,0)
+>
+> [debug] radio0-out_1 (8,1) =3D> ddc0-in_1 (7,1)
+>
+> [debug] ddc0-out_1 (7,1) =3D> ep1-in0 (2,0)
+>
+> [debug] ep2-out0 (3,0) =3D> duc1-in_0 (9,0)
+>
+> [debug] duc1-out_0 (9,0) =3D> radio1-in_0 (11,0)
+>
+> [debug] radio1-out_0 (11,0) =3D> ddc1-in_0 (10,0)
+>
+> [debug] ddc1-out_0 (10,0) =3D> ep2-in0 (3,0)
+>
+> [debug] radio1-out_1 (11,1) =3D> ddc1-in_1 (10,1)
+>
+> [debug] ddc1-out_1 (10,1) =3D> ep3-in0 (4,0)
+>
+> [debug] ep4-out0 (5,0) =3D> gain0-in (12,0)
+>
+> [debug] gain0-out (12,0) =3D> ep4-in0 (5,0)
+>
+> [debug] Running checks on the current configuration...
+>
+> [debug] Generating default crossbar routes...
+>
+> =E2=9B=94 Image configuration contains issues: Skipping build. Use
+> --ignore-warnings to build despite warnings.
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000dad9ff061de6ef70
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Marino,</div><div><br></div><div>you can use --ign=
+ore-warnings for this case. We have a fix in the pipeline for this issue.</=
+div><div><br></div><div>An explanation: There&#39;s nothing broken here, bu=
+t we&#39;ve added a *lot* more checks to rfnoc_image_builder in the latest =
+version of UHD, and we&#39;ve made it harder to accidentally build broken d=
+esigns. This example slipped through the cracks because we added some more =
+checks close to the 4.7 release. But like I said, the YAML is not actually =
+broken, you can build this particular bitfile with --ignore-warnings. Of co=
+urse, we don&#39;t generally recommend that!</div><div><br></div><div>--M<b=
+r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Mon, Jul 22, 2024 at 5:31=E2=80=AFPM &lt;<a href=3D"mailto:cyber=
+phox@gmail.com">cyberphox@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><p>Further to my last message:</p><p>Aft=
+er reading this: </p><p><a href=3D"https://lists.ettus.com/empathy/thread/F=
+ZYNEWJQYBKFJWC5LASSD5LOL6J765KU?hash=3D5JXCSAWOZJ6UEOSK3IPXZCIVS277B2SF#5JX=
+CSAWOZJ6UEOSK3IPXZCIVS277B2SF" target=3D"_blank">https://lists.ettus.com/em=
+pathy/thread/FZYNEWJQYBKFJWC5LASSD5LOL6J765KU?hash=3D5JXCSAWOZJ6UEOSK3IPXZC=
+IVS277B2SF#5JXCSAWOZJ6UEOSK3IPXZCIVS277B2SF</a></p><p>I tried this:</p><pre=
+><code>export UHD_FPGA_DIR=3D~/git/uhd/fpga/</code></pre><pre><code>export =
+RFNOC_OOT=3D~/git/uhd/host/examples/rfnoc-example</code></pre><pre><code>cd=
+ fpga/usrp3/top/x300/</code></pre><pre><code>source setupenv.sh</code></pre=
+><pre><code>rfnoc_image_builder -F $UHD_FPGA_DIR -I $RFNOC_OOT -y $RFNOC_OO=
+T/icores/x310_rfnoc_image_core.yml -t X310_XG -l DEBUG</code></pre><p><br><=
+/p><p><code>gssltest@gssltest-sff:~/git/uhd/fpga/usrp3/top/x300$ rfnoc_imag=
+e_builder -F $UHD_FPGA_DIR -I $RFNOC_OOT -y $RFNOC_OOT/icores/x310_rfnoc_im=
+age_core.yml -t X310_XG -l DEBUG</code></p><p><code>[debug] Loading configu=
+ration /home/gssltest/git/uhd/host/examples/rfnoc-example/icores/x310_rfnoc=
+_image_core.yml...</code></p><p><code>[debug] Configuration successful load=
+ed.</code></p><p><code>[debug] Validating against schema rfnoc_imagebuilder=
+_args...</code></p><p><code>[debug] Using schema file /usr/local/share/uhd/=
+rfnoc/core/rfnoc_imagebuilder_args.json.</code></p><p><code>[debug] Configu=
+ration successful validated.</code></p><p><code>Using FPGA directory /home/=
+gssltest/git/uhd/fpga</code></p><p><code>Selected device: x310</code></p><p=
+><code>[debug] Image core name: x310_rfnoc_image_core</code></p><p><code>[d=
+ebug] Using build artifacts directory: /home/gssltest/git/uhd/host/examples=
+/rfnoc-example/icores/build-x310_rfnoc_image_core</code></p><p><code>Build =
+artifacts directory already exists (contents will be overwritten).</code></=
+p><p><code>[debug] Looking for block descriptors in:</code></p><p><code>[de=
+bug]     /usr/local/share/uhd/rfnoc/blocks</code></p><p><code>[debug]     /=
+home/gssltest/git/uhd/host/examples/rfnoc-example/blocks</code></p><p><code=
+>[debug] Adding file siggen.yml (/usr/local/share/uhd/rfnoc/blocks).</code>=
+</p><p><code>[debug] Adding file radio.yml (/usr/local/share/uhd/rfnoc/bloc=
+ks).</code></p><p><code>[debug] Adding file axi_ram_fifo.yml (/usr/local/sh=
+are/uhd/rfnoc/blocks).</code></p><p><code>[debug] Adding file null_src_sink=
+.yml (/usr/local/share/uhd/rfnoc/blocks).</code></p><p><code>[debug] Adding=
+ file logpwr.yml (/usr/local/share/uhd/rfnoc/blocks).</code></p><p><code>[d=
+ebug] Adding file fosphor.yml (/usr/local/share/uhd/rfnoc/blocks).</code></=
+p><p><code>[debug] Adding file fft_1x64.yml (/usr/local/share/uhd/rfnoc/blo=
+cks).</code></p><p><code>[debug] Adding file replay.yml (/usr/local/share/u=
+hd/rfnoc/blocks).</code></p><p><code>[debug] Adding file addsub.yml (/usr/l=
+ocal/share/uhd/rfnoc/blocks).</code></p><p><code>[debug] Adding file licens=
+e_check.yml (/usr/local/share/uhd/rfnoc/blocks).</code></p><p><code>[debug]=
+ Adding file fir_filter.yml (/usr/local/share/uhd/rfnoc/blocks).</code></p>=
+<p><code>[debug] Adding file split_stream.yml (/usr/local/share/uhd/rfnoc/b=
+locks).</code></p><p><code>[debug] Adding file duc.yml (/usr/local/share/uh=
+d/rfnoc/blocks).</code></p><p><code>[debug] Adding file window.yml (/usr/lo=
+cal/share/uhd/rfnoc/blocks).</code></p><p><code>[debug] Adding file ddc.yml=
+ (/usr/local/share/uhd/rfnoc/blocks).</code></p><p><code>[debug] Adding fil=
+e siggen_sff.yml (/usr/local/share/uhd/rfnoc/blocks).</code></p><p><code>[d=
+ebug] Adding file switchboard.yml (/usr/local/share/uhd/rfnoc/blocks).</cod=
+e></p><p><code>[debug] Adding file moving_avg.yml (/usr/local/share/uhd/rfn=
+oc/blocks).</code></p><p><code>[debug] Adding file vector_iir.yml (/usr/loc=
+al/share/uhd/rfnoc/blocks).</code></p><p><code>[debug] Adding file keep_one=
+_in_n.yml (/usr/local/share/uhd/rfnoc/blocks).</code></p><p><code>[debug] A=
+dding file gain.yml (/home/gssltest/git/uhd/host/examples/rfnoc-example/blo=
+cks).</code></p><p><code>[debug] Looking for module descriptors in:</code><=
+/p><p><code>[debug]     /usr/local/share/uhd/rfnoc/modules</code></p><p><co=
+de>[debug]     /home/gssltest/git/uhd/host/examples/rfnoc-example/modules</=
+code></p><p><code>[debug] Adding file device_dna.yml (/usr/local/share/uhd/=
+rfnoc/modules).</code></p><p><code>[debug] Looking for transport_adapter de=
+scriptors in:</code></p><p><code>[debug]     /usr/local/share/uhd/rfnoc/tra=
+nsport_adapters</code></p><p><code>[debug]     /home/gssltest/git/uhd/host/=
+examples/rfnoc-example/transport_adapters</code></p><p><code>[debug] Adding=
+ file x4xx_eth.yml (/usr/local/share/uhd/rfnoc/transport_adapters).</code><=
+/p><p><code>[debug] Adding file chdr_dma.yml (/usr/local/share/uhd/rfnoc/tr=
+ansport_adapters).</code></p><p><code>[debug] Looking for include descripto=
+rs in:</code></p><p><code>[debug]     /usr/local/share/uhd/rfnoc/includes</=
+code></p><p><code>[debug]     /home/gssltest/git/uhd/host/examples/rfnoc-ex=
+ample/includes</code></p><p><code>[debug] Using io_signatures.yml from /usr=
+/local/share/uhd/rfnoc/core.</code></p><p><code>[debug] Loaded 9 IO signatu=
+res</code></p><p><code>[debug] 	ctrlport [core]</code></p><p><code>[debug] =
+	timekeeper [core]</code></p><p><code>[debug] 	radio [core]</code></p><p><c=
+ode>[debug] 	axi4_mm [core]</code></p><p><code>[debug] 	axis_chdr [core]</c=
+ode></p><p><code>[debug] 	pps [core]</code></p><p><code>[debug] 	device_dna=
+ [device_dna.yml]</code></p><p><code>[debug] 	x4xx_qsfp [x4xx_eth.yml]</cod=
+e></p><p><code>[debug] 	license_enable [license_check.yml]</code></p><p><co=
+de>[debug] Using x310_bsp.yml from /usr/local/share/uhd/rfnoc/core.</code><=
+/p><p><code>[debug] Populating config with default secure core.</code></p><=
+p><code>[debug] Assigning clock index 11 to clock _device_.radio.</code></p=
+><p><code>[debug] Assigning clock index 12 to clock _device_.ce.</code></p>=
+<p><code>[debug] Assigning clock index 13 to clock _device_.dram.</code></p=
+><p><code>[debug] Adding required clock not present in BSP: rfnoc_ctrl</cod=
+e></p><p><code>[debug] Adding required clock not present in BSP: rfnoc_chdr=
+</code></p><p><code>=E2=9A=A0   Block port radio0.in_1 is not connected</co=
+de></p><p><code>=E2=9A=A0   Block port radio1.in_1 is not connected</code><=
+/p><p><code>[debug] Generating edge table...</code></p><p><code>[debug]   e=
+p0-out0 (1,0) =3D&gt; duc0-in_0 (6,0)</code></p><p><code>[debug]   duc0-out=
+_0 (6,0) =3D&gt; radio0-in_0 (8,0)</code></p><p><code>[debug]   radio0-out_=
+0 (8,0) =3D&gt; ddc0-in_0 (7,0)</code></p><p><code>[debug]   ddc0-out_0 (7,=
+0) =3D&gt; ep0-in0 (1,0)</code></p><p><code>[debug]   radio0-out_1 (8,1) =
+=3D&gt; ddc0-in_1 (7,1)</code></p><p><code>[debug]   ddc0-out_1 (7,1) =3D&g=
+t; ep1-in0 (2,0)</code></p><p><code>[debug]   ep2-out0 (3,0) =3D&gt; duc1-i=
+n_0 (9,0)</code></p><p><code>[debug]   duc1-out_0 (9,0) =3D&gt; radio1-in_0=
+ (11,0)</code></p><p><code>[debug]   radio1-out_0 (11,0) =3D&gt; ddc1-in_0 =
+(10,0)</code></p><p><code>[debug]   ddc1-out_0 (10,0) =3D&gt; ep2-in0 (3,0)=
+</code></p><p><code>[debug]   radio1-out_1 (11,1) =3D&gt; ddc1-in_1 (10,1)<=
+/code></p><p><code>[debug]   ddc1-out_1 (10,1) =3D&gt; ep3-in0 (4,0)</code>=
+</p><p><code>[debug]   ep4-out0 (5,0) =3D&gt; gain0-in (12,0)</code></p><p>=
+<code>[debug]   gain0-out (12,0) =3D&gt; ep4-in0 (5,0)</code></p><p><code>[=
+debug] Running checks on the current configuration...</code></p><p><code>[d=
+ebug] Generating default crossbar routes...</code></p><p><code>=E2=9B=94   =
+Image configuration contains issues: Skipping build. Use --ignore-warnings =
+to build despite warnings.</code></p>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000dad9ff061de6ef70--
+
+--===============8152829603556746277==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +453,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0341478567686872643==--
+--===============8152829603556746277==--
