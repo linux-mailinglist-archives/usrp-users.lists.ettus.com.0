@@ -2,217 +2,228 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2DD493B369
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Jul 2024 17:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8A1A93B378
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Jul 2024 17:16:38 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8A32E38597D
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Jul 2024 11:12:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 16FF2385ACA
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Jul 2024 11:16:38 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1721833944; bh=FDg2QrEDxdHR3BRSCEq1K7KTf3iIp8Nev17459Z/S/A=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1721834198; bh=SJrTOaWZQbJGVs9Wrz8dFXbX7kErOGyC3hhhLpFBfOw=;
+	h=Date:From:To:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=c/r+c5tWpNHjXUaR9kD2HVCVD8POCshT9vnoefLacvcqWl0DWafImQdkeX/eMUNt6
-	 wAZJonsPQwWFfVKKoPYUIlhWEjglHUu1iXoX8acfv7MOzZQ7BbG4lr/QMBBxa1duda
-	 cxR64fuIvKmR059ES6jeCcX1ZFwW6/lZwmGvgew0n5jHVVPVLU7MS9Pd3RwWsWl7S+
-	 I5t8g4LocM4Z48JLlHO4GzvIYOtu+uLMHizXKx0mjCo/qxVLkggwDtgw5o/N+HT8HD
-	 bKIS4kZO9KukAHn68e5qb+535Wflag6tpUGwpCeXDf+ADv1qzxFh1NFP9p22yiiQ6u
-	 jG8fA8G5hs/7A==
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2B91D38585E
-	for <usrp-users@lists.ettus.com>; Wed, 24 Jul 2024 11:12:07 -0400 (EDT)
+	b=V7Bq1R4/gNMB4/l03ZSa9GlFpt5HokcSm+NkP81JtvaxUL/vBD7+KGjFUbiUvZORK
+	 lD+/X2gcgJ4R9r4B5K4ik06MCQa6KpepFSm4+LeA7E5CeByqgaGNLzw6hrEp7vh4v7
+	 kN5Hbkh+npOSDn93JMPYbRahGS/6NWOXCD3M6marqrtiBjQzSQVjdSeWEhQfD2bSlV
+	 qQybuCjjO1sYaNNCd6KHKP4uOLB28n//snD/uzCiZmtPOockRlna0ycO0yq32WSIYT
+	 Sj+dZq/PN8vaBU7s5pfeKoT8xrZYVc87ZyV6UuZaZlJMqzQ5D/pKtXtFvbZfV+EBev
+	 5z/Uv89P9vpbw==
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id BCB9B38596B
+	for <usrp-users@lists.ettus.com>; Wed, 24 Jul 2024 11:16:15 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="F1Oy+0yu";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="zghNrlM0";
 	dkim-atps=neutral
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-368584f9e36so3926291f8f.2
-        for <usrp-users@lists.ettus.com>; Wed, 24 Jul 2024 08:12:06 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-427b4c621b9so47232755e9.1
+        for <usrp-users@lists.ettus.com>; Wed, 24 Jul 2024 08:16:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1721833925; x=1722438725; darn=lists.ettus.com;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1721834174; x=1722438974; darn=lists.ettus.com;
+        h=in-reply-to:content-language:references:to:from:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Qot9Er4qqZu1lglIuZudjwVG49juGHjy4yEUkcH3jto=;
-        b=F1Oy+0yuwcgK76xMr7Ma2zYX0QV2/3nPyqTg+bXaelwmNO0wQEukBqT6PjG7xqtK9W
-         Zw8K1p6N+HBN3OjN/acua2XsXElUn3dcHSStG8r3G3DlGh9EbHpA3xgRer2TklBpysrV
-         dc67IE6O/gXbvag4H585wQOlqkdLfrRUV+Y5HWJRPc0BL/lxcW0IC8HTGI0dbmKJLiqU
-         /XNidEjFyie6qY1O55WV1kctFQoEx2dnT0Zqr062sv2NYEpcOwrBNmFFBgGvbtvr0E0a
-         0JZ6Qy9n5xB15D4j+JcyrwdQ2E4uVS4OyD5qH/IwZsdODtnTlt4sT59yuNF+uVEINZL+
-         DjgA==
+        bh=4f+1AtslxwjTpbEAR1QQjwcSiXEDv6bMD7erBpHkbOI=;
+        b=zghNrlM0kNexWprKBlXnT5pASdBSNIhneqHIOgg/WXPLBRHXbS1VTr0M9NGYZS3lYJ
+         GZBdcD2Vp7rIvUFwKaBA44n0Ktvlhx69JzN1j0JvvR5uUspZh0lx4npJqWaNigX9YMmU
+         byXJW17TBTiNkBOuN3p5xLa/GD6lUcPLLkB+aoaPfFCB1gg+R/LbcX031Z3V0rwZe+2S
+         OwlTMV77fn0SL5jtaGHRuPvqtDN75dOMdrOP4x5wQ6oFg0GCLkD1SCew4K2reYn748Kv
+         GzmnbZdXzes6tUscUHZSkVWG3gv7Omg+WZyEs6kkvVooq+DApbT4NmkcWs9xGYfXfQiH
+         eFQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721833925; x=1722438725;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
+        d=1e100.net; s=20230601; t=1721834174; x=1722438974;
+        h=in-reply-to:content-language:references:to:from:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Qot9Er4qqZu1lglIuZudjwVG49juGHjy4yEUkcH3jto=;
-        b=jeai3L/djltiLoLzpaaaminHt51qQlEu+VA16sjTIZNMYdt5T+VThWnlTo+ixbf47y
-         ZHjLUOibEtnjqMcX5Sx8IULRLt4cz607CKPPGMwhX15PR5IKT6T4yBePWzScm0mUAzG0
-         xqs9mZBgUIUNwAqZ6K3woU4TxcmtlI6S0sZNQipheMCrATKewgHImZW/TzVO+JRl9jns
-         t9ILESuDP1vDI7oB/TxX3uagSgYBSdcvzX+s/o9Ba+V6uTPOnGBwOsaR7RN5mnkJRIue
-         amOt16JbhilOShw1i1ksmcBBgl4cyoSLx1tjhuxlvEBhvnZbFMmwnPFc9a+pu+HlBZL1
-         0VSg==
-X-Gm-Message-State: AOJu0Ywc3Lvoq7HKKDKEIDep7qkKQhf7PfSGeNJzT+gXZMLl2pG75B2S
-	dCedM1eP4lCgpmUrwfbt8cFWq4lZnDKX3QMs/5r4xsVdJRtG1+vH8ugsKXw8l9sH3R9REsI8rqZ
-	tW0M=
-X-Google-Smtp-Source: AGHT+IFZ54AXfF/24E4wU1SV0ZgregezzTuX9aMU38Pw5KF+TeovUxUJspxBJ6pSvGA3OYLwSNyTdQ==
-X-Received: by 2002:a05:6000:4029:b0:367:9d82:8370 with SMTP id ffacd0b85a97d-369bb0a165fmr13396914f8f.45.1721833925277;
-        Wed, 24 Jul 2024 08:12:05 -0700 (PDT)
+        bh=4f+1AtslxwjTpbEAR1QQjwcSiXEDv6bMD7erBpHkbOI=;
+        b=ljkHOXBnkIDK38kwu620RwmlpBeDoqVD+Hp+oGZdVNYfAEYvoNPirjOmT++17XXC0Q
+         5nF4TS2tE0LstxilT7mhU68kFfirrgblhJSDap0tuTexOJsnRKIyzzgofOpfSg1e8bAQ
+         yUcwf/xg3XnqgB+NiW2pCHzivdP56n4Oy/xRLHTLT1BbiBwPBRKijytLwugdfTVU+NBy
+         61QizBsttcJmw7N2zh5Nc0xvUWh7bZzu62xhz7l65tFkrIm+JS9NrjCgdoD1tsD0TpyW
+         weDUJpOQ9Uibv2zF2gCu7EkfMQ0mf89yJ3sfh5o4OssUPPmjRRcJlWGtjfwSdXAYJZvI
+         0GHg==
+X-Gm-Message-State: AOJu0YzKHW3nK0e7MIFa3xmpgyH+haVebeLZjSTO5GDVsfTMdH1jHXBf
+	qBi8vjQdApn6YUJro5+ySBtW09cOEIoFcd8UzsKl0MTlghseYfSQiL5tFRKHH7bKiIdX0nJ4NwL
+	d7KA=
+X-Google-Smtp-Source: AGHT+IF9UV7XbRfU5NBLLMchqSnUlyQWUig0O8OUBU9Yb++a/VXWTu7PmzNkCGuSOBr8HE/CWfitdA==
+X-Received: by 2002:a05:600c:4583:b0:426:5f8f:51a4 with SMTP id 5b1f17b1804b1-427f9555df7mr17145315e9.12.1721834173494;
+        Wed, 24 Jul 2024 08:16:13 -0700 (PDT)
 Received: from ?IPV6:2001:16b8:cc60:7a00:10fc:1619:bea3:90d1? ([2001:16b8:cc60:7a00:10fc:1619:bea3:90d1])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36878694ba0sm14603959f8f.61.2024.07.24.08.12.04
-        for <usrp-users@lists.ettus.com>
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427f9413823sm33541245e9.47.2024.07.24.08.16.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jul 2024 08:12:04 -0700 (PDT)
-Message-ID: <779cbed1-f197-4ac8-a708-da790f13aadd@ettus.com>
-Date: Wed, 24 Jul 2024 17:12:03 +0200
+        Wed, 24 Jul 2024 08:16:13 -0700 (PDT)
+Message-ID: <b4b95a49-869d-4b5e-a2ea-9d8cfc7cf650@ettus.com>
+Date: Wed, 24 Jul 2024 17:16:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
+From: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+To: usrp-users@lists.ettus.com, "Dr. Scott Best" <scott_best@sibersci.com>
 References: <5f14a3e6-a2aa-4a58-9e00-7c2466e5971b@gmail.com>
  <d53b4426-7d8a-4549-8d71-7fc02b1cf997@gmail.com>
  <86a13c1b-8c99-40fc-a9da-a38c31363baa@gmail.com>
  <CAFOi1A7excS7e9c783gyAiLEEWD+HRTLo3bcde-KzLtNn_taqg@mail.gmail.com>
  <58132b9fac598e8a38c35a5746ad8cc6@mail.gmail.com>
  <PH0PR04MB831190051D0B634193CC1CA1F3AA2@PH0PR04MB8311.namprd04.prod.outlook.com>
+ <779cbed1-f197-4ac8-a708-da790f13aadd@ettus.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-In-Reply-To: <PH0PR04MB831190051D0B634193CC1CA1F3AA2@PH0PR04MB8311.namprd04.prod.outlook.com>
-Message-ID-Hash: MJTIFJIYHBKKK4IODNVIYXMON6C2JZN2
-X-Message-ID-Hash: MJTIFJIYHBKKK4IODNVIYXMON6C2JZN2
+In-Reply-To: <779cbed1-f197-4ac8-a708-da790f13aadd@ettus.com>
+Message-ID-Hash: OCEZIAXCH6GYMIS7RMDJBNABP222OSAS
+X-Message-ID-Hash: OCEZIAXCH6GYMIS7RMDJBNABP222OSAS
 X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Where can I download the "NI-USRP Configuration Utility" for Windows 10 x64
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MJTIFJIYHBKKK4IODNVIYXMON6C2JZN2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OCEZIAXCH6GYMIS7RMDJBNABP222OSAS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0611809888910829192=="
+Content-Type: multipart/mixed; boundary="===============8693040480289754204=="
 
 This is a multi-part message in MIME format.
---===============0611809888910829192==
+--===============8693040480289754204==
 Content-Type: multipart/alternative;
- boundary="------------mBt2l0QHKPld8JSwJyvhzhdF"
+ boundary="------------S8huEhWDxj680eXwIhhFSmyx"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------mBt2l0QHKPld8JSwJyvhzhdF
+--------------S8huEhWDxj680eXwIhhFSmyx
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Note that while I've never used it, I don't think it'll work with the N32=
-0; IIRC it is a=20
-gen2-device wrapper around what you do with usrp_burn_mb_eeprom, usrp2_ca=
-rd_burner, and=20
-uhd_image_loader.
+(just to be clear: you can probably do what you want to do with that tool=
+, but with other=20
+tools, for the N320. I don't know exactly what you're planning to do, but=
+ if you could=20
+reply to the list what you're currently facing, this might be quickly res=
+olvable, without=20
+downloading a 6GB installer image)
 
-Best,
-Marcus
-
-On 24.07.24 15:36, Martin Anderseck wrote:
+On 24.07.24 17:12, Marcus M=C3=BCller wrote:
 >
-> The NI-USRP configuration utility should be part of the NI-USRP tool ch=
-ain:
+> Note that while I've never used it, I don't think it'll work with the N=
+320; IIRC it is a=20
+> gen2-device wrapper around what you do with usrp_burn_mb_eeprom, usrp2_=
+card_burner, and=20
+> uhd_image_loader.
 >
-> https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#4=
-84354
+> Best,
+> Marcus
 >
-> /Martin
->
->
-> INTERNAL - NI CONFIDENTIAL
->
-> *From:*Dr. Scott Best via USRP-users <usrp-users@lists.ettus.com>
-> *Sent:* Wednesday, July 24, 2024 2:03 PM
-> *To:* martin.braun@ettus.com
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [USRP-users] Where can I download the "NI-USRP Configuration=
- Utility" for=20
-> Windows 10 x64
-> *Importance:* High
->
-> Dear Martin,
->
-> I have an n200 and a pair of n320s that I am working on using for a pro=
-ject.=C2=A0 I watched=20
-> a recent YouTube movie about using the =E2=80=9CNI-USRP Configuration U=
-tility=E2=80=9D for Windows 10 x=20
-> 64 for this purpose.=C2=A0 I have been unable to find a URL to download=
- a copy of this handy=20
-> utility, so can you provide me with the download location?
->
-> Thanks in advance for your timely assistance.
->
-> Respectfully,
->
-> Scott
->
-> Dr. Scott Best
->
-> Chief Technology Officer
->
-> *SiberSci, LLC*
->
-> 1-270-228-4901=C2=A0 office
->
-> scott_best@sibersci.com e-mail
->
-> https://sibersci.com <http://www.sibersci.com/>
->
-> Notice: This e-mail is intended solely for use of the individual or ent=
-ity to which it=20
-> is addressed and may contain information that is proprietary, privilege=
-d, company=20
-> confidential and/or exempt from disclosure under applicable law. If the=
- reader is not=20
-> the intended recipient or agent responsible for delivering the message =
-to the intended=20
-> recipient, you are hereby notified that any dissemination, distribution=
- or copying of=20
-> this communication is strictly prohibited. If this communication has be=
-en transmitted=20
-> from a U.S. location it may also contain data subject to the Internatio=
-nal Traffic in=20
-> Arms Regulations or U.S. Export Administration Regulations and cannot b=
-e disseminated,=20
-> distributed or copied to foreign nationals, residing in the U.S. or abr=
-oad, without the=20
-> prior approval of the U.S. Department of State or appropriate export li=
-censing=20
-> authority. If you have received this communication in error, please not=
-ify the sender by=20
-> reply e-mail or collect telephone call and delete or destroy all copies=
- of this e-mail=20
-> message, any physical copies made of this e-mail message and/or any fil=
-e attachment(s).
->
-> National Instruments Dresden GmbH; Gesch=C3=A4ftsf=C3=BChrer (Managing =
-Directors): Sabrina Gilman,=20
-> Kathleen Heard Spurck, Carl Schumacher; Sitz (Registered Office): Dresd=
-en; HRB=20
-> (Commercial Register No.): 22081; Registergericht (Registration Court):=
- Dresden
->
-> This email and any attachments are intended only for the person to whom=
- this email is=20
-> addressed and may contain confidential and/or privileged information. I=
-f you received=20
-> this email in error, please do not disclose the contents to anyone, but=
- notify the=20
-> sender by return email and delete this email (and any attachments) from=
- your system.
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
---------------mBt2l0QHKPld8JSwJyvhzhdF
+> On 24.07.24 15:36, Martin Anderseck wrote:
+>>
+>> The NI-USRP configuration utility should be part of the NI-USRP tool c=
+hain:
+>>
+>> https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#=
+484354
+>>
+>> /Martin
+>>
+>>
+>> INTERNAL - NI CONFIDENTIAL
+>>
+>> *From:*Dr. Scott Best via USRP-users <usrp-users@lists.ettus.com>
+>> *Sent:* Wednesday, July 24, 2024 2:03 PM
+>> *To:* martin.braun@ettus.com
+>> *Cc:* usrp-users@lists.ettus.com
+>> *Subject:* [USRP-users] Where can I download the "NI-USRP Configuratio=
+n Utility" for=20
+>> Windows 10 x64
+>> *Importance:* High
+>>
+>> Dear Martin,
+>>
+>> I have an n200 and a pair of n320s that I am working on using for a pr=
+oject.=C2=A0 I watched=20
+>> a recent YouTube movie about using the =E2=80=9CNI-USRP Configuration =
+Utility=E2=80=9D for Windows 10 x=20
+>> 64 for this purpose.=C2=A0 I have been unable to find a URL to downloa=
+d a copy of this handy=20
+>> utility, so can you provide me with the download location?
+>>
+>> Thanks in advance for your timely assistance.
+>>
+>> Respectfully,
+>>
+>> Scott
+>>
+>> Dr. Scott Best
+>>
+>> Chief Technology Officer
+>>
+>> *SiberSci, LLC*
+>>
+>> 1-270-228-4901=C2=A0 office
+>>
+>> scott_best@sibersci.com e-mail
+>>
+>> https://sibersci.com <http://www.sibersci.com/>
+>>
+>> Notice: This e-mail is intended solely for use of the individual or en=
+tity to which it=20
+>> is addressed and may contain information that is proprietary, privileg=
+ed, company=20
+>> confidential and/or exempt from disclosure under applicable law. If th=
+e reader is not=20
+>> the intended recipient or agent responsible for delivering the message=
+ to the intended=20
+>> recipient, you are hereby notified that any dissemination, distributio=
+n or copying of=20
+>> this communication is strictly prohibited. If this communication has b=
+een transmitted=20
+>> from a U.S. location it may also contain data subject to the Internati=
+onal Traffic in=20
+>> Arms Regulations or U.S. Export Administration Regulations and cannot =
+be disseminated,=20
+>> distributed or copied to foreign nationals, residing in the U.S. or ab=
+road, without the=20
+>> prior approval of the U.S. Department of State or appropriate export l=
+icensing=20
+>> authority. If you have received this communication in error, please no=
+tify the sender=20
+>> by reply e-mail or collect telephone call and delete or destroy all co=
+pies of this=20
+>> e-mail message, any physical copies made of this e-mail message and/or=
+ any file=20
+>> attachment(s).
+>>
+>> National Instruments Dresden GmbH; Gesch=C3=A4ftsf=C3=BChrer (Managing=
+ Directors): Sabrina=20
+>> Gilman, Kathleen Heard Spurck, Carl Schumacher; Sitz (Registered Offic=
+e): Dresden; HRB=20
+>> (Commercial Register No.): 22081; Registergericht (Registration Court)=
+: Dresden
+>>
+>> This email and any attachments are intended only for the person to who=
+m this email is=20
+>> addressed and may contain confidential and/or privileged information. =
+If you received=20
+>> this email in error, please do not disclose the contents to anyone, bu=
+t notify the=20
+>> sender by return email and delete this email (and any attachments) fro=
+m your system.
+>>
+>> _______________________________________________
+>> USRP-users mailing list --usrp-users@lists.ettus.com
+>> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+--------------S8huEhWDxj680eXwIhhFSmyx
 Content-Type: multipart/related;
- boundary="------------vLomMW08Fv1uTR9ERZsBX3rR"
+ boundary="------------Dx5Ihq00uIFulR8JLItnFtns"
 
---------------vLomMW08Fv1uTR9ERZsBX3rR
+--------------Dx5Ihq00uIFulR8JLItnFtns
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -223,29 +234,43 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <p>Note that while I've never used it, I don't think it'll work with
-      the N320; IIRC it is a gen2-device wrapper around what you do with
-      usrp_burn_mb_eeprom, usrp2_card_burner, and uhd_image_loader. <br>
+    <p>(just to be clear: you can probably do what you want to do with
+      that tool, but with other tools, for the N320. I don't know
+      exactly what you're planning to do, but if you could reply to the
+      list what you're currently facing, this might be quickly
+      resolvable, without downloading a 6GB installer image)<br>
     </p>
-    <p>Best,<br>
-      Marcus<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 24.07.24 15:36, Martin Anderseck
-      wrote:<br>
+    <div class=3D"moz-cite-prefix">On 24.07.24 17:12, Marcus M=C3=BCller =
+wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:PH0PR04MB831190051D0B634193CC1CA1F3AA2@PH0PR04MB8311.namprd04=
-.prod.outlook.com">
+      cite=3D"mid:779cbed1-f197-4ac8-a708-da790f13aadd@ettus.com">
       <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
 TF-8">
-      <meta name=3D"Generator"
-        content=3D"Microsoft Word 15 (filtered medium)">
-      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+      <p>Note that while I've never used it, I don't think it'll work
+        with the N320; IIRC it is a gen2-device wrapper around what you
+        do with usrp_burn_mb_eeprom, usrp2_card_burner, and
+        uhd_image_loader. <br>
+      </p>
+      <p>Best,<br>
+        Marcus<br>
+      </p>
+      <div class=3D"moz-cite-prefix">On 24.07.24 15:36, Martin Anderseck
+        wrote:<br>
+      </div>
+      <blockquote type=3D"cite"
+cite=3D"mid:PH0PR04MB831190051D0B634193CC1CA1F3AA2@PH0PR04MB8311.namprd04=
+.prod.outlook.com">
+        <meta http-equiv=3D"Content-Type"
+          content=3D"text/html; charset=3DUTF-8">
+        <meta name=3D"Generator"
+          content=3D"Microsoft Word 15 (filtered medium)">
+        <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
 o\:* {behavior:url(#default#VML);}
 w\:* {behavior:url(#default#VML);}
 .shape {behavior:url(#default#VML);}
 </style><![endif]-->
-      <style>@font-face
+        <style>@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
 	{font-family:Calibri;
@@ -271,214 +296,226 @@ w\:* {behavior:url(#default#VML);}
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><span
-            style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
-            lang=3D"EN-US">The NI-USRP configuration utility should be
-            part of the NI-USRP tool chain:<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
-            lang=3D"EN-US"><a
+        <div class=3D"WordSection1">
+          <p class=3D"MsoNormal"><span
+              style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
+              lang=3D"EN-US">The NI-USRP configuration utility should be
+              part of the NI-USRP tool chain:<o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
+              lang=3D"EN-US"><a
 href=3D"https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.=
 html#484354"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tps://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#48435=
-4</a><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
-            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
-            lang=3D"EN-US">/Martin<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
-            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
-        <div><br>
-          <p
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#484=
+354</a><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
+              lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
+              lang=3D"EN-US">/Martin<o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-size:11.0pt;mso-fareast-language:EN-US"
+              lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+          <div><br>
+            <p
 style=3D"font-family:Calibri;font-size:10pt;color:#000000;margin:5pt;font=
 -style:normal;font-weight:normal;text-decoration:none;"
-            align=3D"Left">
-            INTERNAL - NI CONFIDENTIAL<br>
-          </p>
-          <div
+              align=3D"Left"> INTERNAL - NI CONFIDENTIAL<br>
+            </p>
+            <div
 style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0in=
  0in">
-            <p class=3D"MsoNormal"><b><span
+              <p class=3D"MsoNormal"><b><span
 style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"
-                  lang=3D"EN-US">From:</span></b><span
+                    lang=3D"EN-US">From:</span></b><span
 style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"
-                lang=3D"EN-US"> Dr. Scott Best via USRP-users
-                <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:usrp-us=
-ers@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a>
-                <br>
-                <b>Sent:</b> Wednesday, July 24, 2024 2:03 PM<br>
-                <b>To:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:martin.braun@ettus.com">martin.braun@ettus.com</a><br>
-                <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-                <b>Subject:</b> [USRP-users] Where can I download the
-                "NI-USRP Configuration Utility" for Windows 10 x64<br>
-                <b>Importance:</b> High<o:p></o:p></span></p>
+                  lang=3D"EN-US"> Dr. Scott Best via USRP-users <a
+                    class=3D"moz-txt-link-rfc2396E"
+                    href=3D"mailto:usrp-users@lists.ettus.com"
+                    moz-do-not-send=3D"true">&lt;usrp-users@lists.ettus.c=
+om&gt;</a>
+                  <br>
+                  <b>Sent:</b> Wednesday, July 24, 2024 2:03 PM<br>
+                  <b>To:</b> <a
+class=3D"moz-txt-link-abbreviated moz-txt-link-freetext"
+                    href=3D"mailto:martin.braun@ettus.com"
+                    moz-do-not-send=3D"true">martin.braun@ettus.com</a><b=
+r>
+                  <b>Cc:</b> <a
+class=3D"moz-txt-link-abbreviated moz-txt-link-freetext"
+                    href=3D"mailto:usrp-users@lists.ettus.com"
+                    moz-do-not-send=3D"true">usrp-users@lists.ettus.com</=
+a><br>
+                  <b>Subject:</b> [USRP-users] Where can I download the
+                  "NI-USRP Configuration Utility" for Windows 10 x64<br>
+                  <b>Importance:</b> High<o:p></o:p></span></p>
+            </div>
           </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">Dear Martin,</span><span lang=3D"EN-US"><o:p><=
-/o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p><=
-/span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">I have an n200 and a pair of n320s that I am
-            working on using for a project.=C2=A0 I watched a recent YouT=
-ube
-            movie about using the =E2=80=9CNI-USRP Configuration Utility=E2=
-=80=9D for
-            Windows 10 x 64 for this purpose.=C2=A0 I have been unable to
-            find a URL to download a copy of this handy utility, so can
-            you provide me with the download location?</span><span
-            lang=3D"EN-US"><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p><=
-/span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">Thanks in advance for your timely assistance.<=
-/span><span
-            lang=3D"EN-US"><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p><=
-/span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">Respectfully,</span><span lang=3D"EN-US"><o:p>=
-</o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p><=
-/span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">Scott</span><span lang=3D"EN-US"><o:p></o:p></=
-span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p><=
-/span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">Dr. Scott Best</span><span lang=3D"EN-US"><o:p=
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">Dear Martin,</span><span lang=3D"EN-US"><o:p=
 ></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">Chief Technology Officer</span><span
-            lang=3D"EN-US"><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><b><span
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p=
+></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">I have an n200 and a pair of n320s that I am
+              working on using for a project.=C2=A0 I watched a recent
+              YouTube movie about using the =E2=80=9CNI-USRP Configuratio=
+n
+              Utility=E2=80=9D for Windows 10 x 64 for this purpose.=C2=A0=
+ I have
+              been unable to find a URL to download a copy of this handy
+              utility, so can you provide me with the download location?<=
+/span><span
+              lang=3D"EN-US"><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p=
+></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">Thanks in advance for your timely assistance=
+.</span><span
+              lang=3D"EN-US"><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p=
+></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">Respectfully,</span><span lang=3D"EN-US"><o:=
+p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p=
+></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">Scott</span><span lang=3D"EN-US"><o:p></o:p>=
+</span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p=
+></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">Dr. Scott Best</span><span lang=3D"EN-US"><o=
+:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">Chief Technology Officer</span><span
+              lang=3D"EN-US"><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><b><span
 style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#C00000"
-              lang=3D"EN-US">SiberSci, LLC</span></b><span lang=3D"EN-US"=
-><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">1-270-228-4901=C2=A0 office</span><span lang=3D=
-"EN-US"><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US"><a href=3D"mailto:scott_best@sibersci.com"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">sc=
-ott_best@sibersci.com</a>=C2=A0
-            e-mail</span><span lang=3D"EN-US"><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US"><a href=3D"http://www.sibersci.com/"
-              moz-do-not-send=3D"true">https://sibersci.com</a></span><sp=
-an
-            lang=3D"EN-US"><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"
-          style=3D"mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"><s=
-pan
+                lang=3D"EN-US">SiberSci, LLC</span></b><span lang=3D"EN-U=
+S"><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">1-270-228-4901=C2=A0 office</span><span
+              lang=3D"EN-US"><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US"><a href=3D"mailto:scott_best@sibersci.com"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+scott_best@sibersci.com</a>=C2=A0
+              e-mail</span><span lang=3D"EN-US"><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US"><a href=3D"http://www.sibersci.com/"
+                moz-do-not-send=3D"true">https://sibersci.com</a></span><=
+span
+              lang=3D"EN-US"><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"
+            style=3D"mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">=
+<span
 style=3D"font-size:10.5pt;font-family:&quot;Segoe UI&quot;,sans-serif;col=
 or:#212121"
-            lang=3D"EN-US"><img style=3D"width:3.3541in;height:1.743in"
-              id=3D"Picture_x0020_1"
-              src=3D"cid:part1.nCC2hJVM.FC0aGdjs@ettus.com" class=3D""
-              width=3D"322" height=3D"167" border=3D"0"></span><span
-            lang=3D"EN-US"><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"
-          style=3D"mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"><s=
-pan
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">=C2=A0</span><span
+              lang=3D"EN-US"><img style=3D"width:3.3541in;height:1.743in"
+                id=3D"Picture_x0020_1"
+                src=3D"cid:part1.eztPMZBL.pqHj36gO@ettus.com" class=3D""
+                width=3D"322" height=3D"167" border=3D"0"></span><span
+              lang=3D"EN-US"><o:p></o:p></span></p>
+          <p class=3D"MsoNormal"
+            style=3D"mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">=
+<span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">=C2=A0</span><span
 style=3D"font-family:&quot;Times New Roman&quot;,serif;color:black"
-            lang=3D"EN-US">Notice: This e-mail is intended solely for use
-            of the individual or entity to which it is addressed and may
-            contain information that is proprietary, privileged, company
-            confidential and/or exempt from disclosure under applicable
-            law. If the reader is not the intended recipient or agent
-            responsible for delivering the message to the intended
-            recipient, you are hereby notified that any dissemination,
-            distribution or copying of this communication is strictly
-            prohibited. If this communication has been transmitted from
-            a U.S. location it may also contain data subject to the
-            International Traffic in Arms Regulations or U.S. Export
-            Administration Regulations and cannot be disseminated,
-            distributed or copied to foreign nationals, residing in the
-            U.S. or abroad, without the prior approval of the U.S.
-            Department of State or appropriate export licensing
-            authority. If you have received this communication in error,
-            please notify the sender by reply e-mail or collect
-            telephone call and delete or destroy all copies of this
-            e-mail message, any physical copies made of this e-mail
-            message and/or any file attachment(s).</span><span
-            lang=3D"EN-US"><o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Arial&quot;,sans-serif"
-            lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p><=
+              lang=3D"EN-US">Notice: This e-mail is intended solely for
+              use of the individual or entity to which it is addressed
+              and may contain information that is proprietary,
+              privileged, company confidential and/or exempt from
+              disclosure under applicable law. If the reader is not the
+              intended recipient or agent responsible for delivering the
+              message to the intended recipient, you are hereby notified
+              that any dissemination, distribution or copying of this
+              communication is strictly prohibited. If this
+              communication has been transmitted from a U.S. location it
+              may also contain data subject to the International Traffic
+              in Arms Regulations or U.S. Export Administration
+              Regulations and cannot be disseminated, distributed or
+              copied to foreign nationals, residing in the U.S. or
+              abroad, without the prior approval of the U.S. Department
+              of State or appropriate export licensing authority. If you
+              have received this communication in error, please notify
+              the sender by reply e-mail or collect telephone call and
+              delete or destroy all copies of this e-mail message, any
+              physical copies made of this e-mail message and/or any
+              file attachment(s).</span><span lang=3D"EN-US"><o:p></o:p><=
 /span></p>
-        <div>
-          <blockquote
+          <p class=3D"MsoNormal"><span
+              style=3D"font-family:&quot;Arial&quot;,sans-serif"
+              lang=3D"EN-US">=C2=A0</span><span lang=3D"EN-US"><o:p></o:p=
+></span></p>
+          <div>
+            <blockquote
 style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0in 0in 0in =
 6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0in;margin-bottom:5=
 .0pt">
-            <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<o:p></o:p>=
-</span></p>
-          </blockquote>
+              <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<o:p></o:=
+p></span></p>
+            </blockquote>
+          </div>
         </div>
-      </div>
-      National Instruments Dresden GmbH; Gesch=C3=A4ftsf=C3=BChrer (Manag=
-ing
-      Directors): Sabrina Gilman, Kathleen Heard Spurck, Carl
-      Schumacher; Sitz (Registered Office): Dresden; HRB (Commercial
-      Register No.): 22081; Registergericht (Registration Court):
-      Dresden<br>
-      <br>
-      This email and any attachments are intended only for the person to
-      whom this email is addressed and may contain confidential and/or
-      privileged information. If you received this email in error,
-      please do not disclose the contents to anyone, but notify the
-      sender by return email and delete this email (and any attachments)
-      from your system.=C2=A0
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
+        National Instruments Dresden GmbH; Gesch=C3=A4ftsf=C3=BChrer (Man=
+aging
+        Directors): Sabrina Gilman, Kathleen Heard Spurck, Carl
+        Schumacher; Sitz (Registered Office): Dresden; HRB (Commercial
+        Register No.): 22081; Registergericht (Registration Court):
+        Dresden<br>
+        <br>
+        This email and any attachments are intended only for the person
+        to whom this email is addressed and may contain confidential
+        and/or privileged information. If you received this email in
+        error, please do not disclose the contents to anyone, but notify
+        the sender by return email and delete this email (and any
+        attachments) from your system.=C2=A0 <br>
+        <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+        <pre class=3D"moz-quote-pre" wrap=3D"">__________________________=
+_____________________
+USRP-users mailing list -- <a
+        class=3D"moz-txt-link-abbreviated moz-txt-link-freetext"
+        href=3D"mailto:usrp-users@lists.ettus.com" moz-do-not-send=3D"tru=
+e">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a
+        class=3D"moz-txt-link-abbreviated moz-txt-link-freetext"
+        href=3D"mailto:usrp-users-leave@lists.ettus.com"
+        moz-do-not-send=3D"true">usrp-users-leave@lists.ettus.com</a>
 </pre>
+      </blockquote>
     </blockquote>
   </body>
 </html>
---------------vLomMW08Fv1uTR9ERZsBX3rR
+--------------Dx5Ihq00uIFulR8JLItnFtns
 Content-Type: image/png; name="image001.png"
 Content-Disposition: inline; filename="image001.png"
-Content-Id: <part1.nCC2hJVM.FC0aGdjs@ettus.com>
+Content-Id: <part1.eztPMZBL.pqHj36gO@ettus.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAUIAAACnCAYAAABkU1UZAAAAAXNSR0IArs4c6QAAAAlwSFlz
@@ -1420,11 +1457,11 @@ AHYaan/WzfENRhJGxd6H3Ue5Ei6xsP9L+ieR4mJgUdZb0cgzjYf1r/y+QUT4b4QK1OgbsKcv
 dVH/38f9v/btoAQAAIQBYP82RtQUY8glUE8Y+PC+S+ZmHKfd903n5hOEOWuVCBAoFRCEpYvR
 FgECOQFBmLNWiQCBUoEFKmc46R4qsTIAAAAASUVORK5CYII=
 
---------------vLomMW08Fv1uTR9ERZsBX3rR--
+--------------Dx5Ihq00uIFulR8JLItnFtns--
 
---------------mBt2l0QHKPld8JSwJyvhzhdF--
+--------------S8huEhWDxj680eXwIhhFSmyx--
 
---===============0611809888910829192==
+--===============8693040480289754204==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1434,4 +1471,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0611809888910829192==--
+--===============8693040480289754204==--
