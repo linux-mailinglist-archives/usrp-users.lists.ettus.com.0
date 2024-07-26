@@ -2,163 +2,161 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2832C93CE5A
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Jul 2024 08:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E11A93CFC4
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Jul 2024 10:44:16 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 008CE38590A
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Jul 2024 02:55:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 684513858C0
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Jul 2024 04:44:15 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1721976908; bh=NnKhRm/kX1pYFX4KuUSJ74VtwNGsMnvw/5DWbqUOWc4=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=kYMzCF9yEuL2GH95EYJt8lOt1sXtjvGj6jK7/VRhkGmMWoTlOieyAGW++Ibouzur4
-	 sAGHF86g/MxC7Uq/SOmpT5ykTJkwAy47cahXwUBh5XK/gMxfd6UmMZ1MAKe8I+ySka
-	 WtRRQbXSH/egZlgansGeQPAuFZKaPBGsFEy6s3stoXHK48Rw8Fz+i31KBMHZr8eYon
-	 8pQynUEuJEkVsrXo1XeX+PVdL3S4sKc2gFYWGgNZhzznsLkc2dORt+s4JdyD/cgfb4
-	 H1zFe17ruASYWLlVpqVU6xNsFghlSARbbwdTMpGCypVQfeRqjvd6idTmgQOTfTExRy
-	 mNayT5tqGZbvA==
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 59C93385757
-	for <usrp-users@lists.ettus.com>; Fri, 26 Jul 2024 02:54:16 -0400 (EDT)
+	t=1721983455; bh=8ip2sUuxGUc2w0ijY4JNPPJEGFc/1qLyRZpXiMWw2X8=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=WXiG6garWTT7dSzf0zVALP3J3iVT3tN6UOXfz4UhxJfqcFEsM8wsqH9pNcn0Zy9AD
+	 rC510eEBi/3eAEx5q/KeTnfjoFXCeCLwH2sF0ODr/C39i3tNQgqLosoK1Kp2yQAQwJ
+	 cXjiyloW3Af24IhtFn/yeQU8rvZ4NVhQ0BfiGRVFiZy7yRc5+H4Sttd0maNdaCAedr
+	 rUFqbUt9uNJZ6IKHiEYLoC94B5gFSiux4Ag3/Mcd6oPZSTOPQ5WhcKDEkufHhWaof9
+	 VEFKattNaGCCMStIcb07K/UKhIGNZo0PnGyaIrekHWm2G6Ek+DcXF39xkPlGJGdrRE
+	 DTepIsLXuextg==
+Received: from sfmail01.tubitak.gov.tr (sfmail01.tubitak.gov.tr [193.140.80.192])
+	by mm2.emwd.com (Postfix) with ESMTPS id 699F738513A
+	for <usrp-users@lists.ettus.com>; Fri, 26 Jul 2024 04:44:00 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Mf66o42D";
+	dkim=pass (2048-bit key; unprotected) header.d=tubitak.gov.tr header.i=@tubitak.gov.tr header.b="H4OkHPmG";
 	dkim-atps=neutral
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a7a843bef98so142922266b.2
-        for <usrp-users@lists.ettus.com>; Thu, 25 Jul 2024 23:54:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721976855; x=1722581655; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=0cTwPVlswJ6d1MeKjcgL/1D9SpV4mTnc2fuCiWL/XVg=;
-        b=Mf66o42Dk2qidpSbXBTmubTBjRoUYtU6mQYsODdcmtkK9HzrJizAsHQCfuGyA6KnOo
-         tvcoE3Mcdb+SPA/cCcMJVZV2aWwckakuO4r4j1KfjFdSVWc6n4QIij0sgv5jrGEZjZWk
-         ryg7Paoic4zYTSpNYgkIWC70Uyi9nE9eTXp4Fn99suVW9uAq4RrMaB9ilRimEp+yqzPK
-         A5WrH1Nf/QspArAp3q3Axy7hYNX1YSrvAXEwzphJgDk+119zWqnAWfCTPHgdphcNxgHC
-         nDoHM3dSDvhJYkP3RkSk6Rs4OGCBxhcSB5qscrDoXD8jc/J9oUEEsaOeY9ttYkOxNUsH
-         Gqtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721976855; x=1722581655;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0cTwPVlswJ6d1MeKjcgL/1D9SpV4mTnc2fuCiWL/XVg=;
-        b=QcyIw/bAgHDPx4macjwS8E6dYUez/7Ei+QhTq/hXR2A3jcv5BMqP2mp9bXXLKxu86+
-         mr+MywzOmPenStPJrqqjA5uzJWVxgsAqaeo3aN7VlGUywGaM0Kpb6Ne1Nb2YK7HX3cg6
-         f/Ncvus26Af11XJ8Yg2uRZze5AABg42oihqyeAVfFuJC+neGe96RiPtSybrAd34PhBcD
-         vbaT1sdQF+K9rMplhrClTO0saWBh0GF0umNRxEIeaCXLILMejRL5aSEpK0+8I9GKYw0d
-         Rvgn2NK2Xu37NnR5WGtaRIvW61KnyyGxhrELZoayVteaLyh3Z6V9M4BtrW/aDrL/2eDh
-         v0pA==
-X-Gm-Message-State: AOJu0YyGRMG4YOQ68w+n6M3seA1xUafPt1UVBXbFumxc18llPD6Mc487
-	81Tus+QJVQ7czoN0fYfewwa9O7lQUv8OxrinpfFrvAxR3Sb34HYmEGvUAO6X69uMc9JksJKyW1O
-	iiTceZ2kWIB35x7DLFyQXkeLJjkj8X6v0gQI=
-X-Google-Smtp-Source: AGHT+IHKWLKX7d4BHLzzJse5n9y/wulxfzlZ6166eeVLqzkfEGMEGkDJ1ovbrr2QdiIovQvZoFgcSi3O7mnQymfmWsw=
-X-Received: by 2002:a17:907:1c23:b0:a7a:9d1e:3b16 with SMTP id
- a640c23a62f3a-a7ac52e0d81mr413654566b.47.1721976854327; Thu, 25 Jul 2024
- 23:54:14 -0700 (PDT)
+X-ASG-Debug-ID: 1721983437-0f24755d0121d750001-5wTQH4
+Received: from mta01.tubitak.gov.tr (mta01.tubitak.gov.tr [193.140.13.215]) by sfmail01.tubitak.gov.tr with ESMTP id aOgcypwbUkzxwQjm (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO) for <usrp-users@lists.ettus.com>; Fri, 26 Jul 2024 11:43:57 +0300 (EAT)
+X-Barracuda-Envelope-From: emre.yildiz@tubitak.gov.tr
+X-Barracuda-Effective-Source-IP: mta01.tubitak.gov.tr[193.140.13.215]
+X-Barracuda-Apparent-Source-IP: 193.140.13.215
+Received: from localhost (localhost [127.0.0.1])
+	by mta01.tubitak.gov.tr (Postfix) with ESMTP id 3F928182D39CC
+	for <usrp-users@lists.ettus.com>; Fri, 26 Jul 2024 11:43:57 +0300 (+03)
+Received: from mta01.tubitak.gov.tr ([127.0.0.1])
+ by localhost (mta01.tubitak.gov.tr [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id fj0t_UKvcm5N for <usrp-users@lists.ettus.com>;
+ Fri, 26 Jul 2024 11:43:57 +0300 (+03)
+Received: from localhost (localhost [127.0.0.1])
+	by mta01.tubitak.gov.tr (Postfix) with ESMTP id 0791C182D39EB
+	for <usrp-users@lists.ettus.com>; Fri, 26 Jul 2024 11:43:56 +0300 (+03)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mta01.tubitak.gov.tr 0791C182D39EB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tubitak.gov.tr;
+	s=3CB53094-0179-11EB-B19A-889BD1D29365; t=1721983437;
+	bh=BUzfz2Z37DEnx+9WDi1yPzEQ6cCdoGCzenNIYyCh6vU=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=H4OkHPmG2abbITFyq5x+H/OWY7ux6i7mVCtpKUYTcLfSphz9oDrGiw4ixoEoEA3ws
+	 3MavEvcym9gLuVUrAludFH4BNvl9RlfKJALyyYxBySA+/+52pUgHmMHgZtZzoavX+T
+	 8ybl4Hhcj53SEUnp3Su1tb696dIrThO5tHodJnCs0YrUoDveIPZ8Mvh4OQQ0a64E2J
+	 UEmSQ8ip5MXx8b3eumFw/mMHU+pyx1Qfgro2iegO7OlzVOHRxcOJ4MNOt9aoBrcWkq
+	 HaoYwQ16yNhAMzT5bYOHHnr5C0Vdq5LYf1GrzIlriGTFcfDJUO6KtCbDnSyAUk3eCA
+	 MK4DXnRjFdw2A==
+Received: from mta01.tubitak.gov.tr ([127.0.0.1])
+ by localhost (mta01.tubitak.gov.tr [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id bjDvRuaqaE5P for <usrp-users@lists.ettus.com>;
+ Fri, 26 Jul 2024 11:43:56 +0300 (+03)
+Received: from mail03.tubitak.gov.tr (mail03.tubitak.gov.tr [10.250.10.121])
+	by mta01.tubitak.gov.tr (Postfix) with ESMTP id CAF24182D39CC
+	for <usrp-users@lists.ettus.com>; Fri, 26 Jul 2024 11:43:56 +0300 (+03)
+Date: Fri, 26 Jul 2024 11:43:56 +0300 (TRT)
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <1185905888.18769541.1721983436583.JavaMail.zimbra@tubitak.gov.tr>
 MIME-Version: 1.0
-From: Tim Smith <secsubs@gmail.com>
-Date: Thu, 25 Jul 2024 23:54:03 -0700
-Message-ID: <CADPi3fiO-37O8QXpRoFe5aaNNHo8eJcf6C7S6H=k0GGF3QLCsg@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: MHFMKACDKDFPCJKU7TKZK7RYS4S4PNGJ
-X-Message-ID-Hash: MHFMKACDKDFPCJKU7TKZK7RYS4S4PNGJ
-X-MailFrom: secsubs@gmail.com
+X-ASG-Orig-Subj: Run time error
+Thread-Index: Q4mEo52yf8GswCmWd8qaZ52x3TpFiQ==
+Thread-Topic: Run time error
+X-Barracuda-Connect: mta01.tubitak.gov.tr[193.140.13.215]
+X-Barracuda-Start-Time: 1721983437
+X-Barracuda-Encrypted: TLS_AES_256_GCM_SHA384
+X-Barracuda-URL: https://193.140.80.192:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at tubitak.gov.tr
+X-Barracuda-Scan-Msg-Size: 2082
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.0027 1.0000 -2.0032
+X-Barracuda-Spam-Score: -2.00
+X-Barracuda-Spam-Status: No, SCORE=-2.00 using global scores of TAG_LEVEL=1000.0 QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.128141
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Message-ID-Hash: 6DA5Z6XX6YTGBREL7XRW4LVYZERXFRWZ
+X-Message-ID-Hash: 6DA5Z6XX6YTGBREL7XRW4LVYZERXFRWZ
+X-MailFrom: emre.yildiz@tubitak.gov.tr
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Making a USRP N230 work
+Subject: [USRP-users] Run time error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MHFMKACDKDFPCJKU7TKZK7RYS4S4PNGJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6DA5Z6XX6YTGBREL7XRW4LVYZERXFRWZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5947225766841140247=="
+From: =?utf-8?q?Emre_YILDIZ_=28B=C4=B0LGEM_=C4=B0LTAREN=29_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: Emre YILDIZ =?utf-8?Q?=28B=C4=B0LGEM_=C4=B0LTAREN=29?= <emre.yildiz@tubitak.gov.tr>
+Content-Type: multipart/mixed; boundary="===============5413866131346197226=="
 
---===============5947225766841140247==
-Content-Type: multipart/alternative; boundary="000000000000b6bc9e061e20fa9d"
+--===============5413866131346197226==
+Content-Type: multipart/alternative;
+	boundary="=_8226a945-8333-4b84-8ed7-ba023b1c444e"
 
---000000000000b6bc9e061e20fa9d
-Content-Type: text/plain; charset="UTF-8"
+--=_8226a945-8333-4b84-8ed7-ba023b1c444e
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Dear usrp users and Ettus support team, 
+
+I have usrp e320 and I did not load any image on it yet (default mode). 
+I set my network settings as follows: 
+
+IP:192.168.10.1 
+NETMASK:255.255.255.0 
+GATEWAY:0.0.0.0 
+MTU:1500 
+
+When I send ping to address 192.168.10.2 , I could receive packets successfully. However, when I wrote the following command: 
+
+uhd_usrp_probe --args "addr=192.168.10.2" 
+
+I got the following error message: 
+
+RuntimeError: rpc::timeout: Timeout of 2000ms while calling RPC function 'set_device_id' 
+
+Then I changed the args as mgmt_addr=192.168.10.2,type=e3xx,product=e320,serial=33CB10C,claimed=False,addr=192.168.10.2 I still got the same error. 
+
+I am using UHD 4.6. How can I fix that error can you please help me with that? 
+
+Best regards. 
+
+Emre 
+
+
+--=_8226a945-8333-4b84-8ed7-ba023b1c444e
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<html><body><div style=3D"font-family: arial, helvetica, sans-serif; font-s=
+ize: 12pt; color: #000000"><div>Dear usrp users and Ettus support team,<br>=
+<br>I have usrp e320 and I did not load any image on it yet (default mode).=
+ <br>I set my network settings as follows:<br></div><div><br>IP:192.168.10.=
+1<br></div><div>NETMASK:255.255.255.0<br>GATEWAY:0.0.0.0<br data-mce-bogus=
+=3D"1"></div><div>MTU:1500 <br data-mce-bogus=3D"1"></div><div><br data-mce=
+-bogus=3D"1"></div><div>When I send ping to address 192.168.10.2 , I could =
+receive&nbsp; packets successfully. However, when I wrote the following com=
+mand:</div><div>&nbsp;<br data-mce-bogus=3D"1"></div><div>uhd_usrp_probe --=
+args "addr=3D192.168.10.2"<br><br data-mce-bogus=3D"1"></div><div>I got the=
+ following error message:<br data-mce-bogus=3D"1"></div><div><br data-mce-b=
+ogus=3D"1"></div><div>RuntimeError: rpc::timeout: Timeout of 2000ms while c=
+alling RPC function 'set_device_id'<br><br data-mce-bogus=3D"1"></div><div>=
+Then I changed the args as&nbsp; mgmt_addr=3D192.168.10.2,type=3De3xx,produ=
+ct=3De320,serial=3D33CB10C,claimed=3DFalse,addr=3D192.168.10.2 I still got =
+the same error.<br><br>I am using UHD 4.6. How can I fix that error can you=
+ please help me with that?<br><br>Best regards.<br><br>Emre<br><br data-mce=
+-bogus=3D"1"></div></div></body></html>
+--=_8226a945-8333-4b84-8ed7-ba023b1c444e--
 
-I am trying to make an older N230 board work for me. On MacOS, I got
-UHD-3.15.0 via MacPorts. "uhd_usrp_probe" discovers the device over the
-network and I can run "uhd_fft" but when I try to talk to the radio with
-gqrx, it refuses to find the device. Oddly enough, "device scan" on gqrx
-automatically populates the "device string" as "addr=3D192.168.20.2" but th=
-en
-won't connect. On Ubuntu 22.04 and 24.04, the UHD package is from the 4.xx
-release where support for N230 had been pulled so nothing works on Ubuntu.
-
-I tried restoring the commits from this PR:
-https://github.com/EttusResearch/uhd/commit/d94140a4129d6b2153b15860eeb2406=
-672ebb414
-- I copied the entire N230 folder from the 3.15.0 release into the codebase
-from 4.7.0 and added back all the comments/includes for N230 but "make"
-failed miserably because underlying functions have probably been entirely
-changed between 3.x and 4.x. I get an error:
--------------------------
-uhd-4.7.0.0/host/lib/usrp/n230/n230_cores.cpp: In constructor
-=E2=80=98uhd::usrp::n230::n230_ref_pll_ctrl::n230_ref_pll_ctrl(uhd::usrp::n=
-230::n230_core_spi_core::sptr)=E2=80=99:
-uhd-4.7.0.0/host/lib/usrp/n230/n230_cores.cpp:60:13: error: no matching
-function for call to
-=E2=80=98uhd::usrp::adf4001_ctrl::adf4001_ctrl(uhd::usrp::n230::n230_core_s=
-pi_core::sptr&,
-const uint32_t&)=E2=80=99
-   60 |     _spi(spi)
-------------------------
-
-I tried building 3.15.0 on Ubuntu 22.04 but that failed with a different
-set of errors.
-
-What's the best way to use/support a N230?
-
---
-Thanks,
-
-Tim
-
---000000000000b6bc9e061e20fa9d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I am trying to make an older N230 b=
-oard work for me. On MacOS, I got UHD-3.15.0 via MacPorts. &quot;uhd_usrp_p=
-robe&quot; discovers the device over the network and I can run &quot;uhd_ff=
-t&quot; but when I try to talk to the radio with gqrx, it refuses to find t=
-he device. Oddly enough, &quot;device scan&quot; on gqrx automatically popu=
-lates the &quot;device string&quot; as &quot;addr=3D192.168.20.2&quot; but =
-then won&#39;t connect. On Ubuntu 22.04 and 24.04, the UHD package is from =
-the 4.xx release where support for N230 had been pulled so nothing works on=
- Ubuntu.</div><div><br></div><div>I tried restoring the commits from this P=
-R:=C2=A0<a href=3D"https://github.com/EttusResearch/uhd/commit/d94140a4129d=
-6b2153b15860eeb2406672ebb414">https://github.com/EttusResearch/uhd/commit/d=
-94140a4129d6b2153b15860eeb2406672ebb414</a> - I copied the entire N230 fold=
-er from the 3.15.0 release into the codebase from 4.7.0 and added back all =
-the comments/includes for N230 but &quot;make&quot; failed miserably becaus=
-e underlying functions have probably been entirely changed between 3.x and =
-4.x. I get an error:</div><div>-------------------------</div><div>uhd-4.7.=
-0.0/host/lib/usrp/n230/n230_cores.cpp: In constructor =E2=80=98uhd::usrp::n=
-230::n230_ref_pll_ctrl::n230_ref_pll_ctrl(uhd::usrp::n230::n230_core_spi_co=
-re::sptr)=E2=80=99:<br>uhd-4.7.0.0/host/lib/usrp/n230/n230_cores.cpp:60:13:=
- error: no matching function for call to =E2=80=98uhd::usrp::adf4001_ctrl::=
-adf4001_ctrl(uhd::usrp::n230::n230_core_spi_core::sptr&amp;, const uint32_t=
-&amp;)=E2=80=99<br>=C2=A0 =C2=A060 | =C2=A0 =C2=A0 _spi(spi)<br></div><div>=
-------------------------</div><div><br></div><div>I tried building 3.15.0 o=
-n Ubuntu 22.04 but that failed with a different set of errors.=C2=A0</div><=
-div><br></div><div>What&#39;s the best way to use/support a N230? =C2=A0</d=
-iv><div><div><br></div><div dir=3D"ltr" class=3D"gmail_signature" data-smar=
-tmail=3D"gmail_signature"><div dir=3D"ltr"><div><div>--<br></div>Thanks,<br=
-><br></div>Tim<br></div></div></div></div>
-
---000000000000b6bc9e061e20fa9d--
-
---===============5947225766841140247==
+--===============5413866131346197226==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -168,4 +166,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5947225766841140247==--
+--===============5413866131346197226==--
