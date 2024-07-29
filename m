@@ -2,278 +2,350 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F08693F3ED
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jul 2024 13:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B1D93F454
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jul 2024 13:42:05 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AAFFE385202
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jul 2024 07:24:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9F1B33853D3
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jul 2024 07:42:04 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1722252291; bh=lOHJifOLg81INas/sVfWM3xE5GgQ2QFtO1jYZAdgkRM=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=zIXSrwCzg+nKMvfnT0bDQCuzWw7JEJbw4s5mNLF5tpqqbmxqm3J/nc3RAYr3mMt0P
-	 DXtehr11w3x8XAXgr5eKCBx+5tFZx8pgwumjhSY+7m8AsIuFnK4fc+SGIuhsxEGx8s
-	 1hn667NW4LkWRJ9l/nnMSaylgh7oGA0AFx8hg/oyWv/XJF7cIiEUJtldCgIbKxuXTa
-	 zrVsyR0CRrN97riZaoZit7fU+8u5/HalkyVKkcTGWvIfEwPTyRxiKP5DaWzO8+aSEL
-	 99D6zaw7d/Wf1gAs5OtBTh7ENMD8/6HV5MCBBqwiZBmpRsqeIqb0VXcgZJc97CnH83
-	 z/9Zb0bX67PFA==
-Received: from sfmail01.tubitak.gov.tr (sfmail01.tubitak.gov.tr [193.140.80.192])
-	by mm2.emwd.com (Postfix) with ESMTPS id A33A0385006
-	for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2024 07:24:27 -0400 (EDT)
+	t=1722253324; bh=lD+4AlfVdQPNazeiYSsTuFlKt/6jfTO+166sLCj3R28=;
+	h=To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=tX6y6wVvbZBPomR4DvbgBCeH9wQZiWZFYDAQfFll3mS8wH8cFq2/pOPBsVTW6Y3hn
+	 /+dC92BnWB5e+PRi0MBtiqewWaQWbfiefQAJh4oZrAFxu/bmaG4JZj1tOTeGb2XUdG
+	 aOr8qU95DAdevz1ZJpj6nF5DsRysK4FwGBZdLfPjElxqiX1N2zkK4PwyWMDz2kycW3
+	 ZISwEfOtBR3YZMkTTe8EtyGZiSb2EBE5egReTn0rV1GwVkUnP2hdf9HTieyfswIch6
+	 nFedmZ+w8w0v8esxVcYXYVGkwrUj45wDBxQByfUl9HpqiPU1WAVaRnk+pFzLsCWAuq
+	 7f/kYpvQWxSMA==
+Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0114.outbound.protection.office365.us [23.103.209.114])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7F02C385219
+	for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2024 07:40:55 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=tubitak.gov.tr header.i=@tubitak.gov.tr header.b="gDBcX0wl";
+	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="lyLJbd4d";
 	dkim-atps=neutral
-X-ASG-Debug-ID: 1722252264-0f24755d03338040001-5wTQH4
-Received: from mta02.tubitak.gov.tr (mta02.tubitak.gov.tr [193.140.13.216]) by sfmail01.tubitak.gov.tr with ESMTP id Ah4xlmpHekIdu6LQ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO) for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2024 14:24:25 +0300 (EAT)
-X-Barracuda-Envelope-From: emre.yildiz@tubitak.gov.tr
-X-Barracuda-Effective-Source-IP: mta02.tubitak.gov.tr[193.140.13.216]
-X-Barracuda-Apparent-Source-IP: 193.140.13.216
-Received: from localhost (localhost [127.0.0.1])
-	by mta02.tubitak.gov.tr (Postfix) with ESMTP id B9E8D21A6D7
-	for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2024 14:24:24 +0300 (+03)
-Received: from mta02.tubitak.gov.tr ([127.0.0.1])
- by localhost (mta02.tubitak.gov.tr [127.0.0.1]) (amavis, port 10032)
- with ESMTP id 0SrRk7Slg_mR for <usrp-users@lists.ettus.com>;
- Mon, 29 Jul 2024 14:24:24 +0300 (+03)
-Received: from localhost (localhost [127.0.0.1])
-	by mta02.tubitak.gov.tr (Postfix) with ESMTP id 87F7021A6E0
-	for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2024 14:24:24 +0300 (+03)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mta02.tubitak.gov.tr 87F7021A6E0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tubitak.gov.tr;
-	s=3CB53094-0179-11EB-B19A-889BD1D29365; t=1722252264;
-	bh=fXbumBaQ33lTXl6a1ff2JwaAMsuy5QqfcV2KUtXQ+LY=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=gDBcX0wlOHEElqgLcTQ31lxVSn2E7t7sqKDbMPJNhQqB2bXaheik5O4oYUDaQku/H
-	 qOEhON0IWx8zi6fOs/sGohR4ZQ9xZA3tEYOxKPyKl8E8aW78nyt4Q9AyYPSAzDmRHm
-	 yWNa7I7b5hGO1SinjKD6dCGS7/DgBKP5PYLaSGdcYZMaQjn6g8fzEvXm2fwq+dASuX
-	 LWgVwH5AW/nppmfzphdBh7fNkHh8mDY0AUd6N8zavaL+2RRbDXj/JNOKs+exU6wYPF
-	 cTfeboVaijajfHaDzY2qBDXyuZqQRrN4h58W6FBKG/OnedMGzQKMFDzsZc0KMIIjmS
-	 BdhUa6usC/TNQ==
-X-Virus-Scanned: amavis at mta02.tubitak.gov.tr
-Received: from mta02.tubitak.gov.tr ([127.0.0.1])
- by localhost (mta02.tubitak.gov.tr [127.0.0.1]) (amavis, port 10026)
- with ESMTP id cTe3t3JvDZ5D for <usrp-users@lists.ettus.com>;
- Mon, 29 Jul 2024 14:24:24 +0300 (+03)
-Received: from mail03.tubitak.gov.tr (mail03.tubitak.gov.tr [10.250.10.121])
-	by mta02.tubitak.gov.tr (Postfix) with ESMTP id 64F2B21A6D7
-	for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2024 14:24:24 +0300 (+03)
-Date: Mon, 29 Jul 2024 14:24:24 +0300 (TRT)
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <1939152270.19945078.1722252264366.JavaMail.zimbra@tubitak.gov.tr>
-MIME-Version: 1.0
-X-ASG-Orig-Subj: E320 UHD Connection Fault
-Thread-Index: ASgeL974GsXhJIAi89LOgL8ZVtIuSA==
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=KNtn0dQR2dErbWET04LxJqu1wNoritpRFJ7k0VdM5L/pmaMiYtAmtR4M4r5QVs/19ErYc8IkHwMubD7v1Bquq/mqxVnQSPAfgXu5SXq34r4po0QtXJyK5BqJ+rkc4RlnAh6sXNHKK0NUvMCciw5/084c8AlRjaPdEuLHxlU0WzPmilUeN6iG3Yc2pX14DEuUUt19gSnGS/wNhRACfhJIF33l648jue/wcLPEEV/CXwzG7Tu8vAFT7A/hYuXXrangAaqdS4CRXdzwqD2mD1PYMnGSlYy4thbj8W0UfORWYJoM4fXA2uQ4yhL81ZI7Ffk4r18/GpvpNlSh8xz7vVN0lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z2cp7yZDBdLQrrw43kUTLsg5GS5f5zln31KxhqwSym0=;
+ b=0f8y5kkTcQ0e6rih+34vETZPUr1Uj5eJFSGNLxqN40/LP4rvsJO3k9WpeLsbZf7CKnQWP18aeSzcDTx5JHdEsmx8HdrB2TwV6FUrl1VJmJEoXHv5VYESKdpveWvSqO8FnDywL+BFbLc84MiPT1dDQon8H1SVT72LwJi0BbR70Stx17lWMzpgzL9e3PXbCXPHMKHWQiUNMrXcWGPfUOMNsaM7TJZoWKYtWZzmrzIfwcvwyxTzS2I5txnUdWiFjHMADmoX5J95YjDQFAf/LZGBksDrHwlgF9S6Vm61wOwJxf+p72d/Lg/vhV9lwUlSmBlFcsIRNmFZAfxQI4083epsfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
+ header.from=synopticengineering.com; dkim=pass
+ header.d=synopticengineering.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=synopticengineering.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z2cp7yZDBdLQrrw43kUTLsg5GS5f5zln31KxhqwSym0=;
+ b=lyLJbd4durv6dIiUjFgEACLeSYEDx493jVe1TUqR2qV1u4fTYmZPu5ie+a/V7V7ChCH6oDwsYeJ4p9/DfFj5yCSJ9WxyGGSdYiIBA+0Ccu/C+FmIKxRFju19SORwzHuhxCvX3zYMSBlkBGpNG9aGsp+NEW5nDWUZSrf77LoxiYhL4yRIAoZ9Tqs6NzyHjaYby+qBEeGGjOI49wexNM16BsJzTMjRZ+XCpTwi/7LEz+UXW8FTLgt0ICdwpZS3Qc3uTCBJtUJR8WM8zUKwhr2tUDoNjmyjFrGoZ7Z+IIyFzM+RSG5HvyGtM13prCKXZpt3JexvEZUHfC2AsOX4ghbn5w==
+Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:168::14)
+ by BN2P110MB1527.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:17d::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20; Mon, 29 Jul
+ 2024 11:40:52 +0000
+Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::8946:5ada:d79:eff6]) by BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::8946:5ada:d79:eff6%5]) with mapi id 15.20.7784.017; Mon, 29 Jul 2024
+ 11:40:51 +0000
+To: =?utf-8?B?RW1yZSBZSUxESVogKELEsExHRU0gxLBMVEFSRU4p?=
+	<emre.yildiz@tubitak.gov.tr>, usrp-users <usrp-users@lists.ettus.com>
 Thread-Topic: E320 UHD Connection Fault
-X-Barracuda-Connect: mta02.tubitak.gov.tr[193.140.13.216]
-X-Barracuda-Start-Time: 1722252265
-X-Barracuda-Encrypted: TLS_AES_256_GCM_SHA384
-X-Barracuda-URL: https://193.140.80.192:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at tubitak.gov.tr
-X-Barracuda-Scan-Msg-Size: 11782
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.0559 1.0000 -1.6628
-X-Barracuda-Spam-Score: -1.66
-X-Barracuda-Spam-Status: No, SCORE=-1.66 using global scores of TAG_LEVEL=1000.0 QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.128284
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-Message-ID-Hash: 7IXQBC2GCTJ2R3A3HEXZICTANN65EFJE
-X-Message-ID-Hash: 7IXQBC2GCTJ2R3A3HEXZICTANN65EFJE
-X-MailFrom: emre.yildiz@tubitak.gov.tr
+Thread-Index: ASgeL974GsXhJIAi89LOgL8ZVtIuSOWG+I0w
+Date: Mon, 29 Jul 2024 11:40:51 +0000
+Message-ID: 
+ <BN2P110MB1747B5617F4B4AD3D857EE13B7B7A@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+References: <1939152270.19945078.1722252264366.JavaMail.zimbra@tubitak.gov.tr>
+In-Reply-To: 
+ <1939152270.19945078.1722252264366.JavaMail.zimbra@tubitak.gov.tr>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN2P110MB1747:EE_|BN2P110MB1527:EE_
+x-ms-office365-filtering-correlation-id: 818e0274-6c44-4d90-9ded-08dcafc34c90
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|1800799024|366016|41320700013|38070700018;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?ajU2T0REWGhKQkJDUXBHNmw3RkwxY1B2OFBSOUtoQXBOcmRjbzNYbWRZTEtM?=
+ =?utf-8?B?dmcxR3FabTU1Y2VNbS9GL29ickx1RFJzOUZUcHlFeklNeTJPM015Y3BzWGVZ?=
+ =?utf-8?B?VjlleVgzV3NoeUZ6U1BJeGtQSVMzcWFkdFdIb3NnQzdvSkp6WFcrZ3gwbGkv?=
+ =?utf-8?B?SitZancyWWdZaFRXdkIwT0QrdlczeE9PSXVNOGtkOXF6VEtTczNtNDMwcWRT?=
+ =?utf-8?B?WnNLdlFPK0pNUHpCU2FBNTgybWtNN0VkZ1Q0QSszL1hpUGM2dDhuVVZwck5Q?=
+ =?utf-8?B?dWFLbmdTREpqUDBCYVFJVnhXSE5OS0dUd1Zxa2xzNEJqVExHU0VSRENsNkJH?=
+ =?utf-8?B?Tlg4dlVhejF6Smt6ZUk5akJpczZCMDUwY2h0YkZjK0hIMjJCNWQxY1l2Q3k4?=
+ =?utf-8?B?OFM4M2dBa1FPZk5aME5UN2RUUDFJMno3bk4yc3grMXRncTc1NU0wdUFXbVNH?=
+ =?utf-8?B?WFVmZXJ5L25Odk8yRnVOVTJBTkM5aUp3ZkFLOWUyaW1DMU1NOUw3L0I3THpn?=
+ =?utf-8?B?S0NtakpaSHNDTUpHSGwrbWd4WkJLS0pLS3Zjc3hiWG5VdDVTemRzTjZoOGhC?=
+ =?utf-8?B?T0FZTlRvVkFGK3l2MFNneFlKNVlzUlN6S2trdWZRU1lnSGJ0VUg4N2poOXFh?=
+ =?utf-8?B?ZFVmZDkzejdsdnEwZHdSSEw0SUt6RHowTUlURFBLaGVjMWtTZUFRMHFGL2Y3?=
+ =?utf-8?B?U2J0WXd3M09pNXZNaDgyZmhHRE9GT2MwNm1tWDZ2T0NzZVlFYmZuTWJabGVK?=
+ =?utf-8?B?b09GS0FpSElrQzdWWmh3aWltdndQTnZDS2hZSHRKL2ZhOUxmWHdsWnQwTGpm?=
+ =?utf-8?B?ODBxajdvZTNTZlRsUXZFKzlEUDFCRVdjTGZBaGdzdmpERXc4azJubUduYTVs?=
+ =?utf-8?B?TWlRL2hsK0M2VnYwbUVaZnJMM1ZjVDFXRlBRc0N4Y2NERkgyVlJwcWxRamN1?=
+ =?utf-8?B?TXpSZTR1cGh5cUJrYzB5WnpNeUJaNjdCdlppdzM4b0pMM2VOQ2hNZURJaWRR?=
+ =?utf-8?B?alJLUEdSQ29zV0d2RS92OWJHbmhPKzdBa1c3WllEQmpyOHRmam1YYjVpL1h0?=
+ =?utf-8?B?MzUzaE1rT3Vna0x6Z1BuT1Q2OFBya1dPSmVHQlBoejk5QVVJTXVPelJ3dEV2?=
+ =?utf-8?B?akx4YWtib2FBV3NBZk84ckVSS2hXNEw3K1VvZnhydjcrRzlTbEpNaVBIQVRm?=
+ =?utf-8?B?NXBSNWlKVEdNNis3S0traFlERm4yT2VWNFN6UFJVYmM0bXovbkdxcGl6NHBm?=
+ =?utf-8?B?allSNTgrQ200S3ZldmkrZnU3UDJQTHZ6bUo1S3AxUXMzVHpNTXgvTHRVMnJv?=
+ =?utf-8?B?bjJoSzZOK3BhS2RtOVRWeHV6WDJuUmk1Z04rN0l6ZUpqMFFrb1ZDU2tOREps?=
+ =?utf-8?B?ejIrR0JLVWF0eDJnY3ovNzJTU29NSGNKLzA1ZHlaeHR3YWc3Yit2K0R3Ukla?=
+ =?utf-8?B?dW93R3MrMkhDakRxekhQcGZqSkI1L2FNR053N2QrS25BSEFURFpXcTZVb29w?=
+ =?utf-8?B?bWdlQzRYUHJoaURSVXZuTE0xWFM1ckhmU1A1ZGZvaTFXaWM0aUhsR2xJMjcy?=
+ =?utf-8?B?TzJzZnhwa240cFNmME9rOTBEeHkxR2lXaS9VQjRDcDFVTlIzSllLSjgvbUdV?=
+ =?utf-8?B?M01LL3N2ZFdYYW83NE9zTXlLcEhoQU5rOVgybEE5M3RYRXN5NDU2Q2VvYllU?=
+ =?utf-8?B?SXB5TUtYWXJkcWpmc0d5ZnY5K3BGY3EzdU9JRWg2b0g4cUpwUlRCVW15b0Mw?=
+ =?utf-8?B?bkZqRy9sR1RucFdvc0RraHFpZGU5UTIyMTF0Snk5R0c2eUltb0xVMWxXZ1ZZ?=
+ =?utf-8?B?Z2szSjM1aW5lSTZIaEhzRUNkclhZendWR2lGYlZOaXJLMHJiTTJ5czRNOG1u?=
+ =?utf-8?B?SjZ6MzdQZEg4c2NOeXdjWEhVcUlvb1F0OUtCT3JTZU1Dbmc9PQ==?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(41320700013)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?bHRrUllobjhEa0Y2b3pFNHo5LzRuNE94TElodXBHT1B4MStkWi9QY1ViNXBW?=
+ =?utf-8?B?d3NjOEhxSzNGWGdjcFdnNkJ4SlNJcDVhaVg2dWs2N3pyUC9lb3U1VkIrTnp5?=
+ =?utf-8?B?UUxIN1JtZzJDUDE4SVZYNVZZNUJ5VFk1QndVS1A2ZHF2bEN0ZEpSancyeXhn?=
+ =?utf-8?B?c29COFV6ZG5BeFp5T2VWTi9QVFRjWnB4eXZoUElHbkROMHB1ejhlc3kwdFN3?=
+ =?utf-8?B?SEw5NGlpSzVKdE1uaXVyYTYzZy9CTndMeDVNQllOVDhVcTFOZzlONXJKK1Nx?=
+ =?utf-8?B?RVkwSXhrMUNHd2dQS2JMLzAxOUtPYmljaEVpcHJac1NXSHJZZmhkMGgxTjk3?=
+ =?utf-8?B?NUJIMitLaWRnb0pGOFUxMGRHL3FpRzVsUFRkSSsrN1BmNjFxc1Bjdlh3VXhP?=
+ =?utf-8?B?alNOM2Z3cWRrbFkzZ3QyeVI1U0tSSWNhaGdFQ29sWHptT1hkdEh5RGg2TTZu?=
+ =?utf-8?B?QjdTbVp2NjZWUUt6UWVZdStIQzFGcXh1bHZHSFZ1K09YdmN4SjZ3ZU1GMjFx?=
+ =?utf-8?B?LzVFMUgzczhZNXJEUm1WRjZOc3ZjR2ZUbTNRbktMUWVYenhUVWdNZWdKWWdx?=
+ =?utf-8?B?WklURjRRVUMza1FXNCsvbDliTmdnSURncVFBbHNwY01SQ3U2NzNMRnV5Mzk0?=
+ =?utf-8?B?V1B5UEpwSURPT20vWno0Zmh5ckVjRVdNRWFCNHVPL3ZTdHROSzhJRDZuM3U4?=
+ =?utf-8?B?Q2VDcnd2aXdpbk5WY3BmNVBqN01xL1RSWFV4N253ZFNlVUwyNjA2d1QwNW9s?=
+ =?utf-8?B?SHFjOS9ZQ3BGQ3VMWU1DWVM1VXNsUWpjVVJuZ2tGNUNWY0MzMDNVNUpLd0l4?=
+ =?utf-8?B?WVJqczhEclQ2MSt3dHhrRTZoYnFLYkE2UEwzdUtsTUpBVFZtN2dPOWpGOEdh?=
+ =?utf-8?B?a0RHdE1oMDlaZXAvWVIwRmNXVzJLbHYvaitaYnVsbi9SYWd3K3o0SjdHVTZ3?=
+ =?utf-8?B?d0pDbUlmVWVDdmpFenY1MnZUc2oxdkZWM2lsN211Nm9YbzgyOCs3Um5LdG53?=
+ =?utf-8?B?T2RvRmtxbjN1WjZjNXdzWTdKNFgwMURnb2ZXM2lKZ3BvZU5XRDdwc1VmOU1G?=
+ =?utf-8?B?VzdNb0dxcUdSV21rcFU0N1J5RHRWYWJpU01STDM1cFljc2FGL2hLQmRBNXBo?=
+ =?utf-8?B?UWlRYXlZSUhqM1d4b0xHS0pRbzZDUWhNbEc2S0FkdGRyU0F1Z0hiczlWanlU?=
+ =?utf-8?B?VytEbzEzMVRHNFA1ckEraUM5Rmk2R2lvb2d1Um9QNVZ6dklrYXRma1RZOTRs?=
+ =?utf-8?B?cmJPYmpVVXQzRzAxczlXd1YvZ0d0dElyUSt4NkFtM1psYldtUnIzLzhXN1Z2?=
+ =?utf-8?B?cXRUYlJVL0tpbG9iT2hGbzdUdU81dEh3K1YwK092T0JUNEdEYjRPdnpMd0lj?=
+ =?utf-8?B?dmx3TG5OMFVabGpkaWpkYVcyaUNIbEFQNzdEeHhoMDhsR3ZSSVRMQWpCNFZP?=
+ =?utf-8?B?N3RIRFhadk1YS1Q5eFpCOU5NSFAyOGhFeEVTODJvY0pFSCt3c1FvVFVMRnB2?=
+ =?utf-8?B?bW1TRkVoUTk3TXVPbzBLamkwR0V2c2RBamdvUmlIRTJ3dGcxWEJ0dy9LTDVZ?=
+ =?utf-8?B?aFd4MDcxQzg0c1Uyd2dhZ21INDM5MU5pbkhENFlKRVlxN1BrKzdNVW1VdE9V?=
+ =?utf-8?B?ZUd0Z3pPalNlNUVnTkROZ2ExS0pGWm1Fb2RqekgwbnUvdXBLdW4zODFQT0Vu?=
+ =?utf-8?B?LzRoTldpYlZWMnpEWDQyc1crY29KVVdvWWZiSnFtdTdCdHBWSisxdUVuMDl3?=
+ =?utf-8?B?eUZCZVh6YVAyclVFMUtFL3BDamVaNnQ4Y0hRUm0wbXo3K256RDFqejRoeWlq?=
+ =?utf-8?B?bU1TWkFhVUNYOU9WNkZMU2RvdFYzR0JBdFg3dzR0TFJPZVBzKzlPYk5mUFlE?=
+ =?utf-8?B?TSsrcExYMHFTVFlYOHhTYTJ5S2sxYWt2aXEwMm1hRUM1eDJmM0YyNXBGZGpu?=
+ =?utf-8?B?TTZaMERFeGU4YW51SlhzVlE3S2c4eStPWWE0eTlLeFBLbUhhUjViRzc3NjFH?=
+ =?utf-8?B?UWR0OXArRHh2TXdjNEFtUHV0a0VYOWg3ekdENGF5UG0ya3gwQUJ5Y3RtVnM0?=
+ =?utf-8?Q?ZO1CWm?=
+MIME-Version: 1.0
+X-OriginatorOrg: SynopticEngineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 818e0274-6c44-4d90-9ded-08dcafc34c90
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jul 2024 11:40:51.7644
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN2P110MB1527
+Message-ID-Hash: WNHZEPKPRQEHYWIQJXLD53XKWBKQKZZ4
+X-Message-ID-Hash: WNHZEPKPRQEHYWIQJXLD53XKWBKQKZZ4
+X-MailFrom: david@SynopticEngineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E320 UHD Connection Fault
+Subject: [USRP-users] Re: E320 UHD Connection Fault
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7IXQBC2GCTJ2R3A3HEXZICTANN65EFJE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KU3HOCDJY2KKTJB6JG6KJWJUNESNIUZU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?Emre_YILDIZ_=28B=C4=B0LGEM_=C4=B0LTAREN=29_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: Emre YILDIZ =?utf-8?Q?=28B=C4=B0LGEM_=C4=B0LTAREN=29?= <emre.yildiz@tubitak.gov.tr>
-Content-Type: multipart/mixed; boundary="===============8823426309101015725=="
+From: David Raeman via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Raeman <david@SynopticEngineering.com>
+Content-Type: multipart/mixed; boundary="===============3386814694249758242=="
 
---===============8823426309101015725==
+--===============3386814694249758242==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="=_c6aef2e5-baef-4db2-9dd6-9c1433a52c83"
+	boundary="_000_BN2P110MB1747B5617F4B4AD3D857EE13B7B7ABN2P110MB1747NAMP_"
 
---=_c6aef2e5-baef-4db2-9dd6-9c1433a52c83
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+--_000_BN2P110MB1747B5617F4B4AD3D857EE13B7B7ABN2P110MB1747NAMP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Dear usrp users and Ettus Research support team, 
+SGkgRW1yZSwNCg0KWW91IGNhbiB1c2UgVUhEIDQuNiB3aXRoIGEgVVNSUCBFMzIwLiBIb3dldmVy
+LCB0aGUgdmVyc2lvbiBvbiB5b3VyIGhvc3QgY29tcHV0ZXIgYW5kIG9uIHRoZSBVU1JQIG11c3Qg
+YmUgdGhlIHNhbWUuIFlvdSB3aWxsIG5lZWQgdG8gdXBkYXRlIHRoZSBFMzIwIGZpbGVzeXN0ZW0g
+dG8gYWxzbyBiZSBvbiBVSEQgNC42LiBUaGVyZSBhcmUgaW5zdHJ1Y3Rpb25zIGluIHRoZSDigJxF
+MzIwIEdldHRpbmcgU3RhcnRlZCBHdWlkZeKAnS4NCg0KSG9wZSB0aGlzIGhlbHBzLA0KRGF2aWQN
+Cg0KDQpGcm9tOiBFbXJlIFlJTERJWiAoQsSwTEdFTSDEsExUQVJFTikgdmlhIFVTUlAtdXNlcnMg
+PHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU2VudDogTW9uZGF5LCBKdWx5IDI5LCAyMDI0
+IDc6MjQgQU0NClRvOiB1c3JwLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1
+YmplY3Q6IFtVU1JQLXVzZXJzXSBFMzIwIFVIRCBDb25uZWN0aW9uIEZhdWx0DQoNCkRlYXIgdXNy
+cCB1c2VycyBhbmQgRXR0dXMgUmVzZWFyY2ggc3VwcG9ydCB0ZWFtLA0KDQpMYXN0IHdlZWsgSSBh
+c2tlZCBxdWVzdGlvbiBoZXJlIGFib3V0IHdoZW4gSSBydW4gdGhlIGZvbGxvd2luZyBjb21tYW5k
+IEkgZ290IHRoZSBlcnJvciBtZXNzYWdlIGdpdmVuIGJlbG93Og0KY29tbWFuZDogIHVoZF91c3Jw
+X3Byb2JlIC0tYXJncyAiYWRkcj0xOTIuMTY4LjEwLjI8Y2FsbHRvOjE5Mi4xNjguMTAuMj4iDQoN
+CkVycm9yIG1lc3NhZ2U6ICBSdW50aW1lRXJyb3I6IHJwYzo6dGltZW91dDogVGltZW91dCBvZiAy
+MDAwbXMgd2hpbGUgY2FsbGluZyBSUEMgZnVuY3Rpb24gJ3NldF9kZXZpY2VfaWQnDQoNCmV2ZW4g
+SSBjaGFuZ2UgdGhlIGFyZ3MgbGlrZSB0aGF0IDogbWdtdF9hZGRyPTE5Mi4xNjguMTAuMjxjYWxs
+dG86MTkyLjE2OC4xMC4yPix0eXBlPWUzeHgscHJvZHVjdD1lMzIwLHNlcmlhbD0zM0NCMTBDLGNs
+YWltZWQ9RmFsc2UsYWRkcj0xOTIuMTY4LjEwLjI8Y2FsbHRvOjE5Mi4xNjguMTAuMj4NCkkgc3Rp
+bGwgZ290IHRoZSBzYW1lIGVycm9yIG1lc3NhZ2UuDQoNClRoZW4gSSBjb25uZWN0ZWQgdGhlIGRl
+dmljZSB2aWEgc2VyaWFsIHBvcnQgdG8gdXNlIGl0cyBvd24gbGludXggYXMgcm9vdCBtb2RlLiBJ
+IHJ1biB1aGRfY29uZmlnIGluZm8gLS12ZXJzaW9uIGFuZCBpdHMgcmV0dXJuZWQgbWUgVUhEIHZl
+cnNpb24gMy4xNS4NCkFsc28gSSB1c2UgdWhkX3NpZ2dlbiBjb21tYW5kIG9uIGUzMjAncyBsaW51
+eCBhbmQgaXRzIGdlbmVyYXRlZCBzaWduYWwgc3VjY2Vzc2Z1bGx5Lg0KDQpEbyBJIGhhdmUgdG8g
+dXNlIFVIRCAzLjE1IGZvciBFMzIwIGRldmljZSBvciBJcyB0aGVyZSBhbnl0aGluZyB3cm9uZyBh
+Ym91dCBteSBhcHBsaWNhdGlvbi4gUGxlYXNlIG5vdGUgdGhhdCBJIGFtIHVzaW5nIFVIRCA0LjYg
+b24gbXkgY29tcHV0ZXIgYW5kIEkgd2FudCB1c2UgdGhhdCB1c3JwIGZyb20gZ251cmFkaW8gaG93
+ZXZlciwgSSBjYW50IHVzZSBpdCBiZWNhdXNlIG9mIHRoZSBlcnJvci4NCg==
 
-Last week I asked question here about when I run the following command I got the error message given below: 
+--_000_BN2P110MB1747B5617F4B4AD3D857EE13B7B7ABN2P110MB1747NAMP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-command : uhd_usrp_probe --args "addr= [ callto:192.168.10.2 | 192.168.10.2 ] " 
-Error message: RuntimeError: rpc::timeout: Timeout of 2000ms while calling RPC function 'set_device_id' 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
+OnVuZGVybGluZTt9DQpzcGFuLm9iamVjdA0KCXttc28tc3R5bGUtbmFtZTpvYmplY3Q7fQ0Kc3Bh
+bi5vYmplY3QtaG92ZXINCgl7bXNvLXN0eWxlLW5hbWU6b2JqZWN0LWhvdmVyO30NCnNwYW4uRW1h
+aWxTdHlsZTIyDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5
+OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1
+bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDsNCglt
+c28tbGlnYXR1cmVzOm5vbmU7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEu
+MGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24x
+DQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4
+bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94
+bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2
+OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFw
+ZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBs
+aW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0K
+PGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpIEVtcmUs
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPllvdSBjYW4gdXNlIFVIRCA0LjYgd2l0aCBhIFVTUlAg
+RTMyMC4gSG93ZXZlciwgdGhlIHZlcnNpb24gb24geW91ciBob3N0IGNvbXB1dGVyIGFuZCBvbiB0
+aGUgVVNSUCBtdXN0IGJlIHRoZSBzYW1lLiBZb3Ugd2lsbCBuZWVkIHRvIHVwZGF0ZSB0aGUgRTMy
+MCBmaWxlc3lzdGVtIHRvIGFsc28gYmUgb24gVUhEIDQuNi4gVGhlcmUgYXJlIGluc3RydWN0aW9u
+cyBpbiB0aGUg4oCcRTMyMCBHZXR0aW5nIFN0YXJ0ZWQgR3VpZGXigJ0uPG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPkhvcGUgdGhpcyBoZWxwcyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPkRhdmlkPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFF
+MSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxiPkZyb206PC9iPiBFbXJlIFlJTERJWiAoQsSwTEdFTSDEsExUQVJFTikgdmlhIFVTUlAtdXNl
+cnMgJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ow0KPGJyPg0KPGI+U2VudDo8L2I+
+IE1vbmRheSwgSnVseSAyOSwgMjAyNCA3OjI0IEFNPGJyPg0KPGI+VG86PC9iPiB1c3JwLXVzZXJz
+ICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4g
+W1VTUlAtdXNlcnNdIEUzMjAgVUhEIENvbm5lY3Rpb24gRmF1bHQ8bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
+CjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206
+MTIuMHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtB
+cmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5EZWFyIHVzcnAgdXNlcnMgYW5kIEV0
+dHVzIFJlc2VhcmNoIHN1cHBvcnQgdGVhbSw8YnI+DQo8YnI+DQpMYXN0IHdlZWsgSSBhc2tlZCBx
+dWVzdGlvbiBoZXJlIGFib3V0IHdoZW4gSSBydW4gdGhlIGZvbGxvd2luZyBjb21tYW5kIEkgZ290
+IHRoZSBlcnJvciBtZXNzYWdlIGdpdmVuIGJlbG93OjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzdHJvbmc+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtj
+b2xvcjpibGFjaztiYWNrZ3JvdW5kOiNGREZERkQiPmNvbW1hbmQ8L3NwYW4+PC9zdHJvbmc+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjpibGFjaztiYWNrZ3JvdW5kOiNGREZERkQiPjombmJzcDsgdWhkX3Vz
+cnBfcHJvYmUgLS1hcmdzDQogJnF1b3Q7YWRkcj08L3NwYW4+PHNwYW4gY2xhc3M9Im9iamVjdCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjojMzM2Njk5O2JhY2tncm91bmQ6I0ZERkRGRCI+PGEgaHJlZj0i
+Y2FsbHRvOjE5Mi4xNjguMTAuMiI+PHNwYW4gc3R5bGU9ImNvbG9yOiMzMzY2OTk7dGV4dC1kZWNv
+cmF0aW9uOm5vbmUiPjE5Mi4xNjguMTAuMjwvc3Bhbj48L2E+PC9zcGFuPjwvc3Bhbj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5z
+LXNlcmlmO2NvbG9yOmJsYWNrO2JhY2tncm91bmQ6I0ZERkRGRCI+JnF1b3Q7PGJyPg0KPGJyPg0K
+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Fy
+aWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzdHJvbmc+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJp
+Zjtjb2xvcjpibGFjayI+RXJyb3IgbWVzc2FnZTo8L3NwYW4+PC9zdHJvbmc+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJp
+Zjtjb2xvcjpibGFjayI+Jm5ic3A7DQo8c3BhbiBzdHlsZT0iYmFja2dyb3VuZDojRkRGREZEIj5S
+dW50aW1lRXJyb3I6IHJwYzo6dGltZW91dDogVGltZW91dCBvZiAyMDAwbXMgd2hpbGUgY2FsbGlu
+ZyBSUEMgZnVuY3Rpb24gJ3NldF9kZXZpY2VfaWQnJm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2s7YmFja2dy
+b3VuZDojRkRGREZEIj5ldmVuIEkNCjxzdHJvbmc+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZx
+dW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPmNoYW5nZSB0aGUgYXJnczwvc3Bhbj48L3N0cm9u
+Zz4gbGlrZSB0aGF0IDoNCjxlbT48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwm
+cXVvdDssc2Fucy1zZXJpZiI+bWdtdF9hZGRyPTwvc3Bhbj48L2VtPjwvc3Bhbj48c3BhbiBjbGFz
+cz0ib2JqZWN0Ij48aT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTom
+cXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMzMzY2OTk7YmFja2dyb3VuZDojRkRG
+REZEIj48YSBocmVmPSJjYWxsdG86MTkyLjE2OC4xMC4yIj48c3BhbiBzdHlsZT0iY29sb3I6IzMz
+NjY5OTt0ZXh0LWRlY29yYXRpb246bm9uZSI+MTkyLjE2OC4xMC4yPC9zcGFuPjwvYT48L3NwYW4+
+PC9pPjwvc3Bhbj48ZW0+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjaztiYWNrZ3JvdW5kOiNGREZE
+RkQiPix0eXBlPWUzeHgscHJvZHVjdD1lMzIwLHNlcmlhbD0zM0NCMTBDLGNsYWltZWQ9RmFsc2Us
+YWRkcj08L3NwYW4+PC9lbT48c3BhbiBjbGFzcz0ib2JqZWN0LWhvdmVyIj48aT48dT48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5z
+LXNlcmlmO2NvbG9yOiMzMzY2OTk7YmFja2dyb3VuZDojRkRGREZEIj48YSBocmVmPSJjYWxsdG86
+MTkyLjE2OC4xMC4yIj48c3BhbiBzdHlsZT0iY29sb3I6IzMzNjY5OTt0ZXh0LWRlY29yYXRpb246
+bm9uZSI+MTkyLjE2OC4xMC4yPC9zcGFuPjwvYT48L3NwYW4+PC91PjwvaT48L3NwYW4+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fu
+cy1zZXJpZjtjb2xvcjpibGFjayI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2s7YmFja2dyb3VuZDojRkRG
+REZEIj5JIHN0aWxsIGdvdCB0aGUgc2FtZSBlcnJvciBtZXNzYWdlLiZuYnNwOzwvc3Bhbj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90Oyxz
+YW5zLXNlcmlmO2NvbG9yOmJsYWNrIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTIuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6Ymxh
+Y2siPjxicj4NClRoZW4gSSBjb25uZWN0ZWQgdGhlIGRldmljZSB2aWEgPHN0cm9uZz48c3BhbiBz
+dHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+c2VyaWFsIHBv
+cnQ8L3NwYW4+PC9zdHJvbmc+IHRvIHVzZSBpdHMNCjxzdHJvbmc+PHNwYW4gc3R5bGU9ImZvbnQt
+ZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPm93biBsaW51eCBhcyByb290IG1v
+ZGU8L3NwYW4+PC9zdHJvbmc+LiBJIHJ1bjxzdHJvbmc+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPiB1aGRfY29uZmlnIGluZm8gLS12ZXJzaW9u
+PC9zcGFuPjwvc3Ryb25nPiBhbmQgaXRzIHJldHVybmVkIG1lDQo8c3Ryb25nPjxzcGFuIHN0eWxl
+PSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmIj5VSEQgdmVyc2lvbiAz
+LjE1Ljwvc3Bhbj48L3N0cm9uZz48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250
+LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5BbHNvIEkg
+dXNlPHN0cm9uZz48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fu
+cy1zZXJpZiI+IHVoZF9zaWdnZW4mbmJzcDs8L3NwYW4+PC9zdHJvbmc+Y29tbWFuZCBvbiBlMzIw
+J3MgbGludXggYW5kIGl0cyBnZW5lcmF0ZWQgc2lnbmFsIHN1Y2Nlc3NmdWxseS4mbmJzcDs8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbTox
+Mi4wcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Fy
+aWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPkRvIEkgaGF2ZSB0byB1c2UgVUhEIDMu
+MTUgZm9yIEUzMjAgZGV2aWNlIG9yIElzIHRoZXJlIGFueXRoaW5nIHdyb25nIGFib3V0IG15IGFw
+cGxpY2F0aW9uLiBQbGVhc2Ugbm90ZSB0aGF0IEkgYW0gdXNpbmcgVUhEIDQuNiBvbiBteQ0KIGNv
+bXB1dGVyIGFuZCBJIHdhbnQgdXNlIHRoYXQgdXNycCBmcm9tIGdudXJhZGlvIGhvd2V2ZXIsIEkg
+Y2FudCB1c2UgaXQgYmVjYXVzZSBvZiB0aGUgZXJyb3IuJm5ic3A7PG86cD48L286cD48L3NwYW4+
+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-even I change the args like that : mgmt_addr= [ callto:192.168.10.2 | 192.168.10.2 ] ,type=e3xx,product=e320,serial=33CB10C,claimed=False,addr= [ callto:192.168.10.2 | 192.168.10.2 ] 
-I still got the same error message. 
+--_000_BN2P110MB1747B5617F4B4AD3D857EE13B7B7ABN2P110MB1747NAMP_--
 
-Then I connected the device via serial port to use its own linux as root mode . I run uhd_config info --version and its returned me UHD version 3.15. 
-Also I use uhd_siggen command on e320's linux and its generated signal successfully. 
-
-Do I have to use UHD 3.15 for E320 device or Is there anything wrong about my application. Please note that I am using UHD 4.6 on my computer and I want use that usrp from gnuradio however, I cant use it because of the error. 
-
-
---=_c6aef2e5-baef-4db2-9dd6-9c1433a52c83
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><body><div style=3D"font-family: arial, helvetica, sans-serif; font-s=
-ize: 12pt; color: #000000"><div>Dear usrp users and Ettus Research support =
-team,<br><br>Last week I asked question here about when I run the following=
- command I got the error message given below:<br><br></div><!--StartFragmen=
-t--><div><span style=3D"color: #000000; font-family: arial, helvetica, sans=
--serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal=
-; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orph=
-ans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: =
-2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; =
-background-color: #fdfdfd; text-decoration-thickness: initial; text-decorat=
-ion-style: initial; text-decoration-color: initial; display: inline !import=
-ant; float: none;" data-mce-style=3D"color: #000000; font-family: arial, he=
-lvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-liga=
-tures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing:=
- normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: n=
-one; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-sp=
-ace: normal; background-color: #fdfdfd; text-decoration-thickness: initial;=
- text-decoration-style: initial; text-decoration-color: initial; display: i=
-nline !important; float: none;"><strong>command</strong>:&nbsp; uhd_usrp_pr=
-obe --args "addr=3D</span><span class=3D"Object" role=3D"link" id=3D"OBJ_PR=
-EFIX_DWT299_com_zimbra_phone" style=3D"color: #336699; text-decoration: non=
-e; cursor: pointer; font-family: arial, helvetica, sans-serif; font-size: 1=
-6px; font-style: normal; font-variant-ligatures: normal; font-variant-caps:=
- normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: =
-start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px=
-; -webkit-text-stroke-width: 0px; white-space: normal; background-color: #f=
-dfdfd;" data-mce-style=3D"color: #336699; text-decoration: none; cursor: po=
-inter; font-family: arial, helvetica, sans-serif; font-size: 16px; font-sty=
-le: normal; font-variant-ligatures: normal; font-variant-caps: normal; font=
--weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-i=
-ndent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-tex=
-t-stroke-width: 0px; white-space: normal; background-color: #fdfdfd;"><a hr=
-ef=3D"callto:192.168.10.2" onclick=3D"window.top.Com_Zimbra_Phone.unsetOnbe=
-foreunload()" style=3D"color: #336699; text-decoration: none; cursor: point=
-er;" data-mce-href=3D"callto:192.168.10.2" data-mce-style=3D"color: #336699=
-; text-decoration: none; cursor: pointer;">192.168.10.2</a></span><span sty=
-le=3D"color: #000000; font-family: arial, helvetica, sans-serif; font-size:=
- 16px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
-s: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align=
-: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0=
-px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: =
-#fdfdfd; text-decoration-thickness: initial; text-decoration-style: initial=
-; text-decoration-color: initial; display: inline !important; float: none;"=
- data-mce-style=3D"color: #000000; font-family: arial, helvetica, sans-seri=
-f; font-size: 16px; font-style: normal; font-variant-ligatures: normal; fon=
-t-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: =
-2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; wo=
-rd-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; backg=
-round-color: #fdfdfd; text-decoration-thickness: initial; text-decoration-s=
-tyle: initial; text-decoration-color: initial; display: inline !important; =
-float: none;">"<br></span></div><!--EndFragment--><div style=3D"clear: both=
-;" data-mce-style=3D"clear: both;"><strong>Error message:</strong>&nbsp; <!=
---StartFragment--><span style=3D"color: #000000; font-family: arial, helvet=
-ica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligature=
-s: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: nor=
-mal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none;=
- widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space:=
- normal; background-color: #fdfdfd; text-decoration-thickness: initial; tex=
-t-decoration-style: initial; text-decoration-color: initial; display: inlin=
-e !important; float: none;" data-mce-style=3D"color: #000000; font-family: =
-arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-var=
-iant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter=
--spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tra=
-nsform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
- white-space: normal; background-color: #fdfdfd; text-decoration-thickness:=
- initial; text-decoration-style: initial; text-decoration-color: initial; d=
-isplay: inline !important; float: none;">RuntimeError: rpc::timeout: Timeou=
-t of 2000ms while calling RPC function 'set_device_id'&nbsp;</span><!--EndF=
-ragment--><div style=3D"clear: both;" data-mce-style=3D"clear: both;"><br><=
-/div></div><div style=3D"clear: both;" data-mce-style=3D"clear: both;"><spa=
-n style=3D"color: #000000; font-family: arial, helvetica, sans-serif; font-=
-size: 16px; font-style: normal; font-variant-ligatures: normal; font-varian=
-t-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-=
-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fdfdfd; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;" data-mce-style=3D"color: #000000; font-family: arial, helvetica, sans=
--serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal=
-; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orph=
-ans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: =
-2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; =
-background-color: #fdfdfd; text-decoration-thickness: initial; text-decorat=
-ion-style: initial; text-decoration-color: initial; display: inline !import=
-ant; float: none;"><span style=3D"color: #000000; font-family: arial, helve=
-tica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatur=
-es: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: no=
-rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
-; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space=
-: normal; background-color: #fdfdfd; text-decoration-thickness: initial; te=
-xt-decoration-style: initial; text-decoration-color: initial; display: inli=
-ne !important; float: none;" data-mce-style=3D"color: #000000; font-family:=
- arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-va=
-riant-ligatures: normal; font-variant-caps: normal; font-weight: 400; lette=
-r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tr=
-ansform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px=
-; white-space: normal; background-color: #fdfdfd; text-decoration-thickness=
-: initial; text-decoration-style: initial; text-decoration-color: initial; =
-display: inline !important; float: none;">even I <strong>change the args</s=
-trong> like that : <!--StartFragment--><em>mgmt_addr=3D<span class=3D"Objec=
-t" role=3D"link" id=3D"OBJ_PREFIX_DWT300_com_zimbra_phone" style=3D"color: =
-rgb(51, 102, 153); text-decoration: none; cursor: pointer; font-family: ari=
-al, helvetica, sans-serif; font-size: 16px; font-variant-ligatures: normal;=
- font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orpha=
-ns: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2=
-; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; b=
-ackground-color: rgb(253, 253, 253);" data-mce-style=3D"color: #336699; tex=
-t-decoration: none; cursor: pointer; font-family: arial, helvetica, sans-se=
-rif; font-size: 16px; font-variant-ligatures: normal; font-variant-caps: no=
-rmal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: sta=
-rt; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -=
-webkit-text-stroke-width: 0px; white-space: normal; background-color: #fdfd=
-fd;"><a href=3D"callto:192.168.10.2" onclick=3D"window.top.Com_Zimbra_Phone=
-.unsetOnbeforeunload()" style=3D"color: #336699; text-decoration: none; cur=
-sor: pointer;" data-mce-href=3D"callto:192.168.10.2" data-mce-style=3D"colo=
-r: #336699; text-decoration: none; cursor: pointer;">192.168.10.2</a></span=
->,type=3De3xx,product=3De320,serial=3D33CB10C,claimed=3DFalse,addr=3D<span =
-class=3D"Object-hover" role=3D"link" id=3D"OBJ_PREFIX_DWT301_com_zimbra_pho=
-ne" style=3D"color: rgb(51, 102, 153); text-decoration: underline; font-fam=
-ily: arial, helvetica, sans-serif; font-size: 16px; font-variant-ligatures:=
- normal; font-variant-caps: normal; font-weight: 400; letter-spacing: norma=
-l; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; w=
-idows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: n=
-ormal; background-color: rgb(253, 253, 253);" data-mce-style=3D"color: #336=
-699; text-decoration: underline; font-family: arial, helvetica, sans-serif;=
- font-size: 16px; font-variant-ligatures: normal; font-variant-caps: normal=
-; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; =
-text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webk=
-it-text-stroke-width: 0px; white-space: normal; background-color: #fdfdfd;"=
-><a href=3D"callto:192.168.10.2" onclick=3D"window.top.Com_Zimbra_Phone.uns=
-etOnbeforeunload()" style=3D"color: #336699; text-decoration: none; cursor:=
- pointer;" data-mce-href=3D"callto:192.168.10.2" data-mce-style=3D"color: #=
-336699; text-decoration: none; cursor: pointer;">192.168.10.2</a></span></e=
-m><!--EndFragment--></span></span><div style=3D"clear: both;" data-mce-styl=
-e=3D"clear: both;"><span style=3D"background-color: rgb(253, 253, 253);">I =
-still got the same error message.&nbsp;</span><br></div></div><div><br>Then=
- I connected the device via <strong>serial port</strong> to use its <strong=
->own linux as root mode</strong>. I run<strong> uhd_config info --version</=
-strong> and its returned me <strong>UHD version 3.15.</strong></div><div>Al=
-so I use<strong> uhd_siggen&nbsp;</strong>command on e320's linux and its g=
-enerated signal successfully.&nbsp;</div><div><br data-mce-bogus=3D"1"></di=
-v><div>Do I have to use UHD 3.15 for E320 device or Is there anything wrong=
- about my application. Please note that I am using UHD 4.6 on my computer a=
-nd I want use that usrp from gnuradio however, I cant use it because of the=
- error.&nbsp;<br><br></div></div></body></html>
---=_c6aef2e5-baef-4db2-9dd6-9c1433a52c83--
-
---===============8823426309101015725==
+--===============3386814694249758242==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -283,4 +355,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8823426309101015725==--
+--===============3386814694249758242==--
