@@ -2,164 +2,110 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52DFC9452B8
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Aug 2024 20:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E16A09479F8
+	for <lists+usrp-users@lfdr.de>; Mon,  5 Aug 2024 12:39:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1FAA7384DE1
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Aug 2024 14:32:11 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A501B3854AE
+	for <lists+usrp-users@lfdr.de>; Mon,  5 Aug 2024 06:39:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1722537131; bh=Zpu9JSNYO5TvqnvppOn8XpZJqnr7kTphxcBvyAb/i7s=;
-	h=To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1722854389; bh=hy0yumZZ1XB8BiqUfWWwU6CnwTql+WGf+lr6q9USg2M=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=z1ohmzIxFvzY5g5r8+hvRo0yuVElGNWEOkRJsxSEnRDdHC78E0sa7jleywZglpm5H
-	 fMXFsfrzbY5WbooAO0c3ijbet3MWKejq8fXhD4lAu6TsiaHR3fK0T5h5h1JvcD/c2y
-	 TSmbfMrmKfo8QlP1yPIWY0/XVEwywgj1AOFeJB1P3dT2IWzhUL87n5tw5Kd7uMkn9B
-	 VdYnvtsFLp7BCinVPnyK4im/Zo2SJkeEKCBM0k/At/OG2Fmozr61B1tXTNz3ADCyob
-	 u7mdQLhuJWFhSjab9DaJImVrIvIyU1cjejQe5xVNifyiW+yeqcVfY8xAIgP3WqDCpK
-	 nrTnEsZiIRwVw==
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0042.outbound.protection.office365.us [23.103.208.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 56CA7384DE1
-	for <usrp-users@lists.ettus.com>; Thu,  1 Aug 2024 14:31:07 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=str.us header.i=@str.us header.b="M37A4wRQ";
-	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=Iey7rMhOUIpULlmCIWHs3IGtZzJITsqUmkRXdjGO6GGQYemDzirHOr66nbKKaOO2TIxSIHxYbo68UHJRXHy6Pei+8T1uPdxBbKU63csanlGazBZqmYxYPEKPZg3xFdrivpzFHUa2n0RtWrcygRgmtTmngX2rC+w/rC9bol5Vma2psbqB2NxkPLAwh+/mBhVY66jHLnF0mpDXYOcroTIZP/jxdSJPGQG3XkXcACnAJj3FeJUE6b8AOGRkVL4W/F7hRKtiddWG83yew8g59XyWK3Wr+eBUsk8oV6RXfxceEdYWstdBiEVyyPhNXRi16HFD4K0T2OzXYI4cYqyM15694w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZWqjQ0GV2rHfhPyujH4YNGgYhZFiOPFbeNDStT4dG7g=;
- b=d+587MS5hf7PdKM2GnDm5gT6LPwY7wu8gLlJ7uzFtEb9evR3cMduI2nFTgkAel8bjt/2DyCKxyM5dC88qJ+jKrDzEp51b2APG8jabXrBm+BfPcQuI3UBJi6lTB+cp9WBGrS/IGMprriMHnilLmVQlOLfNutPsxDVue7WkAfQzpy+ZNA9pF8JXXyWuuOpgLSvHcJrCSPzfgeugp54RvB0AC137u8MHHIo0DnG7RTOFqJRj1je6qmd7c2MVPD1qyts4V+zBqsREo241paAtNsEv4hdJWqmMZQfsrk1dKPhntwsiEcbpD+wl2cCHouGxC8CNBSy04p8VYKnO5qmw228Iw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=str.us; dmarc=pass action=none header.from=str.us; dkim=pass
- header.d=str.us; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=str.us; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZWqjQ0GV2rHfhPyujH4YNGgYhZFiOPFbeNDStT4dG7g=;
- b=M37A4wRQCjS/prmCG3DSCUR0pSEoJGaaaQQqGeeH7S/HKx0UiNvsfGCLl5lUCyFR9SZFJVCTgF9+hCHBfam+WaoR+IZK3LoWGRNEQRSFiC9WUC4pEVammp44a1m08nm4aKbEXCmlV0NIAxC4MzX6P2YZS5i2fR4K99kr8UKBffg=
-Received: from BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:16e::7)
- by BN0P110MB2171.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:1a2::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.37; Thu, 1 Aug
- 2024 18:31:05 +0000
-Received: from BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM
- ([fe80::23c7:8e15:bd:3325]) by BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM
- ([fe80::23c7:8e15:bd:3325%5]) with mapi id 15.20.7784.035; Thu, 1 Aug 2024
- 18:31:05 +0000
-To: "Kaya, Altug" <altug.kaya@hhi.fraunhofer.de>, "usrp-users@lists.ettus.com"
+	 From;
+	b=uRoeltK6q+mz4rHLN96cVWtP4gwvHz4UuetqviDArZuFxTBkXtDa93uZ0SUcIJp1H
+	 rrDqtybCNFxl3ahstmSx38Bqy2GmGW+kZWnvR7hE+KzPrsjJ/e6A3GS+HWUHTQQDEr
+	 udnxyD/YboCXcAv09r744jQ+evOHExB839sMVJeVxl2MKJY1cUJ8d5jhcIM6aWaVAL
+	 fgQ2XTa1Xb98EsFmVU/x0dCKmOP0JH5C0CqhmBhc5XvuW1zGH3EnSeai/oIXhg2veq
+	 vrNPnHZzSjZbvIPemj9RLuDuV4RilV7sjMJSCubAx1MRIo/9MTX8OyOfIDyPwS5zpj
+	 0dSKkGzqPdzdQ==
+Received: from mail.hhi.fraunhofer.de (mail.HHI.FRAUNHOFER.DE [193.174.67.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5944538532B
+	for <usrp-users@lists.ettus.com>; Mon,  5 Aug 2024 06:39:41 -0400 (EDT)
+Received: from 172.16.0.106 by mail.hhi.fraunhofer.de (Tls12, Aes256, Sha384,
+ DiffieHellmanEllipticKey384); Mon, 05 Aug 2024 10:39:39 GMT
+Received: from mxsrv2.fe.hhi.de (172.16.0.105) by mxsrv3.fe.hhi.de
+ (172.16.0.106) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1544.11; Mon, 5 Aug
+ 2024 12:39:37 +0200
+Received: from mxsrv2.fe.hhi.de ([fe80::a6ac:c6a3:8cbe:4317]) by
+ mxsrv2.fe.hhi.de ([fe80::a6ac:c6a3:8cbe:4317%6]) with mapi id 15.02.1544.011;
+ Mon, 5 Aug 2024 12:39:37 +0200
+From: "Kaya, Altug" <altug.kaya@hhi.fraunhofer.de>
+To: "Panuski, Patrick" <patrick.panuski@str.us>, "usrp-users@lists.ettus.com"
 	<usrp-users@lists.ettus.com>
 Thread-Topic: X440 Tx and Rx Power Constraints
-Thread-Index: AdriiEO92bxfVU67TCOmm+FBO9U7+ABsodMQ
-Date: Thu, 1 Aug 2024 18:31:05 +0000
-Message-ID: 
- <BN0P110MB101423D7A04A6F86EC58045E84B2A@BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM>
+Thread-Index: AdriiEO92bxfVU67TCOmm+FBO9U7+ABsodMQALjj5rA=
+Date: Mon, 5 Aug 2024 10:39:37 +0000
+Message-ID: <d16672fea2ee4379a73b9e5d1520bc2e@hhi.fraunhofer.de>
 References: <ec3aae17e9b346ec9ad87e62dc19f5ab@hhi.fraunhofer.de>
-In-Reply-To: <ec3aae17e9b346ec9ad87e62dc19f5ab@hhi.fraunhofer.de>
+ <BN0P110MB101423D7A04A6F86EC58045E84B2A@BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM>
+In-Reply-To: <BN0P110MB101423D7A04A6F86EC58045E84B2A@BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=str.us;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN0P110MB1014:EE_|BN0P110MB2171:EE_
-x-ms-office365-filtering-correlation-id: 3db094d7-385b-410d-27e7-08dcb2581a7d
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|366016|41320700013|80162021|38070700018;
-x-microsoft-antispam-message-info: 
- =?us-ascii?Q?xmFuTXkbemFnWgP8KHEETHwWXxrRcNZodQ+z5AbCCDSZZpebt3t977eg5WTD?=
- =?us-ascii?Q?7+tj5THdpdPnHoAz37A0KR1kxWBoUT5NMegJ7nDJHFdIcvpsTxvY90vd4I4T?=
- =?us-ascii?Q?lnJKuB6kFmpufYReWyLEIT95OHNF/PvupaexQJv1fTNQ8dwh3g7CJ0WWFdSc?=
- =?us-ascii?Q?vgWRTSyZ3Nqof6d8ycJxvssdDK23RwAwKJtYdtzwWpefyg1tjjPWKql9wccu?=
- =?us-ascii?Q?IQ7xmYxL91TtuHnRDrDBdbBuIG6BDdxpAFGekyaO5eJRS5pHpTOyZd+/HaPx?=
- =?us-ascii?Q?doMbShDLXe5NIXyaYlI2HM2EYnIo84b61EY8XDZmzPVH+b+5Fac1OYoGXxgo?=
- =?us-ascii?Q?rqH6onHmz7vxfC4VZzizXKHBVrJ4wQl9X6KDxUvufA6MHL2K6v5vuxdbcLk6?=
- =?us-ascii?Q?oH5IqutS9FLiCVctzEJW4KutvCnQsWzBp4bUMG9Xx1IyGq3F7tlSo4D8Vg8L?=
- =?us-ascii?Q?iGmCPxzodP2kMYu2Z2XQJGYVowRNANgHP/xyiQFWKkXxllGFDGpDZkVIjxw+?=
- =?us-ascii?Q?7LglxVF7ak1vjUYtoHVAnFFLz59VwWQU4eVYXaqWLt6f2XP4bRIeUIkwLs/9?=
- =?us-ascii?Q?9G2U7bbZpQztNYQPKm0PsEIdq+06gbc7ZDGPt2PPG5OeOFL4+VDH0wshiPU4?=
- =?us-ascii?Q?T5YPmGUnISJG3aDXx/KSLUG3NSJlk0EVGI3JxSF5lj6CSdvcgj//PGDLpd2o?=
- =?us-ascii?Q?tysfNeO5ryYFPGE6Vb5FxZzyMZe+BFSY6wOeVo4yQtS+nU4sSuZK71x3DxqS?=
- =?us-ascii?Q?XCsb+DeiAgvm9+lDqeiRi2Ho/qj9Y6kcS4nP2P7lGsdUUmejE2YAVpjVSQGe?=
- =?us-ascii?Q?jALyvUJE87FNBX6GLILN/x6hto1LYO1y2+i5c/MBqBnRUQvIdtL+YvYk5sOf?=
- =?us-ascii?Q?59PYJxcDpC6xis07P2GFMcXwDYf0o4o5VjUwGs2kFQHdP+kihzDFbOwbd6in?=
- =?us-ascii?Q?lvHVltvPNYfmEAkYGoJFeuoyrmRav+STuizbGPpMw1jQJC6mZBYv9izRI9Cr?=
- =?us-ascii?Q?9/mCIm7Sot7qcUgVrqEIDUy+UOqW4a6vC90h8YLvT5hOiO5xzGSLHUK6AIea?=
- =?us-ascii?Q?OGNsuSLeloMC8x5rokYDTQtrCP6f2GSE0/uZezGIaTd4o6/tqujJTO3G58x2?=
- =?us-ascii?Q?WXNgaNWBs4Blfv5kToEY+z3KUvN4d5wIFAhWf+YmZuted3tFcIYMEOVlmdNi?=
- =?us-ascii?Q?tkJeeqdKSNrZKZsjXpBmAcjpBolV4wTawceqZ6LkBXVwCbq8VESdMLRWZOKk?=
- =?us-ascii?Q?PD6IMs+qg14fBhJt78OeCaxuPhBvbbUX1ecs1dwfBq/NoTk+GEpzhcR0xPd/?=
- =?us-ascii?Q?DuI9Y6gumqP+vg4byDyvwdDsRl9+kbm36kHjhUAgDPpYY3dht2kWp7lqqYoW?=
- =?us-ascii?Q?VI782iaY3kXZwFFBafkUEje6egiq?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(41320700013)(80162021)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?SZQtASAJL826Ot869bjR9I8yLsxrexk2kqAfVux8a/Mk3uzNg2PjQnUnx//P?=
- =?us-ascii?Q?cykAyV+FSgQIu2MEZdMBVPVNfdNg6mF/RyWIggYm3DG0Zc8Y8cKggQ44RRa2?=
- =?us-ascii?Q?Sqa6zuYoIb0aO9A4lXZ/83X3gqA5sYNk4HMgaJsLSG7Fdo3krxQ18a8ALZ3Z?=
- =?us-ascii?Q?Lj53XoAtyFBA5/lqvnKgQaJ2YDv9aDkOIzyGLiUgYnxVnm+kTovTDkdVoGTD?=
- =?us-ascii?Q?UEPmE28FVsGlCG4GDZ7/oqFYvshpOr0hp/Ws8MUrkoXlYlZ/+4EiAPCioZw/?=
- =?us-ascii?Q?XxP7UC54dL4KDb/jGyFGkDxOMkiAddkjP4COywj+npV/iVA15fmlxWvzo0mP?=
- =?us-ascii?Q?R+g7P+6ReX6LRbnQERmJgykLJUqQt0HIAX/GGAV98b9wIVqf7jty9FjMk2rE?=
- =?us-ascii?Q?MQOUGu8hqW3qGCCGnDovlw13tYNqZaPcoz61de5JwaD67qVKKpxbQCjQDvdq?=
- =?us-ascii?Q?OlqZ2adcS8DNesPHOP/riaOD9m9KpbBAYD31U2qewivgde/fwKJ7jGqvdopw?=
- =?us-ascii?Q?PsOJ0FkZi+xo+zSG7eApVE8XeKKfuCSBB2PFRkUUhQcogFPDGvmqEZZPVEHM?=
- =?us-ascii?Q?K1J6bWPiTFifKoq2vKyDlPPQggDRFa1j0dFM+Xr2MmIWWmgP6qJrRI5eWuhg?=
- =?us-ascii?Q?HxAyR4F1XGZLYybMS02imWMfo++2cBdcKOY6qOJ5K9vtzhLEd5bG33kBBa8Q?=
- =?us-ascii?Q?LJqXhZpQGAus+sJfWVJralOZy51guUAabfTI6bwYZAAt+p+9riX9Vf32MMVe?=
- =?us-ascii?Q?zM2JZ2Vlq6LLH9st614+qSPxkrr4ufS1R3b9ID7KSU4I3APiFa+Urz1U5GQr?=
- =?us-ascii?Q?+glI6cy2DW3KI8qQLYHOMdio//y+qKcoMevSvt68idcTkkDwftN85sHfxdPN?=
- =?us-ascii?Q?eeiAeTl2oUab+zAgqHRWk0MZ4x5DAMC5G3JhCqPs9Zyl7TJQ7u8vy2OH5Vs8?=
- =?us-ascii?Q?sP5/juCRoOQGHzK/gpXQPkN31/UET2l4aErqPl7SvTdKEli542sOjXfAtZdH?=
- =?us-ascii?Q?PVRdEUDx7G99cX8SoQmug0lndrC3amRcnvendQwH9HQD9dCk2TbZ57CtQEl5?=
- =?us-ascii?Q?ba+Pp5SvvkfR4yvt89tX0n/4RVN3otoxnOjeV4ZPYDrpyCq94hH0tu6uiO23?=
- =?us-ascii?Q?FbT7rJMaI9dxFYTYs2LFhoCoSuJIa0SLrZQTwLyR4jklsa7OK8zDASo9ILHP?=
- =?us-ascii?Q?MpBapGNrk0vdD+3hXTa35zEPfsnOtqZo6WZfkKxNYOxgXyhLmdIs8lGBh7fC?=
- =?us-ascii?Q?UZRTzYIQVHNKa3ShcSr4fveBN/zV319XZLUWg/4f1WJhojiJlq7cntcwWJ8W?=
- =?us-ascii?Q?I+UIAmHCDeE43Pf1jT7U95oGv26XpyyGCjJoKX+xeuTuDbKYgra3GZjl5u8Q?=
- =?us-ascii?Q?yGS4/uz/OVbyTB01PdhnSzNJ2X9TqM2gd3eySHa383rE1URvyiKmBF95B7+3?=
- =?us-ascii?Q?MouPLvLRKpAc58RWcuAVNdF3GZwsNVkocSO9Yql3zSRJOwHqPgIS6bg9kq1l?=
- =?us-ascii?Q?krVhUsAm9ZxqZOY=3D?=
+x-originating-ip: [192.168.22.100]
 MIME-Version: 1.0
-X-OriginatorOrg: str.us
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3db094d7-385b-410d-27e7-08dcb2581a7d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Aug 2024 18:31:05.0873
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e436f686-4fd8-4b6f-ac36-441e84fbfa24
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0P110MB2171
-Message-ID-Hash: 4E5VS7CJIYU5LB7XFPWS3GCQ3UM2T54S
-X-Message-ID-Hash: 4E5VS7CJIYU5LB7XFPWS3GCQ3UM2T54S
-X-MailFrom: patrick.panuski@str.us
+Message-ID-Hash: SCX5FQBYMZCLBS26BUN2MXIPIJCC7ZB7
+X-Message-ID-Hash: SCX5FQBYMZCLBS26BUN2MXIPIJCC7ZB7
+X-MailFrom: altug.kaya@hhi.fraunhofer.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X440 Tx and Rx Power Constraints
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NG3MZLPEZBXU7QW3AJLPLPPQC2F25AZR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SCX5FQBYMZCLBS26BUN2MXIPIJCC7ZB7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Panuski, Patrick via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Panuski, Patrick" <patrick.panuski@str.us>
-Content-Type: multipart/mixed; boundary="===============5789146813677319824=="
+Content-Type: multipart/mixed; boundary="===============8611179042288174555=="
 
---===============5789146813677319824==
+--===============8611179042288174555==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BN0P110MB101423D7A04A6F86EC58045E84B2ABN0P110MB1014NAMP_"
+	boundary="_000_d16672fea2ee4379a73b9e5d1520bc2ehhifraunhoferde_"
 
---_000_BN0P110MB101423D7A04A6F86EC58045E84B2ABN0P110MB1014NAMP_
+--_000_d16672fea2ee4379a73b9e5d1520bc2ehhifraunhoferde_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Patrick,
+
+Thank you for your detailed answer based on your experience. Please find my=
+ last, and probably the final, findings about this topic.
+
+
+  1.  I checked the MMPX connection once again. It is definitely not the be=
+st type of connector if your setup consists of SMA-type attenuators/analog =
+filters. They might bend the MMPX-to-SMA cable around and cause lose connec=
+tions, you are right. In addition, the MCR was set to 368.64 MHz in order t=
+o set a converter rate of 2.94912 MHz. Furthermore, instead of measuring th=
+e power of the constant wave at 500 MHz with a marker of the spectrum analy=
+zer, I started to use a Power Meter from Rohde & Schwarz to consider the co=
+ntribution of aliases due to having a RF Sampling device. Moreover, I used =
+two different X440's and their 2 possible Tx ports (4 ports in total due to=
+ CG_1600 image) to eliminate port specific problems.
+
+Unfortunately, I still measure around -5.2 dBm instead of around -2 dBm dBm=
+ (according to this graph given for 2.94912 GSps https://www.ni.com/docs/de=
+-DE/bundle/ettus-usrp-x440-specs/page/specs.html#:~:text=3DFigure%202.%20TX=
+%20Maximum%20Output%20Power%3A%200%20dBFS%20CW%2C%202.94912%20GSps%20Conver=
+ter%20Rate%2C%200%20Hz%20Waveform%20Frequency). Apparently, I have to live =
+with the current status of this setup.
+
+
+  1.  I agree. An update on the knowledge base page (https://kb.ettus.com/U=
+SRP_X410/X440_Getting_Started_Guide#:~:text=3DX440%3A%20Always%20use%20at%2=
+0least%2030dB%20attenuation%20if%20operating%20in%20loopback%20configuratio=
+n) can certainly clear this confusion.
+
+From: Panuski, Patrick <patrick.panuski@str.us>
+Sent: Thursday, August 1, 2024 8:31 PM
+To: Kaya, Altug <altug.kaya@hhi.fraunhofer.de>; usrp-users@lists.ettus.com
+Subject: RE: X440 Tx and Rx Power Constraints
 
 Hi Altug,
 
@@ -192,9 +138,10 @@ rogram cannot change amplifiers and gains so the max transmit power will be=
 Thanks,
 Patrick
 
-From: Kaya, Altug <altug.kaya@hhi.fraunhofer.de>
+From: Kaya, Altug <altug.kaya@hhi.fraunhofer.de<mailto:altug.kaya@hhi.fraun=
+hofer.de>>
 Sent: Wednesday, July 31, 2024 5:57 AM
-To: usrp-users@lists.ettus.com
+To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>
 Subject: [USRP-users] X440 Tx and Rx Power Constraints
 
 *** WARNING: This message originates from outside the STR organization. ***
@@ -244,7 +191,7 @@ Altug KAYA
 
 
 
---_000_BN0P110MB101423D7A04A6F86EC58045E84B2ABN0P110MB1014NAMP_
+--_000_d16672fea2ee4379a73b9e5d1520bc2ehhifraunhoferde_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -267,11 +214,16 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
+	margin-bottom:.0001pt;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
 	text-decoration:underline;}
 p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	{mso-style-priority:34;
@@ -279,16 +231,28 @@ p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	margin-right:0in;
 	margin-bottom:0in;
 	margin-left:.5in;
+	margin-bottom:.0001pt;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
-span.EmailStyle20
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle21
 	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:70.85pt 70.85pt 56.7pt 70.85pt;}
@@ -296,71 +260,140 @@ div.WordSection1
 	{page:WordSection1;}
 /* List Definitions */
 @list l0
-	{mso-list-id:365058821;
-	mso-list-template-ids:1140242716;}
-@list l1
 	{mso-list-id:420183726;
 	mso-list-type:hybrid;
 	mso-list-template-ids:-1053519324 67698705 67698713 67698715 67698703 6769=
 8713 67698715 67698703 67698713 67698715;}
-@list l1:level1
+@list l0:level1
 	{mso-level-text:"%1\)";
 	mso-level-tab-stop:none;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
-@list l1:level2
+@list l0:level2
 	{mso-level-number-format:alpha-lower;
 	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1
+	{mso-list-id:608971564;
+	mso-list-template-ids:-592140060;}
+@list l1:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
 @list l1:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
 @list l1:level4
-	{mso-level-tab-stop:none;
+	{mso-level-tab-stop:2.0in;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
 @list l1:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
+	{mso-level-tab-stop:2.5in;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
 @list l1:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
 @list l1:level7
-	{mso-level-tab-stop:none;
+	{mso-level-tab-stop:3.5in;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
 @list l1:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
+	{mso-level-tab-stop:4.0in;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
 @list l1:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
 @list l2
-	{mso-list-id:502282909;
-	mso-list-template-ids:-954927616;}
+	{mso-list-id:742064292;
+	mso-list-template-ids:-1582037894;}
 @list l2:level1
 	{mso-level-start-at:2;
 	mso-level-tab-stop:.5in;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
+@list l2:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
 @list l3
-	{mso-list-id:2070299612;
+	{mso-list-id:776415424;
 	mso-list-type:hybrid;
-	mso-list-template-ids:853935170 67698703 67698713 67698715 67698703 676987=
-13 67698715 67698703 67698713 67698715;}
+	mso-list-template-ids:-1446986388 67698705 67698713 67698715 67698703 6769=
+8713 67698715 67698703 67698713 67698715;}
 @list l3:level1
-	{mso-level-tab-stop:none;
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
 @list l3:level2
@@ -401,6 +434,92 @@ div.WordSection1
 	mso-level-tab-stop:none;
 	mso-level-number-position:right;
 	text-indent:-9.0pt;}
+@list l4
+	{mso-list-id:1886408277;
+	mso-list-template-ids:-1328494992;}
+@list l4:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5
+	{mso-list-id:2070299612;
+	mso-list-type:hybrid;
+	mso-list-template-ids:853935170 67698703 67698713 67698715 67698703 676987=
+13 67698715 67698703 67698713 67698715;}
+@list l5:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l5:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l5:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
 ol
 	{margin-bottom:0in;}
 ul
@@ -412,14 +531,69 @@ ul
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Altug,<o:p></o:p></p>
+<p class=3D"MsoNormal">Hi Patrick,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you for your detailed answer based on your exp=
+erience. Please find my last, and probably the final, findings about this t=
+opic.<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
 <li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l3 level1 =
-lfo5">Have you tried setting your converter rate to 2.94912 GHz and compari=
+lfo8">I checked the MMPX connection once again. It is definitely not the be=
+st type of connector if your setup consists of SMA-type attenuators/analog =
+filters. They might bend the MMPX-to-SMA
+ cable around and cause lose connections, you are right. In addition, the M=
+CR was set to 368.64 MHz in order to set a converter rate of 2.94912 MHz. F=
+urthermore, instead of measuring the power of the constant wave at 500 MHz =
+with a marker of the spectrum analyzer,
+ I started to use a Power Meter from Rohde &amp; Schwarz to consider the co=
+ntribution of aliases due to having a RF Sampling device. Moreover, I used =
+two different X440&#8217;s and their 2 possible Tx ports (4 ports in total =
+due to CG_1600 image) to eliminate port specific
+ problems.<o:p></o:p></li></ol>
+<p class=3D"MsoNormal" style=3D"margin-left:.25in"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">Unfortunately, I still me=
+asure around -5.2 dBm instead of around -2 dBm dBm (according to this graph=
+ given for 2.94912 GSps
+<a href=3D"https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-specs/page/=
+specs.html#:~:text=3DFigure%202.%20TX%20Maximum%20Output%20Power%3A%200%20d=
+BFS%20CW%2C%202.94912%20GSps%20Converter%20Rate%2C%200%20Hz%20Waveform%20Fr=
+equency">
+https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-specs/page/specs.html#=
+:~:text=3DFigure%202.%20TX%20Maximum%20Output%20Power%3A%200%20dBFS%20CW%2C=
+%202.94912%20GSps%20Converter%20Rate%2C%200%20Hz%20Waveform%20Frequency</a>=
+). Apparently, I have to live with
+ the current status of this setup.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.25in"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"2" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l3 level1 =
+lfo8">I agree. An update on the knowledge base page (<a href=3D"https://kb.=
+ettus.com/USRP_X410/X440_Getting_Started_Guide#:~:text=3DX440%3A%20Always%2=
+0use%20at%20least%2030dB%20attenuation%20if%20operating%20in%20loopback%20c=
+onfiguration">https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#:~:=
+text=3DX440%3A%20Always%20use%20at%20least%2030dB%20attenuation%20if%20oper=
+ating%20in%20loopback%20configuration</a>)
+ can certainly clear this confusion.<o:p></o:p></li></ol>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Panuski, Patrick &lt;patrick.panuski@st=
+r.us&gt; <br>
+<b>Sent:</b> Thursday, August 1, 2024 8:31 PM<br>
+<b>To:</b> Kaya, Altug &lt;altug.kaya@hhi.fraunhofer.de&gt;; usrp-users@lis=
+ts.ettus.com<br>
+<b>Subject:</b> RE: X440 Tx and Rx Power Constraints<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi Altug,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l5 level1 =
+lfo3">Have you tried setting your converter rate to 2.94912 GHz and compari=
 ng to the Ettus graph to get an apples-to-apples comparison? &nbsp;Also in =
 my experience, a weak MMPX connection can
  cause at least a 3dB loss&#8230; You can sometimes see the observed Tx pow=
@@ -430,7 +604,7 @@ rs, and I think I&#8217;ve narrowed this down
 7;d suggest trying a different cable and also testing transmission on other=
  channels, but overall I wouldn&#8217;t be surprised if the different clock=
  rate was having an effect here.<o:p></o:p></li><li class=3D"MsoListParagra=
-ph" style=3D"margin-left:0in;mso-list:l3 level1 lfo5">On the X440, you&#821=
+ph" style=3D"margin-left:0in;mso-list:l5 level1 lfo3">On the X440, you&#821=
 7;re probably okay directly connecting Tx to Rx. I think the 30 dB attenuat=
 or recommendation is left over from older USRP devices and is less applicab=
 le to the X440
@@ -446,7 +620,7 @@ SoC and the daughter card is now
 ers and gains so the max transmit power will be capped in hardware around 0=
  dBm which is significantly below the sustained Rx damage threshold.<o:p></=
 o:p></li><li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l=
-3 level1 lfo5">Disclaimer: I&#8217;m not an expert here, just a user<o:p></=
+5 level1 lfo3">Disclaimer: I&#8217;m not an expert here, just a user<o:p></=
 o:p></li></ol>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Thanks,<br>
@@ -455,10 +629,12 @@ Patrick <o:p></o:p></p>
 <div>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
 0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Kaya, Altug &lt;altug.kaya@hhi.fraunhof=
-er.de&gt; <br>
+<p class=3D"MsoNormal"><b>From:</b> Kaya, Altug &lt;<a href=3D"mailto:altug=
+.kaya@hhi.fraunhofer.de">altug.kaya@hhi.fraunhofer.de</a>&gt;
+<br>
 <b>Sent:</b> Wednesday, July 31, 2024 5:57 AM<br>
-<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.e=
+ttus.com</a><br>
 <b>Subject:</b> [USRP-users] X440 Tx and Rx Power Constraints<o:p></o:p></p=
 >
 </div>
@@ -474,15 +650,14 @@ span></b><span style=3D"color:black">
 </span><o:p></o:p></p>
 </div>
 <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
-<div>
 <p class=3D"MsoNormal">Dear USRP Mailing List Members,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">I have two questions regarding power constraints of =
 X440:<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
-<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
-lfo3">I set the master clock rate to 360 MHz and made sure that the convert=
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l0 level1 =
+lfo6">I set the master clock rate to 360 MHz and made sure that the convert=
 er rate becomes 2.88 GSps instead of 1.44 GSps. &nbsp;I used an UHD example=
  called &#8220;tx_waveforms&#8221; to verify the maximum
  output power. To compare the results with the specification sheet, a const=
@@ -501,8 +676,8 @@ https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-specs/page/specs.html#=
 912 GSps and 2.88 GSps?</b><o:p></o:p></li></ol>
 <p class=3D"MsoListParagraph"><o:p>&nbsp;</o:p></p>
 <ol style=3D"margin-top:0in" start=3D"2" type=3D"1">
-<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
-lfo3">I will use another X440 to capture the single tone (and the aliases d=
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l0 level1 =
+lfo6">I will use another X440 to capture the single tone (and the aliases d=
 ue to RF sampling) and analyze the ADC spurs. On the front panel, maximum r=
 eceiver input power is stated as 10
  dBm. This is further elaborated down to the operational frequency in this =
@@ -531,15 +706,16 @@ is unclear and you are willing to help, I can provide further details.<o:p>=
 <p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
 <p class=3D"MsoNormal">Altug KAYA<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 </div>
 </body>
 </html>
 
---_000_BN0P110MB101423D7A04A6F86EC58045E84B2ABN0P110MB1014NAMP_--
+--_000_d16672fea2ee4379a73b9e5d1520bc2ehhifraunhoferde_--
 
---===============5789146813677319824==
+--===============8611179042288174555==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -549,4 +725,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5789146813677319824==--
+--===============8611179042288174555==--
