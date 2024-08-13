@@ -2,78 +2,195 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CF794D454
-	for <lists+usrp-users@lfdr.de>; Fri,  9 Aug 2024 18:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB5F9501B3
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 11:54:18 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 51F22385D42
-	for <lists+usrp-users@lfdr.de>; Fri,  9 Aug 2024 12:15:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2CBE03854EE
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 05:54:17 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1723220139; bh=W1H47U/e6abEvhbaKYC9Gsk9HH17ktxhsnulnRGRMuo=;
+	t=1723542857; bh=zku0JYhJrVwaAdWjYE7/qU/WUjW2yT35o6PSmqe5oQY=;
 	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=tllz52nkAR/RqpCMqp5lF4pLblAkbcCDmMWm/Tx60Th5kJUp3gRoO/Upb6g6jQO+t
-	 IBt7v6nrjDS38YGN91vrDReryM5JAkvM7tcQQnKwcIfrRJxhfCnfmwYw3/aDtBdpIN
-	 bh+dPTp9iJ61kaBWJUga9PhUKwZcYhHNpM0SZqI1cDToUj/+1rfRVIP5zD/l/WODsi
-	 y/jy/SOP7rZkKtdJxN8H8/LYSiIwoMMp4lX9bI6kNxsMy875qEElTSUh6lik5PpIQX
-	 fWRz0NKmEmcz0IBZDr7Sd2iFB3ba6eRmbWXXoFR86CgJorMGzPjLbQxOWMHmrpTBI3
-	 CRwSqwTSfHXdQ==
-Received: from mail.hhi.fraunhofer.de (mail.HHI.FRAUNHOFER.DE [193.174.67.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2C5D1385C85
-	for <usrp-users@lists.ettus.com>; Fri,  9 Aug 2024 12:15:30 -0400 (EDT)
-Received: from 172.16.0.107 by mail.hhi.fraunhofer.de (Tls12, Aes256, Sha384,
- DiffieHellmanEllipticKey384); Fri, 09 Aug 2024 16:15:29 GMT
-Received: from mxsrv3.fe.hhi.de (172.16.0.106) by mxsrv4.fe.hhi.de
- (172.16.0.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1544.11; Fri, 9 Aug
- 2024 16:58:53 +0200
-Received: from mxsrv3.fe.hhi.de ([fe80::ad2b:b94c:74a4:fae9]) by
- mxsrv3.fe.hhi.de ([fe80::ad2b:b94c:74a4:fae9%5]) with mapi id 15.02.1544.011;
- Fri, 9 Aug 2024 16:58:41 +0200
-From: "Kaya, Altug" <altug.kaya@hhi.fraunhofer.de>
-To: Martin Anderseck <Martin.Anderseck@ni.com>, "Panuski, Patrick"
-	<patrick.panuski@str.us>, "usrp-users@lists.ettus.com"
+	b=KORWhHmzYLSwp9mWQB6uvRRS2NwvpHboaRlNme5aNmzuHYp0g67ThVDoINnCy1KUK
+	 3uaLaR3Q8v4TUoqFZWY+Ggfad8E607FuHODJgBXZalJxci/0HqNKGsPQC4Xrre+vsj
+	 OfoojCu1xSdmY+N24IHKrohTP6sNOsN/Tnow3ebpV9mIYJQgjzuKCQIDg6Kp38gCv9
+	 JLNlbpPWCbTNo7Mol8iGt6Q/5uFvbxIKtTgEetsc+dm57z45yFLhS18P4+aVG3XVs3
+	 7joxfhlFMI/xkniXZLll9BM9WAcmbt6vm7cHGsUqvPySUoJYRvasTIVZGQHj935mGZ
+	 cJlpPd6gYBcbQ==
+Received: from CY4PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11010035.outbound.protection.outlook.com [40.93.198.35])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2E1F13854C8
+	for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 05:53:31 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (1024-bit key; unprotected) header.d=ni.com header.i=@ni.com header.b="UJzL1t9n";
+	dkim-atps=neutral
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=b1LvfsI257fDIBujpJaU7bfksoJMXsMR0IvV0+IoF4diAZHsSbSX1YZajIPnuq5Q776zppWK53hvD3gBAmQZosBZi/4RtNPW+JbqMZ/W06KqAei51l3p0Nn5Fo2K5736yqf5SjSZNSs/VYqVqlynB4kC1axXA0OPeVlVzJRKopRY6xoVESxdlxoS4u75bNehi0MKsL6hCAYn0wS6FOfar3MnueYEJzp7omtOTgaN6hLzpPG0sZiFf7MjamflPKSPVAffazmr7uGhV1FzQxFRucr+jPMV0t7CHI0pnMyvDrWkfJyrljhtTdzj4LrumgJGiU2ARpySjIiE0D4727ZQLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I/4JhdbcAdh5n8j1DU5kkh6Zfx18WuS7cTmuzbC+uYE=;
+ b=Vr7+zfqzn2sZAd+IMCelzmUBvalkx/b+W/p2JNIy3Th5CTNXpavyvxsMimu7sz5IsC7JX03KsEGDJLegIPwpR3wV9mLCgB2B27hOfB6R0ZzGM2L65NrLIBeTXyHEXFrdUrTbdK3bqyScLJp8qSAb23gL55vQ4P8nM1+i61k3W1WlSc4Aw318BRzIsX0Lze57YFXb6dMgzwMZ/19LM8GvLr3PNsCWcUGy9upF2FjhxfhQVUpmxG3O262rkrav/pALo56dC9Z7uVYGU2ZrXagXX4FD5aIU9+sopxvjSCmgISqsLFpDXaaNmPaoBylJDbvQ4Fl4bwqvfmQX0JNpHJQhag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
+ header.d=ni.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ni.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I/4JhdbcAdh5n8j1DU5kkh6Zfx18WuS7cTmuzbC+uYE=;
+ b=UJzL1t9n2febg/pviQ7Hf+3Qh7I51yUPb/1Pt8KWrxORNvkn/0UZs0cW7rA8uwtb5eHKxV7vfyo2Prtmg1U7pLPMOHSRjGPHr63Vx2MyCf4MYU70dWitWBLQLy8sIrdEKtCd8bQ0RchL50d8lQLzDFSRaXN+TJXb18RzJ+MMOao=
+Received: from PH0PR04MB8311.namprd04.prod.outlook.com (2603:10b6:510:10b::8)
+ by DM6PR04MB6329.namprd04.prod.outlook.com (2603:10b6:5:1e6::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Tue, 13 Aug
+ 2024 09:53:27 +0000
+Received: from PH0PR04MB8311.namprd04.prod.outlook.com
+ ([fe80::e1af:c5e8:238b:f56d]) by PH0PR04MB8311.namprd04.prod.outlook.com
+ ([fe80::e1af:c5e8:238b:f56d%7]) with mapi id 15.20.7849.021; Tue, 13 Aug 2024
+ 09:53:26 +0000
+From: Martin Anderseck <Martin.Anderseck@ni.com>
+To: "Kaya, Altug" <altug.kaya@hhi.fraunhofer.de>, "usrp-users@lists.ettus.com"
 	<usrp-users@lists.ettus.com>
 Thread-Topic: X440 Tx and Rx Power Constraints
-Thread-Index: AdriiEO92bxfVU67TCOmm+FBO9U7+ABsodMQALjj5rAAa5aycABn3UiQ
-Date: Fri, 9 Aug 2024 14:58:41 +0000
-Message-ID: <5345af8e811a4c1e8ced700ce17f46a8@hhi.fraunhofer.de>
+Thread-Index: AdriiEO92bxfVU67TCOmm+FBO9U7+ABsodMQALjj5rAAa5aycABn3UiQALh8DoA=
+Date: Tue, 13 Aug 2024 09:53:26 +0000
+Message-ID: 
+ <PH0PR04MB831185E58ECB8D63431D1A6DF3862@PH0PR04MB8311.namprd04.prod.outlook.com>
 References: <ec3aae17e9b346ec9ad87e62dc19f5ab@hhi.fraunhofer.de>
  <BN0P110MB101423D7A04A6F86EC58045E84B2A@BN0P110MB1014.NAMP110.PROD.OUTLOOK.COM>
  <d16672fea2ee4379a73b9e5d1520bc2e@hhi.fraunhofer.de>
  <PH0PR04MB8311C710CF8AE30CA02DE9F9F3B82@PH0PR04MB8311.namprd04.prod.outlook.com>
-In-Reply-To: <PH0PR04MB8311C710CF8AE30CA02DE9F9F3B82@PH0PR04MB8311.namprd04.prod.outlook.com>
+ <5345af8e811a4c1e8ced700ce17f46a8@hhi.fraunhofer.de>
+In-Reply-To: <5345af8e811a4c1e8ced700ce17f46a8@hhi.fraunhofer.de>
 Accept-Language: en-US, de-DE
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.22.100]
+msip_labels: 
+ MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_ActionId=a138b28f-9894-4ddc-a8e5-eca706938498;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_ContentBits=0;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Enabled=true;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Method=Standard;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Name=Internal;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_SetDate=2024-08-13T06:57:47Z;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_SiteId=87ba1f9a-44cd-43a6-b008-6fdb45a5204e;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=ni.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR04MB8311:EE_|DM6PR04MB6329:EE_
+x-ms-office365-filtering-correlation-id: d7737bf4-f78a-40a6-83f5-08dcbb7dc71d
+x-ni-monitor: EOP Exclude NI Domains ETR True
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info: 
+ =?iso-8859-1?Q?dfGq5AiuYXzglXCl+e9R5LuuU34vYF36VhJBeb1E8CDsK0UN5mecXHzxdr?=
+ =?iso-8859-1?Q?i3k6miJigwxLrWqJLeaON2LxGJBkf5k3Gg54V27xcOqZXlGqz9O9kWFCF9?=
+ =?iso-8859-1?Q?PBGsM0NJRUQfGg8jB2PTA+xGdsCEkjNzElfasCuBu1dJPDBRqzayFTLg2Z?=
+ =?iso-8859-1?Q?6zSIWQbJZCUv3O+06ozb7xMUMa4/jT6+ZrIsaBuHWNXzT3S63/aGaqcWw3?=
+ =?iso-8859-1?Q?S4eL0oBOLGepxsGu64m10C2P89301/DPF2CIAG54/dTPVJyLlWU44H5UWR?=
+ =?iso-8859-1?Q?vB7JSlGP1amPMM9SEbRDHgOJ3i2XCzYSXL3xq+Jf7laPEydYOTY6Da2mbx?=
+ =?iso-8859-1?Q?e/0pbppdU+ImjRq8JKeRLgI54hR5GpC2uAzrhyYxBTTlslvbPDw3s5PfUc?=
+ =?iso-8859-1?Q?Dz0c8w6vVVf0E4qFiHUQcmwZc34ggA37/AYDBku/calN4QlVzRrpuUsaXj?=
+ =?iso-8859-1?Q?ivnMx68WzyCBR8jMShHtA5ftZs1W+jUuUR5wU3Wi3T2hT8b/qf/sAAjCAT?=
+ =?iso-8859-1?Q?WU17UdA/u5ewdWGWZCteuNC+130lTakhK+cPLzrytndaiY6vsLzzLeWuzG?=
+ =?iso-8859-1?Q?nrYpWTXaNlMc7qGoDQe5AwUEqcsSYyZ1MqQcQBuZjqxMdzuGrR/zc4FQPr?=
+ =?iso-8859-1?Q?ca9D8MloXkIEu6kvlKDH5Ae4Ej5riijSgQ7a+a3fjXEnkvNzp8et1TSLDg?=
+ =?iso-8859-1?Q?dO1FaiIz+dtY5QeOmyzIhQrXw1Y7uiDTfyvqvhmOhUM3RVYpVdAL8TlSqx?=
+ =?iso-8859-1?Q?b9/ZmC+RMsxF0bsQRzfjyey5GIcemGcFGjdqzFHR5g2jZ8VDArpGvk7MUf?=
+ =?iso-8859-1?Q?hw5XWqDHwbzx7c1pqTnJyMS7VJj+rmVRDzqVpAiUse2q+A8uabTyJfkBgj?=
+ =?iso-8859-1?Q?aRpbRqbqKHRtyxfBJY7TJfxnoCeu3W6JZNvqYmh332fvb9fSstrXHaGmws?=
+ =?iso-8859-1?Q?Isrv0ieH7Im/7qv9DK4u9e1C8Wp1oJzMRZ80ow2qmB9IDAFQUrI20e3rT2?=
+ =?iso-8859-1?Q?diOBOWuC5+l9T5nL3ppxodzSqY4yQvPmUpRDzLdNx+dwWyILsBGMTkv9mh?=
+ =?iso-8859-1?Q?l9LIyOQ2UXn4wgJQGjcThNLnMbd8FSfGs7QHhdArvwzpYJrZqdvjUO/Ter?=
+ =?iso-8859-1?Q?mhoEjeBA+vkZl+I3/lQzWJ3Uh8WS9hoeWxVW6tEEQQd7kzk6iHVQ1OLGOR?=
+ =?iso-8859-1?Q?t2yQJRQ+aiEzZxx1qL7wLhZkaps1tmj8Fqa/RRih9RTc5m56CgepIzHDQ4?=
+ =?iso-8859-1?Q?0zZ5uHcjJYL/MS2b7f6IsaK4GHLWrzTPYGEfFb55h5QDdUR1T/pNLXtUmx?=
+ =?iso-8859-1?Q?gy0MSrvq013EyH/0DqmXDbfnnUfvEkxZRoBSTu7VDdcLgaG/w8xIt1x+XF?=
+ =?iso-8859-1?Q?7hoZNsge3O?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR04MB8311.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?uG7zNo2KJXVD4u0161JpxFntIVemg0spwrq1PO5GwJhZpGibvwqRM1OhIS?=
+ =?iso-8859-1?Q?OZinno0g0o75Q9lQr/mjinSHGrCPboLOJjia0WF5J9T3UslzpSZ7KNvu+8?=
+ =?iso-8859-1?Q?giWJFv6fBnLAjYYDmEomzkHBClJB4v1ycmfDL2q56vf1cfQScxKDgjkElf?=
+ =?iso-8859-1?Q?1b3pIRGo8VTcl3CvZFoiT/71gA87d82QC00ooyXTDTRQtKzzVm6uAKFMkk?=
+ =?iso-8859-1?Q?+bF740euNBR8cCuOBaVBgabgYkAc7xIl53Tj++kwZGT51+GvyTLHrAl8Qb?=
+ =?iso-8859-1?Q?5/dghevRanVSknxnayfLlmAtylVoy+w0LdMqrcpC8HYWM+j4v88sgNcvI4?=
+ =?iso-8859-1?Q?Gfw+/phL7MDjVjbDVY/nXGB2z3W3Gjet433VppMHMi8WtYPHhj3Dylmr9Q?=
+ =?iso-8859-1?Q?kKLeunNSxhN2BdMMl0cKjgTirdx4ESJzyVCU0Jni8RWU9O5mLVP27nRPHr?=
+ =?iso-8859-1?Q?eVgo0HGFLvQ/EwWi5jVxuysx4qbYCSc40+1yV/pmj3WyXanF0qXMPMh+UC?=
+ =?iso-8859-1?Q?gNe2DKl79fnn+TkBSy6ISTQXzixBarNmUNv8BkehvzR8SU8BSkghUpdHu7?=
+ =?iso-8859-1?Q?Kuc98ZFwip5Cn4Vp7PwYFXzlyNkJ7E4isZZn/itIpvwcktYUmg5JfRFjC+?=
+ =?iso-8859-1?Q?g3MsKP+dPk/v4ENt2t0jS6AqfdjNA4xCW2WFbf2FpB+VAf8C78+OacRQ4X?=
+ =?iso-8859-1?Q?+OafOO6rkjfkxwOyUZXixPLynGGuxLOYvqN7ViaezsxokNzO99AXrzACNE?=
+ =?iso-8859-1?Q?KIMfweqz3D7aGFFEhR6aQHK2spQLPvxPhi+bt8HqPNYHFe/xn/XudrRnWV?=
+ =?iso-8859-1?Q?qmCcGHLIRGU79FcW+lYlWA2xuZDbWcT7CeapzBLumEobkscLpeeTvJlcwV?=
+ =?iso-8859-1?Q?eQbF5iZ2TuGpuXGcjFYKioQcMUiFnxDZdhtWq0l4YS3PPyiQlWtSJXMgQu?=
+ =?iso-8859-1?Q?JEaZMlCx3DIkPMVgdBl1EJc6rJl365Gmm50DNWKTb/ReaVbVaiu3eCgK/l?=
+ =?iso-8859-1?Q?Rjqt+w0y9rAhTU4IW315m1MTntFlGijs1KYoENAPHD9qH/+VA87XVnJQfB?=
+ =?iso-8859-1?Q?k6um7sKjzP2i7nv6k2l6/CLUSd5XE/hQ0IuCxsFJ5/U2s/ZVTMmrUZE5Hy?=
+ =?iso-8859-1?Q?coUoFjNfHImlrtVbU2bGWYWUYtu/krY6a2ODkdU1m32W0TOfBmG/xxDfbc?=
+ =?iso-8859-1?Q?74YGHZV2nAAS1sdm+Qs+9Ag0jzJ7pHmzxn/xUmoQo1gdmkGlHglMFjr6+b?=
+ =?iso-8859-1?Q?QIfKuveSYAaGqiL9sX9/bCAsQX368WaoHT+TqkM2ncVDc9Idhk39xCHALF?=
+ =?iso-8859-1?Q?cvNbqMb/jsffgYwsKkbfHW0/BO3LxqRI3pXU5GnfbZc0GUzjjcBd2Ju3rF?=
+ =?iso-8859-1?Q?YxX+F05dleUBYbPRtkn8lBvtDrlv3FIge799KMLpZLuK70EtcukF6OMtX2?=
+ =?iso-8859-1?Q?a1jTvGYOGt/mq+3riMoCJVwxNjrwoiMwzzI/jf837oHRZ7M9cRgTrCDKKT?=
+ =?iso-8859-1?Q?D7hvqFdee2hqkI4Rp0bD6aSEJMa3RadWknzVy+zrnDols/W3kXb8vTGLCp?=
+ =?iso-8859-1?Q?2LHulRr5jL8hvD4njXqlakVg4rplbmEzmtBVUAFQxqjygu7S8ZwCbtFQlv?=
+ =?iso-8859-1?Q?vr33HOaxI8vfsdS3HBjTHIcc4gUO4HyzO6?=
 MIME-Version: 1.0
-Message-ID-Hash: ID5RMWFVRZPNAWMKL2X44GKSS26WGNZZ
-X-Message-ID-Hash: ID5RMWFVRZPNAWMKL2X44GKSS26WGNZZ
-X-MailFrom: altug.kaya@hhi.fraunhofer.de
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR04MB8311.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7737bf4-f78a-40a6-83f5-08dcbb7dc71d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2024 09:53:26.5603
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4+dS/G/czijX9PfLrj1wHF97lJhPrEBpfY0K2KfkBZydn0nhO9AiPRilLT8Irox32uCYlKLpr9tbO1qV+3aoTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB6329
+Message-ID-Hash: K7OZIKE5RHSRUZFOV3XOCS3YCG2P66YC
+X-Message-ID-Hash: K7OZIKE5RHSRUZFOV3XOCS3YCG2P66YC
+X-MailFrom: Martin.Anderseck@ni.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X440 Tx and Rx Power Constraints
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ID5RMWFVRZPNAWMKL2X44GKSS26WGNZZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/J22CAXCJULIBU2BSMDHBV6IE3HO7NID3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5445101102597701976=="
+Content-Type: multipart/mixed; boundary="===============2700154827502610032=="
 
---===============5445101102597701976==
+--===============2700154827502610032==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_5345af8e811a4c1e8ced700ce17f46a8hhifraunhoferde_"
+	boundary="_000_PH0PR04MB831185E58ECB8D63431D1A6DF3862PH0PR04MB8311namp_"
 
---_000_5345af8e811a4c1e8ced700ce17f46a8hhifraunhoferde_
+--_000_PH0PR04MB831185E58ECB8D63431D1A6DF3862PH0PR04MB8311namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Altug,
+
+The 10 dBm is the safe number across all frequencies while the maximum valu=
+e is frequency dependent as you can see from our specs at
+https://www.ni.com/docs/en-US/bundle/ettus-usrp-x440-specs/page/specs.html#=
+GUID-753087EC-1ACF-4DE8-AC74-9741F7CFAA46__GUID-90857286-24DB-44D1-BFC4-BC2=
+322AEBBDE
+and also, from the KB article which differentiates between different freque=
+ncy ranges.
+
+/Martin
+
+
+
+INTERNAL - NI CONFIDENTIAL
+From: Kaya, Altug <altug.kaya@hhi.fraunhofer.de>
+Sent: Friday, August 9, 2024 4:59 PM
+To: Martin Anderseck <Martin.Anderseck@ni.com>; Panuski, Patrick <patrick.p=
+anuski@str.us>; usrp-users@lists.ettus.com
+Subject: RE: X440 Tx and Rx Power Constraints
 
 Hi Martin,
 
@@ -90,10 +207,12 @@ X +10dBm".
 Best regards,
 Altug KAYA
 
-From: Martin Anderseck <Martin.Anderseck@ni.com>
+From: Martin Anderseck <Martin.Anderseck@ni.com<mailto:Martin.Anderseck@ni.=
+com>>
 Sent: Wednesday, August 7, 2024 3:59 PM
-To: Kaya, Altug <altug.kaya@hhi.fraunhofer.de>; Panuski, Patrick <patrick.p=
-anuski@str.us>; usrp-users@lists.ettus.com
+To: Kaya, Altug <altug.kaya@hhi.fraunhofer.de<mailto:altug.kaya@hhi.fraunho=
+fer.de>>; Panuski, Patrick <patrick.panuski@str.us<mailto:patrick.panuski@s=
+tr.us>>; usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>
 Subject: RE: X440 Tx and Rx Power Constraints
 
 Hi Altug, hi Patrick,
@@ -250,12 +369,26 @@ s email is addressed and may contain confidential and/or privileged informa=
 tion. If you received this email in error, please do not disclose the conte=
 nts to anyone, but notify the sender by return email and delete this email =
 (and any attachments) from your system.
+National Instruments Dresden GmbH; Gesch=E4ftsf=FChrer (Managing Directors)=
+: Sabrina Gilman, Kathleen Heard Spurck, Carl Schumacher; Sitz (Registered =
+Office): Dresden; HRB (Commercial Register No.): 22081; Registergericht (Re=
+gistration Court): Dresden
 
---_000_5345af8e811a4c1e8ced700ce17f46a8hhifraunhoferde_
+This email and any attachments are intended only for the person to whom thi=
+s email is addressed and may contain confidential and/or privileged informa=
+tion. If you received this email in error, please do not disclose the conte=
+nts to anyone, but notify the sender by return email and delete this email =
+(and any attachments) from your system.
+
+--_000_PH0PR04MB831185E58ECB8D63431D1A6DF3862PH0PR04MB8311namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
+hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
+html40">
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
 1">
@@ -273,16 +406,11 @@ Content-Transfer-Encoding: quoted-printable
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
-	margin-bottom:.0001pt;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
 	text-decoration:underline;}
 p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	{mso-style-priority:34;
@@ -290,28 +418,16 @@ p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	margin-right:0in;
 	margin-bottom:0in;
 	margin-left:.5in;
-	margin-bottom:.0001pt;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:Aptos;
-	color:windowtext;}
-span.EmailStyle21
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
+span.EmailStyle22
+	{mso-style-type:personal-compose;
+	font-family:"Aptos",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-size:10.0pt;
+	mso-ligatures:none;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:70.85pt 70.85pt 56.7pt 70.85pt;}
@@ -472,268 +588,359 @@ ul
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
+ak-word">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Martin,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thank you for clarifying the matter.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Then for the maximum input power, can we rely on KB =
-(<a href=3D"https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#:~:te=
-xt=3DX440%3A%20Never%20apply%20more%20than%20%2B13%20dBm%20continuous%20%3C=
-%3D2.5GHz%2C%20%2B17%20dBm%20continuous%20between%202.5GHz%20and%203.6%20GH=
-z%2C%20or%20%2B20dBm%20continuous%20between%203.6%20GHz%20and%204%20GHz%20o=
-f%20power%20into%20any%20RF%20input">https://kb.ettus.com/USRP_X410/X440_Ge=
-tting_Started_Guide#:~:text=3DX440%3A%20Never%20apply%20more%20than%20%2B13=
-%20dBm%20continuous%20%3C%3D2.5GHz%2C%20%2B17%20dBm%20continuous%20between%=
-202.5GHz%20and%203.6%20GHz%2C%20or%20%2B20dBm%20continuous%20between%203.6%=
-20GHz%20and%204%20GHz%20of%20power%20into%20any%20RF%20input</a>)
- and not the print in front of X440? On the front panel it says &#8220;RX I=
-N MAX &#43;10dBm&#8221;.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Altug KAYA<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Martin Anderseck &lt;Martin.Anderseck@n=
-i.com&gt; <br>
-<b>Sent:</b> Wednesday, August 7, 2024 3:59 PM<br>
-<b>To:</b> Kaya, Altug &lt;altug.kaya@hhi.fraunhofer.de&gt;; Panuski, Patri=
-ck &lt;patrick.panuski@str.us&gt;; usrp-users@lists.ettus.com<br>
-<b>Subject:</b> RE: X440 Tx and Rx Power Constraints<o:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"DE" style=3D"font-family:Aptos">Hi Alt=
-ug, hi Patrick,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"DE" style=3D"font-family:Aptos"><o:p>&=
-nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Aptos">The explanations b=
-y Patrick make sense to me. The MMPX connectors were required to fit the av=
-ailable space, although they may not be as rigid as the SMAs unfortunately.
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif;mso-fareast-language:EN-US">Hi Altug,<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif;mso-fareast-language:EN-US">The 10 dBm is the safe numbe=
+r across all frequencies while the maximum value is frequency dependent as =
+you can see from our specs at
 <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Aptos"><o:p>&nbsp;</o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Aptos">The power question=
- is as follows: To use the full amplitude in the tx_waveforms example you n=
-eed to pass an amplitude value of sqrt(2), so roundabout 1.4142. This shoul=
-d get you closer to our numbers. The
- FPGA image should not make a difference when using the same rates.<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Aptos"><o:p>&nbsp;</o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Aptos">For the KB article=
- you&#8217;re right and I just updated it. Most of our USRPs are safe if yo=
-u put the attenuator between TX and RX, but the X440 should not be able to =
-destroy itself even without this.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Aptos"><o:p>&nbsp;</o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Aptos">/Martin<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Aptos"><o:p>&nbsp;</o:p><=
-/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif;mso-fareast-language:EN-US"><a href=3D"https://www.ni.co=
+m/docs/en-US/bundle/ettus-usrp-x440-specs/page/specs.html#GUID-753087EC-1AC=
+F-4DE8-AC74-9741F7CFAA46__GUID-90857286-24DB-44D1-BFC4-BC2322AEBBDE">https:=
+//www.ni.com/docs/en-US/bundle/ettus-usrp-x440-specs/page/specs.html#GUID-7=
+53087EC-1ACF-4DE8-AC74-9741F7CFAA46__GUID-90857286-24DB-44D1-BFC4-BC2322AEB=
+BDE</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif;mso-fareast-language:EN-US">and also, from the KB articl=
+e which differentiates between different frequency ranges.<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif;mso-fareast-language:EN-US">/Martin<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div><br>
+<p style=3D"font-family:Calibri;font-size:10pt;color:#000000;margin:5pt;fon=
+t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+INTERNAL - NI CONFIDENTIAL<br>
+</p>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Kaya, Altug &lt;altug.kaya@hhi.fraunhofer.de&gt;
+<br>
+<b>Sent:</b> Friday, August 9, 2024 4:59 PM<br>
+<b>To:</b> Martin Anderseck &lt;Martin.Anderseck@ni.com&gt;; Panuski, Patri=
+ck &lt;patrick.panuski@str.us&gt;; usrp-users@lists.ettus.com<br>
+<b>Subject:</b> RE: X440 Tx and Rx Power Constraints<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi Martin,<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you for clarifying the ma=
+tter.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Then for the maximum input powe=
+r, can we rely on KB (</span><a href=3D"https://kb.ettus.com/USRP_X410/X440=
+_Getting_Started_Guide#:~:text=3DX440%3A%20Never%20apply%20more%20than%20%2=
+B13%20dBm%20continuous%20%3C%3D2.5GHz%2C%20%2B17%20dBm%20continuous%20betwe=
+en%202.5GHz%20and%203.6%20GHz%2C%20or%20%2B20dBm%20continuous%20between%203=
+.6%20GHz%20and%204%20GHz%20of%20power%20into%20any%20RF%20input"><span lang=
+=3D"EN-US">https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#:~:tex=
+t=3DX440%3A%20Never%20apply%20more%20than%20%2B13%20dBm%20continuous%20%3C%=
+3D2.5GHz%2C%20%2B17%20dBm%20continuous%20between%202.5GHz%20and%203.6%20GHz=
+%2C%20or%20%2B20dBm%20continuous%20between%203.6%20GHz%20and%204%20GHz%20of=
+%20power%20into%20any%20RF%20input</span></a><span lang=3D"EN-US">)
+ and not the print in front of X440? On the front panel it says &#8220;RX I=
+N MAX +10dBm&#8221;.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Altug KAYA<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 <div>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
 0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Kaya, Altug &lt;<a href=3D"mailto:altug=
-.kaya@hhi.fraunhofer.de">altug.kaya@hhi.fraunhofer.de</a>&gt;
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Martin Anderseck &lt;</span><a href=3D"mailto:Martin.Anderseck@=
+ni.com"><span lang=3D"EN-US">Martin.Anderseck@ni.com</span></a><span lang=
+=3D"EN-US">&gt;
+<br>
+<b>Sent:</b> Wednesday, August 7, 2024 3:59 PM<br>
+<b>To:</b> Kaya, Altug &lt;</span><a href=3D"mailto:altug.kaya@hhi.fraunhof=
+er.de"><span lang=3D"EN-US">altug.kaya@hhi.fraunhofer.de</span></a><span la=
+ng=3D"EN-US">&gt;; Panuski, Patrick &lt;</span><a href=3D"mailto:patrick.pa=
+nuski@str.us"><span lang=3D"EN-US">patrick.panuski@str.us</span></a><span l=
+ang=3D"EN-US">&gt;;
+</span><a href=3D"mailto:usrp-users@lists.ettus.com"><span lang=3D"EN-US">u=
+srp-users@lists.ettus.com</span></a><span lang=3D"EN-US"><br>
+<b>Subject:</b> RE: X440 Tx and Rx Power Constraints<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">Hi Altug, hi Patrick,</span><span lang=3D"EN-US"><o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">&nbsp;</span><span lang=3D"EN-US"><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">The explanations by Patrick make sense to me. The MMPX =
+connectors were required to fit the available space, although they may not =
+be as rigid as the SMAs unfortunately.
+</span><span lang=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">&nbsp;</span><span lang=3D"EN-US"><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">The power question is as follows: To use the full ampli=
+tude in the tx_waveforms example you need to pass an amplitude value of sqr=
+t(2), so roundabout 1.4142. This should get you
+ closer to our numbers. The FPGA image should not make a difference when us=
+ing the same rates.</span><span lang=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">&nbsp;</span><span lang=3D"EN-US"><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">For the KB article you&#8217;re right and I just update=
+d it. Most of our USRPs are safe if you put the attenuator between TX and R=
+X, but the X440 should not be able to destroy itself even
+ without this.</span><span lang=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">&nbsp;</span><span lang=3D"EN-US"><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">/Martin</span><span lang=3D"EN-US"><o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Apto=
+s&quot;,sans-serif">&nbsp;</span><span lang=3D"EN-US"><o:p></o:p></span></p=
+>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Kaya, Altug &lt;</span><a href=3D"mailto:altug.kaya@hhi.fraunho=
+fer.de"><span lang=3D"EN-US">altug.kaya@hhi.fraunhofer.de</span></a><span l=
+ang=3D"EN-US">&gt;
 <br>
 <b>Sent:</b> Monday, August 5, 2024 12:40 PM<br>
-<b>To:</b> Panuski, Patrick &lt;<a href=3D"mailto:patrick.panuski@str.us">p=
-atrick.panuski@str.us</a>&gt;;
-<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a=
-><br>
+<b>To:</b> Panuski, Patrick &lt;</span><a href=3D"mailto:patrick.panuski@st=
+r.us"><span lang=3D"EN-US">patrick.panuski@str.us</span></a><span lang=3D"E=
+N-US">&gt;;
+</span><a href=3D"mailto:usrp-users@lists.ettus.com"><span lang=3D"EN-US">u=
+srp-users@lists.ettus.com</span></a><span lang=3D"EN-US"><br>
 <b>Subject:</b> [USRP-users] Re: X440 Tx and Rx Power Constraints<o:p></o:p=
-></p>
+></span></p>
 </div>
 </div>
-<p class=3D"MsoNormal"><span lang=3D"DE"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">Hi Patrick,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thank you for your detailed answer based on your exp=
-erience. Please find my last, and probably the final, findings about this t=
-opic.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi Patrick,<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you for your detailed ans=
+wer based on your experience. Please find my last, and probably the final, =
+findings about this topic.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 <ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
 <li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
-lfo1">I checked the MMPX connection once again. It is definitely not the be=
-st type of connector if your setup consists of SMA-type attenuators/analog =
-filters. They might bend the MMPX-to-SMA
- cable around and cause lose connections, you are right. In addition, the M=
-CR was set to 368.64 MHz in order to set a converter rate of 2.94912 MHz. F=
-urthermore, instead of measuring the power of the constant wave at 500 MHz =
-with a marker of the spectrum analyzer,
- I started to use a Power Meter from Rohde &amp; Schwarz to consider the co=
-ntribution of aliases due to having a RF Sampling device. Moreover, I used =
-two different X440&#8217;s and their 2 possible Tx ports (4 ports in total =
-due to CG_1600 image) to eliminate port specific
- problems.<o:p></o:p></li></ol>
-<p class=3D"MsoNormal" style=3D"margin-left:.25in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Unfortunately, I still me=
-asure around -5.2 dBm instead of around -2 dBm dBm (according to this graph=
- given for 2.94912 GSps
-<a href=3D"https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-specs/page/=
-specs.html#:~:text=3DFigure%202.%20TX%20Maximum%20Output%20Power%3A%200%20d=
-BFS%20CW%2C%202.94912%20GSps%20Converter%20Rate%2C%200%20Hz%20Waveform%20Fr=
-equency">
-https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-specs/page/specs.html#=
-:~:text=3DFigure%202.%20TX%20Maximum%20Output%20Power%3A%200%20dBFS%20CW%2C=
-%202.94912%20GSps%20Converter%20Rate%2C%200%20Hz%20Waveform%20Frequency</a>=
-). Apparently, I have to live with
- the current status of this setup.<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.25in"><o:p>&nbsp;</o:p></p>
+lfo1"><span lang=3D"EN-US">I checked the MMPX connection once again. It is =
+definitely not the best type of connector if your setup consists of SMA-typ=
+e attenuators/analog filters. They might
+ bend the MMPX-to-SMA cable around and cause lose connections, you are righ=
+t. In addition, the MCR was set to 368.64 MHz in order to set a converter r=
+ate of 2.94912 MHz. Furthermore, instead of measuring the power of the cons=
+tant wave at 500 MHz with a marker
+ of the spectrum analyzer, I started to use a Power Meter from Rohde &amp; =
+Schwarz to consider the contribution of aliases due to having a RF Sampling=
+ device. Moreover, I used two different X440&#8217;s and their 2 possible T=
+x ports (4 ports in total due to CG_1600 image)
+ to eliminate port specific problems.<o:p></o:p></span></li></ol>
+<p class=3D"MsoNormal" style=3D"margin-left:.25in"><span lang=3D"EN-US">&nb=
+sp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span lang=3D"EN-US">Unfo=
+rtunately, I still measure around -5.2 dBm instead of around -2 dBm dBm (ac=
+cording to this graph given for 2.94912 GSps
+</span><a href=3D"https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-spec=
+s/page/specs.html#:~:text=3DFigure%202.%20TX%20Maximum%20Output%20Power%3A%=
+200%20dBFS%20CW%2C%202.94912%20GSps%20Converter%20Rate%2C%200%20Hz%20Wavefo=
+rm%20Frequency"><span lang=3D"EN-US">https://www.ni.com/docs/de-DE/bundle/e=
+ttus-usrp-x440-specs/page/specs.html#:~:text=3DFigure%202.%20TX%20Maximum%2=
+0Output%20Power%3A%200%20dBFS%20CW%2C%202.94912%20GSps%20Converter%20Rate%2=
+C%200%20Hz%20Waveform%20Frequency</span></a><span lang=3D"EN-US">).
+ Apparently, I have to live with the current status of this setup.<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.25in"><span lang=3D"EN-US">&nb=
+sp;<o:p></o:p></span></p>
 <ol style=3D"margin-top:0in" start=3D"2" type=3D"1">
 <li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
-lfo1">I agree. An update on the knowledge base page (<a href=3D"https://kb.=
-ettus.com/USRP_X410/X440_Getting_Started_Guide#:~:text=3DX440%3A%20Always%2=
-0use%20at%20least%2030dB%20attenuation%20if%20operating%20in%20loopback%20c=
-onfiguration">https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#:~:=
-text=3DX440%3A%20Always%20use%20at%20least%2030dB%20attenuation%20if%20oper=
-ating%20in%20loopback%20configuration</a>)
- can certainly clear this confusion.<o:p></o:p></li></ol>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+lfo1"><span lang=3D"EN-US">I agree. An update on the knowledge base page (<=
+/span><a href=3D"https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#=
+:~:text=3DX440%3A%20Always%20use%20at%20least%2030dB%20attenuation%20if%20o=
+perating%20in%20loopback%20configuration"><span lang=3D"EN-US">https://kb.e=
+ttus.com/USRP_X410/X440_Getting_Started_Guide#:~:text=3DX440%3A%20Always%20=
+use%20at%20least%2030dB%20attenuation%20if%20operating%20in%20loopback%20co=
+nfiguration</span></a><span lang=3D"EN-US">)
+ can certainly clear this confusion.<o:p></o:p></span></li></ol>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 <div>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
 0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Panuski, Patrick &lt;<a href=3D"mailto:=
-patrick.panuski@str.us">patrick.panuski@str.us</a>&gt;
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Panuski, Patrick &lt;</span><a href=3D"mailto:patrick.panuski@s=
+tr.us"><span lang=3D"EN-US">patrick.panuski@str.us</span></a><span lang=3D"=
+EN-US">&gt;
 <br>
 <b>Sent:</b> Thursday, August 1, 2024 8:31 PM<br>
-<b>To:</b> Kaya, Altug &lt;<a href=3D"mailto:altug.kaya@hhi.fraunhofer.de">=
-altug.kaya@hhi.fraunhofer.de</a>&gt;;
-<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a=
-><br>
-<b>Subject:</b> RE: X440 Tx and Rx Power Constraints<o:p></o:p></p>
+<b>To:</b> Kaya, Altug &lt;</span><a href=3D"mailto:altug.kaya@hhi.fraunhof=
+er.de"><span lang=3D"EN-US">altug.kaya@hhi.fraunhofer.de</span></a><span la=
+ng=3D"EN-US">&gt;;
+</span><a href=3D"mailto:usrp-users@lists.ettus.com"><span lang=3D"EN-US">u=
+srp-users@lists.ettus.com</span></a><span lang=3D"EN-US"><br>
+<b>Subject:</b> RE: X440 Tx and Rx Power Constraints<o:p></o:p></span></p>
 </div>
 </div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hi Altug,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi Altug,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 <ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
 <li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l2 level1 =
-lfo2">Have you tried setting your converter rate to 2.94912 GHz and compari=
-ng to the Ettus graph to get an apples-to-apples comparison? &nbsp;Also in =
-my experience, a weak MMPX connection can
- cause at least a 3dB loss&#8230; You can sometimes see the observed Tx pow=
-er jump around when you wiggle or adjust the connectors. My X440 currently =
-has one transmit channel that transmits about 3 dB less power than the othe=
-rs, and I think I&#8217;ve narrowed this down
- to the particular MMPX connector on that channel being weak/faulty. I&#821=
-7;d suggest trying a different cable and also testing transmission on other=
- channels, but overall I wouldn&#8217;t be surprised if the different clock=
- rate was having an effect here.<o:p></o:p></li><li class=3D"MsoListParagra=
-ph" style=3D"margin-left:0in;mso-list:l2 level1 lfo2">On the X440, you&#821=
-7;re probably okay directly connecting Tx to Rx. I think the 30 dB attenuat=
-or recommendation is left over from older USRP devices and is less applicab=
-le to the X440
- architecture. The older USRPs had separate RF front ends with amplifiers o=
-n the transmit side and LNAs on the receive side that could be individually=
- controlled in software, so it was possible to set transmit/receive gains t=
-oo high for a loopback configuration
- and the device could damage itself. With a 30 dB attenuator, virtually no =
-software settings could make the device damage itself in a loopback configu=
-ration. However on the X440, the entire front end is integrated into the RF=
-SoC and the daughter card is now
- just a passthrough. This means that your UHD program cannot change amplifi=
-ers and gains so the max transmit power will be capped in hardware around 0=
- dBm which is significantly below the sustained Rx damage threshold.<o:p></=
-o:p></li><li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l=
-2 level1 lfo2">Disclaimer: I&#8217;m not an expert here, just a user<o:p></=
-o:p></li></ol>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<br>
-Patrick <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+lfo2"><span lang=3D"EN-US">Have you tried setting your converter rate to 2.=
+94912 GHz and comparing to the Ettus graph to get an apples-to-apples compa=
+rison? &nbsp;Also in my experience, a weak
+ MMPX connection can cause at least a 3dB loss&#8230; You can sometimes see=
+ the observed Tx power jump around when you wiggle or adjust the connectors=
+. My X440 currently has one transmit channel that transmits about 3 dB less=
+ power than the others, and I think I&#8217;ve
+ narrowed this down to the particular MMPX connector on that channel being =
+weak/faulty. I&#8217;d suggest trying a different cable and also testing tr=
+ansmission on other channels, but overall I wouldn&#8217;t be surprised if =
+the different clock rate was having an effect
+ here.<o:p></o:p></span></li><li class=3D"MsoListParagraph" style=3D"margin=
+-left:0in;mso-list:l2 level1 lfo2"><span lang=3D"EN-US">On the X440, you&#8=
+217;re probably okay directly connecting Tx to Rx. I think the 30 dB attenu=
+ator recommendation is left over from older USRP devices and is less applic=
+able
+ to the X440 architecture. The older USRPs had separate RF front ends with =
+amplifiers on the transmit side and LNAs on the receive side that could be =
+individually controlled in software, so it was possible to set transmit/rec=
+eive gains too high for a loopback
+ configuration and the device could damage itself. With a 30 dB attenuator,=
+ virtually no software settings could make the device damage itself in a lo=
+opback configuration. However on the X440, the entire front end is integrat=
+ed into the RFSoC and the daughter
+ card is now just a passthrough. This means that your UHD program cannot ch=
+ange amplifiers and gains so the max transmit power will be capped in hardw=
+are around 0 dBm which is significantly below the sustained Rx damage thres=
+hold.<o:p></o:p></span></li><li class=3D"MsoListParagraph" style=3D"margin-=
+left:0in;mso-list:l2 level1 lfo2"><span lang=3D"EN-US">Disclaimer: I&#8217;=
+m not an expert here, just a user<o:p></o:p></span></li></ol>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks,<br>
+Patrick <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 <div>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
 0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Kaya, Altug &lt;<a href=3D"mailto:altug=
-.kaya@hhi.fraunhofer.de">altug.kaya@hhi.fraunhofer.de</a>&gt;
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Kaya, Altug &lt;</span><a href=3D"mailto:altug.kaya@hhi.fraunho=
+fer.de"><span lang=3D"EN-US">altug.kaya@hhi.fraunhofer.de</span></a><span l=
+ang=3D"EN-US">&gt;
 <br>
 <b>Sent:</b> Wednesday, July 31, 2024 5:57 AM<br>
-<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.e=
-ttus.com</a><br>
-<b>Subject:</b> [USRP-users] X440 Tx and Rx Power Constraints<o:p></o:p></p=
->
+<b>To:</b> </span><a href=3D"mailto:usrp-users@lists.ettus.com"><span lang=
+=3D"EN-US">usrp-users@lists.ettus.com</span></a><span lang=3D"EN-US"><br>
+<b>Subject:</b> [USRP-users] X440 Tx and Rx Power Constraints<o:p></o:p></s=
+pan></p>
 </div>
 </div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 <div style=3D"border:dotted #003333 1.5pt;padding:2.0pt 2.0pt 2.0pt 2.0pt">
-<p class=3D"MsoNormal" style=3D"background:pink"><b><span style=3D"font-siz=
-e:12.0pt;font-family:&quot;Courier New&quot;;color:black">*** WARNING: This=
- message originates from outside the STR organization. ***
+<p class=3D"MsoNormal" style=3D"background:pink"><b><span lang=3D"EN-US" st=
+yle=3D"font-size:12.0pt;font-family:&quot;Courier New&quot;;color:black">**=
+* WARNING: This message originates from outside the STR organization. ***
 <br>
 *** Please take appropriate care in opening any links or attachments. ***</=
-span></b><span style=3D"color:black">
-</span><o:p></o:p></p>
+span></b><span lang=3D"EN-US" style=3D"color:black">
+</span><span lang=3D"EN-US"><o:p></o:p></span></p>
 </div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Dear USRP Mailing List Members,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have two questions regarding power constraints of =
-X440:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span lang=3D"EN-US">=
+&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Dear USRP Mailing List Members,=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have two questions regarding =
+power constraints of X440:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 <ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
 <li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l0 level1 =
-lfo3">I set the master clock rate to 360 MHz and made sure that the convert=
-er rate becomes 2.88 GSps instead of 1.44 GSps. &nbsp;I used an UHD example=
- called &#8220;tx_waveforms&#8221; to verify the maximum
- output power. To compare the results with the specification sheet, a const=
-ant (&#8216;CONST&#8217;) wave of 500 MHz frequency with an amplitude of 1 =
-is used. While expecting a single tone whose power is around -2 dBm (accord=
-ing to this graph given for 2.94912 GSps
-<a href=3D"https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-specs/page/=
-specs.html#:~:text=3DFigure%202.%20TX%20Maximum%20Output%20Power%3A%200%20d=
-BFS%20CW%2C%202.94912%20GSps%20Converter%20Rate%2C%200%20Hz%20Waveform%20Fr=
-equency">
-https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-specs/page/specs.html#=
-:~:text=3DFigure%202.%20TX%20Maximum%20Output%20Power%3A%200%20dBFS%20CW%2C=
-%202.94912%20GSps%20Converter%20Rate%2C%200%20Hz%20Waveform%20Frequency</a>=
-), it is around -5 dBm.
-<b>Does the output power vary that much between the converter rates of 2.94=
-912 GSps and 2.88 GSps?</b><o:p></o:p></li></ol>
-<p class=3D"MsoListParagraph"><o:p>&nbsp;</o:p></p>
+lfo3"><span lang=3D"EN-US">I set the master clock rate to 360 MHz and made =
+sure that the converter rate becomes 2.88 GSps instead of 1.44 GSps. &nbsp;=
+I used an UHD example called &#8220;tx_waveforms&#8221;
+ to verify the maximum output power. To compare the results with the specif=
+ication sheet, a constant (&#8216;CONST&#8217;) wave of 500 MHz frequency w=
+ith an amplitude of 1 is used. While expecting a single tone whose power is=
+ around -2 dBm (according to this graph given
+ for 2.94912 GSps </span><a href=3D"https://www.ni.com/docs/de-DE/bundle/et=
+tus-usrp-x440-specs/page/specs.html#:~:text=3DFigure%202.%20TX%20Maximum%20=
+Output%20Power%3A%200%20dBFS%20CW%2C%202.94912%20GSps%20Converter%20Rate%2C=
+%200%20Hz%20Waveform%20Frequency"><span lang=3D"EN-US">https://www.ni.com/d=
+ocs/de-DE/bundle/ettus-usrp-x440-specs/page/specs.html#:~:text=3DFigure%202=
+.%20TX%20Maximum%20Output%20Power%3A%200%20dBFS%20CW%2C%202.94912%20GSps%20=
+Converter%20Rate%2C%200%20Hz%20Waveform%20Frequency</span></a><span lang=3D=
+"EN-US">),
+ it is around -5 dBm. <b>Does the output power vary that much between the c=
+onverter rates of 2.94912 GSps and 2.88 GSps?</b><o:p></o:p></span></li></o=
+l>
+<p class=3D"MsoListParagraph"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span>=
+</p>
 <ol style=3D"margin-top:0in" start=3D"2" type=3D"1">
 <li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l0 level1 =
-lfo3">I will use another X440 to capture the single tone (and the aliases d=
-ue to RF sampling) and analyze the ADC spurs. On the front panel, maximum r=
-eceiver input power is stated as 10
- dBm. This is further elaborated down to the operational frequency in this =
-webpage (<a href=3D"https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-sp=
-ecs/page/specs.html#:~:text=3DMaximum%20input%20power%2C%20damage%20level">=
-https://www.ni.com/docs/de-DE/bundle/ettus-usrp-x440-specs/page/specs.html#=
-:~:text=3DMaximum%20input%20power%2C%20damage%20level</a>).
+lfo3"><span lang=3D"EN-US">I will use another X440 to capture the single to=
+ne (and the aliases due to RF sampling) and analyze the ADC spurs. On the f=
+ront panel, maximum receiver input power
+ is stated as 10 dBm. This is further elaborated down to the operational fr=
+equency in this webpage (</span><a href=3D"https://www.ni.com/docs/de-DE/bu=
+ndle/ettus-usrp-x440-specs/page/specs.html#:~:text=3DMaximum%20input%20powe=
+r%2C%20damage%20level"><span lang=3D"EN-US">https://www.ni.com/docs/de-DE/b=
+undle/ettus-usrp-x440-specs/page/specs.html#:~:text=3DMaximum%20input%20pow=
+er%2C%20damage%20level</span></a><span lang=3D"EN-US">).
  On the other hand, in the loop back configuration, &gt;30dB attenuation be=
 tween ports were recommended.
-<o:p></o:p></li></ol>
-<p class=3D"MsoListParagraph"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b>What is the difference=
- between connecting the Tx port of one X440 to the Rx port of another X440 =
-and connecting Tx&amp;Rx ports of different daughter boards of the same X44=
-0? Why does the maximum receiver power requirement
- change? </b>The maximum one can transmit from a Tx port of X440 is 0 dBm. =
-According to my understanding, it should be safe to connect Tx and Rx ports=
- (of either same or different X440s) to each other as long as I am working =
-with a constant waveform with a
- PAPR of 0 dB.<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am grateful for your time and effort. If anything =
-is unclear and you are willing to help, I can provide further details.<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Altug KAYA<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<o:p></o:p></span></li></ol>
+<p class=3D"MsoListParagraph"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b><span lang=3D"EN-US">W=
+hat is the difference between connecting the Tx port of one X440 to the Rx =
+port of another X440 and connecting Tx&amp;Rx ports of different daughter b=
+oards of the same X440? Why does the maximum
+ receiver power requirement change? </span></b><span lang=3D"EN-US">The max=
+imum one can transmit from a Tx port of X440 is 0 dBm. According to my unde=
+rstanding, it should be safe to connect Tx and Rx ports (of either same or =
+different X440s) to each other as
+ long as I am working with a constant waveform with a PAPR of 0 dB.<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span lang=3D"EN-US">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am grateful for your time and=
+ effort. If anything is unclear and you are willing to help, I can provide =
+further details.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Altug KAYA<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 <div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
 </div>
-<p class=3D"MsoNormal"><span lang=3D"DE">National Instruments Dresden GmbH;=
- Gesch=E4ftsf=FChrer (Managing Directors): Sabrina Gilman, Kathleen Heard S=
-purck, Carl Schumacher; Sitz (Registered Office): Dresden; HRB (Commercial =
-Register No.): 22081; Registergericht (Registration
- Court): Dresden<br>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">National Instruments Dresden Gm=
+bH; Gesch=E4ftsf=FChrer (Managing Directors): Sabrina Gilman, Kathleen Hear=
+d Spurck, Carl Schumacher; Sitz (Registered Office): Dresden; HRB (Commerci=
+al Register No.): 22081; Registergericht
+ (Registration Court): Dresden<br>
 <br>
 This email and any attachments are intended only for the person to whom thi=
 s email is addressed and may contain confidential and/or privileged informa=
@@ -743,12 +950,23 @@ nts to anyone, but notify the sender
 em.&nbsp; <o:p>
 </o:p></span></p>
 </div>
+National Instruments Dresden GmbH; Gesch=E4ftsf=FChrer (Managing Directors)=
+: Sabrina Gilman, Kathleen Heard Spurck, Carl Schumacher; Sitz (Registered =
+Office): Dresden; HRB (Commercial Register No.): 22081; Registergericht (Re=
+gistration Court): Dresden<br>
+<br>
+This email and any attachments are intended only for the person to whom thi=
+s email is addressed and may contain confidential and/or privileged informa=
+tion. If you received this email in error, please do not disclose the conte=
+nts to anyone, but notify the sender
+ by return email and delete this email (and any attachments) from your syst=
+em.&nbsp;
 </body>
 </html>
 
---_000_5345af8e811a4c1e8ced700ce17f46a8hhifraunhoferde_--
+--_000_PH0PR04MB831185E58ECB8D63431D1A6DF3862PH0PR04MB8311namp_--
 
---===============5445101102597701976==
+--===============2700154827502610032==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -758,4 +976,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5445101102597701976==--
+--===============2700154827502610032==--
