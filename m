@@ -2,136 +2,257 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE3A9507D3
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 16:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DE48950824
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 16:49:09 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id ADE4F384ACE
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 10:36:32 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6C9D23854D5
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 10:49:08 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1723559792; bh=Ru7Bx9Eo7DEb7hbDsJHEM+vOKQHPR3+hrQ6YuQbmqLc=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=IQDgl/AmmcNF/OOaMBb4hLXCZYVF6SnQc6DTM0BvZhpUH909nrFgufpdjZmGvk0BS
-	 wy721xy77kVMBLur0jqEry2KISwLjPXCxk+m72pthbKrO5Dicrl9vmaSNecdJOcqsy
-	 /78EXIaq8uMkXsPirIdSp7hEa0MtJDWWXrgUF3RIu3lwzB+nU4m5ETXF2XAXGTDKFl
-	 ltKfySE8CASOy2hcnc1deTdc2ssajsS1oj0XUmAiDWMwSUgiZUImBNMCZmU1A8r31b
-	 RGuTYuPoekWvBC8fR6xbyv2URCocsxyG+CcYqoKuEqlKX/BmgAa4rRxcivJAC8JrjA
-	 vhR2xIb18qZTQ==
-Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
-	by mm2.emwd.com (Postfix) with ESMTPS id DCD51383CF2
-	for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 10:36:16 -0400 (EDT)
+	t=1723560548; bh=BPBGrvH+fnc3dZp8sy+TPUcmBkiul5uMMFshObhnTsw=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=u4xHrMRu2+fc7zSXitcS97vw1ZbjbIqneELaF58/TPbW1XXvUMSyGp3zdg8srUaRv
+	 6Ow3zcVq2a7pWB42SwV6pgZA+GJGzEgkchKrsjacVQKnHPUe3qNYJug7racBLqM6B+
+	 3Ldh0nyBNGFUEzlIAck0AMB8lEUKHc5CgZ+2iO2XT/RxrSqmeF80quOy7/N6RDbrTK
+	 UlABJReoOqVh9d241AqNBbX+Vux3nq7G9cpgYzaZWgoYYo68f2GJMwqIr3SOYds4FO
+	 PtbFFZHPM1mmEaDJfNLO4R5QThgrXjM2d6m9eY5bnE8cWKQXD6TpUNdOj8HWVioUXo
+	 CSoSXmMJGqQBA==
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id A9D57383D8B
+	for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 10:48:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="pK6vB33N";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="D+RScyPW";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1723559775; x=1723818975;
-	bh=mk5L3zncQAiezUAcFy1SD3PX8O5H+Xs1SN4CPtToYNc=;
-	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=pK6vB33NH7CTQqYOAtgVGA+EQvnQYtLhEudeI6J51q9pn1Uk6cs5vYvKy2+BTJCBL
-	 kep9015xb4Ugtp/WihFFixICAjq6YyLwVENQGSaVNsO3A77sE3zeh9WoKw2Wtq7uO8
-	 WWSPX0Pwm914Cd6IAzbFBiEn4QQ2kkG3GeZIfiCmwVY7v/gWeeyHLUkS0+/YjTzI+Y
-	 wdWovfqsHIX/09/loI7hy/VszAA4GYf45t/r+cDV3iGi8INQna9nc79SFFRkwoWhKL
-	 n2kzLhBsS8seeGi8XnRcFYlaKekgD1WqB6LzVzrYmoyzwHq2+S+PN07wNO9zB9xrpG
-	 919mS7HwqTlhw==
-Date: Tue, 13 Aug 2024 14:36:11 +0000
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <XbpcZvaMMXT6CtwRg8IyAm_D2T57dOfmrN5Tjze8-OitQI63xUXP7Iz7dQKf7Z15YiSgFNB5CiBc5htCR1LFxrkVuo_pk0mDDm-_3hxSHEw=@protonmail.com>
-Feedback-ID: 47010692:user:proton
-X-Pm-Message-ID: af47275829f97869b4f7c82e51e7a7b904afe783
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-44fff73f223so27466791cf.2
+        for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 07:48:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723560532; x=1724165332; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f+p7VecCf9iRSDJd6Fystd62Fjwd9D2TN4EpsjohCY4=;
+        b=D+RScyPW58miY+5YbPI/4bCWhPyi81BSLUCr1+QYQIMxy/KXgQwHKrTgy99Yn0qd4D
+         X4LdoHZ9xVl2v9PexaTXA+B4bEPU78Bfn7XIebQ2F4zYrSzyAgQMmS24BnTWN+hAvzNk
+         nN6J8Lr9B6hDbhasr4ZJn8YazJsOdxaFeMSFIf1z9cFVX0IqKEcF+VnLJHvVG2AsZNZt
+         PyobyfBZCI/y32Vm0WlN16edby4HO+0H4ue+2Q+kWl+v8zCXuDvr528lRTmpHMMiScke
+         rBWqrP/4PRqo5NOa5nKFnNnXp8TMCBZUgQJ1ii96EjAMeCv9dM957BntZX420ciTEO7o
+         PjHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723560532; x=1724165332;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=f+p7VecCf9iRSDJd6Fystd62Fjwd9D2TN4EpsjohCY4=;
+        b=farMTxZEOxMbw+BZejg5QyMuKyEBK5u+R0c1MrwXHhuqE7hibv8SSM9KDYqGJBovMz
+         FpDI6qABxWFL99m9D1R0vkiXmAVOC4E38BLIPkvYy42xPm4tfoahJzGCu/GcVesVQGbT
+         SdUNcAEDOyr1Ml9At5Hf8BXrya8GPmbBFYMwTNTBoWg8ZQwTKnJqxJjdh1M42/YKZpkX
+         SMtaeoEzQ717pcG0gvZn/uQpajDiUyu1ft3A1BMU3AzwPcpu6wSLlxcAwYVnRjQ0avL3
+         ejU8OP7KZj93zwzQl0PxhSI+Hhuy1CIbUmUH1etRTlLEY2IQCnxOLJiGHqlbibCJk0nl
+         hhUQ==
+X-Gm-Message-State: AOJu0Yzri+H5Vo7O3Lwzke4Rr3YGCpHFMLJWEEc8Mca+lLDH8Tiho9wY
+	ewOf6RqXl+H+CSOFwPSSB96w3qSLLnIalB5rIRoGXnD/KGcHqC4Ax3XrcA==
+X-Google-Smtp-Source: AGHT+IGmC6vPEq8F0KcRCDY6ediCBraXtTXBdYU+G0mB3YPzQVFT2RLSfuGADuL7CjAz5obqIXPxXQ==
+X-Received: by 2002:ac8:7ef9:0:b0:453:4c67:5ded with SMTP id d75a77b69052e-4534c675f09mr32239311cf.8.1723560531616;
+        Tue, 13 Aug 2024 07:48:51 -0700 (PDT)
+Received: from [192.168.2.170] ([64.231.212.86])
+        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4531c1d70c9sm32989761cf.42.2024.08.13.07.48.51
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Aug 2024 07:48:51 -0700 (PDT)
+Message-ID: <46409b81-0e7e-4c71-bb77-536efad5f90a@gmail.com>
+Date: Tue, 13 Aug 2024 10:48:40 -0400
 MIME-Version: 1.0
-Message-ID-Hash: BTW577EENZ44LPBWPE2TDU5RN4OCABTV
-X-Message-ID-Hash: BTW577EENZ44LPBWPE2TDU5RN4OCABTV
-X-MailFrom: olo1618@protonmail.com
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <XbpcZvaMMXT6CtwRg8IyAm_D2T57dOfmrN5Tjze8-OitQI63xUXP7Iz7dQKf7Z15YiSgFNB5CiBc5htCR1LFxrkVuo_pk0mDDm-_3hxSHEw=@protonmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <XbpcZvaMMXT6CtwRg8IyAm_D2T57dOfmrN5Tjze8-OitQI63xUXP7Iz7dQKf7Z15YiSgFNB5CiBc5htCR1LFxrkVuo_pk0mDDm-_3hxSHEw=@protonmail.com>
+Message-ID-Hash: RWIG2PELALK4F2EDLLPP53T57CWS6WUB
+X-Message-ID-Hash: RWIG2PELALK4F2EDLLPP53T57CWS6WUB
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Receiving on All Channels with X310
+Subject: [USRP-users] Re: Receiving on All Channels with X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BTW577EENZ44LPBWPE2TDU5RN4OCABTV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RWIG2PELALK4F2EDLLPP53T57CWS6WUB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Olo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olo <olo1618@protonmail.com>
-Content-Type: multipart/mixed; boundary="===============3613034929983334036=="
+Content-Type: multipart/mixed; boundary="===============1463317118582299067=="
 
 This is a multi-part message in MIME format.
-
---===============3613034929983334036==
+--===============1463317118582299067==
 Content-Type: multipart/alternative;
- boundary="b1_8AdobxtdVzX1lmlwD7cFE4BJ7lcI4L96LGteAyu0"
+ boundary="------------1PiXzQ75JXDE04fwI4N42LOS"
+Content-Language: en-US
 
 This is a multi-part message in MIME format.
+--------------1PiXzQ75JXDE04fwI4N42LOS
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
---b1_8AdobxtdVzX1lmlwD7cFE4BJ7lcI4L96LGteAyu0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+On 13/08/2024 10:36, Olo via USRP-users wrote:
+> Dear Ettus Support Team,
+>
+> I hope this message finds you well.
+>
+> I am currently working with an X310 SDR equipped with two TwinRX=20
+> daughterboards, and I am looking to receive data simultaneously across=20
+> all four channels. My goal is to maximize the available bandwidth by=20
+> configuring the system to receive on all channels in parallel.
+>
+> Could you please advise on the best approach to achieve this?=20
+> Specifically, I would like to know if it is necessary to use a=20
+> specialized RFNoC graph for this setup, or if the uhd::multi_usrp=20
+> class in the UHD library, along with a corresponding rx_streamer,=20
+> would be sufficient to accomplish this task.
+>
+> I appreciate any guidance or recommendations you can provide.
+>
+> Thank you for your support.
+>
+> Best regards,
+> Olo.
+>
+>
+Assuming that all the streams terminate on your computer, then the=20
+limiting factor is always going to be your computer.=C2=A0 RFNoC
+ =C2=A0 is only helpful if you want to do some of the computing on the=20
+radio.=C2=A0 But if the goal is to have 4 streams going to your computer,
+ =C2=A0 at full rate, then RFNoC doesn't bring anything to the table--and=
+ in=20
+fact, internally these days, an application that uses UHD
+ =C2=A0 multi-usrp streamers actually sets up a standardized RFNoC flow o=
+n=20
+the radio anyway.
 
-RGVhciBFdHR1cyBTdXBwb3J0IFRlYW0sCgpJIGhvcGUgdGhpcyBtZXNzYWdlIGZpbmRzIHlvdSB3
-ZWxsLgoKSSBhbSBjdXJyZW50bHkgd29ya2luZyB3aXRoIGFuIFgzMTAgU0RSIGVxdWlwcGVkIHdp
-dGggdHdvIFR3aW5SWCBkYXVnaHRlcmJvYXJkcywgYW5kIEkgYW0gbG9va2luZyB0byByZWNlaXZl
-IGRhdGEgc2ltdWx0YW5lb3VzbHkgYWNyb3NzIGFsbCBmb3VyIGNoYW5uZWxzLiBNeSBnb2FsIGlz
-IHRvIG1heGltaXplIHRoZSBhdmFpbGFibGUgYmFuZHdpZHRoIGJ5IGNvbmZpZ3VyaW5nIHRoZSBz
-eXN0ZW0gdG8gcmVjZWl2ZSBvbiBhbGwgY2hhbm5lbHMgaW4gcGFyYWxsZWwuCgpDb3VsZCB5b3Ug
-cGxlYXNlIGFkdmlzZSBvbiB0aGUgYmVzdCBhcHByb2FjaCB0byBhY2hpZXZlIHRoaXM/IFNwZWNp
-ZmljYWxseSwgSSB3b3VsZCBsaWtlIHRvIGtub3cgaWYgaXQgaXMgbmVjZXNzYXJ5IHRvIHVzZSBh
-IHNwZWNpYWxpemVkIFJGTm9DIGdyYXBoIGZvciB0aGlzIHNldHVwLCBvciBpZiB0aGUgdWhkOjpt
-dWx0aV91c3JwIGNsYXNzIGluIHRoZSBVSEQgbGlicmFyeSwgYWxvbmcgd2l0aCBhIGNvcnJlc3Bv
-bmRpbmcgcnhfc3RyZWFtZXIsIHdvdWxkIGJlIHN1ZmZpY2llbnQgdG8gYWNjb21wbGlzaCB0aGlz
-IHRhc2suCgpJIGFwcHJlY2lhdGUgYW55IGd1aWRhbmNlIG9yIHJlY29tbWVuZGF0aW9ucyB5b3Ug
-Y2FuIHByb3ZpZGUuCgpUaGFuayB5b3UgZm9yIHlvdXIgc3VwcG9ydC4KCkJlc3QgcmVnYXJkcywK
-T2xvLg==
+This document can be helpful:
 
---b1_8AdobxtdVzX1lmlwD7cFE4BJ7lcI4L96LGteAyu0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks
 
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-NHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+RGVhciBFdHR1cyBT
-dXBwb3J0IFRlYW0sPC9zcGFuPjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQt
-ZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDog
-bm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+SSBob3BlIHRoaXMgbWVzc2FnZSBmaW5kcyB5b3Ug
-d2VsbC48L3NwYW4+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1m
-YW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBu
-b3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5JIGFtIGN1cnJlbnRseSB3b3JraW5nIHdpdGggYW4g
-WDMxMCBTRFIgZXF1aXBwZWQgd2l0aCB0d28gVHdpblJYIGRhdWdodGVyYm9hcmRzLCBhbmQgSSBh
-bSBsb29raW5nIHRvIHJlY2VpdmUgZGF0YSBzaW11bHRhbmVvdXNseSBhY3Jvc3MgYWxsIGZvdXIg
-Y2hhbm5lbHMuIE15IGdvYWwgaXMgdG8gbWF4aW1pemUgdGhlIGF2YWlsYWJsZSBiYW5kd2lkdGgg
-YnkgY29uZmlndXJpbmcgdGhlIHN5c3RlbSB0byByZWNlaXZlIG9uIGFsbCBjaGFubmVscyBpbiBw
-YXJhbGxlbC48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFs
-LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQt
-d2VpZ2h0OiA0MDA7Ij48YnI+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVp
-Z2h0OiBub3JtYWw7IGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-NHB4OyBmb250LXdlaWdodDogNDAwOyI+Q291bGQgeW91IHBsZWFzZSBhZHZpc2Ugb24gdGhlIGJl
-c3QgYXBwcm9hY2ggdG8gYWNoaWV2ZSB0aGlzPyBTcGVjaWZpY2FsbHksIEkgd291bGQgbGlrZSB0
-byBrbm93IGlmIGl0IGlzIG5lY2Vzc2FyeSB0byB1c2UgYSBzcGVjaWFsaXplZCBSRk5vQyBncmFw
-aCBmb3IgdGhpcyBzZXR1cCwgb3IgaWYgdGhlIHVoZDo6bXVsdGlfdXNycCBjbGFzcyBpbiB0aGUg
-VUhEIGxpYnJhcnksIGFsb25nIHdpdGggYSBjb3JyZXNwb25kaW5nIHJ4X3N0cmVhbWVyLCB3b3Vs
-ZCBiZSBzdWZmaWNpZW50IHRvIGFjY29tcGxpc2ggdGhpcyB0YXNrLjwvc3Bhbj48L2Rpdj48ZGl2
-PjxzcGFuIHN0eWxlPSIiPjxicj48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1m
-YW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBu
-b3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5JIGFwcHJlY2lhdGUgYW55IGd1aWRhbmNlIG9yIHJl
-Y29tbWVuZGF0aW9ucyB5b3UgY2FuIHByb3ZpZGUuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5
-bGU9IiI+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJp
-YWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9u
-dC13ZWlnaHQ6IDQwMDsiPlRoYW5rIHlvdSBmb3IgeW91ciBzdXBwb3J0Ljwvc3Bhbj48L2Rpdj48
-ZGl2PjxzcGFuIHN0eWxlPSIiPjxicj48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGlu
-ZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNp
-emU6IDE0cHg7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5CZXN0IHJlZ2FyZHMsPC9zcGFuPjwvZGl2Pjxk
-aXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtZmFtaWx5OiBBcmlhbCwg
-c2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBmb250LXdlaWdodDogNDAwOyI+T2xvLjwvc3Bh
-bj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LWZhbWls
-eTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgZm9udC13ZWlnaHQ6IDQwMDsi
-Pjxicj48L3NwYW4+PC9kaXY+
+The ultimate question becomes "what do I want to do with those=20
+streams?".=C2=A0 That will determine whether your computer
+ =C2=A0 can handle the aggregate data rates.
 
 
---b1_8AdobxtdVzX1lmlwD7cFE4BJ7lcI4L96LGteAyu0--
 
---===============3613034929983334036==
+--------------1PiXzQ75JXDE04fwI4N42LOS
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 13/08/2024 10:36, Olo via USRP-user=
+s
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:XbpcZvaMMXT6CtwRg8IyAm_D2T57dOfmrN5Tjze8-OitQI63xUXP7Iz7dQKf7=
+Z15YiSgFNB5CiBc5htCR1LFxrkVuo_pk0mDDm-_3hxSHEw=3D@protonmail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <span
+style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
+rmal; font-weight: 400;">Dear
+        Ettus Support Team,</span>
+      <div><br>
+      </div>
+      <div><span
+style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
+rmal; font-weight: 400;">I
+          hope this message finds you well.</span></div>
+      <div><br>
+      </div>
+      <div><span
+style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
+rmal; font-weight: 400;">I
+          am currently working with an X310 SDR equipped with two TwinRX
+          daughterboards, and I am looking to receive data
+          simultaneously across all four channels. My goal is to
+          maximize the available bandwidth by configuring the system to
+          receive on all channels in parallel.</span></div>
+      <div><span
+style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
+rmal; font-weight: 400;"><br>
+        </span></div>
+      <div><span
+style=3D"line-height: normal; font-family: Arial, sans-serif; font-size: =
+14px; font-weight: 400;">Could
+          you please advise on the best approach to achieve this?
+          Specifically, I would like to know if it is necessary to use a
+          specialized RFNoC graph for this setup, or if the
+          uhd::multi_usrp class in the UHD library, along with a
+          corresponding rx_streamer, would be sufficient to accomplish
+          this task.</span></div>
+      <div><span style=3D""><br>
+        </span></div>
+      <div><span
+style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
+rmal; font-weight: 400;">I
+          appreciate any guidance or recommendations you can provide.</sp=
+an></div>
+      <div><span style=3D""><br>
+        </span></div>
+      <div><span
+style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
+rmal; font-weight: 400;">Thank
+          you for your support.</span></div>
+      <div><span style=3D""><br>
+        </span></div>
+      <div><span
+style=3D"line-height: normal; font-family: Arial, sans-serif; font-size: =
+14px; font-weight: 400;">Best
+          regards,</span></div>
+      <div><span
+style=3D"line-height: normal; font-family: Arial, sans-serif; font-size: =
+14px; font-weight: 400;">Olo.</span></div>
+      <div><span
+style=3D"line-height: normal; font-family: Arial, sans-serif; font-size: =
+14px; font-weight: 400;"><br>
+        </span></div>
+      <br>
+    </blockquote>
+    Assuming that all the streams terminate on your computer, then the
+    limiting factor is always going to be your computer.=C2=A0 RFNoC<br>
+    =C2=A0 is only helpful if you want to do some of the computing on the
+    radio.=C2=A0 But if the goal is to have 4 streams going to your compu=
+ter,<br>
+    =C2=A0 at full rate, then RFNoC doesn't bring anything to the table--=
+and
+    in fact, internally these days, an application that uses UHD<br>
+    =C2=A0 multi-usrp streamers actually sets up a standardized RFNoC flo=
+w on
+    the radio anyway.<br>
+    <br>
+    This document can be helpful:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/USRP_=
+Host_Performance_Tuning_Tips_and_Tricks">https://kb.ettus.com/USRP_Host_P=
+erformance_Tuning_Tips_and_Tricks</a><br>
+    <br>
+    The ultimate question becomes "what do I want to do with those
+    streams?".=C2=A0 That will determine whether your computer<br>
+    =C2=A0 can handle the aggregate data rates.<br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------1PiXzQ75JXDE04fwI4N42LOS--
+
+--===============1463317118582299067==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -141,4 +262,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3613034929983334036==--
+--===============1463317118582299067==--
