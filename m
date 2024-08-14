@@ -2,407 +2,356 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B9C951BC9
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 15:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C78951CD6
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 16:16:57 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 910DC3854CB
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 09:26:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 88F1F3854AA
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 10:16:56 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1723641964; bh=1ra7V5CDkIE6QPid6nksoKjjRBwooZGNUsxSIRbgTDU=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1723645016; bh=toRb+TUd7AHiZJhSnFEyARFJi7mvbtAX9HPcE/4GdfQ=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=Pwvy4B41HIqM+5BjnDggX/nz17W0IhL/Jy5xfrEWRxjfKg279LASzDJowK7KnoqCi
-	 lG9FaLhgF/xycL525QFcIW7DKKCv4qpnUxxnW2T9gMfUT+c6qL5jXGIfgbLJKF90n2
-	 G4b4CU+wW/AXR9w9iWAnJsvEaY51KaG+E/d4JXiMPYgAId5YlqZE6gCIKUJa2Qxu9e
-	 5Tndmcn5kJJzNXhaIyXDTW6wp7pQsxpFTfWvty/wxtekhaEMp19Yj27VKRDZL19wxD
-	 Hnyc32QESBx89tN3cCD5oJJ0po63gTyug+lZbcs6vrQrxlQowFAH/A4fzBlYBbs9pb
-	 d8JGxhHbI9ojg==
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id A68DE384179
-	for <usrp-users@lists.ettus.com>; Wed, 14 Aug 2024 09:25:50 -0400 (EDT)
+	 From:Reply-To:From;
+	b=hDyR6u0nXlBm+dwHvwqjt0yZPkF2C3iFoo5TJEVPIxcB9EvQz3rs0nWPyQY/989iz
+	 vYIl1AYzMP+HmUadUxWwi/wa/3F2A0J6w47KJ/AmAXvun9b11JTFt7vWo+uaz+/vc/
+	 4BHAbdrX78/ombCfsJ45fSzVvwKHN9M1r6lkl+19jCT1H/CBxyZsIs7bStqQ0WgMTc
+	 jR5oBv7mz5Svuw65KZYBVJgFSbQdhJcYChySgStVQ9iggDKd50qHTtPcBYKAnzx6wK
+	 SBBPYoY56DwHTNnYblOSV1qIBHe8UwaHx4JKWA8pEsNd/17jMEZY/Vfath7sjb9VhJ
+	 tPmazO7AdOKeg==
+Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
+	by mm2.emwd.com (Postfix) with ESMTPS id F1D72385448
+	for <usrp-users@lists.ettus.com>; Wed, 14 Aug 2024 10:16:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z/kAipR8";
+	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="ditxOOyM";
 	dkim-atps=neutral
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7a1dd2004e1so414209785a.3
-        for <usrp-users@lists.ettus.com>; Wed, 14 Aug 2024 06:25:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723641950; x=1724246750; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pmEFanD3DV2TtsG6fMlVXPPyfTaR41LM9t7DSp3wZzg=;
-        b=Z/kAipR8YfVCGW5u0IGHdYZfyNhuiNABZb8Sz98nxGfgWsxtWkHqWhW/Iw1s4Mdk4R
-         KAN8i/AWwDtNvRW4dQFnkIK+N5k839aeGDu4uDccS9SCfgI0XVenkozqKLcIzY5hWRgR
-         oBW30p1I2TeE7wK7mFgHwDEI5Wsls7rQyvgKofcNROPLalRN0H5P7ZfXbrKCdlBf/177
-         0DRqEp9tvd8P/f39UPtoddGa0jA06y4O9Eo5xYLvi7SH3+UPkaadRsncBLgatXzsqdY8
-         rwc7+JKof1CNROJXofb99sZm9JZFhHu2D/O9UexxcsZ4HfQY7aUp4phVqh0nP1b+19kN
-         fnsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723641950; x=1724246750;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=pmEFanD3DV2TtsG6fMlVXPPyfTaR41LM9t7DSp3wZzg=;
-        b=RH/gV+CiZ0L5VUhLMRQK1PkbtmoNN56YX+2j+6FzaTfvtyP35D4hVTPOd6LqILNr8t
-         zeBnUFV/NgTv5YhHnlO3ZpnNfAvUsl6cQ3ehhHwFivlerk9yAowJuJpxOLik35jfcELt
-         xvMrWgoQDhXewUlrdkXm35468jdWHON2N9GosAC6Xo8+QK6p+MsycCPH9NY8yKzUT0Ji
-         O7aJw8PKGmefNC1VDTOe+FtjLkGKQeSPk6pO+1dZVkZpPwxZjEa/ol+PMUsxG9Yat82X
-         UAWROCAWmMQSXbHTg40YaZ80XO0IOd952DneSozslANNVMlgUf/uX/Y2dfCfhVBt7ZDX
-         tV4w==
-X-Gm-Message-State: AOJu0Yz7cJexrey7ImzdtJgX45CJqzfa5vkvoW9i3ldUSoyoia1AZEwk
-	H//5rvummSIb/bnwm7/eWw0FL56YaSxrQwDUiW5Bs2vSTS8LCTOQyBrH7A==
-X-Google-Smtp-Source: AGHT+IHWF+r/DG4UkvAlF7Evw4AmROJ0hLkE8tTOrNzlJ2vKYg7qp4TMS+yy0ee+BIqu+23YexeIaQ==
-X-Received: by 2002:a05:620a:4414:b0:79d:6bba:4a61 with SMTP id af79cd13be357-7a4ee26bc52mr333169885a.0.1723641949540;
-        Wed, 14 Aug 2024 06:25:49 -0700 (PDT)
-Received: from [192.168.2.170] ([64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7a4c7d71bddsm436956385a.38.2024.08.14.06.25.48
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Aug 2024 06:25:49 -0700 (PDT)
-Message-ID: <b10991d1-c787-406b-8ff9-e8d010744ad5@gmail.com>
-Date: Wed, 14 Aug 2024 09:25:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1723645000; x=1723904200;
+	bh=DOMVXHLNnn9VvGa6+9Kf4HsKlj/89K1usnFEa1Qjlck=;
+	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=ditxOOyMrDd9YRmFlrFJdwxGs2KQQWuqccV1pFdyxO5czdrmuoU+v96YjGI+96OSn
+	 TE2cElRZDrnnyUEfhbJsaxYtxaOzZLUxP6BXsQUAouuM9dDHr0pJiEr0pSUtRsCsQR
+	 CR3WKdsY6fXtdVca3wPE580bky/xKROHAvKBRSYvPWDwaanTUPbN92TjHO1aryDG3o
+	 YleIhyfBf5e4j8VCB5OpXv8r7+M46RHtxSyq0XlKUBw0JHG22C/gwDM3cvD1Jezdqy
+	 KZ9tJV8Ys6yu5++3UHifsp0WWDOh0sI0nsahdmmgUwTwTkqWqSJJrwJFLL8TbGsr1r
+	 ypmnKRqJ04zzg==
+Date: Wed, 14 Aug 2024 14:16:35 +0000
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <x_QaVKXGmknlfRkvuULzZoelaQQvh19qK4xF8Mus_M5EGC7YIbvD3rZy8Hut7PAr61IqVrpiCReU0I_36wHBH_7QwGisB77DT7Y_jSkY_zs=@protonmail.com>
+In-Reply-To: <b10991d1-c787-406b-8ff9-e8d010744ad5@gmail.com>
+References: <XbpcZvaMMXT6CtwRg8IyAm_D2T57dOfmrN5Tjze8-OitQI63xUXP7Iz7dQKf7Z15YiSgFNB5CiBc5htCR1LFxrkVuo_pk0mDDm-_3hxSHEw=@protonmail.com> <46409b81-0e7e-4c71-bb77-536efad5f90a@gmail.com> <MGO60O5lFGsXTagndMxl2DUjN99zdlj-pecPAYnMBmjk48p9i5eFK66JE9Z82bhO-k26-NQqcYNTIDuoFpK8GDrpZMw-SNHEMf-2aaXE2xo=@protonmail.com> <b10991d1-c787-406b-8ff9-e8d010744ad5@gmail.com>
+Feedback-ID: 47010692:user:proton
+X-Pm-Message-ID: 0292c4b59dbf0d669df6c27c79d9256f949c3f9e
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <XbpcZvaMMXT6CtwRg8IyAm_D2T57dOfmrN5Tjze8-OitQI63xUXP7Iz7dQKf7Z15YiSgFNB5CiBc5htCR1LFxrkVuo_pk0mDDm-_3hxSHEw=@protonmail.com>
- <46409b81-0e7e-4c71-bb77-536efad5f90a@gmail.com>
- <MGO60O5lFGsXTagndMxl2DUjN99zdlj-pecPAYnMBmjk48p9i5eFK66JE9Z82bhO-k26-NQqcYNTIDuoFpK8GDrpZMw-SNHEMf-2aaXE2xo=@protonmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <MGO60O5lFGsXTagndMxl2DUjN99zdlj-pecPAYnMBmjk48p9i5eFK66JE9Z82bhO-k26-NQqcYNTIDuoFpK8GDrpZMw-SNHEMf-2aaXE2xo=@protonmail.com>
-Message-ID-Hash: HMHBAOUEIUPH6GUOZYJYYYOVEGDMAHGC
-X-Message-ID-Hash: HMHBAOUEIUPH6GUOZYJYYYOVEGDMAHGC
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: Z7YVNUH3NCZW7IITDPRITXNPZLED5SNZ
+X-Message-ID-Hash: Z7YVNUH3NCZW7IITDPRITXNPZLED5SNZ
+X-MailFrom: olo1618@protonmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Receiving on All Channels with X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HMHBAOUEIUPH6GUOZYJYYYOVEGDMAHGC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z7YVNUH3NCZW7IITDPRITXNPZLED5SNZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6925231748053535735=="
+From: Olo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olo <olo1618@protonmail.com>
+Content-Type: multipart/mixed; boundary="===============6214451314189490675=="
 
 This is a multi-part message in MIME format.
---===============6925231748053535735==
+
+--===============6214451314189490675==
 Content-Type: multipart/alternative;
- boundary="------------XKmhhGtWiEulSJBQFxe4bLTz"
-Content-Language: en-US
+ boundary="b1_FIrC0AIeNHKoXsrl7QLgf8MlQWhBuEhS1L2zI5WAuj0"
 
 This is a multi-part message in MIME format.
---------------XKmhhGtWiEulSJBQFxe4bLTz
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
 
-On 14/08/2024 02:57, Olo via USRP-users wrote:
->
-> Dear Ettus Support,
->
-> Thank you for your prompt and detailed response. I appreciate the=20
-> clarification regarding the use of RFNoC and UHD multi_usrpstreamers.
->
-> To answer your question, my goal is to display the Power Spectral=20
-> Density (PSD) from the four channels. I plan to use a window function,=20
-> perform an FFT, and apply the log power block to calculate the PSD.
->
-> Could you please advise on the best way to combine all four channels=20
-> into one for this purpose? Specifically, I'm interested in=20
-> understanding how to properly aggregate the data streams so that I can=20
-> calculate the PSD effectively.
->
-> Thank you again for your support.
->
-> Best regards,
-> Olo
->
-That's probably a question for the discuss-gnuradio mailing list,=20
-assuming you're using GNu Radio.
+--b1_FIrC0AIeNHKoXsrl7QLgf8MlQWhBuEhS1L2zI5WAuj0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-UHD isn't a signal-processing framework -- it's a driver interface to=20
-the hardware.=C2=A0 RFNoC augments this with
- =C2=A0 DSP blocks that can run on the hardware.=C2=A0 I don't *think* th=
-at=20
-there's enough resources on the X310 FPGA to run
- =C2=A0 FFTs on all 4 channels, but I could be wrong.=C2=A0=C2=A0 Maybe t=
-here's someone=20
-on here who has done this with RFNoC.
+VGhhbmsgeW91IGZvciB5b3VyIHJlc3BvbnNlIGFuZCB0aGUgaGVscGZ1bCBpbmZvcm1hdGlvbi4K
+CkkgaGF2ZSBhIGZvbGxvdy11cCBxdWVzdGlvbiByZWdhcmRpbmcgdGhlIGNvbW1vbiBwaGFzZSBy
+ZWZlcmVuY2UuIEkgYW0gdXNpbmcgdHdvIFR3aW5SWCBkYXVnaHRlcmJvYXJkcywgd2hpY2ggc2hv
+dWxkIHNoYXJlIGEgY29tbW9uIGxvY2FsIG9zY2lsbGF0b3IuIERvZXMgdGhpcyBzZXR1cCBxdWFs
+aWZ5IGFzIGhhdmluZyBhIGNvbW1vbiBwaGFzZSByZWZlcmVuY2UgYWNyb3NzIGFsbCBmb3VyIGNo
+YW5uZWxzPwoKQWRkaXRpb25hbGx5LCBteSBpbnRlcmVzdCBpbiBSRk5vQyBzdGVtcyBmcm9tIHRo
+ZSBkb2N1bWVudGF0aW9uLCB3aGljaCBzdGF0ZXMgdGhhdCB0aGUgQ2hhbm5lbHMgcGFyYW1ldGVy
+IGluIHVoZDo6c3RyZWFtX2FyZ3NfdCBpcyBub3QgdXNlZCBmb3IgUkZOb0MgZGV2aWNlcy4gSW5z
+dGVhZCwgdG8gY3JlYXRlIGEgc3RyZWFtZXIgd2l0aCBtdWx0aXBsZSBjaGFubmVscywgdGhlIEFQ
+SSBjYWxscyB1aGQ6OnJmbm9jOjpyZm5vY19ncmFwaDo6Y3JlYXRlX3R4X3N0cmVhbWVyKCkgYW5k
+IHVoZDo6cmZub2M6OnJmbm9jX2dyYXBoOjpjcmVhdGVfcnhfc3RyZWFtZXIoKSBpbmNsdWRlIGEg
+bnVtX3BvcnRzIGFyZ3VtZW50LgoKR2l2ZW4gdGhpcywgaXMgaXQgcG9zc2libGUgdG8gcmVjZWl2
+ZSBkYXRhIGZyb20gYWxsIGZvdXIgY2hhbm5lbHMgc2ltdWx0YW5lb3VzbHksIGV2ZW4gaWYgbm90
+IGF0IGZ1bGwgYmFuZHdpZHRoLCBieSBzaW1wbHkgY29ubmVjdGluZyBlYWNoIGxhc3QgYmxvY2sg
+ZnJvbSB0aGUgY2hhbm5lbHMgdG8gY3JlYXRlX3J4X3N0cmVhbWVyKCk/IEFsc28sIHdoYXQgc2hv
+dWxkIHRoZSBmaW5hbCBibG9jayBiZSBpZiBJIHdhbnQgdG8gcmVjZWl2ZSByYXcgSVEgZGF0YT8K
+CkZpbmFsbHksIEkgYW0gY3VycmVudGx5IHVzaW5nIHRoZSBzdGFuZGFyZCBYRyBpbWFnZSBmb3Ig
+dGhlIFgzMTAgZHVlIHRvIG15IGR1YWwgMTBHYkUgc2V0dXAuIFdvdWxkIHRoaXMgaW1hZ2UgYmUg
+YWJsZSB0byBzdHJlYW0gZXZlcnl0aGluZyBzaW11bHRhbmVvdXNseSwgb3Igd291bGQgSSBuZWVk
+IHRvIGNyZWF0ZSBhIGN1c3RvbSBvbmU/CgpJIGFwcHJlY2lhdGUgeW91ciBndWlkYW5jZSBvbiB0
+aGlzIG1hdHRlci4KT24gV2VkbmVzZGF5LCBBdWd1c3QgMTR0aCwgMjAyNCBhdCAxNToyNSwgTWFy
+Y3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4gd3JvdGU6Cgo+IE9uIDE0LzA4
+LzIwMjQgMDI6NTcsIE9sbyB2aWEgVVNSUC11c2VycyB3cm90ZToKPgo+PiBEZWFyIEV0dHVzIFN1
+cHBvcnQsCj4+Cj4+IFRoYW5rIHlvdSBmb3IgeW91ciBwcm9tcHQgYW5kIGRldGFpbGVkIHJlc3Bv
+bnNlLiBJIGFwcHJlY2lhdGUgdGhlIGNsYXJpZmljYXRpb24gcmVnYXJkaW5nIHRoZSB1c2Ugb2Yg
+UkZOb0MgYW5kIFVIRCBtdWx0aV91c3JwIHN0cmVhbWVycy4KPj4KPj4gVG8gYW5zd2VyIHlvdXIg
+cXVlc3Rpb24sIG15IGdvYWwgaXMgdG8gZGlzcGxheSB0aGUgUG93ZXIgU3BlY3RyYWwgRGVuc2l0
+eSAoUFNEKSBmcm9tIHRoZSBmb3VyIGNoYW5uZWxzLiBJIHBsYW4gdG8gdXNlIGEgd2luZG93IGZ1
+bmN0aW9uLCBwZXJmb3JtIGFuIEZGVCwgYW5kIGFwcGx5IHRoZSBsb2cgcG93ZXIgYmxvY2sgdG8g
+Y2FsY3VsYXRlIHRoZSBQU0QuCj4+Cj4+IENvdWxkIHlvdSBwbGVhc2UgYWR2aXNlIG9uIHRoZSBi
+ZXN0IHdheSB0byBjb21iaW5lIGFsbCBmb3VyIGNoYW5uZWxzIGludG8gb25lIGZvciB0aGlzIHB1
+cnBvc2U/IFNwZWNpZmljYWxseSwgSSdtIGludGVyZXN0ZWQgaW4gdW5kZXJzdGFuZGluZyBob3cg
+dG8gcHJvcGVybHkgYWdncmVnYXRlIHRoZSBkYXRhIHN0cmVhbXMgc28gdGhhdCBJIGNhbiBjYWxj
+dWxhdGUgdGhlIFBTRCBlZmZlY3RpdmVseS4KPj4KPj4gVGhhbmsgeW91IGFnYWluIGZvciB5b3Vy
+IHN1cHBvcnQuCj4+Cj4+IEJlc3QgcmVnYXJkcywKPj4gT2xvCj4KPiBUaGF0J3MgcHJvYmFibHkg
+YSBxdWVzdGlvbiBmb3IgdGhlIGRpc2N1c3MtZ251cmFkaW8gbWFpbGluZyBsaXN0LCBhc3N1bWlu
+ZyB5b3UncmUgdXNpbmcgR051IFJhZGlvLgo+Cj4gVUhEIGlzbid0IGEgc2lnbmFsLXByb2Nlc3Np
+bmcgZnJhbWV3b3JrIC0tIGl0J3MgYSBkcml2ZXIgaW50ZXJmYWNlIHRvIHRoZSBoYXJkd2FyZS4g
+UkZOb0MgYXVnbWVudHMgdGhpcyB3aXRoCj4gRFNQIGJsb2NrcyB0aGF0IGNhbiBydW4gb24gdGhl
+IGhhcmR3YXJlLiBJIGRvbid0ICp0aGluayogdGhhdCB0aGVyZSdzIGVub3VnaCByZXNvdXJjZXMg
+b24gdGhlIFgzMTAgRlBHQSB0byBydW4KPiBGRlRzIG9uIGFsbCA0IGNoYW5uZWxzLCBidXQgSSBj
+b3VsZCBiZSB3cm9uZy4gTWF5YmUgdGhlcmUncyBzb21lb25lIG9uIGhlcmUgd2hvIGhhcyBkb25l
+IHRoaXMgd2l0aCBSRk5vQy4KPgo+IEluIHRlcm1zIG9mICJzcGVjdHJhbCBtZXJnaW5nIi4gSWYg
+YWxsIDQgY2hhbm5lbHMgc2hhcmUgYSBjb21tb24gcGhhc2UgcmVmZXJlbmNlLCB0aGVuIEkgKnRo
+aW5rKiB0aGF0IHlvdSBjYW4KPiByb3RhdGUtYW5kLWFkZCBwcmlvciB0byBjb21wdXRpbmcgYSBz
+aW5nbGUgRkZUIG92ZXIgdGhlIGFnZ3JlZ2F0ZWQgc3RyZWFtLiBCdXQgdGhhdCdzLCBhZ2Fpbiwg
+YSBEU1AgcXVlc3Rpb24sIGFuZAo+IHRoZSBkaXNjdXNzLWdudXJhZGlvIG1haWxpbmcgbGlzdCBt
+aWdodCBiZSBhIGJldHRlciB2ZW51ZSBmb3IgdGhhdCB0eXBlIG9mIHF1ZXN0aW9uLgo+Cj4+IE9u
+IFR1ZXNkYXksIEF1Z3VzdCAxM3RoLCAyMDI0IGF0IDE2OjQ4LCBNYXJjdXMgRC4gTGVlY2ggWzxw
+YXRjaHZvbmJyYXVuQGdtYWlsLmNvbT5dKG1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSkg
+d3JvdGU6Cj4+Cj4+PiBPbiAxMy8wOC8yMDI0IDEwOjM2LCBPbG8gdmlhIFVTUlAtdXNlcnMgd3Jv
+dGU6Cj4+Pgo+Pj4+IERlYXIgRXR0dXMgU3VwcG9ydCBUZWFtLAo+Pj4+Cj4+Pj4gSSBob3BlIHRo
+aXMgbWVzc2FnZSBmaW5kcyB5b3Ugd2VsbC4KPj4+Pgo+Pj4+IEkgYW0gY3VycmVudGx5IHdvcmtp
+bmcgd2l0aCBhbiBYMzEwIFNEUiBlcXVpcHBlZCB3aXRoIHR3byBUd2luUlggZGF1Z2h0ZXJib2Fy
+ZHMsIGFuZCBJIGFtIGxvb2tpbmcgdG8gcmVjZWl2ZSBkYXRhIHNpbXVsdGFuZW91c2x5IGFjcm9z
+cyBhbGwgZm91ciBjaGFubmVscy4gTXkgZ29hbCBpcyB0byBtYXhpbWl6ZSB0aGUgYXZhaWxhYmxl
+IGJhbmR3aWR0aCBieSBjb25maWd1cmluZyB0aGUgc3lzdGVtIHRvIHJlY2VpdmUgb24gYWxsIGNo
+YW5uZWxzIGluIHBhcmFsbGVsLgo+Pj4+Cj4+Pj4gQ291bGQgeW91IHBsZWFzZSBhZHZpc2Ugb24g
+dGhlIGJlc3QgYXBwcm9hY2ggdG8gYWNoaWV2ZSB0aGlzPyBTcGVjaWZpY2FsbHksIEkgd291bGQg
+bGlrZSB0byBrbm93IGlmIGl0IGlzIG5lY2Vzc2FyeSB0byB1c2UgYSBzcGVjaWFsaXplZCBSRk5v
+QyBncmFwaCBmb3IgdGhpcyBzZXR1cCwgb3IgaWYgdGhlIHVoZDo6bXVsdGlfdXNycCBjbGFzcyBp
+biB0aGUgVUhEIGxpYnJhcnksIGFsb25nIHdpdGggYSBjb3JyZXNwb25kaW5nIHJ4X3N0cmVhbWVy
+LCB3b3VsZCBiZSBzdWZmaWNpZW50IHRvIGFjY29tcGxpc2ggdGhpcyB0YXNrLgo+Pj4+Cj4+Pj4g
+SSBhcHByZWNpYXRlIGFueSBndWlkYW5jZSBvciByZWNvbW1lbmRhdGlvbnMgeW91IGNhbiBwcm92
+aWRlLgo+Pj4+Cj4+Pj4gVGhhbmsgeW91IGZvciB5b3VyIHN1cHBvcnQuCj4+Pj4KPj4+PiBCZXN0
+IHJlZ2FyZHMsCj4+Pj4gT2xvLgo+Pj4KPj4+IEFzc3VtaW5nIHRoYXQgYWxsIHRoZSBzdHJlYW1z
+IHRlcm1pbmF0ZSBvbiB5b3VyIGNvbXB1dGVyLCB0aGVuIHRoZSBsaW1pdGluZyBmYWN0b3IgaXMg
+YWx3YXlzIGdvaW5nIHRvIGJlIHlvdXIgY29tcHV0ZXIuIFJGTm9DCj4+PiBpcyBvbmx5IGhlbHBm
+dWwgaWYgeW91IHdhbnQgdG8gZG8gc29tZSBvZiB0aGUgY29tcHV0aW5nIG9uIHRoZSByYWRpby4g
+QnV0IGlmIHRoZSBnb2FsIGlzIHRvIGhhdmUgNCBzdHJlYW1zIGdvaW5nIHRvIHlvdXIgY29tcHV0
+ZXIsCj4+PiBhdCBmdWxsIHJhdGUsIHRoZW4gUkZOb0MgZG9lc24ndCBicmluZyBhbnl0aGluZyB0
+byB0aGUgdGFibGUtLWFuZCBpbiBmYWN0LCBpbnRlcm5hbGx5IHRoZXNlIGRheXMsIGFuIGFwcGxp
+Y2F0aW9uIHRoYXQgdXNlcyBVSEQKPj4+IG11bHRpLXVzcnAgc3RyZWFtZXJzIGFjdHVhbGx5IHNl
+dHMgdXAgYSBzdGFuZGFyZGl6ZWQgUkZOb0MgZmxvdyBvbiB0aGUgcmFkaW8gYW55d2F5Lgo+Pj4K
+Pj4+IFRoaXMgZG9jdW1lbnQgY2FuIGJlIGhlbHBmdWw6Cj4+Pgo+Pj4gaHR0cHM6Ly9rYi5ldHR1
+cy5jb20vVVNSUF9Ib3N0X1BlcmZvcm1hbmNlX1R1bmluZ19UaXBzX2FuZF9Ucmlja3MKPj4+Cj4+
+PiBUaGUgdWx0aW1hdGUgcXVlc3Rpb24gYmVjb21lcyAid2hhdCBkbyBJIHdhbnQgdG8gZG8gd2l0
+aCB0aG9zZSBzdHJlYW1zPyIuIFRoYXQgd2lsbCBkZXRlcm1pbmUgd2hldGhlciB5b3VyIGNvbXB1
+dGVyCj4+PiBjYW4gaGFuZGxlIHRoZSBhZ2dyZWdhdGUgZGF0YSByYXRlcy4KPj4KPj4gX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QgLS0KPj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4gVG8gdW5zdWJz
+Y3JpYmUgc2VuZCBhbiBlbWFpbCB0bwo+PiB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
+bQ==
 
-In terms of "spectral merging".=C2=A0 If all 4 channels share a common ph=
-ase=20
-reference, then I *think* that you can
- =C2=A0 rotate-and-add prior to computing a single FFT over the aggregate=
-d=20
-stream.=C2=A0 But that's, again, a DSP question, and
- =C2=A0 the discuss-gnuradio mailing list might be a better venue for tha=
-t=20
-type of question.
+--b1_FIrC0AIeNHKoXsrl7QLgf8MlQWhBuEhS1L2zI5WAuj0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGRpdj48YnI+PC9kaXY+PGRpdj5UaGFuayB5b3UgZm9yIHlvdXIgcmVzcG9uc2UgYW5kIHRoZSBo
+ZWxwZnVsIGluZm9ybWF0aW9uLjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SSBoYXZlIGEgZm9s
+bG93LXVwIHF1ZXN0aW9uIHJlZ2FyZGluZyB0aGUgY29tbW9uIHBoYXNlIHJlZmVyZW5jZS4gSSBh
+bSB1c2luZyB0d28gVHdpblJYIGRhdWdodGVyYm9hcmRzLCB3aGljaCBzaG91bGQgc2hhcmUgYSBj
+b21tb24gbG9jYWwgb3NjaWxsYXRvci4gRG9lcyB0aGlzIHNldHVwIHF1YWxpZnkgYXMgaGF2aW5n
+IGEgY29tbW9uIHBoYXNlIHJlZmVyZW5jZSBhY3Jvc3MgYWxsIGZvdXIgY2hhbm5lbHM/PC9kaXY+
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwg
+MjU1KTsiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2Vy
+aWY7IGZvbnQtc2l6ZTogMTRweDsgY29sb3I6IHJnYigwLCAwLCAwKTsgYmFja2dyb3VuZC1jb2xv
+cjogcmdiKDI1NSwgMjU1LCAyNTUpOyI+QWRkaXRpb25hbGx5LCBteSBpbnRlcmVzdCBpbiBSRk5v
+QyBzdGVtcyBmcm9tIHRoZSBkb2N1bWVudGF0aW9uLCB3aGljaCBzdGF0ZXMgdGhhdCB0aGUgQ2hh
+bm5lbHMgcGFyYW1ldGVyIGluIHVoZDo6c3RyZWFtX2FyZ3NfdCBpcyBub3QgdXNlZCBmb3IgUkZO
+b0MgZGV2aWNlcy4gSW5zdGVhZCwgdG8gY3JlYXRlIGEgc3RyZWFtZXIgd2l0aCBtdWx0aXBsZSBj
+aGFubmVscywgdGhlIEFQSSBjYWxscyB1aGQ6OnJmbm9jOjpyZm5vY19ncmFwaDo6Y3JlYXRlX3R4
+X3N0cmVhbWVyKCkgYW5kIHVoZDo6cmZub2M6OnJmbm9jX2dyYXBoOjpjcmVhdGVfcnhfc3RyZWFt
+ZXIoKSBpbmNsdWRlIGEgbnVtX3BvcnRzIGFyZ3VtZW50LjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQt
+ZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBjb2xvcjogcmdiKDAs
+IDAsIDApOyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7Ij48YnI+PC9kaXY+
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwg
+MjU1KTsiPkdpdmVuIHRoaXMsIGlzIGl0IHBvc3NpYmxlIHRvIHJlY2VpdmUgZGF0YSBmcm9tIGFs
+bCBmb3VyIGNoYW5uZWxzIHNpbXVsdGFuZW91c2x5LCBldmVuIGlmIG5vdCBhdCBmdWxsIGJhbmR3
+aWR0aCwgYnkgc2ltcGx5IGNvbm5lY3RpbmcgZWFjaCBsYXN0IGJsb2NrIGZyb20gdGhlIGNoYW5u
+ZWxzIHRvIGNyZWF0ZV9yeF9zdHJlYW1lcigpPyBBbHNvLCB3aGF0IHNob3VsZCB0aGUgZmluYWwg
+YmxvY2sgYmUgaWYgSSB3YW50IHRvIHJlY2VpdmUgcmF3IElRIGRhdGE/PC9kaXY+PGRpdiBzdHls
+ZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGNvbG9y
+OiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTsiPjxi
+cj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZTogMTRweDsgY29sb3I6IHJnYigwLCAwLCAwKTsgYmFja2dyb3VuZC1jb2xvcjogcmdiKDI1
+NSwgMjU1LCAyNTUpOyI+RmluYWxseSwgSSBhbSBjdXJyZW50bHkgdXNpbmcgdGhlIHN0YW5kYXJk
+IFhHIGltYWdlIGZvciB0aGUgWDMxMCBkdWUgdG8gbXkgZHVhbCAxMEdiRSBzZXR1cC4gV291bGQg
+dGhpcyBpbWFnZSBiZSBhYmxlIHRvIHN0cmVhbSBldmVyeXRoaW5nIHNpbXVsdGFuZW91c2x5LCBv
+ciB3b3VsZCBJIG5lZWQgdG8gY3JlYXRlIGEgY3VzdG9tIG9uZT88L2Rpdj48ZGl2IHN0eWxlPSJm
+b250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgY29sb3I6IHJn
+YigwLCAwLCAwKTsgYmFja2dyb3VuZC1jb2xvcjogcmdiKDI1NSwgMjU1LCAyNTUpOyI+PGJyPjwv
+ZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
+OiAxNHB4OyBjb2xvcjogcmdiKDAsIDAsIDApOyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAy
+NTUsIDI1NSk7Ij5JIGFwcHJlY2lhdGUgeW91ciBndWlkYW5jZSBvbiB0aGlzIG1hdHRlci48L2Rp
+dj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3F1b3RlIj4NCiAgICAgICAgT24gV2VkbmVzZGF5LCBB
+dWd1c3QgMTR0aCwgMjAyNCBhdCAxNToyNSwgTWFyY3VzIEQuIExlZWNoICZsdDtwYXRjaHZvbmJy
+YXVuQGdtYWlsLmNvbSZndDsgd3JvdGU6PGJyPg0KICAgICAgICA8YmxvY2txdW90ZSBjbGFzcz0i
+cHJvdG9ubWFpbF9xdW90ZSIgdHlwZT0iY2l0ZSI+DQogICAgICAgICAgICANCiAgICA8ZGl2IGNs
+YXNzPSJtb3otY2l0ZS1wcmVmaXgiPk9uIDE0LzA4LzIwMjQgMDI6NTcsIE9sbyB2aWEgVVNSUC11
+c2Vycw0KICAgICAgd3JvdGU6PGJyPg0KICAgIDwvZGl2Pg0KICAgIDxibG9ja3F1b3RlIHR5cGU9
+ImNpdGUiPg0KICAgICAgDQogICAgICA8cD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFs
+LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQt
+d2VpZ2h0OiA0MDA7Ij5EZWFyDQogICAgICAgICAgRXR0dXMgU3VwcG9ydCw8L3NwYW4+PC9wPg0K
+ICAgICAgPHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9u
+dC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+VGhh
+bmsNCiAgICAgICAgICB5b3UgZm9yIHlvdXIgcHJvbXB0IGFuZCBkZXRhaWxlZCByZXNwb25zZS4g
+SSBhcHByZWNpYXRlIHRoZQ0KICAgICAgICAgIGNsYXJpZmljYXRpb24gcmVnYXJkaW5nIHRoZSB1
+c2Ugb2YgUkZOb0MgYW5kIFVIRCA8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlh
+bCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250
+LXdlaWdodDogNDAwOyI+bXVsdGlfdXNycDwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6
+IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7
+IGZvbnQtd2VpZ2h0OiA0MDA7Ij4NCiAgICAgICAgICBzdHJlYW1lcnMuPC9zcGFuPjwvcD4NCiAg
+ICAgIDxwPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPlRvDQog
+ICAgICAgICAgYW5zd2VyIHlvdXIgcXVlc3Rpb24sIG15IGdvYWwgaXMgdG8gZGlzcGxheSB0aGUg
+UG93ZXIgU3BlY3RyYWwNCiAgICAgICAgICBEZW5zaXR5IChQU0QpIGZyb20gdGhlIGZvdXIgY2hh
+bm5lbHMuIEkgcGxhbiB0byB1c2UgYSB3aW5kb3cNCiAgICAgICAgICBmdW5jdGlvbiwgcGVyZm9y
+bSBhbiBGRlQsIGFuZCBhcHBseSB0aGUgbG9nIHBvd2VyIGJsb2NrIHRvDQogICAgICAgICAgY2Fs
+Y3VsYXRlIHRoZSBQU0QuPC9zcGFuPjwvcD4NCiAgICAgIDxwPjxzcGFuIHN0eWxlPSJmb250LWZh
+bWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5v
+cm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPkNvdWxkDQogICAgICAgICAgeW91IHBsZWFzZSBhZHZp
+c2Ugb24gdGhlIGJlc3Qgd2F5IHRvIGNvbWJpbmUgYWxsIGZvdXIgY2hhbm5lbHMNCiAgICAgICAg
+ICBpbnRvIG9uZSBmb3IgdGhpcyBwdXJwb3NlPyBTcGVjaWZpY2FsbHksIEknbSBpbnRlcmVzdGVk
+IGluDQogICAgICAgICAgdW5kZXJzdGFuZGluZyBob3cgdG8gcHJvcGVybHkgYWdncmVnYXRlIHRo
+ZSBkYXRhIHN0cmVhbXMgc28NCiAgICAgICAgICB0aGF0IEkgY2FuIGNhbGN1bGF0ZSB0aGUgUFNE
+IGVmZmVjdGl2ZWx5Ljwvc3Bhbj48L3A+DQogICAgICA8cD48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3Jt
+YWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5UaGFuaw0KICAgICAgICAgIHlvdSBhZ2FpbiBmb3IgeW91
+ciBzdXBwb3J0Ljwvc3Bhbj48L3A+DQogICAgICA8cD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6
+IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7
+IGZvbnQtd2VpZ2h0OiA0MDA7Ij5CZXN0DQogICAgICAgICAgcmVnYXJkcyw8L3NwYW4+PGJyPg0K
+ICAgICAgICA8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250
+LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5PbG88
+L3NwYW4+PC9wPg0KICAgIDwvYmxvY2txdW90ZT4NCiAgICBUaGF0J3MgcHJvYmFibHkgYSBxdWVz
+dGlvbiBmb3IgdGhlIGRpc2N1c3MtZ251cmFkaW8gbWFpbGluZyBsaXN0LA0KICAgIGFzc3VtaW5n
+IHlvdSdyZSB1c2luZyBHTnUgUmFkaW8uPGJyPg0KICAgIDxicj4NCiAgICBVSEQgaXNuJ3QgYSBz
+aWduYWwtcHJvY2Vzc2luZyBmcmFtZXdvcmsgLS0gaXQncyBhIGRyaXZlciBpbnRlcmZhY2UNCiAg
+ICB0byB0aGUgaGFyZHdhcmUuICBSRk5vQyBhdWdtZW50cyB0aGlzIHdpdGg8YnI+DQogICAgICBE
+U1AgYmxvY2tzIHRoYXQgY2FuIHJ1biBvbiB0aGUgaGFyZHdhcmUuICBJIGRvbid0ICp0aGluayog
+dGhhdA0KICAgIHRoZXJlJ3MgZW5vdWdoIHJlc291cmNlcyBvbiB0aGUgWDMxMCBGUEdBIHRvIHJ1
+bjxicj4NCiAgICAgIEZGVHMgb24gYWxsIDQgY2hhbm5lbHMsIGJ1dCBJIGNvdWxkIGJlIHdyb25n
+LiAgIE1heWJlIHRoZXJlJ3MNCiAgICBzb21lb25lIG9uIGhlcmUgd2hvIGhhcyBkb25lIHRoaXMg
+d2l0aCBSRk5vQy48YnI+DQogICAgPGJyPg0KICAgIEluIHRlcm1zIG9mICJzcGVjdHJhbCBtZXJn
+aW5nIi4gIElmIGFsbCA0IGNoYW5uZWxzIHNoYXJlIGEgY29tbW9uDQogICAgcGhhc2UgcmVmZXJl
+bmNlLCB0aGVuIEkgKnRoaW5rKiB0aGF0IHlvdSBjYW48YnI+DQogICAgICByb3RhdGUtYW5kLWFk
+ZCBwcmlvciB0byBjb21wdXRpbmcgYSBzaW5nbGUgRkZUIG92ZXIgdGhlIGFnZ3JlZ2F0ZWQNCiAg
+ICBzdHJlYW0uICBCdXQgdGhhdCdzLCBhZ2FpbiwgYSBEU1AgcXVlc3Rpb24sIGFuZDxicj4NCiAg
+ICAgIHRoZSBkaXNjdXNzLWdudXJhZGlvIG1haWxpbmcgbGlzdCBtaWdodCBiZSBhIGJldHRlciB2
+ZW51ZSBmb3IgdGhhdA0KICAgIHR5cGUgb2YgcXVlc3Rpb24uPGJyPg0KICAgIDxicj4NCiAgICA8
+YnI+DQogICAgPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQogICAgICA8ZGl2IHN0eWxlPSIiPjxi
+cj4NCiAgICAgIDwvZGl2Pg0KICAgICAgPGRpdiBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSI+IE9u
+IFR1ZXNkYXksIEF1Z3VzdCAxM3RoLCAyMDI0IGF0DQogICAgICAgIDE2OjQ4LCBNYXJjdXMgRC4g
+TGVlY2ggPGEgaHJlZj0ibWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tIiBjbGFzcz0ibW96
+LXR4dC1saW5rLXJmYzIzOTZFIiByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiPiZs
+dDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDs8L2E+IHdyb3RlOjxicj4NCiAgICAgICAgPGJs
+b2NrcXVvdGUgdHlwZT0iY2l0ZSIgY2xhc3M9InByb3Rvbm1haWxfcXVvdGUiPg0KICAgICAgICAg
+IDxkaXYgY2xhc3M9Im1vei1jaXRlLXByZWZpeCI+T24gMTMvMDgvMjAyNCAxMDozNiwgT2xvIHZp
+YQ0KICAgICAgICAgICAgVVNSUC11c2VycyB3cm90ZTo8YnI+DQogICAgICAgICAgPC9kaXY+DQog
+ICAgICAgICAgPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+IDxzcGFuIHN0eWxlPSJmb250LWZhbWls
+eTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1h
+bDsgZm9udC13ZWlnaHQ6IDQwMDsiPkRlYXINCiAgICAgICAgICAgICAgRXR0dXMgU3VwcG9ydCBU
+ZWFtLDwvc3Bhbj4NCiAgICAgICAgICAgIDxkaXY+PGJyPg0KICAgICAgICAgICAgPC9kaXY+DQog
+ICAgICAgICAgICA8ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2Vy
+aWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQw
+MDsiPkkNCiAgICAgICAgICAgICAgICBob3BlIHRoaXMgbWVzc2FnZSBmaW5kcyB5b3Ugd2VsbC48
+L3NwYW4+PC9kaXY+DQogICAgICAgICAgICA8ZGl2Pjxicj4NCiAgICAgICAgICAgIDwvZGl2Pg0K
+ICAgICAgICAgICAgPGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNl
+cmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0
+MDA7Ij5JDQogICAgICAgICAgICAgICAgYW0gY3VycmVudGx5IHdvcmtpbmcgd2l0aCBhbiBYMzEw
+IFNEUiBlcXVpcHBlZCB3aXRoIHR3bw0KICAgICAgICAgICAgICAgIFR3aW5SWCBkYXVnaHRlcmJv
+YXJkcywgYW5kIEkgYW0gbG9va2luZyB0byByZWNlaXZlIGRhdGENCiAgICAgICAgICAgICAgICBz
+aW11bHRhbmVvdXNseSBhY3Jvc3MgYWxsIGZvdXIgY2hhbm5lbHMuIE15IGdvYWwgaXMgdG8NCiAg
+ICAgICAgICAgICAgICBtYXhpbWl6ZSB0aGUgYXZhaWxhYmxlIGJhbmR3aWR0aCBieSBjb25maWd1
+cmluZyB0aGUNCiAgICAgICAgICAgICAgICBzeXN0ZW0gdG8gcmVjZWl2ZSBvbiBhbGwgY2hhbm5l
+bHMgaW4gcGFyYWxsZWwuPC9zcGFuPjwvZGl2Pg0KICAgICAgICAgICAgPGRpdj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUt
+aGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij48YnI+DQogICAgICAgICAgICAgIDwv
+c3Bhbj48L2Rpdj4NCiAgICAgICAgICAgIDxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiBu
+b3JtYWw7IGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBm
+b250LXdlaWdodDogNDAwOyI+Q291bGQNCiAgICAgICAgICAgICAgICB5b3UgcGxlYXNlIGFkdmlz
+ZSBvbiB0aGUgYmVzdCBhcHByb2FjaCB0byBhY2hpZXZlIHRoaXM/DQogICAgICAgICAgICAgICAg
+U3BlY2lmaWNhbGx5LCBJIHdvdWxkIGxpa2UgdG8ga25vdyBpZiBpdCBpcyBuZWNlc3NhcnkgdG8N
+CiAgICAgICAgICAgICAgICB1c2UgYSBzcGVjaWFsaXplZCBSRk5vQyBncmFwaCBmb3IgdGhpcyBz
+ZXR1cCwgb3IgaWYgdGhlDQogICAgICAgICAgICAgICAgdWhkOjptdWx0aV91c3JwIGNsYXNzIGlu
+IHRoZSBVSEQgbGlicmFyeSwgYWxvbmcgd2l0aCBhDQogICAgICAgICAgICAgICAgY29ycmVzcG9u
+ZGluZyByeF9zdHJlYW1lciwgd291bGQgYmUgc3VmZmljaWVudCB0bw0KICAgICAgICAgICAgICAg
+IGFjY29tcGxpc2ggdGhpcyB0YXNrLjwvc3Bhbj48L2Rpdj4NCiAgICAgICAgICAgIDxkaXY+PHNw
+YW4gc3R5bGU9IiI+PGJyPg0KICAgICAgICAgICAgICA8L3NwYW4+PC9kaXY+DQogICAgICAgICAg
+ICA8ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPkkNCiAg
+ICAgICAgICAgICAgICBhcHByZWNpYXRlIGFueSBndWlkYW5jZSBvciByZWNvbW1lbmRhdGlvbnMg
+eW91IGNhbg0KICAgICAgICAgICAgICAgIHByb3ZpZGUuPC9zcGFuPjwvZGl2Pg0KICAgICAgICAg
+ICAgPGRpdj48c3BhbiBzdHlsZT0iIj48YnI+DQogICAgICAgICAgICAgIDwvc3Bhbj48L2Rpdj4N
+CiAgICAgICAgICAgIDxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1z
+ZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDog
+NDAwOyI+VGhhbmsNCiAgICAgICAgICAgICAgICB5b3UgZm9yIHlvdXIgc3VwcG9ydC48L3NwYW4+
+PC9kaXY+DQogICAgICAgICAgICA8ZGl2PjxzcGFuIHN0eWxlPSIiPjxicj4NCiAgICAgICAgICAg
+ICAgPC9zcGFuPjwvZGl2Pg0KICAgICAgICAgICAgPGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWln
+aHQ6IG5vcm1hbDsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5CZXN0DQogICAgICAgICAgICAgICAgcmVnYXJkcyw8L3Nw
+YW4+PC9kaXY+DQogICAgICAgICAgICA8ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogbm9y
+bWFsOyBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgZm9u
+dC13ZWlnaHQ6IDQwMDsiPk9sby48L3NwYW4+PC9kaXY+DQogICAgICAgICAgICA8ZGl2PjxzcGFu
+IHN0eWxlPSJsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2Vy
+aWY7IGZvbnQtc2l6ZTogMTRweDsgZm9udC13ZWlnaHQ6IDQwMDsiPjxicj4NCiAgICAgICAgICAg
+ICAgPC9zcGFuPjwvZGl2Pg0KICAgICAgICAgICAgPGJyPg0KICAgICAgICAgIDwvYmxvY2txdW90
+ZT4NCiAgICAgICAgICBBc3N1bWluZyB0aGF0IGFsbCB0aGUgc3RyZWFtcyB0ZXJtaW5hdGUgb24g
+eW91ciBjb21wdXRlciwgdGhlbg0KICAgICAgICAgIHRoZSBsaW1pdGluZyBmYWN0b3IgaXMgYWx3
+YXlzIGdvaW5nIHRvIGJlIHlvdXIgY29tcHV0ZXIuIFJGTm9DPGJyPg0KICAgICAgICAgIGlzIG9u
+bHkgaGVscGZ1bCBpZiB5b3Ugd2FudCB0byBkbyBzb21lIG9mIHRoZSBjb21wdXRpbmcgb24gdGhl
+DQogICAgICAgICAgcmFkaW8uIEJ1dCBpZiB0aGUgZ29hbCBpcyB0byBoYXZlIDQgc3RyZWFtcyBn
+b2luZyB0byB5b3VyDQogICAgICAgICAgY29tcHV0ZXIsPGJyPg0KICAgICAgICAgIGF0IGZ1bGwg
+cmF0ZSwgdGhlbiBSRk5vQyBkb2Vzbid0IGJyaW5nIGFueXRoaW5nIHRvIHRoZQ0KICAgICAgICAg
+IHRhYmxlLS1hbmQgaW4gZmFjdCwgaW50ZXJuYWxseSB0aGVzZSBkYXlzLCBhbiBhcHBsaWNhdGlv
+biB0aGF0DQogICAgICAgICAgdXNlcyBVSEQ8YnI+DQogICAgICAgICAgbXVsdGktdXNycCBzdHJl
+YW1lcnMgYWN0dWFsbHkgc2V0cyB1cCBhIHN0YW5kYXJkaXplZCBSRk5vQw0KICAgICAgICAgIGZs
+b3cgb24gdGhlIHJhZGlvIGFueXdheS48YnI+DQogICAgICAgICAgPGJyPg0KICAgICAgICAgIFRo
+aXMgZG9jdW1lbnQgY2FuIGJlIGhlbHBmdWw6PGJyPg0KICAgICAgICAgIDxicj4NCiAgICAgICAg
+ICA8YSByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiIHRhcmdldD0iX2JsYW5rIiBj
+bGFzcz0ibW96LXR4dC1saW5rLWZyZWV0ZXh0IiBocmVmPSJodHRwczovL2tiLmV0dHVzLmNvbS9V
+U1JQX0hvc3RfUGVyZm9ybWFuY2VfVHVuaW5nX1RpcHNfYW5kX1RyaWNrcyI+aHR0cHM6Ly9rYi5l
+dHR1cy5jb20vVVNSUF9Ib3N0X1BlcmZvcm1hbmNlX1R1bmluZ19UaXBzX2FuZF9Ucmlja3M8L2E+
+PGJyPg0KICAgICAgICAgIDxicj4NCiAgICAgICAgICBUaGUgdWx0aW1hdGUgcXVlc3Rpb24gYmVj
+b21lcyAid2hhdCBkbyBJIHdhbnQgdG8gZG8gd2l0aCB0aG9zZQ0KICAgICAgICAgIHN0cmVhbXM/
+Ii4gVGhhdCB3aWxsIGRldGVybWluZSB3aGV0aGVyIHlvdXIgY29tcHV0ZXI8YnI+DQogICAgICAg
+ICAgY2FuIGhhbmRsZSB0aGUgYWdncmVnYXRlIGRhdGEgcmF0ZXMuPGJyPg0KICAgICAgICAgIDxi
+cj4NCiAgICAgICAgICA8YnI+DQogICAgICAgICAgPGJyPg0KICAgICAgICA8L2Jsb2NrcXVvdGU+
+DQogICAgICAgIDxicj4NCiAgICAgIDwvZGl2Pg0KICAgICAgPGJyPg0KICAgICAgPGZpZWxkc2V0
+IGNsYXNzPSJtb3otbWltZS1hdHRhY2htZW50LWhlYWRlciI+PC9maWVsZHNldD4NCiAgICAgIDxw
+cmUgd3JhcD0iIiBjbGFzcz0ibW96LXF1b3RlLXByZSI+X19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhy
+ZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgY2xhc3M9Im1vei10eHQtbGlu
+ay1hYmJyZXZpYXRlZCIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIj51c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8g
+PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiBjbGFzcz0i
+bW96LXR4dC1saW5rLWFiYnJldmlhdGVkIiByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVu
+ZXIiPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPg0KPC9wcmU+DQogICAgPC9i
+bG9ja3F1b3RlPg0KICAgIDxicj4NCiAgDQoNCg0KICAgICAgICA8L2Jsb2NrcXVvdGU+PGJyPg0K
+ICAgIDwvZGl2Pg==
 
 
->
-> On Tuesday, August 13th, 2024 at 16:48, Marcus D. Leech=20
-> <patchvonbraun@gmail.com> wrote:
->> On 13/08/2024 10:36, Olo via USRP-users wrote:
->>> Dear Ettus Support Team,
->>>
->>> I hope this message finds you well.
->>>
->>> I am currently working with an X310 SDR equipped with two TwinRX=20
->>> daughterboards, and I am looking to receive data simultaneously=20
->>> across all four channels. My goal is to maximize the available=20
->>> bandwidth by configuring the system to receive on all channels in=20
->>> parallel.
->>>
->>> Could you please advise on the best approach to achieve this?=20
->>> Specifically, I would like to know if it is necessary to use a=20
->>> specialized RFNoC graph for this setup, or if the uhd::multi_usrp=20
->>> class in the UHD library, along with a corresponding rx_streamer,=20
->>> would be sufficient to accomplish this task.
->>>
->>> I appreciate any guidance or recommendations you can provide.
->>>
->>> Thank you for your support.
->>>
->>> Best regards,
->>> Olo.
->>>
->>>
->> Assuming that all the streams terminate on your computer, then the=20
->> limiting factor is always going to be your computer. RFNoC
->> is only helpful if you want to do some of the computing on the radio.=20
->> But if the goal is to have 4 streams going to your computer,
->> at full rate, then RFNoC doesn't bring anything to the table--and in=20
->> fact, internally these days, an application that uses UHD
->> multi-usrp streamers actually sets up a standardized RFNoC flow on=20
->> the radio anyway.
->>
->> This document can be helpful:
->>
->> https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks
->>
->> The ultimate question becomes "what do I want to do with those=20
->> streams?". That will determine whether your computer
->> can handle the aggregate data rates.
->>
->>
->>
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+--b1_FIrC0AIeNHKoXsrl7QLgf8MlQWhBuEhS1L2zI5WAuj0--
 
---------------XKmhhGtWiEulSJBQFxe4bLTz
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 14/08/2024 02:57, Olo via USRP-user=
-s
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:MGO60O5lFGsXTagndMxl2DUjN99zdlj-pecPAYnMBmjk48p9i5eFK66JE9Z82=
-bhO-k26-NQqcYNTIDuoFpK8GDrpZMw-SNHEMf-2aaXE2xo=3D@protonmail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Dear
-          Ettus Support,</span></p>
-      <p><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Thank
-          you for your prompt and detailed response. I appreciate the
-          clarification regarding the use of RFNoC and UHD </span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">multi_usrp</span><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">
-          streamers.</span></p>
-      <p><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">To
-          answer your question, my goal is to display the Power Spectral
-          Density (PSD) from the four channels. I plan to use a window
-          function, perform an FFT, and apply the log power block to
-          calculate the PSD.</span></p>
-      <p><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Could
-          you please advise on the best way to combine all four channels
-          into one for this purpose? Specifically, I'm interested in
-          understanding how to properly aggregate the data streams so
-          that I can calculate the PSD effectively.</span></p>
-      <p><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Thank
-          you again for your support.</span></p>
-      <p><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Best
-          regards,</span><br>
-        <span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Olo</span></p>
-    </blockquote>
-    That's probably a question for the discuss-gnuradio mailing list,
-    assuming you're using GNu Radio.<br>
-    <br>
-    UHD isn't a signal-processing framework -- it's a driver interface
-    to the hardware.=C2=A0 RFNoC augments this with<br>
-    =C2=A0 DSP blocks that can run on the hardware.=C2=A0 I don't *think*=
- that
-    there's enough resources on the X310 FPGA to run<br>
-    =C2=A0 FFTs on all 4 channels, but I could be wrong.=C2=A0=C2=A0 Mayb=
-e there's
-    someone on here who has done this with RFNoC.<br>
-    <br>
-    In terms of "spectral merging".=C2=A0 If all 4 channels share a commo=
-n
-    phase reference, then I *think* that you can<br>
-    =C2=A0 rotate-and-add prior to computing a single FFT over the aggreg=
-ated
-    stream.=C2=A0 But that's, again, a DSP question, and<br>
-    =C2=A0 the discuss-gnuradio mailing list might be a better venue for =
-that
-    type of question.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:MGO60O5lFGsXTagndMxl2DUjN99zdlj-pecPAYnMBmjk48p9i5eFK66JE9Z82=
-bhO-k26-NQqcYNTIDuoFpK8GDrpZMw-SNHEMf-2aaXE2xo=3D@protonmail.com">
-      <div style=3D""><br>
-      </div>
-      <div class=3D"protonmail_quote"> On Tuesday, August 13th, 2024 at
-        16:48, Marcus D. Leech <a class=3D"moz-txt-link-rfc2396E" href=3D=
-"mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> wrot=
-e:<br>
-        <blockquote class=3D"protonmail_quote" type=3D"cite">
-          <div class=3D"moz-cite-prefix">On 13/08/2024 10:36, Olo via
-            USRP-users wrote:<br>
-          </div>
-          <blockquote type=3D"cite"> <span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Dear
-              Ettus Support Team,</span>
-            <div><br>
-            </div>
-            <div><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">I
-                hope this message finds you well.</span></div>
-            <div><br>
-            </div>
-            <div><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">I
-                am currently working with an X310 SDR equipped with two
-                TwinRX daughterboards, and I am looking to receive data
-                simultaneously across all four channels. My goal is to
-                maximize the available bandwidth by configuring the
-                system to receive on all channels in parallel.</span></di=
-v>
-            <div><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;"><br>
-              </span></div>
-            <div><span
-style=3D"line-height: normal; font-family: Arial, sans-serif; font-size: =
-14px; font-weight: 400;">Could
-                you please advise on the best approach to achieve this?
-                Specifically, I would like to know if it is necessary to
-                use a specialized RFNoC graph for this setup, or if the
-                uhd::multi_usrp class in the UHD library, along with a
-                corresponding rx_streamer, would be sufficient to
-                accomplish this task.</span></div>
-            <div><span style=3D""><br>
-              </span></div>
-            <div><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">I
-                appreciate any guidance or recommendations you can
-                provide.</span></div>
-            <div><span style=3D""><br>
-              </span></div>
-            <div><span
-style=3D"font-family: Arial, sans-serif; font-size: 14px; line-height: no=
-rmal; font-weight: 400;">Thank
-                you for your support.</span></div>
-            <div><span style=3D""><br>
-              </span></div>
-            <div><span
-style=3D"line-height: normal; font-family: Arial, sans-serif; font-size: =
-14px; font-weight: 400;">Best
-                regards,</span></div>
-            <div><span
-style=3D"line-height: normal; font-family: Arial, sans-serif; font-size: =
-14px; font-weight: 400;">Olo.</span></div>
-            <div><span
-style=3D"line-height: normal; font-family: Arial, sans-serif; font-size: =
-14px; font-weight: 400;"><br>
-              </span></div>
-            <br>
-          </blockquote>
-          Assuming that all the streams terminate on your computer, then
-          the limiting factor is always going to be your computer. RFNoC<=
-br>
-          is only helpful if you want to do some of the computing on the
-          radio. But if the goal is to have 4 streams going to your
-          computer,<br>
-          at full rate, then RFNoC doesn't bring anything to the
-          table--and in fact, internally these days, an application that
-          uses UHD<br>
-          multi-usrp streamers actually sets up a standardized RFNoC
-          flow on the radio anyway.<br>
-          <br>
-          This document can be helpful:<br>
-          <br>
-          <a
-href=3D"https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks=
-"
-            class=3D"moz-txt-link-freetext" target=3D"_blank"
-            rel=3D"noreferrer nofollow noopener" moz-do-not-send=3D"true"=
->https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks</a><br=
->
-          <br>
-          The ultimate question becomes "what do I want to do with those
-          streams?". That will determine whether your computer<br>
-          can handle the aggregate data rates.<br>
-          <br>
-          <br>
-          <br>
-        </blockquote>
-        <br>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------XKmhhGtWiEulSJBQFxe4bLTz--
-
---===============6925231748053535735==
+--===============6214451314189490675==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -412,4 +361,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6925231748053535735==--
+--===============6214451314189490675==--
