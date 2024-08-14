@@ -2,230 +2,608 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F16A19514D7
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 08:57:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F069515E2
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 09:52:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B26343855F8
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 02:57:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 648993857EE
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 03:52:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1723618653; bh=2hxbpZ/dXagF75Wl3GRGBXCa+/KDorcjzna3l6URgfY=;
-	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=KZNW2xPogaDRacgWBCNLSCqvip83WvXpZcxRHw6ios1mEkkZNBBjzcUE8TLfrqOPb
-	 pO7V9q7kayaEfdBJIoVW51hRi0Ht1NdqwNBxXRqUz9p9OOEzhF6p3kepuZQ0pr09Oi
-	 JZxzjZ8yb+nXCKTaNIBR2VxYDlFqeE08SFETNB10ZBuJNVZd48tMAVne4yrCO4ylge
-	 NP5OjEl02Rz+pvC5YO7+XyQjyqn4hWsBuiVGiODvFsoLh/Rv5rK3pPd1iBXMZAKqA1
-	 sdVp8TjE1BTs1LmqUBqqGk2XDlKE2JLJsM0eFfkRN27quLjEgzLhTnEmCRVoK9AULj
-	 zBJllR0GQjTlQ==
-Received: from mail-4027.protonmail.ch (mail-4027.protonmail.ch [185.70.40.27])
-	by mm2.emwd.com (Postfix) with ESMTPS id D6C3D385583
-	for <usrp-users@lists.ettus.com>; Wed, 14 Aug 2024 02:57:19 -0400 (EDT)
+	t=1723621978; bh=f5D/gWJveHnPEdXSn32Ujlb8HBnzLCbpbjdjYj0NomU=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=LL7ZgI6c3WZL9pxxP4xUhp0No9T6LMjMBLH6NDDFctH3Ua79FcBz6/19wNG/rykeh
+	 BqqGWRNmZLAsYcZaDjU4IWQoRwiWe6ACmaL10tin3UZtSBfqyPdwlFXr1q8Z/klupN
+	 COik283laASPAIUFDPZdyu3nGijKD5Cn7zyF3SS7jdnINBeNYSV/+76E0ex11Ra/Lz
+	 oPPqKYH2XWDucwo7FplfQjG3cK75nQsmBt2EW56XOAomHhEgl/Z8gBcNvfbdg/mUdy
+	 LLZ/vnKn/FyPYI3KKjJjXB4wNL0xBdEXHy9SL0aIqFdYbGU17L8ZgnHW+WDP2a5AsD
+	 EToclxQ6ZanBA==
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 622A0385792
+	for <usrp-users@lists.ettus.com>; Wed, 14 Aug 2024 03:52:17 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="tqmDmWsJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R6ONQVNg";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1723618638; x=1723877838;
-	bh=TJMn4ghfYnc8pRqaXnYnl4koVA0MgzbEyFrqShXw1H8=;
-	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=tqmDmWsJ2EPGV05LFaUKiVHo1W0X0428ZNuTLVXKWtFdlE0Hvb3yKaac60MkZ0ERU
-	 PjEMsvL0hpJ9JtrDlSZE3hsT/covoLdTC7rTJlFn5/nxjGPC/itBw7PbIqtDg2V53g
-	 vdiftgss2bFO5qMvc8BS21tzeNY6ksfv1nJ+cqFgR8TWFsIKTJFmvvZt2Tqb2N4cGG
-	 4qLxwsZ+LewW1aK4/MbgjQGKTSjXxc/hTCTPBMawEpshrMFb0JuG91ZHzcc5wKSeEc
-	 LkaVMfc0JEVOwgw9bD5VLGxryn8nGJk3wBVO7pT+wA8/m4pl+pY5+1746ZD4hV00Kj
-	 JG7v/SIteJhxQ==
-Date: Wed, 14 Aug 2024 06:57:13 +0000
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <MGO60O5lFGsXTagndMxl2DUjN99zdlj-pecPAYnMBmjk48p9i5eFK66JE9Z82bhO-k26-NQqcYNTIDuoFpK8GDrpZMw-SNHEMf-2aaXE2xo=@protonmail.com>
-In-Reply-To: <46409b81-0e7e-4c71-bb77-536efad5f90a@gmail.com>
-References: <XbpcZvaMMXT6CtwRg8IyAm_D2T57dOfmrN5Tjze8-OitQI63xUXP7Iz7dQKf7Z15YiSgFNB5CiBc5htCR1LFxrkVuo_pk0mDDm-_3hxSHEw=@protonmail.com> <46409b81-0e7e-4c71-bb77-536efad5f90a@gmail.com>
-Feedback-ID: 47010692:user:proton
-X-Pm-Message-ID: 8b3dc165f13972bcb7f65e98db1b9896da6dbf07
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a728f74c23dso692786266b.1
+        for <usrp-users@lists.ettus.com>; Wed, 14 Aug 2024 00:52:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723621936; x=1724226736; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0wcKXRWkdri9h5829Q3t6JhQDkBP8TRrofQWI8TyOBE=;
+        b=R6ONQVNgAdgXZUXInqznLEOlUG4l+lBCMa0J+Tw/8pcuQs0rLE4HP/8ak9ozGVpQ/I
+         S173WIVcdtKlipqDjBNy5/BTfyu/DVv21ywwlvws1XkvsZa7O10Z5IpToY3YDPZUBfT4
+         j28usF3oMnpGyAyq2nWKGfLZ3wkSoaQP2jya4wsOMHruylP6wfFEdSIGaoVlJ6R0D7pj
+         xajH5sPjAmw4NvTo+tbrWL/GTc2Lup271oaQjXsmWHfRWKQqb5GxdRitVI2xcGds62gW
+         BdqQmtIB6KCZMDUbymovOhMTGdXkK/uvqaOLhM2D1LSvwqdPV7lij5E7V6iwFMJJHyMb
+         Buuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723621936; x=1724226736;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0wcKXRWkdri9h5829Q3t6JhQDkBP8TRrofQWI8TyOBE=;
+        b=gs6ivq/F/mZUd1New5SNrKjUfC/nyrGC8/Db0XFhE8/vkdYh5of6EZmtZHCa42XfFr
+         ysQNykSsnveqqRh8grFBmJMHVHaOjX372OcYlc534vRbmYNDdWFmEKyFheZ66h2kgor0
+         3eZ0SGebvQAjDOpkS4GhKAkGcY5l0TmS0uJYmcgDT5rgmy5KBfY8tcPYPrXWQBbcmPqB
+         vo/ee1kxRZlFlFRdNQhSIZDWZqFKz1qeGCmleZuRYBt764zQPhRmgEZSs0LEAkG1Ryvr
+         /E3DrD17RByS7YPBs5NAgagjO+nS1zW3Ett9DcFEim4FWGVt6bLH5kptGSN/TxP9Rlna
+         jf/w==
+X-Gm-Message-State: AOJu0YycqtA2qtYMrtsVSLiosjW9h8Vr+36teScGoEpW5rZxswdrQ0Dq
+	Nir5Cbht7NnqfIuud4V4Y4YugtowgPxExUmWW9o0Rh2kOeQha0k5H1clvXsQHPIfKU1GMjJ69Tf
+	s7RGcQoC2yhoesWWam0bHf2IYWoALxZ2V
+X-Google-Smtp-Source: AGHT+IEZfrVFf3X9hwrequJgZ3YW6pYCdojoL9cEZt/l3IS8BZZU0Gp4lKZ1M6+ea1mktnjOPDHd7DKVsFRwXmXawl4=
+X-Received: by 2002:a17:907:e604:b0:a7a:a4be:2f99 with SMTP id
+ a640c23a62f3a-a8366d392bfmr140529566b.22.1723621935870; Wed, 14 Aug 2024
+ 00:52:15 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: OG72ASHJEAQREML6X6I6M54K7JYWR6VY
-X-Message-ID-Hash: OG72ASHJEAQREML6X6I6M54K7JYWR6VY
-X-MailFrom: olo1618@protonmail.com
+References: <CAL4V06r9bLo+Wo-JPP4H70hwdJNJCy-m1ER5xwoXp7KHQkryBQ@mail.gmail.com>
+ <84320f82-be18-47b9-92be-24339e6b1dc5@gmail.com> <CAL4V06oDcG=XFKQKkLoaKjDMXDEH_KMZTW8Lg5Q2dxhbPKQvLw@mail.gmail.com>
+ <637859ba-8167-4643-ae42-743a2e73b20a@gmail.com> <CAL4V06pXvgzSBXNieRr4N2XSVRa_0bdXJKNCG7aYCWbKQzf0dg@mail.gmail.com>
+ <0129e687-c21b-4090-80d3-562ef9ee1d3b@gmail.com>
+In-Reply-To: <0129e687-c21b-4090-80d3-562ef9ee1d3b@gmail.com>
+From: Brajesh <brajesh153@gmail.com>
+Date: Wed, 14 Aug 2024 13:22:03 +0530
+Message-ID: <CAL4V06oB24-ii1th4407zM_1ENXOMi39PGuDMnbfUQ75LWZL9w@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: LV4HSJ2FPC5RLFXUTQ6CHPFRYGWXSGE6
+X-Message-ID-Hash: LV4HSJ2FPC5RLFXUTQ6CHPFRYGWXSGE6
+X-MailFrom: brajesh153@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Receiving on All Channels with X310
+Subject: [USRP-users] Re: Reg. N210 FPGA modification
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OG72ASHJEAQREML6X6I6M54K7JYWR6VY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LV4HSJ2FPC5RLFXUTQ6CHPFRYGWXSGE6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Olo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olo <olo1618@protonmail.com>
-Content-Type: multipart/mixed; boundary="===============2677528159772428329=="
+Content-Type: multipart/mixed; boundary="===============7709066792823095147=="
 
-This is a multi-part message in MIME format.
+--===============7709066792823095147==
+Content-Type: multipart/alternative; boundary="00000000000036fcba061fa001db"
 
---===============2677528159772428329==
-Content-Type: multipart/alternative;
- boundary="b1_6fF3995fjcQoERFUNcItr8tEn62PdRXrSwKg7R5DjY"
+--00000000000036fcba061fa001db
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This is a multi-part message in MIME format.
+On Wed, Aug 14, 2024 at 7:31=E2=80=AFAM Marcus D. Leech <patchvonbraun@gmai=
+l.com>
+wrote:
 
---b1_6fF3995fjcQoERFUNcItr8tEn62PdRXrSwKg7R5DjY
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-
-RGVhciBFdHR1cyBTdXBwb3J0LAoKVGhhbmsgeW91IGZvciB5b3VyIHByb21wdCBhbmQgZGV0YWls
-ZWQgcmVzcG9uc2UuIEkgYXBwcmVjaWF0ZSB0aGUgY2xhcmlmaWNhdGlvbiByZWdhcmRpbmcgdGhl
-IHVzZSBvZiBSRk5vQyBhbmQgVUhEIG11bHRpX3VzcnAgc3RyZWFtZXJzLgoKVG8gYW5zd2VyIHlv
-dXIgcXVlc3Rpb24sIG15IGdvYWwgaXMgdG8gZGlzcGxheSB0aGUgUG93ZXIgU3BlY3RyYWwgRGVu
-c2l0eSAoUFNEKSBmcm9tIHRoZSBmb3VyIGNoYW5uZWxzLiBJIHBsYW4gdG8gdXNlIGEgd2luZG93
-IGZ1bmN0aW9uLCBwZXJmb3JtIGFuIEZGVCwgYW5kIGFwcGx5IHRoZSBsb2cgcG93ZXIgYmxvY2sg
-dG8gY2FsY3VsYXRlIHRoZSBQU0QuCgpDb3VsZCB5b3UgcGxlYXNlIGFkdmlzZSBvbiB0aGUgYmVz
-dCB3YXkgdG8gY29tYmluZSBhbGwgZm91ciBjaGFubmVscyBpbnRvIG9uZSBmb3IgdGhpcyBwdXJw
-b3NlPyBTcGVjaWZpY2FsbHksIEknbSBpbnRlcmVzdGVkIGluIHVuZGVyc3RhbmRpbmcgaG93IHRv
-IHByb3Blcmx5IGFnZ3JlZ2F0ZSB0aGUgZGF0YSBzdHJlYW1zIHNvIHRoYXQgSSBjYW4gY2FsY3Vs
-YXRlIHRoZSBQU0QgZWZmZWN0aXZlbHkuCgpUaGFuayB5b3UgYWdhaW4gZm9yIHlvdXIgc3VwcG9y
-dC4KCkJlc3QgcmVnYXJkcywKT2xvCgpPbiBUdWVzZGF5LCBBdWd1c3QgMTN0aCwgMjAyNCBhdCAx
-Njo0OCwgTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4gd3JvdGU6Cgo+
-IE9uIDEzLzA4LzIwMjQgMTA6MzYsIE9sbyB2aWEgVVNSUC11c2VycyB3cm90ZToKPgo+PiBEZWFy
-IEV0dHVzIFN1cHBvcnQgVGVhbSwKPj4KPj4gSSBob3BlIHRoaXMgbWVzc2FnZSBmaW5kcyB5b3Ug
-d2VsbC4KPj4KPj4gSSBhbSBjdXJyZW50bHkgd29ya2luZyB3aXRoIGFuIFgzMTAgU0RSIGVxdWlw
-cGVkIHdpdGggdHdvIFR3aW5SWCBkYXVnaHRlcmJvYXJkcywgYW5kIEkgYW0gbG9va2luZyB0byBy
-ZWNlaXZlIGRhdGEgc2ltdWx0YW5lb3VzbHkgYWNyb3NzIGFsbCBmb3VyIGNoYW5uZWxzLiBNeSBn
-b2FsIGlzIHRvIG1heGltaXplIHRoZSBhdmFpbGFibGUgYmFuZHdpZHRoIGJ5IGNvbmZpZ3VyaW5n
-IHRoZSBzeXN0ZW0gdG8gcmVjZWl2ZSBvbiBhbGwgY2hhbm5lbHMgaW4gcGFyYWxsZWwuCj4+Cj4+
-IENvdWxkIHlvdSBwbGVhc2UgYWR2aXNlIG9uIHRoZSBiZXN0IGFwcHJvYWNoIHRvIGFjaGlldmUg
-dGhpcz8gU3BlY2lmaWNhbGx5LCBJIHdvdWxkIGxpa2UgdG8ga25vdyBpZiBpdCBpcyBuZWNlc3Nh
-cnkgdG8gdXNlIGEgc3BlY2lhbGl6ZWQgUkZOb0MgZ3JhcGggZm9yIHRoaXMgc2V0dXAsIG9yIGlm
-IHRoZSB1aGQ6Om11bHRpX3VzcnAgY2xhc3MgaW4gdGhlIFVIRCBsaWJyYXJ5LCBhbG9uZyB3aXRo
-IGEgY29ycmVzcG9uZGluZyByeF9zdHJlYW1lciwgd291bGQgYmUgc3VmZmljaWVudCB0byBhY2Nv
-bXBsaXNoIHRoaXMgdGFzay4KPj4KPj4gSSBhcHByZWNpYXRlIGFueSBndWlkYW5jZSBvciByZWNv
-bW1lbmRhdGlvbnMgeW91IGNhbiBwcm92aWRlLgo+Pgo+PiBUaGFuayB5b3UgZm9yIHlvdXIgc3Vw
-cG9ydC4KPj4KPj4gQmVzdCByZWdhcmRzLAo+PiBPbG8uCj4KPiBBc3N1bWluZyB0aGF0IGFsbCB0
-aGUgc3RyZWFtcyB0ZXJtaW5hdGUgb24geW91ciBjb21wdXRlciwgdGhlbiB0aGUgbGltaXRpbmcg
-ZmFjdG9yIGlzIGFsd2F5cyBnb2luZyB0byBiZSB5b3VyIGNvbXB1dGVyLiBSRk5vQwo+IGlzIG9u
-bHkgaGVscGZ1bCBpZiB5b3Ugd2FudCB0byBkbyBzb21lIG9mIHRoZSBjb21wdXRpbmcgb24gdGhl
-IHJhZGlvLiBCdXQgaWYgdGhlIGdvYWwgaXMgdG8gaGF2ZSA0IHN0cmVhbXMgZ29pbmcgdG8geW91
-ciBjb21wdXRlciwKPiBhdCBmdWxsIHJhdGUsIHRoZW4gUkZOb0MgZG9lc24ndCBicmluZyBhbnl0
-aGluZyB0byB0aGUgdGFibGUtLWFuZCBpbiBmYWN0LCBpbnRlcm5hbGx5IHRoZXNlIGRheXMsIGFu
-IGFwcGxpY2F0aW9uIHRoYXQgdXNlcyBVSEQKPiBtdWx0aS11c3JwIHN0cmVhbWVycyBhY3R1YWxs
-eSBzZXRzIHVwIGEgc3RhbmRhcmRpemVkIFJGTm9DIGZsb3cgb24gdGhlIHJhZGlvIGFueXdheS4K
-Pgo+IFRoaXMgZG9jdW1lbnQgY2FuIGJlIGhlbHBmdWw6Cj4KPiBodHRwczovL2tiLmV0dHVzLmNv
-bS9VU1JQX0hvc3RfUGVyZm9ybWFuY2VfVHVuaW5nX1RpcHNfYW5kX1RyaWNrcwo+Cj4gVGhlIHVs
-dGltYXRlIHF1ZXN0aW9uIGJlY29tZXMgIndoYXQgZG8gSSB3YW50IHRvIGRvIHdpdGggdGhvc2Ug
-c3RyZWFtcz8iLiBUaGF0IHdpbGwgZGV0ZXJtaW5lIHdoZXRoZXIgeW91ciBjb21wdXRlcgo+IGNh
-biBoYW5kbGUgdGhlIGFnZ3JlZ2F0ZSBkYXRhIHJhdGVzLg==
-
---b1_6fF3995fjcQoERFUNcItr8tEn62PdRXrSwKg7R5DjY
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
-cHg7Ij48L2Rpdj48cD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlm
-OyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7
-Ij5EZWFyIEV0dHVzIFN1cHBvcnQsPC9zcGFuPjwvcD48cD48c3BhbiBzdHlsZT0iZm9udC1mYW1p
-bHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3Jt
-YWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5UaGFuayB5b3UgZm9yIHlvdXIgcHJvbXB0IGFuZCBkZXRh
-aWxlZCByZXNwb25zZS4gSSBhcHByZWNpYXRlIHRoZSBjbGFyaWZpY2F0aW9uIHJlZ2FyZGluZyB0
-aGUgdXNlIG9mIFJGTm9DIGFuZCBVSEQgPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTog
-QXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsg
-Zm9udC13ZWlnaHQ6IDQwMDsiPm11bHRpX3VzcnA8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9y
-bWFsOyBmb250LXdlaWdodDogNDAwOyI+IHN0cmVhbWVycy48L3NwYW4+PC9wPjxwPjxzcGFuIHN0
-eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgbGlu
-ZS1oZWlnaHQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsiPlRvIGFuc3dlciB5b3VyIHF1ZXN0
-aW9uLCBteSBnb2FsIGlzIHRvIGRpc3BsYXkgdGhlIFBvd2VyIFNwZWN0cmFsIERlbnNpdHkgKFBT
-RCkgZnJvbSB0aGUgZm91ciBjaGFubmVscy4gSSBwbGFuIHRvIHVzZSBhIHdpbmRvdyBmdW5jdGlv
-biwgcGVyZm9ybSBhbiBGRlQsIGFuZCBhcHBseSB0aGUgbG9nIHBvd2VyIGJsb2NrIHRvIGNhbGN1
-bGF0ZSB0aGUgUFNELjwvc3Bhbj48L3A+PHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlh
-bCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250
-LXdlaWdodDogNDAwOyI+Q291bGQgeW91IHBsZWFzZSBhZHZpc2Ugb24gdGhlIGJlc3Qgd2F5IHRv
-IGNvbWJpbmUgYWxsIGZvdXIgY2hhbm5lbHMgaW50byBvbmUgZm9yIHRoaXMgcHVycG9zZT8gU3Bl
-Y2lmaWNhbGx5LCBJJ20gaW50ZXJlc3RlZCBpbiB1bmRlcnN0YW5kaW5nIGhvdyB0byBwcm9wZXJs
-eSBhZ2dyZWdhdGUgdGhlIGRhdGEgc3RyZWFtcyBzbyB0aGF0IEkgY2FuIGNhbGN1bGF0ZSB0aGUg
-UFNEIGVmZmVjdGl2ZWx5Ljwvc3Bhbj48L3A+PHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBB
-cmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBm
-b250LXdlaWdodDogNDAwOyI+VGhhbmsgeW91IGFnYWluIGZvciB5b3VyIHN1cHBvcnQuPC9zcGFu
-PjwvcD48cD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250
-LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5CZXN0
-IHJlZ2FyZHMsPC9zcGFuPjxicj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5z
-LXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0
-OiA0MDA7Ij5PbG88L3NwYW4+PC9wPjxkaXYgc3R5bGU9IiI+PGJyPjwvZGl2PjxkaXYgY2xhc3M9
-InByb3Rvbm1haWxfcXVvdGUiPg0KICAgICAgICBPbiBUdWVzZGF5LCBBdWd1c3QgMTN0aCwgMjAy
-NCBhdCAxNjo0OCwgTWFyY3VzIEQuIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZn
-dDsgd3JvdGU6PGJyPg0KICAgICAgICA8YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFpbF9xdW90
-ZSIgdHlwZT0iY2l0ZSI+DQogICAgICAgICAgICANCiAgICA8ZGl2IGNsYXNzPSJtb3otY2l0ZS1w
-cmVmaXgiPk9uIDEzLzA4LzIwMjQgMTA6MzYsIE9sbyB2aWEgVVNSUC11c2Vycw0KICAgICAgd3Jv
-dGU6PGJyPg0KICAgIDwvZGl2Pg0KICAgIDxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KICAgICAg
-DQogICAgICA8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250
-LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5EZWFy
-DQogICAgICAgIEV0dHVzIFN1cHBvcnQgVGVhbSw8L3NwYW4+DQogICAgICA8ZGl2Pjxicj4NCiAg
-ICAgIDwvZGl2Pg0KICAgICAgPGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBz
-YW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2Vp
-Z2h0OiA0MDA7Ij5JDQogICAgICAgICAgaG9wZSB0aGlzIG1lc3NhZ2UgZmluZHMgeW91IHdlbGwu
-PC9zcGFuPjwvZGl2Pg0KICAgICAgPGRpdj48YnI+DQogICAgICA8L2Rpdj4NCiAgICAgIDxkaXY+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-NHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+SQ0KICAgICAgICAg
-IGFtIGN1cnJlbnRseSB3b3JraW5nIHdpdGggYW4gWDMxMCBTRFIgZXF1aXBwZWQgd2l0aCB0d28g
-VHdpblJYDQogICAgICAgICAgZGF1Z2h0ZXJib2FyZHMsIGFuZCBJIGFtIGxvb2tpbmcgdG8gcmVj
-ZWl2ZSBkYXRhDQogICAgICAgICAgc2ltdWx0YW5lb3VzbHkgYWNyb3NzIGFsbCBmb3VyIGNoYW5u
-ZWxzLiBNeSBnb2FsIGlzIHRvDQogICAgICAgICAgbWF4aW1pemUgdGhlIGF2YWlsYWJsZSBiYW5k
-d2lkdGggYnkgY29uZmlndXJpbmcgdGhlIHN5c3RlbSB0bw0KICAgICAgICAgIHJlY2VpdmUgb24g
-YWxsIGNoYW5uZWxzIGluIHBhcmFsbGVsLjwvc3Bhbj48L2Rpdj4NCiAgICAgIDxkaXY+PHNwYW4g
-c3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBs
-aW5lLWhlaWdodDogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyI+PGJyPg0KICAgICAgICA8L3Nw
-YW4+PC9kaXY+DQogICAgICA8ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogbm9ybWFsOyBm
-b250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgZm9udC13ZWln
-aHQ6IDQwMDsiPkNvdWxkDQogICAgICAgICAgeW91IHBsZWFzZSBhZHZpc2Ugb24gdGhlIGJlc3Qg
-YXBwcm9hY2ggdG8gYWNoaWV2ZSB0aGlzPw0KICAgICAgICAgIFNwZWNpZmljYWxseSwgSSB3b3Vs
-ZCBsaWtlIHRvIGtub3cgaWYgaXQgaXMgbmVjZXNzYXJ5IHRvIHVzZSBhDQogICAgICAgICAgc3Bl
-Y2lhbGl6ZWQgUkZOb0MgZ3JhcGggZm9yIHRoaXMgc2V0dXAsIG9yIGlmIHRoZQ0KICAgICAgICAg
-IHVoZDo6bXVsdGlfdXNycCBjbGFzcyBpbiB0aGUgVUhEIGxpYnJhcnksIGFsb25nIHdpdGggYQ0K
-ICAgICAgICAgIGNvcnJlc3BvbmRpbmcgcnhfc3RyZWFtZXIsIHdvdWxkIGJlIHN1ZmZpY2llbnQg
-dG8gYWNjb21wbGlzaA0KICAgICAgICAgIHRoaXMgdGFzay48L3NwYW4+PC9kaXY+DQogICAgICA8
-ZGl2PjxzcGFuIHN0eWxlPSIiPjxicj4NCiAgICAgICAgPC9zcGFuPjwvZGl2Pg0KICAgICAgPGRp
-dj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7Ij5JDQogICAgICAg
-ICAgYXBwcmVjaWF0ZSBhbnkgZ3VpZGFuY2Ugb3IgcmVjb21tZW5kYXRpb25zIHlvdSBjYW4gcHJv
-dmlkZS48L3NwYW4+PC9kaXY+DQogICAgICA8ZGl2PjxzcGFuIHN0eWxlPSIiPjxicj4NCiAgICAg
-ICAgPC9zcGFuPjwvZGl2Pg0KICAgICAgPGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFy
-aWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGZv
-bnQtd2VpZ2h0OiA0MDA7Ij5UaGFuaw0KICAgICAgICAgIHlvdSBmb3IgeW91ciBzdXBwb3J0Ljwv
-c3Bhbj48L2Rpdj4NCiAgICAgIDxkaXY+PHNwYW4gc3R5bGU9IiI+PGJyPg0KICAgICAgICA8L3Nw
-YW4+PC9kaXY+DQogICAgICA8ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogbm9ybWFsOyBm
-b250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgZm9udC13ZWln
-aHQ6IDQwMDsiPkJlc3QNCiAgICAgICAgICByZWdhcmRzLDwvc3Bhbj48L2Rpdj4NCiAgICAgIDxk
-aXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiBub3JtYWw7IGZvbnQtZmFtaWx5OiBBcmlhbCwg
-c2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBmb250LXdlaWdodDogNDAwOyI+T2xvLjwvc3Bh
-bj48L2Rpdj4NCiAgICAgIDxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiBub3JtYWw7IGZv
-bnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBmb250LXdlaWdo
-dDogNDAwOyI+PGJyPg0KICAgICAgICA8L3NwYW4+PC9kaXY+DQogICAgICA8YnI+DQogICAgPC9i
-bG9ja3F1b3RlPg0KICAgIEFzc3VtaW5nIHRoYXQgYWxsIHRoZSBzdHJlYW1zIHRlcm1pbmF0ZSBv
-biB5b3VyIGNvbXB1dGVyLCB0aGVuIHRoZQ0KICAgIGxpbWl0aW5nIGZhY3RvciBpcyBhbHdheXMg
-Z29pbmcgdG8gYmUgeW91ciBjb21wdXRlci4gIFJGTm9DPGJyPg0KICAgICAgaXMgb25seSBoZWxw
-ZnVsIGlmIHlvdSB3YW50IHRvIGRvIHNvbWUgb2YgdGhlIGNvbXB1dGluZyBvbiB0aGUNCiAgICBy
-YWRpby4gIEJ1dCBpZiB0aGUgZ29hbCBpcyB0byBoYXZlIDQgc3RyZWFtcyBnb2luZyB0byB5b3Vy
-IGNvbXB1dGVyLDxicj4NCiAgICAgIGF0IGZ1bGwgcmF0ZSwgdGhlbiBSRk5vQyBkb2Vzbid0IGJy
-aW5nIGFueXRoaW5nIHRvIHRoZSB0YWJsZS0tYW5kDQogICAgaW4gZmFjdCwgaW50ZXJuYWxseSB0
-aGVzZSBkYXlzLCBhbiBhcHBsaWNhdGlvbiB0aGF0IHVzZXMgVUhEPGJyPg0KICAgICAgbXVsdGkt
-dXNycCBzdHJlYW1lcnMgYWN0dWFsbHkgc2V0cyB1cCBhIHN0YW5kYXJkaXplZCBSRk5vQyBmbG93
-IG9uDQogICAgdGhlIHJhZGlvIGFueXdheS48YnI+DQogICAgPGJyPg0KICAgIFRoaXMgZG9jdW1l
-bnQgY2FuIGJlIGhlbHBmdWw6PGJyPg0KICAgIDxicj4NCiAgICA8YSBocmVmPSJodHRwczovL2ti
-LmV0dHVzLmNvbS9VU1JQX0hvc3RfUGVyZm9ybWFuY2VfVHVuaW5nX1RpcHNfYW5kX1RyaWNrcyIg
-Y2xhc3M9Im1vei10eHQtbGluay1mcmVldGV4dCIgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9yZWZl
-cnJlciBub2ZvbGxvdyBub29wZW5lciI+aHR0cHM6Ly9rYi5ldHR1cy5jb20vVVNSUF9Ib3N0X1Bl
-cmZvcm1hbmNlX1R1bmluZ19UaXBzX2FuZF9Ucmlja3M8L2E+PGJyPg0KICAgIDxicj4NCiAgICBU
-aGUgdWx0aW1hdGUgcXVlc3Rpb24gYmVjb21lcyAid2hhdCBkbyBJIHdhbnQgdG8gZG8gd2l0aCB0
-aG9zZQ0KICAgIHN0cmVhbXM/Ii4gIFRoYXQgd2lsbCBkZXRlcm1pbmUgd2hldGhlciB5b3VyIGNv
-bXB1dGVyPGJyPg0KICAgICAgY2FuIGhhbmRsZSB0aGUgYWdncmVnYXRlIGRhdGEgcmF0ZXMuPGJy
-Pg0KICAgIDxicj4NCiAgICA8YnI+DQogICAgPGJyPg0KICANCg0KDQogICAgICAgIDwvYmxvY2tx
-dW90ZT48YnI+DQogICAgPC9kaXY+
+> On 13/08/2024 15:16, Brajesh wrote:
+>
+>
+>
+> On Wed, Aug 14, 2024 at 12:14=E2=80=AFAM Marcus D. Leech <patchvonbraun@g=
+mail.com>
+> wrote:
+>
+>> On 13/08/2024 14:32, Brajesh wrote:
+>>
+>> Thanks Marcus for response.
+>>
+>> Yes, you are correct that I am beginner to UHD related issues. Maybe I
+>> should have pointed in my first posting. Sorry for that. But for design
+>> implementations on FPGA boards viz Basys 3 etc using AMD/Xilinx tools vi=
+z.
+>> ISE/Vivado/Vitis I am OK. A useful link (
+>> https://www.amd.com/content/dam/amd/en/documents/university/vivado-teach=
+ing/hdl-design/2015x/Verilog/docs-pdf/Vivado_tutorial.pdf
+>> ) is shared for confidence building.
+>>
+>> Further, I am not communication field expert either. I am
+>> building/brushing basics of communications fundamentals using GNU Radio.=
+ I
+>> have already gone though the link you shared before posting to forum. No=
+w,
+>> I am inferring (confirming) that to modify N210 FPGA one need to follow =
+the
+>> link you shared not standard AMD/Xilinx tool kit flow. Kindly note, due =
+to
+>> my previous FPGA experience, I was trying to look for a way out to
+>> implement Ettus Research GitHub code using standalone process of AMD/Xil=
+inx
+>> tool flow which was genesis of putting forward issue ( i ) in my previou=
+s
+>> thread. Not to mention I have no help, on the subject matter, around
+>> either. Now, I can ascertain that one need not to follow standalone flow=
+ of
+>> AMD/Xilinx tool kit for mentioned cause. This settles first issue.
+>>
+>> *Summary:-*
+>> Modifying N210 FPGA is a two step process,
+>>
+>> i) Generate bit file (
+>> https://files.ettus.com/manual/md_usrp2_build_instructions.html )
+>> ii) Use iMPACT tool to load firmware called "bit" file ( output of step
+>> (i)) on N210 FPGA using JTAG cable
+>>
+>>
+>> Experts confirmation is need of hour though.
+>>
+>> You CAN jtag images into the FPGA, but the usual route is to use the
+>> uhd_image_loader tool to do this, from the appropriate
+>>   generated artifacts.   Since new releases of UHD often include new FPG=
+A
+>> code, "uhd_image_loader" allows end-users to
+>>   load new "factory" images into their devices without needing Xilinx
+>> tooling.
+>>
+>
+>  Thanks Marcus, for clarifying.
+>
+>>
+>> ----------------------------------------------
+>>
+>> However, following doubt still remains,
+>>
+>> i. How to customise the data rate of N210, if possible, of design
+>> available at the GitHub link (
+>> https://github.com/EttusResearch/uhd/tree/master/fpga/usrp2/top ). I
+>> wish, if possible, to make the data rate as 1-bit, 2-bit, 4- bit, 8-bit,
+>> 16-bit, 32-bit and 64-bit. For N210's FPGA specifications, I referred
+>> section "comparative feature list" available at following link,
+>>
+>> https://files.ettus.com/manual/page_usrp2.html
+>>
+>> There is no "structured walk-through" of the FPGA code avalable.  The
+>> existing code for the N210 family USRPs includes support
+>>   for 16-bit and 8-bit samples "on the wire".   If it were my problem,
+>> that's where I'd start.  When you say "data rate", I assume
+>>   that you mean "data format on the wire".  I'm guessing that you want t=
+o
+>> move samples at a higher rate "over the wire"
+>>   than the 16 and 8 bit formats support.  Since the ADCs are only 14-bit
+>> on the N210, there's little point in carrying samples
+>>   wider than that over the wire.
+>>
+>> I would *not* go down that road without having a very thorough knowledge
+>> of how the standard FPGA data-flow works.  As I said
+>>   there is no "tell me how all this works" document, other than the
+>> Verilog source code.  The way that *most* users use these
+>>   devices is with the standard FPGA images, and the host-side UHD
+>> library.   Ettus/NI/Emerson don't provide a lot of hand-holding
+>>   documentation in this regard.
+>>
+>
+> I tried to get a complete picture of the schematic from Ettus Research (
+> https://files.ettus.com/schematics/usrp2/usrp2.pdf ) but it is not giving
+> complete information. Hene I am a bit not clear. For standard FPGA data
+> flow, I have experience to move on unlike this issue.
+>
+> Not sure why you'd be using the USRP2 schematic if you have an N210.  The
+> N210 schematics are here:
+>
+> https://files.ettus.com/schematics/n200/
+>
+> The N210/N200 are basically the same device, with the N210 having a large=
+r
+> FPGA.
+>
+> Note that the USRP2 has been EOL for MANY years.  The N210 was originally
+> released back in 2011, and has had no major hardware
+>   updates since then, and the FPGA image hasn't been updated a whole lot
+> since then.
+>
 
 
---b1_6fF3995fjcQoERFUNcItr8tEn62PdRXrSwKg7R5DjY--
+Thanks, Marcus, for clarifying.
 
---===============2677528159772428329==
+
+
+>
+>
+>
+> Kind request to Ettus Research associates:-
+> Give me some pointers here.
+>
+>
+> https://kb.ettus.com/Knowledge_Base
+>
+> That's a good "top level" starting point.
+>
+
+
+Well, I took a chance by writing to support@ettus.com (
+https://kb.ettus.com/Email ) but got no response as it was expected /
+already mentioned over the link.
+
+
+>
+> Request to community people :-
+>
+> If possible, kindly share Ettus Research fellow's email so that I can
+> directly post my query to them. This request is to keep everyone's intere=
+st
+> intact.
+>
+> I *AM* (for purposes of this forum) an Ettus/NI/Emerson "fellow".   But i
+> work very part-time.
+>
+
+That's great.
+If possible, request your time for interactive session. This request is to
+understand codebase (
+https://github.com/EttusResearch/fpga/commit/78eab419fdcdc18f4da8fd33f267af=
+6c4d0494f6
+)  and get starting point to start for data rate modifications.
+
+
+>
+> I'm not sure what you're looking for apart from what you've already found=
+,
+> and I've already pointed you to.   The FPGA source-code
+>   is freely available.  There are documents that describe the work-flow
+> for making custom mods to the N2xx FPGA images.
+>   The FPGA "architecture" is common between (obsolete) USRP2 and N2xx
+> hardware.  The follow-on architecture is referred
+>   to in the FPGA codebase as "usrp3", but that's just the naming of the
+> FPGA architecture.
+>
+> Like I have said previously, there is no "structured walk-through"
+> document that describes, in a high-level way, the architecture
+>   of the FPGA codebase.  The codebase is the document.  The same is
+> basically true for the host-side UHD library.  The architecture
+>   changes often-enough that by the time a "structured walk-through"
+> document could be considered "complete", the architecture
+>   underneath it, at least the details, would have changed.  Such is the
+> nature of an evolving code-base.
+>
+> Now, for the "usrp2" FPGA architecture, THAT codebase has been relatively
+> static for many years.  But a goodly chunk of it
+>   was written by people who have long-since departed the company.
+> Occasional maintenance is done on it, but for the
+>   most part, it has been the same for many years.  Again, though, the
+> codebase IS the documentation.
+>
+>
+Thanks again for shared details.
+
+--00000000000036fcba061fa001db
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 14, 2024 at 7:31=E2=80=AF=
+AM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonb=
+raun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><u></u>
+
+ =20
+   =20
+ =20
+  <div>
+    <div>On 13/08/2024 15:16, Brajesh wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div dir=3D"ltr"><br>
+        </div>
+        <br>
+        <div class=3D"gmail_quote">
+          <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 14, 2024 at
+            12:14=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patchvon=
+braun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+            <div>
+              <div>On 13/08/2024 14:32, Brajesh wrote:<br>
+              </div>
+              <blockquote type=3D"cite">
+                <div dir=3D"ltr">
+                  <div>Thanks Marcus for response.=C2=A0<br>
+                  </div>
+                  <div>
+                    <div><br>
+                    </div>
+                    <div>Yes, you are correct that I am beginner=C2=A0to UH=
+D
+                      related issues. Maybe I should have pointed in my
+                      first posting. Sorry for that. But for design
+                      implementations on FPGA boards viz Basys 3 etc
+                      using AMD/Xilinx tools viz. ISE/Vivado/Vitis I am
+                      OK. A useful link ( <a href=3D"https://www.amd.com/co=
+ntent/dam/amd/en/documents/university/vivado-teaching/hdl-design/2015x/Veri=
+log/docs-pdf/Vivado_tutorial.pdf" target=3D"_blank">https://www.amd.com/con=
+tent/dam/amd/en/documents/university/vivado-teaching/hdl-design/2015x/Veril=
+og/docs-pdf/Vivado_tutorial.pdf</a>
+                      ) is shared for confidence=C2=A0building.</div>
+                    <div><br>
+                    </div>
+                    <div>Further, I am not communication field expert
+                      either. I am building/brushing basics of
+                      communications fundamentals using GNU Radio. I
+                      have already gone though the link you shared
+                      before posting to forum. Now, I am inferring
+                      (confirming) that to modify N210 FPGA one need to
+                      follow the link you shared not standard AMD/Xilinx
+                      tool kit flow. Kindly note, due to my previous
+                      FPGA experience, I was trying to look for a way
+                      out to implement Ettus Research GitHub code using
+                      standalone process of AMD/Xilinx tool flow which
+                      was genesis of putting forward issue ( i ) in my
+                      previous thread. Not to mention I have no help, on
+                      the subject matter, around either. Now, I can
+                      ascertain that one need not to follow standalone
+                      flow of AMD/Xilinx tool kit for mentioned cause.
+                      This settles first issue.</div>
+                    <div><b><br>
+                      </b></div>
+                    <div><b>Summary:-</b></div>
+                  </div>
+                  <div>Modifying N210 FPGA is a two step process,</div>
+                  <blockquote style=3D"margin:0px 0px 0px 40px;border:none;=
+padding:0px">
+                    <div>
+                      <div>i) Generate bit file ( <a href=3D"https://files.=
+ettus.com/manual/md_usrp2_build_instructions.html" target=3D"_blank">https:=
+//files.ettus.com/manual/md_usrp2_build_instructions.html</a>
+                        )=C2=A0</div>
+                    </div>
+                    <div>
+                      <div>ii) Use iMPACT tool to load firmware called
+                        &quot;bit&quot; file ( output of step (i)) on N210 =
+FPGA
+                        using JTAG cable</div>
+                    </div>
+                  </blockquote>
+                  <div>
+                    <div><br>
+                    </div>
+                    <div>Experts confirmation is need of hour though.</div>
+                  </div>
+                </div>
+              </blockquote>
+              You CAN jtag images into the FPGA, but the usual route is
+              to use the uhd_image_loader tool to do this, from the
+              appropriate<br>
+              =C2=A0 generated artifacts.=C2=A0=C2=A0 Since new releases of=
+ UHD often
+              include new FPGA code, &quot;uhd_image_loader&quot; allows en=
+d-users
+              to<br>
+              =C2=A0 load new &quot;factory&quot; images into their devices=
+ without
+              needing Xilinx tooling.<br>
+            </div>
+          </blockquote>
+          <div>=C2=A0</div>
+          <div>=C2=A0Thanks Marcus, for clarifying.</div>
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div>
+                  <div><br>
+                  </div>
+                  <div>----------------------------------------------<br>
+                  </div>
+                  <div>
+                    <div><br>
+                      However, following doubt still remains,<br>
+                    </div>
+                    <div><br>
+                    </div>
+                    <div>
+                      <blockquote style=3D"margin:0px 0px 0px 40px;border:n=
+one;padding:0px">
+                        <div>i. How to customise the data rate of N210,
+                          if possible, of design available at the GitHub
+                          link ( <a href=3D"https://github.com/EttusResearc=
+h/uhd/tree/master/fpga/usrp2/top" target=3D"_blank">https://github.com/Ettu=
+sResearch/uhd/tree/master/fpga/usrp2/top</a>
+                          ). I wish, if possible, to make the data rate
+                          as 1-bit, 2-bit, 4- bit, 8-bit, 16-bit, 32-bit
+                          and 64-bit. For N210&#39;s FPGA specifications, I
+                          referred section &quot;comparative feature list&q=
+uot;
+                          available at following link,</div>
+                      </blockquote>
+                    </div>
+                  </div>
+                  <blockquote style=3D"margin:0px 0px 0px 40px;border:none;=
+padding:0px">
+                    <div>
+                      <div>
+                        <blockquote style=3D"margin:0px 0px 0px 40px;border=
+:none;padding:0px">
+                          <div><a href=3D"https://files.ettus.com/manual/pa=
+ge_usrp2.html" target=3D"_blank">https://files.ettus.com/manual/page_usrp2.=
+html</a></div>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </blockquote>
+                </div>
+              </div>
+            </blockquote>
+            There is no &quot;structured walk-through&quot; of the FPGA cod=
+e
+            avalable.=C2=A0 The existing code for the N210 family USRPs
+            includes support<br>
+            =C2=A0 for 16-bit and 8-bit samples &quot;on the wire&quot;.=C2=
+=A0=C2=A0 If it were
+            my problem, that&#39;s where I&#39;d start.=C2=A0 When you say =
+&quot;data
+            rate&quot;, I assume<br>
+            =C2=A0 that you mean &quot;data format on the wire&quot;.=C2=A0=
+ I&#39;m guessing
+            that you want to move samples at a higher rate &quot;over the
+            wire&quot;<br>
+            =C2=A0 than the 16 and 8 bit formats support.=C2=A0 Since the A=
+DCs are
+            only 14-bit on the N210, there&#39;s little point in carrying
+            samples<br>
+            =C2=A0 wider than that over the wire.<br>
+            <br>
+            I would *not* go down that road without having a very
+            thorough knowledge of how the standard FPGA data-flow
+            works.=C2=A0 As I said<br>
+            =C2=A0 there is no &quot;tell me how all this works&quot; docum=
+ent, other
+            than the Verilog source code.=C2=A0 The way that *most* users u=
+se
+            these<br>
+            =C2=A0 devices is with the standard FPGA images, and the
+            host-side UHD library.=C2=A0=C2=A0 Ettus/NI/Emerson don&#39;t p=
+rovide a
+            lot of hand-holding<br>
+            =C2=A0 documentation in this regard.<br>
+          </blockquote>
+          <div>=C2=A0</div>
+          <div>I tried to get a complete picture of the schematic from
+            Ettus Research ( <a href=3D"https://files.ettus.com/schematics/=
+usrp2/usrp2.pdf" target=3D"_blank">https://files.ettus.com/schematics/usrp2=
+/usrp2.pdf</a>
+            ) but it is not giving complete information. Hene I am a bit
+            not clear. For standard FPGA data flow, I have experience to
+            move on unlike this issue. <br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    Not sure why you&#39;d be using the USRP2 schematic if you have an
+    N210.=C2=A0 The N210 schematics are here:<br>
+    <br>
+    <a href=3D"https://files.ettus.com/schematics/n200/" target=3D"_blank">=
+https://files.ettus.com/schematics/n200/</a><br>
+    <br>
+    The N210/N200 are basically the same device, with the N210 having a
+    larger FPGA.<br>
+    <br>
+    Note that the USRP2 has been EOL for MANY years.=C2=A0 The N210 was
+    originally released back in 2011, and has had no major hardware<br>
+    =C2=A0 updates since then, and the FPGA image hasn&#39;t been updated a=
+ whole
+    lot since then.<br></div></blockquote><div><br></div><div>=C2=A0</div><=
+div>Thanks, Marcus, for clarifying.=C2=A0</div><div><br></div><div>=C2=A0</=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div><br>
+          </div>
+          <div>Kind request to Ettus Research associates:-</div>
+          <div>Give me some pointers here.</div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    <a href=3D"https://kb.ettus.com/Knowledge_Base" target=3D"_blank">https=
+://kb.ettus.com/Knowledge_Base</a><br>
+    <br>
+    That&#39;s a good &quot;top level&quot; starting point.<br></div></bloc=
+kquote><div>=C2=A0<br></div><div><br></div><div>Well, I took a chance by wr=
+iting to <a href=3D"mailto:support@ettus.com">support@ettus.com</a> ( <a hr=
+ef=3D"https://kb.ettus.com/Email">https://kb.ettus.com/Email</a> ) but got =
+no response as it was expected / already mentioned over the link.=C2=A0</di=
+v><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div><br>
+          </div>
+          <div>Request to community people :-</div>
+        </div>
+        <blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0p=
+x">
+          <div class=3D"gmail_quote">
+            <div>If possible, kindly share Ettus Research fellow&#39;s emai=
+l
+              so that I can directly post my query to them. This request
+              is to keep everyone&#39;s interest intact.</div>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    I *AM* (for purposes of this forum) an Ettus/NI/Emerson &quot;fellow&qu=
+ot;.=C2=A0=C2=A0
+    But i work very part-time.<br></div></blockquote><div><br></div><div>Th=
+at&#39;s great.=C2=A0</div><div>If possible, request your time for interact=
+ive session. This request is to understand codebase ( <a href=3D"https://gi=
+thub.com/EttusResearch/fpga/commit/78eab419fdcdc18f4da8fd33f267af6c4d0494f6=
+">https://github.com/EttusResearch/fpga/commit/78eab419fdcdc18f4da8fd33f267=
+af6c4d0494f6</a> )=C2=A0 and get starting point to start for data rate modi=
+fications.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div>
+    <br>
+    I&#39;m not sure what you&#39;re looking for apart from what you&#39;ve=
+ already
+    found, and I&#39;ve already pointed you to.=C2=A0=C2=A0 The FPGA source=
+-code<br>
+    =C2=A0 is freely available.=C2=A0 There are documents that describe the
+    work-flow for making custom mods to the N2xx FPGA images.<br>
+    =C2=A0 The FPGA &quot;architecture&quot; is common between (obsolete) U=
+SRP2 and
+    N2xx hardware.=C2=A0 The follow-on architecture is referred<br>
+    =C2=A0 to in the FPGA codebase as &quot;usrp3&quot;, but that&#39;s jus=
+t the naming of
+    the FPGA architecture.<br>
+    <br>
+    Like I have said previously, there is no &quot;structured walk-through&=
+quot;
+    document that describes, in a high-level way, the architecture<br>
+    =C2=A0 of the FPGA codebase.=C2=A0 The codebase is the document.=C2=A0 =
+The same is
+    basically true for the host-side UHD library.=C2=A0 The architecture<br=
+>
+    =C2=A0 changes often-enough that by the time a &quot;structured walk-th=
+rough&quot;
+    document could be considered &quot;complete&quot;, the architecture<br>
+    =C2=A0 underneath it, at least the details, would have changed.=C2=A0 S=
+uch is
+    the nature of an evolving code-base.<br>
+    <br>
+    Now, for the &quot;usrp2&quot; FPGA architecture, THAT codebase has bee=
+n
+    relatively static for many years.=C2=A0 But a goodly chunk of it<br>
+    =C2=A0 was written by people who have long-since departed the company.=
+=C2=A0
+    Occasional maintenance is done on it, but for the<br>
+    =C2=A0 most part, it has been the same for many years.=C2=A0 Again, tho=
+ugh,
+    the codebase IS the documentation.<br>
+    <br></div></blockquote><div><br></div><div>Thanks again for shared deta=
+ils.</div><div><br></div></div></div>
+
+--00000000000036fcba061fa001db--
+
+--===============7709066792823095147==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -235,4 +613,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2677528159772428329==--
+--===============7709066792823095147==--
