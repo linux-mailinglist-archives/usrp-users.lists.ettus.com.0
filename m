@@ -2,58 +2,58 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BBD951158
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 03:03:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 706C3951165
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 03:07:53 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9D72C3855DC
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 21:03:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6A158385613
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 21:07:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1723597413; bh=p5725v0Zkk5bGnvGy0YSP+FHKm5FBQAd9K8cPP74Xuk=;
+	t=1723597672; bh=yILl6rYrLu0i8D6rhnrkWLjOG+fF7SgKD2VnkV5yqZE=;
 	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=ZAIR/A9isv0bqLZ4xrBKHwPbWRtqU49yViyrg2lHxK4I2htVcLu00LBxc7Nx5zCfU
-	 kDdUeXgDs5ZGCoP+TTfy3ijlhAYaPRPPXQDYqW0FHIPV6RDELdnr7HV+CS8KGEoY8c
-	 gVlg21oczLW/bnva08qQuXA1N58kH93Kc6YXzufzZz6cQK/VTObEAiZ9G7LviDBZ1f
-	 PmdAGuG1h5A7VcL8QuoldK0GzCiuzr9o+CX+kP1zKpJxQXEz68Fa+Q/Kv/N4Jy/q40
-	 B1ui7PSAu6JJmiG/9MEk+Uoz9dxWaxcNeGMfMWETxdizb85TIij9xygPoY7v8xP2MP
-	 ldlSXu3rSISlg==
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11020083.outbound.protection.outlook.com [52.101.193.83])
-	by mm2.emwd.com (Postfix) with ESMTPS id B94D2385554
-	for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 21:03:15 -0400 (EDT)
+	b=akVlQKNU4yZwptXz2afAcxQW8nGFy2JVmr+sDIYuzRKafJBDiJScF68NBDtCiL9Ou
+	 B1OQqsfvm+YztQ7hoCv1zhIUp6I2YUlRj5gQL/STYmt/7Ny3YnSt57L3W0HbQDvo8V
+	 6Kc8D5+SqZjecvAfjzz0JpJLYrA6AELGifWa1wvt6tt6JPtkES6AetIN36tMy0CcWa
+	 swRiQFsDhwXLbUCrOieXVng9Ao4o7/rWDyrcYc5+2+SNbVEI7hjABrEzk4kJ80koM8
+	 e9wbqRxS76X74bernES6CXkuwQGf1MgN14mv0XW+oK/6jOmrexxOyJvXG5tB/2uz+y
+	 U5dPqaaKgEehA==
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11020072.outbound.protection.outlook.com [52.101.61.72])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4FEF2380F45
+	for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 21:07:37 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=VirginiaTech.onmicrosoft.com header.i=@VirginiaTech.onmicrosoft.com header.b="flpAb38V";
+	dkim=pass (1024-bit key; unprotected) header.d=VirginiaTech.onmicrosoft.com header.i=@VirginiaTech.onmicrosoft.com header.b="pkmhH5Jd";
 	dkim-atps=neutral
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kAyg9unXDy/wJNN2zBJMr7opYth5GPm3MeaRUpd2PPMSHApf7FCkZkulao6ogCanSnxT3IeDYMsjUJAeP5yauMtnR8muQA+qS1tYapGwKih16Felk2SMB7+36WUW7DJnjxphWf9+ppJ498MDV+OpLrf66d3MFolYw/CBSpIY5Md20cch6rOvFWDQ4+p53PJdd5wYps2JQDGdwB+C26gnX3tFahAnZRvnNrPN9ZE67QgGaz4q8+YDvtVPvjw3D6fOI4zQcjCIKgTmhHesq8Wkk5lhN2Urg+iExUjg3qQsqCF2GBuZwxhoWGFjwxU1SQTX+D8fXcHi5QGVN7THo2tfRQ==
+ b=JE/2c6IQpq4Orz2TGE8CT4L1zmQMFo5uxX5fvDUl7qYsg7c0alf/UNVsm256767kknb8gXAOmcqU1qUe2Z0IhO7WCpQkFjUCbDsBE1LQ4+Jmk+kNyRpJ5T8Y567uwi0kbU6GY0GVH0p04V8jb95f3Z0LLEEtXeXyEHnqa/V/Z2oNarTlZNzGiiF5XUVXwLOROVpjiPJhtL/es8Cqk45qFyfHIENnhBshYbTuoUPvt9n5W7QBOuW/T1CJr8V+O6c2PsIxYSYQFI7KXCkUR0JOnUniwjdZCDIZ4CQcRSgy7rKEmIYZ4KXt2deM5GmJYpaWY02IVElkjckAqmFIFP8ySQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ooUTzaseO+5TEaBoS3EpMda+q1q5KbqhSljAnmIj/IQ=;
- b=BvjFPfaCXZYFN/5NPWjP9rnJSX/b7yklOLGNPIrfz8wD610eUPJucREH0IivBAjeQ/uAM35o9EC9Iw1g0aYf4y6oPTV7rCHNIBApD0uawdOJLM1svQ1bp5KlE5hEje2GH6FZX9rnIiqjRGLSEkOYpEUXH2e72Y7zoVjjw0lB+udrfzO0Ar2U05AIIWp+3Vwi8lmxOb5n2bFTXNzJlnTw9cEjmxrbipBBS0C7e+CIIB2af7nte8NtsnVIgpUmL9av1AJKfKPnqGdKdZNz6gBQh8+VhFbHHKUgimyTWAVE5UN4zDqU8Ouw8g3ahRfKIpMhdwgY8WLUMFIACwV2+f7sbA==
+ bh=/s9Z7xdaDE/lzTbYnOuPeDA2MSirwPGZesGG/W5H4/k=;
+ b=jfQx5C5pzqo5+RZN10F4aVVr3/+V0gHjmo4Jh4VdgBWf/nbKqjsD6sfK3pUHWie5+7oH6KBSO7FBTdOYMsb/izA3hqdpNv27WuVeZkBD2N9D/QSFCL4Ep+CGVZqUUu/DRb5Pfd7ZReChsXPTVRQdvNZ9Zl5F5JULXH8bFZc2/yl7Ly4Hsy1qBIT6Sch11w1rhadcPh99tWYhHWVG8KmAbCRosa7ZLquerj6FDwFsNs6F+OXPXna8i5mqaVg4cLd/ruaq4Vz6DD3kbUm99BaP6g5iPed80pEUTZYlV/mAqfKCzkgWXyqYfg2I89pdFBbTG0T68ab71b4c4JX2SeSdzQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=vt.edu; dmarc=pass action=none header.from=vt.edu; dkim=pass
  header.d=vt.edu; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=VirginiaTech.onmicrosoft.com; s=selector1-VirginiaTech-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ooUTzaseO+5TEaBoS3EpMda+q1q5KbqhSljAnmIj/IQ=;
- b=flpAb38VLBJZSt/av8qpCrDVFk+Kqlq3BDl/8hYAxfnrya6FBWgL1cjS7ro2sekLs+Oc8sSHcqKO1e/KPVhYFhTdT+oJyrq9sU8JrC0ZxKFriT+BmoJ2QErwXUc6LTpLHpv4cfVq6R0BmIonSu2hRQq264pRQUtc01mLEm9fZAY=
+ bh=/s9Z7xdaDE/lzTbYnOuPeDA2MSirwPGZesGG/W5H4/k=;
+ b=pkmhH5JdLlxg/ySspAxqZFu/PJF5cvKMGsMUck2EX/fr1DWa16LgGP9N9DwROkPFWhzae7LY0Hp1evPCpSTsQ15TZSg2sVomZdI3LZkDWLMDLLEdXhviO8n570lNVGa6KOHNtg6tOq19AaLLVfQsz9RZVQGmEIOngbO2KyJR3Tw=
 Received: from PH0PR05MB7768.namprd05.prod.outlook.com (2603:10b6:510:2b::17)
- by PH0PR05MB7929.namprd05.prod.outlook.com (2603:10b6:510:77::9) with
+ by DS7PR05MB7383.namprd05.prod.outlook.com (2603:10b6:5:2d3::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Wed, 14 Aug
- 2024 01:03:13 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.23; Wed, 14 Aug
+ 2024 01:07:34 +0000
 Received: from PH0PR05MB7768.namprd05.prod.outlook.com
  ([fe80::22fa:6669:775c:8362]) by PH0PR05MB7768.namprd05.prod.outlook.com
  ([fe80::22fa:6669:775c:8362%4]) with mapi id 15.20.7849.021; Wed, 14 Aug 2024
- 01:03:13 +0000
+ 01:07:34 +0000
 From: "Sathish, Aditya" <saditya@vt.edu>
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Managing Half Duplex with X-310 and RFNoC
-Thread-Index: Adrt5YMTCFqTf1LzR5y2rbJzMlwr1w==
-Date: Wed, 14 Aug 2024 01:03:13 +0000
+Thread-Topic: SPP, Burst Transmission and RFNoC AXI Data Signals
+Thread-Index: Adrt5cj8X+WI4f75Twm8qSarie+tEA==
+Date: Wed, 14 Aug 2024 01:07:34 +0000
 Message-ID: 
- <PH0PR05MB7768455FE7B996179FDE2899D1872@PH0PR05MB7768.namprd05.prod.outlook.com>
+ <PH0PR05MB7768BDFDB65F74626766C36CD1872@PH0PR05MB7768.namprd05.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -61,135 +61,115 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=vt.edu;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR05MB7768:EE_|PH0PR05MB7929:EE_
-x-ms-office365-filtering-correlation-id: 46166a09-0696-4464-c50a-08dcbbfcdfb1
+x-ms-traffictypediagnostic: PH0PR05MB7768:EE_|DS7PR05MB7383:EE_
+x-ms-office365-filtering-correlation-id: 9298bcb7-9c95-42a8-fafc-08dcbbfd7aea
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
 x-microsoft-antispam-message-info: 
- =?us-ascii?Q?b3mCyIlnalHpuY3ej/3W52SUK3XGSeAExQ6S4He/GXckRRGW2k6+49HiF6GX?=
- =?us-ascii?Q?jyJH86m90MAHAVQTkRDIjZbyHIVE0xUHW/8WGNytTGnArR7kqVXsLoqrwMpV?=
- =?us-ascii?Q?dkmeIhUv2mfQ26FjVYZW1NIteekLjjVac6smIScgJAhZTO9lm6UnQ6OypCtx?=
- =?us-ascii?Q?wlDlDrzplG0KHtZU8U66DQjZhprtzoXruDpTWpSc5WTXRglTgy4lmwm1Gfb3?=
- =?us-ascii?Q?zpjUpq7dQvVHW8klbK6H0OLSHPIbupVLh6l5aAztXq7iX+H8eHAiZ/QbzqUE?=
- =?us-ascii?Q?OUWujgXN09Vt66EvFg+dNpCbVh2nhSS4tA9etPojl/41fX+CS+Z2FAFkY39t?=
- =?us-ascii?Q?HrgUqfO+oBCVLX/8HRPkMhqz4rhMgL+lxdCT/h+4RJqlHrb6kNauyges2w0M?=
- =?us-ascii?Q?Aq8iZxUvdm91gE1pniBQzMBzaWCbAh6fuXRjWtE1pqSU51BfJIhC99gFPBQ1?=
- =?us-ascii?Q?UPcaBYwQ8lYVfgshBIf/5gG9BtKIqE8BpDGn33qHjJVEDXPvUw1ZQ+U+nKza?=
- =?us-ascii?Q?bzq25lPpXss3X9mwbi36KxVk4Lle9AzumWhLBDP5ZLHc4gkzyR4jVN5KnIMw?=
- =?us-ascii?Q?JntXLOxaKA2D7ydG0xgRqlUbJiyY53TvC+sVXyokMXFUwHflPIUvrmMut4SL?=
- =?us-ascii?Q?X/h7upswsFTPHoJ9rV3OyoJChuZFY8NNI+nYNomAi8Cb8BTohBRpz99bQZw5?=
- =?us-ascii?Q?KBtS4s8uaDbc4uoNbvrWj7m/SASbpwaNDU1bm03lTvWgm4d39qB/lpA1UAXI?=
- =?us-ascii?Q?Zrj+B4x43JPLQ7Dd7Q8seFdYRFfbvp50HYZtzANMoUF67iFEcrazcExIdbki?=
- =?us-ascii?Q?DutNyoF7peuAis3DAXG9+wJkLpHZPTN35hsncdluekP+6QojCbXbRO++GOUp?=
- =?us-ascii?Q?rOmecMRnhTVEvgRbcsLViaB5nkd5aR53CpPwloQm/VPvkFB1ZOzst0pdKy8y?=
- =?us-ascii?Q?VZfClSQZua1tw+cT4Z0ekDHGW216+PvgehjB8iiHYXEv/GC47IM+iB0DxjKe?=
- =?us-ascii?Q?QLCpLawsFlbm4bUnoMyY4Skpbc/REyqN8YXyZN7asQ9Z5RHsGYtJRTTTRxwQ?=
- =?us-ascii?Q?dzmcvAcdC0HkWVZauvyu7gGfN648eW0AXSzSPfGGPZZIalRKy43iDnm9ALQR?=
- =?us-ascii?Q?rHDY9xDe+O4zRWV3OAoaPciob0byhQjdIteGaPhfKhkTILpsnaNFMe3VOMiW?=
- =?us-ascii?Q?pLyCm2mZI+y8NCBIhetoT/y0MTp3ycdbEdV23Bs9JU1CmDWCqiVDtYsiMoY5?=
- =?us-ascii?Q?vYFqKy5YaOwyEBFNSmg/lKLxcDN44Y0uciNDAqnTGCJDw+kzFVVJn74MBG62?=
- =?us-ascii?Q?h6TmFRTfp6WV3pkTqkdzQ4snjrsRsTNAFPxxpyszrF2amv3Bsv+TxkVO0pR2?=
- =?us-ascii?Q?JzKmR5I=3D?=
+ =?us-ascii?Q?QqBkqXDxqAdyzedolEkvMgqljL4WWTDzfBNRa2QtoKtYgxTtnC2q6/5KU8mU?=
+ =?us-ascii?Q?GMEs0ptySXxuSTLPBmz59A3bOaYLqTWtlE0UdiLFQPfVZFab8EVUU6yTRLjT?=
+ =?us-ascii?Q?r4pP14xFcBPySB2J3BaHHlqka7MliNfIWcv/uQ3tqXh4jXeSrOxpX3BaQIiu?=
+ =?us-ascii?Q?aMEh08BLwEuqZI4AR7vVGUCQ0ddyfXp1q3YIvh2IWQ9DAo2bby56c5ogVNBi?=
+ =?us-ascii?Q?chsRsWc59IZXj9eR4E21g5fQ91n9xpEEFlsTM/Pkxzrmo8TbBMFDyPd0DD/L?=
+ =?us-ascii?Q?eK6yOPL2+0+eqh3ccoxQRUB5r66Z9682tKJKhzi42gHxXTbPKO87IzHDkr8z?=
+ =?us-ascii?Q?CuSl+YzyWiQ6OiZnUrrx76XTLzpTreg/3GLFBp5CHV2JdvHCQ+0wycwQUQ2v?=
+ =?us-ascii?Q?Qwyf6at2NpnolUKHijiWJZVne34lYZfUDcmt9n2wxba2lLAjXQTjXCt5avfY?=
+ =?us-ascii?Q?WjyNbu6kqNdoIfnXDl36gWdzyBmQupIWkaOktPLg09jq15UyO7+Yr5uTakPk?=
+ =?us-ascii?Q?YGIrzEuCFqYyxvWGiDPaCVNwMarutJTM8OgGETxsXkRkCDvNiPmjqOlpIq8y?=
+ =?us-ascii?Q?nmF+zcQI38qMNE+yGklIASfdC0QaWu5ibqnJlDwj0ksWsdKDMGcibK0SibVz?=
+ =?us-ascii?Q?1KZEiXRkWMtGiD6KiFrQHRhBJamcwQ0A5bQumNocc/zyN+jzzvGPf05rLVkh?=
+ =?us-ascii?Q?81wtnw8GvIZ3N5KqUmOqF9PNm/oLwRIwOM5RcfDN97NFT1QZuymuz0Y3kAEa?=
+ =?us-ascii?Q?W8pxU8r4t2z8PGyBmFLWa7AEhrhLAE34VwnQEXSDWNrD3R6T2Zvc16aGk1/Y?=
+ =?us-ascii?Q?c7ekj8yDCNZGmbxYJdMZtdy2KAg2wgg+EgHX4uO/U5ikUP9TQuJEBWHFcDtL?=
+ =?us-ascii?Q?yKz84q0B5hZ5djnAxDCG9kHYe9C9DrTkptSFcfGwEgJwTAK21GvWIpwAVLyy?=
+ =?us-ascii?Q?xqrUNYF0BAts40UZzXpBLOPznWxzBUDVTsNieEFqc8Htgr0EB4DkgX/h3F1z?=
+ =?us-ascii?Q?ryacWor3QJo3+BHmitRbkCmfMGfHEjTqRve+wRCllE0ZUW2/wLsfluO2CZAn?=
+ =?us-ascii?Q?ucMPUHcgxixvO3eVEEh+NKcemcJ+rdn1JumwIDyT08lTXQD8zEKE3DFvJjQE?=
+ =?us-ascii?Q?hOzYMx6+FUB60y/INzF7/VBKgfK7h4XWr+0fDUXiFETYYTcL1622XKuOtSVe?=
+ =?us-ascii?Q?GZTg//8wUHCiurOLhiDA+rfZuNqr3OkL49XX0lMUzV+kf375NV2jbUVNHT63?=
+ =?us-ascii?Q?W8Gza6Dm2SkTFBYJ66r6LB+iHb8GM9UJLp3koVHd74omt/D1iU0JNyJ5GaLH?=
+ =?us-ascii?Q?yyMVcVDSF+KxK/2UgXtcEuruJNx6zxi9xSaiWDnQzELZF8y9vhUPC9GkikWA?=
+ =?us-ascii?Q?6iO5jsg=3D?=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR05MB7768.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR05MB7768.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?F7UPEGcUK0J9l4zMcDQePXG7IPJA5sO47qcTAEoS9hwbngAaX39dmEq+QJwM?=
- =?us-ascii?Q?lIk+kV2RlblQYjJP+ZdkqSk/4THTCtFr4wbDzMK1qfJZGBMq+Px5NS2GHdOe?=
- =?us-ascii?Q?e3WgGBJMKSHemH2wXNGA5xFaWgo7exquyI1htjIu1Krnhn2ZELPHrhtv8EJZ?=
- =?us-ascii?Q?FgQSSZhbCNHYjycFGfj4dtfsuoMd0yZ8wWJupd/LfD9czcxE8yfFMdtPx3WP?=
- =?us-ascii?Q?bHEdZF2a0AebUgs371YTPX1BmTJu07AvUc+XqclaSXWAyaweQgTftaMtnJ2e?=
- =?us-ascii?Q?IEMpVdLEG/7HKdF5oNq0MEQNTi3fL6UBqspb7RfR2o5QRGCiKAUsyUW2XixP?=
- =?us-ascii?Q?ckBOHpNggDubEFSqrHuWE1wdX844rVE4gK+rH1ffPnfjTNYcGRfozaUflO/v?=
- =?us-ascii?Q?/XuvEbb7RIaORZJ1hesdbJrdcX3zcZTNlyCP73+S8fJ1FE4icfNObM/XFBl7?=
- =?us-ascii?Q?XdYbuN0zAjpgQViAOVqn6vBwuk+KmjpArGTiNUCIMsGX4WgKZk5hpe7Xq+TX?=
- =?us-ascii?Q?9pivRyTxKRQZWzte2YYJaa3+i+KJoMtllu+k34uZJD4rJGqLEhVtQrBHbkld?=
- =?us-ascii?Q?xJV59wM/9WwNAKuhibTWFVwLwif5pKTtvDDy5tyLllegl4mtTMDEQcpJxu1+?=
- =?us-ascii?Q?xA4KE+QpqiTZku/VrkktEtv+CrqQZ5Ne0QifwgBTZiThlwnuWLSdxmZCGM5P?=
- =?us-ascii?Q?Zxw6FlGdCjftoC38xpERZx6BCvdadNnyYsVzP2UDD16mUlnIRfurYDA8ECBd?=
- =?us-ascii?Q?gfSLpHwtUEC/JGIM38KwUiuaUfeI1utE5NzAiJh66a9231+gr53kjC421Z/2?=
- =?us-ascii?Q?ZLfLUGzewALMP/XthnUOKpsZtQxgxdY2Jzfzfz7WHqlukvdw17MSUGR9G8NT?=
- =?us-ascii?Q?IRIRcbrvfWcLMFcydNWC5wlh5Oi5be7W5GSfo8CD5uDWWxD0QZnSeV/xGtU7?=
- =?us-ascii?Q?e+TSgTAGO7NBBfNVPn85g6Jo64wr0sRd/RuoCloxQX2CnCrXTioBlGq6lhuS?=
- =?us-ascii?Q?XN9ILVYv1dBcqeiyZQwyHtNU+Rp7A9gqAd2yqFHX66KudgxNB3GY1C19AuVi?=
- =?us-ascii?Q?+WUZXVcNvnA4g5FqhKfw/fFHmZ9dSk+mh94J3Dgf8+/DiACe3ifdmpdKWvEN?=
- =?us-ascii?Q?WcZAPxxbhw4W8y+9+Y7DITgJ71i9un2q34PTQmLjnIqQxyiafUr+XJ8W9Te0?=
- =?us-ascii?Q?owcFDRbJu4DbZmGMIW0DQl5Ue1GaCBCdYEbjYEfnpzLM8O0WOi03qfCveZbs?=
- =?us-ascii?Q?0qah9o7VCUNju3uJoYvdwD9meeox94/YTOH8BTs6/HZEa3kmJTH0iiBb8DL5?=
- =?us-ascii?Q?u7H2ads9Z1/b9Hjaxe3RGbIiK/He5WI9mx/c/LISu68R1kgxjPgeAwjIv2JN?=
- =?us-ascii?Q?y1g+/FjRNIQG6OZiAbhEYl44MAKLn6Bmnwyke1JcGyM7edtBBBFoupL5DF+j?=
- =?us-ascii?Q?oO+evTtqazRIhu6m7fK1F/+MQILDvIjO7dnJz+ulrY1j3+B0MkqYEaIKXZGi?=
- =?us-ascii?Q?a++RLsxHMhY5smTG1i5saabp2r6jR+LlikjI2XDuFQf2q6yf/Ms/a9JhFfk9?=
- =?us-ascii?Q?t0Heg3hTbTEwvyBZiWw=3D?=
+ =?us-ascii?Q?Q6ZI241pZcbC1cHjziMJuyK2089sBJqjIxTnZJ0xQyWGdZokiHH+7FLJv5kc?=
+ =?us-ascii?Q?TBQDCRf8v0mk1+UDUw/SnhqfvxCCakOS/mD1FUQ6UbdZ59+6Ud/XglE2hiGi?=
+ =?us-ascii?Q?taEFfNXGruVPHM4SuTldfTZwlG16CwIAUu1Fw2eh/JuFwDMja7Yp5WRP0GvG?=
+ =?us-ascii?Q?Za472Ee8cOay61IyRkyWcjD2T4eDL4G05yyh+YZrq8Tm9CE5WofwbeZw4K0T?=
+ =?us-ascii?Q?eSdLDUKmkOk87RuM9/7iRC73uVpt5LDWs+5ku+6p2/6D+chUKfPRGHdMhiAm?=
+ =?us-ascii?Q?2i8EUiR8P5lvh8nNv/nNuU+WBMN33OzcdG0b1PZs0dAQ0Iw3QY/VL8DqDULP?=
+ =?us-ascii?Q?LkJWZ4T2c2a85p8iBFowAn/QKHlXKtNVdXtsJ93OZVMHABf9bkdGU8Ak2Jdi?=
+ =?us-ascii?Q?OqIn1WbJiLSQl/k8W9Jge77FaLbJxTZ3BfvH9xAlSd9KNEKiKHnw4fRnhv8k?=
+ =?us-ascii?Q?Cc7waUcyRqW8Huh+3P2+sr+tvYJUEvrUZmzNPkGlWrTTOSbwVNiiRdPOYfgm?=
+ =?us-ascii?Q?m341POomVUbtVZMy4XKpMuLh9UHziLw90iQJN5nlHL7eLEx6SmW+psNytJpa?=
+ =?us-ascii?Q?3rWXaT9+Jld1gn1KtekxLpLtGb7vLiGi+x4ut/MPrLdNEt5Y1mGGiyZunxZt?=
+ =?us-ascii?Q?xMLt3/DLX8+E2xujfetaHXEQzzZYvTQUuCARYAD3aQSD8PieAemtrB7Bfb66?=
+ =?us-ascii?Q?p+IQzMK9cQjfVPulGbilaghkaFWbAG6pCRXIBaZDcp/hDBSBib5CQV9PMGVR?=
+ =?us-ascii?Q?RJgrVQoyMMVERN4CuEu3RlENNNli4zLYELIAWhYqczT7GYisdSXWu7KQ0a8Z?=
+ =?us-ascii?Q?ZDmLIqYuShgUkfT4JebLh+je7ktGYdu66tGJdWJtDad+De87A6dvqiysO/Ej?=
+ =?us-ascii?Q?HzphFFYS1ch+GUQInwmce2HqG8EmPxtAJL1nPxkeWqxWZAshhThmAIsvkAoM?=
+ =?us-ascii?Q?w3wXG0M3Jm3HpQyiElbEkZzDDMt0HL2QMINwSUEYxVNl1rWwhgCr+On3a0E/?=
+ =?us-ascii?Q?WlJv8byEP0A8mzuionSLNJg3j34YbHR/3y/Zn9CmFhYNxoofdpF9NMs8Gjpd?=
+ =?us-ascii?Q?XtSq5bucSr0NUvZgRE9nO9ySUCLbdgdJMlIgf4ssnnNi17GAVEvPYcyqI+LZ?=
+ =?us-ascii?Q?n+BrxccdEXgkvMp3Xb1xNX5ejCWHFlATTQxv+8XOVsJRdEd0WAeBUAkFozUB?=
+ =?us-ascii?Q?3XQx6Mc/gNgreK/0tm6AjglmDpeVmXqG0PUjIweJmuL5nOW7YwxDHC2Os0kn?=
+ =?us-ascii?Q?+XZtFMBTexX9QDimiinecaa1yE3Qt96cyOWX+DDajxjBgjaiQeakl15KmNvZ?=
+ =?us-ascii?Q?Z7nxBjruOHlRYteQ3QGThMITlnl15LKoI1QxMIOc2q/Z1oJA3YiUF6casHek?=
+ =?us-ascii?Q?hAj8DptLcwZSo4K6OrKiRWCq2EY+cmoFnGvmnLr/DBrWfPzxYT0sCRnpPHnk?=
+ =?us-ascii?Q?1kFUO+CR0+YSt0H1cfp1SCJhQI0QdNYnH95bsYuogCWScJTNJvHHi9KIduGi?=
+ =?us-ascii?Q?mfapvoY2/1WKEkai6GqRhmIvnZcrpIiVZg+C3bCjZxUhMyy02KDcsDzAinoX?=
+ =?us-ascii?Q?bRe8MkBab2YhI4sP7wM=3D?=
 MIME-Version: 1.0
 X-OriginatorOrg: vt.edu
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: PH0PR05MB7768.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46166a09-0696-4464-c50a-08dcbbfcdfb1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Aug 2024 01:03:13.8554
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9298bcb7-9c95-42a8-fafc-08dcbbfd7aea
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Aug 2024 01:07:34.3065
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 60956884-10ad-40fa-863d-4f32c1e3a37a
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WitNATZeulnF6Vt4kQ2Utr5kK1qg4yfpdNeWOT/yJnGIu/Vv1dbjAuT+rz3e7Xwn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR05MB7929
-Message-ID-Hash: 7ZJCYX3UIAUDRUSTRQH2MPSIE5CQUOWW
-X-Message-ID-Hash: 7ZJCYX3UIAUDRUSTRQH2MPSIE5CQUOWW
+X-MS-Exchange-CrossTenant-userprincipalname: zS7ikYlYHzs5CEyuV2rKu04IDyjRzveLeLmJ9jAM4beRCoDGZHy/2MIUk+qhungf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR05MB7383
+Message-ID-Hash: EEXEPPU4VQJBMAZP2OQ6AR2NGLEX47M4
+X-Message-ID-Hash: EEXEPPU4VQJBMAZP2OQ6AR2NGLEX47M4
 X-MailFrom: saditya@vt.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Managing Half Duplex with X-310 and RFNoC
+Subject: [USRP-users] SPP, Burst Transmission and RFNoC AXI Data Signals
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6NRUC3WR25XENI5HWF5UOZLPPY76GRMS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LWA5RK7SI4MRGVEHSBR7THFVS7VVCH5E/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7132769078601399405=="
+Content-Type: multipart/mixed; boundary="===============7943465144758638906=="
 
---===============7132769078601399405==
+--===============7943465144758638906==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_PH0PR05MB7768455FE7B996179FDE2899D1872PH0PR05MB7768namp_"
+	boundary="_000_PH0PR05MB7768BDFDB65F74626766C36CD1872PH0PR05MB7768namp_"
 
---_000_PH0PR05MB7768455FE7B996179FDE2899D1872PH0PR05MB7768namp_
+--_000_PH0PR05MB7768BDFDB65F74626766C36CD1872PH0PR05MB7768namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi,
 
-I am trying to perform spectrum sensing in my USRP in half-duplex mode. My =
-host application is constantly sending packets to transmit, and I have crea=
-ted an FPGA RFNoC block that is intending to sense the spectrum and change =
-the packet before transmitting it.
-I understand that the ATR logic in USRP X310 will allow Rx only when there =
-is nothing to transmit. However, when exactly does the ATR logic get trigge=
-red to switch from Rx to Tx? Is it when the signal reaches the radio contro=
-l block or when the packets enter the Tx streamer?
+I have setup an application that is constantly reading a Tx FIFO and sendin=
+g burst transmissions with a SPP of S samples per packet. I want to modify =
+my incoming signals in my RFNoC block, but I am having a hard time understa=
+nding how the samples will enter my RFNoC block through the AXI data wires.=
+ Will the tlast be asserted after S samples or will it be asserted after th=
+e entire burst is completed?
 
-The reason I ask this is because if the ATR logic switches from Rx to Tx wh=
-en the packets reach the Tx streamer then my FPGA block would never really =
-get any spectrum to sense per-se.
-But if the ATR logic is kicked when the signal reaches the radio control, I=
- can perform spectrum sensing and then if required, pass the data over to t=
-he radio block
-
-My RFNoC Block is currently as below:
-[------------------] <-- [RX STREAMER] <-- [GAIN SENSING BLOCK] <-- [DUC] <=
--- [RADIO CONTROL RX]
-[ APPLICATION]                                                             =
-       \/
-[------------------] --> [TX STREAMER] --> [MODIFIED BLOCK] --> [DDC] --> [=
-RADIO CONTROL TX]
-
-Regards,
-Aditya
-
---_000_PH0PR05MB7768455FE7B996179FDE2899D1872PH0PR05MB7768namp_
+--_000_PH0PR05MB7768BDFDB65F74626766C36CD1872PH0PR05MB7768namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -203,9 +183,6 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
@@ -238,58 +215,22 @@ div.WordSection1
 <body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
 break-word">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am trying to perform spectrum sensing in my USRP i=
-n half-duplex mode. My host application is constantly sending packets to tr=
-ansmit, and I have created an FPGA RFNoC block that is intending to sense t=
-he spectrum and change the packet
- before transmitting it.<o:p></o:p></p>
-<p class=3D"MsoNormal">I understand that the ATR logic in USRP X310 will al=
-low Rx only when there is nothing to transmit. However, when exactly does t=
-he ATR logic get triggered to switch
-<span style=3D"background:yellow;mso-highlight:yellow">from Rx to Tx</span>=
-? Is it when the signal reaches the radio control block or when the packets=
- enter the Tx streamer?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The reason I ask this is because if the ATR logic sw=
-itches from Rx to Tx when the packets reach the Tx streamer then my FPGA bl=
-ock would never really get any spectrum to sense per-se.<o:p></o:p></p>
-<p class=3D"MsoNormal">But if the ATR logic is kicked when the signal reach=
-es the radio control, I can perform spectrum sensing and then if required, =
-pass the data over to the radio block<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My RFNoC Block is currently as below:<br>
-[------------------] <span style=3D"font-family:Wingdings">&szlig;</span> [=
-RX STREAMER] <span style=3D"font-family:Wingdings">
-&szlig;</span> <span style=3D"background:lime;mso-highlight:lime">[GAIN SEN=
-SING BLOCK]</span>
-<span style=3D"font-family:Wingdings">&szlig;</span> [DUC] <span style=3D"f=
-ont-family:Wingdings">
-&szlig;</span> [RADIO CONTROL RX]<br>
-[ APPLICATION]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\/<br>
-[------------------] <span style=3D"font-family:Wingdings">&agrave;</span> =
-[TX STREAMER] <span style=3D"font-family:Wingdings">
-&agrave;</span> <span style=3D"background:lime;mso-highlight:lime">[MODIFIE=
-D BLOCK]</span>
-<span style=3D"font-family:Wingdings">&agrave;</span> [DDC] <span style=3D"=
-font-family:Wingdings">
-&agrave;</span> [RADIO CONTROL TX]<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Aditya<o:p></o:p></p>
+<p class=3D"MsoNormal">I have setup an application that is constantly readi=
+ng a Tx FIFO and sending burst transmissions with a SPP of
+<i>S</i> samples per packet. I want to modify my incoming signals in my RFN=
+oC block, but I am having a hard time understanding how the samples will en=
+ter my RFNoC block through the AXI data wires. Will the tlast be asserted a=
+fter S samples or will it be asserted
+ after the entire burst is completed?<o:p></o:p></p>
 </div>
 </body>
 </html>
 
---_000_PH0PR05MB7768455FE7B996179FDE2899D1872PH0PR05MB7768namp_--
+--_000_PH0PR05MB7768BDFDB65F74626766C36CD1872PH0PR05MB7768namp_--
 
---===============7132769078601399405==
+--===============7943465144758638906==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -299,4 +240,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7132769078601399405==--
+--===============7943465144758638906==--
