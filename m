@@ -2,235 +2,586 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706C3951165
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 03:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B99859511D3
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2024 04:02:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6A158385613
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 21:07:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AE00E385663
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2024 22:02:00 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1723597672; bh=yILl6rYrLu0i8D6rhnrkWLjOG+fF7SgKD2VnkV5yqZE=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=akVlQKNU4yZwptXz2afAcxQW8nGFy2JVmr+sDIYuzRKafJBDiJScF68NBDtCiL9Ou
-	 B1OQqsfvm+YztQ7hoCv1zhIUp6I2YUlRj5gQL/STYmt/7Ny3YnSt57L3W0HbQDvo8V
-	 6Kc8D5+SqZjecvAfjzz0JpJLYrA6AELGifWa1wvt6tt6JPtkES6AetIN36tMy0CcWa
-	 swRiQFsDhwXLbUCrOieXVng9Ao4o7/rWDyrcYc5+2+SNbVEI7hjABrEzk4kJ80koM8
-	 e9wbqRxS76X74bernES6CXkuwQGf1MgN14mv0XW+oK/6jOmrexxOyJvXG5tB/2uz+y
-	 U5dPqaaKgEehA==
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11020072.outbound.protection.outlook.com [52.101.61.72])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4FEF2380F45
-	for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 21:07:37 -0400 (EDT)
+	t=1723600920; bh=FcRS77tnxKo7CHFXvFTk9MbJMuYWeweXheFWTcs3t0Y=;
+	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=xfYSkRxhDC6L+o13BLl54Nu2559ZdOSOYocX52f3RXgwmK7nQRlycRkM/5GJ4KOjB
+	 g9RPh+2mQ05HgGdG3T8eNDQAjOBOprahemVBC58qcMi2w8p4/9PnQVTsmEwGsCADX6
+	 KkN4jpaixL5WFPvzn6VeeFEsZsSwzc38l8ahi0et7CX65TTNYmlaazgHmRFr0ldVSN
+	 0Gb5lz9cMIAyffhoWn485uB5OZDwTYXEDrTueAFDgwv7r7LSEUu61RxZjCfnra4bkg
+	 MR8Mclk9XdDDXaT6MeRfjGJ1HG8Ibk3hNgu8PzaTJERrm4lLGU2GMAtmRAKHu0JRYE
+	 khZ9/U4y6xDRg==
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 229343854D0
+	for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 22:01:18 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=VirginiaTech.onmicrosoft.com header.i=@VirginiaTech.onmicrosoft.com header.b="pkmhH5Jd";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PKQatuu2";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JE/2c6IQpq4Orz2TGE8CT4L1zmQMFo5uxX5fvDUl7qYsg7c0alf/UNVsm256767kknb8gXAOmcqU1qUe2Z0IhO7WCpQkFjUCbDsBE1LQ4+Jmk+kNyRpJ5T8Y567uwi0kbU6GY0GVH0p04V8jb95f3Z0LLEEtXeXyEHnqa/V/Z2oNarTlZNzGiiF5XUVXwLOROVpjiPJhtL/es8Cqk45qFyfHIENnhBshYbTuoUPvt9n5W7QBOuW/T1CJr8V+O6c2PsIxYSYQFI7KXCkUR0JOnUniwjdZCDIZ4CQcRSgy7rKEmIYZ4KXt2deM5GmJYpaWY02IVElkjckAqmFIFP8ySQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/s9Z7xdaDE/lzTbYnOuPeDA2MSirwPGZesGG/W5H4/k=;
- b=jfQx5C5pzqo5+RZN10F4aVVr3/+V0gHjmo4Jh4VdgBWf/nbKqjsD6sfK3pUHWie5+7oH6KBSO7FBTdOYMsb/izA3hqdpNv27WuVeZkBD2N9D/QSFCL4Ep+CGVZqUUu/DRb5Pfd7ZReChsXPTVRQdvNZ9Zl5F5JULXH8bFZc2/yl7Ly4Hsy1qBIT6Sch11w1rhadcPh99tWYhHWVG8KmAbCRosa7ZLquerj6FDwFsNs6F+OXPXna8i5mqaVg4cLd/ruaq4Vz6DD3kbUm99BaP6g5iPed80pEUTZYlV/mAqfKCzkgWXyqYfg2I89pdFBbTG0T68ab71b4c4JX2SeSdzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vt.edu; dmarc=pass action=none header.from=vt.edu; dkim=pass
- header.d=vt.edu; arc=none
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6b7a0ef0e75so36694606d6.1
+        for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2024 19:01:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=VirginiaTech.onmicrosoft.com; s=selector1-VirginiaTech-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/s9Z7xdaDE/lzTbYnOuPeDA2MSirwPGZesGG/W5H4/k=;
- b=pkmhH5JdLlxg/ySspAxqZFu/PJF5cvKMGsMUck2EX/fr1DWa16LgGP9N9DwROkPFWhzae7LY0Hp1evPCpSTsQ15TZSg2sVomZdI3LZkDWLMDLLEdXhviO8n570lNVGa6KOHNtg6tOq19AaLLVfQsz9RZVQGmEIOngbO2KyJR3Tw=
-Received: from PH0PR05MB7768.namprd05.prod.outlook.com (2603:10b6:510:2b::17)
- by DS7PR05MB7383.namprd05.prod.outlook.com (2603:10b6:5:2d3::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.23; Wed, 14 Aug
- 2024 01:07:34 +0000
-Received: from PH0PR05MB7768.namprd05.prod.outlook.com
- ([fe80::22fa:6669:775c:8362]) by PH0PR05MB7768.namprd05.prod.outlook.com
- ([fe80::22fa:6669:775c:8362%4]) with mapi id 15.20.7849.021; Wed, 14 Aug 2024
- 01:07:34 +0000
-From: "Sathish, Aditya" <saditya@vt.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: SPP, Burst Transmission and RFNoC AXI Data Signals
-Thread-Index: Adrt5cj8X+WI4f75Twm8qSarie+tEA==
-Date: Wed, 14 Aug 2024 01:07:34 +0000
-Message-ID: 
- <PH0PR05MB7768BDFDB65F74626766C36CD1872@PH0PR05MB7768.namprd05.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vt.edu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR05MB7768:EE_|DS7PR05MB7383:EE_
-x-ms-office365-filtering-correlation-id: 9298bcb7-9c95-42a8-fafc-08dcbbfd7aea
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: 
- =?us-ascii?Q?QqBkqXDxqAdyzedolEkvMgqljL4WWTDzfBNRa2QtoKtYgxTtnC2q6/5KU8mU?=
- =?us-ascii?Q?GMEs0ptySXxuSTLPBmz59A3bOaYLqTWtlE0UdiLFQPfVZFab8EVUU6yTRLjT?=
- =?us-ascii?Q?r4pP14xFcBPySB2J3BaHHlqka7MliNfIWcv/uQ3tqXh4jXeSrOxpX3BaQIiu?=
- =?us-ascii?Q?aMEh08BLwEuqZI4AR7vVGUCQ0ddyfXp1q3YIvh2IWQ9DAo2bby56c5ogVNBi?=
- =?us-ascii?Q?chsRsWc59IZXj9eR4E21g5fQ91n9xpEEFlsTM/Pkxzrmo8TbBMFDyPd0DD/L?=
- =?us-ascii?Q?eK6yOPL2+0+eqh3ccoxQRUB5r66Z9682tKJKhzi42gHxXTbPKO87IzHDkr8z?=
- =?us-ascii?Q?CuSl+YzyWiQ6OiZnUrrx76XTLzpTreg/3GLFBp5CHV2JdvHCQ+0wycwQUQ2v?=
- =?us-ascii?Q?Qwyf6at2NpnolUKHijiWJZVne34lYZfUDcmt9n2wxba2lLAjXQTjXCt5avfY?=
- =?us-ascii?Q?WjyNbu6kqNdoIfnXDl36gWdzyBmQupIWkaOktPLg09jq15UyO7+Yr5uTakPk?=
- =?us-ascii?Q?YGIrzEuCFqYyxvWGiDPaCVNwMarutJTM8OgGETxsXkRkCDvNiPmjqOlpIq8y?=
- =?us-ascii?Q?nmF+zcQI38qMNE+yGklIASfdC0QaWu5ibqnJlDwj0ksWsdKDMGcibK0SibVz?=
- =?us-ascii?Q?1KZEiXRkWMtGiD6KiFrQHRhBJamcwQ0A5bQumNocc/zyN+jzzvGPf05rLVkh?=
- =?us-ascii?Q?81wtnw8GvIZ3N5KqUmOqF9PNm/oLwRIwOM5RcfDN97NFT1QZuymuz0Y3kAEa?=
- =?us-ascii?Q?W8pxU8r4t2z8PGyBmFLWa7AEhrhLAE34VwnQEXSDWNrD3R6T2Zvc16aGk1/Y?=
- =?us-ascii?Q?c7ekj8yDCNZGmbxYJdMZtdy2KAg2wgg+EgHX4uO/U5ikUP9TQuJEBWHFcDtL?=
- =?us-ascii?Q?yKz84q0B5hZ5djnAxDCG9kHYe9C9DrTkptSFcfGwEgJwTAK21GvWIpwAVLyy?=
- =?us-ascii?Q?xqrUNYF0BAts40UZzXpBLOPznWxzBUDVTsNieEFqc8Htgr0EB4DkgX/h3F1z?=
- =?us-ascii?Q?ryacWor3QJo3+BHmitRbkCmfMGfHEjTqRve+wRCllE0ZUW2/wLsfluO2CZAn?=
- =?us-ascii?Q?ucMPUHcgxixvO3eVEEh+NKcemcJ+rdn1JumwIDyT08lTXQD8zEKE3DFvJjQE?=
- =?us-ascii?Q?hOzYMx6+FUB60y/INzF7/VBKgfK7h4XWr+0fDUXiFETYYTcL1622XKuOtSVe?=
- =?us-ascii?Q?GZTg//8wUHCiurOLhiDA+rfZuNqr3OkL49XX0lMUzV+kf375NV2jbUVNHT63?=
- =?us-ascii?Q?W8Gza6Dm2SkTFBYJ66r6LB+iHb8GM9UJLp3koVHd74omt/D1iU0JNyJ5GaLH?=
- =?us-ascii?Q?yyMVcVDSF+KxK/2UgXtcEuruJNx6zxi9xSaiWDnQzELZF8y9vhUPC9GkikWA?=
- =?us-ascii?Q?6iO5jsg=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR05MB7768.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?Q6ZI241pZcbC1cHjziMJuyK2089sBJqjIxTnZJ0xQyWGdZokiHH+7FLJv5kc?=
- =?us-ascii?Q?TBQDCRf8v0mk1+UDUw/SnhqfvxCCakOS/mD1FUQ6UbdZ59+6Ud/XglE2hiGi?=
- =?us-ascii?Q?taEFfNXGruVPHM4SuTldfTZwlG16CwIAUu1Fw2eh/JuFwDMja7Yp5WRP0GvG?=
- =?us-ascii?Q?Za472Ee8cOay61IyRkyWcjD2T4eDL4G05yyh+YZrq8Tm9CE5WofwbeZw4K0T?=
- =?us-ascii?Q?eSdLDUKmkOk87RuM9/7iRC73uVpt5LDWs+5ku+6p2/6D+chUKfPRGHdMhiAm?=
- =?us-ascii?Q?2i8EUiR8P5lvh8nNv/nNuU+WBMN33OzcdG0b1PZs0dAQ0Iw3QY/VL8DqDULP?=
- =?us-ascii?Q?LkJWZ4T2c2a85p8iBFowAn/QKHlXKtNVdXtsJ93OZVMHABf9bkdGU8Ak2Jdi?=
- =?us-ascii?Q?OqIn1WbJiLSQl/k8W9Jge77FaLbJxTZ3BfvH9xAlSd9KNEKiKHnw4fRnhv8k?=
- =?us-ascii?Q?Cc7waUcyRqW8Huh+3P2+sr+tvYJUEvrUZmzNPkGlWrTTOSbwVNiiRdPOYfgm?=
- =?us-ascii?Q?m341POomVUbtVZMy4XKpMuLh9UHziLw90iQJN5nlHL7eLEx6SmW+psNytJpa?=
- =?us-ascii?Q?3rWXaT9+Jld1gn1KtekxLpLtGb7vLiGi+x4ut/MPrLdNEt5Y1mGGiyZunxZt?=
- =?us-ascii?Q?xMLt3/DLX8+E2xujfetaHXEQzzZYvTQUuCARYAD3aQSD8PieAemtrB7Bfb66?=
- =?us-ascii?Q?p+IQzMK9cQjfVPulGbilaghkaFWbAG6pCRXIBaZDcp/hDBSBib5CQV9PMGVR?=
- =?us-ascii?Q?RJgrVQoyMMVERN4CuEu3RlENNNli4zLYELIAWhYqczT7GYisdSXWu7KQ0a8Z?=
- =?us-ascii?Q?ZDmLIqYuShgUkfT4JebLh+je7ktGYdu66tGJdWJtDad+De87A6dvqiysO/Ej?=
- =?us-ascii?Q?HzphFFYS1ch+GUQInwmce2HqG8EmPxtAJL1nPxkeWqxWZAshhThmAIsvkAoM?=
- =?us-ascii?Q?w3wXG0M3Jm3HpQyiElbEkZzDDMt0HL2QMINwSUEYxVNl1rWwhgCr+On3a0E/?=
- =?us-ascii?Q?WlJv8byEP0A8mzuionSLNJg3j34YbHR/3y/Zn9CmFhYNxoofdpF9NMs8Gjpd?=
- =?us-ascii?Q?XtSq5bucSr0NUvZgRE9nO9ySUCLbdgdJMlIgf4ssnnNi17GAVEvPYcyqI+LZ?=
- =?us-ascii?Q?n+BrxccdEXgkvMp3Xb1xNX5ejCWHFlATTQxv+8XOVsJRdEd0WAeBUAkFozUB?=
- =?us-ascii?Q?3XQx6Mc/gNgreK/0tm6AjglmDpeVmXqG0PUjIweJmuL5nOW7YwxDHC2Os0kn?=
- =?us-ascii?Q?+XZtFMBTexX9QDimiinecaa1yE3Qt96cyOWX+DDajxjBgjaiQeakl15KmNvZ?=
- =?us-ascii?Q?Z7nxBjruOHlRYteQ3QGThMITlnl15LKoI1QxMIOc2q/Z1oJA3YiUF6casHek?=
- =?us-ascii?Q?hAj8DptLcwZSo4K6OrKiRWCq2EY+cmoFnGvmnLr/DBrWfPzxYT0sCRnpPHnk?=
- =?us-ascii?Q?1kFUO+CR0+YSt0H1cfp1SCJhQI0QdNYnH95bsYuogCWScJTNJvHHi9KIduGi?=
- =?us-ascii?Q?mfapvoY2/1WKEkai6GqRhmIvnZcrpIiVZg+C3bCjZxUhMyy02KDcsDzAinoX?=
- =?us-ascii?Q?bRe8MkBab2YhI4sP7wM=3D?=
+        d=gmail.com; s=20230601; t=1723600877; x=1724205677; darn=lists.ettus.com;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/WKIS4Y/rLGjZDkKDiYCLnJMUqI+EBpzR9T+FLgj5p0=;
+        b=PKQatuu2087fSgYPVx6sqhJVK/8Y/uHT3E8e+GBgagY7oyK4nEh3Ho9BCGA5iouu8l
+         8o/dlk9NsHBpQOGFuEICQjCIYOUT67d9RLNnJbOB+OwKAA/BNY2wDL+pnAxiMvlWmWig
+         gcX1D5tdARzsVCbQBC7KwhAeBtB+4iRg5rrqZ5TOA+/QbHVv6saVa1KX95/zkWEjpGon
+         N+Lg1DVH5l11bDAwSd8Iz5JH4CKdFsY8cOpDqKasnWBog+71VJBvLdvjGSpL1+buYeXJ
+         2GGOYPWTaLimxnj8ic0tZKkYFXqlQW3Rt1FI57K7t2UTHftHpNQRTO6aBc//ccMCXp4f
+         bXUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723600877; x=1724205677;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/WKIS4Y/rLGjZDkKDiYCLnJMUqI+EBpzR9T+FLgj5p0=;
+        b=jAQqKNrr8bXOymSL+q8FoFtPl+1xSl1uTIk22GMOO2E/XBDMRvFMeExTKBqwAczeyD
+         b+NW6e2yx+49V9pmh6OZyC+X2amcYPTcBJkoi621MuVYWr5+UtAmRAVPO+DjKbMsHzz5
+         L1/d1FwwzT5Aava8ZBLebKBPXD+UusCGq9YIY5XWNzn307I1U3G2YrzwCvjdJo9amwcU
+         JQJwVPGW0nVdgtn+PV7TpdXNkMgx64TM4LYVoLi9YJFk01RruaCja7/TO1ZiDlmNVSo9
+         kVuxUgu6Cj0IMCXD6tt4GpxGpWI90xwTRxOyc+3xdegirUSZDeGgHW09fj7v26QBmf5Q
+         g0QQ==
+X-Gm-Message-State: AOJu0YyM1ALG/98dsgAqPSsUd3itf0hUAmQJ44mkhVOhTye/J+K8NxPl
+	zh0WWGptg6lu9TWrQw0ukqR8hatItFL8eJxRwyDKJYYMLWw3o6PZ
+X-Google-Smtp-Source: AGHT+IFN84uHLPZai7LYrQoJ5/UH7WaXj9x46CtbXUlDzbnX1Dj1CT83HDpM+j4/fQJsoKUdwoAR5w==
+X-Received: by 2002:a05:6214:328c:b0:6b0:743b:71f5 with SMTP id 6a1803df08f44-6bf5d2685b4mr13816836d6.44.1723600877061;
+        Tue, 13 Aug 2024 19:01:17 -0700 (PDT)
+Received: from [192.168.2.170] (bras-base-smflon1825w-grc-22-64-231-212-86.dsl.bell.ca. [64.231.212.86])
+        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6bd82c62618sm38923196d6.10.2024.08.13.19.01.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Aug 2024 19:01:16 -0700 (PDT)
+Message-ID: <0129e687-c21b-4090-80d3-562ef9ee1d3b@gmail.com>
+Date: Tue, 13 Aug 2024 22:01:16 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: vt.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR05MB7768.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9298bcb7-9c95-42a8-fafc-08dcbbfd7aea
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Aug 2024 01:07:34.3065
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 60956884-10ad-40fa-863d-4f32c1e3a37a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zS7ikYlYHzs5CEyuV2rKu04IDyjRzveLeLmJ9jAM4beRCoDGZHy/2MIUk+qhungf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR05MB7383
-Message-ID-Hash: EEXEPPU4VQJBMAZP2OQ6AR2NGLEX47M4
-X-Message-ID-Hash: EEXEPPU4VQJBMAZP2OQ6AR2NGLEX47M4
-X-MailFrom: saditya@vt.edu
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Brajesh <brajesh153@gmail.com>
+References: <CAL4V06r9bLo+Wo-JPP4H70hwdJNJCy-m1ER5xwoXp7KHQkryBQ@mail.gmail.com>
+ <84320f82-be18-47b9-92be-24339e6b1dc5@gmail.com>
+ <CAL4V06oDcG=XFKQKkLoaKjDMXDEH_KMZTW8Lg5Q2dxhbPKQvLw@mail.gmail.com>
+ <637859ba-8167-4643-ae42-743a2e73b20a@gmail.com>
+ <CAL4V06pXvgzSBXNieRr4N2XSVRa_0bdXJKNCG7aYCWbKQzf0dg@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAL4V06pXvgzSBXNieRr4N2XSVRa_0bdXJKNCG7aYCWbKQzf0dg@mail.gmail.com>
+Message-ID-Hash: NZHVWIMV4BROVPXQM3AQCIXFCWXBPAR3
+X-Message-ID-Hash: NZHVWIMV4BROVPXQM3AQCIXFCWXBPAR3
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] SPP, Burst Transmission and RFNoC AXI Data Signals
+Subject: [USRP-users] Re: Reg. N210 FPGA modification
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LWA5RK7SI4MRGVEHSBR7THFVS7VVCH5E/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NZHVWIMV4BROVPXQM3AQCIXFCWXBPAR3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7943465144758638906=="
+Content-Type: multipart/mixed; boundary="===============2130627090647747260=="
 
---===============7943465144758638906==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============2130627090647747260==
 Content-Type: multipart/alternative;
-	boundary="_000_PH0PR05MB7768BDFDB65F74626766C36CD1872PH0PR05MB7768namp_"
+ boundary="------------tGYX0E3z0J9eQ0jFOTQ5H7qE"
+Content-Language: en-US
 
---_000_PH0PR05MB7768BDFDB65F74626766C36CD1872PH0PR05MB7768namp_
-Content-Type: text/plain; charset="us-ascii"
+This is a multi-part message in MIME format.
+--------------tGYX0E3z0J9eQ0jFOTQ5H7qE
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-I have setup an application that is constantly reading a Tx FIFO and sendin=
-g burst transmissions with a SPP of S samples per packet. I want to modify =
-my incoming signals in my RFNoC block, but I am having a hard time understa=
-nding how the samples will enter my RFNoC block through the AXI data wires.=
- Will the tlast be asserted after S samples or will it be asserted after th=
-e entire burst is completed?
-
---_000_PH0PR05MB7768BDFDB65F74626766C36CD1872PH0PR05MB7768namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 13/08/2024 15:16, Brajesh wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Aptos;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;
-	mso-ligatures:standardcontextual;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Aptos",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have setup an application that is constantly readi=
-ng a Tx FIFO and sending burst transmissions with a SPP of
-<i>S</i> samples per packet. I want to modify my incoming signals in my RFN=
-oC block, but I am having a hard time understanding how the samples will en=
-ter my RFNoC block through the AXI data wires. Will the tlast be asserted a=
-fter S samples or will it be asserted
- after the entire burst is completed?<o:p></o:p></p>
-</div>
-</body>
+>
+> On Wed, Aug 14, 2024 at 12:14=E2=80=AFAM Marcus D. Leech=20
+> <patchvonbraun@gmail.com> wrote:
+>
+>     On 13/08/2024 14:32, Brajesh wrote:
+>>     Thanks Marcus for response.
+>>
+>>     Yes, you are correct that I am beginner=C2=A0to UHD related issues=
+.
+>>     Maybe I should have pointed in my first posting. Sorry for that.
+>>     But for design implementations on FPGA boards viz Basys 3 etc
+>>     using AMD/Xilinx tools viz. ISE/Vivado/Vitis I am OK. A useful
+>>     link (
+>>     https://www.amd.com/content/dam/amd/en/documents/university/vivado=
+-teaching/hdl-design/2015x/Verilog/docs-pdf/Vivado_tutorial.pdf
+>>     ) is shared for confidence=C2=A0building.
+>>
+>>     Further, I am not communication field expert either. I am
+>>     building/brushing basics of communications fundamentals using GNU
+>>     Radio. I have already gone though the link you shared before
+>>     posting to forum. Now, I am inferring (confirming) that to modify
+>>     N210 FPGA one need to follow the link you shared not standard
+>>     AMD/Xilinx tool kit flow. Kindly note, due to my previous FPGA
+>>     experience, I was trying to look for a way out to implement Ettus
+>>     Research GitHub code using standalone process of AMD/Xilinx tool
+>>     flow which was genesis of putting forward issue ( i ) in my
+>>     previous thread. Not to mention I have no help, on the subject
+>>     matter, around either. Now, I can ascertain that one need not to
+>>     follow standalone flow of AMD/Xilinx tool kit for mentioned
+>>     cause. This settles first issue.
+>>     *
+>>     *
+>>     *Summary:-*
+>>     Modifying N210 FPGA is a two step process,
+>>
+>>         i) Generate bit file (
+>>         https://files.ettus.com/manual/md_usrp2_build_instructions.htm=
+l
+>>         )
+>>         ii) Use iMPACT tool to load firmware called "bit" file (
+>>         output of step (i)) on N210 FPGA using JTAG cable
+>>
+>>
+>>     Experts confirmation is need of hour though.
+>     You CAN jtag images into the FPGA, but the usual route is to use
+>     the uhd_image_loader tool to do this, from the appropriate
+>     =C2=A0 generated artifacts.=C2=A0=C2=A0 Since new releases of UHD o=
+ften include
+>     new FPGA code, "uhd_image_loader" allows end-users to
+>     =C2=A0 load new "factory" images into their devices without needing
+>     Xilinx tooling.
+>
+> =C2=A0Thanks Marcus, for clarifying.
+>
+>>
+>>     ----------------------------------------------
+>>
+>>     However, following doubt still remains,
+>>
+>>         i. How to customise the data rate of N210, if possible, of
+>>         design available at the GitHub link (
+>>         https://github.com/EttusResearch/uhd/tree/master/fpga/usrp2/to=
+p
+>>         ). I wish, if possible, to make the data rate as 1-bit,
+>>         2-bit, 4- bit, 8-bit, 16-bit, 32-bit and 64-bit. For N210's
+>>         FPGA specifications, I referred section "comparative feature
+>>         list" available at following link,
+>>
+>>             https://files.ettus.com/manual/page_usrp2.html
+>>
+>     There is no "structured walk-through" of the FPGA code avalable.=C2=
+=A0
+>     The existing code for the N210 family USRPs includes support
+>     =C2=A0 for 16-bit and 8-bit samples "on the wire".=C2=A0=C2=A0 If i=
+t were my
+>     problem, that's where I'd start.=C2=A0 When you say "data rate", I =
+assume
+>     =C2=A0 that you mean "data format on the wire".=C2=A0 I'm guessing =
+that you
+>     want to move samples at a higher rate "over the wire"
+>     =C2=A0 than the 16 and 8 bit formats support.=C2=A0 Since the ADCs =
+are only
+>     14-bit on the N210, there's little point in carrying samples
+>     =C2=A0 wider than that over the wire.
+>
+>     I would *not* go down that road without having a very thorough
+>     knowledge of how the standard FPGA data-flow works.=C2=A0 As I said
+>     =C2=A0 there is no "tell me how all this works" document, other tha=
+n
+>     the Verilog source code.=C2=A0 The way that *most* users use these
+>     =C2=A0 devices is with the standard FPGA images, and the host-side =
+UHD
+>     library.=C2=A0=C2=A0 Ettus/NI/Emerson don't provide a lot of hand-h=
+olding
+>     =C2=A0 documentation in this regard.
+>
+> I tried to get a complete picture of the schematic from Ettus Research=20
+> ( https://files.ettus.com/schematics/usrp2/usrp2.pdf ) but it is not=20
+> giving complete information. Hene I am a bit not clear. For standard=20
+> FPGA data flow, I have experience to move on unlike this issue.
+Not sure why you'd be using the USRP2 schematic if you have an N210.=C2=A0=
+=20
+The N210 schematics are here:
+
+https://files.ettus.com/schematics/n200/
+
+The N210/N200 are basically the same device, with the N210 having a=20
+larger FPGA.
+
+Note that the USRP2 has been EOL for MANY years.=C2=A0 The N210 was=20
+originally released back in 2011, and has had no major hardware
+ =C2=A0 updates since then, and the FPGA image hasn't been updated a whol=
+e=20
+lot since then.
+
+
+>
+> Kind request to Ettus Research associates:-
+> Give me some pointers here.
+
+https://kb.ettus.com/Knowledge_Base
+
+That's a good "top level" starting point.
+
+>
+> Request to community people :-
+>
+>     If possible, kindly share Ettus Research fellow's email so that I
+>     can directly post my query to them. This request is to keep
+>     everyone's interest intact.
+>
+I *AM* (for purposes of this forum) an Ettus/NI/Emerson "fellow". But i=20
+work very part-time.
+
+I'm not sure what you're looking for apart from what you've already=20
+found, and I've already pointed you to.=C2=A0=C2=A0 The FPGA source-code
+ =C2=A0 is freely available.=C2=A0 There are documents that describe the =
+work-flow=20
+for making custom mods to the N2xx FPGA images.
+ =C2=A0 The FPGA "architecture" is common between (obsolete) USRP2 and N2=
+xx=20
+hardware.=C2=A0 The follow-on architecture is referred
+ =C2=A0 to in the FPGA codebase as "usrp3", but that's just the naming of=
+ the=20
+FPGA architecture.
+
+Like I have said previously, there is no "structured walk-through"=20
+document that describes, in a high-level way, the architecture
+ =C2=A0 of the FPGA codebase.=C2=A0 The codebase is the document.=C2=A0 T=
+he same is=20
+basically true for the host-side UHD library.=C2=A0 The architecture
+ =C2=A0 changes often-enough that by the time a "structured walk-through"=
+=20
+document could be considered "complete", the architecture
+ =C2=A0 underneath it, at least the details, would have changed.=C2=A0 Su=
+ch is the=20
+nature of an evolving code-base.
+
+Now, for the "usrp2" FPGA architecture, THAT codebase has been=20
+relatively static for many years.=C2=A0 But a goodly chunk of it
+ =C2=A0 was written by people who have long-since departed the company.=20
+Occasional maintenance is done on it, but for the
+ =C2=A0 most part, it has been the same for many years.=C2=A0 Again, thou=
+gh, the=20
+codebase IS the documentation.
+
+
+--------------tGYX0E3z0J9eQ0jFOTQ5H7qE
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 13/08/2024 15:16, Brajesh wrote:<br=
+>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAL4V06pXvgzSBXNieRr4N2XSVRa_0bdXJKNCG7aYCWbKQzf0dg@mail.gmai=
+l.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">
+        <div dir=3D"ltr"><br>
+        </div>
+        <br>
+        <div class=3D"gmail_quote">
+          <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 14, 2024 at
+            12:14=E2=80=AFAM Marcus D. Leech &lt;<a
+              href=3D"mailto:patchvonbraun@gmail.com"
+              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">pa=
+tchvonbraun@gmail.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class=3D"gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">
+            <div>
+              <div>On 13/08/2024 14:32, Brajesh wrote:<br>
+              </div>
+              <blockquote type=3D"cite">
+                <div dir=3D"ltr">
+                  <div>Thanks Marcus for response.=C2=A0<br>
+                  </div>
+                  <div>
+                    <div><br>
+                    </div>
+                    <div>Yes, you are correct that I am beginner=C2=A0to =
+UHD
+                      related issues. Maybe I should have pointed in my
+                      first posting. Sorry for that. But for design
+                      implementations on FPGA boards viz Basys 3 etc
+                      using AMD/Xilinx tools viz. ISE/Vivado/Vitis I am
+                      OK. A useful link ( <a
+href=3D"https://www.amd.com/content/dam/amd/en/documents/university/vivad=
+o-teaching/hdl-design/2015x/Verilog/docs-pdf/Vivado_tutorial.pdf"
+                        target=3D"_blank" moz-do-not-send=3D"true"
+                        class=3D"moz-txt-link-freetext">https://www.amd.c=
+om/content/dam/amd/en/documents/university/vivado-teaching/hdl-design/201=
+5x/Verilog/docs-pdf/Vivado_tutorial.pdf</a>
+                      ) is shared for confidence=C2=A0building.</div>
+                    <div><br>
+                    </div>
+                    <div>Further, I am not communication field expert
+                      either. I am building/brushing basics of
+                      communications fundamentals using GNU Radio. I
+                      have already gone though the link you shared
+                      before posting to forum. Now, I am inferring
+                      (confirming) that to modify N210 FPGA one need to
+                      follow the link you shared not standard AMD/Xilinx
+                      tool kit flow. Kindly note, due to my previous
+                      FPGA experience, I was trying to look for a way
+                      out to implement Ettus Research GitHub code using
+                      standalone process of AMD/Xilinx tool flow which
+                      was genesis of putting forward issue ( i ) in my
+                      previous thread. Not to mention I have no help, on
+                      the subject matter, around either. Now, I can
+                      ascertain that one need not to follow standalone
+                      flow of AMD/Xilinx tool kit for mentioned cause.
+                      This settles first issue.</div>
+                    <div><b><br>
+                      </b></div>
+                    <div><b>Summary:-</b></div>
+                  </div>
+                  <div>Modifying N210 FPGA is a two step process,</div>
+                  <blockquote
+style=3D"margin:0px 0px 0px 40px;border:none;padding:0px">
+                    <div>
+                      <div>i) Generate bit file ( <a
+href=3D"https://files.ettus.com/manual/md_usrp2_build_instructions.html"
+                          target=3D"_blank" moz-do-not-send=3D"true"
+                          class=3D"moz-txt-link-freetext">https://files.e=
+ttus.com/manual/md_usrp2_build_instructions.html</a>
+                        )=C2=A0</div>
+                    </div>
+                    <div>
+                      <div>ii) Use iMPACT tool to load firmware called
+                        "bit" file ( output of step (i)) on N210 FPGA
+                        using JTAG cable</div>
+                    </div>
+                  </blockquote>
+                  <div>
+                    <div><br>
+                    </div>
+                    <div>Experts confirmation is need of hour though.</di=
+v>
+                  </div>
+                </div>
+              </blockquote>
+              You CAN jtag images into the FPGA, but the usual route is
+              to use the uhd_image_loader tool to do this, from the
+              appropriate<br>
+              =C2=A0 generated artifacts.=C2=A0=C2=A0 Since new releases =
+of UHD often
+              include new FPGA code, "uhd_image_loader" allows end-users
+              to<br>
+              =C2=A0 load new "factory" images into their devices without
+              needing Xilinx tooling.<br>
+            </div>
+          </blockquote>
+          <div>=C2=A0</div>
+          <div>=C2=A0Thanks Marcus, for clarifying.</div>
+          <blockquote class=3D"gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div>
+                  <div><br>
+                  </div>
+                  <div>----------------------------------------------<br>
+                  </div>
+                  <div>
+                    <div><br>
+                      However, following doubt still remains,<br>
+                    </div>
+                    <div><br>
+                    </div>
+                    <div>
+                      <blockquote
+style=3D"margin:0px 0px 0px 40px;border:none;padding:0px">
+                        <div>i. How to customise the data rate of N210,
+                          if possible, of design available at the GitHub
+                          link ( <a
+href=3D"https://github.com/EttusResearch/uhd/tree/master/fpga/usrp2/top"
+                            target=3D"_blank" moz-do-not-send=3D"true"
+                            class=3D"moz-txt-link-freetext">https://githu=
+b.com/EttusResearch/uhd/tree/master/fpga/usrp2/top</a>
+                          ). I wish, if possible, to make the data rate
+                          as 1-bit, 2-bit, 4- bit, 8-bit, 16-bit, 32-bit
+                          and 64-bit. For N210's FPGA specifications, I
+                          referred section "comparative feature list"
+                          available at following link,</div>
+                      </blockquote>
+                    </div>
+                  </div>
+                  <blockquote
+style=3D"margin:0px 0px 0px 40px;border:none;padding:0px">
+                    <div>
+                      <div>
+                        <blockquote
+style=3D"margin:0px 0px 0px 40px;border:none;padding:0px">
+                          <div><a
+href=3D"https://files.ettus.com/manual/page_usrp2.html" target=3D"_blank"
+                              moz-do-not-send=3D"true"
+                              class=3D"moz-txt-link-freetext">https://fil=
+es.ettus.com/manual/page_usrp2.html</a></div>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </blockquote>
+                </div>
+              </div>
+            </blockquote>
+            There is no "structured walk-through" of the FPGA code
+            avalable.=C2=A0 The existing code for the N210 family USRPs
+            includes support<br>
+            =C2=A0 for 16-bit and 8-bit samples "on the wire".=C2=A0=C2=A0=
+ If it were
+            my problem, that's where I'd start.=C2=A0 When you say "data
+            rate", I assume<br>
+            =C2=A0 that you mean "data format on the wire".=C2=A0 I'm gue=
+ssing
+            that you want to move samples at a higher rate "over the
+            wire"<br>
+            =C2=A0 than the 16 and 8 bit formats support.=C2=A0 Since the=
+ ADCs are
+            only 14-bit on the N210, there's little point in carrying
+            samples<br>
+            =C2=A0 wider than that over the wire.<br>
+            <br>
+            I would *not* go down that road without having a very
+            thorough knowledge of how the standard FPGA data-flow
+            works.=C2=A0 As I said<br>
+            =C2=A0 there is no "tell me how all this works" document, oth=
+er
+            than the Verilog source code.=C2=A0 The way that *most* users=
+ use
+            these<br>
+            =C2=A0 devices is with the standard FPGA images, and the
+            host-side UHD library.=C2=A0=C2=A0 Ettus/NI/Emerson don't pro=
+vide a
+            lot of hand-holding<br>
+            =C2=A0 documentation in this regard.<br>
+          </blockquote>
+          <div>=C2=A0</div>
+          <div>I tried to get a complete picture of the schematic from
+            Ettus Research ( <a
+              href=3D"https://files.ettus.com/schematics/usrp2/usrp2.pdf"
+              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
+tps://files.ettus.com/schematics/usrp2/usrp2.pdf</a>
+            ) but it is not giving complete information. Hene I am a bit
+            not clear. For standard FPGA data flow, I have experience to
+            move on unlike this issue. <br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    Not sure why you'd be using the USRP2 schematic if you have an
+    N210.=C2=A0 The N210 schematics are here:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://files.ettus.com/sc=
+hematics/n200/">https://files.ettus.com/schematics/n200/</a><br>
+    <br>
+    The N210/N200 are basically the same device, with the N210 having a
+    larger FPGA.<br>
+    <br>
+    Note that the USRP2 has been EOL for MANY years.=C2=A0 The N210 was
+    originally released back in 2011, and has had no major hardware<br>
+    =C2=A0 updates since then, and the FPGA image hasn't been updated a w=
+hole
+    lot since then.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAL4V06pXvgzSBXNieRr4N2XSVRa_0bdXJKNCG7aYCWbKQzf0dg@mail.gmai=
+l.com">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div><br>
+          </div>
+          <div>Kind request to Ettus Research associates:-</div>
+          <div>Give me some pointers here.</div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/Knowl=
+edge_Base">https://kb.ettus.com/Knowledge_Base</a><br>
+    <br>
+    That's a good "top level" starting point.<br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAL4V06pXvgzSBXNieRr4N2XSVRa_0bdXJKNCG7aYCWbKQzf0dg@mail.gmai=
+l.com">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div><br>
+          </div>
+          <div>Request to community people :-</div>
+        </div>
+        <blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px">
+          <div class=3D"gmail_quote">
+            <div>If possible, kindly share Ettus Research fellow's email
+              so that I can directly post my query to them. This request
+              is to keep everyone's interest intact.</div>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    I *AM* (for purposes of this forum) an Ettus/NI/Emerson "fellow".=C2=A0=
+=C2=A0
+    But i work very part-time.<br>
+    <br>
+    I'm not sure what you're looking for apart from what you've already
+    found, and I've already pointed you to.=C2=A0=C2=A0 The FPGA source-c=
+ode<br>
+    =C2=A0 is freely available.=C2=A0 There are documents that describe t=
+he
+    work-flow for making custom mods to the N2xx FPGA images.<br>
+    =C2=A0 The FPGA "architecture" is common between (obsolete) USRP2 and
+    N2xx hardware.=C2=A0 The follow-on architecture is referred<br>
+    =C2=A0 to in the FPGA codebase as "usrp3", but that's just the naming=
+ of
+    the FPGA architecture.<br>
+    <br>
+    Like I have said previously, there is no "structured walk-through"
+    document that describes, in a high-level way, the architecture<br>
+    =C2=A0 of the FPGA codebase.=C2=A0 The codebase is the document.=C2=A0=
+ The same is
+    basically true for the host-side UHD library.=C2=A0 The architecture<=
+br>
+    =C2=A0 changes often-enough that by the time a "structured walk-throu=
+gh"
+    document could be considered "complete", the architecture<br>
+    =C2=A0 underneath it, at least the details, would have changed.=C2=A0=
+ Such is
+    the nature of an evolving code-base.<br>
+    <br>
+    Now, for the "usrp2" FPGA architecture, THAT codebase has been
+    relatively static for many years.=C2=A0 But a goodly chunk of it<br>
+    =C2=A0 was written by people who have long-since departed the company=
+.=C2=A0
+    Occasional maintenance is done on it, but for the<br>
+    =C2=A0 most part, it has been the same for many years.=C2=A0 Again, t=
+hough,
+    the codebase IS the documentation.<br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_PH0PR05MB7768BDFDB65F74626766C36CD1872PH0PR05MB7768namp_--
+--------------tGYX0E3z0J9eQ0jFOTQ5H7qE--
 
---===============7943465144758638906==
+--===============2130627090647747260==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -240,4 +591,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7943465144758638906==--
+--===============2130627090647747260==--
