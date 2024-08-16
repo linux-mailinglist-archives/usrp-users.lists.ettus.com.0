@@ -2,196 +2,162 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 972B1953E74
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Aug 2024 02:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4648953FD1
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Aug 2024 04:46:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 94E9A384DE9
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Aug 2024 20:54:23 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A3A60385067
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Aug 2024 22:46:43 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1723769663; bh=Z0XUyV2uG6ZmHBZjRaBHFFZRueTv8YmogclEgQId+O0=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=eqjnsqVnt808nYCl1TmXjwQ0eWZJcZvuSVsoFMDsK54HIo4vEPN+NFCPP+UpKklHY
-	 vQtmZtgP+Y1HSdKGHRFbPnXo3POaeJrsjnXsavysOC9q+U4OKKT+GeEhbnRuq1c7tU
-	 27ANm9xL/GSrMtY/nIC/zjhtJYLYlcV0HFfxaXGx+ZdI+JQUBmIsuzNW0zoPeAYaro
-	 fbxCnmDWNhFLkW2LCNQyJxgotC8GaKdtHadBThG+s4P+zKDBJAm21G3wRxhQU57hU/
-	 y5pM9W41FGxhyEjBRSFR47ZnkERgS2EKd657A/4eViwNxaaxw42WhWUPicohh5ZwUH
-	 d7RLqrtLSsohA==
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3D3DC381180
-	for <usrp-users@lists.ettus.com>; Thu, 15 Aug 2024 20:54:10 -0400 (EDT)
+	t=1723776403; bh=EY5QveT83VKRgY+AEKNxbt5Q/+kDQG1z/P0DakWyiqY=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=IiMP+9mDSg9Uo6YpRgD//NswnvpPVnIDBxm/r1YToBXTbFtvXLcrXpjdmSzEKzXRE
+	 7N+vxt1lDscT+oHvlF80vtbvokiXTLSD7VVuzrqUqhljGbVaTIZlEIXrBYTySxj8Ol
+	 t2jQPetqlGvEw2ikkm/Zh3wtfOBcWxjEnKkmB8MnsatktRz5EgIuDw+cMHw1OgLsgY
+	 dR7lbSJERh7QQg61HHySx2zOx5O3E7GAnCGadQ3zRFgGzPj0QeQ8i20qNQGQLUsPWF
+	 Fu0kwWC+/Sv6s9NYCMjqaGaOOtPFfueoMNcAeqRivKTpLU5d302CsF13+QTl/Md0kL
+	 +wZRIPx8xlZmw==
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id B3F0D383B31
+	for <usrp-users@lists.ettus.com>; Thu, 15 Aug 2024 22:46:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b2I0tCEl";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="2RD41QPY";
 	dkim-atps=neutral
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5d5af743b8fso838574eaf.3
-        for <usrp-users@lists.ettus.com>; Thu, 15 Aug 2024 17:54:10 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a7a9cf7d3f3so202030566b.1
+        for <usrp-users@lists.ettus.com>; Thu, 15 Aug 2024 19:46:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723769649; x=1724374449; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X3LR4VZEbRLy5tQgpe27RrOrhcyRz+YzPQx2hwf0pck=;
-        b=b2I0tCElHYcHL3Q6BrRVv1Sh/gGuk1zLaw3VbpbuKRSIhhpoqWlO/oOtGKM4ekobGA
-         I8shHdeXdL0iCxElnyiS+j2g2yCSu0Ig/O0Ga5Z9Mhr/E3dc/b+NQzvpDUWnb6s9QTob
-         Hb/c70zHu8H/QPnsxYNvlDhLrfLVq3SInksNuARsuq9sdCFInxGyKBhvFi5rD/gRbOgu
-         cXi8/tsu3fuI4USJCV9/ygPfpv2iJrzVWfqzUQvBl1Olrnx+5eIwVSfXcbzvPEJK95w5
-         wZQNM8qJ5bpTejX+wxbGcUfF5F34xsyTj3ZxCssGDZHcwl5FwquuAcjIb9A+mxHBaUSx
-         V5gA==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1723776361; x=1724381161; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=SLZ7i3G1WjLYBW/4SQRyqI7//IjSRFSkkfUkGFBvHbo=;
+        b=2RD41QPYtEZY2m4TS+YUsgu8q2jWKOj5grTVG4u3slaDOV2efvyBZ12C4BShS8E5iW
+         0n3ShbHtMhGWcpavPpcyhhg5/NTpaHO5Rfuwp2Hp+H1VxK6fz9Xy3kB/mCzAIR1RfYDO
+         FdWVHI8vTCVvJYf1cR1qR6yU7iFOS6cY6qmgiQ+tXb1stQIvSIKmWzl6LptQxCHDrbNE
+         9o8yRB+8xuvPVAeAOcBWEJkv1Jn2LPklnbIo/yZBOjSA2X165zoH95c1Xiy9exxbVBCZ
+         Svf+pJ1quQy9HRggk4lTXDFJQiKxfRY1fYpFvUSSjrzSVzEt9zwV8hmDCP4lypISVRgy
+         Whkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723769649; x=1724374449;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=X3LR4VZEbRLy5tQgpe27RrOrhcyRz+YzPQx2hwf0pck=;
-        b=X7MsKreWk0ZlAJpkwUtnjKRJBCOyNvl0qfJq6So6CRQ5YIn2IR5TWZDTXy1Lzj4pji
-         axipwDjSxRlGgSUZAqoNhth1Vr1v4/ZUnIo+BL0NiRQT3OCfb+A1FrRbNO4yXlch8svj
-         7qTDYy9b78uZY+123wEGRcGnxvpQPLhy8aQOQipYOUkf9mmDHK0JQS3oOlTC7R9IGA0c
-         NSqV5Fd7+sGTQsN+BKWpppNabSNkKyin6bpWH2/BwKJYlaZcW7PM3xHJuIlJRipevzKX
-         HulMaFWh2mdHCvP4NEis155c5+DX1FziiV8A6A/JPkcwuk/kX5I5t+jfFcpatVeZsivl
-         FO8Q==
-X-Gm-Message-State: AOJu0Yx0DJYMXIIDUVTofyjZoQKVhYZhO/uPRAUeBwkx2wNs/DqTfuiz
-	T4Jom4mDwDbm10CDZ9K0gW3U9fo7Gv6oijoQCHKcRZxyN2B6CrBvzYZc/A==
-X-Google-Smtp-Source: AGHT+IGiMXutu8mNSR4PdhuHCK7zbK4wMLLuhjUuT4pzptw+rGRKaqROJR8C71HDysnSFpEpsAdvcg==
-X-Received: by 2002:a05:6359:4c9c:b0:1aa:bc07:a3e6 with SMTP id e5c5f4694b2df-1b3931b420fmr163358655d.13.1723769648854;
-        Thu, 15 Aug 2024 17:54:08 -0700 (PDT)
-Received: from [192.168.2.170] ([64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4536a04e6a6sm11141801cf.59.2024.08.15.17.54.08
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Aug 2024 17:54:08 -0700 (PDT)
-Message-ID: <c328ed8a-d740-4b18-82d7-ef8044d7a1b6@gmail.com>
-Date: Thu, 15 Aug 2024 20:53:58 -0400
+        d=1e100.net; s=20230601; t=1723776361; x=1724381161;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SLZ7i3G1WjLYBW/4SQRyqI7//IjSRFSkkfUkGFBvHbo=;
+        b=fQ7ax8z45a0HIxuOAVYc0WhBSlIYwbI43DuTfud7Zwu3O1spUhz1acaehtb7m6ePW5
+         jfRhQVOlWdC1tN/z7omG1w618o/ZZPRLQ4VxZi4EHQq7RVdg/2NSyvnKTmIQDscks82+
+         CnCQqmMdCEMbEYVU564sN88RHV8PAKhC+CP08qfKC18fcU6MENik5GSzBMT6LUqem8aq
+         nmozxghA3dh0INxLNBZHFamAgmvF950Po9TvRom8ZeJwZhLztWa9lCN4dJVzvc4lwMxX
+         8WzVOSgLk/3I7lqhQl4LvBBPWR50kwO9SKi0KFSUZ7NLkNsCUq1wqye2o2wpBvcHPaCP
+         DJMQ==
+X-Gm-Message-State: AOJu0Yw1bjrOzlO3ILM2XdOdD6p3wh2Vr2CyMtbF/9m9NJFvMMtU/PPo
+	U4ex+6omnFId+o9BPeLm5ibtagtYPhAN8LWE+u3C0tLusu4JwyCY7egyYukoeZQybMo6iuSuKF/
+	QRI6FksQDUEsn1x9FWKoIdXfoplAtxhG3lst1CBKY
+X-Google-Smtp-Source: AGHT+IGcSMUQAHwJ4CZaP70ygJuAxErVI0GU66Y65R00TZJP1HKwCN6VM6pnrWeVnKCpTchQaRBE4u929jUDZc9MdrQ=
+X-Received: by 2002:a17:907:9726:b0:a7a:9d1e:3b25 with SMTP id
+ a640c23a62f3a-a8392953c48mr92090666b.30.1723776361126; Thu, 15 Aug 2024
+ 19:46:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <1465511867.4443721.1723769551961.ref@mail.yahoo.com>
- <1465511867.4443721.1723769551961@mail.yahoo.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <1465511867.4443721.1723769551961@mail.yahoo.com>
-Message-ID-Hash: ZKOGXYDN7M6D63UP6YI5EPUXSB6OGTJ4
-X-Message-ID-Hash: ZKOGXYDN7M6D63UP6YI5EPUXSB6OGTJ4
-X-MailFrom: patchvonbraun@gmail.com
+References: <PH0PR05MB7768BDFDB65F74626766C36CD1872@PH0PR05MB7768.namprd05.prod.outlook.com>
+In-Reply-To: <PH0PR05MB7768BDFDB65F74626766C36CD1872@PH0PR05MB7768.namprd05.prod.outlook.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Thu, 15 Aug 2024 21:45:45 -0500
+Message-ID: <CAFche=heZcLrygtvYLEBfYbJtQbUiYrgSWu_6yMBU9K=_9j+CQ@mail.gmail.com>
+To: "Sathish, Aditya" <saditya@vt.edu>
+Message-ID-Hash: 4TG6MIOMPMUC5WSNBWLAUBXJWT4JND7U
+X-Message-ID-Hash: 4TG6MIOMPMUC5WSNBWLAUBXJWT4JND7U
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Install Daughterboards on N210/N200
+Subject: [USRP-users] Re: SPP, Burst Transmission and RFNoC AXI Data Signals
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZKOGXYDN7M6D63UP6YI5EPUXSB6OGTJ4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4TG6MIOMPMUC5WSNBWLAUBXJWT4JND7U/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5649279721096801247=="
+Content-Type: multipart/mixed; boundary="===============4614326720297436797=="
 
-This is a multi-part message in MIME format.
---===============5649279721096801247==
-Content-Type: multipart/alternative;
- boundary="------------NDxHS0kvxSPM0NA7QncH3Vra"
-Content-Language: en-US
+--===============4614326720297436797==
+Content-Type: multipart/alternative; boundary="000000000000ad70bc061fc3f56c"
 
-This is a multi-part message in MIME format.
---------------NDxHS0kvxSPM0NA7QncH3Vra
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 15/08/2024 20:52, Q W via USRP-users wrote:
-> Hi there,
->
-> I am wondering if I can install a LFTX Daughterboard 0-30 MHz and a 
-> LFRX Daughterboard 0-30 MHz at the same time on a N200/N210?
-Yes, that's perfectly reasonable.
-
->
-> I don't have a usrp yet, but want to figure this out before placing an 
-> order.
->
-> Kind regards,
-> Tom
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-
---------------NDxHS0kvxSPM0NA7QncH3Vra
-Content-Type: text/html; charset=UTF-8
+--000000000000ad70bc061fc3f56c
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 15/08/2024 20:52, Q W via USRP-user=
-s
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1465511867.4443721.1723769551961@mail.yahoo.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div class=3D"ydp49d0d179yahoo-style-wrap"
-style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-si=
-ze:13px;">
-        <div dir=3D"ltr" data-setdir=3D"false">Hi there,</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-      </div>
-    </blockquote>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1465511867.4443721.1723769551961@mail.yahoo.com">
-      <div class=3D"ydp49d0d179yahoo-style-wrap"
-style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-si=
-ze:13px;">
-        <div dir=3D"ltr" data-setdir=3D"false">I am wondering if I can
-          install a=C2=A0<span>LFTX Daughterboard 0-30 MHz and a=C2=A0<sp=
-an>LFRX
-              Daughterboard 0-30 MHz at the same time on a N200/N210?</sp=
-an></span></div>
-      </div>
-    </blockquote>
-    Yes, that's perfectly reasonable.<br>
-    <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1465511867.4443721.1723769551961@mail.yahoo.com">
-      <div class=3D"ydp49d0d179yahoo-style-wrap"
-style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-si=
-ze:13px;">
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span><br>
-            </span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span>I don't have a
-              usrp yet, but want to figure this out before placing an
-              order.</span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span><br>
-            </span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span>Kind regards,<=
-/span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span>Tom</span></sp=
-an></div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
+Hi Aditya,
 
---------------NDxHS0kvxSPM0NA7QncH3Vra--
+Each CHDR packet will be given to the block as an AXI packet, so TLAST
+asserts every S samples. At the end of a burst, the EOB flag in the header
+of the CHDR packet is asserted to indicate it's the last packet of the
+burst.
 
---===============5649279721096801247==
+Wade
+
+On Tue, Aug 13, 2024 at 8:08=E2=80=AFPM Sathish, Aditya <saditya@vt.edu> wr=
+ote:
+
+> Hi,
+>
+>
+>
+> I have setup an application that is constantly reading a Tx FIFO and
+> sending burst transmissions with a SPP of *S* samples per packet. I want
+> to modify my incoming signals in my RFNoC block, but I am having a hard
+> time understanding how the samples will enter my RFNoC block through the
+> AXI data wires. Will the tlast be asserted after S samples or will it be
+> asserted after the entire burst is completed?
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000ad70bc061fc3f56c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Aditya,</div><div><br></div><div>Each CHDR packet =
+will be given to the block as an AXI packet, so TLAST asserts every S sampl=
+es. At the end of a burst, the EOB flag in the header of the CHDR packet is=
+ asserted to indicate it&#39;s the last packet of the burst.<br></div><div>=
+<br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Tue, Aug 13, 2024 at 8:08=E2=80=AFPM Sathi=
+sh, Aditya &lt;<a href=3D"mailto:saditya@vt.edu">saditya@vt.edu</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=
+=3D"msg4896720789913014103">
+
+
+
+
+
+<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_4896720789913014103WordSection1">
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I have setup an application that is constantly readi=
+ng a Tx FIFO and sending burst transmissions with a SPP of
+<i>S</i> samples per packet. I want to modify my incoming signals in my RFN=
+oC block, but I am having a hard time understanding how the samples will en=
+ter my RFNoC block through the AXI data wires. Will the tlast be asserted a=
+fter S samples or will it be asserted
+ after the entire burst is completed?<u></u><u></u></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--000000000000ad70bc061fc3f56c--
+
+--===============4614326720297436797==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -201,4 +167,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5649279721096801247==--
+--===============4614326720297436797==--
