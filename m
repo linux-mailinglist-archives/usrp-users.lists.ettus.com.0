@@ -2,296 +2,425 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D46F795EFFE
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Aug 2024 13:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AD3995F187
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Aug 2024 14:40:26 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A04743854D5
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Aug 2024 07:41:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7109B385510
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Aug 2024 08:40:25 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724672500; bh=x6taGG5tI/ClLuqIqq5pgZH50f5Ykj93PTFjLHvA51U=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=0sp4cz5wYFzcceph3vID03J/8SNbkDrrsKLdRUJrBqJJyhS43AixFVxK1fuLpcHGb
-	 gLvfYvDdJBcScsI1+LONOs2EaLFQgvrRrrlcAyJHqG4vCtbrDukjMftcf0sQmLIsVy
-	 w9GccXpoyk33iWIaN9bGMHNmQMuOD0TCjEdW7NHLzorwFshWiHDTa3dJXyh3tJyAwp
-	 LG5CDx+VxTlfthzflhGfbqqwNRRQz9RswwNA6zp5J+h2FV5ACnQp+xfMsv9+/38/AB
-	 TtoTvKlJm57NytmhPhPGux5P5eguWBvVbX0X69oPKFSfEDNBGHqBMbZWTTzVOtY0EN
-	 BEpf3pRWNMW3Q==
-Received: from mail-4027.protonmail.ch (mail-4027.protonmail.ch [185.70.40.27])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7C387385438
-	for <usrp-users@lists.ettus.com>; Mon, 26 Aug 2024 07:40:56 -0400 (EDT)
+	t=1724676025; bh=hUFdsGa7xFcwgkvO5NSpaqXM89OLUIrGSKLUOK07pNE=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=aAdCB5IVakZS7Ug7xZGoR2ZNQwcA0xNwL/CF1iodf/p1Hc+tU7GWmk5JgDMfuOi9W
+	 +/Ywd5bUUKjq2EHUvNdTWvDQyPmqNRQoWnVlb2YAjoy0tax2dIdAeUTOZOELJWgfxp
+	 Jyl/psz0gYUZYC4xKkZCi/uW/s0A3iyH47Dqmv5Hx9ESo+aWUM9Gn7pthNhKRQSgmn
+	 XltscQSnPieW9ZqtZWiqhqXh1beLbwa/y/9l9uIuiFjRhjxqjcEurWEA2YBMiRJh5E
+	 8z+KV6NPgjvZVdaFJwWk9VcFBJnKXsUTl2zHyuQO2ds5sZ7ve26YkX8rRagJMb1dHj
+	 9WK3GEOuzh4uA==
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8FF463842C2
+	for <usrp-users@lists.ettus.com>; Mon, 26 Aug 2024 08:39:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="orHHeaaY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dI/bcDlR";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1724672455; x=1724931655;
-	bh=kQ+75O6lDVlWiibcKmSotPQvdGn3Gm398Mp0RfOtzfE=;
-	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=orHHeaaYsdgyBtojNg+S3eQa6FFx6AQWVgHkCrUF5O49FcsJys+QVxab+LKbgJ11c
-	 WHG+7ZFzh7yxH8JBONpsgOy1J+e1G6eKfwUswCiOErdLamMxoWd9IygEW5hzY07vxP
-	 oZ4osxB8KTCmO8V93XupvriZ3ti454izQAUwS+74m3cY91LzVsCcCbuQVTY8ISqgzs
-	 cRAF3AdirsE/FmbXzJApwC4od2m6u24GE5aMuwP0y9GIvlgK/0Sn7tSVm8MiCE+OZG
-	 psYuyPLhU0XlhoiCxPCpLbOKNN4Ueuhf7Vu/mcZJYM0Ne43bT7xT6If8OWjVO1TLRE
-	 mBbRqshWnZG4g==
-Date: Mon, 26 Aug 2024 11:40:50 +0000
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <b7EDp_Z-OGLk51ibwQutMTVO7aVrweoUubIOqX594P7xDHOpwd6I31RtEuiCTB3DMjFLfdkKR0dLqBIS1UGsN8df_iSefI5zIAhjCxTWVUY=@protonmail.com>
-Feedback-ID: 47010692:user:proton
-X-Pm-Message-ID: d1f33d2fcd9fb9c4804074546dd8274ead320a96
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-70b3b62025dso3734791a34.0
+        for <usrp-users@lists.ettus.com>; Mon, 26 Aug 2024 05:39:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724675981; x=1725280781; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=LeqnHGPDI8PL3aaqbMEOD8+LTjqMnWlW9iPVUx7CO4o=;
+        b=dI/bcDlR13vMac0/vWLRitkQzL0Ju43Ymmr716A2s4aEAQ8YkcOUjxvzHp4/dehzQc
+         AdlEsPfi9WkFEXzRVa2DK+IaMouHLnAVhnzvAU8d7isYnvSkmDE+5JMSUPtA5Z552Iqe
+         /HY2scgdTOlXizxFprfuGYAApYeB+f7byKRG4e1nt7ijNgeP1btJb+PQGz4q93KXsjQp
+         A82TDD3CIIloo1vOTjDRz/oECRG9B1xxsmUV/7BjhK7I/TKRvjD9F8S0RuDndq0Bjr2r
+         ttekkxo95+DTTnW09PpYksLvOn18xhVkfiTQRZ8dZBcKC36jXNtlmm+Fg6/lppyWrxHn
+         OObg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724675981; x=1725280781;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LeqnHGPDI8PL3aaqbMEOD8+LTjqMnWlW9iPVUx7CO4o=;
+        b=j1bjJrRvMLx4RfP+HFnG+Yn1reATxICldQ5InQzq4B4iHpul6zGhx5qqzm5x+DcwAH
+         Iy7pkgB3aS0jQFadhGfpeUC3mlpRmBQyZrMu6cDs6Jpmhscb7ZjBYqNwBcKhS96F3Cg+
+         33jfWabEX4IkmGqdVFuG6GLNCRBkiaeSXflyKnE1oqPG+mMyIyOyM31RR0B/FU8gIhlA
+         aRNnhqVhpFtyckQwoTUfLrStxazB/gXucIlki+J8yT2CbUAzsCgC+eLjVPNbI+6pGhSV
+         izUE8+aYUY/qscUgQrTj+z4i5xKMoERW8KxYn8ckEySW++iZdx9xBKvs+2AKKBonXGfl
+         lUxg==
+X-Gm-Message-State: AOJu0YycOaVv6VS/hpBLVMnJqu14e9XKJ+UAtzanL3pmB+ci+ldq13RS
+	T9gOW9Nqg5NeLluJeR0j8MQHP1ihhJveft3ZVz19hpPRWz4e1M3ykUuAu4h8xJNvKTwnjbqdsHe
+	C9sfmRccrA9ftZDrfdICf8C3u2I8=
+X-Google-Smtp-Source: AGHT+IHvhqqIL9eJaP3nHFmi/6v+J7JwlZueMHMbSAxfERWnUQRo1cSgvh4JxG8RPZt/51U3mvG6D6Xi98Mw8rmT9mI=
+X-Received: by 2002:a05:6870:970b:b0:270:10df:3b63 with SMTP id
+ 586e51a60fabf-273e6476815mr11922994fac.13.1724675981400; Mon, 26 Aug 2024
+ 05:39:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY"
-Message-ID-Hash: BAFO4D7KCONHVOVPF2YZUTBK4CNKQQNN
-X-Message-ID-Hash: BAFO4D7KCONHVOVPF2YZUTBK4CNKQQNN
-X-MailFrom: olo1618@protonmail.com
+References: <CABeHafiQq2DoHjTK6nHD9SUgLoWd3BLpLhERGssgwxy_kRv7pA@mail.gmail.com>
+ <CAFOi1A7SxYPDEBmHmnU5_3d-MrYYApqqKZHgCkvZks8UGoOyQw@mail.gmail.com>
+In-Reply-To: <CAFOi1A7SxYPDEBmHmnU5_3d-MrYYApqqKZHgCkvZks8UGoOyQw@mail.gmail.com>
+From: Saulo Queiroz <ssaulojorge@gmail.com>
+Date: Mon, 26 Aug 2024 13:39:31 +0100
+Message-ID: <CABeHafg-HPbTnhs18T=1GAxb4g91OkOb+dKD_=Bq9tZa+O13ew@mail.gmail.com>
+To: Martin Braun <martin.braun@ettus.com>
+Message-ID-Hash: 7EKJ25DV64UVVSVRIT6N6UQMJAFYGSSL
+X-Message-ID-Hash: 7EKJ25DV64UVVSVRIT6N6UQMJAFYGSSL
+X-MailFrom: ssaulojorge@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Assistance with RFNoC and TwinRX Configuration in Custom FPGA Image
+Subject: [USRP-users] Re: Patch ?? for RFNoC OFDM Receiver
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BAFO4D7KCONHVOVPF2YZUTBK4CNKQQNN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7EKJ25DV64UVVSVRIT6N6UQMJAFYGSSL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Olo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olo <olo1618@protonmail.com>
+Content-Type: multipart/mixed; boundary="===============2603337036396345898=="
 
-This is a multi-part message in MIME format.
+--===============2603337036396345898==
+Content-Type: multipart/alternative; boundary="0000000000003964220620956b84"
 
---b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
-Content-Type: multipart/alternative;
- boundary="b2_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY"
+--0000000000003964220620956b84
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---b2_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+Thank you,
 
-SGVsbG8sCgpJIGFtIGN1cnJlbnRseSB3b3JraW5nIG9uIGEgY3VzdG9tIEZQR0EgaW1hZ2UgdGhh
-dCB1dGlsaXplcyBSRk5vQyBibG9ja3MgcHJvdmlkZWQgYnkgRXR0dXMgdGhyb3VnaCB0aGUgVUhE
-IHJlcG9zaXRvcnkuIFNwZWNpZmljYWxseSwgSSBhbSB1c2luZyBibG9ja3Mgc3VjaCBhcyBzcGxp
-dCwgd2luZG93LCBmZnQsIGFuZCBsb2dwd3IgaW4gbXkgZGVzaWduLgoKTXkgZ29hbCBpcyB0byBh
-Y2hpZXZlIHRoZSBmb2xsb3dpbmc6CgotIEZpcnN0IFR3aW5SWCAocmFkaW8wKTogVXNlIG9uZSBj
-aGFubmVsIHRvIGRpc3BsYXkgZXZlcnkgbi10aCBQU0QsIHdoaWxlIHNpbXVsdGFuZW91c2x5IHJl
-Y29yZGluZyBhIG5hcnJvd2JhbmQgY2hhbm5lbCB3aXRoaW4gdGhlIGRpc3BsYXllZCBzcGVjdHJ1
-bSAodXNpbmcgc3BsaXQgYW5kIGRkYykuCi0gU2Vjb25kIFR3aW5SWCAocmFkaW8xKTogUmFwaWRs
-eSBzd2VlcCBhIGxhcmdlIGJhbmR3aWR0aCBhbmQgZGlzcGxheSB0aGUgUFNELCBhbHNvIHV0aWxp
-emluZyB0aGUgd2luZG93LCBmZnQsIGFuZCBsb2dwd3IgYmxvY2tzLgoKSSB3b3VsZCBncmVhdGx5
-IGFwcHJlY2lhdGUgeW91ciBmZWVkYmFjayBvbiB0aGUgZm9sbG93aW5nIHBvaW50czoKCi0gVmFs
-aWRhdGlvbiBvZiBJbml0aWFsIERlc2lnbjogSSBoYXZlIGF0dGFjaGVkIG15IGluaXRpYWwgYXR0
-ZW1wdCBhdCBjcmVhdGluZyB0aGlzIEZQR0EgaW1hZ2UuIENvdWxkIHlvdSBwbGVhc2UgcmV2aWV3
-IGl0IGFuZCBsZXQgbWUga25vdyBpZiB0aGlzIGFwcHJvYWNoIGlzIGNvcnJlY3Q/Ci0gQWNoaWV2
-aW5nIFNwZWNpZmljIFBTRCBTaXplOiBJcyBpdCBwb3NzaWJsZSB0byBhY2hpZXZlIGEgUFNEIHNp
-emUgb2YsIGZvciBleGFtcGxlLCA4MTkyIHVzaW5nIHRoZSB3aW5kb3csIGZmdCwgYW5kIGxvZ3B3
-ciBibG9ja3M/IElmIHNvLCBjb3VsZCB5b3UgYWR2aXNlIG9uIHRoZSBuZWNlc3Nhcnkgc3RlcHMg
-dG8gYWNjb21wbGlzaCB0aGlzPwotIFR3aW5SWCBDaGFubmVsIENvbmZpZ3VyYXRpb246IElzIGl0
-IGZlYXNpYmxlIHRvIHVzZSB0aGUgc2Vjb25kIGNoYW5uZWwgb24gdGhlIHNlY29uZCBUd2luUlgg
-dG8gcmVjZWl2ZSBvbiBhIHN0YXRpYyBmcmVxdWVuY3kgd2hpbGUgdGhlIGZpcnN0IGNoYW5uZWwg
-c3dlZXBzLCBhbmQgdmljZSB2ZXJzYSwgY2FuIHRoZSBzZWNvbmQgY2hhbm5lbCBvbiB0aGUgZmly
-c3QgVHdpblJYIHN3ZWVwIGEgcG9ydGlvbiBvZiB0aGUgc3BlY3RydW0gd2hpbGUgdGhlIGZpcnN0
-IGNoYW5uZWwgcmVtYWlucyBvbiBhIHN0YXRpYyBmcmVxdWVuY3k/CgpZb3VyIGd1aWRhbmNlIG9u
-IHRoZXNlIHF1ZXN0aW9ucyB3b3VsZCBiZSBleHRyZW1lbHkgdmFsdWFibGUsIGFzIGl0IGlzIGNy
-aXRpY2FsIHRvIHRoZSBzdWNjZXNzIG9mIG15IHByb2plY3QuCgpUaGFuayB5b3UgaW4gYWR2YW5j
-ZSBmb3IgeW91ciBzdXBwb3J0LiBJIGxvb2sgZm9yd2FyZCB0byB5b3VyIHJlc3BvbnNlLgoKQmVz
-dCByZWdhcmRzLApPbG8u
+Actually, I'd like to perform a 'quite' simple experiment consisting in
+assessing the runtime of a basic OFDM receiver running on FPGA (i.e. RFNoC)
+when processing an OFDM symbol (sent through a loopback cable). Searching
+the web, we got the impression that there is a version of RFNoC containing
+all blocks we need for that experiment (our team acquired X310 recently)
+[1]. In summary, is there any git TAG/version of the uhd/RFNoC repo that I
+can fetch to get the RFNoC OFDM Receiver blocks demonstrated in [1]?
+Thank you in advance,
 
---b2_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+best regards
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
-cHg7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwg
-MjU1KTsiPkhlbGxvLDxicj48cD5JIGFtIGN1cnJlbnRseSB3b3JraW5nIG9uIGEgY3VzdG9tIEZQ
-R0EgaW1hZ2UgdGhhdCB1dGlsaXplcyBSRk5vQyBibG9ja3MgcHJvdmlkZWQgYnkgRXR0dXMgdGhy
-b3VnaCB0aGUgVUhEIHJlcG9zaXRvcnkuIFNwZWNpZmljYWxseSwgSSBhbSB1c2luZyBibG9ja3Mg
-c3VjaCBhcyA8Y29kZT5zcGxpdDwvY29kZT4sIDxjb2RlPndpbmRvdzwvY29kZT4sIDxjb2RlPmZm
-dDwvY29kZT4sIGFuZCA8Y29kZT5sb2dwd3I8L2NvZGU+IGluIG15IGRlc2lnbi48L3A+PHA+TXkg
-Z29hbCBpcyB0byBhY2hpZXZlIHRoZSBmb2xsb3dpbmc6PC9wPjxvbD48bGk+PHN0cm9uZz5GaXJz
-dCBUd2luUlggKHJhZGlvMCk6PC9zdHJvbmc+IFVzZSBvbmUgY2hhbm5lbCB0byBkaXNwbGF5IGV2
-ZXJ5IG4tdGggUFNELCB3aGlsZSBzaW11bHRhbmVvdXNseSByZWNvcmRpbmcgYSBuYXJyb3diYW5k
-IGNoYW5uZWwgd2l0aGluIHRoZSBkaXNwbGF5ZWQgc3BlY3RydW0gKHVzaW5nIDxjb2RlPnNwbGl0
-PC9jb2RlPiBhbmQgPGNvZGU+ZGRjPC9jb2RlPikuPC9saT48bGk+PHN0cm9uZz5TZWNvbmQgVHdp
-blJYIChyYWRpbzEpOjwvc3Ryb25nPiBSYXBpZGx5IHN3ZWVwIGEgbGFyZ2UgYmFuZHdpZHRoIGFu
-ZCBkaXNwbGF5IHRoZSBQU0QsIGFsc28gdXRpbGl6aW5nIHRoZSA8Y29kZT53aW5kb3c8L2NvZGU+
-LCA8Y29kZT5mZnQ8L2NvZGU+LCBhbmQgPGNvZGU+bG9ncHdyPC9jb2RlPiBibG9ja3MuPC9saT48
-L29sPjxwPkkgd291bGQgZ3JlYXRseSBhcHByZWNpYXRlIHlvdXIgZmVlZGJhY2sgb24gdGhlIGZv
-bGxvd2luZyBwb2ludHM6PC9wPjxvbD48bGk+PHN0cm9uZz5WYWxpZGF0aW9uIG9mIEluaXRpYWwg
-RGVzaWduOjwvc3Ryb25nPiBJIGhhdmUgYXR0YWNoZWQgbXkgaW5pdGlhbCBhdHRlbXB0IGF0IGNy
-ZWF0aW5nIHRoaXMgRlBHQSBpbWFnZS4gQ291bGQgeW91IHBsZWFzZSByZXZpZXcgaXQgYW5kIGxl
-dCBtZSBrbm93IGlmIHRoaXMgYXBwcm9hY2ggaXMgY29ycmVjdD88L2xpPjxsaT48c3Ryb25nPkFj
-aGlldmluZyBTcGVjaWZpYyBQU0QgU2l6ZTo8L3N0cm9uZz4gSXMgaXQgcG9zc2libGUgdG8gYWNo
-aWV2ZSBhIFBTRCBzaXplIG9mLCBmb3IgZXhhbXBsZSwgODE5MiB1c2luZyB0aGUgPGNvZGU+d2lu
-ZG93PC9jb2RlPiwgPGNvZGU+ZmZ0PC9jb2RlPiwgYW5kIDxjb2RlPmxvZ3B3cjwvY29kZT4gYmxv
-Y2tzPyBJZiBzbywgY291bGQgeW91IGFkdmlzZSBvbiB0aGUgbmVjZXNzYXJ5IHN0ZXBzIHRvIGFj
-Y29tcGxpc2ggdGhpcz88L2xpPjxsaT48c3Ryb25nPlR3aW5SWCBDaGFubmVsIENvbmZpZ3VyYXRp
-b246PC9zdHJvbmc+IElzIGl0IGZlYXNpYmxlIHRvIHVzZSB0aGUgc2Vjb25kIGNoYW5uZWwgb24g
-dGhlIHNlY29uZCBUd2luUlggdG8gcmVjZWl2ZSBvbiBhIHN0YXRpYyBmcmVxdWVuY3kgd2hpbGUg
-dGhlIGZpcnN0IGNoYW5uZWwgc3dlZXBzLCBhbmQgdmljZSB2ZXJzYSwgY2FuIHRoZSBzZWNvbmQg
-Y2hhbm5lbCBvbiB0aGUgZmlyc3QgVHdpblJYIHN3ZWVwIGEgcG9ydGlvbiBvZiB0aGUgc3BlY3Ry
-dW0gd2hpbGUgdGhlIGZpcnN0IGNoYW5uZWwgcmVtYWlucyBvbiBhIHN0YXRpYyBmcmVxdWVuY3k/
-PC9saT48L29sPjxwPllvdXIgZ3VpZGFuY2Ugb24gdGhlc2UgcXVlc3Rpb25zIHdvdWxkIGJlIGV4
-dHJlbWVseSB2YWx1YWJsZSwgYXMgaXQgaXMgY3JpdGljYWwgdG8gdGhlIHN1Y2Nlc3Mgb2YgbXkg
-cHJvamVjdC48L3A+PHA+VGhhbmsgeW91IGluIGFkdmFuY2UgZm9yIHlvdXIgc3VwcG9ydC4gSSBs
-b29rIGZvcndhcmQgdG8geW91ciByZXNwb25zZS48L3A+PHA+QmVzdCByZWdhcmRzLDxicj5PbG8u
-PGJyPjwvcD48YnI+PC9kaXY+
+[1] Building an OFDM Receiver with RFNoC, 2015.
 
 
---b2_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY--
+Em seg., 19 de ago. de 2024 =C3=A0s 13:43, Martin Braun <martin.braun@ettus=
+.com>
+escreveu:
 
---b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
-Content-Type: application/x-yaml; name=x310_rfnoc_custom.yml
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename=x310_rfnoc_custom.yml
+> Hey Saulo,
+>
+> we're currently only supporting RFNoC blocks that ship with recent UHD
+> versions. That block is from a UHD 3.* version.
+>
+> Your build will most likely have more warnings/errors further up, maybe
+> there's an unconnected wire or something.
+>
+> Best of luck,
+>
+> --Martin
+>
+> On Mon, Aug 5, 2024 at 9:55=E2=80=AFPM Saulo Queiroz <ssaulojorge@gmail.c=
+om>
+> wrote:
+>
+>> Hello,
+>>
+>>
+>> I'm getting the below error message when building a image to run an OFDM=
+ receiver on X310.
+>>
+>> ERROR: [Opt 31-2] SRLC32E x300_core/inst_eq/inst_axi_wrapper/header_fifo=
+/fifo_short/gen_srlc32e[64].srlc32e is missing a connection on D pin.
+>>
+>>
+>> I patch for that was mentioned before (I copied the emails below) but I =
+didn't find it. Is there any solution (including an old functional version)=
+?
+>>
+>> My system (orbit-lab testbed) is
+>>
+>>  GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.HEAD-0-gaea0e2de
+>>
+>>
+>> thank you
+>>
+>>
+>>
+>> ----------------------------------
+>>
+>> "*Hi Sarah,
+>>
+>> I have submitted a pull request with some OFDM improvements including a =
+fix
+>> for this issue, hopefully it will be merged soon. I'll send you the patc=
+h
+>> set to try out in the meantime.*"
+>>
+>> Jonathon
+>>
+>> On Fri, Sep 28, 2018 at 11:05 AM Sarah Tran via USRP-users <usrp-users@l=
+ists.ettus.com> wrote:
+>>
+>> > Hi all,
+>> >
+>> >
+>> > I am trying to build a custom FPGA image for my X310
+>> > (daughterboards=3DUBX-160) using the uhd_image_builder gui and trying =
+to use
+>> > the following blocks:
+>> >
+>> > fft
+>> >
+>> > schmidl_cox
+>> >
+>> > eq
+>> >
+>> > ofdm_constellation_demapper
+>> >
+>> >
+>> > as the code is running and building, it always stops on this error:
+>> >
+>> > '
+>> > [00:22:41] Current task: Logic Optimization +++ Current Phase: Finishe=
+d
+>> > [00:22:41] Starting Connectivity Check Task
+>> > ERROR: [Opt 31-2] SRLC32E
+>> > x300_core/inst_eq/inst_axi_wrapper/header_fifo/fifo_short/gen_srlc32e[=
+64].srlc32e
+>> > is missing a connection on D pin.
+>> > [00:22:51] Current task: Connectivity Check +++ Current Phase: Startin=
+g
+>> > [00:22:51] Current task: Connectivity Check +++ Current Phase: Finishe=
+d
+>> > [00:22:51] Process terminated. Status: Failure
+>> >
+>> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+>> > Warnings:           862
+>> > Critical Warnings:  36
+>> > Errors:             1
+>> >
+>> > Makefile.x300.inc:111: recipe for target 'bin' failed
+>> > make[1]: *** [bin] Error 1
+>> > make[1]: Leaving directory '/home/lsop/rfnoc/fpga/usrp3/top/x300'
+>> > Makefile:119: recipe for target 'X310_RFNOC_HG' failed
+>> > make: *** [X310_RFNOC_HG] Error 2'
+>> >
+>> > I can't seem to get it resolved, and I was wondering if there was a tr=
+ick
+>> > that someone else was able to use to get it to build. Any help or insi=
+ght
+>> > is appreciated.
+>> >
+>> > Thank you,
+>> > Sarah
+>> >
+>> > _______________________________________________
+>> > USRP-users mailing list
+>> > USRP-users@lists.ettus.com
+>> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>> >
+>>
+>> _______________________________________________
+>> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>>
+>> --
+>> Saulo Jorge bq
+>> - "...  practical things ...  will improve your theories. ...
+>> theoretical things ... will improve your practice."
+>> Donald Knuth.
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
 
-IyBHZW5lcmFsIHBhcmFtZXRlcnMKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLQpzY2hlbWE6IHJmbm9jX2ltYWdlYnVpbGRlcl9hcmdzICAgICAgICAgIyBJZGVudGlm
-aWVyIGZvciB0aGUgc2NoZW1hIHVzZWQgdG8gdmFsaWRhdGUgdGhpcyBmaWxlCmNvcHlyaWdodDog
-Pi0gICAgICAgICAgICAgICAgICAgICAgICAgICAjIENvcHlyaWdodCBpbmZvcm1hdGlvbiB1c2Vk
-IGluIGZpbGUgaGVhZGVycwogIENvcHlyaWdodCAyMDI0IEFkbWluIFJlc2VhcmNoCmxpY2Vuc2U6
-ID4tICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIExpY2Vuc2UgaW5mb3JtYXRpb24gdXNl
-ZCBpbiBmaWxlIGhlYWRlcnMKICBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogZG8gV2hhdCBUaGUg
-RipjayB5b3Ugd2FudCB0byBQdWJsaWMgTGljZW5zZQp2ZXJzaW9uOiAnMS4wJyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIyBGaWxlIHZlcnNpb24gKG11c3QgYmUgc3RyaW5nIHNvIHdlIGNhbiBk
-aXN0aW5ndWlzaCAxLjEgYW5kIDEuMTApCmNoZHJfd2lkdGg6IDY0ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAjIEJpdCB3aWR0aCBvZiB0aGUgQ0hEUiBidXMgZm9yIHRoaXMgaW1hZ2UKZGV2aWNl
-OiAneDMxMCcKZGVmYXVsdF90YXJnZXQ6ICdYMzEwX1hHJwoKIyBBIGxpc3Qgb2YgYWxsIHN0cmVh
-bSBlbmRwb2ludHMgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLQpzdHJlYW1fZW5kcG9pbnRzOgogIGVwX3JhZGlvMF9kZGMwMDogICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIyBTdHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogVHJ1
-ZSAgICAgICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFm
-ZmljCiAgICBkYXRhOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBh
-c3NlcyBkYXRhIHRyYWZmaWMKICAgIGJ1ZmZfc2l6ZTogMzI3NjggICAgICAgICAgICAgICAgICAg
-ICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVwX3JhZGlvMF9kZGMwMToKICAgIGN0
-cmw6IEZhbHNlCiAgICBkYXRhOiBUcnVlCiAgICBidWZmX3NpemU6IDAKCiAgZXBfa2VlcG4wOgog
-ICAgY3RybDogVHJ1ZQogICAgZGF0YTogVHJ1ZQogICAgYnVmZl9zaXplOiAzMjc2OAoKCiAgZXBf
-cmFkaW8xX2RkYzEwOiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBl
-bmRwb2ludCBuYW1lCiAgICBjdHJsOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICAgICAjIEVu
-ZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAg
-ICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXpl
-OiAzMjc2OAoKICBlcF9yYWRpbzFfZGRjMTE6CiAgICBjdHJsOiBGYWxzZQogICAgZGF0YTogVHJ1
-ZQogICAgYnVmZl9zaXplOiAwCgoKIyBBIGxpc3Qgb2YgYWxsIE5vQyBibG9ja3MgaW4gZGVzaWdu
-CiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpub2NfYmxvY2tzOgoKICAjIDFz
-dCBUd2luUngKICBkZGMwMDoKICAgIGJsb2NrX2Rlc2M6ICdkZGMueW1sJyAgICAgIyBEREMgZm9y
-IHJhZGlvMCwwCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDEKCiAgZGRjMDE6CiAg
-ICBibG9ja19kZXNjOiAnZGRjLnltbCcgICAgICMgRERDIGZvciByYWRpbzAsMQogICAgcGFyYW1l
-dGVyczoKICAgICAgTlVNX1BPUlRTOiAxCgogIHJhZGlvMDoKICAgIGJsb2NrX2Rlc2M6ICdyYWRp
-by55bWwnICAgIyByYWRpbyAwLDAgYW5kIDAsMQogICAgcGFyYW1ldGVyczoKICAgICAgTlVNX1BP
-UlRTOiAxCgogICMgMm5kIFR3aW5SeAogIGRkYzEwOgogICAgYmxvY2tfZGVzYzogJ2RkYy55bWwn
-ICAgICMgRERDIGZvciByYWRpbzEsMAogICAgcGFyYW1ldGVyczoKICAgICAgTlVNX1BPUlRTOiAx
-CgogIGRkYzExOgogICAgYmxvY2tfZGVzYzogJ2RkYy55bWwnICAgICAjIEREQyBmb3IgcmFkaW8x
-LDEKICAgIHBhcmFtZXRlcnM6CiAgICAgIE5VTV9QT1JUUzogMQoKICByYWRpbzE6CiAgICBibG9j
-a19kZXNjOiAncmFkaW8ueW1sJyAgICMgcmFkaW8gMSwwIGFuZCAxLDEKICAgIHBhcmFtZXRlcnM6
-CiAgICAgIE5VTV9QT1JUUzogMQoKICAjIHByb2Nlc3NpbmcgYmxvY2tzCgogIHNwbGl0MDoKICAg
-IGJsb2NrX2Rlc2M6ICdzcGxpdF9zdHJlYW0ueW1sJwogICAgcGFyYW1ldGVyczoKICAgICAgTlVN
-X1BPUlRTOiAxCiAgICAgIE5VTV9CUkFOQ0hFUzogMgoKICBrZWVwbjA6CiAgICBibG9ja19kZXNj
-OiAna2VlcF9vbmVfaW5fbi55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDEK
-ICAgICAgV0lEVEhfTjogMzAgICAgICAgICNCaXQgd2lkdGggb2YgTiBwYXJhbSAobXVzdCBiZSA8
-PSAzMSkKCiAgd2luZHcwOgogICAgYmxvY2tfZGVzYzogJ3dpbmRvdy55bWwnCiAgICBwYXJhbWV0
-ZXJzOgogICAgICBOVU1fUE9SVFM6IDEKICAgICAgTUFYX1dJTkRPV19TSVpFOiAyMDQ4ICAgIyAx
-NjM4NCA9IDJeMTQgcG9zc2libGUgd2l0aCBGRlQgb3Igd2luZG93ID8gb3IgRkZUIHNpemUgbWF4
-IDIwNDggKGJhc2VkIG9uIGRvYykgPykgIAoKICBmZnQwOgogICAgYmxvY2tfZGVzYzogJ2ZmdF8x
-eDY0LnltbCcKICAgIHBhcmFtZXRlcnM6CiAgICAgIEVOX01BR05JVFVERV9PVVQ6IDAgICAgIyBl
-bmFibGUgQ09SRElDIGJhc2VkIG1hZ25pdHVkZSBvdXRwdXQgc3VwcG9ydAogICAgICBFTl9NQUdO
-SVRVREVfQVBQUk9YX09VVDogMSAgIyBlbmFibGUgbXVsdGlwbGllci0gbGVzcyBtYWduaXR1ZGUg
-Y2FsYyA/CiAgICAgIEVOX01BR05JVFVERV9TUV9PVVQ6IDAgICAjIGVuYWJsZSBtYWcgc3FydAog
-ICAgICBFTl9GRlRfU0hJRlQ6IDEgICAgICAjIGVuYWJsZSBzaGlmdCAKCiAgbG9ncHdyMDoKICAg
-ICMgY29tcHV0ZXMgYW5kIGVzdGltYXRlIDEwMjQgKiBsb2cyIHNxcnQoSSoqMiArIFEqKjIpLiBv
-bmx5IDEwMjQgPyBhbmQgaW5wdXQgbXVzdCBiZSBjb21wbGV4IGFuZCBjYW50IGJlIAogICAgIyAg
-bWFnIHNxcnQgb3V0cHV0IGZyb20gRkZUID8gICAKICAgIGJsb2NrX2Rlc2M6ICdsb2dwd3IueW1s
-JwogICAgcGFyYW1ldGVyczoKICAgICAgTlVNX1BPUlRTOiAxCiAgICAgIFJBTkRPTV9NT0RFOiAw
-ICAgICAjIDInYjExIGluIGxvZ3B3ci55bWwgPz8/IHNvICBlbmFibGUgcmFuZG9tIExTQnMgb24g
-ZWFjaCBpbnB1dCAwCgogIHMwMV9kZGMxOgogICAgYmxvY2tfZGVzYzogJ2RkYy55bWwnCiAgICBw
-YXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDEKCgoKCgoKCiAgd2luZHcxOgogICAgYmxvY2tf
-ZGVzYzogJ3dpbmRvdy55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDEKICAg
-ICAgTUFYX1dJTkRPV19TSVpFOiAyMDQ4ICAgIyAxNjM4NCA9IDJeMTQgcG9zc2libGUgd2l0aCBG
-RlQgb3Igd2luZG93ID8gb3IgRkZUIHNpemUgbWF4IDIwNDggKGJhc2VkIG9uIGRvYykgPykgIAoK
-ICBmZnQxOgogICAgYmxvY2tfZGVzYzogJ2ZmdF8xeDY0LnltbCcKICAgIHBhcmFtZXRlcnM6CiAg
-ICAgIEVOX01BR05JVFVERV9PVVQ6IDAgICAgIyBlbmFibGUgQ09SRElDIGJhc2VkIG1hZ25pdHVk
-ZSBvdXRwdXQgc3VwcG9ydAogICAgICBFTl9NQUdOSVRVREVfQVBQUk9YX09VVDogMSAgIyBlbmFi
-bGUgbXVsdGlwbGllci0gbGVzcyBtYWduaXR1ZGUgY2FsYyA/CiAgICAgIEVOX01BR05JVFVERV9T
-UV9PVVQ6IDAgICAjIGVuYWJsZSBtYWcgc3FydAogICAgICBFTl9GRlRfU0hJRlQ6IDEgICAgICAj
-IGVuYWJsZSBzaGlmdCAKCiAgbG9ncHdyMToKICAgICMgY29tcHV0ZXMgYW5kIGVzdGltYXRlIDEw
-MjQgKiBsb2cyIHNxcnQoSSoqMiArIFEqKjIpLiBvbmx5IDEwMjQgPyBhbmQgaW5wdXQgbXVzdCBi
-ZSBjb21wbGV4IGFuZCBjYW50IGJlIAogICAgIyAgbWFnIHNxcnQgb3V0cHV0IGZyb20gRkZUID8g
-ICAKICAgIGJsb2NrX2Rlc2M6ICdsb2dwd3IueW1sJwogICAgcGFyYW1ldGVyczoKICAgICAgTlVN
-X1BPUlRTOiAxCiAgICAgIFJBTkRPTV9NT0RFOiAwICAgICAjIDInYjExIGluIGxvZ3B3ci55bWwg
-Pz8/IHNvICBlbmFibGUgcmFuZG9tIExTQnMgb24gZWFjaCBpbnB1dCAwCgoKCgoKCgoKCiMgQSBs
-aXN0IG9mIGFsbCBzdGF0aWMgY29ubmVjdGlvbnMgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgRm9ybWF0OiBBIGxpc3Qgb2YgY29ubmVjdGlv
-biBtYXBzIChsaXN0IG9mIGtleS12YWx1ZSBwYWlycykgd2l0aCB0aGUgZm9sbG93aW5nIGtleXMK
-IyAgIC0gc3JjYmxrICA9IFNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAtIHNyY3BvcnQgPSBQ
-b3J0IG9uIHRoZSBzb3VyY2UgYmxvY2sgdG8gY29ubmVjdAojICAgLSBkc3RibGsgID0gRGVzdGlu
-YXRpb24gYmxvY2sgdG8gY29ubmVjdAojICAgLSBkc3Rwb3J0ID0gUG9ydCBvbiB0aGUgZGVzdGlu
-YXRpb24gYmxvY2sgdG8gY29ubmVjdApjb25uZWN0aW9uczoKICAjIFJGIHR3aW5SWDAgY2ggMAog
-IC0geyBzcmNibGs6IHJhZGlvMCwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogZGRjMDAsIGRzdHBv
-cnQ6IGluXzAgfQogIC0geyBzcmNibGs6IGRkYzAwLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBz
-cGxpdDAsIGRzdHBvcnQ6IGluXzAgfQoKICAjIFJGIHByb2Nlc3NpbmcgdHdpblJYMCBjaDAKICAt
-IHsgc3JjYmxrOiBzcGxpdDAsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGtlZXBuMCwgZHN0cG9y
-dDogaW5fMCB9CiAgLSB7IHNyY2Jsazoga2VlcG4wLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiB3
-aW5kdzAsIGRzdHBvcnQ6IGluXzAgfQogIC0geyBzcmNibGs6IHdpbmR3MCwgc3JjcG9ydDogb3V0
-XzAsIGRzdGJsazogZmZ0MCwgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBmZnQwLCBz
-cmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBsb2dwd3IwLCBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3Jj
-YmxrOiBsb2dwd3IwLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBlcF9rZWVwbjAsIGRzdHBvcnQ6
-IGluMCB9CgogIC0geyBzcmNibGs6IHNwbGl0MCwgc3JjcG9ydDogb3V0XzEsIGRzdGJsazogczAx
-X2RkYzEsIGRzdHBvcnQ6IGluXzAgfQogIC0geyBzcmNibGs6IHMwMV9kZGMxLCBzcmNwb3J0OiBv
-dXRfMCwgZHN0YmxrOiBlcF9yYWRpbzBfZGRjMDAsIGRzdHBvcnQ6IGluMCB9CgoKICAjIFJGIHR3
-aW5SWDAgY2ggMQogIC0geyBzcmNibGs6IHJhZGlvMCwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazog
-ZGRjMDEsICAgZHN0cG9ydDogaW5fMCB9CiAgLSB7IHNyY2JsazogZGRjMDEsIHNyY3BvcnQ6IG91
-dF8wLCBkc3RibGs6IGVwX3JhZGlvMF9kZGMwMSwgZHN0cG9ydDogaW4wIH0KCiAgIyMjIGlmIHNv
-bWUgcHJvY2Vzc2luZyBhZGRlZDogd2lsbCB0aGlzIGhhbmRsZSBjaGFuZ2luZyBmYyBmYXN0IChz
-Y2FubmVyKT8KCiAgIyBSRiB0d2luUlgxIGNoIDAKICAtIHsgc3JjYmxrOiByYWRpbzEsIHNyY3Bv
-cnQ6IG91dF8wLCBkc3RibGs6IGRkYzEwLCBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBk
-ZGMxMCwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogd2luZHcxLCBkc3Rwb3J0OiBpbl8wIH0KCiAg
-IyBSRiBwcm9jZXNzaW5nIHR3aW5SWDEgY2gwCiAgLSB7IHNyY2Jsazogd2luZHcxLCBzcmNwb3J0
-OiBvdXRfMCwgZHN0YmxrOiBmZnQxLCAgIGRzdHBvcnQ6IGluXzAgfQogIC0geyBzcmNibGs6IGZm
-dDEsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGxvZ3B3cjEsIGRzdHBvcnQ6IGluXzAgfQogIC0g
-eyBzcmNibGs6IGxvZ3B3cjEsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGVwX3JhZGlvMV9kZGMx
-MCwgZHN0cG9ydDogaW4wIH0KCgogICMgUkYgdHdpblJYMSBjaCAxCiAgLSB7IHNyY2JsazogcmFk
-aW8xLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBkZGMxMSwgICBkc3Rwb3J0OiBpbl8wIH0KICAt
-IHsgc3JjYmxrOiBkZGMxMSwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogZXBfcmFkaW8xX2RkYzEx
-LCBkc3Rwb3J0OiBpbjAgfQoKICAjIyMgaWYgc29tZSBwcm9jZXNzaW5nIGFkZGVkOiB3aWxsIHRo
-aXMgaGFuZGxlIHN0YXRpYyBmYyAoc2Nhbm5lcikgPwoKCiAgIwogICMgQlNQIENvbm5lY3Rpb25z
-CiAgLSB7IHNyY2JsazogcmFkaW8wLCAgIHNyY3BvcnQ6IGN0cmxwb3J0LCBkc3RibGs6IF9kZXZp
-Y2VfLCBkc3Rwb3J0OiBjdHJscG9ydF9yYWRpbzAgfQogIC0geyBzcmNibGs6IHJhZGlvMSwgICBz
-cmNwb3J0OiBjdHJscG9ydCwgZHN0YmxrOiBfZGV2aWNlXywgZHN0cG9ydDogY3RybHBvcnRfcmFk
-aW8xIH0KICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8wLCAgIGRzdGJsazog
-cmFkaW8wLCAgIGRzdHBvcnQ6IHJhZGlvICAgICAgICAgICB9CiAgLSB7IHNyY2JsazogX2Rldmlj
-ZV8sIHNyY3BvcnQ6IHJhZGlvMSwgICBkc3RibGs6IHJhZGlvMSwgICBkc3Rwb3J0OiByYWRpbyAg
-ICAgICAgICAgfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiB0aW1lLCAgICAgZHN0
-YmxrOiByYWRpbzAsICAgZHN0cG9ydDogdGltZSAgICAgICAgICAgIH0KICAtIHsgc3JjYmxrOiBf
-ZGV2aWNlXywgc3JjcG9ydDogdGltZSwgICAgIGRzdGJsazogcmFkaW8xLCAgIGRzdHBvcnQ6IHRp
-bWUgICAgICAgICAgICB9CgojIEEgbGlzdCBvZiBhbGwgY2xvY2sgZG9tYWluIGNvbm5lY3Rpb25z
-IGluIGRlc2lnbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQojIEZvcm1hdDogQSBsaXN0IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlzdCBvZiBrZXktdmFs
-dWUgcGFpcnMpIHdpdGggdGhlIGZvbGxvd2luZyBrZXlzCiMgICAtIHNyY2JsayAgPSBTb3VyY2Ug
-YmxvY2sgdG8gY29ubmVjdCAoQWx3YXlzICJfZGV2aWNlIl8pCiMgICAtIHNyY3BvcnQgPSBDbG9j
-ayBkb21haW4gb24gdGhlIHNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAtIGRzdGJsayAgPSBE
-ZXN0aW5hdGlvbiBibG9jayB0byBjb25uZWN0CiMgICAtIGRzdHBvcnQgPSBDbG9jayBkb21haW4g
-b24gdGhlIGRlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKY2xrX2RvbWFpbnM6CiAgICAtIHsg
-c3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazogcmFkaW8wLCBkc3Rwb3J0
-OiByYWRpbyB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJs
-azogZGRjMDAsICAgZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNy
-Y3BvcnQ6IGNlLCAgICBkc3RibGs6IGRkYzAxLCAgIGRzdHBvcnQ6IGNlICAgIH0KCiAgICAtIHsg
-c3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazogcmFkaW8xLCBkc3Rwb3J0
-OiByYWRpbyB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJs
-azogZGRjMTEsICAgZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNy
-Y3BvcnQ6IGNlLCAgICBkc3RibGs6IGRkYzEwLCAgIGRzdHBvcnQ6IGNlICAgIH0KICAgIC0geyBz
-cmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiBjZSwgICAgZHN0YmxrOiBzMDFfZGRjMSwgICBkc3Rw
-b3J0OiBjZSAgICB9CgoKCiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAg
-IGRzdGJsazoga2VlcG4wLCAgIGRzdHBvcnQ6IGNlICAgIH0KICAgIC0geyBzcmNibGs6IF9kZXZp
-Y2VfLCBzcmNwb3J0OiBjZSwgICAgZHN0YmxrOiB3aW5kdzAsICAgZHN0cG9ydDogY2UgICAgfQog
-ICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAgICBkc3RibGs6IGZmdDAsICAg
-ZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAg
-ICBkc3RibGs6IGxvZ3B3cjAsICAgZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2JsazogX2Rl
-dmljZV8sIHNyY3BvcnQ6IGNlLCAgICBkc3RibGs6IHdpbmR3MSwgICBkc3Rwb3J0OiBjZSAgICB9
-CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJsazogZmZ0MSwg
-ICBkc3Rwb3J0OiBjZSAgICB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2Us
-ICAgIGRzdGJsazogbG9ncHdyMSwgICBkc3Rwb3J0OiBjZSAgICB9Cg==
+--=20
+Saulo Jorge bq
+- "...  practical things ...  will improve your theories. ...  theoretical
+things ... will improve your practice."
+Donald Knuth.
 
---b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
+--0000000000003964220620956b84
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thank you,<div><br></div><div>Actually, I&#39;d like to pe=
+rform a &#39;quite&#39; simple experiment consisting in assessing the runti=
+me of a basic OFDM receiver running on FPGA (i.e. RFNoC) when processing an=
+ OFDM symbol (sent through a loopback cable). Searching the web, we got the=
+ impression that there is a version of RFNoC containing all blocks we need =
+for that experiment (our team acquired X310 recently) [1]. In summary, is t=
+here any git TAG/version of the uhd/RFNoC repo that I can=C2=A0fetch to get=
+ the RFNoC OFDM Receiver blocks demonstrated in [1]?</div><div>Thank you in=
+ advance,</div><div><br></div><div>best regards</div><div><br></div><div>[1=
+] Building an OFDM Receiver with RFNoC, 2015.</div><div>=C2=A0</div><div></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">Em seg., 19 de ago. de 2024 =C3=A0s 13:43, Martin Braun &lt;<a href=3D"=
+mailto:martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>=
+&gt; escreveu:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div dir=3D"ltr"><div>Hey Saulo,</div><div><br></div><div>we&#39;re currentl=
+y only supporting RFNoC blocks that ship with recent UHD versions. That blo=
+ck is from a UHD 3.* version.</div><div><br></div><div>Your build will most=
+ likely have more warnings/errors further up, maybe there&#39;s an unconnec=
+ted wire or something.</div><div><br></div><div>Best of luck,</div><div><br=
+></div><div>--Martin<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, Aug 5, 2024 at 9:55=E2=80=AFPM Saulo =
+Queiroz &lt;<a href=3D"mailto:ssaulojorge@gmail.com" target=3D"_blank">ssau=
+lojorge@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div dir=3D"ltr"><pre style=3D"font-family:courier,&quot;c=
+ourier new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0px;=
+color:rgb(0,0,0)">Hello,<br></pre><pre style=3D"font-family:courier,&quot;c=
+ourier new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0px;=
+color:rgb(0,0,0)"><br></pre><pre style=3D"font-family:courier,&quot;courier=
+ new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0px;color:=
+rgb(0,0,0)">I&#39;m getting the below error message when building a image t=
+o run an OFDM receiver on X310.</pre><pre style=3D"font-family:courier,&quo=
+t;courier new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0=
+px;color:rgb(0,0,0)"><pre style=3D"font-family:courier,&quot;courier new&qu=
+ot;,monospace;margin-top:0px;margin-bottom:0px">ERROR: [Opt 31-2] SRLC32E x=
+300_core/inst_eq/inst_axi_wrapper/header_fifo/fifo_short/gen_srlc32e[64].sr=
+lc32e is missing a connection on D pin.</pre></pre><pre style=3D"font-famil=
+y:courier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;m=
+argin-bottom:0px;color:rgb(0,0,0)"><br></pre><pre style=3D"font-family:cour=
+ier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;margin-=
+bottom:0px;color:rgb(0,0,0)">I patch for that was mentioned before (I copie=
+d the emails below) but I didn&#39;t find it. Is there any solution (includ=
+ing an old functional version)?</pre><pre style=3D"font-family:courier,&quo=
+t;courier new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0=
+px;color:rgb(0,0,0)">My system (orbit-lab testbed) is<br></pre><pre style=
+=3D"font-family:courier,&quot;courier new&quot;,monospace;font-size:14px;ma=
+rgin-top:0px;margin-bottom:0px;color:rgb(0,0,0)">=C2=A0GNU C++ version 7.5.=
+0; Boost_106501; UHD_3.15.0.HEAD-0-gaea0e2de<br></pre><pre style=3D"font-fa=
+mily:courier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0p=
+x;margin-bottom:0px;color:rgb(0,0,0)"><br></pre><pre style=3D"font-family:c=
+ourier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;marg=
+in-bottom:0px;color:rgb(0,0,0)">thank you</pre><pre style=3D"font-family:co=
+urier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;margi=
+n-bottom:0px;color:rgb(0,0,0)"><br></pre><pre style=3D"font-family:courier,=
+&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;margin-bott=
+om:0px;color:rgb(0,0,0)"><br></pre><pre style=3D"font-family:courier,&quot;=
+courier new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0px=
+;color:rgb(0,0,0)">----------------------------------</pre><pre style=3D"fo=
+nt-family:courier,&quot;courier new&quot;,monospace;font-size:14px;margin-t=
+op:0px;margin-bottom:0px;color:rgb(0,0,0)">&quot;<i>Hi Sarah,
+
+I have submitted a pull request with some OFDM improvements including a fix
+for this issue, hopefully it will be merged soon. I&#39;ll send you the pat=
+ch
+set to try out in the meantime.</i>&quot;</pre><pre style=3D"font-family:co=
+urier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;margi=
+n-bottom:0px;color:rgb(0,0,0)">Jonathon
+
+On Fri, Sep 28, 2018 at 11:05 AM Sarah Tran via USRP-users &lt;
+<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@=
+lists.ettus.com</a>&gt; wrote:
+
+&gt; Hi all,
+&gt;
+&gt;
+&gt; I am trying to build a custom FPGA image for my X310
+&gt; (daughterboards=3DUBX-160) using the uhd_image_builder gui and trying =
+to use
+&gt; the following blocks:
+&gt;
+&gt; fft
+&gt;
+&gt; schmidl_cox
+&gt;
+&gt; eq
+&gt;
+&gt; ofdm_constellation_demapper
+&gt;
+&gt;
+&gt; as the code is running and building, it always stops on this error:
+&gt;
+&gt; &#39;
+&gt; [00:22:41] Current task: Logic Optimization +++ Current Phase: Finishe=
+d
+&gt; [00:22:41] Starting Connectivity Check Task
+&gt; ERROR: [Opt 31-2] SRLC32E
+&gt; x300_core/inst_eq/inst_axi_wrapper/header_fifo/fifo_short/gen_srlc32e[=
+64].srlc32e
+&gt; is missing a connection on D pin.
+&gt; [00:22:51] Current task: Connectivity Check +++ Current Phase: Startin=
+g
+&gt; [00:22:51] Current task: Connectivity Check +++ Current Phase: Finishe=
+d
+&gt; [00:22:51] Process terminated. Status: Failure
+&gt;
+&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+&gt; Warnings:           862
+&gt; Critical Warnings:  36
+&gt; Errors:             1
+&gt;
+&gt; Makefile.x300.inc:111: recipe for target &#39;bin&#39; failed
+&gt; make[1]: *** [bin] Error 1
+&gt; make[1]: Leaving directory &#39;/home/lsop/rfnoc/fpga/usrp3/top/x300&#=
+39;
+&gt; Makefile:119: recipe for target &#39;X310_RFNOC_HG&#39; failed
+&gt; make: *** [X310_RFNOC_HG] Error 2&#39;
+&gt;
+&gt; I can&#39;t seem to get it resolved, and I was wondering if there was =
+a trick
+&gt; that someone else was able to use to get it to build. Any help or insi=
+ght
+&gt; is appreciated.
+&gt;
+&gt; Thank you,
+&gt; Sarah
+&gt;
+&gt; _______________________________________________
+&gt; USRP-users mailing list
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a>
+&gt; <a rel=3D"nofollow" href=3D"http://lists.ettus.com/mailman/listinfo/us=
+rp-users_lists.ettus.com" style=3D"color:rgb(0,80,150)" target=3D"_blank">h=
+ttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+&gt;
+</pre><pre style=3D"font-family:courier,&quot;courier new&quot;,monospace;f=
+ont-size:14px;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0)">__________=
+_____________________________________
+USRP-users mailing list
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a rel=3D"nofollow" href=3D"http://lists.ettus.com/mailman/listinfo/usrp-us=
+ers_lists.ettus.com" style=3D"color:rgb(0,80,150)" target=3D"_blank">http:/=
+/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></pre><div>=
+<br></div><span class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"=
+ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>=
+Saulo Jorge bq<br>-=C2=A0<span style=3D"font-size:12.8px">&quot;</span><spa=
+n style=3D"font-family:sans-serif;font-size:14px">...=C2=A0 practical thing=
+s ...=C2=A0 will improve your theories. ...=C2=A0 theoretical things ... wi=
+ll improve your practice.</span><span style=3D"font-size:12.8px">&quot;=C2=
+=A0</span></div><div>Donald Knuth.<br></div></div></div></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr"><div>Saulo Jorge bq<br>-=C2=A0<span st=
+yle=3D"font-size:12.8px">&quot;</span><span style=3D"font-family:sans-serif=
+;font-size:14px">...=C2=A0 practical things ...=C2=A0 will improve your the=
+ories. ...=C2=A0 theoretical things ... will improve your practice.</span><=
+span style=3D"font-size:12.8px">&quot;=C2=A0</span></div><div>Donald Knuth.=
+<br></div></div></div></div></div>
+
+--0000000000003964220620956b84--
+
+--===============2603337036396345898==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -301,4 +430,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY--
+--===============2603337036396345898==--
