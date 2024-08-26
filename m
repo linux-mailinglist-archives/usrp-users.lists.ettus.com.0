@@ -2,148 +2,296 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D8F95E068
-	for <lists+usrp-users@lfdr.de>; Sun, 25 Aug 2024 01:42:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D46F795EFFE
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Aug 2024 13:41:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2DD2738534D
-	for <lists+usrp-users@lfdr.de>; Sat, 24 Aug 2024 19:42:02 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A04743854D5
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Aug 2024 07:41:40 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724542922; bh=7xGRtrXfBfYb/gWgBWq3+6Tfnlyo9nYDSH37qQzs7D0=;
-	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=Ujsj7PNa73p0KHzGL93XvN0OsT1Lt9k4rEl+S4ApA06F6Y94NHtCzoX6ToVONCinc
-	 gzYSiTbYmpR+CNhhk6156GMnPNkI+Rh73Hz/phRWmJ4DsLs3l2xEh3yd9vRyr++b6h
-	 +p0Ql4d4V0a9GPML7RlJVbs/gKTv0Hlh2+DX2ZaUbWnVgqyd9Gf9lXr9sDBuhYwK4N
-	 660D8lUB2giR4Lu5iI5byasx5QeA8kEEXDAvvjlnAaeC9d/Fze+TcPXoSVt/+6JWvQ
-	 fvN1sbiMyNk3H0RJ+16vBd9CfmwhiHO/cF5TUfq3UT7ZtfQy4nl7ftyafPk32KI/z0
-	 VeYrsQ0NA61dA==
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id B08AD385202
-	for <usrp-users@lists.ettus.com>; Sat, 24 Aug 2024 19:41:19 -0400 (EDT)
+	t=1724672500; bh=x6taGG5tI/ClLuqIqq5pgZH50f5Ykj93PTFjLHvA51U=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=0sp4cz5wYFzcceph3vID03J/8SNbkDrrsKLdRUJrBqJJyhS43AixFVxK1fuLpcHGb
+	 gLvfYvDdJBcScsI1+LONOs2EaLFQgvrRrrlcAyJHqG4vCtbrDukjMftcf0sQmLIsVy
+	 w9GccXpoyk33iWIaN9bGMHNmQMuOD0TCjEdW7NHLzorwFshWiHDTa3dJXyh3tJyAwp
+	 LG5CDx+VxTlfthzflhGfbqqwNRRQz9RswwNA6zp5J+h2FV5ACnQp+xfMsv9+/38/AB
+	 TtoTvKlJm57NytmhPhPGux5P5eguWBvVbX0X69oPKFSfEDNBGHqBMbZWTTzVOtY0EN
+	 BEpf3pRWNMW3Q==
+Received: from mail-4027.protonmail.ch (mail-4027.protonmail.ch [185.70.40.27])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7C387385438
+	for <usrp-users@lists.ettus.com>; Mon, 26 Aug 2024 07:40:56 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ourowndomain-com.20230601.gappssmtp.com header.i=@ourowndomain-com.20230601.gappssmtp.com header.b="do2t+XlS";
+	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="orHHeaaY";
 	dkim-atps=neutral
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f4f24b4d7fso4241781fa.2
-        for <usrp-users@lists.ettus.com>; Sat, 24 Aug 2024 16:41:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ourowndomain-com.20230601.gappssmtp.com; s=20230601; t=1724542878; x=1725147678; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iK535C6gv5M1Z6I5VUeG56ikPWmV/FMWsuY1FGccEKM=;
-        b=do2t+XlSM0j2nv3SzYV4MBbg9Ei4uXKQ2mMniamAyAQ9LIvZfYK11Cr1JNOUeTUiNh
-         hmuKMr1KH06vnPL89nGvienET41nun/w6VXcQnDeGXwl/I3YrzX/VbztUy2tfDmeYJ9e
-         GOXDpEhpp77/beEPB9BAiwADczQVJqrYLtIVlYr/DIVIZgGy8lgUkiAShWGvUewASY4B
-         V+vY2Lt1AJqAtR4ueKsdzhAvgy9wlVe5xzzRLZ1wWuw4kZeQQTT7F9bBS7sMtlZ3J9sV
-         kG6TfsDLnjRdyEfngWhLab4rKbW+I0uUFa0YIAjxTXApptXKCsexGdDDj4ZtWv4i0PSO
-         bOIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724542878; x=1725147678;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iK535C6gv5M1Z6I5VUeG56ikPWmV/FMWsuY1FGccEKM=;
-        b=kU6cSKw5xpuTC9AsY3RmPDWLl2qQAk9+eBD3Imkf0/EyGRqeBUWpmbgtm58kHSm2RN
-         yPK4I+ZeixxdL5NeRo+sech0PBVtXjoh3Q9HixzmX2+m/q1qi2ciqCfH6gE/n37bm70d
-         AIqSpr+wm7e/sKbH7dZEjULi6aELV5ORfI3c4RPU+SSJXscwUd/qkfz7o2F12X6hNjJr
-         yGO/LxzQ2Xsbbo5SqW4v/isviA9j788c0IE4kNt+9XRa2gS5Z+qWiNjxEA4Bz3KQ2HpN
-         3wdlX/Pm4h48XXoWXdd08m2eHG9aTmercgRVgWqa4xOY98Uu0iATVKJjg1haAx36FMv2
-         BILw==
-X-Gm-Message-State: AOJu0YwTQqcrw5rMPhTuulexPm4kECSzEVE4u7pmfk8IAYMcVxQpiSIf
-	zxIQVuQrFOnmju/lNo6nes/EEwDCDIVOllKUB+ht7YlvULQl6ubN1EJZKOCd56uh1r2YJkkVeAf
-	UkE/ZRF2Tax3a/yEnDMLrrSNvO8X9ra+4ZnVOYXX5BNDr//xk0nz1
-X-Google-Smtp-Source: AGHT+IGGNScoJz+kWIMR645GSOplP8YzELinY/vdYj2TRG3/Ll3Fl7yq1+MrRIcKcNevDqg97ZU/COrvfTdEIvEUuiI=
-X-Received: by 2002:a05:6512:3e1b:b0:52f:c285:323d with SMTP id
- 2adb3069b0e04-534387bb090mr2378736e87.5.1724542877776; Sat, 24 Aug 2024
- 16:41:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <CANsNeapbGcs-8CwFC6q4dxcRQK8erxXKu2_G27425xmQ=+V2jg@mail.gmail.com>
-In-Reply-To: <CANsNeapbGcs-8CwFC6q4dxcRQK8erxXKu2_G27425xmQ=+V2jg@mail.gmail.com>
-From: Rich Gopstein <rich@ourowndomain.com>
-Date: Sat, 24 Aug 2024 19:43:33 -0400
-Message-ID: <CANsNear1ouQAh4sp3i9Zdt_ZMYvCA6n2kT+Fe+C6z69zE3mktw@mail.gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1724672455; x=1724931655;
+	bh=kQ+75O6lDVlWiibcKmSotPQvdGn3Gm398Mp0RfOtzfE=;
+	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=orHHeaaYsdgyBtojNg+S3eQa6FFx6AQWVgHkCrUF5O49FcsJys+QVxab+LKbgJ11c
+	 WHG+7ZFzh7yxH8JBONpsgOy1J+e1G6eKfwUswCiOErdLamMxoWd9IygEW5hzY07vxP
+	 oZ4osxB8KTCmO8V93XupvriZ3ti454izQAUwS+74m3cY91LzVsCcCbuQVTY8ISqgzs
+	 cRAF3AdirsE/FmbXzJApwC4od2m6u24GE5aMuwP0y9GIvlgK/0Sn7tSVm8MiCE+OZG
+	 psYuyPLhU0XlhoiCxPCpLbOKNN4Ueuhf7Vu/mcZJYM0Ne43bT7xT6If8OWjVO1TLRE
+	 mBbRqshWnZG4g==
+Date: Mon, 26 Aug 2024 11:40:50 +0000
 To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: 4MLO7M6BZZH6AW2JTL6TFAFFE723IAD5
-X-Message-ID-Hash: 4MLO7M6BZZH6AW2JTL6TFAFFE723IAD5
-X-MailFrom: rich@ourowndomain.com
+Message-ID: <b7EDp_Z-OGLk51ibwQutMTVO7aVrweoUubIOqX594P7xDHOpwd6I31RtEuiCTB3DMjFLfdkKR0dLqBIS1UGsN8df_iSefI5zIAhjCxTWVUY=@protonmail.com>
+Feedback-ID: 47010692:user:proton
+X-Pm-Message-ID: d1f33d2fcd9fb9c4804074546dd8274ead320a96
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY"
+Message-ID-Hash: BAFO4D7KCONHVOVPF2YZUTBK4CNKQQNN
+X-Message-ID-Hash: BAFO4D7KCONHVOVPF2YZUTBK4CNKQQNN
+X-MailFrom: olo1618@protonmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Help with building 4.7.0.0 FPGA image for E310
+Subject: [USRP-users] Assistance with RFNoC and TwinRX Configuration in Custom FPGA Image
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4MLO7M6BZZH6AW2JTL6TFAFFE723IAD5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BAFO4D7KCONHVOVPF2YZUTBK4CNKQQNN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7307559046180272288=="
+From: Olo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olo <olo1618@protonmail.com>
 
---===============7307559046180272288==
-Content-Type: multipart/alternative; boundary="000000000000a15b430620766d32"
+This is a multi-part message in MIME format.
 
---000000000000a15b430620766d32
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
+Content-Type: multipart/alternative;
+ boundary="b2_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY"
 
-With help from Marcus, I found that the following helped:
+--b2_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-export PYTHONPATH=3D/usr/local/lib/python3.8/site-packages
-export LD_LIBRARY_PATH=3D/usr/local/lib
+SGVsbG8sCgpJIGFtIGN1cnJlbnRseSB3b3JraW5nIG9uIGEgY3VzdG9tIEZQR0EgaW1hZ2UgdGhh
+dCB1dGlsaXplcyBSRk5vQyBibG9ja3MgcHJvdmlkZWQgYnkgRXR0dXMgdGhyb3VnaCB0aGUgVUhE
+IHJlcG9zaXRvcnkuIFNwZWNpZmljYWxseSwgSSBhbSB1c2luZyBibG9ja3Mgc3VjaCBhcyBzcGxp
+dCwgd2luZG93LCBmZnQsIGFuZCBsb2dwd3IgaW4gbXkgZGVzaWduLgoKTXkgZ29hbCBpcyB0byBh
+Y2hpZXZlIHRoZSBmb2xsb3dpbmc6CgotIEZpcnN0IFR3aW5SWCAocmFkaW8wKTogVXNlIG9uZSBj
+aGFubmVsIHRvIGRpc3BsYXkgZXZlcnkgbi10aCBQU0QsIHdoaWxlIHNpbXVsdGFuZW91c2x5IHJl
+Y29yZGluZyBhIG5hcnJvd2JhbmQgY2hhbm5lbCB3aXRoaW4gdGhlIGRpc3BsYXllZCBzcGVjdHJ1
+bSAodXNpbmcgc3BsaXQgYW5kIGRkYykuCi0gU2Vjb25kIFR3aW5SWCAocmFkaW8xKTogUmFwaWRs
+eSBzd2VlcCBhIGxhcmdlIGJhbmR3aWR0aCBhbmQgZGlzcGxheSB0aGUgUFNELCBhbHNvIHV0aWxp
+emluZyB0aGUgd2luZG93LCBmZnQsIGFuZCBsb2dwd3IgYmxvY2tzLgoKSSB3b3VsZCBncmVhdGx5
+IGFwcHJlY2lhdGUgeW91ciBmZWVkYmFjayBvbiB0aGUgZm9sbG93aW5nIHBvaW50czoKCi0gVmFs
+aWRhdGlvbiBvZiBJbml0aWFsIERlc2lnbjogSSBoYXZlIGF0dGFjaGVkIG15IGluaXRpYWwgYXR0
+ZW1wdCBhdCBjcmVhdGluZyB0aGlzIEZQR0EgaW1hZ2UuIENvdWxkIHlvdSBwbGVhc2UgcmV2aWV3
+IGl0IGFuZCBsZXQgbWUga25vdyBpZiB0aGlzIGFwcHJvYWNoIGlzIGNvcnJlY3Q/Ci0gQWNoaWV2
+aW5nIFNwZWNpZmljIFBTRCBTaXplOiBJcyBpdCBwb3NzaWJsZSB0byBhY2hpZXZlIGEgUFNEIHNp
+emUgb2YsIGZvciBleGFtcGxlLCA4MTkyIHVzaW5nIHRoZSB3aW5kb3csIGZmdCwgYW5kIGxvZ3B3
+ciBibG9ja3M/IElmIHNvLCBjb3VsZCB5b3UgYWR2aXNlIG9uIHRoZSBuZWNlc3Nhcnkgc3RlcHMg
+dG8gYWNjb21wbGlzaCB0aGlzPwotIFR3aW5SWCBDaGFubmVsIENvbmZpZ3VyYXRpb246IElzIGl0
+IGZlYXNpYmxlIHRvIHVzZSB0aGUgc2Vjb25kIGNoYW5uZWwgb24gdGhlIHNlY29uZCBUd2luUlgg
+dG8gcmVjZWl2ZSBvbiBhIHN0YXRpYyBmcmVxdWVuY3kgd2hpbGUgdGhlIGZpcnN0IGNoYW5uZWwg
+c3dlZXBzLCBhbmQgdmljZSB2ZXJzYSwgY2FuIHRoZSBzZWNvbmQgY2hhbm5lbCBvbiB0aGUgZmly
+c3QgVHdpblJYIHN3ZWVwIGEgcG9ydGlvbiBvZiB0aGUgc3BlY3RydW0gd2hpbGUgdGhlIGZpcnN0
+IGNoYW5uZWwgcmVtYWlucyBvbiBhIHN0YXRpYyBmcmVxdWVuY3k/CgpZb3VyIGd1aWRhbmNlIG9u
+IHRoZXNlIHF1ZXN0aW9ucyB3b3VsZCBiZSBleHRyZW1lbHkgdmFsdWFibGUsIGFzIGl0IGlzIGNy
+aXRpY2FsIHRvIHRoZSBzdWNjZXNzIG9mIG15IHByb2plY3QuCgpUaGFuayB5b3UgaW4gYWR2YW5j
+ZSBmb3IgeW91ciBzdXBwb3J0LiBJIGxvb2sgZm9yd2FyZCB0byB5b3VyIHJlc3BvbnNlLgoKQmVz
+dCByZWdhcmRzLApPbG8u
 
-Now I can run rfnoc_image_builder
+--b2_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-On Sat, Aug 24, 2024 at 6:31=E2=80=AFPM Rich Gopstein <rich@ourowndomain.co=
-m> wrote:
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwg
+MjU1KTsiPkhlbGxvLDxicj48cD5JIGFtIGN1cnJlbnRseSB3b3JraW5nIG9uIGEgY3VzdG9tIEZQ
+R0EgaW1hZ2UgdGhhdCB1dGlsaXplcyBSRk5vQyBibG9ja3MgcHJvdmlkZWQgYnkgRXR0dXMgdGhy
+b3VnaCB0aGUgVUhEIHJlcG9zaXRvcnkuIFNwZWNpZmljYWxseSwgSSBhbSB1c2luZyBibG9ja3Mg
+c3VjaCBhcyA8Y29kZT5zcGxpdDwvY29kZT4sIDxjb2RlPndpbmRvdzwvY29kZT4sIDxjb2RlPmZm
+dDwvY29kZT4sIGFuZCA8Y29kZT5sb2dwd3I8L2NvZGU+IGluIG15IGRlc2lnbi48L3A+PHA+TXkg
+Z29hbCBpcyB0byBhY2hpZXZlIHRoZSBmb2xsb3dpbmc6PC9wPjxvbD48bGk+PHN0cm9uZz5GaXJz
+dCBUd2luUlggKHJhZGlvMCk6PC9zdHJvbmc+IFVzZSBvbmUgY2hhbm5lbCB0byBkaXNwbGF5IGV2
+ZXJ5IG4tdGggUFNELCB3aGlsZSBzaW11bHRhbmVvdXNseSByZWNvcmRpbmcgYSBuYXJyb3diYW5k
+IGNoYW5uZWwgd2l0aGluIHRoZSBkaXNwbGF5ZWQgc3BlY3RydW0gKHVzaW5nIDxjb2RlPnNwbGl0
+PC9jb2RlPiBhbmQgPGNvZGU+ZGRjPC9jb2RlPikuPC9saT48bGk+PHN0cm9uZz5TZWNvbmQgVHdp
+blJYIChyYWRpbzEpOjwvc3Ryb25nPiBSYXBpZGx5IHN3ZWVwIGEgbGFyZ2UgYmFuZHdpZHRoIGFu
+ZCBkaXNwbGF5IHRoZSBQU0QsIGFsc28gdXRpbGl6aW5nIHRoZSA8Y29kZT53aW5kb3c8L2NvZGU+
+LCA8Y29kZT5mZnQ8L2NvZGU+LCBhbmQgPGNvZGU+bG9ncHdyPC9jb2RlPiBibG9ja3MuPC9saT48
+L29sPjxwPkkgd291bGQgZ3JlYXRseSBhcHByZWNpYXRlIHlvdXIgZmVlZGJhY2sgb24gdGhlIGZv
+bGxvd2luZyBwb2ludHM6PC9wPjxvbD48bGk+PHN0cm9uZz5WYWxpZGF0aW9uIG9mIEluaXRpYWwg
+RGVzaWduOjwvc3Ryb25nPiBJIGhhdmUgYXR0YWNoZWQgbXkgaW5pdGlhbCBhdHRlbXB0IGF0IGNy
+ZWF0aW5nIHRoaXMgRlBHQSBpbWFnZS4gQ291bGQgeW91IHBsZWFzZSByZXZpZXcgaXQgYW5kIGxl
+dCBtZSBrbm93IGlmIHRoaXMgYXBwcm9hY2ggaXMgY29ycmVjdD88L2xpPjxsaT48c3Ryb25nPkFj
+aGlldmluZyBTcGVjaWZpYyBQU0QgU2l6ZTo8L3N0cm9uZz4gSXMgaXQgcG9zc2libGUgdG8gYWNo
+aWV2ZSBhIFBTRCBzaXplIG9mLCBmb3IgZXhhbXBsZSwgODE5MiB1c2luZyB0aGUgPGNvZGU+d2lu
+ZG93PC9jb2RlPiwgPGNvZGU+ZmZ0PC9jb2RlPiwgYW5kIDxjb2RlPmxvZ3B3cjwvY29kZT4gYmxv
+Y2tzPyBJZiBzbywgY291bGQgeW91IGFkdmlzZSBvbiB0aGUgbmVjZXNzYXJ5IHN0ZXBzIHRvIGFj
+Y29tcGxpc2ggdGhpcz88L2xpPjxsaT48c3Ryb25nPlR3aW5SWCBDaGFubmVsIENvbmZpZ3VyYXRp
+b246PC9zdHJvbmc+IElzIGl0IGZlYXNpYmxlIHRvIHVzZSB0aGUgc2Vjb25kIGNoYW5uZWwgb24g
+dGhlIHNlY29uZCBUd2luUlggdG8gcmVjZWl2ZSBvbiBhIHN0YXRpYyBmcmVxdWVuY3kgd2hpbGUg
+dGhlIGZpcnN0IGNoYW5uZWwgc3dlZXBzLCBhbmQgdmljZSB2ZXJzYSwgY2FuIHRoZSBzZWNvbmQg
+Y2hhbm5lbCBvbiB0aGUgZmlyc3QgVHdpblJYIHN3ZWVwIGEgcG9ydGlvbiBvZiB0aGUgc3BlY3Ry
+dW0gd2hpbGUgdGhlIGZpcnN0IGNoYW5uZWwgcmVtYWlucyBvbiBhIHN0YXRpYyBmcmVxdWVuY3k/
+PC9saT48L29sPjxwPllvdXIgZ3VpZGFuY2Ugb24gdGhlc2UgcXVlc3Rpb25zIHdvdWxkIGJlIGV4
+dHJlbWVseSB2YWx1YWJsZSwgYXMgaXQgaXMgY3JpdGljYWwgdG8gdGhlIHN1Y2Nlc3Mgb2YgbXkg
+cHJvamVjdC48L3A+PHA+VGhhbmsgeW91IGluIGFkdmFuY2UgZm9yIHlvdXIgc3VwcG9ydC4gSSBs
+b29rIGZvcndhcmQgdG8geW91ciByZXNwb25zZS48L3A+PHA+QmVzdCByZWdhcmRzLDxicj5PbG8u
+PGJyPjwvcD48YnI+PC9kaXY+
 
-> I'm trying to build the UHD 4.7.0.0 FPGA image from source for the E310.
-> I followed the instructions in
-> https://files.ettus.com/manual/md_usrp3_build_instructions.html and
-> successfully built and installed the UHD host, but when I try running
-> rfnoc_image_builder, i get the following error:
->
->   File "./rfnoc_image_builder", line 56, in <module>
->>     from uhd.imgbuilder import image_builder
->> ModuleNotFoundError: No module named 'uhd'
->>
->
-> I'm doing the build on an Ubuntu 20.04.6 LTS system.
->
-> Rich
->
->
 
---000000000000a15b430620766d32
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--b2_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY--
 
-<div dir=3D"ltr"><div>With help from Marcus, I found that the following hel=
-ped:</div><div><br></div><div><div><span style=3D"font-family:monospace">ex=
-port PYTHONPATH=3D/usr/local/lib/python3.8/site-packages</span></div><div><=
-span style=3D"font-family:monospace">export LD_LIBRARY_PATH=3D/usr/local/li=
-b</span></div><div><br></div><div>Now I can run rfnoc_image_builder<br></di=
-v></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Sat, Aug 24, 2024 at 6:31=E2=80=AFPM Rich Gopstein &lt;<a href=
-=3D"mailto:rich@ourowndomain.com">rich@ourowndomain.com</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
-v>I&#39;m trying to build the UHD 4.7.0.0 FPGA image from source for the E3=
-10.=C2=A0 I followed the instructions in <a href=3D"https://files.ettus.com=
-/manual/md_usrp3_build_instructions.html" target=3D"_blank">https://files.e=
-ttus.com/manual/md_usrp3_build_instructions.html</a> and successfully built=
- and installed the UHD host, but when I try running rfnoc_image_builder, i =
-get the following error:</div><div><br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex">=C2=A0 File &quot;./rfnoc_image_builder&quot;, line 56,=
- in &lt;module&gt;<br>=C2=A0 =C2=A0 from uhd.imgbuilder import image_builde=
-r<br>ModuleNotFoundError: No module named &#39;uhd&#39;<br></blockquote><di=
-v><br></div><div>I&#39;m doing the build on an Ubuntu 20.04.6 LTS system.<b=
-r></div><div><br></div><div>Rich</div><div><br></div></div>
-</blockquote></div>
+--b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
+Content-Type: application/x-yaml; name=x310_rfnoc_custom.yml
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=x310_rfnoc_custom.yml
 
---000000000000a15b430620766d32--
+IyBHZW5lcmFsIHBhcmFtZXRlcnMKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLQpzY2hlbWE6IHJmbm9jX2ltYWdlYnVpbGRlcl9hcmdzICAgICAgICAgIyBJZGVudGlm
+aWVyIGZvciB0aGUgc2NoZW1hIHVzZWQgdG8gdmFsaWRhdGUgdGhpcyBmaWxlCmNvcHlyaWdodDog
+Pi0gICAgICAgICAgICAgICAgICAgICAgICAgICAjIENvcHlyaWdodCBpbmZvcm1hdGlvbiB1c2Vk
+IGluIGZpbGUgaGVhZGVycwogIENvcHlyaWdodCAyMDI0IEFkbWluIFJlc2VhcmNoCmxpY2Vuc2U6
+ID4tICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIExpY2Vuc2UgaW5mb3JtYXRpb24gdXNl
+ZCBpbiBmaWxlIGhlYWRlcnMKICBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogZG8gV2hhdCBUaGUg
+RipjayB5b3Ugd2FudCB0byBQdWJsaWMgTGljZW5zZQp2ZXJzaW9uOiAnMS4wJyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIyBGaWxlIHZlcnNpb24gKG11c3QgYmUgc3RyaW5nIHNvIHdlIGNhbiBk
+aXN0aW5ndWlzaCAxLjEgYW5kIDEuMTApCmNoZHJfd2lkdGg6IDY0ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAjIEJpdCB3aWR0aCBvZiB0aGUgQ0hEUiBidXMgZm9yIHRoaXMgaW1hZ2UKZGV2aWNl
+OiAneDMxMCcKZGVmYXVsdF90YXJnZXQ6ICdYMzEwX1hHJwoKIyBBIGxpc3Qgb2YgYWxsIHN0cmVh
+bSBlbmRwb2ludHMgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLQpzdHJlYW1fZW5kcG9pbnRzOgogIGVwX3JhZGlvMF9kZGMwMDogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIyBTdHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogVHJ1
+ZSAgICAgICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFm
+ZmljCiAgICBkYXRhOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBh
+c3NlcyBkYXRhIHRyYWZmaWMKICAgIGJ1ZmZfc2l6ZTogMzI3NjggICAgICAgICAgICAgICAgICAg
+ICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVwX3JhZGlvMF9kZGMwMToKICAgIGN0
+cmw6IEZhbHNlCiAgICBkYXRhOiBUcnVlCiAgICBidWZmX3NpemU6IDAKCiAgZXBfa2VlcG4wOgog
+ICAgY3RybDogVHJ1ZQogICAgZGF0YTogVHJ1ZQogICAgYnVmZl9zaXplOiAzMjc2OAoKCiAgZXBf
+cmFkaW8xX2RkYzEwOiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBl
+bmRwb2ludCBuYW1lCiAgICBjdHJsOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICAgICAjIEVu
+ZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAg
+ICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXpl
+OiAzMjc2OAoKICBlcF9yYWRpbzFfZGRjMTE6CiAgICBjdHJsOiBGYWxzZQogICAgZGF0YTogVHJ1
+ZQogICAgYnVmZl9zaXplOiAwCgoKIyBBIGxpc3Qgb2YgYWxsIE5vQyBibG9ja3MgaW4gZGVzaWdu
+CiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpub2NfYmxvY2tzOgoKICAjIDFz
+dCBUd2luUngKICBkZGMwMDoKICAgIGJsb2NrX2Rlc2M6ICdkZGMueW1sJyAgICAgIyBEREMgZm9y
+IHJhZGlvMCwwCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDEKCiAgZGRjMDE6CiAg
+ICBibG9ja19kZXNjOiAnZGRjLnltbCcgICAgICMgRERDIGZvciByYWRpbzAsMQogICAgcGFyYW1l
+dGVyczoKICAgICAgTlVNX1BPUlRTOiAxCgogIHJhZGlvMDoKICAgIGJsb2NrX2Rlc2M6ICdyYWRp
+by55bWwnICAgIyByYWRpbyAwLDAgYW5kIDAsMQogICAgcGFyYW1ldGVyczoKICAgICAgTlVNX1BP
+UlRTOiAxCgogICMgMm5kIFR3aW5SeAogIGRkYzEwOgogICAgYmxvY2tfZGVzYzogJ2RkYy55bWwn
+ICAgICMgRERDIGZvciByYWRpbzEsMAogICAgcGFyYW1ldGVyczoKICAgICAgTlVNX1BPUlRTOiAx
+CgogIGRkYzExOgogICAgYmxvY2tfZGVzYzogJ2RkYy55bWwnICAgICAjIEREQyBmb3IgcmFkaW8x
+LDEKICAgIHBhcmFtZXRlcnM6CiAgICAgIE5VTV9QT1JUUzogMQoKICByYWRpbzE6CiAgICBibG9j
+a19kZXNjOiAncmFkaW8ueW1sJyAgICMgcmFkaW8gMSwwIGFuZCAxLDEKICAgIHBhcmFtZXRlcnM6
+CiAgICAgIE5VTV9QT1JUUzogMQoKICAjIHByb2Nlc3NpbmcgYmxvY2tzCgogIHNwbGl0MDoKICAg
+IGJsb2NrX2Rlc2M6ICdzcGxpdF9zdHJlYW0ueW1sJwogICAgcGFyYW1ldGVyczoKICAgICAgTlVN
+X1BPUlRTOiAxCiAgICAgIE5VTV9CUkFOQ0hFUzogMgoKICBrZWVwbjA6CiAgICBibG9ja19kZXNj
+OiAna2VlcF9vbmVfaW5fbi55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDEK
+ICAgICAgV0lEVEhfTjogMzAgICAgICAgICNCaXQgd2lkdGggb2YgTiBwYXJhbSAobXVzdCBiZSA8
+PSAzMSkKCiAgd2luZHcwOgogICAgYmxvY2tfZGVzYzogJ3dpbmRvdy55bWwnCiAgICBwYXJhbWV0
+ZXJzOgogICAgICBOVU1fUE9SVFM6IDEKICAgICAgTUFYX1dJTkRPV19TSVpFOiAyMDQ4ICAgIyAx
+NjM4NCA9IDJeMTQgcG9zc2libGUgd2l0aCBGRlQgb3Igd2luZG93ID8gb3IgRkZUIHNpemUgbWF4
+IDIwNDggKGJhc2VkIG9uIGRvYykgPykgIAoKICBmZnQwOgogICAgYmxvY2tfZGVzYzogJ2ZmdF8x
+eDY0LnltbCcKICAgIHBhcmFtZXRlcnM6CiAgICAgIEVOX01BR05JVFVERV9PVVQ6IDAgICAgIyBl
+bmFibGUgQ09SRElDIGJhc2VkIG1hZ25pdHVkZSBvdXRwdXQgc3VwcG9ydAogICAgICBFTl9NQUdO
+SVRVREVfQVBQUk9YX09VVDogMSAgIyBlbmFibGUgbXVsdGlwbGllci0gbGVzcyBtYWduaXR1ZGUg
+Y2FsYyA/CiAgICAgIEVOX01BR05JVFVERV9TUV9PVVQ6IDAgICAjIGVuYWJsZSBtYWcgc3FydAog
+ICAgICBFTl9GRlRfU0hJRlQ6IDEgICAgICAjIGVuYWJsZSBzaGlmdCAKCiAgbG9ncHdyMDoKICAg
+ICMgY29tcHV0ZXMgYW5kIGVzdGltYXRlIDEwMjQgKiBsb2cyIHNxcnQoSSoqMiArIFEqKjIpLiBv
+bmx5IDEwMjQgPyBhbmQgaW5wdXQgbXVzdCBiZSBjb21wbGV4IGFuZCBjYW50IGJlIAogICAgIyAg
+bWFnIHNxcnQgb3V0cHV0IGZyb20gRkZUID8gICAKICAgIGJsb2NrX2Rlc2M6ICdsb2dwd3IueW1s
+JwogICAgcGFyYW1ldGVyczoKICAgICAgTlVNX1BPUlRTOiAxCiAgICAgIFJBTkRPTV9NT0RFOiAw
+ICAgICAjIDInYjExIGluIGxvZ3B3ci55bWwgPz8/IHNvICBlbmFibGUgcmFuZG9tIExTQnMgb24g
+ZWFjaCBpbnB1dCAwCgogIHMwMV9kZGMxOgogICAgYmxvY2tfZGVzYzogJ2RkYy55bWwnCiAgICBw
+YXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDEKCgoKCgoKCiAgd2luZHcxOgogICAgYmxvY2tf
+ZGVzYzogJ3dpbmRvdy55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDEKICAg
+ICAgTUFYX1dJTkRPV19TSVpFOiAyMDQ4ICAgIyAxNjM4NCA9IDJeMTQgcG9zc2libGUgd2l0aCBG
+RlQgb3Igd2luZG93ID8gb3IgRkZUIHNpemUgbWF4IDIwNDggKGJhc2VkIG9uIGRvYykgPykgIAoK
+ICBmZnQxOgogICAgYmxvY2tfZGVzYzogJ2ZmdF8xeDY0LnltbCcKICAgIHBhcmFtZXRlcnM6CiAg
+ICAgIEVOX01BR05JVFVERV9PVVQ6IDAgICAgIyBlbmFibGUgQ09SRElDIGJhc2VkIG1hZ25pdHVk
+ZSBvdXRwdXQgc3VwcG9ydAogICAgICBFTl9NQUdOSVRVREVfQVBQUk9YX09VVDogMSAgIyBlbmFi
+bGUgbXVsdGlwbGllci0gbGVzcyBtYWduaXR1ZGUgY2FsYyA/CiAgICAgIEVOX01BR05JVFVERV9T
+UV9PVVQ6IDAgICAjIGVuYWJsZSBtYWcgc3FydAogICAgICBFTl9GRlRfU0hJRlQ6IDEgICAgICAj
+IGVuYWJsZSBzaGlmdCAKCiAgbG9ncHdyMToKICAgICMgY29tcHV0ZXMgYW5kIGVzdGltYXRlIDEw
+MjQgKiBsb2cyIHNxcnQoSSoqMiArIFEqKjIpLiBvbmx5IDEwMjQgPyBhbmQgaW5wdXQgbXVzdCBi
+ZSBjb21wbGV4IGFuZCBjYW50IGJlIAogICAgIyAgbWFnIHNxcnQgb3V0cHV0IGZyb20gRkZUID8g
+ICAKICAgIGJsb2NrX2Rlc2M6ICdsb2dwd3IueW1sJwogICAgcGFyYW1ldGVyczoKICAgICAgTlVN
+X1BPUlRTOiAxCiAgICAgIFJBTkRPTV9NT0RFOiAwICAgICAjIDInYjExIGluIGxvZ3B3ci55bWwg
+Pz8/IHNvICBlbmFibGUgcmFuZG9tIExTQnMgb24gZWFjaCBpbnB1dCAwCgoKCgoKCgoKCiMgQSBs
+aXN0IG9mIGFsbCBzdGF0aWMgY29ubmVjdGlvbnMgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgRm9ybWF0OiBBIGxpc3Qgb2YgY29ubmVjdGlv
+biBtYXBzIChsaXN0IG9mIGtleS12YWx1ZSBwYWlycykgd2l0aCB0aGUgZm9sbG93aW5nIGtleXMK
+IyAgIC0gc3JjYmxrICA9IFNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAtIHNyY3BvcnQgPSBQ
+b3J0IG9uIHRoZSBzb3VyY2UgYmxvY2sgdG8gY29ubmVjdAojICAgLSBkc3RibGsgID0gRGVzdGlu
+YXRpb24gYmxvY2sgdG8gY29ubmVjdAojICAgLSBkc3Rwb3J0ID0gUG9ydCBvbiB0aGUgZGVzdGlu
+YXRpb24gYmxvY2sgdG8gY29ubmVjdApjb25uZWN0aW9uczoKICAjIFJGIHR3aW5SWDAgY2ggMAog
+IC0geyBzcmNibGs6IHJhZGlvMCwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogZGRjMDAsIGRzdHBv
+cnQ6IGluXzAgfQogIC0geyBzcmNibGs6IGRkYzAwLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBz
+cGxpdDAsIGRzdHBvcnQ6IGluXzAgfQoKICAjIFJGIHByb2Nlc3NpbmcgdHdpblJYMCBjaDAKICAt
+IHsgc3JjYmxrOiBzcGxpdDAsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGtlZXBuMCwgZHN0cG9y
+dDogaW5fMCB9CiAgLSB7IHNyY2Jsazoga2VlcG4wLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiB3
+aW5kdzAsIGRzdHBvcnQ6IGluXzAgfQogIC0geyBzcmNibGs6IHdpbmR3MCwgc3JjcG9ydDogb3V0
+XzAsIGRzdGJsazogZmZ0MCwgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBmZnQwLCBz
+cmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBsb2dwd3IwLCBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3Jj
+YmxrOiBsb2dwd3IwLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBlcF9rZWVwbjAsIGRzdHBvcnQ6
+IGluMCB9CgogIC0geyBzcmNibGs6IHNwbGl0MCwgc3JjcG9ydDogb3V0XzEsIGRzdGJsazogczAx
+X2RkYzEsIGRzdHBvcnQ6IGluXzAgfQogIC0geyBzcmNibGs6IHMwMV9kZGMxLCBzcmNwb3J0OiBv
+dXRfMCwgZHN0YmxrOiBlcF9yYWRpbzBfZGRjMDAsIGRzdHBvcnQ6IGluMCB9CgoKICAjIFJGIHR3
+aW5SWDAgY2ggMQogIC0geyBzcmNibGs6IHJhZGlvMCwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazog
+ZGRjMDEsICAgZHN0cG9ydDogaW5fMCB9CiAgLSB7IHNyY2JsazogZGRjMDEsIHNyY3BvcnQ6IG91
+dF8wLCBkc3RibGs6IGVwX3JhZGlvMF9kZGMwMSwgZHN0cG9ydDogaW4wIH0KCiAgIyMjIGlmIHNv
+bWUgcHJvY2Vzc2luZyBhZGRlZDogd2lsbCB0aGlzIGhhbmRsZSBjaGFuZ2luZyBmYyBmYXN0IChz
+Y2FubmVyKT8KCiAgIyBSRiB0d2luUlgxIGNoIDAKICAtIHsgc3JjYmxrOiByYWRpbzEsIHNyY3Bv
+cnQ6IG91dF8wLCBkc3RibGs6IGRkYzEwLCBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBk
+ZGMxMCwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogd2luZHcxLCBkc3Rwb3J0OiBpbl8wIH0KCiAg
+IyBSRiBwcm9jZXNzaW5nIHR3aW5SWDEgY2gwCiAgLSB7IHNyY2Jsazogd2luZHcxLCBzcmNwb3J0
+OiBvdXRfMCwgZHN0YmxrOiBmZnQxLCAgIGRzdHBvcnQ6IGluXzAgfQogIC0geyBzcmNibGs6IGZm
+dDEsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGxvZ3B3cjEsIGRzdHBvcnQ6IGluXzAgfQogIC0g
+eyBzcmNibGs6IGxvZ3B3cjEsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGVwX3JhZGlvMV9kZGMx
+MCwgZHN0cG9ydDogaW4wIH0KCgogICMgUkYgdHdpblJYMSBjaCAxCiAgLSB7IHNyY2JsazogcmFk
+aW8xLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBkZGMxMSwgICBkc3Rwb3J0OiBpbl8wIH0KICAt
+IHsgc3JjYmxrOiBkZGMxMSwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogZXBfcmFkaW8xX2RkYzEx
+LCBkc3Rwb3J0OiBpbjAgfQoKICAjIyMgaWYgc29tZSBwcm9jZXNzaW5nIGFkZGVkOiB3aWxsIHRo
+aXMgaGFuZGxlIHN0YXRpYyBmYyAoc2Nhbm5lcikgPwoKCiAgIwogICMgQlNQIENvbm5lY3Rpb25z
+CiAgLSB7IHNyY2JsazogcmFkaW8wLCAgIHNyY3BvcnQ6IGN0cmxwb3J0LCBkc3RibGs6IF9kZXZp
+Y2VfLCBkc3Rwb3J0OiBjdHJscG9ydF9yYWRpbzAgfQogIC0geyBzcmNibGs6IHJhZGlvMSwgICBz
+cmNwb3J0OiBjdHJscG9ydCwgZHN0YmxrOiBfZGV2aWNlXywgZHN0cG9ydDogY3RybHBvcnRfcmFk
+aW8xIH0KICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8wLCAgIGRzdGJsazog
+cmFkaW8wLCAgIGRzdHBvcnQ6IHJhZGlvICAgICAgICAgICB9CiAgLSB7IHNyY2JsazogX2Rldmlj
+ZV8sIHNyY3BvcnQ6IHJhZGlvMSwgICBkc3RibGs6IHJhZGlvMSwgICBkc3Rwb3J0OiByYWRpbyAg
+ICAgICAgICAgfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiB0aW1lLCAgICAgZHN0
+YmxrOiByYWRpbzAsICAgZHN0cG9ydDogdGltZSAgICAgICAgICAgIH0KICAtIHsgc3JjYmxrOiBf
+ZGV2aWNlXywgc3JjcG9ydDogdGltZSwgICAgIGRzdGJsazogcmFkaW8xLCAgIGRzdHBvcnQ6IHRp
+bWUgICAgICAgICAgICB9CgojIEEgbGlzdCBvZiBhbGwgY2xvY2sgZG9tYWluIGNvbm5lY3Rpb25z
+IGluIGRlc2lnbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLQojIEZvcm1hdDogQSBsaXN0IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlzdCBvZiBrZXktdmFs
+dWUgcGFpcnMpIHdpdGggdGhlIGZvbGxvd2luZyBrZXlzCiMgICAtIHNyY2JsayAgPSBTb3VyY2Ug
+YmxvY2sgdG8gY29ubmVjdCAoQWx3YXlzICJfZGV2aWNlIl8pCiMgICAtIHNyY3BvcnQgPSBDbG9j
+ayBkb21haW4gb24gdGhlIHNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAtIGRzdGJsayAgPSBE
+ZXN0aW5hdGlvbiBibG9jayB0byBjb25uZWN0CiMgICAtIGRzdHBvcnQgPSBDbG9jayBkb21haW4g
+b24gdGhlIGRlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKY2xrX2RvbWFpbnM6CiAgICAtIHsg
+c3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazogcmFkaW8wLCBkc3Rwb3J0
+OiByYWRpbyB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJs
+azogZGRjMDAsICAgZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNy
+Y3BvcnQ6IGNlLCAgICBkc3RibGs6IGRkYzAxLCAgIGRzdHBvcnQ6IGNlICAgIH0KCiAgICAtIHsg
+c3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazogcmFkaW8xLCBkc3Rwb3J0
+OiByYWRpbyB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJs
+azogZGRjMTEsICAgZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNy
+Y3BvcnQ6IGNlLCAgICBkc3RibGs6IGRkYzEwLCAgIGRzdHBvcnQ6IGNlICAgIH0KICAgIC0geyBz
+cmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiBjZSwgICAgZHN0YmxrOiBzMDFfZGRjMSwgICBkc3Rw
+b3J0OiBjZSAgICB9CgoKCiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAg
+IGRzdGJsazoga2VlcG4wLCAgIGRzdHBvcnQ6IGNlICAgIH0KICAgIC0geyBzcmNibGs6IF9kZXZp
+Y2VfLCBzcmNwb3J0OiBjZSwgICAgZHN0YmxrOiB3aW5kdzAsICAgZHN0cG9ydDogY2UgICAgfQog
+ICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAgICBkc3RibGs6IGZmdDAsICAg
+ZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAg
+ICBkc3RibGs6IGxvZ3B3cjAsICAgZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2JsazogX2Rl
+dmljZV8sIHNyY3BvcnQ6IGNlLCAgICBkc3RibGs6IHdpbmR3MSwgICBkc3Rwb3J0OiBjZSAgICB9
+CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJsazogZmZ0MSwg
+ICBkc3Rwb3J0OiBjZSAgICB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2Us
+ICAgIGRzdGJsazogbG9ncHdyMSwgICBkc3Rwb3J0OiBjZSAgICB9Cg==
 
---===============7307559046180272288==
+--b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +301,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7307559046180272288==--
+--b1_8ZIQd2O7UBXS0klcVyey4iVbmARiVQfrdptYguGCaY--
