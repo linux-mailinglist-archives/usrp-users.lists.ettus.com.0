@@ -2,100 +2,107 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C71439610AE
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 17:11:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 338C99613A0
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 18:06:49 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6916738587A
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 11:11:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7D55A3858F2
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 12:06:48 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724771503; bh=hjAdkDnZs0OBhLyGF4m2WiNrcSQALAKFeZ7HYY5IgqM=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=PCYF9d+M2bJJWdB56zIXtfumLlcv5Udqra3a9wBikbJszIgDUaKcgfAtbRicmYXO8
-	 rmiOpAo1eru9zOJMKi0xBFUOlwrOYnio+0XcU5XjDeIPVbocrkH5uIZeeLu12Q4zWK
-	 sQ2RmvULVnYF5xqDFLQRBiT4zUh8+YChK2FJMLT0DcrhxovTByvIqmwKxCIYaAyHb+
-	 +sl1TXAO7SPtEceGjMHEwG/25jEl3phB4o2NWwblfR8GDqaKFsyefIOhsJaUq+rg+F
-	 6ifbrY8QRDkg7uhcYy4zDfEq0dcNOJWhYNJRIyK7yG7qBqeK49y5OVV17k2F/NT1hL
-	 +jA94/l1jjgRQ==
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id B9798385551
-	for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 11:10:59 -0400 (EDT)
+	t=1724774808; bh=Bla2kSf75H7F5VS9DqqcaQ/j8VH+W7fEMv8lvBWbuZE=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=J6mrI6avYB3tTIP2Q5yfOARIc+y2CfIBwEN6wQUuN0IAtpUIBYbyxeQjmGs+ATTBc
+	 Ha5+SfCDGoYu0drAaWPhIIwFaU13wbTNvSil8W5sIVIPmPADtNYG3Eoa1Oceku30kJ
+	 cxSuTjd/GLT2HfBnbhtnHAo+xf2wGm4pw2mNtVDu8XfkvAHQyuxECpVW5z9lmyt4a4
+	 jDNvB6AHgGw4UAhpN71FKqAq1fmqP5gwazOURGRtrI9GdvjnKNL3GdDLTkeApaqzRo
+	 F5aUb3cPTSwlcFOWDOMmU0Pm9oPALpTFas1khelNnbXb1hO/EsM+pJq+5fyASdMUlF
+	 BeRTtoArHfMaQ==
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id C37713855F8
+	for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 12:05:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="B12qYK6r";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VDfsUqkw";
 	dkim-atps=neutral
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6bf7b48d2feso30144556d6.0
-        for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 08:10:59 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5bed0a2ae0fso7086795a12.1
+        for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 09:05:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724771459; x=1725376259; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qLGEM7xsU7RqNCAouwXIBDq43fJg5RLFUMFEIk49XLw=;
-        b=B12qYK6rYAKtdy/4Koy3++z2YgwteqnGL9bRfaeUKWtHVXW/vN7tsl8NceSD0FNGiO
-         hG3jxTFpQTgGKFFLthITUoFnKDmsYZWLlpa1H909UFjLi4Xc6NWqfB2mqGRk+c35N3dh
-         aJ3E4dqXM7BlW4akSTeQGzyw2WXDTBa3ezn2/+7jpa9LyqFaORr/oFEY7ZgXUUphCd2j
-         4UiCAdvcMNbd5lj9hlW2DhJEODMlSvBZTeyPdMQPXje7L5IGqrG4QcGN/FW5VY2F3LeC
-         Mhu7AeQwtgVZYB+wg06HgCagMV7zHEEpz2u9NYb3crbfwZ5/Z61TC+10WxEeki4cfkQt
-         idXQ==
+        d=gmail.com; s=20230601; t=1724774751; x=1725379551; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hMZpG/Gzchl9kOi0Q0Ud+SjWey/2f6FWdYmqkotdAbE=;
+        b=VDfsUqkwOozuErNGcX3EYtDJ4ZYRMVs3BC9B5rabp+t/P0VbA9GfccIcFTl+wRjHUY
+         pTeaJCdYbAbyYhn5LhnCv78BMtN7EidIPOPNDKKuzxquOAQ821M1b7gFUs/Tcleobt9r
+         jfjPvfgzuDRaZn07njVFaGIQ4vMj/vNxFjR0TFLA7mcjr6WYw2TomCPHpxfuEFNDxHVa
+         SOZRhlACv/XfETx5rHleDL1AYrQTl67KS5SICWQIAdys60SkVEFEob18IRM9QNB9T0A3
+         U9wG7NwiLF6Yv8qMRSI20i4TuCsl4ng8NvFEFJNkzWdAjUBGNRmKAJLDClg28/Q2YOjF
+         yWQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724771459; x=1725376259;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qLGEM7xsU7RqNCAouwXIBDq43fJg5RLFUMFEIk49XLw=;
-        b=ddGEwD9cSJUMLmb79dnE0K24UgaSompSZ1LFdJLkUwRmWbOu00SBlnrH8wmteUBD5D
-         6944j3Xf0kqT1bfkX/n8rLh/VLB9IPQFsbTxtPdCw/1YsU8Ul0kW9wvf8yBv3tvu3KEB
-         /I+Kk+5mwXy32Mq3d0KA+Z0RcrVXtRHzJJu250e2Qj5QaPySJiz7y0jqF3Kncdidxj6i
-         DaikCFMMonNpe5+srBr6AaIoUcXBjSGDlUwyrKFlhoMqviS05Uh9X0VzaItm4RmZrpxV
-         qSKPwT/7UwlosU/qZgOQjdjSNb7GG51ZJqfhwdIAgRRpgKfWrT8Y2dqWQCxSdc4gKNE0
-         lShA==
-X-Gm-Message-State: AOJu0YxxTTRy7AK9XljCmYh3RrckLdEEu0HSV3MYP7OGBZFDW5tclUFB
-	Opt5ET2ObqsFPbkfnGZOoFK+34Hq4F1ToxVf6lISfWNY+b+WbutqHlF5xg==
-X-Google-Smtp-Source: AGHT+IG/odOMGKBg+vcdGB3RALr5Hd9MmeQdUh9jT+AVNXJwaxswMOeyQZQefoSy1xBRJz6JIPXfKg==
-X-Received: by 2002:a05:6214:4606:b0:6b0:7f0c:d30e with SMTP id 6a1803df08f44-6c32b695e95mr29667296d6.10.1724771458887;
-        Tue, 27 Aug 2024 08:10:58 -0700 (PDT)
-Received: from [192.168.2.170] ([64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6c162d4d03bsm57209536d6.51.2024.08.27.08.10.58
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Aug 2024 08:10:58 -0700 (PDT)
-Message-ID: <c5523231-6e48-4c4f-9ef2-ec6c4528028d@gmail.com>
-Date: Tue, 27 Aug 2024 11:10:47 -0400
+        d=1e100.net; s=20230601; t=1724774751; x=1725379551;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hMZpG/Gzchl9kOi0Q0Ud+SjWey/2f6FWdYmqkotdAbE=;
+        b=P8jDY+FxB9lYia4V9Ooz7JpbNrFjqFh/a4WYuTFMt12LO9Dh2atRZzpP+8ONlU0Pf3
+         KEXjxjv9sOVXWlCAPhnYg3+7lPhEbB5Q+Ucw+ATrwK2i8sTOyo2vQPkF4Lm4kxL2+UX3
+         +paeLAoV67auwqWhCBnIN/uwjaxm6YBTVPunfw9yWyUMAGx7cRKf4zDWYGs0fEt2bU7c
+         BPc8KTyVYHcjfojiOBaor7ShDgSx4fJhh+W7kZohgQ1tC7qkvECnaAyoxwJn+CM9Vxgd
+         zD88pPIpOAOaQ/bE3B40j/6V2qEpowcyJDCGEtUn4PDrVYWJ8XBr6Lc/xgqhIgzsfpVv
+         GJjA==
+X-Gm-Message-State: AOJu0Ywr7qbGw5yRy02yw72+drtcu/ild5ITkdYgcb0lK9abSmzCYaJ/
+	q4peUVF1AmwXsnpBQPiQAhrpMlBo6AZkGIsnfMXwVlDpBGLNkOcWgXNT6wWTMF6rY+j70pr3jyH
+	7ukO2CSCb2T48JGeKnVI3Lj3CDR2MaQ==
+X-Google-Smtp-Source: AGHT+IFUcZa+S4/4nXNUUsarYo7Lj97AJ2aALxNpzu6X9TTnj8BBp9DiCQzJ6xp87LQPzvKAjzr7pS9AaDZAhBSMd3c=
+X-Received: by 2002:a05:6402:2105:b0:578:60a6:7c69 with SMTP id
+ 4fb4d7f45d1cf-5c0891a0759mr7748837a12.30.1724774751292; Tue, 27 Aug 2024
+ 09:05:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+From: Brajesh <brajesh153@gmail.com>
+Date: Tue, 27 Aug 2024 21:34:57 +0530
+Message-ID: <CAL4V06o-TJRDA4VYCFAKh1Sh4VdweBXF1SqFsPC2pZAFGYTPTw@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <jLydidFkSinWpDD1Bf1E2bizPFyaZzCWNfYbSHtcKk@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <jLydidFkSinWpDD1Bf1E2bizPFyaZzCWNfYbSHtcKk@lists.ettus.com>
-Message-ID-Hash: E464ICLUP2OPWDOYSWZH2EYGDKD6V7NX
-X-Message-ID-Hash: E464ICLUP2OPWDOYSWZH2EYGDKD6V7NX
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: YLYSRC5EFL2ML5SS3ZXC5NMEB35Y3EQZ
+X-Message-ID-Hash: YLYSRC5EFL2ML5SS3ZXC5NMEB35Y3EQZ
+X-MailFrom: brajesh153@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Why does the self-calibration utility not work?
+Subject: [USRP-users] Command for burning image on N210R4
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/E464ICLUP2OPWDOYSWZH2EYGDKD6V7NX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YLYSRC5EFL2ML5SS3ZXC5NMEB35Y3EQZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1959946249847130545=="
 
-T24gMjcvMDgvMjAyNCAwOToyNCwgSG9zc2VpbiB2aWEgVVNSUC11c2VycyB3cm90ZToNCj4NCj4g
-WWVzLCB0aGVyZSBhcmUgNiBjYWxpYnJhdGlvbiBmaWxlcyAoLmNhbCkgdW5kZXIgfi8ubG9jYWwv
-c2hhcmUvdWhkL2NhbCANCj4gZm9yIGJvdGggZGF1Z2h0ZXJib2FyZHMgKHR4X2RjLCB0eF9pcSwg
-YW5kIHJ4X2lxKSB3aXRoIHNlcmlhbCBOby4gb2YgDQo+IGRhdWdodGVyYm9hcmRzIGluIHRoZSBm
-aWxlIG5hbWVzLg0KPg0KPiBUaGFua3MgZm9yIHlvdXIgaW50ZXJlc3QhDQo+DQo+DQpTbywgd2hh
-dCBMTyBvZmZzZXQgYXJlIHlvdSB1c2luZz/CoCAoWW91IG1lbnRpb25lZCBsb3ctSUYgbW9kZSks
-IGFuZCB3aGF0IA0KaXMgdGhlIHJhdGlvIGJldHdlZW4geW91ciBzaW5nbGUtdG9uZSBjYXJyaWVy
-LCBhbmQNCiDCoCB0aGUgTE8gbGVha2FnZT/CoCBEbyB5b3UgaGF2ZSBhIHNwZWN0cmFsIHBsb3Q/
-DQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpV
-U1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1
-bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMu
-Y29tCg==
+--===============1959946249847130545==
+Content-Type: multipart/alternative; boundary="0000000000005e56960620ac6a4c"
+
+--0000000000005e56960620ac6a4c
+Content-Type: text/plain; charset="UTF-8"
+
+After building setup for N210R4, I am able to generate new image for
+N210R4. I want to burn newly generated image on the N210R4 FPGA. Looking
+for command to do the needful.
+
+Thanks and regards.
+
+--0000000000005e56960620ac6a4c
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr">After building setup for N210R4, I am able to generate new image for N210R4. I want to burn newly generated image on the N210R4 FPGA. Looking for command to do the needful.<div><div><br><div>Thanks and regards.</div></div></div></div>
+
+--0000000000005e56960620ac6a4c--
+
+--===============1959946249847130545==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1959946249847130545==--
