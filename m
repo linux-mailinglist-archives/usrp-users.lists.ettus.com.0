@@ -2,110 +2,110 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B35596094E
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 13:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F809960B32
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 15:00:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 377A53855F8
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 07:51:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6670C3855FE
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 09:00:43 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724759499; bh=zHoMA9CYflI8hJvdfPjPnuOG7wC8khAo9v5c6xs5SpU=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=GZrgNIbcNMCrHmw9M9zRqRAKgfpcH0IPP8G2UG1PhhbTDANFU0QYBD6Nz2/nzovEq
-	 GQ8C8cVCsB3lAiIYEYjloL6JSi/2T1nHeDHd7DQDN8KNOBpwmB3y79NSPF0lJUnu11
-	 nnA0W20JreRexIOpW2DmQ5A56vy5lYdATZqIG8bhX+5bnXjoOELG3e1brtuMQUxvp5
-	 B6TNgGcXtWF8Z4Qx3pgCa7EI4kMC3f8Qn70RkyanmfX1SuDBFJ74moIg8a6R7kVxqj
-	 2nmUwBf1lUvu66NdvVeKPYsfyZxFJTInRYZFenE/ywETrlrrRQHSGUwFVbl15nBSRT
-	 T6M8CokT2L8og==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2BFD2385584
-	for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 07:50:54 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724759454; bh=E4dYTGBPMyJh/UuhPAO41GQvBOvX/N/l6PMRVnpYpSs=;
-	h=Date:To:From:Subject:From;
-	b=tbJqqGvlp5zE2xPrOBEztAUYTFWBEDiCByE9unrP3iyRFWOUmvaE3b/MimsuNUEA2
-	 DVHuj+YYzgiUFNQ61Nbeg3qwitmuagSJfBj/9WxjhrpFQE+OchI+r7fRHuFyWGwWxt
-	 o5AER0Oj9XTXgeU0+Xm3ZGTM3vQXmhhNJKxst/PCD3/jrvhckgdpWv/I7uQqEaHBL+
-	 CIbYNJhicyOr9l1A/N/DpvM3dTbtCxBEd+H0oVXObEUEHavhJ9/yrA0Zmd0OtrDc2H
-	 JOsf7p8J8kjRzTbuc6pVj2oP/6+FcK+33WVHX4b63HtMOg629MsmZOywgxfhRrsQ4g
-	 VFkkX4lmHpDDA==
-Date: Tue, 27 Aug 2024 11:50:54 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <sZP2Z7YYrX9VMJ3u3xfJw9TYP982cRa4tj2kSFlb0@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	t=1724763643; bh=HqFys/Hp6YDvokvkdJvMGNoxEOhl6P+0JhAj8PRLW/4=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=S5PjY/msDqvuhAjpnAGjwPJUH8Eh7ne4nQ6/ZKBxjk0Hyps+1ttsXs63iOFse/YhV
+	 xXtzbk9hO3EUmgPOdDeU0nbkpy+pLW3yXet3DNzbYdzC+oLQaxcOtoQylXPLO/Xfgn
+	 vut3BPSC27Ldpm6nDuJ61V9pmJ5M2mp1GghZUM1u4dYTJ2Kd3moHmI2GYZaCKfWHs4
+	 yvb4DZRPn2KM35YdAvuFbzquqDitXig3rkT8il9Hk09JCNEC8lnIa7Fj3gRNiVNXPJ
+	 otqgQQxUPJGPqrvyIImAMnTmhHqIrb5jc3np3D/WrHbMlLHxEzxK6ob3ulJSV1n0z3
+	 EZlHHvuES9QGg==
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id C3A7C385436
+	for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 08:59:45 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hoDZF6lQ";
+	dkim-atps=neutral
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-842f91f2545so1495125241.3
+        for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 05:59:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724763585; x=1725368385; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R1ecatMHhgVyyGjgFkzIaY5AkqKTCYK9WQQLOCJxMz4=;
+        b=hoDZF6lQvDbNKP6uTYvPQnTQVY4lmdv6SMFXCsX0cUQ89G8KcZE1lqUJsyzAU/Xhy9
+         x+EJ4gE+siNwL6BNFJt7+wRUDa06EynZRmO4Xhswi4P9DJXl8f21JUHQm4odnXjnfJbV
+         tZpoZ2weQxMzzcdKUTdXWW+ZNTjmSV2bJhgMKOaA+nNuxi/9JgqXO/zdeFBWYgsN8zoa
+         XG4kRPIhNLljvHnWbKLCgOH0FSgDLiWzLZ8boN/PftetAc2r320beHI73aieBkpe387i
+         bueTrUO91QprOVHB5mPjVr8WW7hOpgkINUA3Ju+RBa6YKWyx1rRDexBBlJ+S2v9rm9jv
+         xC0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724763585; x=1725368385;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R1ecatMHhgVyyGjgFkzIaY5AkqKTCYK9WQQLOCJxMz4=;
+        b=K8GnIyBIMNqC7oshJUZrQoFBcltFfaZAYvit8Ab02u8AH45iOztzDrUjO8T1qjv1rI
+         Nc67RHh3WqWaO/03OxDlKBxbUPa9In44yRqLg2grj8Xmjvkd6iA2pL1X2dnRVQ7v5++f
+         RXhDvezps5iy8jtXHfFIDGrKsfIojBKOizOqars3FACsVqQuEJjJWC4GV9SBMI7c8Z/0
+         LRYewfzcGCsJ+qakfMKiCdIUeTNNgwyS64l4Nkf3HJyAPPO6hcVytNCWfczfRu4Rjq5D
+         kz+VIK3b5aFCzqE13WP+ZhYMzX64u8yE/H4EtnqRBzOQPt6BcQNyTlRy45jHOWNNfu2k
+         iiOg==
+X-Gm-Message-State: AOJu0YzSIMNTvvG2rb6LF7Zr1mMD92ALXEdD0JhreztyoiDFvdfHWEhM
+	GoZgg/vV+NVjLhvYWwinCrPQc3xL5J94QXB7uGgX++K3cEZb/aKNwcZI4Q==
+X-Google-Smtp-Source: AGHT+IFxc3GxMN0rDRbZX7mX6aLI5GLcEZoypfkAeuWVQw8BhaEBzpoU71AoNx+KXrpFel5YSK4WZw==
+X-Received: by 2002:a05:6102:50a7:b0:492:a11f:a87a with SMTP id ada2fe7eead31-498f4719ad1mr14506995137.25.1724763584622;
+        Tue, 27 Aug 2024 05:59:44 -0700 (PDT)
+Received: from [192.168.2.170] ([64.231.212.86])
+        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7a67f343d3asm546607885a.48.2024.08.27.05.59.44
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Aug 2024 05:59:44 -0700 (PDT)
+Message-ID: <2e4f73e0-30b0-4951-b81f-afc09a65a3cb@gmail.com>
+Date: Tue, 27 Aug 2024 08:59:33 -0400
 MIME-Version: 1.0
-Message-ID-Hash: CC2XPE56GGRBFAIIB6JHMI7IIWMTS4DN
-X-Message-ID-Hash: CC2XPE56GGRBFAIIB6JHMI7IIWMTS4DN
-X-MailFrom: mhosein_attar@yahoo.com
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <sZP2Z7YYrX9VMJ3u3xfJw9TYP982cRa4tj2kSFlb0@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <sZP2Z7YYrX9VMJ3u3xfJw9TYP982cRa4tj2kSFlb0@lists.ettus.com>
+Message-ID-Hash: UDNYLDIL6SGYHTN3QYJL6B6JFWUOWWLZ
+X-Message-ID-Hash: UDNYLDIL6SGYHTN3QYJL6B6JFWUOWWLZ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Why does the self-calibration utility not work?
+Subject: [USRP-users] Re: Why does the self-calibration utility not work?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CC2XPE56GGRBFAIIB6JHMI7IIWMTS4DN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UDNYLDIL6SGYHTN3QYJL6B6JFWUOWWLZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Hossein  via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: mhosein_attar@yahoo.com
-Content-Type: multipart/mixed; boundary="===============7259773530661358476=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============7259773530661358476==
-Content-Type: multipart/alternative;
- boundary="b1_sZP2Z7YYrX9VMJ3u3xfJw9TYP982cRa4tj2kSFlb0"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_sZP2Z7YYrX9VMJ3u3xfJw9TYP982cRa4tj2kSFlb0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-I work with a USRP X310 and two CBX-120 daughterboards. I would like to c=
-alibrate the daughterboards according to the page https://files.ettus.com=
-/manual/page_calibration.html on USRP Hardware Driver (UHD) manual. After=
- applying the utilities for self-calibration, with or without 50 Ohm term=
-inators attached to the RF ports, I see no difference with =E2=80=9Cignor=
-e-cal-file=E2=80=9D enabled or disabled. I transmitted both a single tone=
- and an OFDM-like waveform at Low-IF mode. There was no difference in ter=
-ms of LO leakage or IQ imbalance. I am not sure if I missed something to =
-do. Do you have any ideas?
-
-Please let me know if you need any specific information to help me.
-
-Thanks!
-
---b1_sZP2Z7YYrX9VMJ3u3xfJw9TYP982cRa4tj2kSFlb0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>I work with a USRP X310 and two CBX-120 daughterboards. I would like t=
-o calibrate the daughterboards according to the page https://files.ettus.=
-com/manual/page_calibration.html on USRP Hardware Driver (UHD) manual. Af=
-ter applying the utilities for self-calibration, with or without 50 Ohm t=
-erminators attached to the RF ports, I see no difference with =E2=80=9Cig=
-nore-cal-file=E2=80=9D enabled or disabled. I transmitted both a single t=
-one and an OFDM-like waveform at Low-IF mode. There was no difference in =
-terms of LO leakage or IQ imbalance. I am not sure if I missed something =
-to do. Do you have any ideas?</p><p>Please let me know if you need any sp=
-ecific information to help me.</p><p>Thanks!</p>
-
-
---b1_sZP2Z7YYrX9VMJ3u3xfJw9TYP982cRa4tj2kSFlb0--
-
---===============7259773530661358476==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============7259773530661358476==--
+T24gMjcvMDgvMjAyNCAwNzo1MCwgSG9zc2VpbiB2aWEgVVNSUC11c2VycyB3cm90ZToNCj4NCj4g
+SSB3b3JrIHdpdGggYSBVU1JQIFgzMTAgYW5kIHR3byBDQlgtMTIwIGRhdWdodGVyYm9hcmRzLiBJ
+IHdvdWxkIGxpa2UgDQo+IHRvIGNhbGlicmF0ZSB0aGUgZGF1Z2h0ZXJib2FyZHMgYWNjb3JkaW5n
+IHRvIHRoZSBwYWdlIA0KPiBodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV9jYWxp
+YnJhdGlvbi5odG1sIG9uIFVTUlAgSGFyZHdhcmUgDQo+IERyaXZlciAoVUhEKSBtYW51YWwuIEFm
+dGVyIGFwcGx5aW5nIHRoZSB1dGlsaXRpZXMgZm9yIA0KPiBzZWxmLWNhbGlicmF0aW9uLCB3aXRo
+IG9yIHdpdGhvdXQgNTAgT2htIHRlcm1pbmF0b3JzIGF0dGFjaGVkIHRvIHRoZSANCj4gUkYgcG9y
+dHMsIEkgc2VlIG5vIGRpZmZlcmVuY2Ugd2l0aCDigJxpZ25vcmUtY2FsLWZpbGXigJ0gZW5hYmxl
+ZCBvciANCj4gZGlzYWJsZWQuIEkgdHJhbnNtaXR0ZWQgYm90aCBhIHNpbmdsZSB0b25lIGFuZCBh
+biBPRkRNLWxpa2Ugd2F2ZWZvcm0gDQo+IGF0IExvdy1JRiBtb2RlLiBUaGVyZSB3YXMgbm8gZGlm
+ZmVyZW5jZSBpbiB0ZXJtcyBvZiBMTyBsZWFrYWdlIG9yIElRIA0KPiBpbWJhbGFuY2UuIEkgYW0g
+bm90IHN1cmUgaWYgSSBtaXNzZWQgc29tZXRoaW5nIHRvIGRvLiBEbyB5b3UgaGF2ZSBhbnkgDQo+
+IGlkZWFzPw0KPg0KPiBQbGVhc2UgbGV0IG1lIGtub3cgaWYgeW91IG5lZWQgYW55IHNwZWNpZmlj
+IGluZm9ybWF0aW9uIHRvIGhlbHAgbWUuDQo+DQo+IFRoYW5rcyENCj4NCj4NCj4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUg
+c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KQ291bGQg
+eW91IGNvbmZpcm0gdGhhdCBpdCBwbGFjZWQgQ0FMIGZpbGVzIGluwqAgeW91ciAiLnVoZC9jYWwi
+IGRpcmVjdG9yeSANCnVuZGVyIHlvdXIgaG9tZSBkaXJlY3Rvcnk/DQoNCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
+IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
+aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
