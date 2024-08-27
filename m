@@ -2,292 +2,402 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D451960398
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 09:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 018539605AE
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 11:34:11 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E017E3853A4
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 03:47:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C27CC383A22
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2024 05:34:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724744879; bh=X7P4aNEP3u5W7NysFXYQrycFqbn5AxsYeXZJYysphkw=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=yPilqEgXI5p40UZUhFgPu2mYbGKVg5YqTzXOXV8tfHdFhj4GSpsyaekRYDGfOKB3k
-	 BDDgzUvvgKnvXdKZ/Ycv+xdW1stE0NJkC7yVwHZljyJyI6Lap2gX008qnHBBCVX6k4
-	 qI7CzqntX1MjFkB7CgfdB/U6+dEubZ2H1ijz793CW8uVc/XqorefNst5qGNyLle2VY
-	 jDPsk2AHwAaau4ZkJfE+dzC5i6DEoz+dDazySuqpLu+jrnmNO6/JpA5RNT0Pq+v++7
-	 E/lzAvKNlCGBYoP6091umA0WqcQpeYb6XiVl36N1sVnyYZEO94T4eSXYqPJj8co+IO
-	 CBfqD3tHvplJQ==
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 47C94384DEC
-	for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 03:47:20 -0400 (EDT)
+	t=1724751249; bh=PELjZF58NCQ19d7PFuxj5TFANDvAF2NM+IF4ptqb/Mg=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=Tt+prdBVIava9tHrtGjYB3teSB3kQXVJqODQJH2BLab8IN9M4dFdOVu6SqegCzpmU
+	 NtOF1kWraCd4WGrVitytP+ecTUk3xx1YafKKwEM47M/2WqxLW+g3irZ+LbwpFUHfny
+	 Fao18WTGLkpir0wTWu9AP/sXmqspQ3yUYXYldgqyJEwshUaD53ZWB4iStRtqCZNZV0
+	 vm+oCGbSgPyqqDF3Pszbdw+WCPTdyU83UEn2vvpVifCyKG7hJeKUi6oumMfDHVyVqN
+	 r7GkBFQK8YqO668xH/5BoeH38Xyz//3xM6tZllQLWQJoqUOtSLGgffTOPbwR/UyHzJ
+	 vUNLlnGaL4oXQ==
+Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5A6F538502A
+	for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 05:33:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="UAoU3FJC";
+	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="bpwivzqL";
 	dkim-atps=neutral
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a7aa086b077so458281666b.0
-        for <usrp-users@lists.ettus.com>; Tue, 27 Aug 2024 00:47:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1724744839; x=1725349639; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/9YHyprqojidbzAYgYCBzp1+xD9kPuYKbqjtyx7hG7s=;
-        b=UAoU3FJCSNZnUb+tyhs3xLU4fJv9N6T2DheKLBORUKBbrL0CN+RkJSWxHiqhJgOk/u
-         BXDTarcANRSFdYr17dbAZpK5iwoBtfWsAKTIYPmiWWCusi43CUH9hntvoO9CyEZsl/F6
-         CxehLoORMXIAJ1zxJxhgfN3Q0BbgegvrLcI75al9WEEDyRGBdymdn3igdOoq7RI7yQ+n
-         U0Zt68/kGgfZIe6Qns4fYYOy/KvL5PrG6fSDpXR33jt7iDJhg/xEjdTzih7iS0pwR5Jv
-         R9jao7Rv0+huw0VNVVYafvIJCv7PvGmQ3gj07ydysU45WkmM3tAt4i13TZLzJDp8wVdg
-         FX0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724744839; x=1725349639;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/9YHyprqojidbzAYgYCBzp1+xD9kPuYKbqjtyx7hG7s=;
-        b=p51UHOmFH/UD5yMxNTUm77lnz9+woDlcfz5paiL5HHAiFuTdnlgyucv4mCxPNyDiUJ
-         kKjiSx0iNl5CIyHC9o9s9+oWO1pkpuhf0bLFPBxIku9trsqJFWDezcmwQed+cBDdmOzW
-         vdb1cQQJm34HkCZsrabQqkxv85zH9qkueWp4Nw9PmVXG4RrRbRRSTLkkuEGvFAqdUqSN
-         OoZIfJMi4oDA/p3I+sm5VDpS3XntqvPPASvUWfYbVl3dbjSWZeKjzycAv5LkH//QktK0
-         m0ghqa+lOgSpq4qVN0gZEMrZLj/RdT//Ww3hudFHnmXx+FB2kXCI/17Ws0jbM6ezBGl0
-         mcGw==
-X-Gm-Message-State: AOJu0YxVQQtdcLlC/djJcEJNKDjvcEcSOUo1OMWXPHK4miSlOy0QeWU7
-	tphXB8C297fOTGD9ofJLaM1NL07Zb2NfeDvD8grXjeQGILOexFCBodQDWa6Z8MnhoMRBiZ0HnY8
-	xMqGOCRzsAM0Ll2e9Eu+uMJHhDpR0Z+sZMEF5es4ax41I0jaygmXnYA==
-X-Google-Smtp-Source: AGHT+IEcvQPg12UprxaQrZtRKq/aNI3IdCpa8mcMTXtcI9ygKMbdVeySx6cy74CN+QZqZU16Vaz+VSwr+bQn1WWYYs0=
-X-Received: by 2002:a17:907:efcb:b0:a86:7adb:b327 with SMTP id
- a640c23a62f3a-a86a530135dmr879336366b.40.1724744838991; Tue, 27 Aug 2024
- 00:47:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1724751203; x=1725010403;
+	bh=/OV03MLnSLQhVYwXVQdgS9qMectIaWvUd0i38z0YYp4=;
+	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=bpwivzqL12LLG7wUIro6+d87KEtJMv4Y1fA/IkFMkQkp8Hq/oa2WAmN66jt1dpVVN
+	 9T/tMyDIbYe04Iw0mP1XkUXyP6GO386dGl+L6CYWzfA6fALezvCvsynzaR+xTZI+B2
+	 lSIbI6kNG4e08ycLLm3b5hG03H41nygRHuQ8wMXMaIuMi0ocLR88LsbwSU2ekZKAFh
+	 fXtgJ/5bOJEM8ULQDxnN/RGe1buEr19A9pZ/9KTdya65OIwrkq8WxGlG/JrQsFbPun
+	 qMqMOtonOswf/1kSC0DNxvh+g/Bvd/ygAxjTHCKzexMUEdRZEYqfv7SP503ieezBGt
+	 miw1aScDW6HsQ==
+Date: Tue, 27 Aug 2024 09:33:18 +0000
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <Q_NqcWhbOF3BQUKsVckNn9edxSwIdd8tSBYk3lM6S_UYwLQIVuLncqarHw0DLZK6BQUuY40HIJNvhxfbwQQykR8vpHWaXWGeysgoqQcIlcc=@protonmail.com>
+In-Reply-To: <CAFOi1A5TNE5M4xWD9dRCpNoj2RV08Soxpkphp7Lyrp7azq5P-Q@mail.gmail.com>
+References: <b7EDp_Z-OGLk51ibwQutMTVO7aVrweoUubIOqX594P7xDHOpwd6I31RtEuiCTB3DMjFLfdkKR0dLqBIS1UGsN8df_iSefI5zIAhjCxTWVUY=@protonmail.com> <CAB__hTSWmo4jBMz7PiLw=uMzR56RaNTqj_PZo3pk6Oxt9fsGUQ@mail.gmail.com> <524a890b-6dea-4526-aef3-3dfbed714a20@gmail.com> <CAB__hTTO=N08nac2wwg9H4X6X1KWufAr+8jm5xXjd0QXnsiLow@mail.gmail.com> <ZzKYZGhnR2PvIUOunRGDW3GffGey_JjDV2v-c_tCLY9R66l3Yt-R4dt-wV9uzw5PYEbIEYAPGndZjkFQCRw_cRP-j8MUC7jxZ7-2ak2MNto=@protonmail.com> <CAFOi1A5TNE5M4xWD9dRCpNoj2RV08Soxpkphp7Lyrp7azq5P-Q@mail.gmail.com>
+Feedback-ID: 47010692:user:proton
+X-Pm-Message-ID: be0d11578f058ad47598ff974cf82151bcc481d4
 MIME-Version: 1.0
-References: <b7EDp_Z-OGLk51ibwQutMTVO7aVrweoUubIOqX594P7xDHOpwd6I31RtEuiCTB3DMjFLfdkKR0dLqBIS1UGsN8df_iSefI5zIAhjCxTWVUY=@protonmail.com>
- <CAB__hTSWmo4jBMz7PiLw=uMzR56RaNTqj_PZo3pk6Oxt9fsGUQ@mail.gmail.com>
- <524a890b-6dea-4526-aef3-3dfbed714a20@gmail.com> <CAB__hTTO=N08nac2wwg9H4X6X1KWufAr+8jm5xXjd0QXnsiLow@mail.gmail.com>
- <ZzKYZGhnR2PvIUOunRGDW3GffGey_JjDV2v-c_tCLY9R66l3Yt-R4dt-wV9uzw5PYEbIEYAPGndZjkFQCRw_cRP-j8MUC7jxZ7-2ak2MNto=@protonmail.com>
-In-Reply-To: <ZzKYZGhnR2PvIUOunRGDW3GffGey_JjDV2v-c_tCLY9R66l3Yt-R4dt-wV9uzw5PYEbIEYAPGndZjkFQCRw_cRP-j8MUC7jxZ7-2ak2MNto=@protonmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 27 Aug 2024 09:47:08 +0200
-Message-ID: <CAFOi1A5TNE5M4xWD9dRCpNoj2RV08Soxpkphp7Lyrp7azq5P-Q@mail.gmail.com>
-To: Olo <olo1618@protonmail.com>
-Message-ID-Hash: 6US65UVQPWQMGBRWDIVULDAX4O4VRMXR
-X-Message-ID-Hash: 6US65UVQPWQMGBRWDIVULDAX4O4VRMXR
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: LHXRPYIP5HJVLXHOPW2O77362FKDY6TE
+X-Message-ID-Hash: LHXRPYIP5HJVLXHOPW2O77362FKDY6TE
+X-MailFrom: olo1618@protonmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Assistance with RFNoC and TwinRX Configuration in Custom FPGA Image
+Subject: [USRP-users] Assistance with RFNoC and TwinRX Configuration in Custom FPGA Image
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6US65UVQPWQMGBRWDIVULDAX4O4VRMXR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LHXRPYIP5HJVLXHOPW2O77362FKDY6TE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2788662400075766908=="
+From: Olo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olo <olo1618@protonmail.com>
+Content-Type: multipart/mixed; boundary="===============6137013620925097111=="
 
---===============2788662400075766908==
-Content-Type: multipart/alternative; boundary="00000000000074f1c20620a573c6"
+This is a multi-part message in MIME format.
 
---00000000000074f1c20620a573c6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============6137013620925097111==
+Content-Type: multipart/alternative;
+ boundary="b1_73SvpUDGhPFeAoQuYdSqG7RVzebekX2wCZBwJrY1nc"
 
-On Mon, Aug 26, 2024 at 7:14=E2=80=AFPM Olo via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+This is a multi-part message in MIME format.
 
-> Thank you for your detailed responses to my previous questions. I
-> appreciate the information provided about the limitations and potential
-> issues related to FFT size and TwinRX configuration.
->
-> However, I noticed that there was no feedback regarding the YAML file I
-> attached in my original email. Could you please review it and let me know
-> if the configuration I've set up is correct?
->
+--b1_73SvpUDGhPFeAoQuYdSqG7RVzebekX2wCZBwJrY1nc
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-I didn't build and test it, but if it manages to squeeze in all the IP, I
-see no general issues.
+VGhhbmsgeW91IGZvciB5b3VyIHJlc3BvbnNlIGFuZCBmb3IgY29uZmlybWluZyB0aGUgZ2VuZXJh
+bCBhcHByb2FjaCB0byB0aGUgY29uZmlndXJhdGlvbi4gSSBoYXZlIGEgY291cGxlIG1vcmUgcXVl
+c3Rpb25zIHJlbGF0ZWQgdG8gUkZOb0MsIHBhcnRpY3VsYXJseSBhYm91dCBidWZmZXIgc2l6ZSBp
+biBTRVAgKFN0cmVhbSBFbmRwb2ludHMpIGFuZCBJUCBhZGRyZXNzIHNldHRpbmdzLgoKMS4gQnVm
+ZmVyIFNpemUgaW4gU0VQOgoKSeKAmW0gaGF2aW5nIHNvbWUgZGlmZmljdWx0eSB1bmRlcnN0YW5k
+aW5nIHRoZSBjb3JyZWN0IHNldHRpbmcgZm9yIGJ1ZmZlciBzaXplIGluIFNFUC4gSeKAmXZlIGZv
+dW5kIGNvbmZsaWN0aW5nIGluZm9ybWF0aW9uOgoKT24gcGFnZTogaHR0cHM6Ly9rYi5ldHR1cy5j
+b20vUkZOb0NfRnJlcXVlbnRseV9Bc2tlZF9RdWVzdGlvbnMKaXQgc2F5czogIlNldCB0byAwIGlm
+IHlvdSBkb24ndCBuZWVkIHRvIHNlbmQgZGF0YSB0byB0aGF0IFNFUC4iCgpNZWFud2hpbGUsIHRo
+aXMgb3RoZXIgcGFnZTogaHR0cHM6Ly9rYi5ldHR1cy5jb20vR2V0dGluZ19TdGFydGVkX3dpdGhf
+UkZOb0NfaW5fVUhEXzQuMApzdGF0ZXM6ICJBbHRlcm5hdGl2ZWx5LCBpZiB3ZSBrbm93IHRoYXQg
+YSBwYXJ0aWN1bGFyIFNFUCBvbmx5IHNlbmRzIGRhdGEgZnJvbSB0aGUgVVNSUCB0byB0aGUgY29t
+cHV0ZXIsIHRoZW4gd2Ugd29uJ3QgbmVlZCB0aGUgaW5ncmVzcyBkYXRhIGJ1ZmZlciBhbmQgd2Ug
+Y2FuIHNldCBidWZmLXNpemUgdG8gMCwgdGh1cyBzYXZpbmcgRlBHQSByZXNvdXJjZXMuIgoKQ291
+bGQgeW91IGNsYXJpZnkgd2hpY2ggaXMgY29ycmVjdD8gQW5kIGJhc2VkIG9uIHRoZSBmb2xsb3dp
+bmcgU0VQIGNvbmZpZ3VyYXRpb24sIGhhdmUgSSBzZXQgdGhlIGJ1ZmZlciBzaXplcyBjb3JyZWN0
+bHkgZm9yIG15IHVzZSBjYXNlPwoKSGVyZeKAmXMgbXkgY3VycmVudCBTRVAgc2V0dXA6CgojIEdl
+bmVyYWwgcGFyYW1ldGVycwojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tCi4uLgoKY2hkcl93aWR0aDogNjQgIyBCaXQgd2lkdGggb2YgdGhlIENIRFIgYnVzIGZvciB0
+aGlzIGltYWdlCmRldmljZTogJ3gzMTAnCmRlZmF1bHRfdGFyZ2V0OiAnWDMxMF9YRycKCiMgQSBs
+aXN0IG9mIGFsbCBzdHJlYW0gZW5kcG9pbnRzIGluIGRlc2lnbgojIC0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0Kc3RyZWFtX2VuZHBvaW50czoKZXBfczBkZGMwOiAjIFN0
+cmVhbSBlbmRwb2ludCBuYW1lCmN0cmw6IFRydWUgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0
+cmFmZmljCmRhdGE6IFRydWUgIyBFbmRwb2ludCBwYXNzZXMgZGF0YSB0cmFmZmljCmJ1ZmZfc2l6
+ZTogMzI3NjggIyBJbmdyZXNzIGJ1ZmZlciBzaXplIGZvciBkYXRhCgplcF9rZWVwbjA6CmN0cmw6
+IFRydWUKZGF0YTogVHJ1ZQpidWZmX3NpemU6IDAKCmVwMDE6CmN0cmw6IFRydWUKZGF0YTogVHJ1
+ZQpidWZmX3NpemU6IDAKCmVwX3NjYW5uZXI6CmN0cmw6IFRydWUKZGF0YTogVHJ1ZQpidWZmX3Np
+emU6IDMyNzY4CmVwMTE6CmN0cmw6IFRydWUKZGF0YTogVHJ1ZQpidWZmX3NpemU6IDAKLi4uCgoj
+IFN0YXRpYyByb3V0aW5nIHRhYmxlIGlzOgpbREVCXSByYWRpbzAtb3V0XzAgKDgsMCkgPT4gZGRj
+MDAtaW5fMCAoNiwwKQpbREVCXSBkZGMwMC1vdXRfMCAoNiwwKSA9PiBzcGxpdDAtaW5fMCAoMTIs
+MCkKW0RFQl0gc3BsaXQwLW91dF8wICgxMiwwKSA9PiBrZWVwbjAtaW5fMCAoMTMsMCkKW0RFQl0g
+a2VlcG4wLW91dF8wICgxMywwKSA9PiBlcF9rZWVwbjAtaW4wICgyLDApCltERUJdIHNwbGl0MC1v
+dXRfMSAoMTIsMSkgPT4gczBkZGMwLWluXzAgKDE0LDApCltERUJdIHMwZGRjMC1vdXRfMCAoMTQs
+MCkgPT4gZXBfczBkZGMwLWluMCAoMSwwKQpbREVCXSByYWRpbzAtb3V0XzAgKDgsMCkgPT4gZGRj
+MDEtaW5fMCAoNywwKQpbREVCXSBkZGMwMS1vdXRfMCAoNywwKSA9PiBlcDAxLWluMCAoMywwKQpb
+REVCXSByYWRpbzEtb3V0XzAgKDExLDApID0+IGRkYzEwLWluXzAgKDksMCkKW0RFQl0gZGRjMTAt
+b3V0XzAgKDksMCkgPT4gd2luZHcwLWluXzAgKDE1LDApCltERUJdIHdpbmR3MC1vdXRfMCAoMTUs
+MCkgPT4gZmZ0MC1pbl8wICgxNiwwKQpbREVCXSBmZnQwLW91dF8wICgxNiwwKSA9PiBsb2dwd3Iw
+LWluXzAgKDE3LDApCltERUJdIGxvZ3B3cjAtb3V0XzAgKDE3LDApID0+IGVwX3NjYW5uZXItaW4w
+ICg0LDApCltERUJdIHJhZGlvMS1vdXRfMCAoMTEsMCkgPT4gZGRjMTEtaW5fMCAoMTAsMCkKW0RF
+Ql0gZGRjMTEtb3V0XzAgKDEwLDApID0+IGVwMTEtaW4wICg1LDApCgoyLiBJUCBBZGRyZXNzIENv
+bmZpZ3VyYXRpb246CgpJIGluaXRpYWxseSBzZXQgdXAgdGhlIFgzMTAgd2l0aCB0aGUgSEcgaW1h
+Z2UgYW5kIGNvbmZpZ3VyZWQgdGhlIElQIGFkZHJlc3MgdG8gc29tZXRoaW5nIGxpa2UgMTkyLjE2
+OC41MC4yLiBMYXRlciwgSSBzd2l0Y2hlZCB0byB0aGUgWEcgaW1hZ2UsIHdoaWNoIHVzZXMgdGhl
+IGRlZmF1bHQgSVBzIG9mIC4uLjMwLjIgYW5kIC4uLjQwLjIuIFdoZW4gSSBsb2FkIG15IGN1c3Rv
+bSBpbWFnZSwgd2lsbCB0aGUgSVAgYWRkcmVzc2VzIHJlbWFpbiBjb25zaXN0ZW50PyBJJ20gY29u
+Y2VybmVkIGFib3V0ICJicmlja2luZyIgdGhlIGRldmljZSwgZXNwZWNpYWxseSBhZnRlciByZWFk
+aW5nIGlzc3VlcyBsaWtlIHRoaXMgb25lOiBodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJj
+aC91aGQvaXNzdWVzLzU1MCAuIEkgd2FudCB0byBtYWtlIHN1cmUgSSBhdm9pZCBhbnkgcG90ZW50
+aWFsIHBpdGZhbGxzLgoKWW91ciBhZHZpY2Ugd291bGQgYmUgZ3JlYXRseSBhcHByZWNpYXRlZCwg
+YXMgSSBjYW5ub3QgYWZmb3JkIGFueSBzZXRiYWNrcyB3aXRoIHRoaXMgZGV2aWNlLgoKVGhhbmsg
+eW91IGZvciB5b3VyIGNvbnRpbnVlZCBzdXBwb3J0LgoKQmVzdCByZWdhcmRzLAoKT2xvLgoKT24g
+VHVlc2RheSwgQXVndXN0IDI3dGgsIDIwMjQgYXQgOTo0NywgTWFydGluIEJyYXVuIDxtYXJ0aW4u
+YnJhdW5AZXR0dXMuY29tPiB3cm90ZToKCj4gT24gTW9uLCBBdWcgMjYsIDIwMjQgYXQgNzoxNOKA
+r1BNIE9sbyB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3Rl
+Ogo+Cj4+IFRoYW5rIHlvdSBmb3IgeW91ciBkZXRhaWxlZCByZXNwb25zZXMgdG8gbXkgcHJldmlv
+dXMgcXVlc3Rpb25zLiBJIGFwcHJlY2lhdGUgdGhlIGluZm9ybWF0aW9uIHByb3ZpZGVkIGFib3V0
+IHRoZSBsaW1pdGF0aW9ucyBhbmQgcG90ZW50aWFsIGlzc3VlcyByZWxhdGVkIHRvIEZGVCBzaXpl
+IGFuZCBUd2luUlggY29uZmlndXJhdGlvbi4KPj4KPj4gSG93ZXZlciwgSSBub3RpY2VkIHRoYXQg
+dGhlcmUgd2FzIG5vIGZlZWRiYWNrIHJlZ2FyZGluZyB0aGUgWUFNTCBmaWxlIEkgYXR0YWNoZWQg
+aW4gbXkgb3JpZ2luYWwgZW1haWwuIENvdWxkIHlvdSBwbGVhc2UgcmV2aWV3IGl0IGFuZCBsZXQg
+bWUga25vdyBpZiB0aGUgY29uZmlndXJhdGlvbiBJJ3ZlIHNldCB1cCBpcyBjb3JyZWN0Pwo+Cj4g
+SSBkaWRuJ3QgYnVpbGQgYW5kIHRlc3QgaXQsIGJ1dCBpZiBpdCBtYW5hZ2VzIHRvIHNxdWVlemUg
+aW4gYWxsIHRoZSBJUCwgSSBzZWUgbm8gZ2VuZXJhbCBpc3N1ZXMuCj4KPiBOb3RlIHRoYXQgYWZ0
+ZXIgdGhlIHNwbGl0IGJsb2NrLCB5b3UgbmVlZCB0byBjb2xsZWN0IGFsbCB0aGUgZGF0YSBmcm9t
+IGJvdGggb3V0cHV0cywgbWVhbmluZyB5b3UgbmVlZCBhIGZ1bGwgc3RyZWFtaW5nIHNldHVwLiBN
+YWtlIHN1cmUgdGhlIHRvdGFsIGRhdGEgZG9lc24ndCBleGNlZWQgeW91ciBsaW5rIGNhcGFiaWxp
+dGllcyAoaS5lLiwgdGhhdCB5b3UgYXJlIG5vdCBvdmVyc3Vic2NyaWJpbmcgeW91ciAxMCBHYkUg
+Y29ubmVjdGlvbiwgYW5kIHRoYXQgeW91ciByZWNlaXZpbmcgY29tcHV0ZXIgaXMgZmFzdCBlbm91
+Z2gpLgo+Cj4+IEFkZGl0aW9uYWxseSwgYmFzZWQgb24geW91ciByZWNvbW1lbmRhdGlvbnMsIEkg
+cGxhbiB0byB1c2UgYSB3aW5kb3cgZnVuY3Rpb24gKFdpbmRvdyBibG9jaykgd2l0aCBhIHNpemUg
+b2YgMTAyNCwgYWxvbmcgd2l0aCBhbiBGRlQgYmxvY2sgb2YgdGhlIHNhbWUgc2l6ZSBmb3IgdGhl
+IHNjYW5uZXIgKHN3ZWVwIHNwZWN0cnVtKSBmdW5jdGlvbmFsaXR5LiBXb3VsZCB0aGlzIGFwcHJv
+YWNoIGJlIGNvcnJlY3QgZ2l2ZW4gdGhlIGN1cnJlbnQgbGltaXRhdGlvbnMgYW5kIHlvdXIgc3Vn
+Z2VzdGlvbnM/Cj4KPiBTYW1lIGFuc3dlcjogSWYgaXQgZml0cywgeW91J3JlIGdvb2QuCj4KPiAt
+LU0KPgo+PiBZb3VyIGNvbmZpcm1hdGlvbiBvbiB0aGVzZSBwb2ludHMgd291bGQgYmUgaW52YWx1
+YWJsZSB0byBlbnN1cmUgdGhhdCBJIGFtIG9uIHRoZSByaWdodCB0cmFjayB3aXRoIG15IHByb2pl
+Y3QuCj4+Cj4+IFRoYW5rIHlvdSBvbmNlIGFnYWluIGZvciB5b3VyIHRpbWUgYW5kIGFzc2lzdGFu
+Y2UuIEkgbG9vayBmb3J3YXJkIHRvIHlvdXIgcmVzcG9uc2UuCj4+Cj4+IEJlc3QgcmVnYXJkcywK
+Pj4gT2xvLgo+PiBPbiBNb25kYXksIEF1Z3VzdCAyNnRoLCAyMDI0IGF0IDE4OjA0LCBSb2IgS29z
+c2xlciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+
+Pgo+Pj4gT24gTW9uLCBBdWcgMjYsIDIwMjQgYXQgMTA6MjTigK9BTSBNYXJjdXMgRC4gTGVlY2gg
+PHBhdGNodm9uYnJhdW5AZ21haWwuY29tPiB3cm90ZToKPj4+Cj4+Pj4gT24gMjYvMDgvMjAyNCAx
+MDoyMSwgUm9iIEtvc3NsZXIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+Pj4KPj4+Pj4gSGkgT2xv
+LAo+Pj4+PiBPbiBvbmUgcG9pbnQgcmVnYXJkaW5nIGFuIEZGVCBsZW5ndGggb2YgODE5MiwgdGhl
+cmUgaXMgbGlrZWx5IGFuIGlzc3VlIHdpdGggdXNpbmcgdGhlIEV0dHVzIEZGVCBibG9jay4gSW4g
+dGhlIHBhc3QgKEkgaGF2ZW4ndCBjaGVja2VkIHJlY2VudGx5KSwgdGhpcyBibG9jayB3YXMgbGlt
+aXRlZCB0byBhIG1heGltdW0gRkZUIHNpemUgb2YgMTAyNCBiZWNhdXNlIHRoZSBlbnRpcmUgRkZU
+IGhhZCB0byBmaXQgaW4gb25lIHBhY2tldCB3aGVyZSB0aGUgbWF4aW11bSBwYWNrZXQgcGF5bG9h
+ZCB3YXMgYWJvdXQgMjAwMCBzYW1wbGVzLiBJdCBpcyBwb3NzaWJsZSB0byB1c2UgbGFyZ2VyIEZG
+VHMsIGJ1dCB0aGlzIHJlcXVpcmVzIHNvbWUgY3VzdG9tIGNvZGUgdGhhdCBkaXZvcmNlcyB0aGUg
+RkZUIHNpemUgZnJvbSB0aGUgcGFja2V0IHNpemUuCj4+Pj4+IFJvYgo+Pj4+Cj4+Pj4gTXkgdW5k
+ZXJzdGFuZGluZyBpcyB0aGF0IGluIHJlY2VudCBSRk5vQywgdGhlIGxpbWl0IGhhcyBiZWVuIHJh
+aXNlZCB0byAyMDQ4Ogo+Pj4+Cj4+Pj4gaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL2Ns
+YXNzdWhkXzFfMXJmbm9jXzFfMWZmdF9fYmxvY2tfX2NvbnRyb2wuaHRtbAo+Pj4KPj4+IFRoZSBb
+eGNpIGZpbGVdKGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rl
+ci9mcGdhL3VzcnAzL2xpYi9pcC9heGlfZmZ0L2F4aV9mZnQueGNpKSBzdGlsbCBzaG93cyBhIHRy
+YW5zZm9ybSBsZW5ndGggb2YgMTAyNC4gQWxzbywgSSB0aGluayB0aGF0IHRoZSBYMzAwIE1UVSBz
+aXplIGlzIDEwIHdoaWNoIGltcGxpZXMgMl4xMD0xMDI0IHggNjRiaXQgaXMgdGhlIG1heCBwYXls
+b2FkLiBUaGlzIGltcGxpZXMgMjA0OCAzMi1iaXQgd29yZHMgaW4gdGhlIHBheWxvYWQuIEJ1dCwg
+YmVjYXVzZSBvZiBhIGZldyBieXRlcyBvZiBoZWFkZXIsIGl0IGlzIG5vdCBwb3NzaWJsZSB0byB1
+c2UgYW4gRkZUIG9mIGxlbmd0aCAyMDQ4IHVubGVzcyB0aGUgRkZUIGxlbmd0aCBpcyBkaXZvcmNl
+ZCBmcm9tIHRoZSBwYWNrZXQgbGVuZ3RoLgo+Pj4gUm9iCj4+Cj4+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
+IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4g
+ZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20=
 
-Note that after the split block, you need to collect all the data from both
-outputs, meaning you need a full streaming setup. Make sure the total data
-doesn't exceed your link capabilities (i.e., that you are not
-oversubscribing your 10 GbE connection, and that your receiving computer is
-fast enough).
+--b1_73SvpUDGhPFeAoQuYdSqG7RVzebekX2wCZBwJrY1nc
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7Ij48cD5UaGFuayB5b3UgZm9yIHlvdXIgcmVzcG9uc2UgYW5kIGZvciBjb25maXJtaW5nIHRo
+ZSBnZW5lcmFsIGFwcHJvYWNoIHRvIHRoZSBjb25maWd1cmF0aW9uLiBJIGhhdmUgYSBjb3VwbGUg
+bW9yZSBxdWVzdGlvbnMgcmVsYXRlZCB0byBSRk5vQywgcGFydGljdWxhcmx5IGFib3V0IGJ1ZmZl
+ciBzaXplIGluIFNFUCAoU3RyZWFtIEVuZHBvaW50cykgYW5kIElQIGFkZHJlc3Mgc2V0dGluZ3Mu
+PC9wPjxoMz4xLiBCdWZmZXIgU2l6ZSBpbiBTRVA6PC9oMz48cD5J4oCZbSBoYXZpbmcgc29tZSBk
+aWZmaWN1bHR5IHVuZGVyc3RhbmRpbmcgdGhlIGNvcnJlY3Qgc2V0dGluZyBmb3IgYnVmZmVyIHNp
+emUgaW4gU0VQLiBJ4oCZdmUgZm91bmQgY29uZmxpY3RpbmcgaW5mb3JtYXRpb246PC9wPk9uIHBh
+Z2U6Jm5ic3A7PGEgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29w
+ZW5lciIgaHJlZj0iaHR0cHM6Ly9rYi5ldHR1cy5jb20vUkZOb0NfRnJlcXVlbnRseV9Bc2tlZF9R
+dWVzdGlvbnMiPmh0dHBzOi8va2IuZXR0dXMuY29tL1JGTm9DX0ZyZXF1ZW50bHlfQXNrZWRfUXVl
+c3Rpb25zPC9hPjxicj5pdCBzYXlzOiAiU2V0IHRvIDAgaWYgeW91PGI+PHU+IGRvbid0IG5lZWQg
+dG8gc2VuZCBkYXRhPC91PjwvYj4gdG8gdGhhdCBTRVAuIjxicj48YnI+TWVhbndoaWxlLCB0aGlz
+IG90aGVyIHBhZ2U6Jm5ic3A7PGEgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9yZWZlcnJlciBub2Zv
+bGxvdyBub29wZW5lciIgaHJlZj0iaHR0cHM6Ly9rYi5ldHR1cy5jb20vR2V0dGluZ19TdGFydGVk
+X3dpdGhfUkZOb0NfaW5fVUhEXzQuMCI+aHR0cHM6Ly9rYi5ldHR1cy5jb20vR2V0dGluZ19TdGFy
+dGVkX3dpdGhfUkZOb0NfaW5fVUhEXzQuMDwvYT48YnI+c3RhdGVzOiAiQWx0ZXJuYXRpdmVseSwg
+aWYgd2Uga25vdyB0aGF0IGEgcGFydGljdWxhciBTRVAgPGI+PHU+b25seSBzZW5kcyBkYXRhPC91
+PjwvYj4gZnJvbSB0aGUgVVNSUCB0byB0aGUgY29tcHV0ZXIsIHRoZW4gd2Ugd29uJ3QgbmVlZCB0
+aGUgaW5ncmVzcyBkYXRhIGJ1ZmZlciBhbmQgd2UgY2FuIHNldCBidWZmLXNpemUgdG8gMCwgdGh1
+cyBzYXZpbmcgRlBHQSByZXNvdXJjZXMuIjxicj48YnI+PHA+Q291bGQgeW91IGNsYXJpZnkgd2hp
+Y2ggaXMgY29ycmVjdD8gQW5kIGJhc2VkIG9uIHRoZSBmb2xsb3dpbmcgU0VQIGNvbmZpZ3VyYXRp
+b24sIGhhdmUgSSBzZXQgdGhlIGJ1ZmZlciBzaXplcyBjb3JyZWN0bHkgZm9yIG15IHVzZSBjYXNl
+PzwvcD48cD5IZXJl4oCZcyBteSBjdXJyZW50IFNFUCBzZXR1cDo8L3A+PGRpdiBzdHlsZT0ibWFy
+Z2luLXRvcDogMTRweDsgbWFyZ2luLWJvdHRvbTogMTRweDsiPjxzcGFuPiMgR2VuZXJhbCBwYXJh
+bWV0ZXJzPC9zcGFuPjxkaXY+PHNwYW4+IyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPi4uLjwvc3Bhbj48L2Rpdj48ZGl2Pjxi
+cj48L2Rpdj48ZGl2PjxzcGFuPmNoZHJfd2lkdGg6IDY0ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyMgQml0IHdpZHRoIG9mIHRoZSBDSERSIGJ1cyBmb3IgdGhpcyBpbWFnZTwvc3Bh
+bj48L2Rpdj48ZGl2PjxzcGFuPmRldmljZTogJ3gzMTAnPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+
+ZGVmYXVsdF90YXJnZXQ6ICdYMzEwX1hHJzwvc3Bhbj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
+PjxzcGFuPiMgQSBsaXN0IG9mIGFsbCBzdHJlYW0gZW5kcG9pbnRzIGluIGRlc2lnbjwvc3Bhbj48
+L2Rpdj48ZGl2PjxzcGFuPiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPnN0cmVhbV9lbmRwb2ludHM6PC9zcGFuPjwvZGl2Pjxk
+aXY+PHNwYW4+Jm5ic3A7IGVwX3MwZGRjMDogJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyMgU3RyZWFtIGVuZHBvaW50IG5hbWU8L3Nw
+YW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgJm5ic3A7IGN0cmw6IFRydWUgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgJm5ic3A7IyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFmZmljPC9z
+cGFuPjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7ICZuYnNwOyBkYXRhOiBUcnVlICZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYzwvc3Bh
+bj48L2Rpdj48ZGl2PjxzcGFuPiZuYnNwOyAmbmJzcDsgYnVmZl9zaXplOiAzMjc2OCAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAm
+bmJzcDsjIEluZ3Jlc3MgYnVmZmVyIHNpemUgZm9yIGRhdGE8L3NwYW4+PC9kaXY+PGRpdj48c3Bh
+bj4mbmJzcDsgJm5ic3A7IDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPiZuYnNwOyBlcF9rZWVwbjA6
+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7ICZuYnNwOyBjdHJsOiBUcnVlPC9zcGFuPjwv
+ZGl2PjxkaXY+PHNwYW4+Jm5ic3A7ICZuYnNwOyBkYXRhOiBUcnVlPC9zcGFuPjwvZGl2PjxkaXY+
+PHNwYW4+Jm5ic3A7ICZuYnNwOyBidWZmX3NpemU6IDA8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4m
+bmJzcDsgPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7IGVwMDE6PC9zcGFuPjwvZGl2Pjxk
+aXY+PHNwYW4+Jm5ic3A7ICZuYnNwOyBjdHJsOiBUcnVlPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+
+Jm5ic3A7ICZuYnNwOyBkYXRhOiBUcnVlPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+Jm5ic3A7ICZu
+YnNwOyBidWZmX3NpemU6IDA8L3NwYW4+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48c3Bhbj4m
+bmJzcDsgZXBfc2Nhbm5lcjo8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgJm5ic3A7IGN0
+cmw6IFRydWU8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgJm5ic3A7IGRhdGE6IFRydWU8
+L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgJm5ic3A7IGJ1ZmZfc2l6ZTogMzI3Njg8L3Nw
+YW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgZXAxMTo8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4m
+bmJzcDsgJm5ic3A7IGN0cmw6IFRydWU8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgJm5i
+c3A7IGRhdGE6IFRydWU8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj4mbmJzcDsgJm5ic3A7IGJ1ZmZf
+c2l6ZTogMDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPi4uLjwvc3Bhbj48L2Rpdj48ZGl2Pjxicj48
+L2Rpdj48ZGl2PjxzcGFuPiMgU3RhdGljIHJvdXRpbmcgdGFibGUgaXM6PC9zcGFuPjwvZGl2Pjxk
+aXY+PHNwYW4+W0RFQl0gcmFkaW8wLW91dF8wICg4LDApID0mZ3Q7IGRkYzAwLWluXzAgKDYsMCk8
+L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj5bREVCXSBkZGMwMC1vdXRfMCAoNiwwKSA9Jmd0OyBzcGxp
+dDAtaW5fMCAoMTIsMCk8L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj5bREVCXSBzcGxpdDAtb3V0XzAg
+KDEyLDApID0mZ3Q7IGtlZXBuMC1pbl8wICgxMywwKTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPltE
+RUJdIGtlZXBuMC1vdXRfMCAoMTMsMCkgPSZndDsgZXBfa2VlcG4wLWluMCAoMiwwKTwvc3Bhbj48
+L2Rpdj48ZGl2PjxzcGFuPltERUJdIHNwbGl0MC1vdXRfMSAoMTIsMSkgPSZndDsgczBkZGMwLWlu
+XzAgKDE0LDApPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+W0RFQl0gczBkZGMwLW91dF8wICgxNCww
+KSA9Jmd0OyBlcF9zMGRkYzAtaW4wICgxLDApPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+W0RFQl0g
+cmFkaW8wLW91dF8wICg4LDApID0mZ3Q7IGRkYzAxLWluXzAgKDcsMCk8L3NwYW4+PC9kaXY+PGRp
+dj48c3Bhbj5bREVCXSBkZGMwMS1vdXRfMCAoNywwKSA9Jmd0OyBlcDAxLWluMCAoMywwKTwvc3Bh
+bj48L2Rpdj48ZGl2PjxzcGFuPltERUJdIHJhZGlvMS1vdXRfMCAoMTEsMCkgPSZndDsgZGRjMTAt
+aW5fMCAoOSwwKTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPltERUJdIGRkYzEwLW91dF8wICg5LDAp
+ID0mZ3Q7IHdpbmR3MC1pbl8wICgxNSwwKTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPltERUJdIHdp
+bmR3MC1vdXRfMCAoMTUsMCkgPSZndDsgZmZ0MC1pbl8wICgxNiwwKTwvc3Bhbj48L2Rpdj48ZGl2
+PjxzcGFuPltERUJdIGZmdDAtb3V0XzAgKDE2LDApID0mZ3Q7IGxvZ3B3cjAtaW5fMCAoMTcsMCk8
+L3NwYW4+PC9kaXY+PGRpdj48c3Bhbj5bREVCXSBsb2dwd3IwLW91dF8wICgxNywwKSA9Jmd0OyBl
+cF9zY2FubmVyLWluMCAoNCwwKTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPltERUJdIHJhZGlvMS1v
+dXRfMCAoMTEsMCkgPSZndDsgZGRjMTEtaW5fMCAoMTAsMCk8L3NwYW4+PC9kaXY+PGRpdj48c3Bh
+bj5bREVCXSBkZGMxMS1vdXRfMCAoMTAsMCkgPSZndDsgZXAxMS1pbjAgKDUsMCk8YnI+PGJyPjxi
+cj48YnI+PGgzPjIuIElQIEFkZHJlc3MgQ29uZmlndXJhdGlvbjo8L2gzPjxwPkkgaW5pdGlhbGx5
+IHNldCB1cCB0aGUgWDMxMCB3aXRoIHRoZSBIRyBpbWFnZSBhbmQgY29uZmlndXJlZCB0aGUgSVAg
+YWRkcmVzcyB0byBzb21ldGhpbmcgbGlrZSAxOTIuMTY4LjUwLjIuIExhdGVyLCBJIHN3aXRjaGVk
+IHRvIHRoZSBYRyBpbWFnZSwgd2hpY2ggdXNlcyB0aGUgZGVmYXVsdCBJUHMgb2YgLi4uMzAuMiBh
+bmQgLi4uNDAuMi4gV2hlbiBJIGxvYWQgbXkgY3VzdG9tIGltYWdlLCB3aWxsIHRoZSBJUCBhZGRy
+ZXNzZXMgcmVtYWluIGNvbnNpc3RlbnQ/IEknbSBjb25jZXJuZWQgYWJvdXQgImJyaWNraW5nIiB0
+aGUgZGV2aWNlLCBlc3BlY2lhbGx5IGFmdGVyIHJlYWRpbmcgaXNzdWVzIGxpa2UgdGhpcyBvbmU6
+Jm5ic3A7PHNwYW4+PGEgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBu
+b29wZW5lciIgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2lzc3Vl
+cy81NTAiPmh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9pc3N1ZXMvNTUwPC9h
+PiZuYnNwOy4mbmJzcDsgSSB3YW50IHRvIG1ha2Ugc3VyZSBJIGF2b2lkIGFueSBwb3RlbnRpYWwg
+cGl0ZmFsbHMuPC9zcGFuPjwvcD48cD5Zb3VyIGFkdmljZSB3b3VsZCBiZSBncmVhdGx5IGFwcHJl
+Y2lhdGVkLCBhcyBJIGNhbm5vdCBhZmZvcmQgYW55IHNldGJhY2tzIHdpdGggdGhpcyBkZXZpY2Uu
+PC9wPjxwPlRoYW5rIHlvdSBmb3IgeW91ciBjb250aW51ZWQgc3VwcG9ydC48L3A+PHA+QmVzdCBy
+ZWdhcmRzLDwvcD48L3NwYW4+PHA+PC9wPk9sby48L2Rpdj48c3Bhbj48L3NwYW4+PGJyPjwvZGl2
+PjxwPjxicj48L3A+PGJyPjxicj48YnI+PGJyPjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1haWxf
+c2lnbmF0dXJlX2Jsb2NrIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBm
+b250LXNpemU6IDE0cHg7Ij4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFs
+LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48YnI+PC9kaXY+PGRpdiBjbGFzcz0icHJv
+dG9ubWFpbF9xdW90ZSI+DQogICAgICAgIE9uIFR1ZXNkYXksIEF1Z3VzdCAyN3RoLCAyMDI0IGF0
+IDk6NDcsIE1hcnRpbiBCcmF1biAmbHQ7bWFydGluLmJyYXVuQGV0dHVzLmNvbSZndDsgd3JvdGU6
+PGJyPg0KICAgICAgICA8YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSIgdHlwZT0i
+Y2l0ZSI+DQogICAgICAgICAgICA8ZGl2IGRpcj0ibHRyIj48ZGl2IGRpcj0ibHRyIj48YnI+PC9k
+aXY+PGJyPjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj48ZGl2IGNsYXNzPSJnbWFpbF9hdHRyIiBk
+aXI9Imx0ciI+T24gTW9uLCBBdWcgMjYsIDIwMjQgYXQgNzoxNOKAr1BNIE9sbyB2aWEgVVNSUC11
+c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiByZWw9
+Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+PC9hPiZndDsgd3JvdGU6PGJyPjwvZGl2PjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW46MHB4IDBw
+eCAwcHggMC44ZXg7Ym9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7cGFkZGlu
+Zy1sZWZ0OjFleCIgY2xhc3M9ImdtYWlsX3F1b3RlIj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTpB
+cmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxNHB4Ij5UaGFuayB5b3UgZm9yIHlvdXIgZGV0YWls
+ZWQgcmVzcG9uc2VzIHRvIG15IHByZXZpb3VzIHF1ZXN0aW9ucy4gSSBhcHByZWNpYXRlIHRoZSBp
+bmZvcm1hdGlvbiBwcm92aWRlZCBhYm91dCB0aGUgbGltaXRhdGlvbnMgYW5kIHBvdGVudGlhbCBp
+c3N1ZXMgcmVsYXRlZCB0byBGRlQgc2l6ZSBhbmQgVHdpblJYIGNvbmZpZ3VyYXRpb24uPC9kaXY+
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTRweCI+
+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1z
+aXplOjE0cHgiPkhvd2V2ZXIsIEkgbm90aWNlZCB0aGF0IHRoZXJlIHdhcyBubyBmZWVkYmFjayBy
+ZWdhcmRpbmcgdGhlIFlBTUwgZmlsZSBJIGF0dGFjaGVkIGluIG15IG9yaWdpbmFsIGVtYWlsLiBD
+b3VsZCB5b3UgcGxlYXNlIHJldmlldyBpdCBhbmQgbGV0IG1lIGtub3cgaWYgdGhlIGNvbmZpZ3Vy
+YXRpb24gSSd2ZSBzZXQgdXAgaXMgY29ycmVjdD88L2Rpdj48L2Jsb2NrcXVvdGU+PGRpdj48YnI+
+PC9kaXY+PGRpdj5JIGRpZG4ndCBidWlsZCBhbmQgdGVzdCBpdCwgYnV0IGlmIGl0IG1hbmFnZXMg
+dG8gc3F1ZWV6ZSBpbiBhbGwgdGhlIElQLCBJIHNlZSBubyBnZW5lcmFsIGlzc3Vlcy48L2Rpdj48
+ZGl2Pjxicj48L2Rpdj48ZGl2Pk5vdGUgdGhhdCBhZnRlciB0aGUgc3BsaXQgYmxvY2ssIHlvdSBu
+ZWVkIHRvIGNvbGxlY3QgYWxsIHRoZSBkYXRhIGZyb20gYm90aCBvdXRwdXRzLCBtZWFuaW5nIHlv
+dSBuZWVkIGEgZnVsbCBzdHJlYW1pbmcgc2V0dXAuIE1ha2Ugc3VyZSB0aGUgdG90YWwgZGF0YSBk
+b2Vzbid0IGV4Y2VlZCB5b3VyIGxpbmsgY2FwYWJpbGl0aWVzIChpLmUuLCB0aGF0IHlvdSBhcmUg
+bm90IG92ZXJzdWJzY3JpYmluZyB5b3VyIDEwIEdiRSBjb25uZWN0aW9uLCBhbmQgdGhhdCB5b3Vy
+IHJlY2VpdmluZyBjb21wdXRlciBpcyBmYXN0IGVub3VnaCkuPC9kaXY+PGRpdj48YnI+PC9kaXY+
+PGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDtib3JkZXItbGVmdDox
+cHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTtwYWRkaW5nLWxlZnQ6MWV4IiBjbGFzcz0iZ21haWxf
+cXVvdGUiPjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXpl
+OjE0cHgiPjxicj48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2Vy
+aWY7Zm9udC1zaXplOjE0cHgiPkFkZGl0aW9uYWxseSwgYmFzZWQgb24geW91ciByZWNvbW1lbmRh
+dGlvbnMsIEkgcGxhbiB0byB1c2UgYSB3aW5kb3cgZnVuY3Rpb24gKFdpbmRvdyBibG9jaykgd2l0
+aCBhIHNpemUgb2YgMTAyNCwgYWxvbmcgd2l0aCBhbiBGRlQgYmxvY2sgb2YgdGhlIHNhbWUgc2l6
+ZSBmb3IgdGhlIHNjYW5uZXIgKHN3ZWVwIHNwZWN0cnVtKSBmdW5jdGlvbmFsaXR5LiBXb3VsZCB0
+aGlzIGFwcHJvYWNoIGJlIGNvcnJlY3QgZ2l2ZW4gdGhlIGN1cnJlbnQgbGltaXRhdGlvbnMgYW5k
+IHlvdXIgc3VnZ2VzdGlvbnM/PC9kaXY+PC9ibG9ja3F1b3RlPjxkaXY+PGJyPjwvZGl2PjxkaXY+
+U2FtZSBhbnN3ZXI6IElmICBpdCBmaXRzLCB5b3UncmUgZ29vZC48L2Rpdj48ZGl2Pjxicj48L2Rp
+dj48ZGl2Pi0tTSA8YnI+PC9kaXY+PGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBw
+eCAwLjhleDtib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTtwYWRkaW5nLWxl
+ZnQ6MWV4IiBjbGFzcz0iZ21haWxfcXVvdGUiPjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFs
+LHNhbnMtc2VyaWY7Zm9udC1zaXplOjE0cHgiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZh
+bWlseTpBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxNHB4Ij5Zb3VyIGNvbmZpcm1hdGlvbiBv
+biB0aGVzZSBwb2ludHMgd291bGQgYmUgaW52YWx1YWJsZSB0byBlbnN1cmUgdGhhdCBJIGFtIG9u
+IHRoZSByaWdodCB0cmFjayB3aXRoIG15IHByb2plY3QuPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1m
+YW1pbHk6QXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTRweCI+PGJyPjwvZGl2PjxkaXYgc3R5
+bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE0cHgiPlRoYW5rIHlv
+dSBvbmNlIGFnYWluIGZvciB5b3VyIHRpbWUgYW5kIGFzc2lzdGFuY2UuIEkgbG9vayBmb3J3YXJk
+IHRvIHlvdXIgcmVzcG9uc2UuPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWwsc2Fu
+cy1zZXJpZjtmb250LXNpemU6MTRweCI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5
+OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE0cHgiPkJlc3QgcmVnYXJkcyw8L2Rpdj48ZGl2
+IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxNHB4Ij5PbG8u
+PC9kaXY+PGRpdj4NCiAgICAgICAgT24gTW9uZGF5LCBBdWd1c3QgMjZ0aCwgMjAyNCBhdCAxODow
+NCwgUm9iIEtvc3NsZXIgdmlhIFVTUlAtdXNlcnMgJmx0OzxhIHRhcmdldD0iX2JsYW5rIiBocmVm
+PSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHJlbD0ibm9yZWZlcnJlciBub2Zv
+bGxvdyBub29wZW5lciI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0OyB3cm90ZTo8
+YnI+DQogICAgICAgIDxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KICAgICAgICAgICAgPGRpdiBk
+aXI9Imx0ciI+PGRpdiBkaXI9Imx0ciI+PGJyPjwvZGl2Pjxicj48ZGl2IGNsYXNzPSJnbWFpbF9x
+dW90ZSI+PGRpdiBkaXI9Imx0ciIgY2xhc3M9ImdtYWlsX2F0dHIiPk9uIE1vbiwgQXVnIDI2LCAy
+MDI0IGF0IDEwOjI04oCvQU0gTWFyY3VzIEQuIExlZWNoICZsdDs8YSB0YXJnZXQ9Il9ibGFuayIg
+cmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiBocmVmPSJtYWlsdG86cGF0Y2h2b25i
+cmF1bkBnbWFpbC5jb20iPnBhdGNodm9uYnJhdW5AZ21haWwuY29tPC9hPiZndDsgd3JvdGU6PGJy
+PjwvZGl2PjxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowcHgg
+MHB4IDBweCAwLjhleDtib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTtwYWRk
+aW5nLWxlZnQ6MWV4Ij4NCg0KDQoNCg0KICA8ZGl2Pg0KICAgIDxkaXY+T24gMjYvMDgvMjAyNCAx
+MDoyMSwgUm9iIEtvc3NsZXIgdmlhDQogICAgICBVU1JQLXVzZXJzIHdyb3RlOjxicj4NCiAgICA8
+L2Rpdj4NCiAgICA8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCg0KICAgICAgPGRpdiBkaXI9Imx0
+ciI+DQogICAgICAgIDxkaXYgZGlyPSJsdHIiPg0KICAgICAgICAgIDxkaXY+SGkgT2xvLDwvZGl2
+Pg0KICAgICAgICAgIDxkaXY+T24gb25lIHBvaW50IHJlZ2FyZGluZyBhbiBGRlQgbGVuZ3RoIG9m
+IDgxOTIsIHRoZXJlIGlzDQogICAgICAgICAgICBsaWtlbHkgYW4gaXNzdWUgd2l0aCB1c2luZyB0
+aGUgRXR0dXMgRkZUIGJsb2NrLiBJbiB0aGUgcGFzdA0KICAgICAgICAgICAgKEkgaGF2ZW4ndCBj
+aGVja2VkIHJlY2VudGx5KSwgdGhpcyBibG9jayB3YXMgbGltaXRlZCB0byBhDQogICAgICAgICAg
+ICBtYXhpbXVtIEZGVCBzaXplIG9mIDEwMjQgYmVjYXVzZSB0aGUgZW50aXJlIEZGVCBoYWQgdG8g
+Zml0DQogICAgICAgICAgICBpbiBvbmUgcGFja2V0IHdoZXJlIHRoZSBtYXhpbXVtIHBhY2tldCBw
+YXlsb2FkIHdhcyBhYm91dA0KICAgICAgICAgICAgMjAwMCBzYW1wbGVzLiAgSXQgaXMgcG9zc2li
+bGUgdG8gdXNlIGxhcmdlciBGRlRzLCBidXQgdGhpcw0KICAgICAgICAgICAgcmVxdWlyZXMgc29t
+ZSBjdXN0b20gY29kZSB0aGF0IGRpdm9yY2VzIHRoZSBGRlQgc2l6ZSBmcm9tDQogICAgICAgICAg
+ICB0aGUgcGFja2V0IHNpemUuPC9kaXY+DQogICAgICAgICAgPGRpdj5Sb2I8YnI+DQogICAgICAg
+ICAgPC9kaXY+DQogICAgICAgIDwvZGl2Pg0KICAgICAgPC9kaXY+DQogICAgPC9ibG9ja3F1b3Rl
+Pg0KICAgIE15IHVuZGVyc3RhbmRpbmcgaXMgdGhhdCBpbiByZWNlbnQgUkZOb0MsIHRoZSBsaW1p
+dCBoYXMgYmVlbiByYWlzZWQNCiAgICB0byAyMDQ4Ojxicj4NCiAgICA8YnI+DQo8YSB0YXJnZXQ9
+Il9ibGFuayIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiBocmVmPSJodHRwczov
+L2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvY2xhc3N1aGRfMV8xcmZub2NfMV8xZmZ0X19ibG9ja19f
+Y29udHJvbC5odG1sIj5odHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvY2xhc3N1aGRfMV8x
+cmZub2NfMV8xZmZ0X19ibG9ja19fY29udHJvbC5odG1sPC9hPjxicj4gIDxicj48L2Rpdj48L2Js
+b2NrcXVvdGU+PGRpdj5UaGUgPGEgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9yZWZlcnJlciBub2Zv
+bGxvdyBub29wZW5lciIgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhk
+L2Jsb2IvbWFzdGVyL2ZwZ2EvdXNycDMvbGliL2lwL2F4aV9mZnQvYXhpX2ZmdC54Y2kiPnhjaSBm
+aWxlPC9hPiBzdGlsbCBzaG93cyBhIHRyYW5zZm9ybSBsZW5ndGggb2YgMTAyNC4gQWxzbywgSSB0
+aGluayB0aGF0IHRoZSBYMzAwIE1UVSBzaXplIGlzIDEwIHdoaWNoIGltcGxpZXMgMl4xMD0xMDI0
+IHggNjRiaXQgaXMgdGhlIG1heCBwYXlsb2FkLiAgVGhpcyBpbXBsaWVzIDIwNDggMzItYml0IHdv
+cmRzIGluIHRoZSBwYXlsb2FkLiAgQnV0LCBiZWNhdXNlIG9mIGEgZmV3IGJ5dGVzIG9mIGhlYWRl
+ciwgaXQgaXMgbm90IHBvc3NpYmxlIHRvIHVzZSBhbiBGRlQgb2YgbGVuZ3RoIDIwNDggdW5sZXNz
+IHRoZSBGRlQgbGVuZ3RoIGlzIGRpdm9yY2VkIGZyb20gdGhlIHBhY2tldCBsZW5ndGguPC9kaXY+
+PGRpdj5Sb2I8YnI+PC9kaXY+PGJyPjwvZGl2PjwvZGl2Pg0KDQogICAgICAgIDwvYmxvY2txdW90
+ZT48YnI+DQogICAgPC9kaXY+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSB0YXJnZXQ9Il9ibGFu
+ayIgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiByZWw9Im5vcmVmZXJy
+ZXIgbm9mb2xsb3cgbm9vcGVuZXIiPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4N
+ClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9
+Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgcmVsPSJub3JlZmVycmVy
+IG5vZm9sbG93IG5vb3BlbmVyIj51c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48
+YnI+DQo8L2Jsb2NrcXVvdGU+PC9kaXY+PC9kaXY+DQoNCiAgICAgICAgPC9ibG9ja3F1b3RlPjxi
+cj4NCiAgICA8L2Rpdj4=
 
 
-> Additionally, based on your recommendations, I plan to use a window
-> function (Window block) with a size of 1024, along with an FFT block of t=
-he
-> same size for the scanner (sweep spectrum) functionality. Would this
-> approach be correct given the current limitations and your suggestions?
->
+--b1_73SvpUDGhPFeAoQuYdSqG7RVzebekX2wCZBwJrY1nc--
 
-Same answer: If it fits, you're good.
-
---M
-
->
-> Your confirmation on these points would be invaluable to ensure that I am
-> on the right track with my project.
->
-> Thank you once again for your time and assistance. I look forward to your
-> response.
->
-> Best regards,
-> Olo.
-> On Monday, August 26th, 2024 at 18:04, Rob Kossler via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->
->
-> On Mon, Aug 26, 2024 at 10:24=E2=80=AFAM Marcus D. Leech <patchvonbraun@g=
-mail.com>
-> wrote:
->
->> On 26/08/2024 10:21, Rob Kossler via USRP-users wrote:
->>
->> Hi Olo,
->> On one point regarding an FFT length of 8192, there is likely an issue
->> with using the Ettus FFT block. In the past (I haven't checked recently)=
-,
->> this block was limited to a maximum FFT size of 1024 because the entire =
-FFT
->> had to fit in one packet where the maximum packet payload was about 2000
->> samples. It is possible to use larger FFTs, but this requires some custo=
-m
->> code that divorces the FFT size from the packet size.
->> Rob
->>
->> My understanding is that in recent RFNoC, the limit has been raised to
->> 2048:
->>
->>
->> https://files.ettus.com/manual/classuhd_1_1rfnoc_1_1fft__block__control.=
-html
->>
->> The xci file
-> <https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/ip/axi_f=
-ft/axi_fft.xci>
-> still shows a transform length of 1024. Also, I think that the X300 MTU
-> size is 10 which implies 2^10=3D1024 x 64bit is the max payload. This imp=
-lies
-> 2048 32-bit words in the payload. But, because of a few bytes of header, =
-it
-> is not possible to use an FFT of length 2048 unless the FFT length is
-> divorced from the packet length.
-> Rob
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000074f1c20620a573c6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 26, 2024 at 7:14=E2=80=AF=
-PM Olo via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usr=
-p-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><div style=3D"font-family:Arial,sans-serif;font-size=
-:14px">Thank you for your detailed responses to my previous questions. I ap=
-preciate the information provided about the limitations and potential issue=
-s related to FFT size and TwinRX configuration.</div><div style=3D"font-fam=
-ily:Arial,sans-serif;font-size:14px"><br></div><div style=3D"font-family:Ar=
-ial,sans-serif;font-size:14px">However, I noticed that there was no feedbac=
-k regarding the YAML file I attached in my original email. Could you please=
- review it and let me know if the configuration I&#39;ve set up is correct?=
-</div></blockquote><div><br></div><div>I didn&#39;t build and test it, but =
-if it manages to squeeze in all the IP, I see no general issues.</div><div>=
-<br></div><div>Note that after the split block, you need to collect all the=
- data from both outputs, meaning you need a full streaming setup. Make sure=
- the total data doesn&#39;t exceed your link capabilities (i.e., that you a=
-re not oversubscribing your 10 GbE connection, and that your receiving comp=
-uter is fast enough).</div><div><br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div style=3D"font-family:Arial,sans-serif;font-size:14px"=
-><br></div>
-<div style=3D"font-family:Arial,sans-serif;font-size:14px">Additionally, ba=
-sed on your recommendations, I plan to use a window function (Window block)=
- with a size of 1024, along with an FFT block of the same size for the scan=
-ner (sweep spectrum) functionality. Would this approach be correct given th=
-e current limitations and your suggestions?</div></blockquote><div><br></di=
-v><div>Same answer: If  it fits, you&#39;re good.</div><div><br></div><div>=
---M <br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div style=
-=3D"font-family:Arial,sans-serif;font-size:14px"><br></div><div style=3D"fo=
-nt-family:Arial,sans-serif;font-size:14px">Your confirmation on these point=
-s would be invaluable to ensure that I am on the right track with my projec=
-t.</div><div style=3D"font-family:Arial,sans-serif;font-size:14px"><br></di=
-v><div style=3D"font-family:Arial,sans-serif;font-size:14px">Thank you once=
- again for your time and assistance. I look forward to your response.</div>=
-<div style=3D"font-family:Arial,sans-serif;font-size:14px"><br></div><div s=
-tyle=3D"font-family:Arial,sans-serif;font-size:14px">Best regards,</div><di=
-v style=3D"font-family:Arial,sans-serif;font-size:14px">Olo.</div><div>
-        On Monday, August 26th, 2024 at 18:04, Rob Kossler via USRP-users &=
-lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-use=
-rs@lists.ettus.com</a>&gt; wrote:<br>
-        <blockquote type=3D"cite">
-            <div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"g=
-mail_quote"><div class=3D"gmail_attr" dir=3D"ltr">On Mon, Aug 26, 2024 at 1=
-0:24=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.c=
-om" rel=3D"noreferrer nofollow noopener" target=3D"_blank">patchvonbraun@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex" class=3D"gmail_=
-quote">
-
-
-
-
-  <div>
-    <div>On 26/08/2024 10:21, Rob Kossler via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">
-          <div>Hi Olo,</div>
-          <div>On one point regarding an FFT length of 8192, there is
-            likely an issue with using the Ettus FFT block. In the past
-            (I haven&#39;t checked recently), this block was limited to a
-            maximum FFT size of 1024 because the entire FFT had to fit
-            in one packet where the maximum packet payload was about
-            2000 samples.  It is possible to use larger FFTs, but this
-            requires some custom code that divorces the FFT size from
-            the packet size.</div>
-          <div>Rob<br>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    My understanding is that in recent RFNoC, the limit has been raised
-    to 2048:<br>
-    <br>
-<a href=3D"https://files.ettus.com/manual/classuhd_1_1rfnoc_1_1fft__block__=
-control.html" rel=3D"noreferrer nofollow noopener" target=3D"_blank">https:=
-//files.ettus.com/manual/classuhd_1_1rfnoc_1_1fft__block__control.html</a><=
-br>  <br></div></blockquote><div>The <a href=3D"https://github.com/EttusRes=
-earch/uhd/blob/master/fpga/usrp3/lib/ip/axi_fft/axi_fft.xci" rel=3D"norefer=
-rer nofollow noopener" target=3D"_blank">xci file</a> still shows a transfo=
-rm length of 1024. Also, I think that the X300 MTU size is 10 which implies=
- 2^10=3D1024 x 64bit is the max payload.  This implies 2048 32-bit words in=
- the payload.  But, because of a few bytes of header, it is not possible to=
- use an FFT of length 2048 unless the FFT length is divorced from the packe=
-t length.</div><div>Rob<br></div><br></div></div>
-
-        </blockquote><br>
-    </div>_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-
---00000000000074f1c20620a573c6--
-
---===============2788662400075766908==
+--===============6137013620925097111==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -297,4 +407,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2788662400075766908==--
+--===============6137013620925097111==--
