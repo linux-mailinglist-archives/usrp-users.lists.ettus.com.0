@@ -2,104 +2,148 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6729634ED
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Aug 2024 00:40:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0359635F6
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Aug 2024 01:38:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 369343857CF
-	for <lists+usrp-users@lfdr.de>; Wed, 28 Aug 2024 18:40:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1B478385814
+	for <lists+usrp-users@lfdr.de>; Wed, 28 Aug 2024 19:38:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724884851; bh=8dbh/OzJpggUhJYbkZWqCv0jTkPcIja98UlLTqTg2d4=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=axLYr9MEIVIPya7RZhaOTCIDo6rBu2nmD3CRRJluZUpVtNERu9n1jDyEf1ZAfZWaP
-	 dz5s6P1iZYZTGyNlUWprdEVnJqSh6Czmekw3W6s8QOCD3qq2qgKe/GlrMCtZCj6DPe
-	 9vuiFw5C8YXiKrDcJAvEhnI/c3Dv7N4Xxbhxm8DYPzud1idnEUZSmFg/QOhy5WC5hh
-	 w3q/EPTz//CT63BA+xDON6lAhurerhhXJJwGvbyeSzaGmTBfXU0prnwJ2b8WMPkxSh
-	 d9rxIZCRa3mF8Ixj7fNq+54bYdDfEdPFK+IZDaQq8p4CI/neq/QF+LItRiMQS0VHFs
-	 MJTB18UR6h2aw==
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id AB9093855DE
-	for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2024 18:40:07 -0400 (EDT)
+	t=1724888287; bh=2bvUkHHD3yG29ZumnnG3+e8edTVCoIraiGvTxMGWqAc=;
+	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=L3mxFq0seHVkAUghdu0+B5cKUZ2RO58AZ90QcWmrTqGro3X3Ps5bZWvamql+5wmG8
+	 EiS2d6DzhG/B/KEZEgNNDXlkip/8oX/X4FZeRmkzDTYqJGRnlfb+LEwcH1ZlQNWUmE
+	 Xgg10uJyw8twBtQxBztv40RNelRT0m3gl4nLTsXIdgIoyporFNJsXkdV9J3JziqVW1
+	 SpEcmgXxm7p2PrUzD6TQ/qH4woNtQPb5Txd/XZllUG9vdTR2iZIvxy/5HgNeG+oogU
+	 lX1jfcBuqg2tKRMxoeSWC+MauniHRBxp+huJp3C0WToveGEbK5EBm06dwHKAhQMoYk
+	 9ZyrG4dQgjxpQ==
+Received: from resqmta-c2p-570503.sys.comcast.net (resqmta-c2p-570503.sys.comcast.net [96.102.19.37])
+	by mm2.emwd.com (Postfix) with ESMTPS id 949413856C4
+	for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2024 19:37:09 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="d3dh0lfO";
+	dkim=pass (2048-bit key; unprotected) header.d=comcast.net header.i=@comcast.net header.b="XEcNiSbM";
 	dkim-atps=neutral
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3db2315d7ceso9198b6e.1
-        for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2024 15:40:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724884807; x=1725489607; darn=lists.ettus.com;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9GS/K8NKRsMjNV/Gboi4cpcvqnZOMAJzwIqRMiTYJaY=;
-        b=d3dh0lfOCFXiMVlVwzY39FIUcspnQFeQxQ50k6MpK7Z9+28LURazCguawt7gEK+GnW
-         NkYZx87IZ3RRK9HVyLy8NiBTyiRYVnUODuD0DLgPwl/jDtkAKzoXhQi3fuLE95f5kBvw
-         A4PS1YXPBQaT62Dzs7xkpeM/EQ8Cbg8sT6M7GAOoNz7Yw6CCYcYjIPMiKmjEWRrHM6cA
-         rq3XOn+Wcw6Wlgt/koQDtUIRASIDhW+k0EceJDOnlDWpnJS0TWdQTdwypy0m9xQY9tnq
-         Q6w+JfH4dkrUCSyM5Fid+l2QXRxs+x4Yo8Jqps4z5YvgXQt/OvDYnA84tTkWCwcOM1n1
-         HYkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724884807; x=1725489607;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9GS/K8NKRsMjNV/Gboi4cpcvqnZOMAJzwIqRMiTYJaY=;
-        b=a9HiE/LDj8OXvCSVxbPSTpAM1QrI9IOjQcZnNG6p6qo9/Vv9PKuX21G76qfs3YeI9x
-         ywHKMnJGVTJ9Ce0a/gqL9A/wcHASI7yF2wAWbCLMMG1V54nZ0mVfXrj7RL1eGx0sylx8
-         SULnjO3rkOwbGo8pMwx3OBvYcjfsonZ0W+jQlHkXtV6/lDkCOET72h9l5lfQSe89+jef
-         J9MHDy9QatMg2Wh+ObY9lYeYj92OxcqoC8ONVeQxeYObXc8bJtzuXaM5tdpEDXnZV9fA
-         0Wr+OARc83mCeosnP1JfpR9ldms4AbgWr10HZiCINgphNoJQPjz7OBZ23qUttaKSUA1P
-         Cp4A==
-X-Gm-Message-State: AOJu0YxlK2AXUu6caPknEKATx9SELDB5bVw/fRq1ug+nDdhbgDgLr3XQ
-	5cHATFBXInmtzoTUabu5PK6qSLFL+pHrRH/VNaRF584/qOnjuJXa
-X-Google-Smtp-Source: AGHT+IHo5fm+ih3d28sScMQ2k8FDQ3PXkMJ6xucaqtNC7efk+QiAlG9ZcEgF3CwaG9IkXmm2+/+Naw==
-X-Received: by 2002:a05:6808:2004:b0:3d9:dcbc:6b8d with SMTP id 5614622812f47-3df05ed59f0mr948478b6e.34.1724884806901;
-        Wed, 28 Aug 2024 15:40:06 -0700 (PDT)
-Received: from [192.168.2.170] ([64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-454fe196798sm65748051cf.73.2024.08.28.15.40.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Aug 2024 15:40:06 -0700 (PDT)
-Message-ID: <f439a7f1-dc34-4f9e-8d10-b5502c0040d1@gmail.com>
-Date: Wed, 28 Aug 2024 18:39:55 -0400
+Received: from resomta-c2p-555922.sys.comcast.net ([96.102.18.230])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by resqmta-c2p-570503.sys.comcast.net with ESMTPS
+	id jOq6s7gFpmPvHjSDssxD7L; Wed, 28 Aug 2024 23:37:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=20190202a; t=1724888228;
+	bh=VmnPuQob5t6qsdHo3UXV6W40UZuxzy5Nid1ahxyHHaQ=;
+	h=Received:Received:Content-Type:Message-ID:Date:MIME-Version:
+	 Subject:To:From:Xfinity-Spam-Result;
+	b=XEcNiSbMPY3RbbVivvkqvpLu5xuMQtFJsXEa5pnlW3FvqHNyajtDlagAV+AjCoIoc
+	 p6GRVnNkekTJABpidM4uKa0z61cjvJ6YRjb8RCoaS887IFv3EIOOgnCTkiTMPE/abN
+	 fhrF7zO3aduH6RlQnDTkUE6QF7Il0FMECkd2vzKGccwO/2ntxymDZM4+1C8mIGsO/q
+	 TQXtew7mg//HYd0Oc35fmO/Pt6yDkXSoGzYpdxa+t6E93b5RCpVT4+A02uaN2Ljp78
+	 WeH7peh+v29KJT75tweruWzS0J2yiHYFFhsyxnFIa9dABESPR36MMxrV4IAcQOL4kP
+	 ybMSuAnMu4r8A==
+Received: from [IPV6:2601:647:4b00:aafb:8de4:4424:40be:e94d]
+ ([IPv6:2601:647:4b00:aafb:8de4:4424:40be:e94d])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by resomta-c2p-555922.sys.comcast.net with ESMTPSA
+	id jSDWsqbPZo31gjSDWso5Bt; Wed, 28 Aug 2024 23:36:47 +0000
+Message-ID: <f1245e53-00e4-47c4-9e22-41f3ec8516e3@comcast.net>
+Date: Wed, 28 Aug 2024 16:36:45 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Steve Hamn <stevehamn311@gmail.com>
+To: usrp-users@lists.ettus.com
 References: <CAOYGa72XPJnAFtD40sKpLFPnJf+627G49SgRmMPRPt9a79+U2Q@mail.gmail.com>
  <0bd53570-3d91-497f-ba4e-6c1df0ce87f1@gmail.com>
  <CAOYGa70FL9bHH6UR8u7WVZVoN4Nb8DA3KnsmHJrbJ2f2RCovPQ@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Language: en-US
 In-Reply-To: <CAOYGa70FL9bHH6UR8u7WVZVoN4Nb8DA3KnsmHJrbJ2f2RCovPQ@mail.gmail.com>
-Message-ID-Hash: M4OKQLCO6Y6RYS4U7WRQM7PHU3MVLXSP
-X-Message-ID-Hash: M4OKQLCO6Y6RYS4U7WRQM7PHU3MVLXSP
-X-MailFrom: patchvonbraun@gmail.com
+X-CMAE-Envelope: MS4xfLhAVCSmQu420e/BR464ArHefkuYkwsUo0IDUr86qRPTij7buh0MZK1POH5gVpIwiav+0o5Kt5cZJ/2Zp2961+ehVBWJwtEujnV3VVMcZO60SXlDkBax
+ 4/qQaqT+eHIUT2rnLT7GFia0L+0IvqhxXRmxBEHem1nuFZLopjtPI2nXB223WdgDGzLmq54ZBGI0+v0cDEBi4rinJNwk2zjp+gl0hmox6b27D41gh+y2bs/F
+ e6EzNApNtOA47owWjx0qJ6BSX+AACFY2WDNeq5oiykh7DmUVoAeuOZWkR2FUn77wa56TgTA5eBAXRqXgZAF3PQ==
+Message-ID-Hash: KS2I6SL3JC6PHE6MHZZNQ3R27VHWLET4
+X-Message-ID-Hash: KS2I6SL3JC6PHE6MHZZNQ3R27VHWLET4
+X-MailFrom: w6rz@comcast.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X440 Noise Figure
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M4OKQLCO6Y6RYS4U7WRQM7PHU3MVLXSP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KS2I6SL3JC6PHE6MHZZNQ3R27VHWLET4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3920667667577916579=="
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Type: multipart/mixed; boundary="===============6447586770272837727=="
 
 This is a multi-part message in MIME format.
---===============3920667667577916579==
+--===============6447586770272837727==
 Content-Type: multipart/alternative;
- boundary="------------TE5f06ctOd9DhVm7YUZcVMaz"
+ boundary="------------Gd3ogjeA0PEV9yzxHjJzJQtU"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------TE5f06ctOd9DhVm7YUZcVMaz
+--------------Gd3ogjeA0PEV9yzxHjJzJQtU
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 28/08/2024 18:36, Steve Hamn wrote:
+Here's an article that may help with your NF calculations.
+
+"Calculating noise figure and third-order intercept in ADCs"
+
+https://www.ti.com/lit/an/slyt090/slyt090.pdf
+
+I wrote a little C program from it.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(int argc, char **argv)
+{
+ =C2=A0=C2=A0=C2=A0 double=C2=A0=C2=A0 k, t, dBm1Hz, dBm500Hz;
+ =C2=A0=C2=A0=C2=A0 double=C2=A0=C2=A0 vpp, p, sinad, rate, VdBm, dBHz, d=
+BmHz;
+
+ =C2=A0=C2=A0=C2=A0 if (argc !=3D 4) {
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fprintf(stderr, "usage: bdr <=
+p-p voltage> <sinad> <sample=20
+rate>\n");
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 exit(-1);
+ =C2=A0=C2=A0=C2=A0 }
+
+ =C2=A0=C2=A0=C2=A0 vpp =3D atof(argv[1]);
+ =C2=A0=C2=A0=C2=A0 sinad =3D atof(argv[2]);
+ =C2=A0=C2=A0=C2=A0 rate =3D atof(argv[3]);
+
+ =C2=A0=C2=A0=C2=A0 k =3D 1.38064852e-23;
+ =C2=A0=C2=A0=C2=A0 t =3D 290.0;
+ =C2=A0=C2=A0=C2=A0 p =3D k * t * 1 * 1000.0;
+ =C2=A0=C2=A0=C2=A0 dBm1Hz =3D 10.0 * log10(p);
+ =C2=A0=C2=A0=C2=A0 p =3D k * t * 500 * 1000.0;
+ =C2=A0=C2=A0=C2=A0 dBm500Hz =3D 10.0 * log10(p);
+
+ =C2=A0=C2=A0=C2=A0 p =3D (vpp * vpp) / (50 * 8);
+ =C2=A0=C2=A0=C2=A0 VdBm =3D (10.0 * log10(p)) + 30;
+ =C2=A0=C2=A0=C2=A0 dBHz =3D 10.0 * log10(rate / 2);
+ =C2=A0=C2=A0=C2=A0 dBmHz =3D (VdBm - 1) - sinad - dBHz;
+ =C2=A0=C2=A0=C2=A0 printf("overload =3D %.2f dBm\n", VdBm);
+ =C2=A0=C2=A0=C2=A0 printf("Noise Figure =3D %.2f dB, %.2f dBm/Hz\n", dBm=
+Hz - dBm1Hz, dBmHz);
+ =C2=A0=C2=A0=C2=A0 printf("MDS in 500 Hz bandwidth =3D %.2f dBm\n", dBm5=
+00Hz + (dBmHz -=20
+dBm1Hz));
+ =C2=A0=C2=A0=C2=A0 printf("500 Hz Dynamic Range =3D %.2f dB\n", VdBm - (=
+dBm500Hz +=20
+(dBmHz - dBm1Hz)));
+ =C2=A0=C2=A0=C2=A0 return 0;
+}
+
+Ron
+
+On 8/28/24 15:36, Steve Hamn wrote:
 > Hi Marcus,
 >
 > Thanks. Understood, that all makes sense to me. Part of this is I'm=20
@@ -108,16 +152,6 @@ On 28/08/2024 18:36, Steve Hamn wrote:
 >
 > I guess you're confirming that 36.5dB is expected from the X440 and=20
 > there's nothing crazy wrong about my math.
-Might be a *bit* high, but like I said, ADCs have notoriously-high=20
-equivalent noise figure.=C2=A0 I don't think anyone at NI/Emerson
- =C2=A0 has done a "hard characterization" of the equivalent noise figure=
-,=20
-because, well, it's always going to be "somewhere around
- =C2=A0 horrific".=C2=A0 Nobody would likely expect to connect this direc=
-tly to an=20
-antenna (except maybe on HF) and expect good results...
-
-
 >
 > Thanks,
 >
@@ -184,8 +218,11 @@ igure is
 >     USRP-users mailing list -- usrp-users@lists.ettus.com
 >     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
-
---------------TE5f06ctOd9DhVm7YUZcVMaz
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+--------------Gd3ogjeA0PEV9yzxHjJzJQtU
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -196,8 +233,63 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 28/08/2024 18:36, Steve Hamn wrote:=
-<br>
+    <p>Here's an article that may help with your NF calculations.</p>
+    <p>"Calculating noise figure and third-order intercept in ADCs"<br>
+    </p>
+    <p><a class=3D"moz-txt-link-freetext" href=3D"https://www.ti.com/lit/=
+an/slyt090/slyt090.pdf">https://www.ti.com/lit/an/slyt090/slyt090.pdf</a>=
+</p>
+    <p>I wrote a little C program from it.<br>
+    </p>
+    <p>#include &lt;stdio.h&gt;<br>
+      #include &lt;stdlib.h&gt;<br>
+      #include &lt;math.h&gt;<br>
+      <br>
+      int main(int argc, char **argv)<br>
+      {<br>
+      =C2=A0=C2=A0=C2=A0 double=C2=A0=C2=A0 k, t, dBm1Hz, dBm500Hz;<br>
+      =C2=A0=C2=A0=C2=A0 double=C2=A0=C2=A0 vpp, p, sinad, rate, VdBm, dB=
+Hz, dBmHz;<br>
+      <br>
+      =C2=A0=C2=A0=C2=A0 if (argc !=3D 4) {<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fprintf(stderr, "usage: =
+bdr &lt;p-p voltage&gt;
+      &lt;sinad&gt; &lt;sample rate&gt;\n");<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 exit(-1);<br>
+      =C2=A0=C2=A0=C2=A0 }<br>
+      <br>
+      =C2=A0=C2=A0=C2=A0 vpp =3D atof(argv[1]);<br>
+      =C2=A0=C2=A0=C2=A0 sinad =3D atof(argv[2]);<br>
+      =C2=A0=C2=A0=C2=A0 rate =3D atof(argv[3]);<br>
+      <br>
+      =C2=A0=C2=A0=C2=A0 k =3D 1.38064852e-23;<br>
+      =C2=A0=C2=A0=C2=A0 t =3D 290.0;<br>
+      =C2=A0=C2=A0=C2=A0 p =3D k * t * 1 * 1000.0;<br>
+      =C2=A0=C2=A0=C2=A0 dBm1Hz =3D 10.0 * log10(p);<br>
+      =C2=A0=C2=A0=C2=A0 p =3D k * t * 500 * 1000.0;<br>
+      =C2=A0=C2=A0=C2=A0 dBm500Hz =3D 10.0 * log10(p);<br>
+      <br>
+      =C2=A0=C2=A0=C2=A0 p =3D (vpp * vpp) / (50 * 8);<br>
+      =C2=A0=C2=A0=C2=A0 VdBm =3D (10.0 * log10(p)) + 30;<br>
+      =C2=A0=C2=A0=C2=A0 dBHz =3D 10.0 * log10(rate / 2);<br>
+      =C2=A0=C2=A0=C2=A0 dBmHz =3D (VdBm - 1) - sinad - dBHz;<br>
+      =C2=A0=C2=A0=C2=A0 printf("overload =3D %.2f dBm\n", VdBm);<br>
+      =C2=A0=C2=A0=C2=A0 printf("Noise Figure =3D %.2f dB, %.2f dBm/Hz\n"=
+, dBmHz -
+      dBm1Hz, dBmHz);<br>
+      =C2=A0=C2=A0=C2=A0 printf("MDS in 500 Hz bandwidth =3D %.2f dBm\n",=
+ dBm500Hz +
+      (dBmHz - dBm1Hz));<br>
+      =C2=A0=C2=A0=C2=A0 printf("500 Hz Dynamic Range =3D %.2f dB\n", VdB=
+m - (dBm500Hz +
+      (dBmHz - dBm1Hz)));<br>
+      =C2=A0=C2=A0=C2=A0 return 0;<br>
+      }<br>
+    </p>
+    <p>Ron<br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 8/28/24 15:36, Steve Hamn wrote:<br=
+>
     </div>
     <blockquote type=3D"cite"
 cite=3D"mid:CAOYGa70FL9bHH6UR8u7WVZVoN4Nb8DA3KnsmHJrbJ2f2RCovPQ@mail.gmai=
@@ -217,22 +309,6 @@ TF-8">
         <div dir=3D"auto">I guess you're confirming that 36.5dB is
           expected from the X440 and there's nothing crazy wrong about
           my math.</div>
-      </div>
-    </blockquote>
-    Might be a *bit* high, but like I said, ADCs have notoriously-high
-    equivalent noise figure.=C2=A0 I don't think anyone at NI/Emerson<br>
-    =C2=A0 has done a "hard characterization" of the equivalent noise fig=
-ure,
-    because, well, it's always going to be "somewhere around<br>
-    =C2=A0 horrific".=C2=A0 Nobody would likely expect to connect this di=
-rectly to
-    an antenna (except maybe on HF) and expect good results...<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAOYGa70FL9bHH6UR8u7WVZVoN4Nb8DA3KnsmHJrbJ2f2RCovPQ@mail.gmai=
-l.com">
-      <div dir=3D"auto">
         <div dir=3D"auto"><br>
         </div>
         <div dir=3D"auto">Thanks,</div>
@@ -342,14 +418,23 @@ tus.com</a><br>
           </div>
         </div>
       </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
     </blockquote>
-    <br>
   </body>
 </html>
 
---------------TE5f06ctOd9DhVm7YUZcVMaz--
+--------------Gd3ogjeA0PEV9yzxHjJzJQtU--
 
---===============3920667667577916579==
+--===============6447586770272837727==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -359,4 +444,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3920667667577916579==--
+--===============6447586770272837727==--
