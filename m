@@ -2,110 +2,214 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BF8E962E17
-	for <lists+usrp-users@lfdr.de>; Wed, 28 Aug 2024 19:02:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CACC9962E9F
+	for <lists+usrp-users@lfdr.de>; Wed, 28 Aug 2024 19:36:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 080F33855EF
-	for <lists+usrp-users@lfdr.de>; Wed, 28 Aug 2024 13:02:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1BDF33857B9
+	for <lists+usrp-users@lfdr.de>; Wed, 28 Aug 2024 13:36:22 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724864558; bh=++j+DrCcpE453gjenjzo5zAvHYOHvOVarAjk2tffi3A=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=YguX6WjZPycsOa5tACCH5DL4KbWvWLaomQ1SUiZgdXNllWKet20R05/AOGCBMykC4
-	 e9B9hI2xTyRAaxlI8qbkQt9JmZNyMr67fUaxw/qfpRGx1fA63Jv0c2jdE0c7ov5v45
-	 s7xx9Og4nYOKbaNFl0PVXcTM4FkmYRPIx9tcHjlAWbr6pzCJiWgfglLpbL0ng8yNZP
-	 ybdYTQexysx46WlD6tXLvyR6KIXkPL08QKSRZA9Z7cwn/Bgm7fFc7mnFtfZDOWHuiE
-	 u/PKE5xhUa/9VUCzxuiThuC5juXmpHm4lh5j9dRAEcKr4xFuqSaSS44yslP5RuevlG
-	 dYyuS2YI5mS7g==
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 20E57385061
-	for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2024 13:01:40 -0400 (EDT)
+	t=1724866582; bh=YVWQ8Zw/el8ODIxdcQ2tLrhH7whazcnF+dRTH0Au+kY=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=hCXYKMde5RhOZ5ADEte5i9ZcwMkQNISSx2c07zIM0E1yzu92yO5hAJ8sEC8ZCfKoE
+	 Dq6G9iK0YlqN7QTPqgcWtt6sMWBVP6yxwgFnKJqQKabtkyTBMd0WSHA7G8AeLYJ6A5
+	 bWXK5PROi9EjRO3LRKV6X2WTTMfJsQHxwAJStCmLkfrh2rZBBau7MoDHmMUPNHKmhA
+	 LOSbzy2RiAlc5gLBplilmSRQ/c09RuC+EBEGV7m1niVdRNm+zPh+C3su87J0Uhf7Xl
+	 TaaueStTlwM0RFCmayLgGmWKCWQuNkX6Bma02SkI8RdS3xm06Z+dEKn2gRSYYP+dKR
+	 wsDA4LoFFz8og==
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 10EF038560D
+	for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2024 13:35:38 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JNNLZOXg";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OaxXmYEs";
 	dkim-atps=neutral
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-451a0b04f6bso38116741cf.2
-        for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2024 10:01:40 -0700 (PDT)
+Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5df998d7a44so33370eaf.2
+        for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2024 10:35:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724864499; x=1725469299; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Uer4LEMYQy1xVL5HKc2wyeg3tUGqL5dQ8O071f2hJk4=;
-        b=JNNLZOXgm1nVM/E8M6kPHV8Lmc9v/wUCbczEx6MKiJj6KmYbRB8YX9g6g1KK3qXnAj
-         UqOopvc/AyHTQi4HUeDPTJwSh6DTd7n7220xQOz7q1tnn0qOQgS01v4A7MRvTV7UX8pF
-         tNeIxPDoOKsUiNzEBbjmE7xuayTEwPScruufo/tesDEO8HWIYEYLYYuwCdeIMPz5VxRv
-         aHRGYpKL5P6KY/KWGet6cicwiijf2CC/37WlOHqGWw+6+RJWBz0cUu4e3+yjlaVahj28
-         3RjU2wnk8XLK0G6dxXoyPkKgeMw/cHiGNqpEfGxkapCmnbBejPzmnxO81r/tfcTLplYU
-         YNeA==
+        d=gmail.com; s=20230601; t=1724866538; x=1725471338; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UudMNpDllg9gIj9D01mT/vDqduG8CQ14jFxqx7msQL4=;
+        b=OaxXmYEsx0Cjs1mjlDOTBGNrmY4UsGA/YJu15ehCbOWII+FJq9fGDfhRUHzEGYUJIM
+         vzL9q4j1FtA9xhkmYSwQXR0sEDX3VjxrdHjgsKDVV481qPp65Qo2OPa1CS1rNDBwsOfv
+         ypFqfFcOh6EfWHIr1NJoeILNAgZsfTybEUkUE6XKr15p8zkXOkn9jKRxvhaxm9RivCyF
+         A2mPSjyEOX55iieE5L6HhaIl6oXfUMevG4iZATOdKB1eb0rHeZsU7lVp5MriWTdNPt0Y
+         q3/7siK2mhxZvOgaDigZjEXs0g0QY8riU7P9oGT3jmDjWy+LIJO8GDx2OaGcdCe7t4Bu
+         gnmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724864499; x=1725469299;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Uer4LEMYQy1xVL5HKc2wyeg3tUGqL5dQ8O071f2hJk4=;
-        b=DlILn0QpwfJk2bBEreCwoP4mwo3e0RChw/6xCJhOzUyamE46Kh0qmqAbMY6pvB/wUj
-         FD7TFRGgZ5i2l7puFRrGNgdg/pRzTaROzrx3y5CE4orgjEeg6JzQBLtskobfemITz94t
-         j6UA+1yoCK11E4cQSGIhBP8s188mRb/MOBgE+wNXFv7asRiuYVvrKdXH4PmkPT5nf3k6
-         YPyNMd1v1ypwHgf5RgUtAz4u+WCrGvTrj2BN9R/OO/uM3naonrGkGfPQC0uga9IHMYM9
-         QZ5/XEs/Ul+P9puZ1TaD4IgEtdwTNexaZvuUhgIb0jin3DQYoxDhqPWscsetRuQKifRA
-         FAEQ==
-X-Gm-Message-State: AOJu0YzfHa+fkQ03e47Tn1d9talu4a1z6Wx/t38WTEnCgWFZJ6XQzmBh
-	UZSEq3GtND18QIVtqOOQBTBDicqEf26eUVGsfXUe5AbdOnaGv9JBuv3c0g==
-X-Google-Smtp-Source: AGHT+IE2CBbKknwgDpZFc6SrEgIrFjN4lWSlRe2hqI/igrL9kD9iu5zFYhUCM086lH9PSrMaYjTaUw==
-X-Received: by 2002:a0c:f20a:0:b0:6bf:8339:95a0 with SMTP id 6a1803df08f44-6c33e5e82d6mr1843756d6.9.1724864499330;
-        Wed, 28 Aug 2024 10:01:39 -0700 (PDT)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-22-64-231-212-86.dsl.bell.ca. [64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6c162d63e1esm66368706d6.64.2024.08.28.10.01.38
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Aug 2024 10:01:38 -0700 (PDT)
-Message-ID: <9cec144a-612e-4eb3-8b42-fde95882588f@gmail.com>
-Date: Wed, 28 Aug 2024 13:01:38 -0400
+        d=1e100.net; s=20230601; t=1724866538; x=1725471338;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UudMNpDllg9gIj9D01mT/vDqduG8CQ14jFxqx7msQL4=;
+        b=LKgkTePLm9+kEWQb77cE7kxgxQox0EwB/73WtecHh47hHIpF9B8DSgE5wa7xnqMVAg
+         un6jvcj8IIHSoz9fKk3Ib5Ll+C1kEfRrhAArcbMF7hEXRyLwQ8UQ34Ko8HhLodLuL2/o
+         PbYc/ufUx/wW47jTvN46e7Mr7vS4LzzXC1IEzLSgNnZCzW8stLfmucZV70a1/JqXcfPD
+         VcCYxEl9TS6nnV6vtjNI1RS5P3BlzDW8RWs4eLFEeYz7SngNyqONI4OyqwPVux7vM1oL
+         u5dr3VENpNg10nLhZvERYgNqkBsYv+zPry/Tm9oxAirJ9ZlhAOFSgS5ePsVwvHIOiYjH
+         iaOA==
+X-Gm-Message-State: AOJu0YxMbtiLhZwrOx/MnN1+WFVmW7vYwGwTrzvBZ6KDpmZPMSR6DQTq
+	84vCTItzrxkUqbeUseVgV1Mjj/ZsQ4Mra6ZkMZh7gIzX1ulKGG1pyPcxUkxLgJAv8lUvvR9o8SR
+	CGbN278P1qRUju9XTdsffYxiRaKs=
+X-Google-Smtp-Source: AGHT+IFDznInrlk86BGDd/RlrNwUNfQWOZByj9vHOdKIWrd2ZqFq0ZG2Xa5AilRg/6colIf5xmV51eqUYGPUOI4U8hE=
+X-Received: by 2002:a05:6820:151f:b0:5c6:5f2d:8430 with SMTP id
+ 006d021491bc7-5df97e9146fmr625502eaf.2.1724866538020; Wed, 28 Aug 2024
+ 10:35:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
 References: <CAKacFEn+UXiCb57ev_-rvjcOxp+vF3BJ3pLtxEdJvVvc3ZGh=A@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAKacFEn+UXiCb57ev_-rvjcOxp+vF3BJ3pLtxEdJvVvc3ZGh=A@mail.gmail.com>
-Message-ID-Hash: CLQOXLMK3AI73V5CMQSNBO3BDOTGA7FU
-X-Message-ID-Hash: CLQOXLMK3AI73V5CMQSNBO3BDOTGA7FU
-X-MailFrom: patchvonbraun@gmail.com
+ <9cec144a-612e-4eb3-8b42-fde95882588f@gmail.com>
+In-Reply-To: <9cec144a-612e-4eb3-8b42-fde95882588f@gmail.com>
+From: ali siddig <alisiddig12@gmail.com>
+Date: Wed, 28 Aug 2024 21:35:26 +0400
+Message-ID: <CAKacFEmpgeoi92EnJtijRb+yLZfeSuRRBMMvVqvFnHTb0HVtVg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: PM5KEHLQHSCTMDWU3DHZP4TWQYEZCJK4
+X-Message-ID-Hash: PM5KEHLQHSCTMDWU3DHZP4TWQYEZCJK4
+X-MailFrom: alisiddig12@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: QPSK modulation and demodulation
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CLQOXLMK3AI73V5CMQSNBO3BDOTGA7FU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PM5KEHLQHSCTMDWU3DHZP4TWQYEZCJK4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============7361182468102653029=="
 
-T24gMjgvMDgvMjAyNCAxMjoxMywgYWxpIHNpZGRpZyB3cm90ZToNCj4gRGVhciBhbGwsDQo+IEkg
-aGF2ZSB0cmllZCB0byB1c2UgdGhlIFFQQUsgbW9kdWxhdGlvbiBhbmQgZGVtb2R1bGF0aW9uIGV4
-YXBtbGUgZnJvbSANCj4gdGhlIHR1dG9yaWFsIGluIHRoZSBsaW5rIGJlbG93LiBJIGFtIHVzaW5n
-IHR3byBVU1JQcyBCMjA1IGFzIA0KPiB0cmFuc21pdHRlciBhbmQgcmVjZWl2ZXIsIGZyZXF1ZW5j
-eSA5MTBNSHogLCBzYW1wbGluZyByYXRlIDMwMGsgb3IgMSBNIA0KPiBzcHMuIEhvd2V2ZXIsIHRo
-ZSByZWNlaXZlZCBzaWduYWwncyBjb25zdGVsbGF0aW9uIGFmdGVyIENvc3RhcyBsb29wIA0KPiBh
-cmUgbm90IHN5bmNocm9uaXplZCAocG9pbnRzIGV2ZXJ5d2hlcmUgaW4gdGhlIGNvbnN0ZWxsYXRp
-b24gZGlhZ3JhbSkuIA0KPiBBbSBJwqBtaXNzaW5nIHNvbWV0aGluZyBpIGhhdmUgdG8gY2hhbmdl
-IGluIHRoZSB1c3JwIHNldHRpbmcgb3IgDQo+IHN5bmNocm9uaXphdGlvbiBibG9jaz8NCj4NCj4g
-aHR0cHM6Ly93aWtpLmdudXJhZGlvLm9yZy9pbmRleC5waHA/dGl0bGU9UVBTS19Nb2RfYW5kX0Rl
-bW9kI1BoYXNlX2FuZF9GcmVxdWVuY3lfQ29ycmVjdGlvbg0KPg0KPiBCZXN0IHJlZ2FyZHMsDQo+
-IEFsaSBzaWRkaWcNCj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbQ0KVGhpcyBpcyBtb3JlLXByb3Blcmx5IGEgcXVlc3Rpb24gZm9y
-IHRoZSBkaXNjdXNzLWdudXJhZGlvIG1haWxpbmcgbGlzdCwgDQpub3QgaGVyZS4NCg0KTXkgZ3Vl
-c3MgaXMgdGhhdCB5b3Ugd2lsbCBhbHNvIHJlcXVpcmUgc29tZSBraW5kIG9mIEZMTCB0byB0cmFj
-ayB0aGUgDQppbmV2aXRhYmxlIGZyZXF1ZW5jeSBkaWZmZXJlbmNlcyBiZXR3ZWVuIFRYIGFuZCBS
-WC7CoCBCdXQNCiDCoCB0aGF0J3MganVzdCBhIHNsaWdodGx5LWVkdWNhdGVkIGd1ZXNzLg0KDQoN
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============7361182468102653029==
+Content-Type: multipart/alternative; boundary="00000000000048a8fc0620c1c9e6"
+
+--00000000000048a8fc0620c1c9e6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I already tried that, but may be it is a parameter values issue
+I used :
+Sample per symbol=3D4
+Filter rolloff factor =3D350m
+Prototype filter size 44
+Loop bandwidth 62.8m
+
+When the input value is random source (228,229), it works
+But when the input value is random source (0,256), it doesn't work
+
+Best Regards,
+
+On Wed, Aug 28, 2024, 9:02=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmail.=
+com>
+wrote:
+
+> On 28/08/2024 12:13, ali siddig wrote:
+> > Dear all,
+> > I have tried to use the QPAK modulation and demodulation exapmle from
+> > the tutorial in the link below. I am using two USRPs B205 as
+> > transmitter and receiver, frequency 910MHz , sampling rate 300k or 1 M
+> > sps. However, the received signal's constellation after Costas loop
+> > are not synchronized (points everywhere in the constellation diagram).
+> > Am I missing something i have to change in the usrp setting or
+> > synchronization block?
+> >
+> >
+> https://wiki.gnuradio.org/index.php?title=3DQPSK_Mod_and_Demod#Phase_and_=
+Frequency_Correction
+> >
+> > Best regards,
+> > Ali siddig
+> >
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> This is more-properly a question for the discuss-gnuradio mailing list,
+> not here.
+>
+> My guess is that you will also require some kind of FLL to track the
+> inevitable frequency differences between TX and RX.  But
+>    that's just a slightly-educated guess.
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--00000000000048a8fc0620c1c9e6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">I already tried that, but may be it is a parameter values=
+ issue<div dir=3D"auto">I used :</div><div dir=3D"auto">Sample per symbol=
+=3D4</div><div dir=3D"auto">Filter rolloff factor =3D350m</div><div dir=3D"=
+auto">Prototype filter size 44</div><div dir=3D"auto">Loop bandwidth 62.8m<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">When the input value is =
+random source (228,229), it works</div><div dir=3D"auto">But when the input=
+ value is random source (0,256), it doesn&#39;t work</div><div dir=3D"auto"=
+><br></div><div dir=3D"auto">Best=C2=A0Regards,</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 28, 2024=
+, 9:02=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail=
+.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
+left:1ex">On 28/08/2024 12:13, ali siddig wrote:<br>
+&gt; Dear all,<br>
+&gt; I have tried to use the QPAK modulation and demodulation exapmle from =
+<br>
+&gt; the tutorial in the link below. I am using two USRPs B205 as <br>
+&gt; transmitter and receiver, frequency 910MHz , sampling rate 300k or 1 M=
+ <br>
+&gt; sps. However, the received signal&#39;s constellation after Costas loo=
+p <br>
+&gt; are not synchronized (points everywhere in the constellation diagram).=
+ <br>
+&gt; Am I=C2=A0missing something i have to change in the usrp setting or <b=
+r>
+&gt; synchronization block?<br>
+&gt;<br>
+&gt; <a href=3D"https://wiki.gnuradio.org/index.php?title=3DQPSK_Mod_and_De=
+mod#Phase_and_Frequency_Correction" rel=3D"noreferrer noreferrer" target=3D=
+"_blank">https://wiki.gnuradio.org/index.php?title=3DQPSK_Mod_and_Demod#Pha=
+se_and_Frequency_Correction</a><br>
+&gt;<br>
+&gt; Best regards,<br>
+&gt; Ali siddig<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.e=
+ttus.com</a><br>
+This is more-properly a question for the discuss-gnuradio mailing list, <br=
+>
+not here.<br>
+<br>
+My guess is that you will also require some kind of FLL to track the <br>
+inevitable frequency differences between TX and RX.=C2=A0 But<br>
+=C2=A0=C2=A0 that&#39;s just a slightly-educated guess.<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
+com</a><br>
+</blockquote></div>
+
+--00000000000048a8fc0620c1c9e6--
+
+--===============7361182468102653029==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7361182468102653029==--
