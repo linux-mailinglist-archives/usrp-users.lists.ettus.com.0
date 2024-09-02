@@ -2,188 +2,209 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC592964A67
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Aug 2024 17:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E8A9687DA
+	for <lists+usrp-users@lfdr.de>; Mon,  2 Sep 2024 14:48:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 28B92384E6C
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Aug 2024 11:44:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8D731385203
+	for <lists+usrp-users@lfdr.de>; Mon,  2 Sep 2024 08:48:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1724946282; bh=5UFgA4Mii6kVWaXbmJkVACCyNFqpFH4Bi5Fjh2TDK+I=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1725281338; bh=ZW/w+dEzODQoqmxih13+RZJQnTtjn1d6uQY2us5RTJ0=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=SKStMa6z1ahU2+4Az9P+mJhOG4baAi6jpqtG9XRWT47xRNEz/jRK2z9AgxKSdec9g
-	 UQv2cFeTvn0wqCIkKxfhrx6Dt0fjWMhr7OUfMGn0DbnGpknTXdcgCYJ0tV2TJSEFT5
-	 gr79PVvPUh2BJRnlTLTyMf+xCWg72fboxQo1Zo8lhSJVtLfxvmIDNQNlqJn9piWm5x
-	 /00I6kLYKAg3RgEdtNjVyQ5R/hEznyBFoyPsAH1OsvTd2ws2tCQWA+4gardWSqWwps
-	 b9mYMOFyToLKkbmhZcBm42G1/9mVJBQ77pPPDxROdWtxdYcNp3MkDAPpRcc9G3PgP5
-	 HbuWE1VJYyQ2Q==
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id A0B40381206
-	for <usrp-users@lists.ettus.com>; Thu, 29 Aug 2024 11:43:56 -0400 (EDT)
+	b=ecllLz2ltFS+9ZSU1gcfACQwxadZgr5qaGiBkvzQfK2Ru7wIbCpEJPCQ2V5rDIuWV
+	 mAemDoiNjAOSrIXID21m8j5ElsmSuhpkUBOKAV9fZGGz5ZlkWK3+rDoih1qf5DS5Nx
+	 FJw6GZ95F4QK8k3wXFmFoSwyLJfVL262pbUmoRLVhi/LzuWRMjN6nSHMyH74ueX/UE
+	 3QSXoVEDPE0LDbkNREYKmB5ByfvjObyy779QSAJM20gGHt0JxO9GbVvq62G9vea5d1
+	 z2g+Y9U8/dodY4/V1VMdKR1sdRLWPRzc9fxxPH4ooyr26Sh1lWwrV62T9UJx71kfLu
+	 JCMyNjbw+X95A==
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id 40FA83810E9
+	for <usrp-users@lists.ettus.com>; Mon,  2 Sep 2024 08:48:33 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gK3ZERiD";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="S++muWJ2";
 	dkim-atps=neutral
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-44ff9281e93so3927611cf.2
-        for <usrp-users@lists.ettus.com>; Thu, 29 Aug 2024 08:43:56 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2f3eabcd293so47530891fa.2
+        for <usrp-users@lists.ettus.com>; Mon, 02 Sep 2024 05:48:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724946236; x=1725551036; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+7YyOueRPHn6tjVuSqNXeKuGBrvlkrX8isLW6HRzUKQ=;
-        b=gK3ZERiDzJHCcwAzA3DjqVIbL8eqdymjvgA9+b/nTRFDVApqzU2PJboH28QmdjQwBr
-         0Qymuy1YaxeVbBwPk6C909WaILh21l2spFlxeCGLqCJ8G02mWOMvE5fkZDgzWfVFKNxc
-         G74eSECqJYtM35p6dnaZlXbff6mAk3Dz1Af/amEZylfJE0LlbgPq6V8AOXyGG0PP7fWt
-         pLM474EH0T6zbmXalGIKHZh8C6niFdlJiJpk9V2wr9x3zgBAkt5uwjyoCimbb1JtA/6J
-         6e+QrivhS1xppyD6kqA2vF0Hjrpq+i11CmY82wd2KVmqvlL239DN5wuy1rJymnaQnRf5
-         YF7g==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1725281312; x=1725886112; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nq8WCpIhyApPq2LLRhEWu77uwspxRsSkEdV54+jCfQQ=;
+        b=S++muWJ2jvXRyMMx2shfyFxwasjRrQfV7ZYRScOhxONHX70QHTe8qqbe6xv0qicWNl
+         Rs1GbMmLJVKg8XiY4og9YeqJKVI8oj8RUyD3WCizHEJa9dFHHdIC+4D2nPR8eo6ZLk+j
+         4wHY8eZYmcojwr7MsAvVk2s+XAxRa6a4G28kyoGpwDiD2PSoLIGAjw6QT/opnx3wnMIP
+         o2Z3SZPNL8vv7p+pGm7Obismdm2j6V3kzwoVrht120zw0b6h/D7TvPJhe6MS883XcTim
+         aPb9RrJ3+fpvDfPx3SNz5cjfIe2DQQ30Ox4mynkgdYUizbqPKmgG13+ImKCkTKXn8xMp
+         R8ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724946236; x=1725551036;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+7YyOueRPHn6tjVuSqNXeKuGBrvlkrX8isLW6HRzUKQ=;
-        b=MNA/eGpnAuu7JQTMte5WbvNHZlAG3siLXiF0oaJfernhjGCpXlLb1lBPTN7haVe3/i
-         IPpQUHPdXW4eOk4dwmvjaOYzIf9T7DIOuVvdmVItILG7aBtRBWkFq0daN8ZDhNqDNlsc
-         +ssmDhVvEjohoImke0/+8Esyf2odxa4hjjtnClVBvY4PgvhmNeyUrtEgpEHP/+Ax1usX
-         eVYUOgFPlA0o49or0Rxvs2atooIow3kifKaWPuGehP+29LZ6RmFa9YFGmIK45H9CBqhy
-         dBz585R8NUWt7a5hxScfEz4F77gBtIsuD1Txu2dPshkhgI0OUzJLCiPFsGxsiCZgR9C2
-         eYcQ==
-X-Gm-Message-State: AOJu0Yxd8pcgH5LY07HymvmEwm/Y6KiyHJpgk73p7eO6SCEqjsqBSybf
-	iqjw7y2hKzgypIjc3fp+qWcvxp/npe+3bZoirU23b6mwTjnb/kdwIfpiKQ==
-X-Google-Smtp-Source: AGHT+IEO1Ycpo5EaQ+epPQtKAf76SeHrAZJAYkGjcQmwZW8umP7fRqq/lAMCNoAcidjUQZCLnFDIUA==
-X-Received: by 2002:a05:622a:578f:b0:447:e61d:2895 with SMTP id d75a77b69052e-4567f592050mr33238531cf.20.1724946235711;
-        Thu, 29 Aug 2024 08:43:55 -0700 (PDT)
-Received: from [192.168.2.170] ([64.231.212.86])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-45682d6970asm5787231cf.66.2024.08.29.08.43.55
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Aug 2024 08:43:55 -0700 (PDT)
-Message-ID: <415710e9-b220-4c18-805a-778e1934180a@gmail.com>
-Date: Thu, 29 Aug 2024 11:43:44 -0400
+        d=1e100.net; s=20230601; t=1725281312; x=1725886112;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nq8WCpIhyApPq2LLRhEWu77uwspxRsSkEdV54+jCfQQ=;
+        b=FHSXQ1FrBaFgVGeY8iavBJ+sf4dPzHsfymebqKFR+9Vm25vxY6CaqQYzvj/jjmW6ct
+         f/4duNkwRt9IpwbEUkAU4AIqQ6LPvb9yTOM1akQeO8v0UkSsbqMS/F6EM33Aj2FvxWob
+         dxbJ6nYNtDQzTKgnOS6Vk+rwlu8Ie8yQLE3FsTEtsvJNhcEr3sdTX55C3S51+GtGYoNG
+         UWxxO78xQIV2klIAfxyGIdJx2xzf+uyeFlgNQJAjyIVSQOffJmd6Zv7avuYnTxSG6SxT
+         aQO3ZRq68jVpdkBF6TtTd4kqdecdBHDzoZdsmy6/gzzPkiObeIQyfl2h0te2Y9UZXPa9
+         ILtQ==
+X-Gm-Message-State: AOJu0Yxqt2zbJ0a6D2gXCaYGY5fItCiemAf4kVOFiPMGpZTSZeQzZxle
+	s3knyLYTp2mqhNNza9QDe7FcIT/jHmxmCjbV7RRWJCNBk0VE1W9x4VG29nRYb/ClzOputtJ2j55
+	0FX3EGYsZQf3SlgtqrHF4oWMui9iNrYjCTfc7o1Ry1m9zwFNcgzw=
+X-Google-Smtp-Source: AGHT+IFYCBrTzwweS5Itj22ZWuQbrcNvcmX5zuwyMGnxnCwcv5UysK101oyfqSVM4CmxBtDr782GXLfhwpXeGUSfbq8=
+X-Received: by 2002:a05:6512:3e0d:b0:52c:f2e0:db23 with SMTP id
+ 2adb3069b0e04-53546ba07ffmr6829516e87.40.1725281311582; Mon, 02 Sep 2024
+ 05:48:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <K8FSwvOlK2rfjZMpoii2QHXxx6ULW4oJXRydfwaQ@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <K8FSwvOlK2rfjZMpoii2QHXxx6ULW4oJXRydfwaQ@lists.ettus.com>
-Message-ID-Hash: WHAADZ7TMPZSRQ6ZRA72TURYR4UBQ7YQ
-X-Message-ID-Hash: WHAADZ7TMPZSRQ6ZRA72TURYR4UBQ7YQ
-X-MailFrom: patchvonbraun@gmail.com
+References: <b7EDp_Z-OGLk51ibwQutMTVO7aVrweoUubIOqX594P7xDHOpwd6I31RtEuiCTB3DMjFLfdkKR0dLqBIS1UGsN8df_iSefI5zIAhjCxTWVUY=@protonmail.com>
+ <CAB__hTSWmo4jBMz7PiLw=uMzR56RaNTqj_PZo3pk6Oxt9fsGUQ@mail.gmail.com>
+ <524a890b-6dea-4526-aef3-3dfbed714a20@gmail.com> <CAB__hTTO=N08nac2wwg9H4X6X1KWufAr+8jm5xXjd0QXnsiLow@mail.gmail.com>
+ <ZzKYZGhnR2PvIUOunRGDW3GffGey_JjDV2v-c_tCLY9R66l3Yt-R4dt-wV9uzw5PYEbIEYAPGndZjkFQCRw_cRP-j8MUC7jxZ7-2ak2MNto=@protonmail.com>
+ <CAFOi1A5TNE5M4xWD9dRCpNoj2RV08Soxpkphp7Lyrp7azq5P-Q@mail.gmail.com> <Q_NqcWhbOF3BQUKsVckNn9edxSwIdd8tSBYk3lM6S_UYwLQIVuLncqarHw0DLZK6BQUuY40HIJNvhxfbwQQykR8vpHWaXWGeysgoqQcIlcc=@protonmail.com>
+In-Reply-To: <Q_NqcWhbOF3BQUKsVckNn9edxSwIdd8tSBYk3lM6S_UYwLQIVuLncqarHw0DLZK6BQUuY40HIJNvhxfbwQQykR8vpHWaXWGeysgoqQcIlcc=@protonmail.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Mon, 2 Sep 2024 14:48:20 +0200
+Message-ID: <CAFOi1A6fyJLLw9ugFicXFpcmEfSNa+gLbztG53_b6H3zHdwXQg@mail.gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: PAE3LDN7AUT5TB2KCLSGAZ76S2C3IF5S
+X-Message-ID-Hash: PAE3LDN7AUT5TB2KCLSGAZ76S2C3IF5S
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Why does the self-calibration utility not work?
+Subject: [USRP-users] Re: Assistance with RFNoC and TwinRX Configuration in Custom FPGA Image
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WHAADZ7TMPZSRQ6ZRA72TURYR4UBQ7YQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PAE3LDN7AUT5TB2KCLSGAZ76S2C3IF5S/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2897893169132824068=="
+Content-Type: multipart/mixed; boundary="===============8395433823215004372=="
 
-This is a multi-part message in MIME format.
---===============2897893169132824068==
-Content-Type: multipart/alternative;
- boundary="------------o6oPOqKucBYgPSq0Da910Jz3"
-Content-Language: en-US
+--===============8395433823215004372==
+Content-Type: multipart/alternative; boundary="000000000000b715550621225bd2"
 
-This is a multi-part message in MIME format.
---------------o6oPOqKucBYgPSq0Da910Jz3
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000b715550621225bd2
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 27/08/2024 13:31, Hossein via USRP-users wrote:
->
-> Usually, I generate signals by MATLAB and convert it to binary data.=20
-> Then, I use =E2=80=9Crfnoc_replay_samples_from_file=E2=80=9D utility li=
-ke the following:
->
-> ./rfnoc_replay_samples_from_file --args=20
-> =E2=80=98type=3Dx300,addr=3D192.168.20.2,second_addr=3D192.168.40.2,mas=
-ter_clock_rate=3D200e6,ignore-cal-file=3D1=E2=80=99=20
-> --freq 2.3e9 --file tx_singleTone.dat --rate 100e6 --ant =E2=80=98TX/RX=
-=E2=80=99
->
-> As to the OFDM signal, I upconvert the baseband signal to a low IF=20
-> frequency by MATLAB, not with the UHD driver.
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-OK, let's try something simple.
+On Tue, Aug 27, 2024 at 11:34=E2=80=AFAM Olo via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Use the tx_waveforms example to emit a single tone.
+> Thank you for your response and for confirming the general approach to th=
+e
+> configuration. I have a couple more questions related to RFNoC,
+> particularly about buffer size in SEP (Stream Endpoints) and IP address
+> settings.
+> 1. Buffer Size in SEP:
+>
+> I=E2=80=99m having some difficulty understanding the correct setting for =
+buffer
+> size in SEP. I=E2=80=99ve found conflicting information:
+> On page: https://kb.ettus.com/RFNoC_Frequently_Asked_Questions
+> it says: "Set to 0 if you* don't need to send data* to that SEP."
+>
+> Meanwhile, this other page:
+> https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
+> states: "Alternatively, if we know that a particular SEP *only sends data=
+*
+> from the USRP to the computer, then we won't need the ingress data buffer
+> and we can set buff-size to 0, thus saving FPGA resources."
+>
 
-Then use the tx_samples_from_file (NOT the RFNOC version)
+They're both correct! The difference is where you're sending from. In
+general, when we say "send", we mean sending data to the device from the
+host. In your second quote, note the additional qualifier: "sends data from
+the USRP to the computer", which we generally think of as "receive".
 
-Are the results different?
+Since you're not intending to do any kind of TX, and you don't even have
+separate endpoints for sub-sections of your DSP, you could further drop the
+buffer sizes you currently have at  non-zero. The only thing that gains you
+though is a potential increase of build success when running Vivado, and
+you can re-use the BRAMs for other things (which in your design is probably
+not relevant).
+
+> 2. IP Address Configuration:
+>
+> I initially set up the X310 with the HG image and configured the IP
+> address to something like 192.168.50.2. Later, I switched to the XG image=
+,
+> which uses the default IPs of ...30.2 and ...40.2. When I load my custom
+> image, will the IP addresses remain consistent? I'm concerned about
+> "bricking" the device, especially after reading issues like this one:
+> https://github.com/EttusResearch/uhd/issues/550 .  I want to make sure I
+> avoid any potential pitfalls.
+>
+The IP addresses are stored in a separate EEPROM and do not get affected
+when you re-flash. The only exception is that the HG and the XG images use
+different IP numbers, as laid out in our manual (meaning that when you
+switch from HG to XG, you should expect a different IP number on SFP0, but
+in both cases, the actual number should be whatever it was that you wrote
+into the device).
 
 
---------------o6oPOqKucBYgPSq0Da910Jz3
-Content-Type: text/html; charset=UTF-8
+--M
+
+--000000000000b715550621225bd2
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 27/08/2024 13:31, Hossein via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:K8FSwvOlK2rfjZMpoii2QHXxx6ULW4oJXRydfwaQ@lists.ettus.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Usually, I generate signals by MATLAB and convert it to binary
-        data. Then, I use =E2=80=9Crfnoc_replay_samples_from_file=E2=80=9D=
- utility like
-        the following:</p>
-      <p>./rfnoc_replay_samples_from_file --args
-=E2=80=98type=3Dx300,addr=3D192.168.20.2,second_addr=3D192.168.40.2,maste=
-r_clock_rate=3D200e6,ignore-cal-file=3D1=E2=80=99
-        --freq 2.3e9 --file tx_singleTone.dat --rate 100e6 --ant =E2=80=98=
-TX/RX=E2=80=99</p>
-      <p>As to the OFDM signal, I upconvert the baseband signal to a low
-        IF frequency by MATLAB, not with the UHD driver.<img
-          src=3D"/home/attar/Downloads/singleTone_ignore-cal-file.jpg"
-          alt=3D"" title=3D"" draggable=3D"true" moz-do-not-send=3D"true"
-          contenteditable=3D"false"><br>
-      </p>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    OK, let's try something simple.<br>
-    <br>
-    Use the tx_waveforms example to emit a single tone.<br>
-    <br>
-    Then use the tx_samples_from_file (NOT the RFNOC version)<br>
-    <br>
-    Are the results different?<br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 27, 2024 at 11:34=E2=80=
+=AFAM Olo via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
+usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div style=3D"font-family:Arial,sans-serif;font-s=
+ize:14px"><p>Thank you for your response and for confirming the general app=
+roach to the configuration. I have a couple more questions related to RFNoC=
+, particularly about buffer size in SEP (Stream Endpoints) and IP address s=
+ettings.</p><h3>1. Buffer Size in SEP:</h3><p>I=E2=80=99m having some diffi=
+culty understanding the correct setting for buffer size in SEP. I=E2=80=99v=
+e found conflicting information:</p>On page:=C2=A0<a rel=3D"noreferrer nofo=
+llow noopener" href=3D"https://kb.ettus.com/RFNoC_Frequently_Asked_Question=
+s" target=3D"_blank">https://kb.ettus.com/RFNoC_Frequently_Asked_Questions<=
+/a><br>it says: &quot;Set to 0 if you<b><u> don&#39;t need to send data</u>=
+</b> to that SEP.&quot;<br><br>Meanwhile, this other page:=C2=A0<a rel=3D"n=
+oreferrer nofollow noopener" href=3D"https://kb.ettus.com/Getting_Started_w=
+ith_RFNoC_in_UHD_4.0" target=3D"_blank">https://kb.ettus.com/Getting_Starte=
+d_with_RFNoC_in_UHD_4.0</a><br>states: &quot;Alternatively, if we know that=
+ a particular SEP <b><u>only sends data</u></b> from the USRP to the comput=
+er, then we won&#39;t need the ingress data buffer and we can set buff-size=
+ to 0, thus saving FPGA resources.&quot;<br></div></blockquote><div><br></d=
+iv><div>They&#39;re both correct! The difference is where you&#39;re sendin=
+g from. In general, when we say &quot;send&quot;, we mean sending data to t=
+he device from the host. In your second quote, note the additional qualifie=
+r: &quot;sends data from the USRP to the computer&quot;, which we generally=
+ think of as &quot;receive&quot;.</div><div><br></div><div>Since you&#39;re=
+ not intending to do any kind of TX, and you don&#39;t even have separate e=
+ndpoints for sub-sections of your DSP, you could further drop the buffer si=
+zes you currently have at=C2=A0 non-zero. The only thing that gains you tho=
+ugh is a potential increase of build success when running Vivado, and you c=
+an re-use the BRAMs for other things (which in your design is probably not =
+relevant).<br></div><div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+<span><h3>2. IP Address Configuration:</h3><p>I initially set up the X310 w=
+ith the HG image and configured the IP address to something like 192.168.50=
+.2. Later, I switched to the XG image, which uses the default IPs of ...30.=
+2 and ...40.2. When I load my custom image, will the IP addresses remain co=
+nsistent? I&#39;m concerned about &quot;bricking&quot; the device, especial=
+ly after reading issues like this one:=C2=A0<span><a rel=3D"noreferrer nofo=
+llow noopener" href=3D"https://github.com/EttusResearch/uhd/issues/550" tar=
+get=3D"_blank">https://github.com/EttusResearch/uhd/issues/550</a>=C2=A0.=
+=C2=A0 I want to make sure I avoid any potential pitfalls.</span></p></span=
+></blockquote><span><p><span>The IP addresses are stored in a separate EEPR=
+OM and do not get affected when you re-flash. The only exception is that th=
+e HG and the XG images use different IP numbers, as laid out in our manual =
+(meaning that when you switch from HG to XG, you should expect a different =
+IP number on SFP0, but in both cases, the actual number should be whatever =
+it was that you wrote into the device).<br></span></p><p><span><br></span><=
+/p><p><span>--M<br></span></p></span></div></div></div>
 
---------------o6oPOqKucBYgPSq0Da910Jz3--
+--000000000000b715550621225bd2--
 
---===============2897893169132824068==
+--===============8395433823215004372==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -193,4 +214,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2897893169132824068==--
+--===============8395433823215004372==--
