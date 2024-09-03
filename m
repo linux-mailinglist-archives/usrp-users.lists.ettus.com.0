@@ -2,457 +2,618 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA3E96A7EE
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Sep 2024 21:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 335A996A9CD
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Sep 2024 23:12:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 239B2384D8B
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Sep 2024 15:59:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 42D8538538F
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Sep 2024 17:12:11 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1725393554; bh=Xj3W4/6VavgStrF7lR7jAPz9H1gRHM2bp9hR0G+5t64=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=gacYHN6yhK1oeT50XwhxAW7hXZULN57Vh7Xk4k98wXOFCmbz0eV+ggIGGz0cBAYnE
-	 MAB5p63HjW3U88IYNnyMwA8kw9hBpBqwyYMqeOBiLrfAfTqs+oaxiW10asdt9HbVaa
-	 YjileESU6A5VWOLKAzz1kTzDp+O1kp1NPSz1iBQmJXlcdA039pb9oZZUNsycXMQNZE
-	 FDCoR2ydPF9tEuP1X0501VVVoQ+msYNKhPa/vyvYJ7xBcmy7XJc1Q2h3Zt0495vWWU
-	 KRUIabbv9OlAqnXkFOZat4c0wUFFyCHi0sE4TtXGWV3vp3fM5WUMVOcDhgAkgtNRSc
-	 Pu2Ogo5q4qkOw==
-Received: from mx0a-000c9b01.pphosted.com (mx0a-000c9b01.pphosted.com [205.220.166.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7F0533849F2
-	for <usrp-users@lists.ettus.com>; Tue,  3 Sep 2024 15:57:33 -0400 (EDT)
+	t=1725397931; bh=ok0xim/aAzVaJ7AsLlfwgHJ1A9dQx2ydDuiqm4f4IjM=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=JzDXpFLxb8y3r2/t1T4g7Q2hYarhu0ouj5/a1EqePxxQ6Dh2xFhjgsSWv9fKTkXcB
+	 FYU3qZGDAitMAYpVppfQ48AQ0bR+f1KcuRHw3Xm0tYC4r5K3n/PxWhLsi+xVKuRPuk
+	 NqGj9U1g/KFqxmfI/sRRd6dGx8ukYEyMduHs6/NW9xA1GIwt5VwEIzZASLQrXrh04q
+	 ORI3wq8f5mTfJgPfI/F5fROR1QmcAo7JUVRaz0Odr4zWvoIHWc6oZAHY9j/R3Gg2pR
+	 lMn+4fjRl/gC5UG4Rw4PZ9ezyoO08id2n9a1+rAJ9Fm8X/D9VefM6xppbHfjwPhfIN
+	 jB3KBJHS2pLfg==
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id 697D9385145
+	for <usrp-users@lists.ettus.com>; Tue,  3 Sep 2024 17:11:49 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=fiu.edu header.i=@fiu.edu header.b="GmqK81/R";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CZqHkmfD";
 	dkim-atps=neutral
-Received: from pps.filterd (m0297018.ppops.net [127.0.0.1])
-	by mx0a-000c9b01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 483IVaJN015544;
-	Tue, 3 Sep 2024 15:57:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fiu.edu; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=Nov2020; bh=xiP+7OWQvppX/11xS6K/fb8UqZ
-	mHep6s/4mpastEcMw=; b=GmqK81/RwIcCbYI+ix7kLI6uL2AgJEliB/VAfyyqCC
-	8mQJDfsSQqpkyMuXDU86Lkuqxw+xpY3MVj+FvQ2uRpogMk9CFAwx0g1yFFWFg6hl
-	w8iAhc1ikit4ShU2PkwaegYB6/SvRyhtBG7TfHYiJn2EghJNqJmI9esgzaPKussX
-	H62l7Ce6qCpCQBz5nex+12fIFgzWluFpKxmGmaSuZqZk/4smmumhw4+Z9atBSru4
-	vv11yY34S8TlX9vVIP6EgOqkUkooyZhgL+gBgibaWl5ILxVhp9fOkNMc83OSATA1
-	d92w7Wnql0XTJ9tGp3rdAGqsEMY5HEEKbt+oPPHFIorg==
-Received: from sn4pr2101cu001.outbound.protection.outlook.com (mail-southcentralusazlp17012054.outbound.protection.outlook.com [40.93.14.54])
-	by mx0a-000c9b01.pphosted.com (PPS) with ESMTPS id 41bye1148c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Sep 2024 15:57:29 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZEcr6aviCwwE/nEHyQzdPheV6Cgrx7YIdx/MiDaYq+271AaQhICs5zFxuavkoqECyuRYJ1zJzn0tCBGLw95d+TsrcjyAhMa5zp1PnyBqyv02JvFv8mA0rXZJg2Rh3uvcK3fhYU0AtLac1GJSlCJY/s6KQQrv7SvRocR4aJG0Kitv4wC/uicDrEIbOXYbQ/CMKDzKlj462557nQifhmqOTRJ1HJ67I/ll7MtoC8src0S993PUDzse5yrkr7SZXERkgYe3tAF3LKUyjP6ZmpVN/+Iuc3K4SGxv/j1HZDUB8pA617k4MXMtOVCZymwm5dC42X6sRnuVGdFwzzfHByI/hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xiP+7OWQvppX/11xS6K/fb8UqZmHep6s/4mpastEcMw=;
- b=OCiIbU5p2h/gKE4QM6viReg3YyBXTK9RpNzGhGxbYNuyKc1PXbymKT+qJTrOCQoTZqrx0nLck6p10hrtrLK2kVkXYgllJsy6DogwZrjfLAhR8g8WUZWwSjF8bWJrBFKCGTHnTnLpSpYP+lLcZmbqlByPSfA5hE6e+PXROOCOAbx+RhClO08o1+rfMJCe7VNoSovXPB7tPt1r1iQI4Jzrg1cOhgQUbNaA2hPdB6WfA/b7QX9TeYCaO6EXQOgt7nS8n1905SfIGRDIfW4H7jnKAhlZNq1sH8VkPyEK8+lz2ZE8VFd5GJbmnUhDiQwQlKtXDjdknTFywOje1JVQ8ILZNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fiu.edu; dmarc=pass action=none header.from=fiu.edu; dkim=pass
- header.d=fiu.edu; arc=none
-Received: from BN8PR05MB5971.namprd05.prod.outlook.com (2603:10b6:408:45::22)
- by SA6PR05MB10939.namprd05.prod.outlook.com (2603:10b6:806:441::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.25; Tue, 3 Sep
- 2024 19:57:24 +0000
-Received: from BN8PR05MB5971.namprd05.prod.outlook.com
- ([fe80::ba63:71ba:4088:16da]) by BN8PR05MB5971.namprd05.prod.outlook.com
- ([fe80::ba63:71ba:4088:16da%5]) with mapi id 15.20.7918.024; Tue, 3 Sep 2024
- 19:57:23 +0000
-From: Arnaldo Sans <asans008@fiu.edu>
-To: Martin Braun <martin.braun@ettus.com>,
-        usrp-users
-	<usrp-users@lists.ettus.com>
-Thread-Topic: X440 Block diagram / architecture details
-Thread-Index: AQHa/jt+slvEFlyXZEmSU3EiOT5sDA==
-Date: Tue, 3 Sep 2024 19:57:23 +0000
-Message-ID: 
- <BN8PR05MB5971E1C0A7138208EC2D0C6C8C932@BN8PR05MB5971.namprd05.prod.outlook.com>
-References: 
- <b7EDp_Z-OGLk51ibwQutMTVO7aVrweoUubIOqX594P7xDHOpwd6I31RtEuiCTB3DMjFLfdkKR0dLqBIS1UGsN8df_iSefI5zIAhjCxTWVUY=@protonmail.com>
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7a812b64d1cso307742385a.0
+        for <usrp-users@lists.ettus.com>; Tue, 03 Sep 2024 14:11:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725397909; x=1726002709; darn=lists.ettus.com;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sW66FP/lz283n+Miaet3jw+oCLDe2Ul+h307pypelQo=;
+        b=CZqHkmfDAn3zstYCE0FC67Mg5ipdcTkIrn78A2t7UQoSnv8nM47YWTZhG0lQwstTyd
+         awW0n51v+oXaPB2XLWLtNK/NvQkQUGde+otRdHn0mlcw5YAq1I8YeUHcgFVrPXjktuoo
+         hOxG6/Y29H3KMa2+uwB8a16AOkteAlRRtoapZbl2+xz6RjRbGTci3ZZDP0wkl0oFMfIA
+         NMmrYW8EZAnNdlciUdCHX3psZNUkjqpbd3jlR1No2kme/PqDqLP/8mnaaclmQc1Y2YPB
+         9SRnRQ711g79FCG1N9W+LXWKHFsW1YIA34sUO2mqIj21gxNBa9RBW9R22E8lD54+5Ji2
+         rQrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725397909; x=1726002709;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sW66FP/lz283n+Miaet3jw+oCLDe2Ul+h307pypelQo=;
+        b=RiuHZzoPn6pho1AXHvQbNvMfBVnA/1gFF2pFwsg66bVSsI4q4G+Xt3LOszF3gDqOG9
+         m1+G3m84w2q46jgDXnFK0SA/hCht+Ett6Z+jlb5liFhCEBz4v/Z0VZfzwbLjElPq11fa
+         WtrFEIvNuX3pi/EZfHKi8eOfKVRrtYxvAhuSsIqUlXGQrybLInCmUxU7tZEuVblwdH/N
+         6edMyf0mwk/wSBCXKNLTTZOb0UgfY+P08qGpz7F6xpvVpvazmOdOoYfOuD8MVAV5hi1q
+         /tbanny+E/kRqZIK1WQmy9F833C80k4AxcSkguj8dKzcqbrjN5rB1Reo2l449XgZ5bYU
+         8JaQ==
+X-Gm-Message-State: AOJu0YwyCPVr+nhcyitl65Bbp0NNPNOT87/xqLWoO/VzAr819gKe68gC
+	hZKA+RTaha5sd981q6/+FgoLEFsWXbGVoQ3bxm8yf0zrgVq34RaDFxDZyVS1
+X-Google-Smtp-Source: AGHT+IEmQ8NyuxZhimSum2bqP+gwxQVOyQyeFcFKXF6e6j0/h2EbJw6xS3rYbYq4hMvLP/oEYY302g==
+X-Received: by 2002:a05:620a:2551:b0:79e:f9c8:a22a with SMTP id af79cd13be357-7a804186b8bmr2000169585a.12.1725397908280;
+        Tue, 03 Sep 2024 14:11:48 -0700 (PDT)
+Received: from [192.168.2.170] (bas1-toronto12-64-231-212-86.dsl.bell.ca. [64.231.212.86])
+        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7a806bf7011sm567603685a.16.2024.09.03.14.11.47
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Sep 2024 14:11:47 -0700 (PDT)
+Message-ID: <f5826b39-62b6-42f8-8114-cc0f6ec13b2b@gmail.com>
+Date: Tue, 3 Sep 2024 17:11:47 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <b7EDp_Z-OGLk51ibwQutMTVO7aVrweoUubIOqX594P7xDHOpwd6I31RtEuiCTB3DMjFLfdkKR0dLqBIS1UGsN8df_iSefI5zIAhjCxTWVUY=@protonmail.com>
  <CAB__hTSWmo4jBMz7PiLw=uMzR56RaNTqj_PZo3pk6Oxt9fsGUQ@mail.gmail.com>
  <524a890b-6dea-4526-aef3-3dfbed714a20@gmail.com>
  <CAB__hTTO=N08nac2wwg9H4X6X1KWufAr+8jm5xXjd0QXnsiLow@mail.gmail.com>
  <ZzKYZGhnR2PvIUOunRGDW3GffGey_JjDV2v-c_tCLY9R66l3Yt-R4dt-wV9uzw5PYEbIEYAPGndZjkFQCRw_cRP-j8MUC7jxZ7-2ak2MNto=@protonmail.com>
  <a1qmoBKs9eLCKKwZtGf-ci8CsH-LGueBoujZqhPdx_7HoL6tnTRvZjmJH2rdE-s4sJ4o2syphskB0krjHU-0VMeZ48YW4RlUTRNoZyAfl_Y=@protonmail.com>
  <CAFOi1A60ZQuotHVZ59Em8hLsT+kzmSLE_hRp-a8_yUpE2kkd6g@mail.gmail.com>
-In-Reply-To: 
- <CAFOi1A60ZQuotHVZ59Em8hLsT+kzmSLE_hRp-a8_yUpE2kkd6g@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN8PR05MB5971:EE_|SA6PR05MB10939:EE_
-x-ms-office365-filtering-correlation-id: c1f9268b-6839-4777-135a-08dccc52a0ef
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|4022899009|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?bHo1N2hoNGpjaENNUG14SkVFajg0QXdHenVkYkVJN0pUeXhqMnpTRmxtbnp5?=
- =?utf-8?B?WXNKQU1CVVo5bFpKemFaVjRIL2NhRXVCVG9PYVhEQklVUE1sc3F1d1lBTDEz?=
- =?utf-8?B?ZE5oSVVDWWc2VGFjNnZZQVpoT1FsUHRzZm90U3pBQ0QxaFI4MXluZnFBeWR0?=
- =?utf-8?B?MXdvQjFvbEVSTldtdEd5T3F2TzJXTEVqam1DcnhicHVkM0VnUmpFM1U0VnZM?=
- =?utf-8?B?QmNqcFVRTjBSc0hSRzVlcTJaUlNmREkwa2VHK1MvLzdIbGxIUWNPN2FCMURl?=
- =?utf-8?B?aTJDNkdmTS82V3g1WkdqQkJ4WnJzTEhzd0ZzdEdJb3oyVnpXU2ZRQk9WYjNO?=
- =?utf-8?B?aW85bFJsMTQ1S3Y1cFFsSTBuRDExN3ZHek5oWW1LdFNpaUt0bnFoMXRNNjhu?=
- =?utf-8?B?SEpJQmw5VWxyR1ZQTlJNM0crUmNQcE04SC9RVlRyZ1Z4MVlpTUQ1UDRKeVM0?=
- =?utf-8?B?b3p0YmpabStZWEFFYjlBNTRlOEVRS0dLYjF3eExOQVlNQWUwN05JRlhzTlp1?=
- =?utf-8?B?TjVvNEdFOTUzZk1kWnZtUS93QUh5SnVQTHlrdGNYbUgxRkJKQ0VNOENOejMv?=
- =?utf-8?B?aUl3c3NEbE42Y1RRd212ZndJa0lPV3JVclRyRzExU21TMHFzd0xNNzlVV2tu?=
- =?utf-8?B?anNGVG43YTc3TGdmNFdacStzSy9SaktWMlhOdVlNOTNqVE5pcVdxaHVySnpE?=
- =?utf-8?B?Mng0NHltaVd6aGo2dDhHd1Voam9hUEZ2MXBKaFhESjRMdTdXWmVoUTBhNkxG?=
- =?utf-8?B?M25sb0toSWtYNUhwT241Q0VmbWF0Nms1RE1vc0hPQXVTZ0tmTUdwQTNEZ2Vo?=
- =?utf-8?B?clFDY2MyRGhUTUIyRW94eHdZM1ZMaWdUYjZqbzRYWHZnMGdXUFBkckViYkY0?=
- =?utf-8?B?UmRWYjZXY0RMOC9ERks5OHVodjM3aG91ajYvbEJ4bVM0T2cvbm43U085T2h5?=
- =?utf-8?B?TFQvbmN6NHVxaE9Vd0RvdUYxNlNTSGx2YUVWMGVSUTc2UmVVMDMwUTR5NU5q?=
- =?utf-8?B?MmJFN0RraEZ2ZUF0QXh0VjY1WG1HY3RESDE1dHVjVnNRL1NCbDJUMnZLWUg1?=
- =?utf-8?B?M3JmbWdmNVVsVHJBUXhhbnVkdVpiL2d4WlUzenhoT3dSRFNXdmlEZi9VL2Nr?=
- =?utf-8?B?cEtISEl1ZnJIUmlnZVE5RVA0TENSM3hVT29pZ3ZWOXhMS3ZUdE1UNW5MUTE4?=
- =?utf-8?B?NEtyYWNDbWR3eFZiS0VkN0g1SjY1THRaclVjQmh1Wkt6V0c0bWg2M0lnUktj?=
- =?utf-8?B?L1d6enlNVm02b2xuaGxpWkpYTzI5NkV1ckJPZjhWRk9wV00rb29PMUFPaW5a?=
- =?utf-8?B?NytocVhUdHd6R0dhVmlGcUIvbUhheFd1SXJma0VyTnkwZDM5SCtVdGtKZUdX?=
- =?utf-8?B?ellVeXh5cktkV1drZjVMZ0Z5Z0gvV083bmhXVGtHR1hJdE96RVlFQkR1b2dk?=
- =?utf-8?B?Ym9yd2xLZ2pDcmRSWjlqNFdjY1dIT3JlNDVrVDVYdXQwamFIVXJoYWxjSTd6?=
- =?utf-8?B?QUZKTWRMZ3V6aFBUaWZJMThVTUVyZjIyejlJeDU2RE5jZFZ6dWsxNXhqQ2pL?=
- =?utf-8?B?MDFEM01TMlVDWDN0LzZ5d21uTUV1MFNKd3F5VXkrUE1vVitOZEgvdExWRmFx?=
- =?utf-8?B?d2pKZzhtNExNUEluYUhVSkgrYkZlRDc4c0U0QlJwajBPZUIza0k4SVpSQTRW?=
- =?utf-8?B?WGZqRUFnNkJOWHlveitYN1o0VTU0NHJwY0c3dTZzdjBnQWlIMHdnbFUwenlO?=
- =?utf-8?B?Si81SXVwT3FzVG9hTUZFa1habkdzVWNhLzJRRldCdXduTUs1dDRjWklnYVMr?=
- =?utf-8?Q?i+MEz/SQRep2jd0vysWn0X/jLdO48zo0/kSUI=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN8PR05MB5971.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(4022899009)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?aGlIMmh2N09HNitCR0ZyWkdIZnl0ZVRCSlRadG5oZlI5VnpveUhJMW9wS1pF?=
- =?utf-8?B?WWYxZkR6L1VKOEVTTWczbmloZHlMcVpmRFc0aFJJTmptMHA1V09ZK1lTcWdL?=
- =?utf-8?B?b1U2RDZjRVFtYnNaalR5K3BGRGxqenhweERZaThsU3htQzZPaE55c2FEaHRh?=
- =?utf-8?B?NEJEVnBrNDBuZkpJMW1XRWhNMGVFM2cwT3lSSEU1amdFUHUza2dVR0VPM29r?=
- =?utf-8?B?aVFxVEhDSk5EenNhYy9zVFlxTjFBbjhQRGNzSll4WUcyN2xHQmNKam9Qc3NV?=
- =?utf-8?B?MEVNOFdjZWZTS1ZMYzJQbTRza0QxVGliZXllUmdCME1WbEpVU1hIM2NpVXVw?=
- =?utf-8?B?a3FLbGhMS0laMUlLOGNuYWVIUTdxbEwwV1JlUkFXTFFXZ2xSdG5sY1pXc1ds?=
- =?utf-8?B?M01LQUhNMUs2eEFyNmZvcXQxY1NuemhIcWh3TmdMZW1jU1UvL1BqTVZ1Y1FG?=
- =?utf-8?B?K0ppcTc1aGVrUmpuSkd2a0dzZEEvcG1aWXI3QzhydkdJNTByQWQ4L2lObTZY?=
- =?utf-8?B?azRRYUZlWVNkVzBNQXlBemtONXhFRmRrMkxiM09jdllnQXNzbXB4M2tySENE?=
- =?utf-8?B?alJ0UVM4bmlJMmZ6RkVsT09Jd0JMR3dza0U4ZzEvRUl4SDlpMk5jSmIrMmJY?=
- =?utf-8?B?SWFxRDE4ZjNqT00yTjNuSVNZVy9CeitoN042ekMvcVlldlF1YnllMi90a0tH?=
- =?utf-8?B?d0M1U1BjWGxSeTZheDBNRFJoRU41U3VQWDJsa0kwc2xCZjBwZjVjRlZ4bTB1?=
- =?utf-8?B?bllPc01lZ3pVOXlGb1FXTDg5MjM0TlV5SVJ0aktsKzlJYlo4a2Uxc3o2N2Z2?=
- =?utf-8?B?Zk1lRUdWbGRKZDd0UzNOR2pyR3VjQ1hWcDB4MWdtVG8yMWx3SzYyY0lLZnZW?=
- =?utf-8?B?cGpscTVtTW9JNlZxQTZ3TFBnMkdzWndNQUVMblE4R3BXY1VuWUNYTDBwZkhS?=
- =?utf-8?B?bTdTM1Y3T0pKVWNVaENkNktYekpRMXZVZVNVdWk4N3lpVHhrK2lCSnFSNTNy?=
- =?utf-8?B?SE8yWEJZSlRWK3d6VUN2QmhlUXFPcmIzZTZYRjRERUlpSExEaVM4VCtUdnpw?=
- =?utf-8?B?RFFQSm1qZ0Q4U1h4V1FaNUNkTWFNWUtud1dFN1dQWGNJS09paW15NlpBaDVY?=
- =?utf-8?B?TkRqUksydTZ3SEh6TzRIaEY3RXVXRlRvMGNFNVFnVk45SjFkMlNXZW5LZnZ4?=
- =?utf-8?B?TEN5UjNTU3haZTVxemU0VWVWSFRRUlRseDlEZFg0TEYyNU4vVlhKanB6b01P?=
- =?utf-8?B?dWR4T2NlbFVPOEl0U0tFSnpiYXFJYzJIVW1KYnZLQU1xWmpmNWxTcTFjazh4?=
- =?utf-8?B?OWxvRzBVMFZpRmxuMXBKeGRCVnU3ekJuRm1BM0NFc09ZTDY3anZsVWxRQUxD?=
- =?utf-8?B?YmhVNVN3UjUxeHJRbjdRZnNTZHVEbFI0QkdhVGdQV0tXY2JUbWFFam9ZVzZW?=
- =?utf-8?B?VDFQVjFEbHFpYndpMGwyM3dqY3l1eTNOcDNYeGE3cVByeUdEcmdtK2lXRlFJ?=
- =?utf-8?B?QnZEYmVvYVlTSitwSE90WFFmdE14Q09oQTVNamlxQldpcnVSVENIcklvQ25F?=
- =?utf-8?B?NDlzU3NIdHlMOXJ5WSs0dWRHRkxjL1ZieExHWkFYb3N5TC9BV2NtMFlXZ2pN?=
- =?utf-8?B?RlNJMHBLeG5COUdnNGw2TnpEWDZtTURsbVZoRDNLQm1RN1R4S05kZmViWkJH?=
- =?utf-8?B?WGlSY3FOUmhIMGRXdGlkdlhOVFM4QlJSVWYvSU11UzFSM1NwTDRTQXZPVzBo?=
- =?utf-8?B?TlJKeW52UGxVUVFsaW95dEhiYTlQaWVaZ3pRMHF3dHdXaFVNN2FGakJOc05m?=
- =?utf-8?B?NXpoQ1ducW1kSzNpeTZpazNwSWNHeEtLTTdSMmlQTDVRalBBUnQ2NUNEeUF3?=
- =?utf-8?B?c2F4L0FkVkxWdmNPek9oUU8ybmg0aTdMaXgvNGdXZ09XYU9GaHlRN090RDVR?=
- =?utf-8?B?dFgyaE1LTHd2NjhEbjZlSTU4ZUUzbU9vbmhwVytPbWE2SzNCOXB3bmJhdVMr?=
- =?utf-8?B?czNFRVNkSXlMWmVVYUUyUk1rZERXNmtFVmpoYjZoRGFRTEt1ZG5nSWphSFM1?=
- =?utf-8?B?dU1RNXlZc3RpaGRIRFR3S0phMEdzY01Na1NTNkQrWDFsMk4wdlg4clFPL1dM?=
- =?utf-8?Q?adoA=3D?=
-MIME-Version: 1.0
-X-OriginatorOrg: fiu.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR05MB5971.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1f9268b-6839-4777-135a-08dccc52a0ef
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2024 19:57:23.8575
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ac79e5a8-e0e4-434b-a292-2c89b5c28366
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: snFMIIGZ4zs3j2SetkzIolPUBs3GIBD6uRlU2Th8kQUcDbbtll5oqrdMg3ecY3WweNzcBn+Uly51wuggGFjjNw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA6PR05MB10939
-X-Proofpoint-GUID: VA-DA2JHEVJclVbU-3DWqf7X7J6ZJMlV
-X-Proofpoint-ORIG-GUID: VA-DA2JHEVJclVbU-3DWqf7X7J6ZJMlV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-03_07,2024-09-03_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 impostorscore=0 priorityscore=1501 phishscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 spamscore=0 mlxscore=0
- clxscore=1011 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2409030160
-X-Proofpoint-FIU-O365: True
-Message-ID-Hash: ABXPRBA7UK6BMW6CWPL2J4DETESETYEU
-X-Message-ID-Hash: ABXPRBA7UK6BMW6CWPL2J4DETESETYEU
-X-MailFrom: asans008@fiu.edu
+ <BN8PR05MB5971E1C0A7138208EC2D0C6C8C932@BN8PR05MB5971.namprd05.prod.outlook.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <BN8PR05MB5971E1C0A7138208EC2D0C6C8C932@BN8PR05MB5971.namprd05.prod.outlook.com>
+Message-ID-Hash: 2BCI74EHJZP4M6T23DJCM6OPJ5IYR74J
+X-Message-ID-Hash: 2BCI74EHJZP4M6T23DJCM6OPJ5IYR74J
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Arnaldo J Sans <arnaldo_sans@keysight.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] X440 Block diagram / architecture details
+Subject: [USRP-users] Re: X440 Block diagram / architecture details
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XJD4NDL4L6HNFOL4ODRO6IC3UTTEXP4D/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2BCI74EHJZP4M6T23DJCM6OPJ5IYR74J/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1359417330829724658=="
+Content-Type: multipart/mixed; boundary="===============8408902835523137037=="
 
---===============1359417330829724658==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============8408902835523137037==
 Content-Type: multipart/alternative;
-	boundary="_000_BN8PR05MB5971E1C0A7138208EC2D0C6C8C932BN8PR05MB5971namp_"
+ boundary="------------xsmj5g20FEOYrWTDOGjs9dd3"
+Content-Language: en-US
 
---_000_BN8PR05MB5971E1C0A7138208EC2D0C6C8C932BN8PR05MB5971namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------xsmj5g20FEOYrWTDOGjs9dd3
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-SGVsbG8sDQoNCkkgYW0gbG9va2luZyBmb3IgYSBkZXRhaWxlZCBibG9jayBkaWFncmFtIG9mIGFu
-IFg0NDAgcmFkaW8uLi4gVGhlcmUgaXMgdmVyeSBsaXR0bGUgY29udGVudCBhdmFpbGFibGUgb24g
-dGhlIHdlYi4uLiBJIGFtIHRvIGNyZWF0ZSBhICJkaWdpdGFsIHR3aW4gb2YgdGhlIHJhZGlvLg0K
-DQpUaGFuayB5b3UgaW4gYWR2YW5jZSBhbmQgSSBsb29rIGZvcndhcmQgdG8gaGVhcmluZyBmcm9t
-IHlvdSBzb29uLg0KDQpSZWdhcmRzLA0KQUoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18NCkZyb206IE1hcnRpbiBCcmF1biA8bWFydGluLmJyYXVuQGV0dHVzLmNvbT4NClNlbnQ6
-IFR1ZXNkYXksIEF1Z3VzdCAyNywgMjAyNCAzOjQ1IEFNDQpUbzogT2xvIDxvbG8xNjE4QHByb3Rv
-bm1haWwuY29tPg0KQ2M6IHVzcnAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0K
-U3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBBc3Npc3RhbmNlIHdpdGggUkZOb0MgYW5kIFR3aW5S
-WCBDb25maWd1cmF0aW9uIGluIEN1c3RvbSBGUEdBIEltYWdlDQoNCg0KTm90ZTogVGhpcyBtZXNz
-YWdlIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRlIHRoZSBGSVUgRmFjdWx0eS9TdGFmZiBlbWFpbCBz
-eXN0ZW0uDQoNCklmIHlvdSBoYWQgYSBwb2x5cGhhc2UgY2hhbm5lbGl6ZXIgb24gdGhlIEZQR0Es
-IHRoYXQgd291bGQgYmUgYW4gZWZmaWNpZW50IHNvbHV0aW9uIHRvIHlvdXIgcHJvYmxlbSwgYnV0
-IHRoZXJlJ3Mgbm8gc3VjaCBibG9jayBhcyBwYXJ0IG9mIFVIRCBpdHNlbGYuIFRoZXJlIGhhdmUg
-YmVlbiBjaGFubmVsaXplciBibG9ja3Mgd3JpdHRlbiBpbiB0aGUgd2lsZCwgYnV0IHRoYXQgd291
-bGQgYmUgc29tZXRoaW5nIHlvdSdkIGhhdmUgdG8gZmlndXJlIG91dC4NCg0KLS1NDQoNCk9uIFR1
-ZSwgQXVnIDI3LCAyMDI0IGF0IDc6MTfigK9BTSBPbG8gdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+IHdy
-b3RlOg0KDQpJIGhhdmUgYW4gYWRkaXRpb25hbCBxdWVzdGlvbiByZWxhdGVkIHRvIG15IGN1cnJl
-bnQgcHJvamVjdCBpbnZvbHZpbmcgUkZOb0MuIFNwZWNpZmljYWxseSwgSSBuZWVkIHRvIGltcGxl
-bWVudCBhcyBtYW55IG5hcnJvd2JhbmQgY2hhbm5lbHMgKEREQykgYXMgcG9zc2libGUgdG8gcmVj
-b3JkIHZhcmlvdXMgcGFydHMgb2YgdGhlIHNwZWN0cnVtIGFzIHJlcXVpcmVkLg0KDQpJ4oCZbSB3
-b25kZXJpbmcgaWYgaXQgd291bGQgYmUgbW9yZSBlZmZpY2llbnQgdG8gaGFuZGxlIHRoaXMgdGhy
-b3VnaCBSRk5vQyBvciBkaXJlY3RseSBvbiBhIEdQVT8gQWRkaXRpb25hbGx5LCBob3cgbWFueSBu
-YXJyb3diYW5kIGNoYW5uZWxzIG9mIHNwZWNpZmljIGJhbmR3aWR0aHMgY291bGQgSSBpbXBsZW1l
-bnQgdXNpbmcgUkZOb0MsIGNvbnNpZGVyaW5nIEkgcHJpbWFyaWx5IGludGVuZCB0byBzdG9yZSAo
-cmVjb3JkKSB0aGUgZGF0YSBpbnRvIG1lbW9yeT8gSSBoYXZlIGEgY2xlYXIgdW5kZXJzdGFuZGlu
-ZyBvZiB0aGUgbWVtb3J5IGFuZCBuZXR3b3JrIGludGVyZmFjZSByZXF1aXJlbWVudHMsIGJ1dCBJ
-IGFtIHVuY2VydGFpbiBhYm91dCB0aGUgaW1wbGljYXRpb25zIGZvciBDUFUgdXNhZ2UgYW5kIFJB
-TS4NCg0KQ291bGQgeW91IHByb3ZpZGUgc29tZSBndWlkYW5jZSBvbiB0aGlzIGFzcGVjdD8NCg0K
-T2xvLg0KDQpPbiBNb25kYXksIEF1Z3VzdCAyNnRoLCAyMDI0IGF0IDc6MTMgUE0sIE9sbyB2aWEg
-VVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6DQpUaGFuayB5b3UgZm9yIHlvdXIgZGV0YWlsZWQgcmVz
-cG9uc2VzIHRvIG15IHByZXZpb3VzIHF1ZXN0aW9ucy4gSSBhcHByZWNpYXRlIHRoZSBpbmZvcm1h
-dGlvbiBwcm92aWRlZCBhYm91dCB0aGUgbGltaXRhdGlvbnMgYW5kIHBvdGVudGlhbCBpc3N1ZXMg
-cmVsYXRlZCB0byBGRlQgc2l6ZSBhbmQgVHdpblJYIGNvbmZpZ3VyYXRpb24uDQoNCkhvd2V2ZXIs
-IEkgbm90aWNlZCB0aGF0IHRoZXJlIHdhcyBubyBmZWVkYmFjayByZWdhcmRpbmcgdGhlIFlBTUwg
-ZmlsZSBJIGF0dGFjaGVkIGluIG15IG9yaWdpbmFsIGVtYWlsLiBDb3VsZCB5b3UgcGxlYXNlIHJl
-dmlldyBpdCBhbmQgbGV0IG1lIGtub3cgaWYgdGhlIGNvbmZpZ3VyYXRpb24gSSd2ZSBzZXQgdXAg
-aXMgY29ycmVjdD8NCg0KQWRkaXRpb25hbGx5LCBiYXNlZCBvbiB5b3VyIHJlY29tbWVuZGF0aW9u
-cywgSSBwbGFuIHRvIHVzZSBhIHdpbmRvdyBmdW5jdGlvbiAoV2luZG93IGJsb2NrKSB3aXRoIGEg
-c2l6ZSBvZiAxMDI0LCBhbG9uZyB3aXRoIGFuIEZGVCBibG9jayBvZiB0aGUgc2FtZSBzaXplIGZv
-ciB0aGUgc2Nhbm5lciAoc3dlZXAgc3BlY3RydW0pIGZ1bmN0aW9uYWxpdHkuIFdvdWxkIHRoaXMg
-YXBwcm9hY2ggYmUgY29ycmVjdCBnaXZlbiB0aGUgY3VycmVudCBsaW1pdGF0aW9ucyBhbmQgeW91
-ciBzdWdnZXN0aW9ucz8NCg0KWW91ciBjb25maXJtYXRpb24gb24gdGhlc2UgcG9pbnRzIHdvdWxk
-IGJlIGludmFsdWFibGUgdG8gZW5zdXJlIHRoYXQgSSBhbSBvbiB0aGUgcmlnaHQgdHJhY2sgd2l0
-aCBteSBwcm9qZWN0Lg0KDQpUaGFuayB5b3Ugb25jZSBhZ2FpbiBmb3IgeW91ciB0aW1lIGFuZCBh
-c3Npc3RhbmNlLiBJIGxvb2sgZm9yd2FyZCB0byB5b3VyIHJlc3BvbnNlLg0KDQpCZXN0IHJlZ2Fy
-ZHMsDQpPbG8uDQpPbiBNb25kYXksIEF1Z3VzdCAyNnRoLCAyMDI0IGF0IDE4OjA0LCBSb2IgS29z
-c2xlciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVz
-cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6DQoNCg0KT24gTW9uLCBBdWcgMjYsIDIw
-MjQgYXQgMTA6MjTigK9BTSBNYXJjdXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29t
-PG1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4+IHdyb3RlOg0KT24gMjYvMDgvMjAyNCAx
-MDoyMSwgUm9iIEtvc3NsZXIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQpIaSBPbG8sDQpPbiBvbmUg
-cG9pbnQgcmVnYXJkaW5nIGFuIEZGVCBsZW5ndGggb2YgODE5MiwgdGhlcmUgaXMgbGlrZWx5IGFu
-IGlzc3VlIHdpdGggdXNpbmcgdGhlIEV0dHVzIEZGVCBibG9jay4gSW4gdGhlIHBhc3QgKEkgaGF2
-ZW4ndCBjaGVja2VkIHJlY2VudGx5KSwgdGhpcyBibG9jayB3YXMgbGltaXRlZCB0byBhIG1heGlt
-dW0gRkZUIHNpemUgb2YgMTAyNCBiZWNhdXNlIHRoZSBlbnRpcmUgRkZUIGhhZCB0byBmaXQgaW4g
-b25lIHBhY2tldCB3aGVyZSB0aGUgbWF4aW11bSBwYWNrZXQgcGF5bG9hZCB3YXMgYWJvdXQgMjAw
-MCBzYW1wbGVzLiBJdCBpcyBwb3NzaWJsZSB0byB1c2UgbGFyZ2VyIEZGVHMsIGJ1dCB0aGlzIHJl
-cXVpcmVzIHNvbWUgY3VzdG9tIGNvZGUgdGhhdCBkaXZvcmNlcyB0aGUgRkZUIHNpemUgZnJvbSB0
-aGUgcGFja2V0IHNpemUuDQpSb2INCk15IHVuZGVyc3RhbmRpbmcgaXMgdGhhdCBpbiByZWNlbnQg
-UkZOb0MsIHRoZSBsaW1pdCBoYXMgYmVlbiByYWlzZWQgdG8gMjA0ODoNCg0KaHR0cHM6Ly9maWxl
-cy5ldHR1cy5jb20vbWFudWFsL2NsYXNzdWhkXzFfMXJmbm9jXzFfMWZmdF9fYmxvY2tfX2NvbnRy
-b2wuaHRtbA0KDQpUaGUgeGNpIGZpbGU8aHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gv
-dWhkL2Jsb2IvbWFzdGVyL2ZwZ2EvdXNycDMvbGliL2lwL2F4aV9mZnQvYXhpX2ZmdC54Y2k+IHN0
-aWxsIHNob3dzIGEgdHJhbnNmb3JtIGxlbmd0aCBvZiAxMDI0LiBBbHNvLCBJIHRoaW5rIHRoYXQg
-dGhlIFgzMDAgTVRVIHNpemUgaXMgMTAgd2hpY2ggaW1wbGllcyAyXjEwPTEwMjQgeCA2NGJpdCBp
-cyB0aGUgbWF4IHBheWxvYWQuIFRoaXMgaW1wbGllcyAyMDQ4IDMyLWJpdCB3b3JkcyBpbiB0aGUg
-cGF5bG9hZC4gQnV0LCBiZWNhdXNlIG9mIGEgZmV3IGJ5dGVzIG9mIGhlYWRlciwgaXQgaXMgbm90
-IHBvc3NpYmxlIHRvIHVzZSBhbiBGRlQgb2YgbGVuZ3RoIDIwNDggdW5sZXNzIHRoZSBGRlQgbGVu
-Z3RoIGlzIGRpdm9yY2VkIGZyb20gdGhlIHBhY2tldCBsZW5ndGguDQpSb2INCg0KDQoNCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1h
-aWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAt
-dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
-LmV0dHVzLmNvbT4NCg==
+On 03/09/2024 15:57, Arnaldo Sans wrote:
+> Hello,
+>
+> I am looking for a detailed block diagram of an X440 radio... There is=20
+> very little=C2=A0content available on the web... I am to create a "digi=
+tal=20
+> twin of the radio.
+>
+> Thank you in advance and I look forward to hearing from you soon.
+>
+> Regards,
+> AJ
+>
+Most of the "interesting" bits of the X440 are in the RFSOC, which is=20
+linked here:
 
---_000_BN8PR05MB5971E1C0A7138208EC2D0C6C8C932BN8PR05MB5971namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+https://docs.amd.com/r/en-US/pg269-rf-data-converter/Conventions
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
-Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MXB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpIZWxsbyw8L2Rpdj4NCjxkaXYgY2xhc3M9ImVs
-ZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZv
-bnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOiAxMXB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxk
-aXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRv
-c19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwg
-c2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMXB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpJIGFt
-IGxvb2tpbmcgZm9yIGEgZGV0YWlsZWQgYmxvY2sgZGlhZ3JhbSBvZiBhbiBYNDQwIHJhZGlvLi4u
-IFRoZXJlIGlzIHZlcnkgbGl0dGxlJm5ic3A7Y29udGVudCBhdmFpbGFibGUgb24gdGhlIHdlYi4u
-LiBJIGFtIHRvIGNyZWF0ZSBhICZxdW90O2RpZ2l0YWwgdHdpbiBvZiB0aGUgcmFkaW8uPC9kaXY+
-DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywg
-QXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRp
-Y2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0K
-PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFt
-aWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxp
-YnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFwdDsgY29sb3I6IHJnYigw
-LCAwLCAwKTsiPg0KVGhhbmsgeW91IGluIGFkdmFuY2UgYW5kIEkgbG9vayBmb3J3YXJkIHRvIGhl
-YXJpbmcgZnJvbSB5b3Ugc29vbi48L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBz
-dHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9u
-dFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMXB0
-OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1l
-bnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQs
-IEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9u
-dC1zaXplOiAxMXB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpSZWdhcmRzLDxicj4NCkFKPC9k
-aXY+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRv
-cywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2
-ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsi
-Pg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHN0eWxl
-PSJkaXNwbGF5OmlubGluZS1ibG9jazt3aWR0aDo5OCUiIHRhYmluZGV4PSItMSI+DQo8ZGl2IGlk
-PSJkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJp
-ZiIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+IE1h
-cnRpbiBCcmF1biAmbHQ7bWFydGluLmJyYXVuQGV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TZW50Ojwv
-Yj4gVHVlc2RheSwgQXVndXN0IDI3LCAyMDI0IDM6NDUgQU08YnI+DQo8Yj5Ubzo8L2I+IE9sbyAm
-bHQ7b2xvMTYxOEBwcm90b25tYWlsLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNlcnMg
-Jmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBb
-VVNSUC11c2Vyc10gUmU6IEFzc2lzdGFuY2Ugd2l0aCBSRk5vQyBhbmQgVHdpblJYIENvbmZpZ3Vy
-YXRpb24gaW4gQ3VzdG9tIEZQR0EgSW1hZ2U8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9k
-aXY+DQo8ZGl2Pg0KPHAgc3R5bGU9ImNvbG9yOnJlZDsgZm9udC13ZWlnaHQ6Ym9sZDsgYm9yZGVy
-OjFweCBzb2xpZCBibGFjazsgcGFkZGluZzo1cHg7IHdpZHRoOjY1JTsgdGV4dC1hbGlnbjpjZW50
-ZXI7IG1hcmdpbi1sZWZ0OmF1dG87IG1hcmdpbi1yaWdodDphdXRvIj4NCk5vdGU6IFRoaXMgbWVz
-c2FnZSBvcmlnaW5hdGVkIGZyb20gb3V0c2lkZSB0aGUgRklVIEZhY3VsdHkvU3RhZmYgZW1haWwg
-c3lzdGVtLjwvcD4NCjxicj4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXY+SWYgeW91IGhh
-ZCBhIHBvbHlwaGFzZSBjaGFubmVsaXplciBvbiB0aGUgRlBHQSwgdGhhdCB3b3VsZCBiZSBhbiBl
-ZmZpY2llbnQgc29sdXRpb24gdG8geW91ciBwcm9ibGVtLCBidXQgdGhlcmUncyBubyBzdWNoIGJs
-b2NrIGFzIHBhcnQgb2YgVUhEIGl0c2VsZi4gVGhlcmUgaGF2ZSBiZWVuIGNoYW5uZWxpemVyIGJs
-b2NrcyB3cml0dGVuIGluIHRoZSB3aWxkLCBidXQgdGhhdCB3b3VsZCBiZSBzb21ldGhpbmcgeW91
-J2QgaGF2ZSB0byBmaWd1cmUNCiBvdXQuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4t
-LU08YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPGJyPg0KPGRpdiBjbGFzcz0ieF9nbWFpbF9xdW90ZSI+
-DQo8ZGl2IGRpcj0ibHRyIiBjbGFzcz0ieF9nbWFpbF9hdHRyIj5PbiBUdWUsIEF1ZyAyNywgMjAy
-NCBhdCA3OjE34oCvQU0gT2xvIHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJtYWlsdG86dXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiZn
-dDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBjbGFzcz0ieF9nbWFpbF9xdW90ZSIg
-c3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJn
-YigyMDQsMjA0LDIwNCk7IHBhZGRpbmctbGVmdDoxZXgiPg0KPHA+SSBoYXZlIGFuIGFkZGl0aW9u
-YWwgcXVlc3Rpb24gcmVsYXRlZCB0byBteSBjdXJyZW50IHByb2plY3QgaW52b2x2aW5nIFJGTm9D
-LiBTcGVjaWZpY2FsbHksIEkgbmVlZCB0byBpbXBsZW1lbnQgYXMgbWFueSBuYXJyb3diYW5kIGNo
-YW5uZWxzIChEREMpIGFzIHBvc3NpYmxlIHRvIHJlY29yZCB2YXJpb3VzIHBhcnRzIG9mIHRoZSBz
-cGVjdHJ1bSBhcyByZXF1aXJlZC48L3A+DQo8cD5J4oCZbSB3b25kZXJpbmcgaWYgaXQgd291bGQg
-YmUgbW9yZSBlZmZpY2llbnQgdG8gaGFuZGxlIHRoaXMgdGhyb3VnaCBSRk5vQyBvciBkaXJlY3Rs
-eSBvbiBhIEdQVT8gQWRkaXRpb25hbGx5LCBob3cgbWFueSBuYXJyb3diYW5kIGNoYW5uZWxzIG9m
-IHNwZWNpZmljIGJhbmR3aWR0aHMgY291bGQgSSBpbXBsZW1lbnQgdXNpbmcgUkZOb0MsIGNvbnNp
-ZGVyaW5nIEkgcHJpbWFyaWx5IGludGVuZCB0byBzdG9yZSAocmVjb3JkKSB0aGUgZGF0YSBpbnRv
-DQogbWVtb3J5PyBJIGhhdmUgYSBjbGVhciB1bmRlcnN0YW5kaW5nIG9mIHRoZSBtZW1vcnkgYW5k
-IG5ldHdvcmsgaW50ZXJmYWNlIHJlcXVpcmVtZW50cywgYnV0IEkgYW0gdW5jZXJ0YWluIGFib3V0
-IHRoZSBpbXBsaWNhdGlvbnMgZm9yIENQVSB1c2FnZSBhbmQgUkFNLjwvcD4NCjxwPkNvdWxkIHlv
-dSBwcm92aWRlIHNvbWUgZ3VpZGFuY2Ugb24gdGhpcyBhc3BlY3Q/PC9wPg0KPGRpdiBzdHlsZT0i
-Zm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjsgZm9udC1zaXplOjE0cHg7IGNvbG9yOnJnYigw
-LDAsMCk7IGJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQpPbG8uPGJyPg0KPC9k
-aXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6
-MTRweCI+PGJyPg0KPC9kaXY+DQo8ZGl2Pk9uIE1vbmRheSwgQXVndXN0IDI2dGgsIDIwMjQgYXQg
-NzoxMyBQTSwgT2xvIHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJtYWlsdG86dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBz
-dHlsZT0iZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjsgZm9udC1zaXplOjE0cHgiPlRoYW5r
-IHlvdSBmb3IgeW91ciBkZXRhaWxlZCByZXNwb25zZXMgdG8gbXkgcHJldmlvdXMgcXVlc3Rpb25z
-LiBJIGFwcHJlY2lhdGUgdGhlIGluZm9ybWF0aW9uIHByb3ZpZGVkIGFib3V0IHRoZSBsaW1pdGF0
-aW9ucyBhbmQgcG90ZW50aWFsIGlzc3VlcyByZWxhdGVkIHRvIEZGVCBzaXplIGFuZCBUd2luUlgg
-Y29uZmlndXJhdGlvbi48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMt
-c2VyaWY7IGZvbnQtc2l6ZToxNHB4Ij48YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFt
-aWx5OkFyaWFsLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxNHB4Ij5Ib3dldmVyLCBJIG5vdGljZWQg
-dGhhdCB0aGVyZSB3YXMgbm8gZmVlZGJhY2sgcmVnYXJkaW5nIHRoZSBZQU1MIGZpbGUgSSBhdHRh
-Y2hlZCBpbiBteSBvcmlnaW5hbCBlbWFpbC4gQ291bGQgeW91IHBsZWFzZSByZXZpZXcgaXQgYW5k
-IGxldCBtZSBrbm93IGlmIHRoZSBjb25maWd1cmF0aW9uIEkndmUgc2V0IHVwIGlzIGNvcnJlY3Q/
-PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNp
-emU6MTRweCI+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbCxzYW5z
-LXNlcmlmOyBmb250LXNpemU6MTRweCI+QWRkaXRpb25hbGx5LCBiYXNlZCBvbiB5b3VyIHJlY29t
-bWVuZGF0aW9ucywgSSBwbGFuIHRvIHVzZSBhIHdpbmRvdyBmdW5jdGlvbiAoV2luZG93IGJsb2Nr
-KSB3aXRoIGEgc2l6ZSBvZiAxMDI0LCBhbG9uZyB3aXRoIGFuIEZGVCBibG9jayBvZiB0aGUgc2Ft
-ZSBzaXplIGZvciB0aGUgc2Nhbm5lciAoc3dlZXAgc3BlY3RydW0pIGZ1bmN0aW9uYWxpdHkuDQog
-V291bGQgdGhpcyBhcHByb2FjaCBiZSBjb3JyZWN0IGdpdmVuIHRoZSBjdXJyZW50IGxpbWl0YXRp
-b25zIGFuZCB5b3VyIHN1Z2dlc3Rpb25zPzwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6
-QXJpYWwsc2Fucy1zZXJpZjsgZm9udC1zaXplOjE0cHgiPjxicj4NCjwvZGl2Pg0KPGRpdiBzdHls
-ZT0iZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjsgZm9udC1zaXplOjE0cHgiPllvdXIgY29u
-ZmlybWF0aW9uIG9uIHRoZXNlIHBvaW50cyB3b3VsZCBiZSBpbnZhbHVhYmxlIHRvIGVuc3VyZSB0
-aGF0IEkgYW0gb24gdGhlIHJpZ2h0IHRyYWNrIHdpdGggbXkgcHJvamVjdC48L2Rpdj4NCjxkaXYg
-c3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxNHB4Ij48YnI+
-DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGZvbnQt
-c2l6ZToxNHB4Ij5UaGFuayB5b3Ugb25jZSBhZ2FpbiBmb3IgeW91ciB0aW1lIGFuZCBhc3Npc3Rh
-bmNlLiBJIGxvb2sgZm9yd2FyZCB0byB5b3VyIHJlc3BvbnNlLjwvZGl2Pg0KPGRpdiBzdHlsZT0i
-Zm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjsgZm9udC1zaXplOjE0cHgiPjxicj4NCjwvZGl2
-Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjsgZm9udC1zaXplOjE0
-cHgiPkJlc3QgcmVnYXJkcyw8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsLHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZToxNHB4Ij5PbG8uPC9kaXY+DQo8ZGl2Pk9uIE1vbmRheSwgQXVn
-dXN0IDI2dGgsIDIwMjQgYXQgMTg6MDQsIFJvYiBLb3NzbGVyIHZpYSBVU1JQLXVzZXJzICZsdDs8
-YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5r
-Ij51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj4NCjxibG9ja3F1
-b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj48YnI+DQo8
-L2Rpdj4NCjxicj4NCjxkaXYgY2xhc3M9InhfZ21haWxfcXVvdGUiPg0KPGRpdiBkaXI9Imx0ciIg
-Y2xhc3M9InhfZ21haWxfYXR0ciI+T24gTW9uLCBBdWcgMjYsIDIwMjQgYXQgMTA6MjTigK9BTSBN
-YXJjdXMgRC4gTGVlY2ggJmx0OzxhIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIg
-aHJlZj0ibWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+cGF0
-Y2h2b25icmF1bkBnbWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1
-b3RlIGNsYXNzPSJ4X2dtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4
-OyBib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFl
-eCI+DQo8ZGl2Pg0KPGRpdj5PbiAyNi8wOC8yMDI0IDEwOjIxLCBSb2IgS29zc2xlciB2aWEgVVNS
-UC11c2VycyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRp
-diBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXY+SGkgT2xvLDwvZGl2Pg0KPGRpdj5P
-biBvbmUgcG9pbnQgcmVnYXJkaW5nIGFuIEZGVCBsZW5ndGggb2YgODE5MiwgdGhlcmUgaXMgbGlr
-ZWx5IGFuIGlzc3VlIHdpdGggdXNpbmcgdGhlIEV0dHVzIEZGVCBibG9jay4gSW4gdGhlIHBhc3Qg
-KEkgaGF2ZW4ndCBjaGVja2VkIHJlY2VudGx5KSwgdGhpcyBibG9jayB3YXMgbGltaXRlZCB0byBh
-IG1heGltdW0gRkZUIHNpemUgb2YgMTAyNCBiZWNhdXNlIHRoZSBlbnRpcmUgRkZUIGhhZCB0byBm
-aXQgaW4gb25lIHBhY2tldCB3aGVyZQ0KIHRoZSBtYXhpbXVtIHBhY2tldCBwYXlsb2FkIHdhcyBh
-Ym91dCAyMDAwIHNhbXBsZXMuIEl0IGlzIHBvc3NpYmxlIHRvIHVzZSBsYXJnZXIgRkZUcywgYnV0
-IHRoaXMgcmVxdWlyZXMgc29tZSBjdXN0b20gY29kZSB0aGF0IGRpdm9yY2VzIHRoZSBGRlQgc2l6
-ZSBmcm9tIHRoZSBwYWNrZXQgc2l6ZS48L2Rpdj4NCjxkaXY+Um9iPGJyPg0KPC9kaXY+DQo8L2Rp
-dj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KTXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IGluIHJl
-Y2VudCBSRk5vQywgdGhlIGxpbWl0IGhhcyBiZWVuIHJhaXNlZCB0byAyMDQ4Ojxicj4NCjxicj4N
-CjxhIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIgaHJlZj0iaHR0cHM6Ly9maWxl
-cy5ldHR1cy5jb20vbWFudWFsL2NsYXNzdWhkXzFfMXJmbm9jXzFfMWZmdF9fYmxvY2tfX2NvbnRy
-b2wuaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9j
-bGFzc3VoZF8xXzFyZm5vY18xXzFmZnRfX2Jsb2NrX19jb250cm9sLmh0bWw8L2E+PGJyPg0KPGJy
-Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2PlRoZSA8YSByZWw9Im5vcmVmZXJyZXIgbm9m
-b2xsb3cgbm9vcGVuZXIiIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3Vo
-ZC9ibG9iL21hc3Rlci9mcGdhL3VzcnAzL2xpYi9pcC9heGlfZmZ0L2F4aV9mZnQueGNpIiB0YXJn
-ZXQ9Il9ibGFuayI+DQp4Y2kgZmlsZTwvYT4gc3RpbGwgc2hvd3MgYSB0cmFuc2Zvcm0gbGVuZ3Ro
-IG9mIDEwMjQuIEFsc28sIEkgdGhpbmsgdGhhdCB0aGUgWDMwMCBNVFUgc2l6ZSBpcyAxMCB3aGlj
-aCBpbXBsaWVzIDJeMTA9MTAyNCB4IDY0Yml0IGlzIHRoZSBtYXggcGF5bG9hZC4gVGhpcyBpbXBs
-aWVzIDIwNDggMzItYml0IHdvcmRzIGluIHRoZSBwYXlsb2FkLiBCdXQsIGJlY2F1c2Ugb2YgYSBm
-ZXcgYnl0ZXMgb2YgaGVhZGVyLCBpdCBpcyBub3QgcG9zc2libGUgdG8gdXNlDQogYW4gRkZUIG9m
-IGxlbmd0aCAyMDQ4IHVubGVzcyB0aGUgRkZUIGxlbmd0aCBpcyBkaXZvcmNlZCBmcm9tIHRoZSBw
-YWNrZXQgbGVuZ3RoLjwvZGl2Pg0KPGRpdj5Sb2I8YnI+DQo8L2Rpdj4NCjxicj4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8YnI+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxicj4N
-CjwvZGl2Pg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188
-YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0i
-bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+
-DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8L2Jsb2NrcXVvdGU+
-DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+There's Martin Brauns GRCON talk here:
 
---_000_BN8PR05MB5971E1C0A7138208EC2D0C6C8C932BN8PR05MB5971namp_--
+https://events.gnuradio.org/event/21/contributions/392/attachments/123/28=
+5/Lo%20and%20behold,%20no%20LO.pdf
 
---===============1359417330829724658==
+There's an extensive treatise on selecting sample rates here:
+
+https://kb.ettus.com/About_Sampling_Rates_and_Master_Clock_Rates_for_the_=
+USRP_X440
+
+There's schematics for X4x0 family here:
+
+https://files.ettus.com/schematics/x4x0/
+
+And of course, all the FPGA code is published in the GIT repo that you=20
+get UHD source code from.
+
+
+> -----------------------------------------------------------------------=
+-
+> *From:* Martin Braun <martin.braun@ettus.com>
+> *Sent:* Tuesday, August 27, 2024 3:45 AM
+> *To:* Olo <olo1618@protonmail.com>
+> *Cc:* usrp-users <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] Re: Assistance with RFNoC and TwinRX=20
+> Configuration in Custom FPGA Image
+>
+> Note: This message originated from outside the FIU Faculty/Staff email=20
+> system.
+>
+>
+> If you had a polyphase channelizer on the FPGA, that would be an=20
+> efficient solution to your problem, but there's no such block as part=20
+> of UHD itself. There have been channelizer blocks written in the wild,=20
+> but that would be something you'd have to figure out.
+>
+> --M
+>
+> On Tue, Aug 27, 2024 at 7:17=E2=80=AFAM Olo via USRP-users=20
+> <usrp-users@lists.ettus.com> wrote:
+>
+>     I have an additional question related to my current project
+>     involving RFNoC. Specifically, I need to implement as many
+>     narrowband channels (DDC) as possible to record various parts of
+>     the spectrum as required.
+>
+>     I=E2=80=99m wondering if it would be more efficient to handle this =
+through
+>     RFNoC or directly on a GPU? Additionally, how many narrowband
+>     channels of specific bandwidths could I implement using RFNoC,
+>     considering I primarily intend to store (record) the data into
+>     memory? I have a clear understanding of the memory and network
+>     interface requirements, but I am uncertain about the implications
+>     for CPU usage and RAM.
+>
+>     Could you provide some guidance on this aspect?
+>
+>     Olo.
+>
+>     On Monday, August 26th, 2024 at 7:13 PM, Olo via USRP-users
+>     <usrp-users@lists.ettus.com> wrote:
+>>     Thank you for your detailed responses to my previous questions. I
+>>     appreciate the information provided about the limitations and
+>>     potential issues related to FFT size and TwinRX configuration.
+>>
+>>     However, I noticed that there was no feedback regarding the YAML
+>>     file I attached in my original email. Could you please review it
+>>     and let me know if the configuration I've set up is correct?
+>>
+>>     Additionally, based on your recommendations, I plan to use a
+>>     window function (Window block) with a size of 1024, along with an
+>>     FFT block of the same size for the scanner (sweep spectrum)
+>>     functionality. Would this approach be correct given the current
+>>     limitations and your suggestions?
+>>
+>>     Your confirmation on these points would be invaluable to ensure
+>>     that I am on the right track with my project.
+>>
+>>     Thank you once again for your time and assistance. I look forward
+>>     to your response.
+>>
+>>     Best regards,
+>>     Olo.
+>>     On Monday, August 26th, 2024 at 18:04, Rob Kossler via USRP-users
+>>     <usrp-users@lists.ettus.com> wrote:
+>>>
+>>>
+>>>     On Mon, Aug 26, 2024 at 10:24=E2=80=AFAM Marcus D. Leech
+>>>     <patchvonbraun@gmail.com> wrote:
+>>>
+>>>         On 26/08/2024 10:21, Rob Kossler via USRP-users wrote:
+>>>>         Hi Olo,
+>>>>         On one point regarding an FFT length of 8192, there is
+>>>>         likely an issue with using the Ettus FFT block. In the past
+>>>>         (I haven't checked recently), this block was limited to a
+>>>>         maximum FFT size of 1024 because the entire FFT had to fit
+>>>>         in one packet where the maximum packet payload was about
+>>>>         2000 samples. It is possible to use larger FFTs, but this
+>>>>         requires some custom code that divorces the FFT size from
+>>>>         the packet size.
+>>>>         Rob
+>>>         My understanding is that in recent RFNoC, the limit has been
+>>>         raised to 2048:
+>>>
+>>>         https://files.ettus.com/manual/classuhd_1_1rfnoc_1_1fft__bloc=
+k__control.html
+>>>
+>>>     The xci file
+>>>     <https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/=
+ip/axi_fft/axi_fft.xci>
+>>>     still shows a transform length of 1024. Also, I think that the
+>>>     X300 MTU size is 10 which implies 2^10=3D1024 x 64bit is the max
+>>>     payload. This implies 2048 32-bit words in the payload. But,
+>>>     because of a few bytes of header, it is not possible to use an
+>>>     FFT of length 2048 unless the FFT length is divorced from the
+>>>     packet length.
+>>>     Rob
+>>>
+>>
+>
+>     _______________________________________________
+>     USRP-users mailing list -- usrp-users@lists.ettus.com
+>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+
+--------------xsmj5g20FEOYrWTDOGjs9dd3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 03/09/2024 15:57, Arnaldo Sans
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:BN8PR05MB5971E1C0A7138208EC2D0C6C8C932@BN8PR05MB5971.namprd05=
+.prod.outlook.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
+rgin-bottom:0;}</style>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+        Hello,</div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+        I am looking for a detailed block diagram of an X440 radio...
+        There is very little=C2=A0content available on the web... I am to
+        create a "digital twin of the radio.</div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+        Thank you in advance and I look forward to hearing from you
+        soon.</div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+        Regards,<br>
+        AJ</div>
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+    </blockquote>
+    Most of the "interesting" bits of the X440 are in the RFSOC, which
+    is linked here:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://docs.amd.com/r/en-=
+US/pg269-rf-data-converter/Conventions">https://docs.amd.com/r/en-US/pg26=
+9-rf-data-converter/Conventions</a><br>
+    <br>
+    There's Martin Brauns GRCON talk here:<br>
+    <br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://events.gnuradio.org/ev=
+ent/21/contributions/392/attachments/123/285/Lo%20and%20behold,%20no%20LO=
+.pdf">https://events.gnuradio.org/event/21/contributions/392/attachments/=
+123/285/Lo%20and%20behold,%20no%20LO.pdf</a><br>
+    <br>
+    There's an extensive treatise on selecting sample rates here:<br>
+    <br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/About_Sam=
+pling_Rates_and_Master_Clock_Rates_for_the_USRP_X440">https://kb.ettus.co=
+m/About_Sampling_Rates_and_Master_Clock_Rates_for_the_USRP_X440</a><br>
+    <br>
+    There's schematics for X4x0 family here:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://files.ettus.com/sc=
+hematics/x4x0/">https://files.ettus.com/schematics/x4x0/</a><br>
+    <br>
+    And of course, all the FPGA code is published in the GIT repo that
+    you get UHD source code from.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:BN8PR05MB5971E1C0A7138208EC2D0C6C8C932@BN8PR05MB5971.namprd05=
+.prod.outlook.com">
+      <div class=3D"elementToProof"
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
+ibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+      </div>
+      <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+      <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt=
+"
+          face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Mar=
+tin
+          Braun <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:martin.=
+braun@ettus.com">&lt;martin.braun@ettus.com&gt;</a><br>
+          <b>Sent:</b> Tuesday, August 27, 2024 3:45 AM<br>
+          <b>To:</b> Olo <a class=3D"moz-txt-link-rfc2396E" href=3D"mailt=
+o:olo1618@protonmail.com">&lt;olo1618@protonmail.com&gt;</a><br>
+          <b>Cc:</b> usrp-users <a class=3D"moz-txt-link-rfc2396E" href=3D=
+"mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a=
+><br>
+          <b>Subject:</b> [USRP-users] Re: Assistance with RFNoC and
+          TwinRX Configuration in Custom FPGA Image</font>
+        <div>=C2=A0</div>
+      </div>
+      <div>
+        <p
+style=3D"color:red; font-weight:bold; border:1px solid black; padding:5px=
+; width:65%; text-align:center; margin-left:auto; margin-right:auto">
+          Note: This message originated from outside the FIU
+          Faculty/Staff email system.</p>
+        <br>
+        <div>
+          <div dir=3D"ltr">
+            <div>If you had a polyphase channelizer on the FPGA, that
+              would be an efficient solution to your problem, but
+              there's no such block as part of UHD itself. There have
+              been channelizer blocks written in the wild, but that
+              would be something you'd have to figure out.</div>
+            <div><br>
+            </div>
+            <div>--M<br>
+            </div>
+          </div>
+          <br>
+          <div class=3D"x_gmail_quote">
+            <div dir=3D"ltr" class=3D"x_gmail_attr">On Tue, Aug 27, 2024 =
+at
+              7:17=E2=80=AFAM Olo via USRP-users &lt;<a
+                href=3D"mailto:usrp-users@lists.ettus.com"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+usrp-users@lists.ettus.com</a>&gt;
+              wrote:<br>
+            </div>
+            <blockquote class=3D"x_gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(204,204,204)=
+; padding-left:1ex">
+              <p>I have an additional question related to my current
+                project involving RFNoC. Specifically, I need to
+                implement as many narrowband channels (DDC) as possible
+                to record various parts of the spectrum as required.</p>
+              <p>I=E2=80=99m wondering if it would be more efficient to h=
+andle
+                this through RFNoC or directly on a GPU? Additionally,
+                how many narrowband channels of specific bandwidths
+                could I implement using RFNoC, considering I primarily
+                intend to store (record) the data into memory? I have a
+                clear understanding of the memory and network interface
+                requirements, but I am uncertain about the implications
+                for CPU usage and RAM.</p>
+              <p>Could you provide some guidance on this aspect?</p>
+              <div
+style=3D"font-family:Arial,sans-serif; font-size:14px; color:rgb(0,0,0); =
+background-color:rgb(255,255,255)">
+                Olo.<br>
+              </div>
+              <div style=3D"font-family:Arial,sans-serif; font-size:14px"=
+><br>
+              </div>
+              <div>On Monday, August 26th, 2024 at 7:13 PM, Olo via
+                USRP-users &lt;<a
+                  href=3D"mailto:usrp-users@lists.ettus.com"
+                  target=3D"_blank" moz-do-not-send=3D"true"
+                  class=3D"moz-txt-link-freetext">usrp-users@lists.ettus.=
+com</a>&gt;
+                wrote:<br>
+                <blockquote type=3D"cite">
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+">Thank
+                    you for your detailed responses to my previous
+                    questions. I appreciate the information provided
+                    about the limitations and potential issues related
+                    to FFT size and TwinRX configuration.</div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+"><br>
+                  </div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+">However,
+                    I noticed that there was no feedback regarding the
+                    YAML file I attached in my original email. Could you
+                    please review it and let me know if the
+                    configuration I've set up is correct?</div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+"><br>
+                  </div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+">Additionally,
+                    based on your recommendations, I plan to use a
+                    window function (Window block) with a size of 1024,
+                    along with an FFT block of the same size for the
+                    scanner (sweep spectrum) functionality. Would this
+                    approach be correct given the current limitations
+                    and your suggestions?</div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+"><br>
+                  </div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+">Your
+                    confirmation on these points would be invaluable to
+                    ensure that I am on the right track with my project.<=
+/div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+"><br>
+                  </div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+">Thank
+                    you once again for your time and assistance. I look
+                    forward to your response.</div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+"><br>
+                  </div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+">Best
+                    regards,</div>
+                  <div
+                    style=3D"font-family:Arial,sans-serif; font-size:14px=
+">Olo.</div>
+                  <div>On Monday, August 26th, 2024 at 18:04, Rob
+                    Kossler via USRP-users &lt;<a
+                      href=3D"mailto:usrp-users@lists.ettus.com"
+                      target=3D"_blank" moz-do-not-send=3D"true"
+                      class=3D"moz-txt-link-freetext">usrp-users@lists.et=
+tus.com</a>&gt;
+                    wrote:<br>
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">
+                        <div dir=3D"ltr"><br>
+                        </div>
+                        <br>
+                        <div class=3D"x_gmail_quote">
+                          <div dir=3D"ltr" class=3D"x_gmail_attr">On Mon,
+                            Aug 26, 2024 at 10:24=E2=80=AFAM Marcus D. Le=
+ech
+                            &lt;<a rel=3D"noreferrer nofollow noopener"
+                              href=3D"mailto:patchvonbraun@gmail.com"
+                              target=3D"_blank" moz-do-not-send=3D"true"
+                              class=3D"moz-txt-link-freetext">patchvonbra=
+un@gmail.com</a>&gt;
+                            wrote:<br>
+                          </div>
+                          <blockquote class=3D"x_gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(204,204,204)=
+; padding-left:1ex">
+                            <div>
+                              <div>On 26/08/2024 10:21, Rob Kossler via
+                                USRP-users wrote:<br>
+                              </div>
+                              <blockquote type=3D"cite">
+                                <div dir=3D"ltr">
+                                  <div dir=3D"ltr">
+                                    <div>Hi Olo,</div>
+                                    <div>On one point regarding an FFT
+                                      length of 8192, there is likely an
+                                      issue with using the Ettus FFT
+                                      block. In the past (I haven't
+                                      checked recently), this block was
+                                      limited to a maximum FFT size of
+                                      1024 because the entire FFT had to
+                                      fit in one packet where the
+                                      maximum packet payload was about
+                                      2000 samples. It is possible to
+                                      use larger FFTs, but this requires
+                                      some custom code that divorces the
+                                      FFT size from the packet size.</div=
+>
+                                    <div>Rob<br>
+                                    </div>
+                                  </div>
+                                </div>
+                              </blockquote>
+                              My understanding is that in recent RFNoC,
+                              the limit has been raised to 2048:<br>
+                              <br>
+                              <a rel=3D"noreferrer nofollow noopener"
+href=3D"https://files.ettus.com/manual/classuhd_1_1rfnoc_1_1fft__block__c=
+ontrol.html"
+                                target=3D"_blank" moz-do-not-send=3D"true=
+"
+                                class=3D"moz-txt-link-freetext">https://f=
+iles.ettus.com/manual/classuhd_1_1rfnoc_1_1fft__block__control.html</a><b=
+r>
+                              <br>
+                            </div>
+                          </blockquote>
+                          <div>The <a
+                              rel=3D"noreferrer nofollow noopener"
+href=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/i=
+p/axi_fft/axi_fft.xci"
+                              target=3D"_blank" moz-do-not-send=3D"true">
+                              xci file</a> still shows a transform
+                            length of 1024. Also, I think that the X300
+                            MTU size is 10 which implies 2^10=3D1024 x
+                            64bit is the max payload. This implies 2048
+                            32-bit words in the payload. But, because of
+                            a few bytes of header, it is not possible to
+                            use an FFT of length 2048 unless the FFT
+                            length is divorced from the packet length.</d=
+iv>
+                          <div>Rob<br>
+                          </div>
+                          <br>
+                        </div>
+                      </div>
+                    </blockquote>
+                    <br>
+                  </div>
+                </blockquote>
+                <br>
+              </div>
+              _______________________________________________<br>
+              USRP-users mailing list -- <a
+                href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
+                usrp-users@lists.ettus.com</a><br>
+              To unsubscribe send an email to <a
+                href=3D"mailto:usrp-users-leave@lists.ettus.com"
+                target=3D"_blank" moz-do-not-send=3D"true"
+                class=3D"moz-txt-link-freetext">
+                usrp-users-leave@lists.ettus.com</a><br>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------xsmj5g20FEOYrWTDOGjs9dd3--
+
+--===============8408902835523137037==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -462,4 +623,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1359417330829724658==--
+--===============8408902835523137037==--
