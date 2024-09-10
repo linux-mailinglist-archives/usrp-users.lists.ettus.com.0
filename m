@@ -2,669 +2,289 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F0297454F
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2024 00:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2737B97455B
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2024 00:05:18 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BE1CB385649
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Sep 2024 18:01:21 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DE86938555E
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Sep 2024 18:05:16 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1726005681; bh=PtA3yg2EOWw8cOuoamE55jycpkxdK2wwi/YnF1KU33Q=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=ty61DwcthmeNfpdxCp7cLxV/BfHzR/ZO86hMltzsTtgSWmwzsut38iWsjoK80lQ4G
-	 hT+2mwIDLyZC6UYWRnILeB6Cz6hD3lDR7kGVIQgNFkFTCKiSf6pEKdxomtI4u9I4kr
-	 85pJNPagqgYWlyypwhKfB9p1SrYCWnKh76AkSCrWA4rkOSs7ncRPWQAijLYy58A1rj
-	 4uij26vXAYIeLJNwKCfXlwvBndzdtenARt4OqNP+fHsvEJKgOYKncyNtr80GdlrH6O
-	 D4wvfjwc6n53XGaPwf48EVmJiFjUBfRgSOF3eKG/UuUMBmoGpkMbLU1PhfgJ/yudMn
-	 EQp1gspYTk8IQ==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0A2BA384D91
-	for <usrp-users@lists.ettus.com>; Tue, 10 Sep 2024 18:00:53 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1726005653; bh=LfcxXnNGwtJ4YYgajRBy7SmZ8Kv/q1n/gP2ZP1r9s0M=;
-	h=Date:To:From:Subject:From;
-	b=MPtnTk1S2w9SPVX42Rr+aXQmqDLZP0WKbeRAJgRlpmGTC78oY/GwDD3mZ1HF81zmT
-	 4F3Cbz/7ZSuGpIfSFKZkQXB90UbPSfBKCDdPqCtuAzcpuU+35dNa8sGPyi0geBfVVd
-	 KjEO8gZrTreSRtjqLenZ3rg2PbS8so87IB+4wcZ7usC7gKRf3t0YuS3NsZgG5T9hZt
-	 Oq0AY4kSK6LokiCU+orciniQdIj6QTJK4YCLr+z4PktG9TcLtkCEFpalugXBERoL57
-	 BQ1ayfmRgwvnbFTTxhUVw0Bm6CauUBSMFWH0SQK4gnani8sNZmuzn0b+vMHwyypkro
-	 BEPSJuLMoILeQ==
-Date: Tue, 10 Sep 2024 22:00:53 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	t=1726005916; bh=XOzzckhHjUw72QYave8PECX4sowbtDHe+N7okNyVops=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=blYEgZj9ssa44VLA4gOixDpIGTpPTf32wr5odyb1wIPyIwvJZhGoiCM7TRCDeGlao
+	 SKPnd0h4FcrxRAPGtwezyM5EZe4zp6GvfDmeaF3uaoPlSU1TfknPjW2alnPaAKq4W/
+	 5zmhiaEB8aVbXHlLc+hQTYEfV2uBoFDC2zeTY97+8XYjoYCbizge9KzpjXL1+PLSKj
+	 KfSihGYgzSvpJCvHq5JKJgHj5JCYIxhfjaAbvoMXNVbOHXmfpcVw+77Q1LtXSxrupB
+	 jLaMcta5Djy5JVFWxHi2Y6/f68qhWJkbD8asyEaIMxvANc/s0avLJMn/3km2hnCmAs
+	 6hrEd2SISlGag==
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8CCBF38501F
+	for <usrp-users@lists.ettus.com>; Tue, 10 Sep 2024 18:04:26 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EZYKNQ0Y";
+	dkim-atps=neutral
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-4582fb3822eso9232941cf.1
+        for <usrp-users@lists.ettus.com>; Tue, 10 Sep 2024 15:04:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726005866; x=1726610666; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6ZjTLvY3bBBzQFgeVSnKkRCIAix0QNvhgpPKBqM6WhI=;
+        b=EZYKNQ0Y4l2uXbhf85zK3seS+qR+dUpVrcy12P3s9MVRPGecMTZYt0BL8mRWbzdbW6
+         GTqC60N41C6s+Ney/h08BaKKtJN+5zyU/1U0KJHHnVyTw+9r62QFwqCG/vNBYVhFvTSt
+         J94ciK63v5GDTzCEHAVUPAsdWV7+1PvXLiyV64O2OeIM9Xaa0FA9/krcvpFY/9g1eLZH
+         yuXqKC3A9wtdh3Hf5wO4wu4robdV9uFjkXpfTLYBbUtvPtpd++a84pfFzD1TzCnfhJYS
+         H30MDIEESg8ra3wtECa8EaocDgFl3pcIh3hlsan69RPW+vqQY7rPLhpjKHG1Nutw/uMb
+         K+2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726005866; x=1726610666;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6ZjTLvY3bBBzQFgeVSnKkRCIAix0QNvhgpPKBqM6WhI=;
+        b=Ov76viurVBGmdKGTtog7ydCmExAALqAq33oZQVJn9xdph0ZUUizWPKPtZnoazE8UcQ
+         7CM9V6UJ9PGRqebdLroJSTaQixZI/fZ4TxRTnRW7N02XRnQAnHwTSridNT+IUbfnh03G
+         6RaFTdSnEaoaD6GBwvKYiFteK0+KieZJDN5CLoqOmcFW7BHKGSMG5/6Xaeac5XdYhghW
+         9d5FO8m6pKYz2VRCwG/q4c/JvI6/mrVyuymWgqTr8mig1ymt9fFiJK+fdVRUjTyzelEe
+         nRyZEMYFpknjSfphfmdCAykOQQgak8YaxQ9weewps3BA0eYzZ8z14MlhumBwajjxADQD
+         ZIJw==
+X-Gm-Message-State: AOJu0YynGcSnBTD3Y/obZs9i9s+qsx1S00PaSvza6LIBArjmLOt64RDD
+	AQVpyo0LGA+rlsXNsTj8Om+WwtQpWeKNlgnndA+fCPC/isqivSA/TLCMDA==
+X-Google-Smtp-Source: AGHT+IF5KqK5aVMMn3Ps3hGeTjNMaPOq5UK6KIIQhcMtUZqZRtkC9TNcp3hVJbnwa6onqlE+lkjpzQ==
+X-Received: by 2002:ac8:5d0e:0:b0:458:3fec:e743 with SMTP id d75a77b69052e-4584e936876mr12746231cf.47.1726005865592;
+        Tue, 10 Sep 2024 15:04:25 -0700 (PDT)
+Received: from [192.168.2.170] (bras-base-smflon1825w-grc-22-64-231-212-86.dsl.bell.ca. [64.231.212.86])
+        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-45822f61ac7sm33369511cf.71.2024.09.10.15.04.25
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Sep 2024 15:04:25 -0700 (PDT)
+Message-ID: <1372ad44-2074-4b3c-aa91-87e961794c9d@gmail.com>
+Date: Tue, 10 Sep 2024 18:04:24 -0400
 MIME-Version: 1.0
-Message-ID-Hash: 43AI3LWP5G374R3MFXV2RTRIPQKF6FBS
-X-Message-ID-Hash: 43AI3LWP5G374R3MFXV2RTRIPQKF6FBS
-X-MailFrom: brian.diaz.476@my.csun.edu
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0@lists.ettus.com>
+Message-ID-Hash: 7BQ3FA5KPDZWA4F5BLMX4YOSC72FCL7Q
+X-Message-ID-Hash: 7BQ3FA5KPDZWA4F5BLMX4YOSC72FCL7Q
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Major compat number mismatch for noc_shell: Expecting 3, got 5 Error
+Subject: [USRP-users] Re: Major compat number mismatch for noc_shell: Expecting 3, got 5 Error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/43AI3LWP5G374R3MFXV2RTRIPQKF6FBS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7BQ3FA5KPDZWA4F5BLMX4YOSC72FCL7Q/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Brian Diaz via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: brian.diaz.476@my.csun.edu
-Content-Type: multipart/mixed; boundary="===============1192786325516582147=="
-
-This is a multi-part message in MIME format.
-
---===============1192786325516582147==
-Content-Type: multipart/alternative;
- boundary="b1_QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0
-Content-Type: text/plain; charset=us-ascii
-
-Hello, 
-
-I am not sure what this error means and how to fix it. I tried running a command a received this error. This is my entire cmd prompt session: \
-\
-C:\\Program Files\\UHD\\bin>uhd_usrp_probe
-
-\[INFO\] \[UHD\] Win32; Microsoft Visual C++ version 1920; Boost_107000; UHD_3.14.1.1-release
-
-\[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=3177E63,claimed=False,addr=192.168.10.2
-
-\[INFO\] \[MPM.PeriphManager\] init() called with device args \`mgmt_addr=192.168.10.2,time_source=internal,product=n310,clock_source=internal'.
-
-\[INFO\] \[0/Replay_0\] Initializing block control (NOC ID: 0x4E91A00000000004)
-
-\[INFO\] \[0/Radio_0\] Initializing block control (NOC ID: 0x12AD100000011312)
-
-\[INFO\] \[0/Radio_1\] Initializing block control (NOC ID: 0x12AD100000011312)
-
-\[INFO\] \[0/DDC_0\] Initializing block control (NOC ID: 0xDDC0000000000000)
-
-\[INFO\] \[0/DDC_1\] Initializing block control (NOC ID: 0xDDC0000000000000)
-
-\[INFO\] \[0/DUC_0\] Initializing block control (NOC ID: 0xD0C0000000000002)
-
-\[INFO\] \[0/DUC_1\] Initializing block control (NOC ID: 0xD0C0000000000002)
-
-\[INFO\] \[0/FIFO_0\] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-\[INFO\] \[0/FIFO_1\] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-\[INFO\] \[0/FIFO_2\] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-\[INFO\] \[0/FIFO_3\] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-  _____________________________________________________
-
- /
-
-|       Device: N300-Series Device
-
-|     _____________________________________________________
-
-|    /
-
-|   |       Mboard: ni-n3xx-3177E63
-
-|   |   eeprom_version: 3
-
-|   |   mpm_version: 3.14.1.1-g0347a6d8
-
-|   |   pid: 16962
-
-|   |   product: n310
-
-|   |   rev: 10
-
-|   |   rpc_connection: remote
-
-|   |   serial: 3177E63
-
-|   |   type: n3xx
-
-|   |   MPM Version: 1.2
-
-|   |   FPGA Version: 5.3
-
-|   |   FPGA git hash: bb85bdf.clean
-
-|   |   RFNoC capable: Yes
-
-|   |
-
-|   |   Time sources:  internal, external, gpsdo, sfp0
-
-|   |   Clock sources: external, internal, gpsdo
-
-|   |   Sensors: gps_time, temp, gps_locked, gps_tpv, fan, ref_locked, gps_gpgga, gps_sky
-
-|   |     _____________________________________________________
-
-|   |    /
-
-|   |   |       RX Dboard: A
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       RX Frontend: 0
-
-|   |   |   |   Name: Magnesium
-
-|   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
-
-|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
-
-|   |   |   |   Freq range: 1.000 to 6000.000 MHz
-
-|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
-
-|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
-
-|   |   |   |   Connection Type: IQ
-
-|   |   |   |   Uses LO offset: No
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       RX Frontend: 1
-
-|   |   |   |   Name: Magnesium
-
-|   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
-
-|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
-
-|   |   |   |   Freq range: 1.000 to 6000.000 MHz
-
-|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
-
-|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
-
-|   |   |   |   Connection Type: IQ
-
-|   |   |   |   Uses LO offset: No
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       RX Codec: A
-
-|   |   |   |   Name: AD9371 Dual ADC
-
-|   |   |   |   Gain Elements: None
-
-|   |     _____________________________________________________
-
-|   |    /
-
-|   |   |       RX Dboard: B
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       RX Frontend: 0
-
-|   |   |   |   Name: Magnesium
-
-|   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
-
-|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
-
-|   |   |   |   Freq range: 1.000 to 6000.000 MHz
-
-|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
-
-|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
-
-|   |   |   |   Connection Type: IQ
-
-|   |   |   |   Uses LO offset: No
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       RX Frontend: 1
-
-|   |   |   |   Name: Magnesium
-
-|   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
-
-|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
-
-|   |   |   |   Freq range: 1.000 to 6000.000 MHz
-
-|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
-
-|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
-
-|   |   |   |   Connection Type: IQ
-
-|   |   |   |   Uses LO offset: No
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       RX Codec: B
-
-|   |   |   |   Name: AD9371 Dual ADC
-
-|   |   |   |   Gain Elements: None
-
-|   |     _____________________________________________________
-
-|   |    /
-
-|   |   |       TX Dboard: A
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       TX Frontend: 0
-
-|   |   |   |   Name: Magnesium
-
-|   |   |   |   Antennas: TX/RX
-
-|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
-
-|   |   |   |   Freq range: 1.000 to 6000.000 MHz
-
-|   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
-
-|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
-
-|   |   |   |   Connection Type: IQ
-
-|   |   |   |   Uses LO offset: No
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       TX Frontend: 1
-
-|   |   |   |   Name: Magnesium
-
-|   |   |   |   Antennas: TX/RX
-
-|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
-
-|   |   |   |   Freq range: 1.000 to 6000.000 MHz
-
-|   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
-
-|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
-
-|   |   |   |   Connection Type: IQ
-
-|   |   |   |   Uses LO offset: No
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       TX Codec: A
-
-|   |   |   |   Name: AD9371 Dual DAC
-
-|   |   |   |   Gain Elements: None
-
-|   |     _____________________________________________________
-
-|   |    /
-
-|   |   |       TX Dboard: B
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       TX Frontend: 0
-
-|   |   |   |   Name: Magnesium
-
-|   |   |   |   Antennas: TX/RX
-
-|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
-
-|   |   |   |   Freq range: 1.000 to 6000.000 MHz
-
-|   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
-
-|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
-
-|   |   |   |   Connection Type: IQ
-
-|   |   |   |   Uses LO offset: No
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       TX Frontend: 1
-
-|   |   |   |   Name: Magnesium
-
-|   |   |   |   Antennas: TX/RX
-
-|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
-
-|   |   |   |   Freq range: 1.000 to 6000.000 MHz
-
-|   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
-
-|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
-
-|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
-
-|   |   |   |   Connection Type: IQ
-
-|   |   |   |   Uses LO offset: No
-
-|   |   |     _____________________________________________________
-
-|   |   |    /
-
-|   |   |   |       TX Codec: B
-
-|   |   |   |   Name: AD9371 Dual DAC
-
-|   |   |   |   Gain Elements: None
-
-|   |     _____________________________________________________
-
-|   |    /
-
-|   |   |       RFNoC blocks on this device:
-
-|   |   |
-
-|   |   |   \* Replay_0
-
-|   |   |   \* Radio_0
-
-|   |   |   \* Radio_1
-
-|   |   |   \* DDC_0
-
-|   |   |   \* DDC_1
-
-|   |   |   \* DUC_0
-
-|   |   |   \* DUC_1
-
-|   |   |   \* FIFO_0
-
-|   |   |   \* FIFO_1
-
-|   |   |   \* FIFO_2
-
-|   |   |   \* FIFO_3
-
-C:\\Program Files\\UHD\\bin>cd C:\\Program Files\\UHD\\lib\\uhd\\examples
-
-C:\\Program Files\\UHD\\lib\\uhd\\examples>txrx_loopback_to_file tx-args 192.168.10.2 rx-args 192.168.10.2 --file = new_test.dat --nsamps = 10000 --tx-rate 1e6 --rx-rate 1e6 --tx-freq 2.4e9 --rx-freq 2.4e9 --tx-gain 5 --rx-gain 5 --wave-type = SINE --tx-channels=0 --rx-channels=2
-
-Error: the argument ('=') for option '--nsamps' is invalid
-
-C:\\Program Files\\UHD\\lib\\uhd\\examples>txrx_loopback_to_file tx-args 192.168.10.2 rx-args 192.168.10.2 --file = new_test.dat --nsamps=10000 --tx-rate 1e6 --rx-rate 1e6 --tx-freq 2.4e9 --rx-freq 2.4e9 --tx-gain 5 --rx-gain 5 --wave-type = SINE --tx-channels=0 --rx-channels=2
-
-Creating the transmit usrp device with: ...
-
-\[INFO\] \[UHD\] Win32; Microsoft Visual C++ version 14.0; Boost_105900; UHD_3.13.1.0-release
-
-\[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=3177E63,claimed=False,addr=192.168.10.2
-
-\[INFO\] \[MPM.PeriphManager\] init() called with device args \`mgmt_addr=192.168.10.2,time_source=internal,product=n310,clock_source=internal'.
-
-\[WARNING\] \[RFNOC\] Can't find a block controller for key Replay, using default block controller!
-
-\[INFO\] \[0/Replay_0\] Initializing block control (NOC ID: 0x4E91A00000000004)
-
-\[ERROR\] \[0/Replay_0\] Major compat number mismatch for noc_shell: Expecting 3, got 5.
-
-\[ERROR\] \[MPMD\] Failure during block enumeration: RuntimeError: FPGA component \`noc_shell' is revision 5 and UHD supports revision 3. Please either upgrade UHD  (recommended) or downgrade the FPGA image.
-
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
-
-C:\\Program Files\\UHD\\lib\\uhd\\examples>
-
---b1_QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello, </p><p>I am not sure what this error means and how to fix it. I t=
-ried running a command a received this error. This is my entire cmd prompt =
-session: <br><br>C:\Program Files\UHD\bin&gt;uhd_usrp_probe</p><p>[INFO] [U=
-HD] Win32; Microsoft Visual C++ version 1920; Boost_107000; UHD_3.14.1.1-re=
-lease</p><p>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: m=
-gmt_addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310,serial=3D3177E63,claimed=
-=3DFalse,addr=3D192.168.10.2</p><p>[INFO] [MPM.PeriphManager] init() called=
- with device args `mgmt_addr=3D192.168.10.2,time_source=3Dinternal,product=
-=3Dn310,clock_source=3Dinternal'.</p><p>[INFO] [0/Replay_0] Initializing bl=
-ock control (NOC ID: 0x4E91A00000000004)</p><p>[INFO] [0/Radio_0] Initializ=
-ing block control (NOC ID: 0x12AD100000011312)</p><p>[INFO] [0/Radio_1] Ini=
-tializing block control (NOC ID: 0x12AD100000011312)</p><p>[INFO] [0/DDC_0]=
- Initializing block control (NOC ID: 0xDDC0000000000000)</p><p>[INFO] [0/DD=
-C_1] Initializing block control (NOC ID: 0xDDC0000000000000)</p><p>[INFO] [=
-0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)</p><p>[INF=
-O] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)</p><p>=
-[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)</=
-p><p>[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F00000000000=
-00)</p><p>[INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F000000=
-0000000)</p><p>[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0=
-000000000000)</p><p>  _____________________________________________________=
-</p><p> /</p><p>|       Device: N300-Series Device</p><p>|     ____________=
-_________________________________________</p><p>|    /</p><p>|   |       Mb=
-oard: ni-n3xx-3177E63</p><p>|   |   eeprom_version: 3</p><p>|   |   mpm_ver=
-sion: 3.14.1.1-g0347a6d8</p><p>|   |   pid: 16962</p><p>|   |   product: n3=
-10</p><p>|   |   rev: 10</p><p>|   |   rpc_connection: remote</p><p>|   |  =
- serial: 3177E63</p><p>|   |   type: n3xx</p><p>|   |   MPM Version: 1.2</p=
-><p>|   |   FPGA Version: 5.3</p><p>|   |   FPGA git hash: bb85bdf.clean</p=
-><p>|   |   RFNoC capable: Yes</p><p>|   |</p><p>|   |   Time sources:  int=
-ernal, external, gpsdo, sfp0</p><p>|   |   Clock sources: external, interna=
-l, gpsdo</p><p>|   |   Sensors: gps_time, temp, gps_locked, gps_tpv, fan, r=
-ef_locked, gps_gpgga, gps_sky</p><p>|   |     _____________________________=
-________________________</p><p>|   |    /</p><p>|   |   |       RX Dboard: =
-A</p><p>|   |   |     _____________________________________________________=
-</p><p>|   |   |    /</p><p>|   |   |   |       RX Frontend: 0</p><p>|   | =
-  |   |   Name: Magnesium</p><p>|   |   |   |   Antennas: TX/RX, RX2, CAL, =
-LOCAL</p><p>|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_l=
-o_locked</p><p>|   |   |   |   Freq range: 1.000 to 6000.000 MHz</p><p>|   =
-|   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB</p><p>|   |   |   |   G=
-ain range rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range dsa=
-: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range amp: 0.0 to 0.0 s=
-tep 0.0 dB</p><p>|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0=
- step 0.0 Hz</p><p>|   |   |   |   Connection Type: IQ</p><p>|   |   |   | =
-  Uses LO offset: No</p><p>|   |   |     __________________________________=
-___________________</p><p>|   |   |    /</p><p>|   |   |   |       RX Front=
-end: 1</p><p>|   |   |   |   Name: Magnesium</p><p>|   |   |   |   Antennas=
-: TX/RX, RX2, CAL, LOCAL</p><p>|   |   |   |   Sensors: lo_locked, lowband_=
-lo_locked, ad9371_lo_locked</p><p>|   |   |   |   Freq range: 1.000 to 6000=
-.000 MHz</p><p>|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB</p><=
-p>|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |  =
- |   Gain range dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain rang=
-e amp: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Bandwidth range: 200000=
-00.0 to 100000000.0 step 0.0 Hz</p><p>|   |   |   |   Connection Type: IQ</=
-p><p>|   |   |   |   Uses LO offset: No</p><p>|   |   |     _______________=
-______________________________________</p><p>|   |   |    /</p><p>|   |   |=
-   |       RX Codec: A</p><p>|   |   |   |   Name: AD9371 Dual ADC</p><p>| =
-  |   |   |   Gain Elements: None</p><p>|   |     _________________________=
-____________________________</p><p>|   |    /</p><p>|   |   |       RX Dboa=
-rd: B</p><p>|   |   |     _________________________________________________=
-____</p><p>|   |   |    /</p><p>|   |   |   |       RX Frontend: 0</p><p>| =
-  |   |   |   Name: Magnesium</p><p>|   |   |   |   Antennas: TX/RX, RX2, C=
-AL, LOCAL</p><p>|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad93=
-71_lo_locked</p><p>|   |   |   |   Freq range: 1.000 to 6000.000 MHz</p><p>=
-|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB</p><p>|   |   |   |=
-   Gain range rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range=
- dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range amp: 0.0 to 0=
-.0 step 0.0 dB</p><p>|   |   |   |   Bandwidth range: 20000000.0 to 1000000=
-00.0 step 0.0 Hz</p><p>|   |   |   |   Connection Type: IQ</p><p>|   |   | =
-  |   Uses LO offset: No</p><p>|   |   |     ______________________________=
-_______________________</p><p>|   |   |    /</p><p>|   |   |   |       RX F=
-rontend: 1</p><p>|   |   |   |   Name: Magnesium</p><p>|   |   |   |   Ante=
-nnas: TX/RX, RX2, CAL, LOCAL</p><p>|   |   |   |   Sensors: lo_locked, lowb=
-and_lo_locked, ad9371_lo_locked</p><p>|   |   |   |   Freq range: 1.000 to =
-6000.000 MHz</p><p>|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB<=
-/p><p>|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |  =
- |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain =
-range amp: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Bandwidth range: 20=
-000000.0 to 100000000.0 step 0.0 Hz</p><p>|   |   |   |   Connection Type: =
-IQ</p><p>|   |   |   |   Uses LO offset: No</p><p>|   |   |     ___________=
-__________________________________________</p><p>|   |   |    /</p><p>|   |=
-   |   |       RX Codec: B</p><p>|   |   |   |   Name: AD9371 Dual ADC</p><=
-p>|   |   |   |   Gain Elements: None</p><p>|   |     _____________________=
-________________________________</p><p>|   |    /</p><p>|   |   |       TX =
-Dboard: A</p><p>|   |   |     _____________________________________________=
-________</p><p>|   |   |    /</p><p>|   |   |   |       TX Frontend: 0</p><=
-p>|   |   |   |   Name: Magnesium</p><p>|   |   |   |   Antennas: TX/RX</p>=
-<p>|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked<=
-/p><p>|   |   |   |   Freq range: 1.000 to 6000.000 MHz</p><p>|   |   |   |=
-   Gain range all: 0.0 to 65.0 step 0.5 dB</p><p>|   |   |   |   Gain range=
- rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range dsa: 0.0 to =
-0.0 step 0.0 dB</p><p>|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 d=
-B</p><p>|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0=
- Hz</p><p>|   |   |   |   Connection Type: IQ</p><p>|   |   |   |   Uses LO=
- offset: No</p><p>|   |   |     ___________________________________________=
-__________</p><p>|   |   |    /</p><p>|   |   |   |       TX Frontend: 1</p=
-><p>|   |   |   |   Name: Magnesium</p><p>|   |   |   |   Antennas: TX/RX</=
-p><p>|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locke=
-d</p><p>|   |   |   |   Freq range: 1.000 to 6000.000 MHz</p><p>|   |   |  =
- |   Gain range all: 0.0 to 65.0 step 0.5 dB</p><p>|   |   |   |   Gain ran=
-ge rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range dsa: 0.0 t=
-o 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0=
- dB</p><p>|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0=
-.0 Hz</p><p>|   |   |   |   Connection Type: IQ</p><p>|   |   |   |   Uses =
-LO offset: No</p><p>|   |   |     _________________________________________=
-____________</p><p>|   |   |    /</p><p>|   |   |   |       TX Codec: A</p>=
-<p>|   |   |   |   Name: AD9371 Dual DAC</p><p>|   |   |   |   Gain Element=
-s: None</p><p>|   |     ___________________________________________________=
-__</p><p>|   |    /</p><p>|   |   |       TX Dboard: B</p><p>|   |   |     =
-_____________________________________________________</p><p>|   |   |    /<=
-/p><p>|   |   |   |       TX Frontend: 0</p><p>|   |   |   |   Name: Magnes=
-ium</p><p>|   |   |   |   Antennas: TX/RX</p><p>|   |   |   |   Sensors: lo=
-_locked, lowband_lo_locked, ad9371_lo_locked</p><p>|   |   |   |   Freq ran=
-ge: 1.000 to 6000.000 MHz</p><p>|   |   |   |   Gain range all: 0.0 to 65.0=
- step 0.5 dB</p><p>|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB<=
-/p><p>|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   |   =
-|   |   Gain range amp: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Bandwi=
-dth range: 20000000.0 to 100000000.0 step 0.0 Hz</p><p>|   |   |   |   Conn=
-ection Type: IQ</p><p>|   |   |   |   Uses LO offset: No</p><p>|   |   |   =
-  _____________________________________________________</p><p>|   |   |    =
-/</p><p>|   |   |   |       TX Frontend: 1</p><p>|   |   |   |   Name: Magn=
-esium</p><p>|   |   |   |   Antennas: TX/RX</p><p>|   |   |   |   Sensors: =
-lo_locked, lowband_lo_locked, ad9371_lo_locked</p><p>|   |   |   |   Freq r=
-ange: 1.000 to 6000.000 MHz</p><p>|   |   |   |   Gain range all: 0.0 to 65=
-.0 step 0.5 dB</p><p>|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 d=
-B</p><p>|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   | =
-  |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Band=
-width range: 20000000.0 to 100000000.0 step 0.0 Hz</p><p>|   |   |   |   Co=
-nnection Type: IQ</p><p>|   |   |   |   Uses LO offset: No</p><p>|   |   | =
-    _____________________________________________________</p><p>|   |   |  =
-  /</p><p>|   |   |   |       TX Codec: B</p><p>|   |   |   |   Name: AD937=
-1 Dual DAC</p><p>|   |   |   |   Gain Elements: None</p><p>|   |     ______=
-_______________________________________________</p><p>|   |    /</p><p>|   =
-|   |       RFNoC blocks on this device:</p><p>|   |   |</p><p>|   |   |   =
-* Replay_0</p><p>|   |   |   * Radio_0</p><p>|   |   |   * Radio_1</p><p>| =
-  |   |   * DDC_0</p><p>|   |   |   * DDC_1</p><p>|   |   |   * DUC_0</p><p=
->|   |   |   * DUC_1</p><p>|   |   |   * FIFO_0</p><p>|   |   |   * FIFO_1<=
-/p><p>|   |   |   * FIFO_2</p><p>|   |   |   * FIFO_3</p><p>C:\Program File=
-s\UHD\bin&gt;cd C:\Program Files\UHD\lib\uhd\examples</p><p>C:\Program File=
-s\UHD\lib\uhd\examples&gt;txrx_loopback_to_file tx-args 192.168.10.2 rx-arg=
-s 192.168.10.2 --file =3D new_test.dat --nsamps =3D 10000 --tx-rate 1e6 --r=
-x-rate 1e6 --tx-freq 2.4e9 --rx-freq 2.4e9 --tx-gain 5 --rx-gain 5 --wave-t=
-ype =3D SINE --tx-channels=3D0 --rx-channels=3D2</p><p>Error: the argument =
-('=3D') for option '--nsamps' is invalid</p><p>C:\Program Files\UHD\lib\uhd=
-\examples&gt;txrx_loopback_to_file tx-args 192.168.10.2 rx-args 192.168.10.=
-2 --file =3D new_test.dat --nsamps=3D10000 --tx-rate 1e6 --rx-rate 1e6 --tx=
--freq 2.4e9 --rx-freq 2.4e9 --tx-gain 5 --rx-gain 5 --wave-type =3D SINE --=
-tx-channels=3D0 --rx-channels=3D2</p><p>Creating the transmit usrp device w=
-ith: ...</p><p>[INFO] [UHD] Win32; Microsoft Visual C++ version 14.0; Boost=
-_105900; UHD_3.13.1.0-release</p><p>[INFO] [MPMD] Initializing 1 device(s) =
-in parallel with args: mgmt_addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310,=
-serial=3D3177E63,claimed=3DFalse,addr=3D192.168.10.2</p><p>[INFO] [MPM.Peri=
-phManager] init() called with device args `mgmt_addr=3D192.168.10.2,time_so=
-urce=3Dinternal,product=3Dn310,clock_source=3Dinternal'.</p><p>[WARNING] [R=
-FNOC] Can't find a block controller for key Replay, using default block con=
-troller!</p><p>[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E=
-91A00000000004)</p><p>[ERROR] [0/Replay_0] Major compat number mismatch for=
- noc_shell: Expecting 3, got 5.</p><p>[ERROR] [MPMD] Failure during block e=
-numeration: RuntimeError: FPGA component `noc_shell' is revision 5 and UHD =
-supports revision 3. Please either upgrade UHD  (recommended) or downgrade =
-the FPGA image.</p><p>Error: RuntimeError: Failed to run enumerate_rfnoc_bl=
-ocks()</p><p>C:\Program Files\UHD\lib\uhd\examples&gt;</p>
-
---b1_QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0--
-
---===============1192786325516582147==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============1192786325516582147==--
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
+
+T24gMTAvMDkvMjAyNCAxODowMCwgQnJpYW4gRGlheiB2aWEgVVNSUC11c2VycyB3cm90ZToNCj4N
+Cj4gSGVsbG8sDQo+DQo+IEkgYW0gbm90IHN1cmUgd2hhdCB0aGlzIGVycm9yIG1lYW5zIGFuZCBo
+b3cgdG8gZml4IGl0LiBJIHRyaWVkIHJ1bm5pbmcgDQo+IGEgY29tbWFuZCBhIHJlY2VpdmVkIHRo
+aXMgZXJyb3IuIFRoaXMgaXMgbXkgZW50aXJlIGNtZCBwcm9tcHQgc2Vzc2lvbjoNCj4NCj4gQzpc
+UHJvZ3JhbSBGaWxlc1xVSERcYmluPnVoZF91c3JwX3Byb2JlDQo+DQo+IFtJTkZPXSBbVUhEXSBX
+aW4zMjsgTWljcm9zb2Z0IFZpc3VhbCBDKysgdmVyc2lvbiAxOTIwOyBCb29zdF8xMDcwMDA7IA0K
+PiBVSERfMy4xNC4xLjEtcmVsZWFzZQ0KPg0KPiBbSU5GT10gW01QTURdIEluaXRpYWxpemluZyAx
+IGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IA0KPiBtZ210X2FkZHI9MTkyLjE2OC4x
+MC4yLHR5cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFsPTMxNzdFNjMsY2xhaW1lZD1GYWxzZSxh
+ZGRyPTE5Mi4xNjguMTAuMg0KPg0KPiBbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkg
+Y2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgDQo+IGBtZ210X2FkZHI9MTkyLjE2OC4xMC4yLHRpbWVf
+c291cmNlPWludGVybmFsLHByb2R1Y3Q9bjMxMCxjbG9ja19zb3VyY2U9aW50ZXJuYWwnLg0KPg0K
+PiBbSU5GT10gWzAvUmVwbGF5XzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6
+IA0KPiAweDRFOTFBMDAwMDAwMDAwMDQpDQo+DQo+IFtJTkZPXSBbMC9SYWRpb18wXSBJbml0aWFs
+aXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAwMTEzMTIpDQo+DQo+IFtJ
+TkZPXSBbMC9SYWRpb18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEy
+QUQxMDAwMDAwMTEzMTIpDQo+DQo+IFtJTkZPXSBbMC9ERENfMF0gSW5pdGlhbGl6aW5nIGJsb2Nr
+IGNvbnRyb2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAwMDAwKQ0KPg0KPiBbSU5GT10gWzAvRERD
+XzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAw
+MCkNCj4NCj4gW0lORk9dIFswL0RVQ18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9D
+IElEOiAweEQwQzAwMDAwMDAwMDAwMDIpDQo+DQo+IFtJTkZPXSBbMC9EVUNfMV0gSW5pdGlhbGl6
+aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAwMDAwMDAyKQ0KPg0KPiBbSU5G
+T10gWzAvRklGT18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAw
+MDAwMDAwMDAwMDApDQo+DQo+IFtJTkZPXSBbMC9GSUZPXzFdIEluaXRpYWxpemluZyBibG9jayBj
+b250cm9sIChOT0MgSUQ6IDB4RjFGMDAwMDAwMDAwMDAwMCkNCj4NCj4gW0lORk9dIFswL0ZJRk9f
+Ml0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAw
+KQ0KPg0KPiBbSU5GT10gWzAvRklGT18zXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9D
+IElEOiAweEYxRjAwMDAwMDAwMDAwMDApDQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+DQo+IC8NCj4NCj4gfCBEZXZpY2U6IE4zMDAt
+U2VyaWVzIERldmljZQ0KPg0KPiB8IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fDQo+DQo+IHwgLw0KPg0KPiB8IHwgTWJvYXJkOiBuaS1uM3h4LTMx
+NzdFNjMNCj4NCj4gfCB8IGVlcHJvbV92ZXJzaW9uOiAzDQo+DQo+IHwgfCBtcG1fdmVyc2lvbjog
+My4xNC4xLjEtZzAzNDdhNmQ4DQo+DQo+IHwgfCBwaWQ6IDE2OTYyDQo+DQo+IHwgfCBwcm9kdWN0
+OiBuMzEwDQo+DQo+IHwgfCByZXY6IDEwDQo+DQo+IHwgfCBycGNfY29ubmVjdGlvbjogcmVtb3Rl
+DQo+DQo+IHwgfCBzZXJpYWw6IDMxNzdFNjMNCj4NCj4gfCB8IHR5cGU6IG4zeHgNCj4NCj4gfCB8
+IE1QTSBWZXJzaW9uOiAxLjINCj4NCj4gfCB8IEZQR0EgVmVyc2lvbjogNS4zDQo+DQo+IHwgfCBG
+UEdBIGdpdCBoYXNoOiBiYjg1YmRmLmNsZWFuDQo+DQo+IHwgfCBSRk5vQyBjYXBhYmxlOiBZZXMN
+Cj4NCj4gfCB8DQo+DQo+IHwgfCBUaW1lIHNvdXJjZXM6IGludGVybmFsLCBleHRlcm5hbCwgZ3Bz
+ZG8sIHNmcDANCj4NCj4gfCB8IENsb2NrIHNvdXJjZXM6IGV4dGVybmFsLCBpbnRlcm5hbCwgZ3Bz
+ZG8NCj4NCj4gfCB8IFNlbnNvcnM6IGdwc190aW1lLCB0ZW1wLCBncHNfbG9ja2VkLCBncHNfdHB2
+LCBmYW4sIHJlZl9sb2NrZWQsIA0KPiBncHNfZ3BnZ2EsIGdwc19za3kNCj4NCj4gfCB8IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+DQo+IHwg
+fCAvDQo+DQo+IHwgfCB8IFJYIERib2FyZDogQQ0KPg0KPiB8IHwgfCBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPg0KPiB8IHwgfCAvDQo+DQo+
+IHwgfCB8IHwgUlggRnJvbnRlbmQ6IDANCj4NCj4gfCB8IHwgfCBOYW1lOiBNYWduZXNpdW0NCj4N
+Cj4gfCB8IHwgfCBBbnRlbm5hczogVFgvUlgsIFJYMiwgQ0FMLCBMT0NBTA0KPg0KPiB8IHwgfCB8
+IFNlbnNvcnM6IGxvX2xvY2tlZCwgbG93YmFuZF9sb19sb2NrZWQsIGFkOTM3MV9sb19sb2NrZWQN
+Cj4NCj4gfCB8IHwgfCBGcmVxIHJhbmdlOiAxLjAwMCB0byA2MDAwLjAwMCBNSHoNCj4NCj4gfCB8
+IHwgfCBHYWluIHJhbmdlIGFsbDogMC4wIHRvIDc1LjAgc3RlcCAwLjUgZEINCj4NCj4gfCB8IHwg
+fCBHYWluIHJhbmdlIHJmaWM6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEINCj4NCj4gfCB8IHwgfCBH
+YWluIHJhbmdlIGRzYTogMC4wIHRvIDAuMCBzdGVwIDAuMCBkQg0KPg0KPiB8IHwgfCB8IEdhaW4g
+cmFuZ2UgYW1wOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRCDQo+DQo+IHwgfCB8IHwgQmFuZHdpZHRo
+IHJhbmdlOiAyMDAwMDAwMC4wIHRvIDEwMDAwMDAwMC4wIHN0ZXAgMC4wIEh6DQo+DQo+IHwgfCB8
+IHwgQ29ubmVjdGlvbiBUeXBlOiBJUQ0KPg0KPiB8IHwgfCB8IFVzZXMgTE8gb2Zmc2V0OiBObw0K
+Pg0KPiB8IHwgfCBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXw0KPg0KPiB8IHwgfCAvDQo+DQo+IHwgfCB8IHwgUlggRnJvbnRlbmQ6IDENCj4NCj4g
+fCB8IHwgfCBOYW1lOiBNYWduZXNpdW0NCj4NCj4gfCB8IHwgfCBBbnRlbm5hczogVFgvUlgsIFJY
+MiwgQ0FMLCBMT0NBTA0KPg0KPiB8IHwgfCB8IFNlbnNvcnM6IGxvX2xvY2tlZCwgbG93YmFuZF9s
+b19sb2NrZWQsIGFkOTM3MV9sb19sb2NrZWQNCj4NCj4gfCB8IHwgfCBGcmVxIHJhbmdlOiAxLjAw
+MCB0byA2MDAwLjAwMCBNSHoNCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGFsbDogMC4wIHRvIDc1
+LjAgc3RlcCAwLjUgZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIHJmaWM6IDAuMCB0byAwLjAg
+c3RlcCAwLjAgZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGRzYTogMC4wIHRvIDAuMCBzdGVw
+IDAuMCBkQg0KPg0KPiB8IHwgfCB8IEdhaW4gcmFuZ2UgYW1wOiAwLjAgdG8gMC4wIHN0ZXAgMC4w
+IGRCDQo+DQo+IHwgfCB8IHwgQmFuZHdpZHRoIHJhbmdlOiAyMDAwMDAwMC4wIHRvIDEwMDAwMDAw
+MC4wIHN0ZXAgMC4wIEh6DQo+DQo+IHwgfCB8IHwgQ29ubmVjdGlvbiBUeXBlOiBJUQ0KPg0KPiB8
+IHwgfCB8IFVzZXMgTE8gb2Zmc2V0OiBObw0KPg0KPiB8IHwgfCBfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPg0KPiB8IHwgfCAvDQo+DQo+IHwg
+fCB8IHwgUlggQ29kZWM6IEENCj4NCj4gfCB8IHwgfCBOYW1lOiBBRDkzNzEgRHVhbCBBREMNCj4N
+Cj4gfCB8IHwgfCBHYWluIEVsZW1lbnRzOiBOb25lDQo+DQo+IHwgfCBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPg0KPiB8IHwgLw0KPg0KPiB8
+IHwgfCBSWCBEYm9hcmQ6IEINCj4NCj4gfCB8IHwgX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18NCj4NCj4gfCB8IHwgLw0KPg0KPiB8IHwgfCB8IFJY
+IEZyb250ZW5kOiAwDQo+DQo+IHwgfCB8IHwgTmFtZTogTWFnbmVzaXVtDQo+DQo+IHwgfCB8IHwg
+QW50ZW5uYXM6IFRYL1JYLCBSWDIsIENBTCwgTE9DQUwNCj4NCj4gfCB8IHwgfCBTZW5zb3JzOiBs
+b19sb2NrZWQsIGxvd2JhbmRfbG9fbG9ja2VkLCBhZDkzNzFfbG9fbG9ja2VkDQo+DQo+IHwgfCB8
+IHwgRnJlcSByYW5nZTogMS4wMDAgdG8gNjAwMC4wMDAgTUh6DQo+DQo+IHwgfCB8IHwgR2FpbiBy
+YW5nZSBhbGw6IDAuMCB0byA3NS4wIHN0ZXAgMC41IGRCDQo+DQo+IHwgfCB8IHwgR2FpbiByYW5n
+ZSByZmljOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRCDQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSBk
+c2E6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGFtcDog
+MC4wIHRvIDAuMCBzdGVwIDAuMCBkQg0KPg0KPiB8IHwgfCB8IEJhbmR3aWR0aCByYW5nZTogMjAw
+MDAwMDAuMCB0byAxMDAwMDAwMDAuMCBzdGVwIDAuMCBIeg0KPg0KPiB8IHwgfCB8IENvbm5lY3Rp
+b24gVHlwZTogSVENCj4NCj4gfCB8IHwgfCBVc2VzIExPIG9mZnNldDogTm8NCj4NCj4gfCB8IHwg
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4N
+Cj4gfCB8IHwgLw0KPg0KPiB8IHwgfCB8IFJYIEZyb250ZW5kOiAxDQo+DQo+IHwgfCB8IHwgTmFt
+ZTogTWFnbmVzaXVtDQo+DQo+IHwgfCB8IHwgQW50ZW5uYXM6IFRYL1JYLCBSWDIsIENBTCwgTE9D
+QUwNCj4NCj4gfCB8IHwgfCBTZW5zb3JzOiBsb19sb2NrZWQsIGxvd2JhbmRfbG9fbG9ja2VkLCBh
+ZDkzNzFfbG9fbG9ja2VkDQo+DQo+IHwgfCB8IHwgRnJlcSByYW5nZTogMS4wMDAgdG8gNjAwMC4w
+MDAgTUh6DQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSBhbGw6IDAuMCB0byA3NS4wIHN0ZXAgMC41
+IGRCDQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSByZmljOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRC
+DQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSBkc2E6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEINCj4N
+Cj4gfCB8IHwgfCBHYWluIHJhbmdlIGFtcDogMC4wIHRvIDAuMCBzdGVwIDAuMCBkQg0KPg0KPiB8
+IHwgfCB8IEJhbmR3aWR0aCByYW5nZTogMjAwMDAwMDAuMCB0byAxMDAwMDAwMDAuMCBzdGVwIDAu
+MCBIeg0KPg0KPiB8IHwgfCB8IENvbm5lY3Rpb24gVHlwZTogSVENCj4NCj4gfCB8IHwgfCBVc2Vz
+IExPIG9mZnNldDogTm8NCj4NCj4gfCB8IHwgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18NCj4NCj4gfCB8IHwgLw0KPg0KPiB8IHwgfCB8IFJYIENv
+ZGVjOiBCDQo+DQo+IHwgfCB8IHwgTmFtZTogQUQ5MzcxIER1YWwgQURDDQo+DQo+IHwgfCB8IHwg
+R2FpbiBFbGVtZW50czogTm9uZQ0KPg0KPiB8IHwgX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18NCj4NCj4gfCB8IC8NCj4NCj4gfCB8IHwgVFggRGJv
+YXJkOiBBDQo+DQo+IHwgfCB8IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fDQo+DQo+IHwgfCB8IC8NCj4NCj4gfCB8IHwgfCBUWCBGcm9udGVuZDog
+MA0KPg0KPiB8IHwgfCB8IE5hbWU6IE1hZ25lc2l1bQ0KPg0KPiB8IHwgfCB8IEFudGVubmFzOiBU
+WC9SWA0KPg0KPiB8IHwgfCB8IFNlbnNvcnM6IGxvX2xvY2tlZCwgbG93YmFuZF9sb19sb2NrZWQs
+IGFkOTM3MV9sb19sb2NrZWQNCj4NCj4gfCB8IHwgfCBGcmVxIHJhbmdlOiAxLjAwMCB0byA2MDAw
+LjAwMCBNSHoNCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGFsbDogMC4wIHRvIDY1LjAgc3RlcCAw
+LjUgZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIHJmaWM6IDAuMCB0byAwLjAgc3RlcCAwLjAg
+ZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGRzYTogMC4wIHRvIDAuMCBzdGVwIDAuMCBkQg0K
+Pg0KPiB8IHwgfCB8IEdhaW4gcmFuZ2UgYW1wOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRCDQo+DQo+
+IHwgfCB8IHwgQmFuZHdpZHRoIHJhbmdlOiAyMDAwMDAwMC4wIHRvIDEwMDAwMDAwMC4wIHN0ZXAg
+MC4wIEh6DQo+DQo+IHwgfCB8IHwgQ29ubmVjdGlvbiBUeXBlOiBJUQ0KPg0KPiB8IHwgfCB8IFVz
+ZXMgTE8gb2Zmc2V0OiBObw0KPg0KPiB8IHwgfCBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXw0KPg0KPiB8IHwgfCAvDQo+DQo+IHwgfCB8IHwgVFgg
+RnJvbnRlbmQ6IDENCj4NCj4gfCB8IHwgfCBOYW1lOiBNYWduZXNpdW0NCj4NCj4gfCB8IHwgfCBB
+bnRlbm5hczogVFgvUlgNCj4NCj4gfCB8IHwgfCBTZW5zb3JzOiBsb19sb2NrZWQsIGxvd2JhbmRf
+bG9fbG9ja2VkLCBhZDkzNzFfbG9fbG9ja2VkDQo+DQo+IHwgfCB8IHwgRnJlcSByYW5nZTogMS4w
+MDAgdG8gNjAwMC4wMDAgTUh6DQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSBhbGw6IDAuMCB0byA2
+NS4wIHN0ZXAgMC41IGRCDQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSByZmljOiAwLjAgdG8gMC4w
+IHN0ZXAgMC4wIGRCDQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSBkc2E6IDAuMCB0byAwLjAgc3Rl
+cCAwLjAgZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGFtcDogMC4wIHRvIDAuMCBzdGVwIDAu
+MCBkQg0KPg0KPiB8IHwgfCB8IEJhbmR3aWR0aCByYW5nZTogMjAwMDAwMDAuMCB0byAxMDAwMDAw
+MDAuMCBzdGVwIDAuMCBIeg0KPg0KPiB8IHwgfCB8IENvbm5lY3Rpb24gVHlwZTogSVENCj4NCj4g
+fCB8IHwgfCBVc2VzIExPIG9mZnNldDogTm8NCj4NCj4gfCB8IHwgX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4NCj4gfCB8IHwgLw0KPg0KPiB8
+IHwgfCB8IFRYIENvZGVjOiBBDQo+DQo+IHwgfCB8IHwgTmFtZTogQUQ5MzcxIER1YWwgREFDDQo+
+DQo+IHwgfCB8IHwgR2FpbiBFbGVtZW50czogTm9uZQ0KPg0KPiB8IHwgX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4NCj4gfCB8IC8NCj4NCj4g
+fCB8IHwgVFggRGJvYXJkOiBCDQo+DQo+IHwgfCB8IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+DQo+IHwgfCB8IC8NCj4NCj4gfCB8IHwgfCBU
+WCBGcm9udGVuZDogMA0KPg0KPiB8IHwgfCB8IE5hbWU6IE1hZ25lc2l1bQ0KPg0KPiB8IHwgfCB8
+IEFudGVubmFzOiBUWC9SWA0KPg0KPiB8IHwgfCB8IFNlbnNvcnM6IGxvX2xvY2tlZCwgbG93YmFu
+ZF9sb19sb2NrZWQsIGFkOTM3MV9sb19sb2NrZWQNCj4NCj4gfCB8IHwgfCBGcmVxIHJhbmdlOiAx
+LjAwMCB0byA2MDAwLjAwMCBNSHoNCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGFsbDogMC4wIHRv
+IDY1LjAgc3RlcCAwLjUgZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIHJmaWM6IDAuMCB0byAw
+LjAgc3RlcCAwLjAgZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGRzYTogMC4wIHRvIDAuMCBz
+dGVwIDAuMCBkQg0KPg0KPiB8IHwgfCB8IEdhaW4gcmFuZ2UgYW1wOiAwLjAgdG8gMC4wIHN0ZXAg
+MC4wIGRCDQo+DQo+IHwgfCB8IHwgQmFuZHdpZHRoIHJhbmdlOiAyMDAwMDAwMC4wIHRvIDEwMDAw
+MDAwMC4wIHN0ZXAgMC4wIEh6DQo+DQo+IHwgfCB8IHwgQ29ubmVjdGlvbiBUeXBlOiBJUQ0KPg0K
+PiB8IHwgfCB8IFVzZXMgTE8gb2Zmc2V0OiBObw0KPg0KPiB8IHwgfCBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPg0KPiB8IHwgfCAvDQo+DQo+
+IHwgfCB8IHwgVFggRnJvbnRlbmQ6IDENCj4NCj4gfCB8IHwgfCBOYW1lOiBNYWduZXNpdW0NCj4N
+Cj4gfCB8IHwgfCBBbnRlbm5hczogVFgvUlgNCj4NCj4gfCB8IHwgfCBTZW5zb3JzOiBsb19sb2Nr
+ZWQsIGxvd2JhbmRfbG9fbG9ja2VkLCBhZDkzNzFfbG9fbG9ja2VkDQo+DQo+IHwgfCB8IHwgRnJl
+cSByYW5nZTogMS4wMDAgdG8gNjAwMC4wMDAgTUh6DQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSBh
+bGw6IDAuMCB0byA2NS4wIHN0ZXAgMC41IGRCDQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSByZmlj
+OiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRCDQo+DQo+IHwgfCB8IHwgR2FpbiByYW5nZSBkc2E6IDAu
+MCB0byAwLjAgc3RlcCAwLjAgZEINCj4NCj4gfCB8IHwgfCBHYWluIHJhbmdlIGFtcDogMC4wIHRv
+IDAuMCBzdGVwIDAuMCBkQg0KPg0KPiB8IHwgfCB8IEJhbmR3aWR0aCByYW5nZTogMjAwMDAwMDAu
+MCB0byAxMDAwMDAwMDAuMCBzdGVwIDAuMCBIeg0KPg0KPiB8IHwgfCB8IENvbm5lY3Rpb24gVHlw
+ZTogSVENCj4NCj4gfCB8IHwgfCBVc2VzIExPIG9mZnNldDogTm8NCj4NCj4gfCB8IHwgX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4NCj4gfCB8
+IHwgLw0KPg0KPiB8IHwgfCB8IFRYIENvZGVjOiBCDQo+DQo+IHwgfCB8IHwgTmFtZTogQUQ5Mzcx
+IER1YWwgREFDDQo+DQo+IHwgfCB8IHwgR2FpbiBFbGVtZW50czogTm9uZQ0KPg0KPiB8IHwgX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4NCj4g
+fCB8IC8NCj4NCj4gfCB8IHwgUkZOb0MgYmxvY2tzIG9uIHRoaXMgZGV2aWNlOg0KPg0KPiB8IHwg
+fA0KPg0KPiB8IHwgfCAqIFJlcGxheV8wDQo+DQo+IHwgfCB8ICogUmFkaW9fMA0KPg0KPiB8IHwg
+fCAqIFJhZGlvXzENCj4NCj4gfCB8IHwgKiBERENfMA0KPg0KPiB8IHwgfCAqIEREQ18xDQo+DQo+
+IHwgfCB8ICogRFVDXzANCj4NCj4gfCB8IHwgKiBEVUNfMQ0KPg0KPiB8IHwgfCAqIEZJRk9fMA0K
+Pg0KPiB8IHwgfCAqIEZJRk9fMQ0KPg0KPiB8IHwgfCAqIEZJRk9fMg0KPg0KPiB8IHwgfCAqIEZJ
+Rk9fMw0KPg0KPiBDOlxQcm9ncmFtIEZpbGVzXFVIRFxiaW4+Y2QgQzpcUHJvZ3JhbSBGaWxlc1xV
+SERcbGliXHVoZFxleGFtcGxlcw0KPg0KPiBDOlxQcm9ncmFtIEZpbGVzXFVIRFxsaWJcdWhkXGV4
+YW1wbGVzPnR4cnhfbG9vcGJhY2tfdG9fZmlsZSB0eC1hcmdzIA0KPiAxOTIuMTY4LjEwLjIgcngt
+YXJncyAxOTIuMTY4LjEwLjIgLS1maWxlID0gbmV3X3Rlc3QuZGF0IC0tbnNhbXBzID0gDQo+IDEw
+MDAwIC0tdHgtcmF0ZSAxZTYgLS1yeC1yYXRlIDFlNiAtLXR4LWZyZXEgMi40ZTkgLS1yeC1mcmVx
+IDIuNGU5IA0KPiAtLXR4LWdhaW4gNSAtLXJ4LWdhaW4gNSAtLXdhdmUtdHlwZSA9IFNJTkUgLS10
+eC1jaGFubmVscz0wIC0tcngtY2hhbm5lbHM9Mg0KPg0KPiBFcnJvcjogdGhlIGFyZ3VtZW50ICgn
+PScpIGZvciBvcHRpb24gJy0tbnNhbXBzJyBpcyBpbnZhbGlkDQo+DQo+IEM6XFByb2dyYW0gRmls
+ZXNcVUhEXGxpYlx1aGRcZXhhbXBsZXM+dHhyeF9sb29wYmFja190b19maWxlIHR4LWFyZ3MgDQo+
+IDE5Mi4xNjguMTAuMiByeC1hcmdzIDE5Mi4xNjguMTAuMiAtLWZpbGUgPSBuZXdfdGVzdC5kYXQg
+LS1uc2FtcHM9MTAwMDAgDQo+IC0tdHgtcmF0ZSAxZTYgLS1yeC1yYXRlIDFlNiAtLXR4LWZyZXEg
+Mi40ZTkgLS1yeC1mcmVxIDIuNGU5IC0tdHgtZ2FpbiANCj4gNSAtLXJ4LWdhaW4gNSAtLXdhdmUt
+dHlwZSA9IFNJTkUgLS10eC1jaGFubmVscz0wIC0tcngtY2hhbm5lbHM9Mg0KPg0KPiBDcmVhdGlu
+ZyB0aGUgdHJhbnNtaXQgdXNycCBkZXZpY2Ugd2l0aDogLi4uDQo+DQo+IFtJTkZPXSBbVUhEXSBX
+aW4zMjsgTWljcm9zb2Z0IFZpc3VhbCBDKysgdmVyc2lvbiAxNC4wOyBCb29zdF8xMDU5MDA7IA0K
+PiBVSERfMy4xMy4xLjAtcmVsZWFzZQ0KPg0KPiBbSU5GT10gW01QTURdIEluaXRpYWxpemluZyAx
+IGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IA0KPiBtZ210X2FkZHI9MTkyLjE2OC4x
+MC4yLHR5cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFsPTMxNzdFNjMsY2xhaW1lZD1GYWxzZSxh
+ZGRyPTE5Mi4xNjguMTAuMg0KPg0KPiBbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkg
+Y2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgDQo+IGBtZ210X2FkZHI9MTkyLjE2OC4xMC4yLHRpbWVf
+c291cmNlPWludGVybmFsLHByb2R1Y3Q9bjMxMCxjbG9ja19zb3VyY2U9aW50ZXJuYWwnLg0KPg0K
+PiBbV0FSTklOR10gW1JGTk9DXSBDYW4ndCBmaW5kIGEgYmxvY2sgY29udHJvbGxlciBmb3Iga2V5
+IFJlcGxheSwgdXNpbmcgDQo+IGRlZmF1bHQgYmxvY2sgY29udHJvbGxlciENCj4NCj4gW0lORk9d
+IFswL1JlcGxheV8wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiANCj4gMHg0
+RTkxQTAwMDAwMDAwMDA0KQ0KPg0KPiBbRVJST1JdIFswL1JlcGxheV8wXSBNYWpvciBjb21wYXQg
+bnVtYmVyIG1pc21hdGNoIGZvciBub2Nfc2hlbGw6IA0KPiBFeHBlY3RpbmcgMywgZ290IDUuDQo+
+DQo+IFtFUlJPUl0gW01QTURdIEZhaWx1cmUgZHVyaW5nIGJsb2NrIGVudW1lcmF0aW9uOiBSdW50
+aW1lRXJyb3I6IEZQR0EgDQo+IGNvbXBvbmVudCBgbm9jX3NoZWxsJyBpcyByZXZpc2lvbiA1IGFu
+ZCBVSEQgc3VwcG9ydHMgcmV2aXNpb24gMy4gDQo+IFBsZWFzZSBlaXRoZXIgdXBncmFkZSBVSEQg
+KHJlY29tbWVuZGVkKSBvciBkb3duZ3JhZGUgdGhlIEZQR0EgaW1hZ2UuDQo+DQo+IEVycm9yOiBS
+dW50aW1lRXJyb3I6IEZhaWxlZCB0byBydW4gZW51bWVyYXRlX3Jmbm9jX2Jsb2NrcygpDQo+DQo+
+IEM6XFByb2dyYW0gRmlsZXNcVUhEXGxpYlx1aGRcZXhhbXBsZXM+DQo+DQo+DQo+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJl
+IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCllvdXIg
+TjMxMCBpcyBydW5uaW5nIGEgc3lzdGVtIGltYWdlIHRoYXQgaXMgcXVpdGUgZmFyIGFoZWFkIG9m
+IHlvdXIgDQpob3N0LXNpZGUgVUhEICh3aGljaCBpcyAzLjEzLCB3aGljaCwgYXQgdGhpcyBwb2lu
+dCwgaXMgImFuY2llbnQiKS4NCg0KQWxzbywgeW91J3JlIG5vdCBmb3JtaW5nIGFyZ3VtZW50cyBw
+cm9wZXJseS7CoMKgIEVpdGhlciB1c2Ugc3BhY2VzLCBvciANCmVxdWFscyBzaWducywgYnV0IG5v
+dCBhIG1peHR1cmUgb2YgYm90aC0tdGhlIGFyZ3VtZW50IHBhcnNlcg0KIMKgIGNhbid0IHBhcnNl
+IHRob3NlIGFyZ3VtZW50cy4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
+QGxpc3RzLmV0dHVzLmNvbQo=
