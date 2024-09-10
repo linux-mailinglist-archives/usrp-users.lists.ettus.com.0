@@ -2,600 +2,662 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFF996BF89
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Sep 2024 16:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F0297454F
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2024 00:01:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1CA0E3852E3
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Sep 2024 10:04:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BE1CB385649
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Sep 2024 18:01:21 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1725458650; bh=+6jC+mNYEtCK8Rs1b5Va0f/pt2n2jm2hZsOp6IS+zSo=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=v07ghjBlxbGuWSjDwpkGOwZFBAQBXSrHeeNyCialzls5VHr0TvIxY0YbyiATyTwwN
-	 OS6xcfavC7ZjmA8auMwBwOP88zHuck1DI5qLRcTQWIdN7TMxgva8iK46KVWhfAzRPV
-	 OxND4rDAR0T0JC6GPpQUz7YSdgvKBjJkvA714vB4Fq0F2z2So2JYPfcThg3JPPUKfc
-	 B0PbeLXyaqEwQTY6ax+Hjfh8JlwQloaRXzM18OI2S22ad9X8xWLoyWyp4+4jxhv/g+
-	 Qde5l8FjCVu7QaEPBOfpk8sF9g77ZPLl8vnIoezQWPBfWwDiiwRn6icNcQD3xJ2UN4
-	 CdC1vEkFU1vRw==
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	by mm2.emwd.com (Postfix) with ESMTPS id 86FF53851B4
-	for <usrp-users@lists.ettus.com>; Wed,  4 Sep 2024 10:03:31 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="PkEUbUYm";
-	dkim-atps=neutral
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a80eab3945eso644347466b.1
-        for <usrp-users@lists.ettus.com>; Wed, 04 Sep 2024 07:03:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1725458610; x=1726063410; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1OGI7gsah9LDu5XRBabxdVS6n8PmY7VSsBf1dBbNktc=;
-        b=PkEUbUYmsp44g2V7rZYWKF+1M6moN9erJDAQwfSlq6U0kCfJmMsZ8uL9ojd/aKZ3qt
-         I/yd1E5Qqf/MWKKCL9t0PNTANmOcBv6OU10ED4+K9qBxzlyWPN3bq0Jj7ENhC6QtcaYi
-         YW10GRZRgzQdZV40iQdXMGYRY/RBrSTdiA0O6WvEeamPImEglzT/eu9FmbjtD/jlo+p/
-         dnRmqGLS+vt0Jy41FQzfOzhFcqYuoKix7hkO5SDg76qr86p3F9/VrHmettOhAiK4CG+i
-         q3V2oJrmwBRCDHyvnBqWKa+2p+CppalfxNTZ2WPa+8RB2Z7CE77ojU0AIGTtvrwY28hc
-         j57w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725458610; x=1726063410;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1OGI7gsah9LDu5XRBabxdVS6n8PmY7VSsBf1dBbNktc=;
-        b=k6ps0kmmvhXaTqxHCwAv2E/gxL8KTPw+sezar0WRKAlACWe+o7w7PRC8OhUEFjKLb5
-         Ol6eF+z/Zgx5+qBIxhkAiJCVIAY8fz4fv+zaFq405JrxTQ00w4OLPsiAGvhoIFCswwII
-         dT0sx2VMb5u7DVz+6OrFVUUs9Vf9/NIWIV42dSC6l95CNWqONyKQK71YEuQwg6zbodWI
-         4vOEKIAyUDq8f9KQCqPHP87a1lLWI6AXx4OxpUxEjJZTMMnAiz+NQTkcDjxOE8rQKsGX
-         La+BYBqyBagNdFWfhnYhpDoMbm+1thHU7UD1cx/R9bZxjlHfL2srA/AfvobcpFnD/lT+
-         kxMQ==
-X-Gm-Message-State: AOJu0YyYtvJ9t5oLIVOCMJJUKoC4AjXRKSafP5XxuJBQghsd64L7K8KM
-	zXq21LoB4zDJ5JQrcAMH47Lr1pXjncWCtHo7My4TIMDOTUkTSk73R/zawLia8er8GBcIw9Ymi1M
-	7KppxVSmg5zl1EeDBcZrqLWhCNGFFqrLHHtUmZ2YU
-X-Google-Smtp-Source: AGHT+IH5lUw/zkKSXJUxBNE66Ma07f1ZLTq2RbzyizhEWbgzWSzkMOA5FqDL35H8dbl1anu+mzNusgj/WaWPs1LQkws=
-X-Received: by 2002:a17:907:72c7:b0:a86:a30f:4aef with SMTP id
- a640c23a62f3a-a89a35dee4cmr1271462166b.22.1725458609286; Wed, 04 Sep 2024
- 07:03:29 -0700 (PDT)
+	t=1726005681; bh=PtA3yg2EOWw8cOuoamE55jycpkxdK2wwi/YnF1KU33Q=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=ty61DwcthmeNfpdxCp7cLxV/BfHzR/ZO86hMltzsTtgSWmwzsut38iWsjoK80lQ4G
+	 hT+2mwIDLyZC6UYWRnILeB6Cz6hD3lDR7kGVIQgNFkFTCKiSf6pEKdxomtI4u9I4kr
+	 85pJNPagqgYWlyypwhKfB9p1SrYCWnKh76AkSCrWA4rkOSs7ncRPWQAijLYy58A1rj
+	 4uij26vXAYIeLJNwKCfXlwvBndzdtenARt4OqNP+fHsvEJKgOYKncyNtr80GdlrH6O
+	 D4wvfjwc6n53XGaPwf48EVmJiFjUBfRgSOF3eKG/UuUMBmoGpkMbLU1PhfgJ/yudMn
+	 EQp1gspYTk8IQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 0A2BA384D91
+	for <usrp-users@lists.ettus.com>; Tue, 10 Sep 2024 18:00:53 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1726005653; bh=LfcxXnNGwtJ4YYgajRBy7SmZ8Kv/q1n/gP2ZP1r9s0M=;
+	h=Date:To:From:Subject:From;
+	b=MPtnTk1S2w9SPVX42Rr+aXQmqDLZP0WKbeRAJgRlpmGTC78oY/GwDD3mZ1HF81zmT
+	 4F3Cbz/7ZSuGpIfSFKZkQXB90UbPSfBKCDdPqCtuAzcpuU+35dNa8sGPyi0geBfVVd
+	 KjEO8gZrTreSRtjqLenZ3rg2PbS8so87IB+4wcZ7usC7gKRf3t0YuS3NsZgG5T9hZt
+	 Oq0AY4kSK6LokiCU+orciniQdIj6QTJK4YCLr+z4PktG9TcLtkCEFpalugXBERoL57
+	 BQ1ayfmRgwvnbFTTxhUVw0Bm6CauUBSMFWH0SQK4gnani8sNZmuzn0b+vMHwyypkro
+	 BEPSJuLMoILeQ==
+Date: Tue, 10 Sep 2024 22:00:53 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <b7EDp_Z-OGLk51ibwQutMTVO7aVrweoUubIOqX594P7xDHOpwd6I31RtEuiCTB3DMjFLfdkKR0dLqBIS1UGsN8df_iSefI5zIAhjCxTWVUY=@protonmail.com>
- <CAB__hTSWmo4jBMz7PiLw=uMzR56RaNTqj_PZo3pk6Oxt9fsGUQ@mail.gmail.com>
- <524a890b-6dea-4526-aef3-3dfbed714a20@gmail.com> <CAB__hTTO=N08nac2wwg9H4X6X1KWufAr+8jm5xXjd0QXnsiLow@mail.gmail.com>
- <ZzKYZGhnR2PvIUOunRGDW3GffGey_JjDV2v-c_tCLY9R66l3Yt-R4dt-wV9uzw5PYEbIEYAPGndZjkFQCRw_cRP-j8MUC7jxZ7-2ak2MNto=@protonmail.com>
- <a1qmoBKs9eLCKKwZtGf-ci8CsH-LGueBoujZqhPdx_7HoL6tnTRvZjmJH2rdE-s4sJ4o2syphskB0krjHU-0VMeZ48YW4RlUTRNoZyAfl_Y=@protonmail.com>
- <CAFOi1A60ZQuotHVZ59Em8hLsT+kzmSLE_hRp-a8_yUpE2kkd6g@mail.gmail.com>
- <BN8PR05MB5971E1C0A7138208EC2D0C6C8C932@BN8PR05MB5971.namprd05.prod.outlook.com>
- <f5826b39-62b6-42f8-8114-cc0f6ec13b2b@gmail.com>
-In-Reply-To: <f5826b39-62b6-42f8-8114-cc0f6ec13b2b@gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Wed, 4 Sep 2024 16:03:17 +0200
-Message-ID: <CAFOi1A7Czk8v9=kSb7aLaJY=cWpN80tcE98xaFFbEJ8nM5kXrQ@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: URXVZSCDSO25W45YEHUE6RWXMFOEO7NJ
-X-Message-ID-Hash: URXVZSCDSO25W45YEHUE6RWXMFOEO7NJ
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: 43AI3LWP5G374R3MFXV2RTRIPQKF6FBS
+X-Message-ID-Hash: 43AI3LWP5G374R3MFXV2RTRIPQKF6FBS
+X-MailFrom: brian.diaz.476@my.csun.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X440 Block diagram / architecture details
+Subject: [USRP-users] Major compat number mismatch for noc_shell: Expecting 3, got 5 Error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/URXVZSCDSO25W45YEHUE6RWXMFOEO7NJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/43AI3LWP5G374R3MFXV2RTRIPQKF6FBS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3499000659398651960=="
+From: Brian Diaz via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: brian.diaz.476@my.csun.edu
+Content-Type: multipart/mixed; boundary="===============1192786325516582147=="
 
---===============3499000659398651960==
-Content-Type: multipart/alternative; boundary="0000000000007b48a506214ba346"
+This is a multi-part message in MIME format.
 
---0000000000007b48a506214ba346
-Content-Type: text/plain; charset="UTF-8"
+--===============1192786325516582147==
+Content-Type: multipart/alternative;
+ boundary="b1_QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0
+Content-Type: text/plain; charset=us-ascii
+
+Hello, 
+
+I am not sure what this error means and how to fix it. I tried running a command a received this error. This is my entire cmd prompt session: \
+\
+C:\\Program Files\\UHD\\bin>uhd_usrp_probe
+
+\[INFO\] \[UHD\] Win32; Microsoft Visual C++ version 1920; Boost_107000; UHD_3.14.1.1-release
+
+\[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=3177E63,claimed=False,addr=192.168.10.2
+
+\[INFO\] \[MPM.PeriphManager\] init() called with device args \`mgmt_addr=192.168.10.2,time_source=internal,product=n310,clock_source=internal'.
+
+\[INFO\] \[0/Replay_0\] Initializing block control (NOC ID: 0x4E91A00000000004)
+
+\[INFO\] \[0/Radio_0\] Initializing block control (NOC ID: 0x12AD100000011312)
+
+\[INFO\] \[0/Radio_1\] Initializing block control (NOC ID: 0x12AD100000011312)
+
+\[INFO\] \[0/DDC_0\] Initializing block control (NOC ID: 0xDDC0000000000000)
+
+\[INFO\] \[0/DDC_1\] Initializing block control (NOC ID: 0xDDC0000000000000)
+
+\[INFO\] \[0/DUC_0\] Initializing block control (NOC ID: 0xD0C0000000000002)
+
+\[INFO\] \[0/DUC_1\] Initializing block control (NOC ID: 0xD0C0000000000002)
+
+\[INFO\] \[0/FIFO_0\] Initializing block control (NOC ID: 0xF1F0000000000000)
+
+\[INFO\] \[0/FIFO_1\] Initializing block control (NOC ID: 0xF1F0000000000000)
+
+\[INFO\] \[0/FIFO_2\] Initializing block control (NOC ID: 0xF1F0000000000000)
+
+\[INFO\] \[0/FIFO_3\] Initializing block control (NOC ID: 0xF1F0000000000000)
+
+  _____________________________________________________
+
+ /
+
+|       Device: N300-Series Device
+
+|     _____________________________________________________
+
+|    /
+
+|   |       Mboard: ni-n3xx-3177E63
+
+|   |   eeprom_version: 3
+
+|   |   mpm_version: 3.14.1.1-g0347a6d8
+
+|   |   pid: 16962
+
+|   |   product: n310
+
+|   |   rev: 10
+
+|   |   rpc_connection: remote
+
+|   |   serial: 3177E63
+
+|   |   type: n3xx
+
+|   |   MPM Version: 1.2
+
+|   |   FPGA Version: 5.3
+
+|   |   FPGA git hash: bb85bdf.clean
+
+|   |   RFNoC capable: Yes
+
+|   |
+
+|   |   Time sources:  internal, external, gpsdo, sfp0
+
+|   |   Clock sources: external, internal, gpsdo
+
+|   |   Sensors: gps_time, temp, gps_locked, gps_tpv, fan, ref_locked, gps_gpgga, gps_sky
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       RX Dboard: A
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Frontend: 0
+
+|   |   |   |   Name: Magnesium
+
+|   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
+
+|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+
+|   |   |   |   Freq range: 1.000 to 6000.000 MHz
+
+|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
+
+|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Frontend: 1
+
+|   |   |   |   Name: Magnesium
+
+|   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
+
+|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+
+|   |   |   |   Freq range: 1.000 to 6000.000 MHz
+
+|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
+
+|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Codec: A
+
+|   |   |   |   Name: AD9371 Dual ADC
+
+|   |   |   |   Gain Elements: None
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       RX Dboard: B
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Frontend: 0
+
+|   |   |   |   Name: Magnesium
+
+|   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
+
+|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+
+|   |   |   |   Freq range: 1.000 to 6000.000 MHz
+
+|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
+
+|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Frontend: 1
+
+|   |   |   |   Name: Magnesium
+
+|   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
+
+|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+
+|   |   |   |   Freq range: 1.000 to 6000.000 MHz
+
+|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
+
+|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Codec: B
+
+|   |   |   |   Name: AD9371 Dual ADC
+
+|   |   |   |   Gain Elements: None
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       TX Dboard: A
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Frontend: 0
+
+|   |   |   |   Name: Magnesium
+
+|   |   |   |   Antennas: TX/RX
+
+|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+
+|   |   |   |   Freq range: 1.000 to 6000.000 MHz
+
+|   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
+
+|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Frontend: 1
+
+|   |   |   |   Name: Magnesium
+
+|   |   |   |   Antennas: TX/RX
+
+|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+
+|   |   |   |   Freq range: 1.000 to 6000.000 MHz
+
+|   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
+
+|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Codec: A
+
+|   |   |   |   Name: AD9371 Dual DAC
+
+|   |   |   |   Gain Elements: None
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       TX Dboard: B
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Frontend: 0
+
+|   |   |   |   Name: Magnesium
+
+|   |   |   |   Antennas: TX/RX
+
+|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+
+|   |   |   |   Freq range: 1.000 to 6000.000 MHz
+
+|   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
+
+|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Frontend: 1
+
+|   |   |   |   Name: Magnesium
+
+|   |   |   |   Antennas: TX/RX
+
+|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+
+|   |   |   |   Freq range: 1.000 to 6000.000 MHz
+
+|   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
+
+|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+
+|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Codec: B
+
+|   |   |   |   Name: AD9371 Dual DAC
+
+|   |   |   |   Gain Elements: None
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       RFNoC blocks on this device:
+
+|   |   |
+
+|   |   |   \* Replay_0
+
+|   |   |   \* Radio_0
+
+|   |   |   \* Radio_1
+
+|   |   |   \* DDC_0
+
+|   |   |   \* DDC_1
+
+|   |   |   \* DUC_0
+
+|   |   |   \* DUC_1
+
+|   |   |   \* FIFO_0
+
+|   |   |   \* FIFO_1
+
+|   |   |   \* FIFO_2
+
+|   |   |   \* FIFO_3
+
+C:\\Program Files\\UHD\\bin>cd C:\\Program Files\\UHD\\lib\\uhd\\examples
+
+C:\\Program Files\\UHD\\lib\\uhd\\examples>txrx_loopback_to_file tx-args 192.168.10.2 rx-args 192.168.10.2 --file = new_test.dat --nsamps = 10000 --tx-rate 1e6 --rx-rate 1e6 --tx-freq 2.4e9 --rx-freq 2.4e9 --tx-gain 5 --rx-gain 5 --wave-type = SINE --tx-channels=0 --rx-channels=2
+
+Error: the argument ('=') for option '--nsamps' is invalid
+
+C:\\Program Files\\UHD\\lib\\uhd\\examples>txrx_loopback_to_file tx-args 192.168.10.2 rx-args 192.168.10.2 --file = new_test.dat --nsamps=10000 --tx-rate 1e6 --rx-rate 1e6 --tx-freq 2.4e9 --rx-freq 2.4e9 --tx-gain 5 --rx-gain 5 --wave-type = SINE --tx-channels=0 --rx-channels=2
+
+Creating the transmit usrp device with: ...
+
+\[INFO\] \[UHD\] Win32; Microsoft Visual C++ version 14.0; Boost_105900; UHD_3.13.1.0-release
+
+\[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=3177E63,claimed=False,addr=192.168.10.2
+
+\[INFO\] \[MPM.PeriphManager\] init() called with device args \`mgmt_addr=192.168.10.2,time_source=internal,product=n310,clock_source=internal'.
+
+\[WARNING\] \[RFNOC\] Can't find a block controller for key Replay, using default block controller!
+
+\[INFO\] \[0/Replay_0\] Initializing block control (NOC ID: 0x4E91A00000000004)
+
+\[ERROR\] \[0/Replay_0\] Major compat number mismatch for noc_shell: Expecting 3, got 5.
+
+\[ERROR\] \[MPMD\] Failure during block enumeration: RuntimeError: FPGA component \`noc_shell' is revision 5 and UHD supports revision 3. Please either upgrade UHD  (recommended) or downgrade the FPGA image.
+
+Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
+
+C:\\Program Files\\UHD\\lib\\uhd\\examples>
+
+--b1_QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Also this: https://uhd.readthedocs.io/en/latest/page_usrp_x4xx.html#x4xx_to=
-o
+<p>Hello, </p><p>I am not sure what this error means and how to fix it. I t=
+ried running a command a received this error. This is my entire cmd prompt =
+session: <br><br>C:\Program Files\UHD\bin&gt;uhd_usrp_probe</p><p>[INFO] [U=
+HD] Win32; Microsoft Visual C++ version 1920; Boost_107000; UHD_3.14.1.1-re=
+lease</p><p>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: m=
+gmt_addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310,serial=3D3177E63,claimed=
+=3DFalse,addr=3D192.168.10.2</p><p>[INFO] [MPM.PeriphManager] init() called=
+ with device args `mgmt_addr=3D192.168.10.2,time_source=3Dinternal,product=
+=3Dn310,clock_source=3Dinternal'.</p><p>[INFO] [0/Replay_0] Initializing bl=
+ock control (NOC ID: 0x4E91A00000000004)</p><p>[INFO] [0/Radio_0] Initializ=
+ing block control (NOC ID: 0x12AD100000011312)</p><p>[INFO] [0/Radio_1] Ini=
+tializing block control (NOC ID: 0x12AD100000011312)</p><p>[INFO] [0/DDC_0]=
+ Initializing block control (NOC ID: 0xDDC0000000000000)</p><p>[INFO] [0/DD=
+C_1] Initializing block control (NOC ID: 0xDDC0000000000000)</p><p>[INFO] [=
+0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)</p><p>[INF=
+O] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)</p><p>=
+[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)</=
+p><p>[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F00000000000=
+00)</p><p>[INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F000000=
+0000000)</p><p>[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0=
+000000000000)</p><p>  _____________________________________________________=
+</p><p> /</p><p>|       Device: N300-Series Device</p><p>|     ____________=
+_________________________________________</p><p>|    /</p><p>|   |       Mb=
+oard: ni-n3xx-3177E63</p><p>|   |   eeprom_version: 3</p><p>|   |   mpm_ver=
+sion: 3.14.1.1-g0347a6d8</p><p>|   |   pid: 16962</p><p>|   |   product: n3=
+10</p><p>|   |   rev: 10</p><p>|   |   rpc_connection: remote</p><p>|   |  =
+ serial: 3177E63</p><p>|   |   type: n3xx</p><p>|   |   MPM Version: 1.2</p=
+><p>|   |   FPGA Version: 5.3</p><p>|   |   FPGA git hash: bb85bdf.clean</p=
+><p>|   |   RFNoC capable: Yes</p><p>|   |</p><p>|   |   Time sources:  int=
+ernal, external, gpsdo, sfp0</p><p>|   |   Clock sources: external, interna=
+l, gpsdo</p><p>|   |   Sensors: gps_time, temp, gps_locked, gps_tpv, fan, r=
+ef_locked, gps_gpgga, gps_sky</p><p>|   |     _____________________________=
+________________________</p><p>|   |    /</p><p>|   |   |       RX Dboard: =
+A</p><p>|   |   |     _____________________________________________________=
+</p><p>|   |   |    /</p><p>|   |   |   |       RX Frontend: 0</p><p>|   | =
+  |   |   Name: Magnesium</p><p>|   |   |   |   Antennas: TX/RX, RX2, CAL, =
+LOCAL</p><p>|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_l=
+o_locked</p><p>|   |   |   |   Freq range: 1.000 to 6000.000 MHz</p><p>|   =
+|   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB</p><p>|   |   |   |   G=
+ain range rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range dsa=
+: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range amp: 0.0 to 0.0 s=
+tep 0.0 dB</p><p>|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0=
+ step 0.0 Hz</p><p>|   |   |   |   Connection Type: IQ</p><p>|   |   |   | =
+  Uses LO offset: No</p><p>|   |   |     __________________________________=
+___________________</p><p>|   |   |    /</p><p>|   |   |   |       RX Front=
+end: 1</p><p>|   |   |   |   Name: Magnesium</p><p>|   |   |   |   Antennas=
+: TX/RX, RX2, CAL, LOCAL</p><p>|   |   |   |   Sensors: lo_locked, lowband_=
+lo_locked, ad9371_lo_locked</p><p>|   |   |   |   Freq range: 1.000 to 6000=
+.000 MHz</p><p>|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB</p><=
+p>|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |  =
+ |   Gain range dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain rang=
+e amp: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Bandwidth range: 200000=
+00.0 to 100000000.0 step 0.0 Hz</p><p>|   |   |   |   Connection Type: IQ</=
+p><p>|   |   |   |   Uses LO offset: No</p><p>|   |   |     _______________=
+______________________________________</p><p>|   |   |    /</p><p>|   |   |=
+   |       RX Codec: A</p><p>|   |   |   |   Name: AD9371 Dual ADC</p><p>| =
+  |   |   |   Gain Elements: None</p><p>|   |     _________________________=
+____________________________</p><p>|   |    /</p><p>|   |   |       RX Dboa=
+rd: B</p><p>|   |   |     _________________________________________________=
+____</p><p>|   |   |    /</p><p>|   |   |   |       RX Frontend: 0</p><p>| =
+  |   |   |   Name: Magnesium</p><p>|   |   |   |   Antennas: TX/RX, RX2, C=
+AL, LOCAL</p><p>|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad93=
+71_lo_locked</p><p>|   |   |   |   Freq range: 1.000 to 6000.000 MHz</p><p>=
+|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB</p><p>|   |   |   |=
+   Gain range rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range=
+ dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range amp: 0.0 to 0=
+.0 step 0.0 dB</p><p>|   |   |   |   Bandwidth range: 20000000.0 to 1000000=
+00.0 step 0.0 Hz</p><p>|   |   |   |   Connection Type: IQ</p><p>|   |   | =
+  |   Uses LO offset: No</p><p>|   |   |     ______________________________=
+_______________________</p><p>|   |   |    /</p><p>|   |   |   |       RX F=
+rontend: 1</p><p>|   |   |   |   Name: Magnesium</p><p>|   |   |   |   Ante=
+nnas: TX/RX, RX2, CAL, LOCAL</p><p>|   |   |   |   Sensors: lo_locked, lowb=
+and_lo_locked, ad9371_lo_locked</p><p>|   |   |   |   Freq range: 1.000 to =
+6000.000 MHz</p><p>|   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB<=
+/p><p>|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |  =
+ |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain =
+range amp: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Bandwidth range: 20=
+000000.0 to 100000000.0 step 0.0 Hz</p><p>|   |   |   |   Connection Type: =
+IQ</p><p>|   |   |   |   Uses LO offset: No</p><p>|   |   |     ___________=
+__________________________________________</p><p>|   |   |    /</p><p>|   |=
+   |   |       RX Codec: B</p><p>|   |   |   |   Name: AD9371 Dual ADC</p><=
+p>|   |   |   |   Gain Elements: None</p><p>|   |     _____________________=
+________________________________</p><p>|   |    /</p><p>|   |   |       TX =
+Dboard: A</p><p>|   |   |     _____________________________________________=
+________</p><p>|   |   |    /</p><p>|   |   |   |       TX Frontend: 0</p><=
+p>|   |   |   |   Name: Magnesium</p><p>|   |   |   |   Antennas: TX/RX</p>=
+<p>|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked<=
+/p><p>|   |   |   |   Freq range: 1.000 to 6000.000 MHz</p><p>|   |   |   |=
+   Gain range all: 0.0 to 65.0 step 0.5 dB</p><p>|   |   |   |   Gain range=
+ rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range dsa: 0.0 to =
+0.0 step 0.0 dB</p><p>|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 d=
+B</p><p>|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0=
+ Hz</p><p>|   |   |   |   Connection Type: IQ</p><p>|   |   |   |   Uses LO=
+ offset: No</p><p>|   |   |     ___________________________________________=
+__________</p><p>|   |   |    /</p><p>|   |   |   |       TX Frontend: 1</p=
+><p>|   |   |   |   Name: Magnesium</p><p>|   |   |   |   Antennas: TX/RX</=
+p><p>|   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locke=
+d</p><p>|   |   |   |   Freq range: 1.000 to 6000.000 MHz</p><p>|   |   |  =
+ |   Gain range all: 0.0 to 65.0 step 0.5 dB</p><p>|   |   |   |   Gain ran=
+ge rfic: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range dsa: 0.0 t=
+o 0.0 step 0.0 dB</p><p>|   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0=
+ dB</p><p>|   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0=
+.0 Hz</p><p>|   |   |   |   Connection Type: IQ</p><p>|   |   |   |   Uses =
+LO offset: No</p><p>|   |   |     _________________________________________=
+____________</p><p>|   |   |    /</p><p>|   |   |   |       TX Codec: A</p>=
+<p>|   |   |   |   Name: AD9371 Dual DAC</p><p>|   |   |   |   Gain Element=
+s: None</p><p>|   |     ___________________________________________________=
+__</p><p>|   |    /</p><p>|   |   |       TX Dboard: B</p><p>|   |   |     =
+_____________________________________________________</p><p>|   |   |    /<=
+/p><p>|   |   |   |       TX Frontend: 0</p><p>|   |   |   |   Name: Magnes=
+ium</p><p>|   |   |   |   Antennas: TX/RX</p><p>|   |   |   |   Sensors: lo=
+_locked, lowband_lo_locked, ad9371_lo_locked</p><p>|   |   |   |   Freq ran=
+ge: 1.000 to 6000.000 MHz</p><p>|   |   |   |   Gain range all: 0.0 to 65.0=
+ step 0.5 dB</p><p>|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB<=
+/p><p>|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   |   =
+|   |   Gain range amp: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Bandwi=
+dth range: 20000000.0 to 100000000.0 step 0.0 Hz</p><p>|   |   |   |   Conn=
+ection Type: IQ</p><p>|   |   |   |   Uses LO offset: No</p><p>|   |   |   =
+  _____________________________________________________</p><p>|   |   |    =
+/</p><p>|   |   |   |       TX Frontend: 1</p><p>|   |   |   |   Name: Magn=
+esium</p><p>|   |   |   |   Antennas: TX/RX</p><p>|   |   |   |   Sensors: =
+lo_locked, lowband_lo_locked, ad9371_lo_locked</p><p>|   |   |   |   Freq r=
+ange: 1.000 to 6000.000 MHz</p><p>|   |   |   |   Gain range all: 0.0 to 65=
+.0 step 0.5 dB</p><p>|   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 d=
+B</p><p>|   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB</p><p>|   | =
+  |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB</p><p>|   |   |   |   Band=
+width range: 20000000.0 to 100000000.0 step 0.0 Hz</p><p>|   |   |   |   Co=
+nnection Type: IQ</p><p>|   |   |   |   Uses LO offset: No</p><p>|   |   | =
+    _____________________________________________________</p><p>|   |   |  =
+  /</p><p>|   |   |   |       TX Codec: B</p><p>|   |   |   |   Name: AD937=
+1 Dual DAC</p><p>|   |   |   |   Gain Elements: None</p><p>|   |     ______=
+_______________________________________________</p><p>|   |    /</p><p>|   =
+|   |       RFNoC blocks on this device:</p><p>|   |   |</p><p>|   |   |   =
+* Replay_0</p><p>|   |   |   * Radio_0</p><p>|   |   |   * Radio_1</p><p>| =
+  |   |   * DDC_0</p><p>|   |   |   * DDC_1</p><p>|   |   |   * DUC_0</p><p=
+>|   |   |   * DUC_1</p><p>|   |   |   * FIFO_0</p><p>|   |   |   * FIFO_1<=
+/p><p>|   |   |   * FIFO_2</p><p>|   |   |   * FIFO_3</p><p>C:\Program File=
+s\UHD\bin&gt;cd C:\Program Files\UHD\lib\uhd\examples</p><p>C:\Program File=
+s\UHD\lib\uhd\examples&gt;txrx_loopback_to_file tx-args 192.168.10.2 rx-arg=
+s 192.168.10.2 --file =3D new_test.dat --nsamps =3D 10000 --tx-rate 1e6 --r=
+x-rate 1e6 --tx-freq 2.4e9 --rx-freq 2.4e9 --tx-gain 5 --rx-gain 5 --wave-t=
+ype =3D SINE --tx-channels=3D0 --rx-channels=3D2</p><p>Error: the argument =
+('=3D') for option '--nsamps' is invalid</p><p>C:\Program Files\UHD\lib\uhd=
+\examples&gt;txrx_loopback_to_file tx-args 192.168.10.2 rx-args 192.168.10.=
+2 --file =3D new_test.dat --nsamps=3D10000 --tx-rate 1e6 --rx-rate 1e6 --tx=
+-freq 2.4e9 --rx-freq 2.4e9 --tx-gain 5 --rx-gain 5 --wave-type =3D SINE --=
+tx-channels=3D0 --rx-channels=3D2</p><p>Creating the transmit usrp device w=
+ith: ...</p><p>[INFO] [UHD] Win32; Microsoft Visual C++ version 14.0; Boost=
+_105900; UHD_3.13.1.0-release</p><p>[INFO] [MPMD] Initializing 1 device(s) =
+in parallel with args: mgmt_addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310,=
+serial=3D3177E63,claimed=3DFalse,addr=3D192.168.10.2</p><p>[INFO] [MPM.Peri=
+phManager] init() called with device args `mgmt_addr=3D192.168.10.2,time_so=
+urce=3Dinternal,product=3Dn310,clock_source=3Dinternal'.</p><p>[WARNING] [R=
+FNOC] Can't find a block controller for key Replay, using default block con=
+troller!</p><p>[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E=
+91A00000000004)</p><p>[ERROR] [0/Replay_0] Major compat number mismatch for=
+ noc_shell: Expecting 3, got 5.</p><p>[ERROR] [MPMD] Failure during block e=
+numeration: RuntimeError: FPGA component `noc_shell' is revision 5 and UHD =
+supports revision 3. Please either upgrade UHD  (recommended) or downgrade =
+the FPGA image.</p><p>Error: RuntimeError: Failed to run enumerate_rfnoc_bl=
+ocks()</p><p>C:\Program Files\UHD\lib\uhd\examples&gt;</p>
 
-...and of course the entire source code available for your perusal.
+--b1_QxhXj4hPiutixI6Wg3DjqCzzjBMM2ZG9lcnNq1nwiA0--
 
-Best of luck,
-
---M
-
-On Tue, Sep 3, 2024 at 11:11=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmai=
-l.com>
-wrote:
-
-> On 03/09/2024 15:57, Arnaldo Sans wrote:
->
-> Hello,
->
-> I am looking for a detailed block diagram of an X440 radio... There is
-> very little content available on the web... I am to create a "digital twi=
-n
-> of the radio.
->
-> Thank you in advance and I look forward to hearing from you soon.
->
-> Regards,
-> AJ
->
-> Most of the "interesting" bits of the X440 are in the RFSOC, which is
-> linked here:
->
-> https://docs.amd.com/r/en-US/pg269-rf-data-converter/Conventions
->
-> There's Martin Brauns GRCON talk here:
->
->
-> https://events.gnuradio.org/event/21/contributions/392/attachments/123/28=
-5/Lo%20and%20behold,%20no%20LO.pdf
->
-> There's an extensive treatise on selecting sample rates here:
->
->
-> https://kb.ettus.com/About_Sampling_Rates_and_Master_Clock_Rates_for_the_=
-USRP_X440
->
-> There's schematics for X4x0 family here:
->
-> https://files.ettus.com/schematics/x4x0/
->
-> And of course, all the FPGA code is published in the GIT repo that you ge=
-t
-> UHD source code from.
->
->
-> ------------------------------
-> *From:* Martin Braun <martin.braun@ettus.com> <martin.braun@ettus.com>
-> *Sent:* Tuesday, August 27, 2024 3:45 AM
-> *To:* Olo <olo1618@protonmail.com> <olo1618@protonmail.com>
-> *Cc:* usrp-users <usrp-users@lists.ettus.com> <usrp-users@lists.ettus.com=
->
-> *Subject:* [USRP-users] Re: Assistance with RFNoC and TwinRX
-> Configuration in Custom FPGA Image
->
->
-> Note: This message originated from outside the FIU Faculty/Staff email
-> system.
->
-> If you had a polyphase channelizer on the FPGA, that would be an efficien=
-t
-> solution to your problem, but there's no such block as part of UHD itself=
-.
-> There have been channelizer blocks written in the wild, but that would be
-> something you'd have to figure out.
->
-> --M
->
-> On Tue, Aug 27, 2024 at 7:17=E2=80=AFAM Olo via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> I have an additional question related to my current project involving
-> RFNoC. Specifically, I need to implement as many narrowband channels (DDC=
-)
-> as possible to record various parts of the spectrum as required.
->
-> I=E2=80=99m wondering if it would be more efficient to handle this throug=
-h RFNoC
-> or directly on a GPU? Additionally, how many narrowband channels of
-> specific bandwidths could I implement using RFNoC, considering I primaril=
-y
-> intend to store (record) the data into memory? I have a clear understandi=
-ng
-> of the memory and network interface requirements, but I am uncertain abou=
-t
-> the implications for CPU usage and RAM.
->
-> Could you provide some guidance on this aspect?
-> Olo.
->
-> On Monday, August 26th, 2024 at 7:13 PM, Olo via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> Thank you for your detailed responses to my previous questions. I
-> appreciate the information provided about the limitations and potential
-> issues related to FFT size and TwinRX configuration.
->
-> However, I noticed that there was no feedback regarding the YAML file I
-> attached in my original email. Could you please review it and let me know
-> if the configuration I've set up is correct?
->
-> Additionally, based on your recommendations, I plan to use a window
-> function (Window block) with a size of 1024, along with an FFT block of t=
-he
-> same size for the scanner (sweep spectrum) functionality. Would this
-> approach be correct given the current limitations and your suggestions?
->
-> Your confirmation on these points would be invaluable to ensure that I am
-> on the right track with my project.
->
-> Thank you once again for your time and assistance. I look forward to your
-> response.
->
-> Best regards,
-> Olo.
-> On Monday, August 26th, 2024 at 18:04, Rob Kossler via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->
->
-> On Mon, Aug 26, 2024 at 10:24=E2=80=AFAM Marcus D. Leech <patchvonbraun@g=
-mail.com>
-> wrote:
->
-> On 26/08/2024 10:21, Rob Kossler via USRP-users wrote:
->
-> Hi Olo,
-> On one point regarding an FFT length of 8192, there is likely an issue
-> with using the Ettus FFT block. In the past (I haven't checked recently),
-> this block was limited to a maximum FFT size of 1024 because the entire F=
-FT
-> had to fit in one packet where the maximum packet payload was about 2000
-> samples. It is possible to use larger FFTs, but this requires some custom
-> code that divorces the FFT size from the packet size.
-> Rob
->
-> My understanding is that in recent RFNoC, the limit has been raised to
-> 2048:
->
->
-> https://files.ettus.com/manual/classuhd_1_1rfnoc_1_1fft__block__control.h=
-tml
->
-> The xci file
-> <https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/ip/axi_f=
-ft/axi_fft.xci>
-> still shows a transform length of 1024. Also, I think that the X300 MTU
-> size is 10 which implies 2^10=3D1024 x 64bit is the max payload. This imp=
-lies
-> 2048 32-bit words in the payload. But, because of a few bytes of header, =
-it
-> is not possible to use an FFT of length 2048 unless the FFT length is
-> divorced from the packet length.
-> Rob
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000007b48a506214ba346
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Also this: <a href=3D"https://uhd.readthedocs.io/en/l=
-atest/page_usrp_x4xx.html#x4xx_too">https://uhd.readthedocs.io/en/latest/pa=
-ge_usrp_x4xx.html#x4xx_too</a></div><div><br></div><div>...and of course th=
-e entire source code available for your perusal.</div><div><br></div><div>B=
-est of luck,</div><div><br></div><div>--M<br></div></div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 3, 2024 at 1=
-1:11=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.c=
-om">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><u></u>
-
- =20
-   =20
- =20
-  <div>
-    <div>On 03/09/2024 15:57, Arnaldo Sans
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-     =20
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-        Hello,</div>
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-        I am looking for a detailed block diagram of an X440 radio...
-        There is very little=C2=A0content available on the web... I am to
-        create a &quot;digital twin of the radio.</div>
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-        Thank you in advance and I look forward to hearing from you
-        soon.</div>
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-        Regards,<br>
-        AJ</div>
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-        <br>
-      </div>
-    </blockquote>
-    Most of the &quot;interesting&quot; bits of the X440 are in the RFSOC, =
-which
-    is linked here:<br>
-    <br>
-    <a href=3D"https://docs.amd.com/r/en-US/pg269-rf-data-converter/Convent=
-ions" target=3D"_blank">https://docs.amd.com/r/en-US/pg269-rf-data-converte=
-r/Conventions</a><br>
-    <br>
-    There&#39;s Martin Brauns GRCON talk here:<br>
-    <br>
-<a href=3D"https://events.gnuradio.org/event/21/contributions/392/attachmen=
-ts/123/285/Lo%20and%20behold,%20no%20LO.pdf" target=3D"_blank">https://even=
-ts.gnuradio.org/event/21/contributions/392/attachments/123/285/Lo%20and%20b=
-ehold,%20no%20LO.pdf</a><br>
-    <br>
-    There&#39;s an extensive treatise on selecting sample rates here:<br>
-    <br>
-<a href=3D"https://kb.ettus.com/About_Sampling_Rates_and_Master_Clock_Rates=
-_for_the_USRP_X440" target=3D"_blank">https://kb.ettus.com/About_Sampling_R=
-ates_and_Master_Clock_Rates_for_the_USRP_X440</a><br>
-    <br>
-    There&#39;s schematics for X4x0 family here:<br>
-    <br>
-    <a href=3D"https://files.ettus.com/schematics/x4x0/" target=3D"_blank">=
-https://files.ettus.com/schematics/x4x0/</a><br>
-    <br>
-    And of course, all the FPGA code is published in the GIT repo that
-    you get UHD source code from.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite">
-      <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
-e,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
-      </div>
-      <hr style=3D"display:inline-block;width:98%">
-      <div id=3D"m_928966692607441593divRplyFwdMsg" dir=3D"ltr"><font style=
-=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:=
-</b> Martin
-          Braun <a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank"=
->&lt;martin.braun@ettus.com&gt;</a><br>
-          <b>Sent:</b> Tuesday, August 27, 2024 3:45 AM<br>
-          <b>To:</b> Olo <a href=3D"mailto:olo1618@protonmail.com" target=
-=3D"_blank">&lt;olo1618@protonmail.com&gt;</a><br>
-          <b>Cc:</b> usrp-users <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-          <b>Subject:</b> [USRP-users] Re: Assistance with RFNoC and
-          TwinRX Configuration in Custom FPGA Image</font>
-        <div>=C2=A0</div>
-      </div>
-      <div>
-        <p style=3D"color:red;font-weight:bold;border:1px solid black;paddi=
-ng:5px;width:65%;text-align:center;margin-left:auto;margin-right:auto">
-          Note: This message originated from outside the FIU
-          Faculty/Staff email system.</p>
-        <br>
-        <div>
-          <div dir=3D"ltr">
-            <div>If you had a polyphase channelizer on the FPGA, that
-              would be an efficient solution to your problem, but
-              there&#39;s no such block as part of UHD itself. There have
-              been channelizer blocks written in the wild, but that
-              would be something you&#39;d have to figure out.</div>
-            <div><br>
-            </div>
-            <div>--M<br>
-            </div>
-          </div>
-          <br>
-          <div>
-            <div dir=3D"ltr">On Tue, Aug 27, 2024 at
-              7:17=E2=80=AFAM Olo via USRP-users &lt;<a href=3D"mailto:usrp=
--users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt=
-;
-              wrote:<br>
-            </div>
-            <blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex">
-              <p>I have an additional question related to my current
-                project involving RFNoC. Specifically, I need to
-                implement as many narrowband channels (DDC) as possible
-                to record various parts of the spectrum as required.</p>
-              <p>I=E2=80=99m wondering if it would be more efficient to han=
-dle
-                this through RFNoC or directly on a GPU? Additionally,
-                how many narrowband channels of specific bandwidths
-                could I implement using RFNoC, considering I primarily
-                intend to store (record) the data into memory? I have a
-                clear understanding of the memory and network interface
-                requirements, but I am uncertain about the implications
-                for CPU usage and RAM.</p>
-              <p>Could you provide some guidance on this aspect?</p>
-              <div style=3D"font-family:Arial,sans-serif;font-size:14px;col=
-or:rgb(0,0,0);background-color:rgb(255,255,255)">
-                Olo.<br>
-              </div>
-              <div style=3D"font-family:Arial,sans-serif;font-size:14px"><b=
-r>
-              </div>
-              <div>On Monday, August 26th, 2024 at 7:13 PM, Olo via
-                USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
-" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
-                wrote:<br>
-                <blockquote type=3D"cite">
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-">Thank
-                    you for your detailed responses to my previous
-                    questions. I appreciate the information provided
-                    about the limitations and potential issues related
-                    to FFT size and TwinRX configuration.</div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-"><br>
-                  </div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-">However,
-                    I noticed that there was no feedback regarding the
-                    YAML file I attached in my original email. Could you
-                    please review it and let me know if the
-                    configuration I&#39;ve set up is correct?</div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-"><br>
-                  </div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-">Additionally,
-                    based on your recommendations, I plan to use a
-                    window function (Window block) with a size of 1024,
-                    along with an FFT block of the same size for the
-                    scanner (sweep spectrum) functionality. Would this
-                    approach be correct given the current limitations
-                    and your suggestions?</div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-"><br>
-                  </div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-">Your
-                    confirmation on these points would be invaluable to
-                    ensure that I am on the right track with my project.</d=
-iv>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-"><br>
-                  </div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-">Thank
-                    you once again for your time and assistance. I look
-                    forward to your response.</div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-"><br>
-                  </div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-">Best
-                    regards,</div>
-                  <div style=3D"font-family:Arial,sans-serif;font-size:14px=
-">Olo.</div>
-                  <div>On Monday, August 26th, 2024 at 18:04, Rob
-                    Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users=
-@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
-                    wrote:<br>
-                    <blockquote type=3D"cite">
-                      <div dir=3D"ltr">
-                        <div dir=3D"ltr"><br>
-                        </div>
-                        <br>
-                        <div>
-                          <div dir=3D"ltr">On Mon,
-                            Aug 26, 2024 at 10:24=E2=80=AFAM Marcus D. Leec=
-h
-                            &lt;<a rel=3D"noreferrer nofollow noopener" hre=
-f=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.=
-com</a>&gt;
-                            wrote:<br>
-                          </div>
-                          <blockquote style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex">
-                            <div>
-                              <div>On 26/08/2024 10:21, Rob Kossler via
-                                USRP-users wrote:<br>
-                              </div>
-                              <blockquote type=3D"cite">
-                                <div dir=3D"ltr">
-                                  <div dir=3D"ltr">
-                                    <div>Hi Olo,</div>
-                                    <div>On one point regarding an FFT
-                                      length of 8192, there is likely an
-                                      issue with using the Ettus FFT
-                                      block. In the past (I haven&#39;t
-                                      checked recently), this block was
-                                      limited to a maximum FFT size of
-                                      1024 because the entire FFT had to
-                                      fit in one packet where the
-                                      maximum packet payload was about
-                                      2000 samples. It is possible to
-                                      use larger FFTs, but this requires
-                                      some custom code that divorces the
-                                      FFT size from the packet size.</div>
-                                    <div>Rob<br>
-                                    </div>
-                                  </div>
-                                </div>
-                              </blockquote>
-                              My understanding is that in recent RFNoC,
-                              the limit has been raised to 2048:<br>
-                              <br>
-                              <a rel=3D"noreferrer nofollow noopener" href=
-=3D"https://files.ettus.com/manual/classuhd_1_1rfnoc_1_1fft__block__control=
-.html" target=3D"_blank">https://files.ettus.com/manual/classuhd_1_1rfnoc_1=
-_1fft__block__control.html</a><br>
-                              <br>
-                            </div>
-                          </blockquote>
-                          <div>The <a rel=3D"noreferrer nofollow noopener" =
-href=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/ip/=
-axi_fft/axi_fft.xci" target=3D"_blank">
-                              xci file</a> still shows a transform
-                            length of 1024. Also, I think that the X300
-                            MTU size is 10 which implies 2^10=3D1024 x
-                            64bit is the max payload. This implies 2048
-                            32-bit words in the payload. But, because of
-                            a few bytes of header, it is not possible to
-                            use an FFT of length 2048 unless the FFT
-                            length is divorced from the packet length.</div=
->
-                          <div>Rob<br>
-                          </div>
-                          <br>
-                        </div>
-                      </div>
-                    </blockquote>
-                    <br>
-                  </div>
-                </blockquote>
-                <br>
-              </div>
-              _______________________________________________<br>
-              USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists=
-.ettus.com" target=3D"_blank">
-                usrp-users@lists.ettus.com</a><br>
-              To unsubscribe send an email to <a href=3D"mailto:usrp-users-=
-leave@lists.ettus.com" target=3D"_blank">
-                usrp-users-leave@lists.ettus.com</a><br>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000007b48a506214ba346--
-
---===============3499000659398651960==
+--===============1192786325516582147==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -605,4 +667,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3499000659398651960==--
+--===============1192786325516582147==--
