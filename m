@@ -2,147 +2,183 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E633998A861
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Sep 2024 17:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3E698B7F9
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2024 11:10:03 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F0223385799
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Sep 2024 11:23:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8CF9038544B
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2024 05:10:01 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1727709789; bh=f/kxoZYCajaPH5FF5RDwVPOaCkEtnFoNThHpLHa2JLo=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=bh5XSEw5vJsgjTbzsIfo4aDO7zyh+EpXI7VG54Z7eGfbVuf3uEsBhSihPjBdcDETb
-	 XUNHPnBL9EO7WSKb55tjpacPkP86/yNc07nl7XFvXncOR3ihHWIU997uTYG03msqcx
-	 w2dbSjNik4tqKhLW0Ste6y70XCM5JMJy1fT1lOgdQAc/hl3Hidvj9ItBPtEuHMGQGH
-	 c6VtQVIRvG3XZ9lGSNyirtUnlCSOVjpIZDDBb8+tzGwrF9jiV4YsumMzQsgmgKpx7R
-	 5hV9XQpAqCO6sDdHR6fQEEXfwu/HFkHNC7S5ZlDDeGCQdLH/pJYVRgQGkCuMcqGP/b
-	 oNV3eArRuGi8Q==
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id EDB83385301
-	for <usrp-users@lists.ettus.com>; Mon, 30 Sep 2024 11:22:11 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="mP3YVG2w";
-	dkim-atps=neutral
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5c5bca59416so5464321a12.1
-        for <usrp-users@lists.ettus.com>; Mon, 30 Sep 2024 08:22:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1727709731; x=1728314531; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0d5mnevItbyy2+Oj77kjvQxYGbu58quHeaTNQVosa2Q=;
-        b=mP3YVG2w8tI0UC4vNZs2QkzaL3YYFEdMGfCUmLa853Wh6PXpqVBd9mHF7gaZr016n8
-         2J2IpvgwreQ0feMIiLPMFJXtnow0CLL0ZRax/fugQM4ov7xHLJXvwrvfb3Tl7duO1z5x
-         UHp2TkEXnzg7iU77bPYici8YEWYrxEifwIAAygz0mak+QP9GHfCV+9qjYpTUf05GP7Cx
-         0uZ0fbOQiZT/u2jmeqFnvyfEP5cWp6CnmiBilpip8ughji0hYuPBNCSsW/MHDd+3WYXC
-         Iup5G2LmrQ99OWPVgfUbI907SbkzJ31J4uzzxJGSJyUSaaMHYjQ69EI51h9Zr2mbD2sm
-         h9xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727709731; x=1728314531;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0d5mnevItbyy2+Oj77kjvQxYGbu58quHeaTNQVosa2Q=;
-        b=iQxFMzGFHPnk/Ys2mzNv3yfwyWQJuZDOlYg6Dpz0QcSb2IZkCrV8pHXqwKuiNuj6Oo
-         QPqIFv+C1Y+rBoyka4UvflzJXmj/Cak+Kkva/GYvbpHbJmO5SW0Oo8wuuH8GIaFLmzXA
-         Ktuyt/vgusjiW5txrwR/CjWf7Q6vKgKpTqTixTt64ic3EFr0LtuTdeBB5WKghyMguBfD
-         rIXbD+rLpcuJA8XviwJUflNppe5eBvcQMihMRN2Jc0nge8lR9cNec4zZtJOOKFOjvSq4
-         TxF0LI22Qg63IXKlK9uFCzsTqVY7kU8tMDfW9pqqhmjfLe7yaVn6IZJUxEVFYoZnDzEj
-         EqtQ==
-X-Gm-Message-State: AOJu0YxDBmBTDn8rL8quODbYU4Rm0hy+Tf7TINveLxC/PjRTbFY4XJpt
-	AYROJCQZP2Z1eodQ5N9zDHx2YpBy3o8NyhGzjmfZMzAPvJ6BTeLGc1Z+L+N+WwFgKO03OLFD7cv
-	+dBsSRuquCAUwSnowTiAoLvH9FBBjA2TlWy19m7k70tRVL/rNAGM=
-X-Google-Smtp-Source: AGHT+IHcnbyWvWnP38oHZp8PQpNza8XO6cZTTJNDdcgMu0oSr7nLK3vhqh1Spk7E1VXGCNcDRhtttyYYUh9FAOzt/Oc=
-X-Received: by 2002:a05:6402:529b:b0:5c8:77a5:d486 with SMTP id
- 4fb4d7f45d1cf-5c882608f30mr9337786a12.33.1727709730630; Mon, 30 Sep 2024
- 08:22:10 -0700 (PDT)
+	t=1727773801; bh=jMqwp+bdlbSF60zKcZBLsRpevcMxD0xyQKyNrXPfTAU=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=qgY1i3YZVQc0ho/DPApmGMlfuo7foFfmsKp7zmds1chKOYQ26FvXoq+QUZyNFKtYB
+	 qQncKVEqbth7Su2ciYuQHwNu1Bpq6KxvOBW70g9W0/cuS53MjdWyLRL4oZ/kzHrcOv
+	 KUnb0HqmI6ntebp39aGQmuC6Fad8KG8qi9YHIjECfGthKcT3LS/HZ9uwsNLXkZKE80
+	 uAsPe+aPODwXibp1RM54Q20yUUyfzYBbe1qfXcT8x+/3dZq6FMwrJN2SbHNFBYzmOh
+	 d4DrKeWq7SngzaqQFxyk/wyOWt0/1ipvR/BukhcE0X2WTZFk4rg65P4m/3a6vH4Q9g
+	 Q60W2xzWCf3rw==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 4EA18380BD1
+	for <usrp-users@lists.ettus.com>; Tue,  1 Oct 2024 05:09:56 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1727773796; bh=Jvy1TRylmK2+UGHjOTLP/I0f9450ShacELh0YinSXKc=;
+	h=Date:To:From:Subject:From;
+	b=uIWtugT872RKtjIT1nQ+iAw1uwPHsWGaUSucGA2U20GfOq6iWZ0tmwPbD5Z7n8Qug
+	 RYmDZHBZeKIAOVnopOoqdtA/t+PpeA8ss/BRSPDdws5rSevAm5wB7RYQdITcnYgEyc
+	 ov2WVlKQv+NAL6o8v8Aeo6gfwF9me2HcgxmO+GMYLYSknzRfpjpf6eXB8As1dZQq88
+	 aUjdZovbgbKydACMvxiiSJA/fIbzvuzQoXPiG6l5K0N5NaL7EyW7QKLtEyH+Oi002k
+	 kFM9t9PiiS2V2seLp7WOuJqc9s5PI3JT6txA9h1Q7/kPXzUT5UGIQF+8/iZtqaqlzv
+	 T/67uOIHI3GYA==
+Date: Tue, 1 Oct 2024 09:09:56 +0000
+To: usrp-users@lists.ettus.com
+From: perper@o2.pl
+Message-ID: <zCLIwYcY6ADoffbvImLtwRjZkDAy2JYdgumpej9z2Q@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <Gkl893xWgZWj4UDsn7YJDkQPJN0TR7IO7eROIy5X30@lists.ettus.com>
-In-Reply-To: <Gkl893xWgZWj4UDsn7YJDkQPJN0TR7IO7eROIy5X30@lists.ettus.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Mon, 30 Sep 2024 17:21:59 +0200
-Message-ID: <CAFOi1A5oHApWQeSxA3J+_cCb_LcP8UcvcNW7hSyiy-4GE0Biog@mail.gmail.com>
-To: william.haftel@bluehalo.com
-Message-ID-Hash: A4QZ22UHOJJWXCTPOHGXGM6IBMWRE4K4
-X-Message-ID-Hash: A4QZ22UHOJJWXCTPOHGXGM6IBMWRE4K4
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: AZWYH7HCURZVTQMG5YOEWOJBSF2EBNPJ
+X-Message-ID-Hash: AZWYH7HCURZVTQMG5YOEWOJBSF2EBNPJ
+X-MailFrom: perper@o2.pl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Trouble controlling GPIO on x310
+Subject: [USRP-users] Triggering of Rx synchronously with Tx in RFNoC
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A4QZ22UHOJJWXCTPOHGXGM6IBMWRE4K4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AZWYH7HCURZVTQMG5YOEWOJBSF2EBNPJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0239761046130815966=="
+Content-Type: multipart/mixed; boundary="===============7449943157367624439=="
 
---===============0239761046130815966==
-Content-Type: multipart/alternative; boundary="000000000000c50a40062357c41e"
+This is a multi-part message in MIME format.
 
---000000000000c50a40062357c41e
-Content-Type: text/plain; charset="UTF-8"
+--===============7449943157367624439==
+Content-Type: multipart/alternative;
+ boundary="b1_zCLIwYcY6ADoffbvImLtwRjZkDAy2JYdgumpej9z2Q"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_zCLIwYcY6ADoffbvImLtwRjZkDAy2JYdgumpej9z2Q
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-It's the latter. As you can see, physical pin 1 for example is +3.3V, and
-not a data pin (and then you need to shift the rest up).
+Hello all,
 
---M
+I know the topic of triggering of transmission and reception has been rec=
+urring here on the list over and over. But I haven=E2=80=99t found the an=
+swer that is good for my case among the previous threads .
 
+The context: I'm using USRP X410 and I=E2=80=99m transmitting a pulsed ra=
+dar waveform. I=E2=80=99m able to receive the return signal continuously,=
+ but I need to limit the stream of data sent to the PC. The good solution=
+ is to send precisely selected part of the received signal after each pul=
+se. This way the radar can focus only on the most interesting area. For e=
+xample to define: receive =E2=80=98N=E2=80=99 samples beginning in =E2=80=
+=98R=E2=80=99 samples from the Tx pulse start (where =E2=80=98N=E2=80=99 =
+and =E2=80=98R=E2=80=99 can be changed but it doesn=E2=80=99t happen ofte=
+n).
 
+My current implementation with continuous reception looks like this: I=E2=
+=80=99m using USRP X410 and in RFNoC I have a =E2=80=98Replay=E2=80=99 bl=
+ock connected to the DUC->Radio block. =E2=80=98DUC=E2=80=99 has upsampli=
+ng set to =E2=80=981=E2=80=99 - that make it pass samples without change =
+from =E2=80=98Replay=E2=80=99 block. The =E2=80=98Replay=E2=80=99 block p=
+lays in a loop a pulse followed by zeros. The least significant bit of I =
+part of IQ sample is connected to GPIO port and is used currently to cont=
+rol the RF front-end (switch between transmission and reception). This wa=
+y I=E2=80=99m loosing one bit of transmitted IQ sample, but I have very p=
+recise control over the GPIO, so that it is synchronized with Tx pulse. F=
+or example, I can set that line a bit earlier than RF pulse in order to p=
+repare the Tx chain for transmission.
 
-On Mon, Sep 30, 2024 at 4:05=E2=80=AFPM Will Haftel via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Now in order to achieve what I described (receive =E2=80=98N=E2=80=98 sam=
+ples after each pulse) I wanted to reuse for triggering the reception the=
+ signal that currently controls the GPIO.
 
-> Yes, I was measuring the pins with an oscilloscope while the application
-> was running.
->
->
-> Maybe I am misunderstanding how the pin mapping works. Does (1<<2)
-> correspond to Pin 2/Data[0] or Pin 4/Data[2]? When writing this code, my
-> assumption was the former.
->
->
-> Thanks,
->
-> Will
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+And here my question starts: where in RFNoC should I connect the triggeri=
+ng signal and implement the logic that controls passing the samples synch=
+ronously with the trigger?
 
---000000000000c50a40062357c41e
-Content-Type: text/html; charset="UTF-8"
+I wanted to implement an RFNoC block that passes the samples synchronousl=
+y with the trigger. In order to that I'll have to edit manually the RFNoC=
+ flowgraph in order to connect the trigger signal to additional input in =
+the block (I can do that). I have doubt if I can trigger an event synchro=
+nously with the samples stream this way, but at the moment I have more ba=
+sic issue. I don=E2=80=99t know yet how to ignore samples for arbitrarily=
+ long time with RFNoC use of block. I think the closest thing that exists=
+ in UHD to what I'm trying to do is rfnoc_keep_one_in_n. I'm trying to us=
+e some ideas from it but I've got no success yet.
+
+Another solution could be use the trigger to control flow of the samples =
+from ADC to the radio block, but I don=E2=80=99t know yet exactly how it =
+could be implemented.
+
+Maybe there is some better solution to that what I=E2=80=99m trying to do=
+? Maybe I can use timed commands? But I don=E2=80=99t want to send them f=
+rom PC as I would have to do that very often: for each pulse and pulse ra=
+te might be i.e. 2kHz.
+
+Trying out each option means loosing more time - so maybe you have some a=
+dvice which path is most promising?
+
+Best Regards,\
+Piotr Krysik
+
+--b1_zCLIwYcY6ADoffbvImLtwRjZkDAy2JYdgumpej9z2Q
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>It&#39;s the latter. As you can see, physical pin 1 f=
-or example is +3.3V, and not a data pin (and then you need to shift the res=
-t up).</div><div><br></div><div>--M<br></div><div><br></div><div><br></div>=
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Mon, Sep 30, 2024 at 4:05=E2=80=AFPM Will Haftel via USRP-users &lt;<a h=
-ref=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Yes,=
- I was measuring the pins with an oscilloscope while the application was ru=
-nning.</p><p><br></p><p>Maybe I am misunderstanding how the pin mapping wor=
-ks.  Does (1&lt;&lt;2) correspond to Pin 2/Data[0] or Pin 4/Data[2]? When w=
-riting this code, my assumption was the former.</p><p><br></p><p>Thanks,</p=
-><p>Will</p>
+<p>Hello all,</p><p>I know the topic of triggering of transmission and rece=
+ption has been recurring here on the list over and over. But I haven=
+=E2=80=99t found the answer that is good for my case among the previous thr=
+eads .</p><p>The context: I'm using USRP X410 and I=E2=80=99m transmitting =
+a pulsed radar waveform. I=E2=80=99m able to receive the return signal cont=
+inuously, but I need to limit the stream of data sent to the PC. The good s=
+olution is to send precisely selected part of the received signal after eac=
+h pulse. This way the radar can focus only on the most interesting area. Fo=
+r example to define: receive =E2=80=98N=E2=80=99 samples beginning in =
+=E2=80=98R=E2=80=99 samples from the Tx pulse start (where =E2=80=98N=
+=E2=80=99 and =E2=80=98R=E2=80=99 can be changed but it doesn=E2=80=99t hap=
+pen often).</p><p>My current implementation with continuous reception looks=
+ like this: I=E2=80=99m using USRP X410 and in RFNoC I have a =E2=80=98Repl=
+ay=E2=80=99 block connected to the DUC-&gt;Radio block. =E2=80=98DUC=
+=E2=80=99 has upsampling set to =E2=80=981=E2=80=99 - that make it pass sam=
+ples without change from =E2=80=98Replay=E2=80=99 block. The =E2=80=98Repla=
+y=E2=80=99 block plays in a loop a pulse followed by zeros. The least signi=
+ficant bit of I part of IQ sample is connected to GPIO port and is used cur=
+rently to control the RF front-end (switch between transmission and recepti=
+on). This way I=E2=80=99m loosing one bit of transmitted IQ sample, but I h=
+ave very precise control over the GPIO, so that it is synchronized with Tx =
+pulse. For example, I can set that line a bit earlier than RF pulse in orde=
+r to prepare the Tx chain for transmission.</p><p>Now in order to achieve w=
+hat I described (receive =E2=80=98N=E2=80=98 samples after each pulse) I wa=
+nted to reuse for triggering the reception the signal that currently contro=
+ls the GPIO.</p><p>And here my question starts: where in RFNoC should I con=
+nect the triggering signal and implement the logic that controls passing th=
+e samples synchronously with the trigger?</p><p>I wanted to implement an RF=
+NoC block that passes the samples synchronously with the trigger. In order =
+to that I'll have to edit manually the RFNoC flowgraph in order to connect =
+the trigger signal to additional input in the block (I can do that). I have=
+ doubt if I can trigger an event synchronously with the samples stream this=
+ way, but at the moment I have more basic issue. I don=E2=80=99t know yet h=
+ow to ignore samples for arbitrarily long time with RFNoC use of block. I t=
+hink the closest thing that exists in UHD to what I'm trying to do is rfnoc=
+_keep_one_in_n. I'm trying to use some ideas from it but I've got no succes=
+s yet.</p><p>Another solution could be use the trigger to control flow of t=
+he samples from ADC to the radio block, but I don=E2=80=99t know yet exactl=
+y how it could be implemented.</p><p>Maybe there is some better solution to=
+ that what I=E2=80=99m trying to do? Maybe I can use timed commands? But I =
+don=E2=80=99t want to send them from PC as I would have to do that very oft=
+en: for each pulse and pulse rate might be i.e. 2kHz.</p><p>Trying out each=
+ option means loosing more time - so maybe you have some advice which path =
+is most promising?</p><p>Best Regards,<br>Piotr Krysik</p>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+--b1_zCLIwYcY6ADoffbvImLtwRjZkDAy2JYdgumpej9z2Q--
 
---000000000000c50a40062357c41e--
-
---===============0239761046130815966==
+--===============7449943157367624439==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -152,4 +188,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0239761046130815966==--
+--===============7449943157367624439==--
