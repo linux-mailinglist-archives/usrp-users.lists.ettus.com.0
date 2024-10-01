@@ -2,159 +2,248 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91A198C384
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2024 18:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B0298C449
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2024 19:16:26 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 312A9385479
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2024 12:36:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1A66F381404
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2024 13:16:25 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1727800582; bh=ZrASiePXAEr2fvWWhgXLp5XQ99kQpAYvoVROPDy62Uc=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=h6B1CgH8ukysuE6NLugVoLDebn3mWsZQmW7y0/b1Hb/45uaR9+PT39wjBtHnuTKMD
-	 7WIGKGe/GMaOjLDqwuj/dFe4vM0lgSn0jzd8hifTR42FKvihugk9YLxk4g+U8x8HHn
-	 gOi0QW1IIbVB7v1GEtg9YnuQ7vfMx0Bj2RV8oNzi0Znk19IQgI3uiA6A87Cz8gVCaa
-	 av5CcUzr2ummDz3/Gy1bX1QxD6jaPFx+MWvO+QFp+NatkTNY22GZihxm4/9Kmcehpi
-	 6j3cCI8W26wHh/WmZu1Wxu1/9TFQ6ZDtDswtTScqTK/kH35Gp9gA+lGr8Vr7/zfkG4
-	 02cwujLbSxwCA==
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1F8A5385470
-	for <usrp-users@lists.ettus.com>; Tue,  1 Oct 2024 12:36:16 -0400 (EDT)
+	t=1727802985; bh=qJYPBhqs+eLHTHK53OXmnzKf9h09i7TSAxtzd6RJ2p8=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=yuLlZUe2rHXpsw1fFLn0Y/lc6hzFBZGmmfkogebWp3SvGqOWjbPSZkX2Vq/nDKQFD
+	 oAhkRIajJ5OnjCHbUigJilkVDVKsNnrQGROFkF/9vj8VOcz/2PKJ64PFfzYOHu+LSA
+	 LeHVoDdc+RjHhRqWuOKPIu1EFBynIwVGxoYSm4sShCgbGv1WJ53qCfYBr3D5p2SXZC
+	 yaoTzGq/MONUiWpDKUMAezYOcpXgChBhuqw2F45c7yeYFoYLcIwqBFSZ7Z6+bWqnLh
+	 +JrSB8+g6rxHQI6WzGZpnYpkWFDcn7KNaOzbczvtGQ14dKof3a4pFZFJ1hfmklNsVS
+	 T2+rUyCsm2u5g==
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 78159380B09
+	for <usrp-users@lists.ettus.com>; Tue,  1 Oct 2024 13:15:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="V8OeomUg";
+	dkim=pass (2048-bit key; unprotected) header.d=lmarlow-com.20230601.gappssmtp.com header.i=@lmarlow-com.20230601.gappssmtp.com header.b="icIMgjti";
 	dkim-atps=neutral
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6cb399056b4so42826066d6.0
-        for <usrp-users@lists.ettus.com>; Tue, 01 Oct 2024 09:36:16 -0700 (PDT)
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6c5ab2de184so40307686d6.0
+        for <usrp-users@lists.ettus.com>; Tue, 01 Oct 2024 10:15:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727800576; x=1728405376; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uek4MCE3ovw5NQzlcEyrv4uhHGmVNTixaTuybUiCG7g=;
-        b=V8OeomUgb9iJ16RtOpULsPE+43yLH6kGK+9TVmy0/gga7x1xyZ+uHuLZE2GSBddlsi
-         CpsJSOR2NZ4xgc5Y+Pu4tqqfqxgePoLi4KfUK5+gGrTY8SMNGXzRtbbIYXPtVQWGpXzy
-         tjXw4zEIf/x61kOBGNadNwlOK35djJhNP8/PwAO2mrdtz6T68uMm0ZYfYxr3NhY9E/YW
-         BcJRZwFK8T0mHuf33EoeM9AFIceZCokRaRziXsOCDCSw9CMxlDbx2LuE90NKYpXHAMZm
-         MrXVduKgyKf0lAZjO9tshGQQg49Cdnyo8qODXrk6kCdPDTcTiRs34Aug7TzGX/IreWWR
-         2zzg==
+        d=lmarlow-com.20230601.gappssmtp.com; s=20230601; t=1727802925; x=1728407725; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jlEI3LivKLDoUDSaB7ScsX3Y1lUou7nSZP1YorhL5es=;
+        b=icIMgjtiHJcZlm1W5bralr4aFbYJXZv1JLf2D/amT9PpXgcRDGXlHVIDm5mLKDxNYu
+         vf7AyRxv+yEkaCa9R7XFE+JEquq1hZCKXfmc1Q0eg4G2EZHmhNQprIOeiC+S8lSag1hJ
+         H9NnX/Grt+y7VyIdFVb3dPhzIg8m7bFI8Y5/1o8JsgsczlNF9z70ApsPQg9XsOwCBrbE
+         iifAxwBjcQDSDFWlxMd6ZTR2LCTYKqPLYVd7LYXaPEImscu/9jZPj/V4rdOlrgUuzbl1
+         8OtIBfBko035nSyOiWQ2LyGkFqt9qIa3tYTIes5OSCX1KT6un+Us98wz/Qh4yPXnwJiV
+         HbCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727800576; x=1728405376;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uek4MCE3ovw5NQzlcEyrv4uhHGmVNTixaTuybUiCG7g=;
-        b=toTfLq31R4FzG4H4G4QR9nyQP43toBetwC6IRTI7jMaOnvrIgp9CYDgtsUIb0wHa0L
-         jWpGdTMLyLlTTBppKbhbHq3uZmoLSyCJwDEUO3rutdtuXKum8J05PaYiwQmYG4W7SkgQ
-         LQ58eL39zpu42UoqXpcOkmgwbuEm4qpvJMvFUX8bbujrqf2Ab3tRw55o5P6sUSu71hUX
-         pfqF4KYYwA/+dDSyChJ1EOGtvy/vdahH05GpmfxTtuwZ/DLqrW4n3O8k0XQldNgsMrN0
-         mwAU5a4cuCi2X8esTfYwivoNLPG0/q6JPfROdfXW+f5zgp7N1YFBD7VZ7nO4byf9R4bA
-         aERA==
-X-Gm-Message-State: AOJu0Yx6N7aEFFp9t8Xz7318JzBSkrlMIyVn32J5ZtsasnlPRdklywo7
-	oqWl7CGIe9pW6y4B9U1uxONuBIPiKdhHBKYuotk5ZmA6EBmAqh+MutMZ8g==
-X-Google-Smtp-Source: AGHT+IFEun558y2vJt/oI17e3v/ziNEjDBdOAJSh6sB3dSQrQMp+nUrV0fWz6S/LMe1uwumDFTTNaQ==
-X-Received: by 2002:a05:6214:390e:b0:6c7:c63f:b414 with SMTP id 6a1803df08f44-6cb81b9a0a9mr614156d6.33.1727800576181;
-        Tue, 01 Oct 2024 09:36:16 -0700 (PDT)
-Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6cb3b67f776sm51252666d6.113.2024.10.01.09.36.15
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Oct 2024 09:36:15 -0700 (PDT)
-Message-ID: <e16da4a1-c2b1-42b1-85cd-b38c251bc94f@gmail.com>
-Date: Tue, 1 Oct 2024 12:36:04 -0400
+        d=1e100.net; s=20230601; t=1727802925; x=1728407725;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jlEI3LivKLDoUDSaB7ScsX3Y1lUou7nSZP1YorhL5es=;
+        b=MJaubc80tUaBzl2CWLFw+thykCTsKImLcoQHv4froP08B41PBOwa7RvNK6jlbeQTNA
+         1epgDLqxSLoIqUyc31USDDGMAlpXBxYLGIRBcsPhOTS3xcb//O0BO/mr+mfy2szfiBEY
+         N7oAifp+cJWuauW9K2DdxzLc+hhL5t80ZP6kEk1l2SEdxjnY2HgARDp473VEBl8RfeMM
+         U+QuZOBN5ZBJilAwLccj5OznS1JOnToBVta9rZGYwyxh7i+pHTBTG3HBmoefy/Ddm4Yp
+         OxfoZn2hl5PE3mN9WO+B8lLfu1mKGvKgW7ZodfmegmQEcOiNstpWU+5LLHcSuDQ71+NN
+         vv4w==
+X-Gm-Message-State: AOJu0YyPT9qo/zKxsuTig7Iso3TwBQHPbOyZO2go/i7XUm0vsJelxgTy
+	6zdAsQT8/iL13mbc/iRF7iRwE6nCwPSYaTFnaS0cUElbbkns8i9FdZWweY80fFa4eh7WJpX9skJ
+	RxJQkfTc7ZJAVpFQlUksiDLO8APpfbrgScbAe3ib4Jr7KKwh3Xg==
+X-Google-Smtp-Source: AGHT+IGKrN4XJT7ZYy+dEiaJlx5i+Pi/6twWjtjgDvgqZzKpGx4OwyGXNTCkvb4VwFghEc/3ZmpzcfwsjR2xJFe0qhM=
+X-Received: by 2002:a05:6214:5b82:b0:6cb:2a26:af8f with SMTP id
+ 6a1803df08f44-6cb819cac74mr2787176d6.5.1727802924665; Tue, 01 Oct 2024
+ 10:15:24 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <U4mx9FzgikzVEzY3DLPLwFHaGd0AKrLVBvCkUpi08Us@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <U4mx9FzgikzVEzY3DLPLwFHaGd0AKrLVBvCkUpi08Us@lists.ettus.com>
-Message-ID-Hash: TP7ISX7OBV65WJT5256SFYOUZNROIXPC
-X-Message-ID-Hash: TP7ISX7OBV65WJT5256SFYOUZNROIXPC
-X-MailFrom: patchvonbraun@gmail.com
+From: Ryan Marlow <ryan@lmarlow.com>
+Date: Tue, 1 Oct 2024 13:15:13 -0400
+Message-ID: <CAOHuk9AmFZDSQoOL+N8590XaPwfV3V7mN+BwhwbFpPHX4pu5PQ@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: CBRK43VH6GNLUPDUA6PN5INJ2OLRI6HX
+X-Message-ID-Hash: CBRK43VH6GNLUPDUA6PN5INJ2OLRI6HX
+X-MailFrom: ryan@lmarlow.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: KAS kirkstone build of ni-titanium-rev5 on x410 with Vitis-AI Library and DPU drivers: Mainline kernel incompatible with zocl DPU driver; possible to use linux-xlnx kernel and make titanium-related additions?
+Subject: [USRP-users] rfnoc_image_builder on UHD 4.7
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TP7ISX7OBV65WJT5256SFYOUZNROIXPC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CBRK43VH6GNLUPDUA6PN5INJ2OLRI6HX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============3252332214069818921=="
 
-T24gMDEvMTAvMjAyNCAxMjowOSwgbXJ1YW5lLS0tIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KPg0K
-PiBIaSBhbGwhDQo+DQo+IEnigJltIGFuIEZQR0EgZGV2ZWxvcGVyLCBkcmFnZ2VkIGludG8gdGhl
-IFlvY3RvIHdvcmxkIGEgZmV3IHllYXJzIGFnbyANCj4gd2l0aCB0aGUgbW92ZSB0byBaeW5xIGFu
-ZCBaeW5xTVAgYXJjaGl0ZWN0dXJlcy4gQXMgYSByZXNlYXJjaCBncm91cCwgDQo+IHdlIG1haW5s
-eSBkZXZlbG9wIG9uIFhpbGlueCBkZXYgYm9hcmRzIGxpa2UgdGhlIFpDVTEwMiBNUFNvQywgYW5k
-IA0KPiBaQ1UxMTEgUkZTb0MuDQo+DQo+IEhhdmluZyByZWNlbnQgc3VjY2VzcyBhZGRpbmcgdGhl
-IFhpbGxpbnggRGVlcC1MZWFybmluZyBQcm9jZXNzb3IgKERQVSkgDQo+IHRvIHRoZSBGUEdBIGZh
-YnJpYywgYnVpbGRpbmcgdGhlIFZpdGlzLUFJIGxpYnJhcmllcyBpbnRvIHRoZSByb290ZnMsIA0K
-PiBhbmQgYWNjZWxlcmF0aW5nIE1MIGFwcGxpY2F0aW9ucyBvbiB2YXJpb3VzIG1vZGVscywgd2Ug
-ZGVjaWRlZCB0byBtb3ZlIA0KPiB0aGluZ3Mgb3ZlciB0byBhbiB4NDEwIHRvIHRha2UgYWR2YW50
-YWdlIG9mIHRoZSBSRlNvQyBpbiBhIGNvbXBsZXRlIA0KPiBTRFIgcHJvZHVjdC4NCj4NCj4gVGhl
-IEZQR0EgZGVzaWduIHdhcyBzdHJhaWdodCBmb3J3YXJkLCBhbmQgdGhlIE1ha2UtYmFzZWQgRlBH
-QSBidWlsZCANCj4gc2NyaXB0cywgd2hpY2ggSSBhbSB0eXBpY2FsbHkgbm90IGEgZmFuIG9mLCB3
-YXMgcXVpdGUgd2VsbCB0aG91Z2h0IA0KPiBvdXQsIHdvcmtlZCB3b25kZXJmdWxseSwgYW5kIHdh
-cyBlYXN5IHRvIG1vZGlmeSB0byBjdXN0b21pemUgdGhlIGZsb3csIA0KPiBhbmQgYWRkIGNoYW5n
-ZXMgdG8gdGhlIGJsb2NrIGRlc2lnbi4gV2l0aCBhIGxpdHRsZSBkaWdnaW5nLCBpdCB3YXMgDQo+
-IGFsc28gZmFpcmx5IHN0cmFpZ2h0Zm9yd2FyZCB0byBpbmNvcnBvcmF0ZSB0aGUgY2hhbmdlcyBp
-bnRvIHRoZSANCj4gWFNBL2RldmljZSB0cmVlIGZvciB1c2UgaW4gYnVpbGRpbmcgdGhlIHJvb3Rm
-cy4NCj4NCkl0J3MgaW50ZXJlc3RpbmcgdGhhdCA0OCB5ZWFycyBhZnRlciAiTWFrZSIgZmlyc3Qg
-YXBwZWFyZWQgaW4gUFdCIFVuaXggDQooYW5kIHRoZW4gbGF0ZXIgZWRpdGlvbnMpLCB0aGUgc29m
-dHdhcmUgREVWIHdvcmxkIGlzIHN0aWxsDQogwqAgdXNpbmcgc29tZSBmb3JtIG9mIGl0LsKgwqAg
-QmVjYXVzZSB0aGUgbmVlZCB0byBlbmNhcHN1bGF0ZSB0aGUgDQpkZXBlbmRlbmN5IGdyYXBoIEFO
-RCB0aGUgInJlY2lwZXMiIGZvciBidWlsZGluZyBhIGRlc2NlbmRhbnQNCiDCoCBmcm9tIGFuIGFu
-Y2VzdG9yIGlzIHN0aWxsIHNvbWV0aGluZyB0aGF0IGlzIG5lZWRlZC0tcGFydGljdWxhcmx5IGZv
-ciANCmJ1aWxkIGF1dG9tYXRpb24gb2YgZXZlbiBtb2Rlc3Qtc2l6ZWQgcHJvamVjdHMuDQoNCldo
-ZW4gSSB3YXMgYSB0ZWVuLCBJIGRldmVsb3BlZCBhIHRleHQgZWRpdG9yICh3aGljaCwgYXQgdGhl
-IHRpbWUsIGFsbCANCnRoZSBjb29sIGtpZHMgZGlkKSwgYW5kIEkgd2FzIGZvcnR1bmF0ZSB0aGF0
-LCBhIHllYXIgYWZ0ZXINCiDCoCBJIHN0YXJ0ZWQgaXQsICJNYWtlIiBzaG93ZWQgdXAgb24gdGhl
-IHZlcnNpb24gb2YgVW5peCB3ZSB3ZXJlIA0KdXNpbmcuwqDCoCBUaGF0IG1hZGUga2VlcGluZyB0
-cmFjayBvZiB0aGluZ3MgdmFzdGx5IGVhc2llcg0KIMKgIHRoYW4gdGhlIGFkLWhvYyBtZWNoYW5p
-c21zIEkgaGFkIGJlZW4gdXNpbmcuDQoNCkkgc3VzcGVjdCB0aGF0IHRoZSBtb2Rlcm4gaGF0cmVk
-IGZvciBNYWtlIGFuZCBpdHMgdmFyaWFudHMgaXMgYmVjYXVzZSANCm1vZGVybiBkZXZzIGFyZSB1
-c2VkIHRvIHRoZWlyIGZhdmUgSURFIGhhdmluZyBzb21lDQogwqAga2luZCBvZiBhdXRvbWF0ZWQg
-ZGVwZW5kZW5jeSB0cmFja2luZyBhbmQgcmVjaXBlIHN5c3RlbSBhcyBhIA0KYnVpbHQtaW4sIGFu
-ZCBmYWlsIHRvIHJlY29nbml6ZSB0aGUgbmVlZCB0byAqZGl2b3JjZSogdGhhdA0KIMKgIGFzcGVj
-dCBvZiB0aGluZ3MgZnJvbSB3aGF0IGFtb3VudHMgdG8gYSAicmVhbGx5IGZhbmN5IGNvZGUgDQpl
-ZGl0b3IiLsKgwqDCoCBOb2JvZHkgaW4gcHJvZHVjdGlvbiB3YW50cyB0aGUgYnVpbGQgcmVjaXBl
-IHRvIGJlDQogwqAgIk9LLCBub3cgY2xpY2sgaGVyZS7CoMKgIE9rLCBzZWxlY3QgPGZvbz4gaW4g
-dGhlIG1lbnUuwqAgVGhlbiA8YmFyPi7CoCANClRoZW4gaGl0ICdnbycuwqAgT2ssIG5vdywgZG8g
-dGhlIGZvbGxvd2luZyAxMiB0aGluZ3MuIg0KIMKgIFdoaWNoIGhhcyBiZWVuIG15IGV4cGVyaWVu
-Y2Ugd2l0aCB0aGluZ3MgbGlrZSBWUyBpbiB0aGUgcGFzdC4NCg0KT25lIGNhbiBhcmd1ZSBhYm91
-dCB0aGUgY2hvaWNlIG9mIHBhcnRpY3VsYXIgTWFrZSBkaWFsZWN0LCBidXQgZXZlbiANCnNvbGlk
-bHkgaW50byB0aGUgM3JkIGRlY2FkZSBvZiB0aGUgMjFzdCBjZW50dXJ5LCBzb21ldGhpbmcNCiDC
-oCBNYWtlLWxpa2UgaXMgc3RpbGwgYSB2aXRhbCB0b29sIGluIHByb2R1Y3Rpb24gc29mdHdhcmUg
-ZGV2ZWxvcG1lbnQuDQoNCk9rLCBJIGFkbWl0LsKgIFRoaXMgaXMgYSByYW50LsKgIEl0IGRvZXNu
-J3QgYW5zd2VyIHlvdXIgcXVlc3Rpb24gaW4gYW55IA0KdXNlZnVsIHdheS7CoMKgwqAgSSdtIGFm
-cmFpZCBJJ20gbm90IHBhcnRpY3VsYXJseSBmYW1pbGlhciB3aXRoDQogwqAgVGhlIFg0MTAgYW5k
-IEZQR0ErWW9jdG8gZGV2IGZsb3dzIGluIHBhcnRpY3VsYXIuDQoNCg0KPiBJbmNvcnBvcmF0aW5n
-IHRoZSBWaXRpcy1BSSBsaWJyYXJpZXMgYW5kIERQVSBkcml2ZXJzIGludG8gdGhlIA0KPiBLQVMv
-S2lya3N0b25lL01lbmRlci9UaXRhbml1bSBidWlsZCBzeXN0ZW0gaXMgYW5vdGhlciBzdG9yeS4g
-TG9uZyANCj4gc3Rvcnkgc2hvcnQsIGFmdGVyIHRoZSB0eXBpY2FsLCBsZW5ndGh5LCBZb2N0byBk
-ZWJ1ZyBwcm9jZXNzLCBpdCANCj4gdWx0aW1hdGVseSBmYWlscyBhdCB3aGF0IHNlZW1zIHRvIGJl
-IGEga2VybmVsIGluY29tcGF0aWJpbGl0eSBiZXR3ZWVuIA0KPiB0aGUgbWFpbmxpbmUga2VybmVs
-IGFuZCB0aGUgVml0aXMtQUkgcmVxdWlyZW1lbnRzLiBUaGlzIHBhcnRpY3VsYXIgDQo+IHRpbWUs
-IGl0IG1hbmlmZXN0cyBhcyBzeW50YXggZXJyb3JzIGluIHRoZSB6b2NsIG1vZHVsZSBjb21waWxh
-dGlvbiwgDQo+IHRob3VnaCBJIHN1c3BlY3QgaXQgaXMgYWN0dWFsbHkgYSBjYXNjYWRpbmcgc2Vy
-aWVzIG9mIGZhaWx1cmVzIHRoYXQgDQo+IGNhbiBub3QgYmUgc29sdmVkIG9uZSBhdCBhIHRpbWUu
-DQo+DQo+IFJlc2VhcmNoaW5nIHRoZSBmYWlsdXJlIG9uIHRoZSBYaWxpbnggZm9ydW0gbGVhZHMg
-dG8gYXNzZXJ0aW9ucyB0aGF0IA0KPiBjZXJ0YWluIHBhcnRzIG9mIHRoZSBWaXRpcy1BSSBsaWJy
-YXJpZXMgKGFzIHdlbGwgYXMgbWFueSBvdGhlciBYaWxpbnggDQo+IGFwcGxpY2F0aW9ucyB0aGF0
-IGV4ZXJjaXNlIGZlYXR1cmVzIG9mIHRoZSBGUEdBKSByZXF1aXJlIHRoZSBYaWxpbnggDQo+IGZv
-cmsgb2YgdGhlIExpbnV4IEtlcm5lbCwgbGludXgteGxueC4NCj4NCj4gSGFzIGFueW9uZSBhdHRl
-bXB0ZWQgdG8gc3dpdGNoIGtlcm5lbHMgaW4gYSBVSEQgc3lzdGVtLCBvciB0byANCj4gaW50ZWdy
-YXRlIHRoZSBsaW51eC14bG54IGtlcm5lbCBmZWF0dXJlcyBpbnRvIHRoZSBVSEQga2VybmVsPw0K
-Pg0KPg0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
-PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0K
-PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
-ZXR0dXMuY29tDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpU
-byB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0
-dXMuY29tCg==
+--===============3252332214069818921==
+Content-Type: multipart/alternative; boundary="000000000000912df806236d777d"
+
+--000000000000912df806236d777d
+Content-Type: text/plain; charset="UTF-8"
+
+Hi All, It's been some time since I've tried to build anything rfnoc
+related. I am trying to build an image for X310 using the latest UHD 4.7 on
+Ubuntu 22.04.
+I think I installed the necessary prerequisites including ruamel.yaml.
+
+> pip3 show ruamel.yaml
+> Name: ruamel.yaml
+> Version: 0.18.6
+> Summary: ruamel.yaml is a YAML parser/emitter that supports roundtrip
+> preservation of comments, seq/map flow style, and map key order
+> Home-page:
+> Author: Anthon van der Neut
+> Author-email: a.van.der.neut@ruamel.eu
+> License: MIT license
+> Location: /home/rynmrlw/.local/lib/python3.10/site-packages
+> Requires: ruamel.yaml.clib
+>
+When I run rfnoc_image_builder I see the following error:
+
+> rfnoc_image_builder -y x310_XG_rfnoc_image_core.yml --target X310_XG
+> --vivado-path /disk3/Xilinx/Vivado/2021.1 --image_core_name
+> x310_XG_rfnoc_image_core
+> Using FPGA directory /home/rynmrlw/Documents/PRA/uhd/fpga
+> Selected device: x310
+> Build artifacts directory already exists (contents will be overwritten).
+> Traceback (most recent call last):
+>   File "/usr/bin/rfnoc_image_builder", line 348, in <module>
+>     sys.exit(main())
+>   File "/usr/bin/rfnoc_image_builder", line 311, in main
+>     return image_builder.build_image(
+>   File
+> "/usr/lib/python3.10/site-packages/uhd/imgbuilder/image_builder.py", line
+> 391, in build_image
+>     known_modules = load_module_yamls(config_path,
+> args.get('include_paths', []))
+>   File
+> "/usr/lib/python3.10/site-packages/uhd/imgbuilder/image_builder.py", line
+> 324, in load_module_yamls
+>     known_modules = {
+>   File
+> "/usr/lib/python3.10/site-packages/uhd/imgbuilder/image_builder.py", line
+> 325, in <dictcomp>
+>     module_type: load_module_descs(module_type)
+>   File
+> "/usr/lib/python3.10/site-packages/uhd/imgbuilder/image_builder.py", line
+> 322, in load_module_descs
+>     return yaml_utils.read_yaml_definitions(*paths)
+>   File "/usr/lib/python3.10/site-packages/uhd/imgbuilder/yaml_utils.py",
+> line 340, in read_yaml_definitions
+>     data = ordered_load(stream)
+>   File "/usr/lib/python3.10/site-packages/uhd/imgbuilder/yaml_utils.py",
+> line 230, in ordered_load
+>     return yaml.load(stream, OrderedLoader)
+>   File
+> "/home/rynmrlw/.local/lib/python3.10/site-packages/ruamel/yaml/main.py",
+> line 1085, in load
+>     error_deprecation('load', 'load', arg=_error_dep_arg,
+> comment=_error_dep_comment)
+>   File
+> "/home/rynmrlw/.local/lib/python3.10/site-packages/ruamel/yaml/main.py",
+> line 1039, in error_deprecation
+>     raise AttributeError(s, name=None)
+> AttributeError:
+> "load()" has been removed, use
+>
+>   yaml = YAML(typ='rt')
+>   yaml.load(...)
+>
+> and register any classes that you use, or check the tag attribute on the
+> loaded data,
+> instead of file
+> "/usr/lib/python3.10/site-packages/uhd/imgbuilder/yaml_utils.py", line 230
+>
+>     return yaml.load(stream, OrderedLoader)
+>
+Is this a known error with a specific version of ruamel.yaml? Is there a
+specific version I should use?
+Interestingly, the manual for version 4.7 does not make any mention of
+ruamel.yaml as a prerequisite.
+https://files.ettus.com/manual/md_usrp3_build_instructions.html
+
+Thanks for your input,
+Ryan Marlow
+-- 
+Ryan L. Marlow
+R L Marlow Consulting LLC
+rlmarlow.com
+
+--000000000000912df806236d777d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hi All, It&#39;s been some time since I&#39;ve t=
+ried to build anything rfnoc related. I am trying to build an image for X31=
+0 using the latest UHD 4.7 on Ubuntu 22.04. <br></div>I think I installed t=
+he necessary prerequisites including ruamel.yaml.<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">pip3 show ruamel.yaml<br>Name: ruamel.yaml<br>V=
+ersion: 0.18.6<br>Summary: ruamel.yaml is a YAML parser/emitter that suppor=
+ts roundtrip preservation of comments, seq/map flow style, and map key orde=
+r<br>Home-page: <br>Author: Anthon van der Neut<br>Author-email: <a href=3D=
+"mailto:a.van.der.neut@ruamel.eu">a.van.der.neut@ruamel.eu</a><br>License: =
+MIT license<br>Location: /home/rynmrlw/.local/lib/python3.10/site-packages<=
+br>Requires: ruamel.yaml.clib<br></blockquote></div>When I run rfnoc_image_=
+builder I see the following error:<br><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">rfnoc_image_builder -y x310_XG_rfnoc_image_core.yml --target X=
+310_XG --vivado-path /disk3/Xilinx/Vivado/2021.1 --image_core_name x310_XG_=
+rfnoc_image_core<br>Using FPGA directory /home/rynmrlw/Documents/PRA/uhd/fp=
+ga<br>Selected device: x310<br>Build artifacts directory already exists (co=
+ntents will be overwritten).<br>Traceback (most recent call last):<br>=C2=
+=A0 File &quot;/usr/bin/rfnoc_image_builder&quot;, line 348, in &lt;module&=
+gt;<br>=C2=A0 =C2=A0 sys.exit(main())<br>=C2=A0 File &quot;/usr/bin/rfnoc_i=
+mage_builder&quot;, line 311, in main<br>=C2=A0 =C2=A0 return image_builder=
+.build_image(<br>=C2=A0 File &quot;/usr/lib/python3.10/site-packages/uhd/im=
+gbuilder/image_builder.py&quot;, line 391, in build_image<br>=C2=A0 =C2=A0 =
+known_modules =3D load_module_yamls(config_path, args.get(&#39;include_path=
+s&#39;, []))<br>=C2=A0 File &quot;/usr/lib/python3.10/site-packages/uhd/img=
+builder/image_builder.py&quot;, line 324, in load_module_yamls<br>=C2=A0 =
+=C2=A0 known_modules =3D {<br>=C2=A0 File &quot;/usr/lib/python3.10/site-pa=
+ckages/uhd/imgbuilder/image_builder.py&quot;, line 325, in &lt;dictcomp&gt;=
+<br>=C2=A0 =C2=A0 module_type: load_module_descs(module_type)<br>=C2=A0 Fil=
+e &quot;/usr/lib/python3.10/site-packages/uhd/imgbuilder/image_builder.py&q=
+uot;, line 322, in load_module_descs<br>=C2=A0 =C2=A0 return yaml_utils.rea=
+d_yaml_definitions(*paths)<br>=C2=A0 File &quot;/usr/lib/python3.10/site-pa=
+ckages/uhd/imgbuilder/yaml_utils.py&quot;, line 340, in read_yaml_definitio=
+ns<br>=C2=A0 =C2=A0 data =3D ordered_load(stream)<br>=C2=A0 File &quot;/usr=
+/lib/python3.10/site-packages/uhd/imgbuilder/yaml_utils.py&quot;, line 230,=
+ in ordered_load<br>=C2=A0 =C2=A0 return yaml.load(stream, OrderedLoader)<b=
+r>=C2=A0 File &quot;/home/rynmrlw/.local/lib/python3.10/site-packages/ruame=
+l/yaml/main.py&quot;, line 1085, in load<br>=C2=A0 =C2=A0 error_deprecation=
+(&#39;load&#39;, &#39;load&#39;, arg=3D_error_dep_arg, comment=3D_error_dep=
+_comment)<br>=C2=A0 File &quot;/home/rynmrlw/.local/lib/python3.10/site-pac=
+kages/ruamel/yaml/main.py&quot;, line 1039, in error_deprecation<br>=C2=A0 =
+=C2=A0 raise AttributeError(s, name=3DNone)<br>AttributeError: <br>&quot;lo=
+ad()&quot; has been removed, use<br><br>=C2=A0 yaml =3D YAML(typ=3D&#39;rt&=
+#39;)<br>=C2=A0 yaml.load(...)<br><br>and register any classes that you use=
+, or check the tag attribute on the loaded data,<br>instead of file &quot;/=
+usr/lib/python3.10/site-packages/uhd/imgbuilder/yaml_utils.py&quot;, line 2=
+30<br><br>=C2=A0 =C2=A0 return yaml.load(stream, OrderedLoader)<br></blockq=
+uote><div><div><div>Is this a known error with a specific version of ruamel=
+.yaml? Is there a specific version I should use?<br></div><div>Interestingl=
+y, the manual for version 4.7 does not make any mention of ruamel.yaml as a=
+ prerequisite. <a href=3D"https://files.ettus.com/manual/md_usrp3_build_ins=
+tructions.html">https://files.ettus.com/manual/md_usrp3_build_instructions.=
+html</a><br><br></div><div>Thanks for your input,</div><div>Ryan Marlow<br>=
+</div><div><span class=3D"gmail_signature_prefix">-- </span><br><div dir=3D=
+"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=
+=3D"ltr"><div>Ryan L. Marlow</div><div>R L Marlow Consulting LLC</div><div>=
+<a href=3D"http://rlmarlow.com" target=3D"_blank">rlmarlow.com</a><br></div=
+></div></div></div></div></div></div>
+
+--000000000000912df806236d777d--
+
+--===============3252332214069818921==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============3252332214069818921==--
