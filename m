@@ -2,149 +2,135 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5897898E78D
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Oct 2024 02:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB1298E7AC
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Oct 2024 02:17:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 71AA538598B
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Oct 2024 20:09:12 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 51B72385986
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Oct 2024 20:17:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1727914152; bh=yNul1g0O/9uCEeRACV38wrnbApJgT3ieCgZ4zbkmQ88=;
-	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
+	t=1727914678; bh=S9xPX53llPMnQ3v/+IpuDqAiKY7zTBcK/aqSCMgJ3Q0=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=N/CB1tUHiQk3hSpNnLLjWuXd4GZ2OHYMzEuOhozXkrGp9oBMWqj1vIbsPWB4SNY/5
-	 KK1niJmeuu6BaXuvi8XH5tfswSekVDl/VBX44e9D0jZqBlmkicXD0LhC+jjRvammDR
-	 9ZzKqohGXvRSPbk658QcoVzFD9VH8BJtM6e9rJviufZu0dkMFRU37NrXnEV9LGRddM
-	 BZL3hmVmwoNpM70PF7oTXbTS3BS61besSLqBoUR7lyl5gROsZFWFyUnGy2sU9KBb98
-	 OvaAaWEtURkah1+dgSenct55zLzL5uR8VOE79RDUgr3koGF5qHHM3WXQC0Wh0Xy7Qw
-	 VCjTR3Q0ll+4Q==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2F50C38590B
-	for <usrp-users@lists.ettus.com>; Wed,  2 Oct 2024 20:08:15 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1727914095; bh=mfk4lXrBOYuGWKgeVoiNqta+sYPKpSn/b5/pflaXUus=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=ufWYuYVmZkYe5phColsQQM78oTfAOZsapKLKMkHGCH9eP7l8vW16IvKVi5f4VS0Tv
-	 +gPeTgiKXlgZBqFaJLKSPXI/S/pHwD6I9YVZQhrK3yd5N/7WqD/BF1wOYHvHqqKX8B
-	 BQ0W5hWnUXP7yGhJTji5PdJMI7uUdvpxG0sDHW3bNJYd7dgVmt5CH3zmOR8AS0Ve0o
-	 W6eYyj6IQOIBa0bb+iH+urokFWpPpJRh5KlTZH5fgkCMXFYhyh3eJlTrADKqMRgdJe
-	 GH1ulQTsVxV2qyrKa1tpEsMCsi2ElNA6zW8ozqNT/5mi61mToFThVhAqyX8IeUR2cg
-	 CzbQarkuWDifw==
-Date: Thu, 3 Oct 2024 00:08:15 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <b1YtrmPd3RxWXd1CWtUiBdoSKO9c3EXoVd33KLw83U@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: e16da4a1-c2b1-42b1-85cd-b38c251bc94f@gmail.com
+	b=LNPu32ds29iJkpGcDQq6e01pZ9GBP6AwuFc4x20J3LIoAoq0tKK3ao2NWkkE4v3Z2
+	 ZoV6Lcc5LyrNOu/aV7fzuGi8HCwfU4FBWhbt87reGuYHM209+7Uz22hZ5kpLj3TDSw
+	 K+56qxITBGOqxIjBW/UFg21JGtwU3EIM0Un2sDUBmWhGqxzPJDNUDFjwMs059OKYTI
+	 b8xP89bJoljAc0Ea5N069O845E/WQKNTHIxymMSHUjpL0x4I64fe8vZroGJ6CIPZRU
+	 PMx2dDWjqGK/WZg24zrvmHDVwtOKOhmvfaeRYfcs6rwkxVaUYefWcJfU3/s1D4vTvu
+	 1YB5KJZ2/9aAw==
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0B8DF385852
+	for <usrp-users@lists.ettus.com>; Wed,  2 Oct 2024 20:16:55 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aqiRIz0o";
+	dkim-atps=neutral
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6cb27e974ceso2795166d6.1
+        for <usrp-users@lists.ettus.com>; Wed, 02 Oct 2024 17:16:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727914615; x=1728519415; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MVDSr22WiEwoCDv0yty869aFFYZsCtczD9hG/C5p0nk=;
+        b=aqiRIz0owbHIj4SbNjL+2IW6QtXcucUtk1icPdKH31y7PH6ugxAjdhva778WV0zhos
+         JgZ5bpeqhY1FVI7cEy0Tcg3ZMKzvkYIfDTX0B0KZF7dwO4Pd7lQyPzsCygsB6vKHTB8P
+         q3rh+z4F64SbRu+1Dygheae/8S8UuB5zMCW9N0CsrHPaj7/FtqbJpyGzo2NjMTcmwtW8
+         WKf6iajX2o63wCwRPbhZSv/g/PK1R2xKnNvrgrFsIZYOBVg0aen94GsQngq97ywOSDKB
+         QPSbZj1E2+OIEhheGe2c58zEIE1Smw8Y1QADcxe9kvdZ2FbZELj/AizFLHJijXAq4bhS
+         pOiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727914615; x=1728519415;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MVDSr22WiEwoCDv0yty869aFFYZsCtczD9hG/C5p0nk=;
+        b=RX3fj7k/1nsXdsx76Gh5woMmJ2kLWG0nRAIMR05LuQ/IM1ftVhiWXoMyw6OzppfvXP
+         em5sT4acbbSCJIzLx+BB1fWl/GfcQC5JqZEExk1EZbvyemd+9WmEvujbFt37RsszLsJN
+         RlcfyzNuWpSESKGS5utphkiyoTUncWsIMm2PrYlSjKV7v1yN+b9ZbMhuMphWVEIJ0Oer
+         LmmuSyV0oci7Gjvygb/G62ZU/2//CyNCdh5of0YhWETXDaP+F5FYUKHOB6pGbCe2QCmU
+         J0Fz9GMMzUaKO6PUtq/UIBZL+n+S8Z6vtc5x+kFMYmWdgG3A+kSFU9intbBDHbgAAPpD
+         +5eg==
+X-Gm-Message-State: AOJu0YwDbs0LYu98VBhpYKlCfqB7KWAYT6UWFHgwRjxhDS8HcrXuTWhm
+	tcIuW3ly/0yP4QAQf1rwsP6PcPLlk0R5dSzE9Dz/xMxU6S5+IICCTzdFdw==
+X-Google-Smtp-Source: AGHT+IHjCoi9F8NYvl0kwC0rF/DiylXCze3xJTswi6OQHFpHjNP05+DppqdjBl83QHZ6+Ry+Ga66iA==
+X-Received: by 2002:a05:6214:4610:b0:6cb:3839:2016 with SMTP id 6a1803df08f44-6cb81a0ee0dmr67163736d6.24.1727914615021;
+        Wed, 02 Oct 2024 17:16:55 -0700 (PDT)
+Received: from [192.168.2.170] (bras-base-smflon1825w-grc-05-174-88-53-166.dsl.bell.ca. [174.88.53.166])
+        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6cb935d6286sm562596d6.46.2024.10.02.17.16.54
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Oct 2024 17:16:54 -0700 (PDT)
+Message-ID: <f2cfcd17-eaa6-46c0-9243-e56c848d3a4c@gmail.com>
+Date: Wed, 2 Oct 2024 20:16:53 -0400
 MIME-Version: 1.0
-Message-ID-Hash: QEKNMJGX4MGRRB5LERG2T73YJEEDQD6T
-X-Message-ID-Hash: QEKNMJGX4MGRRB5LERG2T73YJEEDQD6T
-X-MailFrom: mruane@silveredge-gs.com
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <b1YtrmPd3RxWXd1CWtUiBdoSKO9c3EXoVd33KLw83U@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <b1YtrmPd3RxWXd1CWtUiBdoSKO9c3EXoVd33KLw83U@lists.ettus.com>
+Message-ID-Hash: UZXOTZHG5I6MBGP7CG2EXHUD6X47R4QJ
+X-Message-ID-Hash: UZXOTZHG5I6MBGP7CG2EXHUD6X47R4QJ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: KAS kirkstone build of ni-titanium-rev5 on x410 with Vitis-AI Library and DPU drivers: Mainline kernel incompatible with zocl DPU driver; possible to use linux-xlnx kernel and make titanium-related additions?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QEKNMJGX4MGRRB5LERG2T73YJEEDQD6T/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UZXOTZHG5I6MBGP7CG2EXHUD6X47R4QJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: mruane--- via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: mruane@silveredge-gs.com
-Content-Type: multipart/mixed; boundary="===============6591633978259455469=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============6591633978259455469==
-Content-Type: multipart/alternative;
- boundary="b1_b1YtrmPd3RxWXd1CWtUiBdoSKO9c3EXoVd33KLw83U"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_b1YtrmPd3RxWXd1CWtUiBdoSKO9c3EXoVd33KLw83U
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi Marcus!=C2=A0 =C2=A0
-
-Hahaha=C2=A0 I thoroughly enjoyed the rant!=C2=A0 =C2=A0 I think you are =
-correct about Make and its variations.=C2=A0 =C2=A0Indispensable seems an=
- understatement for something that is so pervasive in software developmen=
-t.=C2=A0 =C2=A0As I mentioned, I am primarily an FPGA developer.=C2=A0 =C2=
-=A0At some point, when the Zynq and ZynqMP SoCs were released, the softwa=
-re community seemed to (initially, at least) scatter when they saw "FPGA"=
- in the name, and I found myself inadvertently "volun-told" to be respons=
-ible for building Linux releases with custom drivers for my hardware. :-)=
-=C2=A0 It was horrifying! :-)
-
-You don't see Make involved in FPGA builds as frequently as you'd expect,=
- considering the popularity of SoCs these days.=C2=A0 =C2=A0As a self-pro=
-claimed "Crusty Old Hardware Guy", I'm not permitted to actually say out =
-loud that I think Make is a good addition to the FPGA development flow...=
- ;-)=C2=A0 ...but I have to admit that I've been pleasantly surprised by =
-how easily all aspects of a build can be automated, once the initial setu=
-p is done.
-
-I think what keeps me from jumping in completely, is that many aspects of=
- FPGA development are still very much grounded in Hardware Development pr=
-inciples and techniques, processes in which a GUI is supremely helpful.=C2=
-=A0 =C2=A0At the end of the day, I still need to see a schematic, block d=
-iagram, or wave-forms.=C2=A0 =C2=A0To that end, however, with the x410 UH=
-D build, I was impressed by how straight-forward it was to modify the Mak=
-e files and build Tcl scripts to create the project, build the IP, and op=
-en it in the GUI for me to inspect and continue in my normal FPGA-dev flo=
-w.
-
-Hahaha=C2=A0 =C2=A0I tried to keep this short, but I apparently reply to =
-rants with...more ranting.=C2=A0 =C2=A0:-)
-
-Thanks for the reply!
-
-Mike
-
---b1_b1YtrmPd3RxWXd1CWtUiBdoSKO9c3EXoVd33KLw83U
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Marcus!&nbsp; &nbsp;</p><p>Hahaha&nbsp; I thoroughly enjoyed the rant=
-!&nbsp; &nbsp; I think you are correct about Make and its variations.&nbsp;=
- &nbsp;Indispensable seems an understatement for something that is so perva=
-sive in software development.&nbsp; &nbsp;As I mentioned, I am primarily an=
- FPGA developer.&nbsp; &nbsp;At some point, when the Zynq and ZynqMP SoCs w=
-ere released, the software community seemed to (initially, at least) scatte=
-r when they saw "FPGA" in the name, and I found myself inadvertently "volun=
--told" to be responsible for building Linux releases with custom drivers fo=
-r my hardware. :-)&nbsp; It was horrifying! :-)</p><p>You don't see Make in=
-volved in FPGA builds as frequently as you'd expect, considering the popula=
-rity of SoCs these days.&nbsp; &nbsp;As a self-proclaimed "Crusty Old Hardw=
-are Guy", I'm not permitted to actually say out loud that I think Make is a=
- good addition to the FPGA development flow... ;-)&nbsp; ...but I have to a=
-dmit that I've been pleasantly surprised by how easily all aspects of a bui=
-ld can be automated, once the initial setup is done.</p><p>I think what kee=
-ps me from jumping in completely, is that many aspects of FPGA development =
-are still very much grounded in Hardware Development principles and techniq=
-ues, processes in which a GUI is supremely helpful.&nbsp; &nbsp;At the end =
-of the day, I still need to see a schematic, block diagram, or wave-forms.&=
-nbsp; &nbsp;To that end, however, with the x410 UHD build, I was impressed =
-by how straight-forward it was to modify the Make files and build Tcl scrip=
-ts to create the project, build the IP, and open it in the GUI for me to in=
-spect and continue in my normal FPGA-dev flow.</p><p>Hahaha&nbsp; &nbsp;I t=
-ried to keep this short, but I apparently reply to rants with...more rantin=
-g.&nbsp; &nbsp;:-)</p><p>Thanks for the reply!</p><p>Mike</p>
-
---b1_b1YtrmPd3RxWXd1CWtUiBdoSKO9c3EXoVd33KLw83U--
-
---===============6591633978259455469==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6591633978259455469==--
+T24gMDIvMTAvMjAyNCAyMDowOCwgbXJ1YW5lLS0tIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KPg0K
+PiBIaSBNYXJjdXMhDQo+DQo+IEhhaGFoYcKgIEkgdGhvcm91Z2hseSBlbmpveWVkIHRoZSByYW50
+IcKgIMKgIEkgdGhpbmsgeW91IGFyZSBjb3JyZWN0IA0KPiBhYm91dCBNYWtlIGFuZCBpdHMgdmFy
+aWF0aW9ucy7CoCDCoEluZGlzcGVuc2FibGUgc2VlbXMgYW4gdW5kZXJzdGF0ZW1lbnQgDQo+IGZv
+ciBzb21ldGhpbmcgdGhhdCBpcyBzbyBwZXJ2YXNpdmUgaW4gc29mdHdhcmUgZGV2ZWxvcG1lbnQu
+wqAgwqBBcyBJIA0KPiBtZW50aW9uZWQsIEkgYW0gcHJpbWFyaWx5IGFuIEZQR0EgZGV2ZWxvcGVy
+LsKgIMKgQXQgc29tZSBwb2ludCwgd2hlbiB0aGUgDQo+IFp5bnEgYW5kIFp5bnFNUCBTb0NzIHdl
+cmUgcmVsZWFzZWQsIHRoZSBzb2Z0d2FyZSBjb21tdW5pdHkgc2VlbWVkIHRvIA0KPiAoaW5pdGlh
+bGx5LCBhdCBsZWFzdCkgc2NhdHRlciB3aGVuIHRoZXkgc2F3ICJGUEdBIiBpbiB0aGUgbmFtZSwg
+YW5kIEkgDQo+IGZvdW5kIG15c2VsZiBpbmFkdmVydGVudGx5ICJ2b2x1bi10b2xkIiB0byBiZSBy
+ZXNwb25zaWJsZSBmb3IgYnVpbGRpbmcgDQo+IExpbnV4IHJlbGVhc2VzIHdpdGggY3VzdG9tIGRy
+aXZlcnMgZm9yIG15IGhhcmR3YXJlLiA6LSnCoCBJdCB3YXMgDQo+IGhvcnJpZnlpbmchIDotKQ0K
+Pg0KPiBZb3UgZG9uJ3Qgc2VlIE1ha2UgaW52b2x2ZWQgaW4gRlBHQSBidWlsZHMgYXMgZnJlcXVl
+bnRseSBhcyB5b3UnZCANCj4gZXhwZWN0LCBjb25zaWRlcmluZyB0aGUgcG9wdWxhcml0eSBvZiBT
+b0NzIHRoZXNlIGRheXMuIMKgQXMgYSANCj4gc2VsZi1wcm9jbGFpbWVkICJDcnVzdHkgT2xkIEhh
+cmR3YXJlIEd1eSIsIEknbSBub3QgcGVybWl0dGVkIHRvIA0KPiBhY3R1YWxseSBzYXkgb3V0IGxv
+dWQgdGhhdCBJIHRoaW5rIE1ha2UgaXMgYSBnb29kIGFkZGl0aW9uIHRvIHRoZSBGUEdBIA0KPiBk
+ZXZlbG9wbWVudCBmbG93Li4uIDstKcKgIC4uLmJ1dCBJIGhhdmUgdG8gYWRtaXQgdGhhdCBJJ3Zl
+IGJlZW4gDQo+IHBsZWFzYW50bHkgc3VycHJpc2VkIGJ5IGhvdyBlYXNpbHkgYWxsIGFzcGVjdHMg
+b2YgYSBidWlsZCBjYW4gYmUgDQo+IGF1dG9tYXRlZCwgb25jZSB0aGUgaW5pdGlhbCBzZXR1cCBp
+cyBkb25lLg0KPg0KPiBJIHRoaW5rIHdoYXQga2VlcHMgbWUgZnJvbSBqdW1waW5nIGluIGNvbXBs
+ZXRlbHksIGlzIHRoYXQgbWFueSBhc3BlY3RzIA0KPiBvZiBGUEdBIGRldmVsb3BtZW50IGFyZSBz
+dGlsbCB2ZXJ5IG11Y2ggZ3JvdW5kZWQgaW4gSGFyZHdhcmUgDQo+IERldmVsb3BtZW50IHByaW5j
+aXBsZXMgYW5kIHRlY2huaXF1ZXMsIHByb2Nlc3NlcyBpbiB3aGljaCBhIEdVSSBpcyANCj4gc3Vw
+cmVtZWx5IGhlbHBmdWwuwqAgwqBBdCB0aGUgZW5kIG9mIHRoZSBkYXksIEkgc3RpbGwgbmVlZCB0
+byBzZWUgYSANCj4gc2NoZW1hdGljLCBibG9jayBkaWFncmFtLCBvciB3YXZlLWZvcm1zLiDCoFRv
+IHRoYXQgZW5kLCBob3dldmVyLCB3aXRoIA0KPiB0aGUgeDQxMCBVSEQgYnVpbGQsIEkgd2FzIGlt
+cHJlc3NlZCBieSBob3cgc3RyYWlnaHQtZm9yd2FyZCBpdCB3YXMgdG8gDQo+IG1vZGlmeSB0aGUg
+TWFrZSBmaWxlcyBhbmQgYnVpbGQgVGNsIHNjcmlwdHMgdG8gY3JlYXRlIHRoZSBwcm9qZWN0LCAN
+Cj4gYnVpbGQgdGhlIElQLCBhbmQgb3BlbiBpdCBpbiB0aGUgR1VJIGZvciBtZSB0byBpbnNwZWN0
+IGFuZCBjb250aW51ZSBpbiANCj4gbXkgbm9ybWFsIEZQR0EtZGV2IGZsb3cuDQo+DQo+IEhhaGFo
+YcKgIMKgSSB0cmllZCB0byBrZWVwIHRoaXMgc2hvcnQsIGJ1dCBJIGFwcGFyZW50bHkgcmVwbHkg
+dG8gcmFudHMgDQo+IHdpdGguLi5tb3JlIHJhbnRpbmcuwqAgwqA6LSkNCj4NCj4gVGhhbmtzIGZv
+ciB0aGUgcmVwbHkhDQo+DQo+IE1pa2UNCj4NCkkgd2lsbCBvYnNlcnZlIHRoYXQgbWFueSBvZiB0
+aGUgZG9jdHJpbmVzIHdoaWNoIHB1cmVseS1zb2Z0d2FyZSBwZW9wbGUgDQp0YWtlIGZvciBncmFu
+dGVkLCBsaWtlIGFic3RyYWN0aW9uIGFuZCBtb2R1bGFyaXR5LCB0ZW5kDQogwqAgdG8gYmUgZW50
+aXJlbHktYWJzZW50IGZyb20gdGhlIHB1cmVseS1oYXJkd2FyZSBtaW5kc2V0LsKgIFRoZXJlJ3Mg
+Z29vZCANCnJlYXNvbnMgZm9yIHRoaXMuwqDCoCBTb2Z0d2FyZSBwZW9wbGUgd2FudCB0byBhYnN0
+cmFjdCBhd2F5DQogwqAgZnJvbSB0aGUgaW1wbGVtZW50YXRpb24gZGV0YWlscywgd2hlcmVzIHN0
+cmljdGx5IGhhcmR3YXJlIHBlb3BsZSwgDQpqdXN0IHdhbnQgdG8gaW1wbGVtZW50IHRoZSBkZXRh
+aWxzLsKgwqAgRlBHQSAic3R1ZmYiIGlzIGluIHRoZQ0KIMKgIGFldGhlcmlhbCByZWFsbSB0aGF0
+IGV4aXN0cyBiZXR3ZWVuIHRoZSB0d28uLi4NCg0KTWFrZSBlbWVyZ2VkIGZyb20gdGhlIG5lY2Vz
+c2l0aWVzIG9mIG1hbmFnaW5nIG1vZHVsYXIgc29mdHdhcmUsIHdoaWNoIA0KbmVjZXNzYXJpbHkg
+bWVhbnQgYSBmbG90aWxsYSBvZiBzb3VyY2UgZmlsZXMsIGV0Yy4KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
+byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
