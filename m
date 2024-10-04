@@ -2,115 +2,273 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C08598FA08
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 00:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C859498FB95
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 02:36:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7ABF938596B
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Oct 2024 18:45:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B2862385956
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Oct 2024 20:35:59 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1727995539; bh=pRqSYol5+GfXsdSBrh+RWSb3kZH0qxGgQHnoHOrmh94=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=YjZh2rrYKQLEy1u1/oFeRo85YQjbiyh2WYaTe6NlDVKAcFEMJppcs+9/yegAz0DuO
-	 vEFIiCr4YOPI2hIg9yBLVDMtD4cHtQeARpF2N5Q0+q2N3skwMiwjg5zpckoeq98ciG
-	 FYa2h164Wl8q4up78tW9NsS3BkambitELDVnz6vNCpm8D6OVttseBq84IdySgQR4ic
-	 Z1bZ5tNCrfubN/WyED/HfosrIdcmVW14acFEoTHPE5vtDLXqI8gdHWztI0iRp23/+s
-	 ZoXTjDTymvpsflkMWXgAsGBsCjakZstFn6CyzwMleCgZMR8thkdWdcnd8JfI9R8+/4
-	 5YOVovHaftoyA==
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id 931A7385839
-	for <usrp-users@lists.ettus.com>; Thu,  3 Oct 2024 18:44:42 -0400 (EDT)
+	t=1728002159; bh=OG/uwvCEYVAzcj3O68frcp+ElzF5awhLcftWXQkzW9Y=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=Wm0et93SUq0lzUSw+w1Ny/YYbLv3g5ByF9XlI6czIiH+lYVxKR+PTjpQG+mFckYL/
+	 Q1d/PM7vr63I5XMZFB/AgSFbNJwHiw8PzAGps1t9mGaIFy9hfyaiGcSOidnNtyTar+
+	 mjHaHlRJieoPEq/X2eUjy+xdzoHeqxv9M5NVD/UXLqBP+3idQpUcyXl+e7r0NwDk9S
+	 xLZlAHW30Gv5besMzTU8l8RB0x34JKJ35KcF/TStD1Dxapah9NwnMbGOaBggXCLkAa
+	 1JsgNafF9EcN+3/k2UroReSJU89wLGo1KCIIeVSs4h4/0v2uqf/e18tBpxRFpp9ttW
+	 bh5Q1qC2y4x+A==
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id EC1C038592B
+	for <usrp-users@lists.ettus.com>; Thu,  3 Oct 2024 20:35:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="U7GBg1Zj";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="g0lzzmUq";
 	dkim-atps=neutral
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4581ec0e00eso10386541cf.3
-        for <usrp-users@lists.ettus.com>; Thu, 03 Oct 2024 15:44:42 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5c88b5c375fso1745257a12.3
+        for <usrp-users@lists.ettus.com>; Thu, 03 Oct 2024 17:35:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727995482; x=1728600282; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=q5NGzXmO8dE+vJtFXlclO/YgJkJt+7kYNXoZdf/wZTw=;
-        b=U7GBg1ZjiJHuP2OfJNBVkUxV/t5KptbIRbOF4ICXuPsOBrf5TYiK2yPsJ9JcNY5Hy8
-         ZjgfjbnDOHza50iS6KWrT9J8GyYoPWqI37bnIINmLrDe2VjTopR89rPcgn9oZ5di5iwq
-         ZRF98Z8ahuADI3D2bR67JqbD46Yx7wKL5pIOhR6QPZxIZ4LvFWj6M9s0eHG6E7kWZqgk
-         mx0BdBCm/PpU4IXnpV8XsbK6BeMiB/ah3iYCJt19wJXBmgpzIr7iy+Vbprm6dmft8a0y
-         cUAjH7pN2pn+gcmgv6NawVJhJ7gO2TT39mjKy8FbzqWOiB7SrpZN17mLrfy6/JRwXZ+Q
-         /uqQ==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1728002102; x=1728606902; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=oMuIGjz9H+YMsF6h99wcU3yjrk20h+2dPylZneUjEyc=;
+        b=g0lzzmUqHmweYujNOAwtBz86fVWVATmD03ciVstTs3zEMajQTzYYToQuwUsfugbB/E
+         eqoKtaVSNhEjHiP6W3KzPIpSE4qcqfmgQnsX8yutoT7OPcsqKyEmQm6rTdE/qZ9UkWKW
+         +SEp0/k1BmdSlQ2Iv/oKHYrxWrANM2TY7r0L8ZjezoBVP52CS7Ztr7cYWp4olPW9xMDE
+         bNv7gMVXhNrzJwa8eT9VCV+ceDf+PYZ0Ih3ez4M3sR+cXvA9bleW8nrKpsnPVoZRrEyY
+         d9azYViOBpaQGB9c7XmD89zpFQlmeHNZ6yWCacZqAom53XcBwnuXSUc6sh7oRt8hiljn
+         fBmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727995482; x=1728600282;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q5NGzXmO8dE+vJtFXlclO/YgJkJt+7kYNXoZdf/wZTw=;
-        b=A9rVIo9ytP8YfWtyf2QV1Nbyhnqyy1MP77nruuLxbQriu+1LHN8fyLV1n4kN5MYY+E
-         Qo83ZobX7y0j8ZsVEDeSoc3ZqRcma5V9++lKiDtoJeLwH5Ns4X3rkcHIDdgBG4lK5UMz
-         gnBCeJ7fFXHzsoXFaz+POrAou2ys+qfmyUi44HgDmSJ2HmwdFkquWLSGQ/mFSxHTWVED
-         RzgJXTfjKUqvnyoaR/IgbZh6Uu/udsKPuMNRqyqNBY7hdR/HYM7oaANSdhJ4KQ3p56nE
-         PfkxqqTNkRe2nqMwgJArUS1RslNJiRVXVtOOQE+UYysabb5+Av1Or3gbgbMPaNcDJF2W
-         E8YQ==
-X-Gm-Message-State: AOJu0Yxz8fra1/G1dszTwHbs/GAQyBiU0P6PSMZL35ekn+xXGDHX3ujT
-	9IYUnC9IH77WRCfeS0WTDdfffHCoNQTCZQpwtSiBzAMDsxYD/t8yzTXEwg==
-X-Google-Smtp-Source: AGHT+IHuoKbInFgNDwpVD9Dbhfw3y97U6YjVYKKmMn+435/bkXSL6Xwbr2OkQa7zWYCle2EvYgBoQw==
-X-Received: by 2002:a05:622a:a18:b0:456:6203:e582 with SMTP id d75a77b69052e-45d9ba3c079mr13482021cf.14.1727995481745;
-        Thu, 03 Oct 2024 15:44:41 -0700 (PDT)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-05-174-88-53-166.dsl.bell.ca. [174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6cb937d4cb0sm10302146d6.92.2024.10.03.15.44.41
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2024 15:44:41 -0700 (PDT)
-Message-ID: <0c080348-fe8d-4ea8-8a6f-66f9dbd2ee38@gmail.com>
-Date: Thu, 3 Oct 2024 18:44:40 -0400
+        d=1e100.net; s=20230601; t=1728002102; x=1728606902;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oMuIGjz9H+YMsF6h99wcU3yjrk20h+2dPylZneUjEyc=;
+        b=BTpMWOc8VpzUP0o7XehTQOGCSgxsAqxEYe949NAee1nQQ05jUDj6reJup9NQBEEiwE
+         Q3p0nlG2QXKHP1HD+AH/WNkPbktS6I0kPK9HUpPLzDKYEMG285FCYl/iNSykvI4/GiJ6
+         gjQjFkdW6xcAQRWE+VkYkyDDElJYuUwwjdE0QpZUtTMkmpd2Y5oRQ7fzxkJoxshzytJ1
+         wRki/2R4N7WbvfsLoQ+hWMZ77QOrcGi6ZXju6bAPt0AZix0jAk24yN5cNo+1AScMWahU
+         OEn/Y4E0T7givrfCDcz6/iUXhhNrU/8PVVzp/ATcUmmi7GyivPxtbLvC3dnzDQ7WMJG6
+         Ljuw==
+X-Gm-Message-State: AOJu0YwUWtAAfvAI/AnGt45zk2V6STgDLrTN5NgGPtBlpX3rbgH16LVm
+	eUhdAIx2OEsk1IOgD3DzCe0C8n8UGw/IVss2SsilNc3HHRXEQk681/mHMGQY/W73dp46uzDl0kR
+	BWgC5yyN+SnS0bUNJ2MDKPEiMIJHR0HMPTYh10sZF
+X-Google-Smtp-Source: AGHT+IGtujGwKO6eTKW99OTU3wsdP9+t3+LAjInrlDzWaQakAGnzvsQBaup826HfdNXm6j3X/ftpzUCz/+2LCHjEcWI=
+X-Received: by 2002:a17:907:e692:b0:a86:96d1:d1f with SMTP id
+ a640c23a62f3a-a991bd1a91amr85099666b.26.1728002101670; Thu, 03 Oct 2024
+ 17:35:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <4uipCyETSBEN8uOTi8PicBTBzyP5jkyBhPOimT1raWk@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <4uipCyETSBEN8uOTi8PicBTBzyP5jkyBhPOimT1raWk@lists.ettus.com>
-Message-ID-Hash: Y3H6MOTWPYNT62IBW5SFJS66Y4YPENEI
-X-Message-ID-Hash: Y3H6MOTWPYNT62IBW5SFJS66Y4YPENEI
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAEL-RA3vkebzVmq8+d6YuQa4z4u1eGo-osZ9gYeby8vq3Q0+hw@mail.gmail.com>
+In-Reply-To: <CAEL-RA3vkebzVmq8+d6YuQa4z4u1eGo-osZ9gYeby8vq3Q0+hw@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Thu, 3 Oct 2024 19:34:45 -0500
+Message-ID: <CAFche=hiPwN50gH=G1NLQ9psiL9BV=1sCe7-HXkaeinVT_=9Yw@mail.gmail.com>
+To: hui cj <cjh416593819@gmail.com>
+Message-ID-Hash: AK6VLZENZHZRDJQLGDL62VF4E7O3R4IZ
+X-Message-ID-Hash: AK6VLZENZHZRDJQLGDL62VF4E7O3R4IZ
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Octoclock CDA-2990 produces no signals
+Subject: [USRP-users] Re: RFNoC Replay module (DRAM to PC)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y3H6MOTWPYNT62IBW5SFJS66Y4YPENEI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AK6VLZENZHZRDJQLGDL62VF4E7O3R4IZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4086254552211559519=="
 
-T24gMDMvMTAvMjAyNCAxODoyNywgc2hhcGtpcXVhcnJ5QGdtYWlsLmNvbSB3cm90ZToNCj4NCj4g
-RGVhciBNYXJjdXMsDQo+DQo+IFRoYW5rcyBmb3IgdGhlIHJlcGx5LiBJIGhhdmUgdHdvIG9mIHRo
-ZXNlIE9jdG9jbG9ja3MgYW5kIHRoZSBzZWNvbmQgDQo+IG9uZSBpcyBkb2luZyBleGFjdGx5IHdo
-YXQgSSBzYWlkLiBJdCBpcyBibGlua2luZyB0aGUgUFBTIGFuZCBzZW5kaW5nIGEgDQo+IDEwTUh6
-IHNxdWFyZSB3YXZlIHRvIGFuIFNPQ+KAmXMgUkVGX0NMSy4gVGhpcyBpcyBoYXBwZW5pbmcgcmln
-aHQgbm93LCBhIA0KPiBmZXcgZmVldCB0byBteSByaWdodC4gVGhlc2UgYXJlIGlkZW50aWNhbCBt
-b2RlbHMuIEkgY2FuIHRha2UgYSBwaG90byANCj4gaWYgeW91IGxpa2UuDQo+DQo+IE9uIHRoZSBm
-cm96ZW4vYnJva2VuIHVuaXQsIHRoZXJlIGlzIGEgR1BTRE8gZGVjYWwgc3RpY2tlciBvbiB0aGUg
-YmFjayANCj4gc2lkZS4gV2UgaGF2ZSBiZWVuIHVzaW5nIGl0IGZvciBpdHMgUFBTIGFuZCAxME1I
-eiBvdXRwdXQgc2lnbmFscyBmb3IgDQo+IG1hbnkgd2Vla3Mgbm93LiBCb3RoIHNpZ25hbHMgYXBw
-ZWFyIGNsZWFybHkgb24gYW4gb3NjaWxsb3Njb3BlLiBPbmx5IA0KPiB0b2RheSBpdCBoYXMgZmFp
-bGVkLg0KPg0KPiBXaGF0IHNob3VsZCBJIHRyeSBub3c/IFNob3VsZCBJIGxvZyBpbnRvIGl0IHZp
-YSBuZXR3b3JrPw0KPg0KPg0KQWgsIGluZGVlZC7CoCBUaGF0J3Mgd2h5IEkgcXVhbGlmaWVkIG15
-IHByZXZpb3VzIGFuc3dlciB3aXRoICJpZiB0aGVyZSANCmhhc24ndCBiZWVuIGEgR1BTRE8gdW5p
-dCBmaXR0ZWQiLg0KDQpZb3UgY291bGQgY2hlY2sgdGhlIEdQUyBhbnRlbm5hIHRvIG1ha2Ugc3Vy
-ZSBpdCdzIGdldHRpbmcgR1BTIHNpZ25hbCwgDQpidXQgdGhlIEdQU0RPcyB0aGF0IGFyZSB1c2Vk
-IGluIHRob3NlIHVuaXRzIG5vcm1hbGx5DQogwqAgcHJvdmlkZSAxUFBTIGFuZCAxME1IeiByZWdh
-cmRsZXNzIG9mIHRoZSBzdGF0ZSBvZiBHUFMgbG9jay4NCg0KWW91IHNob3VsZCB1c2UgdGhlIG9m
-ZmljaWFsIGN1c3RvbWVyIHN1cHBvcnQgY2hhbm5lbHMgdG8gc2VlIGlmIHlvdSBjYW4gDQpnZXQg
-YW4gUk1BIGlzc3VlZCBmb3IgdGhpcyB1bml0Og0KDQpodHRwczovL3d3dy5uaS5jb20vbXktc3Vw
-cG9ydC9zL3NlcnZpY2UtcmVxdWVzdHMNCg0KDQo+DQo+DQo+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
-IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
-aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
-IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwg
-dG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============4086254552211559519==
+Content-Type: multipart/alternative; boundary="000000000000710cb106239bd730"
+
+--000000000000710cb106239bd730
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Q1) Yes, only one channel is required. Each channel has both send and
+receive capabilities and you can use both simultaneously. However, note
+that sending and receiving between host and replay block, and between
+replay block and radio, simultaneously, would require two channels. For
+example, one channel for TX/RX between host and replay block, and another
+channel for TX/RX between replay block and radio.
+
+Q2) Notice that you have the same block ports being used in both (1) and
+(2), so you can't do both graphs at the same time. You'll need to switch
+between graphs or use additional ports on the Replay block if you want to
+connect the replay block to the host and to the radio at the same time
+while being able to transfer in both directions. But the routes you gave
+look valid.
+
+Q3) Yes. You can use timed commands for both Rx and Tx.
+
+Here's an example for RX (record from radio to replay block, then transfer
+to host):
+https://github.com/EttusResearch/uhd/blob/master/host/examples/python/repla=
+y_capture.py
+
+Here's an example for TX (transfer from host, then playback to radio):
+https://github.com/EttusResearch/uhd/blob/master/host/examples/rfnoc_replay=
+_samples_from_file.cpp
+
+They both use timespecs to indicate the time to start receiving or
+transmitting at the radio. The basic idea is that you tell it some known
+time in the future to begin.
+
+Wade
+
+On Thu, Oct 3, 2024 at 12:29=E2=80=AFPM hui cj <cjh416593819@gmail.com> wro=
+te:
+
+> Hello all,
+>
+> I have some confusion regarding the RFNoC Replay module.
+>
+> Due to the limited transmission rate between my computer and the X310, I
+> cannot transmit and receive waveforms in real-time. Therefore, I want to
+> use the Replay module to transmit the waveform stored in DRAM and record
+> the received signal into DRAM.
+>
+> Based on the following links:
+>
+>
+> https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_can_the_DRAM_b=
+e_used_for.3F
+>
+>
+> https://kb.ettus.com/Using_the_RFNoC_Replay_Block_in_UHD_4
+>
+> I believe this functionality can be achieved.
+>
+> The provided example has already implemented the Record and Play
+> functions, but I am still confused about how to store the waveform in DRA=
+M
+> and then transfer it to the computer.
+>
+> *Q1:*
+>
+> Is only one channel of the Replay module needed to achieve this
+> functionality?
+>
+> *Q2:*
+>
+> (1) The example constructs the following graph to store the transmitted
+> data in DRAM:
+>
+>    - TxStreamer#0:0 --> 0/Replay#0:0
+>    - 0/Replay#0:0 --> 0/DUC#0:0
+>    - 0/DUC#0:0 =3D=3D> 0/Radio#0:0
+>    - 0/Radio#0:0 =3D=3D> 0/DDC#0:0
+>    - 0/DDC#0:0 --> RxStreamer#0:0
+>
+> (2) To store the received data into DRAM at the same time, should I
+> construct the following graph as well?
+>
+>    - 0/Replay#0:0 --> 0/DUC#0:0
+>    - 0/DUC#0:0 =3D=3D> 0/Radio#0:0
+>    - 0/Radio#0:0 =3D=3D> 0/DDC#0:0
+>    - 0/DDC#0:0 --> 0/Replay#0:0
+>
+> (3) To read the data from DRAM and transfer it to the computer:
+>
+>    - 0/Replay#0:0 --> RxStreamer#0:0
+>
+> *Q3:*
+>
+> I want to start both the Record and Play functions of the Replay module a=
+t
+> the same time. Is this possible?
+>
+> Is there any example code available that shows how to transfer DRAM data
+> to the computer?
+>
+> Thank you!
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000710cb106239bd730
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Q1) Yes, only one channel is required. Each channel h=
+as both send and receive capabilities and you can use both simultaneously. =
+However, note that sending and receiving between host and replay block, and=
+ between replay block and radio, simultaneously, would require two channels=
+. For example, one channel for TX/RX between host and replay block, and ano=
+ther channel for TX/RX between replay block and radio.<br></div><div><br></=
+div><div>Q2) Notice that you have the same block ports being used in both (=
+1) and (2), so you can&#39;t do both graphs at the same time. You&#39;ll ne=
+ed to switch between graphs or use additional ports on the Replay block if =
+you want to connect the replay block to the host and to the radio at the sa=
+me time while being able to transfer in both directions. But the routes you=
+ gave look valid.<br></div><div><br></div><div>Q3) Yes. You can use timed c=
+ommands for both Rx and Tx.<br></div><div><br></div><div>Here&#39;s an exam=
+ple for RX (record from radio to replay block, then transfer to host):<br><=
+/div><div><a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/=
+examples/python/replay_capture.py">https://github.com/EttusResearch/uhd/blo=
+b/master/host/examples/python/replay_capture.py</a></div><div><br></div><di=
+v>Here&#39;s an example for TX (transfer from host, then playback to radio)=
+:</div><div><a href=3D"https://github.com/EttusResearch/uhd/blob/master/hos=
+t/examples/rfnoc_replay_samples_from_file.cpp">https://github.com/EttusRese=
+arch/uhd/blob/master/host/examples/rfnoc_replay_samples_from_file.cpp</a></=
+div><div><br></div><div>They both use timespecs to indicate the time to sta=
+rt receiving or transmitting at the radio. The basic idea is that you tell =
+it some known time in the future to begin.<br></div><div><br></div><div>Wad=
+e<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Thu, Oct 3, 2024 at 12:29=E2=80=AFPM hui cj &lt;<a href=3D"ma=
+ilto:cjh416593819@gmail.com">cjh416593819@gmail.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><p>Hell=
+o all,</p><p>I have some confusion regarding the RFNoC Replay module.</p><p=
+>Due to the limited transmission rate between my computer and the X310, I c=
+annot transmit and receive waveforms in real-time. Therefore, I want to use=
+ the Replay module to transmit the waveform stored in DRAM and record the r=
+eceived signal into DRAM.</p><p>Based on the following links:</p><p><a href=
+=3D"https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_can_the_DRAM=
+_be_used_for.3F" target=3D"_blank">https://kb.ettus.com/RFNoC_Frequently_As=
+ked_Questions#What_can_the_DRAM_be_used_for.3F</a>=C2=A0=C2=A0</p><p><a hre=
+f=3D"https://kb.ettus.com/Using_the_RFNoC_Replay_Block_in_UHD_4" target=3D"=
+_blank">https://kb.ettus.com/Using_the_RFNoC_Replay_Block_in_UHD_4</a></p><=
+p>I believe this functionality can be achieved.</p><p>The provided example =
+has already implemented the Record and Play functions, but I am still confu=
+sed about how to store the waveform in DRAM and then transfer it to the com=
+puter.</p><p><strong>Q1:</strong>=C2=A0</p><p>Is only one channel of the Re=
+play module needed to achieve this functionality?</p><p><strong>Q2:</strong=
+>=C2=A0</p><p>(1) The example constructs the following graph to store the t=
+ransmitted data in DRAM:</p><ul><li>TxStreamer#0:0 --&gt; 0/Replay#0:0</li>=
+<li>0/Replay#0:0 --&gt; 0/DUC#0:0</li><li>0/DUC#0:0 =3D=3D&gt; 0/Radio#0:0<=
+/li><li>0/Radio#0:0 =3D=3D&gt; 0/DDC#0:0</li><li>0/DDC#0:0 --&gt; RxStreame=
+r#0:0</li></ul><p>(2) To store the received data into DRAM at the same time=
+, should I construct the following graph as well?</p><ul><li>0/Replay#0:0 -=
+-&gt; 0/DUC#0:0</li><li>0/DUC#0:0 =3D=3D&gt; 0/Radio#0:0</li><li>0/Radio#0:=
+0 =3D=3D&gt; 0/DDC#0:0</li><li>0/DDC#0:0 --&gt; 0/Replay#0:0</li></ul><p>(3=
+) To read the data from DRAM and transfer it to the computer:</p><ul><li>0/=
+Replay#0:0 --&gt; RxStreamer#0:0</li></ul><p><strong>Q3:</strong>=C2=A0</p>=
+<p>I want to start both the Record and Play functions of the Replay module =
+at the same time. Is this possible?</p><p>Is there any example code availab=
+le that shows how to transfer DRAM data to the computer?</p><p>Thank you!</=
+p></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000710cb106239bd730--
+
+--===============4086254552211559519==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4086254552211559519==--
