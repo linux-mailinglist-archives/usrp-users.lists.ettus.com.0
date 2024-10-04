@@ -2,309 +2,455 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BFFC98FEB5
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 10:13:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8157B990208
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 13:23:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 739FB384C50
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 04:13:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 23963385655
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 07:23:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1728029623; bh=TPnlqk+jRE1kzdYW/AAJWrYUL2rJWzxvqrx/O7SXNHI=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=MtYdBvuKt9KBEjE1Z9Fb/ornL72/idNGzAi2Pz0JnUse8pAJJrdZbqSb30PvoOukF
-	 DF7HhWLJRshQPbc1NOlrggOBOCHyXVku3qnt/PdLEnOL8qwlKvFtXqFB8rF5ExbQRG
-	 TUn9KxBdKQ+YwduFeGAW6bk2YfSgl9ksBNFcYaZTbIu8cGq/vc6vVpTCLKrczeiPNz
-	 5rtlT7czbO7rWTetPUI8SEcvactcamiUCh3A/K9ox2zDJ5i9x+UeQNFiG+SFQ2HpxQ
-	 FooJCr+NmIkXyTsblHux7VDZV+5Cc/t+zuvveKoQeD11RSaKNyMlDp2r++XVSQVq9E
-	 i5wOaVX67JXow==
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id B02BD384A7E
-	for <usrp-users@lists.ettus.com>; Fri,  4 Oct 2024 04:13:38 -0400 (EDT)
+	t=1728041027; bh=BSENAhSizIOY3e8zk7Wlz3jz1L94JuxZTvwrPCFosVw=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=phX/mk+uF85kxX9MzGxjyYFTIo/UIa/kbPrEuIj9nHk/sLjyHCq3rHhovIyaCrztP
+	 QyHYh9puHzzYuZCp4GYs2BolefvMZQetFoH6LRnhMO1vJ+/Sgaazrp0l4ykdjFAQeY
+	 yWUcBfQF/ehJ57oq8829twdIqGdPMCwdkAP3R/mlasQBh3ditLtXl4Za+U/jFeGEOj
+	 Yrq7xIMbZduvoKMtUMMKNXqweEs6GEXi7+m4VR4xN513fw7YPUAk98r1ZF3iwDciuQ
+	 hXSAntF/5r9bY/W38cVboDOzVH+y0FeMTD92RBSlsHywQcEGmJK93SraXHYQq9RV+j
+	 gS+lV4idotkng==
+Received: from FR6P281CU001.outbound.protection.outlook.com (mail-germanywestcentralazon11020098.outbound.protection.outlook.com [52.101.171.98])
+	by mm2.emwd.com (Postfix) with ESMTPS id 449993854C6
+	for <usrp-users@lists.ettus.com>; Fri,  4 Oct 2024 07:22:45 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="iRrC/q++";
+	dkim=pass (1024-bit key; unprotected) header.d=barkhauseninstitut.onmicrosoft.com header.i=@barkhauseninstitut.onmicrosoft.com header.b="R4qHLpSv";
 	dkim-atps=neutral
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5c40aea5c40so3867733a12.0
-        for <usrp-users@lists.ettus.com>; Fri, 04 Oct 2024 01:13:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RuGrcZLLZZ2lkrxySf5KHvhYe+zp82cylkQDEOddWO3w38BrozI6KRYfMQRnyxFQkhVgyQx4W/ET8TM3Hnk8Ywg/6LbqHrrHkmAlT5ysNoV5MBdiaQIwWsgNjbiVWCFXdoHcdWzN/ot5DoCzgRMUTiRFfkd+SvzURXQWSzr2euenvhZmLeZ6z4K4EWSGOcp60JuTBSQpjQuqDTefqLoVSHqFXV14LaoUW4Zn1qSqXm3KSbi6WaKKnUZimiBBWmNAQQ7yBfTDVuj4DQHQ5p4vvTlFXVteosMM1jpjmFRehqbtz8a42UYXVOj5bguIGE23ZndTyI5A7LYoZfefsRsAaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SP+KCcEoqGZvBWf7j1iFDf/qf6kY2fvzQePOVqCq3hA=;
+ b=pi2GNnx0MhI6/L6mE/ScV4Pynu84xwsRbBSdnTWtwVBkvvDkLr8zJ+vd/zoBN5LUgNxInvZtUBYDCVcut8b/q+O3oTHvYT68pZ6T2qhRCHwWCfjYMdPk3UbG2loTpMCI6U5B/XN6lnkTopUVV4OFtDwX1avfo51qZK370xlPPiDpuX33kGVUGpJVeN9ddCumqG9nP2HL13T/i4Apdm2bVkw5YwOnI9XPG4WvcN9MXDNOd1ukFSk6idiwL9tbxaGyp12VTilgocy2KuPJ+s1xDzEbsmf6BKYwbqT+mBNOX0SCSqDqw/E5rDNA4g2fZ3VjrLBB6oUeKhdCB7I7sVi7dA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=barkhauseninstitut.org; dmarc=pass action=none
+ header.from=barkhauseninstitut.org; dkim=pass
+ header.d=barkhauseninstitut.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1728029617; x=1728634417; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ahdH2lofghwmjkMXXkzAXoy4pAeEv9Y7p5/49byv50g=;
-        b=iRrC/q++vD7O/gCqQZiLOULq/5XdJyR7wSiAF+ozQVSjNYcbaVc7QCkTMZY199iuis
-         9/nYHBk2xzgaq+XXFkOQ7RjYnIcGY+occn0lGt1m3fUzbS867PNd/fV6vGk600h06fbm
-         EmSOF31zxqLrJtplz2PO8hnUvXhTV7LYTvilB1Vqe+3vAl7hW4LALWuPX/y0g7G1341R
-         vPrjwfSI8ROhPtDI1qqOiXm5rg5CqTeOqPtkrFIYF8A8GO58PKVX0ntUEaO65AFHIBvm
-         Qj2XFr85ZhnVHY74QSgFecmFh4vFzFevEwbaHwZAE4FXvntRBAXOinUWvOndtIFzbXEL
-         8Qjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728029617; x=1728634417;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ahdH2lofghwmjkMXXkzAXoy4pAeEv9Y7p5/49byv50g=;
-        b=HEGKjB7hqaN0h6ewTxnGQBnnhnV+RHf76onLrtOK1pasgVb9fyaCFpjAt7yiQuzavT
-         eWLjokL39pvKnKBocjK4rZFUoBo0dqclQmAvGC2lMsSHJuiaNcK+IxyJsfRj8/JSuUHH
-         PZkrp03+THGrasoQ3tYnFKU603Ogc60HBb6LJGEH4usdntdfvEkZur7SUcRYwT8gS+ZX
-         D0dOGMPr/qBZmWaxL/1vjnwYW/kIhXsQFA8xBP/vGYelbVZI8wQIfSvUqAtVRHs0/Twy
-         Tb5MM+FVjrP/QrVECUFI4/XhORgLyw5dfGM1tU4lDbO2YC6rS3+mfZ0Na8lHPKWQmD8f
-         ngcA==
-X-Gm-Message-State: AOJu0YytAwMlr09MWnQnVm561l8TxjCjZ//KtQGbB1PtOwwp+dM8CB5F
-	NYFXGDFlZBORsceelS2PXmKNOsP8MaN/2QNYP5VM8g/eZnEWPpnnShFaAg1MJ29IAV7WAS1ioN+
-	78so829fCFDwuu2DN4At769FFr05mt+xfFu8JReLPAT8IKTMDa8SiCg==
-X-Google-Smtp-Source: AGHT+IFhF8nRp4wHGnxPh9X48xJ/kcvSDoG5ZayvTMkirGLCqCX4u/itmVAxKTwwQigwQn5FQw7+j0DBIj7JddkRMiA=
-X-Received: by 2002:a05:6402:2350:b0:5c8:8c16:3971 with SMTP id
- 4fb4d7f45d1cf-5c8c0a8250amr7175366a12.16.1728029617043; Fri, 04 Oct 2024
- 01:13:37 -0700 (PDT)
+ d=barkhauseninstitut.onmicrosoft.com;
+ s=selector2-barkhauseninstitut-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SP+KCcEoqGZvBWf7j1iFDf/qf6kY2fvzQePOVqCq3hA=;
+ b=R4qHLpSvyrz/en8XrFHzDXz8GZaID4yPFRCzERhYD+le4WBFn1p58uwYh/Z+dmWsp3w8vk2tK7YqGKXZfLTAEAjb/QYd/brsfo0g8PB9S35FBSIDMiOEuU0pxoPZFt8pLGp3msWhC7uS5mEFuorUnUVOGV9x0UoWhEr4MOEK5qU=
+Received: from FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:3b::14)
+ by FR2PPF133998662.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d18:2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.18; Fri, 4 Oct
+ 2024 11:22:42 +0000
+Received: from FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::3bbf:9150:e48a:5ef0]) by FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::3bbf:9150:e48a:5ef0%7]) with mapi id 15.20.8026.017; Fri, 4 Oct 2024
+ 11:22:42 +0000
+From: =?utf-8?B?TWF4aW1pbGlhbiBNYXR0aMOp?=
+	<maximilian.matthe@barkhauseninstitut.org>
+To: Wade Fife <wade.fife@ettus.com>, hui cj <cjh416593819@gmail.com>
+Thread-Topic: [USRP-users] Re: RFNoC Replay module (DRAM to PC)
+Thread-Index: AQHbFfVpN2Jw9WT0PUOqDRHWrVR17LJ2cyii
+Date: Fri, 4 Oct 2024 11:22:42 +0000
+Message-ID: 
+ <FR2P281MB233202DC37B47B2DCD54C8DA90722@FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM>
+References: 
+ <CAEL-RA3vkebzVmq8+d6YuQa4z4u1eGo-osZ9gYeby8vq3Q0+hw@mail.gmail.com>
+ <CAFche=hiPwN50gH=G1NLQ9psiL9BV=1sCe7-HXkaeinVT_=9Yw@mail.gmail.com>
+In-Reply-To: 
+ <CAFche=hiPwN50gH=G1NLQ9psiL9BV=1sCe7-HXkaeinVT_=9Yw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=barkhauseninstitut.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: FR2P281MB2332:EE_|FR2PPF133998662:EE_
+x-ms-office365-filtering-correlation-id: ca7efab1-02d2-4641-ea89-08dce466dd25
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|4022899009|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?WjJMTEg2QUFrQkNiNjBUdC9lLy9WU2xnb2N0OHpBYkVLU2ljMndxM0xzUzEw?=
+ =?utf-8?B?ejdVMFJ1OTZnY0ZvdVdneFZMbDh5anNFTlc1T3NKaUh1QUx0amRaNmdwaGJk?=
+ =?utf-8?B?cFQzZHZVTWh5Z2trM24xN3dsZzRmMlI0MUJpbFdIWThqUHZoNUt5dksySGcz?=
+ =?utf-8?B?MnowVmJyZkN4d0prUlMzR0tvZWRZc2R2eWlqRFpaNDJXVnpYczFjTmd5Z1Vq?=
+ =?utf-8?B?dWZxUFZGdkl5djdVM050Wi9MS1U0QnRpSk5zeDVLc29yc1B2L1NSK3FTbW54?=
+ =?utf-8?B?dGs1SlZic0IwZmVwQWFiaU5Wd21tWVkzVTJPT0RBdHJjbHpMMVg2NWM1d0k5?=
+ =?utf-8?B?VVduZUVCUWpVYXRzd0ZwcW5QQlF4dWNCdmF6Zi9Fakx0b05PbW11STErU0dw?=
+ =?utf-8?B?eVc2SEQ5UjFDNk15ZmRlaGJMUXltMzFHbFpCdmVUSnZZM3RBZCtpSW1hclM1?=
+ =?utf-8?B?aExmck1Qb2ZWdUJrNEpicG91NmJ1TWlFQXlLYTVySk4wdzRRdkJoSnhXY2hp?=
+ =?utf-8?B?bGdvWCtRV2tVZGt6ZTh1c2JXeTg3eGJ6RitPN0ZHS1c3M00xUXMrT0R6djJo?=
+ =?utf-8?B?ZHFHVm9jY3ZoeUQwL20yR2J4d2JiSGdVWHFrb3NXb1BhSkdsR3FzclRkTVJS?=
+ =?utf-8?B?QzBiejZxRjRDcS9WWFRJRFFEaHhQdGRvakZVSC9FWk1aeFh3RUtJK2N0dlRa?=
+ =?utf-8?B?UXEwZnRMN0RuZU5YNFkxTUxCS1FweGg4ampCZ09hQ1RVaGNTYi9iQVF1R3dW?=
+ =?utf-8?B?Zng5c3J4UHZjcEM2STROL0llNjZ6Mm5tWGlmZEswei9rSHZTeTRHMXJMbTdt?=
+ =?utf-8?B?SDErQXBCV2EvS0JMUitBR1FlNmMzL2dhbzkzR3lQYUlYTkJYUjRUYnBKM1NT?=
+ =?utf-8?B?am1ORHdORHRzRDEzZCtzdi94NGhmUzhpdVZ1VGV1SGcySmExanJMNTU0ZzNW?=
+ =?utf-8?B?bit3TC8yMXVKMmpTV0JJS280Z25rSU5Yd1dBYUJycEhqdGRUaEl3QUw2NVl0?=
+ =?utf-8?B?bW1NYUlCaW43R2hJb0xOdExnNlh3NTI4SEJJbUFmL0hwRjRmWU9xQ0w1azFE?=
+ =?utf-8?B?c3JwRCtBTHBlYlRteXRXajM1QWNkTlpxTlRUemg1dCtpcW0wZU5tSjVyb0Fi?=
+ =?utf-8?B?dVlydVJPSmFZWEdnNjlxWFhCMzBML2Q2UnhWL2tHcnFjMTRROEFXVW5xZnZn?=
+ =?utf-8?B?UkkwL0h4cVRCOUNWcmpjZEtQVmgxc0trV1ZOOFJaelF2ai85QzRBRUVFTG1M?=
+ =?utf-8?B?Zk1sRUpxQWF5RlJHTU5icVE1cXBVK1R0ek1iNk04d1dzb2QrdTc1NGhxU05j?=
+ =?utf-8?B?N1Z2Y1RVVTlwUjh6RHB6cVFLUGRmc3ZYQnltOE40Ny9SZDRXTDNqdmozWXVK?=
+ =?utf-8?B?LzlpWG14N3hMMWpleVpWMHZJTDI3bGh3eCtZR0lWMTAzNmM1MnJFNjJVR3BH?=
+ =?utf-8?B?cXNub2Z2VjFncGdLMEhVOVpobzE2aEs1TDFYZDZnSURRVjMzTlNsRnhkWkdO?=
+ =?utf-8?B?Sk05NVpQWEwyd2o2VnMyK3lsZlJjOHQrbkZ2YzJwVFozK2ZweVJkWjZEM2VD?=
+ =?utf-8?B?VGJhYUJlamdnMndONVk3b0s2WlZsTGpYSitpSmJSTlBYZ2JmRHAza2RlYnh1?=
+ =?utf-8?B?clpsVkI2L3ZnTUt2Ni81Y0t3WUNhWnBxNldVdGZHdGVBN25XM3JsazlkZlZn?=
+ =?utf-8?B?dVl0RUhCZzJFV3BaakpYdE9IL3NtSVI5QVpJTmJTVUtqRlRpOCsvOWhRPT0=?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(4022899009)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?Vy96MnFaMzNtWExhMDRrM01kQVI3WG5ybE8yUk52cWVoNHNPVFIrdlVIMDZC?=
+ =?utf-8?B?NDN3cFhjN2lqZVlNenh5eVlQZTI3MEZPcjdGWXZzcXhGZExvQVRHTlB2Y0lM?=
+ =?utf-8?B?Ujl6Mkc1amJQanpHcEFWSHlRYUZIUHhmWnVDaitLWmJraVZlRjdtNTdSaFFY?=
+ =?utf-8?B?U1J2dDRHcGUwZ0FzQllkamlyMWRDejBHVzc3VTZmK1UwTzZrRHNkeFBDN2F3?=
+ =?utf-8?B?Y2lhS0lQSFFwQVBoanA4d1ZhTGZrajZiR2I0N3hBL2VkZWJ2RUhmSVBZd3Bw?=
+ =?utf-8?B?TzlmcmN4Z2V2alo4aWo1UUlaQ1FUT2Vqd2lxNGtkeUQwcDgwNkNhb0pIWk94?=
+ =?utf-8?B?MGhhOWZIc0ZSUlRZSVBmSFNJbFRnM3oxVWZRZEtDTTkxSDNscEJXTkEzLzBt?=
+ =?utf-8?B?STFkRy84Rjd1Z2hpZTQvYkZZSFBsdEI5a3pmR1hLVkUvQ1pXeWZnWXo1a284?=
+ =?utf-8?B?R2dBWjFpa3pwZDg4UFVxQ1YxZkNRUXNoR0s1dnN0ekJVY0dGa3I3QzBROWVB?=
+ =?utf-8?B?QUozck9jbk1QcWhndWIzdTFna0lxWWNZMTh1VVVSTE04S3FTK3k0QmkzNnVW?=
+ =?utf-8?B?YVIrdDNiZnhlbkFqU3hpeWNMbFRFK3FvVG5pV0JzQlMxSjRwa053VlFBaEJz?=
+ =?utf-8?B?NGJQaUphUi90Rkc1UWFBbm5BZUhscndMbWk5QTJQSUZXd05ib2hSbVBIaERv?=
+ =?utf-8?B?Z1BPbjhiK3hPVnh1aktaV2JDSFVWb2Ura3NybWl0OEl5K1RxZTkyRVFkei95?=
+ =?utf-8?B?eHdaZnBkYzI0dENFWG5KRktDZGJHbERoaTVuTXdhcUYyTlZDcUVUNEZndmpV?=
+ =?utf-8?B?VHBkcXYrcU5YaExHQUlrRGo2bTF0bUk1K2tCR2JPTkVwSUJ5WThCMDdCNWN4?=
+ =?utf-8?B?VzVBdkYwcGliK2RWL25kdFJlOGM5c1ZJZUtUK2krZldDeWpDZjNaeVcrbkUv?=
+ =?utf-8?B?TFF0VjlqeVR2cnZwemJEWU5Fcy92WkQ0MDV5Tm9Fc2MrVytURk4zbkJLcWZM?=
+ =?utf-8?B?NGJoUWp0aXRmempVSGUxMDg0MlZ2ejZuc0tKZlRqOTJUWU9jdXhOeG5JZW5C?=
+ =?utf-8?B?UGVuQUVaM2o4dWROa3NteVpXSm1UYWlrVnBzQUg0RWxBZTkvTnliMFEwUnpa?=
+ =?utf-8?B?NUM4b2tXaUU5cDZXUUpNYXdoMGFBMTd0TDVtWEZZdHJtMFpYRDdqblRQdTdh?=
+ =?utf-8?B?bktCdzZuc2JnaC9Rb0JySUpwNE5rZW1za2twaGdtUEIxQWx4a3RyYTJFZVVJ?=
+ =?utf-8?B?YTNob2djODRpbUJCMGwxMWZqTTF4bU5uWnR5VkJ6Y091Z1ViNENWeHgyK3Zx?=
+ =?utf-8?B?NGpMcnVmdmpGa0NPWUd1ZVJBNjV4MW0yZmZLc0FkbkF4Q2FwV1AybGlEbXdF?=
+ =?utf-8?B?eE5ETndkN3FqV0laRFZrSmFZcFFNdUxaZEw2ZGJabUN4b3VxQkVCdnNha0Vi?=
+ =?utf-8?B?ekpUWnJvWjN0M0ZDVHhNQ3RoQnJMSmJQVUxHeHZPTGx4N3ZyZFFaQUhZd1o2?=
+ =?utf-8?B?cDVvak5NQml1YjRUZGVEWXVXcitkSU50MzdIS2dQNWxPanhsQ0NOcGozVmk1?=
+ =?utf-8?B?SzFlYkxyVGc4aFlvRnlSZ25udWcwTGFwSmVvNWplc0tibVJHZXZzZHB0YllO?=
+ =?utf-8?B?ZUNEN0lOYzdQOFR4SndvSVdwV3FNaTFrcTRaSVZnc2EwYzdIL0lSbGIzVGxB?=
+ =?utf-8?B?a1dxTklVSmNSbEtjVGxCbnlZWm5QaXdyL3UvZmplNHVyRFNtanpJSDh6SFg0?=
+ =?utf-8?B?Yy9RZmY1LzJNUjZFdXh5SEtzVmZHZ3JzcWFzWUorUktGQ2lDakN0RDZ5WHg5?=
+ =?utf-8?B?MTBJaDE3c3h4ZU5EQWJ5V1lyWVFvZVczMXprdnhWSHFUeG15dWtCelpMMUcv?=
+ =?utf-8?B?VnVjTjFVa3Q1NnhmR1BSWmJ2VW55Y1p4YVJEQ1laMEpDWkJSSXhVQmFGaC94?=
+ =?utf-8?B?RXZhenFLVVJkaS8vZTJadlpSTFlVSXM2bTRKRUJ0T3Exd1UrY05wa0tQdE41?=
+ =?utf-8?B?TXE5YS95TmkzSVpRRlBGM1JiUDdIWEpBWktGUk9JZ2Ryayt5Sk4rQTdjelZP?=
+ =?utf-8?B?cllEWktoUk1CTFdtemVSdjFDSmwvMHpNY1BveHA0d0J5MVlwZWhVSzZydXVE?=
+ =?utf-8?B?THNuUkwvQ1U4ZVJxMHlCUFlyY0RzcFEyVGhPQUw0TFRrY1h6U3ptOWlHOXB3?=
+ =?utf-8?Q?YuFyfnzcUUVaw3B+2GZOgWA=3D?=
 MIME-Version: 1.0
-References: <8n8C5jNklgthZMksPgUNSyKML3nI5AbSYNRh5nt6fw@lists.ettus.com>
-In-Reply-To: <8n8C5jNklgthZMksPgUNSyKML3nI5AbSYNRh5nt6fw@lists.ettus.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Fri, 4 Oct 2024 10:13:26 +0200
-Message-ID: <CAFOi1A5hOHFN=N_8qWu+Ktdw26t2Xpp3dM0gUSOYvrgYCkn=-A@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: IXFBA4NNSAR4CNAWKRCYXRAXUHDY4TGX
-X-Message-ID-Hash: IXFBA4NNSAR4CNAWKRCYXRAXUHDY4TGX
-X-MailFrom: martin.braun@ettus.com
+X-OriginatorOrg: barkhauseninstitut.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: FR2P281MB2332.DEUP281.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca7efab1-02d2-4641-ea89-08dce466dd25
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Oct 2024 11:22:42.7602
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 00487172-018a-4fb0-b279-f756ac552ea7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: b6GTE5/I/MBn6YOQphN3vXIkK0m3PNrBVlU6AJT8aekED86fLIjeAPfbpng8g9jNNm0u2y2IyE9TgePs/geXVCeydyslj0tMrif/wy9N67ZjKxvnSh/Uk+g6AdtZq1BGtEimbkafPPT90btcrEGAKQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: FR2PPF133998662
+Message-ID-Hash: WQBOL5AYETPMPJWWSGSIYFAQILBIU2VK
+X-Message-ID-Hash: WQBOL5AYETPMPJWWSGSIYFAQILBIU2VK
+X-MailFrom: maximilian.matthe@barkhauseninstitut.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: KAS kirkstone build of ni-titanium-rev5 on x410 with Vitis-AI Library and DPU drivers: Mainline kernel incompatible with zocl DPU driver; possible to use linux-xlnx kernel and make titanium-related additions?
+Subject: [USRP-users] Re: RFNoC Replay module (DRAM to PC)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IXFBA4NNSAR4CNAWKRCYXRAXUHDY4TGX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ROMXQWQ6KRGAZKU53I2MLEYX4JHE5NIT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6671782202639577895=="
+Content-Type: multipart/mixed; boundary="===============4743748716250007274=="
 
---===============6671782202639577895==
-Content-Type: multipart/alternative; boundary="0000000000007c5b9b0623a23faf"
+--===============4743748716250007274==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_FR2P281MB233202DC37B47B2DCD54C8DA90722FR2P281MB2332DEUP_"
 
---0000000000007c5b9b0623a23faf
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_FR2P281MB233202DC37B47B2DCD54C8DA90722FR2P281MB2332DEUP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-OK here's some actual content for this thread outside of chatting about the
-build system.
+SGkgYWxsLA0KDQpleGFjdGx5IGZvciB0aGlzIHVzZS1jYXNlIHdlIGhhdmUgd3JpdHRlbiBhIFdy
+YXBwZXIgYXJvdW5kIFVIRCBbMV0gd2hpY2ggZG9lcyBleGFjdGx5IHdoYXQgaXMgcmVxdWVzdGVk
+IGJ5IHRoZSBvcmlnaW5hbCBxdWVzdGlvbi4gSXQgaGFzIGJlZW4gdGVzdGVkIHdpdGggWDMxMCBh
+bmQgd29ya2VkLCBidXQgbW9zdCBkZXZlbG9wbWVudCBhbmQgdGVzdGluZyBpcyBjdXJyZW50bHkg
+ZG9uZSBvbiBYNDEwLiBNYXliZSB0aGlzIGNhbiBoZWxwIHRoZSBkZXZlbG9wbWVudC4NCg0KTWF4
+DQoNClsxXSBodHRwczovL2dpdGh1Yi5jb20vQmFya2hhdXNlbi1JbnN0aXR1dC91c3JwX3VoZF93
+cmFwcGVyDQoNCg0KTWF4aW1pbGlhbiBNYXR0aGUNCg0KSGVhZCBvZiBFbmdpbmVlcmluZyBMYWIN
+Cg0KbWF4aW1pbGlhbi5tYXR0aGVAYmFya2hhdXNlbmluc3RpdHV0Lm9yZw0KDQpUZWwuOiArNDkg
+MTczIDQ1MDk2NjcNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IFdh
+ZGUgRmlmZSA8d2FkZS5maWZlQGV0dHVzLmNvbT4NClNlbnQ6IEZyaWRheSwgT2N0b2JlciA0LCAy
+MDI0IDI6MzQgQU0NClRvOiBodWkgY2ogPGNqaDQxNjU5MzgxOUBnbWFpbC5jb20+DQpDYzogdXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3Vi
+amVjdDogW1VTUlAtdXNlcnNdIFJlOiBSRk5vQyBSZXBsYXkgbW9kdWxlIChEUkFNIHRvIFBDKQ0K
+DQpRMSkgWWVzLCBvbmx5IG9uZSBjaGFubmVsIGlzIHJlcXVpcmVkLiBFYWNoIGNoYW5uZWwgaGFz
+IGJvdGggc2VuZCBhbmQgcmVjZWl2ZSBjYXBhYmlsaXRpZXMgYW5kIHlvdSBjYW4gdXNlIGJvdGgg
+c2ltdWx0YW5lb3VzbHkuIEhvd2V2ZXIsIG5vdGUgdGhhdCBzZW5kaW5nIGFuZCByZWNlaXZpbmcg
+YmV0d2VlbiBob3N0IGFuZCByZXBsYXkgYmxvY2ssIGFuZCBiZXR3ZWVuIHJlcGxheSBibG9jayBh
+bmQgcmFkaW8sIHNpbXVsdGFuZW91c2x5LCB3b3VsZCByZXF1aXJlIHR3byBjaGFubmVscy4gRm9y
+IGV4YW1wbGUsIG9uZSBjaGFubmVsIGZvciBUWC9SWCBiZXR3ZWVuIGhvc3QgYW5kIHJlcGxheSBi
+bG9jaywgYW5kIGFub3RoZXIgY2hhbm5lbCBmb3IgVFgvUlggYmV0d2VlbiByZXBsYXkgYmxvY2sg
+YW5kIHJhZGlvLg0KDQpRMikgTm90aWNlIHRoYXQgeW91IGhhdmUgdGhlIHNhbWUgYmxvY2sgcG9y
+dHMgYmVpbmcgdXNlZCBpbiBib3RoICgxKSBhbmQgKDIpLCBzbyB5b3UgY2FuJ3QgZG8gYm90aCBn
+cmFwaHMgYXQgdGhlIHNhbWUgdGltZS4gWW91J2xsIG5lZWQgdG8gc3dpdGNoIGJldHdlZW4gZ3Jh
+cGhzIG9yIHVzZSBhZGRpdGlvbmFsIHBvcnRzIG9uIHRoZSBSZXBsYXkgYmxvY2sgaWYgeW91IHdh
+bnQgdG8gY29ubmVjdCB0aGUgcmVwbGF5IGJsb2NrIHRvIHRoZSBob3N0IGFuZCB0byB0aGUgcmFk
+aW8gYXQgdGhlIHNhbWUgdGltZSB3aGlsZSBiZWluZyBhYmxlIHRvIHRyYW5zZmVyIGluIGJvdGgg
+ZGlyZWN0aW9ucy4gQnV0IHRoZSByb3V0ZXMgeW91IGdhdmUgbG9vayB2YWxpZC4NCg0KUTMpIFll
+cy4gWW91IGNhbiB1c2UgdGltZWQgY29tbWFuZHMgZm9yIGJvdGggUnggYW5kIFR4Lg0KDQpIZXJl
+J3MgYW4gZXhhbXBsZSBmb3IgUlggKHJlY29yZCBmcm9tIHJhZGlvIHRvIHJlcGxheSBibG9jaywg
+dGhlbiB0cmFuc2ZlciB0byBob3N0KToNCmh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNo
+L3VoZC9ibG9iL21hc3Rlci9ob3N0L2V4YW1wbGVzL3B5dGhvbi9yZXBsYXlfY2FwdHVyZS5weQ0K
+DQpIZXJlJ3MgYW4gZXhhbXBsZSBmb3IgVFggKHRyYW5zZmVyIGZyb20gaG9zdCwgdGhlbiBwbGF5
+YmFjayB0byByYWRpbyk6DQpodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxv
+Yi9tYXN0ZXIvaG9zdC9leGFtcGxlcy9yZm5vY19yZXBsYXlfc2FtcGxlc19mcm9tX2ZpbGUuY3Bw
+DQoNClRoZXkgYm90aCB1c2UgdGltZXNwZWNzIHRvIGluZGljYXRlIHRoZSB0aW1lIHRvIHN0YXJ0
+IHJlY2VpdmluZyBvciB0cmFuc21pdHRpbmcgYXQgdGhlIHJhZGlvLiBUaGUgYmFzaWMgaWRlYSBp
+cyB0aGF0IHlvdSB0ZWxsIGl0IHNvbWUga25vd24gdGltZSBpbiB0aGUgZnV0dXJlIHRvIGJlZ2lu
+Lg0KDQpXYWRlDQoNCk9uIFRodSwgT2N0IDMsIDIwMjQgYXQgMTI6MjnigK9QTSBodWkgY2ogPGNq
+aDQxNjU5MzgxOUBnbWFpbC5jb208bWFpbHRvOmNqaDQxNjU5MzgxOUBnbWFpbC5jb20+PiB3cm90
+ZToNCg0KSGVsbG8gYWxsLA0KDQpJIGhhdmUgc29tZSBjb25mdXNpb24gcmVnYXJkaW5nIHRoZSBS
+Rk5vQyBSZXBsYXkgbW9kdWxlLg0KDQpEdWUgdG8gdGhlIGxpbWl0ZWQgdHJhbnNtaXNzaW9uIHJh
+dGUgYmV0d2VlbiBteSBjb21wdXRlciBhbmQgdGhlIFgzMTAsIEkgY2Fubm90IHRyYW5zbWl0IGFu
+ZCByZWNlaXZlIHdhdmVmb3JtcyBpbiByZWFsLXRpbWUuIFRoZXJlZm9yZSwgSSB3YW50IHRvIHVz
+ZSB0aGUgUmVwbGF5IG1vZHVsZSB0byB0cmFuc21pdCB0aGUgd2F2ZWZvcm0gc3RvcmVkIGluIERS
+QU0gYW5kIHJlY29yZCB0aGUgcmVjZWl2ZWQgc2lnbmFsIGludG8gRFJBTS4NCg0KQmFzZWQgb24g
+dGhlIGZvbGxvd2luZyBsaW5rczoNCg0KaHR0cHM6Ly9rYi5ldHR1cy5jb20vUkZOb0NfRnJlcXVl
+bnRseV9Bc2tlZF9RdWVzdGlvbnMjV2hhdF9jYW5fdGhlX0RSQU1fYmVfdXNlZF9mb3IuM0YNCg0K
+aHR0cHM6Ly9rYi5ldHR1cy5jb20vVXNpbmdfdGhlX1JGTm9DX1JlcGxheV9CbG9ja19pbl9VSERf
+NA0KDQpJIGJlbGlldmUgdGhpcyBmdW5jdGlvbmFsaXR5IGNhbiBiZSBhY2hpZXZlZC4NCg0KVGhl
+IHByb3ZpZGVkIGV4YW1wbGUgaGFzIGFscmVhZHkgaW1wbGVtZW50ZWQgdGhlIFJlY29yZCBhbmQg
+UGxheSBmdW5jdGlvbnMsIGJ1dCBJIGFtIHN0aWxsIGNvbmZ1c2VkIGFib3V0IGhvdyB0byBzdG9y
+ZSB0aGUgd2F2ZWZvcm0gaW4gRFJBTSBhbmQgdGhlbiB0cmFuc2ZlciBpdCB0byB0aGUgY29tcHV0
+ZXIuDQoNClExOg0KDQpJcyBvbmx5IG9uZSBjaGFubmVsIG9mIHRoZSBSZXBsYXkgbW9kdWxlIG5l
+ZWRlZCB0byBhY2hpZXZlIHRoaXMgZnVuY3Rpb25hbGl0eT8NCg0KUTI6DQoNCigxKSBUaGUgZXhh
+bXBsZSBjb25zdHJ1Y3RzIHRoZSBmb2xsb3dpbmcgZ3JhcGggdG8gc3RvcmUgdGhlIHRyYW5zbWl0
+dGVkIGRhdGEgaW4gRFJBTToNCg0KICAqICAgVHhTdHJlYW1lciMwOjAgLS0+IDAvUmVwbGF5IzA6
+MA0KICAqICAgMC9SZXBsYXkjMDowIC0tPiAwL0RVQyMwOjANCiAgKiAgIDAvRFVDIzA6MCA9PT4g
+MC9SYWRpbyMwOjANCiAgKiAgIDAvUmFkaW8jMDowID09PiAwL0REQyMwOjANCiAgKiAgIDAvRERD
+IzA6MCAtLT4gUnhTdHJlYW1lciMwOjANCg0KKDIpIFRvIHN0b3JlIHRoZSByZWNlaXZlZCBkYXRh
+IGludG8gRFJBTSBhdCB0aGUgc2FtZSB0aW1lLCBzaG91bGQgSSBjb25zdHJ1Y3QgdGhlIGZvbGxv
+d2luZyBncmFwaCBhcyB3ZWxsPw0KDQogICogICAwL1JlcGxheSMwOjAgLS0+IDAvRFVDIzA6MA0K
+ICAqICAgMC9EVUMjMDowID09PiAwL1JhZGlvIzA6MA0KICAqICAgMC9SYWRpbyMwOjAgPT0+IDAv
+RERDIzA6MA0KICAqICAgMC9EREMjMDowIC0tPiAwL1JlcGxheSMwOjANCg0KKDMpIFRvIHJlYWQg
+dGhlIGRhdGEgZnJvbSBEUkFNIGFuZCB0cmFuc2ZlciBpdCB0byB0aGUgY29tcHV0ZXI6DQoNCiAg
+KiAgIDAvUmVwbGF5IzA6MCAtLT4gUnhTdHJlYW1lciMwOjANCg0KUTM6DQoNCkkgd2FudCB0byBz
+dGFydCBib3RoIHRoZSBSZWNvcmQgYW5kIFBsYXkgZnVuY3Rpb25zIG9mIHRoZSBSZXBsYXkgbW9k
+dWxlIGF0IHRoZSBzYW1lIHRpbWUuIElzIHRoaXMgcG9zc2libGU/DQoNCklzIHRoZXJlIGFueSBl
+eGFtcGxlIGNvZGUgYXZhaWxhYmxlIHRoYXQgc2hvd3MgaG93IHRvIHRyYW5zZmVyIERSQU0gZGF0
+YSB0byB0aGUgY29tcHV0ZXI/DQoNClRoYW5rIHlvdSENCg0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0
+cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KDQoN
+CkJhcmtoYXVzZW4gSW5zdGl0dXQNCnd3dy5iYXJraGF1c2VuaW5zdGl0dXQub3JnDQoNCg0KQmFy
+a2hhdXNlbiBJbnN0aXR1dCBnR21iSCB8IFNpdHo6IFNjaHdlcmluZXIgU3RyLiAxLCAwMTA2NyBE
+cmVzZGVuLCBHZXJtYW55IHwgUmVnaXN0ZXJnZXJpY2h0OiBBbXRzZ2VyaWNodCBEcmVzZGVuLCBI
+UkIgMzcyNjcgfCBHZXNjaMOkZnRzZsO8aHJlcjogUHJvZi4gRHIuIEdlcmhhcmQgRmV0dHdlaXMs
+IERyLiBUaW0gSGVudHNjaGVsIHwgVm9yc2l0emVuZGVyIGRlciBHZXNlbGxzY2hhZnRlcmRlbGVn
+YXRpb246IEphbiBHZXJrZW4NCg0KSGlud2Vpc2UgenVtIERhdGVuc2NodXR6IHVuZCB6dXIgVmVy
+YXJiZWl0dW5nIElocmVyIERhdGVuIGZpbmRlbiBTaWUgdW50ZXI6IGh0dHBzOi8vYmFya2hhdXNl
+bmluc3RpdHV0Lm9yZy9kYXRhLXByaXZhY3kNCg0KVGhpcyBlbWFpbCBhbmQgYW55IGF0dGFjaG1l
+bnRzIGFyZSBpbnRlbmRlZCBvbmx5IGZvciB0aGUgcGVyc29uIHRvIHdob20gdGhpcyBlbWFpbCBp
+cyBhZGRyZXNzZWQgYW5kIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBhbmQvb3IgcHJpdmlsZWdl
+ZCBpbmZvcm1hdGlvbi4gSWYgeW91IHJlY2VpdmVkIHRoaXMgZW1haWwgaW4gZXJyb3IsIHBsZWFz
+ZSBkbyBub3QgZGlzY2xvc2UgdGhlIGNvbnRlbnRzIHRvIGFueW9uZSwgYnV0IG5vdGlmeSB0aGUg
+c2VuZGVyIGJ5IHJldHVybiBlbWFpbCBhbmQgZGVsZXRlIHRoaXMgZW1haWwgKGFuZCBhbnkgYXR0
+YWNobWVudHMpIGZyb20geW91ciBzeXN0ZW0uIEluZm9ybWF0aW9uIG9uIGRhdGEgcHJvdGVjdGlv
+biBhbmQgcHJvY2Vzc2luZyBvZiB5b3VyIHBlcnNvbmFsIGluZm9ybWF0aW9uOiBodHRwczovL2Jh
+cmtoYXVzZW5pbnN0aXR1dC5vcmcvZGF0YS1wcml2YWN5DQoNCg==
 
-Pulling in features from the Xilinx fork to our X4xx kernel sources isn't
-something we've had any kind of eye on, but it's interesting and we're
-curious to see how this goes. It's something we'd like to see you succeed
-in.
+--_000_FR2P281MB233202DC37B47B2DCD54C8DA90722FR2P281MB2332DEUP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Currently our X4xx kernel sources are defined as follows: base branch:
-git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git (see:
-linux-x4xx.inc
-<https://github.com/EttusResearch/meta-ettus/blob/kirkstone/meta-ettus-bsp/=
-recipes-kernel/linux/linux-x4xx.inc>),
-commit: e97bd1e03e6ef58ec47ee7f085f8c14ed6329cf7 (see linux-x4xx_5.10.bb
-<https://github.com/EttusResearch/meta-ettus/blob/kirkstone/meta-ettus-bsp/=
-recipes-kernel/linux/linux-x4xx_5.10.bb>),
-patches: meta-ettus-bsp/recipes-kernel/linux/linux-x4xx
-<https://github.com/EttusResearch/meta-ettus/tree/kirkstone/meta-ettus-bsp/=
-recipes-kernel/linux/linux-x4xx>
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
+IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
+Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
+MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpIaSBhbGwsPC9kaXY+DQo8ZGl2IGNsYXNzPSJl
+bGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRG
+b250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7
+IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8
+ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0
+b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2Es
+IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KZXhh
+Y3RseSBmb3IgdGhpcyB1c2UtY2FzZSB3ZSBoYXZlIHdyaXR0ZW4gYSBXcmFwcGVyIGFyb3VuZCBV
+SEQgWzFdIHdoaWNoIGRvZXMgZXhhY3RseSB3aGF0IGlzIHJlcXVlc3RlZCBieSB0aGUgb3JpZ2lu
+YWwgcXVlc3Rpb24uIEl0IGhhcyBiZWVuIHRlc3RlZCB3aXRoIFgzMTAgYW5kIHdvcmtlZCwgYnV0
+IG1vc3QgZGV2ZWxvcG1lbnQgYW5kIHRlc3RpbmcgaXMgY3VycmVudGx5IGRvbmUgb24gWDQxMC4g
+TWF5YmUgdGhpcyBjYW4gaGVscCB0aGUgZGV2ZWxvcG1lbnQuPC9kaXY+DQo8ZGl2IGNsYXNzPSJl
+bGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRG
+b250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7
+IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8
+ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0
+b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2Es
+IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KTWF4
+PC9kaXY+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBB
+cHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBI
+ZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAw
+KTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZv
+bnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNl
+LCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6
+IHJnYigwLCAwLCAwKTsiPg0KWzFdIDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9CYXJraGF1
+c2VuLUluc3RpdHV0L3VzcnBfdWhkX3dyYXBwZXIiIGlkPSJMUGxuazY4MTcyOSI+DQpodHRwczov
+L2dpdGh1Yi5jb20vQmFya2hhdXNlbi1JbnN0aXR1dC91c3JwX3VoZF93cmFwcGVyPC9hPjwvZGl2
+Pg0KPGRpdiBpZD0iU2lnbmF0dXJlIiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiPg0KPGRpdiBzdHls
+ZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNl
+cnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBj
+b2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxwIHN0eWxlPSJkaXJlY3Rpb246
+IGx0cjsgbWFyZ2luLXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7Ij48c3BhbiBzdHlsZT0i
+Zm9udC1mYW1pbHk6IENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
+MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+TWF4aW1pbGlhbiBNYXR0aGU8L3NwYW4+PC9wPg0K
+PHAgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206
+IDBweDsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5z
+LXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5IZWFkIG9mIEVu
+Z2luZWVyaW5nIExhYjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7IG1hcmdp
+bi10b3A6IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6
+IHJnYigwLCAwLCAwKTsiPm1heGltaWxpYW4ubWF0dGhlQGJhcmtoYXVzZW5pbnN0aXR1dC5vcmc8
+L3NwYW4+PC9wPg0KPHAgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyBtYXJnaW4tdG9wOiAwcHg7IG1h
+cmdpbi1ib3R0b206IDBweDsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgSGVs
+dmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7
+Ij5UZWwuOiArNDkgMTczIDQ1MDk2Njc8YnI+DQo8L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2IGlk
+PSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazt3
+aWR0aDo5OCUiIHRhYmluZGV4PSItMSI+DQo8ZGl2IGlkPSJkaXZScGx5RndkTXNnIiBkaXI9Imx0
+ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0
+IiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+IFdhZGUgRmlmZSAmbHQ7d2FkZS5maWZlQGV0
+dHVzLmNvbSZndDs8YnI+DQo8Yj5TZW50OjwvYj4gRnJpZGF5LCBPY3RvYmVyIDQsIDIwMjQgMjoz
+NCBBTTxicj4NCjxiPlRvOjwvYj4gaHVpIGNqICZsdDtjamg0MTY1OTM4MTlAZ21haWwuY29tJmd0
+Ozxicj4NCjxiPkNjOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O3VzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10g
+UmU6IFJGTm9DIFJlcGxheSBtb2R1bGUgKERSQU0gdG8gUEMpPC9mb250Pg0KPGRpdj4mbmJzcDs8
+L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj5RMSkgWWVzLCBvbmx5
+IG9uZSBjaGFubmVsIGlzIHJlcXVpcmVkLiBFYWNoIGNoYW5uZWwgaGFzIGJvdGggc2VuZCBhbmQg
+cmVjZWl2ZSBjYXBhYmlsaXRpZXMgYW5kIHlvdSBjYW4gdXNlIGJvdGggc2ltdWx0YW5lb3VzbHku
+IEhvd2V2ZXIsIG5vdGUgdGhhdCBzZW5kaW5nIGFuZCByZWNlaXZpbmcgYmV0d2VlbiBob3N0IGFu
+ZCByZXBsYXkgYmxvY2ssIGFuZCBiZXR3ZWVuIHJlcGxheSBibG9jayBhbmQgcmFkaW8sIHNpbXVs
+dGFuZW91c2x5LA0KIHdvdWxkIHJlcXVpcmUgdHdvIGNoYW5uZWxzLiBGb3IgZXhhbXBsZSwgb25l
+IGNoYW5uZWwgZm9yIFRYL1JYIGJldHdlZW4gaG9zdCBhbmQgcmVwbGF5IGJsb2NrLCBhbmQgYW5v
+dGhlciBjaGFubmVsIGZvciBUWC9SWCBiZXR3ZWVuIHJlcGxheSBibG9jayBhbmQgcmFkaW8uPGJy
+Pg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5RMikgTm90aWNlIHRoYXQgeW91IGhh
+dmUgdGhlIHNhbWUgYmxvY2sgcG9ydHMgYmVpbmcgdXNlZCBpbiBib3RoICgxKSBhbmQgKDIpLCBz
+byB5b3UgY2FuJ3QgZG8gYm90aCBncmFwaHMgYXQgdGhlIHNhbWUgdGltZS4gWW91J2xsIG5lZWQg
+dG8gc3dpdGNoIGJldHdlZW4gZ3JhcGhzIG9yIHVzZSBhZGRpdGlvbmFsIHBvcnRzIG9uIHRoZSBS
+ZXBsYXkgYmxvY2sgaWYgeW91IHdhbnQgdG8gY29ubmVjdCB0aGUgcmVwbGF5IGJsb2NrIHRvIHRo
+ZQ0KIGhvc3QgYW5kIHRvIHRoZSByYWRpbyBhdCB0aGUgc2FtZSB0aW1lIHdoaWxlIGJlaW5nIGFi
+bGUgdG8gdHJhbnNmZXIgaW4gYm90aCBkaXJlY3Rpb25zLiBCdXQgdGhlIHJvdXRlcyB5b3UgZ2F2
+ZSBsb29rIHZhbGlkLjxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+UTMpIFll
+cy4gWW91IGNhbiB1c2UgdGltZWQgY29tbWFuZHMgZm9yIGJvdGggUnggYW5kIFR4Ljxicj4NCjwv
+ZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+SGVyZSdzIGFuIGV4YW1wbGUgZm9yIFJYIChy
+ZWNvcmQgZnJvbSByYWRpbyB0byByZXBsYXkgYmxvY2ssIHRoZW4gdHJhbnNmZXIgdG8gaG9zdCk6
+PGJyPg0KPC9kaXY+DQo8ZGl2PjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2Vh
+cmNoL3VoZC9ibG9iL21hc3Rlci9ob3N0L2V4YW1wbGVzL3B5dGhvbi9yZXBsYXlfY2FwdHVyZS5w
+eSI+aHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvbWFzdGVyL2hvc3Qv
+ZXhhbXBsZXMvcHl0aG9uL3JlcGxheV9jYXB0dXJlLnB5PC9hPjwvZGl2Pg0KPGRpdj48YnI+DQo8
+L2Rpdj4NCjxkaXY+SGVyZSdzIGFuIGV4YW1wbGUgZm9yIFRYICh0cmFuc2ZlciBmcm9tIGhvc3Qs
+IHRoZW4gcGxheWJhY2sgdG8gcmFkaW8pOjwvZGl2Pg0KPGRpdj48YSBocmVmPSJodHRwczovL2dp
+dGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9leGFtcGxlcy9yZm5v
+Y19yZXBsYXlfc2FtcGxlc19mcm9tX2ZpbGUuY3BwIj5odHRwczovL2dpdGh1Yi5jb20vRXR0dXNS
+ZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9leGFtcGxlcy9yZm5vY19yZXBsYXlfc2FtcGxl
+c19mcm9tX2ZpbGUuY3BwPC9hPjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+VGhleSBi
+b3RoIHVzZSB0aW1lc3BlY3MgdG8gaW5kaWNhdGUgdGhlIHRpbWUgdG8gc3RhcnQgcmVjZWl2aW5n
+IG9yIHRyYW5zbWl0dGluZyBhdCB0aGUgcmFkaW8uIFRoZSBiYXNpYyBpZGVhIGlzIHRoYXQgeW91
+IHRlbGwgaXQgc29tZSBrbm93biB0aW1lIGluIHRoZSBmdXR1cmUgdG8gYmVnaW4uPGJyPg0KPC9k
+aXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5XYWRlPGJyPg0KPC9kaXY+DQo8L2Rpdj4NCjxi
+cj4NCjxkaXYgY2xhc3M9InhfZ21haWxfcXVvdGUiPg0KPGRpdiBkaXI9Imx0ciIgY2xhc3M9Inhf
+Z21haWxfYXR0ciI+T24gVGh1LCBPY3QgMywgMjAyNCBhdCAxMjoyOeKAr1BNIGh1aSBjaiAmbHQ7
+PGEgaHJlZj0ibWFpbHRvOmNqaDQxNjU5MzgxOUBnbWFpbC5jb20iPmNqaDQxNjU5MzgxOUBnbWFp
+bC5jb208L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIGNsYXNzPSJ4X2dt
+YWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDox
+cHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2IGRpcj0i
+bHRyIj4NCjxwPkhlbGxvIGFsbCw8L3A+DQo8cD5JIGhhdmUgc29tZSBjb25mdXNpb24gcmVnYXJk
+aW5nIHRoZSBSRk5vQyBSZXBsYXkgbW9kdWxlLjwvcD4NCjxwPkR1ZSB0byB0aGUgbGltaXRlZCB0
+cmFuc21pc3Npb24gcmF0ZSBiZXR3ZWVuIG15IGNvbXB1dGVyIGFuZCB0aGUgWDMxMCwgSSBjYW5u
+b3QgdHJhbnNtaXQgYW5kIHJlY2VpdmUgd2F2ZWZvcm1zIGluIHJlYWwtdGltZS4gVGhlcmVmb3Jl
+LCBJIHdhbnQgdG8gdXNlIHRoZSBSZXBsYXkgbW9kdWxlIHRvIHRyYW5zbWl0IHRoZSB3YXZlZm9y
+bSBzdG9yZWQgaW4gRFJBTSBhbmQgcmVjb3JkIHRoZSByZWNlaXZlZCBzaWduYWwgaW50byBEUkFN
+LjwvcD4NCjxwPkJhc2VkIG9uIHRoZSBmb2xsb3dpbmcgbGlua3M6PC9wPg0KPHA+PGEgaHJlZj0i
+aHR0cHM6Ly9rYi5ldHR1cy5jb20vUkZOb0NfRnJlcXVlbnRseV9Bc2tlZF9RdWVzdGlvbnMjV2hh
+dF9jYW5fdGhlX0RSQU1fYmVfdXNlZF9mb3IuM0YiIHRhcmdldD0iX2JsYW5rIj5odHRwczovL2ti
+LmV0dHVzLmNvbS9SRk5vQ19GcmVxdWVudGx5X0Fza2VkX1F1ZXN0aW9ucyNXaGF0X2Nhbl90aGVf
+RFJBTV9iZV91c2VkX2Zvci4zRjwvYT4mbmJzcDsmbmJzcDs8L3A+DQo8cD48YSBocmVmPSJodHRw
+czovL2tiLmV0dHVzLmNvbS9Vc2luZ190aGVfUkZOb0NfUmVwbGF5X0Jsb2NrX2luX1VIRF80IiB0
+YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9rYi5ldHR1cy5jb20vVXNpbmdfdGhlX1JGTm9DX1JlcGxh
+eV9CbG9ja19pbl9VSERfNDwvYT48L3A+DQo8cD5JIGJlbGlldmUgdGhpcyBmdW5jdGlvbmFsaXR5
+IGNhbiBiZSBhY2hpZXZlZC48L3A+DQo8cD5UaGUgcHJvdmlkZWQgZXhhbXBsZSBoYXMgYWxyZWFk
+eSBpbXBsZW1lbnRlZCB0aGUgUmVjb3JkIGFuZCBQbGF5IGZ1bmN0aW9ucywgYnV0IEkgYW0gc3Rp
+bGwgY29uZnVzZWQgYWJvdXQgaG93IHRvIHN0b3JlIHRoZSB3YXZlZm9ybSBpbiBEUkFNIGFuZCB0
+aGVuIHRyYW5zZmVyIGl0IHRvIHRoZSBjb21wdXRlci48L3A+DQo8cD48c3Ryb25nPlExOjwvc3Ry
+b25nPiZuYnNwOzwvcD4NCjxwPklzIG9ubHkgb25lIGNoYW5uZWwgb2YgdGhlIFJlcGxheSBtb2R1
+bGUgbmVlZGVkIHRvIGFjaGlldmUgdGhpcyBmdW5jdGlvbmFsaXR5PzwvcD4NCjxwPjxzdHJvbmc+
+UTI6PC9zdHJvbmc+Jm5ic3A7PC9wPg0KPHA+KDEpIFRoZSBleGFtcGxlIGNvbnN0cnVjdHMgdGhl
+IGZvbGxvd2luZyBncmFwaCB0byBzdG9yZSB0aGUgdHJhbnNtaXR0ZWQgZGF0YSBpbiBEUkFNOjwv
+cD4NCjx1bD4NCjxsaT5UeFN0cmVhbWVyIzA6MCAtLSZndDsgMC9SZXBsYXkjMDowPC9saT48bGk+
+MC9SZXBsYXkjMDowIC0tJmd0OyAwL0RVQyMwOjA8L2xpPjxsaT4wL0RVQyMwOjAgPT0mZ3Q7IDAv
+UmFkaW8jMDowPC9saT48bGk+MC9SYWRpbyMwOjAgPT0mZ3Q7IDAvRERDIzA6MDwvbGk+PGxpPjAv
+RERDIzA6MCAtLSZndDsgUnhTdHJlYW1lciMwOjA8L2xpPjwvdWw+DQo8cD4oMikgVG8gc3RvcmUg
+dGhlIHJlY2VpdmVkIGRhdGEgaW50byBEUkFNIGF0IHRoZSBzYW1lIHRpbWUsIHNob3VsZCBJIGNv
+bnN0cnVjdCB0aGUgZm9sbG93aW5nIGdyYXBoIGFzIHdlbGw/PC9wPg0KPHVsPg0KPGxpPjAvUmVw
+bGF5IzA6MCAtLSZndDsgMC9EVUMjMDowPC9saT48bGk+MC9EVUMjMDowID09Jmd0OyAwL1JhZGlv
+IzA6MDwvbGk+PGxpPjAvUmFkaW8jMDowID09Jmd0OyAwL0REQyMwOjA8L2xpPjxsaT4wL0REQyMw
+OjAgLS0mZ3Q7IDAvUmVwbGF5IzA6MDwvbGk+PC91bD4NCjxwPigzKSBUbyByZWFkIHRoZSBkYXRh
+IGZyb20gRFJBTSBhbmQgdHJhbnNmZXIgaXQgdG8gdGhlIGNvbXB1dGVyOjwvcD4NCjx1bD4NCjxs
+aT4wL1JlcGxheSMwOjAgLS0mZ3Q7IFJ4U3RyZWFtZXIjMDowPC9saT48L3VsPg0KPHA+PHN0cm9u
+Zz5RMzo8L3N0cm9uZz4mbmJzcDs8L3A+DQo8cD5JIHdhbnQgdG8gc3RhcnQgYm90aCB0aGUgUmVj
+b3JkIGFuZCBQbGF5IGZ1bmN0aW9ucyBvZiB0aGUgUmVwbGF5IG1vZHVsZSBhdCB0aGUgc2FtZSB0
+aW1lLiBJcyB0aGlzIHBvc3NpYmxlPzwvcD4NCjxwPklzIHRoZXJlIGFueSBleGFtcGxlIGNvZGUg
+YXZhaWxhYmxlIHRoYXQgc2hvd3MgaG93IHRvIHRyYW5zZmVyIERSQU0gZGF0YSB0byB0aGUgY29t
+cHV0ZXI/PC9wPg0KPHA+VGhhbmsgeW91ITwvcD4NCjwvZGl2Pg0KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
+dCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0i
+X2JsYW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2Ny
+aWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlz
+dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0
+dHVzLmNvbTwvYT48YnI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBDYWxpYnJpLCBzYW5zLXNlcmlm
+LCBzZXJpZiwgJnF1b3Q7RW1vamlGb250JnF1b3Q7OyBtYXJnaW46IDBweDsiPg0KPGJyPg0KPGJy
+Pg0KPGI+QmFya2hhdXNlbiBJbnN0aXR1dDwvYj4gPGJyPg0Kd3d3LmJhcmtoYXVzZW5pbnN0aXR1
+dC5vcmcgPGJyPg0KPGJyPg0KPC9wPg0KPHAgc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgZm9udC1m
+YW1pbHk6IENhbGlicmksIHNhbnMtc2VyaWYsIHNlcmlmLCAmcXVvdDtFbW9qaUZvbnQmcXVvdDs7
+IG1hcmdpbjogMHB4OyI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjlwdDsiIGxhbmc9ImRlLURF
+Ij5CYXJraGF1c2VuIEluc3RpdHV0IGdHbWJIIHwgU2l0ejogU2Nod2VyaW5lciBTdHIuIDEsIDAx
+MDY3IERyZXNkZW4sIEdlcm1hbnkgfCBSZWdpc3RlcmdlcmljaHQ6IEFtdHNnZXJpY2h0IERyZXNk
+ZW4sIEhSQiAzNzI2NyB8IEdlc2Now6RmdHNmw7xocmVyOiBQcm9mLiBEci4gR2VyaGFyZCBGZXR0
+d2VpcywgRHIuIFRpbSBIZW50c2NoZWwgfCBWb3JzaXR6ZW5kZXIgZGVyIEdlc2VsbHNjaGFmdGVy
+ZGVsZWdhdGlvbjoNCiBKYW4gR2Vya2VuIDxicj4NCjxicj4NCkhpbndlaXNlIHp1bSBEYXRlbnNj
+aHV0eiB1bmQgenVyIFZlcmFyYmVpdHVuZyBJaHJlciBEYXRlbiBmaW5kZW4gU2llIHVudGVyOiBo
+dHRwczovL2JhcmtoYXVzZW5pbnN0aXR1dC5vcmcvZGF0YS1wcml2YWN5DQo8YnI+DQo8YnI+DQo8
+L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5cHQ7IiBsYW5nPSJlbi1VUyI+VGhpcyBlbWFp
+bCBhbmQgYW55IGF0dGFjaG1lbnRzIGFyZSBpbnRlbmRlZCBvbmx5IGZvciB0aGUgcGVyc29uIHRv
+IHdob20gdGhpcyBlbWFpbCBpcyBhZGRyZXNzZWQgYW5kIG1heSBjb250YWluIGNvbmZpZGVudGlh
+bCBhbmQvb3IgcHJpdmlsZWdlZCBpbmZvcm1hdGlvbi4gSWYgeW91IHJlY2VpdmVkIHRoaXMgZW1h
+aWwgaW4gZXJyb3IsIHBsZWFzZSBkbyBub3QgZGlzY2xvc2UNCiB0aGUgY29udGVudHMgdG8gYW55
+b25lLCBidXQgbm90aWZ5IHRoZSBzZW5kZXIgYnkgcmV0dXJuIGVtYWlsIGFuZCBkZWxldGUgdGhp
+cyBlbWFpbCAoYW5kIGFueSBhdHRhY2htZW50cykgZnJvbSB5b3VyIHN5c3RlbS4gSW5mb3JtYXRp
+b24gb24gZGF0YSBwcm90ZWN0aW9uIGFuZCBwcm9jZXNzaW5nIG9mIHlvdXIgcGVyc29uYWwgaW5m
+b3JtYXRpb246IGh0dHBzOi8vYmFya2hhdXNlbmluc3RpdHV0Lm9yZy9kYXRhLXByaXZhY3kNCjxi
+cj4NCjxicj4NCjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-One option we could discuss is if it were easier for folks if we based our
-kernel on linux-xlnx instead of mainline (no promises or plans here, just
-thinking out loud). Not everyone has Piotr-level expertise, and if this
-would make things easier for folks, that could be something we do going
-forward.
+--_000_FR2P281MB233202DC37B47B2DCD54C8DA90722FR2P281MB2332DEUP_--
 
-Whichever way we go -- of course you need to pull in patches from the right
-kernel version. If that's something people struggle with, maybe we can make
-that clearer? Just fishing for thoughts and/or suggestions here!
-
-Cheers,
-
-Martin
-
-On Thu, Oct 3, 2024 at 1:51=E2=80=AFPM <perper@o2.pl> wrote:
-
-> Hello Mike,
->
-> I don=E2=80=99t know what your preference regarding setup is, but for me =
-it was
-> crucial to be able to make changes to the rootfs and kernel quickly and t=
-o
-> be able to remotely reset the device.
->
-> This was especially important when dealing with kernel and bootloader. As
-> I didn=E2=80=99t have much experience with editing kernel and u-boot sour=
-ces, it
-> was indispensable to be able to check my changes and applied patches
-> quickly (the additional difficulty was that I didn=E2=80=99t have a X410 =
-to see in
-> action how things should work).
->
-> My setup consisted of NFS server hosting rootfs and TFTP server for
-> kernel. The bootloader was loaded through JTAG. This way I for example wa=
-s
-> able to make a script that: compiled and installed new kernel with the
-> board turned off or in not working state, tried to boot it, check if syst=
-em
-> started correctly and return the result to git bisect. This way (after so=
-me
-> fine-tuning) I was able to run =E2=80=98git bisect=E2=80=99 and wait for =
-it to find a
-> commit where the board started to work. If you are interested how to
-> configure what I=E2=80=99ve described - ask.
->
-> With this approach you could for example locate when DPU support that you
-> need was added. Your case seems to be better in one regard though: as you
-> know what you are looking for you can also look at commit messages and th=
-e
-> code. In my case I didn=E2=80=99t know what was source of problems - the =
-board just
-> didn=E2=80=99t boot or (in another case) loading =E2=80=98nixge=E2=80=99 =
-driver for 10Gb/s ports
-> crashed the board.
->
-> Piotr
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000007c5b9b0623a23faf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>OK here&#39;s some actual content for this thread out=
-side of chatting about the build system.</div><div><br></div><div>Pulling i=
-n features from the Xilinx fork to our X4xx kernel sources isn&#39;t someth=
-ing we&#39;ve had any kind of eye on, but it&#39;s interesting and we&#39;r=
-e curious to see how this goes. It&#39;s something we&#39;d like to see you=
- succeed in.</div><div><br></div><div>Currently our X4xx kernel sources are=
- defined as follows:=20
-
-<span><span class=3D"gmail-ui-provider gmail-a gmail-b gmail-c gmail-d gmai=
-l-e gmail-f gmail-g gmail-h gmail-i gmail-j gmail-k gmail-l gmail-m gmail-n=
- gmail-o gmail-p gmail-q gmail-r gmail-s gmail-t gmail-u gmail-v gmail-w gm=
-ail-x gmail-y gmail-z gmail-ab gmail-ac gmail-ae gmail-af gmail-ag gmail-ah=
- gmail-ai gmail-aj gmail-ak" dir=3D"ltr"> base branch: <a href=3D"http://gi=
-t.kernel.org/pub/scm/linux/kernel/git/stable/linux.git">git.kernel.org/pub/=
-scm/linux/kernel/git/stable/linux.git</a> (see: <a aria-label=3D"Link linux=
--x4xx.inc" id=3D"gmail-menur3e8" href=3D"https://github.com/EttusResearch/m=
-eta-ettus/blob/kirkstone/meta-ettus-bsp/recipes-kernel/linux/linux-x4xx.inc=
-" rel=3D"noreferrer noopener" target=3D"_blank" class=3D"gmail-fui-Link gma=
-il-___1q1shib gmail-f2hkw1w gmail-f3rmtva gmail-f1ewtqcl gmail-fyind8e gmai=
-l-f1k6fduh gmail-f1w7gpdv gmail-fk6fouc gmail-fjoy568 gmail-figsok6 gmail-f=
-1s184ao gmail-f1mk8lai gmail-fnbmjn9 gmail-f1o700av gmail-f13mvf36 gmail-f1=
-cmlufx gmail-f9n3di6 gmail-f1ids18y gmail-f1tx3yz7 gmail-f1deo86v gmail-f1e=
-h06m1 gmail-f1iescvh gmail-fhgqx19 gmail-f1olyrje gmail-f1p93eir gmail-f1ne=
-v41a gmail-f1h8hb77 gmail-f1lqvz6u gmail-f10aw75t gmail-fsle3fq gmail-f17ae=
-5zn" title=3D"https://github.com/ettusresearch/meta-ettus/blob/kirkstone/me=
-ta-ettus-bsp/recipes-kernel/linux/linux-x4xx.inc">linux-x4xx.inc</a>), comm=
-it: e97bd1e03e6ef58ec47ee7f085f8c14ed6329cf7 (see <a aria-label=3D"Link lin=
-ux-x4xx_5.10.bb" id=3D"gmail-menur3ea" href=3D"https://github.com/EttusRese=
-arch/meta-ettus/blob/kirkstone/meta-ettus-bsp/recipes-kernel/linux/linux-x4=
-xx_5.10.bb" rel=3D"noreferrer noopener" target=3D"_blank" class=3D"gmail-fu=
-i-Link gmail-___1q1shib gmail-f2hkw1w gmail-f3rmtva gmail-f1ewtqcl gmail-fy=
-ind8e gmail-f1k6fduh gmail-f1w7gpdv gmail-fk6fouc gmail-fjoy568 gmail-figso=
-k6 gmail-f1s184ao gmail-f1mk8lai gmail-fnbmjn9 gmail-f1o700av gmail-f13mvf3=
-6 gmail-f1cmlufx gmail-f9n3di6 gmail-f1ids18y gmail-f1tx3yz7 gmail-f1deo86v=
- gmail-f1eh06m1 gmail-f1iescvh gmail-fhgqx19 gmail-f1olyrje gmail-f1p93eir =
-gmail-f1nev41a gmail-f1h8hb77 gmail-f1lqvz6u gmail-f10aw75t gmail-fsle3fq g=
-mail-f17ae5zn" title=3D"https://github.com/ettusresearch/meta-ettus/blob/ki=
-rkstone/meta-ettus-bsp/recipes-kernel/linux/linux-x4xx_5.10.bb">linux-x4xx_=
-5.10.bb</a>), patches: <a aria-label=3D"Link meta-ettus-bsp/recipes-kernel/=
-linux/linux-x4xx" id=3D"gmail-menur3ec" href=3D"https://github.com/EttusRes=
-earch/meta-ettus/tree/kirkstone/meta-ettus-bsp/recipes-kernel/linux/linux-x=
-4xx" rel=3D"noreferrer noopener" target=3D"_blank" class=3D"gmail-fui-Link =
-gmail-___1q1shib gmail-f2hkw1w gmail-f3rmtva gmail-f1ewtqcl gmail-fyind8e g=
-mail-f1k6fduh gmail-f1w7gpdv gmail-fk6fouc gmail-fjoy568 gmail-figsok6 gmai=
-l-f1s184ao gmail-f1mk8lai gmail-fnbmjn9 gmail-f1o700av gmail-f13mvf36 gmail=
--f1cmlufx gmail-f9n3di6 gmail-f1ids18y gmail-f1tx3yz7 gmail-f1deo86v gmail-=
-f1eh06m1 gmail-f1iescvh gmail-fhgqx19 gmail-f1olyrje gmail-f1p93eir gmail-f=
-1nev41a gmail-f1h8hb77 gmail-f1lqvz6u gmail-f10aw75t gmail-fsle3fq gmail-f1=
-7ae5zn" title=3D"https://github.com/ettusresearch/meta-ettus/tree/kirkstone=
-/meta-ettus-bsp/recipes-kernel/linux/linux-x4xx">meta-ettus-bsp/recipes-ker=
-nel/linux/linux-x4xx</a><br></span></span></div><div><span><span class=3D"g=
-mail-ui-provider gmail-a gmail-b gmail-c gmail-d gmail-e gmail-f gmail-g gm=
-ail-h gmail-i gmail-j gmail-k gmail-l gmail-m gmail-n gmail-o gmail-p gmail=
--q gmail-r gmail-s gmail-t gmail-u gmail-v gmail-w gmail-x gmail-y gmail-z =
-gmail-ab gmail-ac gmail-ae gmail-af gmail-ag gmail-ah gmail-ai gmail-aj gma=
-il-ak" dir=3D"ltr"><br></span></span></div><div><span><span class=3D"gmail-=
-ui-provider gmail-a gmail-b gmail-c gmail-d gmail-e gmail-f gmail-g gmail-h=
- gmail-i gmail-j gmail-k gmail-l gmail-m gmail-n gmail-o gmail-p gmail-q gm=
-ail-r gmail-s gmail-t gmail-u gmail-v gmail-w gmail-x gmail-y gmail-z gmail=
--ab gmail-ac gmail-ae gmail-af gmail-ag gmail-ah gmail-ai gmail-aj gmail-ak=
-" dir=3D"ltr">One option we could discuss is if it were easier for folks if=
- we based our kernel on linux-xlnx instead of mainline (no promises or plan=
-s here, just thinking out loud). Not everyone has Piotr-level expertise, an=
-d if this would make things easier for folks, that could be something we do=
- going forward.</span></span></div><div><span><span class=3D"gmail-ui-provi=
-der gmail-a gmail-b gmail-c gmail-d gmail-e gmail-f gmail-g gmail-h gmail-i=
- gmail-j gmail-k gmail-l gmail-m gmail-n gmail-o gmail-p gmail-q gmail-r gm=
-ail-s gmail-t gmail-u gmail-v gmail-w gmail-x gmail-y gmail-z gmail-ab gmai=
-l-ac gmail-ae gmail-af gmail-ag gmail-ah gmail-ai gmail-aj gmail-ak" dir=3D=
-"ltr"><br></span></span></div><div><span><span class=3D"gmail-ui-provider g=
-mail-a gmail-b gmail-c gmail-d gmail-e gmail-f gmail-g gmail-h gmail-i gmai=
-l-j gmail-k gmail-l gmail-m gmail-n gmail-o gmail-p gmail-q gmail-r gmail-s=
- gmail-t gmail-u gmail-v gmail-w gmail-x gmail-y gmail-z gmail-ab gmail-ac =
-gmail-ae gmail-af gmail-ag gmail-ah gmail-ai gmail-aj gmail-ak" dir=3D"ltr"=
->Whichever way we go -- of course you need to pull in patches from the righ=
-t kernel version. If that&#39;s something people struggle with, maybe we ca=
-n make that clearer? Just fishing for thoughts and/or suggestions here!</sp=
-an></span></div><div><span><span class=3D"gmail-ui-provider gmail-a gmail-b=
- gmail-c gmail-d gmail-e gmail-f gmail-g gmail-h gmail-i gmail-j gmail-k gm=
-ail-l gmail-m gmail-n gmail-o gmail-p gmail-q gmail-r gmail-s gmail-t gmail=
--u gmail-v gmail-w gmail-x gmail-y gmail-z gmail-ab gmail-ac gmail-ae gmail=
--af gmail-ag gmail-ah gmail-ai gmail-aj gmail-ak" dir=3D"ltr"><br></span></=
-span></div><div><span><span class=3D"gmail-ui-provider gmail-a gmail-b gmai=
-l-c gmail-d gmail-e gmail-f gmail-g gmail-h gmail-i gmail-j gmail-k gmail-l=
- gmail-m gmail-n gmail-o gmail-p gmail-q gmail-r gmail-s gmail-t gmail-u gm=
-ail-v gmail-w gmail-x gmail-y gmail-z gmail-ab gmail-ac gmail-ae gmail-af g=
-mail-ag gmail-ah gmail-ai gmail-aj gmail-ak" dir=3D"ltr">Cheers,</span></sp=
-an></div><div><span><span class=3D"gmail-ui-provider gmail-a gmail-b gmail-=
-c gmail-d gmail-e gmail-f gmail-g gmail-h gmail-i gmail-j gmail-k gmail-l g=
-mail-m gmail-n gmail-o gmail-p gmail-q gmail-r gmail-s gmail-t gmail-u gmai=
-l-v gmail-w gmail-x gmail-y gmail-z gmail-ab gmail-ac gmail-ae gmail-af gma=
-il-ag gmail-ah gmail-ai gmail-aj gmail-ak" dir=3D"ltr"><br></span></span></=
-div><div><span><span class=3D"gmail-ui-provider gmail-a gmail-b gmail-c gma=
-il-d gmail-e gmail-f gmail-g gmail-h gmail-i gmail-j gmail-k gmail-l gmail-=
-m gmail-n gmail-o gmail-p gmail-q gmail-r gmail-s gmail-t gmail-u gmail-v g=
-mail-w gmail-x gmail-y gmail-z gmail-ab gmail-ac gmail-ae gmail-af gmail-ag=
- gmail-ah gmail-ai gmail-aj gmail-ak" dir=3D"ltr">Martin<br></span></span>
-
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Thu, Oct 3, 2024 at 1:51=E2=80=AFPM &lt;<a href=3D"mailto:perper@o=
-2.pl">perper@o2.pl</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex"><p>Hello Mike,</p><p>I don=E2=80=99t know what your prefe=
-rence regarding setup is, but for me it was crucial to be able to make chan=
-ges to the rootfs and kernel quickly and to be able to remotely reset the d=
-evice.</p><p>This was especially important when dealing with kernel and boo=
-tloader. As I didn=E2=80=99t have much experience with editing kernel and u=
--boot sources, it was indispensable to be able to check my changes and appl=
-ied patches quickly (the additional difficulty was that I didn=E2=80=99t ha=
-ve a X410 to see in action how things should work).</p><p>My setup consiste=
-d of NFS server hosting rootfs and TFTP server for kernel. The bootloader w=
-as loaded through JTAG. This way I for example was able to make a script th=
-at: compiled and installed new kernel with the board turned off or in not w=
-orking state, tried to boot it, check if system started correctly and retur=
-n the result to git bisect. This way (after some fine-tuning) I was able to=
- run =E2=80=98git bisect=E2=80=99 and wait for it to find a commit where th=
-e board started to work. If you are interested how to configure what I=E2=
-=80=99ve described - ask.</p><p>With this approach you could for example lo=
-cate when DPU support that you need was added. Your case seems to be better=
- in one regard though: as you know what you are looking for  you can also l=
-ook at commit messages and the code. In my case I didn=E2=80=99t know what =
-was source of problems - the board just didn=E2=80=99t boot or (in another =
-case) loading =E2=80=98nixge=E2=80=99 driver for 10Gb/s ports crashed the b=
-oard.</p><p>Piotr</p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000007c5b9b0623a23faf--
-
---===============6671782202639577895==
+--===============4743748716250007274==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -314,4 +460,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6671782202639577895==--
+--===============4743748716250007274==--
