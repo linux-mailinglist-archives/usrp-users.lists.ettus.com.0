@@ -2,221 +2,184 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D32B29907C2
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 17:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E729C990BC8
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 20:36:09 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 81BAB385572
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 11:42:18 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8E46E3854AD
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2024 14:36:08 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1728056538; bh=d0ZKmMf6qxCLT/ajVa5S37jY0o6zmTVsvYLmfjBDEpM=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=IjEucbc0lyGO1OtGTgI3dTEQNsXmlPzaHVLDDni47Lqfdu+JrGvG/gN7OZuR7Hs+W
-	 1lx2Yw0jAv24InYwa2E6pvTJITKaKoSTnjZvENHFhwWT1DKaY3XixhXVje1JtGo9ja
-	 7scmWEhmD2ktK1qvsnKNX7eRSn8YML86rBQjipHTzNNjGQiFKj95FmwiLXSAzPtXnJ
-	 +s8G42SBH+k/aLlBKGq4lbbe3asR/uvkwZ92Lrti7EwkJLas2extSadsV+RNZYICMf
-	 QWkk4IGjfUPJWbBh5bS781/w5TCdYonsmkxuK8yy4AKUwSTsHufUQgnaxA4c3HWUsT
-	 BR5dU3PNyC0eQ==
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2AC4A3854EE
-	for <usrp-users@lists.ettus.com>; Fri,  4 Oct 2024 11:41:24 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="rykOm5vk";
-	dkim-atps=neutral
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5c896b9b4e0so3111099a12.3
-        for <usrp-users@lists.ettus.com>; Fri, 04 Oct 2024 08:41:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1728056483; x=1728661283; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xZrU1c79Tsc2y7SYVQF6DHYyHnsdUrFLRvxulc3AMd8=;
-        b=rykOm5vkS+6OWgMMci4uEdYCDuMyQgk+QjiOXgtCDz3iycYxv8+1CPIv849S/q/JNr
-         6jGgwVPIYZBiyljSxt0xP6JePib8rk8H/TTWbGkE1bFzSWB330v0+BljsEfRAgmcgwAL
-         dA4Gc8oBQB7QHmYRl19OxlYomgdHBcek4taRFDktoZ+5TCM48O1vY5wkYmBHvkAWbN0D
-         bam3p9QKR4tRRfw6wDKtLPkx+D7gQNwNInewFZSQmQI7o2LHseShICo33JX9I1rryU30
-         oRsvi0fWJw9CEQ27WabTucJnIrV87M1bJZkLOrTWHJfsWwtD8csp2x6nORyShdzXVtSU
-         yewg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728056483; x=1728661283;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xZrU1c79Tsc2y7SYVQF6DHYyHnsdUrFLRvxulc3AMd8=;
-        b=PElleiyGcJZReVpFiaROXyFi8eL1MchCtJCqVJGqMXKTiriLDCKXBy3uC73C3CizUq
-         peEnbpKOZ95qTcu+WCABCeP0g8ZdF7f+PiefsHTqk1z+Dib1V7bh6Sg/8I3/uo+DK2I+
-         qWQLnGIhssMLyXmtD03aaTL+v23UKk48g2NL577TsqETHL6hUtyzUrMqUY/c8Z5M4p76
-         GkjoIx2Kuq9zJalD4NOeYs7jNvejKLeBEkYMkAbXJcHTQKJhXeraf7bc96OTPZDRP7Hs
-         SGWtZlbwJxoif+vAEr6FbbHmJBrvlcpaedKoGWoKuEv3Y5ILdBHs+UGIQdCg+AU5CEEf
-         2PIw==
-X-Gm-Message-State: AOJu0YxZnpt28estsq4DiJ9RfembBfKlrjxJAJppW7xKnpuNcusj0pL8
-	cBD161+RDmdbjR5t7UyHLr3S6Ii2S+ZofE3ZXdAC1dY4BLRb4VgG1gKklNAzdsx2YYAWp9RiByn
-	LeY5FAyWbpnMPfacwfcllXWVNpCXGF4iwGDEwHdzbBY8MEt2FMgdF7g==
-X-Google-Smtp-Source: AGHT+IEmTswrwnO5oc93KoUpnZHggP6EDUFreftwQ2RW1yUZ52aF3fppl7pLHwOPSDRXWsk+T+pW+7yylfaNJKnJ4xg=
-X-Received: by 2002:a05:6402:13d2:b0:5c4:2bd6:68df with SMTP id
- 4fb4d7f45d1cf-5c8d2cff8d3mr2382397a12.2.1728056482873; Fri, 04 Oct 2024
- 08:41:22 -0700 (PDT)
+	t=1728066968; bh=jaILPR2DwdWtKMv0qIVmt2Mo4txU+nu+tilyXaXL9SY=;
+	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
+	 From;
+	b=cc+bQk6rZAgdoLBm1fzFPOzn1dffoCnoyPlLOvgqQrla/VdKXZ0Hi4u7uTq5lTStz
+	 3k1WLQgpeTFizI3gBemH4SqjRrhcdSwIrvg7jo3uAh3ttIe6EHsJ/ExAiYA0xB2lqI
+	 DygRX8pNvdkR+Y2FGI1vQD7KVFXG23Y2aj7R68OWcuAFXt7V8FqAQnwT8odrJ9FtFL
+	 iLG+eUxpoZWotz+XmCU8vkhylgqO0b5c+oMdcVMin126KU8hxfNk6QvbBqYII9oHY6
+	 ds7SdBiHlYxB2pQXTOhxQumLI0eDW0IeMKXyCGYpAlmZpFVI929TexUFMYpF6LkrU1
+	 3xF8cPvbB5pQQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 5F990385497
+	for <usrp-users@lists.ettus.com>; Fri,  4 Oct 2024 14:36:04 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1728066964; bh=R6fIJsyD7Bh5miw8L5NYOsIsWeR6UIGrVtKdA9lIQqc=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=iskLBiMqExWYG6zjDgMGTSGpADFjT8SKvijZOspT7YDvNTYECw4FyMxZJKUXEHHxL
+	 MPrL3cslX817Jq8atpAjRdkkqZKGE9aRddy8xo0PmzwwX0Vl6OUK2KSCf/axB6JtaM
+	 FjbBocXL44Qe9p3fcTSodJBpPw84lnCFwJVy5a9sIIjCtv0Eyj+wcf5qmTmTXhKm3v
+	 0tkZS5LcTxGUcc07cjHqqm6EpNOQF47Gg8rDIXwvpTcuymTc6Js/biLJAUQmfUV9rO
+	 zeMko/gi8Pdx95rz/mdApGk7nF6dxRHG/4PpD+u49fQpXnC9n2bhkJ7QpWGej0/rHJ
+	 p1+FIYOFa7ZSg==
+Date: Fri, 4 Oct 2024 18:36:04 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <hKHtfSCr5fGwc7immM9jFqLhxhNjFsxH6CUwRbw@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAFOi1A68vM3tONkkd9+dm4UxE5EhQi5J3C04mZp-7=xUT9_T5Q@mail.gmail.com
 MIME-Version: 1.0
-References: <CAEL-RA3vkebzVmq8+d6YuQa4z4u1eGo-osZ9gYeby8vq3Q0+hw@mail.gmail.com>
- <CAEL-RA1gaOMUOY9dv-rMz3XSAqZ=52zhb5JJcpN53EXdOHvoxQ@mail.gmail.com>
-In-Reply-To: <CAEL-RA1gaOMUOY9dv-rMz3XSAqZ=52zhb5JJcpN53EXdOHvoxQ@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Fri, 4 Oct 2024 17:41:10 +0200
-Message-ID: <CAFOi1A7L18TyLPnEFOva+jq8bKb2PjvDcoB_2v0oHWinnayb9g@mail.gmail.com>
-To: hui cj <cjh416593819@gmail.com>
-Message-ID-Hash: Z5VY7TS2TVPYDHXGKNGEAIDHXZAY2BOO
-X-Message-ID-Hash: Z5VY7TS2TVPYDHXGKNGEAIDHXZAY2BOO
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: UEUWO3V5EHOHCQZXKYDTD57T7XFTW3IO
+X-Message-ID-Hash: UEUWO3V5EHOHCQZXKYDTD57T7XFTW3IO
+X-MailFrom: mruane@silveredge-gs.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoC Replay module (DRAM to PC)
+Subject: [USRP-users] Re: KAS kirkstone build of ni-titanium-rev5 on x410 with Vitis-AI Library and DPU drivers: Mainline kernel incompatible with zocl DPU driver; possible to use linux-xlnx kernel and make titanium-related additions?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z5VY7TS2TVPYDHXGKNGEAIDHXZAY2BOO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UEUWO3V5EHOHCQZXKYDTD57T7XFTW3IO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2448495740318028778=="
+From: mruane--- via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: mruane@silveredge-gs.com
+Content-Type: multipart/mixed; boundary="===============4558020924392263837=="
 
---===============2448495740318028778==
-Content-Type: multipart/alternative; boundary="000000000000d061f90623a880dc"
+This is a multi-part message in MIME format.
 
---000000000000d061f90623a880dc
-Content-Type: text/plain; charset="UTF-8"
+--===============4558020924392263837==
+Content-Type: multipart/alternative;
+ boundary="b1_hKHtfSCr5fGwc7immM9jFqLhxhNjFsxH6CUwRbw"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_hKHtfSCr5fGwc7immM9jFqLhxhNjFsxH6CUwRbw
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Mark the last connection as a back-edge (
-https://uhd.readthedocs.io/en/latest/classuhd_1_1rfnoc_1_1rfnoc__graph.html=
-#ab4cca8d99af451a9b9c5757af2b66ffa,
-see also
-https://uhd.readthedocs.io/en/latest/page_properties.html#props_graph_resol=
-ution_back_edges
-).
+Hi Martin,
 
---M
+Thanks for all of the input.   I do like the UHD build system.   Make see=
+ms cryptic and convoluted at first glance, but it starts making sense pre=
+tty quickly, even if you don=E2=80=99t understand some of the more nuance=
+d blocks.   I agree with your assessment of the other build systems, and =
+I never really could put my finger on what it was that kept me from buyin=
+g in.   I think it was our discussion with Marcus that gave me a clue as =
+to what it might be.   Up to this point, I=E2=80=99ve never been particul=
+arly =E2=80=9Cfor=E2=80=9D or =E2=80=9Cagainst=E2=80=9D Make; it is simpl=
+y something that is pretty much everywhere.   The other build systems don=
+=E2=80=99t have that.   More people are familiar with Make; it is install=
+ed by default on every Linux distribution I can think of, and I can prett=
+y much take my code to any Linux machine with Vivado and build it.
 
-On Fri, Oct 4, 2024 at 4:39=E2=80=AFPM hui cj <cjh416593819@gmail.com> wrot=
-e:
+> =C2=A0I'm glad to hear you weren't put off by the=C2=A0`rfnoc_image_bui=
+lder`=C2=A0workflow on top of make (I\
+> assume you've been using that given the UHD 4.7 dependency?) and it's n=
+ice\
+> to hear you've been successful building stuff.
 
-> Sorry to bother everyone again,
->
->    - 0/Replay#0:0 --> 0/DUC#0:0
->    - 0/DUC#0:0 =3D=3D> 0/Radio#0:0
->    - 0/Radio#0:0 =3D=3D> 0/DDC#0:0
->    - 0/DDC#0:0 --> 0/Replay#0:0
->
-> I wonder to realize the graph that work for playing from DRAM and
-> recording to DRAM simultaneously,
->
->     graph->connect(tx_replay_ctrl->get_block_id(), tx_replay_chan, duc_ct=
-rl->get_block_id(), duc_chan);
->
->     graph->connect(duc_ctrl->get_block_id(), duc_chan, tx_radio_ctrl->get=
-_block_id(), tx_chan);
->
->
->     graph->connect(rx_radio_ctrl->get_block_id(), rx_chan, ddc_ctrl->get_=
-block_id(), ddc_chan);
->
->     graph->connect(ddc_ctrl->get_block_id(), ddc_chan, rx_replay_ctrl->ge=
-t_block_id(), rx_replay_chan);
->
->
-> Then the following error ran out.
->
-> [ERROR] [RFNOC::GRAPH::DETAIL] Adding edge 0/DDC#0:0 -> 0/Replay#0:0 with=
-out disabling is_forward_edge will lead to unresolvable graph!
->
-> Can someone help me? Thanks!
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Hahaha   I have to admit, I haven=E2=80=99t run `rfnoc_image_builder `yet=
+, since I haven=E2=80=99t changed anything in the data-path.   To be hone=
+st, I don=E2=80=99t have much experience with RFNoC because I always desi=
+gn the data-path from scratch depending on what=E2=80=99s needed by the p=
+rocessing blocks and the larger system.   Not that I don=E2=80=99t re-use=
+ modules; it=E2=80=99s simply that I enjoy FIFOs, gearboxes, managing clo=
+ck domains, flow-control, loopback, timing constraints, etc.   Is it weir=
+d that I=E2=80=99ve never felt like I wished there were something that co=
+uld just take care of that for me?   Hahaha   Maybe. :-)
 
---000000000000d061f90623a880dc
-Content-Type: text/html; charset="UTF-8"
+> That said if you find something unnecessarily annoying with our build\
+> system, please let us know. We know that building custom bitfiles for U=
+SRPs\
+> hasn't always been the easiest/nicest option in the past, and we would\
+> really like to make the FPGA computational capacities available to more=
+\
+> people.
+
+There really wasn=E2=80=99t anything that annoyed me=E2=80=A6which is rar=
+e. :-)   It did take me a bit to figure out how to get the new bitfile an=
+d device tree into the rootfs build system, but I think I figured it out =
+well enough.   What might help people is maybe adding an environment vari=
+able (or some similar mechanism) that both build tools use to point to th=
+e UHD build output (usrp_x410_fpga_xxx.bit and usrp_x410_fpga_xxx.dts).  =
+ The UHD build could export them, and they could be imported from there b=
+y the KAS config or in a meta-ettus recipe.   Maybe that=E2=80=99s simila=
+r to how it works already?   It just wasn=E2=80=99t obvious to me, so I m=
+odified our KAS config yaml, `uhd-fpga-images.inc`, and `uhd-fpga-images_=
+%.bbappend`.
+
+The reason I suggest that is because anyone that may be comfortable using=
+ the PetaLinux tools, but hasn=E2=80=99t yet experienced the =E2=80=9Cjoy=
+=E2=80=9D (terror?) of their first pure Yocto experience is used to an `e=
+xport_hardware` style relation ship between Vivado and PetaLinux that sim=
+plifies getting the PL device tree and bitfile into the image.
+
+Mike
+
+--b1_hKHtfSCr5fGwc7immM9jFqLhxhNjFsxH6CUwRbw
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Mark the last connection as a back-edge (<a href=3D"h=
-ttps://uhd.readthedocs.io/en/latest/classuhd_1_1rfnoc_1_1rfnoc__graph.html#=
-ab4cca8d99af451a9b9c5757af2b66ffa">https://uhd.readthedocs.io/en/latest/cla=
-ssuhd_1_1rfnoc_1_1rfnoc__graph.html#ab4cca8d99af451a9b9c5757af2b66ffa</a>, =
-see also <a href=3D"https://uhd.readthedocs.io/en/latest/page_properties.ht=
-ml#props_graph_resolution_back_edges">https://uhd.readthedocs.io/en/latest/=
-page_properties.html#props_graph_resolution_back_edges</a>).</div><div><br>=
-</div><div>--M<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Fri, Oct 4, 2024 at 4:39=E2=80=AFPM hui cj &lt;<=
-a href=3D"mailto:cjh416593819@gmail.com">cjh416593819@gmail.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
-ltr"><div dir=3D"ltr"><div dir=3D"ltr">Sorry to bother everyone again,<div>=
-<ul><li style=3D"margin-left:15px">0/Replay#0:0 --&gt; 0/DUC#0:0</li><li st=
-yle=3D"margin-left:15px">0/DUC#0:0 =3D=3D&gt; 0/Radio#0:0</li><li style=3D"=
-margin-left:15px">0/Radio#0:0 =3D=3D&gt; 0/DDC#0:0</li><li style=3D"margin-=
-left:15px">0/DDC#0:0 --&gt; 0/Replay#0:0</li></ul>I wonder to realize the g=
-raph that work for playing from DRAM and recording to DRAM simultaneously,=
-=C2=A0</div><div><pre style=3D"margin-top:0px;margin-bottom:0px"><span styl=
-e=3D"color:rgb(192,192,192)">    </span><span style=3D"color:rgb(128,0,0)">=
-graph</span>-&gt;<span style=3D"font-style:italic;color:rgb(0,103,124)">con=
-nect</span>(<span style=3D"color:rgb(128,0,0)">tx_replay_ctrl</span>-&gt;<s=
-pan style=3D"color:rgb(0,103,124)">get_block_id</span>(),<span style=3D"col=
-or:rgb(192,192,192)"> </span><span style=3D"color:rgb(128,0,0)">tx_replay_c=
-han</span>,<span style=3D"color:rgb(192,192,192)"> </span><span style=3D"co=
-lor:rgb(128,0,0)">duc_ctrl</span>-&gt;<span style=3D"color:rgb(0,103,124)">=
-get_block_id</span>(),<span style=3D"color:rgb(192,192,192)"> </span><span =
-style=3D"color:rgb(128,0,0)">duc_chan</span>);</pre><pre style=3D"margin-to=
-p:0px;margin-bottom:0px"><span style=3D"color:rgb(192,192,192)">    </span>=
-<span style=3D"color:rgb(128,0,0)">graph</span>-&gt;<span style=3D"font-sty=
-le:italic;color:rgb(0,103,124)">connect</span>(<span style=3D"color:rgb(128=
-,0,0)">duc_ctrl</span>-&gt;<span style=3D"color:rgb(0,103,124)">get_block_i=
-d</span>(),<span style=3D"color:rgb(192,192,192)"> </span><span style=3D"co=
-lor:rgb(128,0,0)">duc_chan</span>,<span style=3D"color:rgb(192,192,192)"> <=
-/span><span style=3D"color:rgb(128,0,0)">tx_radio_ctrl</span>-&gt;<span sty=
-le=3D"color:rgb(0,103,124)">get_block_id</span>(),<span style=3D"color:rgb(=
-192,192,192)"> </span><span style=3D"color:rgb(128,0,0)">tx_chan</span>);</=
-pre><pre style=3D"margin-top:0px;margin-bottom:0px"><br></pre><pre style=3D=
-"margin-top:0px;margin-bottom:0px"><span style=3D"color:rgb(192,192,192)"> =
-   </span><span style=3D"color:rgb(128,0,0)">graph</span>-&gt;<span style=
-=3D"font-style:italic;color:rgb(0,103,124)">connect</span>(<span style=3D"c=
-olor:rgb(128,0,0)">rx_radio_ctrl</span>-&gt;<span style=3D"color:rgb(0,103,=
-124)">get_block_id</span>(),<span style=3D"color:rgb(192,192,192)"> </span>=
-<span style=3D"color:rgb(128,0,0)">rx_chan</span>,<span style=3D"color:rgb(=
-192,192,192)"> </span><span style=3D"color:rgb(128,0,0)">ddc_ctrl</span>-&g=
-t;<span style=3D"color:rgb(0,103,124)">get_block_id</span>(),<span style=3D=
-"color:rgb(192,192,192)"> </span><span style=3D"color:rgb(128,0,0)">ddc_cha=
-n</span>);</pre><pre style=3D"margin-top:0px;margin-bottom:0px"><span style=
-=3D"color:rgb(192,192,192)">    </span><span style=3D"color:rgb(128,0,0)">g=
-raph</span>-&gt;<span style=3D"font-style:italic;color:rgb(0,103,124)">conn=
-ect</span>(<span style=3D"color:rgb(128,0,0)">ddc_ctrl</span>-&gt;<span sty=
-le=3D"color:rgb(0,103,124)">get_block_id</span>(),<span style=3D"color:rgb(=
-192,192,192)"> </span><span style=3D"color:rgb(128,0,0)">ddc_chan</span>,<s=
-pan style=3D"color:rgb(192,192,192)"> </span><span style=3D"color:rgb(128,0=
-,0)">rx_replay_ctrl</span>-&gt;<span style=3D"color:rgb(0,103,124)">get_blo=
-ck_id</span>(),<span style=3D"color:rgb(192,192,192)"> </span><span style=
-=3D"color:rgb(128,0,0)">rx_replay_chan</span>);</pre><pre style=3D"margin-t=
-op:0px;margin-bottom:0px"><br></pre><pre style=3D"margin-top:0px;margin-bot=
-tom:0px"><font face=3D"arial, sans-serif">Then the following error ran out.=
-</font></pre><pre style=3D"margin-top:0px;margin-bottom:0px"><font face=3D"=
-arial, sans-serif">[ERROR] [RFNOC::GRAPH::DETAIL] Adding edge 0/DDC#0:0 -&g=
-t; 0/Replay#0:0 without disabling is_forward_edge will lead to unresolvable=
- graph!</font></pre><pre style=3D"margin-top:0px;margin-bottom:0px"><font f=
-ace=3D"arial, sans-serif">Can someone help me? Thanks!</font></pre></div></=
-div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<p>Hi Martin,</p><p>Thanks for all of the input.   I do like the UHD build =
+system.   Make seems cryptic and convoluted at first glance, but it starts =
+making sense pretty quickly, even if you don=E2=80=99t understand some of t=
+he more nuanced blocks.   I agree with your assessment of the other build s=
+ystems, and I never really could put my finger on what it was that kept me =
+from buying in.   I think it was our discussion with Marcus that gave me a =
+clue as to what it might be.   Up to this point, I=E2=80=99ve never been pa=
+rticularly =E2=80=9Cfor=E2=80=9D or =E2=80=9Cagainst=E2=80=9D Make; it is s=
+imply something that is pretty much everywhere.   The other build systems d=
+on=E2=80=99t have that.   More people are familiar with Make; it is install=
+ed by default on every Linux distribution I can think of, and I can pretty =
+much take my code to any Linux machine with Vivado and build it.</p><blockq=
+uote><p>&nbsp;I'm glad to hear you weren't put off by the&nbsp;<code>rfnoc_=
+image_builder</code>&nbsp;workflow on top of make (I<br>assume you've been =
+using that given the UHD 4.7 dependency?) and it's nice<br>to hear you've b=
+een successful building stuff.</p></blockquote><p>Hahaha   I have to admit,=
+ I haven=E2=80=99t run <code>rfnoc_image_builder </code>yet, since I haven=
+=E2=80=99t changed anything in the data-path.   To be honest, I don=
+=E2=80=99t have much experience with RFNoC because I always design the data=
+-path from scratch depending on what=E2=80=99s needed by the processing blo=
+cks and the larger system.   Not that I don=E2=80=99t re-use modules; it=
+=E2=80=99s simply that I enjoy FIFOs, gearboxes, managing clock domains, fl=
+ow-control, loopback, timing constraints, etc.   Is it weird that I=
+=E2=80=99ve never felt like I wished there were something that could just t=
+ake care of that for me?   Hahaha   Maybe. :-)</p><blockquote><p>That said =
+if you find something unnecessarily annoying with our build<br>system, plea=
+se let us know. We know that building custom bitfiles for USRPs<br>hasn't a=
+lways been the easiest/nicest option in the past, and we would<br>really li=
+ke to make the FPGA computational capacities available to more<br>people.</=
+p></blockquote><p>There really wasn=E2=80=99t anything that annoyed me=
+=E2=80=A6which is rare. :-)   It did take me a bit to figure out how to get=
+ the new bitfile and device tree into the rootfs build system, but I think =
+I figured it out well enough.   What might help people is maybe adding an e=
+nvironment variable (or some similar mechanism) that both build tools use t=
+o point to the UHD build output (usrp_x410_fpga_xxx.bit and usrp_x410_fpga_=
+xxx.dts).   The UHD build could export them, and they could be imported fro=
+m there by the KAS config or in a meta-ettus recipe.   Maybe that=E2=80=
+=99s similar to how it works already?   It just wasn=E2=80=99t obvious to m=
+e, so I modified our KAS config yaml, <code>uhd-fpga-images.inc</code>, and=
+ <code>uhd-fpga-images_%.bbappend</code>.</p><p>The reason I suggest that i=
+s because anyone that may be comfortable using the PetaLinux tools, but has=
+n=E2=80=99t yet experienced the =E2=80=9Cjoy=E2=80=9D (terror?) of their fi=
+rst pure Yocto experience is used to an <code>export_hardware</code> style =
+relation ship between Vivado and PetaLinux that simplifies getting the PL d=
+evice tree and bitfile into the image.</p><p>Mike</p><p><br></p>
 
---000000000000d061f90623a880dc--
+--b1_hKHtfSCr5fGwc7immM9jFqLhxhNjFsxH6CUwRbw--
 
---===============2448495740318028778==
+--===============4558020924392263837==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -226,4 +189,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2448495740318028778==--
+--===============4558020924392263837==--
