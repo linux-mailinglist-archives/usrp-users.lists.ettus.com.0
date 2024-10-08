@@ -2,135 +2,112 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED0E099392D
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2024 23:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4EC993C47
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Oct 2024 03:30:55 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E27183859D7
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2024 17:27:45 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E789638594D
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2024 21:30:53 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1728336465; bh=j46JFnz+IGGW3MtDn0bbKm+NdhpMObpq47bzekPECWc=;
-	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1728351053; bh=YHVcRPQgU3G9jz5/zOA31E4n+8rjZBHfHdKUkn3VPrI=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=eImv4PeOmorJNdBtXQ+O6QLo8kbWL2W+ulAbG4hpv7NPmhvQ2iFkePOjReNtxmS0w
-	 CKp33itfADCOO0PaEyPDQu6E4fRJMiNzUIEmh/kqZ9VEeTnqQ24qb+oeJT1ktA4c9A
-	 JQmE18mSPS6n2k9JwSN2E7zKiHN7sI29m3X26bXoiInSRcx8CxuF4s/qPds7fxjaF2
-	 pmf56O1sqfUXTAipw0nL4kYSnreFao7f7rVJ8u/vQsIjTy5if5usDWH1wYR1hevOr1
-	 E3WYoZJhnQfEKsUkiLtXaAakYk3kCk4sW9zGCDC9DUD8XADSJGLAhXGAtc8rj1qEQP
-	 b7zDWp4Bbskrw==
-Received: from resqmta-a2p-658918.sys.comcast.net (resqmta-a2p-658918.sys.comcast.net [96.103.146.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id AF98D3858C1
-	for <usrp-users@lists.ettus.com>; Mon,  7 Oct 2024 17:26:50 -0400 (EDT)
+	 From;
+	b=mG9xT32XNnYNdf/Iw0HNvFFQwadTOnGAP6ZsI1NKo6st9ap/KKYgs5pc9AnbeYGbd
+	 Xk1BYla8jA7F2WmY2t2TA0sFhXrqQt9b8KnC8O08k66upcY2mjOi/LEo23qdicdnKE
+	 d2XwyYv+5e/gFK4ENoZz/YDv/rh82Ng7JPUvMnDTRGdVxSCYzRsHXBzVExwmuI335t
+	 qRLP7Jse61mF+txQeCdLTmnM4EjThUyrTIKsqc6Gz17ldqz+14vTVxRAtwPOwrqjSp
+	 WygeaAvspCf7ne6MzXW36WNofb4p7gaFt+cXvK9M99AcJ4CnTHkWS61gLZtIz73I6N
+	 k0bNC8wpfH0jA==
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id B79CE385952
+	for <usrp-users@lists.ettus.com>; Mon,  7 Oct 2024 21:30:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=comcast.net header.i=@comcast.net header.b="NT3oFtQQ";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="dZPyakZD";
 	dkim-atps=neutral
-Received: from resomta-a2p-647654.sys.comcast.net ([96.103.145.231])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
-	(Client did not present a certificate)
-	by resqmta-a2p-658918.sys.comcast.net with ESMTPS
-	id xncNsRM2itQNYxvFhsC32J; Mon, 07 Oct 2024 21:26:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=20190202a; t=1728336410;
-	bh=Fsi+XuItXFC5DRDwbzu9ASTpZ7LakyrhdAU3f8eidw8=;
-	h=Received:Received:Message-ID:Date:MIME-Version:Subject:To:From:
-	 Content-Type:Xfinity-Spam-Result;
-	b=NT3oFtQQVZUBv1Uc43FUtxZ+OwtK+6OASH7hEDvCHMsaU0aa3cX/RH7nD1gR4/Ct9
-	 0ttKrPH+MaLUPaXXmXIvmQEk/qiJp/Qj1AH7hYIRly9eWS8lRlaMcldG6BwwRA/0Wt
-	 80ioq827iZUgzSnCbdP7yW/FxX56NpNsNj4oWc1usrv1EKMVWyd2+Qe9JHWNYuDq3q
-	 /+ohC+leTKB3ZlJ0ZHlW2Z1oVAHgabuxVqcZXm/OoV21326sMBceMAFL803yUkxbUt
-	 wV6xOVua3MT/Sa012GuA2MMdPZEbGHBsVT2j9Lmf3dDzwYxia5mZOJUvv+kc53sWXm
-	 VlDtV0rZ+0vPw==
-Received: from [IPV6:2601:647:4b00:aafb:8556:b73d:e580:b1c8]
- ([IPv6:2601:647:4b00:aafb:8556:b73d:e580:b1c8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
-	(Client did not present a certificate)
-	by resomta-a2p-647654.sys.comcast.net with ESMTPSA
-	id xvFgsb3MPLQwZxvFhsQf1j; Mon, 07 Oct 2024 21:26:49 +0000
-Message-ID: <36596c17-6d46-4bc0-b682-fb1dc19e4a83@comcast.net>
-Date: Mon, 7 Oct 2024 14:26:48 -0700
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-20b5fb2e89dso39275895ad.1
+        for <usrp-users@lists.ettus.com>; Mon, 07 Oct 2024 18:30:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1728351024; x=1728955824; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=S57FLDJ38YA8A98wKWvTwuW6FuFA43mvq900ck/x6ck=;
+        b=dZPyakZDERRunHy9BV9qe8hZ+8JkU3v0d4EHwWchE1PcwFq77zHfxHDBqx8MIDEF1e
+         qsaG0lKRmE4i8H1wDqQy+EBGLn6nVf930K0EHNYipNgQv0U+ntSg2STR5x1nrVOH/cNR
+         nRy9FYr/QGtX69KHwuIB7ILxR9R7uGKOMQ49q3GzAAx9cZgEf7RAaXYJywe7nXfBQRUi
+         W0JppwKYDIjvLjZNDohUvWJVKPRc+2prKxVaEkuvHGMj3WKK9+POZR4+Y4WlIhEGiNHR
+         QckG4UOyhs5FvJIO2Jd6MkN/tOM8pYrzSOoPRwahyKLYKEH8nhd2AXdhszTUKdUBqXbX
+         2FAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728351024; x=1728955824;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S57FLDJ38YA8A98wKWvTwuW6FuFA43mvq900ck/x6ck=;
+        b=is4pRU4YDqTTidWUPFJ+JBrkz6v/wfe0ijyWss2k6tIG/crazdtO6SsopCpIJ+CCqa
+         W28wAUvMZULuRwyjxLoVa7pByyf5uswVOdkAUisoGRzfhhKLlHPJ8JzR6NvPBkuPzc8y
+         RoffYJWN4QkyYRD0PfYJxP4EM5K7M6jEoSYJHGmgQtoYpVbhlR776vCJ1lBNBVK64g7M
+         jq+PaDL5/dXwsNp5ID8vXq4zJv2cHeZ2Ag7i5Pj6NmYrNm55exP8Bj82f0pQXuXbd3QX
+         D4cn54KDf8YZVFL2SS0iuz01NKgIo3SaE3GqdlghSU3eMVHxYwnemfi773hLAvKlEHbs
+         +Rpw==
+X-Gm-Message-State: AOJu0YyLM0aDaXk6E9TY5a1JnogZUf9WdpVbwJ9DMiAjM5mOV2nFo2jJ
+	iz40u6qxTR8pn60e7xJKgUxxaJqM1D4I9HvePivjlDjrdmdx9gn8qbva37GAPMND5Q3O1lMWFvJ
+	up9M=
+X-Google-Smtp-Source: AGHT+IHdyChQCBdvSxTVgOmxMrQHlICHx7gl/aKq4Fu87XqxN+MXjMtXWaIywfGGcEgPUFIlzfjPuQ==
+X-Received: by 2002:a17:902:e5c5:b0:20c:593d:3387 with SMTP id d9443c01a7336-20c593d3825mr504635ad.58.1728351024186;
+        Mon, 07 Oct 2024 18:30:24 -0700 (PDT)
+Received: from [192.168.192.123] ([12.40.220.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c1395a1easm45626705ad.183.2024.10.07.18.30.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 18:30:23 -0700 (PDT)
+Message-ID: <08a77f69-14d6-4958-8905-7c54ad5d183f@ettus.com>
+Date: Mon, 7 Oct 2024 18:30:22 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
-References: <1hIYAC9aaQbrg89Shz4zifzEIEMakHdKW6A0BHXHgw@lists.ettus.com>
+To: usrp-users@lists.ettus.com, yguruprasad@umass.edu
+References: <CAD8oTTN+Hws020Z_=fA35P_yrCauiaWYjiNyUijnZ4NJLVEfZA@mail.gmail.com>
 Content-Language: en-US
-In-Reply-To: <1hIYAC9aaQbrg89Shz4zifzEIEMakHdKW6A0BHXHgw@lists.ettus.com>
-X-CMAE-Envelope: MS4xfC8kbRP62R21JFoyW3tPo0rjs3Hnm+wbCM1Y9bpgVS3Q8/UCM7fNiNAdHVUDndTX0wSBOGkuJX4AggJbcP0ZHUVgcBRjZ4UGTygiWI0nO8WANAMfxDBR
- zDOQc4DoJ4VShcFceh6mePoxhC+b40hl7CvAbufhK/0QUp+/z8Hl2WUNYgq7WnNJRt89MR6+AaBAxYk5goV+7Egn4EcONsypVVSOgbCwAnsEVxOk37Elesdt
- pbWW8Sd3u6wpuLMdguzmQiAgZq3Fa6kR8W/xg5bN6bBYTu/CaVIIFznnQVzq7SAIo8SNxngcEQE8sq2jcjMHUw==
-Message-ID-Hash: DIIYOEKVA5G6DVH2B2JCO3PXUPU5XCMY
-X-Message-ID-Hash: DIIYOEKVA5G6DVH2B2JCO3PXUPU5XCMY
-X-MailFrom: w6rz@comcast.net
+From: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+In-Reply-To: <CAD8oTTN+Hws020Z_=fA35P_yrCauiaWYjiNyUijnZ4NJLVEfZA@mail.gmail.com>
+Message-ID-Hash: MTZL2HWA5BQVM7FJ3FHZO2IPEMWP2336
+X-Message-ID-Hash: MTZL2HWA5BQVM7FJ3FHZO2IPEMWP2336
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: "buffer_double_mapped :warning: allocate_buffer:" for dvbt_rx_8k.grc
+Subject: [USRP-users] Re: Issue with keep one in n block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DIIYOEKVA5G6DVH2B2JCO3PXUPU5XCMY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MTZL2HWA5BQVM7FJ3FHZO2IPEMWP2336/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ron Economos <w6rz@comcast.net>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Transfer-Encoding: 7bit
 
-VGhvc2UgYnVmZmVyIHdhcm5pbmdzIGFyZSBub3JtYWwgYW5kIGNhbiBiZSBpZ25vcmVkLiBUaGV5
-IGFyZSBqdXN0IGZyb20gDQpibG9ja3MgdXNpbmcgdmVjdG9yIHNpemVzIHRoYXQgYXJlIG5vdCBh
-IHBvd2VyIG9mIDIuDQoNClRoZSBpbnB1dCBmaWxlIChhZHYxNi5jZmlsZSkgaXMgbm90IGEgVHJh
-bnNwb3J0IFN0cmVhbSwgaXQncyBhbiBJUSBmaWxlIA0Kb2YgYSBEVkItVCB0cmFuc21pc3Npb24u
-IFRoZSBmbG93IGdyYXBoIHN0b3BzIGFmdGVyIGEgd2hpbGUgYmVjYXVzZSB0aGUgDQoicmVwZWF0
-IiBwYXJhbWV0ZXIgb24gdGhlIGZpbGUgc291cmNlIGlzIHNldCB0byAiTm8iLg0KDQpUaGUgSVEg
-ZmlsZSBpcyBwcm92aWRlZCB0byB0ZXN0IHRoZSBmbG93IGdyYXBoLiBUaGUgbmV4dCBzdGVwIHdv
-dWxkIGJlIA0KdG8gZGlzYWJsZSB0aGUgZmlsZSBzb3VyY2UgYW5kIHRocm90dGxlIGJsb2NrIGFu
-ZCBlbmFibGUgdGhlIFVIRCBVU1JQIA0Kc291cmNlIGJsb2NrIChvciBzb21lIG90aGVyIHNvdXJj
-ZSBibG9jayBmb3IgeW91ciBzcGVjaWZpYyBTRFIpIGFuZCB0cnkgDQp0byByZWNlaXZlIGEgc2ln
-bmFsIG92ZXIgdGhlIGFpci4NCg0KQW5kIGFzIE1hcmN1cyBzYWlkLCB0aGlzIGlzIHJlYWxseSBh
-IEdOVSBSYWRpbyBxdWVzdGlvbi4NCg0KUm9uDQoNCk9uIDEwLzcvMjQgMDk6NDMsIGg1N2phZmFy
-aUBnbWFpbC5jb20gd3JvdGU6DQo+DQo+IEhpLCBJIGFtIHJ1bm5pbmcg4oCcZHZidF9yeF84ay5n
-cmPigJ0gd2l0aCBzYW1wbGUgdHMgZmlsZS4gVGhlIHJlc3VsdCBzYXZlIA0KPiB0byB0aGUgb3V0
-cHV0IGZpbGUgYW5kIGFsc28gd2l0aCBVRFAgc2luayBJIGNhbiBzZWUgdGhlIHZpZGVvIHN0cmVh
-bSANCj4gaW4gdGhlIHZsYy4gQnV0IGV2ZXJ5IHRpbWUgaXQgc3RvcCBhZnRlciBhIHdoaWxlIGFu
-ZCBnZW5lcmF0ZWQgb3V0cHV0IA0KPiB0cyBmaWxlIHdpdGggZml4ZWQgc2l6ZSBvZiAyNS4yTUIu
-IGhlcmUgaXMgdGhlIHdhcm5pbmcgSSByZWNlaXZlIGdudSANCj4gcmFkaW86DQo+DQo+IFFTb2Nr
-ZXROb3RpZmllcjogQ2FuIG9ubHkgYmUgdXNlZCB3aXRoIHRocmVhZHMgc3RhcnRlZCB3aXRoIFFU
-aHJlYWQNCj4NCj4gYnVmZmVyX2RvdWJsZV9tYXBwZWQgOndhcm5pbmc6IGFsbG9jYXRlX2J1ZmZl
-cjogdHJpZWQgdG8gYWxsb2NhdGUgMTAgDQo+IGl0ZW1zIG9mIHNpemUgNjA0OC4gRHVlIHRvIGFs
-aWdubWVudCByZXF1aXJlbWVudHMgMTI4IHdlcmUgYWxsb2NhdGVkLiANCj4gSWYgdGhpcyBpc24n
-dCBPSywgY29uc2lkZXIgcGFkZGluZyB5b3VyIHN0cnVjdHVyZSB0byBhIHBvd2VyLW9mLXR3byAN
-Cj4gYnl0ZXMuIE9uIHRoaXMgcGxhdGZvcm0sIG91ciBhbGxvY2F0aW9uIGdyYW51bGFyaXR5IGlz
-IDQwOTYgYnl0ZXMuDQo+DQo+IGJ1ZmZlcl9kb3VibGVfbWFwcGVkIDp3YXJuaW5nOiBhbGxvY2F0
-ZV9idWZmZXI6IHRyaWVkIHRvIGFsbG9jYXRlIDQzIA0KPiBpdGVtcyBvZiBzaXplIDE1MDQuIER1
-ZSB0byBhbGlnbm1lbnQgcmVxdWlyZW1lbnRzIDEyOCB3ZXJlIGFsbG9jYXRlZC4gDQo+IElmIHRo
-aXMgaXNuJ3QgT0ssIGNvbnNpZGVyIHBhZGRpbmcgeW91ciBzdHJ1Y3R1cmUgdG8gYSBwb3dlci1v
-Zi10d28gDQo+IGJ5dGVzLiBPbiB0aGlzIHBsYXRmb3JtLCBvdXIgYWxsb2NhdGlvbiBncmFudWxh
-cml0eSBpcyA0MDk2IGJ5dGVzLg0KPg0KPiBidWZmZXJfZG91YmxlX21hcHBlZCA6d2FybmluZzog
-YWxsb2NhdGVfYnVmZmVyOiB0cmllZCB0byBhbGxvY2F0ZSA0IA0KPiBpdGVtcyBvZiBzaXplIDQ4
-Mzg0LiBEdWUgdG8gYWxpZ25tZW50IHJlcXVpcmVtZW50cyAxNiB3ZXJlIGFsbG9jYXRlZC4gDQo+
-IElmIHRoaXMgaXNuJ3QgT0ssIGNvbnNpZGVyIHBhZGRpbmcgeW91ciBzdHJ1Y3R1cmUgdG8gYSBw
-b3dlci1vZi10d28gDQo+IGJ5dGVzLiBPbiB0aGlzIHBsYXRmb3JtLCBvdXIgYWxsb2NhdGlvbiBn
-cmFudWxhcml0eSBpcyA0MDk2IGJ5dGVzLg0KPg0KPiBidWZmZXJfZG91YmxlX21hcHBlZCA6d2Fy
-bmluZzogYWxsb2NhdGVfYnVmZmVyOiB0cmllZCB0byBhbGxvY2F0ZSAxMCANCj4gaXRlbXMgb2Yg
-c2l6ZSA2MDQ4LiBEdWUgdG8gYWxpZ25tZW50IHJlcXVpcmVtZW50cyAxMjggd2VyZSBhbGxvY2F0
-ZWQuIA0KPiBJZiB0aGlzIGlzbid0IE9LLCBjb25zaWRlciBwYWRkaW5nIHlvdXIgc3RydWN0dXJl
-IHRvIGEgcG93ZXItb2YtdHdvIA0KPiBieXRlcy4gT24gdGhpcyBwbGF0Zm9ybSwgb3VyIGFsbG9j
-YXRpb24gZ3JhbnVsYXJpdHkgaXMgNDA5NiBieXRlcy4NCj4NCj4gYnVmZmVyX2RvdWJsZV9tYXBw
-ZWQgOndhcm5pbmc6IGFsbG9jYXRlX2J1ZmZlcjogdHJpZWQgdG8gYWxsb2NhdGUgNDAgDQo+IGl0
-ZW1zIG9mIHNpemUgMTYzMi4gRHVlIHRvIGFsaWdubWVudCByZXF1aXJlbWVudHMgMTI4IHdlcmUg
-YWxsb2NhdGVkLiANCj4gSWYgdGhpcyBpc24ndCBPSywgY29uc2lkZXIgcGFkZGluZyB5b3VyIHN0
-cnVjdHVyZSB0byBhIHBvd2VyLW9mLXR3byANCj4gYnl0ZXMuIE9uIHRoaXMgcGxhdGZvcm0sIG91
-ciBhbGxvY2F0aW9uIGdyYW51bGFyaXR5IGlzIDQwOTYgYnl0ZXMuDQo+DQo+IGJ1ZmZlcl9kb3Vi
-bGVfbWFwcGVkIDp3YXJuaW5nOiBhbGxvY2F0ZV9idWZmZXI6IHRyaWVkIHRvIGFsbG9jYXRlIDEw
-IA0KPiBpdGVtcyBvZiBzaXplIDYwNDguIER1ZSB0byBhbGlnbm1lbnQgcmVxdWlyZW1lbnRzIDEy
-OCB3ZXJlIGFsbG9jYXRlZC4gDQo+IElmIHRoaXMgaXNuJ3QgT0ssIGNvbnNpZGVyIHBhZGRpbmcg
-eW91ciBzdHJ1Y3R1cmUgdG8gYSBwb3dlci1vZi10d28gDQo+IGJ5dGVzLiBPbiB0aGlzIHBsYXRm
-b3JtLCBvdXIgYWxsb2NhdGlvbiBncmFudWxhcml0eSBpcyA0MDk2IGJ5dGVzLg0KPg0KPiBhbnkg
-c29sdXRpb24uIHRoYW5rIHlvdS4NCj4NCj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1
-c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAt
-dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+Hi!
+
+You'll have to describe that issue, what exactly you've done, which 
+versions you're using and what you've tried yourself if you want us to 
+be able to be of any assistance!
+
+Best,
+Marcus
+
+On 2024-02-28 12:12 PM, Yashaswini Guruprasad wrote:
+> Hello,
+>
+> I had an issue on how to work with keep one in n block and the replay 
+> block , And test the respective functionality.
+>
+> Thanks
+> Yashaswini
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
