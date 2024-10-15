@@ -2,828 +2,687 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E1899EF5A
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 16:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E9D99EFF7
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 16:47:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F0DDE38599E
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 10:21:50 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4987138597F
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 10:47:00 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1729002110; bh=r52Df5W2iHNfQ4qDn/2gBWkKjVvAIuIiwlBlEeoK/yo=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	t=1729003620; bh=GcMjuY9D896gs+0PS2neEFClDWW3gkn+pabt1Ij9+ZQ=;
+	h=Date:References:In-Reply-To:From:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=ny4OF05OkRODYJ4LrFqLKeJ8dqnvFvYQ/X06m+PChTGkuPDfFOefMiV/WNKMrGea2
-	 dIYZubC0gezLOSIKeayD1PLtzowbSt6lELl5dwubSd/IigpEOe/aOyUU8eW6CaqY8T
-	 1rcay6Uv0zv5lB08Q9ZEOecgWjyFS8jSQ2C99huoqYFOM5R/Pv8OC48Az8LvimspUi
-	 6xPbRyclHvmRYp7gDcj5kw0VBY5ln7POkZRd62gYKNq5uiFOjj34HvP37Pg4ZyfE73
-	 GFHTuc270Bph44KU5M9aTEpLkVnFdCeF6rI4jBOQ4yBHgFn2smYr9z7dyN6lkI628j
-	 4cuznE7JmEekw==
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id 78EA7380936
-	for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 10:21:41 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="j8yRgsg0";
-	dkim-atps=neutral
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-46071514c72so13828291cf.3
-        for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 07:21:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729002101; x=1729606901; darn=lists.ettus.com;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gzA09vCJhf42pYbtxNONKKHO3hEp0C0uFW3RHMf9vCY=;
-        b=j8yRgsg0a2DMiTFp6Zfqs8AxVaa6DU5Zl4crHIUk0l38a/wXS79fqvYM9zp1ulM23U
-         N4aaHgm8/WU1C2LIsEd+8yQqAgJpbon4hKeJSNtWXMSyIodtmFT2Dkj9PL8kjKYtlGa1
-         N7EdljCDdG9w8bpSM/PJ2fyajrcOU+aa8IWIBt6lR9cCFlpXnp10mqgKdTdQ2wWBQYeY
-         5F92cH4SNWQdzXXBzwDNQi5IZn49ubtD9ca80OABZeX7GIKltrV4jyamm87nCmiX1e4A
-         QPgjnkAAds45Nueplh0BakYI+ujuZZGAC24RbEHdVlA6U5rckDSVQa+wpJ5vWdEpQQCM
-         lI/A==
+	b=LPqjd81Za1hGUp48jGSRgYtwCWGpqizCMWnuukcNduz8CVG2rQef65B6Frag/8aQC
+	 0G9Y4HoYy7iBOMyadtNSF5DGUsxPKJK2RwkqWNwi49ZyWRZxHKNzqeMK7krkPqFYdw
+	 IpEBSno1wm/g8YV334mt3RgnD6JJbzjtcQbfFoxo9AKzLbUYSPseZ+WbXOp4MpKh1+
+	 mMo9x35Ja3fB7m9xfE4C0KMSJSS+gvBc0KWinGfTzDPQJFt8pC6zZFusJcLgVj/OJe
+	 jd3jYPJj7RK5/PiFZy3tsVo6hk2VumYeOwZ843pXY0Wd9wgT7FReKZIG0NZldBVqvo
+	 MpFFAwDh32Pqg==
+Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
+	by mm2.emwd.com (Postfix) with ESMTPS id DE1AB38587A
+	for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 10:46:45 -0400 (EDT)
+Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-50d5df104cbso381906e0c.2
+        for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 07:46:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729002101; x=1729606901;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gzA09vCJhf42pYbtxNONKKHO3hEp0C0uFW3RHMf9vCY=;
-        b=voSj9Kjz96AZVNqmf/ZRlfjsh32a9p8Dc3lsBDIdcTkF7e2f92nc8PY7mcqa8lkqM6
-         cxwo15ekpY7p01eVBMWD7qUoP94/eCqYSYGsr6N9kpiJS1A8RGrRDmZ9nmqVmk4+a4cD
-         Ww7Zia+VDY2fRq625BlZHwv3faN4DF0D2SfeLkJv+ThHatnRKPkcaMvwo5WZnpMagFEk
-         H1Fwfm6BCHp9uQ0LASyQnfMPhXkEAJLuFCCeHcaE0dtqW53uRn5mUc/hVIIU7JW3m94A
-         XgUcZbtBRCSHaMAJfx2XQ98UXzoqAnLphugnosUtG7WmXA+U6uvFAaMf3w7X0+c6i9N/
-         xwxw==
-X-Gm-Message-State: AOJu0YzqDDXKuzXNc0+PkvYp7mfg+K1T96SVQxR1AcFCu64q3Ovsrzv/
-	fc6BIv8OjrT83zzEceA84M284rFuGDBdBKtMXlWLt4sw9oS+2Mw7ORomkg==
-X-Google-Smtp-Source: AGHT+IETI2BeiQpRvOG3DMvho9N6GP2TllM4y6XSGh8rHgO9xegEXRdEPSqBXDRhpx0bo8SOOc+GXw==
-X-Received: by 2002:a05:622a:1989:b0:45d:9525:42ff with SMTP id d75a77b69052e-4604bca79a3mr209374571cf.54.1729002100689;
-        Tue, 15 Oct 2024 07:21:40 -0700 (PDT)
-Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4607b119d78sm7089991cf.42.2024.10.15.07.21.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Oct 2024 07:21:40 -0700 (PDT)
-Message-ID: <d3c528ef-6e61-4596-a9af-74084baae152@gmail.com>
-Date: Tue, 15 Oct 2024 10:21:29 -0400
+        d=1e100.net; s=20230601; t=1729003605; x=1729608405;
+        h=cc:to:from:subject:message-id:in-reply-to:references:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nBBlto1uiLCs+4B5riWzdqW4XNqrOqNfEX/y58VeD70=;
+        b=DnTp8amtJDMcns1r5qJWzaTqqKwP0UqaFhERxTTzZfmA//huZbgY2hvadS4TJOdOZE
+         pb2QZ3vZxITpVcVYCYWJ+qPZYolQ8qXgdTSUCQLmaUIDKJCtWvsviZKpkMs3YXERi1UZ
+         MYMqhg6IJXXWZ8OwNyXi68YpKEyDZPpzm8ZcorEkVcOkxWkGtlOxkgMyV8n9gLHFtq8b
+         aLItYgxiwMbN18Mz52sUrW+p6wv5vsvbGcMrOrLT3HfIj/BGg8ZYxb9CDt9w4iR2IwJN
+         0v7Og3td4nJHVf/CGxOkKs6HgWNlqZfWDlTj0IOzdYq1vjy1s8rbKx9rU2EuWi1mmqqP
+         UhpA==
+X-Gm-Message-State: AOJu0Yw7KBweAoTLla3N1nhZoCecZb07opbGUoRphdNcvVbk0KMSDFCl
+	j+RUqDpT4pjMHh+2igWHiAIIYKARdzVoi3Pq2dhEl7kseOJw1unSOrMuzO9RtMhcvhjPWrmJVVE
+	bhu1thofReqocbMa28g2JrAN1lLS2JuNluIa9P8z5lSNSyvtKbsNEUAMCfgs4lGP2Bd3MuA==
+X-Google-Smtp-Source: AGHT+IFCT0MBGQl7EQJIO8JBCO5TXVJvJ3uSXUFWeRofWyXE0DH3t4+pf7+6PbWkMYZJGSc9rZHrtPnHUp8By1F9/dSXgz/T+vjqxg==
+X-Received: by 2002:a05:6122:130f:b0:50c:a762:8f95 with SMTP id 71dfb90a1353d-50d3771d345mr7237736e0c.10.1729003605190;
+        Tue, 15 Oct 2024 07:46:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Houshang <houshang.azizi@accelleran.com>
+Date: Tue, 15 Oct 2024 16:24:05 +0200
 References: <CAO=xj9XeHxnLA9wK+D6Q9ghpwkGo6DpYF9CH7vWSERSxv+eiPA@mail.gmail.com>
- <7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com>
- <CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
- <f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com>
- <CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+	<7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com>
+	<CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
+	<f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com>
+	<CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
 In-Reply-To: <CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
-Message-ID-Hash: WGOPZKFWBPITRXEDQTHJ52CO53FK4P25
-X-Message-ID-Hash: WGOPZKFWBPITRXEDQTHJ52CO53FK4P25
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID: <CAO=xj9X2WY3n=FAH8Wikfh-o5iLM2RrA6c9yRbgj7rym3UeWXw@mail.gmail.com>
+From: Houshang <houshang.azizi@accelleran.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: UPMMZMMU4F7OY4UDI5II3IIXTMU36ZXN
+X-Message-ID-Hash: UPMMZMMU4F7OY4UDI5II3IIXTMU36ZXN
+X-MailFrom: houshang.azizi@accelleran.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Failure to create rfnoc_graph
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WGOPZKFWBPITRXEDQTHJ52CO53FK4P25/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UPMMZMMU4F7OY4UDI5II3IIXTMU36ZXN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1574824292685369862=="
+Content-Type: multipart/mixed; boundary="===============8111436424449890290=="
 
-This is a multi-part message in MIME format.
---===============1574824292685369862==
-Content-Type: multipart/alternative;
- boundary="------------MwRjDtIqK50x0C2izZ5TRatB"
-Content-Language: en-US
+--===============8111436424449890290==
+Content-Type: multipart/related; boundary="000000000000b32490062484b456"
 
-This is a multi-part message in MIME format.
---------------MwRjDtIqK50x0C2izZ5TRatB
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--000000000000b32490062484b456
+Content-Type: multipart/alternative; boundary="000000000000b3248e062484b455"
 
-On 15/10/2024 10:18, Houshang wrote:
+--000000000000b3248e062484b455
+Content-Type: text/plain; charset="UTF-8"
+
+First of all:
+
+
+
+*ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe -a
+"type=n3xx,product=n310,addr=10.10.1.100"Error: unrecognised option
+'-a'ad@bm-super11-intel:~/accelleran$ *
+
+Secondly, Maybe the following is the issue; WHen I run xxx in the host
+machine I see a version and when I run the same command on the n310 itself,
+I get another version. How to avoid this?
+
+[image: 15_16:21:07.jpg]
+
+On Tue, 15 Oct 2024 at 16:18, Houshang <houshang.azizi@accelleran.com>
+wrote:
+
 > Hi
-> /
-> /
-> /ad@bm-super11-intel:~/accelleran$ ssh root@10.10.0.100/
-> /root@ni-n3xx-32000F1:~# uhd_config_info --version
-> UHD 4.7.0.0-0-ga5ed1872
-> /
-> /root@ni-n3xx-32000F1:~# /
+>
+> *ad@bm-super11-intel:~/accelleran$ ssh root@10.10.0.100 <root@10.10.0.100>*
+>
+>
+> *root@ni-n3xx-32000F1:~# uhd_config_info --versionUHD 4.7.0.0-0-ga5ed1872*
+> *root@ni-n3xx-32000F1:~# *
 >
 > I can ping all 3 ip's:
 >
-> /ad@bm-super11-intel:~/accelleran$ ping 10.10.0.100
-> PING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.
-> 64 bytes from 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D1 ttl=3D64=20
-> time=3D0.250 ms
-> 64 bytes from 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D2 ttl=3D64=20
-> time=3D0.199 ms
-> ^C
-> --- 10.10.0.100 ping statistics ---
-> 2 packets transmitted, 2 received, 0% packet loss, time 1051ms
-> rtt min/avg/max/mdev =3D 0.199/0.224/0.250/0.025 ms
-> ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100
-> PING 10.10.1.100 (10.10.1.100) 56(84) bytes of data.
-> 64 bytes from 10.10.1.100 <http://10.10.1.100>: icmp_seq=3D1 ttl=3D64=20
-> time=3D1.02 ms
-> 64 bytes from 10.10.1.100 <http://10.10.1.100>: icmp_seq=3D2 ttl=3D64=20
-> time=3D0.970 ms
-> ^C
-> --- 10.10.1.100 ping statistics ---
-> 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
-> rtt min/avg/max/mdev =3D 0.970/0.996/1.022/0.026 ms
-> ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100
-> PING 10.10.2.100 (10.10.2.100) 56(84) bytes of data.
-> 64 bytes from 10.10.2.100 <http://10.10.2.100>: icmp_seq=3D1 ttl=3D64=20
-> time=3D1.03 ms
-> 64 bytes from 10.10.2.100 <http://10.10.2.100>: icmp_seq=3D2 ttl=3D64=20
-> time=3D0.963 ms
-> ^C
-> --- 10.10.2.100 ping statistics ---
-> 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
-> rtt min/avg/max/mdev =3D 0.963/0.994/1.025/0.031 ms
-> ad@bm-super11-intel:~/accelleran$ /
 >
 >
-OK, so, what happens if you:
-
-uhd_usrp_probe -a "type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100"
-
-
-> On Tue, 15 Oct 2024 at 16:16, Marcus D. Leech=20
-> <patchvonbraun@gmail.com> wrote:
 >
->     On 15/10/2024 10:09, Houshang wrote:
->>     Hi Marcus
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *ad@bm-super11-intel:~/accelleran$ ping 10.10.0.100PING 10.10.0.100
+> (10.10.0.100) 56(84) bytes of data.64 bytes from 10.10.0.100
+> <http://10.10.0.100>: icmp_seq=1 ttl=64 time=0.250 ms64 bytes from
+> 10.10.0.100 <http://10.10.0.100>: icmp_seq=2 ttl=64 time=0.199 ms^C---
+> 10.10.0.100 ping statistics ---2 packets transmitted, 2 received, 0% packet
+> loss, time 1051msrtt min/avg/max/mdev = 0.199/0.224/0.250/0.025
+> msad@bm-super11-intel:~/accelleran$ ping 10.10.1.100PING 10.10.1.100
+> (10.10.1.100) 56(84) bytes of data.64 bytes from 10.10.1.100
+> <http://10.10.1.100>: icmp_seq=1 ttl=64 time=1.02 ms64 bytes from
+> 10.10.1.100 <http://10.10.1.100>: icmp_seq=2 ttl=64 time=0.970 ms^C---
+> 10.10.1.100 ping statistics ---2 packets transmitted, 2 received, 0% packet
+> loss, time 1001msrtt min/avg/max/mdev = 0.970/0.996/1.022/0.026
+> msad@bm-super11-intel:~/accelleran$ ping 10.10.2.100PING 10.10.2.100
+> (10.10.2.100) 56(84) bytes of data.64 bytes from 10.10.2.100
+> <http://10.10.2.100>: icmp_seq=1 ttl=64 time=1.03 ms64 bytes from
+> 10.10.2.100 <http://10.10.2.100>: icmp_seq=2 ttl=64 time=0.963 ms^C---
+> 10.10.2.100 ping statistics ---2 packets transmitted, 2 received, 0% packet
+> loss, time 1001msrtt min/avg/max/mdev = 0.963/0.994/1.025/0.031
+> msad@bm-super11-intel:~/accelleran$ *
+>
+>
+> On Tue, 15 Oct 2024 at 16:16, Marcus D. Leech <patchvonbraun@gmail.com>
+> wrote:
+>
+>> On 15/10/2024 10:09, Houshang wrote:
 >>
->>       * There are two fiber interfaces for this n310 which I will be
->>         using for DPDK later.
->>       * There is also a RJ-45 port for this n310.
+>> Hi Marcus
 >>
->>     As the first step, I want to make sure things are working without
->>     DPDK. I will then test the DPDK.
+>>    - There are two fiber interfaces for this n310 which I will be using
+>>    for DPDK later.
+>>    - There is also a RJ-45 port for this n310.
 >>
->>     Based on your question, I am attaching some more info. Let me
->>     know if something is missing.
+>> As the first step, I want to make sure things are working without DPDK. I
+>> will then test the DPDK.
 >>
->>     Thanks
->>     Houshang
+>> Based on your question, I am attaching some more info. Let me know if
+>> something is missing.
 >>
->     When you're SSHed into the N310, what does:
->
->     uhd_config_info --version
->
->
->     Show?
->
->
->     Can you ping the SFP+ interfaces from your host computer?
->
->
->>     On Tue, 15 Oct 2024 at 16:04, Marcus D. Leech
->>     <patchvonbraun@gmail.com> wrote:
+>> Thanks
+>> Houshang
 >>
->>         On 15/10/2024 09:41, Houshang wrote:
->>>         Hello
->>>         Can anyone help with this issue please? This is an n310 and
->>>         the version of UHD is visible in the screenshot below.
+>> When you're SSHed into the N310, what does:
+>>
+>> uhd_config_info --version
+>>
+>>
+>> Show?
+>>
+>>
+>> Can you ping the SFP+ interfaces from your host computer?
+>>
+>>
+>> On Tue, 15 Oct 2024 at 16:04, Marcus D. Leech <patchvonbraun@gmail.com>
+>> wrote:
+>>
+>>> On 15/10/2024 09:41, Houshang wrote:
 >>>
->>>         15_15:37:26.jpg
->>>         Thanks
->>>         Houshang
+>>> Hello
+>>> Can anyone help with this issue please? This is an n310 and the version
+>>> of UHD is visible in the screenshot below.
 >>>
->>>         --=20
+>>> [image: 15_15:37:26.jpg]
+>>> Thanks
+>>> Houshang
 >>>
->>>         *Houshang Azizi*
+>>> --
 >>>
->>>         *Test Engineer*
+>>> *Houshang Azizi*
 >>>
->>>         logo <https://www.accelleran.com/>
+>>> *Test Engineer*
+>>> [image: logo] <https://www.accelleran.com/>
 >>>
->>>         *(32) 492195241*
+>>> *(32) 492195241*
 >>>
->>>         *houshang.azizi@accelleran.com <mailto:Email@accelleran.com>*
->>>
->>>         *www.accelleran.com* <http://www.accelleran.com/>
->>>
->>>         linkedin icon <https://www.linkedin.com/company/accelleran>
->>>         twitter icon <https://twitter.com/accelleran> youtube icon
->>>         <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?the=
-meRefresh=3D1>
+>>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
 >>>
 >>>
 >>>
->>>         _______________________________________________
->>>         USRP-users mailing list --usrp-users@lists.ettus.com
->>>         To unsubscribe send an email tousrp-users-leave@lists.ettus.c=
-om
->>         I think I've asked you this before on this issue:
+>>> *www.accelleran.com* <http://www.accelleran.com/>
+>>>
+>>> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [image:
+>>> twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
+>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>> I think I've asked you this before on this issue:
+>>>
+>>> What does your network connection setup look like?
+>>>
+>>> Are you using the RJ-45 port and the SFP+ port(s)?   How are things
+>>> connected, and on what subnets?
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
 >>
->>         What does your network connection setup look like?
 >>
->>         Are you using the RJ-45 port and the SFP+ port(s)?=C2=A0=C2=A0=
- How are
->>         things connected, and on what subnets?
+>> --
+>>
+>> *Houshang Azizi*
+>>
+>> *Test Engineer*
+>> [image: logo] <https://www.accelleran.com/>
+>>
+>> *(32) 492195241*
+>>
+>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
 >>
 >>
->>         _______________________________________________
->>         USRP-users mailing list -- usrp-users@lists.ettus.com
->>         To unsubscribe send an email to usrp-users-leave@lists.ettus.c=
-om
+>>
+>> *www.accelleran.com* <http://www.accelleran.com/>
+>>
+>> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [image:
+>> twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
+>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
 >>
 >>
->>
->>     --=20
->>
->>     *Houshang Azizi*
->>
->>     *Test Engineer*
->>
->>     logo <https://www.accelleran.com/>
->>
->>     *(32) 492195241*
->>
->>     *houshang.azizi@accelleran.com <mailto:Email@accelleran.com>*
->>
->>     *www.accelleran.com* <http://www.accelleran.com/>
->>
->>     linkedin icon <https://www.linkedin.com/company/accelleran>
->>     twitter icon <https://twitter.com/accelleran> youtube icon
->>     <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
-resh=3D1>
 >>
 >>
 >
->
->
-> --=20
+> --
 >
 > *Houshang Azizi*
 >
 > *Test Engineer*
 >
-> logo <https://www.accelleran.com/>
+> [image: logo] <https://www.accelleran.com/>
 >
 > *(32) 492195241*
 >
-> *houshang.azizi@accelleran.com <mailto:Email@accelleran.com>*
+> *houshang.azizi@accelleran.com <Email@accelleran.com>*
+>
+>
 >
 > *www.accelleran.com* <http://www.accelleran.com/>
 >
-> linkedin icon <https://www.linkedin.com/company/accelleran> twitter=20
-> icon <https://twitter.com/accelleran> youtube icon=20
-> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D=
-1>
+> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [image:
+> twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
+> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
+>
 >
 
---------------MwRjDtIqK50x0C2izZ5TRatB
-Content-Type: multipart/related;
- boundary="------------2YYsRfx66gx4GrEqPXIeDDJP"
 
---------------2YYsRfx66gx4GrEqPXIeDDJP
-Content-Type: text/html; charset=UTF-8
+-- 
+
+*Houshang Azizi*
+
+*Test Engineer*
+
+[image: logo] <https://www.accelleran.com/>
+
+*(32) 492195241*
+
+*houshang.azizi@accelleran.com <Email@accelleran.com>*
+
+
+
+*www.accelleran.com* <http://www.accelleran.com/>
+
+[image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [image:
+twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
+<https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
+
+--000000000000b3248e062484b455
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 15/10/2024 10:18, Houshang wrote:<b=
-r>
+<div dir=3D"ltr"><div>First of all:</div><div><br></div><div><i><span style=
+=3D"background-color:rgb(204,204,204)">ad@bm-super11-intel:~/accelleran$ uh=
+d_usrp_probe -a &quot;type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100&quot;<b=
+r>Error: unrecognised option &#39;-a&#39;<br>ad@bm-super11-intel:~/acceller=
+an$ </span></i><br></div><div><br></div><div>Secondly, Maybe the following =
+is the issue; WHen I run xxx in the host machine I see a version and when I=
+ run the same command on the n310 itself, I get another version. How to avo=
+id this?</div><div><br></div><div><img src=3D"cid:ii_m2aj8gae1" alt=3D"15_1=
+6:21:07.jpg" width=3D"578" height=3D"513"><br></div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 at =
+16:18, Houshang &lt;<a href=3D"mailto:houshang.azizi@accelleran.com" target=
+=3D"_blank">houshang.azizi@accelleran.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div>Hi</div><div><span style=3D"background-color:rgb(204,204,204)"><i><br>=
+</i></span></div><div><i style=3D"background-color:rgb(204,204,204)">ad@bm-=
+super11-intel:~/accelleran$ ssh <a href=3D"mailto:root@10.10.0.100" target=
+=3D"_blank">root@10.10.0.100</a></i></div><span style=3D"background-color:r=
+gb(204,204,204)"><i>root@ni-n3xx-32000F1:~# uhd_config_info --version<br>UH=
+D 4.7.0.0-0-ga5ed1872<br></i></span><div><i style=3D"background-color:rgb(2=
+04,204,204)">root@ni-n3xx-32000F1:~# </i><br></div><div><br></div><div>I ca=
+n ping all 3 ip&#39;s:</div><div><br></div><div><i><span style=3D"backgroun=
+d-color:rgb(204,204,204)">ad@bm-super11-intel:~/accelleran$ ping 10.10.0.10=
+0<br>PING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.<br>64 bytes from =
+<a href=3D"http://10.10.0.100" target=3D"_blank">10.10.0.100</a>: icmp_seq=
+=3D1 ttl=3D64 time=3D0.250 ms<br>64 bytes from <a href=3D"http://10.10.0.10=
+0" target=3D"_blank">10.10.0.100</a>: icmp_seq=3D2 ttl=3D64 time=3D0.199 ms=
+<br>^C<br>--- 10.10.0.100 ping statistics ---<br>2 packets transmitted, 2 r=
+eceived, 0% packet loss, time 1051ms<br>rtt min/avg/max/mdev =3D 0.199/0.22=
+4/0.250/0.025 ms<br>ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100<br>P=
+ING 10.10.1.100 (10.10.1.100) 56(84) bytes of data.<br>64 bytes from <a hre=
+f=3D"http://10.10.1.100" target=3D"_blank">10.10.1.100</a>: icmp_seq=3D1 tt=
+l=3D64 time=3D1.02 ms<br>64 bytes from <a href=3D"http://10.10.1.100" targe=
+t=3D"_blank">10.10.1.100</a>: icmp_seq=3D2 ttl=3D64 time=3D0.970 ms<br>^C<b=
+r>--- 10.10.1.100 ping statistics ---<br>2 packets transmitted, 2 received,=
+ 0% packet loss, time 1001ms<br>rtt min/avg/max/mdev =3D 0.970/0.996/1.022/=
+0.026 ms<br>ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100<br>PING 10.1=
+0.2.100 (10.10.2.100) 56(84) bytes of data.<br>64 bytes from <a href=3D"htt=
+p://10.10.2.100" target=3D"_blank">10.10.2.100</a>: icmp_seq=3D1 ttl=3D64 t=
+ime=3D1.03 ms<br>64 bytes from <a href=3D"http://10.10.2.100" target=3D"_bl=
+ank">10.10.2.100</a>: icmp_seq=3D2 ttl=3D64 time=3D0.963 ms<br>^C<br>--- 10=
+.10.2.100 ping statistics ---<br>2 packets transmitted, 2 received, 0% pack=
+et loss, time 1001ms<br>rtt min/avg/max/mdev =3D 0.963/0.994/1.025/0.031 ms=
+<br>ad@bm-super11-intel:~/accelleran$ </span></i><br></div><div><br></div><=
+/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Tue, 15 Oct 2024 at 16:16, Marcus D. Leech &lt;<a href=3D"mailto:patchvon=
+braun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><u></u>
+
+ =20
+   =20
+ =20
+  <div>
+    <div>On 15/10/2024 10:09, Houshang wrote:<br>
     </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAO=3Dxj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
+    <blockquote type=3D"cite">
+     =20
       <div dir=3D"ltr">
-        <div dir=3D"ltr">
-          <div>Hi</div>
-          <div><span style=3D"background-color:rgb(204,204,204)"><i><br>
-              </i></span></div>
-          <div><i style=3D"background-color:rgb(204,204,204)">ad@bm-super=
-11-intel:~/accelleran$
-              ssh <a href=3D"mailto:root@10.10.0.100"
-                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
-root@10.10.0.100</a></i></div>
-          <span style=3D"background-color:rgb(204,204,204)"><i>root@ni-n3=
-xx-32000F1:~#
-              uhd_config_info --version<br>
-              UHD 4.7.0.0-0-ga5ed1872<br>
-            </i></span>
-          <div><i style=3D"background-color:rgb(204,204,204)">root@ni-n3x=
-x-32000F1:~#
-            </i><br>
-          </div>
-          <div><br>
-          </div>
-          <div>I can ping all 3 ip's:</div>
-          <div><br>
-          </div>
-          <div><i><span style=3D"background-color:rgb(204,204,204)">ad@bm=
--super11-intel:~/accelleran$
-                ping 10.10.0.100<br>
-                PING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.<br>
-                64 bytes from <a href=3D"http://10.10.0.100"
-                  moz-do-not-send=3D"true">10.10.0.100</a>: icmp_seq=3D1
-                ttl=3D64 time=3D0.250 ms<br>
-                64 bytes from <a href=3D"http://10.10.0.100"
-                  moz-do-not-send=3D"true">10.10.0.100</a>: icmp_seq=3D2
-                ttl=3D64 time=3D0.199 ms<br>
-                ^C<br>
-                --- 10.10.0.100 ping statistics ---<br>
-                2 packets transmitted, 2 received, 0% packet loss, time
-                1051ms<br>
-                rtt min/avg/max/mdev =3D 0.199/0.224/0.250/0.025 ms<br>
-                ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100<br>
-                PING 10.10.1.100 (10.10.1.100) 56(84) bytes of data.<br>
-                64 bytes from <a href=3D"http://10.10.1.100"
-                  moz-do-not-send=3D"true">10.10.1.100</a>: icmp_seq=3D1
-                ttl=3D64 time=3D1.02 ms<br>
-                64 bytes from <a href=3D"http://10.10.1.100"
-                  moz-do-not-send=3D"true">10.10.1.100</a>: icmp_seq=3D2
-                ttl=3D64 time=3D0.970 ms<br>
-                ^C<br>
-                --- 10.10.1.100 ping statistics ---<br>
-                2 packets transmitted, 2 received, 0% packet loss, time
-                1001ms<br>
-                rtt min/avg/max/mdev =3D 0.970/0.996/1.022/0.026 ms<br>
-                ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100<br>
-                PING 10.10.2.100 (10.10.2.100) 56(84) bytes of data.<br>
-                64 bytes from <a href=3D"http://10.10.2.100"
-                  moz-do-not-send=3D"true">10.10.2.100</a>: icmp_seq=3D1
-                ttl=3D64 time=3D1.03 ms<br>
-                64 bytes from <a href=3D"http://10.10.2.100"
-                  moz-do-not-send=3D"true">10.10.2.100</a>: icmp_seq=3D2
-                ttl=3D64 time=3D0.963 ms<br>
-                ^C<br>
-                --- 10.10.2.100 ping statistics ---<br>
-                2 packets transmitted, 2 received, 0% packet loss, time
-                1001ms<br>
-                rtt min/avg/max/mdev =3D 0.963/0.994/1.025/0.031 ms<br>
-                ad@bm-super11-intel:~/accelleran$ </span></i><br>
-          </div>
-          <div><br>
-          </div>
+        <div>Hi Marcus</div>
+        <ul>
+          <li>There are two fiber interfaces for this n310 which I will
+            be using for DPDK later.=C2=A0</li>
+          <li>There is also a RJ-45 port for this n310.</li>
+        </ul>
+        <div>As the first step, I want to make sure things are working
+          without DPDK. I will then test the DPDK.</div>
+        <div><br>
         </div>
-        <br>
+        <div>Based on your question, I am attaching some more info. Let
+          me know if something is missing.<br>
+        </div>
+        <div><br>
+        </div>
+        <div>Thanks</div>
+        <div>Houshang<br>
+        </div>
       </div>
+      <br>
     </blockquote>
-    OK, so, what happens if you:<br>
+    When you&#39;re SSHed into the N310, what does:<br>
     <br>
-    uhd_usrp_probe -a "type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100"<br>
+    uhd_config_info --version<br>
     <br>
     <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAO=3Dxj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gm=
-ail.com">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 at
-            16:16, Marcus D. Leech &lt;<a
-              href=3D"mailto:patchvonbraun@gmail.com"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">pa=
-tchvonbraun@gmail.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote"
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
-            <div>
-              <div>On 15/10/2024 10:09, Houshang wrote:<br>
-              </div>
-              <blockquote type=3D"cite">
-                <div dir=3D"ltr">
-                  <div>Hi Marcus</div>
-                  <ul>
-                    <li>There are two fiber interfaces for this n310
-                      which I will be using for DPDK later.=C2=A0</li>
-                    <li>There is also a RJ-45 port for this n310.</li>
-                  </ul>
-                  <div>As the first step, I want to make sure things are
-                    working without DPDK. I will then test the DPDK.</div=
->
-                  <div><br>
-                  </div>
-                  <div>Based on your question, I am attaching some more
-                    info. Let me know if something is missing.<br>
-                  </div>
-                  <div><br>
-                  </div>
-                  <div>Thanks</div>
-                  <div>Houshang<br>
-                  </div>
+    Show?<br>
+    <br>
+    <br>
+    Can you ping the SFP+ interfaces from your host computer?<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 at 16:04,
+          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" ta=
+rget=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div>
+            <div>On 15/10/2024 09:41, Houshang wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div>Hello</div>
+                <div>Can anyone help with this issue please? This is an
+                  n310 and the version of UHD is visible in the
+                  screenshot below.</div>
+                <div><br>
                 </div>
-                <br>
-              </blockquote>
-              When you're SSHed into the N310, what does:<br>
-              <br>
-              uhd_config_info --version<br>
-              <br>
-              <br>
-              Show?<br>
-              <br>
-              <br>
-              Can you ping the SFP+ interfaces from your host computer?<b=
-r>
-              <br>
-              <br>
-              <blockquote type=3D"cite">
-                <div class=3D"gmail_quote">
-                  <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 20=
-24
-                    at 16:04, Marcus D. Leech &lt;<a
-                      href=3D"mailto:patchvonbraun@gmail.com"
-                      target=3D"_blank" moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">patchvonbraun@gmail=
-.com</a>&gt;
-                    wrote:<br>
-                  </div>
-                  <blockquote class=3D"gmail_quote"
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
-                    <div>
-                      <div>On 15/10/2024 09:41, Houshang wrote:<br>
+                <div><img src=3D"cid:ii_192908a5cba4d14bf721" alt=3D"15_15:=
+37:26.jpg" style=3D"margin-right: 0px;" width=3D"1275" height=3D"411"><br>
+                </div>
+                <div>Thanks</div>
+                <div>Houshang<br>
+                </div>
+                <div><br>
+                  <span class=3D"gmail_signature_prefix">-- </span><br>
+                  <div dir=3D"ltr" class=3D"gmail_signature">
+                    <div dir=3D"ltr">
+                      <div style=3D"text-align:left">
+                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
+ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"f=
+ont-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)">Houshang
+                              Azizi</span></b><span style=3D"font-size:11pt=
+;font-family:Arial,sans-serif"></span></p>
+                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
+ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"f=
+ont-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test
+                              Engineer</span></b></p>
                       </div>
-                      <blockquote type=3D"cite">
-                        <div dir=3D"ltr">
-                          <div>Hello</div>
-                          <div>Can anyone help with this issue please?
-                            This is an n310 and the version of UHD is
-                            visible in the screenshot below.</div>
-                          <div><br>
-                          </div>
-                          <div><img
-src=3D"cid:part1.B7a6F0l3.0gByziOv@gmail.com" alt=3D"15_15:37:26.jpg"
-                              style=3D"margin-right: 0px;" class=3D""
-                              width=3D"1275" height=3D"411"><br>
-                          </div>
-                          <div>Thanks</div>
-                          <div>Houshang<br>
-                          </div>
-                          <div><br>
-                            <span class=3D"gmail_signature_prefix">-- </s=
-pan><br>
-                            <div dir=3D"ltr" class=3D"gmail_signature">
-                              <div dir=3D"ltr">
-                                <div style=3D"text-align:left">
-                                  <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)=
-">Houshang
-                                        Azizi</span></b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif"></span></p>
-                                  <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30=
-)">Test
-                                        Engineer</span></b></p>
-                                </div>
-                                <a href=3D"https://www.accelleran.com/"
-                                  rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                                  target=3D"_blank" moz-do-not-send=3D"tr=
-ue"><font
-                                    size=3D"2"><img alt=3D"logo"
-src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLo=
-go_NoBaseline.png"
-style=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;=
-"
-                                      moz-do-not-send=3D"true" width=3D"1=
-43"
-                                      border=3D"0"></font></a>
-                                <div style=3D"text-align:left">
-                                  <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32)
-                                        492195241</span></b><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif"></span></p>
-                                  <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span
-                                          style=3D"color:black"><a
-href=3D"mailto:Email@accelleran.com" target=3D"_blank"
-                                            moz-do-not-send=3D"true">hous=
-hang.azizi@accelleran.com</a></span></b></span></p>
-                                  <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
-                                  <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif"><a
-href=3D"http://www.accelleran.com/" style=3D"color:rgb(17,85,204)"
-                                        target=3D"_blank"
-                                        moz-do-not-send=3D"true"><b><span
-style=3D"color:rgb(246,146,30)">www.accelleran.com</span></b></a></span><=
-/p>
-                                </div>
-                                <p
-style=3D"text-align:left;margin:20px 0px"><a
-href=3D"https://www.linkedin.com/company/accelleran" rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                                    target=3D"_blank"
-                                    moz-do-not-send=3D"true"><img
-                                      alt=3D"linkedin icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/ln.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                                      moz-do-not-send=3D"true" width=3D"1=
-5"
-                                      border=3D"0"></a>=C2=A0=C2=A0=C2=A0=
-=C2=A0<a
-href=3D"https://twitter.com/accelleran" rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                                    target=3D"_blank"
-                                    moz-do-not-send=3D"true"><img
-                                      alt=3D"twitter icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/tt.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                                      moz-do-not-send=3D"true" width=3D"1=
-5"
-                                      border=3D"0"></a>=C2=A0=C2=A0=C2=A0=
-=C2=A0<a
-href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
-resh=3D1"
-                                    rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                                    target=3D"_blank"
-                                    moz-do-not-send=3D"true"><img
-                                      alt=3D"youtube icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/yt.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                                      moz-do-not-send=3D"true" width=3D"1=
-5"
-                                      border=3D"0"></a>=C2=A0=C2=A0=C2=A0=
- <br>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <a href=3D"https://www.accelleran.com/" rel=3D"noopen=
+er" style=3D"color:rgb(51,122,183);background-color:transparent" target=3D"=
+_blank"><font size=3D"2"><img alt=3D"logo" src=3D"https://accelleran.com/wp=
+-content/uploads/2024/04/Accelleran_NewLogo_NoBaseline.png" style=3D"border=
+: 0px; vertical-align: middle; width: 143px; height: auto;" width=3D"143" b=
+order=3D"0"></font></a>
+                      <div style=3D"text-align:left">
+                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
+ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"f=
+ont-size:10pt;font-family:Arial,sans-serif;color:black">(32)
+                              492195241</span></b><span style=3D"font-size:=
+10pt;font-family:Arial,sans-serif"></span></p>
+                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
+ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font=
+-size:10pt;font-family:Arial,sans-serif"><b><span style=3D"color:black"><a =
+href=3D"mailto:Email@accelleran.com" target=3D"_blank">houshang.azizi@accel=
+leran.com</a></span></b></span></p>
+                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
+ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font=
+-size:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
+                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
+ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font=
+-size:10pt;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.c=
+om/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"col=
+or:rgb(246,146,30)">www.accelleran.com</span></b></a></span></p>
+                      </div>
+                      <p style=3D"text-align:left;margin:20px 0px"><a href=
+=3D"https://www.linkedin.com/company/accelleran" rel=3D"noopener" style=3D"=
+color:rgb(51,122,183);background-color:transparent" target=3D"_blank"><img =
+alt=3D"linkedin icon" src=3D"https://www.mail-signatures.com/signature-gene=
+rator/img/templates/simple-and-light/ln.png" style=3D"border: 0px; vertical=
+-align: middle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=
+=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://twitter.com/accelleran" rel=3D"n=
+oopener" style=3D"color:rgb(51,122,183);background-color:transparent" targe=
+t=3D"_blank"><img alt=3D"twitter icon" src=3D"https://www.mail-signatures.c=
+om/signature-generator/img/templates/simple-and-light/tt.png" style=3D"bord=
+er: 0px; vertical-align: middle; height: 15px; width: 15px;" width=3D"15" b=
+order=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://www.youtube.com/=
+channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D1" rel=3D"noopener" style=
+=3D"color:rgb(51,122,183);background-color:transparent" target=3D"_blank"><=
+img alt=3D"youtube icon" src=3D"https://www.mail-signatures.com/signature-g=
+enerator/img/templates/simple-and-light/yt.png" style=3D"border: 0px; verti=
+cal-align: middle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></=
+a>=C2=A0=C2=A0=C2=A0
                         <br>
-                        <fieldset></fieldset>
-                        <pre>____________________________________________=
-___
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com"
-                        target=3D"_blank" moz-do-not-send=3D"true"
-                        class=3D"moz-txt-link-freetext">usrp-users@lists.=
-ettus.com</a>
-To unsubscribe send an email to <a
-                        href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                        target=3D"_blank" moz-do-not-send=3D"true"
-                        class=3D"moz-txt-link-freetext">usrp-users-leave@=
-lists.ettus.com</a>
-</pre>
-                      </blockquote>
-                      I think I've asked you this before on this issue:<b=
-r>
-                      <br>
-                      What does your network connection setup look like?<=
-br>
-                      <br>
-                      Are you using the RJ-45 port and the SFP+
-                      port(s)?=C2=A0=C2=A0 How are things connected, and =
-on what
-                      subnets?<br>
-                      <br>
-                      <br>
+                      </p>
                     </div>
-                    _______________________________________________<br>
-                    USRP-users mailing list -- <a
-                      href=3D"mailto:usrp-users@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">usrp-users@lists.et=
-tus.com</a><br>
-                    To unsubscribe send an email to <a
-                      href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">usrp-users-leave@li=
-sts.ettus.com</a><br>
-                  </blockquote>
-                </div>
-                <br clear=3D"all">
-                <br>
-                <span class=3D"gmail_signature_prefix">-- </span><br>
-                <div dir=3D"ltr" class=3D"gmail_signature">
-                  <div dir=3D"ltr">
-                    <div style=3D"text-align:left">
-                      <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)=
-">Houshang
-                            Azizi</span></b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif"></span></p>
-                      <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30=
-)">Test
-                            Engineer</span></b></p>
-                    </div>
-                    <a href=3D"https://www.accelleran.com/" rel=3D"noopen=
-er"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                      target=3D"_blank" moz-do-not-send=3D"true"><font
-                        size=3D"2"><img alt=3D"logo"
-src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLo=
-go_NoBaseline.png"
-style=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;=
-"
-                          moz-do-not-send=3D"true" width=3D"143" border=3D=
-"0"></font></a>
-                    <div style=3D"text-align:left">
-                      <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32)
-                            492195241</span></b><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif"></span></p>
-                      <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span
-                              style=3D"color:black"><a
-                                href=3D"mailto:Email@accelleran.com"
-                                target=3D"_blank" moz-do-not-send=3D"true=
-">houshang.azizi@accelleran.com</a></span></b></span></p>
-                      <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
-                      <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif"><a
-                            href=3D"http://www.accelleran.com/"
-                            style=3D"color:rgb(17,85,204)" target=3D"_bla=
-nk"
-                            moz-do-not-send=3D"true"><b><span
-                                style=3D"color:rgb(246,146,30)">www.accel=
-leran.com</span></b></a></span></p>
-                    </div>
-                    <p style=3D"text-align:left;margin:20px 0px"><a
-href=3D"https://www.linkedin.com/company/accelleran" rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                        target=3D"_blank" moz-do-not-send=3D"true"><img
-                          alt=3D"linkedin icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/ln.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                          moz-do-not-send=3D"true" width=3D"15" border=3D=
-"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a
-                        href=3D"https://twitter.com/accelleran"
-                        rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                        target=3D"_blank" moz-do-not-send=3D"true"><img
-                          alt=3D"twitter icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/tt.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                          moz-do-not-send=3D"true" width=3D"15" border=3D=
-"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a
-href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
-resh=3D1"
-                        rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                        target=3D"_blank" moz-do-not-send=3D"true"><img
-                          alt=3D"youtube icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/yt.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                          moz-do-not-send=3D"true" width=3D"15" border=3D=
-"0"></a>=C2=A0=C2=A0=C2=A0
-                      <br>
-                    </p>
                   </div>
                 </div>
-              </blockquote>
+              </div>
               <br>
-            </div>
-          </blockquote>
-        </div>
-        <br clear=3D"all">
-        <br>
-        <span class=3D"gmail_signature_prefix">-- </span><br>
-        <div dir=3D"ltr" class=3D"gmail_signature">
-          <div dir=3D"ltr">
-            <div style=3D"text-align:left">
-              <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)=
-">Houshang
-                    Azizi</span></b><span
-                  style=3D"font-size:11pt;font-family:Arial,sans-serif"><=
-/span></p>
-              <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30=
-)">Test
-                    Engineer</span></b></p>
-            </div>
-            <a href=3D"https://www.accelleran.com/" rel=3D"noopener"
-              style=3D"color:rgb(51,122,183);background-color:transparent=
-"
-              target=3D"_blank" moz-do-not-send=3D"true"><font size=3D"2"=
-><img
-                  alt=3D"logo"
-src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLo=
-go_NoBaseline.png"
-style=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;=
-"
-                  moz-do-not-send=3D"true" width=3D"143" border=3D"0"></f=
-ont></a>
-            <div style=3D"text-align:left">
-              <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32)
-                    492195241</span></b><span
-                  style=3D"font-size:10pt;font-family:Arial,sans-serif"><=
-/span></p>
-              <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-                  style=3D"font-size:10pt;font-family:Arial,sans-serif"><=
-b><span
-                      style=3D"color:black"><a
-                        href=3D"mailto:Email@accelleran.com"
-                        target=3D"_blank" moz-do-not-send=3D"true">housha=
-ng.azizi@accelleran.com</a></span></b></span></p>
-              <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-                  style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=
-=A0</span></p>
-              <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-                  style=3D"font-size:10pt;font-family:Arial,sans-serif"><=
-a
-                    href=3D"http://www.accelleran.com/"
-                    style=3D"color:rgb(17,85,204)" target=3D"_blank"
-                    moz-do-not-send=3D"true"><b><span
-                        style=3D"color:rgb(246,146,30)">www.accelleran.co=
-m</span></b></a></span></p>
-            </div>
-            <p style=3D"text-align:left;margin:20px 0px"><a
-                href=3D"https://www.linkedin.com/company/accelleran"
-                rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                target=3D"_blank" moz-do-not-send=3D"true"><img
-                  alt=3D"linkedin icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/ln.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                  moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=
-=C2=A0=C2=A0=C2=A0=C2=A0<a
-                href=3D"https://twitter.com/accelleran" rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                target=3D"_blank" moz-do-not-send=3D"true"><img
-                  alt=3D"twitter icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/tt.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                  moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=
-=C2=A0=C2=A0=C2=A0=C2=A0<a
-href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
-resh=3D1"
-                rel=3D"noopener"
-style=3D"color:rgb(51,122,183);background-color:transparent"
-                target=3D"_blank" moz-do-not-send=3D"true"><img
-                  alt=3D"youtube icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/yt.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                  moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=
-=C2=A0=C2=A0=C2=A0 <br>
-            </p>
+              <fieldset></fieldset>
+              <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
+</pre>
+            </blockquote>
+            I think I&#39;ve asked you this before on this issue:<br>
+            <br>
+            What does your network connection setup look like?<br>
+            <br>
+            Are you using the RJ-45 port and the SFP+ port(s)?=C2=A0=C2=A0 =
+How are
+            things connected, and on what subnets?<br>
+            <br>
+            <br>
           </div>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
+us.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a href=3D"mailto:usrp-users-leav=
+e@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><b=
+r>
+        </blockquote>
+      </div>
+      <br clear=3D"all">
+      <br>
+      <span class=3D"gmail_signature_prefix">-- </span><br>
+      <div dir=3D"ltr" class=3D"gmail_signature">
+        <div dir=3D"ltr">
+          <div style=3D"text-align:left">
+            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
+ont-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size:11p=
+t;font-family:Arial,sans-serif;color:rgb(0,173,238)">Houshang
+                  Azizi</span></b><span style=3D"font-size:11pt;font-family=
+:Arial,sans-serif"></span></p>
+            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
+ont-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size:11p=
+t;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test
+                  Engineer</span></b></p>
+          </div>
+          <a href=3D"https://www.accelleran.com/" rel=3D"noopener" style=3D=
+"color:rgb(51,122,183);background-color:transparent" target=3D"_blank"><fon=
+t size=3D"2"><img alt=3D"logo" src=3D"https://accelleran.com/wp-content/upl=
+oads/2024/04/Accelleran_NewLogo_NoBaseline.png" style=3D"border: 0px; verti=
+cal-align: middle; width: 143px; height: auto;" width=3D"143" border=3D"0">=
+</font></a>
+          <div style=3D"text-align:left">
+            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
+ont-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size:10p=
+t;font-family:Arial,sans-serif;color:black">(32)
+                  492195241</span></b><span style=3D"font-size:10pt;font-fa=
+mily:Arial,sans-serif"></span></p>
+            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
+ont-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt;f=
+ont-family:Arial,sans-serif"><b><span style=3D"color:black"><a href=3D"mail=
+to:Email@accelleran.com" target=3D"_blank">houshang.azizi@accelleran.com</a=
+></span></b></span></p>
+            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
+ont-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt;f=
+ont-family:Arial,sans-serif">=C2=A0</span></p>
+            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
+ont-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt;f=
+ont-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color:rgb(246=
+,146,30)">www.accelleran.com</span></b></a></span></p>
+          </div>
+          <p style=3D"text-align:left;margin:20px 0px"><a href=3D"https://w=
+ww.linkedin.com/company/accelleran" rel=3D"noopener" style=3D"color:rgb(51,=
+122,183);background-color:transparent" target=3D"_blank"><img alt=3D"linked=
+in icon" src=3D"https://www.mail-signatures.com/signature-generator/img/tem=
+plates/simple-and-light/ln.png" style=3D"border: 0px; vertical-align: middl=
+e; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=
+=C2=A0=C2=A0<a href=3D"https://twitter.com/accelleran" rel=3D"noopener" sty=
+le=3D"color:rgb(51,122,183);background-color:transparent" target=3D"_blank"=
+><img alt=3D"twitter icon" src=3D"https://www.mail-signatures.com/signature=
+-generator/img/templates/simple-and-light/tt.png" style=3D"border: 0px; ver=
+tical-align: middle; height: 15px; width: 15px;" width=3D"15" border=3D"0">=
+</a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://www.youtube.com/channel/UCrA=
+EtqWp21cibZgSFVIEx2g?themeRefresh=3D1" rel=3D"noopener" style=3D"color:rgb(=
+51,122,183);background-color:transparent" target=3D"_blank"><img alt=3D"you=
+tube icon" src=3D"https://www.mail-signatures.com/signature-generator/img/t=
+emplates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mid=
+dle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=
+=C2=A0 <br>
+          </p>
         </div>
       </div>
     </blockquote>
     <br>
-  </body>
-</html>
---------------2YYsRfx66gx4GrEqPXIeDDJP
+  </div>
+</blockquote></div><br clear=3D"all"><br><span class=3D"gmail_signature_pre=
+fix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"l=
+tr"><div style=3D"text-align:left"><p class=3D"MsoNormal" style=3D"margin:0=
+cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span=
+ style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)"=
+>Houshang Azizi</span></b><span style=3D"font-size:11pt;font-family:Arial,s=
+ans-serif"></span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-heigh=
+t:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"fon=
+t-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test Engine=
+er</span></b></p></div><p></p><a href=3D"https://www.accelleran.com/" rel=
+=3D"noopener" style=3D"color:rgb(51,122,183);background-color:transparent" =
+target=3D"_blank"><font size=3D"2"><img border=3D"0" alt=3D"logo" width=3D"=
+143" src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_Ne=
+wLogo_NoBaseline.png" style=3D"border: 0px; vertical-align: middle; width: =
+143px; height: auto;"></font></a><div style=3D"text-align:left"><p class=3D=
+"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-fami=
+ly:Aptos,sans-serif"><b><span style=3D"font-size:10pt;font-family:Arial,san=
+s-serif;color:black">(32) 492195241</span></b><span style=3D"font-size:10pt=
+;font-family:Arial,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"m=
+argin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><=
+span style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span style=
+=3D"color:black"><a href=3D"mailto:Email@accelleran.com" target=3D"_blank">=
+houshang.azizi@accelleran.com</a></span></b></span></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,=
+sans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=
+=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal=
+;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt=
+;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color:rgb(246=
+,146,30)">www.accelleran.com</span></b></a></span></p></div><p style=3D"tex=
+t-align:left;margin:20px 0px"><a href=3D"https://www.linkedin.com/company/a=
+ccelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color=
+:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=3D"linke=
+din icon" src=3D"https://www.mail-signatures.com/signature-generator/img/te=
+mplates/simple-and-light/ln.png" style=3D"border: 0px; vertical-align: midd=
+le; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"http=
+s://twitter.com/accelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183)=
+;background-color:transparent" target=3D"_blank"><img border=3D"0" width=3D=
+"15" alt=3D"twitter icon" src=3D"https://www.mail-signatures.com/signature-=
+generator/img/templates/simple-and-light/tt.png" style=3D"border: 0px; vert=
+ical-align: middle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=
+=A0<a href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?them=
+eRefresh=3D1" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-co=
+lor:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=3D"yo=
+utube icon" src=3D"https://www.mail-signatures.com/signature-generator/img/=
+templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mi=
+ddle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p></div></di=
+v></div>
+</blockquote></div><br clear=3D"all"><br><span class=3D"gmail_signature_pre=
+fix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"l=
+tr"><div style=3D"text-align:left"><p class=3D"MsoNormal" style=3D"margin:0=
+cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span=
+ style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)"=
+>Houshang Azizi</span></b><span style=3D"font-size:11pt;font-family:Arial,s=
+ans-serif"></span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-heigh=
+t:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"fon=
+t-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test Engine=
+er</span></b></p></div><p></p><a href=3D"https://www.accelleran.com/" rel=
+=3D"noopener" style=3D"color:rgb(51,122,183);background-color:transparent" =
+target=3D"_blank"><font size=3D"2"><img border=3D"0" alt=3D"logo" width=3D"=
+143" src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_Ne=
+wLogo_NoBaseline.png" style=3D"border: 0px; vertical-align: middle; width: =
+143px; height: auto;"></font></a><div style=3D"text-align:left"><p class=3D=
+"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-fami=
+ly:Aptos,sans-serif"><b><span style=3D"font-size:10pt;font-family:Arial,san=
+s-serif;color:black">(32) 492195241</span></b><span style=3D"font-size:10pt=
+;font-family:Arial,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"m=
+argin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><=
+span style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span style=
+=3D"color:black"><a href=3D"mailto:Email@accelleran.com" target=3D"_blank">=
+houshang.azizi@accelleran.com</a></span></b></span></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,=
+sans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=
+=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal=
+;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt=
+;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color:rgb(246=
+,146,30)">www.accelleran.com</span></b></a></span></p></div><p style=3D"tex=
+t-align:left;margin:20px 0px"><a href=3D"https://www.linkedin.com/company/a=
+ccelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color=
+:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=3D"linke=
+din icon" src=3D"https://www.mail-signatures.com/signature-generator/img/te=
+mplates/simple-and-light/ln.png" style=3D"border: 0px; vertical-align: midd=
+le; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"http=
+s://twitter.com/accelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183)=
+;background-color:transparent" target=3D"_blank"><img border=3D"0" width=3D=
+"15" alt=3D"twitter icon" src=3D"https://www.mail-signatures.com/signature-=
+generator/img/templates/simple-and-light/tt.png" style=3D"border: 0px; vert=
+ical-align: middle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=
+=A0<a href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?them=
+eRefresh=3D1" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-co=
+lor:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=3D"yo=
+utube icon" src=3D"https://www.mail-signatures.com/signature-generator/img/=
+templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mi=
+ddle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p></div></di=
+v>
+
+--000000000000b3248e062484b455--
+
+--000000000000b32490062484b456
 Content-Type: image/jpeg; name="15_15:37:26.jpg"
-Content-Disposition: inline; filename="15_15:37:26.jpg"
-Content-Id: <part1.B7a6F0l3.0gByziOv@gmail.com>
+Content-Disposition: attachment; filename="15_15:37:26.jpg"
 Content-Transfer-Encoding: base64
+X-Attachment-Id: ii_192908a5cba4d14bf721
+Content-ID: <ii_192908a5cba4d14bf721>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEa
 AAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAAB
@@ -3740,11 +3599,832 @@ gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
 KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
 gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9k=
 
---------------2YYsRfx66gx4GrEqPXIeDDJP--
+--000000000000b32490062484b456
+Content-Type: image/jpeg; name="15_16:21:07.jpg"
+Content-Disposition: attachment; filename="15_16:21:07.jpg"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: ii_m2aj8gae1
+Content-ID: <ii_m2aj8gae1>
 
---------------MwRjDtIqK50x0C2izZ5TRatB--
+/9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
+AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
+AAEAAAAB/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAW
+EBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQU
+FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgCWwKoAwEiAAIRAQMRAf/EAB8AAAEF
+AQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFB
+BhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RV
+VldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrC
+w8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAA
+AAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRC
+kaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdo
+aWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT
+1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+PfizpqP8U/GREjoP7ZvAFXG
+ABO47iuU/spP+e0v/jv+Fdt8Vv8AkqXjL/sNXv8A6PeuWq5/EyIfAil/ZSf89pf/AB3/AAo/spP+
+e0v/AI7/AIVdoqCyl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV
+2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89p
+f/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/n
+tL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igC
+l/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf
+8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/4
+7/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZS
+f89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7
+KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV
+2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89p
+f/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/n
+tL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igC
+l/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf
+8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/4
+7/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZS
+f89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7
+KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV2igCl/ZSf89pf/Hf8KP7KT/ntL/47/hV
+2igCl/ZSf89pf/Hf8KKu0UAdT8Vv+SpeMv8AsNXv/o965aup+K3/ACVLxl/2Gr3/ANHvXLVc/iZE
+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
+MYA4iim1e1+hrZX5uoUUUUxhRRRQAV1Ph74i6l4a8DeLPCtrBayaf4l+yfbJZUYyx/Z5TInlkMAM
+k85B46YrlqKW+gNXCiiimAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB1XjD4jal4z0Dwno11BaWmn
+eGrBrCyhtEZQwaV5ZJX3M2ZHZzkjAwFAAxXK0UUu776/eCSSsgooopgFFFFABRRRQAUUUUAFFFFA
+Gt4R8War4F8T6Z4h0O6+w6xplwl1aXPlpJ5cinKttcFTg9iCKy5JGlkZ3OWYlifUmm0Ug21PVv2b
+v2kfE37Lvjm+8VeFbHSdQ1C806TTJItYhlliETyxSEgRyRndmFec4wTx0x6v8b/+CkXxL+Pnwv1r
+wH4g0PwpZ6Rq3kefPplpcpcL5U8cy7We4dRlo1Byp4J6HmvlKik4pu5m6UJS5mtQoooqjQKKKKAC
+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKK
+KKACiiigAooooAKKKKACiiigAooooAKKKKAO++P/APyXLx//ANh28/8ARzVwNd98f/8AkuXj/wD7
+Dt5/6OauBqY/CjGj/Cj6IKKKKo2CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAC
+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKK
+KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooo
+oAKKKKACiiigAooooA774/8A/JcvH/8A2Hbz/wBHNXA133x//wCS5eP/APsO3n/o5q4Gpj8KMaP8
+KPogoooqjYKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKK
+KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooo
+oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig
+Dvvj/wD8ly8f/wDYdvP/AEc1cDXffH//AJLl4/8A+w7ef+jmrgamPwoxo/wo+iCiiiqNgooooAKK
+KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooo
+oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig
+AooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAO++P/APyXLx//ANh2
+8/8ARzVwNd98f/8AkuXj/wD7Dt5/6OauBqY/CjGj/Cj6IKKKKo2CiiigAooooAKKKKACiiigAooo
+oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig
+AooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAC
+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA774/8A/JcvH/8A2Hbz/wBHNXA133x//wCS
+5eP/APsO3n/o5q4Gpj8KMaP8KPogoooqjYKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig
+AooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAC
+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKK
+KKACiiigAooooAKKKKACiiigDvvj/wD8ly8f/wDYdvP/AEc1cDXffH//AJLl4/8A+w7ef+jmrgam
+Pwoxo/wo+iCiiiqNgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAC
+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKK
+KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooo
+oAKKKKAO++P/APyXLx//ANh28/8ARzVwNd98f/8AkuXj/wD7Dt5/6OauBqY/CjGj/Cj6IKKKKo2C
+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKK
+KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooo
+oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA774/8A/Jcv
+H/8A2Hbz/wBHNXA133x//wCS5eP/APsO3n/o5q4Gpj8KMaP8KPogoooqjYKKKKACiiigAooooAKK
+KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooo
+oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig
+AooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigDrvjBrUHiT4r+MdVtUmjtrzV7qeJ
+biIxSbGlYjcp5U47HmuRrrvjBqU+sfFbxhfXVhPpVzcavdSS2NyQZIHMrZRiOCQeMjg1yNTH4UY0
+f4UfRBRRRVGwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FAHffH//AJLl4/8A+w7ef+jmrga774//APJcvH//AGHbz/0c1cDUx+FGNH+FH0QUUUVRsFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB33x//wCS5eP/APsO
+3n/o5q4Gu++P/wDyXLx//wBh28/9HNXA1MfhRjR/hR9EFFFFUbBRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAd98f/8AkuXj/wD7Dt5/6OauBrvvj/8A8ly8
+f/8AYdvP/RzVwNTH4UY0f4UfRBRRRVGwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFAHffH//AJLl4/8A+w7ef+jmrga774//APJcvH//AGHbz/0c1cDUx+FG
+NH+FH0QUUUVRsFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQB6l8bLfRZfjV8QTqN/f2s/wDb96FS1sUnUr5rclmmQg5zxjsOeeOM+xeFv+gzrH/gpi/+Sa3/
+AI//APJcvH//AGHbz/0c1cDWcU7LU8+nRnKEWqslotPd7ecWb/2Lwt/0GdY/8FMX/wAk0fYvC3/Q
+Z1j/AMFMX/yTWBRTs+5p7Cp/z+l90f8A5E3/ALF4W/6DOsf+CmL/AOSaPsXhb/oM6x/4KYv/AJJr
+Aoos+4ewqf8AP6X3R/8AkTf+xeFv+gzrH/gpi/8Akmj7F4W/6DOsf+CmL/5JrAoos+4ewqf8/pfd
+H/5E3/sXhb/oM6x/4KYv/kmj7F4W/wCgzrH/AIKYv/kmsCiiz7h7Cp/z+l90f/kTf+xeFv8AoM6x
+/wCCmL/5Jo+xeFv+gzrH/gpi/wDkmsCiiz7h7Cp/z+l90f8A5E3/ALF4W/6DOsf+CmL/AOSaPsXh
+b/oM6x/4KYv/AJJrAoos+4ewqf8AP6X3R/8AkTf+xeFv+gzrH/gpi/8Akmj7F4W/6DOsf+CmL/5J
+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
+Fh9a53xrB4ag1xh4U1LVdU0tkDefrGnxWU4ck7l8uOeZdo4wd+TzwKwaKTQkrNy7/p/w4UUUUxhR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHffH//AJLl
+4/8A+w7ef+jmrga774//APJcvH//AGHbz/0c1cDUx+FGNH+FH0QUUUVRsFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB33x//wCS5eP/APsO3n/o5q4Gu++P
+/wDyXLx//wBh28/9HNXA1MfhRjR/hR9EFFFFUbBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAd98f/8AkuXj/wD7Dt5/6OauBrvvj/8A8ly8f/8AYdvP/RzV
+wNTH4UY0f4UfRBRRRVGwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFAHffH//AJLl4/8A+w7ef+jmrga774//APJcvH//AGHbz/0c1cDUx+FGNH+FH0QUUUVR
+sFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB33x//wCS
+5eP/APsO3n/o5q4Gu++P/wDyXLx//wBh28/9HNXA1MfhRjR/hR9EFFFFUbBRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAd98f/8AkuXj/wD7Dt5/6OauBrvv
+j/8A8ly8f/8AYdvP/RzVwNTH4UY0f4UfRBRRRVGwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFAHffH//AJLl4/8A+w7ef+jmrga774//APJcvH//AGHbz/0c
+1cDUx+FGNH+FH0QUUUVRsFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQB33x//wCS5eP/APsO3n/o5q4Gu++P/wDyXLx//wBh28/9HNXA1MfhRjR/hR9EFFFF
+UbBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAd98f/8A
+kuXj/wD7Dt5/6OauBrvvj/8A8ly8f/8AYdvP/RzVwNTH4UY0f4UfRBRRRVGwUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHffH//AJLl4/8A+w7ef+jmrga7
+74//APJcvH//AGHbz/0c1cDUx+FGNH+FH0QUUUVRsFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQB33x//wCS5eP/APsO3n/o5q4Gu++P/wDyXLx//wBh28/9
+HNXA1MfhRjR/hR9EFFFFUbBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAd98f/8AkuXj/wD7Dt5/6OauBrvvj/8A8ly8f/8AYdvP/RzVwNTH4UY0f4UfRBRR
+RVGwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
+FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH/2Q==
+--000000000000b32490062484b456--
 
---===============1574824292685369862==
+--===============8111436424449890290==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -3754,4 +4434,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1574824292685369862==--
+--===============8111436424449890290==--
