@@ -2,583 +2,828 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42F4499EFF9
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 16:47:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5E1899EF5A
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 16:21:51 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8EA893858E8
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 10:47:03 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F0DDE38599E
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 10:21:50 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1729003623; bh=Xe1zTnL/z9xJCs0E2blAVc1xriGE7M4uvkhQXGRFoSc=;
-	h=Date:References:In-Reply-To:From:To:CC:Subject:List-Id:
+	t=1729002110; bh=r52Df5W2iHNfQ4qDn/2gBWkKjVvAIuIiwlBlEeoK/yo=;
+	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=JZEjEp4lAjGpObSpt9s0jMc7y41ae9YAduRQPoq4U/GIRbwGNWIPaKMsaeiM1OdJ7
-	 a+uYslShwJEkmXKs+p/jq9YMb8ER34DWIxqBtVkw5tgyYl64wu2LMVB/AId7JsnpRe
-	 /NuYaQpaSfRF6WpPHul9OnJFC7LMMrbcUcyMS7h6xUYC/75U9NJNiZNBEEvEcVmu3k
-	 zSJ0AlHT+a7EComw7djc7LmVCSLDMURM4ZHJC1kV7H4i7U9HDo5Z/NR82nsY9BXXu8
-	 clfo2PHyqEktyY0MILpBRQkSVJHR47IqvR4tbvA3ken2/k31nCXvjoR7yNjcKnfeb4
-	 L4ZfNir3owMug==
-Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com [209.85.221.198])
-	by mm2.emwd.com (Postfix) with ESMTPS id EE4A3385893
-	for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 10:46:45 -0400 (EDT)
-Received: by mail-vk1-f198.google.com with SMTP id 71dfb90a1353d-50d4679fe23so213971e0c.3
-        for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 07:46:45 -0700 (PDT)
+	b=ny4OF05OkRODYJ4LrFqLKeJ8dqnvFvYQ/X06m+PChTGkuPDfFOefMiV/WNKMrGea2
+	 dIYZubC0gezLOSIKeayD1PLtzowbSt6lELl5dwubSd/IigpEOe/aOyUU8eW6CaqY8T
+	 1rcay6Uv0zv5lB08Q9ZEOecgWjyFS8jSQ2C99huoqYFOM5R/Pv8OC48Az8LvimspUi
+	 6xPbRyclHvmRYp7gDcj5kw0VBY5ln7POkZRd62gYKNq5uiFOjj34HvP37Pg4ZyfE73
+	 GFHTuc270Bph44KU5M9aTEpLkVnFdCeF6rI4jBOQ4yBHgFn2smYr9z7dyN6lkI628j
+	 4cuznE7JmEekw==
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 78EA7380936
+	for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 10:21:41 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="j8yRgsg0";
+	dkim-atps=neutral
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-46071514c72so13828291cf.3
+        for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 07:21:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729002101; x=1729606901; darn=lists.ettus.com;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gzA09vCJhf42pYbtxNONKKHO3hEp0C0uFW3RHMf9vCY=;
+        b=j8yRgsg0a2DMiTFp6Zfqs8AxVaa6DU5Zl4crHIUk0l38a/wXS79fqvYM9zp1ulM23U
+         N4aaHgm8/WU1C2LIsEd+8yQqAgJpbon4hKeJSNtWXMSyIodtmFT2Dkj9PL8kjKYtlGa1
+         N7EdljCDdG9w8bpSM/PJ2fyajrcOU+aa8IWIBt6lR9cCFlpXnp10mqgKdTdQ2wWBQYeY
+         5F92cH4SNWQdzXXBzwDNQi5IZn49ubtD9ca80OABZeX7GIKltrV4jyamm87nCmiX1e4A
+         QPgjnkAAds45Nueplh0BakYI+ujuZZGAC24RbEHdVlA6U5rckDSVQa+wpJ5vWdEpQQCM
+         lI/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729003605; x=1729608405;
-        h=cc:to:from:subject:message-id:in-reply-to:references:date
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ximJOQUkF6tpkNtkiDFNuH748inwRyo2qmv04d8GexU=;
-        b=M/apkdkl6Liplnzr9mEAOqTIDFfUdW8PH6wmJrLin48lhLrjQ1hnfVsk5MxFyF2KEU
-         22RQMJdIfdLoxHvezDgHldx1Kos0saSW/I0Z96tamP01Quc9o3mct6sGm20xLmbb999q
-         392rQHLtrukV02RU8QmBxUQa/qLOHdviZvo3gXAYHZ9nPFefBdzSirej6ImCcjznTd4Z
-         A6b8Q5/5UoSdtQLwUjDmsX5YADsovxT2FEhdDcVulKoz2qDbEyDQMNA8dzDM7jco7Cd2
-         wfCxOlNkYx6epQf3Y2RGiVr6JiBX9P1X7iol3avUK0G73XtLKN49GgyeTNNPZ8iOOb1k
-         Zasg==
-X-Gm-Message-State: AOJu0YyGRJbP+cPZV+cG1qrSPYnuFaTmPGyoC43v/FsHIDtZnOLQE6Om
-	F0tcYZCq6wXT0njiwQa7YTbLNqUbO/wxvBHpeV0bG1pdiPcKBlT4okuWBua4Jr4fbZss5RHA64r
-	Lr9zpHc9auXxGDcNaijBgDht94BW4lL27gh2nDHFxMibyMXGmv4Y3MHExNL3e42ftbmgV6g==
-X-Google-Smtp-Source: AGHT+IH0MxV925CoMo7vPRtjJwFX7NqCTvLdxCDQvMavr2ZmPVafbNHNqCOrOQUeRcHtKYi5J+JaF4jUiO4S8TfzsxII+nJyppku7Q==
-X-Received: by 2002:a05:6122:a27:b0:50d:2df1:4c47 with SMTP id 71dfb90a1353d-50d3774a163mr6223015e0c.13.1729003605190;
-        Tue, 15 Oct 2024 07:46:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729002101; x=1729606901;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gzA09vCJhf42pYbtxNONKKHO3hEp0C0uFW3RHMf9vCY=;
+        b=voSj9Kjz96AZVNqmf/ZRlfjsh32a9p8Dc3lsBDIdcTkF7e2f92nc8PY7mcqa8lkqM6
+         cxwo15ekpY7p01eVBMWD7qUoP94/eCqYSYGsr6N9kpiJS1A8RGrRDmZ9nmqVmk4+a4cD
+         Ww7Zia+VDY2fRq625BlZHwv3faN4DF0D2SfeLkJv+ThHatnRKPkcaMvwo5WZnpMagFEk
+         H1Fwfm6BCHp9uQ0LASyQnfMPhXkEAJLuFCCeHcaE0dtqW53uRn5mUc/hVIIU7JW3m94A
+         XgUcZbtBRCSHaMAJfx2XQ98UXzoqAnLphugnosUtG7WmXA+U6uvFAaMf3w7X0+c6i9N/
+         xwxw==
+X-Gm-Message-State: AOJu0YzqDDXKuzXNc0+PkvYp7mfg+K1T96SVQxR1AcFCu64q3Ovsrzv/
+	fc6BIv8OjrT83zzEceA84M284rFuGDBdBKtMXlWLt4sw9oS+2Mw7ORomkg==
+X-Google-Smtp-Source: AGHT+IETI2BeiQpRvOG3DMvho9N6GP2TllM4y6XSGh8rHgO9xegEXRdEPSqBXDRhpx0bo8SOOc+GXw==
+X-Received: by 2002:a05:622a:1989:b0:45d:9525:42ff with SMTP id d75a77b69052e-4604bca79a3mr209374571cf.54.1729002100689;
+        Tue, 15 Oct 2024 07:21:40 -0700 (PDT)
+Received: from [192.168.2.170] ([174.88.53.166])
+        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4607b119d78sm7089991cf.42.2024.10.15.07.21.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Oct 2024 07:21:40 -0700 (PDT)
+Message-ID: <d3c528ef-6e61-4596-a9af-74084baae152@gmail.com>
+Date: Tue, 15 Oct 2024 10:21:29 -0400
 MIME-Version: 1.0
-Date: Tue, 15 Oct 2024 16:18:39 +0200
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Houshang <houshang.azizi@accelleran.com>
 References: <CAO=xj9XeHxnLA9wK+D6Q9ghpwkGo6DpYF9CH7vWSERSxv+eiPA@mail.gmail.com>
-	<7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com>
-	<CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
-	<f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com>
-In-Reply-To: <f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com>
-Message-ID: <CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
-From: Houshang <houshang.azizi@accelleran.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: E7XAIW4CWVGWRR25G2I3O7AKMAMDS25D
-X-Message-ID-Hash: E7XAIW4CWVGWRR25G2I3O7AKMAMDS25D
-X-MailFrom: houshang.azizi@accelleran.com
+ <7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com>
+ <CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
+ <f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com>
+ <CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
+Message-ID-Hash: WGOPZKFWBPITRXEDQTHJ52CO53FK4P25
+X-Message-ID-Hash: WGOPZKFWBPITRXEDQTHJ52CO53FK4P25
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Failure to create rfnoc_graph
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/E7XAIW4CWVGWRR25G2I3O7AKMAMDS25D/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WGOPZKFWBPITRXEDQTHJ52CO53FK4P25/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4323355790417001197=="
+Content-Type: multipart/mixed; boundary="===============1574824292685369862=="
 
---===============4323355790417001197==
-Content-Type: multipart/related; boundary="00000000000046c7f2062484a18b"
+This is a multi-part message in MIME format.
+--===============1574824292685369862==
+Content-Type: multipart/alternative;
+ boundary="------------MwRjDtIqK50x0C2izZ5TRatB"
+Content-Language: en-US
 
---00000000000046c7f2062484a18b
-Content-Type: multipart/alternative; boundary="00000000000046c7f0062484a18a"
+This is a multi-part message in MIME format.
+--------------MwRjDtIqK50x0C2izZ5TRatB
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
---00000000000046c7f0062484a18a
-Content-Type: text/plain; charset="UTF-8"
-
-Hi
-
-*ad@bm-super11-intel:~/accelleran$ ssh root@10.10.0.100 <root@10.10.0.100>*
-
-
-*root@ni-n3xx-32000F1:~# uhd_config_info --versionUHD 4.7.0.0-0-ga5ed1872*
-*root@ni-n3xx-32000F1:~# *
-
-I can ping all 3 ip's:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*ad@bm-super11-intel:~/accelleran$ ping 10.10.0.100PING 10.10.0.100
-(10.10.0.100) 56(84) bytes of data.64 bytes from 10.10.0.100
-<http://10.10.0.100>: icmp_seq=1 ttl=64 time=0.250 ms64 bytes from
-10.10.0.100 <http://10.10.0.100>: icmp_seq=2 ttl=64 time=0.199 ms^C---
-10.10.0.100 ping statistics ---2 packets transmitted, 2 received, 0% packet
-loss, time 1051msrtt min/avg/max/mdev = 0.199/0.224/0.250/0.025
-msad@bm-super11-intel:~/accelleran$ ping 10.10.1.100PING 10.10.1.100
-(10.10.1.100) 56(84) bytes of data.64 bytes from 10.10.1.100
-<http://10.10.1.100>: icmp_seq=1 ttl=64 time=1.02 ms64 bytes from
-10.10.1.100 <http://10.10.1.100>: icmp_seq=2 ttl=64 time=0.970 ms^C---
-10.10.1.100 ping statistics ---2 packets transmitted, 2 received, 0% packet
-loss, time 1001msrtt min/avg/max/mdev = 0.970/0.996/1.022/0.026
-msad@bm-super11-intel:~/accelleran$ ping 10.10.2.100PING 10.10.2.100
-(10.10.2.100) 56(84) bytes of data.64 bytes from 10.10.2.100
-<http://10.10.2.100>: icmp_seq=1 ttl=64 time=1.03 ms64 bytes from
-10.10.2.100 <http://10.10.2.100>: icmp_seq=2 ttl=64 time=0.963 ms^C---
-10.10.2.100 ping statistics ---2 packets transmitted, 2 received, 0% packet
-loss, time 1001msrtt min/avg/max/mdev = 0.963/0.994/1.025/0.031
-msad@bm-super11-intel:~/accelleran$ *
-
-
-On Tue, 15 Oct 2024 at 16:16, Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 15/10/2024 10:09, Houshang wrote:
+On 15/10/2024 10:18, Houshang wrote:
+> Hi
+> /
+> /
+> /ad@bm-super11-intel:~/accelleran$ ssh root@10.10.0.100/
+> /root@ni-n3xx-32000F1:~# uhd_config_info --version
+> UHD 4.7.0.0-0-ga5ed1872
+> /
+> /root@ni-n3xx-32000F1:~# /
 >
-> Hi Marcus
+> I can ping all 3 ip's:
 >
->    - There are two fiber interfaces for this n310 which I will be using
->    for DPDK later.
->    - There is also a RJ-45 port for this n310.
->
-> As the first step, I want to make sure things are working without DPDK. I
-> will then test the DPDK.
->
-> Based on your question, I am attaching some more info. Let me know if
-> something is missing.
->
-> Thanks
-> Houshang
->
-> When you're SSHed into the N310, what does:
->
-> uhd_config_info --version
+> /ad@bm-super11-intel:~/accelleran$ ping 10.10.0.100
+> PING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.
+> 64 bytes from 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D1 ttl=3D64=20
+> time=3D0.250 ms
+> 64 bytes from 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D2 ttl=3D64=20
+> time=3D0.199 ms
+> ^C
+> --- 10.10.0.100 ping statistics ---
+> 2 packets transmitted, 2 received, 0% packet loss, time 1051ms
+> rtt min/avg/max/mdev =3D 0.199/0.224/0.250/0.025 ms
+> ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100
+> PING 10.10.1.100 (10.10.1.100) 56(84) bytes of data.
+> 64 bytes from 10.10.1.100 <http://10.10.1.100>: icmp_seq=3D1 ttl=3D64=20
+> time=3D1.02 ms
+> 64 bytes from 10.10.1.100 <http://10.10.1.100>: icmp_seq=3D2 ttl=3D64=20
+> time=3D0.970 ms
+> ^C
+> --- 10.10.1.100 ping statistics ---
+> 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+> rtt min/avg/max/mdev =3D 0.970/0.996/1.022/0.026 ms
+> ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100
+> PING 10.10.2.100 (10.10.2.100) 56(84) bytes of data.
+> 64 bytes from 10.10.2.100 <http://10.10.2.100>: icmp_seq=3D1 ttl=3D64=20
+> time=3D1.03 ms
+> 64 bytes from 10.10.2.100 <http://10.10.2.100>: icmp_seq=3D2 ttl=3D64=20
+> time=3D0.963 ms
+> ^C
+> --- 10.10.2.100 ping statistics ---
+> 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+> rtt min/avg/max/mdev =3D 0.963/0.994/1.025/0.031 ms
+> ad@bm-super11-intel:~/accelleran$ /
 >
 >
-> Show?
+OK, so, what happens if you:
+
+uhd_usrp_probe -a "type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100"
+
+
+> On Tue, 15 Oct 2024 at 16:16, Marcus D. Leech=20
+> <patchvonbraun@gmail.com> wrote:
+>
+>     On 15/10/2024 10:09, Houshang wrote:
+>>     Hi Marcus
+>>
+>>       * There are two fiber interfaces for this n310 which I will be
+>>         using for DPDK later.
+>>       * There is also a RJ-45 port for this n310.
+>>
+>>     As the first step, I want to make sure things are working without
+>>     DPDK. I will then test the DPDK.
+>>
+>>     Based on your question, I am attaching some more info. Let me
+>>     know if something is missing.
+>>
+>>     Thanks
+>>     Houshang
+>>
+>     When you're SSHed into the N310, what does:
+>
+>     uhd_config_info --version
 >
 >
-> Can you ping the SFP+ interfaces from your host computer?
+>     Show?
 >
 >
-> On Tue, 15 Oct 2024 at 16:04, Marcus D. Leech <patchvonbraun@gmail.com>
-> wrote:
->
->> On 15/10/2024 09:41, Houshang wrote:
->>
->> Hello
->> Can anyone help with this issue please? This is an n310 and the version
->> of UHD is visible in the screenshot below.
->>
->> [image: 15_15:37:26.jpg]
->> Thanks
->> Houshang
->>
->> --
->>
->> *Houshang Azizi*
->>
->> *Test Engineer*
->> [image: logo] <https://www.accelleran.com/>
->>
->> *(32) 492195241*
->>
->> *houshang.azizi@accelleran.com <Email@accelleran.com>*
->>
->>
->>
->> *www.accelleran.com* <http://www.accelleran.com/>
->>
->> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [image:
->> twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
->> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
->>
->>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
->> I think I've asked you this before on this issue:
->>
->> What does your network connection setup look like?
->>
->> Are you using the RJ-45 port and the SFP+ port(s)?   How are things
->> connected, and on what subnets?
->>
->>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
+>     Can you ping the SFP+ interfaces from your host computer?
 >
 >
-> --
+>>     On Tue, 15 Oct 2024 at 16:04, Marcus D. Leech
+>>     <patchvonbraun@gmail.com> wrote:
+>>
+>>         On 15/10/2024 09:41, Houshang wrote:
+>>>         Hello
+>>>         Can anyone help with this issue please? This is an n310 and
+>>>         the version of UHD is visible in the screenshot below.
+>>>
+>>>         15_15:37:26.jpg
+>>>         Thanks
+>>>         Houshang
+>>>
+>>>         --=20
+>>>
+>>>         *Houshang Azizi*
+>>>
+>>>         *Test Engineer*
+>>>
+>>>         logo <https://www.accelleran.com/>
+>>>
+>>>         *(32) 492195241*
+>>>
+>>>         *houshang.azizi@accelleran.com <mailto:Email@accelleran.com>*
+>>>
+>>>         *www.accelleran.com* <http://www.accelleran.com/>
+>>>
+>>>         linkedin icon <https://www.linkedin.com/company/accelleran>
+>>>         twitter icon <https://twitter.com/accelleran> youtube icon
+>>>         <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?the=
+meRefresh=3D1>
+>>>
+>>>
+>>>
+>>>         _______________________________________________
+>>>         USRP-users mailing list --usrp-users@lists.ettus.com
+>>>         To unsubscribe send an email tousrp-users-leave@lists.ettus.c=
+om
+>>         I think I've asked you this before on this issue:
+>>
+>>         What does your network connection setup look like?
+>>
+>>         Are you using the RJ-45 port and the SFP+ port(s)?=C2=A0=C2=A0=
+ How are
+>>         things connected, and on what subnets?
+>>
+>>
+>>         _______________________________________________
+>>         USRP-users mailing list -- usrp-users@lists.ettus.com
+>>         To unsubscribe send an email to usrp-users-leave@lists.ettus.c=
+om
+>>
+>>
+>>
+>>     --=20
+>>
+>>     *Houshang Azizi*
+>>
+>>     *Test Engineer*
+>>
+>>     logo <https://www.accelleran.com/>
+>>
+>>     *(32) 492195241*
+>>
+>>     *houshang.azizi@accelleran.com <mailto:Email@accelleran.com>*
+>>
+>>     *www.accelleran.com* <http://www.accelleran.com/>
+>>
+>>     linkedin icon <https://www.linkedin.com/company/accelleran>
+>>     twitter icon <https://twitter.com/accelleran> youtube icon
+>>     <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
+resh=3D1>
+>>
+>>
+>
+>
+>
+> --=20
 >
 > *Houshang Azizi*
 >
 > *Test Engineer*
-> [image: logo] <https://www.accelleran.com/>
+>
+> logo <https://www.accelleran.com/>
 >
 > *(32) 492195241*
 >
-> *houshang.azizi@accelleran.com <Email@accelleran.com>*
->
->
+> *houshang.azizi@accelleran.com <mailto:Email@accelleran.com>*
 >
 > *www.accelleran.com* <http://www.accelleran.com/>
 >
-> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [image:
-> twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
-> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
->
->
->
+> linkedin icon <https://www.linkedin.com/company/accelleran> twitter=20
+> icon <https://twitter.com/accelleran> youtube icon=20
+> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D=
+1>
 >
 
--- 
+--------------MwRjDtIqK50x0C2izZ5TRatB
+Content-Type: multipart/related;
+ boundary="------------2YYsRfx66gx4GrEqPXIeDDJP"
 
-*Houshang Azizi*
-
-*Test Engineer*
-
-[image: logo] <https://www.accelleran.com/>
-
-*(32) 492195241*
-
-*houshang.azizi@accelleran.com <Email@accelleran.com>*
-
-
-
-*www.accelleran.com* <http://www.accelleran.com/>
-
-[image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [image:
-twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
-<https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
-
---00000000000046c7f0062484a18a
-Content-Type: text/html; charset="UTF-8"
+--------------2YYsRfx66gx4GrEqPXIeDDJP
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi</div><div><span style=3D"backgrou=
-nd-color:rgb(204,204,204)"><i><br></i></span></div><div><i style=3D"backgro=
-und-color:rgb(204,204,204)">ad@bm-super11-intel:~/accelleran$ ssh <a href=
-=3D"mailto:root@10.10.0.100">root@10.10.0.100</a></i></div><span style=3D"b=
-ackground-color:rgb(204,204,204)"><i>root@ni-n3xx-32000F1:~# uhd_config_inf=
-o --version<br>UHD 4.7.0.0-0-ga5ed1872<br></i></span><div><i style=3D"backg=
-round-color:rgb(204,204,204)">root@ni-n3xx-32000F1:~# </i><br></div><div><b=
-r></div><div>I can ping all 3 ip&#39;s:</div><div><br></div><div><i><span s=
-tyle=3D"background-color:rgb(204,204,204)">ad@bm-super11-intel:~/accelleran=
-$ ping 10.10.0.100<br>PING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.<=
-br>64 bytes from <a href=3D"http://10.10.0.100">10.10.0.100</a>: icmp_seq=
-=3D1 ttl=3D64 time=3D0.250 ms<br>64 bytes from <a href=3D"http://10.10.0.10=
-0">10.10.0.100</a>: icmp_seq=3D2 ttl=3D64 time=3D0.199 ms<br>^C<br>--- 10.1=
-0.0.100 ping statistics ---<br>2 packets transmitted, 2 received, 0% packet=
- loss, time 1051ms<br>rtt min/avg/max/mdev =3D 0.199/0.224/0.250/0.025 ms<b=
-r>ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100<br>PING 10.10.1.100 (1=
-0.10.1.100) 56(84) bytes of data.<br>64 bytes from <a href=3D"http://10.10.=
-1.100">10.10.1.100</a>: icmp_seq=3D1 ttl=3D64 time=3D1.02 ms<br>64 bytes fr=
-om <a href=3D"http://10.10.1.100">10.10.1.100</a>: icmp_seq=3D2 ttl=3D64 ti=
-me=3D0.970 ms<br>^C<br>--- 10.10.1.100 ping statistics ---<br>2 packets tra=
-nsmitted, 2 received, 0% packet loss, time 1001ms<br>rtt min/avg/max/mdev =
-=3D 0.970/0.996/1.022/0.026 ms<br>ad@bm-super11-intel:~/accelleran$ ping 10=
-.10.2.100<br>PING 10.10.2.100 (10.10.2.100) 56(84) bytes of data.<br>64 byt=
-es from <a href=3D"http://10.10.2.100">10.10.2.100</a>: icmp_seq=3D1 ttl=3D=
-64 time=3D1.03 ms<br>64 bytes from <a href=3D"http://10.10.2.100">10.10.2.1=
-00</a>: icmp_seq=3D2 ttl=3D64 time=3D0.963 ms<br>^C<br>--- 10.10.2.100 ping=
- statistics ---<br>2 packets transmitted, 2 received, 0% packet loss, time =
-1001ms<br>rtt min/avg/max/mdev =3D 0.963/0.994/1.025/0.031 ms<br>ad@bm-supe=
-r11-intel:~/accelleran$ </span></i><br></div><div><br></div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct =
-2024 at 16:16, Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.co=
-m">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><u></u>
-
- =20
-   =20
- =20
-  <div>
-    <div>On 15/10/2024 10:09, Houshang wrote:<br>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 15/10/2024 10:18, Houshang wrote:<b=
+r>
     </div>
-    <blockquote type=3D"cite">
-     =20
+    <blockquote type=3D"cite"
+cite=3D"mid:CAO=3Dxj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gm=
+ail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
       <div dir=3D"ltr">
-        <div>Hi Marcus</div>
-        <ul>
-          <li>There are two fiber interfaces for this n310 which I will
-            be using for DPDK later.=C2=A0</li>
-          <li>There is also a RJ-45 port for this n310.</li>
-        </ul>
-        <div>As the first step, I want to make sure things are working
-          without DPDK. I will then test the DPDK.</div>
-        <div><br>
+        <div dir=3D"ltr">
+          <div>Hi</div>
+          <div><span style=3D"background-color:rgb(204,204,204)"><i><br>
+              </i></span></div>
+          <div><i style=3D"background-color:rgb(204,204,204)">ad@bm-super=
+11-intel:~/accelleran$
+              ssh <a href=3D"mailto:root@10.10.0.100"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+root@10.10.0.100</a></i></div>
+          <span style=3D"background-color:rgb(204,204,204)"><i>root@ni-n3=
+xx-32000F1:~#
+              uhd_config_info --version<br>
+              UHD 4.7.0.0-0-ga5ed1872<br>
+            </i></span>
+          <div><i style=3D"background-color:rgb(204,204,204)">root@ni-n3x=
+x-32000F1:~#
+            </i><br>
+          </div>
+          <div><br>
+          </div>
+          <div>I can ping all 3 ip's:</div>
+          <div><br>
+          </div>
+          <div><i><span style=3D"background-color:rgb(204,204,204)">ad@bm=
+-super11-intel:~/accelleran$
+                ping 10.10.0.100<br>
+                PING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.<br>
+                64 bytes from <a href=3D"http://10.10.0.100"
+                  moz-do-not-send=3D"true">10.10.0.100</a>: icmp_seq=3D1
+                ttl=3D64 time=3D0.250 ms<br>
+                64 bytes from <a href=3D"http://10.10.0.100"
+                  moz-do-not-send=3D"true">10.10.0.100</a>: icmp_seq=3D2
+                ttl=3D64 time=3D0.199 ms<br>
+                ^C<br>
+                --- 10.10.0.100 ping statistics ---<br>
+                2 packets transmitted, 2 received, 0% packet loss, time
+                1051ms<br>
+                rtt min/avg/max/mdev =3D 0.199/0.224/0.250/0.025 ms<br>
+                ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100<br>
+                PING 10.10.1.100 (10.10.1.100) 56(84) bytes of data.<br>
+                64 bytes from <a href=3D"http://10.10.1.100"
+                  moz-do-not-send=3D"true">10.10.1.100</a>: icmp_seq=3D1
+                ttl=3D64 time=3D1.02 ms<br>
+                64 bytes from <a href=3D"http://10.10.1.100"
+                  moz-do-not-send=3D"true">10.10.1.100</a>: icmp_seq=3D2
+                ttl=3D64 time=3D0.970 ms<br>
+                ^C<br>
+                --- 10.10.1.100 ping statistics ---<br>
+                2 packets transmitted, 2 received, 0% packet loss, time
+                1001ms<br>
+                rtt min/avg/max/mdev =3D 0.970/0.996/1.022/0.026 ms<br>
+                ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100<br>
+                PING 10.10.2.100 (10.10.2.100) 56(84) bytes of data.<br>
+                64 bytes from <a href=3D"http://10.10.2.100"
+                  moz-do-not-send=3D"true">10.10.2.100</a>: icmp_seq=3D1
+                ttl=3D64 time=3D1.03 ms<br>
+                64 bytes from <a href=3D"http://10.10.2.100"
+                  moz-do-not-send=3D"true">10.10.2.100</a>: icmp_seq=3D2
+                ttl=3D64 time=3D0.963 ms<br>
+                ^C<br>
+                --- 10.10.2.100 ping statistics ---<br>
+                2 packets transmitted, 2 received, 0% packet loss, time
+                1001ms<br>
+                rtt min/avg/max/mdev =3D 0.963/0.994/1.025/0.031 ms<br>
+                ad@bm-super11-intel:~/accelleran$ </span></i><br>
+          </div>
+          <div><br>
+          </div>
         </div>
-        <div>Based on your question, I am attaching some more info. Let
-          me know if something is missing.<br>
-        </div>
-        <div><br>
-        </div>
-        <div>Thanks</div>
-        <div>Houshang<br>
-        </div>
+        <br>
       </div>
-      <br>
     </blockquote>
-    When you&#39;re SSHed into the N310, what does:<br>
+    OK, so, what happens if you:<br>
     <br>
-    uhd_config_info --version<br>
-    <br>
-    <br>
-    Show?<br>
+    uhd_usrp_probe -a "type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100"<br>
     <br>
     <br>
-    Can you ping the SFP+ interfaces from your host computer?<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite">
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 at 16:04,
-          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" ta=
-rget=3D"_blank">patchvonbraun@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <div>On 15/10/2024 09:41, Houshang wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">
-                <div>Hello</div>
-                <div>Can anyone help with this issue please? This is an
-                  n310 and the version of UHD is visible in the
-                  screenshot below.</div>
-                <div><br>
-                </div>
-                <div><img src=3D"cid:ii_192908a5cba4d14bf721" alt=3D"15_15:=
-37:26.jpg" style=3D"margin-right: 0px;" width=3D"1275" height=3D"411"><br>
-                </div>
-                <div>Thanks</div>
-                <div>Houshang<br>
-                </div>
-                <div><br>
-                  <span class=3D"gmail_signature_prefix">-- </span><br>
-                  <div dir=3D"ltr" class=3D"gmail_signature">
-                    <div dir=3D"ltr">
-                      <div style=3D"text-align:left">
-                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
-ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"f=
-ont-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)">Houshang
-                              Azizi</span></b><span style=3D"font-size:11pt=
-;font-family:Arial,sans-serif"></span></p>
-                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
-ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"f=
-ont-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test
-                              Engineer</span></b></p>
-                      </div>
-                      <a href=3D"https://www.accelleran.com/" rel=3D"noopen=
-er" style=3D"color:rgb(51,122,183);background-color:transparent" target=3D"=
-_blank"><font size=3D"2"><img alt=3D"logo" src=3D"https://accelleran.com/wp=
--content/uploads/2024/04/Accelleran_NewLogo_NoBaseline.png" style=3D"border=
-: 0px; vertical-align: middle; width: 143px; height: auto;" width=3D"143" b=
-order=3D"0"></font></a>
-                      <div style=3D"text-align:left">
-                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
-ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"f=
-ont-size:10pt;font-family:Arial,sans-serif;color:black">(32)
-                              492195241</span></b><span style=3D"font-size:=
-10pt;font-family:Arial,sans-serif"></span></p>
-                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
-ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font=
--size:10pt;font-family:Arial,sans-serif"><b><span style=3D"color:black"><a =
-href=3D"mailto:Email@accelleran.com" target=3D"_blank">houshang.azizi@accel=
-leran.com</a></span></b></span></p>
-                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
-ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font=
--size:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
-                        <p class=3D"MsoNormal" style=3D"margin:0cm;line-hei=
-ght:normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font=
--size:10pt;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.c=
-om/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"col=
-or:rgb(246,146,30)">www.accelleran.com</span></b></a></span></p>
-                      </div>
-                      <p style=3D"text-align:left;margin:20px 0px"><a href=
-=3D"https://www.linkedin.com/company/accelleran" rel=3D"noopener" style=3D"=
-color:rgb(51,122,183);background-color:transparent" target=3D"_blank"><img =
-alt=3D"linkedin icon" src=3D"https://www.mail-signatures.com/signature-gene=
-rator/img/templates/simple-and-light/ln.png" style=3D"border: 0px; vertical=
--align: middle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=
-=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://twitter.com/accelleran" rel=3D"n=
-oopener" style=3D"color:rgb(51,122,183);background-color:transparent" targe=
-t=3D"_blank"><img alt=3D"twitter icon" src=3D"https://www.mail-signatures.c=
-om/signature-generator/img/templates/simple-and-light/tt.png" style=3D"bord=
-er: 0px; vertical-align: middle; height: 15px; width: 15px;" width=3D"15" b=
-order=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://www.youtube.com/=
-channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D1" rel=3D"noopener" style=
-=3D"color:rgb(51,122,183);background-color:transparent" target=3D"_blank"><=
-img alt=3D"youtube icon" src=3D"https://www.mail-signatures.com/signature-g=
-enerator/img/templates/simple-and-light/yt.png" style=3D"border: 0px; verti=
-cal-align: middle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></=
-a>=C2=A0=C2=A0=C2=A0
-                        <br>
-                      </p>
-                    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAO=3Dxj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gm=
+ail.com">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 at
+            16:16, Marcus D. Leech &lt;<a
+              href=3D"mailto:patchvonbraun@gmail.com"
+              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">pa=
+tchvonbraun@gmail.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class=3D"gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">
+            <div>
+              <div>On 15/10/2024 10:09, Houshang wrote:<br>
+              </div>
+              <blockquote type=3D"cite">
+                <div dir=3D"ltr">
+                  <div>Hi Marcus</div>
+                  <ul>
+                    <li>There are two fiber interfaces for this n310
+                      which I will be using for DPDK later.=C2=A0</li>
+                    <li>There is also a RJ-45 port for this n310.</li>
+                  </ul>
+                  <div>As the first step, I want to make sure things are
+                    working without DPDK. I will then test the DPDK.</div=
+>
+                  <div><br>
+                  </div>
+                  <div>Based on your question, I am attaching some more
+                    info. Let me know if something is missing.<br>
+                  </div>
+                  <div><br>
+                  </div>
+                  <div>Thanks</div>
+                  <div>Houshang<br>
                   </div>
                 </div>
-              </div>
+                <br>
+              </blockquote>
+              When you're SSHed into the N310, what does:<br>
               <br>
-              <fieldset></fieldset>
-              <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-            </blockquote>
-            I think I&#39;ve asked you this before on this issue:<br>
-            <br>
-            What does your network connection setup look like?<br>
-            <br>
-            Are you using the RJ-45 port and the SFP+ port(s)?=C2=A0=C2=A0 =
-How are
-            things connected, and on what subnets?<br>
-            <br>
-            <br>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
-us.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-          To unsubscribe send an email to <a href=3D"mailto:usrp-users-leav=
-e@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><b=
+              uhd_config_info --version<br>
+              <br>
+              <br>
+              Show?<br>
+              <br>
+              <br>
+              Can you ping the SFP+ interfaces from your host computer?<b=
 r>
-        </blockquote>
-      </div>
-      <br clear=3D"all">
-      <br>
-      <span class=3D"gmail_signature_prefix">-- </span><br>
-      <div dir=3D"ltr" class=3D"gmail_signature">
-        <div dir=3D"ltr">
-          <div style=3D"text-align:left">
-            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
-ont-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size:11p=
-t;font-family:Arial,sans-serif;color:rgb(0,173,238)">Houshang
-                  Azizi</span></b><span style=3D"font-size:11pt;font-family=
-:Arial,sans-serif"></span></p>
-            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
-ont-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size:11p=
-t;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test
-                  Engineer</span></b></p>
+              <br>
+              <br>
+              <blockquote type=3D"cite">
+                <div class=3D"gmail_quote">
+                  <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 20=
+24
+                    at 16:04, Marcus D. Leech &lt;<a
+                      href=3D"mailto:patchvonbraun@gmail.com"
+                      target=3D"_blank" moz-do-not-send=3D"true"
+                      class=3D"moz-txt-link-freetext">patchvonbraun@gmail=
+.com</a>&gt;
+                    wrote:<br>
+                  </div>
+                  <blockquote class=3D"gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">
+                    <div>
+                      <div>On 15/10/2024 09:41, Houshang wrote:<br>
+                      </div>
+                      <blockquote type=3D"cite">
+                        <div dir=3D"ltr">
+                          <div>Hello</div>
+                          <div>Can anyone help with this issue please?
+                            This is an n310 and the version of UHD is
+                            visible in the screenshot below.</div>
+                          <div><br>
+                          </div>
+                          <div><img
+src=3D"cid:part1.B7a6F0l3.0gByziOv@gmail.com" alt=3D"15_15:37:26.jpg"
+                              style=3D"margin-right: 0px;" class=3D""
+                              width=3D"1275" height=3D"411"><br>
+                          </div>
+                          <div>Thanks</div>
+                          <div>Houshang<br>
+                          </div>
+                          <div><br>
+                            <span class=3D"gmail_signature_prefix">-- </s=
+pan><br>
+                            <div dir=3D"ltr" class=3D"gmail_signature">
+                              <div dir=3D"ltr">
+                                <div style=3D"text-align:left">
+                                  <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)=
+">Houshang
+                                        Azizi</span></b><span
+style=3D"font-size:11pt;font-family:Arial,sans-serif"></span></p>
+                                  <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30=
+)">Test
+                                        Engineer</span></b></p>
+                                </div>
+                                <a href=3D"https://www.accelleran.com/"
+                                  rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                                  target=3D"_blank" moz-do-not-send=3D"tr=
+ue"><font
+                                    size=3D"2"><img alt=3D"logo"
+src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLo=
+go_NoBaseline.png"
+style=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;=
+"
+                                      moz-do-not-send=3D"true" width=3D"1=
+43"
+                                      border=3D"0"></font></a>
+                                <div style=3D"text-align:left">
+                                  <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32)
+                                        492195241</span></b><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif"></span></p>
+                                  <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span
+                                          style=3D"color:black"><a
+href=3D"mailto:Email@accelleran.com" target=3D"_blank"
+                                            moz-do-not-send=3D"true">hous=
+hang.azizi@accelleran.com</a></span></b></span></p>
+                                  <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
+                                  <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif"><a
+href=3D"http://www.accelleran.com/" style=3D"color:rgb(17,85,204)"
+                                        target=3D"_blank"
+                                        moz-do-not-send=3D"true"><b><span
+style=3D"color:rgb(246,146,30)">www.accelleran.com</span></b></a></span><=
+/p>
+                                </div>
+                                <p
+style=3D"text-align:left;margin:20px 0px"><a
+href=3D"https://www.linkedin.com/company/accelleran" rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                                    target=3D"_blank"
+                                    moz-do-not-send=3D"true"><img
+                                      alt=3D"linkedin icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/ln.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                                      moz-do-not-send=3D"true" width=3D"1=
+5"
+                                      border=3D"0"></a>=C2=A0=C2=A0=C2=A0=
+=C2=A0<a
+href=3D"https://twitter.com/accelleran" rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                                    target=3D"_blank"
+                                    moz-do-not-send=3D"true"><img
+                                      alt=3D"twitter icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/tt.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                                      moz-do-not-send=3D"true" width=3D"1=
+5"
+                                      border=3D"0"></a>=C2=A0=C2=A0=C2=A0=
+=C2=A0<a
+href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
+resh=3D1"
+                                    rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                                    target=3D"_blank"
+                                    moz-do-not-send=3D"true"><img
+                                      alt=3D"youtube icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/yt.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                                      moz-do-not-send=3D"true" width=3D"1=
+5"
+                                      border=3D"0"></a>=C2=A0=C2=A0=C2=A0=
+ <br>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <fieldset></fieldset>
+                        <pre>____________________________________________=
+___
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com"
+                        target=3D"_blank" moz-do-not-send=3D"true"
+                        class=3D"moz-txt-link-freetext">usrp-users@lists.=
+ettus.com</a>
+To unsubscribe send an email to <a
+                        href=3D"mailto:usrp-users-leave@lists.ettus.com"
+                        target=3D"_blank" moz-do-not-send=3D"true"
+                        class=3D"moz-txt-link-freetext">usrp-users-leave@=
+lists.ettus.com</a>
+</pre>
+                      </blockquote>
+                      I think I've asked you this before on this issue:<b=
+r>
+                      <br>
+                      What does your network connection setup look like?<=
+br>
+                      <br>
+                      Are you using the RJ-45 port and the SFP+
+                      port(s)?=C2=A0=C2=A0 How are things connected, and =
+on what
+                      subnets?<br>
+                      <br>
+                      <br>
+                    </div>
+                    _______________________________________________<br>
+                    USRP-users mailing list -- <a
+                      href=3D"mailto:usrp-users@lists.ettus.com"
+                      target=3D"_blank" moz-do-not-send=3D"true"
+                      class=3D"moz-txt-link-freetext">usrp-users@lists.et=
+tus.com</a><br>
+                    To unsubscribe send an email to <a
+                      href=3D"mailto:usrp-users-leave@lists.ettus.com"
+                      target=3D"_blank" moz-do-not-send=3D"true"
+                      class=3D"moz-txt-link-freetext">usrp-users-leave@li=
+sts.ettus.com</a><br>
+                  </blockquote>
+                </div>
+                <br clear=3D"all">
+                <br>
+                <span class=3D"gmail_signature_prefix">-- </span><br>
+                <div dir=3D"ltr" class=3D"gmail_signature">
+                  <div dir=3D"ltr">
+                    <div style=3D"text-align:left">
+                      <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)=
+">Houshang
+                            Azizi</span></b><span
+style=3D"font-size:11pt;font-family:Arial,sans-serif"></span></p>
+                      <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30=
+)">Test
+                            Engineer</span></b></p>
+                    </div>
+                    <a href=3D"https://www.accelleran.com/" rel=3D"noopen=
+er"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                      target=3D"_blank" moz-do-not-send=3D"true"><font
+                        size=3D"2"><img alt=3D"logo"
+src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLo=
+go_NoBaseline.png"
+style=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;=
+"
+                          moz-do-not-send=3D"true" width=3D"143" border=3D=
+"0"></font></a>
+                    <div style=3D"text-align:left">
+                      <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32)
+                            492195241</span></b><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif"></span></p>
+                      <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span
+                              style=3D"color:black"><a
+                                href=3D"mailto:Email@accelleran.com"
+                                target=3D"_blank" moz-do-not-send=3D"true=
+">houshang.azizi@accelleran.com</a></span></b></span></p>
+                      <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
+                      <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif"><a
+                            href=3D"http://www.accelleran.com/"
+                            style=3D"color:rgb(17,85,204)" target=3D"_bla=
+nk"
+                            moz-do-not-send=3D"true"><b><span
+                                style=3D"color:rgb(246,146,30)">www.accel=
+leran.com</span></b></a></span></p>
+                    </div>
+                    <p style=3D"text-align:left;margin:20px 0px"><a
+href=3D"https://www.linkedin.com/company/accelleran" rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                        target=3D"_blank" moz-do-not-send=3D"true"><img
+                          alt=3D"linkedin icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/ln.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                          moz-do-not-send=3D"true" width=3D"15" border=3D=
+"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a
+                        href=3D"https://twitter.com/accelleran"
+                        rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                        target=3D"_blank" moz-do-not-send=3D"true"><img
+                          alt=3D"twitter icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/tt.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                          moz-do-not-send=3D"true" width=3D"15" border=3D=
+"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a
+href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
+resh=3D1"
+                        rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                        target=3D"_blank" moz-do-not-send=3D"true"><img
+                          alt=3D"youtube icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/yt.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                          moz-do-not-send=3D"true" width=3D"15" border=3D=
+"0"></a>=C2=A0=C2=A0=C2=A0
+                      <br>
+                    </p>
+                  </div>
+                </div>
+              </blockquote>
+              <br>
+            </div>
+          </blockquote>
+        </div>
+        <br clear=3D"all">
+        <br>
+        <span class=3D"gmail_signature_prefix">-- </span><br>
+        <div dir=3D"ltr" class=3D"gmail_signature">
+          <div dir=3D"ltr">
+            <div style=3D"text-align:left">
+              <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)=
+">Houshang
+                    Azizi</span></b><span
+                  style=3D"font-size:11pt;font-family:Arial,sans-serif"><=
+/span></p>
+              <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30=
+)">Test
+                    Engineer</span></b></p>
+            </div>
+            <a href=3D"https://www.accelleran.com/" rel=3D"noopener"
+              style=3D"color:rgb(51,122,183);background-color:transparent=
+"
+              target=3D"_blank" moz-do-not-send=3D"true"><font size=3D"2"=
+><img
+                  alt=3D"logo"
+src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLo=
+go_NoBaseline.png"
+style=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;=
+"
+                  moz-do-not-send=3D"true" width=3D"143" border=3D"0"></f=
+ont></a>
+            <div style=3D"text-align:left">
+              <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span
+style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32)
+                    492195241</span></b><span
+                  style=3D"font-size:10pt;font-family:Arial,sans-serif"><=
+/span></p>
+              <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+                  style=3D"font-size:10pt;font-family:Arial,sans-serif"><=
+b><span
+                      style=3D"color:black"><a
+                        href=3D"mailto:Email@accelleran.com"
+                        target=3D"_blank" moz-do-not-send=3D"true">housha=
+ng.azizi@accelleran.com</a></span></b></span></p>
+              <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+                  style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=
+=A0</span></p>
+              <p class=3D"MsoNormal"
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span
+                  style=3D"font-size:10pt;font-family:Arial,sans-serif"><=
+a
+                    href=3D"http://www.accelleran.com/"
+                    style=3D"color:rgb(17,85,204)" target=3D"_blank"
+                    moz-do-not-send=3D"true"><b><span
+                        style=3D"color:rgb(246,146,30)">www.accelleran.co=
+m</span></b></a></span></p>
+            </div>
+            <p style=3D"text-align:left;margin:20px 0px"><a
+                href=3D"https://www.linkedin.com/company/accelleran"
+                rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                target=3D"_blank" moz-do-not-send=3D"true"><img
+                  alt=3D"linkedin icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/ln.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                  moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=
+=C2=A0=C2=A0=C2=A0=C2=A0<a
+                href=3D"https://twitter.com/accelleran" rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                target=3D"_blank" moz-do-not-send=3D"true"><img
+                  alt=3D"twitter icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/tt.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                  moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=
+=C2=A0=C2=A0=C2=A0=C2=A0<a
+href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
+resh=3D1"
+                rel=3D"noopener"
+style=3D"color:rgb(51,122,183);background-color:transparent"
+                target=3D"_blank" moz-do-not-send=3D"true"><img
+                  alt=3D"youtube icon"
+src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
+simple-and-light/yt.png"
+style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
+                  moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=
+=C2=A0=C2=A0=C2=A0 <br>
+            </p>
           </div>
-          <a href=3D"https://www.accelleran.com/" rel=3D"noopener" style=3D=
-"color:rgb(51,122,183);background-color:transparent" target=3D"_blank"><fon=
-t size=3D"2"><img alt=3D"logo" src=3D"https://accelleran.com/wp-content/upl=
-oads/2024/04/Accelleran_NewLogo_NoBaseline.png" style=3D"border: 0px; verti=
-cal-align: middle; width: 143px; height: auto;" width=3D"143" border=3D"0">=
-</font></a>
-          <div style=3D"text-align:left">
-            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
-ont-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size:10p=
-t;font-family:Arial,sans-serif;color:black">(32)
-                  492195241</span></b><span style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif"></span></p>
-            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
-ont-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt;f=
-ont-family:Arial,sans-serif"><b><span style=3D"color:black"><a href=3D"mail=
-to:Email@accelleran.com" target=3D"_blank">houshang.azizi@accelleran.com</a=
-></span></b></span></p>
-            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
-ont-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt;f=
-ont-family:Arial,sans-serif">=C2=A0</span></p>
-            <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;f=
-ont-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt;f=
-ont-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com/" style=
-=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color:rgb(246=
-,146,30)">www.accelleran.com</span></b></a></span></p>
-          </div>
-          <p style=3D"text-align:left;margin:20px 0px"><a href=3D"https://w=
-ww.linkedin.com/company/accelleran" rel=3D"noopener" style=3D"color:rgb(51,=
-122,183);background-color:transparent" target=3D"_blank"><img alt=3D"linked=
-in icon" src=3D"https://www.mail-signatures.com/signature-generator/img/tem=
-plates/simple-and-light/ln.png" style=3D"border: 0px; vertical-align: middl=
-e; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=
-=C2=A0=C2=A0<a href=3D"https://twitter.com/accelleran" rel=3D"noopener" sty=
-le=3D"color:rgb(51,122,183);background-color:transparent" target=3D"_blank"=
-><img alt=3D"twitter icon" src=3D"https://www.mail-signatures.com/signature=
--generator/img/templates/simple-and-light/tt.png" style=3D"border: 0px; ver=
-tical-align: middle; height: 15px; width: 15px;" width=3D"15" border=3D"0">=
-</a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://www.youtube.com/channel/UCrA=
-EtqWp21cibZgSFVIEx2g?themeRefresh=3D1" rel=3D"noopener" style=3D"color:rgb(=
-51,122,183);background-color:transparent" target=3D"_blank"><img alt=3D"you=
-tube icon" src=3D"https://www.mail-signatures.com/signature-generator/img/t=
-emplates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mid=
-dle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=
-=C2=A0 <br>
-          </p>
         </div>
       </div>
     </blockquote>
     <br>
-  </div>
-</blockquote></div><br clear=3D"all"><br><span class=3D"gmail_signature_pre=
-fix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"l=
-tr"><div style=3D"text-align:left"><p class=3D"MsoNormal" style=3D"margin:0=
-cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span=
- style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)"=
->Houshang Azizi</span></b><span style=3D"font-size:11pt;font-family:Arial,s=
-ans-serif"></span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-heigh=
-t:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"fon=
-t-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test Engine=
-er</span></b></p></div><p></p><a href=3D"https://www.accelleran.com/" rel=
-=3D"noopener" style=3D"color:rgb(51,122,183);background-color:transparent" =
-target=3D"_blank"><font size=3D"2"><img border=3D"0" alt=3D"logo" width=3D"=
-143" src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_Ne=
-wLogo_NoBaseline.png" style=3D"border: 0px; vertical-align: middle; width: =
-143px; height: auto;"></font></a><div style=3D"text-align:left"><p class=3D=
-"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-fami=
-ly:Aptos,sans-serif"><b><span style=3D"font-size:10pt;font-family:Arial,san=
-s-serif;color:black">(32) 492195241</span></b><span style=3D"font-size:10pt=
-;font-family:Arial,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"m=
-argin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><=
-span style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span style=
-=3D"color:black"><a href=3D"mailto:Email@accelleran.com" target=3D"_blank">=
-houshang.azizi@accelleran.com</a></span></b></span></p><p class=3D"MsoNorma=
-l" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,=
-sans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=
-=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal=
-;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt=
-;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com/" style=
-=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color:rgb(246=
-,146,30)">www.accelleran.com</span></b></a></span></p></div><p style=3D"tex=
-t-align:left;margin:20px 0px"><a href=3D"https://www.linkedin.com/company/a=
-ccelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color=
-:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=3D"linke=
-din icon" src=3D"https://www.mail-signatures.com/signature-generator/img/te=
-mplates/simple-and-light/ln.png" style=3D"border: 0px; vertical-align: midd=
-le; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"http=
-s://twitter.com/accelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183)=
-;background-color:transparent" target=3D"_blank"><img border=3D"0" width=3D=
-"15" alt=3D"twitter icon" src=3D"https://www.mail-signatures.com/signature-=
-generator/img/templates/simple-and-light/tt.png" style=3D"border: 0px; vert=
-ical-align: middle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=
-=A0<a href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?them=
-eRefresh=3D1" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-co=
-lor:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=3D"yo=
-utube icon" src=3D"https://www.mail-signatures.com/signature-generator/img/=
-templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mi=
-ddle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p></div></di=
-v></div>
-
---00000000000046c7f0062484a18a--
-
---00000000000046c7f2062484a18b
+  </body>
+</html>
+--------------2YYsRfx66gx4GrEqPXIeDDJP
 Content-Type: image/jpeg; name="15_15:37:26.jpg"
-Content-Disposition: attachment; filename="15_15:37:26.jpg"
+Content-Disposition: inline; filename="15_15:37:26.jpg"
+Content-Id: <part1.B7a6F0l3.0gByziOv@gmail.com>
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_192908a5cba4d14bf721
-Content-ID: <ii_192908a5cba4d14bf721>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEa
 AAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAAB
@@ -3495,9 +3740,11 @@ gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
 KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
 gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9k=
 
---00000000000046c7f2062484a18b--
+--------------2YYsRfx66gx4GrEqPXIeDDJP--
 
---===============4323355790417001197==
+--------------MwRjDtIqK50x0C2izZ5TRatB--
+
+--===============1574824292685369862==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -3507,4 +3754,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4323355790417001197==--
+--===============1574824292685369862==--
