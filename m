@@ -2,47 +2,47 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 667D899F5F3
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 20:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFFB699F5F7
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 20:45:53 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A9F3E385B33
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 14:45:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E9CDF3851E0
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2024 14:45:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1729017904; bh=5d3ZGvn/upzAh26zxtZamtjih1kTmRoHxgRw19pXs9k=;
+	t=1729017952; bh=0bE0CP0VZH8IyhkTNVKse9KZ7GMUzrIGMeNXwo7hFJk=;
 	h=Date:References:In-Reply-To:From:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=hSF27KpccSigi5NCBLgmuxiXzrdGclzlFq+jiA810Qd2/dIV1spNqJ2Hv6Nk+ALly
-	 NhzWcf8+xGgUP+CRIYvRQtbqO0qLja6hlfCoNtzGHLzoaJWCbMx8RKP6ozBYfUqkUR
-	 ZyGRIc8Q56fC2hznDRnMj8ActNVTKmLIG6lxlw4/+VwM8qPLZjV7gJPNdr9+aZ0WFT
-	 MsxxiRsf7VMGCmIywt3qT90eqNTCtuU3ankS29n8/bxM50aukq4khSUspDHe9qWQ2S
-	 98MoTokGsvqk1z7lnRewr/HpT+2Nv3VPqd5vtyfN/hmM49bQYiEgPqARlfn1IKzZgN
-	 CMgSqVDiHGmiw==
-Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com [209.85.221.198])
-	by mm2.emwd.com (Postfix) with ESMTPS id D7765385AF0
+	b=cr8CjUdNXmJ/Ppj4pAWVI8nvXtD3LdiVpzUguY+LaPdiguNxtEwS4ob2ucPVCcyvB
+	 418mnXETtobNHFEt8QumAa4qggB3BaU5slG1VP5Vid7IlgqgYczQSxmULX1O9epB8Z
+	 MG3Ah9REATWjAqIljbYygipmsqNZFkD4I7OjsID3QkAhZz7CmJZIte2L2+pcqJ62f/
+	 PpRMXxCwSywsANsci5ZW6gPi8BIWbdUIuPAVCDTpdN02M4yftTVF6tG91Il1CU795M
+	 S4EGAlb5KpN1v5pnwVtsCCkzDnf0Ea57vGDhxer0RlrCPYz9ZW17ysNhxmsIPFZeCq
+	 SNB5gHQyLkJ1A==
+Received: from mail-vk1-f199.google.com (mail-vk1-f199.google.com [209.85.221.199])
+	by mm2.emwd.com (Postfix) with ESMTPS id CC3F1385AE8
 	for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 14:43:01 -0400 (EDT)
-Received: by mail-vk1-f198.google.com with SMTP id 71dfb90a1353d-50c7cbc2485so1339889e0c.3
+Received: by mail-vk1-f199.google.com with SMTP id 71dfb90a1353d-50d83a838b3so289126e0c.0
         for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2024 11:43:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1729017781; x=1729622581;
         h=cc:to:from:subject:message-id:in-reply-to:references:date
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=divDa+AKJELGn/pNt1mGDW2DjSpTdfu5ONsLiEr6HIQ=;
-        b=kkgHBo0aEVCUUqy0EQcr65J/g0vw/HXcDWTiPYjQTUmo5jiFl5GN6nfenl2pXqGYMA
-         L+sVrr1FLC+fxuPkU+hgYiOh1NgMOnu5lu29WYY1cvibqzPP9s0kHIt2OSX7qSjnu7Yx
-         5Wkmt6Pf1gZS/r3yWD6qlBiIPZsv8ymA5fPTgvneOS1+uni4LHUu24LmChK1AkFM9omr
-         keZWBePSXZs9MXM2Ag9tfl++00hG+Kyr44LhbDNGQgF3ZaWNQ4ZfnUI6OgIvHdcgeOAK
-         K6bclNkGS3pf9qw2d2Gn4o4uk/GOgqrAPa3faSJFrdrRAfawl50mKkMJWaPKEyvZKfB7
-         KDVA==
-X-Gm-Message-State: AOJu0YyrkekDs+ggO6qjCckuy10UA4PKnAWa29osHbtiTmZP/iLx7SQh
-	LVAbKGIsokLAqt3dQjXiRmT/Bl945Nw6m2x9aZzzc3z9VuFUEj2tyi7Kp6oJHNw59sj71V0xDVi
-	kJk2kZgeTscvGY30VlgnNrxeeOMmv8v858asDCOENVBiQiCAzrE3p7e5PfArtRdSLmdVYRg==
-X-Google-Smtp-Source: AGHT+IFTEU4PJMlD4x5qyBK4UrAvqvN2QGlp4PVvKgnla3LrEcVFMroj29DkYhlDTRbFl702gtx2aBCVRn1TXV7YPJO4172x9wYhaQ==
-X-Received: by 2002:a05:6122:90a:b0:50d:6a43:d525 with SMTP id 71dfb90a1353d-50d6a43efcbmr5303821e0c.1.1729017780940;
+        bh=MUBEwvbo9jxSwYZgh49Zzg0D8MHqYMFhS5/XVumrnzE=;
+        b=MI9Bqde/jbmro9sSLNPFQt216JUr6nJeCwzMJ5fHgF135Zz4iuTLxyBUJMrae43F2a
+         wqLSGMa4Ov6XOs6k5GtBaMHQChffWimGxsUPx9Fhnu9nXptFgI5HP0Qxv0xF06riO3zM
+         pwTpWw1MTu8McUVcyARQRUSZs7VvKcGQ9PUw7NiTYvJRdCDaPmepkPqvdCsUtCRLpBau
+         wV48CyHBggavOS2XCQ+Jv0/2Q76MMy1QHzTTctbR2cmwR+eOWL6WG/J0eae5s/qZGeKb
+         5Pg/87x5G/wbpR1ZtK58/4xXaQQdNG0/QkMi9CiApJSiEaezixbQBp95R75YjIDDf0SE
+         wFNg==
+X-Gm-Message-State: AOJu0YwRXI/fGdu158m+Y+Bkk0Wul5KicT+5AruSR36vd2HM0pU5L1xZ
+	th2zm8OiQwqiEe4sbHVAPc1y6mN+1tJczuFCVWUOevrb/k1/n/QAF58pLWkjDsj3e2BlWukdD/H
+	JqPcCZTRgi02RR0uwMw0rj7bu9uLwIzeiIjF2BldGP0vQD2vKxXiRTMfmG8iHveTxe6OSxg==
+X-Google-Smtp-Source: AGHT+IHdtTswYoGP5urHc9h5i0sA56avCqR/2x1K4mMGhKCKxFHQI0/RqPzLVAqBYfeaA3eCGsaKfUFgS7rSs3KlM5k7DVRfA/BIiw==
+X-Received: by 2002:a05:6122:da6:b0:50c:f1a1:2328 with SMTP id 71dfb90a1353d-50d1f59d6damr13132270e0c.12.1729017780940;
         Tue, 15 Oct 2024 11:43:00 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 15 Oct 2024 17:12:49 +0200
+Date: Tue, 15 Oct 2024 17:25:36 +0200
 References: <CAO=xj9XeHxnLA9wK+D6Q9ghpwkGo6DpYF9CH7vWSERSxv+eiPA@mail.gmail.com>
 	<7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com>
 	<CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
@@ -55,13 +55,15 @@ References: <CAO=xj9XeHxnLA9wK+D6Q9ghpwkGo6DpYF9CH7vWSERSxv+eiPA@mail.gmail.com>
 	<CAO=xj9WiD-gPAHmEMN9fVoPetzyCaff+w-u1iLRho6bkSh5Bvg@mail.gmail.com>
 	<CAO=xj9VyL9M7gP504BjTF7HN0g7=-uffaiZqMqdFhbEa7frkAw@mail.gmail.com>
 	<108ca81e-cb51-4e53-a64a-7722f02c0cee@gmail.com>
-In-Reply-To: <108ca81e-cb51-4e53-a64a-7722f02c0cee@gmail.com>
-Message-ID: <CAO=xj9UA=cV5nagb=E02Zs7mQdksrU5Bfb9tcADp8w3wAD_eOQ@mail.gmail.com>
+	<CAO=xj9UA=cV5nagb=E02Zs7mQdksrU5Bfb9tcADp8w3wAD_eOQ@mail.gmail.com>
+	<42e71cb4-0fb9-4ead-8d04-a16645f86f9f@gmail.com>
+In-Reply-To: <42e71cb4-0fb9-4ead-8d04-a16645f86f9f@gmail.com>
+Message-ID: <CAO=xj9X5oG1vZmZsM9haL=erSf5+m__uxLBsaLSqH4qTa98cMQ@mail.gmail.com>
 From: Houshang <houshang.azizi@accelleran.com>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="000000000000fc3e59062485629b"
-Message-ID-Hash: CF2AIWVWEODXVOUYGHUD6PHYNVSC5CNV
-X-Message-ID-Hash: CF2AIWVWEODXVOUYGHUD6PHYNVSC5CNV
+Content-Type: multipart/mixed; boundary="000000000000b8634706248590b2"
+Message-ID-Hash: JCWTNX6OGUYL47UBNTQUDHWGTLUVOKQB
+X-Message-ID-Hash: JCWTNX6OGUYL47UBNTQUDHWGTLUVOKQB
 X-MailFrom: houshang.azizi@accelleran.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
@@ -69,7 +71,7 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Failure to create rfnoc_graph
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CF2AIWVWEODXVOUYGHUD6PHYNVSC5CNV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JCWTNX6OGUYL47UBNTQUDHWGTLUVOKQB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
@@ -77,240 +79,294 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
 
---000000000000fc3e59062485629b
-Content-Type: multipart/related; boundary="000000000000fc3e58062485629a"
+--000000000000b8634706248590b2
+Content-Type: multipart/related; boundary="000000000000b8634706248590b1"
 
---000000000000fc3e58062485629a
-Content-Type: multipart/alternative; boundary="000000000000fc3e570624856299"
+--000000000000b8634706248590b1
+Content-Type: multipart/alternative; boundary="000000000000b8634506248590b0"
 
---000000000000fc3e570624856299
+--000000000000b8634506248590b0
 Content-Type: text/plain; charset="UTF-8"
 
-Regarding firewall, please see the screenshot below from the host and
-please let me know if there is anything else to be checked?
-[image: 15_17:11:14.jpg]
+Please find attached the requested command output on n310.
 
-On Tue, 15 Oct 2024 at 17:05, Marcus D. Leech <patchvonbraun@gmail.com>
+On Tue, 15 Oct 2024 at 17:19, Marcus D. Leech <patchvonbraun@gmail.com>
 wrote:
 
-> On 15/10/2024 11:01, Houshang wrote:
+> On 15/10/2024 11:12, Houshang wrote:
 >
-> Hi
-> I updated my server UHD to the same version of the one in n310 itself and
-> I still get the same error message. Please see below for both version and
-> the exact error message:
+> Regarding firewall, please see the screenshot below from the host and
+> please let me know if there is anything else to be checked?
+> [image: 15_17:11:14.jpg]
 >
-> [image: 15_16:59:31.jpg]
+> Please run:
 >
-> Hmm, MIGHT be a firewall issue:
+> "uhd_usrp_probe"
 >
->
-> https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc_netcfg_firewall
+> on the N310 itself, to see if it is "sane".
 >
 >
 >
-> On Tue, 15 Oct 2024 at 16:39, Houshang <houshang.azizi@accelleran.com>
+> On Tue, 15 Oct 2024 at 17:05, Marcus D. Leech <patchvonbraun@gmail.com>
 > wrote:
 >
->> Thanks! I am busy updating my UHD on the server to the same version as
->> n310. I will keep you posted about the outcome soon.
+>> On 15/10/2024 11:01, Houshang wrote:
 >>
->> On Tue, 15 Oct 2024 at 16:32, Marcus D. Leech <patchvonbraun@gmail.com>
+>> Hi
+>> I updated my server UHD to the same version of the one in n310 itself and
+>> I still get the same error message. Please see below for both version and
+>> the exact error message:
+>>
+>> [image: 15_16:59:31.jpg]
+>>
+>> Hmm, MIGHT be a firewall issue:
+>>
+>>
+>> https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc_netcfg_firewall
+>>
+>>
+>>
+>> On Tue, 15 Oct 2024 at 16:39, Houshang <houshang.azizi@accelleran.com>
 >> wrote:
 >>
->>> On 15/10/2024 10:29, Houshang wrote:
+>>> Thanks! I am busy updating my UHD on the server to the same version as
+>>> n310. I will keep you posted about the outcome soon.
 >>>
->>> This is the output of the command you asked:
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>> *ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe --args
->>> "type=n3xx,product=n310,addr=10.10.1.100" [INFO] [UHD] linux; GNU C++
->>> version 11.4.0; Boost_107400; DPDK_23.11; UHD_4.6.0.HEAD-0-g50fa3baa [INFO]
->>> [MPMD] Initializing 1 device(s) in parallel with args:
->>> mgmt_addr=10.10.1.100,type=n3xx,product=n310,serial=32000F1,name=ni-n3xx-32000F1,fpga=XG,claimed=False,addr=10.10.1.100
->>> [INFO] [MPM.main] Launching USRP/MPM, version: 4.7.0.0-ga5ed1872 [INFO]
->>> [MPM.main] Spawning RPC process... [INFO] [MPM.PeriphManager] Device serial
->>> number: 32000F1 [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).
->>> [INFO] [MPM.PeriphManager] init() called with device args
->>> `clock_source=internal,time_source=internal'. [INFO] [MPM.RPCServer] RPC
->>> server ready! [INFO] [MPM.RPCServer] Spawning watchdog task... [INFO]
->>> [MPM.PeriphManager] init() called with device args
->>> `fpga=XG,mgmt_addr=10.10.1.100,name=ni-n3xx-32000F1,product=n310,clock_source=internal,time_source=internal'.
->>> [ERROR] [RFNOC::MGMT] EnvironmentError: IOError: recv error on socket:
->>> Connection refused [ERROR] [RFNOC::GRAPH] IO Error during GSM
->>> initialization. EnvironmentError: IOError: recv error on socket: Connection
->>> refused [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
->>> EnvironmentError: IOError: recv error on socket: Connection refused Error:
->>> RuntimeError: Failure to create rfnoc_graph.
->>> ad@bm-super11-intel:~/accelleran$ *
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>> *Yes, so it's likely that it's a system-image-compatibility issue. In
->>> general, you need to be running the same UHD versions on both your host
->>> computer, and the USRP N3xx radio. It may be the case that in 4.7, the RPC
->>> ports used are different, and a UHD 4.6 wouldn't be able to deal with this.
->>> *
->>>
->>>
->>> On Tue, 15 Oct 2024 at 16:27, Marcus D. Leech <patchvonbraun@gmail.com>
+>>> On Tue, 15 Oct 2024 at 16:32, Marcus D. Leech <patchvonbraun@gmail.com>
 >>> wrote:
 >>>
->>>> On 15/10/2024 10:24, Houshang wrote:
+>>>> On 15/10/2024 10:29, Houshang wrote:
 >>>>
->>>> First of all:
+>>>> This is the output of the command you asked:
 >>>>
 >>>>
 >>>>
->>>> *ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe -a
->>>> "type=n3xx,product=n310,addr=10.10.1.100" Error: unrecognised option '-a'
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>> *ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe --args
+>>>> "type=n3xx,product=n310,addr=10.10.1.100" [INFO] [UHD] linux; GNU C++
+>>>> version 11.4.0; Boost_107400; DPDK_23.11; UHD_4.6.0.HEAD-0-g50fa3baa [INFO]
+>>>> [MPMD] Initializing 1 device(s) in parallel with args:
+>>>> mgmt_addr=10.10.1.100,type=n3xx,product=n310,serial=32000F1,name=ni-n3xx-32000F1,fpga=XG,claimed=False,addr=10.10.1.100
+>>>> [INFO] [MPM.main] Launching USRP/MPM, version: 4.7.0.0-ga5ed1872 [INFO]
+>>>> [MPM.main] Spawning RPC process... [INFO] [MPM.PeriphManager] Device serial
+>>>> number: 32000F1 [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).
+>>>> [INFO] [MPM.PeriphManager] init() called with device args
+>>>> `clock_source=internal,time_source=internal'. [INFO] [MPM.RPCServer] RPC
+>>>> server ready! [INFO] [MPM.RPCServer] Spawning watchdog task... [INFO]
+>>>> [MPM.PeriphManager] init() called with device args
+>>>> `fpga=XG,mgmt_addr=10.10.1.100,name=ni-n3xx-32000F1,product=n310,clock_source=internal,time_source=internal'.
+>>>> [ERROR] [RFNOC::MGMT] EnvironmentError: IOError: recv error on socket:
+>>>> Connection refused [ERROR] [RFNOC::GRAPH] IO Error during GSM
+>>>> initialization. EnvironmentError: IOError: recv error on socket: Connection
+>>>> refused [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
+>>>> EnvironmentError: IOError: recv error on socket: Connection refused Error:
+>>>> RuntimeError: Failure to create rfnoc_graph.
 >>>> ad@bm-super11-intel:~/accelleran$ *
 >>>>
 >>>>
 >>>>
->>>> *Sorry, I meant "--args" rather than "-a". *
->>>>
->>>>
->>>> Secondly, Maybe the following is the issue; WHen I run xxx in the host
->>>> machine I see a version and when I run the same command on the n310 itself,
->>>> I get another version. How to avoid this?
->>>>
->>>> [image: 15_16:21:07.jpg]
->>>>
->>>> Indeed, I noticed that your radio hardware is ahead of your host
->>>> computer in UHD version.
->>>>
->>>> The best thing might be to upgrade UHD on your host, if possible.  If
->>>> not, then follow the steps for programming a fresh
->>>>   system image on your N310:
->>>>
->>>>
->>>> https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card
 >>>>
 >>>>
 >>>>
->>>> On Tue, 15 Oct 2024 at 16:18, Houshang <houshang.azizi@accelleran.com>
+>>>>
+>>>>
+>>>> *Yes, so it's likely that it's a system-image-compatibility issue. In
+>>>> general, you need to be running the same UHD versions on both your host
+>>>> computer, and the USRP N3xx radio. It may be the case that in 4.7, the RPC
+>>>> ports used are different, and a UHD 4.6 wouldn't be able to deal with this.
+>>>> *
+>>>>
+>>>>
+>>>> On Tue, 15 Oct 2024 at 16:27, Marcus D. Leech <patchvonbraun@gmail.com>
 >>>> wrote:
 >>>>
->>>>> Hi
+>>>>> On 15/10/2024 10:24, Houshang wrote:
 >>>>>
->>>>> *ad@bm-super11-intel:~/accelleran$ ssh root@10.10.0.100
->>>>> <root@10.10.0.100>*
->>>>>
->>>>>
->>>>> *root@ni-n3xx-32000F1:~# uhd_config_info --version UHD
->>>>> 4.7.0.0-0-ga5ed1872 *
->>>>> *root@ni-n3xx-32000F1:~# *
->>>>>
->>>>> I can ping all 3 ip's:
+>>>>> First of all:
 >>>>>
 >>>>>
 >>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>> *ad@bm-super11-intel:~/accelleran$ ping 10.10.0.100 PING 10.10.0.100
->>>>> (10.10.0.100) 56(84) bytes of data. 64 bytes from 10.10.0.100
->>>>> <http://10.10.0.100>: icmp_seq=1 ttl=64 time=0.250 ms 64 bytes from
->>>>> 10.10.0.100 <http://10.10.0.100>: icmp_seq=2 ttl=64 time=0.199 ms ^C ---
->>>>> 10.10.0.100 ping statistics --- 2 packets transmitted, 2 received, 0%
->>>>> packet loss, time 1051ms rtt min/avg/max/mdev = 0.199/0.224/0.250/0.025 ms
->>>>> ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100 PING 10.10.1.100
->>>>> (10.10.1.100) 56(84) bytes of data. 64 bytes from 10.10.1.100
->>>>> <http://10.10.1.100>: icmp_seq=1 ttl=64 time=1.02 ms 64 bytes from
->>>>> 10.10.1.100 <http://10.10.1.100>: icmp_seq=2 ttl=64 time=0.970 ms ^C ---
->>>>> 10.10.1.100 ping statistics --- 2 packets transmitted, 2 received, 0%
->>>>> packet loss, time 1001ms rtt min/avg/max/mdev = 0.970/0.996/1.022/0.026 ms
->>>>> ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100 PING 10.10.2.100
->>>>> (10.10.2.100) 56(84) bytes of data. 64 bytes from 10.10.2.100
->>>>> <http://10.10.2.100>: icmp_seq=1 ttl=64 time=1.03 ms 64 bytes from
->>>>> 10.10.2.100 <http://10.10.2.100>: icmp_seq=2 ttl=64 time=0.963 ms ^C ---
->>>>> 10.10.2.100 ping statistics --- 2 packets transmitted, 2 received, 0%
->>>>> packet loss, time 1001ms rtt min/avg/max/mdev = 0.963/0.994/1.025/0.031 ms
+>>>>> *ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe -a
+>>>>> "type=n3xx,product=n310,addr=10.10.1.100" Error: unrecognised option '-a'
 >>>>> ad@bm-super11-intel:~/accelleran$ *
 >>>>>
 >>>>>
->>>>> On Tue, 15 Oct 2024 at 16:16, Marcus D. Leech <patchvonbraun@gmail.com>
+>>>>>
+>>>>> *Sorry, I meant "--args" rather than "-a". *
+>>>>>
+>>>>>
+>>>>> Secondly, Maybe the following is the issue; WHen I run xxx in the host
+>>>>> machine I see a version and when I run the same command on the n310 itself,
+>>>>> I get another version. How to avoid this?
+>>>>>
+>>>>> [image: 15_16:21:07.jpg]
+>>>>>
+>>>>> Indeed, I noticed that your radio hardware is ahead of your host
+>>>>> computer in UHD version.
+>>>>>
+>>>>> The best thing might be to upgrade UHD on your host, if possible.  If
+>>>>> not, then follow the steps for programming a fresh
+>>>>>   system image on your N310:
+>>>>>
+>>>>>
+>>>>> https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card
+>>>>>
+>>>>>
+>>>>>
+>>>>> On Tue, 15 Oct 2024 at 16:18, Houshang <houshang.azizi@accelleran.com>
 >>>>> wrote:
 >>>>>
->>>>>> On 15/10/2024 10:09, Houshang wrote:
+>>>>>> Hi
 >>>>>>
->>>>>> Hi Marcus
->>>>>>
->>>>>>    - There are two fiber interfaces for this n310 which I will be
->>>>>>    using for DPDK later.
->>>>>>    - There is also a RJ-45 port for this n310.
->>>>>>
->>>>>> As the first step, I want to make sure things are working without
->>>>>> DPDK. I will then test the DPDK.
->>>>>>
->>>>>> Based on your question, I am attaching some more info. Let me know if
->>>>>> something is missing.
->>>>>>
->>>>>> Thanks
->>>>>> Houshang
->>>>>>
->>>>>> When you're SSHed into the N310, what does:
->>>>>>
->>>>>> uhd_config_info --version
+>>>>>> *ad@bm-super11-intel:~/accelleran$ ssh root@10.10.0.100
+>>>>>> <root@10.10.0.100>*
 >>>>>>
 >>>>>>
->>>>>> Show?
+>>>>>> *root@ni-n3xx-32000F1:~# uhd_config_info --version UHD
+>>>>>> 4.7.0.0-0-ga5ed1872 *
+>>>>>> *root@ni-n3xx-32000F1:~# *
+>>>>>>
+>>>>>> I can ping all 3 ip's:
 >>>>>>
 >>>>>>
->>>>>> Can you ping the SFP+ interfaces from your host computer?
 >>>>>>
 >>>>>>
->>>>>> On Tue, 15 Oct 2024 at 16:04, Marcus D. Leech <
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> *ad@bm-super11-intel:~/accelleran$ ping 10.10.0.100 PING 10.10.0.100
+>>>>>> (10.10.0.100) 56(84) bytes of data. 64 bytes from 10.10.0.100
+>>>>>> <http://10.10.0.100>: icmp_seq=1 ttl=64 time=0.250 ms 64 bytes from
+>>>>>> 10.10.0.100 <http://10.10.0.100>: icmp_seq=2 ttl=64 time=0.199 ms ^C ---
+>>>>>> 10.10.0.100 ping statistics --- 2 packets transmitted, 2 received, 0%
+>>>>>> packet loss, time 1051ms rtt min/avg/max/mdev = 0.199/0.224/0.250/0.025 ms
+>>>>>> ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100 PING 10.10.1.100
+>>>>>> (10.10.1.100) 56(84) bytes of data. 64 bytes from 10.10.1.100
+>>>>>> <http://10.10.1.100>: icmp_seq=1 ttl=64 time=1.02 ms 64 bytes from
+>>>>>> 10.10.1.100 <http://10.10.1.100>: icmp_seq=2 ttl=64 time=0.970 ms ^C ---
+>>>>>> 10.10.1.100 ping statistics --- 2 packets transmitted, 2 received, 0%
+>>>>>> packet loss, time 1001ms rtt min/avg/max/mdev = 0.970/0.996/1.022/0.026 ms
+>>>>>> ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100 PING 10.10.2.100
+>>>>>> (10.10.2.100) 56(84) bytes of data. 64 bytes from 10.10.2.100
+>>>>>> <http://10.10.2.100>: icmp_seq=1 ttl=64 time=1.03 ms 64 bytes from
+>>>>>> 10.10.2.100 <http://10.10.2.100>: icmp_seq=2 ttl=64 time=0.963 ms ^C ---
+>>>>>> 10.10.2.100 ping statistics --- 2 packets transmitted, 2 received, 0%
+>>>>>> packet loss, time 1001ms rtt min/avg/max/mdev = 0.963/0.994/1.025/0.031 ms
+>>>>>> ad@bm-super11-intel:~/accelleran$ *
+>>>>>>
+>>>>>>
+>>>>>> On Tue, 15 Oct 2024 at 16:16, Marcus D. Leech <
 >>>>>> patchvonbraun@gmail.com> wrote:
 >>>>>>
->>>>>>> On 15/10/2024 09:41, Houshang wrote:
+>>>>>>> On 15/10/2024 10:09, Houshang wrote:
 >>>>>>>
->>>>>>> Hello
->>>>>>> Can anyone help with this issue please? This is an n310 and the
->>>>>>> version of UHD is visible in the screenshot below.
+>>>>>>> Hi Marcus
 >>>>>>>
->>>>>>> [image: 15_15:37:26.jpg]
+>>>>>>>    - There are two fiber interfaces for this n310 which I will be
+>>>>>>>    using for DPDK later.
+>>>>>>>    - There is also a RJ-45 port for this n310.
+>>>>>>>
+>>>>>>> As the first step, I want to make sure things are working without
+>>>>>>> DPDK. I will then test the DPDK.
+>>>>>>>
+>>>>>>> Based on your question, I am attaching some more info. Let me know
+>>>>>>> if something is missing.
+>>>>>>>
 >>>>>>> Thanks
 >>>>>>> Houshang
+>>>>>>>
+>>>>>>> When you're SSHed into the N310, what does:
+>>>>>>>
+>>>>>>> uhd_config_info --version
+>>>>>>>
+>>>>>>>
+>>>>>>> Show?
+>>>>>>>
+>>>>>>>
+>>>>>>> Can you ping the SFP+ interfaces from your host computer?
+>>>>>>>
+>>>>>>>
+>>>>>>> On Tue, 15 Oct 2024 at 16:04, Marcus D. Leech <
+>>>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>>>
+>>>>>>>> On 15/10/2024 09:41, Houshang wrote:
+>>>>>>>>
+>>>>>>>> Hello
+>>>>>>>> Can anyone help with this issue please? This is an n310 and the
+>>>>>>>> version of UHD is visible in the screenshot below.
+>>>>>>>>
+>>>>>>>> [image: 15_15:37:26.jpg]
+>>>>>>>> Thanks
+>>>>>>>> Houshang
+>>>>>>>>
+>>>>>>>> --
+>>>>>>>>
+>>>>>>>> *Houshang Azizi*
+>>>>>>>>
+>>>>>>>> *Test Engineer*
+>>>>>>>> [image: logo] <https://www.accelleran.com/>
+>>>>>>>>
+>>>>>>>> *(32) 492195241*
+>>>>>>>>
+>>>>>>>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> *www.accelleran.com* <http://www.accelleran.com/>
+>>>>>>>>
+>>>>>>>> [image: linkedin icon]
+>>>>>>>> <https://www.linkedin.com/company/accelleran>    [image: twitter
+>>>>>>>> icon] <https://twitter.com/accelleran>    [image: youtube icon]
+>>>>>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> _______________________________________________
+>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>
+>>>>>>>> I think I've asked you this before on this issue:
+>>>>>>>>
+>>>>>>>> What does your network connection setup look like?
+>>>>>>>>
+>>>>>>>> Are you using the RJ-45 port and the SFP+ port(s)?   How are things
+>>>>>>>> connected, and on what subnets?
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> _______________________________________________
+>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>
+>>>>>>>
 >>>>>>>
 >>>>>>> --
 >>>>>>>
@@ -333,23 +389,8 @@ wrote:
 >>>>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
 >>>>>>>
 >>>>>>>
->>>>>>> _______________________________________________
->>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>
->>>>>>> I think I've asked you this before on this issue:
->>>>>>>
->>>>>>> What does your network connection setup look like?
->>>>>>>
->>>>>>> Are you using the RJ-45 port and the SFP+ port(s)?   How are things
->>>>>>> connected, and on what subnets?
 >>>>>>>
 >>>>>>>
->>>>>>> _______________________________________________
->>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>
->>>>>>
 >>>>>>
 >>>>>> --
 >>>>>>
@@ -372,8 +413,7 @@ wrote:
 >>>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
 >>>>>>
 >>>>>>
->>>>>>
->>>>>>
+>>>>>
 >>>>>
 >>>>> --
 >>>>>
@@ -396,7 +436,8 @@ wrote:
 >>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
 >>>>>
 >>>>>
->>>>
+>>>>>
+>>>>>
 >>>>
 >>>> --
 >>>>
@@ -442,8 +483,7 @@ wrote:
 >>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
 >>>
 >>>
->>>
->>>
+>>
 >>
 >> --
 >>
@@ -465,7 +505,8 @@ wrote:
 >> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
 >>
 >>
->
+>>
+>>
 >
 > --
 >
@@ -510,362 +551,354 @@ wrote:
 twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
 <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
 
---000000000000fc3e570624856299
+--000000000000b8634506248590b0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Regarding firewall, please see the screenshot below f=
-rom the host and please let me know if there is anything else to be checked=
-?</div><div><img src=3D"cid:ii_m2al0nsf3" alt=3D"15_17:11:14.jpg" width=3D"=
-701" height=3D"220" style=3D"margin-right: 0px;"><br></div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2=
-024 at 17:05, Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com=
-">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><u></u>
+<div dir=3D"ltr">Please find attached the requested command output on n310.=
+<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Tue, 15 Oct 2024 at 17:19, Marcus D. Leech &lt;<a href=3D"mailto:pat=
+chvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><u></u>
 
  =20
    =20
  =20
   <div>
-    <div>On 15/10/2024 11:01, Houshang wrote:<br>
+    <div>On 15/10/2024 11:12, Houshang wrote:<br>
     </div>
     <blockquote type=3D"cite">
      =20
       <div dir=3D"ltr">
-        <div>Hi</div>
-        <div>I updated my server UHD to the same version of the one in
-          n310 itself and I still get the same error message. Please see
-          below for both version and the exact error message: <br>
-        </div>
-        <div><br>
-        </div>
-        <div><img src=3D"cid:ii_19290bc30c3dbb30d0d1" alt=3D"15_16:59:31.jp=
-g" style=3D"margin-right: 0px;" width=3D"985" height=3D"257"><br>
+        <div>Regarding firewall, please see the screenshot below from
+          the host and please let me know if there is anything else to
+          be checked?</div>
+        <div><img src=3D"cid:ii_19290c8923add3d32171" alt=3D"15_17:11:14.jp=
+g" style=3D"margin-right: 0px;" width=3D"701" height=3D"220"><br>
         </div>
       </div>
     </blockquote>
-    Hmm, MIGHT be a firewall issue:<br>
+    Please run:<br>
     <br>
-<a href=3D"https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cf=
-g_hostpc_netcfg_firewall" target=3D"_blank">https://files.ettus.com/manual/=
-page_usrp_x3x0_config.html#x3x0cfg_hostpc_netcfg_firewall</a><br>
+    &quot;uhd_usrp_probe&quot;<br>
+    <br>
+    on the N310 itself, to see if it is &quot;sane&quot;.<br>
     <br>
     <br>
     <blockquote type=3D"cite"><br>
       <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 at 16:39,
-          Houshang &lt;<a href=3D"mailto:houshang.azizi@accelleran.com" tar=
-get=3D"_blank">houshang.azizi@accelleran.com</a>&gt;
+        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 at 17:05,
+          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" ta=
+rget=3D"_blank">patchvonbraun@gmail.com</a>&gt;
           wrote:<br>
         </div>
         <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
 ;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir=3D"ltr">
-            <div>Thanks! I am busy updating my UHD on the server to the
-              same version as n310. I will keep you posted about the
-              outcome soon.</div>
-          </div>
-          <br>
-          <div class=3D"gmail_quote">
-            <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 at
-              16:32, Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gm=
-ail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
-              wrote:<br>
+          <div>
+            <div>On 15/10/2024 11:01, Houshang wrote:<br>
             </div>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-              <div>
-                <div>On 15/10/2024 10:29, Houshang wrote:<br>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div>Hi</div>
+                <div>I updated my server UHD to the same version of the
+                  one in n310 itself and I still get the same error
+                  message. Please see below for both version and the
+                  exact error message: <br>
                 </div>
-                <blockquote type=3D"cite">
+                <div><br>
+                </div>
+                <div><img src=3D"cid:ii_19290c8923bdbb30d0d2" alt=3D"15_16:=
+59:31.jpg" style=3D"margin-right: 0px;" width=3D"985" height=3D"257"><br>
+                </div>
+              </div>
+            </blockquote>
+            Hmm, MIGHT be a firewall issue:<br>
+            <br>
+            <a href=3D"https://files.ettus.com/manual/page_usrp_x3x0_config=
+.html#x3x0cfg_hostpc_netcfg_firewall" target=3D"_blank">https://files.ettus=
+.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc_netcfg_firewall</a><b=
+r>
+            <br>
+            <br>
+            <blockquote type=3D"cite"><br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct 2024 a=
+t
+                  16:39, Houshang &lt;<a href=3D"mailto:houshang.azizi@acce=
+lleran.com" target=3D"_blank">houshang.azizi@accelleran.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                   <div dir=3D"ltr">
-                    <div>This is the output of the command you asked:</div>
-                    <div><br>
-                    </div>
-                    <div><i><span style=3D"background-color:rgb(204,204,204=
-)">ad@bm-super11-intel:~/accelleran$
-                          uhd_usrp_probe --args
-                          &quot;type=3Dn3xx,product=3Dn310,addr=3D10.10.1.1=
-00&quot;<br>
-                          [INFO] [UHD] linux; GNU C++ version 11.4.0;
-                          Boost_107400; DPDK_23.11;
-                          UHD_4.6.0.HEAD-0-g50fa3baa<br>
-                          [INFO] [MPMD] Initializing 1 device(s) in
-                          parallel with args:
-mgmt_addr=3D10.10.1.100,type=3Dn3xx,product=3Dn310,serial=3D32000F1,name=3D=
-ni-n3xx-32000F1,fpga=3DXG,claimed=3DFalse,addr=3D10.10.1.100<br>
-                          [INFO] [MPM.main] Launching USRP/MPM, version:
-                          4.7.0.0-ga5ed1872<br>
-                          [INFO] [MPM.main] Spawning RPC process...<br>
-                          [INFO] [MPM.PeriphManager] Device serial
-                          number: 32000F1<br>
-                          [INFO] [MPM.PeriphManager] Initialized 2
-                          daughterboard(s).<br>
-                          [INFO] [MPM.PeriphManager] init() called with
-                          device args
-                          `clock_source=3Dinternal,time_source=3Dinternal&#=
-39;.<br>
-                          [INFO] [MPM.RPCServer] RPC server ready!<br>
-                          [INFO] [MPM.RPCServer] Spawning watchdog
-                          task...<br>
-                          [INFO] [MPM.PeriphManager] init() called with
-                          device args
-`fpga=3DXG,mgmt_addr=3D10.10.1.100,name=3Dni-n3xx-32000F1,product=3Dn310,cl=
-ock_source=3Dinternal,time_source=3Dinternal&#39;.<br>
-                          [ERROR] [RFNOC::MGMT] EnvironmentError:
-                          IOError: recv error on socket: Connection
-                          refused<br>
-                          [ERROR] [RFNOC::GRAPH] IO Error during GSM
-                          initialization. EnvironmentError: IOError:
-                          recv error on socket: Connection refused<br>
-                          [ERROR] [RFNOC::GRAPH] Caught exception while
-                          initializing graph: EnvironmentError: IOError:
-                          recv error on socket: Connection refused<br>
-                          Error: RuntimeError: Failure to create
-                          rfnoc_graph.<br>
-                          ad@bm-super11-intel:~/accelleran$ </span></i><br>
-                    </div>
+                    <div>Thanks! I am busy updating my UHD on the server
+                      to the same version as n310. I will keep you
+                      posted about the outcome soon.</div>
                   </div>
-                </blockquote>
-                <i>Yes, so it&#39;s likely that it&#39;s a
-                  system-image-compatibility issue.<br>
                   <br>
-                  In general, you need to be running the same UHD
-                  versions on both your host computer, and the USRP N3xx
-                  radio.<br>
-                  <br>
-                  It may be the case that in 4.7, the RPC ports used are
-                  different, and a UHD 4.6 wouldn&#39;t be able to deal wit=
-h
-                  this.<br>
-                  <br>
-                  <br>
-                </i>
-                <blockquote type=3D"cite"><br>
                   <div class=3D"gmail_quote">
                     <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 15 Oct
-                      2024 at 16:27, Marcus D. Leech &lt;<a href=3D"mailto:=
+                      2024 at 16:32, Marcus D. Leech &lt;<a href=3D"mailto:=
 patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
                       wrote:<br>
                     </div>
                     <blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
 px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                       <div>
-                        <div>On 15/10/2024 10:24, Houshang wrote:<br>
+                        <div>On 15/10/2024 10:29, Houshang wrote:<br>
                         </div>
                         <blockquote type=3D"cite">
                           <div dir=3D"ltr">
-                            <div>First of all:</div>
+                            <div>This is the output of the command you
+                              asked:</div>
                             <div><br>
                             </div>
                             <div><i><span style=3D"background-color:rgb(204=
 ,204,204)">ad@bm-super11-intel:~/accelleran$
-                                  uhd_usrp_probe -a
+                                  uhd_usrp_probe --args
                                   &quot;type=3Dn3xx,product=3Dn310,addr=3D1=
 0.10.1.100&quot;<br>
-                                  Error: unrecognised option &#39;-a&#39;<b=
-r>
+                                  [INFO] [UHD] linux; GNU C++ version
+                                  11.4.0; Boost_107400; DPDK_23.11;
+                                  UHD_4.6.0.HEAD-0-g50fa3baa<br>
+                                  [INFO] [MPMD] Initializing 1 device(s)
+                                  in parallel with args:
+mgmt_addr=3D10.10.1.100,type=3Dn3xx,product=3Dn310,serial=3D32000F1,name=3D=
+ni-n3xx-32000F1,fpga=3DXG,claimed=3DFalse,addr=3D10.10.1.100<br>
+                                  [INFO] [MPM.main] Launching USRP/MPM,
+                                  version: 4.7.0.0-ga5ed1872<br>
+                                  [INFO] [MPM.main] Spawning RPC
+                                  process...<br>
+                                  [INFO] [MPM.PeriphManager] Device
+                                  serial number: 32000F1<br>
+                                  [INFO] [MPM.PeriphManager] Initialized
+                                  2 daughterboard(s).<br>
+                                  [INFO] [MPM.PeriphManager] init()
+                                  called with device args
+                                  `clock_source=3Dinternal,time_source=3Din=
+ternal&#39;.<br>
+                                  [INFO] [MPM.RPCServer] RPC server
+                                  ready!<br>
+                                  [INFO] [MPM.RPCServer] Spawning
+                                  watchdog task...<br>
+                                  [INFO] [MPM.PeriphManager] init()
+                                  called with device args
+`fpga=3DXG,mgmt_addr=3D10.10.1.100,name=3Dni-n3xx-32000F1,product=3Dn310,cl=
+ock_source=3Dinternal,time_source=3Dinternal&#39;.<br>
+                                  [ERROR] [RFNOC::MGMT]
+                                  EnvironmentError: IOError: recv error
+                                  on socket: Connection refused<br>
+                                  [ERROR] [RFNOC::GRAPH] IO Error during
+                                  GSM initialization. EnvironmentError:
+                                  IOError: recv error on socket:
+                                  Connection refused<br>
+                                  [ERROR] [RFNOC::GRAPH] Caught
+                                  exception while initializing graph:
+                                  EnvironmentError: IOError: recv error
+                                  on socket: Connection refused<br>
+                                  Error: RuntimeError: Failure to create
+                                  rfnoc_graph.<br>
                                   ad@bm-super11-intel:~/accelleran$ </span>=
 </i><br>
                             </div>
                           </div>
                         </blockquote>
-                        <i>Sorry, I meant &quot;--args&quot; rather than &q=
-uot;-a&quot;.<br>
+                        <i>Yes, so it&#39;s likely that it&#39;s a
+                          system-image-compatibility issue.<br>
+                          <br>
+                          In general, you need to be running the same
+                          UHD versions on both your host computer, and
+                          the USRP N3xx radio.<br>
+                          <br>
+                          It may be the case that in 4.7, the RPC ports
+                          used are different, and a UHD 4.6 wouldn&#39;t be
+                          able to deal with this.<br>
+                          <br>
                           <br>
                         </i>
-                        <blockquote type=3D"cite">
-                          <div dir=3D"ltr">
-                            <div><br>
-                            </div>
-                            <div>Secondly, Maybe the following is the
-                              issue; WHen I run xxx in the host machine
-                              I see a version and when I run the same
-                              command on the n310 itself, I get another
-                              version. How to avoid this?</div>
-                            <div><br>
-                            </div>
-                            <div><img src=3D"cid:ii_19290bc30c3db125c3b2" a=
-lt=3D"15_16:21:07.jpg" width=3D"578" height=3D"513"><br>
-                            </div>
-                          </div>
-                        </blockquote>
-                        Indeed, I noticed that your radio hardware is
-                        ahead of your host computer in UHD version.<br>
-                        <br>
-                        The best thing might be to upgrade UHD on your
-                        host, if possible.=C2=A0 If not, then follow the
-                        steps for programming a fresh<br>
-                        =C2=A0 system image on your N310:<br>
-                        <br>
-                        <a href=3D"https://kb.ettus.com/Writing_the_USRP_Fi=
-le_System_Disk_Image_to_a_SD_Card" target=3D"_blank">https://kb.ettus.com/W=
-riting_the_USRP_File_System_Disk_Image_to_a_SD_Card</a><br>
-                        <br>
-                        <br>
                         <blockquote type=3D"cite"><br>
                           <div class=3D"gmail_quote">
                             <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 1=
 5
-                              Oct 2024 at 16:18, Houshang &lt;<a href=3D"ma=
-ilto:houshang.azizi@accelleran.com" target=3D"_blank">houshang.azizi@accell=
-eran.com</a>&gt;
+                              Oct 2024 at 16:27, Marcus D. Leech &lt;<a hre=
+f=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.=
+com</a>&gt;
                               wrote:<br>
                             </div>
                             <blockquote class=3D"gmail_quote" style=3D"marg=
 in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
 x">
-                              <div dir=3D"ltr">
-                                <div dir=3D"ltr">
-                                  <div>Hi</div>
-                                  <div><span style=3D"background-color:rgb(=
-204,204,204)"><i><br>
-                                      </i></span></div>
-                                  <div><i style=3D"background-color:rgb(204=
-,204,204)">ad@bm-super11-intel:~/accelleran$
-                                      ssh <a href=3D"mailto:root@10.10.0.10=
-0" target=3D"_blank">root@10.10.0.100</a></i></div>
-                                  <span style=3D"background-color:rgb(204,2=
-04,204)"><i>root@ni-n3xx-32000F1:~#
-                                      uhd_config_info --version<br>
-                                      UHD 4.7.0.0-0-ga5ed1872<br>
-                                    </i></span>
-                                  <div><i style=3D"background-color:rgb(204=
-,204,204)">root@ni-n3xx-32000F1:~# </i><br>
-                                  </div>
-                                  <div><br>
-                                  </div>
-                                  <div>I can ping all 3 ip&#39;s:</div>
-                                  <div><br>
-                                  </div>
-                                  <div><i><span style=3D"background-color:r=
-gb(204,204,204)">ad@bm-super11-intel:~/accelleran$
-                                        ping 10.10.0.100<br>
-                                        PING 10.10.0.100 (10.10.0.100)
-                                        56(84) bytes of data.<br>
-                                        64 bytes from <a href=3D"http://10.=
-10.0.100" target=3D"_blank">10.10.0.100</a>:
-                                        icmp_seq=3D1 ttl=3D64 time=3D0.250 =
-ms<br>
-                                        64 bytes from <a href=3D"http://10.=
-10.0.100" target=3D"_blank">10.10.0.100</a>:
-                                        icmp_seq=3D2 ttl=3D64 time=3D0.199 =
-ms<br>
-                                        ^C<br>
-                                        --- 10.10.0.100 ping statistics
-                                        ---<br>
-                                        2 packets transmitted, 2
-                                        received, 0% packet loss, time
-                                        1051ms<br>
-                                        rtt min/avg/max/mdev =3D
-                                        0.199/0.224/0.250/0.025 ms<br>
-ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100<br>
-                                        PING 10.10.1.100 (10.10.1.100)
-                                        56(84) bytes of data.<br>
-                                        64 bytes from <a href=3D"http://10.=
-10.1.100" target=3D"_blank">10.10.1.100</a>:
-                                        icmp_seq=3D1 ttl=3D64 time=3D1.02 m=
-s<br>
-                                        64 bytes from <a href=3D"http://10.=
-10.1.100" target=3D"_blank">10.10.1.100</a>:
-                                        icmp_seq=3D2 ttl=3D64 time=3D0.970 =
-ms<br>
-                                        ^C<br>
-                                        --- 10.10.1.100 ping statistics
-                                        ---<br>
-                                        2 packets transmitted, 2
-                                        received, 0% packet loss, time
-                                        1001ms<br>
-                                        rtt min/avg/max/mdev =3D
-                                        0.970/0.996/1.022/0.026 ms<br>
-ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100<br>
-                                        PING 10.10.2.100 (10.10.2.100)
-                                        56(84) bytes of data.<br>
-                                        64 bytes from <a href=3D"http://10.=
-10.2.100" target=3D"_blank">10.10.2.100</a>:
-                                        icmp_seq=3D1 ttl=3D64 time=3D1.03 m=
-s<br>
-                                        64 bytes from <a href=3D"http://10.=
-10.2.100" target=3D"_blank">10.10.2.100</a>:
-                                        icmp_seq=3D2 ttl=3D64 time=3D0.963 =
-ms<br>
-                                        ^C<br>
-                                        --- 10.10.2.100 ping statistics
-                                        ---<br>
-                                        2 packets transmitted, 2
-                                        received, 0% packet loss, time
-                                        1001ms<br>
-                                        rtt min/avg/max/mdev =3D
-                                        0.963/0.994/1.025/0.031 ms<br>
-ad@bm-super11-intel:~/accelleran$ </span></i><br>
-                                  </div>
-                                  <div><br>
-                                  </div>
+                              <div>
+                                <div>On 15/10/2024 10:24, Houshang
+                                  wrote:<br>
                                 </div>
-                                <br>
-                                <div class=3D"gmail_quote">
-                                  <div dir=3D"ltr" class=3D"gmail_attr">On
-                                    Tue, 15 Oct 2024 at 16:16, Marcus D.
-                                    Leech &lt;<a href=3D"mailto:patchvonbra=
-un@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
-                                    wrote:<br>
+                                <blockquote type=3D"cite">
+                                  <div dir=3D"ltr">
+                                    <div>First of all:</div>
+                                    <div><br>
+                                    </div>
+                                    <div><i><span style=3D"background-color=
+:rgb(204,204,204)">ad@bm-super11-intel:~/accelleran$
+                                          uhd_usrp_probe -a
+                                          &quot;type=3Dn3xx,product=3Dn310,=
+addr=3D10.10.1.100&quot;<br>
+                                          Error: unrecognised option
+                                          &#39;-a&#39;<br>
+ad@bm-super11-intel:~/accelleran$ </span></i><br>
+                                    </div>
                                   </div>
-                                  <blockquote class=3D"gmail_quote" style=
+                                </blockquote>
+                                <i>Sorry, I meant &quot;--args&quot; rather=
+ than
+                                  &quot;-a&quot;.<br>
+                                  <br>
+                                </i>
+                                <blockquote type=3D"cite">
+                                  <div dir=3D"ltr">
+                                    <div><br>
+                                    </div>
+                                    <div>Secondly, Maybe the following
+                                      is the issue; WHen I run xxx in
+                                      the host machine I see a version
+                                      and when I run the same command on
+                                      the n310 itself, I get another
+                                      version. How to avoid this?</div>
+                                    <div><br>
+                                    </div>
+                                    <div><img src=3D"cid:ii_19290c8923bdb12=
+5c3b3" alt=3D"15_16:21:07.jpg" width=3D"578" height=3D"513"><br>
+                                    </div>
+                                  </div>
+                                </blockquote>
+                                Indeed, I noticed that your radio
+                                hardware is ahead of your host computer
+                                in UHD version.<br>
+                                <br>
+                                The best thing might be to upgrade UHD
+                                on your host, if possible.=C2=A0 If not, th=
+en
+                                follow the steps for programming a fresh<br=
+>
+                                =C2=A0 system image on your N310:<br>
+                                <br>
+                                <a href=3D"https://kb.ettus.com/Writing_the=
+_USRP_File_System_Disk_Image_to_a_SD_Card" target=3D"_blank">https://kb.ett=
+us.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card</a><br>
+                                <br>
+                                <br>
+                                <blockquote type=3D"cite"><br>
+                                  <div class=3D"gmail_quote">
+                                    <div dir=3D"ltr" class=3D"gmail_attr">O=
+n
+                                      Tue, 15 Oct 2024 at 16:18,
+                                      Houshang &lt;<a href=3D"mailto:housha=
+ng.azizi@accelleran.com" target=3D"_blank">houshang.azizi@accelleran.com</a=
+>&gt;
+                                      wrote:<br>
+                                    </div>
+                                    <blockquote class=3D"gmail_quote" style=
 =3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
 -left:1ex">
-                                    <div>
-                                      <div>On 15/10/2024 10:09, Houshang
-                                        wrote:<br>
-                                      </div>
-                                      <blockquote type=3D"cite">
+                                      <div dir=3D"ltr">
                                         <div dir=3D"ltr">
-                                          <div>Hi Marcus</div>
-                                          <ul>
-                                            <li>There are two fiber
-                                              interfaces for this n310
-                                              which I will be using for
-                                              DPDK later.=C2=A0</li>
-                                            <li>There is also a RJ-45
-                                              port for this n310.</li>
-                                          </ul>
-                                          <div>As the first step, I want
-                                            to make sure things are
-                                            working without DPDK. I will
-                                            then test the DPDK.</div>
-                                          <div><br>
-                                          </div>
-                                          <div>Based on your question, I
-                                            am attaching some more info.
-                                            Let me know if something is
-                                            missing.<br>
+                                          <div>Hi</div>
+                                          <div><span style=3D"background-co=
+lor:rgb(204,204,204)"><i><br>
+                                              </i></span></div>
+                                          <div><i style=3D"background-color=
+:rgb(204,204,204)">ad@bm-super11-intel:~/accelleran$
+                                              ssh <a href=3D"mailto:root@10=
+.10.0.100" target=3D"_blank">root@10.10.0.100</a></i></div>
+                                          <span style=3D"background-color:r=
+gb(204,204,204)"><i>root@ni-n3xx-32000F1:~#
+                                              uhd_config_info --version<br>
+                                              UHD 4.7.0.0-0-ga5ed1872<br>
+                                            </i></span>
+                                          <div><i style=3D"background-color=
+:rgb(204,204,204)">root@ni-n3xx-32000F1:~# </i><br>
                                           </div>
                                           <div><br>
                                           </div>
-                                          <div>Thanks</div>
-                                          <div>Houshang<br>
+                                          <div>I can ping all 3 ip&#39;s:</=
+div>
+                                          <div><br>
+                                          </div>
+                                          <div><i><span style=3D"background=
+-color:rgb(204,204,204)">ad@bm-super11-intel:~/accelleran$
+                                                ping 10.10.0.100<br>
+                                                PING 10.10.0.100
+                                                (10.10.0.100) 56(84)
+                                                bytes of data.<br>
+                                                64 bytes from <a href=3D"ht=
+tp://10.10.0.100" target=3D"_blank">10.10.0.100</a>:
+                                                icmp_seq=3D1 ttl=3D64
+                                                time=3D0.250 ms<br>
+                                                64 bytes from <a href=3D"ht=
+tp://10.10.0.100" target=3D"_blank">10.10.0.100</a>:
+                                                icmp_seq=3D2 ttl=3D64
+                                                time=3D0.199 ms<br>
+                                                ^C<br>
+                                                --- 10.10.0.100 ping
+                                                statistics ---<br>
+                                                2 packets transmitted, 2
+                                                received, 0% packet
+                                                loss, time 1051ms<br>
+                                                rtt min/avg/max/mdev =3D
+                                                0.199/0.224/0.250/0.025
+                                                ms<br>
+ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100<br>
+                                                PING 10.10.1.100
+                                                (10.10.1.100) 56(84)
+                                                bytes of data.<br>
+                                                64 bytes from <a href=3D"ht=
+tp://10.10.1.100" target=3D"_blank">10.10.1.100</a>:
+                                                icmp_seq=3D1 ttl=3D64
+                                                time=3D1.02 ms<br>
+                                                64 bytes from <a href=3D"ht=
+tp://10.10.1.100" target=3D"_blank">10.10.1.100</a>:
+                                                icmp_seq=3D2 ttl=3D64
+                                                time=3D0.970 ms<br>
+                                                ^C<br>
+                                                --- 10.10.1.100 ping
+                                                statistics ---<br>
+                                                2 packets transmitted, 2
+                                                received, 0% packet
+                                                loss, time 1001ms<br>
+                                                rtt min/avg/max/mdev =3D
+                                                0.970/0.996/1.022/0.026
+                                                ms<br>
+ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100<br>
+                                                PING 10.10.2.100
+                                                (10.10.2.100) 56(84)
+                                                bytes of data.<br>
+                                                64 bytes from <a href=3D"ht=
+tp://10.10.2.100" target=3D"_blank">10.10.2.100</a>:
+                                                icmp_seq=3D1 ttl=3D64
+                                                time=3D1.03 ms<br>
+                                                64 bytes from <a href=3D"ht=
+tp://10.10.2.100" target=3D"_blank">10.10.2.100</a>:
+                                                icmp_seq=3D2 ttl=3D64
+                                                time=3D0.963 ms<br>
+                                                ^C<br>
+                                                --- 10.10.2.100 ping
+                                                statistics ---<br>
+                                                2 packets transmitted, 2
+                                                received, 0% packet
+                                                loss, time 1001ms<br>
+                                                rtt min/avg/max/mdev =3D
+                                                0.963/0.994/1.025/0.031
+                                                ms<br>
+ad@bm-super11-intel:~/accelleran$ </span></i><br>
+                                          </div>
+                                          <div><br>
                                           </div>
                                         </div>
                                         <br>
-                                      </blockquote>
-                                      When you&#39;re SSHed into the N310,
-                                      what does:<br>
-                                      <br>
-                                      uhd_config_info --version<br>
-                                      <br>
-                                      <br>
-                                      Show?<br>
-                                      <br>
-                                      <br>
-                                      Can you ping the SFP+ interfaces
-                                      from your host computer?<br>
-                                      <br>
-                                      <br>
-                                      <blockquote type=3D"cite">
                                         <div class=3D"gmail_quote">
                                           <div dir=3D"ltr" class=3D"gmail_a=
 ttr">On Tue,
-                                            15 Oct 2024 at 16:04, Marcus
+                                            15 Oct 2024 at 16:16, Marcus
                                             D. Leech &lt;<a href=3D"mailto:=
 patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; =
 wrote:<br>
@@ -874,36 +907,111 @@ wrote:<br>
  style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
 adding-left:1ex">
                                             <div>
-                                              <div>On 15/10/2024 09:41,
+                                              <div>On 15/10/2024 10:09,
                                                 Houshang wrote:<br>
                                               </div>
                                               <blockquote type=3D"cite">
                                                 <div dir=3D"ltr">
-                                                  <div>Hello</div>
-                                                  <div>Can anyone help
-                                                    with this issue
-                                                    please? This is an
-                                                    n310 and the version
-                                                    of UHD is visible in
-                                                    the screenshot
-                                                    below.</div>
+                                                  <div>Hi Marcus</div>
+                                                  <ul>
+                                                    <li>There are two
+                                                      fiber interfaces
+                                                      for this n310
+                                                      which I will be
+                                                      using for DPDK
+                                                      later.=C2=A0</li>
+                                                    <li>There is also a
+                                                      RJ-45 port for
+                                                      this n310.</li>
+                                                  </ul>
+                                                  <div>As the first
+                                                    step, I want to make
+                                                    sure things are
+                                                    working without
+                                                    DPDK. I will then
+                                                    test the DPDK.</div>
                                                   <div><br>
                                                   </div>
-                                                  <div><img src=3D"cid:ii_1=
-9290bc30c34d14bf723" alt=3D"15_15:37:26.jpg" style=3D"margin-right: 0px;" w=
-idth=3D"1275" height=3D"411"><br>
+                                                  <div>Based on your
+                                                    question, I am
+                                                    attaching some more
+                                                    info. Let me know if
+                                                    something is
+                                                    missing.<br>
+                                                  </div>
+                                                  <div><br>
                                                   </div>
                                                   <div>Thanks</div>
                                                   <div>Houshang<br>
                                                   </div>
-                                                  <div><br>
-                                                    <span class=3D"gmail_si=
-gnature_prefix">-- </span><br>
-                                                    <div dir=3D"ltr" class=
-=3D"gmail_signature">
-                                                      <div dir=3D"ltr">
-                                                        <div style=3D"text-=
-align:left">
+                                                </div>
+                                                <br>
+                                              </blockquote>
+                                              When you&#39;re SSHed into th=
+e
+                                              N310, what does:<br>
+                                              <br>
+                                              uhd_config_info --version<br>
+                                              <br>
+                                              <br>
+                                              Show?<br>
+                                              <br>
+                                              <br>
+                                              Can you ping the SFP+
+                                              interfaces from your host
+                                              computer?<br>
+                                              <br>
+                                              <br>
+                                              <blockquote type=3D"cite">
+                                                <div class=3D"gmail_quote">
+                                                  <div dir=3D"ltr" class=3D=
+"gmail_attr">On
+                                                    Tue, 15 Oct 2024 at
+                                                    16:04, Marcus D.
+                                                    Leech &lt;<a href=3D"ma=
+ilto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>=
+&gt;
+                                                    wrote:<br>
+                                                  </div>
+                                                  <blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">
+                                                    <div>
+                                                      <div>On 15/10/2024
+                                                        09:41, Houshang
+                                                        wrote:<br>
+                                                      </div>
+                                                      <blockquote type=3D"c=
+ite">
+                                                        <div dir=3D"ltr">
+                                                          <div>Hello</div>
+                                                          <div>Can
+                                                          anyone help
+                                                          with this
+                                                          issue please?
+                                                          This is an
+                                                          n310 and the
+                                                          version of UHD
+                                                          is visible in
+                                                          the screenshot
+                                                          below.</div>
+                                                          <div><br>
+                                                          </div>
+                                                          <div><img src=3D"=
+cid:ii_19290c8923b4d14bf724" alt=3D"15_15:37:26.jpg" style=3D"margin-right:=
+ 0px;" width=3D"1275" height=3D"411"><br>
+                                                          </div>
+                                                          <div>Thanks</div>
+                                                          <div>Houshang<br>
+                                                          </div>
+                                                          <div><br>
+                                                          <span class=3D"gm=
+ail_signature_prefix">-- </span><br>
+                                                          <div dir=3D"ltr" =
+class=3D"gmail_signature">
+                                                          <div dir=3D"ltr">
+                                                          <div style=3D"tex=
+t-align:left">
                                                           <p class=3D"MsoNo=
 rmal" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Apt=
 os,sans-serif"><b><span style=3D"font-size:11pt;font-family:Arial,sans-seri=
@@ -916,15 +1024,15 @@ os,sans-serif"><b><span style=3D"font-size:11pt;font-family:Arial,sans-seri=
 f;color:rgb(246,146,30)">Test
                                                           Engineer</span></=
 b></p>
-                                                        </div>
-                                                        <a href=3D"https://=
-www.accelleran.com/" rel=3D"noopener" style=3D"color:rgb(51,122,183);backgr=
-ound-color:transparent" target=3D"_blank"><font size=3D"2"><img alt=3D"logo=
-" src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLo=
-go_NoBaseline.png" style=3D"border: 0px; vertical-align: middle; width: 143=
-px; height: auto;" width=3D"143" border=3D"0"></font></a>
-                                                        <div style=3D"text-=
-align:left">
+                                                          </div>
+                                                          <a href=3D"https:=
+//www.accelleran.com/" rel=3D"noopener" style=3D"color:rgb(51,122,183);back=
+ground-color:transparent" target=3D"_blank"><font size=3D"2"><img alt=3D"lo=
+go" src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_New=
+Logo_NoBaseline.png" style=3D"border: 0px; vertical-align: middle; width: 1=
+43px; height: auto;" width=3D"143" border=3D"0"></font></a>
+                                                          <div style=3D"tex=
+t-align:left">
                                                           <p class=3D"MsoNo=
 rmal" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Apt=
 os,sans-serif"><b><span style=3D"font-size:10pt;font-family:Arial,sans-seri=
@@ -946,65 +1054,147 @@ os,sans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif">=
 <a href=3D"http://www.accelleran.com/" style=3D"color:rgb(17,85,204)" targe=
 t=3D"_blank"><b><span style=3D"color:rgb(246,146,30)">www.accelleran.com</s=
 pan></b></a></span></p>
+                                                          </div>
+                                                          <p style=3D"text-=
+align:left;margin:20px 0px"><a href=3D"https://www.linkedin.com/company/acc=
+elleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:t=
+ransparent" target=3D"_blank"><img alt=3D"linkedin icon" src=3D"https://www=
+.mail-signatures.com/signature-generator/img/templates/simple-and-light/ln.=
+png" style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15p=
+x;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https:=
+//twitter.com/accelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);b=
+ackground-color:transparent" target=3D"_blank"><img alt=3D"twitter icon" sr=
+c=3D"https://www.mail-signatures.com/signature-generator/img/templates/simp=
+le-and-light/tt.png" style=3D"border: 0px; vertical-align: middle; height: =
+15px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<=
+a href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
+resh=3D1" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:=
+transparent" target=3D"_blank"><img alt=3D"youtube icon" src=3D"https://www=
+.mail-signatures.com/signature-generator/img/templates/simple-and-light/yt.=
+png" style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15p=
+x;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0 <br>
+                                                          </p>
+                                                          </div>
+                                                          </div>
+                                                          </div>
                                                         </div>
-                                                        <p style=3D"text-al=
-ign:left;margin:20px 0px"><a href=3D"https://www.linkedin.com/company/accel=
-leran" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:tra=
-nsparent" target=3D"_blank"><img alt=3D"linkedin icon" src=3D"https://www.m=
-ail-signatures.com/signature-generator/img/templates/simple-and-light/ln.pn=
-g" style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;=
-" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://=
-twitter.com/accelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);bac=
-kground-color:transparent" target=3D"_blank"><img alt=3D"twitter icon" src=
-=3D"https://www.mail-signatures.com/signature-generator/img/templates/simpl=
-e-and-light/tt.png" style=3D"border: 0px; vertical-align: middle; height: 1=
-5px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a=
- href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefr=
-esh=3D1" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:t=
-ransparent" target=3D"_blank"><img alt=3D"youtube icon" src=3D"https://www.=
-mail-signatures.com/signature-generator/img/templates/simple-and-light/yt.p=
-ng" style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px=
-;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0 <br>
-                                                        </p>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                <br>
-                                                <fieldset></fieldset>
-                                                <pre>______________________=
-_________________________
+                                                        <br>
+                                                        <fieldset></fieldse=
+t>
+                                                        <pre>______________=
+_________________________________
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
 </pre>
+                                                      </blockquote>
+                                                      I think I&#39;ve aske=
+d
+                                                      you this before on
+                                                      this issue:<br>
+                                                      <br>
+                                                      What does your
+                                                      network connection
+                                                      setup look like?<br>
+                                                      <br>
+                                                      Are you using the
+                                                      RJ-45 port and the
+                                                      SFP+ port(s)?=C2=A0=
+=C2=A0
+                                                      How are things
+                                                      connected, and on
+                                                      what subnets?<br>
+                                                      <br>
+                                                      <br>
+                                                    </div>
+_______________________________________________<br>
+                                                    USRP-users mailing
+                                                    list -- <a href=3D"mail=
+to:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com=
+</a><br>
+                                                    To unsubscribe send
+                                                    an email to <a href=3D"=
+mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave=
+@lists.ettus.com</a><br>
+                                                  </blockquote>
+                                                </div>
+                                                <br clear=3D"all">
+                                                <br>
+                                                <span class=3D"gmail_signat=
+ure_prefix">-- </span><br>
+                                                <div dir=3D"ltr" class=3D"g=
+mail_signature">
+                                                  <div dir=3D"ltr">
+                                                    <div style=3D"text-alig=
+n:left">
+                                                      <p class=3D"MsoNormal=
+" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span style=3D"font-size:11pt;font-family:Arial,sans-serif;co=
+lor:rgb(0,173,238)">Houshang
+                                                          Azizi</span></b><=
+span style=3D"font-size:11pt;font-family:Arial,sans-serif"></span></p>
+                                                      <p class=3D"MsoNormal=
+" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span style=3D"font-size:11pt;font-family:Arial,sans-serif;co=
+lor:rgb(246,146,30)">Test
+                                                          Engineer</span></=
+b></p>
+                                                    </div>
+                                                    <a href=3D"https://www.=
+accelleran.com/" rel=3D"noopener" style=3D"color:rgb(51,122,183);background=
+-color:transparent" target=3D"_blank"><font size=3D"2"><img alt=3D"logo" sr=
+c=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLogo_N=
+oBaseline.png" style=3D"border: 0px; vertical-align: middle; width: 143px; =
+height: auto;" width=3D"143" border=3D"0"></font></a>
+                                                    <div style=3D"text-alig=
+n:left">
+                                                      <p class=3D"MsoNormal=
+" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><b><span style=3D"font-size:10pt;font-family:Arial,sans-serif;co=
+lor:black">(32)
+                                                          492195241</span><=
+/b><span style=3D"font-size:10pt;font-family:Arial,sans-serif"></span></p>
+                                                      <p class=3D"MsoNormal=
+" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><=
+span style=3D"color:black"><a href=3D"mailto:Email@accelleran.com" target=
+=3D"_blank">houshang.azizi@accelleran.com</a></span></b></span></p>
+                                                      <p class=3D"MsoNormal=
+" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=
+=A0</span></p>
+                                                      <p class=3D"MsoNormal=
+" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
+ans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif"><a h=
+ref=3D"http://www.accelleran.com/" style=3D"color:rgb(17,85,204)" target=3D=
+"_blank"><b><span style=3D"color:rgb(246,146,30)">www.accelleran.com</span>=
+</b></a></span></p>
+                                                    </div>
+                                                    <p style=3D"text-align:=
+left;margin:20px 0px"><a href=3D"https://www.linkedin.com/company/accellera=
+n" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:transpa=
+rent" target=3D"_blank"><img alt=3D"linkedin icon" src=3D"https://www.mail-=
+signatures.com/signature-generator/img/templates/simple-and-light/ln.png" s=
+tyle=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;" wi=
+dth=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://twit=
+ter.com/accelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);backgro=
+und-color:transparent" target=3D"_blank"><img alt=3D"twitter icon" src=3D"h=
+ttps://www.mail-signatures.com/signature-generator/img/templates/simple-and=
+-light/tt.png" style=3D"border: 0px; vertical-align: middle; height: 15px; =
+width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=
+=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=
+=3D1" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:tran=
+sparent" target=3D"_blank"><img alt=3D"youtube icon" src=3D"https://www.mai=
+l-signatures.com/signature-generator/img/templates/simple-and-light/yt.png"=
+ style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;" =
+width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0 <br>
+                                                    </p>
+                                                  </div>
+                                                </div>
                                               </blockquote>
-                                              I think I&#39;ve asked you
-                                              this before on this issue:<br=
->
-                                              <br>
-                                              What does your network
-                                              connection setup look
-                                              like?<br>
-                                              <br>
-                                              Are you using the RJ-45
-                                              port and the SFP+
-                                              port(s)?=C2=A0=C2=A0 How are =
-things
-                                              connected, and on what
-                                              subnets?<br>
-                                              <br>
                                               <br>
                                             </div>
-_______________________________________________<br>
-                                            USRP-users mailing list -- <a h=
-ref=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@list=
-s.ettus.com</a><br>
-                                            To unsubscribe send an email
-                                            to <a href=3D"mailto:usrp-users=
--leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com<=
-/a><br>
                                           </blockquote>
                                         </div>
                                         <br clear=3D"all">
@@ -1079,79 +1269,81 @@ e=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;" width=
                                             </p>
                                           </div>
                                         </div>
-                                      </blockquote>
-                                      <br>
-                                    </div>
-                                  </blockquote>
-                                </div>
-                                <br clear=3D"all">
-                                <br>
-                                <span class=3D"gmail_signature_prefix">--
-                                </span><br>
-                                <div dir=3D"ltr" class=3D"gmail_signature">
-                                  <div dir=3D"ltr">
-                                    <div style=3D"text-align:left">
-                                      <p class=3D"MsoNormal" style=3D"margi=
-n:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><s=
-pan style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,23=
-8)">Houshang
-                                            Azizi</span></b><span style=3D"=
-font-size:11pt;font-family:Arial,sans-serif"></span></p>
-                                      <p class=3D"MsoNormal" style=3D"margi=
-n:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><s=
-pan style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,=
-30)">Test
-                                            Engineer</span></b></p>
-                                    </div>
-                                    <a href=3D"https://www.accelleran.com/"=
- rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:transpare=
-nt" target=3D"_blank"><font size=3D"2"><img alt=3D"logo" src=3D"https://acc=
-elleran.com/wp-content/uploads/2024/04/Accelleran_NewLogo_NoBaseline.png" s=
-tyle=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;" w=
-idth=3D"143" border=3D"0"></font></a>
-                                    <div style=3D"text-align:left">
-                                      <p class=3D"MsoNormal" style=3D"margi=
-n:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><s=
-pan style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32)
-                                            492195241</span></b><span style=
-=3D"font-size:10pt;font-family:Arial,sans-serif"></span></p>
-                                      <p class=3D"MsoNormal" style=3D"margi=
-n:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><span=
- style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span style=3D"co=
-lor:black"><a href=3D"mailto:Email@accelleran.com" target=3D"_blank">housha=
-ng.azizi@accelleran.com</a></span></b></span></p>
-                                      <p class=3D"MsoNormal" style=3D"margi=
-n:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><span=
- style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
-                                      <p class=3D"MsoNormal" style=3D"margi=
-n:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><span=
- style=3D"font-size:10pt;font-family:Arial,sans-serif"><a href=3D"http://ww=
-w.accelleran.com/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><b><spa=
-n style=3D"color:rgb(246,146,30)">www.accelleran.com</span></b></a></span><=
-/p>
-                                    </div>
-                                    <p style=3D"text-align:left;margin:20px=
- 0px"><a href=3D"https://www.linkedin.com/company/accelleran" rel=3D"noopen=
-er" style=3D"color:rgb(51,122,183);background-color:transparent" target=3D"=
-_blank"><img alt=3D"linkedin icon" src=3D"https://www.mail-signatures.com/s=
-ignature-generator/img/templates/simple-and-light/ln.png" style=3D"border: =
-0px; vertical-align: middle; height: 15px; width: 15px;" width=3D"15" borde=
-r=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://twitter.com/acceller=
-an" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:transp=
-arent" target=3D"_blank"><img alt=3D"twitter icon" src=3D"https://www.mail-=
-signatures.com/signature-generator/img/templates/simple-and-light/tt.png" s=
-tyle=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;" wi=
-dth=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://www.=
-youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D1" rel=3D"noope=
-ner" style=3D"color:rgb(51,122,183);background-color:transparent" target=3D=
-"_blank"><img alt=3D"youtube icon" src=3D"https://www.mail-signatures.com/s=
-ignature-generator/img/templates/simple-and-light/yt.png" style=3D"border: =
-0px; vertical-align: middle; height: 15px; width: 15px;" width=3D"15" borde=
-r=3D"0"></a>=C2=A0=C2=A0=C2=A0
-                                      <br>
-                                    </p>
+                                      </div>
+                                    </blockquote>
                                   </div>
-                                </div>
+                                  <br clear=3D"all">
+                                  <br>
+                                  <span class=3D"gmail_signature_prefix">--
+                                  </span><br>
+                                  <div dir=3D"ltr" class=3D"gmail_signature=
+">
+                                    <div dir=3D"ltr">
+                                      <div style=3D"text-align:left">
+                                        <p class=3D"MsoNormal" style=3D"mar=
+gin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b>=
+<span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,=
+238)">Houshang
+                                              Azizi</span></b><span style=
+=3D"font-size:11pt;font-family:Arial,sans-serif"></span></p>
+                                        <p class=3D"MsoNormal" style=3D"mar=
+gin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b>=
+<span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,14=
+6,30)">Test
+                                              Engineer</span></b></p>
+                                      </div>
+                                      <a href=3D"https://www.accelleran.com=
+/" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:transpa=
+rent" target=3D"_blank"><font size=3D"2"><img alt=3D"logo" src=3D"https://a=
+ccelleran.com/wp-content/uploads/2024/04/Accelleran_NewLogo_NoBaseline.png"=
+ style=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;"=
+ width=3D"143" border=3D"0"></font></a>
+                                      <div style=3D"text-align:left">
+                                        <p class=3D"MsoNormal" style=3D"mar=
+gin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b>=
+<span style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32=
+)
+                                              492195241</span></b><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif"></span></p>
+                                        <p class=3D"MsoNormal" style=3D"mar=
+gin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span style=3D"=
+color:black"><a href=3D"mailto:Email@accelleran.com" target=3D"_blank">hous=
+hang.azizi@accelleran.com</a></span></b></span></p>
+                                        <p class=3D"MsoNormal" style=3D"mar=
+gin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
+                                        <p class=3D"MsoNormal" style=3D"mar=
+gin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:10pt;font-family:Arial,sans-serif"><a href=3D"http://=
+www.accelleran.com/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><b><s=
+pan style=3D"color:rgb(246,146,30)">www.accelleran.com</span></b></a></span=
+></p>
+                                      </div>
+                                      <p style=3D"text-align:left;margin:20=
+px 0px"><a href=3D"https://www.linkedin.com/company/accelleran" rel=3D"noop=
+ener" style=3D"color:rgb(51,122,183);background-color:transparent" target=
+=3D"_blank"><img alt=3D"linkedin icon" src=3D"https://www.mail-signatures.c=
+om/signature-generator/img/templates/simple-and-light/ln.png" style=3D"bord=
+er: 0px; vertical-align: middle; height: 15px; width: 15px;" width=3D"15" b=
+order=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://twitter.com/acce=
+lleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:tr=
+ansparent" target=3D"_blank"><img alt=3D"twitter icon" src=3D"https://www.m=
+ail-signatures.com/signature-generator/img/templates/simple-and-light/tt.pn=
+g" style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;=
+" width=3D"15" border=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://=
+www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D1" rel=3D"n=
+oopener" style=3D"color:rgb(51,122,183);background-color:transparent" targe=
+t=3D"_blank"><img alt=3D"youtube icon" src=3D"https://www.mail-signatures.c=
+om/signature-generator/img/templates/simple-and-light/yt.png" style=3D"bord=
+er: 0px; vertical-align: middle; height: 15px; width: 15px;" width=3D"15" b=
+order=3D"0"></a>=C2=A0=C2=A0=C2=A0
+                                        <br>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </blockquote>
+                                <br>
                               </div>
                             </blockquote>
                           </div>
@@ -1291,73 +1483,73 @@ a>=C2=A0=C2=A0=C2=A0
                     </div>
                   </div>
                 </blockquote>
-                <br>
+              </div>
+              <br clear=3D"all">
+              <br>
+              <span class=3D"gmail_signature_prefix">-- </span><br>
+              <div dir=3D"ltr" class=3D"gmail_signature">
+                <div dir=3D"ltr">
+                  <div style=3D"text-align:left">
+                    <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:=
+normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-=
+size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)">Houshang
+                          Azizi</span></b><span style=3D"font-size:11pt;fon=
+t-family:Arial,sans-serif"></span></p>
+                    <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:=
+normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-=
+size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test
+                          Engineer</span></b></p>
+                  </div>
+                  <a href=3D"https://www.accelleran.com/" rel=3D"noopener" =
+style=3D"color:rgb(51,122,183);background-color:transparent" target=3D"_bla=
+nk"><font size=3D"2"><img alt=3D"logo" src=3D"https://accelleran.com/wp-con=
+tent/uploads/2024/04/Accelleran_NewLogo_NoBaseline.png" style=3D"border: 0p=
+x; vertical-align: middle; width: 143px; height: auto;" width=3D"143" borde=
+r=3D"0"></font></a>
+                  <div style=3D"text-align:left">
+                    <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:=
+normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-=
+size:10pt;font-family:Arial,sans-serif;color:black">(32)
+                          492195241</span></b><span style=3D"font-size:10pt=
+;font-family:Arial,sans-serif"></span></p>
+                    <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:=
+normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-siz=
+e:10pt;font-family:Arial,sans-serif"><b><span style=3D"color:black"><a href=
+=3D"mailto:Email@accelleran.com" target=3D"_blank">houshang.azizi@accellera=
+n.com</a></span></b></span></p>
+                    <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:=
+normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-siz=
+e:10pt;font-family:Arial,sans-serif">=C2=A0</span></p>
+                    <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:=
+normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-siz=
+e:10pt;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com/"=
+ style=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color:r=
+gb(246,146,30)">www.accelleran.com</span></b></a></span></p>
+                  </div>
+                  <p style=3D"text-align:left;margin:20px 0px"><a href=3D"h=
+ttps://www.linkedin.com/company/accelleran" rel=3D"noopener" style=3D"color=
+:rgb(51,122,183);background-color:transparent" target=3D"_blank"><img alt=
+=3D"linkedin icon" src=3D"https://www.mail-signatures.com/signature-generat=
+or/img/templates/simple-and-light/ln.png" style=3D"border: 0px; vertical-al=
+ign: middle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=
+=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://twitter.com/accelleran" rel=3D"noop=
+ener" style=3D"color:rgb(51,122,183);background-color:transparent" target=
+=3D"_blank"><img alt=3D"twitter icon" src=3D"https://www.mail-signatures.co=
+m/signature-generator/img/templates/simple-and-light/tt.png" style=3D"borde=
+r: 0px; vertical-align: middle; height: 15px; width: 15px;" width=3D"15" bo=
+rder=3D"0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://www.youtube.com/c=
+hannel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D1" rel=3D"noopener" style=3D=
+"color:rgb(51,122,183);background-color:transparent" target=3D"_blank"><img=
+ alt=3D"youtube icon" src=3D"https://www.mail-signatures.com/signature-gene=
+rator/img/templates/simple-and-light/yt.png" style=3D"border: 0px; vertical=
+-align: middle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=
+=C2=A0=C2=A0=C2=A0
+                    <br>
+                  </p>
+                </div>
               </div>
             </blockquote>
-          </div>
-          <br clear=3D"all">
-          <br>
-          <span class=3D"gmail_signature_prefix">-- </span><br>
-          <div dir=3D"ltr" class=3D"gmail_signature">
-            <div dir=3D"ltr">
-              <div style=3D"text-align:left">
-                <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:norm=
-al;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size=
-:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)">Houshang
-                      Azizi</span></b><span style=3D"font-size:11pt;font-fa=
-mily:Arial,sans-serif"></span></p>
-                <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:norm=
-al;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size=
-:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test
-                      Engineer</span></b></p>
-              </div>
-              <a href=3D"https://www.accelleran.com/" rel=3D"noopener" styl=
-e=3D"color:rgb(51,122,183);background-color:transparent" target=3D"_blank">=
-<font size=3D"2"><img alt=3D"logo" src=3D"https://accelleran.com/wp-content=
-/uploads/2024/04/Accelleran_NewLogo_NoBaseline.png" style=3D"border: 0px; v=
-ertical-align: middle; width: 143px; height: auto;" width=3D"143" border=3D=
-"0"></font></a>
-              <div style=3D"text-align:left">
-                <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:norm=
-al;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"font-size=
-:10pt;font-family:Arial,sans-serif;color:black">(32)
-                      492195241</span></b><span style=3D"font-size:10pt;fon=
-t-family:Arial,sans-serif"></span></p>
-                <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:norm=
-al;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10=
-pt;font-family:Arial,sans-serif"><b><span style=3D"color:black"><a href=3D"=
-mailto:Email@accelleran.com" target=3D"_blank">houshang.azizi@accelleran.co=
-m</a></span></b></span></p>
-                <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:norm=
-al;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10=
-pt;font-family:Arial,sans-serif">=C2=A0</span></p>
-                <p class=3D"MsoNormal" style=3D"margin:0cm;line-height:norm=
-al;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10=
-pt;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com/" sty=
-le=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color:rgb(2=
-46,146,30)">www.accelleran.com</span></b></a></span></p>
-              </div>
-              <p style=3D"text-align:left;margin:20px 0px"><a href=3D"https=
-://www.linkedin.com/company/accelleran" rel=3D"noopener" style=3D"color:rgb=
-(51,122,183);background-color:transparent" target=3D"_blank"><img alt=3D"li=
-nkedin icon" src=3D"https://www.mail-signatures.com/signature-generator/img=
-/templates/simple-and-light/ln.png" style=3D"border: 0px; vertical-align: m=
-iddle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=
-=A0=C2=A0=C2=A0<a href=3D"https://twitter.com/accelleran" rel=3D"noopener" =
-style=3D"color:rgb(51,122,183);background-color:transparent" target=3D"_bla=
-nk"><img alt=3D"twitter icon" src=3D"https://www.mail-signatures.com/signat=
-ure-generator/img/templates/simple-and-light/tt.png" style=3D"border: 0px; =
-vertical-align: middle; height: 15px; width: 15px;" width=3D"15" border=3D"=
-0"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://www.youtube.com/channel/U=
-CrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D1" rel=3D"noopener" style=3D"color:r=
-gb(51,122,183);background-color:transparent" target=3D"_blank"><img alt=3D"=
-youtube icon" src=3D"https://www.mail-signatures.com/signature-generator/im=
-g/templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: =
-middle; height: 15px; width: 15px;" width=3D"15" border=3D"0"></a>=C2=A0=C2=
-=A0=C2=A0
-                <br>
-              </p>
-            </div>
+            <br>
           </div>
         </blockquote>
       </div>
@@ -1476,14 +1668,257 @@ templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mi=
 ddle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p></div></di=
 v>
 
---000000000000fc3e570624856299--
+--000000000000b8634506248590b0--
 
---000000000000fc3e58062485629a
+--000000000000b8634706248590b1
+Content-Type: image/jpeg; name="15_17:11:14.jpg"
+Content-Disposition: attachment; filename="15_17:11:14.jpg"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: ii_19290c8923add3d32171
+Content-ID: <ii_19290c8923add3d32171>
+
+/9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEa
+AAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAAB
+AAAAAQAAAAEAAAAB/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4S
+EA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQU
+FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAfAGKAwEi
+AAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMF
+BQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYn
+KCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SV
+lpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz
+9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQH
+BQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBka
+JicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKT
+lJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz
+9PX29/j5+v/aAAwDAQACEQMRAD8A8C/a/wD+TifFv1tf/SSGvHK9j/a//wCTifFv1tf/AEkh
+rxygAooooAKKKKACiiigAooooAKKKKACiiigAoqS2t3u7mKCIAySuEUMwUZJwMk8D6muw8Xf
+Bvxd4Ij0uXU9Ljkg1OY29nPpt7BfxTSjGYg9u7rv+ZfkJ3cjinZgcXRXt2o/s66r4J+EHjXx
+B4s01bLVtOudPgs0i1GCZojK8glSaOJ2KPhV+WQKRzxWx4I/ZEudfsoTrXiB9K1KRIHawtLS
+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
+9K0NU+KHijWfh/o3ge91eSfwro9zLd2OnGNAsMsn32DBdxzk8EkDJxjJrlq7qc4wcnKPNfzf
+6f182e9Up1JxShNxavtZ9X3X/DbbI+s/2f8A4kQa/wDDXw78N/CXxAvfhL49GozgXC2x/s/x
+E87KII7mePLxsuNgDq0eD2ya+XfEmjX3h3xDqmlapH5WpWN1LbXSbg22VHKuMjg/MDzXqHwx
+/ab8SfDDwdqOh2Vrp9xOIAuianJp9obrRpzOsjzRTPA0hJUSIBvG0ybhyoryO7u57+6mubmZ
+7i5mdpJZZWLO7E5LEnkkk5zXO1+85l/Xb+ttrWLpRcFJPvp+Lb/HTqtelj9fP+CPn/JtHib/
+ALG65/8ASKyrzL/gtH/zR3/uM/8AtjXnf7Bv7eXgD9l34Q6v4V8VaR4k1DULzXZtTjl0e2t5
+YhE9vbxgEyTxndmFuMYwRz1xx/8AwUG/bB8G/tX/APCBf8Ijpmu6d/YH2/7V/bVvDFv8/wCz
+bNnlzSZx5LZzjqMZ5xiov2lzhjSmsVz20/4B8f0UUV0nqBRRRQAUUUUAFFFFABRRRQAUUUUA
+FFFFABRRRQAUUUUAFFFFABRRRQB7p+23GIv2k/FKjJAS06/9e0VeF17v+3B/yct4q/3LT/0m
+irwis4fCjnw/8KIUUUVodAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUU
+UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFA
+Hpf7RXibUvGvxSu/EOqpaRXWq2NhfCKyVhHHHJaROifMSSQpAJ4BIOAK80r2D9rDwxa+CfjX
+qPh+xkmlstLsNPsoZLhgZGSOzhVSxAAJwOcAfSvH6LJaR2OTCNvDwb3sFFFFB1hRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/Z
+--000000000000b8634706248590b1
 Content-Type: image/jpeg; name="15_16:59:31.jpg"
 Content-Disposition: attachment; filename="15_16:59:31.jpg"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_19290bc30c3dbb30d0d1
-Content-ID: <ii_19290bc30c3dbb30d0d1>
+X-Attachment-Id: ii_19290c8923bdbb30d0d2
+Content-ID: <ii_19290c8923bdbb30d0d2>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEa
 AAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAAB
@@ -4254,12 +4689,12 @@ oooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKK
 ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAo
 oooAKKKKACiiigAooooAK+qP+CdaCT4xa2Dn/kCP0JH/AC3h9K+V6+qv+CdH/JY9c/7Aj/8A
 o+GsqnwM5MX/AAZfL8z9LUt02Ly/T++3+NFSp9xfpRXCfOn/2Q==
---000000000000fc3e58062485629a
+--000000000000b8634706248590b1
 Content-Type: image/jpeg; name="15_16:21:07.jpg"
 Content-Disposition: attachment; filename="15_16:21:07.jpg"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_19290bc30c3db125c3b2
-Content-ID: <ii_19290bc30c3db125c3b2>
+X-Attachment-Id: ii_19290c8923bdb125c3b3
+Content-ID: <ii_19290c8923bdb125c3b3>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEa
 AAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAAB
@@ -5123,12 +5558,12 @@ UUUUAFFFFABRRRQAUUUUAd98f/8AkuXj/wD7Dt5/6OauBrvvj/8A8ly8f/8AYdvP/RzVwNTH
 FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
 UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
 FABRRRQAUUUUAFFFFAH/2Q==
---000000000000fc3e58062485629a
+--000000000000b8634706248590b1
 Content-Type: image/jpeg; name="15_15:37:26.jpg"
 Content-Disposition: attachment; filename="15_15:37:26.jpg"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_19290bc30c34d14bf723
-Content-ID: <ii_19290bc30c34d14bf723>
+X-Attachment-Id: ii_19290c8923b4d14bf724
+Content-ID: <ii_19290c8923b4d14bf724>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEa
 AAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAAB
@@ -8045,471 +8480,146 @@ gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
 KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
 gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9k=
 
---000000000000fc3e58062485629a
-Content-Type: image/jpeg; name="15_17:11:14.jpg"
-Content-Disposition: attachment; filename="15_17:11:14.jpg"
+--000000000000b8634706248590b1--
+
+--000000000000b8634706248590b2
+Content-Type: text/plain; charset="US-ASCII"; name="uhd_usrp_probe_on_n310.txt"
+Content-Disposition: attachment; filename="uhd_usrp_probe_on_n310.txt"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_m2al0nsf3
-Content-ID: <ii_m2al0nsf3>
+X-Attachment-Id: f_m2alhp4t4
+Content-ID: <f_m2alhp4t4>
 
-/9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
-AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
-AAEAAAAB/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAW
-EBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQU
-FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAfAGKAwEiAAIRAQMRAf/EAB8AAAEF
-AQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFB
-BhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RV
-VldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrC
-w8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAA
-AAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRC
-kaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdo
-aWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT
-1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A8C/a/wD+TifFv1tf/SSGvHK9
-j/a//wCTifFv1tf/AEkhrxygAooooAKKKKACiiigAooooAKKKKACiiigAoqS2t3u7mKCIAySuEUM
-wUZJwMk8D6muw8XfBvxd4Ij0uXU9Ljkg1OY29nPpt7BfxTSjGYg9u7rv+ZfkJ3cjinZgcXRXt2o/
-s66r4J+EHjXxB4s01bLVtOudPgs0i1GCZojK8glSaOJ2KPhV+WQKRzxWx4I/ZEudfsoTrXiB9K1K
-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
-FABRRRQAUUUUAf/Z
---000000000000fc3e58062485629a--
-
---000000000000fc3e59062485629b
-Content-Type: image/jpeg; name="15_17:11:14.jpg"
-Content-Disposition: attachment; filename="15_17:11:14.jpg"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_m2al0r9s4
-Content-ID: <f_m2al0r9s4>
-
-/9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
-AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
-AAEAAAAB/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAW
-EBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQU
-FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAfAGKAwEiAAIRAQMRAf/EAB8AAAEF
-AQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFB
-BhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RV
-VldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrC
-w8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAA
-AAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRC
-kaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdo
-aWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT
-1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A8C/a/wD+TifFv1tf/SSGvHK9
-j/a//wCTifFv1tf/AEkhrxygAooooAKKKKACiiigAooooAKKKKACiiigAoqS2t3u7mKCIAySuEUM
-wUZJwMk8D6muw8XfBvxd4Ij0uXU9Ljkg1OY29nPpt7BfxTSjGYg9u7rv+ZfkJ3cjinZgcXRXt2o/
-s66r4J+EHjXxB4s01bLVtOudPgs0i1GCZojK8glSaOJ2KPhV+WQKRzxWx4I/ZEudfsoTrXiB9K1K
-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
-FABRRRQAUUUUAf/Z
---000000000000fc3e59062485629b
+YWRAYm0tc3VwZXIxMS1pbnRlbDp+JCBzc2ggcm9vdEAxMC4xMC4wLjEwMApyb290QG5pLW4zeHgt
+MzIwMDBGMTp+IyB1aGRfdXNycF9wcm9iZQpbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVy
+c2lvbiAxMS40LjA7IEJvb3N0XzEwNzgwMDsgVUhEXzQuNy4wLjAtMC1nYTVlZDE4NzIKW0lORk9d
+IFtNUE1EXSBJbml0aWFsaXppbmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiBt
+Z210X2FkZHI9MTI3LjAuMC4xLHR5cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFsPTMyMDAwRjEs
+bmFtZT1uaS1uM3h4LTMyMDAwRjEsZnBnYT1YRyxjbGFpbWVkPUZhbHNlCltJTkZPXSBbTVBNLlBl
+cmlwaE1hbmFnZXJdIGluaXQoKSBjYWxsZWQgd2l0aCBkZXZpY2UgYXJncyBgZnBnYT1YRyxtZ210
+X2FkZHI9MTI3LjAuMC4xLG5hbWU9bmktbjN4eC0zMjAwMEYxLHByb2R1Y3Q9bjMxMCxjbG9ja19z
+b3VyY2U9aW50ZXJuYWwsdGltZV9zb3VyY2U9aW50ZXJuYWwnLgogIF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCiAvCnwgICAgICAgRGV2aWNlOiBO
+MzAwLVNlcmllcyBEZXZpY2UKfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KfCAgICAvCnwgICB8ICAgICAgIE1ib2FyZDogbmktbjN4eC0z
+MjAwMEYxCnwgICB8ICAgZGJvYXJkXzBfcGlkOiAzMzYKfCAgIHwgICBkYm9hcmRfMF9zZXJpYWw6
+IDMxRjZCRDEKfCAgIHwgICBkYm9hcmRfMV9waWQ6IDMzNgp8ICAgfCAgIGRib2FyZF8xX3Nlcmlh
+bDogMzFGNkJENQp8ICAgfCAgIGVlcHJvbV92ZXJzaW9uOiAzCnwgICB8ICAgZnNfdmVyc2lvbjog
+MjAyNDA2MjgxMzQyNDgKfCAgIHwgICBtZW5kZXJfYXJ0aWZhY3Q6IHY0LjcuMC4wX24zeHgKfCAg
+IHwgICBtcG1fc3dfdmVyc2lvbjogNC43LjAuMC1nYTVlZDE4NzIKfCAgIHwgICBwaWQ6IDE2OTYy
+CnwgICB8ICAgcHJvZHVjdDogbjMxMAp8ICAgfCAgIHJldjogMTAKfCAgIHwgICBycGNfY29ubmVj
+dGlvbjogbG9jYWwKfCAgIHwgICBzZXJpYWw6IDMyMDAwRjEKfCAgIHwgICB0eXBlOiBuM3h4Cnwg
+ICB8ICAgTVBNIFZlcnNpb246IDUuMwp8ICAgfCAgIEZQR0EgVmVyc2lvbjogOC4yCnwgICB8ICAg
+RlBHQSBnaXQgaGFzaDogYzM3YjMxOC5jbGVhbgp8ICAgfCAgIFJGTm9DIGNhcGFibGU6IFllcwp8
+ICAgfCAgIAp8ICAgfCAgIFRpbWUgc291cmNlczogIGludGVybmFsLCBleHRlcm5hbCwgZ3BzZG8s
+IHNmcDAKfCAgIHwgICBDbG9jayBzb3VyY2VzOiBleHRlcm5hbCwgaW50ZXJuYWwsIGdwc2RvCnwg
+ICB8ICAgU2Vuc29yczogcmVmX2xvY2tlZCwgZ3BzX2xvY2tlZCwgdGVtcCwgZmFuLCBncHNfZ3Bn
+Z2EsIGdwc19za3ksIGdwc190aW1lLCBncHNfdHB2CnwgICAgIF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICAgLwp8ICAgfCAgICAgICBSRk5v
+QyBibG9ja3Mgb24gdGhpcyBkZXZpY2U6CnwgICB8ICAgCnwgICB8ICAgKiAwL0REQyMwCnwgICB8
+ICAgKiAwL0REQyMxCnwgICB8ICAgKiAwL0RVQyMwCnwgICB8ICAgKiAwL0RVQyMxCnwgICB8ICAg
+KiAwL1JhZGlvIzAKfCAgIHwgICAqIDAvUmFkaW8jMQp8ICAgfCAgICogMC9SZXBsYXkjMAp8ICAg
+ICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8
+ICAgIC8KfCAgIHwgICAgICAgU3RhdGljIGNvbm5lY3Rpb25zIG9uIHRoaXMgZGV2aWNlOgp8ICAg
+fCAgIAp8ICAgfCAgICogMC9TRVAjMDowPT0+MC9EVUMjMDowCnwgICB8ICAgKiAwL0RVQyMwOjA9
+PT4wL1JhZGlvIzA6MAp8ICAgfCAgICogMC9SYWRpbyMwOjA9PT4wL0REQyMwOjAKfCAgIHwgICAq
+IDAvRERDIzA6MD09PjAvU0VQIzA6MAp8ICAgfCAgICogMC9TRVAjMTowPT0+MC9EVUMjMDoxCnwg
+ICB8ICAgKiAwL0RVQyMwOjE9PT4wL1JhZGlvIzA6MQp8ICAgfCAgICogMC9SYWRpbyMwOjE9PT4w
+L0REQyMwOjEKfCAgIHwgICAqIDAvRERDIzA6MT09PjAvU0VQIzE6MAp8ICAgfCAgICogMC9TRVAj
+MjowPT0+MC9EVUMjMTowCnwgICB8ICAgKiAwL0RVQyMxOjA9PT4wL1JhZGlvIzE6MAp8ICAgfCAg
+ICogMC9SYWRpbyMxOjA9PT4wL0REQyMxOjAKfCAgIHwgICAqIDAvRERDIzE6MD09PjAvU0VQIzI6
+MAp8ICAgfCAgICogMC9TRVAjMzowPT0+MC9EVUMjMToxCnwgICB8ICAgKiAwL0RVQyMxOjE9PT4w
+L1JhZGlvIzE6MQp8ICAgfCAgICogMC9SYWRpbyMxOjE9PT4wL0REQyMxOjEKfCAgIHwgICAqIDAv
+RERDIzE6MT09PjAvU0VQIzM6MAp8ICAgfCAgICogMC9TRVAjNDowPT0+MC9SZXBsYXkjMDowCnwg
+ICB8ICAgKiAwL1JlcGxheSMwOjA9PT4wL1NFUCM0OjAKfCAgIHwgICAqIDAvU0VQIzU6MD09PjAv
+UmVwbGF5IzA6MQp8ICAgfCAgICogMC9SZXBsYXkjMDoxPT0+MC9TRVAjNTowCnwgICB8ICAgKiAw
+L1NFUCM2OjA9PT4wL1JlcGxheSMwOjIKfCAgIHwgICAqIDAvUmVwbGF5IzA6Mj09PjAvU0VQIzY6
+MAp8ICAgfCAgICogMC9TRVAjNzowPT0+MC9SZXBsYXkjMDozCnwgICB8ICAgKiAwL1JlcGxheSMw
+OjM9PT4wL1NFUCM3OjAKfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KfCAgICAvCnwgICB8ICAgICAgIFRYIERib2FyZDogMC9SYWRpbyMw
+CnwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwp8ICAgfCAgICAvCnwgICB8ICAgfCAgICAgICBUWCBGcm9udGVuZDogMAp8ICAgfCAg
+IHwgICBOYW1lOiBNYWduZXNpdW0KfCAgIHwgICB8ICAgQW50ZW5uYXM6IFRYL1JYCnwgICB8ICAg
+fCAgIEZyZXEgcmFuZ2U6IDEuMDAwIHRvIDYwMDAuMDAwIE1Iegp8ICAgfCAgIHwgICBHYWluIHJh
+bmdlIHJmaWM6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEIKfCAgIHwgICB8ICAgR2FpbiByYW5nZSBk
+c2E6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEIKfCAgIHwgICB8ICAgR2FpbiByYW5nZSBhbXA6IDAu
+MCB0byAwLjAgc3RlcCAwLjAgZEIKfCAgIHwgICB8ICAgR2FpbiByYW5nZSBhbGw6IDAuMCB0byA2
+NS4wIHN0ZXAgMC41IGRCCnwgICB8ICAgfCAgIEJhbmR3aWR0aCByYW5nZTogMjAwMDAwMDAuMCB0
+byAxMDAwMDAwMDAuMCBzdGVwIDAuMCBIegp8ICAgfCAgIHwgICBDb25uZWN0aW9uIFR5cGU6IElR
+CnwgICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwp8ICAgfCAgICAgX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICAgLwp8ICAgfCAg
+IHwgICAgICAgVFggRnJvbnRlbmQ6IDEKfCAgIHwgICB8ICAgTmFtZTogTWFnbmVzaXVtCnwgICB8
+ICAgfCAgIEFudGVubmFzOiBUWC9SWAp8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAxLjAwMCB0byA2
+MDAwLjAwMCBNSHoKfCAgIHwgICB8ICAgR2FpbiByYW5nZSByZmljOiAwLjAgdG8gMC4wIHN0ZXAg
+MC4wIGRCCnwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgZHNhOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRC
+CnwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgYW1wOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRCCnwgICB8
+ICAgfCAgIEdhaW4gcmFuZ2UgYWxsOiAwLjAgdG8gNjUuMCBzdGVwIDAuNSBkQgp8ICAgfCAgIHwg
+ICBCYW5kd2lkdGggcmFuZ2U6IDIwMDAwMDAwLjAgdG8gMTAwMDAwMDAwLjAgc3RlcCAwLjAgSHoK
+fCAgIHwgICB8ICAgQ29ubmVjdGlvbiBUeXBlOiBJUQp8ICAgfCAgIHwgICBVc2VzIExPIG9mZnNl
+dDogTm8KfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KfCAgICAvCnwgICB8ICAgICAgIFJYIERib2FyZDogMC9SYWRpbyMwCnwgICB8ICAg
+ICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8
+ICAgfCAgICAvCnwgICB8ICAgfCAgICAgICBSWCBGcm9udGVuZDogMAp8ICAgfCAgIHwgICBOYW1l
+OiBNYWduZXNpdW0KfCAgIHwgICB8ICAgQW50ZW5uYXM6IFRYL1JYLCBSWDIsIENBTCwgTE9DQUwK
+fCAgIHwgICB8ICAgRnJlcSByYW5nZTogMS4wMDAgdG8gNjAwMC4wMDAgTUh6CnwgICB8ICAgfCAg
+IEdhaW4gcmFuZ2UgcmZpYzogMC4wIHRvIDAuMCBzdGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWlu
+IHJhbmdlIGRzYTogMC4wIHRvIDAuMCBzdGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWluIHJhbmdl
+IGFtcDogMC4wIHRvIDAuMCBzdGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWluIHJhbmdlIGFsbDog
+MC4wIHRvIDc1LjAgc3RlcCAwLjUgZEIKfCAgIHwgICB8ICAgQmFuZHdpZHRoIHJhbmdlOiAyMDAw
+MDAwMC4wIHRvIDEwMDAwMDAwMC4wIHN0ZXAgMC4wIEh6CnwgICB8ICAgfCAgIENvbm5lY3Rpb24g
+VHlwZTogSVEKfCAgIHwgICB8ICAgVXNlcyBMTyBvZmZzZXQ6IE5vCnwgICB8ICAgICBfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgICAv
+CnwgICB8ICAgfCAgICAgICBSWCBGcm9udGVuZDogMQp8ICAgfCAgIHwgICBOYW1lOiBNYWduZXNp
+dW0KfCAgIHwgICB8ICAgQW50ZW5uYXM6IFRYL1JYLCBSWDIsIENBTCwgTE9DQUwKfCAgIHwgICB8
+ICAgRnJlcSByYW5nZTogMS4wMDAgdG8gNjAwMC4wMDAgTUh6CnwgICB8ICAgfCAgIEdhaW4gcmFu
+Z2UgcmZpYzogMC4wIHRvIDAuMCBzdGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWluIHJhbmdlIGRz
+YTogMC4wIHRvIDAuMCBzdGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWluIHJhbmdlIGFtcDogMC4w
+IHRvIDAuMCBzdGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWluIHJhbmdlIGFsbDogMC4wIHRvIDc1
+LjAgc3RlcCAwLjUgZEIKfCAgIHwgICB8ICAgQmFuZHdpZHRoIHJhbmdlOiAyMDAwMDAwMC4wIHRv
+IDEwMDAwMDAwMC4wIHN0ZXAgMC4wIEh6CnwgICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogSVEK
+fCAgIHwgICB8ICAgVXNlcyBMTyBvZmZzZXQ6IE5vCnwgICAgIF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICAgLwp8ICAgfCAgICAgICBUWCBE
+Ym9hcmQ6IDAvUmFkaW8jMQp8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICAgLwp8ICAgfCAgIHwgICAgICAgVFggRnJv
+bnRlbmQ6IDAKfCAgIHwgICB8ICAgTmFtZTogTWFnbmVzaXVtCnwgICB8ICAgfCAgIEFudGVubmFz
+OiBUWC9SWAp8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAxLjAwMCB0byA2MDAwLjAwMCBNSHoKfCAg
+IHwgICB8ICAgR2FpbiByYW5nZSByZmljOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRCCnwgICB8ICAg
+fCAgIEdhaW4gcmFuZ2UgZHNhOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRCCnwgICB8ICAgfCAgIEdh
+aW4gcmFuZ2UgYW1wOiAwLjAgdG8gMC4wIHN0ZXAgMC4wIGRCCnwgICB8ICAgfCAgIEdhaW4gcmFu
+Z2UgYWxsOiAwLjAgdG8gNjUuMCBzdGVwIDAuNSBkQgp8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFu
+Z2U6IDIwMDAwMDAwLjAgdG8gMTAwMDAwMDAwLjAgc3RlcCAwLjAgSHoKfCAgIHwgICB8ICAgQ29u
+bmVjdGlvbiBUeXBlOiBJUQp8ICAgfCAgIHwgICBVc2VzIExPIG9mZnNldDogTm8KfCAgIHwgICAg
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwg
+ICB8ICAgIC8KfCAgIHwgICB8ICAgICAgIFRYIEZyb250ZW5kOiAxCnwgICB8ICAgfCAgIE5hbWU6
+IE1hZ25lc2l1bQp8ICAgfCAgIHwgICBBbnRlbm5hczogVFgvUlgKfCAgIHwgICB8ICAgRnJlcSBy
+YW5nZTogMS4wMDAgdG8gNjAwMC4wMDAgTUh6CnwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgcmZpYzog
+MC4wIHRvIDAuMCBzdGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWluIHJhbmdlIGRzYTogMC4wIHRv
+IDAuMCBzdGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWluIHJhbmdlIGFtcDogMC4wIHRvIDAuMCBz
+dGVwIDAuMCBkQgp8ICAgfCAgIHwgICBHYWluIHJhbmdlIGFsbDogMC4wIHRvIDY1LjAgc3RlcCAw
+LjUgZEIKfCAgIHwgICB8ICAgQmFuZHdpZHRoIHJhbmdlOiAyMDAwMDAwMC4wIHRvIDEwMDAwMDAw
+MC4wIHN0ZXAgMC4wIEh6CnwgICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogSVEKfCAgIHwgICB8
+ICAgVXNlcyBMTyBvZmZzZXQ6IE5vCnwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCnwgICAgLwp8ICAgfCAgICAgICBSWCBEYm9hcmQ6IDAv
+UmFkaW8jMQp8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KfCAgIHwgICAgLwp8ICAgfCAgIHwgICAgICAgUlggRnJvbnRlbmQ6IDAK
+fCAgIHwgICB8ICAgTmFtZTogTWFnbmVzaXVtCnwgICB8ICAgfCAgIEFudGVubmFzOiBUWC9SWCwg
+UlgyLCBDQUwsIExPQ0FMCnwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDEuMDAwIHRvIDYwMDAuMDAw
+IE1Iegp8ICAgfCAgIHwgICBHYWluIHJhbmdlIHJmaWM6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEIK
+fCAgIHwgICB8ICAgR2FpbiByYW5nZSBkc2E6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEIKfCAgIHwg
+ICB8ICAgR2FpbiByYW5nZSBhbXA6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEIKfCAgIHwgICB8ICAg
+R2FpbiByYW5nZSBhbGw6IDAuMCB0byA3NS4wIHN0ZXAgMC41IGRCCnwgICB8ICAgfCAgIEJhbmR3
+aWR0aCByYW5nZTogMjAwMDAwMDAuMCB0byAxMDAwMDAwMDAuMCBzdGVwIDAuMCBIegp8ICAgfCAg
+IHwgICBDb25uZWN0aW9uIFR5cGU6IElRCnwgICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwp8
+ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KfCAgIHwgICAgLwp8ICAgfCAgIHwgICAgICAgUlggRnJvbnRlbmQ6IDEKfCAgIHwgICB8
+ICAgTmFtZTogTWFnbmVzaXVtCnwgICB8ICAgfCAgIEFudGVubmFzOiBUWC9SWCwgUlgyLCBDQUws
+IExPQ0FMCnwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDEuMDAwIHRvIDYwMDAuMDAwIE1Iegp8ICAg
+fCAgIHwgICBHYWluIHJhbmdlIHJmaWM6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEIKfCAgIHwgICB8
+ICAgR2FpbiByYW5nZSBkc2E6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEIKfCAgIHwgICB8ICAgR2Fp
+biByYW5nZSBhbXA6IDAuMCB0byAwLjAgc3RlcCAwLjAgZEIKfCAgIHwgICB8ICAgR2FpbiByYW5n
+ZSBhbGw6IDAuMCB0byA3NS4wIHN0ZXAgMC41IGRCCnwgICB8ICAgfCAgIEJhbmR3aWR0aCByYW5n
+ZTogMjAwMDAwMDAuMCB0byAxMDAwMDAwMDAuMCBzdGVwIDAuMCBIegp8ICAgfCAgIHwgICBDb25u
+ZWN0aW9uIFR5cGU6IElRCnwgICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwoK
+--000000000000b8634706248590b2
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -8519,4 +8629,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---000000000000fc3e59062485629b--
+--000000000000b8634706248590b2--
