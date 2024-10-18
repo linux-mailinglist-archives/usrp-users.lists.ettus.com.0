@@ -2,75 +2,82 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D450B9A3A51
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 11:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D8439A39FD
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 11:30:30 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1B516385699
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 05:43:36 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D71523854EB
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 05:30:29 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1729244616; bh=1LdSD3k56tE6IAsiM3CHPSpGX6/SVEQZNrF/l1QA/ys=;
-	h=Date:References:In-Reply-To:From:To:CC:Subject:List-Id:
+	t=1729243829; bh=+8X4csxYpRGJDYogO9NZXE2jJHjWQSNtuKQ1lF6i5CM=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=dhnSwxfW5XtfNksRprOphJHgxVIXq5Afo1kpeVl+phFyz8wo/j+MQUzHsbzgFj2+Y
-	 i3waWUIYj7AG5DbnvcLb3pMYk1tqOoxl1rW4i2Pf0e5jqYIkCrMcIIh3MaoCQXo3R+
-	 IpIGJQsj50xB7aSmsR4JzHvKlIVclh79TTLlixBXZp+jB6Z9OlXE4xj+qT/r5qQv4G
-	 Ofua2bHKremhB3e+VRxXWcDWI/b0v3Ty42IuYZiVL0z9FIOBH3oYIYmZM4kxXThgaf
-	 h6AasW/HqD6usSggNMmfJVtVLflyi6/5HcWkmDC5D6tN6GxkJUVyFyBcVeiqTW8bVw
-	 7mR7MDAuDwrbA==
-Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8112338560A
-	for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 05:43:24 -0400 (EDT)
-Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-4a470b7ff49so618108137.2
-        for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 02:43:24 -0700 (PDT)
+	b=I1CA6C1rTNw5IWknNBmVTXCrV51Y0MJny8IL0LdbXu5+wEZEI+gW3832Rcq8aaCWK
+	 o5+xaYFasNCiBNrL/AgIlzSUeOAopX5cg3BFm43l5gKHWk7Bl743/RGuejtyRTQdKO
+	 xU0I1uKT2aHQD8knoWo+Yof+SMZptNyy6uSLzAEXJHCRpMyy8HPY4IsNfP00PrjJ/w
+	 AcUcf5MaMPedvmwWWZEZDLIP182TCA2CPnjM9j/NJ9LXeZNg7x+uZbYu+TrmekECsk
+	 By1YK4fX4TDSam6HA8BuHq2A78OncWWllrkI/5MV5Jor+eKK7XPonEOkDxaqBYORhc
+	 0ywMe2bupgkgw==
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id 41EBE384DE1
+	for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 05:30:18 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=accelleran-com.20230601.gappssmtp.com header.i=@accelleran-com.20230601.gappssmtp.com header.b="QZGvtvR3";
+	dkim-atps=neutral
+Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-3a3a7b80447so7260535ab.1
+        for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 02:30:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=accelleran-com.20230601.gappssmtp.com; s=20230601; t=1729243817; x=1729848617; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5SnKXW30RUSeiWndwE6tsBVabWkRuBelbfxypBSjciw=;
+        b=QZGvtvR39TXu7hVW8jPLHrCzVHKtdbX+scC7iKZM30UnFXl0Uuu4ufxfHzn+hOzL32
+         xb8WHwMDv2IS/7cLrbqSX8r8VSTp4GG5RlihN1JeyB3vyHYx2Pxm64JGNUxhp0RJz2lU
+         gyKP2dz1l+fH+XbwnoAjlKi9mWeYUe5ONrlMBkYfFS6pzFCE5eIIP7I5XDDJRAyniHVv
+         bLZZ1drUDzZKv/6FKs27zaaAZf99zZgY3Be9aurte0NtSZNyHkxIAu555htLZuMs+lzk
+         2zIFqYEjsiQJ+jahHkN2jFo7l9D2mE0V2/8XiQEpq3qrzehildvhx3pAUTDGoWo29Xe5
+         tXgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729244604; x=1729849404;
-        h=cc:to:from:subject:message-id:in-reply-to:references:date
+        d=1e100.net; s=20230601; t=1729243817; x=1729848617;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TZwPMKCMY/iiqoWf0rNPgRyERoMgmX1lGysauxGnbZs=;
-        b=UkQWgDDfVu/6iP44ojORL0HSnue0fwIYVHN/MRP3pQAZMY1kt/WocTrKKKXFEQea+h
-         zrsNnm2s7oizeutG7TUabvhqeXdpD8Wwlvaenh8T0xD9VDqASuZWf4qjP4Vjp7jZbl7q
-         T7bik2003sfRyOoCZNYigFMhLcZ5mK/7dkzoJhDWg9Nh9BX79M3am/lVUMoSRTai0b46
-         1+pyN4j4kbcpimci/tBZ/UMl3r9o8w73Oe4oeYHV9MGMGbu9V2H4knuOJ92T0eTvbqgd
-         mmetp7rCeZ3DO3zNHMeSlCj+jE7BminiBkX4sSqA7iZXyexlWNTVs8Auukn+APaKg/YQ
-         mB+A==
-X-Gm-Message-State: AOJu0YyJ2Wnf1SIIVVo25O7Eqb+SXUpQuS8iDM3wY0syq2akVM0V5Tb/
-	3Y0qBWyrLR5NVeJVsGm0JB80HlgvGehiEZe/3+C93tSJYMsPWgz64Y/vhsRaP4eKw40RNu0tuzj
-	Wvx4rbOnIGMUhIr7zfceejDWuTXhzk9UyoLUcnwB2yb95qkf8KeWylvvk1tWZsHOgVZ+GAQ==
-X-Google-Smtp-Source: AGHT+IE8deJg7yEylw6tniUEORgJ04LPAUQq0+xGu/FbLnWA0o1s5RenTyKNwPxn/4aY6wsru9qs84GSTQnf6dwUGvVi4kcyexNjlQ==
-X-Received: by 2002:a05:6102:e13:b0:4a3:ccaf:203 with SMTP id ada2fe7eead31-4a5d6a616b4mr2152548137.5.1729244603562;
-        Fri, 18 Oct 2024 02:43:23 -0700 (PDT)
+        bh=5SnKXW30RUSeiWndwE6tsBVabWkRuBelbfxypBSjciw=;
+        b=YA/ZtoR5tkidiYLlLfMtnOvj1zhv719nhbD0PC3MdyeAmB6fLEk/4DkZ+iNDVCsbNO
+         R61VZcJt6RbU9RxEQmZdLJWmGWsys/b8mOUIlH0AelA+ZBNXDbv6mUNkKD2X2xkJzfkN
+         PJbk/1e5Hmykx5ItRBZ8IzmWa2DX0Tiylh/w+xkExNMhxH9tP97axykWmELAnjzBt8qV
+         eyHAYpQAMSZYeDcKsqXBAd6peOirlq+ePfy1YZp9igcVrwXHyxLqlQCf0HAdOCc25IMY
+         L+WSKj04r/qp8dwiMVGoGJzYR46AjqcSGUUuzcndnQpDVcAxFgfNNreoat+ir06NcIqj
+         TpSg==
+X-Gm-Message-State: AOJu0YyBgpFjllqFO7BQfAFuPQKUAMZhNXaY21cwS6tcT3j7bhWHBNSj
+	J4Rbauzl16iiNe6HgXJfD642IZRpwXARCKJaQfa97LlqdPSumJmW6SxlEhV0BAEUF2n6ABHooG8
+	eV+91IxTOtUwnlsToOKLNjiIIA88S8zzkX9Tkv1HN/XMHp+KaSVc=
+X-Google-Smtp-Source: AGHT+IGjKB8brVzEK29ILXx4b7PhwsyiiA8JmzGZ3AdWmjPivNqiny4omDOpng+qgGiT8o61Wh4OMbEJjdzi/fS5gXQ=
+X-Received: by 2002:a05:6e02:154c:b0:3a1:a293:4349 with SMTP id
+ e9e14a558f8ab-3a3f40ab52bmr18802355ab.18.1729243817046; Fri, 18 Oct 2024
+ 02:30:17 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 18 Oct 2024 11:30:04 +0200
 References: <CAO=xj9XeHxnLA9wK+D6Q9ghpwkGo6DpYF9CH7vWSERSxv+eiPA@mail.gmail.com>
-	<7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com>
-	<CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
-	<f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com>
-	<CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
-	<CAO=xj9X2WY3n=FAH8Wikfh-o5iLM2RrA6c9yRbgj7rym3UeWXw@mail.gmail.com>
-	<6e761282-fcb9-440d-95f1-7d367774a3f2@gmail.com>
-	<CAO=xj9U7j2NkZXnh3wetTk2A+mCm8Z6B8kvgN0e7SdvZvP84zA@mail.gmail.com>
-	<1c4862e7-b536-4c20-a606-1fdac22d97b2@gmail.com>
-	<CAO=xj9WiD-gPAHmEMN9fVoPetzyCaff+w-u1iLRho6bkSh5Bvg@mail.gmail.com>
-	<CAO=xj9VyL9M7gP504BjTF7HN0g7=-uffaiZqMqdFhbEa7frkAw@mail.gmail.com>
-	<108ca81e-cb51-4e53-a64a-7722f02c0cee@gmail.com>
-	<CAO=xj9UA=cV5nagb=E02Zs7mQdksrU5Bfb9tcADp8w3wAD_eOQ@mail.gmail.com>
-	<42e71cb4-0fb9-4ead-8d04-a16645f86f9f@gmail.com>
-	<CAO=xj9X5oG1vZmZsM9haL=erSf5+m__uxLBsaLSqH4qTa98cMQ@mail.gmail.com>
-	<CAO=xj9WaKp2u-FG26ZGc3eKoHb_7WKCL8B6mvOXQRAstMwJZDQ@mail.gmail.com>
-	<b5ce6e00-05b7-4e26-8f6e-9c2eef7e5ba9@gmail.com>
-	<CAO=xj9WWZhaKQQxtppYtZ0i+kCaXc6cKmLDqjZ_q26-28CYcaA@mail.gmail.com>
-	<CAFche=jREC+oq0uzohKrk6q+L0VsjgptELQE9Le8A250C8xL3w@mail.gmail.com>
-	<CAO=xj9U8M+Cwbxo8BaVeBPVS25OpubHf2DyFWM4GvVBMz20NnA@mail.gmail.com>
-	<CAO=xj9XR+Ru-4dO1JjZBzkygzUEbazefR+2tYHfGrJHdj2nhCQ@mail.gmail.com>
-	<CAO=xj9VZ-RWgi0S+e1sFiPSPFMO1_jrqwwvJ9WUke-FfUukiTw@mail.gmail.com>
-	<CAFOi1A44R9ZpwqWC5bhvp63LM2MAJFqm0J9eGxLkooPAHn6+5A@mail.gmail.com>
-	<CAO=xj9XYKvMvunYGy+cE=R8dJKbWmgqi-owOwnTVVhFessw6uw@mail.gmail.com>
-	<CAFOi1A4ALmjj6030jbfUA40fmE7jEU6ZLbgKygMUihpA9f9L+Q@mail.gmail.com>
+ <7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com> <CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
+ <f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com> <CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
+ <CAO=xj9X2WY3n=FAH8Wikfh-o5iLM2RrA6c9yRbgj7rym3UeWXw@mail.gmail.com>
+ <6e761282-fcb9-440d-95f1-7d367774a3f2@gmail.com> <CAO=xj9U7j2NkZXnh3wetTk2A+mCm8Z6B8kvgN0e7SdvZvP84zA@mail.gmail.com>
+ <1c4862e7-b536-4c20-a606-1fdac22d97b2@gmail.com> <CAO=xj9WiD-gPAHmEMN9fVoPetzyCaff+w-u1iLRho6bkSh5Bvg@mail.gmail.com>
+ <CAO=xj9VyL9M7gP504BjTF7HN0g7=-uffaiZqMqdFhbEa7frkAw@mail.gmail.com>
+ <108ca81e-cb51-4e53-a64a-7722f02c0cee@gmail.com> <CAO=xj9UA=cV5nagb=E02Zs7mQdksrU5Bfb9tcADp8w3wAD_eOQ@mail.gmail.com>
+ <42e71cb4-0fb9-4ead-8d04-a16645f86f9f@gmail.com> <CAO=xj9X5oG1vZmZsM9haL=erSf5+m__uxLBsaLSqH4qTa98cMQ@mail.gmail.com>
+ <CAO=xj9WaKp2u-FG26ZGc3eKoHb_7WKCL8B6mvOXQRAstMwJZDQ@mail.gmail.com>
+ <b5ce6e00-05b7-4e26-8f6e-9c2eef7e5ba9@gmail.com> <CAO=xj9WWZhaKQQxtppYtZ0i+kCaXc6cKmLDqjZ_q26-28CYcaA@mail.gmail.com>
+ <CAFche=jREC+oq0uzohKrk6q+L0VsjgptELQE9Le8A250C8xL3w@mail.gmail.com>
+ <CAO=xj9U8M+Cwbxo8BaVeBPVS25OpubHf2DyFWM4GvVBMz20NnA@mail.gmail.com>
+ <CAO=xj9XR+Ru-4dO1JjZBzkygzUEbazefR+2tYHfGrJHdj2nhCQ@mail.gmail.com>
+ <CAO=xj9VZ-RWgi0S+e1sFiPSPFMO1_jrqwwvJ9WUke-FfUukiTw@mail.gmail.com>
+ <CAFOi1A44R9ZpwqWC5bhvp63LM2MAJFqm0J9eGxLkooPAHn6+5A@mail.gmail.com>
+ <CAO=xj9XYKvMvunYGy+cE=R8dJKbWmgqi-owOwnTVVhFessw6uw@mail.gmail.com> <CAFOi1A4ALmjj6030jbfUA40fmE7jEU6ZLbgKygMUihpA9f9L+Q@mail.gmail.com>
 In-Reply-To: <CAFOi1A4ALmjj6030jbfUA40fmE7jEU6ZLbgKygMUihpA9f9L+Q@mail.gmail.com>
-Message-ID: <CAO=xj9VdRPgwG_q7JfsXjWE0pqrxQnDZEcAJVUti9MB70f+FCA@mail.gmail.com>
 From: Houshang <houshang.azizi@accelleran.com>
+Date: Fri, 18 Oct 2024 11:30:04 +0200
+Message-ID: <CAO=xj9VdRPgwG_q7JfsXjWE0pqrxQnDZEcAJVUti9MB70f+FCA@mail.gmail.com>
 To: Martin Braun <martin.braun@ettus.com>
 Message-ID-Hash: LU36S2M445UCMDZOIOV5QDZRXCVJNAPD
 X-Message-ID-Hash: LU36S2M445UCMDZOIOV5QDZRXCVJNAPD
@@ -88,15 +95,15 @@ List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4735239366927963551=="
+Content-Type: multipart/mixed; boundary="===============7302085358610716553=="
 
---===============4735239366927963551==
-Content-Type: multipart/related; boundary="000000000000c183f40624bcf2eb"
+--===============7302085358610716553==
+Content-Type: multipart/related; boundary="0000000000007244b40624bcf3dd"
 
---000000000000c183f40624bcf2eb
-Content-Type: multipart/alternative; boundary="000000000000c183f30624bcf2ea"
+--0000000000007244b40624bcf3dd
+Content-Type: multipart/alternative; boundary="0000000000007244b30624bcf3dc"
 
---000000000000c183f30624bcf2ea
+--0000000000007244b30624bcf3dc
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -976,7 +983,7 @@ age:
 twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
 <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D1>
 
---000000000000c183f30624bcf2ea
+--0000000000007244b30624bcf3dc
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -2740,14 +2747,14 @@ templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mi=
 ddle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p></div></di=
 v>
 
---000000000000c183f30624bcf2ea--
+--0000000000007244b30624bcf3dc--
 
---000000000000c183f40624bcf2eb
+--0000000000007244b40624bcf3dd
 Content-Type: image/jpeg; name="15_17:11:14.jpg"
-Content-Disposition: attachment; filename="15_17:11:14.jpg"
+Content-Disposition: inline; filename="15_17:11:14.jpg"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_19290de4516dd3d32171
 Content-ID: <ii_19290de4516dd3d32171>
+X-Attachment-Id: ii_19290de4516dd3d32171
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -2973,12 +2980,12 @@ EOqpaRXWq2NhfCKyVhHHHJaROifMSSQpAJ4BIOAK80r2D9rDwxa+CfjXqPh+xkmlstLsNPsoZLhg
 ZGSOzhVSxAAJwOcAfSvH6LJaR2OTCNvDwb3sFFFFB1hRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
 RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
 FABRRRQAUUUUAf/Z
---000000000000c183f40624bcf2eb
+--0000000000007244b40624bcf3dd
 Content-Type: image/jpeg; name="15_16:59:31.jpg"
-Content-Disposition: attachment; filename="15_16:59:31.jpg"
+Content-Disposition: inline; filename="15_16:59:31.jpg"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_19290de4518dbb30d0d2
 Content-ID: <ii_19290de4518dbb30d0d2>
+X-Attachment-Id: ii_19290de4518dbb30d0d2
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -5603,12 +5610,12 @@ igAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKK
 ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA
 KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK+qP+CdaCT4xa2Dn/kCP0JH/AC3h
 9K+V6+qv+CdH/JY9c/7Aj/8Ao+GsqnwM5MX/AAZfL8z9LUt02Ly/T++3+NFSp9xfpRXCfOn/2Q==
---000000000000c183f40624bcf2eb
+--0000000000007244b40624bcf3dd
 Content-Type: image/jpeg; name="15_16:21:07.jpg"
-Content-Disposition: attachment; filename="15_16:21:07.jpg"
+Content-Disposition: inline; filename="15_16:21:07.jpg"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_19290de4518db125c3b3
 Content-ID: <ii_19290de4518db125c3b3>
+X-Attachment-Id: ii_19290de4518db125c3b3
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -6426,12 +6433,12 @@ FABRRRQAUUUUAd98f/8AkuXj/wD7Dt5/6OauBrvvj/8A8ly8f/8AYdvP/RzVwNTH4UY0f4UfRBRR
 RVGwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
 FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
 AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH/2Q==
---000000000000c183f40624bcf2eb
+--0000000000007244b40624bcf3dd
 Content-Type: image/jpeg; name="15_15:37:26.jpg"
-Content-Disposition: attachment; filename="15_15:37:26.jpg"
+Content-Disposition: inline; filename="15_15:37:26.jpg"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_19290de45184d14bf724
 Content-ID: <ii_19290de45184d14bf724>
+X-Attachment-Id: ii_19290de45184d14bf724
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -9194,12 +9201,12 @@ ooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
 gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKA
 CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
 KKKACiiigAooooAKKKKACiiigAooooA//9k=
---000000000000c183f40624bcf2eb
+--0000000000007244b40624bcf3dd
 Content-Type: image/jpeg; name="18_08:51:32.jpg"
-Content-Disposition: attachment; filename="18_08:51:32.jpg"
+Content-Disposition: inline; filename="18_08:51:32.jpg"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: ii_m2edic6e4
 Content-ID: <ii_m2edic6e4>
+X-Attachment-Id: ii_m2edic6e4
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -9924,9 +9931,9 @@ ef5EyS+Xvw23dsxuwcZzg9KSioxtE3ldpo/pCr8fv+Cwf/Jy/hn/ALFG2/8AS29r03/h9H/1R3/y
 5/8A7jr4+/bB/ad/4av+JemeLv8AhGv+EW+xaRFpX2P7f9s37JppfM3+XHjPnY24P3c55wMKcJRl
 dnk4WhUp1OaS0PDKKKK6j1wooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA
 KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z
---000000000000c183f40624bcf2eb--
+--0000000000007244b40624bcf3dd--
 
---===============4735239366927963551==
+--===============7302085358610716553==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -9936,4 +9943,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4735239366927963551==--
+--===============7302085358610716553==--
