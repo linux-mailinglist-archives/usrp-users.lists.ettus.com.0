@@ -2,603 +2,653 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77C1D9A3B52
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 12:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99DA79A3BAD
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 12:36:19 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B0BB8385635
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 06:22:49 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E73AA38559A
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 06:36:18 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1729246969; bh=CGITcGd5naBbfOIIO5NkoxiIx3QD4rECYkj51+0R3/s=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=ylLoTMIAPZfbLw5/aeSxJ6iRcVyq7rLPvysknXwlATgR1OGONHjYYWJt4FgtZnU/9
-	 1N97PloSwxqN/mZTLgy/sVmQpmFhjuKdwMoDWLjvJEJZr8t94w4mKyyb8CNmllUmXM
-	 VNfzo9TtW82c5TMxN/K7DB7JDF/Br8kbrL9as1Ap89XANbHMPn64gxx0WGXTuA4lrq
-	 7viDjRPXV7pwR6hyyYedlvKg0kL/rHHNdAIKiD0+t6x6VoBjXkPqZoAZItOPN1wjWl
-	 aeHv6TABTkcwOKCCLhVyInhEc1bq28vgC0xTkacuQ0cdpEjJ3l+XpccPB2QFLZzxiC
-	 egumx75Ff/1OQ==
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4CDE23854D1
-	for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 06:21:45 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="IJ8wLcJ+";
-	dkim-atps=neutral
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9a5b2f2026so189394566b.2
-        for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 03:21:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1729246904; x=1729851704; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9xzjZ2Y/bt1fdQS1KZrJ5JmjesI5nPb7mBsT1iBWfyE=;
-        b=IJ8wLcJ+q8PhoezJfVOxO4XhMsZCON7spqUrRIXHr4oRO3t2UiZJJAwIAEXF4Duk/d
-         tlHRUTleUrTAJMjqhF2jB3YiWTOIIBoslrmv5ZI3ymHseoqPdAQ+2KUQ9gdFPvkf7DDY
-         /HOR1msYR65gkeHpoVT/9rI6vrR/Sr6KUxKO20yTmVFrLq1sEDNSIwfchX3MqaDEKoiz
-         9VYz5DRCQ6Lzp5MPzJxfWc9RNwEOuPlBUo1rknx9jGYf8Twj+2Hip0qy01bFLZSVCrgX
-         C99GTWyBAxe3ilHKfb3kksYhkhYQ7VyjVbqEAdlp5jaSRUD5GEHAf6GkU7jdm4u/qSWF
-         2jUA==
+	t=1729247778; bh=3MqNVLPPwokCDSCXWNeqQJIm4AAppcO9sXSLzSsC5hk=;
+	h=Date:References:In-Reply-To:From:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=ZThPkockgCnNdYZD2TzS6uyZDHi9audUVcJhzZVDkyVitR0IifnV6wTRAwHUf0KTC
+	 OUp5ZCfXDPUfIN5bYGc8yG++FaoYC3ZmMJvoDA7amw3Aiv83KLsybref8mKWhBXIP7
+	 M3uipED1vZ63czsYuDDjMNVm6OQytgIeip7eMb1KwYUNxvYDck/MnKqND1hzoESvAu
+	 xhYrRapeaAKW6qUTm9+ynFqjquo8De2QCiEd69D0l0h+BYepSxrbEbKzBbTe94GvKk
+	 4eImh7qmT+yAyhWtd1H4o0B5jWl1Ibstuqsbv1NHRY1K8fVluoYnoYz7G2uKavGry7
+	 4AB32xkA7b31A==
+Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
+	by mm2.emwd.com (Postfix) with ESMTPS id 60FC0385550
+	for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 06:36:06 -0400 (EDT)
+Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-84fdac58ddfso554094241.1
+        for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 03:36:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729246904; x=1729851704;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9xzjZ2Y/bt1fdQS1KZrJ5JmjesI5nPb7mBsT1iBWfyE=;
-        b=LcgYUsPUyzr8Zvb8R8YtQWMZi8mc6qz+Cx7eNDudjQY2rnLZNMg8If7Zi8g/8Pxoxh
-         7VYT5KobjaiTT+/0QlPe7XngB8G2SOo1NzKEU9EUJmWu0DV5634cqjwdS5XcUlRP4JgQ
-         TUMbi6qZlFpQ2CFg7WK44SIdJu+zR61PAblh0lJpQvqZPycA2y2ErrkjUJsqFnVua/hR
-         VSWkVwff8ZupucM3/qnFp7fhgf+beMkfQYhx/qIYVLAwGvjQyzzpon+8tv/G6jfgUh0n
-         +tlurwH75M/eIJJfZjNeuIiACRTyAM+66RMi/JGZRpU/tHVpNi5hkolNi78qBDU7R+Hn
-         GOUw==
-X-Gm-Message-State: AOJu0Yw8pIAYoFXmFu9VOCeR0CGh9ewhhAy7ooBmktLbL7D29a0yhM8B
-	8beBVxiD6pB+dYStDAVaC0DVXNMGVyhYDrUA/B5I8w4sHawF5PyVqLzFb4cy+g+mMhO7NUAyWYN
-	EEpJ6hJ6fxXW2ILjFigPUjM6nTmeyuTEsSU5//11ZzE/3+X8BJBNIZw==
-X-Google-Smtp-Source: AGHT+IFF4E0mQNZ3lVX49MQc6L093CnoLgYBnVeEIq8aJavNd9yH1sllMDTQ9sjlkUn0Fhu/SWtqF3rsSDtkXzMQuIM=
-X-Received: by 2002:a17:906:c107:b0:a99:f975:2e6 with SMTP id
- a640c23a62f3a-a9a69ba6d72mr179674866b.35.1729246903379; Fri, 18 Oct 2024
- 03:21:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729247766; x=1729852566;
+        h=cc:to:from:subject:message-id:in-reply-to:references:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C8WzBz2UJxPm7MondG8EiSF3yQgWEzEJZn4+EyZZyHY=;
+        b=wbkaYkT1IH9wJ8yUmi8varyJ8WZB8re5nF+2cG3/Z4TNwGE9rq0EHcm3nytR2/gnvi
+         3VVEt45nULiPJ1NH5Dd/jB869O1UfM88w4X9z472P+Ct53hpB2i+zTNCLhFQ7F/BoN4N
+         593nAPDWelKnqRfUxZqep4UJvuzG6/TFmQD35q/YEG7ENtPwcAJmN6NMNLpvu4M2SoIO
+         iWkSRmL2ODL6b+SWWnNq3WXC+G5A6gxINtrm7/QyyWFNYOV6X1BPjrKMex0BziBwjPj9
+         XT1tJ0HNLVOH5J4NJpksJT58QZZtkQsxRoCWxvgMjWemwwEu/bQS1kKYRvnmhiQw9xSy
+         iSMQ==
+X-Gm-Message-State: AOJu0YxzaSmfC6ObrU5wzMvisdO6v0AGQ5su1Hrb0/EL3Fr0pTbpxTWY
+	ONQhicReCOTklvbg8O6w2gi/Z5ksiWBo2LEuYEn20fDKIYUG7p+6R1gxEPssdvi9yd5V+9OT15u
+	SasyQseVHxjXXBWI27tTieSTk0dlXGUdxwk/lC9jRcQ9Vn1HWHMg5GQr793Tv55lkA5yIYg==
+X-Google-Smtp-Source: AGHT+IG0QUqFYiLTzftDF7aLqhjG6NUfT7AcvDOCVaybBJ42QnPG/f2rreBpRBK/dybZ34DylZ8aGLWiSvlKDYKLurR5iFCvWznmfA==
+X-Received: by 2002:a05:6102:4194:b0:4a3:e1de:4fd8 with SMTP id ada2fe7eead31-4a5d6b9e13bmr1916234137.26.1729247765402;
+        Fri, 18 Oct 2024 03:36:05 -0700 (PDT)
 MIME-Version: 1.0
+Date: Fri, 18 Oct 2024 12:24:04 +0200
 References: <CAO=xj9XeHxnLA9wK+D6Q9ghpwkGo6DpYF9CH7vWSERSxv+eiPA@mail.gmail.com>
- <7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com> <CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
- <f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com> <CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
- <CAO=xj9X2WY3n=FAH8Wikfh-o5iLM2RrA6c9yRbgj7rym3UeWXw@mail.gmail.com>
- <6e761282-fcb9-440d-95f1-7d367774a3f2@gmail.com> <CAO=xj9U7j2NkZXnh3wetTk2A+mCm8Z6B8kvgN0e7SdvZvP84zA@mail.gmail.com>
- <1c4862e7-b536-4c20-a606-1fdac22d97b2@gmail.com> <CAO=xj9WiD-gPAHmEMN9fVoPetzyCaff+w-u1iLRho6bkSh5Bvg@mail.gmail.com>
- <CAO=xj9VyL9M7gP504BjTF7HN0g7=-uffaiZqMqdFhbEa7frkAw@mail.gmail.com>
- <108ca81e-cb51-4e53-a64a-7722f02c0cee@gmail.com> <CAO=xj9UA=cV5nagb=E02Zs7mQdksrU5Bfb9tcADp8w3wAD_eOQ@mail.gmail.com>
- <42e71cb4-0fb9-4ead-8d04-a16645f86f9f@gmail.com> <CAO=xj9X5oG1vZmZsM9haL=erSf5+m__uxLBsaLSqH4qTa98cMQ@mail.gmail.com>
- <CAO=xj9WaKp2u-FG26ZGc3eKoHb_7WKCL8B6mvOXQRAstMwJZDQ@mail.gmail.com>
- <b5ce6e00-05b7-4e26-8f6e-9c2eef7e5ba9@gmail.com> <CAO=xj9WWZhaKQQxtppYtZ0i+kCaXc6cKmLDqjZ_q26-28CYcaA@mail.gmail.com>
- <CAFche=jREC+oq0uzohKrk6q+L0VsjgptELQE9Le8A250C8xL3w@mail.gmail.com>
- <CAO=xj9U8M+Cwbxo8BaVeBPVS25OpubHf2DyFWM4GvVBMz20NnA@mail.gmail.com>
- <CAO=xj9XR+Ru-4dO1JjZBzkygzUEbazefR+2tYHfGrJHdj2nhCQ@mail.gmail.com>
- <CAO=xj9VZ-RWgi0S+e1sFiPSPFMO1_jrqwwvJ9WUke-FfUukiTw@mail.gmail.com>
- <CAFOi1A44R9ZpwqWC5bhvp63LM2MAJFqm0J9eGxLkooPAHn6+5A@mail.gmail.com>
- <CAO=xj9XYKvMvunYGy+cE=R8dJKbWmgqi-owOwnTVVhFessw6uw@mail.gmail.com>
- <CAFOi1A4ALmjj6030jbfUA40fmE7jEU6ZLbgKygMUihpA9f9L+Q@mail.gmail.com> <CAO=xj9VdRPgwG_q7JfsXjWE0pqrxQnDZEcAJVUti9MB70f+FCA@mail.gmail.com>
-In-Reply-To: <CAO=xj9VdRPgwG_q7JfsXjWE0pqrxQnDZEcAJVUti9MB70f+FCA@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Fri, 18 Oct 2024 12:21:31 +0200
-Message-ID: <CAFOi1A6RqVHaSm1oqbCDo6XGf3EdB13YL+i4bMibgG8P0_NbQg@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: R4H2HDY4E2AE5IKED5TLPALMRIU6WA2C
-X-Message-ID-Hash: R4H2HDY4E2AE5IKED5TLPALMRIU6WA2C
-X-MailFrom: martin.braun@ettus.com
+	<7c2a2a00-d341-4c03-b1cd-9b88433e856b@gmail.com>
+	<CAO=xj9W43M3deR8AyPgyeORiHZ2otRC4fA1kJsuWTeYuZJNZ_A@mail.gmail.com>
+	<f9f979c1-2c81-4002-adca-186f108e8bd1@gmail.com>
+	<CAO=xj9XhxKDKnBYGP1AMW6zO6pd7Nt9GMBPdytine_LZC_AdmA@mail.gmail.com>
+	<CAO=xj9X2WY3n=FAH8Wikfh-o5iLM2RrA6c9yRbgj7rym3UeWXw@mail.gmail.com>
+	<6e761282-fcb9-440d-95f1-7d367774a3f2@gmail.com>
+	<CAO=xj9U7j2NkZXnh3wetTk2A+mCm8Z6B8kvgN0e7SdvZvP84zA@mail.gmail.com>
+	<1c4862e7-b536-4c20-a606-1fdac22d97b2@gmail.com>
+	<CAO=xj9WiD-gPAHmEMN9fVoPetzyCaff+w-u1iLRho6bkSh5Bvg@mail.gmail.com>
+	<CAO=xj9VyL9M7gP504BjTF7HN0g7=-uffaiZqMqdFhbEa7frkAw@mail.gmail.com>
+	<108ca81e-cb51-4e53-a64a-7722f02c0cee@gmail.com>
+	<CAO=xj9UA=cV5nagb=E02Zs7mQdksrU5Bfb9tcADp8w3wAD_eOQ@mail.gmail.com>
+	<42e71cb4-0fb9-4ead-8d04-a16645f86f9f@gmail.com>
+	<CAO=xj9X5oG1vZmZsM9haL=erSf5+m__uxLBsaLSqH4qTa98cMQ@mail.gmail.com>
+	<CAO=xj9WaKp2u-FG26ZGc3eKoHb_7WKCL8B6mvOXQRAstMwJZDQ@mail.gmail.com>
+	<b5ce6e00-05b7-4e26-8f6e-9c2eef7e5ba9@gmail.com>
+	<CAO=xj9WWZhaKQQxtppYtZ0i+kCaXc6cKmLDqjZ_q26-28CYcaA@mail.gmail.com>
+	<CAFche=jREC+oq0uzohKrk6q+L0VsjgptELQE9Le8A250C8xL3w@mail.gmail.com>
+	<CAO=xj9U8M+Cwbxo8BaVeBPVS25OpubHf2DyFWM4GvVBMz20NnA@mail.gmail.com>
+	<CAO=xj9XR+Ru-4dO1JjZBzkygzUEbazefR+2tYHfGrJHdj2nhCQ@mail.gmail.com>
+	<CAO=xj9VZ-RWgi0S+e1sFiPSPFMO1_jrqwwvJ9WUke-FfUukiTw@mail.gmail.com>
+	<CAFOi1A44R9ZpwqWC5bhvp63LM2MAJFqm0J9eGxLkooPAHn6+5A@mail.gmail.com>
+	<CAO=xj9XYKvMvunYGy+cE=R8dJKbWmgqi-owOwnTVVhFessw6uw@mail.gmail.com>
+	<CAFOi1A4ALmjj6030jbfUA40fmE7jEU6ZLbgKygMUihpA9f9L+Q@mail.gmail.com>
+	<CAO=xj9VdRPgwG_q7JfsXjWE0pqrxQnDZEcAJVUti9MB70f+FCA@mail.gmail.com>
+	<CAFOi1A6RqVHaSm1oqbCDo6XGf3EdB13YL+i4bMibgG8P0_NbQg@mail.gmail.com>
+In-Reply-To: <CAFOi1A6RqVHaSm1oqbCDo6XGf3EdB13YL+i4bMibgG8P0_NbQg@mail.gmail.com>
+Message-ID: <CAO=xj9UpRRUG1ZfwxnjfaTx+OOtA=VWTMkKYXJDsA_=Yxc-o+Q@mail.gmail.com>
+From: Houshang <houshang.azizi@accelleran.com>
+To: Martin Braun <martin.braun@ettus.com>
+Message-ID-Hash: DNHROA7QSMBX2HQCHQ4ADGGYENXEIWC7
+X-Message-ID-Hash: DNHROA7QSMBX2HQCHQ4ADGGYENXEIWC7
+X-MailFrom: houshang.azizi@accelleran.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Failure to create rfnoc_graph
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/R4H2HDY4E2AE5IKED5TLPALMRIU6WA2C/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DNHROA7QSMBX2HQCHQ4ADGGYENXEIWC7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3110643057558933694=="
+Content-Type: multipart/mixed; boundary="===============1166613230990163411=="
 
---===============3110643057558933694==
-Content-Type: multipart/related; boundary="00000000000067f0e10624bdab49"
+--===============1166613230990163411==
+Content-Type: multipart/related; boundary="000000000000e0631b0624bdb319"
 
---00000000000067f0e10624bdab49
-Content-Type: multipart/alternative; boundary="00000000000067f0e00624bdab48"
+--000000000000e0631b0624bdb319
+Content-Type: multipart/alternative; boundary="000000000000e0631a0624bdb318"
 
---00000000000067f0e00624bdab48
+--000000000000e0631a0624bdb318
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-No worries about sending it to me directly, I just wanted to remind you to
-do reply-all or whatever. Happens to all of us!
+To be clear,: We are talking about only one setup (one n310). To be honest
+I do not see a networking issue as I can ping and the connection is stable.
 
-What I meant is, in your previous email you sent printouts of
-uhd_find_devices and benchmark_rate from a remote computer, both without
-failures. That is an indication that the device works as intended. The
-error message " Control operation timed out waiting for ACK." typically
-indicates that UHD is sending data to the USRP, but no response is coming.
-If you see that with a particular network configuration, but not with
-another, then you're more likely to have a network issue than a USRP issue.
+On Fri, 18 Oct 2024 at 12:22, Martin Braun <martin.braun@ettus.com> wrote:
 
---M
-
-On Fri, Oct 18, 2024 at 11:30=E2=80=AFAM Houshang <houshang.azizi@accellera=
-n.com>
-wrote:
-
-> Sorry to send it directly to you Martin
-> And thanks for analyzing the issue
-> I am not sure what you exactly mean by networking issue. The management
-> port of the n310 is directly connected to our network and I can ping it a=
-ll
-> the time. Is there anything else to be checked in this regard? I also nee=
-d
-> to add that I have forgotten about DPDK for the time being and I just wan=
-t
-> to test without it for the sake of simplicity. FOr the same reason when I
-> am running it in my setup is use this arg: *device_args:
-> type=3Dn3xx,mgmt_addr=3D10.10.0.100,master_clock_rate=3D122.88e6,send_fra=
-me_size=3D8500,recv_frame_size=3D8500*
+> No worries about sending it to me directly, I just wanted to remind you t=
+o
+> do reply-all or whatever. Happens to all of us!
 >
->
->
->
->
->
->
->
->
-> *ad@bm-super11-intel:~$ ping 10.10.0.100PING 10.10.0.100 (10.10.0.100)
-> 56(84) bytes of data.64 bytes from 10.10.0.100 <http://10.10.0.100>:
-> icmp_seq=3D1 ttl=3D64 time=3D0.253 ms64 bytes from 10.10.0.100
-> <http://10.10.0.100>: icmp_seq=3D2 ttl=3D64 time=3D0.228 ms64 bytes from
-> 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D3 ttl=3D64 time=3D0.238 ms64=
- bytes
-> from 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D4 ttl=3D64 time=3D0.238=
- ms64
-> bytes from 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D5 ttl=3D64 time=
-=3D0.231
-> ms*
->
-> On Fri, 18 Oct 2024 at 11:21, Martin Braun <martin.braun@ettus.com> wrote=
-:
->
->> Hi,
->>
->> you accidentally emailed this directly to me, not to the mailing list.
->>
->> Your attachment didn't include any errors. It seems like your device is
->> working, data-transport-wise.
->>
->> Like I suggested earlier, you might be looking at some networking issues=
+> What I meant is, in your previous email you sent printouts of
+> uhd_find_devices and benchmark_rate from a remote computer, both without
+> failures. That is an indication that the device works as intended. The
+> error message " Control operation timed out waiting for ACK." typically
+> indicates that UHD is sending data to the USRP, but no response is coming=
 .
->> Unfortunately, that's not something we can help you with. The error mess=
-age
->> you provided is very generic, and occurs any time that the host computer
->> running UHD can't properly reach the USRP. It can also happen when the U=
-SRP
->> is broken and is not responding (e.g., some clocks didn't come up) but t=
-hat
->> doesn't seem to be the case given your latest printouts.
+> If you see that with a particular network configuration, but not with
+> another, then you're more likely to have a network issue than a USRP issu=
+e.
+>
+> --M
+>
+> On Fri, Oct 18, 2024 at 11:30=E2=80=AFAM Houshang <houshang.azizi@accelle=
+ran.com>
+> wrote:
+>
+>> Sorry to send it directly to you Martin
+>> And thanks for analyzing the issue
+>> I am not sure what you exactly mean by networking issue. The management
+>> port of the n310 is directly connected to our network and I can ping it =
+all
+>> the time. Is there anything else to be checked in this regard? I also ne=
+ed
+>> to add that I have forgotten about DPDK for the time being and I just wa=
+nt
+>> to test without it for the sake of simplicity. FOr the same reason when =
+I
+>> am running it in my setup is use this arg: *device_args:
+>> type=3Dn3xx,mgmt_addr=3D10.10.0.100,master_clock_rate=3D122.88e6,send_fr=
+ame_size=3D8500,recv_frame_size=3D8500*
 >>
->> --M
 >>
 >>
->> On Fri, Oct 18, 2024 at 10:13=E2=80=AFAM Houshang <houshang.azizi@accell=
-eran.com>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *ad@bm-super11-intel:~$ ping 10.10.0.100PING 10.10.0.100 (10.10.0.100)
+>> 56(84) bytes of data.64 bytes from 10.10.0.100 <http://10.10.0.100>:
+>> icmp_seq=3D1 ttl=3D64 time=3D0.253 ms64 bytes from 10.10.0.100
+>> <http://10.10.0.100>: icmp_seq=3D2 ttl=3D64 time=3D0.228 ms64 bytes from
+>> 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D3 ttl=3D64 time=3D0.238 ms6=
+4 bytes
+>> from 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D4 ttl=3D64 time=3D0.23=
+8 ms64
+>> bytes from 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D5 ttl=3D64 time=
+=3D0.231
+>> ms*
+>>
+>> On Fri, 18 Oct 2024 at 11:21, Martin Braun <martin.braun@ettus.com>
 >> wrote:
 >>
->>> Hi
+>>> Hi,
 >>>
->>> Attached you can find the uhd_*usrp_probe* and *benchmark_rate*
->>> printout.It might give more info to find the cause of the following iss=
-ue:
+>>> you accidentally emailed this directly to me, not to the mailing list.
 >>>
->>> *Error: failed receiving packet. RfnocError: OpTimeout: Control
->>> operation timed out waiting for ACK.*
+>>> Your attachment didn't include any errors. It seems like your device is
+>>> working, data-transport-wise.
 >>>
->>> Thanks,,
->>> Houshang
+>>> Like I suggested earlier, you might be looking at some networking
+>>> issues. Unfortunately, that's not something we can help you with. The e=
+rror
+>>> message you provided is very generic, and occurs any time that the host
+>>> computer running UHD can't properly reach the USRP. It can also happen =
+when
+>>> the USRP is broken and is not responding (e.g., some clocks didn't come=
+ up)
+>>> but that doesn't seem to be the case given your latest printouts.
+>>>
+>>> --M
 >>>
 >>>
->>> On Fri, 18 Oct 2024 at 09:39, Martin Braun <martin.braun@ettus.com>
+>>> On Fri, Oct 18, 2024 at 10:13=E2=80=AFAM Houshang <houshang.azizi@accel=
+leran.com>
 >>> wrote:
 >>>
->>>> They're the same version. But it's hard for us to figure out what's
->>>> going on.
+>>>> Hi
 >>>>
->>>> One thing you can test is running benchmark_rate or uhd_usrp_probe on
->>>> the device itself (note: You need to drop the sampling rates down to 1=
--2
->>>> Msps). If that works, but over-the-network does not, then there's most
->>>> likely some issue with the Ethernet setup.
+>>>> Attached you can find the uhd_*usrp_probe* and *benchmark_rate*
+>>>> printout.It might give more info to find the cause of the following is=
+sue:
 >>>>
->>>> --M
+>>>> *Error: failed receiving packet. RfnocError: OpTimeout: Control
+>>>> operation timed out waiting for ACK.*
 >>>>
->>>> On Fri, Oct 18, 2024 at 8:58=E2=80=AFAM Houshang <houshang.azizi@accel=
-leran.com>
+>>>> Thanks,,
+>>>> Houshang
+>>>>
+>>>>
+>>>> On Fri, 18 Oct 2024 at 09:39, Martin Braun <martin.braun@ettus.com>
 >>>> wrote:
 >>>>
->>>>> Hi
+>>>>> They're the same version. But it's hard for us to figure out what's
+>>>>> going on.
 >>>>>
->>>>> Is this going to be a problem? Are these versions considered the same=
-?
->>>>> (host UHD version vs n310 UHD version)
+>>>>> One thing you can test is running benchmark_rate or uhd_usrp_probe on
+>>>>> the device itself (note: You need to drop the sampling rates down to =
+1-2
+>>>>> Msps). If that works, but over-the-network does not, then there's mos=
+t
+>>>>> likely some issue with the Ethernet setup.
 >>>>>
->>>>> [image: 18_08:51:32.jpg]
+>>>>> --M
 >>>>>
->>>>> Also, what is the way out of this please?
+>>>>> On Fri, Oct 18, 2024 at 8:58=E2=80=AFAM Houshang <
+>>>>> houshang.azizi@accelleran.com> wrote:
 >>>>>
->>>>> *Error: failed receiving packet. RfnocError: OpTimeout: Control
->>>>> operation timed out waiting for ACK.*
->>>>>
->>>>> Thanks
->>>>> Houshang
->>>>>
->>>>> On Wed, 16 Oct 2024 at 11:48, Houshang <houshang.azizi@accelleran.com=
->
->>>>> wrote:
->>>>>
->>>>>> Dear Marcus and dear Wade
+>>>>>> Hi
 >>>>>>
->>>>>> After updating n310 firmware again, *uhd_usrp_probe* started to pass
->>>>>> but I face a new issue with DPDK. Please find attached the output of=
- the
->>>>>> following commands:
+>>>>>> Is this going to be a problem? Are these versions considered the
+>>>>>> same? (host UHD version vs n310 UHD version)
 >>>>>>
+>>>>>> [image: 18_08:51:32.jpg]
 >>>>>>
+>>>>>> Also, what is the way out of this please?
 >>>>>>
->>>>>>
->>>>>>
->>>>>>
->>>>>> *sudo dpdk-testpmd -vuhd_config_info
->>>>>> --versionuhd_usrp_probeuhd_find_devicesbenchmark_ratedpdk-devbind.py
->>>>>> --status*
->>>>>>
->>>>>> And just to clarify, I am using two dedicated SFP for DPDK (
->>>>>> *10.10.1.100* and *10.10.2.100*) and the management IP of the n310
->>>>>> is (10.10.0.100) which is ETH. SFP0 and SFP1 are not swapped.
+>>>>>> *Error: failed receiving packet. RfnocError: OpTimeout: Control
+>>>>>> operation timed out waiting for ACK.*
 >>>>>>
 >>>>>> Thanks
 >>>>>> Houshang
 >>>>>>
->>>>>> On Tue, 15 Oct 2024 at 20:41, Houshang <houshang.azizi@accelleran.co=
+>>>>>> On Wed, 16 Oct 2024 at 11:48, Houshang <houshang.azizi@accelleran.co=
 m>
 >>>>>> wrote:
 >>>>>>
->>>>>>> Thanks Wade
->>>>>>> I am going to double check this tomorrow. Just yo clarify, i have
->>>>>>> two sfp which o plan to use for dpdk and a eth which is supposed to=
- be for
->>>>>>> the n310 management.
+>>>>>>> Dear Marcus and dear Wade
+>>>>>>>
+>>>>>>> After updating n310 firmware again, *uhd_usrp_probe* started to
+>>>>>>> pass but I face a new issue with DPDK. Please find attached the out=
+put of
+>>>>>>> the following commands:
 >>>>>>>
 >>>>>>>
->>>>>>> On Tue., Oct. 15, 2024, 19:29 Wade Fife, <wade.fife@ettus.com>
->>>>>>> wrote:
 >>>>>>>
->>>>>>>> Make sure you don't have the cables swapped. In other words, make
->>>>>>>> sure the USRP's sfp0 is connected to the host port that is configu=
-red for
->>>>>>>> subnet 10.10.1.x and sfp1 is connected to the host port that's con=
-figured
->>>>>>>> for subnet 10.10.2.x. If you have the two cables reversed then pin=
-g will
->>>>>>>> work but UHD sessions will give you the error message you're seein=
-g.
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> *sudo dpdk-testpmd -vuhd_config_info
+>>>>>>> --versionuhd_usrp_probeuhd_find_devicesbenchmark_ratedpdk-devbind.p=
+y
+>>>>>>> --status*
+>>>>>>>
+>>>>>>> And just to clarify, I am using two dedicated SFP for DPDK (
+>>>>>>> *10.10.1.100* and *10.10.2.100*) and the management IP of the n310
+>>>>>>> is (10.10.0.100) which is ETH. SFP0 and SFP1 are not swapped.
+>>>>>>>
+>>>>>>> Thanks
+>>>>>>> Houshang
+>>>>>>>
+>>>>>>> On Tue, 15 Oct 2024 at 20:41, Houshang <
+>>>>>>> houshang.azizi@accelleran.com> wrote:
+>>>>>>>
+>>>>>>>> Thanks Wade
+>>>>>>>> I am going to double check this tomorrow. Just yo clarify, i have
+>>>>>>>> two sfp which o plan to use for dpdk and a eth which is supposed t=
+o be for
+>>>>>>>> the n310 management.
 >>>>>>>>
->>>>>>>> Wade
 >>>>>>>>
->>>>>>>> On Tue, Oct 15, 2024 at 10:50=E2=80=AFAM Houshang <
->>>>>>>> houshang.azizi@accelleran.com> wrote:
+>>>>>>>> On Tue., Oct. 15, 2024, 19:29 Wade Fife, <wade.fife@ettus.com>
+>>>>>>>> wrote:
 >>>>>>>>
->>>>>>>>> Thanks Marcus! In case you need any more info from my setup, feel
->>>>>>>>> free to ask.
+>>>>>>>>> Make sure you don't have the cables swapped. In other words, make
+>>>>>>>>> sure the USRP's sfp0 is connected to the host port that is config=
+ured for
+>>>>>>>>> subnet 10.10.1.x and sfp1 is connected to the host port that's co=
+nfigured
+>>>>>>>>> for subnet 10.10.2.x. If you have the two cables reversed then pi=
+ng will
+>>>>>>>>> work but UHD sessions will give you the error message you're seei=
+ng.
 >>>>>>>>>
->>>>>>>>> On Tue, 15 Oct 2024 at 17:48, Marcus D. Leech <
->>>>>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>>>>> Wade
 >>>>>>>>>
->>>>>>>>>> On 15/10/2024 11:45, Houshang wrote:
+>>>>>>>>> On Tue, Oct 15, 2024 at 10:50=E2=80=AFAM Houshang <
+>>>>>>>>> houshang.azizi@accelleran.com> wrote:
+>>>>>>>>>
+>>>>>>>>>> Thanks Marcus! In case you need any more info from my setup, fee=
+l
+>>>>>>>>>> free to ask.
 >>>>>>>>>>
->>>>>>>>>> So to summarize, both n310 and host server are running the same
->>>>>>>>>> version of UHD now and the *uhd_usrp_probe *command fails on the
->>>>>>>>>> host server while it passes in the n310 itself. See attachments.
+>>>>>>>>>> On Tue, 15 Oct 2024 at 17:48, Marcus D. Leech <
+>>>>>>>>>> patchvonbraun@gmail.com> wrote:
 >>>>>>>>>>
->>>>>>>>>> Thanks for the succinct summary.
->>>>>>>>>>
->>>>>>>>>> I'm going to have to analyze this a bit.   It is some kind of
->>>>>>>>>> networking config issue, but I cannot immediately tell exactly
->>>>>>>>>>   *what* that issue might be.
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> On Tue, 15 Oct 2024 at 17:25, Houshang <
->>>>>>>>>> houshang.azizi@accelleran.com> wrote:
->>>>>>>>>>
->>>>>>>>>>> Please find attached the requested command output on n310.
+>>>>>>>>>>> On 15/10/2024 11:45, Houshang wrote:
 >>>>>>>>>>>
->>>>>>>>>>> On Tue, 15 Oct 2024 at 17:19, Marcus D. Leech <
->>>>>>>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>>>>>>> So to summarize, both n310 and host server are running the same
+>>>>>>>>>>> version of UHD now and the *uhd_usrp_probe *command fails on
+>>>>>>>>>>> the host server while it passes in the n310 itself. See attachm=
+ents.
 >>>>>>>>>>>
->>>>>>>>>>>> On 15/10/2024 11:12, Houshang wrote:
+>>>>>>>>>>> Thanks for the succinct summary.
+>>>>>>>>>>>
+>>>>>>>>>>> I'm going to have to analyze this a bit.   It is some kind of
+>>>>>>>>>>> networking config issue, but I cannot immediately tell exactly
+>>>>>>>>>>>   *what* that issue might be.
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> On Tue, 15 Oct 2024 at 17:25, Houshang <
+>>>>>>>>>>> houshang.azizi@accelleran.com> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>> Please find attached the requested command output on n310.
 >>>>>>>>>>>>
->>>>>>>>>>>> Regarding firewall, please see the screenshot below from the
->>>>>>>>>>>> host and please let me know if there is anything else to be ch=
-ecked?
->>>>>>>>>>>> [image: 15_17:11:14.jpg]
->>>>>>>>>>>>
->>>>>>>>>>>> Please run:
->>>>>>>>>>>>
->>>>>>>>>>>> "uhd_usrp_probe"
->>>>>>>>>>>>
->>>>>>>>>>>> on the N310 itself, to see if it is "sane".
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> On Tue, 15 Oct 2024 at 17:05, Marcus D. Leech <
+>>>>>>>>>>>> On Tue, 15 Oct 2024 at 17:19, Marcus D. Leech <
 >>>>>>>>>>>> patchvonbraun@gmail.com> wrote:
 >>>>>>>>>>>>
->>>>>>>>>>>>> On 15/10/2024 11:01, Houshang wrote:
+>>>>>>>>>>>>> On 15/10/2024 11:12, Houshang wrote:
 >>>>>>>>>>>>>
->>>>>>>>>>>>> Hi
->>>>>>>>>>>>> I updated my server UHD to the same version of the one in n31=
-0
->>>>>>>>>>>>> itself and I still get the same error message. Please see bel=
-ow for both
->>>>>>>>>>>>> version and the exact error message:
+>>>>>>>>>>>>> Regarding firewall, please see the screenshot below from the
+>>>>>>>>>>>>> host and please let me know if there is anything else to be c=
+hecked?
+>>>>>>>>>>>>> [image: 15_17:11:14.jpg]
 >>>>>>>>>>>>>
->>>>>>>>>>>>> [image: 15_16:59:31.jpg]
+>>>>>>>>>>>>> Please run:
 >>>>>>>>>>>>>
->>>>>>>>>>>>> Hmm, MIGHT be a firewall issue:
+>>>>>>>>>>>>> "uhd_usrp_probe"
 >>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>> https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x=
-0cfg_hostpc_netcfg_firewall
+>>>>>>>>>>>>> on the N310 itself, to see if it is "sane".
 >>>>>>>>>>>>>
 >>>>>>>>>>>>>
 >>>>>>>>>>>>>
->>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:39, Houshang <
->>>>>>>>>>>>> houshang.azizi@accelleran.com> wrote:
+>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 17:05, Marcus D. Leech <
+>>>>>>>>>>>>> patchvonbraun@gmail.com> wrote:
 >>>>>>>>>>>>>
->>>>>>>>>>>>>> Thanks! I am busy updating my UHD on the server to the same
->>>>>>>>>>>>>> version as n310. I will keep you posted about the outcome so=
-on.
+>>>>>>>>>>>>>> On 15/10/2024 11:01, Houshang wrote:
 >>>>>>>>>>>>>>
->>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:32, Marcus D. Leech <
->>>>>>>>>>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>>>>>>>>>> Hi
+>>>>>>>>>>>>>> I updated my server UHD to the same version of the one in
+>>>>>>>>>>>>>> n310 itself and I still get the same error message. Please s=
+ee below for
+>>>>>>>>>>>>>> both version and the exact error message:
 >>>>>>>>>>>>>>
->>>>>>>>>>>>>>> On 15/10/2024 10:29, Houshang wrote:
+>>>>>>>>>>>>>> [image: 15_16:59:31.jpg]
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Hmm, MIGHT be a firewall issue:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3=
+x0cfg_hostpc_netcfg_firewall
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:39, Houshang <
+>>>>>>>>>>>>>> houshang.azizi@accelleran.com> wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> Thanks! I am busy updating my UHD on the server to the same
+>>>>>>>>>>>>>>> version as n310. I will keep you posted about the outcome s=
+oon.
 >>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> This is the output of the command you asked:
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> *ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe --args
->>>>>>>>>>>>>>> "type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100" [INFO] [UHD=
-] linux; GNU C++
->>>>>>>>>>>>>>> version 11.4.0; Boost_107400; DPDK_23.11; UHD_4.6.0.HEAD-0-=
-g50fa3baa [INFO]
->>>>>>>>>>>>>>> [MPMD] Initializing 1 device(s) in parallel with args:
->>>>>>>>>>>>>>> mgmt_addr=3D10.10.1.100,type=3Dn3xx,product=3Dn310,serial=
-=3D32000F1,name=3Dni-n3xx-32000F1,fpga=3DXG,claimed=3DFalse,addr=3D10.10.1.=
-100
->>>>>>>>>>>>>>> [INFO] [MPM.main] Launching USRP/MPM, version: 4.7.0.0-ga5e=
-d1872 [INFO]
->>>>>>>>>>>>>>> [MPM.main] Spawning RPC process... [INFO] [MPM.PeriphManage=
-r] Device serial
->>>>>>>>>>>>>>> number: 32000F1 [INFO] [MPM.PeriphManager] Initialized 2 da=
-ughterboard(s).
->>>>>>>>>>>>>>> [INFO] [MPM.PeriphManager] init() called with device args
->>>>>>>>>>>>>>> `clock_source=3Dinternal,time_source=3Dinternal'. [INFO] [M=
-PM.RPCServer] RPC
->>>>>>>>>>>>>>> server ready! [INFO] [MPM.RPCServer] Spawning watchdog task=
-... [INFO]
->>>>>>>>>>>>>>> [MPM.PeriphManager] init() called with device args
->>>>>>>>>>>>>>> `fpga=3DXG,mgmt_addr=3D10.10.1.100,name=3Dni-n3xx-32000F1,p=
-roduct=3Dn310,clock_source=3Dinternal,time_source=3Dinternal'.
->>>>>>>>>>>>>>> [ERROR] [RFNOC::MGMT] EnvironmentError: IOError: recv error=
- on socket:
->>>>>>>>>>>>>>> Connection refused [ERROR] [RFNOC::GRAPH] IO Error during G=
-SM
->>>>>>>>>>>>>>> initialization. EnvironmentError: IOError: recv error on so=
-cket: Connection
->>>>>>>>>>>>>>> refused [ERROR] [RFNOC::GRAPH] Caught exception while initi=
-alizing graph:
->>>>>>>>>>>>>>> EnvironmentError: IOError: recv error on socket: Connection=
- refused Error:
->>>>>>>>>>>>>>> RuntimeError: Failure to create rfnoc_graph.
->>>>>>>>>>>>>>> ad@bm-super11-intel:~/accelleran$ *
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> *Yes, so it's likely that it's a system-image-compatibility
->>>>>>>>>>>>>>> issue. In general, you need to be running the same UHD vers=
-ions on both
->>>>>>>>>>>>>>> your host computer, and the USRP N3xx radio. It may be the =
-case that in
->>>>>>>>>>>>>>> 4.7, the RPC ports used are different, and a UHD 4.6 wouldn=
-'t be able to
->>>>>>>>>>>>>>> deal with this. *
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:27, Marcus D. Leech <
+>>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:32, Marcus D. Leech <
 >>>>>>>>>>>>>>> patchvonbraun@gmail.com> wrote:
 >>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> On 15/10/2024 10:24, Houshang wrote:
+>>>>>>>>>>>>>>>> On 15/10/2024 10:29, Houshang wrote:
 >>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> First of all:
+>>>>>>>>>>>>>>>> This is the output of the command you asked:
 >>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> *ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe -a
->>>>>>>>>>>>>>>> "type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100" Error: unr=
-ecognised option '-a'
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>> *ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe --args
+>>>>>>>>>>>>>>>> "type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100" [INFO] [UH=
+D] linux; GNU C++
+>>>>>>>>>>>>>>>> version 11.4.0; Boost_107400; DPDK_23.11; UHD_4.6.0.HEAD-0=
+-g50fa3baa [INFO]
+>>>>>>>>>>>>>>>> [MPMD] Initializing 1 device(s) in parallel with args:
+>>>>>>>>>>>>>>>> mgmt_addr=3D10.10.1.100,type=3Dn3xx,product=3Dn310,serial=
+=3D32000F1,name=3Dni-n3xx-32000F1,fpga=3DXG,claimed=3DFalse,addr=3D10.10.1.=
+100
+>>>>>>>>>>>>>>>> [INFO] [MPM.main] Launching USRP/MPM, version: 4.7.0.0-ga5=
+ed1872 [INFO]
+>>>>>>>>>>>>>>>> [MPM.main] Spawning RPC process... [INFO] [MPM.PeriphManag=
+er] Device serial
+>>>>>>>>>>>>>>>> number: 32000F1 [INFO] [MPM.PeriphManager] Initialized 2 d=
+aughterboard(s).
+>>>>>>>>>>>>>>>> [INFO] [MPM.PeriphManager] init() called with device args
+>>>>>>>>>>>>>>>> `clock_source=3Dinternal,time_source=3Dinternal'. [INFO] [=
+MPM.RPCServer] RPC
+>>>>>>>>>>>>>>>> server ready! [INFO] [MPM.RPCServer] Spawning watchdog tas=
+k... [INFO]
+>>>>>>>>>>>>>>>> [MPM.PeriphManager] init() called with device args
+>>>>>>>>>>>>>>>> `fpga=3DXG,mgmt_addr=3D10.10.1.100,name=3Dni-n3xx-32000F1,=
+product=3Dn310,clock_source=3Dinternal,time_source=3Dinternal'.
+>>>>>>>>>>>>>>>> [ERROR] [RFNOC::MGMT] EnvironmentError: IOError: recv erro=
+r on socket:
+>>>>>>>>>>>>>>>> Connection refused [ERROR] [RFNOC::GRAPH] IO Error during =
+GSM
+>>>>>>>>>>>>>>>> initialization. EnvironmentError: IOError: recv error on s=
+ocket: Connection
+>>>>>>>>>>>>>>>> refused [ERROR] [RFNOC::GRAPH] Caught exception while init=
+ializing graph:
+>>>>>>>>>>>>>>>> EnvironmentError: IOError: recv error on socket: Connectio=
+n refused Error:
+>>>>>>>>>>>>>>>> RuntimeError: Failure to create rfnoc_graph.
 >>>>>>>>>>>>>>>> ad@bm-super11-intel:~/accelleran$ *
 >>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> *Sorry, I meant "--args" rather than "-a". *
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> Secondly, Maybe the following is the issue; WHen I run xxx
->>>>>>>>>>>>>>>> in the host machine I see a version and when I run the sam=
-e command on the
->>>>>>>>>>>>>>>> n310 itself, I get another version. How to avoid this?
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> [image: 15_16:21:07.jpg]
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> Indeed, I noticed that your radio hardware is ahead of you=
-r
->>>>>>>>>>>>>>>> host computer in UHD version.
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> The best thing might be to upgrade UHD on your host, if
->>>>>>>>>>>>>>>> possible.  If not, then follow the steps for programming a=
- fresh
->>>>>>>>>>>>>>>>   system image on your N310:
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Ima=
-ge_to_a_SD_Card
 >>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:18, Houshang <
->>>>>>>>>>>>>>>> houshang.azizi@accelleran.com> wrote:
 >>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> Hi
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>> *Yes, so it's likely that it's a system-image-compatibilit=
+y
+>>>>>>>>>>>>>>>> issue. In general, you need to be running the same UHD ver=
+sions on both
+>>>>>>>>>>>>>>>> your host computer, and the USRP N3xx radio. It may be the=
+ case that in
+>>>>>>>>>>>>>>>> 4.7, the RPC ports used are different, and a UHD 4.6 would=
+n't be able to
+>>>>>>>>>>>>>>>> deal with this. *
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:27, Marcus D. Leech <
+>>>>>>>>>>>>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>> On 15/10/2024 10:24, Houshang wrote:
 >>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> *ad@bm-super11-intel:~/accelleran$ ssh root@10.10.0.100
->>>>>>>>>>>>>>>>> <root@10.10.0.100>*
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> *root@ni-n3xx-32000F1:~# uhd_config_info --version UHD
->>>>>>>>>>>>>>>>> 4.7.0.0-0-ga5ed1872 *
->>>>>>>>>>>>>>>>> *root@ni-n3xx-32000F1:~# *
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> I can ping all 3 ip's:
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>> First of all:
 >>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> *ad@bm-super11-intel:~/accelleran$ ping 10.10.0.100 PING
->>>>>>>>>>>>>>>>> 10.10.0.100 (10.10.0.100) 56(84) bytes of data. 64 bytes =
-from 10.10.0.100
->>>>>>>>>>>>>>>>> <http://10.10.0.100>: icmp_seq=3D1 ttl=3D64 time=3D0.250 =
-ms 64 bytes from
->>>>>>>>>>>>>>>>> 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D2 ttl=3D64 t=
-ime=3D0.199 ms ^C ---
->>>>>>>>>>>>>>>>> 10.10.0.100 ping statistics --- 2 packets transmitted, 2 =
-received, 0%
->>>>>>>>>>>>>>>>> packet loss, time 1051ms rtt min/avg/max/mdev =3D 0.199/0=
-.224/0.250/0.025 ms
->>>>>>>>>>>>>>>>> ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100 PING 1=
-0.10.1.100
->>>>>>>>>>>>>>>>> (10.10.1.100) 56(84) bytes of data. 64 bytes from 10.10.1=
-.100
->>>>>>>>>>>>>>>>> <http://10.10.1.100>: icmp_seq=3D1 ttl=3D64 time=3D1.02 m=
-s 64 bytes from
->>>>>>>>>>>>>>>>> 10.10.1.100 <http://10.10.1.100>: icmp_seq=3D2 ttl=3D64 t=
-ime=3D0.970 ms ^C ---
->>>>>>>>>>>>>>>>> 10.10.1.100 ping statistics --- 2 packets transmitted, 2 =
-received, 0%
->>>>>>>>>>>>>>>>> packet loss, time 1001ms rtt min/avg/max/mdev =3D 0.970/0=
-.996/1.022/0.026 ms
->>>>>>>>>>>>>>>>> ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100 PING 1=
-0.10.2.100
->>>>>>>>>>>>>>>>> (10.10.2.100) 56(84) bytes of data. 64 bytes from 10.10.2=
-.100
->>>>>>>>>>>>>>>>> <http://10.10.2.100>: icmp_seq=3D1 ttl=3D64 time=3D1.03 m=
-s 64 bytes from
->>>>>>>>>>>>>>>>> 10.10.2.100 <http://10.10.2.100>: icmp_seq=3D2 ttl=3D64 t=
-ime=3D0.963 ms ^C ---
->>>>>>>>>>>>>>>>> 10.10.2.100 ping statistics --- 2 packets transmitted, 2 =
-received, 0%
->>>>>>>>>>>>>>>>> packet loss, time 1001ms rtt min/avg/max/mdev =3D 0.963/0=
-.994/1.025/0.031 ms
+>>>>>>>>>>>>>>>>> *ad@bm-super11-intel:~/accelleran$ uhd_usrp_probe -a
+>>>>>>>>>>>>>>>>> "type=3Dn3xx,product=3Dn310,addr=3D10.10.1.100" Error: un=
+recognised option '-a'
 >>>>>>>>>>>>>>>>> ad@bm-super11-intel:~/accelleran$ *
 >>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:16, Marcus D. Leech <
->>>>>>>>>>>>>>>>> patchvonbraun@gmail.com> wrote:
 >>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> On 15/10/2024 10:09, Houshang wrote:
+>>>>>>>>>>>>>>>>> *Sorry, I meant "--args" rather than "-a". *
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>> Secondly, Maybe the following is the issue; WHen I run xx=
+x
+>>>>>>>>>>>>>>>>> in the host machine I see a version and when I run the sa=
+me command on the
+>>>>>>>>>>>>>>>>> n310 itself, I get another version. How to avoid this?
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>> [image: 15_16:21:07.jpg]
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>> Indeed, I noticed that your radio hardware is ahead of
+>>>>>>>>>>>>>>>>> your host computer in UHD version.
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>> The best thing might be to upgrade UHD on your host, if
+>>>>>>>>>>>>>>>>> possible.  If not, then follow the steps for programming =
+a fresh
+>>>>>>>>>>>>>>>>>   system image on your N310:
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>> https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Im=
+age_to_a_SD_Card
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:18, Houshang <
+>>>>>>>>>>>>>>>>> houshang.azizi@accelleran.com> wrote:
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>> Hi
 >>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> Hi Marcus
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>    - There are two fiber interfaces for this n310 which
->>>>>>>>>>>>>>>>>>    I will be using for DPDK later.
->>>>>>>>>>>>>>>>>>    - There is also a RJ-45 port for this n310.
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> As the first step, I want to make sure things are workin=
-g
->>>>>>>>>>>>>>>>>> without DPDK. I will then test the DPDK.
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> Based on your question, I am attaching some more info.
->>>>>>>>>>>>>>>>>> Let me know if something is missing.
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> Thanks
->>>>>>>>>>>>>>>>>> Houshang
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> When you're SSHed into the N310, what does:
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> uhd_config_info --version
+>>>>>>>>>>>>>>>>>> *ad@bm-super11-intel:~/accelleran$ ssh root@10.10.0.100
+>>>>>>>>>>>>>>>>>> <root@10.10.0.100>*
 >>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> Show?
+>>>>>>>>>>>>>>>>>> *root@ni-n3xx-32000F1:~# uhd_config_info --version UHD
+>>>>>>>>>>>>>>>>>> 4.7.0.0-0-ga5ed1872 *
+>>>>>>>>>>>>>>>>>> *root@ni-n3xx-32000F1:~# *
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>> I can ping all 3 ip's:
 >>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> Can you ping the SFP+ interfaces from your host computer=
-?
 >>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:04, Marcus D. Leech <
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>> *ad@bm-super11-intel:~/accelleran$ ping 10.10.0.100 PING
+>>>>>>>>>>>>>>>>>> 10.10.0.100 (10.10.0.100) 56(84) bytes of data. 64 bytes=
+ from 10.10.0.100
+>>>>>>>>>>>>>>>>>> <http://10.10.0.100>: icmp_seq=3D1 ttl=3D64 time=3D0.250=
+ ms 64 bytes from
+>>>>>>>>>>>>>>>>>> 10.10.0.100 <http://10.10.0.100>: icmp_seq=3D2 ttl=3D64 =
+time=3D0.199 ms ^C ---
+>>>>>>>>>>>>>>>>>> 10.10.0.100 ping statistics --- 2 packets transmitted, 2=
+ received, 0%
+>>>>>>>>>>>>>>>>>> packet loss, time 1051ms rtt min/avg/max/mdev =3D 0.199/=
+0.224/0.250/0.025 ms
+>>>>>>>>>>>>>>>>>> ad@bm-super11-intel:~/accelleran$ ping 10.10.1.100 PING =
+10.10.1.100
+>>>>>>>>>>>>>>>>>> (10.10.1.100) 56(84) bytes of data. 64 bytes from 10.10.=
+1.100
+>>>>>>>>>>>>>>>>>> <http://10.10.1.100>: icmp_seq=3D1 ttl=3D64 time=3D1.02 =
+ms 64 bytes from
+>>>>>>>>>>>>>>>>>> 10.10.1.100 <http://10.10.1.100>: icmp_seq=3D2 ttl=3D64 =
+time=3D0.970 ms ^C ---
+>>>>>>>>>>>>>>>>>> 10.10.1.100 ping statistics --- 2 packets transmitted, 2=
+ received, 0%
+>>>>>>>>>>>>>>>>>> packet loss, time 1001ms rtt min/avg/max/mdev =3D 0.970/=
+0.996/1.022/0.026 ms
+>>>>>>>>>>>>>>>>>> ad@bm-super11-intel:~/accelleran$ ping 10.10.2.100 PING =
+10.10.2.100
+>>>>>>>>>>>>>>>>>> (10.10.2.100) 56(84) bytes of data. 64 bytes from 10.10.=
+2.100
+>>>>>>>>>>>>>>>>>> <http://10.10.2.100>: icmp_seq=3D1 ttl=3D64 time=3D1.03 =
+ms 64 bytes from
+>>>>>>>>>>>>>>>>>> 10.10.2.100 <http://10.10.2.100>: icmp_seq=3D2 ttl=3D64 =
+time=3D0.963 ms ^C ---
+>>>>>>>>>>>>>>>>>> 10.10.2.100 ping statistics --- 2 packets transmitted, 2=
+ received, 0%
+>>>>>>>>>>>>>>>>>> packet loss, time 1001ms rtt min/avg/max/mdev =3D 0.963/=
+0.994/1.025/0.031 ms
+>>>>>>>>>>>>>>>>>> ad@bm-super11-intel:~/accelleran$ *
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:16, Marcus D. Leech <
 >>>>>>>>>>>>>>>>>> patchvonbraun@gmail.com> wrote:
 >>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> On 15/10/2024 09:41, Houshang wrote:
+>>>>>>>>>>>>>>>>>>> On 15/10/2024 10:09, Houshang wrote:
 >>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> Hello
->>>>>>>>>>>>>>>>>>> Can anyone help with this issue please? This is an n310
->>>>>>>>>>>>>>>>>>> and the version of UHD is visible in the screenshot bel=
-ow.
+>>>>>>>>>>>>>>>>>>> Hi Marcus
 >>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> [image: 15_15:37:26.jpg]
+>>>>>>>>>>>>>>>>>>>    - There are two fiber interfaces for this n310 which
+>>>>>>>>>>>>>>>>>>>    I will be using for DPDK later.
+>>>>>>>>>>>>>>>>>>>    - There is also a RJ-45 port for this n310.
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>> As the first step, I want to make sure things are
+>>>>>>>>>>>>>>>>>>> working without DPDK. I will then test the DPDK.
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>> Based on your question, I am attaching some more info.
+>>>>>>>>>>>>>>>>>>> Let me know if something is missing.
+>>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>> Thanks
 >>>>>>>>>>>>>>>>>>> Houshang
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>> When you're SSHed into the N310, what does:
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>> uhd_config_info --version
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>> Show?
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>> Can you ping the SFP+ interfaces from your host compute=
+r?
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>> On Tue, 15 Oct 2024 at 16:04, Marcus D. Leech <
+>>>>>>>>>>>>>>>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> On 15/10/2024 09:41, Houshang wrote:
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> Hello
+>>>>>>>>>>>>>>>>>>>> Can anyone help with this issue please? This is an n31=
+0
+>>>>>>>>>>>>>>>>>>>> and the version of UHD is visible in the screenshot be=
+low.
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> [image: 15_15:37:26.jpg]
+>>>>>>>>>>>>>>>>>>>> Thanks
+>>>>>>>>>>>>>>>>>>>> Houshang
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> --
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> *Houshang Azizi*
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> *Test Engineer*
+>>>>>>>>>>>>>>>>>>>> [image: logo] <https://www.accelleran.com/>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> *(32) 492195241*
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> *www.accelleran.com* <http://www.accelleran.com/>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> [image: linkedin icon]
+>>>>>>>>>>>>>>>>>>>> <https://www.linkedin.com/company/accelleran>    [imag=
+e:
+>>>>>>>>>>>>>>>>>>>> twitter icon] <https://twitter.com/accelleran>    [ima=
+ge:
+>>>>>>>>>>>>>>>>>>>> youtube icon]
+>>>>>>>>>>>>>>>>>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIE=
+x2g?themeRefresh=3D1>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> _______________________________________________
+>>>>>>>>>>>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists=
+.ettus.com
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> I think I've asked you this before on this issue:
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> What does your network connection setup look like?
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> Are you using the RJ-45 port and the SFP+ port(s)?
+>>>>>>>>>>>>>>>>>>>> How are things connected, and on what subnets?
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>> _______________________________________________
+>>>>>>>>>>>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>>>> To unsubscribe send an email to
+>>>>>>>>>>>>>>>>>>>> usrp-users-leave@lists.ettus.com
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>> --
 >>>>>>>>>>>>>>>>>>>
@@ -625,26 +675,8 @@ e:
 2g?themeRefresh=3D1>
 >>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>>>>>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.=
-ettus.com
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> I think I've asked you this before on this issue:
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> What does your network connection setup look like?
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> Are you using the RJ-45 port and the SFP+ port(s)?   Ho=
-w
->>>>>>>>>>>>>>>>>>> are things connected, and on what subnets?
 >>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>>>>>>>>>>>>> To unsubscribe send an email to
->>>>>>>>>>>>>>>>>>> usrp-users-leave@lists.ettus.com
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>> --
 >>>>>>>>>>>>>>>>>>
@@ -670,8 +702,7 @@ w
 g?themeRefresh=3D1>
 >>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>> --
 >>>>>>>>>>>>>>>>>
@@ -696,7 +727,8 @@ g?themeRefresh=3D1>
 ?themeRefresh=3D1>
 >>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>> --
 >>>>>>>>>>>>>>>>
@@ -747,8 +779,7 @@ themeRefresh=3D1>
 hemeRefresh=3D1>
 >>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>
 >>>>>>>>>>>>>> --
 >>>>>>>>>>>>>>
@@ -773,7 +804,8 @@ hemeRefresh=3D1>
 emeRefresh=3D1>
 >>>>>>>>>>>>>>
 >>>>>>>>>>>>>>
->>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
 >>>>>>>>>>>>>
 >>>>>>>>>>>>> --
 >>>>>>>>>>>>>
@@ -824,8 +856,7 @@ meRefresh=3D1>
 eRefresh=3D1>
 >>>>>>>>>>>>
 >>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>>
+>>>>>>>>>>>
 >>>>>>>>>>>
 >>>>>>>>>>> --
 >>>>>>>>>>>
@@ -850,13 +881,15 @@ eRefresh=3D1>
 Refresh=3D1>
 >>>>>>>>>>>
 >>>>>>>>>>>
->>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>
 >>>>>>>>>>
 >>>>>>>>>> --
 >>>>>>>>>>
 >>>>>>>>>> *Houshang Azizi*
 >>>>>>>>>>
 >>>>>>>>>> *Test Engineer*
+>>>>>>>>>>
 >>>>>>>>>> [image: logo] <https://www.accelleran.com/>
 >>>>>>>>>>
 >>>>>>>>>> *(32) 492195241*
@@ -873,37 +906,38 @@ Refresh=3D1>
 >>>>>>>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeR=
 efresh=3D1>
 >>>>>>>>>>
+>>>>>>>>>> _______________________________________________
+>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>>
 >>>>>>>>>
->>>>>>>>> --
->>>>>>>>>
->>>>>>>>> *Houshang Azizi*
->>>>>>>>>
->>>>>>>>> *Test Engineer*
->>>>>>>>>
->>>>>>>>> [image: logo] <https://www.accelleran.com/>
->>>>>>>>>
->>>>>>>>> *(32) 492195241*
->>>>>>>>>
->>>>>>>>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> *www.accelleran.com* <http://www.accelleran.com/>
->>>>>>>>>
->>>>>>>>> [image: linkedin icon]
->>>>>>>>> <https://www.linkedin.com/company/accelleran>    [image: twitter
->>>>>>>>> icon] <https://twitter.com/accelleran>    [image: youtube icon]
->>>>>>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRe=
-fresh=3D1>
->>>>>>>>>
->>>>>>>>> _______________________________________________
->>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>>>
->>>>>>>>
+>>>>>>>
+>>>>>>> --
+>>>>>>>
+>>>>>>> *Houshang Azizi*
+>>>>>>>
+>>>>>>> *Test Engineer*
+>>>>>>>
+>>>>>>> [image: logo] <https://www.accelleran.com/>
+>>>>>>>
+>>>>>>> *(32) 492195241*
+>>>>>>>
+>>>>>>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> *www.accelleran.com* <http://www.accelleran.com/>
+>>>>>>>
+>>>>>>> [image: linkedin icon] <https://www.linkedin.com/company/accelleran=
+>
+>>>>>>>     [image: twitter icon] <https://twitter.com/accelleran>    [imag=
+e:
+>>>>>>> youtube icon]
+>>>>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefr=
+esh=3D1>
+>>>>>>>
+>>>>>>>
+>>>>>>
 >>>>>>
 >>>>>> --
 >>>>>>
@@ -928,172 +962,180 @@ fresh=3D1>
 >>>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefre=
 sh=3D1>
 >>>>>>
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>>>>>
->>>>>
->>>>>
->>>>> --
->>>>>
->>>>> *Houshang Azizi*
->>>>>
->>>>> *Test Engineer*
->>>>>
->>>>> [image: logo] <https://www.accelleran.com/>
->>>>>
->>>>> *(32) 492195241*
->>>>>
->>>>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
->>>>>
->>>>>
->>>>>
->>>>> *www.accelleran.com* <http://www.accelleran.com/>
->>>>>
->>>>> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>
->>>>>     [image: twitter icon] <https://twitter.com/accelleran>    [image:
->>>>> youtube icon]
->>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefres=
-h=3D1>
->>>>>
 >>>>> _______________________________________________
 >>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
 >>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>>>>
->>>> _______________________________________________
->>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>>>
->>>
->>>
->>> --
->>>
->>> *Houshang Azizi*
->>>
->>> *Test Engineer*
->>>
->>> [image: logo] <https://www.accelleran.com/>
->>>
->>> *(32) 492195241*
->>>
->>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
->>>
->>>
->>>
->>> *www.accelleran.com* <http://www.accelleran.com/>
->>>
->>> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>   =
- [image:
->>> twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
->>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=
+>>>>
+>>>> --
+>>>>
+>>>> *Houshang Azizi*
+>>>>
+>>>> *Test Engineer*
+>>>>
+>>>> [image: logo] <https://www.accelleran.com/>
+>>>>
+>>>> *(32) 492195241*
+>>>>
+>>>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
+>>>>
+>>>>
+>>>>
+>>>> *www.accelleran.com* <http://www.accelleran.com/>
+>>>>
+>>>> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>
+>>>>     [image: twitter icon] <https://twitter.com/accelleran>    [image:
+>>>> youtube icon]
+>>>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=
 =3D1>
+>>>>
+>>>>
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>>
->>>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>
->
->
-> --
->
-> *Houshang Azizi*
->
-> *Test Engineer*
->
-> [image: logo] <https://www.accelleran.com/>
->
-> *(32) 492195241*
->
-> *houshang.azizi@accelleran.com <Email@accelleran.com>*
->
->
->
-> *www.accelleran.com* <http://www.accelleran.com/>
->
-> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [=
-image:
-> twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
-> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D=
-1>
->
+>>
+>> --
+>>
+>> *Houshang Azizi*
+>>
+>> *Test Engineer*
+>>
+>> [image: logo] <https://www.accelleran.com/>
+>>
+>> *(32) 492195241*
+>>
+>> *houshang.azizi@accelleran.com <Email@accelleran.com>*
+>>
+>>
+>>
+>> *www.accelleran.com* <http://www.accelleran.com/>
+>>
+>> [image: linkedin icon] <https://www.linkedin.com/company/accelleran>    =
+[image:
+>> twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
+>> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=
+=3D1>
+>>
+>>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000067f0e00624bdab48
+
+--=20
+
+*Houshang Azizi*
+
+*Test Engineer*
+
+[image: logo] <https://www.accelleran.com/>
+
+*(32) 492195241*
+
+*houshang.azizi@accelleran.com <Email@accelleran.com>*
+
+
+
+*www.accelleran.com* <http://www.accelleran.com/>
+
+[image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [im=
+age:
+twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
+<https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D1>
+
+--000000000000e0631a0624bdb318
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>No worries about sending it to me directly, I just wa=
-nted to remind you to do reply-all or whatever. Happens to all of us!</div>=
-<div><br></div><div>What I meant is, in your previous email you sent printo=
-uts of uhd_find_devices and benchmark_rate from a remote computer, both wit=
-hout failures. That is an indication that the device works as intended. The=
- error message &quot; Control operation timed out waiting for ACK.&quot; ty=
-pically indicates that UHD is sending data to the USRP, but no response is =
-coming. If you see that with a particular network configuration, but not wi=
-th another, then you&#39;re more likely to have a network issue than a USRP=
- issue.</div><div><br></div><div>--M<br></div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2024 at 11:30=
-=E2=80=AFAM Houshang &lt;<a href=3D"mailto:houshang.azizi@accelleran.com">h=
-oushang.azizi@accelleran.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Sorry to send it directly=
- to you Martin</div><div>And thanks for analyzing the issue</div><div>I am =
-not sure what you exactly mean by networking issue. The management port of =
-the n310 is directly connected to our network and I can ping it all the tim=
-e. Is there anything else to be checked in this regard? I also need to add =
-that I have forgotten about DPDK for the time being and I just want to test=
- without it for the sake of simplicity. FOr the same reason when I am runni=
-ng it in my setup is use this arg: <i><span style=3D"background-color:rgb(2=
-04,204,204)">device_args: type=3Dn3xx,mgmt_addr=3D10.10.0.100,master_clock_=
-rate=3D122.88e6,send_frame_size=3D8500,recv_frame_size=3D8500</span></i></d=
-iv><div><br></div><div><br></div><div><br></div><div><i><span style=3D"back=
-ground-color:rgb(204,204,204)">ad@bm-super11-intel:~$ ping 10.10.0.100<br>P=
-ING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.<br>64 bytes from <a hre=
-f=3D"http://10.10.0.100" target=3D"_blank">10.10.0.100</a>: icmp_seq=3D1 tt=
-l=3D64 time=3D0.253 ms<br>64 bytes from <a href=3D"http://10.10.0.100" targ=
-et=3D"_blank">10.10.0.100</a>: icmp_seq=3D2 ttl=3D64 time=3D0.228 ms<br>64 =
-bytes from <a href=3D"http://10.10.0.100" target=3D"_blank">10.10.0.100</a>=
-: icmp_seq=3D3 ttl=3D64 time=3D0.238 ms<br>64 bytes from <a href=3D"http://=
-10.10.0.100" target=3D"_blank">10.10.0.100</a>: icmp_seq=3D4 ttl=3D64 time=
-=3D0.238 ms<br>64 bytes from <a href=3D"http://10.10.0.100" target=3D"_blan=
-k">10.10.0.100</a>: icmp_seq=3D5 ttl=3D64 time=3D0.231 ms</span></i><br></d=
-iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Fri, 18 Oct 2024 at 11:21, Martin Braun &lt;<a href=3D"mailto:martin.=
-braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; wrote:<br=
+<div dir=3D"ltr">To be clear,: We are talking about only one setup (one n31=
+0). To be honest I do not see a networking issue as I can ping and the conn=
+ection is stable.<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Fri, 18 Oct 2024 at 12:22, Martin Braun &lt;<a href=
+=3D"mailto:martin.braun@ettus.com">martin.braun@ettus.com</a>&gt; wrote:<br=
 ></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
 border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><=
-div>Hi,</div><div><br></div><div>you accidentally emailed this directly to =
-me, not to the mailing list.</div><div><br></div><div>Your attachment didn&=
-#39;t include any errors. It seems like your device is working, data-transp=
-ort-wise.</div><div><br></div><div>Like I suggested earlier, you might be l=
-ooking at some networking issues. Unfortunately, that&#39;s not something w=
-e can help you with. The error message you provided is very generic, and oc=
-curs any time that the host computer running UHD can&#39;t properly reach t=
-he USRP. It can also happen when the USRP is broken and is not responding (=
-e.g., some clocks didn&#39;t come up) but that doesn&#39;t seem to be the c=
-ase given your latest printouts.</div><div><br></div><div>--M<br></div></di=
-v><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Fri, Oct 18, 2024 at 10:13=E2=80=AFAM Houshang &l=
-t;<a href=3D"mailto:houshang.azizi@accelleran.com" target=3D"_blank">housha=
-ng.azizi@accelleran.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><div dir=3D"ltr"><div>Hi</div><div><br></div><div>At=
-tached you can find the uhd_<i><span style=3D"background-color:rgb(204,204,=
-204)">usrp_probe</span></i> and <i><span style=3D"background-color:rgb(204,=
-204,204)">benchmark_rate</span></i> printout.It might give more info to fin=
-d the cause of the following issue:</div><div><br></div><div><i style=3D"ba=
-ckground-color:rgb(204,204,204)">Error: failed receiving packet. RfnocError=
-: OpTimeout: Control operation timed out waiting for ACK.</i></div><div><br=
-></div><div>Thanks,,</div><div>Houshang<br></div><div><br></div></div><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 18 =
-Oct 2024 at 09:39, Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.co=
-m" target=3D"_blank">martin.braun@ettus.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>They&#39;r=
-e the same version. But it&#39;s hard for us to figure out what&#39;s going=
- on.</div><div><br></div><div>One thing you can test is running benchmark_r=
-ate or uhd_usrp_probe on the device itself (note: You need to drop the samp=
-ling rates down to 1-2 Msps). If that works, but over-the-network does not,=
- then there&#39;s most likely some issue with the Ethernet setup.</div><div=
-><br></div><div>--M<br></div></div><br><div class=3D"gmail_quote"><div dir=
+div>No worries about sending it to me directly, I just wanted to remind you=
+ to do reply-all or whatever. Happens to all of us!</div><div><br></div><di=
+v>What I meant is, in your previous email you sent printouts of uhd_find_de=
+vices and benchmark_rate from a remote computer, both without failures. Tha=
+t is an indication that the device works as intended. The error message &qu=
+ot; Control operation timed out waiting for ACK.&quot; typically indicates =
+that UHD is sending data to the USRP, but no response is coming. If you see=
+ that with a particular network configuration, but not with another, then y=
+ou&#39;re more likely to have a network issue than a USRP issue.</div><div>=
+<br></div><div>--M<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2024 at 11:30=E2=80=AFAM Hous=
+hang &lt;<a href=3D"mailto:houshang.azizi@accelleran.com" target=3D"_blank"=
+>houshang.azizi@accelleran.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Sorry to send it direct=
+ly to you Martin</div><div>And thanks for analyzing the issue</div><div>I a=
+m not sure what you exactly mean by networking issue. The management port o=
+f the n310 is directly connected to our network and I can ping it all the t=
+ime. Is there anything else to be checked in this regard? I also need to ad=
+d that I have forgotten about DPDK for the time being and I just want to te=
+st without it for the sake of simplicity. FOr the same reason when I am run=
+ning it in my setup is use this arg: <i><span style=3D"background-color:rgb=
+(204,204,204)">device_args: type=3Dn3xx,mgmt_addr=3D10.10.0.100,master_cloc=
+k_rate=3D122.88e6,send_frame_size=3D8500,recv_frame_size=3D8500</span></i><=
+/div><div><br></div><div><br></div><div><br></div><div><i><span style=3D"ba=
+ckground-color:rgb(204,204,204)">ad@bm-super11-intel:~$ ping 10.10.0.100<br=
+>PING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.<br>64 bytes from <a h=
+ref=3D"http://10.10.0.100" target=3D"_blank">10.10.0.100</a>: icmp_seq=3D1 =
+ttl=3D64 time=3D0.253 ms<br>64 bytes from <a href=3D"http://10.10.0.100" ta=
+rget=3D"_blank">10.10.0.100</a>: icmp_seq=3D2 ttl=3D64 time=3D0.228 ms<br>6=
+4 bytes from <a href=3D"http://10.10.0.100" target=3D"_blank">10.10.0.100</=
+a>: icmp_seq=3D3 ttl=3D64 time=3D0.238 ms<br>64 bytes from <a href=3D"http:=
+//10.10.0.100" target=3D"_blank">10.10.0.100</a>: icmp_seq=3D4 ttl=3D64 tim=
+e=3D0.238 ms<br>64 bytes from <a href=3D"http://10.10.0.100" target=3D"_bla=
+nk">10.10.0.100</a>: icmp_seq=3D5 ttl=3D64 time=3D0.231 ms</span></i><br></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Fri, 18 Oct 2024 at 11:21, Martin Braun &lt;<a href=3D"mailto:martin=
+.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
+<div>Hi,</div><div><br></div><div>you accidentally emailed this directly to=
+ me, not to the mailing list.</div><div><br></div><div>Your attachment didn=
+&#39;t include any errors. It seems like your device is working, data-trans=
+port-wise.</div><div><br></div><div>Like I suggested earlier, you might be =
+looking at some networking issues. Unfortunately, that&#39;s not something =
+we can help you with. The error message you provided is very generic, and o=
+ccurs any time that the host computer running UHD can&#39;t properly reach =
+the USRP. It can also happen when the USRP is broken and is not responding =
+(e.g., some clocks didn&#39;t come up) but that doesn&#39;t seem to be the =
+case given your latest printouts.</div><div><br></div><div>--M<br></div></d=
+iv><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Fri, Oct 18, 2024 at 10:13=E2=80=AFAM Houshang &=
+lt;<a href=3D"mailto:houshang.azizi@accelleran.com" target=3D"_blank">housh=
+ang.azizi@accelleran.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi</div><div><br></div><div>A=
+ttached you can find the uhd_<i><span style=3D"background-color:rgb(204,204=
+,204)">usrp_probe</span></i> and <i><span style=3D"background-color:rgb(204=
+,204,204)">benchmark_rate</span></i> printout.It might give more info to fi=
+nd the cause of the following issue:</div><div><br></div><div><i style=3D"b=
+ackground-color:rgb(204,204,204)">Error: failed receiving packet. RfnocErro=
+r: OpTimeout: Control operation timed out waiting for ACK.</i></div><div><b=
+r></div><div>Thanks,,</div><div>Houshang<br></div><div><br></div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 18=
+ Oct 2024 at 09:39, Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.c=
+om" target=3D"_blank">martin.braun@ettus.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>They&#39;=
+re the same version. But it&#39;s hard for us to figure out what&#39;s goin=
+g on.</div><div><br></div><div>One thing you can test is running benchmark_=
+rate or uhd_usrp_probe on the device itself (note: You need to drop the sam=
+pling rates down to 1-2 Msps). If that works, but over-the-network does not=
+, then there&#39;s most likely some issue with the Ethernet setup.</div><di=
+v><br></div><div>--M<br></div></div><br><div class=3D"gmail_quote"><div dir=
 =3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2024 at 8:58=E2=80=AFAM Housh=
 ang &lt;<a href=3D"mailto:houshang.azizi@accelleran.com" target=3D"_blank">=
 houshang.azizi@accelleran.com</a>&gt; wrote:<br></div><blockquote class=3D"=
@@ -2796,15 +2838,68 @@ templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mi=
 ddle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p></div></di=
 v>
 </blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><br><span class=3D"gmail_signature_pre=
+fix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"l=
+tr"><div style=3D"text-align:left"><p class=3D"MsoNormal" style=3D"margin:0=
+cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span=
+ style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)"=
+>Houshang Azizi</span></b><span style=3D"font-size:11pt;font-family:Arial,s=
+ans-serif"></span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-heigh=
+t:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span style=3D"fon=
+t-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)">Test Engine=
+er</span></b></p></div><p></p><a href=3D"https://www.accelleran.com/" rel=
+=3D"noopener" style=3D"color:rgb(51,122,183);background-color:transparent" =
+target=3D"_blank"><font size=3D"2"><img border=3D"0" alt=3D"logo" width=3D"=
+143" src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_Ne=
+wLogo_NoBaseline.png" style=3D"border: 0px; vertical-align: middle; width: =
+143px; height: auto;"></font></a><div style=3D"text-align:left"><p class=3D=
+"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-fami=
+ly:Aptos,sans-serif"><b><span style=3D"font-size:10pt;font-family:Arial,san=
+s-serif;color:black">(32) 492195241</span></b><span style=3D"font-size:10pt=
+;font-family:Arial,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"m=
+argin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><=
+span style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><span style=
+=3D"color:black"><a href=3D"mailto:Email@accelleran.com" target=3D"_blank">=
+houshang.azizi@accelleran.com</a></span></b></span></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,=
+sans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=
+=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal=
+;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-size:10pt=
+;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color:rgb(246=
+,146,30)">www.accelleran.com</span></b></a></span></p></div><p style=3D"tex=
+t-align:left;margin:20px 0px"><a href=3D"https://www.linkedin.com/company/a=
+ccelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color=
+:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=3D"linke=
+din icon" src=3D"https://www.mail-signatures.com/signature-generator/img/te=
+mplates/simple-and-light/ln.png" style=3D"border: 0px; vertical-align: midd=
+le; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"http=
+s://twitter.com/accelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183)=
+;background-color:transparent" target=3D"_blank"><img border=3D"0" width=3D=
+"15" alt=3D"twitter icon" src=3D"https://www.mail-signatures.com/signature-=
+generator/img/templates/simple-and-light/tt.png" style=3D"border: 0px; vert=
+ical-align: middle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=
+=A0<a href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?them=
+eRefresh=3D1" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-co=
+lor:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=3D"yo=
+utube icon" src=3D"https://www.mail-signatures.com/signature-generator/img/=
+templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-align: mi=
+ddle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p></div></di=
+v>
 
---00000000000067f0e00624bdab48--
+--000000000000e0631a0624bdb318--
 
---00000000000067f0e10624bdab49
+--000000000000e0631b0624bdb319
 Content-Type: image/jpeg; name="15_17:11:14.jpg"
-Content-Disposition: inline; filename="15_17:11:14.jpg"
+Content-Disposition: attachment; filename="15_17:11:14.jpg"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19290de4516dd3d32171>
 X-Attachment-Id: ii_19290de4516dd3d32171
+Content-ID: <ii_19290de4516dd3d32171>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -3030,12 +3125,12 @@ EOqpaRXWq2NhfCKyVhHHHJaROifMSSQpAJ4BIOAK80r2D9rDwxa+CfjXqPh+xkmlstLsNPsoZLhg
 ZGSOzhVSxAAJwOcAfSvH6LJaR2OTCNvDwb3sFFFFB1hRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
 RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
 FABRRRQAUUUUAf/Z
---00000000000067f0e10624bdab49
+--000000000000e0631b0624bdb319
 Content-Type: image/jpeg; name="15_16:59:31.jpg"
-Content-Disposition: inline; filename="15_16:59:31.jpg"
+Content-Disposition: attachment; filename="15_16:59:31.jpg"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19290de4518dbb30d0d2>
 X-Attachment-Id: ii_19290de4518dbb30d0d2
+Content-ID: <ii_19290de4518dbb30d0d2>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -5660,12 +5755,12 @@ igAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKK
 ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA
 KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK+qP+CdaCT4xa2Dn/kCP0JH/AC3h
 9K+V6+qv+CdH/JY9c/7Aj/8Ao+GsqnwM5MX/AAZfL8z9LUt02Ly/T++3+NFSp9xfpRXCfOn/2Q==
---00000000000067f0e10624bdab49
+--000000000000e0631b0624bdb319
 Content-Type: image/jpeg; name="15_16:21:07.jpg"
-Content-Disposition: inline; filename="15_16:21:07.jpg"
+Content-Disposition: attachment; filename="15_16:21:07.jpg"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19290de4518db125c3b3>
 X-Attachment-Id: ii_19290de4518db125c3b3
+Content-ID: <ii_19290de4518db125c3b3>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -6483,12 +6578,12 @@ FABRRRQAUUUUAd98f/8AkuXj/wD7Dt5/6OauBrvvj/8A8ly8f/8AYdvP/RzVwNTH4UY0f4UfRBRR
 RVGwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFF
 FABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
 AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH/2Q==
---00000000000067f0e10624bdab49
+--000000000000e0631b0624bdb319
 Content-Type: image/jpeg; name="15_15:37:26.jpg"
-Content-Disposition: inline; filename="15_15:37:26.jpg"
+Content-Disposition: attachment; filename="15_15:37:26.jpg"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19290de45184d14bf724>
 X-Attachment-Id: ii_19290de45184d14bf724
+Content-ID: <ii_19290de45184d14bf724>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -9251,12 +9346,12 @@ ooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
 gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKA
 CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
 KKKACiiigAooooAKKKKACiiigAooooA//9k=
---00000000000067f0e10624bdab49
+--000000000000e0631b0624bdb319
 Content-Type: image/jpeg; name="18_08:51:32.jpg"
-Content-Disposition: inline; filename="18_08:51:32.jpg"
+Content-Disposition: attachment; filename="18_08:51:32.jpg"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_m2edic6e4>
 X-Attachment-Id: ii_m2edic6e4
+Content-ID: <ii_m2edic6e4>
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUA
 AAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAEAAAITAAMAAAABAAEAAAAAAAAAAAABAAAAAQAA
@@ -9981,9 +10076,9 @@ ef5EyS+Xvw23dsxuwcZzg9KSioxtE3ldpo/pCr8fv+Cwf/Jy/hn/ALFG2/8AS29r03/h9H/1R3/y
 5/8A7jr4+/bB/ad/4av+JemeLv8AhGv+EW+xaRFpX2P7f9s37JppfM3+XHjPnY24P3c55wMKcJRl
 dnk4WhUp1OaS0PDKKKK6j1wooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA
 KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z
---00000000000067f0e10624bdab49--
+--000000000000e0631b0624bdb319--
 
---===============3110643057558933694==
+--===============1166613230990163411==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -9993,4 +10088,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3110643057558933694==--
+--===============1166613230990163411==--
