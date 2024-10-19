@@ -2,455 +2,178 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E7A9A43D4
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 18:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0389C9A4D21
+	for <lists+usrp-users@lfdr.de>; Sat, 19 Oct 2024 13:35:26 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E6AAE385815
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2024 12:27:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 86A5F3856A2
+	for <lists+usrp-users@lfdr.de>; Sat, 19 Oct 2024 07:35:24 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1729268862; bh=KCQwH8Qd8rAUl48jggDLKqkJyHNOvGYiWOFBJJnhXP8=;
-	h=Date:From:To:In-Reply-To:References:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=Le6iS0TZ3DEM8UxzZm4gNv4JIB35JvsofNB4H/ZQ4hi04C1kvC63NxfBke6zFaGz8
-	 7Vf+9fIGbiftCoe/Xk1shId9VJidf4qHjViCVTScgHEhrbzcUpNGtSW5yFyYFlIZXP
-	 MG4Do5wUUAZ3uIkteRwe+l4ij0GcvKoH9heu8mTqoMN/KBcG8Mt9babdyAuEvOJEL4
-	 mTNcFD+KR7fsH+ZMsUyzPjGR1FOUfSBwRYKPa1sRV6jbgMqBfXHdrvxYInJb8QA3eW
-	 aIGtuyN4Z2+Lx9jfSPuzgwiL76l74l+EV0ZBFLmteTiCY+9sClqD02f/qo6Kb/5YTv
-	 DkHd2SS0gUDWg==
-Received: from zproxy3.enst.fr (zproxy3.enst.fr [137.194.2.222])
-	by mm2.emwd.com (Postfix) with ESMTPS id 707603854AA
-	for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2024 12:27:33 -0400 (EDT)
+	t=1729337724; bh=R2V7zEk2TAarNZcYfB4tswvUtdKwbPgE9tMxeKNOhAo=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=VPrissnwyBnkrcxBZsL4VHW1vCyI29WsxG51tzsJGRPMjGf2yWV/RpDhksuSNopGR
+	 qFdG3+7fjLSIqUP1z7MI6R3qLyzqpO8DoSytPOUVYbWChca6plb3Zowjm6TwUz+fcb
+	 FrUkkbjUVcv8e0bDw3ft4+1DqpYwYeIJooBN6ClAdNWces1xilpEKb0yGP4Qv2wGTF
+	 tPiubB++Wp61hbby7+FYSJFNdrcjifveOGpgj6TjQyb5gtJMP8SxJmp0kGsfQMr37c
+	 ntCEIm0OY8yfe9LZ1IPKLQoKMIL5Hvo6c1PRCOi3P/ld8rZdNLfbY+xcyk2DAmqFqc
+	 /IyLTvBlFel5A==
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4188C3853B5
+	for <usrp-users@lists.ettus.com>; Sat, 19 Oct 2024 07:34:43 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=imt-atlantique.fr header.i=@imt-atlantique.fr header.b="eeGbmtar";
+	dkim=pass (2048-bit key; unprotected) header.d=cyronics-com.20230601.gappssmtp.com header.i=@cyronics-com.20230601.gappssmtp.com header.b="YhOaWmOm";
 	dkim-atps=neutral
-Received: from localhost (localhost [IPv6:::1])
-	by zproxy3.enst.fr (Postfix) with ESMTP id 6E2F4A0964;
-	Fri, 18 Oct 2024 18:27:32 +0200 (CEST)
-Received: from zproxy3.enst.fr ([IPv6:::1])
- by localhost (zproxy3.enst.fr [IPv6:::1]) (amavis, port 10032) with ESMTP
- id bpzus9RI-slh; Fri, 18 Oct 2024 18:27:32 +0200 (CEST)
-Received: from localhost (localhost [IPv6:::1])
-	by zproxy3.enst.fr (Postfix) with ESMTP id E6923A098B;
-	Fri, 18 Oct 2024 18:27:31 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 zproxy3.enst.fr E6923A098B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imt-atlantique.fr;
-	s=50EA75E8-DE22-11E6-A6DE-0662BA474D24; t=1729268851;
-	bh=5TK42zMRDr2deEjWjz0k93BIkbUY6TMIZDRjRrxFs2U=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=eeGbmtarRo53s+GJDqyzIHs2siricbOqjSFbXOHQSfBpbk1b6YnD8xbysQNYAYuhD
-	 cfoJJlugpMiGqMkezVW/Jl4brjxVRdzxtsJgFWtwTk2YvXHYcKPIkAwcCAH0Y3P4B0
-	 BjF/lenXIWePDoNJPM+Ug+6hhkLFe5JqEI2mlQMg=
-X-Virus-Scanned: amavis at enst.fr
-Received: from zproxy3.enst.fr ([IPv6:::1])
- by localhost (zproxy3.enst.fr [IPv6:::1]) (amavis, port 10026) with ESMTP
- id mXRr5A5VQtjT; Fri, 18 Oct 2024 18:27:31 +0200 (CEST)
-Received: from zmail-imta2.enst.fr (zmail-imta2.enst.fr [137.194.2.217])
-	by zproxy3.enst.fr (Postfix) with ESMTP id BE9B2A0964;
-	Fri, 18 Oct 2024 18:27:31 +0200 (CEST)
-Date: Fri, 18 Oct 2024 18:27:31 +0200 (CEST)
-From: Patrice PAJUSCO <patrice.pajusco@imt-atlantique.fr>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <1599033524.6282335.1729268851631.JavaMail.zimbra@imt-atlantique.fr>
-In-Reply-To: <34fa686f-7914-4447-be55-f2f0c8fdfdef@gmail.com>
-References: <cV2fbI9pb3g80HDPvA80R13Dyh0O9UlCrQjFDNpCjiw@lists.ettus.com> <3ab26169-4f96-41f6-96f0-ab3eb2e3e054@gmail.com> <1595059048.6269059.1729267010623.JavaMail.zimbra@imt-atlantique.fr> <CAEXYVK5oZwP9Qw3hv8E++tHSCmGwGd3aYfpW_inc9Dkoyk9_sg@mail.gmail.com> <34fa686f-7914-4447-be55-f2f0c8fdfdef@gmail.com>
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e3cdbc25a0so32889567b3.2
+        for <usrp-users@lists.ettus.com>; Sat, 19 Oct 2024 04:34:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cyronics-com.20230601.gappssmtp.com; s=20230601; t=1729337682; x=1729942482; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=EsQgoFhloPwmPow4P1KvX4JXOiVGaaRZ9NRsjcg6/qQ=;
+        b=YhOaWmOmrh2anfd+t8k040uUcOLo7t8zN2B3Hncr6OsdLmTSI13C3Cer/EMtvocGLl
+         x4c6fIAsSjZjcowgxPvwbWhh0tOrPvvVYlwsvvK2+4LLG/wSCAT2SMQbgk1Jo2736sEL
+         /WEUJuALOWBfBDpE0fNPtpGva3D5DWqzUPx5sM+7VXxopQejbUF3fXmAQNfIoBLR7ajW
+         9+Fg1WaqBakbS1FNeb6ijM8CDNsBde+NvgzGI3ivs4XR1hL3ud8UeAXBcuvjcSjonqN+
+         778MWGUX9G2eX9aKmIRCwLDxEr+YWzw36U5F/FBne+3GmQuFMARTQwwUOPn6dGVKUqFJ
+         rVnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729337682; x=1729942482;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EsQgoFhloPwmPow4P1KvX4JXOiVGaaRZ9NRsjcg6/qQ=;
+        b=rABGRjyiPsmYxe2aFHUGHHUr4FwLRUGfu7pVzrB2Oou6saL3gmvJlsUhQiVLKW4vmV
+         KgekyzipV2T46fYHsiIW727qAhRNzbeEdWkrLPuHpFC7Q3GrlOBK0v75/LqZLm3Nj5pc
+         AUXiBcmWSDpZMZcmzYduxeITmCSTVgUv2uq6+cR2Ax4pvEMcmShMChFJJKRtu01KcaBS
+         eTRDvXAF7XO2CU5InwnaxmZQiTmm/UwUzseoEn2c+f8R9MRt+OZD2EJOcqltLS9GULp3
+         J0eBiq/r8LueNuHpsfRbn0MMKxrnVERFuKgDQArnsWaUd9F2MF87wU28fVw91io2Jaz1
+         bm4w==
+X-Gm-Message-State: AOJu0YwiTSwyYvcE49PGgR967n4yV/Lu8rHW+4//L+uEyjg1ysIpBy63
+	B0ofyQMScAf449unrCe8lqZpNw84/Eon2eRZJ7KBrMLDJr+6uaPuq7lWIzhHHgY/WQNPv2mj+Wi
+	XfnBHyXiEYR5pho2v/Br40ffpo5v77dyl/xDrK4HQIboMbZph9gU=
+X-Google-Smtp-Source: AGHT+IFkScg/paoW7NhYKNVjW4ohLFkQrLVhT0xwyAIpUW9eFBDyWNQYPf9syg+Bh5/sBr4yq5BOc/RQobZS/bNTVTc=
+X-Received: by 2002:a05:690c:3104:b0:6e3:2608:d5af with SMTP id
+ 00721157ae682-6e5bfceb4f4mr42733747b3.26.1729337682586; Sat, 19 Oct 2024
+ 04:34:42 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [::ffff:10.129.39.196]
-X-Mailer: Zimbra 9.0.0_GA_4653 (ZimbraWebClient - FF131 (Win)/9.0.0_GA_4653)
-Thread-Topic: ADC saturation problem in USRP X310
-Thread-Index: 6FNqs9tXQ5IASJxoSZ+l7K/ZH5FlPQ==
-Message-ID-Hash: OKPTCEY4B6T73PCTT2HF456AL7AYCA6K
-X-Message-ID-Hash: OKPTCEY4B6T73PCTT2HF456AL7AYCA6K
-X-MailFrom: patrice.pajusco@imt-atlantique.fr
+From: Nidhi Panda <nidhi.panda@cyronics.com>
+Date: Sat, 19 Oct 2024 17:04:26 +0530
+Message-ID: <CAF=K0BGKQzHX=-vVc1dki_9e35YyE3hMcdc0fXGynZknvUH4xQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: M3JF2UU2CHTNWMIHOLNBFF763XRWE45X
+X-Message-ID-Hash: M3JF2UU2CHTNWMIHOLNBFF763XRWE45X
+X-MailFrom: nidhi.panda@cyronics.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: ADC saturation problem in USRP X310
+Subject: [USRP-users] Error on using RFNoC Digital Down convetor (DDC).
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OKPTCEY4B6T73PCTT2HF456AL7AYCA6K/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M3JF2UU2CHTNWMIHOLNBFF763XRWE45X/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0177732459982855620=="
+Content-Type: multipart/mixed; boundary="===============2044020338132366861=="
 
---===============0177732459982855620==
-Content-Type: multipart/alternative;
-	boundary="=_fc24cad1-875b-481e-8f3d-96420b75aca7"
+--===============2044020338132366861==
+Content-Type: multipart/alternative; boundary="000000000000448f590624d2ceca"
 
---=_fc24cad1-875b-481e-8f3d-96420b75aca7
-Content-Type: text/plain; charset=utf-8
+--000000000000448f590624d2ceca
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+I am having USRP X300 device with following tool versions:
+
+Vivado 2021.1 - AR76780n,
+GNU radio version - v3.11.0.0git-820-g2adbd4ea
+UHD version - UHD_4.7.0.0-84-gbdada1ed
+
+
+I am trying to use the default example present in the GNU radio example
+folder *"rfnoc_radio_ddc.grc"*. *I* am  able to down convert the input
+signal with the desired frequency however on using frequency shift feature
+it hives following error:
+
+
+[WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+[ERROR] [RFNOC::GRAPH::DETAIL] 0/DDC#0: RfnocError: ResolveError:
+Attempting to overwrite property `freq@USER:0' with a new value after it
+was locked!
+Traceback (most recent call last):
+  File "/home/quasar/gnuradio/gr-uhd/examples/grc/rfnoc_radio_ddc.py", line
+330, in <module>
+    main()
+  File "/home/quasar/gnuradio/gr-uhd/examples/grc/rfnoc_radio_ddc.py", line
+309, in main
+    tb.start()
+  File "/usr/local/lib/python3.8/dist-packages/gnuradio/gr/top_block.py",
+line 116, in start
+    top_block_start_unlocked(self._impl, max_noutput_items)
+RuntimeError: RfnocError: ResolveError: Attempting to overwrite property
+`freq@USER:0' with a new value after it was locked!
+
+
+I have used the default .bit file which includes DDC blocks. Please suggest
+how to resolve this.
+
+
+
+
+
+
+
+-- 
+Regards,
+*Nidhi Panda*
+
+*Cyronics Innovation Labs Pvt Ltd*
+#11, Electronics Co-op Estate
+Satara Road, Pune - 411009
+
+--000000000000448f590624d2ceca
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thank you for your feedback and possible tracks.=20
-- yes about decimation in host machine but computation capacity of the host=
- must be checked :-)=20
-- not yet familiar with RFNOC, I will have a look=20
-Signal analysis is done offline, but IQ data are stored continously during =
-the car trip , that is why it is important for us to have a good quality of=
- sampling=20
+<div dir=3D"ltr"><div>Hello,</div><div><div dir=3D"ltr" class=3D"gmail_sign=
+ature"><div dir=3D"ltr"><div><p dir=3D"auto">I am having USRP X300 device w=
+ith following tool versions:</p>
+<p dir=3D"auto">Vivado 2021.1 - AR76780n,<br>
+GNU radio version - v3.11.0.0git-820-g2adbd4ea<br>
+UHD version - UHD_4.7.0.0-84-gbdada1ed</p><p dir=3D"auto"><br></p><p>I am t=
+rying to use the default example present in the GNU radio example folder <b=
+>&quot;rfnoc_radio_ddc.grc&quot;</b>. <b>I</b> am=C2=A0 able to down conver=
+t the input signal with the desired frequency however on using frequency sh=
+ift feature it hives following error:</p><p><br></p><p>[WARNING] [0/Radio#0=
+] Attempting to set tick rate to 0. Skipping.<br>[ERROR] [RFNOC::GRAPH::DET=
+AIL] 0/DDC#0: RfnocError: ResolveError: Attempting to overwrite property `f=
+req@USER:0&#39; with a new value after it was locked!<br>Traceback (most re=
+cent call last):<br>=C2=A0 File &quot;/home/quasar/gnuradio/gr-uhd/examples=
+/grc/rfnoc_radio_ddc.py&quot;, line 330, in &lt;module&gt;<br>=C2=A0 =C2=A0=
+ main()<br>=C2=A0 File &quot;/home/quasar/gnuradio/gr-uhd/examples/grc/rfno=
+c_radio_ddc.py&quot;, line 309, in main<br>=C2=A0 =C2=A0 tb.start()<br>=C2=
+=A0 File &quot;/usr/local/lib/python3.8/dist-packages/gnuradio/gr/top_block=
+.py&quot;, line 116, in start<br>=C2=A0 =C2=A0 top_block_start_unlocked(sel=
+f._impl, max_noutput_items)<br>RuntimeError: RfnocError: ResolveError: Atte=
+mpting to overwrite property `freq@USER:0&#39; with a new value after it wa=
+s locked!</p><p><br></p><p>I have used the default .bit file which includes=
+ DDC blocks. Please suggest how to resolve this.<br></p><p><br></p><p><br><=
+/p><p><br></p><p><br></p></div></div></div></div><br clear=3D"all"><br><spa=
+n class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"=
+gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">Regard=
+s,<div><b>Nidhi Panda</b></div><div><span style=3D"color:rgb(136,136,136)">=
+<font color=3D"#000000"><b><img width=3D"200" height=3D"43" src=3D"https://=
+ci3.googleusercontent.com/mail-sig/AIorK4wydcZFixEg0Qccgx_ECRhBJmIl6LIH5q6u=
+QDkghvzzXniBb30e7zMVxFMSgyjztcNnZmeLHAueDJVU"></b><br><b>Cyronics Innovatio=
+n Labs Pvt Ltd</b><br></font></span></div><div><div><span style=3D"color:rg=
+b(136,136,136)"><font color=3D"#000000">#11, Electronics Co-op Estate=C2=A0=
+<br>Satara Road, Pune - 411009</font></span></div></div><div><br></div></di=
+v></div></div>
 
+--000000000000448f590624d2ceca--
 
-De: "Marcus D. Leech" <patchvonbraun@gmail.com>=20
-=C3=80: "Brian Padalino" <bpadalino@gmail.com>, "Patrice PAJUSCO" <patrice.=
-pajusco@imt-atlantique.fr>=20
-Cc: "usrp-users" <usrp-users@lists.ettus.com>=20
-Envoy=C3=A9: Vendredi 18 Octobre 2024 18:13:57=20
-Objet: Re: [USRP-users] Re: ADC saturation problem in USRP X310=20
-
-On 18/10/2024 12:06, Brian Padalino wrote:=20
-
-
-
-Your options are to sample at 184.32 MHz and decimate in the host machine d=
-own to 30.72 MHz for LTE decoding, or if that isn't an option then you need=
- to place an RFNoC block at the output of the radio but before the DDC whic=
-h will give you an input power estimate that you can read from the host per=
-iodically. You need to feed that into your AGC algorithm as another input.=
-=20
-
-Note the block can just update an internal register that you poll and not p=
-roduce any samples.=20
-
-Brian=20
-
-
-Without knowing much about LTE DSP and DR requirements, once your gain leve=
-l is at a level where you have adequate SNR in most=20
-cases, then the only thing remaining is if your downstream DSP algorithms r=
-equire that samples be in the "saturated" {-1,+1}=20
-domain, that can be done DSP-wise without ever touching the RF gain.=20
-
-
-
-BQ_BEGIN
-
-
-On Fri, Oct 18, 2024 at 11:57 AM Patrice PAJUSCO < [ mailto:patrice.pajusco=
-@imt-atlantique.fr | patrice.pajusco@imt-atlantique.fr ] > wrote:=20
-
-BQ_BEGIN
-
-Dear Marcus,=20
-
-thank you for your answer. Just to clarify the problem a little better.=20
-We use a UBX160 daughter card.=20
-To have optimal SNR, an automatic gain control has been implemented based o=
-n the max IQ value.=20
-The sample rate is 30.72 for LTE decoding.=20
-Unfortunately, high power exists outside our useful band (30.72 MHz) but in=
-side the bandwidth of the 160 daughter card (sampled by the 200 MHz ADC).=
-=20
-We expected the AGC to saturate... but after DSP filtering process by the m=
-otherboard, the IQ samples got with UHD is no longer saturated.=20
-As a result, the IQ max is low enough and AGC control continue to increase =
-the gain :-(=20
-It is my current understanding of the situation.=20
-Is there any way to have an estimate of the raw AGC input level when the sa=
-mple rate is not 200 MHz?=20
-I hope to be clear enough... but surelty not crystal clear :-)=20
-Best regards=20
-
-Patrice=20
-
-
-De: "Marcus D. Leech" < [ mailto:patchvonbraun@gmail.com | patchvonbraun@gm=
-ail.com ] >=20
-=C3=80: "usrp-users" < [ mailto:usrp-users@lists.ettus.com | usrp-users@lis=
-ts.ettus.com ] >=20
-Envoy=C3=A9: Vendredi 18 Octobre 2024 17:38:43=20
-Objet: [USRP-users] Re: ADC saturation problem in USRP X310=20
-
-On 18/10/2024 11:35, [ mailto:je.amghar@gmail.com | je.amghar@gmail.com ] w=
-rote:=20
->=20
-> Hello,=20
->=20
-> I am currently facing an issue with ADC saturation on a USRP X310=20
-> equipped with a UBX daughterboard. We are conducting measurements=20
-> using an LTE signal and a sinusoidal input signal, but it seems that=20
-> the ADC is saturating, leading to a loss of dynamic range in our=20
-> measurements.=20
->=20
-> Test context:=20
-> We are transmitting (using a generator) an LTE signal with a power of=20
-> -50 dBm at a center frequency of 1815 MHz. Then, we add a sinusoidal=20
-> signal at 1865 MHz with a power of -30 dBm. This second, more powerful=20
-> signal seems to be causing the ADC to saturate, even though we don=E2=80=
-=99t=20
-> see it directly in the IQ samples due to the digital filtering applied=20
-> downstream.=20
->=20
-> Problem:=20
-> We suspect that the ADC saturation occurs before IQ conversion and is=20
-> therefore masked by the digital filters. This results in a loss of=20
-> dynamic range in our measurements, and we feel that adjusting the gain=20
-> based on the IQ samples may not be reliable.=20
->=20
-> Question:=20
-> How can this ADC saturation be detected upstream of the IQ processing?=20
-> Are there tools or methods to directly monitor the sample values at=20
-> the output of the ADC in the USRP (before digital filtering) to=20
-> prevent saturation?=20
-> Do you have any advice for implementing an automatic gain controller=20
-> (AGC) based on reliable saturation indicators?=20
-> We would appreciate any suggestions or experiences in resolving this=20
-> issue. If you have encountered a similar problem or have ideas on how=20
-> to address it, we would be happy to hear your recommendations.=20
->=20
-> Thank you very much for your help!=20
->=20
->=20
-A -30dBm signal applied at the antenna inputs, and then amplified=20
-greatly by the amplifier/mixer/gain-chain ahead of the ADC=20
-would very-likely saturate the ADC. A -30dBm signal from an "over=20
-the air" antenna is one that is thunderingly loud in=20
-the real world. It would not surprise me to find that gain elements=20
-ahead of the ADC are *also* becoming non-linear.=20
-
-Turn your gain down.=20
-
-_______________________________________________=20
-USRP-users mailing list -- [ mailto:usrp-users@lists.ettus.com | usrp-users=
-@lists.ettus.com ]=20
-To unsubscribe send an email to [ mailto:usrp-users-leave@lists.ettus.com |=
- usrp-users-leave@lists.ettus.com ]=20
-_______________________________________________=20
-USRP-users mailing list -- [ mailto:usrp-users@lists.ettus.com | usrp-users=
-@lists.ettus.com ]=20
-To unsubscribe send an email to [ mailto:usrp-users-leave@lists.ettus.com |=
- usrp-users-leave@lists.ettus.com ]=20
-
-BQ_END
-
-
-BQ_END
-
-
-
---=_fc24cad1-875b-481e-8f3d-96420b75aca7
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><body><div id=3D"zimbraEditorContainer" style=3D"font-family: arial,h=
-elvetica,sans-serif; font-size: 12pt; color: #000000" class=3D"4"><div>Than=
-k you for your feedback and possible tracks.<br></div><div>- yes about deci=
-mation in host machine but computation capacity of the host must be checked=
- :-)<br data-mce-bogus=3D"1"></div><div>- not yet familiar with RFNOC, I wi=
-ll have a look</div><div>Signal analysis is done offline, but IQ data are s=
-tored continously  <!--StartFragment-->during the car trip<!--EndFragment--=
->, that is why it is important for us to have a good quality of sampling <b=
-r></div><div><br data-mce-bogus=3D"1"></div><hr id=3D"zwchr" data-marker=3D=
-"__DIVIDER__"><div data-marker=3D"__HEADERS__"><b>De: </b>"Marcus D. Leech"=
- &lt;patchvonbraun@gmail.com&gt;<br><b>=C3=80: </b>"Brian Padalino" &lt;bpa=
-dalino@gmail.com&gt;, "Patrice PAJUSCO" &lt;patrice.pajusco@imt-atlantique.=
-fr&gt;<br><b>Cc: </b>"usrp-users" &lt;usrp-users@lists.ettus.com&gt;<br><b>=
-Envoy=C3=A9: </b>Vendredi 18 Octobre 2024 18:13:57<br><b>Objet: </b>Re: [US=
-RP-users] Re: ADC saturation problem in USRP X310<br></div><div><br></div><=
-div data-marker=3D"__QUOTED_TEXT__"><div class=3D"moz-cite-prefix">On 18/10=
-/2024 12:06, Brian Padalino
-      wrote:<br>
-    </div>
-    <blockquote cite=3D"mid:CAEXYVK5oZwP9Qw3hv8E++tHSCmGwGd3aYfpW_inc9Dkoyk=
-9_sg@mail.gmail.com">
-     =20
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">Your options are to sample
-            at 184.32 MHz and decimate in the host machine down to 30.72
-            MHz for LTE decoding, or if that isn't an option then you
-            need to place an RFNoC block at the output of the radio but
-            before the DDC which will give you an input power estimate
-            that you can read from the host periodically.&nbsp; You need to
-            feed that into your AGC algorithm as another input.<br>
-          </div>
-          <div dir=3D"ltr" class=3D"gmail_attr"><br>
-          </div>
-          <div class=3D"gmail_attr">Note the block can just update an
-            internal register that you poll and not produce any samples.</d=
-iv>
-          <div dir=3D"ltr" class=3D"gmail_attr"><br>
-          </div>
-          <div class=3D"gmail_attr">Brian</div>
-        </div>
-      </div>
-    </blockquote>
-    Without knowing much about LTE DSP and DR requirements, once your
-    gain level is at a level where you have adequate SNR in most<br>
-    &nbsp; cases, then the only thing remaining is if your downstream DSP
-    algorithms require that samples be in the "saturated" {-1,+1}<br>
-    &nbsp; domain, that can be done DSP-wise without ever touching the RF
-    gain.<br>
-    <br>
-    <br>
-    <blockquote cite=3D"mid:CAEXYVK5oZwP9Qw3hv8E++tHSCmGwGd3aYfpW_inc9Dkoyk=
-9_sg@mail.gmail.com">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr"><br>
-          </div>
-          <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2024 at
-            11:57=E2=80=AFAM Patrice PAJUSCO &lt;<a href=3D"mailto:patrice.=
-pajusco@imt-atlantique.fr" class=3D"moz-txt-link-freetext" target=3D"_blank=
-">patrice.pajusco@imt-atlantique.fr</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-            <div>
-              <div id=3D"m_8500105023683579753zimbraEditorContainer" style=
-=3D"font-family:arial,helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)"=
->
-                <div>Dear Marcus,<br>
-                </div>
-                <div><br>
-                </div>
-                <div>thank you for your answer. Just to clarify the
-                  problem a little better.</div>
-                <div> We use a UBX160 daughter card. </div>
-                <div>To have optimal SNR, an automatic gain control has
-                  been implemented based on the max IQ value.</div>
-                <div> The sample rate is 30.72 for LTE decoding. </div>
-                <div>Unfortunately, high power exists outside our useful
-                  band (30.72 MHz) but inside the bandwidth of the 160
-                  daughter card (sampled by the 200 MHz ADC).</div>
-                <div>We expected the AGC to saturate... but after DSP
-                  filtering process by the motherboard, the IQ samples
-                  got with UHD is no longer saturated.<br>
-                  As a result, the IQ max is low enough and AGC control
-                  continue to increase the gain :-(<br>
-                  It is my current understanding of the situation. <br>
-                  Is there any way to have an estimate of the raw AGC
-                  input level when the sample rate is not 200 MHz?<br>
-                  I hope to be clear enough... but surelty&nbsp; not crysta=
-l
-                  clear :-)</div>
-                <div>Best regards<br>
-                </div>
-                <div><br>
-                </div>
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; Patrice<br>
-                </div>
-                <div><br>
-                </div>
-                <hr id=3D"m_8500105023683579753zwchr">
-                <div><b>De: </b>"Marcus D. Leech" &lt;<a href=3D"mailto:pat=
-chvonbraun@gmail.com" target=3D"_blank" class=3D"moz-txt-link-freetext">pat=
-chvonbraun@gmail.com</a>&gt;<br>
-                  <b>=C3=80: </b>"usrp-users" &lt;<a href=3D"mailto:usrp-us=
-ers@lists.ettus.com" target=3D"_blank" class=3D"moz-txt-link-freetext">usrp=
--users@lists.ettus.com</a>&gt;<br>
-                  <b>Envoy=C3=A9: </b>Vendredi 18 Octobre 2024 17:38:43<br>
-                  <b>Objet: </b>[USRP-users] Re: ADC saturation problem
-                  in USRP X310<br>
-                </div>
-                <div><br>
-                </div>
-                <div>On 18/10/2024 11:35, <a href=3D"mailto:je.amghar@gmail=
-.com" target=3D"_blank" class=3D"moz-txt-link-freetext">je.amghar@gmail.com=
-</a>
-                  wrote:<br>
-                  &gt;<br>
-                  &gt; Hello,<br>
-                  &gt;<br>
-                  &gt; I am currently facing an issue with ADC
-                  saturation on a USRP X310 <br>
-                  &gt; equipped with a UBX daughterboard. We are
-                  conducting measurements <br>
-                  &gt; using an LTE signal and a sinusoidal input
-                  signal, but it seems that <br>
-                  &gt; the ADC is saturating, leading to a loss of
-                  dynamic range in our <br>
-                  &gt; measurements.<br>
-                  &gt;<br>
-                  &gt; Test context:<br>
-                  &gt; We are transmitting (using a generator) an LTE
-                  signal with a power of <br>
-                  &gt; -50 dBm at a center frequency of 1815 MHz. Then,
-                  we add a sinusoidal <br>
-                  &gt; signal at 1865 MHz with a power of -30 dBm. This
-                  second, more powerful <br>
-                  &gt; signal seems to be causing the ADC to saturate,
-                  even though we don=E2=80=99t <br>
-                  &gt; see it directly in the IQ samples due to the
-                  digital filtering applied <br>
-                  &gt; downstream.<br>
-                  &gt;<br>
-                  &gt; Problem:<br>
-                  &gt; We suspect that the ADC saturation occurs before
-                  IQ conversion and is <br>
-                  &gt; therefore masked by the digital filters. This
-                  results in a loss of <br>
-                  &gt; dynamic range in our measurements, and we feel
-                  that adjusting the gain <br>
-                  &gt; based on the IQ samples may not be reliable.<br>
-                  &gt;<br>
-                  &gt; Question:<br>
-                  &gt; How can this ADC saturation be detected upstream
-                  of the IQ processing? <br>
-                  &gt; Are there tools or methods to directly monitor
-                  the sample values at <br>
-                  &gt; the output of the ADC in the USRP (before digital
-                  filtering) to <br>
-                  &gt; prevent saturation?<br>
-                  &gt; Do you have any advice for implementing an
-                  automatic gain controller <br>
-                  &gt; (AGC) based on reliable saturation indicators?<br>
-                  &gt; We would appreciate any suggestions or
-                  experiences in resolving this <br>
-                  &gt; issue. If you have encountered a similar problem
-                  or have ideas on how <br>
-                  &gt; to address it, we would be happy to hear your
-                  recommendations.<br>
-                  &gt;<br>
-                  &gt; Thank you very much for your help!<br>
-                  &gt;<br>
-                  &gt;<br>
-                  A -30dBm signal applied at the antenna inputs, and
-                  then amplified <br>
-                  greatly by the amplifier/mixer/gain-chain ahead of the
-                  ADC<br>
-                  &nbsp;&nbsp; would very-likely saturate the ADC.&nbsp;&nb=
-sp; A -30dBm
-                  signal from an "over <br>
-                  the air" antenna is one that is thunderingly loud in<br>
-                  &nbsp;&nbsp; the real world.&nbsp; It would not surprise =
-me to find
-                  that gain elements <br>
-                  ahead of the ADC are *also* becoming non-linear.<br>
-                  <br>
-                  Turn your gain down.<br>
-                  <br>
-                  _______________________________________________<br>
-                  USRP-users mailing list -- <a href=3D"mailto:usrp-users@l=
-ists.ettus.com" target=3D"_blank" class=3D"moz-txt-link-freetext">usrp-user=
-s@lists.ettus.com</a><br>
-                  To unsubscribe send an email to <a href=3D"mailto:usrp-us=
-ers-leave@lists.ettus.com" target=3D"_blank" class=3D"moz-txt-link-freetext=
-">usrp-users-leave@lists.ettus.com</a><br>
-                </div>
-              </div>
-            </div>
-            _______________________________________________<br>
-            USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.e=
-ttus.com" target=3D"_blank" class=3D"moz-txt-link-freetext">usrp-users@list=
-s.ettus.com</a><br>
-            To unsubscribe send an email to <a href=3D"mailto:usrp-users-le=
-ave@lists.ettus.com" target=3D"_blank" class=3D"moz-txt-link-freetext">usrp=
--users-leave@lists.ettus.com</a><br>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    <br><br></div></div></body></html>
---=_fc24cad1-875b-481e-8f3d-96420b75aca7--
-
---===============0177732459982855620==
+--===============2044020338132366861==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -460,4 +183,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0177732459982855620==--
+--===============2044020338132366861==--
