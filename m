@@ -2,1049 +2,170 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F27B9B6B52
-	for <lists+usrp-users@lfdr.de>; Wed, 30 Oct 2024 18:50:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B639B6BAB
+	for <lists+usrp-users@lfdr.de>; Wed, 30 Oct 2024 19:08:06 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5E44238694E
-	for <lists+usrp-users@lfdr.de>; Wed, 30 Oct 2024 13:50:06 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 29F8B38649E
+	for <lists+usrp-users@lfdr.de>; Wed, 30 Oct 2024 14:08:06 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730310606; bh=HTQVgzY7oOei6mtFpJpy55pUGN3Tt684t5gwJqGv1LM=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=NPED+RxkTentnRLiABPRC/cNELeHoNQKR4utK08LosLXNC6AQcy3dTGbX3+0gOY9D
-	 auIR9woUnFqW+K3m3641QOYrVg9mBZvQuLT/QnxtoEmaLdUvYVlCX8XcoZWqEAcHF4
-	 +VaLLRKXa7KvAEfCuWwb0fV8jwsz98GEbw4WNibF1Nc6AjmkfpoEjFSScvdnyfDI9J
-	 D63QRwtvV8S2QplrF+3vMy5hn9r62mjGgI4P4O0HAjPsMzfRHuI+F8+DT4aFSxav7E
-	 BHjtFTH8tDdiA8fy2ufbsNMFGfxLMiLK2C60EtIyvxl2+zWXK0rZblfGNs0iLBX+9Y
-	 ASaXvcfLNbI9Q==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 97144385A39
-	for <usrp-users@lists.ettus.com>; Wed, 30 Oct 2024 13:49:50 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730310590; bh=hXKykUo4qe6WcsybcYVAcA333uhQVTUoRZDeiQpx7xw=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=uM3n98X4lstgmTg2kvuJE8xW2UU3HSY+cG0Gxkv8nPdlVT+9oEIIVhWw1ItznuOrN
-	 Fr2MPkQl1QQaMmOR+sBi6Fh7ppH6/SXIKgcw1sg6264lHUNqn47JvAkKjEZzbNkBjb
-	 9MNRjUGJxzl1FNx6afjj2dUBXKnN870L5ObOLV17Su845O06qw583y/jIaW8PmRXzV
-	 gkDv1m/dxU2MoJAtINTajV1xQKEb3jZiSnK5mTGZD1Ue77wDnLNJilBK8bVWfojErH
-	 L6mxW4T8oFSEkQwzXhNr843QzTDzFxsI3aHKhhv3EM5Vji1xqHizo4cUOXqR6r2q7D
-	 UEVkFbiL6hdGQ==
-Date: Wed, 30 Oct 2024 17:49:50 +0000
-To: usrp-users@lists.ettus.com
-From: dhpanchaai@gmail.com
-Message-ID: <u0n3cKoUIgYOHdMdESz6gPsFlxXoH8EZ8VCnpQ228@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: TddC7jbd6VbQLsI5EBw6RnJugjuJuYPuHOxOJb9iDEU@lists.ettus.com
+	t=1730311686; bh=dr2TZqHbAMDksIoUWPOjHJ0U6uR4Fre/CFnOLUj0cCQ=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=oRLn8ypFqsnApb1LpLuXhDRC4y0mnlhDfLI/1NN9ov2GG4k3NAMnaJsxP9SmjCuKW
+	 AlvePfkS2owL99p+nKygO+dNCgHWSr+QYdxWSNtvI4SvNHSFc0yxJoy7m7YpKAaeGr
+	 WbaSMjyIIZUZmlvR3OjwnEulvYpBzaDVuk8d5qqLdxqOP22ZUpvHph3kK15GH4hUgH
+	 vOghXAX+QCcJ+6z9SNHL3XTXRQrHR3E6unavP4x6wnsE4jypNaYIRcTimPjAM5hXZg
+	 lAviL2CTtZCiqlYGFRMQO4N+PUGj14CdmhrlToJLfPGB47QiQnitSUPkyddJvB8beZ
+	 4vuzJzSEyDJAg==
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2E73A386495
+	for <usrp-users@lists.ettus.com>; Wed, 30 Oct 2024 14:07:52 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AlniamXT";
+	dkim-atps=neutral
+Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7b1511697a5so7571885a.2
+        for <usrp-users@lists.ettus.com>; Wed, 30 Oct 2024 11:07:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730311671; x=1730916471; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mUJ624XPQioPARKnVS+lgz9FB38t1YgflE7FhoAKBFo=;
+        b=AlniamXTeY+CdtDdnGbbzHcdLI49FzanrVkMf1xKnqjO/UU/gfe9TR3toB57EadupA
+         kb84Mut6r8eIm0IXXUnVJWxcHLulniAcXdId71ecLtvhctwrhBv6puCcgLFcFR2zuJkh
+         +Shh+pQdutss7elGrjU4IKSEgY5OiDMYFKkhjQsFB7VjQ4u0TmScZthgRfB+eC0xn81m
+         h0sTiLVpyvW2q1jDGEUNhUmiSdXtV06ovrrDdEv319vlL+gAKj3eXBa+cXvXIl4yxzN8
+         Ega2qCGdQKszXVnb7K5RFJpfVlHsxyo2AZb80IT/aJvOtX4uyW6jRmuULe0KQhn+z3Mv
+         hr0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730311671; x=1730916471;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mUJ624XPQioPARKnVS+lgz9FB38t1YgflE7FhoAKBFo=;
+        b=LRTwUB5n89gEHk1wdcEnjWNE+HfsGQS7oJWIlKBvL/iwj2XcTZxLZrp1qyKv76uQql
+         PzSUL5zCDeLQZb1cDeI5t5E1mGuQ8YwSRArU7UvRsSYck5Sg919GxUcljd8q2uqR1+Fw
+         I2361R8bAulPQrhlIcP+/Kn0w5JYJw9Yr6xyMlejGsSv+DuTonDxvlCJaJUQDSI7wfwm
+         +BO7GiIkoKaH/FOjMuPl6YSQqNXKNiEVrAbVuc1NZnJ5+/aLeu0V+Pl4S1dOJVw5ty2f
+         hrZW8tDCtJo5I15lWla0gA6c4qZqUMSOO3M+0z4cxFwmoFemgHHtRPu0OC3MsVNZ+gXL
+         TFWA==
+X-Gm-Message-State: AOJu0YxXMPc7Zam/YmMkvK0LwtlZCqd1fIyobRYzJT9V6qoMF8gQID4y
+	eOPh81DmMwwKLVJFaya+ZhYLogZdXPJztoBov0Un5cWyvKEZEeVELjLM7A==
+X-Google-Smtp-Source: AGHT+IHI4dFlB8diGdPNR1gaVxOmsBAtj+RW7TLFOiVBqjqpmE01la5HWuQUcDpIlAG6kkdNvnttNw==
+X-Received: by 2002:a05:620a:468f:b0:7ac:9b5e:baf3 with SMTP id af79cd13be357-7b193ef2c9amr2417353485a.26.1730311671221;
+        Wed, 30 Oct 2024 11:07:51 -0700 (PDT)
+Received: from [192.168.2.170] ([174.88.53.166])
+        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7b18d27911asm536940685a.26.2024.10.30.11.07.50
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Oct 2024 11:07:50 -0700 (PDT)
+Message-ID: <118a5072-b4c9-47f7-8113-529133b67633@gmail.com>
+Date: Wed, 30 Oct 2024 14:07:40 -0400
 MIME-Version: 1.0
-Message-ID-Hash: TBW5RXYDPEFKA5I5PWQPJEAZTBLVBXX3
-X-Message-ID-Hash: TBW5RXYDPEFKA5I5PWQPJEAZTBLVBXX3
-X-MailFrom: dhpanchaai@gmail.com
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <TddC7jbd6VbQLsI5EBw6RnJugjuJuYPuHOxOJb9iDEU@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <TddC7jbd6VbQLsI5EBw6RnJugjuJuYPuHOxOJb9iDEU@lists.ettus.com>
+Message-ID-Hash: QGPHCJUD4NA7ALYXCZQSLDIDWNZ2EQWF
+X-Message-ID-Hash: QGPHCJUD4NA7ALYXCZQSLDIDWNZ2EQWF
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Drop packets and sequence errors during X410 DPDK benchmark test
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TBW5RXYDPEFKA5I5PWQPJEAZTBLVBXX3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QGPHCJUD4NA7ALYXCZQSLDIDWNZ2EQWF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1051742557525248897=="
-
-This is a multi-part message in MIME format.
-
---===============1051742557525248897==
-Content-Type: multipart/alternative;
- boundary="b1_u0n3cKoUIgYOHdMdESz6gPsFlxXoH8EZ8VCnpQ228"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_u0n3cKoUIgYOHdMdESz6gPsFlxXoH8EZ8VCnpQ228
-Content-Type: text/plain; charset=us-ascii
-
-Here is the cpuinfo from the terminal:\
-\
-$ sudo cpufreq-set -c 11 -g performance
-
-$ cpufreq-info
-
-cpufrequtils 008: cpufreq-info (C) Dominik Brodowski 2004-2009
-
-Report errors and bugs to cpufreq@vger.kernel.org, please.
-
-analyzing CPU 0:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 0
-
-  CPUs which need to have their frequency coordinated by software: 0
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 1:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 1
-
-  CPUs which need to have their frequency coordinated by software: 1
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 2:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 2
-
-  CPUs which need to have their frequency coordinated by software: 2
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 3:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 3
-
-  CPUs which need to have their frequency coordinated by software: 3
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 4:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 4
-
-  CPUs which need to have their frequency coordinated by software: 4
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 5:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 5
-
-  CPUs which need to have their frequency coordinated by software: 5
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 6:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 6
-
-  CPUs which need to have their frequency coordinated by software: 6
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 7:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 7
-
-  CPUs which need to have their frequency coordinated by software: 7
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 8:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 8
-
-  CPUs which need to have their frequency coordinated by software: 8
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 6.00 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 9:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 9
-
-  CPUs which need to have their frequency coordinated by software: 9
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 6.00 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 10:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 10
-
-  CPUs which need to have their frequency coordinated by software: 10
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 6.00 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 11:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 11
-
-  CPUs which need to have their frequency coordinated by software: 11
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 6.00 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 12:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 12
-
-  CPUs which need to have their frequency coordinated by software: 12
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 13:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 13
-
-  CPUs which need to have their frequency coordinated by software: 13
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 14:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 14
-
-  CPUs which need to have their frequency coordinated by software: 14
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 15:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 15
-
-  CPUs which need to have their frequency coordinated by software: 15
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 5.70 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 5.70 GHz and 5.70 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 5.70 GHz.
-
-analyzing CPU 16:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 16
-
-  CPUs which need to have their frequency coordinated by software: 16
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 17:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 17
-
-  CPUs which need to have their frequency coordinated by software: 17
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 18:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 18
-
-  CPUs which need to have their frequency coordinated by software: 18
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 19:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 19
-
-  CPUs which need to have their frequency coordinated by software: 19
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 20:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 20
-
-  CPUs which need to have their frequency coordinated by software: 20
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 21:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 21
-
-  CPUs which need to have their frequency coordinated by software: 21
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 22:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 22
-
-  CPUs which need to have their frequency coordinated by software: 22
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 23:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 23
-
-  CPUs which need to have their frequency coordinated by software: 23
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 24:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 24
-
-  CPUs which need to have their frequency coordinated by software: 24
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 25:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 25
-
-  CPUs which need to have their frequency coordinated by software: 25
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 26:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 26
-
-  CPUs which need to have their frequency coordinated by software: 26
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 27:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 27
-
-  CPUs which need to have their frequency coordinated by software: 27
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 28:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 28
-
-  CPUs which need to have their frequency coordinated by software: 28
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 29:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 29
-
-  CPUs which need to have their frequency coordinated by software: 29
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 30:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 30
-
-  CPUs which need to have their frequency coordinated by software: 30
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
-analyzing CPU 31:
-
-  driver: intel_pstate
-
-  CPUs which run at the same hardware frequency: 31
-
-  CPUs which need to have their frequency coordinated by software: 31
-
-  maximum transition latency: 4294.55 ms.
-
-  hardware limits: 800 MHz - 4.40 GHz
-
-  available cpufreq governors: performance, powersave
-
-  current policy: frequency should be within 4.40 GHz and 4.40 GHz.
-
-                  The governor "performance" may decide which speed to use
-
-                  within this range.
-
-  current CPU frequency is 4.40 GHz.
-
---b1_u0n3cKoUIgYOHdMdESz6gPsFlxXoH8EZ8VCnpQ228
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>Here is the cpuinfo from the terminal:<br><br>$ sudo cpufreq-set -c 11 -=
-g performance</p><p>$ cpufreq-info</p><p>cpufrequtils 008: cpufreq-info (C)=
- Dominik Brodowski 2004-2009</p><p>Report errors and bugs to cpufreq@vger.k=
-ernel.org, please.</p><p>analyzing CPU 0:</p><p>  driver: intel_pstate</p><=
-p>  CPUs which run at the same hardware frequency: 0</p><p>  CPUs which nee=
-d to have their frequency coordinated by software: 0</p><p>  maximum transi=
-tion latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 5.70 GHz</p><p=
->  available cpufreq governors: performance, powersave</p><p>  current poli=
-cy: frequency should be within 5.70 GHz and 5.70 GHz.</p><p>               =
-   The governor "performance" may decide which speed to use</p><p>         =
-         within this range.</p><p>  current CPU frequency is 5.70 GHz.</p><=
-p>analyzing CPU 1:</p><p>  driver: intel_pstate</p><p>  CPUs which run at t=
-he same hardware frequency: 1</p><p>  CPUs which need to have their frequen=
-cy coordinated by software: 1</p><p>  maximum transition latency: 4294.55 m=
-s.</p><p>  hardware limits: 800 MHz - 5.70 GHz</p><p>  available cpufreq go=
-vernors: performance, powersave</p><p>  current policy: frequency should be=
- within 5.70 GHz and 5.70 GHz.</p><p>                  The governor "perfor=
-mance" may decide which speed to use</p><p>                  within this ra=
-nge.</p><p>  current CPU frequency is 5.70 GHz.</p><p>analyzing CPU 2:</p><=
-p>  driver: intel_pstate</p><p>  CPUs which run at the same hardware freque=
-ncy: 2</p><p>  CPUs which need to have their frequency coordinated by softw=
-are: 2</p><p>  maximum transition latency: 4294.55 ms.</p><p>  hardware lim=
-its: 800 MHz - 5.70 GHz</p><p>  available cpufreq governors: performance, p=
-owersave</p><p>  current policy: frequency should be within 5.70 GHz and 5.=
-70 GHz.</p><p>                  The governor "performance" may decide which=
- speed to use</p><p>                  within this range.</p><p>  current CP=
-U frequency is 5.70 GHz.</p><p>analyzing CPU 3:</p><p>  driver: intel_pstat=
-e</p><p>  CPUs which run at the same hardware frequency: 3</p><p>  CPUs whi=
-ch need to have their frequency coordinated by software: 3</p><p>  maximum =
-transition latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 5.70 GHz=
-</p><p>  available cpufreq governors: performance, powersave</p><p>  curren=
-t policy: frequency should be within 5.70 GHz and 5.70 GHz.</p><p>         =
-         The governor "performance" may decide which speed to use</p><p>   =
-               within this range.</p><p>  current CPU frequency is 5.70 GHz=
-.</p><p>analyzing CPU 4:</p><p>  driver: intel_pstate</p><p>  CPUs which ru=
-n at the same hardware frequency: 4</p><p>  CPUs which need to have their f=
-requency coordinated by software: 4</p><p>  maximum transition latency: 429=
-4.55 ms.</p><p>  hardware limits: 800 MHz - 5.70 GHz</p><p>  available cpuf=
-req governors: performance, powersave</p><p>  current policy: frequency sho=
-uld be within 5.70 GHz and 5.70 GHz.</p><p>                  The governor "=
-performance" may decide which speed to use</p><p>                  within t=
-his range.</p><p>  current CPU frequency is 5.70 GHz.</p><p>analyzing CPU 5=
-:</p><p>  driver: intel_pstate</p><p>  CPUs which run at the same hardware =
-frequency: 5</p><p>  CPUs which need to have their frequency coordinated by=
- software: 5</p><p>  maximum transition latency: 4294.55 ms.</p><p>  hardwa=
-re limits: 800 MHz - 5.70 GHz</p><p>  available cpufreq governors: performa=
-nce, powersave</p><p>  current policy: frequency should be within 5.70 GHz =
-and 5.70 GHz.</p><p>                  The governor "performance" may decide=
- which speed to use</p><p>                  within this range.</p><p>  curr=
-ent CPU frequency is 5.70 GHz.</p><p>analyzing CPU 6:</p><p>  driver: intel=
-_pstate</p><p>  CPUs which run at the same hardware frequency: 6</p><p>  CP=
-Us which need to have their frequency coordinated by software: 6</p><p>  ma=
-ximum transition latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 5.=
-70 GHz</p><p>  available cpufreq governors: performance, powersave</p><p>  =
-current policy: frequency should be within 5.70 GHz and 5.70 GHz.</p><p>   =
-               The governor "performance" may decide which speed to use</p>=
-<p>                  within this range.</p><p>  current CPU frequency is 5.=
-70 GHz.</p><p>analyzing CPU 7:</p><p>  driver: intel_pstate</p><p>  CPUs wh=
-ich run at the same hardware frequency: 7</p><p>  CPUs which need to have t=
-heir frequency coordinated by software: 7</p><p>  maximum transition latenc=
-y: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 5.70 GHz</p><p>  availabl=
-e cpufreq governors: performance, powersave</p><p>  current policy: frequen=
-cy should be within 5.70 GHz and 5.70 GHz.</p><p>                  The gove=
-rnor "performance" may decide which speed to use</p><p>                  wi=
-thin this range.</p><p>  current CPU frequency is 5.70 GHz.</p><p>analyzing=
- CPU 8:</p><p>  driver: intel_pstate</p><p>  CPUs which run at the same har=
-dware frequency: 8</p><p>  CPUs which need to have their frequency coordina=
-ted by software: 8</p><p>  maximum transition latency: 4294.55 ms.</p><p>  =
-hardware limits: 800 MHz - 6.00 GHz</p><p>  available cpufreq governors: pe=
-rformance, powersave</p><p>  current policy: frequency should be within 5.7=
-0 GHz and 5.70 GHz.</p><p>                  The governor "performance" may =
-decide which speed to use</p><p>                  within this range.</p><p>=
-  current CPU frequency is 5.70 GHz.</p><p>analyzing CPU 9:</p><p>  driver:=
- intel_pstate</p><p>  CPUs which run at the same hardware frequency: 9</p><=
-p>  CPUs which need to have their frequency coordinated by software: 9</p><=
-p>  maximum transition latency: 4294.55 ms.</p><p>  hardware limits: 800 MH=
-z - 6.00 GHz</p><p>  available cpufreq governors: performance, powersave</p=
-><p>  current policy: frequency should be within 5.70 GHz and 5.70 GHz.</p>=
-<p>                  The governor "performance" may decide which speed to u=
-se</p><p>                  within this range.</p><p>  current CPU frequency=
- is 5.70 GHz.</p><p>analyzing CPU 10:</p><p>  driver: intel_pstate</p><p>  =
-CPUs which run at the same hardware frequency: 10</p><p>  CPUs which need t=
-o have their frequency coordinated by software: 10</p><p>  maximum transiti=
-on latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 6.00 GHz</p><p> =
- available cpufreq governors: performance, powersave</p><p>  current policy=
-: frequency should be within 5.70 GHz and 5.70 GHz.</p><p>                 =
- The governor "performance" may decide which speed to use</p><p>           =
-       within this range.</p><p>  current CPU frequency is 5.70 GHz.</p><p>=
-analyzing CPU 11:</p><p>  driver: intel_pstate</p><p>  CPUs which run at th=
-e same hardware frequency: 11</p><p>  CPUs which need to have their frequen=
-cy coordinated by software: 11</p><p>  maximum transition latency: 4294.55 =
-ms.</p><p>  hardware limits: 800 MHz - 6.00 GHz</p><p>  available cpufreq g=
-overnors: performance, powersave</p><p>  current policy: frequency should b=
-e within 5.70 GHz and 5.70 GHz.</p><p>                  The governor "perfo=
-rmance" may decide which speed to use</p><p>                  within this r=
-ange.</p><p>  current CPU frequency is 5.70 GHz.</p><p>analyzing CPU 12:</p=
-><p>  driver: intel_pstate</p><p>  CPUs which run at the same hardware freq=
-uency: 12</p><p>  CPUs which need to have their frequency coordinated by so=
-ftware: 12</p><p>  maximum transition latency: 4294.55 ms.</p><p>  hardware=
- limits: 800 MHz - 5.70 GHz</p><p>  available cpufreq governors: performanc=
-e, powersave</p><p>  current policy: frequency should be within 5.70 GHz an=
-d 5.70 GHz.</p><p>                  The governor "performance" may decide w=
-hich speed to use</p><p>                  within this range.</p><p>  curren=
-t CPU frequency is 5.70 GHz.</p><p>analyzing CPU 13:</p><p>  driver: intel_=
-pstate</p><p>  CPUs which run at the same hardware frequency: 13</p><p>  CP=
-Us which need to have their frequency coordinated by software: 13</p><p>  m=
-aximum transition latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 5=
-.70 GHz</p><p>  available cpufreq governors: performance, powersave</p><p> =
- current policy: frequency should be within 5.70 GHz and 5.70 GHz.</p><p>  =
-                The governor "performance" may decide which speed to use</p=
-><p>                  within this range.</p><p>  current CPU frequency is 5=
-.70 GHz.</p><p>analyzing CPU 14:</p><p>  driver: intel_pstate</p><p>  CPUs =
-which run at the same hardware frequency: 14</p><p>  CPUs which need to hav=
-e their frequency coordinated by software: 14</p><p>  maximum transition la=
-tency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 5.70 GHz</p><p>  avai=
-lable cpufreq governors: performance, powersave</p><p>  current policy: fre=
-quency should be within 5.70 GHz and 5.70 GHz.</p><p>                  The =
-governor "performance" may decide which speed to use</p><p>                =
-  within this range.</p><p>  current CPU frequency is 5.70 GHz.</p><p>analy=
-zing CPU 15:</p><p>  driver: intel_pstate</p><p>  CPUs which run at the sam=
-e hardware frequency: 15</p><p>  CPUs which need to have their frequency co=
-ordinated by software: 15</p><p>  maximum transition latency: 4294.55 ms.</=
-p><p>  hardware limits: 800 MHz - 5.70 GHz</p><p>  available cpufreq govern=
-ors: performance, powersave</p><p>  current policy: frequency should be wit=
-hin 5.70 GHz and 5.70 GHz.</p><p>                  The governor "performanc=
-e" may decide which speed to use</p><p>                  within this range.=
-</p><p>  current CPU frequency is 5.70 GHz.</p><p>analyzing CPU 16:</p><p> =
- driver: intel_pstate</p><p>  CPUs which run at the same hardware frequency=
-: 16</p><p>  CPUs which need to have their frequency coordinated by softwar=
-e: 16</p><p>  maximum transition latency: 4294.55 ms.</p><p>  hardware limi=
-ts: 800 MHz - 4.40 GHz</p><p>  available cpufreq governors: performance, po=
-wersave</p><p>  current policy: frequency should be within 4.40 GHz and 4.4=
-0 GHz.</p><p>                  The governor "performance" may decide which =
-speed to use</p><p>                  within this range.</p><p>  current CPU=
- frequency is 4.40 GHz.</p><p>analyzing CPU 17:</p><p>  driver: intel_pstat=
-e</p><p>  CPUs which run at the same hardware frequency: 17</p><p>  CPUs wh=
-ich need to have their frequency coordinated by software: 17</p><p>  maximu=
-m transition latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 4.40 G=
-Hz</p><p>  available cpufreq governors: performance, powersave</p><p>  curr=
-ent policy: frequency should be within 4.40 GHz and 4.40 GHz.</p><p>       =
-           The governor "performance" may decide which speed to use</p><p> =
-                 within this range.</p><p>  current CPU frequency is 4.40 G=
-Hz.</p><p>analyzing CPU 18:</p><p>  driver: intel_pstate</p><p>  CPUs which=
- run at the same hardware frequency: 18</p><p>  CPUs which need to have the=
-ir frequency coordinated by software: 18</p><p>  maximum transition latency=
-: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 4.40 GHz</p><p>  available=
- cpufreq governors: performance, powersave</p><p>  current policy: frequenc=
-y should be within 4.40 GHz and 4.40 GHz.</p><p>                  The gover=
-nor "performance" may decide which speed to use</p><p>                  wit=
-hin this range.</p><p>  current CPU frequency is 4.40 GHz.</p><p>analyzing =
-CPU 19:</p><p>  driver: intel_pstate</p><p>  CPUs which run at the same har=
-dware frequency: 19</p><p>  CPUs which need to have their frequency coordin=
-ated by software: 19</p><p>  maximum transition latency: 4294.55 ms.</p><p>=
-  hardware limits: 800 MHz - 4.40 GHz</p><p>  available cpufreq governors: =
-performance, powersave</p><p>  current policy: frequency should be within 4=
-.40 GHz and 4.40 GHz.</p><p>                  The governor "performance" ma=
-y decide which speed to use</p><p>                  within this range.</p><=
-p>  current CPU frequency is 4.40 GHz.</p><p>analyzing CPU 20:</p><p>  driv=
-er: intel_pstate</p><p>  CPUs which run at the same hardware frequency: 20<=
-/p><p>  CPUs which need to have their frequency coordinated by software: 20=
-</p><p>  maximum transition latency: 4294.55 ms.</p><p>  hardware limits: 8=
-00 MHz - 4.40 GHz</p><p>  available cpufreq governors: performance, powersa=
-ve</p><p>  current policy: frequency should be within 4.40 GHz and 4.40 GHz=
-.</p><p>                  The governor "performance" may decide which speed=
- to use</p><p>                  within this range.</p><p>  current CPU freq=
-uency is 4.40 GHz.</p><p>analyzing CPU 21:</p><p>  driver: intel_pstate</p>=
-<p>  CPUs which run at the same hardware frequency: 21</p><p>  CPUs which n=
-eed to have their frequency coordinated by software: 21</p><p>  maximum tra=
-nsition latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 4.40 GHz</p=
-><p>  available cpufreq governors: performance, powersave</p><p>  current p=
-olicy: frequency should be within 4.40 GHz and 4.40 GHz.</p><p>            =
-      The governor "performance" may decide which speed to use</p><p>      =
-            within this range.</p><p>  current CPU frequency is 4.40 GHz.</=
-p><p>analyzing CPU 22:</p><p>  driver: intel_pstate</p><p>  CPUs which run =
-at the same hardware frequency: 22</p><p>  CPUs which need to have their fr=
-equency coordinated by software: 22</p><p>  maximum transition latency: 429=
-4.55 ms.</p><p>  hardware limits: 800 MHz - 4.40 GHz</p><p>  available cpuf=
-req governors: performance, powersave</p><p>  current policy: frequency sho=
-uld be within 4.40 GHz and 4.40 GHz.</p><p>                  The governor "=
-performance" may decide which speed to use</p><p>                  within t=
-his range.</p><p>  current CPU frequency is 4.40 GHz.</p><p>analyzing CPU 2=
-3:</p><p>  driver: intel_pstate</p><p>  CPUs which run at the same hardware=
- frequency: 23</p><p>  CPUs which need to have their frequency coordinated =
-by software: 23</p><p>  maximum transition latency: 4294.55 ms.</p><p>  har=
-dware limits: 800 MHz - 4.40 GHz</p><p>  available cpufreq governors: perfo=
-rmance, powersave</p><p>  current policy: frequency should be within 4.40 G=
-Hz and 4.40 GHz.</p><p>                  The governor "performance" may dec=
-ide which speed to use</p><p>                  within this range.</p><p>  c=
-urrent CPU frequency is 4.40 GHz.</p><p>analyzing CPU 24:</p><p>  driver: i=
-ntel_pstate</p><p>  CPUs which run at the same hardware frequency: 24</p><p=
->  CPUs which need to have their frequency coordinated by software: 24</p><=
-p>  maximum transition latency: 4294.55 ms.</p><p>  hardware limits: 800 MH=
-z - 4.40 GHz</p><p>  available cpufreq governors: performance, powersave</p=
-><p>  current policy: frequency should be within 4.40 GHz and 4.40 GHz.</p>=
-<p>                  The governor "performance" may decide which speed to u=
-se</p><p>                  within this range.</p><p>  current CPU frequency=
- is 4.40 GHz.</p><p>analyzing CPU 25:</p><p>  driver: intel_pstate</p><p>  =
-CPUs which run at the same hardware frequency: 25</p><p>  CPUs which need t=
-o have their frequency coordinated by software: 25</p><p>  maximum transiti=
-on latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 4.40 GHz</p><p> =
- available cpufreq governors: performance, powersave</p><p>  current policy=
-: frequency should be within 4.40 GHz and 4.40 GHz.</p><p>                 =
- The governor "performance" may decide which speed to use</p><p>           =
-       within this range.</p><p>  current CPU frequency is 4.40 GHz.</p><p>=
-analyzing CPU 26:</p><p>  driver: intel_pstate</p><p>  CPUs which run at th=
-e same hardware frequency: 26</p><p>  CPUs which need to have their frequen=
-cy coordinated by software: 26</p><p>  maximum transition latency: 4294.55 =
-ms.</p><p>  hardware limits: 800 MHz - 4.40 GHz</p><p>  available cpufreq g=
-overnors: performance, powersave</p><p>  current policy: frequency should b=
-e within 4.40 GHz and 4.40 GHz.</p><p>                  The governor "perfo=
-rmance" may decide which speed to use</p><p>                  within this r=
-ange.</p><p>  current CPU frequency is 4.40 GHz.</p><p>analyzing CPU 27:</p=
-><p>  driver: intel_pstate</p><p>  CPUs which run at the same hardware freq=
-uency: 27</p><p>  CPUs which need to have their frequency coordinated by so=
-ftware: 27</p><p>  maximum transition latency: 4294.55 ms.</p><p>  hardware=
- limits: 800 MHz - 4.40 GHz</p><p>  available cpufreq governors: performanc=
-e, powersave</p><p>  current policy: frequency should be within 4.40 GHz an=
-d 4.40 GHz.</p><p>                  The governor "performance" may decide w=
-hich speed to use</p><p>                  within this range.</p><p>  curren=
-t CPU frequency is 4.40 GHz.</p><p>analyzing CPU 28:</p><p>  driver: intel_=
-pstate</p><p>  CPUs which run at the same hardware frequency: 28</p><p>  CP=
-Us which need to have their frequency coordinated by software: 28</p><p>  m=
-aximum transition latency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 4=
-.40 GHz</p><p>  available cpufreq governors: performance, powersave</p><p> =
- current policy: frequency should be within 4.40 GHz and 4.40 GHz.</p><p>  =
-                The governor "performance" may decide which speed to use</p=
-><p>                  within this range.</p><p>  current CPU frequency is 4=
-.40 GHz.</p><p>analyzing CPU 29:</p><p>  driver: intel_pstate</p><p>  CPUs =
-which run at the same hardware frequency: 29</p><p>  CPUs which need to hav=
-e their frequency coordinated by software: 29</p><p>  maximum transition la=
-tency: 4294.55 ms.</p><p>  hardware limits: 800 MHz - 4.40 GHz</p><p>  avai=
-lable cpufreq governors: performance, powersave</p><p>  current policy: fre=
-quency should be within 4.40 GHz and 4.40 GHz.</p><p>                  The =
-governor "performance" may decide which speed to use</p><p>                =
-  within this range.</p><p>  current CPU frequency is 4.40 GHz.</p><p>analy=
-zing CPU 30:</p><p>  driver: intel_pstate</p><p>  CPUs which run at the sam=
-e hardware frequency: 30</p><p>  CPUs which need to have their frequency co=
-ordinated by software: 30</p><p>  maximum transition latency: 4294.55 ms.</=
-p><p>  hardware limits: 800 MHz - 4.40 GHz</p><p>  available cpufreq govern=
-ors: performance, powersave</p><p>  current policy: frequency should be wit=
-hin 4.40 GHz and 4.40 GHz.</p><p>                  The governor "performanc=
-e" may decide which speed to use</p><p>                  within this range.=
-</p><p>  current CPU frequency is 4.40 GHz.</p><p>analyzing CPU 31:</p><p> =
- driver: intel_pstate</p><p>  CPUs which run at the same hardware frequency=
-: 31</p><p>  CPUs which need to have their frequency coordinated by softwar=
-e: 31</p><p>  maximum transition latency: 4294.55 ms.</p><p>  hardware limi=
-ts: 800 MHz - 4.40 GHz</p><p>  available cpufreq governors: performance, po=
-wersave</p><p>  current policy: frequency should be within 4.40 GHz and 4.4=
-0 GHz.</p><p>                  The governor "performance" may decide which =
-speed to use</p><p>                  within this range.</p><p>  current CPU=
- frequency is 4.40 GHz.</p>
-
---b1_u0n3cKoUIgYOHdMdESz6gPsFlxXoH8EZ8VCnpQ228--
-
---===============1051742557525248897==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============1051742557525248897==--
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
+
+T24gMzAvMTAvMjAyNCAxMzozOCwgZGhwYW5jaGFhaUBnbWFpbC5jb20gd3JvdGU6DQo+DQo+IEkg
+aGFkIHRvIGNoYW5nZSBteSAxMDBHIElQIGFkZHJlc3MgdG8gMTkyLjE2OC4xMjAuMiBhbmQgY2hh
+bm5lbHMgb24gDQo+IHRoZSBYNDEwIHRvIOKAnEHigJ0uDQo+DQo+IEkgc2V0IHRoZSBDUFUgdG8g
+UGVyZm9ybWFuY2UgTW9kZSBhbmQgbG93ZXJlZCB0aGUgc2FtcGxlIHJhdGUgdG8gDQo+IDEyMi44
+OGU2Lg0KPg0KPiBIb3dldmVyLCBJ4oCZbSBzdGlsbCBleHBlcmllbmNpbmcgZHJvcHBlZCBwYWNr
+ZXRzIGFuZCBzZXF1ZW5jZSBlcnJvcnMuDQo+DQo+IC91c3IvbG9jYWwvbGliL3VoZC9leGFtcGxl
+cyQgc3VkbyAuL2JlbmNobWFya19yYXRlIC0tYXJncyANCj4gInR5cGU9eDR4eCxwcm9kdWN0PXg0
+MTAsYWRkcj0xOTIuMTY4LjEyMC4yLG1nbXRfYWRkcj0xOTIuMTY4LjEuMyx1c2VfZHBkaz0xIiAN
+Cj4gLS1wcmlvcml0eSAiaGlnaCIgLS1yeF9yYXRlIDEyMi44OGU2IC0tcnhfc3ViZGV2ICJBOjEi
+IC0tdHhfcmF0ZSANCj4gMTIyLjg4ZTYgLS10eF9zdWJkZXYgIkE6MCINCj4NCj4gW0lORk9dIFtV
+SERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gMTEuNC4wOyBCb29zdF8xMDc0MDA7IERQREtfMjEu
+MTE7IA0KPiBVSERfNC43LjAuSEVBRC0wLWdhNWVkMTg3Mg0KPg0KPiBFQUw6IERldGVjdGVkIENQ
+VSBsY29yZXM6IDMyDQo+DQo+IEVBTDogRGV0ZWN0ZWQgTlVNQSBub2RlczogMQ0KPg0KPiBFQUw6
+IERldGVjdGVkIHNoYXJlZCBsaW5rYWdlIG9mIERQREsNCj4NCj4gRUFMOiBNdWx0aS1wcm9jZXNz
+IHNvY2tldCAvdmFyL3J1bi9kcGRrL3J0ZS9tcF9zb2NrZXQNCj4NCj4gRUFMOiBTZWxlY3RlZCBJ
+T1ZBIG1vZGUgJ1ZBJw0KPg0KPiBFQUw6IE5vIGF2YWlsYWJsZSAxMDQ4NTc2IGtCIGh1Z2VwYWdl
+cyByZXBvcnRlZA0KPg0KPiBFQUw6IFByb2JlIFBDSSBkcml2ZXI6IG1seDVfcGNpICgxNWIzOjEw
+MTcpIGRldmljZTogMDAwMDowMTowMC4wIA0KPiAoc29ja2V0IDApDQo+DQo+IEVBTDogUHJvYmUg
+UENJIGRyaXZlcjogbWx4NV9wY2kgKDE1YjM6MTAxNykgZGV2aWNlOiAwMDAwOjAxOjAwLjEgDQo+
+IChzb2NrZXQgMCkNCj4NCj4gVEVMRU1FVFJZOiBObyBsZWdhY3kgY2FsbGJhY2tzLCBsZWdhY3kg
+c29ja2V0IG5vdCBjcmVhdGVkDQo+DQo+IFswMDowMDowMC4wMDAwOTRdIENyZWF0aW5nIHRoZSB1
+c3JwIGRldmljZSB3aXRoOiANCj4gdHlwZT14NHh4LHByb2R1Y3Q9eDQxMCxhZGRyPTE5Mi4xNjgu
+MTIwLjIsbWdtdF9hZGRyPTE5Mi4xNjguMS4zLHVzZV9kcGRrPTEuLi4NCj4NCj4gW0lORk9dIFtN
+UE1EXSBJbml0aWFsaXppbmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiANCj4g
+bWdtdF9hZGRyPTE5Mi4xNjguMS4zLHR5cGU9eDR4eCxwcm9kdWN0PXg0MTAsc2VyaWFsPTMyOEFG
+RDcsbmFtZT1uaS14NHh4LTMyOEFGRDcsZnBnYT1VQ18yMDAsY2xhaW1lZD1GYWxzZSxhZGRyPTE5
+Mi4xNjguMTIwLjIsdXNlX2RwZGs9MQ0KPg0KPiBbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBp
+bml0KCkgY2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgDQo+IGBmcGdhPVVDXzIwMCxtZ210X2FkZHI9
+MTkyLjE2OC4xLjMsbmFtZT1uaS14NHh4LTMyOEFGRDcscHJvZHVjdD14NDEwLHVzZV9kcGRrPTEs
+Y2xvY2tfc291cmNlPWludGVybmFsLHRpbWVfc291cmNlPWludGVybmFsLGluaXRpYWxpemluZz1U
+cnVlJy4NCj4NCj4gVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoNCj4NCj4gRGV2aWNlOiBYNDAw
+LVNlcmllcyBEZXZpY2UNCj4NCj4gTWJvYXJkIDA6IHg0MTANCj4NCj4gUlggQ2hhbm5lbDogMA0K
+Pg0KPiBSWCBEU1A6IDANCj4NCj4gUlggRGJvYXJkOiBBDQo+DQo+IFJYIFN1YmRldjogMQ0KPg0K
+PiBUWCBDaGFubmVsOiAwDQo+DQo+IFRYIERTUDogMA0KPg0KPiBUWCBEYm9hcmQ6IEENCj4NCj4g
+VFggU3ViZGV2OiAwDQo+DQo+IFswMDowMDowMS45NTQ3MTcwMDBdIFNldHRpbmcgZGV2aWNlIHRp
+bWVzdGFtcCB0byAwLi4uDQo+DQo+IFswMDowMDowMS45NTU5OTkwNjJdIFRlc3RpbmcgcmVjZWl2
+ZSByYXRlIDEyMi44ODAwMDAgTXNwcyBvbiAxIGNoYW5uZWxzDQo+DQo+IFNldHRpbmcgVFggc3Bw
+IHRvIDE5OTINCj4NCj4gWzAwOjAwOjAxLjk1NjgxNjY1NV0gVGVzdGluZyB0cmFuc21pdCByYXRl
+IDEyMi44ODAwMDAgTXNwcyBvbiAxIGNoYW5uZWxzDQo+DQo+IFVbMDA6MDA6MDIuNTc1NDg2NzQ5
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MDMuNTc1NTI5NjIz
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MDQuNTc1NTM3MDM2
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MDUuNTc1NDc3MDYy
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MDYuNTc1NDY1Mjk2
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MDcuNTc1NTQ5MTgz
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MDguNTc1NTM5NTY5
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MDkuNTc1NTMyNzAy
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MTAuNTc1NDc5ODUz
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFVbMDA6MDA6MTEuNTc1NDY0NTk3
+XSBEZXRlY3RlZCBSeCBzZXF1ZW5jZSBlcnJvci4NCj4NCj4gRFswMDowMDoxMS45NTgzMzY3NTJd
+IEJlbmNobWFyayBjb21wbGV0ZS4NCj4NCj4gQmVuY2htYXJrIHJhdGUgc3VtbWFyeToNCj4NCj4g
+TnVtIHJlY2VpdmVkIHNhbXBsZXM6IDExNzY3MzYxOTkNCj4NCj4gTnVtIGRyb3BwZWQgc2FtcGxl
+czogNTIxNjc0NTYNCj4NCj4gTnVtIG92ZXJydW5zIGRldGVjdGVkOiAwDQo+DQo+IE51bSB0cmFu
+c21pdHRlZCBzYW1wbGVzOiAxMTY4MTUyNjI0DQo+DQo+IE51bSBzZXF1ZW5jZSBlcnJvcnMgKFR4
+KTogMA0KPg0KPiBOdW0gc2VxdWVuY2UgZXJyb3JzIChSeCk6IDEwDQo+DQo+IE51bSB1bmRlcnJ1
+bnMgZGV0ZWN0ZWQ6IDEwDQo+DQo+IE51bSBsYXRlIGNvbW1hbmRzOiAwDQo+DQo+IE51bSB0aW1l
+b3V0cyAoVHgpOiAwDQo+DQo+IE51bSB0aW1lb3V0cyAoUngpOiAwDQo+DQo+IERvbmUhDQo+DQo+
+DQo+IE15IC9yb290Ly5jb25maWcvdWhkLmNvbmYgZmlsZToNCj4NCj4gW3VzZV9kcGRrPTFdDQo+
+DQo+IGRwZGtfbXR1PTkwMDANCj4NCj4gZHBka19kcml2ZXI9L3Vzci9saWIveDg2XzY0LWxpbnV4
+LWdudS9kcGRrL3BtZHMtMjIuMC8NCj4NCj4gZHBka19jb3JlbGlzdD0xMCwxMQ0KPg0KPiBkcGRr
+X251bV9tYnVmcz00MDk1DQo+DQo+IGRwZGtfbWJ1Zl9jYWNoZV9zaXplPTMxNQ0KPg0KPiBbZHBk
+a19tYWM9Yjg6M2Y6ZDI6YjA6ZDc6NThdDQo+DQo+IGRwZGtfbGNvcmUgPSAxMQ0KPg0KPiBkcGRr
+X2lwdjQgPSAxOTIuMTY4LjEyMC4zMy8yNA0KPg0KPiAjZHBka19udW1fZGVzYyA9IDQwOTYNCj4N
+Cj4NCj4gSSBoYXZlIGF0dGFjaGVkIHNjcmVlbnNob3Qgb2YgdGhlIHBlcmZvcm1hbmNlIEdVSSBh
+bmQgc3lzdGVtIG1vbml0b3IgDQo+IG9mIHRoZSBDUFUgdXNhZ2UNCj4NCj4NCj4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUg
+c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KVGhpcyBp
+cyBvbiBhICJiYXJlIG1ldGFsIiBzeXN0ZW0sIGFuZCBOT1Qgb24gYSBWTSwgSSBhc3N1bWU/DQoN
+CkkganVzdCByYW4gYSB0ZXN0ICh1c2luZyBhIGRpZmZlcmVudCBVU1JQKSBkb2luZyAxMjVNc3Bz
+IG9mIHJlY2VpdmUgaW50byANCm15IHN5c3RlbSwgb3ZlciBhIGNoZWFwIDEwR2lHZSBjYXJkLsKg
+IFdvcmtlZCB3aXRob3V0DQogwqAgQU5ZIGRyb3BwZWQgc2FtcGxlcy0tanVzdCB1c2luZyB0aGUg
+ImJlbmNobWFya19yYXRlIiBhcHBsaWNhdGlvbiBhcyANCnlvdSBoYXZlLsKgIE15IHN5c3RlbSBp
+cyBhIDgteWVhci1vbGQgZHVhbC1jaGlwLA0KIMKgIDYtY29yZSBYZW9uIHN5c3RlbSB3aXRoIDMy
+RyBvZiBtZW1vcnksIHJ1bm5pbmcgb24gVWJ1bnR1IDIyLjA0LiBZb3VyIA0Kc3lzdGVtIFNIT1VM
+RCBiZSBjYXBhYmxlIG9mIE1VQ0ggbW9yZS4NCg0KDQpJIGFzc3VtZSB5b3UndmUgZm9sbG93ZWQg
+dGhlIHZhcmlvdXMgYml0cyBvZiBhZHZpY2UgaGVyZToNCg0KaHR0cHM6Ly9rYi5ldHR1cy5jb20v
+VVNSUF9Ib3N0X1BlcmZvcm1hbmNlX1R1bmluZ19UaXBzX2FuZF9Ucmlja3MjSW5jcmVhc2luZ19S
+aW5nX0J1ZmZlcnMNCg0KSSB3b25kZXIgaWYgeW91IGhhdmUgYSBQSFktbGF5ZXIgaXNzdWUgd2l0
+aCB5b3VyIGNhYmxpbmc/DQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVh
+dmVAbGlzdHMuZXR0dXMuY29tCg==
