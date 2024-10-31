@@ -2,106 +2,106 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D81B39B7CC2
-	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2024 15:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BDB59B7CC8
+	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2024 15:24:58 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BA3723858FB
-	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2024 10:23:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9DB65385FE9
+	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2024 10:24:57 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730384623; bh=eP+bowNh7/NINq2R+LxfbYEdoYuyoPk7WmZOt9qn8zg=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=wDh2JzONmp3OgLQh6J3TjcL/iJc5+CszcUEsret2Cvvq51jJASv32nEM3grKNxFOu
-	 +IstmNrwNskTJ94EXPLFsN56j0J0vKNKwWaZW6nfEn+9Ij7a38hSyIH8Y7TJvwuUN+
-	 4SFJVcD7700SVjVqiw8D1Zu3L0Cs++nzbf4gI8HtSy7y6W041vJygIlszrEgUSNAgz
-	 sIRokdkgg8B1mTXTfWoKBf6hMNM0CRQRVvau5zd6eYyUFU7q+O3re4YsNnAdZyyMPL
-	 JXofqsZEZjSqkUdgMM9r9aVkdmo7XI5KPpBocH5hHCrFtzwZAPj+/1QgIpFaNcJDbV
-	 wNBLoGwJOnxHA==
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 606A2384EF1
-	for <usrp-users@lists.ettus.com>; Thu, 31 Oct 2024 10:23:28 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="O3L9onZr";
-	dkim-atps=neutral
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-71815313303so482648a34.1
-        for <usrp-users@lists.ettus.com>; Thu, 31 Oct 2024 07:23:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730384607; x=1730989407; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rinohmRoIP03TQ1tl7uY+KXcZxPyo3wloVYt8NtNUHA=;
-        b=O3L9onZrXT4onSmDYLQlGCv1swNglynGWqQ+tPu42LDfuNOMuKfBaSlP/2HjjXDMVP
-         WsP/pbwi+ZyxPwPYGiABDnt1aW7E6Xq0K8EScdqbrOl3IM8CaBRg9pnNyasNvHNavmwf
-         lnjBYiljkGEMxnVfXW3P98lz3V8rBPX5VigBYDFiPymJtQtcHWMvPp894cXI+HjWDndB
-         P5TNgcq73y83RttZ1jnL8vCx2idqO6ImrhcIShjEFWL2WgaCnvy3Gxiz6XG95FGm+n0y
-         u4T8AGjVIJvG9ptJpPoZuPPEarAveYp6+awXMrBqAEN8v1Bm8kurbUHDy6r0qU8+DpSh
-         /CfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730384607; x=1730989407;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rinohmRoIP03TQ1tl7uY+KXcZxPyo3wloVYt8NtNUHA=;
-        b=aHQd5OGgrmyeK4+YTJy+cPJtI0Fk64qI7rjnV4FeOuo9f5crvgPdzEhn4wWFROpwid
-         Rq0LzeDwde2bbuYsVQkVKA2W/ez7ypX1gmMBKA96K1qJEJrx7MGOZLL3pZsYODG/zugx
-         m7uvtFer85iSQz1+7/MxeE9Xsem/hyFtfhdtGxZTw3jGL9uDqKGkLEtq0QeOQAX+B8+6
-         vd301Fo9N+ptvN9IPEnnDZl8kMmHDCVAfJbd0hlv5eiCopBKSPs8tPx1jAOO/PJMpX+O
-         3MKIhJPyl+WO0b2FhdnddyRyGMFWnANBQ5PDtBNra/HJWEXv/ApvXqZPqLsXAVdwXBX2
-         Rr+g==
-X-Gm-Message-State: AOJu0YzeVsXLzQroYua0Ri/lfDDKn6sxbR9hYsPZouBos/OjEZynggZb
-	IwRx1ybaeep8Ls8mIGft49guM8s1rsp0SVJ+G0VXV863RnDA3POiwmiTKwhjleHhY+mF6jWmz+6
-	ZT+eUXyeQzoUWgQzBY0ou5PZLlRMf+JmLb9tF2w==
-X-Google-Smtp-Source: AGHT+IGCap12v5ODkS97P7vl8iXkdjZA5mDs3A8/BiU+DJJn+VNp9GYBZyD10BvFC4zuIxZuXyWSqrjiHo8wUj+4DUo=
-X-Received: by 2002:a05:6830:4997:b0:718:f57:11ea with SMTP id
- 46e09a7af769-71867f196a4mr16816442a34.3.1730384607540; Thu, 31 Oct 2024
- 07:23:27 -0700 (PDT)
+	t=1730384697; bh=5wNvr4K3JrEMwxbcLTI/rr/ET1K9rvQktaYccP8Fiys=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=OpuTFT2lFUBHloYLuEJ0GpakBYQKxnnav2W/+C1Jt6ogX+2XekQoAnGuXcSbBu4O+
+	 gS1BUqtQiauhoKko3WEzvlqGJWAu+rsfkELKmmWvaHCkCQVhf6oh6uEdTSWopmhnkw
+	 jvaMqQiIRg6VAzRxgf4jJ4tRmHYMXHGU9Q2b57QJ14BBanagrhRnxZuAOeL67K/IUM
+	 TtHLJE9RiAlqMAwklU1tduY9dG9vmJ9h39ysrYrK3HvDpKnBUkGLfnn/nNbqm5T5jk
+	 5LkUIi13o/rBvN8Q9x88A/D5Aw/2qSgWzVLJuXIDeyCIUXpVHfkfkVLe8KJHYru6Ud
+	 TBcDhPnXdmCQA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 3882A385297
+	for <usrp-users@lists.ettus.com>; Thu, 31 Oct 2024 10:24:43 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1730384683; bh=8kQ7n/L1AzxWdiogRYxtk8VSAT4PGW4f3fJd5ZU0ag8=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=HCLy/wU9vfd0Br1ixK1K5XFepbykTBHhtiGnAqZnrDlGUsuKZDQpjgI3QB8sqj/42
+	 FSe/CbKi1+xmpQunotru0DbLqrm8iAcUdtH4kw+tGQd2OinhlpHLa1nKX+M8EiiJ02
+	 urvGh+PK7QzfjudN2/bCbp4n4LR91gSdwGsI84XNzMkVcUAfi5YpNfXQQw7OgYGH4C
+	 DOxH49Km7CC49zU3QlxOAcjoC/jDF/fVP3HXwra5I+Wd+HyrGsz/5SKfdyd3XFMRPU
+	 0tmSjXywq2GZbMZxUjNrY5KoDMhB5V47J5PXjIXBUz7QJ+PtsXLrMiRW/BoAaYBCrC
+	 +/fHciTm3ECRQ==
+Date: Thu, 31 Oct 2024 14:24:43 +0000
+To: usrp-users@lists.ettus.com
+From: c1337rogers@gmail.com
+Message-ID: <Xeb70F6eCoVmjGisgKh38vr1lyaNzk0lWiL5tH70zQ0@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: 7765d721-657c-4387-87a7-03cb49d6fb81@gmail.com
 MIME-Version: 1.0
-From: Andrew D <sciensfpgaeng@gmail.com>
-Date: Thu, 31 Oct 2024 10:23:17 -0400
-Message-ID: <CA+0p0ZS4nzv6581RcTSbvuomn5me5CzRM-K1aza7aTSdYOjazg@mail.gmail.com>
-To: usrp-users mailing-list <usrp-users@lists.ettus.com>
-Message-ID-Hash: GGR24O4XORKR6SWBD7LTYS2SMFEK3LH7
-X-Message-ID-Hash: GGR24O4XORKR6SWBD7LTYS2SMFEK3LH7
-X-MailFrom: sciensfpgaeng@gmail.com
+Message-ID-Hash: KJCHCQMSITLMLKPYO3I4PP3OCRO2B44P
+X-Message-ID-Hash: KJCHCQMSITLMLKPYO3I4PP3OCRO2B44P
+X-MailFrom: c1337rogers@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] x410 RFNOC Endpooint YAML Configuration
+Subject: [USRP-users] Re: X310 - RfnocError: OpTimeout: Control operation timed out waiting for ACK
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GGR24O4XORKR6SWBD7LTYS2SMFEK3LH7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KJCHCQMSITLMLKPYO3I4PP3OCRO2B44P/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1631811741901137005=="
+Content-Type: multipart/mixed; boundary="===============5667952069542499207=="
 
---===============1631811741901137005==
-Content-Type: multipart/alternative; boundary="000000000000db7d5e0625c68ffc"
+This is a multi-part message in MIME format.
 
---000000000000db7d5e0625c68ffc
-Content-Type: text/plain; charset="UTF-8"
+--===============5667952069542499207==
+Content-Type: multipart/alternative;
+ boundary="b1_Xeb70F6eCoVmjGisgKh38vr1lyaNzk0lWiL5tH70zQ0"
+Content-Transfer-Encoding: 7bit
 
-It appears that in all of the x410 and x440 image core yaml files, that EP0
-is the only endpoint that is configured with `ctrl:True`.  Is this
-necessary and why is EP0 the only endpoint that requires control?
+This is a multi-part message in MIME format.
 
-Thank you!
-Andrew
-
---000000000000db7d5e0625c68ffc
-Content-Type: text/html; charset="UTF-8"
+--b1_Xeb70F6eCoVmjGisgKh38vr1lyaNzk0lWiL5tH70zQ0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>It appears that in all of the x410 and x440 image cor=
-e yaml files, that EP0 is the only endpoint that is configured with `ctrl:T=
-rue`.=C2=A0 Is this necessary and why is EP0 the only endpoint that require=
-s control?</div><div><br></div><div>Thank you!</div><div>Andrew<br></div></=
-div>
+I didn=E2=80=99t quite resolve this, but I think I narrowed it down to so=
+me bug when switching between DPDK and non-DPDK drivers... I also switche=
+d back to the default HG image for troubleshooting. After I bind the vfio=
+-pci driver, rebinding the i40e driver results in this error and I can=E2=
+=80=99t really seem to fix it. However, re-rebinding the vfio-pci driver =
+lets me run benchmark_rate with DPDK.
 
---000000000000db7d5e0625c68ffc--
+Separate question: does DPDK constrain streaming applications to a single=
+ core per interface? I notice I=E2=80=99m now CPU bottlenecked when runni=
+ng benchmark_rate and just a single core is running at 100%, which I defi=
+nitely don=E2=80=99t remember ever being the case without DPDK. I tried a=
+dding additional cores in the uhd.conf file but this resulted in errors.
 
---===============1631811741901137005==
+Thanks,\
+Chris
+
+--b1_Xeb70F6eCoVmjGisgKh38vr1lyaNzk0lWiL5tH70zQ0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>I didn=E2=80=99t quite resolve this, but I think I narrowed it down to=
+ some bug when switching between DPDK and non-DPDK drivers... I also swit=
+ched back to the default HG image for troubleshooting. After I bind the v=
+fio-pci driver, rebinding the i40e driver results in this error and I can=
+=E2=80=99t really seem to fix it. However, re-rebinding the vfio-pci driv=
+er lets me run benchmark_rate with DPDK.</p><p>Separate question: does DP=
+DK constrain streaming applications to a single core per interface? I not=
+ice I=E2=80=99m now CPU bottlenecked when running benchmark_rate and just=
+ a single core is running at 100%, which I definitely don=E2=80=99t remem=
+ber ever being the case without DPDK. I tried adding additional cores in =
+the uhd.conf file but this resulted in errors.</p><p>Thanks,<br>Chris</p>
+
+
+--b1_Xeb70F6eCoVmjGisgKh38vr1lyaNzk0lWiL5tH70zQ0--
+
+--===============5667952069542499207==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +111,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1631811741901137005==--
+--===============5667952069542499207==--
