@@ -2,125 +2,106 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 171839B7C97
-	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2024 15:18:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D81B39B7CC2
+	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2024 15:23:44 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BE4CF386346
-	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2024 10:18:48 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BA3723858FB
+	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2024 10:23:43 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730384328; bh=AYbFnbSHCioE6tMou1yx6ZSsnidmCKuJO/TGw3OHppw=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=NtGkfwWxXZQOQy0trqvwcmxOySDVbQFum7qqB7NEMv7yxSeoUSHAIrMbldYX6m+pS
-	 ww6NuLLd+a1UnzbgE6eN8Qaw7rzSKJn+FjC6FQAO5Ovx8HbJo9jFDZh6PsNLCbLhhI
-	 6WWAXdfPAv+LFQmQKl8bZ1sFe5x4ImmlYHgf3cmmuPWp5M3tAMor3Dtu5qv75qYq0s
-	 NRWjbMIK9OmcXPhiWmpOqCEgtDBAj5xknG30VmwhjCLBriBTcMD28Cjwg9dAUBmyUp
-	 NB5+B+ATTuKl5WrSeHhK6WfFKCc280XaDZP7gROVPweu/o+x8QOckB2xDCcjY0+qvr
-	 WVcPipAntjFoQ==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 81E5B386143
-	for <usrp-users@lists.ettus.com>; Thu, 31 Oct 2024 10:18:34 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730384314; bh=xGFFxyK2+XgD+4KClShwbCSy5hcL80Ha2hppbrFbc2I=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=mwGjv5hflorxCTTqKmffk2GizciRjRi7JhkBMi4E3y/c80uJIAQ3fTOBIbv0QuJrq
-	 nfkBgTNB2FKuOo/+FZQWxCFEb7aaygQfVwOASg+soE2Htc+yFVSIayHa/8eOAp6Qg7
-	 kIivn3e+V2ByYM5OIU8QKcaTV0s4aTbmF9RDimC5lVXHRPDKI4WJPl8gEYpyDPf8Os
-	 QkF8/VtaIBwjRQQaITCETrBy7qoihjb9aNBk5njRBkkW7iMw6Yy4l/Cu4pUqZO+js4
-	 2s6QdhJMcUbxPYYKPbyKlTVAfbfxHAYofow6LaZRvYIQY6Uok+YQdeWeyQh69UC58H
-	 4GguSFeuk9L4g==
-Date: Thu, 31 Oct 2024 14:18:34 +0000
-To: usrp-users@lists.ettus.com
-From: perper@o2.pl
-Message-ID: <MaeZAvnlBFsbC3cItZXE5YuOh4ZAwBdT47SrAQm8C8@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: NDw2PYqB5g7SdXcvTs7TK4LjcVGVmolXP5iE5AIA8@lists.ettus.com
+	t=1730384623; bh=eP+bowNh7/NINq2R+LxfbYEdoYuyoPk7WmZOt9qn8zg=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=wDh2JzONmp3OgLQh6J3TjcL/iJc5+CszcUEsret2Cvvq51jJASv32nEM3grKNxFOu
+	 +IstmNrwNskTJ94EXPLFsN56j0J0vKNKwWaZW6nfEn+9Ij7a38hSyIH8Y7TJvwuUN+
+	 4SFJVcD7700SVjVqiw8D1Zu3L0Cs++nzbf4gI8HtSy7y6W041vJygIlszrEgUSNAgz
+	 sIRokdkgg8B1mTXTfWoKBf6hMNM0CRQRVvau5zd6eYyUFU7q+O3re4YsNnAdZyyMPL
+	 JXofqsZEZjSqkUdgMM9r9aVkdmo7XI5KPpBocH5hHCrFtzwZAPj+/1QgIpFaNcJDbV
+	 wNBLoGwJOnxHA==
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 606A2384EF1
+	for <usrp-users@lists.ettus.com>; Thu, 31 Oct 2024 10:23:28 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="O3L9onZr";
+	dkim-atps=neutral
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-71815313303so482648a34.1
+        for <usrp-users@lists.ettus.com>; Thu, 31 Oct 2024 07:23:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730384607; x=1730989407; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rinohmRoIP03TQ1tl7uY+KXcZxPyo3wloVYt8NtNUHA=;
+        b=O3L9onZrXT4onSmDYLQlGCv1swNglynGWqQ+tPu42LDfuNOMuKfBaSlP/2HjjXDMVP
+         WsP/pbwi+ZyxPwPYGiABDnt1aW7E6Xq0K8EScdqbrOl3IM8CaBRg9pnNyasNvHNavmwf
+         lnjBYiljkGEMxnVfXW3P98lz3V8rBPX5VigBYDFiPymJtQtcHWMvPp894cXI+HjWDndB
+         P5TNgcq73y83RttZ1jnL8vCx2idqO6ImrhcIShjEFWL2WgaCnvy3Gxiz6XG95FGm+n0y
+         u4T8AGjVIJvG9ptJpPoZuPPEarAveYp6+awXMrBqAEN8v1Bm8kurbUHDy6r0qU8+DpSh
+         /CfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730384607; x=1730989407;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rinohmRoIP03TQ1tl7uY+KXcZxPyo3wloVYt8NtNUHA=;
+        b=aHQd5OGgrmyeK4+YTJy+cPJtI0Fk64qI7rjnV4FeOuo9f5crvgPdzEhn4wWFROpwid
+         Rq0LzeDwde2bbuYsVQkVKA2W/ez7ypX1gmMBKA96K1qJEJrx7MGOZLL3pZsYODG/zugx
+         m7uvtFer85iSQz1+7/MxeE9Xsem/hyFtfhdtGxZTw3jGL9uDqKGkLEtq0QeOQAX+B8+6
+         vd301Fo9N+ptvN9IPEnnDZl8kMmHDCVAfJbd0hlv5eiCopBKSPs8tPx1jAOO/PJMpX+O
+         3MKIhJPyl+WO0b2FhdnddyRyGMFWnANBQ5PDtBNra/HJWEXv/ApvXqZPqLsXAVdwXBX2
+         Rr+g==
+X-Gm-Message-State: AOJu0YzeVsXLzQroYua0Ri/lfDDKn6sxbR9hYsPZouBos/OjEZynggZb
+	IwRx1ybaeep8Ls8mIGft49guM8s1rsp0SVJ+G0VXV863RnDA3POiwmiTKwhjleHhY+mF6jWmz+6
+	ZT+eUXyeQzoUWgQzBY0ou5PZLlRMf+JmLb9tF2w==
+X-Google-Smtp-Source: AGHT+IGCap12v5ODkS97P7vl8iXkdjZA5mDs3A8/BiU+DJJn+VNp9GYBZyD10BvFC4zuIxZuXyWSqrjiHo8wUj+4DUo=
+X-Received: by 2002:a05:6830:4997:b0:718:f57:11ea with SMTP id
+ 46e09a7af769-71867f196a4mr16816442a34.3.1730384607540; Thu, 31 Oct 2024
+ 07:23:27 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: FE434UP6C3YMTFVRHVR3SXSZFFJRMFBW
-X-Message-ID-Hash: FE434UP6C3YMTFVRHVR3SXSZFFJRMFBW
-X-MailFrom: perper@o2.pl
+From: Andrew D <sciensfpgaeng@gmail.com>
+Date: Thu, 31 Oct 2024 10:23:17 -0400
+Message-ID: <CA+0p0ZS4nzv6581RcTSbvuomn5me5CzRM-K1aza7aTSdYOjazg@mail.gmail.com>
+To: usrp-users mailing-list <usrp-users@lists.ettus.com>
+Message-ID-Hash: GGR24O4XORKR6SWBD7LTYS2SMFEK3LH7
+X-Message-ID-Hash: GGR24O4XORKR6SWBD7LTYS2SMFEK3LH7
+X-MailFrom: sciensfpgaeng@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: KAS kirkstone build of ni-titanium-rev5 on x410 with Vitis-AI Library and DPU drivers: Mainline kernel incompatible with zocl DPU driver; possible to use linux-xlnx kernel and make titanium-related additions?
+Subject: [USRP-users] x410 RFNOC Endpooint YAML Configuration
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FE434UP6C3YMTFVRHVR3SXSZFFJRMFBW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GGR24O4XORKR6SWBD7LTYS2SMFEK3LH7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3358669484921633154=="
+Content-Type: multipart/mixed; boundary="===============1631811741901137005=="
 
-This is a multi-part message in MIME format.
+--===============1631811741901137005==
+Content-Type: multipart/alternative; boundary="000000000000db7d5e0625c68ffc"
 
---===============3358669484921633154==
-Content-Type: multipart/alternative;
- boundary="b1_MaeZAvnlBFsbC3cItZXE5YuOh4ZAwBdT47SrAQm8C8"
-Content-Transfer-Encoding: 7bit
+--000000000000db7d5e0625c68ffc
+Content-Type: text/plain; charset="UTF-8"
 
-This is a multi-part message in MIME format.
+It appears that in all of the x410 and x440 image core yaml files, that EP0
+is the only endpoint that is configured with `ctrl:True`.  Is this
+necessary and why is EP0 the only endpoint that requires control?
 
---b1_MaeZAvnlBFsbC3cItZXE5YuOh4ZAwBdT47SrAQm8C8
-Content-Type: text/plain; charset=UTF-8
+Thank you!
+Andrew
+
+--000000000000db7d5e0625c68ffc
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Mike,
+<div dir=3D"ltr"><div>It appears that in all of the x410 and x440 image cor=
+e yaml files, that EP0 is the only endpoint that is configured with `ctrl:T=
+rue`.=C2=A0 Is this necessary and why is EP0 the only endpoint that require=
+s control?</div><div><br></div><div>Thank you!</div><div>Andrew<br></div></=
+div>
 
-When I did the port the most cumbersome part of it was device-tree (i.e. =
-in terms of troubles-per-character). Probably the one reason was that I d=
-idn=E2=80=99t know all the conventions that are used there. Or maybe that=
- some conventions were a bit illusory and each driver had its own. So whe=
-n you say it might be because of device-tree my immediate reaction is =E2=
-=80=98it=E2=80=99s ALWAYS device-tree=E2=80=99s fault=E2=80=98.
+--000000000000db7d5e0625c68ffc--
 
-With the interrupts - the convention in Linux was silly as there is some =
-offset between ZYNQ interrupt numbers and Linux=E2=80=99s interrupt numbe=
-rs. I don=E2=80=99t remember what it was exactly, but something above 80.=
- You can check what interrupt numbers are used with: cat /proc/interrupts
-
-Regarding the network boot - I remember now why I didn=E2=80=99t use the =
-netboot_pxe - because in comparison with NI=E2=80=99s netboot it didn=E2=80=
-=99t set some important variables like revision number. As a result wrong=
- device-tree was loaded - one of the symptoms can be seen on the control =
-UART port. The builtin micro-controller prints a lot of errors.
-
-So that more work is required to make PXE boot working and NI=E2=80=99s n=
-etboot should be used for now. I don=E2=80=99t yet know how to make it mo=
-re clean and robust. Currently it seems a bit messy, but at least it work=
-s.
-
-Best Regards,\
-Piotr Krysik
-
---b1_MaeZAvnlBFsbC3cItZXE5YuOh4ZAwBdT47SrAQm8C8
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello Mike,</p><p>When I did the port the most cumbersome part of it was=
- device-tree (i.e. in terms of troubles-per-character). Probably the one re=
-ason was that I didn=E2=80=99t know all the conventions that are used there=
-. Or maybe that some conventions were a bit illusory and each driver had it=
-s own. So when you say it might be because of device-tree my immediate reac=
-tion is =E2=80=98it=E2=80=99s ALWAYS device-tree=E2=80=99s fault=E2=80=
-=98.</p><p>With the interrupts - the convention in Linux was silly as there=
- is some offset between ZYNQ interrupt numbers and Linux=E2=80=99s interrup=
-t numbers. I don=E2=80=99t remember what it was exactly, but something abov=
-e 80. You can check what interrupt numbers are used with: cat /proc/interru=
-pts</p><p>Regarding the network boot - I remember now why I didn=E2=80=
-=99t use the netboot_pxe - because in comparison with NI=E2=80=99s netboot =
-it didn=E2=80=99t set some important variables like revision number. As a r=
-esult wrong device-tree was loaded - one of the symptoms can be seen on the=
- control UART port. The builtin micro-controller prints a lot of errors.</p=
-><p>So that more work is required to make PXE boot working and NI=E2=80=
-=99s netboot should be used for now. I don=E2=80=99t yet know how to make i=
-t more clean and robust. Currently it seems a bit messy, but at least it wo=
-rks.</p><p>Best Regards,<br>Piotr Krysik</p><p><br></p>
-
---b1_MaeZAvnlBFsbC3cItZXE5YuOh4ZAwBdT47SrAQm8C8--
-
---===============3358669484921633154==
+--===============1631811741901137005==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +111,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3358669484921633154==--
+--===============1631811741901137005==--
