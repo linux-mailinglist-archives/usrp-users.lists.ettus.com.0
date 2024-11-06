@@ -2,69 +2,69 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F4679BE22A
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2024 10:18:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D6DC9BE235
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2024 10:18:40 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 65872385D39
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2024 04:18:00 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 15F6C385CFA
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2024 04:18:38 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730884680; bh=kqwN0wBOK13ly+zkrktcJIaRwWZ3wPpz4ouqbXBfKPE=;
+	t=1730884718; bh=YDrkaN+glhVp5C9f57T1Fg4ySlD2K1ShnZqFTvU0wS0=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=tXRvH11UamtZsun72B1obKqFx0JDjdOf2aZroVLa2o33lUWaCL9ZUQ5OhfJjSJcOS
-	 bLbKin8fXzVH3AXTTp8tyv3PHS7LvSxLWb42BAjhOtKIAOktyyjVWIgjtyUn9raPP/
-	 PLt0HbFXZZFLntucLWON7Do5jXF7zVeRaW9L3Q9febzHBf2BBY+pWbkPwKkBKRFrTr
-	 Qkr/GAVp0OZaKPi9mhpQ12Rq27Y6XAz1FJxFmx/xnY3OJWcPPLTfIBwEZO0q8L7Zy5
-	 n8dfH6uPfJhEN+oW4hKpY0V3hCT/XlG3DqC832s9nvGFv0bjxKnd+8xHzz2RhuHWSv
-	 EdYtsqRfb0xLg==
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id EEA0638585E
-	for <usrp-users@lists.ettus.com>; Wed,  6 Nov 2024 04:17:15 -0500 (EST)
+	b=gtiYs2gsKf9pR5ZavPsqcLQnsOya6AHoCUhPaThfE836UQfqz+3h2VtGw4Lhmxijq
+	 SClGDKD2iv5Wor1MhmQPq2vjkiR9Nc/XSpxlo3X11fN1ekFJkvTWNU5XtI6MQVBED6
+	 TvJVciowvVPN/omGk2W/rph4ZKdI3CNvgMB09QW9oMJNuzDLdUHW3idtZsbq480lgg
+	 IxnGK3WzNLHNypQSpiI732QpFuwf30cmT4siWtYO5zcebec/RGh3/w+53S/6/hJ5Pl
+	 sP/cHZc3I9u4aK3RhoiDd6C4PoKzYZtC+1BY1lhquScctBFvwHoBXdUJ+sJjQvjEp9
+	 1PRqrO1n3kPgg==
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id D60C2385D91
+	for <usrp-users@lists.ettus.com>; Wed,  6 Nov 2024 04:17:46 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="ZDOwGNoj";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="fPoAblOu";
 	dkim-atps=neutral
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5cedf5fe237so3340509a12.3
-        for <usrp-users@lists.ettus.com>; Wed, 06 Nov 2024 01:17:15 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5c9362c26d8so1140319a12.1
+        for <usrp-users@lists.ettus.com>; Wed, 06 Nov 2024 01:17:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1730884635; x=1731489435; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1730884665; x=1731489465; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fEzdWi1hHvlTLVbMI6sqgrJwJPEIjehp2dISUEftkzk=;
-        b=ZDOwGNojwu0JaAqTiPjivA5jnPYA7DyagPNC2RN5yYPPSRx6Q1gnGh3XixmkkwUnNt
-         GPpLwrWZbJzuzxsxsLhaZcba1x+FPsV3mzpjxe8ZHx3uDfs2dimA2cQ31R5q4b+DMSUC
-         SxW0sEP3pIB4OIZIpraGl6jZVwTDFM+GOqupi9qn4OnvV7W8EgZCfkBp1Vdoa2C+j3HE
-         MRtlkWTLmJBoPMWpWGPDDIFMpMYTCrRrsDKYHF9+k3Febq4s7fLBHllyuk26YUmJq1Ym
-         O0jAu4lr+qsCnleNh04eUtJpocJoU6I3mGttAIUFxedyxFEucB2L92hBhAx2/ahX3PUB
-         xK5g==
+        bh=KKDXWVXModtgH4ZcOU0nIAmNaRg5PE7WZt9kxMBk5IM=;
+        b=fPoAblOuTdnnW+Om9ykK4M36Nmg4Aie2GPhEpcfOeHoHLpHwuJI5D2/2JwRn2IIFu7
+         gc5Aik51YiMIe5V4gLqNXsicPvxx4xWbztREOlygTVhOC+sRtcxPe6F8hOmznSBOSxWD
+         AZQKefGZQWrwAXbHlNIgnPnVWJ0N5afTDTAiHrgoYNHB2N0mQOaC/XJrOPzGpI009Meb
+         rsDQgZAS57Qcs7gNFt5J4aZRKInTQSM+giHu0ynFAAWLE0D9/LAfmGu/eVlGieL9gMfu
+         qDG1SxJ3hVQXgQ6jsl5hsuu3BsRpgItZTwyWH9DgUte7IZY28ChbcJic4RhSJFH97ewM
+         lvHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730884635; x=1731489435;
+        d=1e100.net; s=20230601; t=1730884665; x=1731489465;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fEzdWi1hHvlTLVbMI6sqgrJwJPEIjehp2dISUEftkzk=;
-        b=tShbpUAd1h4vy//JH/FBlj97J6ZM1WgU6TT62XBdFQk7qngNVZqv0UuPnlrxstXYLH
-         u/s17sJvwEI8lVMMnonRj9M5CxoOKWqoSAOapuA6RuFTIdqZf53xHBtP/qqGaZhcIv7f
-         ITwEe+we5cbMd21kkiO1PiA5YYVZIJEifY12zXB+OrPy/RoAmpKxrtYWdpKhI/tzJmhW
-         OWk9e9gvVDz7iA1MibOT00ccdIdYZuU3/IG4j8WUmTSKdxuy2mr8GrMXTJryav5twtfj
-         VqMzZCAGFOYHgoX6NTEmQstU9WEhH3mEuFrlI5UFt8aU6uC1vYo5epi6ZQD3574nGQ26
-         TRbA==
-X-Gm-Message-State: AOJu0YzDoHZZnlftlQFPGsoCwuN2Zk7voq7EdO9ju2a9i4OBjPvmLoFT
-	WHI1n0WRpNrCn1q//T2RCnsKdV2WkT5yDOGUbUHZNXg40yC6wYRdXZVhuVa7K4rrMIAQYZYIU3G
-	dDToW04x/5dWboxD1Z0tjcgNo7+nagBmo7QGwf81oN9Z0EYs2VNTpGw==
-X-Google-Smtp-Source: AGHT+IGPVREMOFGTiYyV7lDBVYWaQLlbzgz0xvhdhvNVRmPCqjHLb8OPExCRatyB0f/8roNStpBiU4jNFEj+XU6DmTs=
-X-Received: by 2002:a05:6402:2681:b0:5ce:fa29:6f41 with SMTP id
- 4fb4d7f45d1cf-5cefa297384mr104323a12.1.1730884634318; Wed, 06 Nov 2024
- 01:17:14 -0800 (PST)
+        bh=KKDXWVXModtgH4ZcOU0nIAmNaRg5PE7WZt9kxMBk5IM=;
+        b=AVB1giQWulNhB7YfO6mv9ru9nP1bOwdA+PNYbjqG6dWV1deF7HI+R3yoOtEQMsNpAJ
+         9ahZkkFb9QbqN9TpIRcYgut+4N0fE6CZda6D0kHUEv2bpjgJIA7Ji0VogMVa4SYc05QD
+         GdXR7K5Ym0s3+8O4Oc2CeUiIx+NmSWMTjTw+sXQlzgLGj3zkFkC8iUNLr/HQtoizr0Om
+         rw904S8qIULYcW9PLEGocqD2HdXkQkll0KRKjfkIoi6t2Lj/lCtEuXYYNcvqhHAkltMi
+         AZQcw+tnqT+V31J6hPidrjga+7neNWARe5nxDNo+w0tKFXhDSHNBtMyI+C6IN2RvFliR
+         Xe8Q==
+X-Gm-Message-State: AOJu0YwgcwJmJ1bGhPELc2JFqBXb15lG3zubBs7jQEJRW8UIS8hG59Ez
+	ONbCDLIMsPs+8LvuqFiAbXJuiTHrH7UTkmk5TAfylaGLqwNe45Eg9O6/2+CNL9pl8WlBDJINkbk
+	gfggA8rZZnLjdA8LSrHbnxReI97aGfw/OxxCL+lTAAfiqVDO8jUDsrA==
+X-Google-Smtp-Source: AGHT+IFv2ZMhxQoU/fTAKYL3MFrzDOqjHUz85iyHRfzRtc1LIU6U9MxMYlOmPM+OodJIuxG8F8zQIhCRY1cnkSFEz8A=
+X-Received: by 2002:a05:6402:1ecf:b0:5ce:c7bf:3bd8 with SMTP id
+ 4fb4d7f45d1cf-5cef545f794mr1968849a12.3.1730884664559; Wed, 06 Nov 2024
+ 01:17:44 -0800 (PST)
 MIME-Version: 1.0
-References: <gPLhZIa2mXPeDYMpYMVevvF3qDph8S2tzJOhnzjHcA@lists.ettus.com>
-In-Reply-To: <gPLhZIa2mXPeDYMpYMVevvF3qDph8S2tzJOhnzjHcA@lists.ettus.com>
+References: <gPLhZIa2mXPeDYMpYMVevvF3qDph8S2tzJOhnzjHcA@lists.ettus.com> <CAFOi1A7-NdaUtg+_Rau-7c1hKwxXmpUHBG46L7ne-kYhgsAj2A@mail.gmail.com>
+In-Reply-To: <CAFOi1A7-NdaUtg+_Rau-7c1hKwxXmpUHBG46L7ne-kYhgsAj2A@mail.gmail.com>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Wed, 6 Nov 2024 10:17:03 +0100
-Message-ID: <CAFOi1A7-NdaUtg+_Rau-7c1hKwxXmpUHBG46L7ne-kYhgsAj2A@mail.gmail.com>
+Date: Wed, 6 Nov 2024 10:17:33 +0100
+Message-ID: <CAFOi1A6LNR5L7x7b6ro+qAOyVzfk8T_7y-BGBpHJ=pd6n7CgHA@mail.gmail.com>
 To: cyberphox@gmail.com
-Message-ID-Hash: NDFMWMTREX35S6JQHYWX7Z5OCGCVLPTT
-X-Message-ID-Hash: NDFMWMTREX35S6JQHYWX7Z5OCGCVLPTT
+Message-ID-Hash: 2BY3B3YCRAICXEEDKPKBAYPY3RVE5KII
+X-Message-ID-Hash: 2BY3B3YCRAICXEEDKPKBAYPY3RVE5KII
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
@@ -72,82 +72,99 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Updating OOT module to UHD4.7 - Error During Initialisation
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NDFMWMTREX35S6JQHYWX7Z5OCGCVLPTT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2BY3B3YCRAICXEEDKPKBAYPY3RVE5KII/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7276977220888886196=="
+Content-Type: multipart/mixed; boundary="===============2996571000157776674=="
 
---===============7276977220888886196==
-Content-Type: multipart/related; boundary="000000000000c9374006263afbf7"
+--===============2996571000157776674==
+Content-Type: multipart/related; boundary="00000000000094577006263afde6"
 
---000000000000c9374006263afbf7
-Content-Type: multipart/alternative; boundary="000000000000c9373e06263afbf6"
+--00000000000094577006263afde6
+Content-Type: multipart/alternative; boundary="00000000000094576f06263afde5"
 
---000000000000c9373e06263afbf6
+--00000000000094576f06263afde5
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hey Marino,
-
-sorry, this is really hard to debug. I recommend adding lots of logging
-output in your block controller, starting with the top of the constructor.
-You can also recompile UHD to run with TRACE level logs enabled, and post
-another screenshot of that here, maybe that'll help us narrow it down.
+Sorry if unclear, I meant hard to debug just by looking at this screenshot.
 
 --M
 
-On Tue, Oct 22, 2024 at 7:42=E2=80=AFPM <cyberphox@gmail.com> wrote:
+On Wed, Nov 6, 2024 at 10:17=E2=80=AFAM Martin Braun <martin.braun@ettus.co=
+m> wrote:
 
-> Hi
+> Hey Marino,
 >
-> We are trying to update to UHD-4.7 from UHD-4.0 and have rebuilt an
-> out-of-tree NOC block that works ok in UHD-4.0.
+> sorry, this is really hard to debug. I recommend adding lots of logging
+> output in your block controller, starting with the top of the constructor=
+.
+> You can also recompile UHD to run with TRACE level logs enabled, and post
+> another screenshot of that here, maybe that'll help us narrow it down.
 >
-> I am looking for some hints to try and resolve this.
+> --M
 >
+> On Tue, Oct 22, 2024 at 7:42=E2=80=AFPM <cyberphox@gmail.com> wrote:
 >
-> Thanks
->
-> Marino
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> Hi
+>>
+>> We are trying to update to UHD-4.7 from UHD-4.0 and have rebuilt an
+>> out-of-tree NOC block that works ok in UHD-4.0.
+>>
+>> I am looking for some hints to try and resolve this.
+>>
+>>
+>> Thanks
+>>
+>> Marino
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 >
 
---000000000000c9373e06263afbf6
+--00000000000094576f06263afde5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hey Marino,</div><div><br></div><div>sorry, this is r=
-eally hard to debug. I recommend adding lots of logging output in your bloc=
-k controller, starting with the top of the constructor. You can also recomp=
-ile UHD to run with TRACE level logs enabled, and post another screenshot o=
-f that here, maybe that&#39;ll help us narrow it down.</div><div><br></div>=
-<div>--M<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Tue, Oct 22, 2024 at 7:42=E2=80=AFPM &lt;<a href=3D"ma=
-ilto:cyberphox@gmail.com">cyberphox@gmail.com</a>&gt; wrote:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
-1px solid rgb(204,204,204);padding-left:1ex"><p>Hi </p><p>We are trying to =
-update to UHD-4.7 from UHD-4.0 and have rebuilt an out-of-tree NOC block th=
-at works ok in UHD-4.0.  </p><p>I am looking for some hints to try and reso=
-lve this.  </p><p><img src=3D"cid:ii_19300c1c4bcb2878c771" alt=3D""><br></p=
-><p>Thanks</p><p>Marino</p><p><br></p>
+<div dir=3D"ltr"><div>Sorry if unclear, I meant hard to debug just by looki=
+ng at this screenshot.</div><div><br></div><div>--M<br></div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 6,=
+ 2024 at 10:17=E2=80=AFAM Martin Braun &lt;<a href=3D"mailto:martin.braun@e=
+ttus.com">martin.braun@ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hey Marino,</div><di=
+v><br></div><div>sorry, this is really hard to debug. I recommend adding lo=
+ts of logging output in your block controller, starting with the top of the=
+ constructor. You can also recompile UHD to run with TRACE level logs enabl=
+ed, and post another screenshot of that here, maybe that&#39;ll help us nar=
+row it down.</div><div><br></div><div>--M<br></div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 22, 2024 at =
+7:42=E2=80=AFPM &lt;<a href=3D"mailto:cyberphox@gmail.com" target=3D"_blank=
+">cyberphox@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><p>Hi </p><p>We are trying to update to UHD-4.7 from U=
+HD-4.0 and have rebuilt an out-of-tree NOC block that works ok in UHD-4.0. =
+ </p><p>I am looking for some hints to try and resolve this.  </p><p><img s=
+rc=3D"cid:ii_19300c1c4bcb2878c771" alt=3D""><br></p><p>Thanks</p><p>Marino<=
+/p><p><br></p>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---000000000000c9373e06263afbf6--
+--00000000000094576f06263afde5--
 
---000000000000c9374006263afbf7
+--00000000000094577006263afde6
 Content-Type: image/png; name=embed0
 Content-Disposition: inline; filename=embed0
 Content-Transfer-Encoding: base64
@@ -788,9 +805,9 @@ qTsx0X3oIZrh6f7wh7kueuWV7ksvid8TJwbQSBXd9Xnoxo3upUt9tuVmTIAJMAEmwASYABNgAkyA
 CfRDYCkKmxs3ROKF6plVq0TG5sSJ7o0b/UDhNkyACTABJsAEmAATYAJMgAksLgJLS9h8/HG30yny
 M6tWdfft4/TI4lqR7C0TYAJMgAkwASbABJgAExiCwBISNpcuFZKm0xH5Gf5hAkyACTABJsAEmAAT
 YAJM4M4g8D98MglDf2u26wAAAABJRU5ErkJggg==
---000000000000c9374006263afbf7--
+--00000000000094577006263afde6--
 
---===============7276977220888886196==
+--===============2996571000157776674==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -800,4 +817,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7276977220888886196==--
+--===============2996571000157776674==--
