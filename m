@@ -2,167 +2,135 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8130A9BCA76
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Nov 2024 11:31:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E367A9BDAB7
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2024 01:56:31 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 49401385A0F
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Nov 2024 05:31:51 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 57F7E385D43
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Nov 2024 19:56:20 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730802711; bh=ilxqIkfMjZyrBHM94p/mytNs8Fji95gE0zzefRsg44I=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=GnW93tgg+bXd1YN1dqa/9C0q/W4hakKOcyr2yh2NEmuBgwijETP/hN/1Kc2plknGe
-	 ehjNvZQ55Q/Gbkk0qPVSXNG3ARRR0BFZIl7whSR5a/DfcXOqHyjiaB0IHJqOIScyKK
-	 dPSScD+a4wBpf0fbHiVHG4sUGw/oB/Zf606H+e/jTlyufetkKrW6OjQfqmei8IoGGK
-	 mOAykUfNOXS/hDcvMJTtDH+ud9F5GxIxJnFqdWMzgO2l6kz3dNpRa+rb+e08U1hmFt
-	 7SKJ7Gp6hxlWrmLQ6qRiGv+fKCW83KZSHMUPfX8sdU1JOmAssxCVKmkx8rsATkL9wr
-	 rYEugZdow6kAw==
+	t=1730854580; bh=fLywVC9juo+ozk3UptAmZFxVHj/llUYC5y9rPLgj6Ns=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=vNIt4AhWTrXRDOeb0fJp/L+RBZDPro4FNHh9d6WVIZnp6IBWXAC+VDdVDHgyDf95W
+	 2KW04Lxp5J8Jb6soL4Qy++fS1RLqC1UAwUGmYes50E3+0dJ0k2K8z44zm9mrdP2eti
+	 k5si2p422e3xC5mALlKiqS0meb8yjx70q4/ai81nvMoyAuD93q6qKILi8qeR3F6kWM
+	 1/LOP8W96VYEdNMLzp623rGppiybCRErSH44ss1R+ZVS+AI8r4sxpvq8ATjGkO28d2
+	 luuaQZjbilPAc6MpA2ZksxXAajYkglfUAjNO2T4f2Me+N8AZifamUUx5pJMmajV78E
+	 4A+YFJ0rwdPGw==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 719A2385823
-	for <usrp-users@lists.ettus.com>; Tue,  5 Nov 2024 05:31:04 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8ECCE385CFA
+	for <usrp-users@lists.ettus.com>; Tue,  5 Nov 2024 19:55:31 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730802664; bh=fofPoHV0hD+Jdh0QUkTe6Kmo2lKUF1gE34CWspQxY7M=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=JDz1qrZycAzdafINaGAc9u5Jfcx7Bbc1SUJxw5we1Bd2gYaXgsRhvYmJPI69rrzDt
-	 6urro8Mz+2IVbH0xiePnq2jr32abRNcZnBJ/04zsKhmDXt9gktbob8nRpeMtlq1eRa
-	 d7si3rkDXbhOr2YolyPrxiIjB9Z7KuH05+z8t7sdJa5PNxzpbZYogtDx/743wKHPIG
-	 ZxotzxBjyNfXLIJalouPiPaMkC/dz7cbZpReCAl9malwsZjeQFp5yrpyzBfzGGA/yx
-	 /qD6INB3mkYckx3SH+2yR5Gkfhvg/sCXwRXt9nAWskCzenulaZ+85ChXDKHfFKLS3F
-	 Dy8nOjYDPNmzQ==
-Date: Tue, 5 Nov 2024 10:31:04 +0000
+	t=1730854531; bh=CQEPepfAb4PvAP2F2XD2fbwA3gxud80srzfYHxh4Hz0=;
+	h=Date:To:From:Subject:From;
+	b=DFnN7gFaYHhBdtsIfD0tAWhXrQ937sOwQlQL3Bca/O9w2py83jsAVrgtlvro//ORJ
+	 +STbBzDTRRRasfoxw2Lu8oRpq2gB4ajljzPOpDRpr1dJMLLy4u5+NJXW4IzoXHOlE3
+	 9dB0OC3F8Rn1uy0LpjWecPNpXkkf7Ruw/c8Y2MPQfLrtLLWnDTMqWUkZR/xy5wXZ2b
+	 PwzUhtZnsmPy56ODbp5baMb2vBjTclyIe2wYHI3HwAs8UL74xp1wuU6qReaq4fsF+i
+	 O+wQjQ/nER2Lq4dZ4wCYDTY5De/spxEmjyM+E/FPsoKhmzmftLvI9FlBR46dkDYKwb
+	 psOHiT3hoEeVQ==
+Date: Wed, 6 Nov 2024 00:55:31 +0000
 To: usrp-users@lists.ettus.com
-From: perper@o2.pl
-Message-ID: <s2yGmwm1bd2g2rt3seE3QgA0P0NJeyOnxSd8ymHDGw@lists.ettus.com>
+From: mgannet@gmail.com
+Message-ID: <evJJismGX8FnN2oBEQQb16M8vEYufO5U0vQHxU0E@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: Yvw2Bw6DDQD6Lc3mUNHrpa299kSvPTEkM1Wsy3HbvaY@lists.ettus.com
 MIME-Version: 1.0
-Message-ID-Hash: IBWFZJIB4QHFHILZGG5MGJ6WMUXFULV7
-X-Message-ID-Hash: IBWFZJIB4QHFHILZGG5MGJ6WMUXFULV7
-X-MailFrom: perper@o2.pl
+Message-ID-Hash: Q7F4PLPBTWWF4UMVSY4BHPFFUOKHM2YW
+X-Message-ID-Hash: Q7F4PLPBTWWF4UMVSY4BHPFFUOKHM2YW
+X-MailFrom: mgannet@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: KAS kirkstone build of ni-titanium-rev5 on x410 with Vitis-AI Library and DPU drivers: Mainline kernel incompatible with zocl DPU driver; possible to use linux-xlnx kernel and make titanium-related additions?
+Subject: [USRP-users] Asynchronous IO in RFNOC on x310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IBWFZJIB4QHFHILZGG5MGJ6WMUXFULV7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Q7F4PLPBTWWF4UMVSY4BHPFFUOKHM2YW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6135985730601917163=="
+Content-Type: multipart/mixed; boundary="===============8408257306632979547=="
 
 This is a multi-part message in MIME format.
 
---===============6135985730601917163==
+--===============8408257306632979547==
 Content-Type: multipart/alternative;
- boundary="b1_s2yGmwm1bd2g2rt3seE3QgA0P0NJeyOnxSd8ymHDGw"
+ boundary="b1_evJJismGX8FnN2oBEQQb16M8vEYufO5U0vQHxU0E"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_s2yGmwm1bd2g2rt3seE3QgA0P0NJeyOnxSd8ymHDGw
+--b1_evJJismGX8FnN2oBEQQb16M8vEYufO5U0vQHxU0E
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello Mike,
+Hi everybody!
 
-One thing that sped up development for me regarding device-tree was abili=
-ty to reload it quickly after changes. The quickest option to load device=
--tree for FPGA code is to modify related device-tree overlay, compile it =
-manually and reload it without restarting the device. To compile default =
-device-tree you can execute following commands from =E2=80=98uhd/fpga/usr=
-p3/top/x400/dts=E2=80=99 directory:
+I=E2=80=99ve written an RFNOC block that assigns the daughterboard rx GPI=
+O pins to the tdata signals that are sent to the SEP.  I=E2=80=99m using =
+the axis_data protocol and the block is placed statically between the DDC=
+ and the SEP.  I use the tvalid and tlast signal from the upstream (DDC) =
+block and the tready signal from the downstream (SEP) block.  I brought t=
+he GPIO into the block using appropriate YAML files.  Small modification =
+outside of RFNOC were required to get the pins to RFNOC (bus_int.v, x300_=
+core.v, io_signatures.yml, and x310_bsp.yml).
 
-gcc -I ./ -E -nostdinc -undef -D__DTS__ -x assembler-with-cpp -o usrp_x41=
-0_fpga_X4.dts.preprocessed usrp_x410_fpga_X4.dts
+The x310 is operated at 1 Msps and there are 64 samples per CHDR packet o=
+n the axis data bus.  This means that the packet rate on the bus is 1 Msp=
+s / 64, or 15.625 kHz.  Period is 64 us.
 
-dtc -I dts -O dtb -o x410_X4.dtbo -b 0 -@ usrp_x410_fpga_X4.dts.preproces=
-sed
+If I place a signal onto the GPIO pin, everything is fine as long as the =
+pulse width is greater than 64 us.   I can run the radio with rx_samples_=
+to_file and see the GPIO pins faithfully reproduced in the Ethernet outpu=
+t collected on a PC.
 
-Your modifications you can put in some file and include it in =E2=80=98us=
-rp_x410_fpga_X4.dts=E2=80=99.
+At pulse widths less than 64 us, the signal is essentially aliased.  I be=
+lieve it=E2=80=99s because I=E2=80=99m using the tvalid, tlast, and tread=
+y signals from upstream/downstream blocks with data that=E2=80=99s alread=
+y on the axis data plane.  That data bursts through with 64 samples rough=
+ly every 64 us and is clocked with a 200 MHz master clock.  I need to clo=
+ck in the asynchronous GPIO.
 
-The =E2=80=98x410_X4.dtbo=E2=80=99 file can be copied to =E2=80=98/lib/fi=
-rmware=E2=80=99 directory in USRP=E2=80=99s filesystem. You can back-up y=
-our =E2=80=98x410.dtbo=E2=80=99 and create symbolic link to =E2=80=98x410=
-.dtbo ->  x410_X4.dtbo=E2=80=99.
+My question:  What is the best way to do this?  Generate my own clock and=
+ use a generic FIFO like axi_fifo.v to hold the data until the upstream b=
+lock sends its data and the downstream block is ready to receive?
 
-The overlay is reloaded when =E2=80=98usrp-hwd=E2=80=99 service (which ex=
-ecutes =E2=80=98usrp_hwd.py=E2=80=99 program) is loaded:\
-systemctl restart usrp-hwd
+Thank you,
 
-The DT overlay can be reloaded manually in bash. I=E2=80=99m using follow=
-ing script for this:
+Mark
 
-OVERLAY_NAME=3D=E2=80=9Dx410_X4"
-
-echo ${OVERLAY_NAME}
-
-SYSFS_OVERLAY_BASE_DIR=3D/sys/kernel/config/device-tree/overlays
-
-if \[ -d ${SYSFS_OVERLAY_BASE_DIR}/${OVERLAY_NAME} \]; then
-
-  rmdir  ${SYSFS_OVERLAY_BASE_DIR}/${OVERLAY_NAME}
-
-fi
-
-rmdir ${SYSFS_OVERLAY_BASE_DIR}/\*
-
-cp -f ${OVERLAY_NAME}.{bin,dtbo} /lib/firmware
-
-mkdir ${SYSFS_OVERLAY_BASE_DIR}/${OVERLAY_NAME}
-
-echo ${OVERLAY_NAME}.dtbo > ${SYSFS_OVERLAY_BASE_DIR}/${OVERLAY_NAME}/pat=
-h
-
-Another useful script is =E2=80=98fpga_bit_to_bin.py=E2=80=99 that is som=
-ewhere in UHD. It is much faster and convenient to use than Vivado=E2=80=99=
-s tcl scripts for conversion between =E2=80=98bit=E2=80=99 format (that V=
-ivado generates) and =E2=80=98bin=E2=80=99 format (that is expected by =E2=
-=80=98usrp_hwd.py=E2=80=99).
-
-Best Regards,\
-Piotr Krysik
-
---b1_s2yGmwm1bd2g2rt3seE3QgA0P0NJeyOnxSd8ymHDGw
+--b1_evJJismGX8FnN2oBEQQb16M8vEYufO5U0vQHxU0E
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hello Mike,</p><p>One thing that sped up development for me regarding de=
-vice-tree was ability to reload it quickly after changes. The quickest opti=
-on to load device-tree for FPGA code is to modify related device-tree overl=
-ay, compile it manually and reload it without restarting the device. To com=
-pile default device-tree you can execute following commands from =E2=80=
-=98uhd/fpga/usrp3/top/x400/dts=E2=80=99 directory:</p><p>gcc -I ./ -E -nost=
-dinc -undef -D__DTS__ -x assembler-with-cpp -o usrp_x410_fpga_X4.dts.prepro=
-cessed usrp_x410_fpga_X4.dts</p><p>dtc -I dts -O dtb -o x410_X4.dtbo -b 0 -=
-@ usrp_x410_fpga_X4.dts.preprocessed</p><p>Your modifications you can put i=
-n some file and include it in =E2=80=98usrp_x410_fpga_X4.dts=E2=80=99.</p><=
-p>The =E2=80=98x410_X4.dtbo=E2=80=99 file can be copied to =E2=80=98/lib/fi=
-rmware=E2=80=99 directory in USRP=E2=80=99s filesystem. You can back-up you=
-r =E2=80=98x410.dtbo=E2=80=99 and create symbolic link to =E2=80=98x410.dtb=
-o -&gt;  x410_X4.dtbo=E2=80=99.</p><p>The overlay is reloaded when =
-=E2=80=98usrp-hwd=E2=80=99 service (which executes =E2=80=98usrp_hwd.py=
-=E2=80=99 program) is loaded:<br>systemctl restart usrp-hwd</p><p>The DT ov=
-erlay can be reloaded manually in bash. I=E2=80=99m using following script =
-for this:<br><br></p><p>OVERLAY_NAME=3D=E2=80=9Dx410_X4"</p><p>echo ${OVERL=
-AY_NAME}</p><p>SYSFS_OVERLAY_BASE_DIR=3D/sys/kernel/config/device-tree/over=
-lays</p><p>if [ -d ${SYSFS_OVERLAY_BASE_DIR}/${OVERLAY_NAME} ]; then</p><p>=
-  rmdir  ${SYSFS_OVERLAY_BASE_DIR}/${OVERLAY_NAME}</p><p>fi</p><p>rmdir ${S=
-YSFS_OVERLAY_BASE_DIR}/*</p><p>cp -f ${OVERLAY_NAME}.{bin,dtbo} /lib/firmwa=
-re</p><p>mkdir ${SYSFS_OVERLAY_BASE_DIR}/${OVERLAY_NAME}</p><p>echo ${OVERL=
-AY_NAME}.dtbo &gt; ${SYSFS_OVERLAY_BASE_DIR}/${OVERLAY_NAME}/path</p><p><br=
-></p><p>Another useful script is =E2=80=98fpga_bit_to_bin.py=E2=80=99 that =
-is somewhere in UHD. It is much faster and convenient to use than Vivado=
-=E2=80=99s tcl scripts for conversion between =E2=80=98bit=E2=80=99 format =
-(that Vivado generates) and =E2=80=98bin=E2=80=99 format (that is expected =
-by =E2=80=98usrp_hwd.py=E2=80=99).</p><p>Best Regards,<br>Piotr Krysik</p>
+<p>Hi everybody!</p><p>I=E2=80=99ve written an RFNOC block that assigns the=
+ daughterboard rx GPIO pins to the tdata signals that are sent to the SEP. =
+ I=E2=80=99m using the axis_data protocol and the block is placed staticall=
+y between the DDC and the SEP.  I use the tvalid and tlast signal from the =
+upstream (DDC) block and the tready signal from the downstream (SEP) block.=
+  I brought the GPIO into the block using appropriate YAML files.  Small mo=
+dification outside of RFNOC were required to get the pins to RFNOC (bus_int=
+.v, x300_core.v, io_signatures.yml, and x310_bsp.yml).</p><p>The x310 is op=
+erated at 1 Msps and there are 64 samples per CHDR packet on the axis data =
+bus.  This means that the packet rate on the bus is 1 Msps / 64, or 15.625 =
+kHz.  Period is 64 us.</p><p>If I place a signal onto the GPIO pin, everyth=
+ing is fine as long as the pulse width is greater than 64 us.   I can run t=
+he radio with rx_samples_to_file and see the GPIO pins faithfully reproduce=
+d in the Ethernet output collected on a PC.</p><p>At pulse widths less than=
+ 64 us, the signal is essentially aliased.  I believe it=E2=80=99s because =
+I=E2=80=99m using the tvalid, tlast, and tready signals from upstream/downs=
+tream blocks with data that=E2=80=99s already on the axis data plane.  That=
+ data bursts through with 64 samples roughly every 64 us and is clocked wit=
+h a 200 MHz master clock.  I need to clock in the asynchronous GPIO.</p><p>=
+My question:  What is the best way to do this?  Generate my own clock and u=
+se a generic FIFO like axi_fifo.v to hold the data until the upstream block=
+ sends its data and the downstream block is ready to receive?</p><p>Thank y=
+ou,</p><p>Mark</p>
 
---b1_s2yGmwm1bd2g2rt3seE3QgA0P0NJeyOnxSd8ymHDGw--
+--b1_evJJismGX8FnN2oBEQQb16M8vEYufO5U0vQHxU0E--
 
---===============6135985730601917163==
+--===============8408257306632979547==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -172,4 +140,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6135985730601917163==--
+--===============8408257306632979547==--
