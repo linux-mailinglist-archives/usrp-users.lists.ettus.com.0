@@ -2,102 +2,101 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F1B9BFBCF
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Nov 2024 02:43:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3059BFD6C
+	for <lists+usrp-users@lfdr.de>; Thu,  7 Nov 2024 05:41:20 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1F144385964
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2024 20:43:23 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 6297D385A63
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2024 23:41:19 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1730943803; bh=SCcY10dq5zfmo2Hl8341k1frN3OZvs30NElDOPjup3E=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1730954479; bh=23665NEWbReIwf/eIL1RTpiuq/K7qahCvGeX+FBYOQ4=;
+	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=lDtxNQyrBMzSSyd7mqwFcOWpug5ChzhoZjJ5IoBxjUiQrbDpCepi+IxkmeV+i6pK+
-	 BdPEsXUDw+30s2o38nRQhMAb9j5JC5mwxZeFplhKb1Wq84422Fc16ZxBXIo4VwzDg8
-	 d8eAslFP+d1LETzLUx6HPEb4i8cLaLaDdC2w/XiPx0yfPQKiig6dV8qgoc+QQVZsAm
-	 Zx8UbwBo8KTsH8oLGDM5PVlTy554BAKUZF4wQ+j1MBCxHQ/cBkkRvDw27OLB7YfsRp
-	 CW0S580eTq0ngNpHNNpGf1foXmnsyG6bw3Igr2g2wX900GnuRwvtg1Wi8pl54+gBSS
-	 KDHKlb+0+vK5g==
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2BDF93814D3
-	for <usrp-users@lists.ettus.com>; Wed,  6 Nov 2024 20:41:30 -0500 (EST)
+	 From:Reply-To:From;
+	b=qXCGkwK2TRYVz8CdjLBCgQl2UgTtleX4VYQ/3HuNV/8Af6CkRUUdwDM5kqJNER0gV
+	 dR4KiEfI/dvBiIW7f+OFbtb+TbqHKL8siS6IwbJjZ1fCBv4miZZ+Q6nLFbI9R7bC8v
+	 gaawOc082BQ2bziJ7ralWPa4Ro516KgqnILtTli41d4lPfoekpY6qPP+ip36VDXViz
+	 6Jh4taO6sIRteouOUHS+085kdYnIAoEFEa+J0lUMOHr7UwbQGL2wAwi1JqNInPRMKP
+	 ii8uX7vQ+8+4PyOZ8GJj31Z+8BGoWP8k/deMiwa3NMJ83VoGpbMEFBdAJMlZrcL7Mp
+	 6P5xURRQyfjrg==
+Received: from resqmta-a2p-658918.sys.comcast.net (resqmta-a2p-658918.sys.comcast.net [96.103.146.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id 08C2D385A57
+	for <usrp-users@lists.ettus.com>; Wed,  6 Nov 2024 23:40:23 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="L3Ghv7YC";
+	dkim=pass (2048-bit key; unprotected) header.d=comcast.net header.i=@comcast.net header.b="BHMXpIN1";
 	dkim-atps=neutral
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7b1507c42faso123033785a.0
-        for <usrp-users@lists.ettus.com>; Wed, 06 Nov 2024 17:41:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730943689; x=1731548489; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lIf82g/4g3l2Yz8pr0DaeqlSDkJjiq80d2QyljNSRio=;
-        b=L3Ghv7YCUU41ATYEjRGnEFv83tzJ14VkR3jUr6uedvfivNi9b+Z8tqsLpNlsgNiNZe
-         jziRaLXmo5cTPhiKphUJ0QTSF5NK03aNs9idPrTdJa5DDKMtNHpeoytLofbP7hVogKpl
-         uenancQ+/aR234oWpr0FTMLi9lhf8oPkDAaXMw7wtLJGajErtKOl4QMtRAAnyMCaCMgr
-         YDkfxgQEgaA6VMucFkrATmIbrerKELp3NKARUKgWEuSD5jwtf5i4/pOMNO4boMOIAi00
-         GGYf+fw+Re9B0CW2HZCAi7CoSJ3Hq5038uRHjWoAdEbbkTnAs658+CnEIbO8ShjZ5DGz
-         JyCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730943689; x=1731548489;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=lIf82g/4g3l2Yz8pr0DaeqlSDkJjiq80d2QyljNSRio=;
-        b=BTdkQzsWcB/w0L6JPJR6dgtY4eN51fmwQlOdHe3xOfxPibplTvOIL/8bMuMWaPaGJU
-         HsrxSkN5ZwL+YM0wR0EVlu4M/UAXusJdtUDHYn7UYnN9DZgouKadamHJrKHTlXp9tXCY
-         XLg6y3BkFOsNM30oS157qPGw3UksSYtIWYsWCTMApe1cqlGMzf8BkXHeIDzaeuO4SuzR
-         JVMOr+bVaOc21eRTfICLxoHWTgBFXQ3SNTUywnNwyywwvZUb2JdBWjm+nb6MjGDOAAyo
-         a4iazmj2HwKPA8Uv8ZwQ5ZeooA4uIqutOh1V4EhDkpTUgKqhboxGX9l55C7wnU/CjnJS
-         LnwA==
-X-Gm-Message-State: AOJu0Yzk73Yz9AIgugHhUj5kr/Z3MNk3r5a7uqjF9ChoTF1xmwRbJD7M
-	jeLGf1rBpthCTp/i59ZCZ6O1elZ7t//tibCfBNebn0tVsgyO3N1A5Kjrdw==
-X-Google-Smtp-Source: AGHT+IF716twQDnrOhotOou6zhwG4bu4j8kkR8waeZ9Pz3rytDVKK/urkg9M/fsljYVv4Gu70OKk0w==
-X-Received: by 2002:a05:620a:4412:b0:7b1:7508:9f38 with SMTP id af79cd13be357-7b32765e92dmr225538485a.16.1730943689201;
-        Wed, 06 Nov 2024 17:41:29 -0800 (PST)
-Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-462ff3ef11esm1555991cf.15.2024.11.06.17.41.27
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Nov 2024 17:41:28 -0800 (PST)
-Message-ID: <beb47fd4-b929-4e4d-afa2-f304951862a1@gmail.com>
-Date: Wed, 6 Nov 2024 20:41:16 -0500
+Received: from resomta-a2p-630472.sys.comcast.net ([96.103.145.242])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by resqmta-a2p-658918.sys.comcast.net with ESMTPS
+	id 8t8ut1MqHugxm8uJjtGfYL; Thu, 07 Nov 2024 04:40:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=20190202a; t=1730954423;
+	bh=zxtEVBkrdF+lkNzmCSIvQBxOiPHMcj99vuc/YxCNXEg=;
+	h=Received:Received:Content-Type:Message-ID:Date:MIME-Version:
+	 Subject:To:From:Xfinity-Spam-Result;
+	b=BHMXpIN1bui7+7FyNPTfPOxAdOUN1/aFt23OIH0unDNLK98wZ4FEoofJsxofNrWjL
+	 0NchPtRL0c5fHlflMl0MPWH052fv9KK7/FMHQSzRpXLkirKUlSpxG24YCX9ryPvv6K
+	 FGvZOYYpNbLQkespqJxAiUCxngdSBNmYPldz2QOXkhmUA0ewcVS/9GUGbPP44wXKbv
+	 WhQMCGRDhPuRk/KwekEv3PuVzmhb9z0JfYfY/3YKZJ0nFVhyWLbZefwyAN4tlGs0oF
+	 H67APVb2uNydiufYh5R/JG72VPt1PT7/clxIUjgZRs4mhXPrXS+n8gRHQilardziEO
+	 mRjgI3rpreloA==
+Received: from [IPV6:2601:647:4b00:aafb:e236:7db:4b93:8aaa]
+ ([IPv6:2601:647:4b00:aafb:e236:7db:4b93:8aaa])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by resomta-a2p-630472.sys.comcast.net with ESMTPSA
+	id 8uJMtmNjPuSWm8uJNtue5c; Thu, 07 Nov 2024 04:40:02 +0000
+Message-ID: <0b46820e-b517-4ae1-973a-c5d624d80150@comcast.net>
+Date: Wed, 6 Nov 2024 20:40:00 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Content-Language: en-US
 To: usrp-users@lists.ettus.com
 References: <GV1P193MB22957B8CB9CFC455A2A3CCB1CB5C2@GV1P193MB2295.EURP193.PROD.OUTLOOK.COM>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Language: en-US
 In-Reply-To: <GV1P193MB22957B8CB9CFC455A2A3CCB1CB5C2@GV1P193MB2295.EURP193.PROD.OUTLOOK.COM>
-Message-ID-Hash: P3JS7567ARI2IWJJMHJCG3Q4MXESTRS4
-X-Message-ID-Hash: P3JS7567ARI2IWJJMHJCG3Q4MXESTRS4
-X-MailFrom: patchvonbraun@gmail.com
+X-CMAE-Envelope: MS4xfFyu7C7gR6QgZge54N+EWKJToSmDRe+6a2jhwplt5lTH5wmoGfziqBw5zjplw/GTwsB5Kbc8zZfGvc7O2rOrVajcsyjx+/JswgXFAe8xLvNeWq5X0mEt
+ Ma5HoL2DtjHb4Lv3nzyOlAgfLAa8QU1Ukz+sL1omMt3vgQA0JQr3+9iCqS8D5TPRhYYbOrnC/J47Lva2uxdG3IJufFo4IOJonYDUUv6cxw4Ys1QvuXT/qchi
+ 4nkehGNGzQ1yXElI3F9dwA073vwHcj+62Vpc+xjsoozWGU+S5Se1P65I/F9odQuf
+Message-ID-Hash: 5HMTW35ZM4DK2QYLJFAPHR3V3A3X4T4N
+X-Message-ID-Hash: 5HMTW35ZM4DK2QYLJFAPHR3V3A3X4T4N
+X-MailFrom: w6rz@comcast.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: How do I mitigate LO signal in my transmission?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P3JS7567ARI2IWJJMHJCG3Q4MXESTRS4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5HMTW35ZM4DK2QYLJFAPHR3V3A3X4T4N/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4671212764755152567=="
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Type: multipart/mixed; boundary="===============0654822591523306365=="
 
 This is a multi-part message in MIME format.
---===============4671212764755152567==
+--===============0654822591523306365==
 Content-Type: multipart/alternative;
- boundary="------------wDhgTLa318B0EyCzSRXmaUC4"
+ boundary="------------PAZ80MyfEDI2jnZPXM4mI0Vq"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------wDhgTLa318B0EyCzSRXmaUC4
+--------------PAZ80MyfEDI2jnZPXM4mI0Vq
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 06/11/2024 20:34, Brais Ares Fern=C3=A1ndez wrote:
+It's not quite as strong as you think it is. You have to scale the power=20
+measurement of a noise like signal to 10log(bandwidth/RBW). I can't read=20
+your signal bandwidth, but lets say it's 1 MHz. Then it's average power=20
+is really 30 dB stronger at 1 kHz RBW.
+
+
+Ron
+
+
+On 11/6/24 17:34, Brais Ares Fern=C3=A1ndez wrote:
 > Hello,
 >
 > I'm using a *N210 *to transmit IQ samples from a file.
@@ -123,32 +122,14 @@ F>),=20
 >
 > Regards.
 >
-Which daughtercard are you using?
-
-Also, I'll note that no mixer is perfect.=C2=A0 There will ALWAYS be some=
-=20
-amount of LO leakage out of a mixer.=C2=A0 In fixed-purpose
- =C2=A0 radios, this is normally dealt with by having an output filter on=
- the=20
-radio.=C2=A0=C2=A0 If you're running up against regulatory
- =C2=A0 mask requirements, this is going to be necessary in the majority =
-of=20
-cases.
-
-In a conventional superhet-type, fixed-purpose radio, the final IF=20
-frequency is chosen such that the inevitable
- =C2=A0 LO leakage is far enough out-of-band that it can be filtered by a=
-n=20
-analog filter prior to applying significant RF
- =C2=A0 gain at the TX power amplifier.
-
-
-
---------------wDhgTLa318B0EyCzSRXmaUC4
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+--------------PAZ80MyfEDI2jnZPXM4mI0Vq
 Content-Type: multipart/related;
- boundary="------------P0i9CW6222VTkc0rhUNIF5nY"
+ boundary="------------gS1W0brV0a9D6CQGNoFPtZ0t"
 
---------------P0i9CW6222VTkc0rhUNIF5nY
+--------------gS1W0brV0a9D6CQGNoFPtZ0t
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -159,8 +140,20 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 06/11/2024 20:34, Brais Ares
-      Fern=C3=A1ndez wrote:<br>
+    <p>It's not quite as strong as you think it is. You have to scale
+      the power measurement of a noise like signal to
+      10log(bandwidth/RBW). I can't read your signal bandwidth, but lets
+      say it's 1 MHz. Then it's average power is really 30 dB stronger
+      at 1 kHz RBW.</p>
+    <p><br>
+    </p>
+    <p>Ron<br>
+    </p>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 11/6/24 17:34, Brais Ares Fern=C3=A1=
+ndez
+      wrote:<br>
     </div>
     <blockquote type=3D"cite"
 cite=3D"mid:GV1P193MB22957B8CB9CFC455A2A3CCB1CB5C2@GV1P193MB2295.EURP193.=
@@ -217,7 +210,7 @@ r: rgb(0, 0, 0);">
         <img id=3D"image_0" size=3D"1371278" contenttype=3D"image/png"
           style=3D"width: 615.632px; height: 375px; max-width: 1249px;"
           data-outlook-trace=3D"F:1|T:1"
-          src=3D"cid:part1.WjbNgHCW.OWkneL1p@gmail.com" class=3D""
+          src=3D"cid:part1.xt2zLcFC.aODrDpyo@comcast.net" class=3D""
           width=3D"615" height=3D"375"></div>
       <div class=3D"elementToProof"
 style=3D"font-family: Arial, Helvetica, sans-serif; font-size: 10pt; colo=
@@ -269,34 +262,22 @@ r: rgb(0, 0, 0);">
           Regards.</div>
       </div>
       <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
     </blockquote>
-    Which daughtercard are you using?<br>
-    <br>
-    Also, I'll note that no mixer is perfect.=C2=A0 There will ALWAYS be =
-some
-    amount of LO leakage out of a mixer.=C2=A0 In fixed-purpose<br>
-    =C2=A0 radios, this is normally dealt with by having an output filter=
- on
-    the radio.=C2=A0=C2=A0 If you're running up against regulatory<br>
-    =C2=A0 mask requirements, this is going to be necessary in the majori=
-ty
-    of cases.<br>
-    <br>
-    In a conventional superhet-type, fixed-purpose radio, the final IF
-    frequency is chosen such that the inevitable<br>
-    =C2=A0 LO leakage is far enough out-of-band that it can be filtered b=
-y an
-    analog filter prior to applying significant RF<br>
-    =C2=A0 gain at the TX power amplifier.<br>
-    <br>
-    <br>
-    <br>
   </body>
 </html>
---------------P0i9CW6222VTkc0rhUNIF5nY
+--------------gS1W0brV0a9D6CQGNoFPtZ0t
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
-Content-Id: <part1.WjbNgHCW.OWkneL1p@gmail.com>
+Content-Id: <part1.xt2zLcFC.aODrDpyo@comcast.net>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAABFcAAAKlCAIAAACBtpSCAAAgAElEQVR4AeS995Mj153guf/H
@@ -25695,11 +25676,11 @@ YmP+neIdwu/AXAP+iolii++MuKH/9V///Yc/cBb0eyRCyGP+DhJEx80s6Lvvvv3++z8Tsfnh
 h+9/uPiTnEcI3//wPQfwnz8B/vSnP3333R+//fdv//3fv/2/FyafrhbCTVAAAAAASUVORK5C
 YII=
 
---------------P0i9CW6222VTkc0rhUNIF5nY--
+--------------gS1W0brV0a9D6CQGNoFPtZ0t--
 
---------------wDhgTLa318B0EyCzSRXmaUC4--
+--------------PAZ80MyfEDI2jnZPXM4mI0Vq--
 
---===============4671212764755152567==
+--===============0654822591523306365==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -25709,4 +25690,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4671212764755152567==--
+--===============0654822591523306365==--
