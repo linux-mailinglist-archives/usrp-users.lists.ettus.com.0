@@ -2,450 +2,290 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F1739CF20C
-	for <lists+usrp-users@lfdr.de>; Fri, 15 Nov 2024 17:49:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E09EB9CF8A1
+	for <lists+usrp-users@lfdr.de>; Fri, 15 Nov 2024 22:53:34 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6D4EC385A50
-	for <lists+usrp-users@lfdr.de>; Fri, 15 Nov 2024 11:48:44 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 14241385A93
+	for <lists+usrp-users@lfdr.de>; Fri, 15 Nov 2024 16:53:33 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1731689324; bh=eaus0ONxY5N0IY4uEKFuV78v/LdoEUUp46k9I5LmBNk=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=zIMimJB4PZlrP/XOYZfDuC23/lHNmw4XUwGytzhyInNbpGu1dLqXvhmQGaWmGiUno
-	 J2GUYzys9UcHIr6gLFf25+SiMHRLN/eZKR+bkNumy1tsSX4cjsKE63k3P2fLtiSr3Q
-	 DuqF8tRKi2x2oQQtI91lZJmlCYxeg0V3fK/I08TqLhPcXXERzN4MUtLstBPyOgCTcm
-	 RSGZIJeK8mWHa0uHfrQO6zYiwkYeJ8usAlAFAll7wTcWh3O8Yl5x0iToWb7u23FD60
-	 dlFNLVwJnk44u9Btp9B5gIvd3CQ2l0XK9GHvJro6LzuUwt15Pbxo0Wsw2LlAUXUGSO
-	 b0du0MaVZhnEw==
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 63CAE3857C9
-	for <usrp-users@lists.ettus.com>; Fri, 15 Nov 2024 11:48:18 -0500 (EST)
+	t=1731707613; bh=YPgInwt+nRb4/8j0gCKW1ovfeYaWsrpJuSMoMRZngKc=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=n7jMjpkg3pjMhdfhwqedAMuIPxerKZXhBjPWtkZJWLG7E0TcMdOwgYCzTb00e6Rv/
+	 PKwTs4r6PYVJHPrgvuMR4mkIC/Fda6DWMNJ4D/FBf2Gn5QYe0SBpnWwSISVUwgIstV
+	 h13kh1davBVKzXJHohHh6WzinhHJLR9ddKHcu4p2lfHvo46aWE5yPWH22q73uk81oW
+	 awRHnxmtRxuwSZnhQCPqeysgoARt0AzdPOLPEUGNMyHBF6ezRbBSLflkaw/3xYZjth
+	 Ba/NUNQkZ4QBOk4tsx6O5vnzuJejamxWsdNNi7BIOt0LWRWgkHRmbI1Iu0U2dfaKj+
+	 iH3mdUyTpPzHA==
+Received: from email6-west.aero.org (email6-west.aero.org [130.221.16.31])
+	by mm2.emwd.com (Postfix) with ESMTPS id D3533385812
+	for <usrp-users@lists.ettus.com>; Fri, 15 Nov 2024 16:53:05 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bDfySB/y";
+	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="AF0LzCbz";
+	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="fHAxKD9f";
 	dkim-atps=neutral
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7b1505ef7e3so114551885a.0
-        for <usrp-users@lists.ettus.com>; Fri, 15 Nov 2024 08:48:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
+  t=1731707586; x=1763243586;
+  h=from:to:subject:date:message-id:mime-version;
+  bh=Mi8TKzMyC9ix7tm4vC9DXTQRgMI3ALX8+VeQD5Hh6LY=;
+  b=AF0LzCbz66eD4oco05tHkjga3z9vUMV5WdavnyM+uDZ1Fl+pGNojom21
+   lKWrbGfF1nTosCXZOG3s9mmXTp9W0VTXN/G0dMyTCh7iljps8D5yYvZk1
+   14LiImZrqRD0X69QFPS5aGc05S2L9TJgU4iAPPITefm68fszSK9ItTY2N
+   k=;
+X-CSE-ConnectionGUID: ssRCV2bjQhexV5uXzoThXw==
+X-CSE-MsgGUID: oTf9SUOWQ9KoWpXxm5197w==
+x-SBRS: 4.2
+x-SenderGroup: Inbound_Office365
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="1888317"
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600";
+   d="scan'208,217";a="1888317"
+X-IPAS-Result: =?us-ascii?q?A2FNAQAhwjdnjhwUXShagQmBU4FBgQN7gWauCIZVgSUDV?=
+ =?us-ascii?q?g8BAQEBAQEBAQEHAkQEAQEDBIUAAopMJzUIDgECBAEBAQEDAgMBAQEBAQEBA?=
+ =?us-ascii?q?Q4BAQEFAQEBAQEHBAECAhABAQEBAQE5BQ47hXsNhAeBJgEBAQEBAQEBAQEBA?=
+ =?us-ascii?q?R0CNYEcAQE4EQEMcycEG4J5gh0NBwMxsmCBNIEBggwBAQYEBNseGGGBZAmBS?=
+ =?us-ascii?q?IN7gW+CYgEqgTKEDAGFLYFVRIEVQoJohQOEE4IvgkWEHXYlTYgymgWBRyIDJ?=
+ =?us-ascii?q?jMyAVUTFwsHBWCBFgODSIE2gVGDEEqFDEY/OYIRaUs3Ag0CNoIkfYJPhRqEb?=
+ =?us-ascii?q?IReg3AdQAMLbT01FBsFBIE1BZ1aAQqBYoUOPYEPgQuiHoF7jF2UWzQHhB2BX?=
+ =?us-ascii?q?QYMoAoXqk6Yd6h9AgQCBAUCDwiBaQNjgS4zGjCDKlIZD446g2HFang7AgcLA?=
+ =?us-ascii?q?QEDCZEiAQE?=
+IronPort-PHdr: A9a23:X0MidRB1DoIS6qp+ftESUyQVaxdPi9zP1kY95pkmjudIdaKut9TnM
+ VfE7PpgxFnOQc3A6v1ChuaX1sKoWWEJ7Zub9nxXdptKWkwJjMwMlFkmB8iIQUTwMP/taXk8G
+ 8JPHF9o9n22Kw5bAsH7MlTfuHr06iQdSX3C
+IronPort-Data: A9a23:uFftq648CjrYzDF7xh3LqwxRtKzHchMFZxGqfqrLsTDasY5as4F+v
+ jBLDWzSaauKZmPxe992Yd+08EkEv5eAzoNiHAU5+Co8Eysa+MHILOrCIxarNUt+DCFioGGLT
+ ik6QoOdRCzhZiaE/n9BFJC/8iEkvU2vbuOlUrObUsxJbVY5Dn9n0FQ7wLZRbrdA2bCRGxmKt
+ c75v/rRMVqk3y8cGm8P4spvkjs31BjJkG1e5wZWicxj5geEyyBMVc9Hf8ldElOhKmVqNr/iL
+ wr85Ozhlo/p109FIs+olL/9bnoLTtb6VeRZoic+twCK23CulwRqukoJHKN0hXR/0l1lq+tMJ
+ OBl7vRcfy90Z/eUwLx1vy5wSEmSNYUekFPOzOPWXca7lyUqeFO0qxli4d1f0ST1NY+bDEkXn
+ cH0JgzhYTiYnNid/uixSNBsi9QdcdTbLoQjukF/mGSx4fYOGfgvQo3hxYZg5m9hrf0WRa+YY
+ NcFYz1yahiGewdIJlocFJM5mqGvm2X7dDpb7lmSoMLb4UCPlEogi/63aJyPKrRmRu0M9qqcj
+ m/b8Gn/D1cVLtWO1zef2nuhnOiJmjn0MG4XPOTopq4x2QL7Kmo7DyEYBGCGhsaA2225ZMpvO
+ 0lJo3txsv1nnKCsZoKmBUHnyJKehTYBQMBIVvAh5RuW4q7V+BqCQGUYUiNaLtchsacLqScC0
+ 1aIm5bvAiZzsLaYT26H/7OJtjqgPTBMcjdbPHdeHU0C/sXpp5w1glTXVNF/HaWpj9rzXzbt3
+ zSNqyt4jLIW5SIW60ml1UvcuRmS/JLLdw449juKQ1K36T95VJHwMuRE9mPnxfpHKY+YSHyIs
+ 34Fh9WS4Ygy4XelxH3lrAIlTODB2hqVDAAwl2KDCHXIythA03uqfIQV5jZkOEdiP8AYYzbtf
+ VTaqwdJvcALZSLyN/8xZJ+tAcM3y6SmDc7iSv3fcttJZN52aROD+yZtI0WX2ggBcXTAc4lhY
+ P93ku71Vx727JiLKhLqHI/xNpd3nEgDKZv7H8yT8vhe+eP2iISpYbkEKkCSSesy8bmJpg7Ym
+ /4GaJDTlU0OCL2iO3GHmWL2EbzsBShqbXwRg5wGHtNv3iI4STh/YxMs6e9/JNE9w/oJ/gs21
+ ijkCxYGlgGXaYL7xfWiMSs5NOyHsWdXqHMwJys3Oli0k3Mke57H0UvsX8pfQFXTz8Q6laQcZ
+ 6BcI62oW60TIhyZoWh1Rcem9uRKKk/07T9iygL5OlDTibY8HVSRorcJv2LHqEEzM8ZAnZBn8
+ +L/jVmEGcdrqsYLJJ++Vc9DBmiZ5RA18N+elWOSSjWPUC0AKLRXFhE=
+IronPort-HdrOrdr: A9a23:icKoOakog59u51h6CZyz9GOGsePpDfPOimdD5ihNYBxZY6Wkfp
+ +V8cjzhCWftN9OYhodcIi7Sc+9qADnhOdICOgqTMGftWzd1FdAQ7sSibcKrweAJ8SczJ8V6U
+ 4DSdkYNDSYNzET4qjHCWKDYrUdKay8gcWVbJDlvhVQpG9RC51I3kNcMEK2A0d2TA5JCd4SD5
+ yH/PdKoDKmZDA+ctm7LmNtZZmJm/T70LbdJTIWDR8u7weDyRmy7qThLhSe1hACFxtS3LYZ93
+ TfmQCR3NTojxj78G6Q64bg1eUYpDLT8KoMOCW4sLlYFtyjsHfoWG0rYcz7gNl8mpDV1L9tqq
+ iFn/5oBbUP15vcE1vF2yfFyk3u1i0j5GTlzkLdiXz/odbhTDZ/EMZZg5lFGyGpnnbIkesMo5
+ 6j5VjpxaZ/HFfFhmDw9tLIXxZlmg69pmcji/caizhaXZEFYLFcoIQD9AcNea1wax7S+cQiCq
+ 1jHcvc7PFZfReTaG3YpHBmxJipUm4oFhmLT0Aesoie0iRQnnp+00wErfZv6kso5dY4Ud1J9u
+ 7EOqNnmPVHSdIXd7t0AKMbTc6+GgX2MGLx2aKpUCXa/Y08SgzwQsTMkckIDcmRCeM18Kc=
+X-Talos-CUID: =?us-ascii?q?9a23=3AwYcASmtt9ITqfP5GywBKC+xd6Is+aUf28i3aIXa?=
+ =?us-ascii?q?4BHZXFaClW1is+JN7xp8=3D?=
+X-Talos-MUID: 9a23:z0RF8gWXoff693nq/DjQimBZCeBX2vWND38VoYUD5pDVajMlbg==
+Received: from mail-northcentralusazlp17011028.outbound.protection.outlook.com (HELO CH1PR09CU001.outbound.protection.outlook.com) ([40.93.20.28])
+  by email6-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Nov 2024 13:53:03 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RMjsK0dGC/tpBHbNGQZGgQ9mbKxngCM1Yue8soxfM5Zluf0+kOuvzMgzW01kcXyMCtwxObYz6FVlYlJ3o13mC8g1qVg2rrWYskmnMX5ErzHpIFZTbRFFDYLP75oILIlAg5pgrcFFgox+m/vZJYJAlTJwv0Fx2duV00vvGVy6oNGdcycAyEsA0Uwi0rJ3xNMjsfb19Dj/gZrPWGxH/RKtXIGutfWJQgpvpNBLYuxPURvgftpjcsqMwChN4NppmRV4g28Up5Y39BIHNliUNJyQBgHYerXnn2y+UsyMZtvlJ63pXFhNEQSCowiTGKSYa9JJ9vfzPFI8WKRusAhn6MIFbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7soGTT20nKcOmo5IxoU3K+yvZM5emNBfnYhuvQSOqm4=;
+ b=QKhZKQFaaEocLgNiZFBjdZ32Of7H/fTmBS4hSLCk8vzuP1kanAsQUFjq7mkYRROxzrm6RF4OSA/1uVQsBEfseO5iuJM6Sd6YoIGkotxJ/g7T/uAMYnph3pofFlJFEBugZlR+Zkctxphlo4/jwzIjzdwP/y4SbEByvXhGyw5Rwe91G7US0FQQaglO48yRWgbUP8DI1/98MPyPlA4R54QjEtt0hYBohpC5rFrh34k373MMg69S+QKd/wxXHW+Grv3NqCOZcIR7OW/9kVaa18G4+HHq2dIcKMLYBhAuKBftjxLNTcbgmN7MGxWdz80+Cgr2xLMEOyrohI/i16kUR2+Vlg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
+ dkim=pass header.d=aero.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731689297; x=1732294097; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VnTLUYaoJJcVxqkWizcnnB2ELh7mkZ6iG3Z+VdCJJLg=;
-        b=bDfySB/ycg1DeZtg9G+HT5sTl66BU6S2gMQB3VsRcIZqs+2O6Kk7Io9EXT5sDojPmR
-         e7c2od8w9d1gYQ/krrw4vLnc4Pj8ZzfzS0U3XUlKvVhVjNAXvxaahsWKE6kY0mtbw+uO
-         PM81AC6nNxrVtIgNsShwKRlW/aR08DKv7Cze4H8FyPE1qKnTb/qEPkU7Ju2kliyIOASY
-         6Sv35lK44JmZDP/Z6cw/yV9vH4VbR9Y7wRl0VeLHuxoHIcya4iKkBSR32QAZEmoDVUUp
-         h2AzL1xkqF5fx2hz7XnBq1hu6CRANDwWcXRIz+9fbAlc04FAhUCNwrfZAahxFapMJUqv
-         4F7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731689297; x=1732294097;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VnTLUYaoJJcVxqkWizcnnB2ELh7mkZ6iG3Z+VdCJJLg=;
-        b=PQmsHc6jyYbBiN5sIe6Np0Fwfy/4XHbKnt6trclyix5oIA7TZGTRPLzm7UOV886bpg
-         KJzJIvlz/oCHAzQJCgeLtJGhxom6AlSDAVbbcXwXCTWQRz0xNnf2Z/WvLypckJIkpqXh
-         rS2bmk8A5uXZH5LRhKof2hnI86H8+snXSahF8Jq3M4qH6wWQZzUbd958CndsEZ9ke0KQ
-         g2ZWSePM8KJnyMGelDtoF2NpEPlbEdGuMAhewpVMq3g8MmxsGk8Ft8qvtghwsEwlwesh
-         hFPRdhR7/GLYbHPapH+89Je4/kMCs0ZS9zYF8cxADZoBvho4yhekjuCnVANf0bcvlGDB
-         YPUg==
-X-Gm-Message-State: AOJu0Yz6UzNl1DBBqWD7wi6j0aCvCjkq5CVK2SuJnLroU5Pp+eCq6WfF
-	/FToVYPR8OX8uYvyAdvSNHJwo4D5gOjqwg8uzzGME+ysaqYJraQYS9THfw==
-X-Google-Smtp-Source: AGHT+IEvlAiS1uZTzteBgX7fDxTmU9Ft4bZdZcOUyQNV6OKuyzQhIreWYNUbzakByGaL2EzPBcpBbg==
-X-Received: by 2002:a05:620a:4450:b0:7b3:5cf4:b82d with SMTP id af79cd13be357-7b362365cb5mr395900485a.52.1731689297256;
-        Fri, 15 Nov 2024 08:48:17 -0800 (PST)
-Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7b35c99c492sm174592385a.28.2024.11.15.08.48.16
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Nov 2024 08:48:16 -0800 (PST)
-Message-ID: <38edf3d1-8e5f-4747-88b7-71dbac43dd03@gmail.com>
-Date: Fri, 15 Nov 2024 11:48:06 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+ d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7soGTT20nKcOmo5IxoU3K+yvZM5emNBfnYhuvQSOqm4=;
+ b=fHAxKD9fXc87q7QamK6KQaeW3hFSF4tMpFLKl+k6km9LRt/yM0bC8N6AumeuEj5Bv9SU+hhSizteR0vpZxKueUES9Ba89L0ARmBknZ3XIEtcKbEjZZXVto+kkApoKxqqNZuvJuYwSTxv/ceT5kaleuCAWi3ezckEr59eIayfGTI=
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
+ by CO6PR09MB8807.namprd09.prod.outlook.com (2603:10b6:303:ce::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.20; Fri, 15 Nov
+ 2024 21:52:43 +0000
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::3188:1f4d:693d:60d6]) by SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::3188:1f4d:693d:60d6%7]) with mapi id 15.20.8158.019; Fri, 15 Nov 2024
+ 21:52:43 +0000
+From: Eugene Grayver <eugene.grayver@aero.org>
+To: usrp-users <usrp-users@lists.ettus.com>
+Thread-Topic: Real-world experience with X440
+Thread-Index: AQHbN6gV4wbHm/u0yEiK1lLTGdp6BA==
+Date: Fri, 15 Nov 2024 21:52:43 +0000
+Message-ID: 
+ <SJ0PR09MB9126E90ADAB8AD69F37EC15BEC242@SJ0PR09MB9126.namprd09.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <7yvZCxLlv3pM4c8LihtT3N8jgl1S69Mlv2M8UXNk@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <7yvZCxLlv3pM4c8LihtT3N8jgl1S69Mlv2M8UXNk@lists.ettus.com>
-Message-ID-Hash: AUHUUU4RKG3G2WJXJDEJOTC7TMMHK2PI
-X-Message-ID-Hash: AUHUUU4RKG3G2WJXJDEJOTC7TMMHK2PI
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aero.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|CO6PR09MB8807:EE_
+x-ms-office365-filtering-correlation-id: 0c65431b-95cd-497d-d8b4-08dd05bfd548
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|1800799024|366016|8096899003|38070700018;
+x-microsoft-antispam-message-info: 
+ =?iso-8859-1?Q?2OYoZO5TVqXY/+IPlqIqSQgsjUcZMchYGGvp/V0OvCYf3ZPElfmhn6Nugi?=
+ =?iso-8859-1?Q?zqc9WU7F27U8tW2MrX+dMl1evSLwo4wuGkfXJ2+Ntz2pL6XitCO2bKjiqH?=
+ =?iso-8859-1?Q?j7NPtqeJqb9adgjZUp22q0K3IfSMCuxEuCdDZvkafxRJDgtCOyWuCk3OJJ?=
+ =?iso-8859-1?Q?D58pLyNIEyJBL6T2OaiAyxy3GBidE859ojH5J5agiOxAdFkRKsqwZ5RnQ2?=
+ =?iso-8859-1?Q?bENjF4Anuok7DWTFmOqDnSFjkLM8F3NqO/x1zdc/28euGS2T3TgxgSDycP?=
+ =?iso-8859-1?Q?sfHeCa0f0m3XBBmOjzLgE1Qe1hMeI8/Ir0tbJkcT+7sZID3ZcErrEmiWTz?=
+ =?iso-8859-1?Q?AfxWT4JtDA1G3TQyU52RoQ1EfJ3OmDC6sUAsu+c3wshDq680Cuia6E2s2L?=
+ =?iso-8859-1?Q?NKyWveSA/l65mFU9kinCYJHVuChnBJIJjwVv+A1uBP0iuldypuif419xKL?=
+ =?iso-8859-1?Q?OMqb8mFqcMjdj54bVh/K9CVB6BaMZVpt0MkvN1mnqGy9iJ5JFBWcgMnqOF?=
+ =?iso-8859-1?Q?yqYdxw+eYYSfTZ6aWZbjf3Y3IdNv+P1T/EtjW4eQnmoKGcBteDXIytWhno?=
+ =?iso-8859-1?Q?R4s/ZIcLzVyeAsj+AhDtEhTja1TJAa8/wXPl+60LDhPTarReIX1lE8423E?=
+ =?iso-8859-1?Q?IHd1DwRfJOtmWI/tn3sFGJvei8Ra/bUp0+itJnwnxfxaKL4VTNcZZ/g1gd?=
+ =?iso-8859-1?Q?6C/wwbyeSq4tMpnvLMwqrAjy4Ui0d+OsII3utE34NiJvP0uQyxL/3IX4gF?=
+ =?iso-8859-1?Q?kiqOqrpd+N5u6lYQVREzCv/eisO2k6LvoH7lnd+hu5P8E9OSw5JLCAloOM?=
+ =?iso-8859-1?Q?8oPVg+Cv2+1y25xLMM//OK1paW3sjLI80FH9pl4bHLehjPTZre8rWqx+Ma?=
+ =?iso-8859-1?Q?pYSNrkx4bLyEOcHB8obqe4yzxEoVDjb4XcDPZE2T07Dfnqsyj9AqNDeLgh?=
+ =?iso-8859-1?Q?9Gt0FiPFlFMs7lOOD3k5BGGOsasOPyIja9giEKKKB5GmVCsX9SFHlPkMbZ?=
+ =?iso-8859-1?Q?aWo0dRHUQo9lw0pUlNgO0FfQv/HkPIR9PJLMpQZTcWejnesVse8ghHyfuq?=
+ =?iso-8859-1?Q?Zjva8FcoAkQVP3A2M+7jtS81mCn1k6d0e/cb7FakjDjtbtniSVg4BcqQtx?=
+ =?iso-8859-1?Q?sdPCb//MtpmBRJM5kxajcHI2+AnjYtMRfWVZJPbEb4QoK/I0Ycv33c2P+T?=
+ =?iso-8859-1?Q?EJ/kqSpep7PNjltqt8vVMBhc/jH3LD+gU3A8Qo1GdvPjJrjGwdnZNmA3vx?=
+ =?iso-8859-1?Q?YMHvRWdEPueZl08b0e/CmS0HILpcRtigQZTz/R4pKgUfHICo191zYcIgbv?=
+ =?iso-8859-1?Q?HTyBPmKfUhTGGI/lxtGrLORo3qdyPzVi+9nhrXjbOLYDg0pW4Yq9gsUR3N?=
+ =?iso-8859-1?Q?76RJr/tGmHHSoxBvX7Uf7oKr2lelS/uyt6BqjNa3ND0/OdNNNc89U=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(8096899003)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?BzC6H+eNf2qDcD7QkV+pkr79vaESYQR+7cR0VpjrkevIexaFLXS6isleF7?=
+ =?iso-8859-1?Q?JiT7QxaNU4veGvQQ8jegNCwMFruwcwdJ3s4jWkQCPYOMcVBWoDPGB6fVUa?=
+ =?iso-8859-1?Q?oNkK7HdJtTiv3KkFWCA1RDijV6HWWI9Pf3IH1QzPmx181NKUXYoq00n4SE?=
+ =?iso-8859-1?Q?ZxfPzg8PehpIxKX2B437XtNVfWHDb/euI9LuSAZTTUqnyVZblts7i8GByL?=
+ =?iso-8859-1?Q?K0sCeqMu+U+buBj5t7R3fEGGr3Q0zcHMpoNHEbO82alOHxxhTmC3g18Ey+?=
+ =?iso-8859-1?Q?6JHdJgNpeZapOeoXF/FERx5sfil/4+7KR5ubpgEffgBmeH/jV2a9eMZhqx?=
+ =?iso-8859-1?Q?DsFz8en62N7f62o1LN5tQomTZWuREGW6JGx0syP7eEti2K3xMEUC3g5fak?=
+ =?iso-8859-1?Q?kc8LSrPki1wZe95SYfMUyJiOkSwfYe7KzMS7JMec0aqwxzB6lSVzJmysMp?=
+ =?iso-8859-1?Q?E4BQRZdntJ1g64397+VrUxZ2xupC0LZqoc8z4PlsS4jtwFwdQ3CmICq9h4?=
+ =?iso-8859-1?Q?4o7e47F6rRPDAjy4kGbbsVnjqyMy4wqWlUsnue/Xlr9+0FSMwFxRITAJMt?=
+ =?iso-8859-1?Q?4VQfsO+GrwRButmH6ZoR75C743BObiSjA7mNYH7Zh93gYuLSkvLkkZJjI+?=
+ =?iso-8859-1?Q?UEoY7EEfvp9gmuaM0lHuQMWvuKbT/UpcRXBLz+wRwhtD2N/CUGEi4VPtfD?=
+ =?iso-8859-1?Q?Gym2d8gx+xQ8SkxPb4zR/l2D3Upadms8/XSlNGQl7poQwffCFMXbLSpsef?=
+ =?iso-8859-1?Q?A326+QqTzxYjUaOKTHv9mbnW5UUVNkEqdfUJbwEjOYED/y6a+/pMw+0CJf?=
+ =?iso-8859-1?Q?TCFm7/Mjl/WoWC1eI9clxmPoNjUwpyX6O+FiAZaJEfl6FBjtRGi1VOGZdy?=
+ =?iso-8859-1?Q?Y1YG1/8ibP4tS5q7ex7cXPn4TJKGiOAUJBzt2a8W6dehDcGeGHAgBCAc87?=
+ =?iso-8859-1?Q?ztozBmoQLrvq6rKc4kiq7DtOvukA2rEu1KhB6K6yjCE6LYtaRFAs/hXMAq?=
+ =?iso-8859-1?Q?oTWSs6h4m36kPUQQwAJl3+4OX+yLFPjBviPzoh/znGWntv4Am0uNYC/dqu?=
+ =?iso-8859-1?Q?XEGN/VITI8SC1jDmaoeQ09Mx+MvNrQuDKRi4jJvYFvlJW+r41Pdpe6bfoI?=
+ =?iso-8859-1?Q?1tt4S0oJdBI4ZO9wSZ42f01n6LGsome06RPqfdqv5pKOG6FJkEFexAMKK9?=
+ =?iso-8859-1?Q?HT1wWs4I+RE4duAZqhlrSosah3YWM01aXzkhLyct0568WCsl8muAvARsWD?=
+ =?iso-8859-1?Q?ZdQpYLFIFDPHEnM1WCoi9WxWE0DFDAxRPh/dlTCzR4UxQsGpfImXWuQ6UC?=
+ =?iso-8859-1?Q?2tP7idn68NFutZZWCX+H56A7HB8UnTV5Qtk/+pbnWWew0o9s4PNl4J9FkZ?=
+ =?iso-8859-1?Q?eJjVKI8hRQTrbP2FfwKXI9fZc0FvCjeO6b7uJBCgCsYPVBITxX1Ok5gEs9?=
+ =?iso-8859-1?Q?UGbKGaG/SriaQ2wb+pvGWl3le6uP1yM1GUkpU/QONiC/ukKQKjT9lNIbVy?=
+ =?iso-8859-1?Q?WahAq3rlouv7l7X5zfBHIKDZzvMOOUrLSCVTH0curAQyFqfcZzRiz0d7YO?=
+ =?iso-8859-1?Q?jWu9xBP6LgV+NVCH/2RtL/16u/29IjQW6N3pYl9vWkrRGQ0ogz086pFe1S?=
+ =?iso-8859-1?Q?eY70xRcwUK0jQ=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: aero.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c65431b-95cd-497d-d8b4-08dd05bfd548
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2024 21:52:43.1456
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR09MB8807
+Message-ID-Hash: TYYKHKTLJCYLXY2KXKNDT34KUUAZFFI3
+X-Message-ID-Hash: TYYKHKTLJCYLXY2KXKNDT34KUUAZFFI3
+X-MailFrom: prvs=0429d4aaf=eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Signal Distortion and Phase Issues with USRP B210
+Subject: [USRP-users] Real-world experience with X440
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AUHUUU4RKG3G2WJXJDEJOTC7TMMHK2PI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SDKKE7ATD763ZXQVVYVCZKMXG3JFHUBA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7212685986384732416=="
+Content-Type: multipart/mixed; boundary="===============7840735434726187648=="
 
-This is a multi-part message in MIME format.
---===============7212685986384732416==
-Content-Type: multipart/alternative;
- boundary="------------40sOocrorCU49bB1Ql4ucM0j"
+--===============7840735434726187648==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SJ0PR09MB9126E90ADAB8AD69F37EC15BEC242SJ0PR09MB9126namp_"
 
-This is a multi-part message in MIME format.
---------------40sOocrorCU49bB1Ql4ucM0j
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_SJ0PR09MB9126E90ADAB8AD69F37EC15BEC242SJ0PR09MB9126namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On 15/11/2024 08:19, yibindeng66@outlook.com wrote:
->
-> Hi M=C3=BCller and Leech,
->
-> Thanks for your help, and sorry for the ambiguity in my description.=20
-> The signal I used in my first figure was a rectangular wave. In the=20
-> other two figures, I used QAM-modulated data packets filtered with a=20
-> root-raised cosine filter. As you mentioned, the tailing issue was=20
-> indeed resolved after DSP tuning.
->
-> However, I seem to have encountered a new problem. I tried to send a=20
-> QAM data packet filtered with a root-raised cosine filter. According=20
-> to theoretical analysis, it should be a band-limited signal. However,=20
-> even after DSP tuning, the received signal at the receiving end has=20
-> its energy distributed across the entire operating band, and it is=20
-> difficult to demodulate correctly. Interestingly, this issue does not=20
-> occur when I use Pluto to send the same signal. I have attached the=20
-> code I used for sending.
->
-> Additionally, I have a curiosity-driven question: do I need to=20
-> constrain the input within the 0-1 range or any specific range?
->
-Baseband signals using the default floating-point host-side=20
-representation must be constrained to {-1.0,+1.0}, and
- =C2=A0 generally smaller than that to prevent saturation -- {-0.85,+0.85=
-} is=20
-often what I've used in the past.
+Hi,
 
-You could also try backing your TX gain off by about 10dB -- you may be=20
-getting a bit of clipping on the receive
- =C2=A0 side -- I think you'd mentioned a direct connection through a 30d=
-B=20
-attenuator.
+I am considering the X440 for a wideband record/playback system.  What benc=
+hmarks has Ettus done?
 
-Check that your signal in your .mat file doesn't exceed the required=20
-baseband magnitude, as described above.
+Is there any hardware out there that can continuously stream (one way, TX o=
+r RX) the full 8 Gsps (i.e. 2x 4 Gsps) for the combined bandwidth of 2x 1.6=
+ GHz?  Assuming DPDK is used, there is still an issue with getting packets =
+to/from different cores/threads.  Are the packet streams configurable to al=
+low hardware-level queues that map to different IRQs/cores?  How does the T=
+X side work (that's usually a lot harder to maintain than RX)?
 
+Thanks.
 
-> Marcus D. Leech wrote:
->
->     On 11/11/2024 10:10, Marcus M=C3=BCller wrote:
->
->         Hello!
->
->         Regarding what you see in trailing, my guess is that this is
->         the step response of the built-in DC offset cancellation
->         filter; "DC offset cancellation" is high-pass filter
->         behaviour. This affects only frequencies in your signal that
->         are very low. It is meant to remove imperfections that happen
->         on every quadrature mixer&ADC device. So, unless you really
->         see a problem with the signal itself, this is probably fine!
->         You say you have an issue with this, but don't explain the
->         actual issue.
->
->         The phase in that trailing part can remain constant, that's
->         OK. The step response of a real-valued filter is real, and you
->         should simply see the phase of the last output sample at the
->         moment of "input switchoff".
->
->         Regarding "Amplitude and Signal length": I can't really tell
->         what you're showing us here. What kind of signal did you feed
->         into the USRP? Where does it come from? At which frequency?
->         What is the USRP tuned to? What's its sample rate? Most
->         importantly: What is it that worries you about this? As far as
->         I can tell, this might seem normal, and not an issue!
->
->         Best regards, Marcus
->
->     What type of signal?=C2=A0 Narrowband signals can be considerably m=
-ore
->     affected by DC-offset correction than wideband =C2=A0 signals.=C2=A0=
- One can
->     use offset-tuning to move the signal outside the "view" of the
->     DC-offset correction.=C2=A0 The second =C2=A0 argument to "tune_req=
-uest"
->     allows you to specify an offset.
->
->     Also, how are these devices connected?=C2=A0 "Over the air" or with=
- a
->     cable. If with a cable, please ensure that there's =C2=A0 adequate
->     attenuation in the cable to prevent overload or even damage to the
->     B210 front-end.
->
->         On 11.11.24 14:18, yibindeng66@outlook.com wrote:
->
->             Hi everyone,
->
->             I'm working on a project where I generate a signal and
->             simultaneously receive it using both the Pluto SDR and the
->             USRP B210. However, I=E2=80=99m running into some unexpecte=
-d
->             issues with the B210's reception, and I=E2=80=99m hoping fo=
-r some
->             guidance.
->
->             Here are the main problems I=E2=80=99m encountering:
->
->             /Signal Trailing/: As shown in the figures, The signal
->             received by the Pluto has clear boundaries, while the
->             signal received by the B210 has noticeable trailing
->             compared to the Pluto.
->
->             /Strange Phase Characteristics/: The phase behavior of the
->             B210-received signal is unusual. Specifically=EF=BC=8Cdurin=
-g the
->             trailing phase of the signal, the phase remains constant,
->             which is unexpected. When there is no signal, the phase
->             appears to be chaotic.
->
->             /Amplitude and Signal Length/: As shown in the figure,
->             when the signal length is relatively short, both the
->             maximum and the average amplitude increase as the signal
->             length grows.
->
->             I suspect that each sample might be significantly
->             broadened in the time domain, but since I am not entirely
->             familiar with the USRP B210's hardware processing, I am
->             unsure if this is the root cause. I am wondering if these
->             issues could potentially be improved by modifying the
->             hardware configuration, such as adjusting the filter
->             settings or other parameters. The code I=E2=80=99m using fo=
-r the
->             B210 receiver is attached.
->
->             Has anyone experienced similar issues or have suggestions
->             on adjusting the B210's configuration or setup to address
->             these distortions? Any insights would be greatly appreciate=
-d.
->
->             Thanks in advance for your help!
->
->             -----------------------------------------------------------=
--------------
->
->             USRP-users mailing list --usrp-users@lists.ettus.com To
->             unsubscribe send an email tousrp-users-leave@lists.ettus.co=
-m
->
->         ---------------------------------------------------------------=
----------
->
->         USRP-users mailing list --usrp-users@lists.ettus.com To
->         unsubscribe send an email tousrp-users-leave@lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-
---------------40sOocrorCU49bB1Ql4ucM0j
-Content-Type: text/html; charset=UTF-8
+--_000_SJ0PR09MB9126E90ADAB8AD69F37EC15BEC242SJ0PR09MB9126namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 15/11/2024 08:19,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yibindeng66@ou=
-tlook.com">yibindeng66@outlook.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:7yvZCxLlv3pM4c8LihtT3N8jgl1S69Mlv2M8UXNk@lists.ettus.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Hi M=C3=BCller and Leech,</p>
-      <p>Thanks for your help, and sorry for the ambiguity in my
-        description. The signal I used in my first figure was a
-        rectangular wave. In the other two figures, I used QAM-modulated
-        data packets filtered with a root-raised cosine filter. As you
-        mentioned, the tailing issue was indeed resolved after DSP
-        tuning.</p>
-      <p>However, I seem to have encountered a new problem. I tried to
-        send a QAM data packet filtered with a root-raised cosine
-        filter. According to theoretical analysis, it should be a
-        band-limited signal. However, even after DSP tuning, the
-        received signal at the receiving end has its energy distributed
-        across the entire operating band, and it is difficult to
-        demodulate correctly. Interestingly, this issue does not occur
-        when I use Pluto to send the same signal. I have attached the
-        code I used for sending.</p>
-      <p>Additionally, I have a curiosity-driven question: do I need to
-        constrain the input within the 0-1 range or any specific range?</=
-p>
-    </blockquote>
-    Baseband signals using the default floating-point host-side
-    representation must be constrained to {-1.0,+1.0}, and<br>
-    =C2=A0 generally smaller than that to prevent saturation -- {-0.85,+0=
-.85}
-    is often what I've used in the past.<br>
-    <br>
-    You could also try backing your TX gain off by about 10dB -- you may
-    be getting a bit of clipping on the receive<br>
-    =C2=A0 side -- I think you'd mentioned a direct connection through a =
-30dB
-    attenuator.<br>
-    <br>
-    Check that your signal in your .mat file doesn't exceed the required
-    baseband magnitude, as described above.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:7yvZCxLlv3pM4c8LihtT3N8jgl1S69Mlv2M8UXNk@lists.ettus.com">
-      <p>Marcus D. Leech wrote:</p>
-      <blockquote>
-        <p>On 11/11/2024 10:10, Marcus M=C3=BCller wrote:</p>
-        <blockquote>
-          <p>Hello!</p>
-          <p>Regarding what you see in trailing, my guess is that this
-            is the step
-            response of the built-in DC offset cancellation filter; "DC
-            offset
-            cancellation" is high-pass filter behaviour. This affects
-            only
-            frequencies in your signal that are very low. It is meant to
-            remove
-            imperfections that happen on every quadrature mixer&amp;ADC
-            device. So,
-            unless you really see a problem with the signal itself, this
-            is
-            probably fine! You say you have an issue with this, but
-            don't explain
-            the actual issue.</p>
-          <p>The phase in that trailing part can remain constant, that's
-            OK. The
-            step response of a real-valued filter is real, and you
-            should simply
-            see the phase of the last output sample at the moment of
-            "input
-            switchoff".</p>
-          <p>Regarding "Amplitude and Signal length": I can't really
-            tell what
-            you're showing us here. What kind of signal did you feed
-            into the
-            USRP? Where does it come from? At which frequency? What is
-            the USRP
-            tuned to? What's its sample rate? Most importantly: What is
-            it that
-            worries you about this? As far as I can tell, this might
-            seem normal,
-            and not an issue!</p>
-          <p>Best regards,
-            Marcus</p>
-        </blockquote>
-        <p>What type of signal?=C2=A0 Narrowband signals can be considera=
-bly
-          more
-          affected by DC-offset correction than wideband
-          =C2=A0 signals.=C2=A0 One can use offset-tuning to move the sig=
-nal
-          outside the
-          "view" of the DC-offset correction.=C2=A0 The second
-          =C2=A0 argument to "tune_request" allows you to specify an offs=
-et.</p>
-        <p>Also, how are these devices connected?=C2=A0 "Over the air" or
-          with a cable.=C2=A0
-          If with a cable, please ensure that there's
-          =C2=A0 adequate attenuation in the cable to prevent overload or
-          even damage
-          to the B210 front-end.</p>
-        <blockquote>
-          <p>On 11.11.24 14:18, <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:yibindeng66@outlook.com">yibindeng66@outlook.com</a> wrote:</=
-p>
-          <blockquote>
-            <p>Hi everyone,</p>
-            <p>I'm working on a project where I generate a signal and
-              simultaneously
-              receive it using both the Pluto SDR and the USRP B210.
-              However, I=E2=80=99m
-              running into some unexpected issues with the B210's
-              reception, and
-              I=E2=80=99m hoping for some guidance.</p>
-            <p>Here are the main problems I=E2=80=99m encountering:</p>
-            <p><em>Signal Trailing</em>: As shown in the figures, The
-              signal received by
-              the Pluto has clear boundaries, while the signal received
-              by the B210
-              has noticeable trailing compared to the Pluto.</p>
-            <p><em>Strange Phase Characteristics</em>: The phase
-              behavior of the
-              B210-received signal is unusual. Specifically=EF=BC=8Cdurin=
-g the
-              trailing
-              phase of the signal, the phase remains constant, which is
-              unexpected.
-              When there is no signal, the phase appears to be chaotic.</=
-p>
-            <p><em>Amplitude and Signal Length</em>: As shown in the
-              figure, when the
-              signal length is relatively short, both the maximum and
-              the average
-              amplitude increase as the signal length grows.</p>
-            <p>I suspect that each sample might be significantly
-              broadened in the
-              time domain, but since I am not entirely familiar with the
-              USRP
-              B210's hardware processing, I am unsure if this is the
-              root cause. I
-              am wondering if these issues could potentially be improved
-              by
-              modifying the hardware configuration, such as adjusting
-              the filter
-              settings or other parameters. The code I=E2=80=99m using fo=
-r the
-              B210
-              receiver is attached.</p>
-            <p>Has anyone experienced similar issues or have suggestions
-              on
-              adjusting the B210's configuration or setup to address
-              these
-              distortions? Any insights would be greatly appreciated.</p>
-            <p>Thanks in advance for your help!</p>
-            <div contenteditable=3D"false">
-              <hr></div>
-            <p>USRP-users mailing list --usrp-users@lists.ettus.com
-              To unsubscribe send an email
-              <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:tousrp=
--users-leave@lists.ettus.com">tousrp-users-leave@lists.ettus.com</a></p>
-          </blockquote>
-          <div contenteditable=3D"false">
-            <hr></div>
-          <p>USRP-users mailing list --usrp-users@lists.ettus.com
-            To unsubscribe send an email
-            <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:tousrp-u=
-sers-leave@lists.ettus.com">tousrp-users-leave@lists.ettus.com</a></p>
-        </blockquote>
-      </blockquote>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Hi,</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+I am considering the X440 for a wideband record/playback system.&nbsp; What=
+ benchmarks has Ettus done?&nbsp;&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Is there any hardware out there that can continuously stream (one way, TX o=
+r RX) the full 8 Gsps (i.e. 2x 4 Gsps) for the combined bandwidth of 2x 1.6=
+ GHz?&nbsp; Assuming DPDK is used, there is still an issue with getting pac=
+kets to/from different cores/threads.&nbsp;
+ Are the packet streams configurable to allow hardware-level queues that ma=
+p to different IRQs/cores?&nbsp; How does the TX side work (that's usually =
+a lot harder to maintain than RX)?</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Thanks.</div>
+</body>
 </html>
 
---------------40sOocrorCU49bB1Ql4ucM0j--
+--_000_SJ0PR09MB9126E90ADAB8AD69F37EC15BEC242SJ0PR09MB9126namp_--
 
---===============7212685986384732416==
+--===============7840735434726187648==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -455,4 +295,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7212685986384732416==--
+--===============7840735434726187648==--
