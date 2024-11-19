@@ -2,237 +2,315 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD009D14C1
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Nov 2024 16:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C9A9D2A64
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Nov 2024 17:02:50 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1A0D3386131
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Nov 2024 10:52:51 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8477F38613D
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Nov 2024 11:02:49 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1731945171; bh=UPhBPD8EN8etSYNEUuE3qXk4HAHuo61835a7MfoGDrM=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=eEjVuA4Rf3vyWM4+h7fiIOjv9OzjLyo4Nz5Kb6Nj3WxGYHstsp7kSOFUQRnayww9U
-	 244DzfMg1rXAIUlA74ajOhLewhnn2JWDeWxA4yKcMSk374/cPN7smhFCM9B5rbDmBG
-	 xXX+H0INfbgWuhZ3fBVHKvFw9f2Zzw1qXl9NuuLbv2Eag/3t2ac3Eekn8tVMlAxyY8
-	 +YMvTy4iSllKnUQT+j8pmXyDZjVbdUSBQlfFCC/8wI2WySqT6XaC6KsNEvbSaK/2CA
-	 S67QoTvPyIwOo/SSRPaBw1w7D2lWf+SyGb/ZLdWxAVMFdikBT92Hmq9F0G4BXPk1/x
-	 NRRPq7WPcZNuA==
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2A90E385FE2
-	for <usrp-users@lists.ettus.com>; Mon, 18 Nov 2024 10:52:30 -0500 (EST)
+	t=1732032169; bh=F5y6IE7dPoOrtyaLQCZyIA6tDEBEiltAfSS1Ugec7e8=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=oYWm1AIYQ7uecu2nuQ6mWPDA1iJTEPjvl3JvKulkBgwUdHNC5Yj30ZsFmFHBXsflF
+	 qKDrTwDDHL/3+tRPTaxqU0rUzNw+nbgEMDO7f8SDXk//c2C03bg4uRnPhgY2SfL7G4
+	 Ob1EijatrakTl32NOgIuh/3xdiT1CDBaBXA1pGN8aeujkAOWUkxZ0L1gYaqOvbyp+G
+	 FzSN9fP5cqVXuURpTy8ko1Q0LO+OkxMxp+EsEQp/mYX4Yl3Ef9xJ2ut3An7gPBHefm
+	 KblvG/NONF2jh/3mDcUJrPsLwRCb1ob6gn1LsWznm2yCXp2yquxtoVF+KJW2K0YkCL
+	 mj4v/pTjbAvQg==
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8DED2385B33
+	for <usrp-users@lists.ettus.com>; Tue, 19 Nov 2024 11:02:32 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F3MdwOjr";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jFOUDNOy";
 	dkim-atps=neutral
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6d413def36cso21438446d6.3
-        for <usrp-users@lists.ettus.com>; Mon, 18 Nov 2024 07:52:30 -0800 (PST)
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6d419832bf5so26516206d6.1
+        for <usrp-users@lists.ettus.com>; Tue, 19 Nov 2024 08:02:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731945150; x=1732549950; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N3ra+KYS5jhNZESw/Ip1lXHIMuhN1LKN57n+o1LVIQ0=;
-        b=F3MdwOjrKNYgqj2ZzCfXgaw884sEKQQQjeLgMmXSuZsVnAZia4b2Nw/C2w6GuXLNCH
-         3XoHGaCw+b/Q25+L1fOp4gaQWKXkEENsLV4mlWJl8zrmGzHNkrS/KEJh4viBT9Mvqe/M
-         0ErGfama6HkC3Bupce7VWXH3jcuj4x5ikYbi8ofHWXCt0goZvCPK/wTsDbqvInsHBoK3
-         WZCiqVZ+hcBmdr9U4Ah3IyZPL8ziAZ3EK/KAn/7Z1gin3B+BUdIzYdXqCmAHwE0n2uA5
-         go3aLmJ0fAHWFW+2ks+n7lUQ108hZdtaRRbFFMmdfArrK6O49FDWyC5BhNMgKfdfA3tY
-         RSKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731945150; x=1732549950;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+        d=gmail.com; s=20230601; t=1732032152; x=1732636952; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=N3ra+KYS5jhNZESw/Ip1lXHIMuhN1LKN57n+o1LVIQ0=;
-        b=DH31VMy3Qzye92hwb6tFmNedyDKgq0mMAMulYud63TJkY9HSJR3fDBeAXTtUwqoX8v
-         +cISzWSM7RhTry0wrAaQD+ucH1u7PmvOliVI5f1bFCqpAN8Lf3EfWtU7fBElVbpBgWDr
-         /nreYl1IECuDMLeJzMTuQ0WMCiU6Y4oxOvozPOsENJ3GpPt0Zjgf1nX0mG1kBfgFUZae
-         l0/O0+OxXASJJQ1ePo6LhDL8W2Xf/ImzvPiRR6/Q4gth0z4HCT+R0qliVlCSTBmbnJhP
-         Xqi8WQXd+U2oWnzY7Jk54eHiTAgLya5zsmkiLKcuLXikKkpEl+6063F8HUYbhhM4Y1Cf
-         +4qw==
-X-Gm-Message-State: AOJu0Yw5XCGB7CvExUsqk5r47q9j4MHrO8qfx5RcbLHCqNB0LCWU3dDn
-	/krkhnVxrD7BsukOCOkmJGQ7WVJlXKcwUOBDAzPDnp6qAG5yIcDezF7SVA==
-X-Google-Smtp-Source: AGHT+IGczJg9k4UhrL6Vca52QFZsJ4KVWNL4xzIJt6sPwwtonLZpSnYGk4w9PHY7Jk/no9vCx/Mgpg==
-X-Received: by 2002:ad4:5ca3:0:b0:6d4:20cb:daad with SMTP id 6a1803df08f44-6d420cbdd24mr74662156d6.13.1731945149994;
-        Mon, 18 Nov 2024 07:52:29 -0800 (PST)
-Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7b35c9abb66sm491705785a.52.2024.11.18.07.52.29
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Nov 2024 07:52:29 -0800 (PST)
-Message-ID: <d0cf194f-3577-4d53-964c-efdf7c73a677@gmail.com>
-Date: Mon, 18 Nov 2024 10:52:18 -0500
+        bh=fz7+97wD01XY36QkHu61G44yX/MD20RlOuOfLDpSbmM=;
+        b=jFOUDNOyQKOzVtuT6Q9GjFUisu7I5gFHHxQEwPL/o3p8aPJ20p0vqMXZ67/6L2ugAV
+         Lpm6nsa3Z56D5kGeOycvZuAtZ61+4geYRpzsSKbEc1/fx6XqFIAZHeXj6BzsDfEtKTlz
+         z8hj5h2+0xMLv50R+icHoQRbtWNs6GbkCLV9dRdJTNb5e9PoOFklrgMQeYW/DJwHDhvV
+         S2VJvpOBUmtwG32W9gj65+aBqUwzCP+Y0XZBhT5bJBPXKCuhvjTJQi3dpHQoRRIaodRO
+         /gVA41DwvOZIWsZSV9B60NXA30MeZacQJAsqPc+KX/2XHzevqKfELrmfG06S7muK50DU
+         4uCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732032152; x=1732636952;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fz7+97wD01XY36QkHu61G44yX/MD20RlOuOfLDpSbmM=;
+        b=ROssyj/Yw9lMrdvIZ0fEqv783DYYa0d/U0dTkGHbiSB37+aHseBcqygRNdUPEcJvwn
+         C5PpPe/++ZI803WZgdIKZJ1QXfLvoW/dOoTKcZG7qT71ktjFbS67AFF5U9FILdREKRH1
+         DGoiJPE+6eKPhwu6hqY1T59OYK4Bx9vL4dCfJF/gZg8EvXkwWykJyXT6m7ybMuJHj9dV
+         7YkG6HOFtXlyr1MCnoq28lZqYOtdcAEfX6H2p/hCBB0hzyBKIoIAm0cvOhvaJyTZ3OjA
+         rlNdzq+07AavTK7zXilzJwSpbH5A77y59eoYfxyKOoRjT3QK8ELo9C3XbIUki4ay2xhB
+         6s4g==
+X-Gm-Message-State: AOJu0Yy+XjhXJwBMOafFikZsou+pAX9nWKl5yG6iyhIdx3jX1e2LvbGg
+	taeeVo6MAAvYcKOYkHt+UlSrgI+1IqUfFBTokcbH64uBipskeMSZwk45rhNmSMRJrLcqezOzjDI
+	qj0L6Aeww5Mmxnw2bAMq7NZhILfjbKZsgSnk=
+X-Google-Smtp-Source: AGHT+IGouqffFTgJokMJR4KUXEvZYT4OcO/Zhcf4r8wc93Of05sWXaPOzn+yD851HaFkYKV6Fm5I7+QgxdRqIaMT3vI=
+X-Received: by 2002:a05:6214:2d47:b0:6ce:2357:8a2e with SMTP id
+ 6a1803df08f44-6d3fb8a1621mr219668406d6.37.1732032151681; Tue, 19 Nov 2024
+ 08:02:31 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+From: Tim Vancauwenbergh <tim.vancauwenbergh13@gmail.com>
+Date: Tue, 19 Nov 2024 17:02:20 +0100
+Message-ID: <CAAc7u9oPjRQ9oZXo=rxpfPKvLLDdRQPMJBboYnjAHws=Z+y0cw@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <SJ0PR09MB9126E90ADAB8AD69F37EC15BEC242@SJ0PR09MB9126.namprd09.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <SJ0PR09MB9126E90ADAB8AD69F37EC15BEC242@SJ0PR09MB9126.namprd09.prod.outlook.com>
-Message-ID-Hash: ZU7LO3RJYDH2JB3BLGS6Z5FJJOC7UXFZ
-X-Message-ID-Hash: ZU7LO3RJYDH2JB3BLGS6Z5FJJOC7UXFZ
-X-MailFrom: patchvonbraun@gmail.com
+Content-Type: multipart/mixed; boundary="00000000000024973b06274629d2"
+Message-ID-Hash: 7Q2DXCXBZOIFQECVY7UCX3BZHR33VDNX
+X-Message-ID-Hash: 7Q2DXCXBZOIFQECVY7UCX3BZHR33VDNX
+X-MailFrom: tim.vancauwenbergh13@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Real-world experience with X440
+Subject: [USRP-users] USRP sink with GPIO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZU7LO3RJYDH2JB3BLGS6Z5FJJOC7UXFZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7Q2DXCXBZOIFQECVY7UCX3BZHR33VDNX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9199110328374859060=="
 
-This is a multi-part message in MIME format.
---===============9199110328374859060==
-Content-Type: multipart/alternative;
- boundary="------------7N7Nuf6NISs7I5vcGbV0pYPE"
-Content-Language: en-US
+--00000000000024973b06274629d2
+Content-Type: multipart/alternative; boundary="00000000000024973906274629d0"
 
-This is a multi-part message in MIME format.
---------------7N7Nuf6NISs7I5vcGbV0pYPE
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--00000000000024973906274629d0
+Content-Type: text/plain; charset="UTF-8"
+
+Dear,
+
+I am revisiting an issue I encountered earlier. I have a flow that
+generates pulses with spaces between them continuously. To switch between
+the RX and TX paths on a single antenna, I tried utilizing GPIO to control
+an RF switch.
+
+Tests were conducted on a B210 and X310. Initially, I used GPIO tags on a
+USRP sink, but this caused continuous underruns. A sample rate of 4 MHz was
+used. I then switched to using bursts in combination with ATR, but the
+issue persists. The USRP is unable to keep up, resulting in significant
+underruns.
+
+My goal is to send pulses at specific times and have the GPIO state follow
+accordingly. When sending 0s or no samples, the GPIO state should be low;
+otherwise, it should be high.
+
+Could you advise on how to achieve this? I have attached my embedded Python
+block code, which is positioned just before the USRP sink block. This block
+adds the tags for the start and end of bursts and handles the initial GPIO
+setup. For reference, I have also included the manual GPIO control block.
+
+Thank you for your assistance.
+
+Best regards,
+
+Tim Vancauwenbergh
+
+--00000000000024973906274629d0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 15/11/2024 16:52, Eugene Grayver wrote:
-> Hi,
->
-> I am considering the X440 for a wideband record/playback system.=C2=A0 =
-What=20
-> benchmarks has Ettus done?
->
-> Is there any hardware out there that can continuously stream (one way,=20
-> TX or RX) the full 8 Gsps (i.e. 2x 4 Gsps) for the combined bandwidth=20
-> of 2x 1.6 GHz?=C2=A0 Assuming DPDK is used, there is still an issue wit=
-h=20
-> getting packets to/from different cores/threads.=C2=A0 Are the packet=20
-> streams configurable to allow hardware-level queues that map to=20
-> different IRQs/cores?=C2=A0 How does the TX side work (that's usually a=
- lot=20
-> harder to maintain than RX)?
->
-> Thanks.
->
-I don't have any direct experience with X440.=C2=A0 But I know that newer=
-=20
-versions of "benchmark_rate" have an option for
- =C2=A0 handling different streams in different threads, so that might he=
-lp=20
-you with your own code.
+<div dir=3D"ltr">Dear,<br><div><br></div><div><p>I am revisiting an issue I=
+ encountered earlier. I have a flow that generates pulses with spaces betwe=
+en them continuously. To switch between the RX and TX paths on a single ant=
+enna, I tried utilizing GPIO to control an RF switch.</p><p>Tests were cond=
+ucted on a B210 and X310. Initially, I used GPIO tags on a USRP sink, but t=
+his caused continuous underruns. A sample rate of 4 MHz was used. I then sw=
+itched to using bursts in combination with ATR, but the issue persists. The=
+ USRP is unable to keep up, resulting in significant underruns.</p><p>My go=
+al is to send pulses at specific times and have the GPIO state follow accor=
+dingly. When sending 0s or no samples, the GPIO state should be low; otherw=
+ise, it should be high.</p><p>Could you advise on how to achieve this? I ha=
+ve attached my embedded Python block code, which is positioned just before =
+the USRP sink block. This block adds the tags for the start and end of burs=
+ts and handles the initial GPIO setup. For reference, I have also included =
+the manual GPIO control block.</p><p>Thank you for your assistance.</p></di=
+v><div></div><div><br></div><div>Best regards,</div><div><br></div><div>Tim=
+ Vancauwenbergh</div></div>
 
-Ingesting 3.2Gsps all by itself is a compu-difficult problem, let alone=20
-trying to actually *DO* anything with those samples.
- =C2=A0 It has frequently been the case with USRPs that at introduction,=20
-their ability to produce high-speed samples outstrips
- =C2=A0 the ability of extant computers to ingest those samples.
+--00000000000024973906274629d0--
 
-I know that a LONG time ago, UHD experimented with multi-threaded=20
-"gather" from the network interface for even
- =C2=A0 a single stream.=C2=A0 The problem that was immediately apparent =
-was that=20
-the MUTEX traffic that was required, along
- =C2=A0 with dealing with the potential re-ordering when multiple threads=
- are=20
-gathering buffers of samples, lead to much
- =C2=A0 poorer overall performance.
+--00000000000024973b06274629d2
+Content-Type: text/x-python; charset="US-ASCII"; name="epb_gpio_manual.py"
+Content-Disposition: attachment; filename="epb_gpio_manual.py"
+Content-Transfer-Encoding: base64
+Content-ID: <f_m3on5dtp1>
+X-Attachment-Id: f_m3on5dtp1
 
+aW1wb3J0IG51bXB5IGFzIG5wCmZyb20gZ251cmFkaW8gaW1wb3J0IGdyCmltcG9ydCBwbXQKCmNs
+YXNzIGdwaW9fdG9nZ2xlcihnci5zeW5jX2Jsb2NrKToKICAgIGRlZiBfX2luaXRfXyhzZWxmLCB0
+aHJlc2hvbGQ9MC41KToKICAgICAgICAjIEluaXRpYWxpemUgdGhlIGJsb2NrCiAgICAgICAgc3Vw
+ZXIoKS5fX2luaXRfXygKICAgICAgICAgICAgbmFtZT0nR1BJTyBUb2dnbGVyJywKICAgICAgICAg
+ICAgaW5fc2lnPVtucC5mbG9hdDMyXSwKICAgICAgICAgICAgb3V0X3NpZz1bbnAuZmxvYXQzMl0K
+ICAgICAgICApCgogICAgICAgIHNlbGYudGhyZXNob2xkID0gdGhyZXNob2xkCiAgICAgICAgc2Vs
+Zi5sYXN0X3N0YXRlX2Fib3ZlX3RocmVzaG9sZCA9IEZhbHNlICAjIFRyYWNrIHRoZSBwcmV2aW91
+cyBzdGF0ZQoKICAgICAgICAjIEdQSU8gY29uZmlndXJhdGlvbgogICAgICAgIHNlbGYuZ3Bpb19t
+YXNrID0gMHhGRkYgICMgTWFzayBmb3IgMTIgR1BJTyBwaW5zCiAgICAgICAgc2VsZi5ncGlvX2hp
+Z2ggPSAweEZGRiAgIyBTZXQgYWxsIEdQSU8gcGlucyB0byBISUdICiAgICAgICAgc2VsZi5ncGlv
+X2xvdyA9IDB4MDAwICAgICMgU2V0IGFsbCBHUElPIHBpbnMgdG8gTE9XCgogICAgICAgIHNlbGYu
+a2V5ID0gcG10LmludGVybigndHhfY29tbWFuZCcpICAjIEtleSBmb3IgdGhlIHR4X2NvbW1hbmQg
+dGFnCiAgICAgICAgc2VsZi5zcmNpZCA9IHBtdC5pbnRlcm4oJ2dwaW9fdG9nZ2xlcicpICAjIFNv
+dXJjZSBJRCBmb3IgdGFnZ2luZwoKICAgICAgICAjIEZsYWcgdG8gY2hlY2sgaWYgR1BJTyBoYXMg
+YmVlbiBpbml0aWFsaXplZAogICAgICAgIHNlbGYuZ3Bpb19pbml0aWFsaXplZCA9IEZhbHNlCgog
+ICAgICAgICMgQ3JlYXRlIGluaXRpYWwgY29tbWFuZHMgZm9yIHNldHRpbmcgdXAgR1BJTwogICAg
+ICAgIHNlbGYuZ3Bpb19kZHJfY29tbWFuZCA9IHNlbGYuY3JlYXRlX2dwaW9fY29tbWFuZCgiRlAw
+QSIsICJERFIiLCBzZWxmLmdwaW9fbWFzaykKICAgICAgICBzZWxmLmdwaW9fY3RybF9jb21tYW5k
+ID0gc2VsZi5jcmVhdGVfZ3Bpb19jb21tYW5kKCJGUDBBIiwgIkNUUkwiLCBzZWxmLmdwaW9fbG93
+KQoKICAgIGRlZiBjcmVhdGVfZ3Bpb19jb21tYW5kKHNlbGYsIGJhbmssIGF0dHIsIHZhbHVlKToK
+ICAgICAgICAiIiJDcmVhdGUgYSBQTVQgZGljdGlvbmFyeSBmb3IgdGhlIEdQSU8gY29tbWFuZC4i
+IiIKICAgICAgICBncGlvX2NvbW1hbmQgPSBwbXQubWFrZV9kaWN0KCkKICAgICAgICBncGlvX2Nv
+bW1hbmQgPSBwbXQuZGljdF9hZGQoZ3Bpb19jb21tYW5kLCBwbXQuaW50ZXJuKCJiYW5rIiksIHBt
+dC5pbnRlcm4oYmFuaykpCiAgICAgICAgZ3Bpb19jb21tYW5kID0gcG10LmRpY3RfYWRkKGdwaW9f
+Y29tbWFuZCwgcG10LmludGVybigiYXR0ciIpLCBwbXQuaW50ZXJuKGF0dHIpKQogICAgICAgIGdw
+aW9fY29tbWFuZCA9IHBtdC5kaWN0X2FkZChncGlvX2NvbW1hbmQsIHBtdC5pbnRlcm4oInZhbHVl
+IiksIHBtdC5mcm9tX2RvdWJsZSh2YWx1ZSkpCiAgICAgICAgZ3Bpb19jb21tYW5kID0gcG10LmRp
+Y3RfYWRkKGdwaW9fY29tbWFuZCwgcG10LmludGVybigibWFzayIpLCBwbXQuZnJvbV9kb3VibGUo
+c2VsZi5ncGlvX21hc2spKQogICAgICAgIHJldHVybiBncGlvX2NvbW1hbmQKCiAgICBkZWYgd29y
+ayhzZWxmLCBpbnB1dF9pdGVtcywgb3V0cHV0X2l0ZW1zKToKICAgICAgICBpbjAgPSBpbnB1dF9p
+dGVtc1swXQogICAgICAgIG91dDAgPSBvdXRwdXRfaXRlbXNbMF0KCiAgICAgICAgIyBQYXNzLXRo
+cm91Z2ggYmxvY2sKICAgICAgICBvdXQwWzpdID0gaW4wCgogICAgICAgIGZvciBpIGluIHJhbmdl
+KGxlbihpbjApKToKICAgICAgICAgICAgc2FtcGxlID0gaW4wW2ldCiAgICAgICAgICAgIGN1cnJl
+bnRfc3RhdGVfYWJvdmVfdGhyZXNob2xkID0gc2FtcGxlID4gc2VsZi50aHJlc2hvbGQKCiAgICAg
+ICAgICAgICMgU2VuZCBHUElPIHNldHVwIGNvbW1hbmRzIG9uIHRoZSBmaXJzdCBpdGVyYXRpb24K
+ICAgICAgICAgICAgaWYgbm90IHNlbGYuZ3Bpb19pbml0aWFsaXplZDoKICAgICAgICAgICAgICAg
+ICMgVGFnIEdQSU8gc2V0dXAgY29tbWFuZCBmb3IgRERSCiAgICAgICAgICAgICAgICB0eF9jb21t
+YW5kX2RkciA9IHBtdC5tYWtlX2RpY3QoKQogICAgICAgICAgICAgICAgdHhfY29tbWFuZF9kZHIg
+PSBwbXQuZGljdF9hZGQodHhfY29tbWFuZF9kZHIsIHBtdC5pbnRlcm4oImdwaW8iKSwgc2VsZi5n
+cGlvX2Rkcl9jb21tYW5kKQoKICAgICAgICAgICAgICAgIGFic19vZmZzZXRfZGRyID0gbWF4KHNl
+bGYubml0ZW1zX3dyaXR0ZW4oMCkgKyBpIC0gMSwgMCkKICAgICAgICAgICAgICAgIHNlbGYuYWRk
+X2l0ZW1fdGFnKDAsIGFic19vZmZzZXRfZGRyLCBzZWxmLmtleSwgdHhfY29tbWFuZF9kZHIsIHNl
+bGYuc3JjaWQpCgogICAgICAgICAgICAgICAgIyBUYWcgR1BJTyBzZXR1cCBjb21tYW5kIGZvciBD
+VFJMCiAgICAgICAgICAgICAgICB0eF9jb21tYW5kX2N0cmwgPSBwbXQubWFrZV9kaWN0KCkKICAg
+ICAgICAgICAgICAgIHR4X2NvbW1hbmRfY3RybCA9IHBtdC5kaWN0X2FkZCh0eF9jb21tYW5kX2N0
+cmwsIHBtdC5pbnRlcm4oImdwaW8iKSwgc2VsZi5ncGlvX2N0cmxfY29tbWFuZCkKCiAgICAgICAg
+ICAgICAgICBhYnNfb2Zmc2V0X2N0cmwgPSBtYXgoc2VsZi5uaXRlbXNfd3JpdHRlbigwKSArIGks
+IDApCiAgICAgICAgICAgICAgICBzZWxmLmFkZF9pdGVtX3RhZygwLCBhYnNfb2Zmc2V0X2N0cmws
+IHNlbGYua2V5LCB0eF9jb21tYW5kX2N0cmwsIHNlbGYuc3JjaWQpCgogICAgICAgICAgICAgICAg
+IyBTZXQgR1BJTyBpbml0aWFsaXplZCBmbGFnIHRvIFRydWUgdG8gcHJldmVudCByZS1zZW5kaW5n
+CiAgICAgICAgICAgICAgICBzZWxmLmdwaW9faW5pdGlhbGl6ZWQgPSBUcnVlCgogICAgICAgICAg
+ICAjIENoZWNrIGZvciB0aHJlc2hvbGQgY3Jvc3NpbmcgZnJvbSBsb3cgdG8gaGlnaCAoT04gY29t
+bWFuZCkKICAgICAgICAgICAgaWYgY3VycmVudF9zdGF0ZV9hYm92ZV90aHJlc2hvbGQgYW5kIG5v
+dCBzZWxmLmxhc3Rfc3RhdGVfYWJvdmVfdGhyZXNob2xkOgogICAgICAgICAgICAgICAgIyBDcmVh
+dGUgR1BJTyBPTiBjb21tYW5kCiAgICAgICAgICAgICAgICBncGlvX29uX2NvbW1hbmQgPSBzZWxm
+LmNyZWF0ZV9ncGlvX2NvbW1hbmQoIkZQMEEiLCAiT1VUIiwgc2VsZi5ncGlvX2hpZ2gpCgogICAg
+ICAgICAgICAgICAgIyBDcmVhdGUgdHhfY29tbWFuZCBkaWN0aW9uYXJ5IHdpdGggZ3BpbyBhcyBp
+dHMgdmFsdWUKICAgICAgICAgICAgICAgIHR4X2NvbW1hbmQgPSBwbXQubWFrZV9kaWN0KCkKICAg
+ICAgICAgICAgICAgIHR4X2NvbW1hbmQgPSBwbXQuZGljdF9hZGQodHhfY29tbWFuZCwgcG10Lmlu
+dGVybigiZ3BpbyIpLCBncGlvX29uX2NvbW1hbmQpCgogICAgICAgICAgICAgICAgIyBUYWcgdGhl
+IE9OIGNvbW1hbmQgb25lIHNhbXBsZSBiZWZvcmUgdGhlIGN1cnJlbnQgaW5kZXgKICAgICAgICAg
+ICAgICAgIGFic19vZmZzZXQgPSBtYXgoc2VsZi5uaXRlbXNfd3JpdHRlbigwKSArIGkgLSAxLCAw
+KQogICAgICAgICAgICAgICAgc2VsZi5hZGRfaXRlbV90YWcoMCwgYWJzX29mZnNldCwgc2VsZi5r
+ZXksIHR4X2NvbW1hbmQsIHNlbGYuc3JjaWQpCgogICAgICAgICAgICAjIENoZWNrIGZvciB0aHJl
+c2hvbGQgY3Jvc3NpbmcgZnJvbSBoaWdoIHRvIGxvdyAoT0ZGIGNvbW1hbmQpCiAgICAgICAgICAg
+IGVsaWYgbm90IGN1cnJlbnRfc3RhdGVfYWJvdmVfdGhyZXNob2xkIGFuZCBzZWxmLmxhc3Rfc3Rh
+dGVfYWJvdmVfdGhyZXNob2xkOgogICAgICAgICAgICAgICAgIyBDcmVhdGUgR1BJTyBPRkYgY29t
+bWFuZAogICAgICAgICAgICAgICAgZ3Bpb19vZmZfY29tbWFuZCA9IHNlbGYuY3JlYXRlX2dwaW9f
+Y29tbWFuZCgiRlAwQSIsICJPVVQiLCBzZWxmLmdwaW9fbG93KQoKICAgICAgICAgICAgICAgICMg
+Q3JlYXRlIHR4X2NvbW1hbmQgZGljdGlvbmFyeSB3aXRoIGdwaW8gYXMgaXRzIHZhbHVlCiAgICAg
+ICAgICAgICAgICB0eF9jb21tYW5kID0gcG10Lm1ha2VfZGljdCgpCiAgICAgICAgICAgICAgICB0
+eF9jb21tYW5kID0gcG10LmRpY3RfYWRkKHR4X2NvbW1hbmQsIHBtdC5pbnRlcm4oImdwaW8iKSwg
+Z3Bpb19vZmZfY29tbWFuZCkKCiAgICAgICAgICAgICAgICAjIFRhZyB0aGUgT0ZGIGNvbW1hbmQg
+YXQgdGhlIGN1cnJlbnQgaW5kZXgKICAgICAgICAgICAgICAgIGFic19vZmZzZXQgPSBzZWxmLm5p
+dGVtc193cml0dGVuKDApICsgaQogICAgICAgICAgICAgICAgc2VsZi5hZGRfaXRlbV90YWcoMCwg
+YWJzX29mZnNldCwgc2VsZi5rZXksIHR4X2NvbW1hbmQsIHNlbGYuc3JjaWQpCgogICAgICAgICAg
+ICAjIFVwZGF0ZSBsYXN0IHN0YXRlIGZvciBuZXh0IGl0ZXJhdGlvbgogICAgICAgICAgICBzZWxm
+Lmxhc3Rfc3RhdGVfYWJvdmVfdGhyZXNob2xkID0gY3VycmVudF9zdGF0ZV9hYm92ZV90aHJlc2hv
+bGQKCiAgICAgICAgcmV0dXJuIGxlbihvdXRwdXRfaXRlbXNbMF0pCg==
+--00000000000024973b06274629d2
+Content-Type: text/x-python; charset="US-ASCII"; name="epb_gpio_atr.py"
+Content-Disposition: attachment; filename="epb_gpio_atr.py"
+Content-Transfer-Encoding: base64
+Content-ID: <f_m3on5dth0>
+X-Attachment-Id: f_m3on5dth0
 
---------------7N7Nuf6NISs7I5vcGbV0pYPE
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 15/11/2024 16:52, Eugene Grayver
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:SJ0PR09MB9126E90ADAB8AD69F37EC15BEC242@SJ0PR09MB9126.namprd09=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        Hi,</div>
-      <div
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        I am considering the X440 for a wideband record/playback
-        system.=C2=A0 What benchmarks has Ettus done?=C2=A0=C2=A0</div>
-      <div
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        Is there any hardware out there that can continuously stream
-        (one way, TX or RX) the full 8 Gsps (i.e. 2x 4 Gsps) for the
-        combined bandwidth of 2x 1.6 GHz?=C2=A0 Assuming DPDK is used, th=
-ere
-        is still an issue with getting packets to/from different
-        cores/threads.=C2=A0 Are the packet streams configurable to allow
-        hardware-level queues that map to different IRQs/cores?=C2=A0 How
-        does the TX side work (that's usually a lot harder to maintain
-        than RX)?</div>
-      <div
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        Thanks.</div>
-      <br>
-    </blockquote>
-    I don't have any direct experience with X440.=C2=A0 But I know that n=
-ewer
-    versions of "benchmark_rate" have an option for<br>
-    =C2=A0 handling different streams in different threads, so that might
-    help you with your own code.<br>
-    <br>
-    Ingesting 3.2Gsps all by itself is a compu-difficult problem, let
-    alone trying to actually *DO* anything with those samples.<br>
-    =C2=A0 It has frequently been the case with USRPs that at introductio=
-n,
-    their ability to produce high-speed samples outstrips<br>
-    =C2=A0 the ability of extant computers to ingest those samples.<br>
-    <br>
-    I know that a LONG time ago, UHD experimented with multi-threaded
-    "gather" from the network interface for even<br>
-    =C2=A0 a single stream.=C2=A0 The problem that was immediately appare=
-nt was
-    that the MUTEX traffic that was required, along<br>
-    =C2=A0 with dealing with the potential re-ordering when multiple thre=
-ads
-    are gathering buffers of samples, lead to much<br>
-    =C2=A0 poorer overall performance.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------7N7Nuf6NISs7I5vcGbV0pYPE--
-
---===============9199110328374859060==
+aW1wb3J0IG51bXB5IGFzIG5wCmZyb20gZ251cmFkaW8gaW1wb3J0IGdyCmltcG9ydCBwbXQKaW1w
+b3J0IHRpbWUKCmNsYXNzIGdwaW9fdG9nZ2xlcihnci5zeW5jX2Jsb2NrKToKICAgIGRlZiBfX2lu
+aXRfXyhzZWxmLCB0aHJlc2hvbGQ9MC41LCBjaGFubmVsX3R5cGU9MCwgc2FtcGxlX3JhdGU9NGU2
+KToKICAgICAgICBzdXBlcigpLl9faW5pdF9fKAogICAgICAgICAgICBuYW1lPSdHUElPIFRhZ2dl
+cicsCiAgICAgICAgICAgIGluX3NpZz1bbnAuZmxvYXQzMl0sCiAgICAgICAgICAgIG91dF9zaWc9
+W25wLmZsb2F0MzJdCiAgICAgICAgKQoKICAgICAgICBzZWxmLnRocmVzaG9sZCA9IHRocmVzaG9s
+ZAogICAgICAgIHNlbGYubGFzdF9zdGF0ZV9hYm92ZV90aHJlc2hvbGQgPSBGYWxzZQogICAgICAg
+IGlmIGNoYW5uZWxfdHlwZSA9PSAwOgogICAgICAgICAgICBzZWxmLmRlYWRfdGltZV91cyA9ICg4
+LzIpICsgMTIKICAgICAgICBlbHNlOgogICAgICAgICAgICBzZWxmLmRlYWRfdGltZV91cyA9ICg4
+LzIpICsgMzYKICAgICAgICAgICAgCiAgICAgICAgc2VsZi5kZWFkX3RpbWVfc2FtcGxlcyA9IGlu
+dCgoc2VsZi5kZWFkX3RpbWVfdXMgLyAxZTYpICogc2FtcGxlX3JhdGUpCiAgICAgICAgc2VsZi5z
+YW1wbGVzX3NpbmNlX2xhc3RfdGFnID0gc2VsZi5kZWFkX3RpbWVfc2FtcGxlcwoKICAgICAgICBz
+ZWxmLmdwaW9fa2V5ID0gcG10LmludGVybigndHhfY29tbWFuZCcpCiAgICAgICAgc2VsZi5zcmNp
+ZCA9IHBtdC5pbnRlcm4oJ2dwaW9fdG9nZ2xlcicpCgogICAgICAgICMgUHJlY29tcHV0ZSBHUElP
+IHNldHVwIGNvbW1hbmRzIHRvIGF2b2lkIHJlcGVhdGVkIFBNVCBkaWN0IGNyZWF0aW9uCiAgICAg
+ICAgc2VsZi5ncGlvX2luaXRpYWxpemVkID0gRmFsc2UKICAgICAgICBzZWxmLmdwaW9fZGRyX2Nv
+bW1hbmQgPSBzZWxmLmNyZWF0ZV9ncGlvX2NvbW1hbmQoIkZQMCIsICJERFIiLCAweDAwMSwgMHhG
+RkYpCiAgICAgICAgc2VsZi5ncGlvX2N0cmxfY29tbWFuZCA9IHNlbGYuY3JlYXRlX2dwaW9fY29t
+bWFuZCgiRlAwIiwgIkNUUkwiLCAweDAwMSwgMHhGRkYpCiAgICAgICAgc2VsZi5ncGlvX2F0cl9j
+b21tYW5kID0gc2VsZi5jcmVhdGVfZ3Bpb19jb21tYW5kKCJGUDAiLCAiQVRSXzBYIiwgMHgwMDAs
+IDB4RkZGKQoKICAgIGRlZiBjcmVhdGVfZ3Bpb19jb21tYW5kKHNlbGYsIGJhbmssIGF0dHIsIHZh
+bHVlLCBtYXNrKToKICAgICAgICBncGlvX2NvbW1hbmQgPSBwbXQubWFrZV9kaWN0KCkKICAgICAg
+ICBncGlvX2NvbW1hbmQgPSBwbXQuZGljdF9hZGQoZ3Bpb19jb21tYW5kLCBwbXQuaW50ZXJuKCJi
+YW5rIiksIHBtdC5pbnRlcm4oYmFuaykpCiAgICAgICAgZ3Bpb19jb21tYW5kID0gcG10LmRpY3Rf
+YWRkKGdwaW9fY29tbWFuZCwgcG10LmludGVybigiYXR0ciIpLCBwbXQuaW50ZXJuKGF0dHIpKQog
+ICAgICAgIGdwaW9fY29tbWFuZCA9IHBtdC5kaWN0X2FkZChncGlvX2NvbW1hbmQsIHBtdC5pbnRl
+cm4oInZhbHVlIiksIHBtdC5mcm9tX2RvdWJsZSh2YWx1ZSkpCiAgICAgICAgZ3Bpb19jb21tYW5k
+ID0gcG10LmRpY3RfYWRkKGdwaW9fY29tbWFuZCwgcG10LmludGVybigibWFzayIpLCBwbXQuZnJv
+bV9kb3VibGUobWFzaykpCiAgICAgICAgcmV0dXJuIGdwaW9fY29tbWFuZAoKICAgIGRlZiB3b3Jr
+KHNlbGYsIGlucHV0X2l0ZW1zLCBvdXRwdXRfaXRlbXMpOgogICAgICAgIGluMCA9IGlucHV0X2l0
+ZW1zWzBdCiAgICAgICAgb3V0MCA9IG91dHB1dF9pdGVtc1swXQogICAgICAgIG91dDBbOl0gPSBp
+bjAKCiAgICAgICAgIyBMb2NhbCBjb3BpZXMgdG8gcmVkdWNlIGF0dHJpYnV0ZSBhY2Nlc3MgaW4g
+bG9vcAogICAgICAgIHRocmVzaG9sZCA9IHNlbGYudGhyZXNob2xkCiAgICAgICAgc2FtcGxlc19z
+aW5jZV9sYXN0X3RhZyA9IHNlbGYuc2FtcGxlc19zaW5jZV9sYXN0X3RhZwogICAgICAgIGxhc3Rf
+c3RhdGVfYWJvdmVfdGhyZXNob2xkID0gc2VsZi5sYXN0X3N0YXRlX2Fib3ZlX3RocmVzaG9sZAog
+ICAgICAgIG5pdGVtc193cml0dGVuXzAgPSBzZWxmLm5pdGVtc193cml0dGVuKDApCgogICAgICAg
+IGlmIG5vdCBzZWxmLmdwaW9faW5pdGlhbGl6ZWQ6CiAgICAgICAgICAgICMgUHJlLWNyZWF0ZWQg
+R1BJTyBzZXR1cCBjb21tYW5kcyBhcmUgYWRkZWQgb25seSBvbmNlCiAgICAgICAgICAgIGFic19v
+ZmZzZXRfZGRyID0gbWF4KG5pdGVtc193cml0dGVuXzAgLSAxLCAwKQogICAgICAgICAgICBzZWxm
+LmFkZF9pdGVtX3RhZygwLCBhYnNfb2Zmc2V0X2Rkciwgc2VsZi5ncGlvX2tleSwgc2VsZi5ncGlv
+X2Rkcl9jb21tYW5kLCBzZWxmLnNyY2lkKQogICAgICAgICAgICAKICAgICAgICAgICAgYWJzX29m
+ZnNldF9jdHJsID0gbWF4KG5pdGVtc193cml0dGVuXzAsIDApCiAgICAgICAgICAgIHNlbGYuYWRk
+X2l0ZW1fdGFnKDAsIGFic19vZmZzZXRfY3RybCwgc2VsZi5ncGlvX2tleSwgc2VsZi5ncGlvX2N0
+cmxfY29tbWFuZCwgc2VsZi5zcmNpZCkKCiAgICAgICAgICAgIHNlbGYuZ3Bpb19pbml0aWFsaXpl
+ZCA9IFRydWUKCiAgICAgICAgIyBBdm9pZCByZXBlYXRlZCBjYWxscyB0byB0aW1lLnRpbWUoKSBi
+eSB1cGRhdGluZyBvbmx5IHdoZW4gbmVlZGVkCiAgICAgICAgY3VycmVudF90aW1lID0gTm9uZQoK
+ICAgICAgICBmb3IgaSwgc2FtcGxlIGluIGVudW1lcmF0ZShpbjApOgogICAgICAgICAgICBjdXJy
+ZW50X3N0YXRlX2Fib3ZlX3RocmVzaG9sZCA9IHNhbXBsZSA+IHRocmVzaG9sZAogICAgICAgICAg
+ICBzYW1wbGVzX3NpbmNlX2xhc3RfdGFnICs9IDEKCiAgICAgICAgICAgICMgT25seSBwcm9jZWVk
+IGlmIGRlYWQgdGltZSBoYXMgZWxhcHNlZAogICAgICAgICAgICBpZiBzYW1wbGVzX3NpbmNlX2xh
+c3RfdGFnID49IHNlbGYuZGVhZF90aW1lX3NhbXBsZXM6CiAgICAgICAgICAgICAgICAjIENoZWNr
+IGZvciB0aHJlc2hvbGQgY3Jvc3NpbmcgKGxvdy10by1oaWdoKQogICAgICAgICAgICAgICAgaWYg
+Y3VycmVudF9zdGF0ZV9hYm92ZV90aHJlc2hvbGQgYW5kIG5vdCBsYXN0X3N0YXRlX2Fib3ZlX3Ro
+cmVzaG9sZDoKICAgICAgICAgICAgICAgICAgICBhYnNfb2Zmc2V0ID0gbWF4KG5pdGVtc193cml0
+dGVuXzAgKyBpIC0gMSwgMCkKICAgICAgICAgICAgICAgICAgICBzZWxmLmFkZF9pdGVtX3RhZygw
+LCBhYnNfb2Zmc2V0LCBwbXQuaW50ZXJuKCd0eF9zb2InKSwgcG10LlBNVF9ULCBzZWxmLnNyY2lk
+KQogICAgICAgICAgICAgICAgICAgIHNlbGYuYWRkX2l0ZW1fdGFnKDAsIGFic19vZmZzZXQsIHBt
+dC5pbnRlcm4oJ3R4X3BrdF9sZW4nKSwgcG10LmZyb21fbG9uZyg4MCksIHNlbGYuc3JjaWQpCgog
+ICAgICAgICAgICAgICAgICAgIGlmIGN1cnJlbnRfdGltZSBpcyBOb25lOgogICAgICAgICAgICAg
+ICAgICAgICAgICBjdXJyZW50X3RpbWUgPSB0aW1lLnRpbWUoKQogICAgICAgICAgICAgICAgICAg
+IAogICAgICAgICAgICAgICAgICAgICMgVXNlIGNhY2hlZCBjdXJyZW50X3RpbWUgZm9yIGNvbnNp
+c3RlbmN5CiAgICAgICAgICAgICAgICAgICAgZXBvY2hfdGltZSA9IGludChjdXJyZW50X3RpbWUp
+CiAgICAgICAgICAgICAgICAgICAgZnJhY190aW1lID0gKGN1cnJlbnRfdGltZSAlIDEpICsgMC4w
+MTAgICMgQWRkaW5nIDEwIG1zCgogICAgICAgICAgICAgICAgICAgIGlmIGZyYWNfdGltZSA+PSAx
+LjA6CiAgICAgICAgICAgICAgICAgICAgICAgIGVwb2NoX3RpbWUgKz0gMQogICAgICAgICAgICAg
+ICAgICAgICAgICBmcmFjX3RpbWUgLT0gMS4wCgogICAgICAgICAgICAgICAgICAgIHR4X3RpbWVf
+dmFsID0gcG10Lm1ha2VfdHVwbGUocG10LmZyb21fdWludDY0KGVwb2NoX3RpbWUpLCBwbXQuZnJv
+bV9kb3VibGUoZnJhY190aW1lKSkKICAgICAgICAgICAgICAgICAgICBzZWxmLmFkZF9pdGVtX3Rh
+ZygwLCBhYnNfb2Zmc2V0LCBwbXQuaW50ZXJuKCd0eF90aW1lJyksIHR4X3RpbWVfdmFsLCBzZWxm
+LnNyY2lkKQoKICAgICAgICAgICAgICAgICAgICBzYW1wbGVzX3NpbmNlX2xhc3RfdGFnID0gMAoK
+ICAgICAgICAgICAgICAgICMgQ2hlY2sgZm9yIHRocmVzaG9sZCBjcm9zc2luZyAoaGlnaC10by1s
+b3cpCiAgICAgICAgICAgICAgICBlbGlmIG5vdCBjdXJyZW50X3N0YXRlX2Fib3ZlX3RocmVzaG9s
+ZCBhbmQgbGFzdF9zdGF0ZV9hYm92ZV90aHJlc2hvbGQ6CiAgICAgICAgICAgICAgICAgICAgYWJz
+X29mZnNldCA9IG5pdGVtc193cml0dGVuXzAgKyBpCiAgICAgICAgICAgICAgICAgICAgc2VsZi5h
+ZGRfaXRlbV90YWcoMCwgYWJzX29mZnNldCwgcG10LmludGVybigndHhfZW9iJyksIHBtdC5QTVRf
+VCwgc2VsZi5zcmNpZCkKICAgICAgICAgICAgICAgICAgICBzYW1wbGVzX3NpbmNlX2xhc3RfdGFn
+ID0gMAoKICAgICAgICAgICAgIyBVcGRhdGUgdGhlIGxhc3Qgc3RhdGUgZm9yIHRoZSBuZXh0IGl0
+ZXJhdGlvbgogICAgICAgICAgICBsYXN0X3N0YXRlX2Fib3ZlX3RocmVzaG9sZCA9IGN1cnJlbnRf
+c3RhdGVfYWJvdmVfdGhyZXNob2xkCgogICAgICAgICMgVXBkYXRlIHNlbGYgYXR0cmlidXRlcyBh
+ZnRlciBsb29wIGNvbXBsZXRlcwogICAgICAgIHNlbGYuc2FtcGxlc19zaW5jZV9sYXN0X3RhZyA9
+IHNhbXBsZXNfc2luY2VfbGFzdF90YWcKICAgICAgICBzZWxmLmxhc3Rfc3RhdGVfYWJvdmVfdGhy
+ZXNob2xkID0gbGFzdF9zdGF0ZV9hYm92ZV90aHJlc2hvbGQKCiAgICAgICAgcmV0dXJuIGxlbihv
+dXQwKQ==
+--00000000000024973b06274629d2
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -242,4 +320,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9199110328374859060==--
+--00000000000024973b06274629d2--
