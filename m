@@ -2,49 +2,64 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8ED9D9A94
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 16:44:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCFA19D9A4E
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 16:19:12 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E4709385AEB
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 10:44:35 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id A7DAB385B3E
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 10:19:11 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1732635875; bh=MrieimvwhtZP4CjNdiZeCf9sglj+jMH+T2BGmyZ2/mA=;
-	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	t=1732634351; bh=E+f4iASlp7m0f+btJxij+XK9SMnS2CO5RVXVAZTQmj0=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=xYfsccevb4EwTAQ7jra4Wus/Ru0V3z1uxoe4aalSNh9njiUcHPeeke7yITdqa/pp0
-	 +3/7UcIuW3cgd1RjcFLXfRzoFRpSHoC7I7n2hkEMtmVJwxF6nkkAT8vLYiCzX9ueby
-	 jf3+qTfiqvwOHkjNqZP8RmNDDdXh79F/sP/F1XYDkyRSeHjgyVM86s7SLMM4PCmU+q
-	 vYRk4hO6lRjPKQJtONBf/Cb3tkf+Nmy2QIryM64IwKGBNg5Or95BG8WNEiWOmvG6Lq
-	 ZUpqVYw/433lu5ajdcWz2tucqkcGCowN4gO7QUuR2gA8eRsZZ50vQVuyxvG8TCLrpe
-	 bqYBQZYT3v3zQ==
-Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com [209.85.210.72])
-	by mm2.emwd.com (Postfix) with ESMTPS id 79FE83856AB
-	for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 10:44:15 -0500 (EST)
-Received: by mail-ot1-f72.google.com with SMTP id 46e09a7af769-71a3da16d58so6793626a34.3
-        for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 07:44:15 -0800 (PST)
+	b=IqKdIjRN1sNQLC+MRQl40OncnhteOiZIH4sPxpGUw0iauGVM/79oREPn6BvcTJFtY
+	 uU/3+TNld+Oe/JcZVm9zp1G53gkRq/37tYioIUapUQunezAB9Ryfn1NpQ8eJ5JR7VW
+	 fx8utk53GzXK6O+QlI2Wt5OrJGiWWRISUFxuZUtH9L3C1u/fFhFj2UvpXBc8WnOYRW
+	 yAO4jxIv/JifqdrXL2MX/5vkQt5dTCp2Y0yeKRp5xe9GmjN3XOshdKiNT9phUTX1ev
+	 GFVsnek+bLw9RVuNVnvSUUfGZhvbNss10p0L2nOn2bHwDwg515+OF4w3vHwHaDjp+W
+	 eMUe3oY2D8Muw==
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6F8D0385069
+	for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 10:18:46 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=accelleran-com.20230601.gappssmtp.com header.i=@accelleran-com.20230601.gappssmtp.com header.b="nn6h840k";
+	dkim-atps=neutral
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-841a565f871so68461039f.1
+        for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 07:18:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=accelleran-com.20230601.gappssmtp.com; s=20230601; t=1732634326; x=1733239126; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/UjeHmRon5B5wj6UtkOl4oI16gAZ3Yir+tTDZQ0EgmA=;
+        b=nn6h840kxlpPGKfsr2b4e0DTpsvbO5XANCFbCZ1eIqWG4Bl0/pcT6LbDAj6UP/ebWn
+         QeDOKkNtTxH1mccreqfavcrzNLn043negoPJu+avp9jdFeWyjhfSvm9a8KdISJrzoB6S
+         XRMTXilu7pi+C7DcWNj+IBNC5zMbSKxXdjz3aGb+dyXLdgH7u0tBAM/AUufUZBjMwost
+         2Dfpsel+72T8uuTOIqkVQtoV2ueq406lrMGGxZ9ziBVJgl9vZiM6TzSEMAz6KHxunfe/
+         7tIPs3En8rn4X/qCKkplJbb+3UYUOcE0XBiNJfaGFMi92hPn+xY4eB0M8ZLkSBH2nqhv
+         sQUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732635855; x=1733240655;
-        h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+        d=1e100.net; s=20230601; t=1732634326; x=1733239126;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oyVZ9ImngwH2vw11U0blrPhmOLc1uDmqzZJQgWEmfTE=;
-        b=rY/4i5LyW5YNhtATjsUP6ih8n1KXfcT3/o/SEAmbnDdqXVozN9rwZE29lTQ+sIDy4g
-         GGL2QJZzi1abFolgxLFothXlEtS1gQh0gQj4RGp/zLybPJnguL9RLFG5Dq1LELhiWoO+
-         UjPzQrMSOyepRLe0XiVc92OK7pSCf/NT/QmBapEMZgvCSsg5AzUEFRYXH+kpNPZwQqYu
-         ISeeGPklyvfwWF75rx4KwEfa7PV7nSfy62ISf4on5oKKSNxV+eFOqydNTyk79Ql7c5UQ
-         r084hE9Y5vndZXyqc1FtRd7Pyd5uhfCdY/HqeQDilCXd2swH2BgOsVwXHdLgKza1uubY
-         UZhQ==
-X-Gm-Message-State: AOJu0YwjWDwhC1LDTh5qpYTYhEHRum/nn4sa1CMehS7wKrfD8rKSL8NN
-	cOUWDdTOhh5vdCa0TcFYz9BUHe2BmEOwVDbhZQ6Q7YDJGI7ydkumn7GpQLb1GJH0MRe5Fuv41V+
-	FrN6j1ci1BJka1ALiAQ72R8xlzNUUFRS5NsAknXftv23ApHwy+mKwEolU7peb1KSJPeImDQ==
-X-Gm-Gg: ASbGncsHDWVxAwjIL/16u36Z3O1PcDCzg7YqXkTKBLgeOp5FI32zkGD2lqPV/uB4Cth
-	9XoPvwiOuk0CPAg==
-X-Google-Smtp-Source: AGHT+IFkU/Jc8vdFtKzC9GfZtTktf4JIkiiotoHhfVKTJCGqfDxLF1FtBDnnbsZTw8QWKXPQtjASUn1oDQkKLFcseKnc7mAhby9kdA==
-X-Received: by 2002:a05:6358:723:b0:1ca:a872:e461 with SMTP id e5c5f4694b2df-1caa872e569mr258347155d.3.1732635854755;
-        Tue, 26 Nov 2024 07:44:14 -0800 (PST)
+        bh=/UjeHmRon5B5wj6UtkOl4oI16gAZ3Yir+tTDZQ0EgmA=;
+        b=k34xJRuG8o5Fy0vZb+4N2Le1jGkJyGVacCpTG7GYX5Xf27u4arH93vGuRzCrJoGtKD
+         4AcOivta6n2ethQ3hXaaU0aMKHBxFidb21iF5uTPBPBJTFwc3EH64MgzNQKbsMHR2yQS
+         /xBw1lcgi27EbxyWYMaq++smsh3NN1dOKQHjtUFhEqgfWV/jX4BBxQRos5diSA/PYUXS
+         +5nr4kV9yLWrwrRdpaTJfakX2oICTlKmgx5d9W0C+Da+n9JAijpb1yC5XDbmOyEZjaXK
+         UaCCkXggy3EWMip37ixILP3D88AVET+HeBCYJSMjVCb8yjLiVrur4ytsefnu8GEd/23I
+         ieZA==
+X-Gm-Message-State: AOJu0YwFx1+OvwgZSCpkPF/JUubR4p3GnwrZbqnDq5zLR/Zcwz52iMNb
+	Sf6zTeg9fO/Ay6cF0xae1z0viViukno1WUvvXUbWIn9qXPm3lB+aDFNwAbygutEhp4ZBEfEnVmE
+	05t1jOxGkBs37lF0hMnqecy2jTSvxEOKHwugcGfviU6hoIM8PUBLCZg==
+X-Gm-Gg: ASbGnctp7qce9al5knQuOcHQol6hLxBLMon1BKH7u8NyqyqU7KEHgv7xdr09eAsBjhV
+	dZJaHELlBC3tbosTXsIijJO/2nNNot5E/
+X-Google-Smtp-Source: AGHT+IGqrvfKbzzpdDXMrlKIkMPs05G76qVDAYwj/JCXw4IL3rpomouVC9z4VlJy3kmXS84F73BqsigNG5skRew0ZyY=
+X-Received: by 2002:a05:6602:6c0a:b0:83a:b235:2d62 with SMTP id
+ ca18e2360f4ac-83ecdc330e7mr1737776539f.1.1732634326050; Tue, 26 Nov 2024
+ 07:18:46 -0800 (PST)
 MIME-Version: 1.0
+From: Houshang <houshang.azizi@accelleran.com>
 Date: Tue, 26 Nov 2024 16:18:35 +0100
 Message-ID: <CAO=xj9WM9jE2+niznSkpqcrqL5hmyYiStSM2DAaOZzL1LAJm=Q@mail.gmail.com>
-From: Houshang <houshang.azizi@accelleran.com>
 To: usrp-users@lists.ettus.com
 Message-ID-Hash: 62OBDCYJNXRDV5EMZV4OPL3EXQUI4O7X
 X-Message-ID-Hash: 62OBDCYJNXRDV5EMZV4OPL3EXQUI4O7X
@@ -61,12 +76,12 @@ List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8008507263919522737=="
+Content-Type: multipart/mixed; boundary="===============7489756234366572427=="
 
---===============8008507263919522737==
-Content-Type: multipart/alternative; boundary="000000000000e9fe1a0627d25c04"
+--===============7489756234366572427==
+Content-Type: multipart/alternative; boundary="00000000000087cd0b0627d25d98"
 
---000000000000e9fe1a0627d25c04
+--00000000000087cd0b0627d25d98
 Content-Type: text/plain; charset="UTF-8"
 
 Hello
@@ -144,7 +159,7 @@ there something I am missing here?
 Thanks
 Houshang
 
---000000000000e9fe1a0627d25c04
+--00000000000087cd0b0627d25d98
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -187,9 +202,9 @@ And obviously it is not working with this amount of errors.<br><br>Can anyo=
 ne help me with this please? Is it a bug in the UHD version? Or is there so=
 mething I am missing here?<br><br>Thanks<br>Houshang<br></div>
 
---000000000000e9fe1a0627d25c04--
+--00000000000087cd0b0627d25d98--
 
---===============8008507263919522737==
+--===============7489756234366572427==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -199,4 +214,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8008507263919522737==--
+--===============7489756234366572427==--
