@@ -2,228 +2,246 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 611C79D9B48
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 17:22:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EC39D9B73
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 17:30:45 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id ABA2E385947
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 11:22:23 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 36218385AF8
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 11:30:45 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1732638143; bh=OBiaOeIADzKCQ0i3pnhefP699KlJ4K9chDaQacNl6VI=;
+	t=1732638645; bh=+hHEyQSIZAMaFYvOtfod1zdRzOfIskMC2XvRbFi9Cw0=;
 	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=tA0MTimincSgJLUaYU1Qz+UVApf1zhtKTGlJMOMptQzcp0EpsxYf9P0RXChLr2KRB
-	 jmyxUf2Xb6R12BxozhvfUdhOLW4v+CkXrlLR9/q8alCZVPCsOzrqMkAfwEihO2fJ9T
-	 buSXxqMtJEav/p1Yj3IRDe4gPFpHjIbqOiw2oqU3MWRMFsFSaaOkE9JIU1a8VuAZrA
-	 BNlACdsO4bUMVfGv5T0abKdBVjbJd+Vo8Xz4Gg/ZmpoGsps0M4cR/OtyzrggrsaJug
-	 oRBAWAmsEiO0kWuORzqaxvmOp1e1wNgsdkRYtupG5pyKfXU2G9R/eGwcguKfECNluO
-	 FfRBQUDiwqIcQ==
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4A877385855
-	for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 11:22:11 -0500 (EST)
+	b=CizYfiKmZcDbl9IjnBnx7nfp4YqcHQ4WVOkBtfhef6V6Ol5xAWdg062TxZU/wiALr
+	 1rBJt/a9hzCqbqwC0WdW0iXkg4ps3dmhuQ5Pz9wx3s52B2qCV/JVXMc2jKQKyFFrkV
+	 fKvWL7O6h2PUr1+9oZjPS7ILrLm4QCSmn8eO9G3Q7MXfTglDBQSfxULUoUkS2wbQIf
+	 jxKgfg2wH+//YZI/4VxfWeiUOfZlPzl+PrbsqoeSPUCOYUMpo+Q+F4SFsAF64ojR2M
+	 PohtQ18T0J7NvorYVv4ZLsP+UJ8nrGBY/BpVAjADMhnw3bIwXgb6YvNjRApLGDG77D
+	 BxF8wt6377VZA==
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id CCF3B38535C
+	for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 11:30:30 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PJ355l09";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZckpoTy4";
 	dkim-atps=neutral
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7b31b66d2e3so281159485a.2
-        for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 08:22:11 -0800 (PST)
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4668d12b629so18434111cf.2
+        for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 08:30:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732638131; x=1733242931; darn=lists.ettus.com;
-        h=in-reply-to:from:references:cc:to:content-language:subject
+        d=gmail.com; s=20230601; t=1732638630; x=1733243430; darn=lists.ettus.com;
+        h=in-reply-to:from:cc:references:to:content-language:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=U0bsVoMfFxEq/UCRlmX6xRU7/U9btL2pmadmbR8V3Vc=;
-        b=PJ355l09iI5PWdfDe2fsKCLd1OkfX+NOgnd6sQeXdGxjgeyZXESUWPbE0uv5marI3d
-         NbzMyPCc47uei5rVSh5mN8241+Wf40+lMPwuQIkKdQpJMMicI3lHLK/kWo9Kuna1OCen
-         BeLnZh/FniaalSoeb8pKfHEWDfpZBfzaHvMUTgl1SqnL7iVB4kD6IwXrIqgin87MKSB6
-         x3bByIy1UB4Vs7fHvRxVUVQ3jzxP5xmchOzPJJtLaHbWFnKkzwZjBlGHy90i4SjaLMDq
-         WXotXlvCGgoOYanzF0Iywu2eULKBLLjp3HSuZEDcI/tpkKtg48SiNBaGnqCW0EhxUmcf
-         d8VQ==
+        bh=dJReyTbzHOS+WBAas131sCHBLvA0qtATQV5FA3hWl8o=;
+        b=ZckpoTy4JGiU9ZXOcyDsDKdM33Vw/5Xb4y8p9QS70mc77LdBZrqH2LNfN6OGWi1CWk
+         qom1RfBfTqnKbaSsg9UjN+xJLod599RaWyTGKZ38b7UZ4ZGgBbZ5t9IW1+Oip7pje/5K
+         puHl+xNhR3nIMhE3/c7ByRkQ7BfYVZuKLaLBPslp6S7Et2eDFlBszLvmhHX2C60fWshU
+         0C4Cp+UuG2tEh6jOjp4z8o8fXWzWOFlvKFS0LiYxYv8wL3pvfs4O3qY8kr31ezjorDmA
+         FNEPa6PEwY287Jp3qpH6DhFfIiER5Q7T0ge+T2o+hcHIcJ7XMf3YbQDN0AK0ZH7ske1x
+         uU+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732638131; x=1733242931;
-        h=in-reply-to:from:references:cc:to:content-language:subject
+        d=1e100.net; s=20230601; t=1732638630; x=1733243430;
+        h=in-reply-to:from:cc:references:to:content-language:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=U0bsVoMfFxEq/UCRlmX6xRU7/U9btL2pmadmbR8V3Vc=;
-        b=KLWg6DYsJSMkCl0kYzuTd8sLzvWfxRa5DIAzOhi70sot7nsxpg5DtLrNjOFMKLBwBT
-         aE2thbj5h1R3YFwXqGDWifMOWKI28Rr1qfUp7uq7ndWbRiHDCV2pQ8QaqtGSNncWrkGq
-         qi/NOUEIx/IfFurcMtDq743eE6NKWSDSZLXYwmsOlwYcD5AthttQ+YJtyGa3slljgnqu
-         aBZ0hjCsHMIty+KUlthukNxji3BS/NHF70hV0311uiTSJ7tVKceSvFdjvhMDE7X9W/uE
-         uVOxm5Cq7qSFzNwNgtcCSdweXNv3yq+I6sClmYiE+jZrYV/sveLlc1h8owKNZe1uJZFF
-         GlRw==
-X-Gm-Message-State: AOJu0Yye8iIqdbmsJOJA/x8lnCTpoZLwnVAVj2MoyajfXTrynY6VlXSJ
-	Lxgjkt20rqleOZQZvLor527V9lU512yEtN+CC4a+5WaQayYqXBhF
-X-Gm-Gg: ASbGncuF5ZUr0lApzz+KY0dzo/Ee78QFDaxFesxJbQFJAcfsttMv91/Olz4NqhvpJZm
-	BXU8vrXUOA5coW/v/HwUIZU0TX3Q91ASzhLzWwhmp10kKuq0Uj6FOxtIQ3PaSv/yV8vrOF90CfC
-	nxE0urtUyn6ADeTwbBId0tPgfBJBzWOE+0I41MOl8JBWzbtYoqbvx5BMbvhfG30gWliYR1wqKJ3
-	Y4rXNn7PannKt1NahRyGChsLcU/QWZ5gwcK59cFAipZiPS31Jq4OdRaPKy4
-X-Google-Smtp-Source: AGHT+IGo7BTjrx3wSrTI9Wma1YNTlD+xBZQ2d6DWtjSc/x6jqkIKFhFpSY/xZ/X6X0J82Bt0oXk3Cg==
-X-Received: by 2002:a05:620a:4045:b0:7b1:ae66:e8cd with SMTP id af79cd13be357-7b5145b80b9mr2736070185a.44.1732638130409;
-        Tue, 26 Nov 2024 08:22:10 -0800 (PST)
+        bh=dJReyTbzHOS+WBAas131sCHBLvA0qtATQV5FA3hWl8o=;
+        b=qGl3+Wsf5QNZuChEqEeRRvXrgBWFnK234zFL8Rlsq6Xp9VpjO18Hj6TEcMP6MiLg4Q
+         byvX5GVQgVEfW7pNpYkPB1Aq8z1ymjPkXg1iM4nR0eoVqFNZlvr0zudhQ13dfzaUD6TW
+         +nBYKTXsK+gxkGpKiqWeug6fdX8xfvqjK+HTzFopl4NUsSRdnsYFDLTAQOdRJQBMCTVF
+         u42q9oaKSUbSCsH9jL6usOvCT0TW3gBaC9D13bgD7CLBTZCjWf04rcr7lvTOnrw/oL4F
+         hgg91rjmzaKAltSPe2BJa7Lpr7rAQdma+GpQm3KSrXdkc3qH/FN7kKerny7XfYHhnAcw
+         kOwA==
+X-Gm-Message-State: AOJu0YyUfmh6ZAI3fTjax9o3Ze/zZCxjqGt3wiX8d1eIIbupVdbt6Suf
+	HVvICF2Kx9mw3udL3XDFEz3afDU83U1uDbScAOaSM2Cb2BK8VOE/RXkWng==
+X-Gm-Gg: ASbGncsadK2eLmVqmzdDVsRgQHmxoyXdukECDzQ1ojXl4NIX8oeNWPfVoLlkyUvyGFQ
+	bvuOLGei5ubXt0tLmnGuNUkYN2YmbGWr449OD8u33LbG7jwUATeIDBiv3E61vpN8l3aAl9wW1GD
+	QlbhNkeZOrQLavyMCwqZAf9ix0g1gVqYUxuBnbSvXWWIvPGptsfM7qUGC78dR/ZTLuWvh1d1dnd
+	i8DMNAF+YxLDk9xIsUwvtKcSQD5T3B1cZlvnKmVmj+/hFAmg6m3dgaQHTnK
+X-Google-Smtp-Source: AGHT+IE2acNiuu+zeQX3Uodt5ntB0nDRE3nGjStX7lRpCflDN4dIpb5AKtIJz50bJ38Hpm+RSlrD8A==
+X-Received: by 2002:a05:622a:116:b0:466:a51b:6281 with SMTP id d75a77b69052e-466a51b6421mr39310811cf.26.1732638630023;
+        Tue, 26 Nov 2024 08:30:30 -0800 (PST)
 Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7b513f90534sm481153785a.25.2024.11.26.08.22.09
+        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4653c3ed111sm61094371cf.20.2024.11.26.08.30.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Nov 2024 08:22:09 -0800 (PST)
-Message-ID: <ba50962f-2d73-425a-afc6-364cf359384e@gmail.com>
-Date: Tue, 26 Nov 2024 11:21:59 -0500
+        Tue, 26 Nov 2024 08:30:29 -0800 (PST)
+Message-ID: <cd4bb9a4-bb37-4752-a973-f54a4d46616d@gmail.com>
+Date: Tue, 26 Nov 2024 11:30:18 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: Houshang <houshang.azizi@accelleran.com>
-References: <CAO=xj9WM9jE2+niznSkpqcrqL5hmyYiStSM2DAaOZzL1LAJm=Q@mail.gmail.com>
- <35f6b1f4-8291-47ca-852f-b47e58aabf77@gmail.com>
- <CAO=xj9WGNbN5_YjrD6KfqTB2HA0bxmyr6D1iwRsqoH7VpcVnpg@mail.gmail.com>
+To: =?UTF-8?B?SGFtZMO8c2VuYSBCxLBMR8SwIChCxLBMR0VNKQ==?=
+ <hamdusena.bilgi@tubitak.gov.tr>
+References: <848678402.19165407.1732543946189.JavaMail.zimbra@tubitak.gov.tr>
+ <a292ca9d-7507-44ab-a81d-656b492be8f7@gmail.com>
+ <1259680549.19394090.1732600402742.JavaMail.zimbra@tubitak.gov.tr>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAO=xj9WGNbN5_YjrD6KfqTB2HA0bxmyr6D1iwRsqoH7VpcVnpg@mail.gmail.com>
-Message-ID-Hash: YWRRO54U7YUPU6TJ2UXDRECAN2DKQ3IS
-X-Message-ID-Hash: YWRRO54U7YUPU6TJ2UXDRECAN2DKQ3IS
+In-Reply-To: <1259680549.19394090.1732600402742.JavaMail.zimbra@tubitak.gov.tr>
+Message-ID-Hash: KI3CPVA45YKDC4ZHQ3L5HNIZNUF45DNM
+X-Message-ID-Hash: KI3CPVA45YKDC4ZHQ3L5HNIZNUF45DNM
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: n310 | Error: failed receiving packet. RfnocError
+Subject: [USRP-users] Re: Module Not Found Error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YWRRO54U7YUPU6TJ2UXDRECAN2DKQ3IS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KI3CPVA45YKDC4ZHQ3L5HNIZNUF45DNM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8848321483971717840=="
+Content-Type: multipart/mixed; boundary="===============8568856900403565174=="
 
 This is a multi-part message in MIME format.
---===============8848321483971717840==
+--===============8568856900403565174==
 Content-Type: multipart/alternative;
- boundary="------------CvBx3jIslV9zO4KoBPN6zJQq"
+ boundary="------------GplxCPmgnYCbTi5WxGR80IIw"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------CvBx3jIslV9zO4KoBPN6zJQq
+--------------GplxCPmgnYCbTi5WxGR80IIw
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 26/11/2024 11:10, Houshang wrote:
-> Many thanks for prompt reply Marcus! Please find attached the printout=20
-> for that probe command you asked for.
-OK, so the next thing to do is to test your network capacity between=20
-your host computer and the N310:
+On 26/11/2024 00:53, Hamd=C3=BCsena B=C4=B0LG=C4=B0 (B=C4=B0LGEM) wrote:
+> I installed dependecies
+>
+> sudo apt install git cmake g++ libboost-all-dev libgmp-dev swig=20
+> python3-numpy python3-mako python3-sphinx python3-lxml doxygen=20
+> libfftw3-dev libsdl1.2-dev libgsl-dev libqwt-qt5-dev libqt5opengl5-dev=20
+> python3-pyqt5 liblog4cpp5-dev libzmq3-dev python3-yaml python3-click=20
+> python3-click-plugins python3-zmq python3-scipy python3-gi=20
+> python3-gi-cairo gobject-introspection gir1.2-gtk-3.0 build-essential=20
+> libusb-1.0-0-dev python3-docutils python3-setuptools=20
+> python3-ruamel.yaml python-is-python3
+>
+> and /created//directory, cloned the USRP Hardware Driver (UHD 4.0=20
+> branch) from Ettus Research GitHub repository./
+>
+> *git clone*--*branch UHD-4.7 https://github.com/ettusresearch/uhd.git u=
+hd*
+>
+> //
+>
+> cd /uhd/host/
+> mkdir build
+> cd build
+> cmake ..
+> make
+> make test
+> sudo make install
+> sudo ldconfig
+You need to explicitly enable the Python API in the build, see:
 
-benchmark_rate --args=20
-"type=3Dn3xx,product=3Dn310,addr=3D10.10.0.100,master_clock_rate=3D125e6"=
-=20
---rx_rate 25e6 --tx_rate 25e6
+https://files.ettus.com/manual/page_python.html
 
 
+> -----------------------------------------------------------------------=
+-
+> *Kimden: *"Marcus D. Leech" <patchvonbraun@gmail.com>
+> *Kime: *"usrp-users" <usrp-users@lists.ettus.com>
+> *G=C3=B6nderilenler: *25 Kas=C4=B1m Pazartesi 2024 18:04:27
+> *Konu: *[USRP-users] Re: Module Not Found Error
 >
-> On Tue, 26 Nov 2024 at 16:59, Marcus D. Leech=20
-> <patchvonbraun@gmail.com> wrote:
->
->     On 26/11/2024 10:18, Houshang wrote:
->>     Hello
->>
->>     I have following UHD version on my server:
->>
->>     /ad@bm-super11-intel:~/houshang$ uhd_config_info --version
->>     UHD 4.7.0.0-0ubuntu1~jammy1
->>     ad@bm-super11-intel:~/houshang$ ssh root@10.10.0.100/
->>
->>     And the following UHD version on my n310:
->>
->>     /root@ni-n3xx-32000F1:~# uhd_config_info --version
->>     UHD 4.7.0.0-0-ga5ed1872
->>     root@ni-n3xx-32000F1:~# /
->>
->>     They are the same and my n310 is updated with the following file:
->>
->>     /ad@bm-super11-intel:~/houshang$ md5sum
->>     /usr/share/uhd/images/usrp_n310_fpga_HG.bit
->>     532b338d6861268c05a4fd9837ca80e5
->>     =C2=A0/usr/share/uhd/images/usrp_n310_fpga_HG.bit
->>     ad@bm-super11-intel:~/houshang$ /
->>
->>     I am running srsRAN gNB on my server (/Commit 9d5dd742a/). A
->>     version of srs of srsRAN that is compiled with /UHD 4.7.0.0./
->>
->>
->>     Here are the error messages I get:
->>
->>     /=3D=3D=3D=3D gNB started =3D=3D=3D
->>     Type <h> to view help
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Late: 2805; Underflow: 2238; Overflow: 0;
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Late: 0; Underflow: 5; Overflow: 0;
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Late: 0; Underflow: 4; Overflow: 0;
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Late: 0; Underflow: 4; Overflow: 0;
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK.
->>     Late: 0; Underflow: 4; Overflow: 0;
->>     Error: failed receiving packet. RfnocError: OpTimeout: Control
->>     operation timed out waiting for ACK./
->>
->>
->>     And obviously it is not working with this amount of errors.
->>
->>     Can anyone help me with this please? Is it a bug in the UHD
->>     version? Or is there something I am missing here?
->>
->>     Thanks
->>     Houshang
->>
->     Try "the basics" first.
->
->     What does:
->
->     uhd_usrp_probe --args "type=3Dn3xx,product=3Dn310,addr=3D192.168.10=
-.2"
+> On 25/11/2024 09:12, Hamd=C3=BCsena B=C4=B0LG=C4=B0 (B=C4=B0LGEM) via U=
+SRP-users wrote:
 >
 >
->     Produce (you might have to change the addr to whatever the address
->     is of your N310).
+>     Hello dear usrp users,
 >
+>     I want to write code using the UHD Python APIs, but I get an error
+>     when I try to run import uhd. UHD works properly in GNU Radio, but
+>     when I try to work with Python 3.8 from the terminal or in VSCode,
+>     I encounter the following error. How can I resolve this issue?
 >
->     _______________________________________________
->     USRP-users mailing list -- usrp-users@lists.ettus.com
->     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>     *export PYTHONPATH=3D/usr/local/lib/python3/dist-packages/:$PYTHONP=
+ATH*
+>
+>     python3.8
+>     Python 3.8.10
+>     [GCC 9.4.0] on linux
+>     Type "help", "copyright", "credits" or "license" for more informati=
+on.
+>     >>> import uhd
+>     Traceback (most recent call last):
+>     =C2=A0 File "<stdin>", line 1, in <module>
+>     ModuleNotFoundError: No module named 'uhd'
 >
 >
 >
-> --=20
+>     The versions on the device are:
+>     =C2=A0gnuradio-config-info --v
+>     v3.8.5.0-6-g57bd109d
+>     -----------------------------------
 >
-> *Houshang Azizi*
+>     uhd_config_info --version
 >
-> *Test Engineer*
+>     UHD 4.7.0.0-0-ga5ed1872
 >
-> logo <https://www.accelleran.com/>
+>     ------------------------------------------
 >
-> *(32) 492195241*
 >
-> *houshang.azizi@accelleran.com <mailto:Email@accelleran.com>*
+>     uhd_find_devices
 >
-> *www.accelleran.com* <http://www.accelleran.com/>
+>     [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+>     UHD_4.7.0.0-0-ga5ed1872
 >
-> linkedin icon <https://www.linkedin.com/company/accelleran> twitter=20
-> icon <https://twitter.com/accelleran> youtube icon=20
-> <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=3D=
-1>
+>     --------------------------------------------------
 >
+>     -- UHD Device 0
+>
+>     --------------------------------------------------
+>
+>     Device Address:
+>
+>     serial: 33CB10C
+>
+>     addr: 192.168.10.2
+>
+>     claimed: False
+>
+>     fpga: 1G
+>
+>     mgmt_addr: 192.168.10.2
+>
+>     name: ni-e320-33CB10C
+>
+>     product: e320
+>
+>     type: e3xx
+>
+>     ----------------------------------------
+>
+>
+>
+>     python3 --version
+>
+>     Python 3.8.10
+>
+>     ----------------------------------------
+>
+>     g++ --version
+>
+>     g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+>
+>
+> How did you install UHD?=C2=A0=C2=A0 The Python API for UHD is differen=
+t from=20
+> the interface that Gnu Radio uses for UHD -- they're
+> =C2=A0 different things.
+>
+> When you build UHD, you have to configure it to build the direct=20
+> Python support for UHD.=C2=A0 It's likely that didn't
+> =C2=A0 happen when it was built.
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---------------CvBx3jIslV9zO4KoBPN6zJQq
+--------------GplxCPmgnYCbTi5WxGR80IIw
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -234,269 +252,555 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 26/11/2024 11:10, Houshang wrote:<b=
-r>
+    <div class=3D"moz-cite-prefix">On 26/11/2024 00:53, Hamd=C3=BCsena B=C4=
+=B0LG=C4=B0
+      (B=C4=B0LGEM) wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:CAO=3Dxj9WGNbN5_YjrD6KfqTB2HA0bxmyr6D1iwRsqoH7VpcVnpg@mail.gm=
-ail.com">
+cite=3D"mid:1259680549.19394090.1732600402742.JavaMail.zimbra@tubitak.gov=
+=2Etr">
       <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
 TF-8">
-      <div dir=3D"ltr">Many thanks for prompt reply Marcus! Please find
-        attached the printout for that probe command you asked for.<br>
+      <div
+style=3D"font-family: arial, helvetica, sans-serif; font-size: 12pt; colo=
+r: #000000">
+        <div>I installed dependecies</div>
+        <div><br data-mce-bogus=3D"1">
+        </div>
+        <div>sudo apt install git cmake g++ libboost-all-dev libgmp-dev
+          swig python3-numpy python3-mako python3-sphinx python3-lxml
+          doxygen libfftw3-dev libsdl1.2-dev libgsl-dev libqwt-qt5-dev
+          libqt5opengl5-dev python3-pyqt5 liblog4cpp5-dev libzmq3-dev
+          python3-yaml python3-click python3-click-plugins python3-zmq
+          python3-scipy python3-gi python3-gi-cairo
+          gobject-introspection gir1.2-gtk-3.0 build-essential
+          libusb-1.0-0-dev python3-docutils python3-setuptools
+          python3-ruamel.yaml python-is-python3<br data-mce-bogus=3D"1">
+        </div>
+        <div><br data-mce-bogus=3D"1">
+        </div>
+        <div>and <em
+style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zer=
+o); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdec=
+o-reset-base-border-zero); font-size: 16px; vertical-align: var(--artdeco=
+-reset-base-vertical-align-baseline); background-color: #ffffff; outline:=
+ var(--artdeco-reset-base-outline-zero); font-style: var(--artdeco-reset-=
+typography-font-style-italic); font-family: -apple-system, system-ui, Bli=
+nkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubunt=
+u, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', '=
+Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', He=
+lvetica, Arial, sans-serif; color: rgba(0, 0, 0, 0.9); font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing=
+: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; whi=
+te-space: normal; text-decoration-thickness: initial; text-decoration-sty=
+le: initial; text-decoration-color: initial;"
+data-mce-style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-m=
+argin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var=
+(--artdeco-reset-base-border-zero); font-size: 16px; vertical-align: var(=
+--artdeco-reset-base-vertical-align-baseline); background-color: #ffffff;=
+ outline: var(--artdeco-reset-base-outline-zero); font-style: var(--artde=
+co-reset-typography-font-style-italic); font-family: -apple-system, syste=
+m-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira San=
+s', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gr=
+ande', Helvetica, Arial, sans-serif; color: rgba(0, 0, 0, 0.9); font-vari=
+ant-ligatures: normal; font-variant-caps: normal; font-weight: 400; lette=
+r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:=
+ 0px; white-space: normal; text-decoration-thickness: initial; text-decor=
+ation-style: initial; text-decoration-color: initial;">created</em><em
+style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zer=
+o); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdec=
+o-reset-base-border-zero); font-size: 16px; vertical-align: var(--artdeco=
+-reset-base-vertical-align-baseline); background-color: #ffffff; outline:=
+ var(--artdeco-reset-base-outline-zero); font-style: var(--artdeco-reset-=
+typography-font-style-italic); font-family: -apple-system, system-ui, Bli=
+nkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubunt=
+u, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', '=
+Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', He=
+lvetica, Arial, sans-serif; color: rgba(0, 0, 0, 0.9); font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing=
+: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; whi=
+te-space: normal; text-decoration-thickness: initial; text-decoration-sty=
+le: initial; text-decoration-color: initial;"
+data-mce-style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-m=
+argin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var=
+(--artdeco-reset-base-border-zero); font-size: 16px; vertical-align: var(=
+--artdeco-reset-base-vertical-align-baseline); background-color: #ffffff;=
+ outline: var(--artdeco-reset-base-outline-zero); font-style: var(--artde=
+co-reset-typography-font-style-italic); font-family: -apple-system, syste=
+m-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira San=
+s', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gr=
+ande', Helvetica, Arial, sans-serif; color: rgba(0, 0, 0, 0.9); font-vari=
+ant-ligatures: normal; font-variant-caps: normal; font-weight: 400; lette=
+r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:=
+ 0px; white-space: normal; text-decoration-thickness: initial; text-decor=
+ation-style: initial; text-decoration-color: initial;">
+            directory, c<span>loned the USRP Hardware Driver (UHD 4.0
+              branch) from Ettus Research GitHub repository.</span></em><=
+/div>
+        <div>
+          <p id=3D"ember89"
+            class=3D"ember-view reader-text-block__paragraph"
+style=3D"box-sizing: inherit; margin: 0px; padding: var(--artdeco-reset-b=
+ase-padding-zero); border: var(--artdeco-reset-base-border-zero); font-si=
+ze: 16px; vertical-align: var(--artdeco-reset-base-vertical-align-baselin=
+e); background-color: rgb(255, 255, 255); font-weight: 400; line-height: =
+var(--line-height-open); color: rgba(0, 0, 0, 0.9); font-family: -apple-s=
+ystem, system-ui, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot=
+;Helvetica Neue&quot;, &quot;Fira Sans&quot;, Ubuntu, Oxygen, &quot;Oxyge=
+n Sans&quot;, Cantarell, &quot;Droid Sans&quot;, &quot;Apple Color Emoji&=
+quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Sego=
+e UI Symbol&quot;, &quot;Lucida Grande&quot;, Helvetica, Arial, sans-seri=
+f; pointer-events: all; font-style: normal; font-variant-ligatures: norma=
+l; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-al=
+ign: start; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
+ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decora=
+tion-thickness: initial; text-decoration-style: initial; text-decoration-=
+color: initial;"
+data-mce-style=3D"box-sizing: inherit; margin: 0px; padding: var(--artdec=
+o-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero)=
+; font-size: 16px; vertical-align: var(--artdeco-reset-base-vertical-alig=
+n-baseline); background-color: #ffffff; font-weight: 400; line-height: va=
+r(--line-height-open); color: rgba(0, 0, 0, 0.9); font-family: -apple-sys=
+tem, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',=
+ 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Ap=
+ple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', =
+'Lucida Grande', Helvetica, Arial, sans-serif; pointer-events: all; font-=
+style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;=
+ text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-=
+width: 0px; white-space: normal; text-decoration-thickness: initial; text=
+-decoration-style: initial; text-decoration-color: initial;"><strong
+style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zer=
+o); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdec=
+o-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-=
+hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align=
+-baseline); background: var(--artdeco-reset-base-background-transparent);=
+ outline: var(--artdeco-reset-base-outline-zero); font-weight: var(--artd=
+eco-reset-typography-font-weight-bold); font-family: var(--artdeco-reset-=
+typography-font-family-sans);"
+data-mce-style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-m=
+argin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var=
+(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-f=
+ont-size-hundred-percent); vertical-align: var(--artdeco-reset-base-verti=
+cal-align-baseline); background: var(--artdeco-reset-base-background-tran=
+sparent); outline: var(--artdeco-reset-base-outline-zero); font-weight: v=
+ar(--artdeco-reset-typography-font-weight-bold); font-family: var(--artde=
+co-reset-typography-font-family-sans);">git
+              clone<span class=3D"white-space-pre"
+style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zer=
+o); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdec=
+o-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-=
+hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align=
+-baseline); background: var(--artdeco-reset-base-background-transparent);=
+ outline: var(--artdeco-reset-base-outline-zero); white-space: pre !impor=
+tant; font-family: var(--artdeco-reset-typography-font-family-sans);"
+data-mce-style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-m=
+argin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var=
+(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-f=
+ont-size-hundred-percent); vertical-align: var(--artdeco-reset-base-verti=
+cal-align-baseline); background: var(--artdeco-reset-base-background-tran=
+sparent); outline: var(--artdeco-reset-base-outline-zero); white-space: p=
+re !important; font-family: var(--artdeco-reset-typography-font-family-sa=
+ns);"> </span></strong>--<strong
+style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zer=
+o); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdec=
+o-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-=
+hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align=
+-baseline); background: var(--artdeco-reset-base-background-transparent);=
+ outline: var(--artdeco-reset-base-outline-zero); font-weight: var(--artd=
+eco-reset-typography-font-weight-bold); font-family: var(--artdeco-reset-=
+typography-font-family-sans);"
+data-mce-style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-m=
+argin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var=
+(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-f=
+ont-size-hundred-percent); vertical-align: var(--artdeco-reset-base-verti=
+cal-align-baseline); background: var(--artdeco-reset-base-background-tran=
+sparent); outline: var(--artdeco-reset-base-outline-zero); font-weight: v=
+ar(--artdeco-reset-typography-font-weight-bold); font-family: var(--artde=
+co-reset-typography-font-family-sans);">branch
+              UHD-4.7 <a class=3D"moz-txt-link-freetext" href=3D"https://=
+github.com/ettusresearch/uhd.git">https://github.com/ettusresearch/uhd.gi=
+t</a> uhd</strong></p>
+          <em
+style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zer=
+o); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdec=
+o-reset-base-border-zero); font-size: 16px; vertical-align: var(--artdeco=
+-reset-base-vertical-align-baseline); background-color: #ffffff; outline:=
+ var(--artdeco-reset-base-outline-zero); font-style: var(--artdeco-reset-=
+typography-font-style-italic); font-family: -apple-system, system-ui, Bli=
+nkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubunt=
+u, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', '=
+Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', He=
+lvetica, Arial, sans-serif; color: rgba(0, 0, 0, 0.9); font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing=
+: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; whi=
+te-space: normal; text-decoration-thickness: initial; text-decoration-sty=
+le: initial; text-decoration-color: initial;"
+data-mce-style=3D"box-sizing: inherit; margin: var(--artdeco-reset-base-m=
+argin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var=
+(--artdeco-reset-base-border-zero); font-size: 16px; vertical-align: var(=
+--artdeco-reset-base-vertical-align-baseline); background-color: #ffffff;=
+ outline: var(--artdeco-reset-base-outline-zero); font-style: var(--artde=
+co-reset-typography-font-style-italic); font-family: -apple-system, syste=
+m-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira San=
+s', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gr=
+ande', Helvetica, Arial, sans-serif; color: rgba(0, 0, 0, 0.9); font-vari=
+ant-ligatures: normal; font-variant-caps: normal; font-weight: 400; lette=
+r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:=
+ 0px; white-space: normal; text-decoration-thickness: initial; text-decor=
+ation-style: initial; text-decoration-color: initial;"><span></span></em>=
+</div>
+        <div><br data-mce-bogus=3D"1">
+        </div>
+        <div>
+          <div>cd /uhd/host/</div>
+          <div>mkdir build</div>
+          <div>cd build</div>
+          <div>cmake ..</div>
+          <div>
+            <div>make</div>
+            <div>make test</div>
+            <div>sudo make install</div>
+            <div>sudo ldconfig</div>
+          </div>
+        </div>
       </div>
     </blockquote>
-    OK, so the next thing to do is to test your network capacity between
-    your host computer and the N310:<br>
+    You need to explicitly enable the Python API in the build, see:<br>
     <br>
-    benchmark_rate --args
-    "type=3Dn3xx,product=3Dn310,addr=3D10.10.0.100,master_clock_rate=3D12=
-5e6"
-    --rx_rate 25e6 --tx_rate 25e6<br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://files.ettus.com/ma=
+nual/page_python.html">https://files.ettus.com/manual/page_python.html</a=
+><br>
     <br>
     <br>
     <blockquote type=3D"cite"
-cite=3D"mid:CAO=3Dxj9WGNbN5_YjrD6KfqTB2HA0bxmyr6D1iwRsqoH7VpcVnpg@mail.gm=
-ail.com"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 26 Nov 2024 at 16:5=
-9,
-          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">patc=
-hvonbraun@gmail.com</a>&gt;
-          wrote:<br>
+cite=3D"mid:1259680549.19394090.1732600402742.JavaMail.zimbra@tubitak.gov=
+=2Etr">
+      <div
+style=3D"font-family: arial, helvetica, sans-serif; font-size: 12pt; colo=
+r: #000000">
+        <hr id=3D"zwchr" data-marker=3D"__DIVIDER__">
+        <div data-marker=3D"__HEADERS__"><b>Kimden: </b>"Marcus D. Leech"=
+
+          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonbraun=
+@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
+          <b>Kime: </b>"usrp-users" <a class=3D"moz-txt-link-rfc2396E" hr=
+ef=3D"mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&g=
+t;</a><br>
+          <b>G=C3=B6nderilenler: </b>25 Kas=C4=B1m Pazartesi 2024 18:04:2=
+7<br>
+          <b>Konu: </b>[USRP-users] Re: Module Not Found Error<br>
         </div>
-        <blockquote class=3D"gmail_quote"
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
-          <div>
-            <div>On 26/11/2024 10:18, Houshang wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">
-                <div>Hello</div>
+        <div><br>
+        </div>
+        <div data-marker=3D"__QUOTED_TEXT__">
+          <div class=3D"moz-cite-prefix">On 25/11/2024 09:12, Hamd=C3=BCs=
+ena
+            B=C4=B0LG=C4=B0 (B=C4=B0LGEM) via USRP-users wrote:<br>
+          </div>
+          <blockquote>
+            <div
+style=3D"font-family:'arial' , 'helvetica' , sans-serif;font-size:12pt;co=
+lor:#000000">
+              <div>
+                <div>=C2=A0</div>
                 <div><br>
                 </div>
-                <div>I have following UHD version on my server:</div>
-                <br>
-                <i><span style=3D"background-color:rgb(238,238,238)">ad@b=
-m-super11-intel:~/houshang$
-                    uhd_config_info --version<br>
-                    UHD 4.7.0.0-0ubuntu1~jammy1<br>
-                    ad@bm-super11-intel:~/houshang$ ssh <a
-                      href=3D"mailto:root@10.10.0.100" target=3D"_blank"
-                      moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">root@10.10.0.100</a=
-></span></i><br>
-                <br>
-                And the following UHD version on my n310:<br>
-                <br>
-                <i><span style=3D"background-color:rgb(238,238,238)">root=
-@ni-n3xx-32000F1:~#
-                    uhd_config_info --version<br>
-                    UHD 4.7.0.0-0-ga5ed1872<br>
-                    root@ni-n3xx-32000F1:~# </span></i><br>
-                <br>
-                <div>They are the same and my n310 is updated with the
-                  following file:</div>
-                <div><br>
+                <div><span
+style=3D"color:#000000;font-family:'aptos' , 'aptos_embeddedfont' , 'apto=
+s_msfontservice' , 'calibri' , 'helvetica' , sans-serif;font-size:16px;fo=
+nt-style:normal;font-weight:400;letter-spacing:normal;text-indent:0px;tex=
+t-transform:none;word-spacing:0px;white-space:normal;background-color:#fd=
+fdfd;display:inline !important;float:none">Hello
+                    dear usrp users,</span>
+                  <div><br>
+                  </div>
+                  <div>I want to write code using the UHD Python APIs,
+                    but I get an error when I try to run import uhd. UHD
+                    works properly in GNU Radio, but when I try to work
+                    with Python 3.8 from the terminal or in VSCode, I
+                    encounter the following error. How can I resolve
+                    this issue?<br>
+                  </div>
+                  <div><br>
+                  </div>
+                  <div><strong
+style=3D"font-size:16px;background-color:#ffffff;font-family:'-apple-syst=
+em' , 'system-ui' , 'blinkmacsystemfont' , 'segoe ui' , 'roboto' , 'helve=
+tica neue' , 'fira sans' , 'ubuntu' , 'oxygen' , 'oxygen sans' , 'cantare=
+ll' , 'droid sans' , 'apple color emoji' , 'segoe ui emoji' , 'segoe ui e=
+moji' , 'segoe ui symbol' , 'lucida grande' , 'helvetica' , 'arial' , san=
+s-serif;color:rgba( 0 , 0 , 0 , 0.9 );font-style:normal;letter-spacing:no=
+rmal;text-indent:0px;text-transform:none;word-spacing:0px;white-space:nor=
+mal">export
+PYTHONPATH=3D/usr/local/lib/python3/dist-packages/:$PYTHONPATH</strong></=
+div>
+                  <div><br>
+                  </div>
                 </div>
-                <i><span style=3D"background-color:rgb(238,238,238)">ad@b=
-m-super11-intel:~/houshang$
-                    md5sum /usr/share/uhd/images/usrp_n310_fpga_HG.bit<br=
->
-                    532b338d6861268c05a4fd9837ca80e5
-                    =C2=A0/usr/share/uhd/images/usrp_n310_fpga_HG.bit<br>
-                    ad@bm-super11-intel:~/houshang$ </span></i><br>
-                <br>
-                I am running srsRAN gNB on my server (<i><span
-                    style=3D"background-color:rgb(238,238,238)">Commit
-                    9d5dd742a</span></i>). A version of srs of srsRAN
-                that is compiled with <i><span
-                    style=3D"background-color:rgb(238,238,238)">UHD
-                    4.7.0.0.</span></i><br>
-                <br>
-                <br>
-                Here are the error messages I get:<br>
-                <br>
-                <i><span style=3D"background-color:rgb(238,238,238)">=3D=3D=
-=3D=3D
-                    gNB started =3D=3D=3D<br>
-                    Type &lt;h&gt; to view help<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Late: 2805; Underflow: 2238; Overflow: 0;<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Late: 0; Underflow: 5; Overflow: 0;<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Late: 0; Underflow: 4; Overflow: 0;<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Late: 0; Underflow: 4; Overflow: 0;<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.<br>
-                    Late: 0; Underflow: 4; Overflow: 0;<br>
-                    Error: failed receiving packet. RfnocError:
-                    OpTimeout: Control operation timed out waiting for
-                    ACK.</span></i><br>
-                <br>
-                <br>
-                And obviously it is not working with this amount of
-                errors.<br>
-                <br>
-                Can anyone help me with this please? Is it a bug in the
-                UHD version? Or is there something I am missing here?<br>
-                <br>
-                Thanks<br>
-                Houshang<br>
+                <div>python3.8</div>
+                <div>Python 3.8.10=C2=A0</div>
+                <div>[GCC 9.4.0] on linux</div>
+                <div>Type "help", "copyright", "credits" or "license"
+                  for more information.</div>
+                <div>&gt;&gt;&gt; import uhd=C2=A0</div>
+                <div>Traceback (most recent call last):</div>
+                <div>=C2=A0 File "&lt;stdin&gt;", line 1, in &lt;module&g=
+t;</div>
+                <div>ModuleNotFoundError: No module named 'uhd'</div>
               </div>
-              <br>
-            </blockquote>
-            Try "the basics" first.<br>
+              <div><br>
+              </div>
+              <div><br>
+              </div>
+              <div><br>
+              </div>
+              <div>The versions on the device are:<br>
+              </div>
+              <div>
+                <div
+style=3D"color:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-=
+serif;font-size:16px;font-style:normal;font-weight:400;letter-spacing:nor=
+mal;text-indent:0px;text-transform:none;word-spacing:0px;white-space:norm=
+al;background-color:rgb( 255 , 255 , 255 )">=C2=A0</div>
+                <div
+style=3D"color:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-=
+serif;font-size:16px;font-style:normal;font-weight:400;letter-spacing:nor=
+mal;text-indent:0px;text-transform:none;word-spacing:0px;white-space:norm=
+al;background-color:rgb( 255 , 255 , 255 )">
+                  <div>=C2=A0gnuradio-config-info --v</div>
+                  <div>v3.8.5.0-6-g57bd109d</div>
+                  <div>-----------------------------------</div>
+                  <div>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">uhd_con=
+fig_info
+                      --version</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">UHD
+                      4.7.0.0-0-ga5ed1872</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">-------=
+-----------------------------------</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal"><br>
+                    </p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">uhd_fin=
+d_devices</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">[INFO]
+                      [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+                      UHD_4.7.0.0-0-ga5ed1872</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">-------=
+-------------------------------------------</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">--
+                      UHD Device 0</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">-------=
+-------------------------------------------</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">Device
+                      Address:</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">serial:=
+
+                      33CB10C</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">addr:=C2=
+=A0<span
+                        class=3D"Object"
+                        id=3D"OBJ_PREFIX_DWT106_com_zimbra_phone"
+                        style=3D"color:#55516f;text-decoration:none"><a
+                          style=3D"color:#55516f;text-decoration:none"
+                          moz-do-not-send=3D"true">192.168.10.2</a></span=
+></p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">claimed=
+:
+                      False</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">fpga:
+                      1G</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">mgmt_ad=
+dr:=C2=A0<span
+                        class=3D"Object"
+                        id=3D"OBJ_PREFIX_DWT107_com_zimbra_phone"
+                        style=3D"color:#55516f;text-decoration:none"><a
+                          style=3D"color:#55516f;text-decoration:none"
+                          moz-do-not-send=3D"true">192.168.10.2</a></span=
+></p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">name:
+                      ni-e320-33CB10C</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">product=
+:
+                      e320</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">type:
+                      e3xx</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal"><span
+style=3D"color:#000000;font-family:'arial' , 'helvetica' , sans-serif;fon=
+t-size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-=
+indent:0px;text-transform:none;word-spacing:0px;white-space:normal;backgr=
+ound-color:#ffffff;float:none;display:inline !important">----------------=
+------------------------</span></p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal"><span
+style=3D"color:#000000;font-family:'arial' , 'helvetica' , sans-serif;fon=
+t-size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-=
+indent:0px;text-transform:none;word-spacing:0px;white-space:normal;backgr=
+ound-color:#ffffff;float:none;display:inline !important"><br>
+                      </span></p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal"><span
+style=3D"color:#000000;font-family:'arial' , 'helvetica' , sans-serif;fon=
+t-size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-=
+indent:0px;text-transform:none;word-spacing:0px;white-space:normal;backgr=
+ound-color:#ffffff;float:none;display:inline !important"><br>
+                      </span></p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">python3=
+
+                      --version</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">Python
+                      3.8.10</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal"><span
+style=3D"color:#000000;font-family:'arial' , 'helvetica' , sans-serif;fon=
+t-size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-=
+indent:0px;text-transform:none;word-spacing:0px;white-space:normal;backgr=
+ound-color:#ffffff;float:none;display:inline !important">----------------=
+------------------------</span></p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">g++
+                      --version</p>
+                    <p
+style=3D"margin:0px;line-height:16px;background:rgb( 253 , 253 , 253 );co=
+lor:rgb( 0 , 0 , 0 );font-family:'arial' , 'helvetica' , sans-serif;font-=
+size:16px;font-style:normal;font-weight:400;letter-spacing:normal;text-in=
+dent:0px;text-transform:none;word-spacing:0px;white-space:normal">g++
+                      (Ubuntu 9.4.0-1ubuntu1~<span class=3D"Object"
+                        id=3D"OBJ_PREFIX_DWT108_com_zimbra_phone"
+                        style=3D"color:#55516f;text-decoration:none"><a
+                          style=3D"color:#55516f;text-decoration:none"
+                          moz-do-not-send=3D"true">20.04.2) 9.4.0</a></sp=
+an></p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <br>
-            What does:<br>
-            <br>
-            uhd_usrp_probe --args
-            "type=3Dn3xx,product=3Dn310,addr=3D192.168.10.2"<br>
-            <br>
-            <br>
-            Produce (you might have to change the addr to whatever the
-            address is of your N310).<br>
-            <br>
-            <br>
-          </div>
+          </blockquote>
+          How did you install UHD?=C2=A0=C2=A0 The Python API for UHD is =
+different
+          from the interface that Gnu Radio uses for UHD -- they're<br>
+          =C2=A0 different things.<br>
+          <br>
+          When you build UHD, you have to configure it to build the
+          direct Python support for UHD.=C2=A0 It's likely that didn't<br=
+>
+          =C2=A0 happen when it was built.<br>
+          <br>
+          <br>
+          <br>
           _______________________________________________<br>
-          USRP-users mailing list -- <a
-            href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
--users@lists.ettus.com</a><br>
-          To unsubscribe send an email to <a
-            href=3D"mailto:usrp-users-leave@lists.ettus.com"
-            target=3D"_blank" moz-do-not-send=3D"true"
-            class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettus.=
-com</a><br>
-        </blockquote>
-      </div>
-      <div><br clear=3D"all">
-      </div>
-      <br>
-      <span class=3D"gmail_signature_prefix">-- </span><br>
-      <div dir=3D"ltr" class=3D"gmail_signature">
-        <div dir=3D"ltr">
-          <div style=3D"text-align:left">
-            <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,173,238)=
-">Houshang
-                  Azizi</span></b><span
-                style=3D"font-size:11pt;font-family:Arial,sans-serif"></s=
-pan></p>
-            <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30=
-)">Test
-                  Engineer</span></b></p>
-          </div>
-          <a href=3D"https://www.accelleran.com/" rel=3D"noopener"
-            style=3D"color:rgb(51,122,183);background-color:transparent"
-            target=3D"_blank" moz-do-not-send=3D"true"><font size=3D"2"><=
-img
-                alt=3D"logo"
-src=3D"https://accelleran.com/wp-content/uploads/2024/04/Accelleran_NewLo=
-go_NoBaseline.png"
-style=3D"border: 0px; vertical-align: middle; width: 143px; height: auto;=
-"
-                moz-do-not-send=3D"true" width=3D"143" border=3D"0"></fon=
-t></a>
-          <div style=3D"text-align:left">
-            <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><b><span
-style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">(32)
-                  492195241</span></b><span
-                style=3D"font-size:10pt;font-family:Arial,sans-serif"></s=
-pan></p>
-            <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-                style=3D"font-size:10pt;font-family:Arial,sans-serif"><b>=
-<span
-                    style=3D"color:black"><a
-                      href=3D"mailto:Email@accelleran.com" target=3D"_bla=
-nk"
-                      moz-do-not-send=3D"true">houshang.azizi@accelleran.=
-com</a></span></b></span></p>
-            <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-                style=3D"font-size:10pt;font-family:Arial,sans-serif">=C2=
-=A0</span></p>
-            <p class=3D"MsoNormal"
-style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,s=
-ans-serif"><span
-                style=3D"font-size:10pt;font-family:Arial,sans-serif"><a
-                  href=3D"http://www.accelleran.com/"
-                  style=3D"color:rgb(17,85,204)" target=3D"_blank"
-                  moz-do-not-send=3D"true"><b><span
-                      style=3D"color:rgb(246,146,30)">www.accelleran.com<=
-/span></b></a></span></p>
-          </div>
-          <p style=3D"text-align:left;margin:20px 0px"><a
-              href=3D"https://www.linkedin.com/company/accelleran"
-              rel=3D"noopener"
-              style=3D"color:rgb(51,122,183);background-color:transparent=
-"
-              target=3D"_blank" moz-do-not-send=3D"true"><img
-                alt=3D"linkedin icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/ln.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=C2=
-=A0=C2=A0=C2=A0=C2=A0<a
-              href=3D"https://twitter.com/accelleran" rel=3D"noopener"
-              style=3D"color:rgb(51,122,183);background-color:transparent=
-"
-              target=3D"_blank" moz-do-not-send=3D"true"><img
-                alt=3D"twitter icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/tt.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=C2=
-=A0=C2=A0=C2=A0=C2=A0<a
-href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRef=
-resh=3D1"
-              rel=3D"noopener"
-              style=3D"color:rgb(51,122,183);background-color:transparent=
-"
-              target=3D"_blank" moz-do-not-send=3D"true"><img
-                alt=3D"youtube icon"
-src=3D"https://www.mail-signatures.com/signature-generator/img/templates/=
-simple-and-light/yt.png"
-style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
-                moz-do-not-send=3D"true" width=3D"15" border=3D"0"></a>=C2=
-=A0=C2=A0=C2=A0 <br>
-          </p>
+          USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated=
+" href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
+a><br>
+          To unsubscribe send an email to
+          <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:usrp-users=
+-leave@lists.ettus.com">usrp-users-leave@lists.ettus.com</a><br>
         </div>
       </div>
     </blockquote>
@@ -504,9 +808,9 @@ style=3D"border: 0px; vertical-align: middle; height: 15px; width: 15px;"
   </body>
 </html>
 
---------------CvBx3jIslV9zO4KoBPN6zJQq--
+--------------GplxCPmgnYCbTi5WxGR80IIw--
 
---===============8848321483971717840==
+--===============8568856900403565174==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -516,4 +820,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8848321483971717840==--
+--===============8568856900403565174==--
