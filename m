@@ -2,71 +2,58 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11FC39D9BC5
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 17:46:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A54E49DA46D
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Nov 2024 10:04:26 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 84BAA385AAB
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Nov 2024 11:46:48 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8A0E2385904
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Nov 2024 04:04:25 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1732639608; bh=OpoldbxxBQnh6wPaVY73yHq2g1B05sSom4rP2l0SNBc=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	t=1732698265; bh=T/fWUYUMFH6tTOWMsgJTeA6IlD5IQM5MRL387Ra+5IY=;
+	h=Date:References:In-Reply-To:From:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=fsrPYYIaf8BrxTohW5p41bJj30mQtGEejC3Tc7hQ4x22NEPxm+xhdGZNimq4K8Cip
-	 DgFi8NlHrePpSwxsi9ibMLLK1acaDOODFQyG7cE9yCUDTgoDXFT+Yfk/Y3IszbuZVC
-	 aLg6JBDOqSSnWqkR0Ke+NjUZhsjvyw6YzmHHdcKGkS+VycqdE7DGsDmNc5TVzedC/a
-	 WZFzkelkItnmGEjXpP3Fd/5CYx0cCoV0h0Sw9cVkfiEBZNFL6ukMYL59E2VA4Tvete
-	 jhBz7/nOTrhQeqoR3wU92JAJL1zyHppAHKwboFTXJMvudLx269oKqtE8yfe48B7+ZY
-	 W0q88y6JnDO5g==
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id CAEC6385A9B
-	for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 11:46:35 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=accelleran-com.20230601.gappssmtp.com header.i=@accelleran-com.20230601.gappssmtp.com header.b="eO/yTQqb";
-	dkim-atps=neutral
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-84197b4e61aso89220639f.3
-        for <usrp-users@lists.ettus.com>; Tue, 26 Nov 2024 08:46:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=accelleran-com.20230601.gappssmtp.com; s=20230601; t=1732639595; x=1733244395; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0HAoX7IT3S8YFYiJwWFw4frni7nZNKDa55hR0ttgrPg=;
-        b=eO/yTQqborH8Q4s+YOEHTcmkWMJbWppWxEzp+Q/KWwJSpnXTQ2QtY93GEzhzTroh3P
-         G8+jPFsb8oCiqo4+9OIW+tiIClZ9irV7DstniwUevsbXX2DRjLrm5q1GgnBBxREMMn83
-         4mJMhSV1FWr/kd7wRMx8YSodEw7ETVt5qhXeLzqXTHfBpXEAMkSZ6LUrVxplDiexOitP
-         lxvOr9gvnqbqVDxHpTFcQN2aTUP3Fehoa+rM/t3zuh/cYF/cOdbuafRlBjrOpcybf6kB
-         XAIiIi97birydRtgz2a+zPrgMXDmvgJyqoKMvIw7uTBcDzmX9h6h5x9Pie0y2jpGzRWk
-         CsqQ==
+	b=q5s26Hd9qT9P3iJdv14ZGgQ1hApl07rENGwCguiDAJ/cDnUmjM2dvSb5nh1qT2Rcy
+	 YJUOBZ1JbHw0yWIiec9ITzGyezxPMjsaR1AA3HUR7us6PRbiC83cZzyKMNFYVtixzd
+	 NHmpk2BEuSvPMvLisnr2xCrfUtkhExI5Q72yFkescNl9eDkykQzQ66e+7foqsQv2GN
+	 VVIMiTr8g9clNpevZGoH5RlIgXOBz8j07t4tpmKEh+bYu26YrgLDJzKgczynUMFy1H
+	 wQaaWoINYehKYf2L+pCp02uTNJfINedBF0KQeD+nbldCR11Mb3L+ZgGY7D6WMh863b
+	 mH0L4NwqGM3Fg==
+Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com [209.85.210.70])
+	by mm2.emwd.com (Postfix) with ESMTPS id 76CC3385309
+	for <usrp-users@lists.ettus.com>; Wed, 27 Nov 2024 04:01:57 -0500 (EST)
+Received: by mail-ot1-f70.google.com with SMTP id 46e09a7af769-71d4ed0d599so2492946a34.0
+        for <usrp-users@lists.ettus.com>; Wed, 27 Nov 2024 01:01:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732639595; x=1733244395;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
+        d=1e100.net; s=20230601; t=1732698116; x=1733302916;
+        h=cc:to:from:subject:message-id:in-reply-to:references:date
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0HAoX7IT3S8YFYiJwWFw4frni7nZNKDa55hR0ttgrPg=;
-        b=IPbkGQ2Vlp3ZF42kx0QBhZjeoyuscPVkB4ICxbQ1+VSkX6LGe7KD0xhDOAJLa8Vt8V
-         4qbCh8tz+xr6MJvwI4tdMXNm0ksIS3OOLSmWqFfgbQVRv9alb9Q1GWQC03oyFW64MVTr
-         1Ie3gWqMNsyPKqrEjBshEACZCJgQlGuDUgjlf8btECbS0uosb9ujD/I4gu5SxPL2i+eB
-         7xEcnJvvGFuZynVDGDoTnuLBscwdvHCXyeFbOS4MmadD3zVl1qxDgtYBg7+HgU4HMEIg
-         WvoQqBizGvycNb8hzHBwqUWSyiQSmL78DxIPfC/t4WM2s5Fq25XSDmwGDq6DZ7sTxYtM
-         G1zQ==
-X-Gm-Message-State: AOJu0YwTdMmmt9TFuaj5Nz4ZZJAz4eAk70G3SY1PddSZLO11GarHa+zT
-	CnpVvH2xg7AFGxN54a2AsxpiyThPwmJ3ltdjVNEJI07li+o4Pcnk8ti3CFty13YIUkfRGuq4CGF
-	RAQR/Eusv7x0/bT0poCse9cSkoM5ZnTmkB4xOuN2ia206xYyI4X/8hg==
-X-Gm-Gg: ASbGncvWID/h5AaXqzRSJLAs7VCvfgs8ioP14svpiUyKZcKnAY3bPe069vg5Ha9+pVw
-	Ha0FjT1R3jbDYF3PDyUsn1G9SEvczF9J/
-X-Google-Smtp-Source: AGHT+IEfm2kRZkh+gq0bR5kwYgRS1Q7tuFrejVCUhikepjEIYr2G7GaBy2IFYwYbr8bkPiEnY/1P05BX/muvOCt6UJ0=
-X-Received: by 2002:a05:6602:6b84:b0:83e:418c:8a28 with SMTP id
- ca18e2360f4ac-843ecf4ce38mr8893639f.7.1732639595007; Tue, 26 Nov 2024
- 08:46:35 -0800 (PST)
+        bh=Kjhfox2hpGAJAmMV1M3IJoD5Es7pR6hcBSbLYRCOmNc=;
+        b=mXanGatpGgIR4b2K45E3zhd6NC+Cwhgtme2MW5XDAcDveIkOR4HFaqTYvZcapCZpTm
+         A0iq1HZa6mHj0Dy8Hg7fchYIU18fGBAW8r+7PpGylwkuGJMFveICeoIDvPLUrEcT645d
+         n+p4VS/3nn/YMdYpgCSUS9uR6sGgTEmrFAyFhJbH1fuNyhzxQRmaLIdg2xQ0Xbs3r+Sh
+         XYp81U8/yzu4T9ornBYqWnpjh0k1EI9y9b1pdzQth4vM3QnVH6fLUJ8oXC0X8woymXmo
+         TeTGSL4n/mdE82t8eyEeifTqdZObyAyBj1qYfU+M/Q1fw4mx1zmqENCtQ80JZZTROiAa
+         cudw==
+X-Gm-Message-State: AOJu0YxG07zcPJ7Ie0eQZfj+atGTBVbGyy60/7JWPq3avbJv3KZG8dJf
+	jRayQWFdUpFIHGCldZlKY370BrD46I6yVu8P6KL89MxqJCbSCUBS+aMH7tA5/d8nt23OViOVDeH
+	8w8b0MR+65ZXjOeD0jAKkRntfA8NOojOovjM/NQ4FB1VCHgB3oIqWKaAVQWKtvPmaiOlODw==
+X-Gm-Gg: ASbGnctoieFsHkz5wRtqHr7sH842AC/SQaSpm2j8tAy070DozH8QwtOz91lUkAU4IgU
+	c6KVCrufuEhFHww==
+X-Google-Smtp-Source: AGHT+IGd6BqqEAUXvtj3PNaqFsSV98v5pfNu2PJ86Zbadrv9EQf/sDWA55fjtnrDuTggTAkgOasuX9oFtcl8tl2Wxd3Sh7+Ukj9LPA==
+X-Received: by 2002:a05:6808:2508:b0:3e6:5663:3324 with SMTP id 5614622812f47-3ea6dd85128mr2492997b6e.36.1732698116557;
+        Wed, 27 Nov 2024 01:01:56 -0800 (PST)
 MIME-Version: 1.0
-References: <CAO=xj9WM9jE2+niznSkpqcrqL5hmyYiStSM2DAaOZzL1LAJm=Q@mail.gmail.com>
- <35f6b1f4-8291-47ca-852f-b47e58aabf77@gmail.com> <CAO=xj9WGNbN5_YjrD6KfqTB2HA0bxmyr6D1iwRsqoH7VpcVnpg@mail.gmail.com>
- <ba50962f-2d73-425a-afc6-364cf359384e@gmail.com> <CAO=xj9Vm1eDeKvyGrUaUmrzLCCA9uv_jyFcdJthgBOVt0cE=Rw@mail.gmail.com>
- <2f9f7405-d4f0-4ebc-a820-591879c49d86@gmail.com>
-In-Reply-To: <2f9f7405-d4f0-4ebc-a820-591879c49d86@gmail.com>
-From: Houshang <houshang.azizi@accelleran.com>
 Date: Tue, 26 Nov 2024 17:46:23 +0100
+References: <CAO=xj9WM9jE2+niznSkpqcrqL5hmyYiStSM2DAaOZzL1LAJm=Q@mail.gmail.com>
+	<35f6b1f4-8291-47ca-852f-b47e58aabf77@gmail.com>
+	<CAO=xj9WGNbN5_YjrD6KfqTB2HA0bxmyr6D1iwRsqoH7VpcVnpg@mail.gmail.com>
+	<ba50962f-2d73-425a-afc6-364cf359384e@gmail.com>
+	<CAO=xj9Vm1eDeKvyGrUaUmrzLCCA9uv_jyFcdJthgBOVt0cE=Rw@mail.gmail.com>
+	<2f9f7405-d4f0-4ebc-a820-591879c49d86@gmail.com>
+In-Reply-To: <2f9f7405-d4f0-4ebc-a820-591879c49d86@gmail.com>
 Message-ID: <CAO=xj9WENjU=xgsXk59fid3K4Qgu0z7GjJgVmPVzwvNY_=5AXw@mail.gmail.com>
+From: Houshang <houshang.azizi@accelleran.com>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Message-ID-Hash: 7PL75U3LHV3EREDJLNH2KYSYL5BYSAFI
 X-Message-ID-Hash: 7PL75U3LHV3EREDJLNH2KYSYL5BYSAFI
@@ -84,12 +71,12 @@ List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6708489231478866502=="
+Content-Type: multipart/mixed; boundary="===============4039981959198001503=="
 
---===============6708489231478866502==
-Content-Type: multipart/alternative; boundary="00000000000095b7020627d39704"
+--===============4039981959198001503==
+Content-Type: multipart/alternative; boundary="000000000000ecd23d0627d39653"
 
---00000000000095b7020627d39704
+--000000000000ecd23d0627d39653
 Content-Type: text/plain; charset="UTF-8"
 
 10.10.0.100: I use it as the management ip of n310 and it is ETHERNET 1G.
@@ -368,7 +355,7 @@ wrote:
 twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
 <https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
 
---00000000000095b7020627d39704
+--000000000000ecd23d0627d39653
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -799,9 +786,9 @@ ator/img/templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-=
 align: middle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p><=
 /div></div>
 
---00000000000095b7020627d39704--
+--000000000000ecd23d0627d39653--
 
---===============6708489231478866502==
+--===============4039981959198001503==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -811,4 +798,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6708489231478866502==--
+--===============4039981959198001503==--
