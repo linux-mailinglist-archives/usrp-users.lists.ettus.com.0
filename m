@@ -2,74 +2,102 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA769E3608
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Dec 2024 09:57:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D32E9E3877
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Dec 2024 12:12:32 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AED79385530
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Dec 2024 03:57:23 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 7EE3738553B
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Dec 2024 06:12:31 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1733302643; bh=2nRUvThCOVItCQ6Rh1TpHHOVBw4G+v2j2EXwTXqryRE=;
+	t=1733310751; bh=o2+fgiEFDYSSDy9Ca5z0eue9Abx3XhyMLbBLaJ9T84s=;
 	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=eBVQd7PGP4rO+vsYDxOEqKUkqlIcaMUCNCEVnVGJhgNs3FMiVP2y0q0WrWm6B7FBv
-	 QVFSHBHwRT2zIO3c/6u90Mc1nXwKyzG2RRHHgpywRsLYJdQUMjaI+sgmHUmoNdJ/P4
-	 vGytjlz8/6UBp8Deed2Ruc2RkHwqgYieRVz/g2UOZjgWfTR7ImzZOR0coyYE9ESXLp
-	 SLOiaheeW7mehNtywug3g3mZFHJUvoTHw8WOJgQSdOYVqFDx4vg7uyy3huS2njnJ7c
-	 ybHms2Vy4YyrTRLYjA7MvpA7Y5HgHrV9wxlAGtJ94cE8J8H+rnVh5tiwac96hk96jB
-	 RWLgenx3RUttQ==
+	b=DzWKiExNubSjoijE3qbxiSi6YBh2p4lemewOV7wjGQn4XUHKUFBlLQlrKYdeHNTzg
+	 lU+KvUCwf3eNuyq3tUG4lhsXag2LV0JAYwsuI0plo3K9nTrGWPwqPSIHCWax9Nen5J
+	 Vubj6ArPbGKZujpTx6IcsqLwAab72LTcNj8Rnji3t+AS/dQzO3TsbVkKVIUyTZoUph
+	 ZDsgi5N5z0h3CJHcfKaqvCFxdGuLjp+9C8WHFml2fu7qY3YOWl59lkcq6cNk0eag+S
+	 U/WNkYeZEBKUz6hzEiF3WaZ04drQNA4SxmuOHrrsBppLHjYUBdO3uy3pAXSF2A57Se
+	 dlykUp+PG7aVg==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5996038550C
-	for <usrp-users@lists.ettus.com>; Wed,  4 Dec 2024 03:56:38 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id AAD5A385529
+	for <usrp-users@lists.ettus.com>; Wed,  4 Dec 2024 06:11:51 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1733302598; bh=uyREeS5xEH0QJYlhBQsvIlGPCIJ36usj7G9MAOJTk4Y=;
+	t=1733310711; bh=lYBwIj+2Wuqz9IxIHyTtXeoBTFJKSxw8uO9yNfMW9ME=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=dh9LF339P/fiARxenNz3hSBH6ZvaYURGAvmmSPuAzGRMCZdp8u1o26SVUkqrtcNMo
-	 KtizBRD5GTNLaCxcpddH+wp3lQTAh9U4pDh6hWREZqM8TmGfWVhw+6ZXOiOeWJ5zxx
-	 WR5pFfMSNOTr9Ykp4tafpQ2MEYvhQwiZTUv2W8qYlTE8q7Gdtev2Jt6Ye8KkozdBdo
-	 jy1Fqjyy48nKotAiBILi/xMx6mstWXJ6Eg9k+Wwkn84yxeWtCCEwEojN7wJEays6BK
-	 XFRNCXSybV9zio0YB2KZ9rQoMua7fnRfvDd6GNj95ewZZxzW/onW9JPzdZK4gJVbMn
-	 DSW7kQsICmDew==
-Date: Wed, 4 Dec 2024 08:56:38 +0000
+	b=BIl/jr0AXem4L2IsmIPdaBfbhbTI8bUDMG0sdwNdK9Q7Kw4WRTOcMdeRrUJMiDl1y
+	 h+nMOy7x7KrRbX/nKRwOAKEQgDgNc0txc5TcXPlvSS7haP6Ysq+gtgVdhNbj+60dsl
+	 P0ddpKMju3BmJb1CEMRgSjqzPebmksrV0CNE2FYxdzlA7Q1tmQfVwU57YWdHPGwI59
+	 f2K+K3VYoRMlmvkq6XMcoS27pQ8C/4fbcbGyZSA27aqrndm60qtAXK2hhuYvY42nZk
+	 IPmORDfZvFW6AgwrZaY5mVRYBBHv/vloBnA+BRPNJiTJvE1Sy6+jkQ4dgGuoDnpQd6
+	 5XS0+1VJp6rwA==
+Date: Wed, 4 Dec 2024 11:11:51 +0000
 To: usrp-users@lists.ettus.com
 From: houshang.azizi@accelleran.com
-Message-ID: <IgCEeZwl2vCyB8oYVU9tTvuZO6aG6Zt0cAshyiA0@lists.ettus.com>
+Message-ID: <zmtVDWFOKPj8KJezKqxQFJbDDAMZwPamlu4H0iIo@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAOrp07tp8uqr-B-b9HzGK9XYj5Ow-66OgabN3nLtWehisfsyEg@mail.gmail.com
+In-Reply-To: IgCEeZwl2vCyB8oYVU9tTvuZO6aG6Zt0cAshyiA0@lists.ettus.com
 MIME-Version: 1.0
-Message-ID-Hash: FUJD44H224URID3PQ4ACGYANIGQIG5UC
-X-Message-ID-Hash: FUJD44H224URID3PQ4ACGYANIGQIG5UC
+Message-ID-Hash: SKLKTZYWTS25UCQCTPN2FMH76GPFMQAB
+X-Message-ID-Hash: SKLKTZYWTS25UCQCTPN2FMH76GPFMQAB
 X-MailFrom: houshang.azizi@accelleran.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: [ERROR] [DPDK] Could not find route to destination address 192.168.10.2
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FUJD44H224URID3PQ4ACGYANIGQIG5UC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SKLKTZYWTS25UCQCTPN2FMH76GPFMQAB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6715801943598235207=="
+Content-Type: multipart/mixed; boundary="===============1886085339877967186=="
 
 This is a multi-part message in MIME format.
 
---===============6715801943598235207==
+--===============1886085339877967186==
 Content-Type: multipart/alternative;
- boundary="b1_IgCEeZwl2vCyB8oYVU9tTvuZO6aG6Zt0cAshyiA0"
+ boundary="b1_zmtVDWFOKPj8KJezKqxQFJbDDAMZwPamlu4H0iIo"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_IgCEeZwl2vCyB8oYVU9tTvuZO6aG6Zt0cAshyiA0
+--b1_zmtVDWFOKPj8KJezKqxQFJbDDAMZwPamlu4H0iIo
 Content-Type: text/plain; charset=us-ascii
 
-Hello
+I tried with `sudo su` as well (not working):
 
-I am getting similar issue:
+`root@bm-super11-intel:/home/ad# cat /root/.config/uhd.conf`
 
-`ad@bm-super11-intel:~$ sudo /usr/local/lib/uhd/examples/benchmark_rate --rx_rate 125e6 --rx_subdev "A:0 B:0" --rx_channels 0,1 --tx_rate 125e6 --tx_subdev "A:0 B:0" --tx_channels 0,1 --args "addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1"`
+`[use_dpdk=1]`
+
+`dpdk_mtu=9000`
+
+`dpdk_driver=/usr/lib/x86_64-linux-gnu/dpdk/pmds-22.0/`
+
+`dpdk_corelist=2,3,4`
+
+`dpdk_num_mbufs=4095`
+
+`dpdk_mbuf_cache_size=315`
+
+`[dpdk_mac=3c:ec:ef:af:7b:8d]`
+
+`dpdk_lcore = 3`
+
+`dpdk_ipv4 = 10.10.1.1/24`
+
+`dpdk_num_desc = 4096`
+
+`[dpdk_mac=3c:ec:ef:af:7b:8e]`
+
+`dpdk_lcore = 4`
+
+`dpdk_ipv4 = 10.10.2.1/24`
+
+`dpdk_num_desc = 4096`
+
+`root@bm-super11-intel:/home/ad# /usr/local/lib/uhd/examples/benchmark_rate --rx_rate 125e6 --rx_subdev "A:0 B:0" --rx_channels 0,1 --tx_rate 125e6 --tx_subdev "A:0 B:0" --tx_channels 0,1 --args "addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1"`
 
 `[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11; UHD_4.7.0.0-0-unknown`
 
@@ -83,7 +111,7 @@ I am getting similar issue:
 
 `EAL: Selected IOVA mode 'VA'`
 
-`EAL: No available 2048 kB hugepages reported`
+`EAL: No available 1048576 kB hugepages reported`
 
 `EAL: VFIO support initialized`
 
@@ -103,272 +131,116 @@ I am getting similar issue:
 
 `TELEMETRY: No legacy callbacks, legacy socket not created`
 
-`[ERROR] [DPDK] Could not find route to destination address 10.10.1.100`
+`i40e_alloc_rx_queue_mbufs(): Failed to allocate mbuf for RX`
 
-`[ERROR] [X300] X300 Network discovery error RuntimeError: DPDK: Could not find route to destination address 10.10.1.100`
+`i40e_dev_rx_queue_start(): Failed to allocate RX queue mbuf`
 
-`[00:00:00.000397] Creating the usrp device with: addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1...`
+`[ERROR] [DPDK] Port 1: Could not start device`
 
-`[ERROR] [DPDK] Could not find route to destination address 10.10.1.100`
+`EAL: FATAL: already called initialization.`
 
-`[ERROR] [X300] X300 Network discovery error RuntimeError: DPDK: Could not find route to destination address 10.10.1.100`
+`EAL: already called initialization.`
 
-`[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=10.10.0.100,type=n3xx,product=n310,serial=32000F1,name=ni-n3xx-32000F1,fpga=XG,claimed=False,addr=10.10.1.100,second_addr=10.10.2.100,master_clock_rate=125e6,use_dpdk=1`
+`[00:00:00.000208] Creating the usrp device with: addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1...`
 
-`` [INFO] [MPM.PeriphManager] init() called with device args `fpga=XG,master_clock_rate=125e6,mgmt_addr=10.10.0.100,name=ni-n3xx-32000F1,product=n310,second_addr=10.10.2.100,use_dpdk=1,clock_source=internal,time_source=internal'. ``
+`EAL: FATAL: already called initialization.`
 
-`[ERROR] [DPDK] Could not find route to destination address 10.10.1.100`
+`EAL: already called initialization.`
 
-`[WARNING] [MPMD::XPORT::UDP] Error during MTU discovery on address 10.10.1.100: RuntimeError: DPDK: Could not find route to destination address 10.10.1.100`
+`[ERROR] [X300] X300 Network discovery error RuntimeError: DPDK: Failure to start device`
 
-`[ERROR] [DPDK] Could not find route to destination address 10.10.2.100`
+`[ERROR] [DPDK] Error with EAL initialization`
 
-`[WARNING] [MPMD::XPORT::UDP] Error during MTU discovery on address 10.10.2.100: RuntimeError: DPDK: Could not find route to destination address 10.10.2.100`
+`[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL initialization`
 
-`[ERROR] [MPMD::MB_IFACE] No CHDR connection available!`
+`[ERROR] [DPDK] Error with EAL initialization`
 
-`Error: RuntimeError: No CHDR connection available!`
+`[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL initialization`
 
-`ad@bm-super11-intel:~$`
+`EAL: FATAL: already called initialization.`
 
-And two interfaces are bind to DPDK:
+`EAL: already called initialization.`
 
-`ad@bm-super11-intel:~$ sudo dpdk-devbind.py --status`
+`Error: LookupError: KeyError: No devices found for ----->`
 
-`Network devices using DPDK-compatible driver`
+`Device Address:`
 
-`============================================`
+`    addr: 10.10.1.100`
 
-`0000:43:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=vfio-pci unused=i40e`
+`    second_addr: 10.10.2.100`
 
-`0000:43:00.2 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=vfio-pci unused=i40e`
+`    mgmt_addr: 10.10.0.100`
 
-Any suggestion please?
+`    master_clock_rate: 125e6`
 
-Here are my UHD and DPD versions:
+`    use_dpdk: 1`
 
-`ad@bm-super11-intel:~$ /usr/local/bin/uhd_config_info --version`
+`[ERROR] [DPDK] Error with EAL initialization`
 
-`UHD 4.7.0.0-0-unknown`
+`[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL initialization`
 
-`ad@bm-super11-intel:~$ sudo dpdk-testpmd -v`
+root@bm-super11-intel:/home/ad#
 
-`EAL: Detected CPU lcores: 64`
-
-`EAL: Detected NUMA nodes: 1`
-
-`EAL: RTE Version: 'DPDK 21.11.6'`
-
-`EAL: Detected shared linkage of DPDK`
-
-`EAL: Multi-process socket /var/run/dpdk/rte/mp_socket`
-
-`EAL: Selected IOVA mode 'VA'`
-
-`EAL: No available 2048 kB hugepages reported`
-
-`EAL: VFIO support initialized`
-
-`EAL: Using IOMMU type 1 (Type 1)`
-
-`EAL: Ignore mapping IO port bar(1)`
-
-`EAL: Ignore mapping IO port bar(4)`
-
-`EAL: Probe PCI driver: net_i40e (8086:1572) device: 0000:43:00.1 (socket 0)`
-
-`EAL: Ignore mapping IO port bar(1)`
-
-`EAL: Ignore mapping IO port bar(4)`
-
-`EAL: Probe PCI driver: net_i40e (8086:1572) device: 0000:43:00.2 (socket 0)`
-
-`testpmd: create a new mbuf pool <mb_pool_0>: n=635456, size=2176, socket=0`
-
-`testpmd: preferred mempool ops selected: ring_mp_mc`
-
-`Configuring Port 0 (socket 0)`
-
-`Port 0: 3C:EC:EF:AF:7B:8D`
-
-`Configuring Port 1 (socket 0)`
-
-`Port 1: 3C:EC:EF:AF:7B:8E`
-
-`Checking link statuses...`
-
-`Done`
-
-`No commandline core given, start packet forwarding`
-
-`io packet forwarding - ports=2 - cores=1 - streams=2 - NUMA support enabled, MP allocation mode: native`
-
-`Logical Core 2 (socket 0) forwards packets on 2 streams:`
-
-`  RX P=0/Q=0 (socket 0) -> TX P=1/Q=0 (socket 0) peer=02:00:00:00:00:01`
-
-`  RX P=1/Q=0 (socket 0) -> TX P=0/Q=0 (socket 0) peer=02:00:00:00:00:00`
-
-`  io packet forwarding packets/burst=32`
-
-`  nb forwarding cores=1 - nb forwarding ports=2`
-
-`  port 0: RX queue number: 1 Tx queue number: 1`
-
-`    Rx offloads=0x0 Tx offloads=0x10000`
-
-`    RX queue: 0`
-
-`      RX desc=256 - RX free threshold=32`
-
-`      RX threshold registers: pthresh=0 hthresh=0  wthresh=0`
-
-`      RX Offloads=0x0`
-
-`    TX queue: 0`
-
-`      TX desc=256 - TX free threshold=32`
-
-`      TX threshold registers: pthresh=32 hthresh=0  wthresh=0`
-
-`      TX offloads=0x10000 - TX RS bit threshold=32`
-
-`  port 1: RX queue number: 1 Tx queue number: 1`
-
-`    Rx offloads=0x0 Tx offloads=0x10000`
-
-`    RX queue: 0`
-
-`      RX desc=256 - RX free threshold=32`
-
-`      RX threshold registers: pthresh=0 hthresh=0  wthresh=0`
-
-`      RX Offloads=0x0`
-
-`    TX queue: 0`
-
-`      TX desc=256 - TX free threshold=32`
-
-`      TX threshold registers: pthresh=32 hthresh=0  wthresh=0`
-
-`      TX offloads=0x10000 - TX RS bit threshold=32`
-
-`Press enter to exit`
-
-`Telling cores to stop...`
-
-`Waiting for lcores to finish...`
-
-Thanks
-
---b1_IgCEeZwl2vCyB8oYVU9tTvuZO6aG6Zt0cAshyiA0
+--b1_zmtVDWFOKPj8KJezKqxQFJbDDAMZwPamlu4H0iIo
 Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hello</p><p>I am getting similar issue:</p><p><code>ad@bm-super11-intel:=
-~$ sudo /usr/local/lib/uhd/examples/benchmark_rate --rx_rate 125e6 --rx_sub=
-dev "A:0 B:0" --rx_channels 0,1 --tx_rate 125e6 --tx_subdev "A:0 B:0" --tx_=
-channels 0,1 --args "addr=3D10.10.1.100,second_addr=3D10.10.2.100,mgmt_addr=
-=3D10.10.0.100,master_clock_rate=3D125e6,use_dpdk=3D1"</code></p><p><code>[=
-INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_21.11; UHD_4.=
-7.0.0-0-unknown</code></p><p><code>EAL: Detected CPU lcores: 64</code></p><=
-p><code>EAL: Detected NUMA nodes: 1</code></p><p><code>EAL: Detected shared=
- linkage of DPDK</code></p><p><code>EAL: Multi-process socket /var/run/dpdk=
-/rte/mp_socket</code></p><p><code>EAL: Selected IOVA mode 'VA'</code></p><p=
-><code>EAL: No available 2048 kB hugepages reported</code></p><p><code>EAL:=
- VFIO support initialized</code></p><p><code>EAL: Using IOMMU type 1 (Type =
-1)</code></p><p><code>EAL: Ignore mapping IO port bar(1)</code></p><p><code=
->EAL: Ignore mapping IO port bar(4)</code></p><p><code>EAL: Probe PCI drive=
-r: net_i40e (8086:1572) device: 0000:43:00.1 (socket 0)</code></p><p><code>=
-EAL: Ignore mapping IO port bar(1)</code></p><p><code>EAL: Ignore mapping I=
-O port bar(4)</code></p><p><code>EAL: Probe PCI driver: net_i40e (8086:1572=
-) device: 0000:43:00.2 (socket 0)</code></p><p><code>TELEMETRY: No legacy c=
-allbacks, legacy socket not created</code></p><p><code>[ERROR] [DPDK] Could=
- not find route to destination address 10.10.1.100</code></p><p><code>[ERRO=
-R] [X300] X300 Network discovery error RuntimeError: DPDK: Could not find r=
-oute to destination address 10.10.1.100</code></p><p><code>[00:00:00.000397=
-] Creating the usrp device with: addr=3D10.10.1.100,second_addr=3D10.10.2.1=
-00,mgmt_addr=3D10.10.0.100,master_clock_rate=3D125e6,use_dpdk=3D1...</code>=
-</p><p><code>[ERROR] [DPDK] Could not find route to destination address 10.=
-10.1.100</code></p><p><code>[ERROR] [X300] X300 Network discovery error Run=
-timeError: DPDK: Could not find route to destination address 10.10.1.100</c=
-ode></p><p><code>[INFO] [MPMD] Initializing 1 device(s) in parallel with ar=
-gs: mgmt_addr=3D10.10.0.100,type=3Dn3xx,product=3Dn310,serial=3D32000F1,nam=
-e=3Dni-n3xx-32000F1,fpga=3DXG,claimed=3DFalse,addr=3D10.10.1.100,second_add=
-r=3D10.10.2.100,master_clock_rate=3D125e6,use_dpdk=3D1</code></p><p><code>[=
-INFO] [MPM.PeriphManager] init() called with device args `fpga=3DXG,master_=
-clock_rate=3D125e6,mgmt_addr=3D10.10.0.100,name=3Dni-n3xx-32000F1,product=
-=3Dn310,second_addr=3D10.10.2.100,use_dpdk=3D1,clock_source=3Dinternal,time=
-_source=3Dinternal'.</code></p><p><code>[ERROR] [DPDK] Could not find route=
- to destination address 10.10.1.100</code></p><p><code>[WARNING] [MPMD::XPO=
-RT::UDP] Error during MTU discovery on address 10.10.1.100: RuntimeError: D=
-PDK: Could not find route to destination address 10.10.1.100</code></p><p><=
-code>[ERROR] [DPDK] Could not find route to destination address 10.10.2.100=
-</code></p><p><code>[WARNING] [MPMD::XPORT::UDP] Error during MTU discovery=
- on address 10.10.2.100: RuntimeError: DPDK: Could not find route to destin=
-ation address 10.10.2.100</code></p><p><code>[ERROR] [MPMD::MB_IFACE] No CH=
-DR connection available!</code></p><p><code>Error: RuntimeError: No CHDR co=
-nnection available!</code></p><p><code>ad@bm-super11-intel:~$</code></p><p>=
-<br></p><p>And two interfaces are bind to DPDK:</p><p><code>ad@bm-super11-i=
-ntel:~$ sudo dpdk-devbind.py --status</code></p><p><code>Network devices us=
-ing DPDK-compatible driver</code></p><p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p><p><code>0000:43:00.1 'Ethernet Co=
-ntroller X710 for 10GbE SFP+ 1572' drv=3Dvfio-pci unused=3Di40e</code></p><=
-p><code>0000:43:00.2 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=3Dv=
-fio-pci unused=3Di40e</code></p><p><br></p><p>Any suggestion please?</p><p>=
-<br></p><p>Here are my UHD and DPD versions:</p><p><code>ad@bm-super11-inte=
-l:~$ /usr/local/bin/uhd_config_info --version</code></p><p><code>UHD 4.7.0.=
-0-0-unknown</code></p><p><code>ad@bm-super11-intel:~$ sudo dpdk-testpmd -v<=
-/code></p><p><code>EAL: Detected CPU lcores: 64</code></p><p><code>EAL: Det=
-ected NUMA nodes: 1</code></p><p><code>EAL: RTE Version: 'DPDK 21.11.6'</co=
-de></p><p><code>EAL: Detected shared linkage of DPDK</code></p><p><code>EAL=
-: Multi-process socket /var/run/dpdk/rte/mp_socket</code></p><p><code>EAL: =
-Selected IOVA mode 'VA'</code></p><p><code>EAL: No available 2048 kB hugepa=
-ges reported</code></p><p><code>EAL: VFIO support initialized</code></p><p>=
-<code>EAL: Using IOMMU type 1 (Type 1)</code></p><p><code>EAL: Ignore mappi=
-ng IO port bar(1)</code></p><p><code>EAL: Ignore mapping IO port bar(4)</co=
-de></p><p><code>EAL: Probe PCI driver: net_i40e (8086:1572) device: 0000:43=
-:00.1 (socket 0)</code></p><p><code>EAL: Ignore mapping IO port bar(1)</cod=
-e></p><p><code>EAL: Ignore mapping IO port bar(4)</code></p><p><code>EAL: P=
-robe PCI driver: net_i40e (8086:1572) device: 0000:43:00.2 (socket 0)</code=
-></p><p><code>testpmd: create a new mbuf pool &lt;mb_pool_0&gt;: n=3D635456=
-, size=3D2176, socket=3D0</code></p><p><code>testpmd: preferred mempool ops=
- selected: ring_mp_mc</code></p><p><code>Configuring Port 0 (socket 0)</cod=
-e></p><p><code>Port 0: 3C:EC:EF:AF:7B:8D</code></p><p><code>Configuring Por=
-t 1 (socket 0)</code></p><p><code>Port 1: 3C:EC:EF:AF:7B:8E</code></p><p><c=
-ode>Checking link statuses...</code></p><p><code>Done</code></p><p><code>No=
- commandline core given, start packet forwarding</code></p><p><code>io pack=
-et forwarding - ports=3D2 - cores=3D1 - streams=3D2 - NUMA support enabled,=
- MP allocation mode: native</code></p><p><code>Logical Core 2 (socket 0) fo=
-rwards packets on 2 streams:</code></p><p><code>  RX P=3D0/Q=3D0 (socket 0)=
- -&gt; TX P=3D1/Q=3D0 (socket 0) peer=3D02:00:00:00:00:01</code></p><p><cod=
-e>  RX P=3D1/Q=3D0 (socket 0) -&gt; TX P=3D0/Q=3D0 (socket 0) peer=3D02:00:=
-00:00:00:00</code></p><p><code>  io packet forwarding packets/burst=3D32</c=
-ode></p><p><code>  nb forwarding cores=3D1 - nb forwarding ports=3D2</code>=
-</p><p><code>  port 0: RX queue number: 1 Tx queue number: 1</code></p><p><=
-code>    Rx offloads=3D0x0 Tx offloads=3D0x10000</code></p><p><code>    RX =
-queue: 0</code></p><p><code>      RX desc=3D256 - RX free threshold=3D32</c=
-ode></p><p><code>      RX threshold registers: pthresh=3D0 hthresh=3D0  wth=
-resh=3D0</code></p><p><code>      RX Offloads=3D0x0</code></p><p><code>    =
-TX queue: 0</code></p><p><code>      TX desc=3D256 - TX free threshold=3D32=
-</code></p><p><code>      TX threshold registers: pthresh=3D32 hthresh=3D0 =
- wthresh=3D0</code></p><p><code>      TX offloads=3D0x10000 - TX RS bit thr=
-eshold=3D32</code></p><p><code>  port 1: RX queue number: 1 Tx queue number=
-: 1</code></p><p><code>    Rx offloads=3D0x0 Tx offloads=3D0x10000</code></=
-p><p><code>    RX queue: 0</code></p><p><code>      RX desc=3D256 - RX free=
- threshold=3D32</code></p><p><code>      RX threshold registers: pthresh=3D=
-0 hthresh=3D0  wthresh=3D0</code></p><p><code>      RX Offloads=3D0x0</code=
-></p><p><code>    TX queue: 0</code></p><p><code>      TX desc=3D256 - TX f=
-ree threshold=3D32</code></p><p><code>      TX threshold registers: pthresh=
-=3D32 hthresh=3D0  wthresh=3D0</code></p><p><code>      TX offloads=3D0x100=
-00 - TX RS bit threshold=3D32</code></p><p><code>Press enter to exit</code>=
-</p><p><code>Telling cores to stop...</code></p><p><code>Waiting for lcores=
- to finish...</code></p><p>Thanks</p>
+<p>I tried with <code>sudo su</code> as well (not working):</p><p><code>roo=
+t@bm-super11-intel:/home/ad# cat /root/.config/uhd.conf</code></p><p><code>=
+[use_dpdk=3D1]</code></p><p><code>dpdk_mtu=3D9000</code></p><p><code>dpdk_d=
+river=3D/usr/lib/x86_64-linux-gnu/dpdk/pmds-22.0/</code></p><p><code>dpdk_c=
+orelist=3D2,3,4</code></p><p><code>dpdk_num_mbufs=3D4095</code></p><p><code=
+>dpdk_mbuf_cache_size=3D315</code></p><p><code>[dpdk_mac=3D3c:ec:ef:af:7b:8=
+d]</code></p><p><code>dpdk_lcore =3D 3</code></p><p><code>dpdk_ipv4 =3D 10.=
+10.1.1/24</code></p><p><code>dpdk_num_desc =3D 4096</code></p><p><code>[dpd=
+k_mac=3D3c:ec:ef:af:7b:8e]</code></p><p><code>dpdk_lcore =3D 4</code></p><p=
+><code>dpdk_ipv4 =3D 10.10.2.1/24</code></p><p><code>dpdk_num_desc =3D 4096=
+</code></p><p><code>root@bm-super11-intel:/home/ad# /usr/local/lib/uhd/exam=
+ples/benchmark_rate --rx_rate 125e6 --rx_subdev "A:0 B:0" --rx_channels 0,1=
+ --tx_rate 125e6 --tx_subdev "A:0 B:0" --tx_channels 0,1 --args "addr=3D10.=
+10.1.100,second_addr=3D10.10.2.100,mgmt_addr=3D10.10.0.100,master_clock_rat=
+e=3D125e6,use_dpdk=3D1"</code></p><p><code>[INFO] [UHD] linux; GNU C++ vers=
+ion 11.4.0; Boost_107400; DPDK_21.11; UHD_4.7.0.0-0-unknown</code></p><p><c=
+ode>EAL: Detected CPU lcores: 64</code></p><p><code>EAL: Detected NUMA node=
+s: 1</code></p><p><code>EAL: Detected shared linkage of DPDK</code></p><p><=
+code>EAL: Multi-process socket /var/run/dpdk/rte/mp_socket</code></p><p><co=
+de>EAL: Selected IOVA mode 'VA'</code></p><p><code>EAL: No available 104857=
+6 kB hugepages reported</code></p><p><code>EAL: VFIO support initialized</c=
+ode></p><p><code>EAL: Using IOMMU type 1 (Type 1)</code></p><p><code>EAL: I=
+gnore mapping IO port bar(1)</code></p><p><code>EAL: Ignore mapping IO port=
+ bar(4)</code></p><p><code>EAL: Probe PCI driver: net_i40e (8086:1572) devi=
+ce: 0000:43:00.1 (socket 0)</code></p><p><code>EAL: Ignore mapping IO port =
+bar(1)</code></p><p><code>EAL: Ignore mapping IO port bar(4)</code></p><p><=
+code>EAL: Probe PCI driver: net_i40e (8086:1572) device: 0000:43:00.2 (sock=
+et 0)</code></p><p><code>TELEMETRY: No legacy callbacks, legacy socket not =
+created</code></p><p><code>i40e_alloc_rx_queue_mbufs(): Failed to allocate =
+mbuf for RX</code></p><p><code>i40e_dev_rx_queue_start(): Failed to allocat=
+e RX queue mbuf</code></p><p><code>[ERROR] [DPDK] Port 1: Could not start d=
+evice</code></p><p><code>EAL: FATAL: already called initialization.</code><=
+/p><p><code>EAL: already called initialization.</code></p><p><code>[00:00:0=
+0.000208] Creating the usrp device with: addr=3D10.10.1.100,second_addr=3D1=
+0.10.2.100,mgmt_addr=3D10.10.0.100,master_clock_rate=3D125e6,use_dpdk=3D1..=
+.</code></p><p><code>EAL: FATAL: already called initialization.</code></p><=
+p><code>EAL: already called initialization.</code></p><p><code>[ERROR] [X30=
+0] X300 Network discovery error RuntimeError: DPDK: Failure to start device=
+</code></p><p><code>[ERROR] [DPDK] Error with EAL initialization</code></p>=
+<p><code>[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL=
+ initialization</code></p><p><code>[ERROR] [DPDK] Error with EAL initializa=
+tion</code></p><p><code>[ERROR] [UHD] Device discovery error: RuntimeError:=
+ Error with EAL initialization</code></p><p><code>EAL: FATAL: already calle=
+d initialization.</code></p><p><code>EAL: already called initialization.</c=
+ode></p><p><code>Error: LookupError: KeyError: No devices found for -----&g=
+t;</code></p><p><code>Device Address:</code></p><p><code>    addr: 10.10.1.=
+100</code></p><p><code>    second_addr: 10.10.2.100</code></p><p><code>    =
+mgmt_addr: 10.10.0.100</code></p><p><code>    master_clock_rate: 125e6</cod=
+e></p><p><code>    use_dpdk: 1</code></p><p><code>[ERROR] [DPDK] Error with=
+ EAL initialization</code></p><p><code>[ERROR] [X300] X300 Network discover=
+y error RuntimeError: Error with EAL initialization</code></p><p>root@bm-su=
+per11-intel:/home/ad#</p>
 
---b1_IgCEeZwl2vCyB8oYVU9tTvuZO6aG6Zt0cAshyiA0--
+--b1_zmtVDWFOKPj8KJezKqxQFJbDDAMZwPamlu4H0iIo--
 
---===============6715801943598235207==
+--===============1886085339877967186==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -378,4 +250,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6715801943598235207==--
+--===============1886085339877967186==--
