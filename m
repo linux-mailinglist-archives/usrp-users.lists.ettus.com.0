@@ -2,107 +2,249 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E299C9E5D00
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2024 18:23:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 560709E5D18
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2024 18:28:06 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3AAAF38587A
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2024 12:23:48 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 7B2613858E4
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2024 12:28:05 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1733419428; bh=AXxJ00qqVq9yTxxXF7pFosiQCvQVRs6iDWR/+S4tscw=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=ADfYFa4q877Mk8RvQOCoxYL+bNyp1mED3G7Jrlm5LnptweO0Sa19lO6uwKFCk8jwF
-	 fPU+lRxQVkMEZ7YXzw0zwl4okij2bx3CMzzjEUyXXUdTe7cEhhi27Xfry695Xpd6Jj
-	 UpfsRL9tzUM8u0+SGGcdl4SKY7cya/kNaYdP4DEbFCbA089c3+fs6iwv+w+c6512vx
-	 lPdCfQzLJD9Jr8KTuGusvmEtpiW7P1YFE7DRymcVfqpTNUN8wx3///V+K33xaGJzj8
-	 qNAKhs98pNelCoGj2VuuyoiVELHITHwjrEjbn9M1YPFtHZYjGQYtXA4AsrREWZXwJ2
-	 gBftWpjMfdwrA==
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-	by mm2.emwd.com (Postfix) with ESMTPS id 67F213851C6
-	for <usrp-users@lists.ettus.com>; Thu,  5 Dec 2024 12:23:07 -0500 (EST)
+	t=1733419685; bh=8Vlalif8hs3DLUcrxmEJtLt4glJFwObRcqCLtEZhpK0=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=hgybc0IkG8x50UFDy0j25bBDwBmiZ/NmxGXR4BJBm59LxU8+BVARA6tl15nU71cmb
+	 6nOtqDcjCpUx6QaMgXuM/P574QXL4XBugXRramnFXUOElXqOWu7Ua7EL48hGvt+aK/
+	 IAKAy9oHd7n+IpYvfkax5YIgbUn8bCQvg3Y76J+lhU/W776B04IVYkB8+DGJHcpRZd
+	 is/b/OrgLLyHgIkMaGs3WtZYWIOQtRfsWcFmVyxq23x+sDF6Nk/fg+bM+tebNOe+N0
+	 kHxpwfbxWDNVxXLLbFD+3bhivNl2usZp5WBfflWYADwUyDZ0pnGUBUXj9nGzIqiICM
+	 gdrv/WgHUkQRA==
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 94AE93857A4
+	for <usrp-users@lists.ettus.com>; Thu,  5 Dec 2024 12:27:30 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EMLl7k+D";
+	dkim=pass (2048-bit key; unprotected) header.d=accelleran-com.20230601.gappssmtp.com header.i=@accelleran-com.20230601.gappssmtp.com header.b="GUYJFYsB";
 	dkim-atps=neutral
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7b673aacf13so178272585a.0
-        for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2024 09:23:07 -0800 (PST)
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-84197b4e61aso77103039f.3
+        for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2024 09:27:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733419386; x=1734024186; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vf0cMG9pi/bcmRjgQOw1ljiMRObZ+RVTpoZJ4JNdnEA=;
-        b=EMLl7k+D4Ke+6q5UfNeTNvTK7F8XdBFHSoN4oAZGu1UkPHWFbTHr0BmX6FGHN+LsAB
-         Y9iCQh2j/aUTcnOknXc6n8C/iz4kpDS/030IDT7M7KASBU24I6i0W5YkF6Ir7atZBmCi
-         kVWyKn+lxKzw8xGBtCy89gmLSgK+yNLobYpcVaget/2tawfXMc2BfcQ7r74/ZEXWd8H3
-         oj8n79HJPTb9sxfpkIvtnFhJKM/Iex5NUbdlqOUmf1K0huePiyc3BLTM3MUzVH03GcTl
-         3V4k0IBX8vRCJ608FaEg8GKh9LbX5idUldbpTV9b6x3sMyOvUvKfcPhkDF3vDvX+HlES
-         GMQQ==
+        d=accelleran-com.20230601.gappssmtp.com; s=20230601; t=1733419650; x=1734024450; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=00DldD7GFUv/MMoIWpps2dge9n46MYqSVU5SoEx38Uc=;
+        b=GUYJFYsBwxpDicOnSpVPJ/B9XdzZFdOCrEkvahCjgVxMs/Jlnv191Vd8jnMWFrEdkr
+         8OEZRz3OroNjcUhpgpcUCUhobLq/oIPWDh9RQBwYMuNWuSzn1vdLAuhYGZpfYrAK2nWH
+         KHSujOit1j/kEjNPHq1zV5OZCZXyd1AfZLffcT17G+eaYqem8cURInYacv4NkLuuDuC0
+         1MbpygqybFzMREHUMOMi9npEpR1oQtxZF0heokfP6lVderv3uLVQoszF5AFGGuIsIGLV
+         QnZa9wGHcbN70f9Ri3YeDO9M1J2IiO29lnZ5O4vJiG3Bc+0V1oz18pY+hwHox/GX9Krw
+         kBDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733419386; x=1734024186;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Vf0cMG9pi/bcmRjgQOw1ljiMRObZ+RVTpoZJ4JNdnEA=;
-        b=Qip/P3Fw6HrsBmzEHTO0hmxVVAHy5GmObVEgq0x/lzxHeTTz41i4PPdcoZf71KRzTh
-         U/3Q0Hfv3iezmgHKvTjRWfp+4WxzIO4yj6MpsF5VCzxdJdIfd/3+psZZZYh5TbFm0aO2
-         hs0bRy7L/OCIsZOycdFjjZOi7UtMaCrq9gR+AkcxXVUnALXE+UDNeS0yrxGK7TwPnWKK
-         YxbXF4E9bGczPSC7aXc5Hw2ZvqMCsjoOIHJkKUgEk7b45hEo2/jVfRO98+kw7ac9zYnj
-         EKhS0ypCN3d7yisi+/ddLtRVVJgq9N0L8cDw5xq7px55FuVlymbaXKDYRivF3K6TFmWf
-         5C7Q==
-X-Gm-Message-State: AOJu0YwYiw9Csa1K0Lv4+XgdMnFUTvDJZO4dTnpF/GFBozpD4UW/0AQQ
-	aHpkbOeihlb0WT5MOkNX0yYkbOLyDagyRhCH55U47ePFys7QBbKKJn4bHQ==
-X-Gm-Gg: ASbGnct2fWr1V387MmiURbixbJ0TMfPHM6XIaR+S3awfOWZi+oXRA700gXqce777c9F
-	rvhzTFK0/2Kmv8wkdKoWowHXV2hBX+OWRqVJmlpgBz5DRFCPp+DXiiWUBxFXIC6eEGRB7RllIDn
-	9mJW376nsKvu5EmJzdVPsqUp8Md8SDcGmOE6y9TIC1Mh/WSD4PfNpPpa3e0fmMOcLEUE71h5+Ik
-	+wzAh2pfeieJ2bAx/VZ+9dJ9a+iwqkxp4tqlXTHYmXqj+7BYxgy1oxCl2PciDFMFmmnMjCXArmY
-	s4DP7/bBoT8jReUuhLTRGpOOuUTnclidLKSSz8qWNAdnk93F
-X-Google-Smtp-Source: AGHT+IGIXJ07hSAcPUmWe4SGdWRzNRnI4z0/byDbcH0ZIs1DA3rI5ImJpbjvs9zNc4sAuz44nBXsMQ==
-X-Received: by 2002:a05:620a:4622:b0:7b1:48d1:574d with SMTP id af79cd13be357-7b6bc911aa5mr18435985a.8.1733419386385;
-        Thu, 05 Dec 2024 09:23:06 -0800 (PST)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-05-174-88-53-166.dsl.bell.ca. [174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7b6b5a9e61fsm78854385a.105.2024.12.05.09.23.05
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Dec 2024 09:23:05 -0800 (PST)
-Message-ID: <c6884d1d-c5d8-4e18-a65c-238dd84662b2@gmail.com>
-Date: Thu, 5 Dec 2024 12:23:05 -0500
+        d=1e100.net; s=20230601; t=1733419650; x=1734024450;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=00DldD7GFUv/MMoIWpps2dge9n46MYqSVU5SoEx38Uc=;
+        b=VD+NS/+uFhxF1Cu1jhgd8fnmugtCe4niHqtZVQTA1T99oRoBtFha0ZmnAorudJkSGd
+         PDsLxtSOAAc4mlIS1yURKnJ467+q1gq8ebLCGxDtV/fOhHlU5alMy42z7jwyfUwu/CJ6
+         /jp1v98cy7vUofSVWqDw0kMvqvoq2iWKHzPn73w5LB3vMaPMAY28MXb7OMLBV9xM7Z0/
+         WKVb8pzlXNEfZIb2ZUM8ym9moEMJjeMgxBBGf0CgsUdXLwVqQvb1C3F1DWK4vMdy76ox
+         9FYHbLCyCn81j2h+0gO5c+HJc3TtljRcRxbbBDsaWuXIkBI/1C1CD7CX6s1qFXtFhsPx
+         Sm2g==
+X-Gm-Message-State: AOJu0YxkvsZ2WSxFJmKxTi0vy7AWpVnwml457Hxty+OJCbkgfFMweIJ0
+	JG+laB4dQGbFS5OI9RUqw8WuKk+VBEu/KBHa49+pcKik3Vc8sOMS+BtLoIEilw6B88rL1KrNfBx
+	ZnT78/sAcSt3cfCyWOhv0kvCdAklGVBEg9RXsgdm5KJBaoFKXqtQNxQ==
+X-Gm-Gg: ASbGncua6fzUfvIWev2wg3t4BzH0NJQy0MJh2A1hhDpWfFOeFofzyB91/0x8X3U/PfO
+	MxD7Af8Hw8ZUtoK7l+FArJ8ceuVjRXoqw
+X-Google-Smtp-Source: AGHT+IGA+7b0UqpXCeVA7Y+uYa9/bcHzJM/ZwWRm+AX3CAVd/Nhsw/Zme/UxP2aGytpw4m57AL+Yp4JJcoSs7QMnivQ=
+X-Received: by 2002:a05:6602:29c8:b0:841:95b5:8944 with SMTP id
+ ca18e2360f4ac-8445b5e2776mr1355429939f.15.1733419649671; Thu, 05 Dec 2024
+ 09:27:29 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com>
-Message-ID-Hash: N3MR3UPAL6DGRGAOK232QSL4SWSXILN5
-X-Message-ID-Hash: N3MR3UPAL6DGRGAOK232QSL4SWSXILN5
-X-MailFrom: patchvonbraun@gmail.com
+References: <n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com> <c6884d1d-c5d8-4e18-a65c-238dd84662b2@gmail.com>
+In-Reply-To: <c6884d1d-c5d8-4e18-a65c-238dd84662b2@gmail.com>
+From: Houshang <houshang.azizi@accelleran.com>
+Date: Thu, 5 Dec 2024 18:27:18 +0100
+Message-ID: <CAO=xj9WWy4FwmOVvK1D2-XNKNnvn4q7vUeDv_u=iXbz4zycJ7A@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: ZSSTFH37YLFT7PWQSYOHN4HFXFA5OTBW
+X-Message-ID-Hash: ZSSTFH37YLFT7PWQSYOHN4HFXFA5OTBW
+X-MailFrom: houshang.azizi@accelleran.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Benchmarking x410 with Mellanox with DPDK
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N3MR3UPAL6DGRGAOK232QSL4SWSXILN5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZSSTFH37YLFT7PWQSYOHN4HFXFA5OTBW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5886815897014708335=="
+Content-Type: multipart/mixed; boundary="===============2886352252881157064=="
 
-This is a multi-part message in MIME format.
---===============5886815897014708335==
-Content-Type: multipart/alternative;
- boundary="------------7IdyQA3EMiwCIaFPJdQlYnQ3"
-Content-Language: en-US
+--===============2886352252881157064==
+Content-Type: multipart/alternative; boundary="0000000000007747d206288936e2"
 
-This is a multi-part message in MIME format.
---------------7IdyQA3EMiwCIaFPJdQlYnQ3
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000007747d206288936e2
+Content-Type: text/plain; charset="UTF-8"
 
-On 05/12/2024 11:44, houshang.azizi@accelleran.com wrote:
+Hi Marcus
+Here it is:
+
+ad@bm-super11-intel:~$ sudo /usr/local/lib/uhd/examples/benchmark_rate
+--args "type=n3xx,product=n310,addr=10.10.0.100,master_clock_rate=125e6"
+--rx_rate 25e6 --tx_rate 25e6
+
+[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_23.11;
+UHD_4.7.0.HEAD-0-ga5ed1872
+[00:00:00.000131] Creating the usrp device with:
+type=n3xx,product=n310,addr=10.10.0.100,master_clock_rate=125e6...
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=10.10.0.100,type=n3xx,product=n310,serial=32000F1,name=ni-n3xx-32000F1,fpga=XG,claimed=False,addr=10.10.0.100,master_clock_rate=125e6
+[WARNING] [MPM.RPCServer] A timeout event occured!
+[INFO] [MPM.PeriphManager] init() called with device args
+`fpga=XG,master_clock_rate=125e6,mgmt_addr=10.10.0.100,name=ni-n3xx-32000F1,product=n310,clock_source=internal,time_source=internal'.
+Using Device: Single USRP:
+  Device: N300-Series Device
+  Mboard 0: n310
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: Magnesium
+  RX Channel: 1
+    RX DSP: 1
+    RX Dboard: A
+    RX Subdev: Magnesium
+  RX Channel: 2
+    RX DSP: 2
+    RX Dboard: B
+    RX Subdev: Magnesium
+  RX Channel: 3
+    RX DSP: 3
+    RX Dboard: B
+    RX Subdev: Magnesium
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: Magnesium
+  TX Channel: 1
+    TX DSP: 1
+    TX Dboard: A
+    TX Subdev: Magnesium
+  TX Channel: 2
+    TX DSP: 2
+    TX Dboard: B
+    TX Subdev: Magnesium
+  TX Channel: 3
+    TX DSP: 3
+    TX Dboard: B
+    TX Subdev: Magnesium
+
+[00:00:22.270989651] Setting device timestamp to 0...
+[WARNING] [0/DDC#0] The requested decimation is odd; the user should expect
+passband CIC rolloff.
+Select an even decimation to ensure that a halfband filter is enabled.
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8
+will enable 3 halfbands.
+decimation = dsp_rate/samp_rate -> 5
+[WARNING] [0/DDC#0] The requested decimation is odd; the user should expect
+passband CIC rolloff.
+Select an even decimation to ensure that a halfband filter is enabled.
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8
+will enable 3 halfbands.
+decimation = dsp_rate/samp_rate -> 5
+[WARNING] [0/DDC#0] The requested decimation is odd; the user should expect
+passband CIC rolloff.
+Select an even decimation to ensure that a halfband filter is enabled.
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8
+will enable 3 halfbands.
+decimation = dsp_rate/samp_rate -> 5
+[WARNING] [0/DDC#0] The requested decimation is odd; the user should expect
+passband CIC rolloff.
+Select an even decimation to ensure that a halfband filter is enabled.
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8
+will enable 3 halfbands.
+decimation = dsp_rate/samp_rate -> 5
+[WARNING] [0/DDC#1] The requested decimation is odd; the user should expect
+passband CIC rolloff.
+Select an even decimation to ensure that a halfband filter is enabled.
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8
+will enable 3 halfbands.
+decimation = dsp_rate/samp_rate -> 5
+[WARNING] [0/DDC#1] The requested decimation is odd; the user should expect
+passband CIC rolloff.
+Select an even decimation to ensure that a halfband filter is enabled.
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8
+will enable 3 halfbands.
+decimation = dsp_rate/samp_rate -> 5
+[WARNING] [0/DDC#1] The requested decimation is odd; the user should expect
+passband CIC rolloff.
+Select an even decimation to ensure that a halfband filter is enabled.
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8
+will enable 3 halfbands.
+decimation = dsp_rate/samp_rate -> 5
+[WARNING] [0/DDC#1] The requested decimation is odd; the user should expect
+passband CIC rolloff.
+Select an even decimation to ensure that a halfband filter is enabled.
+Decimations factorable by 4 will enable 2 halfbands, those factorable by 8
+will enable 3 halfbands.
+decimation = dsp_rate/samp_rate -> 5
+[WARNING] [0/DUC#0] The requested interpolation is odd; the user should
+expect passband CIC rolloff.
+Select an even interpolation to ensure that a halfband filter is enabled.
+
+[WARNING] [0/DUC#0] The requested interpolation is odd; the user should
+expect passband CIC rolloff.
+Select an even interpolation to ensure that a halfband filter is enabled.
+
+[WARNING] [0/DUC#1] The requested interpolation is odd; the user should
+expect passband CIC rolloff.
+Select an even interpolation to ensure that a halfband filter is enabled.
+
+[WARNING] [0/DUC#1] The requested interpolation is odd; the user should
+expect passband CIC rolloff.
+Select an even interpolation to ensure that a halfband filter is enabled.
+
+Setting TX spp to 364
+[00:00:22.285623308] Testing receive rate 25.000000 Msps on 1 channels
+[00:00:22.290554120] Testing transmit rate 25.000000 Msps on 1 channels
+UOUUUUUUUUUUUUUUUUUterminate called after throwing an instance of
+'uhd::op_timeout'
+  what():  RfnocError: OpTimeout: Control operation timed out waiting for
+ACK
+Aborted
+ad@bm-super11-intel:~$  ping 10.10.0.100
+PING 10.10.0.100 (10.10.0.100) 56(84) bytes of data.
+64 bytes from 10.10.0.100: icmp_seq=1 ttl=64 time=0.311 ms
+64 bytes from 10.10.0.100: icmp_seq=2 ttl=64 time=0.297 ms
+^C
+--- 10.10.0.100 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1006ms
+rtt min/avg/max/mdev = 0.297/0.304/0.311/0.007 ms
+ad@bm-super11-intel:~$  uhd_find_devices
+[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_23.11;
+UHD_4.7.0.HEAD-0-ga5ed1872
+--------------------------------------------------
+-- UHD Device 0
+--------------------------------------------------
+Device Address:
+    serial: 32000F1
+    addr: 10.10.0.100
+    claimed: False
+    fpga: XG
+    mgmt_addr: 10.10.0.100
+    name: ni-n3xx-32000F1
+    product: n310
+    type: n3xx
+
+
+ad@bm-super11-intel:~$
+
+On Thu, 5 Dec 2024 at 18:23, Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 05/12/2024 11:44, houshang.azizi@accelleran.com wrote:
 >
 > Hello
 >
@@ -112,233 +254,354 @@ On 05/12/2024 11:44, houshang.azizi@accelleran.com wrote:
 >
 > Thanks
 >
-Well, again, what happens when you do the simple benchmark_rate test 
-*WITHOUT* DPDK involved?
-
-
+> Well, again, what happens when you do the simple benchmark_rate test
+> *WITHOUT* DPDK involved?
 >
-> |ad@bm-super11-intel:~/accelleran$ sudo dpdk-devbind.py --status|
 >
-> |Network devices using DPDK-compatible driver|
 >
-> |============================================|
+> ad@bm-super11-intel:~/accelleran$ sudo dpdk-devbind.py --status
 >
-> |0000:43:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' 
-> drv=vfio-pci unused=i40e|
+> Network devices using DPDK-compatible driver
 >
-> |0000:43:00.2 'Ethernet Controller X710 for 10GbE SFP+ 1572' 
-> drv=vfio-pci unused=i40e|
+> ============================================
 >
-> |Network devices using kernel driver|
+> 0000:43:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=vfio-pci
+> unused=i40e
 >
-> |===================================|
+> 0000:43:00.2 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=vfio-pci
+> unused=i40e
 >
-> |0000:04:00.0 'Ethernet Controller 10G X550T 1563' if=eno1 drv=ixgbe 
-> unused=vfio-pci *Active*|
+> Network devices using kernel driver
 >
-> |0000:04:00.1 'Ethernet Controller 10G X550T 1563' if=eno2 drv=ixgbe 
-> unused=vfio-pci |
+> ===================================
 >
-> |0000:43:00.0 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=ens1f0 
-> drv=i40e unused=vfio-pci |
+> 0000:04:00.0 'Ethernet Controller 10G X550T 1563' if=eno1 drv=ixgbe
+> unused=vfio-pci *Active*
 >
-> |0000:43:00.3 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=ens1f3 
-> drv=i40e unused=vfio-pci *Active*|
+> 0000:04:00.1 'Ethernet Controller 10G X550T 1563' if=eno2 drv=ixgbe
+> unused=vfio-pci
 >
-> |0000:70:00.0 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=ens2f0 
-> drv=i40e unused=vfio-pci |
+> 0000:43:00.0 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=ens1f0
+> drv=i40e unused=vfio-pci
 >
-> |0000:70:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=ens2f1 
-> drv=i40e unused=vfio-pci |
+> 0000:43:00.3 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=ens1f3
+> drv=i40e unused=vfio-pci *Active*
 >
-> |Other Baseband devices|
+> 0000:70:00.0 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=ens2f0
+> drv=i40e unused=vfio-pci
 >
-> |======================|
+> 0000:70:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=ens2f1
+> drv=i40e unused=vfio-pci
 >
-> |0000:f7:00.0 'Device 57c0' unused=vfio-pci|
+> Other Baseband devices
 >
-> |No 'Crypto' devices detected|
+> ======================
 >
-> |============================|
+> 0000:f7:00.0 'Device 57c0' unused=vfio-pci
 >
-> |DMA devices using kernel driver|
+> No 'Crypto' devices detected
 >
-> |===============================|
+> ============================
 >
-> |0000:f6:01.0 'Device 0b25' drv=idxd unused=vfio-pci |
+> DMA devices using kernel driver
 >
-> |No 'Eventdev' devices detected|
+> ===============================
 >
-> |==============================|
+> 0000:f6:01.0 'Device 0b25' drv=idxd unused=vfio-pci
 >
-> |No 'Mempool' devices detected|
+> No 'Eventdev' devices detected
 >
-> |=============================|
+> ==============================
 >
-> |No 'Compress' devices detected|
+> No 'Mempool' devices detected
 >
-> |==============================|
+> =============================
 >
-> |No 'Misc (rawdev)' devices detected|
+> No 'Compress' devices detected
 >
-> |===================================|
+> ==============================
 >
-> |No 'Regex' devices detected|
+> No 'Misc (rawdev)' devices detected
 >
-> |===========================|
+> ===================================
 >
-> |No 'ML' devices detected|
+> No 'Regex' devices detected
 >
-> |========================|
+> ===========================
 >
-> |ad@bm-super11-intel:~/accelleran$ |
+> No 'ML' devices detected
 >
-> |ad@bm-super11-intel:~/accelleran$ uhd_find_devices|
+> ========================
 >
-> |[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_23.11; 
-> UHD_4.7.0.HEAD-0-ga5ed1872|
+> ad@bm-super11-intel:~/accelleran$
 >
-> |--------------------------------------------------|
+> ad@bm-super11-intel:~/accelleran$ uhd_find_devices
 >
-> |-- UHD Device 0|
+> [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_23.11;
+> UHD_4.7.0.HEAD-0-ga5ed1872
 >
-> |--------------------------------------------------|
+> --------------------------------------------------
 >
-> |Device Address:|
+> -- UHD Device 0
 >
-> |serial: 32000F1|
+> --------------------------------------------------
 >
-> |addr: 10.10.0.100|
+> Device Address:
 >
-> |claimed: False|
+> serial: 32000F1
 >
-> |fpga: XG|
+> addr: 10.10.0.100
 >
-> |mgmt_addr: 10.10.0.100|
+> claimed: False
 >
-> |name: ni-n3xx-32000F1|
+> fpga: XG
 >
-> |product: n310|
+> mgmt_addr: 10.10.0.100
 >
-> |type: n3xx|
+> name: ni-n3xx-32000F1
 >
-> |ad@bm-super11-intel:~/accelleran$ sudo 
-> /usr/local/lib/uhd/examples/benchmark_rate --rx_rate 125e6 --rx_subdev 
-> "A:0 B:0" --rx_channels 0,1 --tx_rate 125e6 --tx_subdev "A:0 B:0" 
-> --tx_channels 0,1 --args 
-> "addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1"|
+> product: n310
 >
-> |[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_23.11; 
-> UHD_4.7.0.HEAD-0-ga5ed1872|
+> type: n3xx
 >
-> |EAL: Detected CPU lcores: 64|
+> ad@bm-super11-intel:~/accelleran$ sudo
+> /usr/local/lib/uhd/examples/benchmark_rate --rx_rate 125e6 --rx_subdev "A:0
+> B:0" --rx_channels 0,1 --tx_rate 125e6 --tx_subdev "A:0 B:0" --tx_channels
+> 0,1 --args
+> "addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1"
 >
-> |EAL: Detected NUMA nodes: 1|
+> [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_23.11;
+> UHD_4.7.0.HEAD-0-ga5ed1872
 >
-> |EAL: Detected shared linkage of DPDK|
+> EAL: Detected CPU lcores: 64
 >
-> |EAL: Multi-process socket /var/run/dpdk/rte/mp_socket|
+> EAL: Detected NUMA nodes: 1
 >
-> |EAL: Selected IOVA mode 'VA'|
+> EAL: Detected shared linkage of DPDK
 >
-> |EAL: VFIO support initialized|
+> EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
 >
-> |EAL: Using IOMMU type 1 (Type 1)|
+> EAL: Selected IOVA mode 'VA'
 >
-> |EAL: Ignore mapping IO port bar(1)|
+> EAL: VFIO support initialized
 >
-> |EAL: Ignore mapping IO port bar(4)|
+> EAL: Using IOMMU type 1 (Type 1)
 >
-> |EAL: Probe PCI driver: net_i40e (8086:1572) device: 0000:43:00.1 
-> (socket 0)|
+> EAL: Ignore mapping IO port bar(1)
 >
-> |EAL: Ignore mapping IO port bar(1)|
+> EAL: Ignore mapping IO port bar(4)
 >
-> |EAL: Ignore mapping IO port bar(4)|
+> EAL: Probe PCI driver: net_i40e (8086:1572) device: 0000:43:00.1 (socket 0)
 >
-> |EAL: Probe PCI driver: net_i40e (8086:1572) device: 0000:43:00.2 
-> (socket 0)|
+> EAL: Ignore mapping IO port bar(1)
 >
-> |TELEMETRY: No legacy callbacks, legacy socket not created|
+> EAL: Ignore mapping IO port bar(4)
 >
-> |i40e_alloc_rx_queue_mbufs(): Failed to allocate mbuf for RX|
+> EAL: Probe PCI driver: net_i40e (8086:1572) device: 0000:43:00.2 (socket 0)
 >
-> |i40e_dev_rx_queue_start(): Failed to allocate RX queue mbuf|
+> TELEMETRY: No legacy callbacks, legacy socket not created
 >
-> |[ERROR] [DPDK] Port 1: Could not start device|
+> i40e_alloc_rx_queue_mbufs(): Failed to allocate mbuf for RX
 >
-> |EAL: FATAL: already called initialization.|
+> i40e_dev_rx_queue_start(): Failed to allocate RX queue mbuf
 >
-> |EAL: already called initialization.|
+> [ERROR] [DPDK] Port 1: Could not start device
 >
-> |[00:00:00.000306] Creating the usrp device with: 
-> addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1...|
+> EAL: FATAL: already called initialization.
 >
-> |EAL: FATAL: already called initialization.|
+> EAL: already called initialization.
 >
-> |EAL: already called initialization.|
+> [00:00:00.000306] Creating the usrp device with:
+> addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1...
 >
-> |[ERROR] [X300] X300 Network discovery error RuntimeError: DPDK: 
-> Failure to start device|
+> EAL: FATAL: already called initialization.
 >
-> |[ERROR] [DPDK] Error with EAL initialization|
+> EAL: already called initialization.
 >
-> |[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL 
-> initialization|
+> [ERROR] [X300] X300 Network discovery error RuntimeError: DPDK: Failure to
+> start device
 >
-> |[ERROR] [DPDK] Error with EAL initialization|
+> [ERROR] [DPDK] Error with EAL initialization
 >
-> |[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL 
-> initialization|
+> [ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL
+> initialization
 >
-> |EAL: FATAL: already called initialization.|
+> [ERROR] [DPDK] Error with EAL initialization
 >
-> |EAL: already called initialization.|
+> [ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL
+> initialization
 >
-> |Error: LookupError: KeyError: No devices found for ----->|
+> EAL: FATAL: already called initialization.
 >
-> |Device Address:|
+> EAL: already called initialization.
 >
-> |addr: 10.10.1.100|
+> Error: LookupError: KeyError: No devices found for ----->
 >
-> |second_addr: 10.10.2.100|
+> Device Address:
 >
-> |mgmt_addr: 10.10.0.100|
+> addr: 10.10.1.100
 >
-> |master_clock_rate: 125e6|
+> second_addr: 10.10.2.100
 >
-> |use_dpdk: 1|
+> mgmt_addr: 10.10.0.100
 >
-> |[ERROR] [DPDK] Error with EAL initialization|
+> master_clock_rate: 125e6
 >
-> |[ERROR] [X300] X300 Network discovery error RuntimeError: Error with 
-> EAL initialization|
+> use_dpdk: 1
 >
-> |Segmentation fault|
+> [ERROR] [DPDK] Error with EAL initialization
 >
-> |ad@bm-super11-intel:~/accelleran$|
+> [ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL
+> initialization
+>
+> Segmentation fault
+>
+> ad@bm-super11-intel:~/accelleran$
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 >
 > _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---------------7IdyQA3EMiwCIaFPJdQlYnQ3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 05/12/2024 11:44,
-      <a class="moz-txt-link-abbreviated" href="mailto:houshang.azizi@accelleran.com">houshang.azizi@accelleran.com</a> wrote:<br>
+-- 
+
+*Houshang Azizi*
+
+*Test Engineer*
+
+[image: logo] <https://www.accelleran.com/>
+
+*(32) 492195241*
+
+*houshang.azizi@accelleran.com <Email@accelleran.com>*
+
+
+
+*www.accelleran.com* <http://www.accelleran.com/>
+
+[image: linkedin icon] <https://www.linkedin.com/company/accelleran>    [image:
+twitter icon] <https://twitter.com/accelleran>    [image: youtube icon]
+<https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVIEx2g?themeRefresh=1>
+
+--0000000000007747d206288936e2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Marcus</div><div>Here it is:</div><div><br></div><=
+div><span style=3D"font-family:monospace">ad@bm-super11-intel:~$ sudo /usr/=
+local/lib/uhd/examples/benchmark_rate --args &quot;type=3Dn3xx,product=3Dn3=
+10,addr=3D10.10.0.100,master_clock_rate=3D125e6&quot; --rx_rate 25e6 --tx_r=
+ate 25e6<br><br>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; D=
+PDK_23.11; UHD_4.7.0.HEAD-0-ga5ed1872<br>[00:00:00.000131] Creating the usr=
+p device with: type=3Dn3xx,product=3Dn310,addr=3D10.10.0.100,master_clock_r=
+ate=3D125e6...<br>[INFO] [MPMD] Initializing 1 device(s) in parallel with a=
+rgs: mgmt_addr=3D10.10.0.100,type=3Dn3xx,product=3Dn310,serial=3D32000F1,na=
+me=3Dni-n3xx-32000F1,fpga=3DXG,claimed=3DFalse,addr=3D10.10.0.100,master_cl=
+ock_rate=3D125e6<br>[WARNING] [MPM.RPCServer] A timeout event occured!<br>[=
+INFO] [MPM.PeriphManager] init() called with device args `fpga=3DXG,master_=
+clock_rate=3D125e6,mgmt_addr=3D10.10.0.100,name=3Dni-n3xx-32000F1,product=
+=3Dn310,clock_source=3Dinternal,time_source=3Dinternal&#39;.<br>Using Devic=
+e: Single USRP:<br>=C2=A0 Device: N300-Series Device<br>=C2=A0 Mboard 0: n3=
+10<br>=C2=A0 RX Channel: 0<br>=C2=A0 =C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX D=
+board: A<br>=C2=A0 =C2=A0 RX Subdev: Magnesium<br>=C2=A0 RX Channel: 1<br>=
+=C2=A0 =C2=A0 RX DSP: 1<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX S=
+ubdev: Magnesium<br>=C2=A0 RX Channel: 2<br>=C2=A0 =C2=A0 RX DSP: 2<br>=C2=
+=A0 =C2=A0 RX Dboard: B<br>=C2=A0 =C2=A0 RX Subdev: Magnesium<br>=C2=A0 RX =
+Channel: 3<br>=C2=A0 =C2=A0 RX DSP: 3<br>=C2=A0 =C2=A0 RX Dboard: B<br>=C2=
+=A0 =C2=A0 RX Subdev: Magnesium<br>=C2=A0 TX Channel: 0<br>=C2=A0 =C2=A0 TX=
+ DSP: 0<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: Magnesium=
+<br>=C2=A0 TX Channel: 1<br>=C2=A0 =C2=A0 TX DSP: 1<br>=C2=A0 =C2=A0 TX Dbo=
+ard: A<br>=C2=A0 =C2=A0 TX Subdev: Magnesium<br>=C2=A0 TX Channel: 2<br>=C2=
+=A0 =C2=A0 TX DSP: 2<br>=C2=A0 =C2=A0 TX Dboard: B<br>=C2=A0 =C2=A0 TX Subd=
+ev: Magnesium<br>=C2=A0 TX Channel: 3<br>=C2=A0 =C2=A0 TX DSP: 3<br>=C2=A0 =
+=C2=A0 TX Dboard: B<br>=C2=A0 =C2=A0 TX Subdev: Magnesium<br><br>[00:00:22.=
+270989651] Setting device timestamp to 0...<br>[WARNING] [0/DDC#0] The requ=
+ested decimation is odd; the user should expect passband CIC rolloff.<br>Se=
+lect an even decimation to ensure that a halfband filter is enabled.<br>Dec=
+imations factorable by 4 will enable 2 halfbands, those factorable by 8 wil=
+l enable 3 halfbands.<br>decimation =3D dsp_rate/samp_rate -&gt; 5<br>[WARN=
+ING] [0/DDC#0] The requested decimation is odd; the user should expect pass=
+band CIC rolloff.<br>Select an even decimation to ensure that a halfband fi=
+lter is enabled.<br>Decimations factorable by 4 will enable 2 halfbands, th=
+ose factorable by 8 will enable 3 halfbands.<br>decimation =3D dsp_rate/sam=
+p_rate -&gt; 5<br>[WARNING] [0/DDC#0] The requested decimation is odd; the =
+user should expect passband CIC rolloff.<br>Select an even decimation to en=
+sure that a halfband filter is enabled.<br>Decimations factorable by 4 will=
+ enable 2 halfbands, those factorable by 8 will enable 3 halfbands.<br>deci=
+mation =3D dsp_rate/samp_rate -&gt; 5<br>[WARNING] [0/DDC#0] The requested =
+decimation is odd; the user should expect passband CIC rolloff.<br>Select a=
+n even decimation to ensure that a halfband filter is enabled.<br>Decimatio=
+ns factorable by 4 will enable 2 halfbands, those factorable by 8 will enab=
+le 3 halfbands.<br>decimation =3D dsp_rate/samp_rate -&gt; 5<br>[WARNING] [=
+0/DDC#1] The requested decimation is odd; the user should expect passband C=
+IC rolloff.<br>Select an even decimation to ensure that a halfband filter i=
+s enabled.<br>Decimations factorable by 4 will enable 2 halfbands, those fa=
+ctorable by 8 will enable 3 halfbands.<br>decimation =3D dsp_rate/samp_rate=
+ -&gt; 5<br>[WARNING] [0/DDC#1] The requested decimation is odd; the user s=
+hould expect passband CIC rolloff.<br>Select an even decimation to ensure t=
+hat a halfband filter is enabled.<br>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8 will enable 3 halfbands.<br>decimation=
+ =3D dsp_rate/samp_rate -&gt; 5<br>[WARNING] [0/DDC#1] The requested decima=
+tion is odd; the user should expect passband CIC rolloff.<br>Select an even=
+ decimation to ensure that a halfband filter is enabled.<br>Decimations fac=
+torable by 4 will enable 2 halfbands, those factorable by 8 will enable 3 h=
+alfbands.<br>decimation =3D dsp_rate/samp_rate -&gt; 5<br>[WARNING] [0/DDC#=
+1] The requested decimation is odd; the user should expect passband CIC rol=
+loff.<br>Select an even decimation to ensure that a halfband filter is enab=
+led.<br>Decimations factorable by 4 will enable 2 halfbands, those factorab=
+le by 8 will enable 3 halfbands.<br>decimation =3D dsp_rate/samp_rate -&gt;=
+ 5<br>[WARNING] [0/DUC#0] The requested interpolation is odd; the user shou=
+ld expect passband CIC rolloff.<br>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.<br><br>[WARNING] [0/DUC#0] The requested =
+interpolation is odd; the user should expect passband CIC rolloff.<br>Selec=
+t an even interpolation to ensure that a halfband filter is enabled.<br><br=
+>[WARNING] [0/DUC#1] The requested interpolation is odd; the user should ex=
+pect passband CIC rolloff.<br>Select an even interpolation to ensure that a=
+ halfband filter is enabled.<br><br>[WARNING] [0/DUC#1] The requested inter=
+polation is odd; the user should expect passband CIC rolloff.<br>Select an =
+even interpolation to ensure that a halfband filter is enabled.<br><br>Sett=
+ing TX spp to 364<br>[00:00:22.285623308] Testing receive rate 25.000000 Ms=
+ps on 1 channels<br>[00:00:22.290554120] Testing transmit rate 25.000000 Ms=
+ps on 1 channels<br>UOUUUUUUUUUUUUUUUUUterminate called after throwing an i=
+nstance of &#39;uhd::op_timeout&#39;<br>=C2=A0 what(): =C2=A0RfnocError: Op=
+Timeout: Control operation timed out waiting for ACK<br>Aborted<br>ad@bm-su=
+per11-intel:~$ =C2=A0ping 10.10.0.100<br>PING 10.10.0.100 (10.10.0.100) 56(=
+84) bytes of data.<br>64 bytes from <a href=3D"http://10.10.0.100">10.10.0.=
+100</a>: icmp_seq=3D1 ttl=3D64 time=3D0.311 ms<br>64 bytes from <a href=3D"=
+http://10.10.0.100">10.10.0.100</a>: icmp_seq=3D2 ttl=3D64 time=3D0.297 ms<=
+br>^C<br>--- 10.10.0.100 ping statistics ---<br>2 packets transmitted, 2 re=
+ceived, 0% packet loss, time 1006ms<br>rtt min/avg/max/mdev =3D 0.297/0.304=
+/0.311/0.007 ms<br>ad@bm-super11-intel:~$ =C2=A0uhd_find_devices<br>[INFO] =
+[UHD] linux; GNU C++ version 11.4.0; Boost_107400; DPDK_23.11; UHD_4.7.0.HE=
+AD-0-ga5ed1872<br>--------------------------------------------------<br>-- =
+UHD Device 0<br>--------------------------------------------------<br>Devic=
+e Address:<br>=C2=A0 =C2=A0 serial: 32000F1<br>=C2=A0 =C2=A0 addr: 10.10.0.=
+100<br>=C2=A0 =C2=A0 claimed: False<br>=C2=A0 =C2=A0 fpga: XG<br>=C2=A0 =C2=
+=A0 mgmt_addr: 10.10.0.100<br>=C2=A0 =C2=A0 name: ni-n3xx-32000F1<br>=C2=A0=
+ =C2=A0 product: n310<br>=C2=A0 =C2=A0 type: n3xx<br><br><br>ad@bm-super11-=
+intel:~$ </span><br></div></div><br><div class=3D"gmail_quote gmail_quote_c=
+ontainer"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 5 Dec 2024 at 18:23=
+, Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbr=
+aun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><u></u>
+
+ =20
+   =20
+ =20
+  <div>
+    <div>On 05/12/2024 11:44,
+      <a href=3D"mailto:houshang.azizi@accelleran.com" target=3D"_blank">ho=
+ushang.azizi@accelleran.com</a> wrote:<br>
     </div>
-    <blockquote type="cite"
-cite="mid:n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <blockquote type=3D"cite">
+     =20
       <p>Hello</p>
       <p>Have you managed to fix this?</p>
       <p>I have a similar issue as you can see below.</p>
@@ -348,59 +611,78 @@ cite="mid:n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com">
     *WITHOUT* DPDK involved?<br>
     <br>
     <br>
-    <blockquote type="cite"
-cite="mid:n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com">
+    <blockquote type=3D"cite">
       <p><br>
       </p>
       <p><code>ad@bm-super11-intel:~/accelleran$ sudo dpdk-devbind.py
           --status</code></p>
       <p><code>Network devices using DPDK-compatible driver</code></p>
-      <p><code>============================================</code></p>
-      <p><code>0000:43:00.1 'Ethernet Controller X710 for 10GbE SFP+
-          1572' drv=vfio-pci unused=i40e</code></p>
-      <p><code>0000:43:00.2 'Ethernet Controller X710 for 10GbE SFP+
-          1572' drv=vfio-pci unused=i40e</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</c=
+ode></p>
+      <p><code>0000:43:00.1 &#39;Ethernet Controller X710 for 10GbE SFP+
+          1572&#39; drv=3Dvfio-pci unused=3Di40e</code></p>
+      <p><code>0000:43:00.2 &#39;Ethernet Controller X710 for 10GbE SFP+
+          1572&#39; drv=3Dvfio-pci unused=3Di40e</code></p>
       <p><code>Network devices using kernel driver</code></p>
-      <p><code>===================================</code></p>
-      <p><code>0000:04:00.0 'Ethernet Controller 10G X550T 1563' if=eno1
-          drv=ixgbe unused=vfio-pci *Active*</code></p>
-      <p><code>0000:04:00.1 'Ethernet Controller 10G X550T 1563' if=eno2
-          drv=ixgbe unused=vfio-pci </code></p>
-      <p><code>0000:43:00.0 'Ethernet Controller X710 for 10GbE SFP+
-          1572' if=ens1f0 drv=i40e unused=vfio-pci </code></p>
-      <p><code>0000:43:00.3 'Ethernet Controller X710 for 10GbE SFP+
-          1572' if=ens1f3 drv=i40e unused=vfio-pci *Active*</code></p>
-      <p><code>0000:70:00.0 'Ethernet Controller X710 for 10GbE SFP+
-          1572' if=ens2f0 drv=i40e unused=vfio-pci </code></p>
-      <p><code>0000:70:00.1 'Ethernet Controller X710 for 10GbE SFP+
-          1572' if=ens2f1 drv=i40e unused=vfio-pci </code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+      <p><code>0000:04:00.0 &#39;Ethernet Controller 10G X550T 1563&#39; if=
+=3Deno1
+          drv=3Dixgbe unused=3Dvfio-pci *Active*</code></p>
+      <p><code>0000:04:00.1 &#39;Ethernet Controller 10G X550T 1563&#39; if=
+=3Deno2
+          drv=3Dixgbe unused=3Dvfio-pci </code></p>
+      <p><code>0000:43:00.0 &#39;Ethernet Controller X710 for 10GbE SFP+
+          1572&#39; if=3Dens1f0 drv=3Di40e unused=3Dvfio-pci </code></p>
+      <p><code>0000:43:00.3 &#39;Ethernet Controller X710 for 10GbE SFP+
+          1572&#39; if=3Dens1f3 drv=3Di40e unused=3Dvfio-pci *Active*</code=
+></p>
+      <p><code>0000:70:00.0 &#39;Ethernet Controller X710 for 10GbE SFP+
+          1572&#39; if=3Dens2f0 drv=3Di40e unused=3Dvfio-pci </code></p>
+      <p><code>0000:70:00.1 &#39;Ethernet Controller X710 for 10GbE SFP+
+          1572&#39; if=3Dens2f1 drv=3Di40e unused=3Dvfio-pci </code></p>
       <p><code>Other Baseband devices</code></p>
-      <p><code>======================</code></p>
-      <p><code>0000:f7:00.0 'Device 57c0' unused=vfio-pci</code></p>
-      <p><code>No 'Crypto' devices detected</code></p>
-      <p><code>============================</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D</code></p>
+      <p><code>0000:f7:00.0 &#39;Device 57c0&#39; unused=3Dvfio-pci</code><=
+/p>
+      <p><code>No &#39;Crypto&#39; devices detected</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
       <p><code>DMA devices using kernel driver</code></p>
-      <p><code>===============================</code></p>
-      <p><code>0000:f6:01.0 'Device 0b25' drv=idxd unused=vfio-pci </code></p>
-      <p><code>No 'Eventdev' devices detected</code></p>
-      <p><code>==============================</code></p>
-      <p><code>No 'Mempool' devices detected</code></p>
-      <p><code>=============================</code></p>
-      <p><code>No 'Compress' devices detected</code></p>
-      <p><code>==============================</code></p>
-      <p><code>No 'Misc (rawdev)' devices detected</code></p>
-      <p><code>===================================</code></p>
-      <p><code>No 'Regex' devices detected</code></p>
-      <p><code>===========================</code></p>
-      <p><code>No 'ML' devices detected</code></p>
-      <p><code>========================</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+      <p><code>0000:f6:01.0 &#39;Device 0b25&#39; drv=3Didxd unused=3Dvfio-=
+pci </code></p>
+      <p><code>No &#39;Eventdev&#39; devices detected</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+      <p><code>No &#39;Mempool&#39; devices detected</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+      <p><code>No &#39;Compress&#39; devices detected</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+      <p><code>No &#39;Misc (rawdev)&#39; devices detected</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+      <p><code>No &#39;Regex&#39; devices detected</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D</code></p>
+      <p><code>No &#39;ML&#39; devices detected</code></p>
+      <p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D</code></p>
       <p><code>ad@bm-super11-intel:~/accelleran$ </code></p>
-      <p><code>ad@bm-super11-intel:~/accelleran$ uhd_find_devices</code></p>
+      <p><code>ad@bm-super11-intel:~/accelleran$ uhd_find_devices</code></p=
+>
       <p><code>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
           DPDK_23.11; UHD_4.7.0.HEAD-0-ga5ed1872</code></p>
-      <p><code>--------------------------------------------------</code></p>
+      <p><code>--------------------------------------------------</code></p=
+>
       <p><code>-- UHD Device 0</code></p>
-      <p><code>--------------------------------------------------</code></p>
+      <p><code>--------------------------------------------------</code></p=
+>
       <p><code>Device Address:</code></p>
       <p><code> serial: 32000F1</code></p>
       <p><code> addr: 10.10.0.100</code></p>
@@ -412,16 +694,18 @@ cite="mid:n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com">
       <p><code> type: n3xx</code></p>
       <p><code>ad@bm-super11-intel:~/accelleran$ sudo
           /usr/local/lib/uhd/examples/benchmark_rate --rx_rate 125e6
-          --rx_subdev "A:0 B:0" --rx_channels 0,1 --tx_rate 125e6
-          --tx_subdev "A:0 B:0" --tx_channels 0,1 --args
-"addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1"</code></p>
+          --rx_subdev &quot;A:0 B:0&quot; --rx_channels 0,1 --tx_rate 125e6
+          --tx_subdev &quot;A:0 B:0&quot; --tx_channels 0,1 --args
+&quot;addr=3D10.10.1.100,second_addr=3D10.10.2.100,mgmt_addr=3D10.10.0.100,=
+master_clock_rate=3D125e6,use_dpdk=3D1&quot;</code></p>
       <p><code>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
           DPDK_23.11; UHD_4.7.0.HEAD-0-ga5ed1872</code></p>
       <p><code>EAL: Detected CPU lcores: 64</code></p>
       <p><code>EAL: Detected NUMA nodes: 1</code></p>
       <p><code>EAL: Detected shared linkage of DPDK</code></p>
-      <p><code>EAL: Multi-process socket /var/run/dpdk/rte/mp_socket</code></p>
-      <p><code>EAL: Selected IOVA mode 'VA'</code></p>
+      <p><code>EAL: Multi-process socket /var/run/dpdk/rte/mp_socket</code>=
+</p>
+      <p><code>EAL: Selected IOVA mode &#39;VA&#39;</code></p>
       <p><code>EAL: VFIO support initialized</code></p>
       <p><code>EAL: Using IOMMU type 1 (Type 1)</code></p>
       <p><code>EAL: Ignore mapping IO port bar(1)</code></p>
@@ -432,7 +716,8 @@ cite="mid:n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com">
       <p><code>EAL: Ignore mapping IO port bar(4)</code></p>
       <p><code>EAL: Probe PCI driver: net_i40e (8086:1572) device:
           0000:43:00.2 (socket 0)</code></p>
-      <p><code>TELEMETRY: No legacy callbacks, legacy socket not created</code></p>
+      <p><code>TELEMETRY: No legacy callbacks, legacy socket not created</c=
+ode></p>
       <p><code>i40e_alloc_rx_queue_mbufs(): Failed to allocate mbuf for
           RX</code></p>
       <p><code>i40e_dev_rx_queue_start(): Failed to allocate RX queue
@@ -441,7 +726,8 @@ cite="mid:n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com">
       <p><code>EAL: FATAL: already called initialization.</code></p>
       <p><code>EAL: already called initialization.</code></p>
       <p><code>[00:00:00.000306] Creating the usrp device with:
-addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate=125e6,use_dpdk=1...</code></p>
+addr=3D10.10.1.100,second_addr=3D10.10.2.100,mgmt_addr=3D10.10.0.100,master=
+_clock_rate=3D125e6,use_dpdk=3D1...</code></p>
       <p><code>EAL: FATAL: already called initialization.</code></p>
       <p><code>EAL: already called initialization.</code></p>
       <p><code>[ERROR] [X300] X300 Network discovery error RuntimeError:
@@ -468,19 +754,74 @@ addr=10.10.1.100,second_addr=10.10.2.100,mgmt_addr=10.10.0.100,master_clock_rate
       <p><code>Segmentation fault</code></p>
       <p><code>ad@bm-super11-intel:~/accelleran$</code></p>
       <br>
-      <fieldset class="moz-mime-attachment-header"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list -- <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class="moz-txt-link-abbreviated" href="mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettus.com</a>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
 </pre>
     </blockquote>
     <br>
-  </body>
-</html>
+  </div>
 
---------------7IdyQA3EMiwCIaFPJdQlYnQ3--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div><div><br clear=3D"all"></div><br><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div style=3D"text-align:left"><p class=3D"MsoNormal" style=
+=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,sans-ser=
+if"><b><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb=
+(0,173,238)">Houshang Azizi</span></b><span style=3D"font-size:11pt;font-fa=
+mily:Arial,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"margin:0c=
+m;line-height:normal;font-size:12pt;font-family:Aptos,sans-serif"><b><span =
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(246,146,30)"=
+>Test Engineer</span></b></p></div><p></p><a href=3D"https://www.accelleran=
+.com/" rel=3D"noopener" style=3D"color:rgb(51,122,183);background-color:tra=
+nsparent" target=3D"_blank"><font size=3D"2"><img border=3D"0" alt=3D"logo"=
+ width=3D"143" src=3D"https://accelleran.com/wp-content/uploads/2024/04/Acc=
+elleran_NewLogo_NoBaseline.png" style=3D"border: 0px; vertical-align: middl=
+e; width: 143px; height: auto;"></font></a><div style=3D"text-align:left"><=
+p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:12pt=
+;font-family:Aptos,sans-serif"><b><span style=3D"font-size:10pt;font-family=
+:Arial,sans-serif;color:black">(32) 492195241</span></b><span style=3D"font=
+-size:10pt;font-family:Arial,sans-serif"></span></p><p class=3D"MsoNormal" =
+style=3D"margin:0cm;line-height:normal;font-size:12pt;font-family:Aptos,san=
+s-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-serif"><b><sp=
+an style=3D"color:black"><a href=3D"mailto:Email@accelleran.com" target=3D"=
+_blank">houshang.azizi@accelleran.com</a></span></b></span></p><p class=3D"=
+MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:12pt;font-famil=
+y:Aptos,sans-serif"><span style=3D"font-size:10pt;font-family:Arial,sans-se=
+rif">=C2=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-heigh=
+t:normal;font-size:12pt;font-family:Aptos,sans-serif"><span style=3D"font-s=
+ize:10pt;font-family:Arial,sans-serif"><a href=3D"http://www.accelleran.com=
+/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><b><span style=3D"color=
+:rgb(246,146,30)">www.accelleran.com</span></b></a></span></p></div><p styl=
+e=3D"text-align:left;margin:20px 0px"><a href=3D"https://www.linkedin.com/c=
+ompany/accelleran" rel=3D"noopener" style=3D"color:rgb(51,122,183);backgrou=
+nd-color:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" alt=
+=3D"linkedin icon" src=3D"https://www.mail-signatures.com/signature-generat=
+or/img/templates/simple-and-light/ln.png" style=3D"border: 0px; vertical-al=
+ign: middle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0=C2=A0<a hre=
+f=3D"https://twitter.com/accelleran" rel=3D"noopener" style=3D"color:rgb(51=
+,122,183);background-color:transparent" target=3D"_blank"><img border=3D"0"=
+ width=3D"15" alt=3D"twitter icon" src=3D"https://www.mail-signatures.com/s=
+ignature-generator/img/templates/simple-and-light/tt.png" style=3D"border: =
+0px; vertical-align: middle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=
+=C2=A0=C2=A0<a href=3D"https://www.youtube.com/channel/UCrAEtqWp21cibZgSFVI=
+Ex2g?themeRefresh=3D1" rel=3D"noopener" style=3D"color:rgb(51,122,183);back=
+ground-color:transparent" target=3D"_blank"><img border=3D"0" width=3D"15" =
+alt=3D"youtube icon" src=3D"https://www.mail-signatures.com/signature-gener=
+ator/img/templates/simple-and-light/yt.png" style=3D"border: 0px; vertical-=
+align: middle; height: 15px; width: 15px;"></a>=C2=A0=C2=A0=C2=A0 <br></p><=
+/div></div>
 
---===============5886815897014708335==
+--0000000000007747d206288936e2--
+
+--===============2886352252881157064==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -490,4 +831,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5886815897014708335==--
+--===============2886352252881157064==--
