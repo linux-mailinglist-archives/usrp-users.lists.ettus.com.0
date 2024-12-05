@@ -2,69 +2,70 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E3309E5EB8
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2024 20:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 734209E5F64
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2024 21:26:36 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 488EE3859CB
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2024 14:24:04 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 41A11385A15
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2024 15:26:32 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1733426644; bh=bTRpsObTwU1X+SRCtuEQbowst58YP8ghU1sJFrpl5g4=;
+	t=1733430392; bh=aJtkFZTj4n3f725FIb8dDCqNVwh5ZbM7+Q6NxZt1kpM=;
 	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=qVZwIhTnj4ygJ8s8QUnZTksSxdw1Ec7LvBLGFaGoqDaxiE2CbMIMnS+lXSvOoI7da
-	 WejWPqwGula3aqKvIqw3iB1DeCdMnckOigtspNtdK5c7A5RIIXtTq+ZF815Har5p5p
-	 4Xi9R6VLDJiC/Y5c2QC0OjmQjuqraId/J+n/Z5bbIOwRbr9aWj8fyPTsy9j7DnQCSY
-	 CCfEmPoI3VY4PNintfx2d6cF8HbDx79ap3uV9M2vShHV9sZoTzaAGHti/Ze9iT8kJS
-	 rlhS29hmI0uwcJpXTtgO26EqzTtdH4TEkGBglm6vJHMaHo8BlEYSPtiEgWQnDCxChl
-	 n7fvuWwemV7Mg==
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 22998385A34
-	for <usrp-users@lists.ettus.com>; Thu,  5 Dec 2024 14:23:29 -0500 (EST)
+	b=VW0p3rUr0i9hRTpODfdU6gAxJAJBoHzpNeCM6cZU7lRO5TztwBbYgzSIzYdln14gW
+	 ghO3M9w1JRSvLukE8t9s3a+YRbfvF/CmfaWU3aX8Hr1/nmU8aUCP2Ka6l871EKBDam
+	 50zIfww/LfPUha/PObdPRcaIe6btJJ6cpWorNBiEvU19Mbd1ZBmapwAqRLt0Uo3Wf2
+	 L4ia65yKuiOBiq6DwNnJq35ObAU1tnZgt9MFtZu6XKw0pSIP4u4ayyYhaG2AQF3zAa
+	 9LdAB4s54R9XkFoVCBEv6Acv7bWUtmifMMwig9G+JDHBMTp97AEi3VM6VhbdpNrkcb
+	 Gci+5Z/sHP0Pw==
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id 762B638583C
+	for <usrp-users@lists.ettus.com>; Thu,  5 Dec 2024 15:25:56 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PuItKXFB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="W6dNtIOg";
 	dkim-atps=neutral
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-46684744173so21027311cf.3
-        for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2024 11:23:29 -0800 (PST)
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6d89111fe69so8713576d6.2
+        for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2024 12:25:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733426608; x=1734031408; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1733430356; x=1734035156; darn=lists.ettus.com;
         h=in-reply-to:from:references:cc:to:content-language:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2zWg4vTaxZsHG6YSr6CcZD29mcBoQVi5XNPJngdwYFg=;
-        b=PuItKXFBUuAUWKP+i3sbvc+mSgcWUyMcLQ69pFANMWQ+ALo3DK1+F3P6BS4mP+WTtE
-         o9rmXh6v2dgxpz/S2tTnhfCzroqQFS9RwYviPMX5T+NYm8wHrfCR94taIF7IZBXPHYB9
-         CdLKxtg7HHNLRnJktYAY8u9jfbUKs8ylE1AxwxzEthYjorvP8CAAL+HcZgC7EziF6C1F
-         QEulowe6q+A1PoPTApWJYdDXb1FdEh36L9MM3AFAvgZJuxNFL+mHCnw8ezMkhL8Wl8ww
-         oe3SvJMaD+BKFmyp7A0wlpQWdYqp8f4VW+J0Z7RHJ2jvBtnhKQEFDG4C4C8Py1erW03Z
-         LGSA==
+        bh=ByeyKKZGnDXzhC5bAQO9egr4mXzZvZHhAu7w6Ztntaw=;
+        b=W6dNtIOgoSEYzKCPsGdqYUFFwHFJmB+4i2qPQimwMkZwngWY9sGPKBafqVnuEvnuT9
+         EjMEC6iMzGxMgiZWBafSwZDftgHTjldFsgY9KSKHEs5yYF3WLAPPGcpmPav3tHgSvFn4
+         p89XPK++OnQfRlCwfmFmzCU8dNP+hJrq0/L1+BRhSgyXolfzY5YZpAt94oakGuSWEGn6
+         9gw3oA62Lffwy04KCZZJyGYluXAf8rwvimRXVncXwmUJhwmBgZCnTLlY6J0NZstFDCl0
+         UBaEyMz4SdkF2dXgOfp1MBGZVY2+yzUJE6O/6bWG+E+kRqcLoEBlAbdmycMq8daazXC6
+         XhHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733426608; x=1734031408;
+        d=1e100.net; s=20230601; t=1733430356; x=1734035156;
         h=in-reply-to:from:references:cc:to:content-language:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=2zWg4vTaxZsHG6YSr6CcZD29mcBoQVi5XNPJngdwYFg=;
-        b=pvsGJMztTEeLQMcYuf+3m77YYQWo53bhterwVZjhOY2DnQdz7wVlT1hR80aMBYGRqt
-         9OypVvsTc1Pbn7IV9A3mRjmh8p0x1+y0VAMW00SZ+aszfBUBtUO5AEYfFfJ3GYxQKl/c
-         1jR3aYYmxE4OphOXW+hBIh/O5y63vneKh/UHYtB6ypKftqjXBgenx2WPr58ygdwOJilu
-         j3CD2LJkpYIvI3+xjPswdEA+hQQgs5h6K8t/7YAvZ7FbLjRI5UGhHNKoc90KEtbJGnzy
-         f/KS+zllCAVebdm0/ayjboUksGjptJxJTcSig03c+nIEmcE8TmV0SNwwWnzH1hrtYYwQ
-         4sEQ==
-X-Gm-Message-State: AOJu0Yw4WmShKYQDtn1jlg6awLn4K6RzN5JhrbKhauQe5p7xwX/xtuQ/
-	GdUjkHkifK8BAzh/BGUfej1S33zGQysmkBBMRki7gTRHwoQ81pdD
-X-Gm-Gg: ASbGncv64gecYenvXt6PoN6FQNucZZNAfwYRsxSIq42a1qfIJ4xfowXV0vC1iNOUYBR
-	5WBcQJQyksyfgV83W6/8vFA9ZjBys80T5g9JUt5LtlXQGB3sYxMSFpvBM/9b0BoK67hEPpkEgvQ
-	pHMlHneMHZyCtJscvmLfXNqqCSjUom76xACsYH5BKuX1OtzZroZyoK8MQP8nSBYaUYdOFHYqISS
-	Je+BWLp/wCMXzXek7KLJoFF4oIX+n0PJBEQw3Xlsofup6jm/TV+4f8XJxrF
-X-Google-Smtp-Source: AGHT+IEiayL16fmgZ5rDD7L6Rj+yBWg4WYpOKc3J/4CyKojEAyC87YAOjkOxbjU2FSRCDRvicchNfQ==
-X-Received: by 2002:a05:620a:24c1:b0:7b1:374d:760 with SMTP id af79cd13be357-7b6bcac2699mr63870985a.11.1733426608406;
-        Thu, 05 Dec 2024 11:23:28 -0800 (PST)
-Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6d8da696d9esm9483026d6.46.2024.12.05.11.23.27
+        bh=ByeyKKZGnDXzhC5bAQO9egr4mXzZvZHhAu7w6Ztntaw=;
+        b=mz9h8yiAKs5PJOhKoxbGf+eq29sMgieBSI/dgQydHod/wBUAb0bQUKaGRlMf37rcyC
+         mYi/mxZnLS3jkvg7nbC4ueAVKWfnAIyCCROMOVWcY8kv9AEdVDHZy+N79aQ4td2T4WgO
+         NhkJQJ5q26xK7qBExcMploZsOVLvy51YWWogsXkkdTZt/4p8ND0x4bdYoDeReJQc200N
+         w86MeYVCzm4Dij2Av93YWVavfyWvbH35U7HHNG6zp5abhRQ2yUtS7aNxB3oUaC0xpsBl
+         aPxWY3rsuRKFnhGhM+cDdf0Ao2/PMbBHNFiEjQ6ChHGwFLcpS7D5e+LHEO2XVrBKgZ1C
+         5qjQ==
+X-Gm-Message-State: AOJu0Yz4q3xM1xN9/Fsw+jSfQuUoX0xvH4bXyTFggkG8iOLgRFf4dWNz
+	FOzeECHd0+1eeRsWRLo88BMyDkBBBQGzKDIun8dNeFTT4yfMCU2X8LDbcQ==
+X-Gm-Gg: ASbGncsBx1JzHNN6nJ3u5C8t3fQKVYmN0CJJG1vbSspIEbD3w4V4LeOlR1KaPVL18UD
+	D1W324CuzCI3k3H4lF8tCQNB7mPquhLnWLzEz+4FKMVRKp1n+7JbEz6ZE00ok4hFbBylovipX8i
+	Vdj3SWYwu0W/d70w/J2yCsOx+6vOEXc+eHUkagE/Q+fPw1dKHhsVYbreMNVqvmnJcpf6i6ZWqK7
+	1yJqsupd6NP1YHePJ1O3kvyW36IqrtrbxNRD9ENfoGOUy11U9DzIp7OeOTsnVpsrfv+vjTBPTEo
+	PH+IcLDIHt+EjgarkyRYXCTolyU0MmcEZX8mpL3hEVu7rG0Q
+X-Google-Smtp-Source: AGHT+IF2v0/CgOvglq+reZoMD1m0TwpxN+Ofarsa9NXqJ0FRXZrbMDdjCRmlwVqU9MVdNTDDdhlnFQ==
+X-Received: by 2002:a05:6214:21cb:b0:6d4:1a42:8efa with SMTP id 6a1803df08f44-6d8e6fbe307mr3508446d6.0.1733430355587;
+        Thu, 05 Dec 2024 12:25:55 -0800 (PST)
+Received: from [192.168.2.170] (bras-base-smflon1825w-grc-05-174-88-53-166.dsl.bell.ca. [174.88.53.166])
+        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6d8da9fec49sm9938636d6.87.2024.12.05.12.25.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Dec 2024 11:23:27 -0800 (PST)
-Message-ID: <78ee03b2-2026-4970-a147-7da52b870215@gmail.com>
-Date: Thu, 5 Dec 2024 14:23:17 -0500
+        Thu, 05 Dec 2024 12:25:54 -0800 (PST)
+Message-ID: <f8002f5c-3547-4e2e-ba9e-54fc1b047713@gmail.com>
+Date: Thu, 5 Dec 2024 15:25:54 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
@@ -76,8 +77,8 @@ References: <n30WHF9HF9lelKnoGIwRyX8e2xge2XIMrvSmxEyxS8@lists.ettus.com>
  <CAO=xj9X1GjMQeudKEwG_QW+vjb6sx-wnQeWTLD3Cq30k32YEOw@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <CAO=xj9X1GjMQeudKEwG_QW+vjb6sx-wnQeWTLD3Cq30k32YEOw@mail.gmail.com>
-Message-ID-Hash: WYM6LYQQN5DRXTGSQSJPPAQLTCQQEQCF
-X-Message-ID-Hash: WYM6LYQQN5DRXTGSQSJPPAQLTCQQEQCF
+Message-ID-Hash: F75FRN6H3C6NJIYP4FDJSRVB5GQC3SBK
+X-Message-ID-Hash: F75FRN6H3C6NJIYP4FDJSRVB5GQC3SBK
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
@@ -85,30 +86,53 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Benchmarking x410 with Mellanox with DPDK
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WYM6LYQQN5DRXTGSQSJPPAQLTCQQEQCF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/F75FRN6H3C6NJIYP4FDJSRVB5GQC3SBK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2325273408182730858=="
+Content-Type: multipart/mixed; boundary="===============3997200602438985729=="
 
 This is a multi-part message in MIME format.
---===============2325273408182730858==
+--===============3997200602438985729==
 Content-Type: multipart/alternative;
- boundary="------------pIvZNGLwMGKFCelLEz6zykrN"
+ boundary="------------0yO29rck0AOMU1dbFSQhByu1"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------pIvZNGLwMGKFCelLEz6zykrN
+--------------0yO29rck0AOMU1dbFSQhByu1
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
 On 05/12/2024 14:15, Houshang wrote:
 > Hello
 > It 8s not rj45.it <http://rj45.it> is sfp
-My mistake.
+If your baseline performance cannot even support 25Msps in=20
+"benchmark_rate", it's unlikely that DPDK will push you
+ =C2=A0 into a territory where you can support 125Msps.
+
+I assume that you've done the performance tuning tricks here:
+
+https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks
+
+[Forgive me if I've already suggested this].
+
+This note here might possibly be useful, also:
+
+https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD#Underruns_Every_Se=
+cond_with_DPDK_.2B_Ubuntu
+
+But it looks like when you're using DPDK, UHD can't even see the network=20
+interfaces via DPDK, so this is a DPDK
+ =C2=A0 configuration issue, and I'm not familiar enough with DPDK to off=
+er=20
+much assistance.
+
+You should confirm that you can "ping" each of the network interfaces on=20
+your X410 that are connected to your host.
+ =C2=A0 This will confirm basic network connectivity independent of DPDK.
 
 
 >
@@ -577,7 +601,7 @@ resh=3D1>
 >>
 >
 
---------------pIvZNGLwMGKFCelLEz6zykrN
+--------------0yO29rck0AOMU1dbFSQhByu1
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -601,7 +625,34 @@ TF-8">
             moz-do-not-send=3D"true">rj45.it</a> is sfp</div>
       </div>
     </blockquote>
-    My mistake.<br>
+    If your baseline performance cannot even support 25Msps in
+    "benchmark_rate", it's unlikely that DPDK will push you<br>
+    =C2=A0 into a territory where you can support 125Msps.<br>
+    <br>
+    I assume that you've done the performance tuning tricks here:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/USRP_=
+Host_Performance_Tuning_Tips_and_Tricks">https://kb.ettus.com/USRP_Host_P=
+erformance_Tuning_Tips_and_Tricks</a><br>
+    <br>
+    [Forgive me if I've already suggested this].<br>
+    <br>
+    This note here might possibly be useful, also:<br>
+    <br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/Getting_S=
+tarted_with_DPDK_and_UHD#Underruns_Every_Second_with_DPDK_.2B_Ubuntu">htt=
+ps://kb.ettus.com/Getting_Started_with_DPDK_and_UHD#Underruns_Every_Secon=
+d_with_DPDK_.2B_Ubuntu</a><br>
+    <br>
+    But it looks like when you're using DPDK, UHD can't even see the
+    network interfaces via DPDK, so this is a DPDK<br>
+    =C2=A0 configuration issue, and I'm not familiar enough with DPDK to
+    offer much assistance.<br>
+    <br>
+    You should confirm that you can "ping" each of the network
+    interfaces on your X410 that are connected to your host.<br>
+    =C2=A0 This will confirm basic network connectivity independent of DP=
+DK.<br>
     <br>
     <br>
     <blockquote type=3D"cite"
@@ -1197,9 +1248,9 @@ style=3D"border:0px;vertical-align:middle;height:15px;width:15px"
   </body>
 </html>
 
---------------pIvZNGLwMGKFCelLEz6zykrN--
+--------------0yO29rck0AOMU1dbFSQhByu1--
 
---===============2325273408182730858==
+--===============3997200602438985729==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1209,4 +1260,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2325273408182730858==--
+--===============3997200602438985729==--
