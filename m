@@ -2,238 +2,188 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601A29EB985
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2024 19:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FC639EBA4C
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2024 20:46:31 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 73A7A386289
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2024 13:43:24 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id A2249386101
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2024 14:46:29 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1733856204; bh=8V+49hwwtZgwfbfFOtaHdIOPhDXDRLNk7dVfXIUZ0LM=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=UmxsLr3q9qgiVJaAmx8b+TPKkUjGirTfxd22FzmXtUgrYs4erFXF+2B8WIz2hLOPj
-	 4XKTrs7YqD4ARXPVSFllQGXNG7Egnn4MTeLqYvIPrNjK8uGy+chsgnyqce5at6lQAu
-	 ImauC7XJJrCLrQlgVtfK1yognpV8skxHF8u38ZEWTnDRcDHgCc9jouOPAW32nnwuST
-	 DwNdWPoyvKt5PaAWsQXW2u4SCnDcC3yTBaLcG00wcZXqtZCbdX0u8Oa3Rqtz9rcEia
-	 HPODFwMFMjx5xM3kWE5znriGbK862M5yqnS7VSoGdpQV8LPUPBQieNd3tGLApNof4y
-	 zC0K3st29WEVQ==
-Received: from email6-west.aero.org (email6-west.aero.org [130.221.16.31])
-	by mm2.emwd.com (Postfix) with ESMTPS id F0953386200
-	for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2024 13:42:25 -0500 (EST)
+	t=1733859989; bh=jeRBqkWKWI5c7PqThgerz3OWzmAwvEqSzlbSXP4Mjf8=;
+	h=To:Date:CC:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=Xo1cTvyEBZ/OuFQ0pE08sRGVrvi6sxTt1uXsDkC9lqSPNq/Q7duxAbO/OhAo7oO3C
+	 lZ1jYUHBiQYbHhHRWUmMBx6UiVy6ZiL7R5/suyzu7nxTBMe4NK+40Dsnmei0aGxh/F
+	 75xeuUbCJ5z0Jz1C0ufTwevDxEZxAKVbHT+siKGwBSpg73V8ps+Kl0TQ6257HTswZK
+	 VC1CJfCV8NyKA5HUvF0fMJ9ZDZ45zA4UZE3XvR0X9PULbxM9aq8uCPLav71DRMauiz
+	 +Yhzs/N7C7M4/6fdqWIkYKl2wPc5cuXC1FEjZO1pi2QopDwXT1IBBgEDikVawksctm
+	 YHUXHx8V8YIUA==
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2094.outbound.protection.outlook.com [40.107.244.94])
+	by mm2.emwd.com (Postfix) with ESMTPS id E90133860A8
+	for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2024 14:45:53 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="zGTtLShO";
-	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="TKp8C1Tc";
+	dkim=pass (2048-bit key; unprotected) header.d=iastate.edu header.i=@iastate.edu header.b="QNor8koO";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
-  t=1733856146; x=1765392146;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=npTMe/wiUaXl9qMFPVec0vjBPnqz/z5goakdxM+vevo=;
-  b=zGTtLShOsLVy2ISo1oOXGs3dR0VrjNXDO2X8/3zuMehWgNckHfIKLr68
-   hix/I4YDlDEviGs6xmu+cJFucr3tqRdCcE4Ly49iNNHkXpaNtro6L55AZ
-   uHa4fEbCUbBoP5P+9XLxEs6Z9cEfHJRzk6RXy3nZxxSfL7ibdPfsxGinK
-   c=;
-X-CSE-ConnectionGUID: n0UMbX7WR1ydLkNuIp4EGg==
-X-CSE-MsgGUID: Vq0peovrRZqIWXgrCCLaoA==
-x-SBRS: 4.2
-x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="1971197"
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600";
-   d="scan'208,217";a="1971197"
-X-IPAS-Result: =?us-ascii?q?A2GCAQBJi1hnjg8BXShagQmBU4FBgQN7gWauCYd7A1YPA?=
- =?us-ascii?q?QEBAQEBAQEBBwJEBAEBAwSFAAKKaic3Bg4BAgQBAQEBAwIDAQEBAQEBAQEOA?=
- =?us-ascii?q?QEBBQEBAQEBBwQBAgIQAQEBAQEBOQUOO4V7DYQHgSYBAQEBAQEBAQEBAQEdA?=
- =?us-ascii?q?jWBHAEBOBEBDAFyJwQbgnmCHQ0HAzGwTIE0gQGCDAEBBgQE2x4YYYFkCYFIg?=
- =?us-ascii?q?3uBcIJjASqBMok8gVVEgVeCN4U0hBOCL4JATIQqgWqcP4FHIgMmMzIBVRMXC?=
- =?us-ascii?q?wcFYYEUA4EWg2CBAzmCEGlHNwINAjaCJHyCTYUXhGmEWYYmghlsHUADC209N?=
- =?us-ascii?q?xQbBQSBNQWZfgEHA4E/hDeBYIF3oiKBe4xdlFw0B4QdBYFYBgygCxeqUZh7q?=
- =?us-ascii?q?QACBAIEBQIPCIF9UoEuMxowgypSGQ+OOoNhvkZ4PAIHCwEBAwmSHgEB?=
-IronPort-PHdr: A9a23:jkOlzxA4Z9We0SGIshhvUyQVaxdPi9zP1kY95pkmjudIdaKut9TnM
- VfE7PpgxFnOQc3A6v1ChuaX1sKoWWEJ7Zub9nxXdptKWkwJjMwMlFkmB8iIQUTwMP/taXk8G
- 8JPHF9o9n22Kw5bAsH7MlTfuHr06iQdSX3C
-IronPort-Data: A9a23:utNp+6PGlG4k3rnvrR1fl8FynXyQoLVcMsEvi/4bfWQNrUp30GcAz
- WtMD22DM/rbNmD8eI1wa46+oEoCsJ6Bn9BmSQZtpSBmQlt08seUXt7xwmUcns+xwmwvaGo9s
- q3yv/GZdJhcoln0+Ej1atANilEljPvYHNIQMMadZ2YpA1YiEHx54f5as7ZRqpZyhtSkCB+6t
- 9r3osnOUHeowDcc3lg8s8pvkzsx+q2o0N8klgZmP6wS5gaGzyV94K83fMldEVOpGuG4IcbnH
- 44v/JnhlkvF8hEkDM+Sk7qTWiXmlZaPVeQmoiM+t5mK2nCulARrukoIHKN0hXNsttm8t4sZJ
- ONl6MXqEV9xVkH7sL91vxFwS0mSNEDdkVPNCSDXXce7lyUqf5ZwqhnH4Y5f0YAwo45K7W9yG
- fMwLmgwSxqz2N2MmaO3bupKm+U7cOTEM9ZK0p1g5Wmx4fcOa6Gee5+StPRlhG9pwMdTAfzZe
- swVLyJ1awjNaAFOPVFRD48imOCvhT/0dDgwRFC9+fJxsjOVlUoojdABM/KMEjCObchIkUueq
- yTJ5W3oHBwAHNWS0z3D9Wij7gPKtXqqB9tLReLQGvhCvkTL3mEUFgcsZ0Kansm2kGWVf9tYA
- hlBksYphfNprhD0JjXnZDWlu2Sc+wMHVsBLO+k78x2WjKfI/xuCQGMDS1Z8hMcOscY3QXk12
- 0SVgsjgFzh36eLNECvFr+rSqi6uMy8IK2NEfTUDUQYO/9jkpsc0kw7LSdFgVqWyi7UZBA0c3
- RiM9BUbjYVMsvRSxqmf/nbaoirwi7fGG1tdChrsYkqp6QZwZYiAboOu6ETG4fsoEGp/ZgnQ1
- JTjs5jOhN3iHa2weDqxrPLh9YxFCt6AOTzYxEFiBIU87D2//2b6ItgJuWkneQFuL9oOfiLvb
- AnLowRN6ZRPPXysK6hqf4a2DMdsxq/lfTgEahw2RoQSCnSSXFbdlM2LWaJ29zy3+KTLuf1lU
- ap3ie72UR4n5V1PlVJavds1374x3TwZzmjOX539xBnP+ePBPyXKF+ZdYQfeN7tRAEa4TOP9o
- 4c32yyim0Q3bQECSneGqNJ7wa0icSZkWMiq9ZA/mhCreVE5RTt8YxMu/V/RU9c+xfgK/gs51
- nS8UVVf013xmTXMLh+SAk2Pm5u+NauTWUkTZHR2VX7xgiBLSd/2sM83KcFrFZF5r7YL5aAvE
- JE4lzCoXq4npsLvp25FNcGVQU0LXEjDuD9iyAL/PmdmIs4xGF2UkjImFyO2nBQz4uOMnZNWi
- 9WdOsnzGvLvmywK4B7qVc+S
-IronPort-HdrOrdr: A9a23:/YFJq6nX2JhYciGoP9lLOCockrPpDfPOimdD5ihNYBxZY6Wkfp
- +V8cjzhCWftN9OYhodcIi7Sc+9qADnhOdICOgqTMGftWzd1FdAQ7sSibcKrweAJ8SczJ8V6U
- 4DSdkYNDSYNzET4qjHCWKDYrUdKay8gcWVbJDlvhVQpG9RC51I3kNcMEK2A0d2TA5JCd4SD5
- yH/PdKoDKmZDA+ctm7LmNtZZmJm/T70LbdJTIWDR8u7weDyRmy7qThLhSe1hACFxtS3LYZ93
- TfmQCR3NTojxj78G6Q64bg1eUYpDLT8KoMOCW4sLlYFtyjsHfoWG0rYcz7gNl8mpDV1L9tqq
- iFn/5oBbUP15vcE1vF2yfFyk3u1i0j5GTlzkLdiXz/odbhTDZ/EMZZg5lFGyGpnnbIkesMo5
- 6j5VjpxaZ/HFfFhmDw9tLIXxZlmg69pmcji/caizhaXZEFYLFcoIQD9AcNea1wax7S+cQiCq
- 1jHcvc7PFZfReTaG3YpHBmxJipUm4oFhmLT0Aesoie0iRQnnp+00wErfZv6kso5dY4Ud1J9u
- 7EOqNnmPVHSdIXd7t0AKMbTc6+GgX2MGLx2aKpUCXa/Y08SgzwQsTMkckIDcmRCeM18Kc=
-X-Talos-CUID: 9a23:q7ThNGzuvdlRI9r1XVeRBgUSQv0AeE2C802JMkOcCkB0aaXJZHCfrfY=
-X-Talos-MUID: 9a23:igxs9ArZpFbIVgZH4aYezw97bN9l5Lq0MnIUsKo2tNOvHgh5PB7I2Q==
-Received: from mail-westusazlp17011015.outbound.protection.outlook.com (HELO BY5PR09CU001.outbound.protection.outlook.com) ([40.93.1.15])
-  by email6-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2024 10:42:18 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Mk0Nxv9PDamlRMNo31xtSwZYMwYzm7vJZwlcBZUu4O0/mk2WrGRygiMmzBEbuKCDsTWgBOGGh1B8hWu7SCarkywgojFgDiH6poRbLa6BOXHL2SW95luV9e0rZSZDY5f+JLllYivnX8y18/kNCVmZ4dcQshDdY/DvRtySY7TvurfHJKLsk28l3RenAKPlojXCeGrevSUFXemSQKcVY1av6jhiWzixf1oGYA1rgQ4V+PHfyULTjIoaI44TUox+MZAgZyXC1Eje6QEe75BCgMb4Hpgx4CufUPNGsj55aL5qHcGt9lO41ZgMN5acxHS/wVF6+feHqvieSumsNCZ418KjZQ==
+ b=xoL0GY61860KuyXmaWAgnwZEJzLh3nOBNba9EctfQVGTU6CpVIWImffJwXNgGWydGNMse+8aN9v8qPd2E8ID8WVqYT0bT4anIMcBP67dd3siowEJqn4xHCRQHLYwBv7baJ9vWSDDiqZhRiF5Onn7IEX6ld2rGyUVhgNoNLmFHR7BrKG/FoBWMPfaDS/KzZ2f7HXSIrigUIqqB3sWbBeft0XOu4SWE6Tx+rRGHcgVQoDY9M9xi0ZnHrkhJfqy2Pi9wFFp/NPAR8PMir3lS9B5ReYWgY1e+H0+DCIbnaHCD2ZU0+fmpFEWMIYdMfOk32ILzDGnXBxMDVrmWWC+ffwL8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GEvoepR/C7XOd55ap/F/kOZS4FjwxEnRkynqGpdphq0=;
- b=o9ZctzOXyx09DsQH9KblYq3YsJ/T4Q52KDpFkmupIRfN6/g3IdIH4O+xFGedokuayJWErubLAxmRp/TKpj03D8xJ4VcFOoGjAz52odQlulwE1Yx1UhMq/3xAUxE6g6pvUAANr1WY4A7MxDep7OBMpMgxiI2mutQerbv2u4Sxt4N10hAC1X7C8DVqVtgasQiqRp+AwaVb2RSCceRsKwhmfNVZq2KBOma2IZwQwQabndkOt5CZpm4P9KLL9lXCxd9JP4jiZPGK0bzRLrE8ZtqR+wUZKTENMiteNrv9rsLZBGkmFn4mvs7ZeB4XsLh5Axea5Hp7pTZLUOWQYFMv9BO5zA==
+ bh=6yjTti+MpfCTDIZ8FTc1bIvXVLbSlZhgNwSINDWpFKw=;
+ b=hqAyyTfp4iASPMTgXyuZSDc65hxVuxoSJNj4SfATEVrocfO3XtY5junmhR9ZcJve9kFMARqhhy4yo+74eqW7ufDBhsGlqGhG12SP5iajOv1u80As1ODAQ4MbP9T4vDqyBZx0B+3AlL7Aqe+hY305FWTFWq/PLiV5vxfe6EoQAzEtcSBfXo1OVdyUnSZRHkFhEPrQS3QYD3W+OWBJFej++jjOcFNFIvquRZjZxKLB1L5ODCLIojmGW0qlqI6Hl3j8gPRyq91q6eAE6y0WVQ4Qw3JUk/nXkWcBKERR65OQArk09GvXioB60FbxAnrPm1wD5Trq5/8Wx5b5uhdbDOHEag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
- dkim=pass header.d=aero.org; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
+ smtp.mailfrom=iastate.edu; dmarc=pass action=none header.from=iastate.edu;
+ dkim=pass header.d=iastate.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iastate.edu;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GEvoepR/C7XOd55ap/F/kOZS4FjwxEnRkynqGpdphq0=;
- b=TKp8C1TcIivaq7EUAvTfK1ZBlHqgee2QP21z05R1YazoPO7uK2HjnEqMdy8mykWeEOezMLhfcg87AgHZa0b0APLxGu4YZ1S/eLWZJzWLmUdOtz72XWllLI2vnCvAyjlEfRWFb3f4iLrcSWYTFWL/9uNpGkSdWuudluo5bCt4MYo=
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
- by SA1PR09MB8749.namprd09.prod.outlook.com (2603:10b6:806:17f::21) with
+ bh=6yjTti+MpfCTDIZ8FTc1bIvXVLbSlZhgNwSINDWpFKw=;
+ b=QNor8koOvowxUSTayoY/IXi8Dm6pMIzQHexzfefal7LE0fY+2ASl6xrSkJ/0pBCWFghU6GAg3fzVzkpuRHdh/krHqMfsYmPKxbfIFrEAe9pzTq2j5Cl/0/RavmW4RwrN2XuVHiejuv62jNalo+1fluFZ0GgdA3i25jVRsU8GU/inRSh+vcOTeQCnkc3pKDNPwAmr0z0mFsdli3UfxbjWkPfnELrT6GyZrYXBsHeCyAuR0/jNmFiEgellqkqFus7OSD7ThZfaGOQAlY0kOM3R+IP78rwy+48bUdnwRm2NNdFbwnlVbRT6EbCqhlBTBP6ZD82qzAHk1dogaqZVePndvA==
+Received: from SN6PR04MB5406.namprd04.prod.outlook.com (2603:10b6:805:102::22)
+ by CH0PR04MB7939.namprd04.prod.outlook.com (2603:10b6:610:f6::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.15; Tue, 10 Dec
- 2024 18:42:14 +0000
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::3188:1f4d:693d:60d6]) by SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::3188:1f4d:693d:60d6%5]) with mapi id 15.20.8251.008; Tue, 10 Dec 2024
- 18:42:14 +0000
-From: Eugene Grayver <eugene.grayver@aero.org>
-To: usrp-users <usrp-users@lists.ettus.com>
-Thread-Topic: Why is IQ cal disabled when using external LO
-Thread-Index: AQHbSzL5bzrTinc6Y0Kgz5AcBKHtSw==
-Date: Tue, 10 Dec 2024 18:42:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.18; Tue, 10 Dec
+ 2024 19:45:50 +0000
+Received: from SN6PR04MB5406.namprd04.prod.outlook.com
+ ([fe80::b473:f36d:5020:cb72]) by SN6PR04MB5406.namprd04.prod.outlook.com
+ ([fe80::b473:f36d:5020:cb72%6]) with mapi id 15.20.8207.024; Tue, 10 Dec 2024
+ 19:45:50 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Running cron job on USRP N320
+Thread-Index: AQHbSztRxQxPjgllYkucMKBhxipLgQ==
+Date: Tue, 10 Dec 2024 19:45:50 +0000
 Message-ID: 
- <SJ0PR09MB9126372E2F50840A52FB0898EC3D2@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <SN6PR04MB54066A7703EDAD4B62C03BD3C13D2@SN6PR04MB5406.namprd04.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aero.org;
+ header.d=none;dmarc=none action=none header.from=iastate.edu;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|SA1PR09MB8749:EE_
-x-ms-office365-filtering-correlation-id: dfee2558-baa7-45b7-7069-08dd194a5da6
+x-ms-traffictypediagnostic: SN6PR04MB5406:EE_|CH0PR04MB7939:EE_
+x-ms-office365-filtering-correlation-id: a91ab770-e938-4983-6f05-08dd1953404d
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|366016|8096899003|38070700018;
+ BCL:0;ARA:13230040|1800799024|366016|376014|8096899003|38070700018;
 x-microsoft-antispam-message-info: 
- =?iso-8859-1?Q?LA/43koaI4EZPfGXLDvKxRYVWAZ1Sg8nGDJ+g+nNEyzPJEvcsrxisvZ71c?=
- =?iso-8859-1?Q?oxGVhfX5avH6FJ8sOtryM/kc9RaIkSNGMh/1Lh5jHmfMVY5sx044uC74ci?=
- =?iso-8859-1?Q?GbJ3i6rRpsY8FEnBDwc6m5zg/t97p61lEkrsuYcRYTlBFRVVlfqvdtYLJO?=
- =?iso-8859-1?Q?FzYWjDnfa6FTqrlaQwQdPeEYcZIz06/x6VzTD9qNwjcKlUjiw2Ic1hPAua?=
- =?iso-8859-1?Q?hEXWJkxaRoLOXv85JsIEsWR4TZNZw2PCMtUD2LIxf/oo5q4mdgUAum6FvC?=
- =?iso-8859-1?Q?boabmkqhcQThZFO9sWqqFer8xqg75vdiYrGoUPRablEw7f3yFfA3ek/+Em?=
- =?iso-8859-1?Q?Kuacdsx2gPt//c9spDt8rbeVCTgmbFm325H1c0vB03Og5zyOYG+kCKgBau?=
- =?iso-8859-1?Q?jP8Y9tHuDLQZBRdf9kQUTUuu1vOrco+KTdXymmRckVGXoaVRahjCxL03lJ?=
- =?iso-8859-1?Q?aiDeuGRaVkLw5h6376w+sPTRXUhbJuk35PbjFgFxNQzFEv4eSbLAKugyV4?=
- =?iso-8859-1?Q?970dXwcqAToWO/KjG/6jeS1BjDM+QAX0gnzP2D23cabJlWc02X4SaJpBKz?=
- =?iso-8859-1?Q?sN2zNZxa509Qgg13nPB2ppmstMUJhBgunH63Jt7IVo/r4edh0QLWKCjC1l?=
- =?iso-8859-1?Q?nQtdWumG5Fpml+aZo+DY+aNI7S8XlBrbHQPLM/qtPGpvpp78iZG95nhHZ8?=
- =?iso-8859-1?Q?Rgbu8rQ8eqLRE6xVlqDMheDAEMNrlEL+LdDCzREqopBaLtOZ6iW3Iog4gN?=
- =?iso-8859-1?Q?QtkB6XWAYLGKp265pCsYuxT+HkHIghAOE2aNgyn5l4iHGeIvYDAJt3A3MO?=
- =?iso-8859-1?Q?a10tYrBDQD/ojfuzeiVcQ1fD0Vxbusu+v+m4QrdOnCMJQoIbbsFKCQc1Mg?=
- =?iso-8859-1?Q?y6H+2gKF9BX8ir/mmonBPX7lXFo6wRCdW8M/YVH/vJK9diO9d6xIxeCA8r?=
- =?iso-8859-1?Q?wfb+pQ4rFYVnApMFAC5IyinJ3oJQYRTOea4kE6idpScmKRY1UfSi9aDrOR?=
- =?iso-8859-1?Q?cgFcGsqQkfBO3Au5IQXbPXS0lMaIswySSPTtOyg5Rhtr19rZFJrdcumB+r?=
- =?iso-8859-1?Q?al7Ni755ifYl+XFbGidCCWxePGhlw63ZOU1UDQJE6ICrhxvp7x+2UYH84w?=
- =?iso-8859-1?Q?yBTOPsZnjVYxLxsUv9RbAmUcMhCgm78yz1HRfatDl0UiQDzgaCaCNswrkw?=
- =?iso-8859-1?Q?ckBMiKVrYcuX7UFAKCHv+OPqYhEYKvjb/ttGk6z7+bHwe3IGrCztLRKdBW?=
- =?iso-8859-1?Q?Lm5Q5ArQoX2mc8qVBxSwqNjDq5i3wI4Kyb+Rs3oT51lY/AyNWCxQYlan3K?=
- =?iso-8859-1?Q?tQ5kg6iZRyUdfVunJpSMdINFwvNbOuZjKib4y9h3FoLMUc1SV0oXnx0opN?=
- =?iso-8859-1?Q?RRg6ly2JZsic6uKCtkhNU7Sci4edeppteO5MRlpqmX+WV8FUgU/Ao+2Lk1?=
- =?iso-8859-1?Q?+Uj2kwQIBfoPmrz6201+SVdcarAz9ULHj5XqEQ=3D=3D?=
+ =?iso-8859-1?Q?6WwnuG5EBbFCdnpvfWCY5vYMZat1tBRc16xXJeHjABmS/NztCaR2dnBMyS?=
+ =?iso-8859-1?Q?uYRjp7+Yq6Cfvl/Qa7ww5j3nk6i6TbJiIVM6xjATXjGzoj5pOjrGTl7khP?=
+ =?iso-8859-1?Q?4iR82qhwimskK/iqCYfGhevrhVp0WscQYK7Ia6Yco4EfsIm4y44TMo/XMM?=
+ =?iso-8859-1?Q?dH4y+8nSous+82YZ34+S2K0WP6Ca8xh7VZsSmQsKNAYX5WilFj/U6OK2At?=
+ =?iso-8859-1?Q?wYFrTuGw70YqP1DNhxqzjtF/lIftvork5qls7WrIHUmvmTKN2q3w7Itdov?=
+ =?iso-8859-1?Q?ljPEDUp2vqUfNnmkgI+0xHnXASE2//UGNFqHekLYdLZ5TF0bf3WWE5IFCa?=
+ =?iso-8859-1?Q?MoiYywekZjyHcdgW6GAEF1X4olCPMYjE5fWmU20dcENiYrpkX72jbzRD7P?=
+ =?iso-8859-1?Q?0F43vRMDo6YJSpKqUCYr+tiFE2NKJ9DSwtAtdUAAguQjYvI7qAY9tGhcI+?=
+ =?iso-8859-1?Q?OfiiiDGxZl+GRr6F9VFAKlxgpn1M2dqw2FUQL8uU81hXK/NZksztKjo9Xj?=
+ =?iso-8859-1?Q?+J628llrOKfPlh3bQ3Ir0NTtvqk/O6sqwrzOIaboLDmuvRZxLuuHn1AqWG?=
+ =?iso-8859-1?Q?pEPyzlfUjusdnnjzcKqGdtFvMud4+pimr9m2YEcW55YjKBPSqBmKx1ZwpA?=
+ =?iso-8859-1?Q?pHnrN2Ua/Xjn3hGHSXLe+VPbhCmZGby/CqPGsdmz6p4vAEDllol5WLgL6u?=
+ =?iso-8859-1?Q?cnPXohOXpumJPrDx+rnQZaZmT/daduyErZCVZvB0BifAKkezV5gNrOwvK3?=
+ =?iso-8859-1?Q?9eYquD3hJHKfqSXY9RP8Q1ueYPoydtrxWnmGJZ2Cy4sbG9VarlAoop95+P?=
+ =?iso-8859-1?Q?InZPKda7aT+dNeJYdMvLXg/RpW8kA1kzr8g47cN8eQbyr8uikRe/og1lCW?=
+ =?iso-8859-1?Q?QoYaJGFvuk9MuzIQkZKz/SUg0TB5/Fp4lCOJrTc4vcUPCgFjfv1xli7ke/?=
+ =?iso-8859-1?Q?XWUuNniJiymfcwY2TD4nhlVrcfGii74pMvLNhlp0ThAZ3Kph9vKRW7FNpH?=
+ =?iso-8859-1?Q?2CLrFAK+CEJp0hsixfOB22XgAATbdEP7FvYHaQpvDZEzpwvCBKoxv/ZDZX?=
+ =?iso-8859-1?Q?vqf3vH2LvWiRlwa1dVqEeQfyx0v5fRiG0vZ7HbJhucOi4NLu2BqiFK8sXx?=
+ =?iso-8859-1?Q?bMAEyWP7fv0MMUTcovXCKfCc4dbCaWCE5MD3Sfe+yU7Ja8e+rbP6cKxhwS?=
+ =?iso-8859-1?Q?IUj7pEh23wJhLlFlf+qdpUr+0mKEzhCiZhjWFH2usv/KrgUJP6jpFMkVK4?=
+ =?iso-8859-1?Q?PY4hyHVRNO1IscpSllwMHE1K0DA1qLX4lJVeW+87mlF2Sk2vDFpFA58Rot?=
+ =?iso-8859-1?Q?Llx5n5tNBX1taMIfnLBEDRU3m0utzDRDXQoXyi7K7eETlaxUZGDRflofBW?=
+ =?iso-8859-1?Q?vBfkT5IqWJePwWfTVt6OQqvF487gDT5jMzqMhaWY/4buzCWLx1qB4HA2lW?=
+ =?iso-8859-1?Q?tGKXhGdZnRrKDNp1mWuf2vtV5I/OiCm0M/mzkw=3D=3D?=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(8096899003)(38070700018);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR04MB5406.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(8096899003)(38070700018);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?hd3BduXX7ike12qX3qcd69UJeJNjQRw0Wdc/gVhb1+qf5huSktMkpVJaXv?=
- =?iso-8859-1?Q?THEmSnzcgs8DK+JwG/A41efkUsyksibRPjsgyZa4LyUfYff0KOaTbKZ+nR?=
- =?iso-8859-1?Q?/Kj4c/DozuYeL7oMfc/HKUihOCEfP6vl7t3fC3YEkaiEg7k/wQpikdsBFd?=
- =?iso-8859-1?Q?WqQv/x3PRehiJYDxEdWGydbecTf9PV/iinRZO/1/bIjgdiz06bffxHpx73?=
- =?iso-8859-1?Q?rQrPXezh3T5lqpMLUNEq5Zu8nvrt2emjufHXAjSfTgydr6Cg+EA9l/p93M?=
- =?iso-8859-1?Q?r8sqS4Viml+O/T/qumvcIZ1NnZ2AjZV+lCoV2oeXS/Mha8ilncDk5H9yiq?=
- =?iso-8859-1?Q?7TqskVHfmP2hys9SRlQmAmGqbZ1HAYCrC1wEYes564ObrOFozWfuaYEWEo?=
- =?iso-8859-1?Q?fXoO+z5ioal+rO8ynjZWyGapTGgjPPCwsH8obMEpEdaK2GyaaaUuJvHPyX?=
- =?iso-8859-1?Q?qvK2OeireK64F3V3TrjsFIahTxbLfgo5VkI0dg77CJhMx5ODqU/7HJFVYR?=
- =?iso-8859-1?Q?eLj4YtKnX7x1v61VfDDKapRWx2d7ni+C/G2hzBFheVzlnbT1CG+qrD5FfA?=
- =?iso-8859-1?Q?ZPAXTG08UymSFkGIB7pcvzoV9+PXfLj6yvACEpI5+QBCZSoSKj/FVFaSod?=
- =?iso-8859-1?Q?a+ujn7bFTTCTj5sonDwkI7or4zVy+IY7w0Fo/k9pRk8RiZV2YKaShMD2Wa?=
- =?iso-8859-1?Q?RnbPCx9mZS7VRUOWavUQNs2MRaEOuhcLHgtetQcQVtPGiRw0Z2APlIHpZU?=
- =?iso-8859-1?Q?m6wIUeskApvmbD+3hu7v17dHYp8s36hJUu8rex7BA99eb/DaaX8HcEfDH9?=
- =?iso-8859-1?Q?lGTN47FDONfo62JnboZlTsgTrBpk5gkkG5nY71YUy53pV/br5aSAvc+yec?=
- =?iso-8859-1?Q?Tb5KnwZoyTxY27/xvQii3l/zbO/i5Ax7CW7wezSXZnXWZfJgUaPa3gd/OE?=
- =?iso-8859-1?Q?n5jPmAbHEqL+ww6v7neajJ2PmERDhvEK0cCQt3qiDoD66hci/XGjdpOVtG?=
- =?iso-8859-1?Q?dajoiG6arFqz1at4J71efGiS32pV8I2PGTADiMaHm/1d15MYwWtyeLjiRE?=
- =?iso-8859-1?Q?iErMPR0FneSL70Hkj8Z3dPuEpeFIF5LVuOIvjAi1iHNqIGyMkWYk1w42ZR?=
- =?iso-8859-1?Q?tkhr1Nr+yuSKYL4yK9RzpfgXwgdAwgOG+9pKgHoEJ+S+o8ScKMMmZun5Uh?=
- =?iso-8859-1?Q?Qvezht1FIVjs2NAjqhpXys5DwJQr/YPV5RdUcAPJAiLaSRQeSl7qvXmzrj?=
- =?iso-8859-1?Q?BVlCfwBVeJi51kzQXlmQNckc2dUYgmdf8dScYMY1rX900mGIuV5IuiFmwC?=
- =?iso-8859-1?Q?ft6sR+cW7CU+i2sBbu9kpOnPYU0mtCpzF2OexopfWMo3iflEnB/Z/XmbYL?=
- =?iso-8859-1?Q?s2b3gEENjkfYRsIhXYfyuee3qIgNa5C8B7+5pUNxgdNR29mhGDUOO4yMgA?=
- =?iso-8859-1?Q?jgTw4gqaOblSy7c4UVIJHzV8ZT2ZgivX52afj45QCmc/Ttw5CKbwlheY7l?=
- =?iso-8859-1?Q?VlYm1pNOoh6oo3ulkfCoR5bDyiHZGBGCRDbkiIXmZLY/iBw3QjSavZ7Y7I?=
- =?iso-8859-1?Q?Y7OsC6q3+4/it0mf0dnA7ORYeTyOxeHRbcVVNTt6bJ5eN1jOiOJUj6fx1s?=
- =?iso-8859-1?Q?ezNiyyN8AlxXs=3D?=
+ =?iso-8859-1?Q?IjgQ+wUb1jAmXo10IW6skiqbhxeIibTDxS6Td6Bz8vxe11s/9F2aSnI9ah?=
+ =?iso-8859-1?Q?XcT2XkL3TtpqO/IheMUaUmYNIfObPSFzrbc/C4/MZRHjh8jb2DEWyWRnBZ?=
+ =?iso-8859-1?Q?7X2GuitIkGZUJyxWlZa+ID5wd0Lmf3sO5dVx3juaHcS/wOps6/movO1AGq?=
+ =?iso-8859-1?Q?b1MvQhDhS4ep2/ulq+HAgweTz1cV+hC09jNjvuJOO7GxilpMp0682tz2rC?=
+ =?iso-8859-1?Q?ZC4PphjA2TcIcAJH7xmeK9YUj7pbA/UEEFc+VvKfPB2SGfZvb73UA7p82r?=
+ =?iso-8859-1?Q?3JHcQFyOiSyGu9+yF3tVoiXYdpHmBQo++tZi6WaR4WEEBG5zGJ2JcC89Bg?=
+ =?iso-8859-1?Q?9hEvBGQZWSRg3lP1YWGAStMrzttpHyujnqxboiHm5YQmgec6e4zWQ4vdxe?=
+ =?iso-8859-1?Q?VdKuyNbF3ErNjg4WnemXWB27O+hEm8BvV22/bsQYNaQiUaDEP6leadosl7?=
+ =?iso-8859-1?Q?379PRJhETZcTS3YFX1lhzgpT+MX8VMv3N8EAFIVvKTRkYsYAqYAH+T4OWV?=
+ =?iso-8859-1?Q?1/w935Qo4FP9IXudMmK0x7bZu4Wj+4KaoaosQcNBcMq1xtWi40TwSL35ji?=
+ =?iso-8859-1?Q?bfiF45MQTxlibAMIKRfdr7JlYAbvgA+iKK5h58zKuru6Mm16HVwiKJQpuC?=
+ =?iso-8859-1?Q?/+K5v9njIXp6ccifTt5+Obt4w2a4M0CPKUaFoUXnlqEawAMHeRlDkwTUC5?=
+ =?iso-8859-1?Q?z13E3DFDMWx3ThqTl8SPaEbItbTTR/QN3E6dUEuOaMmoReO3MxO2TBlPVx?=
+ =?iso-8859-1?Q?WPCph3yIzIDsO2zkuOPMdg9O9HQE4TXiuFx3PGcS7rWmQxB/2cFyMXcI0X?=
+ =?iso-8859-1?Q?ZDI/bUbymS+xCLplZr/4MXMq9u2EjCR1yrY4wE6P1JWsfFV33sxYCdfe87?=
+ =?iso-8859-1?Q?HnNwi4mhYGQvI8GV2v4c0Mw1VEX5G3b1vuPPwaEXw4r9G3lxInZGsZb9kO?=
+ =?iso-8859-1?Q?T0mE5BzQDPK1WrKRf2fX5iRPbiHgS2agsuUsUP5k2W/a5ppWTVYSGxeu+S?=
+ =?iso-8859-1?Q?3L4OJzo/MiZwNGJ494X6THWAFVVeSw6ihhGHJwanQPSiBxx7/L0Qbxa8Mm?=
+ =?iso-8859-1?Q?uZuz25oUpSF7tQjCt6+iPeIRIgVbUcph+c9IQCavncGWE25ZUZOLW7sVtO?=
+ =?iso-8859-1?Q?X0LOfVsl4YZLmm2uHf+zczXddydoI8/3lzhdgrmM0qKi0mnpRLdmW7uM4F?=
+ =?iso-8859-1?Q?zvSQAk8dxn7t4M0IssRJ9zZTksa68trLcXTs8n0ro6Lk8SFUsaqRBlfcx3?=
+ =?iso-8859-1?Q?jpfvCPdyXNlqzvIx/bBJJ4llCSk3WiiquAOk//Upn9J4rWjyueTJbyjOra?=
+ =?iso-8859-1?Q?zHKODRSe6B5UAYkdE0RdwZc11No6/x2jM/LqLSui8rf4ojI22R/tHRwJKl?=
+ =?iso-8859-1?Q?HLcBTt5IsxePS/fon4dXImA0VQfAJvkd+YFIs6EpW/1yd8OM59bMYjNRlA?=
+ =?iso-8859-1?Q?T9U5C2zEHDod76OWqW4E9kI/hp6H1KQJT+KHtuUoYIfBI7I+DOdbRRw3cA?=
+ =?iso-8859-1?Q?6pXGnw3UiiiRmex24m15xA3PQNUcV736thhDYrcpzFjTR4RCTYDucROaVk?=
+ =?iso-8859-1?Q?RbXky/4yHTmW4NwViRrG85NehL8VxM91jO5JO1v0esJhKOflJM7f0bigfB?=
+ =?iso-8859-1?Q?uFkRq4zVZey6Q=3D?=
 MIME-Version: 1.0
-X-OriginatorOrg: aero.org
+X-OriginatorOrg: iastate.edu
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfee2558-baa7-45b7-7069-08dd194a5da6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Dec 2024 18:42:14.5751
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR04MB5406.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a91ab770-e938-4983-6f05-08dd1953404d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Dec 2024 19:45:50.7679
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR09MB8749
-Message-ID-Hash: FEF7NLJAWFOREQESGCMWINCQF7ZLPJPL
-X-Message-ID-Hash: FEF7NLJAWFOREQESGCMWINCQF7ZLPJPL
-X-MailFrom: prvs=0672ffd30=eugene.grayver@aero.org
+X-MS-Exchange-CrossTenant-id: 0347d89a-0174-4dd3-adeb-3339c89c35f5
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3fCmpF3DbhyZSZuPclW4VDb/4/CDnOMo55CRI/6ssp7SkQRMt9+xkcu/wp3tbB6j9kv8c2hqSkAnt1yhLKCBZw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR04MB7939
+Message-ID-Hash: VIAYKKRLTA4SXMN5IMUS4572OOK3QBJ7
+X-Message-ID-Hash: VIAYKKRLTA4SXMN5IMUS4572OOK3QBJ7
+X-MailFrom: jboateng@iastate.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "Ofori Boateng, Joshua [E CPE]" <jboateng@iastate.edu>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Why is IQ cal disabled when using external LO
+Subject: [USRP-users] Running cron job on USRP N320
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZE3XNB554DWP3JJUKYCJWGMWLWAP6B47/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PMATD6HVLTLABVC3DZQWEWPVUGEYLY7Q/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2454142317616260291=="
+From: "Ofori Boateng, Joshua [E CPE] via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Ofori Boateng, Joshua [E CPE]" <jboateng@iastate.edu>
+Content-Type: multipart/mixed; boundary="===============0928597316114154197=="
 
---===============2454142317616260291==
+--===============0928597316114154197==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR09MB9126372E2F50840A52FB0898EC3D2SJ0PR09MB9126namp_"
+	boundary="_000_SN6PR04MB54066A7703EDAD4B62C03BD3C13D2SN6PR04MB5406namp_"
 
---_000_SJ0PR09MB9126372E2F50840A52FB0898EC3D2SJ0PR09MB9126namp_
+--_000_SN6PR04MB54066A7703EDAD4B62C03BD3C13D2SN6PR04MB5406namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hello folks,
 
-I just noticed that the calibration tables are disabled/ignored when extern=
-al LO is used.  Why is that?  I understand that the automatic calibration u=
-tilities will not work (over frequency).  However, we are generating those =
-tables ourselves, and expect UHD to use them.  Now I have to hack my own co=
-de to duplicate the calibration functionality and 'manually' call set_dc_..=
-., etc functions.
+I am working on a project with USRP N320 and want to run a cron job to rebo=
+ot the device after a specific period. I wonder if anyone has tried doing s=
+omething similar?
 
-Thanks.
 
---_000_SJ0PR09MB9126372E2F50840A52FB0898EC3D2SJ0PR09MB9126namp_
+Thank you.
+Best,
+Joshua
+
+
+Graduate Research Assistant
+Department of Electrical and Computer Engineering
+Iowa State University
+Ames, IA.
+
+--_000_SN6PR04MB54066A7703EDAD4B62C03BD3C13D2SN6PR04MB5406namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -248,7 +198,7 @@ ttom:0;} </style>
 <div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
 nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
 olor: rgb(0, 0, 0);">
-Hi,</div>
+Hello folks,</div>
 <div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
 nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
 olor: rgb(0, 0, 0);">
@@ -257,12 +207,9 @@ olor: rgb(0, 0, 0);">
 <div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
 nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
 olor: rgb(0, 0, 0);">
-I just noticed that the calibration tables are disabled/ignored when extern=
-al LO is used.&nbsp; Why is that?&nbsp; I understand that the automatic cal=
-ibration utilities will not work (over frequency).&nbsp; However, we are ge=
-nerating those tables ourselves, and expect UHD
- to use them.&nbsp; Now I have to hack my own code to duplicate the calibra=
-tion functionality and 'manually' call set_dc_..., etc functions.</div>
+I am working on a project with USRP N320 and want to run a cron job to rebo=
+ot the device after a specific period. I wonder if anyone has tried doing s=
+omething similar?</div>
 <div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
 nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
 olor: rgb(0, 0, 0);">
@@ -271,13 +218,50 @@ olor: rgb(0, 0, 0);">
 <div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
 nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
 olor: rgb(0, 0, 0);">
-Thanks.</div>
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Thank you.</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Best,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Joshua</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature" class=3D"elementToProof" style=3D"color: inherit;">
+<div style=3D"font-family: &quot;Calibri Light&quot;, &quot;Helvetica Light=
+&quot;, sans-serif; font-size: 11pt; color: rgb(23, 78, 134);">
+Graduate Research Assistant</div>
+<div style=3D"font-family: &quot;Calibri Light&quot;, &quot;Helvetica Light=
+&quot;, sans-serif; font-size: 11pt; color: rgb(23, 78, 134);">
+Department of Electrical and Computer Engineering</div>
+<div style=3D"font-family: &quot;Calibri Light&quot;, &quot;Helvetica Light=
+&quot;, sans-serif; font-size: 11pt; color: rgb(23, 78, 134);">
+Iowa State University</div>
+<div style=3D"font-family: &quot;Calibri Light&quot;, &quot;Helvetica Light=
+&quot;, sans-serif; font-size: 11pt; color: rgb(23, 78, 134);">
+Ames, IA.</div>
+</div>
 </body>
 </html>
 
---_000_SJ0PR09MB9126372E2F50840A52FB0898EC3D2SJ0PR09MB9126namp_--
+--_000_SN6PR04MB54066A7703EDAD4B62C03BD3C13D2SN6PR04MB5406namp_--
 
---===============2454142317616260291==
+--===============0928597316114154197==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -287,4 +271,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2454142317616260291==--
+--===============0928597316114154197==--
