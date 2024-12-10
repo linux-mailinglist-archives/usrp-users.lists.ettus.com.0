@@ -2,270 +2,282 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6109EB738
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2024 17:54:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 601A29EB985
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2024 19:43:29 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 423B6385F8C
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2024 11:54:55 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 73A7A386289
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2024 13:43:24 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1733849695; bh=x0hX/Jd7IgCO5y7AvuOofUjYSgwHfAq0MQgdqoWyzQQ=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=pMZzYNTKZ8v3HR1RF0og/P8OnEkC6iuIRjNqU7piQndm1c506q2HnOyLV6sWBe6bx
-	 2p1cepPVf2G8y/Yu65iteA/7XSkxdDhpfG1Fnh9IAsIGoojmX1U3lGgygdlsyYMx0k
-	 E1M6mRAfKzevDcLU24zWlp3GStdKz3c6N7dWenz7N+GzlXLlHIrO+pulTQW6E3i+ai
-	 q6KY0/lEQDXGnR8XRIWYhAK83AuEWrerjd00BuUY8SK6fW7+ozaFIR22VYFrtggvji
-	 ZYO8/hXvgUTl1tJoLjdr57/rIqezrZL98MJhkW0rM9Lqgke476wdvNu/aaPrqnRHE+
-	 KifJ6f5jiPMLQ==
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id DBF23385BFD
-	for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2024 11:53:59 -0500 (EST)
+	t=1733856204; bh=8V+49hwwtZgwfbfFOtaHdIOPhDXDRLNk7dVfXIUZ0LM=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=UmxsLr3q9qgiVJaAmx8b+TPKkUjGirTfxd22FzmXtUgrYs4erFXF+2B8WIz2hLOPj
+	 4XKTrs7YqD4ARXPVSFllQGXNG7Egnn4MTeLqYvIPrNjK8uGy+chsgnyqce5at6lQAu
+	 ImauC7XJJrCLrQlgVtfK1yognpV8skxHF8u38ZEWTnDRcDHgCc9jouOPAW32nnwuST
+	 DwNdWPoyvKt5PaAWsQXW2u4SCnDcC3yTBaLcG00wcZXqtZCbdX0u8Oa3Rqtz9rcEia
+	 HPODFwMFMjx5xM3kWE5znriGbK862M5yqnS7VSoGdpQV8LPUPBQieNd3tGLApNof4y
+	 zC0K3st29WEVQ==
+Received: from email6-west.aero.org (email6-west.aero.org [130.221.16.31])
+	by mm2.emwd.com (Postfix) with ESMTPS id F0953386200
+	for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2024 13:42:25 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hDMkF2L7";
+	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="zGTtLShO";
+	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="TKp8C1Tc";
 	dkim-atps=neutral
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7b678da9310so509728585a.2
-        for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2024 08:53:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
+  t=1733856146; x=1765392146;
+  h=from:to:subject:date:message-id:mime-version;
+  bh=npTMe/wiUaXl9qMFPVec0vjBPnqz/z5goakdxM+vevo=;
+  b=zGTtLShOsLVy2ISo1oOXGs3dR0VrjNXDO2X8/3zuMehWgNckHfIKLr68
+   hix/I4YDlDEviGs6xmu+cJFucr3tqRdCcE4Ly49iNNHkXpaNtro6L55AZ
+   uHa4fEbCUbBoP5P+9XLxEs6Z9cEfHJRzk6RXy3nZxxSfL7ibdPfsxGinK
+   c=;
+X-CSE-ConnectionGUID: n0UMbX7WR1ydLkNuIp4EGg==
+X-CSE-MsgGUID: Vq0peovrRZqIWXgrCCLaoA==
+x-SBRS: 4.2
+x-SenderGroup: Inbound_Office365
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="1971197"
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600";
+   d="scan'208,217";a="1971197"
+X-IPAS-Result: =?us-ascii?q?A2GCAQBJi1hnjg8BXShagQmBU4FBgQN7gWauCYd7A1YPA?=
+ =?us-ascii?q?QEBAQEBAQEBBwJEBAEBAwSFAAKKaic3Bg4BAgQBAQEBAwIDAQEBAQEBAQEOA?=
+ =?us-ascii?q?QEBBQEBAQEBBwQBAgIQAQEBAQEBOQUOO4V7DYQHgSYBAQEBAQEBAQEBAQEdA?=
+ =?us-ascii?q?jWBHAEBOBEBDAFyJwQbgnmCHQ0HAzGwTIE0gQGCDAEBBgQE2x4YYYFkCYFIg?=
+ =?us-ascii?q?3uBcIJjASqBMok8gVVEgVeCN4U0hBOCL4JATIQqgWqcP4FHIgMmMzIBVRMXC?=
+ =?us-ascii?q?wcFYYEUA4EWg2CBAzmCEGlHNwINAjaCJHyCTYUXhGmEWYYmghlsHUADC209N?=
+ =?us-ascii?q?xQbBQSBNQWZfgEHA4E/hDeBYIF3oiKBe4xdlFw0B4QdBYFYBgygCxeqUZh7q?=
+ =?us-ascii?q?QACBAIEBQIPCIF9UoEuMxowgypSGQ+OOoNhvkZ4PAIHCwEBAwmSHgEB?=
+IronPort-PHdr: A9a23:jkOlzxA4Z9We0SGIshhvUyQVaxdPi9zP1kY95pkmjudIdaKut9TnM
+ VfE7PpgxFnOQc3A6v1ChuaX1sKoWWEJ7Zub9nxXdptKWkwJjMwMlFkmB8iIQUTwMP/taXk8G
+ 8JPHF9o9n22Kw5bAsH7MlTfuHr06iQdSX3C
+IronPort-Data: A9a23:utNp+6PGlG4k3rnvrR1fl8FynXyQoLVcMsEvi/4bfWQNrUp30GcAz
+ WtMD22DM/rbNmD8eI1wa46+oEoCsJ6Bn9BmSQZtpSBmQlt08seUXt7xwmUcns+xwmwvaGo9s
+ q3yv/GZdJhcoln0+Ej1atANilEljPvYHNIQMMadZ2YpA1YiEHx54f5as7ZRqpZyhtSkCB+6t
+ 9r3osnOUHeowDcc3lg8s8pvkzsx+q2o0N8klgZmP6wS5gaGzyV94K83fMldEVOpGuG4IcbnH
+ 44v/JnhlkvF8hEkDM+Sk7qTWiXmlZaPVeQmoiM+t5mK2nCulARrukoIHKN0hXNsttm8t4sZJ
+ ONl6MXqEV9xVkH7sL91vxFwS0mSNEDdkVPNCSDXXce7lyUqf5ZwqhnH4Y5f0YAwo45K7W9yG
+ fMwLmgwSxqz2N2MmaO3bupKm+U7cOTEM9ZK0p1g5Wmx4fcOa6Gee5+StPRlhG9pwMdTAfzZe
+ swVLyJ1awjNaAFOPVFRD48imOCvhT/0dDgwRFC9+fJxsjOVlUoojdABM/KMEjCObchIkUueq
+ yTJ5W3oHBwAHNWS0z3D9Wij7gPKtXqqB9tLReLQGvhCvkTL3mEUFgcsZ0Kansm2kGWVf9tYA
+ hlBksYphfNprhD0JjXnZDWlu2Sc+wMHVsBLO+k78x2WjKfI/xuCQGMDS1Z8hMcOscY3QXk12
+ 0SVgsjgFzh36eLNECvFr+rSqi6uMy8IK2NEfTUDUQYO/9jkpsc0kw7LSdFgVqWyi7UZBA0c3
+ RiM9BUbjYVMsvRSxqmf/nbaoirwi7fGG1tdChrsYkqp6QZwZYiAboOu6ETG4fsoEGp/ZgnQ1
+ JTjs5jOhN3iHa2weDqxrPLh9YxFCt6AOTzYxEFiBIU87D2//2b6ItgJuWkneQFuL9oOfiLvb
+ AnLowRN6ZRPPXysK6hqf4a2DMdsxq/lfTgEahw2RoQSCnSSXFbdlM2LWaJ29zy3+KTLuf1lU
+ ap3ie72UR4n5V1PlVJavds1374x3TwZzmjOX539xBnP+ePBPyXKF+ZdYQfeN7tRAEa4TOP9o
+ 4c32yyim0Q3bQECSneGqNJ7wa0icSZkWMiq9ZA/mhCreVE5RTt8YxMu/V/RU9c+xfgK/gs51
+ nS8UVVf013xmTXMLh+SAk2Pm5u+NauTWUkTZHR2VX7xgiBLSd/2sM83KcFrFZF5r7YL5aAvE
+ JE4lzCoXq4npsLvp25FNcGVQU0LXEjDuD9iyAL/PmdmIs4xGF2UkjImFyO2nBQz4uOMnZNWi
+ 9WdOsnzGvLvmywK4B7qVc+S
+IronPort-HdrOrdr: A9a23:/YFJq6nX2JhYciGoP9lLOCockrPpDfPOimdD5ihNYBxZY6Wkfp
+ +V8cjzhCWftN9OYhodcIi7Sc+9qADnhOdICOgqTMGftWzd1FdAQ7sSibcKrweAJ8SczJ8V6U
+ 4DSdkYNDSYNzET4qjHCWKDYrUdKay8gcWVbJDlvhVQpG9RC51I3kNcMEK2A0d2TA5JCd4SD5
+ yH/PdKoDKmZDA+ctm7LmNtZZmJm/T70LbdJTIWDR8u7weDyRmy7qThLhSe1hACFxtS3LYZ93
+ TfmQCR3NTojxj78G6Q64bg1eUYpDLT8KoMOCW4sLlYFtyjsHfoWG0rYcz7gNl8mpDV1L9tqq
+ iFn/5oBbUP15vcE1vF2yfFyk3u1i0j5GTlzkLdiXz/odbhTDZ/EMZZg5lFGyGpnnbIkesMo5
+ 6j5VjpxaZ/HFfFhmDw9tLIXxZlmg69pmcji/caizhaXZEFYLFcoIQD9AcNea1wax7S+cQiCq
+ 1jHcvc7PFZfReTaG3YpHBmxJipUm4oFhmLT0Aesoie0iRQnnp+00wErfZv6kso5dY4Ud1J9u
+ 7EOqNnmPVHSdIXd7t0AKMbTc6+GgX2MGLx2aKpUCXa/Y08SgzwQsTMkckIDcmRCeM18Kc=
+X-Talos-CUID: 9a23:q7ThNGzuvdlRI9r1XVeRBgUSQv0AeE2C802JMkOcCkB0aaXJZHCfrfY=
+X-Talos-MUID: 9a23:igxs9ArZpFbIVgZH4aYezw97bN9l5Lq0MnIUsKo2tNOvHgh5PB7I2Q==
+Received: from mail-westusazlp17011015.outbound.protection.outlook.com (HELO BY5PR09CU001.outbound.protection.outlook.com) ([40.93.1.15])
+  by email6-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2024 10:42:18 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Mk0Nxv9PDamlRMNo31xtSwZYMwYzm7vJZwlcBZUu4O0/mk2WrGRygiMmzBEbuKCDsTWgBOGGh1B8hWu7SCarkywgojFgDiH6poRbLa6BOXHL2SW95luV9e0rZSZDY5f+JLllYivnX8y18/kNCVmZ4dcQshDdY/DvRtySY7TvurfHJKLsk28l3RenAKPlojXCeGrevSUFXemSQKcVY1av6jhiWzixf1oGYA1rgQ4V+PHfyULTjIoaI44TUox+MZAgZyXC1Eje6QEe75BCgMb4Hpgx4CufUPNGsj55aL5qHcGt9lO41ZgMN5acxHS/wVF6+feHqvieSumsNCZ418KjZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GEvoepR/C7XOd55ap/F/kOZS4FjwxEnRkynqGpdphq0=;
+ b=o9ZctzOXyx09DsQH9KblYq3YsJ/T4Q52KDpFkmupIRfN6/g3IdIH4O+xFGedokuayJWErubLAxmRp/TKpj03D8xJ4VcFOoGjAz52odQlulwE1Yx1UhMq/3xAUxE6g6pvUAANr1WY4A7MxDep7OBMpMgxiI2mutQerbv2u4Sxt4N10hAC1X7C8DVqVtgasQiqRp+AwaVb2RSCceRsKwhmfNVZq2KBOma2IZwQwQabndkOt5CZpm4P9KLL9lXCxd9JP4jiZPGK0bzRLrE8ZtqR+wUZKTENMiteNrv9rsLZBGkmFn4mvs7ZeB4XsLh5Axea5Hp7pTZLUOWQYFMv9BO5zA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
+ dkim=pass header.d=aero.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733849639; x=1734454439; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uuB7A+HgI4Km3FLj7i5zWB54QxjkvoT5H0ey7ssYHy8=;
-        b=hDMkF2L73YNISS8/NyTCTEpadqd8M9XiNqpuuqHGJGajiNI12CdzqFvOlZe+AQMWsZ
-         vDnqLWJHuHeZIXqoGHYzaI7vqE3+paP44uJmeWcyMSMI4EjNT0E+tvQ95Rn6AAX+5SAM
-         /Kzkk1Q9XzrK93Xq5lDFfsMX06m3Iwp28v3f9/17BIRh8pfN4l4hjVj4PTq3QuqXfxhR
-         eDT7DltXeLxxt3nxeGWos7hDFEkCtQXA1Br7Uc/84tbqKz565A6qdYc/IBjumSr/d++R
-         h4lAMOV2Y7+OD36q7hxtId19w8aGQdNbmPQnfZNbHczZcoWgHBSgJy1jDZundne8lXVn
-         gq5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733849639; x=1734454439;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=uuB7A+HgI4Km3FLj7i5zWB54QxjkvoT5H0ey7ssYHy8=;
-        b=pS54a64xUnaQf31cujobPbByYiRGksL28zYGjJNBQtcNFTeyz5+iM2jutRbw9BLZ8H
-         TVJAaxvx/7zzsNDOzWvL8SiqvJXFYmArOjJQ08hAUFfnn47bXVdguP+qv0Qml8UfnLvU
-         PHvwDk4kf0CDGKCn2vNUn5QqUGoab4keyU5QJQfyYyZlppBEqmYnrdrQml50yLTCzd6j
-         IwEXOAdac90UHBXpwMFGcsZ/gOFgCalb1rD0MeLrq6lPBKGC9oDkObezZeaIDs5VGlQQ
-         5Z3G4QxfXEA1JDj6NEeB3v+HyvxlObch9X9T8TAjm+RsCdkbkFjjgfxPCm+1Z0byCC8v
-         ABQw==
-X-Gm-Message-State: AOJu0Yzs2DLoHazUL3bUqQtPPLeLxajYKN6yC7YNi9iIH2lWWqu1jNX0
-	Iu/dXKVo3hskE2zLi7ZK9sFRDAGKCFm18dMNPlyzUTBrCKmi1KvgAJo+xg==
-X-Gm-Gg: ASbGncuPKNEy4p/nEjxv6KDAlbLaZHwNF4Am8QH1pfE8l3/eYwYnqko45FoQ5ywZ3in
-	7pVHpaXRYsgPnZsDqVcaR/b4m8vuUTLSIrW3EqMo6OG/JdwuMKG9zVdDXWX90j1V2r0HPgayIVy
-	Mr15gYiun1cJAEE3oAxmGmJa1DVAcNQLwBMoWB1n7muXcp4SFQNsDNTO/s6zSaq6g/WLDnyCRC8
-	MtxN6AaWeU5X7kmTwdPD3+fXqftWpI6b5oxEveEiOky54sql4/+WxKqGSEYeuMV
-X-Google-Smtp-Source: AGHT+IHIE18UVQ0whIgporJhcWOvQMIW8zYMQpMpfxcpy2I6c9gR5zwY6xiDLxADI/qu+TA5ok0Dow==
-X-Received: by 2002:a05:620a:2906:b0:7b6:d70a:86d6 with SMTP id af79cd13be357-7b6dce7bdecmr760368985a.36.1733849639063;
-        Tue, 10 Dec 2024 08:53:59 -0800 (PST)
-Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6d8da6968b1sm61548946d6.39.2024.12.10.08.53.58
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2024 08:53:58 -0800 (PST)
-Message-ID: <3043da7a-61e5-4cdf-879c-a78086031877@gmail.com>
-Date: Tue, 10 Dec 2024 11:53:48 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+ d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GEvoepR/C7XOd55ap/F/kOZS4FjwxEnRkynqGpdphq0=;
+ b=TKp8C1TcIivaq7EUAvTfK1ZBlHqgee2QP21z05R1YazoPO7uK2HjnEqMdy8mykWeEOezMLhfcg87AgHZa0b0APLxGu4YZ1S/eLWZJzWLmUdOtz72XWllLI2vnCvAyjlEfRWFb3f4iLrcSWYTFWL/9uNpGkSdWuudluo5bCt4MYo=
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
+ by SA1PR09MB8749.namprd09.prod.outlook.com (2603:10b6:806:17f::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.15; Tue, 10 Dec
+ 2024 18:42:14 +0000
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::3188:1f4d:693d:60d6]) by SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::3188:1f4d:693d:60d6%5]) with mapi id 15.20.8251.008; Tue, 10 Dec 2024
+ 18:42:14 +0000
+From: Eugene Grayver <eugene.grayver@aero.org>
+To: usrp-users <usrp-users@lists.ettus.com>
+Thread-Topic: Why is IQ cal disabled when using external LO
+Thread-Index: AQHbSzL5bzrTinc6Y0Kgz5AcBKHtSw==
+Date: Tue, 10 Dec 2024 18:42:14 +0000
+Message-ID: 
+ <SJ0PR09MB9126372E2F50840A52FB0898EC3D2@SJ0PR09MB9126.namprd09.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <PYlFxq1MvpqoRAC9f9EwnkONwHOWeqgLTss3dTMadA@lists.ettus.com>
- <CAFOi1A5O27MKb9nVEJLBPfBd1beQmX7v_5QC0TEZjH0Xhy_tmA@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAFOi1A5O27MKb9nVEJLBPfBd1beQmX7v_5QC0TEZjH0Xhy_tmA@mail.gmail.com>
-Message-ID-Hash: WY4HEFX7OMJWMEPCE7DGV7OJEZQZLLK4
-X-Message-ID-Hash: WY4HEFX7OMJWMEPCE7DGV7OJEZQZLLK4
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aero.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|SA1PR09MB8749:EE_
+x-ms-office365-filtering-correlation-id: dfee2558-baa7-45b7-7069-08dd194a5da6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|1800799024|366016|8096899003|38070700018;
+x-microsoft-antispam-message-info: 
+ =?iso-8859-1?Q?LA/43koaI4EZPfGXLDvKxRYVWAZ1Sg8nGDJ+g+nNEyzPJEvcsrxisvZ71c?=
+ =?iso-8859-1?Q?oxGVhfX5avH6FJ8sOtryM/kc9RaIkSNGMh/1Lh5jHmfMVY5sx044uC74ci?=
+ =?iso-8859-1?Q?GbJ3i6rRpsY8FEnBDwc6m5zg/t97p61lEkrsuYcRYTlBFRVVlfqvdtYLJO?=
+ =?iso-8859-1?Q?FzYWjDnfa6FTqrlaQwQdPeEYcZIz06/x6VzTD9qNwjcKlUjiw2Ic1hPAua?=
+ =?iso-8859-1?Q?hEXWJkxaRoLOXv85JsIEsWR4TZNZw2PCMtUD2LIxf/oo5q4mdgUAum6FvC?=
+ =?iso-8859-1?Q?boabmkqhcQThZFO9sWqqFer8xqg75vdiYrGoUPRablEw7f3yFfA3ek/+Em?=
+ =?iso-8859-1?Q?Kuacdsx2gPt//c9spDt8rbeVCTgmbFm325H1c0vB03Og5zyOYG+kCKgBau?=
+ =?iso-8859-1?Q?jP8Y9tHuDLQZBRdf9kQUTUuu1vOrco+KTdXymmRckVGXoaVRahjCxL03lJ?=
+ =?iso-8859-1?Q?aiDeuGRaVkLw5h6376w+sPTRXUhbJuk35PbjFgFxNQzFEv4eSbLAKugyV4?=
+ =?iso-8859-1?Q?970dXwcqAToWO/KjG/6jeS1BjDM+QAX0gnzP2D23cabJlWc02X4SaJpBKz?=
+ =?iso-8859-1?Q?sN2zNZxa509Qgg13nPB2ppmstMUJhBgunH63Jt7IVo/r4edh0QLWKCjC1l?=
+ =?iso-8859-1?Q?nQtdWumG5Fpml+aZo+DY+aNI7S8XlBrbHQPLM/qtPGpvpp78iZG95nhHZ8?=
+ =?iso-8859-1?Q?Rgbu8rQ8eqLRE6xVlqDMheDAEMNrlEL+LdDCzREqopBaLtOZ6iW3Iog4gN?=
+ =?iso-8859-1?Q?QtkB6XWAYLGKp265pCsYuxT+HkHIghAOE2aNgyn5l4iHGeIvYDAJt3A3MO?=
+ =?iso-8859-1?Q?a10tYrBDQD/ojfuzeiVcQ1fD0Vxbusu+v+m4QrdOnCMJQoIbbsFKCQc1Mg?=
+ =?iso-8859-1?Q?y6H+2gKF9BX8ir/mmonBPX7lXFo6wRCdW8M/YVH/vJK9diO9d6xIxeCA8r?=
+ =?iso-8859-1?Q?wfb+pQ4rFYVnApMFAC5IyinJ3oJQYRTOea4kE6idpScmKRY1UfSi9aDrOR?=
+ =?iso-8859-1?Q?cgFcGsqQkfBO3Au5IQXbPXS0lMaIswySSPTtOyg5Rhtr19rZFJrdcumB+r?=
+ =?iso-8859-1?Q?al7Ni755ifYl+XFbGidCCWxePGhlw63ZOU1UDQJE6ICrhxvp7x+2UYH84w?=
+ =?iso-8859-1?Q?yBTOPsZnjVYxLxsUv9RbAmUcMhCgm78yz1HRfatDl0UiQDzgaCaCNswrkw?=
+ =?iso-8859-1?Q?ckBMiKVrYcuX7UFAKCHv+OPqYhEYKvjb/ttGk6z7+bHwe3IGrCztLRKdBW?=
+ =?iso-8859-1?Q?Lm5Q5ArQoX2mc8qVBxSwqNjDq5i3wI4Kyb+Rs3oT51lY/AyNWCxQYlan3K?=
+ =?iso-8859-1?Q?tQ5kg6iZRyUdfVunJpSMdINFwvNbOuZjKib4y9h3FoLMUc1SV0oXnx0opN?=
+ =?iso-8859-1?Q?RRg6ly2JZsic6uKCtkhNU7Sci4edeppteO5MRlpqmX+WV8FUgU/Ao+2Lk1?=
+ =?iso-8859-1?Q?+Uj2kwQIBfoPmrz6201+SVdcarAz9ULHj5XqEQ=3D=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(8096899003)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?hd3BduXX7ike12qX3qcd69UJeJNjQRw0Wdc/gVhb1+qf5huSktMkpVJaXv?=
+ =?iso-8859-1?Q?THEmSnzcgs8DK+JwG/A41efkUsyksibRPjsgyZa4LyUfYff0KOaTbKZ+nR?=
+ =?iso-8859-1?Q?/Kj4c/DozuYeL7oMfc/HKUihOCEfP6vl7t3fC3YEkaiEg7k/wQpikdsBFd?=
+ =?iso-8859-1?Q?WqQv/x3PRehiJYDxEdWGydbecTf9PV/iinRZO/1/bIjgdiz06bffxHpx73?=
+ =?iso-8859-1?Q?rQrPXezh3T5lqpMLUNEq5Zu8nvrt2emjufHXAjSfTgydr6Cg+EA9l/p93M?=
+ =?iso-8859-1?Q?r8sqS4Viml+O/T/qumvcIZ1NnZ2AjZV+lCoV2oeXS/Mha8ilncDk5H9yiq?=
+ =?iso-8859-1?Q?7TqskVHfmP2hys9SRlQmAmGqbZ1HAYCrC1wEYes564ObrOFozWfuaYEWEo?=
+ =?iso-8859-1?Q?fXoO+z5ioal+rO8ynjZWyGapTGgjPPCwsH8obMEpEdaK2GyaaaUuJvHPyX?=
+ =?iso-8859-1?Q?qvK2OeireK64F3V3TrjsFIahTxbLfgo5VkI0dg77CJhMx5ODqU/7HJFVYR?=
+ =?iso-8859-1?Q?eLj4YtKnX7x1v61VfDDKapRWx2d7ni+C/G2hzBFheVzlnbT1CG+qrD5FfA?=
+ =?iso-8859-1?Q?ZPAXTG08UymSFkGIB7pcvzoV9+PXfLj6yvACEpI5+QBCZSoSKj/FVFaSod?=
+ =?iso-8859-1?Q?a+ujn7bFTTCTj5sonDwkI7or4zVy+IY7w0Fo/k9pRk8RiZV2YKaShMD2Wa?=
+ =?iso-8859-1?Q?RnbPCx9mZS7VRUOWavUQNs2MRaEOuhcLHgtetQcQVtPGiRw0Z2APlIHpZU?=
+ =?iso-8859-1?Q?m6wIUeskApvmbD+3hu7v17dHYp8s36hJUu8rex7BA99eb/DaaX8HcEfDH9?=
+ =?iso-8859-1?Q?lGTN47FDONfo62JnboZlTsgTrBpk5gkkG5nY71YUy53pV/br5aSAvc+yec?=
+ =?iso-8859-1?Q?Tb5KnwZoyTxY27/xvQii3l/zbO/i5Ax7CW7wezSXZnXWZfJgUaPa3gd/OE?=
+ =?iso-8859-1?Q?n5jPmAbHEqL+ww6v7neajJ2PmERDhvEK0cCQt3qiDoD66hci/XGjdpOVtG?=
+ =?iso-8859-1?Q?dajoiG6arFqz1at4J71efGiS32pV8I2PGTADiMaHm/1d15MYwWtyeLjiRE?=
+ =?iso-8859-1?Q?iErMPR0FneSL70Hkj8Z3dPuEpeFIF5LVuOIvjAi1iHNqIGyMkWYk1w42ZR?=
+ =?iso-8859-1?Q?tkhr1Nr+yuSKYL4yK9RzpfgXwgdAwgOG+9pKgHoEJ+S+o8ScKMMmZun5Uh?=
+ =?iso-8859-1?Q?Qvezht1FIVjs2NAjqhpXys5DwJQr/YPV5RdUcAPJAiLaSRQeSl7qvXmzrj?=
+ =?iso-8859-1?Q?BVlCfwBVeJi51kzQXlmQNckc2dUYgmdf8dScYMY1rX900mGIuV5IuiFmwC?=
+ =?iso-8859-1?Q?ft6sR+cW7CU+i2sBbu9kpOnPYU0mtCpzF2OexopfWMo3iflEnB/Z/XmbYL?=
+ =?iso-8859-1?Q?s2b3gEENjkfYRsIhXYfyuee3qIgNa5C8B7+5pUNxgdNR29mhGDUOO4yMgA?=
+ =?iso-8859-1?Q?jgTw4gqaOblSy7c4UVIJHzV8ZT2ZgivX52afj45QCmc/Ttw5CKbwlheY7l?=
+ =?iso-8859-1?Q?VlYm1pNOoh6oo3ulkfCoR5bDyiHZGBGCRDbkiIXmZLY/iBw3QjSavZ7Y7I?=
+ =?iso-8859-1?Q?Y7OsC6q3+4/it0mf0dnA7ORYeTyOxeHRbcVVNTt6bJ5eN1jOiOJUj6fx1s?=
+ =?iso-8859-1?Q?ezNiyyN8AlxXs=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: aero.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dfee2558-baa7-45b7-7069-08dd194a5da6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Dec 2024 18:42:14.5751
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR09MB8749
+Message-ID-Hash: FEF7NLJAWFOREQESGCMWINCQF7ZLPJPL
+X-Message-ID-Hash: FEF7NLJAWFOREQESGCMWINCQF7ZLPJPL
+X-MailFrom: prvs=0672ffd30=eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Blocker issue with NI-2943R (=Ettus x310) PCIe connectivity
+Subject: [USRP-users] Why is IQ cal disabled when using external LO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WY4HEFX7OMJWMEPCE7DGV7OJEZQZLLK4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZE3XNB554DWP3JJUKYCJWGMWLWAP6B47/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2551859788523522949=="
+Content-Type: multipart/mixed; boundary="===============2454142317616260291=="
 
-This is a multi-part message in MIME format.
---===============2551859788523522949==
-Content-Type: multipart/alternative;
- boundary="------------5pCEsApO0017g7kaHt44m8fE"
+--===============2454142317616260291==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SJ0PR09MB9126372E2F50840A52FB0898EC3D2SJ0PR09MB9126namp_"
 
-This is a multi-part message in MIME format.
---------------5pCEsApO0017g7kaHt44m8fE
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_SJ0PR09MB9126372E2F50840A52FB0898EC3D2SJ0PR09MB9126namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On 10/12/2024 11:44, Martin Braun wrote:
->
-> BTW, if you are able to get a 10 GbE card, you can exceed the rates of=20
-> the PCIe link, with almost no downsides compared to PCIe.
->
-> --M
-I will second this.=C2=A0=C2=A0 10GiGe cards for PCs are not expensive th=
-ese days,=20
-neither are the SFP+ optical transceivers.=C2=A0 Short
- =C2=A0 optical patch-cords for these are also very very reasonably price=
-d.
+Hi,
 
+I just noticed that the calibration tables are disabled/ignored when extern=
+al LO is used.  Why is that?  I understand that the automatic calibration u=
+tilities will not work (over frequency).  However, we are generating those =
+tables ourselves, and expect UHD to use them.  Now I have to hack my own co=
+de to duplicate the calibration functionality and 'manually' call set_dc_..=
+., etc functions.
 
->
-> On Fri, Nov 22, 2024 at 11:21=E2=80=AFAM <seppo.j.rantala@vtt.fi> wrote=
-:
->
->     Hi, I cannot get the NI-2943R (=3DEttus x310) connected to the PC
->     via the PCIe transport connection. The Ettus firmware is upgraded
->     to the currently latest one, UHD version is
->     UHD_4.7.0.0-0ubuntu1~jammy1. The default HG image was uploaded to
->     Ettus. The upload was done via SFP+ Port 0 Interface, 1GbE copper
->     SFP connected. Since I had Terasic PCIe x4 Cable Adapter (PCA)
->     conversion card available, I would like to use that instead of
->     1GbE SFP port.
->
->     PC is Precision 3680 Tower WS. The OS is Ubuntu 22.04.5 LTS with
->     kernel Linux 6.8.0-49-generic. The NI Linux device drivers were
->     installed according to the guide:
->     https://files.ettus.com/manual/page_ni_rio_kernel.html
->
->     Command lspci -k -d 1093:c4c4 returns nothing. I checked the
->     Terasic PCIe x4 PCA LEDs during operation: If I first power on the
->     NI-2943R before powering up the PC as recommended, the LEDs on PCA
->     stay off. In the other order, powering up NI-2943R after the PC,
->     the D2 edge, D3 power and DN2-DN4 (signal detect output for CH_B,
->     receiver detect outputfor CH_A0 and CH_B0).
->
->     I have tried various grub options, disabling power saving modes
->     there and so on but now just more or less helpless. Does anyone
->     has had similar issues with the similar HW.
->
->     I attached output list of dmidecode, lspci and lshw commands.
->
->     _______________________________________________
->     USRP-users mailing list -- usrp-users@lists.ettus.com
->     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+Thanks.
 
---------------5pCEsApO0017g7kaHt44m8fE
-Content-Type: text/html; charset=UTF-8
+--_000_SJ0PR09MB9126372E2F50840A52FB0898EC3D2SJ0PR09MB9126namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 10/12/2024 11:44, Martin Braun
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAFOi1A5O27MKb9nVEJLBPfBd1beQmX7v_5QC0TEZjH0Xhy_tmA@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <div><br>
-        </div>
-        <div>BTW, if you are able to get a 10 GbE card, you can exceed
-          the rates of the PCIe link, with almost no downsides compared
-          to PCIe.</div>
-        <div><br>
-        </div>
-        <div>--M<br>
-        </div>
-      </div>
-    </blockquote>
-    I will second this.=C2=A0=C2=A0 10GiGe cards for PCs are not expensiv=
-e these
-    days, neither are the SFP+ optical transceivers.=C2=A0 Short<br>
-    =C2=A0 optical patch-cords for these are also very very reasonably
-    priced.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAFOi1A5O27MKb9nVEJLBPfBd1beQmX7v_5QC0TEZjH0Xhy_tmA@mail.gmai=
-l.com"><br>
-      <div class=3D"gmail_quote gmail_quote_container">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 22, 2024 at
-          11:21=E2=80=AFAM &lt;<a href=3D"mailto:seppo.j.rantala@vtt.fi"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">sepp=
-o.j.rantala@vtt.fi</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote"
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
-          <p>Hi, I cannot get the NI-2943R (=3DEttus x310) connected to
-            the PC via the PCIe transport connection. The Ettus firmware
-            is upgraded to the currently latest one, UHD version is
-            UHD_4.7.0.0-0ubuntu1~jammy1. The default HG image was
-            uploaded to Ettus. The upload was done via SFP+ Port 0
-            Interface, 1GbE copper SFP connected. Since I had Terasic
-            PCIe x4 Cable Adapter (PCA) conversion card available, I
-            would like to use that instead of 1GbE SFP port.</p>
-          <p>PC is Precision 3680 Tower WS. The OS is Ubuntu 22.04.5 LTS
-            with kernel Linux 6.8.0-49-generic. The NI Linux device
-            drivers were installed according to the guide: <a
-href=3D"https://files.ettus.com/manual/page_ni_rio_kernel.html"
-              target=3D"_blank" moz-do-not-send=3D"true"
-              class=3D"moz-txt-link-freetext">https://files.ettus.com/man=
-ual/page_ni_rio_kernel.html</a><br>
-            <br>
-            Command lspci -k -d 1093:c4c4 returns nothing. I checked the
-            Terasic PCIe x4 PCA LEDs during operation: If I first power
-            on the NI-2943R before powering up the PC as recommended,
-            the LEDs on PCA stay off. In the other order, powering up
-            NI-2943R after the PC, the D2 edge, D3 power and DN2-DN4
-            (signal detect output for CH_B, receiver detect outputfor
-            CH_A0 and CH_B0).</p>
-          <p>I have tried various grub options, disabling power saving
-            modes there and so on but now just more or less helpless.
-            Does anyone has had similar issues with the similar HW.</p>
-          <p>I attached output list of dmidecode, lspci and lshw
-            commands.<br>
-            <br>
-          </p>
-          _______________________________________________<br>
-          USRP-users mailing list -- <a
-            href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
--users@lists.ettus.com</a><br>
-          To unsubscribe send an email to <a
-            href=3D"mailto:usrp-users-leave@lists.ettus.com"
-            target=3D"_blank" moz-do-not-send=3D"true"
-            class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettus.=
-com</a><br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hi,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+I just noticed that the calibration tables are disabled/ignored when extern=
+al LO is used.&nbsp; Why is that?&nbsp; I understand that the automatic cal=
+ibration utilities will not work (over frequency).&nbsp; However, we are ge=
+nerating those tables ourselves, and expect UHD
+ to use them.&nbsp; Now I have to hack my own code to duplicate the calibra=
+tion functionality and 'manually' call set_dc_..., etc functions.</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Thanks.</div>
+</body>
 </html>
 
---------------5pCEsApO0017g7kaHt44m8fE--
+--_000_SJ0PR09MB9126372E2F50840A52FB0898EC3D2SJ0PR09MB9126namp_--
 
---===============2551859788523522949==
+--===============2454142317616260291==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -275,4 +287,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2551859788523522949==--
+--===============2454142317616260291==--
