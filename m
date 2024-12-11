@@ -2,534 +2,289 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D3579ECE0A
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Dec 2024 15:08:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50A7F9ED0C1
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Dec 2024 17:05:43 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2C526386113
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Dec 2024 09:08:29 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 91AB3385CE5
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Dec 2024 11:05:39 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1733926109; bh=J7oLKCRRrhxRj3xvvBL3Mt2L2KD/6j7E4Jw0i6YKE6Y=;
-	h=From:To:References:In-Reply-To:Date:Subject:List-Id:List-Archive:
+	t=1733933139; bh=nHAqJIvHjocvka+fGCctxrrXHzOvh+lxzbT66qjtOvk=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=dwf1nipOs/XVYjCOTboEETvPXJStIJ3kc0wgLhr73KnSZ+aNbIxoeWIsHOxYjuz36
-	 2E0HUwjvaES5z8OUp7E35hXGkY2IalI4CBjDgROyfJYo4XFkcqFxmmjEDtnGw+VQXV
-	 7u8i51mERZnJa8aWyh0RkMRx6jME2J1LKDFox38JQ7EK71bG4Xr+IDCdhTcB2nNGxW
-	 5OoY21uiaIPckEYVDMV9Fca4M7aqvnmE/fwg5rinuQYMTnpxKyhfPi4XOYvLmB52qo
-	 8MJMw97FZxdZrqVnQ9oV2cllNzLb8Bqyo4NUZ9spKDzGFOux4wS2UF5nv0+79QXoxN
-	 5/zjyoBL7JTdw==
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5E8CF385FCE
-	for <usrp-users@lists.ettus.com>; Wed, 11 Dec 2024 09:07:53 -0500 (EST)
+	b=skL8BqKItKlyuM8DDM1wVl8wA2r24qgvkYkV/mK63/yiikillDlSgWmL5zOLy1c+O
+	 p+GA5urKC/EdJP/BQEiL0h+mMzCdSRV0p57Ni0n2Ec9zm7tBYbqMsG7SkOhk6hVXcp
+	 gt8RSldGoz6egniDNklywKhAe3OYL7ryAI6y1vojv3j498lNxBfJjeJpF1Nk+7mXwe
+	 inYcrRXhPfdZQrwdvs6XjSCBpIOJptCMgfSEHyMDI/IPtcc6OjWuxnIJmWWxOXwcPa
+	 0lFYJVFeCwSba0XhFfA9yesuhAiVTI0ooCuubxvKEgJbNShbdxBk3BLJ9XNeiJZaTK
+	 1EtmfF3BeES7Q==
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1840B385CC2
+	for <usrp-users@lists.ettus.com>; Wed, 11 Dec 2024 11:05:26 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jaqjfN1a";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="mdfS65ir";
 	dkim-atps=neutral
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-801986033f9so889598a12.1
-        for <usrp-users@lists.ettus.com>; Wed, 11 Dec 2024 06:07:53 -0800 (PST)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d3bdccba49so9200562a12.1
+        for <usrp-users@lists.ettus.com>; Wed, 11 Dec 2024 08:05:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733926072; x=1734530872; darn=lists.ettus.com;
-        h=disposition-notification-to:content-language:thread-index
-         :mime-version:message-id:date:subject:in-reply-to:references:to:from
-         :return-receipt-to:from:to:cc:subject:date:message-id:reply-to;
-        bh=EQNfpHKP2vjvJezXW81acZpWPVXpbbb+6Npk2dRFd1o=;
-        b=jaqjfN1asCspD+IXwvHcuiebSVTiyO048rVkkCArfAXj8pxgS5bIdlBEZD11wIm6dP
-         hdphaneFBNANdfSlHGViMzHMwz6AeyizTIQYmhLL98i8bSw9Yuz5/X0yfxYJCFs7gGUx
-         ZDtD1dTchdS0AApxg6QKuAfptp2FEj1AxZ/n6aKEaiMcW1DuM2Uaxt69xAayg0jfK8jC
-         RjVEgZfOfAVbbavndreshvognr2Ek/BaGPYVW5jHYsPiHB2m2CDMSCcqrhY1bscNJlcg
-         Hiwmgi4WOZyj+UbQCTtJ17Vnanrt/8xVSqhb5M4/OS7wx+V6KaAUkgCLQUCdUxx9s2XA
-         kilg==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1733933125; x=1734537925; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EIoRTsWrVTHAIxj0tjWlM5D9f+D9Cjt2XrYLzRes3yg=;
+        b=mdfS65irlxAHJnEOo+v2JvOmSX4NOmEa+tu6yrnhhHE8QLf7pXACWQFfpWBR2XBP2i
+         NHg1hvADgOyo/8IVFXRAuML1akY7c9YFk7Bjqr0A5Ybp0HqNQ4MHy0MdufKP3q8ijC0c
+         I/+JwPEfD7V3erJRcgQPDWxupMCSlksbSCoW7TzJnFicNmKAsg5ZKRLhkfcZY+SC23Oo
+         M9FAEieZEs2QkrsndqTV7qMF4AIxRTHl9X6dkY/HZchEQdfWJNnZdAAa9TUzAGdl7UHw
+         Y2xD02JTxWVqCGuPrmQOEzzN8eFSZ8RILVb2ir1gzRP2X5/USCmQaUzvUEhD1crRMkHR
+         vj4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733926072; x=1734530872;
-        h=disposition-notification-to:content-language:thread-index
-         :mime-version:message-id:date:subject:in-reply-to:references:to:from
-         :return-receipt-to:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EQNfpHKP2vjvJezXW81acZpWPVXpbbb+6Npk2dRFd1o=;
-        b=uWvGcHEAqQm0x/1C2LbwtvwB4ilK4M0qV2IB1AeSQ97V5cjXeMm87+PThBeslOsSSE
-         tmgj9uos7OqqH7VF4mPSx2rmwuGALfwjGrSwEa/GsIRbq+83XET1ih8mIoACocQw+jx7
-         irP2KlGmlvVAT99gMzKCLvAj/O76aK4bU6H1Cq79gFMm5MNfoavzYCSPMW/ZUBKDX9Vf
-         dmr8SDbzEiFcNZfdn8BJhZnTmY39YVasdyKVEJ+gxv4mlZH0GgkYM4a0U4iVwCRk4/qi
-         FTndKr5ziQ6yMGl/p/JSU0rRgCjN0zMdXuweXH/JyFVdgs5fwHGJtbwtGd8OJNx8YY2e
-         cGdw==
-X-Forwarded-Encrypted: i=1; AJvYcCVAe1p7YV+7WCRweSKy40DuFNu3FEjrNXasekWoTbCz9hAKhvrG7vP0rZr5hSm5QadTgWS5T4wlbAnA@lists.ettus.com
-X-Gm-Message-State: AOJu0YyuFgbAikYakggKoldnPvuGqIxuXIoRJ2SMrqggq9EGg+mjcexB
-	TtwDDR49tnt0KwHjLe0wtp0MV4vD1jFiLyGJfpFy8jt9iwIhfRLSHbD98g==
-X-Gm-Gg: ASbGncsJJ0ZocVnfLmnuIAr4eVL26rFJZ0GfOSEfSy497QLYMLNT6EEvTNg7BMmWaJT
-	RtLJr22aw3m8fr/IuNYdzT0Vl0baz3oP7FC8D89JPv/Uclcm+gnbJC5EA/UIsPj1fCuQJXRk5sp
-	g1YmT7+3pWhjnXMzV3KGqfxtmV4KxcuvU9EK3WUxlFhnu9H5TwotrBQxl7Isb3VPpgoac56c8lt
-	YG0k+5Xeus5SL3J6Q4dJ2uU88IN4vhOw6A7zyBVt+nFd5UyosZMiA48a1J9+HPbzDft
-X-Google-Smtp-Source: AGHT+IEhuDTpKJJ1CL3L2WYWVWkv81/iSM1boHEJCag7XIbiWTwTXtXpoegWTTLkpoZRap6i4rtV9w==
-X-Received: by 2002:a17:90b:280a:b0:2ee:599e:f411 with SMTP id 98e67ed59e1d1-2f139326350mr38342a91.34.1733926071852;
-        Wed, 11 Dec 2024 06:07:51 -0800 (PST)
-Received: from DESKTOPF6HH3I0 ([2804:14d:5c5c:5cad:dc1e:5f87:85da:d3ed])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ef7dd1f583sm9225296a91.14.2024.12.11.06.07.49
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Dec 2024 06:07:51 -0800 (PST)
-From: <pav.vieira@gmail.com>
-To: "'Q W'" <qanwang83@yahoo.com.au>,
-	"'Usrp-users Mailing-list'" <usrp-users@lists.ettus.com>
+        d=1e100.net; s=20230601; t=1733933125; x=1734537925;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EIoRTsWrVTHAIxj0tjWlM5D9f+D9Cjt2XrYLzRes3yg=;
+        b=b4kkroFpPmeRQqtj5pKMO9Umb+N1IECYonzKsbdUHeFIdFb9D0DH5asJWi3Qr6y7Ld
+         zkk9T30240Qs2d3ViVwaGZoxUSopXcI3ti6LIEXwsLvcRmMUvAFXMKeV+Hgt1e4V4aGg
+         YOvgxXYEe2orAT9g67iNGYU8ir5tzZoY0t18HOcVYGVxVkI9cc/7bLx7mVskqfGPTUXF
+         j8O83IAnBXVVKGNHEiBVVBq60NAR/xGB1MBChLyxNmsXgxKl1bFrQYI4BOQ0STciYyUK
+         WIWgNY/sL38kqSNX3cmapO/oiE6w3DWZqTc4pyW9VjJ4zKAXTs9rUHEy1VM4Y3e5f5nP
+         vD9g==
+X-Gm-Message-State: AOJu0YxGt0LWq/D+ovtGOR8rc5Katpikx9cJOyDmn8cmcYdwYUtNdXWl
+	IcIb9/x8UsX10LfLfLqGviqMFt/wCCCok1H7V7DlK0yFU4Qm5cTK6Kn401ndw6VuAiuZw2dfZau
+	bqNrBxDCC77kkeTA5KQ3ODVJ1gCPg7UgmkMxidZpZNdJ/cP+qYzc=
+X-Gm-Gg: ASbGncuiO/zUac1K6rYcMeuAf2Psm19VdO+mGdIuoj5LjowWy6FRS+xyxvyQi3edu84
+	0CBKQeJbCUHFv6RAttwAdP/+3HyIHSjHhL0ppV5sgPT5mQDTQfw0bBohYtH8Sz3e8NA==
+X-Google-Smtp-Source: AGHT+IGzIeaU0yd0zgb6HgYgOtGJx4wfec8624j8IFd5+HCth4aPmUY5j+TDKWinICfhWWRTURmUxwSUWk2yjWZ9HqE=
+X-Received: by 2002:a05:6402:2552:b0:5d3:d4cf:feb5 with SMTP id
+ 4fb4d7f45d1cf-5d433192d98mr3267834a12.29.1733933122852; Wed, 11 Dec 2024
+ 08:05:22 -0800 (PST)
+MIME-Version: 1.0
 References: <34378001.1123526.1733918318303.ref@mail.yahoo.com> <34378001.1123526.1733918318303@mail.yahoo.com>
 In-Reply-To: <34378001.1123526.1733918318303@mail.yahoo.com>
-Date: Wed, 11 Dec 2024 11:07:47 -0300
-Message-ID: <004701db4bd6$0f909620$2eb1c260$@gmail.com>
-MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQErjS9+DAjvYh0KeU2KDmKXiBTVDgG2pbNLtDLb3PA=
-Content-Language: pt-br
-Message-ID-Hash: PTHII7I7RD5RYQX66KIU6IDLFAMONKGH
-X-Message-ID-Hash: PTHII7I7RD5RYQX66KIU6IDLFAMONKGH
-X-MailFrom: pav.vieira@gmail.com
+From: Martin Braun <martin.braun@ettus.com>
+Date: Wed, 11 Dec 2024 17:05:10 +0100
+Message-ID: <CAFOi1A7PSmgMVUm0+PPPxQu1FxbKscESiE+QXYgf4vzK6ggcng@mail.gmail.com>
+Cc: Usrp-users Mailing-list <usrp-users@lists.ettus.com>
+Message-ID-Hash: QQQHVATMDWXFP6GSMK27UELAIYQFTPCP
+X-Message-ID-Hash: QQQHVATMDWXFP6GSMK27UELAIYQFTPCP
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] RES: UHD Python API
+Subject: [USRP-users] Re: UHD Python API
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PTHII7I7RD5RYQX66KIU6IDLFAMONKGH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QQQHVATMDWXFP6GSMK27UELAIYQFTPCP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2941883481808963431=="
+Content-Type: multipart/mixed; boundary="===============0100008556510203769=="
 
-This is a multipart message in MIME format.
+--===============0100008556510203769==
+Content-Type: multipart/related; boundary="000000000000daace3062900c36d"
 
---===============2941883481808963431==
-Content-Type: multipart/related;
-	boundary="----=_NextPart_000_0048_01DB4BBC.EA4496A0"
-Content-Language: pt-br
+--000000000000daace3062900c36d
+Content-Type: multipart/alternative; boundary="000000000000daace2062900c36c"
 
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0048_01DB4BBC.EA4496A0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_0049_01DB4BBC.EA4496A0"
-
-
-------=_NextPart_001_0049_01DB4BBC.EA4496A0
-Content-Type: text/plain;
-	charset="utf-8"
+--000000000000daace2062900c36c
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Tom,
+Tom,
 
-I=E2=80=99m also starting to use the X310 with Python, and I=E2=80=99d =
-like to share some ideas.
+some pointers:
 
-I=E2=80=99ve noticed that even when using threads, some form of =
-synchronization is necessary. This happens because threads are not =
-executed simultaneously, which can cause a time difference between =
-transmission (Tx) and reception (Rx).
+- I recommend using timed streaming for both Tx and Rx. You will get a more
+deterministic time offset.
+- I think you're not accounting for phase offsets as well as time offsets.
+Your two signals do look similar -- maybe plot the envelope instead of the
+real part. Also, you can play around with gain settings to get a better
+amplitude alignment.
+- Looping back into the same daughterboard means you need to deal with
+crosstalk. If you're just playing around, you might be fine but in general,
+if there's leakage from the Tx channel to the Rx channel, it will interfere
+with the signal received through the cable.
 
-It=E2=80=99s important to ensure that the termination of one thread =
-waits for the others to finish. I recommend looking into thread.join() =
-for this purpose. Here=E2=80=99s an introductory example that might be =
-helpful:  <https://www.youtube.com/watch?v=3DIEEhzQoKtQU&t=3D900s> Video =
-on threads. This is particularly relevant because when a thread is =
-terminated, the processing returns to the main thread (i.e., the main =
-program), and other ongoing threads might not be properly =
-closed=E2=80=94this issue is especially common on Windows systems.
+--M
 
-In addition to threads, you might also want to explore multiprocessing. =
-This approach can be more efficient depending on your use case. =
-Here=E2=80=99s a practical example (in Portuguese):  =
-<https://www.youtube.com/watch?v=3Dg3PTQ87UvrE&t=3D103s> Video on =
-multiprocessing. There are also plenty of resources available in English =
-that cover this topic.
+On Wed, Dec 11, 2024 at 12:58=E2=80=AFPM Q W via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-If you make any progress, please share it with us. It would be great to =
-exchange experiences!
+> Hi there,
+>
+> I just started using UHD Python API to implement a simple
+> transmission-reception experiment on an Ettus X310. I have a UBX 160
+> daughterboard installed on slot B, with its TX (TX/RX port) connected to =
+RX
+> (RX2 port) directly using a SMA cable and a 30dB attenuator. I plan to
+> transmit a sequence of waveforms from TX/RX port and to see the waveforms
+> received at the RX2 port. Ideally the two waveforms should be highly
+> similar with some time shift in between, but the received waveforms turne=
+d
+> out to be not quite right (see the diagram below, the upper diagram shows
+> the real part of the transmitted waveform and the lower, the real part of
+> the received.).
+> [image: Inline image]
+>
+> Some of the parameters are defined as following:
+> duration =3D 10 # second, the time length of the transmitter sending the
+> waveforms
+> centre_freq=3D1e8
+> sample_rate=3D200000
+> num_samples=3D200000 # number of samples to be collected by the receiving
+> side.
+> gain_tx=3D0 #dB
+> gain_rx=3D20
+>
+> USRP is defined as:
+> usrp =3D uhd.usrp.MultiUSRP()
+> usrp.set_tx_subdev_spec(uhd.usrp.SubdevSpec("B:0"))
+> usrp.set_tx_antenna("TX/RX")
+>
+> usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec("B:0"))
+> usrp.set_rx_antenna("RX2")
+> usrp.set_rx_bandwidth(sample_rate, 0)
+>
+> As the transmission and the reception happen at the same time, they are
+> put in two separate threads, as below:
+> threads =3D []
+> rx_thread =3D threading.Thread(target=3Dreceive_data, args=3D(usrp, num_s=
+amples,
+> centre_freq_rx, sample_rate, gain_rx))
+> threads.append(rx_thread)
+> rx_thread.start()
+> tx_thread =3D threading.Thread(target=3Dusrp.send_waveform, args=3D(tx_si=
+gnal,
+> duration, centre_freq_tx, sample_rate, [0], gain_tx))
+> threads.append(tx_thread)
+> tx_thread.start()
+>
+> Here the function, receive_data() in the first thread, is a user-defined
+> (by me) function, receiving samples using the uhd provided method,
+> usrp.recv_num_samps() and saving the samples to a .txt file. A little mor=
+e
+> on the data format saved in the file, I used np.savetxt() function to sav=
+e
+> the samples (a numpy array) to a text file. As the numpy array has a data
+> type of np.complex64, the real and imaginary of the samples are saved in
+> the same file in the format of np.float32. I can confirm that 200000
+> complex samples were collected in the file saved, which verifies (partial=
+ly
+> at least) that data format didn't go wrong.
+>
+> I have been working on this script for a whole day, but couldn't fix it. =
+I
+> suspect I didn't configure the usrp variable correctly. Any suggestions
+> would be appreciated.
+>
+> Kind regards,
+> Tom
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> As the transmission and reception happen simultaneously, the Python scrit=
+p
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-Best regards,
-
-
-
-=20
-
-De: Q W via USRP-users <usrp-users@lists.ettus.com>=20
-Enviada em: quarta-feira, 11 de dezembro de 2024 08:59
-Para: Usrp-users Mailing-list <usrp-users@lists.ettus.com>
-Assunto: [USRP-users] UHD Python API
-
-=20
-
-Hi there,
-
-=20
-
-I just started using UHD Python API to implement a simple =
-transmission-reception experiment on an Ettus X310. I have a UBX 160 =
-daughterboard installed on slot B, with its TX (TX/RX port) connected to =
-RX (RX2 port) directly using a SMA cable and a 30dB attenuator. I plan =
-to transmit a sequence of waveforms from TX/RX port and to see the =
-waveforms received at the RX2 port. Ideally the two waveforms should be =
-highly similar with some time shift in between, but the received =
-waveforms turned out to be not quite right (see the diagram below, the =
-upper diagram shows the real part of the transmitted waveform and the =
-lower, the real part of the received.).
-
-
-
-Some of the parameters are defined as following:
-
-duration =3D 10 # second, the time length of the transmitter sending the =
-waveforms
-
-centre_freq=3D1e8
-
-sample_rate=3D200000
-
-num_samples=3D200000 # number of samples to be collected by the =
-receiving side.
-
-gain_tx=3D0 #dB
-
-gain_rx=3D20
-
-=20
-
-USRP is defined as:
-
-usrp =3D uhd.usrp.MultiUSRP()
-
-usrp.set_tx_subdev_spec(uhd.usrp.SubdevSpec("B:0"))
-
-usrp.set_tx_antenna("TX/RX")
-
-=20
-
-usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec("B:0"))
-
-usrp.set_rx_antenna("RX2")
-
-usrp.set_rx_bandwidth(sample_rate, 0)
-
-=20
-
-As the transmission and the reception happen at the same time, they are =
-put in two separate threads, as below:
-
-threads =3D []
-
-rx_thread =3D threading.Thread(target=3Dreceive_data, args=3D(usrp, =
-num_samples, centre_freq_rx, sample_rate, gain_rx))
-
-threads.append(rx_thread)
-
-rx_thread.start()
-
-tx_thread =3D threading.Thread(target=3Dusrp.send_waveform, =
-args=3D(tx_signal, duration, centre_freq_tx, sample_rate, [0], gain_tx))
-
-threads.append(tx_thread)
-
-tx_thread.start()
-
-=20
-
-Here the function, receive_data() in the first thread, is a user-defined =
-(by me) function, receiving samples using the uhd provided method, =
-usrp.recv_num_samps() and saving the samples to a .txt file. A little =
-more on the data format saved in the file, I used np.savetxt() function =
-to save the samples (a numpy array) to a text file. As the numpy array =
-has a data type of np.complex64, the real and imaginary of the samples =
-are saved in the same file in the format of np.float32. I can confirm =
-that 200000 complex samples were collected in the file saved, which =
-verifies (partially at least) that data format didn't go wrong.  =20
-
-=20
-
-I have been working on this script for a whole day, but couldn't fix it. =
-I suspect I didn't configure the usrp variable correctly. Any =
-suggestions would be appreciated.
-
-=20
-
-Kind regards,
-
-Tom
-
-=20
-
-=20
-
-=20
-
-=20
-
-=20
-
-=20
-
-=20
-
-=20
-
-=20
-
-=20
-
-As the transmission and reception happen simultaneously, the Python =
-scritp=20
-
-=20
-
-
-------=_NextPart_001_0049_01DB4BBC.EA4496A0
-Content-Type: text/html;
-	charset="utf-8"
+--000000000000daace2062900c36c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><!--[if =
-!mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Helvetica;
-	panose-1:2 11 6 4 2 2 2 2 2 4;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EstiloDeEmail18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DPT-BR =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'mso-fareast-language:EN-US'>Hi Tom,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US =
-style=3D'mso-fareast-language:EN-US'>I=E2=80=99m also starting to use =
-the X310 with Python, and I=E2=80=99d like to share some =
-ideas.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'mso-fareast-language:EN-US'>I=E2=80=99ve noticed that even when =
-using threads, some form of synchronization is necessary. This happens =
-because threads are not executed simultaneously, which can cause a time =
-difference between transmission (Tx) and reception =
-(Rx).<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'mso-fareast-language:EN-US'>It=E2=80=99s important to ensure =
-that the termination of one thread waits for the others to finish. I =
-recommend looking into thread.join() for this purpose. Here=E2=80=99s an =
-introductory example that might be helpful: </span><span =
-style=3D'mso-fareast-language:EN-US'><a =
-href=3D"https://www.youtube.com/watch?v=3DIEEhzQoKtQU&amp;t=3D900s"><span=
- lang=3DEN-US>Video on threads</span></a><span lang=3DEN-US>. This is =
-particularly relevant because when a thread is terminated, the =
-processing returns to the main thread (i.e., the main program), and =
-other ongoing threads might not be properly closed=E2=80=94this issue is =
-especially common on Windows systems.<o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US =
-style=3D'mso-fareast-language:EN-US'>In addition to threads, you might =
-also want to explore <b>multiprocessing</b>. This approach can be more =
-efficient depending on your use case. Here=E2=80=99s a practical example =
-(in Portuguese): </span><span style=3D'mso-fareast-language:EN-US'><a =
-href=3D"https://www.youtube.com/watch?v=3Dg3PTQ87UvrE&amp;t=3D103s"><span=
- lang=3DEN-US>Video on multiprocessing</span></a><span lang=3DEN-US>. =
-There are also plenty of resources available in English that cover this =
-topic.<o:p></o:p></span></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US style=3D'mso-fareast-language:EN-US'>If you make any =
-progress, please share it with us. It would be great to exchange =
-experiences!<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'>Best =
-regards,<br><br><o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><di=
-v style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm'><p class=3DMsoNormal><b>De:</b> Q W via USRP-users =
-&lt;usrp-users@lists.ettus.com&gt; <br><b>Enviada em:</b> quarta-feira, =
-11 de dezembro de 2024 08:59<br><b>Para:</b> Usrp-users Mailing-list =
-&lt;usrp-users@lists.ettus.com&gt;<br><b>Assunto:</b> [USRP-users] UHD =
-Python API<o:p></o:p></p></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Hi =
-there,<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>I just =
-started using UHD Python API to implement a simple =
-transmission-reception experiment on an Ettus X310. I have a UBX 160 =
-daughterboard installed on slot B, with its TX (TX/RX port) connected to =
-RX (RX2 port) directly using a SMA cable and a 30dB attenuator. I plan =
-to transmit a sequence of waveforms from TX/RX port and to see the =
-waveforms received at the RX2 port. Ideally the two waveforms should be =
-highly similar with some time shift in between, but the received =
-waveforms turned out to be not quite right (see the diagram below, the =
-upper diagram shows the real part of the transmitted waveform and the =
-lower, the real part of the =
-received.).<o:p></o:p></span></p></div><div><p class=3DMsoNormal =
-style=3D'margin-bottom:12.0pt'><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><img =
-border=3D0 width=3D1353 height=3D546 =
-style=3D'width:14.0937in;height:5.6875in' id=3D"Imagem_x0020_1" =
-src=3D"cid:image001.png@01DB4BBC.E8EC59A0" alt=3D"Inline =
-image"></span><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p></o:p>=
-</span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Some of =
-the parameters are defined as =
-following:<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>duration =
-=3D 10 # second, the time length of the transmitter sending the =
-waveforms<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>centre_freq=
-=3D1e8<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>sample_rate=
-=3D200000<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>num_samples=
-=3D200000 # number of samples to be collected by the receiving =
-side.<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>gain_tx=3D0=
- #dB<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>gain_rx=3D2=
-0<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>USRP is =
-defined as:<o:p></o:p></span></p></div><div><div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>usrp =3D =
-uhd.usrp.MultiUSRP()<o:p></o:p></span></p></div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>usrp.set_tx=
-_subdev_spec(uhd.usrp.SubdevSpec(&quot;B:0&quot;))<o:p></o:p></span></p><=
-/div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>usrp.set_tx=
-_antenna(&quot;TX/RX&quot;)<o:p></o:p></span></p></div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>usrp.set_rx=
-_subdev_spec(uhd.usrp.SubdevSpec(&quot;B:0&quot;))<o:p></o:p></span></p><=
-/div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>usrp.set_rx=
-_antenna(&quot;RX2&quot;)<o:p></o:p></span></p></div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>usrp.set_rx=
-_bandwidth(sample_rate, 0)<o:p></o:p></span></p></div></div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>As the =
-transmission and the reception happen at the same time, they are put in =
-two separate threads, as =
-below:<o:p></o:p></span></p></div><div><div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>threads =
-=3D []<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>rx_thread =
-=3D threading.Thread(target=3Dreceive_data, args=3D(usrp, num_samples, =
-centre_freq_rx, sample_rate, =
-gain_rx))<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>threads.app=
-end(rx_thread)<o:p></o:p></span></p></div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>rx_thread.s=
-tart()<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>tx_thread =
-=3D threading.Thread(target=3Dusrp.send_waveform, args=3D(tx_signal, =
-duration, centre_freq_tx, sample_rate, [0], =
-gain_tx))<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>threads.app=
-end(tx_thread)<o:p></o:p></span></p></div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>tx_thread.s=
-tart()<o:p></o:p></span></p></div></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Here the =
-function, receive_data() in the first thread, is a user-defined (by me) =
-function, receiving samples using the uhd provided method, =
-usrp.recv_num_samps() and saving the samples to a .txt file. A little =
-more on the data format saved in the file, I used np.savetxt() function =
-to save the samples (a numpy array) to a text file. As the numpy array =
-has a data type of np.complex64, the real and imaginary of the samples =
-are saved in the same file in the format of np.float32. I can confirm =
-that&nbsp;<span style=3D'color:black'>200000 complex samples were =
-collected in the file saved, which verifies (partially at least) that =
-data format didn't go wrong.&nbsp; =
-&nbsp;</span><o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>I have =
-been working on this script for a whole day, but couldn't fix it. I =
-suspect I didn't configure the usrp variable correctly. Any suggestions =
-would be appreciated.<o:p></o:p></span></p></div><div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Kind =
-regards,<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>Tom<o:p></o=
-:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'><o:p>&nbsp;=
-</o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>As the =
-transmission and reception happen simultaneously, the Python =
-scritp&nbsp;<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Helvetica",sans-serif'>&nbsp;<o:p>=
-</o:p></span></p></div></div></div></body></html>
-------=_NextPart_001_0049_01DB4BBC.EA4496A0--
+<div dir=3D"ltr"><div>Tom,</div><div><br></div><div>some pointers:</div><di=
+v><br></div><div>- I recommend using timed streaming for both Tx and Rx. Yo=
+u will get a more deterministic time offset.</div><div>- I think you&#39;re=
+ not accounting for phase offsets as well as time offsets. Your two signals=
+ do look similar -- maybe plot the envelope instead of the real part. Also,=
+ you can play around with gain settings to get a better amplitude alignment=
+.</div><div>- Looping back into the same daughterboard means you need to de=
+al with crosstalk. If you&#39;re just playing around, you might be fine but=
+ in general, if there&#39;s leakage from the Tx channel to the Rx channel, =
+it will interfere with the signal received through the cable.</div><div><br=
+></div><div>--M<br></div></div><br><div class=3D"gmail_quote gmail_quote_co=
+ntainer"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 11, 2024 at 12:5=
+8=E2=80=AFPM Q W via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
+s.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div><div style=3D"font-family:Helvetica N=
+eue,Helvetica,Arial,sans-serif;font-size:13px"><div dir=3D"ltr">Hi there,</=
+div><div dir=3D"ltr"><br></div><div dir=3D"ltr">I just started using UHD Py=
+thon API to implement a simple transmission-reception experiment on an Ettu=
+s X310. I have a UBX 160 daughterboard installed on slot B, with its TX (TX=
+/RX port) connected to RX (RX2 port) directly using a SMA cable and a 30dB =
+attenuator. I plan to transmit a sequence of waveforms from TX/RX port and =
+to see the waveforms received at the RX2 port. Ideally the two waveforms sh=
+ould be highly similar with some time shift in between, but the received wa=
+veforms turned out to be not quite right (see the diagram below, the upper =
+diagram shows the real part of the transmitted waveform and the lower, the =
+real part of the received.).</div><div dir=3D"ltr"><img title=3D"Inline ima=
+ge" alt=3D"Inline image" src=3D"cid:ii_193b674f4cb94edec491" style=3D"max-w=
+idth: 800px; width: 100%;"><br><span></span><br></div><div dir=3D"ltr">Some=
+ of the parameters are defined as following:</div><div dir=3D"ltr">duration=
+ =3D 10 # second, the time length of the transmitter sending the waveforms<=
+/div><div dir=3D"ltr">centre_freq=3D1e8</div><div dir=3D"ltr">sample_rate=
+=3D200000</div><div dir=3D"ltr">num_samples=3D200000 # number of samples to=
+ be collected by the receiving side.</div><div dir=3D"ltr">gain_tx=3D0 #dB<=
+/div><div dir=3D"ltr">gain_rx=3D20</div><div dir=3D"ltr"><br></div><div dir=
+=3D"ltr">USRP is defined as:</div><div dir=3D"ltr"><div><div>usrp =3D uhd.u=
+srp.MultiUSRP()</div><div>usrp.set_tx_subdev_spec(uhd.usrp.SubdevSpec(&quot=
+;B:0&quot;))</div><div>usrp.set_tx_antenna(&quot;TX/RX&quot;)</div><div><br=
+></div><div>usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec(&quot;B:0&quot;))</=
+div><div>usrp.set_rx_antenna(&quot;RX2&quot;)</div><div>usrp.set_rx_bandwid=
+th(sample_rate, 0)</div></div><div><br></div><div dir=3D"ltr">As the transm=
+ission and the reception happen at the same time, they are put in two separ=
+ate threads, as below:</div><div><div><div>threads =3D []</div><div>rx_thre=
+ad =3D threading.Thread(target=3Dreceive_data, args=3D(usrp, num_samples, c=
+entre_freq_rx, sample_rate, gain_rx))</div><div>threads.append(rx_thread)</=
+div><div>rx_thread.start()</div><div>tx_thread =3D threading.Thread(target=
+=3Dusrp.send_waveform, args=3D(tx_signal, duration, centre_freq_tx, sample_=
+rate, [0], gain_tx))</div><div>threads.append(tx_thread)</div><div>tx_threa=
+d.start()</div></div><div><br></div><div dir=3D"ltr">Here the function, rec=
+eive_data() in the first thread, is a user-defined (by me) function, receiv=
+ing samples using the uhd provided method, usrp.recv_num_samps() and saving=
+ the samples to a .txt file. A little more on the data format saved in the =
+file, I used np.savetxt() function to save the samples (a numpy array) to a=
+ text file. As the numpy array has a data type of np.complex64, the real an=
+d imaginary of the samples are saved in the same file in the format of np.f=
+loat32. I can confirm that=C2=A0<span><span style=3D"color:rgb(0,0,0);font-=
+family:Helvetica Neue,Helvetica,Arial,sans-serif">200000 complex samples we=
+re collected in the file saved, which verifies (partially at least) that da=
+ta format didn&#39;t go wrong.=C2=A0 =C2=A0</span></span></div><div dir=3D"=
+ltr"><br></div><div dir=3D"ltr">I have been working on this script for a wh=
+ole day, but couldn&#39;t fix it. I suspect I didn&#39;t configure the usrp=
+ variable correctly. Any suggestions would be appreciated.</div><div dir=3D=
+"ltr"><br></div><div dir=3D"ltr">Kind regards,</div><div dir=3D"ltr">Tom</d=
+iv><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><=
+br></div><div dir=3D"ltr"><br></div><br></div><div><br></div><br></div><div=
+ dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></di=
+v><div dir=3D"ltr">As the transmission and reception happen simultaneously,=
+ the Python scritp=C2=A0</div><div dir=3D"ltr">=C2=A0</div></div></div>____=
+___________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
-------=_NextPart_000_0048_01DB4BBC.EA4496A0
-Content-Type: image/png;
-	name="image001.png"
+--000000000000daace2062900c36c--
+
+--000000000000daace3062900c36d
+Content-Type: image/jpeg; name="1733917024497blob.jpg"
+Content-Disposition: inline; filename="1733917024497blob.jpg"
 Content-Transfer-Encoding: base64
-Content-ID: <image001.png@01DB4BBC.E8EC59A0>
+Content-ID: <ii_193b674f4cb94edec491>
+X-Attachment-Id: ii_193b674f4cb94edec491
 
 iVBORw0KGgoAAAANSUhEUgAABUkAAAIiCAYAAAD1iEkuAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAP+lSURBVHhe7J0HnBXV+fcP7NLbAktvi4gK0quo
@@ -2179,10 +1934,9 @@ AAAAAAAgqiEkBQAAAAAAAAAAgKiGkBQAAAAAAAAAAACiGkJSAAAAAAAAAAAAiGoISQEAAAAAAAAA
 ACCqISQFAAAAAAAAAACAqIaQFAAAAAAAAAAAAKIaQlIAAAAAAAAAAACIaghJAQAAAAAAAAAAIKoh
 JAUAAAAAAAAAAICohpAUAAAAAAAAAAAAohpCUgAAAAAAAAAAAIhiRP8PdfqaYMIHcokAAAAASUVO
 RK5CYII=
+--000000000000daace3062900c36d--
 
-------=_NextPart_000_0048_01DB4BBC.EA4496A0--
-
---===============2941883481808963431==
+--===============0100008556510203769==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2192,4 +1946,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2941883481808963431==--
+--===============0100008556510203769==--
