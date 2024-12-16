@@ -2,59 +2,63 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11C29F393C
-	for <lists+usrp-users@lfdr.de>; Mon, 16 Dec 2024 19:48:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0EC19F3946
+	for <lists+usrp-users@lfdr.de>; Mon, 16 Dec 2024 19:49:40 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8B59A3845CF
-	for <lists+usrp-users@lfdr.de>; Mon, 16 Dec 2024 13:48:27 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4BA203845CF
+	for <lists+usrp-users@lfdr.de>; Mon, 16 Dec 2024 13:49:40 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1734374907; bh=astv8tfgt9h8Z98XUEX1U6YK+cRPVY4AJGNuwDmQVvE=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=DbflRGNOFjUmlt3WYiJfIwAUwJem8zPocAFoOmQqEZitTL2IHxSlpmFIp88Fd81Wv
-	 0S/h62AIqjgW3s6uS89PNk7NYwS6cvYMd1yj6fRu93oWa3JTLdBMm46zNJ8q4Ua4No
-	 DEaqw6rM0+NIwHAvDw3Ru88dLzqr85619sN9LMpNPOY3K4PTlAGJzN3h5e3haLB1kq
-	 a+qI56x/+2uD0hHK/Mtods72aC0lGSHgnVna6GabnB2W/9g0GHe5bMuWtx05A1RpFQ
-	 /DclVgfd6Lh3zPT4Bg3s7yl4Kzbm7Y7H+JBEY5Jlldz2eWuh77npMC2mqYxQBProSr
-	 CghDP7b4pq/2A==
+	t=1734374980; bh=mdohNUuGS8RDo/qMiy55qjGuIyqGSsgicXALqAGG2wE=;
+	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=ibNVX8n87xQdSdLtsIXTIkmtc2ZNaTJTUVbO4SuVYifrpNo540cN4SHCnyq3USj54
+	 H3yaaIPn61BetRDH3yb+53fLsOXau13lAM/1jPYaUFzOPCSr3PuVBeqQmqmFpq7pku
+	 636XEOf2XekzE+ojbkLLTUDFKc/g8zFkkoPh8rMCmko9fRRYpyCfB2RQ4ttiY9qsTE
+	 sTun8SpekNuqwBB/uMbT4YCKXb6NuMMPvOVy8aqo0fzR4R2ETXk44CjkDw5w74KNw4
+	 SkV/nO60IDO9S9CszA4ktSpVzERwd6kUUGa4n05t7mltIC82HsUCEJh5Wrf6Rq+SSI
+	 sG1+04D7H1XHQ==
 Received: from smtp.freepro.com (smtp.freepro.com [88.212.152.147])
-	by mm2.emwd.com (Postfix) with ESMTPS id 94641381976
-	for <usrp-users@lists.ettus.com>; Mon, 16 Dec 2024 13:47:59 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTPS id 74B6D384AC3
+	for <usrp-users@lists.ettus.com>; Mon, 16 Dec 2024 13:48:28 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=novagrid.com header.i=@novagrid.com header.b="pDhTlUBn";
+	dkim=pass (1024-bit key; unprotected) header.d=novagrid.com header.i=@novagrid.com header.b="G0SBHhvl";
 	dkim-atps=neutral
 Received: from mail.novagrid.com (652615691.box.freepro.com [130.180.213.133])
-	by smtp.freepro.com (Postfix) with ESMTPS id 4YBpq23yPVzcprg
-	for <usrp-users@lists.ettus.com>; Mon, 16 Dec 2024 19:47:58 +0100 (CET)
-Content-Type: multipart/mixed; boundary="------------3SMVtydC5vWcpn9GWdx0xzjw"
+	by smtp.freepro.com (Postfix) with ESMTPS id 4YBpqb1n2gzcprg;
+	Mon, 16 Dec 2024 19:48:27 +0100 (CET)
+Content-Type: multipart/mixed; boundary="------------5ZMh8CnubcZ1gsJs4dhXbQRA"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=novagrid.com;
-	s=default; t=1734374877;
-	bh=DVMRHloH6z6s5bHNeSEneHAjRvHTb2GasXmNHl6N3D4=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=pDhTlUBnGbZ7gjXT0ah3acQM916KoAn0h2rv5IseaCybE5WnEhPw8NAPcodlI7DCF
-	 xmLieN+jJ0M5YWeeVSCwXj3QXm8/PcjZDh4lOgLSLMO/4Y2NE0jrDJ4GKO5rv4/nP4
-	 wV5fNckykM/CzGrdVkcLEu0EvG4l2BzZhIpezrJ0=
-Message-ID: <5fbd3c1d-1ab1-f199-7419-a670665f37f4@novagrid.com>
-Date: Mon, 16 Dec 2024 19:47:56 +0100
+	s=default; t=1734374907;
+	bh=ZWywOd4vT9Icz24dFjmPDRbyNYNtGaZwHZRZNFeGrak=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=G0SBHhvlfq8TtMVmew+d6GrFQLnYDBsnJQoSAsytZKWZ8FbmPKG3xRiG/RCd15IOg
+	 Kvgdc16SVKT4Wav5/mmzpvjTCb2HCrbO/tO+Hu0R8yYOL/pOKs77FuWUaNYuzTdgIu
+	 Vp6j9aOk2JgL9RaGkLBRoQ3cXBeiMGBfzrnwzrqE=
+Message-ID: <c75bd3c0-d36c-6acd-44b8-8eaef61d081b@novagrid.com>
+Date: Mon, 16 Dec 2024 19:48:25 +0100
 MIME-Version: 1.0
 Content-Language: en-US, fr
-To: usrp-users@lists.ettus.com
+To: Brian Padalino <bpadalino@gmail.com>
 References: <244d0fbb-2687-c74e-0b9d-e1de1122d382@novagrid.com>
+ <CAEXYVK65nb0wtqBhucDXEtDcaM3tYobRC8AXG1yQVy2eqLVFSQ@mail.gmail.com>
+ <a45c41d1-4d2e-4299-0458-1c7d757ecdad@novagrid.com>
+ <CAEXYVK5AWt+1Et5f9JtpuZDEBdbYg4iTxiZZm40KwNckyifkdg@mail.gmail.com>
 From: Christophe Grimault <christophe.grimault@novagrid.com>
-In-Reply-To: <244d0fbb-2687-c74e-0b9d-e1de1122d382@novagrid.com>
-X-Synology-Spam-Status: score=-0.1, required 5, __NOT_SPOOFED 0, FROM_HAS_DN 0, FROM_EQ_ENVFROM 0, HTML_MISSING_CTYPE 0, __FILL_THIS_FORM 0, TO_DN_NONE 0, TO_MATCH_ENVRCPT_ALL 0, __NOT_A_PERSON 0, MIME_GOOD -0.1, MID_RHS_MATCH_FROM 0, NO_RECEIVED -0.001, RCVD_COUNT_ZERO 0, HTML_MESSAGE 0.001, ARC_NA 0, RCPT_COUNT_ONE 0, MISSING_XM_UA 0, MIME_TRACE 0, __THREADED 0, HAS_ATTACHMENT 0
+In-Reply-To: <CAEXYVK5AWt+1Et5f9JtpuZDEBdbYg4iTxiZZm40KwNckyifkdg@mail.gmail.com>
+X-Synology-Spam-Status: score=-0.1, required 5, FREEMAIL_ENVRCPT 0, FROM_HAS_DN 0, FROM_EQ_ENVFROM 0, HTML_MISSING_CTYPE 0, __FILL_THIS_FORM 0, __NOT_SPOOFED 0, TO_MATCH_ENVRCPT_ALL 0, __NOT_A_PERSON 0, MIME_GOOD -0.1, RCPT_COUNT_TWO 0, MID_RHS_MATCH_FROM 0, NO_RECEIVED -0.001, FREEMAIL_TO 0, RCVD_COUNT_ZERO 0, HTML_MESSAGE 0.001, ARC_NA 0, MISSING_XM_UA 0, TO_DN_SOME 0, MIME_TRACE 0, __THREADED 0, HAS_ATTACHMENT 0
 X-Synology-Spam-Flag: no
 X-Synology-Virus-Status: no
-Message-ID-Hash: BTL7KPP6OMEND2OT4D7IJK3JE5O6ELWZ
-X-Message-ID-Hash: BTL7KPP6OMEND2OT4D7IJK3JE5O6ELWZ
+Message-ID-Hash: 2AY4HC7JRKW5KY7PVPWJJSQ3N3X3ITTD
+X-Message-ID-Hash: 2AY4HC7JRKW5KY7PVPWJJSQ3N3X3ITTD
 X-MailFrom: christophe.grimault@novagrid.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Sampling channels at different rates
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BTL7KPP6OMEND2OT4D7IJK3JE5O6ELWZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2AY4HC7JRKW5KY7PVPWJJSQ3N3X3ITTD/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
@@ -63,11 +67,11 @@ List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
 
 This is a multi-part message in MIME format.
---------------3SMVtydC5vWcpn9GWdx0xzjw
+--------------5ZMh8CnubcZ1gsJs4dhXbQRA
 Content-Type: multipart/alternative;
- boundary="------------HRJFzq5GqbDUQN0J0OxsHF7J"
+ boundary="------------kD0YcLHzt3aeRm0IZYmWeYiL"
 
---------------HRJFzq5GqbDUQN0J0OxsHF7J
+--------------kD0YcLHzt3aeRm0IZYmWeYiL
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -200,7 +204,45 @@ with=20
 > _______________________________________________
 > USRP-users mailing list --usrp-users@lists.ettus.com
 > To unsubscribe send an email tousrp-users-leave@lists.ettus.com
---------------HRJFzq5GqbDUQN0J0OxsHF7J
+
+Christophe Grimault
+NovaGrid SAS
+Les Jardins de la Teillais
+3, all=C3=A9e de la grande =C3=A9galonne
+35740 Pac=C3=A9, France
+Tel : (33)2 23 41 37 97
+Mob: (33)6 82 22 46 93
+www.novagrid.com
+
+Le 16/12/2024 =C3=A0 16:53, Brian Padalino a =C3=A9crit=C2=A0:
+> On Mon, Dec 16, 2024 at 9:44=E2=80=AFAM Christophe Grimault=20
+> <christophe.grimault@novagrid.com> wrote:
+>
+>     Hello Brian,
+>
+>     Thank you for this quick answer.
+>
+>     So I guess this is not a limitation related to using Python vs
+>     C++/boost ? Right ?
+>
+>     I understand that using the same streamer is tricky. Concerning
+>     your advice to go with 2 streamers, you think this a totally fine
+>     way to go ?
+>
+>     Otherwise, I was trying to use a single streamer because I wanted
+>     to have zero delay between the start time of the 2 streams.
+>
+>
+> I think using two streamers and the timestamp functionality is good.=C2=
+=A0=20
+> Check the Streamed Commands here for how to tell a stream to start at=20
+> a specific time:
+>
+> https://files.ettus.com/manual/page_timedcmds.html#timedcmds_stream_cmd=
+s
+>
+> Brian
+--------------kD0YcLHzt3aeRm0IZYmWeYiL
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -346,8 +388,6 @@ w.novagrid.com</a></pre>
     </div>
     <blockquote type=3D"cite"
       cite=3D"mid:244d0fbb-2687-c74e-0b9d-e1de1122d382@novagrid.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
       <p>Dear users,</p>
       <p>I'm using python wrappers with UHD &gt;=3D 4.5 and a X300 with 2
         twinRx.</p>
@@ -378,8 +418,8 @@ Les Jardins de la Teillais
 35740 Pac=C3=A9, France
 Tel : (33)2 23 41 37 97
 Mob: (33)6 82 22 46 93
-<a class=3D"moz-txt-link-abbreviated" href=3D"http://www.novagrid.com" mo=
-z-do-not-send=3D"true">www.novagrid.com</a></pre>
+<a class=3D"moz-txt-link-abbreviated" href=3D"http://www.novagrid.com">ww=
+w.novagrid.com</a></pre>
       <br>
       <fieldset class=3D"moz-mime-attachment-header"></fieldset>
       <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
@@ -391,12 +431,76 @@ f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
 s.com</a>
 </pre>
     </blockquote>
+    <p></p>
+    <pre class=3D"moz-signature" cols=3D"72">Christophe Grimault
+NovaGrid SAS
+Les Jardins de la Teillais
+3, all=C3=A9e de la grande =C3=A9galonne
+35740 Pac=C3=A9, France
+Tel : (33)2 23 41 37 97
+Mob: (33)6 82 22 46 93
+<a class=3D"moz-txt-link-abbreviated" href=3D"http://www.novagrid.com">ww=
+w.novagrid.com</a></pre>
+    <div class=3D"moz-cite-prefix">Le 16/12/2024 =C3=A0 16:53, Brian Pada=
+lino a
+      =C3=A9crit=C2=A0:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAEXYVK5AWt+1Et5f9JtpuZDEBdbYg4iTxiZZm40KwNckyifkdg@mail.gmai=
+l.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">
+        <div dir=3D"ltr">On Mon, Dec 16, 2024 at 9:44=E2=80=AFAM Christop=
+he
+          Grimault &lt;<a href=3D"mailto:christophe.grimault@novagrid.com=
+"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">chri=
+stophe.grimault@novagrid.com</a>&gt;
+          wrote:</div>
+        <div class=3D"gmail_quote gmail_quote_container">
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">
+            <div>
+              <p>Hello Brian,</p>
+              <p>Thank you for this quick answer.</p>
+              <p>So I guess this is not a limitation related to using
+                Python vs C++/boost ? Right ?</p>
+              <p>I understand that using the same streamer is tricky.
+                Concerning your advice to go with 2 streamers, you think
+                this a totally fine way to go ?</p>
+              <p>Otherwise, I was trying to use a single streamer
+                because I wanted to have zero delay between the start
+                time of the 2 streams.</p>
+            </div>
+          </blockquote>
+          <div><br>
+          </div>
+          <div>I think using two streamers and the timestamp
+            functionality is good.=C2=A0 Check the Streamed Commands here=
+ for
+            how to tell a stream to start at a specific time:</div>
+          <div><br>
+          </div>
+          <div>=C2=A0=C2=A0<a
+href=3D"https://files.ettus.com/manual/page_timedcmds.html#timedcmds_stre=
+am_cmds"
+              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
+tps://files.ettus.com/manual/page_timedcmds.html#timedcmds_stream_cmds</a=
+></div>
+          <div><br>
+          </div>
+          <div>Brian</div>
+        </div>
+      </div>
+    </blockquote>
   </body>
 </html>
 
---------------HRJFzq5GqbDUQN0J0OxsHF7J--
+--------------kD0YcLHzt3aeRm0IZYmWeYiL--
 
---------------3SMVtydC5vWcpn9GWdx0xzjw
+--------------5ZMh8CnubcZ1gsJs4dhXbQRA
 Content-Type: image/png; name="=?UTF-8?B?U8OpbGVjdGlvbl8zNjUucG5n?="
 Content-Disposition: attachment;
  filename*=UTF-8''%53%C3%A9%6C%65%63%74%69%6F%6E%5F%33%36%35%2E%70%6E%67
@@ -2353,7 +2457,7 @@ AAAAAJoPAAAAANB8AAAAAIDmAwAAAAA0HwAAAACg+QAAAAAAzQcAAAAAzQcAAAAAaD4AAAAA
 QPMBAAAAAJoPAAAAANB8AAAAAIDmAwAAAAA0HwAAAACg+QAAAACg+QAAAAAAzQcAAAAAaD4A
 AAAAQPMBAAAAAJoPAAAAANB8AAAAAIDmAwAAAAA0HwAAAAA0HwAAAACg+QAAAAAAzQcAAAAA
 aD4AAAAAQPMBAAAAAJoPAAAAANB8AAAAAOCG/wdvZuz/tE0E5wAAAABJRU5ErkJggg==
---------------3SMVtydC5vWcpn9GWdx0xzjw
+--------------5ZMh8CnubcZ1gsJs4dhXbQRA
 Content-Type: image/png; name="=?UTF-8?B?U8OpbGVjdGlvbl8zNjQucG5n?="
 Content-Disposition: attachment;
  filename*=UTF-8''%53%C3%A9%6C%65%63%74%69%6F%6E%5F%33%36%34%2E%70%6E%67
@@ -3607,7 +3711,7 @@ ISIiIiIiYpZCRERERETMUoiIiIiIiJilEBERERERsxQiIiIiIiJmKURERERExCyFiIiIiIiI
 WQoRERERETFLISIiIiIiYpZCRERERETMUoiIiIiIiJilEBERERERMUshIiIiIqL67f8BP0W+
 TWle00EAAAAASUVORK5CYII=
 
---------------3SMVtydC5vWcpn9GWdx0xzjw
+--------------5ZMh8CnubcZ1gsJs4dhXbQRA
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -3617,4 +3721,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---------------3SMVtydC5vWcpn9GWdx0xzjw--
+--------------5ZMh8CnubcZ1gsJs4dhXbQRA--
