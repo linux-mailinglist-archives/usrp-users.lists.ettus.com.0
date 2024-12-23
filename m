@@ -2,868 +2,1096 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C9249FB2DA
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Dec 2024 17:29:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F1BB9FB75E
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Dec 2024 23:56:36 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E051C386629
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Dec 2024 11:29:53 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 65E903864FA
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Dec 2024 17:56:35 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1734971393; bh=tj+cnOV+X4LDSH/Vicp92lgJkTDokjLHuy4WHZyhUUI=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=MRr+dKWOR3Ri5y7MKfjsAoK1Nu9gGbWpBqL5x5/KDw5bIZOZwwvXstd91QAbxRQQe
-	 gyeBgxy9whO89XbOTMxpdbTBTFUWu3/20rno7H3w/Vvrd+iguBbFTlvsp/A4vZGKSS
-	 vRsdnNOAG2mTFwXEnjIdV18KtfP6ctcZaz2iA/93k7J38Ew+BVwRwAMSulpSJcdphG
-	 NFav69weQ4o+7ekiJ33ZESaVYNrvGh7tBC8NVC+QwiT5RnVTR7vV1OktZVhz0dC9HW
-	 bVp/KwFg0G5EDKDx+TtQVPdbi7kl9z8Az4UpDT9fFMlO7atNEDf1X9N9VBCBGLPWC2
-	 6lh4I3l/D9rAg==
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1C1B4385E7F
-	for <usrp-users@lists.ettus.com>; Mon, 23 Dec 2024 11:28:42 -0500 (EST)
+	t=1734994595; bh=+RUdWJapLD8f1QvzfeKzRYnyGWPb+myOoIWWATYavTU=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=vvu8UxjAv3H4Brc+vmqVkowbQ3GcxynF+Tb9FfpVPbCNPyDg3Q4iS278iAv7T/wbj
+	 CDn85ff5Ro/1WuQygE58RiEzy1fLSgt1ZOSWggY3kpbCAa7rqrklVoA6OAcvUigU0P
+	 2jIRMv9k/jfZBubkzKvzPsKvzOQhKyUcrzcZ91GFIPMzs+qFp0nhB9ZaLaGudNYxxF
+	 I7K5Z0L0qhImX31YZPiaaVqRoMYmPHukRiq6vIGaf/bChbbAK9zLg5ESqKKeTQ09+z
+	 hw5BKbD5Yl0v4EmNx0yUx9abYZHMSPQvXOVGVmFqUYcwq7SegYHBWefoxGdw/gv9RL
+	 CU/CPZob1gmyA==
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 25117386469
+	for <usrp-users@lists.ettus.com>; Mon, 23 Dec 2024 17:55:26 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="cyBH+KPO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="K9MJn3gu";
 	dkim-atps=neutral
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5d7e3f1fdafso8487207a12.0
-        for <usrp-users@lists.ettus.com>; Mon, 23 Dec 2024 08:28:42 -0800 (PST)
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5f31841c6f6so2231215eaf.0
+        for <usrp-users@lists.ettus.com>; Mon, 23 Dec 2024 14:55:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1734971322; x=1735576122; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1734994525; x=1735599325; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jhLZx/ZCoQa4DVKsYz2saEdUsrxQdXnF8HMJTf0qQlc=;
-        b=cyBH+KPOK9Oq2T9+8JySFcZ0Dqa502zHq+b462UxDNfdSmEr5AVH+yivVQpec398Bw
-         gk8BVYNnm76OqFyXhQbkzTmK/Mg5AtOTVFxffUUOdGog8CpgpeqmaN25NOVhoopZyof3
-         ZsThsp28qt+ZAXeAgyDRN5kewY7kOCUDJ8HYM5PlKacG+tpbqF7Y/nI1EAMPGIBTJ3Hm
-         wjIoMvyDX1EEXQ9tPmPVGc4DpSHU7ZmamC1jdxiKqjrkGPZyuGuC438BD0XsGXyuqydx
-         +DDzOql9fMLs+jRpJSmfAJAEzURqyG/6XG6RCXFigXSf9XrCTQ0mcg7v0SGOliGHD0kc
-         p0OA==
+        bh=0hVvjr5P3ZCxle6I01dCs0L0Mka7iFNl9jZl66bQ7AI=;
+        b=K9MJn3guECc9DG9tYYP8EqCDNc3G5vrgZaW/FXMAi1aj5NVv25nklU0/U129fmtgl/
+         qkjD1V5QwIvw0BfQDWpWbDaDzVAWBlfL5zflGU8d6TfK/QzM96jJh5D3eS3IT7Xq+/L0
+         guWytbrKiiitSytaqJhmHSvPTfjJ7H14/AaDzj3NjALAZBY7VuBL1uY9EihjSjuO3bO8
+         NNlKqee0i5/A937891TiAHEFCGHlWx6L/KE4sGTY6SSBzWMI4Rzd9h+XqdnIkx0+TnK/
+         tbKV58hlUyLZ4Fv+HFmnmS0wTfddG0mlKLq8reSkzyDhezHhpmU9TjgFrCU37dYrL9jb
+         h9+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734971322; x=1735576122;
+        d=1e100.net; s=20230601; t=1734994525; x=1735599325;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jhLZx/ZCoQa4DVKsYz2saEdUsrxQdXnF8HMJTf0qQlc=;
-        b=TdBliYwWIQEjVVazhBKS6mge/+mf0SEmrcq+GQkTUdSiG0k4OR+yIp+G8FJgs+0KKc
-         65b2NLHDhtR09MnF+9ZXSJchzBym2LAn+o2IdO8D3V8jdlsxBf4QpXhq/8D7Hf2fd1Oo
-         SKw9GW9zJaHCYmfpOdF0+pwwU1kVfBCMukK49UfL1BL08tP5Qd9l9mN6GMvoqKGfCcaw
-         ycN292qThMtORI+P4YUITNVozXg39QKQEEC7OQjUqXUPNi1MDkgo+L7rnB7y0wgJ3uAr
-         wgit94Vo7NRlFuhAJ3zTByDgyGbNKZNJZ1Novkalnwrs50iT3gg43XiZYtFw3ErnwKLt
-         sJPA==
-X-Forwarded-Encrypted: i=1; AJvYcCVsNhT9w/JkYXqFuuf0wSM2XH8vMorUyLptQoiFY5V+DWSGtxs0Gqf2VrWbWaks7ZJAE3vEqH6GuhTQ@lists.ettus.com
-X-Gm-Message-State: AOJu0YwJF9cvQZurNNPlfHzg5htgMPvhcGcWxVe3M4QtnzQV0/wOgugg
-	IY68nOaetaaQJUSYVal79l58QvUktkwSHCXoTC1ctMwbrXSmUy/pJeDCyQqvmmghCL/KslzZ/4G
-	qgKVK18WjcmRNJj0rgv67Nvx+F8AZdpcyAkpdav6ADnIRpGw=
-X-Gm-Gg: ASbGncs76PO25+AGBFhWTI8d1s6Cmh276q7J547+D8kk27NJogs917hTTm+qnbTOsFb
-	fUXrbJMsel2jgnVhugNNXEQm/eDOcEUoJM4Q=
-X-Google-Smtp-Source: AGHT+IFXyD4QsMTS2KgM/i0uLpDkhrvcOQyMaRrqkNPKzwP224q276+i6E5qwdpU36um0kcy6t3NqtkAkvj6sAUrIrE=
-X-Received: by 2002:a05:6402:2813:b0:5d4:3105:c929 with SMTP id
- 4fb4d7f45d1cf-5d81de203fbmr12732522a12.23.1734971319992; Mon, 23 Dec 2024
- 08:28:39 -0800 (PST)
+        bh=0hVvjr5P3ZCxle6I01dCs0L0Mka7iFNl9jZl66bQ7AI=;
+        b=YMVzxUl1uj4Bb6wrtF6VE2Y4bTDNHJBCJWu5rgf1OgCrIjfVVkAQsIlvmdRY2MUma/
+         4Ri1DcpymNQj5gpA1v98dhzCT8CD4CyKZnUKko0lHosu8ukCPVgeyb+bDaxFUBNEcTX2
+         1lQMHVUkkPHTsnWGboERLcNPDkSJU+kqWhr4kuJhjLKD29QcJxjtIOpHPemZQqV0DBV2
+         WgjrcQbU1YMHUnhdbZbjbvB4ytdMn/ykypP8xH3wtgCiKJOoqN6sH+QMRxb15Ggeihq+
+         ZsxPeJenV3T7C79ffq05WhgvkSOzJOvrD0XdoVu/rWvBC4DHK+zDLPsNsPGIYpx5/huy
+         7wQA==
+X-Forwarded-Encrypted: i=1; AJvYcCVriT1UqFJ81XTAkPvpoKCCB7NatHZ1gsz2lWZmYy9/zpwKoJyf9tLO7ZY1NVoVEZTyo6LePqmupKCI@lists.ettus.com
+X-Gm-Message-State: AOJu0YyEyBH8urQGhCp8xv35CMggJFyo990eriOyvNzPttypq35VERJ3
+	9b7sehWoFg5DzXsYMp7sEuMg6CfaABp9cO1JbNFum60yr9nrRr3cwQlfNEj3r6WncL8VC9BQVz2
+	HW4/cM4Q0j3XQlXetxeWB+YgFppM=
+X-Gm-Gg: ASbGncv8bJEv1ZLRjIwnKUUhA/Q8eAalKIVE3itvsvi5zpADBOFvwaIjXThKMe3sEkz
+	kVqAY29JMYbmpKk3jZYOeRjqz0Z83re3A08ymwQ==
+X-Google-Smtp-Source: AGHT+IEOOoYVtEF0PThQVw3GUZwUN/XUBPbR7h6fraVWldEMZ1Lr4GSsC9krIeEfAbWDx32JbxjsBc/xRpxfjvGp9wg=
+X-Received: by 2002:a05:6870:de14:b0:29e:872f:c37f with SMTP id
+ 586e51a60fabf-2a7fb431b3emr6971904fac.43.1734994524868; Mon, 23 Dec 2024
+ 14:55:24 -0800 (PST)
 MIME-Version: 1.0
 References: <CAE=q3UPVjJMaehJ=FN7gtNvHgPXBOoXyPqhAfDMkKb1XEg8ErA@mail.gmail.com>
  <CAFOi1A63WnfL1k5UiuL9hV07-uMg-fJBEXDcn3H+eiaoZZX8zA@mail.gmail.com>
  <CAE=q3UNd5j=eH6ZdGNTPppF-W90=yOMFYNe5G4+AM1UmsEq+Zw@mail.gmail.com>
- <CAFOi1A7v32uogWnmKeHoDF=CpYhrDPh5aUrpCBNxmUa55=_2pw@mail.gmail.com> <CAE=q3UOM5mFihF4S_M2n3Z30iWCeTYVaWbbCgxet3=hYJFKg6Q@mail.gmail.com>
-In-Reply-To: <CAE=q3UOM5mFihF4S_M2n3Z30iWCeTYVaWbbCgxet3=hYJFKg6Q@mail.gmail.com>
-Date: Mon, 23 Dec 2024 11:28:28 -0500
-Message-ID: <CAB__hTT4DdzV6wCrc3ZU219njLF8GdYVupbfCAQO7m9anxgVew@mail.gmail.com>
-To: David <vitishlsfan21@gmail.com>
-Message-ID-Hash: 2ZK5VAQNU5MEDM5U4B3UOVBRUTGQGXZG
-X-Message-ID-Hash: 2ZK5VAQNU5MEDM5U4B3UOVBRUTGQGXZG
-X-MailFrom: rkossler@nd.edu
+ <CAFOi1A7v32uogWnmKeHoDF=CpYhrDPh5aUrpCBNxmUa55=_2pw@mail.gmail.com>
+ <CAE=q3UOM5mFihF4S_M2n3Z30iWCeTYVaWbbCgxet3=hYJFKg6Q@mail.gmail.com> <CAB__hTT4DdzV6wCrc3ZU219njLF8GdYVupbfCAQO7m9anxgVew@mail.gmail.com>
+In-Reply-To: <CAB__hTT4DdzV6wCrc3ZU219njLF8GdYVupbfCAQO7m9anxgVew@mail.gmail.com>
+From: David <vitishlsfan21@gmail.com>
+Date: Mon, 23 Dec 2024 14:55:13 -0800
+Message-ID: <CAE=q3UPMSBikTCN0gj_qiSXXFhuteLBy_6sse68epDpHqeqkyg@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: IEEPC3QMQGO4CGZAT3OF6U2EB6Z6TUWK
+X-Message-ID-Hash: IEEPC3QMQGO4CGZAT3OF6U2EB6Z6TUWK
+X-MailFrom: vitishlsfan21@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Two Channel DDC Synchronization With C++ RFNoC API
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2ZK5VAQNU5MEDM5U4B3UOVBRUTGQGXZG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IEEPC3QMQGO4CGZAT3OF6U2EB6Z6TUWK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8681122807366411065=="
+Content-Type: multipart/mixed; boundary="===============6904501351290782110=="
 
---===============8681122807366411065==
-Content-Type: multipart/related; boundary="00000000000039bed70629f27dd4"
+--===============6904501351290782110==
+Content-Type: multipart/related; boundary="00000000000057ca360629f7e4eb"
 
---00000000000039bed70629f27dd4
-Content-Type: multipart/alternative; boundary="00000000000039bed50629f27dd3"
+--00000000000057ca360629f7e4eb
+Content-Type: multipart/alternative; boundary="00000000000057ca350629f7e4ea"
 
---00000000000039bed50629f27dd3
+--00000000000057ca350629f7e4ea
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi David,
-Your email distinguishes between the multi_usrp API and the rfnoc API. But,
-under the hood, the multi_usrp API
-<https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/multi_usrp_=
-rfnoc.cpp>
-implements all of its functionality with the rfnoc API.  So, it seems that
-the multi_usrp implementation (using rfnoc API commands) is doing something
-different than your own implementation (using rfnoc API commands).  I
-realize that this is not a very helpful comment but perhaps if you take a
-closer look at the multi_usrp_rfnoc class, you might find something
-different in the underlying commands.
-Rob
+Rob,
 
-On Fri, Dec 20, 2024 at 5:10=E2=80=AFPM David <vitishlsfan21@gmail.com> wro=
-te:
+Thank you for your response, I was actually unaware of the mutli_usrp_rfnoc
+class, and I see how it calls the same command. I now have an extra tool I
+can fiddle with after the holidays, plus the new FPGA debug images...
 
-> Martin,
->
-> I don't have waveform viewer screenshots yet of the inputs (working on
-> it), but I have run the simulation with a packet delayed 500 clock cycles
-> on one of my block's channels. I can see that my block "waits" for the
-> second channel, which aligns the axi transaction. This is because my
-> block is an HLS block that is data driven, and won't be ready unless it h=
-as
-> both inputs. I verified the output data from the delayed packet simulatio=
-n.
-> Because of these factors, I think it is unlikely my block is deasserting
-> tready in my FPGA images.
->
-> Simulation output with a delayed packet on channel 1:
-> [image: delayed_port1_packet.png]
->
->
-> I also know the maximum sample rate we can run with on my block, and have
-> done many tests to ensure that my block is consuming data fast enough so
-> there are no overflows upstream.
->
-> My understanding of how the RFNoC packets work is that the output of the
-> DDC is filling a packet formed in the NoC shell, which is then released
-> once the 64 samples are filled. You can see that the DDC0 and DDC1
-> *tready* in all my debug screenshots is always asserted, even in the
-> non-working cases. Likewise, on my blocks input, tvalid from the noc shel=
-l
-> is always asserted, while my blocks tready drives the transaction.
->
-> Where we are now, is that using the usrp and multi_usrp APIs, my block
-> works as expected. When using RFNoC API, which sets the rate on the DDC a=
-nd
-> starts streaming, we get the problem behavior. Is it possible that DDC0 a=
-nd
-> DDC1 are not sampling correctly when I am using RFNoC API to set the rate
-> and start streaming? I have seen a difference before between the APIs,
-> where the multi_usrp was able to set the center frequency on the base
-> image, and the RFNoC API kept the center frequency at 0 MHz.
->
-> I don't understand why the clock distance between the tvalids on DDC0 and
-> DDC1 would change in my previous images, which only happens on the RFNoC
-> API application. I would expect a ddc output to be equidistant based on t=
-he
-> output sample rate. This is where the debugging is in the DDC blocks
-> (uhd/fpga/usrp3/lib/rfnoc/ddc.v):
->
-> //! RFNoC specific digital down-conversion chain
->
-> module ddc #(
-> parameter SR_FREQ_ADDR =3D 0,
-> parameter SR_SCALE_IQ_ADDR =3D 1,
-> parameter SR_DECIM_ADDR =3D 2,
-> parameter SR_MUX_ADDR =3D 3,
-> parameter SR_COEFFS_ADDR =3D 4,
-> parameter PRELOAD_HBS =3D 1, // Preload half band filter state with 0s
-> parameter NUM_HB =3D 3,
-> parameter CIC_MAX_DECIM =3D 255,
-> parameter SAMPLE_WIDTH =3D 16,
-> parameter WIDTH =3D 24
-> )(
-> input clk, input reset,
-> input clear, // Resets everything except the timed phase inc FIFO and
-> phase inc
-> input set_stb, input [7:0] set_addr, input [31:0] set_data,
-> input timed_set_stb, input [7:0] timed_set_addr, input [31:0]
-> timed_set_data,
-> input [31:0] sample_in_tdata,
-> input sample_in_tvalid,
-> input sample_in_tlast,
-> (* dont_touch=3D"true",mark_debug=3D"true"*) output sample_in_tready,
-> input sample_in_tuser,
-> input sample_in_eob,
-> (* dont_touch=3D"true",mark_debug=3D"true"*) output [31:0] sample_out_tda=
-ta,
-> (* dont_touch=3D"true",mark_debug=3D"true"*) output sample_out_tvalid,
-> input sample_out_tready,
-> output sample_out_tlast
-> );
->
-> Thanks,
->
-> David
->
-> On Fri, Dec 20, 2024 at 4:11=E2=80=AFAM Martin Braun <martin.braun@ettus.=
-com>
-> wrote:
->
->> David,
->>
->> is it possible that your block is deasserting tready on one of its
->> inputs, thus delaying the DDC?
->>
->> --M
->>
->> On Fri, Dec 20, 2024 at 3:27=E2=80=AFAM David <vitishlsfan21@gmail.com> =
-wrote:
->>
->>> Martin,
->>>
->>> Thanks for the reply. I will take any modules you suggest for AXI
->>> alignment, even if they do not "fix" my issue, it is good for me to loo=
-k at.
->>>
->>> 1. thanks for the comment, this block is a long time coming.
->>>
->>> 2. We captured some screen shots of the ILA core recording both the bas=
-e
->>> image and my image. I also was able to add a dummy port on my image and=
- run
->>> the *rx_samples_to_file *on that (because it was statically connected),
->>> which confirmed that the multi_usrp method producing the expected resul=
-ts,
->>> with/without my block in line:
->>>
->>> below I present some screenshots of the behavior, where the ILA is
->>> capturing the output of both DDCs *before* packetization.* What is not
->>> shown is the multi_usrp method running with my block, but it has the sa=
-me
->>> behavior as the base image**:*
->>>
->>> *Base Image, with rx_samples_to_file (multi_usrp)*
->>> Example 1: zoomed in run
->>> [image: base_image_zoomed.PNG]
->>> Example 2: different run, zoomed out. both DDCs perform as expected:
->>> [image: base_image_zoomed_out.PNG]
->>>
->>>
->>> *Custom Image, with davids_rx_to_file (ddc_block_controller)*
->>> Example 1: random distance between samples on both DDCs, clear on DDC1.
->>> The last 4 valids have a big change in cycle distance.
->>> [image: random_dist.PNG]
->>> Example 2: a different run, same behavior as above and time tags.
->>> [image: time_tags.PNG]
->>> Example 3: A run where it "almost" worked, and my block also "almost
->>> worked". You can see the alignment slips at the end:
->>> [image: Timing_mostly_aligned.PNG]
->>>
->>>
->>> 3. right now in the yaml I am using the named inputs with one port each=
+I have been using the multi_usrp.cpp class as my working case, which came
+from the examples. It looks like it sets the stream property on the ddc
+directly, whereas the RFNoC methods call a method post_action(dst_edge,
+new_action). Still looking into it, which will take some time.
+
+// multi_usrp
+void issue_stream_cmd(const stream_cmd_t& stream_cmd, size_t chan) override
+{
+if (chan !=3D ALL_CHANS) {
+_tree->access<stream_cmd_t>(rx_dsp_root(chan) / "stream_cmd").set
+(stream_cmd);
+return;
+}
+for (size_t c =3D 0; c < get_rx_num_channels(); c++) {
+issue_stream_cmd(stream_cmd, c);
+}
+}
+
+// multi_usrp_rfnoc
+void issue_stream_cmd(const stream_cmd_t& stream_cmd, size_t chan =3D
+ALL_CHANS) override
+{
+MUX_RX_API_CALL(issue_stream_cmd, stream_cmd);
+auto& rx_chain =3D _get_rx_chan(chan);
+if (rx_chain.ddc) {
+rx_chain.ddc->issue_stream_cmd(stream_cmd, rx_chain.block_chan);
+} else {
+rx_chain.radio->issue_stream_cmd(stream_cmd, rx_chain.block_chan);
+}
+}
+
+
+// ddc block controller
+void issue_stream_cmd(const uhd::stream_cmd_t& stream_cmd, const size_t por=
+t)
+override
+{
+RFNOC_LOG_TRACE("issue_stream_cmd(stream_mode=3D" << char(stream_cmd.
+stream_mode)
+<< ", port=3D" << port);
+res_source_info dst_edge{res_source_info::OUTPUT_EDGE, port};
+auto new_action =3D stream_cmd_action_info::make(stream_cmd.stream_mode);
+new_action->stream_cmd =3D stream_cmd;
+issue_stream_cmd_action_handler(dst_edge, new_action);
+}
+
+Thanks,
+
+David
+
+On Mon, Dec 23, 2024 at 8:28=E2=80=AFAM Rob Kossler <rkossler@nd.edu> wrote=
 :
->>>
->>> data:
->>>   fpga_iface: axis_data
->>>   clk_domain: rfnoc_chdr
->>>   inputs:
->>>     in_1:
->>>       num_ports: 1
->>>       ...
->>>     in_2:
->>>       num_ports: 1
->>>       ...
->>>
->>> I have done some experiments with one named input with 2 port, and I se=
-e
->>> that the AXI handshake is one packet with two parallel streams. I will =
-try
->>> to "AXI align" as you suggested with this first:
->>> data:
->>>   fpga_iface: axis_data
->>>   clk_domain: rfnoc_chdr
->>>   inputs:
->>>     in:
->>>       num_ports: 2
->>>       ...
->>>
->>> 4. right now, since I want to issue the streaming command while doing *=
-record
->>> to file* and *transmit loopback*, I will start with the forwarding
->>> policy as you suggested and also try to add my own issue stream command=
- to
->>> my block. It is not trivial for me since I am not a C++ person, so I wo=
-n't
->>> be able to provide much feedback on that effort.
->>>
->>> Thanks,
->>>
->>> David
->>>
->>> On Thu, Dec 19, 2024 at 3:24=E2=80=AFAM Martin Braun <martin.braun@ettu=
-s.com>
->>> wrote:
->>>
->>>> Hey David,
->>>>
->>>> this looks like you've gotten pretty far on a sophisticated project!  =
-I
->>>> have a few observations:
->>>>
->>>> - At first glance, your C++ looks correct.
->>>> - I would expect samples to arrive at your block synchronously based o=
-n
->>>> that. However, maybe I'm forgetting something that would cause the out=
-puts
->>>> of the DDCs to misalign data by a few clock cycles. Which makes me won=
-der:
->>>> Are you sure your input packets are misaligned? In RFNoC, we make no
->>>> guarantee that the output of the DDC (or any other) block is aligned t=
-o the
->>>> clock cycle, because we encode the timestamp with the data. Meaning th=
-at
->>>> the first, actual sample that arrives at your block on each channel is=
- in
->>>> fact time-aligned, they just arrive a few clock cycles apart. This is =
-the
->>>> same logic that applies when packets arrive at the host computer, wher=
-e we
->>>> make no assumptions that they arrive at the exact same time.
->>>> - If this is the issue, I think we have some modules you can use to
->>>> actually align samples within your block, or you just do some AXI alig=
-nment
->>>> yourself by combining the tready and tvalid signals of two streams.
->>>> - Side note, although it's not important: I would consider it a best
->>>> practice to have your block call
->>>> set_action_forwarding_policy(forwarding_policy_t::ONE_TO_FAN, "stream_=
-cmd")
->>>> so it would properly forward stream commands, and then you can plop th=
-e
->>>> stream command into the streamer.
->>>>
->>>> --M
->>>>
->>>> On Sun, Dec 15, 2024 at 10:49=E2=80=AFPM David <vitishlsfan21@gmail.co=
-m> wrote:
->>>>
->>>>> Hello all,
->>>>>
->>>>> I apologize in advance for data dumping. I have made a 2 input/1
->>>>> output RFNoC block that requires repeatable synchronized DDC starts. =
-My
->>>>> current method of starting the DDC is not working as desired.
->>>>>
->>>>> *Question - **How can I correctly start both DDC's so samples are
->>>>> available on the same clock cycle, similar to the rx_samples_to_file,=
- while
->>>>> still using my 2 in/1 out RFNoC block? *
->>>>> I would like to focus the conversation on my C++ implementation for
->>>>> now. All my simulations have convinced me my block is consuming AXI-S=
-tream
->>>>> data correctly.
->>>>>
->>>>> *Problem*
->>>>> When starting two DDCs with timed commands sent to DDC in my C++
->>>>> application, I am not getting the same result as the
->>>>> rx_samples_to_file.cpp... rx_samples_to_file has repeatable alignment=
-, and
->>>>> mine has random. This has led me to believe the problem is in my
->>>>> application and not my block. My Vivado simulations show my block is =
-able
->>>>> to consume the AXI-Stream transactions in parallel as I expect.
->>>>>
->>>>> Considering sampling noise from a sig gen that is split to both
->>>>> inputs, I see the following behavior:
->>>>> rx_samples_to_file (base image) davids_samples_to_file (custom image)
->>>>> DDC A samples ... X_1 Y_1 Z_1 ... DDC A samples ... X_1 Y_1 Z_1 ...
->>>>> DDC B samples ... X_2 Y_2 Z_2 ... DDC B samples X_2 Y_2 Z_2 ... ...
->>>>>
->>>>> *sample_1 is not equal to sample_2, but over a large number of sample=
+
+> Hi David,
+> Your email distinguishes between the multi_usrp API and the rfnoc API.
+> But, under the hood, the multi_usrp API
+> <https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/multi_usr=
+p_rfnoc.cpp>
+> implements all of its functionality with the rfnoc API.  So, it seems tha=
+t
+> the multi_usrp implementation (using rfnoc API commands) is doing somethi=
+ng
+> different than your own implementation (using rfnoc API commands).  I
+> realize that this is not a very helpful comment but perhaps if you take a
+> closer look at the multi_usrp_rfnoc class, you might find something
+> different in the underlying commands.
+> Rob
+>
+> On Fri, Dec 20, 2024 at 5:10=E2=80=AFPM David <vitishlsfan21@gmail.com> w=
+rote:
+>
+>> Martin,
+>>
+>> I don't have waveform viewer screenshots yet of the inputs (working on
+>> it), but I have run the simulation with a packet delayed 500 clock cycle=
 s
->>>>> they will correlate well.
+>> on one of my block's channels. I can see that my block "waits" for the
+>> second channel, which aligns the axi transaction. This is because my
+>> block is an HLS block that is data driven, and won't be ready unless it =
+has
+>> both inputs. I verified the output data from the delayed packet simulati=
+on.
+>> Because of these factors, I think it is unlikely my block is deasserting
+>> tready in my FPGA images.
+>>
+>> Simulation output with a delayed packet on channel 1:
+>> [image: delayed_port1_packet.png]
+>>
+>>
+>> I also know the maximum sample rate we can run with on my block, and hav=
+e
+>> done many tests to ensure that my block is consuming data fast enough so
+>> there are no overflows upstream.
+>>
+>> My understanding of how the RFNoC packets work is that the output of the
+>> DDC is filling a packet formed in the NoC shell, which is then released
+>> once the 64 samples are filled. You can see that the DDC0 and DDC1
+>> *tready* in all my debug screenshots is always asserted, even in the
+>> non-working cases. Likewise, on my blocks input, tvalid from the noc she=
+ll
+>> is always asserted, while my blocks tready drives the transaction.
+>>
+>> Where we are now, is that using the usrp and multi_usrp APIs, my block
+>> works as expected. When using RFNoC API, which sets the rate on the DDC =
+and
+>> starts streaming, we get the problem behavior. Is it possible that DDC0 =
+and
+>> DDC1 are not sampling correctly when I am using RFNoC API to set the rat=
+e
+>> and start streaming? I have seen a difference before between the APIs,
+>> where the multi_usrp was able to set the center frequency on the base
+>> image, and the RFNoC API kept the center frequency at 0 MHz.
+>>
+>> I don't understand why the clock distance between the tvalids on DDC0 an=
+d
+>> DDC1 would change in my previous images, which only happens on the RFNoC
+>> API application. I would expect a ddc output to be equidistant based on =
+the
+>> output sample rate. This is where the debugging is in the DDC blocks
+>> (uhd/fpga/usrp3/lib/rfnoc/ddc.v):
+>>
+>> //! RFNoC specific digital down-conversion chain
+>>
+>> module ddc #(
+>> parameter SR_FREQ_ADDR =3D 0,
+>> parameter SR_SCALE_IQ_ADDR =3D 1,
+>> parameter SR_DECIM_ADDR =3D 2,
+>> parameter SR_MUX_ADDR =3D 3,
+>> parameter SR_COEFFS_ADDR =3D 4,
+>> parameter PRELOAD_HBS =3D 1, // Preload half band filter state with 0s
+>> parameter NUM_HB =3D 3,
+>> parameter CIC_MAX_DECIM =3D 255,
+>> parameter SAMPLE_WIDTH =3D 16,
+>> parameter WIDTH =3D 24
+>> )(
+>> input clk, input reset,
+>> input clear, // Resets everything except the timed phase inc FIFO and
+>> phase inc
+>> input set_stb, input [7:0] set_addr, input [31:0] set_data,
+>> input timed_set_stb, input [7:0] timed_set_addr, input [31:0]
+>> timed_set_data,
+>> input [31:0] sample_in_tdata,
+>> input sample_in_tvalid,
+>> input sample_in_tlast,
+>> (* dont_touch=3D"true",mark_debug=3D"true"*) output sample_in_tready,
+>> input sample_in_tuser,
+>> input sample_in_eob,
+>> (* dont_touch=3D"true",mark_debug=3D"true"*) output [31:0] sample_out_td=
+ata,
+>> (* dont_touch=3D"true",mark_debug=3D"true"*) output sample_out_tvalid,
+>> input sample_out_tready,
+>> output sample_out_tlast
+>> );
+>>
+>> Thanks,
+>>
+>> David
+>>
+>> On Fri, Dec 20, 2024 at 4:11=E2=80=AFAM Martin Braun <martin.braun@ettus=
+.com>
+>> wrote:
+>>
+>>> David,
+>>>
+>>> is it possible that your block is deasserting tready on one of its
+>>> inputs, thus delaying the DDC?
+>>>
+>>> --M
+>>>
+>>> On Fri, Dec 20, 2024 at 3:27=E2=80=AFAM David <vitishlsfan21@gmail.com>=
+ wrote:
+>>>
+>>>> Martin,
+>>>>
+>>>> Thanks for the reply. I will take any modules you suggest for AXI
+>>>> alignment, even if they do not "fix" my issue, it is good for me to lo=
+ok at.
+>>>>
+>>>> 1. thanks for the comment, this block is a long time coming.
+>>>>
+>>>> 2. We captured some screen shots of the ILA core recording both the
+>>>> base image and my image. I also was able to add a dummy port on my ima=
+ge
+>>>> and run the *rx_samples_to_file *on that (because it was statically
+>>>> connected), which confirmed that the multi_usrp method producing the
+>>>> expected results, with/without my block in line:
+>>>>
+>>>> below I present some screenshots of the behavior, where the ILA is
+>>>> capturing the output of both DDCs *before* packetization.* What is not
+>>>> shown is the multi_usrp method running with my block, but it has the s=
+ame
+>>>> behavior as the base image**:*
+>>>>
+>>>> *Base Image, with rx_samples_to_file (multi_usrp)*
+>>>> Example 1: zoomed in run
+>>>> [image: base_image_zoomed.PNG]
+>>>> Example 2: different run, zoomed out. both DDCs perform as expected:
+>>>> [image: base_image_zoomed_out.PNG]
+>>>>
+>>>>
+>>>> *Custom Image, with davids_rx_to_file (ddc_block_controller)*
+>>>> Example 1: random distance between samples on both DDCs, clear on DDC1=
+.
+>>>> The last 4 valids have a big change in cycle distance.
+>>>> [image: random_dist.PNG]
+>>>> Example 2: a different run, same behavior as above and time tags.
+>>>> [image: time_tags.PNG]
+>>>> Example 3: A run where it "almost" worked, and my block also "almost
+>>>> worked". You can see the alignment slips at the end:
+>>>> [image: Timing_mostly_aligned.PNG]
+>>>>
+>>>>
+>>>> 3. right now in the yaml I am using the named inputs with one port eac=
+h:
+>>>>
+>>>> data:
+>>>>   fpga_iface: axis_data
+>>>>   clk_domain: rfnoc_chdr
+>>>>   inputs:
+>>>>     in_1:
+>>>>       num_ports: 1
+>>>>       ...
+>>>>     in_2:
+>>>>       num_ports: 1
+>>>>       ...
+>>>>
+>>>> I have done some experiments with one named input with 2 port, and I
+>>>> see that the AXI handshake is one packet with two parallel streams. I =
+will
+>>>> try to "AXI align" as you suggested with this first:
+>>>> data:
+>>>>   fpga_iface: axis_data
+>>>>   clk_domain: rfnoc_chdr
+>>>>   inputs:
+>>>>     in:
+>>>>       num_ports: 2
+>>>>       ...
+>>>>
+>>>> 4. right now, since I want to issue the streaming command while doing =
+*record
+>>>> to file* and *transmit loopback*, I will start with the forwarding
+>>>> policy as you suggested and also try to add my own issue stream comman=
+d to
+>>>> my block. It is not trivial for me since I am not a C++ person, so I w=
+on't
+>>>> be able to provide much feedback on that effort.
+>>>>
+>>>> Thanks,
+>>>>
+>>>> David
+>>>>
+>>>> On Thu, Dec 19, 2024 at 3:24=E2=80=AFAM Martin Braun <martin.braun@ett=
+us.com>
+>>>> wrote:
+>>>>
+>>>>> Hey David,
 >>>>>
->>>>> In the above example, the noise correlates as expected, but it is
->>>>> delayed by 1 sample. When using my application, I have seen no delay
->>>>> (desired), and also delay in the range of 5 samples.
+>>>>> this looks like you've gotten pretty far on a sophisticated project!
+>>>>> I have a few observations:
 >>>>>
->>>>> *C++ Implementation*
->>>>> [image: image.png]
+>>>>> - At first glance, your C++ looks correct.
+>>>>> - I would expect samples to arrive at your block synchronously based
+>>>>> on that. However, maybe I'm forgetting something that would cause the
+>>>>> outputs of the DDCs to misalign data by a few clock cycles. Which mak=
+es me
+>>>>> wonder: Are you sure your input packets are misaligned? In RFNoC, we =
+make
+>>>>> no guarantee that the output of the DDC (or any other) block is align=
+ed to
+>>>>> the clock cycle, because we encode the timestamp with the data. Meani=
+ng
+>>>>> that the first, actual sample that arrives at your block on each chan=
+nel is
+>>>>> in fact time-aligned, they just arrive a few clock cycles apart. This=
+ is
+>>>>> the same logic that applies when packets arrive at the host computer,=
+ where
+>>>>> we make no assumptions that they arrive at the exact same time.
+>>>>> - If this is the issue, I think we have some modules you can use to
+>>>>> actually align samples within your block, or you just do some AXI ali=
+gnment
+>>>>> yourself by combining the tready and tvalid signals of two streams.
+>>>>> - Side note, although it's not important: I would consider it a best
+>>>>> practice to have your block call
+>>>>> set_action_forwarding_policy(forwarding_policy_t::ONE_TO_FAN, "stream=
+_cmd")
+>>>>> so it would properly forward stream commands, and then you can plop t=
+he
+>>>>> stream command into the streamer.
 >>>>>
->>>>> I am using* uhd::rfnoc::ddc_block_control* types to issue the stream
->>>>> command because I was having issues with my block propagating. Issuin=
-g to
->>>>> the DDCs lets the data flow from 2 inputs to the 1 output, where the =
-output
->>>>> is either a file or loopback to transmit.
+>>>>> --M
 >>>>>
->>>>> The base image with rx_samples_to_file uses a multi_usrp type, which
->>>>> propagates the stream command from the rx_streamer.
+>>>>> On Sun, Dec 15, 2024 at 10:49=E2=80=AFPM David <vitishlsfan21@gmail.c=
+om>
+>>>>> wrote:
 >>>>>
->>>>> *RFNoC laydown*
->>>>>
->>>>> [image: image.png]
->>>>>
->>>>> Data flows in both Tx loopback configuration and Rx to file
->>>>> configuration.
->>>>>
->>>>> *Methods and Symptoms*
->>>>> I have two methods of measuring the synchronization, with data
->>>>> collected by ILA cores at either the output of DDC or input of custom
->>>>> block:
->>>>>
->>>>>    1. *Math: *When receiving correlated noise, I can measure the
->>>>>    cross correlation and show that the correlation peaks as expected,=
- and show
->>>>>    the delay between channels in samples.
->>>>>    2. *Vivado Waveform Viewer*: When the ILA cores are collecting DDC
->>>>>    channel data, I can see that the base image samples are available =
-on the
->>>>>    same clock. My image does not have that behavior.
->>>>>
->>>>>
->>>>> Thanks,
->>>>>
->>>>> David
->>>>>
->>>>>
->>>>>
+>>>>>> Hello all,
+>>>>>>
+>>>>>> I apologize in advance for data dumping. I have made a 2 input/1
+>>>>>> output RFNoC block that requires repeatable synchronized DDC starts.=
+ My
+>>>>>> current method of starting the DDC is not working as desired.
+>>>>>>
+>>>>>> *Question - **How can I correctly start both DDC's so samples are
+>>>>>> available on the same clock cycle, similar to the rx_samples_to_file=
+, while
+>>>>>> still using my 2 in/1 out RFNoC block? *
+>>>>>> I would like to focus the conversation on my C++ implementation for
+>>>>>> now. All my simulations have convinced me my block is consuming AXI-=
+Stream
+>>>>>> data correctly.
+>>>>>>
+>>>>>> *Problem*
+>>>>>> When starting two DDCs with timed commands sent to DDC in my C++
+>>>>>> application, I am not getting the same result as the
+>>>>>> rx_samples_to_file.cpp... rx_samples_to_file has repeatable alignmen=
+t, and
+>>>>>> mine has random. This has led me to believe the problem is in my
+>>>>>> application and not my block. My Vivado simulations show my block is=
+ able
+>>>>>> to consume the AXI-Stream transactions in parallel as I expect.
+>>>>>>
+>>>>>> Considering sampling noise from a sig gen that is split to both
+>>>>>> inputs, I see the following behavior:
+>>>>>> rx_samples_to_file (base image) davids_samples_to_file (custom image=
+)
+>>>>>> DDC A samples ... X_1 Y_1 Z_1 ... DDC A samples ... X_1 Y_1 Z_1 ...
+>>>>>> DDC B samples ... X_2 Y_2 Z_2 ... DDC B samples X_2 Y_2 Z_2 ... ...
+>>>>>>
+>>>>>> *sample_1 is not equal to sample_2, but over a large number of
+>>>>>> samples they will correlate well.
+>>>>>>
+>>>>>> In the above example, the noise correlates as expected, but it is
+>>>>>> delayed by 1 sample. When using my application, I have seen no delay
+>>>>>> (desired), and also delay in the range of 5 samples.
+>>>>>>
+>>>>>> *C++ Implementation*
+>>>>>> [image: image.png]
+>>>>>>
+>>>>>> I am using* uhd::rfnoc::ddc_block_control* types to issue the stream
+>>>>>> command because I was having issues with my block propagating. Issui=
+ng to
+>>>>>> the DDCs lets the data flow from 2 inputs to the 1 output, where the=
+ output
+>>>>>> is either a file or loopback to transmit.
+>>>>>>
+>>>>>> The base image with rx_samples_to_file uses a multi_usrp type, which
+>>>>>> propagates the stream command from the rx_streamer.
+>>>>>>
+>>>>>> *RFNoC laydown*
+>>>>>>
+>>>>>> [image: image.png]
+>>>>>>
+>>>>>> Data flows in both Tx loopback configuration and Rx to file
+>>>>>> configuration.
+>>>>>>
+>>>>>> *Methods and Symptoms*
+>>>>>> I have two methods of measuring the synchronization, with data
+>>>>>> collected by ILA cores at either the output of DDC or input of custo=
+m
+>>>>>> block:
+>>>>>>
+>>>>>>    1. *Math: *When receiving correlated noise, I can measure the
+>>>>>>    cross correlation and show that the correlation peaks as expected=
+, and show
+>>>>>>    the delay between channels in samples.
+>>>>>>    2. *Vivado Waveform Viewer*: When the ILA cores are collecting
+>>>>>>    DDC channel data, I can see that the base image samples are avail=
+able on
+>>>>>>    the same clock. My image does not have that behavior.
+>>>>>>
+>>>>>>
+>>>>>> Thanks,
+>>>>>>
+>>>>>> David
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>
 >>>>> _______________________________________________
 >>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
 >>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>>>>
 >>>> _______________________________________________
->>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>
->>> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 >
 
---00000000000039bed50629f27dd3
+--00000000000057ca350629f7e4ea
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi David,</div><div>Your email distinguishes between =
-the multi_usrp API and the rfnoc API. But, under the hood, the <a href=3D"h=
-ttps://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/multi_usrp_rf=
-noc.cpp">multi_usrp API</a> implements all of its functionality with the rf=
-noc API.=C2=A0 So, it seems that the multi_usrp implementation (using rfnoc=
- API commands) is doing something different than your own implementation (u=
-sing rfnoc API commands).=C2=A0 I realize that this is not a very helpful c=
-omment but perhaps if you take a closer look at the multi_usrp_rfnoc class,=
- you might find something different in the underlying commands.</div><div>R=
-ob</div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Fri, Dec 20, 2024 at 5:10=E2=80=AFPM David &lt;<=
-a href=3D"mailto:vitishlsfan21@gmail.com">vitishlsfan21@gmail.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">Martin,<div><br></div><div>I don&#39;t have waveform viewer screen=
-shots yet of the inputs (working on it), but I have run the simulation with=
- a packet delayed 500 clock cycles on one of my block&#39;s channels. I can=
- see that my block &quot;waits&quot; for the second channel, which aligns t=
-he axi transaction. This is because my block=C2=A0is an HLS block that is d=
-ata driven,=C2=A0and won&#39;t be ready unless it has both inputs. I verifi=
-ed the output data from the delayed packet simulation. Because of these fac=
-tors, I think it is unlikely my block is deasserting tready=C2=A0in my FPGA=
- images.=C2=A0</div><div><br></div><div>Simulation output with a delayed pa=
-cket on channel 1:</div><div><img src=3D"cid:ii_m4x9nsmt7" alt=3D"delayed_p=
-ort1_packet.png" width=3D"1266" height=3D"268" style=3D"margin-right: 0px;"=
-><br><br></div><div><br></div><div>I also know the maximum sample rate we c=
-an run with on my block, and have done many tests to ensure that my block=
-=C2=A0is consuming data fast enough so there are no overflows upstream.</di=
-v><div><br></div><div>My understanding of how the RFNoC packets work is tha=
-t the output of the DDC is filling a packet formed in the NoC shell, which =
-is then released once the 64 samples are filled. You can see that the DDC0 =
-and DDC1 <b>tready</b> in all my debug screenshots is always asserted, even=
- in the non-working cases. Likewise, on my blocks input, tvalid from the no=
-c shell is always asserted, while my blocks tready=C2=A0drives the transact=
-ion.</div><div><br></div><div>Where we are now,=C2=A0is that using the usrp=
- and multi_usrp APIs, my block works as expected. When using RFNoC API, whi=
-ch sets the rate on the DDC and starts streaming, we get the problem behavi=
-or. Is it possible that DDC0 and DDC1 are not sampling correctly when I am =
-using RFNoC API to set the rate and start streaming? I have seen a differen=
-ce before between the APIs, where the multi_usrp was able to set the center=
- frequency on the base image, and the RFNoC API kept the center frequency a=
-t 0 MHz. <br></div><div><br></div><div>I don&#39;t understand why the clock=
- distance between the tvalids on DDC0 and DDC1 would change in my previous =
-images, which only happens on the RFNoC API application. I would expect a d=
-dc output to be equidistant based on the output sample rate. This is where =
-the debugging is in the DDC blocks (uhd/fpga/usrp3/lib/rfnoc/ddc.v):</div><=
-div><br></div><div><div style=3D"color:rgb(204,204,204);background-color:rg=
-b(31,31,31);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,m=
-onospace;font-weight:normal;font-size:14px;line-height:19px;white-space:pre=
--wrap"><div><span style=3D"color:rgb(106,153,85)">//! RFNoC specific digita=
-l down-conversion chain</span></div><br><div><span style=3D"color:rgb(86,15=
-6,214)">module</span><span style=3D"color:rgb(204,204,204)"> </span><span s=
-tyle=3D"color:rgb(78,201,176)">ddc</span><span style=3D"color:rgb(204,204,2=
-04)"> #(</span></div><div><span style=3D"color:rgb(204,204,204)">  </span><=
-span style=3D"color:rgb(86,156,214)">parameter</span><span style=3D"color:r=
-gb(204,204,204)"> SR_FREQ_ADDR     </span><span style=3D"color:rgb(212,212,=
-212)">=3D</span><span style=3D"color:rgb(204,204,204)"> </span><span style=
-=3D"color:rgb(181,206,168)">0</span><span style=3D"color:rgb(204,204,204)">=
-,</span></div><div><span style=3D"color:rgb(204,204,204)">  </span><span st=
-yle=3D"color:rgb(86,156,214)">parameter</span><span style=3D"color:rgb(204,=
-204,204)"> SR_SCALE_IQ_ADDR </span><span style=3D"color:rgb(212,212,212)">=
-=3D</span><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"col=
-or:rgb(181,206,168)">1</span><span style=3D"color:rgb(204,204,204)">,</span=
-></div><div><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"=
-color:rgb(86,156,214)">parameter</span><span style=3D"color:rgb(204,204,204=
-)"> SR_DECIM_ADDR    </span><span style=3D"color:rgb(212,212,212)">=3D</spa=
+<div dir=3D"ltr"><div>Rob,</div><div><br></div><div>Thank you for your resp=
+onse, I was actually unaware of the mutli_usrp_rfnoc class, and I see how i=
+t calls the same command. I now have an extra tool I can fiddle with after =
+the holidays, plus the new FPGA debug images...</div><div><br></div><div>I =
+have been using the multi_usrp.cpp class as my working case, which came fro=
+m the examples. It looks like it sets the stream property on the ddc direct=
+ly, whereas the RFNoC methods call a method post_action(dst_edge, new_actio=
+n). Still looking into it, which will take some time. <br></div><div><br></=
+div><div><div style=3D"color:rgb(204,204,204);background-color:rgb(31,31,31=
+);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace;f=
+ont-weight:normal;font-size:14px;line-height:19px;white-space:pre"><div><sp=
+an style=3D"color:rgb(106,153,85)">// multi_usrp</span></div><div><span sty=
+le=3D"color:rgb(204,204,204)">    </span><span style=3D"color:rgb(86,156,21=
+4)">void</span><span style=3D"color:rgb(204,204,204)"> </span><span style=
+=3D"color:rgb(220,220,170)">issue_stream_cmd</span><span style=3D"color:rgb=
+(204,204,204)">(</span><span style=3D"color:rgb(86,156,214)">const</span><s=
+pan style=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(78,20=
+1,176)">stream_cmd_t</span><span style=3D"color:rgb(86,156,214)">&amp;</spa=
 n><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(1=
-81,206,168)">2</span><span style=3D"color:rgb(204,204,204)">,</span></div><=
-div><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rg=
-b(86,156,214)">parameter</span><span style=3D"color:rgb(204,204,204)"> SR_M=
-UX_ADDR      </span><span style=3D"color:rgb(212,212,212)">=3D</span><span =
-style=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(181,206,1=
-68)">3</span><span style=3D"color:rgb(204,204,204)">,</span></div><div><spa=
-n style=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156=
-,214)">parameter</span><span style=3D"color:rgb(204,204,204)"> SR_COEFFS_AD=
-DR   </span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D=
-"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(181,206,168)">4</=
-span><span style=3D"color:rgb(204,204,204)">,</span></div><div><span style=
-=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214)">=
-parameter</span><span style=3D"color:rgb(204,204,204)"> PRELOAD_HBS      </=
-span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D"color:=
-rgb(204,204,204)"> </span><span style=3D"color:rgb(181,206,168)">1</span><s=
-pan style=3D"color:rgb(204,204,204)">, </span><span style=3D"color:rgb(106,=
-153,85)">// Preload half band filter state with 0s</span></div><div><span s=
-tyle=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,21=
-4)">parameter</span><span style=3D"color:rgb(204,204,204)"> NUM_HB         =
-  </span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D"co=
-lor:rgb(204,204,204)"> </span><span style=3D"color:rgb(181,206,168)">3</spa=
-n><span style=3D"color:rgb(204,204,204)">,</span></div><div><span style=3D"=
-color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214)">para=
-meter</span><span style=3D"color:rgb(204,204,204)"> CIC_MAX_DECIM    </span=
-><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D"color:rgb(=
-204,204,204)"> </span><span style=3D"color:rgb(181,206,168)">255</span><spa=
-n style=3D"color:rgb(204,204,204)">,</span></div><div><span style=3D"color:=
-rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214)">parameter<=
-/span><span style=3D"color:rgb(204,204,204)"> SAMPLE_WIDTH     </span><span=
- style=3D"color:rgb(212,212,212)">=3D</span><span style=3D"color:rgb(204,20=
-4,204)"> </span><span style=3D"color:rgb(181,206,168)">16</span><span style=
-=3D"color:rgb(204,204,204)">,</span></div><div><span style=3D"color:rgb(204=
-,204,204)">  </span><span style=3D"color:rgb(86,156,214)">parameter</span><=
-span style=3D"color:rgb(204,204,204)"> WIDTH            </span><span style=
+56,220,254)">stream_cmd</span><span style=3D"color:rgb(204,204,204)">, </sp=
+an><span style=3D"color:rgb(86,156,214)">size_t</span><span style=3D"color:=
+rgb(204,204,204)"> </span><span style=3D"color:rgb(156,220,254)">chan</span=
+><span style=3D"color:rgb(204,204,204)">) </span><span style=3D"color:rgb(8=
+6,156,214)">override</span></div><div><span style=3D"color:rgb(204,204,204)=
+">    {</span></div><div><span style=3D"color:rgb(204,204,204)">        </s=
+pan><span style=3D"color:rgb(197,134,192)">if</span><span style=3D"color:rg=
+b(204,204,204)"> (chan </span><span style=3D"color:rgb(212,212,212)">!=3D</=
+span><span style=3D"color:rgb(204,204,204)"> ALL_CHANS) {</span></div><div>=
+<span style=3D"color:rgb(204,204,204)">            </span><span style=3D"co=
+lor:rgb(156,220,254)">_tree</span><span style=3D"color:rgb(204,204,204)">-&=
+gt;</span><span style=3D"color:rgb(156,220,254)">access</span><span style=
+=3D"color:rgb(212,212,212)">&lt;</span><span style=3D"color:rgb(78,201,176)=
+">stream_cmd_t</span><span style=3D"color:rgb(212,212,212)">&gt;</span><spa=
+n style=3D"color:rgb(204,204,204)">(</span><span style=3D"color:rgb(220,220=
+,170)">rx_dsp_root</span><span style=3D"color:rgb(204,204,204)">(chan) </sp=
+an><span style=3D"color:rgb(212,212,212)">/</span><span style=3D"color:rgb(=
+204,204,204)"> </span><span style=3D"color:rgb(206,145,120)">&quot;stream_c=
+md&quot;</span><span style=3D"color:rgb(204,204,204)">).</span><span style=
+=3D"color:rgb(220,220,170)">set</span><span style=3D"color:rgb(204,204,204)=
+">(stream_cmd);</span></div><div><span style=3D"color:rgb(204,204,204)">   =
+         </span><span style=3D"color:rgb(197,134,192)">return</span><span s=
+tyle=3D"color:rgb(204,204,204)">;</span></div><div><span style=3D"color:rgb=
+(204,204,204)">        }</span></div><div><span style=3D"color:rgb(204,204,=
+204)">        </span><span style=3D"color:rgb(197,134,192)">for</span><span=
+ style=3D"color:rgb(204,204,204)"> (</span><span style=3D"color:rgb(86,156,=
+214)">size_t</span><span style=3D"color:rgb(204,204,204)"> c </span><span s=
+tyle=3D"color:rgb(212,212,212)">=3D</span><span style=3D"color:rgb(204,204,=
+204)"> </span><span style=3D"color:rgb(181,206,168)">0</span><span style=3D=
+"color:rgb(204,204,204)">; c </span><span style=3D"color:rgb(212,212,212)">=
+&lt;</span><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"co=
+lor:rgb(220,220,170)">get_rx_num_channels</span><span style=3D"color:rgb(20=
+4,204,204)">(); c</span><span style=3D"color:rgb(212,212,212)">++</span><sp=
+an style=3D"color:rgb(204,204,204)">) {</span></div><div><span style=3D"col=
+or:rgb(204,204,204)">            </span><span style=3D"color:rgb(220,220,17=
+0)">issue_stream_cmd</span><span style=3D"color:rgb(204,204,204)">(stream_c=
+md, c);</span></div><div><span style=3D"color:rgb(204,204,204)">        }</=
+span></div><div><span style=3D"color:rgb(204,204,204)">    }</span></div><b=
+r><div><span style=3D"color:rgb(106,153,85)">// multi_usrp_rfnoc</span></di=
+v><div><span style=3D"color:rgb(204,204,204)">    </span><span style=3D"col=
+or:rgb(86,156,214)">void</span><span style=3D"color:rgb(204,204,204)"> </sp=
+an><span style=3D"color:rgb(220,220,170)">issue_stream_cmd</span><span styl=
+e=3D"color:rgb(204,204,204)">(</span><span style=3D"color:rgb(86,156,214)">=
+const</span><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"c=
+olor:rgb(78,201,176)">stream_cmd_t</span><span style=3D"color:rgb(86,156,21=
+4)">&amp;</span><span style=3D"color:rgb(204,204,204)"> </span><span style=
+=3D"color:rgb(156,220,254)">stream_cmd</span><span style=3D"color:rgb(204,2=
+04,204)">, </span><span style=3D"color:rgb(86,156,214)">size_t</span><span =
+style=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(156,220,2=
+54)">chan</span><span style=3D"color:rgb(204,204,204)"> </span><span style=
 =3D"color:rgb(212,212,212)">=3D</span><span style=3D"color:rgb(204,204,204)=
-"> </span><span style=3D"color:rgb(181,206,168)">24</span></div><div><span =
-style=3D"color:rgb(204,204,204)">)(</span></div><div><span style=3D"color:r=
-gb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214)">input</span=
-><span style=3D"color:rgb(204,204,204)"> clk, </span><span style=3D"color:r=
-gb(86,156,214)">input</span><span style=3D"color:rgb(204,204,204)"> reset,<=
-/span></div><div><span style=3D"color:rgb(204,204,204)">  </span><span styl=
-e=3D"color:rgb(86,156,214)">input</span><span style=3D"color:rgb(204,204,20=
-4)"> clear, </span><span style=3D"color:rgb(106,153,85)">// Resets everythi=
-ng except the timed phase inc FIFO and phase inc</span></div><div><span sty=
-le=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214)=
-">input</span><span style=3D"color:rgb(204,204,204)"> set_stb, </span><span=
- style=3D"color:rgb(86,156,214)">input</span><span style=3D"color:rgb(204,2=
-04,204)"> [</span><span style=3D"color:rgb(181,206,168)">7</span><span styl=
-e=3D"color:rgb(204,204,204)">:</span><span style=3D"color:rgb(181,206,168)"=
->0</span><span style=3D"color:rgb(204,204,204)">] set_addr, </span><span st=
-yle=3D"color:rgb(86,156,214)">input</span><span style=3D"color:rgb(204,204,=
-204)"> [</span><span style=3D"color:rgb(181,206,168)">31</span><span style=
-=3D"color:rgb(204,204,204)">:</span><span style=3D"color:rgb(181,206,168)">=
-0</span><span style=3D"color:rgb(204,204,204)">] set_data,</span></div><div=
-><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(8=
-6,156,214)">input</span><span style=3D"color:rgb(204,204,204)"> timed_set_s=
-tb, </span><span style=3D"color:rgb(86,156,214)">input</span><span style=3D=
-"color:rgb(204,204,204)"> [</span><span style=3D"color:rgb(181,206,168)">7<=
-/span><span style=3D"color:rgb(204,204,204)">:</span><span style=3D"color:r=
-gb(181,206,168)">0</span><span style=3D"color:rgb(204,204,204)">] timed_set=
-_addr, </span><span style=3D"color:rgb(86,156,214)">input</span><span style=
-=3D"color:rgb(204,204,204)"> [</span><span style=3D"color:rgb(181,206,168)"=
->31</span><span style=3D"color:rgb(204,204,204)">:</span><span style=3D"col=
-or:rgb(181,206,168)">0</span><span style=3D"color:rgb(204,204,204)">] timed=
-_set_data,</span></div><div><span style=3D"color:rgb(204,204,204)">  </span=
-><span style=3D"color:rgb(86,156,214)">input</span><span style=3D"color:rgb=
-(204,204,204)"> [</span><span style=3D"color:rgb(181,206,168)">31</span><sp=
-an style=3D"color:rgb(204,204,204)">:</span><span style=3D"color:rgb(181,20=
-6,168)">0</span><span style=3D"color:rgb(204,204,204)">] sample_in_tdata,</=
-span></div><div><span style=3D"color:rgb(204,204,204)">  </span><span style=
-=3D"color:rgb(86,156,214)">input</span><span style=3D"color:rgb(204,204,204=
-)"> sample_in_tvalid,</span></div><div><span style=3D"color:rgb(204,204,204=
-)">  </span><span style=3D"color:rgb(86,156,214)">input</span><span style=
-=3D"color:rgb(204,204,204)"> sample_in_tlast,</span></div><div><span style=
-=3D"color:rgb(204,204,204)">  (</span><span style=3D"color:rgb(212,212,212)=
-">*</span><span style=3D"color:rgb(204,204,204)"> dont_touch</span><span st=
-yle=3D"color:rgb(212,212,212)">=3D</span><span style=3D"color:rgb(206,145,1=
-20)">&quot;true&quot;</span><span style=3D"color:rgb(204,204,204)">,mark_de=
-bug</span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D"c=
-olor:rgb(206,145,120)">&quot;true&quot;</span><span style=3D"color:rgb(212,=
-212,212)">*</span><span style=3D"color:rgb(204,204,204)">) </span><span sty=
-le=3D"color:rgb(86,156,214)">output</span><span style=3D"color:rgb(204,204,=
-204)"> sample_in_tready,</span></div><div><span style=3D"color:rgb(204,204,=
-204)">  </span><span style=3D"color:rgb(86,156,214)">input</span><span styl=
-e=3D"color:rgb(204,204,204)"> sample_in_tuser,</span></div><div><span style=
-=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214)">=
-input</span><span style=3D"color:rgb(204,204,204)"> sample_in_eob,</span></=
-div><div><span style=3D"color:rgb(204,204,204)">  (</span><span style=3D"co=
-lor:rgb(212,212,212)">*</span><span style=3D"color:rgb(204,204,204)"> dont_=
-touch</span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D=
-"color:rgb(206,145,120)">&quot;true&quot;</span><span style=3D"color:rgb(20=
-4,204,204)">,mark_debug</span><span style=3D"color:rgb(212,212,212)">=3D</s=
-pan><span style=3D"color:rgb(206,145,120)">&quot;true&quot;</span><span sty=
-le=3D"color:rgb(212,212,212)">*</span><span style=3D"color:rgb(204,204,204)=
-">) </span><span style=3D"color:rgb(86,156,214)">output</span><span style=
-=3D"color:rgb(204,204,204)"> [</span><span style=3D"color:rgb(181,206,168)"=
->31</span><span style=3D"color:rgb(204,204,204)">:</span><span style=3D"col=
-or:rgb(181,206,168)">0</span><span style=3D"color:rgb(204,204,204)">] sampl=
-e_out_tdata,</span></div><div><span style=3D"color:rgb(204,204,204)">  (</s=
-pan><span style=3D"color:rgb(212,212,212)">*</span><span style=3D"color:rgb=
-(204,204,204)"> dont_touch</span><span style=3D"color:rgb(212,212,212)">=3D=
-</span><span style=3D"color:rgb(206,145,120)">&quot;true&quot;</span><span =
-style=3D"color:rgb(204,204,204)">,mark_debug</span><span style=3D"color:rgb=
-(212,212,212)">=3D</span><span style=3D"color:rgb(206,145,120)">&quot;true&=
-quot;</span><span style=3D"color:rgb(212,212,212)">*</span><span style=3D"c=
-olor:rgb(204,204,204)">) </span><span style=3D"color:rgb(86,156,214)">outpu=
-t</span><span style=3D"color:rgb(204,204,204)"> sample_out_tvalid,</span></=
-div><div><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"col=
-or:rgb(86,156,214)">input</span><span style=3D"color:rgb(204,204,204)"> sam=
-ple_out_tready,</span></div><div><span style=3D"color:rgb(204,204,204)">  <=
-/span><span style=3D"color:rgb(86,156,214)">output</span><span style=3D"col=
-or:rgb(204,204,204)"> sample_out_tlast</span></div><div><span style=3D"colo=
-r:rgb(204,204,204)">);</span></div></div></div><div><br></div><div>Thanks,<=
-/div><div><br></div><div>David <br></div></div><br><div class=3D"gmail_quot=
-e"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 20, 2024 at 4:11=E2=80=
-=AFAM Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"=
-_blank">martin.braun@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
-04,204,204);padding-left:1ex"><div dir=3D"ltr"><div>David,</div><div><br></=
-div><div>is it possible that your block is deasserting tready on one of its=
- inputs, thus delaying the DDC?</div><div><br></div><div>--M<br></div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fr=
-i, Dec 20, 2024 at 3:27=E2=80=AFAM David &lt;<a href=3D"mailto:vitishlsfan2=
-1@gmail.com" target=3D"_blank">vitishlsfan21@gmail.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
- dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Martin,=C2=
-=A0<div><br></div><div>Thanks for the reply. I will take any modules you su=
-ggest for AXI alignment, even if they do not &quot;fix&quot; my issue, it i=
-s good for me to look at.</div><div><br></div><div>1. thanks for the commen=
-t, this block is a long time coming.</div><div><br></div><div>2. We capture=
-d some screen shots of the ILA core recording both the base image and my im=
-age. I also was able to add a dummy port on my image and run the <i>rx_samp=
-les_to_file </i>on that (because it was statically connected), which confir=
-med=C2=A0that the multi_usrp method producing the expected results, with/wi=
-thout my block in line:</div><div><br></div><div>below I present some scree=
-nshots of the behavior, where the ILA is capturing the output of both DDCs =
-<i>before</i>=C2=A0packetization.<b> What is not shown is the multi_usrp me=
-thod running with=C2=A0my block, but it has the same behavior as the base i=
-mage</b><b>:</b></div><div><br></div><div><b>Base Image, with rx_samples_to=
-_file (multi_usrp)</b></div><div>Example 1: zoomed in run</div><div><img sr=
-c=3D"cid:ii_m4w4843v6" alt=3D"base_image_zoomed.PNG" width=3D"739" height=
-=3D"142" style=3D"margin-right: 0px;"><br></div><div>Example 2: different r=
-un, zoomed out. both DDCs perform as expected:</div><div><img src=3D"cid:ii=
-_m4w4gywn10" alt=3D"base_image_zoomed_out.PNG" width=3D"743" height=3D"146"=
- style=3D"margin-right: 0px;"><br></div><div><br></div><div><br></div><div>=
-<b>Custom Image, with davids_rx_to_file (ddc_block_controller)</b></div><di=
-v>Example 1: random distance between samples on both DDCs, clear on DDC1. T=
-he last 4 valids have a big change in cycle distance.</div><div><img src=3D=
-"cid:ii_m4w4ac0d7" alt=3D"random_dist.PNG" width=3D"735" height=3D"140" sty=
-le=3D"margin-right: 0px;"><br></div><div>Example 2: a different run, same b=
-ehavior as above and time tags.</div><div><img src=3D"cid:ii_m4w4cwr48" alt=
-=3D"time_tags.PNG" width=3D"737" height=3D"157" style=3D"margin-right: 0px;=
-"><br></div><div>Example 3: A run where it &quot;almost&quot; worked, and m=
-y block also &quot;almost worked&quot;. You can see the alignment slips at =
-the end:</div><div><img src=3D"cid:ii_m4w4esko9" alt=3D"Timing_mostly_align=
-ed.PNG" width=3D"720" height=3D"180" style=3D"margin-right: 0px;"><br></div=
-><div><br></div><div><br></div><div>3. right now in the yaml I am using the=
- named inputs with one port each:</div><div><br></div><div><div style=3D"co=
-lor:rgb(204,204,204);background-color:rgb(31,31,31);font-family:Consolas,&q=
-uot;Courier New&quot;,monospace;font-size:14px;line-height:19px;white-space=
-:pre-wrap"><div><span style=3D"color:rgb(86,156,214)">data</span>:</div><di=
-v>=C2=A0 <span style=3D"color:rgb(86,156,214)">fpga_iface</span>: <span sty=
-le=3D"color:rgb(206,145,120)">axis_data</span></div><div>=C2=A0 <span style=
-=3D"color:rgb(86,156,214)">clk_domain</span>: <span style=3D"color:rgb(206,=
-145,120)">rfnoc_chdr</span></div><div>=C2=A0 <span style=3D"color:rgb(86,15=
-6,214)">inputs</span>:</div><div>=C2=A0 =C2=A0 <span style=3D"color:rgb(86,=
-156,214)">in_1</span>:</div><div>=C2=A0 =C2=A0 =C2=A0 <span style=3D"color:=
-rgb(86,156,214)">num_ports</span>: <span style=3D"color:rgb(181,206,168)">1=
-</span></div><div>=C2=A0 =C2=A0 =C2=A0 <span style=3D"color:rgb(181,206,168=
-)">...</span></div><div>=C2=A0 =C2=A0 <span style=3D"color:rgb(86,156,214)"=
->in_2</span>:</div><div>=C2=A0 =C2=A0 =C2=A0 <span style=3D"color:rgb(86,15=
-6,214)">num_ports</span>: <span style=3D"color:rgb(181,206,168)">1</span></=
-div><div>=C2=A0 =C2=A0 =C2=A0 <span style=3D"color:rgb(181,206,168)">...</s=
-pan></div></div></div><div><br></div><div>I have done some experiments with=
- one named input with 2 port, and I see that the AXI handshake is one packe=
-t with two parallel streams. I will try to &quot;AXI align&quot; as you sug=
-gested with this first:</div><div><div style=3D"background-color:rgb(31,31,=
-31);font-family:Consolas,&quot;Courier New&quot;,monospace;font-size:14px;l=
-ine-height:19px;white-space:pre-wrap"><div style=3D"color:rgb(204,204,204)"=
-><span style=3D"color:rgb(86,156,214)">data</span>:</div><div style=3D"colo=
-r:rgb(204,204,204)">=C2=A0 <span style=3D"color:rgb(86,156,214)">fpga_iface=
-</span>: <span style=3D"color:rgb(206,145,120)">axis_data</span></div><div =
-style=3D"color:rgb(204,204,204)">=C2=A0 <span style=3D"color:rgb(86,156,214=
-)">clk_domain</span>: <span style=3D"color:rgb(206,145,120)">rfnoc_chdr</sp=
-an></div><div style=3D"color:rgb(204,204,204)">=C2=A0 <span style=3D"color:=
-rgb(86,156,214)">inputs</span>:</div><div style=3D"color:rgb(204,204,204)">=
-=C2=A0 =C2=A0 <span style=3D"color:rgb(86,156,214)">in</span>:</div><div><f=
-ont color=3D"#cccccc">=C2=A0 =C2=A0 =C2=A0 </font><span style=3D"color:rgb(=
-86,156,214)">num_ports</span><font color=3D"#cccccc">: </font><font color=
-=3D"#b5cea8">2</font></div><div style=3D"color:rgb(204,204,204)">=C2=A0 =C2=
-=A0 =C2=A0 <span style=3D"color:rgb(181,206,168)">...</span></div></div></d=
-iv><div><br></div><div>4. right now, since I want to issue the streaming co=
-mmand while doing <b>record to file</b> and <b>transmit loopback</b>, I wil=
-l start with the forwarding policy as you suggested and also try to add my =
-own issue stream command to my block. It is not trivial for me since I am n=
-ot a C++ person, so I won&#39;t be able to provide much feedback on that ef=
-fort.</div><div><br></div><div>Thanks,</div><div><br></div><div>David</div>=
-</div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Thu, Dec 19, 2024 at 3:24=E2=80=AFAM Martin Braun &lt;=
-<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank">martin.braun@et=
-tus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+"> ALL_CHANS) </span><span style=3D"color:rgb(86,156,214)">override</span><=
+/div><div><span style=3D"color:rgb(204,204,204)">    {</span></div><div><sp=
+an style=3D"color:rgb(204,204,204)">        </span><span style=3D"color:rgb=
+(220,220,170)">MUX_RX_API_CALL</span><span style=3D"color:rgb(204,204,204)"=
+>(issue_stream_cmd, stream_cmd);</span></div><div><span style=3D"color:rgb(=
+204,204,204)">        </span><span style=3D"color:rgb(86,156,214)">auto</sp=
+an><span style=3D"color:rgb(212,212,212)">&amp;</span><span style=3D"color:=
+rgb(204,204,204)"> rx_chain </span><span style=3D"color:rgb(212,212,212)">=
+=3D</span><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"col=
+or:rgb(220,220,170)">_get_rx_chan</span><span style=3D"color:rgb(204,204,20=
+4)">(chan);</span></div><div><span style=3D"color:rgb(204,204,204)">       =
+ </span><span style=3D"color:rgb(197,134,192)">if</span><span style=3D"colo=
+r:rgb(204,204,204)"> (</span><span style=3D"color:rgb(156,220,254)">rx_chai=
+n</span><span style=3D"color:rgb(204,204,204)">.</span><span style=3D"color=
+:rgb(156,220,254)">ddc</span><span style=3D"color:rgb(204,204,204)">) {</sp=
+an></div><div><span style=3D"color:rgb(204,204,204)">            </span><sp=
+an style=3D"color:rgb(156,220,254)">rx_chain</span><span style=3D"color:rgb=
+(204,204,204)">.</span><span style=3D"color:rgb(156,220,254)">ddc</span><sp=
+an style=3D"color:rgb(204,204,204)">-&gt;</span><span style=3D"color:rgb(22=
+0,220,170)">issue_stream_cmd</span><span style=3D"color:rgb(204,204,204)">(=
+stream_cmd, </span><span style=3D"color:rgb(156,220,254)">rx_chain</span><s=
+pan style=3D"color:rgb(204,204,204)">.</span><span style=3D"color:rgb(156,2=
+20,254)">block_chan</span><span style=3D"color:rgb(204,204,204)">);</span><=
+/div><div><span style=3D"color:rgb(204,204,204)">        } </span><span sty=
+le=3D"color:rgb(197,134,192)">else</span><span style=3D"color:rgb(204,204,2=
+04)"> {</span></div><div><span style=3D"color:rgb(204,204,204)">           =
+ </span><span style=3D"color:rgb(156,220,254)">rx_chain</span><span style=
+=3D"color:rgb(204,204,204)">.</span><span style=3D"color:rgb(156,220,254)">=
+radio</span><span style=3D"color:rgb(204,204,204)">-&gt;</span><span style=
+=3D"color:rgb(220,220,170)">issue_stream_cmd</span><span style=3D"color:rgb=
+(204,204,204)">(stream_cmd, </span><span style=3D"color:rgb(156,220,254)">r=
+x_chain</span><span style=3D"color:rgb(204,204,204)">.</span><span style=3D=
+"color:rgb(156,220,254)">block_chan</span><span style=3D"color:rgb(204,204,=
+204)">);</span></div><div><span style=3D"color:rgb(204,204,204)">        }<=
+/span></div><div><span style=3D"color:rgb(204,204,204)">    }</span></div><=
+br><br><div><span style=3D"color:rgb(106,153,85)">// ddc block controller</=
+span></div><div><span style=3D"color:rgb(204,204,204)">    </span><span sty=
+le=3D"color:rgb(86,156,214)">void</span><span style=3D"color:rgb(204,204,20=
+4)"> </span><span style=3D"color:rgb(220,220,170)">issue_stream_cmd</span><=
+span style=3D"color:rgb(204,204,204)">(</span><span style=3D"color:rgb(86,1=
+56,214)">const</span><span style=3D"color:rgb(204,204,204)"> </span><span s=
+tyle=3D"color:rgb(78,201,176)">uhd</span><span style=3D"color:rgb(204,204,2=
+04)">::</span><span style=3D"color:rgb(78,201,176)">stream_cmd_t</span><spa=
+n style=3D"color:rgb(86,156,214)">&amp;</span><span style=3D"color:rgb(204,=
+204,204)"> </span><span style=3D"color:rgb(156,220,254)">stream_cmd</span><=
+span style=3D"color:rgb(204,204,204)">, </span><span style=3D"color:rgb(86,=
+156,214)">const</span><span style=3D"color:rgb(204,204,204)"> </span><span =
+style=3D"color:rgb(86,156,214)">size_t</span><span style=3D"color:rgb(204,2=
+04,204)"> </span><span style=3D"color:rgb(156,220,254)">port</span><span st=
+yle=3D"color:rgb(204,204,204)">) </span><span style=3D"color:rgb(86,156,214=
+)">override</span></div><div><span style=3D"color:rgb(204,204,204)">    {</=
+span></div><div><span style=3D"color:rgb(204,204,204)">        </span><span=
+ style=3D"color:rgb(220,220,170)">RFNOC_LOG_TRACE</span><span style=3D"colo=
+r:rgb(204,204,204)">(</span><span style=3D"color:rgb(206,145,120)">&quot;is=
+sue_stream_cmd(stream_mode=3D&quot;</span><span style=3D"color:rgb(204,204,=
+204)"> </span><span style=3D"color:rgb(212,212,212)">&lt;&lt;</span><span s=
+tyle=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(86,156,214=
+)">char</span><span style=3D"color:rgb(204,204,204)">(</span><span style=3D=
+"color:rgb(156,220,254)">stream_cmd</span><span style=3D"color:rgb(204,204,=
+204)">.</span><span style=3D"color:rgb(156,220,254)">stream_mode</span><spa=
+n style=3D"color:rgb(204,204,204)">)</span></div><div><span style=3D"color:=
+rgb(204,204,204)">                                                        <=
+/span><span style=3D"color:rgb(212,212,212)">&lt;&lt;</span><span style=3D"=
+color:rgb(204,204,204)"> </span><span style=3D"color:rgb(206,145,120)">&quo=
+t;, port=3D&quot;</span><span style=3D"color:rgb(204,204,204)"> </span><spa=
+n style=3D"color:rgb(212,212,212)">&lt;&lt;</span><span style=3D"color:rgb(=
+204,204,204)"> port);</span></div><div><span style=3D"color:rgb(204,204,204=
+)">        res_source_info dst_edge{</span><span style=3D"color:rgb(78,201,=
+176)">res_source_info</span><span style=3D"color:rgb(204,204,204)">::OUTPUT=
+_EDGE, port};</span></div><div><span style=3D"color:rgb(204,204,204)">     =
+   </span><span style=3D"color:rgb(86,156,214)">auto</span><span style=3D"c=
+olor:rgb(204,204,204)"> new_action        </span><span style=3D"color:rgb(2=
+12,212,212)">=3D</span><span style=3D"color:rgb(204,204,204)"> </span><span=
+ style=3D"color:rgb(78,201,176)">stream_cmd_action_info</span><span style=
+=3D"color:rgb(204,204,204)">::</span><span style=3D"color:rgb(220,220,170)"=
+>make</span><span style=3D"color:rgb(204,204,204)">(</span><span style=3D"c=
+olor:rgb(156,220,254)">stream_cmd</span><span style=3D"color:rgb(204,204,20=
+4)">.</span><span style=3D"color:rgb(156,220,254)">stream_mode</span><span =
+style=3D"color:rgb(204,204,204)">);</span></div><div><span style=3D"color:r=
+gb(204,204,204)">        </span><span style=3D"color:rgb(156,220,254)">new_=
+action</span><span style=3D"color:rgb(204,204,204)">-&gt;</span><span style=
+=3D"color:rgb(156,220,254)">stream_cmd</span><span style=3D"color:rgb(204,2=
+04,204)"> </span><span style=3D"color:rgb(212,212,212)">=3D</span><span sty=
+le=3D"color:rgb(204,204,204)"> stream_cmd;</span></div><div><span style=3D"=
+color:rgb(204,204,204)">        </span><span style=3D"color:rgb(220,220,170=
+)">issue_stream_cmd_action_handler</span><span style=3D"color:rgb(204,204,2=
+04)">(dst_edge, new_action);</span></div><div><span style=3D"color:rgb(204,=
+204,204)">    }</span></div></div></div><div><br></div><div>Thanks,</div><d=
+iv><br></div><div>David<br></div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 23, 2024 at 8:28=E2=80=AFAM Ro=
+b Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler=
+@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
 margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div>Hey David,</div><div><br></div><div>this looks=
- like you&#39;ve gotten pretty far on a sophisticated project!=C2=A0 I have=
- a few observations:<br></div><div><br></div><div>- At first glance, your C=
-++ looks correct.</div><div>- I would expect samples to arrive at your bloc=
-k synchronously based on that. However, maybe I&#39;m forgetting something =
-that would cause the outputs of the DDCs to misalign data by a few clock cy=
-cles. Which makes me wonder: Are you sure your input packets are misaligned=
-? In RFNoC, we make no guarantee that the output of the DDC (or any other) =
-block is aligned to the clock cycle, because we encode the timestamp with t=
-he data. Meaning that the first, actual sample that arrives at your block o=
-n each channel is in fact time-aligned, they just arrive a few clock cycles=
- apart. This is the same logic that applies when packets arrive at the host=
- computer, where we make no assumptions that they arrive at the exact same =
-time.</div><div>- If this is the issue, I think we have some modules you ca=
-n use to actually align samples within your block, or you just do some AXI =
-alignment yourself by combining the tready and tvalid signals of two stream=
-s.<br></div><div>- Side note, although it&#39;s not important: I would cons=
-ider it a best practice to have your block call set_action_forwarding_polic=
-y(forwarding_policy_t::ONE_TO_FAN, &quot;stream_cmd&quot;) so it would prop=
-erly forward stream commands, and then you can plop the stream command into=
- the streamer.</div><div><br></div><div>--M<br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Dec 15, 2024=
- at 10:49=E2=80=AFPM David &lt;<a href=3D"mailto:vitishlsfan21@gmail.com" t=
-arget=3D"_blank">vitishlsfan21@gmail.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">H=
-ello all,<div><br></div><div>I apologize in advance for=C2=A0data=C2=A0dump=
-ing. I have made a 2 input/1 output RFNoC block that requires repeatable sy=
-nchronized DDC starts. My current method of starting the DDC is not working=
- as desired.</div><div><br></div><div><b><u>Question</u>=C2=A0-=C2=A0</b><b=
->How can I correctly start both DDC&#39;s so samples are available on the s=
-ame clock cycle, similar to the rx_samples_to_file, while still using my 2 =
-in/1 out RFNoC block?=C2=A0</b></div><div>I would like to focus the convers=
-ation on my C++ implementation for now. All my simulations have convinced m=
-e my block is consuming AXI-Stream data correctly.</div><div><br></div><div=
-><b><u>Problem</u></b></div><div>When starting two DDCs with=C2=A0timed com=
-mands sent to DDC in my C++ application,<i>=C2=A0</i>I am not getting the s=
-ame result as the rx_samples_to_file.cpp... rx_samples_to_file has repeatab=
-le alignment, and mine has random. This has led me to believe the problem i=
-s in my application and not my block. My Vivado simulations show my block i=
-s able to consume the AXI-Stream transactions in parallel as I expect.</div=
-><div><br></div><div>Considering sampling noise from a sig gen that is spli=
-t to both inputs, I see the following behavior:=C2=A0</div><div><table cell=
-spacing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-lay=
-out:fixed;font-size:10pt;font-family:Arial;width:0px;border-collapse:collap=
-se;border:medium"><colgroup><col width=3D"100"><col width=3D"100"><col widt=
+t:1ex"><div dir=3D"ltr"><div>Hi David,</div><div>Your email distinguishes b=
+etween the multi_usrp API and the rfnoc API. But, under the hood, the <a hr=
+ef=3D"https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/multi_=
+usrp_rfnoc.cpp" target=3D"_blank">multi_usrp API</a> implements all of its =
+functionality with the rfnoc API.=C2=A0 So, it seems that the multi_usrp im=
+plementation (using rfnoc API commands) is doing something different than y=
+our own implementation (using rfnoc API commands).=C2=A0 I realize that thi=
+s is not a very helpful comment but perhaps if you take a closer look at th=
+e multi_usrp_rfnoc class, you might find something different in the underly=
+ing commands.</div><div>Rob</div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Fri, Dec 20, 2024 at 5:10=E2=80=AFPM David &l=
+t;<a href=3D"mailto:vitishlsfan21@gmail.com" target=3D"_blank">vitishlsfan2=
+1@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr">Martin,<div><br></div><div>I don&#39;t have wav=
+eform viewer screenshots yet of the inputs (working on it), but I have run =
+the simulation with a packet delayed 500 clock cycles on one of my block&#3=
+9;s channels. I can see that my block &quot;waits&quot; for the second chan=
+nel, which aligns the axi transaction. This is because my block=C2=A0is an =
+HLS block that is data driven,=C2=A0and won&#39;t be ready unless it has bo=
+th inputs. I verified the output data from the delayed packet simulation. B=
+ecause of these factors, I think it is unlikely my block is deasserting tre=
+ady=C2=A0in my FPGA images.=C2=A0</div><div><br></div><div>Simulation outpu=
+t with a delayed packet on channel 1:</div><div><img src=3D"cid:ii_m4x9nsmt=
+7" alt=3D"delayed_port1_packet.png" width=3D"1266" height=3D"268" style=3D"=
+margin-right: 0px;"><br><br></div><div><br></div><div>I also know the maxim=
+um sample rate we can run with on my block, and have done many tests to ens=
+ure that my block=C2=A0is consuming data fast enough so there are no overfl=
+ows upstream.</div><div><br></div><div>My understanding of how the RFNoC pa=
+ckets work is that the output of the DDC is filling a packet formed in the =
+NoC shell, which is then released once the 64 samples are filled. You can s=
+ee that the DDC0 and DDC1 <b>tready</b> in all my debug screenshots is alwa=
+ys asserted, even in the non-working cases. Likewise, on my blocks input, t=
+valid from the noc shell is always asserted, while my blocks tready=C2=A0dr=
+ives the transaction.</div><div><br></div><div>Where we are now,=C2=A0is th=
+at using the usrp and multi_usrp APIs, my block works as expected. When usi=
+ng RFNoC API, which sets the rate on the DDC and starts streaming, we get t=
+he problem behavior. Is it possible that DDC0 and DDC1 are not sampling cor=
+rectly when I am using RFNoC API to set the rate and start streaming? I hav=
+e seen a difference before between the APIs, where the multi_usrp was able =
+to set the center frequency on the base image, and the RFNoC API kept the c=
+enter frequency at 0 MHz. <br></div><div><br></div><div>I don&#39;t underst=
+and why the clock distance between the tvalids on DDC0 and DDC1 would chang=
+e in my previous images, which only happens on the RFNoC API application. I=
+ would expect a ddc output to be equidistant based on the output sample rat=
+e. This is where the debugging is in the DDC blocks (uhd/fpga/usrp3/lib/rfn=
+oc/ddc.v):</div><div><br></div><div><div style=3D"color:rgb(204,204,204);ba=
+ckground-color:rgb(31,31,31);font-family:&quot;Droid Sans Mono&quot;,&quot;=
+monospace&quot;,monospace;font-weight:normal;font-size:14px;line-height:19p=
+x;white-space:pre-wrap"><div><span style=3D"color:rgb(106,153,85)">//! RFNo=
+C specific digital down-conversion chain</span></div><br><div><span style=
+=3D"color:rgb(86,156,214)">module</span><span style=3D"color:rgb(204,204,20=
+4)"> </span><span style=3D"color:rgb(78,201,176)">ddc</span><span style=3D"=
+color:rgb(204,204,204)"> #(</span></div><div><span style=3D"color:rgb(204,2=
+04,204)">  </span><span style=3D"color:rgb(86,156,214)">parameter</span><sp=
+an style=3D"color:rgb(204,204,204)"> SR_FREQ_ADDR     </span><span style=3D=
+"color:rgb(212,212,212)">=3D</span><span style=3D"color:rgb(204,204,204)"> =
+</span><span style=3D"color:rgb(181,206,168)">0</span><span style=3D"color:=
+rgb(204,204,204)">,</span></div><div><span style=3D"color:rgb(204,204,204)"=
+>  </span><span style=3D"color:rgb(86,156,214)">parameter</span><span style=
+=3D"color:rgb(204,204,204)"> SR_SCALE_IQ_ADDR </span><span style=3D"color:r=
+gb(212,212,212)">=3D</span><span style=3D"color:rgb(204,204,204)"> </span><=
+span style=3D"color:rgb(181,206,168)">1</span><span style=3D"color:rgb(204,=
+204,204)">,</span></div><div><span style=3D"color:rgb(204,204,204)">  </spa=
+n><span style=3D"color:rgb(86,156,214)">parameter</span><span style=3D"colo=
+r:rgb(204,204,204)"> SR_DECIM_ADDR    </span><span style=3D"color:rgb(212,2=
+12,212)">=3D</span><span style=3D"color:rgb(204,204,204)"> </span><span sty=
+le=3D"color:rgb(181,206,168)">2</span><span style=3D"color:rgb(204,204,204)=
+">,</span></div><div><span style=3D"color:rgb(204,204,204)">  </span><span =
+style=3D"color:rgb(86,156,214)">parameter</span><span style=3D"color:rgb(20=
+4,204,204)"> SR_MUX_ADDR      </span><span style=3D"color:rgb(212,212,212)"=
+>=3D</span><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"co=
+lor:rgb(181,206,168)">3</span><span style=3D"color:rgb(204,204,204)">,</spa=
+n></div><div><span style=3D"color:rgb(204,204,204)">  </span><span style=3D=
+"color:rgb(86,156,214)">parameter</span><span style=3D"color:rgb(204,204,20=
+4)"> SR_COEFFS_ADDR   </span><span style=3D"color:rgb(212,212,212)">=3D</sp=
+an><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(=
+181,206,168)">4</span><span style=3D"color:rgb(204,204,204)">,</span></div>=
+<div><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"color:r=
+gb(86,156,214)">parameter</span><span style=3D"color:rgb(204,204,204)"> PRE=
+LOAD_HBS      </span><span style=3D"color:rgb(212,212,212)">=3D</span><span=
+ style=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(181,206,=
+168)">1</span><span style=3D"color:rgb(204,204,204)">, </span><span style=
+=3D"color:rgb(106,153,85)">// Preload half band filter state with 0s</span>=
+</div><div><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"c=
+olor:rgb(86,156,214)">parameter</span><span style=3D"color:rgb(204,204,204)=
+"> NUM_HB           </span><span style=3D"color:rgb(212,212,212)">=3D</span=
+><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(18=
+1,206,168)">3</span><span style=3D"color:rgb(204,204,204)">,</span></div><d=
+iv><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb=
+(86,156,214)">parameter</span><span style=3D"color:rgb(204,204,204)"> CIC_M=
+AX_DECIM    </span><span style=3D"color:rgb(212,212,212)">=3D</span><span s=
+tyle=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(181,206,16=
+8)">255</span><span style=3D"color:rgb(204,204,204)">,</span></div><div><sp=
+an style=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,15=
+6,214)">parameter</span><span style=3D"color:rgb(204,204,204)"> SAMPLE_WIDT=
+H     </span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=
+=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(181,206,168)">=
+16</span><span style=3D"color:rgb(204,204,204)">,</span></div><div><span st=
+yle=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214=
+)">parameter</span><span style=3D"color:rgb(204,204,204)"> WIDTH           =
+ </span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D"col=
+or:rgb(204,204,204)"> </span><span style=3D"color:rgb(181,206,168)">24</spa=
+n></div><div><span style=3D"color:rgb(204,204,204)">)(</span></div><div><sp=
+an style=3D"color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,15=
+6,214)">input</span><span style=3D"color:rgb(204,204,204)"> clk, </span><sp=
+an style=3D"color:rgb(86,156,214)">input</span><span style=3D"color:rgb(204=
+,204,204)"> reset,</span></div><div><span style=3D"color:rgb(204,204,204)">=
+  </span><span style=3D"color:rgb(86,156,214)">input</span><span style=3D"c=
+olor:rgb(204,204,204)"> clear, </span><span style=3D"color:rgb(106,153,85)"=
+>// Resets everything except the timed phase inc FIFO and phase inc</span><=
+/div><div><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"co=
+lor:rgb(86,156,214)">input</span><span style=3D"color:rgb(204,204,204)"> se=
+t_stb, </span><span style=3D"color:rgb(86,156,214)">input</span><span style=
+=3D"color:rgb(204,204,204)"> [</span><span style=3D"color:rgb(181,206,168)"=
+>7</span><span style=3D"color:rgb(204,204,204)">:</span><span style=3D"colo=
+r:rgb(181,206,168)">0</span><span style=3D"color:rgb(204,204,204)">] set_ad=
+dr, </span><span style=3D"color:rgb(86,156,214)">input</span><span style=3D=
+"color:rgb(204,204,204)"> [</span><span style=3D"color:rgb(181,206,168)">31=
+</span><span style=3D"color:rgb(204,204,204)">:</span><span style=3D"color:=
+rgb(181,206,168)">0</span><span style=3D"color:rgb(204,204,204)">] set_data=
+,</span></div><div><span style=3D"color:rgb(204,204,204)">  </span><span st=
+yle=3D"color:rgb(86,156,214)">input</span><span style=3D"color:rgb(204,204,=
+204)"> timed_set_stb, </span><span style=3D"color:rgb(86,156,214)">input</s=
+pan><span style=3D"color:rgb(204,204,204)"> [</span><span style=3D"color:rg=
+b(181,206,168)">7</span><span style=3D"color:rgb(204,204,204)">:</span><spa=
+n style=3D"color:rgb(181,206,168)">0</span><span style=3D"color:rgb(204,204=
+,204)">] timed_set_addr, </span><span style=3D"color:rgb(86,156,214)">input=
+</span><span style=3D"color:rgb(204,204,204)"> [</span><span style=3D"color=
+:rgb(181,206,168)">31</span><span style=3D"color:rgb(204,204,204)">:</span>=
+<span style=3D"color:rgb(181,206,168)">0</span><span style=3D"color:rgb(204=
+,204,204)">] timed_set_data,</span></div><div><span style=3D"color:rgb(204,=
+204,204)">  </span><span style=3D"color:rgb(86,156,214)">input</span><span =
+style=3D"color:rgb(204,204,204)"> [</span><span style=3D"color:rgb(181,206,=
+168)">31</span><span style=3D"color:rgb(204,204,204)">:</span><span style=
+=3D"color:rgb(181,206,168)">0</span><span style=3D"color:rgb(204,204,204)">=
+] sample_in_tdata,</span></div><div><span style=3D"color:rgb(204,204,204)">=
+  </span><span style=3D"color:rgb(86,156,214)">input</span><span style=3D"c=
+olor:rgb(204,204,204)"> sample_in_tvalid,</span></div><div><span style=3D"c=
+olor:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214)">input=
+</span><span style=3D"color:rgb(204,204,204)"> sample_in_tlast,</span></div=
+><div><span style=3D"color:rgb(204,204,204)">  (</span><span style=3D"color=
+:rgb(212,212,212)">*</span><span style=3D"color:rgb(204,204,204)"> dont_tou=
+ch</span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D"co=
+lor:rgb(206,145,120)">&quot;true&quot;</span><span style=3D"color:rgb(204,2=
+04,204)">,mark_debug</span><span style=3D"color:rgb(212,212,212)">=3D</span=
+><span style=3D"color:rgb(206,145,120)">&quot;true&quot;</span><span style=
+=3D"color:rgb(212,212,212)">*</span><span style=3D"color:rgb(204,204,204)">=
+) </span><span style=3D"color:rgb(86,156,214)">output</span><span style=3D"=
+color:rgb(204,204,204)"> sample_in_tready,</span></div><div><span style=3D"=
+color:rgb(204,204,204)">  </span><span style=3D"color:rgb(86,156,214)">inpu=
+t</span><span style=3D"color:rgb(204,204,204)"> sample_in_tuser,</span></di=
+v><div><span style=3D"color:rgb(204,204,204)">  </span><span style=3D"color=
+:rgb(86,156,214)">input</span><span style=3D"color:rgb(204,204,204)"> sampl=
+e_in_eob,</span></div><div><span style=3D"color:rgb(204,204,204)">  (</span=
+><span style=3D"color:rgb(212,212,212)">*</span><span style=3D"color:rgb(20=
+4,204,204)"> dont_touch</span><span style=3D"color:rgb(212,212,212)">=3D</s=
+pan><span style=3D"color:rgb(206,145,120)">&quot;true&quot;</span><span sty=
+le=3D"color:rgb(204,204,204)">,mark_debug</span><span style=3D"color:rgb(21=
+2,212,212)">=3D</span><span style=3D"color:rgb(206,145,120)">&quot;true&quo=
+t;</span><span style=3D"color:rgb(212,212,212)">*</span><span style=3D"colo=
+r:rgb(204,204,204)">) </span><span style=3D"color:rgb(86,156,214)">output</=
+span><span style=3D"color:rgb(204,204,204)"> [</span><span style=3D"color:r=
+gb(181,206,168)">31</span><span style=3D"color:rgb(204,204,204)">:</span><s=
+pan style=3D"color:rgb(181,206,168)">0</span><span style=3D"color:rgb(204,2=
+04,204)">] sample_out_tdata,</span></div><div><span style=3D"color:rgb(204,=
+204,204)">  (</span><span style=3D"color:rgb(212,212,212)">*</span><span st=
+yle=3D"color:rgb(204,204,204)"> dont_touch</span><span style=3D"color:rgb(2=
+12,212,212)">=3D</span><span style=3D"color:rgb(206,145,120)">&quot;true&qu=
+ot;</span><span style=3D"color:rgb(204,204,204)">,mark_debug</span><span st=
+yle=3D"color:rgb(212,212,212)">=3D</span><span style=3D"color:rgb(206,145,1=
+20)">&quot;true&quot;</span><span style=3D"color:rgb(212,212,212)">*</span>=
+<span style=3D"color:rgb(204,204,204)">) </span><span style=3D"color:rgb(86=
+,156,214)">output</span><span style=3D"color:rgb(204,204,204)"> sample_out_=
+tvalid,</span></div><div><span style=3D"color:rgb(204,204,204)">  </span><s=
+pan style=3D"color:rgb(86,156,214)">input</span><span style=3D"color:rgb(20=
+4,204,204)"> sample_out_tready,</span></div><div><span style=3D"color:rgb(2=
+04,204,204)">  </span><span style=3D"color:rgb(86,156,214)">output</span><s=
+pan style=3D"color:rgb(204,204,204)"> sample_out_tlast</span></div><div><sp=
+an style=3D"color:rgb(204,204,204)">);</span></div></div></div><div><br></d=
+iv><div>Thanks,</div><div><br></div><div>David <br></div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 20, 20=
+24 at 4:11=E2=80=AFAM Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus=
+.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>David,<=
+/div><div><br></div><div>is it possible that your block is deasserting trea=
+dy on one of its inputs, thus delaying the DDC?</div><div><br></div><div>--=
+M<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Fri, Dec 20, 2024 at 3:27=E2=80=AFAM David &lt;<a href=3D"mai=
+lto:vitishlsfan21@gmail.com" target=3D"_blank">vitishlsfan21@gmail.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr">Martin,=C2=A0<div><br></div><div>Thanks for the reply. I will take any=
+ modules you suggest for AXI alignment, even if they do not &quot;fix&quot;=
+ my issue, it is good for me to look at.</div><div><br></div><div>1. thanks=
+ for the comment, this block is a long time coming.</div><div><br></div><di=
+v>2. We captured some screen shots of the ILA core recording both the base =
+image and my image. I also was able to add a dummy port on my image and run=
+ the <i>rx_samples_to_file </i>on that (because it was statically connected=
+), which confirmed=C2=A0that the multi_usrp method producing the expected r=
+esults, with/without my block in line:</div><div><br></div><div>below I pre=
+sent some screenshots of the behavior, where the ILA is capturing the outpu=
+t of both DDCs <i>before</i>=C2=A0packetization.<b> What is not shown is th=
+e multi_usrp method running with=C2=A0my block, but it has the same behavio=
+r as the base image</b><b>:</b></div><div><br></div><div><b>Base Image, wit=
+h rx_samples_to_file (multi_usrp)</b></div><div>Example 1: zoomed in run</d=
+iv><div><img src=3D"cid:ii_m4w4843v6" alt=3D"base_image_zoomed.PNG" width=
+=3D"739" height=3D"142" style=3D"margin-right: 0px;"><br></div><div>Example=
+ 2: different run, zoomed out. both DDCs perform as expected:</div><div><im=
+g src=3D"cid:ii_m4w4gywn10" alt=3D"base_image_zoomed_out.PNG" width=3D"743"=
+ height=3D"146" style=3D"margin-right: 0px;"><br></div><div><br></div><div>=
+<br></div><div><b>Custom Image, with davids_rx_to_file (ddc_block_controlle=
+r)</b></div><div>Example 1: random distance between samples on both DDCs, c=
+lear on DDC1. The last 4 valids have a big change in cycle distance.</div><=
+div><img src=3D"cid:ii_m4w4ac0d7" alt=3D"random_dist.PNG" width=3D"735" hei=
+ght=3D"140" style=3D"margin-right: 0px;"><br></div><div>Example 2: a differ=
+ent run, same behavior as above and time tags.</div><div><img src=3D"cid:ii=
+_m4w4cwr48" alt=3D"time_tags.PNG" width=3D"737" height=3D"157" style=3D"mar=
+gin-right: 0px;"><br></div><div>Example 3: A run where it &quot;almost&quot=
+; worked, and my block also &quot;almost worked&quot;. You can see the alig=
+nment slips at the end:</div><div><img src=3D"cid:ii_m4w4esko9" alt=3D"Timi=
+ng_mostly_aligned.PNG" width=3D"720" height=3D"180" style=3D"margin-right: =
+0px;"><br></div><div><br></div><div><br></div><div>3. right now in the yaml=
+ I am using the named inputs with one port each:</div><div><br></div><div><=
+div style=3D"color:rgb(204,204,204);background-color:rgb(31,31,31);font-fam=
+ily:Consolas,&quot;Courier New&quot;,monospace;font-size:14px;line-height:1=
+9px;white-space:pre-wrap"><div><span style=3D"color:rgb(86,156,214)">data</=
+span>:</div><div>=C2=A0 <span style=3D"color:rgb(86,156,214)">fpga_iface</s=
+pan>: <span style=3D"color:rgb(206,145,120)">axis_data</span></div><div>=C2=
+=A0 <span style=3D"color:rgb(86,156,214)">clk_domain</span>: <span style=3D=
+"color:rgb(206,145,120)">rfnoc_chdr</span></div><div>=C2=A0 <span style=3D"=
+color:rgb(86,156,214)">inputs</span>:</div><div>=C2=A0 =C2=A0 <span style=
+=3D"color:rgb(86,156,214)">in_1</span>:</div><div>=C2=A0 =C2=A0 =C2=A0 <spa=
+n style=3D"color:rgb(86,156,214)">num_ports</span>: <span style=3D"color:rg=
+b(181,206,168)">1</span></div><div>=C2=A0 =C2=A0 =C2=A0 <span style=3D"colo=
+r:rgb(181,206,168)">...</span></div><div>=C2=A0 =C2=A0 <span style=3D"color=
+:rgb(86,156,214)">in_2</span>:</div><div>=C2=A0 =C2=A0 =C2=A0 <span style=
+=3D"color:rgb(86,156,214)">num_ports</span>: <span style=3D"color:rgb(181,2=
+06,168)">1</span></div><div>=C2=A0 =C2=A0 =C2=A0 <span style=3D"color:rgb(1=
+81,206,168)">...</span></div></div></div><div><br></div><div>I have done so=
+me experiments with one named input with 2 port, and I see that the AXI han=
+dshake is one packet with two parallel streams. I will try to &quot;AXI ali=
+gn&quot; as you suggested with this first:</div><div><div style=3D"backgrou=
+nd-color:rgb(31,31,31);font-family:Consolas,&quot;Courier New&quot;,monospa=
+ce;font-size:14px;line-height:19px;white-space:pre-wrap"><div style=3D"colo=
+r:rgb(204,204,204)"><span style=3D"color:rgb(86,156,214)">data</span>:</div=
+><div style=3D"color:rgb(204,204,204)">=C2=A0 <span style=3D"color:rgb(86,1=
+56,214)">fpga_iface</span>: <span style=3D"color:rgb(206,145,120)">axis_dat=
+a</span></div><div style=3D"color:rgb(204,204,204)">=C2=A0 <span style=3D"c=
+olor:rgb(86,156,214)">clk_domain</span>: <span style=3D"color:rgb(206,145,1=
+20)">rfnoc_chdr</span></div><div style=3D"color:rgb(204,204,204)">=C2=A0 <s=
+pan style=3D"color:rgb(86,156,214)">inputs</span>:</div><div style=3D"color=
+:rgb(204,204,204)">=C2=A0 =C2=A0 <span style=3D"color:rgb(86,156,214)">in</=
+span>:</div><div><font color=3D"#cccccc">=C2=A0 =C2=A0 =C2=A0 </font><span =
+style=3D"color:rgb(86,156,214)">num_ports</span><font color=3D"#cccccc">: <=
+/font><font color=3D"#b5cea8">2</font></div><div style=3D"color:rgb(204,204=
+,204)">=C2=A0 =C2=A0 =C2=A0 <span style=3D"color:rgb(181,206,168)">...</spa=
+n></div></div></div><div><br></div><div>4. right now, since I want to issue=
+ the streaming command while doing <b>record to file</b> and <b>transmit lo=
+opback</b>, I will start with the forwarding policy as you suggested and al=
+so try to add my own issue stream command to my block. It is not trivial fo=
+r me since I am not a C++ person, so I won&#39;t be able to provide much fe=
+edback on that effort.</div><div><br></div><div>Thanks,</div><div><br></div=
+><div>David</div></div></div></div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 19, 2024 at 3:24=E2=80=AFAM =
+Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank=
+">martin.braun@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr"><div>Hey David,</div><div><br></di=
+v><div>this looks like you&#39;ve gotten pretty far on a sophisticated proj=
+ect!=C2=A0 I have a few observations:<br></div><div><br></div><div>- At fir=
+st glance, your C++ looks correct.</div><div>- I would expect samples to ar=
+rive at your block synchronously based on that. However, maybe I&#39;m forg=
+etting something that would cause the outputs of the DDCs to misalign data =
+by a few clock cycles. Which makes me wonder: Are you sure your input packe=
+ts are misaligned? In RFNoC, we make no guarantee that the output of the DD=
+C (or any other) block is aligned to the clock cycle, because we encode the=
+ timestamp with the data. Meaning that the first, actual sample that arrive=
+s at your block on each channel is in fact time-aligned, they just arrive a=
+ few clock cycles apart. This is the same logic that applies when packets a=
+rrive at the host computer, where we make no assumptions that they arrive a=
+t the exact same time.</div><div>- If this is the issue, I think we have so=
+me modules you can use to actually align samples within your block, or you =
+just do some AXI alignment yourself by combining the tready and tvalid sign=
+als of two streams.<br></div><div>- Side note, although it&#39;s not import=
+ant: I would consider it a best practice to have your block call set_action=
+_forwarding_policy(forwarding_policy_t::ONE_TO_FAN, &quot;stream_cmd&quot;)=
+ so it would properly forward stream commands, and then you can plop the st=
+ream command into the streamer.</div><div><br></div><div>--M<br></div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Su=
+n, Dec 15, 2024 at 10:49=E2=80=AFPM David &lt;<a href=3D"mailto:vitishlsfan=
+21@gmail.com" target=3D"_blank">vitishlsfan21@gmail.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
+v dir=3D"ltr">Hello all,<div><br></div><div>I apologize in advance for=C2=
+=A0data=C2=A0dumping. I have made a 2 input/1 output RFNoC block that requi=
+res repeatable synchronized DDC starts. My current method of starting the D=
+DC is not working as desired.</div><div><br></div><div><b><u>Question</u>=
+=C2=A0-=C2=A0</b><b>How can I correctly start both DDC&#39;s so samples are=
+ available on the same clock cycle, similar to the rx_samples_to_file, whil=
+e still using my 2 in/1 out RFNoC block?=C2=A0</b></div><div>I would like t=
+o focus the conversation on my C++ implementation for now. All my simulatio=
+ns have convinced me my block is consuming AXI-Stream data correctly.</div>=
+<div><br></div><div><b><u>Problem</u></b></div><div>When starting two DDCs =
+with=C2=A0timed commands sent to DDC in my C++ application,<i>=C2=A0</i>I a=
+m not getting the same result as the rx_samples_to_file.cpp... rx_samples_t=
+o_file has repeatable alignment, and mine has random. This has led me to be=
+lieve the problem is in my application and not my block. My Vivado simulati=
+ons show my block is able to consume the AXI-Stream transactions in paralle=
+l as I expect.</div><div><br></div><div>Considering sampling noise from a s=
+ig gen that is split to both inputs, I see the following behavior:=C2=A0</d=
+iv><div><table cellspacing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1"=
+ style=3D"table-layout:fixed;font-size:10pt;font-family:Arial;width:0px;bor=
+der-collapse:collapse;border:medium"><colgroup><col width=3D"100"><col widt=
 h=3D"100"><col width=3D"100"><col width=3D"100"><col width=3D"100"><col wid=
-th=3D"23"><col width=3D"100"><col width=3D"100"><col width=3D"100"><col wid=
-th=3D"100"><col width=3D"100"><col width=3D"100"></colgroup><tbody><tr styl=
-e=3D"height:21px"><td style=3D"border:1px solid rgb(0,0,0);overflow:hidden;=
-padding:2px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;b=
+th=3D"100"><col width=3D"23"><col width=3D"100"><col width=3D"100"><col wid=
+th=3D"100"><col width=3D"100"><col width=3D"100"><col width=3D"100"></colgr=
+oup><tbody><tr style=3D"height:21px"><td style=3D"border:1px solid rgb(0,0,=
+0);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td><td style=3D=
+"border-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb=
+(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bot=
+tom;font-size:12pt;font-weight:bold;text-align:center" rowspan=3D"1" colspa=
+n=3D"5">rx_samples_to_file (base image)</td><td style=3D"border-width:1px;b=
 order-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204=
-,204);overflow:hidden;padding:2px 3px;vertical-align:bottom;font-size:12pt;=
-font-weight:bold;text-align:center" rowspan=3D"1" colspan=3D"5">rx_samples_=
-to_file (base image)</td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:2px 3px;vertical-align:bottom;background-color:rgb(0,0,0)"></td>=
-<td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) rg=
-b(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertic=
-al-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
-padding:2px 3px;vertical-align:bottom;font-size:12pt;font-weight:bold;text-=
-align:center" rowspan=3D"1" colspan=3D"5">davids_samples_to_file (custom im=
-age)</td></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:=
-hidden;padding:2px 3px;vertical-align:bottom;font-weight:bold">DDC A sample=
-s</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2p=
-x 3px;vertical-align:bottom;font-size:14pt">...</td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom">=
-X_1</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
-04,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:=
-2px 3px;vertical-align:bottom">Y_1</td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:2px 3px;vertical-align:bottom">Z_1</td><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;verti=
-cal-align:bottom;font-size:14pt">...</td><td style=3D"border-width:1px;bord=
-er-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,=
-204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom;background-c=
-olor:rgb(0,0,0)"></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:2px 3px;vertical-align:bottom;font-weight:bold">DDC A samples=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px=
- 3px;vertical-align:bottom;font-size:14pt">...</td><td style=3D"border-widt=
-h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
-) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom">X=
-_1</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(20=
-4,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2=
-px 3px;vertical-align:bottom">Y_1</td><td style=3D"border-width:1px;border-=
-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204=
-,204);overflow:hidden;padding:2px 3px;vertical-align:bottom">Z_1</td><td st=
-yle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rg=
-b(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertic=
-al-align:bottom;font-size:14pt">...</td></tr><tr style=3D"height:21px"><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom=
-;font-weight:bold">DDC B samples</td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:2px 3px;vertical-align:bottom;font-size:14pt">=
-...</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
-04,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:=
-2px 3px;vertical-align:bottom">X_2</td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:2px 3px;vertical-align:bottom">Y_2</td><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;verti=
-cal-align:bottom">Z_2</td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:2px 3px;vertical-align:bottom;font-size:14pt">...</td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;ver=
-tical-align:bottom;background-color:rgb(0,0,0)"></td><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom;=
-font-weight:bold">DDC B samples</td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:2px 3px;vertical-align:bottom">X_2</td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical=
--align:bottom">Y_2</td><td style=3D"border-width:1px;border-style:solid;bor=
-der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:2px 3px;vertical-align:bottom">Z_2</td><td style=3D"border-w=
-idth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,=
-0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom=
-;font-size:14pt">...</td><td style=3D"border-width:1px;border-style:solid;b=
+,204);overflow:hidden;padding:2px 3px;vertical-align:bottom;background-colo=
+r:rgb(0,0,0)"></td><td style=3D"border-width:1px;border-style:solid;border-=
+color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pad=
+ding:2px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;bord=
+er-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,20=
+4);overflow:hidden;padding:2px 3px;vertical-align:bottom;font-size:12pt;fon=
+t-weight:bold;text-align:center" rowspan=3D"1" colspan=3D"5">davids_samples=
+_to_file (custom image)</td></tr><tr style=3D"height:21px"><td style=3D"bor=
+der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
+gb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom;font-weight=
+:bold">DDC A samples</td><td style=3D"border-width:1px;border-style:solid;b=
 order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:2px 3px;vertical-align:bottom;font-size:14pt">...</td></tr=
-></tbody></table></div><div><b><u><br></u></b></div><div>*sample_1 is not e=
-qual to sample_2, but over a large number of samples they will correlate we=
-ll.=C2=A0</div><div><br></div><div>In the above example, the noise correlat=
-es as expected, but it is delayed by 1 sample. When using my application, I=
- have seen no delay (desired), and also delay in the range of 5 samples.=C2=
-=A0</div><div><br></div><div><b><u>C++ Implementation</u></b></div><div><im=
-g src=3D"cid:ii_m4q2yje80" alt=3D"image.png" width=3D"562" height=3D"98"><b=
-r></div><div><br></div><div>I am using<b><i> uhd::rfnoc::ddc_block_control<=
-/i></b> types to issue the stream command because I was having issues with =
-my block propagating. Issuing=C2=A0to the DDCs lets the data flow from 2 in=
-puts to the 1 output, where the output is either a file or loopback to tran=
-smit.</div><div><br></div><div>The base image with rx_samples_to_file uses =
-a multi_usrp type, which propagates the stream command from the rx_streamer=
-.</div><div><br></div><div><u style=3D"font-weight:700">RFNoC laydown</u><b=
-></b></div><div><u style=3D"font-weight:700"><br></u></div><div><img src=3D=
-"cid:ii_m4q46qnx1" alt=3D"image.png" width=3D"562" height=3D"279"><br></div=
-><div><br></div><div>Data flows in both Tx loopback configuration and Rx to=
- file configuration.</div><div><br></div><div><b><u>Methods and Symptoms</u=
-></b></div><div>I have two methods of measuring the synchronization, with d=
-ata collected by ILA cores at either the output of DDC or input of custom b=
-lock:=C2=A0</div><div><ol><li><b>Math: </b>When receiving correlated noise,=
- I can measure the cross correlation and show that the correlation peaks as=
- expected, and show the delay between channels in samples.</li><li><b>Vivad=
-o Waveform Viewer</b>: When the ILA cores are collecting DDC channel data, =
-I can see that the base image samples are available on the same clock. My i=
-mage does not have that behavior.</li></ol></div><div><br></div><div>Thanks=
-,</div><div><br></div><div>David</div><div><b><u><br></u></b></div><div><b>=
-<u><br></u></b></div><div><b><u><br></u></b></div></div>
+w:hidden;padding:2px 3px;vertical-align:bottom;font-size:14pt">...</td><td =
+style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
+rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vert=
+ical-align:bottom">X_1</td><td style=3D"border-width:1px;border-style:solid=
+;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
+low:hidden;padding:2px 3px;vertical-align:bottom">Y_1</td><td style=3D"bord=
+er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
+b(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bo=
+ttom">Z_1</td><td style=3D"border-width:1px;border-style:solid;border-color=
+:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
+dding:2px 3px;vertical-align:bottom;font-size:14pt">...</td><td style=3D"bo=
+rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
+rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:=
+bottom;background-color:rgb(0,0,0)"></td><td style=3D"border-width:1px;bord=
+er-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,=
+204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom;font-weight:=
+bold">DDC A samples</td><td style=3D"border-width:1px;border-style:solid;bo=
+rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
+:hidden;padding:2px 3px;vertical-align:bottom;font-size:14pt">...</td><td s=
+tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
+gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;verti=
+cal-align:bottom">X_1</td><td style=3D"border-width:1px;border-style:solid;=
+border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
+ow:hidden;padding:2px 3px;vertical-align:bottom">Y_1</td><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
+(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bot=
+tom">Z_1</td><td style=3D"border-width:1px;border-style:solid;border-color:=
+rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pad=
+ding:2px 3px;vertical-align:bottom;font-size:14pt">...</td></tr><tr style=
+=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-co=
+lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:2px 3px;=
+vertical-align:bottom;font-weight:bold">DDC B samples</td><td style=3D"bord=
+er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
+b(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bo=
+ttom;font-size:14pt">...</td><td style=3D"border-width:1px;border-style:sol=
+id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
+rflow:hidden;padding:2px 3px;vertical-align:bottom">X_2</td><td style=3D"bo=
+rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
+rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:=
+bottom">Y_2</td><td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">Z_2</td><td style=3D"border-width:1p=
+x;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rg=
+b(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom;font-s=
+ize:14pt">...</td><td style=3D"border-width:1px;border-style:solid;border-c=
+olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidde=
+n;padding:2px 3px;vertical-align:bottom;background-color:rgb(0,0,0)"></td><=
+td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
+4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;v=
+ertical-align:bottom;font-weight:bold">DDC B samples</td><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
+(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bot=
+tom">X_2</td><td style=3D"border-width:1px;border-style:solid;border-color:=
+rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pad=
+ding:2px 3px;vertical-align:bottom">Y_2</td><td style=3D"border-width:1px;b=
+order-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(2=
+04,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom">Z_2</td>=
+<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
+04) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;=
+vertical-align:bottom;font-size:14pt">...</td><td style=3D"border-width:1px=
+;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb=
+(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom;font-si=
+ze:14pt">...</td></tr></tbody></table></div><div><b><u><br></u></b></div><d=
+iv>*sample_1 is not equal to sample_2, but over a large number of samples t=
+hey will correlate well.=C2=A0</div><div><br></div><div>In the above exampl=
+e, the noise correlates as expected, but it is delayed by 1 sample. When us=
+ing my application, I have seen no delay (desired), and also delay in the r=
+ange of 5 samples.=C2=A0</div><div><br></div><div><b><u>C++ Implementation<=
+/u></b></div><div><img src=3D"cid:ii_m4q2yje80" alt=3D"image.png" width=3D"=
+562" height=3D"98"><br></div><div><br></div><div>I am using<b><i> uhd::rfno=
+c::ddc_block_control</i></b> types to issue the stream command because I wa=
+s having issues with my block propagating. Issuing=C2=A0to the DDCs lets th=
+e data flow from 2 inputs to the 1 output, where the output is either a fil=
+e or loopback to transmit.</div><div><br></div><div>The base image with rx_=
+samples_to_file uses a multi_usrp type, which propagates the stream command=
+ from the rx_streamer.</div><div><br></div><div><u style=3D"font-weight:700=
+">RFNoC laydown</u><b></b></div><div><u style=3D"font-weight:700"><br></u><=
+/div><div><img src=3D"cid:ii_m4q46qnx1" alt=3D"image.png" width=3D"562" hei=
+ght=3D"279"><br></div><div><br></div><div>Data flows in both Tx loopback co=
+nfiguration and Rx to file configuration.</div><div><br></div><div><b><u>Me=
+thods and Symptoms</u></b></div><div>I have two methods of measuring the sy=
+nchronization, with data collected by ILA cores at either the output of DDC=
+ or input of custom block:=C2=A0</div><div><ol><li><b>Math: </b>When receiv=
+ing correlated noise, I can measure the cross correlation and show that the=
+ correlation peaks as expected, and show the delay between channels in samp=
+les.</li><li><b>Vivado Waveform Viewer</b>: When the ILA cores are collecti=
+ng DDC channel data, I can see that the base image samples are available on=
+ the same clock. My image does not have that behavior.</li></ol></div><div>=
+<br></div><div>Thanks,</div><div><br></div><div>David</div><div><b><u><br><=
+/u></b></div><div><b><u><br></u></b></div><div><b><u><br></u></b></div></di=
+v>
 </div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
@@ -885,10 +1113,11 @@ rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div></div>
+</blockquote></div>
 
---00000000000039bed50629f27dd3--
+--00000000000057ca350629f7e4ea--
 
---00000000000039bed70629f27dd4
+--00000000000057ca360629f7e4eb
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -1607,7 +1836,7 @@ aDIajYbKzAmmcpxZr/w8ybTec+D/4BmazJWlzs17xO8gpOd+R6p/CYn7j7sSHPbSKes6RSUkJCTu
 L34uwSEhISEhISFh5q66ATR2FgkJCYn7HUlsSEhISEhI/PzcleCQkJCQkJCQkJCQkJBwBklwSEhI
 SEhISEhISEjcMyTBISEhISEhISEhISFxz5AEh4SEhISEhISEhITEPeP/AZcsH9pwXcCUAAAAAElF
 TkSuQmCC
---00000000000039bed70629f27dd4
+--00000000000057ca360629f7e4eb
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2264,7 +2493,7 @@ tXn5LRMRFGoEfk3DvzibXVFdw83LAQAAAADtiFAQADqRc79e0OGaMh2tOaOahouqaajThUu1qmmo
 U03DRV349WKTuuv5hUsXVXPJe60tMFjduoTIFhgsW5eu6talq2yBnj+DXc9vc9W81gZ21R222xVn
 66Oet3UzfzwAAAAAQAdBKAgAAAAAAAD4GW7cBAAAAAAAAPgZQkEAAAAAAADAzxAKAgAAAAAAAH7m
 /wFcyU91g2dqXAAAAABJRU5ErkJggg==
---00000000000039bed70629f27dd4
+--00000000000057ca360629f7e4eb
 Content-Type: image/png; name="base_image_zoomed.PNG"
 Content-Disposition: inline; filename="base_image_zoomed.PNG"
 Content-Transfer-Encoding: base64
@@ -2643,7 +2872,7 @@ ie7i0OLFF1+cDDP+5m/+pjbc6MNzzz03JR6Pg5Nvf/vbDE4AAAAAAACQFa8LHrAXq4FVYMt7A1e4
 5o240I2m94Atu15pOgf6Y/9JrkV80qRJfLz4HLznBgAAAAAAAEQH7MVqYBXY8t68XOhGJfdesJWu
 VXL3Rf/iwGIZg5L0NkMTAAAAAAAANDlgL1YDq8CW9+blYjcqufeCrXStkrsv+hf/aaz0n8qy/3RW
 lA44+hDPmQ5O4j8R5j03AAAAAAAA4Kc//Wn4/8aIYlkVpHAHAAAAAElFTkSuQmCC
---00000000000039bed70629f27dd4
+--00000000000057ca360629f7e4eb
 Content-Type: image/png; name="random_dist.PNG"
 Content-Disposition: inline; filename="random_dist.PNG"
 Content-Transfer-Encoding: base64
@@ -3151,7 +3380,7 @@ ZX9T+z/9p//UuckNnJcnnnjiQBgPCyl/9md/xkIKAAAAAAC4EOn9wRvsTWtgTmx4J3SUntheHrpq
 vbfhzYlq+1qj//yf//P+JndYQIk3toHzZhdQwuJJuv1f/st/cc9RAAAAAACA8xbvEd5gb1oDc2LD
 O5kDbnyjdA7YsPmotI81s3+FF7+JgssQzrtwLnrnKAAAAAAAwDGE+4Q32JvWwJzYyJ3I3PhGkDsX
 bKS5KPdctIsoLJzgMtjzjkUUAAAAAABwsf6x+f8BGWcWATpDOfYAAAAASUVORK5CYII=
---00000000000039bed70629f27dd4
+--00000000000057ca360629f7e4eb
 Content-Type: image/png; name="time_tags.PNG"
 Content-Disposition: inline; filename="time_tags.PNG"
 Content-Transfer-Encoding: base64
@@ -3603,7 +3832,7 @@ zAAAAAAAAIYilSMRymPU9NAN7qUuAMxLrBf0kHNBbNtd8cEzQfyKPg6E8gAAAAAAYAxieRKhPEZN
 D9ncQaz5MT+xXtBDzgWxbXfF/4kW+Sdb9J9w8WRQPWX+vcpg3v9pH+uYAQAAAAAADEksTyKUx6jp
 IZtbil0AmI9UD+ih54PUc7Tm/5+Z+v+npuHP2OhA3gsh9dTJQN7/P7/l/9ErAAAAAAAYulSOtArl
 b3H/P2SBQrueX45RAAAAAElFTkSuQmCC
---00000000000039bed70629f27dd4
+--00000000000057ca360629f7e4eb
 Content-Type: image/png; name="Timing_mostly_aligned.PNG"
 Content-Disposition: inline; filename="Timing_mostly_aligned.PNG"
 Content-Transfer-Encoding: base64
@@ -3985,7 +4214,7 @@ AAAADqPICwAAAAAAAAAOo8gLAAAAAAAAAA6jyAsAAAAAAAAADqPICwAAAAAAAAAOo8gLAAAAAAAA
 AA6jyAsAAAAAAAAADqPICwAAAAAAAAAOo8gLAAAAAAAAAA6jyAsAAAAAAAAADqPICwAAAAAAAAAO
 o8gLAAAAAAAAAA6jyAsAAAAAAAAADqPICwAAAAAAAAAOo8gLAAAAAAAAAA6jyAsAAAAAAAAAzhL5
 /wEF2fTzdgdpVwAAAABJRU5ErkJggg==
---00000000000039bed70629f27dd4
+--00000000000057ca360629f7e4eb
 Content-Type: image/png; name="base_image_zoomed_out.PNG"
 Content-Disposition: inline; filename="base_image_zoomed_out.PNG"
 Content-Transfer-Encoding: base64
@@ -4454,7 +4683,7 @@ amQgRYe1BgAAAAAAAAA0Bilong6rkbV3vetd5v04XKkz12Gt0egjAAAAAAAA4Pwarw8ySEHzdOhm
 AAAAADi/GKSgeTqsRuYCOEZTvaAjzI2magEAAAAAAACcXwxS0DwdViMLLoIj1gM6dH4U2wMAAAAA
 AADA+SLXCRmkoHk6rGYecRH8/EqdvQ5rzSi1FwAAAAAAAIDDN14jZJCC5umwGjrERfDzZ86Z67DW
 hObsCQAAAAAAAOAwnVwffNfw/wPs+xitVxzFWQAAAABJRU5ErkJggg==
---00000000000039bed70629f27dd4
+--00000000000057ca360629f7e4eb
 Content-Type: image/png; name="delayed_port1_packet.png"
 Content-Disposition: inline; filename="delayed_port1_packet.png"
 Content-Transfer-Encoding: base64
@@ -5362,9 +5591,9 @@ Go0AAAAAAAAAAAAgGo0AAAAAAAAAAAAgGo0AAAAAAAAAAAAgGo0AAAAAAAAAAAAgGo0AAAAAAAAA
 AAAgGo0AAAAAAAAAAAAgGo0AAAAAAAAAAAAgGo0AAAAAAAAAAAAgGo0AAAAAAAAAAAAgGo0AAAAA
 AAAAAAAgGo0AAAAAAAAAAAAgGo0AAAAAAAAAAAAgGo0AAAAAAAAAAAAg6f8B4N3Dv2y4sHMAAAAA
 SUVORK5CYII=
---00000000000039bed70629f27dd4--
+--00000000000057ca360629f7e4eb--
 
---===============8681122807366411065==
+--===============6904501351290782110==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -5374,4 +5603,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8681122807366411065==--
+--===============6904501351290782110==--
