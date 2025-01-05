@@ -2,134 +2,124 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BCB1A016F8
-	for <lists+usrp-users@lfdr.de>; Sat,  4 Jan 2025 22:49:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFADFA01916
+	for <lists+usrp-users@lfdr.de>; Sun,  5 Jan 2025 11:54:28 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DB3F9385EEC
-	for <lists+usrp-users@lfdr.de>; Sat,  4 Jan 2025 16:49:08 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id B5BC7385B11
+	for <lists+usrp-users@lfdr.de>; Sun,  5 Jan 2025 05:54:27 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1736027348; bh=1drmEUc+zg8UmvE9a4s+h7+gw6umQ1vjb5Mlbq2a7DU=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=nnYjiSrY+Lwda7ih6qJyLtdRY9KFZ1cQDy6NFhf9bBDalKM5nknHUWy1YIbBM9V7W
-	 flasxzDg57F8mhlvgktIsFSDv84fVv5F2+1+khvXJciMCZGXdwkCTvJ14FToKBlFQq
-	 LuqwLOIU2mt5BZSzF4+k3zfWS2w/zHxtPzl0MBTemGOecDLWIGSrqOs+RZdPBe28v0
-	 GEV8qXgrUTmPXxxpKfTON+DBhN67uQEIcmzwKkg/8xBZvBX3gAGmimi75NKP1Z70iy
-	 ihaXpZJ2oq1459m83OduozUUdihRFtI95CV4JC+tON6Fjk8QHKnWeFfBYy/caJ6M6S
-	 EvkL+t4KGf2cQ==
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 83F4B385F2B
-	for <usrp-users@lists.ettus.com>; Sat,  4 Jan 2025 16:49:02 -0500 (EST)
+	t=1736074467; bh=7ljAX3mOJYnPGuk4gGLA8aokJMtQsLJDb7isAaZaYpM=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=k8SQS62/VpFV28zL9u+XzWK3tDNI3LeTF+gYKuUO8Auew0nt7UnamtQFyOqTARxTe
+	 5kxkSOeb257AVca6cqSxN2LBfzfEuAaMNHCXyqwJ2IIPjt1ehOKlCcbZm4BEsiN09D
+	 FJUQ8SZKqiXkLGzRCE8VN7SyxyR/AknrAcnO+VEvsIrJZQW07u7Zp096OLi2ErSpd/
+	 Cu0Ap5neuPo+qLdQy+KcnRukCwkOat+u2kXBaM1kqegnj0qiEWOSMeRlhjaQTFhthz
+	 rSUmNh3XYYihm/NwPpA7/qrOlRSTM54idol9nrTD4OoqFzgX9ur9YCzNdD15kvhdGq
+	 k4fDOu88FRTaQ==
+Received: from mx-out.tlen.pl (mx-out.tlen.pl [193.222.135.158])
+	by mm2.emwd.com (Postfix) with ESMTPS id 56BEC3859EA
+	for <usrp-users@lists.ettus.com>; Sun,  5 Jan 2025 05:53:45 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="ch5A/zWN";
+	dkim=pass (2048-bit key; unprotected) header.d=o2.pl header.i=@o2.pl header.b="Re36Vd86";
 	dkim-atps=neutral
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-3cddfa9a331so3786335ab.3
-        for <usrp-users@lists.ettus.com>; Sat, 04 Jan 2025 13:49:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1736027341; x=1736632141; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=SccGhHHGAq3knjUjkw5q/oSfm1BKrP6Bfb/TZxCIBbE=;
-        b=ch5A/zWNX7ObrQTtverw/PExt6VW1+wAGJx2Wi4XspsrpGtVj9ojJCNQdj7G3rM3RN
-         40X75QIj7haPk0neCu1Jgc7ObYFL+iM0rBBOG357nOql+qJmKuf2rok7iArjyCky9Dl9
-         qZTMuh5yUwCRlRdoh5at3IVKnw4gI07/xO5kj2v1U4XNyJ2AKnOxxgTr8K0JkGLWtEYG
-         iGY2UK8FYLj7RlETgtV3YSqwzSekqokn8EFD0tGOEd7Cpk30RBF0tsoKB5ojIlGqxblj
-         AWWs9W03R710c2rEZbdAtvHY/QpjVPFDm3MNVhsrocJtiFW5Zufc73sIeiVvi2zch/tP
-         8CZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736027341; x=1736632141;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SccGhHHGAq3knjUjkw5q/oSfm1BKrP6Bfb/TZxCIBbE=;
-        b=dnkB3D2a/CtMv+9r4OPkMlG1dX59jZ1Jl/RnOFRngPv+rY3XxGzQwwPBIlWQmVsB+e
-         2+7WlVbykJWNYKOYylq0c6ZTTTtFK1uKNLTEhh+Wo8U9hQpO+xc9Q/ELnb4sg8tXBSPP
-         lKtuprurNM9jmmDiZKvWXdW6Rz2b3rOrw4d+x2pKrpvP0fHsrp+TlV54V4KfUP4m3A+h
-         m3m4P2Jv3nmWDi4etwyMSVWYESWFAVUv+5MgllDMubb4eEwmMEuRFa6yemHkRrZAK7VE
-         /ScX20zuTEdcT++J/JuKD/sMJI+WdxNOWv1mjArY7iHKtW3rxiabtLduTWig5U9pX21Y
-         eQxg==
-X-Gm-Message-State: AOJu0YyXb3w9In8sZyKfsc4e3hXGRxj3R40ysLEkAJQq3csYrzER32VV
-	+C0Q2C3dq6Zg9VyUl4b/Q/Pxq265QmJElQ7asPJn8Wwl6mHGN50a7/R2+KEuUS4INECKfSe5SSG
-	jK8E6t01eKJYuLi/FRLLWJYLrjMIy90KtxFWCRUJHo6dAiULZRiLuyQ==
-X-Gm-Gg: ASbGncs0nLXys6cHypI0q+Y8t+Kma+Ia5x1b/kEOPIc/DvZD+fpi9wjwNJCDzoCZRBi
-	S/G0uyEnLod8MuU3WcCtXD+OFpDtyTIWFGpFotQ==
-X-Google-Smtp-Source: AGHT+IH7Y2HFCI4IRJen1IhhoJs3qPP0FcWUDcxUMBGrxtKY0ic7YsFPhiG/hl7jgBZrRwCp8uaVnAgVakxqm2agy7Q=
-X-Received: by 2002:a05:6e02:12cb:b0:3a7:d792:d6ad with SMTP id
- e9e14a558f8ab-3c2d5918ac8mr334929335ab.22.1736027341407; Sat, 04 Jan 2025
- 13:49:01 -0800 (PST)
+Received: (wp-smtpd smtp.tlen.pl 26446 invoked from network); 5 Jan 2025 11:53:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=o2.pl; s=20241105;
+          t=1736074422; bh=QEUnQQSIzgiZhygPvrxmdKaVTjyFzBW0TYfgwenPokk=;
+          h=Subject:To:From;
+          b=Re36Vd865ZRnF4ikfUGCDphoDGWEPlyHvH7MgzPXY3WXLXuEdSIc8Ih3cXR/yUplC
+           JeZ3v47MJUiK+6oDTbccKkUtb4zBwjDir0+SU2DIEKKuOdTo6HP5Mku+72OmcxnCpr
+           gaAi1t1fJUz89y5aTE+AJIG2PxKzJLvGkVPzcCzJ1h/XavNGrDabLYBeIjdPgoAhwc
+           1UXUlD2bT38zpBHjxIEKbhmnfyrjLte0NTFiqDHN5MDi9M1eKyObO/Il30vaOZ1w+L
+           2xqQVGsndfkdQvS15rLOy/QCI07V0be0SbakJ9j5qqSTTyoMu3yzuRY1chHkoP5/mP
+           vJrtawYFEqv4g==
+Received: from 109.95.142.203.r.toneticgroup.pl (HELO [192.168.1.102]) (perper@o2.pl@[109.95.142.203])
+          (envelope-sender <perper@o2.pl>)
+          by smtp.tlen.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <usrp-users@lists.ettus.com>; 5 Jan 2025 11:53:42 +0100
+Message-ID: <1b8031d3-1bd8-4915-97a2-1cc02108a50b@o2.pl>
+Date: Sun, 5 Jan 2025 11:53:42 +0100
 MIME-Version: 1.0
-From: Neel Pandeya <neel.pandeya@ettus.com>
-Date: Sat, 4 Jan 2025 15:48:25 -0600
-Message-ID: <CACaXmv8_fvhC0758MjTs_KFHY+CRwkOunHobYV7BqREaHwmcTQ@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: OWIP2AATQYHURLLS4M5TXXWFILAW2TYW
-X-Message-ID-Hash: OWIP2AATQYHURLLS4M5TXXWFILAW2TYW
-X-MailFrom: neel.pandeya@ettus.com
+User-Agent: Mozilla Thunderbird
+To: usrp-users@lists.ettus.com
+References: <17bafe57-f301-48ba-950e-4d2f3f99e221@sakthi.me>
+ <98952581-8e30-486b-9e9d-eafdf2a42445@gmail.com>
+ <d41b9e8b-78d8-44ec-b382-b879ca9caa03@sakthi.me>
+ <ac9a9c43-a219-4b52-8b0e-ebeef0555db2@gmail.com>
+Content-Language: en-US
+From: Piotr Krysik <perper@o2.pl>
+In-Reply-To: <ac9a9c43-a219-4b52-8b0e-ebeef0555db2@gmail.com>
+X-WP-MailID: a83f6dab41c8e34572b38416c91e7020
+X-WP-AV: skaner antywirusowy Poczty o2
+X-WP-SPAM: NO 0000000 [MeNU]                               
+Message-ID-Hash: LNJ3QDUL65CP42FF3DEXR3WRUJ6KZAQZ
+X-Message-ID-Hash: LNJ3QDUL65CP42FF3DEXR3WRUJ6KZAQZ
+X-MailFrom: perper@o2.pl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Save-the-Date: NEWSDR 2025 at WPI on May 29-30
+Subject: [USRP-users] Re: Running user application in X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OWIP2AATQYHURLLS4M5TXXWFILAW2TYW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LNJ3QDUL65CP42FF3DEXR3WRUJ6KZAQZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2207505435850263491=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============2207505435850263491==
-Content-Type: multipart/alternative; boundary="000000000000016af4062ae85dda"
-
---000000000000016af4062ae85dda
-Content-Type: text/plain; charset="UTF-8"
-
-We would like to announce the 15th annual New England Workshop on Software
-Defined Radio (NEWSDR) event on Friday May 30, to be hosted in-person at
-Worcester Polytechnic Institute (WPI), in Worcester, Massachusetts, USA.
-There will also be a set of tutorials and workshops on Thursday May 29.
-
-Registration is required, but is completely free, and will open soon.
-
-Please see our website for more information about the event:
-
-
-*https://newsdr.org/workshops/newsdr-2025/
-<https://newsdr.org/workshops/newsdr-2025/>*
-The Call for Participation will open soon.
-
-We will be looking for poster presentations, exhibitors, and sponsors.
-
-We look forward to seeing you all at the event!
-
---000000000000016af4062ae85dda
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div class=3D"gmail_default" style=3D""><font face=3D=
-"verdana, sans-serif">We would like to announce the 15th annual New England=
- Workshop on Software Defined Radio (NEWSDR) event on Friday May 30, to be =
-hosted in-person at Worcester Polytechnic Institute (WPI), in Worcester, Ma=
-ssachusetts, USA.=C2=A0 There will also be a set of tutorials and workshops=
- on Thursday May 29.</font></div><font face=3D"verdana, sans-serif"><br>Reg=
-istration is required, but is completely free, and will open soon.<br><br>P=
-lease see our website for more information about the event:<br><br><b><a hr=
-ef=3D"https://newsdr.org/workshops/newsdr-2025/">https://newsdr.org/worksho=
-ps/newsdr-2025/</a><br></b><br>The Call for Participation will open soon.<b=
-r><br>We will be looking for poster presentations, exhibitors, and sponsors=
-.<br><br>We look forward to seeing you all at the event!<br clear=3D"all"><=
-/font></div><div><br></div></div>
-
---000000000000016af4062ae85dda--
-
---===============2207505435850263491==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2207505435850263491==--
+SGkgU2FrdGhpdmVsLA0KDQpBcyBNYXJjdXMgc2FpZCB5b3UgY2FuIHJ1biBjb21waWxhdGlvbiBv
+ZiBDKysvVUhEIHByb2dyYW1zIGRpcmVjdGx5IG9uIA0KVVNSUCBYNDEwIGFzIGl0IGhhcyBhbGwg
+d2hhdCBpcyBuZWVkZWQuDQoNCklmIHlvdSBuZWVkIGEgc2V0dXAgdGhhdCBpcyBlYXNpZXIgdG8g
+aW50ZWdyYXRlIHdpdGggRGV2T3BzIHlvdSBjYW4gDQpnZW5lcmF0ZSBTREsgZm9yIHVzZSBvbiB5
+b3VyIFBDIHVzaW5nwqAgaW5mcmFzdHJ1Y3R1cmUgcHJvdmlkZWQgYnkgeW9jdG8uIA0KSG93IHRv
+IGRvIHRoYXQgSSd2ZSB3cml0dGVuIGluIGFub3RoZXIgdGhyZWFkICgiS0FTIGtpcmtzdG9uZSBi
+dWlsZCBvZiANCm5pLXRpdGFuaXVtLXJldjUgb24geDQxMCB3aXRoIFZpdGlzLUFJIC4uLiIpLiBB
+cyBpdCB3YXMgdmVyeSBsb25nIEknbGwgDQpyZXBlYXQgdGhlIGRlc2NyaXB0aW9uIGhlcmUgKGZv
+ciBpdCB0byB3b3JrIHlvdSBuZWVkIHRvIGhhdmUgZG9ja2VyIGFuZCANCmdpdCBpbnN0YWxsZWQp
+Og0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpta2RpciB0b3BfZGlyZWN0b3J5DQpjaG1v
+ZCA3NzcgdG9wX2RpcmVjdG9yeQ0KY2QgdG9wX2RpcmVjdG9yeQ0KZ2l0IGNsb25lIGh0dHBzOi8v
+Z2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL21ldGEtZXR0dXMuZ2l0DQpkb2NrZXIgcnVuIC0tcm0g
+LWl0IC13ICIkUFdEIiAtLW1vdW50DQp0eXBlPWJpbmQsc291cmNlPSIkUFdEIix0YXJnZXQ9IiRQ
+V0QiDQogwqDCoMKgwqDCoMKgwqDCoMKgwqAgLS1uZXQ9aG9zdA0KIMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIC0tc2VjdXJpdHktb3B0IHNlY2NvbXA9dW5jb25maW5lZA0KIMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIGdoY3IuaW8vc2llbWVucy9rYXMva2FzOjQuMA0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJh
+c2ggLWMgInN1ZG8gYXB0IHVwZGF0ZSA7IHN1ZG8gYXB0IGluc3RhbGwgLXkgemlwICYmDQouL21l
+dGEtZXR0dXMvY29udHJpYi9rYXNfYnVpbGRfaW1nc19wYWNrYWdlLnNoIHg0eHggdjQuNy4wLjAi
+DQoNCiMgVGhlbiB5b3UgY2FuIG1hbnVhbGx5IGJ1aWxkIHNkazoNCg0KZG9ja2VyIHJ1biAtLXJt
+IC1pdCAtdyAiJFBXRCIgLS1tb3VudA0KdHlwZT1iaW5kLHNvdXJjZT0iJFBXRCIsdGFyZ2V0PSIk
+UFdEIg0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0tbmV0PWhvc3QNCiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCAtLXNlY3VyaXR5LW9wdCBzZWNjb21wPXVuY29uZmluZWQNCiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBnaGNyLmlvL3NpZW1lbnMva2FzL2thczo0LjANCiDCoMKgwqDCoMKgwqDCoMKgwqDCoCBi
+YXNoDQoNCnN1ZG8gYXB0IHVwZGF0ZQ0Kc3VkbyBhcHQgaW5zdGFsbCAteSB6aXANCi4gb2UtY29y
+ZS9vZS1pbml0LWJ1aWxkLWVudg0KYml0YmFrZSBnbnVyYWRpby1pbWFnZSAtY3BvcHVsYXRlX3Nk
+aw0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQpUaGlzIHdpbGwgcHJvZHVjZSBhbiBpbnN0
+YWxsZXIuIFlvdSBuZWVkIHRvIHJ1biBpdCBhbmQgaW5zdGFsbCB0aGUgU0RLIA0Kc29tZXdoZXJl
+Lg0KQXNzdW1pbmcgaXQgaXMgaW5zdGFsbGVkIGluIC9vcHQvb2Vjb3JlLXNkayBiZWZvcmUgcnVu
+bmluZyANCmNyb3NzLWNvbXBpbGF0aW9uIGZvciBVU1JQIFg0MTAgd2l0aCBoZWxwIG9mIGNtYWtl
+IHlvdSBuZWVkIGZpcnN0IHRvIA0Kc291cmNlIHRoZSBTREsncyBlbnZpcm9ubWVudCB2YXJpYWJs
+ZXMgd2l0aCBmb2xsb3dpbmcgY29tbWFuZDoNCg0Kc291cmNlIC9vcHQvb2Vjb3JlLXNkay9lbnZp
+cm9ubWVudC1zZXR1cC1hYXJjaDY0LW9lLWxpbnV4DQoNCkJlc3QgUmVnYXJkcywNClBpb3RyIEty
+eXNpaw0KDQpXIGRuaXUgMy4wMS4yMDI1IG/CoDAwOjI3LCBNYXJjdXMgRC4gTGVlY2ggcGlzemU6
+DQo+IE9uIDAyLzAxLzIwMjUgMTM6NTYsIFNha3RoaXZlbCBWZWx1bWFuaSB3cm90ZToNCj4+IEhp
+IE1hcmN1cywNCj4+DQo+PiBUaGFua3MgZm9yIHRoZSBwb2ludGVycy4gSSBhbSBsb29raW5nIHRv
+IG9mZmxvYWQgYWxsIHRoZSBEU1Agd29yayB0byANCj4+IHRoZSBSRk5vQyBhbmQgaGF2ZSB0aGUg
+Q1BVcyBkbyB0cml2aWFsIHRhc2tzIGxpa2Ugc2VxdWVuY2UgZ2VuZXJhdGlvbiANCj4+IHNvIHRo
+YXQgSSBkb24ndCBoYXZlIHRvIHdyaXRlIEhETCBmb3IgZXZlcnl0aGluZy4gSSBhbSBzdGlsbCBu
+b3QgDQo+PiBlbnRpcmVseSBzdXJlIG9mIGhvdyB0aGlzIGNhbiBiZSBkb25lIGJ1dCBJIGZvdW5k
+IGEgc29mdHdhcmUgDQo+PiBkZXZlbG9wbWVudCBndWlkZSBmb3IgRTMxMCANCj4+IChodHRwczov
+L2tiLmV0dHVzLmNvbS9Tb2Z0d2FyZV9EZXZlbG9wbWVudF9vbl90aGVfRTMxMF9hbmRfRTMxMikg
+DQo+PiB3aGljaCBsb29rcyBsaWtlIHNvbWV0aGluZyBJIHdhbnQgdG8gYWNoaWV2ZSBzbyBpdCdz
+IGEgZ29vZCBzdGFydCBJIA0KPj4gZ3Vlc3MuDQo+Pg0KPj4gVGhhbmtzIGFnYWluLg0KPj4NCj4+
+IFNha3RoaQ0KPiBJJ3ZlIGFsc28gYmVlbiB0b2xkIHRoYXQgeW91IGNhbiBidWlsZCBVSEQgYXBw
+cyBkaXJlY3RseSBvbiB0aGUgDQo+IFg0MTAtLWl0IGhhcyBhbGwgdGhlIHRvb2xpbmcgbGlrZSBN
+YWtlLCBHQ0MsIFVIRCBhbmQgb3RoZXIgaW1wb3J0YW50DQo+IMKgbGlicmFyaWVzIGFscmVhZHkg
+b24gdGhlIHN5c3RlbSBpbWFnZS4NCj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1s
+ZWF2ZUBsaXN0cy5ldHR1cy5jb20K
