@@ -2,139 +2,167 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D0AA1815C
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Jan 2025 16:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 843F4A181B3
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Jan 2025 17:09:52 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 26CEF385E97
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Jan 2025 10:50:08 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 7FFDF385CD5
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Jan 2025 11:09:51 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1737474608; bh=wyjKgjAlUCxJhkKBY3bockcRlMLVhEV/YYsY99635wY=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=M+BAhe1k9z+YmFVwBgHbUZcUafweiOAvi7/qCyFiHWe26B+hBSb9knU7rJF330iYZ
-	 55bNiORUWhhB6O+GMaTJsPEKjHmV9z/lIdpipo7dmzW1WSGmsSeB4+pTWBYtwL1L6V
-	 QBFexnrQe60RfrVp7NMl2Jv3Qfjdw5kiRWSrgr1jJQnh1GSY3iAc9XoMX9OmZw2QAg
-	 AhGS5O7qV00qJNM2np42rhEHXQ4h7s/4d1095iPVvwA8Kavsx3oBorpWgZIUgTJQWw
-	 I56X/tHeXf75TnsKIidWRzg/WAaUCmIIWBXZSxY7Bn1i2CUQ9Hd0LF1eGfw1Qz3P+S
-	 TOUdL2JvybsMA==
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id E3D00385CE3
-	for <usrp-users@lists.ettus.com>; Tue, 21 Jan 2025 10:49:03 -0500 (EST)
+	t=1737475791; bh=oD5HoBz8NUeNCyre+SIXMcGtKKZe5jUjsV7ewACA1nI=;
+	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=adRj8QqBddBWL38y0a3eEpSe2ltf3j46tguoEC46MSX0kHHwq/sG73peVI/IVV/SD
+	 yoCll5ZTJh0l2T3RT+MQ6wYtegNFKXJbnefnj1yaSI9zMPNhCmR02fmltN21AnhIae
+	 wy8d7e9xky602ABcfo+v8n93raer0t9Tj0zfN2XunKj06N5Jkw+eytB2n5hxx/oZsf
+	 cCZ6j+wWdo44lpmZnuoRRtoZT0gdNmXYFdHxl2cRmSk6ZDO9wl62GU8suqDFRacGQO
+	 rY8TUV/NkBnjIdxLGflleO7JbK9cjbi8q27mOG2aahhvhpn05MYtr72Q5AG0kfE8U3
+	 dpWUBgintvqpw==
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0021A385BFE
+	for <usrp-users@lists.ettus.com>; Tue, 21 Jan 2025 11:09:06 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SnrDGM2Z";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NRI4efj5";
 	dkim-atps=neutral
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6df83fd01cbso25236366d6.2
-        for <usrp-users@lists.ettus.com>; Tue, 21 Jan 2025 07:49:03 -0800 (PST)
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7b6e8fe401eso547220485a.2
+        for <usrp-users@lists.ettus.com>; Tue, 21 Jan 2025 08:09:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737474542; x=1738079342; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6YG+jhuKzXD/pdTDzAbL5+4KAzMk3Jwsh6eXDlXYuuo=;
-        b=SnrDGM2ZqY1ftvh8pWzXbbx62v9u1OKMsJo9hdUJ5tmMP9afc/lwQt8P/XzxCD7I6y
-         zEIXlllyPhJNe7zKs/f8OSOIM6eOMLJdgvEPeKIqElvnbF9p+2UV7JXRNY1HFpPYg1qj
-         A5lBqk8WWvqC9LHFSueXChRkOacdNuoCzdQ2GH6+Zy7ALv29FUM82SGyGqeLWjDAHXY7
-         MtRKwyFtu3CE1eJqJYW1FZTdbt4FiYuOt2QBiSGf980PXdOXKbJT0asN7Jpj+ZBnHcWK
-         klfTcv5xY+mmIkBLeU8Trosy5XF+OfIh/9ZFxP4DVMVhqGpXPcXpHNEUL4xFXeuC0kf1
-         esFA==
+        d=gmail.com; s=20230601; t=1737475746; x=1738080546; darn=lists.ettus.com;
+        h=in-reply-to:from:cc:references:to:content-language:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XJwjJEPMK+zG2zQLe43DGLzlgxXV3PidoORi+Fu/eOE=;
+        b=NRI4efj585zL1c0GcbJH2PjtEMxR7sd7lrD8dykGQIUc4wLbqdXGDGKo39U35515IZ
+         syrrxsc1/9t7KGY6bfjpHmEWbDayNxgwzcbeF+RF6vyQyELwa7PP89fKt9DISLl7sEb8
+         INkN4xdjRpi6Px13tCtUOPQY+9kbIM8hmhaimNERKq4oR3djqijMWhbZLV86tqBMU59m
+         vvBjWnzkUaI2NGdH00p6FkPoH9Mkf1+SQILCrBLTCiSjVDp39gdjSPLB7vVaXjB53Y4Q
+         kYgjYdSr5kFkqb16MkaQFeyhZi73gAuk55/d3bIMfwyFck09+RUitGIWhZshNf1cCXeM
+         l/Ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737474542; x=1738079342;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6YG+jhuKzXD/pdTDzAbL5+4KAzMk3Jwsh6eXDlXYuuo=;
-        b=WSwGFAtD0ZQCkuff9yJtI2DdAQigjcKy26fJe8RxLJAfCuip07ovQaOBh6rGDEBauw
-         8fimSHIsQqu0b5EG2JwNPEQOP4sQHgGFRPDRJLE5WjSk4wCzBVfMuDJes58vQGtlotMY
-         qKD9jt0ae3zI4rhwBo/TfSp95jTWakaeBRsxlaVpPb7Vvo4G/qdERma1sWx3B4yL2bMj
-         +IubKxCeQLII8f6sD3m94v37w3WzyvOSaD/g7izSZQ8NE3zNsIbTXCpebgLd+ChqFSWf
-         oSHQVFOGlFXnkVbLrEoxNs+3VfsPrlNQ4FlNvPTHvxGxKEgSQCY3KwkQx4i68obdRUon
-         bFAQ==
-X-Gm-Message-State: AOJu0YxTL3X+ozMQdR7Zrpm88bTPsSdfEdzr2YJiYUvtvDb6ZTDAHBYb
-	3+f5yGKBRIVDTMv+8wPs18ioxSVDvDtcX+uJ31Q//yMzi8D/iWV6BceoRA==
-X-Gm-Gg: ASbGncsedzxOaLOhQN3rY7HyCVZC3zunxMaFnzPCMPpVAoIQyjKTHkWdDURE6MwmzG0
-	n5kOLfJsBRyAbGEiDDj89/tkp4ZLijTbA+5jixenZMoUknGe0uJdnXeIrFlSpoMG/jaXBFhf+C6
-	E7NCwQ4v7QNoprQ8oaATAP6lN7dy6OItYIX9IvVWW/b5qcVB5xEQ7gcjT22wZbqtFtLXbQZ+Tsd
-	OwkMXv3q6FknJFX3NiKAWlskpkBsdm1KVQviycvhY8YSovWibADVT6xfD2NugyEY9ZPQQigiGDM
-	IE5vtq37me6AoksX0yN5SG4TeeV7Xys6eLKaXLR2eENXet8ImM/DmilKWahnac4oo77K
-X-Google-Smtp-Source: AGHT+IHeX0o01VdKfTph8RWoVi9WYuoFuI0VnvvN5nzTFj6G04tKTF9c4Y7pYVfj7biuo4BFQSQ0ow==
-X-Received: by 2002:a05:6214:260a:b0:6d8:8a60:ef2c with SMTP id 6a1803df08f44-6e1b2140cadmr262853316d6.2.1737474541180;
-        Tue, 21 Jan 2025 07:49:01 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737475746; x=1738080546;
+        h=in-reply-to:from:cc:references:to:content-language:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XJwjJEPMK+zG2zQLe43DGLzlgxXV3PidoORi+Fu/eOE=;
+        b=TvVEPF3qZdQCladygdDuWK1DdlxxGKeQSkp6hxvquRQ4k1jvKdgFlyM9o1uGcKtCrN
+         cag7Y/LP1+Pk+2ROUiA//ODlaKEIUSOuN8qCUNuB49ojz5h0GBWtJys/eXyQY0fLT/5i
+         /pnDl22DgVEDVKe0u9+bg//YmuwaCuG86EdA7RxlAU8H1GQDGUCP56SDY8iTN8fM0oBE
+         BppGPBlwXXByNi6iR86hHrCj8Ra7y2snviLzFTgBB4GEopqYsjwgf/MMef4msPnf8joR
+         Uug9/lHXdDo+8mNcND3lXNAdBbkqmjb6Ti9Ic0jnwubbvhr3H5Y+MetJ0M/trUyq8A2S
+         TebQ==
+X-Gm-Message-State: AOJu0YwIwp2WqNh6+yXVKyaTM04HlVlFcBjHm1QdNDA0i6uNXtG8RUV2
+	OoCWZOQNn9NFog6/0hEiAxVB0TUE7yFLo1pkfIg8r7ZyraKX3g/e
+X-Gm-Gg: ASbGnctk49szkWfgHBJWJpuIlb68RFeH1RQCcw7GhA5HK260jZGFjLJfld5jB9CXMNN
+	1soofo3wVUUXPrIKyWhfMhR0QWoENN03wfoAEaRgvmYZx2fYhKkRcjjJ8GynsTOYT3/vMD48N7f
+	ZvdCJRmtfJ6Nh8q+uLq6qmb2f45T7Dsmo3KWw+QjVs6VKVJD7J09ZCL4T7SIMnMg6ewTuT8SXcn
+	qMiGpyX8fkagzwN5yDmnPwC0xtGzhCZqbMn3tpl543qaAGmUWQsRw97M1H4fVlpPg475RRzg07Q
+	VBUcxEmI0CVmC3MENVlRzieKSbSxgobdzGXbEuoARC5myGOPNseLfTuia4G4qr7czqE/
+X-Google-Smtp-Source: AGHT+IFWNtwOpBs4Js/alPQIzohAAs0iBbl4/E2p7SoRQf/Ar2pwlm8cmg3zbqENsX9o55uXey1fJA==
+X-Received: by 2002:a05:6214:328e:b0:6d8:9a85:5b3d with SMTP id 6a1803df08f44-6e1b2168b18mr304679066d6.7.1737475746024;
+        Tue, 21 Jan 2025 08:09:06 -0800 (PST)
 Received: from [192.168.2.170] (bras-base-smflon1825w-grc-05-174-88-53-166.dsl.bell.ca. [174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6e1afcf6fbfsm52161396d6.124.2025.01.21.07.49.00
-        for <usrp-users@lists.ettus.com>
+        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6e1afcd3651sm52428616d6.80.2025.01.21.08.09.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jan 2025 07:49:00 -0800 (PST)
-Message-ID: <c130004f-4be4-4f9c-8594-ab3e18145844@gmail.com>
-Date: Tue, 21 Jan 2025 10:48:59 -0500
+        Tue, 21 Jan 2025 08:09:05 -0800 (PST)
+Message-ID: <4ccfb9cd-7f3a-4fa7-8d84-cb4ea593f2a4@gmail.com>
+Date: Tue, 21 Jan 2025 11:09:04 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
+To: Luis Oliveira <luis.evoleo@gmail.com>
 References: <CAHN4qvbbJ4NozJzQJJzx4CgTPHua5wCiWa9xVDYLB73EXa2qrQ@mail.gmail.com>
+ <c130004f-4be4-4f9c-8594-ab3e18145844@gmail.com>
+ <CAHN4qvbgeLijWEXB5mTNm6xQUve3-EUuNSLA=gQwey7XAU1KvA@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAHN4qvbbJ4NozJzQJJzx4CgTPHua5wCiWa9xVDYLB73EXa2qrQ@mail.gmail.com>
-Message-ID-Hash: ZDNALDS3C3SDM4RGFVJ2GD33H6PIZWNP
-X-Message-ID-Hash: ZDNALDS3C3SDM4RGFVJ2GD33H6PIZWNP
+In-Reply-To: <CAHN4qvbgeLijWEXB5mTNm6xQUve3-EUuNSLA=gQwey7XAU1KvA@mail.gmail.com>
+Message-ID-Hash: W76VHZXNNNNHTIINZOD4HZ5NFN62CUH6
+X-Message-ID-Hash: W76VHZXNNNNHTIINZOD4HZ5NFN62CUH6
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: - Unable to Access USRP Driver Windows and API Documentation on files.ettus.com
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZDNALDS3C3SDM4RGFVJ2GD33H6PIZWNP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/W76VHZXNNNNHTIINZOD4HZ5NFN62CUH6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6093135553974932755=="
+Content-Type: multipart/mixed; boundary="===============1922505476292556399=="
 
 This is a multi-part message in MIME format.
---===============6093135553974932755==
+--===============1922505476292556399==
 Content-Type: multipart/alternative;
- boundary="------------bNDKltmZd0OLtSp0rbmOd0yZ"
+ boundary="------------81Kjyl8SWgHV6JftLmICztBc"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------bNDKltmZd0OLtSp0rbmOd0yZ
+--------------81Kjyl8SWgHV6JftLmICztBc
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 21/01/2025 10:46, Luis Oliveira wrote:
-> Hi everyone,
-> I encountered while trying to access the following page on the website:
-> https://files.ettus.com/manual/page_python.html=20
-> <https://files.ettus.com/manual/page_python.html>
-> USRP Hardware Driver (UHD) - Ettus Research | Ettus Research, a=20
-> National Instruments Brand | The leader in Software Defined Radio=20
-> (SDR) <https://www.ettus.com/sdr-software/uhd-usrp-hardware-driver/>
-> When attempting to visit the page, I receive an error indicating that=20
-> the SSL/TLS configuration of the server is outdated (details provided=20
-> below).
-> Is there an alternative way for me to access the information on the=20
-> unavailable page? I was specifically looking for documentation on how=20
-> to use the USRP API in Windows.
-> Thank you in advance for your assistance.
-> image.png
-> image.png
-> My very best regards,
-> Lu=C3=ADs Oliveira
+On 21/01/2025 10:52, Luis Oliveira wrote:
+> Hi Marcus,
 >
-There is a problem with the webserver configuration, NI USRP people are=20
-aware, and have escalated to the company that actually
- =C2=A0 provides this website.
+> Thanks for the reply and the info.
+> And regarding the driver for windows, any tip?
+>
+> Best Regards
+Info about "radioconda" is here:
 
-In the meantime, just for the docs, there's an alternative site:
+https://github.com/ryanvolz/radioconda
 
-https://uhd.readthedocs.io/
+But like I said, if it fetches bits-and-pieces from files.ettus.com, it=20
+will also not work until files.ettus.com is back up.
 
---------------bNDKltmZd0OLtSp0rbmOd0yZ
+
+>
+> Marcus D. Leech <patchvonbraun@gmail.com> escreveu (ter=C3=A7a, 21/01/2=
+025=20
+> =C3=A0(s) 15:49):
+>
+>     On 21/01/2025 10:46, Luis Oliveira wrote:
+>>     Hi everyone,
+>>     I encountered while trying to access the following page on the
+>>     website:
+>>     https://files.ettus.com/manual/page_python.html
+>>     USRP Hardware Driver (UHD) - Ettus Research | Ettus Research, a
+>>     National Instruments Brand | The leader in Software Defined Radio
+>>     (SDR) <https://www.ettus.com/sdr-software/uhd-usrp-hardware-driver=
+/>
+>>     When attempting to visit the page, I receive an error indicating
+>>     that the SSL/TLS configuration of the server is outdated (details
+>>     provided below).
+>>     Is there an alternative way for me to access the information on
+>>     the unavailable page? I was specifically looking for
+>>     documentation on how to use the USRP API in Windows.
+>>     Thank you in advance for your assistance.
+>>     image.png
+>>     image.png
+>>     My very best regards,
+>>     Lu=C3=ADs Oliveira
+>>
+>     There is a problem with the webserver configuration, NI USRP
+>     people are aware, and have escalated to the company that actually
+>     =C2=A0 provides this website.
+>
+>     In the meantime, just for the docs, there's an alternative site:
+>
+>     https://uhd.readthedocs.io/
+>
+>     _______________________________________________
+>     USRP-users mailing list -- usrp-users@lists.ettus.com
+>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--------------81Kjyl8SWgHV6JftLmICztBc
 Content-Type: multipart/related;
- boundary="------------H4EGUqiMCR0JlS5YZSkB2hit"
+ boundary="------------w6lCDKqk5i03QnIkF6lnEQk5"
 
---------------H4EGUqiMCR0JlS5YZSkB2hit
+--------------w6lCDKqk5i03QnIkF6lnEQk5
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -145,108 +173,163 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 21/01/2025 10:46, Luis Oliveira
+    <div class=3D"moz-cite-prefix">On 21/01/2025 10:52, Luis Oliveira
       wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:CAHN4qvbbJ4NozJzQJJzx4CgTPHua5wCiWa9xVDYLB73EXa2qrQ@mail.gmai=
-l.com">
+cite=3D"mid:CAHN4qvbgeLijWEXB5mTNm6xQUve3-EUuNSLA=3DgQwey7XAU1KvA@mail.gm=
+ail.com">
       <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
 TF-8">
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">Hi everyone,<br>
-          <div
+      <div dir=3D"ltr">Hi Marcus,=C2=A0<br>
+        <br>
+        Thanks for the reply and the info.<br>
+        And regarding the driver for windows, any tip?<br>
+        <br>
+        Best Regards</div>
+    </blockquote>
+    Info about "radioconda" is here:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://github.com/ryanvol=
+z/radioconda">https://github.com/ryanvolz/radioconda</a><br>
+    <br>
+    But like I said, if it fetches bits-and-pieces from files.ettus.com,
+    it will also not work until files.ettus.com is back up.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAHN4qvbgeLijWEXB5mTNm6xQUve3-EUuNSLA=3DgQwey7XAU1KvA@mail.gm=
+ail.com"><br>
+      <div class=3D"gmail_quote gmail_quote_container">
+        <div dir=3D"ltr" class=3D"gmail_attr">Marcus D. Leech &lt;<a
+            href=3D"mailto:patchvonbraun@gmail.com" moz-do-not-send=3D"tr=
+ue"
+            class=3D"moz-txt-link-freetext">patchvonbraun@gmail.com</a>&g=
+t;
+          escreveu (ter=C3=A7a, 21/01/2025 =C3=A0(s) 15:49):<br>
+        </div>
+        <blockquote class=3D"gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">
+          <div>
+            <div>On 21/01/2025 10:46, Luis Oliveira wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div dir=3D"ltr">Hi everyone,<br>
+                  <div
 style=3D"border:0px;font-variant-numeric:inherit;font-variant-east-asian:=
 inherit;font-variant-alternates:inherit;font-stretch:inherit;font-size:12=
 pt;line-height:inherit;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontS=
 ervice,Calibri,Helvetica,sans-serif;font-size-adjust:inherit;font-kerning=
 :inherit;font-feature-settings:inherit;margin:1em 0px;padding:0px;vertica=
 l-align:baseline;color:rgb(0,0,0)">I
-            encountered while trying to access the following page on the
-            website:</div>
-          <div
+                    encountered while trying to access the following
+                    page on the website:</div>
+                  <div
 style=3D"border:0px;font-variant-numeric:inherit;font-variant-east-asian:=
 inherit;font-variant-alternates:inherit;font-stretch:inherit;font-size:12=
 pt;line-height:inherit;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontS=
 ervice,Calibri,Helvetica,sans-serif;font-size-adjust:inherit;font-kerning=
 :inherit;font-feature-settings:inherit;margin:1em 0px;padding:0px;vertica=
 l-align:baseline;color:rgb(0,0,0)"><a
-              title=3D"https://files.ettus.com/manual/page_python.html"
-              class=3D"gmail-x_x_OWAAutoLink moz-txt-link-freetext"
-              id=3D"gmail-LPlnkOWAa39d1557-9c3a-c7ed-302f-e52971f9cdf6"
-              href=3D"https://files.ettus.com/manual/page_python.html"
+title=3D"https://files.ettus.com/manual/page_python.html"
+id=3D"m_-414540895477259049gmail-LPlnkOWAa39d1557-9c3a-c7ed-302f-e52971f9=
+cdf6"
+href=3D"https://files.ettus.com/manual/page_python.html"
 style=3D"border:0px;font:inherit;margin:0px;padding:0px;vertical-align:ba=
 seline"
-              moz-do-not-send=3D"true">https://files.ettus.com/manual/pag=
-e_python.html</a><br>
-            <a
+                      target=3D"_blank" moz-do-not-send=3D"true"
+                      class=3D"moz-txt-link-freetext">https://files.ettus=
+.com/manual/page_python.html</a><br>
+                    <a
 href=3D"https://www.ettus.com/sdr-software/uhd-usrp-hardware-driver/"
-              moz-do-not-send=3D"true">USRP Hardware Driver (UHD) - Ettus
-              Research | Ettus Research, a National Instruments Brand |
-              The leader in Software Defined Radio (SDR)</a></div>
-          <div
+                      target=3D"_blank" moz-do-not-send=3D"true">USRP
+                      Hardware Driver (UHD) - Ettus Research | Ettus
+                      Research, a National Instruments Brand | The
+                      leader in Software Defined Radio (SDR)</a></div>
+                  <div
 style=3D"border:0px;font-variant-numeric:inherit;font-variant-east-asian:=
 inherit;font-variant-alternates:inherit;font-stretch:inherit;font-size:12=
 pt;line-height:inherit;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontS=
 ervice,Calibri,Helvetica,sans-serif;font-size-adjust:inherit;font-kerning=
 :inherit;font-feature-settings:inherit;margin:1em 0px;padding:0px;vertica=
 l-align:baseline;color:rgb(0,0,0)">When
-            attempting to visit the page, I receive an error indicating
-            that the SSL/TLS configuration of the server is outdated
-            (details provided below).</div>
-          <div
+                    attempting to visit the page, I receive an error
+                    indicating that the SSL/TLS configuration of the
+                    server is outdated (details provided below).</div>
+                  <div
 style=3D"border:0px;font-variant-numeric:inherit;font-variant-east-asian:=
 inherit;font-variant-alternates:inherit;font-stretch:inherit;font-size:12=
 pt;line-height:inherit;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontS=
 ervice,Calibri,Helvetica,sans-serif;font-size-adjust:inherit;font-kerning=
 :inherit;font-feature-settings:inherit;margin:1em 0px;padding:0px;vertica=
 l-align:baseline;color:rgb(0,0,0)">Is
-            there an alternative way for me to access the information on
-            the unavailable page? I was specifically looking for
-            documentation on how to use the USRP API in Windows.</div>
-          <div class=3D"gmail-x_elementToProof"
+                    there an alternative way for me to access the
+                    information on the unavailable page? I was
+                    specifically looking for documentation on how to use
+                    the USRP API in Windows.</div>
+                  <div
 style=3D"border:0px;font-variant-numeric:inherit;font-variant-east-asian:=
 inherit;font-variant-alternates:inherit;font-stretch:inherit;font-size:12=
 pt;line-height:inherit;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontS=
 ervice,Calibri,Helvetica,sans-serif;font-size-adjust:inherit;font-kerning=
 :inherit;font-feature-settings:inherit;margin:1em 0px;padding:0px;vertica=
 l-align:baseline;color:rgb(0,0,0)">Thank
-            you in advance for your assistance.<br>
-            <img src=3D"cid:part1.ZnrXbsFy.elsu8bu7@gmail.com"
-              alt=3D"image.png" class=3D"" width=3D"542" height=3D"197"><=
-br>
-            <img src=3D"cid:part2.X2TxjOHU.UVXd1xpj@gmail.com"
-              alt=3D"image.png" class=3D"" width=3D"542" height=3D"165"><=
-/div>
-          <div class=3D"gmail-x_elementToProof"
+                    you in advance for your assistance.<br>
+                    <img src=3D"cid:part1.XCGGIPiU.rsY008HH@gmail.com"
+                      alt=3D"image.png" class=3D"" width=3D"542" height=3D=
+"197"><br>
+                    <img src=3D"cid:part2.f3vtmxT1.puNrcUN0@gmail.com"
+                      alt=3D"image.png" class=3D"" width=3D"542" height=3D=
+"165"></div>
+                  <div
 style=3D"border:0px;font-variant-numeric:inherit;font-variant-east-asian:=
 inherit;font-variant-alternates:inherit;font-stretch:inherit;font-size:12=
 pt;line-height:inherit;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontS=
 ervice,Calibri,Helvetica,sans-serif;font-size-adjust:inherit;font-kerning=
 :inherit;font-feature-settings:inherit;margin:0px;padding:0px;vertical-al=
 ign:baseline;color:rgb(0,0,0)"><span
-              style=3D"color:inherit;font-size:15px">My very best regards=
-,<br>
-              Lu=C3=ADs Oliveira</span></div>
-        </div>
+                      style=3D"color:inherit;font-size:15px">My very best
+                      regards,<br>
+                      Lu=C3=ADs Oliveira</span></div>
+                </div>
+              </div>
+              <br>
+            </blockquote>
+            There is a problem with the webserver configuration, NI USRP
+            people are aware, and have escalated to the company that
+            actually<br>
+            =C2=A0 provides this website.<br>
+            <br>
+            In the meantime, just for the docs, there's an alternative
+            site:<br>
+            <br>
+            <a href=3D"https://uhd.readthedocs.io/" target=3D"_blank"
+              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
+tps://uhd.readthedocs.io/</a><br>
+            <br>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a
+            href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
+-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a
+            href=3D"mailto:usrp-users-leave@lists.ettus.com"
+            target=3D"_blank" moz-do-not-send=3D"true"
+            class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettus.=
+com</a><br>
+        </blockquote>
       </div>
-      <br>
     </blockquote>
-    There is a problem with the webserver configuration, NI USRP people
-    are aware, and have escalated to the company that actually<br>
-    =C2=A0 provides this website.<br>
-    <br>
-    In the meantime, just for the docs, there's an alternative site:<br>
-    <br>
-    <a class=3D"moz-txt-link-freetext" href=3D"https://uhd.readthedocs.io=
-/">https://uhd.readthedocs.io/</a><br>
     <br>
   </body>
 </html>
---------------H4EGUqiMCR0JlS5YZSkB2hit
+--------------w6lCDKqk5i03QnIkF6lnEQk5
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
-Content-Id: <part1.ZnrXbsFy.elsu8bu7@gmail.com>
+Content-Id: <part1.XCGGIPiU.rsY008HH@gmail.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAABAEAAAF1CAYAAACZCPNoAAAAAXNSR0IArs4c6QAAIABJREFU
@@ -871,10 +954,10 @@ AQIECBAIFxAChJNqkAABAgQIECBAgAABAgQI5BQQAuQcF1URIECAAAECBAgQIECAAIFwASFA
 OKkGCRAgQIAAAQIECBAgQIBATgEhQM5xURUBAgQIECBAgAABAgQIEAgXEAKEk2qQAAECBAgQ
 IECAAAECBAjkFBAC5BwXVREgQIAAAQIECBAgQIAAgXABIUA4qQYJECBAgAABAgQIECBAgEBO
 ASFAznFRFQECBAgQIECAAAECBAgQCBf4A4DDwJdFgCVrAAAAAElFTkSuQmCC
---------------H4EGUqiMCR0JlS5YZSkB2hit
+--------------w6lCDKqk5i03QnIkF6lnEQk5
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
-Content-Id: <part2.X2TxjOHU.UVXd1xpj@gmail.com>
+Content-Id: <part2.f3vtmxT1.puNrcUN0@gmail.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAqAAAADNCAYAAABnycJoAAAAAXNSR0IArs4c6QAAIABJREFU
@@ -1133,11 +1216,11 @@ AQQQQAABAihtAAEEEEAAAQQQQGCiAgTQiXKzMQQQQAABBBBAAAECKG0AAQQQQAABBBBAYKIC
 BNCJcrMxBBBAAAEEEEAAAQIobQABBBBAAAEEEEBgogIE0IlyszEEEEAAAQQQQAABAihtAAEE
 EEAAAQQQQGCiAv8fFG4SVhGNy48AAAAASUVORK5CYII=
 
---------------H4EGUqiMCR0JlS5YZSkB2hit--
+--------------w6lCDKqk5i03QnIkF6lnEQk5--
 
---------------bNDKltmZd0OLtSp0rbmOd0yZ--
+--------------81Kjyl8SWgHV6JftLmICztBc--
 
---===============6093135553974932755==
+--===============1922505476292556399==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1147,4 +1230,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6093135553974932755==--
+--===============1922505476292556399==--
