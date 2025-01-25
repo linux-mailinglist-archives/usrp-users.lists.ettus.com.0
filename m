@@ -2,110 +2,115 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71016A1C128
-	for <lists+usrp-users@lfdr.de>; Sat, 25 Jan 2025 07:06:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E41A1C533
+	for <lists+usrp-users@lfdr.de>; Sat, 25 Jan 2025 21:49:20 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5CF1B3859BF
-	for <lists+usrp-users@lfdr.de>; Sat, 25 Jan 2025 01:06:09 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 7CD98385F6C
+	for <lists+usrp-users@lfdr.de>; Sat, 25 Jan 2025 15:49:19 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1737785169; bh=VKglKE41b8bFES/Fd9yVQody8uJE0q5v6NQBeQr8TpQ=;
-	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=LBagvWZCN9T1q6vSzPakZVntDonlWhH9U1/QuXEBsQkX6JtGm6fSizLmeNPnhixD+
-	 HgDVB7xvYJuXRjabD0tK/6JnKhPj2FfQLNo8dQ3UeUtuZDs2idx3/kTTqFONBlCb5u
-	 B0sBB2Xrldp0lC9zAtPhKtjQlTuUhHw4cYOphVjBkG8Fwm7QwGC/BbHqINjozC+Zrb
-	 egjGbpc5tb9ls4pVve+R4CEwxItKTT+vAqYf7plj+2WC94qSxEi+R71Pbzxu8ghpDB
-	 voSjmYqaghOep0XLcq3edI0h0tLNYSEI10rbzhnjlP44BmAXHRJkoq+Kdy5PqMQu7t
-	 9l8I9vEJY4Slw==
-Received: from omta039.useast.a.cloudfilter.net (omta039.useast.a.cloudfilter.net [44.202.169.38])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0EE7F3859A3
-	for <usrp-users@lists.ettus.com>; Sat, 25 Jan 2025 01:05:42 -0500 (EST)
+	t=1737838159; bh=I/1MPhVvoidAm36yTTH+qzN2D4VUiC2aWV3ipxe1se4=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=Cov2NuJvMesXDNfRntjP5aMzWT5pcPNaJcQLUty9WNtSkEZLcSa9O3a0B2S0Egw5B
+	 tZwHK7BECVBmwzLTNsMTcEuIyckQac/AE6eN6bdlkNNfO306bt32fJzxfJxEtiO4gR
+	 vbCYHrXSylAMVrmaH1CJu4/lyngUlqzXOIS4n3Hw/dY/igbAXXRtc52Fg547Qay+vt
+	 nnThlrSu/V/slWpWwa8Ujz4MkT3ndcg+eP1I2YB1DzrgOih9Huq5LSxQJSdq5j9her
+	 i1YB5w3/wYwMfjxSXnV5Dff7tRt7607S5zj94yTZ6mroq2GEvZyw1w/Swmsmxk8SWo
+	 Hd5UP4jLV+pLw==
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id D0229385EF9
+	for <usrp-users@lists.ettus.com>; Sat, 25 Jan 2025 15:48:53 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=atindriya.co.in header.i=@atindriya.co.in header.b="vi4Ti1uH";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cmBQJGbA";
 	dkim-atps=neutral
-Received: from eig-obgw-5007a.ext.cloudfilter.net ([10.0.29.141])
-	by cmsmtp with ESMTPS
-	id bZD9tFGpR1T3hbZIctsCRb; Sat, 25 Jan 2025 06:05:42 +0000
-Received: from 119-18-48-61.webhostbox.net ([119.18.48.61])
-	by cmsmtp with ESMTPS
-	id bZIZtSvpfG3qKbZIbt5Oih; Sat, 25 Jan 2025 06:05:42 +0000
-X-Authority-Analysis: v=2.4 cv=PN4J++qC c=1 sm=1 tr=0 ts=67947f36
- a=bPTgM9xNt4Vpxv/3Ws5fWw==:117 a=bPTgM9xNt4Vpxv/3Ws5fWw==:17
- a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=MKtGQD3n3ToA:10 a=1oJP67jkp3AA:10
- a=VdSt8ZQiCzkA:10 a=j0z1oGNQ4lYA:10 a=ZnlVjcO3iL6GKsllVt4A:9
- a=CjuIK1q_8ugA:10 a=zZCYzV9kfG8A:10 a=IOVrdXkZsZi_Xkr5h5Fc:22
- a=iTWC1DL0K-q19goYTGrE:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=atindriya.co.in; s=default; h=Content-Transfer-Encoding:Content-Type:
-	Message-ID:Subject:To:From:Date:MIME-Version:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=E1PZUmeTmKmlb4g4w/Y6aUvER9f4Xtz7NfagvsjbuUQ=; b=vi4Ti1uHpcblEtk3zVuU/xd3F7
-	1x8XW5mXZettXrK4Y3WRiiXmTTBXYmYcNGrojBhqCyax6yxtO2oQVszL9GjoMQ9MQhdmpinRKB7qS
-	6UYKOlbKsCE/JSunEqlkJQv3fEOnr+x1TnBumbKWFIK/ujYRkpSSefj1pL8R27NQT+dD+W468qjNX
-	GnG4JmNirzRdIFHZxWqTgD0IA/epkClmnXzi4KC/duIJ/aWU9o090sxuD8PkG66e6QNRu0SMU0ziD
-	Tj4iMNev7xJ/T0MsxwDvr4QjS6DVUK3kgi3FjS4GeKr2MvmKTp9YW6sP6C9GXsbk8Hq8xLNY8dtfJ
-	xAWUHYPQ==;
-Received: from [::1] (port=47052 helo=server.atindriya.co.in)
-	by server.atindriya.co.in with esmtpa (Exim 4.96.2)
-	(envelope-from <kavinraj@atindriya.co.in>)
-	id 1tbZIT-0001fR-0h
-	for usrp-users@lists.ettus.com;
-	Sat, 25 Jan 2025 01:05:38 -0500
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6dccccd429eso34270406d6.3
+        for <usrp-users@lists.ettus.com>; Sat, 25 Jan 2025 12:48:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737838133; x=1738442933; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BXzo5KVxufAudO2QUTHDWqL1nRarz2DeuoNGkUoj8Ak=;
+        b=cmBQJGbAp/ahDq+1PJDtIY3YeXtMafx+tKFEDOAEvJWq/lZqPq8iXLrsgFiTyF6qG5
+         5DA2S3fX9zpYHWC7CdVl0fKhCX8wgtzCpW4KgtZ+rVhMgp+TJ+fHJfW/IrNrFIbgpRQB
+         Q5BDdeGVn8EoKGaVzONm9DjcrZISbdKt22tCjCrOcOZbPAiNa676F8UMn5d02yuS9J7x
+         auNkiSDebAQgU20up6DjzubVmMoTop4ksSD46LSZffK6S3LU8a/NQ/YlMSW8kXskY3yt
+         kQK274W4Wm/xX0OWPkaFKQdHsR85NaHUNFGZqGEyefheFZdU1slfsOayjmfvfQ72Jd3V
+         Wmvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737838133; x=1738442933;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BXzo5KVxufAudO2QUTHDWqL1nRarz2DeuoNGkUoj8Ak=;
+        b=m1srfkZsSkuLn49M7hDTPNZ0dedwIcvU4D7unpWJ1cMVNipUf4NCvfTfU0GIpKajRf
+         EvQUxGrxq4JloDD7vEZ829okCihSBFkchbiJubfSsbdwnG/SVkX7cajPzCeWX6hCSL+S
+         EEvqKlWiI//vDRnIltSTGxgPT9nMlwxjGulh+jDRoJDVRpvo7J43VnoqqMix8gActlDs
+         bXkQd+Hxld/59/50nO5PZYO87BXnBdF3KYbf+liiaRrAu818DWFqw+GSEWnoUQYzRjf4
+         YM7NRMxq5OCq+LhEaB+MrdWtE9JwvAWhcUgP1+1hxZDgy5nEo5yieDxtIddf/UDuLUPq
+         mSwQ==
+X-Gm-Message-State: AOJu0Yz/RXztji1ui3tyDC8PGjOkM8NUr1/tjYVOJpqj6SShjk7CFUNN
+	kZEuVMb/5NPyHjWn/qvYOSPLNUrbSckZsqPfyL40kqKqtW7nd6RIAB7Pjw==
+X-Gm-Gg: ASbGnct6XRmklZ10lSa16uz/9nSkiJ8CLMSY1AD4hA0+SecQfk90nkUGNnaKs9Gm06V
+	MYdaF8rlEt4WZV+LfgzFfr77RauCyuG76GeU74/Y/GVG5UFBqPltoriMGOXdeqHIUwjkBMDVv1x
+	fjCHr+9E2GO+l2i1kvbZMO7X0aWL3r/Ja2fGHxd+vzz3yMwEaM/5oe9oAKy0HLI7JFggyg96FMV
+	S9PMflzVAsMbxFjLLpCTwRCco0cUhvfK9qsuoCJB09F/gwX91rG7dZ/rslXoJp+EG5c+Rf2SZwb
+	EyX/NcJpbj8gj30=
+X-Google-Smtp-Source: AGHT+IFGz5m/tZGdhRXmJFT3zXgEVgix+33CgEiLIKiIPICBAYPwd/bAsHpO1Ie0tE5wL2hN/PnsdA==
+X-Received: by 2002:a05:6214:250e:b0:6d8:963e:b4c3 with SMTP id 6a1803df08f44-6e1b21868ffmr483180256d6.11.1737838132963;
+        Sat, 25 Jan 2025 12:48:52 -0800 (PST)
+Received: from [192.168.2.170] ([174.88.53.166])
+        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6e20514f174sm20938486d6.28.2025.01.25.12.48.51
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Jan 2025 12:48:51 -0800 (PST)
+Message-ID: <97d113cf-819f-41c3-a0f4-3148875b06f7@gmail.com>
+Date: Sat, 25 Jan 2025 15:48:40 -0500
 MIME-Version: 1.0
-Date: Sat, 25 Jan 2025 01:05:37 -0500
-From: kavinraj@atindriya.co.in
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-User-Agent: Roundcube Webmail/1.6.0
-Message-ID: <ab60a559e8abcbfef267f09310a77d6e@atindriya.co.in>
-X-Sender: kavinraj@atindriya.co.in
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.atindriya.co.in
-X-AntiAbuse: Original Domain - lists.ettus.com
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - atindriya.co.in
-X-Get-Message-Sender-Via: server.atindriya.co.in: authenticated_id: kavinraj@atindriya.co.in
-X-Authenticated-Sender: server.atindriya.co.in: kavinraj@atindriya.co.in
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-CMAE-Envelope: MS4xfKjfF2Ka1xrf/cxgNzkj5LZjieaQaazgs7aJCwu+Nr+8/Lcmvg3bSV1ub0mo/Bx3LqRt30h5bj3Dhg/c2PwSV1LCrgiQ7Z20PVO5wmrc6dpxnk107ihA
- BoPm4O4yyh8G0xzTDfRfXQA6UPCHNgi/efS6CDQBpr0H1T7GsAlm86iJWgVTtHzKg/zG76qvvI8culTVq9RYk4/l6HnWQ8U9/MigeeUOqI47nVodRN0XkRbv
-Message-ID-Hash: 6QPKVMGS2NAUOYX22A3OKVIGVVKIXKV2
-X-Message-ID-Hash: 6QPKVMGS2NAUOYX22A3OKVIGVVKIXKV2
-X-MailFrom: kavinraj@atindriya.co.in
+References: <ab60a559e8abcbfef267f09310a77d6e@atindriya.co.in>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <ab60a559e8abcbfef267f09310a77d6e@atindriya.co.in>
+Message-ID-Hash: Z6LDXVQTYIL5GFL3JZIUFJPSHRWJFO2E
+X-Message-ID-Hash: Z6LDXVQTYIL5GFL3JZIUFJPSHRWJFO2E
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] REG : Receiving the Data In USRP b205mini
+Subject: [USRP-users] Re: REG : Receiving the Data In USRP b205mini
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6QPKVMGS2NAUOYX22A3OKVIGVVKIXKV2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z6LDXVQTYIL5GFL3JZIUFJPSHRWJFO2E/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Hi,
-   I want to receive the ADC data in USRP b205mini-i module. For that I 
-have written the Rx streamer code using UHD API.
-
-   Actually, Rx port is connected to some signal generator of 430MHz to 
-470MHz. But, When i see the ADC data from streamer is not matching. Is 
-there is any want access the Rx LO in the USRP. When I print the Number 
-of Rx Lo names, it shows as 0. How to set the LO as 400MHz frequency? Is 
-there is any default LO frequency is set?
-
-   And I want to know the default decimation factor for this board?
-
-
-
-Thanks,
-Kavinraj.
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+T24gMjUvMDEvMjAyNSAwMTowNSwga2F2aW5yYWpAYXRpbmRyaXlhLmNvLmluIHdyb3RlOg0KPiBI
+aSwNCj4gwqAgSSB3YW50IHRvIHJlY2VpdmUgdGhlIEFEQyBkYXRhIGluIFVTUlAgYjIwNW1pbmkt
+aSBtb2R1bGUuIEZvciB0aGF0IEkgDQo+IGhhdmUgd3JpdHRlbiB0aGUgUnggc3RyZWFtZXIgY29k
+ZSB1c2luZyBVSEQgQVBJLg0KPg0KPiDCoCBBY3R1YWxseSwgUnggcG9ydCBpcyBjb25uZWN0ZWQg
+dG8gc29tZSBzaWduYWwgZ2VuZXJhdG9yIG9mIDQzME1IeiB0byANCj4gNDcwTUh6LiBCdXQsIFdo
+ZW4gaSBzZWUgdGhlIEFEQyBkYXRhIGZyb20gc3RyZWFtZXIgaXMgbm90IG1hdGNoaW5nLiBJcyAN
+Cj4gdGhlcmUgaXMgYW55IHdhbnQgYWNjZXNzIHRoZSBSeCBMTyBpbiB0aGUgVVNSUC4gV2hlbiBJ
+IHByaW50IHRoZSANCj4gTnVtYmVyIG9mIFJ4IExvIG5hbWVzLCBpdCBzaG93cyBhcyAwLiBIb3cg
+dG8gc2V0IHRoZSBMTyBhcyA0MDBNSHogDQo+IGZyZXF1ZW5jeT8gSXMgdGhlcmUgaXMgYW55IGRl
+ZmF1bHQgTE8gZnJlcXVlbmN5IGlzIHNldD8NCj4NCj4gwqAgQW5kIEkgd2FudCB0byBrbm93IHRo
+ZSBkZWZhdWx0IGRlY2ltYXRpb24gZmFjdG9yIGZvciB0aGlzIGJvYXJkPw0KPg0KUGxlYXNlIGxv
+b2sgYXQgInJ4X3NhbXBsZXNfdG9fZmlsZS5jcHAiIGV4YW1wbGUsIHdoaWNoIHNob3dzIGhvdyB0
+byANCnN0cmVhbSBwcm9wZXJseS7CoCBTZXQgc2FtcGxlLXJhdGUgcHJvcGVybHksIGFuZCBzZXQN
+CiDCoCBjZW50ZXItZnJlcXVlbmN5IHByb3Blcmx5Lg0KDQpUbyB0b3AgbGV2ZWwgIktub3dsZWRn
+ZSBCYXNlIiBwYWdlIGlzIGhlcmU6DQoNCmh0dHBzOi8va2IuZXR0dXMuY29tL0tub3dsZWRnZV9C
+YXNlDQoNCg0KPg0KPg0KPiBUaGFua3MsDQo+IEthdmlucmFqLg0KPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlz
+dCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFu
+IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
+dCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
+YWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
