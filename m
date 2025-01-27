@@ -2,196 +2,165 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74036A1DD6C
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 21:35:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C962A1DD7B
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 21:39:43 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 206CE385F98
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 15:35:55 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 5EF44385F11
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 15:39:42 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1738010155; bh=YsuWla8U3YdFR5tCv75VoOrOxZp6DqMTKWMPNBzEzvY=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=AFKEDyN2r7vjVu6dmXbUtCPH5Pu2f8ZnMDDt+LbQPPb8cVEZ/Qw7B2jgR4SP/AMhf
-	 sf+4VvHbFPQG2HHDHgTFVLpEqh9xyQKpbk7AEGV81GUut2Th5RmTpXqnWL/ZUpBS8H
-	 nP4VefZiiMaeN27ZUewwOTq7bkPFa5YlDVSHuGZNC/6rdrSRj5eDV5InFLyyAGaJiA
-	 0pe9Mw82srLTR4kOpnVcDbqklaeqrzY/3fgfXMdn7TGyod2EWLuaiMPaV9KQUkWEJr
-	 Jg8cG8vkK5jaMIWqHybKAFGKpDI9v9hvZB0+i2tWGPVhNRiS2/x0IVG5wRwKQ5X/Nx
-	 32+Grk+qxx6LQ==
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2A094385F87
-	for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2025 15:35:07 -0500 (EST)
+	t=1738010382; bh=SYh6/JpxlBmbYfLF7UMHGGXtf5Vj4IJJ0gPtcC6YkU0=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=YJgq1pd40ePLBQu9N/dkps1zv8vHUKz2uWmynTVRcokOy7RxviBQAOrniYutwv9uK
+	 Y5h7aoT9npFb4XW50AugQuPDo1F+bqiwQ4h81AcbvthH2Bb7sA49hFJ9j9tuhu20BK
+	 Hr5l9SKwSofyPnQFtUJn+BR+0V0mcxXEzW5eP1fSvq725FQyNsDNZxrx19hWNaoipx
+	 4PBQz56CK4iA/BNzcdGfGNGU+6Tn4PWIj+xCBWJ+dl11zISavsnJihx2TegUCJ1cMH
+	 mW0fvs8dA4FJ9fsqFTqkM29RlO1+HPRKAOuH/+i7PSHlUcydke/D0K/gakqLjXs03q
+	 jmfiw3i7/BDnQ==
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id C5BD3385F80
+	for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2025 15:39:06 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Poxh0ETw";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="UChtCAR3";
 	dkim-atps=neutral
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5d932eac638so9559875a12.1
-        for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2025 12:35:07 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d7e3f1fdafso9364712a12.0
+        for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2025 12:39:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1738010106; x=1738614906; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oseOeFWo0EdoBWj4mwWdsozbQwj9ePPNIWiprVfMJgI=;
-        b=Poxh0ETw6u2eBVIYACc9ilioR0OX4RHysvFr5xV+zf9arylGuXecHA6ux+r4NbadAQ
-         AbFe8UQmkOzgMwUcnf/F8KRp+tPT3ltfG2OTjy3Q4ByzH+2C2vdZzmYyUNZqr3RJsU74
-         9el3N0aR+jkxxKFHR+jeBWb8HsVt/A5rTM0pzY5e6W8npv/Wm8+YFqzTLM0MdXULnurD
-         mpg/XOkXQQmmia3wUAwEhtznYqm9fJ4mqHuEzTysDB9cIhImAHRkRFPPK/t6VAnNoAYe
-         v3MPktb7a9Eq9kDYPf7Ia2YJ6+dO2fixzWe9D2/jsCLzNQ6+4bVIPlfrYn3ruiO2Zzc+
-         7hvQ==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1738010346; x=1738615146; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7feDUQHj2CU+1HHfnPof9/mkNRxmj4Fv9Q05zpBBNQA=;
+        b=UChtCAR3Wz+fabMg3in3ERtJZtwJd9Khj2H4VjXCUTqXlzt70wnjT6YJMiNbGjUeHA
+         AHRZaXhQKlBgcX78lQXMs96Atd5X6N41TBry4aU65bwtbRvQo6JJUIN46QpoTbNGpcGC
+         nTPm8RNRySNNrigq8mzicJXjOTf1krbkLeO6GZW6uJy87pFqfbdeCsJdtAiNMyMAw7+E
+         S0i1IcfyZf9v4ZCOacsSj/OOvVnMYTGdey7hQbxoq0K/Ekmm2ZefacG+layVcCb8Q5ak
+         W0ORPtLoPVvAVfNCEhmpr+BVaQcRGSI8nAg2jXZhT5Nb0yCKOrClIy7DhrqLcLLOkZz8
+         /ttQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738010106; x=1738614906;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oseOeFWo0EdoBWj4mwWdsozbQwj9ePPNIWiprVfMJgI=;
-        b=oNeXS4z3sf6p0Jb5pXn7QvZ0YQIL1+CnUv74AgvzN/VDm4YFq6IxTBtKXA3L31q82Q
-         x48RNM+1e5HmqCmlbwWAzcOCcC6/IKSt1vVrra92k1Pm4es6yaXedVnztLKk3X29JXIw
-         V8/wZR6YOsQeljl0uHh68m95v0EHhbd1CYrr5TSCrV2ZcWzwshO2ERtYT99dBF9PEKVI
-         6O3pcp+qtuLV7zk07lMN5N4L93oPVGNR1DZJ75flfzBEIb9bNRQ87Mm8QuyKcSJIzfXf
-         gQfm3jQzhdSTCOUKbmxLwD4N+u5Y4aIm5OOV7cNmxnl6VJYbKe5ZC2ZlDKT0hGPt43cU
-         9R0w==
-X-Gm-Message-State: AOJu0YwDLgRUy58DSxnfRBEw3XSR+NyYuHy4jjIr8Fz/3NUavbg57SQT
-	XMZTpBFCooS+8noLKWjUB0vAnXoKbgv2ObkVKrpIxSJxi0cKSsHyHj1gOFZmjUGj3PjpYjoTY5T
-	ppao5ahiFeNU0NgZhnrRYuX0GvaT8eba7eJsi4PZb1MRQUL/qnRBNKw==
-X-Gm-Gg: ASbGnctQ80n4NJzH1+E7CYXwPW06xHxe+poIEgS9pMEBMBzRGYLmsi7cNh11DOwGdy1
-	EjuTZuCsl9CwQj5Olchoj++nCR1DSlUrjWR01Rshfy9COWNA7kmAq2h7mhjjqW+A2R7alDUescG
-	j6W15xeoqwsqNgiGUFrw==
-X-Google-Smtp-Source: AGHT+IFX57mm2EO6n+Co8yM7If4bGCaHLMeaecE+qcxk5JrgTQpL9if189Zyj3mG/l5Wkl3IqrzPxukdo9LvdkG2DXw=
-X-Received: by 2002:a05:6402:268e:b0:5da:a78:4c8b with SMTP id
- 4fb4d7f45d1cf-5db7d2d2e1cmr37273527a12.2.1738010105845; Mon, 27 Jan 2025
- 12:35:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1738010346; x=1738615146;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7feDUQHj2CU+1HHfnPof9/mkNRxmj4Fv9Q05zpBBNQA=;
+        b=NWPGBWZ3RBO4t1BpeMULfnVVlISv80lgG/BlYptizpHBgb3Gk5O7vstYfF2DImRmMP
+         oYqt62SlqiBshCgUOu0S4/+UmCbJVuqZJ04UHH1F4BhVOlyk4Hfv8i259e6Nn59UR098
+         xumMNPqcGETyQx1HpuRZjl+1J7nGer238SACfNNNGbD38I4TEK3fj0XzsUOzMSJGZpM8
+         7IuKk9UuXxJl1XHDQPpBUKBL/hJZZJk+36Ypuekzh+gae8eCbvkb1hkfi9GLKqdC44Tz
+         EnzJT98/fm4xzesVwI99lOGGLuC3Gci+CUBnHacXZl/fPLo7toGR0b9lnQYSRyFTU5qD
+         iE7A==
+X-Gm-Message-State: AOJu0YxRr5dmc8s8EFEMN1vkBkwgr4P7AZdU9NkJUCBwt0GT5UwEAXUT
+	1JwM8YEDfLliazB+sJUFHOM7bRaQG0LoDJP5IQ+17DndR8s0eWmDViq4oL+fLBqVFiWkoMugwnz
+	MzXZ27K2i6BDJRnKajghZ/wmN2y/J+7NO4vgqUyeU
+X-Gm-Gg: ASbGnctUGJdlB3/RZxCv5PatjxADAYa4AEm8sfWaFmvchkRhiKqPMjkIr370jBemaFy
+	xm2kQyf/DfnQ6m9BxKtaQwct2eHgL+3aPWD2rNkr75vvtj45zR12usV+aBiaAHm8dZpYs9LUxwg
+	hZkcHEHU4hgn1RYyWC/w==
+X-Google-Smtp-Source: AGHT+IH7yTRplcL01ScIRbg4nvNdDjKpNgCC0XfioHrIah1f8I4oC5Q6eB6ZYbHFxBAEiNgkKI1CILXllZWVWgsxU6I=
+X-Received: by 2002:a05:6402:5110:b0:5da:ce9:43ae with SMTP id
+ 4fb4d7f45d1cf-5db7d2ff893mr40945515a12.15.1738010345535; Mon, 27 Jan 2025
+ 12:39:05 -0800 (PST)
 MIME-Version: 1.0
-References: <b34d9c34298fbfffa03375a026d5a5ef@atindriya.co.in>
- <CACDPEcMT4png+YYoYK5QkjiWkm1pvKCkd=FzjMEdcgRP=KrKpQ@mail.gmail.com> <886e1e77251bdcaf38e55321b09c0cc5@atindriya.co.in>
-In-Reply-To: <886e1e77251bdcaf38e55321b09c0cc5@atindriya.co.in>
+References: <J5WMXdykR30mvVE3rfXO0gExnlsTYuEOvqRviFMPxw@lists.ettus.com>
+In-Reply-To: <J5WMXdykR30mvVE3rfXO0gExnlsTYuEOvqRviFMPxw@lists.ettus.com>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Mon, 27 Jan 2025 21:34:55 +0100
-X-Gm-Features: AWEUYZmS_PTh6mXeA95xO2S1qIBYKFrbTuOLwHd1Naw4H7IGx_EMbZ51F5I67GE
-Message-ID: <CAFOi1A4xB=JUgE5J5LH7aBAGjvUy+JkuV4XFdm41JiHTd3K4ww@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: SSV7BNF7XMBYPBPHR3M3PJG4ZLCOIITY
-X-Message-ID-Hash: SSV7BNF7XMBYPBPHR3M3PJG4ZLCOIITY
+Date: Mon, 27 Jan 2025 21:38:55 +0100
+X-Gm-Features: AWEUYZk0fBWlBmoXCMCJBJvnGsjVzks7mctxz2RzSIN-7bHoFe6AsW2mjCZG1CI
+Message-ID: <CAFOi1A7Lkk08WjdkJj_T0PnyhQpjZdjzUeyBc_4EZsrX5-ozyg@mail.gmail.com>
+To: cyberphox@gmail.com
+Message-ID-Hash: 7ZXFMXM7ZCRYG5WVVXYPHODPH34HIGMT
+X-Message-ID-Hash: 7ZXFMXM7ZCRYG5WVVXYPHODPH34HIGMT
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: REG: GNU RADIO in USRP B205mini
+Subject: [USRP-users] Re: Sample alignment between 2x UBX160 using USRP-2794
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SSV7BNF7XMBYPBPHR3M3PJG4ZLCOIITY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7ZXFMXM7ZCRYG5WVVXYPHODPH34HIGMT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0573320800182498112=="
+Content-Type: multipart/mixed; boundary="===============4678137351646263147=="
 
---===============0573320800182498112==
-Content-Type: multipart/alternative; boundary="000000000000f9b39b062cb602b1"
+--===============4678137351646263147==
+Content-Type: multipart/alternative; boundary="000000000000431d86062cb6114c"
 
---000000000000f9b39b062cb602b1
+--000000000000431d86062cb6114c
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Follow these instructions:
-https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain=
-_(UHD_and_GNU_Radio)_on_Linux#Downloading_the_UHD_FPGA_Images
+You can theoretically connect the radio0 and radio1 I/O ports directly to
+your block, and keep the ctrlport connections so that you can do tunes etc.
+I would *not* recommend this. We've done loads of tests regarding
+time/phase alignment on X310. If you feed data into the radio blocks with
+identical timestamps, and your USRPs are properly time- and frequency
+aligned (using an Octoclock), they will come out at the same time (or at
+least deterministic offset). If you try and do this yourself, you basically
+have to reproduce everything that's already in the radio blocks.
 
-Then these:
-https://uhd.readthedocs.io/en/latest/page_usrp_x3x0.html#uhd_image_loader_t=
-ool
+Which AXI bus are you referring to?
 
 --M
 
-On Mon, Jan 27, 2025 at 3:57=E2=80=AFPM <kavinraj@atindriya.co.in> wrote:
+On Mon, Jan 27, 2025 at 10:09=E2=80=AFAM <cyberphox@gmail.com> wrote:
 
-> Hi,
->    How to change this?
+> Hi Ettus
 >
-> Thanks,
-> Kavinraj.
+> We are having a real challenge trying to align two identical streams
+> feeding the ubx160 on a usrp-2974. It is a problem we have had for a long
+> time.
 >
+> The data entering the axi bus is aligned but at the output it can be
+> misaligned by 5 to 15ns or so.
 >
-> On 2025-01-27 09:07, Muhammad Hassan wrote:
-> > Hi
-> >
-> > You need to change the environment variable
-> >
-> > On Mon, 27 Jan 2025 at 13:43, <kavinraj@atindriya.co.in> wrote:
-> >
-> >> Hi,
-> >>
-> >> I have created a block in GNU RADIO-companion. when I am running
-> >> it
-> >> is showing runtime error. I have attached a image file for your
-> >> reference.
-> >> I am using UHD version 4.7 only.
-> >> What may be the issue?
-> >>
-> >> With regards,
-> >> Kavinraj._______________________________________________
-> >> USRP-users mailing list -- usrp-users@lists.ettus.com
-> >> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> Is it possible to completely bypass this bus and feed the DACs directly?
+> FYI, We have tried this but other stuff doesn=E2=80=99t function quite ri=
+ght, as
+> you may expect. It was just to experiment. Definitely somewhere between w=
+e
+> get misaligned.
+>
+> Any tips would be appreciated
+>
+> thank you for your help
+>
+> Marino
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---000000000000f9b39b062cb602b1
+--000000000000431d86062cb6114c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Follow these instructions: <a href=3D"https://kb.ettu=
-s.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_R=
-adio)_on_Linux#Downloading_the_UHD_FPGA_Images">https://kb.ettus.com/Buildi=
-ng_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Lin=
-ux#Downloading_the_UHD_FPGA_Images</a></div><div><br></div><div>Then these:=
- <a href=3D"https://uhd.readthedocs.io/en/latest/page_usrp_x3x0.html#uhd_im=
-age_loader_tool">https://uhd.readthedocs.io/en/latest/page_usrp_x3x0.html#u=
-hd_image_loader_tool</a></div><div><br></div><div>--M<br></div></div><br><d=
-iv class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Mon, Jan 27, 2025 at 3:57=E2=80=AFPM &lt;<a href=3D"mailto:kav=
-inraj@atindriya.co.in">kavinraj@atindriya.co.in</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
-=C2=A0 =C2=A0How to change this?<br>
-<br>
-Thanks,<br>
-Kavinraj.<br>
-<br>
-<br>
-On 2025-01-27 09:07, Muhammad Hassan wrote:<br>
-&gt; Hi<br>
-&gt; <br>
-&gt; You need to change the environment variable<br>
-&gt; <br>
-&gt; On Mon, 27 Jan 2025 at 13:43, &lt;<a href=3D"mailto:kavinraj@atindriya=
-.co.in" target=3D"_blank">kavinraj@atindriya.co.in</a>&gt; wrote:<br>
-&gt; <br>
-&gt;&gt; Hi,<br>
-&gt;&gt; <br>
-&gt;&gt; I have created a block in GNU RADIO-companion. when I am running<b=
-r>
-&gt;&gt; it<br>
-&gt;&gt; is showing runtime error. I have attached a image file for your<br=
->
-&gt;&gt; reference.<br>
-&gt;&gt; I am using UHD version 4.7 only.<br>
-&gt;&gt; What may be the issue?<br>
-&gt;&gt; <br>
-&gt;&gt; With regards,<br>
-&gt;&gt; Kavinraj._______________________________________________<br>
-&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettu=
-s.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave=
-@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br=
->
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+<div dir=3D"ltr"><div>You can theoretically connect the radio0 and radio1 I=
+/O ports directly to your block, and keep the ctrlport connections so that =
+you can do tunes etc. I would *not* recommend this. We&#39;ve done loads of=
+ tests regarding time/phase alignment on X310. If you feed data into the ra=
+dio blocks with identical timestamps, and your USRPs are properly time- and=
+ frequency aligned (using an Octoclock), they will come out at the same tim=
+e (or at least deterministic offset). If you try and do this yourself, you =
+basically have to reproduce everything that&#39;s already in the radio bloc=
+ks.<br></div><div><br></div><div>Which AXI bus are you referring to?</div><=
+div><br></div><div>--M<br></div></div><br><div class=3D"gmail_quote gmail_q=
+uote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 27, 2025 =
+at 10:09=E2=80=AFAM &lt;<a href=3D"mailto:cyberphox@gmail.com">cyberphox@gm=
+ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><p>Hi Ettus </p><p>We are having a real challenge trying to align tw=
+o identical streams feeding the ubx160 on a usrp-2974. It is a problem we h=
+ave had for a long time.</p><p>The data entering the axi bus is aligned but=
+ at the output it can be misaligned by 5 to 15ns or so.</p><p>Is it possibl=
+e to completely bypass this bus and feed the DACs directly?  FYI, We have t=
+ried this but other stuff doesn=E2=80=99t function quite right, as you may =
+expect.  It was just to experiment.  Definitely somewhere between we get mi=
+saligned. </p><p>Any tips would be appreciated </p><p>thank you for your he=
+lp</p><p>Marino</p>
+
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
@@ -199,9 +168,9 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000f9b39b062cb602b1--
+--000000000000431d86062cb6114c--
 
---===============0573320800182498112==
+--===============4678137351646263147==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -211,4 +180,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0573320800182498112==--
+--===============4678137351646263147==--
