@@ -2,115 +2,119 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E41A1C533
-	for <lists+usrp-users@lfdr.de>; Sat, 25 Jan 2025 21:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 922E2A1CFE2
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 05:05:04 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7CD98385F6C
-	for <lists+usrp-users@lfdr.de>; Sat, 25 Jan 2025 15:49:19 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 3E397385C71
+	for <lists+usrp-users@lfdr.de>; Sun, 26 Jan 2025 23:05:03 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1737838159; bh=I/1MPhVvoidAm36yTTH+qzN2D4VUiC2aWV3ipxe1se4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=Cov2NuJvMesXDNfRntjP5aMzWT5pcPNaJcQLUty9WNtSkEZLcSa9O3a0B2S0Egw5B
-	 tZwHK7BECVBmwzLTNsMTcEuIyckQac/AE6eN6bdlkNNfO306bt32fJzxfJxEtiO4gR
-	 vbCYHrXSylAMVrmaH1CJu4/lyngUlqzXOIS4n3Hw/dY/igbAXXRtc52Fg547Qay+vt
-	 nnThlrSu/V/slWpWwa8Ujz4MkT3ndcg+eP1I2YB1DzrgOih9Huq5LSxQJSdq5j9her
-	 i1YB5w3/wYwMfjxSXnV5Dff7tRt7607S5zj94yTZ6mroq2GEvZyw1w/Swmsmxk8SWo
-	 Hd5UP4jLV+pLw==
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id D0229385EF9
-	for <usrp-users@lists.ettus.com>; Sat, 25 Jan 2025 15:48:53 -0500 (EST)
+	t=1737950703; bh=od/56Lb1UHtA/KplDLh/wAJZQhwHaMEgOfnaCwcLo5g=;
+	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=W0rS9xsbeB/OJn5riNtCLl4ONTuuTDgopvvKIeEfBcp3B1HEzScimYUcauD/KohZ9
+	 Uckg8twq95EauIPPAmT3+hNYF+J8c5HfQa+7uZZ2Zd97wzNsXrgq79iOOROHWs192I
+	 ftBH2/jz3X7sZLAOTjGLUPt+QOU90dYpq/atfdWMIFOvkID8uZgt9giZ5Dlx3/ADgL
+	 PV8C8w5SsW/U+sFQnUx/90vcn2W7clybP11+ze47GuWGvQFL8ozHwtmSXSq44rDeo1
+	 vQZ0IdbNcjEzmZxF8ylRZsRQ3yy9JDPP+XvovMOiUV8qWK77y+VjiQmxTxJODUk+c3
+	 nSS+n2GmHOB6g==
+Received: from omta39.uswest2.a.cloudfilter.net (omta39.uswest2.a.cloudfilter.net [35.89.44.38])
+	by mm2.emwd.com (Postfix) with ESMTPS id 63E15385C71
+	for <usrp-users@lists.ettus.com>; Sun, 26 Jan 2025 23:04:16 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cmBQJGbA";
+	dkim=pass (2048-bit key; unprotected) header.d=atindriya.co.in header.i=@atindriya.co.in header.b="UamJqss/";
 	dkim-atps=neutral
-Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6dccccd429eso34270406d6.3
-        for <usrp-users@lists.ettus.com>; Sat, 25 Jan 2025 12:48:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737838133; x=1738442933; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BXzo5KVxufAudO2QUTHDWqL1nRarz2DeuoNGkUoj8Ak=;
-        b=cmBQJGbAp/ahDq+1PJDtIY3YeXtMafx+tKFEDOAEvJWq/lZqPq8iXLrsgFiTyF6qG5
-         5DA2S3fX9zpYHWC7CdVl0fKhCX8wgtzCpW4KgtZ+rVhMgp+TJ+fHJfW/IrNrFIbgpRQB
-         Q5BDdeGVn8EoKGaVzONm9DjcrZISbdKt22tCjCrOcOZbPAiNa676F8UMn5d02yuS9J7x
-         auNkiSDebAQgU20up6DjzubVmMoTop4ksSD46LSZffK6S3LU8a/NQ/YlMSW8kXskY3yt
-         kQK274W4Wm/xX0OWPkaFKQdHsR85NaHUNFGZqGEyefheFZdU1slfsOayjmfvfQ72Jd3V
-         Wmvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737838133; x=1738442933;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BXzo5KVxufAudO2QUTHDWqL1nRarz2DeuoNGkUoj8Ak=;
-        b=m1srfkZsSkuLn49M7hDTPNZ0dedwIcvU4D7unpWJ1cMVNipUf4NCvfTfU0GIpKajRf
-         EvQUxGrxq4JloDD7vEZ829okCihSBFkchbiJubfSsbdwnG/SVkX7cajPzCeWX6hCSL+S
-         EEvqKlWiI//vDRnIltSTGxgPT9nMlwxjGulh+jDRoJDVRpvo7J43VnoqqMix8gActlDs
-         bXkQd+Hxld/59/50nO5PZYO87BXnBdF3KYbf+liiaRrAu818DWFqw+GSEWnoUQYzRjf4
-         YM7NRMxq5OCq+LhEaB+MrdWtE9JwvAWhcUgP1+1hxZDgy5nEo5yieDxtIddf/UDuLUPq
-         mSwQ==
-X-Gm-Message-State: AOJu0Yz/RXztji1ui3tyDC8PGjOkM8NUr1/tjYVOJpqj6SShjk7CFUNN
-	kZEuVMb/5NPyHjWn/qvYOSPLNUrbSckZsqPfyL40kqKqtW7nd6RIAB7Pjw==
-X-Gm-Gg: ASbGnct6XRmklZ10lSa16uz/9nSkiJ8CLMSY1AD4hA0+SecQfk90nkUGNnaKs9Gm06V
-	MYdaF8rlEt4WZV+LfgzFfr77RauCyuG76GeU74/Y/GVG5UFBqPltoriMGOXdeqHIUwjkBMDVv1x
-	fjCHr+9E2GO+l2i1kvbZMO7X0aWL3r/Ja2fGHxd+vzz3yMwEaM/5oe9oAKy0HLI7JFggyg96FMV
-	S9PMflzVAsMbxFjLLpCTwRCco0cUhvfK9qsuoCJB09F/gwX91rG7dZ/rslXoJp+EG5c+Rf2SZwb
-	EyX/NcJpbj8gj30=
-X-Google-Smtp-Source: AGHT+IFGz5m/tZGdhRXmJFT3zXgEVgix+33CgEiLIKiIPICBAYPwd/bAsHpO1Ie0tE5wL2hN/PnsdA==
-X-Received: by 2002:a05:6214:250e:b0:6d8:963e:b4c3 with SMTP id 6a1803df08f44-6e1b21868ffmr483180256d6.11.1737838132963;
-        Sat, 25 Jan 2025 12:48:52 -0800 (PST)
-Received: from [192.168.2.170] ([174.88.53.166])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6e20514f174sm20938486d6.28.2025.01.25.12.48.51
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Jan 2025 12:48:51 -0800 (PST)
-Message-ID: <97d113cf-819f-41c3-a0f4-3148875b06f7@gmail.com>
-Date: Sat, 25 Jan 2025 15:48:40 -0500
+Received: from eig-obgw-6009a.ext.cloudfilter.net ([10.0.30.184])
+	by cmsmtp with ESMTPS
+	id cEGdtwtxhf1UXcGMBtXlQ1; Mon, 27 Jan 2025 04:04:15 +0000
+Received: from 119-18-48-61.webhostbox.net ([119.18.48.61])
+	by cmsmtp with ESMTPS
+	id cGM7tE55Cp6oLcGM9tzhiR; Mon, 27 Jan 2025 04:04:15 +0000
+X-Authority-Analysis: v=2.4 cv=ANS2oedo c=1 sm=1 tr=0 ts=679705bf
+ a=bPTgM9xNt4Vpxv/3Ws5fWw==:117 a=bPTgM9xNt4Vpxv/3Ws5fWw==:17
+ a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=MKtGQD3n3ToA:10 a=1oJP67jkp3AA:10
+ a=VdSt8ZQiCzkA:10 a=j0z1oGNQ4lYA:10 a=JtIX179ICzFyXktR0mYA:9
+ a=CjuIK1q_8ugA:10 a=zZCYzV9kfG8A:10 a=IOVrdXkZsZi_Xkr5h5Fc:22
+ a=iTWC1DL0K-q19goYTGrE:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=atindriya.co.in; s=default; h=Content-Transfer-Encoding:Content-Type:
+	Message-ID:Subject:To:From:Date:MIME-Version:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Zi6r4mbisXrsCHf2L+GyrBfkJJ2KvB57/tUPKGxcrSE=; b=UamJqss/NsHTDWksIDUy7hYhNz
+	Tjn9RzFQL79OKnkNw1Lq8IuTaQqhVibn8rAJzYT7J4JSxH608KMhyliE14HraZWb9FZaEPdbZQUo+
+	AzN5+RqrrfyLCrcn+CWTDFQQ48C6jOL6VY6Jh5tymQ4tSbgrHbA2rQWELPF9jxW/5TIHwTXZVbOJR
+	t6ajEWoEkP0JlzJWHXjrMS+Og+XrMNC2y6c3pn+dUugWZ9leVwxFbA/DaAgyUmFWOWL08m7qdOXeK
+	jVSMOHPDYxLTP8ypttrgBmxJccdfv18HpCZ+KRury8xpheh/spDnUmnqDW03+tAYXOuZkvkLiCQrg
+	4HJgPZzQ==;
+Received: from [::1] (port=35160 helo=server.atindriya.co.in)
+	by server.atindriya.co.in with esmtpa (Exim 4.96.2)
+	(envelope-from <kavinraj@atindriya.co.in>)
+	id 1tcGM5-0001go-0s
+	for usrp-users@lists.ettus.com;
+	Sun, 26 Jan 2025 23:04:10 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+Date: Sun, 26 Jan 2025 23:04:09 -0500
+From: kavinraj@atindriya.co.in
 To: usrp-users@lists.ettus.com
-References: <ab60a559e8abcbfef267f09310a77d6e@atindriya.co.in>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <ab60a559e8abcbfef267f09310a77d6e@atindriya.co.in>
-Message-ID-Hash: Z6LDXVQTYIL5GFL3JZIUFJPSHRWJFO2E
-X-Message-ID-Hash: Z6LDXVQTYIL5GFL3JZIUFJPSHRWJFO2E
-X-MailFrom: patchvonbraun@gmail.com
+User-Agent: Roundcube Webmail/1.6.0
+Message-ID: <a86e6fcea1b27171c17c3d23defb87cb@atindriya.co.in>
+X-Sender: kavinraj@atindriya.co.in
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.atindriya.co.in
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - atindriya.co.in
+X-Get-Message-Sender-Via: server.atindriya.co.in: authenticated_id: kavinraj@atindriya.co.in
+X-Authenticated-Sender: server.atindriya.co.in: kavinraj@atindriya.co.in
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-CMAE-Envelope: MS4xfILSXPipBeuTEZiiE6VXVjQw/cqS5h8ACEWS05HDziJj6eAkjdf59Ich7vpdbsg0Y9ejGv003EyD4pwPrtDiOLLCaQWml/vHsyZdLXnClpzc0rIZiX7J
+ Q2PoRybl6uSveNCHU2RfcBAx97vxJpEd9euiB3N4QXmiRnljxGH+EVqr75cXsulfgUoShCRoYwEYXzrx8DtULPWW4Sn5FiKQimwHLmBJiTB2XR9d94BaI17D
+Message-ID-Hash: QZL3I27IAUIA5AIOICAWX2DSZZGRAZ7R
+X-Message-ID-Hash: QZL3I27IAUIA5AIOICAWX2DSZZGRAZ7R
+X-MailFrom: kavinraj@atindriya.co.in
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: REG : Receiving the Data In USRP b205mini
+Subject: [USRP-users] REG: GPIO in USRP B205mini
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z6LDXVQTYIL5GFL3JZIUFJPSHRWJFO2E/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QZL3I27IAUIA5AIOICAWX2DSZZGRAZ7R/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Transfer-Encoding: 7bit
 
-T24gMjUvMDEvMjAyNSAwMTowNSwga2F2aW5yYWpAYXRpbmRyaXlhLmNvLmluIHdyb3RlOg0KPiBI
-aSwNCj4gwqAgSSB3YW50IHRvIHJlY2VpdmUgdGhlIEFEQyBkYXRhIGluIFVTUlAgYjIwNW1pbmkt
-aSBtb2R1bGUuIEZvciB0aGF0IEkgDQo+IGhhdmUgd3JpdHRlbiB0aGUgUnggc3RyZWFtZXIgY29k
-ZSB1c2luZyBVSEQgQVBJLg0KPg0KPiDCoCBBY3R1YWxseSwgUnggcG9ydCBpcyBjb25uZWN0ZWQg
-dG8gc29tZSBzaWduYWwgZ2VuZXJhdG9yIG9mIDQzME1IeiB0byANCj4gNDcwTUh6LiBCdXQsIFdo
-ZW4gaSBzZWUgdGhlIEFEQyBkYXRhIGZyb20gc3RyZWFtZXIgaXMgbm90IG1hdGNoaW5nLiBJcyAN
-Cj4gdGhlcmUgaXMgYW55IHdhbnQgYWNjZXNzIHRoZSBSeCBMTyBpbiB0aGUgVVNSUC4gV2hlbiBJ
-IHByaW50IHRoZSANCj4gTnVtYmVyIG9mIFJ4IExvIG5hbWVzLCBpdCBzaG93cyBhcyAwLiBIb3cg
-dG8gc2V0IHRoZSBMTyBhcyA0MDBNSHogDQo+IGZyZXF1ZW5jeT8gSXMgdGhlcmUgaXMgYW55IGRl
-ZmF1bHQgTE8gZnJlcXVlbmN5IGlzIHNldD8NCj4NCj4gwqAgQW5kIEkgd2FudCB0byBrbm93IHRo
-ZSBkZWZhdWx0IGRlY2ltYXRpb24gZmFjdG9yIGZvciB0aGlzIGJvYXJkPw0KPg0KUGxlYXNlIGxv
-b2sgYXQgInJ4X3NhbXBsZXNfdG9fZmlsZS5jcHAiIGV4YW1wbGUsIHdoaWNoIHNob3dzIGhvdyB0
-byANCnN0cmVhbSBwcm9wZXJseS7CoCBTZXQgc2FtcGxlLXJhdGUgcHJvcGVybHksIGFuZCBzZXQN
-CiDCoCBjZW50ZXItZnJlcXVlbmN5IHByb3Blcmx5Lg0KDQpUbyB0b3AgbGV2ZWwgIktub3dsZWRn
-ZSBCYXNlIiBwYWdlIGlzIGhlcmU6DQoNCmh0dHBzOi8va2IuZXR0dXMuY29tL0tub3dsZWRnZV9C
-YXNlDQoNCg0KPg0KPg0KPiBUaGFua3MsDQo+IEthdmlucmFqLg0KPiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlz
-dCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFu
-IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
-dCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
-YWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+Hi,
+    I have one issue in accessing the GPIO pin in B205mini-i board.
+    what is the mask value in the API uhd_usrp_set_gpio_attr() function?
+
+    I have written code to access the pin 1 and 2. For that I have given 
+the mask value as 0x01 and 0x02. I am able to control the GPIO pin 1 
+with mask value 0x01. But, I am unable to access the GPIO pin 2 with 
+mask value 0x02.
+    What may be the issue?
+    The following is the code I have written.
+
+const char* bank = "FP0";
+size_t mboard = 0;
+
+uhd_usrp_set_gpio_attr(usrp, bank, "CTRL", 0, 0x01, mboard);
+uhd_usrp_set_gpio_attr(usrp, bank, "CTRL", 0, 0x02, mboard);
+
+uhd_usrp_set_gpio_attr(usrp, bank, "DDR", 1, 0x01, mboard);
+uhd_usrp_set_gpio_attr(usrp, bank, "DDR", 1, 0x02, mboard);
+
+uhd_usrp_set_gpio_attr(usrp, bank, "OUT", 0, 0x01, mboard);
+uhd_usrp_set_gpio_attr(usrp, bank, "OUT", 0, 0x02, mboard);
+
+Thanks,
+Kavinraj.
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
