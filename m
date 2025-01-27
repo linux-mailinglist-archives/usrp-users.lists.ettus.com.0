@@ -2,475 +2,644 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F5CA1D486
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 11:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 003A1A1D54D
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 12:27:51 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CC641385949
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 05:29:58 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id BECE2385C23
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2025 06:27:50 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1737973798; bh=ry99JlMn10IxSJPWW/zhLEOfHXF6MDXLoQBYKL98exc=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	t=1737977270; bh=NzaZSjR2mmqGjLx8M+jd8Dvt4Wt5kHjzDVKW7stJXX8=;
+	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=ThBdf4yV9E9kaPWNxy57scASTlKsLDyjg1clgLFpPY+kt0cw/k2/OQt/8v4xDtuoe
-	 WqNjdYZNmW2O/QeldAHMlYUiqOR2Hs9ZqiGTbXuyokwAL7H7s4xci4UR1gqpab0b+J
-	 e/Ee4mPl7nMuGoLX9PZEVx3fNSes/ZDSMBab+anVAoppYTjq/+qw0n0ACEuZBwz/Jx
-	 gs3TgCk/5a8uqQXndCn3a07oveLVUWKfzTZXTRggrecFwqgXKc8SSn1LFdhNabUYvv
-	 kmxEsLi/hI433LXfnDuF/m5TLCRmK/YUuf1McdwM/vPPB/e/bt0TsLuOx6WiksD8Ks
-	 k5OI5Oy0KF65w==
-Received: from ironboyv.h-da.de (ironboyv.h-da.de [141.100.10.230])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1DC25385384
-	for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2025 05:29:21 -0500 (EST)
+	b=K5dZ1nC8cssxYdC52A+8nDFT7hfv2GwvEMQCgQ3tRIkGhht17tsSbjl8HdRMnAy7T
+	 BCo5TKlB+Z614jmOCitBmkZjZ38hugkhi+Ijw/AvdqZHeQcdBeaxXlA5CdQdRs6Bcg
+	 rybWA0Pu2Z9ZUJxxx6R1ho3jTKfhnhXz1dKPTyuGLqZKIsbIylesLabAcxXlB47I9n
+	 A6qyNwwvv6goaPBNEpII226A1Dv0sHGKJcpwK4M3AeI2t0YjYWgdRoBZd1Mjl9Eq/U
+	 j3cU09bSqPRYavsxrsEcKAF0GmsxD80PlTiRfC3KKspijRwhvw77BluWCDiKWQqVhQ
+	 AploCXXvzfp7A==
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id C0916385529
+	for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2025 06:27:16 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=h-da.de header.i=@h-da.de header.b="ZkKKHiUL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Dfkr+7lv";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=h-da.de; i=@h-da.de; l=512; q=dns/txt; s=s1;
-  t=1737973762; x=1769509762;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:mime-version;
-  bh=fsZ6/vka/e7BW+E2hNiKofEdx0UpwlwVnpjBdZLz9NQ=;
-  b=ZkKKHiULl9MO/mKZ3Tq9GBIOA6iHYa/wY3dXjdu25IVx2omWRYYvq1h6
-   xcwKPy7lg/Ak7pQFgQOEY5ZHHaX/OSTvBTBITucCGizuGLs8wzfsxaZcB
-   REjd3Q3v9u94RpMmTgIE4gxQz2WdJhsQUFZqv0etGNzds5gs8/YFy35nT
-   w=;
-X-CSE-ConnectionGUID: VqF/HNwRStOKcQcX7kLo0w==
-X-CSE-MsgGUID: IcyG4DZJT/i/4R295muIHg==
-X-IPAS-Result: =?us-ascii?q?A2E7AwBmX5dn/4EBZI1aglyBQQGBf4FkHYQ5g0+OIQOLY?=
- =?us-ascii?q?4Y0hSuFAIFWFIFkBg8BAQ8BLgEKCwQBAQMBA4UAAhaKYCc0CQ4BAgQBAQEBA?=
- =?us-ascii?q?wIDAQEBAQEBAQEBAQELAQEGAQEBAQEBBgcCgR2FNUYNgxZxgSUBAQEBAQEBA?=
- =?us-ascii?q?QEBAQEBAQEBAQEBFwINNCoBHgEBAQEDASIrIAsQAgEGAhEEAQEkBAMCAgIeB?=
- =?us-ascii?q?wkBFAkIAgQIBgUIFQSCYoIcDQcDMRQGmXWbS3qBMoEBgxxRQNkNDYJTBgkBg?=
- =?us-ascii?q?T6IMAQaASpIagIOgXaCCYR3gQKBCkOBFYF8gS4+gh9CAgIBgSgBDAYBCSAPH?=
- =?us-ascii?q?4MlgmkEggMRGxw9CmIvAYEKAgICAgICAgICAgICAgKCGYIAggcCDAOBZ1WBB?=
- =?us-ascii?q?4FEgQqCHi+GS4IbV3JygUKGfSwmdUszLAEPETUTFwsHBYEpSAOBEiOBJgU1C?=
- =?us-ascii?q?jc5AYINaUk3Ag0CNYIefIIrgiGCO4RFhFGFXoIUgWUDAxYTgyd5HoFNHUADC?=
- =?us-ascii?q?wdmPTcUGwYCAYE1m0AKEFoBPIMOBSg3BwZUDhoJCykCBRsCgSoOEEgIEC2SV?=
- =?us-ascii?q?BIICoMXSotNR6IycQMEA4I1gWaMGI04gX+Ffy4Xl1KTAQuYcY4EhAWRToUsA?=
- =?us-ascii?q?gQCBAUCF4FnfCpbDgdxT4IBJkBSFwIPji0WFoNCx0p4AjoCBwEKAQEDCY9qY?=
- =?us-ascii?q?QGBHAEB?=
-IronPort-Data: A9a23:dya7P6y5c+xky1e6MoZ6t+cjxirEfRIJ4+MujC+fZmUNrF6WrkVUy
- 2YZW2DTOPqONmekL4sgYYvj9kkCu5/dzNBjHQBvrVhgHilAwSbn6XR1DatR0we6dJCroJdPt
- p1GAjXmBJ5rFie0SjCFa+G69yYUOZmgH+S6UKicfHgsHWeIcQ954Tp7gek1n4V0ttawBgKJq
- LvartbWULOf82cc3l88sspvljs/4ZwehxtA1rAOTagjlEPTkXATEKUeKcmZR1PkQpNZF/KNX
- O3Kyre05Avxp3/B3fv8z94X2mVTKlLjFVDmZkh+AsBOsTAazsAG6ZvXAdJHAathZ5VlqPgqo
- DlFncTYpQ7EpcQgksxFO/VTO3kW0aGrZNYriJVw2CCe5xSuTpfi/xlhJH8vE8o43PlNOn1p1
- vchIwBSbTSE3/3jldpXSsE07igiBMXqJowS/HElwTifCfEtSJSrr6fivIMBmm5o3oYXW6+EN
- qL1ahI2BPjESxFIP1YRCZF4nOqpgGvXc3hUoRSZqMLb5kCNlFUgi+e9WDbTUv2BVOoJsnS6m
- iXHuDjDWEBHMcG+6TXQpxpAgceVxHigB9lKfFGizdZviUePx2pVAgcfSF2TrOWll1X4UNVaQ
- 2QM8zYlrbY18kaxR8T7dxK9qX+A+BUbXrJ4DvYg8ESQ0afO+C6dB3MYVXhMdMA7r4k9QjlC6
- 7OSt9/oHzNi9ryJRXvb9vKYpHW+NED5MFPuewc6VCVCw//8mrovqTHEd91TT62RiYXqTGSYL
- y+xkAAygLAajMgu3qq9/Ezajz/EmnQvZlVujukwdj79hj6VdLKYi5qUBU/zwdsoEWp0ZlWAp
- ncJ3cmC4OlIDdSBnWqBTY3h/Y1FBd7bb1UwYnY2QfHNEghBHVb5Jui8BxkkeS9U3j4sI2OBX
- aMqkVo5CV86FCLCgVVLS4ywEd826qPrCM7oUPvZBvIXPcMuJVbZp3o0NBPIt4wIrKTKufpkU
- Xt8WZrwZUv29Yw3pNZLb7lAjOR1rszA7TiDLXwE8/hX+eDHPyXKEu9t3Kqmbucy7LiPoBjR/
- p5TPtGP0AlWXPGWX8Uk2dN7EL3LRFBlba3LRzt/LL/feFc3RT1+UJc8A9oJIuRYokicrc+Ql
- lnVZ6OS4ASXaaHvQelSVk1eVQ==
-IronPort-HdrOrdr: A9a23:Z+ijHqpHieicTU3gRybCzXkaV5o7eYIsimQD101hICG9E/bo9f
- xG885w6faZslsssRIb8uxoWpPgfZoNz+8X3WB5B97LYOCMggSVxe9ZgbcKjwePJ8WvntQ86Z
- td
-X-Talos-CUID: 9a23:vsZIk2OCkfmiIO5DZjBJs24yBfoeblr+x07bExC7LWExV+jA
-X-Talos-MUID: 9a23:fr9iuwW1Y+X3nkXq/B7nlR4+GPVK3+OvTxw3y8RbvtSlFSMlbg==
-X-IronPort-Anti-Spam-Filtered: true
-Received: from dirge.itda.h-da.de (HELO dirge.h-da.local) ([141.100.1.129])
-  by ironboyv.h-da.de with ESMTP/TLS/AES256-GCM-SHA384; 27 Jan 2025 11:29:16 +0100
-Received: from Pluto2.h-da.local (141.100.1.172) by dirge.h-da.local
- (141.100.1.129) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 27 Jan
- 2025 11:29:15 +0100
-Received: from maverick.h-da.local (141.100.1.195) by pluto2.h-da.local
- (141.100.1.172) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 27 Jan
- 2025 11:29:15 +0100
-Received: from maverick.h-da.local ([fe80::1726:ede5:c5da:108c]) by
- maverick.h-da.local ([fe80::1726:ede5:c5da:108c%7]) with mapi id
- 15.02.1544.011; Mon, 27 Jan 2025 11:29:15 +0100
-From: "Heinz, Dominik" <dominik.heinz@h-da.de>
-To: Martin Braun <martin.braun@ettus.com>
-Thread-Topic: [EXTERN] [USRP-users] Re: [EXTERN] Re: [EXTERN] Re: Re: [EXTERN]
- Re: X310 RIO Session Initialization Failure (Error code -63150)
-Thread-Index: AQHbcKZQpxXU+8GaIkyEQqlC3SaHSQ==
-Date: Mon, 27 Jan 2025 10:29:15 +0000
-Message-ID: <1b4c4d5ab84449c6a8aca889a6c264d8@h-da.de>
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7b6e8814842so486605485a.0
+        for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2025 03:27:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737977236; x=1738582036; darn=lists.ettus.com;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zHgQoO49nIcNF3FLB36wqNALeNnZT09yLyPinPJXPeY=;
+        b=Dfkr+7lvAUMjpyTiyxHqtpz8fsOExsbtDbzqdcy6V1V+lexR8EfZbAcK4FdNAEKINC
+         SHQpX+VbmdKSbeU1qbpa9G+/GxBllHhdfzJSyS59jaR9rkZNt0zr2CIaRtFZu3IMKBW+
+         qZL+ntf1A7WMgOZQSEv1vvNa4fAmZVxO7nW68xARm5a5FOlgsImuY33sEfR8hnhpCFpU
+         Pst7mCtm9yx/n7m85bcrZ0axmWzoenTtJhN0bT78GmvJg5fejfA4nbtcQU7SXpScIzwW
+         nxKL2/EabOufWCC2Nl+ypV735VSykcQTJ4ZNttMhcru2r8mwDz9VxQby+vSwBc8Evenu
+         ymuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737977236; x=1738582036;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zHgQoO49nIcNF3FLB36wqNALeNnZT09yLyPinPJXPeY=;
+        b=RztxkHkjtGgFMBVaN48dq5kT0/8j3WpvZYikSa6wbPyyD0TM13+ZvKiMjRfdq4uJG6
+         4o0sXtzBaZ3WtNNFdwaoviat73sR3VUCRRr4d6M9YlR/iSAg406H3SRl1dwLS4V1gcWw
+         mDijD0NrPY9XjITykG4IvvmiXgWgIe97BfUWrw7b/1O4UeNOFC2L4m3v5WhMkxqeCNl3
+         aAGIm9UTFzdk9iOF4TbYQCaMf4lbbI2Sfm8YPKNkc6DuB6wxRPuLoSvns7DbY8AGuDUg
+         Y1mlEkDl6gveBlwRfLbboqfJT//Wt9PpyDin1YaMqR84Ub98GarqwXB8LDweWvnA853F
+         vyzQ==
+X-Gm-Message-State: AOJu0YxSG+Ggxyu4ssdsLjzzWl8T7auLieGMV28ufBY4xDJYWFFS4SH3
+	huPKq23l4TdPG60ozQshJKE1YN06HjHAGvfWx1FsQbo8l7Svc25llkIcow==
+X-Gm-Gg: ASbGncvjnJEXlxAaRrIb2fo2j9Zz0aUMjryxQDVuaWXJD3AK39SEoiylP95RmwS9ddQ
+	GqRrmZ/SHr5CQAf70MD7OO+q0iE8AHSf4FKE3fIvwA/tIMnxmIvtL45J9vwTSEVsYg8pnxUPrQi
+	PDh/v2uGEFNwsnXsESiJkha4u9Dt6PTaiKvEbOo8oFlIFZLdG52fP63lDAUgd+JDvalhepD3P1P
+	p8CBHr19G+wWtdSf7aDtjVcl+eUjMzfCSsYeHckTsN1vX1dlRbcq5JpM+g5i6c31wyscrqtVkOh
+	NMGvyqGN/jMs+GXxxYIDHOK5rCzUIXjEGh0j8GlNyKud0owUHCOxwfjucBCntqKqHWcQTH0jtml
+	IE5U=
+X-Google-Smtp-Source: AGHT+IEk1pZEhaomiuP4nYGuKkciItkK5q7zCNsJui/gBcYugwNslnujz8Rtgt8qJQKEzKFeikiyHw==
+X-Received: by 2002:a05:620a:6601:b0:7b6:da92:fcdd with SMTP id af79cd13be357-7be63215d15mr5576270085a.15.1737977233378;
+        Mon, 27 Jan 2025 03:27:13 -0800 (PST)
+Received: from [192.168.2.170] (bras-base-smflon1825w-grc-05-174-88-53-166.dsl.bell.ca. [174.88.53.166])
+        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7be9ae7dc98sm377463185a.15.2025.01.27.03.27.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 03:27:12 -0800 (PST)
+Message-ID: <779a81a5-6669-46b1-9f63-0f6027ee6408@gmail.com>
+Date: Mon, 27 Jan 2025 06:27:11 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: "Heinz, Dominik" <dominik.heinz@h-da.de>,
+ Martin Braun <martin.braun@ettus.com>
 References: <a2248846c3ab40e9b6f0c270dd50563e@h-da.de>
  <39a63f67-3244-45b4-a318-6df2b30abebc@gmail.com>
- <a82baa39532e4545a88e3eb828100f8e@h-da.de>,<CAFOi1A5K0wHVMRoeO3B7RL5DgoOsmw_96C7y_L8zz+RBo1SDpA@mail.gmail.com>,<800ca492ec564e52a9cb1f4f238513f3@h-da.de>,<014bb7ee02bd4da889078fb810a83284@h-da.de>
-In-Reply-To: <014bb7ee02bd4da889078fb810a83284@h-da.de>
-Accept-Language: en-US, de-DE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [141.100.104.19]
-MIME-Version: 1.0
-Message-ID-Hash: 6LIODTJK7VJD4TAO63NQCACYGLYC7OWO
-X-Message-ID-Hash: 6LIODTJK7VJD4TAO63NQCACYGLYC7OWO
-X-MailFrom: dominik.heinz@h-da.de
+ <a82baa39532e4545a88e3eb828100f8e@h-da.de>
+ <CAFOi1A5K0wHVMRoeO3B7RL5DgoOsmw_96C7y_L8zz+RBo1SDpA@mail.gmail.com>
+ <800ca492ec564e52a9cb1f4f238513f3@h-da.de>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <800ca492ec564e52a9cb1f4f238513f3@h-da.de>
+Message-ID-Hash: AIAOMYKC4LBWIQKP2JZIXE5NVQOQWCPU
+X-Message-ID-Hash: AIAOMYKC4LBWIQKP2JZIXE5NVQOQWCPU
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [EXTERN] Re: [EXTERN] Re: [EXTERN] Re: Re: [EXTERN] Re: X310 RIO Session Initialization Failure (Error code -63150)
+Subject: [USRP-users] Re: [EXTERN] Re: Re: [EXTERN] Re: X310 RIO Session Initialization Failure (Error code -63150)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6LIODTJK7VJD4TAO63NQCACYGLYC7OWO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AIAOMYKC4LBWIQKP2JZIXE5NVQOQWCPU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0460244786134928492=="
+Content-Type: multipart/mixed; boundary="===============4712136547663787889=="
 
---===============0460244786134928492==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============4712136547663787889==
 Content-Type: multipart/alternative;
-	boundary="_000_1b4c4d5ab84449c6a8aca889a6c264d8hdade_"
+ boundary="------------VMHhSs5KxkGsOqtsEhg1CYbS"
+Content-Language: en-US
 
---_000_1b4c4d5ab84449c6a8aca889a6c264d8hdade_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------VMHhSs5KxkGsOqtsEhg1CYbS
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-T2theSwgc2VlbXMgbGlrZSBJIGhhZCB0byBtYW51YWxseSBzZXQgdGhlIElQIGFkZHJlc3NlcyBm
-b3IgdGhlIGludGVyZmFjZXMuIE5vdyBJIGNhbiBpbnRlcmFjdCBwZXJmZWN0bHkgd2l0aCB0aGUg
-ZGV2aWNlLg0KDQpUaG8sIEkgZG9uJ3Qga25vdyBob3cgdG8gY29uZmlndXJlIGl0IHRvIHVzZSBi
-b3RoIExpbmtzIHNpbXVsdGFuZW91c2x5LCBsaWtlIHlvdSBzdWdnZXN0ZWQgKHRvIGRvIDJ4MjAw
-IE1zcHMgc3RyZWFtaW5nKS4NCg0KDQpBbnkgYWR2aWNlIG9uIHRoYXQgd291bGQgYmUgYXBwcmVj
-aWF0ZWQgOikNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IEhlaW56
-LCBEb21pbmlrIDxkb21pbmlrLmhlaW56QGgtZGEuZGU+DQpTZW50OiBNb25kYXksIEphbnVhcnkg
-MjcsIDIwMjUgMTA6MzI6MjcgQU0NClRvOiBNYXJ0aW4gQnJhdW4NCkNjOiBNYXJjdXMgRC4gTGVl
-Y2g7IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBbRVhURVJOXSBbVVNSUC11
-c2Vyc10gUmU6IFtFWFRFUk5dIFJlOiBbRVhURVJOXSBSZTogUmU6IFtFWFRFUk5dIFJlOiBYMzEw
-IFJJTyBTZXNzaW9uIEluaXRpYWxpemF0aW9uIEZhaWx1cmUgKEVycm9yIGNvZGUgLTYzMTUwKQ0K
-DQoNCldoZW4gSSBydW4gdGhlIGltYWdlIGxvYWRlciB3aXRob3V0IHRoZSBJUCBhZGRyZXNzIHBh
-cmFtZXRlciBpdCBzZWVtcyB0byBiZSBmbGFzaGluZyB0aGUgY29ycmVjdGx5Lg0KDQoNCnVoZF9p
-bWFnZV9sb2FkZXIgLS1hcmdzPSJ0eXBlPXgzMDAiDQoNCg0KSG93ZXZlciwgSSBkb24ndCBzZWUg
-aG93IEkgY2FuIGNvbmZpZ3VyZSB0aGUgSVAgYWRkcmVzcyB0byBiZSBhYmxlIHRvIGludGVyYWN0
-IHZpYSB0aGUgMTBHYkUgbGlua3MgKD8pDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fDQpGcm9tOiBIZWlueiwgRG9taW5payA8ZG9taW5pay5oZWluekBoLWRhLmRlPg0KU2VudDog
-TW9uZGF5LCBKYW51YXJ5IDI3LCAyMDI1IDEwOjE4OjQxIEFNDQpUbzogTWFydGluIEJyYXVuDQpD
-YzogTWFyY3VzIEQuIExlZWNoOyB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDog
-W0VYVEVSTl0gW1VTUlAtdXNlcnNdIFJlOiBbRVhURVJOXSBSZTogUmU6IFtFWFRFUk5dIFJlOiBY
-MzEwIFJJTyBTZXNzaW9uIEluaXRpYWxpemF0aW9uIEZhaWx1cmUgKEVycm9yIGNvZGUgLTYzMTUw
-KQ0KDQoNCkhlbGxvIE1hcnRpbiwNCkhlbGxvIE1hcmN1cywNCg0KVGhlIFgzMTAgZG9lcyBub3Qg
-c2hvdyB1cCBhcyBhIFJJTyBkZXZpY2UsIGJ1dCByYXRoZXIgbGlrZSB0aGlzOg0KDQo0YTowMC4w
-IFNpZ25hbCBwcm9jZXNzaW5nIGNvbnRyb2xsZXI6IE5hdGlvbmFsIEluc3RydW1lbnRzIFBYSWUv
-UENJZSBEZXZpY2UgKHJldiBmZikgKHByb2ctaWYgZmYpDQogICAgISEhIFVua25vd24gaGVhZGVy
-IHR5cGUgN2YNCiAgICBLZXJuZWwgZHJpdmVyIGluIHVzZTogbml1c3Jwcmlvaw0KICAgIEtlcm5l
-bCBtb2R1bGVzOiBuaXVzcnByaW9rDQoNClRoaXMgc2VlbXMgYWxyZWFkeSBwcm9ibGVtYXRpYyAo
-PykNCg0KVGhlIG5pc3JwcmlvcnBjIHNlcnZlciBzZWVtcyB0byBiZSBydW5uaW5nIGZpbmU6DQoN
-CmduYkB4Z29zcy1ob3N0On4kIHN1ZG8gc3lzdGVtY3RsIHN0YXR1cyBuaXVzcnByaW9ycGMNCuKX
-jyBuaXVzcnByaW9ycGMuc2VydmljZSAtIExTQjogTmF0aW9uYWwgSW5zdHJ1bWVudHMgVVNSUCBS
-SU8gU2VydmljZQ0KICAgICBMb2FkZWQ6IGxvYWRlZCAoL2V0Yy9pbml0LmQvbml1c3JwcmlvcnBj
-OyBnZW5lcmF0ZWQpDQogICAgIEFjdGl2ZTogYWN0aXZlIChydW5uaW5nKSBzaW5jZSBNb24gMjAy
-NS0wMS0yNyAwOTozNzoyMSBDRVQ7IDIzbWluIGFnbw0KICAgICAgIERvY3M6IG1hbjpzeXN0ZW1k
-LXN5c3YtZ2VuZXJhdG9yKDgpDQogICAgICBUYXNrczogNCAobGltaXQ6IDE1MzI1MikNCiAgICAg
-TWVtb3J5OiA5OC42TQ0KICAgICAgICBDUFU6IDEzLjg3MnMNCiAgICAgQ0dyb3VwOiAvc3lzdGVt
-LnNsaWNlL25pdXNycHJpb3JwYy5zZXJ2aWNlDQogICAgICAgICAgICAg4pSU4pSAMTYzMSAvdXNy
-L3NiaW4vbml1c3JwcmlvcnBjIC0tZGFlbW9uDQoNCkphbiAyNyAwOTozNzoyMSB4Z29zcy1ob3N0
-IHN5c3RlbWRbMV06IFN0YXJ0aW5nIExTQjogTmF0aW9uYWwgSW5zdHJ1bWVudHMgVVNSUCBSSU8g
-U2VydmljZS4uLg0KSmFuIDI3IDA5OjM3OjIxIHhnb3NzLWhvc3Qgc3lzdGVtZFsxXTogU3RhcnRl
-ZCBMU0I6IE5hdGlvbmFsIEluc3RydW1lbnRzIFVTUlAgUklPIFNlcnZpY2UuDQoNCllvdSBhbHNv
-IG1lbnRpb25lZCB0aGF0IHRoZSBYMzEwIG5lZWRzIHRvIGJlIHBvd2VyZWQgb24gYmVmb3JlIHRo
-ZSBob3N0IHN5c3RlbS4NCkkgaGF2ZSBvZiBjb3Vyc2UgZG9uZSB0aGlzIC0gc2luY2UgdG8gbXkg
-a25vd2xlZGdlIGhvdCBwbHVnZ2luZyBpcyBub3QgcG9zc2libGUgaW4gdGhlIGNhc2Ugb2YgUENJ
-ZS4NCg0KUnVubmluZyB1aGRfdXNycF9wcm9iZSBhcyByb290IGRvZXNuJ3QgY2hhbmdlIGFueXRo
-aW5nLg0KDQpJIGFtIG9rYXkgd2l0aCB0cnlpbmcgb3V0IHRoZSAxMEdiRSBpbnN0ZWFkLCBidXQg
-SSBhbSBub3QgYWJsZSB0byBpbnRlcmFjdCB3aXRoIHRoZSBkZXZpY2UgdGhhdCB3YXkuDQpJIGNh
-bid0IHNlZW0gdG8gc3BlY2lmeSBhbiBJUCBvciBsb2FkIGEgZmlybXdhcmUgaW1hZ2UgdGhpcyB3
-YXkuIEkgdHJpZWQ6DQoNCmduYkB4Z29zcy1ob3N0On4kIHVoZF9pbWFnZV9sb2FkZXIgLS1hcmdz
-PSJ0eXBlPXgzMDAsYWRkcj0xOTIuMTY4LjEwLjIsZnBnYT1IRyINCltJTkZPXSBbVUhEXSBsaW51
-eDsgR05VIEMrKyB2ZXJzaW9uIDExLjQuMDsgQm9vc3RfMTA3NDAwOyBVSERfNC43LjAuMC0wdWJ1
-bnR1MX5qYW1teTENCk5vIGFwcGxpY2FibGUgVUhEIGRldmljZXMgZm91bmQNCg0KQW55IGlkZWEg
-aG93IHRvIHByb2NlZWQ/IENhbid0IHNlZW0gdG8gZ2V0IHRoZSBkZXZpY2UgcnVubmluZyB2aWEg
-UENJZSwgYW5kIHZpYSAxMEdiRSBJIGNhbid0IGludGVyYWN0IHdpdGggdGhlIGRldmljZSBlaXRo
-ZXIuDQpJIHdpbGwgcHJvdmlkZSB0aGUgZGV0YWlscyBpbiB0aGUgR2l0aHViIGlzc3VlIHNob3J0
-bHkuDQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KRnJvbTogTWFydGlu
-IEJyYXVuIDxtYXJ0aW4uYnJhdW5AZXR0dXMuY29tPg0KU2VudDogRnJpZGF5LCBKYW51YXJ5IDI0
-LCAyMDI1IDEyOjE5OjAwIFBNDQpUbzogSGVpbnosIERvbWluaWsNCkNjOiBNYXJjdXMgRC4gTGVl
-Y2g7IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBbRVhURVJOXSBSZTogW1VT
-UlAtdXNlcnNdIFJlOiBbRVhURVJOXSBSZTogWDMxMCBSSU8gU2Vzc2lvbiBJbml0aWFsaXphdGlv
-biBGYWlsdXJlIChFcnJvciBjb2RlIC02MzE1MCkNCg0KRG9taW5paywNCg0KY2FuIHlvdSBwcm92
-aWRlIGFzIG11Y2ggaW5mbyBhcyB5b3UgY2FuIGhlcmU6IGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1
-c1Jlc2VhcmNoL3VoZC9pc3N1ZXMvODE4Pw0KDQpMaWtlIE1hcmN1cyBzYWlkLCB0aGUgUENJZSBp
-bnRlcmZhY2UgaXMgbm90IHVzZWQgYSBsb3QgKGV4Y2VwdCBieSBMYWJWaWV3IHVzZXJzKSwgc28g
-aWYgeW91IGNhbiB1c2UgMTAgR2JFIGluc3RlYWQgSSByZWNvbW1lbmQgZG9pbmcgdGhhdCAodGhh
-dCBhbHNvIGFsbG93cyB5b3UgdG8gZG8gMngyMDAgTXNwcyBzdHJlYW1pbmcsIGlmIHlvdSBoYXZl
-IHR3byBwb3J0cykuDQoNCi0tTQ0KDQpPbiBXZWQsIEphbiAyMiwgMjAyNSBhdCAyOjU44oCvUE0g
-SGVpbnosIERvbWluaWsgPGRvbWluaWsuaGVpbnpAaC1kYS5kZTxtYWlsdG86ZG9taW5pay5oZWlu
-ekBoLWRhLmRlPj4gd3JvdGU6DQoNCkkgZm9sbG93ZWQgdGhlIHN0ZXBzIGluIHRoZSBndWlkZSB5
-b3UgbGlua2VkLCAtIGhvd2V2ZXIsIEkgc3RpbGwgaGF2ZSB0aGUgaXNzdWUuDQoNClRoZSB1aGQg
-ZHJpdmVycyBhcmUgaW5zdGFsbGVkLCBhbmQgdGhlIG5pdXNwcmlvcnBjIHNlcnZpY2UgaXMgcnVu
-bmluZy4gSG93ZXZlciwgSSBzdGlsbCB0aGUgdGhlIFJJTyBzZXNzaW9uIGluaXRpYWxpemF0aW9u
-IGZhaWx1cmUuDQoNCg0KQW55dGhpbmcgZWxzZSBJIGNvdWxkIHRyeT8gSSBzdGlsbCBkb24ndCB1
-bmRlcnN0YW5kIHdoYXQgaXMgdGhlIGNhdXNlIGZvciB0aGlzLg0KDQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXw0KRnJvbTogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdt
-YWlsLmNvbTxtYWlsdG86cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+Pg0KU2VudDogVHVlc2RheSwg
-SmFudWFyeSAyMSwgMjAyNSA4OjMyOjM5IFBNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogW0VYVEVSTl0g
-W1VTUlAtdXNlcnNdIFJlOiBYMzEwIFJJTyBTZXNzaW9uIEluaXRpYWxpemF0aW9uIEZhaWx1cmUg
-KEVycm9yIGNvZGUgLTYzMTUwKQ0KDQpPbiAyMS8wMS8yMDI1IDA5OjI2LCBIZWlueiwgRG9taW5p
-ayB3cm90ZToNCg0KSSdtIGV4cGVyaWVuY2luZyBhbiBpbml0aWFsaXphdGlvbiBpc3N1ZSB3aXRo
-IG15IEV0dHVzIFgzMTAgVVNSUCBkZXZpY2UuDQoNCk15IHNldHVwIGNvbnNpc3RzIG9mIGFuIEV0
-dHVzIFgzMTAgY29ubmVjdGVkIHRocm91Z2ggYSBQQ0llIENhcmQgdXNpbmcgYSBNb2xleCBjYWJs
-ZSB0byBteSBMaW51eCBtYWNoaW5lLg0KDQpJJ20gcnVubmluZyBVYnVudHUgd2l0aCBrZXJuZWwg
-dmVyc2lvbiA2LjguMC01MS1nZW5lcmljIGFuZCBoYXZlIGluc3RhbGxlZCBhbGwgdGhlIG5lY2Vz
-c2FyeSBVSEQgcGFja2FnZXMgb24gdGhlIHN5c3RlbS4NCg0KDQpUaGUgWDMxMCBpcyBwcm9wZXJs
-eSBkZXRlY3RlZCB3aGVuIHJ1bm5pbmcgdWhkX2ZpbmRfZGV2aWNlcywgYnV0IGF0dGVtcHRpbmcg
-dG8gcHJvYmUgdGhlIGRldmljZSB3aXRoIHVoZF91c3JwX3Byb2JlIHJlc3VsdHMgaW4gYSBSSU8g
-c2Vzc2lvbiBpbml0aWFsaXphdGlvbiBlcnJvci4NCkkgYXR0YWNoZWQgdGhlIGVycm9yIG91dHB1
-dCBiZWxvdy4NCldoYXQgaXMgY2F1c2luZyB0aGlzIFJJTyBzZXNzaW9uIGluaXRpYWxpemF0aW9u
-IGZhaWx1cmUgYW5kIGhvdyBjYW4gaXQgYmUgcmVzb2x2ZWQ/DQoNCmduYkB4Z29zcy1ob3N0On4v
-c3JzUkFOX1Byb2plY3QvYnVpbGQ0YWM1MzAwL2FwcHMvZ25iJCB1aGRfZmluZF9kZXZpY2VzDQpb
-SU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiAxMS40LjA7IEJvb3N0XzEwNzQwMDsg
-VUhEXzQuNy4wLjAtMHVidW50dTF+amFtbXkxDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KLS0gVUhEIERldmljZSAwDQotLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRGV2aWNlIEFkZHJlc3M6DQogICAg
-c2VyaWFsOg0KICAgIGZwZ2E6IEhHDQogICAgbmFtZToNCiAgICBwcm9kdWN0OiBYMzEwDQogICAg
-cmVzb3VyY2U6IFJJTzANCiAgICB0eXBlOiB4MzAwDQoNCmduYkB4Z29zcy1ob3N0On4vc3JzUkFO
-X1Byb2plY3QvYnVpbGQ0YWM1MzAwL2FwcHMvZ25iJCB1aGRfdXNycF9wcm9iZQ0KW0lORk9dIFtV
-SERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gMTEuNC4wOyBCb29zdF8xMDc0MDA7IFVIRF80Ljcu
-MC4wLTB1YnVudHUxfmphbW15MQ0KW0lORk9dIFtYMzAwXSBYMzAwIGluaXRpYWxpemF0aW9uIHNl
-cXVlbmNlLi4uDQpbSU5GT10gW1gzMDBdIENvbm5lY3RpbmcgdG8gbml1c3JwcmlvcnBjIGF0IGxv
-Y2FsaG9zdDo1NDQ0Li4uDQpbSU5GT10gW1gzMDBdIFVzaW5nIExWQklUWCBiaXRmaWxlIC91c3Iv
-c2hhcmUvdWhkL2ltYWdlcy91c3JwX3gzMTBfZnBnYV9IRy5sdmJpdHgNCkVycm9yOiBSdW50aW1l
-RXJyb3I6IHgzMDBfaW1wbDogQ291bGQgbm90IGluaXRpYWxpemUgUklPIHNlc3Npb24uIFVua25v
-d24gZXJyb3IuIChFcnJvciBjb2RlIC02MzE1MCkNCg0KDQoNCg0KDQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
-LS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
-QGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+
-DQoNCg0KVGhlIHByb2NlZHVyZXMgZm9yIG1ha2luZyB0aGlzIHdvcmsgYXJlIGhlcmU6DQoNCmh0
-dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3VzcnBfeDN4MC5odG1sI3gzeDBfaHdf
-cGNpZQ0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxt
-YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
-IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVz
-ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg==
+On 27/01/2025 04:18, Heinz, Dominik wrote:
+> Hello Martin,
+> Hello Marcus,
+>
+> The X310 does not show up as a RIO device, but rather like this:
+>
+> 4a:00.0 Signal processing controller: National Instruments PXIe/PCIe=20
+> Device (rev ff) (prog-if ff)
+> =C2=A0=C2=A0=C2=A0 !!! Unknown header type 7f
+> =C2=A0=C2=A0=C2=A0 Kernel driver in use: niusrpriok
+> =C2=A0=C2=A0=C2=A0 Kernel modules: niusrpriok
+>
+> This seems already problematic (?)
+>
+> The nisrpriorpc server seems to be running fine:
+>
+> gnb@xgoss-host:~$ sudo systemctl status niusrpriorpc
+> =E2=97=8F niusrpriorpc.service - LSB: National Instruments USRP RIO Ser=
+vice
+> =C2=A0=C2=A0=C2=A0=C2=A0 Loaded: loaded (/etc/init.d/niusrpriorpc; gene=
+rated)
+> =C2=A0=C2=A0=C2=A0=C2=A0 Active: active (running) since Mon 2025-01-27 =
+09:37:21 CET; 23min ago
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Docs: man:systemd-sysv-generator(8=
+)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Tasks: 4 (limit: 153252)
+> =C2=A0=C2=A0=C2=A0=C2=A0 Memory: 98.6M
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CPU: 13.872s
+> =C2=A0=C2=A0=C2=A0=C2=A0 CGroup: /system.slice/niusrpriorpc.service
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =E2=94=94=E2=94=801631 /usr/sbin/niusrpriorpc --daemon
+>
+> Jan 27 09:37:21 xgoss-host systemd[1]: Starting LSB: National=20
+> Instruments USRP RIO Service...
+> Jan 27 09:37:21 xgoss-host systemd[1]: Started LSB: National=20
+> Instruments USRP RIO Service.
+>
+> You also mentioned that the X310 needs to be powered on before the=20
+> host system.
+> I have of course done this - since to my knowledge hot plugging is not=20
+> possible in the case of PCIe.
+>
+> Running uhd_usrp_probe as root doesn't change anything.
+>
+> I am okay with trying out the 10GbE instead, but I am not able to=20
+> interact with the device that way.
+> I can't seem to specify an IP or load a firmware image this way. I trie=
+d:
+>
+> gnb@xgoss-host:~$ uhd_image_loader=20
+> --args=3D"type=3Dx300,addr=3D192.168.10.2,fpga=3DHG"
+> [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;=20
+> UHD_4.7.0.0-0ubuntu1~jammy1
+> No applicable UHD devices found
+>
+> Any idea how to proceed? Can't seem to get the device running via=20
+> PCIe, and via 10GbE I can't interact with the device either.
+> I will provide the details in the Github issue shortly.
+>
+For 10Gbit, you have to use (for the HG image that ships by default) the=20
+SFP1 port, and the address is 192.168.40.2
 
---_000_1b4c4d5ab84449c6a8aca889a6c264d8hdade_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+For dual 10Gbit, you have to use the XG image, which results in SFP0=20
+having an address of 192.168.30.2, and SFP 1
+ =C2=A0 having an address of 192.168.40.2
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHN0eWxlIHR5cGU9
-InRleHQvY3NzIiBzdHlsZT0iZGlzcGxheTpub25lOyI+PCEtLSBQIHttYXJnaW4tdG9wOjA7bWFy
-Z2luLWJvdHRvbTowO30gLS0+PC9zdHlsZT4NCjxkaXYgaWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVy
-IiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Y29sb3I6IzAwMDAwMDtmb250LWZhbWlseTpDYWxpYnJp
-LEhlbHZldGljYSxzYW5zLXNlcmlmOyIgZGlyPSJsdHIiPg0KPHA+T2theSwgc2VlbXMgbGlrZSBJ
-IGhhZCB0byBtYW51YWxseSBzZXQgdGhlIElQIGFkZHJlc3NlcyBmb3IgdGhlIGludGVyZmFjZXMu
-IE5vdyBJIGNhbiBpbnRlcmFjdCBwZXJmZWN0bHkgd2l0aCB0aGUgZGV2aWNlLjwvcD4NCjxwPlRo
-bywgSSBkb24ndCBrbm93IGhvdyB0byBjb25maWd1cmUgaXQgdG8gdXNlIGJvdGggTGlua3Mgc2lt
-dWx0YW5lb3VzbHksIGxpa2UgeW91IHN1Z2dlc3RlZCAodG8gZG8NCjxzcGFuPjJ4MjAwIE1zcHMg
-c3RyZWFtaW5nPC9zcGFuPikuPGJyPg0KPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+QW55IGFkdmlj
-ZSBvbiB0aGF0IHdvdWxkIGJlIGFwcHJlY2lhdGVkIDopPGJyPg0KPC9wPg0KPC9kaXY+DQo8aHIg
-c3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5kZXg9Ii0xIj4NCjxk
-aXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJDYWxpYnJpLCBzYW5z
-LXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOjExcHQiIGNvbG9yPSIjMDAwMDAwIj48Yj5Gcm9tOjwv
-Yj4gSGVpbnosIERvbWluaWsgJmx0O2RvbWluaWsuaGVpbnpAaC1kYS5kZSZndDs8YnI+DQo8Yj5T
-ZW50OjwvYj4gTW9uZGF5LCBKYW51YXJ5IDI3LCAyMDI1IDEwOjMyOjI3IEFNPGJyPg0KPGI+VG86
-PC9iPiBNYXJ0aW4gQnJhdW48YnI+DQo8Yj5DYzo8L2I+IE1hcmN1cyBELiBMZWVjaDsgdXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW0VYVEVSTl0gW1VTUlAt
-dXNlcnNdIFJlOiBbRVhURVJOXSBSZTogW0VYVEVSTl0gUmU6IFJlOiBbRVhURVJOXSBSZTogWDMx
-MCBSSU8gU2Vzc2lvbiBJbml0aWFsaXphdGlvbiBGYWlsdXJlIChFcnJvciBjb2RlIC02MzE1MCk8
-L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2PjxzdHlsZSB0eXBlPSJ0ZXh0
-L2NzcyIgc3R5bGU9ImRpc3BsYXk6bm9uZTsiPjwhLS0gUCB7bWFyZ2luLXRvcDowO21hcmdpbi1i
-b3R0b206MDt9IC0tPjwvc3R5bGU+DQo8ZGl2IGlkPSJkaXZ0YWdkZWZhdWx0d3JhcHBlciIgc3R5
-bGU9ImZvbnQtc2l6ZToxMnB0O2NvbG9yOiMwMDAwMDA7Zm9udC1mYW1pbHk6Q2FsaWJyaSxIZWx2
-ZXRpY2Esc2Fucy1zZXJpZjsiIGRpcj0ibHRyIj4NCjxwPldoZW4gSSBydW4gdGhlIGltYWdlIGxv
-YWRlciB3aXRob3V0IHRoZSBJUCBhZGRyZXNzIHBhcmFtZXRlciBpdCBzZWVtcyB0byBiZSBmbGFz
-aGluZyB0aGUgY29ycmVjdGx5LjwvcD4NCjxwPjxicj4NCjwvcD4NCjxwPjxmb250IGZhY2U9IkNh
-bGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWYiIHNpemU9IjMiIGNvbG9yPSJibGFjayIgc3R5bGU9
-ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYsIHNlcmlmLCAmcXVv
-dDtFbW9qaUZvbnQmcXVvdDs7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7IiBkaXI9Imx0
-ciIgaWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVyIj51aGRfaW1hZ2VfbG9hZGVyIC0tYXJncz0mcXVv
-dDt0eXBlPXgzMDAmcXVvdDs8L3NwYW4+PC9mb250PjwvcD4NCjxwPjxmb250IGZhY2U9IkNhbGli
-cmksSGVsdmV0aWNhLHNhbnMtc2VyaWYiIHNpemU9IjMiIGNvbG9yPSJibGFjayIgc3R5bGU9ImZv
-bnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYsIHNlcmlmLCAmcXVvdDtF
-bW9qaUZvbnQmcXVvdDs7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7IiBkaXI9Imx0ciIg
-aWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVyIj48YnI+DQo8L3NwYW4+PC9mb250PjwvcD4NCjxwPjxm
-b250IGZhY2U9IkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWYiIHNpemU9IjMiIGNvbG9yPSJi
-bGFjayIgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYs
-IHNlcmlmLCAmcXVvdDtFbW9qaUZvbnQmcXVvdDs7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEy
-cHQ7IiBkaXI9Imx0ciIgaWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVyIj5Ib3dldmVyLCBJIGRvbid0
-IHNlZSBob3cgSSBjYW4gY29uZmlndXJlIHRoZSBJUCBhZGRyZXNzDQogdG8gYmUgYWJsZSB0byBp
-bnRlcmFjdCB2aWEgdGhlIDEwR2JFIGxpbmtzICg/KTxicj4NCjwvc3Bhbj48L2ZvbnQ+PC9wPg0K
-PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5k
-ZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJD
-YWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOjExcHQiIGNvbG9yPSIjMDAwMDAw
-Ij48Yj5Gcm9tOjwvYj4gSGVpbnosIERvbWluaWsgJmx0O2RvbWluaWsuaGVpbnpAaC1kYS5kZSZn
-dDs8YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBKYW51YXJ5IDI3LCAyMDI1IDEwOjE4OjQxIEFN
-PGJyPg0KPGI+VG86PC9iPiBNYXJ0aW4gQnJhdW48YnI+DQo8Yj5DYzo8L2I+IE1hcmN1cyBELiBM
-ZWVjaDsgdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW0VY
-VEVSTl0gW1VTUlAtdXNlcnNdIFJlOiBbRVhURVJOXSBSZTogUmU6IFtFWFRFUk5dIFJlOiBYMzEw
-IFJJTyBTZXNzaW9uIEluaXRpYWxpemF0aW9uIEZhaWx1cmUgKEVycm9yIGNvZGUgLTYzMTUwKTwv
-Zm9udD4NCjxkaXY+Jm5ic3A7PC9kaXY+DQo8L2Rpdj4NCjxkaXY+PHN0eWxlIHR5cGU9InRleHQv
-Y3NzIiBzdHlsZT0iZGlzcGxheTpub25lOyI+PCEtLSBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJv
-dHRvbTowO30gLS0+PC9zdHlsZT4NCjxkaXYgaWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVyIiBzdHls
-ZT0iZm9udC1zaXplOjEycHQ7Y29sb3I6IzAwMDAwMDtmb250LWZhbWlseTpDYWxpYnJpLEhlbHZl
-dGljYSxzYW5zLXNlcmlmOyIgZGlyPSJsdHIiPg0KPHA+PC9wPg0KPGRpdj5IZWxsbyBNYXJ0aW4s
-PGJyPg0KSGVsbG8gTWFyY3VzLDxicj4NCjxicj4NClRoZSBYMzEwIGRvZXMgbm90IHNob3cgdXAg
-YXMgYSBSSU8gZGV2aWNlLCBidXQgcmF0aGVyIGxpa2UgdGhpczo8YnI+DQo8YnI+DQo0YTowMC4w
-IFNpZ25hbCBwcm9jZXNzaW5nIGNvbnRyb2xsZXI6IE5hdGlvbmFsIEluc3RydW1lbnRzIFBYSWUv
-UENJZSBEZXZpY2UgKHJldiBmZikgKHByb2ctaWYgZmYpPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7
-ICEhISBVbmtub3duIGhlYWRlciB0eXBlIDdmPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7IEtlcm5l
-bCBkcml2ZXIgaW4gdXNlOiBuaXVzcnByaW9rPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7IEtlcm5l
-bCBtb2R1bGVzOiBuaXVzcnByaW9rPGJyPg0KPGJyPg0KVGhpcyBzZWVtcyBhbHJlYWR5IHByb2Js
-ZW1hdGljICg/KTxicj4NCjxicj4NClRoZSBuaXNycHJpb3JwYyBzZXJ2ZXIgc2VlbXMgdG8gYmUg
-cnVubmluZyBmaW5lOjxicj4NCjxicj4NCmduYkB4Z29zcy1ob3N0On4kIHN1ZG8gc3lzdGVtY3Rs
-IHN0YXR1cyBuaXVzcnByaW9ycGM8YnI+DQril48gbml1c3JwcmlvcnBjLnNlcnZpY2UgLSBMU0I6
-IE5hdGlvbmFsIEluc3RydW1lbnRzIFVTUlAgUklPIFNlcnZpY2U8YnI+DQombmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsgTG9hZGVkOiBsb2FkZWQgKC9ldGMvaW5pdC5kL25pdXNycHJpb3JwYzsgZ2Vu
-ZXJhdGVkKTxicj4NCiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBBY3RpdmU6IGFjdGl2ZSAocnVu
-bmluZykgc2luY2UgTW9uIDIwMjUtMDEtMjcgMDk6Mzc6MjEgQ0VUOyAyM21pbiBhZ288YnI+DQom
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgRG9jczogbWFuOnN5c3RlbWQtc3lz
-di1nZW5lcmF0b3IoOCk8YnI+DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgVGFza3M6
-IDQgKGxpbWl0OiAxNTMyNTIpPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IE1lbW9yeTog
-OTguNk08YnI+DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgQ1BV
-OiAxMy44NzJzPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IENHcm91cDogL3N5c3RlbS5z
-bGljZS9uaXVzcnByaW9ycGMuc2VydmljZTxicj4NCiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyDilJTilIAxNjMx
-IC91c3Ivc2Jpbi9uaXVzcnByaW9ycGMgLS1kYWVtb248YnI+DQo8YnI+DQpKYW4gMjcgMDk6Mzc6
-MjEgeGdvc3MtaG9zdCBzeXN0ZW1kWzFdOiBTdGFydGluZyBMU0I6IE5hdGlvbmFsIEluc3RydW1l
-bnRzIFVTUlAgUklPIFNlcnZpY2UuLi48YnI+DQpKYW4gMjcgMDk6Mzc6MjEgeGdvc3MtaG9zdCBz
-eXN0ZW1kWzFdOiBTdGFydGVkIExTQjogTmF0aW9uYWwgSW5zdHJ1bWVudHMgVVNSUCBSSU8gU2Vy
-dmljZS48YnI+DQo8YnI+DQpZb3UgYWxzbyBtZW50aW9uZWQgdGhhdCB0aGUgWDMxMCBuZWVkcyB0
-byBiZSBwb3dlcmVkIG9uIGJlZm9yZSB0aGUgaG9zdCBzeXN0ZW0uPGJyPg0KSSBoYXZlIG9mIGNv
-dXJzZSBkb25lIHRoaXMgLSBzaW5jZSB0byBteSBrbm93bGVkZ2UgaG90IHBsdWdnaW5nIGlzIG5v
-dCBwb3NzaWJsZSBpbiB0aGUgY2FzZSBvZiBQQ0llLjxicj4NCjxicj4NClJ1bm5pbmcgdWhkX3Vz
-cnBfcHJvYmUgYXMgcm9vdCBkb2Vzbid0IGNoYW5nZSBhbnl0aGluZy48YnI+DQo8YnI+DQpJIGFt
-IG9rYXkgd2l0aCB0cnlpbmcgb3V0IHRoZSAxMEdiRSBpbnN0ZWFkLCBidXQgSSBhbSBub3QgYWJs
-ZSB0byBpbnRlcmFjdCB3aXRoIHRoZSBkZXZpY2UgdGhhdCB3YXkuPGJyPg0KSSBjYW4ndCBzZWVt
-IHRvIHNwZWNpZnkgYW4gSVAgb3IgbG9hZCBhIGZpcm13YXJlIGltYWdlIHRoaXMgd2F5LiBJIHRy
-aWVkOjxicj4NCjxicj4NCmduYkB4Z29zcy1ob3N0On4kIHVoZF9pbWFnZV9sb2FkZXIgLS1hcmdz
-PSZxdW90O3R5cGU9eDMwMCxhZGRyPTE5Mi4xNjguMTAuMixmcGdhPUhHJnF1b3Q7PGJyPg0KW0lO
-Rk9dIFtVSERdIGxpbnV4OyBHTlUgQyYjNDM7JiM0MzsgdmVyc2lvbiAxMS40LjA7IEJvb3N0XzEw
-NzQwMDsgVUhEXzQuNy4wLjAtMHVidW50dTF+amFtbXkxPGJyPg0KTm8gYXBwbGljYWJsZSBVSEQg
-ZGV2aWNlcyBmb3VuZDxicj4NCjxicj4NCkFueSBpZGVhIGhvdyB0byBwcm9jZWVkPyBDYW4ndCBz
-ZWVtIHRvIGdldCB0aGUgZGV2aWNlIHJ1bm5pbmcgdmlhIFBDSWUsIGFuZCB2aWEgMTBHYkUgSSBj
-YW4ndCBpbnRlcmFjdCB3aXRoIHRoZSBkZXZpY2UgZWl0aGVyLjxicj4NCkkgd2lsbCBwcm92aWRl
-IHRoZSBkZXRhaWxzIGluIHRoZSBHaXRodWIgaXNzdWUgc2hvcnRseS48YnI+DQo8YnI+DQo8L2Rp
-dj4NCjxicj4NCjxwPjwvcD4NCjwvZGl2Pg0KPGhyIHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9j
-azt3aWR0aDo5OCUiIHRhYmluZGV4PSItMSI+DQo8ZGl2IGlkPSJkaXZScGx5RndkTXNnIiBkaXI9
-Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgc3R5bGU9ImZvbnQtc2l6ZTox
-MXB0IiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+IE1hcnRpbiBCcmF1biAmbHQ7bWFydGlu
-LmJyYXVuQGV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TZW50OjwvYj4gRnJpZGF5LCBKYW51YXJ5IDI0
-LCAyMDI1IDEyOjE5OjAwIFBNPGJyPg0KPGI+VG86PC9iPiBIZWlueiwgRG9taW5pazxicj4NCjxi
-PkNjOjwvYj4gTWFyY3VzIEQuIExlZWNoOyB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4N
-CjxiPlN1YmplY3Q6PC9iPiBbRVhURVJOXSBSZTogW1VTUlAtdXNlcnNdIFJlOiBbRVhURVJOXSBS
-ZTogWDMxMCBSSU8gU2Vzc2lvbiBJbml0aWFsaXphdGlvbiBGYWlsdXJlIChFcnJvciBjb2RlIC02
-MzE1MCk8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9
-Imx0ciI+DQo8ZGl2PkRvbWluaWssPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5jYW4g
-eW91IHByb3ZpZGUgYXMgbXVjaCBpbmZvIGFzIHlvdSBjYW4gaGVyZTogPGEgaHJlZj0iaHR0cHM6
-Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2lzc3Vlcy84MTgiPg0KaHR0cHM6Ly9naXRo
-dWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2lzc3Vlcy84MTg8L2E+PzwvZGl2Pg0KPGRpdj48YnI+
-DQo8L2Rpdj4NCjxkaXY+TGlrZSBNYXJjdXMgc2FpZCwgdGhlIFBDSWUgaW50ZXJmYWNlIGlzIG5v
-dCB1c2VkIGEgbG90IChleGNlcHQgYnkgTGFiVmlldyB1c2VycyksIHNvIGlmIHlvdSBjYW4gdXNl
-IDEwIEdiRSBpbnN0ZWFkIEkgcmVjb21tZW5kIGRvaW5nIHRoYXQgKHRoYXQgYWxzbyBhbGxvd3Mg
-eW91IHRvIGRvIDJ4MjAwIE1zcHMgc3RyZWFtaW5nLCBpZiB5b3UgaGF2ZSB0d28gcG9ydHMpLjwv
-ZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+LS1NPGJyPg0KPC9kaXY+DQo8L2Rpdj4NCjxi
-cj4NCjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIGdtYWlsX3F1b3RlX2NvbnRhaW5lciI+DQo8ZGl2
-IGRpcj0ibHRyIiBjbGFzcz0iZ21haWxfYXR0ciI+T24gV2VkLCBKYW4gMjIsIDIwMjUgYXQgMjo1
-OOKAr1BNIEhlaW56LCBEb21pbmlrICZsdDs8YSBocmVmPSJtYWlsdG86ZG9taW5pay5oZWluekBo
-LWRhLmRlIj5kb21pbmlrLmhlaW56QGgtZGEuZGU8L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rpdj4N
-CjxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBw
-eCAwLjhleDtib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTtwYWRkaW5nLWxl
-ZnQ6MWV4Ij4NCjx1PjwvdT4NCjxkaXY+DQo8ZGl2IGlkPSJtXy04MTAxMjQwNDE3MjcwOTg0NjVk
-aXZ0YWdkZWZhdWx0d3JhcHBlciIgc3R5bGU9ImZvbnQtc2l6ZToxMnB0O2NvbG9yOnJnYigwLDAs
-MCk7Zm9udC1mYW1pbHk6Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZiIgZGlyPSJsdHIiPg0K
-PHA+SSBmb2xsb3dlZCB0aGUgc3RlcHMgaW4gdGhlIGd1aWRlIHlvdSBsaW5rZWQsIC0gaG93ZXZl
-ciwgSSBzdGlsbCBoYXZlIHRoZSBpc3N1ZS48L3A+DQo8cD5UaGUgdWhkIGRyaXZlcnMgYXJlIGlu
-c3RhbGxlZCwgYW5kIHRoZSBuaXVzcHJpb3JwYyBzZXJ2aWNlIGlzIHJ1bm5pbmcuIEhvd2V2ZXIs
-IEkgc3RpbGwgdGhlIHRoZSBSSU8gc2Vzc2lvbiBpbml0aWFsaXphdGlvbiBmYWlsdXJlLjwvcD4N
-CjxwPjxicj4NCjwvcD4NCjxwPkFueXRoaW5nIGVsc2UgSSBjb3VsZCB0cnk/IEkgc3RpbGwgZG9u
-J3QgdW5kZXJzdGFuZCB3aGF0IGlzIHRoZSBjYXVzZSBmb3IgdGhpcy48YnI+DQo8L3A+DQo8L2Rp
-dj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIj4NCjxkaXYgaWQ9
-Im1fLTgxMDEyNDA0MTcyNzA5ODQ2NWRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNl
-PSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOjExcHQiIGNvbG9yPSIjMDAw
-MDAwIj48Yj5Gcm9tOjwvYj4gTWFyY3VzIEQuIExlZWNoICZsdDs8YSBocmVmPSJtYWlsdG86cGF0
-Y2h2b25icmF1bkBnbWFpbC5jb20iIHRhcmdldD0iX2JsYW5rIj5wYXRjaHZvbmJyYXVuQGdtYWls
-LmNvbTwvYT4mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IFR1ZXNkYXksIEphbnVhcnkgMjEsIDIwMjUg
-ODozMjozOSBQTTxicj4NCjxiPlRvOjwvYj4gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
-L2E+PGJyPg0KPGI+U3ViamVjdDo8L2I+IFtFWFRFUk5dIFtVU1JQLXVzZXJzXSBSZTogWDMxMCBS
-SU8gU2Vzc2lvbiBJbml0aWFsaXphdGlvbiBGYWlsdXJlIChFcnJvciBjb2RlIC02MzE1MCk8L2Zv
-bnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj5PbiAyMS8wMS8yMDI1
-IDA5OjI2LCBIZWlueiwgRG9taW5payB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5
-cGU9ImNpdGUiPg0KPGRpdiBpZD0ibV8tODEwMTI0MDQxNzI3MDk4NDY1ZGl2dGFnZGVmYXVsdHdy
-YXBwZXIiIHN0eWxlPSJmb250LXNpemU6MTJwdDtjb2xvcjpyZ2IoMCwwLDApO2ZvbnQtZmFtaWx5
-OkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGRpcj0ibHRyIj4NCjxwPjxzcGFuPkknbSBl
-eHBlcmllbmNpbmcgYW4gaW5pdGlhbGl6YXRpb24gaXNzdWUgd2l0aCBteSBFdHR1cyBYMzEwIFVT
-UlAgZGV2aWNlLjwvc3Bhbj48L3A+DQo8cD48c3Bhbj48c3Bhbj5NeSBzZXR1cCBjb25zaXN0cyBv
-ZiBhbiBFdHR1cyBYMzEwIGNvbm5lY3RlZCB0aHJvdWdoIGEgUENJZSBDYXJkIHVzaW5nIGEgTW9s
-ZXggY2FibGUgdG8gbXkgTGludXggbWFjaGluZS4NCjxicj4NCjwvc3Bhbj48L3NwYW4+PC9wPg0K
-PHA+PHNwYW4+PHNwYW4+SSdtIHJ1bm5pbmcgVWJ1bnR1IHdpdGgga2VybmVsIHZlcnNpb24gNi44
-LjAtNTEtZ2VuZXJpYyBhbmQgaGF2ZSBpbnN0YWxsZWQgYWxsIHRoZSBuZWNlc3NhcnkgVUhEIHBh
-Y2thZ2VzIG9uIHRoZSBzeXN0ZW0uPC9zcGFuPjwvc3Bhbj48L3A+DQo8cD48c3Bhbj48c3Bhbj48
-YnI+DQo8L3NwYW4+PC9zcGFuPjwvcD4NCjxwPjxzcGFuPjxzcGFuPjwvc3Bhbj48L3NwYW4+PC9w
-Pg0KPGRpdj5UaGUgWDMxMCBpcyBwcm9wZXJseSBkZXRlY3RlZCB3aGVuIHJ1bm5pbmcgPGNvZGU+
-dWhkX2ZpbmRfZGV2aWNlczwvY29kZT4sIGJ1dCBhdHRlbXB0aW5nIHRvIHByb2JlIHRoZSBkZXZp
-Y2Ugd2l0aA0KPGNvZGU+dWhkX3VzcnBfcHJvYmU8L2NvZGU+IHJlc3VsdHMgaW4gYSBSSU8gc2Vz
-c2lvbiBpbml0aWFsaXphdGlvbiBlcnJvci48L2Rpdj4NCjxkaXY+SSBhdHRhY2hlZCB0aGUgZXJy
-b3Igb3V0cHV0IGJlbG93LjwvZGl2Pg0KPGRpdj5XaGF0IGlzIGNhdXNpbmcgdGhpcyBSSU8gc2Vz
-c2lvbiBpbml0aWFsaXphdGlvbiBmYWlsdXJlIGFuZCBob3cgY2FuIGl0IGJlIHJlc29sdmVkPzwv
-ZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZh
-bWlseTpDb25zb2xhcyxDb3VyaWVyLG1vbm9zcGFjZSI+Z25iQHhnb3NzLWhvc3Q6fi9zcnNSQU5f
-UHJvamVjdC9idWlsZDRhYzUzMDAvYXBwcy9nbmIkIHVoZF9maW5kX2RldmljZXMNCjwvc3Bhbj48
-YnI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6Q29uc29sYXMsQ291cmllcixtb25vc3BhY2Ui
-PltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMmIzQzOyYjNDM7IHZlcnNpb24gMTEuNC4wOyBCb29z
-dF8xMDc0MDA7IFVIRF80LjcuMC4wLTB1YnVudHUxfmphbW15MTwvc3Bhbj48YnI+DQo8c3BhbiBz
-dHlsZT0iZm9udC1mYW1pbHk6Q29uc29sYXMsQ291cmllcixtb25vc3BhY2UiPi0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tPC9zcGFuPjxicj4NCjxzcGFu
-IHN0eWxlPSJmb250LWZhbWlseTpDb25zb2xhcyxDb3VyaWVyLG1vbm9zcGFjZSI+LS0gVUhEIERl
-dmljZSAwPC9zcGFuPjxicj4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpDb25zb2xhcyxDb3Vy
-aWVyLG1vbm9zcGFjZSI+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS08L3NwYW4+PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLENv
-dXJpZXIsbW9ub3NwYWNlIj5EZXZpY2UgQWRkcmVzczo8L3NwYW4+PGJyPg0KPHNwYW4gc3R5bGU9
-ImZvbnQtZmFtaWx5OkNvbnNvbGFzLENvdXJpZXIsbW9ub3NwYWNlIj4mbmJzcDsmbmJzcDsmbmJz
-cDsgc2VyaWFsOiA8L3NwYW4+PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFz
-LENvdXJpZXIsbW9ub3NwYWNlIj4mbmJzcDsmbmJzcDsmbmJzcDsgZnBnYTogSEc8L3NwYW4+PGJy
-Pg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLENvdXJpZXIsbW9ub3NwYWNlIj4m
-bmJzcDsmbmJzcDsmbmJzcDsgbmFtZTogPC9zcGFuPjxicj4NCjxzcGFuIHN0eWxlPSJmb250LWZh
-bWlseTpDb25zb2xhcyxDb3VyaWVyLG1vbm9zcGFjZSI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IHByb2R1
-Y3Q6IFgzMTA8L3NwYW4+PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLENv
-dXJpZXIsbW9ub3NwYWNlIj4mbmJzcDsmbmJzcDsmbmJzcDsgcmVzb3VyY2U6IFJJTzA8L3NwYW4+
-PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLENvdXJpZXIsbW9ub3NwYWNl
-Ij4mbmJzcDsmbmJzcDsmbmJzcDsgdHlwZTogeDMwMDwvc3Bhbj48L2Rpdj4NCjxkaXY+PGJyPg0K
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLENvdXJpZXIsbW9ub3NwYWNlIj5nbmJA
-eGdvc3MtaG9zdDp+L3Nyc1JBTl9Qcm9qZWN0L2J1aWxkNGFjNTMwMC9hcHBzL2duYiQgdWhkX3Vz
-cnBfcHJvYmUNCjwvc3Bhbj48YnI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6Q29uc29sYXMs
-Q291cmllcixtb25vc3BhY2UiPltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMmIzQzOyYjNDM7IHZl
-cnNpb24gMTEuNC4wOyBCb29zdF8xMDc0MDA7IFVIRF80LjcuMC4wLTB1YnVudHUxfmphbW15MTwv
-c3Bhbj48YnI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6Q29uc29sYXMsQ291cmllcixtb25v
-c3BhY2UiPltJTkZPXSBbWDMwMF0gWDMwMCBpbml0aWFsaXphdGlvbiBzZXF1ZW5jZS4uLjwvc3Bh
-bj48YnI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6Q29uc29sYXMsQ291cmllcixtb25vc3Bh
-Y2UiPltJTkZPXSBbWDMwMF0gQ29ubmVjdGluZyB0byBuaXVzcnByaW9ycGMgYXQgbG9jYWxob3N0
-OjU0NDQuLi48L3NwYW4+PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLENv
-dXJpZXIsbW9ub3NwYWNlIj5bSU5GT10gW1gzMDBdIFVzaW5nIExWQklUWCBiaXRmaWxlIC91c3Iv
-c2hhcmUvdWhkL2ltYWdlcy91c3JwX3gzMTBfZnBnYV9IRy5sdmJpdHg8L3NwYW4+PGJyPg0KPHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLENvdXJpZXIsbW9ub3NwYWNlIj5FcnJvcjog
-UnVudGltZUVycm9yOiB4MzAwX2ltcGw6IENvdWxkIG5vdCBpbml0aWFsaXplIFJJTyBzZXNzaW9u
-LiBVbmtub3duIGVycm9yLiAoRXJyb3IgY29kZSAtNjMxNTApPC9zcGFuPjwvZGl2Pg0KPGJyPg0K
-PC9kaXY+DQo8YnI+DQo8L2Rpdj4NCjxicj4NCjxmaWVsZHNldD48L2ZpZWxkc2V0Pg0KPHByZT5f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2Vy
-cyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+DQpUbyB1
-bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnMtbGVhdmVAbGlz
-dHMuZXR0dXMuY29tPC9hPg0KPC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQpUaGUgcHJvY2VkdXJlcyBm
-b3IgbWFraW5nIHRoaXMgd29yayBhcmUgaGVyZTo8YnI+DQo8YnI+DQo8YSBocmVmPSJodHRwczov
-L2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV91c3JwX3gzeDAuaHRtbCN4M3gwX2h3X3BjaWUi
-IHRhcmdldD0iX2JsYW5rIj5odHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV91c3Jw
-X3gzeDAuaHRtbCN4M3gwX2h3X3BjaWU8L2E+PGJyPg0KPGJyPg0KPGJyPg0KPC9kaXY+DQo8L2Rp
-dj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0K
-VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0
-bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNy
-cC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPC9ibG9ja3F1b3RlPg0KPC9k
-aXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_1b4c4d5ab84449c6a8aca889a6c264d8hdade_--
+>
+> -----------------------------------------------------------------------=
+-
+> *From:* Martin Braun <martin.braun@ettus.com>
+> *Sent:* Friday, January 24, 2025 12:19:00 PM
+> *To:* Heinz, Dominik
+> *Cc:* Marcus D. Leech; usrp-users@lists.ettus.com
+> *Subject:* [EXTERN] Re: [USRP-users] Re: [EXTERN] Re: X310 RIO Session=20
+> Initialization Failure (Error code -63150)
+> Dominik,
+>
+> can you provide as much info as you can here:=20
+> https://github.com/EttusResearch/uhd/issues/818?
+>
+> Like Marcus said, the PCIe interface is not used a lot (except by=20
+> LabView users), so if you can use 10 GbE instead I recommend doing=20
+> that (that also allows you to do 2x200 Msps streaming, if you have two=20
+> ports).
+>
+> --M
+>
+> On Wed, Jan 22, 2025 at 2:58=E2=80=AFPM Heinz, Dominik <dominik.heinz@h=
+-da.de>=20
+> wrote:
+>
+>     I followed the steps in the guide you linked, - however, I still
+>     have the issue.
+>
+>     The uhd drivers are installed, and the niuspriorpc service is
+>     running. However, I still the the RIO session initialization failur=
+e.
+>
+>
+>     Anything else I could try? I still don't understand what is the
+>     cause for this.
+>
+>     -------------------------------------------------------------------=
+-----
+>     *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+>     *Sent:* Tuesday, January 21, 2025 8:32:39 PM
+>     *To:* usrp-users@lists.ettus.com
+>     *Subject:* [EXTERN] [USRP-users] Re: X310 RIO Session
+>     Initialization Failure (Error code -63150)
+>     On 21/01/2025 09:26, Heinz, Dominik wrote:
+>>
+>>     I'm experiencing an initialization issue with my Ettus X310 USRP
+>>     device.
+>>
+>>     My setup consists of an Ettus X310 connected through a PCIe Card
+>>     using a Molex cable to my Linux machine.
+>>
+>>     I'm running Ubuntu with kernel version 6.8.0-51-generic and have
+>>     installed all the necessary UHD packages on the system.
+>>
+>>
+>>     The X310 is properly detected when running |uhd_find_devices|,
+>>     but attempting to probe the device with |uhd_usrp_probe| results
+>>     in a RIO session initialization error.
+>>     I attached the error output below.
+>>     What is causing this RIO session initialization failure and how
+>>     can it be resolved?
+>>
+>>     gnb@xgoss-host:~/srsRAN_Project/build4ac5300/apps/gnb$
+>>     uhd_find_devices
+>>     [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
+>>     UHD_4.7.0.0-0ubuntu1~jammy1
+>>     --------------------------------------------------
+>>     -- UHD Device 0
+>>     --------------------------------------------------
+>>     Device Address:
+>>     serial:
+>>     fpga: HG
+>>     name:
+>>     product: X310
+>>     resource: RIO0
+>>     type: x300
+>>
+>>     gnb@xgoss-host:~/srsRAN_Project/build4ac5300/apps/gnb$
+>>     uhd_usrp_probe
+>>     [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
+>>     UHD_4.7.0.0-0ubuntu1~jammy1
+>>     [INFO] [X300] X300 initialization sequence...
+>>     [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...
+>>     [INFO] [X300] Using LVBITX bitfile
+>>     /usr/share/uhd/images/usrp_x310_fpga_HG.lvbitx
+>>     Error: RuntimeError: x300_impl: Could not initialize RIO session.
+>>     Unknown error. (Error code -63150)
+>>
+>>
+>>
+>>     _______________________________________________
+>>     USRP-users mailing list --usrp-users@lists.ettus.com
+>>     To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+>     The procedures for making this work are here:
+>
+>     https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_hw_pcie
+>
+>
+>     _______________________________________________
+>     USRP-users mailing list -- usrp-users@lists.ettus.com
+>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---===============0460244786134928492==
+--------------VMHhSs5KxkGsOqtsEhg1CYbS
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 27/01/2025 04:18, Heinz, Dominik
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:800ca492ec564e52a9cb1f4f238513f3@h-da.de">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
+rgin-bottom:0;}</style>
+      <div id=3D"divtagdefaultwrapper"
+style=3D"font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-=
+serif;"
+        dir=3D"ltr">
+        <div>Hello Martin,<br>
+          Hello Marcus,<br>
+          <br>
+          The X310 does not show up as a RIO device, but rather like
+          this:<br>
+          <br>
+          4a:00.0 Signal processing controller: National Instruments
+          PXIe/PCIe Device (rev ff) (prog-if ff)<br>
+          =C2=A0=C2=A0=C2=A0 !!! Unknown header type 7f<br>
+          =C2=A0=C2=A0=C2=A0 Kernel driver in use: niusrpriok<br>
+          =C2=A0=C2=A0=C2=A0 Kernel modules: niusrpriok<br>
+          <br>
+          This seems already problematic (?)<br>
+          <br>
+          The nisrpriorpc server seems to be running fine:<br>
+          <br>
+          gnb@xgoss-host:~$ sudo systemctl status niusrpriorpc<br>
+          =E2=97=8F niusrpriorpc.service - LSB: National Instruments USRP=
+ RIO
+          Service<br>
+          =C2=A0=C2=A0=C2=A0=C2=A0 Loaded: loaded (/etc/init.d/niusrprior=
+pc; generated)<br>
+          =C2=A0=C2=A0=C2=A0=C2=A0 Active: active (running) since Mon 202=
+5-01-27 09:37:21
+          CET; 23min ago<br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Docs: <a class=3D"moz-txt-=
+link-freetext" href=3D"man:systemd-sysv-generator(8)">man:systemd-sysv-ge=
+nerator(8)</a><br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Tasks: 4 (limit: 153252)<br>
+          =C2=A0=C2=A0=C2=A0=C2=A0 Memory: 98.6M<br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CPU: 13.872s<br>
+          =C2=A0=C2=A0=C2=A0=C2=A0 CGroup: /system.slice/niusrpriorpc.ser=
+vice<br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 =E2=94=94=E2=94=801631 /usr/sbin/niusrpriorpc --daemon<br>
+          <br>
+          Jan 27 09:37:21 xgoss-host systemd[1]: Starting LSB: National
+          Instruments USRP RIO Service...<br>
+          Jan 27 09:37:21 xgoss-host systemd[1]: Started LSB: National
+          Instruments USRP RIO Service.<br>
+          <br>
+          You also mentioned that the X310 needs to be powered on before
+          the host system.<br>
+          I have of course done this - since to my knowledge hot
+          plugging is not possible in the case of PCIe.<br>
+          <br>
+          Running uhd_usrp_probe as root doesn't change anything.<br>
+          <br>
+          I am okay with trying out the 10GbE instead, but I am not able
+          to interact with the device that way.<br>
+          I can't seem to specify an IP or load a firmware image this
+          way. I tried:<br>
+          <br>
+          gnb@xgoss-host:~$ uhd_image_loader
+          --args=3D"type=3Dx300,addr=3D192.168.10.2,fpga=3DHG"<br>
+          [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
+          UHD_4.7.0.0-0ubuntu1~jammy1<br>
+          No applicable UHD devices found<br>
+          <br>
+          Any idea how to proceed? Can't seem to get the device running
+          via PCIe, and via 10GbE I can't interact with the device
+          either.<br>
+          I will provide the details in the Github issue shortly.<br>
+          <br>
+        </div>
+      </div>
+    </blockquote>
+    For 10Gbit, you have to use (for the HG image that ships by default)
+    the SFP1 port, and the address is 192.168.40.2<br>
+    <br>
+    For dual 10Gbit, you have to use the XG image, which results in SFP0
+    having an address of 192.168.30.2, and SFP 1<br>
+    =C2=A0 having an address of 192.168.40.2<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:800ca492ec564e52a9cb1f4f238513f3@h-da.de">
+      <div id=3D"divtagdefaultwrapper"
+style=3D"font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-=
+serif;"
+        dir=3D"ltr">
+        <div>
+        </div>
+        <br>
+      </div>
+      <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+      <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt=
+"
+          face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Mar=
+tin
+          Braun <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:martin.=
+braun@ettus.com">&lt;martin.braun@ettus.com&gt;</a><br>
+          <b>Sent:</b> Friday, January 24, 2025 12:19:00 PM<br>
+          <b>To:</b> Heinz, Dominik<br>
+          <b>Cc:</b> Marcus D. Leech; <a class=3D"moz-txt-link-abbreviate=
+d" href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com<=
+/a><br>
+          <b>Subject:</b> [EXTERN] Re: [USRP-users] Re: [EXTERN] Re:
+          X310 RIO Session Initialization Failure (Error code -63150)</fo=
+nt>
+        <div>=C2=A0</div>
+      </div>
+      <div>
+        <div dir=3D"ltr">
+          <div>Dominik,</div>
+          <div><br>
+          </div>
+          <div>can you provide as much info as you can here: <a
+              href=3D"https://github.com/EttusResearch/uhd/issues/818"
+              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
+              https://github.com/EttusResearch/uhd/issues/818</a>?</div>
+          <div><br>
+          </div>
+          <div>Like Marcus said, the PCIe interface is not used a lot
+            (except by LabView users), so if you can use 10 GbE instead
+            I recommend doing that (that also allows you to do 2x200
+            Msps streaming, if you have two ports).</div>
+          <div><br>
+          </div>
+          <div>--M<br>
+          </div>
+        </div>
+        <br>
+        <div class=3D"gmail_quote gmail_quote_container">
+          <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jan 22, 2025 at
+            2:58=E2=80=AFPM Heinz, Dominik &lt;<a
+              href=3D"mailto:dominik.heinz@h-da.de" moz-do-not-send=3D"tr=
+ue"
+              class=3D"moz-txt-link-freetext">dominik.heinz@h-da.de</a>&g=
+t;
+            wrote:<br>
+          </div>
+          <blockquote class=3D"gmail_quote"
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">
+            <div>
+              <div id=3D"m_-810124041727098465divtagdefaultwrapper"
+style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sa=
+ns-serif"
+                dir=3D"ltr">
+                <p>I followed the steps in the guide you linked, -
+                  however, I still have the issue.</p>
+                <p>The uhd drivers are installed, and the niuspriorpc
+                  service is running. However, I still the the RIO
+                  session initialization failure.</p>
+                <p><br>
+                </p>
+                <p>Anything else I could try? I still don't understand
+                  what is the cause for this.<br>
+                </p>
+              </div>
+              <hr style=3D"display:inline-block;width:98%">
+              <div id=3D"m_-810124041727098465divRplyFwdMsg" dir=3D"ltr">=
+<font
+                  style=3D"font-size:11pt" face=3D"Calibri, sans-serif"
+                  color=3D"#000000"><b>From:</b> Marcus D. Leech &lt;<a
+                    href=3D"mailto:patchvonbraun@gmail.com"
+                    target=3D"_blank" moz-do-not-send=3D"true"
+                    class=3D"moz-txt-link-freetext">patchvonbraun@gmail.c=
+om</a>&gt;<br>
+                  <b>Sent:</b> Tuesday, January 21, 2025 8:32:39 PM<br>
+                  <b>To:</b> <a
+                    href=3D"mailto:usrp-users@lists.ettus.com"
+                    target=3D"_blank" moz-do-not-send=3D"true"
+                    class=3D"moz-txt-link-freetext">usrp-users@lists.ettu=
+s.com</a><br>
+                  <b>Subject:</b> [EXTERN] [USRP-users] Re: X310 RIO
+                  Session Initialization Failure (Error code -63150)</fon=
+t>
+                <div>=C2=A0</div>
+              </div>
+              <div>
+                <div>On 21/01/2025 09:26, Heinz, Dominik wrote:<br>
+                </div>
+                <blockquote type=3D"cite">
+                  <div id=3D"m_-810124041727098465divtagdefaultwrapper"
+style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sa=
+ns-serif"
+                    dir=3D"ltr">
+                    <p><span>I'm experiencing an initialization issue
+                        with my Ettus X310 USRP device.</span></p>
+                    <p><span><span>My setup consists of an Ettus X310
+                          connected through a PCIe Card using a Molex
+                          cable to my Linux machine.
+                          <br>
+                        </span></span></p>
+                    <p><span><span>I'm running Ubuntu with kernel
+                          version 6.8.0-51-generic and have installed
+                          all the necessary UHD packages on the system.</=
+span></span></p>
+                    <p><span><span><br>
+                        </span></span></p>
+                    <p><span><span></span></span></p>
+                    <div>The X310 is properly detected when running <code=
+>uhd_find_devices</code>,
+                      but attempting to probe the device with
+                      <code>uhd_usrp_probe</code> results in a RIO
+                      session initialization error.</div>
+                    <div>I attached the error output below.</div>
+                    <div>What is causing this RIO session initialization
+                      failure and how can it be resolved?</div>
+                    <div><br>
+                    </div>
+                    <div>
+                      <div><span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">gnb@xgoss-host:~/srsRAN_Project/build4ac5300/apps/gnb$
+                          uhd_find_devices
+                        </span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">[INFO]
+                          [UHD] linux; GNU C++ version 11.4.0;
+                          Boost_107400; UHD_4.7.0.0-0ubuntu1~jammy1</span=
+><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">--------------------------------------------------</span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">--
+                          UHD Device 0</span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">--------------------------------------------------</span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">Device
+                          Address:</span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">=C2=A0=C2=A0=C2=A0
+                          serial: </span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">=C2=A0=C2=A0=C2=A0
+                          fpga: HG</span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">=C2=A0=C2=A0=C2=A0
+                          name: </span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">=C2=A0=C2=A0=C2=A0
+                          product: X310</span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">=C2=A0=C2=A0=C2=A0
+                          resource: RIO0</span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">=C2=A0=C2=A0=C2=A0
+                          type: x300</span></div>
+                      <div><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">gnb@xgoss-host:~/srsRAN_Project/build4ac5300/apps/gnb$
+                          uhd_usrp_probe
+                        </span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">[INFO]
+                          [UHD] linux; GNU C++ version 11.4.0;
+                          Boost_107400; UHD_4.7.0.0-0ubuntu1~jammy1</span=
+><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">[INFO]
+                          [X300] X300 initialization sequence...</span><b=
+r>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">[INFO]
+                          [X300] Connecting to niusrpriorpc at
+                          localhost:5444...</span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">[INFO]
+                          [X300] Using LVBITX bitfile
+                          /usr/share/uhd/images/usrp_x310_fpga_HG.lvbitx<=
+/span><br>
+                        <span
+                          style=3D"font-family:Consolas,Courier,monospace=
+">Error:
+                          RuntimeError: x300_impl: Could not initialize
+                          RIO session. Unknown error. (Error code
+                          -63150)</span></div>
+                      <br>
+                    </div>
+                    <br>
+                  </div>
+                  <br>
+                  <fieldset></fieldset>
+                  <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com"
+                  target=3D"_blank" moz-do-not-send=3D"true"
+                  class=3D"moz-txt-link-freetext">usrp-users@lists.ettus.=
+com</a>
+To unsubscribe send an email to <a
+                  href=3D"mailto:usrp-users-leave@lists.ettus.com"
+                  target=3D"_blank" moz-do-not-send=3D"true"
+                  class=3D"moz-txt-link-freetext">usrp-users-leave@lists.=
+ettus.com</a>
+</pre>
+                </blockquote>
+                The procedures for making this work are here:<br>
+                <br>
+                <a
+href=3D"https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_hw_pcie"
+                  target=3D"_blank" moz-do-not-send=3D"true"
+                  class=3D"moz-txt-link-freetext">https://files.ettus.com=
+/manual/page_usrp_x3x0.html#x3x0_hw_pcie</a><br>
+                <br>
+                <br>
+              </div>
+            </div>
+            _______________________________________________<br>
+            USRP-users mailing list -- <a
+              href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank=
+"
+              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
+              usrp-users@lists.ettus.com</a><br>
+            To unsubscribe send an email to <a
+              href=3D"mailto:usrp-users-leave@lists.ettus.com"
+              target=3D"_blank" moz-do-not-send=3D"true"
+              class=3D"moz-txt-link-freetext">
+              usrp-users-leave@lists.ettus.com</a><br>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------VMHhSs5KxkGsOqtsEhg1CYbS--
+
+--===============4712136547663787889==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -480,4 +649,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0460244786134928492==--
+--===============4712136547663787889==--
