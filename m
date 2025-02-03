@@ -2,699 +2,654 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 741F6A2644C
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Feb 2025 21:16:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A92A26723
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Feb 2025 23:50:24 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5157D385CA2
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Feb 2025 15:16:46 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 7CD75385B58
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Feb 2025 17:50:23 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1738613806; bh=Skrxs/vN01fe0V6r9ksL7nDWGtt4lH9ZgGOLzg0lNsE=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	t=1738623023; bh=yXkslJqWArWYIvf9//SV9ZcKfoVTg/mxlirYpkguCzI=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=xBD2GqIGpaGXUTlre7lQVZbTe/u8hRlzy8jj+6TJOK05etV80HJT5cpm+29II0tPZ
-	 A72PBZD3MdrhjYeivv6FhZzGHuwi3rSYwHdLT5Ptu2dpBGfScwOBG6iZsU5AQ76CaY
-	 zGMqZOeJ7eeV6VNnQ8r1dxMjUZdc+dSSzsVxhg2vL2ifsI8snlJw2r7SlIwZmbWLvg
-	 GX0XUHZmmV+3LVzTcqZm5mHaCd3TYWo55wWN3nNcbyuiGhAy3+BGH+9kWOsK5QwY9m
-	 GAcQ9Xkil/aufIWDL6wsS4ffcZNRzbuurjc13eG/ElX8UQ4H03GObRAvdzRhesj0EW
-	 pcTRBLhl4dWlQ==
-Received: from mx08-002d3c02.pphosted.com (mx08-002d3c02.pphosted.com [66.159.234.57])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9E83A385BEC
-	for <usrp-users@lists.ettus.com>; Mon,  3 Feb 2025 15:15:36 -0500 (EST)
+	b=uV4lS3mryESY5gglyFaHwGp7mXFdzdBWKu2B2O4gKmQ/on/PJOtFHQJtRLnhU5XCF
+	 grmaac66EpAgHAO6a6JoEDvyHOjOrJqFviAjbxcKyQcjAwEjF+aiBJQnQRpZzCQTFE
+	 B+lRKC8q1ylspaPEf1vkoi/g5hR/MyUHAXbSEWFpghKf8f/7fBiNYix9hmhhsfRhXq
+	 Y9r/ovrz5sRU600NmpakTTHdcRiez0D/w1FTZS07tlFGT4EQCeADKsfYd+VvKPmrjG
+	 7Ws9bAkEtzKAFe0qrHqD2mLI7nxzHU2Agb3Gd7xtIN1g2wFLV6ISOMjow06CO+7t/R
+	 80+rLpqrZLYng==
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5789A385AEA
+	for <usrp-users@lists.ettus.com>; Mon,  3 Feb 2025 17:49:20 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=bham.ac.uk header.i=@bham.ac.uk header.b="IE/CCk2Z";
-	dkim=pass (2048-bit key; unprotected) header.d=bham.ac.uk header.i=@bham.ac.uk header.b="nwKy+sQ3";
-	dkim=pass (1024-bit key; unprotected) header.d=bham.onmicrosoft.com header.i=@bham.onmicrosoft.com header.b="gGOTjmYk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GSkIp6WV";
 	dkim-atps=neutral
-Received: from pps.filterd (m0413771.ppops.net [127.0.0.1])
-	by mx08-002d3c02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 513KDIRa031709
-	for <usrp-users@lists.ettus.com>; Mon, 3 Feb 2025 20:15:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bham.ac.uk; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=selpp-tld-bham1; bh=U/cyWjCD4X1V6zvZrK
-	wMkXPpsbrLo4gEz7IWz9zG/Pc=; b=IE/CCk2ZSNaOMMXaiU+rBl0op0ZH0vO0sK
-	WqzTIgqaLGoZzikVvu7rvnrwrdeo0r0eVePSZjGzcOscZZr63I4pwkWp6ZpKRqth
-	ebG7YUxpp0tRh0O5BXqwIMzvzA+kYqrLVvm6QfHfBS4K22pNV95Ox6pbtMp3D2Pl
-	Ygxth8wQPgihqkyhKyna99tpZQRIRupbd+dr8ft0QdaJref+SxHJ5KwD3oVRZwha
-	bnn/lberClI36+yHM5ghNEfRgb8bWkwrC6iRcMiaFRuqfm80ccalhf+/LvHiaM2p
-	6i6mU3qVjbyiyidO7MlmifG2oAzWgrdHzf+FN6q2Lif1ABUlDArQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bham.ac.uk; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=selpp-general-bham1; bh=U/cyWjCD4X1V6z
-	vZrKwMkXPpsbrLo4gEz7IWz9zG/Pc=; b=nwKy+sQ3/ZWLlNebte2k4wOuJKP+xD
-	dF0LA7Jw4ISIPIWGa4UwqDvo6dchsf7Kff0HqwXpHEr4RF+CKVmOSlRA1vzzbPY0
-	mEPHbRpWNdmxBawUYQZsw5AD/pwFJG7pPYU1ciA3VNnKgRWcKjYxrPafklb3HrOc
-	ZFZXkKlMOgd1Zrii/tFxAWB0SEpq7CpD2I/awAmNKT/BpXE5JK5JHEeoZtfnBiEl
-	mdxMhlHZvdxnKQuqJaD19/yXjpb995RZxAbv28m14rQr5Ft4UyU79VEwfofRsuHt
-	Igb2ule9lcJ70quPB5akbz5dyBb84cfZFXBjY91bY9may7L83Jw9R9cQ==
-Received: from sun61.bham.ac.uk (sun61.bham.ac.uk [147.188.128.150])
-	by mx08-002d3c02.pphosted.com (PPS) with ESMTPS id 44hyejrghn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Mon, 03 Feb 2025 20:15:35 +0000 (GMT)
-Received: from [147.188.128.54] (helo=mailer3)
-	by sun61.bham.ac.uk with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.97.1)
-	(envelope-from <d.white.4@bham.ac.uk>)
-	id 1tf2r0-000000005BD-FtAs;
-	Mon, 03 Feb 2025 20:15:34 +0000
-Received: from mail-uksouthazlp17011028.outbound.protection.outlook.com ([40.93.67.28] helo=LO2P265CU024.outbound.protection.outlook.com)
-	by bham.ac.uk (envelope-from
-	<d.white.4@bham.ac.uk>)
-	with esmtps (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.97.1)
-	id 1tf2r0-000000006rJ-9IU2
-	using interface mh2.bham.ac.uk;
-	Mon, 03 Feb 2025 20:15:34 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W8J8/+euKBJfxWLsCUi+uMpux6bdQN9zShfTKhwgCo59OMVNbLJunR42pw1cRc0WQnXl0Ta/Vi+z9pG29u9A30zlvvDOKzdwmaLMONGrp9y+i71rQ/oFNvKwKOfs97TsJbCqoLVKhyTl5Qkhjg56kcUjCzTtAMvEeZ3WOhw5B0V3Xo27ZeDr2GMDjriGLgOsGHyQe7fL04d/q+0sBA9FBOAB8O0zzXPA1d/MY9k1MliZCnNgygB6lnt1SyO0Rdiu28VjWnVLKPt0vhUU+KQ11hecPsrFw1Jez9Oi/yXOwZ46etUuaMT2hBKRIPTZwGusZNaOm6ciwY1PbCxZNpdLQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U/cyWjCD4X1V6zvZrKwMkXPpsbrLo4gEz7IWz9zG/Pc=;
- b=xw/l49C7Hbym2+XGP7fUrOVZ2pr0wRgjANfR8PAYGsxl1MaraNtFZ3IB2RcTjGbU956mnEXY3J8GKQVZwPbol+DeTfqvmVtfTgqA4ZUpoqociB8e3QykiwiXikrefxhf0ddTxX/Ueg/QFAMsjooz7sWdRkJHBTleDHDNSXDBINytw7LjS5WISuM8kxUsQ0kq3m5cPLZ/XLXFDRTAOJloFzN6Rr/CFAXtqqwEOSxJJKTjoK9a7x+QX5EfPEFxSosvvbQqxlavggZRx/YxVxL8uuDPwCeGQySvxDKBcQOKt1mx6iP6PpQdhmOVi5lrmQD/j8XY9o8CtMkNVHnAjwn51Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bham.ac.uk; dmarc=pass action=none header.from=bham.ac.uk;
- dkim=pass header.d=bham.ac.uk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bham.onmicrosoft.com;
- s=selector2-bham-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U/cyWjCD4X1V6zvZrKwMkXPpsbrLo4gEz7IWz9zG/Pc=;
- b=gGOTjmYkKwShitS+lcSEQ5OMB40n09gVe6X7AgztaTu67BrW0xe7hP6JScMNL6Hqsr1pN5Wd3UPbaPIHzLHzXbvf499RRXkyYBCXcpbIJzNAotZyJp1rfUDGXFmvHFTZn8YAdPEam9ikbjqe6eUeMZDiEKKpnBUMaGx1hNzUNg0=
-Received: from CWLP265MB4175.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:12e::6)
- by LO7P265MB7777.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:40f::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.25; Mon, 3 Feb
- 2025 20:15:33 +0000
-Received: from CWLP265MB4175.GBRP265.PROD.OUTLOOK.COM
- ([fe80::73f3:b00b:64d2:bc96]) by CWLP265MB4175.GBRP265.PROD.OUTLOOK.COM
- ([fe80::73f3:b00b:64d2:bc96%5]) with mapi id 15.20.8398.025; Mon, 3 Feb 2025
- 20:15:32 +0000
-From: Daniel White <d.white.4@bham.ac.uk>
-To: usrp-users <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] X440 uhd_find_devices unsuccessful with 1G Ethernet
-Thread-Index: AQHbcle3ByhUD5vevEGnOgh9je3KdbMxNKIAgAA9GYCABJYpJg==
-Date: Mon, 3 Feb 2025 20:15:32 +0000
-Message-ID: 
- <CWLP265MB4175B138CE3F61F645A93BFCD7F52@CWLP265MB4175.GBRP265.PROD.OUTLOOK.COM>
-References: 
- <LO4P265MB4162C069DD81CD359004D22AD7EE2@LO4P265MB4162.GBRP265.PROD.OUTLOOK.COM>
- <CAOEzSFSKtCiM=p79Un9FjRF8bqXs0MFpyDZgaHon32teh8SVeg@mail.gmail.com>
- <CAOEzSFSLDMG7Ljhri9qORvhFikJ2pyV87Qa7bGa2K_1a_o=58A@mail.gmail.com>
-In-Reply-To: 
- <CAOEzSFSLDMG7Ljhri9qORvhFikJ2pyV87Qa7bGa2K_1a_o=58A@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CWLP265MB4175:EE_|LO7P265MB7777:EE_
-x-ms-office365-filtering-correlation-id: 3b9f92ca-55b2-4b42-9423-08dd448f8332
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|376014|4022899009|366016|8096899003|13003099007|7053199007|38070700018;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?eHJZVWhDU2Qva2RIejRid0hwQVBtYndiaG5zUW1QWUh2MHZ1M1QzYWpQbUNX?=
- =?utf-8?B?TWRVTk9aWVlpRjZzaStLaEtyZG1VaTJRbTNHczIxcG1GOFI5TU5XQklkamxt?=
- =?utf-8?B?R3lkQlg3Ny9NVTNtZGYzWk5mZmRnOXY2WTVTVGNqcmxaSXBXbGZYaGdYZWxN?=
- =?utf-8?B?MEp5b0dsQnNXdHF6czVVclh1Q3NQWHgzZDZ0Nk1nUU1EUzB6TGtEb2k0Sk4y?=
- =?utf-8?B?bFk5Ylk4RWx6NVZuQW1hZUhGZW1GT3NiWGdxeEpKL0htRC9ZcDA2b1oyblFa?=
- =?utf-8?B?V0d5a0pxNFYycTdnd1lRaHpKaG9ZaFlmQ0JGa3Z1SWV4WmVTWU5ZdmhITUpY?=
- =?utf-8?B?UThkREVlZDNjc1lHM01USXVqRkwwZ3JHV2hCekt5N3pBdktpaVExS3R0THcr?=
- =?utf-8?B?WUJMd1pkVW9PMTcwdFUrc0FWYVpucDNFTHU4bUgrYzZWVStGOGVBWVJpalpH?=
- =?utf-8?B?czFEWEVCTVlwd1p5Q05QUXJjNFZTNmZBMUkzU3JLME95cTRZRkxHMHFFYXQy?=
- =?utf-8?B?REY3SjUvS0k2dHFyL1RySHBVVUdQbmduYUZIQVRuOEpsSDZma215NnZmZTQr?=
- =?utf-8?B?NjBsZ05zSlpSYVlMK2NSTnREM0xuTHFKRmQ1OTdWRDFlMW05d21DYW45MGJK?=
- =?utf-8?B?eGdTbTlYZmJxaVN5QzRqMXprSzNjbjJPUVV4SE4xS2ZCMG5wbnVHQkttMURT?=
- =?utf-8?B?WUJ6RnhycTNqTEVTcDRkNEdpc1lHMkFIdkUvTUV6bmtHTlp4aGJsMzRKcGJ2?=
- =?utf-8?B?VlIvdTdTS001R0FGR3NleVordUpNblBJbUpQMTJKVU0rME5LMzc5M2pBVUha?=
- =?utf-8?B?RkNBVllPTkw1OUNmNGRWakFRRUtJbmVldCtEV09XWjZudWxVMTd1UVNWMHNm?=
- =?utf-8?B?U3ppZ1NPZnNwNW1WSWgwYXMvanBOOTRjZndhOXY5OEd5b0lRNEtzN0Z6eUhj?=
- =?utf-8?B?YmxhSWM5TFB0NUhodnJjUkxqZllmUEtNeS9uN0ZtZTkzeXdGZGVJdGRUZXpE?=
- =?utf-8?B?S1VSQ1ArTlFyUzVmY2pBMHpnb0NPREpoSlVzb2I5OEh2SFd6VjB3UXJteWkx?=
- =?utf-8?B?TGZUS01EcXllZ2FSTXlGR3RTVjdqZkJrSVpldHE4RS9acnRLemR6NUEyV3Er?=
- =?utf-8?B?RFdnOWxZanhUdFZUZnU3ZTVmYzlLQjJDbDI1aWoycGhscHJqSzZLeSsxeHo4?=
- =?utf-8?B?bTlsRFNWQ1NlekFXN0l3bGNJQmlsZUlRS0hjZHNHUm1md0UzTXhqUklZd3ow?=
- =?utf-8?B?Tmo4a1REWVp2ZHprK243RG8xbXZvRzM3Y2ZaaU9CbWI4enJrdUJITHVYM0dM?=
- =?utf-8?B?UWJ5RUJobG1HTzdTL1QrS0V0SlVOZGx1RnA0VVRZaVgvK3oveGtvZXVKeWNY?=
- =?utf-8?B?d2FvTllPbFVwRERLTGNmVzhQUmxKOHdOL2xkRFZkNWJCQW1ORS82L0k4V3dr?=
- =?utf-8?B?YVVTNVJtL1NkYlJJTWZrbEZxMy9kN1VtZFh2TlV5YmZDL0JuZ25DTStGVmdU?=
- =?utf-8?B?aGovL2lrLzlINXhyZlR1a3QvVGpLZjRncjRXcWdFS3lvN3RITXJxSlRGN3RI?=
- =?utf-8?B?aGR1N09wRnplek5MRE40VjJ2S0tYMWp2cWJJZENjd1RrSjgweVZVMWptMVZ1?=
- =?utf-8?B?VzVYa0Q1bzBoc1h0U2FBeGlrK0dSeVlFQlZxOW5yamlzR2J5VGNjaTZLejF4?=
- =?utf-8?B?NStmbE1hUmp4VjVJSkgvSE16bE0ySWhPMFdvWkR2b0R3ZUhZUDA2THZNMCtn?=
- =?utf-8?B?YUhzRUFrVzNwdnlodDBxQWdKaExtRmpmcFpobTJzK3llVU9DTTluSk12VWZo?=
- =?utf-8?B?NWpuRnluQ3YzOU96b2lkcWI3bXRodUJwNUdSNmpFOHVIMGRjQ0ttZ3JzSW9u?=
- =?utf-8?Q?4MOoAH4dg867X?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB4175.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(4022899009)(366016)(8096899003)(13003099007)(7053199007)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?MW11ckQzZkNBYnJHOHBtNmx4RldMTzdVelc4TXczeU0rdjJleVlmVnZCWkJQ?=
- =?utf-8?B?T05QSmRucTF0UzJyZ1BCUFUvSlowa0xwdm5JdEZHMnRhVnJaS3piUHczWndX?=
- =?utf-8?B?akJEUHN0SVM3UHJIbzlnc3NlRE9XWnVLMVM5ZFlaNmRueDJ5RjVnREJ2emZT?=
- =?utf-8?B?a0tVTVlJL0Z4QlNzK1NxWGRCSnROL2dxb2ZhbnhIMndlYnBNUEs0eklPZVdk?=
- =?utf-8?B?RGlxeEJYS0VUMkVOeDZYNXBodytaTkNKZzhLaS9GRm5obyt4Z2RDQ3lVRTlE?=
- =?utf-8?B?eVNzUEJIbnFLSm03eWl6eXQvNkNRYUVlRE1sU3pDN29WTVJLUG9ad1RRanR6?=
- =?utf-8?B?aXRGL3VSRVdXaCt6NnF3U2llcWNhdi9yUTlkOVB4R2R1RTVSM2VEN0M1dGdz?=
- =?utf-8?B?L0Z5bjhib05jNzh6QkxVMVlEZGVpU0JWR0JsK1RLTHg0MzRmUnZKblFzMGk4?=
- =?utf-8?B?QjVTLzZFTVVKYTJjVitDclBoZ2lrd3d6dlQvVWNselBXd1Jvc0lCYko1Rm1k?=
- =?utf-8?B?KzMxSURPZnBVNTVVWTR6MHBDUnpSanFRMGtBYnBkOXJyR0NVcGp0elVwaDZY?=
- =?utf-8?B?MnJVSURXWUptR0pYb2JSQzltbTk0OENpU2JqckIzTmJXNWNWUk9TU2pXaDJK?=
- =?utf-8?B?OExqRkQ4dUo4RjlsY0pDcVVCZStodDRKeVhoWlBpOXJCdDVxUGowb2NTOFJM?=
- =?utf-8?B?M2xqY1BZdUtXeHh3NUdMbnpoQlMzMjJiOXRjdHlDVVVENEd2Qi9BNXhMMDlt?=
- =?utf-8?B?OFBqcld5eC9sTmVleW05dXJERTJGYUFkK3lDVGpiaklDOWZkSkhJQ0ZtS1ND?=
- =?utf-8?B?STN4OU1wZjZRbmhVemNzc1lDb0l2VUZjc1F3RklQc2NIcTBWU1JNUXB3bEVa?=
- =?utf-8?B?aE9kS1cydmN1NFJTeWRmMEFJS05FWG9oZTlQVXdkZzJmRkc5NzJTVS9Cb0pu?=
- =?utf-8?B?bHF0TzVRSHFqY1pVRUhyNlV5d3NIUTBZK0xxQ0Nkd2pGTjdWM2lROXBBN1Ur?=
- =?utf-8?B?VEFFSG1RTmpaL3EvQkRHb21DVStaSTZUWVFlNGRtUzJrcFkvZTF6QXVqbGVy?=
- =?utf-8?B?aTVqNDVDQVdtUTdnWlVvV1N1aWVzVlcxcTdsanY5QjhqeXYxTUlqUFVBT3cv?=
- =?utf-8?B?WGhhMlhOTEJJUVNwbmk0NnE1cHRyNVl0ODQzNUFPWUcwdGpDL2RNaVNkdm50?=
- =?utf-8?B?UlJMcGJoSnZ1MVE3VFgxN0FTZm1kdkhsdUJ3YXZHc0ZKNXF1YTI4VzR5UUFh?=
- =?utf-8?B?UTNzL1gvMkRRbnJZeXlnSFBsZ1NtY29mUXhRN2pFUzRUSm1HbmpZc0R1b1lU?=
- =?utf-8?B?K0tFbFJCYlNCYktnMU94SHArbHhlOEtmd3VOUHkwdVc3aVFGU0txSW9XTVcw?=
- =?utf-8?B?Y01PUTR3M2l1UUNxdzMrbVpqbklFckI0bEhUYzRESHJjM2dpVTJaNVJRQzUw?=
- =?utf-8?B?Vm15d1ZIUURKVWMzUk5zV09BQm1GejBWVFIvWnlhWWRvSERqTFhqNUpnb0la?=
- =?utf-8?B?RVNUclhHbUNFZGF5eFhsR3NOWW9rdUNUeFNXcElzQVljVktrS081aUtCVzFm?=
- =?utf-8?B?SXU1SXVPU1d3Rno2TXN3eko4M0NldnIyYnlSM0RGRUxLWUZ5eEVSRGVzdEVX?=
- =?utf-8?B?eG5rUE4zK0oxYzhZMUZmRXJrT2psSXhKbkJoSU1IdFVtMVBnY3pqQzVZMnhl?=
- =?utf-8?B?RFc4SnpJMHpRRTRvWVMrbWVVaWUzcVVBcVRvRXZOOUowakpCK1FqNDZhT3Y4?=
- =?utf-8?B?ZmRLRFp2ZWpRUDhtVHRPdFhRUkNZNE42b1hNSGhEbTQ3K3FXMnFUZ3ZrdVho?=
- =?utf-8?B?WXF5Q09BMWtkZ1k5VmtMN1MvZzE5NVhzVG1nbjRPY3RqNUZWWVJ5RnlwWU4w?=
- =?utf-8?B?S0N6UHhudkkyejlKRmVSZ1ZqckErbk1naTBGNVN2TGw4ZG9oT2VEV3lpcERm?=
- =?utf-8?B?LzRJcXg1bW1Nc1R3bGZqM0hwNGF0QUd1YlRBVkdETjgyaXVSUDduUE4xa2hs?=
- =?utf-8?B?OCtXUUVPeUhOSk5ldGZqOHFpdEY0ZUFKSWROb2lscjVXNG1CVGo4Y2NpVjA4?=
- =?utf-8?B?SGw4cnZWZHpyMVZtSkZwRk5xcUEzWk9GdWorcWZCQzAzNk1ncldaMFZMbmFp?=
- =?utf-8?Q?1PuqD4sc+xiMlba4ZGA/zgNhU?=
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3eb3c143727so2885949b6e.1
+        for <usrp-users@lists.ettus.com>; Mon, 03 Feb 2025 14:49:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738622959; x=1739227759; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=o6uTataAY3GQTpE4xzPQNPjS5WfqGm/dmAi8nF3O3I8=;
+        b=GSkIp6WVdJ20xTNqRjZR4OCfBT7zrTGj2+090r+aGmsbwyaGSSLc62YpSgT6uBQ7tn
+         GGBP2/m2p/SJm/+lAAS2g5W4JqSiCZBHBz9wMzJuQEc7AW0TQxlZLLuZkX8VzSDBfbqD
+         aIhseRAtTI1+jFooGaIMa2EZmHztuYA5V6r0N31o2kXGHMfgSsJ5Wxr7hlG4OCE4n1xc
+         FvDR2XobWG6pFWrUBrU9+Gh8OlMQDU84shafNjKwIxb5QECrpMNsW1yRxiPZbLaHOslX
+         QbXMdfVgHLmXJHdEIVF/4t8wj0cfzQkBXLkJJy2pH9SDOVNW7VOjQL8YFj/cMwABFdF8
+         ffrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738622959; x=1739227759;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o6uTataAY3GQTpE4xzPQNPjS5WfqGm/dmAi8nF3O3I8=;
+        b=qWdygFysu2dddAoqarb+OuDfS9sQmsv0QyAYzHimnsfpUXtCFn9CFiL1wB6sdPCnDL
+         q7rSDaIgm9y5kc9dLYn4dDcTfzTwOpy2n/Gp9osocvNhe+rzOERcNHzMMjfp+uLgIe3Y
+         zoaNPdZsw2zpQJ/ZVgeTcQCv9hFIPxAKNTbG+htG8QNTrvfuZcTJ/6bVJFIacKrpaizO
+         adtdy+wjTBPi4TGgJ15qjJi2BOAKAPxNqhiC8BQN5UR/caaw3B4zFAwTxeDCRJSfZXs7
+         t8u1v9C9YK5dgccShNyjnPUotm0OPZz2dAdXfG/RxeZP8SeEk7Uyga8D2vIEapW7yGzd
+         +wBA==
+X-Gm-Message-State: AOJu0Ywe77IOX8OgYIUdL38K4devSvp3esK2pBy+SpDEwfNUI6FnpWyV
+	I3pOgQ7WxTMFPlMv54PEpdFTDR8cjUOmWT/aMmgNzO/+65e/nv/57lr6KEKWb1BCYvnTfqSVkyv
+	u+haKfojmuBOsp8luvHfZ+xDHYw4=
+X-Gm-Gg: ASbGncs0kAIMqUJgdz5hibyBTLhMW0siJX7nv1AZxuyoe3svzZgmhwj6APUhltslOAe
+	yKsweTxBaUTImWf1jRLDhbcSnLy4PWWpMLMb94sJPe+EPd7qax+yWizu6jaEPBx+HZV+kK6A=
+X-Google-Smtp-Source: AGHT+IH9HubI4EV+oJ8vuTBZ8aV6QvK+00UU5hK876F9tZ29eyN4CFjYmJFJy0R/TjGGAKnRzsA+pvcDlQIk/OZJxKA=
+X-Received: by 2002:a05:6808:170a:b0:3e7:ea12:6dfd with SMTP id
+ 5614622812f47-3f36ddf5694mr591236b6e.18.1738622959453; Mon, 03 Feb 2025
+ 14:49:19 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: bham.ac.uk
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB4175.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b9f92ca-55b2-4b42-9423-08dd448f8332
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2025 20:15:32.8381
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b024cacf-dede-4241-a15c-3c97d553e9f3
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vCDQEh41+uTMGhaYhKfYT6glCkzI85HptuS4Pa3O4OW3E8xgpu5bcbRaYIjlR6s4aCq7UibzVgh8cXa7mDawiw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO7P265MB7777
-X-BHAM-SendViaRouter: yes
-X-BHAM-M365-in: yes
-X-Proofpoint-GUID: _TZmGaTv_DvQPEem0evEGRpoC34U235a
-X-Proofpoint-ORIG-GUID: _TZmGaTv_DvQPEem0evEGRpoC34U235a
-Message-ID-Hash: GKC2LS2LAIGLK7PVHUNLIS2ZT767CSJY
-X-Message-ID-Hash: GKC2LS2LAIGLK7PVHUNLIS2ZT767CSJY
-X-MailFrom: d.white.4@bham.ac.uk
+References: <LO4P265MB4162C069DD81CD359004D22AD7EE2@LO4P265MB4162.GBRP265.PROD.OUTLOOK.COM>
+ <CAOEzSFSKtCiM=p79Un9FjRF8bqXs0MFpyDZgaHon32teh8SVeg@mail.gmail.com>
+ <CAOEzSFSLDMG7Ljhri9qORvhFikJ2pyV87Qa7bGa2K_1a_o=58A@mail.gmail.com> <CWLP265MB4175B138CE3F61F645A93BFCD7F52@CWLP265MB4175.GBRP265.PROD.OUTLOOK.COM>
+In-Reply-To: <CWLP265MB4175B138CE3F61F645A93BFCD7F52@CWLP265MB4175.GBRP265.PROD.OUTLOOK.COM>
+From: Chris Rogers <c1337rogers@gmail.com>
+Date: Mon, 3 Feb 2025 17:49:08 -0500
+X-Gm-Features: AWEUYZlG71a0cCwQwav2xu4qL_f2Y4h_tNLR-JoXxGfzTy2COzgCjL1F-Nc56bQ
+Message-ID: <CAOEzSFTH7ppmTfv=dzN4sneHYBEbfA+ZVCHccdqCJWqShQieJQ@mail.gmail.com>
+To: Daniel White <d.white.4@bham.ac.uk>
+Message-ID-Hash: BUA7KRVS4P46ZCEOGOB6CNCNWQBUYLIC
+X-Message-ID-Hash: BUA7KRVS4P46ZCEOGOB6CNCNWQBUYLIC
+X-MailFrom: c1337rogers@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "c1337rogers@gmail.com" <c1337rogers@gmail.com>
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Fw: X440 uhd_find_devices unsuccessful with 1G Ethernet
+Subject: [USRP-users] Re: Fw: X440 uhd_find_devices unsuccessful with 1G Ethernet
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2L45CSFZPV7IZ75DWVVG2SNN2EUSGLF2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BUA7KRVS4P46ZCEOGOB6CNCNWQBUYLIC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2060674796128811866=="
+Content-Type: multipart/mixed; boundary="===============4132572653432056394=="
 
---===============2060674796128811866==
-Content-Language: en-GB
-Content-Type: multipart/alternative;
-	boundary="_000_CWLP265MB4175B138CE3F61F645A93BFCD7F52CWLP265MB4175GBRP_"
+--===============4132572653432056394==
+Content-Type: multipart/alternative; boundary="000000000000e58d78062d44b3cb"
 
---_000_CWLP265MB4175B138CE3F61F645A93BFCD7F52CWLP265MB4175GBRP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000e58d78062d44b3cb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Q2hyaXMsDQpUaGFua3MgYSBtaWxsaW9uIGZvciBwaWNraW5nIHRoaXMgdXAuDQpJdCB3YXMgdGhl
-IGxhc3QgcG9pbnQgdGhhdCBoYXMgc3VjY2VlZGVkIGZvciBtZSAtIGNvbm5lY3RpbmcgdG8gSlRB
-Ry9TZXJpYWwgYW5kIG5vdCBVU0IgdG8gUFMuIFlvdSB3ZXJlIGJhbmcgb24uIE5vdywgSSdtIG5v
-dCBzdXJlIHdoeSBJIGRpZG4ndCB0cnkgdGhpcyBiZWZvcmUuLi4NCkkgd2FzIGFibGUgdG8gY2hh
-bmdlIHRoZSBpcCB0byBhIHN0YXRpYyBvbmUgYW5kIG5vdyBJIGNhbiBzc2ggaW50byB0aGUgZGV2
-aWNlIGFuZCBnZXQgYSBmdWxsIHJlc3BvbnNlIGZyb20gdWhkX2ZpbmRfZGV2aWNlcy4NClRoZSBy
-b3V0ZXIgZGlkIG5vdCB3b3JrIGFuZCBoYWQgbm90IHlldCB0cmllZCB0aGUgUVNGUCBhcHByb2Fj
-aCwgYnV0IHRoaXMgd2FzIG5leHQuDQpOb3cgdG8gY29ycmVjdCB0aGUgTVBNIGNvbXBhdCBtaXNt
-YXRjaCENCkJlc3Qgd2lzaGVzLA0KRGFuDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fDQpGcm9tOiBDaHJpcyBSb2dlcnMgPGMxMzM3cm9nZXJzQGdtYWlsLmNvbT4NClNlbnQ6IDMx
-IEphbnVhcnkgMjAyNSAyMTo1OA0KVG86IERhbmllbCBXaGl0ZSAoRWxlY3Ryb25pYywgRWxlY3Ry
-aWNhbCBhbmQgU3lzdGVtcyBFbmdpbmVlcmluZykgPGQud2hpdGUuNEBiaGFtLmFjLnVrPg0KQ2M6
-IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4N
-ClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gWDQ0MCB1aGRfZmluZF9kZXZpY2VzIHVuc3VjY2Vz
-c2Z1bCB3aXRoIDFHIEV0aGVybmV0DQoNCkNBVVRJT046IFRoaXMgZW1haWwgb3JpZ2luYXRlZCBm
-cm9tIG91dHNpZGUgdGhlIG9yZ2FuaXNhdGlvbi4gRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4g
-YXR0YWNobWVudHMgdW5sZXNzIHlvdSByZWNvZ25pc2UgdGhlIHNlbmRlciBhbmQga25vdyB0aGUg
-Y29udGVudCBpcyBzYWZlLg0KDQpBbm90aGVyIHRyeSAtIEl0IHNvdW5kcyBsaWtlIHlvdSBjb25u
-ZWN0ZWQgdGhlIFVTQiBjb25uZWN0aW9uIHRvIHRoZSBVU0IgdG8gUFMgcG9ydCB3aGVuIHlvdSBz
-aG91bGQgYWN0dWFsbHkgYmUgY29ubmVjdGluZyB0byB0aGUgSlRBRy9Db25zb2xlIHBvcnQgb24g
-dGhlIFg0NDAuIFRoaXMgd2lsbCBtYWtlIGEgbmV3IHNlcmlhbCBkZXZpY2Ugc2hvdyB1cCBpbiAv
-ZGV2L3R0eVVTQiMgYW5kIHlvdSBjYW4gdGhlbiBjb21tdW5pY2F0ZSB3aXRoIGl0IHVzaW5nIHNj
-cmVlbi9taW5pY29tL3B1dHR5LiBPbmUgb2YgdGhlc2UgcG9ydHMgd2lsbCBnaXZlIHlvdSBhY2Nl
-c3MgdG8gdGhlIExpbnV4IGZpbGVzeXN0ZW0gYW5kIHlvdSBjYW4gdGhlbiBjaGFuZ2UgdGhlIC9k
-YXRhL25ldHdvcmsvIGZpbGVzIHRvIHNldCBhIHN0YXRpYyBJUA0KDQpyZWY6IGh0dHBzOi8vZmls
-ZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3VzcnBfeDR4eC5odG1sI3g0eHhfZ2V0dGluZ19zdGFy
-dGVkX3NlcmlhbCArIEkganVzdCB3ZW50IHRocm91Z2ggdGhlc2Ugc2FtZSBzdGVwcyBvbiBteSBY
-NDQwDQoNCk9uIEZyaSwgSmFuIDMxLCAyMDI1IGF0IDE6MTnigK9QTSBDaHJpcyBSb2dlcnMgPGMx
-MzM3cm9nZXJzQGdtYWlsLmNvbTxtYWlsdG86YzEzMzdyb2dlcnNAZ21haWwuY29tPj4gd3JvdGU6
-DQpBIGNvdXBsZSB0aGluZ3MgeW91IGNhbiB0cnk6DQoNCiAgKiAgIENvbm5lY3QgeW91ciBsYXB0
-b3AgYW5kIHRoZSBYNDQwIHRvIGEgcm91dGVyIGFuZCBsZXQgdGhlIHJvdXRlciBhc3NpZ24gYSBE
-SENQIGFkZHJlc3MgdG8gdGhlIFg0NDAgYW5kIHRyeSB0byB1aGRfZmluZF9kZXZpY2VzL3NzaCBp
-bnRvIGl0IHRoYXQgd2F5DQogICogICBDb25uZWN0IHZpYSB0aGUgUVNGUCBwb3J0cyBhbmQgc3No
-IGludG8gdGhlIFg0NDAgdmlhIGFueSBvZiB0aGUgZGVmYXVsdCBTRlAgYWRkcmVzc2VzICggMTky
-LjE2OC4xMC4yLCAxMS4yLCAxMi4yLCAxMy4yICkuIFlvdSdsbCBuZWVkIHRvIHNldCB5b3VyIGNv
-bXB1dGVyJ3MgU0ZQIGludGVyZmFjZSB0byBiZSBhIHN0YXRpYyBJUCBvbiB0aGUgc2FtZSBzdWJu
-ZXQNCg0KT25jZSB5b3UncmUgaW4sIHlvdSBjYW4gY2hlY2sgdGhlIFVIRCB2ZXJzaW9uIGJ5IHJ1
-bm5pbmcgdWhkX2ZpbmRfZGV2aWNlcyBvbiB0aGUgWDQ0MCBpdHNlbGYsIGFuZCB5b3UgY2FuIGNo
-YW5nZSB0byBhIHN0YXRpYyBJUCBieSBmb2xsb3dpbmcgdGhpcyBzZWN0aW9uIG9mIHRoZSBVSEQg
-bWFudWFsOg0KaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfdXNycF94NHh4Lmh0
-bWwjeDR4eF9nZXR0aW5nX3N0YXJ0ZWRfbmV0d29ya19jb25uZWN0aXZpdHlfaWZjcw0KDQpIb3Bl
-IHRoaXMgaGVscHMsDQpDaHJpcw0KDQpPbiBGcmksIEphbiAzMSwgMjAyNSBhdCAxMjo0NuKAr1BN
-IERhbmllbCBXaGl0ZSA8ZC53aGl0ZS40QGJoYW0uYWMudWs8bWFpbHRvOmQud2hpdGUuNEBiaGFt
-LmFjLnVrPj4gd3JvdGU6DQpEZWFyIFVTUlAtVXNlcnMsDQoNCkkgYW0gdHJ5aW5nIHRvIGVzdGFi
-bGlzaCBhIGNvbm5lY3Rpb24gZnJvbSBteSBsYXB0b3AgKFRoaW5rUGFkIFA1MykgdG8gYW4gWDQ0
-MCwgaW5pdGlhbGx5LCAgdmlhIDFHIGV0aGVybmV0IGNhYmxlLCBidXQgdWhkX2ZpbmRfZGV2aWNl
-cywgb3IgdWhkX3VzcnBfcHJvYmUgZmFpbCBkZXNwaXRlIGJyaW5nIGFibGUgdG8gcGluZyB0aGUg
-ZGV2aWNlLg0KDQogICoNClByZWFtYmxlDQoNCkkgaGF2ZSBhIFVTUlAtMjk1NCBhbmQgaGF2ZSBo
-YWQgbm8gcHJvYmxlbSBvcGVyYXRpbmcgdGhpcywgdmlhIHRoZSBzYW1lIDFHIGV0aGVybmV0IGNh
-YmxlICh3aXRoIDEwR0IgUko0NSB0byBGU1ArIGFkYXB0b3IpLiBJIGhhdmUgdXNlZCBVYnVudHUg
-MjIuMDQgYW5kIDI0LjA0LjEgd2l0aCBib3RoIGJ1aWxkaW5nIGZyb20gc291cmNlIGFuZCBkaXJl
-Y3RseSBhcHQgaW5zdGFsbGluZyB0aGUgYmluYXJpZXMsIGFibGUgdG8gZmluZCBzdWNjZXNzIHdp
-dGggdWhkX2ZpbmRfZGV2aWNlcyBhZnRlcndhcmRzLg0KDQpBIGRpZmZlcmVuY2UgYmV0d2VlbiB0
-aGUgVVNSUC0yOTU0IGFuZCBYNDQwIGlzIHRoYXQgdGhlIFVTUlAtMjk1NCB1c2VzIGEgZml4ZWQg
-SVAgYWRkcmVzcyAoMTkyLjE2OC40MC4yKSB3aGVyZSBhcmUgRXRoMCBvbiB0aGUgWDQ0MCBpcyBj
-b25maWd1cmVkIHRvIHVzZSBhIERIQ1AtYXNzaWduZWQgSVAgYWRkcmVzcy4gRm9yIGEgd2hpbGUg
-SSBoYXZlIGV4cGVyaW1lbnRlZCB3aXRoIG5ldHdvcmsgc2V0dGluZ3Mgb24gdGhlIGhvc3QgbGFw
-dG9wLCB3aXRoIHZhcnlpbmcgbGV2ZWxzIG9mIGluc2lnaHQgZ2FpbmVkLCBidXQgbmV2ZXIgYWJs
-ZSB0byBnZXQgYSByZXNwb25zZSByZWNvZ25pc2VkIGZyb20gdWhkX2ZpbmRfZGV2aWNlcyB3aXRo
-IHRoZSBYNDQwLg0KDQogICoNClVidW50dSAyNC4wNC4xIHwgYXB0IGluc3RhbGwgbGlidWhkLWRl
-diB1aGQtaG9zdA0KDQpBZnRlciBpbnN0YWxsYXRpb24gYW5kIHZlcmlmaWNhdGlvbiwgYW5kIGV4
-cGVjdGluZyB1aGRfZmluZF9kZXZpY2VzIHRvIHdvcmsgd2l0aCAxRyBFdGhlcm5ldCBjb25uZWN0
-aW9uLCBpdCBmYWlscy4NCg0KSSBhdHRlbXB0ZWQgcGVybXV0YXRpbmcgdWJ1bnR1IG5ldHdvcmsg
-c2V0dGluZ3MgdG8gZXN0YWJsaXNoIGEgY29ubmVjdGlvbi4gT25seSB3aXRoIHRoZSAnc2hhcmVk
-IHRvIG90aGVyIGNvbXB1dGVycycgb3B0aW9uIGRvZXMgdWJ1bnR1IGRlY2xhcmUgYSBjb25uZWN0
-aW9uIGhhcyBiZWVuIGVzdGFibGlzaGVkLiBGcm9tIHRoaXMsIHdpdGggd2lyZXNoYXJrIEkgY2Fu
-IGNvbmZpcm0gY29tbXVuaWNhdGlvbiBmcm9tIHRoZSBYNDQwIHZpYSBpdHMgc2VyaWFsIG51bWJl
-ciBhbmQgbWFjIGFkZHJlc3MsIGFuZCBmaW5kIGl0cyBpcCBhZGRyZXNzICgxMC40Mi4wLjE1OSku
-DQpJIGNhbiBwaW5nIHRoZSBkZXZpY2Ugd2l0aCAnc2hhcmVkIHRvIG90aGVyIGNvbXB1dGVycycg
-b3Igd2l0aCBhIGZpeGVkIGFkZHJlc3Mgc2V0IG9uIHRoZSBjb21wdXRlciBhcyAxMC40Mi4wLjEu
-IEkgY2Fubm90IGhvd2V2ZXIgc3NoIGludG8gdGhlIGRldmljZSwgb3IgZ2V0IGEgdmFsaWQgcmVz
-cG9uc2UgZnJvbSB1aGRfZmluZF9kZXZpY2VzIC8gdWhkX3VzcnBfcHJvYmUgd2l0aCBrbm93biBh
-cmd1bWVudHMgcXVlcmllZC4NCg0KQ29ubmVjdGluZyB0aGUgbGFwdG9wIHRvIHRoZSAnUFMgdG8g
-VVNCJyB1c2ItYyBwb3J0LCBJIGV4cGVjdCB0byBzZWUgYSBuZXcgdXNiIGRldmljZSByZWNvZ25p
-c2VkIG9uIHRoZSBsYXB0b3Agd2l0aCBsc3VzYiwgbHNibGssIGxzIC1sYXNoIC9kZXYvdHR5Kiwg
-YnV0IG5ldmVyIGRvZXMgdGhlIG51bWJlciBvZiBjb25uZWN0aW9ucyBjaGFuZ2UgYWZ0ZXIgcG93
-ZXJpbmcgY3ljbGluZyB0aGUgZGV2aWNlIHdoaWxlIGNvbm5lY3RlZCBpbiB0aGlzIHdheS4gVGhp
-cyB3YXMgbXkgaG9wZSB0aHJvdWdoIGFmdGVyIGZpbmRpbmcgaHR0cHM6Ly9mb3J1bXMubmkuY29t
-L3Q1L1VTUlAtU29mdHdhcmUtUmFkaW8vVW5hYmxlLXRvLWZpbmQtdXNycC1kZXZpY2VzLWZvci1V
-U1JQLVg0NDAtUko0NS1ldGhlcm5ldC90ZC1wLzQzNTQ2MTQNCg0KICAqDQpVYnVudHUgMjQuMDQu
-MSB8IGJ1aWxkaW5nIDQuNy4wLjAgZnJvbSBzb3VyY2UNCg0KSSBpbnN0YWxsZWQgYWxsIGRlcGVu
-ZGVuY2llcyBpbiBib3RoIGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX2J1aWxk
-X2d1aWRlLmh0bWwgKG9ubHkgd2l0aG91dCBsaWJjdXJzZXM1IGFuZCBsaWJjdXJzZXM1LWRldikg
-YW5kIGh0dHBzOi8va2IuZXR0dXMuY29tL0J1aWxkaW5nX2FuZF9JbnN0YWxsaW5nX3RoZV9VU1JQ
-X09wZW4tU291cmNlX1Rvb2xjaGFpbl8oVUhEX2FuZF9HTlVfUmFkaW8pX29uX0xpbnV4ICgyNC4w
-NCB2ZXJzaW9uKS4NCg0KSW4gdGhlIGNtYWtlIHN0YWdlLCBJIG5vdGljZSB0aGF0IGl0IGZhaWxl
-ZCB0byBmaW5kIG1vZHVsZXMgZ2V2ZW50LCBtcHJwYywgcHl1ZGV2IGFuZCBweXJvdXRlMi4gUHJl
-dmlvdXNseSBJIGhhZCBpbmNsdWRlZCB0aGlzIChhc2lkZSBtcHJwYykgd2l0aCBzaW1pbGFyIG91
-dGNvbWUuDQoNCkFmdGVyIGNvbXBsZXRpbmcgdGhlIGJ1aWxkLCBJIGNhbiBwaW5nIHRoZSBkZXZp
-Y2Ugc3VjY2Vzc2Z1bGx5IChJQ01QIEVjaG8gcGluZyByZXF1ZXN0IGFuZCByZXBseSkgd2l0aCBm
-aXhlZCBpcCBzZXQsIGJ1dCBhdHRlbXB0aW5nIHVoZF91c3JwX3Byb2JlIHdpdGggdGhpcyB5ZWls
-ZHMgRGVzdGluYXRpb24gdW5yZWFjaGFibGUuDQoNCiAgKg0KQWRkaXRpb25hbCBub3Rlcw0KDQpX
-aXRoIGVhY2ggYXR0ZW1wdCBJIHR1cm4gZmlyZXdhbGwgb2ZmLCB2aWEgdWZ3IGFuZCBpcHRhYmxl
-cywgYXMgSSBhbSBvbiBhIGNsb3NlZCBuZXR3b3JrLg0KDQpGcm9tIHRoZSBFdHR1cydzIFg0NDAg
-R2V0dGluZyBTdGFydGVkIEd1aWRlLCAiTm90ZSB0aGF0IGlmIHlvdSBhcmUgb3BlcmF0aW5nIHRo
-ZSBkZXZpY2UgaW4gTmV0d29yayBNb2RlLCB0aGUgdmVyc2lvbiBvZiBVSEQgcnVubmluZyBvbiB0
-aGUgaG9zdCBjb21wdXRlciBhbmQgdGhlIFVTUlAgWDR4MCBtdXN0IG1hdGNoIi4NCldpdGggdGhp
-cyBJIG5lZWQgdG8gbWFrZSBzdXJlIHRoZSBVSEQgdmVyc2lvbnMgYXJlIG1hdGNoaW5nLiBIb3dl
-dmVyIHdpdGggbm8gd2F5IGZvdW5kIHNvIGZhciB0byBhY2Nlc3MgdGhlIFg0NDAgdG8gY2hlY2sg
-aXRzIFVIRCB2ZXJzaW9uLCBJIGhhdmUgdHJpZWQgYWxsIHZlcnNpb25zIHNpbmNlIDQuNS4wLjAg
-bm90IGluY2x1ZGluZyByZWxlYXNlIGNhbmRpZGF0ZXMuDQpJIHdpbGwgYmUgZG9pbmcgdGhpcyB3
-aXRoIHJlbGVhc2UgY2FuZGlkYXRlcyB3aXRoIFVidW50dSAyMCBpbiB0aGUgbWVhbiB0aW1lLCBh
-bmQgd2lsbCB1cGRhdGUgaWYgSSBoYXZlIHN1Y2Nlc3Mgd2l0aCB0aGlzLg0KDQogICoNClN1bW1h
-cnkNCg0KQ2Fubm90IGNvbm5lY3QgdG8gWDQ0MCB2aWEgMUcgZXRoZXJuZXQsIGFzaWRlIHBpbmcg
-cmVzcG9uc2VzIHdpdGggZml4ZWQgaXAgYWRkcmVzcy4NCkNhbm5vdCByZWNvZ25pc2UgdGhlIFg0
-NDAgYXMgYSB1c2IgZGV2aWNlIHJlcXVpcmVkIHRvIGFjY2VzcyB0aGUgZmlsZXN5c3RlbXMgZGly
-ZWN0bHkgb24gdGhlIGRldmljZS4NCg0KVG8gZXN0YWJsaXNoIGEgY29ubmVjdGlvbiBmcm9tIHRo
-aXMgYXMgYSBzdGFydGluZyBwb2ludCB2aWEgbmV0d29ya2luZyBjb25maWd1cmF0aW9uLCBhcmUg
-dGhlcmUgYW55IHN1Z2dlc3Rpb25zPw0KVG8gcmVzdGFydCB0aGUgc2V0dXAgZnJvbSBhIGZyZXNo
-IHVidW50dSBpbnN0YWxsYXRpb24sIGlzIHRoZXJlIGFueXRoaW5nIEkgc2hvdWxkIGNoYW5nZSB0
-aGF0IG1heSBpbXByb3ZlIG15IGNoYW5jZXM/IEl0IGlzIHBvc3NpYmxlIEkgaGF2ZSBtaXNzZWQg
-c29tZSBjcnVjaWFsIGRlcGVuZGVuY2llcyBmb3IgdGhlIFg0NDAgc3BlY2lmaWNhbGx5Pw0KDQpJ
-IGhhdmUgc2F2ZWQgYWxsIGxvZ3MgZm9yIHRoZSBidWlsZCBwcm9jZXNzIGFuZCBjYW4gc2hhcmUg
-dGhlc2UuDQoNClNjZW5lcmUgdGhhbmtzIGZvciBhbnkgYW5kIGFsbCBndWlkYW5jZSwNCkRhbg0K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8g
-dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVA
-bGlzdHMuZXR0dXMuY29tPg0K
+Glad it worked out! I imagine the next steps you'll have to follow are the
+ones about updating the filesystem... Turns out updating the X440's UHD
+version is more involved than just updating the FPGA because of the MPM
+architecture
 
---_000_CWLP265MB4175B138CE3F61F645A93BFCD7F52CWLP265MB4175GBRP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_updating_filesystem=
+s_mender
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
-Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpDaHJpcyw8L2Rpdj4NCjxkaXYgY2xhc3M9ImVs
-ZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZv
-bnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpUaGFua3MgYSBtaWxsaW9u
-IGZvciBwaWNraW5nIHRoaXMgdXAuPC9kaXY+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIg
-c3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0Zv
-bnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJw
-dDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KSXQgd2FzIHRoZSBsYXN0IHBvaW50IHRoYXQgaGFz
-IHN1Y2NlZWRlZCBmb3IgbWUgLSBjb25uZWN0aW5nIHRvIEpUQUcvU2VyaWFsIGFuZCBub3QgVVNC
-IHRvIFBTLiBZb3Ugd2VyZSBiYW5nIG9uLiBOb3csIEknbSBub3Qgc3VyZSB3aHkgSSBkaWRuJ3Qg
-dHJ5IHRoaXMgYmVmb3JlLi4uPC9kaXY+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5
-bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRT
-ZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsg
-Y29sb3I6IHJnYigwLCAwLCAwKTsiPg0KSSB3YXMgYWJsZSB0byBjaGFuZ2UgdGhlIGlwIHRvIGEg
-c3RhdGljIG9uZSBhbmQgbm93IEkgY2FuIHNzaCBpbnRvIHRoZSBkZXZpY2UgYW5kIGdldCBhIGZ1
-bGwgcmVzcG9uc2UgZnJvbSZuYnNwO3VoZF9maW5kX2RldmljZXMuPC9kaXY+DQo8ZGl2IGNsYXNz
-PSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRk
-ZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2Vy
-aWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KVGhlIHJvdXRlciBk
-aWQgbm90IHdvcmsgYW5kIGhhZCBub3QgeWV0IHRyaWVkIHRoZSBRU0ZQIGFwcHJvYWNoLCBidXQg
-dGhpcyB3YXMgbmV4dC48L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0i
-Zm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZp
-Y2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xv
-cjogcmdiKDAsIDAsIDApOyI+DQpOb3cgdG8gY29ycmVjdCB0aGUgTVBNIGNvbXBhdCBtaXNtYXRj
-aCE8L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6
-IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmks
-IEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAs
-IDApOyI+DQpCZXN0IHdpc2hlcyw8L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBz
-dHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9u
-dFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0
-OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpEYW48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFt
-aWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxp
-YnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigw
-LCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0K
-PGhyIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdpZHRoOiA5OCU7Ij4NCjxkaXYgZGly
-PSJsdHIiIGlkPSJkaXZScGx5RndkTXNnIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGli
-cmksIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPjxi
-PkZyb206PC9iPiZuYnNwO0NocmlzIFJvZ2VycyAmbHQ7YzEzMzdyb2dlcnNAZ21haWwuY29tJmd0
-Ozxicj4NCjxiPlNlbnQ6PC9iPiZuYnNwOzMxIEphbnVhcnkgMjAyNSAyMTo1ODxicj4NCjxiPlRv
-OjwvYj4mbmJzcDtEYW5pZWwgV2hpdGUgKEVsZWN0cm9uaWMsIEVsZWN0cmljYWwgYW5kIFN5c3Rl
-bXMgRW5naW5lZXJpbmcpICZsdDtkLndoaXRlLjRAYmhhbS5hYy51ayZndDs8YnI+DQo8Yj5DYzo8
-L2I+Jm5ic3A7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O3VzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiZuYnNwO1JlOiBbVVNSUC11c2Vyc10g
-WDQ0MCB1aGRfZmluZF9kZXZpY2VzIHVuc3VjY2Vzc2Z1bCB3aXRoIDFHIEV0aGVybmV0PC9zcGFu
-Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPHRhYmxlIGFsaWduPSJsZWZ0IiBjZWxsc3Bh
-Y2luZz0iMCIgY2VsbHBhZGRpbmc9IjAiIHN0eWxlPSJ3aWR0aDogMTAwJTsgYm94LXNpemluZzog
-Ym9yZGVyLWJveDsgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTsgYm9yZGVyLXNwYWNpbmc6IDBw
-eDsiPg0KPHRib2R5Pg0KPHRyPg0KPHRkIHN0eWxlPSJib3JkZXItd2lkdGg6IDFweDsgYm9yZGVy
-LXN0eWxlOiBzb2xpZDsgYm9yZGVyLWNvbG9yOiByZ2IoMTU2LCAxMDEsIDApOyBiYWNrZ3JvdW5k
-LWNvbG9yOiByZ2IoMjU1LCAyMzUsIDE1Nik7IHBhZGRpbmc6IDJwdDsgd2lkdGg6IDEwJTsiPg0K
-PGI+Q0FVVElPTjo8L2I+Jm5ic3A7VGhpcyBlbWFpbCBvcmlnaW5hdGVkIGZyb20gb3V0c2lkZSB0
-aGUgb3JnYW5pc2F0aW9uLiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1
-bmxlc3MgeW91IHJlY29nbmlzZSB0aGUgc2VuZGVyIGFuZCBrbm93IHRoZSBjb250ZW50IGlzIHNh
-ZmUuPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjxicj4NCjxkaXYgc3R5bGU9ImRp
-cmVjdGlvbjogbHRyOyI+QW5vdGhlciB0cnkgLSBJdCBzb3VuZHMgbGlrZSB5b3UgY29ubmVjdGVk
-IHRoZSBVU0IgY29ubmVjdGlvbiB0byB0aGUgVVNCIHRvIFBTIHBvcnQgd2hlbiB5b3Ugc2hvdWxk
-IGFjdHVhbGx5IGJlIGNvbm5lY3RpbmcgdG8gdGhlIEpUQUcvQ29uc29sZSBwb3J0IG9uIHRoZSBY
-NDQwLiBUaGlzIHdpbGwgbWFrZSBhIG5ldyBzZXJpYWwgZGV2aWNlIHNob3cgdXAgaW4gL2Rldi90
-dHlVU0IjIGFuZCB5b3UNCiBjYW4gdGhlbiBjb21tdW5pY2F0ZSB3aXRoIGl0IHVzaW5nIHNjcmVl
-bi9taW5pY29tL3B1dHR5LiBPbmUgb2YgdGhlc2UgcG9ydHMgd2lsbCBnaXZlIHlvdSBhY2Nlc3Mg
-dG8gdGhlIExpbnV4IGZpbGVzeXN0ZW0gYW5kIHlvdSBjYW4gdGhlbiBjaGFuZ2UgdGhlIC9kYXRh
-L25ldHdvcmsvIGZpbGVzIHRvIHNldCBhIHN0YXRpYyBJUDxicj4NCjxicj4NCjwvZGl2Pg0KPGRp
-diBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7Ij5yZWY6IDxhIGhyZWY9Imh0dHBzOi8vZmlsZXMuZXR0
-dXMuY29tL21hbnVhbC9wYWdlX3VzcnBfeDR4eC5odG1sI3g0eHhfZ2V0dGluZ19zdGFydGVkX3Nl
-cmlhbCIgaWQ9Ik9XQTFiMGIyOTRjLTNjM2MtYWZhMi1jODNiLWQ3MTRhMDUyMTM5ZSIgY2xhc3M9
-Ik9XQUF1dG9MaW5rIiBkYXRhLWF1dGg9Ik5vdEFwcGxpY2FibGUiPg0KaHR0cHM6Ly9maWxlcy5l
-dHR1cy5jb20vbWFudWFsL3BhZ2VfdXNycF94NHh4Lmh0bWwjeDR4eF9nZXR0aW5nX3N0YXJ0ZWRf
-c2VyaWFsPC9hPiZuYnNwOysgSSBqdXN0IHdlbnQgdGhyb3VnaCB0aGVzZSBzYW1lIHN0ZXBzIG9u
-IG15IFg0NDA8L2Rpdj4NCjxicj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+T24gRnJp
-LCBKYW4gMzEsIDIwMjUgYXQgMToxOeKAr1BNIENocmlzIFJvZ2VycyAmbHQ7PGEgaHJlZj0ibWFp
-bHRvOmMxMzM3cm9nZXJzQGdtYWlsLmNvbSIgaWQ9Ik9XQTJkNTY4OTY2LWE5MzEtYTliZi0zZDlm
-LTI1NWNmYTQ0ZDhlMCIgY2xhc3M9Ik9XQUF1dG9MaW5rIj5jMTMzN3JvZ2Vyc0BnbWFpbC5jb208
-L2E+Jmd0OyB3cm90ZTo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW46IDBweCAwcHgg
-MHB4IDAuOGV4OyBwYWRkaW5nLWxlZnQ6IDFleDsgYm9yZGVyLWxlZnQ6IDFweCBzb2xpZCByZ2Io
-MjA0LCAyMDQsIDIwNCk7Ij4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+QSBjb3VwbGUg
-dGhpbmdzIHlvdSBjYW4gdHJ5OjwvZGl2Pg0KPHVsIHN0eWxlPSJkaXJlY3Rpb246IGx0cjsiPg0K
-PGxpIHN0eWxlPSJkaXJlY3Rpb246IGx0cjsiPkNvbm5lY3QgeW91ciBsYXB0b3AgYW5kIHRoZSBY
-NDQwIHRvIGEgcm91dGVyIGFuZCBsZXQgdGhlIHJvdXRlciBhc3NpZ24gYSBESENQIGFkZHJlc3Mg
-dG8gdGhlIFg0NDAgYW5kIHRyeSB0byB1aGRfZmluZF9kZXZpY2VzL3NzaCBpbnRvIGl0IHRoYXQg
-d2F5PC9saT48bGkgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+Q29ubmVjdCB2aWEgdGhlIFFTRlAg
-cG9ydHMgYW5kIHNzaCBpbnRvIHRoZSBYNDQwIHZpYSBhbnkgb2YgdGhlIGRlZmF1bHQgU0ZQIGFk
-ZHJlc3NlcyAoIDE5Mi4xNjguMTAuMiwgMTEuMiwgMTIuMiwgMTMuMiApLiBZb3UnbGwgbmVlZCB0
-byBzZXQgeW91ciBjb21wdXRlcidzIFNGUCBpbnRlcmZhY2UgdG8gYmUgYSBzdGF0aWMgSVAgb24g
-dGhlIHNhbWUgc3VibmV0PGJyPg0KPC9saT48L3VsPg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBs
-dHI7Ij5PbmNlIHlvdSdyZSBpbiwgeW91IGNhbiBjaGVjayB0aGUgVUhEIHZlcnNpb24gYnkgcnVu
-bmluZyB1aGRfZmluZF9kZXZpY2VzIG9uIHRoZSBYNDQwIGl0c2VsZiwgYW5kIHlvdSBjYW4gY2hh
-bmdlIHRvIGEgc3RhdGljIElQIGJ5IGZvbGxvd2luZyB0aGlzIHNlY3Rpb24gb2YgdGhlIFVIRCBt
-YW51YWw6Jm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsiPjxhIGhyZWY9
-Imh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3VzcnBfeDR4eC5odG1sI3g0eHhf
-Z2V0dGluZ19zdGFydGVkX25ldHdvcmtfY29ubmVjdGl2aXR5X2lmY3MiIGlkPSJPV0FkNmZjNDUz
-MS1iNTQzLWZjMjgtYTRkNS03OGQzZmYxYmQ0OWMiIGNsYXNzPSJPV0FBdXRvTGluayIgZGF0YS1h
-dXRoPSJOb3RBcHBsaWNhYmxlIj5odHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV91
-c3JwX3g0eHguaHRtbCN4NHh4X2dldHRpbmdfc3RhcnRlZF9uZXR3b3JrX2Nvbm5lY3Rpdml0eV9p
-ZmNzPC9hPjwvZGl2Pg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7Ij48YnI+DQo8L2Rpdj4N
-CjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+SG9wZSB0aGlzIGhlbHBzLDwvZGl2Pg0KPGRp
-diBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7Ij5DaHJpczwvZGl2Pg0KPGJyPg0KPGRpdiBzdHlsZT0i
-ZGlyZWN0aW9uOiBsdHI7Ij5PbiBGcmksIEphbiAzMSwgMjAyNSBhdCAxMjo0NuKAr1BNIERhbmll
-bCBXaGl0ZSAmbHQ7PGEgaHJlZj0ibWFpbHRvOmQud2hpdGUuNEBiaGFtLmFjLnVrIiBpZD0iT1dB
-YTQxZTk5ZjktMDU4OS04MjVmLThmYjctZWM0OWIwMzYzMzJlIiBjbGFzcz0iT1dBQXV0b0xpbmsi
-PmQud2hpdGUuNEBiaGFtLmFjLnVrPC9hPiZndDsgd3JvdGU6PC9kaXY+DQo8YmxvY2txdW90ZSBz
-dHlsZT0ibWFyZ2luOiAwcHggMHB4IDBweCAwLjhleDsgcGFkZGluZy1sZWZ0OiAxZXg7IGJvcmRl
-ci1sZWZ0OiAxcHggc29saWQgcmdiKDIwNCwgMjA0LCAyMDQpOyI+DQo8ZGl2IHN0eWxlPSJkaXJl
-Y3Rpb246IGx0cjsgZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9z
-X01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
-OiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpEZWFyIFVTUlAtVXNlcnMsPC9kaXY+DQo8
-ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsgZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJl
-ZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1z
-ZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rp
-dj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyBmb250LWZhbWlseTogQXB0b3MsIEFwdG9z
-X0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBz
-YW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkkgYW0g
-dHJ5aW5nIHRvIGVzdGFibGlzaCBhIGNvbm5lY3Rpb24gZnJvbSBteSBsYXB0b3AgKFRoaW5rUGFk
-IFA1MykgdG8gYW4gWDQ0MCwgaW5pdGlhbGx5LCZuYnNwOyB2aWEgMUcgZXRoZXJuZXQgY2FibGUs
-IGJ1dCB1aGRfZmluZF9kZXZpY2VzLCBvciB1aGRfdXNycF9wcm9iZSBmYWlsIGRlc3BpdGUgYnJp
-bmcgYWJsZSB0byBwaW5nIHRoZSBkZXZpY2UuPC9kaXY+DQo8dWwgc3R5bGU9ImRpcmVjdGlvbjog
-bHRyOyBsaXN0LXN0eWxlLXR5cGU6IGRpc2M7Ij4NCjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6IEFw
-dG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhl
-bHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDAp
-OyI+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsiPjx1PlByZWFtYmxlPC91PiZuYnNwOzwv
-ZGl2Pg0KPC9saT48L3VsPg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7IGZvbnQtZmFtaWx5
-OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJp
-LCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAw
-LCAwKTsiPg0KSSBoYXZlIGEgVVNSUC0yOTU0IGFuZCBoYXZlIGhhZCBubyBwcm9ibGVtIG9wZXJh
-dGluZyB0aGlzLCB2aWEgdGhlIHNhbWUgMUcgZXRoZXJuZXQgY2FibGUgKHdpdGggMTBHQiBSSjQ1
-IHRvIEZTUCsgYWRhcHRvcikuIEkgaGF2ZSB1c2VkIFVidW50dSAyMi4wNCBhbmQgMjQuMDQuMSB3
-aXRoIGJvdGggYnVpbGRpbmcgZnJvbSBzb3VyY2UgYW5kIGRpcmVjdGx5IGFwdCBpbnN0YWxsaW5n
-IHRoZSBiaW5hcmllcywgYWJsZSB0byBmaW5kIHN1Y2Nlc3Mgd2l0aA0KIHVoZF9maW5kX2Rldmlj
-ZXMgYWZ0ZXJ3YXJkcy48L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyBmb250LWZh
-bWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2Fs
-aWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2Io
-MCwgMCwgMCk7Ij4NCjxicj4NCkEgZGlmZmVyZW5jZSBiZXR3ZWVuIHRoZSBVU1JQLTI5NTQgYW5k
-IFg0NDAgaXMgdGhhdCB0aGUgVVNSUC0yOTU0IHVzZXMgYSBmaXhlZCBJUCBhZGRyZXNzICgxOTIu
-MTY4LjQwLjIpIHdoZXJlIGFyZSBFdGgwIG9uIHRoZSBYNDQwIGlzIGNvbmZpZ3VyZWQgdG8gdXNl
-IGEgREhDUC1hc3NpZ25lZCBJUCBhZGRyZXNzLiBGb3IgYSB3aGlsZSBJIGhhdmUgZXhwZXJpbWVu
-dGVkIHdpdGggbmV0d29yayBzZXR0aW5ncyBvbiB0aGUgaG9zdCBsYXB0b3AsIHdpdGgNCiB2YXJ5
-aW5nIGxldmVscyBvZiBpbnNpZ2h0IGdhaW5lZCwgYnV0IG5ldmVyIGFibGUgdG8gZ2V0IGEgcmVz
-cG9uc2UgcmVjb2duaXNlZCBmcm9tIHVoZF9maW5kX2RldmljZXMgd2l0aCB0aGUgWDQ0MC48L2Rp
-dj4NCjx1bCBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7IGxpc3Qtc3R5bGUtdHlwZTogZGlzYzsiPg0K
-PGxpIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3Nf
-TVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRy
-OyI+PHU+VWJ1bnR1IDI0LjA0LjEgfCBhcHQgaW5zdGFsbCBsaWJ1aGQtZGV2IHVoZC1ob3N0PC91
-PjwvZGl2Pg0KPC9saT48L3VsPg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7IGZvbnQtZmFt
-aWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxp
-YnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigw
-LCAwLCAwKTsiPg0KQWZ0ZXIgaW5zdGFsbGF0aW9uIGFuZCB2ZXJpZmljYXRpb24sIGFuZCBleHBl
-Y3RpbmcgdWhkX2ZpbmRfZGV2aWNlcyB0byB3b3JrIHdpdGggMUcgRXRoZXJuZXQgY29ubmVjdGlv
-biwgaXQgZmFpbHMuJm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsgZm9u
-dC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2Us
-IENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjog
-cmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRy
-OyBmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2Vy
-dmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkkgYXR0ZW1wdGVkIHBlcm11dGF0aW5nIHVidW50dSBuZXR3
-b3JrIHNldHRpbmdzIHRvIGVzdGFibGlzaCBhIGNvbm5lY3Rpb24uIE9ubHkgd2l0aCB0aGUgJ3No
-YXJlZCB0byBvdGhlciBjb21wdXRlcnMnIG9wdGlvbiBkb2VzIHVidW50dSBkZWNsYXJlIGEgY29u
-bmVjdGlvbiBoYXMgYmVlbiBlc3RhYmxpc2hlZC4gRnJvbSB0aGlzLCB3aXRoIHdpcmVzaGFyayBJ
-IGNhbiBjb25maXJtIGNvbW11bmljYXRpb24gZnJvbSB0aGUgWDQ0MCB2aWEgaXRzIHNlcmlhbA0K
-IG51bWJlciBhbmQgbWFjIGFkZHJlc3MsIGFuZCBmaW5kIGl0cyBpcCBhZGRyZXNzICgxMC40Mi4w
-LjE1OSkuPC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsgZm9udC1mYW1pbHk6IEFw
-dG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhl
-bHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDAp
-OyI+DQpJIGNhbiBwaW5nIHRoZSBkZXZpY2Ugd2l0aCAnc2hhcmVkIHRvIG90aGVyIGNvbXB1dGVy
-cycgb3Igd2l0aCBhIGZpeGVkIGFkZHJlc3Mgc2V0IG9uIHRoZSBjb21wdXRlciBhcyAxMC40Mi4w
-LjEuIEkgY2Fubm90IGhvd2V2ZXIgc3NoIGludG8gdGhlIGRldmljZSwgb3IgZ2V0IGEgdmFsaWQg
-cmVzcG9uc2UgZnJvbSB1aGRfZmluZF9kZXZpY2VzIC8gdWhkX3VzcnBfcHJvYmUgd2l0aCBrbm93
-biBhcmd1bWVudHMgcXVlcmllZC4mbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjog
-bHRyOyBmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250
-U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7
-IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZGlyZWN0
-aW9uOiBsdHI7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19N
-U0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTog
-MTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KQ29ubmVjdGluZyB0aGUgbGFwdG9wIHRvIHRo
-ZSAnUFMgdG8gVVNCJyB1c2ItYyBwb3J0LCBJIGV4cGVjdCB0byBzZWUgYSBuZXcgdXNiIGRldmlj
-ZSByZWNvZ25pc2VkIG9uIHRoZSBsYXB0b3Agd2l0aCBsc3VzYiwgbHNibGs8Yj4sDQo8L2I+bHMg
-LWxhc2ggL2Rldi90dHkqLCBidXQgbmV2ZXIgZG9lcyB0aGUgbnVtYmVyIG9mIGNvbm5lY3Rpb25z
-IGNoYW5nZSBhZnRlciBwb3dlcmluZyBjeWNsaW5nIHRoZSBkZXZpY2Ugd2hpbGUgY29ubmVjdGVk
-IGluIHRoaXMgd2F5LiBUaGlzIHdhcyBteSBob3BlIHRocm91Z2ggYWZ0ZXIgZmluZGluZw0KPGEg
-aHJlZj0iaHR0cHM6Ly9mb3J1bXMubmkuY29tL3Q1L1VTUlAtU29mdHdhcmUtUmFkaW8vVW5hYmxl
-LXRvLWZpbmQtdXNycC1kZXZpY2VzLWZvci1VU1JQLVg0NDAtUko0NS1ldGhlcm5ldC90ZC1wLzQz
-NTQ2MTQiIGlkPSJPV0E0YjNhYzdjZi1iNjc4LWFmZWYtODQzMi0zZDdmMjVkMzc0NWUiIGNsYXNz
-PSJPV0FBdXRvTGluayIgZGF0YS1hdXRoPSJOb3RBcHBsaWNhYmxlIj4NCmh0dHBzOi8vZm9ydW1z
-Lm5pLmNvbS90NS9VU1JQLVNvZnR3YXJlLVJhZGlvL1VuYWJsZS10by1maW5kLXVzcnAtZGV2aWNl
-cy1mb3ItVVNSUC1YNDQwLVJKNDUtZXRoZXJuZXQvdGQtcC80MzU0NjE0PC9hPiZuYnNwOyZuYnNw
-OzwvZGl2Pg0KPGRpdiBpZD0ieF9tXzYzNzgxNjI4NDc2MjY5MTA0OTFtXzM5ODUyMzcyOTU0NzM1
-MDEzMzBTaWduYXR1cmUiPg0KPHVsIHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyBsaXN0LXN0eWxl
-LXR5cGU6IGRpc2M7Ij4NCjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJl
-ZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1z
-ZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8ZGl2IHN0eWxl
-PSJ0ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWluZGVudDogMHB4OyBtYXJnaW4tdG9wOiAwcHg7IG1h
-cmdpbi1ib3R0b206IDBweDsiPg0KPHU+VWJ1bnR1IDI0LjA0LjEgfCBidWlsZGluZyA0LjcuMC4w
-IGZyb20gc291cmNlPC91PjwvZGl2Pg0KPC9saT48L3VsPg0KPGRpdiBzdHlsZT0idGV4dC1hbGln
-bjogbGVmdDsgdGV4dC1pbmRlbnQ6IDBweDsgbWFyZ2luOiAwcHg7IGZvbnQtZmFtaWx5OiBBcHRv
-cywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2
-ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsi
-Pg0KSSBpbnN0YWxsZWQgYWxsIGRlcGVuZGVuY2llcyBpbiBib3RoIDxhIGhyZWY9Imh0dHBzOi8v
-ZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX2J1aWxkX2d1aWRlLmh0bWwiIGlkPSJPV0FjZjdm
-MDMxYy0wOGQzLWNlODktYTgzYi1iZDFmZjg5NTc4NGQiIGNsYXNzPSJPV0FBdXRvTGluayIgZGF0
-YS1hdXRoPSJOb3RBcHBsaWNhYmxlIiBzdHlsZT0ibWFyZ2luOiAwcHg7IHRleHQtYWxpZ246IGxl
-ZnQ7Ij4NCmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX2J1aWxkX2d1aWRlLmh0
-bWw8L2E+Jm5ic3A7KG9ubHkgd2l0aG91dCBsaWJjdXJzZXM1IGFuZCBsaWJjdXJzZXM1LWRldikg
-YW5kDQo8YSBocmVmPSJodHRwczovL2tiLmV0dHVzLmNvbS9CdWlsZGluZ19hbmRfSW5zdGFsbGlu
-Z190aGVfVVNSUF9PcGVuLVNvdXJjZV9Ub29sY2hhaW5fKFVIRF9hbmRfR05VX1JhZGlvKV9vbl9M
-aW51eCIgaWQ9Ik9XQWM1YTgwNDlkLWY4ZDUtZDBiMi02YzA1LWI5YTRiM2Y5MGM4NiIgY2xhc3M9
-Ik9XQUF1dG9MaW5rIiBkYXRhLWF1dGg9Ik5vdEFwcGxpY2FibGUiPg0KaHR0cHM6Ly9rYi5ldHR1
-cy5jb20vQnVpbGRpbmdfYW5kX0luc3RhbGxpbmdfdGhlX1VTUlBfT3Blbi1Tb3VyY2VfVG9vbGNo
-YWluXyhVSERfYW5kX0dOVV9SYWRpbylfb25fTGludXg8L2E+Jm5ic3A7KDI0LjA0IHZlcnNpb24p
-LjwvZGl2Pg0KPGRpdiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgdGV4dC1pbmRlbnQ6IDBweDsg
-bWFyZ2luOiAwcHg7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRv
-c19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6
-ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxl
-PSJ0ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWluZGVudDogMHB4OyBtYXJnaW46IDBweDsgZm9udC1m
-YW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENh
-bGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdi
-KDAsIDAsIDApOyI+DQpJbiB0aGUgY21ha2Ugc3RhZ2UsIEkgbm90aWNlIHRoYXQgaXQgZmFpbGVk
-IHRvIGZpbmQgbW9kdWxlcyBnZXZlbnQsIG1wcnBjLCBweXVkZXYgYW5kIHB5cm91dGUyLiBQcmV2
-aW91c2x5IEkgaGFkIGluY2x1ZGVkIHRoaXMgKGFzaWRlIG1wcnBjKSB3aXRoIHNpbWlsYXIgb3V0
-Y29tZS4mbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IHRleHQtaW5k
-ZW50OiAwcHg7IG1hcmdpbjogMHB4OyBmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVk
-Rm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlm
-OyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0K
-PGRpdiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgdGV4dC1pbmRlbnQ6IDBweDsgbWFyZ2luOiAw
-cHg7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRT
-ZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsg
-Y29sb3I6IHJnYigwLCAwLCAwKTsiPg0KQWZ0ZXIgY29tcGxldGluZyB0aGUgYnVpbGQsIEkgY2Fu
-IHBpbmcgdGhlIGRldmljZSBzdWNjZXNzZnVsbHkgKElDTVAgRWNobyBwaW5nIHJlcXVlc3QgYW5k
-IHJlcGx5KSB3aXRoIGZpeGVkIGlwIHNldCwgYnV0IGF0dGVtcHRpbmcgdWhkX3VzcnBfcHJvYmUg
-d2l0aCB0aGlzIHllaWxkcyBEZXN0aW5hdGlvbiB1bnJlYWNoYWJsZS4mbmJzcDs8L2Rpdj4NCjx1
-bCBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgbGlzdC1zdHlsZS10eXBlOiBkaXNjOyI+DQo8bGkg
-c3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0Zv
-bnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJw
-dDsgY29sb3I6IHJnYigwLCAwLCAwKTsgbWFyZ2luLXJpZ2h0OiAwcHg7IG1hcmdpbi1sZWZ0OiAw
-cHg7Ij4NCjxkaXYgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IHRleHQtaW5kZW50OiAwcHg7IG1h
-cmdpbi10b3A6IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyI+DQo8dT5BZGRpdGlvbmFsIG5vdGVz
-PC91PjwvZGl2Pg0KPC9saT48L3VsPg0KPGRpdiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgdGV4
-dC1pbmRlbnQ6IDBweDsgbWFyZ2luLXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQt
-ZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBD
-YWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJn
-YigwLCAwLCAwKTsiPg0KV2l0aCBlYWNoIGF0dGVtcHQgSSB0dXJuIGZpcmV3YWxsIG9mZiwgdmlh
-IHVmdyBhbmQgaXB0YWJsZXMsIGFzIEkgYW0gb24gYSBjbG9zZWQgbmV0d29yay48L2Rpdj4NCjxk
-aXYgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IHRleHQtaW5kZW50OiAwcHg7IG1hcmdpbi10b3A6
-IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyBmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVk
-ZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNl
-cmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2
-Pg0KPGRpdiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgdGV4dC1pbmRlbnQ6IDBweDsgbWFyZ2lu
-LXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3Nf
-RW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KRnJvbSB0
-aGUgRXR0dXMncyBYNDQwIEdldHRpbmcgU3RhcnRlZCBHdWlkZSwgJnF1b3Q7PGk+Tm90ZSB0aGF0
-IGlmIHlvdSBhcmUgb3BlcmF0aW5nIHRoZSBkZXZpY2UgaW4gTmV0d29yayBNb2RlLCB0aGUgdmVy
-c2lvbiBvZiBVSEQgcnVubmluZyBvbiB0aGUgaG9zdCBjb21wdXRlciBhbmQgdGhlIFVTUlAgWDR4
-MCBtdXN0IG1hdGNoPC9pPiZxdW90Oy4mbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9InRleHQtYWxp
-Z246IGxlZnQ7IHRleHQtaW5kZW50OiAwcHg7IG1hcmdpbi10b3A6IDBweDsgbWFyZ2luLWJvdHRv
-bTogMHB4OyBmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNG
-b250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEy
-cHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCldpdGggdGhpcyBJIG5lZWQgdG8gbWFrZSBzdXJl
-IHRoZSBVSEQgdmVyc2lvbnMgYXJlIG1hdGNoaW5nLiBIb3dldmVyIHdpdGggbm8gd2F5IGZvdW5k
-IHNvIGZhciB0byBhY2Nlc3MgdGhlIFg0NDAgdG8gY2hlY2sgaXRzIFVIRCB2ZXJzaW9uLCBJIGhh
-dmUgdHJpZWQgYWxsIHZlcnNpb25zIHNpbmNlIDQuNS4wLjAgbm90IGluY2x1ZGluZyByZWxlYXNl
-IGNhbmRpZGF0ZXMuPC9kaXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWlu
-ZGVudDogMHB4OyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgZm9udC1mYW1p
-bHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGli
-cmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAs
-IDAsIDApOyI+DQpJIHdpbGwgYmUgZG9pbmcgdGhpcyB3aXRoIHJlbGVhc2UgY2FuZGlkYXRlcyB3
-aXRoIFVidW50dSAyMCBpbiB0aGUgbWVhbiB0aW1lLCBhbmQgd2lsbCB1cGRhdGUgaWYgSSBoYXZl
-IHN1Y2Nlc3Mgd2l0aCB0aGlzLjwvZGl2Pg0KPHVsIHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyBs
-aXN0LXN0eWxlLXR5cGU6IGRpc2M7Ij4NCjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBB
-cHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGlj
-YSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8
-ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWluZGVudDogMHB4OyBtYXJnaW4tdG9w
-OiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsiPg0KPHU+U3VtbWFyeTwvdT48L2Rpdj4NCjwvbGk+
-PC91bD4NCjxkaXYgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IHRleHQtaW5kZW50OiAwcHg7IG1h
-cmdpbi10b3A6IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyBmb250LWZhbWlseTogQXB0b3MsIEFw
-dG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNh
-LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkNh
-bm5vdCBjb25uZWN0IHRvIFg0NDAgdmlhIDFHIGV0aGVybmV0LCBhc2lkZSBwaW5nIHJlc3BvbnNl
-cyB3aXRoIGZpeGVkIGlwIGFkZHJlc3MuPC9kaXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOiBs
-ZWZ0OyB0ZXh0LWluZGVudDogMHB4OyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBw
-eDsgZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNl
-cnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBj
-b2xvcjogcmdiKDAsIDAsIDApOyI+DQpDYW5ub3QgcmVjb2duaXNlIHRoZSBYNDQwIGFzIGEgdXNi
-IGRldmljZSByZXF1aXJlZCB0byBhY2Nlc3MgdGhlIGZpbGVzeXN0ZW1zIGRpcmVjdGx5IG9uIHRo
-ZSBkZXZpY2UuPC9kaXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWluZGVu
-dDogMHB4OyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgZm9udC1mYW1pbHk6
-IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmks
-IEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAs
-IDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IHRleHQt
-aW5kZW50OiAwcHg7IG1hcmdpbi10b3A6IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyBmb250LWZh
-bWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2Fs
-aWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2Io
-MCwgMCwgMCk7Ij4NClRvIGVzdGFibGlzaCBhIGNvbm5lY3Rpb24gZnJvbSB0aGlzIGFzIGEgc3Rh
-cnRpbmcgcG9pbnQgdmlhIG5ldHdvcmtpbmcgY29uZmlndXJhdGlvbiwgYXJlIHRoZXJlIGFueSBz
-dWdnZXN0aW9ucz88L2Rpdj4NCjxkaXYgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IHRleHQtaW5k
-ZW50OiAwcHg7IG1hcmdpbi10b3A6IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyBmb250LWZhbWls
-eTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJy
-aSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwg
-MCwgMCk7Ij4NClRvIHJlc3RhcnQgdGhlIHNldHVwIGZyb20gYSBmcmVzaCB1YnVudHUgaW5zdGFs
-bGF0aW9uLCBpcyB0aGVyZSBhbnl0aGluZyBJIHNob3VsZCBjaGFuZ2UgdGhhdCBtYXkgaW1wcm92
-ZSBteSBjaGFuY2VzPyBJdCBpcyBwb3NzaWJsZSBJIGhhdmUgbWlzc2VkIHNvbWUgY3J1Y2lhbCBk
-ZXBlbmRlbmNpZXMgZm9yIHRoZSBYNDQwIHNwZWNpZmljYWxseT88L2Rpdj4NCjxkaXYgc3R5bGU9
-InRleHQtYWxpZ246IGxlZnQ7IHRleHQtaW5kZW50OiAwcHg7IG1hcmdpbi10b3A6IDBweDsgbWFy
-Z2luLWJvdHRvbTogMHB4OyBmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwg
-QXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250
-LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBz
-dHlsZT0idGV4dC1hbGlnbjogbGVmdDsgdGV4dC1pbmRlbnQ6IDBweDsgbWFyZ2luLXRvcDogMHB4
-OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRG
-b250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7
-IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KSSBoYXZlIHNhdmVkIGFs
-bCBsb2dzIGZvciB0aGUgYnVpbGQgcHJvY2VzcyBhbmQgY2FuIHNoYXJlIHRoZXNlLjwvZGl2Pg0K
-PGRpdiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgdGV4dC1pbmRlbnQ6IDBweDsgbWFyZ2luLXRv
-cDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1i
-ZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMt
-c2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9k
-aXY+DQo8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWluZGVudDogMHB4OyBtYXJn
-aW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRv
-c19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwg
-c2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpTY2Vu
-ZXJlIHRoYW5rcyBmb3IgYW55IGFuZCBhbGwgZ3VpZGFuY2UsPC9kaXY+DQo8ZGl2IHN0eWxlPSJ0
-ZXh0LWFsaWduOiBsZWZ0OyB0ZXh0LWluZGVudDogMHB4OyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdp
-bi1ib3R0b206IDBweDsgZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFw
-dG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1z
-aXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpEYW48L2Rpdj4NCjwvZGl2Pg0KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20iIGlkPSJPV0FlMTE0ODUyMC0xNjRkLTk0YzItZDBhNy05MzI3YjJjZjBjZDUiIGNsYXNz
-PSJPV0FBdXRvTGluayI+DQp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1
-bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbSIgaWQ9Ik9XQTlkOGQ4ZDE3LWMwM2YtOTU3Yi1hODhkLTNjNmMy
-NmMzNjZiYiIgY2xhc3M9Ik9XQUF1dG9MaW5rIj4NCnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0
-dXMuY29tPC9hPjxicj4NCjwvYmxvY2txdW90ZT4NCjwvYmxvY2txdW90ZT4NCjwvYm9keT4NCjwv
-aHRtbD4NCg==
+PS: these steps are much easier if you can get the X440 itself on the
+internet but I know that may not be possible
 
---_000_CWLP265MB4175B138CE3F61F645A93BFCD7F52CWLP265MB4175GBRP_--
 
---===============2060674796128811866==
+On Mon, Feb 3, 2025 at 3:15=E2=80=AFPM Daniel White <d.white.4@bham.ac.uk> =
+wrote:
+
+> Chris,
+> Thanks a million for picking this up.
+> It was the last point that has succeeded for me - connecting to
+> JTAG/Serial and not USB to PS. You were bang on. Now, I'm not sure why I
+> didn't try this before...
+> I was able to change the ip to a static one and now I can ssh into the
+> device and get a full response from uhd_find_devices.
+> The router did not work and had not yet tried the QSFP approach, but this
+> was next.
+> Now to correct the MPM compat mismatch!
+> Best wishes,
+> Dan
+>
+> ------------------------------
+> *From:* Chris Rogers <c1337rogers@gmail.com>
+> *Sent:* 31 January 2025 21:58
+> *To:* Daniel White (Electronic, Electrical and Systems Engineering) <
+> d.white.4@bham.ac.uk>
+> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* Re: [USRP-users] X440 uhd_find_devices unsuccessful with 1G
+> Ethernet
+>
+> *CAUTION:* This email originated from outside the organisation. Do not
+> click links or open attachments unless you recognise the sender and know
+> the content is safe.
+> Another try - It sounds like you connected the USB connection to the USB
+> to PS port when you should actually be connecting to the JTAG/Console por=
+t
+> on the X440. This will make a new serial device show up in /dev/ttyUSB# a=
+nd
+> you can then communicate with it using screen/minicom/putty. One of these
+> ports will give you access to the Linux filesystem and you can then chang=
+e
+> the /data/network/ files to set a static IP
+>
+> ref:
+> https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_getting_started_s=
+erial +
+> I just went through these same steps on my X440
+>
+> On Fri, Jan 31, 2025 at 1:19=E2=80=AFPM Chris Rogers <c1337rogers@gmail.c=
+om>
+> wrote:
+>
+> A couple things you can try:
+>
+>    - Connect your laptop and the X440 to a router and let the router
+>    assign a DHCP address to the X440 and try to uhd_find_devices/ssh into=
+ it
+>    that way
+>    - Connect via the QSFP ports and ssh into the X440 via any of the
+>    default SFP addresses ( 192.168.10.2, 11.2, 12.2, 13.2 ). You'll need =
+to
+>    set your computer's SFP interface to be a static IP on the same subnet
+>
+> Once you're in, you can check the UHD version by running uhd_find_devices
+> on the X440 itself, and you can change to a static IP by following this
+> section of the UHD manual:
+>
+> https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_getting_started_n=
+etwork_connectivity_ifcs
+>
+> Hope this helps,
+> Chris
+>
+> On Fri, Jan 31, 2025 at 12:46=E2=80=AFPM Daniel White <d.white.4@bham.ac.=
+uk>
+> wrote:
+>
+> Dear USRP-Users,
+>
+> I am trying to establish a connection from my laptop (ThinkPad P53) to an
+> X440, initially,  via 1G ethernet cable, but uhd_find_devices, or
+> uhd_usrp_probe fail despite bring able to ping the device.
+>
+>    - *Preamble*
+>
+> I have a USRP-2954 and have had no problem operating this, via the same 1=
+G
+> ethernet cable (with 10GB RJ45 to FSP+ adaptor). I have used Ubuntu 22.04
+> and 24.04.1 with both building from source and directly apt installing th=
+e
+> binaries, able to find success with uhd_find_devices afterwards.
+>
+> A difference between the USRP-2954 and X440 is that the USRP-2954 uses a
+> fixed IP address (192.168.40.2) where are Eth0 on the X440 is configured =
+to
+> use a DHCP-assigned IP address. For a while I have experimented with
+> network settings on the host laptop, with varying levels of insight gaine=
+d,
+> but never able to get a response recognised from uhd_find_devices with th=
+e
+> X440.
+>
+>    - *Ubuntu 24.04.1 | apt install libuhd-dev uhd-host*
+>
+> After installation and verification, and expecting uhd_find_devices to
+> work with 1G Ethernet connection, it fails.
+>
+> I attempted permutating ubuntu network settings to establish a connection=
+.
+> Only with the 'shared to other computers' option does ubuntu declare a
+> connection has been established. From this, with wireshark I can confirm
+> communication from the X440 via its serial number and mac address, and fi=
+nd
+> its ip address (10.42.0.159).
+> I can ping the device with 'shared to other computers' or with a fixed
+> address set on the computer as 10.42.0.1. I cannot however ssh into the
+> device, or get a valid response from uhd_find_devices / uhd_usrp_probe wi=
+th
+> known arguments queried.
+>
+> Connecting the laptop to the 'PS to USB' usb-c port, I expect to see a ne=
+w
+> usb device recognised on the laptop with lsusb, lsblk*, *ls -lash
+> /dev/tty*, but never does the number of connections change after powering
+> cycling the device while connected in this way. This was my hope through
+> after finding
+> https://forums.ni.com/t5/USRP-Software-Radio/Unable-to-find-usrp-devices-=
+for-USRP-X440-RJ45-ethernet/td-p/4354614
+>
+>
+>    - *Ubuntu 24.04.1 | building 4.7.0.0 from source*
+>
+> I installed all dependencies in both
+> https://files.ettus.com/manual/page_build_guide.html (only without
+> libcurses5 and libcurses5-dev) and
+> https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolcha=
+in_(UHD_and_GNU_Radio)_on_Linux (24.04
+> version).
+>
+> In the cmake stage, I notice that it failed to find modules gevent, mprpc=
+,
+> pyudev and pyroute2. Previously I had included this (aside mprpc) with
+> similar outcome.
+>
+> After completing the build, I can ping the device successfully (ICMP Echo
+> ping request and reply) with fixed ip set, but attempting uhd_usrp_probe
+> with this yeilds Destination unreachable.
+>
+>    - *Additional notes*
+>
+> With each attempt I turn firewall off, via ufw and iptables, as I am on a
+> closed network.
+>
+> From the Ettus's X440 Getting Started Guide, "*Note that if you are
+> operating the device in Network Mode, the version of UHD running on the
+> host computer and the USRP X4x0 must match*".
+> With this I need to make sure the UHD versions are matching. However with
+> no way found so far to access the X440 to check its UHD version, I have
+> tried all versions since 4.5.0.0 not including release candidates.
+> I will be doing this with release candidates with Ubuntu 20 in the mean
+> time, and will update if I have success with this.
+>
+>    - *Summary*
+>
+> Cannot connect to X440 via 1G ethernet, aside ping responses with fixed i=
+p
+> address.
+> Cannot recognise the X440 as a usb device required to access the
+> filesystems directly on the device.
+>
+> To establish a connection from this as a starting point via networking
+> configuration, are there any suggestions?
+> To restart the setup from a fresh ubuntu installation, is there anything =
+I
+> should change that may improve my chances? It is possible I have missed
+> some crucial dependencies for the X440 specifically?
+>
+> I have saved all logs for the build process and can share these.
+>
+> Scenere thanks for any and all guidance,
+> Dan
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+
+--000000000000e58d78062d44b3cb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Glad it worked out! I imagine the next steps you&#39;=
+ll have to follow are the ones about updating the filesystem... Turns out u=
+pdating the X440&#39;s UHD version is more involved than just updating the =
+FPGA because of the MPM architecture<br><br><a href=3D"https://files.ettus.=
+com/manual/page_usrp_x4xx.html#x4xx_updating_filesystems_mender">https://fi=
+les.ettus.com/manual/page_usrp_x4xx.html#x4xx_updating_filesystems_mender</=
+a><br><br></div>PS: these steps are much easier if you can get the X440 its=
+elf on the internet but I know that may not be possible<br><div><br></div><=
+/div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Mon, Feb 3, 2025 at 3:15=E2=80=AFPM Daniel White &l=
+t;<a href=3D"mailto:d.white.4@bham.ac.uk">d.white.4@bham.ac.uk</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D=
+"msg6342891314155357484">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Chris,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Thanks a million for picking this up.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+It was the last point that has succeeded for me - connecting to JTAG/Serial=
+ and not USB to PS. You were bang on. Now, I&#39;m not sure why I didn&#39;=
+t try this before...</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I was able to change the ip to a static one and now I can ssh into the devi=
+ce and get a full response from=C2=A0uhd_find_devices.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+The router did not work and had not yet tried the QSFP approach, but this w=
+as next.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Now to correct the MPM compat mismatch!</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Best wishes,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Dan</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_6342891314155357484appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div dir=3D"ltr" id=3D"m_6342891314155357484divRplyFwdMsg"><span style=3D"f=
+ont-family:Calibri,sans-serif;font-size:11pt;color:rgb(0,0,0)"><b>From:</b>=
+=C2=A0Chris Rogers &lt;<a href=3D"mailto:c1337rogers@gmail.com" target=3D"_=
+blank">c1337rogers@gmail.com</a>&gt;<br>
+<b>Sent:</b>=C2=A031 January 2025 21:58<br>
+<b>To:</b>=C2=A0Daniel White (Electronic, Electrical and Systems Engineerin=
+g) &lt;<a href=3D"mailto:d.white.4@bham.ac.uk" target=3D"_blank">d.white.4@=
+bham.ac.uk</a>&gt;<br>
+<b>Cc:</b>=C2=A0<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bl=
+ank">usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.=
+ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b>=C2=A0Re: [USRP-users] X440 uhd_find_devices unsuccessful wi=
+th 1G Ethernet</span>
+<div>=C2=A0</div>
+</div>
+<table align=3D"left" cellspacing=3D"0" cellpadding=3D"0" style=3D"width:10=
+0%;box-sizing:border-box;border-collapse:collapse;border-spacing:0px">
+<tbody>
+<tr>
+<td style=3D"border-width:1px;border-style:solid;border-color:rgb(156,101,0=
+);background-color:rgb(255,235,156);padding:2pt;width:10%">
+<b>CAUTION:</b>=C2=A0This email originated from outside the organisation. D=
+o not click links or open attachments unless you recognise the sender and k=
+now the content is safe.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<div style=3D"direction:ltr">Another try - It sounds like you connected the=
+ USB connection to the USB to PS port when you should actually be connectin=
+g to the JTAG/Console port on the X440. This will make a new serial device =
+show up in /dev/ttyUSB# and you
+ can then communicate with it using screen/minicom/putty. One of these port=
+s will give you access to the Linux filesystem and you can then change the =
+/data/network/ files to set a static IP<br>
+<br>
+</div>
+<div style=3D"direction:ltr">ref: <a href=3D"https://files.ettus.com/manual=
+/page_usrp_x4xx.html#x4xx_getting_started_serial" id=3D"m_63428913141553574=
+84OWA1b0b294c-3c3c-afa2-c83b-d714a052139e" target=3D"_blank">
+https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_getting_started_ser=
+ial</a>=C2=A0+ I just went through these same steps on my X440</div>
+<br>
+<div style=3D"direction:ltr">On Fri, Jan 31, 2025 at 1:19=E2=80=AFPM Chris =
+Rogers &lt;<a href=3D"mailto:c1337rogers@gmail.com" id=3D"m_634289131415535=
+7484OWA2d568966-a931-a9bf-3d9f-255cfa44d8e0" target=3D"_blank">c1337rogers@=
+gmail.com</a>&gt; wrote:</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left:=
+1px solid rgb(204,204,204)">
+<div style=3D"direction:ltr">A couple things you can try:</div>
+<ul style=3D"direction:ltr">
+<li style=3D"direction:ltr">Connect your laptop and the X440 to a router an=
+d let the router assign a DHCP address to the X440 and try to uhd_find_devi=
+ces/ssh into it that way</li><li style=3D"direction:ltr">Connect via the QS=
+FP ports and ssh into the X440 via any of the default SFP addresses ( 192.1=
+68.10.2, 11.2, 12.2, 13.2 ). You&#39;ll need to set your computer&#39;s SFP=
+ interface to be a static IP on the same subnet<br>
+</li></ul>
+<div style=3D"direction:ltr">Once you&#39;re in, you can check the UHD vers=
+ion by running uhd_find_devices on the X440 itself, and you can change to a=
+ static IP by following this section of the UHD manual:=C2=A0</div>
+<div style=3D"direction:ltr"><a href=3D"https://files.ettus.com/manual/page=
+_usrp_x4xx.html#x4xx_getting_started_network_connectivity_ifcs" id=3D"m_634=
+2891314155357484OWAd6fc4531-b543-fc28-a4d5-78d3ff1bd49c" target=3D"_blank">=
+https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_getting_started_net=
+work_connectivity_ifcs</a></div>
+<div style=3D"direction:ltr"><br>
+</div>
+<div style=3D"direction:ltr">Hope this helps,</div>
+<div style=3D"direction:ltr">Chris</div>
+<br>
+<div style=3D"direction:ltr">On Fri, Jan 31, 2025 at 12:46=E2=80=AFPM Danie=
+l White &lt;<a href=3D"mailto:d.white.4@bham.ac.uk" id=3D"m_634289131415535=
+7484OWAa41e99f9-0589-825f-8fb7-ec49b036332e" target=3D"_blank">d.white.4@bh=
+am.ac.uk</a>&gt; wrote:</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left:=
+1px solid rgb(204,204,204)">
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Dear USRP-Users,</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I am trying to establish a connection from my laptop (ThinkPad P53) to an X=
+440, initially,=C2=A0 via 1G ethernet cable, but uhd_find_devices, or uhd_u=
+srp_probe fail despite bring able to ping the device.</div>
+<ul style=3D"direction:ltr;list-style-type:disc">
+<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"direction:ltr"><u>Preamble</u>=C2=A0</div>
+</li></ul>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I have a USRP-2954 and have had no problem operating this, via the same 1G =
+ethernet cable (with 10GB RJ45 to FSP+ adaptor). I have used Ubuntu 22.04 a=
+nd 24.04.1 with both building from source and directly apt installing the b=
+inaries, able to find success with
+ uhd_find_devices afterwards.</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+A difference between the USRP-2954 and X440 is that the USRP-2954 uses a fi=
+xed IP address (192.168.40.2) where are Eth0 on the X440 is configured to u=
+se a DHCP-assigned IP address. For a while I have experimented with network=
+ settings on the host laptop, with
+ varying levels of insight gained, but never able to get a response recogni=
+sed from uhd_find_devices with the X440.</div>
+<ul style=3D"direction:ltr;list-style-type:disc">
+<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"direction:ltr"><u>Ubuntu 24.04.1 | apt install libuhd-dev uhd=
+-host</u></div>
+</li></ul>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+After installation and verification, and expecting uhd_find_devices to work=
+ with 1G Ethernet connection, it fails.=C2=A0</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I attempted permutating ubuntu network settings to establish a connection. =
+Only with the &#39;shared to other computers&#39; option does ubuntu declar=
+e a connection has been established. From this, with wireshark I can confir=
+m communication from the X440 via its serial
+ number and mac address, and find its ip address (10.42.0.159).</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I can ping the device with &#39;shared to other computers&#39; or with a fi=
+xed address set on the computer as 10.42.0.1. I cannot however ssh into the=
+ device, or get a valid response from uhd_find_devices / uhd_usrp_probe wit=
+h known arguments queried.=C2=A0</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Connecting the laptop to the &#39;PS to USB&#39; usb-c port, I expect to se=
+e a new usb device recognised on the laptop with lsusb, lsblk<b>,
+</b>ls -lash /dev/tty*, but never does the number of connections change aft=
+er powering cycling the device while connected in this way. This was my hop=
+e through after finding
+<a href=3D"https://forums.ni.com/t5/USRP-Software-Radio/Unable-to-find-usrp=
+-devices-for-USRP-X440-RJ45-ethernet/td-p/4354614" id=3D"m_6342891314155357=
+484OWA4b3ac7cf-b678-afef-8432-3d7f25d3745e" target=3D"_blank">
+https://forums.ni.com/t5/USRP-Software-Radio/Unable-to-find-usrp-devices-fo=
+r-USRP-X440-RJ45-ethernet/td-p/4354614</a>=C2=A0=C2=A0</div>
+<div id=3D"m_6342891314155357484x_m_6378162847626910491m_398523729547350133=
+0Signature">
+<ul style=3D"text-align:left;list-style-type:disc">
+<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px">
+<u>Ubuntu 24.04.1 | building 4.7.0.0 from source</u></div>
+</li></ul>
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+I installed all dependencies in both <a href=3D"https://files.ettus.com/man=
+ual/page_build_guide.html" id=3D"m_6342891314155357484OWAcf7f031c-08d3-ce89=
+-a83b-bd1ff895784d" style=3D"margin:0px;text-align:left" target=3D"_blank">
+https://files.ettus.com/manual/page_build_guide.html</a>=C2=A0(only without=
+ libcurses5 and libcurses5-dev) and
+<a href=3D"https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Sourc=
+e_Toolchain_(UHD_and_GNU_Radio)_on_Linux" id=3D"m_6342891314155357484OWAc5a=
+8049d-f8d5-d0b2-6c05-b9a4b3f90c86" target=3D"_blank">
+https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain=
+_(UHD_and_GNU_Radio)_on_Linux</a>=C2=A0(24.04 version).</div>
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+In the cmake stage, I notice that it failed to find modules gevent, mprpc, =
+pyudev and pyroute2. Previously I had included this (aside mprpc) with simi=
+lar outcome.=C2=A0</div>
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"text-align:left;text-indent:0px;margin:0px;font-family:Aptos,=
+Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-si=
+ze:12pt;color:rgb(0,0,0)">
+After completing the build, I can ping the device successfully (ICMP Echo p=
+ing request and reply) with fixed ip set, but attempting uhd_usrp_probe wit=
+h this yeilds Destination unreachable.=C2=A0</div>
+<ul style=3D"text-align:left;list-style-type:disc">
+<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);margin-right:0px;ma=
+rgin-left:0px">
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px">
+<u>Additional notes</u></div>
+</li></ul>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+With each attempt I turn firewall off, via ufw and iptables, as I am on a c=
+losed network.</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+From the Ettus&#39;s X440 Getting Started Guide, &quot;<i>Note that if you =
+are operating the device in Network Mode, the version of UHD running on the=
+ host computer and the USRP X4x0 must match</i>&quot;.=C2=A0</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+With this I need to make sure the UHD versions are matching. However with n=
+o way found so far to access the X440 to check its UHD version, I have trie=
+d all versions since 4.5.0.0 not including release candidates.</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I will be doing this with release candidates with Ubuntu 20 in the mean tim=
+e, and will update if I have success with this.</div>
+<ul style=3D"text-align:left;list-style-type:disc">
+<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px">
+<u>Summary</u></div>
+</li></ul>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Cannot connect to X440 via 1G ethernet, aside ping responses with fixed ip =
+address.</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Cannot recognise the X440 as a usb device required to access the filesystem=
+s directly on the device.</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+To establish a connection from this as a starting point via networking conf=
+iguration, are there any suggestions?</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+To restart the setup from a fresh ubuntu installation, is there anything I =
+should change that may improve my chances? It is possible I have missed som=
+e crucial dependencies for the X440 specifically?</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I have saved all logs for the build process and can share these.</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Scenere thanks for any and all guidance,</div>
+<div style=3D"text-align:left;text-indent:0px;margin-top:0px;margin-bottom:=
+0px;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvet=
+ica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Dan</div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" id=
+=3D"m_6342891314155357484OWAe1148520-164d-94c2-d0a7-9327b2cf0cd5" target=3D=
+"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" id=3D"m_6342891314155357484OWA9d8d8d17-c03f-957b-a88d-3c6c26c366bb=
+" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+</blockquote>
+</blockquote>
+</div>
+
+</div></blockquote></div>
+
+--000000000000e58d78062d44b3cb--
+
+--===============4132572653432056394==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -704,4 +659,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2060674796128811866==--
+--===============4132572653432056394==--
