@@ -2,178 +2,459 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55DFFA2AFC1
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2025 19:05:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24536A2B184
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2025 19:45:57 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A6E83385BF0
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2025 13:05:47 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 62172385CCE
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2025 13:45:56 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1738865147; bh=tXhZos/4tv1KPvzVhEyQauz6MkVSfzs4KoFmqe1/Z2s=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=yRAUYzeyLE1R//TyWmlhOVgIbwmzDl9jVLdZ844kSpmKrMg2TNnfIQ/FNaTRQgbyd
-	 tj8VZiTkscJu2xhv06bsv5a8RkhW7LbFVJD3pBaT5nBdH8LxLCcl+GesKhBK9Z3ReV
-	 CLCr5c2nzWll4uHaj3HBFHtBfhw4Dwyp9GBx+06FeuvgQW6XFZtyymITatzVK7z46k
-	 a009Dz5lB0jU+7l7vsFvz4BDM4SGcTskQM2B4Z+3Vgrwux1RqCTkoL10jjcgawbQa4
-	 qwzGvzQTTj+CLXFJhtEPyGR0q2MpaZd6SdIGtkRCQFmjYTbyEIu81HIu6WiPIFuJh8
-	 uduWVDjbpL6Gw==
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 89DCD385B8C
-	for <usrp-users@lists.ettus.com>; Thu,  6 Feb 2025 13:05:14 -0500 (EST)
+	t=1738867556; bh=wcpgH5sMJjef1+TJLBklxXpYpE4dQUS0utpP6DcUr7U=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=uhMGdRylRszpvppbs0vj9D03B2lN/JWaKXKHRPfc3iPfbPhVUVAACYNNJziQXdCy5
+	 RJ+ZxeMemLGnNVFALh3eLwUsmJp8eeHI4tIFmXL7CLoe80xzqSvrECVHq3QqIRdEFq
+	 SJkdycZ8CR0Qi9h7Genicwzt4VoMA886Ua+3mZMTdXwWKG7mvqDeFHsvthMq+Qgo7S
+	 kr9y5UB8LCV/F3Yrq8ISdAnVZpyMq8AjfKFhFw2BHH3IEk34Q8rzuIluOPWwAjxT/9
+	 1rxA/fKZEcCstBDvmPxGt+GmD1f8B5CsaG4UWwlf6nEkzn/QuqIqsfalcsLe8ZQfYO
+	 B+dzdB7FoPhdg==
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6447A385C9B
+	for <usrp-users@lists.ettus.com>; Thu,  6 Feb 2025 13:44:57 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="X/Mx+S+z";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AIOdbsVk";
 	dkim-atps=neutral
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6e43c9c8d08so8217246d6.3
-        for <usrp-users@lists.ettus.com>; Thu, 06 Feb 2025 10:05:14 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-71e2aa8d5e3so740779a34.2
+        for <usrp-users@lists.ettus.com>; Thu, 06 Feb 2025 10:44:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738865113; x=1739469913; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zu+i8FagAA7IUiVsWKK5V8+vv0q9ntJADQBI/WGeImo=;
-        b=X/Mx+S+zhv/d5/16PFYgX9g6j4CIPYVYfzRcB+zPO+ed16kb90xeCim3eSQpFXgV+y
-         7QdJWKGARKsSoTuOB0kQrKtc1+QEXaFz4V5jwul+JhPsyAaPCo1gcy9Abz4i0SXrTY2/
-         OrZmB3sO/AUnvxpQcWm1Am8MXPOWF74+RbmYCNlKIGblDiSy5UFflyHEhB+1lR3CIjgi
-         d6ZXq19v9cM+5GkEUxezn3BbUeX5+ECRK9oo0vYYnPXTVJsg/l9ojmYU0xaN5A8vov4d
-         qjM0uzDMaUH9jf8c5mX/m+iM4Kh4LwlewcK8j2z1qd7S4oo4sU7SlOAbdrKmRHvuEJgI
-         pItA==
+        d=gmail.com; s=20230601; t=1738867496; x=1739472296; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=P/yjoEkbUWXDiBv1tWtKXtaV2jF5fD8tNQGRRzss8S4=;
+        b=AIOdbsVkq79MMd1q/KY1avFOW09GnTHkJbw1+gSDz8xbDSxRKNPwht6lEx8ZcANnBs
+         vP1y/VsiqnLXsRZ5tQuqwO0ELBEaKnkLEsBM8ZpVso6hcd4gLsfa5SxaarIhczdGWQka
+         AzhDc6Dy8ILlneC2PoN4A/SIk1eYU4dg5P5MttsnuUxFP54fupRK/csDqpUIB1F2mZfJ
+         xFD1miGw7wZ0ebyH/ZQhMdY+/oX4ZRf9xYlb3AVIZWV6d1E/36mk4nz0ddTx9uFtBM4N
+         CluIPBakqz3drnDhUtw4VvZfCPBTw133yGJgthrB7c7YBjPZ4AKdft25WQGqv4NAKxLq
+         f3Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738865113; x=1739469913;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zu+i8FagAA7IUiVsWKK5V8+vv0q9ntJADQBI/WGeImo=;
-        b=WVSt4S1NoCxIoGmL3ZRwbS97Oxj7NIR3XsUpu60CNR5m9YkblNBLEh9AbnjuLwLTr+
-         czhtBpRNFy09odLDRV7Gn36UjuhbODWpVYNs7z/d24XA7YFx97ERlyyuwrZTC+6c0J6d
-         vDBTZLMa7zVgmfww1QnOGYaff7CwkRy7ujJwBvlz3puehLB+zvNkb+qWm54cfEc/cKYM
-         FrmlkBiTgzRTnHAeJgwSLRU1/I5e2SRiiAbOm7+A8oVI1ioktrjY10WviQcDFwql020A
-         nPfyPRRsoeof1c6lFXETHFPuqceK6qHPIRQLz6l3azcqFStFqlV+8WlejUu032SJAMXT
-         iE2w==
-X-Gm-Message-State: AOJu0YwY53hCcLGZgsBoRk0rNSLMThVCiEcZCFum7+L8BVbPSM2XnMeV
-	DEJtrNvsgBaoC8Rpw9PAJAmfXVNqruhOE+0JcE8r0ZZ4sFrAQV66IcVTxw==
-X-Gm-Gg: ASbGncv96ajt4a1L+gxLuqL85eewO9DTvGXMa3Nd2u+qMmTbs/ADg7qrEQIh2hix42S
-	YPCMtlttCdJOm96yIyJSu/+rOPNEbNpczT8PsbqiY2yeyqcQkzurg7N6a87TyqW9rMBYsXTUfho
-	ak6nfGq6zEU9uSH7QP7oAyvTXPfAE8QWpRt1R0m6kiZTasdyEifVdtdFcz3BVxa2Xb5pJANad4/
-	Hx8SPlGaRZnqOfO/JwOtZXj5jrnyxlNeRVPDO05Deq/UtWRviy9UvBoC0SmrVZuNqJKXNqqsjGo
-	YcENt4TTA2McOYGbXRgKSBKEUYzyhM0Sp2Weap952HPjvPx2sSU69VCmP+sQf/b0mmvgiVAAzZW
-	7gMQy02GwHr9Isw==
-X-Google-Smtp-Source: AGHT+IFvov3OeFXSacuwqR3fsUozLQ1EuljuRhgbTqfGdSGPnRhaPDBteZO6jzHG4VrtXG+WB0bj3Q==
-X-Received: by 2002:a05:6214:1bc5:b0:6d9:3016:d101 with SMTP id 6a1803df08f44-6e42fc78d1emr96075966d6.41.1738865113570;
-        Thu, 06 Feb 2025 10:05:13 -0800 (PST)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-20-142-115-37-13.dsl.bell.ca. [142.115.37.13])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6e43ba2c19csm8251716d6.21.2025.02.06.10.05.12
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Feb 2025 10:05:13 -0800 (PST)
-Message-ID: <0e07e4da-0c5c-45ba-bdbd-b084df814943@gmail.com>
-Date: Thu, 6 Feb 2025 13:05:11 -0500
+        d=1e100.net; s=20230601; t=1738867496; x=1739472296;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P/yjoEkbUWXDiBv1tWtKXtaV2jF5fD8tNQGRRzss8S4=;
+        b=DpRFqFx8QUnwdYm0Q21b+nmKjwt7AtcBVpx0R+14whCiPlNVF2nkMLDqto1Ls2DG0D
+         eJwxUJVM1lC73KyybcC70dXZI+F8Ebwv9x7FI57qSXGnb1qHZa82vncYTLe6sRW6zlcG
+         ywFyEm5eBMYLs+N8OgJonr56miZ01O3tpfadqXtOdW7yyD/ioKtggYcJec7e3NgNhd1d
+         4YEbC2s/ctvsEyZSARYsnp5uYccQWhpG5o9otFDmdvPrh5MMs9HyFUOV1+hsFj0ggoz6
+         LK187HwEfN8K17i1vtdWKEPKj2D9KvLKDumlReWHfaH+tvcvU8++lE5OjQX3c4zFiIjI
+         jyyQ==
+X-Gm-Message-State: AOJu0YwRsDB/PI5Hj9gYEQJULfQ2gkpfLlXjbVIZxhNG9KD/7/hKM/g7
+	qaKwWlsdvYtaX8dVVgB8KrSCyERXniov7aNZjAcoO1A0B7LEQcfqu7lSXV5OrrgnPHLVNrnW3oP
+	P14rwM+JrV4u++2jxbeyQ/eDlY8R2+Q==
+X-Gm-Gg: ASbGncth9sRYs+WnTUEwcjd/kkaBrpXNFPDoSSSJe12f9TVVf6sphh/i6/VWmerX8Ft
+	tEhR8IN7eNeHgzEXQmOk+JHedC1ZZeEThAwvOMjeK8JMJWJXox6WrIXhOGIXj1LTlSxHARw4=
+X-Google-Smtp-Source: AGHT+IGXKR/2/r62VzumMDnN6YHjxHwXnEP28uhcgewNAACrgmhtZW5fnWoY8sJygBFhJEvZcZAz4O2NjNot+S6jChc=
+X-Received: by 2002:a05:6830:490c:b0:718:12af:c89b with SMTP id
+ 46e09a7af769-726b87b7697mr150860a34.1.1738867496595; Thu, 06 Feb 2025
+ 10:44:56 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <nB2NM1pnMJtpMWF7QeSNOzqxO9ATE0c8BGiGdr5VM1E@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <nB2NM1pnMJtpMWF7QeSNOzqxO9ATE0c8BGiGdr5VM1E@lists.ettus.com>
-Message-ID-Hash: GL5ROR3EMUF53Q6RCQO4VZR5GZ4Z7E2Q
-X-Message-ID-Hash: GL5ROR3EMUF53Q6RCQO4VZR5GZ4Z7E2Q
-X-MailFrom: patchvonbraun@gmail.com
+References: <nB2NM1pnMJtpMWF7QeSNOzqxO9ATE0c8BGiGdr5VM1E@lists.ettus.com> <0e07e4da-0c5c-45ba-bdbd-b084df814943@gmail.com>
+In-Reply-To: <0e07e4da-0c5c-45ba-bdbd-b084df814943@gmail.com>
+From: Chris Rogers <c1337rogers@gmail.com>
+Date: Thu, 6 Feb 2025 13:44:45 -0500
+X-Gm-Features: AWEUYZlDEO821buccljuhX5wAEIELDotg2dVMhsF_WAQ_u9pzsDp1rSXgKV77bc
+Message-ID: <CAOEzSFTrUiGK-oOaZkVL2FrGH8-f9HSLmrK6rnsevgL3-9g63Q@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: SG2YMYDC5F7R5Y4JX6DPG3VB7YXRKL5Z
+X-Message-ID-Hash: SG2YMYDC5F7R5Y4JX6DPG3VB7YXRKL5Z
+X-MailFrom: c1337rogers@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Error when running Benchmark on USRP X440: RfnocError - OpTimeout
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GL5ROR3EMUF53Q6RCQO4VZR5GZ4Z7E2Q/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SG2YMYDC5F7R5Y4JX6DPG3VB7YXRKL5Z/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============7944967232146862111=="
 
-T24gMDYvMDIvMjAyNSAxMzowMiwgUmlsYmVydCBMaW1hIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0K
-Pg0KPiBJIHJhbiB0aGUgdGVzdCB1c2luZyA1ZTYsIGhvd2V2ZXIsIHRoZSBzYW1lIGVycm9yIG9j
-Y3VycmVkLg0KPg0KPg0KPiByb290QG5pLXg0eHgtMzQyNTk3RjovdXNyL2xpYi91aGQvZXhhbXBs
-ZXMjIC4vYmVuY2htYXJrX3JhdGUgLS1yeF9yYXRlIA0KPiA1ZTYgLS10eF9yYXRlIDVlNg0KPg0K
-PiDigKYNCj4NCj4gWzAwOjAwOjA0Ljk1NTY5MjE3Ml0gU2V0dGluZyBkZXZpY2UgdGltZXN0YW1w
-IHRvIDAuLi4NCj4NCj4gW1dBUk5JTkddIFswL1JhZGlvIzBdIFJlcXVlc3RpbmcgaW52YWxpZCBz
-YW1wbGluZyByYXRlIGZyb20gZGV2aWNlOiA1IA0KPiBNSHouIEFjdHVhbCByYXRlIGlzOiAzNjgu
-NjQgTUh6Lg0KPg0KPiBbV0FSTklOR10gW01VTFRJX1VTUlBdIENvdWxkIG5vdCBzZXQgUlggcmF0
-ZSB0byA1LjAwMCBNSHouIEFjdHVhbCByYXRlIA0KPiBpcyAzNjguNjQwIE1Ieg0KPg0KPiBbV0FS
-TklOR10gWzAvUmFkaW8jMF0gUmVxdWVzdGluZyBpbnZhbGlkIHNhbXBsaW5nIHJhdGUgZnJvbSBk
-ZXZpY2U6IDUgDQo+IE1Iei4gQWN0dWFsIHJhdGUgaXM6IDM2OC42NCBNSHouDQo+DQo+IFtXQVJO
-SU5HXSBbTVVMVElfVVNSUF0gQ291bGQgbm90IHNldCBSWCByYXRlIHRvIDUuMDAwIE1Iei4gQWN0
-dWFsIHJhdGUgDQo+IGlzIDM2OC42NDAgTUh6DQo+DQo+IFtXQVJOSU5HXSBbMC9SYWRpbyMwXSBS
-ZXF1ZXN0aW5nIGludmFsaWQgc2FtcGxpbmcgcmF0ZSBmcm9tIGRldmljZTogNSANCj4gTUh6LiBB
-Y3R1YWwgcmF0ZSBpczogMzY4LjY0IE1Iei4NCj4NCj4gW1dBUk5JTkddIFtNVUxUSV9VU1JQXSBD
-b3VsZCBub3Qgc2V0IFJYIHJhdGUgdG8gNS4wMDAgTUh6LiBBY3R1YWwgcmF0ZSANCj4gaXMgMzY4
-LjY0MCBNSHoNCj4NCj4gW1dBUk5JTkddIFswL1JhZGlvIzBdIFJlcXVlc3RpbmcgaW52YWxpZCBz
-YW1wbGluZyByYXRlIGZyb20gZGV2aWNlOiA1IA0KPiBNSHouIEFjdHVhbCByYXRlIGlzOiAzNjgu
-NjQgTUh6Lg0KPg0KPiBbV0FSTklOR10gW01VTFRJX1VTUlBdIENvdWxkIG5vdCBzZXQgUlggcmF0
-ZSB0byA1LjAwMCBNSHouIEFjdHVhbCByYXRlIA0KPiBpcyAzNjguNjQwIE1Ieg0KPg0KPiBbV0FS
-TklOR10gWzAvUmFkaW8jMV0gUmVxdWVzdGluZyBpbnZhbGlkIHNhbXBsaW5nIHJhdGUgZnJvbSBk
-ZXZpY2U6IDUgDQo+IE1Iei4gQWN0dWFsIHJhdGUgaXM6IDM2OC42NCBNSHouDQo+DQo+IFtXQVJO
-SU5HXSBbTVVMVElfVVNSUF0gQ291bGQgbm90IHNldCBSWCByYXRlIHRvIDUuMDAwIE1Iei4gQWN0
-dWFsIHJhdGUgDQo+IGlzIDM2OC42NDAgTUh6DQo+DQo+IFtXQVJOSU5HXSBbMC9SYWRpbyMxXSBS
-ZXF1ZXN0aW5nIGludmFsaWQgc2FtcGxpbmcgcmF0ZSBmcm9tIGRldmljZTogNSANCj4gTUh6LiBB
-Y3R1YWwgcmF0ZSBpczogMzY4LjY0IE1Iei4NCj4NCj4gW1dBUk5JTkddIFtNVUxUSV9VU1JQXSBD
-b3VsZCBub3Qgc2V0IFJYIHJhdGUgdG8gNS4wMDAgTUh6LiBBY3R1YWwgcmF0ZSANCj4gaXMgMzY4
-LjY0MCBNSHoNCj4NCj4gW1dBUk5JTkddIFswL1JhZGlvIzFdIFJlcXVlc3RpbmcgaW52YWxpZCBz
-YW1wbGluZyByYXRlIGZyb20gZGV2aWNlOiA1IA0KPiBNSHouIEFjdHVhbCByYXRlIGlzOiAzNjgu
-NjQgTUh6Lg0KPg0KPiBbV0FSTklOR10gW01VTFRJX1VTUlBdIENvdWxkIG5vdCBzZXQgUlggcmF0
-ZSB0byA1LjAwMCBNSHouIEFjdHVhbCByYXRlIA0KPiBpcyAzNjguNjQwIE1Ieg0KPg0KPiBbV0FS
-TklOR10gWzAvUmFkaW8jMV0gUmVxdWVzdGluZyBpbnZhbGlkIHNhbXBsaW5nIHJhdGUgZnJvbSBk
-ZXZpY2U6IDUgDQo+IE1Iei4gQWN0dWFsIHJhdGUgaXM6IDM2OC42NCBNSHouDQo+DQo+IFtXQVJO
-SU5HXSBbTVVMVElfVVNSUF0gQ291bGQgbm90IHNldCBSWCByYXRlIHRvIDUuMDAwIE1Iei4gQWN0
-dWFsIHJhdGUgDQo+IGlzIDM2OC42NDAgTUh6DQo+DQo+IFswMDowMDowNC45Njc0NDcwNTJdIFRl
-c3RpbmcgcmVjZWl2ZSByYXRlIDM2OC42NDAwMDAgTXNwcyBvbiAxIGNoYW5uZWxzDQo+DQo+IFtX
-QVJOSU5HXSBbMC9SYWRpbyMwXSBSZXF1ZXN0aW5nIGludmFsaWQgc2FtcGxpbmcgcmF0ZSBmcm9t
-IGRldmljZTogNSANCj4gTUh6LiBBY3R1YWwgcmF0ZSBpczogMzY4LjY0IE1Iei4NCj4NCj4gW1dB
-Uk5JTkddIFtNVUxUSV9VU1JQXSBDb3VsZCBub3Qgc2V0IFRYIHJhdGUgdG8gNS4wMDAgTUh6LiBB
-Y3R1YWwgcmF0ZSANCj4gaXMgMzY4LjY0MCBNSHoNCj4NCj4gW1dBUk5JTkddIFswL1JhZGlvIzBd
-IFJlcXVlc3RpbmcgaW52YWxpZCBzYW1wbGluZyByYXRlIGZyb20gZGV2aWNlOiA1IA0KPiBNSHou
-IEFjdHVhbCByYXRlIGlzOiAzNjguNjQgTUh6Lg0KPg0KPiBbV0FSTklOR10gW01VTFRJX1VTUlBd
-IENvdWxkIG5vdCBzZXQgVFggcmF0ZSB0byA1LjAwMCBNSHouIEFjdHVhbCByYXRlIA0KPiBpcyAz
-NjguNjQwIE1Ieg0KPg0KPiBbV0FSTklOR10gWzAvUmFkaW8jMF0gUmVxdWVzdGluZyBpbnZhbGlk
-IHNhbXBsaW5nIHJhdGUgZnJvbSBkZXZpY2U6IDUgDQo+IE1Iei4gQWN0dWFsIHJhdGUgaXM6IDM2
-OC42NCBNSHouDQo+DQo+IFtXQVJOSU5HXSBbTVVMVElfVVNSUF0gQ291bGQgbm90IHNldCBUWCBy
-YXRlIHRvIDUuMDAwIE1Iei4gQWN0dWFsIHJhdGUgDQo+IGlzIDM2OC42NDAgTUh6DQo+DQo+IFtX
-QVJOSU5HXSBbMC9SYWRpbyMwXSBSZXF1ZXN0aW5nIGludmFsaWQgc2FtcGxpbmcgcmF0ZSBmcm9t
-IGRldmljZTogNSANCj4gTUh6LiBBY3R1YWwgcmF0ZSBpczogMzY4LjY0IE1Iei4NCj4NCj4gW1dB
-Uk5JTkddIFtNVUxUSV9VU1JQXSBDb3VsZCBub3Qgc2V0IFRYIHJhdGUgdG8gNS4wMDAgTUh6LiBB
-Y3R1YWwgcmF0ZSANCj4gaXMgMzY4LjY0MCBNSHoNCj4NCj4gW1dBUk5JTkddIFswL1JhZGlvIzFd
-IFJlcXVlc3RpbmcgaW52YWxpZCBzYW1wbGluZyByYXRlIGZyb20gZGV2aWNlOiA1IA0KPiBNSHou
-IEFjdHVhbCByYXRlIGlzOiAzNjguNjQgTUh6Lg0KPg0KPiBbV0FSTklOR10gW01VTFRJX1VTUlBd
-IENvdWxkIG5vdCBzZXQgVFggcmF0ZSB0byA1LjAwMCBNSHouIEFjdHVhbCByYXRlIA0KPiBpcyAz
-NjguNjQwIE1Ieg0KPg0KPiBbV0FSTklOR10gWzAvUmFkaW8jMV0gUmVxdWVzdGluZyBpbnZhbGlk
-IHNhbXBsaW5nIHJhdGUgZnJvbSBkZXZpY2U6IDUgDQo+IE1Iei4gQWN0dWFsIHJhdGUgaXM6IDM2
-OC42NCBNSHouDQo+DQo+IFtXQVJOSU5HXSBbTVVMVElfVVNSUF0gQ291bGQgbm90IHNldCBUWCBy
-YXRlIHRvIDUuMDAwIE1Iei4gQWN0dWFsIHJhdGUgDQo+IGlzIDM2OC42NDAgTUh6DQo+DQo+IFNl
-dHRpbmcgVFggc3BwIHRvIDM1Mg0KPg0KPiBbV0FSTklOR10gWzAvUmFkaW8jMV0gUmVxdWVzdGlu
-ZyBpbnZhbGlkIHNhbXBsaW5nIHJhdGUgZnJvbSBkZXZpY2U6IDUgDQo+IE1Iei4gQWN0dWFsIHJh
-dGUgaXM6IDM2OC42NCBNSHouDQo+DQo+IE9PW1dBUk5JTkddIFtNVUxUSV9VU1JQXSBDb3VsZCBu
-b3Qgc2V0IFRYIHJhdGUgdG8gNS4wMDAgTUh6LiBBY3R1YWwgDQo+IHJhdGUgaXMgMzY4LjY0MCBN
-SHoNCj4NCj4gW1dBUk5JTkddIFswL1JhZGlvIzFdIFJlcXVlc3RpbmcgaW52YWxpZCBzYW1wbGlu
-ZyByYXRlIGZyb20gZGV2aWNlOiA1IA0KPiBNSHouIEFjdHVhbCByYXRlIGlzOiAzNjguNjQgTUh6
-Lg0KPg0KPiBbV0FSTklOR10gW01VTFRJX1VTUlBdIENvdWxkIG5vdCBzZXQgVFggcmF0ZSB0byA1
-LjAwMCBNSHouIEFjdHVhbCByYXRlIA0KPiBpcyAzNjguNjQwIE1Ieg0KPg0KPiBbMDA6MDA6MDUu
-MzAxNjQyNzE4XSBSZWNlaXZlciBlcnJvcjogRVJST1JfQ09ERV9USU1FT1VULCBjb250aW51aW5n
-Li4uDQo+DQo+IFswMDowMDowNS4zMDE2NjM3NDhdIFRlc3RpbmcgdHJhbnNtaXQgcmF0ZSAzNjgu
-NjQwMDAwIE1zcHMgb24gMSBjaGFubmVscw0KPg0KPiBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVVVVVVVVVVVU9VVVVVVVV0ZXJtaW5hdGUgDQo+IGNhbGxlZCBhZnRlciB0
-aHJvd2luZyBhbiBpbnN0Jw0KPg0KPiBbMTQ0NTAuMTExMzkxXSBhdWRpdDogdHlwZT0xNzAxIGF1
-ZGl0KDE3Mzg4NjQ2OTIuOTE0OjE2KTogDQo+IGF1aWQ9NDI5NDk2NzI5NSB1aWQ9MCBnaWQ9MCBz
-ZXM9NDI5NDk2NzI5NSBzdWJqPWtlcm5lbCBwaWQ9MTEzMiANCj4gY29tbT0iYm1hcmtfcnhfc3Ry
-ZWFtIiBleGU9Ii91c3IvbGliL3VoZC9leGFtcGxlcy9iZW5jaG1hcmtfcmF0ZSIgDQo+IHNpZz02
-IHJlcz0xDQo+DQo+IHdoYXQoKTogUmZub2NFcnJvcjogT3BUaW1lb3V0OiBDb250cm9sIG9wZXJh
-dGlvbiB0aW1lZCBvdXQgd2FpdGluZyBmb3IgQUNLDQo+DQo+IEFib3J0ZWQNCj4NClNvLCB0aGlz
-IG1heSBiZSBhbiBYNDQwLXNwZWNpZmljIHRoaW5nIChkb2Vzbid0IGRvIGFyYml0cmFyeSByZS1z
-YW1wbGluZykuDQoNCmh0dHBzOi8va2IuZXR0dXMuY29tL0Fib3V0X1NhbXBsaW5nX1JhdGVzX2Fu
-ZF9NYXN0ZXJfQ2xvY2tfUmF0ZXNfZm9yX3RoZV9VU1JQX1g0NDANCg0KDQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
-dCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
-YWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============7944967232146862111==
+Content-Type: multipart/alternative; boundary="000000000000723bc5062d7da3cb"
+
+--000000000000723bc5062d7da3cb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Marcus is correct, you need to upload an FPGA image that has DUC/DDC
+enabled to get arbitrary sample rates in/out. Try using uhd_image_loader to
+put the X4_200 image on, which I believe does support DUC/DDC. Then try the
+5 MHz rate
+
+On Thu, Feb 6, 2025 at 1:05=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmail=
+.com>
+wrote:
+
+> On 06/02/2025 13:02, Rilbert Lima via USRP-users wrote:
+> >
+> > I ran the test using 5e6, however, the same error occurred.
+> >
+> >
+> > root@ni-x4xx-342597F:/usr/lib/uhd/examples# ./benchmark_rate --rx_rate
+> > 5e6 --tx_rate 5e6
+> >
+> > =E2=80=A6
+> >
+> > [00:00:04.955692172] Setting device timestamp to 0...
+> >
+> > [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [00:00:04.967447052] Testing receive rate 368.640000 Msps on 1 channels
+> >
+> > [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > Setting TX spp to 352
+> >
+> > [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > OO[WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual
+> > rate is 368.640 MHz
+> >
+> > [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5
+> > MHz. Actual rate is: 368.64 MHz.
+> >
+> > [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate
+> > is 368.640 MHz
+> >
+> > [00:00:05.301642718] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+> >
+> > [00:00:05.301663748] Testing transmit rate 368.640000 Msps on 1 channel=
+s
+> >
+> >
+> UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUOUUUUUUterminate
+>
+> > called after throwing an inst'
+> >
+> > [14450.111391] audit: type=3D1701 audit(1738864692.914:16):
+> > auid=3D4294967295 uid=3D0 gid=3D0 ses=3D4294967295 subj=3Dkernel pid=3D=
+1132
+> > comm=3D"bmark_rx_stream" exe=3D"/usr/lib/uhd/examples/benchmark_rate"
+> > sig=3D6 res=3D1
+> >
+> > what(): RfnocError: OpTimeout: Control operation timed out waiting for
+> ACK
+> >
+> > Aborted
+> >
+> So, this may be an X440-specific thing (doesn't do arbitrary re-sampling)=
+.
+>
+>
+> https://kb.ettus.com/About_Sampling_Rates_and_Master_Clock_Rates_for_the_=
+USRP_X440
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000723bc5062d7da3cb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Marcus is correct, you need to upload an FPGA image that h=
+as DUC/DDC enabled to get arbitrary sample rates in/out. Try using uhd_imag=
+e_loader to put the X4_200 image on, which I believe does support DUC/DDC. =
+Then try the 5 MHz rate <br></div><br><div class=3D"gmail_quote gmail_quote=
+_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 6, 2025 at 1:=
+05=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com=
+">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">On 06/02/2025 13:02, Rilbert Lima via USRP-users w=
+rote:<br>
+&gt;<br>
+&gt; I ran the test using 5e6, however, the same error occurred.<br>
+&gt;<br>
+&gt;<br>
+&gt; root@ni-x4xx-342597F:/usr/lib/uhd/examples# ./benchmark_rate --rx_rate=
+ <br>
+&gt; 5e6 --tx_rate 5e6<br>
+&gt;<br>
+&gt; =E2=80=A6<br>
+&gt;<br>
+&gt; [00:00:04.955692172] Setting device timestamp to 0...<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [00:00:04.967447052] Testing receive rate 368.640000 Msps on 1 channel=
+s<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#0] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; Setting TX spp to 352<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; OO[WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual <b=
+r>
+&gt; rate is 368.640 MHz<br>
+&gt;<br>
+&gt; [WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 5 =
+<br>
+&gt; MHz. Actual rate is: 368.64 MHz.<br>
+&gt;<br>
+&gt; [WARNING] [MULTI_USRP] Could not set TX rate to 5.000 MHz. Actual rate=
+ <br>
+&gt; is 368.640 MHz<br>
+&gt;<br>
+&gt; [00:00:05.301642718] Receiver error: ERROR_CODE_TIMEOUT, continuing...=
+<br>
+&gt;<br>
+&gt; [00:00:05.301663748] Testing transmit rate 368.640000 Msps on 1 channe=
+ls<br>
+&gt;<br>
+&gt; UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUOUUUUUUterminate <br>
+&gt; called after throwing an inst&#39;<br>
+&gt;<br>
+&gt; [14450.111391] audit: type=3D1701 audit(1738864692.914:16): <br>
+&gt; auid=3D4294967295 uid=3D0 gid=3D0 ses=3D4294967295 subj=3Dkernel pid=
+=3D1132 <br>
+&gt; comm=3D&quot;bmark_rx_stream&quot; exe=3D&quot;/usr/lib/uhd/examples/b=
+enchmark_rate&quot; <br>
+&gt; sig=3D6 res=3D1<br>
+&gt;<br>
+&gt; what(): RfnocError: OpTimeout: Control operation timed out waiting for=
+ ACK<br>
+&gt;<br>
+&gt; Aborted<br>
+&gt;<br>
+So, this may be an X440-specific thing (doesn&#39;t do arbitrary re-samplin=
+g).<br>
+<br>
+<a href=3D"https://kb.ettus.com/About_Sampling_Rates_and_Master_Clock_Rates=
+_for_the_USRP_X440" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.c=
+om/About_Sampling_Rates_and_Master_Clock_Rates_for_the_USRP_X440</a><br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000723bc5062d7da3cb--
+
+--===============7944967232146862111==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7944967232146862111==--
