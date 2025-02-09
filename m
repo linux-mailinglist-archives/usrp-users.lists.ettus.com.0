@@ -2,190 +2,172 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6F32A2D061
-	for <lists+usrp-users@lfdr.de>; Fri,  7 Feb 2025 23:20:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 151E9A2DACF
+	for <lists+usrp-users@lfdr.de>; Sun,  9 Feb 2025 05:54:04 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EFD7E3860FD
-	for <lists+usrp-users@lfdr.de>; Fri,  7 Feb 2025 17:20:44 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8C483385EA4
+	for <lists+usrp-users@lfdr.de>; Sat,  8 Feb 2025 23:53:26 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1738966844; bh=XvhvM5AcIW3CMa2N4NoEml+HsVp8Adqxy/mh5zQDiDs=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=fr84CJunOzxf1cfmJZI/TtrgaRrJGcQPXgJXJ+VQPsNfREKIwaZdxw9EmB9kzTDf4
-	 +LTnBv2TozR2NuBWlFwZ2zT7zrxASJ2ARjbSIuqE23LZKE4rH5dUCsjiOcb5qCb6Gg
-	 1Mp4A/Vdntit3DqfWAZ8tBGbZDlRL4HjHQfKeltjyWepym4bl+7gHHY+E0H5OMwNtA
-	 ZFn+W8DldDk3mse8E+NdnWvCllCd+NNz8k4TDTtOvaMDKGlAdJYTsY6CLtwawwIFTR
-	 gok/TAyCF0GpHzc1MRpWsdCGkYcwZ+CQ6mWmfmQJRRhTIf0QmZtLRrR2RDiTd8Wlxx
-	 h3/WeeRqVUcVg==
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id A861E3860C4
-	for <usrp-users@lists.ettus.com>; Fri,  7 Feb 2025 17:20:32 -0500 (EST)
+	t=1739076806; bh=bFUKlp82uPdIj0XRJpJBKnE2igPsC9cKncUrwzHAyS4=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=bo8JzqRPOPDVtZHam9obOluxMFlZSnEBWl+B/v0YmMNQSVS+9ayKMAi7VTbBjanPI
+	 wMWKpaU4Hhd9g8Mpo3z/QJ/fkOZrVSZJy+J63TV8MxSO8B1UXmgPYJiJquHlO9LjBk
+	 vbrBtiNRB0PefowuFDm8t10fqz5xch553GuHAXvwqTKR5p4u1rXj/JtHHfM3OEo4eq
+	 R8XN4QWIGbfx9MdmIgfbRYsavIrBpPUwhoAvC4vkr+/NwT2cjPRm76Q5czAuc7hKYb
+	 oSwPw0/AMlgNNo3y2XdDU5GHsw0BRc4vSHo1vF0HG1qpN4ISlkbJ+oFtPtarKjgPVB
+	 lwdCFTdHSrDQA==
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id EEF19385D92
+	for <usrp-users@lists.ettus.com>; Sat,  8 Feb 2025 23:52:25 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="i5IESB0b";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="OzkixdZp";
 	dkim-atps=neutral
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-46df3fc7176so22490691cf.2
-        for <usrp-users@lists.ettus.com>; Fri, 07 Feb 2025 14:20:32 -0800 (PST)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e5b16621c28so2590529276.2
+        for <usrp-users@lists.ettus.com>; Sat, 08 Feb 2025 20:52:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738966831; x=1739571631; darn=lists.ettus.com;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=97MFW1FbiAFMKCc601KSStzeQjGH3DqbrUTgQeE2HIk=;
-        b=i5IESB0bhMiOaBhTLT73qpl0VgxlrPZGQ2d+Bw0nxp2smfWjxjI7LaJaQ0ViEM+rBi
-         NQ2O6J/fNI7+CZAayXwdu5UMJNEm3rYHpWg1iC3uHkmgyns2CGVqqtfadElSa4Ki/9gw
-         k3iZAzG2mc0W8sMAb2zcrD08Udp7oKccfqrHoyoEzjAhSlA4qOLrOGtN6X8ojQvAdTTY
-         LlcdZAFBGBJ3jNgA1dvHpZbJggrmjc9LJrZO7Yeu8K8U4jTjHyz7aOZvedr2AAX52hWj
-         yLyDSHgW/OZ2TK1Ssi/5ov2/gfrmYdcIiQ34QgDf1qWl8mLMUXbW/M8Y9T/tGtBF8rLi
-         fAog==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1739076745; x=1739681545; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0CN2R+9ltDQluLrgkXq0oL3QU+uBaBgGjJkKZ5NPU/s=;
+        b=OzkixdZpvW9VVNwnZbaEWnFWTVzRlGSYDyGlLe+sH0YXXGdlG4EUXYuQ/eq8m274rf
+         gW8jLBWoiK9fnty4WXqZ7HaBPGGcxSHGizRM9Et3XtzjZWo+HdgcXv06beXvKuCIprqw
+         uGC0ZlbFZXhmr+BZvxIfXeVpPVG8KqKmC7F8BwPp/5LUQK8EkQFP70ar3rQf1sZI/5xH
+         dczj+rDwUqxJEV6qSrMjLmZ0g2pNPqQiDk/w0vPKB54hs7sRZDNrhCA/QzodTVfidqQD
+         X28SLIgMSPBaR8Uw3FHfLhKCywiJscgTA8giqkK+BUmpVfpprPM64OI6s1+KmQBYAixi
+         YqWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738966831; x=1739571631;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=97MFW1FbiAFMKCc601KSStzeQjGH3DqbrUTgQeE2HIk=;
-        b=TKFO/Oe9K4YAuXiA4YNjOYiSiRXUbBM7sk6QIzcEJb8pd/Ey0C8P+NuRI1BGXcNxDO
-         bPT3fL5R3pPXriawVtXEb+WbEuC2wI1Dk5S1UblA9e8Ovg9aC3Mfd57KA2fO6adKYLlQ
-         ORKgkfz5hUcbc1FB6l/vboyDHDrpQr0LhOQyNNAw8z1715KtysjTrhJca+vhzDPWQ7qO
-         zACEiaLPeO0oufkX4fKOv0G3dm401UCtjfvdFr4W2QwGbQZwbVKac1xIjilDQjzgbRmG
-         g7+O7j3ZE3rOkIPmVOEFnvbMfSVfJ2qQPj040v/Ngynw7gKZ34W6xpoo4OyX9HieqWsD
-         wb4Q==
-X-Gm-Message-State: AOJu0YxzeApFeShUBVirlge1d0yBWFENMzBnTTnv9w7bp7bVRoQmwGau
-	1iopA8Sh31wPvdTNSP/OznymBf9JT6stjBkzPkbOt/sGHLDGYmvmcyPCRA==
-X-Gm-Gg: ASbGncu8jGmx152m80qwqHbQCf8b9b4Ka7RrZ5u7vxOBD63MJK47X8EcHGXGs603g1u
-	QHA1JvJxd1genA9ge8+7qoHJcElS7b025GjOdC2LEZ2vhZHDW4yygBDfuHiwe6DcvUV7D1p5cHv
-	D5PAk7CoKbZDC/AOS54u5U3fr6Zvaf6jy1Qapi3xBAzBc3A8g0ovfsN5hJEDMYSRTepTaUbOIJ0
-	I5klu32chCwVAJIm96z8ZUQ4t4J/5EvV5MnJA2YF42RMS/xtGLjxGltsfcxnQm3PYCtRhqxpyJh
-	7fKONJ3KA9r1swDcneprZNpB3A==
-X-Google-Smtp-Source: AGHT+IFZ0a/3fxThutUU8dIzjK4cOoqn/CBNDAeZmTa1QK8iUV2RAW23Y8tEfMwPyWuq1Ub5wmfhiw==
-X-Received: by 2002:a05:6214:5094:b0:6d8:a5f7:f116 with SMTP id 6a1803df08f44-6e4457148a8mr65553696d6.42.1738966831042;
-        Fri, 07 Feb 2025 14:20:31 -0800 (PST)
-Received: from [192.168.2.170] ([142.115.37.13])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6e443254399sm15179876d6.49.2025.02.07.14.20.29
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Feb 2025 14:20:30 -0800 (PST)
-Message-ID: <0fb871b5-6b92-4646-947d-74961ab61fe4@gmail.com>
-Date: Fri, 7 Feb 2025 17:20:19 -0500
+        d=1e100.net; s=20230601; t=1739076745; x=1739681545;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0CN2R+9ltDQluLrgkXq0oL3QU+uBaBgGjJkKZ5NPU/s=;
+        b=RnXN/FdBBaUJgROaHObdyJzudVgoNTT4Q9rQ2wSilU7c+7wt45VW1UiLSkI+P9qw9R
+         Pzwewk03wrjifKNQdDvCa/8A5+XikaOixDdudBKBJLGA6hFK8QKv01Qa6mBW1BaUq+hj
+         PlgrrWm9fOtJUGn9tkUdlAP+0zYdG4kqWlg42U44NoP9LNBYEqj22c4/qJfc4yqZxc+3
+         8AIZ+t4tI4Ch9HhGvNvAiR65edDLFjbCm8Snm5xJi6CtbUlGttWr6DyOTt2mbL5PneXK
+         wohOb7bFq8/t+i9AEQV8r1bd/0cLE4+0BodPtKwD5JdC3h6DILOheOKjcpTvHoI3eyaj
+         5Vyg==
+X-Gm-Message-State: AOJu0YzyeHbjlIBzZSc5FOcRoRXuN/+fD1wyh+hiYdYtqkipfOdlNOuH
+	b6AGDZvvQP1NADpm2tsjcL2xYt0xgl10ZbFZKEzs5kPuNLYTf2e3GpA6X7NNqZAn/aH8C86+I6J
+	jxkyqKKY88piSvRmAXmSlR8trPHICKk0w+nzQzVbS
+X-Gm-Gg: ASbGncu6QAssJWOE/iW2uWU6lcIRlOHS7KNGq11hKhSWJqL3sH3l5aVfqHe/ZrXSIQo
+	AX4hNDJ/Epr75wTrwakIZiKuuBrvy2sv6qo51+Q9q1poPfp9QorTQ6zaR8oGPCcFIzE+UHX25
+X-Google-Smtp-Source: AGHT+IHPgU/EkO+ojtP+PzY3zjb9KkYwXU4Jsw8xAUs3UHaJ21LSgsN33F5p0X43awgWQe1eTGxHD8kMY271VF7RqK8=
+X-Received: by 2002:a05:6902:1702:b0:e38:8263:7990 with SMTP id
+ 3f1490d57ef6-e5b4629dbdcmr7490817276.48.1739076745210; Sat, 08 Feb 2025
+ 20:52:25 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <SJ0PR09MB912673D9052B0D2ECE79DBF9ECF12@SJ0PR09MB9126.namprd09.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <SJ0PR09MB912673D9052B0D2ECE79DBF9ECF12@SJ0PR09MB9126.namprd09.prod.outlook.com>
-Message-ID-Hash: MCZLRMZE2MDMQGD4KV4GQXCSYMY6BWG4
-X-Message-ID-Hash: MCZLRMZE2MDMQGD4KV4GQXCSYMY6BWG4
-X-MailFrom: patchvonbraun@gmail.com
+References: <lGIYOZyz2CQOcVPhVCFBLmBewwlajc0rrTfkBxof8A@lists.ettus.com>
+In-Reply-To: <lGIYOZyz2CQOcVPhVCFBLmBewwlajc0rrTfkBxof8A@lists.ettus.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Sat, 8 Feb 2025 22:52:09 -0600
+X-Gm-Features: AWEUYZmyuNZ7DPtCcLe5_0cUK5ZxsrrAMcK4qdeBoIoqB26mK7_A3626GnmiMyw
+Message-ID: <CAFche=iiEjbPh7eDpMQtrMbnLVQXxn7-y-Yu2ZYGtN8zKrJ+gA@mail.gmail.com>
+To: dhpanchaai@gmail.com
+Message-ID-Hash: GYHMFHG5OAI5XQLJP3CVYF7HPEEBDIVN
+X-Message-ID-Hash: GYHMFHG5OAI5XQLJP3CVYF7HPEEBDIVN
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: LO offset with external LO
+Subject: [USRP-users] Re: Build custom fpga image for x410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MCZLRMZE2MDMQGD4KV4GQXCSYMY6BWG4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GYHMFHG5OAI5XQLJP3CVYF7HPEEBDIVN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5425303171255390081=="
+Content-Type: multipart/mixed; boundary="===============7790934612163153566=="
 
-This is a multi-part message in MIME format.
---===============5425303171255390081==
-Content-Type: multipart/alternative;
- boundary="------------3yr80DA482FGd0ApkDpaFSmo"
-Content-Language: en-US
+--===============7790934612163153566==
+Content-Type: multipart/alternative; boundary="000000000000a2d042062dae5b97"
 
-This is a multi-part message in MIME format.
---------------3yr80DA482FGd0ApkDpaFSmo
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000a2d042062dae5b97
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 07/02/2025 16:55, Eugene Grayver wrote:
+You can find information on how to build FPGA images in the user manual. Be
+sure to use the Vivado version and patches indicated for the UHD version
+you're using. The current version needs Vivado 2021.1
+
+https://uhd.readthedocs.io/en/latest/md_usrp3_build_instructions.html
+
+X410 natively supports 250 or 245.76 MSPS (200 MHz bandwidth) and 500 or
+491.52 MSPS (400 MHz RF bandwidth). If you really want a sample rate in
+between, then you'd have to write your own custom logic/code to do it. If
+you want to add a custom processing block to do this, then I suggest
+looking into RFNoC.
+
+https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
+
+But maybe you could use 400 MHz bandwidth? It might be overkill, but it
+also might be less work.
+
+Wade
+
+On Wed, Feb 5, 2025 at 4:23=E2=80=AFPM <dhpanchaai@gmail.com> wrote:
+
 > Hi,
 >
-> I am using N310 with external LO.=C2=A0 I still want to use the digital=
- LO=20
-> offset.=C2=A0 However, it appears that when the LO is set to external t=
-he=20
-> digital LO offset is ignored.=C2=A0 Am I missing something or is this t=
-he=20
-> intended behavior?=C2=A0 UHD 4.6
+> I would like to build an fpga custom fpga image for x410. I would need to
+> be able to TX/RX anywhere between 250 to 300 MHz. The prebuilt UC_200 is
+> too low and the CG_400 can=E2=80=99t be adjusted and a bit overkill. Any
+> recommendations on how to best do that? Which version of Vivado would I
+> need? I currently am using UHD 4.7 and have Vivado 2023.1 installed on my
+> machine. I was wondering if its possible to tweak the UC_200 prebuilt ima=
+ge
+> to do that? Thanks
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
-> Eugene
->
-This doesn't *sound* like design intent, but, maybe?
 
-Have you tried it with an earlier UHD, just in case this is a version iss=
-ue?
-
-
---------------3yr80DA482FGd0ApkDpaFSmo
-Content-Type: text/html; charset=UTF-8
+--000000000000a2d042062dae5b97
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 07/02/2025 16:55, Eugene Grayver
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:SJ0PR09MB912673D9052B0D2ECE79DBF9ECF12@SJ0PR09MB9126.namprd09=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        Hi,</div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        I am using N310 with external LO.=C2=A0 I still want to use the
-        digital LO offset.=C2=A0 However, it appears that when the LO is =
-set
-        to external the digital LO offset is ignored.=C2=A0 Am I missing
-        something or is this the intended behavior?=C2=A0 UHD 4.6</div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        Eugene</div>
-      <div class=3D"elementToProof"
-style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Cal=
-ibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-    </blockquote>
-    This doesn't *sound* like design intent, but, maybe?<br>
-    <br>
-    Have you tried it with an earlier UHD, just in case this is a
-    version issue?<br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div>You can find information on how to build FPGA images =
+in the user manual. Be sure to use the Vivado version and patches indicated=
+ for the UHD version you&#39;re using. The current version needs Vivado 202=
+1.1</div><div><br></div><div><a href=3D"https://uhd.readthedocs.io/en/lates=
+t/md_usrp3_build_instructions.html" target=3D"_blank">https://uhd.readthedo=
+cs.io/en/latest/md_usrp3_build_instructions.html</a></div><div><br></div><d=
+iv>X410 natively supports 250 or 245.76 MSPS (200 MHz bandwidth) and=20
+500 or 491.52 MSPS (400 MHz RF bandwidth). If you really want a sample rate=
+ in between, then you&#39;d have to write your own custom logic/code to do =
+it. If you want to add a custom processing block to do this, then I suggest=
+ looking into RFNoC.</div><div><br></div><div><a href=3D"https://kb.ettus.c=
+om/Getting_Started_with_RFNoC_in_UHD_4.0" target=3D"_blank">https://kb.ettu=
+s.com/Getting_Started_with_RFNoC_in_UHD_4.0</a></div><div><br></div><div>Bu=
+t maybe you could use 400 MHz bandwidth? It might be overkill, but it also =
+might be less work.=C2=A0</div><div><br></div><div>Wade</div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 5,=
+ 2025 at 4:23=E2=80=AFPM &lt;<a href=3D"mailto:dhpanchaai@gmail.com" target=
+=3D"_blank">dhpanchaai@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><p>Hi,</p><p>I would like to build an fpga=
+ custom fpga image for x410. I would need to be able to TX/RX anywhere betw=
+een 250 to 300 MHz. The prebuilt UC_200 is too low and the CG_400 can=E2=80=
+=99t be adjusted and a bit overkill. Any recommendations on how to best do =
+that? Which version of Vivado would I need? I currently am using UHD 4.7 an=
+d have Vivado 2023.1 installed on my machine. I was wondering if its possib=
+le to tweak the UC_200 prebuilt image to do that? Thanks</p>
 
---------------3yr80DA482FGd0ApkDpaFSmo--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---===============5425303171255390081==
+--000000000000a2d042062dae5b97--
+
+--===============7790934612163153566==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -195,4 +177,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5425303171255390081==--
+--===============7790934612163153566==--
