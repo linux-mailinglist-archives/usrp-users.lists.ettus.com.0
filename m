@@ -2,380 +2,1905 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240D7A30303
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Feb 2025 06:45:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C381CA30AEA
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Feb 2025 12:59:56 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F168E386148
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Feb 2025 00:45:07 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 28F7C3860AD
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Feb 2025 06:59:52 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1739252707; bh=EgTZsC5cO/4CVu72L+bD4cEzauXELe+fa0uFVwlZqiQ=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	t=1739275192; bh=hcGOIwjI6WIwxKQx+AKJ1cNNz1rjd69P+qis0ZIHd2Y=;
+	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
 	 From;
-	b=MU3XplA+z9nrqkDlNQATNm873+XvnqHMG2dd3gphLtlz8PfC/I6DdfVFM3b1hqYFg
-	 lTgHhsg+IiysyXH8jMZFqLnrgxm8f3VsL7+KtC3DdKkMNAhcKr9NjG1ERuJ8zgg4pw
-	 ClWSWyQAa7AAG1dFLi/TIJQ2PCqttG8/n8mPih8dHWLHwgjBOECaEEpOz//EMo8Q8L
-	 f6SLofk7TIEFatkvZXREjhIwxsYRD67RHuu0DwTsVoVsfsQpWpXCc95YlIhoKT33YR
-	 alkSm5uzZs+ZY5TYMjWngRVIasoZvgpNcXjQ7PNV3IhhyF8dPgtqvGg0G1UuqtaDMF
-	 knpLjXs3nZHBg==
-Received: from email5-west.aero.org (email5-west.aero.org [130.221.16.30])
-	by mm2.emwd.com (Postfix) with ESMTPS id E86CE3860FC
-	for <usrp-users@lists.ettus.com>; Tue, 11 Feb 2025 00:44:31 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="elOqi1LG";
-	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="qezu/rTo";
-	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
-  t=1739252672; x=1770788672;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   mime-version;
-  bh=eXdugD/EIgUWxbKDzZPXKgEt7N8yf4Q93DQM2tAqVUc=;
-  b=elOqi1LGlNfzYQD9lov2+vxpcyNYRCO9UgkPm1cB2X3rztw2vdhkqIMB
-   T42y9LQIHLWhV6VYatKp+28ansV9S8Rk89pt+6r55Kh4JYjtC8f+sf3C5
-   S65r2LTaq3KuYgvbPXdG2Bl/2xx3cxmJmf6fm6lxvSIeUl28jikSY82e2
-   8=;
-X-CSE-ConnectionGUID: rQZyJzi6Ssmd/8kgH/8SdA==
-X-CSE-MsgGUID: /E92v2VyQhSSMnuVHM90lw==
-x-SBRS: 4.2
-x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="6503281"
-X-IronPort-AV: E=Sophos;i="6.13,276,1732608000";
-   d="scan'208,217";a="6503281"
-X-IPAS-Result: =?us-ascii?q?A2EXAQDv4qpnjh0UXShOCQOBCYFTgUEBgQJ9gWSWSZc/h?=
- =?us-ascii?q?lWBJQMYMwsPAQEBAQEBAQEBBwIuAQITBAEBAwSFAAKLByc0CQ4BAgQBAQEBA?=
- =?us-ascii?q?wIDAQEBAQEBAQEOAQEBBQEBAQEBBwQBAgIQAQEBAQEBOQUOO4V7DYQHUQ1IA?=
- =?us-ascii?q?QEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBEQINKDYBHgEBAQEDARwjAQE4DwIBC?=
- =?us-ascii?q?BEEAQEvJwodCAIEEwiCdgQBghwNBwMxsCh4gTSBAYIMAQEGBATbHxhhgWUDB?=
- =?us-ascii?q?oFIgliBIgKBcIJjASqBMokGNoFVRIFXgmg+hAEBQx8MGoNOgi+CM0t1L4M/h?=
- =?us-ascii?q?kudSFJ1IgMmMywBVRMXCwcFYUhIA4ERI4EjBTRBOQGCDWlJOgINAjWCHnyCK?=
- =?us-ascii?q?4IggjmEQ4RLhVqCEoFjAwMWEgGDIXgchGgdQAMLbT03FBsFBIE1BZ0WChBbA?=
- =?us-ascii?q?TyEcyQ/gkqTE49Dozc0B4QegV0GDIopjTiILBeqUph8hRyHfmqVZ4UZAgQCB?=
- =?us-ascii?q?AUCDwiBZ0oegS4zGjCDKh8zGQ+OOoNhhD3BP3g8AgcLAQEDCZIlAQE?=
-IronPort-PHdr: A9a23:C3sxXh1npA+xOdyOsmDPrFBlVkEcU/3cMg0U788hjLRDOuSm8o/5N
- UPSrfNqkBfSXIrd5v4F7oies63pVWEap5rUtncEfc9AUhYfgpAQmAotSMeOFUz8KqvsaCo3V
- MRPXVNo5Te1K09QTc/zfVqUpWe9vlYv
-IronPort-Data: A9a23:QvNS2K4fJfeHtm4aIlFMYQxRtKzHchMFZxGqfqrLsTDasY5as4F+v
- jYZDTiOP/iNNDf8Lop2PYXg9U9U75OEnNdqGQc+rC1nEysa+MHILOrCIxarNUt+DCFioGGLT
- ik6QoOdRCzhZiaE/n9BFJC/8iEkvU2vbuOlU7KdUsxJbVY5Dn9n0FQ7wLZRbrdA2bCRGxmKt
- c75v/rRMVqk3y8cGm8P4spvkjs31BjJkG1e5wdWicxj5geEyiFPVctHfMldElOhKmVqNr/iL
- wr85Ozhlo/p109FIs+olL/9bnoLTtb6VeRZoic+twCK23CulwRqukoJHKN0hXR/0l1lq+tMJ
- OBl7vRcfy90Z/eUwLx1vy5wSEmSNYUekFPOzOPWXca7lyUqeFO0qxli4d1f0ST1NY+bDEkXn
- cH0JgzhYTiZvtCn4qC6FNJ3g8hkfMrkHMRPgX1JmGSx4fYOGfgvQo3hxYZg5m9hrf0WRa+YY
- NcFYz1yahiGewdIJlocFJM5mqGvm2X7dDpb7lmSoMLb4UCPlEogi/63aJyPK7RmRu0M9qqcj
- m/b8Gn/D1cVLtWO1zef2nuhnOiJmjn0MG4XPOPlrqUw0AT7Kmo7TzBHD0Xhn+iAinWFftRCF
- Wwxq3Iqsv1nnKCsZoKmBUHnyJKehTYBQMBIVvAh5RuW4q7V+BqCQGUYUiNaLtchsacLqScC0
- 1aIm5bvAiZzsLaYT26H/7OJtjqgPTBMcjdbPHdeHE0C/sXpp5w1glTXVNF/HaWpj9rzXzbt3
- zSNqyt4jLIW5SIW60ml1Ur+sSOOtJmXdRUw6kKHXW2FqVNCaKfwMuRE9mPnxfpHKY+YSHyIs
- 34Fh9WS4Ygy4XelxHzlrAIlTOHB2hqVDAAwl2KDCHXIythA03uqfIQV5jZkOEdiP8AYYzbtf
- VTaqwdJvcALZSLyN/4xZJ+tAcM3y6SmDc7iSv3fcttJZN52aROD+yZtI0WX2ggBcXTAc4lhY
- v93ku71Vx727JiLKhLqH4/xNpd3nUgDKZv7H8yT8vhe+eP2iISpYbkEKkCSSesy8bmJpg7Ym
- /4GaJDbkUwFC7SjOHSPmWL2EbzsBShqbXwRg5wGHtNv3iI4Rz94YxMs6e9/JNE9w/oJ/gs21
- ijkBRYEmAuXaYL7xfWiMSs5NOyHsWdXqHMwJys3Oli0k3Mke57H0UvsX8pfQFXTz8Q6laQcZ
- 6BcI62oW60TIhyZoWh1Rcem9uRKKk/07T9iygL5OlDTibY8HVSRorcJv2LHqEEzM8ZAnZBj/
- eP4jlqCGsBrqsYLJJ++Vc9DBmiZ5RA18N+elWORSjWPUC0AKLRXFhE=
-IronPort-HdrOrdr: A9a23:iZ/L2aqRu40IPtBHafunDUoaV5ugL9V00zEX/kB9WHVpm5Oj+v
- xGzc5w6farsl0ssSkb6Ki90dq7MAjhHP9OkMEs1NKZMDUO11HYSL2KgbGC/9SkIVyGygc/79
- YqT0EdMqyWMbESt6+Tj2eF+pQbsb+6GcuT9ITjJgJWPGRXgtZbnmVE42igcnFedU1jP94UBZ
- Cc7s1Iq36LYnIMdPm2AXEDQqzqu8DLvIiOW29KOzcXrC21yR+44r/zFBaVmj0EVSlU/Lsk+W
- /Z1yTk+6SYte2hwBO07R6e030Woqqv9jJwPr3MtiEnEESttu+cXvUuZ1TNhkF3nAjl0idRrD
- CFmWZcAy000QKaQoj9m2qT5yDwlDkp8HPs0lmenD/qptH4XiszD45biZteaQax0TtWgDhQ6t
- M/44uijesiMTrQ2CDmo9TYXRBjkUS55XIkjO4IlnRaFY8TcqVYo4AT9F5cVM5oJlOy1Kk3VO
- 11SM3M7vdfdl2XK3jfo2l02dSpGnA+BA2PTEQOstGclzJWgHd6xU0Fw9F3pAZ3yLstD51fo+
- jUOKVhk79DCscQcKJmHe8EBdC6D2TcKCi8Ql564W6XZ53vF0i926Ifuo9Fmt2CadgN1t8olJ
- zKTVNfsnRaQTOTNSSn5uw7zizw
-X-Talos-CUID: 9a23:XkGmimDWwtHyDk76EzNexl82CMF7SWbYwDCAIECYTjZSRJTAHA==
-X-Talos-MUID: =?us-ascii?q?9a23=3AiKmaSgy667Zo3sZFnnXVPIrV4guaqOODWRoTy6s?=
- =?us-ascii?q?Xgsm/Dgl2Jgm9qWXvRpByfw=3D=3D?=
-Received: from mail-northcentralusazlp17011029.outbound.protection.outlook.com (HELO CH1PR09CU001.outbound.protection.outlook.com) ([40.93.20.29])
-  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 21:44:30 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LYB0nyNKq8H856WMGfHU7QmpdZKShgSQe6+Bac+d9LbtfSd2MZIiUj5wNwbQGiNemmxhH0XA8tgd0YAd3dwkkvEje2xKNdoKPcRN+ddHiopZ9BDoecNNTiBqMpP9R4IY9Gk9nat8baBaZ7DT5ZcB9eUrDg/rG7QoMG18X3n2LnN/Asn/mY7FQOp/gqXwo29KucmzST9Qed7l/08tvOjgqdIA+uIzzCDHMRtD1bh0aOGshxva+eQG9FtJdi98gsWqZjPbkAo+c9DvTyLhc+Nf7XCpNZI8f8hS/Q5hLcz0wD5HvDYGMh7yEBqTpBV9iMcMV+YCZNGeshltQ22pxjVqeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T0DuY6SG0Sej1E79TevRzrxZdnjchE//ghwWVELud5E=;
- b=hz2i6iEc7Y5fkT6b3TxrAJCeCi+Mp4V6SsM3y3RglqHV7PRy6Taqn03fz0aHzwMgjvzlxga0sD4W+Loy4QFIOCOksKCKv6FxD/i6DrVxU0vEaakMYqqeyAysWSVTL2D56ZVbPluYKESlzg9v3sQ6H6ihMGs7INE+qtIaG3XLkutPfFuAvCc3pzLRftvnsH1p4RLnBbUB0DP/BuufEP/USZteGIYFGLfb7axrZtTX5pILJnpb4iylrhdul/VSdZePO+mKLQ2HRp4iVqUxopkRe3k5VeKXfzpjk6keAx1pm90f1NYTdt0QYKhkTI85mw7EByASwQsvGgUId8kVmm9RSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
- dkim=pass header.d=aero.org; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T0DuY6SG0Sej1E79TevRzrxZdnjchE//ghwWVELud5E=;
- b=qezu/rTorq7+zwFqayKo8Yf0Boqyx+N34cigFu+M2G6O6nEehRAYD+HwOpiyopzTpYaySxzWLl80nHUxuHSnKVZm3kl9ydNYkfijomU2niEBYPySIQDfng7H4RU19tvh6JhPCN9KN9IGP3jJdTAEFfXHwXVVQ5UvOFLvnbJXZVE=
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
- by DS0PR09MB11116.namprd09.prod.outlook.com (2603:10b6:8:177::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.19; Tue, 11 Feb
- 2025 05:44:25 +0000
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::3188:1f4d:693d:60d6]) by SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::3188:1f4d:693d:60d6%4]) with mapi id 15.20.8422.015; Tue, 11 Feb 2025
- 05:44:25 +0000
-From: Eugene Grayver <eugene.grayver@aero.org>
-To: usrp-users <usrp-users@lists.ettus.com>
-Thread-Topic: LO offset with external LO
-Thread-Index: AQHbearm1U8tBY11yk+iq5Z60oAqBLNBmwri
-Date: Tue, 11 Feb 2025 05:44:25 +0000
-Message-ID: 
- <SJ0PR09MB91262C61487916430516EA7AECFD2@SJ0PR09MB9126.namprd09.prod.outlook.com>
-References: 
- <SJ0PR09MB912673D9052B0D2ECE79DBF9ECF12@SJ0PR09MB9126.namprd09.prod.outlook.com>
-In-Reply-To: 
- <SJ0PR09MB912673D9052B0D2ECE79DBF9ECF12@SJ0PR09MB9126.namprd09.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-reactions: allow
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aero.org;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|DS0PR09MB11116:EE_
-x-ms-office365-filtering-correlation-id: 55439f50-b9f2-49d0-6d44-08dd4a5f248f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|366016|8096899003|7053199007|38070700018;
-x-microsoft-antispam-message-info: 
- =?Windows-1252?Q?7/0C9ScehPXQJKeWGVnUqFyZuc9NhxPtxb1a7ktn3b3qz/JoVbDwEMbA?=
- =?Windows-1252?Q?5vu5j1SV32MBVZByM3kQPfTuwi9TKsu9av/Ter7nG9P30HO7V68wL1s3?=
- =?Windows-1252?Q?zCaqetjC6g03qxa2d50wJhSpZz0b2v8PqwPSMBFbt/90LKrXFhB/QYDs?=
- =?Windows-1252?Q?rYV6YDq+RmECkaN7zMHcCWlFfOtNu6kXAs9ApczNyhdqA7AOvYOmRgHx?=
- =?Windows-1252?Q?YvIMsLRo3eGcp7FOYZzsnpeAoCFDxVJOmLY2kqIRCCkYm6wAH8xzYqhm?=
- =?Windows-1252?Q?InyY4NRzCAODV9mpTQX6HL8Ar2zP5baqAva1nlPkwHAaLahzFIWuFpY8?=
- =?Windows-1252?Q?xuWhn3yBYyLewg6pG/ty4I7mJn4ZRbshlxqsqw/fdnA0AoOXOOV9EkIb?=
- =?Windows-1252?Q?vcYCCOZToKtw8bp66D4D6QyJO+1ucTy2k3RjB6zm5E5swCdEYBsZ3ycI?=
- =?Windows-1252?Q?4bsSo923urh30OLwyNA5EFu1g/WC7P+Ttl2DUNS1wg5UVt2d+oKcHEc/?=
- =?Windows-1252?Q?oMuhXNzAOB+P08NRCIjRb2QWPvtsCkcQ+WYFs0AeYm81Arrf/phXCtOu?=
- =?Windows-1252?Q?gSxdyRTl+gVFhFdFMk6ikvgwnMz6QbUWbLIlHnuosXRn9iVMizvFn1++?=
- =?Windows-1252?Q?hnV9i4sfdzipdwsQSCsFqP2a0PuCVXcLIEqR10tH9YRw6Lu/JwAn5WQJ?=
- =?Windows-1252?Q?+VVDhWyQa1hujsZ4E3apdFsnz4p3x7t6+L2H8ddJBkF8Yq34urtPEIlS?=
- =?Windows-1252?Q?IbG0EeybzDyrJms7VYd3XebPCvw1z3Ju6N1UHKE2zO8gPQXjR98Gx6eE?=
- =?Windows-1252?Q?dzi8njfAe0CamjuURu16YAKxjqHVx5bSxczQoxxHVwS35E2sA/C7je/l?=
- =?Windows-1252?Q?ANoHT6eiI5V1z6fHdL5jJCn79e18OE9dzwXebhIMsRG4f4/Y8sNkPLC1?=
- =?Windows-1252?Q?xMoeTzLm+AZYNJzYDHvY55N8ExphooPEEGkY7LVScV/g2MDucgMPH9cx?=
- =?Windows-1252?Q?VnaEaROFC1zC9qz73g93TXmaSy2nsLq6BctpI2piNDkjOyqfbgbBgXol?=
- =?Windows-1252?Q?7q4UpuIOCk4EakynadxlY8kuAYSun5JzFIAw41iQk//a10o9AO34c1Vb?=
- =?Windows-1252?Q?aZktu3tqTB3XKBWe0AGuBfTrYhN7B/PX8i/QPvHLE5+NX94LmQb7P8kB?=
- =?Windows-1252?Q?4uuYCrptuJ2DgGD3vhDzq1CZhFJEfqcXPPih6Hk/WWkWLiZqmee1og56?=
- =?Windows-1252?Q?BYKEEjywgN4gfhUnlWEARUOZvlmBRwLQatYkkng8pbAMUH7BY1WIIBlq?=
- =?Windows-1252?Q?IkY9MOF+7boZRIypi6WC9JB3biJ7STANFfPTSmgcRaiYExX9JUnPQ1Mx?=
- =?Windows-1252?Q?txJmHBLygdCE9c2wvPj9EANTHLtHoPNcJ/iBbMDTM4iThNQq+FA07Nx3?=
- =?Windows-1252?Q?kQK+IiL0kMETvS003D59QzwajVeFa+1Cwofrv4guh2vVefAmxmius1LL?=
- =?Windows-1252?Q?N/vXVuHosBKVomLOQPhbm4V5kue9gYgTvQcuvtu1wG8UruQ8i2b/1dHT?=
- =?Windows-1252?Q?RkovCCWUz40f+806?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(8096899003)(7053199007)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?Windows-1252?Q?N3yiFl+p5o98dzhKahmvBFpgSw1X8RGo1K1V8mL8vGS7//qAR8S0fl9O?=
- =?Windows-1252?Q?FYDEwdB31QnonnRlgTmivM+iErIn2s8zMa94HnrSpu42p0h8lOhhONom?=
- =?Windows-1252?Q?QKFbycKE7bk8qmyqY6fr+Ft/jk1i3OSCs+bNBpEKND2/RZvecMRTb6Fy?=
- =?Windows-1252?Q?C+LV3h52bVaw/hlfV3Jv1aP+ZZ6X5hoR6/s1tLiZ7vYQLcYpZDMsQ8gR?=
- =?Windows-1252?Q?OVyru4DPE3RTzyDt4K3OPs6Hvzi8rbg7COO+fi8DEKUyjgJm1pgPR0SQ?=
- =?Windows-1252?Q?mxx2cw20PtQ2YO4iSFdeqKmkD60WgM9jNShehYEwR2595KHLWi3Sze2M?=
- =?Windows-1252?Q?ZID2eLGkbmr8gn7qKYVotAsBJ9cdhoj+No7G6FWSOGUCHA7RzmMncBc0?=
- =?Windows-1252?Q?7reQS0rbS6YuFyjZr3n5zjaglyCdStrnssQZWye6aSKCiBarvO1vCWQz?=
- =?Windows-1252?Q?992fFYvaRld17HKzzUb3jcZ4Jy4abCC4uUQUXkDioS/1z//xxTcfpH7Q?=
- =?Windows-1252?Q?f/AKzWnsPAT11YqmytJ9Gy2ZYqmkry0czt5YIN7Kt8M75/dlcNnoIAVD?=
- =?Windows-1252?Q?tqU4SoTrnEKaFrXOBy7smYjsqZk/5sbingUiYuybZ5pg4JaxGUG8K0GZ?=
- =?Windows-1252?Q?IPRW/toZU7BZ4qPCwicMxt1FIq1WkEgZWuJkFZBiRVSTe5s4dNngrRKj?=
- =?Windows-1252?Q?eW/ikoHJCKDR5Nr7/9Mlm+vmAIJr+Tn/uIDKnl44YnqB/yD5LVLuvRRJ?=
- =?Windows-1252?Q?5FOufpuaXUa+mi3DgjZ1dlHZaEB0ARF46M9nTmpV3LZeb7rXLMt6mv+s?=
- =?Windows-1252?Q?nsJ5VSpyz6Qca9fGPojnXoRr/gvONe24B6NEp58IZZmW+10EsVIscah1?=
- =?Windows-1252?Q?9esLdqexAxMVBbEunGwoozI+eXIfxeT5eTXc9Z1dzy22YeqbGsBt9paa?=
- =?Windows-1252?Q?YUpUPuI9NKxew41HXMipIZvrqru/DV6ViRwAU8SrosRZCU9x40TdjkxK?=
- =?Windows-1252?Q?K4kXZC6IyD0I00TCWd+wWv13JrFslXVji1ebEgFrzu2g4PqVJxxQwTtu?=
- =?Windows-1252?Q?nLl6vPlZwHy6Xb3+tq/kzmkrrDaZmRWh8fSe4/sSHzGmRTIGEp0xSoqU?=
- =?Windows-1252?Q?ati3NwA4H0gkESkOYZV0hW6RjUEMMZWgPkQRPbfh3LkwSqE84qWEmglu?=
- =?Windows-1252?Q?rC1TlxeXEyn2WKvkEZyQhVwwgRpbvGmuIDUR34LAZjrb8+crpl9Ru1zM?=
- =?Windows-1252?Q?2UQEccVkSbaAdMfZ0oPNZuHhdsz6IQCajUXiK870rFP7n5S7mPonImxt?=
- =?Windows-1252?Q?aXbZ4LnU6JxgG+IExmrnuXSyoRvb/+bdynCjwA4q3ml30kGV+BYXFUtZ?=
- =?Windows-1252?Q?LSoNwQtOJJJlZD1s3zWRwz7EDofnuxE1SCB+FpPvcMdxens4Tgi9yr1H?=
- =?Windows-1252?Q?Q/4/5Q3V3QY9hXS9GDBGbx/gGOb+ry9HyNjYd9cTDHZWlSEZVjYcvth3?=
- =?Windows-1252?Q?NxtIp3/ROH50kOkj/oXhk43SEehamToPJdbBVKgvOga/SeHCvcYpV38p?=
- =?Windows-1252?Q?/cSce8kVaI1w4z8HYtPtlQsVW+QRZzX73EvtHNXB2E7+BJJLwQ/QwUhv?=
- =?Windows-1252?Q?VLf7hF2ywqz3NDpsDWKVkTKG7qUnwWNURLdTrNOwmClfB18u5S3TbKKa?=
- =?Windows-1252?Q?HuAyfHA1VwNY0cX/lftYorkSHDfG8tsQ?=
+	b=V1422FYFXnlvPTh8Jaq4cCq2f/EFvJVVS9bryVP82JSxrVfbvrKd1hk6N4013aMEg
+	 0Z9jCIvBGIyHVbij+97frYdV9mHCdfa0oo7P3EH3lcOkRku1axwsGUUJUiQuUrhdkc
+	 ibtzdQO5l5uSqHoIseDZx++jZFZbzrrWo6v8UmZO0rNKQvt/yQlp6hrxc6jB1yUGeI
+	 lvkSaS12urbgBH+J4anh4nG35bqe6SmMHCPJR9LAdzfKkxs2xSFb0D2UKBN4Hwb+UA
+	 chgt7YTIEyWyQOB1tytFGDQuAu6ZUr8AhVenA6WOKuOGRthxoS6d4dxbopR9i6dd0h
+	 GFpqTw18gyU+g==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 9E590385E74
+	for <usrp-users@lists.ettus.com>; Tue, 11 Feb 2025 06:59:14 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1739275154; bh=lPsyV65+2yvUBendharAnCEQl34+2j/jdJ2yxYim0hI=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=nXYWkAun1PU3fmx1hupqvr+YUjOZTC+VcDctBfIADp4OPXfhxHpYTTOM7CsdAS+uX
+	 UNMh4I60rrEsKtJjspkAJRwAJMeO8Gp7rBr9g0G1dU/tooe2KUetFDU5jgK4nohMar
+	 QCVprPH+66uSfhtolS3VF5dv27wNX0c69kJ8gtT5p9oTgo7AM4ciWR5Q1W7MxSDS2Z
+	 FfCyad4xW1btO87n/DDNPG+ADxOOOOXUeWvQT/RW3hP402wdtHEbv2qwdF5OJxjeDK
+	 7Skg1ryrcMBuve3dOCjQmA4Gq7fiqUdmXO5zycLELUwvKZ+aOBMpejJlp2+9WamknF
+	 y9sU2ayg47Vfg==
+Date: Tue, 11 Feb 2025 11:59:14 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <TLKgM9FBwt14dLggfYfEpIV00ByNIivTh39KlCmrzo@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAOEzSFQ1VM1ahBwM+02saTafP7CxDoGKqRh59BTBpex16fLL=g@mail.gmail.com
 MIME-Version: 1.0
-X-OriginatorOrg: aero.org
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55439f50-b9f2-49d0-6d44-08dd4a5f248f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Feb 2025 05:44:25.2045
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR09MB11116
-Message-ID-Hash: CXBCFZBEHBTF6JDAQ5DFD3UIL66EJ2I5
-X-Message-ID-Hash: CXBCFZBEHBTF6JDAQ5DFD3UIL66EJ2I5
-X-MailFrom: prvs=130d5b6a6=eugene.grayver@aero.org
+Message-ID-Hash: ZP3M6EJRPPJYQ4AGAFDIGTEGWUY5V7GO
+X-Message-ID-Hash: ZP3M6EJRPPJYQ4AGAFDIGTEGWUY5V7GO
+X-MailFrom: rilbert.silva@embedded.ufcg.edu.br
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: LO offset with external LO
+Subject: [USRP-users] Re: Error when running Benchmark on USRP X440: RfnocError - OpTimeout
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KOUQMH6FS2X42LRXHAVLJDJA36FSNFIQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZP3M6EJRPPJYQ4AGAFDIGTEGWUY5V7GO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4282175819112246436=="
+From: Rilbert Lima via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: rilbert.silva@embedded.ufcg.edu.br
+Content-Type: multipart/mixed; boundary="===============1352180699345740262=="
 
---===============4282175819112246436==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+
+--===============1352180699345740262==
 Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR09MB91262C61487916430516EA7AECFD2SJ0PR09MB9126namp_"
+ boundary="b1_TLKgM9FBwt14dLggfYfEpIV00ByNIivTh39KlCmrzo"
+Content-Transfer-Encoding: 7bit
 
---_000_SJ0PR09MB91262C61487916430516EA7AECFD2SJ0PR09MB9126namp_
-Content-Type: text/plain; charset="Windows-1252"
+This is a multi-part message in MIME format.
+
+--b1_TLKgM9FBwt14dLggfYfEpIV00ByNIivTh39KlCmrzo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi
-This was my mistake.  Turns out the offset is handled correctly. However, I=
- think there is a bug for the N310 for setting up external LO. It works if =
-you specify the external LO in device arguments. However, if you set it usi=
-ng a function call at run time the function call is apparently simply ignor=
-ed And the internal source is used.
-This bug reveals another bug which is related to using internal for the fir=
-st two channels, and external for the last two channels. If the external LO=
- signal is not applied to either of the RF channel pairs, UHD fails with a =
-low level error that apparently comes from the embedded arm, micro controll=
-er inside the analog devices chip.
-I don=92t envy ettus having to test all these quarter cases
-Eugene
+Chris Rogers wrote:
 
+> I=E2=80=99d suggest taking a look at this section of the manual
+> https://files.ettus.com/manual/page_usrp_x4xx.html#x440_usage_mcrs and =
+the
+> link Marcus sent
+> https://kb.ettus.com/About_Sampling_Rates_and_Master_Clock_Rates_for_th=
+e_USRP_X440.
+> This is a unique USRP architecture that requires some frequency and clo=
+ck
+> planning
+>
+> You should probably manually set your desired Master Clock Rate (MCR) a=
+nd
+> Converter Rate (Fc) based on your frequencies of interest. It=E2=80=99s=
+ important
+> to note that the X440 has no analog front end, so you cannot adjust any
+> analog bandwidth filters, but you can reduce the MCR and Fc which will
+> reduce the bandwidth digitally, and DDC will further reduce the bandwid=
+th.
+> You can set these clocks in the device arguments. So basically, if you =
+set
+> rx_rate=3D100e6, you=E2=80=99ll be getting 100 MHz of bandwidth, but wh=
+ere in the
+> spectrum that 100 MHz is located and how many aliases you=E2=80=99ll se=
+e is decided
+> by how you configure the clocks and what you set the RF center frequenc=
+y to.
+>
+> Your timeout error is probably caused by running UHD programs on the X4=
+40
+> itself. It=E2=80=99s really designed to stream samples to it from a dif=
+ferent host
+> computer over the QSFP ports
+>
+> On Fri, Feb 7, 2025 at 8:44=E2=80=AFAM Rilbert Lima via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+> > Thank you, Chris.
+> >
+> > I have updated the FPGA image from the USRP X440 to the X4_200, and u=
+pon
+> > executing, the sampling rate has been reduced to approximately 5 Msps=
+.
+> >
+> > Another matter I would like to inquire about is whether it is possibl=
+e to
+> > reduce the analog bandwidth of the signal from 200 MHz to 100 MHz. I =
+am
+> > aiming to use the X440 with OpenAirInterface5G in FR1, but since the =
+image
+> > is from the X4_200, which is tied to a 200 MHz bandwidth, I would lik=
+e to
+> > know if there is any workaround to perform this downgrade."
+> >
+> > However, in some tests that were performed, the receive timeout error
+> > appears, even using the 5e6 sampling rate, increasing the value to 99=
+ *Num
+> > timeouts (Rx): 99*. And I don't know why these receive errors appeare=
+d.
+> >
+> > root@ni-x4xx-342597F:/usr/lib/uhd/examples# ./benchmark_rate --rx_rat=
+e
+> > 5e6 --tx_rate 5e6
+> >
+> > \[INFO\] \[UHD\] linux; GNU C++ version 11.4.0; Boost_107800;
+> > UHD_4.7.0.0-0-ga5ed1872
+> >
+> > \[00:00:00.029460\] Creating the usrp device with: ...
+> >
+> > \[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args:
+> > mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx440,serial=3D342597F,nam=
+e=3Dni-x4xx-342597F,fpga=3DX4_200,claimed=3DFalse
+> >
+> > \[WARNING\] \[MPM.RPCServer\] A timeout event occured!
+> >
+> > \[INFO\] \[MPM.PeriphManager\] init() called with device args
+> > \`fpga=3DX4_200,mgmt_addr=3D127.0.0.1,name=3Dni-x4xx-342597F,product=3D=
+x440,clock_source=3Dinternal,time_source=3Dinternal,initializing=3DTrue'.
+> >
+> > Using Device: Single USRP:
+> >
+> > Device: X400-Series Device
+> >
+> > Mboard 0: x440
+> >
+> > RX Channel: 0
+> >
+> > RX DSP: 0
+> >
+> > RX Dboard: A
+> >
+> > RX Subdev: 0
+> >
+> > RX Channel: 1
+> >
+> > RX DSP: 1
+> >
+> > RX Dboard: A
+> >
+> > RX Subdev: 1
+> >
+> > RX Channel: 2
+> >
+> > RX DSP: 2
+> >
+> > RX Dboard: A
+> >
+> > RX Subdev: 2
+> >
+> > RX Channel: 3
+> >
+> > RX DSP: 3
+> >
+> > RX Dboard: A
+> >
+> > RX Subdev: 3
+> >
+> > RX Channel: 4
+> >
+> > RX DSP: 4
+> >
+> > RX Dboard: B
+> >
+> > RX Subdev: 0
+> >
+> > RX Channel: 5
+> >
+> > RX DSP: 5
+> >
+> > RX Dboard: B
+> >
+> > RX Subdev: 1
+> >
+> > RX Channel: 6
+> >
+> > RX DSP: 6
+> >
+> > RX Dboard: B
+> >
+> > RX Subdev: 2
+> >
+> > RX Channel: 7
+> >
+> > RX DSP: 7
+> >
+> > RX Dboard: B
+> >
+> > RX Subdev: 3
+> >
+> > TX Channel: 0
+> >
+> > TX DSP: 0
+> >
+> > TX Dboard: A
+> >
+> > TX Subdev: 0
+> >
+> > TX Channel: 1
+> >
+> > TX DSP: 1
+> >
+> > TX Dboard: A
+> >
+> > TX Subdev: 1
+> >
+> > TX Channel: 2
+> >
+> > TX DSP: 2
+> >
+> > TX Dboard: A
+> >
+> > TX Subdev: 2
+> >
+> > TX Channel: 3
+> >
+> > TX DSP: 3
+> >
+> > TX Dboard: A
+> >
+> > TX Subdev: 3
+> >
+> > TX Channel: 4
+> >
+> > TX DSP: 4
+> >
+> > TX Dboard: B
+> >
+> > TX Subdev: 0
+> >
+> > TX Channel: 5
+> >
+> > TX DSP: 5
+> >
+> > TX Dboard: B
+> >
+> > TX Subdev: 1
+> >
+> > TX Channel: 6
+> >
+> > TX DSP: 6
+> >
+> > TX Dboard: B
+> >
+> > TX Subdev: 2
+> >
+> > TX Channel: 7
+> >
+> > TX DSP: 7
+> >
+> > TX Dboard: B
+> >
+> > TX Subdev: 3
+> >
+> > \[00:00:04.112276974\] Setting device timestamp to 0...
+> >
+> > \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user sho=
+uld
+> > expect passband CIC rolloff.
+> >
+> > Select an even decimation to ensure that a halfband filter is enabled=
+.
+> >
+> > Decimations factorable by 4 will enable 2 halfbands, those factorable=
+ by 8
+> > will enable 3 halfbands.
+> >
+> > decimation =3D dsp_rate/samp_rate -> 49
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[00:00:04.465504150\] Testing receive rate 5.015510 Msps on 1 channe=
+ls
+> >
+> > \[WARNING\] \[0/DUC#0\] The requested interpolation is odd; the user =
+should
+> > expect passband CIC rolloff.
+> >
+> > Select an even interpolation to ensure that a halfband filter is enab=
+led.
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DUC#0\] The requested interpolation is odd; the user =
+should
+> > expect passband CIC rolloff.
+> >
+> > Select an even interpolation to ensure that a halfband filter is enab=
+led.
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DUC#0\] The requested interpolation is odd; the user =
+should
+> > expect passband CIC rolloff.
+> >
+> > Select an even interpolation to ensure that a halfband filter is enab=
+led.
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DUC#0\] The requested interpolation is odd; the user =
+should
+> > expect passband CIC rolloff.
+> >
+> > Select an even interpolation to ensure that a halfband filter is enab=
+led.
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DUC#1\] The requested interpolation is odd; the user =
+should
+> > expect passband CIC rolloff.
+> >
+> > Select an even interpolation to ensure that a halfband filter is enab=
+led.
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DUC#1\] The requested interpolation is odd; the user =
+should
+> > expect passband CIC rolloff.
+> >
+> > Select an even interpolation to ensure that a halfband filter is enab=
+led.
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DUC#1\] The requested interpolation is odd; the user =
+should
+> > expect passband CIC rolloff.
+> >
+> > Select an even interpolation to ensure that a halfband filter is enab=
+led.
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > \[WARNING\] \[0/DUC#1\] The requested interpolation is odd; the user =
+should
+> > expect passband CIC rolloff.
+> >
+> > Select an even interpolation to ensure that a halfband filter is enab=
+led.
+> >
+> > \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 5.000 MHz. Actual=
+ rate is
+> > 5\.016 MHz
+> >
+> > Setting TX spp to 352
+> >
+> > \[00:00:04.801908845\] Testing transmit rate 5.015510 Msps on 1 chann=
+els
+> >
+> > \[00:00:14.826000429\] Benchmark complete.
+> >
+> > Benchmark rate summary:
+> >
+> > Num received samples: 50161056
+> >
+> > Num dropped samples: 0
+> >
+> > Num overruns detected: 0
+> >
+> > Num transmitted samples: 50201888
+> >
+> > Num sequence errors (Tx): 0
+> >
+> > Num sequence errors (Rx): 0
+> >
+> > Num underruns detected: 0
+> >
+> > Num late commands: 0
+> >
+> > Num timeouts (Tx): 0
+> >
+> > Num timeouts (Rx): 0
+> >
+> > Done!
+> >
+> > ---
+> >
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Eugene Grayver
-Sent: Friday, February 7, 2025 1:55:38 PM
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: LO offset with external LO
+Hi Chris.
 
-Hi,
+I ran tests using another host with UHD 4.7, but the timeout error still =
+continues, initially I considered 10e6 rate. I'm using QSFP28 on the X440=
+ with MTU 9000.
 
-I am using N310 with external LO.  I still want to use the digital LO offse=
-t.  However, it appears that when the LO is set to external the digital LO =
-offset is ignored.  Am I missing something or is this the intended behavior=
-?  UHD 4.6
+The logs are below. Is there anything else I can analyze to see what migh=
+t be causing these timeouts?
 
-Eugene
+> openran@openran:/usr/local/lib/uhd/examples$ sudo ./benchmark_rate --tx=
+_rate 10e6 --rx_rate 10e6 --args=3D"type=3Dx4xx,fpga=3Dx4_200,mgmt_addr=3D=
+192.168.100.2,addr=3D192.168.100.2"
+>
+> \[INFO\] \[UHD\] linux; GNU C++ version 11.4.0; Boost_107400; UHD_4.8.0=
+.0-0-g308126a4
+>
+> \[00:00:00.000665\] Creating the usrp device with: type=3Dx4xx,fpga=3Dx=
+4_200,mgmt_addr=3D192.168.100.2,addr=3D192.168.100.2...
+>
+> \[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_=
+addr=3D192.168.100.2,type=3Dx4xx,product=3Dx440,serial=3D342597F,name=3Dn=
+i-x4xx-342597F,fpga=3DX4_200,claimed=3DFalse,addr=3D192.168.100.2
+>
+> \[WARNING\] \[MPM.RPCServer\] A timeout event occured!
+>
+> \[INFO\] \[MPM.PeriphManager\] init() called with device args \`fpga=3D=
+X4_200,mgmt_addr=3D192.168.100.2,name=3Dni-x4xx-342597F,product=3Dx440,cl=
+ock_source=3Dinternal,time_source=3Dinternal,initializing=3DTrue'.
+>
+> \[ERROR\] \[RPC\] ADC tiles failed to sync properly.
+>
+> \[ERROR\] \[MPMD\] Synchronization error: RuntimeError: Error during RP=
+C call to \`synchronize'. Error message: ADC tiles failed to sync properl=
+y.
+>
+> Using Device: Single USRP:
+>
+>   Device: X400-Series Device
+>
+>   Mboard 0: x440
+>
+>   RX Channel: 0
+>
+>     RX DSP: 0
+>
+>     RX Dboard: A
+>
+>     RX Subdev: 0
+>
+>   RX Channel: 1
+>
+>     RX DSP: 1
+>
+>     RX Dboard: A
+>
+>     RX Subdev: 1
+>
+>   RX Channel: 2
+>
+>     RX DSP: 2
+>
+>     RX Dboard: A
+>
+>     RX Subdev: 2
+>
+>   RX Channel: 3
+>
+>     RX DSP: 3
+>
+>     RX Dboard: A
+>
+>     RX Subdev: 3
+>
+>   RX Channel: 4
+>
+>     RX DSP: 4
+>
+>     RX Dboard: B
+>
+>     RX Subdev: 0
+>
+>   RX Channel: 5
+>
+>     RX DSP: 5
+>
+>     RX Dboard: B
+>
+>     RX Subdev: 1
+>
+>   RX Channel: 6
+>
+>     RX DSP: 6
+>
+>     RX Dboard: B
+>
+>     RX Subdev: 2
+>
+>   RX Channel: 7
+>
+>     RX DSP: 7
+>
+>     RX Dboard: B
+>
+>     RX Subdev: 3
+>
+>   TX Channel: 0
+>
+>     TX DSP: 0
+>
+>     TX Dboard: A
+>
+>     TX Subdev: 0
+>
+>   TX Channel: 1
+>
+>     TX DSP: 1
+>
+>     TX Dboard: A
+>
+>     TX Subdev: 1
+>
+>   TX Channel: 2
+>
+>     TX DSP: 2
+>
+>     TX Dboard: A
+>
+>     TX Subdev: 2
+>
+>   TX Channel: 3
+>
+>     TX DSP: 3
+>
+>     TX Dboard: A
+>
+>     TX Subdev: 3
+>
+>   TX Channel: 4
+>
+>     TX DSP: 4
+>
+>     TX Dboard: B
+>
+>     TX Subdev: 0
+>
+>   TX Channel: 5
+>
+>     TX DSP: 5
+>
+>     TX Dboard: B
+>
+>     TX Subdev: 1
+>
+>   TX Channel: 6
+>
+>     TX DSP: 6
+>
+>     TX Dboard: B
+>
+>     TX Subdev: 2
+>
+>   TX Channel: 7
+>
+>     TX DSP: 7
+>
+>     TX Dboard: B
+>
+>     TX Subdev: 3
+>
+> \[00:00:02.327707281\] Setting device timestamp to 0...
+>
+> \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[0/DDC#0\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[0/DDC#1\] The requested decimation is odd; the user shoul=
+d expect passband CIC rolloff.
+>
+> Select an even decimation to ensure that a halfband filter is enabled.
+>
+> Decimations factorable by 4 will enable 2 halfbands, those factorable b=
+y 8 will enable 3 halfbands.
+>
+> decimation =3D dsp_rate/samp_rate -> 25
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DUC#0\] The requested interpolation is odd; the user sh=
+ould expect passband CIC rolloff.
+>
+> Select an even interpolation to ensure that a halfband filter is enable=
+d.
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DUC#0\] The requested interpolation is odd; the user sh=
+ould expect passband CIC rolloff.
+>
+> Select an even interpolation to ensure that a halfband filter is enable=
+d.
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DUC#0\] The requested interpolation is odd; the user sh=
+ould expect passband CIC rolloff.
+>
+> Select an even interpolation to ensure that a halfband filter is enable=
+d.
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DUC#0\] The requested interpolation is odd; the user sh=
+ould expect passband CIC rolloff.
+>
+> Select an even interpolation to ensure that a halfband filter is enable=
+d.
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DUC#1\] The requested interpolation is odd; the user sh=
+ould expect passband CIC rolloff.
+>
+> Select an even interpolation to ensure that a halfband filter is enable=
+d.
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DUC#1\] The requested interpolation is odd; the user sh=
+ould expect passband CIC rolloff.
+>
+> Select an even interpolation to ensure that a halfband filter is enable=
+d.
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DUC#1\] The requested interpolation is odd; the user sh=
+ould expect passband CIC rolloff.
+>
+> Select an even interpolation to ensure that a halfband filter is enable=
+d.
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> \[WARNING\] \[0/DUC#1\] The requested interpolation is odd; the user sh=
+ould expect passband CIC rolloff.
+>
+> Select an even interpolation to ensure that a halfband filter is enable=
+d.
+>
+> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 10.000 MHz. Actual =
+rate is 9.830 MHz
+>
+> Setting TX samples per packet (spp) to 368
+>
+> Setting TX samples per burst (spb) to 368
+>
+> \[00:00:02.337324507\] Testing receive rate 9.830400 Msps on 1 channels
+>
+> \[00:00:02.345582152\] Testing transmit rate 9.830400 Msps on 1 channel=
+s
+>
+> \[00:00:02.446541050\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:02.546901331\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:02.647266308\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:02.747632634\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:02.848013443\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:02.948317247\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.48680558\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:03.149035736\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.249397254\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.349761815\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.450124448\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.550480742\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.650727970\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.751091047\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.851363463\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:03.951753209\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.52095287\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:04.152417981\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.252733609\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.353112482\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.453421285\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.553727218\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.654033649\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.754346377\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.854655425\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:04.954958663\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.55331178\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:05.155636726\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.255971669\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.356280233\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.456588375\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.556891926\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.657266691\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.757636100\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.858000589\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:05.958370394\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.58734012\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:06.159094031\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.259461239\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.359822684\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.460209899\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.560572853\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.660932671\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.761301248\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.861663224\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:06.962025353\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.62381930\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:07.162740188\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.263105434\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.363496155\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.463808486\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.564138076\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.664452105\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.764759587\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.865136362\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:07.965446513\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.65750188\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:08.166126030\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.266437786\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.366745804\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.467145533\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.567482709\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.667799437\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.768118148\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.868459063\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:08.968755210\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.69060021\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:09.169379514\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.269689636\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.370002277\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.470363669\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.570675756\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.670981187\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.771283246\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.871572257\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:09.971907479\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.72212490\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:10.172529591\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.272840361\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.373148803\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.473461588\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.573765550\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.674077822\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.774378923\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.874689347\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:10.974993661\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.75367740\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:11.175674052\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.276009655\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.376327466\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.476645912\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.576959022\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.677272004\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.777582722\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.877965205\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:11.978269763\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:12.78567789\] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>
+> \[00:00:12.178886080\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:12.279226079\] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.
+>
+> \[00:00:12.383774613\] Benchmark complete.
+>
+> Benchmark rate summary:
+>
+>   Num received samples:     0
+>
+>   Num dropped samples:      0
+>
+>   Num overruns detected:    0
+>
+>   Num transmitted samples:  100050368
+>
+>   Num sequence errors (Tx): 0
+>
+>   Num sequence errors (Rx): 0
+>
+>   Num underruns detected:   0
+>
+>   Num late commands:        0
+>
+>   Num timeouts (Tx):        0
+>
+>   Num timeouts (Rx):        99
+>
+> Done!
+>
+> \[ERROR\] \[UHD\] An unexpected exception was caught in a task loop.The=
+ task loop will now exit, things may not work.rpc::timeout: Timeout of 10=
+000ms while calling RPC function 'get_log_buf'
+>
+> \[WARNING\] \[UHD\] Exception caught in safe-call.
+>
+>   in \~mpmd_mboard_impl
+>
+>   at /home/openran/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp:322
+>
+> dump_logs(); _claimer_task.reset(); if (not rpc->request_with_token<boo=
+l>("unclaim")) { uhd::_log::log(uhd::log::warning, "/home/openran/uhd/hos=
+t/lib/usrp/mpmd/mpmd_mboard_impl.cpp", 324, "MPMD", std::this_thread::get=
+_id()) << "Failure to ack unclaim!";; } -> rpc::timeout: Timeout of 10000=
+ms while calling RPC function 'get_log_buf'
 
-
-Eugene Grayver, Ph.D.
-Principal Engineer
-310-336-1274
-
---_000_SJ0PR09MB91262C61487916430516EA7AECFD2SJ0PR09MB9126namp_
-Content-Type: text/html; charset="Windows-1252"
+--b1_TLKgM9FBwt14dLggfYfEpIV00ByNIivTh39KlCmrzo
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-</head>
-<body>
-<div>
-<div dir=3D"ltr">
-<div dir=3D"ltr">Hi</div>
-<div dir=3D"ltr">This was my mistake. &nbsp;Turns out the offset is handled=
- correctly. However, I think there is a bug for the N310 for setting up ext=
-ernal LO. It works if you specify the external LO in device arguments. Howe=
-ver, if you set it using a function call
- at run time the function call is apparently simply ignored And the interna=
-l source is used.&nbsp;</div>
-<div dir=3D"ltr">This bug reveals another bug which is related to using int=
-ernal for the first two channels, and external for the last two channels. I=
-f the external LO signal is not applied to either of the RF channel pairs, =
-UHD fails with a low level error that
- apparently comes from the embedded arm, micro controller inside the analog=
- devices chip.&nbsp;</div>
-<div dir=3D"ltr">I don=92t envy ettus having to test all these quarter case=
-s</div>
-<div dir=3D"ltr">Eugene</div>
-<div dir=3D"ltr"><br>
-</div>
-</div>
-</div>
-<div id=3D"ms-outlook-mobile-signature">
-<div><br>
-</div>
-Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Eugene Grayver<br>
-<b>Sent:</b> Friday, February 7, 2025 1:55:38 PM<br>
-<b>To:</b> usrp-users &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> LO offset with external LO</font>
-<div>&nbsp;</div>
-</div>
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-Hi,</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-I am using N310 with external LO.&nbsp; I still want to use the digital LO =
-offset.&nbsp; However, it appears that when the LO is set to external the d=
-igital LO offset is ignored.&nbsp; Am I missing something or is this the in=
-tended behavior?&nbsp; UHD 4.6</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-Eugene</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-<br>
-</div>
-<div id=3D"x_Signature" class=3D"x_elementToProof">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-Eugene Grayver, Ph.D.</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-Principal Engineer</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-310-336-1274</div>
-</div>
-</div>
-</body>
-</html>
+<p>Chris Rogers wrote:</p><blockquote><p>I=E2=80=99d suggest taking a look =
+at this section of the manual
+https://files.ettus.com/manual/page_usrp_x4xx.html#x440_usage_mcrs and the
+link Marcus sent
+https://kb.ettus.com/About_Sampling_Rates_and_Master_Clock_Rates_for_the_US=
+RP_X440.
+This is a unique USRP architecture that requires some frequency and clock
+planning</p><p>You should probably manually set your desired Master Clock R=
+ate (MCR) and
+Converter Rate (Fc) based on your frequencies of interest. It=E2=80=99s imp=
+ortant
+to note that the X440 has no analog front end, so you cannot adjust any
+analog bandwidth filters, but you can reduce the MCR and Fc which will
+reduce the bandwidth digitally, and DDC will further reduce the bandwidth.
+You can set these clocks in the device arguments. So basically, if you set
+rx_rate=3D100e6, you=E2=80=99ll be getting 100 MHz of bandwidth, but where =
+in the
+spectrum that 100 MHz is located and how many aliases you=E2=80=99ll see is=
+ decided
+by how you configure the clocks and what you set the RF center frequency to=
+.</p><p>Your timeout error is probably caused by running UHD programs on th=
+e X440
+itself. It=E2=80=99s really designed to stream samples to it from a differe=
+nt host
+computer over the QSFP ports</p><p>On Fri, Feb 7, 2025 at 8:44=E2=80=AFAM R=
+ilbert Lima via USRP-users &lt;
+usrp-users@lists.ettus.com&gt; wrote:</p><blockquote><p>Thank you, Chris.</=
+p><p>I have updated the FPGA image from the USRP X440 to the X4_200, and up=
+on
+executing, the sampling rate has been reduced to approximately 5 Msps.</p><=
+p>Another matter I would like to inquire about is whether it is possible to
+reduce the analog bandwidth of the signal from 200 MHz to 100 MHz. I am
+aiming to use the X440 with OpenAirInterface5G in FR1, but since the image
+is from the X4_200, which is tied to a 200 MHz bandwidth, I would like to
+know if there is any workaround to perform this downgrade."</p><p>However, =
+in some tests that were performed, the receive timeout error
+appears, even using the 5e6 sampling rate, increasing the value to 99 <em>N=
+um
+timeouts (Rx): 99</em>. And I don't know why these receive errors appeared.=
+</p><p>root@ni-x4xx-342597F:/usr/lib/uhd/examples# ./benchmark_rate --rx_ra=
+te
+5e6 --tx_rate 5e6</p><p>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_1=
+07800;
+UHD_4.7.0.0-0-ga5ed1872</p><p>[00:00:00.029460] Creating the usrp device wi=
+th: ...</p><p>[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx440,serial=3D342597F,name=3Dni=
+-x4xx-342597F,fpga=3DX4_200,claimed=3DFalse</p><p>[WARNING] [MPM.RPCServer]=
+ A timeout event occured!</p><p>[INFO] [MPM.PeriphManager] init() called wi=
+th device args
+`fpga=3DX4_200,mgmt_addr=3D127.0.0.1,name=3Dni-x4xx-342597F,product=3Dx440,=
+clock_source=3Dinternal,time_source=3Dinternal,initializing=3DTrue'.</p><p>=
+Using Device: Single USRP:</p><p>Device: X400-Series Device</p><p>Mboard 0:=
+ x440</p><p>RX Channel: 0</p><p>RX DSP: 0</p><p>RX Dboard: A</p><p>RX Subde=
+v: 0</p><p>RX Channel: 1</p><p>RX DSP: 1</p><p>RX Dboard: A</p><p>RX Subdev=
+: 1</p><p>RX Channel: 2</p><p>RX DSP: 2</p><p>RX Dboard: A</p><p>RX Subdev:=
+ 2</p><p>RX Channel: 3</p><p>RX DSP: 3</p><p>RX Dboard: A</p><p>RX Subdev: =
+3</p><p>RX Channel: 4</p><p>RX DSP: 4</p><p>RX Dboard: B</p><p>RX Subdev: 0=
+</p><p>RX Channel: 5</p><p>RX DSP: 5</p><p>RX Dboard: B</p><p>RX Subdev: 1<=
+/p><p>RX Channel: 6</p><p>RX DSP: 6</p><p>RX Dboard: B</p><p>RX Subdev: 2</=
+p><p>RX Channel: 7</p><p>RX DSP: 7</p><p>RX Dboard: B</p><p>RX Subdev: 3</p=
+><p>TX Channel: 0</p><p>TX DSP: 0</p><p>TX Dboard: A</p><p>TX Subdev: 0</p>=
+<p>TX Channel: 1</p><p>TX DSP: 1</p><p>TX Dboard: A</p><p>TX Subdev: 1</p><=
+p>TX Channel: 2</p><p>TX DSP: 2</p><p>TX Dboard: A</p><p>TX Subdev: 2</p><p=
+>TX Channel: 3</p><p>TX DSP: 3</p><p>TX Dboard: A</p><p>TX Subdev: 3</p><p>=
+TX Channel: 4</p><p>TX DSP: 4</p><p>TX Dboard: B</p><p>TX Subdev: 0</p><p>T=
+X Channel: 5</p><p>TX DSP: 5</p><p>TX Dboard: B</p><p>TX Subdev: 1</p><p>TX=
+ Channel: 6</p><p>TX DSP: 6</p><p>TX Dboard: B</p><p>TX Subdev: 2</p><p>TX =
+Channel: 7</p><p>TX DSP: 7</p><p>TX Dboard: B</p><p>TX Subdev: 3</p><p>[00:=
+00:04.112276974] Setting device timestamp to 0...</p><p>[WARNING] [0/DDC#0]=
+ The requested decimation is odd; the user should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the user should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ is
+5.016 MHz</p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the us=
+er should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the user should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ is
+5.016 MHz</p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the us=
+er should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the user should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ is
+5.016 MHz</p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the us=
+er should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the user should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ is
+5.016 MHz</p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the us=
+er should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the user should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ is
+5.016 MHz</p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the us=
+er should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the user should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ is
+5.016 MHz</p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the us=
+er should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the user should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ is
+5.016 MHz</p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the us=
+er should
+expect passband CIC rolloff.</p><p>Select an even decimation to ensure that=
+ a halfband filter is enabled.</p><p>Decimations factorable by 4 will enabl=
+e 2 halfbands, those factorable by 8
+will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 49</=
+p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 5.000 MHz. Actual rate=
+ is
+5.016 MHz</p><p>[00:00:04.465504150] Testing receive rate 5.015510 Msps on =
+1 channels</p><p>[WARNING] [0/DUC#0] The requested interpolation is odd; th=
+e user should
+expect passband CIC rolloff.</p><p>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not se=
+t TX rate to 5.000 MHz. Actual rate is
+5.016 MHz</p><p>[WARNING] [0/DUC#0] The requested interpolation is odd; the=
+ user should
+expect passband CIC rolloff.</p><p>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not se=
+t TX rate to 5.000 MHz. Actual rate is
+5.016 MHz</p><p>[WARNING] [0/DUC#0] The requested interpolation is odd; the=
+ user should
+expect passband CIC rolloff.</p><p>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not se=
+t TX rate to 5.000 MHz. Actual rate is
+5.016 MHz</p><p>[WARNING] [0/DUC#0] The requested interpolation is odd; the=
+ user should
+expect passband CIC rolloff.</p><p>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not se=
+t TX rate to 5.000 MHz. Actual rate is
+5.016 MHz</p><p>[WARNING] [0/DUC#1] The requested interpolation is odd; the=
+ user should
+expect passband CIC rolloff.</p><p>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not se=
+t TX rate to 5.000 MHz. Actual rate is
+5.016 MHz</p><p>[WARNING] [0/DUC#1] The requested interpolation is odd; the=
+ user should
+expect passband CIC rolloff.</p><p>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not se=
+t TX rate to 5.000 MHz. Actual rate is
+5.016 MHz</p><p>[WARNING] [0/DUC#1] The requested interpolation is odd; the=
+ user should
+expect passband CIC rolloff.</p><p>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not se=
+t TX rate to 5.000 MHz. Actual rate is
+5.016 MHz</p><p>[WARNING] [0/DUC#1] The requested interpolation is odd; the=
+ user should
+expect passband CIC rolloff.</p><p>Select an even interpolation to ensure t=
+hat a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not se=
+t TX rate to 5.000 MHz. Actual rate is
+5.016 MHz</p><p>Setting TX spp to 352</p><p>[00:00:04.801908845] Testing tr=
+ansmit rate 5.015510 Msps on 1 channels</p><p>[00:00:14.826000429] Benchmar=
+k complete.</p><p>Benchmark rate summary:</p><p>Num received samples: 50161=
+056</p><p>Num dropped samples: 0</p><p>Num overruns detected: 0</p><p>Num t=
+ransmitted samples: 50201888</p><p>Num sequence errors (Tx): 0</p><p>Num se=
+quence errors (Rx): 0</p><p>Num underruns detected: 0</p><p>Num late comman=
+ds: 0</p><p>Num timeouts (Tx): 0</p><p>Num timeouts (Rx): 0</p><p>Done!</p>=
+<div contenteditable=3D"false"><hr></div><p>USRP-users mailing list -- usrp=
+-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com</p></block=
+quote></blockquote><p>Hi Chris.</p><p>I ran tests using another host with U=
+HD 4.7, but the timeout error still continues, initially I considered 10e6 =
+rate. I'm using QSFP28 on the X440 with MTU 9000.</p><p>The logs are below.=
+ Is there anything else I can analyze to see what might be causing these ti=
+meouts?</p><p><br></p><blockquote><p>openran@openran:/usr/local/lib/uhd/exa=
+mples$ sudo ./benchmark_rate --tx_rate 10e6 --rx_rate 10e6 --args=3D"type=
+=3Dx4xx,fpga=3Dx4_200,mgmt_addr=3D192.168.100.2,addr=3D192.168.100.2"</p><p=
+>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; UHD_4.8.0.0-0-g3=
+08126a4</p><p>[00:00:00.000665] Creating the usrp device with: type=3Dx4xx,=
+fpga=3Dx4_200,mgmt_addr=3D192.168.100.2,addr=3D192.168.100.2...</p><p>[INFO=
+] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D192.16=
+8.100.2,type=3Dx4xx,product=3Dx440,serial=3D342597F,name=3Dni-x4xx-342597F,=
+fpga=3DX4_200,claimed=3DFalse,addr=3D192.168.100.2</p><p>[WARNING] [MPM.RPC=
+Server] A timeout event occured!</p><p>[INFO] [MPM.PeriphManager] init() ca=
+lled with device args `fpga=3DX4_200,mgmt_addr=3D192.168.100.2,name=3Dni-x4=
+xx-342597F,product=3Dx440,clock_source=3Dinternal,time_source=3Dinternal,in=
+itializing=3DTrue'.</p><p>[ERROR] [RPC] ADC tiles failed to sync properly.<=
+/p><p>[ERROR] [MPMD] Synchronization error: RuntimeError: Error during RPC =
+call to `synchronize'. Error message: ADC tiles failed to sync properly.</p=
+><p>Using Device: Single USRP:</p><p>  Device: X400-Series Device</p><p>  M=
+board 0: x440</p><p>  RX Channel: 0</p><p>    RX DSP: 0</p><p>    RX Dboard=
+: A</p><p>    RX Subdev: 0</p><p>  RX Channel: 1</p><p>    RX DSP: 1</p><p>=
+    RX Dboard: A</p><p>    RX Subdev: 1</p><p>  RX Channel: 2</p><p>    RX =
+DSP: 2</p><p>    RX Dboard: A</p><p>    RX Subdev: 2</p><p>  RX Channel: 3<=
+/p><p>    RX DSP: 3</p><p>    RX Dboard: A</p><p>    RX Subdev: 3</p><p>  R=
+X Channel: 4</p><p>    RX DSP: 4</p><p>    RX Dboard: B</p><p>    RX Subdev=
+: 0</p><p>  RX Channel: 5</p><p>    RX DSP: 5</p><p>    RX Dboard: B</p><p>=
+    RX Subdev: 1</p><p>  RX Channel: 6</p><p>    RX DSP: 6</p><p>    RX Dbo=
+ard: B</p><p>    RX Subdev: 2</p><p>  RX Channel: 7</p><p>    RX DSP: 7</p>=
+<p>    RX Dboard: B</p><p>    RX Subdev: 3</p><p>  TX Channel: 0</p><p>    =
+TX DSP: 0</p><p>    TX Dboard: A</p><p>    TX Subdev: 0</p><p>  TX Channel:=
+ 1</p><p>    TX DSP: 1</p><p>    TX Dboard: A</p><p>    TX Subdev: 1</p><p>=
+  TX Channel: 2</p><p>    TX DSP: 2</p><p>    TX Dboard: A</p><p>    TX Sub=
+dev: 2</p><p>  TX Channel: 3</p><p>    TX DSP: 3</p><p>    TX Dboard: A</p>=
+<p>    TX Subdev: 3</p><p>  TX Channel: 4</p><p>    TX DSP: 4</p><p>    TX =
+Dboard: B</p><p>    TX Subdev: 0</p><p>  TX Channel: 5</p><p>    TX DSP: 5<=
+/p><p>    TX Dboard: B</p><p>    TX Subdev: 1</p><p>  TX Channel: 6</p><p> =
+   TX DSP: 6</p><p>    TX Dboard: B</p><p>    TX Subdev: 2</p><p>  TX Chann=
+el: 7</p><p>    TX DSP: 7</p><p>    TX Dboard: B</p><p>    TX Subdev: 3</p>=
+<p>[00:00:02.327707281] Setting device timestamp to 0...</p><p>[WARNING] [0=
+/DDC#0] The requested decimation is odd; the user should expect passband CI=
+C rolloff.</p><p>Select an even decimation to ensure that a halfband filter=
+ is enabled.</p><p>Decimations factorable by 4 will enable 2 halfbands, tho=
+se factorable by 8 will enable 3 halfbands.</p><p>decimation =3D dsp_rate/s=
+amp_rate -&gt; 25</p><p>[WARNING] [0/DDC#0] The requested decimation is odd=
+; the user should expect passband CIC rolloff.</p><p>Select an even decimat=
+ion to ensure that a halfband filter is enabled.</p><p>Decimations factorab=
+le by 4 will enable 2 halfbands, those factorable by 8 will enable 3 halfba=
+nds.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 25</p><p>[WARNING] [MULT=
+I_USRP] Could not set RX rate to 10.000 MHz. Actual rate is 9.830 MHz</p><p=
+>[WARNING] [0/DDC#0] The requested decimation is odd; the user should expec=
+t passband CIC rolloff.</p><p>Select an even decimation to ensure that a ha=
+lfband filter is enabled.</p><p>Decimations factorable by 4 will enable 2 h=
+alfbands, those factorable by 8 will enable 3 halfbands.</p><p>decimation =
+=3D dsp_rate/samp_rate -&gt; 25</p><p>[WARNING] [0/DDC#0] The requested dec=
+imation is odd; the user should expect passband CIC rolloff.</p><p>Select a=
+n even decimation to ensure that a halfband filter is enabled.</p><p>Decima=
+tions factorable by 4 will enable 2 halfbands, those factorable by 8 will e=
+nable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 25</p><p>[=
+WARNING] [MULTI_USRP] Could not set RX rate to 10.000 MHz. Actual rate is 9=
+.830 MHz</p><p>[WARNING] [0/DDC#0] The requested decimation is odd; the use=
+r should expect passband CIC rolloff.</p><p>Select an even decimation to en=
+sure that a halfband filter is enabled.</p><p>Decimations factorable by 4 w=
+ill enable 2 halfbands, those factorable by 8 will enable 3 halfbands.</p><=
+p>decimation =3D dsp_rate/samp_rate -&gt; 25</p><p>[WARNING] [0/DDC#0] The =
+requested decimation is odd; the user should expect passband CIC rolloff.</=
+p><p>Select an even decimation to ensure that a halfband filter is enabled.=
+</p><p>Decimations factorable by 4 will enable 2 halfbands, those factorabl=
+e by 8 will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&g=
+t; 25</p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 10.000 MHz. Act=
+ual rate is 9.830 MHz</p><p>[WARNING] [0/DDC#0] The requested decimation is=
+ odd; the user should expect passband CIC rolloff.</p><p>Select an even dec=
+imation to ensure that a halfband filter is enabled.</p><p>Decimations fact=
+orable by 4 will enable 2 halfbands, those factorable by 8 will enable 3 ha=
+lfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 25</p><p>[WARNING] [=
+0/DDC#0] The requested decimation is odd; the user should expect passband C=
+IC rolloff.</p><p>Select an even decimation to ensure that a halfband filte=
+r is enabled.</p><p>Decimations factorable by 4 will enable 2 halfbands, th=
+ose factorable by 8 will enable 3 halfbands.</p><p>decimation =3D dsp_rate/=
+samp_rate -&gt; 25</p><p>[WARNING] [MULTI_USRP] Could not set RX rate to 10=
+.000 MHz. Actual rate is 9.830 MHz</p><p>[WARNING] [0/DDC#1] The requested =
+decimation is odd; the user should expect passband CIC rolloff.</p><p>Selec=
+t an even decimation to ensure that a halfband filter is enabled.</p><p>Dec=
+imations factorable by 4 will enable 2 halfbands, those factorable by 8 wil=
+l enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 25</p><=
+p>[WARNING] [0/DDC#1] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.</p><p>Select an even decimation to ensure that a h=
+alfband filter is enabled.</p><p>Decimations factorable by 4 will enable 2 =
+halfbands, those factorable by 8 will enable 3 halfbands.</p><p>decimation =
+=3D dsp_rate/samp_rate -&gt; 25</p><p>[WARNING] [MULTI_USRP] Could not set =
+RX rate to 10.000 MHz. Actual rate is 9.830 MHz</p><p>[WARNING] [0/DDC#1] T=
+he requested decimation is odd; the user should expect passband CIC rolloff=
+.</p><p>Select an even decimation to ensure that a halfband filter is enabl=
+ed.</p><p>Decimations factorable by 4 will enable 2 halfbands, those factor=
+able by 8 will enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate =
+-&gt; 25</p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the use=
+r should expect passband CIC rolloff.</p><p>Select an even decimation to en=
+sure that a halfband filter is enabled.</p><p>Decimations factorable by 4 w=
+ill enable 2 halfbands, those factorable by 8 will enable 3 halfbands.</p><=
+p>decimation =3D dsp_rate/samp_rate -&gt; 25</p><p>[WARNING] [MULTI_USRP] C=
+ould not set RX rate to 10.000 MHz. Actual rate is 9.830 MHz</p><p>[WARNING=
+] [0/DDC#1] The requested decimation is odd; the user should expect passban=
+d CIC rolloff.</p><p>Select an even decimation to ensure that a halfband fi=
+lter is enabled.</p><p>Decimations factorable by 4 will enable 2 halfbands,=
+ those factorable by 8 will enable 3 halfbands.</p><p>decimation =3D dsp_ra=
+te/samp_rate -&gt; 25</p><p>[WARNING] [0/DDC#1] The requested decimation is=
+ odd; the user should expect passband CIC rolloff.</p><p>Select an even dec=
+imation to ensure that a halfband filter is enabled.</p><p>Decimations fact=
+orable by 4 will enable 2 halfbands, those factorable by 8 will enable 3 ha=
+lfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 25</p><p>[WARNING] [=
+MULTI_USRP] Could not set RX rate to 10.000 MHz. Actual rate is 9.830 MHz</=
+p><p>[WARNING] [0/DDC#1] The requested decimation is odd; the user should e=
+xpect passband CIC rolloff.</p><p>Select an even decimation to ensure that =
+a halfband filter is enabled.</p><p>Decimations factorable by 4 will enable=
+ 2 halfbands, those factorable by 8 will enable 3 halfbands.</p><p>decimati=
+on =3D dsp_rate/samp_rate -&gt; 25</p><p>[WARNING] [0/DDC#1] The requested =
+decimation is odd; the user should expect passband CIC rolloff.</p><p>Selec=
+t an even decimation to ensure that a halfband filter is enabled.</p><p>Dec=
+imations factorable by 4 will enable 2 halfbands, those factorable by 8 wil=
+l enable 3 halfbands.</p><p>decimation =3D dsp_rate/samp_rate -&gt; 25</p><=
+p>[WARNING] [MULTI_USRP] Could not set RX rate to 10.000 MHz. Actual rate i=
+s 9.830 MHz</p><p>[WARNING] [0/DUC#0] The requested interpolation is odd; t=
+he user should expect passband CIC rolloff.</p><p>Select an even interpolat=
+ion to ensure that a halfband filter is enabled.</p><p>[WARNING] [MULTI_USR=
+P] Could not set TX rate to 10.000 MHz. Actual rate is 9.830 MHz</p><p>[WAR=
+NING] [0/DUC#0] The requested interpolation is odd; the user should expect =
+passband CIC rolloff.</p><p>Select an even interpolation to ensure that a h=
+alfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not set TX ra=
+te to 10.000 MHz. Actual rate is 9.830 MHz</p><p>[WARNING] [0/DUC#0] The re=
+quested interpolation is odd; the user should expect passband CIC rolloff.<=
+/p><p>Select an even interpolation to ensure that a halfband filter is enab=
+led.</p><p>[WARNING] [MULTI_USRP] Could not set TX rate to 10.000 MHz. Actu=
+al rate is 9.830 MHz</p><p>[WARNING] [0/DUC#0] The requested interpolation =
+is odd; the user should expect passband CIC rolloff.</p><p>Select an even i=
+nterpolation to ensure that a halfband filter is enabled.</p><p>[WARNING] [=
+MULTI_USRP] Could not set TX rate to 10.000 MHz. Actual rate is 9.830 MHz</=
+p><p>[WARNING] [0/DUC#1] The requested interpolation is odd; the user shoul=
+d expect passband CIC rolloff.</p><p>Select an even interpolation to ensure=
+ that a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] Could not =
+set TX rate to 10.000 MHz. Actual rate is 9.830 MHz</p><p>[WARNING] [0/DUC#=
+1] The requested interpolation is odd; the user should expect passband CIC =
+rolloff.</p><p>Select an even interpolation to ensure that a halfband filte=
+r is enabled.</p><p>[WARNING] [MULTI_USRP] Could not set TX rate to 10.000 =
+MHz. Actual rate is 9.830 MHz</p><p>[WARNING] [0/DUC#1] The requested inter=
+polation is odd; the user should expect passband CIC rolloff.</p><p>Select =
+an even interpolation to ensure that a halfband filter is enabled.</p><p>[W=
+ARNING] [MULTI_USRP] Could not set TX rate to 10.000 MHz. Actual rate is 9.=
+830 MHz</p><p>[WARNING] [0/DUC#1] The requested interpolation is odd; the u=
+ser should expect passband CIC rolloff.</p><p>Select an even interpolation =
+to ensure that a halfband filter is enabled.</p><p>[WARNING] [MULTI_USRP] C=
+ould not set TX rate to 10.000 MHz. Actual rate is 9.830 MHz</p><p>Setting =
+TX samples per packet (spp) to 368</p><p>Setting TX samples per burst (spb)=
+ to 368</p><p>[00:00:02.337324507] Testing receive rate 9.830400 Msps on 1 =
+channels</p><p>[00:00:02.345582152] Testing transmit rate 9.830400 Msps on =
+1 channels</p><p>[00:00:02.446541050] Receiver error: ERROR_CODE_TIMEOUT, c=
+ontinuing...</p><p>[00:00:02.546901331] Receiver error: ERROR_CODE_TIMEOUT,=
+ continuing...</p><p>[00:00:02.647266308] Receiver error: ERROR_CODE_TIMEOU=
+T, continuing...</p><p>[00:00:02.747632634] Receiver error: ERROR_CODE_TIME=
+OUT, continuing...</p><p>[00:00:02.848013443] Receiver error: ERROR_CODE_TI=
+MEOUT, continuing...</p><p>[00:00:02.948317247] Receiver error: ERROR_CODE_=
+TIMEOUT, continuing...</p><p>[00:00:03.48680558] Receiver error: ERROR_CODE=
+_TIMEOUT, continuing...</p><p>[00:00:03.149035736] Receiver error: ERROR_CO=
+DE_TIMEOUT, continuing...</p><p>[00:00:03.249397254] Receiver error: ERROR_=
+CODE_TIMEOUT, continuing...</p><p>[00:00:03.349761815] Receiver error: ERRO=
+R_CODE_TIMEOUT, continuing...</p><p>[00:00:03.450124448] Receiver error: ER=
+ROR_CODE_TIMEOUT, continuing...</p><p>[00:00:03.550480742] Receiver error: =
+ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:03.650727970] Receiver error=
+: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:03.751091047] Receiver err=
+or: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:03.851363463] Receiver e=
+rror: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:03.951753209] Receiver=
+ error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.52095287] Receive=
+r error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.152417981] Recei=
+ver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.252733609] Rec=
+eiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.353112482] R=
+eceiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.453421285]=
+ Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.55372721=
+8] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.654033=
+649] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.7543=
+46377] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.85=
+4655425] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:04.=
+954958663] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:0=
+5.55331178] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:=
+05.155636726] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:0=
+0:05.255971669] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00=
+:00:05.356280233] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[=
+00:00:05.456588375] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p=
+>[00:00:05.556891926] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p>=
+<p>[00:00:05.657266691] Receiver error: ERROR_CODE_TIMEOUT, continuing...</=
+p><p>[00:00:05.757636100] Receiver error: ERROR_CODE_TIMEOUT, continuing...=
+</p><p>[00:00:05.858000589] Receiver error: ERROR_CODE_TIMEOUT, continuing.=
+..</p><p>[00:00:05.958370394] Receiver error: ERROR_CODE_TIMEOUT, continuin=
+g...</p><p>[00:00:06.58734012] Receiver error: ERROR_CODE_TIMEOUT, continui=
+ng...</p><p>[00:00:06.159094031] Receiver error: ERROR_CODE_TIMEOUT, contin=
+uing...</p><p>[00:00:06.259461239] Receiver error: ERROR_CODE_TIMEOUT, cont=
+inuing...</p><p>[00:00:06.359822684] Receiver error: ERROR_CODE_TIMEOUT, co=
+ntinuing...</p><p>[00:00:06.460209899] Receiver error: ERROR_CODE_TIMEOUT, =
+continuing...</p><p>[00:00:06.560572853] Receiver error: ERROR_CODE_TIMEOUT=
+, continuing...</p><p>[00:00:06.660932671] Receiver error: ERROR_CODE_TIMEO=
+UT, continuing...</p><p>[00:00:06.761301248] Receiver error: ERROR_CODE_TIM=
+EOUT, continuing...</p><p>[00:00:06.861663224] Receiver error: ERROR_CODE_T=
+IMEOUT, continuing...</p><p>[00:00:06.962025353] Receiver error: ERROR_CODE=
+_TIMEOUT, continuing...</p><p>[00:00:07.62381930] Receiver error: ERROR_COD=
+E_TIMEOUT, continuing...</p><p>[00:00:07.162740188] Receiver error: ERROR_C=
+ODE_TIMEOUT, continuing...</p><p>[00:00:07.263105434] Receiver error: ERROR=
+_CODE_TIMEOUT, continuing...</p><p>[00:00:07.363496155] Receiver error: ERR=
+OR_CODE_TIMEOUT, continuing...</p><p>[00:00:07.463808486] Receiver error: E=
+RROR_CODE_TIMEOUT, continuing...</p><p>[00:00:07.564138076] Receiver error:=
+ ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:07.664452105] Receiver erro=
+r: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:07.764759587] Receiver er=
+ror: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:07.865136362] Receiver =
+error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:07.965446513] Receive=
+r error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.65750188] Receiv=
+er error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.166126030] Rece=
+iver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.266437786] Re=
+ceiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.366745804] =
+Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.467145533=
+] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.5674827=
+09] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.66779=
+9437] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.768=
+118148] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08.8=
+68459063] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:08=
+.968755210] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:=
+09.69060021] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00=
+:09.169379514] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:=
+00:09.269689636] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[0=
+0:00:09.370002277] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>=
+[00:00:09.470363669] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p><=
+p>[00:00:09.570675756] Receiver error: ERROR_CODE_TIMEOUT, continuing...</p=
+><p>[00:00:09.670981187] Receiver error: ERROR_CODE_TIMEOUT, continuing...<=
+/p><p>[00:00:09.771283246] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.</p><p>[00:00:09.871572257] Receiver error: ERROR_CODE_TIMEOUT, continuing=
+...</p><p>[00:00:09.971907479] Receiver error: ERROR_CODE_TIMEOUT, continui=
+ng...</p><p>[00:00:10.72212490] Receiver error: ERROR_CODE_TIMEOUT, continu=
+ing...</p><p>[00:00:10.172529591] Receiver error: ERROR_CODE_TIMEOUT, conti=
+nuing...</p><p>[00:00:10.272840361] Receiver error: ERROR_CODE_TIMEOUT, con=
+tinuing...</p><p>[00:00:10.373148803] Receiver error: ERROR_CODE_TIMEOUT, c=
+ontinuing...</p><p>[00:00:10.473461588] Receiver error: ERROR_CODE_TIMEOUT,=
+ continuing...</p><p>[00:00:10.573765550] Receiver error: ERROR_CODE_TIMEOU=
+T, continuing...</p><p>[00:00:10.674077822] Receiver error: ERROR_CODE_TIME=
+OUT, continuing...</p><p>[00:00:10.774378923] Receiver error: ERROR_CODE_TI=
+MEOUT, continuing...</p><p>[00:00:10.874689347] Receiver error: ERROR_CODE_=
+TIMEOUT, continuing...</p><p>[00:00:10.974993661] Receiver error: ERROR_COD=
+E_TIMEOUT, continuing...</p><p>[00:00:11.75367740] Receiver error: ERROR_CO=
+DE_TIMEOUT, continuing...</p><p>[00:00:11.175674052] Receiver error: ERROR_=
+CODE_TIMEOUT, continuing...</p><p>[00:00:11.276009655] Receiver error: ERRO=
+R_CODE_TIMEOUT, continuing...</p><p>[00:00:11.376327466] Receiver error: ER=
+ROR_CODE_TIMEOUT, continuing...</p><p>[00:00:11.476645912] Receiver error: =
+ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:11.576959022] Receiver error=
+: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:11.677272004] Receiver err=
+or: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:11.777582722] Receiver e=
+rror: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:11.877965205] Receiver=
+ error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:11.978269763] Receiv=
+er error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:12.78567789] Recei=
+ver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:12.178886080] Rec=
+eiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:12.279226079] R=
+eceiver error: ERROR_CODE_TIMEOUT, continuing...</p><p>[00:00:12.383774613]=
+ Benchmark complete.</p><p>Benchmark rate summary:</p><p>  Num received sam=
+ples:     0</p><p>  Num dropped samples:      0</p><p>  Num overruns detect=
+ed:    0</p><p>  Num transmitted samples:  100050368</p><p>  Num sequence e=
+rrors (Tx): 0</p><p>  Num sequence errors (Rx): 0</p><p>  Num underruns det=
+ected:   0</p><p>  Num late commands:        0</p><p>  Num timeouts (Tx):  =
+      0</p><p>  Num timeouts (Rx):        99</p><p>Done!</p><p>[ERROR] [UHD=
+] An unexpected exception was caught in a task loop.The task loop will now =
+exit, things may not work.rpc::timeout: Timeout of 10000ms while calling RP=
+C function 'get_log_buf'</p><p>[WARNING] [UHD] Exception caught in safe-cal=
+l.</p><p>  in ~mpmd_mboard_impl</p><p>  at /home/openran/uhd/host/lib/usrp/=
+mpmd/mpmd_mboard_impl.cpp:322</p><p>dump_logs(); _claimer_task.reset(); if =
+(not rpc-&gt;request_with_token&lt;bool&gt;("unclaim")) { uhd::_log::log(uh=
+d::log::warning, "/home/openran/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp=
+", 324, "MPMD", std::this_thread::get_id()) &lt;&lt; "Failure to ack unclai=
+m!";; } -&gt; rpc::timeout: Timeout of 10000ms while calling RPC function '=
+get_log_buf'</p></blockquote>
 
---_000_SJ0PR09MB91262C61487916430516EA7AECFD2SJ0PR09MB9126namp_--
+--b1_TLKgM9FBwt14dLggfYfEpIV00ByNIivTh39KlCmrzo--
 
---===============4282175819112246436==
+--===============1352180699345740262==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -385,4 +1910,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4282175819112246436==--
+--===============1352180699345740262==--
