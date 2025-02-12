@@ -2,106 +2,103 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A1CA329D1
-	for <lists+usrp-users@lfdr.de>; Wed, 12 Feb 2025 16:23:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E6DA329E3
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Feb 2025 16:25:48 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 71354385E59
-	for <lists+usrp-users@lfdr.de>; Wed, 12 Feb 2025 10:23:37 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 40919385F79
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Feb 2025 10:25:47 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1739373817; bh=mB3JQhJE9eAba5C2eWpI3RJK/MTyXUyy96faYVU0BPs=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=MnrzUt8Vc17z7d3XVlYRk+nlVTbLJQEABAb23LeKRxjI5Npyk7F+DeFa0tHLe5jeB
-	 WacADFNbDGGNtSN7TheFYEM3ziuZta4aK6gkfHQkUVXjb2aoKkqM/ASX+Xhk5EPoZL
-	 1BXGJZNXa415d5q4VB9qJAD6gUdKvNU5IAF3yQBTnjxQoDOeoEkUsKYymilgDKPPcL
-	 0gOWEpZemRwpgpJr2ail9zPXaYgwg/pvn5tYsCd8xnSFNr5zvPZ2eBdUPx5VfT22CV
-	 Ce0goGqrfKMzgYNorBR4SJ8YEFHwlVmyPsY8RaXCA6bnzGA1QFDMBtbpULxvc+VP5h
-	 xFudyKp9WBRSA==
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4059B385CB7
-	for <usrp-users@lists.ettus.com>; Wed, 12 Feb 2025 10:22:50 -0500 (EST)
+	t=1739373947; bh=kKDDX02nm0yyb1NTVXDxtLaN9oM3cKQ3msES0240H0w=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=Za8npmDP8NvY6UhWKSQjoCg/NJBJrp/WmNEEeUvmVyXAjEB0SWjwUU5WxnYojUozy
+	 6HuHM2oYM12LXhRfe76F20o4a8hb7GmJmhsO/IL46Qpo2gTqrh+La3FqiZ6QyMYF8H
+	 C4rAKa4gs3W4kM3LfsxnQqDBxtwh+bAjvFG617TQlSZR6HVvaBnl4UFJzLAHdX89ud
+	 wpAJY1uY41MQ8kkkn/tpFOMuQzGF3R3Z3bhMh655LcHNwZYMzBQ9F7Kpq5mFBjiW3P
+	 wtG4lSi6RP2qf3xPqAE9BvbbAkmjiB/S2CmOLV3d2K125NRVcoiRhK+DfziWYfYUir
+	 ONbFPpgmB4Slw==
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8340E385BE5
+	for <usrp-users@lists.ettus.com>; Wed, 12 Feb 2025 10:25:01 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=cud-uvigo-es.20230601.gappssmtp.com header.i=@cud-uvigo-es.20230601.gappssmtp.com header.b="ljfsf28z";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RNpKyN67";
 	dkim-atps=neutral
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-4bbe470bc3fso1250892137.0
-        for <usrp-users@lists.ettus.com>; Wed, 12 Feb 2025 07:22:50 -0800 (PST)
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-471bb02fc88so2506901cf.3
+        for <usrp-users@lists.ettus.com>; Wed, 12 Feb 2025 07:25:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cud-uvigo-es.20230601.gappssmtp.com; s=20230601; t=1739373769; x=1739978569; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=SaCmX/EUDCMMw0roYwB7XFlk5wvjWecJmPYFCbYw/FI=;
-        b=ljfsf28zRWENY8CfZlyzYbJUXydc2Gg2xNaXU7OtRkJCt3y1HB1Kv6xUlUKPBchq0f
-         dDYWHnmTm6DNPaQBtlAp1g7i9pBpuYtG0XOpsBFkDts/Mt7UDWnnwxMw2Y4gM4Dgt2K1
-         Z+2zFYIPAVPr+XF7tpK5ZS5Zk7rOwlkpVi8dwlp5baPV4UaXLOerw5sS2ziXMDn1w2pY
-         OfoWlSZfdqekGiXuNemdnFsv/gIngJ1K6UsHvdzFV6I939yxIEW/CTnROKnT5sVpLh93
-         psnA8tL2qvk931qMmoqmUU9PnsP6jQyQdDkt4kOwvLhENTZbRdiht+BojfykRSe5bhbR
-         EBnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739373769; x=1739978569;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20230601; t=1739373901; x=1739978701; darn=lists.ettus.com;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SaCmX/EUDCMMw0roYwB7XFlk5wvjWecJmPYFCbYw/FI=;
-        b=vWSF4huP7pGkjxVwYobx2Ju+sddtVug3aHf77VtBevAsEYfyvmeIlxFtQTy+warb9w
-         kq3Af1tcaJIfva6u9ZFrvMiHjaFRnsTXJ0GfsfAmec/Ofws7o7wnE5PGEkdbRitk4sWC
-         c/hfvOhr/kubaDZZtLfkgU6u6yWB6X4kQEG4ys5PjbLS7Ujl0chMOBohgXqKKQnLXq6y
-         dzV575qPqHLuI7drqJ6+Gz5+E+b/jcrOOUHXofUv7eIUmaER1RzPdrngmMOZQZw3UfLb
-         ZiZq8gT8qKVPD5w/lkfiioMeHSvN0OgMYg4qHOS1MEH+9RRFHsdQn4XUZ1vx8xqtG8lO
-         R2eQ==
-X-Gm-Message-State: AOJu0YwnRtXTCc3QY0U7cAs3EdrHQ5DpK/y8Mk1cCvq0hOE81EpW9edw
-	LZiOqA06PgSTU9BT+x/NyHaRh6LTWH+uor/nSPE6Zt7NgzSEiGKGB2FiwkJ4Aem0YKZGUT9iJ7y
-	smbDgayO+wAHyqJx0eHy3MFlUX2hMit7KyYSitLQRg4LQfqf7RpY=
-X-Gm-Gg: ASbGnctfiqt03Zo9meu0MhYfJrjpHfgAPzwfZbdC2sw0md6Mw2TpqgxZyiJ7MeXPOHq
-	tdObDldqTNzUIHyw5eJB1QVdOQ5QHptA9rUrvFnEkvtAOmld+gCQr3J0tevVGFgkli8wuMA==
-X-Google-Smtp-Source: AGHT+IEfuEgaly1bB63vZH9rRgcy1sveLCDb7ddzfa9T/rzUQ9diiXzUKA+cayCQqbJ515K33FZyOvlrNnpC4TifBDU=
-X-Received: by 2002:a05:6102:8090:b0:4bb:9b46:3f6f with SMTP id
- ada2fe7eead31-4bbf2071a87mr3809424137.1.1739373769376; Wed, 12 Feb 2025
- 07:22:49 -0800 (PST)
+        bh=3XhUkfkiXdHWO2EWzH88uYJmkm+1hw2uQxNYrHe2g/s=;
+        b=RNpKyN67K/2se+No+EXkIpM0cU7nUUlPDouQFwrG8X0+ee1La3s0BlLrfbfmPb2FUm
+         6xYKfOOSbiGaHzzw2psIjiGWeIIA9mNxjs9ZOWRi+s38WbU3jHrXUUyasIuFrB4zbCp9
+         zi/EZTKz1ris4YkMETCkZqVCKaOMLmWtLKMYjGgVskP9KrVoPzsPWtqarSe+scQw+rBc
+         PBYEh1+VJ/NGMpEChxPXORENNjDr4CTmrzi6f/JOdaLRy05vYf03hXqa+RCIjI4NNYEO
+         NGl0X6LOtAOec8jsoSv2bRB4HVf76ieaA30Kp/WWj1m/cSWJrfx9Mj70oP7RZzhLwsuO
+         np1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739373901; x=1739978701;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3XhUkfkiXdHWO2EWzH88uYJmkm+1hw2uQxNYrHe2g/s=;
+        b=q8lEXZsPVu5towNG5+Q51tfjXla9vnC5fzn6WzhnGqeFm/WsMk+aXiUy/67ZBGCVTm
+         kBFV+d1sV+D8roGiPNyZHGuNkuRnKGbmK7T5UmFfOgsDH+1r9vIj11/ynjtSTiwvsaj7
+         S8hOufwNSeVQLWmC4NsZ4qZLpI7jGCQnxRw2aJfPAWXIzVjRTA43DKSJ4eC8K1vWAsyU
+         qR5hHylP2Oj7qnLHSyvVJWZ982KCX6jz4s9dEwLuGFo+8q+Usf2az2KAIepPDODQrj6Z
+         AS/lqyXkkWAdo1HX32mg4CwTqKiV2CiGNvFQcrlzVt3D/4v258ljQdpmDXz3Vo8y2CJ8
+         dPaw==
+X-Gm-Message-State: AOJu0YxzeyK3T0Av+NzUL4pEbG59hH2YfJ8iJgfUnV5FxGM6bUT3cGhl
+	Od7STx0u8IfTwgbUmqG4P0XTuYM9W6iu3hARn3Sjjuyorh7KlBGCypvqkg==
+X-Gm-Gg: ASbGncuFzMwHIVllnU6kCY5eJIx6Gxtn/QtfCcalI1NdXcQtNPAqAK5QM1atmD3XoOd
+	dEQ7xdDL2XWp1yhuC5JKplTeZo1RdAhlXScdXnXU8pV4VfJVxgGPqy12dWt1xbvdnbJcmeNMBsU
+	esb4aXWzaTWPIMhHigyn2+O7CgW/t7hH+3pEGpmagfIerCtYqc8bZ4QE4zuyG4CbigGtbqhkGz5
+	JwMXXXJ56xqkPjEYKJr2aiOkRQ3isp7EDXgmIkCnZ6qGK19qo6qlvYTz56LSAXAK5A7cdoUWUKL
+	77irCDFhrm4Zb71xmSsY/2H61Q==
+X-Google-Smtp-Source: AGHT+IGEV+Lb3CBPk67gUdRoJnD7CESM1XJ6mQfOCiuY63GdVa+H4nHvU5qS9FPsdAPZzyRelQorHw==
+X-Received: by 2002:a05:622a:56:b0:471:a71c:eac1 with SMTP id d75a77b69052e-471afe3b82fmr53070101cf.21.1739373900481;
+        Wed, 12 Feb 2025 07:25:00 -0800 (PST)
+Received: from [192.168.2.170] ([142.115.37.13])
+        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-471bbeb432asm2935221cf.79.2025.02.12.07.24.59
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Feb 2025 07:25:00 -0800 (PST)
+Message-ID: <2ef33e37-1f7d-4726-b7f3-5865ddbb2e91@gmail.com>
+Date: Wed, 12 Feb 2025 10:24:49 -0500
 MIME-Version: 1.0
-From: =?UTF-8?B?Sm9zZSBNLiBOdcOxZXogT3J0dcOxbyB8IENVRC1NYXLDrW4=?= <jnunez@cud.uvigo.es>
-Date: Wed, 12 Feb 2025 16:22:13 +0100
-X-Gm-Features: AWEUYZnTu8NdUJNUOr8bbLI8OQV3rH7nQ3YvgLia9_oX2Htz5Wp429aZoCUFlZk
-Message-ID: <CAEJzeq-FnXQjN8R9jh2LJ2mFj2cZYBiAmfOziLVTDyE+4quzBw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: CFYMSYBAFKLR3SBZAAOZRN6BOX3AWZWD
-X-Message-ID-Hash: CFYMSYBAFKLR3SBZAAOZRN6BOX3AWZWD
-X-MailFrom: jnunez@cud.uvigo.es
+References: <CAEJzeq-FnXQjN8R9jh2LJ2mFj2cZYBiAmfOziLVTDyE+4quzBw@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAEJzeq-FnXQjN8R9jh2LJ2mFj2cZYBiAmfOziLVTDyE+4quzBw@mail.gmail.com>
+Message-ID-Hash: CCQI6A44YU54ITNYNWLREBQC6HUXKDKV
+X-Message-ID-Hash: CCQI6A44YU54ITNYNWLREBQC6HUXKDKV
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] RFNoC with N200
+Subject: [USRP-users] Re: RFNoC with N200
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CFYMSYBAFKLR3SBZAAOZRN6BOX3AWZWD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CCQI6A44YU54ITNYNWLREBQC6HUXKDKV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5570322931469348145=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============5570322931469348145==
-Content-Type: multipart/alternative; boundary="000000000000a7dee4062df3830a"
-
---000000000000a7dee4062df3830a
-Content-Type: text/plain; charset="UTF-8"
-
-Just to be sure. Is USRP N200 a non-RFNoC device?
-
---000000000000a7dee4062df3830a
-Content-Type: text/html; charset="UTF-8"
-
-<div dir="ltr">Just to be sure. Is USRP N200 a non-RFNoC device?</div>
-
---000000000000a7dee4062df3830a--
-
---===============5570322931469348145==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============5570322931469348145==--
+T24gMTIvMDIvMjAyNSAxMDoyMiwgSm9zZSBNLiBOdcOxZXogT3J0dcOxbyB8IENVRC1NYXLDrW4g
+d3JvdGU6DQo+IEp1c3QgdG8gYmUgc3VyZS4gSXMgVVNSUCBOMjAwIGEgbm9uLVJGTm9DIGRldmlj
+ZT8NCkNvcnJlY3QuwqAgVGhlIEZQR0EgaXMgb2YgYSBzaXplIGFuZCBnZW5lcmF0aW9uIHRoYXQg
+Y2Fubm90IGJlIHN1cHBvcnRlZCANCmJ5IFJGTm9DIHRvb2xpbmcuDQoNCj4NCj4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUg
+c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2Vu
+ZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
