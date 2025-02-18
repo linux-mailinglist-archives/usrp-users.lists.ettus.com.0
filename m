@@ -2,115 +2,251 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99B55A39D08
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Feb 2025 14:11:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5430A39D54
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Feb 2025 14:25:35 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DF0913854D8
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Feb 2025 08:11:57 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 90E7038562A
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Feb 2025 08:25:34 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1739884317; bh=ozQBgHqV1QwqWSRNCvauU+LM2wynpgy6lc+iZwQNKvs=;
-	h=From:Date:References:In-Reply-To:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=GAaVWnDQ3Su3Qxw+imywWI9Whs5oxYnSURY1fL6yAvxgmDflRsG3ofnZcEOgtPJlz
-	 bZYSBGumretOrBUljWXA6Z8ZxkEqkvTDLXxO66Nler7W0Fzeuv9cawLot6UJMTJcQk
-	 jC56JkDtM+zUrO6L1rEqNPviQr1sAfY9eiAsFrB+Q55PcE8wJSboYsY7cPnM7uW7py
-	 6dvyN85vwYyTxB1ZmlxxphY3b5NdxCqEc1XqfaLNYp/+SjQVCLvCYBNL5iMTvVgW7c
-	 cE0HCxVkQ3nebq6fHHRmTclly8hzzyeExwg1xl8LqQAKMvse0PhndbyYwVmqQuZdFi
-	 abbltb4YcH8/g==
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id AE0F83854A2
-	for <usrp-users@lists.ettus.com>; Tue, 18 Feb 2025 08:11:52 -0500 (EST)
+	t=1739885134; bh=pwkiY7qj86pOoCJAVoxEFyWyeyrBS1B1MylMot7UY0g=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=yRe/V+r0P1gXsMGJAIkZucULqn4G8pt1cpXotsF1qV47r9kud+nUzEeSjNMbvOMvF
+	 4x1BREfEhEhMWzZpuctwUrUGDECIVSXPIsxW1GZY+EGGSQEM0drDhGXadYchredkJa
+	 AOrzKO0L5aXhnW15BwQfiJhNxMQypb9G/R4IiYAug1U/31nyZKGKumcc78AJbucQQn
+	 lsh2Tl4WuR8CIIwPSpFnXSlMXbMRYCCJeJPZvtXaubK1izWaDx9Mlu+irm1FJK/4wu
+	 lS0dXJl/R1uZaEeAkpUMWa0Ff/lgi4gOz3mLlVqTkkODfAKc0CFsBzf9UKHt7bRPE1
+	 LvHx9v0lnOMOQ==
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 82EB538562A
+	for <usrp-users@lists.ettus.com>; Tue, 18 Feb 2025 08:25:29 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RVcwDJ67";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="xVOnuFRG";
 	dkim-atps=neutral
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7c089b2e239so318430185a.0
-        for <usrp-users@lists.ettus.com>; Tue, 18 Feb 2025 05:11:52 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aaeec07b705so817776766b.2
+        for <usrp-users@lists.ettus.com>; Tue, 18 Feb 2025 05:25:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739884312; x=1740489112; darn=lists.ettus.com;
-        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
-         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9Q2LV9ghrfiYXTLzBefYHLNI1gaDlTJm/2s0MN/Djy8=;
-        b=RVcwDJ677ctzni0nmyptBpy/21IC9BNVNjHNWudbJd5/lFw6m+EHxf5wbtwwXGrykg
-         veoBZ1J5dt+yK88lX/eqmhnFUmL5MjXC+SNQHquvi2EA1WBH2NW0oAx5gWl1SJT3WZAs
-         l3RTphKhwY2BYcA1PO33G2Wi69jLHg3btOREtuVSlc6NY06uQA8GzmtZHLp1NkMa1ONk
-         WshnAvm/huY9kkGMOO+yQgjA/P0HBya79B54pT0011Sq6lmgLvAWmXLLcU00t5v40p8D
-         1XP6KC7td15WLJ74HOGb3SqGjpvzluPpUMIRgybu4PJ3wF+C1Mq/DZax7UAWWcaGj0Bg
-         eaDA==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1739885127; x=1740489927; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rRZW4SHPhUkRCg37LkEo3DrKydx5n6zwYKgHmGArNNc=;
+        b=xVOnuFRGAv/TVDUPnHPPgI7753eYdsFN9yJ3Kcw1JYN+Rlymixrce1Fel0lpXt/UvN
+         6JEFbV4Ix5XUWuLMXl1nns1MIOV/etRHuLJbbA1wvsnEYOSiHYu9assoLtRuJvHuVjYi
+         bo7JSix/kPsIZ2AHIWlBNFZU8rN1EGYJa2QsztLIj9cUnRVefB08sm5iALfsiTv2QgIF
+         RyJdc3MrHWpfi6IEKj24Ki+pF5IRIFrIGxEjVNNDSq4OZ8tNpD9t3R94vdfFe5DzaY8x
+         bjCNR59TvOYe2aTSBM0xvXohxulS79+PL6WPMT/Wa305aS1ag+bAcqDXJSzyjabU6Muj
+         +fRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739884312; x=1740489112;
-        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
-         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9Q2LV9ghrfiYXTLzBefYHLNI1gaDlTJm/2s0MN/Djy8=;
-        b=kuTjkbxeth/FoiZb0UEr7aNFrAWEf9lv4bUIGxCpq3lQorEqiepXL5/Zd6EGqetYCb
-         KU7xDxe1tvm23T2SG/RlxGQCkKQtxEfLUe7r77tk0uCsT0ochVa96N0zqLJLvlev0Sb2
-         kewT/oORJ4sZU3OlcJmHrVWigutvJR/+S8Lwu/LPX4OGXQMNzg9vub4ym89ydBZ5JvF7
-         Q8wxiPcwslB97/75k1WIHLIySRGbmwtkTang/WzYB8GvZsP8rGpAlfCVr5pPxCIUSqUd
-         1db0F0LdycbgpEwf+KlSJGiUBJKKzUXEoOna1MWir7yZbpheAvv/JL4+BIoLCMDp0Kva
-         SpaQ==
-X-Gm-Message-State: AOJu0Ywd4iGorJ0+NCSJqp2pPLpeRb8oEbohEPzXcJpN/0R88E+hh6T1
-	69IluA+oD3a6U7EpDpd5dzmGiBV944JQt+Z2NnjeFummIHIZi4q4Wyii7A==
-X-Gm-Gg: ASbGncs+OWJr2lqUOmmBiAwHToeISpxRghNQjge6KBhZpL+EdPRDPL7i21Bf1ccd+fU
-	OjqdTo7sL3zwSTXawOWOan8Jeux6zuoDSD07Cu3jWbik5sY/n3U9Ii+Qe91oRJqSRzz9ICUYJ0d
-	JxH4O0VLVdmnZm9QNflNgDuxV0M5an0uMWJiZ2XZkWgdM0iwCvy2Hg0Kzjcu9KmpRYCKds2Iw4K
-	yrOM/hlKSqqBse06viIoPsYxnDC+rfss1NTezR43My0x3gnPS8X6l4WUb0lxOix6vfVqyoourXk
-	JIrBzsEvhluMw/3Qyi/TUJ2fGc+QN2rIW985
-X-Google-Smtp-Source: AGHT+IEns9YhWk1xikj6z7NPp1S9XJwmCgHoAsok38INvCl6oZt0+toC55hyR1WW+gbiiZUvqNzl/g==
-X-Received: by 2002:a05:620a:2b44:b0:7b1:4a2a:9ae0 with SMTP id af79cd13be357-7c07a8913c0mr3287016285a.9.1739884311661;
-        Tue, 18 Feb 2025 05:11:51 -0800 (PST)
-Received: from smtpclient.apple ([142.115.37.13])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c0a49c29bfsm172034785a.45.2025.02.18.05.11.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Feb 2025 05:11:51 -0800 (PST)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Tue, 18 Feb 2025 08:11:29 -0500
-Message-Id: <28CC5603-8F9C-4D93-A8B9-EA912307AE8A@gmail.com>
-References: <CALNMZ8V-5SpmYTthV86m96Cwq1=4OUQpUtwrr3ZPUAzNTS+CRg@mail.gmail.com>
-In-Reply-To: <CALNMZ8V-5SpmYTthV86m96Cwq1=4OUQpUtwrr3ZPUAzNTS+CRg@mail.gmail.com>
-To: Brendan Horsfield <brendan.horsfield@vectalabs.com>
-X-Mailer: iPhone Mail (22B91)
-Message-ID-Hash: IMO6HO4FEZMCZRUPOF4JDDVIKG5X55BZ
-X-Message-ID-Hash: IMO6HO4FEZMCZRUPOF4JDDVIKG5X55BZ
-X-MailFrom: patchvonbraun@gmail.com
+        d=1e100.net; s=20230601; t=1739885127; x=1740489927;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rRZW4SHPhUkRCg37LkEo3DrKydx5n6zwYKgHmGArNNc=;
+        b=Y6vgjBh4WfmXUpQfuC3Up8LVujezdKYgsIMGuJPag2CbRDY7Pzmwlmi5f/swG1+NUN
+         bJ2NLRIjLnxE8pvwckXa+ta+05V/cx7g3SATAPNWjYwrAT+OmpY4z0VCaaI+WzGyJc3k
+         kpoKed0fFCDJ/ruboi2blS6IJTJ32sm+BobELrCoLWVXTRNXhScqvy1QJcE1QRtKaS0c
+         YUFtyhG+kqvjvEEWLmh03TUmiZSeKgP5UsgQqOvoPgkdNSkEaocwZOfn4ICk75Zhvysx
+         ZpW+QPn4VOCBoT0rD3C8x9QCY5ZyXfNLIpvS+JYUrq/QdoxPOgVLtmmqc8pWhwlTGgsF
+         EwVw==
+X-Gm-Message-State: AOJu0Yz4m9ZAoW6EfSVTaCeEOASddAM6PaKuZAIZTAO7v3x0RmiZ1Jik
+	B0bJ4W89V8zVaxginbBW7XFoPemXoylHBTT4be4GQ42jj9YoLPLEcW+ArX5h7oc3sKWGVO91Nwk
+	DEN4NM2CWWPMQEKirjtrc1S8jSbrDsKhqkx+TkzPv7sDnMQLPmkg=
+X-Gm-Gg: ASbGncvh/YLUBsW29NBn6JuKieUAd+omIHcWO/q2hyONg1FOWpGphINSCrIxR5V2UU4
+	tll5+mxCbqSxgpRMgFn0guLpBf6r36jYdAF32/palKwncX8KzrR+pvtZ7MYJVqBOZSDPpPR1LZu
+	715Khl0hnJkBRT9fTXhaJyL93uu9Bb
+X-Google-Smtp-Source: AGHT+IHRytX+KdsZToujcRONXc7FnjHxwFCygKWikzFFIdzXRCAoE/QCK4HWboRYHHvxaOgfVD1QHZjiK6tUHe7Bqak=
+X-Received: by 2002:a17:907:2d22:b0:ab7:dec1:b353 with SMTP id
+ a640c23a62f3a-abb70de289amr1585320666b.49.1739885127379; Tue, 18 Feb 2025
+ 05:25:27 -0800 (PST)
+MIME-Version: 1.0
+References: <IyZstKxnoxPrwyjlaMj82d0eDiB1iD89qeantfVdCzI@lists.ettus.com>
+In-Reply-To: <IyZstKxnoxPrwyjlaMj82d0eDiB1iD89qeantfVdCzI@lists.ettus.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Tue, 18 Feb 2025 14:25:15 +0100
+X-Gm-Features: AWEUYZnLl3UTX3YbgUCSdU6dYexxDMIEf9t-pU4FgN3pvX4elqGVGkcPnbUdqY0
+Message-ID: <CAFOi1A7yjiaOvYmam-O0eRz0bwmychFUVgN0jUTrUt_-zuznDQ@mail.gmail.com>
+Cc: usrp-users@lists.ettus.com
+Message-ID-Hash: OYCUSW33FRKUIFSBVCXIYJ5XMNBYWZ7U
+X-Message-ID-Hash: OYCUSW33FRKUIFSBVCXIYJ5XMNBYWZ7U
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Usable bandwidth of X300 USRP with UBX-160 daughterboard
+Subject: [USRP-users] Re: Reading/Write registers - Timeout
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IMO6HO4FEZMCZRUPOF4JDDVIKG5X55BZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OYCUSW33FRKUIFSBVCXIYJ5XMNBYWZ7U/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6006322646861038044=="
 
-VGhlcmUgd2lsbCBhbHdheXMgYmUgc29tZSBlZGdlIHJvbGwgb2ZmLiBEZWNpbWF0aW9uIGluY2x1
-ZGVzIGZpbHRlcmluZyBhbmQgdGhvc2UgZmlsdGVycyBjYW5ub3QgYmUgaW5maW5pdGVseSBzdGVl
-cC4gDQpTZW50IGZyb20gbXkgaVBob25lDQoNCj4gT24gRmViIDE4LCAyMDI1LCBhdCAyOjEy4oCv
-QU0sIEJyZW5kYW4gSG9yc2ZpZWxkIDxicmVuZGFuLmhvcnNmaWVsZEB2ZWN0YWxhYnMuY29tPiB3
-cm90ZToNCj4gDQo+IO+7vw0KPiBIaSBBbGwsDQo+IA0KPiBJIGhhdmUgYSBxdWVzdGlvbiBhYm91
-dCB0aGUgdXNhYmxlIGJhbmR3aWR0aCBvZiB0aGUgWDMwMCBVU1JQIC8gVUJYLTE2MCBkYXVnaHRl
-cmJvYXJkIGNvbWJvIGF0IHNhbXBsaW5nIHJhdGVzIGJlbG93IDIwMCBNc3BzOg0KPiANCj4gQXMg
-SSB1bmRlcnN0YW5kIGl0LCB0aGUgVUJYLTE2MCByZWNlaXZlciBoYXMgYW4gYW5hbG9nIChoYXJk
-d2FyZSkgZmlsdGVyIGJlZm9yZSB0aGUgQURDIHRoYXQgbGltaXRzIHRoZSB1c2FibGUgYmFuZHdp
-ZHRoIHRvIDE2MCBNSHosIHdoaWxlIHRoZSBBREMgcnVucyBhdCAyMDAgTXNwcy4gIFRoZXJlZm9y
-ZSB0aGUgdXNhYmxlIGJhbmR3aWR0aCBpcyBhcm91bmQgODAlIG9mIHRoZSBzYW1wbGUgcmF0ZS4N
-Cj4gDQo+IE15IHF1ZXN0aW9uIGlzOiAgV2hhdCBpcyB0aGUgdXNhYmxlIGJhbmR3aWR0aCBhdCBs
-b3dlciBzYW1wbGluZyByYXRlcz8gIERvZXMgdGhlIDgwJSBmYWN0b3IgYWx3YXlzIGFwcGx5PyAg
-DQo+IA0KPiBGb3IgZXhhbXBsZSwgaWYgSSBzZXQgdGhlIGRlY2ltYXRpb24gZmFjdG9yIHRvIDQs
-IHNvIHRoYXQgbXkgc2FtcGxpbmcgcmF0ZSBpcyA1MCBNc3BzLCBkb2VzIHRoaXMgbWVhbiB0aGF0
-IHRoZSB1c2FibGUgYmFuZHdpZHRoIHdpbGwgYmUgNDAgTUh6Pw0KPiANCj4gVGhhbmtzICYgUmVn
-YXJkcywNCj4gQnJlbmRhbi4NCj4gDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11
-c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJz
-LWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============6006322646861038044==
+Content-Type: multipart/alternative; boundary="000000000000f7cf62062e6a9200"
+
+--000000000000f7cf62062e6a9200
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Like David says, nothing you're doing to the radio should affect the
+peeks/pokes of your block.
+
+But if you're seeing op_timeout being thrown, then that's also not the
+block controller timing out. Maybe you have a deadlock in your application?
+
+--M
+
+On Mon, Feb 17, 2025 at 5:07=E2=80=AFPM <cyberphox@gmail.com> wrote:
+
+> Hi David,
+>
+> At the start where we initialise our siggen block there this snippet of
+> code:
+> ------------------------------
+>
+> std::cout << "MB Clock Source: " << graph->get_mb_controller(0)->get_cloc=
+k_source() << std::endl;
+>
+> std::cout << "MB Time Source: " << graph->get_mb_controller(0)->get_time_=
+source() << std::endl;
+>
+> std::cout << "MB Sync Source: " << graph->get_mb_controller(0)->get_sync_=
+source().to_pp_string() << std::endl;
+>
+> std::cout << "MB Ref lock status: " << graph->get_mb_controller(0)->get_s=
+ensor("ref_locked").to_pp_string() << std::endl;
+>
+> std::cout << graph->get_mb_controller(0)->get_sensor("gps_locked").to_pp_=
+string() << std::endl;
+>
+> // Initialise the USRP time to zero on the next 1 PPS
+>
+> graph->get_mb_controller(0)->get_timekeeper(0)->set_time_next_pps(uhd::ti=
+me_spec_t(0.0));
+>
+> // Call this to synchronise all the RFNoC devices (needed for phase align=
+ment?)
+>
+> bool synchronised =3D graph->synchronize_devices(uhd::time_spec_t(2.0), f=
+alse);
+>
+>
+> ------------------------------
+>
+> Then when setting up the PLL's, to try and get phase coherence.
+> ------------------------------
+>
+>
+>
+> const uhd::time_spec_t lastPPS =3D linux_uhd::get_graph()->get_mb_control=
+ler(0)->get_timekeeper(0)->get_time_last_pps();
+> const uhd::time_spec_t now =3D linux_uhd::get_graph()->get_mb_controller(=
+0)->get_timekeeper(0)->get_time_now();
+> const uhd::time_spec_t span =3D uhd::time_spec_t(1.0);
+>
+> // Specify that the tune should occur aligned with the next 1 PPS
+> const uhd::time_spec_t command_time =3D (lastPPS + span);
+>
+> // Clear any previous timed commands
+> radio_ctrl[radio_id]->clear_command_time(0);
+>
+> // Set the time for the LO tune to occur
+> radio_ctrl[radio_id]->set_command_time(command_time, 0);
+>
+> // Set the LO frequency in Hz
+> actual_lo_frequency =3D radio_ctrl[radio_id]->set_tx_frequency(....
+>
+>
+>
+> ------------------------------
+>
+> I am not sure if this could affect the peek and pokes
+>
+>
+> thank you
+>
+> Marino
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000f7cf62062e6a9200
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Like David says, nothing you&#39;re doing to the radi=
+o should affect the peeks/pokes of your block.</div><div><br></div><div>But=
+ if you&#39;re seeing op_timeout being thrown, then that&#39;s also not the=
+ block controller timing out. Maybe you have a deadlock in your application=
+?</div><div><br></div><div>--M</div></div><br><div class=3D"gmail_quote gma=
+il_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 17, 2=
+025 at 5:07=E2=80=AFPM &lt;<a href=3D"mailto:cyberphox@gmail.com">cyberphox=
+@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><p>Hi David,</p><p>At the start where we initialise our siggen b=
+lock there this snippet of code:</p><div><hr></div><pre><code>std::cout &lt=
+;&lt; &quot;MB Clock Source: &quot; &lt;&lt; graph-&gt;get_mb_controller(0)=
+-&gt;get_clock_source() &lt;&lt; std::endl;</code></pre><pre><code>std::cou=
+t &lt;&lt; &quot;MB Time Source: &quot; &lt;&lt; graph-&gt;get_mb_controlle=
+r(0)-&gt;get_time_source() &lt;&lt; std::endl;</code></pre><pre><code>std::=
+cout &lt;&lt; &quot;MB Sync Source: &quot; &lt;&lt; graph-&gt;get_mb_contro=
+ller(0)-&gt;get_sync_source().to_pp_string() &lt;&lt; std::endl;</code></pr=
+e><pre><code>std::cout &lt;&lt; &quot;MB Ref lock status: &quot; &lt;&lt; g=
+raph-&gt;get_mb_controller(0)-&gt;get_sensor(&quot;ref_locked&quot;).to_pp_=
+string() &lt;&lt; std::endl;</code></pre><pre><code>std::cout &lt;&lt; grap=
+h-&gt;get_mb_controller(0)-&gt;get_sensor(&quot;gps_locked&quot;).to_pp_str=
+ing() &lt;&lt; std::endl;</code></pre><pre><code>// Initialise the USRP tim=
+e to zero on the next 1 PPS</code></pre><pre><code>graph-&gt;get_mb_control=
+ler(0)-&gt;get_timekeeper(0)-&gt;set_time_next_pps(uhd::time_spec_t(0.0));<=
+/code></pre><pre><code>// Call this to synchronise all the RFNoC devices (n=
+eeded for phase alignment?)</code></pre><pre><code>bool synchronised =3D gr=
+aph-&gt;synchronize_devices(uhd::time_spec_t(2.0), false);
+
+<br></code></pre><div><hr></div><p>
+Then when setting up the PLL&#39;s, to try and get phase coherence.
+<br></p><div><hr></div><pre><code>
+
+const uhd::time_spec_t lastPPS =3D linux_uhd::get_graph()-&gt;get_mb_contro=
+ller(0)-&gt;get_timekeeper(0)-&gt;get_time_last_pps();
+const uhd::time_spec_t now =3D linux_uhd::get_graph()-&gt;get_mb_controller=
+(0)-&gt;get_timekeeper(0)-&gt;get_time_now();
+const uhd::time_spec_t span =3D uhd::time_spec_t(1.0);
+
+// Specify that the tune should occur aligned with the next 1 PPS
+const uhd::time_spec_t command_time =3D (lastPPS + span);
+
+// Clear any previous timed commands
+radio_ctrl[radio_id]-&gt;clear_command_time(0);
+
+// Set the time for the LO tune to occur
+radio_ctrl[radio_id]-&gt;set_command_time(command_time, 0);
+
+// Set the LO frequency in Hz
+actual_lo_frequency =3D radio_ctrl[radio_id]-&gt;set_tx_frequency(....
+
+
+<br></code></pre><div><hr></div><p>I am not sure if this could affect the p=
+eek and pokes</p><p><br></p><p>thank you </p><p>Marino</p>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000f7cf62062e6a9200--
+
+--===============6006322646861038044==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6006322646861038044==--
