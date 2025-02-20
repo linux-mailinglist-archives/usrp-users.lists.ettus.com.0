@@ -2,148 +2,88 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5CD0A3E1D7
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 18:08:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C76EA3E37A
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 19:11:03 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B0CB8385AE6
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 12:08:04 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 1E33D385BBA
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 13:11:02 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1740071284; bh=3BaHsNMTw1Ke5oIMbrBCPZ6nGC7cxmVUWtBELBy0a2U=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=FqegBLWicY6J9gCYYED8S8ix5J1gO3laNAGGhA/wEkaQpu7YHhP4/sX5KnbDLoHeD
-	 QoE9QuB3oiFkZZC1WXLtkD3b3eedMxtSef0u/D5h/C02FYY9Qybaod6nutEA+TMVCs
-	 ffKWJ1VbjarLYbAYkHprLAcyZk1zRV/oEQVxGV1Uo2xLeRg3K1xThGmkMainWPPiQV
-	 NpdoQxKz1KYgL73ryYaoR4XmxOBV9kQ46Bl4Mv7AiJm9eB7jplHbhdPNhC+edGTm1d
-	 tLn7BybPt0OY92YC9K2tzvPuZHqv+OZlemmZGxDXT6yQJarRjWQtPpUDDJ5GObDk/2
-	 QYX2aqJz39RDg==
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2200A385AE6
-	for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 12:08:01 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="hr1XYH4a";
-	dkim-atps=neutral
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5ded46f323fso1635737a12.1
-        for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 09:08:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1740071280; x=1740676080; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LFUBpWO5YUjv4Elvlor6Kv5QoQsEbJEqtSDga4M8Wqw=;
-        b=hr1XYH4awKxWv5Fv9rTxsTegEgYK5lJkzHrzsSYMWAzM56CuAkKQ7qjcZcv1Q0JhOC
-         Q0wYiCZAR/ragi+nOjgN8MDCGNEhknG1qfzjORMXpmzC4d9TLZl3KEOniDC+k3pIbSU9
-         wTZd8EJfGu9YM6/lgKRdiM6I/SH14n8jo3hZv3vDvQ9e+J9ccVnKxqeOPDvvxp9vI7e7
-         yRgpzOvLj3gFl/SXL5U5xqJHpsuSovjdgumjHPURR+L0iQ/y6IennosxP8O0Oqk/iXoG
-         Jx5U+BcaltIFIdkBrAh9q2W5tOP1/bu7F+WFAqvwH9d096FWKC9eYH2fkFvqP9kLpaJ5
-         P5RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740071280; x=1740676080;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LFUBpWO5YUjv4Elvlor6Kv5QoQsEbJEqtSDga4M8Wqw=;
-        b=rjE3yNYqQcr/08UFZm2of2exxUfwLSAekHCVPeAO4V18Q3EQs/zi38odrsntI3TWKM
-         Nd8l07ZquMaK55rfANXkhvaKJysqHEq5hW5MHNdz639gjuckPPCiV81jKmCV1PJrE+bV
-         DEIPqipK11T3C7zhXUlLAUDyEB3DG644SK5I47FBlitUlaFHAbFtyY61L6gTH7SAIN8j
-         tj7Og/U5FsvsfJxojdNCRV923qgHduDQW1EOziZVfH9pNV6OFatNOYCVbjNh5+Uh15fF
-         279DEZ+HKXbPq63730eMtzURaqhlz1AEZnFDiNDofFM15Ylht81bJda4N4J2wiO+LUV1
-         hu6A==
-X-Gm-Message-State: AOJu0Yzrzu3dPTGtMKS3NoF9ClVZeWrxnAnm8MeUglCIPTmdwI4hWwr0
-	7RXoVklnUnrnRA0EBmLgTvK0DbKSXSEjQ76UkoSUgLascjVJozHtLXC4KqjsldoY2s+W0tPI9ul
-	mWZVylRfDo6ECvfkzbxaVv0DrSMdsDwuuYqT3aDtiIeAcs1VUl9o=
-X-Gm-Gg: ASbGncuVW5dOTYTlQJ2R1hg95XPs/Tx488/3MsQa1VfnpFkH/2zw/Qssb7hXKOGFDSU
-	3GYChhswtOJ1/TYsG7yVL1DTWy19cRb4a6PLPtZ5RYaj5cDZZLnqZmVLYypUviZfuF8Mxx3nemf
-	kgsCuu9KeJLvNJX+EOoRR4Cx4wDaM=
-X-Google-Smtp-Source: AGHT+IGh0vbS/JwCVA2IzyMi0VcMZOXymqYYfCHF0LsbaYboyyHti0odU8jWDoldhiQNgrXrfmojFRKx9py2KidFmQw=
-X-Received: by 2002:a05:6402:378e:b0:5dc:a44d:36a9 with SMTP id
- 4fb4d7f45d1cf-5e0895173acmr7031203a12.14.1740071279338; Thu, 20 Feb 2025
- 09:07:59 -0800 (PST)
+	t=1740075062; bh=dJ62FfLpymTB/vUjrJvcAi7oQrxe2eYaIsjiLJN0ink=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=JmTy/Im4sxzHhf/xTkuKf6AS4ubfgm6y+aMm009fRFHRfhk6su0JVc10i/6LFrlJH
+	 1rQChGztDjpAUdVSeeUL2C2PeSZjhBiJi533nR7DCN6CteoNdja+I2NIda+dHiL/CX
+	 Zl7Wyg+YyI/aO+KhCyI2+TY5huNZrzMQD08u0RWrDVL4tczdwCYier+29/WGvyX+0L
+	 gpBxNkyznlw2NXZGJMVqlHkzxBz1yv4H5ot770tA3iAZiTAxdW+EX1j7wWhIXK4BR0
+	 PTebk1TWus4ecW0QedvDfnlD9dz523A/2s3LsPRItGDdzaKaYR+ourEfdKVR7SdkEf
+	 oLub2bcp/3w4A==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 8A444384D48
+	for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 13:10:10 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1740075010; bh=AWPiyBO6sELzacypmlTlYM0Jf370F3zy9ZUe3gvxnb8=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=YwQ4qp0PkQB/FxCYlbrMgiVa1BPCpZQg9lB8NpDlQWuJOOyhB5T2LGNSemGEN9gKH
+	 vZ1pcvjCaS6pkTrrLilUNVrHQMQjWNl98EzebBiDL894GhHM8xK74bwaHrqtUDgYtw
+	 aIAKpzhxYnmIAh+9Po0Uc1SVhozLzDKqag1A9qH29qxTthDy5nD0ujbOvjcSC2iP6p
+	 R+ZGYqGFmGEMTlSv8uQo2fJKqTaiKCtwAg1ESTun7FUQsqqhYudW8ghGu01tT1mA9H
+	 ymm3zu4Xesq1Tq18bvQWX0l6VbP48y4Ir1RxHBbgICNZszjOq1Efbyt9Ow57+yEIJc
+	 Okw9237kwCJgQ==
+Date: Thu, 20 Feb 2025 18:10:10 +0000
+To: usrp-users@lists.ettus.com
+From: cyberphox@gmail.com
+Message-ID: <18ZOUlb0HtyEQXmXAO16QPN1XnlaT1vFZ3u9WEP5Dog@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAFOi1A7V6KifEi5kOsrFGO2zOZt2ROinWh3gEcSOOEEdPnZ4Ug@mail.gmail.com
 MIME-Version: 1.0
-References: <D3YEaOFisLcjvI3tRnvEpEeeisKwnTfTFlNvyBiZnpo@lists.ettus.com>
-In-Reply-To: <D3YEaOFisLcjvI3tRnvEpEeeisKwnTfTFlNvyBiZnpo@lists.ettus.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Thu, 20 Feb 2025 18:07:48 +0100
-X-Gm-Features: AWEUYZnzVvYJ1ux7JU9TjHEN3gnhcspWUDql6laNdo8-oElAtsD_CF_JRAxh8do
-Message-ID: <CAFOi1A7V6KifEi5kOsrFGO2zOZt2ROinWh3gEcSOOEEdPnZ4Ug@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: ZP36WHS5CRIJWAXAIVLVAEFEIVICWB4Y
-X-Message-ID-Hash: ZP36WHS5CRIJWAXAIVLVAEFEIVICWB4Y
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: MXWH344E5GZRCEUS2WRGHDCMCWLAJ3SM
+X-Message-ID-Hash: MXWH344E5GZRCEUS2WRGHDCMCWLAJ3SM
+X-MailFrom: cyberphox@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Reading/Write registers - Timeout
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZP36WHS5CRIJWAXAIVLVAEFEIVICWB4Y/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MXWH344E5GZRCEUS2WRGHDCMCWLAJ3SM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4661004271201036838=="
+Content-Type: multipart/mixed; boundary="===============7025875242064236556=="
 
---===============4661004271201036838==
-Content-Type: multipart/alternative; boundary="0000000000007d44b7062e95ea5b"
+This is a multi-part message in MIME format.
 
---0000000000007d44b7062e95ea5b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============7025875242064236556==
+Content-Type: multipart/alternative;
+ boundary="b1_18ZOUlb0HtyEQXmXAO16QPN1XnlaT1vFZ3u9WEP5Dog"
+Content-Transfer-Encoding: 7bit
 
-Yes, exactly. I'm afraid we'll need a standalone test case to investigate
-this further. If you can provide that, then we can try to locally reproduce
-it. A bug report would help, put it on github.com/EttusResearch/uhd/issues
-if you can, or if you can't publish the test code, reach out to your sales
-rep and we'll figure something out.
+This is a multi-part message in MIME format.
 
---M
+--b1_18ZOUlb0HtyEQXmXAO16QPN1XnlaT1vFZ3u9WEP5Dog
+Content-Type: text/plain; charset=us-ascii
 
-On Thu, Feb 20, 2025 at 5:42=E2=80=AFPM <cyberphox@gmail.com> wrote:
+Hi Martin,
 
-> Hi Martin,
->
-> If it is stuck here should it not timeout (either massive @10s the defaul=
-t
-> @ 1s) ?
->
-> thanks
->
-> Marino
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+I am not able to provide the test code, likely need to do this via NI/Emmerson partner contacts.
 
---0000000000007d44b7062e95ea5b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thanks for your help so far.
 
-<div dir=3D"ltr"><div>Yes, exactly. I&#39;m afraid we&#39;ll need a standal=
-one test case to investigate this further. If you can provide that, then we=
- can try to locally reproduce it. A bug report would help, put it on <a hre=
-f=3D"http://github.com/EttusResearch/uhd/issues">github.com/EttusResearch/u=
-hd/issues</a> if you can, or if you can&#39;t publish the test code, reach =
-out to your sales rep and we&#39;ll figure something out.</div><div><br></d=
-iv><div>--M</div></div><br><div class=3D"gmail_quote gmail_quote_container"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 20, 2025 at 5:42=E2=80=
-=AFPM &lt;<a href=3D"mailto:cyberphox@gmail.com">cyberphox@gmail.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hi M=
-artin, </p><p>If it is stuck here should it not timeout (either massive @10=
-s the default @ 1s) ? </p><p>thanks</p><p>Marino</p><p><br></p>
+Kind regards
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+Marino
 
---0000000000007d44b7062e95ea5b--
+--b1_18ZOUlb0HtyEQXmXAO16QPN1XnlaT1vFZ3u9WEP5Dog
+Content-Type: text/html; charset=us-ascii
 
---===============4661004271201036838==
+<p>Hi Martin,</p><p>I am not able to provide the test code, likely need to do this via NI/Emmerson partner contacts.</p><p>Thanks for your help so far.</p><p>Kind regards</p><p>Marino</p><p><br></p><p><br></p>
+
+
+--b1_18ZOUlb0HtyEQXmXAO16QPN1XnlaT1vFZ3u9WEP5Dog--
+
+--===============7025875242064236556==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +93,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4661004271201036838==--
+--===============7025875242064236556==--
