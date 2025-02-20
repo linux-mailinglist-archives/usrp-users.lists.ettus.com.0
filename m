@@ -2,175 +2,192 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E61A3DE03
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 16:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B5AA3DE1D
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 16:18:21 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A24EA385CB4
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 10:14:34 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4862C385A3B
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 10:18:21 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1740064474; bh=Uql0w3AdD9ENLH7b66Aczr48DrCp6Txicpifg0oIf1Y=;
+	t=1740064701; bh=DcDsj6F84bco9xJMlhDKMlSmJNDOiee/NwK+M2IimUE=;
 	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=lHtJHcxYTWotsCVAnoWoZo97yz8Xv0C0PwvlfpSzU52lRMhCMEldEINR3mUhVNAdF
-	 wRd8rHXbt/MECxaz7hUojT5iPWbldlKQe5G7yE97rV65W3/0lBdadqUlYgjCmpa6lh
-	 X0C9vDgnsJDJeFf9vFy36jZjadM4DFIas/JCqXJCnIArEeIBNepUoR220JyjdZNouX
-	 6S6jO2lmx81s0wwmIztCUIDXW0lfmWmdi7/GEtMeE+drx8T5Z9uF7Lco7DFoVSaDr4
-	 1W90dKyqiflt2Ij6ZcleWOjjrUFeBFaamvdG4BcuVMWK/Eodwgf+2JgFyUUB20weNY
-	 fG+m9dkxW9JtQ==
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 702413857C4
-	for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 10:13:34 -0500 (EST)
+	b=V4O41SjNplH+6nxraZfhb2A/Syuo46UD+zxrKcDDTxf4WUKYu/Kaj1rARD+9gz9lq
+	 l6aoioS8yxvTzlYnkMzlMKYSw3PTw4K243gC9fHUFy6kzR2nj60q/p99i9boK4AtTE
+	 BX8bn9RJ73kh/zW8hRWwhHgxPa1rdW4wOdpcWSe0PEiBVSY4fA8azz7PQjC4HiMcY8
+	 OezKFFCqVI4+lTxQMsPE4Xi9V4SlEZxv56bqpK+eFyLA6yK7om7aMIeC8GsBaINiOP
+	 ydqtYjrMWYylh7v3joRWS94qwAnhpQYHjdIxXrQuAMjED1LrbAykw0pW4LwaE9qjyk
+	 WNM2cC2yIAB+A==
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5A351385A3B
+	for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 10:18:17 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="jmtrtHzS";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="IOoJKZ0v";
 	dkim-atps=neutral
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e0939c6456so1777127a12.3
-        for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 07:13:34 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5ded51d31f1so1767306a12.3
+        for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 07:18:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1740064413; x=1740669213; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1740064695; x=1740669495; darn=lists.ettus.com;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Krf4mKcKAlx8x9oiS7aDYlPnlfdA7avsuK9eV3wZ2NM=;
-        b=jmtrtHzS4WaYly5QnFD4ndCW6aGQu2drjup3jdf5Nv2zHyRA9TOnbho/31jiJphBZK
-         w9IMxolnuKSvW7xzW3AOv+uA1L1T+vK9E3i4WBuQsJGoaThA0/lcYmBUVICRgI0wYdAS
-         AGJKrn8g02nfcP/qVQZOxoPFN2+dhiyuUCT9r2Ur7XLf4LwrofkZ0ZspsioDOSqRdvI9
-         w+2Lu7gVmwONRcyEmXLRGlKmPR6LqopcRwmJ8o0nL9+HS4zPAQDK0IEIQHoIvb5I8QZr
-         /we4zJ0LzER5fJXxE76XsoLyvg4/rDrXycNTDLOgJ7HluFQpg2aGaLsIBgMYAijECYlv
-         kOIg==
+        bh=KypmGsuO8UsHakxQ261a2lSok52P4iDHW6Pe/kn2HHA=;
+        b=IOoJKZ0vlvK3wE7NFKuAQjDTWG4ufgn+Qe1fR6S8q/VEUhFc4GsOWhBGivyu8+BrzQ
+         qxAXqTC6pdo5d6bD4zgQHaI1wroxHyxGQ3yBgdXmabSh9TbOnOqZFB+ZRBg6MthiFIVs
+         Ww4CBMWUKeamsgXi/0rgql7ns05Iu3w9rtnsdydAarLCNlvK66pyPAML2T9G6gE8yR0i
+         Ke+X8exKKMmAFh0tsbBjoqB9vqSzAFOJOd7Iqkr7+y8TYdOGMlyd/JL7N0/D7Z9jiNeq
+         P4kXPce5N1YUQfHpTq/6OuIgyhiupZvW28XPpNQcxKInsygRoyeqkQh4ODuLcTqMCEtk
+         7pPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740064413; x=1740669213;
+        d=1e100.net; s=20230601; t=1740064695; x=1740669495;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Krf4mKcKAlx8x9oiS7aDYlPnlfdA7avsuK9eV3wZ2NM=;
-        b=TuRgiaO2l7/eDDGOirsDu9je6cJYqgBOSlwcuTAepGABfVmHLKTsOcuo7tp/ekPZpN
-         9w8ytp5ZOoS+IcQjgM2+HT7aQy8eiZKPE6WSeJpTflPY8R1/HfNxb9IobpLF2NoCCa42
-         GfirPalV+xlJTXNt0wEEhl01G5LKp8p0jkQAFniqIkUuwYYst8lvQ4ODaFGqdbAJaTcq
-         EDMgmYCwcOR0fEbMdleRMenQ18vF0io09Ii8foLyqDPy9gf5QpvAwEQ1DYrgXVlbOBh8
-         rWuzNUK/oCf2z+lnMwDCjbpyY0YUHw8e9KG5tipeqq0JNPzp7se4KxsoXgI5kPf/MEFY
-         6qww==
-X-Gm-Message-State: AOJu0YwDUIWkQWH6QGy48hm4euzpBGnBKRpeXdsPXTLhGcFYlJSNus1F
-	brc/NYPs4cakZBvFkxRCSVyYTWEeghp3PFV+q1aQli7JmTsakw0niHsC5NRc5WstrClABeKMujn
-	gMNCUlYMEwBjf+hDayDsFGzHUXc6b4NFjxD9gtB21lNF3sUgBRpGKiQ==
-X-Gm-Gg: ASbGncsmpRl87h6XFxetxzKrJf7uT8ClkDOb73wyq5CFg8g/njf+yRjAbVBZtKvgMkU
-	nzGuW6mVi5fRI4WfN5H9nGLPiAPP5Vbk5jdDSEJAgOgGTkGD3mvuReO6mXhyjjD16Asn1QnROYz
-	GzfZXh6tO9gGt1pkaHtWeyWHuE19s=
-X-Google-Smtp-Source: AGHT+IEOAKVPiKZ3ooEr7U7G00AzzPfoI+6Rb3sr0uRRVaxa7xO3cG3qmsg331T/SBIRA25djnkaCDa7HItG5zq158s=
-X-Received: by 2002:a05:6402:2106:b0:5e0:82a0:50d7 with SMTP id
- 4fb4d7f45d1cf-5e082a05941mr7575639a12.8.1740064411822; Thu, 20 Feb 2025
- 07:13:31 -0800 (PST)
+        bh=KypmGsuO8UsHakxQ261a2lSok52P4iDHW6Pe/kn2HHA=;
+        b=UgaGEfMlp53b6vxtBBWL9/nwqVcvd6PaDg9A4bnPNCiegwAigQsL2DorHOupUHIHFS
+         Jyl4crO9n+KDtMMxmH8EDNpHFIutO5uwPhjy4/1asni5UwZNi7I1KWT5MX28W+LYM9yp
+         4qWyUMsNBRrmzMmkgI3MVk5i5EgpN5AuWPahiBCJBrke+Pg1Q7RJz7kubnaqqogwSYDM
+         th8tcvf2DCQ3xDf/Glmk9264jlMSAMPW4nD5NxYC8dBnuOYq+7oOMlDLjjFoNK9ukKQ4
+         GD5rWZJiJyUG0FlBC6Yklu9tiXI2y89KNzMWtgtkRWxUJat6qw0Q2zCkBsVq4tYpRN0l
+         p9aQ==
+X-Gm-Message-State: AOJu0Yz9WZF/2DTyVRB528tt8wF+xEM3cf38iL8XiH03Eus1bt9dYzIV
+	Y+FHAORTbNj4JRQFKoaO+QuXyoOcHuzq58OuGkp1xn70fgTzSUQPOuPZZFttvW3OSHBDtOW+/Ev
+	Na2VHXUE0GNFsXS7WRG+nfkwfywLybRhpiTaDWvHdyQrU144PGE8=
+X-Gm-Gg: ASbGnctJo1H98lHXpAXBiNXBrUHi3+iMCQLuK8mqROG9NIlKLO3CcophP3kxS4HKZpx
+	m6HI4ugghd6GFFv/RgvV+A9u9g4xYbLFvTN2zE2Q46u5AOHFhJJU21oMhUKQkadmAMfAa+3vZZM
+	EcK8w29Yg/0LCXDUa8+RpKau2PfRI=
+X-Google-Smtp-Source: AGHT+IGR9l90wewyoPXqTEeWcv/J+EI/5X2nxNNwHxgZFLpZQlqs0T7/39wTkSnTrF0cw4hKxAVb1je/5fu9L0Ec4X4=
+X-Received: by 2002:a05:6402:3553:b0:5e0:750a:5c30 with SMTP id
+ 4fb4d7f45d1cf-5e089d0bafemr8220589a12.20.1740064692049; Thu, 20 Feb 2025
+ 07:18:12 -0800 (PST)
 MIME-Version: 1.0
-References: <jdrKOP1MmPM4iDwehDWuFlIp4AzTgK3cVgb5AUZokc@lists.ettus.com>
-In-Reply-To: <jdrKOP1MmPM4iDwehDWuFlIp4AzTgK3cVgb5AUZokc@lists.ettus.com>
+References: <jdrKOP1MmPM4iDwehDWuFlIp4AzTgK3cVgb5AUZokc@lists.ettus.com> <CAFOi1A6MXvN9UV-74WzozfhXva3qLDADF6uNcyMrQJ3D1iWgvw@mail.gmail.com>
+In-Reply-To: <CAFOi1A6MXvN9UV-74WzozfhXva3qLDADF6uNcyMrQJ3D1iWgvw@mail.gmail.com>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Thu, 20 Feb 2025 16:13:20 +0100
-X-Gm-Features: AWEUYZlitxGBjffCEU6RIRS1fv-hbIzTneeWA7CKix-h7G0KuNnJzB8H4-KmjBg
-Message-ID: <CAFOi1A6MXvN9UV-74WzozfhXva3qLDADF6uNcyMrQJ3D1iWgvw@mail.gmail.com>
+Date: Thu, 20 Feb 2025 16:18:00 +0100
+X-Gm-Features: AWEUYZmaw2KdjttY3OjJacRvdzUVay8Yk8d7XWV3dTFmO_cCyC2jsiLejdQZf1U
+Message-ID: <CAFOi1A6SWEWqrkcxXHHiUXRCoz9SYXndZmA069yQHUmhrWwOKg@mail.gmail.com>
 Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: LZHNVYHWS3YTHHB6STQ7QYBNCRWJ2TRA
-X-Message-ID-Hash: LZHNVYHWS3YTHHB6STQ7QYBNCRWJ2TRA
+Message-ID-Hash: 2DPBY3TH7IO5CIZA5HZ2FIGLTBNOHJOO
+X-Message-ID-Hash: 2DPBY3TH7IO5CIZA5HZ2FIGLTBNOHJOO
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Reading/Write registers - Timeout
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LZHNVYHWS3YTHHB6STQ7QYBNCRWJ2TRA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2DPBY3TH7IO5CIZA5HZ2FIGLTBNOHJOO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4299169787304993961=="
+Content-Type: multipart/mixed; boundary="===============0100737233246607075=="
 
---===============4299169787304993961==
-Content-Type: multipart/related; boundary="000000000000278537062e945161"
+--===============0100737233246607075==
+Content-Type: multipart/related; boundary="000000000000db7245062e9461f5"
 
---000000000000278537062e945161
-Content-Type: multipart/alternative; boundary="000000000000278536062e945160"
+--000000000000db7245062e9461f5
+Content-Type: multipart/alternative; boundary="000000000000db7244062e9461f4"
 
---000000000000278536062e945160
+--000000000000db7244062e9461f4
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Marino,
-
-I can't tell for sure from your backtrace, but you're stuck here, right:
-https://github.com/EttusResearch/uhd/blob/master/host/lib/rfnoc/ctrlport_en=
-dpoint.cpp#L464
-?
-
-At first glance, I think we might have flipped the logic. Can you remove
-the 'not' statement from that line, and try again? We should be throwing an
-exception if std::cv_status::timeout is returned, which happens if
-buff_not_full does not become true during the timeout.
+Sorry, scratch that. I was mixing up call signatures for wait_until().
 
 --M
 
+On Thu, Feb 20, 2025 at 4:13=E2=80=AFPM Martin Braun <martin.braun@ettus.co=
+m> wrote:
 
+> Hi Marino,
+>
+> I can't tell for sure from your backtrace, but you're stuck here, right:
+> https://github.com/EttusResearch/uhd/blob/master/host/lib/rfnoc/ctrlport_=
+endpoint.cpp#L464
+> ?
+>
+> At first glance, I think we might have flipped the logic. Can you remove
+> the 'not' statement from that line, and try again? We should be throwing =
+an
+> exception if std::cv_status::timeout is returned, which happens if
+> buff_not_full does not become true during the timeout.
+>
+> --M
+>
+>
+>
+> On Wed, Feb 19, 2025 at 7:53=E2=80=AFPM <cyberphox@gmail.com> wrote:
+>
+>> Hi Martin,
+>>
+>> My setup got stuck and I have managed to use gdb to get a backtrace to
+>> find where I am getting stuck. We are not sending timed commands for the
+>> register writes/reads (the optional arguments are default) as mentioned =
+in
+>> the forum thread. No timeout exceptions are seen either.
+>>
+>> If we are stuck here, then our other thread is waiting causing further
+>> issues. :(
+>>
+>> Note: I have not changed any of the above items just yet.
+>>
+>>
+>> Thank you very much for your help
+>>
+>> Marino
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
 
-On Wed, Feb 19, 2025 at 7:53=E2=80=AFPM <cyberphox@gmail.com> wrote:
-
-> Hi Martin,
->
-> My setup got stuck and I have managed to use gdb to get a backtrace to
-> find where I am getting stuck. We are not sending timed commands for the
-> register writes/reads (the optional arguments are default) as mentioned i=
-n
-> the forum thread. No timeout exceptions are seen either.
->
-> If we are stuck here, then our other thread is waiting causing further
-> issues. :(
->
-> Note: I have not changed any of the above items just yet.
->
->
-> Thank you very much for your help
->
-> Marino
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000278536062e945160
+--000000000000db7244062e9461f4
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Marino,</div><div><br></div><div>I can&#39;t tell =
-for sure from your backtrace, but you&#39;re stuck here, right: <a href=3D"=
-https://github.com/EttusResearch/uhd/blob/master/host/lib/rfnoc/ctrlport_en=
-dpoint.cpp#L464">https://github.com/EttusResearch/uhd/blob/master/host/lib/=
-rfnoc/ctrlport_endpoint.cpp#L464</a> ?</div><div><br></div><div>At first gl=
-ance, I think we might have flipped the logic. Can you remove the &#39;not&=
-#39; statement from that line, and try again? We should be throwing an exce=
-ption if std::cv_status::timeout is returned, which happens if buff_not_ful=
-l does not become true during the timeout.</div><div><br></div><div>--M</di=
-v><div><br></div><div><br></div></div><br><div class=3D"gmail_quote gmail_q=
-uote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 19, 2025 =
-at 7:53=E2=80=AFPM &lt;<a href=3D"mailto:cyberphox@gmail.com">cyberphox@gma=
-il.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex"><p>Hi Martin,</p><p>My setup got stuck and I have managed to use gdb =
-to get a backtrace to find where I am getting stuck. We are not sending tim=
-ed commands for the register writes/reads (the optional arguments are defau=
-lt) as mentioned in the forum thread. No timeout exceptions are seen either=
-.  </p><p>If we are stuck here, then our other thread is waiting causing fu=
-rther issues. :( </p><p>Note: I have not changed any of the above items jus=
-t yet. </p><p><img src=3D"cid:ii_19523e28a62b2878c771" alt=3D""><br></p><p>=
-Thank you very much for your help</p><p>Marino</p><p><br></p>
+<div dir=3D"ltr"><div>Sorry, scratch that. I was mixing up call signatures =
+for wait_until().</div><div><br></div><div>--M</div></div><br><div class=3D=
+"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Thu, Feb 20, 2025 at 4:13=E2=80=AFPM Martin Braun &lt;<a href=3D"mailto:m=
+artin.braun@ettus.com">martin.braun@ettus.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Marin=
+o,</div><div><br></div><div>I can&#39;t tell for sure from your backtrace, =
+but you&#39;re stuck here, right: <a href=3D"https://github.com/EttusResear=
+ch/uhd/blob/master/host/lib/rfnoc/ctrlport_endpoint.cpp#L464" target=3D"_bl=
+ank">https://github.com/EttusResearch/uhd/blob/master/host/lib/rfnoc/ctrlpo=
+rt_endpoint.cpp#L464</a> ?</div><div><br></div><div>At first glance, I thin=
+k we might have flipped the logic. Can you remove the &#39;not&#39; stateme=
+nt from that line, and try again? We should be throwing an exception if std=
+::cv_status::timeout is returned, which happens if buff_not_full does not b=
+ecome true during the timeout.</div><div><br></div><div>--M</div><div><br><=
+/div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Wed, Feb 19, 2025 at 7:53=E2=80=AFPM &lt;<a href=3D"=
+mailto:cyberphox@gmail.com" target=3D"_blank">cyberphox@gmail.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hi Mart=
+in,</p><p>My setup got stuck and I have managed to use gdb to get a backtra=
+ce to find where I am getting stuck. We are not sending timed commands for =
+the register writes/reads (the optional arguments are default) as mentioned=
+ in the forum thread. No timeout exceptions are seen either.  </p><p>If we =
+are stuck here, then our other thread is waiting causing further issues. :(=
+ </p><p>Note: I have not changed any of the above items just yet. </p><p><i=
+mg src=3D"cid:ii_19523e28a62b2878c771" alt=3D""><br></p><p>Thank you very m=
+uch for your help</p><p>Marino</p><p><br></p>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---000000000000278536062e945160--
+--000000000000db7244062e9461f4--
 
---000000000000278537062e945161
+--000000000000db7245062e9461f5
 Content-Type: image/png; name=embed0
 Content-Disposition: inline; filename=embed0
 Content-Transfer-Encoding: base64
@@ -2676,9 +2693,9 @@ iIiIiIiIiIiWjCE0IiIiIiIiIiIiIiIiIiIiIiIiWjKG0IiIiIiIiIiIiIiIiIiIiIiIiGjJGEIj
 IiIiIiIiIiIiIiIiIiIiIiKiJWMIjYiIiIiIiIiIiIiIiIiIiIiIiJaMITQiIiIiIiIiIiIiIiIi
 IiIiIiJaMobQiIiIiIiIiIiIiIiIiIiIiIiIaMkYQiMiIiIiIiIiIiIiIiIiIiIiIqIlcx599FE8
 /vjjeOKJJ3Dq1KliMxEREREREREREREREREREREREdFCgP8fLswwmX6vYAYAAAAASUVORK5CYII=
---000000000000278537062e945161--
+--000000000000db7245062e9461f5--
 
---===============4299169787304993961==
+--===============0100737233246607075==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2688,4 +2705,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4299169787304993961==--
+--===============0100737233246607075==--
