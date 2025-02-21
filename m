@@ -2,227 +2,192 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12680A3E3BA
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 19:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 067C1A3EB84
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Feb 2025 04:49:41 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EF737385CF3
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 13:23:30 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id B1BDA385BCA
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2025 22:49:39 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1740075810; bh=3WoXGmB4tEO2WWQ0TEwJCMtryiQ9JIGb2gKljdVIn+Y=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=c6qnqWHhbelEfPaTgj47MjkkHpri+V/gD3EFdXRtjNUvHKTPr1w3ZnJMUFVK/34Ay
-	 YkKJsSHrjVN66lo2lYk9Wp4dtUtVq8rqsHOlcOdOVlGcx4qq9vsJNQUi3bB2uYe+PG
-	 KXmKVTnXzIA6BPuutMXH4sXOfJ5funfxAqiZKFdaDMl2qeI/HM1fgcgPv1Sm5oqxsw
-	 hGFkBW1QpI8hpiHS2jRbElmGIRx+BloqU68bt8Z+ym7dHqz9tUEKD8G3JnEI6+RPqE
-	 6OlK9t3xKUCTP7+FqpxTRdjWeRVK+sCOSBIK6bkmjLafrgEFc9XanwYbm4UiRcyMJW
-	 Yb3uGEiKAp4eg==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DDF18385CF3
-	for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 13:23:27 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1740075807; bh=dyJHzz9oluiAYoPnyzHa5hjm3sRO8qbXwq8YfT6A5BI=;
-	h=Date:To:From:Subject:From;
-	b=06DSpWq/KVvBhkkeLluTIZU+BMPEWBh6Z3RrncVdFFarWmpUTJLRWVhJBgX6sDc4W
-	 EJwgEStdcdrCsxRX9OSAbHjaY02MLQvaduk0naqmqLMzXV3UV6rei390qpDGPeT8Kn
-	 fmLJUBGuW5Txb6ghqNQMn8uqsjxGvmdeuBGSGKoUc6h204k8PslNQnIQ14WU7M9Dxi
-	 hxFWMZPPhVQkQCpZUG2VB9TuMqsIA23U41qPY4VVfE2zhdVt5yzLaUmxqARKGOo4r4
-	 WcXqruinRBVfCa8f5Pjqhui0V5zoh9FknQi64e2eM9yHCWVQMdMlgkS+9TrPBCKCEq
-	 gfKcuqiJeuamw==
-Date: Thu, 20 Feb 2025 18:23:27 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <4DX9fF05uFXfv9D4isyGGttKgzbLYVWmoPuskyxWVY@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	t=1740109779; bh=9mup44rcDN5KMlHHIwF6cUNw+rj8VXowiJ4v1jIDFMc=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=oJ9y+LGi064PbJQw+D81YunxZiq8vHhoxdLa8WgnjmlkPq9gx/odykjAiiCvSRD6+
+	 TDipU+hFETlZCS5D0DkRUHdAVpMSvpim5kWd3MuQj7rx/8KsGzvKE4RAILc55Z07rg
+	 8mMuTgoCVYKt9EaLyq5/iwVk4QL82Bm7EDt0PMrZX0T5wZpbp6Y+Z7vZd/OJUFrVgv
+	 26DnK9yj0xjbWXcxZHgQ2Y8J4HwYIVimqWeSMfdfbKD92QwIa69HjSyRk1yp5HcJWT
+	 ay1/Dm2TC8RzclNRXJof4aqUY+SGzAYKTsZ9zEsfJm1nlfQZOwKRXcPNE5FLT+SDC6
+	 rIqlNAR/DLNuQ==
+Received: from za-smtp-delivery-132.mimecast.co.za (za-smtp-delivery-132.mimecast.co.za [41.74.201.132])
+	by mm2.emwd.com (Postfix) with ESMTPS id BAB18385BCA
+	for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2025 22:49:33 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="Z1+DC0Ti";
+	dkim-atps=neutral
+Received: from mail.vastech.co.za (mail.vastech.co.za [41.193.221.138]) by
+ relay.mimecast.com with ESMTP id za-mta-93-jTsaMIURNt6hZi_yRyw1Wg-1; Fri,
+ 21 Feb 2025 05:49:28 +0200
+X-MC-Unique: jTsaMIURNt6hZi_yRyw1Wg-1
+X-Mimecast-MFC-AGG-ID: jTsaMIURNt6hZi_yRyw1Wg_1740109767
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
+	bh=jI26Feef4yk2pcXaNBZsbwFRRso00EKecBwwYt3axHg=;
+	b=Z1+DC0TifypTeQ4rEk2c7F2SnAJdM0fpquiKHLsNVDEpiVkformMdYHnzJak7WlXEDcgQ5J4hcOAO+f6xIDoNt1MOJBOFFCiETgniPAXCaZ9+5tR0SBP8Rypn8XzvAyDF+45QF2L8F0ygpvgaLdW4vlUKlz0p8i5hqR9QgYS5FE=
+Received: from exchange3.vastech.co.za (Unknown [172.30.81.31])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Fri, 21 Feb 2025 05:49:22 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ exchange3.vastech.co.za (172.30.81.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 21 Feb 2025 05:49:22 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Fri, 21
+ Feb 2025 05:49:14 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: register custom rfnoc block names
+Thread-Index: AduEEnrjBmU6W07DTyePTm4DUqv42g==
+Date: Fri, 21 Feb 2025 03:49:13 +0000
+Message-ID: <8637a4f585a741779e8e57b01ac12f75@vastech.co.za>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.3]
 MIME-Version: 1.0
-Message-ID-Hash: RH74JZMCSK7DX4W4QRAMJIJMOCOTTCKA
-X-Message-ID-Hash: RH74JZMCSK7DX4W4QRAMJIJMOCOTTCKA
-X-MailFrom: philip.tustin@mediatek.com
+Message-ID-Hash: D5GEOIJCEHTLQRQFI4HIKHDEJCWEXTK5
+X-Message-ID-Hash: D5GEOIJCEHTLQRQFI4HIKHDEJCWEXTK5
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Problem installing the PyPi mprpc python package (0.1.17)
+Subject: [USRP-users] register custom rfnoc block names
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RH74JZMCSK7DX4W4QRAMJIJMOCOTTCKA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/D5GEOIJCEHTLQRQFI4HIKHDEJCWEXTK5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "philip.tustin--- via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: philip.tustin@mediatek.com
-Content-Type: multipart/mixed; boundary="===============2007427232327680003=="
+Content-Type: multipart/mixed; boundary="===============1244757096569595559=="
 
-This is a multi-part message in MIME format.
+--===============1244757096569595559==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=SHA1; boundary="----=_NextPart_000_008D_01DB8424.55B27750"
 
---===============2007427232327680003==
-Content-Type: multipart/alternative;
- boundary="b1_4DX9fF05uFXfv9D4isyGGttKgzbLYVWmoPuskyxWVY"
+------=_NextPart_000_008D_01DB8424.55B27750
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-This is a multi-part message in MIME format.
+Hi Everyone,
 
---b1_4DX9fF05uFXfv9D4isyGGttKgzbLYVWmoPuskyxWVY
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I think this is my last hurdle.
 
-Hello,
+I have a C++ application using my custom rfnoc block drivers, but the
+"LD_PRELOAD" variable does not help when resolving the block names in the
+image.
 
-I am having problems installing the mprpc package (pre-requisite for buil=
-ding the UHD driver).\
-I am trying to install it because it is imported in some of the python fi=
-les I am using.
+I do see my rfnoc driver shared library being linked to the app binary.
 
-Please take a look through my notes below.
+Its not clear how to do this.
 
-In a nut shell, the build is using the header files in **=E2=80=98/usr/in=
-clude/python3.10=E2=80=99** when I need it to use the header files in **=E2=
-=80=98\~/.pyenv/versions/3.5.10/include/python3.5m=E2=80=98**.
+In the docs I see the "UHD_REGISTER_EXTENSION" macro which has left me
+wondering if this is perhaps the answer.
 
-Q. How do you suggest I install mprpc ?\
-\
-Thanks in advance,
+If this is correct is there an example I could follow? (I don't see this
+macro used in the UHD repo, and it doesn't appear in my web search results.)
 
-\-Phil
+Kind regards, Kevin
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
-My linux box is running Ubuntu 22.04.5 LTS\
-Python 3.10.5 is the base python version.\
-\
-When I build with 3.10.5 (pip install mprpc), I see the following error.
+------=_NextPart_000_008D_01DB8424.55B27750
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
-*building 'mprpc.client' extension*
+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
 
-      *creating build/temp.linux-x86_64-3.10*
+------=_NextPart_000_008D_01DB8424.55B27750--
 
-      *creating build/temp.linux-x86_64-3.10/mprpc*
-
-      *x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g=
- -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=3Dformat-=
-security -g -fwrapv -O2 -Wdate-time -D_FORTIFY_SOURCE=3D2 -fPIC **-I/usr/=
-include/python3.10** -c mprpc/client.c -o build/temp.linux-x86_64-3.10/mp=
-rpc/client.o*
-
-      *mprpc/client.c: In function =E2=80=98__Pyx_modinit_type_init_code=E2=
-=80=99:*
-
-      *mprpc/client.c:6372:38: error: =E2=80=98PyTypeObject=E2=80=99 {aka=
- =E2=80=98struct _typeobject=E2=80=99} has no member named =E2=80=98tp_pr=
-int=E2=80=99*
-
-       *6372 |   __pyx_type_5mprpc_6client_RPCClient.tp_print =3D 0;*\
-\
-The problem seems likely to be related to the compilation include path **=
-*-I/usr/include/python3.10***
-
-I used pyenv to install 3.5.10 (python 3.5 seems to be the oldest version=
- supported by mprpc) and have used both =E2=80=98venv=E2=80=99 and the =E2=
-=80=98virtualenv=E2=80=99 pyenv plug-in to build using python 3.5.10.
-
-I see the same build error and the same include path (***-I/usr/include/p=
-ython3.10***) when building with 3.5.10.\
-\
-I tried to add the include path for the 3.5.10 header files by setting CF=
-LAGS as follows before compiling.\
-\
-**export CFLAGS=3D"-I\~/.pyenv/versions/3.5.10/include/python3.5m"**
-
-\
-Even though I could now see this path added to the compilation command-li=
-ne, I still see the same build error.
-
-The command-line now looks like this.
-
-*building 'mprpc.client' extension*
-
-      *creating build/temp.linux-x86_64-3.10*
-
-      *creating build/temp.linux-x86_64-3.10/mprpc*
-
-      *x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g=
- -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=3Dformat-=
-security -g -fwrapv -O2 **-I\~/.pyenv/versions/3.5.10/include/python3.5m*=
-* -Wdate-time -D_FORTIFY_SOURCE=3D2 -fPIC **-I/usr/include/python3.10** -=
-c mprpc/client.c -o build/temp.linux-x86_64-3.10/mprpc/client.o*
-
-      *mprpc/client.c: In function =E2=80=98__Pyx_modinit_type_init_code=E2=
-=80=99:*
-
-      *mprpc/client.c:6372:38: error: =E2=80=98PyTypeObject=E2=80=99 {aka=
- =E2=80=98struct _typeobject=E2=80=99} has no member named =E2=80=98tp_pr=
-int=E2=80=99*
-
-       *6372 |   __pyx_type_5mprpc_6client_RPCClient.tp_print =3D 0;*\
-\
-A few lines later in the build I see the following lines which seems to i=
-ndicate that the mprpc build is STILL using =E2=80=98/usr/library/python3=
-.10=E2=80=99
-
-*In file included from /usr/include/python3.10/unicodeobject.h:1046,*
-
-                       *from /usr/include/python3.10/Python.h:83,*
-
---b1_4DX9fF05uFXfv9D4isyGGttKgzbLYVWmoPuskyxWVY
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello,</p><p>I am having problems installing the mprpc package (pre-requ=
-isite for building the UHD driver).<br>I am trying to install it because it=
- is imported in some of the python files I am using.</p><p>Please take a lo=
-ok through my notes below.</p><p>In a nut shell, the build is using the hea=
-der files in <strong>=E2=80=98/usr/include/python3.10=E2=80=99</strong> whe=
-n I need it to use the header files in <strong>=E2=80=98~/.pyenv/versions/3=
-.5.10/include/python3.5m=E2=80=98</strong>.<br><br></p><p>Q. How do you sug=
-gest I install mprpc ?<br><br>Thanks in advance,</p><p>-Phil</p><p>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</p><p>My linux box i=
-s running Ubuntu 22.04.5 LTS<br>Python 3.10.5 is the base python version.<b=
-r><br>When I build with 3.10.5 (pip install mprpc), I see the following err=
-or.<br><br></p><p><em>building 'mprpc.client' extension</em></p><p><em>    =
-  creating build/temp.linux-x86_64-3.10</em></p><p><em>      creating build=
-/temp.linux-x86_64-3.10/mprpc</em></p><p><em>      x86_64-linux-gnu-gcc -Wn=
-o-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-pro=
-tector-strong -Wformat -Werror=3Dformat-security -g -fwrapv -O2 -Wdate-time=
- -D_FORTIFY_SOURCE=3D2 -fPIC <strong>-I/usr/include/python3.10</strong> -c =
-mprpc/client.c -o build/temp.linux-x86_64-3.10/mprpc/client.o</em></p><p><e=
-m>      mprpc/client.c: In function =E2=80=98__Pyx_modinit_type_init_code=
-=E2=80=99:</em></p><p><em>      mprpc/client.c:6372:38: error: =E2=80=98PyT=
-ypeObject=E2=80=99 {aka =E2=80=98struct _typeobject=E2=80=99} has no member=
- named =E2=80=98tp_print=E2=80=99</em></p><p><em>       6372 |   __pyx_type=
-_5mprpc_6client_RPCClient.tp_print =3D 0;</em><br><br>The problem seems lik=
-ely to be related to the compilation include path <em><strong>-I/usr/includ=
-e/python3.10</strong></em><br><br></p><p>I used pyenv to install 3.5.10 (py=
-thon 3.5 seems to be the oldest version supported by mprpc) and have used b=
-oth =E2=80=98venv=E2=80=99 and the =E2=80=98virtualenv=E2=80=99 pyenv plug-=
-in to build using python 3.5.10.<br><br></p><p>I see the same build error a=
-nd the same include path (<em><strong>-I/usr/include/python3.10</strong></e=
-m>) when building with 3.5.10.<br><br>I tried to add the include path for t=
-he 3.5.10 header files by setting CFLAGS as follows before compiling.<br><b=
-r><strong>export CFLAGS=3D"-I~/.pyenv/versions/3.5.10/include/python3.5m"</=
-strong></p><p><br>Even though I could now see this path added to the compil=
-ation command-line, I still see the same build error.</p><p>The command-lin=
-e now looks like this.<br><br></p><p><em>building 'mprpc.client' extension<=
-/em></p><p><em>      creating build/temp.linux-x86_64-3.10</em></p><p><em> =
-     creating build/temp.linux-x86_64-3.10/mprpc</em></p><p><em>      x86_6=
-4-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -=
-Wall -g -fstack-protector-strong -Wformat -Werror=3Dformat-security -g -fwr=
-apv -O2 <strong>-I~/.pyenv/versions/3.5.10/include/python3.5m</strong> -Wda=
-te-time -D_FORTIFY_SOURCE=3D2 -fPIC <strong>-I/usr/include/python3.10</stro=
-ng> -c mprpc/client.c -o build/temp.linux-x86_64-3.10/mprpc/client.o</em></=
-p><p><em>      mprpc/client.c: In function =E2=80=98__Pyx_modinit_type_init=
-_code=E2=80=99:</em></p><p><em>      mprpc/client.c:6372:38: error: =
-=E2=80=98PyTypeObject=E2=80=99 {aka =E2=80=98struct _typeobject=E2=80=99} h=
-as no member named =E2=80=98tp_print=E2=80=99</em></p><p><em>       6372 | =
-  __pyx_type_5mprpc_6client_RPCClient.tp_print =3D 0;<br></em><br>A few lin=
-es later in the build I see the following lines which seems to indicate tha=
-t the mprpc build is STILL using =E2=80=98/usr/library/python3.10=E2=80=
-=99</p><p><em>In file included from /usr/include/python3.10/unicodeobject.h=
-:1046,</em></p><p><em>                       from /usr/include/python3.10/P=
-ython.h:83,<br><br></em><br></p>
-
---b1_4DX9fF05uFXfv9D4isyGGttKgzbLYVWmoPuskyxWVY--
-
---===============2007427232327680003==
+--===============1244757096569595559==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -232,4 +197,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2007427232327680003==--
+--===============1244757096569595559==--
