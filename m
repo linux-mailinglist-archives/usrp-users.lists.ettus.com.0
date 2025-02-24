@@ -2,329 +2,176 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA7AA415B7
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2025 07:58:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A31FA417B6
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2025 09:46:04 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B06C5385EB7
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2025 01:58:26 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E78C038617D
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2025 03:46:02 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1740380306; bh=LoE6jkN+VvBOP5GEaLbif04uOUOSN/dU3i/bCD9wx/c=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=tcBbfWFa0B4/TnnNVWUMzuGONksl5Smr4sbdeOGqVoVKthBxE64h+3wtoZBIgKu6N
-	 1XTF8znQc51doSwXAT4bjvo0TjcGQVvYC3P/WKZ4ZxgN1n5+cunueK+IJzEx47CMXR
-	 aNqIxt2aQsH8Mk12Nm+xpooYDj1IW8ZXHoyWmC/QfK4cVdNETiIDYZ5Mo7lQSFoOF9
-	 5wFU0iqOWPd4R0FjL6y9c7pwU4dFKRgSNbcHBAExlEHDmBqUFp/FESX2hwAqpHLQ5q
-	 TkkvG25pED6c1B4zpLTIfxMdeSWl2rGYb2ztuFJC7W3mE6Rtscf53ckrLJm/SLj+8l
-	 3ONT4HkDDXaBQ==
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 628EA385E75
-	for <usrp-users@lists.ettus.com>; Mon, 24 Feb 2025 01:57:28 -0500 (EST)
+	t=1740386762; bh=d56KDvPYcC4PO3O9EqvHQ6NZU8TRX5VaTntogO5E4F4=;
+	h=Date:From:To:In-Reply-To:References:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=IeOHtjupePuvmVpdeXA0xBUZR/uRh1Q6iMj3tu/2TaNKwAr3WW9bC/9o5gX1dZbtV
+	 mbyjGDjn7FGEmLWKgI3wSFMDCpPcdO4w3YKvCc082O7+mcNgN/t0v+dnr2tI/w9yvg
+	 ovT67t697Ad9Rk2rUb7FCbSshqo9D/PGcSAgyQKq8KRGKxNRWkOpFQqLWWnI44km8P
+	 mIQLo9vdKp+EU7sI4KtysruWLKKDDz5YXBKbmEf7TU5LzIYPltc10fz8UDizPnQYu3
+	 8EFcjjINdwHYlxuXNSCn6+0qYtYh9mnbbsT2aTDjMD2Fbcec1cpnhlWKsK9efdmSYl
+	 n5dQNVWleh0bw==
+Received: from omta035.useast.a.cloudfilter.net (omta035.useast.a.cloudfilter.net [44.202.169.34])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3EA3C3860A0
+	for <usrp-users@lists.ettus.com>; Mon, 24 Feb 2025 03:45:08 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="eAITSQOf";
+	dkim=pass (2048-bit key; unprotected) header.d=atindriya.co.in header.i=@atindriya.co.in header.b="qfK8iLUa";
 	dkim-atps=neutral
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e0452f859cso6241768a12.2
-        for <usrp-users@lists.ettus.com>; Sun, 23 Feb 2025 22:57:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1740380247; x=1740985047; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZoLWrKMDdykkQQYCC+HzTWljxm0GK1nc/xaOd362BUQ=;
-        b=eAITSQOfk5izYePUkDUZ9PGpJhJMzP2aOVPomcB4P62kVm89vhBp8SFKIMglicaX1+
-         hTvswfOT/ciJYPdxD1aszxYEK5btP/McSDNZsAtIoozSDGRvx6Ewyxkr8ENBK/mgt38S
-         Z2P+w+QC338EUZ77jx2mfrJUDCt7/xyVPoqq5HQ2DiV2KFnEZc11O4U1pq1WODWIp0FC
-         hUw9nfsNbI91JR2HyAaq7FMkwhsxs88AZYyujEU5tKHV0UZ2hpKWuNGCj1t2pszVNc5+
-         9GAD6OkiDXjVv+V8/KwXqFF8qYQ/ofq+9A0peZk3E1ks850e4AxnVyqVydxSN/EAw9Mg
-         riTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740380247; x=1740985047;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZoLWrKMDdykkQQYCC+HzTWljxm0GK1nc/xaOd362BUQ=;
-        b=F7tgHVUBT+yWEewG8wqDe4AqBvQW15ZG1ebXSZUosHtHmVXh5LnqUU/T/LieFzs/wz
-         mfhzG1iVoXJApq+Sptl2F5bSqIrjuHJG8Ny3+aiIKZWu5nBOyFAbFS3Lonec+gWc5w05
-         kcNU3YKM8VTK+Yb392ZKvdKrJkhfbID45BBymVE2u77XfJu533UTWMPDQsUDXATK3Wc5
-         EuiclZH6scDrPHCB1qrQXO02eajbdZeS+SKnOAReg2wE/jTIVXbb0n4HJVuoBpthsP6d
-         LQ1E3ypfgoCygz8I/2QM7GpJWmbR+91epn8TfRSz/KlQvqJzJYBoofbCDHZg7mpnvRId
-         GesQ==
-X-Gm-Message-State: AOJu0YwaMnV1R9PxJxbMqGuLocdwBu4o6r2OrcOB61mTT1SrMZjnq2sp
-	1FmimN0NbeZkbTwTfvUYyl1Dd0KUh6dH8ULZiNexGfy6VgNn8hNFa7VBuwPe6mak4zU4Vo92FRs
-	eLmhT96ZFFC43TN2jVGvW7uaPoVHyg4vxrxioRTEo9umioo6nGuXRvw==
-X-Gm-Gg: ASbGncubMH1aaDjz0a5fcLTpySCWil520eHogBauRsCP38smrkd23oV1KiD6tdtmLqY
-	d1oCF1zmzTpH1FIZfg9Sb0NnZlJn5WgUuiinqmOFxY7tNewO8ynvul+GDlYI9SZtU4LqoO8riGi
-	4JmSxRiAUFHH/B43y4mCp/I+gKpkVeC21XWC2HLw==
-X-Google-Smtp-Source: AGHT+IFKFmwochc7oQrsJvD2FB4gHHMV4hrMyd1SMX/+PgAHYaNAwcy/k3CDg7dr7DwGsxTIVWmFUl1WsXdfPy1EiT4=
-X-Received: by 2002:a05:6402:e02:b0:5d0:8197:7ab3 with SMTP id
- 4fb4d7f45d1cf-5e0b70b5fc7mr11780248a12.3.1740380246674; Sun, 23 Feb 2025
- 22:57:26 -0800 (PST)
+Received: from eig-obgw-5006a.ext.cloudfilter.net ([10.0.29.179])
+	by cmsmtp with ESMTPS
+	id mEhBtYHHkzZPamU5MtB4TA; Mon, 24 Feb 2025 08:45:08 +0000
+Received: from vps.tictalk.in ([119.18.48.61])
+	by cmsmtp with ESMTPS
+	id mU5JtPfic8j7emU5Ltg7KS; Mon, 24 Feb 2025 08:45:08 +0000
+X-Authority-Analysis: v=2.4 cv=VPzbncPX c=1 sm=1 tr=0 ts=67bc3194
+ a=bPTgM9xNt4Vpxv/3Ws5fWw==:117 a=bPTgM9xNt4Vpxv/3Ws5fWw==:17
+ a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=MKtGQD3n3ToA:10 a=1oJP67jkp3AA:10
+ a=T2h4t0Lz3GQA:10 a=j0z1oGNQ4lYA:10 a=vnREMb7VAAAA:8 a=etiEgX_XAAAA:8
+ a=kVywuAJEAAAA:8 a=bcOmaSttzQ9LiwaEh-4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=-1zhkmE011UA:10 a=MLbIUA-Bjd6y1alW9qBG:22 a=26tcdy2dAj9m90MLnbb2:22
+ a=IOVrdXkZsZi_Xkr5h5Fc:22 a=iTWC1DL0K-q19goYTGrE:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=atindriya.co.in; s=default; h=Content-Transfer-Encoding:Content-Type:
+	Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:MIME-Version:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Dx3loyFFloXztnRZGwowKeHwZSPfsFRymfFkP4x7M+M=; b=qfK8iLUaEW01MO9WEXmQxrV9l1
+	Dhmzd46AsAFLhv1MmBdB6fF7PUoCqCwdcfPIJ1pAFgRfGN3iOQoHYBtdQVNwakgmv9foGpg0HVto3
+	90I6Mt92d82KX0aZSQAteUVx4o+uiaxihaapnpCHs6tn+iOj1JL1oG1ZzX3hQNmRD4IRYT6n/Ub8k
+	dUjAQzu8JTFKJg3wxC2RPHlSt1uxnhpNJwHG93PYVyT7Gyu7WGjUaKG+T2QFUnV9zimikXnYAEgrd
+	BXk8S0pVSLvfYLbiMzFtWAer9sgA+SWW5kRtCSVJtyrY6EKPh8PBha9cuoIsSdbc/RRnHaFIrrFnT
+	DsHwDoXw==;
+Received: from [::1] (port=50350 helo=server.atindriya.co.in)
+	by server.atindriya.co.in with esmtpa (Exim 4.96.2)
+	(envelope-from <kavinraj@atindriya.co.in>)
+	id 1tmU5H-0003c1-0J;
+	Mon, 24 Feb 2025 03:45:03 -0500
 MIME-Version: 1.0
+Date: Mon, 24 Feb 2025 03:45:03 -0500
+From: kavinraj@atindriya.co.in
+To: Martin Braun <martin.braun@ettus.com>
+In-Reply-To: <CAFOi1A6cNimH2QuNARK_Ls6bss_cWj1Mty0--WHDet69fO4xiA@mail.gmail.com>
 References: <4bf5c92ac30f933582427d87157a88c1@atindriya.co.in>
- <756c5135-0f06-4085-8bbb-ac5793b96e21@gmail.com> <1936f8facaa71cf7a2c6312aacbcdb42@atindriya.co.in>
- <9458cc31-7a51-4259-9bd3-9352749b6964@gmail.com> <1dc1550af10e8946b5157262cb57120b@atindriya.co.in>
- <5bf8be31-6416-4f54-b93e-b5fb021fe01e@gmail.com> <594aa31a69b35f8e23be755e5075d740@atindriya.co.in>
-In-Reply-To: <594aa31a69b35f8e23be755e5075d740@atindriya.co.in>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Mon, 24 Feb 2025 07:57:15 +0100
-X-Gm-Features: AWEUYZnHGmuBEsakGNPmKoDl9NINsXytucPNh3pEXgUOhqPSZq83Dhro-AIN36M
-Message-ID: <CAFOi1A6cNimH2QuNARK_Ls6bss_cWj1Mty0--WHDet69fO4xiA@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: GTTUC2DRRVY4XOERAVC5OVJ55OWI6VPF
-X-Message-ID-Hash: GTTUC2DRRVY4XOERAVC5OVJ55OWI6VPF
-X-MailFrom: martin.braun@ettus.com
+ <756c5135-0f06-4085-8bbb-ac5793b96e21@gmail.com>
+ <1936f8facaa71cf7a2c6312aacbcdb42@atindriya.co.in>
+ <9458cc31-7a51-4259-9bd3-9352749b6964@gmail.com>
+ <1dc1550af10e8946b5157262cb57120b@atindriya.co.in>
+ <5bf8be31-6416-4f54-b93e-b5fb021fe01e@gmail.com>
+ <594aa31a69b35f8e23be755e5075d740@atindriya.co.in>
+ <CAFOi1A6cNimH2QuNARK_Ls6bss_cWj1Mty0--WHDet69fO4xiA@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.6.0
+Message-ID: <5503a163d7cf84d2043aa19a5d1e3c6b@atindriya.co.in>
+X-Sender: kavinraj@atindriya.co.in
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.atindriya.co.in
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - atindriya.co.in
+X-Get-Message-Sender-Via: server.atindriya.co.in: authenticated_id: kavinraj@atindriya.co.in
+X-Authenticated-Sender: server.atindriya.co.in: kavinraj@atindriya.co.in
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-CMAE-Envelope: MS4xfA85/F2/lzLxnb7Q6WX9nc6/3HtfirtpSM/O+anwC/zQfiFOq/v5oXM3kLLZKPw70IOTCIBVLgq+y3W8dghm/WeYOM+oJP31/nUIQltdqcc7wSnDn7nn
+ d0FO3mgbb55p1AniQlgGNtEfrjigkCb86VG4ENQJUGc7o3Q4kf6ib/i+aRXLDeqWGj1zeX1egMH9gI0jvI0UcNZMkoiC3ny3jVI=
+Message-ID-Hash: XJS4XVGWLHSYA6MT55IVDIA6DMSTLAAO
+X-Message-ID-Hash: XJS4XVGWLHSYA6MT55IVDIA6DMSTLAAO
+X-MailFrom: kavinraj@atindriya.co.in
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: REG : GPIO in USRP B205Mini
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GTTUC2DRRVY4XOERAVC5OVJ55OWI6VPF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XJS4XVGWLHSYA6MT55IVDIA6DMSTLAAO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8970891784695246613=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============8970891784695246613==
-Content-Type: multipart/alternative; boundary="00000000000060a475062eddda6b"
-
---00000000000060a475062eddda6b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-You don't specify a delay, you send one timed command to make the pin go
-HIGH, and another timed command to make it go LOW. And the two
-command-times should be "your delay" apart.
-
-This may help:
-https://www.youtube.com/watch?v=3DppD06ZETnek&t=3D75s&pp=3DygUPZ3Jjb24gdXNy=
-cCBncGlv
-
---M
-
-On Sat, Feb 22, 2025 at 12:12=E2=80=AFPM <kavinraj@atindriya.co.in> wrote:
-
-> Hi,
->    How to give the delay in uhd_usrp_set_command_time(uhd_usrp_handle
-> h,int64_t full_secs,double frac_secs,size_t mboard) function?
->
->
->
->
->
->
->
->
->
-> On 2025-02-22 00:10, Marcus D. Leech wrote:
-> > On 21/02/2025 23:56, kavinraj@atindriya.co.in wrote:
-> >> Hi,
-> >>   Can I use usleep(1) or any other technique is there for GPIO .
-> >>
-> > You might be able to use timed commands:
-> >
-> > https://files.ettus.com/manual/page_timedcmds.html#timedcmds_gen_cmds
-> >
-> > But since usleep() cannot guarantee any kind of maximum period that
-> > your process will go to sleep, it is an unreliable
-> >   method when precision and repeatable timing of ANY kind of "doing
-> > stuff with external hardware" is required.  Even if
-> >   usleep() at microsecond-scale intervals *WAS* reliable and
-> > repeatable, there's no guarantee about all the *other* things
-> >   that are required to launch a command over a latency-not-guaranteed
-> > bus to the external hardware, including kernel-layer
-> >   USB drivers, etc, etc.
-> >
-> >
-> >>
-> >> On 2025-02-21 23:37, Marcus D. Leech wrote:
-> >>> On 21/02/2025 23:22, kavinraj@atindriya.co.in wrote:
-> >>>> Hi,
-> >>>>  Thanks for answering.
-> >>>>  Can you explain me clearly?
-> >>>>
-> >>>> Thanks.
-> >>> I'd suggest, at a minimum, looking at the MAN page for usleep().
-> >>>
-> >>>
-> >>>>
-> >>>>
-> >>>>
-> >>>> On 2025-02-21 23:11, Marcus D. Leech wrote:
-> >>>>> On 21/02/2025 23:05, kavinraj@atindriya.co.in wrote:
-> >>>>>> Hi,
-> >>>>>>    In USRP B205mini-i I am able to access the GPIO Pin. I have to
-> >>>>>> create a Pulse in the GPIO pin. I want to make high the gpio pin
-> >>>>>> for 1microsecond and low for 999microseconds. How to achieve this
-> >>>>>> timings through coding. Can you give me the solution for this?
-> >>>>>>
-> >>>>>>    In coding after making high I am giving usleep(1) function but
-> >>>>>> when I am check in the oscilloscope it is showing 64microseconds.
-> >>>>>> How?
-> >>>>>>
-> >>>>>>
-> >>>>> Because an application-land program executing on an ordinary
-> >>>>> general-purpose operating system is unlikely to be able to
-> >>>>>   achieve repeatable, 1usec-scale timing.  This has nothing to do,
-> >>>>> per se, with UHD or USRPs, but rather, to understanding
-> >>>>>   how applications execute in a general-purpose operating system
-> >>>>> that isn't ruthlessly optimized for "hard" real-time tasks.
-> >>>>>
-> >>>>>
-> >>>>> _______________________________________________
-> >>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
-> >>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> >>> _______________________________________________
-> >>> USRP-users mailing list -- usrp-users@lists.ettus.com
-> >>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000060a475062eddda6b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>You don&#39;t specify a delay, you send one timed com=
-mand to make the pin go HIGH, and another timed command to make it go LOW. =
-And the two command-times should be &quot;your delay&quot; apart.</div><div=
-><br></div><div>This may help: <a href=3D"https://www.youtube.com/watch?v=
-=3DppD06ZETnek&amp;t=3D75s&amp;pp=3DygUPZ3Jjb24gdXNycCBncGlv">https://www.y=
-outube.com/watch?v=3DppD06ZETnek&amp;t=3D75s&amp;pp=3DygUPZ3Jjb24gdXNycCBnc=
-Glv</a></div><div><br></div><div>--M</div></div><br><div class=3D"gmail_quo=
-te gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Feb=
- 22, 2025 at 12:12=E2=80=AFPM &lt;<a href=3D"mailto:kavinraj@atindriya.co.i=
-n">kavinraj@atindriya.co.in</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex">Hi,<br>
-=C2=A0 =C2=A0How to give the delay in uhd_usrp_set_command_time(uhd_usrp_ha=
-ndle <br>
-h,int64_t full_secs,double frac_secs,size_t mboard) function?<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-On 2025-02-22 00:10, Marcus D. Leech wrote:<br>
-&gt; On 21/02/2025 23:56, <a href=3D"mailto:kavinraj@atindriya.co.in" targe=
-t=3D"_blank">kavinraj@atindriya.co.in</a> wrote:<br>
-&gt;&gt; Hi,<br>
-&gt;&gt; =C2=A0 Can I use usleep(1) or any other technique is there for GPI=
-O .<br>
-&gt;&gt; <br>
-&gt; You might be able to use timed commands:<br>
-&gt; <br>
-&gt; <a href=3D"https://files.ettus.com/manual/page_timedcmds.html#timedcmd=
-s_gen_cmds" rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com/ma=
-nual/page_timedcmds.html#timedcmds_gen_cmds</a><br>
-&gt; <br>
-&gt; But since usleep() cannot guarantee any kind of maximum period that <b=
-r>
-&gt; your process will go to sleep, it is an unreliable<br>
-&gt; =C2=A0 method when precision and repeatable timing of ANY kind of &quo=
-t;doing <br>
-&gt; stuff with external hardware&quot; is required.=C2=A0 Even if<br>
-&gt; =C2=A0 usleep() at microsecond-scale intervals *WAS* reliable and <br>
-&gt; repeatable, there&#39;s no guarantee about all the *other* things<br>
-&gt; =C2=A0 that are required to launch a command over a latency-not-guaran=
-teed <br>
-&gt; bus to the external hardware, including kernel-layer<br>
-&gt; =C2=A0 USB drivers, etc, etc.<br>
-&gt; <br>
-&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; On 2025-02-21 23:37, Marcus D. Leech wrote:<br>
-&gt;&gt;&gt; On 21/02/2025 23:22, <a href=3D"mailto:kavinraj@atindriya.co.i=
-n" target=3D"_blank">kavinraj@atindriya.co.in</a> wrote:<br>
-&gt;&gt;&gt;&gt; Hi,<br>
-&gt;&gt;&gt;&gt; =C2=A0Thanks for answering.<br>
-&gt;&gt;&gt;&gt; =C2=A0Can you explain me clearly?<br>
-&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt; Thanks.<br>
-&gt;&gt;&gt; I&#39;d suggest, at a minimum, looking at the MAN page for usl=
-eep().<br>
-&gt;&gt;&gt; <br>
-&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt; On 2025-02-21 23:11, Marcus D. Leech wrote:<br>
-&gt;&gt;&gt;&gt;&gt; On 21/02/2025 23:05, <a href=3D"mailto:kavinraj@atindr=
-iya.co.in" target=3D"_blank">kavinraj@atindriya.co.in</a> wrote:<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Hi,<br>
-&gt;&gt;&gt;&gt;&gt;&gt; =C2=A0=C2=A0 In USRP B205mini-i I am able to acces=
-s the GPIO Pin. I have to <br>
-&gt;&gt;&gt;&gt;&gt;&gt; create a Pulse in the GPIO pin. I want to make hig=
-h the gpio pin <br>
-&gt;&gt;&gt;&gt;&gt;&gt; for 1microsecond and low for 999microseconds. How =
-to achieve this <br>
-&gt;&gt;&gt;&gt;&gt;&gt; timings through coding. Can you give me the soluti=
-on for this?<br>
-&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt; =C2=A0=C2=A0 In coding after making high I am givi=
-ng usleep(1) function but <br>
-&gt;&gt;&gt;&gt;&gt;&gt; when I am check in the oscilloscope it is showing =
-64microseconds. <br>
-&gt;&gt;&gt;&gt;&gt;&gt; How?<br>
-&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; Because an application-land program executing on an or=
-dinary <br>
-&gt;&gt;&gt;&gt;&gt; general-purpose operating system is unlikely to be abl=
-e to<br>
-&gt;&gt;&gt;&gt;&gt; =C2=A0 achieve repeatable, 1usec-scale timing.=C2=A0 T=
-his has nothing to do, <br>
-&gt;&gt;&gt;&gt;&gt; per se, with UHD or USRPs, but rather, to understandin=
-g<br>
-&gt;&gt;&gt;&gt;&gt; =C2=A0 how applications execute in a general-purpose o=
-perating system <br>
-&gt;&gt;&gt;&gt;&gt; that isn&#39;t ruthlessly optimized for &quot;hard&quo=
-t; real-time tasks.<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-user=
-s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp=
--users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettu=
-s.com</a><br>
-&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-l=
-eave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a=
-><br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000060a475062eddda6b--
-
---===============8970891784695246613==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============8970891784695246613==--
+SGksDQogICBXaGF0IGlzIHRoZSBtaW5pbXVtIHRpbWUgdG8gdG9nZ2xlIHRoZSBHUElPIHBpbj8N
+CiAgIEkgd2FudCB0byBtYWtlIHRoZSBHUElPIHBpbiBoaWdoIGZvciAxbWljcm9zZWNvbmQgYW5k
+IGxvdyBmb3IgDQoxbWlsbGlzZWNvbmRzLiBIb3cgaSBhY2hpZXZlIHRoaXMgdGhyb3VnaCBjb2Rl
+Pw0KDQoNClRoYW5rcy4NCg0KDQoNCk9uIDIwMjUtMDItMjQgMDE6NTcsIE1hcnRpbiBCcmF1biB3
+cm90ZToNCj4gWW91IGRvbid0IHNwZWNpZnkgYSBkZWxheSwgeW91IHNlbmQgb25lIHRpbWVkIGNv
+bW1hbmQgdG8gbWFrZSB0aGUgcGluDQo+IGdvIEhJR0gsIGFuZCBhbm90aGVyIHRpbWVkIGNvbW1h
+bmQgdG8gbWFrZSBpdCBnbyBMT1cuIEFuZCB0aGUgdHdvDQo+IGNvbW1hbmQtdGltZXMgc2hvdWxk
+IGJlICJ5b3VyIGRlbGF5IiBhcGFydC4NCj4gDQo+IFRoaXMgbWF5IGhlbHA6DQo+IGh0dHBzOi8v
+d3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9cHBEMDZaRVRuZWsmdD03NXMmcHA9eWdVUFozSmpiMjRn
+ZFhOeWNDQm5jR2x2DQo+IA0KPiAtLU0NCj4gDQo+IE9uIFNhdCwgRmViIDIyLCAyMDI1IGF0IDEy
+OjEy4oCvUE0gPGthdmlucmFqQGF0aW5kcml5YS5jby5pbj4gd3JvdGU6DQo+IA0KPj4gSGksDQo+
+PiBIb3cgdG8gZ2l2ZSB0aGUgZGVsYXkgaW4NCj4+IHVoZF91c3JwX3NldF9jb21tYW5kX3RpbWUo
+dWhkX3VzcnBfaGFuZGxlDQo+PiBoLGludDY0X3QgZnVsbF9zZWNzLGRvdWJsZSBmcmFjX3NlY3Ms
+c2l6ZV90IG1ib2FyZCkgZnVuY3Rpb24/DQo+PiANCj4+IE9uIDIwMjUtMDItMjIgMDA6MTAsIE1h
+cmN1cyBELiBMZWVjaCB3cm90ZToNCj4+PiBPbiAyMS8wMi8yMDI1IDIzOjU2LCBrYXZpbnJhakBh
+dGluZHJpeWEuY28uaW4gd3JvdGU6DQo+Pj4+IEhpLA0KPj4+PiBDYW4gSSB1c2UgdXNsZWVwKDEp
+IG9yIGFueSBvdGhlciB0ZWNobmlxdWUgaXMgdGhlcmUgZm9yIEdQSU8gLg0KPj4+PiANCj4+PiBZ
+b3UgbWlnaHQgYmUgYWJsZSB0byB1c2UgdGltZWQgY29tbWFuZHM6DQo+Pj4gDQo+Pj4gDQo+PiAN
+Cj4gaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfdGltZWRjbWRzLmh0bWwjdGlt
+ZWRjbWRzX2dlbl9jbWRzDQo+Pj4gDQo+Pj4gQnV0IHNpbmNlIHVzbGVlcCgpIGNhbm5vdCBndWFy
+YW50ZWUgYW55IGtpbmQgb2YgbWF4aW11bSBwZXJpb2QNCj4+IHRoYXQNCj4+PiB5b3VyIHByb2Nl
+c3Mgd2lsbCBnbyB0byBzbGVlcCwgaXQgaXMgYW4gdW5yZWxpYWJsZQ0KPj4+IG1ldGhvZCB3aGVu
+IHByZWNpc2lvbiBhbmQgcmVwZWF0YWJsZSB0aW1pbmcgb2YgQU5ZIGtpbmQgb2YNCj4+ICJkb2lu
+Zw0KPj4+IHN0dWZmIHdpdGggZXh0ZXJuYWwgaGFyZHdhcmUiIGlzIHJlcXVpcmVkLiAgRXZlbiBp
+Zg0KPj4+IHVzbGVlcCgpIGF0IG1pY3Jvc2Vjb25kLXNjYWxlIGludGVydmFscyAqV0FTKiByZWxp
+YWJsZSBhbmQNCj4+PiByZXBlYXRhYmxlLCB0aGVyZSdzIG5vIGd1YXJhbnRlZSBhYm91dCBhbGwg
+dGhlICpvdGhlciogdGhpbmdzDQo+Pj4gdGhhdCBhcmUgcmVxdWlyZWQgdG8gbGF1bmNoIGEgY29t
+bWFuZCBvdmVyIGENCj4+IGxhdGVuY3ktbm90LWd1YXJhbnRlZWQNCj4+PiBidXMgdG8gdGhlIGV4
+dGVybmFsIGhhcmR3YXJlLCBpbmNsdWRpbmcga2VybmVsLWxheWVyDQo+Pj4gVVNCIGRyaXZlcnMs
+IGV0YywgZXRjLg0KPj4+IA0KPj4+IA0KPj4+PiANCj4+Pj4gT24gMjAyNS0wMi0yMSAyMzozNywg
+TWFyY3VzIEQuIExlZWNoIHdyb3RlOg0KPj4+Pj4gT24gMjEvMDIvMjAyNSAyMzoyMiwga2F2aW5y
+YWpAYXRpbmRyaXlhLmNvLmluIHdyb3RlOg0KPj4+Pj4+IEhpLA0KPj4+Pj4+IFRoYW5rcyBmb3Ig
+YW5zd2VyaW5nLg0KPj4+Pj4+IENhbiB5b3UgZXhwbGFpbiBtZSBjbGVhcmx5Pw0KPj4+Pj4+IA0K
+Pj4+Pj4+IFRoYW5rcy4NCj4+Pj4+IEknZCBzdWdnZXN0LCBhdCBhIG1pbmltdW0sIGxvb2tpbmcg
+YXQgdGhlIE1BTiBwYWdlIGZvciB1c2xlZXAoKS4NCj4+Pj4+IA0KPj4+Pj4gDQo+Pj4+Pj4gDQo+
+Pj4+Pj4gDQo+Pj4+Pj4gDQo+Pj4+Pj4gT24gMjAyNS0wMi0yMSAyMzoxMSwgTWFyY3VzIEQuIExl
+ZWNoIHdyb3RlOg0KPj4+Pj4+PiBPbiAyMS8wMi8yMDI1IDIzOjA1LCBrYXZpbnJhakBhdGluZHJp
+eWEuY28uaW4gd3JvdGU6DQo+Pj4+Pj4+PiBIaSwNCj4+Pj4+Pj4+IEluIFVTUlAgQjIwNW1pbmkt
+aSBJIGFtIGFibGUgdG8gYWNjZXNzIHRoZSBHUElPIFBpbi4gSQ0KPj4gaGF2ZSB0bw0KPj4+Pj4+
+Pj4gY3JlYXRlIGEgUHVsc2UgaW4gdGhlIEdQSU8gcGluLiBJIHdhbnQgdG8gbWFrZSBoaWdoIHRo
+ZSBncGlvDQo+PiBwaW4NCj4+Pj4+Pj4+IGZvciAxbWljcm9zZWNvbmQgYW5kIGxvdyBmb3IgOTk5
+bWljcm9zZWNvbmRzLiBIb3cgdG8gYWNoaWV2ZQ0KPj4gdGhpcw0KPj4+Pj4+Pj4gdGltaW5ncyB0
+aHJvdWdoIGNvZGluZy4gQ2FuIHlvdSBnaXZlIG1lIHRoZSBzb2x1dGlvbiBmb3INCj4+IHRoaXM/
+DQo+Pj4+Pj4+PiANCj4+Pj4+Pj4+IEluIGNvZGluZyBhZnRlciBtYWtpbmcgaGlnaCBJIGFtIGdp
+dmluZyB1c2xlZXAoMSkgZnVuY3Rpb24NCj4+IGJ1dA0KPj4+Pj4+Pj4gd2hlbiBJIGFtIGNoZWNr
+IGluIHRoZSBvc2NpbGxvc2NvcGUgaXQgaXMgc2hvd2luZw0KPj4gNjRtaWNyb3NlY29uZHMuDQo+
+Pj4+Pj4+PiBIb3c/DQo+Pj4+Pj4+PiANCj4+Pj4+Pj4+IA0KPj4+Pj4+PiBCZWNhdXNlIGFuIGFw
+cGxpY2F0aW9uLWxhbmQgcHJvZ3JhbSBleGVjdXRpbmcgb24gYW4gb3JkaW5hcnkNCj4+Pj4+Pj4g
+Z2VuZXJhbC1wdXJwb3NlIG9wZXJhdGluZyBzeXN0ZW0gaXMgdW5saWtlbHkgdG8gYmUgYWJsZSB0
+bw0KPj4+Pj4+PiBhY2hpZXZlIHJlcGVhdGFibGUsIDF1c2VjLXNjYWxlIHRpbWluZy4gIFRoaXMg
+aGFzIG5vdGhpbmcgdG8NCj4+IGRvLA0KPj4+Pj4+PiBwZXIgc2UsIHdpdGggVUhEIG9yIFVTUlBz
+LCBidXQgcmF0aGVyLCB0byB1bmRlcnN0YW5kaW5nDQo+Pj4+Pj4+IGhvdyBhcHBsaWNhdGlvbnMg
+ZXhlY3V0ZSBpbiBhIGdlbmVyYWwtcHVycG9zZSBvcGVyYXRpbmcNCj4+IHN5c3RlbQ0KPj4+Pj4+
+PiB0aGF0IGlzbid0IHJ1dGhsZXNzbHkgb3B0aW1pemVkIGZvciAiaGFyZCIgcmVhbC10aW1lIHRh
+c2tzLg0KPj4+Pj4+PiANCj4+Pj4+Pj4gDQo+Pj4+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4+Pj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
+IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+Pj4+Pj4+IFRvIHVuc3Vic2NyaWJlIHNl
+bmQgYW4gZW1haWwgdG8NCj4+IHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+Pj4+
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+Pj4g
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4+
+Pj4+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0
+cy5ldHR1cy5jb20NCj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXw0KPj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tDQo+Pj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJz
+LWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18NCj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tDQo+PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVz
+cnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwg
+dG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1
+c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
