@@ -2,345 +2,410 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E72A42004
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2025 14:12:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C72A4202D
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2025 14:15:55 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4B58538630A
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2025 08:12:21 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 89D70386312
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2025 08:15:54 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1740402741; bh=s7jHeGfxiJD0iAw5U4/8h275a0paI/F2B48gyJf7rVE=;
+	t=1740402954; bh=NxUGWecvqT+hPai61T7j0c9umTBUrHqlMqU5nmWoSQ4=;
 	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=Xmxmqdbw8YxC1N+CZSu955+57TDUBR7HBwMlPFYyobPL1MGhGtkIGkCpaC8G28efX
-	 6K8U2lGrCPhM/NAQlq3La1dRptu52/3PXipJ9ig1lEjGmKXaFc7tYxFsIIcZ3LXzsE
-	 Eyd5UAMfUSz9E4m3pjwcjZVvp0vHIoFo8kDA2kW7gBH8x4GgKQR2ZqCVm4ivVHhgoE
-	 s8ZE7hc7FiPTI357FamqH7mYH4gvFEfxMCQR9vcwUVd6MSirsBEq/BW+JV3e8VGIpK
-	 zRWlE7R/DqTLBX52up8xmUxnH5yUww0znUMrco7hhVR/S3eATT7NjtnbpguxRT4w9A
-	 KGaiQiNwi/5fg==
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 452E2386203
-	for <usrp-users@lists.ettus.com>; Mon, 24 Feb 2025 08:11:21 -0500 (EST)
+	b=FU09biwCidm2KLdMU9t4iufR5dFkvvwW7rc72OG/N6SGIzwIW29MFU2niCTmtP8No
+	 Pof8k/nOI57S2txFWqlRIYVHNS9vrLSugbJ+iaRBo+B/zJWvdKAmLCqm6paf6C6acB
+	 HTqvUbHvkfp78Ja91VxYQZ7z8BCSluCe0Tz126VSory4tBBGHoYqyTQMQOgeEUrblU
+	 H4KIoi6FWOTqFBExNpwePHDz72PcJvXanGP9zUeZqXlaMTUqzq97usQB5SNN3SXXYW
+	 hAB52jXKNncCwSZ9jhivBA1dUJuKpsHH2QIIbt90y3OZLvjo2YaWpEi7AMtCKGzI/p
+	 cOzUIIrrZm38Q==
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3FF8E385FFA
+	for <usrp-users@lists.ettus.com>; Mon, 24 Feb 2025 08:14:52 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="tzzfolWt";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Qsb123Oz";
 	dkim-atps=neutral
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e033c2f106so5785713a12.3
-        for <usrp-users@lists.ettus.com>; Mon, 24 Feb 2025 05:11:21 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5ded69e6134so7214562a12.0
+        for <usrp-users@lists.ettus.com>; Mon, 24 Feb 2025 05:14:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1740402680; x=1741007480; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1740402891; x=1741007691; darn=lists.ettus.com;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yjoVdvpU/R9PIh8fE3iyyZ/b7fFPbC0ds0mRKHrojUw=;
-        b=tzzfolWtwxQpVzquXi5S6MSty0S9dF2Z5Mtu1WiHquyfOWz30RL87fR3Yr6chk/SBJ
-         OVlTRtzeX4XOlrqhO2w4h0MQKCVXWd5ENJfZImmnqQf/It8YtpHpLXZD//igMPD2/TXT
-         kw9yuAEYxfZ3bKv9ZhXzhqJ8DCM5lY4crfWPLG+l0Y2qJfdIcimX01qIPtQHssAWUpYm
-         vu9c6WYEoZ8EaP7i4QwykJEyk+WupXl0PGNLGRrZWwXth2wCScTIvnxahFMEtypTYy4I
-         3dC7jqFGXstscfGWXhHE+pS2BaggrpqQqg1mGSljSfwjJh2tF65wdYk3G15gM9cZPkWn
-         QSaQ==
+        bh=pHsKRlNciEZkjSH/+QTQL/dHxdCLg36yibNKR6EQTlM=;
+        b=Qsb123Oz7s/VfRISsTc68Xf8K8yOkItzB7dVGFXV/B6FziFR4BRZ8qzdpxb/Y5t3tZ
+         2V7KLgNUoVJFqrSOMBMsynmdf3ei0PEOszbnG3Dv9a5ekNivv8FDqhkazOWVSFSdz6pw
+         KmXQfA+iticDpcFAy4hjXbmPWrjYIQVINzyJ2JFvRubq8hzHMiKTQbJW32Wb5RIS9YIC
+         jHBY07szY9LEysOETyVrTqXr9DrQLms+I3YVNbi406M0NUnJK64CQJyaepSzHqr4c1zy
+         lLmgIOLU/nKIZtwFTU5VC/7c/BP8UiJsHWrCDwnyIVnq3cHT+Tb1/I+B/LcOMskNmN4M
+         Njmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740402680; x=1741007480;
+        d=1e100.net; s=20230601; t=1740402891; x=1741007691;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yjoVdvpU/R9PIh8fE3iyyZ/b7fFPbC0ds0mRKHrojUw=;
-        b=N+E6Mj0Kqll14o+bGK20L5qtbFxVnIARTG2IuqaySKT7oQubO5EFjLU1y5SwcVieTJ
-         H4RwsizTnJurpJgieAbK7eByuuXuMQPpgPP7NabzoYJW/eg8CJ2em3Jw26kbSVhEQzEj
-         7xjupkBAMmFJPbKHjzQrux5wQ4KJOLy61BF0FW1ikgKMk3JjF5KPdtklfG1s/9N1eXtA
-         BPCkHg17ArO9TIyq7t83v9zQ3tpUOcAN/WCw+AYvc7tDGmAUtDDO8U+BzhKMJEmNk1uo
-         8qbrzCpQFjV8uCMXoZdKF1cEzCwwWar66Ze+/3ycCcb5nw3QkHx2cusDNDxhPBbkpxQQ
-         X/og==
-X-Gm-Message-State: AOJu0YyZxzb5GFkDLhT2fjf6OTy5DY59ytXBJhug/oxDuQFURGT9SE8Q
-	e9u3sYhcZOFhN2vuLgHS+xqxRI+w58fGsLxwwTXIFYgMy7vm8vC59xJW4kkAp1xsXHbd/hccysl
-	Xun+tgg1aCEQHJQjXlBF715n0sN6BHT9x4h7zb2KUi72r3cFBlDi3wA==
-X-Gm-Gg: ASbGncss6xw/VfVh7vzPIkltUdualwVSd/fZPY8U2VELA2MKKh/afCB3cEE/Y11S8xd
-	montOubHH5cUQQi+8Z7P4Kr3ON6CzxqdkLeGSIYlI/O6j4LBfv6iNy4EbbKWzax3gxalXDUsv9N
-	IyZ0QqZKIP0V/0dvvFw6lLZ4KZQ3d+BQvnK/ffLA==
-X-Google-Smtp-Source: AGHT+IH4DT8BUmPH3Jd5b/FK68LXlANgrNgVKM3MlDOP9rNuNtU4cK4XhygIZCZjkT88+ttTeC7j8KL2Bi6vy/HlclU=
-X-Received: by 2002:a05:6402:4606:b0:5dc:9589:9f64 with SMTP id
- 4fb4d7f45d1cf-5e0b7107237mr31124901a12.13.1740402679578; Mon, 24 Feb 2025
- 05:11:19 -0800 (PST)
+        bh=pHsKRlNciEZkjSH/+QTQL/dHxdCLg36yibNKR6EQTlM=;
+        b=LTaK0WxNUnkX8r6LpeEAQLy1egvpwlvlIxt0X8i2EyKbLEsMF19c8eBN5crYgBTukW
+         NnTQxsruPgpjfFQj24gvAXp9cvvLmxJiZx/5yIWs5iLCeJuzbIexBxAQx6helLxl+mOe
+         6YtfeODoPshF1qyFsRci6II+7eKueZpOwqv7PUGW/ji9aBm1Pcar1QEfK5pbAUwdaMQg
+         cdZmOuERwL/3+pV1Rv4VOP/QxqFH/jPYKIG2hFZxCZAV+jzrjtx1W1ytWj1+k2CPfwce
+         lHjs9sVdYcbB7TZ/1zYZq+zdVlnxKKDWUY5C0HqXHWZj8qdMlAb9om3FEdnjNbTSwP5h
+         G9Yw==
+X-Gm-Message-State: AOJu0YyIHUR20J31Gw5US0Ie7m4t8dBhobRFCE03SuzST/f3JXjQGfod
+	sx95Ot0EMgVqmR+GdUyO1BfFoDwbAdZef8+C5sLdzOrQbEhn0OcBx04mFafCI07frSG4YJTHjEw
+	TcvJa9bIBUW5iOd3diXK+a7h9G4le9cM5ERzZLUhHYbrSqZB1dtEkeg==
+X-Gm-Gg: ASbGncuyXGzvqDlPXv8xlS1qnrj0svv6YD/mD3HHxm4JT3VpPmoJvaq9XPyt4JTvQ4A
+	APaO6yKBVXDeJufBc57ojabm09njbl+j8skeIV8l4Fw0ZW1fM8gd4FKt2168PZTTZcLjwGBV5Yq
+	8rndp8C/jOIlDnLRae0uKOU6BjAm4w+GWwQXQRLQ==
+X-Google-Smtp-Source: AGHT+IGnpEhg2b1DOqgByfkt43GPXizuQ9/xeJmz0grHnXDUXGAdKeQc4EIZn17+CpAnlKn26g8dhHWfkUmFX1fMX90=
+X-Received: by 2002:a05:6402:4305:b0:5db:f423:19c5 with SMTP id
+ 4fb4d7f45d1cf-5e0b70b5f37mr12256420a12.5.1740402890633; Mon, 24 Feb 2025
+ 05:14:50 -0800 (PST)
 MIME-Version: 1.0
-References: <8637a4f585a741779e8e57b01ac12f75@vastech.co.za>
- <CAFOi1A4YNrE3jzepMjZhDtT0rhn+=jzML4xmy5SOg66gi2iapA@mail.gmail.com> <73e1614fe17841cca2e52d02fd11739c@vastech.co.za>
-In-Reply-To: <73e1614fe17841cca2e52d02fd11739c@vastech.co.za>
+References: <4bf5c92ac30f933582427d87157a88c1@atindriya.co.in>
+ <756c5135-0f06-4085-8bbb-ac5793b96e21@gmail.com> <1936f8facaa71cf7a2c6312aacbcdb42@atindriya.co.in>
+ <9458cc31-7a51-4259-9bd3-9352749b6964@gmail.com> <1dc1550af10e8946b5157262cb57120b@atindriya.co.in>
+ <5bf8be31-6416-4f54-b93e-b5fb021fe01e@gmail.com> <594aa31a69b35f8e23be755e5075d740@atindriya.co.in>
+ <CAFOi1A6cNimH2QuNARK_Ls6bss_cWj1Mty0--WHDet69fO4xiA@mail.gmail.com> <5503a163d7cf84d2043aa19a5d1e3c6b@atindriya.co.in>
+In-Reply-To: <5503a163d7cf84d2043aa19a5d1e3c6b@atindriya.co.in>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Mon, 24 Feb 2025 14:11:08 +0100
-X-Gm-Features: AWEUYZmNNnvhqJlkRhjF-mqkhzfZTQf2EAXHRde1oC465stcW7H9I_M_z1G_fA0
-Message-ID: <CAFOi1A7Rn=EXWcNz70imcfMdF2NX4zfb_dntKyy3T6G_jOezQg@mail.gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: HOYNLPUH7TZIZFDN3D46C2JUH4YE3CR5
-X-Message-ID-Hash: HOYNLPUH7TZIZFDN3D46C2JUH4YE3CR5
+Date: Mon, 24 Feb 2025 14:14:38 +0100
+X-Gm-Features: AWEUYZlu4i2pAaBn1UXVWbfbfmj_Y4W7XZd7vHvKoNXjeaDpkC-zUmyzVjxa9ko
+Message-ID: <CAFOi1A41-FWe+NdLk4JVHgNScKgsEx-9qo5sc-MqTZWLCTqAgw@mail.gmail.com>
+Cc: usrp-users@lists.ettus.com
+Message-ID-Hash: NL6CFGJQA2G3P7F4GW2S25R6VNXLPP5Y
+X-Message-ID-Hash: NL6CFGJQA2G3P7F4GW2S25R6VNXLPP5Y
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [EXTERNAL]Re: register custom rfnoc block names
+Subject: [USRP-users] Re: REG : GPIO in USRP B205Mini
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HOYNLPUH7TZIZFDN3D46C2JUH4YE3CR5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NL6CFGJQA2G3P7F4GW2S25R6VNXLPP5Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5209610523885557562=="
+Content-Type: multipart/mixed; boundary="===============8472735116475586040=="
 
---===============5209610523885557562==
-Content-Type: multipart/alternative; boundary="0000000000007b9c79062ee313de"
+--===============8472735116475586040==
+Content-Type: multipart/alternative; boundary="000000000000101408062ee320ac"
 
---0000000000007b9c79062ee313de
+--000000000000101408062ee320ac
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-OK, sounds like you're more than halfway there. Also, you can ignore
-UHD_REGISTER_EXTENSION() for now, that's for a different purpose.
+Assuming t_high is a uhd::time_spec_t that marks the start time of your
+HIGH state, simply do
 
-The way I've been testing "simple" applications is through
-probe_gain_block.cpp. The way I've been testing "complex" applications is
-through the GNU Radio integration. I need to see if I can reproduce your
-issue that way.
+auto t_low =3D t_high + 1e-6;
 
-What happens when you do try
-graph->find_blocks<rfnoc::vastech::multiddc_block_control> ()?
+and then use t_low for your second timed command:
 
-In your complex case, can you try LD_PRELOADing the rfnoc-vastech OOT
-module?
+usrp->set_command_time(t_high);
+usrp->set_gpio_attr(/* set your pin high */);
+usrp->set_command_time(t_low);
+usrp->set_gpio_attr(/* set your pin low */);
 
 --M
 
 
+On Mon, Feb 24, 2025 at 9:45=E2=80=AFAM <kavinraj@atindriya.co.in> wrote:
 
-On Fri, Feb 21, 2025 at 3:42=E2=80=AFPM Kevin Williams <kevin.williams@vast=
-ech.co.za>
-wrote:
-
-> Hi Martin,
+> Hi,
+>    What is the minimum time to toggle the GPIO pin?
+>    I want to make the GPIO pin high for 1microsecond and low for
+> 1milliseconds. How i achieve this through code?
+>
+>
+> Thanks.
 >
 >
 >
-> I did use the new UHD 4.8 rfnoc_modtool for this block.
->
->
->
-> I have the =E2=80=9CUHD_RFNOC_BLOCK_REGISTER_DIRECT=E2=80=9D macro as in =
-here:
->
->
->
-> UHD_RFNOC_BLOCK_REGISTER_DIRECT(
->
->     multiddc_block_control, 0x666F0002, "MultiDDC", CLOCK_KEY_GRAPH,
-> "bus_clk");
->
->
->
-> I note that it is not the macro =E2=80=9CUHD_REGISTER_EXTENSION=E2=80=9D.
->
->
->
-> It is curious, because a simple C++ application I built does recognize th=
-e
-> new block, and resolves its name in the static connections query, and doe=
-s
-> correctly connect that block in my graph.
->
->
->
-> In a more complex application but compiled on the same host this block is
-> not found, and the static link report also only shows it as =E2=80=9C*
-> 0/Block#0:0=3D=3D>0/SEP#2:0=E2=80=9D etc.
->
->
->
-> I also note that the more complex application is linked to my rfnoc drive=
-r
-> library.
->
->
->
-> I=E2=80=99m not sure where to look next as I have a python script which c=
-onfirms
-> the noc_id read back from the usrp is the same as what I expect in the
-> driver, and I also tried the
-> =E2=80=9Cgraph->find_blocks<rfnoc::vastech::multiddc_block_control>=E2=80=
-=9D instead of
-> just uhd::rfnoc::block_id_t(0, "MultiDDC", 0) which also does not find
-> blocks of the type in question.
->
->
->
-> Kind regards, Kevin
->
->
->
-> *From:* Martin Braun <martin.braun@ettus.com>
-> *Sent:* Friday, 21 February 2025 16:21
-> *To:* Kevin Williams <kevin.williams@vastech.co.za>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [EXTERNAL]Re: [USRP-users] register custom rfnoc block names
->
->
->
-> Hey Kevin,
->
->
->
-> yes, you need that macro, as here:
-> https://github.com/EttusResearch/uhd/blob/master/host/examples/rfnoc-gain=
-/lib/gain_block_control.cpp#L55-L56
-> <https://url.za.m.mimecastprotect.com/s/EoS3C98BNNi2ZMRhofXTqRd1S?domain=
-=3Dgithub.com>
->
->
->
-> Are you using rfnoc_modtool? Because rfnoc_modtool add should create all
-> the relevant boilerplate.
->
->
->
-> If you're using the latest rfnoc_modtool, then the OOT module will also
-> have all the hooks in place to automatically register your OOT with UHD, =
-no
-> need for LD_PRELOAD.
->
->
->
-> --M
->
->
->
-> On Fri, Feb 21, 2025 at 4:50=E2=80=AFAM Kevin Williams <
-> kevin.williams@vastech.co.za> wrote:
->
-> Hi Everyone,
->
-> I think this is my last hurdle.
->
-> I have a C++ application using my custom rfnoc block drivers, but the
-> "LD_PRELOAD" variable does not help when resolving the block names in the
-> image.
->
-> I do see my rfnoc driver shared library being linked to the app binary.
->
-> Its not clear how to do this.
->
-> In the docs I see the "UHD_REGISTER_EXTENSION" macro which has left me
-> wondering if this is perhaps the answer.
->
-> If this is correct is there an example I could follow? (I don't see this
-> macro used in the UHD repo, and it doesn't appear in my web search
-> results.)
->
-> Kind regards, Kevin
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+> On 2025-02-24 01:57, Martin Braun wrote:
+> > You don't specify a delay, you send one timed command to make the pin
+> > go HIGH, and another timed command to make it go LOW. And the two
+> > command-times should be "your delay" apart.
+> >
+> > This may help:
+> >
+> https://www.youtube.com/watch?v=3DppD06ZETnek&t=3D75s&pp=3DygUPZ3Jjb24gdX=
+NycCBncGlv
+> >
+> > --M
+> >
+> > On Sat, Feb 22, 2025 at 12:12=E2=80=AFPM <kavinraj@atindriya.co.in> wro=
+te:
+> >
+> >> Hi,
+> >> How to give the delay in
+> >> uhd_usrp_set_command_time(uhd_usrp_handle
+> >> h,int64_t full_secs,double frac_secs,size_t mboard) function?
+> >>
+> >> On 2025-02-22 00:10, Marcus D. Leech wrote:
+> >>> On 21/02/2025 23:56, kavinraj@atindriya.co.in wrote:
+> >>>> Hi,
+> >>>> Can I use usleep(1) or any other technique is there for GPIO .
+> >>>>
+> >>> You might be able to use timed commands:
+> >>>
+> >>>
+> >>
+> > https://files.ettus.com/manual/page_timedcmds.html#timedcmds_gen_cmds
+> >>>
+> >>> But since usleep() cannot guarantee any kind of maximum period
+> >> that
+> >>> your process will go to sleep, it is an unreliable
+> >>> method when precision and repeatable timing of ANY kind of
+> >> "doing
+> >>> stuff with external hardware" is required.  Even if
+> >>> usleep() at microsecond-scale intervals *WAS* reliable and
+> >>> repeatable, there's no guarantee about all the *other* things
+> >>> that are required to launch a command over a
+> >> latency-not-guaranteed
+> >>> bus to the external hardware, including kernel-layer
+> >>> USB drivers, etc, etc.
+> >>>
+> >>>
+> >>>>
+> >>>> On 2025-02-21 23:37, Marcus D. Leech wrote:
+> >>>>> On 21/02/2025 23:22, kavinraj@atindriya.co.in wrote:
+> >>>>>> Hi,
+> >>>>>> Thanks for answering.
+> >>>>>> Can you explain me clearly?
+> >>>>>>
+> >>>>>> Thanks.
+> >>>>> I'd suggest, at a minimum, looking at the MAN page for usleep().
+> >>>>>
+> >>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>> On 2025-02-21 23:11, Marcus D. Leech wrote:
+> >>>>>>> On 21/02/2025 23:05, kavinraj@atindriya.co.in wrote:
+> >>>>>>>> Hi,
+> >>>>>>>> In USRP B205mini-i I am able to access the GPIO Pin. I
+> >> have to
+> >>>>>>>> create a Pulse in the GPIO pin. I want to make high the gpio
+> >> pin
+> >>>>>>>> for 1microsecond and low for 999microseconds. How to achieve
+> >> this
+> >>>>>>>> timings through coding. Can you give me the solution for
+> >> this?
+> >>>>>>>>
+> >>>>>>>> In coding after making high I am giving usleep(1) function
+> >> but
+> >>>>>>>> when I am check in the oscilloscope it is showing
+> >> 64microseconds.
+> >>>>>>>> How?
+> >>>>>>>>
+> >>>>>>>>
+> >>>>>>> Because an application-land program executing on an ordinary
+> >>>>>>> general-purpose operating system is unlikely to be able to
+> >>>>>>> achieve repeatable, 1usec-scale timing.  This has nothing to
+> >> do,
+> >>>>>>> per se, with UHD or USRPs, but rather, to understanding
+> >>>>>>> how applications execute in a general-purpose operating
+> >> system
+> >>>>>>> that isn't ruthlessly optimized for "hard" real-time tasks.
+> >>>>>>>
+> >>>>>>>
+> >>>>>>> _______________________________________________
+> >>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+> >>>>>>> To unsubscribe send an email to
+> >> usrp-users-leave@lists.ettus.com
+> >>>>> _______________________________________________
+> >>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+> >>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> >>> _______________________________________________
+> >>> USRP-users mailing list -- usrp-users@lists.ettus.com
+> >>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> >> _______________________________________________
+> >> USRP-users mailing list -- usrp-users@lists.ettus.com
+> >> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---0000000000007b9c79062ee313de
+--000000000000101408062ee320ac
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>OK, sounds like you&#39;re more than halfway there. A=
-lso, you can ignore UHD_REGISTER_EXTENSION() for now, that&#39;s for a diff=
-erent purpose.</div><div><br></div><div>The way I&#39;ve been testing &quot=
-;simple&quot; applications is through probe_gain_block.cpp. The way I&#39;v=
-e been testing &quot;complex&quot; applications is through the GNU Radio in=
-tegration. I need to see if I can reproduce your issue that way.</div><div>=
-<br></div><div>What happens when you do try=20
-<span>graph-&gt;find_blocks&lt;rfnoc::vastech::multiddc_block_control&gt;</=
-span>
+<div dir=3D"ltr"><div><br></div><div>Assuming t_high is a uhd::time_spec_t =
+that marks the start time of your HIGH state, simply do</div><div><br></div=
+><div>auto t_low =3D t_high + 1e-6;</div><div><br></div><div>and then use t=
+_low for your second timed command:</div><div><br></div><div>usrp-&gt;set_c=
+ommand_time(t_high);</div><div>usrp-&gt;set_gpio_attr(/* set your pin high =
+*/);</div><div>usrp-&gt;set_command_time(t_low);</div><div>
+<div>usrp-&gt;set_gpio_attr(/* set your pin low */);</div><div><br></div><d=
+iv>--M</div><div></div>
 
-()?</div><div><br></div><div>In your complex case, can you try LD_PRELOADin=
-g the rfnoc-vastech OOT module?</div><div><br></div><div>--M</div><div><br>=
 </div><div><br></div></div><br><div class=3D"gmail_quote gmail_quote_contai=
-ner"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Feb 21, 2025 at 3:42=E2=
-=80=AFPM Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za"=
->kevin.williams@vastech.co.za</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div class=3D"msg1995956164942739568"><div lan=
-g=3D"EN-ZA"><div class=3D"m_1995956164942739568WordSection1"><p class=3D"Ms=
-oNormal"><span>Hi Martin,<u></u><u></u></span></p><p class=3D"MsoNormal"><s=
-pan><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span>I did use t=
-he new UHD 4.8 rfnoc_modtool for this block.<u></u><u></u></span></p><p cla=
-ss=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal=
-"><span>I have the =E2=80=9CUHD_RFNOC_BLOCK_REGISTER_DIRECT=E2=80=9D macro =
-as in here:<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=
-=A0<u></u></span></p><p class=3D"MsoNormal"><span>UHD_RFNOC_BLOCK_REGISTER_=
-DIRECT(<u></u><u></u></span></p><p class=3D"MsoNormal"><span>=C2=A0=C2=A0=
-=C2=A0 multiddc_block_control, 0x666F0002, &quot;MultiDDC&quot;, CLOCK_KEY_=
-GRAPH, &quot;bus_clk&quot;);<u></u><u></u></span></p><p class=3D"MsoNormal"=
-><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span>I note t=
-hat it is not the macro =E2=80=9C</span>UHD_REGISTER_EXTENSION=E2=80=9D.<sp=
-an><u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></=
-u></span></p><p class=3D"MsoNormal"><span>It is curious, because a simple C=
-++ application I built does recognize the new block, and resolves its name =
-in the static connections query, and does correctly connect that block in m=
-y graph.<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0=
-<u></u></span></p><p class=3D"MsoNormal"><span>In a more complex applicatio=
-n but compiled on the same host this block is not found, and the static lin=
-k report also only shows it as =E2=80=9C* 0/Block#0:0=3D=3D&gt;0/SEP#2:0=E2=
-=80=9D etc.<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=
-=A0<u></u></span></p><p class=3D"MsoNormal"><span>I also note that the more=
- complex application is linked to my rfnoc driver library.<u></u><u></u></s=
-pan></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p clas=
-s=3D"MsoNormal"><span>I=E2=80=99m not sure where to look next as I have a p=
-ython script which confirms the noc_id read back from the usrp is the same =
-as what I expect in the driver, and I also tried the =E2=80=9Cgraph-&gt;fin=
-d_blocks&lt;rfnoc::vastech::multiddc_block_control&gt;=E2=80=9D instead of =
-just uhd::rfnoc::block_id_t(0, &quot;MultiDDC&quot;, 0) which also does not=
- find blocks of the type in question.<u></u><u></u></span></p><p class=3D"M=
-soNormal"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span=
->Kind regards, Kevin<u></u><u></u></span></p><p class=3D"MsoNormal"><span><=
-u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><b><span lang=3D"EN-US=
-">From:</span></b><span lang=3D"EN-US"> Martin Braun &lt;<a href=3D"mailto:=
-martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; <b=
-r><b>Sent:</b> Friday, 21 February 2025 16:21<br><b>To:</b> Kevin Williams =
-&lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=3D"_blank">kevin=
-.williams@vastech.co.za</a>&gt;<br><b>Cc:</b> <a href=3D"mailto:usrp-users@=
-lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br><b>Sub=
-ject:</b> [EXTERNAL]Re: [USRP-users] register custom rfnoc block names<u></=
-u><u></u></span></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><di=
-v><p class=3D"MsoNormal">Hey Kevin,<u></u><u></u></p></div><div><p class=3D=
-"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">yes, =
-you need that macro, as here: <a href=3D"https://url.za.m.mimecastprotect.c=
-om/s/EoS3C98BNNi2ZMRhofXTqRd1S?domain=3Dgithub.com" target=3D"_blank">https=
-://github.com/EttusResearch/uhd/blob/master/host/examples/rfnoc-gain/lib/ga=
-in_block_control.cpp#L55-L56</a><u></u><u></u></p></div><div><p class=3D"Ms=
-oNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">Are you =
-using rfnoc_modtool? Because rfnoc_modtool add should create all the releva=
-nt boilerplate.<u></u><u></u></p></div><div><p class=3D"MsoNormal"><u></u>=
-=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">If you&#39;re using the =
-latest rfnoc_modtool, then the OOT module will also have all the hooks in p=
-lace to automatically register your OOT with UHD, no need for LD_PRELOAD.<u=
-></u><u></u></p></div><div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><=
-/div><div><p class=3D"MsoNormal">--M<u></u><u></u></p></div></div><p class=
-=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><div><p class=3D"MsoNormal">On =
-Fri, Feb 21, 2025 at 4:50=E2=80=AFAM Kevin Williams &lt;<a href=3D"mailto:k=
-evin.williams@vastech.co.za" target=3D"_blank">kevin.williams@vastech.co.za=
-</a>&gt; wrote:<u></u><u></u></p></div><blockquote style=3D"border-width:me=
-dium medium medium 1pt;border-style:none none none solid;border-color:curre=
-ntcolor currentcolor currentcolor rgb(204,204,204);padding:0cm 0cm 0cm 6pt;=
-margin:5pt 0cm 5pt 4.8pt"><p class=3D"MsoNormal">Hi Everyone,<br><br>I thin=
-k this is my last hurdle.<br><br>I have a C++ application using my custom r=
-fnoc block drivers, but the<br>&quot;LD_PRELOAD&quot; variable does not hel=
-p when resolving the block names in the<br>image.<br><br>I do see my rfnoc =
-driver shared library being linked to the app binary.<br><br>Its not clear =
-how to do this.<br><br>In the docs I see the &quot;UHD_REGISTER_EXTENSION&q=
-uot; macro which has left me<br>wondering if this is perhaps the answer.<br=
-><br>If this is correct is there an example I could follow? (I don&#39;t se=
-e this<br>macro used in the UHD repo, and it doesn&#39;t appear in my web s=
-earch results.)<br><br>Kind regards, Kevin<br><br>_________________________=
-______________________<br>USRP-users mailing list -- <a href=3D"mailto:usrp=
--users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br=
->To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.e=
-ttus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><u></u><u><=
-/u></p></blockquote></div></div></div></div></blockquote></div>
+ner"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 24, 2025 at 9:45=E2=
+=80=AFAM &lt;<a href=3D"mailto:kavinraj@atindriya.co.in">kavinraj@atindriya=
+.co.in</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex">Hi,<br>
+=C2=A0 =C2=A0What is the minimum time to toggle the GPIO pin?<br>
+=C2=A0 =C2=A0I want to make the GPIO pin high for 1microsecond and low for =
+<br>
+1milliseconds. How i achieve this through code?<br>
+<br>
+<br>
+Thanks.<br>
+<br>
+<br>
+<br>
+On 2025-02-24 01:57, Martin Braun wrote:<br>
+&gt; You don&#39;t specify a delay, you send one timed command to make the =
+pin<br>
+&gt; go HIGH, and another timed command to make it go LOW. And the two<br>
+&gt; command-times should be &quot;your delay&quot; apart.<br>
+&gt; <br>
+&gt; This may help:<br>
+&gt; <a href=3D"https://www.youtube.com/watch?v=3DppD06ZETnek&amp;t=3D75s&a=
+mp;pp=3DygUPZ3Jjb24gdXNycCBncGlv" rel=3D"noreferrer" target=3D"_blank">http=
+s://www.youtube.com/watch?v=3DppD06ZETnek&amp;t=3D75s&amp;pp=3DygUPZ3Jjb24g=
+dXNycCBncGlv</a><br>
+&gt; <br>
+&gt; --M<br>
+&gt; <br>
+&gt; On Sat, Feb 22, 2025 at 12:12=E2=80=AFPM &lt;<a href=3D"mailto:kavinra=
+j@atindriya.co.in" target=3D"_blank">kavinraj@atindriya.co.in</a>&gt; wrote=
+:<br>
+&gt; <br>
+&gt;&gt; Hi,<br>
+&gt;&gt; How to give the delay in<br>
+&gt;&gt; uhd_usrp_set_command_time(uhd_usrp_handle<br>
+&gt;&gt; h,int64_t full_secs,double frac_secs,size_t mboard) function?<br>
+&gt;&gt; <br>
+&gt;&gt; On 2025-02-22 00:10, Marcus D. Leech wrote:<br>
+&gt;&gt;&gt; On 21/02/2025 23:56, <a href=3D"mailto:kavinraj@atindriya.co.i=
+n" target=3D"_blank">kavinraj@atindriya.co.in</a> wrote:<br>
+&gt;&gt;&gt;&gt; Hi,<br>
+&gt;&gt;&gt;&gt; Can I use usleep(1) or any other technique is there for GP=
+IO .<br>
+&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt; You might be able to use timed commands:<br>
+&gt;&gt;&gt; <br>
+&gt;&gt;&gt; <br>
+&gt;&gt; <br>
+&gt; <a href=3D"https://files.ettus.com/manual/page_timedcmds.html#timedcmd=
+s_gen_cmds" rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com/ma=
+nual/page_timedcmds.html#timedcmds_gen_cmds</a><br>
+&gt;&gt;&gt; <br>
+&gt;&gt;&gt; But since usleep() cannot guarantee any kind of maximum period=
+<br>
+&gt;&gt; that<br>
+&gt;&gt;&gt; your process will go to sleep, it is an unreliable<br>
+&gt;&gt;&gt; method when precision and repeatable timing of ANY kind of<br>
+&gt;&gt; &quot;doing<br>
+&gt;&gt;&gt; stuff with external hardware&quot; is required.=C2=A0 Even if<=
+br>
+&gt;&gt;&gt; usleep() at microsecond-scale intervals *WAS* reliable and<br>
+&gt;&gt;&gt; repeatable, there&#39;s no guarantee about all the *other* thi=
+ngs<br>
+&gt;&gt;&gt; that are required to launch a command over a<br>
+&gt;&gt; latency-not-guaranteed<br>
+&gt;&gt;&gt; bus to the external hardware, including kernel-layer<br>
+&gt;&gt;&gt; USB drivers, etc, etc.<br>
+&gt;&gt;&gt; <br>
+&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt; On 2025-02-21 23:37, Marcus D. Leech wrote:<br>
+&gt;&gt;&gt;&gt;&gt; On 21/02/2025 23:22, <a href=3D"mailto:kavinraj@atindr=
+iya.co.in" target=3D"_blank">kavinraj@atindriya.co.in</a> wrote:<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Hi,<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Thanks for answering.<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Can you explain me clearly?<br>
+&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt; Thanks.<br>
+&gt;&gt;&gt;&gt;&gt; I&#39;d suggest, at a minimum, looking at the MAN page=
+ for usleep().<br>
+&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt; On 2025-02-21 23:11, Marcus D. Leech wrote:<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; On 21/02/2025 23:05, <a href=3D"mailto:kavinra=
+j@atindriya.co.in" target=3D"_blank">kavinraj@atindriya.co.in</a> wrote:<br=
+>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Hi,<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In USRP B205mini-i I am able to access the=
+ GPIO Pin. I<br>
+&gt;&gt; have to<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; create a Pulse in the GPIO pin. I want to =
+make high the gpio<br>
+&gt;&gt; pin<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; for 1microsecond and low for 999microsecon=
+ds. How to achieve<br>
+&gt;&gt; this<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; timings through coding. Can you give me th=
+e solution for<br>
+&gt;&gt; this?<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In coding after making high I am giving us=
+leep(1) function<br>
+&gt;&gt; but<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; when I am check in the oscilloscope it is =
+showing<br>
+&gt;&gt; 64microseconds.<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; How?<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Because an application-land program executing =
+on an ordinary<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; general-purpose operating system is unlikely t=
+o be able to<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; achieve repeatable, 1usec-scale timing.=C2=A0 =
+This has nothing to<br>
+&gt;&gt; do,<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; per se, with UHD or USRPs, but rather, to unde=
+rstanding<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; how applications execute in a general-purpose =
+operating<br>
+&gt;&gt; system<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; that isn&#39;t ruthlessly optimized for &quot;=
+hard&quot; real-time tasks.<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; ______________________________________________=
+_<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:u=
+srp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>=
+<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; To unsubscribe send an email to<br>
+&gt;&gt; <a href=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_bla=
+nk">usrp-users-leave@lists.ettus.com</a><br>
+&gt;&gt;&gt;&gt;&gt; _______________________________________________<br>
+&gt;&gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-user=
+s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt;&gt;&gt;&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp=
+-users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettu=
+s.com</a><br>
+&gt;&gt;&gt; _______________________________________________<br>
+&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.=
+ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt;&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-l=
+eave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a=
+><br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettu=
+s.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave=
+@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br=
+>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---0000000000007b9c79062ee313de--
+--000000000000101408062ee320ac--
 
---===============5209610523885557562==
+--===============8472735116475586040==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -350,4 +415,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5209610523885557562==--
+--===============8472735116475586040==--
