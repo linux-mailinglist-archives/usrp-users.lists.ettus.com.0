@@ -2,83 +2,84 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE532A44F5B
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Feb 2025 22:59:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7371CA455F5
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Feb 2025 07:47:04 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C349638626B
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Feb 2025 16:59:15 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 84976385D87
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Feb 2025 01:47:02 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1740520755; bh=n4gIrojW4V2MYyQ3w13oCRaHkIGEVyp5weWGrD3GFi8=;
-	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=fNki/AZ4H4QJI/imoO17fLmoJjFT4XYCkmlqEHLteBwKXaZqxBMSJisqGXw7Q5qWQ
-	 gA6wJwoSPXgFBGpqPl0L+urR2TA8HQ/EwHm9RdjI012m8wSAL5J6fF/SRgvYoLm5ct
-	 Elj9aMpnUvKa5ZzitwbKwp2tzyKQqKi9J76txsQ+SL2Qw60CcD3YFjoNXclVmt11hX
-	 ht8nZU2a7XyP/k0SfqTWvEm3ahcsoA3+sfedCGcyXxLXJjmxlacXEzHkjlcWaaj9oj
-	 H5+iwuws+XblKtjxulL0BSCQ3RZHq5xT1LsoEWAs1KbQ6PJswk5IP3F02ml1vBoDLx
-	 rv1wxyENdgkNw==
+	t=1740552422; bh=QNnOZ4rThVSKjB9lyrivs9Ce4HdCHBG12e99V+//eSQ=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=t2lFYQfWYsv+nAiliKVEFBm8COohkHfHYz5T+K2gvX/1tHyIsb5xvAp27NKkKlKFT
+	 BcAxHs2o1rZXANMv4ao36P0YfklnVtDrSMElN1a4ouwayA6YRX/dkUzcNKiQO2AWGg
+	 rRLAU9BbJgXUU0XoOZ/Og9+Kr2JWQsQZ4nD3mL4XkOFZQCKxX35i3jc+YrJ+nGJMXP
+	 OBJYDE6DwVANba4SBdt3FkGoRsMFGywUnTcQjasTYhotPmrXABNpwe8/+ocs0Xweie
+	 zvdfaa4gcssG/EMKkNujYJ+arPxsNFGLgwjTmZEGB8SZ+Sw/20KZQjiVOCnl57HJ64
+	 mmPy+3x6rfuRQ==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F06F8385B26
-	for <usrp-users@lists.ettus.com>; Tue, 25 Feb 2025 16:58:15 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 0987E385D7A
+	for <usrp-users@lists.ettus.com>; Wed, 26 Feb 2025 01:46:03 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1740520696; bh=lROTyWgFNCwFSuLb272+fRs2Um50N2kTXO5t8n+x3pw=;
-	h=Date:To:From:Subject:From;
-	b=00vU7h79Rr3CLRI5qA/A+VqmQDnnQjRqM+CuOZlE6dpzuPs9gMzhIpXhbTQyHROtc
-	 RLOL3QEYuNPwnsDxQK5TPT8WTFPQgv/loNEe0RY5OLrIJ2/wOmbX0VQaqhKEHlFNXV
-	 VyagTf5hY6dlcrBXbJLAg8f3U7txfiQUTBEYAarPMClepaZfMuVWX+c8LmWsVbCvZ6
-	 7wNFR+9bqH2IbU8V4CyGUCANANprHZyLOgx26mGrFZ1+bHS8j705koLNvkAG8+eFXM
-	 3L4I4vBOT8oF9sTXzomH02YRttpm2uk5b33qNAQWfuLl+bJ7A6Zb4yK8DZvszrHjuL
-	 FM7kwZVEJ74xA==
-Date: Tue, 25 Feb 2025 21:58:15 +0000
+	t=1740552363; bh=RlruQeZxlONQy0fEirRRAlrmYlH0MygdUVOv91D3W+4=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=jBh6GKZZhh/isXvq+hKdCltE+KQXrnhaZMe0nSc/5POaBMXHsqJ7nBI7rbwX/Mkpq
+	 c3Qedt97TLb4YBV9R4vFsQ+DZB6jQS1LHvEsOz6LPWl+t3kLp4HhgyRo5u02249iNf
+	 fQEnWDA6vPhPIXT1iQ0BicrN5652gMFrFEBAKSA3Ki1xKxAQZphV4gZ/1sdv1HprVl
+	 hWV8mjcC/bQmEHCjCrXqV9nKhEQsqJvkr9ORSv+4UiBT7pQWarC7sF+uXKKtlrqcY8
+	 kfRmt+8Ei5o25hM0zCvLztbBv38vAUNkCqGDlLtvMsx3zrQ2Or625bcKyIubbLZP6l
+	 Gd2ZKdVOfnnNA==
+Date: Wed, 26 Feb 2025 06:46:03 +0000
 To: usrp-users@lists.ettus.com
-From: mslusarski@xysensing.pl
-Message-ID: <evhr7kyxKbT1wvGRcwhHudfUyiOtnz1bsf0u7wa0h6k@lists.ettus.com>
+From: anjana.krishnan@technosci.com
+Message-ID: <9hooWV4qc9uwUhx57tq5HuP6O6K2bcTD5RsPyIofFHo@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: rNy1xvMCPUNPS1D1vD47ji2ZG7z7Ht7wYq8BKmVA4@lists.ettus.com
 MIME-Version: 1.0
-Message-ID-Hash: WXUZPAO7EKZQE4BZZBUI3AFHSSY5GBLD
-X-Message-ID-Hash: WXUZPAO7EKZQE4BZZBUI3AFHSSY5GBLD
-X-MailFrom: mslusarski@xysensing.pl
+Message-ID-Hash: 6TM2LSFP4BEBFMWQAOMOSKT2LVEQERC6
+X-Message-ID-Hash: 6TM2LSFP4BEBFMWQAOMOSKT2LVEQERC6
+X-MailFrom: anjana.krishnan@technosci.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] x410 configuration
+Subject: [USRP-users] Re: Build UHD image from GRC file
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WXUZPAO7EKZQE4BZZBUI3AFHSSY5GBLD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6TM2LSFP4BEBFMWQAOMOSKT2LVEQERC6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6181670324344736244=="
+Content-Type: multipart/mixed; boundary="===============8316239994655119069=="
 
 This is a multi-part message in MIME format.
 
---===============6181670324344736244==
+--===============8316239994655119069==
 Content-Type: multipart/alternative;
- boundary="b1_evhr7kyxKbT1wvGRcwhHudfUyiOtnz1bsf0u7wa0h6k"
+ boundary="b1_9hooWV4qc9uwUhx57tq5HuP6O6K2bcTD5RsPyIofFHo"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_evhr7kyxKbT1wvGRcwhHudfUyiOtnz1bsf0u7wa0h6k
+--b1_9hooWV4qc9uwUhx57tq5HuP6O6K2bcTD5RsPyIofFHo
 Content-Type: text/plain; charset=us-ascii
 
-Hello, 
+Hi Martin,
 
-We have done a project for gen3 x410 usrp 200MHz bandwidth 4channels enabled. When we try to change configuration to 1 channel, tx/rx works but we got strange behaviour in a custom part of design. Is 1 channel supported for x410 200 configuration and/or tested?
+The issue has been resolved. The shell was not configured to bash and hence the error occurred. The RFNoC image builder is working fine.
 
-Regards
+Thank you.
 
---b1_evhr7kyxKbT1wvGRcwhHudfUyiOtnz1bsf0u7wa0h6k
+--b1_9hooWV4qc9uwUhx57tq5HuP6O6K2bcTD5RsPyIofFHo
 Content-Type: text/html; charset=us-ascii
 
-<p>Hello, </p><p>We have done a project for gen3 x410 usrp 200MHz bandwidth 4channels enabled. When we try to change configuration to 1 channel, tx/rx works but we got strange behaviour in a custom part of design. Is 1 channel supported for x410 200 configuration and/or tested?</p><p>Regards</p>
+<p>Hi Martin,</p><p>The issue has been resolved. The shell was not configured to bash and hence the error occurred. The RFNoC image builder is working fine.</p><p>Thank you.</p><p><br></p>
 
 
---b1_evhr7kyxKbT1wvGRcwhHudfUyiOtnz1bsf0u7wa0h6k--
+--b1_9hooWV4qc9uwUhx57tq5HuP6O6K2bcTD5RsPyIofFHo--
 
---===============6181670324344736244==
+--===============8316239994655119069==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +89,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6181670324344736244==--
+--===============8316239994655119069==--
