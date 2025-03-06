@@ -2,215 +2,168 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08838A54D87
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Mar 2025 15:21:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AFD9A54EFF
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Mar 2025 16:27:54 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D7F41385E7D
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Mar 2025 09:21:04 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 84D6F385E0B
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Mar 2025 10:27:53 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1741270864; bh=1QXZ5V4ITa+CkAlAqEdOccobRFwVnvs+qkCApD57QGg=;
-	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=BzWaqOQs2Cj4cTUiRSYQxyS2SGt8kttvCAo/MqxHJcJeizp+Ocgvkax1jG1rpQbE7
-	 nr3s8yOk0lbYfaZTATDti5Eg4M8VVm2+9iCCEhuV6YoWCDTDdsm9qk9ogUBeEUKqav
-	 NzN7np+koqpHKvNJnxf2SA2bC2D6OEnz7ZTta7/ZH1XOD7pdZs3gmwKyBF7JPH1tt/
-	 VPkJxcaFpXHwGM7hYJnGUtt2kKRKuc8YsArsrQ8GYv/WHUp//dCfcbIX0rztU8wZsz
-	 lbDVsiFu9DrmtLSpdjAUdTEBzoUNvltj6Y6DD7jFs4/1Yz9Ga8VN/Gn71MsEmKSkkO
-	 iM5Ole5iLj1+A==
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2112.outbound.protection.outlook.com [40.107.247.112])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8A7D0385E1F
-	for <usrp-users@lists.ettus.com>; Thu,  6 Mar 2025 09:20:03 -0500 (EST)
+	t=1741274873; bh=DXxstr7D1hDpyXi4yLEKeXX7dWU63DjYLyqiZ807NqQ=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=kHCSSjkOTv3UjBh/nJRizonCXUzkHBOFukv5cjBDNVTxeBRYyQCUEwEGx+/Tqe/Wp
+	 IVbENa+M+TayfpQ2ECJHAY9glv+1iHiCrwxe2ATk4J6+iDfeRZo934Q3hJlueia8lP
+	 ldk7w3zomdiKY6VqKY2NTA7U76Ce9zZK8I4NlE+x4s5Qpl+V57F5BZOovX9A8qEHRj
+	 YCRHhPlu0eGNTnxfXbEcjFX+xinIarCYJVpBnejX/w3HeBFOsujAjZV4ry3eQo5zm7
+	 hJn0AIocdn2rdrVOkbRx13Vs/iHfCqMtrZCd31vRNrh+k2MsevHse73zfpQn2zN0BM
+	 RYuvpFDAzHSHg==
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id C22E4385DCA
+	for <usrp-users@lists.ettus.com>; Thu,  6 Mar 2025 10:27:25 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=student.uclouvain.be header.i=@student.uclouvain.be header.b="oKxtesSV";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="g6eVnbC+";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tSzOMccMMmEvrdIfVzpTB6fbyU+aQbTvp00/vXo/YTFsBGyjKex//w2PDbfmoy0MLJ557+Z85oWw+Ftr1QMduq/zGDMeOhHcDf2txVap7sHqI2IZKCTvyodZhw7OZSiUNfTo6ldYbC0hiIb5u3qZOfpLuUwPD7Ur3YI16hoIgbOZaGXQMc7v4Lggp008twmLEnYZfL36nt1gEtxNFxsYLeya/dZTE1RyGQAA+HexB8A2DZHgaRtve/jqvrvhh2lER5z+Ov26cVCkkwIkaNc/UlXEceoxPr4eIlrXDNYFZW6lwZkqXRDKEX5f1tZVFSeZz3b54NzTK0hw84xapv+H7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QMWgF9KHUqowbdP5VULhPBDz6amAKi3QpMxYUNmISq0=;
- b=lsarzncEi7nkBDm1+suVkz5rJxRxpGaDbTO950RoOni1sPu1DuX8suqNB6qgyvUoax5nsPbY/8TbP/+cQQfXOCb6IY4vKnuhXTBUF4UjbvCqyXgFVQJnpri7XaovgEyDBTaVZ22sqSDUFaC9QoEyXMHr1LcktnWeWCP8CAto3Q/w7R+dKlTLXvzEtZ4+BkRHjtUQbmR8hzJCIr2DxFpY3poWyaawQpAeXKDBThPh0R7HZjPyxSbaq2OuUmpvRle6mR7PwhuT52FaXP3UYqxnOWv9S1J1YoHTbIgIVUZ13wGyhI7+uwQCVOX3oCvnWBokRnz5+4zczaUU+wtWtoAACw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=student.uclouvain.be; dmarc=pass action=none
- header.from=student.uclouvain.be; dkim=pass header.d=student.uclouvain.be;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.uclouvain.be;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QMWgF9KHUqowbdP5VULhPBDz6amAKi3QpMxYUNmISq0=;
- b=oKxtesSVka/UDXKoSCBzOU4EbsXD2vCnzKbcxE/kw6qJm49KlnvpAcCceZwDQ+efEi5hxUXAR8WAYHc+jPg8EoTIP4gViPDmytDe1CIL0ijMD6NQaACTL68yh8Y7wskg1OhyNYQ6DQw3VS4dmaqrmrSKLhgPai+rO48RSC1Kq3oEg/mJHInfEfCuPBkWScyCoiWP3dC+MAz6IcDVb6zq9mfLBUKsOq/Bk6vYA+Rx1RpAlVCY+DQokG7P4Hs8VKwXJLNlA/69D6lE7tShFMRu3vGyWvgiZm8VrJMpTceQNLAu5If7sHo61/O8ys+eKCLjclzuJZhVZaDfwmI5MAOQTQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=student.uclouvain.be;
-Received: from DU2PR03MB7862.eurprd03.prod.outlook.com (2603:10a6:10:2d1::9)
- by AM9PR03MB7236.eurprd03.prod.outlook.com (2603:10a6:20b:260::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.19; Thu, 6 Mar
- 2025 14:20:00 +0000
-Received: from DU2PR03MB7862.eurprd03.prod.outlook.com
- ([fe80::16c7:3652:4278:dc8d]) by DU2PR03MB7862.eurprd03.prod.outlook.com
- ([fe80::16c7:3652:4278:dc8d%4]) with mapi id 15.20.8511.017; Thu, 6 Mar 2025
- 14:20:00 +0000
-Message-ID: <b02c97f1-c0f2-42ee-9634-6b4db87b6bc2@student.uclouvain.be>
-Date: Thu, 6 Mar 2025 15:19:59 +0100
-User-Agent: Mozilla Thunderbird
-Content-Language: fr, en-US
-From: Quentin Prieels <quentin.prieels@student.uclouvain.be>
-To: usrp-users@lists.ettus.com
-X-ClientProxiedBy: MI0P293CA0005.ITAP293.PROD.OUTLOOK.COM
- (2603:10a6:290:44::19) To DU2PR03MB7862.eurprd03.prod.outlook.com
- (2603:10a6:10:2d1::9)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5e535e6739bso1248020a12.1
+        for <usrp-users@lists.ettus.com>; Thu, 06 Mar 2025 07:27:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google; t=1741274844; x=1741879644; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=achjYMdLYwFjinrj+S7UGzjPRIQgGBibKLSPsdXSG80=;
+        b=g6eVnbC+xpqBh02b9RVHAiZUihkCElHhq+SbGeQR4foR6xmy9VBCBesG7onLTKS82p
+         XJA4MQFBU6fQI4bU2y8L2HMpZwnpRofVko6KfDCNO+YI+apnburgi9OGJ6P0q3U6f/8m
+         hbuA+3FJ4OrexsLUNNfWJ/f7QVMqGVo6aODPhCShpc1aJ3ol8LivjzeftG09t2GHRjh7
+         i3oLhAYwm9gv3tHWhyzB3cThoUTAxW00aAAjvMJbIupjrNl1BNU5iQ6Axc2nHmVgj84D
+         sTHDSR14eRfXPIyx+3pxZhMdHZNt+mBvl16Sau1UAbaEP5GnWEuPekdZCXM+34deA0ST
+         eu2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741274844; x=1741879644;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=achjYMdLYwFjinrj+S7UGzjPRIQgGBibKLSPsdXSG80=;
+        b=h528x6DsvgY6tI+3YEWC6ZWuY39kiBe7KposXoDiwonxtNYFyC1Yp9ZlBZZX3/QtZv
+         +iUXeehv7vA8MqBh9avQMqSumgQD0oo7/JtdP8KXHx9LlTk/Tqoxtr84bab53NK8oizw
+         J6mmzkzxlnUodb/3AvHhDw2GPmB1k/7TEE7r8MNKsO/p6d0+KqIpjZYWMCLBrImEJw4Z
+         MOQk/OFtnk17FkbiTBkrPsjSpdl6m+w6zD9X12u6lLkXBjlhc699JGRYqN/ho3QNXOYm
+         toMYT69KkSWQ0voNlfQ+4Xnw1Q4L+PFt02K0YcFAotouJ01n4pPC8athQvaHlkYparM5
+         Q8Ug==
+X-Gm-Message-State: AOJu0YyjlVU5RhiGhDOp/cYgXCao2TwwOja0SaiWXnwXx21mXh7dL7Yl
+	l9nluxhfOIzauzgO5IE7lbtPVOI9KmscCMFFf+FveWXaLgev0973ZJVTjzQXGw+G6ZQc8K4UoW+
+	RwX/FkgDhdeOyWbg6pUQDL4y2KrZXs75q05QPJ5koSCUJ2sQ=
+X-Gm-Gg: ASbGnctCfKdA4/IqXrPwbHYTUdiJxZ+zNu8KhwokUlhISG+levJ06TZOmuCsCSoz0jA
+	ZrxWdfolrLs9X7oWGua99A2XhAyReBeNvuob8ju/MzgvXB6pVn+nhVOV3a7iQaBWKjyYA1kVdjl
+	pzsaZ6y+V/CEJWxNgfAxL9Epy0pw==
+X-Google-Smtp-Source: AGHT+IEMQLqTs/GGrv6l4lczmlxtORP9oOi/6eKSRq1TFiDYwfFVTdZN9345YxaD67Kt/57//TWVvxdE1TlBdVRY3KQ=
+X-Received: by 2002:a05:6402:2345:b0:5e5:d9e5:c4d7 with SMTP id
+ 4fb4d7f45d1cf-5e5d9e5cd46mr1776055a12.28.1741274844133; Thu, 06 Mar 2025
+ 07:27:24 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR03MB7862:EE_|AM9PR03MB7236:EE_
-X-MS-Office365-Filtering-Correlation-Id: 14dbd57b-9dee-4d2a-17b9-08dd5cb9face
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|10070799003|366016|1800799024|8096899003;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?cVgwVTFvYWRqUUp1MWhoZmU5L3BSckZFY09JeTRaNzl4dU83dmJBbHBpbkVS?=
- =?utf-8?B?dXB4Qm9KS0UyM3E5dmpYWFdXTmdYL2ZvLzJkVnVoTVhhc3R4eDVkRW16WStl?=
- =?utf-8?B?U3g2bXFoa1c4cEo1RG9nQUF0WEkyM3J1SXR5ZjkxcGMrMTVTWDhXdGVNOFA1?=
- =?utf-8?B?cGg1b3k5cHdEdnFhdEZWdWJxSjNZYWZwZDhUUHJmQm43eVRIMVM2OGR2UXlR?=
- =?utf-8?B?aXZVOEIvZHhoalZSbWRUMDJoMThodGpkU3J4SnJEV1BSOGhGSEN2cmkyT0NI?=
- =?utf-8?B?MjZ4MWE3QVFNb0NQdGF5TkhIZWVDVDJsb0NhMzd0VnY4d2habGRNbzZtNjNq?=
- =?utf-8?B?aGR2aGF6VU5ZbTU0aldsNXRvRy91ZnRnejE2ZEZudmdQUXJyNlhpMnIzeGlr?=
- =?utf-8?B?RmhVbXMzazlCRVNPT2dUN3lqbEd2WjJzRi94RGVLL3ZndW5zNWdHN1NLTEtk?=
- =?utf-8?B?RFRsM2FWR3BTTXdkc3FLQm9wVU5YcDdVL0luTTNBMW5FcGRkNkdwZUNkU25n?=
- =?utf-8?B?ZjdXUTRJZFVSZFQ0THB2TmFKdjdzbG5zZEFSeFRpTHBuZVdFK3VtUFpKaVls?=
- =?utf-8?B?QXVBZHZjS1ZsSWhqQjA2YXQ2cUxqeTl2NWkxTGVlN3N4SnUralFWYXR3MklS?=
- =?utf-8?B?aHZDQ2JwOXVvQ2cySWlvY2hqcFJmK1cyZFl2aHlyd2U2UGsxQnlwYjUyZTI4?=
- =?utf-8?B?anZuYnExdTZrWklzTDlDZFRDc0FYaEpSTDBpTnJkM2kxUlBuU2tlMFlBaXdV?=
- =?utf-8?B?b2w4V2NzUkgzQWdqTnR3ekd1UXA2YjFxQ2diNndwakhuSXRqbTlRNFpaQjdv?=
- =?utf-8?B?bS8vNnNZNjVEbkl6TjNWczdFbVB3cVNORkJhVDc4QkZIY0tQZFRHNjRZSEhT?=
- =?utf-8?B?VnJWcWZsWjFqM0dnRE5ad0hlUytDZ25jN0grYVhuTHgwWlRWK0x6TGkzeS9F?=
- =?utf-8?B?OEJvSXQ3R1ovVk96NzE3V01wd3dQNHpXZ0lpQkgyTGZJNkhXSTV6QVpvUFlp?=
- =?utf-8?B?VnFkdFpiTW9DS2IxdzVTRExJdDJkZGRuMHozK0xzaDFUWm1NTnoxTmJVaFBm?=
- =?utf-8?B?MjVxODVYSTNoOWZoSENhVSs1RXdTVHlDUWtNNDlaOXhOTjVDcnd0UExHMlA5?=
- =?utf-8?B?ZzJDR0RtZXZiMTFGN3ZFUm5XOU9ZWmlwNmRpRTFGdzYzbHRiR0ROOFVUOTdV?=
- =?utf-8?B?YldmSEdSUVVsM01tMVY3d2V2R0NLTkl4T0hoYTVOL1VpUm5IR3pYQVBzcklM?=
- =?utf-8?B?cGc1NExJVXVyRTZYd3RWQjFvOUg2eVliY1ltb3h4d3lXL1k0UDFualJiN3Qr?=
- =?utf-8?B?eWFZVlRYaXNML29zdEF5M1V1S2NKWmp0emlSNUdGbnJIcjhKdCtsN09pMTM1?=
- =?utf-8?B?R3hwM1ovYXJsT0FSMHlaMlhyTTQxWnpxWGpvcnFja1lOVjIyMHBUQk1kZWZv?=
- =?utf-8?B?VXZOWjJpc1Iyb1pwZitkY2pIYmRURHNoYlU2RzU2eWVXSTJMVW1tNmIrREFN?=
- =?utf-8?B?bjlqcFhKOFZlY1lFN2prUG9GcXhxZDh3THpqWnIrMTkwSnhXWHBFck16Qm9U?=
- =?utf-8?B?bUlZbHF1K3EyOWRGTDlzTUR3WDhhSFg5RDVZWUFGZzJXWHhidUIycTlwNjZM?=
- =?utf-8?B?ZWNFaUx0N3pERmUwZ05yUzA3aVZseTlFVnVhTWxONE1hcmpDejFrM0ZLQTlP?=
- =?utf-8?B?VG5Ya1NOY2VNQlVWOHBUVklJb25aRWh6Y0hxYjcwb0dGK3dwZEowc2lKdzBs?=
- =?utf-8?B?WmFsd0hLaldBdHdaU0plYVN0UHh5R2gzY25aWC9BcUQzY2V3K0N2UStzZDRZ?=
- =?utf-8?B?UThobi9ZY1NZRnA1Sm80NmRXR0tYcVZ5bkI0ZlI2RG1GWjhDSnY4ckUxWm85?=
- =?utf-8?Q?1i/Y55u/hsoZv?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR03MB7862.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(10070799003)(366016)(1800799024)(8096899003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?TWN6WEN4NldvYVV3WUQvVW1kMm41UGtMZy8wQmxScEJjblIzTFh1b1k5QUlq?=
- =?utf-8?B?clAreCtzQjdUTVMvYVVHMzZlWXhwK3grdURSb0xoUUgyQ290N0IwQkdvN2h1?=
- =?utf-8?B?c2ZqQnp6OUR4TktNZHVHR1RNWFAvV0JydytmRW9zVzgzM1k1K3VqZi9RQ256?=
- =?utf-8?B?dHBSc0VvNkFIODMwcXdYWmdGZ1g0eXQ2YWtHNGkzRDdzcTVsVCtOeDhZNDFX?=
- =?utf-8?B?NmwxcDZzc3U5WHlDSXUrLzFZVEMrd0VXZHhEVHJaRjZiQ282aWU0YUI3YlI4?=
- =?utf-8?B?NDIrT202M09kYWw2cVdXRmlKbGk5bm9yT2dyMXRwdEgyZ0k3cHBaNXV6Ylpn?=
- =?utf-8?B?U1NxMWVkb2ZhUFg0WmpQVWdjQ0I1SU92aXkvRTQ2SnNPdGg5UHBJaTU5d0dS?=
- =?utf-8?B?eWNwWlJpeWUzL0UyVFg3SXJSTjQ1VnA1eVpKanVUNmVrZWlpVnV3OExnSzhK?=
- =?utf-8?B?YkFZZnV4M2lKTTgrQ3FwT0U5dk1heUxQYk00UHFaQ00wS2RwZXJZQ3NVMlhI?=
- =?utf-8?B?WWVva3FsWWhuZzZDR1NQMGFiYmdJRS8zWGllQ0VqY1hJcmlLTUdFWGJNUElT?=
- =?utf-8?B?Lzd2MlFNZ1Azblh1TGNzdCt0aHJIS2N0NmlQSkJJc2NpYVVGU2toZnp0QU16?=
- =?utf-8?B?TkZGYXAyempDVG5QOEtlZEYycURVVSszT2JhKzZmR0x0eG5MS1NmOXN1VTg2?=
- =?utf-8?B?VnFvZ2trVmJCdC9EUXRWRkxqVVljTngyYkFGNml1aG03dFhDK01rQWxLbUhB?=
- =?utf-8?B?SktoUlFqbTkyYlhxY0F1aldsYzJaVGxUb1plTnkvNUNVMndvYUROdHZ2d2FZ?=
- =?utf-8?B?UU5JNjJLVnVHQlp4RzBQSnlaRVB3N1dLY205THgzdEhaN2JtNkpTSzdTeW1j?=
- =?utf-8?B?RkpaTzl4eVNIaTF6a244SzNQanRLaTFBb2VNM096ZEg4b3krdm9BSnp3NUQv?=
- =?utf-8?B?RkplTllOeUlKVDd0bGJCTmdnS1hVY0d0a2FyY1NkeVJSbXJqRWM5dXhySzdE?=
- =?utf-8?B?T2RqZzE1dG5vejhKcDQ1QndJZHlab1FILzRseXN0Q2tXbGRnbkFxYWxianU5?=
- =?utf-8?B?VjkyREVaUzJ1Qm51enFjOHRwbWF2Ui9sa2ZWTnBOSXl2N3owV0sva3c2NHJ1?=
- =?utf-8?B?TVBwZ0hCSjh6eWd1NWlPek4wWnMwVzh3OEo1VC94RUc3UmU4bTlxWlVSL3Qy?=
- =?utf-8?B?SVhJckE3MVVFSEFvV0ZIWUVPNHVjWkhqZGhqQ2pieUNNU3Yxb21zYm95WmpO?=
- =?utf-8?B?OTZpeTZmYXNvemFnZzFxNFNvZk1PejFJcGMyU3MzYnNtK3B4ejdpODRrZ0x4?=
- =?utf-8?B?RUFTc21PRk9QaEhCWmZ2dDUrZG45aS9TZWRXWjVyOFQ2TVd1bFh5Nll6MEhC?=
- =?utf-8?B?U0lkS1o3a2ZmNm55MmFYazV6ZlhZSG1UeXB5Rm05bUdkcFRCNHJWc3ZOUlIx?=
- =?utf-8?B?cThFNlVjTCtxeUtNdGZENVd0SmFVbDU0Y1M0MHFRSHhMMlMrZkYwbHk3TDh6?=
- =?utf-8?B?RXFqbmMrVi9CV3pRVjZuWEJiazFOalNGdklUeTl2ekpscUNySU01VVJjLzE0?=
- =?utf-8?B?V2VYNDI2S0R6RzRvZFNXQTU0eXZBeFg4THNmQlRRQ2E2VDRrN1NiZkZtQVhl?=
- =?utf-8?B?S2Q3RmM3ZVV4UGNyNTQ1c2lWVGQrZmVmQjhtMm1qbTZieUQvVFVSdlFiT1c2?=
- =?utf-8?B?YkMyN2NJSzFaaGNvS1k1UG1Ob3VSY2FITHd4OW1vRWE1bXAxa0NxL083S013?=
- =?utf-8?B?eUxpTWRZNnVHdTNmcUdqa0FBU3dLSTJLTzVPbUxvRlVQTFNadHovelNsMU9J?=
- =?utf-8?B?dmxDSlBiWmZtOTNIckx5OFVOeXJVRTJvV2w3RDdUQ0R0c1VxTU1vSWxpUlF3?=
- =?utf-8?B?d2JrYXFxeVU4c3NoV2hXck1IK1dXRDl0NnRzNitIWUdqZlFIYjA4RHduMFJG?=
- =?utf-8?B?U1FmbnZjYTduTGRYTFNUd215czRrL3RqSVI5VFZZQUhtdk1ZeWdpTVVOWnVa?=
- =?utf-8?B?cXJ6bERodDJHbmx4WXNpWWF2dXBXU0VnNE02VzY3cDhHZW9rMkFGVXhCS0JG?=
- =?utf-8?B?cnI1WUZrd3lnRUdHamI4bWtYclVvRllIRFpva29jZUpYVFUyQzR0d2xVK011?=
- =?utf-8?B?ZDJVWXlJQ1ZmdTE0ZG5RV2h0eERNeXlGbVRTME5iSVBoOWRiZDc5a1V1L2Iz?=
- =?utf-8?B?a05ZQWhWZlJkb25Tb2xTdWNzcFN4SUFyUDBqQVlhc3hpYU9iUGtydS9OR01t?=
- =?utf-8?Q?z3vNIEFc8PMJGX7nVvKH/8P+bxmuofbYKZturF0c4g=3D?=
-X-OriginatorOrg: student.uclouvain.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14dbd57b-9dee-4d2a-17b9-08dd5cb9face
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR03MB7862.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2025 14:20:00.4810
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7ab090d4-fa2e-4ecf-bc7c-4127b4d582ec
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wKARaAtM/QppKuCtcEMnvCvHLKRskzFUVtTlaG89rzLdOdMSvCGQTcOYlIlo2GgljPfM53lU2613NRvJDmLKulY0gVYf3ilcDpdFjonNrEOaH6hwP8KkgggQSGrutgsX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR03MB7236
-Message-ID-Hash: V55LEGPYHKFSYTVNX343PPFLVKWC7M6O
-X-Message-ID-Hash: V55LEGPYHKFSYTVNX343PPFLVKWC7M6O
-X-MailFrom: quentin.prieels@student.uclouvain.be
+References: <b02c97f1-c0f2-42ee-9634-6b4db87b6bc2@student.uclouvain.be>
+In-Reply-To: <b02c97f1-c0f2-42ee-9634-6b4db87b6bc2@student.uclouvain.be>
+Date: Thu, 6 Mar 2025 10:27:12 -0500
+X-Gm-Features: AQ5f1Jog5Vq6jSu-TXVWFKkfeSAwpIGVreoJgShX0PNpcq-YVvpzhcMthVg1JtE
+Message-ID: <CAB__hTS0DUZLnudzHiRoDuwOTo4iygShH-eAB1ZCJ6HV2_KWRQ@mail.gmail.com>
+To: Quentin Prieels <quentin.prieels@student.uclouvain.be>
+Message-ID-Hash: LLUSIVUYUTBRGMY4EC4HIOHOJHGYXZX2
+X-Message-ID-Hash: LLUSIVUYUTBRGMY4EC4HIOHOJHGYXZX2
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] OFDM Reciever chain on USRPx310
+Subject: [USRP-users] Re: OFDM Reciever chain on USRPx310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/V55LEGPYHKFSYTVNX343PPFLVKWC7M6O/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LLUSIVUYUTBRGMY4EC4HIOHOJHGYXZX2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4303112887862824452=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============3625428956316306302=="
 
---===============4303112887862824452==
-Content-Type: multipart/alternative;
- boundary="------------9k0QyNMOuuAao52pEVsPtH3T"
-Content-Language: fr, en-US
+--===============3625428956316306302==
+Content-Type: multipart/alternative; boundary="0000000000008ad504062fae24c1"
 
---------------9k0QyNMOuuAao52pEVsPtH3T
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000008ad504062fae24c1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello everyone,
+Hi Quentin,
+I don't know what OFDM blocks are available. But, regarding your questions
+about getting started with RFNoC, you will want to use the RFNoC
+Specification document along with reviewing the XML blocks that Ettus
+developed for the various included blocks such as FFT, FIR, SplitStream,
+etc. Also, reviewing exactly how the Gain block works is very helpful. You
+mentioned that you ran the test bench for the example Gain block but
+perhaps you could build this into an FPGA image and go through all of the
+steps to make this run on the hardware while controlling it from software.
+I would also search Ettus Knowledge base and past conference presentations
+such as GRCon for information about creating your own RFNoC OOT block.
+Rob
 
-As part of a research project, I'm looking to implement an OFDM receiver 
-on the FPGA of a USRPx310 (and more specifically, the synchronisation 
-stage). According to my research, some RFNoC blocks with this function 
-already perform this function. Where can I find them?
+On Thu, Mar 6, 2025 at 9:20=E2=80=AFAM Quentin Prieels <
+quentin.prieels@student.uclouvain.be> wrote:
 
-If you are not aware of the existence of these blocks, I imagine the 
-best thing to do is to develop a new OOT module implementing this 
-functionality. Where can I find the documentation for creating a new 
-block (in UHD 4.8) ? In the RFNoC specifications? (I've already 
-installed UHD4.8, Vivado, ModelSim and run the Gain module's test-bench 
-successfully, created a new module with 'rfnoc_modtool', but I am a bit 
-lost about how to design my <block>.yml file, and then, wich signal to 
-drive in the SystemVerilog user logic code). I'm also wondering where I 
-can find the documentation for the available IPs to integrate in a new 
-design ?
+> Hello everyone,
+>
+> As part of a research project, I'm looking to implement an OFDM receiver
+> on the FPGA of a USRPx310 (and more specifically, the synchronisation
+> stage). According to my research, some RFNoC blocks with this function
+> already perform this function. Where can I find them?
+>
+> If you are not aware of the existence of these blocks, I imagine the best
+> thing to do is to develop a new OOT module implementing this functionalit=
+y.
+> Where can I find the documentation for creating a new block (in UHD 4.8) =
+?
+> In the RFNoC specifications? (I've already installed UHD4.8, Vivado,
+> ModelSim and run the Gain module's test-bench successfully, created a new
+> module with 'rfnoc_modtool', but I am a bit lost about how to design my
+> <block>.yml file, and then, wich signal to drive in the SystemVerilog use=
+r
+> logic code). I'm also wondering where I can find the documentation for th=
+e
+> available IPs to integrate in a new design ?
+>
+> Thanks for your help,
+> Quentin
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-Thanks for your help,
-Quentin
+--0000000000008ad504062fae24c1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------9k0QyNMOuuAao52pEVsPtH3T
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Quentin,<div>I don&#39;t know what OFD=
+M blocks are available. But, regarding your questions about getting started=
+ with RFNoC, you will want to use the RFNoC Specification document along wi=
+th reviewing the XML blocks that Ettus developed for the various included b=
+locks such as FFT, FIR, SplitStream, etc. Also, reviewing exactly how the G=
+ain block works is very helpful. You mentioned that you ran the test bench =
+for the example Gain block but perhaps you could build this into an FPGA im=
+age and go through all of the steps to make this run on the hardware while =
+controlling it from software.=C2=A0 I would also search Ettus Knowledge bas=
+e and past conference presentations such as GRCon for information about cre=
+ating your own RFNoC OOT block.</div><div>Rob</div></div><br><div class=3D"=
+gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Thu, Mar 6, 2025 at 9:20=E2=80=AFAM Quentin Prieels &lt;<a href=3D"mailto:=
+quentin.prieels@student.uclouvain.be">quentin.prieels@student.uclouvain.be<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+u></u>
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><font face="Aptos">Hello everyone,<br>
+ =20
+  <div>
+    <p><font face=3D"Aptos">Hello everyone,<br>
         <br>
-        As part of a research project, I'm looking to implement an OFDM
+        As part of a research project, I&#39;m looking to implement an OFDM
         receiver on the FPGA of a USRPx310 (and more specifically, the
         synchronisation stage). According to my research, some RFNoC
         blocks with this function already perform this function. Where
@@ -220,23 +173,30 @@ Content-Transfer-Encoding: 7bit
         the best thing to do is to develop a new OOT module implementing
         this functionality. Where can I find the documentation for
         creating a new block (in UHD 4.8) ? In the RFNoC specifications?
-        (I've already installed UHD4.8, Vivado, ModelSim and run the
-        Gain module's test-bench successfully, created a new module with
-        'rfnoc_modtool', but I am a bit lost about how to design my
+        (I&#39;ve already installed UHD4.8, Vivado, ModelSim and run the
+        Gain module&#39;s test-bench successfully, created a new module wit=
+h
+        &#39;rfnoc_modtool&#39;, but I am a bit lost about how to design my
         &lt;block&gt;.yml file, and then, wich signal to drive in the
-        SystemVerilog user logic code). I'm also wondering where I can
+        SystemVerilog user logic code). I&#39;m also wondering where I can
         find the documentation for the available IPs to integrate in a
         new design ?<br>
         <br>
         Thanks for your help,<br>
         Quentin</font><br>
     </p>
-  </body>
-</html>
+  </div>
 
---------------9k0QyNMOuuAao52pEVsPtH3T--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
 
---===============4303112887862824452==
+--0000000000008ad504062fae24c1--
+
+--===============3625428956316306302==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -246,4 +206,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4303112887862824452==--
+--===============3625428956316306302==--
