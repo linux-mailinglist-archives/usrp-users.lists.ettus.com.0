@@ -2,121 +2,143 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 253B1A5D0FC
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Mar 2025 21:47:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5818A5D2FB
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Mar 2025 00:10:36 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E456F386304
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Mar 2025 16:47:48 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 987D1383FCC
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Mar 2025 19:10:35 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1741726068; bh=2MyCVeiboGydTvCkJ796mA4NBV+VGwM/JhvNx6y8jK4=;
+	t=1741734635; bh=YTyuGAfPW/2L6nn3wKJACio4vgewfTnDpJiWetMRTzc=;
 	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=RDn7Hg+oZY7zR/Z6i8UmHEIZLnC7kf4Irti3X08nf0DW7YasZmDI62uxEs8b3KUaF
-	 4iW9hbiOazXbaQj10r8r9tmbDcLvjReWOxE6FF7fA4kYusjlXBmbe6rnZxOS2mIGyb
-	 LGlxTsI36+l6XOQIhQB+nAx8df5CSkvXUCeUEzYbTUXisdWXvdMnvy+GUBa/QPG08K
-	 JHmvPqEd5Vles4CcJSrrthTNW+YBLdkIfpf6BCywj0TTR4pMY802DJhIKeFMmYMfhq
-	 zVeQFgfMe4K3Z85LNUX7GUd5hoCeTuGHod/gMm5O2ekBH0Z5LTjHH7uPODSLPOSw2R
-	 xYgOPeTLqyIQw==
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id DEA2F386143
-	for <usrp-users@lists.ettus.com>; Tue, 11 Mar 2025 16:47:40 -0400 (EDT)
+	b=Erk02QO52SZXEQ3glaXKF4r6b8Ppp7g+/vYMN+PXAalaPpJo/ip3zAP26uFfheiKC
+	 u5tarcYPkblFKwD5Ous9oNVU7VMUKAYMkLau8NMKdto/fJnL9uYeMrahJBtwO7/Nk1
+	 5j3gvJeZ0bzNH5hoLIbjnVWukuwl/AyH7IJAA/iTbddUWRGvyFwnyPbJpo/uSLQ6b7
+	 6wC5aUpEVl8Y1IjemalC2TjsRgkoQPeQwh1lpuAVGzpZoQZeeVEsg4sj4R4ekkR0WX
+	 6rkmSdlTyLGyzMOE1GwsdBFhF1Mey3r3rkKql0kxbIVuBlfJPLP3CMBvznrnGLGPFy
+	 1v74FTpOiOTRg==
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 99F85386075
+	for <usrp-users@lists.ettus.com>; Tue, 11 Mar 2025 19:10:27 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XqGelBHA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MhUKf4Nb";
 	dkim-atps=neutral
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aaeec07b705so940438666b.2
-        for <usrp-users@lists.ettus.com>; Tue, 11 Mar 2025 13:47:40 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac2a81e41e3so496108866b.1
+        for <usrp-users@lists.ettus.com>; Tue, 11 Mar 2025 16:10:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741726059; x=1742330859; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1741734626; x=1742339426; darn=lists.ettus.com;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=N/TDFDPqE9v+ZussqCXKTje4Ft3QDoXFVeMgTX/wVQQ=;
-        b=XqGelBHAxcUxVnRyb2SVeTe6S+vcoKgbwA2s5oIC3QznDifEYGbMNwWP62tyjpdWIu
-         hnKlQlF2rcPST1lPMC/kVvuBL/o2FjqHOe09rMR1urxmVTw8sPdPPmSSM+1rEueig/cf
-         WkRmI/JIMZ/tEx72MGBWEVW2B0fOelTDAsj/k7DX4JI7aEoVitHkyURsTxLBg6XAU3mS
-         iIIDIs9YZpTo+q7C6N2Q7dVbv5T4MtOMRa7FK8KplxPCOxK9JERTJ2ogL8wn8jH7mWeT
-         GwefGaDLSKJAK5ER2E9qNkTqASzjgmilrEBS4mAuP2b3s9SPMNg7+cMF8S0EIZiY+6Py
-         krCQ==
+        bh=3lDramFcpf+SWmad1SWiamIHmvaavl6Rk60x6zI4SdE=;
+        b=MhUKf4NbfERckAM69gSZEXPN2nJ3SG8PVPtGiFR7ll6aHGriRpCIuRUHByaFQD4GbU
+         +N+MGrqEL8A15Q3iDWDkjBXfsSZ9/Srd233kgSfU2v83DST8vZD1UdJvG0gVENCiBHyY
+         ttLe2DtYxWZ5Vptc69m7CyZqyk/yuhO34gLDTdmn8DByxvdoRgqdtdRe+crXKnynxjPF
+         ArEN8hRHysoIf4p6kKAiu/DlYSbpKP1vkabdk4eZYK38HrceVK5cJ0ioSE/J0bAj8QEL
+         LLq8DbhrzqHTFEt5bW9KONtNU2vQ6o9sU/42GsRlyWDf4RPL5F9uH9JBSaGBVoa9pt3B
+         tWxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741726059; x=1742330859;
+        d=1e100.net; s=20230601; t=1741734626; x=1742339426;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=N/TDFDPqE9v+ZussqCXKTje4Ft3QDoXFVeMgTX/wVQQ=;
-        b=bNH/6hUkBsQXGGfg7ohhr1bXV9e45wSeX0ytL7W3Nlr6kbQAZnFzmYWKdqqp2TqceR
-         +GCdToogFD4pClaocheMXbYIqyQyjztQOlXpGw0MihvzlBtZ4ps4FhfTB2Y/a8m2SjSP
-         3Vf3g6RD5b2cSMxjvH5sbBD3+Rfj0tQKMYBor27aKiLt6pntrj5iBHno17T/I59wVWft
-         rS5TiuTGLN584YIdLqwneXUg1OTh9Y9lWDzQwOKDPkb4NLHvEYDEU7gA/lYIvZRtTgIq
-         /o6gdZSWFW26rj1rPNWJc0IHheNcRs/lsKRhOMRxOiqPJS1BY1HBL7FUAhK6yOtjpzN+
-         WS8w==
-X-Gm-Message-State: AOJu0YwbZo3DhtLD/BCpUiREscapLNpckYXmJMDvYYps/Yfw92MsLE8Q
-	yd4kWa9ZmXMbrU3BCz0yDoTA1Y+DMPPIKlf15pudJRCMo0eDjWuV4+Xqa/D+p7t0BqaKD5npaNu
-	qpTxNYKMVm6qDm440ap+SCCjXgBJnBA==
-X-Gm-Gg: ASbGnctL8zzBp4hCygpBzESh6qknmDvLiaZWEOZl48J6d18oYZo2yIU+KZy5uOj2jgl
-	kbSPtJbDTP0w9+Ah7X3qesLDeJqefZvelrLUWfveAq4ISG8lhupld+ffnuiV/rPGnUUbl6AgLaP
-	QMZk+t3ASzjnP1EbDbomC1yxZq1A==
-X-Google-Smtp-Source: AGHT+IGw8cKifo97E8g2xev6VmfRi1jGMSqtHA4exuUqqHjqQfiWPFZZzXcoWgXtVNZMN0jRiU54+ZZXYHOPZx7PqIc=
-X-Received: by 2002:a17:906:b6d0:b0:ac2:cea7:6c6c with SMTP id
- a640c23a62f3a-ac2cea7743fmr312696766b.57.1741726058977; Tue, 11 Mar 2025
- 13:47:38 -0700 (PDT)
+        bh=3lDramFcpf+SWmad1SWiamIHmvaavl6Rk60x6zI4SdE=;
+        b=jUl4K1YCKOA1nrx1WMTUB8gY1i/wtRjwbH2xMOKdVn3bvtGpFqar7xGjD0Q430UzeV
+         SbDfVoqXBZsXGc2MEm9d2zx9tQpddIEqm0UUpwq4joUWULWmIJQ9U2DHqGzMEp8+/buF
+         MGqpcdPPHQuOMjV0K4DIBn4yNXxk39i4Foh02bZOb+tNv6xQ2p22LqnfETr5e9CTvQQ1
+         Zv24ZjWwiL6NB/erwGLOjMbN8jDo40d8JBjdy/Q+p3TVmLZQzitPbM4k995DvofrhK8B
+         lxfMINSZD+ydo8krV4VcjwUpPnrVohkKXInrBTtl+LJObNuM8ZcEhmY/OTL9W5d+DKy1
+         beMA==
+X-Gm-Message-State: AOJu0YwctXBFZrKv8g9vZj6521JjpWdt8nV7CaJ1ME2ZScZ45aDVm0hu
+	3QCMV5aGP2SaZq6ODzyaFhPo6PEF28+vVceDfLyIU6/h4JqTSZmcZbd823m04jznjKUtww+uue/
+	1QaVTh+NEJY0JkDKfd3Nda/iayhMRpogB
+X-Gm-Gg: ASbGncst0/ENBx5I8yx5bGGTKplMtcJ8UnNgLBpmydkb1yNx49WmAmy6dNgzmzOiH6G
+	tgAS5RvqgY1wh6mx2BHBb8yqO65nDpFHViUim7sI9otpV317SfsWxXdoUJFrkoy4QzO49lGe311
+	fkXgOgFRbNXm1YjeA0S2//j8jFAUiQTwaPWJ6J
+X-Google-Smtp-Source: AGHT+IEiv/s8VvCGU6K+6bLDqjmTAQfAWach5MZdxwqjgT+Bsq3QXtXfU22vFvignqt/B4qqFtdgrpAEEsOjMfS9pac=
+X-Received: by 2002:a17:907:1c9f:b0:ac2:b9b5:f13f with SMTP id
+ a640c23a62f3a-ac2b9b5f402mr830813466b.9.1741734625471; Tue, 11 Mar 2025
+ 16:10:25 -0700 (PDT)
 MIME-Version: 1.0
 From: Brian Padalino <bpadalino@gmail.com>
-Date: Tue, 11 Mar 2025 16:47:27 -0400
-X-Gm-Features: AQ5f1JpC7vFu80vFGNFCZz9frid82IWbEqC7d4eBqPPZQdjMGmG8znxO-GvCFNE
-Message-ID: <CAEXYVK5j7GCkt1qSzGFkjeJu27-9F9aaL9mHQvgnQekWXCcZpw@mail.gmail.com>
+Date: Tue, 11 Mar 2025 19:10:14 -0400
+X-Gm-Features: AQ5f1JrzoA3HPSIL8IWiioV2jBmIC6PurVl2eaP7oxLLjzanbROPkqGif0ufu5Y
+Message-ID: <CAEXYVK72NmdLr7oyguv2P7hx29OgdwW3Et7DgMUrr_6r9FxQsg@mail.gmail.com>
 To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: GAM2DMCCAJBCCJ6KKXOMSFNNF6NN56B3
-X-Message-ID-Hash: GAM2DMCCAJBCCJ6KKXOMSFNNF6NN56B3
+Message-ID-Hash: 6UOYGNTMTCP2SFP4PKYH2RF3IWPXWQVJ
+X-Message-ID-Hash: 6UOYGNTMTCP2SFP4PKYH2RF3IWPXWQVJ
 X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] rfnoc_modtool io_ports not being populated
+Subject: [USRP-users] axi_mm io_signature issue
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GAM2DMCCAJBCCJ6KKXOMSFNNF6NN56B3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6UOYGNTMTCP2SFP4PKYH2RF3IWPXWQVJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7635590119822875543=="
+Content-Type: multipart/mixed; boundary="===============5175936112775165658=="
 
---===============7635590119822875543==
-Content-Type: multipart/alternative; boundary="0000000000000aa7d506301733fa"
+--===============5175936112775165658==
+Content-Type: multipart/alternative; boundary="000000000000a520e506301931e1"
 
---0000000000000aa7d506301733fa
+--000000000000a520e506301931e1
 Content-Type: text/plain; charset="UTF-8"
 
-I am trying to add a timekeeper listener, axi_mm memory interface, and a
-pps interface using rfnoc_modtool with the yml description and it doesn't
-seem like it actually adds the ports to the top level when the code is
-being generated.
+I am checking the IO signatures, and I am seeing that the axi_mm interface
+generated in rfnoc_image_core.sv is a bit wonky. I traced it back to the
+io_signature.yaml definition here:
 
-I verified this by using the replay.yml block in an OOT and it only seems
-to create the chdr, ctrl, and adds the mem_clk input.
 
-Is this a known issue? Am I doing something wrong?
+https://github.com/EttusResearch/uhd/blob/0dede88c6535ae6ffb30b162c83dc01d59d3bfa0/host/include/uhd/rfnoc/core/io_signatures.yml#L63
 
-Sorry for the confusion.
+It states that it's up to 512-bit, 8 channels, and 48-bit address - but the
+m_axi_wdata  and m_axi_rdata is 4192 bits. I think it should be 4096 bits
+(512*8) but really I think this should follow some parameters that are
+passed into it? Similar to how the radio interface is defined?
+
+Alternatively, the x4xx_core.v file seems to utilise the localparam
+DRAM_PORTS_PER_BANK - could the IO signature just use a generic like that?
+
+
+https://github.com/EttusResearch/uhd/blob/0dede88c6535ae6ffb30b162c83dc01d59d3bfa0/fpga/usrp3/top/x400/x4xx_core.v#L576
+
+Was this just an oversight or is there a plan to "right-size" this
+interface based on the parameters passed into it?
 
 Thanks,
 Brian
 
---0000000000000aa7d506301733fa
+--000000000000a520e506301931e1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I am trying to add a timekeeper listener, axi_mm memory in=
-terface, and a pps interface using rfnoc_modtool with the yml description a=
-nd it doesn&#39;t seem like it actually adds the ports to the top level whe=
-n the code is being generated.<div><br></div><div>I verified this by using =
-the replay.yml block in an OOT and it only seems to create the chdr, ctrl, =
-and adds the mem_clk input.</div><div><br></div><div>Is this a known issue?=
- Am I doing something wrong?</div><div><br></div><div>Sorry for the confusi=
-on.</div><div><br></div><div>Thanks,</div><div>Brian</div></div>
+<div dir=3D"ltr">I am checking the IO signatures, and I am seeing that the =
+axi_mm interface generated in <a href=3D"http://rfnoc_image_core.sv">rfnoc_=
+image_core.sv</a> is a bit wonky. I traced it back to the io_signature.yaml=
+ definition here:<div><br></div><div>=C2=A0=C2=A0<a href=3D"https://github.=
+com/EttusResearch/uhd/blob/0dede88c6535ae6ffb30b162c83dc01d59d3bfa0/host/in=
+clude/uhd/rfnoc/core/io_signatures.yml#L63">https://github.com/EttusResearc=
+h/uhd/blob/0dede88c6535ae6ffb30b162c83dc01d59d3bfa0/host/include/uhd/rfnoc/=
+core/io_signatures.yml#L63</a></div><div><br></div><div>It states that it&#=
+39;s up to 512-bit, 8 channels, and 48-bit address - but the m_axi_wdata=C2=
+=A0 and m_axi_rdata is 4192 bits. I think it should be 4096 bits (512*8) bu=
+t really I think this should follow some parameters that are passed into it=
+? Similar to how the radio interface is defined?</div><div><br></div><div>A=
+lternatively, the x4xx_core.v file seems to utilise the localparam DRAM_POR=
+TS_PER_BANK - could the IO signature just use a generic like that?</div><di=
+v><br></div><div>=C2=A0=C2=A0<a href=3D"https://github.com/EttusResearch/uh=
+d/blob/0dede88c6535ae6ffb30b162c83dc01d59d3bfa0/fpga/usrp3/top/x400/x4xx_co=
+re.v#L576">https://github.com/EttusResearch/uhd/blob/0dede88c6535ae6ffb30b1=
+62c83dc01d59d3bfa0/fpga/usrp3/top/x400/x4xx_core.v#L576</a></div><div><br><=
+/div><div>Was this just an oversight or is there a plan to &quot;right-size=
+&quot; this interface based on the parameters passed into it?</div><div><br=
+></div><div>Thanks,</div><div>Brian</div></div>
 
---0000000000000aa7d506301733fa--
+--000000000000a520e506301931e1--
 
---===============7635590119822875543==
+--===============5175936112775165658==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +148,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7635590119822875543==--
+--===============5175936112775165658==--
