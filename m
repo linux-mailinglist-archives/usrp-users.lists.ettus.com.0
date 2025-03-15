@@ -2,287 +2,335 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B85EA630FD
-	for <lists+usrp-users@lfdr.de>; Sat, 15 Mar 2025 18:49:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A57A63243
+	for <lists+usrp-users@lfdr.de>; Sat, 15 Mar 2025 21:10:31 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BE36838618A
-	for <lists+usrp-users@lfdr.de>; Sat, 15 Mar 2025 13:49:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 79E4F385F5C
+	for <lists+usrp-users@lfdr.de>; Sat, 15 Mar 2025 16:10:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1742060992; bh=1/b9wHNbmMRr5B6CwV5LvLyxC/bY0diwIY/b/XqFm9E=;
+	t=1742069430; bh=xjzTi9BwrDDZd8uI1tGmpnihqfUrBb1lDSJwMs4unto=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=sVbYwoBwN9PCXo/ByGBSPMwGe9EyjKHEo6nV1Z9TElsABhDwjEVSeHApgk19P+733
-	 jxsAtxhHNDqqBvMlDNLDhGNphVap6m4EjFIOW7iVWPgorZv5Fn3nMbPNUPvQQNHdwe
-	 NsvfUXg53qMPbohPsIgGGIa3bv0o1Vsyw3Jp98CfyqRUk8CP6C6Bm1FsslX14AA6sM
-	 8QGMTbBe8+V2CIkSp/XkEerWcM0NRUIgjdQ81lcaxv8wD6aZ56kVVghoHnxahaWSO8
-	 I5kKUL8ih9n5fzKRZMa2743cEw8xRXz5YkxmNEjdy1l+nqMx1B03BdpV36AQA5sjnx
-	 tyhIsEwOzWFaQ==
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id A36F6385E12
-	for <usrp-users@lists.ettus.com>; Sat, 15 Mar 2025 13:48:43 -0400 (EDT)
+	b=0rBDnS95idxUCp2qNMS3a4O4qOgrjOs5zx58TIOWNQ5BT+rbV3NOaLhjA5yfv85dG
+	 Dyl2BtG0KWs79KcK1iI+7LPTPfMkGOqZIXZ627VjIuxGnWAlUfLkQj5Kl7n4b+/cDj
+	 hExBdZoQ4oEhk8RdGw8v6eO4Qs99lmi431g/E/7TfomTaZKMUmxz/VT1Iiv/iRR4N2
+	 G+y+/cL0FT6jKEZHxICokKk8ZoobTEfBSGvVRhMprBdnJIo/exUht7bA1da3Mmwkz4
+	 mooI+hIvfiQ5JgLddrkoh2XhQSDGrSw4qPudChYe6dbLa87KemLiZ/lbXFW7roSHt0
+	 mKv2AqjRbAlUg==
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 599F4385BAC
+	for <usrp-users@lists.ettus.com>; Sat, 15 Mar 2025 16:09:20 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XNjll5v+";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="jK1hgTS6";
 	dkim-atps=neutral
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3fb3f4bf97aso900551b6e.2
-        for <usrp-users@lists.ettus.com>; Sat, 15 Mar 2025 10:48:43 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e5ad75ca787so2774268276.0
+        for <usrp-users@lists.ettus.com>; Sat, 15 Mar 2025 13:09:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742060923; x=1742665723; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1742069359; x=1742674159; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hFCJjh+PsiJpNjE/Tml+15MGNOKX+/8fDY7Mtu36A8Q=;
-        b=XNjll5v+o21nETjVuVJXhlwMFPIaAwXYQ2MmHQHJcygbYDcReixF5CSiuF1wWsMsJd
-         W2BEDyAApMUROBL3jRCw3K2RafK0uz6IbQYVEJro8DHubHeRW0bGxwKVKL2zelcyDwZP
-         wtFfa8dCabi4Uuca/BwCsEn1w8vvaU+tkHpZuMomgRz5BZ7mjr45s0BV5k5IHgiUy02z
-         m+lVEiT2obs9YnCzc1L3zyoaMaq/bM2JQxfDdbqG+qLzotMltzunegbjTd5NZGK1AC9r
-         aG7ylD6rYpzGWwnGUH5eTFKeTMiOUzcyDksKollTmeqA7wixm/5IWrPgt7VYLZPCVYYc
-         bcwg==
+        bh=BHoTUnBsCY1aZFHCaWW3iJIjh/8CrRF/zagKEdq1Vt0=;
+        b=jK1hgTS6dUxG3jOZ4HkC1ERukjsWNDKWNhD/ZAqqAM2zLx1JP1xlMFPNEVNF6hdbUp
+         SHcM+cVqtFcDxMVLnd32aIDMtalpGJZak9HER0T+PVNaS0AfIUTthl8DelVHx1eHAfmX
+         mUUwAowO024a1VwSIExrl3RqrBvKc+WJqmvyzB0qjJ+mxp4eyNkJDWKDP2rG7kAfOX9a
+         ZL2rhgL3mShO2cWHlrP9H9qCUBV5Jw8QpyifWxjoUgZGPEbJkvS/vf+nFy2g1Rg+2SG+
+         yaRTlFB9mNe+mGfIHE0I9kIwYSjf08xzEbgtiAb2fHXje3k2r0rgZdsHBgdGLtG1izxl
+         Eydg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742060923; x=1742665723;
+        d=1e100.net; s=20230601; t=1742069359; x=1742674159;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hFCJjh+PsiJpNjE/Tml+15MGNOKX+/8fDY7Mtu36A8Q=;
-        b=wGB6RN1LYmQCOjpZp4Ek6ANXS0jUD9lwSLt0q/95m0Pa/+ODmihl3RHXS/DeN7V1C1
-         RDXtLUrZn0h2g7hhryfMWyHBMkfiEP8vJWyPQssFw3BX784IsspOavk2k0I0Lncm9oDs
-         QfA1VtMRpVyx+VIVmpwSIvHeWS2y0TzUP6OBzE925aeiVHpcgZZg75V+yhj0HwzmawOE
-         6HSENbxva5Q/7DEaoaxHEwfuZOLGGaS1PlwRZC0vDQXHXP/xmR+C5k8Q0RKq4mzVKahV
-         v9ZvytR+IYPiwWECy3K5FJOkvXXW6DtKdLvIY3xPn1Mwizahf7Udqv+x4zGTYR+3jX7k
-         wmGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVO3cUY047ZE+Mg/AS9PMEMrw9EN9LE3LQzgEcPOA6Bd0byztt9bnQ8NSdLnHtmQ/r6I6dnQTmBcB8M@lists.ettus.com
-X-Gm-Message-State: AOJu0Yzw8XTQKLhJuh0CvVmptn0oHSjDvfQNWqXa0vF3w3als+cGxlY0
-	Y+bwEgv2IbhMCnxr7hv+obtzA8qdTxkjXm2iH5YlPBmY2ePAU1Vi7F3utS+gEWq0DTMJ6kHOqNJ
-	eDf8g+R/X8L3QgrnLAki/+f9nFlFIKsCg
-X-Gm-Gg: ASbGncu0dclRpjtr8QqXnIZvR8v/71ffUGy3RbaWCMitanDx/2O2w6nXYnuj/5oJged
-	YayHOqKCNbtZOAHQtFbegfO6QCBmPWOtRlyJehkUG9CLbdeL80mNl3Scls8aEenBSfz+jJBFJtr
-	wKIoxaBj4tIQpe73pgEkunEMqgUg==
-X-Google-Smtp-Source: AGHT+IGeMurx40pIVW7ePtH5c0yglf5pAZnUeNo6b+IX/Lf75TK8RR5YirQpSAChmXs9MB7vekUXrnLE8J7FBeVhz8I=
-X-Received: by 2002:a05:6808:1793:b0:3f7:da57:3952 with SMTP id
- 5614622812f47-3fdeefed840mr3950113b6e.21.1742060922341; Sat, 15 Mar 2025
- 10:48:42 -0700 (PDT)
+        bh=BHoTUnBsCY1aZFHCaWW3iJIjh/8CrRF/zagKEdq1Vt0=;
+        b=YkxjEKWC+jl4cejAO6/VwtCnjDqKdNg5nKvJcV88gfFjZ+gX223rgZJQuYZWUKo3SP
+         sVlHbGz9SkPJ+ikxywpb29gzsT2VwyB7Ig4f9GiuZeEYCPq5rX0UAcglhDzP7RdL78Xw
+         LdPaKVm4m1dMoNTJhYAXYJswJx/2hORWRlh7rc7vUn2fuz6TI6KuquSQ/n8nPqVSE7rI
+         xuJ6QA527S0bg0WK/UKz+k+ZdwZw1UUZIAupK70KEn1fCsggUMOlaLLJfIVQ90mQQHLY
+         Q5tfEb7nYKheN4WcuCbQFKhU4JbGOYKpyhazh6MBPqvv+pFdNgrC1KrkNsTRshjrBn+O
+         sRmw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxpT6G0nNYxnet8Y7NTgUlBYik2/17iitXTFCqt1Q0Koh7czMk25LfF+zUaetfRsFqCEtEMzCAK1VR@lists.ettus.com
+X-Gm-Message-State: AOJu0YzlBRuHg7flud1x0kZI+S74axmalcAOh9P4e8sS7OO7wUYZDfsm
+	wXN5RdXnLtbUlr9l9VVyHHyw5gvsqwnVUDZLcADHlWdi4dkDuaPu7ard5H6sv7mdSfzAaZYPGp1
+	CzoBMD/GMpn/novHeq0B+rmrcJvE9eG4U3KA40c+D
+X-Gm-Gg: ASbGncueaT5OvU48AdA6VFjSfrdHDpYSxeyEUWGXNpOuYurIk7aatORfofXrayEIfNz
+	lryRoiWo+Z6seqK1ROlXXkXkOPdsaLu5IVgtLyCNDPLCVnKWtqz0Hd6TgvR5NxMU2y3qo/aupmH
+	r5fDA+PUzbkxCqf5SXLBwKFnRpaw==
+X-Google-Smtp-Source: AGHT+IHkLDb/OdJ2UZYflr9hCL1UmK3sTqPThg7W2ZQTPrTFf5n53RBOhUVn6/up+GKPjtszA0yG1n4GYwPz6qVRObU=
+X-Received: by 2002:a05:6902:240e:b0:e63:5966:d686 with SMTP id
+ 3f1490d57ef6-e63f883ff1fmr8607640276.8.1742069359252; Sat, 15 Mar 2025
+ 13:09:19 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAE=q3UP7mSpKn7+BSwKL_8HeVjXcsQe6QH+N_QqZQPzpsz66fQ@mail.gmail.com>
- <CAFche=gXQJ0sD84TB5pk4PMRxrNCrGPJZ28-cgjMjxH4ox2CjA@mail.gmail.com> <AM9PR06MB7826B55E49B0552FFC6292B2ABD32@AM9PR06MB7826.eurprd06.prod.outlook.com>
-In-Reply-To: <AM9PR06MB7826B55E49B0552FFC6292B2ABD32@AM9PR06MB7826.eurprd06.prod.outlook.com>
-From: David <vitishlsfan21@gmail.com>
-Date: Sat, 15 Mar 2025 10:48:31 -0700
-X-Gm-Features: AQ5f1JokPYW9sIqQCNyKHRSkIVbEnQpgTLLf7MCUYvVfQNHqFaSLTSGPKqnkBwI
-Message-ID: <CAE=q3UNDLyNmY8jEhf3cL0MbZz5wQXuQQOMUZ8xSMG938udFtg@mail.gmail.com>
-To: Sam Lane <sam.lane@surrey.ac.uk>
-Message-ID-Hash: YBP6HMRTKKEGESBY5HNTRVRG5QVJ6MFO
-X-Message-ID-Hash: YBP6HMRTKKEGESBY5HNTRVRG5QVJ6MFO
-X-MailFrom: vitishlsfan21@gmail.com
+ <CAFche=gXQJ0sD84TB5pk4PMRxrNCrGPJZ28-cgjMjxH4ox2CjA@mail.gmail.com>
+ <AM9PR06MB7826B55E49B0552FFC6292B2ABD32@AM9PR06MB7826.eurprd06.prod.outlook.com>
+ <CAE=q3UNDLyNmY8jEhf3cL0MbZz5wQXuQQOMUZ8xSMG938udFtg@mail.gmail.com>
+In-Reply-To: <CAE=q3UNDLyNmY8jEhf3cL0MbZz5wQXuQQOMUZ8xSMG938udFtg@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Sat, 15 Mar 2025 15:09:02 -0500
+X-Gm-Features: AQ5f1Jpi2rO1nq7-5V22ZzV1nSs6QZzpTlxmaMbz7TqoudHqvx3TkKk4PN0Rcm0
+Message-ID: <CAFche=go8GkndiN2UjoZ7CUZOCkoM9mN49KETGAko8OO10PvoA@mail.gmail.com>
+To: David <vitishlsfan21@gmail.com>
+Message-ID-Hash: QOBSZ4RJ5SFVR6URV4677OAW6NIMHT7T
+X-Message-ID-Hash: QOBSZ4RJ5SFVR6URV4677OAW6NIMHT7T
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: Sam Lane <sam.lane@surrey.ac.uk>, "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: rfnoc_image_builder error: trying to tool lock on already tool locked arc
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YBP6HMRTKKEGESBY5HNTRVRG5QVJ6MFO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QOBSZ4RJ5SFVR6URV4677OAW6NIMHT7T/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8649621666465670342=="
+Content-Type: multipart/mixed; boundary="===============3917400885008445882=="
 
---===============8649621666465670342==
-Content-Type: multipart/related; boundary="0000000000007502710630652af1"
+--===============3917400885008445882==
+Content-Type: multipart/related; boundary="00000000000055c67b06306721aa"
 
---0000000000007502710630652af1
-Content-Type: multipart/alternative; boundary="0000000000007502700630652af0"
+--00000000000055c67b06306721aa
+Content-Type: multipart/alternative; boundary="00000000000055c67a06306721a9"
 
---0000000000007502700630652af0
+--00000000000055c67a06306721a9
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Wade and Sam,
+Thanks David, that is helpful. I suspect that this tool lock bug shows up
+more frequently when Vivado is struggling to meet timing. If you fix that
+timing issue then the problem might become less frequent. It looks like
+that path is on a reset going to a "synchronizer_false_path", which should
+be a false path (hence the name). A false path means that Vivado should not
+be doing timing analysis on it and can make it as long as it wants. There
+is a constraint here that should be setting that as a false path:
 
-The repeat FPGA build script was very useful. I was able to let it run and
-find a build solution. That will let me proceed with my project, but I
-still want to nail down why this showed up.
+https://github.com/EttusResearch/uhd/blob/UHD-4.6/fpga/usrp3/top/x300/timin=
+g.xdc#L599
 
-Some additional info: my design does not meet timing constraints, but it
-still builds the bit file. This has been the case for some time before this
-tool lock error came up. The bit file still works for my use case, so a
-failure for timing is still a success to me. The error in the
-post_route_timing_summary.rpt is:
+set_false_path -to   [get_pins -hierarchical -filter {NAME =3D~
+*/synchronizer_false_path/stages[0].value_reg[0][*]/D}]
 
-*Slack (VIOLATED) :        -0.948ns  (required time - arrival time)*
-*  Source:
- x300_core/bus_int_i/rfnoc_sandbox_i/b_X0_6/noc_shell_X_i/pulse_stretch_min=
-_ce/state_reg_replica/C*
-*                            (rising edge-triggered cell FDRE clocked by
-ce_clk  {rise@0.000ns fall@2.333ns period=3D4.667ns})*
-*  Destination:
-x300_core/bus_int_i/rfnoc_sandbox_i/b_X0_6/noc_shell_X_i/ctrlport_endpoint_=
-i/gen_async_fifos.out_fifo_i/o_rst_sync_i/synchronizer_false_path/stages[0]=
-.value_reg[0][0]/D*
-*                            (rising edge-triggered cell FDRE clocked by
-bus_clk_div2  {rise@0.000ns fall@5.333ns period=3D10.667ns})*
-*  Path Group:             bus_clk_div2*
+Did you by chance modify the timing constraints? Or the file
+Makefile.x300.inc where that constraint gets pulled in?
 
-The timing constraint slack is happening in my X block noc shell, most
-certainly because of what I am doing in my verilog design. However, because
-the bit file "works" as far as the output I am expecting, I made a design
-decision to continue on while not making the constraint. All of my useful
-work is done in IQ, and the noc shell slack seems to be on the ctrlport.
+Wade
 
-I modified the script to continue on success and record success/failures to
-a csv. I am getting 19 failures and 11 successful builds over the 30 runs I
-did.
-
-[image: image.png]
-
-My next set of 30 runs will not change the build seed to get more data.
-
-Thanks,
-
-David
-
-
-On Thu, Mar 13, 2025 at 10:51=E2=80=AFAM Sam Lane <sam.lane@surrey.ac.uk> w=
-rote:
-
-> Hi David & Wade,
->
-> I would just like to chime in on this that I've been having exactly the
-> same issue, repeatably, building for N310&320 series devices. I'm running=
- a
-> heavily customised image with plenty of (known good) custom logic, and th=
-e
-> error comes up seemingly at random following a commit.
->
-> The only (semi-) repeatable way I've found of fixing this is renaming the
-> image_core.yml file from which rfnoc_image_builder is running. Strange, I
-> know, though it seems to work 50% of the time, at least for me. If you fi=
-nd
-> any tricks other than those previously mentioned please let me know.
->
-> I'm going to do some digging once I'm not under deadline-pressure, as thi=
-s
-> issue is getting on my nerves somewhat.
->
-> Kind Regards,
-> Sam
->
->
-> ------------------------------
-> *From:* Wade Fife <wade.fife@ettus.com>
-> *Sent:* 06 March 2025 17:01
-> *To:* David <vitishlsfan21@gmail.com>
-> *Cc:* USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* [USRP-users] Re: rfnoc_image_builder error: trying to tool
-> lock on already tool locked arc
->
-> Hi David,
->
-> I'm surprised that you're seeing it that frequently. The Ettus continuous
-> integration tests build FPGAs regularly and from what I understand this
-> issue is pretty rare there. This makes me wonder if there's something abo=
-ut
-> the images you're building that causes this to reproduce more frequently
-> for you. Can you estimate what percentage of unique builds (with a unique
-> build seed or git hash) fail? Which FPGA image are you building? Does it
-> have custom logic in it?
->
-> You could use the repeat_fpga_build.py script to automate building the
-> FPGA multiple times to get a successful build. It automates the process o=
-f
-> selecting a unique seed for each build and can even run multiple build jo=
-bs
-> at a time.
->
-> Thanks,
->
-> Wade
->
-> On Mon, Mar 3, 2025 at 1:30=E2=80=AFPM David <vitishlsfan21@gmail.com> wr=
+On Sat, Mar 15, 2025 at 12:48=E2=80=AFPM David <vitishlsfan21@gmail.com> wr=
 ote:
+
+> Wade and Sam,
 >
-> Using UHD 4.6/Ubuntu 22.04/x310, I have built many images in the last yea=
-r
-> or so with rfnoc_image_builder. Recently in the last month, I get the
-> following error on almost all images:
+> The repeat FPGA build script was very useful. I was able to let it run an=
+d
+> find a build solution. That will let me proceed with my project, but I
+> still want to nail down why this showed up.
+>
+> Some additional info: my design does not meet timing constraints, but it
+> still builds the bit file. This has been the case for some time before th=
+is
+> tool lock error came up. The bit file still works for my use case, so a
+> failure for timing is still a success to me. The error in the
+> post_route_timing_summary.rpt is:
+>
+> *Slack (VIOLATED) :        -0.948ns  (required time - arrival time)*
+> *  Source:
+>  x300_core/bus_int_i/rfnoc_sandbox_i/b_X0_6/noc_shell_X_i/pulse_stretch_m=
+in_ce/state_reg_replica/C*
+> *                            (rising edge-triggered cell FDRE clocked by
+> ce_clk  {rise@0.000ns fall@2.333ns period=3D4.667ns})*
+> *  Destination:
+> x300_core/bus_int_i/rfnoc_sandbox_i/b_X0_6/noc_shell_X_i/ctrlport_endpoin=
+t_i/gen_async_fifos.out_fifo_i/o_rst_sync_i/synchronizer_false_path/stages[=
+0].value_reg[0][0]/D*
+> *                            (rising edge-triggered cell FDRE clocked by
+> bus_clk_div2  {rise@0.000ns fall@5.333ns period=3D10.667ns})*
+> *  Path Group:             bus_clk_div2*
+>
+> The timing constraint slack is happening in my X block noc shell, most
+> certainly because of what I am doing in my verilog design. However, becau=
+se
+> the bit file "works" as far as the output I am expecting, I made a design
+> decision to continue on while not making the constraint. All of my useful
+> work is done in IQ, and the noc shell slack seems to be on the ctrlport.
+>
+> I modified the script to continue on success and record success/failures
+> to a csv. I am getting 19 failures and 11 successful builds over the 30
+> runs I did.
 >
 > [image: image.png]
 >
-> I have tried the following, after referencing this the known issues
-> section in the USRP3 build instructions (
-> https://files.ettus.com/manual/md_usrp3_build_instructions.html):
->
->    1.  doing the suggested and making a non-functional source code change
->    and recommitting the git
->    2. deleting the .git directory in both the block directory and the
->    uhd/ directory where the fpga build happens
->    3. changing the build seed in uhd/fpga/usrp3/top/x300/Makefile
->    4. Running on a different machine, copying the block source code and
->    using a different UHD git all together (private rehost vs the github U=
-HD).
->    The vivado 2021.1 install is the same as its on a network file system
->
-> These do not produce repeatable good results. Maybe once a week or once
-> every two weeks one of these things will finish the build. This has been
-> happening for about a month or two, and I don't know how else to
-> troubleshoot.
->
-> Any advice?
+> My next set of 30 runs will not change the build seed to get more data.
 >
 > Thanks,
 >
 > David
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 >
+> On Thu, Mar 13, 2025 at 10:51=E2=80=AFAM Sam Lane <sam.lane@surrey.ac.uk>=
+ wrote:
+>
+>> Hi David & Wade,
+>>
+>> I would just like to chime in on this that I've been having exactly the
+>> same issue, repeatably, building for N310&320 series devices. I'm runnin=
+g a
+>> heavily customised image with plenty of (known good) custom logic, and t=
+he
+>> error comes up seemingly at random following a commit.
+>>
+>> The only (semi-) repeatable way I've found of fixing this is renaming th=
+e
+>> image_core.yml file from which rfnoc_image_builder is running. Strange, =
+I
+>> know, though it seems to work 50% of the time, at least for me. If you f=
+ind
+>> any tricks other than those previously mentioned please let me know.
+>>
+>> I'm going to do some digging once I'm not under deadline-pressure, as
+>> this issue is getting on my nerves somewhat.
+>>
+>> Kind Regards,
+>> Sam
+>>
+>>
+>> ------------------------------
+>> *From:* Wade Fife <wade.fife@ettus.com>
+>> *Sent:* 06 March 2025 17:01
+>> *To:* David <vitishlsfan21@gmail.com>
+>> *Cc:* USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>
+>> *Subject:* [USRP-users] Re: rfnoc_image_builder error: trying to tool
+>> lock on already tool locked arc
+>>
+>> Hi David,
+>>
+>> I'm surprised that you're seeing it that frequently. The Ettus continuou=
+s
+>> integration tests build FPGAs regularly and from what I understand this
+>> issue is pretty rare there. This makes me wonder if there's something ab=
+out
+>> the images you're building that causes this to reproduce more frequently
+>> for you. Can you estimate what percentage of unique builds (with a uniqu=
+e
+>> build seed or git hash) fail? Which FPGA image are you building? Does it
+>> have custom logic in it?
+>>
+>> You could use the repeat_fpga_build.py script to automate building the
+>> FPGA multiple times to get a successful build. It automates the process =
+of
+>> selecting a unique seed for each build and can even run multiple build j=
+obs
+>> at a time.
+>>
+>> Thanks,
+>>
+>> Wade
+>>
+>> On Mon, Mar 3, 2025 at 1:30=E2=80=AFPM David <vitishlsfan21@gmail.com> w=
+rote:
+>>
+>> Using UHD 4.6/Ubuntu 22.04/x310, I have built many images in the last
+>> year or so with rfnoc_image_builder. Recently in the last month, I get t=
+he
+>> following error on almost all images:
+>>
+>> [image: image.png]
+>>
+>> I have tried the following, after referencing this the known issues
+>> section in the USRP3 build instructions (
+>> https://files.ettus.com/manual/md_usrp3_build_instructions.html):
+>>
+>>    1.  doing the suggested and making a non-functional source code
+>>    change and recommitting the git
+>>    2. deleting the .git directory in both the block directory and the
+>>    uhd/ directory where the fpga build happens
+>>    3. changing the build seed in uhd/fpga/usrp3/top/x300/Makefile
+>>    4. Running on a different machine, copying the block source code and
+>>    using a different UHD git all together (private rehost vs the github =
+UHD).
+>>    The vivado 2021.1 install is the same as its on a network file system
+>>
+>> These do not produce repeatable good results. Maybe once a week or once
+>> every two weeks one of these things will finish the build. This has been
+>> happening for about a month or two, and I don't know how else to
+>> troubleshoot.
+>>
+>> Any advice?
+>>
+>> Thanks,
+>>
+>> David
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>>
 
---0000000000007502700630652af0
+--00000000000055c67a06306721a9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Wade and Sam,<div><br></div><div>The repe=
-at FPGA build script was very useful. I was able to let it run and find a b=
-uild solution. That will let me proceed with my project, but I still want t=
-o nail down why this showed up.=C2=A0</div><div><br></div><div>Some additio=
-nal info: my design does not meet timing constraints, but it still builds t=
-he bit file. This has been the case for some time before this tool lock err=
-or came up. The bit file still works for my use case, so a failure for timi=
-ng is still a success to me. The error in the post_route_timing_summary.rpt=
- is:</div><div><br></div><div><div><b>Slack (VIOLATED) :=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 -0.948ns=C2=A0 (required time - arrival time)</b></div><div><b>=
-=C2=A0 Source:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0x300_core/bus_int_i/rfnoc_sandbox_i/b_X0_6/noc_shell_X_i/pulse_stretch_m=
-in_ce/state_reg_replica/C</b></div><div><b>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (rising =
-edge-triggered cell FDRE clocked by ce_clk=C2=A0 {rise@0.000ns fall@2.333ns=
- period=3D4.667ns})</b></div><div><b>=C2=A0 Destination:=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 x300_core/bus_int_i/rfnoc_sandbox_i/b_X0_6/noc_she=
-ll_X_i/ctrlport_endpoint_i/gen_async_fifos.out_fifo_i/o_rst_sync_i/synchron=
-izer_false_path/stages[0].value_reg[0][0]/D</b></div><div><b>=C2=A0 =C2=A0 =
+<div dir=3D"ltr"><div>Thanks David, that is helpful. I suspect that this to=
+ol lock bug shows up more frequently when Vivado is struggling to meet timi=
+ng. If you fix that timing issue then the problem might become less frequen=
+t. It looks like that path is on a reset going to a &quot;synchronizer_fals=
+e_path&quot;, which should be a false path (hence the name). A false path m=
+eans that Vivado should not be doing timing analysis on it and can make it =
+as long as it wants. There is a constraint here that should be setting that=
+ as a false path:</div><div><br></div><div><a href=3D"https://github.com/Et=
+tusResearch/uhd/blob/UHD-4.6/fpga/usrp3/top/x300/timing.xdc#L599">https://g=
+ithub.com/EttusResearch/uhd/blob/UHD-4.6/fpga/usrp3/top/x300/timing.xdc#L59=
+9</a></div><div><br></div><div>set_false_path -to =C2=A0 [get_pins -hierarc=
+hical -filter {NAME =3D~ */synchronizer_false_path/stages[0].value_reg[0][*=
+]/D}]</div><div><br></div><div>Did you by chance modify the timing constrai=
+nts? Or the file Makefile.x300.inc where that constraint gets pulled in?</d=
+iv><div><br></div><div>Wade</div></div><br><div class=3D"gmail_quote gmail_=
+quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Mar 15, 2025=
+ at 12:48=E2=80=AFPM David &lt;<a href=3D"mailto:vitishlsfan21@gmail.com">v=
+itishlsfan21@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Wade and Sam,<div><=
+br></div><div>The repeat FPGA build script was very useful. I was able to l=
+et it run and find a build solution. That will let me proceed with my proje=
+ct, but I still want to nail down why this showed up.=C2=A0</div><div><br><=
+/div><div>Some additional info: my design does not meet timing constraints,=
+ but it still builds the bit file. This has been the case for some time bef=
+ore this tool lock error came up. The bit file still works for my use case,=
+ so a failure for timing is still a success to me. The error in the post_ro=
+ute_timing_summary.rpt is:</div><div><br></div><div><div><b>Slack (VIOLATED=
+) :=C2=A0 =C2=A0 =C2=A0 =C2=A0 -0.948ns=C2=A0 (required time - arrival time=
+)</b></div><div><b>=C2=A0 Source:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0x300_core/bus_int_i/rfnoc_sandbox_i/b_X0_6/noc_shell_X_=
+i/pulse_stretch_min_ce/state_reg_replica/C</b></div><div><b>=C2=A0 =C2=A0 =
 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 (rising edge-triggered cell FDRE clocked by bus_clk_div2=C2=A0 {=
-rise@0.000ns fall@5.333ns period=3D10.667ns})</b></div><div><b>=C2=A0 Path =
-Group:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bus_clk_div2</b></div=
-></div><div><br></div><div>The timing constraint slack is happening in my X=
- block noc shell, most certainly because of what I am doing in my verilog d=
-esign. However, because the bit file &quot;works&quot; as far as the output=
- I am expecting, I made a design decision to continue on while not making t=
-he constraint. All of my useful work is done in IQ, and the noc shell slack=
- seems to be on the ctrlport.</div><div><br></div><div>I modified the scrip=
-t to continue on success and record success/failures to a csv. I am getting=
- 19 failures and 11 successful builds over the 30 runs I did.</div><div><br=
-></div><div><img src=3D"cid:ii_m8ahnbqw3" alt=3D"image.png" width=3D"430" h=
-eight=3D"562"><br></div><div><br></div><div>My next set of 30 runs will not=
- change the build seed to get more data.</div><div><br></div><div>Thanks,</=
-div><div><br></div><div>David</div><div><br></div></div></div><br><div clas=
-s=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Thu, Mar 13, 2025 at 10:51=E2=80=AFAM Sam Lane &lt;<a href=3D"mailto:=
-sam.lane@surrey.ac.uk">sam.lane@surrey.ac.uk</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg-7383608141472=
-763259">
+=A0 =C2=A0 (rising edge-triggered cell FDRE clocked by ce_clk=C2=A0 {rise@0=
+.000ns fall@2.333ns period=3D4.667ns})</b></div><div><b>=C2=A0 Destination:=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 x300_core/bus_int_i/rfnoc_sandbox=
+_i/b_X0_6/noc_shell_X_i/ctrlport_endpoint_i/gen_async_fifos.out_fifo_i/o_rs=
+t_sync_i/synchronizer_false_path/stages[0].value_reg[0][0]/D</b></div><div>=
+<b>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 (rising edge-triggered cell FDRE clocked by bus=
+_clk_div2=C2=A0 {rise@0.000ns fall@5.333ns period=3D10.667ns})</b></div><di=
+v><b>=C2=A0 Path Group:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bus_=
+clk_div2</b></div></div><div><br></div><div>The timing constraint slack is =
+happening in my X block noc shell, most certainly because of what I am doin=
+g in my verilog design. However, because the bit file &quot;works&quot; as =
+far as the output I am expecting, I made a design decision to continue on w=
+hile not making the constraint. All of my useful work is done in IQ, and th=
+e noc shell slack seems to be on the ctrlport.</div><div><br></div><div>I m=
+odified the script to continue on success and record success/failures to a =
+csv. I am getting 19 failures and 11 successful builds over the 30 runs I d=
+id.</div><div><br></div><div><img src=3D"cid:ii_m8ahnbqw3" alt=3D"image.png=
+" width=3D"430" height=3D"562"><br></div><div><br></div><div>My next set of=
+ 30 runs will not change the build seed to get more data.</div><div><br></d=
+iv><div>Thanks,</div><div><br></div><div>David</div><div><br></div></div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Thu, Mar 13, 2025 at 10:51=E2=80=AFAM Sam Lane &lt;<a href=3D"mailto:sam.l=
+ane@surrey.ac.uk" target=3D"_blank">sam.lane@surrey.ac.uk</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
 
 
 
@@ -333,16 +381,16 @@ Sam</div>
 bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 <br>
 </div>
-<div id=3D"m_-7383608141472763259appendonsend"></div>
+<div id=3D"m_3784448117158143824m_-7383608141472763259appendonsend"></div>
 <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
 bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 <br>
 </div>
 <hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_-7383608141472763259divRplyFwdMsg" dir=3D"ltr"><font face=3D"C=
-alibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>From:</b>=
- Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wad=
-e.fife@ettus.com</a>&gt;<br>
+<div id=3D"m_3784448117158143824m_-7383608141472763259divRplyFwdMsg" dir=3D=
+"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-si=
+ze:11pt"><b>From:</b> Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" =
+target=3D"_blank">wade.fife@ettus.com</a>&gt;<br>
 <b>Sent:</b> 06 March 2025 17:01<br>
 <b>To:</b> David &lt;<a href=3D"mailto:vitishlsfan21@gmail.com" target=3D"_=
 blank">vitishlsfan21@gmail.com</a>&gt;<br>
@@ -444,10 +492,11 @@ usrp-users-leave@lists.ettus.com</a><br>
 </div>
 
 </div></blockquote></div>
+</blockquote></div>
 
---0000000000007502700630652af0--
+--00000000000055c67a06306721a9--
 
---0000000000007502710630652af1
+--00000000000055c67b06306721aa
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -974,7 +1023,7 @@ OmH6atUY+kZG53J+6CsTwM7lda5NDAqCIAhCWKiuri4NsDl9VC3AGz0Rvj3gdQ+Q4EfDAoefpLfJ
 /GmMultJBEEQBEEQBEGYnmS3wAmCIAiCIAiCIMx2AhwmLQiCIAiCIAiCMLORAZAgCIIgCIIgCHMG
 GQAJgiAIgiAIgjBnkAGQIAiCIAiCIAhzBhkACYIgCIIgCIIwZ/j/1+qcD8MJ9m8AAAAASUVORK5C
 YII=
---0000000000007502710630652af1
+--00000000000055c67b06306721aa
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -1619,9 +1668,9 @@ u8fq7LJZEXUHeKaJsDluuZ0t7kfEb7Kkifib8N9a1uSJDomMkxIYuVqAmFoo/eXkXr6LLZ9kRPnb
 4Qy7/NjvymzWzXiV8Kv/Uh9MB8FZ9WbOIwHfuQCA/ZEMWWnMzhF/SRyzEwi5x0MUXlIIyRbJXrdj
 dO+JeoyrcFZ2AiH3kPswsRc3Zq/bsfDsiXqMq3BWdgIh95D7MLEXN2av27Hw7Il6jKtwVnYCq9zT
 G15gAAyAATCwNAP/AXBWRXLXHz/zAAAAAElFTkSuQmCC
---0000000000007502710630652af1--
+--00000000000055c67b06306721aa--
 
---===============8649621666465670342==
+--===============3917400885008445882==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1631,4 +1680,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8649621666465670342==--
+--===============3917400885008445882==--
