@@ -2,190 +2,214 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95744A66004
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Mar 2025 22:03:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EEA4A66B18
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Mar 2025 08:07:17 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7FEDB38607F
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Mar 2025 17:03:18 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 31974385465
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Mar 2025 03:07:16 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1742245398; bh=qBy3I79ovS2mKLsXppwgGM7B9Q1n+mIuBqsmh8xZF/c=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=z+AZiVFwyQ24o/lBkG9tWonfMi5rPUqYJgI46fphyZpSaVImgBTRXgPx9Ds8i49Kx
-	 eE4v5Mj02Y++V9+wxadAlMglsAB+INNgkKct05um7gA7dey12pU5q72fkb3Uz3Sarf
-	 eXHMSl2j9Hwq4OeS9G1mDUVMoNjE5l/ImJ2MyMzMPHIXjXrGOaD6YgMt2GMt0bQGyT
-	 J0x8MvFbPE2PEzvBjTvUtDLEdJIfzVFZtLAJodWCdor73St5E3w4GCInTgRpQt+Pcz
-	 lZGAMG+opNZKq9wGqadxig+IzfG2CGi7/x0rZrWdzrSViceR8uxvir2GREkjQj0Qop
-	 sDb5EK46pSukg==
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id F3091385E37
-	for <usrp-users@lists.ettus.com>; Mon, 17 Mar 2025 17:02:31 -0400 (EDT)
+	t=1742281636; bh=F1MLTtdpsXkn75JpbW3KYbZzMznV6r5me+F20uhJyQU=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=S+dR103U+MhHjRmhOd++ZeS1ptWIY2Kci1WfWZ7COquD485jrW6pblnFa418iMOS3
+	 Y5hUWhgFyIuW09Ht49uI85O8GSoXPI3J0yDCT5CniOzNobMvL9pllkWYG0Evh8x/Om
+	 5a4qCXWXtF2PfZBEY3WiTy7xIAZVWf5bbq5Qa2THBk69a/B+MGXPHG7eZIoI02dGE2
+	 GrihcSp/3Cr9H/34LnKij9yhfH16zmtWHg6yHJudSWn3BBQAjKOzQCjJcXsw+fBX96
+	 qVZJnqu/Nsn7x34UpYRvLXbaMr97mwcpsbtGiX83fp9PP/vJJhljE8etR60PFq9XJj
+	 cGH0NX6yE05cA==
+Received: from za-smtp-delivery-132.mimecast.co.za (za-smtp-delivery-132.mimecast.co.za [41.74.201.132])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2C30E385CAB
+	for <usrp-users@lists.ettus.com>; Tue, 18 Mar 2025 03:06:37 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m02Qz2q/";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="Ud5Xifnj";
 	dkim-atps=neutral
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ac2ab99e16eso52148366b.0
-        for <usrp-users@lists.ettus.com>; Mon, 17 Mar 2025 14:02:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742245351; x=1742850151; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NMzY3pFRPAAalpG8pXs4zpcimVr0xpq2I59RQKpE02k=;
-        b=m02Qz2q/eIiVyYAhBvtojYYoGfrN864XXxXsDz4Ako9yaY9YabrpfQGoFKPSeGN8yo
-         iYoUW2B9WNWoLgvQWj9y3zgTGFGemg4JOtq5P5bT8aBvavcqDKJLpR3IRReZc25JgN0Z
-         Y28Fyx1NnK5OnKwgQHIxI5oYbAtp33AzSB0ItuyhgCp6CNAiAhfhjsMONIiKrH4urEI8
-         KJtXTvZ1MJysjH0Ej79vOZIN5pBQcEBFl7NoIg48MixS/oilD8QMMsWqu4WdggLyqkvS
-         MhjXAlbbyDQqx4KYIereCi3/u33HvHZgCjlcayvEt0ZFY7aze/v7kodHMq/cQzch3QVq
-         15KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742245351; x=1742850151;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NMzY3pFRPAAalpG8pXs4zpcimVr0xpq2I59RQKpE02k=;
-        b=HtmbhRd18HO+gTIzqcOFVyGzCaR/azZOagvfvfLPkIOn51cHZrIjOtLwO6ZwknOM/f
-         EB+QqsbihZZnoKSAaf+lcG+cAo7JWloldp+3PNydPQOVFYlNjQubkZK4jqhT6Javne2c
-         iviYfvHQ1GtjaBzrYiiJZHLvfY9mWLy9yrjK1XKvEf5jLWBFdwRXJUi3xrpdD55GI8AH
-         USYjez9G4IycAuVmOSd//mfHET1MqpRd7kN0QzKFvkEvK2A58HKaTmbYbplkJoWmQQDt
-         hFs35Uz/erWFsyyye/RbyvCup8mWyItJbeI4nVvIE5waLu2c0D55GtLPG9rXi0yzC9C0
-         GNPw==
-X-Gm-Message-State: AOJu0YzOCC398ApUvQ2tsEmYNA+C/y/l9mBHJSUZ2fwvMXjEFZVyT79B
-	DBAvAGap/ZYZ3MYTPtqNjWHcjaZpzo6B3zd0g4QCNygnR5Hj7X213jdT1N6q/ejN0EXaYhcaOW+
-	SGSX2g2K6wBD/aSz3384uDRZ0obU=
-X-Gm-Gg: ASbGncuTv9YsEVEWGOCsoAM6SBd5Wm2gqSrL4o9TqGwN/u2KTzv3sjOLOERPLmRYRX9
-	gzsHuGlBeTOihCwOhG9jAqybG4zWmr9B/X4vsVceTlR6Fl6SL7ZbQG0m5Dmv4V6I1z5Uz4jLqrt
-	Xx1djAP4OFhmZT5/LsWN2BL5P4VQ==
-X-Google-Smtp-Source: AGHT+IFTENrBQ0ip93v4d5Ip1pHO6qAG+plQNT0m51rge8r3NEMG+mQk4U5n6XJDSztJWjK+JrxJaRsdb43LvEu/eic=
-X-Received: by 2002:a17:907:84a:b0:ac3:1373:8a3d with SMTP id
- a640c23a62f3a-ac3302bae35mr1216690666b.20.1742245350596; Mon, 17 Mar 2025
- 14:02:30 -0700 (PDT)
+Received: from mail.vastech.co.za (mail.vastech.co.za [41.193.221.138]) by
+ relay.mimecast.com with ESMTP id za-mta-115-X7JqWC12Pcu3bj32mwpr7g-1; Tue,
+ 18 Mar 2025 09:06:31 +0200
+X-MC-Unique: X7JqWC12Pcu3bj32mwpr7g-1
+X-Mimecast-MFC-AGG-ID: X7JqWC12Pcu3bj32mwpr7g_1742281591
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
+	bh=DMFFEVnVQ959eFOluLlVixulPKUx8oM3QaeFD7GR1NU=;
+	b=Ud5XifnjrhW5eS20nTau2Z4F0bVmTNqDYGF/Fo9FMAZfXt1C85qM/a/UzTO/WHjpQ/g2VMJSZSh5C+R3JNd9iCGCmDiOY/62dAwVE2JF21oAWKabEH8azLeCzgoy5NS0oen3ckbIACIpa13CQEiCAUuJVeyfe2PEjftndaW8JVA=
+Received: from EXCHANGE2.vastech.co.za (Unknown [172.30.81.30])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Tue, 18 Mar 2025 09:06:25 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ EXCHANGE2.vastech.co.za (172.30.81.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 18 Mar 2025 09:06:19 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Tue, 18
+ Mar 2025 09:06:19 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: "Cannot create route from device" error
+Thread-Index: AduX03SVqIfMd868QKSHt+FlMqpGOQ==
+Date: Tue, 18 Mar 2025 07:06:19 +0000
+Message-ID: <6e84ce2318ea47b19cb7d1100ee4d36a@vastech.co.za>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.3]
 MIME-Version: 1.0
-References: <CAEXYVK4u-jMUbq2zw-ckyFREnyFeZMXjyLP4GiG709HGMcYPbw@mail.gmail.com>
- <11142f61-7d6c-4466-8ed7-adbbe3fef187@gmail.com>
-In-Reply-To: <11142f61-7d6c-4466-8ed7-adbbe3fef187@gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Mon, 17 Mar 2025 17:02:18 -0400
-X-Gm-Features: AQ5f1JrDQN8QbGtVG6SmSd7strrQqlCAu0H7vqUabvI6LYQMlxJ9zxVcFMbam9c
-Message-ID: <CAEXYVK71=Dc87i_fvj25Rf9AU5EgqzwSgf+4uvMhKZ-RYDZwsQ@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: ZQG2CSBXSUASPW5TTZDLXCOCWIMRXUIQ
-X-Message-ID-Hash: ZQG2CSBXSUASPW5TTZDLXCOCWIMRXUIQ
-X-MailFrom: bpadalino@gmail.com
+Message-ID-Hash: ZZ4W32S2WE4OCGDNI3QELA5PXGTMN34C
+X-Message-ID-Hash: ZZ4W32S2WE4OCGDNI3QELA5PXGTMN34C
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: New X440 with fsck issues
+Subject: [USRP-users] "Cannot create route from device" error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZQG2CSBXSUASPW5TTZDLXCOCWIMRXUIQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZZ4W32S2WE4OCGDNI3QELA5PXGTMN34C/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5817360943484941986=="
+Content-Type: multipart/mixed; boundary="===============1224848127498119889=="
 
---===============5817360943484941986==
-Content-Type: multipart/alternative; boundary="0000000000003bec990630901be0"
+--===============1224848127498119889==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=SHA1; boundary="----=_NextPart_000_04DF_01DB97E5.027EC910"
 
---0000000000003bec990630901be0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+------=_NextPart_000_04DF_01DB97E5.027EC910
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Thanks - this worked like a charm.
+Hi Everyone,
 
-I appreciate the quick feedback.
+I am getting an error "RuntimeError: Cannot create route from device:1/sep:3
+and device:1/sep:3, no route was found!" when trying to connect routes in an
+rfnoc graph on an N300. (UHD 4.8)
 
-Now to update to the latest UHD version.
+The image shows the following static routes:
 
-Thanks,
-Brian
+|   |       Static connections on this device:
+|   |
+|   |   * 0/SEP#0:0==>0/Radio#0:0
+|   |   * 0/SEP#1:0==>0/Radio#0:1
+|   |   * 0/Radio#0:0==>0/SEP#3:0
+|   |   * 0/Radio#0:1==>0/SEP#4:0
+|   |   * 0/SEP#3:0==>0/PolConverter#0:0
+|   |   * 0/SEP#4:0==>0/PolConverter#0:1
+|   |   * 0/PolConverter#0:0==>0/SEP#2:0
 
-On Mon, Mar 17, 2025 at 4:45=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmai=
-l.com>
-wrote:
+But if I try and connect the radio to my rfnoc block with:
 
-> On 17/03/2025 16:37, Brian Padalino wrote:
-> > I received an X440 and it didn't respond to being ssh'd into, so I
-> > looked at the console. It tells me that /dev/mmcblk0p2 fails fsck.
-> >
-> > Should I try loading an FS onto /dev/mmcblk0p3? What should I follow
-> > to try and recover this brand new radio?
-> >
-> > Thanks,
-> > Brian
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> This might be helpful:
->
->
-> https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#USB_Access_to_e=
-MMC
->
-> I don't have an X440 in my collection, so probably following the
-> instructions on flashing a new FS onto the correct partition
->    is the right one.  I have no idea why it would arrive from the
-> factory with a broken FS, though.
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+g_graph.connect("0/Radio#0",   0, "0/PolConverter#0",  0)
 
---0000000000003bec990630901be0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+but get the error above.
 
-<div dir=3D"ltr">Thanks - this worked like a charm.<div><br></div><div>I ap=
-preciate the quick feedback.</div><div><br></div><div>Now to update to the =
-latest UHD version.</div><div><br></div><div>Thanks,</div><div>Brian</div><=
-/div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Mon, Mar 17, 2025 at 4:45=E2=80=AFPM Marcus D. Leec=
-h &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On =
-17/03/2025 16:37, Brian Padalino wrote:<br>
-&gt; I received an X440 and it didn&#39;t respond to being ssh&#39;d into, =
-so I <br>
-&gt; looked at the console. It tells me that /dev/mmcblk0p2 fails fsck.<br>
-&gt;<br>
-&gt; Should I try loading an FS onto /dev/mmcblk0p3? What should I follow <=
-br>
-&gt; to try and recover this brand new radio?<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Brian<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-This might be helpful:<br>
-<br>
-<a href=3D"https://kb.ettus.com/USRP_X410/X440_Getting_Started_Guide#USB_Ac=
-cess_to_eMMC" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.com/USR=
-P_X410/X440_Getting_Started_Guide#USB_Access_to_eMMC</a><br>
-<br>
-I don&#39;t have an X440 in my collection, so probably following the <br>
-instructions on flashing a new FS onto the correct partition<br>
-=C2=A0=C2=A0 is the right one.=C2=A0 I have no idea why it would arrive fro=
-m the <br>
-factory with a broken FS, though.<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+I have tried:
 
---0000000000003bec990630901be0--
+uhd.rfnoc.connect_through_blocks(
+                    g_graph,
+                    "0/Radio#0",
+                    0,
+                    "0/PolConverter#0",
+                    0,
+                    skip_property_propagation = True)
 
---===============5817360943484941986==
+But this also fails with the same error (with skip true or false).
+
+I also see there are some recent issues on github regarding this.
+
+Is there perhaps any further information?
+
+Many thanks, Kevin
+
+
+------=_NextPart_000_04DF_01DB97E5.027EC910
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+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
+
+------=_NextPart_000_04DF_01DB97E5.027EC910--
+
+--===============1224848127498119889==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -195,4 +219,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5817360943484941986==--
+--===============1224848127498119889==--
