@@ -2,214 +2,186 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EEA4A66B18
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Mar 2025 08:07:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5059A66F76
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Mar 2025 10:14:42 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 31974385465
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Mar 2025 03:07:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 900E8384E7A
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Mar 2025 05:14:41 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1742281636; bh=F1MLTtdpsXkn75JpbW3KYbZzMznV6r5me+F20uhJyQU=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=S+dR103U+MhHjRmhOd++ZeS1ptWIY2Kci1WfWZ7COquD485jrW6pblnFa418iMOS3
-	 Y5hUWhgFyIuW09Ht49uI85O8GSoXPI3J0yDCT5CniOzNobMvL9pllkWYG0Evh8x/Om
-	 5a4qCXWXtF2PfZBEY3WiTy7xIAZVWf5bbq5Qa2THBk69a/B+MGXPHG7eZIoI02dGE2
-	 GrihcSp/3Cr9H/34LnKij9yhfH16zmtWHg6yHJudSWn3BBQAjKOzQCjJcXsw+fBX96
-	 qVZJnqu/Nsn7x34UpYRvLXbaMr97mwcpsbtGiX83fp9PP/vJJhljE8etR60PFq9XJj
-	 cGH0NX6yE05cA==
-Received: from za-smtp-delivery-132.mimecast.co.za (za-smtp-delivery-132.mimecast.co.za [41.74.201.132])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2C30E385CAB
-	for <usrp-users@lists.ettus.com>; Tue, 18 Mar 2025 03:06:37 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="Ud5Xifnj";
-	dkim-atps=neutral
-Received: from mail.vastech.co.za (mail.vastech.co.za [41.193.221.138]) by
- relay.mimecast.com with ESMTP id za-mta-115-X7JqWC12Pcu3bj32mwpr7g-1; Tue,
- 18 Mar 2025 09:06:31 +0200
-X-MC-Unique: X7JqWC12Pcu3bj32mwpr7g-1
-X-Mimecast-MFC-AGG-ID: X7JqWC12Pcu3bj32mwpr7g_1742281591
-dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
-	bh=DMFFEVnVQ959eFOluLlVixulPKUx8oM3QaeFD7GR1NU=;
-	b=Ud5XifnjrhW5eS20nTau2Z4F0bVmTNqDYGF/Fo9FMAZfXt1C85qM/a/UzTO/WHjpQ/g2VMJSZSh5C+R3JNd9iCGCmDiOY/62dAwVE2JF21oAWKabEH8azLeCzgoy5NS0oen3ckbIACIpa13CQEiCAUuJVeyfe2PEjftndaW8JVA=
-Received: from EXCHANGE2.vastech.co.za (Unknown [172.30.81.30])
-	by mail.vastech.co.za with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Tue, 18 Mar 2025 09:06:25 +0200
-Received: from exchange3.vastech.co.za (172.30.81.31) by
- EXCHANGE2.vastech.co.za (172.30.81.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 18 Mar 2025 09:06:19 +0200
-Received: from exchange3.vastech.co.za ([172.30.81.31]) by
- exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Tue, 18
- Mar 2025 09:06:19 +0200
-From: Kevin Williams <kevin.williams@vastech.co.za>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: "Cannot create route from device" error
-Thread-Index: AduX03SVqIfMd868QKSHt+FlMqpGOQ==
-Date: Tue, 18 Mar 2025 07:06:19 +0000
-Message-ID: <6e84ce2318ea47b19cb7d1100ee4d36a@vastech.co.za>
-Accept-Language: en-US, en-ZA
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.168.3]
+	t=1742289281; bh=BUALpzwaRVkS3nUQkUPVkG6tbG39i4w1AkAFhblSj0c=;
+	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
+	 From;
+	b=SXSO6b5IiuTYzuYs7pSg4h9EMu891gaBEWeiJYJVy8clHvn3DY0INucQaINhJdkFy
+	 +sXvzLx+I1PDjjgj93fnP/7vdNOLiFu8Zps+9etHhyLBpXEg650FQQe1HBNmAXliRp
+	 oZSVaX9/gCSd2ClU89N+Kp62PAKk7fpKq+FFgLEb5IVLFI95JdXwtFx6MGS36GpKX2
+	 iKg5oei47NvLh8AY5h2DB1kUaWKsbU2yTf/NkLZJqdUkJ//fzjCGVj+3z9CgC2tmch
+	 7xI2Beqjg4P3mCwq8JBb3MVDCkTr32Bq+HCwwVUiexWs9NVE4fpOhr2VNpa8CK/8Hb
+	 d0SGLgPRNp4mQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 4CA16384E7A
+	for <usrp-users@lists.ettus.com>; Tue, 18 Mar 2025 05:14:05 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1742289245; bh=LeBR8kBEqlV9I4k8Ry/kBHUtKj5ulY5tv5T59I+ccI4=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=qtEu5NIhmHfIQK/ZtSgp1LcX9wI/Zyfp9l20ul3apNfb+X8x7nwJ9WPyZ8EKeh9hU
+	 QZNPHAgRzCStkDDFlLjylicEvoti1pGMa8w+eyTa+Iwc0g3q7ZcDDosca1ZJnlwS/1
+	 e4KLm3pofz8VVwxM4pSzpOxHfK+SGoEovVq2iT+IXGtgFODvRMViCZq7ba4nECfHgW
+	 OSxcCI4FzV9MZjHeqLbuEt9eTmeM9gVqL/8+7sfmNeoni7lWQDjNXCVQ8us6vl2UlK
+	 22Ma/JGc8VZOP0UUFVuWVBRtanSPZox0iOEnJVvADLiHIvvspwDn2G00SRD80uptcg
+	 v1rkd+t5XXPxQ==
+Date: Tue, 18 Mar 2025 09:14:05 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <qrUvsDp0QKVaUCGS8mwdFGsjRKaAWXpQz2NThoX1Vo@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: 6e84ce2318ea47b19cb7d1100ee4d36a@vastech.co.za
 MIME-Version: 1.0
-Message-ID-Hash: ZZ4W32S2WE4OCGDNI3QELA5PXGTMN34C
-X-Message-ID-Hash: ZZ4W32S2WE4OCGDNI3QELA5PXGTMN34C
-X-MailFrom: kevin.williams@vastech.co.za
+Message-ID-Hash: ABXK4WBXVAAGGC7T3POMBRFSBSMGYO3E
+X-Message-ID-Hash: ABXK4WBXVAAGGC7T3POMBRFSBSMGYO3E
+X-MailFrom: niels.steffen.garibaldi@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] "Cannot create route from device" error
+Subject: [USRP-users] Re: "Cannot create route from device" error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZZ4W32S2WE4OCGDNI3QELA5PXGTMN34C/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ABXK4WBXVAAGGC7T3POMBRFSBSMGYO3E/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1224848127498119889=="
+From: "niels.steffen.garibaldi--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: niels.steffen.garibaldi@emerson.com
+Content-Type: multipart/mixed; boundary="===============7480307621690146526=="
 
---===============1224848127498119889==
-Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_04DF_01DB97E5.027EC910"
+This is a multi-part message in MIME format.
 
-------=_NextPart_000_04DF_01DB97E5.027EC910
-Content-Type: text/plain;
-	charset="us-ascii"
+--===============7480307621690146526==
+Content-Type: multipart/alternative;
+ boundary="b1_qrUvsDp0QKVaUCGS8mwdFGsjRKaAWXpQz2NThoX1Vo"
 Content-Transfer-Encoding: 7bit
 
-Hi Everyone,
+This is a multi-part message in MIME format.
 
-I am getting an error "RuntimeError: Cannot create route from device:1/sep:3
-and device:1/sep:3, no route was found!" when trying to connect routes in an
-rfnoc graph on an N300. (UHD 4.8)
+--b1_qrUvsDp0QKVaUCGS8mwdFGsjRKaAWXpQz2NThoX1Vo
+Content-Type: text/plain; charset=us-ascii
 
-The image shows the following static routes:
+Hello Kevin,
 
-|   |       Static connections on this device:
+\
+Are you using one of the default bitfiles?\
+It looks to me like the issue might be caused by the fact that your Radio and your PolConverter are connected to the Same SEP, namely SEP3.\
+\
+The RFNoC crossbar might not be able to find a valid route if source and destination are the same.\
+The error seems to be thrown [here](https://github.com/EttusResearch/uhd/blob/master/host/lib/rfnoc/topo_graph.cpp#L310), and and it seems to me that in the for loop right above, the path from a node to itself will not be added to the route list as a node being its own predecessor for routing is seen as no route available
+
+It is usually ok to connect in and output ports of a stream endpoint to different blocks in general, but in most cases they are connected to the same block, so they will not be routing to themselves, [see the n300 image_core yaml as an example](https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/n3xx/n300_rfnoc_image_core.yml#L64).\
+\
+Have you tried rebuilding the bitfile and using separate SEPs for the Radio0 output and PolConverter0 input? Does the issue still appear then?\
+\
+Regards,\
+Niels.
+
+---
+
+\
+Kevin Williams wrote:
+
+> Hi Everyone,
+>
+> I am getting an error "RuntimeError: Cannot create route from device:1/sep:3
+> and device:1/sep:3, no route was found!" when trying to connect routes in an
+> rfnoc graph on an N300. (UHD 4.8)
+>
+> The image shows the following static routes:
+>
+> |   |       Static connections on this device:
+> |   |
+> |   |   \* 0/SEP#0:0==>0/Radio#0:0
+> |   |   \* 0/SEP#1:0==>0/Radio#0:1
+> |   |   \* 0/Radio#0:0==>0/SEP#3:0
+> |   |   \* 0/Radio#0:1==>0/SEP#4:0
+> |   |   \* 0/SEP#3:0==>0/PolConverter#0:0
+> |   |   \* 0/SEP#4:0==>0/PolConverter#0:1
+> |   |   \* 0/PolConverter#0:0==>0/SEP#2:0
+>
+> But if I try and connect the radio to my rfnoc block with:
+>
+> g_graph.connect("0/Radio#0",   0, "0/PolConverter#0",  0)
+>
+> but get the error above.
+>
+> I have tried:
+>
+> uhd.rfnoc.connect_through_blocks(
+> g_graph,
+> "0/Radio#0",
+> 0,
+> "0/PolConverter#0",
+> 0,
+> skip_property_propagation = True)
+>
+> But this also fails with the same error (with skip true or false).
+>
+> I also see there are some recent issues on github regarding this.
+>
+> Is there perhaps any further information?
+>
+> Many thanks, Kevin
+
+--b1_qrUvsDp0QKVaUCGS8mwdFGsjRKaAWXpQz2NThoX1Vo
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hello Kevin,</p><p><br>Are you using one of the default bitfiles?<br>It =
+looks to me like the issue might be caused by the fact that your Radio and =
+your PolConverter are connected to the Same SEP, namely SEP3.<br><br>The RF=
+NoC crossbar might not be able to find a valid route if source and destinat=
+ion are the same.<br>The error seems to be thrown <a href=3D"https://github=
+.com/EttusResearch/uhd/blob/master/host/lib/rfnoc/topo_graph.cpp#L310" titl=
+e=3D"">here</a>, and and it seems to me that in the for loop right above, t=
+he path from a node to itself will not be added to the route list as a node=
+ being its own predecessor for routing is seen as no route available</p><p>=
+It is usually ok to connect in and output ports of a stream endpoint to dif=
+ferent blocks in general, but in most cases they are connected to the same =
+block, so they will not be routing to themselves, <a href=3D"https://github=
+.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/n3xx/n300_rfnoc_image_cor=
+e.yml#L64" title=3D"">see the n300 image_core yaml as an example</a>.<br><b=
+r>Have you tried rebuilding the bitfile and using separate SEPs for the Rad=
+io0 output and PolConverter0 input? Does the issue still appear then?<br><b=
+r>Regards,<br>Niels.<br><br></p><div contenteditable=3D"false" class=3D""><=
+hr></div><p><br>Kevin Williams wrote:</p><blockquote><p>Hi Everyone,</p><p>=
+I am getting an error "RuntimeError: Cannot create route from device:1/sep:=
+3
+and device:1/sep:3, no route was found!" when trying to connect routes in a=
+n
+rfnoc graph on an N300. (UHD 4.8)</p><p>The image shows the following stati=
+c routes:</p><p>|   |       Static connections on this device:
 |   |
-|   |   * 0/SEP#0:0==>0/Radio#0:0
-|   |   * 0/SEP#1:0==>0/Radio#0:1
-|   |   * 0/Radio#0:0==>0/SEP#3:0
-|   |   * 0/Radio#0:1==>0/SEP#4:0
-|   |   * 0/SEP#3:0==>0/PolConverter#0:0
-|   |   * 0/SEP#4:0==>0/PolConverter#0:1
-|   |   * 0/PolConverter#0:0==>0/SEP#2:0
+|   |   * 0/SEP#0:0=3D=3D&gt;0/Radio#0:0
+|   |   * 0/SEP#1:0=3D=3D&gt;0/Radio#0:1
+|   |   * 0/Radio#0:0=3D=3D&gt;0/SEP#3:0
+|   |   * 0/Radio#0:1=3D=3D&gt;0/SEP#4:0
+|   |   * 0/SEP#3:0=3D=3D&gt;0/PolConverter#0:0
+|   |   * 0/SEP#4:0=3D=3D&gt;0/PolConverter#0:1
+|   |   * 0/PolConverter#0:0=3D=3D&gt;0/SEP#2:0</p><p>But if I try and conn=
+ect the radio to my rfnoc block with:</p><p>g_graph.connect("0/Radio#0",   =
+0, "0/PolConverter#0",  0)</p><p>but get the error above.</p><p>I have trie=
+d:</p><p>uhd.rfnoc.connect_through_blocks(
+g_graph,
+"0/Radio#0",
+0,
+"0/PolConverter#0",
+0,
+skip_property_propagation =3D True)</p><p>But this also fails with the same=
+ error (with skip true or false).</p><p>I also see there are some recent is=
+sues on github regarding this.</p><p>Is there perhaps any further informati=
+on?</p><p>Many thanks, Kevin</p></blockquote><p><br></p>
 
-But if I try and connect the radio to my rfnoc block with:
+--b1_qrUvsDp0QKVaUCGS8mwdFGsjRKaAWXpQz2NThoX1Vo--
 
-g_graph.connect("0/Radio#0",   0, "0/PolConverter#0",  0)
-
-but get the error above.
-
-I have tried:
-
-uhd.rfnoc.connect_through_blocks(
-                    g_graph,
-                    "0/Radio#0",
-                    0,
-                    "0/PolConverter#0",
-                    0,
-                    skip_property_propagation = True)
-
-But this also fails with the same error (with skip true or false).
-
-I also see there are some recent issues on github regarding this.
-
-Is there perhaps any further information?
-
-Many thanks, Kevin
-
-
-------=_NextPart_000_04DF_01DB97E5.027EC910
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-
-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
-
-------=_NextPart_000_04DF_01DB97E5.027EC910--
-
---===============1224848127498119889==
+--===============7480307621690146526==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -219,4 +191,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1224848127498119889==--
+--===============7480307621690146526==--
