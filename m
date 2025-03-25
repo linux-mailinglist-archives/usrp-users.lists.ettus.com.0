@@ -2,203 +2,241 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E7EA6EDBA
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Mar 2025 11:31:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CF89A6FEA9
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Mar 2025 13:55:57 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E43A3385DF1
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Mar 2025 06:31:55 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 10A2A385BE5
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Mar 2025 08:55:56 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1742898715; bh=vO3xHtUhACAyb5v+pea7w1te2qqvWgO/4e843H3m3mg=;
-	h=To:Date:References:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
-	 From;
-	b=jlm1S28TYqeicA4CA5DrGoK7Z3WZrKTsKgSiLQk1YKpY83AQkY7y3PHnvYijDGnNf
-	 wLWHrRBPRniCAnvMcXRwCbjew2HFoqaOuee/w9DtoBh7lT9K9tYQmLwJ1i+6+8wTVv
-	 e3m0F1moVxZY4vMzRb1gCxBJDPDKESWo82GgWiaQRz0cMsjf6cD0i8NuQbb4cs/WVd
-	 rU8/53dv7XnkvA390UR3VNW4ve32l35gpq0WFnaQM5xvUdVZ+Hwmeem0vfTzvqPCIF
-	 xnj7dyOY1hSBPpCr9YVMsfpNKJLUrQS4snwpdTOCTK+xkyKGrWjldTZTBXvYgRZQkB
-	 5CsKX7oEnivzw==
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2139.outbound.protection.outlook.com [40.107.21.139])
-	by mm2.emwd.com (Postfix) with ESMTPS id 783FA385B3A
-	for <usrp-users@lists.ettus.com>; Tue, 25 Mar 2025 06:31:35 -0400 (EDT)
+	t=1742907356; bh=bi0JGxNHbi/TYcWMZZ/WGgwHSDEtafwvc4h+cG9ZQyo=;
+	h=To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=Oj4zKYBjKVOrCYNbjh9tKkM5XaIemeCxkMXeFbz3gcIFvY76bkx3nWK98mu0LH87E
+	 /ipdc9I2NdupGDcCsxf9xKUJ8P6gWxohN+Deys3gVVYnAdl3RYqc9/3r8d7u0cnhY/
+	 93C5QdCB/gDNx0ZI8BPy0cRtiLjR4GEKgCvVA5w3u4YeM0Wj2S82zmeOJUGk7h6cff
+	 iORvG4RBJD9dY5WcsWELj+FsaFhyfl8WY+4CPKCbMzsnPZr3I983QQAlUiAZJcyTxF
+	 7SDEuT/yYhfMArGnqadEHJjnkzhj26VbYOxtwgCJr4P2PouOmINApi/KfGgXeGo9uK
+	 DFnyaOgpm69XQ==
+Received: from mx0a-00300601.pphosted.com (mx0a-00300601.pphosted.com [148.163.146.64])
+	by mm2.emwd.com (Postfix) with ESMTPS id 665C138118A
+	for <usrp-users@lists.ettus.com>; Tue, 25 Mar 2025 08:54:50 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=aerospacelab.onmicrosoft.com header.i=@aerospacelab.onmicrosoft.com header.b="ld3pLFpf";
+	dkim=pass (2048-bit key; unprotected) header.d=emerson.com header.i=@emerson.com header.b="wUCDz/K7";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=Emerson.com header.i=@Emerson.com header.b="Zc596RsR";
 	dkim-atps=neutral
+Received: from pps.filterd (m0142705.ppops.net [127.0.0.1])
+	by mx0b-00300601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52PCgxEY022372
+	for <usrp-users@lists.ettus.com>; Tue, 25 Mar 2025 12:54:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emerson.com; h=
+	content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=email; bh=Uy7X+imjGHpOiMBBXibgkZfxbo+D
+	ng+DXLeDm6I6p1E=; b=wUCDz/K77kEN64pXpjSo0bm27OaiBvOlq2s8G9e6X0Mt
+	uCliB6Vth/620v5SaiPmF1qxZab/fOZpPFCXZu9gKP2+P/Mcm5HcVm7tLKCFz3ZW
+	tx3fHf/Y8T/hD6DQihcNEv3J/NY0k81INtHlrrW2OTk1F/xd56PiQZBRjJAV6/gA
+	ri16wqMYq0AoCbjSESQGOk11WnRJ1kRL9/AblcVynmHgUwPF4kbAQBAA32L1Objy
+	ZvN+ms0DEdr77ALz/CTKjzAt+SbGAAHMKSCH9/aIQUV48zy1y9FaqInbJJM8oMqw
+	I8D3YeVw+prMRmSoCN6om3FPmzBylFVtvPJlWV2xxQ==
+Received: from nam04-bn8-obe.outbound.protection.outlook.com (mail-bn8nam04lp2043.outbound.protection.outlook.com [104.47.74.43])
+	by mx0b-00300601.pphosted.com (PPS) with ESMTPS id 45kvqsg7qr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <usrp-users@lists.ettus.com>; Tue, 25 Mar 2025 12:54:48 +0000 (GMT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SLppmb20NLAuUt/egmyS6ODyOc7pYi0Ab0fQ11rE2wKkSGkRugNHWkNl7kTSt2X/Li4sAzg9Q4+KeLxjXQ4RzndfW7IQW+IiMIfyp3Vvw5vkKALwuWkVsRGX0oa+sS/+I5Kua1vTKCm7FGI1SWTaPRLGSgFtDVcuXu8lrPm64O/AmbdsIi+3Jxe5YiAq90qT/3aoofElX65JDoxmh2JRRhG9brhVfl5Sp8a8+GIfACZozOly1YIGezQewPt2Yw1pQzKld+7P3BNXRtEJEVSXtb9f0fk9CqU+e8Mod9w8EpwHFp0Fes5KtQiuoCt0dbD6e0e0y/AfwsczR1OVCJ7QDA==
+ b=hdgqVCHkyYdycQogHQyWtUo5ElVKVaVrWfNuX6ab2BgcfyXPjs5+h1Oh84aKA6QhzHNzAnfxVeV3xolrPMLfa7fhHk1uxa/3QiSmhDrE/FcQVBuH1oyCq6aBMyf3Hiviu/sWlDs7fGR8Cr4YBFskUDtwEJxezh2XlsZwj1JrIXvvSA90c+pHGV1ccBS6bR9iyNb4WnZO50A7kglI/Z/90rtzga/IPgWxTjp77v76Q369d0gY2YdVZZ3sdXw0rB6bm8VR/NLviyZnct8U0tIK2VWXSFfNvPTpmGw7q8xWPlgB1U3BbFtB75ZH+EmTly68bildHraeeyAzzf96WD3GJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cjgyBkCt7QPTB4JfLFbRkmOkbN3o4D090pEG/zJD1iU=;
- b=gKk4Lh0mnhuVV+yE8pc0cY1kQbolZfBPYyJ8ITLKF96UuniuA1d9qJZ2brAgii26rUJULsZsrbN6WuuL+gAY8MP/tMsvcPA2iUoZ4PwSqxCyy9dY4cuo5Uz5nMSTEI0ZIWE82s1EVY9m+o2cykpXXa07jlWoWfZV8S/mLUqWJiN2GBKXOlgNYC3q9VQbwTsGDNF4PmeFuNeVAIWb83qF8u9v+AKS9BqYqgEkVUdjQe7F8NQd209xFXuze9bkkyrAQ2XaFPyo978dOI336be6qCz1THulYsDiV9XX3mFNCbUFXPSFd+PZwy7gQhJYBIb0J932HefNRT13nFjEw3T+YQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 20.79.222.204) smtp.rcpttodomain=lists.ettus.com
- smtp.mailfrom=aerospacelab.com; dmarc=pass (p=reject sp=none pct=100)
- action=none header.from=aerospacelab.com; dkim=none (message not signed);
- arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=aerospacelab.onmicrosoft.com; s=selector2-aerospacelab-onmicrosoft-com;
+ bh=mXZro4LeehYt0j0lArVVvm20jE5mXkqOJSOXrVQdnDQ=;
+ b=pLOkIW34pvpx4mQZGVSigDvcjCOHMAliDrA+OI6o/5AYibwuFPMOVTLE1Gn4Wyzp2ipx5F+V274OFYNBhKI6Z+X9tmnijlVuXrio2Zx0Fe0wz7Pk/WKMzFjtAUGl9VvsHo5zfXMnOm9njf+SOAmC7f9S7PAqV6f81b+E8oD9eGdF2K4kgMDRhiC06ohdIRxMGsooCYVoM2RGeiOXVtEgdvr9Ik9EtZPpvIAybi7Cp7izR0KvKxyp5cWzg5gZ1sxr1xCEqdjNXfR36dKjf15FLqbFqEeEXkcyJUfwvl/sJ14ijhIhvvdV7U42SxuwvBlLjL+NpmDUOUt0lPqMy+/EcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=emerson.com; dmarc=pass action=none header.from=emerson.com;
+ dkim=pass header.d=emerson.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Emerson.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cjgyBkCt7QPTB4JfLFbRkmOkbN3o4D090pEG/zJD1iU=;
- b=ld3pLFpfig1cSJihu8hXzOmNZKJoUODQR6z3Gv2+PoOnYk8iYOd766ObfbP68o48vmcPujEHR/b3YXH9hgHCFZv8dX2w5rDVlyny6eVaR84BT+BTQzYXfrHyJ+xARa4aS0xqIxplkcqKOeMRXcv6Zqczb/JmQKViKq2VDiY7JZM=
-Received: from DUZP191CA0040.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:4f8::18)
- by VI0PR10MB9073.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:23a::11) with
+ bh=mXZro4LeehYt0j0lArVVvm20jE5mXkqOJSOXrVQdnDQ=;
+ b=Zc596RsRoEihYtLc01h5ta1cgQ9j+v4+onVui5g5PBAtOQQ5WO3WJCKEGB8WzFUVPkYw30iQNBWT+5yStfeHtgGBgUQqz6igfwanZLIs1Q/V8RfByacii9LK8/NCSrWQ+qvGK8G9HWEF193+JaQqoECmPxZ5qrx89v5eZWbkneTbyZj5RycdKPpDptH6ySKrgIzrRcp6TqM+NeJXhQc3L0o4Fyp0PHVfOiwhBo3VbGhFPb7YALgSMUnnTQPTdw2AWLRdXNxWyuGQtUGAR+3QIZba+dmhrNMb4NDYNI/rnjbc+OEP2kFgxI81XaPztHVtIRqBl+h8NPQBW4an3+O3/Q==
+Received: from CH0PR10MB5179.namprd10.prod.outlook.com (2603:10b6:610:c7::21)
+ by IA3PR10MB8563.namprd10.prod.outlook.com (2603:10b6:208:571::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Tue, 25 Mar
- 2025 10:31:28 +0000
-Received: from DB3PEPF0000885D.eurprd02.prod.outlook.com
- (2603:10a6:10:4f8:cafe::7a) by DUZP191CA0040.outlook.office365.com
- (2603:10a6:10:4f8::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.42 via Frontend Transport; Tue,
- 25 Mar 2025 10:31:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.79.222.204)
- smtp.mailfrom=aerospacelab.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=aerospacelab.com;
-Received-SPF: Pass (protection.outlook.com: domain of aerospacelab.com
- designates 20.79.222.204 as permitted sender)
- receiver=protection.outlook.com; client-ip=20.79.222.204;
- helo=de2-emailsignatures-cloud.codetwo.com; pr=C
-Received: from de2-emailsignatures-cloud.codetwo.com (20.79.222.204) by
- DB3PEPF0000885D.mail.protection.outlook.com (10.167.242.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.20 via Frontend Transport; Tue, 25 Mar 2025 10:31:28 +0000
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (104.47.30.109) by de2-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Tue, 25 Mar 2025 10:31:27 +0000
-Received: from AM7PR10MB3238.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:10e::10)
- by DB8PR10MB3784.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:16d::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Tue, 25 Mar
- 2025 10:31:25 +0000
-Received: from AM7PR10MB3238.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a96b:6f67:211a:965e]) by AM7PR10MB3238.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a96b:6f67:211a:965e%3]) with mapi id 15.20.8534.040; Tue, 25 Mar 2025
- 10:31:25 +0000
+ 2025 12:54:46 +0000
+Received: from CH0PR10MB5179.namprd10.prod.outlook.com
+ ([fe80::d078:840:de7d:57d9]) by CH0PR10MB5179.namprd10.prod.outlook.com
+ ([fe80::d078:840:de7d:57d9%7]) with mapi id 15.20.8534.040; Tue, 25 Mar 2025
+ 12:54:46 +0000
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Thread-Topic: [X440] CPLD update
-Thread-Index: AQHbnXBvb+kaQwxxdE2EzDWAfiV0aw==
-Date: Tue, 25 Mar 2025 10:31:25 +0000
-Message-ID: <AM7PR10MB32382EC180D4F91C141F096C98A72@AM7PR10MB3238.EURPRD10.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aerospacelab.com;
-x-ms-traffictypediagnostic: 
-	AM7PR10MB3238:EE_|DB8PR10MB3784:EE_|DB3PEPF0000885D:EE_|VI0PR10MB9073:EE_
-X-MS-Office365-Filtering-Correlation-Id: d103e5d7-d872-41b7-85a8-08dd6b88339e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: 
- BCL:0;ARA:13230040|376014|1800799024|366016|8096899003|38070700018;
-X-Microsoft-Antispam-Message-Info-Original: 
- =?us-ascii?Q?5By+KBLzuLDsvdYpRwUxhHZ/lowvcg5MhEA9kQ2i8rnYFwH1BrXPgrAW+DqI?=
- =?us-ascii?Q?zEGK/J2qXU3XX4dr8tvF38ykb+s+bPyDD470xJtRnACl91hkStR7/4CBBLZB?=
- =?us-ascii?Q?ZcwULnLgvDJtLv0IyOSL7oM0Oa/ytgew6lLqKp2nKD4f67mD6bwMaCkW1f9p?=
- =?us-ascii?Q?YtxgADASaI2QlBmylYpSNxtJVUZW85xinXt+UzN1r+Yrw1PC/1lGefieHcj2?=
- =?us-ascii?Q?o4arObi2m5KxPnWnG/7NqBr3c9dINs1mrGFmOklfWyWfUaoVzfw/1yKKpWKz?=
- =?us-ascii?Q?He6sstKxspucT4OtSp5B/3ZQlrJmyp/ktXJqpoZsQ3M91po0MxJ2JO3K4JbN?=
- =?us-ascii?Q?ybyscBf74cmjJgPHUN9cYIBXcHkaWgNKynGyDJ3Ea4oZb2G1ubDrU1DUGLmi?=
- =?us-ascii?Q?ZjrUgG7cH9bA7JfL3A7v6L0jD6EkckhMGMxq/l5KV6D7Jj15oGkTqCV+gcZW?=
- =?us-ascii?Q?pIjGal4HTjW3Lcq9i/VWx9pSHgZwMHSSgZ7ebmDHSaon1ARIB1awMVjoJ5OV?=
- =?us-ascii?Q?307uxbR3xrATVY3aFMuJR8SINtr19GQoIGPK8+Hy+0M2UYasAZrdtWYivQrz?=
- =?us-ascii?Q?exZzma0n5aJUzvvT+ppPxH2YyRzRJxq/ZMx5/I4fBia+opxVIdZQlHQMl34v?=
- =?us-ascii?Q?BJZKXO2iExnrTI2Wnpj2liD3/hyty3zRkmpowd3FX1eBcYIXjwkGXAv/zIw+?=
- =?us-ascii?Q?rYj/fJEesMNffEFQmm20+ym2AoDiF7vBU6paO88WJNn2GqvSSABBMX2gK9s2?=
- =?us-ascii?Q?ILrTXZ9DdeqOY8BCZvR1HlNIptGY0w6IVm6Cdiar/9ZoFD3maEsghFLSWohh?=
- =?us-ascii?Q?mjngU4VqVVjzXlwHlC5vBeDbWaxNGPZdlZmOLtJx0JHUAlAHtirR706rNW+i?=
- =?us-ascii?Q?MZnFz0o5Iqyki9c96njotf4N8eytOEkkVyBTNlRjW8YdfXVUq2QIWJn28xmt?=
- =?us-ascii?Q?7LSJnP/5U4Jg6qOJYBuMP+xFnbwlp3NgYfclj3pm7k+v82+e8adgbFt1FKJB?=
- =?us-ascii?Q?gLA2JIAiNUV12MpwVdOVanKIjjSva+orJbiG78YQYa5A8+aLyC3oTur3abzo?=
- =?us-ascii?Q?M8SDUK1eUSVx6emk73fGQkg6oPwfm8yo2TUreslBgM1Kms+7VVDYbnDLT9tP?=
- =?us-ascii?Q?GF/5dU2QXllGJQI/StyPSl46MorIj9sphMSsXdMxp89x7If8Bw+GCCpA9Ig2?=
- =?us-ascii?Q?Fj/W1A4oIyRFS/O1FFK4ws4pmgb6kC0H3paXbS08FiJYZwWV/rvTl/LRfdDg?=
- =?us-ascii?Q?EolB7p88ZroP6G/njYWJ2LEdQxllFWOrctX7osj0RV5b2e8ryBG2d+yC5kiA?=
- =?us-ascii?Q?Ny4RIb1676+49lAnooyzDesak+Qm8BpvblbzhqJFt3ESJh0/8maFHTGHfjSJ?=
- =?us-ascii?Q?JTTd12T/OcjFYeD3xjLfk1a+B/2pqKvSU7wXPcF+AYQrqc73dxfTOoctt1ZT?=
- =?us-ascii?Q?O/tEjPSbaHjKpLohmx88V5/EtmwIvE+rnrhs20MNld2+p+uOAXXvtg=3D=3D?=
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR10MB3238.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(8096899003)(38070700018);DIR:OUT;SFP:1102;
-MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3784
-X-CodeTwo-MessageID: 5ee9f65b-a926-4179-b830-19511ca77794.20250325103127@de2-emailsignatures-cloud.codetwo.com
+Thread-Index: AQHbnXBvb+kaQwxxdE2EzDWAfiV0a7ODzCbg
+Date: Tue, 25 Mar 2025 12:54:46 +0000
+Message-ID: 
+ <CH0PR10MB51790568A3BDF91275DDFC8999A72@CH0PR10MB5179.namprd10.prod.outlook.com>
 References: 
  <6e952327-49fe-4d74-a7e0-c776b8146ac6.957d5327-c032-481c-971a-4c5ad06e7b08.104c3dd3-14e7-4b70-84da-15204d1da4aa@emailsignatures365.codetwo.com>
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- DB3PEPF0000885D.eurprd02.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	cbdf880b-a762-48aa-f66b-08dd6b8831f9
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|35042699022|376014|14060799003|36860700013|82310400026|1800799024|13003099007|4053099003|4076899003|8096899003;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?jkdwAyXWXVeRxuZxODfLbw5fwIihgwhU09smffJrpZfGnmEUyqMdlzMij3vl?=
- =?us-ascii?Q?Wb5/7kUam1T7mOhE1m2geTKOywK9JzvldkeNz82cYur8LFmCIfKD5aZXWcQb?=
- =?us-ascii?Q?APOn+5HlIMKUzIUzXoPXSEmYuKpinUdg9JUXK1kfCH4f++KqayAPzrOsDlRP?=
- =?us-ascii?Q?TX6CsPdj6VoHB1Zk67QqARBJi00OaaMd3eH7g+aCCatdakLB4sSVr/SUh8OJ?=
- =?us-ascii?Q?N0uQDD5S4G8Czqtqhq9ZYKSBgHa7ia+sh5V12JaE8AmvyF8rZZfox8cp2lDj?=
- =?us-ascii?Q?rzdHCBlW/F4iZjHBJZ+ArXDXRNaxGOAqnQ6Pu5ARGqvgGhHoWUlf9yWzxqHm?=
- =?us-ascii?Q?v8DaTM6yK2EHBAoqlxllbdxPaYIqEqV+piOL9u02n2iAldNOvWOBGv5iKedu?=
- =?us-ascii?Q?QT6lfKOWAhnm3W9p12pw/OFnhtvjsizaTMBMO+MIZUtU2LU2MFqF7QdrFQHP?=
- =?us-ascii?Q?EVjr292n7FRfK3BVXMaKw9INrVDHEXPY3xHvyBTGByb22FvxBCYHs22MMeID?=
- =?us-ascii?Q?w07fWYCWVyHosDtdOV3eQr8GI0eE+GQPMCbm7GRtxAlDReskhNznczJBelo5?=
- =?us-ascii?Q?JtKMO73SLrrxMI2gfUvhgoseJAj/IN7nM2Q3kzoPPXzodL8HRc54lIxUH7uy?=
- =?us-ascii?Q?4caSTsVLOFJ5Jjt/XyvuJ0vsk7D+xuUgs0T6RIZIXeCsJY5RnDG1syvPrLcy?=
- =?us-ascii?Q?6BgzcmWHrUS5BwFJ1C7CmA3HU9hKC2564wYZAKqGHlaF54RSjDH0q1WU7q66?=
- =?us-ascii?Q?N42KRYdDXXOgd8a66yHqWYjHX4AYnAnMMxiFcjY/HnZSVj8pwA8kWI4fMSKi?=
- =?us-ascii?Q?KaOucPZaQhDQLUqpI872UZMhqLWczt8A1L+/qLrqSaBJRTUEpqK47frX2WO1?=
- =?us-ascii?Q?1DXE6jSWyg5u3bpcKfpCJvOImt68rI7swZnSkRvGkj9CpCe0Tzk+7vIjPaAr?=
- =?us-ascii?Q?SE1Y+ok/dorbr91zaRPms7egQE4Sgjg2A4LfgHD87AVsSJSN6680LprkJ2da?=
- =?us-ascii?Q?IGjdUekvyhzgR2rVnWxKtUVnIvYx9LifGekXZBVSJqXv8XFMDj3dQYETLM/E?=
- =?us-ascii?Q?n/VxUzqFUhwsnWvQVkYPJyKhvHGDh2Ol0vaB4XUQYHefIOay34Ifpk6qnD5t?=
- =?us-ascii?Q?yHIItxuqnilgjcoxLUEzaJfmiSS3MDdcokme+9YzzSrzaFq89XxMLeD079ym?=
- =?us-ascii?Q?1aBDKrqvARLq/sHq5VVwdnjGVWy6acrHJZbm9djqetK/PDLQq0XoOePgHa5B?=
- =?us-ascii?Q?cgZvv/xxj709WEwoems/bkjBd0sD2/VfjsEtbZqgKgpWk5cIObjrIS8MDNZx?=
- =?us-ascii?Q?ko49AEH7GdZDuIrV3IJzaJY5eiOEDCk/Ov5Xu38ptuBZpe8v8z6xL9d+gwRy?=
- =?us-ascii?Q?rvNE3SC1FhHsHGdE5nH2HHTi2LgLq8jZ6vKt3p6echu12Yzumty6Ah5My8Ax?=
- =?us-ascii?Q?4cOeb2StIf0=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:20.79.222.204;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:de2-emailsignatures-cloud.codetwo.com;PTR:de2-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230040)(35042699022)(376014)(14060799003)(36860700013)(82310400026)(1800799024)(13003099007)(4053099003)(4076899003)(8096899003);DIR:OUT;SFP:1102;
-X-OriginatorOrg: aerospacelab.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2025 10:31:28.1760
+ <AM7PR10MB32382EC180D4F91C141F096C98A72@AM7PR10MB3238.EURPRD10.PROD.OUTLOOK.COM>
+In-Reply-To: 
+ <AM7PR10MB32382EC180D4F91C141F096C98A72@AM7PR10MB3238.EURPRD10.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+msip_labels: 
+ MSIP_Label_b74dbf3d-dd19-4e95-b2d0-8dffb6ec560c_ActionId=4b07eebb-af86-4d5f-ab07-33da57dcd8fa;MSIP_Label_b74dbf3d-dd19-4e95-b2d0-8dffb6ec560c_ContentBits=0;MSIP_Label_b74dbf3d-dd19-4e95-b2d0-8dffb6ec560c_Enabled=true;MSIP_Label_b74dbf3d-dd19-4e95-b2d0-8dffb6ec560c_Method=Privileged;MSIP_Label_b74dbf3d-dd19-4e95-b2d0-8dffb6ec560c_Name=Public;MSIP_Label_b74dbf3d-dd19-4e95-b2d0-8dffb6ec560c_SetDate=2025-03-25T12:44:19Z;MSIP_Label_b74dbf3d-dd19-4e95-b2d0-8dffb6ec560c_SiteId=eb06985d-06ca-4a17-81da-629ab99f6505;MSIP_Label_b74dbf3d-dd19-4e95-b2d0-8dffb6ec560c_Tag=10,
+ 0, 1, 1;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR10MB5179:EE_|IA3PR10MB8563:EE_
+x-ms-office365-filtering-correlation-id: 5b3f5b4e-d402-4226-115f-08dd6b9c3860
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|366016|376014|1800799024|7053199007|38070700018|4013099003|8096899003|4053099003|13003099007;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?eEwvaEI4NWNwNFQyTHhMQTJMMWpkUHAybDVONXpXaEVmMnN0YjlFSCtnR0xV?=
+ =?utf-8?B?bnZ5ZTBEbFFhdFQydGc0L1piSmh5ZGorU255dXUzbncyamZVQURKbUNrckgx?=
+ =?utf-8?B?bWJnTEYwY0lkK0hTVXBaVmhpVTJjMXo5Z1ZLR05iTW85OHJ3YVVCaWUyNVpy?=
+ =?utf-8?B?OXRnZ0k2dzlLdGJVWTVYSXhGcmdEY1dqa2Y5Y0htVWdmVktqZXJBZFUwckV4?=
+ =?utf-8?B?UEVPRi9jdEdsZ1B1ejAwUVdmVjE1cGczdWI5aC9LYi9mdnNNdkNIeUk5N1dP?=
+ =?utf-8?B?SWlyOFZMTnQvZ1hTOVc2YkNsSnZmaVg5eXRwVVhicnI2YnZxRDZjTjJuUzBx?=
+ =?utf-8?B?ODVydzhKclJKakIrdmJIS0NVQklZZVVpMW5QNHUzV1htemk2TUl0QkhyZ2Z1?=
+ =?utf-8?B?cDBmN0h4Ti9GcXR0WEh3ZE01VlF0VUJDeUl2MjllejdsaU5GNUlPSWdsblQv?=
+ =?utf-8?B?a1FQQjZnZFpqdDJrRDZYZkp4NlVUVVRkNjlPZG8ydGtpY0paQ2FxUTY2dFN4?=
+ =?utf-8?B?YzQwVDU5eVdIR2xRRHVEV2U5WHMxVE9iekErMG5mTHZIQjhjRVdCU2RtblR5?=
+ =?utf-8?B?YWJjNlpkaDRjakJnRHVPb1Z2c3BwV0ZsTXFMREVuZUNGTVRQNUd1cWUyNld2?=
+ =?utf-8?B?SEkwUHY2NXB4a3NRTnFSNGY1UlIrRjNVQ1dRTHpVUk9UMnNnb2ZKUXU1M0dB?=
+ =?utf-8?B?NlU0UkZKTUxTeVZTV3VzS2toNllMSWxJSXV1dlJyc2lmYjhxZGdWQWx0dGhE?=
+ =?utf-8?B?UjNvRGhkbzlWbzVocHVlc3JkbHZZQVFwMnhFeDcwcklwNWpuMG44em1ON3pq?=
+ =?utf-8?B?cHNhVVFIU1ZEVzlpZ1hMVEFkbFdCSUZ2cklmVGEzaFJzMm5neUZEaS91MWVE?=
+ =?utf-8?B?eWxkclpJN2E5UzZqK3FvbDNSQXNScmZ4NUZ6U2lWOVNudE1sR0ZYeHVoakdB?=
+ =?utf-8?B?VGNJaUtTZkhDRTlRSUQvaXFYL0NlZEliR1VGM1VKdnpSQXlWbDBWMmpRb3hN?=
+ =?utf-8?B?d3laOTgzMEVlc0QxUVNZb2dMcjdFVHFZc2lEaHZKL2VWYk9HT2J6M3VlT3ZV?=
+ =?utf-8?B?K3ljZW0xY2JZdzhOekU5dTgxanM5WVo0K2VVeU9CUENPRWFQZHgzaEhLVFNx?=
+ =?utf-8?B?bnVvTS9WbHZXNEpJMDJXempMOFhLcGQ0WFN1eXpqQm9HcU5peXhtY0o5b1dM?=
+ =?utf-8?B?SnRSQmR5YnRSUEdzcUN5WVlVU3BZbEFuMm5pVUVGNnBESFRWRndtZisrak5K?=
+ =?utf-8?B?cFFHZHRyQ1k3OG9KL1dXWHY0OGExaEFycVp3SmJZN1hDSUZEVFlSRXlOYy9x?=
+ =?utf-8?B?UndyNFVVWGZQWHB2OHFHaVlqdFVDNW9kZUtZSFh0MnRKZXNrVUxJM3FLbTFz?=
+ =?utf-8?B?N2dUQ3crNVRVZlJBTmpKekwxMWFkMjNabXE4cUxXTVdOaENuQkxkWFJlc1F0?=
+ =?utf-8?B?aE5zSTdqRmNxbjJ4WTRzb2RUZ2s3R3lTcjZjSUFiR2lkK1lGbmJNL0tnb1Bu?=
+ =?utf-8?B?cU1INm51a0FCQ1FuWlU3TGJkWlBQTGIweVJjbUQ1SVRwdnEyUXVuaXRvQjVN?=
+ =?utf-8?B?U1ZsMktpSkV0MGcydE5USWxPSnI3K1ZLcmdBa2RrOXd6c0xhVkUxbTV6RXpW?=
+ =?utf-8?B?UjcvVHhaZmFhNDdKd25jemtzWkJMRmJ2QlA4MzBNdUlIUXYzNGdsSDdCTi9m?=
+ =?utf-8?B?UWtPU2g2QStMdFRIQjdVWUkybUovSXJ1M004UnF5NXdWQzYzVXFjWGh1VjZi?=
+ =?utf-8?B?dHZoR3luVmZHVTJqSGMrdEIyTmRxVEttY2V1TytvcG1tQW1oMVZUNkUxTXNo?=
+ =?utf-8?B?Q0lGL1lRSDRUTU1xNDY3dlhsOHpSVSt4M3FzeEQzMW9mMzhmQ0lORHQyWk9G?=
+ =?utf-8?B?cDd5dHVtcExzQ3k2N2IvT3dlbmRNOUFnaFJYUU14QlhJR21CbSttMXNCdjZK?=
+ =?utf-8?Q?OpXKNAL9DH0=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR10MB5179.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7053199007)(38070700018)(4013099003)(8096899003)(4053099003)(13003099007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?bERmN3RoYmFTUENYRzdFeDNRcWhDeWNENW9TazQ2YmVRd2FtTXF3bTNjTldj?=
+ =?utf-8?B?c0pJZGQyNEZRbG5SM05ncVBnTGRXbitCQVNaQzV3ZmhSVmIzT2tqVFVkd1lO?=
+ =?utf-8?B?OW11YXJUdWx6WnR3cmJqL0V1U3RkWlBHMUR3bGhZK3A1a2hqenhpby8vL01X?=
+ =?utf-8?B?RGZBUGorV3Q3VXdwNDlHM2hUeGRVNGdFUXJTN0dqeVNJSXFMcEtQTlNCdEdH?=
+ =?utf-8?B?ZUR6SlJoWmR2WkRxL3F3TFNJOFV6enNzRTdobGtBSFJwcnB2V0MrYVpZa0tL?=
+ =?utf-8?B?R0k4UjZ0QzhKMmRYZHNiZ0RhalQxMDduL3BWTTVJNTQzV1Q0WGYwUzRURUU1?=
+ =?utf-8?B?NUNncEpHZGl6Z3Nmb2E0SFNmZ3BPczc4UWZUZGpSaXc2MTJsWk1CM1RLUWQz?=
+ =?utf-8?B?NDF4aVN6WkJXYXFrd2pBYnZqYjl2bWYvSWZML0ZEdk01ZmZRalluN1ExTVJW?=
+ =?utf-8?B?bk95SlRGUm1ZRjMveWFWRFJubmVvczNwK29QK0F4VFVzTzI3NFU2L1BqZ1Fz?=
+ =?utf-8?B?dW9kOEpZSHVIdldSRlNWTk1RNkZZQkdBOWNUWi9iaUk3MzVZYWFpTzM2VDFO?=
+ =?utf-8?B?VGRuc0NKUmJIRXBJS1p3TUM4T3Q1VWhZeG1rQjBXdEtONzU0aEFLdGRtYXdT?=
+ =?utf-8?B?TkNvUi9WY2FEZjlrcDNlNGlIQjAvbzNpZE5QODZ1TllEZ2FyU01xc1JVekJs?=
+ =?utf-8?B?MFNuV1RoY1VxRHU4SlBQRFpDTVc4dDdUZFBTRktkb2RMVm9acXRTTmhoZFZ4?=
+ =?utf-8?B?OWhHKy9aYlZ6S0pwenpxeEZva3ZIWVh2NklDaUMvM0YzbnA5ZlkzcWJxSHYr?=
+ =?utf-8?B?Ynl6MDRtd1NpYzZraHlQQmhqQ1BRdnZ4bzFnY1ArWjQrbXJ0dmY5UTJDVnNZ?=
+ =?utf-8?B?aTdFUkdPSjBtTk4vaytaK0JsS3ZRUXlIYTdKckxnZE8zRkpJVHNycWRMZk0r?=
+ =?utf-8?B?R0tac2hJSkhuenlSZDNaNE1ZRC9pL2NPR3ZLek15RHQyanc0V0FUbWlybEp4?=
+ =?utf-8?B?NFhpUjRpWXVtM3Q5bjEvTk5Qeko2ZE51RngwbWZYd1UyVTVxdER3NFpjR0dR?=
+ =?utf-8?B?dHF3R011ZHNEakloa0RXcjJ5aEtqNi9MZG03d1ByN0VKMXVFcUpoQ01RaFNw?=
+ =?utf-8?B?NTUycXlSbFRXUE9Wa3N2d3A0SGhTbGpyL3NEL2Z4UG9kMENZVTFlOFNCek9q?=
+ =?utf-8?B?QnE5QzdYVGp1Z0dGUHoxSm9SQzdIWkRrQVZ3VHNOL0syYUxDUWtyaWE5bzlP?=
+ =?utf-8?B?czhNaXNETHhLU3lrZVlRbmFPcUtsTlZJcXJHalZkcWhZWG9zcDBuWVpXTEpJ?=
+ =?utf-8?B?RjNkbzNueWNJN1o1NDFWSFAxbDA1aWpsd2JmaTV2REpVVUlSNEVFTlE2VWQy?=
+ =?utf-8?B?b0MrQ1lCd3pDVmpWenhIT2RwWkFBejRiT0JucTJyeHR0VGd3ZHBxRytJWkRq?=
+ =?utf-8?B?dTBjS2xiQ2hkOHVKanNpUzFMZW9tVFRONlFWNXk2Rm9pT3FRTmRCNGRzc21R?=
+ =?utf-8?B?MWZ2QnNKb3BlaldhUis5cG5yNDJlQ09vRWZ4WjY4cXVJUFNEdUNiMlg4KzJs?=
+ =?utf-8?B?RlFjbkkrazNCZUZCd29zcWFnclk5N1FCMVhIUmx3Nks4bG1QZDRuMGVqRU5X?=
+ =?utf-8?B?ckkvSW5jcHV6VjZRaDlKUXJzZHlFZWVjVGJrZEMxaGpvZE80V0szc3l0akxQ?=
+ =?utf-8?B?NHNucjVUTm5hWWgwZll5Zk9CQzFqclpVQ1kySmd4dTlsQndFaFY1QUZxM2l0?=
+ =?utf-8?B?NmxvL0lsaitDS1o3S1NvYTBHKy80NTBqZ0gxQjY1d3RQT1dveXI2WklzVWxR?=
+ =?utf-8?B?RzVzZ3E2ZkRDZzJRNDJQSFZTMUlVc1VCeTMzVHlLUGszY3pTL3NXblZHcjJF?=
+ =?utf-8?B?YU1ON1RLYkVaRXh2ZS9NNGE5Kzk4M1V6LzhoZWtHL3BRZVNMYUtlNTZ2RlhH?=
+ =?utf-8?B?TmlpVjJNS1JrdUFiTEZFZnFydHdFMWp4ZG1QNDg1VmZkaXhxQWh3MlRxcGxK?=
+ =?utf-8?B?ZWVlWmRCZFkvM3FiZllGMVVqQ2MweVloQ0IxZXhHWnVWN3ZzTzVLMHQ3WGRW?=
+ =?utf-8?B?Mlp6ZUJ3UFFZUUphRm4xS0dVc1hxc1lEQjN3Sm53MVJFeElpVVRwNXR6eGN1?=
+ =?utf-8?B?WXg5TWhqcWNYNkVQcytLRmpVaXNlZEtTc3NEZXhWWllwa3V0ZlJPWHgxa09x?=
+ =?utf-8?B?bFE9PQ==?=
+MIME-Version: 1.0
+X-OriginatorOrg: Emerson.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR10MB5179.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b3f5b4e-d402-4226-115f-08dd6b9c3860
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2025 12:54:46.1300
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d103e5d7-d872-41b7-85a8-08dd6b88339e
-X-MS-Exchange-CrossTenant-Id: f33c67b4-96c2-4efb-a920-7ae1e05a51c5
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f33c67b4-96c2-4efb-a920-7ae1e05a51c5;Ip=[20.79.222.204];Helo=[de2-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	DB3PEPF0000885D.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR10MB9073
-Message-ID-Hash: LISVOBTBD6FYTKOHW5LDZY773VX7DKZG
-X-Message-ID-Hash: LISVOBTBD6FYTKOHW5LDZY773VX7DKZG
-X-MailFrom: thomas.dhondt@aerospacelab.com
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eb06985d-06ca-4a17-81da-629ab99f6505
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7pCGB1ORzoRxvujt6Njmfqx78wYEhZGeBbUwYYze4JtbGR3Nd1Bwrlkx3AaL8hfv1SXaVaN2rJ0Lw9tcSn0hs0xeBlnNnnlbGQrBb4oVzT8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8563
+X-Proofpoint-GUID: rnl-JvgVrkadynM1NHlrV0yB_Dx0TuKJ
+X-Proofpoint-ORIG-GUID: rnl-JvgVrkadynM1NHlrV0yB_Dx0TuKJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-25_05,2025-03-25_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 adultscore=0 clxscore=1015 priorityscore=1501
+ phishscore=0 mlxscore=0 bulkscore=0 suspectscore=0 impostorscore=0
+ mlxlogscore=999 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502280000 definitions=main-2503250090
+Message-ID-Hash: 5NJAOPPUED44RFSWBAIVRA7KTDTTJASU
+X-Message-ID-Hash: 5NJAOPPUED44RFSWBAIVRA7KTDTTJASU
+X-MailFrom: prvs=2179c2a518=martin.anderseck@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] [X440] CPLD update
+Subject: [USRP-users] Re: [X440] CPLD update
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LISVOBTBD6FYTKOHW5LDZY773VX7DKZG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/E44ANDJPSG3ST4YTZWKTVQTGE3DJXFYZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Thomas D'Hondt via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Thomas D'Hondt <thomas.dhondt@aerospacelab.com>
-Content-Type: multipart/mixed; boundary="===============1964747975904821987=="
+From: "Anderseck, Martin via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Anderseck, Martin" <martin.anderseck@emerson.com>
+Content-Type: multipart/mixed; boundary="===============7789068069513228158=="
 
---===============1964747975904821987==
-Content-Type: multipart/alternative;
-	boundary="_000_AM7PR10MB32382EC180D4F91C141F096C98A72AM7PR10MB3238EURP_"
+--===============7789068069513228158==
 Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_004_CH0PR10MB51790568A3BDF91275DDFC8999A72CH0PR10MB5179namp_";
+	type="multipart/alternative"
 
---_000_AM7PR10MB32382EC180D4F91C141F096C98A72AM7PR10MB3238EURP_
-Content-Type: text/plain; charset="iso-8859-1"
+--_004_CH0PR10MB51790568A3BDF91275DDFC8999A72CH0PR10MB5179namp_
+Content-Type: multipart/alternative;
+	boundary="_000_CH0PR10MB51790568A3BDF91275DDFC8999A72CH0PR10MB5179namp_"
+
+--_000_CH0PR10MB51790568A3BDF91275DDFC8999A72CH0PR10MB5179namp_
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Thomas,
+
+The name indicates that this is for two different versions of the motherboa=
+rd CPLD. In X410 we have revisions that use the 10m08 CPLD version, so it l=
+ooks like (for a reason that I could not find out quickly) we generate that=
+ for X440, too. However, X440 (until now) only comes with the 10m04 version=
+. If you omit the --file argument, the update script will automatically cho=
+ose the correct one for you.
+
+/Martin
+
+From: Thomas D'Hondt via USRP-users <usrp-users@lists.ettus.com>
+Sent: Tuesday, March 25, 2025 11:31 AM
+To: usrp-users@lists.ettus.com
+Subject: [EXTERNAL] [USRP-users] [X440] CPLD update
+
+
 
 Hello everyone,
 
@@ -210,11 +248,9 @@ Following the X440 user manual, I took a look at the files located in /lib/=
 firmware/ni/ on the X440 file system.
 However, I noticed that there are two files that match the X440:
 
- *
-cpld-x440-10m04.rpd
- *
-cpld-x440-10m08.rpd
+  *   cpld-x440-10m04.rpd
 
+  *   cpld-x440-10m08.rpd
 As far as I can tell, the manual does not mention the 10m04 and 10m08 varia=
 nts.
 
@@ -227,12 +263,12 @@ Thomas D'hondt
 
 Thomas D'Hondt
 Embedded Software Engineer
-| thomas.dhondt@aerospacelab.com
-[cid:240315_aerospacelab_mailbanner_brand_bd3dd1c7-bc8a-46fa-ab29-0da2ce397=
-538.png]
-Rue Andr=E9 Dumont 14B | 1435 Mont-Saint-Guibert | Belgium
-www.aerospacelab.com<http://www.aerospacelab.com/>
-
+| thomas.dhondt@aerospacelab.com<mailto:thomas.dhondt@aerospacelab.com>
+[240315_aerospacelab_mailbanner_brand.png]
+Rue Andr=C3=A9 Dumont 14B | 1435 Mont-Saint-Guibert | Belgium
+www.aerospacelab.com [aerospacelab.com]<https://urldefense.com/v3/__http:/w=
+ww.aerospacelab.com/__;!!OkyjEqkqqe9UhNQ!2bICl_NyedLKmSsGphuk4nj3Qz2aCECtt6=
+XCNI_Y5RKRgkee2J3yhOOKOHfRd1ukVqs4bLJFKIG9tOPh6D-X8ghqoN1_$>
 The content of this email is confidential and intended for the recipient sp=
 ecified in message only. It is strictly forbidden to share any part of this=
  message with any third party, without a written consent of the sender. If =
@@ -242,155 +278,341 @@ n the future.
 
 
 
---_000_AM7PR10MB32382EC180D4F91C141F096C98A72AM7PR10MB3238EURP_
-Content-Type: multipart/related;
-	boundary="_d12a42dd-f5b9-48f9-a66e-87016325fa33_"
-
---_d12a42dd-f5b9-48f9-a66e-87016325fa33_
-Content-Type: text/html; charset="iso-8859-1"
+--_000_CH0PR10MB51790568A3BDF91275DDFC8999A72CH0PR10MB5179namp_
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+@font-face
+	{font-family:"IBM Plex Sans";}
+@font-face
+	{font-family:"IBM Plex Sans Light";}
+@font-face
+	{font-family:"Criteria CF Medium";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:"Aptos",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Aptos",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:70.85pt 70.85pt 56.7pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:477573349;
+	mso-list-template-ids:19149752;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body dir=3D"ltr">
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-Hello everyone,</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
+<body lang=3D"DE" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break-w=
+ord">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US">Hi Thomas,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-f=
+areast-language:EN-US">The name indicates that this is for two different ve=
+rsions of the motherboard CPLD. In X410 we have revisions that use the 10m0=
+8 CPLD version, so it looks like (for
+ a reason that I could not find out quickly) we generate that for X440, too=
+. However, X440 (until now) only comes with the 10m04 version. If you omit =
+the --file argument, the update script will automatically choose the correc=
+t one for you.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-f=
+areast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-f=
+areast-language:EN-US">/Martin<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;mso-f=
+areast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt;fo=
+nt-family:&quot;Calibri&quot;,sans-serif">From:</span></b><span lang=3D"EN-=
+US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> =
+Thomas D'Hondt via USRP-users &lt;usrp-users@lists.ettus.com&gt;
 <br>
+<b>Sent:</b> Tuesday, March 25, 2025 11:31 AM<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [EXTERNAL] [USRP-users] [X440] CPLD update<o:p></o:p></span=
+></p>
 </div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-I have just successfully updated the filesystem of my Ettus X440 using the =
-dd tool.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-I now would like to update the CPLD to the matching version.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-<br>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span style=3D"f=
+ont-size:1.0pt;font-family:&quot;Arial&quot;,sans-serif;color:white"><o:p><=
+/o:p></span></p>
 </div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-Following the X440 user manual, I took a look at the files located in /lib/=
-firmware/ni/ on the X440 file system.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-However, I noticed that there are two files that match the X440:</div>
-<ul data-editing-info=3D"{&quot;applyListStyleFromLevel&quot;:false,&quot;u=
-norderedStyleType&quot;:2}" style=3D"margin-top: 0px; margin-bottom: 0px;">
-<li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
-alibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0); list-s=
-tyle-type: &quot;- &quot;;">
-<div class=3D"elementToProof">cpld-x440-10m04.rpd &nbsp;</div>
-</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
-ce, Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0); l=
-ist-style-type: &quot;- &quot;;">
-<div class=3D"elementToProof">cpld-x440-10m08.rpd&nbsp;</div>
-</li></ul>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-As far as I can tell, the manual does not mention the 10m04 and 10m08 varia=
-nts.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-<br>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span style=3D"f=
+ont-size:1.0pt;color:white"><o:p></o:p></span></p>
 </div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-What is the difference between both versions? And which one should I instal=
-l on my device?</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-<br>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">Hello e=
+veryone,<o:p></o:p></span></p>
 </div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-Thanks in advance for your assistance!</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-<br>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black"><o:p>&n=
+bsp;</o:p></span></p>
 </div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-Thomas D'hondt</div>
-=0A=
-=0A=
-=0A=
-<p style=3D"FONT-SIZE: 10pt; MARGIN-BOTTOM: 5pt; FONT-FAMILY: ARIAL; MARGIN=
--TOP: 0pt">=0A=
-</p><table id=3D"0.jkfrduw0jg" style=3D"width: 660px;" cellspacing=3D"0" ce=
-llpadding=3D"0"><tbody><tr><td valign=3D"top" colspan=3D"1" style=3D"width:=
- 660px;"><span data-codetwo-visible=3D"Social links" style=3D""><p class=3D=
-"MsoNormal" style=3D""><span style=3D"font-size: 14pt; color: rgb(47, 70, 1=
-30); font-family: &quot;Criteria CF Medium&quot;;"><b style=3D"font-size: 1=
-2pt;"><br></b></span></p><p class=3D"MsoNormal" style=3D""><span style=3D"f=
-ont-size: 14pt; color: rgb(47, 70, 130); font-family: &quot;Criteria CF Med=
-ium&quot;;"><b style=3D"font-size: 12pt;">Thomas D'Hondt<br style=3D"font-s=
-ize: 12pt;"></b></span><span style=3D"font-size: 11pt;"><font color=3D"#3c3=
-c3b" face=3D"IBM Plex Sans, sans-serif"><span style=3D"font-size: 9pt;"><sp=
-an style=3D"font-size: 10pt;"><b>Embedded Software Engineer</b></span></spa=
-n><br style=3D"font-size: 10pt;"></font></span><span style=3D"font-size: 10=
-pt; color: black; font-family: &quot;IBM Plex Sans Light&quot;, sans-serif;=
-"> | </span><span style=3D"font-family: &quot;IBM Plex Sans Light&quot;, sa=
-ns-serif;"><font color=3D"#2f4682"><span style=3D"font-size: 11pt;"><span s=
-tyle=3D"font-size: 9pt;"><span style=3D"font-size: 10pt;">thomas.dhondt@aer=
-ospacelab.com</span></span><br></span></font></span><img src=3D"cid:240315_=
-aerospacelab_mailbanner_brand_bd3dd1c7-bc8a-46fa-ab29-0da2ce397538.png" bor=
-der=3D"0" id=3D"0.0yi10jezzyvo" alt=3D"240315_aerospacelab_mailbanner_brand=
-.png" width=3D"480" height=3D"96" style=3D"width: 480px; height: 96px;"><sp=
-an style=3D"font-family: &quot;IBM Plex Sans Light&quot;, sans-serif;"><fon=
-t color=3D"#2f4682"><span style=3D"font-size: 11pt;"><br></span></font></sp=
-an><span style=3D"font-family: &quot;IBM Plex Sans Light&quot;, sans-serif;=
- font-size: 10pt;"><font color=3D"#3c3c3b">Rue Andr&#xE9; Dumont 14B | 1435=
- Mont-Saint-Guibert | Belgium<br></font></span><a href=3D"http://www.aerosp=
-acelab.com/" style=3D"background-color: rgb(255, 255, 255); font-size: 13.3=
-333px;"><span style=3D"font-size: 10pt; font-family: &quot;IBM Plex Sans Li=
-ght&quot;, sans-serif; color: rgb(47, 70, 130);">www.aerospacelab.com</span=
-></a></p></span><p class=3D"MsoNormal" style=3D"font-family: Arial; color: =
-rgb(60, 60, 59); font-size: 13.3333px;"></p></td></tr><tr><td valign=3D"top=
-" style=3D"width: 660px; font-family: Arial; font-size: 10pt;" class=3D""><=
-span style=3D"color: rgb(127, 127, 127); font-family: &quot;IBM Plex Sans L=
-ight&quot;, sans-serif; font-size: 12px;"><i>The content of this email is c=
-onfidential and intended for the recipient specified in message only. It is=
- strictly forbidden to share any part of this message with any third party,=
- without a written consent of the sender. If you received this message by m=
-istake, please reply to this message and follow with its deletion, so that =
-we can ensure such a mistake does not occur in the future.</i></span></td><=
-/tr></tbody></table><p>&nbsp;</p>=0A=
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">I have =
+just successfully updated the filesystem of my Ettus X440 using the dd tool=
+.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">I now w=
+ould like to update the CPLD to the matching version.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black"><o:p>&n=
+bsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">Followi=
+ng the X440 user manual, I took a look at the files located in /lib/firmwar=
+e/ni/ on the X440 file system.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">However=
+, I noticed that there are two files that match the X440:<o:p></o:p></span>=
+</p>
+</div>
+<div>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"color:black;mso-margin-top-alt:auto;mso-ma=
+rgin-bottom-alt:auto;mso-list:l0 level1 lfo1;list-style-type:&quot;- &quot;=
+">
+<span style=3D"font-size:11.0pt">cpld-x440-10m04.rpd &nbsp;<o:p></o:p></spa=
+n></li></ul>
+</div>
+<div>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"color:black;mso-margin-top-alt:auto;mso-ma=
+rgin-bottom-alt:auto;mso-list:l0 level1 lfo1;list-style-type:&quot;- &quot;=
+">
+<span style=3D"font-size:11.0pt">cpld-x440-10m08.rpd&nbsp;<o:p></o:p></span=
+></li></ul>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">As far =
+as I can tell, the manual does not mention the 10m04 and 10m08 variants.<o:=
+p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black"><o:p>&n=
+bsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">What is=
+ the difference between both versions? And which one should I install on my=
+ device?<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black"><o:p>&n=
+bsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">Thanks =
+in advance for your assistance!<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black"><o:p>&n=
+bsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black">Thomas =
+D'hondt<o:p></o:p></span></p>
+</div>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"660" style=3D"width:495.0pt" id=3D"0.jkfrduw0jg">
+<tbody>
+<tr>
+<td width=3D"660" valign=3D"top" style=3D"width:495.0pt;padding:0in 0in 0in=
+ 0in">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-family:&quot;Criteria CF Medium&quot;,serif=
+;color:#2F4682">Thomas D'Hondt<br>
+</span></b><b><span style=3D"font-size:10.0pt;font-family:&quot;IBM Plex Sa=
+ns&quot;,sans-serif;color:#3C3C3B">Embedded Software Engineer</span></b><sp=
+an style=3D"font-size:10.0pt;font-family:&quot;IBM Plex Sans&quot;,sans-ser=
+if;color:#3C3C3B"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;IBM Plex Sans Ligh=
+t&quot;,sans-serif;color:black">|
+</span><span style=3D"font-size:10.0pt;font-family:&quot;IBM Plex Sans Ligh=
+t&quot;,sans-serif;color:#2F4682"><a href=3D"mailto:thomas.dhondt@aerospace=
+lab.com">thomas.dhondt@aerospacelab.com</a></span><span style=3D"font-size:=
+11.0pt;font-family:&quot;IBM Plex Sans Light&quot;,sans-serif;color:#2F4682=
+"><br>
+</span><img border=3D"0" width=3D"480" height=3D"96" style=3D"width:5.0in;h=
+eight:1.0in" id=3D"_x0030_.0yi10jezzyvo" src=3D"cid:image001.png@01DB9D8C.6=
+0EFC470" alt=3D"240315_aerospacelab_mailbanner_brand.png"><span style=3D"fo=
+nt-size:11.0pt;font-family:&quot;IBM Plex Sans Light&quot;,sans-serif;color=
+:#2F4682"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;IBM Plex Sans Ligh=
+t&quot;,sans-serif;color:#3C3C3B">Rue Andr=C3=A9 Dumont 14B | 1435 Mont-Sai=
+nt-Guibert | Belgium<br>
+</span><a href=3D"https://urldefense.com/v3/__http:/www.aerospacelab.com/__=
+;!!OkyjEqkqqe9UhNQ!2bICl_NyedLKmSsGphuk4nj3Qz2aCECtt6XCNI_Y5RKRgkee2J3yhOOK=
+OHfRd1ukVqs4bLJFKIG9tOPh6D-X8ghqoN1_$"><span style=3D"font-size:10.0pt;font=
+-family:&quot;IBM Plex Sans Light&quot;,sans-serif;color:#2F4682;background=
+:white">www.aerospacelab.com</span><span style=3D"font-size:10.0pt;backgrou=
+nd:white">
+ [aerospacelab.com]</span></a><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td width=3D"660" valign=3D"top" style=3D"width:495.0pt;padding:0in 0in 0in=
+ 0in">
+<p class=3D"MsoNormal"><i><span style=3D"font-size:9.0pt;font-family:&quot;=
+IBM Plex Sans Light&quot;,sans-serif;color:#7F7F7F">The content of this ema=
+il is confidential and intended for the recipient specified in message only=
+. It is strictly forbidden to share any part of
+ this message with any third party, without a written consent of the sender=
+. If you received this message by mistake, please reply to this message and=
+ follow with its deletion, so that we can ensure such a mistake does not oc=
+cur in the future.</span></i><span style=3D"font-size:10.0pt;font-family:&q=
+uot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;<o:p></o:p></p>
+</div>
 </body>
 </html>
 
---_d12a42dd-f5b9-48f9-a66e-87016325fa33_
-Content-Description: 
- 240315_aerospacelab_mailbanner_brand_bd3dd1c7-bc8a-46fa-ab29-0da2ce397538.png
-Content-Type: image/png; name=
-	"240315_aerospacelab_mailbanner_brand_bd3dd1c7-bc8a-46fa-ab29-0da2ce397538.png"
-Content-Disposition: inline; filename=
-	"240315_aerospacelab_mailbanner_brand_bd3dd1c7-bc8a-46fa-ab29-0da2ce397538.png"
+--_000_CH0PR10MB51790568A3BDF91275DDFC8999A72CH0PR10MB5179namp_--
+
+--_004_CH0PR10MB51790568A3BDF91275DDFC8999A72CH0PR10MB5179namp_
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"; size=52999;
+	creation-date="Tue, 25 Mar 2025 12:54:45 GMT";
+	modification-date="Tue, 25 Mar 2025 12:54:45 GMT"
+Content-ID: <image001.png@01DB9D8C.60EFC470>
 Content-Transfer-Encoding: base64
-Content-ID: 
- <240315_aerospacelab_mailbanner_brand_bd3dd1c7-bc8a-46fa-ab29-0da2ce397538.png>
 
 iVBORw0KGgoAAAANSUhEUgAAA+gAAADJCAYAAACwuxjqAAAACXBIWXMAAA7EAAAOxAGVKw4bAADO
 uUlEQVR4nOzddXwc17UH8N/MMpOYwbIlmZkdQ+w4zNQ2UG5TblPmlN4rt6+YYqhJmsQBBxwzM4Ms
@@ -1323,11 +1545,9 @@ Z10trroD9O4W113asgcfDdAJIYTclzb2+jAeK+DEYBJnr6VxaFcT+js8FFJHCCGENKBQ1OtGoXmd
 PLwuDpGAG+0RJ5qDIgKUT35XUIg7IYSQ+5ZumDh9NYWTl5PQdBP//cv94FiKqyOEEEIWiiVlTM1K
 GI9JmIhJ0I36fzcNw4SimRAFBizFq99V/z+KJzO3LkizfQAAAABJRU5ErkJggg==
 
---_d12a42dd-f5b9-48f9-a66e-87016325fa33_--
+--_004_CH0PR10MB51790568A3BDF91275DDFC8999A72CH0PR10MB5179namp_--
 
---_000_AM7PR10MB32382EC180D4F91C141F096C98A72AM7PR10MB3238EURP_--
-
---===============1964747975904821987==
+--===============7789068069513228158==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1337,4 +1557,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1964747975904821987==--
+--===============7789068069513228158==--
