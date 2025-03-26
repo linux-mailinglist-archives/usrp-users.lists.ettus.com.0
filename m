@@ -2,193 +2,360 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9A64A71DCD
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Mar 2025 18:57:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3647EA71FB2
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Mar 2025 20:54:09 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 34A143854AE
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Mar 2025 13:57:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 07A73385022
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Mar 2025 15:54:08 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1743011842; bh=IXTuhZtb1ux0Zmh+GouwMfwVz4YWfSWDWYOEwKGfe0s=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=U/gk0gKEJNiopO4sS/kKTEoERTKUTOUQHF/+yMJ+zyI3hJnY6JDSypoc7A9VqRPs3
-	 PWokcSIoRsEHe/zaIrCFlmqe6Jkl9mqm6k/yW4CT5fj2yczHdxgdbI22Ljijgb2WlT
-	 Ofpdwqq/3OJe5optG9XGS3PjAMCVPBjig6Ec41ZcYxm5+2c7bb4ebMgBPMEZfTTIbR
-	 Vkt8TdWkPTI+HP4ZuazTq4fL3PQA6RkNhFRG7+ABNCloC5BMiEMM2KplraA7U+76zZ
-	 I0nEPILmTGXdXhlco/8mec9V0vm2/ieTvmneeEGZl+3suMRvIuZYRvf5okEp0bW8EZ
-	 berFBI27yBlng==
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5DAC73852B0
-	for <usrp-users@lists.ettus.com>; Wed, 26 Mar 2025 13:56:39 -0400 (EDT)
+	t=1743018848; bh=bLmOdI/n/Hah80agNhAg1vRYnEVQZzAuxkyTtNeexQg=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=Dgu6HEDg/AuRiJQnuM9F7gkCo36zzkBBRabgwZHM+enoy92Gi88VPVr3jscYS1Rla
+	 Rx5V/9GZ/N5atPI4IhHteQe8jVAp9aGi5ENCAChfxahESoaJ/4DKRRklBxkliZu0nx
+	 EibvMVI9nFdyhChBDblUajkMnOFC7OEc1Y8jObFe3ZMyeYTTAaXfsF/V6lCLW8Kc32
+	 UNR9vJpZv8Ra+9I9qQkk4iEqbArKvIf0lWoNuems92IsaVVxJ54qYwZDUGm/TP1Eyq
+	 007F8jdrIHE1lmqTfiRYpvdFrJbrTCdji2KzAOdMMMcGDMN6YFzOUNYurrei2H8pFE
+	 ONSJUIDcHLwlA==
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 97B86383EA0
+	for <usrp-users@lists.ettus.com>; Wed, 26 Mar 2025 15:53:23 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="eUF0UBt/";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="VjJpEXXA";
 	dkim-atps=neutral
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e6194e9d2cso164001a12.2
-        for <usrp-users@lists.ettus.com>; Wed, 26 Mar 2025 10:56:39 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6f6c90b51c3so3080327b3.2
+        for <usrp-users@lists.ettus.com>; Wed, 26 Mar 2025 12:53:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1743011798; x=1743616598; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1743018803; x=1743623603; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DcxTthl7kFKL8Z68fIDcLHvvJ52qT5B/zgiYN9GPA7U=;
-        b=eUF0UBt/p0+KB9/yOwccQQ1NGkZc93ygsnKZ0XdURu5D5XdhvPsPcZTXJVx0mSKGHA
-         byWevskgYkgNZku+ugElvs2skN3NRnMPPgFSAHBwktW7/raNj/D/XhRDPutfv8Xbmfdg
-         8sTXoFMN7H/ujOB6jm3PzaHgYo9Dw5kIya3R63vJ3+spEuGExhNXjnyENjYRax4GOWys
-         vBA8Mnnfil7aNxhf8cTbicCbf/cOJ0yDTDOUG+XsIri3OuSZ5wQjaFdNqaksKTLyqHsm
-         ylUOEe6GqgUpx3NhtvyQg6mJQJbbewRskw16Z8sp8f8MWY0yENCYCEAbwOQq2L3V3UxK
-         Yacw==
+        bh=yJnT9R3BZxp5mwHIYLIaJkiWE3loKz1ErViC658GIiQ=;
+        b=VjJpEXXA4uyRykFPq/2NjzAX3pXkVv9la4kM80J5s2aOT/4LrspGEFwStwIzkJBJw1
+         wqzL8IzBbvGy/7rdkfYW+g+YuZnjxhKfkucr/jo9uJoJ3Dy2H8CDcWwTNh4+dh/J9DsS
+         E4sbL+sz5JJXe/TalZ01S7DzV3RR2+md4fq/sMY8W5CTGcuEqYAVy2qyldf2KY+KBL8g
+         CixQgGLOdj9FhEBJ8hNHZaKB9mIp6PWYgcCXGWbBLRjGr06uaDwLLtH7CnOEh2uJpr5M
+         nu1lqbiMdSd3w09HHfwVvo1rrQaS3x4VQITbhrHmqgh4QVsMegtbc5ugeI8G0fnBNTNd
+         7zAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743011798; x=1743616598;
+        d=1e100.net; s=20230601; t=1743018803; x=1743623603;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DcxTthl7kFKL8Z68fIDcLHvvJ52qT5B/zgiYN9GPA7U=;
-        b=CS9V52SQ6BxXwqSDemt7LhuBjUjgGcIVWHOJWxVwt2IpUi6qfUWK2btLxQYqL40Q2P
-         U5ZDUYHHjyI16djWEjymKOK36kPPqVXpBdn8td7NBFis0K4pNA6U370j/5OKTiW4c5CO
-         YTRoloD+cWeYpCLVu/tC6fqybj/z4HKvn4IDrCwRh9UMyQg5DGQjlPdvGVCw3GrrNINt
-         QcN+frFNNkEPwVldnQpmIZ3NaDj9LJTxH8PA8Qg85j3aQpBhpf0ttHSrC7Y81I+yWHpP
-         D/17yqSMCJT9zhJTUoj6qk/zlYpmOdYPYDN0CiInsyVZOvNVO8TjIyU0Z7PUImmp3cDG
-         CuaA==
-X-Gm-Message-State: AOJu0YxR5ZS5A8oUsLHT0XREVaGOFrDPPaRGalquFWOHbGNWQV+sKP5T
-	TO51X8xs6ooVc5D5vl2sjbsm6Ezro5hMxc6L3cJvQMP9RgvXmIc3vyJ9CetVXSV2B77PE7ZdRBV
-	l3lg9KYHNg5IbPxkRAjTnY6zMtBNhA9/FAoG9
-X-Gm-Gg: ASbGncvphS+syMAuR6YZJIh9ziMLi0ZB3JjgCM5wB40ngPLjF63AaVFkDhkUiBTi58E
-	5Kcc93jjJlBt67hReF35FNzjznkQvE+y9JwWNUefDHxofwCCK7erbQyX+Dv19b91wTf+SOdDZQF
-	nACOCLf8eSTDSzOzxdPcp1dzTL
-X-Google-Smtp-Source: AGHT+IF001ik58vywby601mCpDLcU2l1oFws/oaiaWh3esenyKFD9YaaeLSaLYysUsu4DsNEnLFOPUhIZbYbZ/5xEcM=
-X-Received: by 2002:a05:6402:1d4e:b0:5ec:958b:6f5a with SMTP id
- 4fb4d7f45d1cf-5ed8f5f726amr508959a12.28.1743011798175; Wed, 26 Mar 2025
- 10:56:38 -0700 (PDT)
+        bh=yJnT9R3BZxp5mwHIYLIaJkiWE3loKz1ErViC658GIiQ=;
+        b=tECnyp9zFbLeFqoLNAnLlzGR+TK+aXalGin1urTcIEZMOB/d9w9yyGFyZGD3DfhXqj
+         wXyzOGoKpz9QhsJ4424ZSfRj/SFeraS30qmzgXKpdMy1biuSNE24WgGz7ERVoGM5eBLK
+         KZv3AspdFzyKNroIh5tIro4ckoCIay8bazJCqjxTAYkSqYnTfSzj9meG3d3MsvQyOm6n
+         dfyEUFHy9Hdsgn//2VAnd5lCPfuyhgO+YdmHWUmGMrOwTUqr5bokbAFpCZecXXw5+Vc1
+         FAv3se2XiYv/MkR1WspV5y8v0wjJQJ+r6gXigtaJHxNBxuxySq0GUhM2FxJOPTmN8NYT
+         obLA==
+X-Gm-Message-State: AOJu0Yz6sQzXVjKOrgXCGUDHwsWYCKB2VNZNHzk8e4cZHQ+y4ekgtF4V
+	mZps65J1EsCLHdhnrFPfyMkcBZ2g3BNlHOwA+dzO+hAXJmvqRTvlD9lwGCOnggPGMTG4lMFhGoU
+	R3SuQI2PbB4I5NqUdtc3ik1D8KxmMa9ei/5WqyYDgdeOJ/RfsR4PSyQ==
+X-Gm-Gg: ASbGncsIFn0GPorUPh/TGFa6cawfsVYYidDgDZss4uOh6Gl2+nTdUk6J3gv3sennI4k
+	PMJjTJg7B31WHsl7rg7KmidX4OkX7pifeeACS+d0IB1JcOMDZyTzgcScxVIJRPkc2mLc5/vCLSf
+	+8QdwzzwRme3tlVRwOLBUY7up49xc=
+X-Google-Smtp-Source: AGHT+IGe0XQRO7C8JwThA8yqIDZsxqRvFM21hJyx3uZI6iP1O9rQ5QbwCELErc70Ijl0vcIBIcajk/lkIak09E5YppY=
+X-Received: by 2002:a05:690c:6089:b0:6f9:aeee:8f1b with SMTP id
+ 00721157ae682-702250d9c92mr15002387b3.31.1743018802745; Wed, 26 Mar 2025
+ 12:53:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <buPmixowFqBNjcHYfLX6r17HUMSoFxZbBs7YZTE1mIg@lists.ettus.com>
- <ebed1fe1-d487-4bf9-8bab-d7ec29ca910b@gmail.com> <CAB__hTR-jqCpJvkto9QFfCt1HSeJtU8RuH08tRR_4sjwDuyQWg@mail.gmail.com>
- <0f97d540-bbd9-4a40-b457-9f3d9adbe6bf@gmail.com>
-In-Reply-To: <0f97d540-bbd9-4a40-b457-9f3d9adbe6bf@gmail.com>
-Date: Wed, 26 Mar 2025 13:56:26 -0400
-X-Gm-Features: AQ5f1JrcH-xdTe0Y57CjIfdrHk6sknLVCbg2eNNRpcFF3YsXeQATvZE-abXfDs0
-Message-ID: <CAB__hTSqPprXavsx1D6XY4CYuwyj8utogLo4t2wNJ8AbMz=vCA@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: M4LYQ3JGWRCZU2STWIDMSMH6NC6J4OBW
-X-Message-ID-Hash: M4LYQ3JGWRCZU2STWIDMSMH6NC6J4OBW
-X-MailFrom: rkossler@nd.edu
+References: <CAB__hTTmZsHLPee4V5TGR5S77Z0ZwA5WhFrKJ6YYMAgFGaFBZQ@mail.gmail.com>
+In-Reply-To: <CAB__hTTmZsHLPee4V5TGR5S77Z0ZwA5WhFrKJ6YYMAgFGaFBZQ@mail.gmail.com>
+From: Michael Dickens <michael.dickens@ettus.com>
+Date: Wed, 26 Mar 2025 15:53:10 -0400
+X-Gm-Features: AQ5f1JqihDTVktzz6Eyv8tcciiYN-3sV-kArE951PN069BwkRj78d7sETYTzsgg
+Message-ID: <CAGNhwTNXe8xjs7hTTg=u3wVPjbjM0osV7xHCRzbDArQcoG_sxA@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: LY6BTYJSU4K3XB7YGAEBNHQ2MDQDUFSB
+X-Message-ID-Hash: LY6BTYJSU4K3XB7YGAEBNHQ2MDQDUFSB
+X-MailFrom: michael.dickens@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [X310] set_command_time introduces unexpected delay dependent on sampling rate.
+Subject: [USRP-users] Re: 100Gb NIC for X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M4LYQ3JGWRCZU2STWIDMSMH6NC6J4OBW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LY6BTYJSU4K3XB7YGAEBNHQ2MDQDUFSB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============0520246148794285019=="
+Content-Type: multipart/mixed; boundary="===============6355273531312820328=="
 
---===============0520246148794285019==
-Content-Type: multipart/alternative; boundary="0000000000001201230631428fdb"
+--===============6355273531312820328==
+Content-Type: multipart/alternative; boundary="0000000000009332530631443017"
 
---0000000000001201230631428fdb
+--0000000000009332530631443017
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 26, 2025 at 12:32=E2=80=AFPM Marcus D. Leech <patchvonbraun@gma=
-il.com>
-wrote:
+Hey Rob! Great questions. Here's way too much information taken from
+internal notes I have on the subject, to help you process all of this :)
+{{{
+E810 QCDA2 provides 100 Gb aggregate between both ports. Dual port to USRP
+is not recommended since UHD doesn't "know" this limitation.
 
-> On 26/03/2025 12:09, Rob Kossler wrote:
->
->
->
->
-> Hi Marcus,
-> I think that the gain is set from the "radio" block which operates at the
-> master clock rate rather than the downconverted rate.  It doesn't make
-> sense to me why the latency of the gain setting would be related to the
-> downconverted sample rate.
-> Rob
->
->
-> Let us ignore for a moment the gain-setting hardware on the radio.  Let's
-> pretend that some noticeable signal parameter,
->   as seen at the antenna plane, changes suddenly--like the signal level
-> comes up by 5dB.  How long before that effect is
->   actually seen in the sample stream?  That will depend on the (very
-> small) group delay in the analog hardware, and the delay
->   in the DDC filters, which DOES scale with sample-rate, because differen=
+E810 2QCAD2 provides 2 bifurcated 100 Gb links, so can do 200 Gb aggregate.
+I -think- one has to tell BIOS / OS about this bifurcation to get the NIC
+fully working. I don't have one to test out.
+
+There are now newer Intel E82* NICs. I don't know their capabilities.
+
+Any of the Intel E8* NICs can be configured in various ways, the most
+relevant for USRPs are:
+* 2x1x100 : 2 ports, each hosting 1 virtual link at 100 Gb
+* 100 : 1 port with a single virtual link at 100 Gb
+* 8x10 (formerly 2x4x10 : 2 ports, each hosting 4 virtual link at 10 Gb eac=
+h
+{{{
+$ sudo ./epct64e -get -nic 1
+Ethernet Port Configuration Tool
+EPCT version: v1.42.24.04
+Copyright 2019 - 2024 Intel Corporation.
+
+Available Port Options:
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+        Port                             Quad 0           Quad 1
+Option  Option (Gbps)                    L0  L1  L2  L3   L4  L5  L6  L7
+=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+        2x1x100                       -> 100   -   -   -  100   -   -   -
+        2x50                          ->  50   -  50   -    -   -   -   -
+        4x25                          ->  25  25  25  25    -   -   -   -
+        2x2x25                        ->  25  25   -   -   25  25   -   -
+Active  8x10                          ->  10  10  10  10   10  10  10  10
+        100                           -> 100   -   -   -    -   -   -   -
+}}}
+
+FWIW: We're had a number of customers with E810 CQDA2 issues recently. My
+current belief is that the NIC (NVM) and OS drivers do not play nicely
+together & hence updating both to the latest is needed to get everything
+working properly.
+
+Intel E8* NICs used the ICE driver, which is in active development & works
+pretty well overall. ICE drivers -do not- work seamlessly with DPDK unlike
+Mellanox ones. It's easy to create a script to do the driver binding & link
+stuff both down and up, but this can be very confusing for people not used
+to taking down a link and rebinding the driver & then the reverse to get it
+back working in the system again.
+
+The Mellanox drivers & hardware use a little less CPU time than the Intel
+ones, so a little better single-core performance =E2=80=94 which helps when=
+ using
+DPDK and doing max data throughput.
+
+Yes, 500 GS/s on 4 channels (2 GS/s aggregate) is 64 Gb/s and thus well
+within the capabilities of a single 100 Gb port on either NIC ... That's
+fine for an X410. For an X440 we double that to 4 GS/s aggregate, which
+clearly requires 2x 100 Gb links. For this use-case the Mellanox NICs are
+the way to go.
+}}}
+
+On Tue, Mar 25, 2025 at 3:53=E2=80=AFPM Rob Kossler via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+> I am in the process of purchasing a 100Gb NIC for use with the X410 and
+> have seen documentation and previous posts indicating that the ConnectX
+> NICs are preferred. But I did note in the DPDK knowledge base article tha=
 t
-> filters are switched-in depending on the commanded
->   sample rate, and those filters have non-zero length...
+> the Intel E810 could also work.  I prefer the E810 because it seems to be
+> less expensive and can be configured for 4x10Gb, but I don't want to crea=
+te
+> a headache for myself.  Let me know if you have had success or issues wit=
+h
+> the E810 using a 100Gb link (or two 100Gb links) to the X410.
 >
-> True. But if the comparison is between the gain setting time stamp and th=
+> I am also confused about the E810 which comes in a couple of 100Gb models=
+:
+> CQDA2 and 2CQDA2, where they both have two 100Gb QSFP28 ports, but the
+> former can only handle aggregate 100Gb whereas the latter can handle
+> aggregate 200Gb.  My confusion is "why does it matter for the X410?".  Wi=
+th
+> 4 channels at 500 MS/s, the aggregate bit rate is only 64Gb/s so why does
+> it matter if the E810 CQDA2 only supports aggregate 100Gb?  It seems to m=
 e
-Rx samples time stamp (inserted at the radio) it still seems that it would
-be sample rate independent (with the caveat that the time stamp resolution
-may have to change to the decimated sample rate with some type of
-quantization)
+> that either model supports the maximum rate of the X410.
+>
+> Thanks.
+> Rob
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---0000000000001201230631428fdb
+--0000000000009332530631443017
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
-mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 26,=
- 2025 at 12:32=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbra=
-un@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><u></u>
+<div dir=3D"ltr"><div>Hey Rob! Great questions. Here&#39;s way too much inf=
+ormation taken from internal notes I have on the subject, to help you proce=
+ss all of this :)</div><div>{{{</div><div><div class=3D"elementToProof" sty=
+le=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helv=
+etica,sans-serif;font-size:11pt;color:rgb(0,0,0)">E810 QCDA2 provides 100 G=
+b aggregate between both ports. Dual port to USRP is not recommended since =
+UHD doesn&#39;t &quot;know&quot; this limitation.</div><div class=3D"elemen=
+tToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService=
+,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)"><br></div><d=
+iv class=3D"elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,A=
+ptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,=
+0,0)">E810 2QCAD2 provides 2 bifurcated 100 Gb links, so can do 200 Gb aggr=
+egate. I -think- one has to tell BIOS / OS about this bifurcation to get th=
+e NIC fully working. I don&#39;t have one to test out.</div><div class=3D"e=
+lementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontSe=
+rvice,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)"><br></d=
+iv><div class=3D"elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedF=
+ont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:11pt;color:r=
+gb(0,0,0)">There are now newer Intel E82* NICs. I don&#39;t know their capa=
+bilities.</div><div class=3D"elementToProof" style=3D"font-family:Aptos,Apt=
+os_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:=
+11pt;color:rgb(0,0,0)"><br></div><div class=3D"elementToProof" style=3D"fon=
+t-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,san=
+s-serif;font-size:11pt;color:rgb(0,0,0)">Any of the Intel E8* NICs can be c=
+onfigured in various ways, the most relevant for USRPs are:</div><div class=
+=3D"elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSF=
+ontService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">* =
+2x1x100 : 2 ports, each hosting 1 virtual link at 100 Gb</div><div class=3D=
+"elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFont=
+Service,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">* 100=
+ : 1 port with a single virtual link at 100 Gb</div><div class=3D"elementTo=
+Proof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Ca=
+libri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">* 8x10 (formerl=
+y 2x4x10=C2=A0: 2 ports, each hosting 4 virtual link at 10 Gb each</div><di=
+v class=3D"elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Ap=
+tos_MSFontService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0=
+,0)">{{{</div><div class=3D"elementToProof" style=3D"font-family:Consolas,C=
+ourier,monospace;font-size:11pt;color:rgb(0,0,0)">$ sudo ./epct64e -get -ni=
+c 1</div><div class=3D"elementToProof" style=3D"font-family:Consolas,Courie=
+r,monospace;font-size:11pt;color:rgb(0,0,0)">Ethernet Port Configuration To=
+ol</div><div class=3D"elementToProof" style=3D"font-family:Consolas,Courier=
+,monospace;font-size:11pt;color:rgb(0,0,0)">EPCT version: v1.42.24.04</div>=
+<div class=3D"elementToProof" style=3D"font-family:Consolas,Courier,monospa=
+ce;font-size:11pt;color:rgb(0,0,0)">Copyright 2019 - 2024 Intel Corporation=
+.</div><div class=3D"elementToProof" style=3D"font-family:Consolas,Courier,=
+monospace;font-size:11pt;color:rgb(0,0,0)"><br></div><div class=3D"elementT=
+oProof" style=3D"font-family:Consolas,Courier,monospace;font-size:11pt;colo=
+r:rgb(0,0,0)">Available Port Options:</div><div class=3D"elementToProof" st=
+yle=3D"font-family:Consolas,Courier,monospace;font-size:11pt;color:rgb(0,0,=
+0)">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D</div><div class=3D"elementToProof" style=3D"font-family:Consolas,Courie=
+r,monospace;font-size:11pt;color:rgb(0,0,0)">=C2=A0 =C2=A0 =C2=A0 =C2=A0 Po=
+rt =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Quad 0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Quad =
+1 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</div><div class=3D"elementToProof" sty=
+le=3D"font-family:Consolas,Courier,monospace;font-size:11pt;color:rgb(0,0,0=
+)">Option =C2=A0Option (Gbps) =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0L0 =C2=A0L1 =C2=A0L2 =C2=A0L3 =C2=A0 L4 =C2=A0L5 =
+=C2=A0L6 =C2=A0L7 =C2=A0</div><div class=3D"elementToProof" style=3D"font-f=
+amily:Consolas,Courier,monospace;font-size:11pt;color:rgb(0,0,0)">=3D=3D=3D=
+=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D =C2=A0 =C2=A0=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div =
+class=3D"elementToProof" style=3D"font-family:Consolas,Courier,monospace;fo=
+nt-size:11pt;color:rgb(0,0,0)">=C2=A0 =C2=A0 =C2=A0 =C2=A0 2x1x100 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 -&gt;=
+ 100 =C2=A0 - =C2=A0 - =C2=A0 - =C2=A0100 =C2=A0 - =C2=A0 - =C2=A0 -</div><=
+div class=3D"elementToProof" style=3D"font-family:Consolas,Courier,monospac=
+e;font-size:11pt;color:rgb(0,0,0)">=C2=A0 =C2=A0 =C2=A0 =C2=A0 2x50 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0-&gt; =C2=A050 =C2=A0 - =C2=A050 =C2=A0 - =C2=A0 =C2=A0- =C2=A0 -=
+ =C2=A0 - =C2=A0 -</div><div class=3D"elementToProof" style=3D"font-family:=
+Consolas,Courier,monospace;font-size:11pt;color:rgb(0,0,0)">=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 4x25 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-&gt; =C2=A025 =C2=A025 =C2=A025 =C2=A025=
+ =C2=A0 =C2=A0- =C2=A0 - =C2=A0 - =C2=A0 -</div><div class=3D"elementToProo=
+f" style=3D"font-family:Consolas,Courier,monospace;font-size:11pt;color:rgb=
+(0,0,0)">=C2=A0 =C2=A0 =C2=A0 =C2=A0 2x2x25 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-&gt; =C2=A025 =C2=A025=
+ =C2=A0 - =C2=A0 - =C2=A0 25 =C2=A025 =C2=A0 - =C2=A0 -</div><div class=3D"=
+elementToProof" style=3D"font-family:Consolas,Courier,monospace;font-size:1=
+1pt;color:rgb(0,0,0)">Active =C2=A08x10 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-&gt; =C2=A010 =C2=
+=A010 =C2=A010 =C2=A010 =C2=A0 10 =C2=A010 =C2=A010 =C2=A010</div><div clas=
+s=3D"elementToProof" style=3D"font-family:Consolas,Courier,monospace;font-s=
+ize:11pt;color:rgb(0,0,0)">=C2=A0 =C2=A0 =C2=A0 =C2=A0 100 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 -&gt; 100 =C2=A0 - =C2=A0 - =C2=A0 - =C2=A0 =C2=A0- =C2=A0 - =C2=A0 - =
+=C2=A0 -</div><div class=3D"elementToProof" style=3D"font-family:Aptos,Apto=
+s_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:1=
+1pt;color:rgb(0,0,0)">}}}</div><div class=3D"elementToProof" style=3D"font-=
+family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-=
+serif;font-size:11pt;color:rgb(0,0,0)"><br></div><div class=3D"elementToPro=
+of" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)"><div style=3D"colo=
+r:rgb(34,34,34);font-family:Arial,Helvetica,sans-serif;font-size:small"><di=
+v class=3D"elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Ap=
+tos_MSFontService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0=
+,0)">FWIW: We&#39;re had a number of customers with E810 CQDA2 issues recen=
+tly. My current belief is that the NIC=C2=A0(NVM) and OS drivers do not pla=
+y nicely together &amp; hence updating both to the latest is needed to get =
+everything working properly.</div></div><br class=3D"gmail-Apple-interchang=
+e-newline"></div><div class=3D"elementToProof" style=3D"font-family:Aptos,A=
+ptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-siz=
+e:11pt;color:rgb(0,0,0)">Intel E8* NICs used the ICE driver, which is in ac=
+tive development &amp; works pretty well overall. ICE drivers -do not- work=
+ seamlessly with DPDK unlike Mellanox ones. It&#39;s easy to create a scrip=
+t to do the driver binding &amp; link stuff both down and up, but this can =
+be very confusing for people not used to taking down a link and rebinding t=
+he driver &amp; then the reverse to get it back working in the system again=
+.</div><div class=3D"elementToProof" style=3D"font-family:Aptos,Aptos_Embed=
+dedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:11pt;col=
+or:rgb(0,0,0)"><br></div><div class=3D"elementToProof" style=3D"font-family=
+:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;=
+font-size:11pt;color:rgb(0,0,0)">The Mellanox drivers &amp; hardware use a =
+little less CPU time than the Intel ones, so a little better single-core pe=
+rformance =E2=80=94 which helps when using DPDK and doing max data throughp=
+ut.</div><div class=3D"elementToProof" style=3D"font-family:Aptos,Aptos_Emb=
+eddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:11pt;c=
+olor:rgb(0,0,0)"><br></div><div class=3D"elementToProof" style=3D"font-fami=
+ly:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-seri=
+f;font-size:11pt;color:rgb(0,0,0)">Yes, 500 GS/s on 4 channels (2 GS/s aggr=
+egate) is 64 Gb/s and thus well within the capabilities=C2=A0of a single 10=
+0 Gb port on either NIC ... That&#39;s fine for an X410. For an X440 we dou=
+ble that to 4 GS/s aggregate, which clearly requires 2x 100 Gb links. For t=
+his use-case the Mellanox NICs are the way to go.</div><div class=3D"elemen=
+tToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService=
+,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)"><span style=
+=3D"color:rgb(34,34,34);font-family:Arial,Helvetica,sans-serif;font-size:sm=
+all">}}}</span></div></div></div><br><div class=3D"gmail_quote gmail_quote_=
+container"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 25, 2025 at 3:=
+53=E2=80=AFPM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users@l=
+ists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<div>I am in =
+the process of purchasing a 100Gb NIC for use with the X410 and have seen d=
+ocumentation and previous posts indicating=C2=A0that the ConnectX NICs are =
+preferred. But I did note in the DPDK knowledge base article that the Intel=
+ E810 could also work.=C2=A0 I prefer the E810 because it seems to be less =
+expensive and can be configured for 4x10Gb, but I don&#39;t want to create =
+a headache for myself.=C2=A0 Let me know if you have had success or issues =
+with the E810 using a 100Gb link (or two 100Gb links) to the X410.</div><di=
+v><br></div><div>I am also confused about the E810 which comes in a couple =
+of 100Gb models: CQDA2 and 2CQDA2, where they both have two 100Gb QSFP28 po=
+rts, but the former can only handle aggregate 100Gb whereas the latter can =
+handle aggregate 200Gb.=C2=A0 My confusion is &quot;why does it matter for =
+the X410?&quot;.=C2=A0 With 4 channels at 500 MS/s, the aggregate bit rate =
+is only 64Gb/s so why does it matter if the E810 CQDA2 only supports aggreg=
+ate 100Gb?=C2=A0 It seems to me that either model supports the maximum rate=
+ of the X410.</div><div><br></div><div>Thanks.</div><div>Rob</div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
- =20
-   =20
- =20
-  <div>
-    <div>On 26/03/2025 12:09, Rob Kossler wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div dir=3D"ltr"><br>
-        </div>
-        <br>
-        <div class=3D"gmail_quote">
-          <div><br>
-          </div>
-          <div>Hi Marcus,</div>
-          <div>I think that the gain is set from the &quot;radio&quot; bloc=
-k which
-            operates at the master clock rate rather than the
-            downconverted rate.=C2=A0 It doesn&#39;t make sense to me why t=
-he
-            latency of the gain setting would be related to the
-            downconverted sample rate.</div>
-          <div>Rob</div>
-          <div>=C2=A0</div>
-        </div>
-      </div>
-    </blockquote>
-    Let us ignore for a moment the gain-setting hardware on the radio.=C2=
-=A0
-    Let&#39;s pretend that some noticeable signal parameter,<br>
-    =C2=A0 as seen at the antenna plane, changes suddenly--like the signal
-    level comes up by 5dB.=C2=A0 How long before that effect is<br>
-    =C2=A0 actually seen in the sample stream?=C2=A0 That will depend on th=
-e (very
-    small) group delay in the analog hardware, and the delay<br>
-    =C2=A0 in the DDC filters, which DOES scale with sample-rate, because
-    different filters are switched-in depending on the commanded<br>
-    =C2=A0 sample rate, and those filters have non-zero length...<br>
-    <br></div></blockquote><div>True. But if the comparison is between the =
-gain setting time stamp and the Rx samples time stamp (inserted at the radi=
-o) it still seems that it would be sample rate independent (with the caveat=
- that the time stamp resolution may have to change to the decimated sample =
-rate with some type of quantization)</div><div><br></div></div></div>
+--0000000000009332530631443017--
 
---0000000000001201230631428fdb--
-
---===============0520246148794285019==
+--===============6355273531312820328==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -198,4 +365,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0520246148794285019==--
+--===============6355273531312820328==--
