@@ -2,371 +2,150 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D09A73EF2
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Mar 2025 20:46:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A48DA76B44
+	for <lists+usrp-users@lfdr.de>; Mon, 31 Mar 2025 17:53:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 89F7138554F
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Mar 2025 15:46:46 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9860C384E82
+	for <lists+usrp-users@lfdr.de>; Mon, 31 Mar 2025 11:53:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1743104806; bh=TZqeiji54b5JqbEpPcxc9hoYOcnz07KibWmBDBe2SA4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1743436389; bh=fNILJgkA0igcpQjmMS5wytfQ79jHLnyBsF3tvkG6oWU=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=wLAvwicI3qU8OJ4Y9I1JG2XhgGfmjebbdoxTlJ8NOvlG+lJLJbO2EZFk01K/T9bHV
-	 NwKsWQzim8pQ5UYcBnO89X0AIJCxVHFGdTk7dDmIC/eeoXoqS029Yc6mCXviX5JIvt
-	 vUZn7O5B/pfCm+2maALS+WpYpwCPHrFycZbIIVj5yrjkvnPYWKpCV/W76ptyuT3Yrc
-	 H4IP9wBkCiXdJxwFuyfmWZ78zYjw3j8HjNaffMZvkwynV2CgOUZs5IrRw+sNeI79t2
-	 guH17U8fCOjqEA1peIyHgzGDPtBzWqwPz1gZ0+k0pMZBYpC5+SypYJsykGZyXa81um
-	 K7iJW/QarPGpA==
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6822738007C
-	for <usrp-users@lists.ettus.com>; Thu, 27 Mar 2025 15:46:26 -0400 (EDT)
+	 From:Reply-To:From;
+	b=uKWuAHi1SGOAvn5Kz6oWpn4d8Pb07AOrprKOxF1JZ0hi8xqM/ZyYGVgt2UVG4Xiy5
+	 LAonWa2QBkDuVs3XYWVF1U0jUgCc6r0WGIZLqhzwCghdOtqobH5ZjKyTwp5HkiBxxV
+	 wZnbwVNsrURrSBAdI/Lalzgv5W942bSqMi9oEj+NoUMk6XozmuFEDPuwgtT3DFVZfy
+	 TiKNjHPFDGzXahMCmbhuWL4+cKSrfjb40lzCrDrZLrfSwAxmxr86AK/TbkmgncGO4k
+	 JbexUTCtn/7ONfKW4RRrv1kTowkWR0ry/9eC+y0YTGquAdadWX3gIe1WUFafo6bDwR
+	 pzLtjTjYotNqQ==
+Received: from sonic309-13.consmr.mail.bf2.yahoo.com (sonic309-13.consmr.mail.bf2.yahoo.com [74.6.129.123])
+	by mm2.emwd.com (Postfix) with ESMTPS id 06FC9380C58
+	for <usrp-users@lists.ettus.com>; Mon, 31 Mar 2025 11:52:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ho7jtLDO";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="V5kUaDpj";
 	dkim-atps=neutral
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6ecfc7fb2aaso11623906d6.0
-        for <usrp-users@lists.ettus.com>; Thu, 27 Mar 2025 12:46:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743104785; x=1743709585; darn=lists.ettus.com;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JYr7Rsit+la1hFb6IyPK0qLo+moyfcRJUQlYf2YUwz0=;
-        b=ho7jtLDO15+r0TExb7ZxK61OhpHLyt/0xbTEtHLElJHMxVZeTlIIV2UEkMAi2OT1Ov
-         tu6rDVhOOGuLI9oSHH6reeKxBKK2IqBvuH208YSVNHexBiDala0tW9jyndDtylbJQ9yt
-         i7JTLgWhgVS4nEyctd2e6O1JTWNWiAeaxfsjLk5FJZPNjTWZdLK2eDiqH8FFKAlpw5PS
-         uAjZ/NYI3cGpmACbJJXL5dSDvp4O3xTmMBmxSLCO4FhjSbQP5tXhcOcClyup3LCTz0cd
-         cqb36GXQa9at2AOBhqvJF34Uw/GjwfswvE1uUQ7NeMfX7n4BalO9GYrxb9RcKWKmX+RF
-         ayWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743104785; x=1743709585;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JYr7Rsit+la1hFb6IyPK0qLo+moyfcRJUQlYf2YUwz0=;
-        b=JIRuR0+Zw/rcx8JVkjM6HTM+o/EA5SK3fX6zjT1tYspLVaRx8O7steOPCtJ49dIgcF
-         gcf8TrALHzFgFbkh3B2ZXEyw4rymTAjtgqLUNu6+a62bXKNh8hsr0Dzl7+Flo9EmPxTB
-         LwvEmz0QP84rKrFYPQOdOcZ1tll5YB1KmGHVqqH8PJYMnkG4ibze6ozCXuKyvNG+p5HO
-         7y2BkdYur1bIYIA81VRrwMpPy1S7Ec/U/Rala5qm/QOv0nlV1cWgQC+z+CvlENyoeHJP
-         j+NSE8LTkVE5LpEkDmqb6zgWvr3YbbE4OXr1RjlexpMUelzqt5psJO4qC+m3SVkAkot0
-         L1vg==
-X-Gm-Message-State: AOJu0YyEFXwbyBK+T8HnQCajfbdbtJtHBkqOv1KB9Y7gE6G6v3hb6k8L
-	3mhqMBuf9RHWYK6kgPrb4jiypg4Z/ssai30dwLO337CFnwURfeHTJAKYpA==
-X-Gm-Gg: ASbGncupbLBDAWXSWsDl84I22yUfUy+q7Fmmhhnp/vjlpUBFqHqyCZ4M7Cy3iU5M+Ku
-	rzvkt1A6UqYzPEPmkboFEdsrmR/ol8kyuyG6fW6QzE6PPzlTiMcRbi2b/lpKvNrBwxfZE7G72py
-	NYMG2CJHH4GR0JqIIAB5V1yvraf1Wns+k7mP/M8jvTKDG9dVZE3LdodeXYd5lWcRe5ieeV8jgSR
-	PXJjByKrtbabrSykIlrQj9BWqHWLRl7mfdyKMSqlGIKQo/QiDu/IR1Y0fLCKXE4DDoWuU1j97+K
-	NRO1nU3MAaS6hsKx5YGAJ6l8aPWIPKlBMBE8S3gU/B1fwTjw9n5GjmQ=
-X-Google-Smtp-Source: AGHT+IG8RMZkAITTZOtqC0DHdoXHkkpqt9ISIu+xNP7tEEwmaGqtbb38XPyfBYgBCsTxHU666Ud+4Q==
-X-Received: by 2002:ad4:48c6:0:b0:6eb:28e4:8516 with SMTP id 6a1803df08f44-6ed23907925mr53993866d6.33.1743104785345;
-        Thu, 27 Mar 2025 12:46:25 -0700 (PDT)
-Received: from [192.168.2.170] ([76.67.104.188])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6eec9771eebsm2461796d6.72.2025.03.27.12.46.24
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Mar 2025 12:46:24 -0700 (PDT)
-Message-ID: <a5f4e895-2921-4c9d-9979-ede6bf91ceb0@gmail.com>
-Date: Thu, 27 Mar 2025 15:46:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1743436332; bh=KdReyhQiVQ0HVbgFGfWEZoOLJc4PiBey/s4HwMiwAi8=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=V5kUaDpjIIDE9OjnDv5F+v1FaCJPpLC4cSKAkiwxD3oU+sm+pk3obPltphgu8wblKivBYk/N00oSYEFaCfNV9Z6f2iF70guw12v2BFfQQ7HEHiyUPv36w/GQKbZFJqPaYq/ZiRN3BMng+yx96M0AgitwATJzcogk2onV2TNa1WhF4jzaggClYgrAym2c7XqUyPVmKGtDmlITvXOcv2zuZM2uim/jdv+IUMoGnS1t6vRKQv7DJLSucQrO99wBuZW81QPyU/lACIwbSV/PodgaDDyQpGtPUiUBngde9B24Wh6WvXNoJBCv7i/cMT9x73xqKqFtlAgJhNNvkycKqhsxgA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1743436332; bh=zIMqcXmwOc92zZjV9/Zj9kCKZfDSFkddMWe2iQ2UUcJ=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=lQcQNMUm7gb+E16X9ohKDGBTgw9eW0tvT1OFDFxy0ottlZIX+Kr0PFNvoA/Js2b7Y08wVvXjOQ1W4BMTkKnb/AepKgeWXwbE+vBKVhId60YDPyuhyr7Ez5vv0bzCcORAsz689Qoh84nEskm++rCgt7BYq4NCZXm/v5Yk9erXWjGWb5bAX5yR/7qCEVfMNdINLflszd5e+vjNsl1cKpLil+lObsb3fQvX1OdJjZWW2+sEDMMgO/khdJ7+2Dy7mDWTIEwn2pUIoQh4lufusaTDmOt1h/b6RdjguFNW45RRRiyY2zrxe0yF2nGEfKXM9pn0z9Cv3lxOvwwXfHA7fDW0CQ==
+X-YMail-OSG: 3C7QmhkVM1mC5iMimGVXHlOC5lhYTrU31IbCCbQ7.Gssap3UFcagWWEMIF1WidO
+ B696gHAy1CnD_SRlVZs.kAfq.XpxDvH_LScC87bTibDH1sQCceOgKZm5vtZ8AQQn5shuMoLQ4DKy
+ mvLiTIoLiBzhFXULGajaHrfaDyWcuI74o0AnkvoQEZU4kVfwxeWnXmLZslW4DjacLFClrGhvNffe
+ 2xfZqbnRxhZGPU8I7_JLM7tRY2Kkb0VtbPu5H66yRD3pssfSa7wXr8KdvzlqLirL1Z3VgNP16S1e
+ hlPLKWYultTviFQ8oAUKb6nz3UENxMJ5y0nD.FZIf1J7zxFDqlIEQqhqYMJQXCOb9sc.WFFacVvw
+ 2_4g32F81V7b5_p_SVBY7NictCK5ESVJlOV3i6cHRxq53SKLnkUitD_cHLGTZp63jut.WSyrfZoH
+ q33MmxHVV3pbZVdvTH70tjRybQPFXX7trveCDSEpwcscSBJi25QYl8ErFv68z9nMLmL0kRD3QLwC
+ bVMkGgDwCrurEp4dxYCYoVtDOS3_eSC2RTx_qul.YIbOPLmniJ4GkdISSh.Z16g5qG_b6Llh25JG
+ D1ZkrV97LN1WNuPawQdJWUPMZemFgmG9tBVqCCTJ_S94T2b6z9SbP1.tBJFYMVyxDEs089m_zY4M
+ xx9SGU9hyQOWuyX3OoCHTpMNoc.0F0TQhxo7rsiTExuelu7f.f_2rJ3WuHzZVbEG6SZagqJ6i24Y
+ fze0NYbFQJmkGgBNz.YzhH5u1ojQy0GqXJdm.1vMMaozHS0ayIEuMj3efnSr5m5gIRTQmh3YH.Dx
+ YvWR9t9hMo.k0RsIMd_Cg6a.aJg.x9dryjFhTiRJlVihDgKwpbmpQzdSbDur_hiU_CT9ivrSUHWH
+ mQFzXbgDEOd6DOjUCNjMW67Jg0LePI3HItTrFDybMrVM77eAfyKA54vKXKbCd.IiMbQ.weJRdJYK
+ JAcxKGclY7_NIwsN0H6qzCu_htrew6QsywiPfKOhLkZnJBghk7SPk_IBaMFMJEkDqizhJD87tRqM
+ 0_uZjojDfgk88R3Sho890220unqkC2I7o760gb5CSNGnWtJxKB0Nr.1CYxBIivNv0ThSt3GVdOAH
+ YUr7_DV3PBbu20yICgReod8ivHH8NCEqb4V.jdO8xe5R6C4eAP9tkz.fDcSmo_j8pz1TR07Ojri3
+ T6shQ2qqvY2TXewDG5ifnpvvfmzT3y59OwpSxU_g6JOJscODCWCWnOFoCnVaVhi0HkC6fwilrceq
+ _AtMQ0inW7.lgO1TOzNDKOiQRmr7WVihhBzBnl0wnkyDatWLOldMwjt5wzbZcjD9.0J8pGH8d.FE
+ RSTcnX2iVHVpFFLDdQkrkEjVEyg0Sdi1jr59eBoLcbMygJPnvnPeKLaETTuHlAhy3kBqN8ZcJ4qg
+ Z8tHSNr0sjv6nkuGib2DeXCv1reyLfMBGeeBoQ0dLt5_ogmybu9Tpnf2EBQM7fRHYn_otQ6HHG1O
+ Gw3Q2fh1YP9rX3RSLsxqrpVy8zk72ag4sXtmur_w1.riLtPdxG6F8xT_14uryvLlsq8Ne6ahmLzR
+ YEDI3suGCZFElSvEG_9qVPdXhrPwFXSndvL.iafPwCxawTg_O0NxKoidM_SQQAWsnTQNZcQRqFQu
+ Yag.q0vZa.rCEFudjwKU59UPnLfUuEUVifVv8Ee5zH1F_07yGIOUPnipTvHWMKyU5ntuqRbrTgdZ
+ smiu9EZmAeEHVQaYt8BdKYiQfVPgzxdCHJdPw4jMewLDz4I0BRM8BPNRvDAJ_Qg.TiDRb5nnU7RY
+ nkD3k3ysHlhCNspCd0Q_QqdQWnYBkn60Q6C24pj6fMvzOTTaDS5_cJuEXJjG87bdsTE7PuXwCbSb
+ NHnJ_Sr0VTu._jPqFlJbKQkurLJ1lMgZ1DJGG9bC90Xk2NjmlKXlrLkyFWYvBfsVVRDutMRgLcn.
+ BGCcImQlGxfuMLRGivvrajSgbqnO_AIfvbSLhfGjBSJsylsXbXFyzN0jmgLnQjDXpg4KxRiO8rbM
+ o1GAk0DXPgWAMYrhM0PtnqEuTIYVvR.yQQUOz2AlDYu78pYVk2oZCBQXldU_PIRSrbdrwiLRYW.e
+ aYVAb5BPl.BBb.dmE81YjRMEDtVRjBBb5nJGtXgLPaX3AIkn5Biu6fUFna_aiOX9YNmDQUGC3LY4
+ 4yNNMUj8vA62aXkny8Mn6.sakgFFHlSNxoR_EQqVbr7vUsjvuwwEwMcpZm1Ckttjm2wPP7IubeNQ
+ Yhn_SV5a1zDw.ZlOhjC58AdOS82sesGZMNx0McWC29w--
+X-Sonic-MF: <hwzhou@yahoo.com>
+X-Sonic-ID: 6db93182-2eb2-46ff-86eb-38d3f4745d5e
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.bf2.yahoo.com with HTTP; Mon, 31 Mar 2025 15:52:12 +0000
+Date: Mon, 31 Mar 2025 15:51:59 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1606018006.2100559.1743436319414@mail.yahoo.com>
+In-Reply-To: <a5f4e895-2921-4c9d-9979-ede6bf91ceb0@gmail.com>
+References: <CALM_BfYZML=gn1qcQEDVCc5W+DdeojAVxiFmKdmDESFuA1Ep6Q@mail.gmail.com> <b577024e-902c-4eed-8a32-409d7ba8335a@gmail.com> <CAOEzSFTb_RoOYxYuDzR4HHYQjL_rZz2oXKB9F3qHQ9op3xis+g@mail.gmail.com> <PH1P110MB1284346766755262C416A81D98A1A@PH1P110MB1284.NAMP110.PROD.OUTLOOK.COM> <a5f4e895-2921-4c9d-9979-ede6bf91ceb0@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
-References: <CALM_BfYZML=gn1qcQEDVCc5W+DdeojAVxiFmKdmDESFuA1Ep6Q@mail.gmail.com>
- <b577024e-902c-4eed-8a32-409d7ba8335a@gmail.com>
- <CAOEzSFTb_RoOYxYuDzR4HHYQjL_rZz2oXKB9F3qHQ9op3xis+g@mail.gmail.com>
- <PH1P110MB1284346766755262C416A81D98A1A@PH1P110MB1284.NAMP110.PROD.OUTLOOK.COM>
-Content-Language: en-US
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <PH1P110MB1284346766755262C416A81D98A1A@PH1P110MB1284.NAMP110.PROD.OUTLOOK.COM>
-Message-ID-Hash: QF532HZTJGVA3DEFZ4HVQLZ5O2MDOGTQ
-X-Message-ID-Hash: QF532HZTJGVA3DEFZ4HVQLZ5O2MDOGTQ
-X-MailFrom: patchvonbraun@gmail.com
+X-Mailer: WebService/1.1.23533 YMailNorrin
+Message-ID-Hash: 6PBYSNPXOXHWRNG44QQ2RKJTR25I5XUS
+X-Message-ID-Hash: 6PBYSNPXOXHWRNG44QQ2RKJTR25I5XUS
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [EXT] Re: X440 Phase Coherent but not Phase Aligned
+Subject: [USRP-users] Max Input RF Power in X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QF532HZTJGVA3DEFZ4HVQLZ5O2MDOGTQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6PBYSNPXOXHWRNG44QQ2RKJTR25I5XUS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8641344374779804136=="
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============5831994206987047098=="
 
-This is a multi-part message in MIME format.
---===============8641344374779804136==
+--===============5831994206987047098==
 Content-Type: multipart/alternative;
- boundary="------------De8a4LtVHyhMhojhJKdKVnJ9"
-Content-Language: en-US
+	boundary="----=_Part_2100558_1478009756.1743436319413"
 
-This is a multi-part message in MIME format.
---------------De8a4LtVHyhMhojhJKdKVnJ9
-Content-Type: text/plain; charset=UTF-8; format=flowed
+------=_Part_2100558_1478009756.1743436319413
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 27/03/2025 15:31, Mann, John - 0662 - MITLL wrote:
->
-> Does anyone know if there is a way to get predictable phase offsets=20
-> from an X410?=C2=A0 I am finding that from run-to-run, the 4 channels i=
-n an=20
-> X410 have completely random phase offsets from each other.=C2=A0 I didn=
-=E2=80=99t=20
-> necessarily expect the phase offsets to be zero, but was hoping they=20
-> would at least be consistent.
->
-> John
->
-At the very least, use timed-commands to tune it.=C2=A0=C2=A0=C2=A0=C2=A0=
- The ZBX board that=20
-does the analog up/down conversion uses LMX2572
- =C2=A0 synthesizers, and I don't know how easy it is to phase-align thos=
-e=20
-synthesizers in practice.
+ Hi,
+What is the max input signal power to RF ports in X310?=C2=A0 There is a sp=
+ec in the below link:https://www.ettus.com/wp-content/uploads/2024/01/X300_=
+X310_Spec_Sheet_2024-01-23.pdfThere are max output powers, but not input po=
+wer.
+I am using UBX-160 daughterboard.
+In=C2=A0https://kb.ettus.com/X300/X310_Getting_Started_Guides, it says that=
+"Never apply more than -15 dBm of power into any RF input."
+ChatGpt says that "UBX 40: +10 dBm (10 mW)"
+What is the max input signal power?
+Thanks for any comments,
+Zhou
 
 
-> *From:* Chris Rogers <c1337rogers@gmail.com>
-> *Sent:* Thursday, March 27, 2025 1:51 PM
-> *To:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [EXT] [USRP-users] Re: X440 Phase Coherent but not Phase=20
-> Aligned
->
-> Hi Heath and Marcus, I was actually "R&D's plate" for this one. We=20
-> worked through it and found the issue. The root cause is the startup=20
-> sequence in almost every example UHD script is a bit out of order and=20
-> had to be reorganized
->
-> ZjQcmQRYFpfptBannerStart
->
-> *This Message Is From an External Sender *
->
-> This message came from outside the Laboratory.
->
-> ZjQcmQRYFpfptBannerEnd
->
-> Hi Heath and Marcus,
->
-> I was actually "R&D's plate" for this one. We worked through it and=20
-> found the issue. The root cause is the startup sequence in almost=20
-> every example UHD script is a bit out of order and had to be=20
-> reorganized in terms of clock setup and synchronized channel tuning.=20
-> This problem is fixed in UHD 4.7+ if you look at the=20
-> "tx_waveforms.cpp" example code... For your application, just make=20
-> sure to follow the same startup sequence.
->
-> Hope this helps,
->
-> Chris
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
 
---------------De8a4LtVHyhMhojhJKdKVnJ9
+------=_Part_2100558_1478009756.1743436319413
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 27/03/2025 15:31, Mann, John - 0662
-      - MITLL wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:PH1P110MB1284346766755262C416A81D98A1A@PH1P110MB1284.NAMP110.=
-PROD.OUTLOOK.COM">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator"
-        content=3D"Microsoft Word 15 (filtered medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Does anyone know if there is a way to get
-          predictable phase offsets from an X410?=C2=A0 I am finding that
-          from run-to-run, the 4 channels in an X410 have completely
-          random phase offsets from each other.=C2=A0 I didn=E2=80=99t ne=
-cessarily
-          expect the phase offsets to be zero, but was hoping they would
-          at least be consistent.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">John</p>
-      </div>
-    </blockquote>
-    At the very least, use timed-commands to tune it.=C2=A0=C2=A0=C2=A0=C2=
-=A0 The ZBX board
-    that does the analog up/down conversion uses LMX2572<br>
-    =C2=A0 synthesizers, and I don't know how easy it is to phase-align t=
-hose
-    synthesizers in practice.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:PH1P110MB1284346766755262C416A81D98A1A@PH1P110MB1284.NAMP110.=
-PROD.OUTLOOK.COM">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div
-style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0in=
- 0in">
-          <p class=3D"MsoNormal"><b>From:</b> Chris Rogers
-            <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:c1337rogers=
-@gmail.com">&lt;c1337rogers@gmail.com&gt;</a> <br>
-            <b>Sent:</b> Thursday, March 27, 2025 1:51 PM<br>
-            <b>To:</b> Marcus D. Leech <a class=3D"moz-txt-link-rfc2396E"=
- href=3D"mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;<=
-/a><br>
-            <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"mail=
-to:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-            <b>Subject:</b> [EXT] [USRP-users] Re: X440 Phase Coherent
-            but not Phase Aligned<o:p></o:p></p>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><spa=
-n
-              style=3D"font-size:1.0pt;color:white">Hi Heath and Marcus, =
-I
-              was actually "R&amp;D's plate" for this one. We worked
-              through it and found the issue. The root cause is the
-              startup sequence in almost every example UHD script is a
-              bit out of order and had to be reorganized<o:p></o:p></span=
-></p>
-        </div>
-        <div>
-          <p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><spa=
-n
-              style=3D"font-size:1.0pt;color:white">ZjQcmQRYFpfptBannerSt=
-art<o:p></o:p></span></p>
-        </div>
-        <table class=3D"MsoNormalTable"
-          style=3D"width:100.0%;border-radius:4px" width=3D"100%"
-          cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
-          <tbody>
-            <tr>
-              <td style=3D"padding:12.0pt 0in 12.0pt 0in">
-                <table class=3D"MsoNormalTable"
-style=3D"width:100.0%;background:#D0D8DC;border:none;border-top:solid #90=
-A4AE 3.0pt"
-                  width=3D"100%" cellspacing=3D"0" cellpadding=3D"0"
-                  border=3D"1">
-                  <tbody>
-                    <tr>
-                      <td
-style=3D"border:none;padding:0in 7.5pt 3.75pt 4.5pt" valign=3D"top">
-                        <table class=3D"MsoNormalTable" cellspacing=3D"0"
-                          cellpadding=3D"0" border=3D"0" align=3D"left">
-                          <tbody>
-                            <tr>
-                              <td
-                                style=3D"padding:3.0pt 6.0pt 3.0pt 6.0pt"=
->
-                                <p class=3D"MsoNormal"><b><span
-style=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:=
-black">This
-                                      Message Is From an External Sender
-                                      <o:p></o:p></span></b></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td
-                                style=3D"padding:3.0pt 6.0pt 3.0pt 6.0pt"=
->
-                                <p class=3D"MsoNormal"><span
-style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:b=
-lack">This
-                                    message came from outside the
-                                    Laboratory. <o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div>
-          <p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><spa=
-n
-              style=3D"font-size:1.0pt;color:white">ZjQcmQRYFpfptBannerEn=
-d<o:p></o:p></span></p>
-        </div>
-        <div>
-          <div>
-            <p class=3D"MsoNormal">Hi Heath and Marcus,<o:p></o:p></p>
-          </div>
-          <div>
-            <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-          </div>
-          <div>
-            <p class=3D"MsoNormal">I was actually "R&amp;D's plate" for
-              this one. We worked through it and found the issue. The
-              root cause is the startup sequence in almost every example
-              UHD script is a bit out of order and had to be reorganized
-              in terms of clock setup and synchronized channel tuning.
-              This problem is fixed in UHD 4.7+ if you look at the
-              "tx_waveforms.cpp" example code... For your application,
-              just make sure to follow the same startup sequence.<o:p></o=
-:p></p>
-          </div>
-          <div>
-            <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-          </div>
-          <div>
-            <p class=3D"MsoNormal">Hope this helps,<o:p></o:p></p>
-          </div>
-          <div>
-            <p class=3D"MsoNormal">Chris<o:p></o:p></p>
-          </div>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
+<html><head></head><body><div class=3D"ydpcf4bf1c9yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi,</div><div dir=3D"ltr" da=
+ta-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">What i=
+s the max input signal power to RF ports in X310?&nbsp; There is a spec in =
+the below link:</div><div dir=3D"ltr" data-setdir=3D"false"><a href=3D"http=
+s://www.ettus.com/wp-content/uploads/2024/01/X300_X310_Spec_Sheet_2024-01-2=
+3.pdf" rel=3D"nofollow" target=3D"_blank">https://www.ettus.com/wp-content/=
+uploads/2024/01/X300_X310_Spec_Sheet_2024-01-23.pdf</a></div><div dir=3D"lt=
+r" data-setdir=3D"false"><span><span style=3D"color: rgb(0, 0, 0); font-fam=
+ily: Helvetica Neue, Helvetica, Arial, sans-serif;">There are max output po=
+wers, but not input power.</span></span><br></div><div dir=3D"ltr" data-set=
+dir=3D"false">I am using UBX-160 daughterboard.</div><div dir=3D"ltr" data-=
+setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">In&nbsp;<=
+a href=3D"https://kb.ettus.com/X300/X310_Getting_Started_Guides" rel=3D"nof=
+ollow" target=3D"_blank" class=3D"">https://kb.ettus.com/X300/X310_Getting_=
+Started_Guides</a>, it says that</div><div dir=3D"ltr" data-setdir=3D"false=
+">"<span><span style=3D"color: rgb(0, 0, 0); font-family: Lucida Sans Unico=
+de, Lucida Grande, sans-serif; font-size: 14px;">Never apply more than -15 =
+dBm of power into any RF input.</span></span>"</div><div><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">ChatGpt says that "<strong data-start=3D"253=
+" data-end=3D"263">UBX 40</strong>: <strong data-start=3D"265" data-end=3D"=
+276">+10 dBm</strong> (10 mW)"</div><div dir=3D"ltr" data-setdir=3D"false">=
+<br></div><div dir=3D"ltr" data-setdir=3D"false">What is the max input sign=
+al power?</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D=
+"ltr" data-setdir=3D"false">Thanks for any comments,</div><div dir=3D"ltr" =
+data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Zhou=
+</div><div><br></div><div><br></div><div dir=3D"ltr" data-setdir=3D"false">=
+<br></div></div></body></html>
+------=_Part_2100558_1478009756.1743436319413--
 
---------------De8a4LtVHyhMhojhJKdKVnJ9--
-
---===============8641344374779804136==
+--===============5831994206987047098==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -376,4 +155,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8641344374779804136==--
+--===============5831994206987047098==--
