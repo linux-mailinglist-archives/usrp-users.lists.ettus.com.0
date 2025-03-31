@@ -2,119 +2,121 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1323BA76B6B
-	for <lists+usrp-users@lfdr.de>; Mon, 31 Mar 2025 17:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9544FA76B9E
+	for <lists+usrp-users@lfdr.de>; Mon, 31 Mar 2025 18:10:11 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C4350384E82
-	for <lists+usrp-users@lfdr.de>; Mon, 31 Mar 2025 11:58:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C5B58385528
+	for <lists+usrp-users@lfdr.de>; Mon, 31 Mar 2025 12:10:10 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1743436739; bh=aBl6gfO2Buey+oTw+8hJ7pBjD5v5Dbwyzqtn7DlklK4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=b7l+iM0LLilxKtbpMoZLUFtpXJbtkofMMQQtN257+A0oB6tXaf2EpvePBTlrN/4i6
-	 yyPpCfPgfmxubnsIsC9YXIJsxGFQ7BX7FuMIWpXQRhZvwvaNwFvZEo2/Y4d0Gi9ZYM
-	 ZAKZA60vZ6sOga3z/U9ON7TaBwjStMtC9l5NjfEZ+xv42fX+eQHYHqgVQqgSc4Y6xm
-	 dMNS1K0BPqknvH5Hmiis47jrXyG4semgqBK+vaTK8ESh0qocV0phXCSlpEiKj3ZztP
-	 otXVQj0zXSkfjjAwMchtZZfYoBmhGXZgZw7nDreunLtXXaaN1IYQNEafHkp3BfBKNu
-	 2vaCmkwepjU/w==
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1E82F38116D
-	for <usrp-users@lists.ettus.com>; Mon, 31 Mar 2025 11:58:07 -0400 (EDT)
+	t=1743437410; bh=EdkSvmBDAKdkMM42Eqw0Oa0u9lnyshEQ1W8/NqidFWg=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=uhZGzdql57MSVjo2La2KXFAgyZPFS04lfnlTIcnpjHi2pEGDDnEXeij5qObaFm/YU
+	 xDAEimV2S4Xh/Sn2iDZ+k+sIB/rWZpyGnlpbq34TLQxf9UfonrH+8BpNIjQ7QxcK6L
+	 CR4DVZIvVebvSSbKarc4ql2niNw3eh0vvlxHCabCS+H4Y9irtvkywgRvjw+7dXtue0
+	 A/vb5SOg2FTfpDO54K+/GITDSZFZ5OEypxioZklghArwywovzic9uAGudZMBaspNUi
+	 h6IeUBiy9B+9hsVyH5a+hBMrR61A04lMu/olMr1CdaeehW3l42QeySvJi/INeATH0B
+	 iti4/wcfP8W3w==
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8918B384E82
+	for <usrp-users@lists.ettus.com>; Mon, 31 Mar 2025 12:09:55 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hTJYdT0I";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="V+TEaOlY";
 	dkim-atps=neutral
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-476f4e9cf92so34470811cf.3
-        for <usrp-users@lists.ettus.com>; Mon, 31 Mar 2025 08:58:07 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ac2dfdf3c38so831593766b.3
+        for <usrp-users@lists.ettus.com>; Mon, 31 Mar 2025 09:09:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743436687; x=1744041487; darn=lists.ettus.com;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iOgLzHXwqd9iujWPvWaDVMacAr0+bjqriJwKws69FLU=;
-        b=hTJYdT0IjY1DIi1zp30M0Kci46mbqzI344kH4Gv7TozEFC9ChfSiu7v10kokxTK61e
-         Io8D6lI4btUtazfPOwvkDX5316ocHDIr1/kJ+5k0VRlYO2WI4wPjKCOArYF2altKoD95
-         hUjK5stQKA7KUt/t3s2jbvIdjXs4xM1rSDInBLfOakaY1g72GpQRC2Ysfc9rKTI/cux6
-         65oHRnS1UPS3V2sNiNEZNUmMSdIyG2MZtX5riFbKQYgLUXGil6nhxHuNaCeVjFw48i9h
-         SQBKyby0spbFo+NKc72d2SQJhc7isFYLegfmriqwaVZFmKtOv4Waq6HMjTnnCvQswhnl
-         /3kA==
+        d=gmail.com; s=20230601; t=1743437394; x=1744042194; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8ggblx0g9BMcikO+xWvoTJQnIVdGkj3fFmFEEWly+Xo=;
+        b=V+TEaOlYlZazFqhmTrs2rUoaW18zddeJmwdmJvuLho6e2p4IEVC/xsN927+MiDkrCg
+         RZVvz2vN69vejACTTkMfW2+LFfOueQQheBwpUmSYCZnTA0IF6z7IDhOBpiNI3A7Ix/jC
+         dKob3C7d7iO5Jko31hkII0Jj2hE4pYRiJHp/AzgJSm2f3uFaq5jLbaVBuTWIuHRzJ4yW
+         nbBbvXMfRj6SYnZpiErPlZl3OAbWQcAY1vENzilb9Bi1db3BPxBakkfcx8d3XpmgAa7h
+         Ey9saLLVfmvqMk+ispm2EqAjezi8gQOfiP3f/IBlnlr0brbjrsUExIM1ItOn6Ch9b++O
+         K4Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743436687; x=1744041487;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=iOgLzHXwqd9iujWPvWaDVMacAr0+bjqriJwKws69FLU=;
-        b=VAwNO2DJWGvf4ahgmv6T7EGuvaYml2LMrXE40BmOhLtlgBk16HPh5/ElU3urJkUoH8
-         XvYGK3gqp/LflUr55LgS0wCjnnR9t+daKYnSK/4+ds0cY+rh9hzboTijVcjxkt4ZR1Pn
-         Ous2FQqqohOQT3GPUfAQrnPl/mB/a3EZHOGAdz3cG9Rd+yPlj4WAGATG/h/sFZ3JruIf
-         NIi8VBGRxABpoJGWrTRzvFi54uicESh15QHypBXUhUMn1/4UdNJqIb+CmGIhitoLjdhS
-         AFueYv02h7ye7QVr6a6eQIDh5NLq9WDDymUR8ETJg6GAJjiEQQFqvB6N6XyEPhTNCzke
-         QW7A==
-X-Gm-Message-State: AOJu0YxkJfbCgkAcuK4kPvBYopoeLjeSJ/QavXz46l9zw8ZD1K8PpbuP
-	oU4dNV8tCJW42En3sbdxEV6HYZiqzgpNrBALQJ7/aaz6Id8w0+zMpuAD0Q==
-X-Gm-Gg: ASbGncsJd2UZ7gQOBh/hQ/N3FFYYpH5m57PgANhNhWlqo0icT3EvZX3PqrTNP+9It1h
-	RQjEgO2MhHjqia3dtsXcF5CaPII+27tO6+K9lSBapuXxysH+8sRKvU/e9H/NDppSKYCvyzn3Fov
-	m8VP21/dm4JPJ42ZAxBHbA4a6/Z96fbMDSZedJDnw9ek9bX7UehfekoPCrUXezz4/195KIkfuJI
-	DdqhTUSNPH8GQtwt9OS0XeYYTxsmkANCGz7PTYzkOuxnbXfjY9pl1ClGRxNyD55eRnmmCyPaPJq
-	6KWq1+ptbGnm85ArqImk4sVmtaQFlAN6ag2lrXaXhiSq0jaSXan7QwQ=
-X-Google-Smtp-Source: AGHT+IEHzu/wbCvAMGHd92DYFMlX1QEjueY/ahG54ZZAHDVRv8Om9o0ZBUsOdbDYhwXhr43a6JbXqA==
-X-Received: by 2002:a05:622a:120b:b0:477:1134:3ee with SMTP id d75a77b69052e-477ed799149mr133378231cf.4.1743436686687;
-        Mon, 31 Mar 2025 08:58:06 -0700 (PDT)
-Received: from [192.168.2.170] ([76.67.104.188])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-47782a49f2csm51545901cf.32.2025.03.31.08.58.06
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Mar 2025 08:58:06 -0700 (PDT)
-Message-ID: <df01792d-cf76-4468-ac42-87a79806bd66@gmail.com>
-Date: Mon, 31 Mar 2025 11:57:55 -0400
+        d=1e100.net; s=20230601; t=1743437394; x=1744042194;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8ggblx0g9BMcikO+xWvoTJQnIVdGkj3fFmFEEWly+Xo=;
+        b=cZK/xivjhO3H/7yUpl49CWao2sd/6zSWVPkFhbnvYakOqNcW0y1P6B2f31hrupNLg7
+         UNxC6IFnkWgLlwzQvCBN8xq1GfR8XTtD3SizMfLz5hfwUqR9XLof9YBh79c+9kW5niFu
+         r/aAIZTRiUXA3MIbnEJlffVD9qlrW5SIsuPPnQiqj2khvWLHUHd4zC83k5F613Zvwyip
+         RtyDUFz5y/B6zgls9cFOJhcG2LU5thiMAiyKQqsPz8c+Penv4UlcMhnJlBhYVTfAJAts
+         uF0vI9YlU99PBIvJoNlBRhwYvSH5fU0AIBuSi7Bc/xiwPm8vMhCeed4paAsBBwU2xF/Z
+         20dQ==
+X-Gm-Message-State: AOJu0YxGQGyritpIi4pLoX8znEK89fGVXIHCbF8X87oeKKPM7SWPQosH
+	jmcPaH9J4XU7cq7PxE7Q1ZXOpDpOMP6cWimYwlQJ9h5riR5BG/VyUl86yhKMumxm3VHVKHq6QyS
+	zGmv1G2Kq9yTtVWDI2M1nmHxrIoSdXA==
+X-Gm-Gg: ASbGnctqBS1rOuCzi/ssWaXf/3mzAsVnzd6uCJVFcQ0fzGqXFSFriN7Si8t59P99RwM
+	vMqMQwljnP0dI+wdFX4grMF9eObH7yMq6DbAHgiQWv3NAz5k8iYUvYfiDtu55iDSfEtESCJ/Eou
+	2a7qIVMV0Pr7NtKfxRFfLGWXlCnF8yghDmC4++0DM2cHQ=
+X-Google-Smtp-Source: AGHT+IFY0DMGnpLi7ttV4eQyYHyjkb7Iat8wnNeRbOkfgUk4t7YKI3o8Xxv7qbQXJpm5flshV+3ZgGkeUpUJpUod/BQ=
+X-Received: by 2002:a17:906:dc95:b0:ac7:32b7:f331 with SMTP id
+ a640c23a62f3a-ac738a5b310mr913066166b.17.1743437394075; Mon, 31 Mar 2025
+ 09:09:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
 References: <CALM_BfYZML=gn1qcQEDVCc5W+DdeojAVxiFmKdmDESFuA1Ep6Q@mail.gmail.com>
- <b577024e-902c-4eed-8a32-409d7ba8335a@gmail.com>
- <CAOEzSFTb_RoOYxYuDzR4HHYQjL_rZz2oXKB9F3qHQ9op3xis+g@mail.gmail.com>
+ <b577024e-902c-4eed-8a32-409d7ba8335a@gmail.com> <CAOEzSFTb_RoOYxYuDzR4HHYQjL_rZz2oXKB9F3qHQ9op3xis+g@mail.gmail.com>
  <PH1P110MB1284346766755262C416A81D98A1A@PH1P110MB1284.NAMP110.PROD.OUTLOOK.COM>
- <a5f4e895-2921-4c9d-9979-ede6bf91ceb0@gmail.com>
- <1606018006.2100559.1743436319414@mail.yahoo.com>
-Content-Language: en-US
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <1606018006.2100559.1743436319414@mail.yahoo.com>
-Message-ID-Hash: KJOOADOPGVT7YVFNKAPHTVZGXW7SXW4P
-X-Message-ID-Hash: KJOOADOPGVT7YVFNKAPHTVZGXW7SXW4P
-X-MailFrom: patchvonbraun@gmail.com
+ <a5f4e895-2921-4c9d-9979-ede6bf91ceb0@gmail.com> <1606018006.2100559.1743436319414@mail.yahoo.com>
+ <df01792d-cf76-4468-ac42-87a79806bd66@gmail.com>
+In-Reply-To: <df01792d-cf76-4468-ac42-87a79806bd66@gmail.com>
+From: Mark Gannet <mgannet@gmail.com>
+Date: Mon, 31 Mar 2025 09:09:43 -0700
+X-Gm-Features: AQ5f1Jp6_4-qkI92_v4eSbjA8JC0BUramdlR0HACmtcP22Um3NO6wtukvmz5qFo
+Message-ID: <CABL+oDbXX70ZK0hD=MgjH6BgWwBWN_B21j9Q3T8ZTOt43dOwzA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: M7SPI3HC7YFAIN4TLQXDQH4IIVRBHMB4
+X-Message-ID-Hash: M7SPI3HC7YFAIN4TLQXDQH4IIVRBHMB4
+X-MailFrom: mgannet@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Max Input RF Power in X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KJOOADOPGVT7YVFNKAPHTVZGXW7SXW4P/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M7SPI3HC7YFAIN4TLQXDQH4IIVRBHMB4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5203287652623468730=="
+Content-Type: multipart/mixed; boundary="===============2729616665028020606=="
 
-This is a multi-part message in MIME format.
---===============5203287652623468730==
-Content-Type: multipart/alternative;
- boundary="------------wfbiuLpkkyzYV44hVhEHcXIA"
-Content-Language: en-US
+--===============2729616665028020606==
+Content-Type: multipart/alternative; boundary="0000000000008fe9f70631a5a660"
 
-This is a multi-part message in MIME format.
---------------wfbiuLpkkyzYV44hVhEHcXIA
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000008fe9f70631a5a660
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 31/03/2025 11:51, zhou via USRP-users wrote:
+Just to follow on. The BasicRx is +10 dBm. I've been using that as a max to
+the BasicRx for quite a while without issue. But the UBX-160 knowledge base
+indicates -15 dBm. I'd assume if you're using the UBX that you'll be using
+the configurable on-board amplification (up to 31.5 dB).
+
+https://kb.ettus.com/UBX
+
+
+On Mon, Mar 31, 2025, 8:59=E2=80=AFAM Marcus D. Leech <patchvonbraun@gmail.=
+com>
+wrote:
+
+> On 31/03/2025 11:51, zhou via USRP-users wrote:
+>
 > Hi,
 >
-> What is the max input signal power to RF ports in X310?=C2=A0 There is =
-a=20
-> spec in the below link:
-> https://www.ettus.com/wp-content/uploads/2024/01/X300_X310_Spec_Sheet_2=
-024-01-23.pdf
+> What is the max input signal power to RF ports in X310?  There is a spec
+> in the below link:
+>
+> https://www.ettus.com/wp-content/uploads/2024/01/X300_X310_Spec_Sheet_202=
+4-01-23.pdf
 > There are max output powers, but not input power.
 > I am using UBX-160 daughterboard.
 >
@@ -129,165 +131,166 @@ a=20
 >
 > Zhou
 >
--15dBm is somewhat conservative, but if that's what the manufacturer=20
-recommends, I'd go with that, rather than a
- =C2=A0 hallucination produced by ChatGPT.
-
-The receivers on USRPs are generally designed to be connected to an=20
-antenna, and as such have sensitive, lower-noise
- =C2=A0 front-ends.=C2=A0 Such front-ends generally don't tolerate higher=
- input=20
-powers without damage--and +10dBm *IS* high
- =C2=A0 input power for a radio receiver.
-
-One may have gotten used to the relatively-insensitive inputs of=20
-laboratory spectrum analyzers, which often have
- =C2=A0 inputs that can tolerate considerably-higher power levels, but ar=
-e=20
-insensitive at levels expected from direct
- =C2=A0 connection to an antenna.=C2=A0 But USRPs are designed for antenn=
-a=20
-connection.=C2=A0=C2=A0 If you want to use them as
- =C2=A0 a laboratory spectrum analyser, you'll need to use attenuators.
-
-
+> -15dBm is somewhat conservative, but if that's what the manufacturer
+> recommends, I'd go with that, rather than a
+>   hallucination produced by ChatGPT.
+>
+> The receivers on USRPs are generally designed to be connected to an
+> antenna, and as such have sensitive, lower-noise
+>   front-ends.  Such front-ends generally don't tolerate higher input
+> powers without damage--and +10dBm *IS* high
+>   input power for a radio receiver.
+>
+> One may have gotten used to the relatively-insensitive inputs of
+> laboratory spectrum analyzers, which often have
+>   inputs that can tolerate considerably-higher power levels, but are
+> insensitive at levels expected from direct
+>   connection to an antenna.  But USRPs are designed for antenna
+> connection.   If you want to use them as
+>   a laboratory spectrum analyser, you'll need to use attenuators.
+>
+>
 >
 >
 >
 > _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---------------wfbiuLpkkyzYV44hVhEHcXIA
-Content-Type: text/html; charset=UTF-8
+--0000000000008fe9f70631a5a660
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 31/03/2025 11:51, zhou via
+<div dir=3D"auto"><div>Just to follow on. The BasicRx is +10 dBm. I&#39;ve =
+been using that as a max to the BasicRx for quite a while without issue. Bu=
+t the UBX-160 knowledge base indicates -15 dBm. I&#39;d assume if you&#39;r=
+e using the UBX that you&#39;ll be using the configurable on-board amplific=
+ation (up to 31.5 dB).</div><div dir=3D"auto"><div dir=3D"auto"><br></div><=
+div dir=3D"auto"><a href=3D"https://kb.ettus.com/UBX">https://kb.ettus.com/=
+UBX</a></div><br><br><div class=3D"gmail_quote gmail_quote_container" dir=
+=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Mar 31, 2025, 8:59=
+=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">=
+patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex"><u></u>
+
+ =20
+   =20
+ =20
+  <div>
+    <div>On 31/03/2025 11:51, zhou via
       USRP-users wrote:<br>
     </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1606018006.2100559.1743436319414@mail.yahoo.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div class=3D"ydpcf4bf1c9yahoo-style-wrap"
-style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-si=
-ze:13px;">
-        <div dir=3D"ltr" data-setdir=3D"false">Hi,</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
+    <blockquote type=3D"cite">
+     =20
+      <div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif;f=
+ont-size:13px">
+        <div dir=3D"ltr">Hi,</div>
+        <div dir=3D"ltr"><br>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false">What is the max input sign=
-al
-          power to RF ports in X310?=C2=A0 There is a spec in the below l=
-ink:</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><a
-href=3D"https://www.ettus.com/wp-content/uploads/2024/01/X300_X310_Spec_S=
-heet_2024-01-23.pdf"
-            rel=3D"nofollow" target=3D"_blank" moz-do-not-send=3D"true"
-            class=3D"moz-txt-link-freetext">https://www.ettus.com/wp-cont=
-ent/uploads/2024/01/X300_X310_Spec_Sheet_2024-01-23.pdf</a></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span
-style=3D"color: rgb(0, 0, 0); font-family: Helvetica Neue, Helvetica, Ari=
-al, sans-serif;">There
-              are max output powers, but not input power.</span></span><b=
-r>
+        <div dir=3D"ltr">What is the max input signal
+          power to RF ports in X310?=C2=A0 There is a spec in the below lin=
+k:</div>
+        <div dir=3D"ltr"><a href=3D"https://www.ettus.com/wp-content/upload=
+s/2024/01/X300_X310_Spec_Sheet_2024-01-23.pdf" rel=3D"nofollow noreferrer" =
+target=3D"_blank">https://www.ettus.com/wp-content/uploads/2024/01/X300_X31=
+0_Spec_Sheet_2024-01-23.pdf</a></div>
+        <div dir=3D"ltr"><span><span style=3D"color:rgb(0,0,0);font-family:=
+Helvetica Neue,Helvetica,Arial,sans-serif">There
+              are max output powers, but not input power.</span></span><br>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false">I am using UBX-160
+        <div dir=3D"ltr">I am using UBX-160
           daughterboard.</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        <div dir=3D"ltr"><br>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false">In=C2=A0<a
-            href=3D"https://kb.ettus.com/X300/X310_Getting_Started_Guides=
-"
-            rel=3D"nofollow" target=3D"_blank" class=3D"moz-txt-link-free=
-text"
-            moz-do-not-send=3D"true">https://kb.ettus.com/X300/X310_Getti=
-ng_Started_Guides</a>,
+        <div dir=3D"ltr">In=C2=A0<a href=3D"https://kb.ettus.com/X300/X310_=
+Getting_Started_Guides" rel=3D"nofollow noreferrer" target=3D"_blank">https=
+://kb.ettus.com/X300/X310_Getting_Started_Guides</a>,
           it says that</div>
-        <div dir=3D"ltr" data-setdir=3D"false">"<span><span
-style=3D"color: rgb(0, 0, 0); font-family: Lucida Sans Unicode, Lucida Gr=
-ande, sans-serif; font-size: 14px;">Never
-              apply more than -15 dBm of power into any RF input.</span><=
-/span>"</div>
+        <div dir=3D"ltr">&quot;<span><span style=3D"color:rgb(0,0,0);font-f=
+amily:Lucida Sans Unicode,Lucida Grande,sans-serif;font-size:14px">Never
+              apply more than -15 dBm of power into any RF input.</span></s=
+pan>&quot;</div>
         <div><br>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false">ChatGpt says that "<strong
-            data-start=3D"253" data-end=3D"263">UBX 40</strong>: <strong
-            data-start=3D"265" data-end=3D"276">+10 dBm</strong> (10 mW)"=
-</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        <div dir=3D"ltr">ChatGpt says that &quot;<strong>UBX 40</strong>: <=
+strong>+10 dBm</strong> (10 mW)&quot;</div>
+        <div dir=3D"ltr"><br>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false">What is the max input sign=
-al
+        <div dir=3D"ltr">What is the max input signal
           power?</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        <div dir=3D"ltr"><br>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false">Thanks for any comments,</=
-div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        <div dir=3D"ltr">Thanks for any comments,</div>
+        <div dir=3D"ltr"><br>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false">Zhou</div>
+        <div dir=3D"ltr">Zhou</div>
         <div><br>
         </div>
       </div>
     </blockquote>
-    -15dBm is somewhat conservative, but if that's what the manufacturer
-    recommends, I'd go with that, rather than a<br>
+    -15dBm is somewhat conservative, but if that&#39;s what the manufacture=
+r
+    recommends, I&#39;d go with that, rather than a<br>
     =C2=A0 hallucination produced by ChatGPT.<br>
     <br>
     The receivers on USRPs are generally designed to be connected to an
     antenna, and as such have sensitive, lower-noise<br>
-    =C2=A0 front-ends.=C2=A0 Such front-ends generally don't tolerate hig=
-her input
+    =C2=A0 front-ends.=C2=A0 Such front-ends generally don&#39;t tolerate h=
+igher input
     powers without damage--and +10dBm *IS* high<br>
     =C2=A0 input power for a radio receiver.<br>
     <br>
     One may have gotten used to the relatively-insensitive inputs of
     laboratory spectrum analyzers, which often have<br>
-    =C2=A0 inputs that can tolerate considerably-higher power levels, but=
- are
+    =C2=A0 inputs that can tolerate considerably-higher power levels, but a=
+re
     insensitive at levels expected from direct<br>
-    =C2=A0 connection to an antenna.=C2=A0 But USRPs are designed for ant=
-enna
+    =C2=A0 connection to an antenna.=C2=A0 But USRPs are designed for anten=
+na
     connection.=C2=A0=C2=A0 If you want to use them as<br>
-    =C2=A0 a laboratory spectrum analyser, you'll need to use attenuators=
-.<br>
+    =C2=A0 a laboratory spectrum analyser, you&#39;ll need to use attenuato=
+rs.<br>
     <br>
     <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1606018006.2100559.1743436319414@mail.yahoo.com">
-      <div class=3D"ydpcf4bf1c9yahoo-style-wrap"
-style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-si=
-ze:13px;">
+    <blockquote type=3D"cite">
+      <div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif;f=
+ont-size:13px">
         <div><br>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        <div dir=3D"ltr"><br>
         </div>
       </div>
       <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
+com</a>
 </pre>
     </blockquote>
     <br>
-  </body>
-</html>
+  </div>
 
---------------wfbiuLpkkyzYV44hVhEHcXIA--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
+com</a><br>
+</blockquote></div></div></div>
 
---===============5203287652623468730==
+--0000000000008fe9f70631a5a660--
+
+--===============2729616665028020606==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -297,4 +300,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5203287652623468730==--
+--===============2729616665028020606==--
