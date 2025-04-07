@@ -2,208 +2,228 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 505D0A7E0CF
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Apr 2025 16:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5706AA7E5AA
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Apr 2025 18:08:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2351C385F9E
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Apr 2025 10:16:31 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2EF003860C9
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Apr 2025 12:08:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1744035391; bh=E1mtUeDyt19Nk6c4JcEEP6TdI/CxkdZ2agYoIRQVv3w=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=ST7hoHKLxr+VwkN7fr9kwEO0FueU+zVfVVmUGucrdI3pazlbs7p/H4iRbmQkaMSeF
-	 +8+yOKm9p5ciJjiSTKt3W88kMIDmUOaXHvuEwDofFqhDY686XV2J7fzmRNDB2c+8WG
-	 oND+PVULTvkU3P02GX3V/OaaH1f7mZPGPwAX1sEaaiPXrV7l0B72jaBueHtFOLLEOW
-	 41ix4FX7uUbya6KMQPPTrLbTrfPxqAdezdFkiLWT6qLFqeFAuppN4Q9mXTA26lYHcv
-	 zvfJhmsC/3kzbAqtryErqYbEIt9KdTx/sjOd7LZg1oOBhfSI4P4nfXQRJXAgktzlRF
-	 wFb4+iFBrb0yg==
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id D0C3E385F9E
-	for <usrp-users@lists.ettus.com>; Mon,  7 Apr 2025 10:16:22 -0400 (EDT)
+	t=1744042089; bh=Ol9Z89lGH4m36ldnvsM+HxBy1BL6sg5cqQ1o+3/8ds8=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=ecrPbM97rMoZoXqvFb/vcgw13eOwdhd0rtVtpPaUjsniOql4QiaVpWBCFFLtTgCx1
+	 wrCEThBvKsJJm6Tlfw1UJJzfFxFSU49WL3449ylBs0h42RljQPfTLRiBselEdilCL7
+	 jv49LmK62rdzKs4IE+WglXdDVQvjELEKZCCv8OxyvWBF1emxH0DlwZrMIJAlljox29
+	 dHm4cS7DcMLcoesElBk4FATmeCsBNGdPDOWl2UdBe0GIB1izWhaI+1ojENeo/ugKLr
+	 RIHrBw8VkFFpPZmehzkchH6I/SHKcLv1t5rtW8KIGBsDRkRYUSZ/TOs6j5xL384FdO
+	 ZJsna3gVAL6cQ==
+Received: from CY4PR02CU008.outbound.protection.outlook.com (mail-westcentralusazon11021133.outbound.protection.outlook.com [40.93.199.133])
+	by mm2.emwd.com (Postfix) with ESMTPS id 195FA385FBF
+	for <usrp-users@lists.ettus.com>; Mon,  7 Apr 2025 12:08:00 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Am4ODNLv";
+	dkim=pass (1024-bit key; unprotected) header.d=TNTECH.EDU header.i=@TNTECH.EDU header.b="jxG60cJ5";
 	dkim-atps=neutral
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac2ab99e16eso837441666b.0
-        for <usrp-users@lists.ettus.com>; Mon, 07 Apr 2025 07:16:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1744035381; x=1744640181; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C2zNuwCtkRMOrzct9H+jd/Ogus+IxO+PxXnWKDdY0Qs=;
-        b=Am4ODNLv2ztEhlqy/38HDOfQ1yiPTXbwPeweCLSc948TwM2Gqtgd986e5jPlhfIuSs
-         e3hSr+LGklmBe1wt5sOTjMFskDWJLVxNT87ezabyOByVi/85bj5/+oBCY8Xcd1WcgSsT
-         1MI2lvCuKonVkC/3EDI723H+R/rP/ZNRvXgDle9ciOjQUdTYOut1mEW/IEEQBVpm3M+P
-         0ZzCD96hPxGGbiPIbvt5B8snIM3czrGai/pQ31Av2hT11dRr7X3qCYk00597BX6Er/88
-         1AMhX3mBYDCkQM6Hm3JUfamd+SMfxaRAHOp39fc+wGUPTWsuARMKPJ117GVFSZnC4qIB
-         VVpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744035381; x=1744640181;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C2zNuwCtkRMOrzct9H+jd/Ogus+IxO+PxXnWKDdY0Qs=;
-        b=DPskUf0JG3osd16s+WztsLFjkNEdQneDFf0NYFP3IENAkb2g30snIQZAxDqvP5jQnR
-         HQRQOS96DTVXuAkPoWoEiGZsYAKhMfWaGDgtXO+WnNqLv940Gi1c90Nmydy3VifCQQdN
-         k88S+3d+s3rHFKdETebr4pkFY/CV9b7n/IWfV+8Wj5ra1OA7tTzHGJSMJobDLFhb8Sl1
-         ikmStMOhINO6+e7Lnv49QFIIbNjfeYbW9h2TgIDMSy/oeKTvul5o0SRn518Mp4nhmlhr
-         /uzcWVGswNPHNMlAvwJkZde9L8eMwmsiHWe00UMoI25CUDjtGGSsrhxWfpc+kWj/z6TA
-         klMQ==
-X-Gm-Message-State: AOJu0Yzldpyq3I1RGlfKriHD/rGqIKEDjpQzHWkQpVfmCM+NrLZr5Jnj
-	RLUq4fnmXVlBo20if6kkvsGZDoSbjtj5UGHUQrmPNAkCJtU6VkCRiYuQHf0n12LvU65w9tHMwft
-	T0jYcjZFJXGxqvpqFEc5PGGKOWj4F/BTg8+xnTLIYUXBTb7ug148=
-X-Gm-Gg: ASbGncsyrQZaGZa0wjPanIpRPzzEajBKJXyr40It6czQjFHQSjK/RoRX3SvDZiOW4ln
-	s8Bpx0gHBL06bYT+NL1/1eBnP1MRCsE21frR+0UqCScdqSdk3Tm5B3Sp0pyqaXpkI/C+Ln+9lOs
-	fZCO1LOFQQDuixF5Q6rdljCSwxdxNzuamTY5djYCWFju4TF62CeBfwMxa3EQ==
-X-Google-Smtp-Source: AGHT+IGfD/F7Tt6Zdn1Fjw3is3YG2Qp2ci6vQpds6DFvTFTDl/u3WpRzws7Jl36ESQc2Zvc5Sc+pEMApAOOrDAt85UI=
-X-Received: by 2002:a17:907:72c8:b0:ac7:cfd4:76c6 with SMTP id
- a640c23a62f3a-ac7d6c9f744mr977394466b.3.1744035381313; Mon, 07 Apr 2025
- 07:16:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lebAb4pINsY/WscIhEsxMzT3dBbM5HPIB9IFNEpsKtAUIzUXVHqPClIMtz4NfS7/fN/orpZTX2Q52uX48Dg6vg++Z1KdUWj4QWZqb6dj2LPH7Bbm0X9Ox9w9MT8u2+0M8lRXKYG/TjaHDGkIi6N7qi67H721TLf7VbEcnv8UeQ3JNv9GAYZgWHhBJwAlBayqvFhF8kuecSikOSefPWJRXWa8brfXuvQPuDrRF64Rs6Sk1jZvAupV3/50Iq3FgA6O1655WXIsSdhxymOoDdH8ekUUDXXQk0e/4fnrLq9NdAtfJMNyHupydFmu/I1N3sTPuwGfP15VRqp20j9u6ts2MQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LdjIqm3/CCV3Bb5R0G6hUqo7J57XdqPS/MuJpI20aHI=;
+ b=cdW0QAX1loQoQxmDfu8XYwC+yPZm2jErIlEcow7fjiHkFlNMdH85Qwxi8CV8FWdXTywqwfoZifDKp3uAg6hbzBbCQ8q3Z35gCUmsAw0AT1l2pN33Q9yZ0XJIaddm3QuRge8mj1MthOxkLwz7pbFbzMHp+WjKz2cCfmTiqEZeS6M9DVyVVfE7jbaGeVTc/sGJ+em5M1rN170UUi9zIWNJg43/Qk/X4gqAREvJtz0tPqyqI4+LexkjPe6GX/kn90xZzjGk3K7uBOkNmbHqHdGHplg+rHoD+/MA7jBTH92/ZlmPakYWyRB4caqt5LOBuzWIbPn3tAS7KUVhzWx5ELqrCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=tntech.edu; dmarc=pass action=none header.from=tntech.edu;
+ dkim=pass header.d=tntech.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=TNTECH.EDU;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LdjIqm3/CCV3Bb5R0G6hUqo7J57XdqPS/MuJpI20aHI=;
+ b=jxG60cJ5cmOMq0/hYJppeF+/5pZwW2Z1o16G9J695rq235gFpOe3Nspng3V1MgurxRx+JVRv7GT20AW6kov/9DPbo8Osrfw4PR+233sNWRY8AVGES4paZEd+QaAlWkL8EbeHlxPCI8559vTmWJvAuvWUQyMuZQ3tEElhQ9RlLlo=
+Received: from CH2PPF2C97A4CC5.namprd07.prod.outlook.com
+ (2603:10b6:61f:fc00::255) by CH2PPF861D2BFCB.namprd07.prod.outlook.com
+ (2603:10b6:61f:fc00::262) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.27; Mon, 7 Apr
+ 2025 16:07:56 +0000
+Received: from CH2PPF2C97A4CC5.namprd07.prod.outlook.com
+ ([fe80::d4f6:8080:c7a2:b9fa]) by CH2PPF2C97A4CC5.namprd07.prod.outlook.com
+ ([fe80::d4f6:8080:c7a2:b9fa%7]) with mapi id 15.20.8606.033; Mon, 7 Apr 2025
+ 16:07:56 +0000
+From: "Jones, James (jtjones49)" <jtjones49@tntech.edu>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: 100 Gigabit Ethernet Suggestions for USRP x410
+Thread-Index: AQHbp9caiGf/hUQ8O0eoEpimvj74Tg==
+Date: Mon, 7 Apr 2025 16:07:56 +0000
+Message-ID: 
+ <CH2PPF2C97A4CC526CE619D2616765603E6CEAA2@CH2PPF2C97A4CC5.namprd07.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=tntech.edu;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH2PPF2C97A4CC5:EE_|CH2PPF861D2BFCB:EE_
+x-ms-office365-filtering-correlation-id: e621cfe5-5c1b-4fe4-eb1f-08dd75ee5bfb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|1800799024|376014|366016|38070700018|8096899003;
+x-microsoft-antispam-message-info: 
+ =?iso-8859-1?Q?ws/Bys6rvWpbmvPFQnhbLWNhmPr/BhdXFbkAzO/YjSAe9KNSqAUZqqWvWA?=
+ =?iso-8859-1?Q?sUyvU9KemaIMEHCWpZ4PF/c7YSlCd12pILgwSeKsp/x/UCPhzJ1DoN6CRt?=
+ =?iso-8859-1?Q?Wkz4cn4bi8QqGTx7wNPKZqMX78CMH7S+8cnFh6qpJmmWrltIay6bQKf3T1?=
+ =?iso-8859-1?Q?k8q+AGtrp5u7P/akDM3Bd9axBn8E/JV+cqPn01SxdaVaADso+QDdx5wCjX?=
+ =?iso-8859-1?Q?pKMuPYhQ/rH//xO/LoRPJTw4f8RsnTVPV7t8VSL1i9LCILe7cidDYYHsUH?=
+ =?iso-8859-1?Q?TipPSYLNqSCXfSgP91tobhJGbDo8hTFoA7rmbETXh5QsG4LpzqmNHzfSb0?=
+ =?iso-8859-1?Q?Poc5SGkcrexsqoi/Q5Gpq1mKmpnbZVey9L1m18hekW89BRO4oJAv1s61C+?=
+ =?iso-8859-1?Q?bymJ+Ka0oI37/J9HIhhP53ruLoitMAGF8FmR7o8kZxibt9klkOpEl8YELb?=
+ =?iso-8859-1?Q?nGYpdRJoBjZSCEWqK1eqUkYfdvmGO+WYzEhP27TZ3rjZuitUzrnpuhmLmb?=
+ =?iso-8859-1?Q?1nGUeN7bcsm7s0ctX39dMdMNnVSbKhnCDwQnG/g6J7+gYrsxYcpvCb1rzQ?=
+ =?iso-8859-1?Q?Rp24JZoRwF/LE2WtgZ8NXdNyPOaWmwK6tDUebrHW/fPgdPr0NVT3hk2ZgT?=
+ =?iso-8859-1?Q?tIA/rScVXnsba3izV0DaQEPrmYrSPa9pDGelJY+oJd1XXXNT5tqnxVXRMi?=
+ =?iso-8859-1?Q?tdVUU1vcNDtURjyDlwJ5pMCIlGrTkpXVUv4GgSTEh8u0VFzlEwlGsx+cJ4?=
+ =?iso-8859-1?Q?dE/x3zgJ60+QBzmzz7z9qq+d5wktNPWqCR5bAstiMbAwSvXCU6L3ahcLMh?=
+ =?iso-8859-1?Q?HSEjVKAV0SeD8e6qO2eGXtnYrDksRYbMxNjqCtMgNFHbOCBUlS/2y3uGBa?=
+ =?iso-8859-1?Q?bFY+h4LHN8QAWLOR4gxDSdhaXan801b9IHuEME3+eyQKkJKv4kOYBNSOwt?=
+ =?iso-8859-1?Q?r61SBiFxZXldPF8yxY1kkWO36es6YrwLbqIg20s19ZZKME1DGNGVqNliHW?=
+ =?iso-8859-1?Q?H349AXViI5Iexx//4PjGIpJEmpqLVtaLde9mL9xRkJT0rrYnUZ3b2j8s0O?=
+ =?iso-8859-1?Q?hCbmkG2DuoKwl08skS/26VfBqB54JiEtMJyJHM5IKEeUw37RwhRkuqZZC7?=
+ =?iso-8859-1?Q?8e+fhFJLIWPEhZ4YUIPNIAI2/OygW35KRzdfH8YQlnCyp8V8hhnGXxHBGc?=
+ =?iso-8859-1?Q?7N5l5bSR4Z4JoCMJ99xQ/Y0OvxCz3NCAGT4ALtKDoJhvASt/z+GIyl3peV?=
+ =?iso-8859-1?Q?GmTyKI4V1LklKpsSQBEoF9ZGSIJ/yfl7l78Gadv29dGq4D/KSdxGLI5ego?=
+ =?iso-8859-1?Q?k33jGj8s75FLSMGR8qXcdmj0AHWvS8wx08zM6Vtzk7iWwYiL3nvSBNQ9DB?=
+ =?iso-8859-1?Q?CTcBZCKozvRVG38Cu1hF9awyDvdvyEVLTfqBQBNIo5oo7dF+PYEXO5bAvS?=
+ =?iso-8859-1?Q?L95z0O7rS6ACMdbzAGzUn42Cc1NIY2PVZbdqmuSB00k40EpC7asJQ6OJ9g?=
+ =?iso-8859-1?Q?ZEjpjMNNk9+RTe+r96sfMa?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PPF2C97A4CC5.namprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700018)(8096899003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?Go2rJH43pGqyRRaB4AgkECvhzoaDCkW/rguHx5z5oTALA9gXKV5f9n9gRM?=
+ =?iso-8859-1?Q?R9y6CBw7f79gLHu/d0De6J0GGIV0KUxLX3pww4OeDXsP0ggyzFmU49AyIF?=
+ =?iso-8859-1?Q?J5GiWD54KwHYl/qsLRSYeeNnDvGrXmzc8/IqJAu4+cEQkcHUrwgItBmQui?=
+ =?iso-8859-1?Q?5xKkpJJCCt1kCet9Ey01BZ+rxPsNttz8rHpvfu+JC/hFhBOT1lrZAcIoax?=
+ =?iso-8859-1?Q?HJkeJoW4gQl+cO5+XCKWs5ndBmd4e0ZvKOlHZbnD2dUH/f35uc4uxh6T1F?=
+ =?iso-8859-1?Q?MveRH+yjlibEhNrN5AyIjbvt1FcRw3KEUvEs9GaGxMYJEvnGCkAL3OkIj2?=
+ =?iso-8859-1?Q?qPqupsAef7JGE4eiILrJPvPvIuu6JPcvBY0JSK2ZhQ10p/5xPUr48kASFs?=
+ =?iso-8859-1?Q?FKhjYdiiw19nZIuYdzQcnKszABrrD1X29p2nneItWPRUkD30KzNjYBiSQS?=
+ =?iso-8859-1?Q?+/ICbkeMGZB5Y+JlOAR2s1TI9SlaV+mPUxantDFXdbI2b2tU0bvFJo4Gpn?=
+ =?iso-8859-1?Q?hORYy1s4LL34gLV5nIHhDXmTQL8Z3aT6wai/CN1ploWNFXX0+soVAbsKQq?=
+ =?iso-8859-1?Q?CMsDYQiquW4uqRyIerIO3UZPMWfL49Pij190LpzsL5KDpK40okD57V7tAr?=
+ =?iso-8859-1?Q?dicWBnrGVWkEOlQpkTwbi7gBj3xPBW84EynXbohl9ahpaKMUdkG2sNl12/?=
+ =?iso-8859-1?Q?633ZuMgqaIsnbWKGd299OUx9qnXMUZZoePCzWE10z4HdPL4eWtyZBJE+Jr?=
+ =?iso-8859-1?Q?DbbmmB794uJ0usHMGHORkIemkR/NO0YmP8H16/ciQt44TvBhjRyx52whEc?=
+ =?iso-8859-1?Q?1abHTWpFc4eadkWcGJoqYyjIrtrQHFJ5Q3Iy5bU5zNuXHI8EFsekrNHjW3?=
+ =?iso-8859-1?Q?B0P/iwOs8KtjXcWICxvtNqFZdlC/+d2jWsLN9zDaUiGIAjSpgMK0OjU2Jv?=
+ =?iso-8859-1?Q?37SYWoOcge4pcawwt7Tjcup/erNCTThPlGmShAX8dgcZpkKh4A1n2rDITj?=
+ =?iso-8859-1?Q?g2R28Ik7m2NyeNJKOVCTCOnpVwMN99fxAGLxpt9zh6LQwJbkM535J5tlF4?=
+ =?iso-8859-1?Q?3nD+BR0PHWbvBmg9+DcGNRCCi0/EzItSSrZUZRx4FGozIH6WSBajtI19SL?=
+ =?iso-8859-1?Q?udBtFyPqyavxqbNZLgbVY52SYtjNB6yawbRFD//pAPaA2lMRdgyCwS0xbQ?=
+ =?iso-8859-1?Q?Npt7x5vgm+bS5Xefcv9Xcl44GF3RwM+jxd7hT9PVR28PlGT0VEtAqP2cND?=
+ =?iso-8859-1?Q?SK6F9+xcuLHiz3c7TzG8M7MxTebXuDT/elUvl/0OJdarD14Ly2cByFevfA?=
+ =?iso-8859-1?Q?2qxeb09/STV6rN+DzuWK6rZl+/HHOe5kIAmgnD2lDWVk8r6jMMnla5W8Xp?=
+ =?iso-8859-1?Q?NIfhPrEjvq78cwUeAel2Q8mg+H+fwyj6K/v0asIqiiE7UC8Ghcjgt3fQkx?=
+ =?iso-8859-1?Q?DWn8TQi6Alms7y4yMDXsg4wocIOd/Pbg0CqgXoV/uIctEUkoD5p8sGVUWX?=
+ =?iso-8859-1?Q?iBNiS4prCZqO5WAatoDjWPKDseadA6l3WovyyuAiY8EhLhEzyVyFE0o76S?=
+ =?iso-8859-1?Q?I1uqvNoEGkejH6j5FYUzTHLE29SFFI6YortYFbGwxceLxX/XmKGuITBPm3?=
+ =?iso-8859-1?Q?xOPWOJH21Gjr0mIDc+js+E6f0fw6K/B9eP?=
 MIME-Version: 1.0
-References: <5d6dddb5735e4cd89d06e6e18c1854c3@vastech.co.za>
-In-Reply-To: <5d6dddb5735e4cd89d06e6e18c1854c3@vastech.co.za>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Mon, 7 Apr 2025 16:16:09 +0200
-X-Gm-Features: ATxdqUHHGp8ch3YZ-k9kd8ykxKQk_3MHDlxw11SdggPocP81F1TCnsjlog_Bp_w
-Message-ID: <CAFOi1A7z6sUAxHJESKsaqznQmWjD=mDzY3q_qhWBiO_icMCRhw@mail.gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: R575DTPYA4OTKXV6PCGP7HOUUNIVJZIC
-X-Message-ID-Hash: R575DTPYA4OTKXV6PCGP7HOUUNIVJZIC
-X-MailFrom: martin.braun@ettus.com
+X-OriginatorOrg: TNTECH.EDU
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH2PPF2C97A4CC5.namprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e621cfe5-5c1b-4fe4-eb1f-08dd75ee5bfb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2025 16:07:56.2221
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 66fecaf8-3dc0-4d2c-b8b8-eff0ddea46f0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: peC43V4ieRqTE3RFHIKwafU+Kbxf86AHGL0+tVh/gn6NFxqDoOi0EkqRJsYZZQF1m3BLPYwgQ5VZdS9fT3VNbA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PPF861D2BFCB
+Message-ID-Hash: DIUOM7V2RHGOVV234ZK2ZSCHZANGH6JL
+X-Message-ID-Hash: DIUOM7V2RHGOVV234ZK2ZSCHZANGH6JL
+X-MailFrom: jtjones49@tntech.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: rfnoc sample alignment from two radio channels
+Subject: [USRP-users] 100 Gigabit Ethernet Suggestions for USRP x410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/R575DTPYA4OTKXV6PCGP7HOUUNIVJZIC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KF4QXMTC7PZHEMOTMHRG35MZ5T3Q6HBR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1826272950957452671=="
+Content-Type: multipart/mixed; boundary="===============2548811527358928472=="
 
---===============1826272950957452671==
-Content-Type: multipart/alternative; boundary="0000000000006131ef063230e1ca"
+--===============2548811527358928472==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CH2PPF2C97A4CC526CE619D2616765603E6CEAA2CH2PPF2C97A4CC5_"
 
---0000000000006131ef063230e1ca
-Content-Type: text/plain; charset="UTF-8"
+--_000_CH2PPF2C97A4CC526CE619D2616765603E6CEAA2CH2PPF2C97A4CC5_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-We don't have any examples of blocks doing MIMO DSP -- that use case is a
-bit special because in general, you also want to compare timestamps. But
-let's stick with the addsub block, you could consider that a form of MIMO
-processing (coherent combining of signals assuming they're already
-phase-aligned...?).
+Hello, I am trying to get the full sampling rate from the USRP x410 which i=
+s 400 MHz.  I understand that I will need a 100 gigabit ethernet connection=
+ to do this. Do you have any setup recommendations or rack mounted server r=
+ecommendation that can support this bandwidth?
 
-The addsub block will properly align samples from upstream radio blocks if
-everything is on the same FPGA, because you usually don't lose samples on
-the FPGA, and we assume that the radios will get started at the same time.
-If you don't consume samples from a radio block, it will stall pretty
-quickly.
-
-If tvalid is never going high, then maybe the second radio block is never
-actually starting to stream? How are you submitting stream commands?
-Straight to the radios, or to the streamer (and if it's the latter, is your
-block controller forking the stream command)? If you're running at TRACE
-level, then the radio will report all stream commands but for that you'd
-need to compile UHD by hand.
-
---M
+Thanks,
+James Jones
 
 
-On Sun, Apr 6, 2025 at 9:49=E2=80=AFAM Kevin Williams <kevin.williams@vaste=
-ch.co.za>
-wrote:
 
-> Hi,
->
-> I am curious as to how sample alignment for MIMO DSP is guaranteed in the
-> RFNoC framework?
->
-> I see sample stream alignment mechanisms in blocks like the AddSub block,
-> and have written similar logic for my own new blocks. Is there a certain
-> tolerance of sample delays that will never be exceeded?
->
-> My real question is that I am trying to trace an issue where I have two
-> input streams to my block (coming from a 0/Radio#0:0 and 0/Radio#0:1) but
-> the second stream is always stalled. I never see TVALID's from it, even
-> though both master TREADY's are simply hardcoded for now. (I can see this
-> by
-> means of packing the handshaking bits into the output data samples.)
->
-> I've just compiled an ILA into the design but I suspect this will just sh=
-ow
-> the same.
->
-> Thanks, Kevin
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000006131ef063230e1ca
-Content-Type: text/html; charset="UTF-8"
+--_000_CH2PPF2C97A4CC526CE619D2616765603E6CEAA2CH2PPF2C97A4CC5_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>We don&#39;t have any examples of blocks doing MIMO D=
-SP -- that use case is a bit special because in general, you also want to c=
-ompare timestamps. But let&#39;s stick with the addsub block, you could con=
-sider that a form of MIMO processing (coherent combining of signals assumin=
-g they&#39;re already phase-aligned...?).</div><div><br></div><div>The adds=
-ub block will properly align samples from upstream radio blocks if everythi=
-ng is on the same FPGA, because you usually don&#39;t lose samples on the F=
-PGA, and we assume that the radios will get started at the same time. If yo=
-u don&#39;t consume samples from a radio block, it will stall pretty quickl=
-y.</div><div><br></div><div>If tvalid is never going high, then maybe the s=
-econd radio block is never actually starting to stream? How are you submitt=
-ing stream commands? Straight to the radios, or to the streamer (and if it&=
-#39;s the latter, is your block controller forking the stream command)? If =
-you&#39;re running at TRACE level, then the radio will report all stream co=
-mmands but for that you&#39;d need to compile UHD by hand.</div><div><br></=
-div><div>--M</div><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote =
-gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 6,=
- 2025 at 9:49=E2=80=AFAM Kevin Williams &lt;<a href=3D"mailto:kevin.william=
-s@vastech.co.za">kevin.williams@vastech.co.za</a>&gt; wrote:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
-1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hello, I am trying to get the full sampling rate from the USRP x410 which i=
+s 400 MHz.&nbsp; I understand that I will need a 100 gigabit ethernet conne=
+ction to do this. Do you have any setup recommendations or rack mounted ser=
+ver recommendation that can support this
+ bandwidth?</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
 <br>
-I am curious as to how sample alignment for MIMO DSP is guaranteed in the<b=
-r>
-RFNoC framework?<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Thanks,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+James Jones</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
 <br>
-I see sample stream alignment mechanisms in blocks like the AddSub block,<b=
-r>
-and have written similar logic for my own new blocks. Is there a certain<br=
->
-tolerance of sample delays that will never be exceeded?<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
 <br>
-My real question is that I am trying to trace an issue where I have two<br>
-input streams to my block (coming from a 0/Radio#0:0 and 0/Radio#0:1) but<b=
-r>
-the second stream is always stalled. I never see TVALID&#39;s from it, even=
-<br>
-though both master TREADY&#39;s are simply hardcoded for now. (I can see th=
-is by<br>
-means of packing the handshaking bits into the output data samples.)<br>
-<br>
-I&#39;ve just compiled an ILA into the design but I suspect this will just =
-show<br>
-the same.<br>
-<br>
-Thanks, Kevin<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
+</div>
+</body>
+</html>
 
---0000000000006131ef063230e1ca--
+--_000_CH2PPF2C97A4CC526CE619D2616765603E6CEAA2CH2PPF2C97A4CC5_--
 
---===============1826272950957452671==
+--===============2548811527358928472==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -213,4 +233,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1826272950957452671==--
+--===============2548811527358928472==--
