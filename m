@@ -2,253 +2,137 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67461A7F7C6
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Apr 2025 10:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D236AA80F95
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Apr 2025 17:17:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B0453385528
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Apr 2025 04:26:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A196A38555D
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Apr 2025 11:17:21 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1744100782; bh=TcyUk5FiuD8T0BnRXxf9Ya5FlzoYRfye4EwPGDOruHM=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=zuTwg/jPmQAzYNl4LJ6Gx8UhBNuEBoJ/Z0vb6nsgUPfjhxb3p2N2uW7JF01kyNGBD
-	 luUHJSBw+VAB0tPuG5SG/B/iIO5kBjk1XpDIDMLhBjjsFPCxu6SZe7FRp1dPEhTiUk
-	 rPza8NYCylzdvcDJOYs2SOjkS+330MQOPdn3CotkLosAcs9a9UnzJP0y36qutxgqWn
-	 2kt5IIdxp5sYry9mS0UDJ8uf9GdLqMAiZtvC7W/CbBakU7T6K10T9g4Is4Gdv3vC1y
-	 5VeSrkvzTJin8wB4XKkdQIK5drF+d84TwDGsE953bxEExbuOfUh0skryul1mPsVXGa
-	 dE+0M69atvPMw==
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id E5525385494
-	for <usrp-users@lists.ettus.com>; Tue,  8 Apr 2025 04:26:11 -0400 (EDT)
+	t=1744125441; bh=CHC5muGM8pjE+PThCyh3I7pIzkGKzMtGMrKi0nrGRf4=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=ZZ1q31TUwnEGQKiZbp6jXbT5+U7Fz/fymtZSJEdS3BK8hqV1yXU6oKmBAGU3Ct67Q
+	 hA3Lr8mM3QXEbtoM/EHn+k4hYxwqMlZd2r269gZpralpX3RpXZ+YGH4V4OfYJe34a2
+	 3ZJ8tSxRvZm3riHNQLWzCxJmzHPlLPjqehURLrQAyvYTnef/OoSOfRtfvQmN+4D1Jy
+	 yOT3lYY4GP4mqDj/+efz9fVmnfM1+ZImPXzMPgQVoHX85pSegdjDLveIw47/GZ88Cv
+	 Vb3W2eiCguubX0XX+8XJQaCG+h7jEEMSyrw+4pfFLnypVP1uvXIjsWZPdm2BMyiPhP
+	 s70mNeYH7qclQ==
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id D12B53854E7
+	for <usrp-users@lists.ettus.com>; Tue,  8 Apr 2025 11:17:14 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="g98V3H9i";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MnZuewag";
 	dkim-atps=neutral
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ac29af3382dso859518466b.2
-        for <usrp-users@lists.ettus.com>; Tue, 08 Apr 2025 01:26:11 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2bb7ca40bso650435766b.3
+        for <usrp-users@lists.ettus.com>; Tue, 08 Apr 2025 08:17:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1744100770; x=1744705570; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3EssE/SVAfRQ0fBwz70ZNefHHpFu+QzzIcD/xbq3Qx0=;
-        b=g98V3H9ird6wZ1J9mjFWOkFHGe4kSkLBYXMQXq5qYq4Y5nRCzH96GGh4ZXdV3S7hCM
-         WwnHwsAGxGn0NzVi3M0mBrSD3sfHM0WinwsiKisoWPLlb4rbrbZPo84JRMOifimICCpg
-         BkVBsQ92M6XmK0alZxz863QMrhzcK/G1gnIIosSobPilQt5NSEfwf2uup2OEwHjGsDpC
-         t0Pi7XCxJQfF/Fuj88JPAwZeGB3nU6gXrTVVvj3nG/bycdrZvmA6X/+Onm1P8dCfwnwT
-         KNAdRBn4fezM0LkuL2maqiFblQTJ8kyItd2pRf8wLTsZfTeGjBeX+T8SoMPzfonEV3Ex
-         ttew==
+        d=gmail.com; s=20230601; t=1744125433; x=1744730233; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=GqGLR9P8jc9j1xOu8TfIPEIty0j17HwfK0p5gifJ59g=;
+        b=MnZuewaga7a7TvSRveIZ/i0dw6Icf11gkN9ih9pgMbeOEzI83SPlcr8a0hDLTl45vc
+         XsRnYleTzo45ekLHDUNUjzpagrQoSGLaVj4WoUbhtywVZhuR9xM3Eg7JLh7RncglABCG
+         ZLwlthr4ZWuqb6Zqyf51lF3JuLwVru1AZb3A2RINiy3Mdd/7mlgnqmy3CM1IRQG7hO+o
+         QjrEYxpOumDVmxAC7yOeWu1ztXadwmPBJuuS/sgLGN0zYYuLgMg3DOlU5KlNN6cbFFu/
+         V/52XDJqO+A3lJUat8LQZu7yHo1D24BTnGchUdzFt+3Bb/jYd8ZUJCQ1jRl14Mcjzif0
+         eUbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744100770; x=1744705570;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3EssE/SVAfRQ0fBwz70ZNefHHpFu+QzzIcD/xbq3Qx0=;
-        b=Cc4DGgKn8vFB1IeTMpBGwXUID8FPJAnUTDT4TkcrUrJ9YhKF4KQHM9Tmpqk8czOMTx
-         ryoS1cAni3d3R5DQmWOucC+QuYjQ2cM7em4y7ZXePJjq9kipl5etwpSCDumq3PA6iOrk
-         08COlvCiqMyhSiC3fdYQwoma1MnnmZCwb3eKpdi0HIO0jmF3a7PvQ4FDuVvjNQjHuR1L
-         BzyfpQSpkMEtZwpi2vQPLXdEW2sO7z2BBvEsuEn3RoiRKRls0WgMarkSTtIPtvKoLqPA
-         +T7NIdyaJeKerAMl4QLSOe8xfepP1qBHhPez+pIRmtZVAkHsZF+zB4M7ItWmIne+VTxp
-         zqFA==
-X-Gm-Message-State: AOJu0Yz4CvacF3sIYJQ3rhS5D4tt+HSuu6ClsLcePzOzj1E/pNrJW1WT
-	UWUOBtH7fKCnkUUhKUJQvgBuPnaJ01vt6Mc5fuBr/V7Zhq3q572getV3wapoKVNRVa9iQcB9iF/
-	AyXXuoL6k8+idXPNlmHoOAC5RP3M0rLGR0+JQETUzsfI7HI7NXIk=
-X-Gm-Gg: ASbGncts20VM19rWA5/WDdrdYFOBepZStrpoZpKgP7s7dfd8KcBd9MOuzvatMGPDe/P
-	x5KI8WaLc0xikVSrn7IPzPeWkBVhm0KqLjulb1ld8a3UTzsWqCcSjTM3Xf2nHNa9a3w+OgiiLAN
-	52YS31cZg51JLIV3kb2/gQ+xvMoFCnKQ+7HO3d+45EUUNceJSg59QGRfYndQ==
-X-Google-Smtp-Source: AGHT+IGBLYKGEZ48m3RMA4JNteS0WVIC/eimD9923eBN9OWOtHb7QGQwomkd3mMul0TvR/iMVbMU4ZT13WoRbWqKSK0=
-X-Received: by 2002:a17:906:e208:b0:ac7:ee99:2eb2 with SMTP id
- a640c23a62f3a-ac7ee993526mr930301666b.16.1744100770021; Tue, 08 Apr 2025
- 01:26:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744125433; x=1744730233;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GqGLR9P8jc9j1xOu8TfIPEIty0j17HwfK0p5gifJ59g=;
+        b=I7IN8Km1sduUJpDpQgeafZRH5GGTGK4+hG4YI9gCRp7kGY2jrNRiOp9ScAUO1VHzr1
+         3JsGkhbpLWZVDM5gVcfU5LyNCcaGYeMH+C7rKc5gfnRyAq3erfa5zu28B11By1oYjeZi
+         BUP88MSHnkfNnK869V1zNDM3/xkfL71oxmRwfGLyri70rvr+Z0lLaCaH/gHD5oTmlBSg
+         SNJDzfWqOFeGw3y/4wmwo9LX0B3ssMnN32rnhP9MtdJvPQsoXQAPjeiDJUHJ3KHJAX8i
+         pF6TPUNFf0YhkbrwBcgpMCGJhDBjSgJfDk/ifbHmcL7qEPJwKsYLtPm6iI7OzfmfAd2W
+         +jiA==
+X-Gm-Message-State: AOJu0YzZpfXg2D8MnJxubPeJxfds49Id17XQKCMEO3DAdBEvKIPagvbA
+	K+IhYC1SVfSO4F8dAWpFYkt1Z7Ffuo4FFqtgYG/gYN9Q6Cy6A6gsXYth8yqAMgkxFbKfU1m22+h
+	/mpfnwKsUW76j1UbYptQirG7Lg9XyGNUF
+X-Gm-Gg: ASbGncvwlWU67BfLHnQJOUGHd6XL3e+d3PC3ZYHyEiOaefvJVwCEhDfl8zJXq73LNkJ
+	sXnYQsTKNPJGURDF6jLgyQaaZd5tZvgCbZkYNI7OIsDyR5BbuGOdX+eE2mrE545MGdUC5+SSQpJ
+	8LmSJ6hJSaSPpazKPs4YaRgOJCI/qDOcKbCsS/
+X-Google-Smtp-Source: AGHT+IGjKMD0bYdydcAsQjon8knwUviTFCcDaZ1LKp/oksJmMaqNPjP4V7kQfAB+1xlOP4Y+kpoNJ7y4alVdBgwnu3o=
+X-Received: by 2002:a17:907:7ba7:b0:ac1:dd6f:f26c with SMTP id
+ a640c23a62f3a-ac7d1c3aa9fmr1418109366b.46.1744125433092; Tue, 08 Apr 2025
+ 08:17:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <OeUulMx5M7plIog6vT8gCEmw5bsKRqfdg3QOAkZuU@lists.ettus.com> <7a236078-fffa-4ed6-a85d-f26c2180e62c@gsi.de>
-In-Reply-To: <7a236078-fffa-4ed6-a85d-f26c2180e62c@gsi.de>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 8 Apr 2025 10:25:59 +0200
-X-Gm-Features: ATxdqUElLx_AUiZKtk4J2fUHa32K9UxF0_R0Xy4x-YaKBrCZnwp8t-ZIk3LEpZY
-Message-ID: <CAFOi1A6qNEwVw798cuhqbFRuHosfBxBVhw2sVtQaTsO4pCu1hg@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: LWSPFUKNMZPYTOQZJR7INAWDVK2LUQFE
-X-Message-ID-Hash: LWSPFUKNMZPYTOQZJR7INAWDVK2LUQFE
-X-MailFrom: martin.braun@ettus.com
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Tue, 8 Apr 2025 11:17:00 -0400
+X-Gm-Features: ATxdqUHbOalMBZqjNYBSNVWFeEkkPDn22VkuOBXUs71hwiKppRCvtKpHo-Yr6MQ
+Message-ID: <CAEXYVK5URPMSAzY0tM1WC9hFT_1PP+nGDoBaJT394spHmwekhA@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: KKFMJA4N42JR47D4CV5J4DSU2L6RLMWC
+X-Message-ID-Hash: KKFMJA4N42JR47D4CV5J4DSU2L6RLMWC
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Control GPIO pins in a custom RFNoC block
+Subject: [USRP-users] RFNoC CHDR Metadata and CHDR_W
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LWSPFUKNMZPYTOQZJR7INAWDVK2LUQFE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KKFMJA4N42JR47D4CV5J4DSU2L6RLMWC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5121523506334816042=="
+Content-Type: multipart/mixed; boundary="===============0397053547549701559=="
 
---===============5121523506334816042==
-Content-Type: multipart/alternative; boundary="000000000000d9a09d0632401a0c"
+--===============0397053547549701559==
+Content-Type: multipart/alternative; boundary="000000000000e22759063245d81c"
 
---000000000000d9a09d0632401a0c
+--000000000000e22759063245d81c
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Philipp,
+I am targeting the X440 with a design that has a CHDR_W of 512 and I'd like
+to use the metadata inside my AXIS stream associated with it.
 
-thanks for sharing this contribution. We'll check out your PR (well, I
-already did a while back) and may incorporate some of it.
+In the RFNoC specification (
+https://files.ettus.com/app_notes/RFNoC_Specification.pdf), table 1 shows
+the CHDR packet with the Metadata being CHDR_W wide. I see the metadata
+listed in the chdr_packet here is a vector of uint64_t:
 
-For this feature, we need to make sure we come up with a way that works
-similarly across devices, and N3xx/X4xx have a slightly different GPIO
-design from X3xx, so some tweaks will be inevitable.
 
---M
+https://files.ettus.com/manual/classuhd_1_1utils_1_1chdr_1_1chdr__packet.html#aa294b5e5291ae8250dab05f2f0339d3f
 
-On Wed, Mar 5, 2025 at 3:33=E2=80=AFPM Philipp Niedermayer <p.niedermayer@g=
-si.de>
-wrote:
+Are there any examples of building a chdr packet with custom metadata that
+I can reference? Especially one that might use a different CHDR_W than
+64-bits and how that might affect things?
 
-> Hi,
->
-> I finally had to go through the GPIO thing for a project where I need
-> access to some of the Daughterboard GPIOs on an X310 from a custom RFNoC
-> block. The application also includes using a spare bit of the data stream
-> to send the GPIO state to the host along the regular stream of samples.
->
-> Since there were quite a few requests on the mailing list in this regard,
-> I pushed the changes I had to make to UHD along with a description of the
-> actions I took in my custom RFNoC block to my GitHub account.
-> You can find it here: https://github.com/eltos/uhd/pull/1
->
-> I introduced a special control register to take control over certain pins
-> from within my RFNoC block while leaving the other pins under control of
-> the default UHD API or ATR.
->
-> Best
-> Philipp
->
->
-> *From:* yangamelia2333@gmail.com
->
-> *Sent:* Tuesday, 4 July 2023 at 04:23
->
-> *To:* usrp-users@lists.ettus.com
->
-> *Subject:* [USRP-users] Control GPIO pins in a custom RFNoC block
->
-> Hello.
->
-> I want to control GPIO pins in a custom RFNoC block to send a stable GPlO
-> trigger output (X310+UHD4.4 + Ubuntu 18.04). But I have no idea how to
-> implement this because l didn't find the GPIO interface in the RFNoC
-> specification.
->
-> Also I don't want to use the rfnoc.radio_control.set_gpio_attr() command.
-> Due to the host's uncertain delay, the output triggering interval may
-> differ.
->
-> I really hope someone can help me and give me some hints
->
-> Amelia
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Am I venturing into untested territory which may have a lot of potential
+issues?
 
---000000000000d9a09d0632401a0c
+Any insights would be appreciated.
+
+Thanks,
+Brian
+
+--000000000000e22759063245d81c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Philipp,</div><div><br></div><div>thanks for sharing =
-this contribution. We&#39;ll check out your PR (well, I already did a while=
- back) and may incorporate some of it.</div><div><br></div><div>For this fe=
-ature, we need to make sure we come up with a way that works similarly acro=
-ss devices, and N3xx/X4xx have a slightly different GPIO design from X3xx, =
-so some tweaks will be inevitable.</div><div><br></div><div>--M</div></div>=
-<br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Wed, Mar 5, 2025 at 3:33=E2=80=AFPM Philipp Niedermayer =
-&lt;<a href=3D"mailto:p.niedermayer@gsi.de">p.niedermayer@gsi.de</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><u></u>
+<div dir=3D"ltr">I am targeting the X440 with a design that has a CHDR_W of=
+ 512 and I&#39;d like to use the metadata inside my AXIS stream associated =
+with it.<div><br></div><div>In the RFNoC specification (<a href=3D"https://=
+files.ettus.com/app_notes/RFNoC_Specification.pdf">https://files.ettus.com/=
+app_notes/RFNoC_Specification.pdf</a>), table 1 shows the CHDR packet with =
+the Metadata being CHDR_W wide. I see the metadata listed in the chdr_packe=
+t here is a vector of uint64_t:</div><div><br></div><div>=C2=A0=C2=A0<a hre=
+f=3D"https://files.ettus.com/manual/classuhd_1_1utils_1_1chdr_1_1chdr__pack=
+et.html#aa294b5e5291ae8250dab05f2f0339d3f">https://files.ettus.com/manual/c=
+lassuhd_1_1utils_1_1chdr_1_1chdr__packet.html#aa294b5e5291ae8250dab05f2f033=
+9d3f</a></div><div><br></div><div>Are there any examples of building a chdr=
+ packet with custom metadata that I can reference? Especially one that migh=
+t use a different CHDR_W than 64-bits and how that might affect things?</di=
+v><div><br></div><div>Am I venturing into untested territory which may have=
+ a lot of potential issues?</div><div><br></div><div>Any insights would be =
+appreciated.</div><div><br></div><div>Thanks,</div><div>Brian</div></div>
 
- =20
-   =20
- =20
-  <div>
-    <p>Hi,</p>
-    <p>I finally had to go through the GPIO thing for a project where I
-      need access to some of the Daughterboard GPIOs on an X310 from a
-      custom RFNoC block. The application also includes using a spare
-      bit of the data stream to send the GPIO state to the host along
-      the regular stream of samples.<br>
-    </p>
-    <p>Since there were quite a few requests on the mailing list in this
-      regard, I pushed the changes I had to make to UHD along with a
-      description of the actions I took in my custom RFNoC block to my
-      GitHub account.<br>
-      You can find it here: <a href=3D"https://github.com/eltos/uhd/pull/1"=
- target=3D"_blank">https://github.com/eltos/uhd/pull/1</a></p>
-    <p>I introduced a special control register to take control over
-      certain pins from within my RFNoC block while leaving the other
-      pins under control of the default UHD API or ATR.<br>
-    </p>
-    <p>Best<br>
-      Philipp</p>
-    <p></p>
-    <div><br>
-      <div id=3D"m_-5570559748468483736rwhHeaders" style=3D"border-width:1p=
-t medium medium;border-style:solid none none;border-color:rgb(181,196,223) =
-currentcolor currentcolor;padding:3pt 0cm 0cm;width:100%">
-        <p style=3D"margin:0cm"><span><b>From:</b>
-            <a href=3D"mailto:yangamelia2333@gmail.com" target=3D"_blank">y=
-angamelia2333@gmail.com</a></span></p>
-        <p style=3D"margin:0cm"><span><b>Sent:</b> Tuesday, 4 July 2023 at
-            04:23</span></p>
-        <p style=3D"margin:0cm"><span><b>To:</b>
-            <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
->usrp-users@lists.ettus.com</a></span></p>
-        <p style=3D"margin:0cm"><span><b>Subject:</b> [USRP-users] Control
-            GPIO pins in a custom RFNoC block</span></p>
-      </div>
-      <br>
-    </div>
-    <blockquote type=3D"cite" style=3D"border:medium;padding-left:0px;margi=
-n-left:0px">
-     =20
-      <p>Hello.</p>
-      <p>I want to control GPIO pins in a custom RFNoC block to
-        send a stable GPlO trigger output (X310+UHD4.4 + Ubuntu 18.04).
-        But I have no idea how to implement this because l didn&#39;t find
-        the GPIO interface in the RFNoC specification.</p>
-      <p>Also I don&#39;t want to use the <code>rfnoc.radio_control.set_gpi=
-o_attr()</code>
-        command. Due to the host&#39;s uncertain delay, the output
-        triggering interval may differ.</p>
-      <p>I really hope someone can help me and give me some hints</p>
-      <p>Amelia</p>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-  </div>
+--000000000000e22759063245d81c--
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000d9a09d0632401a0c--
-
---===============5121523506334816042==
+--===============0397053547549701559==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -258,4 +142,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5121523506334816042==--
+--===============0397053547549701559==--
