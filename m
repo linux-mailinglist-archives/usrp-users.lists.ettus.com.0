@@ -2,385 +2,413 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0C1A9753F
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Apr 2025 21:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB22A9A278
+	for <lists+usrp-users@lfdr.de>; Thu, 24 Apr 2025 08:40:37 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 95379385429
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Apr 2025 15:17:23 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0E5E6386257
+	for <lists+usrp-users@lfdr.de>; Thu, 24 Apr 2025 02:40:36 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1745349443; bh=f9ehZIcft6lih//W31BoxTX0htnAFEKAlCDZkaam37k=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=cUr0SH+8gautUbYmID+yuyABxKMjA0SWp0AXQo6RQG4TeimxTJyUJTouFG9L37fB5
-	 id1r6QZBqZ5wINgKVoKIdOMNMOEmIode5mgkwd3uNhLYenKkirstaWnGKmejI5jfWp
-	 j0uGXRNKln8qt9MCBxmCVDSXUAH5DP70wZX5RBRgVfPQRzFf8D22cXfkOQ34u7gjpO
-	 fAidLGLhcoZ4CI73lCnG/Wr1yYvCAhRFgDNq34Dt7w8btrFkiS7Cm8Ef9ssdOfpIz+
-	 EOfdhVm6kV2ECzUOtEXIaaD4yK2U1Z4c1JFx97f5ocS2sOsQWicLprqIMuk1D9RofI
-	 KiBQDXFyve62w==
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id 803D9385069
-	for <usrp-users@lists.ettus.com>; Tue, 22 Apr 2025 15:17:00 -0400 (EDT)
+	t=1745476836; bh=UtH8DWJqe3Zf5cmoD6eJVBd2yWWxNhD3j8LjSSgfomk=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=QBO9FRdOUOR6+tdRYrJ6OrHyQ9cd4Lk06uHA2IPP6sLvQ70UcseSmgUfJ6IS5KjA2
+	 Pn5YTToukdhewTeI28zNi5hmEwpTL1sAu4w/86grKv/FsdnS5hOkCvWCJ1yhRy6goc
+	 nlk/p/1U+SRC3uSOvv+6Gf7JSnuJA9qvKC1TWxHp0Wduxb3yQsj5eRBGYOwoKH1MxT
+	 PCXrjIg5YeQvKDvg+jAzRT7ku50BTBlxOQIZh8q61Ol9+vep1aqsyFReO9gPKK12kD
+	 o9efkaq4Y4Y9zk3e+V09kh9Pequ6fg4JUOkXO2lLWi7cqj/29ICgPbWsOvyN4Na7xf
+	 p5Ln5n5HXxPHw==
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id DC96A3860BA
+	for <usrp-users@lists.ettus.com>; Thu, 24 Apr 2025 02:40:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NyzYLLNT";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Ypg4ELDC";
 	dkim-atps=neutral
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54d42884842so7186556e87.2
-        for <usrp-users@lists.ettus.com>; Tue, 22 Apr 2025 12:17:00 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5f5bef591d6so1158166a12.1
+        for <usrp-users@lists.ettus.com>; Wed, 23 Apr 2025 23:40:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745349419; x=1745954219; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dDFZmLzgg4KeBLiSvCeiskaIv6FgzNNzDg+JJmI3zlI=;
-        b=NyzYLLNT5yCeTa+beMC9h/TBtQ+A3VRy2/BFkWevqC7giLtZU7c6mT7WJYSpYQNGq6
-         5WGuAr1BAIzJCgCCRTY19y+zi1FehWGtdkYxP15ZXJVNiv7ZQM8MmFQ5M01kMRtae3Iy
-         +SCtTyIb1sbnQ7+bqNi4MHQi/stZnTsq3nNA/SsGJK5gXa6t1Ndk/D44VsfFBgEVFP6i
-         5DB2PEUtOQRk8QH9Sdd+PUS2qEpFSC5/JK4sbpJ6IaWYLgnTyAXw2dxEyx+UeJJq5f5V
-         Oc8rQ7UUzxGBkOb9BIdxXHI7jGYRSGtP+vO640bD1FwEvzRKefo8NZ5khrSM80wvHZUx
-         tpHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745349419; x=1745954219;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1745476810; x=1746081610; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dDFZmLzgg4KeBLiSvCeiskaIv6FgzNNzDg+JJmI3zlI=;
-        b=pMY8in0npvxkJQK0rA6BrOjcLUwGNdaTkmaz8EWnsaZeBZc/ealWUfWcRcBoucBiEE
-         PBe5eHbBP04iqDonIn/xqAwFHF5sNaG4UrRBTMGIf1Sds0WHdLz9kt0i7HSoJKun4Kg/
-         C86hzOQSKsCdIuYlV2wBrONUxpNFAW+4Cb7vGBVHXV4itgqgUSJuy0gP5LhIHSJAMuwy
-         YOJFybnTTSN99KTL5uBtxumiIrzquRkX1LErJS6HN5mYqkG7EcnsVccoYdxw/ijf3OG5
-         zFIypubtCp0CXe6IfcByqQoHddzsKdAn3XSnXaJW9kqen4bdCsd5amt0LOiWXJB2GaCv
-         00fA==
-X-Gm-Message-State: AOJu0YxJ8mOX5j8zu2ej8ugQT3oBhF+oUT7Uq0C6x8lTsCosFcud8lWN
-	pRvNeIsrVLNwNpCqz75gqveb0HA2P30Kqmr/xA+5V0TykBc3f8Shq96CSNwXJYULoO51qrZ1S47
-	ZxLXHhbqYfGL2TvsaRYczeLJy1Sm4VugZ0F+h2IdT
-X-Gm-Gg: ASbGncsZ0W8vYiDRgfxhaMcmGO9QzhvJAaVBuocPVKHNrqffh3teIcO9arfS+c3Sb6e
-	lYkSGIW76IItlaIVhSnxH8GoVjeyfZAX1nQEnsXJxkJ8FbZguOW3f44kN8ExkmO1wROeTnbAeVu
-	CYxJrTfcM6krDHguSysUzB9A==
-X-Google-Smtp-Source: AGHT+IHKi6Km48xYrlITwqdq3UdX9JRMc3KAJbH6kOMrT72b83rpul4n4Bc5exaL0ZnOONFRjT26omn4KbU8fhdl8Jc=
-X-Received: by 2002:a05:651c:158d:b0:30d:e104:d64a with SMTP id
- 38308e7fff4ca-31090578048mr54202381fa.38.1745349418308; Tue, 22 Apr 2025
- 12:16:58 -0700 (PDT)
+        bh=B8RmeLPFAB/94TgBm8nuVdpd9ecnnLYBjor7/qta0vg=;
+        b=Ypg4ELDCmKI9RogadI18YE6r/nEbb1cFyJzw45vK7JYju/crel8e1C00yKVYB3ytb+
+         /qYhheJ+A9bJVMHGP87iBPis00UgImqKiqWSQrWq2EC3wFtsXkWQyEcmgeoPfKSdxu+D
+         25XUR0gBdUekVwUQQcdY8BpkBmqj9bIdcW5+EVV4NKVPhVvOj7ycH5Km63T2x6ZDh8R/
+         5p1veMqYHMX+j+KVVBInRM5ZQMbGY4aYE7joP2gbySQ2k5GHXvnBN11ad4Ytl+i3Mn7j
+         YxB8eR9I9DaWZmuY047Q9Tu84MNjyFFYPO9ArDehUxxzBTOGNEdfwlqA6APZefZQJKSM
+         YWiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745476810; x=1746081610;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B8RmeLPFAB/94TgBm8nuVdpd9ecnnLYBjor7/qta0vg=;
+        b=Kr0fatuZWMc9s8lpFLSEY2MYqo9SFt2jtE3Szlva2/GQQ8O6Tly0ZEbuXAbQnASvGr
+         X7/xXkf0bMgJWj+j/BJaqluLSqyMwETEYxTYmUyZQs9Jx7HmDIZpL8C7qYGFPHX/TDqR
+         mR44SYo3973Sz2mTciUZm62LMvDw0aw0u5hyL77CC1uYSSAo9G0EG9i6gamrD7jtrysN
+         7G5HPjZBsVg4wmxHUP8SO/QW5H99BK0zbbAQqiYl18I31l8BAcbxZBe89YfQTlpC6l/X
+         RJz9H4e4QjFDlkQDfHk2/GN3mjYp1khrEA3hETcFC+rLxCpLRnlHuea5fZLGJLCWDAeF
+         zDFA==
+X-Gm-Message-State: AOJu0YyvOH9FflO2EE0JDLDeEoNBnybAb4e4GiBGlXsn6uNW23hz3w9T
+	tGQWn/pypz+36LYO8wIMzMgsl4wtMkueeQX6GerIYxg67+aI9F/Skbw/GYb9RQ4dMRPVL78D1PV
+	ocACRQq3h4TbbeoQwgiqp/ZoYl7N2W2sIBL5pf6VVU4tXaDM4gMY=
+X-Gm-Gg: ASbGncvVuKc/+5SR7t4RVZyGZxfa6c+Hls/F3ZSdSgBpb5foiD7CzxTzK4fikllsuP9
+	KW+RY1ZyJpV+vz8dbKgpf9JIHYTIXiIkMBRVEnRkvelG9WOTQokc2C4wrAPIuzmc+Hi/7t3UIBt
+	kufsOvDNPpxpNZYSr0h1AoT3JTraNsIE38rVNQ5CxgG/tINMK7rsGwZQ==
+X-Google-Smtp-Source: AGHT+IEiHbmnh0SMV7EYh5YH4+RuEpWNt6Lzya5p5jal+6UuOo8h0M5fh9b0bc/B9OrdiNr3wYhVgzhOXDTGSx9aXUk=
+X-Received: by 2002:a05:6402:1d51:b0:5f6:2389:d433 with SMTP id
+ 4fb4d7f45d1cf-5f6de1bf4a3mr1384676a12.2.1745476810025; Wed, 23 Apr 2025
+ 23:40:10 -0700 (PDT)
 MIME-Version: 1.0
-From: sp <stackprogramer@gmail.com>
-Date: Tue, 22 Apr 2025 22:46:46 +0330
-X-Gm-Features: ATxdqUGqTIkMfbFfStflhDQTAYloxOj5_Ato8dluchgtxedtCBDazvWX07LW7gs
-Message-ID: <CAA=S3Pu8SFzGudO-BRav6JMVQS2s61uzxHMta9RNcw3AKCh_xw@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: ZWCYFMKHSHOWZKSVUEO6QXPSFPWXSAZL
-X-Message-ID-Hash: ZWCYFMKHSHOWZKSVUEO6QXPSFPWXSAZL
-X-MailFrom: stackprogramer@gmail.com
+References: <CAA=S3Pu8SFzGudO-BRav6JMVQS2s61uzxHMta9RNcw3AKCh_xw@mail.gmail.com>
+In-Reply-To: <CAA=S3Pu8SFzGudO-BRav6JMVQS2s61uzxHMta9RNcw3AKCh_xw@mail.gmail.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Thu, 24 Apr 2025 08:39:58 +0200
+X-Gm-Features: ATxdqUGkEkaLGxtAeBbnYtY_xGmNbWyy5f_rI7BAHvw9phu2B54oXCzznPmzYNI
+Message-ID: <CAFOi1A4aLzJLjoCt7df8TVCAOPBaMAgaSKSMSw88zYkqaHAXig@mail.gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: V7NV55MUWK2RPKYKJJP24N6APE35X446
+X-Message-ID-Hash: V7NV55MUWK2RPKYKJJP24N6APE35X446
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] When i removed rfnoc block in YML file USRP FPGA image, it is not released resources for rfnoc block
+Subject: [USRP-users] Re: When i removed rfnoc block in YML file USRP FPGA image, it is not released resources for rfnoc block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZWCYFMKHSHOWZKSVUEO6QXPSFPWXSAZL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/V7NV55MUWK2RPKYKJJP24N6APE35X446/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8095947306266112482=="
+Content-Type: multipart/mixed; boundary="===============1208696612102489679=="
 
---===============8095947306266112482==
-Content-Type: multipart/alternative; boundary="000000000000165ba5063362d481"
+--===============1208696612102489679==
+Content-Type: multipart/alternative; boundary="00000000000039bba40633807d23"
 
---000000000000165ba5063362d481
+--00000000000039bba40633807d23
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-When i removed rfnoc block in YML file USRP FPGA image, it is not released
-resources for rfnoc block.My question is how can release some resource on
-FPGA in USRP image with removing some extra RFNOC block like DUC or DCC.
-Why remove rfnoc block on YML file don't have any effect on reducing FPGA
-resource!!
+Removing the RFNoC block from the YAML file is the correct move. Is it
+possible that when you ran rfnoc_image_builder after modifying the YAML
+that it picked up the wrong file?
 
-Thanks in advance
+--M
 
-# General parameters
-# -----------------------------------------
-schema: rfnoc_imagebuilder_args # Identifier for the schema used to
-validate this file
-copyright: 'Ettus Research, A National Instruments Brand' # Copyright
-information used in file headers
-license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License information
-used in file headers
-version: '1.0' # File version
-rfnoc_version: '1.0' # RFNoC protocol version
-chdr_width: 64 # Bit width of the CHDR bus for this image
-device: 'x300'
-default_target: 'X300_HG'
+On Tue, Apr 22, 2025 at 9:17=E2=80=AFPM sp <stackprogramer@gmail.com> wrote=
+:
 
-# A list of all stream endpoints in design
-# ----------------------------------------
-stream_endpoints:
-ep0: # Stream endpoint name
-ctrl: True # Endpoint passes control traffic
-data: True # Endpoint passes data traffic
-buff_size: 32768 # Ingress buffer size for data
-ep1: # Stream endpoint name
-ctrl: False # Endpoint passes control traffic
-data: True # Endpoint passes data traffic
-buff_size: 0 # Ingress buffer size for data
-ep2: # Stream endpoint name
-ctrl: False # Endpoint passes control traffic
-data: True # Endpoint passes data traffic
-buff_size: 32768 # Ingress buffer size for data
-ep3: # Stream endpoint name
-ctrl: False # Endpoint passes control traffic
-data: True # Endpoint passes data traffic
-buff_size: 0 # Ingress buffer size for data
-ep4: # Stream endpoint name
-ctrl: False # Endpoint passes control traffic
-data: True # Endpoint passes data traffic
-buff_size: 4096 # Ingress buffer size for data
-ep5: # Stream endpoint name
-ctrl: False # Endpoint passes control traffic
-data: True # Endpoint passes data traffic
-buff_size: 4096 # Ingress buffer size for data
+> When i removed rfnoc block in YML file USRP FPGA image, it is not release=
+d
+> resources for rfnoc block.My question is how can release some resource on
+> FPGA in USRP image with removing some extra RFNOC block like DUC or DCC.
+> Why remove rfnoc block on YML file don't have any effect on reducing FPGA
+> resource!!
+>
+> Thanks in advance
+>
+> # General parameters
+> # -----------------------------------------
+> schema: rfnoc_imagebuilder_args # Identifier for the schema used to
+> validate this file
+> copyright: 'Ettus Research, A National Instruments Brand' # Copyright
+> information used in file headers
+> license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License
+> information used in file headers
+> version: '1.0' # File version
+> rfnoc_version: '1.0' # RFNoC protocol version
+> chdr_width: 64 # Bit width of the CHDR bus for this image
+> device: 'x300'
+> default_target: 'X300_HG'
+>
+> # A list of all stream endpoints in design
+> # ----------------------------------------
+> stream_endpoints:
+> ep0: # Stream endpoint name
+> ctrl: True # Endpoint passes control traffic
+> data: True # Endpoint passes data traffic
+> buff_size: 32768 # Ingress buffer size for data
+> ep1: # Stream endpoint name
+> ctrl: False # Endpoint passes control traffic
+> data: True # Endpoint passes data traffic
+> buff_size: 0 # Ingress buffer size for data
+> ep2: # Stream endpoint name
+> ctrl: False # Endpoint passes control traffic
+> data: True # Endpoint passes data traffic
+> buff_size: 32768 # Ingress buffer size for data
+> ep3: # Stream endpoint name
+> ctrl: False # Endpoint passes control traffic
+> data: True # Endpoint passes data traffic
+> buff_size: 0 # Ingress buffer size for data
+> ep4: # Stream endpoint name
+> ctrl: False # Endpoint passes control traffic
+> data: True # Endpoint passes data traffic
+> buff_size: 4096 # Ingress buffer size for data
+> ep5: # Stream endpoint name
+> ctrl: False # Endpoint passes control traffic
+> data: True # Endpoint passes data traffic
+> buff_size: 4096 # Ingress buffer size for data
+>
+> # A list of all NoC blocks in design
+> # ----------------------------------
+> noc_blocks:
+> duc0: # NoC block name
+> block_desc: 'duc.yml' # Block device descriptor file
+> parameters:
+> NUM_PORTS: 1
+> ddc0:
+> block_desc: 'ddc.yml'
+> parameters:
+> NUM_PORTS: 2
+> radio0:
+> block_desc: 'radio_2x64.yml'
+> duc1:
+> block_desc: 'duc.yml'
+> parameters:
+> NUM_PORTS: 1
+> ddc1:# General parameters
+> # -----------------------------------------
+> schema: rfnoc_imagebuilder_args         # Identifier for the schema used
+> to validate this file
+> copyright: 'Ettus Research, A National Instruments Brand' # Copyright
+> information used in file headers
+> license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License
+> information used in file headers
+> version: '1.0'                          # File version
+> rfnoc_version: '1.0'                    # RFNoC protocol version
+> chdr_width: 64                          # Bit width of the CHDR bus for
+> this image
+> device: 'x300'
+> default_target: 'X300_HG'
+>
+> # A list of all stream endpoints in design
+> # ----------------------------------------
+> stream_endpoints:
+>   ep0:                       # Stream endpoint name
+>     ctrl: True                      # Endpoint passes control traffic
+>     data: True                      # Endpoint passes data traffic
+>     buff_size: 32768                # Ingress buffer size for data
+>   ep1:                       # Stream endpoint name
+>     ctrl: False                     # Endpoint passes control traffic
+>     data: True                      # Endpoint passes data traffic
+>     buff_size: 0                    # Ingress buffer size for data
+>   ep2:                       # Stream endpoint name
+>     ctrl: False                     # Endpoint passes control traffic
+>     data: True                      # Endpoint passes data traffic
+>     buff_size: 32768                # Ingress buffer size for data
+>   ep3:                       # Stream endpoint name
+>     ctrl: False                     # Endpoint passes control traffic
+>     data: True                      # Endpoint passes data traffic
+>     buff_size: 0                    # Ingress buffer size for data
+>   ep4:                       # Stream endpoint name
+>     ctrl: False                     # Endpoint passes control traffic
+>     data: True                      # Endpoint passes data traffic
+>     buff_size: 4096                 # Ingress buffer size for data
+>   ep5:                       # Stream endpoint name
+>     ctrl: False                     # Endpoint passes control traffic
+>     data: True                      # Endpoint passes data traffic
+>     buff_size: 4096                 # Ingress buffer size for data
+>
+> # A list of all NoC blocks in design
+> # ----------------------------------
+> noc_blocks:
+>   duc0:                      # NoC block name
+>     block_desc: 'duc.yml'    # Block device descriptor file
+>     parameters:
+>       NUM_PORTS: 1
+>   ddc0:
+>     block_desc: 'ddc.yml'
+>     parameters:
+>       NUM_PORTS: 2
+>   radio0:
+>     block_desc: 'radio_2x64.yml'
+>   duc1:
+>     block_desc: 'duc.yml'
+>     parameters:
+>       NUM_PORTS: 1
+>   ddc1:
+>     block_desc: 'ddc.yml'
+>     parameters:
+>       NUM_PORTS: 2
+>   radio1:
+>     block_desc: 'radio_2x64.yml'
+>   replay0:
+>     block_desc: 'replay.yml'
+>     parameters:
+>       NUM_PORTS: 2
+>       MEM_ADDR_W: 30
+>
+> # A list of all static connections in design
+> # ------------------------------------------
+> # Format: A list of connection maps (list of key-value pairs) with the
+> following keys
+> #         - srcblk  =3D Source block to connect
+> #         - srcport =3D Port on the source block to connect
+> #         - dstblk  =3D Destination block to connect
+> #         - dstport =3D Port on the destination block to connect
+> connections:
+>   # ep0 to radio0(0) - RFA TX
+>   - { srcblk: ep0,    srcport: out0,  dstblk: duc0,   dstport: in_0 }
+>   - { srcblk: duc0,   srcport: out_0, dstblk: radio0, dstport: in_0 }
+>   # radio(0) to ep0 - RFA RX
+>   - { srcblk: radio0, srcport: out_0, dstblk: ddc0,   dstport: in_0 }
+>   - { srcblk: ddc0,   srcport: out_0, dstblk: ep0,    dstport: in0  }
+>   # radio0(1) to ep1 - RFA RX
+>   - { srcblk: radio0, srcport: out_1, dstblk: ddc0,   dstport: in_1 }
+>   - { srcblk: ddc0,   srcport: out_1, dstblk: ep1,    dstport: in0  }
+>   # ep2 to radio1(0) - RFA TX
+>   - { srcblk: ep2,    srcport: out0,  dstblk: duc1,   dstport: in_0 }
+>   - { srcblk: duc1,   srcport: out_0, dstblk: radio1, dstport: in_0 }
+>   # radio1(0) to ep2 - RFA RX
+>   - { srcblk: radio1, srcport: out_0, dstblk: ddc1,   dstport: in_0 }
+>   - { srcblk: ddc1,   srcport: out_0, dstblk: ep2,    dstport: in0  }
+>   # radio0(1) to ep3 - RFA RX
+>   - { srcblk: radio1, srcport: out_1, dstblk: ddc1,   dstport: in_1 }
+>   - { srcblk: ddc1,   srcport: out_1, dstblk: ep3,    dstport: in0  }
+>   # ep4 to replay0(0)
+>   - { srcblk: ep4,     srcport: out0,  dstblk: replay0, dstport: in_0 }
+>   # replay0(0) to ep4
+>   - { srcblk: replay0, srcport: out_0, dstblk: ep4,     dstport: in0  }
+>   # ep5 to replay0(1)
+>   - { srcblk: ep5,     srcport: out0,  dstblk: replay0, dstport: in_1 }
+>   # replay0(1) to ep5
+>   - { srcblk: replay0, srcport: out_1, dstblk: ep5,     dstport: in0  }
+>   # BSP Connections
+>   - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
+> ctrlport_radio0 }
+>   - { srcblk: radio1, srcport: ctrl_port, dstblk: _device_, dstport:
+> ctrlport_radio1 }
+>   - { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: dram =
+}
+>   - { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
+> x300_radio }
+>   - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, dstport:
+> x300_radio }
+>   - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
+> time_keeper }
+>   - { srcblk: _device_, srcport: time_keeper, dstblk: radio1, dstport:
+> time_keeper }
+>
+> # A list of all clock domain connections in design
+> # ------------------------------------------
+> # Format: A list of connection maps (list of key-value pairs) with the
+> following keys
+> #         - srcblk  =3D Source block to connect (Always "_device"_)
+> #         - srcport =3D Clock domain on the source block to connect
+> #         - dstblk  =3D Destination block to connect
+> #         - dstport =3D Clock domain on the destination block to connect
+> clk_domains:
+>   - { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio }
+>   - { srcblk: _device_, srcport: ce,    dstblk: ddc0,   dstport: ce    }
+>   - { srcblk: _device_, srcport: ce,    dstblk: duc0,   dstport: ce    }
+>   - { srcblk: _device_, srcport: radio, dstblk: radio1, dstport: radio }
+>   - { srcblk: _device_, srcport: ce,    dstblk: ddc1,   dstport: ce    }
+>   - { srcblk: _device_, srcport: ce,    dstblk: duc1,   dstport: ce    }
+>   - { srcblk: _device_, srcport: dram,  dstblk: replay0, dstport: mem  }
+> block_desc: 'ddc.yml'
+> parameters:
+> NUM_PORTS: 2
+> radio1:
+> block_desc: 'radio_2x64.yml'
+> replay0:
+> block_desc: 'replay.yml'
+> parameters:
+> NUM_PORTS: 2
+> MEM_ADDR_W: 30
+>
+> # A list of all static connections in design
+> # ------------------------------------------
+> # Format: A list of connection maps (list of key-value pairs) with the
+> following keys
+> # - srcblk =3D Source block to connect
+> # - srcport =3D Port on the source block to connect
+> # - dstblk =3D Destination block to connect
+> # - dstport =3D Port on the destination block to connect
+> connections:
+> # ep0 to radio0(0) - RFA TX
+> - { srcblk: ep0, srcport: out0, dstblk: duc0, dstport: in_0 }
+> - { srcblk: duc0, srcport: out_0, dstblk: radio0, dstport: in_0 }
+> # radio(0) to ep0 - RFA RX
+> - { srcblk: radio0, srcport: out_0, dstblk: ddc0, dstport: in_0 }
+> - { srcblk: ddc0, srcport: out_0, dstblk: ep0, dstport: in0 }
+> # radio0(1) to ep1 - RFA RX
+> - { srcblk: radio0, srcport: out_1, dstblk: ddc0, dstport: in_1 }
+> - { srcblk: ddc0, srcport: out_1, dstblk: ep1, dstport: in0 }
+> # ep2 to radio1(0) - RFA TX
+> - { srcblk: ep2, srcport: out0, dstblk: duc1, dstport: in_0 }
+> - { srcblk: duc1, srcport: out_0, dstblk: radio1, dstport: in_0 }
+> # radio1(0) to ep2 - RFA RX
+> - { srcblk: radio1, srcport: out_0, dstblk: ddc1, dstport: in_0 }
+> - { srcblk: ddc1, srcport: out_0, dstblk: ep2, dstport: in0 }
+> # radio0(1) to ep3 - RFA RX
+> - { srcblk: radio1, srcport: out_1, dstblk: ddc1, dstport: in_1 }
+> - { srcblk: ddc1, srcport: out_1, dstblk: ep3, dstport: in0 }
+> # ep4 to replay0(0)
+> - { srcblk: ep4, srcport: out0, dstblk: replay0, dstport: in_0 }
+> # replay0(0) to ep4
+> - { srcblk: replay0, srcport: out_0, dstblk: ep4, dstport: in0 }
+> # ep5 to replay0(1)
+> - { srcblk: ep5, srcport: out0, dstblk: replay0, dstport: in_1 }
+> # replay0(1) to ep5
+> - { srcblk: replay0, srcport: out_1, dstblk: ep5, dstport: in0 }
+> # BSP Connections
+> - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
+> ctrlport_radio0 }
+> - { srcblk: radio1, srcport: ctrl_port, dstblk: _device_, dstport:
+> ctrlport_radio1 }
+> - { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: dram }
+> - { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
+> x300_radio }
+> - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, dstport:
+> x300_radio }
+> - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
+> time_keeper }
+> - { srcblk: _device_, srcport: time_keeper, dstblk: radio1, dstport:
+> time_keeper }
+>
+> # A list of all clock domain connections in design
+> # ------------------------------------------
+> # Format: A list of connection maps (list of key-value pairs) with the
+> following keys
+> # - srcblk =3D Source block to connect (Always "_device"_)
+> # - srcport =3D Clock domain on the source block to connect
+> # - dstblk =3D Destination block to connect
+> # - dstport =3D Clock domain on the destination block to connect
+> clk_domains:
+> - { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio }
+> - { srcblk: _device_, srcport: ce, dstblk: ddc0, dstport: ce }
+> - { srcblk: _device_, srcport: ce, dstblk: duc0, dstport: ce }
+> - { srcblk: _device_, srcport: radio, dstblk: radio1, dstport: radio }
+> - { srcblk: _device_, srcport: ce, dstblk: ddc1, dstport: ce }
+> - { srcblk: _device_, srcport: ce, dstblk: duc1, dstport: ce }
+> - { srcblk: _device_, srcport: dram, dstblk: replay0, dstport: mem }
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-# A list of all NoC blocks in design
-# ----------------------------------
-noc_blocks:
-duc0: # NoC block name
-block_desc: 'duc.yml' # Block device descriptor file
-parameters:
-NUM_PORTS: 1
-ddc0:
-block_desc: 'ddc.yml'
-parameters:
-NUM_PORTS: 2
-radio0:
-block_desc: 'radio_2x64.yml'
-duc1:
-block_desc: 'duc.yml'
-parameters:
-NUM_PORTS: 1
-ddc1:# General parameters
-# -----------------------------------------
-schema: rfnoc_imagebuilder_args         # Identifier for the schema used to
-validate this file
-copyright: 'Ettus Research, A National Instruments Brand' # Copyright
-information used in file headers
-license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License information
-used in file headers
-version: '1.0'                          # File version
-rfnoc_version: '1.0'                    # RFNoC protocol version
-chdr_width: 64                          # Bit width of the CHDR bus for
-this image
-device: 'x300'
-default_target: 'X300_HG'
-
-# A list of all stream endpoints in design
-# ----------------------------------------
-stream_endpoints:
-  ep0:                       # Stream endpoint name
-    ctrl: True                      # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 32768                # Ingress buffer size for data
-  ep1:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 0                    # Ingress buffer size for data
-  ep2:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 32768                # Ingress buffer size for data
-  ep3:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 0                    # Ingress buffer size for data
-  ep4:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 4096                 # Ingress buffer size for data
-  ep5:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 4096                 # Ingress buffer size for data
-
-# A list of all NoC blocks in design
-# ----------------------------------
-noc_blocks:
-  duc0:                      # NoC block name
-    block_desc: 'duc.yml'    # Block device descriptor file
-    parameters:
-      NUM_PORTS: 1
-  ddc0:
-    block_desc: 'ddc.yml'
-    parameters:
-      NUM_PORTS: 2
-  radio0:
-    block_desc: 'radio_2x64.yml'
-  duc1:
-    block_desc: 'duc.yml'
-    parameters:
-      NUM_PORTS: 1
-  ddc1:
-    block_desc: 'ddc.yml'
-    parameters:
-      NUM_PORTS: 2
-  radio1:
-    block_desc: 'radio_2x64.yml'
-  replay0:
-    block_desc: 'replay.yml'
-    parameters:
-      NUM_PORTS: 2
-      MEM_ADDR_W: 30
-
-# A list of all static connections in design
-# ------------------------------------------
-# Format: A list of connection maps (list of key-value pairs) with the
-following keys
-#         - srcblk  = Source block to connect
-#         - srcport = Port on the source block to connect
-#         - dstblk  = Destination block to connect
-#         - dstport = Port on the destination block to connect
-connections:
-  # ep0 to radio0(0) - RFA TX
-  - { srcblk: ep0,    srcport: out0,  dstblk: duc0,   dstport: in_0 }
-  - { srcblk: duc0,   srcport: out_0, dstblk: radio0, dstport: in_0 }
-  # radio(0) to ep0 - RFA RX
-  - { srcblk: radio0, srcport: out_0, dstblk: ddc0,   dstport: in_0 }
-  - { srcblk: ddc0,   srcport: out_0, dstblk: ep0,    dstport: in0  }
-  # radio0(1) to ep1 - RFA RX
-  - { srcblk: radio0, srcport: out_1, dstblk: ddc0,   dstport: in_1 }
-  - { srcblk: ddc0,   srcport: out_1, dstblk: ep1,    dstport: in0  }
-  # ep2 to radio1(0) - RFA TX
-  - { srcblk: ep2,    srcport: out0,  dstblk: duc1,   dstport: in_0 }
-  - { srcblk: duc1,   srcport: out_0, dstblk: radio1, dstport: in_0 }
-  # radio1(0) to ep2 - RFA RX
-  - { srcblk: radio1, srcport: out_0, dstblk: ddc1,   dstport: in_0 }
-  - { srcblk: ddc1,   srcport: out_0, dstblk: ep2,    dstport: in0  }
-  # radio0(1) to ep3 - RFA RX
-  - { srcblk: radio1, srcport: out_1, dstblk: ddc1,   dstport: in_1 }
-  - { srcblk: ddc1,   srcport: out_1, dstblk: ep3,    dstport: in0  }
-  # ep4 to replay0(0)
-  - { srcblk: ep4,     srcport: out0,  dstblk: replay0, dstport: in_0 }
-  # replay0(0) to ep4
-  - { srcblk: replay0, srcport: out_0, dstblk: ep4,     dstport: in0  }
-  # ep5 to replay0(1)
-  - { srcblk: ep5,     srcport: out0,  dstblk: replay0, dstport: in_1 }
-  # replay0(1) to ep5
-  - { srcblk: replay0, srcport: out_1, dstblk: ep5,     dstport: in0  }
-  # BSP Connections
-  - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
-ctrlport_radio0 }
-  - { srcblk: radio1, srcport: ctrl_port, dstblk: _device_, dstport:
-ctrlport_radio1 }
-  - { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: dram }
-  - { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
-x300_radio }
-  - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, dstport:
-x300_radio }
-  - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
-time_keeper }
-  - { srcblk: _device_, srcport: time_keeper, dstblk: radio1, dstport:
-time_keeper }
-
-# A list of all clock domain connections in design
-# ------------------------------------------
-# Format: A list of connection maps (list of key-value pairs) with the
-following keys
-#         - srcblk  = Source block to connect (Always "_device"_)
-#         - srcport = Clock domain on the source block to connect
-#         - dstblk  = Destination block to connect
-#         - dstport = Clock domain on the destination block to connect
-clk_domains:
-  - { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio }
-  - { srcblk: _device_, srcport: ce,    dstblk: ddc0,   dstport: ce    }
-  - { srcblk: _device_, srcport: ce,    dstblk: duc0,   dstport: ce    }
-  - { srcblk: _device_, srcport: radio, dstblk: radio1, dstport: radio }
-  - { srcblk: _device_, srcport: ce,    dstblk: ddc1,   dstport: ce    }
-  - { srcblk: _device_, srcport: ce,    dstblk: duc1,   dstport: ce    }
-  - { srcblk: _device_, srcport: dram,  dstblk: replay0, dstport: mem  }
-block_desc: 'ddc.yml'
-parameters:
-NUM_PORTS: 2
-radio1:
-block_desc: 'radio_2x64.yml'
-replay0:
-block_desc: 'replay.yml'
-parameters:
-NUM_PORTS: 2
-MEM_ADDR_W: 30
-
-# A list of all static connections in design
-# ------------------------------------------
-# Format: A list of connection maps (list of key-value pairs) with the
-following keys
-# - srcblk = Source block to connect
-# - srcport = Port on the source block to connect
-# - dstblk = Destination block to connect
-# - dstport = Port on the destination block to connect
-connections:
-# ep0 to radio0(0) - RFA TX
-- { srcblk: ep0, srcport: out0, dstblk: duc0, dstport: in_0 }
-- { srcblk: duc0, srcport: out_0, dstblk: radio0, dstport: in_0 }
-# radio(0) to ep0 - RFA RX
-- { srcblk: radio0, srcport: out_0, dstblk: ddc0, dstport: in_0 }
-- { srcblk: ddc0, srcport: out_0, dstblk: ep0, dstport: in0 }
-# radio0(1) to ep1 - RFA RX
-- { srcblk: radio0, srcport: out_1, dstblk: ddc0, dstport: in_1 }
-- { srcblk: ddc0, srcport: out_1, dstblk: ep1, dstport: in0 }
-# ep2 to radio1(0) - RFA TX
-- { srcblk: ep2, srcport: out0, dstblk: duc1, dstport: in_0 }
-- { srcblk: duc1, srcport: out_0, dstblk: radio1, dstport: in_0 }
-# radio1(0) to ep2 - RFA RX
-- { srcblk: radio1, srcport: out_0, dstblk: ddc1, dstport: in_0 }
-- { srcblk: ddc1, srcport: out_0, dstblk: ep2, dstport: in0 }
-# radio0(1) to ep3 - RFA RX
-- { srcblk: radio1, srcport: out_1, dstblk: ddc1, dstport: in_1 }
-- { srcblk: ddc1, srcport: out_1, dstblk: ep3, dstport: in0 }
-# ep4 to replay0(0)
-- { srcblk: ep4, srcport: out0, dstblk: replay0, dstport: in_0 }
-# replay0(0) to ep4
-- { srcblk: replay0, srcport: out_0, dstblk: ep4, dstport: in0 }
-# ep5 to replay0(1)
-- { srcblk: ep5, srcport: out0, dstblk: replay0, dstport: in_1 }
-# replay0(1) to ep5
-- { srcblk: replay0, srcport: out_1, dstblk: ep5, dstport: in0 }
-# BSP Connections
-- { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
-ctrlport_radio0 }
-- { srcblk: radio1, srcport: ctrl_port, dstblk: _device_, dstport:
-ctrlport_radio1 }
-- { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: dram }
-- { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
-x300_radio }
-- { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, dstport:
-x300_radio }
-- { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
-time_keeper }
-- { srcblk: _device_, srcport: time_keeper, dstblk: radio1, dstport:
-time_keeper }
-
-# A list of all clock domain connections in design
-# ------------------------------------------
-# Format: A list of connection maps (list of key-value pairs) with the
-following keys
-# - srcblk = Source block to connect (Always "_device"_)
-# - srcport = Clock domain on the source block to connect
-# - dstblk = Destination block to connect
-# - dstport = Clock domain on the destination block to connect
-clk_domains:
-- { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio }
-- { srcblk: _device_, srcport: ce, dstblk: ddc0, dstport: ce }
-- { srcblk: _device_, srcport: ce, dstblk: duc0, dstport: ce }
-- { srcblk: _device_, srcport: radio, dstblk: radio1, dstport: radio }
-- { srcblk: _device_, srcport: ce, dstblk: ddc1, dstport: ce }
-- { srcblk: _device_, srcport: ce, dstblk: duc1, dstport: ce }
-- { srcblk: _device_, srcport: dram, dstblk: replay0, dstport: mem }
-
---000000000000165ba5063362d481
+--00000000000039bba40633807d23
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">When i removed rfnoc block in YML file USRP FPGA image, it=
- is not released resources for rfnoc block.My question=C2=A0is how can rele=
-ase some resource on FPGA in USRP image with removing some extra RFNOC bloc=
-k like DUC or DCC.=C2=A0<br><div>Why remove rfnoc block on YML file don&#39=
-;t have any effect on reducing=C2=A0FPGA resource!!=C2=A0</div><div><br></d=
-iv><div>Thanks in advance</div><div><br></div><div><div style=3D"color:rgb(=
-0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monosp=
-ace;font-size:12px;line-height:16px;white-space:pre"><div><span style=3D"co=
+<div dir=3D"ltr"><div>Removing the RFNoC block from the YAML file is the co=
+rrect move. Is it possible that when you ran rfnoc_image_builder after modi=
+fying the YAML that it picked up the wrong file?</div><div><br></div><div>-=
+-M</div></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Tue, Apr 22, 2025 at 9:17=E2=80=AFPM sp &l=
+t;<a href=3D"mailto:stackprogramer@gmail.com">stackprogramer@gmail.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr">When i removed rfnoc block in YML file USRP FPGA image, it is n=
+ot released resources for rfnoc block.My question=C2=A0is how can release s=
+ome resource on FPGA in USRP image with removing some extra RFNOC block lik=
+e DUC or DCC.=C2=A0<br><div>Why remove rfnoc block on YML file don&#39;t ha=
+ve any effect on reducing=C2=A0FPGA resource!!=C2=A0</div><div><br></div><d=
+iv>Thanks in advance</div><div><br></div><div><div style=3D"color:rgb(0,0,0=
+);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace;f=
+ont-size:12px;line-height:16px;white-space:pre-wrap"><div><span style=3D"co=
 lor:rgb(0,128,0)"># General parameters</span></div><div><span style=3D"colo=
 r:rgb(0,128,0)"># -----------------------------------------</span></div><di=
 v><span style=3D"color:rgb(128,0,0)">schema</span>: <span style=3D"color:rg=
@@ -834,10 +862,16 @@ style=3D"color:rgb(0,0,255)">_device_</span>, <span style=3D"color:rgb(128,=
 n style=3D"color:rgb(128,0,0)">dstblk</span>: <span style=3D"color:rgb(0,0,=
 255)">replay0</span>, <span style=3D"color:rgb(128,0,0)">dstport</span>: <s=
 pan style=3D"color:rgb(0,0,255)">mem</span>  }</div><br></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---000000000000165ba5063362d481--
+--00000000000039bba40633807d23--
 
---===============8095947306266112482==
+--===============1208696612102489679==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -847,4 +881,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8095947306266112482==--
+--===============1208696612102489679==--
