@@ -2,89 +2,105 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 743CEA9CF37
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Apr 2025 19:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97060A9D10A
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Apr 2025 21:03:32 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4A017386486
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Apr 2025 13:11:41 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8F2A9386250
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Apr 2025 15:03:31 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1745601101; bh=+60T+fxe09Ky95bfrE77kRV0YptC5BpTFCttQ6LlYMs=;
+	t=1745607811; bh=Aw2xYnBhP1mITAuRlCA3AV5r8RmPmmL25q0tJwjr6t0=;
 	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=jRFCF2zyKVOFKUvTxo1GY9FJzKuTzseWxv5ubdmVa1K32zF2sIqhUaevSR57TMU9Y
-	 UT5xSLhqUtIz6mxXfM3Is/j31Beuq/lHYvJ5djqoi+XvU4qqhRL1wkLItShPu3nTkG
-	 64H9FFMY4PdSmeVmMNeSrqJLXABW4qkPp6TxzA4tbzQGukqD6Br+hGbxx+x0ivnADk
-	 W1avTfGWT6zhZ6FJqo79Mjx+KsMhcbDi+6D6IKuj6LPFLh46eCA404jTSICd/4VYpx
-	 uqQiIJEcCrpn+BFyZI5Mi4USEovYZJ3uftPa4tRVUIM07R5oqsnM7yOeVbkokI2+xy
-	 aV56djRxp0lvw==
+	b=rw3JFPgt6N+RBLli79ehfcZ2Kgrj0vAl6BJislKKNa/hr0ruiurAHvh3LtzVK54F4
+	 Aq23IMfkMSogUbvtwzQkKd1/dIHeuud6kI6xka7mHXU4oJ18yHPjMmGfJGkUOFGvju
+	 l0NohGXLKX3IDPJ7Z5hrVlRXIeTK4gtdlfrkQiyzaGJm4mGSganAO+nAuIWHxxlV2/
+	 XjNewRMC96Fs1blssUi6xHPwJhopWZ3fHswAJ9sgyqI5ArDEMn/m92oExtrId6weXS
+	 zDlB8eCudV4gARq1tYlW5IVKOVdNd/Nuih4vWeFVZjVnT39hBdMDYFUM2gSDg4wod+
+	 3vioOQjcBFLxw==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EA4D33863ED
-	for <usrp-users@lists.ettus.com>; Fri, 25 Apr 2025 13:10:36 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5F60D385D96
+	for <usrp-users@lists.ettus.com>; Fri, 25 Apr 2025 15:02:27 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1745601036; bh=Jdb2YAsRqScBoIDx7RscPgLUJsCl5hbZXmhi+poW1Tk=;
+	t=1745607747; bh=F9FBreJDdjkdZcU3Zb7ExzXooK9mrUKxX30gv4XuXN0=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=cMLj9X0Cg1BJIOyT9ORvauU1xGczBNgCqKg6PkGR/7ZqCBRIiwJjfqtqCBYsrsxJu
-	 39/cVmDbG6Uexej36hXTRfEY7zM0wbSQaLNN85H+cNTfBV1G2G+NeFu8URUdQ28EFP
-	 FSfizKsDxddER7EBwlDm4Vr/XKGxbmLcG8+0ee4J+PxleFe1VDrhvHzD5NNuCKeGxC
-	 AANDiFVzGh8TulzHjf65fYfuUj7f1ZOjaXmReoB34SCmzA6wcVf2q+RzPXG9Reg/XH
-	 uI5qgmkuqFse2m8sdpw5veN5jKpiOuUWQUIYKGIy6gDtE/SQn4gARybR84K+IZnEAQ
-	 MI6carvI8pfHg==
-Date: Fri, 25 Apr 2025 17:10:36 +0000
+	b=iLNUAUbAJB+wg5pgyOSZfVPW40gRhcbodlaHPOpwR4DTvwl0cZixu+Edou9n7w1aN
+	 63lNKdW8A/9ijpEVLFazGgo2RLqESql2KLNM392P5KcGu2rCcY6Pwq1pXxxxwDF+Av
+	 7+eu4TVixczulavTaS82kv3YDFTRlEtO8tmcd/0BG0hgVKTfVWXEzekXxE56c0nxF3
+	 w1q6pURwM+4/LWgsQ/jaupuBvXvZI6idy6VsitEtNN64c0vQTePscXeFUDZDvjzlW1
+	 IXALJLgm8E53PA7mXwLyZqsWP0KYXIsNfi/Uiv7VruMuSXnQvx5zBLdV/dFW976QN4
+	 Fo1sTmqPm/fBQ==
+Date: Fri, 25 Apr 2025 19:02:27 +0000
 To: usrp-users@lists.ettus.com
-From: danielmay83@gmail.com
-Message-ID: <VScPoBqdSL1pu7ahJFd2HDH7u61czGhwpeyAhhfqk@lists.ettus.com>
+From: temirkarakurum@gmail.com
+Message-ID: <RlRDgZoDbU9DYRJ5N3MqkhYRVVT4269ou8FPOkWbk@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: O2CigEgJ8a7bLGXktQhKzOD13gEJky2kI91eo1lycTs@lists.ettus.com
+In-Reply-To: a3623d8c-f10a-4b96-acda-ffce28a93007@gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: ZP2Z2WE5JRGHDS6HQAO7M2FTXZZQ2VC3
-X-Message-ID-Hash: ZP2Z2WE5JRGHDS6HQAO7M2FTXZZQ2VC3
-X-MailFrom: danielmay83@gmail.com
+Message-ID-Hash: LJCF72DCNMTECHH6OOIAUBVOPOJSY6AJ
+X-Message-ID-Hash: LJCF72DCNMTECHH6OOIAUBVOPOJSY6AJ
+X-MailFrom: temirkarakurum@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: "Connection refused" error with 100G ports on X440
+Subject: [USRP-users] Re: max input power
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZP2Z2WE5JRGHDS6HQAO7M2FTXZZQ2VC3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LJCF72DCNMTECHH6OOIAUBVOPOJSY6AJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2499901196907622325=="
+Content-Type: multipart/mixed; boundary="===============0386187617877547920=="
 
 This is a multi-part message in MIME format.
 
---===============2499901196907622325==
+--===============0386187617877547920==
 Content-Type: multipart/alternative;
- boundary="b1_VScPoBqdSL1pu7ahJFd2HDH7u61czGhwpeyAhhfqk"
+ boundary="b1_RlRDgZoDbU9DYRJ5N3MqkhYRVVT4269ou8FPOkWbk"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_VScPoBqdSL1pu7ahJFd2HDH7u61czGhwpeyAhhfqk
+--b1_RlRDgZoDbU9DYRJ5N3MqkhYRVVT4269ou8FPOkWbk
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-This was a user error on my part.  My QSFP=E2=80=99s were swapped. =20
+NI mentions:\
+\
+=E2=80=9DThe maximum input power specification of -15 dBm is based off a =
+continuous acquisition, meaning that -15 dBm is the max average power tha=
+t the RF frontend should receive.=C2=A0**It is always recommended to keep=
+ the input signal power level below specification to avoid damaging the d=
+evice.**=C2=A0
 
-My host machine was routing traffic to the correct port, which allowed pi=
-ngs and SSH to work over the swapped ports.  This fooled me into thinking=
- it was connected correctly initially.
+The maximum always-safe peak input power is 0 dBm, across all frequencies=
+.=E2=80=9C\
+\
+Is not this different from what you are suggesting here?\
+\
+\
+\[https://knowledge.ni.com/KnowledgeArticleDetails?id=3DkA03q000001DqecCA=
+C&l=3Den-US\]
 
---b1_VScPoBqdSL1pu7ahJFd2HDH7u61czGhwpeyAhhfqk
+--b1_RlRDgZoDbU9DYRJ5N3MqkhYRVVT4269ou8FPOkWbk
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p>This was a user error on my part.  My QSFP=E2=80=99s were swapped.  </=
-p><p>My host machine was routing traffic to the correct port, which allow=
-ed pings and SSH to work over the swapped ports.  This fooled me into thi=
-nking it was connected correctly initially.</p>
+<p>NI mentions:<br><br>=E2=80=9DThe maximum input power specification of =
+-15 dBm is based off a continuous acquisition, meaning that -15 dBm is th=
+e max average power that the RF frontend should receive.&nbsp;<strong>It =
+is always recommended to keep the input signal power level below specific=
+ation to avoid damaging the device.&nbsp;</strong></p><p>The maximum alwa=
+ys-safe peak input power is 0 dBm, across all frequencies.=E2=80=9C<br><b=
+r>Is not this different from what you are suggesting here?<br><br><br>[ht=
+tps://knowledge.ni.com/KnowledgeArticleDetails?id=3DkA03q000001DqecCAC&am=
+p;l=3Den-US]</p>
 
 
---b1_VScPoBqdSL1pu7ahJFd2HDH7u61czGhwpeyAhhfqk--
+--b1_RlRDgZoDbU9DYRJ5N3MqkhYRVVT4269ou8FPOkWbk--
 
---===============2499901196907622325==
+--===============0386187617877547920==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +110,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2499901196907622325==--
+--===============0386187617877547920==--
