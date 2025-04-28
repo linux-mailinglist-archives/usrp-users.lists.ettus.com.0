@@ -2,1065 +2,1801 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D051A9E5DE
-	for <lists+usrp-users@lfdr.de>; Mon, 28 Apr 2025 03:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F9C6A9E5FA
+	for <lists+usrp-users@lfdr.de>; Mon, 28 Apr 2025 03:53:21 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 61365385E86
-	for <lists+usrp-users@lfdr.de>; Sun, 27 Apr 2025 21:43:03 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 97B7C385255
+	for <lists+usrp-users@lfdr.de>; Sun, 27 Apr 2025 21:53:20 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1745804583; bh=VmelKutcTgf06bVjZBYvQtuJLif0CHOTqZz6U0DrehA=;
+	t=1745805200; bh=ot/OfWp8lS9pC5VNU/0w+9ZD/z41R0do+ejhnlUyf+k=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=pAOGnDnsVbRpm8YSk0gyLYbPq9Py5vR+0NVI7/QY2wyUVGyu/td9hTyhxk0u12e/o
-	 ahrh7HLIecdZe3UXFzpGaowp6V68Ooza3iFjDHh3pa0K1XFV2J3KKSXtmcKJyWqTSt
-	 M4IMjmPqWhRosIdc+r/cUchMnLuL7OUYVvoRcRZ38EU4r6UYwJATv/EqABzKLdc0Q1
-	 99iaDMFzcTYaQ61ZFs2/MV7cVLBDJ3DpSa7OLrublasz94goAii6QIc8r9xkjsishw
-	 u82XbCd7W/4e8ZtaqM83df437pbypA8NLtoU80vtEoCPWEWxNd65CWC3KWeAUhcNM7
-	 XkXnwVDOGD0QQ==
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1056D385DCF
-	for <usrp-users@lists.ettus.com>; Sun, 27 Apr 2025 21:42:02 -0400 (EDT)
+	b=o8nHrO32tyDue7HLpJRVTTZviUCUVjJGC5zUxQDMIjnPsFULp0LF/fNj+4d/oERB/
+	 f6cRsMELbFKIF/j10+8TmxDZNBiBtR+3px7iE7g5gldfzSslsah4XRueUQwink0a+h
+	 7tmFAH4VJi9yp8igqmWLjQNM6NlP5qmI0Mj/MwD1o+I8oeaK6GxRt9iC4vA1kVmB34
+	 pT4d/SIabHnp4z+9g23FUSxpvI7K6t+iRZRgt5OgO4KnsvPvjjQdPkitElSfCzD6Cs
+	 zEKmflaJ1qsv3a9D2FJBh2YQwLkMJAncqyhYcUTcdRI08jaGp/U9+p6paP7f7C/D8t
+	 7WMHE0xlF1E+A==
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 92D0A3854FA
+	for <usrp-users@lists.ettus.com>; Sun, 27 Apr 2025 21:52:19 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YIFxf8f0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nopPDv33";
 	dkim-atps=neutral
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39ee682e0ddso2774549f8f.1
-        for <usrp-users@lists.ettus.com>; Sun, 27 Apr 2025 18:42:02 -0700 (PDT)
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-3d450154245so40162215ab.2
+        for <usrp-users@lists.ettus.com>; Sun, 27 Apr 2025 18:52:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745804522; x=1746409322; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1745805139; x=1746409939; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6beHuthRjXSBJqhNhzQFIt9YO5vpvHZo9StFJaYiKPo=;
-        b=YIFxf8f07EXx4HPRrmqgL4CUUJlteRvCbWsE1LhGJ1xv7icXZZGZigZtOh4wJEpQTS
-         Y7Ew1tHR2Akm7AEcqml5WA2JDmkt0beh+/rb+D9SG6Ms5GArA6QYcy0PiKgEdKXz5ElQ
-         qCynXCtPhuZEv9s4UlwVbns8wZJBfsVlhvS8XzBUBciUoeFh+KEPkqb790TcBd33R6Ir
-         zyT0E3MrXwui8i9rTP1R5YBu3Uow6mGEyHc5YC65byCzElzXB3IxwxwLPD7uEOra9wQJ
-         wZnTSFxzOWCYZe4lEhq2R9xpjquJBjBgxg8EWylCu7o3U2Hhh7Q1pkJZYC1n/NriChvV
-         jBhg==
+        bh=sQdF3RZ7gTxcwUU6wGJ1/rQI3aSCW93+lrxt3LVZrjM=;
+        b=nopPDv33fncbgBtTDjWVHM69x3T6vF6w+yiomagvEvInHHOhF/2XpEHcwyD5j3nZJI
+         aehwKxSP4HaioJIZyDneNXN+SdcSKk6t9aAQ4/lqnA8wWB/9vfKHLJhbTc+iym1rUvC2
+         XI9wYo7TuUUlFrapMXhb1ucsyuo7V3zHc70QDSfNrtfDdk8lbagB+Oin03oDNT57EplZ
+         6HiGVEizsZGeFwP+HMeXBQFCOG1GMi3m2e2i5dSUgtI8wJmu96K79oBq3R2ijGpQHfjg
+         YIT7S+8T4glwQ+qGJCNgOSyB2CvNsxLN9HAF9mpBAYty//ZQu3fouJ/sHLFOl5SMb/VI
+         FsDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745804522; x=1746409322;
+        d=1e100.net; s=20230601; t=1745805139; x=1746409939;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6beHuthRjXSBJqhNhzQFIt9YO5vpvHZo9StFJaYiKPo=;
-        b=FfTiFm5w9XXbcbgVTwF9ts0Gbn3s8PVXdVdLNbJ0ixtIRF1DDPOvdCTNkI+lsKLZ1S
-         BJilgAYpMVGpbSAnx9AUvB0WIMFvZeHczbvnWL2QnrgPB5R5UmhboPVhtCp/kRy/PACp
-         D32a6PIglkO4nMz5RQG3DdBJFWe17JaRhFFQl8ELPdF9CIMViN5xr2VkiDhfxPQaaWUf
-         4kdqIer6pBJ7bjSGfVDx1fZg/Rmrvw5NfMH05jXnTQJQPyJ/ts4LLar0tHJQpPtrmel8
-         MpAb4abKaEMRU+UrIuOlcnDQYMzdZeHP9wOav5CgpfWqCUV10zy/Llm0w4SHj9xXIrdC
-         WZ5A==
-X-Gm-Message-State: AOJu0YzV/GqqL2RrBlv/k0kWDp+TK7Rc+ttbuF0sc1Jyc5lUUHDYaexs
-	6P7TLMdvPCfGgAbm8wAPvJ4DzWNnUzcrUyeMr3XotIhJWcIk9pweYm0+u6I0e+98Jdot9IIeYb5
-	kgVXiWyLXq2Nq5GViqgw7Uv8iKneIBQ==
-X-Gm-Gg: ASbGncsvBmZDXquU/T2fh1+CObpyaIymT6WDeJgbugaR2U0KjdN9NEvFNLcCU9DwRLj
-	T5DjKKJGogvLQfk9/gUQu0QWSlg4oWpqfQyEz0kNJQhNEGxNLz3+XV5K0irG/1mIU1mExzmkRes
-	wCtXKVvbAhVEBNDYHevZMdyh4LyMVW8ae/e9l+kIsikAM27CSMbKpa1y6RNqeNDTBNd90=
-X-Google-Smtp-Source: AGHT+IHJ24KVsINuR6VYtL36khRriTxPGKeB4/nyo+Wi+ZAWgqFU9cj224ZF187E/J+H0NZ4MvRwvytHYFOFVvfKXdk=
-X-Received: by 2002:a05:6000:4287:b0:39c:1257:c96e with SMTP id
- ffacd0b85a97d-3a07adb2353mr4382547f8f.58.1745804521423; Sun, 27 Apr 2025
- 18:42:01 -0700 (PDT)
+        bh=sQdF3RZ7gTxcwUU6wGJ1/rQI3aSCW93+lrxt3LVZrjM=;
+        b=OzwerBrVvOktoTqUbObG6BkPH88o5zrWYCkoyU+v2iNRkfs3b1Yphg6x0py2GQ6dlH
+         81+yYgGtD8YZbnkIQRskaTgSqWp1ozOgTqinNwlADQWprYn8sf8G7+0+9o3wx0bIFNmc
+         rf1L00EqjHJNpiCiFOJFp9aIPe4gdfeJDcu6xLhS6WiO18SkYbahP6MBG71qc42FMuPk
+         MO7OTGf5VgYxc4ZdK1k07EjLQhKGjRS2QbgH9h4XeEQtkNHprBLGrtlC89Q8lwuq9c2J
+         BmxFRc7iSK5F5PIIVuTp6nuU67xeDfG/atty89rjdkc4qiQKW7y/8oDGqmokCFcGux86
+         amlw==
+X-Gm-Message-State: AOJu0YyIQV07Nhe4ZnDWRJ+1GEl6M6TBRPvUrv0Oaaf21MnvSF9/EcfX
+	CM+qx90U7NK27Yy6vIunOPOgWWYiW9fEWxPSeSqsXyAgMXdCNYK6zbPewTJJT5+vDTgMPfp4sW5
+	VKsWnzqz6z/WrEzEHfshbGx0fxzk=
+X-Gm-Gg: ASbGncv+pDJmtpQF6i2Kk86VNV3suuQjdkoMOcI637zZT0tiJZcqPArQETONsmXXEOj
+	WJnf+XyKniMgrb7EH1voBb9Z0r3BCugO0yL0TpFXR4wJaMtP5vnM7OQSiOYp4WjqB1Jo1ex4y3s
+	AR2xhhcPyJeMuFUKwtsirg
+X-Google-Smtp-Source: AGHT+IGIPv3tL6xiOa/rG9/xEoHVsT8ocAVv40fovVs0S1AdvEUxUX3w7HWX1pqp7xj8q+JO9YZhq49dFl5kRz0/iKk=
+X-Received: by 2002:a05:6e02:2188:b0:3d3:e287:3e7a with SMTP id
+ e9e14a558f8ab-3d93b615ccamr107854485ab.19.1745805138851; Sun, 27 Apr 2025
+ 18:52:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAE=q3UPqWBENUkTVYAmNLOWxz7YASQKXs3efupgaAZyB4A3ySA@mail.gmail.com>
- <CAFche=hz48Y41ytuv+cDyj7nLz6VOfkDezQ_qtkHKL1O=qu2Yw@mail.gmail.com>
-In-Reply-To: <CAFche=hz48Y41ytuv+cDyj7nLz6VOfkDezQ_qtkHKL1O=qu2Yw@mail.gmail.com>
-From: David <vitishlsfan21@gmail.com>
-Date: Sun, 27 Apr 2025 18:41:33 -0700
-X-Gm-Features: ATxdqUEBOBG7glbT1XSqv7KMbWKhAxJSD00FD8KyH7DcOuPBXcALBACDntnPX4c
-Message-ID: <CAE=q3UOtsG60dk0pB884WFNbOXf2fKN0q0AjXvmD1Edy-xHGbQ@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Message-ID-Hash: IZ2BAMZOVWOOLRDTIMLBTAI347OWORCX
-X-Message-ID-Hash: IZ2BAMZOVWOOLRDTIMLBTAI347OWORCX
-X-MailFrom: vitishlsfan21@gmail.com
+References: <CAAxXO2G+q1LtJVVQyQt6at2QNh7PfVrrZhHvZauB8QEipF+w6w@mail.gmail.com>
+ <e08576a1-ede9-4f27-9706-8a38cfc50c57@gmail.com> <CAAxXO2GZw0DAYVYFdw3Jx9g5PCivquhcrBB2uk3ZRB4w1KbOvQ@mail.gmail.com>
+ <8660a987-f91a-402f-b575-a5b907a2e55e@gmail.com> <CAAxXO2EyLchisQPwFa9B2s9eO+QR5JV98cfoX1nnRAU7hYaj9g@mail.gmail.com>
+ <709f178e-0d6a-4c76-b40d-b88f5b0c80cf@gmail.com> <CAAxXO2HWGvwy=V80crP6yajNPeYjvn3qYV-kyPPD0Wcaq-4tAA@mail.gmail.com>
+ <CAAxXO2EHUfxCoFaBMiUkp=JYvv4hgNYtbVwpW6udYajdtdxSBA@mail.gmail.com>
+ <1392930b-c30e-4983-8787-0f7983e7cafb@gmail.com> <CAAxXO2HEZfcpjh7HTpzYkbdm5pmLEmN3K9oh831UB0MVy61K3g@mail.gmail.com>
+ <58f61bbb-cca3-4085-8458-afb649185838@gmail.com> <CAAxXO2H60tq223nD1R-qW+7s_V+KVDxubuKPvxLx4EA1yx2u5w@mail.gmail.com>
+ <c0151ce8-a406-4bbf-bceb-779f454cd585@gmail.com>
+In-Reply-To: <c0151ce8-a406-4bbf-bceb-779f454cd585@gmail.com>
+From: Nikos Balkanas <nbalkanas@gmail.com>
+Date: Mon, 28 Apr 2025 04:51:59 +0300
+X-Gm-Features: ATxdqUE615zae_iBElXjcGqDQ1c921lze5qh91hH9xmJnlEEBWFhMHzF0zmER4E
+Message-ID: <CAAxXO2HfSmRvhdCAanGVQw=pedsZciSj=M6rmafy9r2xz7hZ=g@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: YVSH2IZRUCVGWA75XRRRAAHZMXYUWAXV
+X-Message-ID-Hash: YVSH2IZRUCVGWA75XRRRAAHZMXYUWAXV
+X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X310: Changing DRAM Clock Frequency
+Subject: [USRP-users] Re: NIC suggestion
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IZ2BAMZOVWOOLRDTIMLBTAI347OWORCX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YVSH2IZRUCVGWA75XRRRAAHZMXYUWAXV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2707997318671670966=="
+Content-Type: multipart/mixed; boundary="===============3393916266856685352=="
 
---===============2707997318671670966==
-Content-Type: multipart/related; boundary="00000000000058ec3a0633ccca78"
+--===============3393916266856685352==
+Content-Type: multipart/alternative; boundary="00000000000025fea80633cceff3"
 
---00000000000058ec3a0633ccca78
-Content-Type: multipart/alternative; boundary="00000000000058ec380633ccca77"
-
---00000000000058ec380633ccca77
+--00000000000025fea80633cceff3
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Wade,
+Thx, Marcus
 
-Thanks for the feedback. I was able to get what I wanted done by taking
-another look at the axi_ram_fifo block. UHD seems to provide endless
-examples for all my problems, I just need the will to seek them. I ended up
-taking the axis_width_conv() module from the axi_ram_fifo block and using
-it, and it did exactly what I needed!
+On Mon, Apr 28, 2025 at 3:50=E2=80=AFAM Marcus D. Leech <patchvonbraun@gmai=
+l.com>
+wrote:
 
-My original problem was doing a clock domain crossing from the AXI-stream
-data to my AXI memory interface (and back) which would need to run at
-mem_clk as you said. I was constrained by my HLS module being limited to
-one clock, so I couldn't use HLS to cheat around the HDL like I usually do.
-This led me on a long rabbit hole of reading Xilinx IP, realizing my
-original request was improbable, and then finding the correct solution.
-
-I did learn alot about how much I don't like the IP GUI though.
-
-Thanks,
-
-David
-
-
-
-On Sun, Apr 27, 2025 at 5:31=E2=80=AFPM Wade Fife <wade.fife@ettus.com> wro=
-te:
-
-> Hi David,
+> On 27/04/2025 20:40, Nikos Balkanas wrote:
 >
-> It is possible, but it can't be done from within RFNoC. The memory
-> interface logic and clocking live outside of RFNoC. And you have to use t=
-he
-> mem_clk to talk to this logic. The clock that's used for the memory is
-> provided by the memory interface IP, so the easiest way to change it woul=
-d
-> be by modifying that IP in the Vivado MIG GUI. It's the IP located in
-> fpga/usrp3/top/x300/ip/ddr3_32bit/ddr3_32bit.xci.
+> Ubuntu packages...
+> No -dev, =3D> no includes:(
+> The ICMP test is fine for testing physical wear (line, connectors OSI
+> layer 2)
+> Ofc a dedicated usrp benchmark is better for application (layer 4)
+> benchmark:)
 >
-> That being said, I can't think of a reason why you would want the memory
-> interface clock to match the radio clock, since both the radio and the
-> replay block use the rfnoc_chdr_clk to send/receive data. Perhaps you cou=
-ld
-> share why you want to change the memory speed?
+> PS. If this conversation is getting long, we can switch to private mail..=
+.
 >
-> Thanks,
+> Try libuhd-dev
 >
-> Wade
+Yup that did it. Iwas trying libuhd4.6.0-dev and failed:(
+
 >
-> On Thu, Apr 24, 2025 at 4:55=E2=80=AFPM David <vitishlsfan21@gmail.com> w=
-rote:
+> Also:
 >
->> Hello all,
+> dpkg -S /usr/lib/uhd/examples/benchmark_rate
+> uhd-host: /usr/lib/uhd/examples/benchmark_rate
+>
+
+No need. Actually with libuhd-dev all were installed under
+/usr/libexec/uhd/examples:
+-> ls /usr/libexec/uhd/examples
+
+benchmark_rate                  rx_multi_samples         test_pps_input
+gpio                                      rx_samples_c
+test_timed_commands
+latency_test                          rx_samples_to_file
+twinrx_freq_hopping
+network_relay                       rx_samples_to_udp     tx_bursts
+python                                   rx_timed_samples
+ txrx_loopback_to_file
+rfnoc_nullsource_ce_rx         spi
+ tx_samples_c
+rfnoc_radio_loopback            sync_to_gps
+tx_samples_from_file
+rfnoc_replay_samples_from_file  test_clock_synch   tx_timed_samples
+rfnoc_rx_to_file                      test_dboard_coercion   tx_waveforms
+rx_ascii_art_dft                      test_messages
+usrp_list_sensors
+
+Now for the receive benchmark:
+->  benchmark_rate --args=3D"type=3Dx300,address=3D192.168.40.2"--rx_rate=
+=3D2e6
+
+[INFO] [UHD] linux; GNU C++ version 13.2.0; Boost_108300;
+UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1
+[00:00:00.000487] Creating the usrp device with:
+type=3Dx300,address=3D192.168.40.2...
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+Using Device: Single USRP:
+Device: X-Series Device
+Mboard 0: X300
+RX Channel: 0
+RX DSP: 0
+RX Dboard: A
+RX Subdev: SBX-120 RX
+RX Channel: 1
+RX DSP: 1
+RX Dboard: B
+RX Subdev: SBX-120 RX
+TX Channel: 0
+TX DSP: 0
+TX Dboard: A
+TX Subdev: SBX-120 TX
+TX Channel: 1
+TX DSP: 1
+TX Dboard: B
+TX Subdev: SBX-120 TX
+
+[00:00:02.20406867] Setting device timestamp to 0...
+[00:00:02.24011764] Testing receive rate 2.000000 Msps on 1 channels
+[00:00:12.25522915] Benchmark complete.
+
+
+Benchmark rate summary:
+Num received samples:     20,000,095
+Num dropped samples:      0
+Num overruns detected:    0
+Num transmitted samples:  0
+Num sequence errors (Tx): 0
+Num sequence errors (Rx): 0
+Num underruns detected:   0
+Num late commands:        0
+Num timeouts (Tx):        0
+Num timeouts (Rx):        0
+
+That's 2e6 sps. that's a far cry from the 1996 maxsps I'm getting
+from uhd_rx_streamer_max_num_samps(rx_streamer[0], &maxsamps)
+Are these samples same? Seems the problem to be in uhd_init() after all:(
+What do you think?
+
+TIA
+Nikos
+
+>
+> On Mon, Apr 28, 2025 at 2:45=E2=80=AFAM Marcus D. Leech <patchvonbraun@gm=
+ail.com>
+> wrote:
+>
+>> On 27/04/2025 19:34, Nikos Balkanas wrote:
 >>
->> I would like to know if it's possible to change the X310 DRAM clock
->> frequency. My current understanding is that it runs at 300MHz, and I wan=
-t
->> to run it at 200MHz (same as the master clock).
+>> For that i will need the sources.
+>> Do you know where can I download the UHD 4.6.0 sources?
 >>
->> When reviewing default image_core.yml and the replay/axi_dma_fifo blocks=
+>> TIA
+>> Nikos
+>>
+>> If you have an installed version of UHD on your system, then the example=
+s
+>> should also have been installed.  How did you install
+>>   UHD?
+>>
+>> You might need to install "uhd-host" if you installed from packaged
+>> binaries, but all the examples and utilities should be
+>>   there along with the libraries.
+>>
+>> But the GIT repo for the UHD source is here:
+>>
+>> https://github.com/EttusResearch/uhd
+>>
+>> These days, most distros package UHD, so in many cases you don't need to
+>> build from source.
+>>
+>>
+>>
+>>
+>> On Mon, Apr 28, 2025 at 12:39=E2=80=AFAM Marcus D. Leech <patchvonbraun@=
+gmail.com>
+>> wrote:
+>>
+>>> On 27/04/2025 17:37, Nikos Balkanas wrote:
+>>>
+>>> Hi Marcus,
+>>>
+>>> You were right. No need to change NIC:)
+>>> This is not a software issue. uhd_rx_streamer_max_num_samps runs right
+>>> after uhd initialization before
+>>> any other code had the chance to run.
+>>> Link capacity doesn't seem to be the issue either...
+>>> Running pchar on the link, descendant of pathchar, reports a throughput
+>>> of 5.619 Kb/s requesting ICMP replies,
+>>> to varying packet sizes (32->9000 (MTU), incr by 32).
+>>> sudo pchar -m 9000 -p ipv4icmp usrp
+>>> https://www.kitchenlab.org/www/bmah/Software/pchar/
+>>>
+>>> It corresponds to 351.218.019 16-bit samples or 175,609.044 32-bit
+>>> samples, if each sample is 32-bit(real + imag)
+>>> Seems that uhd is not running at link capacity but is doing smt else.
+>>> I will have  to download and check with the sources...
+>>> The package version for Ubuntu 24.04 is uhd 4.6.0.
+>>> Where can I download the sources for uhd 4.6.0?
+>>>
+>>> BR
+>>> Nikos
+>>>
+>>> YOu CANNOT use ICMP tests to determine link capacity with a USRP -- ICM=
+P
+>>> is processed via  completely different
+>>>   "stack" in the radio.
+>>>
+>>> Use "benchmark_rate" instead.
+>>>
+>>>
+>>>
+>>> On Sat, Apr 26, 2025 at 7:02=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail=
+.com>
+>>> wrote:
+>>>
+>>>> Thanks for your time.
+>>>> I will check out the example.
+>>>> This is not a buffer problem. I just need 1024 Samples (real+imaginary=
+)
+>>>> for FFT...
+>>>> I should be able to get them in a single pass.
+>>>> You saw my code, not a smoking gun there.
+>>>>
+>>>> This is probably is a physical problem.
+>>>> Cable is an SFP fiber dedicated line. Cannot go bad.
+>>>> Maybe the connections are not sitting right :(...
+>>>>
+>>>> BR
+>>>> Nikos
+>>>>
+>>>> On Sat, Apr 26, 2025 at 6:45=E2=80=AFAM Marcus D. Leech <
+>>>> patchvonbraun@gmail.com> wrote:
+>>>>
+>>>>> On 25/04/2025 23:33, Nikos Balkanas wrote:
+>>>>>
+>>>>> Actually MTU is 9000. This is one of the recommendations...
+>>>>> I tried it with MTU 1500. It was worse:(
+>>>>> maxsamples dropped to 364...
+>>>>>
+>>>>> Right, 9000, rather than 8000.
+>>>>>
+>>>>> Upgrading to 10Gbit wont' give you larger MTU.
+>>>>>
+>>>>> What you're trying to do, I think, is to solve a buffer-management
+>>>>> problem in your *application* at entirely the wrong
+>>>>>   level in the stack.
+>>>>>
+>>>>> It is EXCEEDINGLY COMMON for hardware drivers to only be able to
+>>>>> deliver in chunks that may not be perfectly adapted to
+>>>>>   the requirements of your application.  So, a common programming
+>>>>> pattern is to deal with this in your application.
+>>>>>
+>>>>> You should probably look at example code like rx_samples_to_file
+>>>>>
+>>>>>
+>>>>>
+>>>>> [INFO] [UHD] linux; GNU C++ version 13.2.0; Boost_108300;
+>>>>> UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1
+>>>>> [INFO] [X300] X300 initialization sequence...
+>>>>> [INFO] [X300] Maximum frame size: 1472 bytes.
+>>>>> [WARNING] [X300] For the 192.168.40.2 connection, UHD recommends a
+>>>>> send frame size of at least 8000 for best
+>>>>> performance, but your configuration will only allow 1472.This may
+>>>>> negatively impact your maximum achievable sample rate.
+>>>>> Check the MTU on the interface and/or the send_frame_size argument.
+>>>>> [WARNING] [X300] For the 192.168.40.2 connection, UHD recommends a
+>>>>> receive frame size of at least 8000 for best
+>>>>> performance, but your configuration will only allow 1472.This may
+>>>>> negatively impact your maximum achievable sample rate.
+>>>>> Check the MTU on the interface and/or the recv_frame_size argument.
+>>>>> [INFO] [GPS] No GPSDO found
+>>>>> [INFO] [X300] Radio 1x clock: 200 MHz
+>>>>> [WARNING] [UDP] The send buffer could not be resized sufficiently.
+>>>>> Target sock buff size: 24912805 bytes.
+>>>>> Actual sock buff size: 1048576 bytes.
+>>>>> See the transport application notes on buffer resizing.
+>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D24912805
+>>>>> Sat Apr 26 06:30:34 2025 [00] [+] Created USRP with args
+>>>>> Sat Apr 26 06:30:34 2025 [00] [+] Master clock is at 200 Mhz
+>>>>> Sat Apr 26 06:30:34 2025 [00] [+] Tuner[0] gain set to 30 (30) dB
+>>>>> [WARNING] [UDP] The send buffer could not be resized sufficiently.
+>>>>> Target sock buff size: 24912805 bytes.
+>>>>> Actual sock buff size: 1048576 bytes.
+>>>>> See the transport application notes on buffer resizing.
+>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D24912805
+>>>>> Sat Apr 26 06:30:34 2025 [00] [*] scanner.l:1446:main Incorrect
+>>>>> maxsamples (364). Expected 19960.
+>>>>> Sat Apr 26 06:30:34 2025 [00] [+] Max samples/buffer[0]: 364
+>>>>> [WARNING] [0/Radio#0] Ignoring stream command for finite acquisition
+>>>>> of zero sam
+>>>>>
+>>>>> Nikos
+>>>>>
+>>>>> On Sat, Apr 26, 2025 at 5:46=E2=80=AFAM Marcus D. Leech <
+>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>
+>>>>>> On 25/04/2025 22:26, Nikos Balkanas wrote:
+>>>>>>
+>>>>>> Thanks Marcus,
+>>>>>>
+>>>>>> for your fast reply.
+>>>>>>
+>>>>>> On Sat, Apr 26, 2025 at 4:08=E2=80=AFAM Marcus D. Leech <
+>>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>>
+>>>>>>> On 25/04/2025 20:50, Nikos Balkanas wrote:
+>>>>>>>
+>>>>>>> Hello,
+>>>>>>>
+>>>>>>> I need to buy a new NIC. What would you suggest?
+>>>>>>> The one I use is an old Mellanox 10 Gbs, before the Connect-4 serie=
+s.
+>>>>>>> It can only do 1996 S/s, need 19960 (10x more) to work with latest
+>>>>>>> uhd.
+>>>>>>> Using Ubuntu 24.04 and uhd 4.6.0
+>>>>>>>
+>>>>>>> So, 1.996ksps vs 19.960ksps?   You hardly need a 10Gbit link to
+>>>>>>> support that.  So, perhaps something
+>>>>>>>   is being lost here in your requirements?
+>>>>>>>
+>>>>>>
+>>>>>> True. Can't explain it in terms of bandwidth. 16 * 1996 =3D 31.936
+>>>>>> Kbps, 16 * 19960 =3D 319.360 Kbps well short of a 10 Gbps line:(
+>>>>>> Does a complex pair count as 1 sample, or 2?
+>>>>>> I have followed all the instructions in
+>>>>>> https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks,
+>>>>>> Even installed the DPDK drivers. My Mellanox is too old to use their
+>>>>>> OFED drivers:(
+>>>>>>
+>>>>>>>
+>>>>>>> On a related question. it seems that the streamer doesn't crash
+>>>>>>> anymore
+>>>>>>> when receiving less than MAXSPS samples, instead it reads 0:(
+>>>>>>> This was due to the sse2 code not aligned in convert.
+>>>>>>> I change my stream args to cpu_format=3Dsc16, otw=3Dsc16, so no
+>>>>>>> conversion required.
+>>>>>>> Streamer still doesn't read anything. Is there a reason for it?
+>>>>>>>
+>>>>>>> You'd need to share more of your code.  This should just work as fa=
+r
+>>>>>>> as I can tell.
+>>>>>>>
+>>>>>>> Thanks. these are just the usrp code:
+>>>>>>
+>>>>>> int main()
+>>>>>> {
+>>>>>>       uhd_stream_args_t stream_args =3D
+>>>>>>                                                            {
+>>>>>>
+>>>>>> .cpu_format =3D "sc16",
+>>>>>>
+>>>>>> .otw_format =3D "sc16",
+>>>>>>                                                               .args =
+=3D
+>>>>>> "",
+>>>>>>
+>>>>>> .n_channels =3D 1,
+>>>>>>
+>>>>>>  .channel_list =3D &channel
+>>>>>>                                                              };
+>>>>>> ..uhd_stream_cmd_t stream_cmd =3D
+>>>>>>                                                              {
+>>>>>>
+>>>>>>  .stream_mode =3D UHD_STREAM_MODE_NUM_SAMPS_AND_DONE,
+>>>>>>
+>>>>>> .stream_now =3D true
+>>>>>>                                                               };
+>>>>>>
+>>>>>>     if (uhd_init(0, 0, gain)) do_exit(20);
+>>>>>>>     if ((err =3D uhd_usrp_get_rx_stream(dev[0], &stream_args,
+>>>>>>> rx_streamer[0])))
+>>>>>>>     {
+>>>>>>>          uhd_get_last_error(errmsg, 127);
+>>>>>>>          error(log, "Failed to get streamer[0] (%d). %s.\n", 0, FL,
+>>>>>>> LN, FN, err, errmsg);
+>>>>>>>         uhd_rx_streamer_free(&rx_streamer[0]);
+>>>>>>>          rx_streamer[0] =3D NULL;
+>>>>>>>          uhd_rx_metadata_free(&md[0]);
+>>>>>>>         md[0] =3D NULL;
+>>>>>>>         do_exit(30);
+>>>>>>>     }
+>>>>>>>      if ((err =3D uhd_rx_streamer_max_num_samps(rx_streamer[0],
+>>>>>>> &maxsamps)))
+>>>>>>>
+>>>>>>      {
+>>>>>>>          uhd_get_last_error(errmsg, 127);
+>>>>>>>          error(log, "Failed to get max samples/buffer[0] (%d).
+>>>>>>> %s.\n", 0, FL, LN, FN, err,
+>>>>>>>            ..errmsg);
+>>>>>>>         do_exit(35);
+>>>>>>>     }
+>>>>>>>     if (maxsamps !=3D MAXSMPS)
+>>>>>>>         warn(log, "Incorrect maxsamples (%ld). Expected %d.\n", 0,
+>>>>>>> FL, LN, FN, maxsamps,
+>>>>>>>               MAXSMPS);
+>>>>>>>      info(log, "Max samples/buffer[0]: %ld\n", 0, maxsamps);
+>>>>>>>
+>>>>>>>     if ((err =3D uhd_rx_streamer_issue_stream_cmd(rx_streamer[0],
+>>>>>>> &stream_cmd)))
+>>>>>>>
+>>>>>>     {
+>>>>>>>         uhd_get_last_error(errmsg, 127);
+>>>>>>>         error(log, "Failed to start streamer[0] (%d). %s.\n", 0,
+>>>>>>> FL, LN, FN, err, errmsg);
+>>>>>>>        do_exit(40);
+>>>>>>>      }
+>>>>>>>
+>>>>>>          [...]
+>>>>>>          do_exit(0)
+>>>>>>      }
+>>>>>>
+>>>>>>
+>>>>>>> bool uhd_init(size_t channel, double srate, double gain)
+>>>>>>> {
+>>>>>>>     double tmp;
+>>>>>>>     uhd_rx_metadata_error_code_t err;
+>>>>>>>
+>>>>>>>      if ((err =3D
+>>>>>>> uhd_set_thread_priority(uhd_default_thread_priority, true)))
+>>>>>>>             warn(log, "Unable to set  main thread priority (%d).
+>>>>>>> %s.\n", 0, FL, LN, FN,
+>>>>>>>                   err, uhdError(err));
+>>>>>>>       /* Create USRP */
+>>>>>>>       f ((err =3D uhd_usrp_make(&dev[channel], "type=3Dx300")))
+>>>>>>>       {
+>>>>>>>           error(log, "Failed to create USRP (%d). %s.\n", 0, FL,
+>>>>>>> LN, FN, err,
+>>>>>>>                uhdError(err));
+>>>>>>>            dev[channel] =3D NULL;
+>>>>>>>             return(FAIL);
+>>>>>>>
+>>>>>>          }
+>>>>>>>          info(stderr, "Created USRP with args\n", 0);
+>>>>>>>
+>>>>>>>     /* Create RX streamer */
+>>>>>>>     if ((err =3D uhd_rx_streamer_make(&rx_streamer[channel])))
+>>>>>>>     {
+>>>>>>>         error(log, "Failed to create rx_streamer[%d] (%d). %s.\n",
+>>>>>>> 0, FL, LN, FN,
+>>>>>>>             channel, err, uhdError(err));
+>>>>>>>          return(FAIL);
+>>>>>>>     }
+>>>>>>>     /* Create RX metadata */
+>>>>>>>     if ((err =3D uhd_rx_metadata_make(&md[channel])))
+>>>>>>>    {
+>>>>>>>        error(log, "Failed to create md[%d] (%d). %s.\n", 0, FL, LN,
+>>>>>>> FN, channel,
+>>>>>>>            err, uhdError(err));
+>>>>>>>         return(FAIL);
+>>>>>>>      }
+>>>>>>>
+>>>>>>>     /* Get master clock rate */
+>>>>>>>      if ((err =3D uhd_usrp_get_master_clock_rate(dev[channel], 0,
+>>>>>>> &tmp)))
+>>>>>>>
+>>>>>>       {
+>>>>>>>            error(log, "Failed to set master clock to %.0lf Mhz
+>>>>>>> (%d). %s.\n", 0, FL,
+>>>>>>>                LN, FN, tmp/1000000, err, uhdError(err));
+>>>>>>>             return(FAIL);
+>>>>>>>       }
+>>>>>>>       info(stderr, "Master clock is at %.0lf Mhz\n", 0,
+>>>>>>> tmp/1000000);
+>>>>>>>       /* Set the sample rate */
+>>>>>>>      if (srate && !uhd_set_rx_rate_check(channel, srate))
+>>>>>>> return(FAIL);
+>>>>>>>      /* Set the tuner gain SBX-120 is 0-31.5 in .5 db steps */
+>>>>>>>
+>>>>>>        if ((err =3D uhd_usrp_set_rx_gain(dev[channel], gain, channel=
 ,
->> I can see that the clock domains are connected with:
->>
->> x310_HG_rfnoc_image_core.yml:
->>
->> [image: image.png]
->>
->> replay.yml:
->>
->> [image: image.png]
->>
->>
->> Is it as simple as changing the mem clk_domain to ce? Where are the cloc=
-k
->> definitions for _device_?
->>
->> Thanks,
->>
->> David
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>> "")))
+>>>>>>>        {
+>>>>>>>             error(log, "Failed to set tuner[%d] gain to %.0lf db
+>>>>>>> (%d). %s.\n", 0, FL,
+>>>>>>>                  LN, FN, channel, gain, err, uhdError(err));
+>>>>>>>             return(FAIL);
+>>>>>>>          }
+>>>>>>>          if (!(err =3D uhd_usrp_get_rx_gain(dev[channel], channel,
+>>>>>>> "", &tmp)))
+>>>>>>>               info(log, "Tuner[%d] gain set to %.0lf (%.0lf) dB\n",
+>>>>>>> 0, channel, tmp, gain);
+>>>>>>>
+>>>>>>         ./* Set channel bw to conserve tuner resources. Not needed,
+>>>>>> set by srate */
+>>>>>>              uhd_usrp_set_rx_bandwidth(dev[channel], srate, channel)=
+;
+>>>>>>          ./* Disable subtracting constant averaged background.
+>>>>>> Signal looks cleaner */
+>>>>>>             if ((err =3D
+>>>>>> uhd_usrp_set_rx_dc_offset_enabled(dev[channel], false, channel)))
+>>>>>>              {
+>>>>>>                  warn(log, "Failed to disable FPGA DC offset on
+>>>>>> channel %d(%d). %s.\n", 0,
+>>>>>>                      FL, LN, FN, channel, err, uhdError(err));
+>>>>>>                }
+>>>>>>                info(stderr, "Disabled FPGA DC offset on channel
+>>>>>> %d\n", 0, channel);
+>>>>>>                return(SUCCESS);
+>>>>>>          }
+>>>>>>
+>>>>>> This is the generated output:
+>>>>>>
+>>>>>> [INFO] [UHD] linux; GNU C++ version 13.2.0; Boost_108300;
+>>>>>> UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1
+>>>>>> [INFO] [X300] X300 initialization sequence...
+>>>>>> [INFO] [X300] Maximum frame size: 8000 bytes.
+>>>>>> [INFO] [X300] Radio 1x clock: 200 MHz
+>>>>>> Sat Apr 26 03:33:48 2025 [00] [+] Created USRP with args
+>>>>>> Sat Apr 26 03:33:48 2025 [00] [+] Master clock is at 200 Mhz
+>>>>>> Sat Apr 26 03:33:48 2025 [00] [+] Tuner[0] gain set to 30 (30) dB
+>>>>>> Sat Apr 26 03:33:48 2025 [00] [*] scanner.l:1446:main Incorrect
+>>>>>> maxsamples (1996). Expected 19960.
+>>>>>> Sat Apr 26 03:33:48 2025 [00] [+] Max samples/buffer[0]: 1996
+>>>>>> [WARNING] [0/Radio#0] Ignoring stream command for finite acquisition
+>>>>>> of zero samples
+>>>>>> I hope this reads OK. Maybe next time I should attach the code:)
+>>>>>>
+>>>>>>> TIA
+>>>>>>> Nikos
+>>>>>>>
+>>>>>>> _______________________________________________
+>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>
+>>>>>>>
+>>>>>>> I believe that max number of samples-per-buffer is limited by MTU
+>>>>>> size.   Which is typically around 8000 or so for "jumbo frames".
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>
+>>>
 >>
 >
 
---00000000000058ec380633ccca77
+--00000000000025fea80633cceff3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Wade,<div><br></div><div>Thanks for the feedback. I was ab=
-le to get what I wanted done by taking another look at the axi_ram_fifo blo=
-ck. UHD seems to provide endless examples for all my problems, I just need =
-the will to seek them. I ended up taking the axis_width_conv() module from =
-the axi_ram_fifo block and using it, and it did exactly what I needed!</div=
-><div><br></div><div>My original problem was doing a clock domain crossing =
-from the AXI-stream data to my AXI memory interface (and back) which would =
-need to run at mem_clk as you said. I was constrained by my HLS module bein=
-g limited to one clock, so I couldn&#39;t use=C2=A0HLS to=C2=A0cheat around=
- the HDL like I usually=C2=A0do. This led me on a long rabbit hole of readi=
-ng Xilinx IP, realizing my original request was improbable, and then findin=
-g the correct solution.</div><div><br></div><div>I did learn alot=C2=A0abou=
-t how much I don&#39;t like the IP GUI though.</div><div><br></div><div>Tha=
-nks,</div><div><br></div><div>David</div><div><br></div><div><br></div></di=
-v><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Sun, Apr 27, 2025 at 5:31=E2=80=AFPM Wade Fife &lt;<a =
-href=3D"mailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
-v>Hi David,</div><div><br></div><div>It is possible, but it can&#39;t be do=
-ne from within RFNoC. The memory interface logic and clocking live outside =
-of RFNoC. And you have to use the mem_clk to talk to this logic. The clock =
-that&#39;s used for the memory is provided by the memory interface IP, so t=
-he easiest way to change it would be by modifying that IP in the Vivado MIG=
- GUI. It&#39;s the IP located in fpga/usrp3/top/x300/ip/ddr3_32bit/ddr3_32b=
-it.xci.</div><div><br></div><div>That being said, I can&#39;t think of a re=
-ason why you would want the memory interface clock to match the radio clock=
-, since both the radio and the replay block use the rfnoc_chdr_clk to send/=
-receive data. Perhaps you could share why you want to change the memory spe=
-ed?</div><div><br></div><div>Thanks,</div><div><br></div><div>Wade <br></di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Thu, Apr 24, 2025 at 4:55=E2=80=AFPM David &lt;<a href=3D"mailto:vitis=
-hlsfan21@gmail.com" target=3D"_blank">vitishlsfan21@gmail.com</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"lt=
-r"><div>Hello all,</div><div><br></div><div>I would like to know if it&#39;=
-s possible to change the X310 DRAM clock frequency. My current understandin=
-g is that it runs at 300MHz, and I want to run it at 200MHz (same as the ma=
-ster clock). <br></div><div><br></div><div>When reviewing default image_cor=
-e.yml and the replay/axi_dma_fifo blocks, I can see that the clock domains =
-are connected with:</div><div><br></div><div>x310_HG_rfnoc_image_core.yml: =
-<br></div><div><br></div><div><img src=3D"cid:ii_m9vw3tbr0" alt=3D"image.pn=
-g" width=3D"480" height=3D"31"></div><div><br></div><div>replay.yml:</div><=
-div><br></div><div><img src=3D"cid:ii_m9vw80lx1" alt=3D"image.png" width=3D=
-"305" height=3D"480"><br><br></div><div><br></div><div>Is it as simple as c=
-hanging the mem clk_domain to ce? Where are the clock definitions for _devi=
-ce_?</div><div><br></div><div>Thanks,</div><div><br></div><div>David</div><=
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-size:small">Thx, Marcus</div></div><br><div class=3D"gmail_quote gmail_qu=
+ote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 28, 2025 a=
+t 3:50=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail=
+.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><u></u>
+
+ =20
+   =20
+ =20
+  <div>
+    <div>On 27/04/2025 20:40, Nikos Balkanas
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div style=3D"font-size:small">Ubuntu
+          packages...</div>
+        <div style=3D"font-size:small">No -dev,
+          =3D&gt; no includes:(</div>
+        <div style=3D"font-size:small">The ICMP test
+          is fine for testing physical wear (line, connectors OSI layer
+          2)</div>
+        <div style=3D"font-size:small">Ofc a
+          dedicated usrp benchmark is better for application (layer 4)
+          benchmark:)</div>
+        <div style=3D"font-size:small"><br>
+        </div>
+        <div style=3D"font-size:small">PS. If this
+          conversation is getting long, we can switch to private mail...</d=
+iv>
+      </div>
+    </blockquote>
+    Try libuhd-dev<br></div></blockquote><div><span class=3D"gmail_default"=
+ style=3D"font-size:small">Yup that did it. Iwas trying libuhd4.6.0-dev and=
+ failed:(</span>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div>
+    <br>
+    Also:<br>
+    <br>
+    dpkg -S /usr/lib/uhd/examples/benchmark_rate <br>
+    uhd-host: /usr/lib/uhd/examples/benchmark_rate<br></div></blockquote><d=
+iv><br></div><div class=3D"gmail_default" style=3D"font-size:small">No need=
+. Actually with libuhd-dev all were installed under /usr/libexec/uhd/exampl=
+es:</div><div class=3D"gmail_default" style=3D"font-size:small">-&gt; ls /u=
+sr/libexec/uhd/examples</div><div class=3D"gmail_default" style=3D"font-siz=
+e:small"><br></div><div class=3D"gmail_default" style=3D"font-size:small">b=
+enchmark_rate =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0rx_multi_samples=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0test_pps_input<br>gpio=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rx_samples_c=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 test_timed_commands<br>latenc=
+y_test=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 rx_samples_to_file=C2=A0 =C2=A0 =C2=A0 twinrx_freq_ho=
+pping<br>network_relay=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rx_samples_to_udp =C2=A0 =C2=A0 tx_bursts<br=
+>python=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rx_timed_samples=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0txrx_loopback_to_file<br>rfnoc_nullsource_ce_rx=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0spi=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0tx=
+_samples_c<br>rfnoc_radio_loopback =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0sync_to_gps=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tx_sa=
+mples_from_file<br>rfnoc_replay_samples_from_file =C2=A0test_clock_synch=C2=
+=A0 =C2=A0tx_timed_samples<br>rfnoc_rx_to_file=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 test_dboard_coercion=C2=A0=
+ =C2=A0tx_waveforms<br>rx_ascii_art_dft=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 test_messages=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp_list_sensors</div><div class=3D"gmail_def=
+ault" style=3D"font-size:small"><br></div><div class=3D"gmail_default" styl=
+e=3D"font-size:small">Now for the receive benchmark:</div><div class=3D"gma=
+il_default" style=3D"font-size:small">-&gt;=C2=A0 benchmark_rate --args=3D&=
+quot;type=3Dx300,address=3D192.168.40.2&quot;--rx_rate=3D2e6</div><div clas=
+s=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gmail=
+_default" style=3D"font-size:small">[INFO] [UHD] linux; GNU C++ version 13.=
+2.0; Boost_108300; UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1<br>[00:00:00.000487] =
+Creating the usrp device with: type=3Dx300,address=3D192.168.40.2...<br>[IN=
+FO] [X300] X300 initialization sequence...<br>[INFO] [X300] Maximum frame s=
+ize: 8000 bytes.<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>Using Device: =
+Single USRP:<br>Device: X-Series Device<br>Mboard 0: X300<br>RX Channel: 0<=
+br>RX DSP: 0<br>RX Dboard: A<br>RX Subdev: SBX-120 RX<br>RX Channel: 1<br>R=
+X DSP: 1<br>RX Dboard: B<br>RX Subdev: SBX-120 RX<br>TX Channel: 0<br>TX DS=
+P: 0<br>TX Dboard: A<br>TX Subdev: SBX-120 TX<br>TX Channel: 1<br>TX DSP: 1=
+<br>TX Dboard: B<br>TX Subdev: SBX-120 TX<br><br>[00:00:02.20406867] Settin=
+g device timestamp to 0...<br>[00:00:02.24011764] Testing receive rate 2.00=
+0000 Msps on 1 channels<br>[00:00:12.25522915] Benchmark complete.<br><br><=
+br>Benchmark rate summary:<br>Num received samples: =C2=A0 =C2=A0 20,000,09=
+5<br>Num dropped samples: =C2=A0 =C2=A0 =C2=A00<br>Num overruns detected: =
+=C2=A0 =C2=A00<br>Num transmitted samples: =C2=A00<br>Num sequence errors (=
+Tx): 0<br>Num sequence errors (Rx): 0<br>Num underruns detected: =C2=A0 0<b=
+r>Num late commands: =C2=A0 =C2=A0 =C2=A0 =C2=A00<br>Num timeouts (Tx): =C2=
+=A0 =C2=A0 =C2=A0 =C2=A00<br>Num timeouts (Rx): =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+0</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><di=
+v class=3D"gmail_default" style=3D"font-size:small">That&#39;s 2e6 sps. tha=
+t&#39;s a far cry from the 1996 maxsps I&#39;m getting from=C2=A0uhd_rx_str=
+eamer_max_num_samps(rx_streamer[0], &amp;maxsamps)</div><div class=3D"gmail=
+_default" style=3D"font-size:small">Are these samples same? Seems the probl=
+em to be in uhd_init() after all:(</div><div class=3D"gmail_default" style=
+=3D"font-size:small">What do you think?</div><div class=3D"gmail_default" s=
+tyle=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"fo=
+nt-size:small">TIA</div><div class=3D"gmail_default" style=3D"font-size:sma=
+ll">Nikos</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
+    <blockquote type=3D"cite"><br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 28, 2025 at
+          2:45=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbra=
+un@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div>
+            <div>On 27/04/2025 19:34, Nikos Balkanas wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div style=3D"font-size:small">For
+                  that i will need the sources.</div>
+                <div style=3D"font-size:small">Do
+                  you know where can I download the UHD 4.6.0 sources?</div=
+>
+                <div style=3D"font-size:small"><br>
+                </div>
+                <div style=3D"font-size:small">TIA</div>
+                <div style=3D"font-size:small">Nikos</div>
+              </div>
+            </blockquote>
+            If you have an installed version of UHD on your system, then
+            the examples should also have been installed.=C2=A0 How did you
+            install<br>
+            =C2=A0 UHD?<br>
+            <br>
+            You might need to install &quot;uhd-host&quot; if you installed=
+ from
+            packaged binaries, but all the examples and utilities should
+            be<br>
+            =C2=A0 there along with the libraries.<br>
+            <br>
+            But the GIT repo for the UHD source is here:<br>
+            <br>
+            <a href=3D"https://github.com/EttusResearch/uhd" target=3D"_bla=
+nk">https://github.com/EttusResearch/uhd</a><br>
+            <br>
+            These days, most distros package UHD, so in many cases you
+            don&#39;t need to build from source.<br>
+            <br>
+            <br>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div style=3D"font-size:small"><br>
+                </div>
+              </div>
+              <br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 28, 2025
+                  at 12:39=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto=
+:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                  <div>
+                    <div>On 27/04/2025 17:37, Nikos Balkanas wrote:<br>
+                    </div>
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">
+                        <div style=3D"font-size:small">Hi Marcus,</div>
+                        <div style=3D"font-size:small"><br>
+                        </div>
+                        <div style=3D"font-size:small">You were right. No
+                          need to change NIC:)</div>
+                        <div style=3D"font-size:small">This is not a softwa=
+re
+                          issue.=C2=A0uhd_rx_streamer_max_num_samps runs
+                          right after uhd initialization before</div>
+                        <div style=3D"font-size:small">any other code had t=
+he
+                          chance to run.</div>
+                        <div style=3D"font-size:small">Link capacity doesn&=
+#39;t
+                          seem to be the issue either...</div>
+                        <div style=3D"font-size:small">Running pchar on the
+                          link, descendant of pathchar, reports a
+                          throughput of 5.619 Kb/s requesting ICMP
+                          replies,</div>
+                        <div style=3D"font-size:small">to varying packet
+                          sizes (32-&gt;9000 (MTU), incr by 32).=C2=A0</div=
+>
+                        <div style=3D"font-size:small">sudo pchar -m 9000 -=
+p
+                          ipv4icmp usrp</div>
+                        <div style=3D"font-size:small"><a href=3D"https://w=
+ww.kitchenlab.org/www/bmah/Software/pchar/" target=3D"_blank">https://www.k=
+itchenlab.org/www/bmah/Software/pchar/</a></div>
+                        <div style=3D"font-size:small"><br>
+                        </div>
+                        <div style=3D"font-size:small">It corresponds to
+                          351.218.019 16-bit samples or 175,609.044
+                          32-bit samples, if each sample is
+                          32-bit(real=C2=A0+ imag)</div>
+                        <div style=3D"font-size:small">Seems that uhd is no=
+t
+                          running at link capacity but is doing smt
+                          else.</div>
+                        <div style=3D"font-size:small">I will have=C2=A0 to
+                          download and check with the sources...</div>
+                        <div style=3D"font-size:small">The package version
+                          for Ubuntu 24.04 is uhd 4.6.0.</div>
+                        <div style=3D"font-size:small">Where can I download
+                          the sources for uhd 4.6.0?</div>
+                        <div style=3D"font-size:small"><br>
+                        </div>
+                        <div style=3D"font-size:small">BR</div>
+                        <div style=3D"font-size:small">Nikos</div>
+                      </div>
+                    </blockquote>
+                    YOu CANNOT use ICMP tests to determine link capacity
+                    with a USRP -- ICMP is processed via=C2=A0 completely
+                    different<br>
+                    =C2=A0 &quot;stack&quot; in the radio.<br>
+                    <br>
+                    Use &quot;benchmark_rate&quot; instead.<br>
+                    <br>
+                    <br>
+                    <blockquote type=3D"cite"><br>
+                      <div class=3D"gmail_quote">
+                        <div dir=3D"ltr" class=3D"gmail_attr">On Sat, Apr
+                          26, 2025 at 7:02=E2=80=AFAM Nikos Balkanas &lt;<a=
+ href=3D"mailto:nbalkanas@gmail.com" target=3D"_blank">nbalkanas@gmail.com<=
+/a>&gt;
+                          wrote:<br>
+                        </div>
+                        <blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                          <div dir=3D"ltr">
+                            <div style=3D"font-size:small">Thanks for your
+                              time.</div>
+                            <div style=3D"font-size:small">I will check out
+                              the example.</div>
+                            <div style=3D"font-size:small">This is not a
+                              buffer problem. I just need 1024 Samples
+                              (real+imaginary) for FFT...</div>
+                            <div style=3D"font-size:small">I should be able
+                              to get them in a single pass.</div>
+                            <div style=3D"font-size:small">You saw my code,
+                              not a smoking gun there.</div>
+                            <div style=3D"font-size:small"><br>
+                            </div>
+                            <div style=3D"font-size:small">This is probably
+                              is a physical problem.</div>
+                            <div style=3D"font-size:small">Cable is an SFP
+                              fiber dedicated line. Cannot go bad.</div>
+                            <div style=3D"font-size:small">Maybe the
+                              connections are not sitting right :(...</div>
+                            <div style=3D"font-size:small"><br>
+                            </div>
+                            <div style=3D"font-size:small">BR</div>
+                            <div style=3D"font-size:small">Nikos</div>
+                          </div>
+                          <br>
+                          <div class=3D"gmail_quote">
+                            <div dir=3D"ltr" class=3D"gmail_attr">On Sat,
+                              Apr 26, 2025 at 6:45=E2=80=AFAM Marcus D. Lee=
+ch
+                              &lt;<a href=3D"mailto:patchvonbraun@gmail.com=
+" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+                              wrote:<br>
+                            </div>
+                            <blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x">
+                              <div>
+                                <div>On 25/04/2025 23:33, Nikos Balkanas
+                                  wrote:<br>
+                                </div>
+                                <blockquote type=3D"cite">
+                                  <div dir=3D"ltr">
+                                    <div style=3D"font-size:small">Actually
+                                      MTU is 9000. This is one of the
+                                      recommendations...</div>
+                                    <div style=3D"font-size:small">I tried =
+it
+                                      with MTU 1500. It was worse:(</div>
+                                    <div style=3D"font-size:small">maxsampl=
+es
+                                      dropped to 364...</div>
+                                  </div>
+                                </blockquote>
+                                Right, 9000, rather than 8000.<br>
+                                <br>
+                                Upgrading to 10Gbit wont&#39; give you
+                                larger MTU.<br>
+                                <br>
+                                What you&#39;re trying to do, I think, is t=
+o
+                                solve a buffer-management problem in
+                                your *application* at entirely the wrong<br=
+>
+                                =C2=A0 level in the stack.<br>
+                                <br>
+                                It is EXCEEDINGLY COMMON for hardware
+                                drivers to only be able to deliver in
+                                chunks that may not be perfectly adapted
+                                to<br>
+                                =C2=A0 the requirements of your application=
+.=C2=A0
+                                So, a common programming pattern is to
+                                deal with this in your application.<br>
+                                <br>
+                                You should probably look at example code
+                                like rx_samples_to_file<br>
+                                <br>
+                                <br>
+                                <blockquote type=3D"cite">
+                                  <div dir=3D"ltr">
+                                    <div style=3D"font-size:small"><br>
+                                    </div>
+                                    <div style=3D"font-size:small">[INFO]
+                                      [UHD] linux; GNU C++ version
+                                      13.2.0; Boost_108300;
+                                      UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1<br=
+>
+                                      [INFO] [X300] X300 initialization
+                                      sequence...<br>
+                                      [INFO] [X300] Maximum frame size:
+                                      1472 bytes.<br>
+                                      [WARNING] [X300] For the
+                                      192.168.40.2 connection, UHD
+                                      recommends a send frame size of at
+                                      least 8000 for best<br>
+                                      performance, but your
+                                      configuration will only allow
+                                      1472.This may negatively impact
+                                      your maximum achievable sample
+                                      rate.<br>
+                                      Check the MTU on the interface
+                                      and/or the send_frame_size
+                                      argument.<br>
+                                      [WARNING] [X300] For the
+                                      192.168.40.2 connection, UHD
+                                      recommends a receive frame size of
+                                      at least 8000 for best<br>
+                                      performance, but your
+                                      configuration will only allow
+                                      1472.This may negatively impact
+                                      your maximum achievable sample
+                                      rate.<br>
+                                      Check the MTU on the interface
+                                      and/or the recv_frame_size
+                                      argument.<br>
+                                      [INFO] [GPS] No GPSDO found<br>
+                                      [INFO] [X300] Radio 1x clock: 200
+                                      MHz<br>
+                                      [WARNING] [UDP] The send buffer
+                                      could not be resized sufficiently.<br=
+>
+                                      Target sock buff size: 24912805
+                                      bytes.<br>
+                                      Actual sock buff size: 1048576
+                                      bytes.<br>
+                                      See the transport application
+                                      notes on buffer resizing.<br>
+                                      Please run: sudo sysctl -w
+                                      net.core.wmem_max=3D24912805<br>
+                                      Sat Apr 26 06:30:34 2025 [00] [+]
+                                      Created USRP with args<br>
+                                      Sat Apr 26 06:30:34 2025 [00] [+]
+                                      Master clock is at 200 Mhz<br>
+                                      Sat Apr 26 06:30:34 2025 [00] [+]
+                                      Tuner[0] gain set to 30 (30) dB<br>
+                                      [WARNING] [UDP] The send buffer
+                                      could not be resized sufficiently.<br=
+>
+                                      Target sock buff size: 24912805
+                                      bytes.<br>
+                                      Actual sock buff size: 1048576
+                                      bytes.<br>
+                                      See the transport application
+                                      notes on buffer resizing.<br>
+                                      Please run: sudo sysctl -w
+                                      net.core.wmem_max=3D24912805<br>
+                                      Sat Apr 26 06:30:34 2025 [00] [*]
+                                      scanner.l:1446:main Incorrect
+                                      maxsamples (364). Expected 19960.<br>
+                                      Sat Apr 26 06:30:34 2025 [00] [+]
+                                      Max samples/buffer[0]: 364<br>
+                                      [WARNING] [0/Radio#0] Ignoring
+                                      stream command for finite
+                                      acquisition of zero sam</div>
+                                    <div style=3D"font-size:small"><br>
+                                    </div>
+                                    <div style=3D"font-size:small">Nikos</d=
+iv>
+                                  </div>
+                                  <br>
+                                  <div class=3D"gmail_quote">
+                                    <div dir=3D"ltr" class=3D"gmail_attr">O=
+n
+                                      Sat, Apr 26, 2025 at 5:46=E2=80=AFAM
+                                      Marcus D. Leech &lt;<a href=3D"mailto=
+:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+                                      wrote:<br>
+                                    </div>
+                                    <blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">
+                                      <div>
+                                        <div>On 25/04/2025 22:26, Nikos
+                                          Balkanas wrote:<br>
+                                        </div>
+                                        <blockquote type=3D"cite">
+                                          <div dir=3D"ltr">
+                                            <div dir=3D"ltr">
+                                              <div style=3D"font-size:small=
+">Thanks
+                                                Marcus,</div>
+                                              <div style=3D"font-size:small=
+"><br>
+                                              </div>
+                                              <div style=3D"font-size:small=
+">for
+                                                your fast reply.</div>
+                                            </div>
+                                            <br>
+                                            <div class=3D"gmail_quote">
+                                              <div dir=3D"ltr" class=3D"gma=
+il_attr">On
+                                                Sat, Apr 26, 2025 at
+                                                4:08=E2=80=AFAM Marcus D. L=
+eech
+                                                &lt;<a href=3D"mailto:patch=
+vonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote=
+:<br>
+                                              </div>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div>
+                                                  <div>On 25/04/2025
+                                                    20:50, Nikos
+                                                    Balkanas wrote:<br>
+                                                  </div>
+                                                  <blockquote type=3D"cite"=
+>
+                                                    <div dir=3D"ltr">
+                                                      <div style=3D"font-si=
+ze:small">Hello,</div>
+                                                      <div style=3D"font-si=
+ze:small"><br>
+                                                      </div>
+                                                      <div style=3D"font-si=
+ze:small">I need to buy a new NIC. What would you suggest?</div>
+                                                      <div style=3D"font-si=
+ze:small">The one I use is an old Mellanox 10 Gbs, before
+                                                        the Connect-4
+                                                        series.</div>
+                                                      <div style=3D"font-si=
+ze:small">It can only do 1996 S/s, need 19960 (10x more)
+                                                        to work with
+                                                        latest uhd.</div>
+                                                      <div style=3D"font-si=
+ze:small">Using Ubuntu 24.04 and uhd 4.6.0</div>
+                                                    </div>
+                                                  </blockquote>
+                                                  So, 1.996ksps vs
+                                                  19.960ksps?=C2=A0=C2=A0 Y=
+ou
+                                                  hardly need a 10Gbit
+                                                  link to support that.=C2=
+=A0
+                                                  So, perhaps something<br>
+                                                  =C2=A0 is being lost here
+                                                  in your requirements?<br>
+                                                </div>
+                                              </blockquote>
+                                              <div><br>
+                                              </div>
+                                              <div style=3D"font-size:small=
+">True.
+                                                Can&#39;t explain it in
+                                                terms of bandwidth. 16 *
+                                                1996 =3D 31.936 Kbps, 16 *
+                                                19960 =3D 319.360 Kbps
+                                                well short of a 10 Gbps
+                                                line:(</div>
+                                              <div style=3D"font-size:small=
+">Does
+                                                a complex pair count as
+                                                1 sample, or 2?</div>
+                                              <div style=3D"font-size:small=
+">I
+                                                have followed all the
+                                                instructions in=C2=A0<a hre=
+f=3D"https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks" tar=
+get=3D"_blank">https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_T=
+ricks</a>,</div>
+                                              <div style=3D"font-size:small=
+">Even
+                                                installed the DPDK
+                                                drivers. My Mellanox is
+                                                too old to use their
+                                                OFED drivers:(</div>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div>
+                                                  <blockquote type=3D"cite"=
+>
+                                                    <div dir=3D"ltr">
+                                                      <div style=3D"font-si=
+ze:small"><br>
+                                                      </div>
+                                                      <div style=3D"font-si=
+ze:small">On a related question. it seems that the
+                                                        streamer doesn&#39;=
+t
+                                                        crash anymore</div>
+                                                      <div style=3D"font-si=
+ze:small">when receiving less than MAXSPS samples, instead
+                                                        it reads 0:(</div>
+                                                      <div style=3D"font-si=
+ze:small">This was due to the sse2 code not aligned in
+                                                        convert.</div>
+                                                      <div style=3D"font-si=
+ze:small">I change my stream args to cpu_format=3Dsc16,
+                                                        otw=3Dsc16, so no
+                                                        conversion
+                                                        required.</div>
+                                                      <div style=3D"font-si=
+ze:small">Streamer still doesn&#39;t read anything. Is there a
+                                                        reason for it?</div=
+>
+                                                      <div style=3D"font-si=
+ze:small"><br>
+                                                      </div>
+                                                    </div>
+                                                  </blockquote>
+                                                  You&#39;d need to share
+                                                  more of your code.=C2=A0
+                                                  This should just work
+                                                  as far as I can tell.<br>
+                                                  <br>
+                                                </div>
+                                              </blockquote>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small"></span></div>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small">Thanks. these are just the usrp code:</span=
+></div>
+                                              <div><br>
+                                              </div>
+                                              <div style=3D"font-size:small=
+">int
+                                                main()</div>
+                                              <div style=3D"font-size:small=
+">{</div>
+                                              <div style=3D"font-size:small=
+">=C2=A0
+                                                =C2=A0 =C2=A0 uhd_stream_ar=
+gs_t
+                                                stream_args =3D<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0{<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0
+                                                .cpu_format =3D &quot;sc16&=
+quot;,<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0
+                                                .otw_format =3D &quot;sc16&=
+quot;,<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 .args =3D
+                                                &quot;&quot;,<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0
+                                                .n_channels =3D 1,<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0.channel_list =3D
+                                                &amp;channel<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0};<br>
+                                                ..uhd_stream_cmd_t
+                                                stream_cmd =3D<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0{<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0.stream_mode =3D
+                                                UHD_STREAM_MODE_NUM_SAMPS_A=
+ND_DONE,<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                .stream_now =3D true<br>
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 };</div>
+                                              <div style=3D"font-size:small=
+"><br>
+                                              </div>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div> <span class=3D"gmail_=
+default" style=3D"font-size:small">=C2=A0 =C2=A0 </span>if
+                                                  (uhd_init(0, 0, gain))
+                                                  do_exit(20);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>if ((err =3D
+                                                  uhd_usrp_get_rx_stream(de=
+v[0],
+                                                  &amp;stream_args,
+                                                  rx_streamer[0])))<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>{<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>uhd=
+_get_last_error(errmsg,
+                                                  127);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>err=
+or(log,
+                                                  &quot;Failed to get
+                                                  streamer[0] (%d).
+                                                  %s.\n&quot;, 0, FL, LN, F=
+N,
+                                                  err, errmsg);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>uhd_=
+rx_streamer_free(&amp;rx_streamer[0]);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>rx_=
+streamer[0]
+                                                  =3D NULL;<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>uhd=
+_rx_metadata_free(&amp;md[0]);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>md[0=
+] =3D
+                                                  NULL;<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>do_e=
+xit(30);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>}<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>if ((err =3D
+                                                  uhd_rx_streamer_max_num_s=
+amps(rx_streamer[0],
+                                                  &amp;maxsamps)))</div>
+                                              </blockquote>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div><span class=3D"gmail_d=
+efault" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>{<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>uhd=
+_get_last_error(errmsg,
+                                                  127);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>err=
+or(log,
+                                                  &quot;Failed to get max
+                                                  samples/buffer[0]
+                                                  (%d). %s.\n&quot;, 0, FL,
+                                                  LN, FN, err,<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</s=
+pan>..errmsg);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>do_e=
+xit(35);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>}<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>if (maxsamps !=3D
+                                                  MAXSMPS)<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>warn=
+(log,
+                                                  &quot;Incorrect maxsample=
+s
+                                                  (%ld). Expected
+                                                  %d.\n&quot;, 0, FL, LN, F=
+N,
+                                                  maxsamps,<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0=C2=A0</span>MAXSMPS);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>info(log, &quot;M=
+ax
+                                                  samples/buffer[0]:
+                                                  %ld\n&quot;, 0, maxsamps)=
+;<br>
+                                                  <br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 i</span>f ((err =3D
+                                                  uhd_rx_streamer_issue_str=
+eam_cmd(rx_streamer[0],
+                                                  &amp;stream_cmd)))=C2=A0<=
 /div>
-_______________________________________________<br>
+                                              </blockquote>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div><span class=3D"gmail_d=
+efault" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>{<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>uhd_=
+get_last_error(errmsg,
+                                                  127);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>erro=
+r(log,
+                                                  &quot;Failed to start
+                                                  streamer[0] (%d).
+                                                  %s.\n&quot;, 0, FL, LN, F=
+N,
+                                                  err, errmsg);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0</span>do_exit(40=
+);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>}<br>
+                                                </div>
+                                              </blockquote>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0[...]</sp=
+an></div>
+                                              <div style=3D"font-size:small=
+">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+do_exit(0)</div>
+                                              <div style=3D"font-size:small=
+">=C2=A0
+                                                =C2=A0 =C2=A0}</div>
+                                              <div style=3D"font-size:small=
+">=C2=A0
+                                                =C2=A0 =C2=A0</div>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div> bool
+                                                  uhd_init(size_t
+                                                  channel, double srate,
+                                                  double gain)<br>
+                                                  {<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>double tmp;<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>uhd_rx_metadata_er=
+ror_code_t
+                                                  err;<br>
+                                                  <br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>if ((err =3D
+                                                  uhd_set_thread_priority(u=
+hd_default_thread_priority,
+                                                  true)))<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=
+=A0</span>warn(log,
+                                                  &quot;Unable to set =C2=
+=A0main
+                                                  thread priority (%d).
+                                                  %s.\n&quot;, 0, FL, LN, F=
+N,<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0=C2=A0</span>err,
+                                                  uhdError(err));<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 </span>/* Create
+                                                  USRP */<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 </span>f ((err =3D
+                                                  uhd_usrp_make(&amp;dev[ch=
+annel],
+                                                  &quot;type=3Dx300&quot;))=
+)<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0=C2=A0</span>{<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</sp=
+an>error(log,
+                                                  &quot;Failed to create US=
+RP
+                                                  (%d). %s.\n&quot;, 0, FL,
+                                                  LN, FN, err,<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0</span>uhdError(err));<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</s=
+pan>dev[channel]
+                                                  =3D NULL;<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 r<=
+/span>eturn(FAIL);=C2=A0</div>
+                                              </blockquote>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div><span class=3D"gmail_d=
+efault" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>=
+}<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>inf=
+o(stderr,
+                                                  &quot;Created USRP with
+                                                  args\n&quot;, 0);<br>
+                                                  <br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>/* Create RX
+                                                  streamer */<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>if ((err =3D
+                                                  uhd_rx_streamer_make(&amp=
+;rx_streamer[channel])))<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>{<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>erro=
+r(log,
+                                                  &quot;Failed to create
+                                                  rx_streamer[%d] (%d).
+                                                  %s.\n&quot;, 0, FL, LN, F=
+N,<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=
+=A0</span>channel,
+                                                  err, uhdError(err));<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>ret=
+urn(FAIL);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 </span>}<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>/* Create RX
+                                                  metadata */<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>if ((err =3D
+                                                  uhd_rx_metadata_make(&amp=
+;md[channel])))<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0</span>{<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0</span>error(log,
+                                                  &quot;Failed to create
+                                                  md[%d] (%d). %s.\n&quot;,
+                                                  0, FL, LN, FN,
+                                                  channel,<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</s=
+pan>err,
+                                                  uhdError(err));<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>retu=
+rn(FAIL);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>}<br>
+                                                  <br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>/* <span class=3D"=
+gmail_default" style=3D"font-size:small">G</span>et master clock
+                                                  rate */<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>if ((err =3D
+                                                  uhd_usrp_get_master_clock=
+_rate(dev[channel],
+                                                  0, &amp;tmp)))=C2=A0</div=
+>
+                                              </blockquote>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div><span class=3D"gmail_d=
+efault" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0=C2=A0</span>{<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</s=
+pan>error(log,
+                                                  &quot;Failed to set maste=
+r
+                                                  clock to %.0lf Mhz
+                                                  (%d). %s.\n&quot;, 0, FL,=
+<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0</span>LN,
+                                                  FN, tmp/1000000, err,
+                                                  uhdError(err));<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=
+=A0</span>return(FAIL);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 </span>}<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0=C2=A0</span>info(stderr=
+,
+                                                  &quot;Master clock is at
+                                                  %.0lf Mhz\n&quot;, 0,
+                                                  tmp/1000000);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0=C2=A0</span>/* Set the
+                                                  sample rate */<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>if (srate
+                                                  &amp;&amp;
+!uhd_set_rx_rate_check(channel, srate)) return(FAIL);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>/* Set the
+                                                  tuner gain SBX-120 is
+                                                  0-31.5 in .5 db steps
+                                                  */=C2=A0</div>
+                                              </blockquote>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div><span class=3D"gmail_d=
+efault" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0i</span>f ((er=
+r =3D
+                                                  uhd_usrp_set_rx_gain(dev[=
+channel],
+                                                  gain, channel, &quot;&quo=
+t;)))<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0</span>{<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=
+=A0</span>error(log,
+                                                  &quot;Failed to set
+                                                  tuner[%d] gain to
+                                                  %.0lf db (%d). %s.\n&quot=
+;,
+                                                  0, FL,<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0</span>LN,
+                                                  FN, channel, gain,
+                                                  err, uhdError(err));<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=
+=A0</span>return(FAIL);<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>}<b=
+r>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0i</span>f =
+(!(err
+                                                  =3D
+                                                  uhd_usrp_get_rx_gain(dev[=
+channel],
+                                                  channel, &quot;&quot;,
+                                                  &amp;tmp)))<br>
+                                                  <span class=3D"gmail_defa=
+ult" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0=C2=A0</span>info(log,
+                                                  &quot;Tuner[%d] gain set =
+to
+                                                  %.0lf (%.0lf) dB\n&quot;,
+                                                  0, channel, tmp,<span cla=
+ss=3D"gmail_default" style=3D"font-size:small">=C2=A0</span>gain);</div>
+                                              </blockquote>
+                                              <span class=3D"gmail_default"=
+ style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0=C2=A0<=
+/span>./* Set
+                                              channel bw to conserve
+                                              tuner resources. Not
+                                              needed, set by srate */<br>
+                                              <span class=3D"gmail_default"=
+ style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0</span>uhd_usrp_set_rx_bandwidth(dev[channel],
+                                              srate, channel);<br>
+                                              <span class=3D"gmail_default"=
+ style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+</span>./*
+                                              Disable subtracting
+                                              constant averaged
+                                              background. Signal looks
+                                              cleaner */<br>
+                                              <span class=3D"gmail_default"=
+ style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0=C2=A0</span>if
+                                              ((err =3D
+                                              uhd_usrp_set_rx_dc_offset_ena=
+bled(dev[channel],
+                                              false, channel)))<br>
+                                              <span class=3D"gmail_default"=
+ style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0</span>{<br>
+                                              <span class=3D"gmail_default"=
+ style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>warn(log,
+                                              &quot;Failed to disable FPGA =
+DC
+                                              offset on channel %d(%d).
+                                              %s.\n&quot;, 0,<br>
+                                              <span class=3D"gmail_default"=
+ style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>FL,
+                                              LN, FN, channel, err,
+                                              uhdError(err));</div>
+                                            <div class=3D"gmail_quote"><spa=
+n class=3D"gmail_default" style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0</span>}<br>
+                                              <span class=3D"gmail_default"=
+ style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0</span>info(stderr,
+                                              &quot;Disabled FPGA DC offset
+                                              on channel %d\n&quot;, 0,
+                                              channel);<span class=3D"gmail=
+_default" style=3D"font-size:small"></span></div>
+                                            <div class=3D"gmail_quote"><spa=
+n class=3D"gmail_default" style=3D"font-size:small">=C2=A0
+                                                =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0</span>return(SUCCESS);<br>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}</span><=
+/div>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small"><br>
+                                                </span></div>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small">This is the generated output:</span>=C2=A0<=
+/div>
+                                              <div><br>
+                                              </div>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small"></span>[INFO] [UHD] linux; GNU C++ version
+                                                13.2.0; Boost_108300;
+                                                UHD_4.6.0.0+ds1-5.1ubuntu0.=
+24.04.1</div>
+                                              [INFO] [X300] X300
+                                              initialization sequence...<br=
+>
+                                              [INFO] [X300] Maximum
+                                              frame size: 8000 bytes.<br>
+                                              [INFO] [X300] Radio 1x
+                                              clock: 200 MHz<br>
+                                              Sat Apr 26 03:33:48 2025
+                                              [00] [+] Created USRP with
+                                              args<br>
+                                              Sat Apr 26 03:33:48 2025
+                                              [00] [+] Master clock is
+                                              at 200 Mhz<br>
+                                              Sat Apr 26 03:33:48 2025
+                                              [00] [+] Tuner[0] gain set
+                                              to 30 (30) dB<br>
+                                              Sat Apr 26 03:33:48 2025
+                                              [00] [*]
+                                              scanner.l:1446:main
+                                              Incorrect maxsamples
+                                              (1996). Expected 19960.<br>
+                                              Sat Apr 26 03:33:48 2025
+                                              [00] [+] Max
+                                              samples/buffer[0]: 1996<br>
+                                              <div>[WARNING] [0/Radio#0]
+                                                Ignoring stream command
+                                                for finite acquisition
+                                                of zero samples=C2=A0</div>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small"></span></div>
+                                              <div><span class=3D"gmail_def=
+ault" style=3D"font-size:small">I hope this reads OK. Maybe next time I sho=
+uld
+                                                  attach the code:)</span>=
+=C2=A0</div>
+                                              <blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+                                                <div>
+                                                  <blockquote type=3D"cite"=
+>
+                                                    <div dir=3D"ltr">
+                                                      <div style=3D"font-si=
+ze:small"> </div>
+                                                      <div style=3D"font-si=
+ze:small">TIA</div>
+                                                      <div style=3D"font-si=
+ze:small">Nikos</div>
+                                                    </div>
+                                                    <br>
+                                                    <fieldset></fieldset>
+                                                    <pre>__________________=
+_____________________________
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
+</pre>
+                                                  </blockquote>
+                                                  <br>
+                                                </div>
+                                              </blockquote>
+                                            </div>
+                                          </div>
+                                        </blockquote>
+                                        I believe that max number of
+                                        samples-per-buffer is limited by
+                                        MTU size.=C2=A0=C2=A0 Which is typi=
+cally
+                                        around 8000 or so for &quot;jumbo
+                                        frames&quot;.<br>
+                                        <br>
+                                        <br>
+                                      </div>
+                                    </blockquote>
+                                  </div>
+                                </blockquote>
+                                <br>
+                              </div>
+                            </blockquote>
+                          </div>
+                        </blockquote>
+                      </div>
+                    </blockquote>
+                    <br>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+            <br>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </div>
 
---00000000000058ec380633ccca77--
+</blockquote></div></div>
 
---00000000000058ec3a0633ccca78
-Content-Type: image/png; name="image.png"
-Content-Disposition: inline; filename="image.png"
-Content-Transfer-Encoding: base64
-Content-ID: <ii_m9vw3tbr0>
-X-Attachment-Id: ii_m9vw3tbr0
+--00000000000025fea80633cceff3--
 
-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
---00000000000058ec3a0633ccca78
-Content-Type: image/png; name="image.png"
-Content-Disposition: inline; filename="image.png"
-Content-Transfer-Encoding: base64
-Content-ID: <ii_m9vw80lx1>
-X-Attachment-Id: ii_m9vw80lx1
-
-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
-QmCC
---00000000000058ec3a0633ccca78--
-
---===============2707997318671670966==
+--===============3393916266856685352==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1070,4 +1806,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2707997318671670966==--
+--===============3393916266856685352==--
