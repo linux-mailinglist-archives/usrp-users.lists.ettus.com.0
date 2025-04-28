@@ -2,1568 +2,167 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4115A9EC68
-	for <lists+usrp-users@lfdr.de>; Mon, 28 Apr 2025 11:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E6F5A9F14F
+	for <lists+usrp-users@lfdr.de>; Mon, 28 Apr 2025 14:48:03 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9C458386124
-	for <lists+usrp-users@lfdr.de>; Mon, 28 Apr 2025 05:35:03 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7F62C385CEF
+	for <lists+usrp-users@lfdr.de>; Mon, 28 Apr 2025 08:48:02 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1745832903; bh=/iDiPIcRrAJpFi6RmSlxFw1UFrNdOxnqm1CCYbgIg8c=;
+	t=1745844482; bh=XTWVTC7IJyhrpeKyC7w3APRN2retH7Z89rjv5mn0RoU=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=DsNTA5lHNbVAUnBjxuGBo1ssfV7hpVM2RQSa7OYq5PJVhpwoj4qFWeBiv4Eo+PeC9
-	 EVBz3QOjGHHlKtfzX+kc0pnwhkSkhmHfER5X2iJdsxWoxz57hRcx0BPv1TYNyqA5pm
-	 8BHD5Q/9F4+Z4jOEsYGjR3tQCrKXwRpi1vnsobH7GFPQGlSdeLQWqcsa7OOpuQ0CoY
-	 P8Zy/3MVi3mMTJjSk9u7Z2E/EFfP0ZPerQ4n9puMNIhHyaZ7mWBlBP8puQJnFIWz3w
-	 zkG7GLnK8tkpEGXky3sZL49IG+G8KKhn0zihIt5ZJL1mENtqOXF6ZXkV3iJIdAtbSQ
-	 cdNVz89YaS7Tw==
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id B755F385EAC
-	for <usrp-users@lists.ettus.com>; Mon, 28 Apr 2025 05:34:03 -0400 (EDT)
+	b=aIkUMv5W9jhVR9iGJ/JtGEBoHZa+rtPPMH4oTCpYkiUEvYrazZMEJsWdtmjAGBamb
+	 lU7pf4XGwuv4f7F+RBRTtJPfsx37u37WTn4m+nc+NPcIVaTZFDRJJ78vEUUM78Bgdo
+	 8wRMnMG8IAzvqMHAZ3bxz4TaST7MUfiniDWEnz8GDV4xmcQt9Zr0UhTX7x7iuyew7i
+	 dN73B3GRdH+x2pe94z2yr3mPLnyk2yIxTvuLu9g8d0wAsJe58SSFvYtNWf9AqCt08A
+	 UzhQERbls4xqsHBMRi2smbl+rNsLVZQrnLwYW10DCk68miHMbGlDRiY1h7rl4HcPKF
+	 fv0mvdG2CIGXw==
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5CBB4385D2C
+	for <usrp-users@lists.ettus.com>; Mon, 28 Apr 2025 08:47:05 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I0vNPBIX";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="DE0znnjk";
 	dkim-atps=neutral
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-85ea482e3adso159562939f.0
-        for <usrp-users@lists.ettus.com>; Mon, 28 Apr 2025 02:34:03 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-70825de932bso49223497b3.0
+        for <usrp-users@lists.ettus.com>; Mon, 28 Apr 2025 05:47:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745832843; x=1746437643; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1745844425; x=1746449225; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zl3n9SFqDdM8jxFzjR2Az9tmF5RjpMgWXWSVI7hvKZQ=;
-        b=I0vNPBIX42+bEhuTGU88gKaUK5Nw5VKp9DqoQEbccPUX8RWlhOaAds7snmLMT6jB0a
-         EBEbvqv3G1z6KqYqb5nC3fOC33x59s9EYi9+SIfi6YIAEzLfP5LvNpS2h8KupcHeZdkD
-         qH2HYPH7aDmhFSqqIgc4UbWqgFWsme1l4KdrgvKZeNbxufywrI3AP2QCMJz33NKBM6rD
-         TyKZN/loMsvepA2SKt3z5+zOGTlhl677JUTqGsIsttw6DAh9M0L+ZuVsOq+d9WOk6mLA
-         cs2EJt+koSqJBQImYS/jZpC+hdpGXqQ2OKkyjLCAq9FxmDF59YF32a3G143F5j0JufwU
-         +qQg==
+        bh=kPSaq0pV98PaV1jT5hv1/4/QTZTE3h01seOpAT3a1eI=;
+        b=DE0znnjkaiyOPqqLUNQ0pTOzpkGlLBm46/vAiXhJ2Is4lpbUkv45RNYIRtwmULykDF
+         1EyblB1Qy9tGQzeC/hioQpe3NL/0/vomMDRNgiAZ78RPR9lFfdh7BmVSQsvkJG7W6glR
+         GV4Wc/0pOjK+hGVQTLXkwj6Sf19c4gCe938Vl1G2T0KdxLquD8Ik1rOa41571td+BGxf
+         Z5obSmI67io5Pd7KLymSgx3ajK0UoeXyXKr+xmu322mTbnQiqvlFalJXmMpIO959Xeh7
+         qQ9JFTNTm0+dentClpvyNz/5abKenoDPi4Ty2GiCDcKIfwsn6XlI6G43HxA38hK7kqHo
+         We9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745832843; x=1746437643;
+        d=1e100.net; s=20230601; t=1745844425; x=1746449225;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Zl3n9SFqDdM8jxFzjR2Az9tmF5RjpMgWXWSVI7hvKZQ=;
-        b=MfQWz8Y0/C2dNZZbIOm9v1T14dsj2gl46GV4DuuJOdhVutDu1hreTMyXVqCk/qRRyU
-         hPfjeLA5VZO6jYhfDX3IHBFiRxPIde/pRhY7ICRVsWFO0Udgg7/PtGmnu9qn3GyPh2ru
-         N7BLuOF6cJMP4EijcNxemu5I8ce2jfy73HwKO2u7zAYvDdDRcgtoSpDB9byoXJtxoDYR
-         OX7OxzajuVQbFKsLApOEW+pDpHBWjMhqMxLsTdFilGdzRVSLJz3eUL5awV1in3v1vEhW
-         Zq0kR8VESQC23d9+5H8CvpUyryOTJcCWaThi3+gQk/9eMCj8DaHx4PpmtUGbq3LEONcI
-         JuEg==
-X-Gm-Message-State: AOJu0Yws9ibgMhOSYcj4LRuPtV7RwlRySZVBlI09dhxyvwKvbdHPzteP
-	pFOLWCua6yS/EldMtJlauTI3+EkzFonizaMg3DHA+9dehC/FwNoSY5NJI5H8vlfQiSWBh8gFtR5
-	FWGYxEcybUAbEYGMXVGpOBqYp3y0=
-X-Gm-Gg: ASbGncsgOq04E2dj57LthlT3vBfsVbgl67wPwSpxoF5fxNk52XRqdT01gM0B/g3CF2a
-	vDIQKVbrkYcQPwxffY29eXMstCAfWnMa5yafCNKwy1ssNnY/TS3wflpi2PpC7ksw3lym2Tql58s
-	ptV9nxvWLApa1vDUJe
-X-Google-Smtp-Source: AGHT+IFKn6m7dSBEEbmpfUyFcwcdYhn72hmjqRBIEiKYy5WlbC9lc1J00frdha61Hb+ywsQupx1RG+NX0sFf4XMLHe4=
-X-Received: by 2002:a05:6e02:3a06:b0:3d3:de5f:af25 with SMTP id
- e9e14a558f8ab-3d93135f15emr176475805ab.0.1745832842605; Mon, 28 Apr 2025
- 02:34:02 -0700 (PDT)
+        bh=kPSaq0pV98PaV1jT5hv1/4/QTZTE3h01seOpAT3a1eI=;
+        b=IVnzcwauFk0VOVcKlx06xOQv6G58nMX1iv3qqjBwAwXkchg2RQSdIlexF/uJUDZ3nm
+         CV4slc4aUXQMgv+7ddlDJr5Qv2LB+jdnmTZrMqESWOQ1Ob7YfA1y5H+GIkuAP4fBBKex
+         c5631DOeXMVj/iFAoCywvqFMWN8bp9uLYmBic514oDXNVpDhKWe5PiMLWaPF+A0jynmF
+         QiqJOVFGMbf5robjYv8glwPAXHmGrP0CvbL4m3+EjV7twllomP834f4C1C2gzTbJ0Nol
+         AhnuD3Gh0tyrALknLQJKq+7UMCp4SZUMaRZP1BR6RoXv7sv5UKQaZUR1+ZdLAohJu8Bq
+         2PkQ==
+X-Gm-Message-State: AOJu0YyKS7Jx1aWyf45Nspq4RDTUAQziQLFh+YEXh5SS+WbPd41TK7Zm
+	v/WGhF8E61ukG22R8MqGp0Bh7wUKeGvC20G8wxEac8oywKYSDQtkhTew2CgxO3A6X0cUQjbC+3Q
+	glF1iCKA5585zAKFR/8EQ6ZHDRy8e1TRRnl6ILPA1
+X-Gm-Gg: ASbGncvARHTV/nCK/wtD0f2uiA58fEOCTSlg83+VAoziwqBF/O1bSOc4wopUEKMv7jK
+	+WhVXjhdiLVb+0Fkw4vAlqeKaBEsIJpRYiEUaScILQ7JcZpJb7XoY++LtVe9R93LGn7vtO+RMcS
+	Mw3n09Isk9GyMgaCJjI0s=
+X-Google-Smtp-Source: AGHT+IEMctyDIejpidd1EKzX6J0kaTgQax+yoQcjbtENV1dHp2V5OP3NixY8mwluJUcM6uJrPGQ9sux1NdkSZOSNv54=
+X-Received: by 2002:a05:690c:67c6:b0:6fb:9474:7b4f with SMTP id
+ 00721157ae682-708543d6258mr167772367b3.6.1745844424674; Mon, 28 Apr 2025
+ 05:47:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAxXO2G+q1LtJVVQyQt6at2QNh7PfVrrZhHvZauB8QEipF+w6w@mail.gmail.com>
- <e08576a1-ede9-4f27-9706-8a38cfc50c57@gmail.com> <CAAxXO2GZw0DAYVYFdw3Jx9g5PCivquhcrBB2uk3ZRB4w1KbOvQ@mail.gmail.com>
- <8660a987-f91a-402f-b575-a5b907a2e55e@gmail.com> <CAAxXO2EyLchisQPwFa9B2s9eO+QR5JV98cfoX1nnRAU7hYaj9g@mail.gmail.com>
- <709f178e-0d6a-4c76-b40d-b88f5b0c80cf@gmail.com> <CAAxXO2HWGvwy=V80crP6yajNPeYjvn3qYV-kyPPD0Wcaq-4tAA@mail.gmail.com>
- <CAAxXO2EHUfxCoFaBMiUkp=JYvv4hgNYtbVwpW6udYajdtdxSBA@mail.gmail.com>
- <CAAxXO2H8FN9ND+xwwn2H6u4z0pVrGwXFmwnUFdsi+FTOa=g8Tg@mail.gmail.com>
- <701bd52a-1b53-4553-bcfc-b5279fba1622@gmail.com> <CAAxXO2FapkYJ887B=2YjVStHmn9bS4LvHCk87_y52HpDajNPcQ@mail.gmail.com>
-In-Reply-To: <CAAxXO2FapkYJ887B=2YjVStHmn9bS4LvHCk87_y52HpDajNPcQ@mail.gmail.com>
-From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Mon, 28 Apr 2025 12:33:49 +0300
-X-Gm-Features: ATxdqUG5hY9Q5eSbjz0LRvDA3ufzO-akyVcOAobyBV4thPtwgLykp-Et4jLDurU
-Message-ID: <CAAxXO2EY9k1aGraSUTUEUE5ULvXLWS4k+yD+581+_yA5mwonig@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: VMCFDEFP7IEG5HZAUGLWLIJVITGCYUVF
-X-Message-ID-Hash: VMCFDEFP7IEG5HZAUGLWLIJVITGCYUVF
-X-MailFrom: nbalkanas@gmail.com
+References: <CAEXYVK4_EZt1CN7eic+zX89q_UM9xkLRrgDYOfQgAJa-vxgkEA@mail.gmail.com>
+ <CAFche=hXaVLyqJA7Ay7k8NqnVaKyWni1h7JwapVwue2iwAM5MA@mail.gmail.com> <CAEXYVK5W_kupokFpwQY+GpwEUO1nN4Y0cH6Bhj8z1HFMYP54uw@mail.gmail.com>
+In-Reply-To: <CAEXYVK5W_kupokFpwQY+GpwEUO1nN4Y0cH6Bhj8z1HFMYP54uw@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Mon, 28 Apr 2025 07:46:47 -0500
+X-Gm-Features: ATxdqUHw2Nt4Ml3Ub6rGRqM-EA-oVEFc6j94AsUiv9FpDFiPKM2A7UX_2bmS-Q4
+Message-ID: <CAFche=iRsVwbop=mzORPq9HoOwFkMc-uBkaEYocerg9Es+QXrQ@mail.gmail.com>
+To: Brian Padalino <bpadalino@gmail.com>
+Message-ID-Hash: OV3OEPNKRAMOGUVOGGRGNP35N3ARAWVD
+X-Message-ID-Hash: OV3OEPNKRAMOGUVOGGRGNP35N3ARAWVD
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: NIC suggestion
+Subject: [USRP-users] Re: RFNoC CHDR DstEPID and Virtual Channels Clarification
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VMCFDEFP7IEG5HZAUGLWLIJVITGCYUVF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OV3OEPNKRAMOGUVOGGRGNP35N3ARAWVD/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2430096417358944451=="
+Content-Type: multipart/mixed; boundary="===============7158956768294073996=="
 
---===============2430096417358944451==
-Content-Type: multipart/alternative; boundary="0000000000006bbae00633d36269"
+--===============7158956768294073996==
+Content-Type: multipart/alternative; boundary="000000000000c42f0e0633d61476"
 
---0000000000006bbae00633d36269
+--000000000000c42f0e0633d61476
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Compiled uhd 4.6.0 in debug mode.
-From the output I get:
+Right, up to 64 VCs per stream endpoint.
 
-[DEBUG] [0/Radio#0] spp(=3D samples per package) value 2032 exceeds MTU of
-8000! Coercing to 1996
-Mon Apr 28 09:57:02 2025 [00] [*] scanner.l:1443:main Incorrect maxsamples
-(1996). Expected 19960.
-Mon Apr 28 09:57:02 2025 [00] [+] Max samples/buffer[0]: 1996
-1) Line mtu is 9000 not 8000
-2) 2032 is not larger than 8000 <=3D Bug?
-3) seems that spp is setting my maxsmps
+Each stream endpoint only supports a single sequence number counter, so
+that single counter would be shared by all virtual channels.
 
-Of the examples I tried the rx_samples_c. It is the same case like mine:
-single usrp. We use the same commands
-and we are getting the same output:( 1996 maxsmpls.
-The error text and code are from host/lib/rfnoc/radio_control_impl.cpp: 199
-I would rather not touch it. I don't know the uhd architecture and
-especially the rfnoc/uhd interface.
-Besides I am a c programmer, not c++:(
-multi_usrp class has a set_rx_spp function, but it is not for me:(
+Wade
 
-HTH
-Nikos
-
-On Mon, Apr 28, 2025 at 6:02=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.com=
+On Sun, Apr 27, 2025 at 8:27=E2=80=AFPM Brian Padalino <bpadalino@gmail.com=
 > wrote:
 
-> Point taken:) I'm proposing smt different:
-> pchar +ICMP are just to test line and connectors. First step. Not to benc=
-h
-> USRP.
-> benchmark_rate is to bench/stress usrp.
-> These 2 are independent, and complementary.
-> Pchar is telling me nothing more than my fiber cable and connectors are
-> good.
-> It saved me a trip tomorrow to my local PC store, where fiber cable and
-> connectors are ~7 E each.
-> benchmark_rate on the other hand is quite interesting.
-> It points to software,and particularly my uhd_init()
+> On Sun, Apr 27, 2025 at 8:44=E2=80=AFPM Wade Fife <wade.fife@ettus.com> w=
+rote:
 >
-> Just found and downloaded the sources to uhd 4.6.0 from Ubuntu Launchpad.
-> Now I can go through the source of the example you told me:)
-> Ettus used  to keep an archive of old uhd sources around. Seems it's
-> gone:(
-> Open source means, among others, free to choose the source version that
-> you need...
-> Having the latest source in Github is only partly open source.
-> During development we need to freeze updates. When in 5 years we go
-> into production we can't find the old sources anymore:(
-> If a customer discovers a bug, not in our code, but in one of the
-> libraries that
-> we use, what are we gonna do?
+>> The EPIDs are only used by the stream endpoints. I think it will always
+>> be set to 0 when it is sent to your block, and anything you put in there
+>> will be ignored by downstream blocks. In theory, I suppose it could be u=
+sed
+>> the way you described, but I think that would require pretty significant
+>> changes in both UHD and in the FPGA.
+>>
+>> Could you use two stream endpoints instead to double the number of
+>> virtual channels?
+>>
 >
-> BR
-> Nikos
+> Maybe I could do that. So have 4 endpoints be the lower 64 channels, and
+> then have 4 endpoints be the upper 64 channels and utilize only the VC
+> field?
 >
+> When it comes to SeqNum, do the VC's count as being separate or would the
+> SeqNum also increase since the DestEPID is still the same?
 >
+> Thanks,
+> Brian
 >
-> On Mon, Apr 28, 2025 at 5:01=E2=80=AFAM Marcus D. Leech <patchvonbraun@gm=
-ail.com>
-> wrote:
->
->> On 27/04/2025 21:58, Nikos Balkanas wrote:
->>
->> My bad:
->>
->> throughput of 5.619 Kb/s requesting ICMP replies, +> throughput of 5,619
->> Kb/s requesting ICMP replies
->> Local thousand separator is ".", whereas in the US is ",":(
->>
->> It is STILL the case that the ICMP machinery in these radios is
->> ABSOLUTELY NOT on the fast-path inside
->>   the hardware.  The only way to get a good feel for how much sample
->> bandwidth they can process is
->>   with examples like "benchmark_rate".
->>
->>
->>
->> On Mon, Apr 28, 2025 at 12:37=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail=
-.com>
->> wrote:
->>
->>> Hi Marcus,
->>>
->>> You were right. No need to change NIC:)
->>> This is not a software issue. uhd_rx_streamer_max_num_samps runs right
->>> after uhd initialization before
->>> any other code had the chance to run.
->>> Link capacity doesn't seem to be the issue either...
->>> Running pchar on the link, descendant of pathchar, reports a throughput
->>> of 5.619 Kb/s requesting ICMP replies,
->>> to varying packet sizes (32->9000 (MTU), incr by 32).
->>> sudo pchar -m 9000 -p ipv4icmp usrp
->>> https://www.kitchenlab.org/www/bmah/Software/pchar/
->>>
->>> It corresponds to 351.218.019 16-bit samples or 175,609.044 32-bit
->>> samples, if each sample is 32-bit(real + imag)
->>> Seems that uhd is not running at link capacity but is doing smt else.
->>> I will have  to download and check with the sources...
->>> The package version for Ubuntu 24.04 is uhd 4.6.0.
->>> Where can I download the sources for uhd 4.6.0?
->>>
->>> BR
->>> Nikos
->>>
->>> On Sat, Apr 26, 2025 at 7:02=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail=
-.com>
->>> wrote:
->>>
->>>> Thanks for your time.
->>>> I will check out the example.
->>>> This is not a buffer problem. I just need 1024 Samples (real+imaginary=
-)
->>>> for FFT...
->>>> I should be able to get them in a single pass.
->>>> You saw my code, not a smoking gun there.
->>>>
->>>> This is probably is a physical problem.
->>>> Cable is an SFP fiber dedicated line. Cannot go bad.
->>>> Maybe the connections are not sitting right :(...
->>>>
->>>> BR
->>>> Nikos
->>>>
->>>> On Sat, Apr 26, 2025 at 6:45=E2=80=AFAM Marcus D. Leech <
->>>> patchvonbraun@gmail.com> wrote:
->>>>
->>>>> On 25/04/2025 23:33, Nikos Balkanas wrote:
->>>>>
->>>>> Actually MTU is 9000. This is one of the recommendations...
->>>>> I tried it with MTU 1500. It was worse:(
->>>>> maxsamples dropped to 364...
->>>>>
->>>>> Right, 9000, rather than 8000.
->>>>>
->>>>> Upgrading to 10Gbit wont' give you larger MTU.
->>>>>
->>>>> What you're trying to do, I think, is to solve a buffer-management
->>>>> problem in your *application* at entirely the wrong
->>>>>   level in the stack.
->>>>>
->>>>> It is EXCEEDINGLY COMMON for hardware drivers to only be able to
->>>>> deliver in chunks that may not be perfectly adapted to
->>>>>   the requirements of your application.  So, a common programming
->>>>> pattern is to deal with this in your application.
->>>>>
->>>>> You should probably look at example code like rx_samples_to_file
->>>>>
->>>>>
->>>>>
->>>>> [INFO] [UHD] linux; GNU C++ version 13.2.0; Boost_108300;
->>>>> UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1
->>>>> [INFO] [X300] X300 initialization sequence...
->>>>> [INFO] [X300] Maximum frame size: 1472 bytes.
->>>>> [WARNING] [X300] For the 192.168.40.2 connection, UHD recommends a
->>>>> send frame size of at least 8000 for best
->>>>> performance, but your configuration will only allow 1472.This may
->>>>> negatively impact your maximum achievable sample rate.
->>>>> Check the MTU on the interface and/or the send_frame_size argument.
->>>>> [WARNING] [X300] For the 192.168.40.2 connection, UHD recommends a
->>>>> receive frame size of at least 8000 for best
->>>>> performance, but your configuration will only allow 1472.This may
->>>>> negatively impact your maximum achievable sample rate.
->>>>> Check the MTU on the interface and/or the recv_frame_size argument.
->>>>> [INFO] [GPS] No GPSDO found
->>>>> [INFO] [X300] Radio 1x clock: 200 MHz
->>>>> [WARNING] [UDP] The send buffer could not be resized sufficiently.
->>>>> Target sock buff size: 24912805 bytes.
->>>>> Actual sock buff size: 1048576 bytes.
->>>>> See the transport application notes on buffer resizing.
->>>>> Please run: sudo sysctl -w net.core.wmem_max=3D24912805
->>>>> Sat Apr 26 06:30:34 2025 [00] [+] Created USRP with args
->>>>> Sat Apr 26 06:30:34 2025 [00] [+] Master clock is at 200 Mhz
->>>>> Sat Apr 26 06:30:34 2025 [00] [+] Tuner[0] gain set to 30 (30) dB
->>>>> [WARNING] [UDP] The send buffer could not be resized sufficiently.
->>>>> Target sock buff size: 24912805 bytes.
->>>>> Actual sock buff size: 1048576 bytes.
->>>>> See the transport application notes on buffer resizing.
->>>>> Please run: sudo sysctl -w net.core.wmem_max=3D24912805
->>>>> Sat Apr 26 06:30:34 2025 [00] [*] scanner.l:1446:main Incorrect
->>>>> maxsamples (364). Expected 19960.
->>>>> Sat Apr 26 06:30:34 2025 [00] [+] Max samples/buffer[0]: 364
->>>>> [WARNING] [0/Radio#0] Ignoring stream command for finite acquisition
->>>>> of zero sam
->>>>>
->>>>> Nikos
->>>>>
->>>>> On Sat, Apr 26, 2025 at 5:46=E2=80=AFAM Marcus D. Leech <
->>>>> patchvonbraun@gmail.com> wrote:
->>>>>
->>>>>> On 25/04/2025 22:26, Nikos Balkanas wrote:
->>>>>>
->>>>>> Thanks Marcus,
->>>>>>
->>>>>> for your fast reply.
->>>>>>
->>>>>> On Sat, Apr 26, 2025 at 4:08=E2=80=AFAM Marcus D. Leech <
->>>>>> patchvonbraun@gmail.com> wrote:
->>>>>>
->>>>>>> On 25/04/2025 20:50, Nikos Balkanas wrote:
->>>>>>>
->>>>>>> Hello,
->>>>>>>
->>>>>>> I need to buy a new NIC. What would you suggest?
->>>>>>> The one I use is an old Mellanox 10 Gbs, before the Connect-4 serie=
-s.
->>>>>>> It can only do 1996 S/s, need 19960 (10x more) to work with latest
->>>>>>> uhd.
->>>>>>> Using Ubuntu 24.04 and uhd 4.6.0
->>>>>>>
->>>>>>> So, 1.996ksps vs 19.960ksps?   You hardly need a 10Gbit link to
->>>>>>> support that.  So, perhaps something
->>>>>>>   is being lost here in your requirements?
->>>>>>>
->>>>>>
->>>>>> True. Can't explain it in terms of bandwidth. 16 * 1996 =3D 31.936
->>>>>> Kbps, 16 * 19960 =3D 319.360 Kbps well short of a 10 Gbps line:(
->>>>>> Does a complex pair count as 1 sample, or 2?
->>>>>> I have followed all the instructions in
->>>>>> https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks,
->>>>>> Even installed the DPDK drivers. My Mellanox is too old to use their
->>>>>> OFED drivers:(
->>>>>>
->>>>>>>
->>>>>>> On a related question. it seems that the streamer doesn't crash
->>>>>>> anymore
->>>>>>> when receiving less than MAXSPS samples, instead it reads 0:(
->>>>>>> This was due to the sse2 code not aligned in convert.
->>>>>>> I change my stream args to cpu_format=3Dsc16, otw=3Dsc16, so no
->>>>>>> conversion required.
->>>>>>> Streamer still doesn't read anything. Is there a reason for it?
->>>>>>>
->>>>>>> You'd need to share more of your code.  This should just work as fa=
-r
->>>>>>> as I can tell.
->>>>>>>
->>>>>>> Thanks. these are just the usrp code:
->>>>>>
->>>>>> int main()
->>>>>> {
->>>>>>       uhd_stream_args_t stream_args =3D
->>>>>>                                                            {
->>>>>>
->>>>>> .cpu_format =3D "sc16",
->>>>>>
->>>>>> .otw_format =3D "sc16",
->>>>>>                                                               .args =
-=3D
->>>>>> "",
->>>>>>
->>>>>> .n_channels =3D 1,
->>>>>>
->>>>>>  .channel_list =3D &channel
->>>>>>                                                              };
->>>>>> ..uhd_stream_cmd_t stream_cmd =3D
->>>>>>                                                              {
->>>>>>
->>>>>>  .stream_mode =3D UHD_STREAM_MODE_NUM_SAMPS_AND_DONE,
->>>>>>
->>>>>> .stream_now =3D true
->>>>>>                                                               };
->>>>>>
->>>>>>     if (uhd_init(0, 0, gain)) do_exit(20);
->>>>>>>     if ((err =3D uhd_usrp_get_rx_stream(dev[0], &stream_args,
->>>>>>> rx_streamer[0])))
->>>>>>>     {
->>>>>>>          uhd_get_last_error(errmsg, 127);
->>>>>>>          error(log, "Failed to get streamer[0] (%d). %s.\n", 0, FL,
->>>>>>> LN, FN, err, errmsg);
->>>>>>>         uhd_rx_streamer_free(&rx_streamer[0]);
->>>>>>>          rx_streamer[0] =3D NULL;
->>>>>>>          uhd_rx_metadata_free(&md[0]);
->>>>>>>         md[0] =3D NULL;
->>>>>>>         do_exit(30);
->>>>>>>     }
->>>>>>>      if ((err =3D uhd_rx_streamer_max_num_samps(rx_streamer[0],
->>>>>>> &maxsamps)))
->>>>>>>
->>>>>>      {
->>>>>>>          uhd_get_last_error(errmsg, 127);
->>>>>>>          error(log, "Failed to get max samples/buffer[0] (%d).
->>>>>>> %s.\n", 0, FL, LN, FN, err,
->>>>>>>            ..errmsg);
->>>>>>>         do_exit(35);
->>>>>>>     }
->>>>>>>     if (maxsamps !=3D MAXSMPS)
->>>>>>>         warn(log, "Incorrect maxsamples (%ld). Expected %d.\n", 0,
->>>>>>> FL, LN, FN, maxsamps,
->>>>>>>               MAXSMPS);
->>>>>>>      info(log, "Max samples/buffer[0]: %ld\n", 0, maxsamps);
->>>>>>>
->>>>>>>     if ((err =3D uhd_rx_streamer_issue_stream_cmd(rx_streamer[0],
->>>>>>> &stream_cmd)))
->>>>>>>
->>>>>>     {
->>>>>>>         uhd_get_last_error(errmsg, 127);
->>>>>>>         error(log, "Failed to start streamer[0] (%d). %s.\n", 0,
->>>>>>> FL, LN, FN, err, errmsg);
->>>>>>>        do_exit(40);
->>>>>>>      }
->>>>>>>
->>>>>>          [...]
->>>>>>          do_exit(0)
->>>>>>      }
->>>>>>
->>>>>>
->>>>>>> bool uhd_init(size_t channel, double srate, double gain)
->>>>>>> {
->>>>>>>     double tmp;
->>>>>>>     uhd_rx_metadata_error_code_t err;
->>>>>>>
->>>>>>>      if ((err =3D
->>>>>>> uhd_set_thread_priority(uhd_default_thread_priority, true)))
->>>>>>>             warn(log, "Unable to set  main thread priority (%d).
->>>>>>> %s.\n", 0, FL, LN, FN,
->>>>>>>                   err, uhdError(err));
->>>>>>>       /* Create USRP */
->>>>>>>       f ((err =3D uhd_usrp_make(&dev[channel], "type=3Dx300")))
->>>>>>>       {
->>>>>>>           error(log, "Failed to create USRP (%d). %s.\n", 0, FL,
->>>>>>> LN, FN, err,
->>>>>>>                uhdError(err));
->>>>>>>            dev[channel] =3D NULL;
->>>>>>>             return(FAIL);
->>>>>>>
->>>>>>          }
->>>>>>>          info(stderr, "Created USRP with args\n", 0);
->>>>>>>
->>>>>>>     /* Create RX streamer */
->>>>>>>     if ((err =3D uhd_rx_streamer_make(&rx_streamer[channel])))
->>>>>>>     {
->>>>>>>         error(log, "Failed to create rx_streamer[%d] (%d). %s.\n",
->>>>>>> 0, FL, LN, FN,
->>>>>>>             channel, err, uhdError(err));
->>>>>>>          return(FAIL);
->>>>>>>     }
->>>>>>>     /* Create RX metadata */
->>>>>>>     if ((err =3D uhd_rx_metadata_make(&md[channel])))
->>>>>>>    {
->>>>>>>        error(log, "Failed to create md[%d] (%d). %s.\n", 0, FL, LN,
->>>>>>> FN, channel,
->>>>>>>            err, uhdError(err));
->>>>>>>         return(FAIL);
->>>>>>>      }
->>>>>>>
->>>>>>>     /* Get master clock rate */
->>>>>>>      if ((err =3D uhd_usrp_get_master_clock_rate(dev[channel], 0,
->>>>>>> &tmp)))
->>>>>>>
->>>>>>       {
->>>>>>>            error(log, "Failed to set master clock to %.0lf Mhz
->>>>>>> (%d). %s.\n", 0, FL,
->>>>>>>                LN, FN, tmp/1000000, err, uhdError(err));
->>>>>>>             return(FAIL);
->>>>>>>       }
->>>>>>>       info(stderr, "Master clock is at %.0lf Mhz\n", 0,
->>>>>>> tmp/1000000);
->>>>>>>       /* Set the sample rate */
->>>>>>>      if (srate && !uhd_set_rx_rate_check(channel, srate))
->>>>>>> return(FAIL);
->>>>>>>      /* Set the tuner gain SBX-120 is 0-31.5 in .5 db steps */
->>>>>>>
->>>>>>        if ((err =3D uhd_usrp_set_rx_gain(dev[channel], gain, channel=
-,
->>>>>>> "")))
->>>>>>>        {
->>>>>>>             error(log, "Failed to set tuner[%d] gain to %.0lf db
->>>>>>> (%d). %s.\n", 0, FL,
->>>>>>>                  LN, FN, channel, gain, err, uhdError(err));
->>>>>>>             return(FAIL);
->>>>>>>          }
->>>>>>>          if (!(err =3D uhd_usrp_get_rx_gain(dev[channel], channel,
->>>>>>> "", &tmp)))
->>>>>>>               info(log, "Tuner[%d] gain set to %.0lf (%.0lf) dB\n",
->>>>>>> 0, channel, tmp, gain);
->>>>>>>
->>>>>>         ./* Set channel bw to conserve tuner resources. Not needed,
->>>>>> set by srate */
->>>>>>              uhd_usrp_set_rx_bandwidth(dev[channel], srate, channel)=
-;
->>>>>>          ./* Disable subtracting constant averaged background.
->>>>>> Signal looks cleaner */
->>>>>>             if ((err =3D
->>>>>> uhd_usrp_set_rx_dc_offset_enabled(dev[channel], false, channel)))
->>>>>>              {
->>>>>>                  warn(log, "Failed to disable FPGA DC offset on
->>>>>> channel %d(%d). %s.\n", 0,
->>>>>>                      FL, LN, FN, channel, err, uhdError(err));
->>>>>>                }
->>>>>>                info(stderr, "Disabled FPGA DC offset on channel
->>>>>> %d\n", 0, channel);
->>>>>>                return(SUCCESS);
->>>>>>          }
->>>>>>
->>>>>> This is the generated output:
->>>>>>
->>>>>> [INFO] [UHD] linux; GNU C++ version 13.2.0; Boost_108300;
->>>>>> UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1
->>>>>> [INFO] [X300] X300 initialization sequence...
->>>>>> [INFO] [X300] Maximum frame size: 8000 bytes.
->>>>>> [INFO] [X300] Radio 1x clock: 200 MHz
->>>>>> Sat Apr 26 03:33:48 2025 [00] [+] Created USRP with args
->>>>>> Sat Apr 26 03:33:48 2025 [00] [+] Master clock is at 200 Mhz
->>>>>> Sat Apr 26 03:33:48 2025 [00] [+] Tuner[0] gain set to 30 (30) dB
->>>>>> Sat Apr 26 03:33:48 2025 [00] [*] scanner.l:1446:main Incorrect
->>>>>> maxsamples (1996). Expected 19960.
->>>>>> Sat Apr 26 03:33:48 2025 [00] [+] Max samples/buffer[0]: 1996
->>>>>> [WARNING] [0/Radio#0] Ignoring stream command for finite acquisition
->>>>>> of zero samples
->>>>>> I hope this reads OK. Maybe next time I should attach the code:)
->>>>>>
->>>>>>> TIA
->>>>>>> Nikos
->>>>>>>
->>>>>>> _______________________________________________
->>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>
->>>>>>>
->>>>>>> I believe that max number of samples-per-buffer is limited by MTU
->>>>>> size.   Which is typically around 8000 or so for "jumbo frames".
->>>>>>
->>>>>>
->>>>>>
->>>>>
->>
 
---0000000000006bbae00633d36269
+--000000000000c42f0e0633d61476
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Com=
-piled uhd 4.6.0 in debug mode.</div><div class=3D"gmail_default" style=3D"f=
-ont-size:small">From the output I get:</div><div class=3D"gmail_default" st=
-yle=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"fon=
-t-size:small">[DEBUG] [0/Radio#0] spp(=3D samples per package) value 2032 e=
-xceeds MTU of 8000! Coercing to 1996<br>Mon Apr 28 09:57:02 2025 [00] [*] s=
-canner.l:1443:main Incorrect maxsamples (1996). Expected 19960.<br>Mon Apr =
-28 09:57:02 2025 [00] [+] Max samples/buffer[0]: 1996</div><div class=3D"gm=
-ail_default" style=3D"font-size:small">1) Line mtu is 9000 not 8000</div><d=
-iv class=3D"gmail_default" style=3D"font-size:small">2) 2032 is not larger =
-than 8000 &lt;=3D Bug?</div><div class=3D"gmail_default" style=3D"font-size=
-:small">3) seems that spp is setting my maxsmps</div><div class=3D"gmail_de=
-fault" style=3D"font-size:small"><br></div><div class=3D"gmail_default" sty=
-le=3D"font-size:small">Of the examples I tried the rx_samples_c. It is the =
-same case like mine: single usrp. We use the same commands</div><div class=
-=3D"gmail_default" style=3D"font-size:small">and we are getting the same ou=
-tput:( 1996 maxsmpls.</div><div class=3D"gmail_default" style=3D"font-size:=
-small">The error text and code are from=C2=A0host/lib/rfnoc/radio_control_i=
-mpl.cpp: 199</div><div class=3D"gmail_default" style=3D"font-size:small">I =
-would rather not touch it. I don&#39;t know the uhd architecture and especi=
-ally the rfnoc/uhd interface.</div><div class=3D"gmail_default" style=3D"fo=
-nt-size:small">Besides I am a c programmer, not c++:(</div><div class=3D"gm=
-ail_default" style=3D"font-size:small">multi_usrp class has a set_rx_spp fu=
-nction, but it is not for me:(</div><div class=3D"gmail_default" style=3D"f=
-ont-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:s=
-mall">HTH</div><div class=3D"gmail_default" style=3D"font-size:small">Nikos=
-</div></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Mon, Apr 28, 2025 at 6:02=E2=80=AFAM Nikos=
- Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.com">nbalkanas@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Point =
-taken:) I&#39;m proposing smt different:</div><div class=3D"gmail_default" =
-style=3D"font-size:small">pchar=C2=A0+ICMP are just to test line and connec=
-tors. First step. Not to bench USRP.</div><div class=3D"gmail_default" styl=
-e=3D"font-size:small">benchmark_rate is to bench/stress usrp.</div><div cla=
-ss=3D"gmail_default" style=3D"font-size:small">These 2 are independent, and=
- complementary.</div><div class=3D"gmail_default" style=3D"font-size:small"=
->Pchar is telling me nothing more than my fiber cable and connectors are go=
-od.</div><div class=3D"gmail_default" style=3D"font-size:small">It saved me=
- a trip tomorrow to my local PC store, where fiber cable and connectors are=
- ~7 E each.</div><div class=3D"gmail_default" style=3D"font-size:small">ben=
-chmark_rate on the other hand is quite interesting.</div><div class=3D"gmai=
-l_default" style=3D"font-size:small">It points to software,and particularly=
- my uhd_init()</div><div class=3D"gmail_default" style=3D"font-size:small">=
-<br></div><div class=3D"gmail_default" style=3D"font-size:small">Just found=
- and downloaded the sources to uhd 4.6.0 from Ubuntu Launchpad.</div><div c=
-lass=3D"gmail_default" style=3D"font-size:small">Now I can go through the s=
-ource of the example you told me:)</div><div class=3D"gmail_default" style=
-=3D"font-size:small">Ettus used=C2=A0 to keep an archive of old uhd sources=
- around. Seems it&#39;s gone:(=C2=A0</div><div class=3D"gmail_default" styl=
-e=3D"font-size:small">Open source means, among others, free to choose the s=
-ource version that you need...</div><div class=3D"gmail_default" style=3D"f=
-ont-size:small">Having the latest source in Github is only partly open sour=
-ce.</div><div class=3D"gmail_default" style=3D"font-size:small">During deve=
-lopment we need to freeze updates. When in 5 years we go</div><div class=3D=
-"gmail_default" style=3D"font-size:small">into production we can&#39;t find=
- the old sources anymore:(</div><div class=3D"gmail_default" style=3D"font-=
-size:small">If a customer discovers a bug, not in our code, but in one of t=
-he libraries that</div><div class=3D"gmail_default" style=3D"font-size:smal=
-l">we use, what are we gonna do?</div><div class=3D"gmail_default" style=3D=
-"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size=
-:small">BR</div><div class=3D"gmail_default" style=3D"font-size:small">Niko=
-s=C2=A0</div><div class=3D"gmail_default" style=3D"font-size:small"><br></d=
-iv><div class=3D"gmail_default" style=3D"font-size:small"><br></div></div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon,=
- Apr 28, 2025 at 5:01=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patc=
-hvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><u></u>
-
- =20
-   =20
- =20
-  <div>
-    <div>On 27/04/2025 21:58, Nikos Balkanas
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div class=3D"gmail_default" style=3D"font-size:small">My bad:</div=
->
-        <div class=3D"gmail_default" style=3D"font-size:small"><br>
-        </div>
-        <div class=3D"gmail_default" style=3D"font-size:small">throughput o=
-f
-          5.619 Kb/s requesting ICMP replies,=C2=A0+&gt; throughput of 5,61=
-9
-          Kb/s requesting ICMP replies</div>
-        <div class=3D"gmail_default" style=3D"font-size:small">Local
-          thousand separator is &quot;.&quot;, whereas in the US is &quot;,=
-&quot;:( <br>
-        </div>
-      </div>
-    </blockquote>
-    It is STILL the case that the ICMP machinery in these radios is
-    ABSOLUTELY NOT on the fast-path inside<br>
-    =C2=A0 the hardware.=C2=A0 The only way to get a good feel for how much=
- sample
-    bandwidth they can process is<br>
-    =C2=A0 with examples like &quot;benchmark_rate&quot;.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 28, 2025 at
-          12:37=E2=80=AFAM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@g=
-mail.com" target=3D"_blank">nbalkanas@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir=3D"ltr">
-            <div class=3D"gmail_default" style=3D"font-size:small">Hi
-              Marcus,</div>
-            <div class=3D"gmail_default" style=3D"font-size:small"><br>
-            </div>
-            <div class=3D"gmail_default" style=3D"font-size:small">You were
-              right. No need to change NIC:)</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">This is
-              not a software issue.=C2=A0uhd_rx_streamer_max_num_samps runs
-              right after uhd initialization before</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">any othe=
-r
-              code had the chance to run.</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">Link
-              capacity doesn&#39;t seem to be the issue either...</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">Running
-              pchar on the link, descendant of pathchar, reports a
-              throughput of 5.619 Kb/s requesting ICMP replies,</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">to
-              varying packet sizes (32-&gt;9000 (MTU), incr by 32).=C2=A0</=
-div>
-            <div class=3D"gmail_default" style=3D"font-size:small">sudo
-              pchar -m 9000 -p ipv4icmp usrp</div>
-            <div class=3D"gmail_default" style=3D"font-size:small"><a href=
-=3D"https://www.kitchenlab.org/www/bmah/Software/pchar/" target=3D"_blank">=
-https://www.kitchenlab.org/www/bmah/Software/pchar/</a></div>
-            <div class=3D"gmail_default" style=3D"font-size:small"><br>
-            </div>
-            <div class=3D"gmail_default" style=3D"font-size:small">It
-              corresponds to 351.218.019 16-bit samples or 175,609.044
-              32-bit samples, if each sample is 32-bit(real=C2=A0+ imag)</d=
-iv>
-            <div class=3D"gmail_default" style=3D"font-size:small">Seems
-              that uhd is not running at link capacity but is doing smt
-              else.</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">I will
-              have=C2=A0 to download and check with the sources...</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">The
-              package version for Ubuntu 24.04 is uhd 4.6.0.</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">Where ca=
-n
-              I download the sources for uhd 4.6.0?</div>
-            <div class=3D"gmail_default" style=3D"font-size:small"><br>
-            </div>
-            <div class=3D"gmail_default" style=3D"font-size:small">BR</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">Nikos</d=
-iv>
-          </div>
-          <br>
-          <div class=3D"gmail_quote">
-            <div dir=3D"ltr" class=3D"gmail_attr">On Sat, Apr 26, 2025 at
-              7:02=E2=80=AFAM Nikos Balkanas &lt;<a href=3D"mailto:nbalkana=
-s@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>&gt;
-              wrote:<br>
-            </div>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-              <div dir=3D"ltr">
-                <div class=3D"gmail_default" style=3D"font-size:small">Than=
-ks
-                  for your time.</div>
-                <div class=3D"gmail_default" style=3D"font-size:small">I
-                  will check out the example.</div>
-                <div class=3D"gmail_default" style=3D"font-size:small">This
-                  is not a buffer problem. I just need 1024 Samples
-                  (real+imaginary) for FFT...</div>
-                <div class=3D"gmail_default" style=3D"font-size:small">I
-                  should be able to get them in a single pass.</div>
-                <div class=3D"gmail_default" style=3D"font-size:small">You
-                  saw my code, not a smoking gun there.</div>
-                <div class=3D"gmail_default" style=3D"font-size:small"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"font-size:small">This
-                  is probably is a physical problem.</div>
-                <div class=3D"gmail_default" style=3D"font-size:small">Cabl=
-e
-                  is an SFP fiber dedicated line. Cannot go bad.</div>
-                <div class=3D"gmail_default" style=3D"font-size:small">Mayb=
-e
-                  the connections are not sitting right :(...</div>
-                <div class=3D"gmail_default" style=3D"font-size:small"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"font-size:small">BR</=
-div>
-                <div class=3D"gmail_default" style=3D"font-size:small">Niko=
-s</div>
-              </div>
-              <br>
-              <div class=3D"gmail_quote">
-                <div dir=3D"ltr" class=3D"gmail_attr">On Sat, Apr 26, 2025
-                  at 6:45=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:=
-patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
-                  wrote:<br>
-                </div>
-                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-                  <div>
-                    <div>On 25/04/2025 23:33, Nikos Balkanas wrote:<br>
-                    </div>
-                    <blockquote type=3D"cite">
-                      <div dir=3D"ltr">
-                        <div class=3D"gmail_default" style=3D"font-size:sma=
-ll">Actually MTU is 9000.
-                          This is one of the recommendations...</div>
-                        <div class=3D"gmail_default" style=3D"font-size:sma=
-ll">I tried it with MTU
-                          1500. It was worse:(</div>
-                        <div class=3D"gmail_default" style=3D"font-size:sma=
-ll">maxsamples dropped to
-                          364...</div>
-                      </div>
-                    </blockquote>
-                    Right, 9000, rather than 8000.<br>
-                    <br>
-                    Upgrading to 10Gbit wont&#39; give you larger MTU.<br>
-                    <br>
-                    What you&#39;re trying to do, I think, is to solve a
-                    buffer-management problem in your *application* at
-                    entirely the wrong<br>
-                    =C2=A0 level in the stack.<br>
-                    <br>
-                    It is EXCEEDINGLY COMMON for hardware drivers to
-                    only be able to deliver in chunks that may not be
-                    perfectly adapted to<br>
-                    =C2=A0 the requirements of your application.=C2=A0 So, =
-a
-                    common programming pattern is to deal with this in
-                    your application.<br>
-                    <br>
-                    You should probably look at example code like
-                    rx_samples_to_file<br>
-                    <br>
-                    <br>
-                    <blockquote type=3D"cite">
-                      <div dir=3D"ltr">
-                        <div class=3D"gmail_default" style=3D"font-size:sma=
-ll"><br>
-                        </div>
-                        <div class=3D"gmail_default" style=3D"font-size:sma=
-ll">[INFO] [UHD] linux;
-                          GNU C++ version 13.2.0; Boost_108300;
-                          UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1<br>
-                          [INFO] [X300] X300 initialization sequence...<br>
-                          [INFO] [X300] Maximum frame size: 1472 bytes.<br>
-                          [WARNING] [X300] For the 192.168.40.2
-                          connection, UHD recommends a send frame size
-                          of at least 8000 for best<br>
-                          performance, but your configuration will only
-                          allow 1472.This may negatively impact your
-                          maximum achievable sample rate.<br>
-                          Check the MTU on the interface and/or the
-                          send_frame_size argument.<br>
-                          [WARNING] [X300] For the 192.168.40.2
-                          connection, UHD recommends a receive frame
-                          size of at least 8000 for best<br>
-                          performance, but your configuration will only
-                          allow 1472.This may negatively impact your
-                          maximum achievable sample rate.<br>
-                          Check the MTU on the interface and/or the
-                          recv_frame_size argument.<br>
-                          [INFO] [GPS] No GPSDO found<br>
-                          [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                          [WARNING] [UDP] The send buffer could not be
-                          resized sufficiently.<br>
-                          Target sock buff size: 24912805 bytes.<br>
-                          Actual sock buff size: 1048576 bytes.<br>
-                          See the transport application notes on buffer
-                          resizing.<br>
-                          Please run: sudo sysctl -w
-                          net.core.wmem_max=3D24912805<br>
-                          Sat Apr 26 06:30:34 2025 [00] [+] Created USRP
-                          with args<br>
-                          Sat Apr 26 06:30:34 2025 [00] [+] Master clock
-                          is at 200 Mhz<br>
-                          Sat Apr 26 06:30:34 2025 [00] [+] Tuner[0]
-                          gain set to 30 (30) dB<br>
-                          [WARNING] [UDP] The send buffer could not be
-                          resized sufficiently.<br>
-                          Target sock buff size: 24912805 bytes.<br>
-                          Actual sock buff size: 1048576 bytes.<br>
-                          See the transport application notes on buffer
-                          resizing.<br>
-                          Please run: sudo sysctl -w
-                          net.core.wmem_max=3D24912805<br>
-                          Sat Apr 26 06:30:34 2025 [00] [*]
-                          scanner.l:1446:main Incorrect maxsamples
-                          (364). Expected 19960.<br>
-                          Sat Apr 26 06:30:34 2025 [00] [+] Max
-                          samples/buffer[0]: 364<br>
-                          [WARNING] [0/Radio#0] Ignoring stream command
-                          for finite acquisition of zero sam</div>
-                        <div class=3D"gmail_default" style=3D"font-size:sma=
-ll"><br>
-                        </div>
-                        <div class=3D"gmail_default" style=3D"font-size:sma=
-ll">Nikos</div>
-                      </div>
-                      <br>
-                      <div class=3D"gmail_quote">
-                        <div dir=3D"ltr" class=3D"gmail_attr">On Sat, Apr
-                          26, 2025 at 5:46=E2=80=AFAM Marcus D. Leech &lt;<=
-a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@g=
-mail.com</a>&gt;
-                          wrote:<br>
-                        </div>
-                        <blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-                          <div>
-                            <div>On 25/04/2025 22:26, Nikos Balkanas
-                              wrote:<br>
-                            </div>
-                            <blockquote type=3D"cite">
-                              <div dir=3D"ltr">
-                                <div dir=3D"ltr">
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">Thanks
-                                    Marcus,</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small"><br>
-                                  </div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">for your
-                                    fast reply.</div>
-                                </div>
-                                <br>
-                                <div class=3D"gmail_quote">
-                                  <div dir=3D"ltr" class=3D"gmail_attr">On
-                                    Sat, Apr 26, 2025 at 4:08=E2=80=AFAM Ma=
-rcus
-                                    D. Leech &lt;<a href=3D"mailto:patchvon=
-braun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
-                                    wrote:<br>
-                                  </div>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div>
-                                      <div>On 25/04/2025 20:50, Nikos
-                                        Balkanas wrote:<br>
-                                      </div>
-                                      <blockquote type=3D"cite">
-                                        <div dir=3D"ltr">
-                                          <div style=3D"font-size:small">He=
-llo,</div>
-                                          <div style=3D"font-size:small"><b=
-r>
-                                          </div>
-                                          <div style=3D"font-size:small">I
-                                            need to buy a new NIC. What
-                                            would you suggest?</div>
-                                          <div style=3D"font-size:small">Th=
-e
-                                            one I use is an old Mellanox
-                                            10 Gbs, before the Connect-4
-                                            series.</div>
-                                          <div style=3D"font-size:small">It
-                                            can only do 1996 S/s, need
-                                            19960 (10x more) to work
-                                            with latest uhd.</div>
-                                          <div style=3D"font-size:small">Us=
-ing
-                                            Ubuntu 24.04 and uhd 4.6.0</div=
->
-                                        </div>
-                                      </blockquote>
-                                      So, 1.996ksps vs 19.960ksps?=C2=A0=C2=
-=A0 You
-                                      hardly need a 10Gbit link to
-                                      support that.=C2=A0 So, perhaps
-                                      something<br>
-                                      =C2=A0 is being lost here in your
-                                      requirements?<br>
-                                    </div>
-                                  </blockquote>
-                                  <div><br>
-                                  </div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">True. Can&#39;t
-                                    explain it in terms of bandwidth. 16
-                                    * 1996 =3D 31.936 Kbps, 16 * 19960 =3D
-                                    319.360 Kbps well short of a 10 Gbps
-                                    line:(</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">Does a
-                                    complex pair count as 1 sample, or
-                                    2?</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">I have
-                                    followed all the instructions in=C2=A0<=
-a href=3D"https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks=
-" target=3D"_blank">https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_=
-and_Tricks</a>,</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">Even
-                                    installed the DPDK drivers. My
-                                    Mellanox is too old to use their
-                                    OFED drivers:(</div>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div>
-                                      <blockquote type=3D"cite">
-                                        <div dir=3D"ltr">
-                                          <div style=3D"font-size:small"><b=
-r>
-                                          </div>
-                                          <div style=3D"font-size:small">On
-                                            a related question. it seems
-                                            that the streamer doesn&#39;t
-                                            crash anymore</div>
-                                          <div style=3D"font-size:small">wh=
-en
-                                            receiving less than MAXSPS
-                                            samples, instead it reads
-                                            0:(</div>
-                                          <div style=3D"font-size:small">Th=
-is
-                                            was due to the sse2 code not
-                                            aligned in convert.</div>
-                                          <div style=3D"font-size:small">I
-                                            change my stream args to
-                                            cpu_format=3Dsc16, otw=3Dsc16,
-                                            so no conversion required.</div=
->
-                                          <div style=3D"font-size:small">St=
-reamer
-                                            still doesn&#39;t read anything=
-.
-                                            Is there a reason for it?</div>
-                                          <div style=3D"font-size:small"><b=
-r>
-                                          </div>
-                                        </div>
-                                      </blockquote>
-                                      You&#39;d need to share more of your
-                                      code.=C2=A0 This should just work as
-                                      far as I can tell.<br>
-                                      <br>
-                                    </div>
-                                  </blockquote>
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small"></span></div>
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small">Thanks.
-                                      these are just the usrp code:</span><=
-/div>
-                                  <div><br>
-                                  </div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">int main()</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">{</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">=C2=A0 =C2=A0 =C2=A0
-                                    uhd_stream_args_t stream_args =3D<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    .cpu_format =3D &quot;sc16&quot;,<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    .otw_format =3D &quot;sc16&quot;,<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .args =3D
-                                    &quot;&quot;,<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    .n_channels =3D 1,<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    =C2=A0.channel_list =3D &amp;channel<br=
->
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0};<br>
-                                    ..uhd_stream_cmd_t stream_cmd =3D<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    =C2=A0.stream_mode =3D
-                                    UHD_STREAM_MODE_NUM_SAMPS_AND_DONE,<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    .stream_now =3D true<br>
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 };</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small"><br>
-                                  </div>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div> <span class=3D"gmail_default" sty=
-le=3D"font-size:small">=C2=A0 =C2=A0 </span>if
-                                      (uhd_init(0, 0, gain))
-                                      do_exit(20);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>if
-                                      ((err =3D
-                                      uhd_usrp_get_rx_stream(dev[0],
-                                      &amp;stream_args,
-                                      rx_streamer[0])))<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>{<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>uhd_get_last_error(err=
-msg,
-                                      127);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>error(log, &quot;Faile=
-d to
-                                      get streamer[0] (%d). %s.\n&quot;, 0,
-                                      FL, LN, FN, err, errmsg);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>uhd_rx_streame=
-r_free(&amp;rx_streamer[0]);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>rx_streamer[0] =3D NUL=
-L;<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>uhd_rx_metadata_free(&=
-amp;md[0]);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>md[0]
-                                      =3D NULL;<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>do_exit(30);<b=
-r>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>}<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>if
-                                      ((err =3D
-                                      uhd_rx_streamer_max_num_samps(rx_stre=
-amer[0],
-                                      &amp;maxsamps)))</div>
-                                  </blockquote>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div><span class=3D"gmail_default" styl=
-e=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>{<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>uhd_get_last_error(err=
-msg,
-                                      127);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>error(log, &quot;Faile=
-d to
-                                      get max samples/buffer[0] (%d).
-                                      %s.\n&quot;, 0, FL, LN, FN, err,<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0</span>..errmsg);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>do_exit(35);<b=
-r>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>}<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>if
-                                      (maxsamps !=3D MAXSMPS)<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>warn(log,
-                                      &quot;Incorrect maxsamples (%ld).
-                                      Expected %d.\n&quot;, 0, FL, LN, FN,
-                                      maxsamps,<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0 =C2=A0=C2=A0</span>MA=
-XSMPS);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>info(log,
-                                      &quot;Max samples/buffer[0]: %ld\n&qu=
-ot;, 0,
-                                      maxsamps);<br>
-                                      <br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 i</span>f
-                                      ((err =3D
-                                      uhd_rx_streamer_issue_stream_cmd(rx_s=
-treamer[0],
-                                      &amp;stream_cmd)))=C2=A0</div>
-                                  </blockquote>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div><span class=3D"gmail_default" styl=
-e=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>{<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>uhd_get_last_e=
-rror(errmsg,
-                                      127);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>error(log,
-                                      &quot;Failed to start streamer[0] (%d=
-).
-                                      %s.\n&quot;, 0, FL, LN, FN, err,
-                                      errmsg);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0</span>do_exit(40);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>}<br>
-                                    </div>
-                                  </blockquote>
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                      =C2=A0[...]</span></div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    =C2=A0do_exit(0)</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">=C2=A0 =C2=A0 =C2=A0}</div>
-                                  <div class=3D"gmail_default" style=3D"fon=
-t-size:small">=C2=A0 =C2=A0 =C2=A0</div>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div> bool uhd_init(size_t channel,
-                                      double srate, double gain)<br>
-                                      {<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>double
-                                      tmp;<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>uhd_rx_metadata_error_code_t
-                                      err;<br>
-                                      <br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>if
-                                      ((err =3D
-                                      uhd_set_thread_priority(uhd_default_t=
-hread_priority,
-                                      true)))<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0=C2=A0</span>warn(log,=
- &quot;Unable to
-                                      set =C2=A0main thread priority (%d).
-                                      %s.\n&quot;, 0, FL, LN, FN,<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=C2=A0</span>err,
-                                      uhdError(err));<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 </span>/*
-                                      Create USRP */<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 </span>f
-                                      ((err =3D
-                                      uhd_usrp_make(&amp;dev[channel],
-                                      &quot;type=3Dx300&quot;)))<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0=C2=A0</span>{<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0=C2=A0</span>error(log, &quot=
-;Failed to
-                                      create USRP (%d). %s.\n&quot;, 0, FL,
-                                      LN, FN, err,<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>u=
-hdError(err));<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0</span>dev[channel] =
-=3D NULL;<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0 r</span>eturn(FAIL);=
-=C2=A0</div>
-                                  </blockquote>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div><span class=3D"gmail_default" styl=
-e=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>}<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>info(stderr, &quot;Cre=
-ated
-                                      USRP with args\n&quot;, 0);<br>
-                                      <br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>/*
-                                      Create RX streamer */<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>if
-                                      ((err =3D
-                                      uhd_rx_streamer_make(&amp;rx_streamer=
-[channel])))<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>{<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>error(log,
-                                      &quot;Failed to create rx_streamer[%d=
-]
-                                      (%d). %s.\n&quot;, 0, FL, LN, FN,<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0=C2=A0</span>channel, =
-err,
-                                      uhdError(err));<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>return(FAIL);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 </span>}<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>/*
-                                      Create RX metadata */<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>if
-                                      ((err =3D
-                                      uhd_rx_metadata_make(&amp;md[channel]=
-)))<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0</span>{<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0</span>error(log,
-                                      &quot;Failed to create md[%d] (%d).
-                                      %s.\n&quot;, 0, FL, LN, FN, channel,<=
-br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0</span>err, uhdError(e=
-rr));<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>return(FAIL);<=
-br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>}<br>
-                                      <br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0=C2=A0</span>/*
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">G</span>et
-                                      master clock rate */<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>if
-                                      ((err =3D
-                                      uhd_usrp_get_master_clock_rate(dev[ch=
-annel],
-                                      0, &amp;tmp)))=C2=A0</div>
-                                  </blockquote>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div><span class=3D"gmail_default" styl=
-e=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0=C2=A0</span>{<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0</span>error(log, &quo=
-t;Failed to
-                                      set master clock to %.0lf Mhz
-                                      (%d). %s.\n&quot;, 0, FL,<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>L=
-N, FN,
-                                      tmp/1000000, err, uhdError(err));<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0=C2=A0</span>return(FA=
-IL);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 </span>}<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0=C2=A0</span>info(stderr,
-                                      &quot;Master clock is at %.0lf Mhz\n&=
-quot;,
-                                      0, tmp/1000000);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0=C2=A0</span>/*
-                                      Set the sample rate */<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>if
-                                      (srate &amp;&amp;
-                                      !uhd_set_rx_rate_check(channel,
-                                      srate)) return(FAIL);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0</span>/*
-                                      Set the tuner gain SBX-120 is
-                                      0-31.5 in .5 db steps */=C2=A0</div>
-                                  </blockquote>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div><span class=3D"gmail_default" styl=
-e=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0i</span>f
-                                      ((err =3D
-                                      uhd_usrp_set_rx_gain(dev[channel],
-                                      gain, channel, &quot;&quot;)))<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0</span>{<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0=C2=A0</span>error(log=
-, &quot;Failed to
-                                      set tuner[%d] gain to %.0lf db
-                                      (%d). %s.\n&quot;, 0, FL,<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<=
-/span>LN, FN, channel,
-                                      gain, err, uhdError(err));<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0=C2=A0</span>return(FA=
-IL);<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0</span>}<br>
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0i</span>f (!(err =3D
-                                      uhd_usrp_get_rx_gain(dev[channel],
-                                      channel, &quot;&quot;, &amp;tmp)))<br=
->
-                                      <span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                        =C2=A0 =C2=A0 =C2=A0=C2=A0</span>in=
-fo(log,
-                                      &quot;Tuner[%d] gain set to %.0lf
-                                      (%.0lf) dB\n&quot;, 0, channel, tmp,<=
-span class=3D"gmail_default" style=3D"font-size:small">=C2=A0</span>gain);<=
-/div>
-                                  </blockquote>
-                                  <span class=3D"gmail_default" style=3D"fo=
-nt-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>./*
-                                  Set channel bw to conserve tuner
-                                  resources. Not needed, set by srate */<br=
->
-                                  <span class=3D"gmail_default" style=3D"fo=
-nt-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    =C2=A0</span>uhd_usrp_set_rx_bandwidth(=
-dev[channel],
-                                  srate, channel);<br>
-                                  <span class=3D"gmail_default" style=3D"fo=
-nt-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span>./*
-                                  Disable subtracting constant averaged
-                                  background. Signal looks cleaner */<br>
-                                  <span class=3D"gmail_default" style=3D"fo=
-nt-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</span>if
-                                  ((err =3D
-                                  uhd_usrp_set_rx_dc_offset_enabled(dev[cha=
-nnel],
-                                  false, channel)))<br>
-                                  <span class=3D"gmail_default" style=3D"fo=
-nt-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    =C2=A0</span>{<br>
-                                  <span class=3D"gmail_default" style=3D"fo=
-nt-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0</span>warn(log, &q=
-uot;Failed to
-                                  disable FPGA DC offset on channel
-                                  %d(%d). %s.\n&quot;, 0,<br>
-                                  <span class=3D"gmail_default" style=3D"fo=
-nt-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</spa=
-n>FL, LN, FN, channel,
-                                  err, uhdError(err));</div>
-                                <div class=3D"gmail_quote"><span class=3D"g=
-mail_default" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0
-                                    =C2=A0 =C2=A0</span>}<br>
-                                  <span class=3D"gmail_default" style=3D"fo=
-nt-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                                    =C2=A0 =C2=A0</span>info(stderr, &quot;=
-Disabled
-                                  FPGA DC offset on channel %d\n&quot;, 0,
-                                  channel);<span class=3D"gmail_default" st=
-yle=3D"font-size:small"></span></div>
-                                <div class=3D"gmail_quote"><span class=3D"g=
-mail_default" style=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0
-                                    =C2=A0 =C2=A0</span>return(SUCCESS);<br=
->
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}</span></div>
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small"><br>
-                                    </span></div>
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small">This is
-                                      the generated output:</span>=C2=A0</d=
-iv>
-                                  <div><br>
-                                  </div>
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small"></span>[INFO]
-                                    [UHD] linux; GNU C++ version 13.2.0;
-                                    Boost_108300;
-                                    UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1</div=
->
-                                  [INFO] [X300] X300 initialization
-                                  sequence...<br>
-                                  [INFO] [X300] Maximum frame size: 8000
-                                  bytes.<br>
-                                  [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                                  Sat Apr 26 03:33:48 2025 [00] [+]
-                                  Created USRP with args<br>
-                                  Sat Apr 26 03:33:48 2025 [00] [+]
-                                  Master clock is at 200 Mhz<br>
-                                  Sat Apr 26 03:33:48 2025 [00] [+]
-                                  Tuner[0] gain set to 30 (30) dB<br>
-                                  Sat Apr 26 03:33:48 2025 [00] [*]
-                                  scanner.l:1446:main Incorrect
-                                  maxsamples (1996). Expected 19960.<br>
-                                  Sat Apr 26 03:33:48 2025 [00] [+] Max
-                                  samples/buffer[0]: 1996<br>
-                                  <div>[WARNING] [0/Radio#0] Ignoring
-                                    stream command for finite
-                                    acquisition of zero samples=C2=A0</div>
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small"></span></div>
-                                  <div><span class=3D"gmail_default" style=
-=3D"font-size:small">I hope
-                                      this reads OK. Maybe next time I
-                                      should attach the code:)</span>=C2=A0=
-</div>
-                                  <blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-                                    <div>
-                                      <blockquote type=3D"cite">
-                                        <div dir=3D"ltr">
-                                          <div style=3D"font-size:small">
-                                          </div>
-                                          <div style=3D"font-size:small">TI=
-A</div>
-                                          <div style=3D"font-size:small">Ni=
-kos</div>
-                                        </div>
-                                        <br>
-                                        <fieldset></fieldset>
-                                        <pre>______________________________=
-_________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-                                      </blockquote>
-                                      <br>
-                                    </div>
-                                  </blockquote>
-                                </div>
-                              </div>
-                            </blockquote>
-                            I believe that max number of
-                            samples-per-buffer is limited by MTU size.=C2=
-=A0=C2=A0
-                            Which is typically around 8000 or so for
-                            &quot;jumbo frames&quot;.<br>
-                            <br>
-                            <br>
-                          </div>
-                        </blockquote>
-                      </div>
-                    </blockquote>
-                    <br>
-                  </div>
-                </blockquote>
-              </div>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </div>
-
-</blockquote></div>
+<div dir=3D"ltr"><div>Right, up to 64 VCs per stream endpoint.</div><div><b=
+r></div><div>Each stream endpoint only supports a single sequence number co=
+unter, so that single counter would be shared by all virtual channels.</div=
+><div><br></div><div>Wade</div></div><br><div class=3D"gmail_quote gmail_qu=
+ote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 27, 2025 a=
+t 8:27=E2=80=AFPM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com"=
+>bpadalino@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"></div><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 27, 2025 at 8=
+:44=E2=80=AFPM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=
+=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>The EPIDs are only u=
+sed by the stream endpoints. I think it will always be set to 0 when it is =
+sent to your block, and anything you put in there will be ignored by downst=
+ream blocks. In theory, I suppose it could be used the way you described, b=
+ut I think that would require pretty significant changes in both UHD and in=
+ the FPGA.</div><div><br></div><div>Could you use two stream endpoints inst=
+ead to double the number of virtual channels?</div></div></blockquote><div>=
+<br></div><div>Maybe I could do that. So have 4 endpoints be the lower 64 c=
+hannels, and then have 4 endpoints be the upper 64 channels and utilize onl=
+y the VC field?</div><div><br></div><div>When it comes to SeqNum, do the VC=
+&#39;s count as being separate or would the SeqNum also increase since the =
+DestEPID is still the same?</div><div></div><div><br></div><div>Thanks,</di=
+v><div>Brian</div></div></div>
 </blockquote></div>
 
---0000000000006bbae00633d36269--
+--000000000000c42f0e0633d61476--
 
---===============2430096417358944451==
+--===============7158956768294073996==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1573,4 +172,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2430096417358944451==--
+--===============7158956768294073996==--
