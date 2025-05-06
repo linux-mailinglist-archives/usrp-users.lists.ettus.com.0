@@ -2,232 +2,128 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C645AABC37
-	for <lists+usrp-users@lfdr.de>; Tue,  6 May 2025 09:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 463D6AAC78C
+	for <lists+usrp-users@lfdr.de>; Tue,  6 May 2025 16:13:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 70691386601
-	for <lists+usrp-users@lfdr.de>; Tue,  6 May 2025 03:58:35 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DA2B03862AF
+	for <lists+usrp-users@lfdr.de>; Tue,  6 May 2025 10:13:42 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1746518315; bh=x05ZDprpVwVGx+9CaX40jINr5hr6C92EfpBWSFpKVtE=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=FoAHba9Xzn+1XRQ+DXJVNp+rqK9N2efLFMZLoCW8CiQqjVXq92bGkevkeIraQfaMo
-	 qrmq7/pBuN7kyW5ONztOd09m66QLq2cb4mpt6YZRmiU+8tWgxsj99/OsPJnJ14MghK
-	 bsSJ+4zqSOloiUI42a0sdKxl3GD5gsfrJn3V4x4FTWjipgaZNlKwOowKNqrTnZVc1u
-	 47DYAlBfTc63QaBzupPO644s/ig4FRwmDwuTEmvosF7Gzx6zlcSnC8QH1esVaeOwdo
-	 3iR/TTrDOkXPNb5TPNvwKKCEQMUTI3GuPw/Qltkf6t3heUL/+hoCYaWhNs+mO31iiV
-	 BH8MN6kI/kTzw==
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1924A386306
-	for <usrp-users@lists.ettus.com>; Tue,  6 May 2025 03:58:27 -0400 (EDT)
+	t=1746540822; bh=iwluYxFwMpDbaK/GAEuZ4QA+fsAITC7hMjTF5SgH8SM=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=L64Kt7JqjEromeKtTThyXEIjji9lPBRrUlQ42ij8lFgx0PgqOEElCZj5oNSaNOvc2
+	 sr64Tg9e8r0emP7ggwp3d8fw8uDgWWxoNaGA5CHC3rdzhuxhxrvfKbDeKcCvlfTsl6
+	 NisSkgZcwfhK6Wu6E3Zbuj2haysbMd7vG2+D/MDHU0TKuhD4P6u2cXZwPzM1H/hI/9
+	 vinqsDo1pxiIf+MT15saugtwJx73Ad/hFXZ3oBPCGuX/ErqJ2pPRW1gPe41+kAdbry
+	 z3WMDYV76wcY3T72v1UoB8VVEEVma23+nI9e0qQZnEKkhCHqcw6p1uj4Jhh2uevfjn
+	 FI/jAUMtgeuWw==
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id 60B50385C06
+	for <usrp-users@lists.ettus.com>; Tue,  6 May 2025 10:12:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="IWuR3MtH";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Lpa7yPv7";
 	dkim-atps=neutral
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e8be1bdb7bso8056104a12.0
-        for <usrp-users@lists.ettus.com>; Tue, 06 May 2025 00:58:27 -0700 (PDT)
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-5240a432462so3597744e0c.1
+        for <usrp-users@lists.ettus.com>; Tue, 06 May 2025 07:12:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1746518306; x=1747123106; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KYDZmOAHLZlHjtz9BAQCC6YBtkpsLbnzkJf/6lx6DnA=;
-        b=IWuR3MtH89UztgVWcoHlnByUA6fIAkKa8O/nCayJC3GpXvTa45Q17lsw08oeKKJwC+
-         vxfTPr/CQtDg0NuhNUIefNy+xz2GfTML1dQvfGGC3Bc7I1fPNgPTokk/JaM0+XWhgajQ
-         6U0Fy5CxJ0BfsCrO/VCtfQWHOM7Ee52X/RNedWZ7OJUg12rEZnpKJXJgpSq2hBTIRV9M
-         ARC726//b+qzi0xXX75Ik4HB3ME2m5JoetWVv+rDSKZxWZX7JQePtNZIl9KxMPOdZ/j5
-         Fierth8takbHoQvBE+iJVZeJw+pHP2fbfKwfCQFhKGOGwXr4ZJrwF0R2rU41lcbNkKvP
-         uGTg==
+        d=gmail.com; s=20230601; t=1746540771; x=1747145571; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=E96nxSmmymcojjg2oE6ezFSzMa8keVZoUoqPpXQRnmU=;
+        b=Lpa7yPv7xbcmSAu13SH3sFlGrDvW+UFjYEmajJzm2znZh7y9HicZuSjLO1SYayEoeM
+         qvJbaj+vfC+pwr1aHwk3UJ4AV+UQsUypAS7Lsy2HrSp1NfbJQbIrFqUSomkIzXAmV11p
+         aP0mBLzQBX7svL5H+Szp+01BV6lzLs1eY6TTeRuP9+ouI/bqBY7YfZB2GD9lTLGExcbN
+         54d33hGVrXpmaPDX9h0lAhOZU5X3vGpQHexP+4jKlQ9a0J6L8s4msbkhIurkiOhh371b
+         PWGueLZoUroI+7p8cEotyef9b1tjdh3JPAJ2CaIOyXEz3EOqhuHPEyVnuGbPCcbvH88N
+         q2jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746518306; x=1747123106;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KYDZmOAHLZlHjtz9BAQCC6YBtkpsLbnzkJf/6lx6DnA=;
-        b=kaCXXQ2glvBxTm6FntVxDRGhF89ofoW9cX8v0Eb5aFZLF7Y30rZYY6v+KGEJcnKkU7
-         ben2ffWA3bNFAobLEi7XLPhEwLlPzo31KR37OZt9Qe9jAKUHm+Bio6yyF/uhTUT/5KoA
-         ZY4AcZ+48KCTdknWS63x4AXW6mWlVwfZ9FuGDoaKznh6ZtUfImLMK2nqICqeqlag1mCS
-         4SOBVSaBqrtFl3iQlJrNYmn3zej7ZybGiCwQ4TverRAMv2Vz/RbJOjvDAsCAtct5CsuJ
-         9ShbOQua+HCCq6P2XnUw+kzXzBGzF3X+yfwR1ZP93u3fUGWsG388ozgBoh/tBcDXqwgd
-         974w==
-X-Gm-Message-State: AOJu0Yx8BDC9WrYMVfjIxuF2OMnwkzVPLn75i/bdBFZ8LGOkL6XqVUpP
-	EZG5JrDmHZW6MEFjhHLsdiOSAcpWodgMioQyr5skZwSKRPeDbfUUZbmEYMYdvYdYrJaHji8dejP
-	n5mNZmsv8jWj5Y75ojtr1Mwg0vKlubrERezl+iFpEa3gPIgXJ1z4=
-X-Gm-Gg: ASbGnctgFFMOWsb/P5gh+r49LulcpLIK2Qip1dTa/rE5eGMi5qOIq+UMmMPA54oCRfg
-	X5H/zhsgH5mT+T6+1kgsUBnBFRIRCQfS2Brsl7/t7E+1BLqdX2RjUcPyv5Fu7yla9dyZXZ3X0ow
-	1TfZFH/WazC+bNruPKWlCWXBW3uYwWN9X3wLsDSVz0JrkUwGH579mcrg==
-X-Google-Smtp-Source: AGHT+IGO+RVrd8WqGXc+0TWnzLKGpbt+XOzKVbV06uwCDlcchM3Kb1SQXJo2ITm/WWYXZNZFe8UGrwEN4ID19YcUeZc=
-X-Received: by 2002:a17:907:8b93:b0:ac7:150b:57b2 with SMTP id
- a640c23a62f3a-ad1d4692427mr190505366b.41.1746518306200; Tue, 06 May 2025
- 00:58:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746540771; x=1747145571;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E96nxSmmymcojjg2oE6ezFSzMa8keVZoUoqPpXQRnmU=;
+        b=o64i+nq64bCWqJT3iKJvh+HyGNoL9afjv+dEFM9Acblq90PtKAStuhm0arhjFgvXMu
+         wGhGzR2nqHig6KPKqNoO4NDhXeOvfGKt+gfroYWox2GtIzw28L8U0I2fH+UQ9Uwf6Ugp
+         w9K7M+aBXkrBHeYTDNDYfqRiN6wgCMd9lfhFYtxXB8QS0MnTAwloose2OULhzKeUKDNC
+         Y+4MNjpLkkawwNZzm/tw3VJ/qUaJkBi6SLIZKlVG0BaVP1LX8bCWzfCvquceBT+mQxoF
+         pnwJGFxwwaONfZHr8nxSyNXzUH7mHRHrV1ObDuHr6zhF0E1gFPkfDZwxr/HqTYHNeKYP
+         6ZrQ==
+X-Gm-Message-State: AOJu0Yz4gXVIloUcFW/T7isXHsb8XzYWRi7Unl+7x/ZjdN9Erix7YA70
+	oVraV4me35Rn1jxOaBs56Xg5toGPHdgrh40mv3cxc5EYjFSgMq8NCYARvvnSxJr6dMhza2p9WCg
+	1LKnTZ6OyOPxjiPax7vhFI6f7MIDQ2LzxuHk=
+X-Gm-Gg: ASbGncu3rDD68fXfKtwEKUvnN95i3Q50lFaC8ekwtEhEh++ldqgW/r73X4TAiNpzeMD
+	4ADdt7t+XLPWk7k/XqBiNfaP2k6WSKeYC+eGUYYncgXV+Zjpt56KOP+vVE4LGhLyd1k6t+LUgwY
+	1FrRLv7u8zjY2n1ob3I8oPLbKxfkHY+ww=
+X-Google-Smtp-Source: AGHT+IHRu1PsXDwT3EhRIvN1+NAvvpX93uxTs4Q/Xc/LDs1hC1sAnWS3LxWnm7Zy8IbduVfieL9Dlzj00z9qWz9HtrU=
+X-Received: by 2002:a05:6122:3663:b0:521:b3ee:4970 with SMTP id
+ 71dfb90a1353d-52b2637e2edmr1961287e0c.2.1746540771221; Tue, 06 May 2025
+ 07:12:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEXYVK4_EZt1CN7eic+zX89q_UM9xkLRrgDYOfQgAJa-vxgkEA@mail.gmail.com>
- <CAFche=hXaVLyqJA7Ay7k8NqnVaKyWni1h7JwapVwue2iwAM5MA@mail.gmail.com>
- <CAEXYVK5W_kupokFpwQY+GpwEUO1nN4Y0cH6Bhj8z1HFMYP54uw@mail.gmail.com>
- <CAFche=iRsVwbop=mzORPq9HoOwFkMc-uBkaEYocerg9Es+QXrQ@mail.gmail.com>
- <CAEXYVK6S7adZNCzgVd124OyHJd8erXqUQZxNcODdn_WdQLiNZg@mail.gmail.com>
- <CAFche=iEJC+aFVHJwqJFFdC_WDM5hh7uXBEx8gVQ2hdzQRHc9A@mail.gmail.com>
- <CAEXYVK7rk9=61SOaofikn=K5C7UiWOvcYwdz_nA6ee9wbLi9Tg@mail.gmail.com> <CAFche=husQaF4B5FgLS7ibG9oSpQ5-M0GJvUE_=qEJPpqe7UXw@mail.gmail.com>
-In-Reply-To: <CAFche=husQaF4B5FgLS7ibG9oSpQ5-M0GJvUE_=qEJPpqe7UXw@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 6 May 2025 09:58:14 +0200
-X-Gm-Features: ATxdqUHIlD_I7akWQuOytEwk5aIHrjFOY_B_wIVoWcmBJfd396Ra_hRcwmPAMnU
-Message-ID: <CAFOi1A4Ayhd4g2=CgbN2kHOxZ+Hnf4pigRTpcsRvNgb9J_3kYA@mail.gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: 5XNUIK37U4BI2WJMVJ3JJ2XLC3YFGXPY
-X-Message-ID-Hash: 5XNUIK37U4BI2WJMVJ3JJ2XLC3YFGXPY
-X-MailFrom: martin.braun@ettus.com
+From: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Date: Tue, 6 May 2025 16:12:39 +0200
+X-Gm-Features: ATxdqUHSxV2RS6PjE7WAgZ2Cbyg8ArBuFLgxPuq3vy0nLpibLN7nlon_313cdUk
+Message-ID: <CAG16vQVXsvOTdQfO-RpNO74hqXK+D7vXqeyh=SW8cWsd=ABq+Q@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: 6OLVIV5X2UT4QF7ZNSSUZLWG4SC5X4QG
+X-Message-ID-Hash: 6OLVIV5X2UT4QF7ZNSSUZLWG4SC5X4QG
+X-MailFrom: mamuki92@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoC CHDR DstEPID and Virtual Channels Clarification
+Subject: [USRP-users] Sampling rate in E320 with RFNoC
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5XNUIK37U4BI2WJMVJ3JJ2XLC3YFGXPY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6OLVIV5X2UT4QF7ZNSSUZLWG4SC5X4QG/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1817765501368939236=="
+Content-Type: multipart/mixed; boundary="===============0949001525964629867=="
 
---===============1817765501368939236==
-Content-Type: multipart/alternative; boundary="0000000000003c2fbd063472fbb1"
+--===============0949001525964629867==
+Content-Type: multipart/alternative; boundary="0000000000004126f70634783606"
 
---0000000000003c2fbd063472fbb1
+--0000000000004126f70634783606
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-One thing to keep in mind: If you have many many virtual channels, then you
-probably still have a lot of blocks. The control crossbar also increases
-with N^2 in size, where N is the number of blocks (not the number of stream
-endpoints, which affects the size of the CHDR crossbar).
+Hi all,
 
-Maybe what you're trying to do is better handled at the application level.
-Meaning that you have bigger blocks that do some kind of channelization
-internally, and then pull apart the stream in your application. After all,
-there are very few rules on what kind of data you can stream to the host
-(or vice versa). For example, when we stream FFT data to the host, we don't
-separate the bins into virtual channels, but we put the onus on the
-application to understand that every vector of FFT-size needs to be
-understood as such.
+We observe different behaviour using the E320 radio with the UHD:
+USRP_SOURCE block and the RFNoC Radio block with a low sampling rate.
+We are attempting to set the sampling rate to 25 kHz for both blocks. In
+the UHD block, we achieve this by configuring the sampling rate to 25 kHz.
+Similarly, in the RFNoC block, we set the sampling rate of the RFNoC radio
+block to 25 kHz and the output rate of the DDC to 25 kHz.
+When we look at the output of the blocks, we effectively observe a signal
+of 25 kHz in the UHD block, while in the RFNoC radio block, we observe a
+larger bandwidth of approximately 250 kHz.
+How can we correctly configure both the Radio and DDC blocks in RFNoC to
+have an output of 25 KHz? Is it possible?
 
-Not sure if this is helpful to you -- of course, for most cases, RFNoC
-should be doing all the hard work for you. But in some cases, it might be
-easier to do some of the work in your app.
+Kind Regards,
 
---M
+Maria
 
-On Thu, May 1, 2025 at 4:42=E2=80=AFAM Wade Fife <wade.fife@ettus.com> wrot=
-e:
-
-> I don't think static routing will help in your case. Stream endpoints are
-> only for communicating over dynamic routes and the EPID is used for that
-> routing.
->
-> Wade
->
->
-> On Mon, Apr 28, 2025 at 9:37=E2=80=AFAM Brian Padalino <bpadalino@gmail.c=
-om>
-> wrote:
->
->> On Mon, Apr 28, 2025 at 10:33=E2=80=AFAM Wade Fife <wade.fife@ettus.com>=
- wrote:
->>
->>> In practice, you can't have a large number of stream endpoints in a
->>> single USRP, because the crossbar and associated logic adds up. Somethi=
-ng
->>> on the order of 16 or so might be a practical limit, depending a lot on
->>> what's on those endpoints. If you need to distinguish between more data
->>> streams, then you'd want to use something like virtual channels or
->>> prepending your data with some kind of identifier.
->>>
->>
->> Thanks for this answer.
->>
->> Does static routing help with this or not particularly?
->>
->> I have only a single configuration I ever want to run, and it's endpoint=
-s
->> directly into a modified radio block - no other blocks.
->>
->> Thanks,
->> Brian
->>
->>> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000003c2fbd063472fbb1
+--0000000000004126f70634783606
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>One thing to keep in mind: If you have many many virt=
-ual channels, then you probably still have a lot of blocks. The control cro=
-ssbar also increases with N^2 in size, where N is the number of blocks (not=
- the number of stream endpoints, which affects the size of the CHDR crossba=
-r).</div><div><br></div><div>Maybe what you&#39;re trying to do is better h=
-andled at the application level. Meaning that you have bigger blocks that d=
-o some kind of channelization internally, and then pull apart the stream in=
- your application. After all, there are very few rules on what kind of data=
- you can stream to the host (or vice versa). For example, when we stream FF=
-T data to the host, we don&#39;t separate the bins into virtual channels, b=
-ut we put the onus on the application to understand that every vector of FF=
-T-size needs to be understood as such.</div><div><br></div><div>Not sure if=
- this is helpful to you -- of course, for most cases, RFNoC should be doing=
- all the hard work for you. But in some cases, it might be easier to do som=
-e of the work in your app.</div><div><br></div><div>--M</div></div><br><div=
- class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Thu, May 1, 2025 at 4:42=E2=80=AFAM Wade Fife &lt;<a href=3D"mai=
-lto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>I don&#39=
-;t think static routing will help in your case. Stream endpoints are only f=
-or communicating over dynamic routes and the EPID is used for that routing.=
- <br></div><div><br></div><div>Wade</div><br></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 28, 2025 at 9:37=
-=E2=80=AFAM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" targe=
-t=3D"_blank">bpadalino@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Mon, =
-Apr 28, 2025 at 10:33=E2=80=AFAM Wade Fife &lt;<a href=3D"mailto:wade.fife@=
-ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:</div><div c=
-lass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
- dir=3D"ltr"><div>In practice, you can&#39;t have a large number of stream =
-endpoints in a single USRP, because the crossbar and associated logic adds =
-up. Something on the order of 16 or so might be a practical limit, dependin=
-g a lot on what&#39;s on those endpoints. If you need to distinguish betwee=
-n more data streams, then you&#39;d want to use something like virtual chan=
-nels or prepending your data with some kind of identifier.</div></div></blo=
-ckquote><div><br></div><div>Thanks for this answer.</div><div><br></div><di=
-v>Does static routing help with=C2=A0this or not particularly?</div><div><b=
-r></div><div>I have only a single configuration I ever want to run, and it&=
-#39;s endpoints directly into a modified radio block - no other blocks.</di=
-v><div><br></div><div>Thanks,<br>Brian</div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div class=3D"gmail_quote"><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_quote"><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div class=3D"gmail_quote"><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex">
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<div dir=3D"ltr">Hi all,<br><div><br></div><div>We observe different behavi=
+our using the E320 radio with the UHD: USRP_SOURCE block and the RFNoC Radi=
+o block with a low sampling rate.</div><div>We are attempting to set the sa=
+mpling rate to 25 kHz for both blocks. In the UHD block, we achieve this by=
+ configuring the sampling rate to 25 kHz. Similarly, in the RFNoC block, we=
+ set the sampling rate of the RFNoC radio block to 25 kHz and the output ra=
+te of the DDC to 25 kHz.=C2=A0</div><div>When we look at the output of the =
+blocks, we effectively observe a signal of 25 kHz in the UHD block, while i=
+n the RFNoC radio block, we observe a larger bandwidth of approximately 250=
+ kHz.</div><div>How can we correctly configure both the Radio and DDC block=
+s in RFNoC to have an output of 25 KHz? Is it possible?</div><div><br></div=
+><div>Kind Regards,</div><div><br></div><div>Maria</div></div>
 
---0000000000003c2fbd063472fbb1--
+--0000000000004126f70634783606--
 
---===============1817765501368939236==
+--===============0949001525964629867==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -237,4 +133,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1817765501368939236==--
+--===============0949001525964629867==--
