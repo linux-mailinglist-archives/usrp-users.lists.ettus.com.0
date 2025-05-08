@@ -2,198 +2,119 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97185AAFC80
-	for <lists+usrp-users@lfdr.de>; Thu,  8 May 2025 16:12:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A048BAB052B
+	for <lists+usrp-users@lfdr.de>; Thu,  8 May 2025 23:05:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 73B4B385F13
-	for <lists+usrp-users@lfdr.de>; Thu,  8 May 2025 10:11:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5B3D038618A
+	for <lists+usrp-users@lfdr.de>; Thu,  8 May 2025 17:05:11 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1746713519; bh=LevpJlWqyZlII4/Ww1vO5aFHA4Jvqjy8SF8M9+hpgoM=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=NntKMg3QhOa/B9MCv16TOvHpIPDFjzEoT03mjzT0mJTGK2sbUsu9UFlQWD65sIOQu
-	 YY8050Eah5t9+EZlRYDKG5YFOpciJChAN8Mhu/2vbDrsMukFFQcYq5pBjev0fpRWCZ
-	 e1yezqbmW2R7AIXmaWqWecrb049hnn1nwa36yDDc1tnZ6/JT9JCZ1O9ICqb/FuxXTU
-	 edVZPZmgaVZ3JVdjKivwlagZdrJrSQ3b1MSnXtdnIZzuRfJcSocl7SgZ09kzVrK2Us
-	 GMzqnB2OEk448d1IuOYqCq1JR/4+PyI1UIaTWb2M0CIV4nVLk9eoZQ0ePkIV8SXIZj
-	 c/E9bksyYWYMg==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 11B2F385EAD
-	for <usrp-users@lists.ettus.com>; Thu,  8 May 2025 10:11:50 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1746713510; bh=xgPD0Doqe3SJn1Glt71eqguNgwDpbrh+KAFB8qOGSbc=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=CBWK06zQt9SdMraJWdCwEjgPkHZWnqFOUuVsBM7i0ROJwDx0VujO3qWhAQo1/Q6l/
-	 nE7ovgoqfLwWDNBzLK/thVHFVi5T+k6jq3qEptGbKf1wc0n7t89a+S8VIE/wjC8oOG
-	 xYrFA4AXX6QGmgjP84kjr2wusx1lS5ijDDUhM0xOpH5FhpLBKviv8Y7Xff9oXFyKnl
-	 2ry1IT6sGyYdKxcCvhzCFV/9Sb4dXXgzmGBEHprkdjGjutkLuDxxUQpSlcqgvFBCFs
-	 bohWyU+A5slgCYTMDY52P095BT0J5qvAvB+Gtv9m5hU9f19MlqpZt9z3BFtLs44pzb
-	 eFX7GOJNDItkQ==
-Date: Thu, 8 May 2025 14:11:50 +0000
-To: usrp-users@lists.ettus.com
-From: carmixdev@gmail.com
-Message-ID: <lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: HeIThGn7kcFceMRyBMIOFWd5wRASttzcsLWm9xYNVs@lists.ettus.com
+	t=1746738311; bh=HiIi+LpM51XZyfmJW5dg2MuODFS4Z8YkivOPSTTUvUo=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=NrEaG5S5w8xWhjRvQcXVjOpOdMVceW1y5LcSAbDYdMPRZtaFA4s3DypMvlEXdeurj
+	 86JvP/Z1gR+913wSrWYHyP6zA1Mcs1CuVkxB+1OzwRF+dYnqwcmdUbjFZkvO2tW5GL
+	 F4BdYK15zb5OShqxHspIm/sERk+3Y+pxt9YIDQ6siubfJ2cRaGCKBjl5PYL+6QYD30
+	 SigmCTXzwdMGPNUjUa7zJln5GzGu8mAiVseWMxIjchApbNKY3f5i2FXgnuCHDN95Ia
+	 TZ5fwNYUyOUwoyl0Gsx+MwjykbvgtfGIOUFT81PF2CCiv0GRNZtS8SVXcMpgPXP57o
+	 XbOicnnWyf16Q==
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5D5B5385F96
+	for <usrp-users@lists.ettus.com>; Thu,  8 May 2025 17:04:18 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="blZLpX/O";
+	dkim-atps=neutral
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-acec5b99052so249146966b.1
+        for <usrp-users@lists.ettus.com>; Thu, 08 May 2025 14:04:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746738256; x=1747343056; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=v6nE5EdAku7HILh5vYY4u1fRofig2NGBYmBXFnzcXWY=;
+        b=blZLpX/OCzxNs/0f6ktuZl42vY0jOZickFjNQJgoo5cRrry0OBR1qNzJ7vLLeEstrY
+         Pq2Vt0mF8SAf7vigD01d2MoXS+SUcQ3EuUV1IFgrslx5O0u9mLluJ6bHwBQqOM/bJmJO
+         gAH0XeQXr7uzklYfz1sHsym9sptvNbXnPVgb30npftmMtbKC6/5t5j5L9QJ7vXNZpdBH
+         X7xe10XAowkb+GSLOH7bHLBUH+7BOJRCCrfOHbk8kZAyzYAfgqW2Kwy5XYs+a8FmksjH
+         noRkegReqMDfeb1dIsBEaDU+fEnOLIhvvp1KLBVi0Ru7O5fqeySsit21vzc0ige92umu
+         16Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746738256; x=1747343056;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v6nE5EdAku7HILh5vYY4u1fRofig2NGBYmBXFnzcXWY=;
+        b=U+DDic4jkqo+2r/T3D6R7tfkXLFPK1YKOu89rrY9H72871peyXOGFT4EIIxHOdgCqu
+         s1rssHnvG8j+vCFsTyA537H7h1YZyJrDrh8ktd6Smeire5ideIKhL0aZ9JLYnatjsH68
+         xLCK644NMpZ5RqA7ZLGsqPZHoRixSqbqNUNaB6nwyBh8Ja2dYaUu9oxBxNJ8lK9+vsz3
+         m+owxJBPh+z6op0uwwSCb99wq0DBN7URy7JgsCxb7/PiMpbtKCDci3ze3GwC85RfH8Vy
+         bEwVkru/XvH8nJjdB6rwuEg85aPLrg8sYcHIA+kunQpHdzoNx3/dH4UdiS5Zb1YXKuJ1
+         k6ig==
+X-Gm-Message-State: AOJu0YzxuZRbWA8/2x1GLm8JoJ+3X7BeO6XlFHJSxR2o/ODq4vIqT0pp
+	+rago5F/i2g0IHgXcYq71wja4Rrv1pRm556bX3YrLJxOwYCcuZD6/SVyn1dVr+bs2DuOes5xYi/
+	twRdFMYvHS0ZEJ+/+BHisLU2QCZLtxw==
+X-Gm-Gg: ASbGncu8+uz3YLXb64wfAB1p3tcCMuSZ71wDkGCUwZjulCdSZo2LvlB06BQ7HiDvqql
+	2FJB+It3iuGn2nI8Iyt+tTTicPqHCt3rBwrAlA4G2NNtsCwl4lx2lNZ8VHnNFp0rgy8UBcg2SBL
+	n/Gpumw9cluOPdvPMs2wtcuw==
+X-Google-Smtp-Source: AGHT+IGKiSl8lBMCpgE93E0+Ft6j+n3ObS33i0iCOYd6CvM5S8R0msVC6T8xh2Ce7BmWfSx8oeeEo4bCL5j0KCTjakk=
+X-Received: by 2002:a17:907:3dac:b0:aca:d6fd:39a with SMTP id
+ a640c23a62f3a-ad2192d4a88mr111130666b.51.1746738256380; Thu, 08 May 2025
+ 14:04:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="b1_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE"
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: MI22DTDAF4RLYXB3YGQSLJRC62E6PQ6J
-X-Message-ID-Hash: MI22DTDAF4RLYXB3YGQSLJRC62E6PQ6J
-X-MailFrom: carmixdev@gmail.com
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Thu, 8 May 2025 17:04:05 -0400
+X-Gm-Features: ATxdqUEdkPOrcFekINrZvvtMQ-lkFkP3bJURcBwQHKPt7pyBx8eDazLcxQmIahk
+Message-ID: <CAEXYVK6A8mRg9jpcaMgihu7hRFWFrPL0TgubaB1m46QoFbY+iA@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: 4HNPOXNCOTBVESD5YQSE6YO3DSICSHG5
+X-Message-ID-Hash: 4HNPOXNCOTBVESD5YQSE6YO3DSICSHG5
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Signal quality using RFNoC DUC blocks
+Subject: [USRP-users] X440 Reboot Takes A While
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MI22DTDAF4RLYXB3YGQSLJRC62E6PQ6J/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4HNPOXNCOTBVESD5YQSE6YO3DSICSHG5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0421700362090650951=="
 
-This is a multi-part message in MIME format.
+--===============0421700362090650951==
+Content-Type: multipart/alternative; boundary="0000000000004989570634a63182"
 
---b1_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE
-Content-Type: multipart/alternative;
- boundary="b2_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE"
+--0000000000004989570634a63182
+Content-Type: text/plain; charset="UTF-8"
 
---b2_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE
-Content-Type: text/plain; charset=UTF-8
+I am noticing when I issue a reboot command to the X440 it will sit at
+shutting down the usrp-hwd service for a while, usually with a 90 second
+timeout.
+
+After that, it usually doesn't even reboot for quite some time.
+
+Is this a known issue? Is there anything I can do to debug why usrp-hwd is
+stuck shutting down? Any idea why, even after it shuts down, the RFSoC
+doesn't want to reboot itself appropriately?
+
+Thanks,
+Brian
+
+--0000000000004989570634a63182
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Just to help in understanding what=E2=80=99s wrong with my code I attach =
-here the two implementations, one with the multi usrp and the other with =
-RFNoC. Reading the documentation I understand that the MultiUSRP stands o=
-n top of the RFNoC, so I think that it is only a problem of my implementa=
-tion.
+<div dir=3D"ltr">I am noticing when I issue a reboot command to the X440 it=
+ will sit at shutting down the usrp-hwd service for a while, usually with a=
+ 90 second timeout.<div><br></div><div>After that, it usually doesn&#39;t e=
+ven reboot for quite some time.</div><div><br></div><div>Is this a known is=
+sue? Is there anything I can do to debug why usrp-hwd is stuck shutting dow=
+n? Any idea why, even after it shuts down, the RFSoC doesn&#39;t want to re=
+boot itself appropriately?</div><div><br></div><div>Thanks,<br>Brian</div><=
+/div>
 
-They should do the same thing, however in RFNoC implementation the receiv=
-er on the other side loses lock frequently.
+--0000000000004989570634a63182--
 
-Could someone help me understanding what=E2=80=99s wrong?
-
---b2_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Just to help in understanding what=E2=80=99s wrong with my code I atta=
-ch here the two implementations, one with the multi usrp and the other wi=
-th RFNoC. Reading the documentation I understand that the MultiUSRP stand=
-s on top of the RFNoC, so I think that it is only a problem of my impleme=
-ntation.</p><p>They should do the same thing, however in RFNoC implementa=
-tion the receiver on the other side loses lock frequently.</p><p>Could so=
-meone help me understanding what=E2=80=99s wrong?</p>
-
-
---b2_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE--
-
---b1_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE
-Content-Type: text/x-c++; name=tx_file_rfnoc.cpp
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename=tx_file_rfnoc.cpp
-
-I2luY2x1ZGUgPGlvc3RyZWFtPgojaW5jbHVkZSA8dWhkL3R5cGVzL3R1bmVfcmVxdWVzdC5ocHA+
-CiNpbmNsdWRlIDx1aGQvdXNycC9tdWx0aV91c3JwLmhwcD4KI2luY2x1ZGUgPHVoZC91dGlscy9z
-YWZlX21haW4uaHBwPgojaW5jbHVkZSA8dWhkL3V0aWxzL3RocmVhZC5ocHA+CiNpbmNsdWRlIDx1
-aGQvcmZub2MvYmxvY2tfaWQuaHBwPgojaW5jbHVkZSA8dWhkL3Jmbm9jL2R1Y19ibG9ja19jb250
-cm9sLmhwcD4KI2luY2x1ZGUgPHVoZC9yZm5vYy9tYl9jb250cm9sbGVyLmhwcD4KI2luY2x1ZGUg
-PHVoZC9yZm5vYy9yYWRpb19jb250cm9sLmhwcD4KI2luY2x1ZGUgPHVoZC9yZm5vYy9yZXBsYXlf
-YmxvY2tfY29udHJvbC5ocHA+CiNpbmNsdWRlIDx1aGQvcmZub2NfZ3JhcGguaHBwPgojaW5jbHVk
-ZSA8ZnN0cmVhbT4KCiNkZWZpbmUgQlVGRkVSU0laRSA4MTkyCnVzaW5nIG5hbWVzcGFjZSBzdGQ7
-CgppbnQgVUhEX1NBRkVfTUFJTihpbnQgYXJnYywgY2hhciogYXJndltdKQp7CiAgICBjb25zdCBk
-b3VibGUgcmF0ZSA9IDYuMjVlNjsgICAgICAgICAgICAgICAgICAgICAvLyBTYW1wbGUgcmF0ZQog
-ICAgY29uc3QgZG91YmxlIGZyZXEgPSA4NjguNWU2OyAgICAgICAgICAgICAgICAgICAvLyBDZW50
-ZXIgZnJlcXVlbmN5CiAgICBjb25zdCBkb3VibGUgZ2FpbiA9IDEwOyAgICAgICAgICAgICAgICAg
-ICAgICAvLyBUWCBnYWluCiAgICBjb25zdCBzdHJpbmcgZGV2aWNlX2FkZHIgPSAidHlwZT14MzAw
-LGFkZHI9MTkyLjE2OC40MC4yIjsgICAgICAgICAgLy8gRGVmYXVsdCAoZmlyc3QgZGV2aWNlKQog
-ICAgY29uc3Qgc3RyaW5nIGZpbGVuYW1lID0gInJhd2lxLnNjMTYiOwogICAgCiAgICB1aGQ6OnJm
-bm9jOjpyZm5vY19ncmFwaDo6c3B0ciBncmFwaDsKICAgIHVoZDo6cmZub2M6OmJsb2NrX2lkX3Qg
-cmFkaW9fY29udHJvbF9pZDsKICAgIHVoZDo6cmZub2M6OnJhZGlvX2NvbnRyb2w6OnNwdHIgcmFk
-aW9fY29udHJvbCA7CiAgICB1aGQ6OnJmbm9jOjpibG9ja19pZF90IGR1Y19jb250cm9sX2lkOwog
-ICAgdWhkOjpyZm5vYzo6ZHVjX2Jsb2NrX2NvbnRyb2w6OnNwdHIgZHVjX2NvbnRyb2wgOwoKICAg
-IGdyYXBoID0gdWhkOjpyZm5vYzo6cmZub2NfZ3JhcGg6Om1ha2UoZGV2aWNlX2FkZHIuY19zdHIo
-KSk7CgogICAgcmFkaW9fY29udHJvbF9pZCA9IHVoZDo6cmZub2M6OmJsb2NrX2lkX3QoMCwgIlJh
-ZGlvIiwgMSkgOwogICAgcmFkaW9fY29udHJvbCA9IGdyYXBoLT5nZXRfYmxvY2s8dWhkOjpyZm5v
-Yzo6cmFkaW9fY29udHJvbD4ocmFkaW9fY29udHJvbF9pZCkgOwogICAgcmFkaW9fY29udHJvbC0+
-c2V0X3R4X2dhaW4oZ2FpbiwwKTsKICAgIHJhZGlvX2NvbnRyb2wtPnNldF90eF9mcmVxdWVuY3ko
-ZnJlcSwwKTsKICAgIGlmKCAhcmFkaW9fY29udHJvbCApIHsKICAgICAgICBjb3V0IDw8ICJFUlJP
-UjogRmFpbGVkIHRvIGZpbmQgUmFkaW8gQmxvY2sgQ29udHJvbGxlciEiIDw8IGVuZGwgOwogICAg
-fQogICAgY291dCA8PCAiVXNpbmcgcmFkaW8gIiA8PCByYWRpb19jb250cm9sX2lkIDw8IGVuZGwg
-OwoKICAgIC8vIERVQyBCbG9jayBDb250cm9sbGVyCiAgICBkdWNfY29udHJvbF9pZCA9IHVoZDo6
-cmZub2M6OmJsb2NrX2lkX3QoMCwgIkRVQyIsIDEpIDsKCiAgICBkdWNfY29udHJvbCA9IGdyYXBo
-LT5nZXRfYmxvY2s8dWhkOjpyZm5vYzo6ZHVjX2Jsb2NrX2NvbnRyb2w+KGR1Y19jb250cm9sX2lk
-KSA7CiAgICBpZiggIWR1Y19jb250cm9sICkgewogICAgICAgIGNvdXQgPDwgIkVSUk9SOiBGYWls
-ZWQgdG8gZmluZCBEVUMgQmxvY2sgQ29udHJvbGxlciEiIDw8IGVuZGwgOwogICAgfQogICAgY291
-dCA8PCAiVXNpbmcgZHVjICIgPDwgZHVjX2NvbnRyb2xfaWQgPDwgZW5kbCA7CiAgICBkdWNfY29u
-dHJvbC0+c2V0X291dHB1dF9yYXRlKDIwMGU2LDApOwogICAgZHVjX2NvbnRyb2wtPnNldF9mcmVx
-KDAsMCk7CiAgICBkdWNfY29udHJvbC0+c2V0X2lucHV0X3JhdGUocmF0ZSwwKTsKICAgIHVoZDo6
-c3RyZWFtX2FyZ3NfdCBzdHJlYW1fYXJncygic2MxNiIsICJzYzE2Iik7CiAgICBhdXRvIHR4X3N0
-cmVhbSA9IGdyYXBoLT5jcmVhdGVfdHhfc3RyZWFtZXIoMSwgc3RyZWFtX2FyZ3MpOwogICAgZ3Jh
-cGgtPmNvbm5lY3QodHhfc3RyZWFtLDAsZHVjX2NvbnRyb2wtPmdldF91bmlxdWVfaWQoKSwwKTsK
-ICAgIGdyYXBoLT5jb21taXQoKTsKCiAgICBzdGQ6OnRoaXNfdGhyZWFkOjpzbGVlcF9mb3Ioc3Rk
-OjpjaHJvbm86OnNlY29uZHMoMSkpOwoKCiAgICBpbnQgayA9IDA7CiAgICBpZnN0cmVhbSAqaW5m
-aWxlOwogICAgaW5maWxlID0gbmV3IGlmc3RyZWFtKGZpbGVuYW1lLCBzdGQ6Omlvczo6YmluYXJ5
-KTsKCiAgICB1aGQ6OnR4X21ldGFkYXRhX3QgbWQ7CiAgICBtZC5zdGFydF9vZl9idXJzdCA9IHRy
-dWU7IC8vIFN0YXJ0IG9mIGJ1cnN0CiAgICBtZC5lbmRfb2ZfYnVyc3QgPSBmYWxzZTsgIC8vIFdl
-IHdpbGwgc3RvcCB0aGlzIGxhdGVyCiAgICBtZC5oYXNfdGltZV9zcGVjID0gZmFsc2U7CgogICAg
-c3RkOjp2ZWN0b3I8c3RkOjpjb21wbGV4PHNob3J0Pj4gYnVmZihCVUZGRVJTSVpFKTsKICAgIGNv
-dXQgPDwgIlN0YXJ0aW5nIHRyYW5zbWlzc2lvbiIgPDwgZW5kbDsKICAgIHdoaWxlICghaW5maWxl
-LT5lb2YoKSkgewogICAgICAgIGluZmlsZS0+cmVhZChyZWludGVycHJldF9jYXN0PGNoYXIqPigm
-YnVmZi5mcm9udCgpKSwgQlVGRkVSU0laRSAqIHNpemVvZihjb21wbGV4PHNob3J0PikpOwogICAg
-ICAgIHNpemVfdCBzYW1wbGVzX3JlYWQgPSBpbmZpbGUtPmdjb3VudCgpIC8gc2l6ZW9mKGNvbXBs
-ZXg8c2hvcnQ+KTsKICAgICAgICBpZiAoc2FtcGxlc19yZWFkID09IDApCiAgICAgICAgewogICAg
-ICAgICAgICBjb3V0PDwiTm8gc2FtcGxlcyByZWFkXHJcbiI7CiAgICAgICAgICAgIGJyZWFrOwog
-ICAgICAgIH0KCiAgICAgICAgCiAgICAgICAgdHhfc3RyZWFtLT5zZW5kKCZidWZmLmZyb250KCks
-IHNhbXBsZXNfcmVhZCwgbWQpOwogICAgICAgIG1kLnN0YXJ0X29mX2J1cnN0ID0gZmFsc2U7CiAg
-ICB9CiAgICBtZC5lbmRfb2ZfYnVyc3QgPSB0cnVlOwogICAgdHhfc3RyZWFtLT5zZW5kKCIiLCAw
-LCBtZCk7CiAgICBpbmZpbGUtPmNsb3NlKCk7CiAgICBjb3V0IDw8ICJUcmFuc21pc3Npb24gY29t
-cGxldGUuIiA8PCBlbmRsOwoKCgogICAgcmV0dXJuIDA7Cn0K
-
---b1_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE
-Content-Type: text/x-c++; name=tx_file_multi.cpp
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename=tx_file_multi.cpp
-
-I2luY2x1ZGUgPGlvc3RyZWFtPgojaW5jbHVkZSA8dWhkL3R5cGVzL3R1bmVfcmVxdWVzdC5ocHA+
-CiNpbmNsdWRlIDx1aGQvdXNycC9tdWx0aV91c3JwLmhwcD4KI2luY2x1ZGUgPHVoZC91dGlscy9z
-YWZlX21haW4uaHBwPgojaW5jbHVkZSA8dWhkL3V0aWxzL3RocmVhZC5ocHA+CiNpbmNsdWRlIDxm
-c3RyZWFtPgoKI2RlZmluZSBCVUZGRVJTSVpFIDgxOTIKdXNpbmcgbmFtZXNwYWNlIHN0ZDsKCmlu
-dCBVSERfU0FGRV9NQUlOKGludCBhcmdjLCBjaGFyKiBhcmd2W10pCnsKICAgIGNvbnN0IGRvdWJs
-ZSByYXRlID0gNi4yNWU2OyAgICAgICAgICAgICAgICAgICAgIC8vIFNhbXBsZSByYXRlCiAgICBj
-b25zdCBkb3VibGUgZnJlcSA9IDg2OC41ZTY7ICAgICAgICAgICAgICAgICAgIC8vIENlbnRlciBm
-cmVxdWVuY3kKICAgIGNvbnN0IGRvdWJsZSBnYWluID0gMTA7ICAgICAgICAgICAgICAgICAgICAg
-IC8vIFRYIGdhaW4KICAgIGNvbnN0IHN0cmluZyBkZXZpY2VfYWRkciA9ICJ0eXBlPXgzMDAsYWRk
-cj0xOTIuMTY4LjQwLjIiOyAgICAgICAgICAKICAgIGNvbnN0IHN0cmluZyBmaWxlbmFtZSA9ICJy
-YXdpcS5zYzE2IjsKICAgIHVoZDo6dXNycDo6bXVsdGlfdXNycDo6c3B0ciB1c3JwID0gdWhkOjp1
-c3JwOjptdWx0aV91c3JwOjptYWtlKGRldmljZV9hZGRyKTsKICAgIHVzcnAtPnNldF90eF9yYXRl
-KHJhdGUsMSk7CiAgICB1c3JwLT5zZXRfdHhfZnJlcShmcmVxLDEpOwogICAgdXNycC0+c2V0X3R4
-X2dhaW4oZ2FpbiwxKTsKICAgIHVzcnAtPnNldF90eF9hbnRlbm5hKCJUWC9SWCIsMSk7CiAgICB1
-aGQ6OnN0cmVhbV9hcmdzX3Qgc3RyZWFtX2FyZ3MoInNjMTYiLCAic2MxNiIpOwogICAgc3RyZWFt
-X2FyZ3MuY2hhbm5lbHMgPSB7MX07CiAgICBhdXRvIHR4X3N0cmVhbSA9IHVzcnAtPmdldF90eF9z
-dHJlYW0oc3RyZWFtX2FyZ3MpOwogICAgCiAgICBzdGQ6OnRoaXNfdGhyZWFkOjpzbGVlcF9mb3Io
-c3RkOjpjaHJvbm86OnNlY29uZHMoMSkpOwoKCiAgICBpbnQgayA9IDA7CiAgICBpZnN0cmVhbSAq
-aW5maWxlOwogICAgaW5maWxlID0gbmV3IGlmc3RyZWFtKGZpbGVuYW1lLCBzdGQ6Omlvczo6Ymlu
-YXJ5KTsKCiAgICB1aGQ6OnR4X21ldGFkYXRhX3QgbWQ7CiAgICBtZC5zdGFydF9vZl9idXJzdCA9
-IHRydWU7IC8vIFN0YXJ0IG9mIGJ1cnN0CiAgICBtZC5lbmRfb2ZfYnVyc3QgPSBmYWxzZTsgIC8v
-IFdlIHdpbGwgc3RvcCB0aGlzIGxhdGVyCiAgICBtZC5oYXNfdGltZV9zcGVjID0gZmFsc2U7Cgog
-ICAgc3RkOjp2ZWN0b3I8c3RkOjpjb21wbGV4PHNob3J0Pj4gYnVmZihCVUZGRVJTSVpFKTsKICAg
-IGNvdXQgPDwgIlN0YXJ0aW5nIHRyYW5zbWlzc2lvbiIgPDwgZW5kbDsKICAgIHdoaWxlICghaW5m
-aWxlLT5lb2YoKSkgewogICAgICAgIGluZmlsZS0+cmVhZChyZWludGVycHJldF9jYXN0PGNoYXIq
-PigmYnVmZi5mcm9udCgpKSwgQlVGRkVSU0laRSAqIHNpemVvZihjb21wbGV4PHNob3J0PikpOwog
-ICAgICAgIHNpemVfdCBzYW1wbGVzX3JlYWQgPSBpbmZpbGUtPmdjb3VudCgpIC8gc2l6ZW9mKGNv
-bXBsZXg8c2hvcnQ+KTsKICAgICAgICBpZiAoc2FtcGxlc19yZWFkID09IDApCiAgICAgICAgewog
-ICAgICAgICAgICBjb3V0PDwiTm8gc2FtcGxlcyByZWFkXHJcbiI7CiAgICAgICAgICAgIGJyZWFr
-OwogICAgICAgIH0KCiAgICAgICAgCiAgICAgICAgdHhfc3RyZWFtLT5zZW5kKCZidWZmLmZyb250
-KCksIHNhbXBsZXNfcmVhZCwgbWQpOwogICAgICAgIG1kLnN0YXJ0X29mX2J1cnN0ID0gZmFsc2U7
-CiAgICB9CiAgICBtZC5lbmRfb2ZfYnVyc3QgPSB0cnVlOwogICAgdHhfc3RyZWFtLT5zZW5kKCIi
-LCAwLCBtZCk7CiAgICBpbmZpbGUtPmNsb3NlKCk7CiAgICBjb3V0IDw8ICJUcmFuc21pc3Npb24g
-Y29tcGxldGUuIiA8PCBlbmRsOwoKCgogICAgcmV0dXJuIDA7Cn0K
-
---b1_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE
+--===============0421700362090650951==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,4 +124,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---b1_lqabe5WujPiVlqbf1e56vfXreWYjQABwRasikR2vRE--
+--===============0421700362090650951==--
