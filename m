@@ -2,133 +2,165 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E2EAB213A
-	for <lists+usrp-users@lfdr.de>; Sat, 10 May 2025 06:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9BA7AB238A
+	for <lists+usrp-users@lfdr.de>; Sat, 10 May 2025 13:17:54 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AD7F4385D57
-	for <lists+usrp-users@lfdr.de>; Sat, 10 May 2025 00:56:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 630C1385D06
+	for <lists+usrp-users@lfdr.de>; Sat, 10 May 2025 07:17:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1746853016; bh=DfsdXt9vKkHZT5YLNXsQqKd0lICXtQkkKZ+WL6JmY80=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=FRWV16UkJWMHVB+2GiJfk2C1fB85u1OQoa01JjH8QTVceDI4KJMCZRI9dslnNuMeo
-	 Y4MtBIczIdy4D0UH9oqqRKnZBNvHjwmSIQ/IGvBV7vEbCMZKM7Ccsid8P3vTFU2DCR
-	 lKOOBVkl+Nhcb+H+VUEozarO4q7djclRTi2u3PlBzk85RibyirFFhb0tGyIuedeynR
-	 +Ns5AWrjf/auNvEkB907gDpUV4E9q3CQAa2Mdbcf4q5DWXPkGrjhe6tRriAXvHfYcR
-	 HeVqCL9eGwfFe1UerfjJ7d1DNnIDXJryVotIROnEShA5QfhV96hPDTeq+xjBLKM7+9
-	 xY1kque/L9sDQ==
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 58A85385D4E
-	for <usrp-users@lists.ettus.com>; Sat, 10 May 2025 00:56:48 -0400 (EDT)
+	t=1746875872; bh=oDwrMQ3rMbIVJFMLsY3nZSEMhNw8TDvSxqXUos6uZbI=;
+	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=NLsL82QuwtxE/E/SurydyOSZZaz3lIhLf5z5cUxy4bMHEuRqs4nuiuuusBcN72ZKk
+	 VHTsUPWKO6VI9Ndpb+tX9XyKxnlDb8hQXcPhsDtWUzUsxeEWwxa2eYcoou/QiJjsOy
+	 HmHFh9r7Swlbf0zZh8Wfv0+ibaF9CjEpx5i7MvVkhtO5JiwPGCikh5Maw+H8zFsNvi
+	 utfsrcYMsJsvQKVh11VjdVh1z3XsVZ0w0abbhq3eTD+D3+ICCPXfFRrHwyCSRxJn+R
+	 S8t+T7XiXioDMwQaQ2mCDbf6vy52JF87WxqVFpFyEwHM6Kebc0q3HWg5VNuBqPdZ//
+	 /AXTnPeDQIAOw==
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 68154385CEE
+	for <usrp-users@lists.ettus.com>; Sat, 10 May 2025 07:17:44 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eSYaWsQ4";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QG2ZJ/xd";
 	dkim-atps=neutral
-Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3d90208e922so12464705ab.3
-        for <usrp-users@lists.ettus.com>; Fri, 09 May 2025 21:56:48 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-86135ac9542so112391939f.1
+        for <usrp-users@lists.ettus.com>; Sat, 10 May 2025 04:17:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746853007; x=1747457807; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=O8OnLVvmmyVFukd31pz7YTxwfCA13SjMxxAus0rV8Yw=;
-        b=eSYaWsQ4qIaiMf53nr4hvHfkOMzNWl+l2R5jBgzZ2ksaaU948EkDVlZWnWDo1c50zo
-         OFux1Eu+pOmhGAVXKqVIlIBDooYjTFsbS270ekjj6TLZMK0lvgRu4npQvoUFQdUzS+dE
-         Lyt6Zv1Vt19J9VWEXIIB6B7lgz5v6Oi16zH72vp6ojhLgxWQTEH40sGIEvzR3YtuGXxU
-         bJRHHjNqsK7JUPvwyVbqtiNm4oge/AcNN4xIjWxOVPR1cESeyUDSov504Z0FM9GDXsO5
-         8xQB/cEJFTxi2rvG5cmY/uGE8wUgVH60VUQC1e4eGnM84g8YSBoq9WGJX4tHbiS/aGZ3
-         i8mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746853007; x=1747457807;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20230601; t=1746875863; x=1747480663; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=O8OnLVvmmyVFukd31pz7YTxwfCA13SjMxxAus0rV8Yw=;
-        b=lOOQfuK9jbVsofYgS+ah2J51bfbUF0zkOWR9zkjsbmHyt8OnIpW5ozcfWw6Ied8LVb
-         vx+KB1kOYLRPMePwxbd+WbBhb/VyQlVQQXw6s4hR1fv6tHoaPJ5e5BcFHMcfUS6oMx6f
-         ctgfmhzo6NW7A7Py58Vt6sQDKIEzv2W2QHiNP/OCPPon5vrY3E9aNnzLYnjuqPXP5c5g
-         cs7gAWCkoylNmIRrFFM5MIE2F4/9HBkGUlgz/BaYtu6eR+AeLInPyumxidbNV0knoubq
-         FLR+Mf8kRoJsxjlLt4IX5ZudhLB7frxXulyxNYH1yMf62Dv+EnyADiXgVLyjUFCmHn5L
-         WiLg==
-X-Gm-Message-State: AOJu0YwnYxn8Gi6ZwgFy/I9oV2j53ZfcYUg0/oh4ObsT5D8MkAPYirwt
-	odrqAvNtx2Rhtg/IgzDGgZuRNcT2cPKnl154//nJ+dEG7GL+W4YuwxNdabCHvtumrbSBCcR/pXF
-	2ctsQ1AcIjPbqCMS2Sevz+T26gQLow0AgpOY=
-X-Gm-Gg: ASbGncvkjisgX08ziN/acypUhRLA6i2CDO6CFQpGw9k5ZwGco4L1yQz4b9ylsyavXmG
-	rQc676Lj7NcvvgweMmpI6JICra/oPyV8H2Gj7YEb4tfo5lSyM/BUqeUY+MjK9iCyobXD+p+EaLO
-	Mye5/eV6yLDYgD+s9DLdzz0O/4pXPkoBlAmfdTcw==
-X-Google-Smtp-Source: AGHT+IGPX2ZoIpqUqzTOwFtfBIFFdbGSnHdmjib5GntrgBKcpUsizckU3EfDUXEEPb+ho4YBxH10Yu3GlLYOEF+V8vg=
-X-Received: by 2002:a05:6e02:b4c:b0:3d4:337f:121c with SMTP id
- e9e14a558f8ab-3da7e1e7cfamr61356445ab.10.1746853007280; Fri, 09 May 2025
- 21:56:47 -0700 (PDT)
+        bh=uMf3o7aJDklgbiwu2oOjdGBEsNONQ20GnMjnnhO0YMQ=;
+        b=QG2ZJ/xdvcwwRFwAvexlotvaC7aakdB+a7tB1Hp7MDQ2sIWBeGWBDfcCD/Fj3RrBiR
+         CP3G3V+lAxzHfWAlN/PvkHxNv8i/GdO37WxoUIpQEbmowOq8VzDfcKRoLoaAK2l5e1vu
+         BEicoKZ2u/gWi0wbUbf0i+QMWH6Cv8GzL+TlPKxq0JJw38phliblqB+c4OO4qYtXKMMt
+         ef6oN+bUO+FnAH5yVLhUwe7ba8cdjAysMloRWhH+PZB7hmnvdzfu1BjUBRHR4wOzYpj/
+         v+Rga3Bz9fUmnvP6RKtZ98xuAM2a2JM41cXGFP3VPxQUN2StDPrVdjBVmZSYI9784SoQ
+         jC8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746875863; x=1747480663;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uMf3o7aJDklgbiwu2oOjdGBEsNONQ20GnMjnnhO0YMQ=;
+        b=ruNQ1eCkeS5vv4b0d3WipXFNG77xHSQm6858Tx1mJQPDfBnwQeRUVsOTR5CzM+3LsV
+         OB3ixvMR1urZrXEFE4ZtyXm3L8ILNiQF9dqJxtzfRGjFU+GwzQ+y7aWtf6lzV/v64y+l
+         e1AXAJJjzmRa17Atwzci3vuwH136cEhv8llg6zhkEXavc1k+BAQgj24PPZIzorvdebcG
+         YjtBL7dSjmZ/Sg5fmx9tbevdLi4FdnnqkN+WZXkEQYShzomeRU5MDl8T2JzYZiUNyfxa
+         nTA98Mfm0Uoe5aPq2F2L/uQG+15A+WqFy+0987G/3cwFKiNlouN4DNAEyMzcIhCIcvle
+         ch8A==
+X-Gm-Message-State: AOJu0YxURKiOzX1ykVQVObcU+QmGrtQoVSUGJDk+HglOJDw+Dm6FlHzG
+	Gq7pYmoELWSire6Ei4a1wGUo5GDD1rm71/aE+UfokUuJJ3SgN65/HUJhmDietQrtg0ZCMYuqkcB
+	4QvyyNremRO1VDjkJlsvhuuZokWp7OMdbjBc=
+X-Gm-Gg: ASbGncsd7ne2Hqspch9fWVhrBcKEgEcn/rQL8ZhoVjC8TlF3LwWnLC78vmTLGgOhcaw
+	Mohqa11ED+vZ7bUofeyMs4wycZItLh6DGTmPh92cF7sV7v2c+3oD85ilBIBHKDQBnZVmB5Tl9TM
+	7Cy38qvez+9CU/yFlUPUSaD24jO3dFvI0=
+X-Google-Smtp-Source: AGHT+IGAaWS/ZzdsdLXLmgBesxbJicskXJfiblpCyt/CdvpwgTTkvW4QEhzXeY8757iAZ8jiGXPklwaM3i+wNnYbWAE=
+X-Received: by 2002:a5d:9ac5:0:b0:858:7b72:ec89 with SMTP id
+ ca18e2360f4ac-867550aa550mr1197463639f.5.1746875863228; Sat, 10 May 2025
+ 04:17:43 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAAxXO2FTNui2gby9j+mRDx3bFHGzRjUpWAoB1Q086_DwghEZmA@mail.gmail.com>
+In-Reply-To: <CAAxXO2FTNui2gby9j+mRDx3bFHGzRjUpWAoB1Q086_DwghEZmA@mail.gmail.com>
 From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Sat, 10 May 2025 07:56:36 +0300
-X-Gm-Features: AX0GCFujw3Jh4POo7tLI-iz478Zv_zla1aUrp2W0zu59AUS60RWZ7dDSl-ILEno
-Message-ID: <CAAxXO2FTNui2gby9j+mRDx3bFHGzRjUpWAoB1Q086_DwghEZmA@mail.gmail.com>
+Date: Sat, 10 May 2025 14:17:31 +0300
+X-Gm-Features: AX0GCFtTEW196O4XFYGh7iHawo3uho1R-emcPxuLm-0OzlqWg9HUMDgczOSnqTc
+Message-ID: <CAAxXO2GhNJx4AB4-m7vVAsnhBdkHCjDHqRsFze1BqLvZswYcYQ@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: AC67D44YB7SZUWKLFL7OZGJXJNMAEMOT
-X-Message-ID-Hash: AC67D44YB7SZUWKLFL7OZGJXJNMAEMOT
+Message-ID-Hash: ZRYKKXF5TYTST64LKQR4ESZ53D2PO3KT
+X-Message-ID-Hash: ZRYKKXF5TYTST64LKQR4ESZ53D2PO3KT
 X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] fc64 help needed
+Subject: [USRP-users] Re: fc64 help needed
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AC67D44YB7SZUWKLFL7OZGJXJNMAEMOT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZRYKKXF5TYTST64LKQR4ESZ53D2PO3KT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8258498749189900160=="
+Content-Type: multipart/mixed; boundary="===============2071427921048970606=="
 
---===============8258498749189900160==
-Content-Type: multipart/alternative; boundary="000000000000f9516d0634c0e83e"
+--===============2071427921048970606==
+Content-Type: multipart/alternative; boundary="0000000000004b67210634c63bf4"
 
---000000000000f9516d0634c0e83e
+--0000000000004b67210634c63bf4
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-
-I recently changed my host application to complex double. I had to change
-my stream_args to
-fc64. I pass my void pointer to uhd_rx_streamer_recv same as before:
-ptr = (void **)&zin;
-Unfortunately, the  convert_chdr_1_to_fc64_1_guts doesn't like it, I have
-only 1196 maxsamples, and crashes. I don't need the sse2 code for my
-conversion. I only use 1024 complex
- samples/packet for fft. I am very happy with the generic chdr_sc16_to_xx.
-Does anyone have any fc64 experience and how one can pass the void buffer
-pointer to
-skip the sse2 code?
+It turns out that the problem is not just bypassing the sse2 code:(
+After commenting it out, uhd still crashes. The conversion output
+buffers are not created in _recv_one_packet()
+Any ideas why they don't?
 
 TIA
 Nikos
 
---000000000000f9516d0634c0e83e
+On Sat, May 10, 2025 at 7:56=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.com=
+> wrote:
+
+> Hi all,
+>
+> I recently changed my host application to complex double. I had to change
+> my stream_args to
+> fc64. I pass my void pointer to uhd_rx_streamer_recv same as before:
+> ptr =3D (void **)&zin;
+> Unfortunately, the  convert_chdr_1_to_fc64_1_guts doesn't like it, I have
+> only 1196 maxsamples, and crashes. I don't need the sse2 code for my
+> conversion. I only use 1024 complex
+>  samples/packet for fft. I am very happy with the generic chdr_sc16_to_xx=
+.
+> Does anyone have any fc64 experience and how one can pass the void buffer
+> pointer to
+> skip the sse2 code?
+>
+> TIA
+> Nikos
+>
+
+--0000000000004b67210634c63bf4
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Hi =
-all,</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div>=
-<div class=3D"gmail_default" style=3D"font-size:small">I recently changed m=
-y host application to complex double. I had to change my stream_args to</di=
-v><div class=3D"gmail_default" style=3D"font-size:small">fc64. I pass my vo=
-id pointer to uhd_rx_streamer_recv same as before:</div><div class=3D"gmail=
-_default" style=3D"font-size:small">ptr =3D (void **)&amp;zin;</div><div cl=
-ass=3D"gmail_default" style=3D"font-size:small">Unfortunately, the=C2=A0=C2=
-=A0convert_chdr_1_to_fc64_1_guts doesn&#39;t like it, I have only 1196 maxs=
-amples, and crashes. I don&#39;t need the sse2 code for my conversion. I on=
-ly use 1024 complex</div><div class=3D"gmail_default" style=3D"font-size:sm=
-all">=C2=A0samples/packet for fft. I am very happy with the generic=C2=A0ch=
-dr_sc16_to_xx.</div><div class=3D"gmail_default" style=3D"font-size:small">=
-Does anyone have any fc64 experience and how one can pass the void buffer p=
-ointer to</div><div class=3D"gmail_default" style=3D"font-size:small">skip =
-the sse2 code?</div><div class=3D"gmail_default" style=3D"font-size:small">=
-<br></div><div class=3D"gmail_default" style=3D"font-size:small">TIA</div><=
-div class=3D"gmail_default" style=3D"font-size:small">Nikos</div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">It =
+turns out that the problem is not just bypassing the sse2 code:(</div><div =
+class=3D"gmail_default" style=3D"font-size:small">After commenting it out, =
+uhd still crashes. The conversion output</div><div class=3D"gmail_default" =
+style=3D"font-size:small">buffers are not created in=C2=A0_recv_one_packet(=
+)</div><div class=3D"gmail_default" style=3D"font-size:small">Any ideas why=
+ they don&#39;t?</div><div class=3D"gmail_default" style=3D"font-size:small=
+"><br></div><div class=3D"gmail_default" style=3D"font-size:small">TIA=C2=
+=A0</div><div class=3D"gmail_default" style=3D"font-size:small">Nikos</div>=
+</div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Sat, May 10, 2025 at 7:56=E2=80=AFAM Nikos Balkana=
+s &lt;<a href=3D"mailto:nbalkanas@gmail.com">nbalkanas@gmail.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Hi all,</div><=
+div class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=
+=3D"gmail_default" style=3D"font-size:small">I recently changed my host app=
+lication to complex double. I had to change my stream_args to</div><div cla=
+ss=3D"gmail_default" style=3D"font-size:small">fc64. I pass my void pointer=
+ to uhd_rx_streamer_recv same as before:</div><div class=3D"gmail_default" =
+style=3D"font-size:small">ptr =3D (void **)&amp;zin;</div><div class=3D"gma=
+il_default" style=3D"font-size:small">Unfortunately, the=C2=A0=C2=A0convert=
+_chdr_1_to_fc64_1_guts doesn&#39;t like it, I have only 1196 maxsamples, an=
+d crashes. I don&#39;t need the sse2 code for my conversion. I only use 102=
+4 complex</div><div class=3D"gmail_default" style=3D"font-size:small">=C2=
+=A0samples/packet for fft. I am very happy with the generic=C2=A0chdr_sc16_=
+to_xx.</div><div class=3D"gmail_default" style=3D"font-size:small">Does any=
+one have any fc64 experience and how one can pass the void buffer pointer t=
+o</div><div class=3D"gmail_default" style=3D"font-size:small">skip the sse2=
+ code?</div><div class=3D"gmail_default" style=3D"font-size:small"><br></di=
+v><div class=3D"gmail_default" style=3D"font-size:small">TIA</div><div clas=
+s=3D"gmail_default" style=3D"font-size:small">Nikos</div></div>
+</blockquote></div>
 
---000000000000f9516d0634c0e83e--
+--0000000000004b67210634c63bf4--
 
---===============8258498749189900160==
+--===============2071427921048970606==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +170,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8258498749189900160==--
+--===============2071427921048970606==--
