@@ -2,165 +2,158 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9BA7AB238A
-	for <lists+usrp-users@lfdr.de>; Sat, 10 May 2025 13:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1042AAB2652
+	for <lists+usrp-users@lfdr.de>; Sun, 11 May 2025 05:34:04 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 630C1385D06
-	for <lists+usrp-users@lfdr.de>; Sat, 10 May 2025 07:17:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D4F39385CB2
+	for <lists+usrp-users@lfdr.de>; Sat, 10 May 2025 23:34:02 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1746875872; bh=oDwrMQ3rMbIVJFMLsY3nZSEMhNw8TDvSxqXUos6uZbI=;
-	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=NLsL82QuwtxE/E/SurydyOSZZaz3lIhLf5z5cUxy4bMHEuRqs4nuiuuusBcN72ZKk
-	 VHTsUPWKO6VI9Ndpb+tX9XyKxnlDb8hQXcPhsDtWUzUsxeEWwxa2eYcoou/QiJjsOy
-	 HmHFh9r7Swlbf0zZh8Wfv0+ibaF9CjEpx5i7MvVkhtO5JiwPGCikh5Maw+H8zFsNvi
-	 utfsrcYMsJsvQKVh11VjdVh1z3XsVZ0w0abbhq3eTD+D3+ICCPXfFRrHwyCSRxJn+R
-	 S8t+T7XiXioDMwQaQ2mCDbf6vy52JF87WxqVFpFyEwHM6Kebc0q3HWg5VNuBqPdZ//
-	 /AXTnPeDQIAOw==
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 68154385CEE
-	for <usrp-users@lists.ettus.com>; Sat, 10 May 2025 07:17:44 -0400 (EDT)
+	t=1746934442; bh=CfFvcg4Mc8fYtjpHGqST9AQ5MrrSSpsuSiWcjBw31EA=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=wI3e1oz54njIrAvmDMeU3Hw4JaiWjvC8cBJjGmPCKmQ5wV5ORAOBl8m24z4BbbjnF
+	 Tnb5kYPpwauMdwN++yPovK/8buObpHTLV/Ti9Rtj3XFa+ioSvUFwbpIzx5btB5eqKv
+	 kjbPYpJncP3alm+AOimbUGhDcJ02x9opxFK78STgPKD8vaPjkfVWnXzNoKeUoNXEdg
+	 1m4AaIQC/q2ezcwBNAVFPOW6Pg1d22p2snNgPJjdamd4cIasV6Rup8vGE/clgzEybd
+	 yDraoof7QTpLmW7PFcE4t8xGEasieGWuv1RK2Ne5lmolWZfTtoxpoKUDbxxVzMCT3u
+	 7+OF9AxfBx9mw==
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3342D384E76
+	for <usrp-users@lists.ettus.com>; Sat, 10 May 2025 23:33:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QG2ZJ/xd";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="R/JdRPmT";
 	dkim-atps=neutral
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-86135ac9542so112391939f.1
-        for <usrp-users@lists.ettus.com>; Sat, 10 May 2025 04:17:44 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e755cd8c333so3188602276.0
+        for <usrp-users@lists.ettus.com>; Sat, 10 May 2025 20:33:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746875863; x=1747480663; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uMf3o7aJDklgbiwu2oOjdGBEsNONQ20GnMjnnhO0YMQ=;
-        b=QG2ZJ/xdvcwwRFwAvexlotvaC7aakdB+a7tB1Hp7MDQ2sIWBeGWBDfcCD/Fj3RrBiR
-         CP3G3V+lAxzHfWAlN/PvkHxNv8i/GdO37WxoUIpQEbmowOq8VzDfcKRoLoaAK2l5e1vu
-         BEicoKZ2u/gWi0wbUbf0i+QMWH6Cv8GzL+TlPKxq0JJw38phliblqB+c4OO4qYtXKMMt
-         ef6oN+bUO+FnAH5yVLhUwe7ba8cdjAysMloRWhH+PZB7hmnvdzfu1BjUBRHR4wOzYpj/
-         v+Rga3Bz9fUmnvP6RKtZ98xuAM2a2JM41cXGFP3VPxQUN2StDPrVdjBVmZSYI9784SoQ
-         jC8A==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1746934386; x=1747539186; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=nLxImYcDs/qQ6CjkSmNYkrInHxIFSPv74dAGcUYv2zU=;
+        b=R/JdRPmTuEEpUdSjmGUe1TlLZR56nxvu6omyT3g0kNtxQzdfvPQW0ESE5VhR6GGLP2
+         2VbhdmQMnvORMykZSX9OtL8WTF50/4oX0dmgOC/AZ14loMYLX6ITWCqUvv8A0/KuU9+f
+         biCGMcLdQHGtsWqw/c4q9TiwzEbNRh03eh6nu6mF7+cWaLDongyGmDluCTeZg71cLs/Z
+         xo4PSrpJxtrmtSpDR1WLcSIifXAEUlYewpXXG/u6kYB3Fn1EqkkrXXIjE5ElS9x62ln4
+         NvkNQ030JtRCG73S3DS/Yr7EmE5CzNJIZfQhI+YBVpe+IYE2Eg7BJHlne3pD2zDv0Wz9
+         7TkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746875863; x=1747480663;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uMf3o7aJDklgbiwu2oOjdGBEsNONQ20GnMjnnhO0YMQ=;
-        b=ruNQ1eCkeS5vv4b0d3WipXFNG77xHSQm6858Tx1mJQPDfBnwQeRUVsOTR5CzM+3LsV
-         OB3ixvMR1urZrXEFE4ZtyXm3L8ILNiQF9dqJxtzfRGjFU+GwzQ+y7aWtf6lzV/v64y+l
-         e1AXAJJjzmRa17Atwzci3vuwH136cEhv8llg6zhkEXavc1k+BAQgj24PPZIzorvdebcG
-         YjtBL7dSjmZ/Sg5fmx9tbevdLi4FdnnqkN+WZXkEQYShzomeRU5MDl8T2JzYZiUNyfxa
-         nTA98Mfm0Uoe5aPq2F2L/uQG+15A+WqFy+0987G/3cwFKiNlouN4DNAEyMzcIhCIcvle
-         ch8A==
-X-Gm-Message-State: AOJu0YxURKiOzX1ykVQVObcU+QmGrtQoVSUGJDk+HglOJDw+Dm6FlHzG
-	Gq7pYmoELWSire6Ei4a1wGUo5GDD1rm71/aE+UfokUuJJ3SgN65/HUJhmDietQrtg0ZCMYuqkcB
-	4QvyyNremRO1VDjkJlsvhuuZokWp7OMdbjBc=
-X-Gm-Gg: ASbGncsd7ne2Hqspch9fWVhrBcKEgEcn/rQL8ZhoVjC8TlF3LwWnLC78vmTLGgOhcaw
-	Mohqa11ED+vZ7bUofeyMs4wycZItLh6DGTmPh92cF7sV7v2c+3oD85ilBIBHKDQBnZVmB5Tl9TM
-	7Cy38qvez+9CU/yFlUPUSaD24jO3dFvI0=
-X-Google-Smtp-Source: AGHT+IGAaWS/ZzdsdLXLmgBesxbJicskXJfiblpCyt/CdvpwgTTkvW4QEhzXeY8757iAZ8jiGXPklwaM3i+wNnYbWAE=
-X-Received: by 2002:a5d:9ac5:0:b0:858:7b72:ec89 with SMTP id
- ca18e2360f4ac-867550aa550mr1197463639f.5.1746875863228; Sat, 10 May 2025
- 04:17:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746934386; x=1747539186;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nLxImYcDs/qQ6CjkSmNYkrInHxIFSPv74dAGcUYv2zU=;
+        b=nSNVpWSxza7v3yugPbmRPlfylvyRMDGUD4PFwQTtfYu8uPt66N+TYmqzmKw5iQK7LZ
+         P3uAh88LhlKDAch0xzOgf552y6siKMWj7BGHc3XE4cHAsCkvm8fvuQP9FC+4iY8BXncO
+         i1K3TJgnVSxmB1afh+YgDqBXgWUGSLSc5HuDG0LtxoZta3Yn1Qehju8Dzm93RZpq7tQe
+         dQHj7kwz+gqd3IVD0GTPvM+B8U+v6P9tTAEWqUc5UZqKADO/h4gynLtfpG6+hj2/ParK
+         aQBsNVghWfNxP6USIt2Sx57vEb0+I6CbfwGZa9avsq4MyPrBBirRRBL1nB7fIRjPBGyX
+         AF4A==
+X-Gm-Message-State: AOJu0Yzv1NBgNKNGabV4MtRI+H23whZFSq4/HgU1hURq8Dkl4fLDvOZa
+	2ak8pTp8fqacMwuc5/kJwnlF/BV/vnIpK0FHY+/d42rWJBuqZmGXcWTLYpXB0JNm8NUYAKgbtnY
+	2hGHHzJ2gOyOSoJcYpPBXLpPwDkeLh9fMpyyNhe39
+X-Gm-Gg: ASbGncsvbLTj1lN2WTnb2EEbEpuTvZlFzAwO2aTRiU5CGj4vdpOu+vD2MdpiBC5c8rS
+	h/iMpIGBnOWC0PiQx2cyQr/eSPY1oTmmX0fBXTsfZn+b/SiByuXva45RJAz6NMFkBaXjJOAQ0ct
+	QP218Fp/VWeSrXuzp0BVtzpx1zoBEhVGV5
+X-Google-Smtp-Source: AGHT+IEh3+gqC1Rq2aoVEDuRwbPmpctzzB4l2agCg/rYnuejw6BDY/B0yLniQrjRTX4O+XobyZCXBYmvrK2MxJx9iWE=
+X-Received: by 2002:a05:6902:2404:b0:e75:33fd:e7f8 with SMTP id
+ 3f1490d57ef6-e78fdd488femr10634895276.46.1746934386513; Sat, 10 May 2025
+ 20:33:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAxXO2FTNui2gby9j+mRDx3bFHGzRjUpWAoB1Q086_DwghEZmA@mail.gmail.com>
-In-Reply-To: <CAAxXO2FTNui2gby9j+mRDx3bFHGzRjUpWAoB1Q086_DwghEZmA@mail.gmail.com>
-From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Sat, 10 May 2025 14:17:31 +0300
-X-Gm-Features: AX0GCFtTEW196O4XFYGh7iHawo3uho1R-emcPxuLm-0OzlqWg9HUMDgczOSnqTc
-Message-ID: <CAAxXO2GhNJx4AB4-m7vVAsnhBdkHCjDHqRsFze1BqLvZswYcYQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: ZRYKKXF5TYTST64LKQR4ESZ53D2PO3KT
-X-Message-ID-Hash: ZRYKKXF5TYTST64LKQR4ESZ53D2PO3KT
-X-MailFrom: nbalkanas@gmail.com
+References: <CAEXYVK6A8mRg9jpcaMgihu7hRFWFrPL0TgubaB1m46QoFbY+iA@mail.gmail.com>
+In-Reply-To: <CAEXYVK6A8mRg9jpcaMgihu7hRFWFrPL0TgubaB1m46QoFbY+iA@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Sat, 10 May 2025 22:32:50 -0500
+X-Gm-Features: AX0GCFsRP3FyCU4RLEy4NkYjGD1ecclWO3fIV-LwaZXzU2U7hvrsvyvmkHwNLus
+Message-ID: <CAFche=jCdCTCyAY51g2CSNdSLnW==CUngEw+VsGCQb9Hapn4gA@mail.gmail.com>
+To: Brian Padalino <bpadalino@gmail.com>
+Message-ID-Hash: GS2YIDX52M4I553ZENRWPRFPG6Y7OOAV
+X-Message-ID-Hash: GS2YIDX52M4I553ZENRWPRFPG6Y7OOAV
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: fc64 help needed
+Subject: [USRP-users] Re: X440 Reboot Takes A While
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZRYKKXF5TYTST64LKQR4ESZ53D2PO3KT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GS2YIDX52M4I553ZENRWPRFPG6Y7OOAV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2071427921048970606=="
+Content-Type: multipart/mixed; boundary="===============7300310424225504414=="
 
---===============2071427921048970606==
-Content-Type: multipart/alternative; boundary="0000000000004b67210634c63bf4"
+--===============7300310424225504414==
+Content-Type: multipart/alternative; boundary="0000000000008dea8c0634d3dbd6"
 
---0000000000004b67210634c63bf4
+--0000000000008dea8c0634d3dbd6
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-It turns out that the problem is not just bypassing the sse2 code:(
-After commenting it out, uhd still crashes. The conversion output
-buffers are not created in _recv_one_packet()
-Any ideas why they don't?
+The 90 second timeout is a known issue, and it was recently fixed. With the
+next release, the USRP Hardware Daemon (MPM) service should shutdown
+immediately.
 
-TIA
-Nikos
+But I'm not aware of it taking a long time after the service shuts down. In
+my experience, it reboots very quickly after the service shuts down.
 
-On Sat, May 10, 2025 at 7:56=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.com=
-> wrote:
+Wade
 
-> Hi all,
+On Thu, May 8, 2025 at 4:04=E2=80=AFPM Brian Padalino <bpadalino@gmail.com>=
+ wrote:
+
+> I am noticing when I issue a reboot command to the X440 it will sit at
+> shutting down the usrp-hwd service for a while, usually with a 90 second
+> timeout.
 >
-> I recently changed my host application to complex double. I had to change
-> my stream_args to
-> fc64. I pass my void pointer to uhd_rx_streamer_recv same as before:
-> ptr =3D (void **)&zin;
-> Unfortunately, the  convert_chdr_1_to_fc64_1_guts doesn't like it, I have
-> only 1196 maxsamples, and crashes. I don't need the sse2 code for my
-> conversion. I only use 1024 complex
->  samples/packet for fft. I am very happy with the generic chdr_sc16_to_xx=
-.
-> Does anyone have any fc64 experience and how one can pass the void buffer
-> pointer to
-> skip the sse2 code?
+> After that, it usually doesn't even reboot for quite some time.
 >
-> TIA
-> Nikos
+> Is this a known issue? Is there anything I can do to debug why usrp-hwd i=
+s
+> stuck shutting down? Any idea why, even after it shuts down, the RFSoC
+> doesn't want to reboot itself appropriately?
+>
+> Thanks,
+> Brian
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---0000000000004b67210634c63bf4
+--0000000000008dea8c0634d3dbd6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">It =
-turns out that the problem is not just bypassing the sse2 code:(</div><div =
-class=3D"gmail_default" style=3D"font-size:small">After commenting it out, =
-uhd still crashes. The conversion output</div><div class=3D"gmail_default" =
-style=3D"font-size:small">buffers are not created in=C2=A0_recv_one_packet(=
-)</div><div class=3D"gmail_default" style=3D"font-size:small">Any ideas why=
- they don&#39;t?</div><div class=3D"gmail_default" style=3D"font-size:small=
-"><br></div><div class=3D"gmail_default" style=3D"font-size:small">TIA=C2=
-=A0</div><div class=3D"gmail_default" style=3D"font-size:small">Nikos</div>=
-</div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr"=
- class=3D"gmail_attr">On Sat, May 10, 2025 at 7:56=E2=80=AFAM Nikos Balkana=
-s &lt;<a href=3D"mailto:nbalkanas@gmail.com">nbalkanas@gmail.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Hi all,</div><=
-div class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=
-=3D"gmail_default" style=3D"font-size:small">I recently changed my host app=
-lication to complex double. I had to change my stream_args to</div><div cla=
-ss=3D"gmail_default" style=3D"font-size:small">fc64. I pass my void pointer=
- to uhd_rx_streamer_recv same as before:</div><div class=3D"gmail_default" =
-style=3D"font-size:small">ptr =3D (void **)&amp;zin;</div><div class=3D"gma=
-il_default" style=3D"font-size:small">Unfortunately, the=C2=A0=C2=A0convert=
-_chdr_1_to_fc64_1_guts doesn&#39;t like it, I have only 1196 maxsamples, an=
-d crashes. I don&#39;t need the sse2 code for my conversion. I only use 102=
-4 complex</div><div class=3D"gmail_default" style=3D"font-size:small">=C2=
-=A0samples/packet for fft. I am very happy with the generic=C2=A0chdr_sc16_=
-to_xx.</div><div class=3D"gmail_default" style=3D"font-size:small">Does any=
-one have any fc64 experience and how one can pass the void buffer pointer t=
-o</div><div class=3D"gmail_default" style=3D"font-size:small">skip the sse2=
- code?</div><div class=3D"gmail_default" style=3D"font-size:small"><br></di=
-v><div class=3D"gmail_default" style=3D"font-size:small">TIA</div><div clas=
-s=3D"gmail_default" style=3D"font-size:small">Nikos</div></div>
+<div dir=3D"ltr"><div>The 90 second timeout is a known issue, and it was re=
+cently fixed. With the next release, the USRP Hardware Daemon (MPM) service=
+ should shutdown immediately.</div><div><br></div><div>But I&#39;m not awar=
+e of it taking a long time after the service shuts down. In my experience, =
+it reboots very quickly after the service shuts down.</div><div><br></div><=
+div>Wade</div></div><br><div class=3D"gmail_quote gmail_quote_container"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Thu, May 8, 2025 at 4:04=E2=80=AFPM =
+Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com">bpadalino@gmail.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div dir=3D"ltr">I am noticing when I issue a reboot command to the X440 =
+it will sit at shutting down the usrp-hwd service for a while, usually with=
+ a 90 second timeout.<div><br></div><div>After that, it usually doesn&#39;t=
+ even reboot for quite some time.</div><div><br></div><div>Is this a known =
+issue? Is there anything I can do to debug why usrp-hwd is stuck shutting d=
+own? Any idea why, even after it shuts down, the RFSoC doesn&#39;t want to =
+reboot itself appropriately?</div><div><br></div><div>Thanks,<br>Brian</div=
+></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---0000000000004b67210634c63bf4--
+--0000000000008dea8c0634d3dbd6--
 
---===============2071427921048970606==
+--===============7300310424225504414==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -170,4 +163,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2071427921048970606==--
+--===============7300310424225504414==--
