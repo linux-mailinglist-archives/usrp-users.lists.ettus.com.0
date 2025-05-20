@@ -2,88 +2,88 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D407ABBE32
-	for <lists+usrp-users@lfdr.de>; Mon, 19 May 2025 14:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA9BABD429
+	for <lists+usrp-users@lfdr.de>; Tue, 20 May 2025 12:05:52 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 38BF33853A4
-	for <lists+usrp-users@lfdr.de>; Mon, 19 May 2025 08:45:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E7F183856BB
+	for <lists+usrp-users@lfdr.de>; Tue, 20 May 2025 06:05:50 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1747658756; bh=ShMahdCT9ClSZvAyaTcV6IDd2l+AkSVdg5Q5NJ6EjUs=;
+	t=1747735550; bh=9xyIU2QB5Tn62atGpyCcRL2vbxjLwiWVel5/eymXKTg=;
 	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=VQj01G3rD0DawsZ/5sDjhwVdYApo8qMwAATDPy0ClR2/QKT17Hfy7sM+tpLvTIbp8
-	 txmFTrgs9+xde+jcZSn3MWUvnHQ9X0d8ZwXQfVGk3qkGlpHfDpUTalh18EHqPQ70o1
-	 NV2Ku57dEaIe+78phfxF3yW5WWsKm0mQI/UmyQD9zY6iuq7iJwNgj+ITk9dKoLaLW0
-	 0d1mIb6lY42PLVNn0l3+O8CjQAJewsnPcDnbO3I7HgZiK16fVsYtJqY8ZeTA0TH0eY
-	 RgoTeAvsZGRMlRjRAbAZstYqSTet6gYbcb+9xd7TtaSg2poECYbc1I3T5UiKnLS/ZC
-	 3PkaTQzyUAPCQ==
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id B03843853A4
-	for <usrp-users@lists.ettus.com>; Mon, 19 May 2025 08:45:39 -0400 (EDT)
+	b=ncGLSNGWe8MdG2+3FWasOid/ns1znfycni4G7tNa1cYzPVlKftJpO1aKownDamFXV
+	 gbp9eMw+rnqLgbA47k2oUZHqROxHGlOWqRadxyRwSVEIBEyqMQWGr1Xa+gx9gEgWKO
+	 A/kTQZwguqXCPIaYMy881RhuRWIBFW7sy5HsSIlY6SCgdqolRYYY82CRL2h5y5CX3l
+	 vLduKtKuWVP7KCddfr1ub1Ub05lOfKupG37BCAsJlOBKTqXFzn6VHdbPbprDkVoLsk
+	 A0b5iZBPCcIToej19H499LZBfFuV7k1W0xAyH9V/6pOBkJDwd1SomN3gOs8zWZa0D9
+	 llUYbWvN5WKNQ==
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id A653B38503B
+	for <usrp-users@lists.ettus.com>; Tue, 20 May 2025 06:05:33 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="qPM1SWZq";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="yv7TN/qZ";
 	dkim-atps=neutral
-Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-3da73df6b6bso14095235ab.3
-        for <usrp-users@lists.ettus.com>; Mon, 19 May 2025 05:45:39 -0700 (PDT)
+Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-3db6ddcef4eso49331045ab.2
+        for <usrp-users@lists.ettus.com>; Tue, 20 May 2025 03:05:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1747658739; x=1748263539; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1747735532; x=1748340332; darn=lists.ettus.com;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=xEPakN3qWN51K3VbwFfPctZq0AEi5UIcaC+07O+gwxM=;
-        b=qPM1SWZqNTtMBJ8FuiYoAms+ylHw/7MVsUJJ1IhTxSCl02ULHQHAr++9VUSfD4itQ7
-         oxe1DZoNF3LKSpxrFggktIcInfe4IYHQb7opPB0VZp0jXzCh9SP4QqQ8zxdOm0PeYwqd
-         SSTLA734clbA3BAJ2BrsqteWuhqoH9E9XZXKNDI8cjU39vWkN3+u2ezifHTTU0XNi0Qj
-         brHCgCIEyJzuE/f4fbp8ldKgBVKKKCitGiYUXcoswqD062PdinqfSm3LnXhX/NwUir2z
-         P/V9UQTT7t0rH1fWb6ZTlQv/9L47T8CKyMYygj2uvzpRyuRv2FuKEoIGV5b+5YKrcb6r
-         tczw==
+        bh=5ux7Rkz8q22ek0U7dDCXF8m/bM+OcayuS+mbxClXApE=;
+        b=yv7TN/qZrYT5H2lliE5yG2FoFerCMq68YZBtcezsFzsKgDYidfI63HB/a6lIsragQY
+         8gijTwSoLtjAv7dV9h97vULam48M+vI4UfeNq4g++08Sue7qZPEHxoc0Q4nfqkDGHsZm
+         xxDQOgKFjrRi91R9SK9bPl3k6TPrXFsRVQdPSXlARgU2gS3aaE95VYbqPu9a2aiFGx7R
+         nKjUqL7TJhEk+VSYO3FIKmzIfIiUBBsoAOb+fB03ewkYbDfThfOGzcAwSACKqKKKxrbd
+         YfU3RAtinjtsd3xH/vxfCh40WjtSTOkdGlgKszpXGntQPyuZL8WvYxryp15R+goARy9g
+         lC/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747658739; x=1748263539;
+        d=1e100.net; s=20230601; t=1747735532; x=1748340332;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xEPakN3qWN51K3VbwFfPctZq0AEi5UIcaC+07O+gwxM=;
-        b=gI69O68L0TvlHatulmngiUr6uF3nOTqT/0k/JxDDJVFTAmJLI98wVBnYPbRYIl3+QR
-         1vKp8X8ubkHGcg0jI2tn6og8I9lhCVECgnpGIBphNvqmvsB3agLPrHE/5ltePl1igmo5
-         qb6PIEMmhdCw91fu96Paj/FtDyZVPuBB/i/FbYmotyfmvzcKGsvPDTJzLWxE8dqMm71F
-         3bZR2zNc67hzLSU2WJ5b/rVMt2bcDFM5JeSxQSaFbEPFb90SsAOWW79ol3KaaH7gul7z
-         DvE6xIngavdpWAqwXSF2gqMR5TPmSHK6dUZSammMaxIYeaS/XZ5HvIWBUYuYpwVO1Vxe
-         qCdA==
-X-Gm-Message-State: AOJu0YzUPvOojPRs0i629Kp+/drBkGojUP0NEHdZaStxpYw0YkxqbMKf
-	1Nh7RD4okTueDXVFFaz3Enn9wR+HEF+kg4l4Mmfm9AqjX0r8dHqttph4QwViHV9RwozCC86JmRD
-	YPEXG5YpgwLZISRgEi3jXF0CrXko5TsIxfyzO0WB3ZDwYoc8yP5O3aPbT0g==
-X-Gm-Gg: ASbGncuqO8WHJHSxLIJlZHr9GBVnSorqujB15sjnVRoYRDAs+AiZ0tbNLMBruc43TIz
-	vs0EuC9VI2H1tXndcaaD3KSUZAIY5oIweoyZX3mB+eUxYxmogQjL3Fzu6QZWdqgQkI719qhhCuW
-	uklVGCIs2aFVdEjknc87YkFs7vHGe+dbN8oyExGw276Wg=
-X-Google-Smtp-Source: AGHT+IHmLM95aB7RWxAKnSNejyfN6/fCV3WjCMDYfg7EDqTddSbvbl3k84reGimhJX5DSe/nkrrOwennxGeCuNs0gsM=
-X-Received: by 2002:a05:6e02:178f:b0:3dc:76c6:4391 with SMTP id
- e9e14a558f8ab-3dc76c6473amr8433785ab.20.1747658738548; Mon, 19 May 2025
- 05:45:38 -0700 (PDT)
+        bh=5ux7Rkz8q22ek0U7dDCXF8m/bM+OcayuS+mbxClXApE=;
+        b=Tm0tCPRpHmbvmDIq02pTL6yTdJHzsq35rQRxI6BMLSQyaxWBqjFbPaZX5C3xDLIW7L
+         dNUSYFZbEQPFUqQlyHpEZoiFDQH0L/LqDq8rCm0xEXwQ5p7+cIqK9a9F6KtwwiZQSXJo
+         gV/NMnnYoCPrT6ukSWv3ZH4WzjtsO+1u9VHa0r/ML4Djxa/ag4siE9TJyWRcER6PcdEo
+         xeSr0t7evfpT9HS0UpW5mPp011muMJ6yM7vtbVJrHDqbXSOeAJsnkmLk0FNqcDpXMGCW
+         GXy2FeQYYLXQ6X/cEnjhK99rlcmlLp+vkBBq2ZpvggplZTq/dMvSE8S1xSGwQztewX/q
+         C9hw==
+X-Gm-Message-State: AOJu0YxxNO7eS3lVh6+c5d1mxx9tyAjQtH0qD7At2kLTnVk5GEdnQy/p
+	XKw1cXwVg6A8tcLCr6p2YfDBx7zj6+3GklTj+det5l854KtJjyGQ79OnqOXE8Y4E05HqOzp6Vkv
+	8HS2/g7rlnHMuYCbuxqXAmk+yid6BKIpUR8q/ouG1F2os3uFRyWCFA145Cg==
+X-Gm-Gg: ASbGncvPLvpb/ZQ5OnFRTGylbg0omnVuHybQfJ89fnVO8WsHGEq+0uBbLC0xdbF748v
+	UFteZpzhICydsDvMW+qhK4+qhA+TvlYrBmyMu8ejFXMRXGeoQr/KwP8ICuCjadunFaDv36t1vrM
+	9+y1gS2htoNXz8X8ZbGK1f9Z69Lhgw8lF9
+X-Google-Smtp-Source: AGHT+IGFxlyLjVE4uEIhkLREDkisqsI2iJ6RGu9Z5pgx+bQdOVAERfAlcpUx1+jbps8uPUoYOLqlLMu1NwesAHjwXgo=
+X-Received: by 2002:a05:6e02:5e07:b0:3dc:757b:3fab with SMTP id
+ e9e14a558f8ab-3dc757b4338mr36913965ab.6.1747735532097; Tue, 20 May 2025
+ 03:05:32 -0700 (PDT)
 MIME-Version: 1.0
 From: Neel Pandeya <neel.pandeya@ettus.com>
-Date: Mon, 19 May 2025 07:45:02 -0500
-X-Gm-Features: AX0GCFvAcWdCJD8IlW6ZrvNmLz7T7HWzLpqGz3v88eU199uLcjNo9o-9ar5MNQE
-Message-ID: <CACaXmv_53EMy2i4tSizn0LTYG7VyQ4YvEewnMUx+jEbVfkOk7g@mail.gmail.com>
+Date: Tue, 20 May 2025 05:04:55 -0500
+X-Gm-Features: AX0GCFtmRQGA33OAWL42ME2d5eEWWcRMrsKVeRsCnu-0koY5OUd9cl-pMdhhmd8
+Message-ID: <CACaXmv9324_dPxb-1hLkhBbWdTXQD6CV5qx5XtRkpWCudza-+w@mail.gmail.com>
 To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: CLLVXA2M3GQD5TZBNMXR4SWPTWZWTQIG
-X-Message-ID-Hash: CLLVXA2M3GQD5TZBNMXR4SWPTWZWTQIG
+Message-ID-Hash: YBV5VQXFMVJU6S4NJG45RZZ7MH6QDHAJ
+X-Message-ID-Hash: YBV5VQXFMVJU6S4NJG45RZZ7MH6QDHAJ
 X-MailFrom: neel.pandeya@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] NEWSDR on May 29-30, at WPI in Worcester, Massachusetts
+Subject: [USRP-users] NEWSDR on May 29-30 at WPI in Worcester, MA (next week!)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CLLVXA2M3GQD5TZBNMXR4SWPTWZWTQIG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YBV5VQXFMVJU6S4NJG45RZZ7MH6QDHAJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3353370953596736850=="
+Content-Type: multipart/mixed; boundary="===============5774307097377820964=="
 
---===============3353370953596736850==
-Content-Type: multipart/alternative; boundary="0000000000004cd66c06357c8279"
+--===============5774307097377820964==
+Content-Type: multipart/alternative; boundary="0000000000008d652906358e6306"
 
---0000000000004cd66c06357c8279
+--0000000000008d652906358e6306
 Content-Type: text/plain; charset="UTF-8"
 
 We would like to announce the 15th annual New England Workshop on Software
@@ -119,7 +119,7 @@ https://docs.google.com/forms/d/e/1FAIpQLSeJUxZE5294_0hlmL91omHg2rBga2P-KdFF-lTn
 
 We look forward to seeing you all at the event!!
 
---0000000000004cd66c06357c8279
+--0000000000008d652906358e6306
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -137,9 +137,9 @@ th, DeepSig, WPI, and MIT Haystack Observatory, in addition to several tuto=
 rials during the evening of Thursday May 29 from Eurecom / Northeastern Uni=
 versity, Pi-Radio, and National Instruments.<br><br>We are very excited and=
  honored to have as our 2025 keynote speaker Professor J. Nicholas Laneman,=
- Professor of Electrical Engineering at the University of Notre Dame and th=
-e Director of SpectrumX, an NSF Spectrum Innovation Center.<span class=3D"g=
-mail_default" style=3D""></span><br><br>The event is free to attend, but ad=
+ Profes<span class=3D"gmail_default" style=3D""></span>sor of Electrical En=
+gineering at the University of Notre Dame and the Director of SpectrumX, an=
+ NSF Spectrum Innovation Center.<br><br>The event is free to attend, but ad=
 vanced registration is required.=C2=A0 Please see the link below.<br><br><a=
  href=3D"https://docs.google.com/forms/d/e/1FAIpQLSdwb_PunhWMBG-d8x-3TMU1nK=
 8ff5blA3OL2wF58qkYF-50FQ/viewform?pli=3D1">https://docs.google.com/forms/d/=
@@ -153,9 +153,9 @@ https://docs.google.com/forms/d/e/1FAIpQLSeJUxZE5294_0hlmL91omHg2rBga2P-KdF=
 F-lTnZwan8mls2A/viewform</a><br><br>We look forward to seeing you all at th=
 e event!!<br></font><br></div>
 
---0000000000004cd66c06357c8279--
+--0000000000008d652906358e6306--
 
---===============3353370953596736850==
+--===============5774307097377820964==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -165,4 +165,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3353370953596736850==--
+--===============5774307097377820964==--
