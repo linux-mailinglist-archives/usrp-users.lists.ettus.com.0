@@ -2,165 +2,245 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30DB6ABECFC
-	for <lists+usrp-users@lfdr.de>; Wed, 21 May 2025 09:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45788ABF2DB
+	for <lists+usrp-users@lfdr.de>; Wed, 21 May 2025 13:31:15 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 81278384E7B
-	for <lists+usrp-users@lfdr.de>; Wed, 21 May 2025 03:23:02 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F348D38561B
+	for <lists+usrp-users@lfdr.de>; Wed, 21 May 2025 07:31:13 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1747812182; bh=SQW3fHuCRVN83+TnfMYvpLFQZpffSQAKF2ZDrOEMiAs=;
+	t=1747827073; bh=HqQFdFhtGY5LJ7EYEmAFUxSwGrPVbrNS/E1in9a0qE4=;
 	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=DrEL6JIMpEgbAHSSlBV8YbtCiRpbVs7g+KLPipWf9aTTczkkoOWiKHkVXwzD8mxmU
-	 Cq3Mnr7nz4uGWT3+cY8loQ0OoKShai8J5qnSO9hmsBDgiHlaItNQsOevV1BCPh4G86
-	 aRDQRfCJMUhcPlYjn92Vi4CYkhvFS3lnUetFUGNYxurd6v824WNAiV7zvYPc+k4f9k
-	 WjjB7RRJ/vz7mwO95kDkUAQbxRzbC3LikhEwS+qsWafh0BU9SPyRiRzocMOG235NXW
-	 1S9eh+3Q/6QhVPw381bV+VIG7mNLlKvZJlDll+hlS/quOCwfa25/L6niQxKeglgPuC
-	 HI+G7OvODV1Nw==
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id E1BD8380A36
-	for <usrp-users@lists.ettus.com>; Wed, 21 May 2025 03:22:44 -0400 (EDT)
+	b=WYvHV9u900wR+sm9yCxl1LQ9Vv9A8x+VUK4EwP3wqMceIKABSuSNUe4IsL7A8G27t
+	 J61vsT3XiMaTzbWaIBh+RaJZuyTRGxMt+zbTLU7h8PzeB3UnJ/zfZLTG+BawnsQKqk
+	 1m6yiDmDl+J46lGo6gr3T0gXufTOo2Kc92OfdAWBGGDao3CmDQaAlvPAf+5h60ypzM
+	 WSaaijwx85tkgP6AfZch1y29WTzkrDe6rmo6aPaepaqbI1/TyeAXpiPjrjbfWWES6x
+	 rDoa0XcMqP9k+Boqk1SOwQ3AHKe9zLzWSlT48ocmeCDBe3ARZu41JjKy47k1n9+aTZ
+	 GEAHNBrNpdUMw==
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id F319E38545D
+	for <usrp-users@lists.ettus.com>; Wed, 21 May 2025 07:30:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="0jBGGdc8";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="MkTLTytf";
 	dkim-atps=neutral
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ad5273c1fd7so1064807166b.1
-        for <usrp-users@lists.ettus.com>; Wed, 21 May 2025 00:22:44 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ad564b7aea9so675834566b.1
+        for <usrp-users@lists.ettus.com>; Wed, 21 May 2025 04:30:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1747812163; x=1748416963; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1747827041; x=1748431841; darn=lists.ettus.com;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jvoUm5JpVe5bluo+0jKownTVPDl/os6yJvrcPRTLJGo=;
-        b=0jBGGdc8FJNBLaX6+X4R2B6ulWctATKXxYlLA7YNrj51Qzb2G7JbIx3gu6ALOz6WH9
-         MGliwLOJdEMt4yjthddd3ND01bvSctG29n3KToqApbfT74J7V22ej5qk0PZxHeJSK8+F
-         YQYO2jx5dsQjJAU88t2pJ73zUaxWF6h/3QhGxVCH6WeixQR3tnpOPdzS2WBGXse9MmR6
-         IPUlQRkpWTIvn92+vD2ubW4tbHukMFDG8iEzC+s8wnAI30svdNhvnapZ4f5jiDUGonc2
-         lVJ5GU6gD2/mrShyZht6xElekeKbSf4nJoWCXxkcncPWhJ98fbnPiNgSvftR+o5jQpaD
-         Jwqg==
+        bh=iAMM4ssAjssz5Ex70JW0mD9dktyYakaNJpKkPw9WHh0=;
+        b=MkTLTytfZazNShMju1BziIywJ5CnZkw7cA5tGgfCcFck+Lnyb0rqSIGQvba/28uLQg
+         4fE2advV6lCMA2uLG2POxN2OwdgFYdJgk4umFJpBm1OH7zh2lsaxf5yWjEXor5/TO9T9
+         oZRXVeebYhO+D9unHHVCGO+ktZMnltzZmEqKBLsVvAKujyf4ry3V9AYRMc7H3Sb7sLwS
+         2S3CS4Sp5UVe3KxRJxzE0XNePtWvNzKFlduGtlYnpMXoFCvVZ2bxb2WWRhfbMtF3Ytd5
+         sJN0qmnOzPwFDiu/s7iXLnzq+8S6SKG2spqcZbs9cMbOow4tuWdik3+9Itg+uNOeXBWn
+         n3dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747812163; x=1748416963;
+        d=1e100.net; s=20230601; t=1747827041; x=1748431841;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jvoUm5JpVe5bluo+0jKownTVPDl/os6yJvrcPRTLJGo=;
-        b=d6lZ+lS8JcwgJYmLEYv6PaqwCpKK5m3u9rv1RueUZv5kkCZ2JlsnslohXB4cmy8iD7
-         BoReWg1k7YjimbtOmMJGiKHKazMKj7HoeJGYWbMO+JoniothEY8VS6pLAPeGCcUN5fxN
-         U0sKSXGssFjkssyJu8cFR4Hpx4FJI4YoLHigLPQ9ntvD8+SYKXjB28UhKjiatKnVWx+k
-         BNvowYJ7Y36c4nLOPfuHEfJ3S4riT2rZOyYRN+xHnwzDZZ0Uh2tvFwsBm720nDUwC4GH
-         R7OOP5HOFMm8f3gr4Jb06bqoUFhA83UK+Ygax8wWrJ8NvuJYsn+4/Q421uwJKNgYe44m
-         yW8g==
-X-Gm-Message-State: AOJu0Yxr3W19zOAHlgidmusqvk28S/2Qg6joIHBK2c8Plivp/cfbl/ma
-	VT3NYJWnVtaekgv+p+sb9L47T/V1Jf/5AstLh6iUnaBvHUm4WwJ8LiepBklSMzjNzrXBc/v2rIT
-	n7xP6HBigQBnHTsaqj6EqOQG+Lg0Tr0LBcMqRYi1C5D7wJVMUmWIEZCg=
-X-Gm-Gg: ASbGncstb4VMd1t+I5jc/OyYqLzzv6xIkERdCEJA2uDazvS7t64imQqXvzblOKzg1EJ
-	crvivniTVizRZuS9an4Ft2J7CTULqSVUkwfeaWxpa9yv+Wbuifhcflod2pmJYlL0wHN16pJqh6G
-	j7xuW+rmaMSJSKVe5xiOCeJCU21/ZhvZDf0f+3av2DEB7ZuMHEDwH3Cxe8v1UudAq0sqq/O6tPb
-	BA=
-X-Google-Smtp-Source: AGHT+IHwTNdaWy6rkBHfYJH7sMfil8cta1jDesOF8UOHwjNq4iuZ17R3J6hY+F8utoYaE/ZX32ILeOFYWmQPjkx7IrQ=
-X-Received: by 2002:a17:907:97c3:b0:ad5:bf7:b801 with SMTP id
- a640c23a62f3a-ad536bca51amr1641453266b.19.1747812163250; Wed, 21 May 2025
- 00:22:43 -0700 (PDT)
+        bh=iAMM4ssAjssz5Ex70JW0mD9dktyYakaNJpKkPw9WHh0=;
+        b=akkRxbrneIxeC80/hkXk3p/7mDf5CmsTwM0D8X7VRfHnzgZshuQLPF1c4GkIjxt+d9
+         L5RhsUIT9PgjOwu9skEM6rw3LtE7EukCuiTDZzivZMC9LQiVjPk+4YhiEY/wchwhFEHf
+         QiXdtdWNkYR+L4nslunrug8VbA6jm2PMWd+LC9hyiznrbzar9dJky2dpklm6RhdoXwDw
+         x3qsGnSImRHmkKr4lEid4lfOSX7MLX1TYoAER3DHHqTehRc1hiPY2EqMJk4NRWFSvKrq
+         sTeglj6LCWu96j31QPG9dQV6VMOUBwoFQ77E3qzPIl4l8iHSR9k6WI1S8Cz5UHrrDejE
+         QuxA==
+X-Gm-Message-State: AOJu0Yywetvmqp4wTSH3iXpxaTwMNyxnEwMEB/BwAYcBLxTtuWuG7H4I
+	rWVobGzHOVKsXdKyOmVHwijj3CaziYNGvvN33o91NMPwOV9Wm1QI7XUI8hPVUasJuVrwmFnBT79
+	q0kqAOiemV+f7fqMjCMpCAf0wC7OI5WKPcnGVvTN5XYjcPFaHZ57iSyk=
+X-Gm-Gg: ASbGncu4zYvpuPVcRB0iPu6RQttO60kPZeFds0jyFmHU3fPORdsjjeJGhadl8C3DE5u
+	BJKmGTH/135JNCQYTa4Lva/R7SoqBnjDc6B4QD88Lkxia8ybLT+4EQXP8nkJnteCALLGGrUnEG2
+	CQXjuLMFwI5qaOHIek0gvdcPZjsIcJ3Wq435mGf19DTl2txmRG7LzqN+lH/27dSTC7C598QkhEi
+	AU=
+X-Google-Smtp-Source: AGHT+IEJ2Ic2qSwLPke+ilIV2C8RojkXdB+G2+7xVYI1kATcIEAajqvslyDtQBPEibWt6i7LcmY2UVEP2XDQhA+F5Os=
+X-Received: by 2002:a17:907:7f1a:b0:ad5:431d:fb32 with SMTP id
+ a640c23a62f3a-ad5431dfea5mr1680722666b.14.1747827040403; Wed, 21 May 2025
+ 04:30:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEXYVK6rYFpX8dJErUdGkqn3e56eifN3COXmmqmvvStu5A9AHA@mail.gmail.com>
-In-Reply-To: <CAEXYVK6rYFpX8dJErUdGkqn3e56eifN3COXmmqmvvStu5A9AHA@mail.gmail.com>
+References: <1423256721.28833062.1746688948038.JavaMail.zimbra@univ-poitiers.fr>
+In-Reply-To: <1423256721.28833062.1746688948038.JavaMail.zimbra@univ-poitiers.fr>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Wed, 21 May 2025 09:22:31 +0200
-X-Gm-Features: AX0GCFvwNBJBEUQ7EfMlQCx_xi1jXu4PQ9UTAgfdHc6-1kbvYwbeXh51L1rGzN0
-Message-ID: <CAFOi1A6=_+6Ej3wzk55ezeyK1EEFEWrBaJN7=guEmTD9AD1Pfg@mail.gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: 3I7IL5QFEN7UDS7NIDR7TOCTKHUGDGYC
-X-Message-ID-Hash: 3I7IL5QFEN7UDS7NIDR7TOCTKHUGDGYC
+Date: Wed, 21 May 2025 13:30:29 +0200
+X-Gm-Features: AX0GCFtsikVCX2HLeFJfOc-r6F_t_Lj-JG_dRMfOiq6mBMMHIO3P2KhEjhg2gTM
+Message-ID: <CAFOi1A7m8FzB-iodCLYE-muYSgVXviyjB_tR-0R4CGeJawBsPg@mail.gmail.com>
+Cc: usrp-users@lists.ettus.com
+Message-ID-Hash: AC7WZQKRN3JGJREVDICVGIVS3EBJHIK5
+X-Message-ID-Hash: AC7WZQKRN3JGJREVDICVGIVS3EBJHIK5
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Remote Streaming from Both X440 QSFP+ Ports
+Subject: [USRP-users] Re: Questions Regarding benchmark_rate.py and Signal Handling in USRP X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3I7IL5QFEN7UDS7NIDR7TOCTKHUGDGYC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AC7WZQKRN3JGJREVDICVGIVS3EBJHIK5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4421698397731137578=="
+Content-Type: multipart/mixed; boundary="===============7180526332331443269=="
 
---===============4421698397731137578==
-Content-Type: multipart/alternative; boundary="0000000000002000660635a03b51"
+--===============7180526332331443269==
+Content-Type: multipart/alternative; boundary="000000000000df5a200635a3b12d"
 
---0000000000002000660635a03b51
+--000000000000df5a200635a3b12d
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 16, 2025 at 10:18=E2=80=AFPM Brian Padalino <bpadalino@gmail.co=
-m> wrote:
+On Thu, May 8, 2025 at 9:23=E2=80=AFAM ZIXIAO YANG <zixiao.yang@univ-poitie=
+rs.fr>
+wrote:
 
-> On the X440, I'd like my block to be able to output to both QSFP+ ports. =
-I
-> will be setting this up using remote streaming and I am wondering the
-> appropriate way to set up my block to be able to output to both ports. Fr=
-om
-> the little blurb on remote streaming here:
+> Dear Marc,
 >
->   https://files.ettus.com/manual/page_stream.html#stream_remote
 >
-> I see that I can supply:
+> My name is Mike Yang, and I=E2=80=99m currently using the USRP X310 for m=
+y
+> research.
 >
->   - dest_addr, dest_port, dest_mac_addr, adapter
 >
-> The example uses the MultiUSRP object but I am using straight RFNoC. I
-> assume I need to do this for every stream that I might create, so for the=
- N
-> ports that are on my block, I need N RX streams that define those values,
-> right?
+> I have a few questions regarding the benchmark_rate.py script that was
+> shared in the guide. I'm using Python for all my signal processing tasks.
 >
-
-Yes, exactly.
-
-
-> If I had 4 ports, and I wanted to split 2 ports on sfp0 and 2 on sfp1, I'=
-d
-> create the stream for all 4 then issue the stream command to each one and=
- I
-> should see the packets flow?
+>
+> First, I'd like to share some thoughts on the code, if you don't mind.
+>
+> From what I understand, this script demonstrates simultaneous signal
+> transmission and reception. The transmit signal is stored in the
+> transmit_buffer, which repeatedly sends a value of 0.
 >
 
-That's right.
+To be clear, the reason it transmits zeros is because this example is for
+the purpose of checking the throughput to your device. No actual
+transmission is intended.
+
+
+> The signal preparation seems to be handled in the benchmark_tx_rate
+> function.
+>
+> I'm interested in transmitting a sine wave signal, and I foresee two
+> potential issues:
+>
+>    1.
+>
+>    How can I store a custom signal (like a sine wave) in the
+>    transmit_buffer?
+>
+>
+Maybe tx_waveforms.py is the better example to see this done.
+
+
+>
+>    1.
+>
+>    If the signal is longer than max_samps_per_packet, I assume it needs
+>    to be divided into chunks that match the max buffer size, with each ch=
+unk
+>    sent in sequence. Could you please confirm the best way to do this?
+>
+>
+UHD will do that for you. You can pass any  size buffer to the send() call,
+it will transmit until it's all out or an error occurs.
+
+On the reception side, I=E2=80=99m having trouble retrieving the received s=
+ignal
+> for analysis. I think the approach should be similar to the transmit
+> side=E2=80=94collecting each sub-chunk of the received signal from recv_b=
+uffer in
+> the benchmark_rx_rate function.
+>
+>
+> I=E2=80=99ve attached my current script (test1 in jupyter notebook) to th=
+is
+> message. The simultaneous transmission part appears to be working
+> correctly, but I=E2=80=99m not receiving the expected signal on the recep=
+tion side.
+> Could you kindly help me identify and fix the issue?
+>
+
+Maybe rx_to_file.py is a good example for this.
+
 
 --M
 
---0000000000002000660635a03b51
+--000000000000df5a200635a3b12d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
-mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, May 16,=
- 2025 at 10:18=E2=80=AFPM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gm=
-ail.com">bpadalino@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><div dir=3D"ltr">On the X440, I&#39;d like my b=
-lock to be able to output to both QSFP+ ports. I will be setting this up us=
-ing remote streaming and I am wondering the appropriate way to set up my bl=
-ock to be able to output to both ports. From the little blurb on remote str=
-eaming here:<div><br></div><div>=C2=A0=C2=A0<a href=3D"https://files.ettus.=
-com/manual/page_stream.html#stream_remote" target=3D"_blank">https://files.=
-ettus.com/manual/page_stream.html#stream_remote</a></div><div><br></div><di=
-v>I see that I can supply:</div><div><br></div><div>=C2=A0 - dest_addr, des=
-t_port, dest_mac_addr, adapter</div><div><br></div><div>The example uses th=
-e MultiUSRP object but I am using straight RFNoC. I assume I need to do thi=
-s for every stream that I might create, so for the N ports that are on my b=
-lock, I need N RX=C2=A0streams that define those values, right?</div></div>=
-</blockquote><div><br></div><div>Yes, exactly.</div><div>=C2=A0<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>If I =
-had 4 ports, and I wanted to split 2 ports on sfp0 and 2 on sfp1, I&#39;d c=
-reate the stream for all 4 then issue the stream command to each one and I =
-should see the packets flow?</div></div></blockquote><div><br></div>That&#3=
-9;s right.</div><div class=3D"gmail_quote gmail_quote_container"><br></div>=
-<div class=3D"gmail_quote gmail_quote_container">--M</div></div>
+mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 8, =
+2025 at 9:23=E2=80=AFAM ZIXIAO YANG &lt;<a href=3D"mailto:zixiao.yang@univ-=
+poitiers.fr">zixiao.yang@univ-poitiers.fr</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex"><div><div style=3D"font-family:ari=
+al,helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)"><div><div style=3D=
+"font-family:&quot;arial&quot;,&quot;helvetica&quot;,sans-serif;font-size:1=
+2pt;color:rgb(0,0,0)"><div style=3D"font-family:&quot;arial&quot;,&quot;hel=
+vetica&quot;,sans-serif;font-size:12pt;color:rgb(0,0,0)"> <p style=3D"margi=
+n:0px">Dear Marc,</p><p style=3D"margin:0px"><br></p><p style=3D"margin:0px=
+">My name is Mike Yang, and I=E2=80=99m currently using the USRP X310 for m=
+y research.</p><p style=3D"margin:0px"><br></p><p style=3D"margin:0px">I ha=
+ve a few questions regarding the <code>benchmark_rate.py</code> script that=
+ was shared in the guide. I&#39;m using Python for all my signal processing=
+ tasks.</p><p style=3D"margin:0px"><br></p><p style=3D"margin:0px">First, I=
+&#39;d like to share some thoughts on the code, if you don&#39;t mind. </p>=
+<p style=3D"margin:0px">From what I understand, this script demonstrates si=
+multaneous signal transmission and reception. The transmit signal is stored=
+ in the <code>transmit_buffer</code>, which repeatedly sends a value of 0.<=
+/p></div></div></div></div></div></blockquote><div><br></div><div>To be cle=
+ar, the reason it transmits zeros is because this example is for the purpos=
+e of checking the throughput to your device. No actual transmission is inte=
+nded.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div><div style=3D"font-family:arial,helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)"><div><div style=3D"font-family:&quot;arial&quot;,&quot;h=
+elvetica&quot;,sans-serif;font-size:12pt;color:rgb(0,0,0)"><div style=3D"fo=
+nt-family:&quot;arial&quot;,&quot;helvetica&quot;,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)"><p style=3D"margin:0px"> The signal preparation seems to=
+ be handled in the <code>benchmark_tx_rate</code> function.</p><p style=3D"=
+margin:0px">I&#39;m interested in transmitting a sine wave signal, and I fo=
+resee two potential issues:</p><ol><li><p style=3D"margin:0px">How can I st=
+ore a custom signal (like a sine wave) in the <code>transmit_buffer</code>?=
+</p></li></ol></div></div></div></div></div></blockquote><div><br></div><di=
+v>Maybe tx_waveforms.py is the better example to see this done.</div><div>=
+=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div sty=
+le=3D"font-family:arial,helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0=
+)"><div><div style=3D"font-family:&quot;arial&quot;,&quot;helvetica&quot;,s=
+ans-serif;font-size:12pt;color:rgb(0,0,0)"><div style=3D"font-family:&quot;=
+arial&quot;,&quot;helvetica&quot;,sans-serif;font-size:12pt;color:rgb(0,0,0=
+)"><ol><li><p style=3D"margin:0px">If the signal is longer than <code>max_s=
+amps_per_packet</code>, I assume it needs to be divided into chunks that ma=
+tch the max buffer size, with each chunk sent in sequence. Could you please=
+ confirm the best way to do this?</p></li></ol></div></div></div></div></di=
+v></blockquote><div><br></div><div>UHD will do that for you. You can pass a=
+ny=C2=A0 size buffer to the send() call, it will transmit until it&#39;s al=
+l out or an error occurs.</div><div><br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div><div style=3D"font-family:arial,helvetica,sans-se=
+rif;font-size:12pt;color:rgb(0,0,0)"><div><div style=3D"font-family:&quot;a=
+rial&quot;,&quot;helvetica&quot;,sans-serif;font-size:12pt;color:rgb(0,0,0)=
+"><div style=3D"font-family:&quot;arial&quot;,&quot;helvetica&quot;,sans-se=
+rif;font-size:12pt;color:rgb(0,0,0)"><p style=3D"margin:0px">On the recepti=
+on side, I=E2=80=99m having trouble retrieving the received signal for anal=
+ysis. I think the approach should be similar to the transmit side=E2=80=94c=
+ollecting each sub-chunk of the received signal from <code>recv_buffer</cod=
+e> in the <code>benchmark_rx_rate</code> function.</p><p style=3D"margin:0p=
+x"><br></p><p style=3D"margin:0px">I=E2=80=99ve attached my current script =
+(test1 in jupyter notebook) to this message. The simultaneous transmission =
+part appears to be working correctly, but I=E2=80=99m not receiving the exp=
+ected signal on the reception side. Could you kindly help me identify and f=
+ix the issue?</p></div></div></div></div></div></blockquote><div><br></div>=
+<div>Maybe rx_to_file.py is a good example for this.</div><div>=C2=A0</div>=
+<div><br></div><div>--M</div></div></div>
 
---0000000000002000660635a03b51--
+--000000000000df5a200635a3b12d--
 
---===============4421698397731137578==
+--===============7180526332331443269==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -170,4 +250,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4421698397731137578==--
+--===============7180526332331443269==--
