@@ -2,106 +2,108 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65092ABE606
-	for <lists+usrp-users@lfdr.de>; Tue, 20 May 2025 23:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53828ABEC9F
+	for <lists+usrp-users@lfdr.de>; Wed, 21 May 2025 09:02:16 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AF317383B85
-	for <lists+usrp-users@lfdr.de>; Tue, 20 May 2025 17:27:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 32B11384BA6
+	for <lists+usrp-users@lfdr.de>; Wed, 21 May 2025 03:02:15 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1747776449; bh=ol3GH4L8p1k5uQIvL07E5JF50mSYujZDFt6FwPtzo0U=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	t=1747810935; bh=bVzOcjKGO/KN+0YJ9qC7xulAv1j51gQm/lVp50LbuXQ=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=oPKjsHe7ycHA6pU0l/5MFg4dAMpb8D5GQBGX2wQjxMdFCk6HeZYjK9uXzact0Zhp2
-	 lSOj1xXbjRYxLwXOAK/SCSke5K5et37A+jCRdazyVAUtC+7L3vvHvMaFsTmRiZaTZO
-	 ZS53EqinG+EiyPgo1yTEGU5dVS/FnMqhwHW6zGPwTMjl33cf/zsva2mwt2J+mAGM6N
-	 syiff1/HptzKxvMBCO/juwulYH6w2F0RrUblSgxXxvaD64sg2eAZsQSCMGoCXvwSBI
-	 efwhPYL5SjyHudYtBCPVOWpXMCpjd5KQk66KY2uH2NywBvU3nzPiZboforYuPlVVpo
-	 mMJmgVwassxRA==
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id DA83838353A
-	for <usrp-users@lists.ettus.com>; Tue, 20 May 2025 17:26:38 -0400 (EDT)
+	 From;
+	b=yRlTuFTh9kYvm5kIrYXmVCQ1DS/aKJjBHZXu60g2pGqXfnBYeZymR2cKooobfNyII
+	 DLTDwpjGGYD3DYkKdIvuEL9q5a/jq3A/AePF1cccboWv84ONnxHxl5cvE8Gq3tjkQL
+	 9Hqf+AH77EbAdUZbhUmNaLZHskzL6Vg/Fr7VJ7cHz4eh8fjDpl16tkvOYc765Li6t+
+	 UsNNU0i084xw2VLcAUlMNBNdXpst26YMvMedWUAs5lEsRBEBkMjwAUxZpDMBGfLFQd
+	 fzWcv2H8Mvpifyevgs5u8zyjCIgnvASytSl/LtijEK0DCCY31ngdYaUe3cYAUiP1yA
+	 FJqOJWo7VDTzA==
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 27E4C3818F4
+	for <usrp-users@lists.ettus.com>; Wed, 21 May 2025 03:01:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="fnzsU+Si";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="g6zWzS4O";
 	dkim-atps=neutral
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-60179d8e65fso1344287a12.0
-        for <usrp-users@lists.ettus.com>; Tue, 20 May 2025 14:26:38 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-601f278369bso5638305a12.1
+        for <usrp-users@lists.ettus.com>; Wed, 21 May 2025 00:01:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1747776397; x=1748381197; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aXpjtbFJaE9jVOIQATJE+SRNXDbwOYMKCItxZiyT6Sk=;
-        b=fnzsU+SithpV9RYajL7NjptGLagJVL++FVydCwwjKzZGkbRiX1EXMTmGbOe2StgKIx
-         oyHrWM8kTLr+O8DTHLAdzxeubLHXCLMo/OU49DSundaTSSxzMhz61ZOFf9+fYNfBSopj
-         X27X0zU01t5l4wNdRvD5Z8iCJlnGgofs6MJsXvAAoyQvqf4e7oWM71yPOHcdnnzO6Iox
-         IcrVry5ia3puoKVP5dvDSzDDglr1E+Nc6kxXFqCp9XWMlxikC9eUMkQyLHgRhddg6IvE
-         3FubleSEXKTk4xKhp4x3ltE9otP+PnVzyaVh6awrZm+GZuDVoLC/KJPBfxTMX9y4hNQm
-         SK1w==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1747810900; x=1748415700; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OM73HheTFWfhNoDrfd7UaTLWyRqYzaB2I5VExbd0deg=;
+        b=g6zWzS4OD8HxT9z4aL/MuFHM6eWhsN4JeatIIXKruiY2HWnPyFaaV+XALY2ECAGZeP
+         PeR6XD8uAkEL4mwch5rQ7pfLHN9HCFujEBDX3AZJa0WlA8EQ3c8w30Gss6jeg1d3K4HD
+         A8IYU/7i6teRLA01GW5aX0v3pueQNLylcCnNjc1Da7m/PGaHu+CJmdzMJsIL+hBs9S57
+         A/Bcu8LQvE7P8wiNTd7aDATHx9i8eKYyLpCggOT32HUnlZP5Mf+fa+BrQDpEve6ae8qi
+         8tuERaf/FWJh2hmpdvtWyPlLMuZRFipMciGY5mFSwdZmUTJVZD5I2b1Yfb9ZNhqyIhPN
+         aLmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747776397; x=1748381197;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aXpjtbFJaE9jVOIQATJE+SRNXDbwOYMKCItxZiyT6Sk=;
-        b=Iv/tVUgvmlAWN7PigiJ6VVURufWBfpE9Oz43MAmhnXj+dC14ya4VAzX0D48BMNBtnH
-         So5QQek6F7M95kgoZWWDQ87u53F78NmgJtucKj7fC5FkYb7Sipr6cnDwngvVYlSoiF2l
-         Yb8YQNWDwGUnYgDAL6iOdePiwhOCnH1a73dL91s78PiuLNyOpCW7phU7INA6QvctKEiG
-         UIp1E4iZuqQUJLvSyKGMkneJccwuxcENLCjri2wU45luF/iaCfRi30/9T5ewrY/qpSZR
-         8mfmmg1GWemQ7U4naHqL8iI7tCHOmzLddvczy7GtzZYPnMn2roJLQaSU2Q7F33wa5Q/K
-         FscQ==
-X-Gm-Message-State: AOJu0YzTWWz20mnyN7SsL1nEl5w/kPsBxLfsvD/pDFPo9QUl5zwwE/E8
-	A7myYLdeqJOurUzvzd+c+pF+OizYQuggoQctPumFlj22a/VO3Bnbt4zAY4mSu2Gd+aqcnFke5tJ
-	N9Gc+FiG1CYT/DqQl8eOqngDyx2w4b/WV97sa9h/6/EiCyt4BLC4=
-X-Gm-Gg: ASbGncvWIO63du2exZ8vGnnqJcEC1AdBtsEVhijkkUhmrnie2qduz/iMIcDEuwvIMif
-	w/325oBTojmtjSiyQe8rnf8KfmYFZzh6KF/2lTHHO60NRQtD9gsrlG95BJJkG1ZEJ149zVsEgo4
-	JM8cLYcKknq6aHOBLDTNGkATewKlyuJoxI
-X-Google-Smtp-Source: AGHT+IHSvk1AJ5TQdj2IvT8OnjACkXzTguLD4Ksn+5frnz41x1qqRIgFdXdXDVB5mHBiQ4fNxN+ZU6zfXJwQeOjO6ao=
-X-Received: by 2002:a05:6402:2692:b0:601:f610:5dcd with SMTP id
- 4fb4d7f45d1cf-601f6105e4fmr6593271a12.23.1747776397579; Tue, 20 May 2025
- 14:26:37 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747810900; x=1748415700;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OM73HheTFWfhNoDrfd7UaTLWyRqYzaB2I5VExbd0deg=;
+        b=uRHYf6KAUanBza56aXWGNaq0gij/ouD4h0Yg6VqYRiAy87jbAiSJJZ2/UWXLQVkdH/
+         foFMfUXXVt0aYHFZ0ZFKI/qAGkOqopz0MVWum46ylJsBpxy7B34Lc2y+/L9Ns3ivAZUu
+         UUQb5n4tbmLFWOUvkiEdheUnPkc5WD6P8Z8+YXbLdSz6yDEEf7AuDB3lgKV0Ftw03gIy
+         BnifcJcPhYVxiZXk9zApq2mf/n/TvMurswN4UfdzgHle7F4PzAD9V410jHGAb9NVeC7R
+         H1F25cu7nQ/u5Q4yfp+nkS6qXvmM9eFs15Cavl0AwM/BuYrRAQ6atgvq0ireuYH+e1qM
+         6NZA==
+X-Gm-Message-State: AOJu0Yy5EWt8w/WIhWAxWDfP+aFXCP0Hrlsza/tutvpljwA7HgyHNh6t
+	jObwkf+XkhwUSATyKkfiDewzi9PuC/q9BKO0SLf+qw0VVhfkq6E+C7Mafx//8lWyQbM/5CtlUYp
+	tGQZDXy+Ibl4H5Z7SiJAjnoW6XQjAk4coE2UINfjbPI74kVt1U6QssAdr7g==
+X-Gm-Gg: ASbGncsSSbOYRb+JzeJutE3d3VHezQNzsX345owS54A2Mskahgq/18zKYX0D+5MEDb9
+	FDz6/quWItxp2248Ul0G+LWZQcrRhSbrdH1dllCKk5K8qRmd7NJbh6rojsNWEBil+wnLe9diNLU
+	QKxo5MVEAKSiaWcnNC9R6L3ycRfQaozMyAuom36Hnymml+rNtwfYHObCGi/6yOvZOqGl+4Sylbq
+	Ao=
+X-Google-Smtp-Source: AGHT+IG6Uc79qJHcFBdvetlAHgY56YFvsAbMdEVGvdh3N06VfeWlp3gKj5oqrQm+v+i2aEq7LQPTxAywWQj+oHB6zeQ=
+X-Received: by 2002:a17:907:7e95:b0:ad2:532e:abdf with SMTP id
+ a640c23a62f3a-ad52d45ada4mr1419146066b.9.1747810899782; Wed, 21 May 2025
+ 00:01:39 -0700 (PDT)
 MIME-Version: 1.0
 References: <a9nwcsBWvolQr9UBhVy5xnNJ2NpKnDKXXkqNAUQFg@lists.ettus.com>
 In-Reply-To: <a9nwcsBWvolQr9UBhVy5xnNJ2NpKnDKXXkqNAUQFg@lists.ettus.com>
-Date: Tue, 20 May 2025 17:26:26 -0400
-X-Gm-Features: AX0GCFuRmVsJVdUM9HmjubB4vYQW-qHz5XBmBZH-lhvRIt6yqNtq_BfGEJDywNk
-Message-ID: <CAB__hTRgLRwiX2E29Le+J-kwgepCY=WRbPHZ_SXhDto4VKms5w@mail.gmail.com>
-To: carmixdev@gmail.com
-Message-ID-Hash: JWU7AO4HFKGJ7SEAEBIIQ6LW5QFYIBXP
-X-Message-ID-Hash: JWU7AO4HFKGJ7SEAEBIIQ6LW5QFYIBXP
-X-MailFrom: rkossler@nd.edu
+From: Martin Braun <martin.braun@ettus.com>
+Date: Wed, 21 May 2025 09:01:28 +0200
+X-Gm-Features: AX0GCFvdxDtdCJNYiovUPIBRheAx5NNq4nj_DGdxlLfBd8c4w2BZfCmJUbz4zs8
+Message-ID: <CAFOi1A5N+27bWMHUoUNgzdBtd2Ya8L7f=1Xo8cZwAyKrHQ1Mkg@mail.gmail.com>
+Cc: usrp-users@lists.ettus.com
+Message-ID-Hash: OCI4FOJ4Z7ZAAMXXYWF7STQSMP34JINH
+X-Message-ID-Hash: OCI4FOJ4Z7ZAAMXXYWF7STQSMP34JINH
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Signal quality using RFNoC DUC blocks
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JWU7AO4HFKGJ7SEAEBIIQ6LW5QFYIBXP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OCI4FOJ4Z7ZAAMXXYWF7STQSMP34JINH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8347143088197197418=="
+Content-Type: multipart/mixed; boundary="===============8362866036656701521=="
 
---===============8347143088197197418==
-Content-Type: multipart/alternative; boundary="000000000000532fc6063597e733"
+--===============8362866036656701521==
+Content-Type: multipart/alternative; boundary="000000000000d10baa06359fefda"
 
---000000000000532fc6063597e733
+--000000000000d10baa06359fefda
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Have you seen these topics in the manual?
-tuning notes
-<https://files.ettus.com/manual/page_general.html#general_tuning>
-synchronizing phase
-<https://files.ettus.com/manual/page_sync.html#sync_phase>
+There's not much to it, really. If you have a multichannel DUC setup, my
+guess is you have a single LO frequency?
 
+In that case, the only thing you need is the set_freq() API call:
+https://uhd.readthedocs.io/en/latest/classuhd_1_1rfnoc_1_1duc__block__contr=
+ol.html#a0b5f86857c24d0b162fec528272c2024
 
+...it has a built-in command-time argument, so it saves you the additional
+call to set_command_time().
 
-On Tue, May 20, 2025 at 5:10=E2=80=AFPM <carmixdev@gmail.com> wrote:
+--M
+
+On Tue, May 20, 2025 at 11:10=E2=80=AFPM <carmixdev@gmail.com> wrote:
 
 > Where can I find more info about the fine frequency tuning?
 >
@@ -117,22 +119,27 @@ On Tue, May 20, 2025 at 5:10=E2=80=AFPM <carmixdev@gmail.com> wrote:
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---000000000000532fc6063597e733
+--000000000000d10baa06359fefda
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Have you seen these topics in the manual?=C2=A0=C2=A0<div>=
-<a href=3D"https://files.ettus.com/manual/page_general.html#general_tuning"=
->tuning notes</a></div><div><a href=3D"https://files.ettus.com/manual/page_=
-sync.html#sync_phase">synchronizing phase</a></div><div><br></div><div><br>=
-</div></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Tue, May 20, 2025 at 5:10=E2=80=AFPM &lt;<=
-a href=3D"mailto:carmixdev@gmail.com">carmixdev@gmail.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Where can I fin=
-d more info about the fine frequency tuning?</p><p>In a more complex exampl=
-e where I need to set offset frequencies in a multichannel DUC what is the =
-correct sequence to keep the fine tuning?</p><p>Ty</p><p><br></p><p>C</p>
+<div dir=3D"ltr"><div>There&#39;s not much to it, really. If you have a mul=
+tichannel DUC setup, my guess is you have a single LO frequency?</div><div>=
+<br></div><div>In that case, the only thing you need is the set_freq() API =
+call: <a href=3D"https://uhd.readthedocs.io/en/latest/classuhd_1_1rfnoc_1_1=
+duc__block__control.html#a0b5f86857c24d0b162fec528272c2024">https://uhd.rea=
+dthedocs.io/en/latest/classuhd_1_1rfnoc_1_1duc__block__control.html#a0b5f86=
+857c24d0b162fec528272c2024</a></div><div><br></div><div>...it has a built-i=
+n command-time argument, so it saves you the additional call to set_command=
+_time().</div><div><br></div><div>--M</div></div><br><div class=3D"gmail_qu=
+ote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Ma=
+y 20, 2025 at 11:10=E2=80=AFPM &lt;<a href=3D"mailto:carmixdev@gmail.com">c=
+armixdev@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><p>Where can I find more info about the fine frequency tu=
+ning?</p><p>In a more complex example where I need to set offset frequencie=
+s in a multichannel DUC what is the correct sequence to keep the fine tunin=
+g?</p><p>Ty</p><p><br></p><p>C</p>
 
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
@@ -141,9 +148,9 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000532fc6063597e733--
+--000000000000d10baa06359fefda--
 
---===============8347143088197197418==
+--===============8362866036656701521==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +160,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8347143088197197418==--
+--===============8362866036656701521==--
