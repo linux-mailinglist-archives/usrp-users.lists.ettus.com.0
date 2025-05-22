@@ -2,269 +2,418 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700B7AC05FE
-	for <lists+usrp-users@lfdr.de>; Thu, 22 May 2025 09:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D7BEAC0786
+	for <lists+usrp-users@lfdr.de>; Thu, 22 May 2025 10:45:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9837A3853B5
-	for <lists+usrp-users@lfdr.de>; Thu, 22 May 2025 03:44:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 19345384E7A
+	for <lists+usrp-users@lfdr.de>; Thu, 22 May 2025 04:45:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1747899849; bh=mVaEhK+FSbIbxyAcAmCYaEz04e2WoD2T+M/2ZJk2Xb4=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=RL3pOOQbV6iTxnyYK4GCtviFdQN7kNv6KqwKvGfEPgX8aaZ8yUC3Upz/B9epSzbpa
-	 gHfy0EIE23N4LVs/nViP04/M5ATxNokYPg1PE3spQzeq41c9khgaDT6FoxWobb+7qh
-	 iqFH9JSH7JUwmodbWGN0RqjrvJPUjMspnhWmsLV+TnYi1bIPCDLS5szYiub032FA4R
-	 it7RMFbpmPGHnXNkS15ecgK/RDfKx6teaMkXyfUgBILHPncV/0lvbKpCV7vf8iL/6I
-	 o9kgO76gK4YlnEC/dlM+5wlff5i+w11GJA1kF3OUdLIzTafnvNxO3xqahEL9fRPItj
-	 LPYClT68UjOGQ==
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id B3937380CE8
-	for <usrp-users@lists.ettus.com>; Thu, 22 May 2025 03:43:52 -0400 (EDT)
+	t=1747903530; bh=HDEapsc5UOFqwclZ/3yxhCKZg9zAXa89DXvxGS8jXlg=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=YHxPaZGzulFblzhkeQ7WkUu80S7V5XKutQwXT7GqLs+iuH1pAJD/vQk3xDvRaEI+b
+	 yFQ8v5JN9bQ8iDfYNUEa91kL+c4e859Atp5KVwAZBPGHK5GhLAlcflQlXWEqPbgb4U
+	 5fCycsutVXoXEFK9HDx3erSVtnnfKECp4joOTiKFTkXG+k8qQVLc/OlP0uYVErAlrK
+	 RuvmxdUJMNcHwM07PkA5suq34r3EYhDARGbDPuUm8UBio6m4kKol+b2Y6A/Jn4LGWq
+	 18LxdrtaObSk6Zy8GTRaHd1V1k1r0EgbBLOcIOlZgp1GsToXw+2CbJorai5gwLTg+k
+	 yO/C4vi/XodIw==
+Received: from za-smtp-delivery-132.mimecast.co.za (za-smtp-delivery-132.mimecast.co.za [41.74.205.132])
+	by mm2.emwd.com (Postfix) with ESMTPS id B4891383A70
+	for <usrp-users@lists.ettus.com>; Thu, 22 May 2025 04:44:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="xVmwny2t";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="KO34NXOP";
 	dkim-atps=neutral
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-601ad859ec0so9602202a12.0
-        for <usrp-users@lists.ettus.com>; Thu, 22 May 2025 00:43:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1747899831; x=1748504631; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VE6cuWzqjmL/11JfVHxa022H8UkCCCPWhcI70E5a020=;
-        b=xVmwny2t7+VXnywfrVJhm6AIUviFYfhPa86N0KTwffOjryMUHH+q7XWVPpfjeSHnbY
-         7b90FDumEYkLtm3OEB7KZWFFr9veBBTtILjU+bzNkaGUFvxDx4TSZD79DSh7s+P/QELx
-         CrSG+OX7rfGSwaIMnEdi6TB+n3Fmg47B4Xe8vAj1gwGgpfvbyVB3drQ3EVGWTEHaWHAs
-         Q91Y6iBNQ6yBreu8KZOMf9ET/w0XFPHjGc8Fst+EH0G4nXnLQcWfzTO/lEIXWZbVMAnv
-         zd9W2wHKnbsOTtauRqVWpt9KW/WfkNw26I6UGX4n5Zbt3ASZiE9O1rx2BApgDoYLqQ7s
-         D0qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747899831; x=1748504631;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VE6cuWzqjmL/11JfVHxa022H8UkCCCPWhcI70E5a020=;
-        b=V4i/OT65RO3uGtVXu8X+uIeipDJ8pry4MkDwhBdeBy0hzBUKGiTJTRyNGM77dlr4qY
-         RLFByOh/jvMSyeYBGnQkr9RL9JUp5l1CHMLTnPBO+ZDscE9FndD98XGwrMaq9KYAbNLt
-         deT8hV2IzdutmeQXyMsY0dj16PH/W1q8yPbD+OoK62Q7U5snGUqjN8Mi64lDdYY3Ul5x
-         xTf+iQrsaSwSkKnsN+salsk+B2VeAAza0H2Goc4V4H+8yyVUr0bB7G2d1p7e/PFM+knN
-         jkN8ILZJ2hI9fEkzBOTTrYR4FwautwJB+zJR8i88QBF3aN5H7nxRmY4igHwCjEoIfDjv
-         XoEQ==
-X-Gm-Message-State: AOJu0YziqAxIr/QYhNI/iHRVHDs8++5twFkOOIDEAJ7AwhiZsXK4oS7e
-	qE1Eo34SmNm5wTaIm4b58dT8T3kHZj1nQEatVhVwSkaTH2wboTLc9kGnLS/33u1VuwqcQcbwvxM
-	iO/IRhBhMUxEcG4XG0PwpsosQdYDIFPd35bO/oR5HXOmmIH6d/CccpHQ=
-X-Gm-Gg: ASbGncuUrzafEWaXdNh+2b+Q5BURQsomEQKFbKLAgLaHWh3nLWzDVeRTW8jnagFz9y7
-	HogXwbe2qb/3ItcqlZ6RdYIb2vrDdmD/Sa7KVw4JWCbaH7qTpvTqlvqBQXbv5l5FUHBdykHQudz
-	PMSQA+xINXztTv7QFne4Q5uPlQtsbw3CCwz2s8GxRCxorbGpq81ZKfjOk7G3lyf5o5
-X-Google-Smtp-Source: AGHT+IHGNCHFd5jHimgx9nIo90uGbD0OcdnhCsdROzsPWuWOPa7a9yONK0doKqo3F2l6PliJS7/AJK0oeF0G116Pxe8=
-X-Received: by 2002:a17:907:2684:b0:ad2:2a5d:b1ab with SMTP id
- a640c23a62f3a-ad52d660d35mr1993165266b.59.1747899830759; Thu, 22 May 2025
- 00:43:50 -0700 (PDT)
+Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
+ relay.mimecast.com with ESMTP id za-mta-10-MzIJ29uRN6elf2kDfcj7lg-1; Thu,
+ 22 May 2025 10:44:47 +0200
+X-MC-Unique: MzIJ29uRN6elf2kDfcj7lg-1
+X-Mimecast-MFC-AGG-ID: MzIJ29uRN6elf2kDfcj7lg_1747903487
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
+	bh=xUuQ9m6CwF5BFO5uTvoGkgIccWoTU+2ljXTFwVQPonw=;
+	b=KO34NXOPos6STIZPIkdW57jt295zP3UIEheYmg9O2gyAqhp6IDBEn9kKv0iU6OjRPiKV9P8aSP98oW+XdtMYZCemRuesGl5waOiIdpEiWdM3zaoZI5iGlFuDvPIGePNlvozOJfQDYQOnN12OT9Ggil9ZhGZ1PGBGtw+AfZALLiM=
+Received: from exchange3.vastech.co.za (Unknown [172.30.81.31])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Thu, 22 May 2025 10:44:42 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ exchange3.vastech.co.za (172.30.81.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 22 May 2025 10:44:41 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Thu, 22
+ May 2025 10:44:41 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: rfnoc loopback to tx ports, and other warnings
+Thread-Index: AdvK9Y88TSHb/izORomwtH+HWNi33w==
+Date: Thu, 22 May 2025 08:44:41 +0000
+Message-ID: <06fc5d04db3c4177904569150e0e304f@vastech.co.za>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.4]
 MIME-Version: 1.0
-References: <pWHBwjrZjDYkwBoTvUU0t8j8Fs9Tgy5BcdTMQaUXXFg@lists.ettus.com> <CAB__hTQ0xryfRQVHpSh+zAc5gEwwOR66ZguxigPmjqZEX1-GoQ@mail.gmail.com>
-In-Reply-To: <CAB__hTQ0xryfRQVHpSh+zAc5gEwwOR66ZguxigPmjqZEX1-GoQ@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Thu, 22 May 2025 09:43:39 +0200
-X-Gm-Features: AX0GCFu-WUxOiRHNGA25RdAf5o8b2MzhNhr3PcN64lMfRPQkiUuiNIiQLHFMMWc
-Message-ID: <CAFOi1A6o2+=JjRr3rV0Wv0ySMovGGwoZQ7Z+=yd+Y6M44K1omg@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: U5BL2KQTSOMDNAJDBVAFW35NRQNACWWM
-X-Message-ID-Hash: U5BL2KQTSOMDNAJDBVAFW35NRQNACWWM
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: 55MSXS47ET3HRXKCKUEUXK6NLZW2BDJV
+X-Message-ID-Hash: 55MSXS47ET3HRXKCKUEUXK6NLZW2BDJV
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Signal quality using RFNoC DUC blocks
+Subject: [USRP-users] rfnoc loopback to tx ports, and other warnings
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/U5BL2KQTSOMDNAJDBVAFW35NRQNACWWM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/55MSXS47ET3HRXKCKUEUXK6NLZW2BDJV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2507826260315326629=="
+Content-Type: multipart/mixed; boundary="===============5783154119192120163=="
 
---===============2507826260315326629==
-Content-Type: multipart/alternative; boundary="00000000000084014a0635b4a45c"
+--===============5783154119192120163==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=2.16.840.1.101.3.4.2.3;
+	boundary="----=_NextPart_000_002D_01DBCB06.8552F3D0"
 
---00000000000084014a0635b4a45c
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_002D_01DBCB06.8552F3D0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_002E_01DBCB06.8552F3D0"
+
+
+------=_NextPart_001_002E_01DBCB06.8552F3D0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+ 
+
+I have an rfnoc block with two output ports which is feeding the splitter
+block to duplicate each port.
+
+ 
+
+One pair is used to stream to the host, and the other is looped back to the
+radio via the DUC block.
+
+ 
+
+The active connections are reported as:
+
+ 
+
+Active connections:
+
+* 0/Radio#0:0==>0/PolConverter#0:0
+
+* 0/Radio#0:1==>0/PolConverter#0:1
+
+* 0/PolConverter#0:0==>0/SplitStream#0:0
+
+* 0/SplitStream#0:0-->0/DUC#0:0
+
+* 0/PolConverter#0:1==>0/SplitStream#0:1
+
+* 0/SplitStream#0:1-->0/DUC#0:1
+
+* 0/DUC#0:0==>0/Radio#0:0
+
+* 0/DUC#0:1==>0/Radio#0:1
+
+* 0/SplitStream#0:2-->RxStreamer#0:0
+
+* 0/SplitStream#0:3-->RxStreamer#0:1
+
+ 
+
+I'm getting this warning when trying to stream (to the host and the TX):
+
+ 
+
+[WARNING] [0/Radio#0] Received stream command, but not to output port!
+Ignoring.
+
+ 
+
+Along with debug info:
+
+ 
+
+[DEBUG] [RxStreamer#0] Received overrun message on port 0
+
+[DEBUG] [RxStreamer#0] Received overrun message on port 1
+
+L[DEBUG] [RxStreamer#0] Received late command message on port 0
+
+[DEBUG] [RxStreamer#0] Received late command message on port 1
+
+D
+
+ 
+
+I start the streaming with a timed command to the RX streamer like:
+
+ 
+
+rx_stream->issue_stream_cmd(stream_cmd);
+
+ 
+
+I'm not getting the red "TX" led illuminated on the N300, and I don't
+understand where or why these warnings are being created?
+
+ 
+
+Previous posts have mentioned this link
+(https://corvid.io/2017/04/22/stupid-rfnoc-tricks-loopback/) has helped but
+it seems to be down.
+
+ 
+
+How does one get a loopback in the fpga from rfnoc blocks to the radio TX?
+
+ 
+
+BTW: in the firmware I tie TEOV and TEOB to my TLAST in my custom block.
+
+ 
+
+Many thanks, Kevin
+
+ 
+
+
+------=_NextPart_001_002E_01DBCB06.8552F3D0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Agree with Rob here. The purpose of the tune request to the graph is to
-avoid both steps 2  and 4 and replace it with something more familiar to
-people coming from the multi_usrp world.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DEN-US>Hi,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I have an rfnoc block with two =
+output ports which is feeding the splitter block to duplicate each =
+port.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>One pair is used to stream to the host, and the other is =
+looped back to the radio via the DUC block.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>The active connections are reported =
+as:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-family:"Courier New"'>Active =
+connections:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-family:"Courier New"'>* =
+0/Radio#0:0=3D=3D&gt;0/PolConverter#0:0<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* 0/Radio#0:1=3D=3D&gt;0/PolConverter#0:1<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* =
+0/PolConverter#0:0=3D=3D&gt;0/SplitStream#0:0<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* 0/SplitStream#0:0--&gt;0/DUC#0:0<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* =
+0/PolConverter#0:1=3D=3D&gt;0/SplitStream#0:1<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* 0/SplitStream#0:1--&gt;0/DUC#0:1<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* 0/DUC#0:0=3D=3D&gt;0/Radio#0:0<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* 0/DUC#0:1=3D=3D&gt;0/Radio#0:1<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* 0/SplitStream#0:2--&gt;RxStreamer#0:0<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>* 0/SplitStream#0:3--&gt;RxStreamer#0:1<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I&#8217;m getting this warning when =
+trying to stream (to the host and the TX):<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>[WARNING] [0/Radio#0] Received stream command, but not to output =
+port! <span style=3D'color:red'>Ignoring</span>.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Along with debug =
+info:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-family:"Courier New"'>[DEBUG] [RxStreamer#0] =
+Received overrun message on port 0<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>[DEBUG] [RxStreamer#0] Received overrun message on port =
+1<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-family:"Courier New"'>L[DEBUG] [RxStreamer#0] Received =
+late command message on port 0<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>[DEBUG] [RxStreamer#0] Received late command message on port =
+1<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-family:"Courier New"'>D</span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I start the streaming with a timed command to the RX =
+streamer like:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-family:"Courier =
+New"'>rx_stream-&gt;issue_stream_cmd(stream_cmd);<o:p></o:p></span></p><p=
+ class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I&#8217;m not getting the red =
+&#8220;TX&#8221; led illuminated on the N300, and I don&#8217;t =
+understand where or why these warnings are being =
+created?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Previous posts have mentioned this link (<a =
+href=3D"https://corvid.io/2017/04/22/stupid-rfnoc-tricks-loopback/">https=
+://corvid.io/2017/04/22/stupid-rfnoc-tricks-loopback/</a>) has helped =
+but it seems to be down.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>How does one get a loopback in the fpga from rfnoc blocks =
+to the radio TX?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>BTW: in the firmware I tie TEOV and TEOB to my TLAST in my =
+custom block.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Many thanks, Kevin<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+------=_NextPart_001_002E_01DBCB06.8552F3D0--
 
-Maybe a general comment on the RFNoC API is useful here: With RFNoC, you
-get a much more fine-grained control over all components in your system
-(and most importantly, you can choose those components yourself). However,
-the flip side is that you lose some of the convenience functions that you
-can offer if you're using the multi_usrp API.
+------=_NextPart_000_002D_01DBCB06.8552F3D0
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
-At the risk of sounding defensive, in your case, you have 5 components with
-configurable frequencies that you need to set: One radio (controlling the
-LO frequency), and 4 DUCs (with digital frequency shifters). That
-translates into exactly 5 API calls to set each frequency. Because you have
-a special type of application (four DUC outputs summed into one RF input),
-it is not something that the RFNoC API can auto-magically set up for you.
-Or to put it differently, if you want an API call that auto-sets all 5
-frequencies at the same time, then you need to provide that logic yourself,
-the same way that UHD provides logic to convert a tune request into a
-digital (DUC/DDC) tune, and an analog tune (LO). But the RFNoC API provides
-exactly the APIs to set your 5 different frequencies to 5 different
-components in 5 API calls -- that seems reasonable to me.
+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
 
---M
+------=_NextPart_000_002D_01DBCB06.8552F3D0--
 
-
-
-On Wed, May 21, 2025 at 10:08=E2=80=AFPM Rob Kossler via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> I think that some of the convenience mechanisms that you might see in the
-> examples (such as passing a tune request through the streamer) are likely
-> only helpful in a "typical" graph. In your graph with 4 DUC ports connect=
-ed
-> to 1 Radio port with AddSub blocks to add the 4 DUC ports together, it is
-> not a 1-to-1 relationship between DUC and Radio.
->
-> It seems to me that your step 3 below is not needed or helpful.  It seems
-> you could set the LO frequency via the Radio block.  But, this will be
-> quantized and not necessarily at the exact frequency you request. Thus, i=
-f
-> it is important to get the right frequency, you will need to use the retu=
-rn
-> value from the radio->set_tx_frequency function to determine your
-> quantization error.  Then, you can call duc->set_freq for your DUC ports
-> with a frequency argument that includes both your desired values of -10,
-> -5, 5, 10 MHz as well as the quantization error you determined setting th=
-e
-> LO.
-> Rob
->
-> On Wed, May 21, 2025 at 10:45=E2=80=AFAM <carmixdev@gmail.com> wrote:
->
->> Yes Martin, for example I=E2=80=99m working on a X310+UBX160 with a mult=
-ichannel
->> DUC that has 4 inputs each one with a different frequency offset and the=
-n i
->> sum the outputs with the addsub rfnoc block(I generated the FPGA firmwar=
-e
->> accordingly).
->>
->> Actually I managed to have it work correctly but I had to discover by
->> myself some oddities, the correct steps in my configuration are in order=
-:
->>
->> 1-configure the graph according to my needs (radio_control, duc, streame=
-r)
->>
->> 2-set the RF output frequency on the radio control
->>
->> 3-make the tune request through the streamer
->>
->> 4-set the desired frequency offset on the DUC (for example: -10e6, -5e6,
->> 5e6, 10e6)
->>
->> The last step is the more critical, in order to get the exact offset I
->> had first to get the starting frequency offset of the DUC (which is not
->> zero after the tune request, but just on the first channel of the DUC!!!=
-)
->> and then to sum up that residual frequency offset (which actually counts
->> few kHz) to the desired frequency offset.
->>
->> If I miss this step it won=E2=80=99t have the exact offset needed.
->>
->> It seems to me a bit clumsy, is there a cleaner way to do it?
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000084014a0635b4a45c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Agree with Rob here. The purpose of the tune request =
-to the graph is to avoid both steps 2=C2=A0 and 4 and replace it with somet=
-hing more familiar to people coming from the multi_usrp world.</div><div><b=
-r></div><div>Maybe a general comment on the RFNoC API is useful here: With =
-RFNoC, you get a much more fine-grained control over all components in your=
- system (and most importantly, you can choose those components yourself). H=
-owever, the flip side is that you lose some of the convenience functions th=
-at you can offer if you&#39;re using the multi_usrp API.</div><div><br></di=
-v><div>At the risk of sounding defensive, in your case, you have 5 componen=
-ts with configurable frequencies that you need to set: One radio (controlli=
-ng the LO frequency), and 4 DUCs (with digital frequency shifters). That tr=
-anslates into exactly 5 API calls to set each frequency. Because you have a=
- special type of application (four DUC outputs summed into one RF input), i=
-t is not something that the RFNoC API can auto-magically set up for you. Or=
- to put it differently, if you want an API call that auto-sets all 5 freque=
-ncies at the same time, then you need to provide that logic yourself, the s=
-ame way that UHD provides logic to convert a tune request into a digital (D=
-UC/DDC) tune, and an analog tune (LO). But the RFNoC API provides exactly t=
-he APIs to set your 5 different frequencies to 5 different components in 5 =
-API calls -- that seems reasonable to me.</div><div><br></div><div>--M</div=
-><div><br></div><div><br></div></div><br><div class=3D"gmail_quote gmail_qu=
-ote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 21, 2025 a=
-t 10:08=E2=80=AFPM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-us=
-ers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D=
-"ltr">I think that some of the convenience mechanisms that you might see in=
- the examples (such as passing a tune request through the streamer) are lik=
-ely only helpful in a &quot;typical&quot; graph. In your graph with 4 DUC p=
-orts connected to 1 Radio port with AddSub blocks to add the 4 DUC ports to=
-gether, it is not a 1-to-1 relationship between DUC and Radio.=C2=A0=C2=A0<=
-/div><div dir=3D"ltr"><br></div><div dir=3D"ltr">It seems to me that your s=
-tep 3 below is not needed or helpful.=C2=A0 It seems you could set the LO f=
-requency via the Radio block.=C2=A0 But, this will be quantized and not nec=
-essarily at the exact frequency you request. Thus, if it is important to ge=
-t the right frequency, you will need to use the return value from the radio=
--&gt;set_tx_frequency function to determine your quantization error.=C2=A0 =
-Then, you can call duc-&gt;set_freq for your DUC ports with a frequency arg=
-ument that includes both your desired values of -10, -5, 5, 10 MHz as well =
-as the quantization error you determined setting the LO.<div>Rob=C2=A0</div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Wed, May 21, 2025 at 10:45=E2=80=AFAM &lt;<a href=3D"mailto:carmixdev@g=
-mail.com" target=3D"_blank">carmixdev@gmail.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><p>Yes Martin, for example I=
-=E2=80=99m working on a X310+UBX160 with a multichannel DUC that has 4 inpu=
-ts each one with a different frequency offset and then i sum the outputs wi=
-th the addsub rfnoc block(I generated the FPGA firmware accordingly).</p><p=
->Actually I managed to have it work correctly but I had to discover by myse=
-lf some oddities, the correct steps in my configuration are in order:</p><p=
->1-configure the graph according to my needs (radio_control, duc, streamer)=
-</p><p>2-set the RF output frequency on the radio control</p><p>3-make the =
-tune request through the streamer</p><p>4-set the desired frequency offset =
-on the DUC (for example: -10e6, -5e6, 5e6, 10e6)</p><p>The last step is the=
- more critical, in order to get the exact offset I had first to get the sta=
-rting frequency offset of the DUC (which is not zero after the tune request=
-, but just on the first channel of the DUC!!!) and then to sum up that resi=
-dual frequency offset (which actually counts few kHz) to the desired freque=
-ncy offset.</p><p>If I miss this step it won=E2=80=99t have the exact offse=
-t needed.</p><p>It seems to me a bit clumsy, is there a cleaner way to do i=
-t?</p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000084014a0635b4a45c--
-
---===============2507826260315326629==
+--===============5783154119192120163==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -274,4 +423,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2507826260315326629==--
+--===============5783154119192120163==--
