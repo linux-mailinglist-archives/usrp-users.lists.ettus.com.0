@@ -2,283 +2,328 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA37AC0A05
-	for <lists+usrp-users@lfdr.de>; Thu, 22 May 2025 12:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88CDFAC0CC1
+	for <lists+usrp-users@lfdr.de>; Thu, 22 May 2025 15:28:43 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 81C01384E76
-	for <lists+usrp-users@lfdr.de>; Thu, 22 May 2025 06:43:31 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 52AD63851B5
+	for <lists+usrp-users@lfdr.de>; Thu, 22 May 2025 09:28:42 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1747910611; bh=2r1ZxtQK0rFKcrTW0iICzfk1H9qVSbXF7j85YU3Kukc=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=E0yuDoaX8JncVGDjJmItDivX4vw9KIsCnRgUUNDmF9HfDVpANSsD0U+m+kBnsz5Fr
-	 mI6EWlIA7IlKIcfXSaRy4dMO3rOjDmsS4q8Za3Us1CJ5wBXVtDeNJiPgENf2vz7qsQ
-	 XV9X0HnliNAHNFws+cRZ/8tRmq2vUZrwVa0bXLdZFXTNRair4GHpeRAKODDTGxxT2u
-	 Aubnq+Q8hMWOSCmjGCUIHVCw8BNniSDLIKiYhQGGUS62Auq/P4xwB3nBu318IML/8p
-	 7S+raX1IM1u7C7Na6IWAfHB9OF1nvDz0iYBw5qDraQdMgx0NgisPcsPFGEXPy5ch6L
-	 wa2heSl+JOiCQ==
-Received: from za-smtp-delivery-132.mimecast.co.za (za-smtp-delivery-132.mimecast.co.za [41.74.201.132])
-	by mm2.emwd.com (Postfix) with ESMTPS id DA8BF380989
-	for <usrp-users@lists.ettus.com>; Thu, 22 May 2025 06:43:12 -0400 (EDT)
+	t=1747920522; bh=I4z+N1q29i8DnkbDOF3n02yriau4GR8+DFNUa+pDBUA=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=JEk1DqKdDskaJBUHtWVywtbEgP+6QWlhVDtOGO/1D6n6pdK3Bai++s/DrbdN7BqU0
+	 3ceL8Ogk5LOf1DJBi/ir0M1rvKaHV9ao0AqUybmK1RMu5GqBHKn33ctDw+MYDvwr4v
+	 futgSH98lM91jyZnjePo8pKEc1ojqof5w4Kb9ZGmfK7Bx7g02hnXTexO+cFMxURgWY
+	 JhtD2XWqjF8APBbX2DxZZoFYFe+wSthQBBuUJd/AXdXl8aAqQFn6ucmYNjOPKr04Kw
+	 p2rTkLx1GKJ0snCa/BTieD60irTRESOtGYqD/jV5SUkooSKWL/GgpE0rHo1GcFj6d8
+	 6j8CHvEiLb7TA==
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id BD4F03849B1
+	for <usrp-users@lists.ettus.com>; Thu, 22 May 2025 09:27:49 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="IHoKFisk";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="IyTYxClr";
 	dkim-atps=neutral
-Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
- relay.mimecast.com with ESMTP id za-mta-95-hw-d9X5oPQmfvrG2k_5scw-1; Thu,
- 22 May 2025 12:43:08 +0200
-X-MC-Unique: hw-d9X5oPQmfvrG2k_5scw-1
-X-Mimecast-MFC-AGG-ID: hw-d9X5oPQmfvrG2k_5scw_1747910587
-dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
-	bh=/ALGYPlvrPQvPWy9RrFE9oVmu4FHQeezFNZ6bwCmYAs=;
-	b=IHoKFiskudrFG1JOhbm6uO3JGHtRv6ZKF6eaYErxDDP8zxX69GBMJ2PtxVONErranxyMEsJZER9wINhIxeUeQvzqtkJvf04hiQV/bRcJMUg+sN2d1wORFlQTr9A37HM3xozALA1nO3CH2n/3tPKbpDXHIX32WH6eICgnorfNayA=
-Received: from exchange3.vastech.co.za (Unknown [172.30.81.31])
-	by mail.vastech.co.za with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Thu, 22 May 2025 12:43:02 +0200
-Received: from exchange3.vastech.co.za (172.30.81.31) by
- exchange3.vastech.co.za (172.30.81.31) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 22 May 2025 12:43:02 +0200
-Received: from exchange3.vastech.co.za ([172.30.81.31]) by
- exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Thu, 22
- May 2025 12:42:56 +0200
-From: Kevin Williams <kevin.williams@vastech.co.za>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: clarification of timestamp calculations
-Thread-Index: AdvLBg0f8Qkp5vUOTLOkicV1Ps1LaQ==
-Date: Thu, 22 May 2025 10:42:56 +0000
-Message-ID: <328bee3e43a747c08792d6dd375da2d4@vastech.co.za>
-Accept-Language: en-US, en-ZA
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.168.4]
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-60119cd50b6so10507191a12.0
+        for <usrp-users@lists.ettus.com>; Thu, 22 May 2025 06:27:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google; t=1747920468; x=1748525268; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cSyranBoi0g0dJI7vqerZZt/Fia+qDhhg3+4JEl5IWs=;
+        b=IyTYxClrCBep6IhvYZmasIbkRPBibfVQDlR/O6h1phECTZdl1l9iNA91CYWSYDJfec
+         /3OFLJsB53AdnW5/1p+NnPl9MIt3haMls2PhZ7HbN7nP4qJC6sN+W3uYGgtHarHKToQ7
+         kl/4Tjtir+Ib+3/adMbdlLStW9ih+NpE3M1bp7yXpcWMrdesyYTPRcdGkYld3m/nA0FF
+         SGP4sKN1KH+hnuVo8wRZjt94tpc/C8geedJiKBr6qjA9geSP9UYU6pGWwHTWomZqU3A+
+         fQBGpsS4F6I49LEe6qdeENUBcIrgQw/lnrikHZNo4LcR7j2olwshZJ1NeNOHizz7GfX6
+         zwXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747920468; x=1748525268;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cSyranBoi0g0dJI7vqerZZt/Fia+qDhhg3+4JEl5IWs=;
+        b=W5eMROVyzI2UdpxjFM1d/u7X8wTG/C77MTrSe27i4EX94w9oU33JTIugzj3xZDsxmC
+         CHzFAQOtLnYrnn0DhTm9VnrmcOk2cgCl5OS/0fsdWSjeOWCK7UI4qtV3pIXJB+Lm/yvg
+         WDF7fa8cTAwAYpeqKgJA7hKh2Hh518+GiD5UsFzghfo1XR1T+It6DZhb2v5yu/mMsuWg
+         aEwOK7oMRaUj8TZ1xWHZn0QIusw5B5yLWD1l/vTc2imhACderMiWLLqKuSvn7MDbLiQM
+         GYOPMiRtqKiGSIfjfskCmmkUVbxqPKt9dAkgK2w9uWxCoCn0c9D24yLutv+zV1zNr9pw
+         ZwBw==
+X-Gm-Message-State: AOJu0YwLVbJ/JXUzzAhQY98a3m6HUSNXNQqfC5zZpw45HSXjf5QuH0Sd
+	90o8dcvI98cTVn5Az2RdhEPIuXAqx1SM8E0PNhrrc7EAm2TRfxnP2kJJab3IjI6bho109bWuTlw
+	vqK9Bp0D0RZUgm2nGJ+OjWKLzWSPz8wnkRfG0Y5DCTA96lkkwMMI=
+X-Gm-Gg: ASbGncuk/9dva657rKnNqubFnY/ppTue0m23C2afzh/yn5ChCbrF/A+8DeKfleLi1Js
+	c2CnQ5hZ1+5jRdll/fP+R6rDRW+UUdy0mFdVPZFlYP0NZ5w1obhHo95Cczm2LIY1894DB+ioBcZ
+	ry2QwdRDzZiVFCxTsvlNsLfgX1xJeK278f
+X-Google-Smtp-Source: AGHT+IHJBaMl6Vp6atO6zFEPiSyGiO8FAcNyp1ycQGCnl+EXq1nZ7zz3tEjG28G+8f5Srzird6xaSNFaZvM6olRXjlg=
+X-Received: by 2002:a05:6402:50cc:b0:601:9dc3:2795 with SMTP id
+ 4fb4d7f45d1cf-6019dc32e17mr18126118a12.7.1747920468414; Thu, 22 May 2025
+ 06:27:48 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: WW3CZFZGZ7CGLPLMSVRPE4FC3FQIPXGR
-X-Message-ID-Hash: WW3CZFZGZ7CGLPLMSVRPE4FC3FQIPXGR
-X-MailFrom: kevin.williams@vastech.co.za
+References: <06fc5d04db3c4177904569150e0e304f@vastech.co.za>
+In-Reply-To: <06fc5d04db3c4177904569150e0e304f@vastech.co.za>
+Date: Thu, 22 May 2025 09:27:36 -0400
+X-Gm-Features: AX0GCFutZXZ3sEhTclOBrf2Tb2GlnoDK8nhJHXWZAZ-z4qqfmRjEsUkJ9P2oDBc
+Message-ID: <CAB__hTSsONuCyQnpOMbSviitzzquiCP-r1evSbYg14cA1kLE-g@mail.gmail.com>
+To: Kevin Williams <kevin.williams@vastech.co.za>
+Message-ID-Hash: 3KV6CMF7JWRRFVQO7BQ5EMSHTIEZVI6I
+X-Message-ID-Hash: 3KV6CMF7JWRRFVQO7BQ5EMSHTIEZVI6I
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] clarification of timestamp calculations
+Subject: [USRP-users] Re: rfnoc loopback to tx ports, and other warnings
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WW3CZFZGZ7CGLPLMSVRPE4FC3FQIPXGR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3KV6CMF7JWRRFVQO7BQ5EMSHTIEZVI6I/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1162501455437173968=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============2551724457918134334=="
 
---===============1162501455437173968==
-Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=2.16.840.1.101.3.4.2.3;
-	boundary="----=_NextPart_000_003B_01DBCB17.0A51C920"
+--===============2551724457918134334==
+Content-Type: multipart/alternative; boundary="0000000000009daf580635b9722d"
 
-------=_NextPart_000_003B_01DBCB17.0A51C920
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_003C_01DBCB17.0A51C920"
-
-
-------=_NextPart_001_003C_01DBCB17.0A51C920
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hi,
-
- 
-
-Must the timestamp of every packet in an rfnoc network must remain locked to
-the time source the radio used when it timestamped the first adc sample of
-that packet?
-
- 
-
-In other words, if I have a decimator must I figure out the time offset of
-the first sample of my decimated packets to within 1 sample of the original
-data?
-
- 
-
-This seems complex because the radio is delivering packets of some size
-related to an rfnoc mtu and most likely not related to my decimator ratio -
-so the timestamp of the first sample of my packets changes as it "beats"
-with the input packets?
-
- 
-
-Thanks, Kevin
-
- 
-
-
-------=_NextPart_001_003C_01DBCB17.0A51C920
-Content-Type: text/html;
-	charset="us-ascii"
+--0000000000009daf580635b9722d
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US>Hi,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Must the timestamp of every packet =
-in an rfnoc network must remain locked to the time source the radio used =
-when it timestamped the first adc sample of that =
-packet?<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>In other words, if I have a decimator must I figure out the =
-time offset of the first sample of my decimated packets to within 1 =
-sample of the original data?<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>This seems complex because the =
-radio is delivering packets of some size related to an rfnoc mtu and =
-most likely not related to my decimator ratio &#8211; so the timestamp =
-of the first sample of my packets changes as it &#8220;beats&#8221; with =
-the input packets?<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Thanks, Kevin<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
-------=_NextPart_001_003C_01DBCB17.0A51C920--
+Hi Kevin,
+Try issuing the stream command directly on the Radio block rather than the
+rx_streamer.  I don't know why you are getting the warnings you are
+getting, but trying this step might produce a different result.
 
-------=_NextPart_000_003B_01DBCB17.0A51C920
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
+On another note, since you are using timed commands, there will be a time
+stamp in your received data stream. When this stream arrives at the Tx
+Radio after passing through the loopback path, it will be considered "Late"
+at the Tx Radio because the time stamp has passed.  Your block will need to
+add an offset to the time stamp (or remove it) so that it won't be late
+when arriving at the Tx Radio.
+Rob
 
-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
+On Thu, May 22, 2025 at 4:45=E2=80=AFAM Kevin Williams <kevin.williams@vast=
+ech.co.za>
+wrote:
 
-------=_NextPart_000_003B_01DBCB17.0A51C920--
+> Hi,
+>
+>
+>
+> I have an rfnoc block with two output ports which is feeding the splitter
+> block to duplicate each port.
+>
+>
+>
+> One pair is used to stream to the host, and the other is looped back to
+> the radio via the DUC block.
+>
+>
+>
+> The active connections are reported as:
+>
+>
+>
+> Active connections:
+>
+> * 0/Radio#0:0=3D=3D>0/PolConverter#0:0
+>
+> * 0/Radio#0:1=3D=3D>0/PolConverter#0:1
+>
+> * 0/PolConverter#0:0=3D=3D>0/SplitStream#0:0
+>
+> * 0/SplitStream#0:0-->0/DUC#0:0
+>
+> * 0/PolConverter#0:1=3D=3D>0/SplitStream#0:1
+>
+> * 0/SplitStream#0:1-->0/DUC#0:1
+>
+> * 0/DUC#0:0=3D=3D>0/Radio#0:0
+>
+> * 0/DUC#0:1=3D=3D>0/Radio#0:1
+>
+> * 0/SplitStream#0:2-->RxStreamer#0:0
+>
+> * 0/SplitStream#0:3-->RxStreamer#0:1
+>
+>
+>
+> I=E2=80=99m getting this warning when trying to stream (to the host and t=
+he TX):
+>
+>
+>
+> [WARNING] [0/Radio#0] Received stream command, but not to output port!
+> Ignoring.
+>
+>
+>
+> Along with debug info:
+>
+>
+>
+> [DEBUG] [RxStreamer#0] Received overrun message on port 0
+>
+> [DEBUG] [RxStreamer#0] Received overrun message on port 1
+>
+> L[DEBUG] [RxStreamer#0] Received late command message on port 0
+>
+> [DEBUG] [RxStreamer#0] Received late command message on port 1
+>
+> D
+>
+>
+>
+> I start the streaming with a timed command to the RX streamer like:
+>
+>
+>
+> rx_stream->issue_stream_cmd(stream_cmd);
+>
+>
+>
+> I=E2=80=99m not getting the red =E2=80=9CTX=E2=80=9D led illuminated on t=
+he N300, and I don=E2=80=99t
+> understand where or why these warnings are being created?
+>
+>
+>
+> Previous posts have mentioned this link (
+> https://corvid.io/2017/04/22/stupid-rfnoc-tricks-loopback/) has helped
+> but it seems to be down.
+>
+>
+>
+> How does one get a loopback in the fpga from rfnoc blocks to the radio TX=
+?
+>
+>
+>
+> BTW: in the firmware I tie TEOV and TEOB to my TLAST in my custom block.
+>
+>
+>
+> Many thanks, Kevin
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---===============1162501455437173968==
+--0000000000009daf580635b9722d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Kevin,<div>Try issuing the stream comm=
+and directly on the Radio block rather than the rx_streamer.=C2=A0 I don&#3=
+9;t know why you are getting the warnings you are getting, but trying this =
+step might produce a different result.=C2=A0</div><div><br></div><div>On an=
+other note, since you are using timed commands, there will be a time stamp =
+in your received data stream. When this stream arrives at the Tx Radio afte=
+r passing through the loopback path, it will be considered &quot;Late&quot;=
+ at the Tx Radio because the time stamp has passed.=C2=A0 Your block will n=
+eed to add an offset to the time stamp (or remove it) so that it won&#39;t =
+be late when arriving at the Tx Radio.</div><div>Rob</div></div><br><div cl=
+ass=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Thu, May 22, 2025 at 4:45=E2=80=AFAM Kevin Williams &lt;<a href=3D"=
+mailto:kevin.williams@vastech.co.za">kevin.williams@vastech.co.za</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=
+=3D"msg-4917872208500381359"><div lang=3D"EN-ZA"><div class=3D"m_-491787220=
+8500381359WordSection1"><p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<u><=
+/u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=
+=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">I have an =
+rfnoc block with two output ports which is feeding the splitter block to du=
+plicate each port.<u></u><u></u></span></p><p class=3D"MsoNormal"><span lan=
+g=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span lan=
+g=3D"EN-US">One pair is used to stream to the host, and the other is looped=
+ back to the radio via the DUC block.<u></u><u></u></span></p><p class=3D"M=
+soNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"M=
+soNormal"><span lang=3D"EN-US">The active connections are reported as:<u></=
+u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=
+=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"f=
+ont-family:&quot;Courier New&quot;">Active connections:<u></u><u></u></span=
+></p><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
+;Courier New&quot;">* 0/Radio#0:0=3D=3D&gt;0/PolConverter#0:0<u></u><u></u>=
+</span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family=
+:&quot;Courier New&quot;">* 0/Radio#0:1=3D=3D&gt;0/PolConverter#0:1<u></u><=
+u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-=
+family:&quot;Courier New&quot;">* 0/PolConverter#0:0=3D=3D&gt;0/SplitStream=
+#0:0<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" st=
+yle=3D"font-family:&quot;Courier New&quot;">* 0/SplitStream#0:0--&gt;0/DUC#=
+0:0<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" sty=
+le=3D"font-family:&quot;Courier New&quot;">* 0/PolConverter#0:1=3D=3D&gt;0/=
+SplitStream#0:1<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=
+=3D"EN-US" style=3D"font-family:&quot;Courier New&quot;">* 0/SplitStream#0:=
+1--&gt;0/DUC#0:1<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=
+=3D"EN-US" style=3D"font-family:&quot;Courier New&quot;">* 0/DUC#0:0=3D=3D&=
+gt;0/Radio#0:0<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D=
+"EN-US" style=3D"font-family:&quot;Courier New&quot;">* 0/DUC#0:1=3D=3D&gt;=
+0/Radio#0:1<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN=
+-US" style=3D"font-family:&quot;Courier New&quot;">* 0/SplitStream#0:2--&gt=
+;RxStreamer#0:0<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=
+=3D"EN-US" style=3D"font-family:&quot;Courier New&quot;">* 0/SplitStream#0:=
+3--&gt;RxStreamer#0:1<u></u><u></u></span></p><p class=3D"MsoNormal"><span =
+lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span =
+lang=3D"EN-US">I=E2=80=99m getting this warning when trying to stream (to t=
+he host and the TX):<u></u><u></u></span></p><p class=3D"MsoNormal"><span l=
+ang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span l=
+ang=3D"EN-US" style=3D"font-family:&quot;Courier New&quot;">[WARNING] [0/Ra=
+dio#0] Received stream command, but not to output port! <span style=3D"colo=
+r:red">Ignoring</span>.<u></u><u></u></span></p><p class=3D"MsoNormal"><spa=
+n lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><spa=
+n lang=3D"EN-US">Along with debug info:<u></u><u></u></span></p><p class=3D=
+"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D=
+"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Courier New&quo=
+t;">[DEBUG] [RxStreamer#0] Received overrun message on port 0<u></u><u></u>=
+</span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family=
+:&quot;Courier New&quot;">[DEBUG] [RxStreamer#0] Received overrun message o=
+n port 1<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US=
+" style=3D"font-family:&quot;Courier New&quot;">L[DEBUG] [RxStreamer#0] Rec=
+eived late command message on port 0<u></u><u></u></span></p><p class=3D"Ms=
+oNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Courier New&quot;"=
+>[DEBUG] [RxStreamer#0] Received late command message on port 1<u></u><u></=
+u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-fami=
+ly:&quot;Courier New&quot;">D</span><span lang=3D"EN-US"><u></u><u></u></sp=
+an></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></sp=
+an></p><p class=3D"MsoNormal"><span lang=3D"EN-US">I start the streaming wi=
+th a timed command to the RX streamer like:<u></u><u></u></span></p><p clas=
+s=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p clas=
+s=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Courier New=
+&quot;">rx_stream-&gt;issue_stream_cmd(stream_cmd);<u></u><u></u></span></p=
+><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p=
+><p class=3D"MsoNormal"><span lang=3D"EN-US">I=E2=80=99m not getting the re=
+d =E2=80=9CTX=E2=80=9D led illuminated on the N300, and I don=E2=80=99t und=
+erstand where or why these warnings are being created?<u></u><u></u></span>=
+</p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span>=
+</p><p class=3D"MsoNormal"><span lang=3D"EN-US">Previous posts have mention=
+ed this link (<a href=3D"https://corvid.io/2017/04/22/stupid-rfnoc-tricks-l=
+oopback/" target=3D"_blank">https://corvid.io/2017/04/22/stupid-rfnoc-trick=
+s-loopback/</a>) has helped but it seems to be down.<u></u><u></u></span></=
+p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></=
+p><p class=3D"MsoNormal"><span lang=3D"EN-US">How does one get a loopback i=
+n the fpga from rfnoc blocks to the radio TX?<u></u><u></u></span></p><p cl=
+ass=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p cl=
+ass=3D"MsoNormal"><span lang=3D"EN-US">BTW: in the firmware I tie TEOV and =
+TEOB to my TLAST in my custom block.<u></u><u></u></span></p><p class=3D"Ms=
+oNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"Ms=
+oNormal"><span lang=3D"EN-US">Many thanks, Kevin<u></u><u></u></span></p><p=
+ class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p></=
+div></div>_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div></div>
+
+--0000000000009daf580635b9722d--
+
+--===============2551724457918134334==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -288,4 +333,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1162501455437173968==--
+--===============2551724457918134334==--
