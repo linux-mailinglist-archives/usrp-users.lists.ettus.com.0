@@ -2,64 +2,64 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8701AC2D2B
-	for <lists+usrp-users@lfdr.de>; Sat, 24 May 2025 05:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 880E8AC2E97
+	for <lists+usrp-users@lfdr.de>; Sat, 24 May 2025 11:31:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 86A3538520A
-	for <lists+usrp-users@lfdr.de>; Fri, 23 May 2025 23:17:32 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4F218385193
+	for <lists+usrp-users@lfdr.de>; Sat, 24 May 2025 05:31:32 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1748056652; bh=SL0+QcAxe/FWqQzEfD1/Z91rga9XCHDz7ARHoFnNgRU=;
+	t=1748079092; bh=S5leu0c7T7icamFUIkdzKkkA4DIs0zNSq/4BKbbJebw=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=tAcN8VxG3vvg+nUpIu/JV/PQ1iElvlEWO4BE1JjlFi2rcQCnnFy5NkFdvcIPQJN4l
-	 7byQPyTrzhlGpdlmAuOzBTn74Se9p93cN9Ej0SmwKitbTN8mPpEsxocNxL9sVEqu3x
-	 zBX0DqCPHWXmwxzopnIhkYuXAv0WwTQZ/ZIAID1XSXQEy5VQj++3xe886fnGlb5c4F
-	 1zrPafFcDAlExSkj9K/S9PN7WinfE+7IG4Eg/yHUpaTwNJ1qA5HmlHkBOiT/Rv6uZ/
-	 u+BiOmrgiNf3p9Nj4LXxs86YOzpnhBV9V+jpkwgdvxXS2jQZpWJ+56ePiGs/WJuzum
-	 af4ARy0RR2QkA==
+	b=UiyGuR3h0AAi2S+tIX3239JePQCAUKwehLzI4GGYNHY827SzjRdvGYn+2dcQAgefd
+	 G4V5mWo3SGqqlz8wuRpUV6Mg8K4l4tNotseASig4JB8ZTCQHvMa4Xp70AeKFNADl9x
+	 EUpWV9+Uzm6rN5jEDXShbVZiKmKy3cvlM2aZ7OFLrB08o9fL1Y10eGSa7I4WppwiKq
+	 lfE4IzAeEazWEnbaghgDhu+tbtClS0wEwK2SUOvKR+ZILC2CkaqaSJK+dMRPQwh1Yk
+	 TdVLrU+usZ4UVyhocX4QHeVKH3/WEdQlpmNOeZmAnw+UwZcEwR3DTjaDAEXm2xcmV3
+	 ghsS4OixTMqYQ==
 Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id CC27B38139A
-	for <usrp-users@lists.ettus.com>; Fri, 23 May 2025 23:16:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTPS id 6E2A3380E2A
+	for <usrp-users@lists.ettus.com>; Sat, 24 May 2025 05:30:39 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XQFH+n9n";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GR0yfQ08";
 	dkim-atps=neutral
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3d6d6d82633so1457055ab.0
-        for <usrp-users@lists.ettus.com>; Fri, 23 May 2025 20:16:38 -0700 (PDT)
+Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3dc978d52edso6893875ab.1
+        for <usrp-users@lists.ettus.com>; Sat, 24 May 2025 02:30:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748056598; x=1748661398; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1748079038; x=1748683838; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+LGv8uHlyq3yLcVPIHS7Eb3YefN3JaxnOTNAtVOsKEs=;
-        b=XQFH+n9n68X9wptvZSbIp1QflcxjK7/yukrSL5RoXUBduC7Uf1iPBoFrsto5eNTKr5
-         V4hrI8dFkHpdvAiuBujKj+H9TUig2PeztpxqvUB/oyJI9nq5DoA5F/GUM19OljtOkGWH
-         kiGU1r37dzVABeGU5LMdTso5jQ4N8wvVEiX99nFJ+mPs5M8X9aWzfZIrCdNlgoIT0G4c
-         lgYpQiEIhxHA7t5Ed1E7M8QOJ4EsPBm3G2c1iHWET/kYV4mlzI4Nnw0iYMMw73XDwlh7
-         hZhjr5GTqY07Xz1Ko9yqr2tVGSYKf5I0HvE0tVhdukI/p1n+qrMc8DS4NWdgX+jOP64Q
-         By6w==
+        bh=eiRcc2WpE0uZ+Nqg6l0er3UViQnFOYAIJUjfpgnFfwQ=;
+        b=GR0yfQ08bi/T+Pa5uLamgIz0OH9ADUZ3kcb/XaX22DgyKRA0icFyDL+hZeZUJ/uVs7
+         l8hTE9F8vXIgODHweCI7CpjIds8HgXmwRMynxF3y9x6/1cBGwkjA3Huy73RqlqSb9mxw
+         vtuDlcwoJJ4cFSSPod6L5v0jL3OOPJS1ettGoYSGPdCeWigb3Hc0Uc5n4VkQ7EAcdGCP
+         dHopXvYt8XqyzAV+0ViiBmIfxAOt28B6yMNZPV4JcazOMJh9C0lKlmE9X88GwP1p0GoU
+         +nMsNUM+htn/aCuCWIDy7lwqkeN97P9LesnsBMn5T2ZhvgKNDsH3aE4xxzCxpEJCqSby
+         WHDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748056598; x=1748661398;
+        d=1e100.net; s=20230601; t=1748079038; x=1748683838;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+LGv8uHlyq3yLcVPIHS7Eb3YefN3JaxnOTNAtVOsKEs=;
-        b=ICCy+mgA64f1IHt3zpDX1agk05KuLb7CEnAfj0lJUSdkrJkTIIiwckbWeroqkTI3G1
-         IYFkQDPOAiGw1kl+y78o9cVtAav8Em48FHOOYyqDSXSPfuX2Aq5qDl9GFSW2+X0e+ItN
-         eXkqi2JlI1f/fZCl+y5MZC2ato2nlESCcPqJC5QkfYW1hzkpWQmyEms8Q/tenMKHRpNy
-         3cFbeJnDTFRaqCLjYYNsJ4Q1o8egZw7RAgm1SwZYOUKZB3m07+pwHYJWWNKBRdmGqEyv
-         2/RM2KH+tvm8YDiWDBAsD1Jn1pTk2nUEzZ+VfruNQdqo5xX4paAES59NPhwChMoFwhmp
-         XITw==
-X-Forwarded-Encrypted: i=1; AJvYcCXmMKdrD26GOwuFgMpyw1KszjSn+jyWT/KJesw42cQMnflDeJ2hjaEzVqeVOqHz9lpO5MO5cpCGCmRu@lists.ettus.com
-X-Gm-Message-State: AOJu0YyF7FVqydJICFIUTpf5sbDQIFTMCSrYtnDMGc79AUrGmd4X2HOm
-	ZqWATd8DZ8848ui4ezGk6ETVkV4adpCcdFYYMR7BOn0mL1z3/Otel7smVQwlmozbmXq6Hhhd8sA
-	Jfo/8z4FjrGP9ad2mHBLHxMi4nE/jDsM=
-X-Gm-Gg: ASbGncueOePxCGO7fa/ZbshBW6XNUC51cgqjoyFVFn88IfnQMXrRj1vGrp461gxICc6
-	n2HE8OVUDLEM3I46dHSV3YioKBBzZbfxBNAagQCOYe98fazOZCACAxxWgK8nd6sYYMlbLaQyef6
-	anxVz+HfAltcdkoifoFz/ndx1jkgQN
-X-Google-Smtp-Source: AGHT+IEoPozd/CbK24y0K7F+Mm+EOgdDK80rr6VJV+LwtOyNW1Z1kKmcs1Rvr+ZuZUhZf3gUZhLtB8F3OQiJFYQp3fE=
-X-Received: by 2002:a05:6e02:1c25:b0:3dc:8b57:b76c with SMTP id
- e9e14a558f8ab-3dc9b68e0c3mr10940255ab.9.1748056597872; Fri, 23 May 2025
- 20:16:37 -0700 (PDT)
+        bh=eiRcc2WpE0uZ+Nqg6l0er3UViQnFOYAIJUjfpgnFfwQ=;
+        b=lrJXh/IMbOMeWJyiiLJjm0oZi4iPKhtJ9Fw29Nak/pUY0gfJEOz7CiwaULc8wJy2OZ
+         aIhIrSSykScZaUwo69Et5/RgvX1SspFkwvjqDPdWmsLUODzNrNokBv1WLNMg0YfUhuel
+         mDjGjX7fbImCzN3NPD9E3OCJEJpLaHdYgOgwBnhg1y6Uq0yTicjAlxqz7OX6NHKECkiH
+         It+pc1MZNdP60haI27qAIZh0btHwk/bFKbaE3gEcuFUFNeePXPEMzY7aXX7uset+dwrO
+         kmAgoCHZjZgYSmiDwANyQd/93e6f7fcpCxvxazPEUL+NaJ+FgOm0WCtTn/eB0OfETs32
+         IfYw==
+X-Forwarded-Encrypted: i=1; AJvYcCXHalHwHyD+KK0FoNO25sIpwm6ZBlDt8y9BhDSwyiD2EOVlBjj1V2b5fhxdp+2ITr+/xoj7FHoOPjEV@lists.ettus.com
+X-Gm-Message-State: AOJu0YwQt5NpHBOwcsn0O6Y/FaUE1vi3gC280cSCCAM62i/2wVz1lb5C
+	n6ovcKyNXjm3AvcYDuj3l7I6i5NUkuA/i4ZUO65btSumebM/tWuyiI1N9dtbTVWb2nDc6VfNNGK
+	ByCZdowji58QWoq1jQqsLhP3G7zvEO9k=
+X-Gm-Gg: ASbGncsaEglhy6P6QBFRSIrxQ8/+z2ZAudHovNJ8o53ZjPJyyAmIi2nQ+18hA7Azr3n
+	NyGXTyTilC0aCGZG6wxqOHKs4f6aYIserdZgmV6BVnJMYnIaFXNW6R8a8Sp0CthUxbZaUqmjbRn
+	expf7xE11XH5wyiBqmP9Jrucl+WTRx
+X-Google-Smtp-Source: AGHT+IFK8Z7ZehdYpGA2vil468bhBLeXEE0V6k6keO5HujRI3FuMY4m2/9ObJ8/NSABv/XaIPsNBIw2rZ9hgWmHm65M=
+X-Received: by 2002:a05:6e02:2701:b0:3d9:6485:39f0 with SMTP id
+ e9e14a558f8ab-3dc9b6a9e4emr17687795ab.9.1748079038328; Sat, 24 May 2025
+ 02:30:38 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAAxXO2FZ3qPZxwPGY-p18O895qNREXgsOTWUHJhxyi3boCoVeg@mail.gmail.com>
  <CAAxXO2EpXSctSrnaCA7pbjDD=i95WEphKyQsoJDYqrwL06Fnqg@mail.gmail.com>
@@ -69,15 +69,16 @@ References: <CAAxXO2FZ3qPZxwPGY-p18O895qNREXgsOTWUHJhxyi3boCoVeg@mail.gmail.com>
  <39c78583-ffdf-4575-8749-f37e1876dff5@gmail.com> <CAAxXO2EShVqaVvO3LBMOvvNGeq_gDF2-+FRShfpb_cdGh9eCRg@mail.gmail.com>
  <CAB__hTQq3yzT4v5qYhCDRaoPoWtVKZbd0zSiZ-Rw0j1C40yLhA@mail.gmail.com>
  <CAB__hTRpTLn2E9cdja1y3BrMp0pFQYEtYq0OGC6mgura4tNo-Q@mail.gmail.com>
- <CAAxXO2GTMr4JNZEv46z9WXk5F_Ux5qJLTA=cnkumredumDxvBA@mail.gmail.com> <e86846d4-0a75-4bf5-8700-04b06668406b@gmail.com>
-In-Reply-To: <e86846d4-0a75-4bf5-8700-04b06668406b@gmail.com>
+ <CAAxXO2GTMr4JNZEv46z9WXk5F_Ux5qJLTA=cnkumredumDxvBA@mail.gmail.com>
+ <e86846d4-0a75-4bf5-8700-04b06668406b@gmail.com> <CAAxXO2HovWZumzKtUedBzuSt6eci=pvWE0Wf6TV3-Nr5u+220Q@mail.gmail.com>
+In-Reply-To: <CAAxXO2HovWZumzKtUedBzuSt6eci=pvWE0Wf6TV3-Nr5u+220Q@mail.gmail.com>
 From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Sat, 24 May 2025 06:16:25 +0300
-X-Gm-Features: AX0GCFtlJEzPoUWAa0ftn423kc2M8W0Y1AQQi5_elMLYm0LiqWSZsM2m66LapSo
-Message-ID: <CAAxXO2HovWZumzKtUedBzuSt6eci=pvWE0Wf6TV3-Nr5u+220Q@mail.gmail.com>
+Date: Sat, 24 May 2025 12:30:26 +0300
+X-Gm-Features: AX0GCFug3oHTqG_gSJgdA_uBjzDVWdfime2c_jBKqcGv_XqIfh-HuwAg2olXOdE
+Message-ID: <CAAxXO2GTDHgY8rPoK1NBV489b=LsyxR0kJZHkZBHjE62Rui0tg@mail.gmail.com>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: PSFDFFEKTNZS44GE376T7OBF2M5BS56V
-X-Message-ID-Hash: PSFDFFEKTNZS44GE376T7OBF2M5BS56V
+Message-ID-Hash: QYWYDCQWAAWB7JKE5PSTWAJSS6WIQIXW
+X-Message-ID-Hash: QYWYDCQWAAWB7JKE5PSTWAJSS6WIQIXW
 X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: Rob Kossler <rkossler@nd.edu>, usrp-users@lists.ettus.com
@@ -85,355 +86,408 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Curious energy spikes from my X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PSFDFFEKTNZS44GE376T7OBF2M5BS56V/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QYWYDCQWAAWB7JKE5PSTWAJSS6WIQIXW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5159892257428982229=="
+Content-Type: multipart/mixed; boundary="===============4057554553198242302=="
 
---===============5159892257428982229==
-Content-Type: multipart/alternative; boundary="0000000000009051350635d9241a"
+--===============4057554553198242302==
+Content-Type: multipart/alternative; boundary="0000000000001e71570635de5e2c"
 
---0000000000009051350635d9241a
+--0000000000001e71570635de5e2c
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Marcus,
+Hi,
 
-I am aware of those. I wouldn't be doing all these if they were available
-to me:(
-You can check C API availability in usrp.h:)
+Problem fixed:) It was easier than I thought. No patches needed:)
+The answer was in host/lib/types/tune.cpp always:
 
-BR
+tune_request_t::tune_request_t(double target_freq, double lo_off)
+ .target_freq(target_freq)
+, rf_freq_policy(POLICY_MANUAL)
+, rf_freq(target_freq + lo_off)
+, dsp_freq_policy(POLICY_AUTO)
+, dsp_freq(0.0)
+
+There is only a labeling confusion in the definition of tune_request_t.
+The first 3 fields refer to the RF chain. It is curious that there are both
+target_freq and  rf_freq
+at the same time. Rf_freq should be renamed lo_freq!
+rf_freq_policy affects both target freq and lo_freq:)
+
+HTH
 Nikos
 
-On Sat, May 24, 2025 at 12:33=E2=80=AFAM Marcus D. Leech <patchvonbraun@gma=
-il.com>
-wrote:
 
-> On 2025-05-23 13:41, Nikos Balkanas wrote:
+
+
+On Sat, May 24, 2025 at 6:16=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.com=
+> wrote:
+
+> Hi Marcus,
 >
-> Hi Rob,
->
-> I've done all these, but they do not affect LO offset.
-> C API exports only these low level LO commands (in usrp.h)
-> So, either I work it out with what I have, or I expand the C API
-> to include the higher level C++ constructors.
-> My luck. Both issues have to do with the C API:)
-> Sampling rate is very important, but not useful in this case.
-> I leave it on auto. RF is on manual:)
+> I am aware of those. I wouldn't be doing all these if they were available
+> to me:(
+> You can check C API availability in usrp.h:)
 >
 > BR
 > Nikos
 >
-> I'll note that the C++ API has a couple of "helper" functions for creatin=
-g
-> tune_request_t objects:
+> On Sat, May 24, 2025 at 12:33=E2=80=AFAM Marcus D. Leech <patchvonbraun@g=
+mail.com>
+> wrote:
 >
->
-> https://files.ettus.com/manual/structuhd_1_1tune__request__t.html#af9d2c5=
-fb89c10024b1acae43e88ebe7f
->
-> The second form, which takes both a desired target frequency, and the
-> desired lo_offset, is what I have used in the past.
->
-> I don't know if these are somehow available in the C API to form the
-> tune_request_t  structure.
->
->
->
-> On Fri, May 23, 2025 at 7:59=E2=80=AFPM Rob Kossler <rkossler@nd.edu> wro=
-te:
->
->> I forgot to mention, the function you were looking at
->> 'uhd_usrp_set_rx_lo_freq' is not the function you need.  This is a
->> low-level function that is rarely needed. You will want to stay with the
->> function 'uhd_usrp_set_rx_freq' which will send the appropriate command =
-to
->> the radio to set the LO and to the DDC to set the desired DSP frequency
->> shift that will compensate for the LO being offset.
->> Rob
+>> On 2025-05-23 13:41, Nikos Balkanas wrote:
 >>
->> On Fri, May 23, 2025 at 12:55=E2=80=AFPM Rob Kossler <rkossler@nd.edu> w=
-rote:
+>> Hi Rob,
 >>
->>> Hi Nikos,
->>> Although I have not used the 'c' API, it appears it can do the same
->>> thing as the c++ API with regard to tune request.  The 'c' structure
->>> uhd_tune_reqest_t
->>> <https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/type=
-s/tune_request.h#L28>
->>> includes a field called 'dsp_freq'.  It seems that you can set this to =
-30
->>> MHz.  The c++ documentation  for tune_request_t
->>> <https://files.ettus.com/manual/structuhd_1_1tune__request__t.html#af9d=
-2c5fb89c10024b1acae43e88ebe7f>
->>> indicates that you should set the RF policy to manual and the DSP polic=
-y to
->>> automatic.  I don't know for certain if you should set the 'target_freq=
-' or
->>> the 'rf_freq' field of the tune request to the desired frequency but I'=
-m
->>> guessing 'target_freq'.
->>>
->>> There is an example program called rx_samples_c.c
->>> <https://github.com/EttusResearch/uhd/blob/master/host/examples/rx_samp=
-les_c.c>
->>> which you may have seen. This shows using a tune request but without an=
- LO
->>> offset.
+>> I've done all these, but they do not affect LO offset.
+>> C API exports only these low level LO commands (in usrp.h)
+>> So, either I work it out with what I have, or I expand the C API
+>> to include the higher level C++ constructors.
+>> My luck. Both issues have to do with the C API:)
+>> Sampling rate is very important, but not useful in this case.
+>> I leave it on auto. RF is on manual:)
+>>
+>> BR
+>> Nikos
+>>
+>> I'll note that the C++ API has a couple of "helper" functions for
+>> creating tune_request_t objects:
+>>
+>>
+>> https://files.ettus.com/manual/structuhd_1_1tune__request__t.html#af9d2c=
+5fb89c10024b1acae43e88ebe7f
+>>
+>> The second form, which takes both a desired target frequency, and the
+>> desired lo_offset, is what I have used in the past.
+>>
+>> I don't know if these are somehow available in the C API to form the
+>> tune_request_t  structure.
+>>
+>>
+>>
+>> On Fri, May 23, 2025 at 7:59=E2=80=AFPM Rob Kossler <rkossler@nd.edu> wr=
+ote:
+>>
+>>> I forgot to mention, the function you were looking at
+>>> 'uhd_usrp_set_rx_lo_freq' is not the function you need.  This is a
+>>> low-level function that is rarely needed. You will want to stay with th=
+e
+>>> function 'uhd_usrp_set_rx_freq' which will send the appropriate command=
+ to
+>>> the radio to set the LO and to the DDC to set the desired DSP frequency
+>>> shift that will compensate for the LO being offset.
 >>> Rob
 >>>
->>> On Fri, May 23, 2025 at 12:09=E2=80=AFPM Nikos Balkanas <nbalkanas@gmai=
-l.com>
->>> wrote:
+>>> On Fri, May 23, 2025 at 12:55=E2=80=AFPM Rob Kossler <rkossler@nd.edu> =
+wrote:
 >>>
->>>> Ty Rob for the link and the suggestions,
+>>>> Hi Nikos,
+>>>> Although I have not used the 'c' API, it appears it can do the same
+>>>> thing as the c++ API with regard to tune request.  The 'c' structure
+>>>> uhd_tune_reqest_t
+>>>> <https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/typ=
+es/tune_request.h#L28>
+>>>> includes a field called 'dsp_freq'.  It seems that you can set this to=
+ 30
+>>>> MHz.  The c++ documentation  for tune_request_t
+>>>> <https://files.ettus.com/manual/structuhd_1_1tune__request__t.html#af9=
+d2c5fb89c10024b1acae43e88ebe7f>
+>>>> indicates that you should set the RF policy to manual and the DSP poli=
+cy to
+>>>> automatic.  I don't know for certain if you should set the 'target_fre=
+q' or
+>>>> the 'rf_freq' field of the tune request to the desired frequency but I=
+'m
+>>>> guessing 'target_freq'.
 >>>>
->>>> We agree completely. I need to offset my LO.
->>>> You are probably not aware that I am using the C API.
->>>> I cannot use the C++ constructors for tune_request unless they are
->>>> exported as C API.
->>>> I can just use the tune_request_t struct, which has no lo_off member.
->>>> So, I have  to offset my LO manually:
->>>> uhd_usrp_set_rx_lo_freq(uhd_usrp_handle h, double freq, char *name,
->>>> size_t channel, double *outfreq)
->>>> I have everything that I need except the LO name:(
->>>> To get name I use:
->>>> uhd_usrp_get_rx_lo_names()
->>>> That's my problem, right there. It just returns me an empty list of
->>>> names. No errors either. Why?
->>>> Without it, I cannot use the uhd_usrp_set_rx_lo_freq:(
->>>> Unfortunately, gdb is no help in this case. After 10 calls to the
->>>> /usr/include/c++ files and 7 more
->>>> calls to boost and preprocessor defines, it just advances to the next
->>>> source line.
->>>> Not gdb friendly sources:(
->>>> I am also looking to export as C API the tune_request(freq, lo_off) C+=
-+
->>>> constructor.
->>>> This will mean to change code in uhd, which I will eventually have to,
->>>> but right now,
->>>> getting uhd_usrp_get_rx_lo_names() to work, is better:)
+>>>> There is an example program called rx_samples_c.c
+>>>> <https://github.com/EttusResearch/uhd/blob/master/host/examples/rx_sam=
+ples_c.c>
+>>>> which you may have seen. This shows using a tune request but without a=
+n LO
+>>>> offset.
+>>>> Rob
 >>>>
->>>> BR
->>>> Nikos
->>>>
->>>>
->>>>
->>>>
->>>>
->>>> On Fri, May 23, 2025 at 4:57=E2=80=AFPM Marcus D. Leech <
->>>> patchvonbraun@gmail.com> wrote:
->>>>
->>>>> On 2025-05-23 09:49, Rob Kossler wrote:
->>>>>
->>>>> Hi Nikos,
->>>>> Your RF card has 120 MHz bandwidth.  The strong tone you see will
->>>>> always be at the center.  But, if your application can tolerate using=
- an
->>>>> instantaneous bandwidth < 60 MHz, you can use offset tuning as Marcus
->>>>> mentioned.  To do this you simply need to create a tune request with =
-your
->>>>> desired RF frequency and then specify an LO offset frequency of 30 MH=
-z.
->>>>> This is all that is needed (again assuming that your bandwidth of int=
-erest
->>>>> is < 60 MHz).  This link
->>>>> <https://dsp.stackexchange.com/questions/30562/large-spike-at-the-cen=
-ter-frequency-when-using-ettus-x310>
->>>>> discusses the topic.
->>>>>
->>>>> Also, if you want to reduce the DC offset, there are calibrations for
->>>>> the X310 - one of which will mitigate this signal.
->>>>> Rob
->>>>>
->>>>> Just a note that AFAIR, the *RX* DC-offset correction is something
->>>>> that doesn't require input from the calibration routines--it runs all=
- the
->>>>> time (if its turned on).
->>>>>
->>>>> But phase/amplitude *balance* does require that you run the
->>>>> appropriate CAL utilities:
->>>>>
->>>>> https://files.ettus.com/manual/page_calibration.html
->>>>>
->>>>>
->>>>>
->>>>> On Fri, May 23, 2025 at 8:11=E2=80=AFAM Nikos Balkanas <nbalkanas@gma=
+>>>> On Fri, May 23, 2025 at 12:09=E2=80=AFPM Nikos Balkanas <nbalkanas@gma=
 il.com>
->>>>> wrote:
+>>>> wrote:
+>>>>
+>>>>> Ty Rob for the link and the suggestions,
 >>>>>
->>>>>> I have implemented the following calls for uhd_usrp_set_rx_lo_freq:
->>>>>>
->>>>>> uhd_string_vector_handle  names;
->>>>>> uhd_string_vector_make(&names);
->>>>>> if ((err =3D uhd_usrp_get_rx_lo_names(dev[channel], channel, &names)=
-))
->>>>>>        warn(log, "Failed to get lo names (%d). %s.\n", 0, FL, LN, FN=
+>>>>> We agree completely. I need to offset my LO.
+>>>>> You are probably not aware that I am using the C API.
+>>>>> I cannot use the C++ constructors for tune_request unless they are
+>>>>> exported as C API.
+>>>>> I can just use the tune_request_t struct, which has no lo_off member.
+>>>>> So, I have  to offset my LO manually:
+>>>>> uhd_usrp_set_rx_lo_freq(uhd_usrp_handle h, double freq, char *name,
+>>>>> size_t channel, double *outfreq)
+>>>>> I have everything that I need except the LO name:(
+>>>>> To get name I use:
+>>>>> uhd_usrp_get_rx_lo_names()
+>>>>> That's my problem, right there. It just returns me an empty list of
+>>>>> names. No errors either. Why?
+>>>>> Without it, I cannot use the uhd_usrp_set_rx_lo_freq:(
+>>>>> Unfortunately, gdb is no help in this case. After 10 calls to the
+>>>>> /usr/include/c++ files and 7 more
+>>>>> calls to boost and preprocessor defines, it just advances to the next
+>>>>> source line.
+>>>>> Not gdb friendly sources:(
+>>>>> I am also looking to export as C API the tune_request(freq, lo_off)
+>>>>> C++ constructor.
+>>>>> This will mean to change code in uhd, which I will eventually have to=
 ,
->>>>>> err, uhdError(err));
->>>>>> if ((err =3D uhd_string_vector_size(names, &len)))
->>>>>>      warn(log, "Failed to get lo names size (%d).
->>>>>> %s.\n",0,FL,LN,FN,err, uhdError(err));
->>>>>> if (!len)
->>>>>> {
->>>>>>       error(log, "No lo names found on channel %d.\n", 0, FL, LN, FN=
-,
->>>>>> channel);
->>>>>>        uhd_string_vector_free(&names);
->>>>>>         return(FAIL);
->>>>>> }
->>>>>> uhd_string_vector_free(&names);
+>>>>> but right now,
+>>>>> getting uhd_usrp_get_rx_lo_names() to work, is better:)
+>>>>>
+>>>>> BR
+>>>>> Nikos
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>> On Fri, May 23, 2025 at 4:57=E2=80=AFPM Marcus D. Leech <
+>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>
+>>>>>> On 2025-05-23 09:49, Rob Kossler wrote:
 >>>>>>
->>>>>> The problem is that names always returns 0. This is not right for my
->>>>>> SBX-120, or any
->>>>>> daughterboard with  a tuner:( This is what i can get from the API.
->>>>>> There are no LO examples.
->>>>>> I have seen lo_enable() in c++, but nothing exported to C. What am I
->>>>>> missing?
+>>>>>> Hi Nikos,
+>>>>>> Your RF card has 120 MHz bandwidth.  The strong tone you see will
+>>>>>> always be at the center.  But, if your application can tolerate usin=
+g an
+>>>>>> instantaneous bandwidth < 60 MHz, you can use offset tuning as Marcu=
+s
+>>>>>> mentioned.  To do this you simply need to create a tune request with=
+ your
+>>>>>> desired RF frequency and then specify an LO offset frequency of 30 M=
+Hz.
+>>>>>> This is all that is needed (again assuming that your bandwidth of in=
+terest
+>>>>>> is < 60 MHz).  This link
+>>>>>> <https://dsp.stackexchange.com/questions/30562/large-spike-at-the-ce=
+nter-frequency-when-using-ettus-x310>
+>>>>>> discusses the topic.
 >>>>>>
->>>>>> TIA
->>>>>> Nikos
+>>>>>> Also, if you want to reduce the DC offset, there are calibrations fo=
+r
+>>>>>> the X310 - one of which will mitigate this signal.
+>>>>>> Rob
 >>>>>>
->>>>>> On Fri, May 23, 2025 at 8:12=E2=80=AFAM Nikos Balkanas <nbalkanas@gm=
+>>>>>> Just a note that AFAIR, the *RX* DC-offset correction is something
+>>>>>> that doesn't require input from the calibration routines--it runs al=
+l the
+>>>>>> time (if its turned on).
+>>>>>>
+>>>>>> But phase/amplitude *balance* does require that you run the
+>>>>>> appropriate CAL utilities:
+>>>>>>
+>>>>>> https://files.ettus.com/manual/page_calibration.html
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> On Fri, May 23, 2025 at 8:11=E2=80=AFAM Nikos Balkanas <nbalkanas@gm=
 ail.com>
 >>>>>> wrote:
 >>>>>>
->>>>>>> Thx Marcus,
+>>>>>>> I have implemented the following calls for uhd_usrp_set_rx_lo_freq:
 >>>>>>>
->>>>>>> For your fast and informative answers. Sorry it took me a while to
->>>>>>> reply,
->>>>>>> but I'm still trying to get:
->>>>>>> tune_request(freq, lo_off)
->>>>>>> to work in C.
->>>>>>> My X310 has 2 SBX-120 boards. Using uhd 4.6.0 in Ubuntu 24.04.
->>>>>>> True about the tuner. Much cheaper and easier to implement it in
->>>>>>> analog.
->>>>>>> I am using your FPGA image. Haven't touched it myself, yet.
->>>>>>> So, the spike is pretty narrow to interfere with my signals, but
->>>>>>> still messes my power calculations:(
->>>>>>> I already implemented the integer frequency tuner and working on th=
-e
->>>>>>> low oscillator offset.
->>>>>>> If you have any pointers about it, feel free to advise.
->>>>>>> LO is not part of the request_tuner_t struct. It is set
->>>>>>> independently.
->>>>>>> Is this the same LO in uhd_usrp_set_rx_lo_freq?
->>>>>>> If this is the case I can modify it externally:)
+>>>>>>> uhd_string_vector_handle  names;
+>>>>>>> uhd_string_vector_make(&names);
+>>>>>>> if ((err =3D uhd_usrp_get_rx_lo_names(dev[channel], channel, &names=
+)))
+>>>>>>>        warn(log, "Failed to get lo names (%d). %s.\n", 0, FL, LN,
+>>>>>>> FN, err, uhdError(err));
+>>>>>>> if ((err =3D uhd_string_vector_size(names, &len)))
+>>>>>>>      warn(log, "Failed to get lo names size (%d).
+>>>>>>> %s.\n",0,FL,LN,FN,err, uhdError(err));
+>>>>>>> if (!len)
+>>>>>>> {
+>>>>>>>       error(log, "No lo names found on channel %d.\n", 0, FL, LN,
+>>>>>>> FN, channel);
+>>>>>>>        uhd_string_vector_free(&names);
+>>>>>>>         return(FAIL);
+>>>>>>> }
+>>>>>>> uhd_string_vector_free(&names);
 >>>>>>>
->>>>>>> BR
+>>>>>>> The problem is that names always returns 0. This is not right for m=
+y
+>>>>>>> SBX-120, or any
+>>>>>>> daughterboard with  a tuner:( This is what i can get from the API.
+>>>>>>> There are no LO examples.
+>>>>>>> I have seen lo_enable() in c++, but nothing exported to C. What am =
+I
+>>>>>>> missing?
+>>>>>>>
+>>>>>>> TIA
 >>>>>>> Nikos
 >>>>>>>
->>>>>>> On Fri, May 23, 2025 at 4:40=E2=80=AFAM Marcus D. Leech <
->>>>>>> patchvonbraun@gmail.com> wrote:
+>>>>>>> On Fri, May 23, 2025 at 8:12=E2=80=AFAM Nikos Balkanas <nbalkanas@g=
+mail.com>
+>>>>>>> wrote:
 >>>>>>>
->>>>>>>> On 2025-05-22 21:31, Nikos Balkanas wrote:
+>>>>>>>> Thx Marcus,
 >>>>>>>>
->>>>>>>> The spike is very clean to come from outside.
->>>>>>>> Must be from my X310. My tuner must be adding a signal to the
->>>>>>>> center frequency. The small artifact at 2 Ghz is probably the tune=
-r
->>>>>>>> not
->>>>>>>> equilibrating fully.
->>>>>>>> I recently updated my FPGA image. Is that where the tuner lives?
+>>>>>>>> For your fast and informative answers. Sorry it took me a while to
+>>>>>>>> reply,
+>>>>>>>> but I'm still trying to get:
+>>>>>>>> tune_request(freq, lo_off)
+>>>>>>>> to work in C.
+>>>>>>>> My X310 has 2 SBX-120 boards. Using uhd 4.6.0 in Ubuntu 24.04.
+>>>>>>>> True about the tuner. Much cheaper and easier to implement it in
+>>>>>>>> analog.
+>>>>>>>> I am using your FPGA image. Haven't touched it myself, yet.
+>>>>>>>> So, the spike is pretty narrow to interfere with my signals, but
+>>>>>>>> still messes my power calculations:(
+>>>>>>>> I already implemented the integer frequency tuner and working on
+>>>>>>>> the low oscillator offset.
+>>>>>>>> If you have any pointers about it, feel free to advise.
+>>>>>>>> LO is not part of the request_tuner_t struct. It is set
+>>>>>>>> independently.
+>>>>>>>> Is this the same LO in uhd_usrp_set_rx_lo_freq?
+>>>>>>>> If this is the case I can modify it externally:)
 >>>>>>>>
->>>>>>>> You haven't mentioned in this thread which daughtercard you're
->>>>>>>> using.   RF front-ends that use complex-baseband
->>>>>>>>   downconversion suffer from something called "DC-offset", which
->>>>>>>> produces a spike at 0Hz in the complex spectrum.
->>>>>>>>   The radio block in the standard FPGAs has methods for reducing
->>>>>>>> this, unless you turn it off.  This is a very very
->>>>>>>>   *normal* thing for complex-baseband receiver chains.
+>>>>>>>> BR
+>>>>>>>> Nikos
 >>>>>>>>
->>>>>>>> If the algorithms are engaged and working, then there'll still be =
-a
->>>>>>>> central spike, but *considerably* reduced, and I find that
->>>>>>>>   said spike is usually swamped by external signals, even in radio
->>>>>>>> astronomy.
+>>>>>>>> On Fri, May 23, 2025 at 4:40=E2=80=AFAM Marcus D. Leech <
+>>>>>>>> patchvonbraun@gmail.com> wrote:
 >>>>>>>>
->>>>>>>> The other method that people use is to use "offset tuning".  Where
->>>>>>>> the tuner is tuned to a different RF frequency, and the
->>>>>>>>    DDC brings your signal of interest down to 0Hz.
->>>>>>>>
->>>>>>>> https://files.ettus.com/manual/page_general.html#general_tuning
->>>>>>>>
->>>>>>>> The "tuner" is an analog collection of components, including an LO
->>>>>>>> generator, and mixers.  While it is *controlled* through
->>>>>>>>   the FPGA, it is an analog subsystem.
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> On Fri, May 23, 2025 at 3:19=E2=80=AFAM Nikos Balkanas <nbalkanas@=
-gmail.com>
->>>>>>>> wrote:
->>>>>>>>
->>>>>>>>> Hello,
+>>>>>>>>> On 2025-05-22 21:31, Nikos Balkanas wrote:
 >>>>>>>>>
->>>>>>>>> Whenever I look at my spectrum I always see an energy spike at th=
+>>>>>>>>> The spike is very clean to come from outside.
+>>>>>>>>> Must be from my X310. My tuner must be adding a signal to the
+>>>>>>>>> center frequency. The small artifact at 2 Ghz is probably the
+>>>>>>>>> tuner not
+>>>>>>>>> equilibrating fully.
+>>>>>>>>> I recently updated my FPGA image. Is that where the tuner lives?
+>>>>>>>>>
+>>>>>>>>> You haven't mentioned in this thread which daughtercard you're
+>>>>>>>>> using.   RF front-ends that use complex-baseband
+>>>>>>>>>   downconversion suffer from something called "DC-offset", which
+>>>>>>>>> produces a spike at 0Hz in the complex spectrum.
+>>>>>>>>>   The radio block in the standard FPGAs has methods for reducing
+>>>>>>>>> this, unless you turn it off.  This is a very very
+>>>>>>>>>   *normal* thing for complex-baseband receiver chains.
+>>>>>>>>>
+>>>>>>>>> If the algorithms are engaged and working, then there'll still be
+>>>>>>>>> a central spike, but *considerably* reduced, and I find that
+>>>>>>>>>   said spike is usually swamped by external signals, even in radi=
+o
+>>>>>>>>> astronomy.
+>>>>>>>>>
+>>>>>>>>> The other method that people use is to use "offset tuning".  Wher=
 e
->>>>>>>>> center frequency.
->>>>>>>>> In the first image you can see a spike at 2, but not at 2.001 Ghz=
-.
->>>>>>>>> In the next image,
->>>>>>>>>  at 2.001 Ghz you can see the energy spike at the center
->>>>>>>>> frequency, but also a small
->>>>>>>>>  spike at 2 Ghz.
->>>>>>>>> I have verified these results by both fosphor (OpenCL fft) and
->>>>>>>>> fftw3f. Besides, if it were
->>>>>>>>>  an fft artifact, why is the spike at 2 Ghz still visible after a
->>>>>>>>> few mins? These spikes
->>>>>>>>>  seem to be transient, but real. In that part of the spectrum, yo=
-u
->>>>>>>>> there is no traffic. Could it be  harmonics from my power supply?=
- Problems
->>>>>>>>> with my X-310? My transmitter
->>>>>>>>>  doing funny things (I have 2 boards and not enabling my
->>>>>>>>> transmitter anywhere)?
->>>>>>>>> Naming of images is freq_sr.jpg. All are in Mhz.
+>>>>>>>>> the tuner is tuned to a different RF frequency, and the
+>>>>>>>>>    DDC brings your signal of interest down to 0Hz.
 >>>>>>>>>
->>>>>>>>> TIA
->>>>>>>>> Nikos
+>>>>>>>>> https://files.ettus.com/manual/page_general.html#general_tuning
 >>>>>>>>>
->>>>>>>>
+>>>>>>>>> The "tuner" is an analog collection of components, including an L=
+O
+>>>>>>>>> generator, and mixers.  While it is *controlled* through
+>>>>>>>>>   the FPGA, it is an analog subsystem.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> On Fri, May 23, 2025 at 3:19=E2=80=AFAM Nikos Balkanas <
+>>>>>>>>> nbalkanas@gmail.com> wrote:
+>>>>>>>>>
+>>>>>>>>>> Hello,
+>>>>>>>>>>
+>>>>>>>>>> Whenever I look at my spectrum I always see an energy spike at
+>>>>>>>>>> the center frequency.
+>>>>>>>>>> In the first image you can see a spike at 2, but not at 2.001
+>>>>>>>>>> Ghz. In the next image,
+>>>>>>>>>>  at 2.001 Ghz you can see the energy spike at the center
+>>>>>>>>>> frequency, but also a small
+>>>>>>>>>>  spike at 2 Ghz.
+>>>>>>>>>> I have verified these results by both fosphor (OpenCL fft) and
+>>>>>>>>>> fftw3f. Besides, if it were
+>>>>>>>>>>  an fft artifact, why is the spike at 2 Ghz still visible after =
+a
+>>>>>>>>>> few mins? These spikes
+>>>>>>>>>>  seem to be transient, but real. In that part of the spectrum,
+>>>>>>>>>> you there is no traffic. Could it be  harmonics from my power su=
+pply?
+>>>>>>>>>> Problems with my X-310? My transmitter
+>>>>>>>>>>  doing funny things (I have 2 boards and not enabling my
+>>>>>>>>>> transmitter anywhere)?
+>>>>>>>>>> Naming of images is freq_sr.jpg. All are in Mhz.
+>>>>>>>>>>
+>>>>>>>>>> TIA
+>>>>>>>>>> Nikos
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> _______________________________________________
+>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> _______________________________________________
+>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>>
 >>>>>>>> _______________________________________________
->>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>>
->>>>>>>>
->>>>>>>> _______________________________________________
->>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>>
->>>>>>> _______________________________________________
->>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>
 >>>>>>
->>>>>
->>>>>
->
+>>>>>>
+>>
 
---0000000000009051350635d9241a
+--0000000000001e71570635de5e2c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Hi =
-Marcus,</div><div class=3D"gmail_default" style=3D"font-size:small"><br></d=
-iv><div class=3D"gmail_default" style=3D"font-size:small">I am aware of tho=
-se. I wouldn&#39;t be doing all these if they were available to me:(</div><=
-div class=3D"gmail_default" style=3D"font-size:small">You can check C API a=
-vailability in usrp.h:)</div><div class=3D"gmail_default" style=3D"font-siz=
-e:small"><br></div><div class=3D"gmail_default" style=3D"font-size:small">B=
-R</div><div class=3D"gmail_default" style=3D"font-size:small">Nikos</div></=
-div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">On Sat, May 24, 2025 at 12:33=E2=80=AFAM Marcus D. Leec=
-h &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><u>=
-</u>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Hi,=
+</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div=
+ class=3D"gmail_default" style=3D"font-size:small">Problem fixed:) It was e=
+asier than I thought. No patches needed:)</div><div class=3D"gmail_default"=
+ style=3D"font-size:small">The answer was in host/lib/types/tune.cpp always=
+:</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><di=
+v class=3D"gmail_default" style=3D"font-size:small">tune_request_t::tune_re=
+quest_t(double target_freq, double lo_off)</div><div class=3D"gmail_default=
+" style=3D"font-size:small">=C2=A0.target_freq(target_freq)<br>, rf_freq_po=
+licy(POLICY_MANUAL)<br>, rf_freq(target_freq + lo_off)<br>, dsp_freq_policy=
+(POLICY_AUTO)<br>, dsp_freq(0.0)<br><br></div><div class=3D"gmail_default" =
+style=3D"font-size:small">There is only a labeling confusion in the definit=
+ion of tune_request_t.</div><div class=3D"gmail_default" style=3D"font-size=
+:small">The first 3 fields refer to the RF chain. It is curious that there =
+are both target_freq and=C2=A0 rf_freq</div><div class=3D"gmail_default" st=
+yle=3D"font-size:small">at the same time. Rf_freq should be renamed lo_freq=
+!</div><div class=3D"gmail_default" style=3D"font-size:small">rf_freq_polic=
+y affects both target freq and lo_freq:)</div><div class=3D"gmail_default" =
+style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"f=
+ont-size:small">HTH</div><div class=3D"gmail_default" style=3D"font-size:sm=
+all">Nikos</div><div class=3D"gmail_default" style=3D"font-size:small"><br>=
+</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div=
+ class=3D"gmail_default" style=3D"font-size:small"><br></div></div><br><div=
+ class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Sat, May 24, 2025 at 6:16=E2=80=AFAM Nikos Balkanas &lt;<a href=
+=3D"mailto:nbalkanas@gmail.com">nbalkanas@gmail.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div cl=
+ass=3D"gmail_default" style=3D"font-size:small">Hi Marcus,</div><div class=
+=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gmail_=
+default" style=3D"font-size:small">I am aware of those. I wouldn&#39;t be d=
+oing all these if they were available to me:(</div><div class=3D"gmail_defa=
+ult" style=3D"font-size:small">You can check C API availability in usrp.h:)=
+</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div=
+ class=3D"gmail_default" style=3D"font-size:small">BR</div><div class=3D"gm=
+ail_default" style=3D"font-size:small">Nikos</div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, May 24, 2025 at 1=
+2:33=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.c=
+om" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><u></u>
 
  =20
    =20
@@ -1037,10 +1091,11 @@ mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave=
   </div>
 
 </blockquote></div>
+</blockquote></div>
 
---0000000000009051350635d9241a--
+--0000000000001e71570635de5e2c--
 
---===============5159892257428982229==
+--===============4057554553198242302==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1050,4 +1105,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5159892257428982229==--
+--===============4057554553198242302==--
