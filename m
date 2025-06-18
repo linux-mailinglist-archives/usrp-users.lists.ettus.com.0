@@ -2,217 +2,140 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA1AADDDC6
-	for <lists+usrp-users@lfdr.de>; Tue, 17 Jun 2025 23:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74C47ADF118
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Jun 2025 17:21:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B4E7A38614B
-	for <lists+usrp-users@lfdr.de>; Tue, 17 Jun 2025 17:16:27 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1589E386167
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Jun 2025 11:21:55 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1750194987; bh=6dQymfgWcBmveTeeNsjEfZwZLCIdeDPSfDfKOhvDwMU=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=ezxC9EWYtTe6g7dSkkTJ9YgDnVqIqru1YAWCwE14PuSUPJeU4J8Sitif2rC4TysEu
-	 mBslv2WXssT6PNdqmDFrtuGHNumASjwtEfxo+QdJ1ZZzSyM9Za5LE7Ln4a57w0gUda
-	 13vQlCX7N8qBZqB+/Aj0NysXbcv3Cel5XEpQ0TNML3v7EAOxNy+XPuIPGJ/vGOtVgL
-	 gYRKrDHuwiDHr/iptPN9gm1s3rDqmlNidWpDF1CVRyXvDfoYG1yyuXv9oQZBzUXo0I
-	 MiaPqb6h2JrnvClB6L1tDMVI51Z6cBNTnSUAf9N1GUfj6WpGAPeYycu/JV1beVpyyd
-	 iEpe/wuuR2QNQ==
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id B4BBB3860BB
-	for <usrp-users@lists.ettus.com>; Tue, 17 Jun 2025 17:16:09 -0400 (EDT)
+	t=1750260115; bh=Ic9rWASvuxxPk92NKEgfT2sjylp9BqbLktWaVXSnIDo=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=iEsR7oJa/az91s3+C08eHJXXJFX02wREtDPEfyw2m0XYxuStu/ph4nGMgBGmMkV0i
+	 hjYQC17kPDYwvIXIQz///sWGo2JQ5nA1oz9pcztNShLqV47hDa9UOFjHutzUy37pfC
+	 e7iulU9si7qMtLXN8DxBbmR8s9Y//Q1+tU1Kwjr2o+uxpnNCHciwfKEylTXB4e3WlO
+	 xdX9lBXB8QupXYK6ytJ2dqOkPjbUiZrIcJaL/CNtgzTm0QcHnlJ6a6M5l4oajTgBQb
+	 msyeiVK2haF8VYJNgz5v2qIe9RqTdx9G6fVmS43QF7JBE2IkLteZNxZzI/liRJLEzL
+	 DUHFEBiW+1TVQ==
+Received: from sonic317-26.consmr.mail.bf2.yahoo.com (sonic317-26.consmr.mail.bf2.yahoo.com [74.6.129.81])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3F10E386123
+	for <usrp-users@lists.ettus.com>; Wed, 18 Jun 2025 11:20:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TKRZH3nV";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="IBTGflal";
 	dkim-atps=neutral
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-acbb85ce788so1070849966b.3
-        for <usrp-users@lists.ettus.com>; Tue, 17 Jun 2025 14:16:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750194968; x=1750799768; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fGnM1aE72bMDDew5Mqh+Do6NObG4JCW83WsuGM6bh4E=;
-        b=TKRZH3nVUAM4IjbS3pXMzs5mtsmfV63n9uWGMkcjMV+1Qi5vtTarng/KrTksP8475O
-         kbecX+YwXhorYqYrewfQxtAH5t3HdqlJuobjnUG+0Vjf82ZL5n5LxZQVN5jRjgDw0voA
-         9fBr2TymjJCJ0Q0i/BcHaFKK7e9M+rt+atEf/4+E9G64uEtanFMZYo9O7OXj6HFPDcR4
-         kKS7Dk+ZIrxbHTY/Qfm8KrFQDupnCjMUuZX8gPE4sqpybqs0u+BzsiYc7fkygxwCPN96
-         hIEHI+sMeHQST3pqQ7YxtqRD4w/esZc7r6fPGD5K2swOsXBI4sZV2ypK6mhZY2VaYmvG
-         X73g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750194968; x=1750799768;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fGnM1aE72bMDDew5Mqh+Do6NObG4JCW83WsuGM6bh4E=;
-        b=nXy+vc/jdx4ODOhwn2G5fPOWAgrvXY+RDOj6aFdsBFCuLUZSs/oD1LigmePoPnKbCO
-         aiv0XpJ+bol9K0XsBmLwM7wWxryVYvCMa1HS9uPGMVTEt2YxlLuFAe14DCZo1crsopWd
-         rTZF9xCEvP77HlXtXuR2ugPWy0GEPlnNUMRnskxH22Ey4kmlK1hhHoHz6tisgNw71K0d
-         S9dAArHAHAd4os0ismZ0TULRjR527/QBegrOETnyzwncN1QUQGdK98XDZVU7BCU/8s1I
-         gXa3G7dmtOFVWw187EIDF/VV/VNEBvqtQbxmMbSzyqzYYgP85LiOi2wnwwrW2+ZnYDgz
-         SdRQ==
-X-Gm-Message-State: AOJu0Yx9TrUu3DYuh+VmKoeeddqgPjJEkn63dn/Ghf0rVAdxjCuJBxZB
-	hxr6n7tTvghqkMfFiwcU+MjlReMtiD/aBQOqan3pkkPDsv9KTO1ZcUl5SBD/1dve8QX1JL5Xx3X
-	n6IDUsMbUlzuRxmVHc6PeCHZ6GlhZ+4sJCpij
-X-Gm-Gg: ASbGncuhBeHc/X6dSuzqWnHORjZ8cvK67k5BeGMr8fvdsNh/CFnRMt3hHRJbVgb4NBD
-	C7zCGqN5ADA0qrvEDnei5Cp0euIODBDKV98Upb7Jt5qtO5lFwwr46U5VmpHLbZI98dOFid7MV6k
-	YADJcsy8NKHwZ/ue3zfMYonn7USmYyWkiioV5PSTMd1C7xUVgG
-X-Google-Smtp-Source: AGHT+IFZ0uGfPLs1t6u1YGw502PzD8X11OBcULyqb/Nw4pQ2FbHg4vHYuZS6FmrEr/L7AiYkG0H9zPPsSjGvTDSNm+Y=
-X-Received: by 2002:a17:907:70b:b0:ad8:a9fc:8146 with SMTP id
- a640c23a62f3a-adfad59065fmr1428711166b.44.1750194968319; Tue, 17 Jun 2025
- 14:16:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1750260051; bh=GhSvHieGX6zVDx3XQWCDC31Eh6fTMAC4BvmVyAVkfDw=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=IBTGflalEIROWENFeiwPb7qEAj9hgBo1UkesqjjjBoAVdjkHOy2+IYCCFlFbQQNlGi+ykrY5ylmWWTDron5bd49QEOpSUEhmslXCfNLVtQBesJpPkJY+JtkEBNmCIVSX7+53PG4xRL78BJsCoZCmcDKPXe/J6nVsSzNFLgPcXI36mNxd3fgJHcvFf61RiY5Jq35VEz89rWdJ46yOKQ31QR5Crrfb9L4/mzvSHwng2WSywucSKOF47lD+wZYuUqkaLsfgghL2H1MxjjZytBvuCeYAkNviRpU91XUBEmqjVjAWgfinOLaVdVzmdR2xiqwXZHYeWzpoDeM+DJSC2SwP4A==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1750260051; bh=EX5w4rj8LNyqKnUzVbL1wKLXCs/++kgcMZryCnFcXR3=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=E7J91M9e+WeDyAEuYUH2lEIu11iTfQe1A5w1UO+PqDN36RuDs9GoIqC469T0bWuNfig7hJa4YhP0tmFPgW/oHol3x3UMI4F/77s03+BcgBYqqdCRiWzvq0qrVOzZChi6JnXTO0XTVUOxmDC104XA5ePfZy62gtex3JcxFDhP8YS3Eq5+y3UX3+NcREQ7o4B0PYcVnV3qMsGM2imKPKk62FJ6dcI3v5PKaFasKusjS6Wxp6L36qnj1FquPZ2zgiEumG/rAzslfv0XpAeaLN7NLcBEtvK6X9rw9CQe3/64AuW+9qvqBq2o017n2ZKYtmJ5AVVTJHafc/GS+4KtgVyXEw==
+X-YMail-OSG: szWX0CwVM1lDRvpM8feSyzUxgEWheXcY9GTkCAMmFkLQSwX2a51xATkGaSd1kWy
+ J9OAoGEhFRTEyVuIbVy0H286X1wL687Q6cFD9E8taDYSgfQxhFF0HdLBQwUv67PkSr67QxeSP0TY
+ ZY5ojy9SeA_uJ6bzbmlcg4.EpvuG1_jW8QQdbbOPTwwDhCy2pQveM2yWnqd50.C7cfGnquoqpLYB
+ 5KFtnHKx4CohykDdf1boMPIC0icczbUQSR2AyR7D7KL68yQqLOJOnwj7uHUaamRw7F3L2aHuhOCV
+ hlLdQV8gp85n4xAwfR93oL5P5pTGEmXpZ5btMbjERkt0jUNrUTnYDf9VtZwYkJ4GdHubjFf7ZMZv
+ .PHQHfsiZHesRhQYQgXGSPHqr17oIYr9C.THtmL5Om071EbV4PBASIOafX6fHB6Et6C6S9M1O1Ph
+ Rx0LhtiZqv5SiHzJSnExvMsCRLqV0AN3.FXS6sm3Qq_0hXhRyAPNEYgykUffT3o7M.kxOvyPOuKM
+ DnRje4MmOlModpXVeuP_3fYqn5KJPvTnPz6LXt93f8najn7fXMbZpzFMvhhOC_aJhGCxOr5AzHKx
+ xBMX1kvHABN9OqPBoLRoMb5VQPPMyvamihydKVfTDUzZBWzS0QfFB71QTCKwbVmTlub.4C9Y4EfG
+ IO59RgoVzF.PsiALPqdDT2uK4UUuQaI3.imXaaMGKvXL5R6HntG8UKwcffNBrdHba.tOnT4LfzRg
+ udi7HLlw1w2t6OyHmPhoBrMiyLubUIN1poQtiDiLFj5XaFfr74guJV9oXkwpiYMUx2xLXES8qn_z
+ rJuaLNakgSMYSPjkBR_.MLtp5nJwWQ1zy4gJZ8SpmmxA7k9EUlCABK14kWMGqxWItbjmvzT.JRPp
+ BMh70Gd.Y4Eb5CfM_zugYBeKQ1dJ2XG8A_S5WcfCT5UvHjKwZi5vJE3D6aYjTBUfE4Zvl7W2Kf8r
+ dnAwaZQwN6vAuEorkbcuqD8ursM5z.XGloZYtkQQ6cr7wH.AYn22mf.l421mnQIHcPw8ma_k2A0A
+ 2eiop3jocwx0PgMRQZB8q4K9J.PD0_lsBOWepfMI9Aw7Ua81aiiPhfbsxmvwyJZ_y7kLEoITuk2K
+ YZnM7A4PcBmJ5fCckDDk5a_o.f7XJjcbd0XLYvkZoxvwo4z3wiL0BxmIkL2n8E4HUGOe.Q506fzI
+ J4CZ72b846tWMFHvv.5wgErYY_TOQxqAH.lZn7b575JpzhILY2lR6m7xXanJ59Vre95vqZ3o7VQP
+ tYI8hT4Mmu3.0E0368DxJzVMUbv8npA7JLQpJ9RJzR3TrMcl_yQaslQdpl3cmlQdNrYQUg9v37E1
+ KKEqc96SyCknvRyJRjxJT6jiAXHWP5dVRlvPX1jNVHHtACmfSC3mIc.W87LeKwnlpYjqILMMzXoj
+ zbGOLvkfEsVJuwZlvP5qYqhKsc8ViTUrmJzelmTdo5GMlGnRR_Ls0YvtiAeHdIhAqzFKaiSfwvlu
+ MJgcQ9_1lyYVaBlPaWYrcs2pqpz7cCz7M4sYhokHekb0cAYmYmYJr8B9oQMZxg1eWn6KSufFEUZ9
+ 2fXW7ih5mdCzqgPePYHvBZsPLTb_fsoyT_odmEA3i2CcbR4jIzzif_90bmPzNlOAXC4lVAGDengS
+ ivOqKNoKl.ipvUtuu6.PecMZ06IOtMijMn4j7Sm82ViKQr4pTck4BLLmKHflgKHblpnW83n_Kvmr
+ d6B6BegLIP_u7DH7DNgpVSnpsaZ5BklqtyyUOTb6dq1Whns0j3PnASHVeb13GsOmOgW4L0lrTNCp
+ HwDP1J3MYUiBSwq80otgoCnbw9s7gQ_DOZyCjXIDSPaXuUPrO9w9UcLsW7MBE41SsRCFiVA2DF7o
+ 4IoN4GKbjkRYGmli9KGWmQ96pxBcmkMzbQ7r3wWnUuq1h8eHAENXLr_T3IBnVwsXcZ_UMcTv1SWo
+ Ww5aW6v.9lXzv77hOzu7iFMZxVLf_GlAVE.6yInEyxqGtuH3Ul6PecnjNAtfvAgXrgoDhiTv8WSH
+ qjBJBLo93B2A6L5Y.PY8F2okzYvo0g.NfmTIV7.FeclDR81hOd4wXZ0BqIyfLBJ7Kp2LgAxbzZ8m
+ ecJrXvoi6eK_dY5i5LJosQ9SdoC06VGvf4tMCiaoAGh7uCbly4CzEN2hWr_gbkS8FT5GqeJ2y3ox
+ hUONU0cUtKX1dj3BkV07.amraXIy4c7r7uWOokWhJiynX6_32jlWQutqYYNj9oKV73UZHd.DkruD
+ _Gr3_BhfXctOaPQkSY2bZwd3iKn4XCbPz3h2JGXYXNNDfng--
+X-Sonic-MF: <hwzhou@yahoo.com>
+X-Sonic-ID: e3300a32-5504-4b28-baf2-ebc44a968b14
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic317.consmr.mail.bf2.yahoo.com with HTTP; Wed, 18 Jun 2025 15:20:51 +0000
+Date: Wed, 18 Jun 2025 15:20:50 +0000 (UTC)
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1162576844.1012378.1750260050258@mail.yahoo.com>
+In-Reply-To: <CAEXYVK5vMzrReanTsk4OL8M0D5+c=gSdgjAA4GJGEsdh5f7wVw@mail.gmail.com>
+References: <CAEXYVK6rYFpX8dJErUdGkqn3e56eifN3COXmmqmvvStu5A9AHA@mail.gmail.com> <CAFOi1A6=_+6Ej3wzk55ezeyK1EEFEWrBaJN7=guEmTD9AD1Pfg@mail.gmail.com> <CAEXYVK5vMzrReanTsk4OL8M0D5+c=gSdgjAA4GJGEsdh5f7wVw@mail.gmail.com>
 MIME-Version: 1.0
-References: <CAEXYVK6rYFpX8dJErUdGkqn3e56eifN3COXmmqmvvStu5A9AHA@mail.gmail.com>
- <CAFOi1A6=_+6Ej3wzk55ezeyK1EEFEWrBaJN7=guEmTD9AD1Pfg@mail.gmail.com>
-In-Reply-To: <CAFOi1A6=_+6Ej3wzk55ezeyK1EEFEWrBaJN7=guEmTD9AD1Pfg@mail.gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Tue, 17 Jun 2025 17:15:57 -0400
-X-Gm-Features: AX0GCFt5TrZj2KTwcV88q6m2c6SfaRjwE9KhjIvXF663BywZiH1l2ZbQW7cDltE
-Message-ID: <CAEXYVK5vMzrReanTsk4OL8M0D5+c=gSdgjAA4GJGEsdh5f7wVw@mail.gmail.com>
-To: Martin Braun <martin.braun@ettus.com>
-Message-ID-Hash: HYAXKNBK5LPFNBEXT3EEVHHLC7ZOOR5K
-X-Message-ID-Hash: HYAXKNBK5LPFNBEXT3EEVHHLC7ZOOR5K
-X-MailFrom: bpadalino@gmail.com
+X-Mailer: WebService/1.1.24021 YMailNorrin
+Message-ID-Hash: 7MTMVWLU5WP3Q2D5KM7GULJPO6YNQMZE
+X-Message-ID-Hash: 7MTMVWLU5WP3Q2D5KM7GULJPO6YNQMZE
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Remote Streaming from Both X440 QSFP+ Ports
+Subject: [USRP-users] ADC Self Cal in X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HYAXKNBK5LPFNBEXT3EEVHHLC7ZOOR5K/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7MTMVWLU5WP3Q2D5KM7GULJPO6YNQMZE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9193865388861094023=="
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============1823877987576160066=="
 
---===============9193865388861094023==
-Content-Type: multipart/alternative; boundary="0000000000005fd9860637cb052a"
+--===============1823877987576160066==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_1012377_12572342.1750260050257"
 
---0000000000005fd9860637cb052a
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_1012377_12572342.1750260050257
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+ Hello Community,
+I have two X410s with UHD 4.5. They are sync with an OctoClock, so I am using external clock and time.The problem is that whenever I start a test, X410s do ADC self calibration twice, in the 1st time, they calibrate with internal clock, and the 2nd time is due to my configuration of external clock. Self cal takes time.
+I need to run the test many times for debug, which means that this self cal is run many times, but all hardware connections and software configurations are not changed in test, so I hope the ADC calibration can be done only once and the cal results can be reused (e.g., save in a file and X410s just load them at the beginning of each test). This will save a lot of cal time and this is the best solution.
+If not the best, I can accept a suboptimal solution - calibrate once rather than twice. This means that I need to configure external clock in make command. Is it possible to configure make for this purpose?
+Any suggestion will be appreciated.
+Kind regards,H.
+
+
+------=_Part_1012377_12572342.1750260050257
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-One more question regarding remote streaming.
+<html><head></head><body><div class=3D"ydp63f5324byahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hello Community,</div><div d=
+ir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"=
+false">I have two X410s with UHD 4.5. They are sync with an OctoClock, so I=
+ am using external clock and time.</div><div dir=3D"ltr" data-setdir=3D"fal=
+se">The problem is that whenever I start a test, X410s do ADC self calibrat=
+ion twice, in the 1st time, they calibrate with internal clock, and the 2nd=
+ time is due to my configuration of external clock. Self cal takes time.</d=
+iv><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-s=
+etdir=3D"false">I need to run the test many times for debug, which means th=
+at this self cal is run many times, but all hardware connections and softwa=
+re configurations are not changed in test, so I hope the ADC calibration ca=
+n be done only once and the cal results can be reused (e.g., save in a file=
+ and X410s just load them at the beginning of each test). This will save a =
+lot of cal time and this is the best solution.</div><div dir=3D"ltr" data-s=
+etdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">If not the=
+ best, I can accept a suboptimal solution - calibrate once rather than twic=
+e. This means that I need to configure external clock in make command. Is i=
+t possible to configure make for this purpose?</div><div dir=3D"ltr" data-s=
+etdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Any sugges=
+tion will be appreciated.</div><div dir=3D"ltr" data-setdir=3D"false"><br><=
+/div><div dir=3D"ltr" data-setdir=3D"false">Kind regards,</div><div dir=3D"=
+ltr" data-setdir=3D"false">H.</div><div dir=3D"ltr" data-setdir=3D"false"><=
+br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div></div></body></ht=
+ml>
+------=_Part_1012377_12572342.1750260050257--
 
-I have a block which has a single CHDR output, but 4 "output ports". I have
-an endpoint with 4 inputs.
-
-Am I able to stream my block outputs to different remote locations? When I
-try it, it just seems to want to stream to the same software endpoint and
-whatever the last configuration was written is used.
-
-I think this makes sense as looking through the HDL, it seems like each
-chdr_stream_endpoint can only address a single destination endpoint. So if
-I want to use multiple remote streams at different remotes, I'd need to
-instantiate a single endpoint for each remote stream I want - right?
-
-Can this be confirmed?
-
-Thanks,
-Brian
-
-On Wed, May 21, 2025 at 3:23=E2=80=AFAM Martin Braun <martin.braun@ettus.co=
-m> wrote:
-
->
->
-> On Fri, May 16, 2025 at 10:18=E2=80=AFPM Brian Padalino <bpadalino@gmail.=
-com>
-> wrote:
->
->> On the X440, I'd like my block to be able to output to both QSFP+ ports.
->> I will be setting this up using remote streaming and I am wondering the
->> appropriate way to set up my block to be able to output to both ports. F=
-rom
->> the little blurb on remote streaming here:
->>
->>   https://files.ettus.com/manual/page_stream.html#stream_remote
->>
->> I see that I can supply:
->>
->>   - dest_addr, dest_port, dest_mac_addr, adapter
->>
->> The example uses the MultiUSRP object but I am using straight RFNoC. I
->> assume I need to do this for every stream that I might create, so for th=
-e N
->> ports that are on my block, I need N RX streams that define those values=
-,
->> right?
->>
->
-> Yes, exactly.
->
->
->> If I had 4 ports, and I wanted to split 2 ports on sfp0 and 2 on sfp1,
->> I'd create the stream for all 4 then issue the stream command to each on=
-e
->> and I should see the packets flow?
->>
->
-> That's right.
->
-> --M
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000005fd9860637cb052a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">One more question regarding remote streaming.<div><br></di=
-v><div>I have a block which has a single CHDR output, but 4 &quot;output po=
-rts&quot;. I have an endpoint with 4 inputs.</div><div><br></div><div>Am I =
-able to stream my block outputs to different remote locations? When I try i=
-t, it just seems to want to stream to the same software endpoint and whatev=
-er the last configuration was written is used.</div><div><br></div><div>I t=
-hink this makes sense as looking through the HDL, it seems like each chdr_s=
-tream_endpoint can only address a single destination endpoint. So if I want=
- to use multiple remote streams at different remotes, I&#39;d need to insta=
-ntiate a single endpoint for each remote stream I want - right?</div><div><=
-br></div><div>Can this be confirmed?</div><div><br></div><div>Thanks,</div>=
-<div>Brian</div></div><br><div class=3D"gmail_quote gmail_quote_container">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 21, 2025 at 3:23=E2=80=AF=
-AM Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com">martin.braun@=
-ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, May 16, 2025 at 10=
-:18=E2=80=AFPM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" ta=
-rget=3D"_blank">bpadalino@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">On the X440, I&#39;d li=
-ke my block to be able to output to both QSFP+ ports. I will be setting thi=
-s up using remote streaming and I am wondering the appropriate way to set u=
-p my block to be able to output to both ports. From the little blurb on rem=
-ote streaming here:<div><br></div><div>=C2=A0=C2=A0<a href=3D"https://files=
-.ettus.com/manual/page_stream.html#stream_remote" target=3D"_blank">https:/=
-/files.ettus.com/manual/page_stream.html#stream_remote</a></div><div><br></=
-div><div>I see that I can supply:</div><div><br></div><div>=C2=A0 - dest_ad=
-dr, dest_port, dest_mac_addr, adapter</div><div><br></div><div>The example =
-uses the MultiUSRP object but I am using straight RFNoC. I assume I need to=
- do this for every stream that I might create, so for the N ports that are =
-on my block, I need N RX=C2=A0streams that define those values, right?</div=
-></div></blockquote><div><br></div><div>Yes, exactly.</div><div>=C2=A0<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
-v>If I had 4 ports, and I wanted to split 2 ports on sfp0 and 2 on sfp1, I&=
-#39;d create the stream for all 4 then issue the stream command to each one=
- and I should see the packets flow?</div></div></blockquote><div><br></div>=
-That&#39;s right.</div><div class=3D"gmail_quote"><br></div><div class=3D"g=
-mail_quote">--M</div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000005fd9860637cb052a--
-
---===============9193865388861094023==
+--===============1823877987576160066==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,4 +145,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9193865388861094023==--
+--===============1823877987576160066==--
