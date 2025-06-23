@@ -2,195 +2,125 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B338BAE3663
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Jun 2025 08:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FBEDAE37E3
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Jun 2025 10:09:43 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CCCAC3852A4
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Jun 2025 02:58:26 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 476A53850F6
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Jun 2025 04:09:42 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1750661906; bh=bIVH8AcE0UwnLUR/sweTus7WokaXfQE8xjlH2SitCaE=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=S0Ih4ZaJU2ut9uoMDz5uMZsWudJBigmd4syhT8WoSMLp1Q0j3NpUhYEE+SiaEqbQc
-	 Xmy1pGg7RqiRlvHpkabYAtsVCgYQDeo9nftwmdn2Laf3a2MTgsS7BViQfQ3gBiJHyO
-	 yns15wq8XTwqJ/IlTlorox7LvU9eAH7DRxEzRpFofFfZ0UeUiSglxs5J+nccXy/elr
-	 f9lxzbOm7pqJyHxy5SF7beQ2rPb6DY6ra13pdwB1BxqNoi/NA4hjAGesrSEqTE2bVq
-	 XFyC4XPAoWyVtjq6Rw4pD2hLUsaMOQVEBAi++rdYw4u4B39i356Lo5kEIdFpEYZTXO
-	 ATM0EzPFSLXdQ==
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1CB263842B1
-	for <USRP-users@lists.ettus.com>; Mon, 23 Jun 2025 02:57:28 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nro6c5Nr";
-	dkim-atps=neutral
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-87640a9e237so129067939f.2
-        for <USRP-users@lists.ettus.com>; Sun, 22 Jun 2025 23:57:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750661847; x=1751266647; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=abtU6kej2HS5jsaqoTjzJcCVSMw1YcBwZ6mZz0Au9sc=;
-        b=Nro6c5Nr5aGrnpvVxKUGCb9oglJPukiKA4hJr5WZKTf/5S5sipn8XLnlZmeOXYCxBJ
-         STTTMVSwjCBU/wLynp2hdpILFg7bBFqEUHgYokMe4vlpFqnP8a/rv3fV3DKe1RQynzhb
-         7cVfct7eohp7l687xcRsKClpwy6La0GIB/ZyuRMaeBNwas9vN0kfB6uZXUPjzbkaN3BT
-         OHtI0fGw9CY0RIs6ezcyZvafBcZM/fnltFCGhQSA5cUJtZWc3C3shvxlRJv8+a1ZA5HZ
-         mmkU+VpOv67Nf2Pob4NNsyaySjv/ASD85SoGsGOW/W9fKQLorpNE4rAAw4bHw9pUDhoL
-         w8eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750661847; x=1751266647;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=abtU6kej2HS5jsaqoTjzJcCVSMw1YcBwZ6mZz0Au9sc=;
-        b=up6dL++7KX5h9iFjIUm0QgEH7bM9Lv+6rzy3j472R3XE4gbhazFVbHEQ/B8fAX+BLv
-         LHgd3IlkPkh5lP3+aEuSEBVEpxcQXJtrjvhJjxtTxkp6etBnlBmJVq8uHO+K8p2bfctZ
-         +U1qdxGg3CxOJugo6pe/Y/IBE063oyJ79tKCVpHppQ+MjYGHMpuBTSfYqYuXLMOAKBpQ
-         FWvtNYBqmieg12eUXnvcqfy6RzbTat4cLRQn6b/oMpEOcUzkfSv8vWfAxk8Srj4qJraP
-         GqmdNssGACa9p8CL/LHNPLXTsKHtrK/FKAiGjvRbEluGKlOGDAsaKvhXkAAH8mmdnN8e
-         8xBg==
-X-Gm-Message-State: AOJu0YxS05Jc2Y2f2fep2wWNRsvCzb9haTKELSuTXugC+0MA+Ndnfon2
-	r/ttTJ0cNPAzAY9UVVmN25OhQjbLLaoLg/kRhkgWlQklzjsqRO7HkWYp71IG0n993SSWGAN8057
-	ZLV8y0SEK1xMOYolJiVOV8TzEjgeBXxRP8g==
-X-Gm-Gg: ASbGncsXlSx5D9WNN6Vo+jilnguolbWify7mHZEqFq8gnbsnNunAAJGYg2UvZDKq6o9
-	+xRp6Ho/rWoVS+y4RToxNLdhGactwVBzczgBuRVFrGca4x5st4/pkIJusmtL8nyCQGvGGHUTOnT
-	Esirdpvq+iYeSnzynRZySIlf47DX1LFebUv9giGrE=
-X-Google-Smtp-Source: AGHT+IE3naGxOxkLf8cz3S15iXoZ1IUQT6Tc4WAL+EqnKhJT0MiI7784uI9GRbT2iFfJDk94HwGHk6nYVJ5anbGPI10=
-X-Received: by 2002:a05:6602:3415:b0:875:b8b7:7864 with SMTP id
- ca18e2360f4ac-8762cf399bfmr1321380139f.6.1750661847269; Sun, 22 Jun 2025
- 23:57:27 -0700 (PDT)
+	t=1750666182; bh=ZaET1nWBgVxaYbjcAmhBlh7FQi/yKlC8xlW1i3/Ui6o=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=VKa3RxyqyAAdAyWqOrKFpORjGyKLGOv+2T8UmZqsoMsFBbAdfwqTt3EP++vOGLUqZ
+	 /JYq1U/gGwZoV89SnRDcpFb32ySRMOAJlHTGZNrpExwYyGbBqFeFuNHAh6fIJ9hqzj
+	 FeZ1Ebv7+j3ukBqj/pYcCSNovx5/gkTkBcwUz3Iit1kVFgVv+8xTBskU/b8OSHAsuD
+	 zM3tI4BlEQu8wulVDil4dfxHE2t07B1aAEloviU3cNFwRpNyaPAw78dzRq07fhA8h3
+	 pyq3klC6CwvaF/JcxK0ctvUIqll0NHM/aRyrF9RUJypN0LgrXTYWogRtC8NrldrNku
+	 74+6PSzBEKR+Q==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id B5E4F3809A5
+	for <usrp-users@lists.ettus.com>; Mon, 23 Jun 2025 04:08:32 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1750666112; bh=YtOEiDkVRPXTl6jN0negjLcP2qtG4Zj1yCL48bXVkas=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=0JJo8fBop0NXWlkRQfG3BpSxEvpUBT9wEWTMsPdvMfhMxEDSuq5hRLr4UiyBcwDth
+	 ukGC+VH4gE0+6Bzy61jm89taGUnO+vSkL4+kVwGqwhE6lIKum/+fNnIzdQ+fxoo18G
+	 AXJyVZtje2Me6R51QsNYTvaSVmIrPz/fCCwMyr5Z1BtbmLbCXMlPGPbUhQQ6YNxl+t
+	 vuKMPLqeOFucNDRbwbonqq2Pw6zDKtTBQ/rt260Dd+wnNEjo4h0bJPQCQoOgSETnLU
+	 yk4CGHqh4d74OMqVaGIjztJhbOIAa1JYh5rrcOA9ZdCgkHdrIzyNKn1ectC/wB7gl5
+	 c23avUYIthOvA==
+Date: Mon, 23 Jun 2025 08:08:32 +0000
+To: usrp-users@lists.ettus.com
+From: zhiwen_zhou@seu.edu.cn
+Message-ID: <NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAAxXO2FM86H6Apa6E7WzQqrROx2+uhc_V2DSiM1wA-Fbvp2T_Q@mail.gmail.com
 MIME-Version: 1.0
-References: <AGwAdwCIJCGWY-5d8h2Pdqo9.1.1750658251070.Hmail.220220790@seu.edu.cn>
-In-Reply-To: <AGwAdwCIJCGWY-5d8h2Pdqo9.1.1750658251070.Hmail.220220790@seu.edu.cn>
-From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Mon, 23 Jun 2025 09:57:15 +0300
-X-Gm-Features: AX0GCFu2KMham7dOW1XDjZGhZ7WS6myuBty-vWzKHqreo4t95w5TWNTaWfsKfRk
-Message-ID: <CAAxXO2FM86H6Apa6E7WzQqrROx2+uhc_V2DSiM1wA-Fbvp2T_Q@mail.gmail.com>
-To: =?UTF-8?B?5ZGo5pm65paH?= <zhiwen_zhou@seu.edu.cn>
-Message-ID-Hash: ZMYQNFWTGHJ3MT3VWYXO2WGJZBIG3APR
-X-Message-ID-Hash: ZMYQNFWTGHJ3MT3VWYXO2WGJZBIG3APR
-X-MailFrom: nbalkanas@gmail.com
+Message-ID-Hash: C5ECRFYOR5ZVZRX5ANIXERX5YRGQTCK3
+X-Message-ID-Hash: C5ECRFYOR5ZVZRX5ANIXERX5YRGQTCK3
+X-MailFrom: zhiwen_zhou@seu.edu.cn
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RFNOC Fosphor: rfnoc rx streamer :warning: Received fractional vector! Expect signal fagmentation.
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZMYQNFWTGHJ3MT3VWYXO2WGJZBIG3APR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/C5ECRFYOR5ZVZRX5ANIXERX5YRGQTCK3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8667468613637330059=="
+Content-Type: multipart/mixed; boundary="===============4102311114985310258=="
 
---===============8667468613637330059==
-Content-Type: multipart/alternative; boundary="000000000000874632063837b9b5"
+This is a multi-part message in MIME format.
 
---000000000000874632063837b9b5
-Content-Type: text/plain; charset="UTF-8"
+--===============4102311114985310258==
+Content-Type: multipart/alternative;
+ boundary="b1_NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Zhou,
+Hi Nikos,\
+\
+Thank you for responding!\
+\
+I think it=E2=80=99s just with Fosphor since streaming from DUC works fin=
+e.\
+How to ensure that at least 1024 complex samples is fed into the Fosphor =
+module? I=E2=80=99ve set the FFT size to 1024, and it still does not work=
+.\
+Does it have something to do with my FFT set up? Since I=E2=80=99ve chang=
+ed the old =E2=80=98fft_1x64.yml=E2=80=99 to 'fft.yml', is there any addi=
+tional parameters required?\
+My current FFT config:\
+\
+=C2=A0 fft_a:
 
-Is this a general RFNOC rx streamer problem? Do you get similar errors when
-you receive other data?
-If it is just with Fosphor, my guess is that you don't feed it at least
-1024 complex samples.
-It works with FFT, so that any less than 1024 samples will make it unhappy:=
-(
+=C2=A0 =C2=A0 block_desc: 'fft.yml'
 
-HTH
-Nikos
+=C2=A0 =C2=A0 parameters:
 
-On Mon, Jun 23, 2025 at 8:58=E2=80=AFAM =E5=91=A8=E6=99=BA=E6=96=87 <zhiwen=
-_zhou@seu.edu.cn> wrote:
+=C2=A0 =C2=A0 =C2=A0 MAX_FFT_SIZE_LOG2: 10
 
-> Hi,
-> I am trying to get RFNOC Fosphor working on an X310. I am able to build a
-> FPGA image containing the fosphor module, but it does not work with the
-> GNU Radio fosphor example. Error message shows: rfnoc rx streamer
-> :warning: Received fractional vector! Expect signal fagmentation.
-> I am using the lastest UHD with the latest GNURadio. I am using the XG
-> image with two 10G ports connected. MTU is set to 9000.
-> Is there anything wrong with my configurations?
-> Please find attached my yml file for the FPGA image as well as the grc
-> file for GNURadio.
->
-> Thanks,
-> Zhouzhiwen
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+\
+=C2=A0 fft_b: =C2=A0 =C2=A0=20
 
---000000000000874632063837b9b5
-Content-Type: text/html; charset="UTF-8"
+=C2=A0 =C2=A0 block_desc: 'fft.yml'=C2=A0 =C2=A0=20
+
+=C2=A0 =C2=A0 parameters:=C2=A0 =C2=A0 =C2=A0=20
+
+=C2=A0 =C2=A0 =C2=A0 MAX_FFT_SIZE_LOG2: 10\
+\
+\
+Zhouzhiwen
+
+--b1_NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Hi =
-Zhou,</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div=
-><div class=3D"gmail_default" style=3D"font-size:small">Is this a general R=
-FNOC rx streamer problem? Do you get similar errors when you receive other =
-data?</div><div class=3D"gmail_default" style=3D"font-size:small">If it is =
-just with Fosphor, my guess is that you don&#39;t feed it at least 1024 com=
-plex samples.</div><div class=3D"gmail_default" style=3D"font-size:small">I=
-t works with FFT, so that any less than 1024 samples will make it unhappy:(=
-</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div=
- class=3D"gmail_default" style=3D"font-size:small">HTH</div><div class=3D"g=
-mail_default" style=3D"font-size:small">Nikos</div></div><br><div class=3D"=
-gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Mon, Jun 23, 2025 at 8:58=E2=80=AFAM =E5=91=A8=E6=99=BA=E6=96=87 &lt;<a hr=
-ef=3D"mailto:zhiwen_zhou@seu.edu.cn">zhiwen_zhou@seu.edu.cn</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div style=3D"li=
-ne-height:1.5;font-size:14px;color:rgba(38,42,51,0.9);font-family:&quot;Sou=
-rce Han Sans&quot;">
-<div style=3D"font-family:&quot;Source Han Sans&quot;;font-size:14px;line-h=
-eight:1.5;color:rgb(0,0,0)"><span style=3D"background-color:rgb(255,255,255=
-);font-family:&quot;Source Han Sans&quot;">Hi,</span></div><div style=3D"fo=
-nt-family:&quot;Source Han Sans&quot;;font-size:14px;line-height:1.5;color:=
-rgb(0,0,0)"><span style=3D"font-family:&quot;Source Han Sans&quot;"><span i=
-d=3D"m_4863480376007925240mce_1_start" style=3D"overflow:hidden;line-height=
-:0px"></span>I am trying to get RFNOC Fosphor working on an X310. I am able=
- to build a FPGA image containing the fosphor <span id=3D"m_486348037600792=
-5240mce_5_start" style=3D"overflow:hidden;line-height:0px"></span>module, b=
-ut it does not work with the GNU Radio=C2=A0<span style=3D"font-family:&quo=
-t;Source Han Sans&quot;">fosphor example. Error message shows: <span style=
-=3D"color:rgba(0,0,0,0.85);font-family:Helvetica-Neue,Helvetica,Arial,sans-=
-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-v=
-ariant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;t=
-ext-indent:0px;text-transform:none;word-spacing:0px;white-space:pre-wrap;te=
-xt-decoration-style:initial;text-decoration-color:initial;float:none;displa=
-y:inline">rfnoc rx streamer :warning: Received fractional vector! Expect si=
-gnal fagmentation.<br></span><span id=3D"m_4863480376007925240mce_7_start" =
-style=3D"overflow:hidden;line-height:0px"></span><span style=3D"font-family=
-:&quot;Source Han Sans&quot;"><span style=3D"font-family:&quot;Source Han S=
-ans&quot;">I am using the lastest UHD with the latest GNURadio. </span></sp=
-an>I am using the XG image with two 10G ports connected. MTU is set to 9000=
-.<br>Is there anything wrong with my configurations?=C2=A0<br>Please find a=
-ttached my yml file for the FPGA image as well as the grc file for GNURadio=
-.<br><br></span></span></div><div style=3D"font-family:&quot;Source Han San=
-s&quot;;font-size:14px;line-height:1.5;color:rgb(0,0,0)"><span style=3D"fon=
-t-family:&quot;Source Han Sans&quot;"><span style=3D"font-family:&quot;Sour=
-ce Han Sans&quot;">Thanks,</span></span></div><div style=3D"font-family:&qu=
-ot;Source Han Sans&quot;;font-size:14px;line-height:1.5;color:rgb(0,0,0)"><=
-span style=3D"font-family:&quot;Source Han Sans&quot;"><span style=3D"font-=
-family:&quot;Source Han Sans&quot;">Zhouzhiwen</span></span></div><div>
-<br></div>
-<br></div>_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<p>Hi Nikos,<br><br>Thank you for responding!<br><br>I think it=E2=80=99s=
+ just with Fosphor since streaming from DUC works fine.<br>How to ensure =
+that at least 1024 complex samples is fed into the Fosphor module? I=E2=80=
+=99ve set the FFT size to 1024, and it still does not work.<br>Does it ha=
+ve something to do with my FFT set up? Since I=E2=80=99ve changed the old=
+ =E2=80=98fft_1x64.yml=E2=80=99 to 'fft.yml', is there any additional par=
+ameters required?<br>My current FFT config:<br><br>&nbsp; fft_a:</p><p>&n=
+bsp; &nbsp; block_desc: 'fft.yml'</p><p>&nbsp; &nbsp; parameters:</p><p>&=
+nbsp; &nbsp; &nbsp; MAX_FFT_SIZE_LOG2: 10</p><p><br>&nbsp; fft_b: &nbsp; =
+&nbsp; </p><p>&nbsp; &nbsp; block_desc: 'fft.yml'&nbsp; &nbsp; </p><p>&nb=
+sp; &nbsp; parameters:&nbsp; &nbsp; &nbsp; </p><p>&nbsp; &nbsp; &nbsp; MA=
+X_FFT_SIZE_LOG2: 10<br><br><br>Zhouzhiwen</p>
 
---000000000000874632063837b9b5--
 
---===============8667468613637330059==
+--b1_NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q--
+
+--===============4102311114985310258==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -200,4 +130,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8667468613637330059==--
+--===============4102311114985310258==--
