@@ -2,67 +2,67 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBEDAE37E3
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Jun 2025 10:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 718F0AE37F5
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Jun 2025 10:10:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 476A53850F6
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Jun 2025 04:09:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3DB6C3852EA
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Jun 2025 04:10:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1750666182; bh=ZaET1nWBgVxaYbjcAmhBlh7FQi/yKlC8xlW1i3/Ui6o=;
+	t=1750666247; bh=SIgMpA/gZUw6vnSegj4EllAR3Qeawaf/VaesMlupv7s=;
 	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=VKa3RxyqyAAdAyWqOrKFpORjGyKLGOv+2T8UmZqsoMsFBbAdfwqTt3EP++vOGLUqZ
-	 /JYq1U/gGwZoV89SnRDcpFb32ySRMOAJlHTGZNrpExwYyGbBqFeFuNHAh6fIJ9hqzj
-	 FeZ1Ebv7+j3ukBqj/pYcCSNovx5/gkTkBcwUz3Iit1kVFgVv+8xTBskU/b8OSHAsuD
-	 zM3tI4BlEQu8wulVDil4dfxHE2t07B1aAEloviU3cNFwRpNyaPAw78dzRq07fhA8h3
-	 pyq3klC6CwvaF/JcxK0ctvUIqll0NHM/aRyrF9RUJypN0LgrXTYWogRtC8NrldrNku
-	 74+6PSzBEKR+Q==
+	b=vuYe9KE7By51AvRXMZ/AXmdquVSAmvPbYwt1gX/Ah9pvA1r18yRvKc9JKf2ynIxLG
+	 RMFEGE1X8r3TcfK13FLt1fO4xF/XLH1/e5TxfUnzUmdhIAyO00ToTZXGDJyrQWrLHW
+	 zG9rGoI+2AyIK8S0GkVM37raqwbv6iG9k8DW7tvSNtJ3MeoXWsbxsc3Y0EYysIPrMz
+	 SHWrWmsb0JDav8LjmUrppwh71KS7FhJylqbJRWeRV5WvZ4WGW9OadkFxD/3Gq69JJi
+	 SR9y7fCH/2sg5XmW3Am+QBSYSlmvAHajtV/tQRoTRRuZTHjLdgL9YlgOlWSZcI6cWp
+	 Wvt05QZ4fTyjg==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B5E4F3809A5
-	for <usrp-users@lists.ettus.com>; Mon, 23 Jun 2025 04:08:32 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 03E31380B46
+	for <usrp-users@lists.ettus.com>; Mon, 23 Jun 2025 04:08:33 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1750666112; bh=YtOEiDkVRPXTl6jN0negjLcP2qtG4Zj1yCL48bXVkas=;
+	t=1750666113; bh=99OSQUaru+0G69LGn3KyhfupFzH4hK0Gby+2YhgUOv8=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=0JJo8fBop0NXWlkRQfG3BpSxEvpUBT9wEWTMsPdvMfhMxEDSuq5hRLr4UiyBcwDth
-	 ukGC+VH4gE0+6Bzy61jm89taGUnO+vSkL4+kVwGqwhE6lIKum/+fNnIzdQ+fxoo18G
-	 AXJyVZtje2Me6R51QsNYTvaSVmIrPz/fCCwMyr5Z1BtbmLbCXMlPGPbUhQQ6YNxl+t
-	 vuKMPLqeOFucNDRbwbonqq2Pw6zDKtTBQ/rt260Dd+wnNEjo4h0bJPQCQoOgSETnLU
-	 yk4CGHqh4d74OMqVaGIjztJhbOIAa1JYh5rrcOA9ZdCgkHdrIzyNKn1ectC/wB7gl5
-	 c23avUYIthOvA==
-Date: Mon, 23 Jun 2025 08:08:32 +0000
+	b=ZqCrHU37E2U7RFKuGvwk+AFIPliNXKgjYFKElYK+7phQTtu1eQaJ1wW2f3S4TVYQx
+	 lxioWnmRS/GIS/bgFH90i/njDYDzscBuM70yqGetwlrQ7Z5qmfqHACpiVSXcbJMW0l
+	 jM9Xke5tKXg0qGWCfIpSjwt8Q0abimY+B1O3ebHhmjlZLNhRWTJhPu4ZshSNC2nrwX
+	 zjpjfZf6LpM96jrzZ1Gf2Qg/1mXSnJ1U9qbAgarAyU0NR8AJoWMzncpf7EkNrgBz2X
+	 s8kUO6ZjvRDr6WwmomnR/lhNPLhusgiQG+BnYaNxdoRbcOLBqss4NXlhh3SMKUxwfi
+	 9X68blhlqV+Sw==
+Date: Mon, 23 Jun 2025 08:08:33 +0000
 To: usrp-users@lists.ettus.com
 From: zhiwen_zhou@seu.edu.cn
-Message-ID: <NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q@lists.ettus.com>
+Message-ID: <u68VKtOBVkQImuihTybgnC3MZBSi3dQrpCmIHBqrA@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 In-Reply-To: CAAxXO2FM86H6Apa6E7WzQqrROx2+uhc_V2DSiM1wA-Fbvp2T_Q@mail.gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: C5ECRFYOR5ZVZRX5ANIXERX5YRGQTCK3
-X-Message-ID-Hash: C5ECRFYOR5ZVZRX5ANIXERX5YRGQTCK3
+Message-ID-Hash: 2MZPCHYJ47HY52FDPWBE3AEVGZ6ABWCM
+X-Message-ID-Hash: 2MZPCHYJ47HY52FDPWBE3AEVGZ6ABWCM
 X-MailFrom: zhiwen_zhou@seu.edu.cn
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RFNOC Fosphor: rfnoc rx streamer :warning: Received fractional vector! Expect signal fagmentation.
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/C5ECRFYOR5ZVZRX5ANIXERX5YRGQTCK3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2MZPCHYJ47HY52FDPWBE3AEVGZ6ABWCM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4102311114985310258=="
+Content-Type: multipart/mixed; boundary="===============1630289263794160135=="
 
 This is a multi-part message in MIME format.
 
---===============4102311114985310258==
+--===============1630289263794160135==
 Content-Type: multipart/alternative;
- boundary="b1_NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q"
+ boundary="b1_u68VKtOBVkQImuihTybgnC3MZBSi3dQrpCmIHBqrA"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q
+--b1_u68VKtOBVkQImuihTybgnC3MZBSi3dQrpCmIHBqrA
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -100,7 +100,7 @@ My current FFT config:\
 \
 Zhouzhiwen
 
---b1_NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q
+--b1_u68VKtOBVkQImuihTybgnC3MZBSi3dQrpCmIHBqrA
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -118,9 +118,9 @@ sp; &nbsp; parameters:&nbsp; &nbsp; &nbsp; </p><p>&nbsp; &nbsp; &nbsp; MA=
 X_FFT_SIZE_LOG2: 10<br><br><br>Zhouzhiwen</p>
 
 
---b1_NZ7YP408TNM1IFfA2sez8blyq4YXkFD8AMbwS0Yt6Q--
+--b1_u68VKtOBVkQImuihTybgnC3MZBSi3dQrpCmIHBqrA--
 
---===============4102311114985310258==
+--===============1630289263794160135==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +130,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4102311114985310258==--
+--===============1630289263794160135==--
