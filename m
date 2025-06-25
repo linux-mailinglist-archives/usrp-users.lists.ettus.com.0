@@ -2,221 +2,148 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4EDEAE7E49
-	for <lists+usrp-users@lfdr.de>; Wed, 25 Jun 2025 12:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1F5DAE80C3
+	for <lists+usrp-users@lfdr.de>; Wed, 25 Jun 2025 13:16:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AC0C8385956
-	for <lists+usrp-users@lfdr.de>; Wed, 25 Jun 2025 06:00:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1ADAF385AF8
+	for <lists+usrp-users@lfdr.de>; Wed, 25 Jun 2025 07:16:45 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1750845610; bh=xTSFP+abm9SasoncBwP6Vf3pyEykwpBNHkzBEbBwLOM=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=cyXcAyDpTVLof9Fpz5NF8BJj9aLsTz2EeT4tFFoLbfNSug+I6yBSGkxN76Qgk+Npc
-	 t633fNzjnvSPkk1nRKKM/FEFe7VsOndiG2gerjuybDNvuf7SlHYc3nXZCuWY64TuUM
-	 VWpfKZPaAmEu05yAt7tANi56mZ2gYvHyO9wTYgj91PH6YHG4aRKtXpAMc1q+6ZpB9e
-	 1pUiU3SAm1XSZaa8pYo82tktYKyFaTO7OfFijUs1mGLaXRB9SUSIrJenWDy4LK3xPS
-	 ESPIs14sMNNUErUl5LPDQzW12p4Alz+n2xIxdWf5OAUCJ1/qxVCSeLfz3gbzl918wZ
-	 fPzftGQcWIc1A==
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 515EA3855D1
-	for <usrp-users@lists.ettus.com>; Wed, 25 Jun 2025 05:59:15 -0400 (EDT)
+	t=1750850205; bh=VvdDdmi0W0NEP8fhJPgPBDUO1kQqrL2hR5JhaCkXu/o=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=Bf2fUxWDlW1eNVsJ1YPd2QdU11WStPe9rZpGnS7EyBlUgEALJxgzdwHi6zov48uEE
+	 C6IUSyQJeKmWJ2rQADOo/yb6nlK4jF2bBc5Nsi5Dbn1EvcFWEqHTnOshRLKpURkrqP
+	 EmqGkZqKQ6hA83E1JGVxBgpNeJnPt3ymYpKI4bCS51SZTFfRJkDqOSRwfI5X7ytbA/
+	 G1YLuoj0Y+tJ+wXSm67CicIsEdoXWCyZkVupbcYlApTDvRO5Bn9ISVNdGawUCK1DIT
+	 sConguoJ9FMFL7gcwtRy7dpCOQt6yFqdsVw7bvyRPfqpXrVVWBSv8DrlqRTl3XDFqI
+	 3krPHDHZClJUQ==
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id 94F1C38499A
+	for <usrp-users@lists.ettus.com>; Wed, 25 Jun 2025 07:15:46 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Cnu7hL6q";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Npv0G5np";
 	dkim-atps=neutral
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ad56cbc7b07so979880866b.0
-        for <usrp-users@lists.ettus.com>; Wed, 25 Jun 2025 02:59:15 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-875dd57d63bso30971039f.0
+        for <usrp-users@lists.ettus.com>; Wed, 25 Jun 2025 04:15:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1750845554; x=1751450354; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LoLOVqBSXNwsK4ecxBJ346o3ETpq6Xl3LbEE0+XapmA=;
-        b=Cnu7hL6qC0pJPpM7CKChGvoWi4jasH0XPiV6N2Wg/GrNkz+HXaTcp/CeQhrznFBZJV
-         gwS+xFuXKeDVoSY1p4GVPw8lzrwVjr6C9AvnHhjw8HmrGQla6o/qfZ8f9FLJB+L0g+b6
-         SgY20r04uFKrqmneuzWcMdejXSbnm/LFzEB/PvwC4yHz37c8Wy4Q0R8A7fMXhWb5Yfca
-         y/tWQ84ub0LqHthEIgsvG8ywqKErvFCDasLre8wVoEFFV/qkmpR+ky0BEMNKJeWlY+sB
-         VArkUJBWnAvL0flZEmo1YYA3t5yl8R6dUuKBAE5ihERs5iiYSpqjxmNrYOswTgh4FV5a
-         E9Rg==
+        d=gmail.com; s=20230601; t=1750850146; x=1751454946; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VQCBcXcVkZUMvqJkwko/JZYV6ZOjo+vM+ezWhjhkXW4=;
+        b=Npv0G5npeOlsFUdFm+axkTHeGlf4uw0Vce9XkbQIJ7jyXXyIAf6qPToEpxOWFzxbfF
+         eNdO7Z944120scWIdinyFPM+XIs/PBiROHHRJ4fK7rJ12U6xHuvonhfUxl9Kx9GZwF7p
+         ywjjI56OEXBt3sW2SjHwgpnpJvvAT5HTbG+568G1HkGRYDvsVynFE7iwEdaYLlbHDv7y
+         H2kY8GKnBQ3511ACD4zdwH+p6fdgyTJG3HcuMO4x/KgjVtsDvgR4X+0uKOJ1gwc8rKxq
+         wu3Hm5E9a0uhzW7/O0n0kjzSB5AIIUzvqn3T5CdkHJzMcmXrxMhU2SLgCFfpgGvnVKX9
+         ePJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750845554; x=1751450354;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LoLOVqBSXNwsK4ecxBJ346o3ETpq6Xl3LbEE0+XapmA=;
-        b=OxGJDUaaIddGj68BiiuuAg1C/QGX3D+2ZtKsHhuIZCqZNAE0C0rE361z0FWFzew5M/
-         //roY6eRhgVC2rCFFVj+pDN7ClhTig9txSMtzC396RLzy3MCLpycZ+AI7u5iJMaAEB5j
-         OqgwhrXPGB7C5Bt39Qjh6o459R7njKFrfSgD20396ZSa252GyNs1ZQyN5b2cBex0S4JJ
-         125uxdmlNPaXvDECYCyTcZzp2Ycdqbpe0ZjzOTn7slMuf9D9D9KmB9HmOQEMs9ceYZeN
-         g45A1uiL/f3eg56x7AyU/j+s5dJeMTRL7sDgkKvfsj0jP5QUF42rRmYE8U4t74Fp6YmV
-         8+bQ==
-X-Gm-Message-State: AOJu0YzG5GEQpfut/pHgkU8Nu7L/5gycbZP5w07tTqd2dAKmP6X7PTZw
-	9RzaGqdUEA1jmfDGHgMQYeYVV6b+QGwz9+iKhQ5zKWmqsxXLpenPe4waWntW8jyrPuwQZPl0jZP
-	J2hVs6jRmnCYN67LraFXnNo+iLmGj7Ts7mPqJOpwK3U2XwCGqN4L4v+U=
-X-Gm-Gg: ASbGnctyMCWc3y0XBn2Dohuka1K78LN1aM00eK1kCE3IbceNJYXxHctp4b8m2Hg1n/R
-	C+sEyaB3QPNhtHnP9VB0nAbgpd5PaMj9DFr47DR9p67fmPzdhFSqKk2Z7iLkIM6QV4VAo0nyMG8
-	VIReDfS1mwv+9aVZFgGiuE243r3Iye6QUDvLliV8VejcpmcHGJxYpJVdbiilFqhnff4cTZNbBtf
-	oY=
-X-Google-Smtp-Source: AGHT+IHGFqXE+jBYQ70FW/FzOcRWeGtjsUEKO1GRZHbRalNuJfNBx0BjkxPikWOR15iRrhlUGcBYunsQn6/gzaBUZh8=
-X-Received: by 2002:a17:907:3f0d:b0:adb:9e8:8f17 with SMTP id
- a640c23a62f3a-ae0befbec85mr208563966b.52.1750845553308; Wed, 25 Jun 2025
- 02:59:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750850146; x=1751454946;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VQCBcXcVkZUMvqJkwko/JZYV6ZOjo+vM+ezWhjhkXW4=;
+        b=R3l1+Mb5luMuSjlEOw6s/sneIgCDtKdZFsX7cYpwlq6qARJLafz5ahgeRoyuaNuwkB
+         e4BZ2a6QsEaU+FaV5KtAO6RaPsfmT+ArH9wW+zTIHThJL+RuMqV9UmFWsmP9zTyN7F6w
+         tfaW9SKn5aFjP9Mt9oSqnjXirB1KNynpnXpEmWkn7YPSNEvUjJUoFmXsChsABAoVJYH3
+         oiSmWXkGI7S5Le9P6U2dg02qUQ3bGIxihEnkRWJ67q+HZ5caFc3yrNTpZ2oyLstH8pbF
+         BRSvQS8JHNOo+uDaw8IhG1TYCPxCuz5JQ98rsNICw7tDSBVz9XxWKPQKzv/HqCMvOCz0
+         uGXg==
+X-Gm-Message-State: AOJu0YykhuR6sBe3alz1XQuvg/7UP1NvvsztYFrFi2tX7B7NHz+m/prr
+	+jXFo+difcgduScV8z2c4x05skErq/h7aJtniGFIyjowCs1YCLyh3MRAfWiQiz2us8q0xIZkF9K
+	SWg0UnInRMu8YT+8M4mG7w/5x5C+cjAFIjQ==
+X-Gm-Gg: ASbGncs7IfLSXwkYP35QbHdG0ho9M979QDxDJhGeJ4wVwAD4CKnLVKfCrddwU/wVW5e
+	Xl4wkG91Bh1dC/sHpkmcLDfM8hHoc+A4FTLQhTBZBcRVFIRqY+ueN5Tnm1zGHskYdDRyJGtDmjz
+	uFz0x70FwE7K0fpjh5pjB2Rl9RyC3NNLygDQ1u5wpUwaIg
+X-Google-Smtp-Source: AGHT+IEbQfUXRwT1gGZ7TBZpS5HLyOLBXDe+Q6r4Kt7rR7jqDJco48Ds1DlvF5wEBQJdavbVXamPx5bA9K6lMNoWJho=
+X-Received: by 2002:a05:6602:6809:b0:85d:ad56:af88 with SMTP id
+ ca18e2360f4ac-8765d517663mr593720739f.1.1750850145818; Wed, 25 Jun 2025
+ 04:15:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEXYVK6aKCTCU5e9PwX5ijtUQ2F1sZm4jq3w+z7nbMa7fgytEw@mail.gmail.com>
-In-Reply-To: <CAEXYVK6aKCTCU5e9PwX5ijtUQ2F1sZm4jq3w+z7nbMa7fgytEw@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Wed, 25 Jun 2025 11:59:01 +0200
-X-Gm-Features: Ac12FXz9HTGdiO6Wn2M5b4HFNm3lN25V2YRbkgOb_GyYsJNZA0Ig3W4TXTbP1d0
-Message-ID: <CAFOi1A42E+2VCrZjYmhMhSiunRpt0rpJ8drUrJmjj-1kVRRi8w@mail.gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: BIZMI2CEHNDJDLRJEZEMT5Z7AYWB6NMF
-X-Message-ID-Hash: BIZMI2CEHNDJDLRJEZEMT5Z7AYWB6NMF
-X-MailFrom: martin.braun@ettus.com
+References: <T0tH8wS7Q7K2ZFo9GsXZdrO0O4tVRr8JhkKG78t7E@lists.ettus.com>
+In-Reply-To: <T0tH8wS7Q7K2ZFo9GsXZdrO0O4tVRr8JhkKG78t7E@lists.ettus.com>
+From: Nikos Balkanas <nbalkanas@gmail.com>
+Date: Wed, 25 Jun 2025 14:15:34 +0300
+X-Gm-Features: Ac12FXwIZbFQciKmR2JZpSQRVl3AjPoa8KPOOGEj3ug7fEo72KYYq-KWpNbfJms
+Message-ID: <CAAxXO2HKPGxw0eVcRx3mRq0gM5g_asZb2nyXR2T5NMhD61A9aw@mail.gmail.com>
+To: zhiwen_zhou@seu.edu.cn
+Message-ID-Hash: MHLI6TZ5Z3M3AG2U6PY7BEJPAA3ZL4BK
+X-Message-ID-Hash: MHLI6TZ5Z3M3AG2U6PY7BEJPAA3ZL4BK
+X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoC SEP Control Ports
+Subject: [USRP-users] Re: RFNOC Fosphor: rfnoc rx streamer :warning: Received fractional vector! Expect signal fagmentation.
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BIZMI2CEHNDJDLRJEZEMT5Z7AYWB6NMF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MHLI6TZ5Z3M3AG2U6PY7BEJPAA3ZL4BK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0450434263141922073=="
+Content-Type: multipart/mixed; boundary="===============9074466265033909313=="
 
---===============0450434263141922073==
-Content-Type: multipart/alternative; boundary="0000000000004312150638627fe1"
+--===============9074466265033909313==
+Content-Type: multipart/alternative; boundary="000000000000ff1d1306386390a1"
 
---0000000000004312150638627fe1
+--000000000000ff1d1306386390a1
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hey Brian,
+Nice! That is what it should be over a 10 Gbe line.
+You can raise it with spp, but it will cause fragmentation in a 10 GBe line=
+.
 
-the control portion of the SEP is for control data that needs to connect to
-the RFNoC blocks. As you know, RFNoC blocks are never directly connected to
-the host by any means. All control traffic to RFNoC blocks goes through the
-control crossbar, but to send control traffic into the control crossbar,
-you need to go through an SEP, which is also connected to the control
-crossbar.
+So fft NOC block is limited because it is general for all applications.
+The fosphor I use, uses it's own OpenCL FFT and cl/gl shared graphics.
+It loops to create that "live" spectrum fill, but also to refill its FFT.
+FFT is still 1024 complex samples, and it gets filled up each time in the
+loop!
+Any excess is padded with old input and FFTed again:)
+But this is a dedicated FFT not a general block...
 
-If you have more than one SEP that can send control traffic to the control
-crossbar, then theoretically, you have more options to control blocks, but
-in practice, this is rarely useful and it will increase the size of the
-control crossbar. So we pick one SEP to handle control traffic. If you have
-more than one SEP with control port enabled, then UHD will simply pick the
-first available one to route all of its control traffic (that's the "first
-one" part of your question).
+BR,
+Nikos
 
-SEPs don't need both in and out. If you have neither, then the SEP is not
-useful in the first place, but there are legitimate cases were you only do
-in or out (e.g., on the X310, we have SEPs for TwinRX and BasicRX
-daughterboards, which allow receiving on all four channels, but you can't
-use those SEPs for Tx because we only have daughterboards with 1 Tx channel
-for X310).
+On Wed, Jun 25, 2025 at 4:47=E2=80=AFAM <zhiwen_zhou@seu.edu.cn> wrote:
 
----> From here on, all info is strictly to educate, and is usually not
-necessary knowledge for RFNoC users:
-
-As for controlling the SEPs themselves, there are two mechanisms that we
-use. One is inline management traffic (e.g., for setting up flow control).
-"Stream Command" and "Stream Status" are such control packets (these have
-nothing to do with issuing stream commands to the radio!). There is also
-the backend interface, which lets us query and flush the SEPs. We use a
-backend interface to solve bootstrapping issues.
-
---M
-
-On Wed, Jun 25, 2025 at 12:29=E2=80=AFAM Brian Padalino <bpadalino@gmail.co=
-m> wrote:
-
-> I am reading the documentation for RFNoC SEP Control Ports and I came
-> across this:
->
-> "Each SEP can have an AXIS-Ctrl and an AXIS-CHDR port, as indicated by th=
-e
-> ctrl and data options. At least one AXIS-Ctrl port is required to
-> communicate with the RFNoC blocks, so ctrl typically enabled on just the
-> first SEP. Every SEP will usually have AXIS-CHDR connections to one or mo=
-re
-> RFNoC blocks, so data is usually enabled on all SEPs."
->
-> ...from: https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
->
-> I see the axis_ctrl_crossbar_nxn, but I am unsure what the statement abou=
-t
-> the first SEP is supposed to mean. Don't all the endpoints need some type
-> of control to configure the endpoint?
->
-> Is this supposed to mean that so long as a CHDR data port is connected to
-> the SEP, then configuration can be passed that way? If this is the case,
-> does each SEP need at least 1 IN and 1 OUT port? Is the only downside to
-> enabling all the SEP's to have control ports is some extra utilization in
-> the FPGA?
->
-> Can someone clarify what this is supposed to mean?
->
-> Thanks,
-> Brian
+> My MTU is 9000 and uhd_rx_streamer_max_num_samps returns 1996.
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---0000000000004312150638627fe1
+--000000000000ff1d1306386390a1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hey Brian,</div><div><br></div><div>the control porti=
-on of the SEP is for control data that needs to connect to the RFNoC blocks=
-. As you know, RFNoC blocks are never directly connected to the host by any=
- means. All control traffic to RFNoC blocks goes through the control crossb=
-ar, but to send control traffic into the control crossbar, you need to go t=
-hrough an SEP, which is also connected to the control crossbar.</div><div><=
-br></div><div>If you have more than one SEP that can send control traffic t=
-o the control crossbar, then theoretically, you have more options to contro=
-l blocks, but in practice, this is rarely useful and it will increase the s=
-ize of the control crossbar. So we pick one SEP to handle control traffic. =
-If you have more than one SEP with control port enabled, then UHD will simp=
-ly pick the first available one to route all of its control traffic (that&#=
-39;s the &quot;first one&quot; part of your question).</div><div><br></div>=
-<div>SEPs don&#39;t need both in and out. If you have neither, then the SEP=
- is not useful in the first place, but there are legitimate cases were you =
-only do in or out (e.g., on the X310, we have SEPs for TwinRX and BasicRX d=
-aughterboards, which allow receiving on all four channels, but you can&#39;=
-t use those SEPs for Tx because=C2=A0we only have daughterboards with 1 Tx =
-channel for X310).</div><div><br></div><div>---&gt; From here on, all info =
-is strictly to educate, and is usually not necessary knowledge for RFNoC us=
-ers:</div><div><br></div><div>As for controlling the SEPs themselves, there=
- are two mechanisms that we use. One is inline management traffic (e.g., fo=
-r setting up flow control). &quot;Stream Command&quot; and &quot;Stream Sta=
-tus&quot; are such control packets (these have nothing to do with issuing s=
-tream commands to the radio!). There is also the backend interface, which l=
-ets us query and flush the SEPs. We use a backend interface to solve bootst=
-rapping issues.</div><div><br></div><div>--M</div></div><br><div class=3D"g=
-mail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Wed, Jun 25, 2025 at 12:29=E2=80=AFAM Brian Padalino &lt;<a href=3D"mailto:=
-bpadalino@gmail.com">bpadalino@gmail.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I am reading the d=
-ocumentation for RFNoC SEP Control Ports and I came across this:<div><br></=
-div><div>&quot;Each SEP can have an AXIS-Ctrl and an AXIS-CHDR port, as ind=
-icated by the ctrl and data options. At least one AXIS-Ctrl port is require=
-d to communicate with the RFNoC blocks, so ctrl typically enabled on just t=
-he first SEP. Every SEP will usually have AXIS-CHDR connections to one or m=
-ore RFNoC blocks, so data is usually enabled on all SEPs.&quot;</div><div><=
-br></div><div>...from:=C2=A0<a href=3D"https://kb.ettus.com/Getting_Started=
-_with_RFNoC_in_UHD_4.0" target=3D"_blank">https://kb.ettus.com/Getting_Star=
-ted_with_RFNoC_in_UHD_4.0</a></div><div><br></div><div>I see the axis_ctrl_=
-crossbar_nxn, but I am unsure what the statement about the first SEP=C2=A0i=
-s supposed to mean. Don&#39;t all the endpoints need some type of control t=
-o configure the endpoint?</div><div><br></div><div>Is this supposed to mean=
- that so long as a CHDR data port is connected to the SEP, then configurati=
-on can be passed that way? If this is the case, does each SEP need at least=
- 1 IN and 1 OUT port? Is the only downside to enabling all the SEP&#39;s to=
- have control ports is some extra utilization in the FPGA?</div><div><br></=
-div><div>Can someone clarify what this is supposed to mean?</div><div><br><=
-/div><div>Thanks,</div><div>Brian</div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Nic=
+e! That is what it should be over a 10 Gbe line.</div><div class=3D"gmail_d=
+efault" style=3D"font-size:small">You can raise it with spp, but it will ca=
+use fragmentation in a 10 GBe line.</div><div class=3D"gmail_default" style=
+=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-s=
+ize:small">So fft NOC block is limited because it is general for all applic=
+ations.</div><div class=3D"gmail_default" style=3D"font-size:small">The fos=
+phor I use, uses it&#39;s own OpenCL FFT and cl/gl shared graphics.</div><d=
+iv class=3D"gmail_default" style=3D"font-size:small">It loops to create tha=
+t &quot;live&quot; spectrum fill, but also to refill its FFT.</div><div cla=
+ss=3D"gmail_default" style=3D"font-size:small">FFT is still 1024 complex sa=
+mples, and it gets filled up each time in the loop!</div><div class=3D"gmai=
+l_default" style=3D"font-size:small">Any excess is padded with old input an=
+d FFTed again:)</div><div class=3D"gmail_default" style=3D"font-size:small"=
+>But this is a dedicated FFT not a general block...</div><div class=3D"gmai=
+l_default" style=3D"font-size:small"><br></div><div class=3D"gmail_default"=
+ style=3D"font-size:small">BR,</div><div class=3D"gmail_default" style=3D"f=
+ont-size:small">Nikos</div></div><br><div class=3D"gmail_quote gmail_quote_=
+container"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 25, 2025 at 4:=
+47=E2=80=AFAM &lt;<a href=3D"mailto:zhiwen_zhou@seu.edu.cn">zhiwen_zhou@seu=
+.edu.cn</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><p>My MTU is 9000 and uhd_rx_streamer_max_num_samps=C2=A0returns 199=
+6.</p>
+
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
@@ -224,9 +151,9 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---0000000000004312150638627fe1--
+--000000000000ff1d1306386390a1--
 
---===============0450434263141922073==
+--===============9074466265033909313==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -236,4 +163,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0450434263141922073==--
+--===============9074466265033909313==--
