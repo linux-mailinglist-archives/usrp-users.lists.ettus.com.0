@@ -2,320 +2,183 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53986AEA32F
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Jun 2025 18:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55F13AEA70C
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Jun 2025 21:42:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E4539386167
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Jun 2025 12:06:55 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 675CE385BBC
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Jun 2025 15:42:31 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1750954015; bh=rEbFktaBTp9K4dfKm7xpQfkj1uCkMA7+/nHFG+b7XJ8=;
-	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
-	 From;
-	b=YPhVHoIo6pmMMbg18zqntkgUdY1X2hgWeGdPpDnAtJTMQvK95os+t+TzRIO7+T0Uv
-	 7+7voAUQ/TJ4rSHIHjVBNjQ7mjM6MqS5cgcIVoSVHP3YOd5WmdEh5/fAkIhvOTKllO
-	 PlXn/sutKGiV2l89HXr80SoKEb/tXnt7uF8DgXjPk2+9Qp8OrQMPI5+07WAect3Sex
-	 CbHuYKsepZWOr9X7RWgKMSSYf5xJAgsL0jc9pW++zMwB5yGey8G7PQZxJX3MzXu+Uf
-	 YCO0eU75zpEw5C1RBgsIWaOwwAEtWnlhXkGNcmQe4QmQ+zhMUed5q6K1wxCro8hlwf
-	 xI09gNQ0LcVvw==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 054FA385D72
-	for <usrp-users@lists.ettus.com>; Thu, 26 Jun 2025 12:05:48 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1750953948; bh=EZB8ZDnUkATwRV3Lr1TBEBNBMWozpwgwmv4kng0V8Hc=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=YCgHRWLGv5zbKQymyqpS65JtjHOI5bkVXo2F+zj7/IsNsx8zWZRsYOHBbHk4TeC3a
-	 zXr8xjN8LsjcL9puk243AeeZtoevwFG807AfbfzsBi4o6gs8IWRuPuhgotIYwc5rhn
-	 yTx7MiqlsqfSrj6Ne0APa8BDhemvU1M/582p6mRVi+K7pMqJo9zwI2H+jw2QveLcvZ
-	 6/BwaZ9CyeQ25r130VBePkM4aiiERuUHzlABhZrfKFG0TDVc+B37a0/kCxa8H9d1xJ
-	 fGGUJMAvk4eBqqeltT9qRxXoon7/2HMlUqblId4XMMoEaruBzX6ly11Nc3BFqZh18C
-	 0vP3mSU8DrmIg==
-Date: Thu, 26 Jun 2025 16:05:48 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <Em91Ov87l2vdZyGAIqqXVox6Lekax9jLjIgz4qZqIqM@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAEXYVK4MDrk7LFTEcWBQ1QpxJZxhOOZKYnauDFNdgUy3VUkYQA@mail.gmail.com
+	t=1750966951; bh=emoXjjukZJZiL/9TW/PH3+/nnOPop9sucbzKXdCtNSU=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=sOsBkN/8XPB9YxP/Fq1abKt192nwM7oqeY+2XnRLZ4RJZoOw1vxrRZRSxFXx/atjo
+	 ZWOah9C31GVPsX8C10bzLT4eCX2vBVwnFrC7IrvVxYHuesHz0EPSIqPqPVGAAS7OpA
+	 N/Cxrtshp8kbNZBulfwr/p0ldis6xPdnAjtk2CeouMl3PQMIx/Mqj7pR3syPkJ8z22
+	 Ka73PjWY7uzH8sOWGjnMPhlyFz1P4vQdkh0T9w/lE5fd26TB4x87DwTpSXRmm/HaPO
+	 BhA5nXlE9rrL8i4cZSee9xTrPr08HULxVZwIgEjJzAe92l1NP70omP+/0xA8Oscahi
+	 mwuD2uqMW5zBA==
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id 88976385BBC
+	for <usrp-users@lists.ettus.com>; Thu, 26 Jun 2025 15:41:32 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="appoScWU";
+	dkim-atps=neutral
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-70e302191a3so13813657b3.2
+        for <usrp-users@lists.ettus.com>; Thu, 26 Jun 2025 12:41:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1750966892; x=1751571692; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=03oJiCJ5FDi1BA3HbPFfV/P9FYntjSD4XExVM1hbLjk=;
+        b=appoScWUUmt1NNjEp5ARfBC2/91m/7moY27PPQc9LbMr7xupf3W60BmHDBcQcT0XAl
+         KoLclAf7pV3j4CDuzpgS9mKkDM67g4X2sWaVMQxp2aaRVoOOMYFjZKdHSEEu0jPJucyT
+         hGcB99dNwb0oB5IF5mN9ki3Y63nWy+ikWH7cd7eKBI2oZeBHQ1/dh4atoHk7heaPQEru
+         raoHUh46DZIBfLrS7Bx9TVwSxI9Pq8iYNjce2Fq+BXEjhoxs2Yr9pX9bAGBKiq/y8Qo0
+         B6eRlxsKjOii9HF458WbSG//BltoTvCyWE0Sf0GYtR24I7GkOWDWNZIQrK8SDDIzcfFN
+         MY1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750966892; x=1751571692;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=03oJiCJ5FDi1BA3HbPFfV/P9FYntjSD4XExVM1hbLjk=;
+        b=Z4nfBC7CMi0oIbL3cFAHCbAxnUxFAbfQ4O89DQBJskPBSN02m1M8qRtYn0vkHS/Gzz
+         mUcP7AqD3ZVyhtaqk/groZtd2tfoRrwfFMjqFxSzIv1q2ThgQcV4Uq2a7kNKnCTfwKvH
+         fBRRfSLs/KWYE/XXuz4PEwnxV2e3/PJHcJwm7bwuxbDnSIXVFwrERZoE8hes2b9BVXW6
+         6EsS1VD4Mi6B9Sk95e6HHiqSqckizzS1iuonN6r5u57QFLgyIw2ixaYbr+UywEAZzMk5
+         g3/X3f157qbSgVJpkSLu+NR/QGumsRZ1F+Id3LzD3/kSxWpEwVEzDYS6RX6KutRgc1zJ
+         KjTw==
+X-Gm-Message-State: AOJu0YxAwzG/tAYlndAXPtfBmQ7zJev1/e0ktMUnXJB01D2n2vhShi0X
+	KY5bBVThR/gFYgd+jffD3NUCa6bPp7+6A6xikeQc161g9IzCB6jU0B/ODZdw7OpJvLW4h0DWK7N
+	uIg+bZ/uzx0WrJMYsrDOy/dlqoypXUajzSzFLRJwonOswIgss55cSXoObCQ==
+X-Gm-Gg: ASbGnctj/3uRlUxkAojigQJLuFVxmqqP7Weqld7cCnikQp2ejgftiqmmIc3J+epkv5V
+	SPGVz/JwCndPuzS/Ol/ryu2sv+FQ2cn0SZKWEjUeqFME9gGH+YOWhjEY9mm3w4UpVDVMor7GfVG
+	sAMJFp6xSBEC2G5sbUrNK31CAol6olLMBkPsxWjSLK
+X-Google-Smtp-Source: AGHT+IF9BsDjX2/9R/H0jtw0ZKu+WoOqsfKI/UBjK/ShW1rHPcp2YK/kCo7U9DvRF/KrjEy3YwBRYSEDujKK0P/IlYI=
+X-Received: by 2002:a05:690c:9683:b0:70d:f237:6a6a with SMTP id
+ 00721157ae682-7151714ebfamr10273307b3.11.1750966891840; Thu, 26 Jun 2025
+ 12:41:31 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: PDJV5UAPQIURVBWZEOTHO6LA3QFANJO7
-X-Message-ID-Hash: PDJV5UAPQIURVBWZEOTHO6LA3QFANJO7
-X-MailFrom: niels.steffen.garibaldi@emerson.com
+References: <CAB__hTQB0JjEKNk0=SFDREonEeCVavhWpUR_-hcwy0-adDv8Cg@mail.gmail.com>
+In-Reply-To: <CAB__hTQB0JjEKNk0=SFDREonEeCVavhWpUR_-hcwy0-adDv8Cg@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Thu, 26 Jun 2025 14:41:15 -0500
+X-Gm-Features: Ac12FXy_Qx9Gao5LY7a0giM2TZ5F0H-4En85OIQJ8JJ1dmezhhPsaluorPncM_Q
+Message-ID: <CAFche=gdLTvuw1RpWzDDRyN=AvW=hDAKtcSMcxCNbFeB0o_MaQ@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: KDGDXOFOMLZXDDU2JCLFWZKWPTAETEOI
+X-Message-ID-Hash: KDGDXOFOMLZXDDU2JCLFWZKWPTAETEOI
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Understanding RFNoC crossbar_routes
+Subject: [USRP-users] Re: X410 SPI clock rate
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PDJV5UAPQIURVBWZEOTHO6LA3QFANJO7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KDGDXOFOMLZXDDU2JCLFWZKWPTAETEOI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "niels.steffen.garibaldi--- via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: niels.steffen.garibaldi@emerson.com
-Content-Type: multipart/mixed; boundary="===============0861544812267999612=="
+Content-Type: multipart/mixed; boundary="===============1649579397198931350=="
 
-This is a multi-part message in MIME format.
+--===============1649579397198931350==
+Content-Type: multipart/alternative; boundary="0000000000009a14c906387ebf7a"
 
---===============0861544812267999612==
-Content-Type: multipart/alternative;
- boundary="b1_Em91Ov87l2vdZyGAIqqXVox6Lekax9jLjIgz4qZqIqM"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_Em91Ov87l2vdZyGAIqqXVox6Lekax9jLjIgz4qZqIqM
-Content-Type: text/plain; charset=us-ascii
-
-Hi Brian,\
-\
-I had to play around with the crossbar route matrix myself yet,\
-but looking at the code it seems like [at least for transport adapters the routes to themselves have to be included for route discovery purposes](https://github.com/EttusResearch/uhd/blob/master/host/python/uhd/rfnoc_utils/builder_config.py#L346) from the UHD host.\
-From the example in the image_core.yaml that you linked it seems like this does not have to be the case for SEPs.\
-\
-When the image builder is run, it then gets translated into HDL code via the [mako template for the rfnoc_image_core.sv](https://github.com/EttusResearch/uhd/blob/master/host/python/uhd/rfnoc_utils/templates/rfnoc_image_core.sv.mako#L111).\
-\
-You could try and run the `rfnoc_image_builder` in `--generate-only` mode with your settings and check what the generated rfnoc_image_core.sv looks like.\
-\
-Looking at a default x410_X4_200 I have built previously it seems that the default is fully symetric for SEP connections:
-
-> ```
->   //---------------------------------------------------------------------------
->   // CHDR Crossbar
->   //---------------------------------------------------------------------------
-> 
->   wire [PORT_W-1:0] xb_to_ep0_tdata ;
->   wire              xb_to_ep0_tlast ;
->   wire              xb_to_ep0_tvalid;
->   wire              xb_to_ep0_tready;
->   wire [PORT_W-1:0] ep0_to_xb_tdata ;
->   wire              ep0_to_xb_tlast ;
->   wire              ep0_to_xb_tvalid;
->   wire              ep0_to_xb_tready;
->   wire [PORT_W-1:0] xb_to_ep1_tdata ;
->   wire              xb_to_ep1_tlast ;
->   wire              xb_to_ep1_tvalid;
->   wire              xb_to_ep1_tready;
->   wire [PORT_W-1:0] ep1_to_xb_tdata ;
->   wire              ep1_to_xb_tlast ;
->   wire              ep1_to_xb_tvalid;
->   wire              ep1_to_xb_tready;
->   wire [PORT_W-1:0] xb_to_ep2_tdata ;
->   wire              xb_to_ep2_tlast ;
->   wire              xb_to_ep2_tvalid;
->   wire              xb_to_ep2_tready;
-> ...
-> ```
-
-\
-Maybe someone else has used this feature more and can give more details.\
-\
-Regards,\
-Niels
-
----
-
-\
-Brian Padalino wrote:
-
-> I recently had some real trouble with some blocks not being addressable and
-> the trace log output of a probe telling me "Nothing connected on
-> device:1/xbar:0->1. Ignoring that path."
->
-> I need to minimize the size of the crossbar, and I only have static
-> connections in my system so I was trying to build a minimal crossbar and
-> apparently failing to understand the crossbar_routes table.
->
-> Looking here:
->
-> https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x400/x440_CG_1600_rfnoc_image_core.yml#L40
->
-> Pasted here for completeness:
->
-> # Rows correspond to input ports and columns correspond to output ports.
->
-> # Entering a 1 includes and a 0 removes that route from the crossbar.
->
-> crossbar_routes:
->
-> # eth0  dma   ep1
->
-> # eth1  ep0
->
-> * \[ 1, 0, 0, 1, 1 \] # eth0 (QSFP Port 0)
-> * \[ 0, 1, 0, 1, 1 \] # eth1 (QSFP Port 1)
-> * \[ 0, 0, 1, 1, 1 \] # dma
-> * \[ 1, 1, 1, 0, 0 \] # ep0 (radio0.0)
-> * \[ 1, 1, 1, 0, 0 \] # ep1 (radio1.0)
->
-> I am not sure input/output helps me here, but maybe from/to, so my first
-> assumption is that I read the table such that across the top I say "From"
-> and across the side I say "To". Is this correct or not?
->
-> Next, since all the examples I see are symmetric in communication, I am not
-> sure I fully understand any type of asymmetric connections. For example, my
-> application is configured/monitored by localhost on the ARM on an X440, RX
-> endpoints remote streams out 100Gbe/QSFP+ ports but doesn't need to receive
-> anything from them, and TX endpoints receives from 100 Gbe/QSFP+. I'd also
-> like my application to be able to send data out of the QSFP+ ports as well.
->
-> I am not sure how to achieve this in the routes. I believe for connectivity
-> I want to convey:
-> *From*      -> *To*
-> dma       -> eth0, eth1, txep
-> eth0      -> txep
-> eth1      -> txep
-> txep      -> dma
-> rx0ep     -> eth0
-> rx1ep     -> eth1
->
-> # Block connections
->
-> radio0    -> rx0ep
-> radio1    -> rx1ep
-> txep\[3:0\] -> radio0
-> txep\[7:4\] -> radio1
->
-> Note that txep has no streaming outputs, and rx0ep/rx1ep have no streaming
-> inputs. Also note that my control port is on txep. I think this is why I
-> need the dma connected to txep in both directions, right?
->
-> Lastly, in the original table, eth0 was connected to eth0. Same with the
-> other transport adapters (eth1 and dma) - is this actually necessary? Is a
-> route built here, or is it ignored? Can these entries be set to 0? In terms
-> of a crossbar, I would have thought the diagonal is all 0's since we're
-> never going to be connecting to ourselves?
->
-> To convey this, here is my table:
->
-> crossbar_routes:
->
-> # eth0   eth1   dma  txep  rx0ep, rx1ep
->
-> * \[   0,     0,    1,    0,     1,     0\] # eth0 (QSFP Port 0)
-> * \[   0,     0,    1,    0,     0,     1\] # eth1 (QSFP Port 1)
-> * \[   0,     0,    0,    1,     0,     0\] # dma
-> * \[   1,     1,    1,    0,     0,     0\] # txep
-> * \[   0,     0,    0,    0,     0,     0\] # rx0ep
-> * \[   0,     0,    0,    0,     0,     0\] # rx1ep
->
-> Did I get it right, or am I completely wrong here? I've tried lots of
-> combinations, but the only one that works is when I am basically symmetric
-> and fully connected with all the TA's which is suboptimal.
->
-> Any guidance would be much appreciated.
->
-> Thanks,
-> Brian
-
---b1_Em91Ov87l2vdZyGAIqqXVox6Lekax9jLjIgz4qZqIqM
-Content-Type: text/html; charset=us-ascii
+--0000000000009a14c906387ebf7a
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi Brian,<br><br>I had to play around with the crossbar route matrix mys=
-elf yet,<br>but looking at the code it seems like <a href=3D"https://github=
-.com/EttusResearch/uhd/blob/master/host/python/uhd/rfnoc_utils/builder_conf=
-ig.py#L346" title=3D"">at least for transport adapters the routes to themse=
-lves have to be included for route discovery purposes</a> from the UHD host=
-.<br>From the example in the image_core.yaml that you linked it seems like =
-this does not have to be the case for SEPs.<br><br>When the image builder i=
-s run, it then gets translated into HDL code via the <a href=3D"https://git=
-hub.com/EttusResearch/uhd/blob/master/host/python/uhd/rfnoc_utils/templates=
-/rfnoc_image_core.sv.mako#L111" title=3D"">mako template for the rfnoc_imag=
-e_core.sv</a>.<br><br>You could try and run the <code>rfnoc_image_builder</=
-code> in <code>--generate-only</code> mode with your settings and check wha=
-t the generated rfnoc_image_core.sv looks like.<br><br>Looking at a default=
- x410_X4_200 I have built previously it seems that the default is fully sym=
-etric for SEP connections:</p><blockquote><pre><code>  //------------------=
----------------------------------------------------------
-  // CHDR Crossbar
-  //-----------------------------------------------------------------------=
-----
+Hi Rob,
 
-  wire [PORT_W-1:0] xb_to_ep0_tdata ;
-  wire              xb_to_ep0_tlast ;
-  wire              xb_to_ep0_tvalid;
-  wire              xb_to_ep0_tready;
-  wire [PORT_W-1:0] ep0_to_xb_tdata ;
-  wire              ep0_to_xb_tlast ;
-  wire              ep0_to_xb_tvalid;
-  wire              ep0_to_xb_tready;
-  wire [PORT_W-1:0] xb_to_ep1_tdata ;
-  wire              xb_to_ep1_tlast ;
-  wire              xb_to_ep1_tvalid;
-  wire              xb_to_ep1_tready;
-  wire [PORT_W-1:0] ep1_to_xb_tdata ;
-  wire              ep1_to_xb_tlast ;
-  wire              ep1_to_xb_tvalid;
-  wire              ep1_to_xb_tready;
-  wire [PORT_W-1:0] xb_to_ep2_tdata ;
-  wire              xb_to_ep2_tlast ;
-  wire              xb_to_ep2_tvalid;
-  wire              xb_to_ep2_tready;
-...</code></pre></blockquote><p><br>Maybe someone else has used this featur=
-e more and can give more details.<br><br>Regards,<br>Niels</p><div contente=
-ditable=3D"false"><hr></div><p><br>Brian Padalino wrote:</p><blockquote><p>=
-I recently had some real trouble with some blocks not being addressable and
-the trace log output of a probe telling me "Nothing connected on
-device:1/xbar:0-&gt;1. Ignoring that path."</p><p>I need to minimize the si=
-ze of the crossbar, and I only have static
-connections in my system so I was trying to build a minimal crossbar and
-apparently failing to understand the crossbar_routes table.</p><p>Looking h=
-ere:</p><p>https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/=
-x400/x440_CG_1600_rfnoc_image_core.yml#L40</p><p>Pasted here for completene=
-ss:</p><h1>Rows correspond to input ports and columns correspond to output =
-ports.</h1><h1>Entering a 1 includes and a 0 removes that route from the cr=
-ossbar.</h1><p>crossbar_routes:</p><h1>eth0  dma   ep1</h1><h1>eth1  ep0</h=
-1><ul data-tight=3D"true"><li><p>[ 1, 0, 0, 1, 1 ] # eth0 (QSFP Port 0)</p>=
-</li><li><p>[ 0, 1, 0, 1, 1 ] # eth1 (QSFP Port 1)</p></li><li><p>[ 0, 0, 1=
-, 1, 1 ] # dma</p></li><li><p>[ 1, 1, 1, 0, 0 ] # ep0 (radio0.0)</p></li><l=
-i><p>[ 1, 1, 1, 0, 0 ] # ep1 (radio1.0)</p></li></ul><p>I am not sure input=
-/output helps me here, but maybe from/to, so my first
-assumption is that I read the table such that across the top I say "From"
-and across the side I say "To". Is this correct or not?</p><p>Next, since a=
-ll the examples I see are symmetric in communication, I am not
-sure I fully understand any type of asymmetric connections. For example, my
-application is configured/monitored by localhost on the ARM on an X440, RX
-endpoints remote streams out 100Gbe/QSFP+ ports but doesn't need to receive
-anything from them, and TX endpoints receives from 100 Gbe/QSFP+. I'd also
-like my application to be able to send data out of the QSFP+ ports as well.=
-</p><p>I am not sure how to achieve this in the routes. I believe for conne=
-ctivity
-I want to convey:
-<em>From</em>      -&gt; <em>To</em>
-dma       -&gt; eth0, eth1, txep
-eth0      -&gt; txep
-eth1      -&gt; txep
-txep      -&gt; dma
-rx0ep     -&gt; eth0
-rx1ep     -&gt; eth1</p><h1>Block connections</h1><p>radio0    -&gt; rx0ep
-radio1    -&gt; rx1ep
-txep[3:0] -&gt; radio0
-txep[7:4] -&gt; radio1</p><p>Note that txep has no streaming outputs, and r=
-x0ep/rx1ep have no streaming
-inputs. Also note that my control port is on txep. I think this is why I
-need the dma connected to txep in both directions, right?</p><p>Lastly, in =
-the original table, eth0 was connected to eth0. Same with the
-other transport adapters (eth1 and dma) - is this actually necessary? Is a
-route built here, or is it ignored? Can these entries be set to 0? In terms
-of a crossbar, I would have thought the diagonal is all 0's since we're
-never going to be connecting to ourselves?</p><p>To convey this, here is my=
- table:</p><p>crossbar_routes:</p><h1>eth0   eth1   dma  txep  rx0ep, rx1ep=
-</h1><ul data-tight=3D"true"><li><p>[   0,     0,    1,    0,     1,     0]=
- # eth0 (QSFP Port 0)</p></li><li><p>[   0,     0,    1,    0,     0,     1=
-] # eth1 (QSFP Port 1)</p></li><li><p>[   0,     0,    0,    1,     0,     =
-0] # dma</p></li><li><p>[   1,     1,    1,    0,     0,     0] # txep</p><=
-/li><li><p>[   0,     0,    0,    0,     0,     0] # rx0ep</p></li><li><p>[=
-   0,     0,    0,    0,     0,     0] # rx1ep</p></li></ul><p>Did I get it=
- right, or am I completely wrong here? I've tried lots of
-combinations, but the only one that works is when I am basically symmetric
-and fully connected with all the TA's which is suboptimal.</p><p>Any guidan=
-ce would be much appreciated.</p><p>Thanks,
-Brian</p></blockquote><p><br></p>
+I believe the underlying code that implements this is here:
 
---b1_Em91Ov87l2vdZyGAIqqXVox6Lekax9jLjIgz4qZqIqM--
+https://github.com/EttusResearch/uhd/blob/c354764c93b49c90be08958f942b9bcb7=
+704cbd5/fpga/usrp3/lib/control/simple_spi_core.v#L182
 
---===============0861544812267999612==
+It looks like the clock is inverted every divider+1 cycles, meaning
+divider+1 is half the SPI clock period, not the full period. If so, the
+frequency of the SPI clock would actually be (Radio_Clk / (divider + 1)) /
+2.
+
+That seems to agree with what you're seeing? Just to confirm, can you share
+the URL for the documentation with this equation?
+
+Wade
+
+
+
+On Wed, Jun 25, 2025 at 4:25=E2=80=AFPM Rob Kossler via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+> The equation in the UHD manual for the X410 SPI clock rate is:
+>   SPI_clk =3D Radio_clk / (divider + 1)
+> However, I'm seeing half of that rate if I use the function:
+>   Radio_clk =3D usrp->get_radio_control()->get_rate();
+> Note that this returns the sample rate.  I'm wondering if maybe the radio
+> clock rate is half of the sample rate because it processes multiple sampl=
+es
+> per clock cycle.
+>
+> So, basically, my question is: what function or functions should I call t=
+o
+> determine the Radio clock rate needed for the equation above? Or is the
+> equation wrong?
+>
+> Thanks.
+> Rob
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000009a14c906387ebf7a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>I believe the underl=
+ying code that implements this is here:</div><div><br></div><div><a href=3D=
+"https://github.com/EttusResearch/uhd/blob/c354764c93b49c90be08958f942b9bcb=
+7704cbd5/fpga/usrp3/lib/control/simple_spi_core.v#L182">https://github.com/=
+EttusResearch/uhd/blob/c354764c93b49c90be08958f942b9bcb7704cbd5/fpga/usrp3/=
+lib/control/simple_spi_core.v#L182</a></div><div><br></div><div>It looks li=
+ke the clock is inverted every divider+1 cycles, meaning divider+1 is half =
+the SPI clock period,=C2=A0not the full period. If so, the frequency of the=
+ SPI clock would actually be=C2=A0(Radio_Clk / (divider=C2=A0+ 1)) / 2.</di=
+v><div><br></div><div>That seems to agree with what you&#39;re seeing? Just=
+ to confirm, can you share the URL for the documentation with this equation=
+?</div><div><br></div><div>Wade</div><div><br></div><div><br></div></div><b=
+r><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Wed, Jun 25, 2025 at 4:25=E2=80=AFPM Rob Kossler via USR=
+P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.=
+ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr">Hi,<br><div>The equation in the UHD manual for =
+the X410 SPI clock rate is:</div><div>=C2=A0 SPI_clk =3D Radio_clk / (divid=
+er=C2=A0+ 1)</div><div>However, I&#39;m seeing half of that rate if I use t=
+he function:</div><div>=C2=A0 Radio_clk =3D usrp-&gt;get_radio_control()-&g=
+t;get_rate();</div><div>Note that this returns the sample rate.=C2=A0 I&#39=
+;m wondering if maybe the radio clock rate is half of the sample rate becau=
+se it processes multiple samples per clock cycle.=C2=A0</div><div><br></div=
+><div>So, basically, my question is: what function or functions should I ca=
+ll to determine the Radio clock rate needed for the equation above? Or is t=
+he equation wrong?</div><div><br></div><div>Thanks.</div><div>Rob</div><div=
+><br></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000009a14c906387ebf7a--
+
+--===============1649579397198931350==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -325,4 +188,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0861544812267999612==--
+--===============1649579397198931350==--
