@@ -2,353 +2,386 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05905AEC2B8
-	for <lists+usrp-users@lfdr.de>; Sat, 28 Jun 2025 00:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E391CAEC308
+	for <lists+usrp-users@lfdr.de>; Sat, 28 Jun 2025 01:38:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 594F838612E
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Jun 2025 18:44:08 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8F76A380DBD
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Jun 2025 19:38:21 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1751064248; bh=/2L30EJuXpvWUzQn/zDFiW1VoTSelbuA8nLAP+sX/Eg=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=UU0fYIudC0kzgoxuk3BA87+fmRl3d0Tm0K7bhdMFOsK9dxgIcsJsNICDTsYAn5JR0
-	 3WuGsNkYutb2+GaUZYkf5AaBBu6nVTfP55bysQ0a+WEhtl/jsuqVkR7Sg94a7jwtJM
-	 1Ii1nWZrQH3Dn6rF1PvHpgRHcFSs19tJlS8e3eLdeRWhJ1LMIQBMp1YAsxRyPT1hQc
-	 FfXH/SS7243zmoGIiZT8TQyfB4O2TVpyCuIfWlXcXL1YDIiWgUxAATlr6SHV0JcTBn
-	 /E3FOGVFgSC9EH+NqD1D5ZUnl3Rt6VKo79Rz3DKwbW3skTybqzqRBPxaGv38ZRduI/
-	 mXLjeoqQ2RfDg==
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id F0C10385F65
-	for <usrp-users@lists.ettus.com>; Fri, 27 Jun 2025 18:43:06 -0400 (EDT)
+	t=1751067501; bh=OOn8sa9UwDgDd9V4U9FHoKHc2bSANgsDuNrl16K5OBY=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=sgN2Wb+e3xdZlpq+AJ3soo9mutVXxv/IOX32UHr6C81W9fxRlavdN1ckwynssooiS
+	 o7Aowsxf2ObbM0Vh13PykYddk3dhprpQpKtl4j1fGntPOWqMufyhAmC42cxFsrLofg
+	 A+CAKF0PECyz3YLa3HP5sBDHa9e+PZio8K3KJCrvCINF1z60axaLXwcpfyh2CnlaTe
+	 aCKh7A35VT8r0R8kVpFSGiim0u1c83Hsg0etbjc65QKnOVp4kH6qQrDdrQdLcoZQRF
+	 g9bsDD7HVNs/PyxAlmHz31J/rNVrvKIrDAUzICMtTNlHOBYRBdsvCnA099iV4YMBhF
+	 aLzXws5JUtXTw==
+Received: from za-smtp-delivery-57.mimecast.co.za (za-smtp-delivery-57.mimecast.co.za [41.74.201.57])
+	by mm2.emwd.com (Postfix) with ESMTPS id 618B7380DBD
+	for <usrp-users@lists.ettus.com>; Fri, 27 Jun 2025 19:37:21 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="alhLto8r";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="Xew0uLfu";
 	dkim-atps=neutral
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e733a6ff491so318983276.2
-        for <usrp-users@lists.ettus.com>; Fri, 27 Jun 2025 15:43:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1751064186; x=1751668986; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ZyzrXz+0BeCOXkg5DyLAqJfq/tW8wUYdTxsTJpnTe8=;
-        b=alhLto8rWYGV+so0bb0IiWKnj0znDEKNIYZYddBN6UDP1UAqN82CyjztFsqMu2g+RX
-         sPw0/vW8B4n5KkvgFxbt/UENIIL48Nj9FWbO5CPElMF9IkOLZpDaL01KtFr/tRqgSe5c
-         49zdrttQMx1QeXML4rA2L1fjMYeY+UOJV3dJYetJ2wUJatuIGqRQU2WVkg805UnhbOqC
-         hQb+jjU6DlpqmpYH8W9A3bmxEoge0+d32uETLoXeI7VTGcx/UqNa9iQSjs8bphWdOZdb
-         QpvUOrdjwunvvtUPXDy4UK/hZKClK8Ov/KtYpM5w9IwpseMFyrFhmbZ12YphcMtZeELH
-         Uk7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751064186; x=1751668986;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0ZyzrXz+0BeCOXkg5DyLAqJfq/tW8wUYdTxsTJpnTe8=;
-        b=k9WCXDhfsQDGGiIUIQvPm9+dR83iLdbwriFqAqCAr2PTTwhcs0pn9tw46bI5vAATh2
-         47VmDpM5uj6WPh6TTLTaTmaaYJZ0p9S+g85/1L1aBzGJRQpL8lm+PGbLjuhL0lluXhGk
-         NV4jjwwVQenPR+UpHZJfIOEam/p+toEmPmYeHM2nwofQ2mucM+iTTEziDBbidZhk/QD8
-         LQqLvtufQJbpqkGMZ+ENB634aelLhZ2Ly2UypbZIrpHnBvcEmr2W2UL9/mX5t1XjaYYG
-         E47Y3z84QX8e3am9S4BceeGnI3344Ct10YPH0rA3mh0oLDHROW9FkyAvGVLKxGFPA0jO
-         cQFA==
-X-Gm-Message-State: AOJu0Yy1pmNcwij8OHqfUyxCz8iB5hiquJRtNvV/2CfdIwVVdMCz51GW
-	M1NJdKbbX9wasWQfAIh6EYxYSIoM+1MbNG8voxBa8jZ5ik4SiMWtabArwfqRkQni3vltfgci9MI
-	2amgjh/c2CqhHCWDRMbg4tps9bE5T9ek2jlF8UIOIUB+4
-X-Gm-Gg: ASbGnctksxW2Vi+rIkWAIB62htrGyG4yMnmudfzIO8ea+i4zEYjHrA0BByw+xRuzJHm
-	XLl1VFzI4XVJJbfSVQrO3XfgbV/66/2V68YYQ0Ap3+bhncwV6+GT5N5aTvrtuEnPw+e6AC0edoX
-	u33EdokNouqrVmSYotSbBHks26A9F4YKUGbYPCRU8X
-X-Google-Smtp-Source: AGHT+IEL9eWjAVsitHUajInf42XB69g00rQdMWzAReGPwlnxiZmsJp98oiuyyPeJqVRV74oT3xx3XEUaDvD6Hr9ZYGY=
-X-Received: by 2002:a05:690c:4b10:b0:714:3e:f424 with SMTP id
- 00721157ae682-715171bd162mr87221817b3.35.1751064186080; Fri, 27 Jun 2025
- 15:43:06 -0700 (PDT)
+Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
+ relay.mimecast.com with ESMTP id za-mta-127-7a8NJPuROVeJ44bSKGCufg-1; Sat,
+ 28 Jun 2025 01:37:16 +0200
+X-MC-Unique: 7a8NJPuROVeJ44bSKGCufg-1
+X-Mimecast-MFC-AGG-ID: 7a8NJPuROVeJ44bSKGCufg_1751067436
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
+	bh=EHSuMPVrJnaeHunSOK6t9WGXllMURKVD7O9sbniyzn8=;
+	b=Xew0uLfuJOZ9BNRqYjtcuzzpuemdFdkanX1ZnvqZBt/5nNGGXfVlu14MrgQ/hC98r6MGqgAUIH9uRlfInio43J2FSvSh6o/ZGRNpyqfvq87eO2R8CEduiWVRI/EAAcowyAVgBqQ8J1eIG2lWv0k1YPLBmjj5t7NHeYt0a17vNYY=
+Received: from exchange3.vastech.co.za (Unknown [172.30.81.31])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Sat, 28 Jun 2025 01:37:11 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ exchange3.vastech.co.za (172.30.81.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sat, 28 Jun 2025 01:37:10 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Sat, 28
+ Jun 2025 01:37:00 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: graph warnings again
+Thread-Index: Advnu5KRyUtgbWFrQCeLnzHeaNzWxA==
+Date: Fri, 27 Jun 2025 23:37:00 +0000
+Message-ID: <4c77f119f052486cbb4baace4acb7e92@vastech.co.za>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.3]
 MIME-Version: 1.0
-References: <CAB__hTQB0JjEKNk0=SFDREonEeCVavhWpUR_-hcwy0-adDv8Cg@mail.gmail.com>
- <CAFche=gdLTvuw1RpWzDDRyN=AvW=hDAKtcSMcxCNbFeB0o_MaQ@mail.gmail.com>
- <CAFche=gc8kd2E=ZRODAzCuYkWbUmzqSitXV=tLkU9_+Ym+_PAg@mail.gmail.com>
- <CAB__hTSdEqtW=bHThXMt_DU5jdxbG3qaKmpgTxxYdrZ8QG-sfQ@mail.gmail.com>
- <CAFche=iwS+2TAPVpDPL0p8pctVb7RsZ2WUh4Fau_OqLEviiU2Q@mail.gmail.com> <CAB__hTSAipRZTYkympKgjiZDHazoRq0NS1O3_onDFmr7AaSCGg@mail.gmail.com>
-In-Reply-To: <CAB__hTSAipRZTYkympKgjiZDHazoRq0NS1O3_onDFmr7AaSCGg@mail.gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Fri, 27 Jun 2025 17:42:50 -0500
-X-Gm-Features: Ac12FXws24mHg1aruNf6Y6H4uXNlZfRGhX2xO-2u0vpXCH4A00HM0XgOypyyVxY
-Message-ID: <CAFche=gHzb_+9R=ENy5ZSp4azLpZOHB1sjU3HOyDJ4V+Vx3GKw@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Message-ID-Hash: 6BTXESIT2HOTKRSDP736SFH5YV5RPV5E
-X-Message-ID-Hash: 6BTXESIT2HOTKRSDP736SFH5YV5RPV5E
-X-MailFrom: wade.fife@ettus.com
+Message-ID-Hash: JP7YAJTFFFUFJVA5G7D6WBINF6AHC7RK
+X-Message-ID-Hash: JP7YAJTFFFUFJVA5G7D6WBINF6AHC7RK
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X410 SPI clock rate
+Subject: [USRP-users] graph warnings again
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6BTXESIT2HOTKRSDP736SFH5YV5RPV5E/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JP7YAJTFFFUFJVA5G7D6WBINF6AHC7RK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1020397927219195117=="
+Content-Type: multipart/mixed; boundary="===============0253066471103371533=="
 
---===============1020397927219195117==
-Content-Type: multipart/alternative; boundary="000000000000ca614606389566a2"
+--===============0253066471103371533==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=2.16.840.1.101.3.4.2.3;
+	protocol="application/x-pkcs7-signature";
+	boundary="----=_NextPart_000_01DF_01DBE7CD.23D03080"
 
---000000000000ca614606389566a2
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_01DF_01DBE7CD.23D03080
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_01E0_01DBE7CD.23D03080"
+
+
+------=_NextPart_001_01E0_01DBE7CD.23D03080
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi Everyone,
+
+ 
+
+What is the reason for these warnings?
+
+ 
+
+Somehow my rfnoc block and/or image/software/compile has resulted in these
+again, and I can't nail it down to something.
+
+ 
+
+Some symptoms are an rx_streamer that receives a few 100 Mb of data, but
+then stalls.
+
+ 
+
+I can see in wireshark that data packets of the correct size flow from both
+10 gbe ports - but stop quite soon after starting, and after that just a
+stream of some sort of control and ack packets.
+
+ 
+
+Regards, Kevin
+
+ 
+
+O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
+
+O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:1, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:1, no neighbour found!
+
+L[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action restart_request from
+RxStreamer#0:INPUT_EDGE:0, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action restart_request from
+RxStreamer#0:INPUT_EDGE:0, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action restart_request from
+RxStreamer#0:INPUT_EDGE:0, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action restart_request from
+RxStreamer#0:INPUT_EDGE:0, no neighbour found!
+
+O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
+
+O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:1, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:1, no neighbour found!
+
+L[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
+0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
+
+ 
+
+ 
+
+
+------=_NextPart_001_01E0_01DBE7CD.23D03080
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Yes, you're right. The clock in this case is 245.76 MHz, but the divider
-sets the duration of half the SPI clock period, so the equation in your
-case would be 122.88 MHz / (divider + 1). I agree, the manual deserves some
-additional explanation. I'll see that it gets updated.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DEN-US>Hi =
+Everyone,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>What is the reason for these =
+warnings?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Somehow my rfnoc block and/or image/software/compile has =
+resulted in these again, and I can&#8217;t nail it down to =
+something.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Some symptoms are an rx_streamer that receives a few 100 Mb =
+of data, but then stalls.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I can see in wireshark that data =
+packets of the correct size flow from both 10 gbe ports &#8211; but stop =
+quite soon after starting, and after that just a stream of some sort of =
+control and ack packets.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Regards, Kevin<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>O[WARNING] [RFNOC::GRAPH::DETAIL] =
+Cannot forward action rx_event from 0/Radio#0:OUTPUT_EDGE:0, no =
+neighbour found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:1, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:1, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>L[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+restart_request from RxStreamer#0:INPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+restart_request from RxStreamer#0:INPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+restart_request from RxStreamer#0:INPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+restart_request from RxStreamer#0:INPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:1, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:1, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>L[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action =
+rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour =
+found!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+------=_NextPart_001_01E0_01DBE7CD.23D03080--
 
-Thanks for reporting this.
+------=_NextPart_000_01DF_01DBE7CD.23D03080
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
-Wade
+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
 
-On Fri, Jun 27, 2025 at 10:26=E2=80=AFAM Rob Kossler <rkossler@nd.edu> wrot=
-e:
+------=_NextPart_000_01DF_01DBE7CD.23D03080--
 
-> But, wouldn't your previous comment apply regarding the logic inverting
-> the spi clock every (divider+1) clock cycles such that a full spi clock
-> cycle would consume 2*(divider+1) radio clock cycles?  If so, then this
-> explains what I see and the only issue is that the equation in the manual
-> needs modified by a factor of 2 and perhaps some additional info added
-> regarding how the user would know what the underlying clock rate is (is i=
-t
-> the master_clock, the radio_clock, etc.).
->
-> If this is not the case, I can open an issue. BTW, I am using UHD 4.8.
-> Rob
->
-> On Fri, Jun 27, 2025 at 11:17=E2=80=AFAM Wade Fife <wade.fife@ettus.com> =
-wrote:
->
->> Rob,
->>
->> I don't know why you're seeing that behavior. The radio_clk does actuall=
-y
->> run at 122.88 MHz in your case but the clock driving the SPI controller =
-is
->> twice that rate, so I would expect it to result in SPI_clk =3D 245.76 MH=
-z /
->> (divider + 1).
->>
->> Which UHD version are you using?
->>
->> I suggest opening an issue on https://github.com/EttusResearch/uhd/issue=
-s.
->> If you can, share your code for configuring the SPI rate and the the
->> oscilloscope screen shot.
->>
->> Thanks,
->>
->> Wade
->>
->> On Thu, Jun 26, 2025 at 8:25=E2=80=AFPM Rob Kossler <rkossler@nd.edu> wr=
-ote:
->>
->>> Hi Wade,
->>> Thanks for the response. Here are the answers:
->>> - here is the URL
->>> <https://files.ettus.com/manual/page_x400_gpio_api.html#x4x0_spi_r_w>
->>> for the equation in the UHD manual
->>> - I am using the X410 with UC_200 FPGA image with master clock rate of
->>> 245.76 MHz
->>> - The function usrp->get_radio_control()->get_rate() returns 245.76 MHz
->>> - The SPI clock as seen on my oscilloscope is half the rate I expect
->>> from the equation if I use 245.76 MHz
->>> - I wasn't sure if the factor of 2 was because of the half-cycle issue
->>> you mentioned or if it had something to do with the radio clock perhaps
->>> running at 122.88 MHz with 2 samples per cycle.
->>>
->>> Rob
->>>
->>> On Thu, Jun 26, 2025 at 4:37=E2=80=AFPM Wade Fife <wade.fife@ettus.com>=
- wrote:
->>>
->>>> Actually it looks like X410 and X440 use different clocks for the SPI
->>>> core. Can you confirm which device you saw this on and what master clo=
-ck
->>>> rate you're using?
->>>>
->>>> For X410 with 200 MHz bandwidth, for example, I think the "Radio_Clk"
->>>> value you should use in that original equation in the documentation is
->>>> 245.76 MHz or 250 MHz, depending on your master clock rate. So:
->>>>
->>>>     SPI_clk =3D 245.76 MHz / (divider + 1)
->>>>
->>>> What value was returned by usrp->get_radio_control()->get_rate()?
->>>>
->>>> Wade
->>>>
->>>>
->>>> On Thu, Jun 26, 2025 at 2:41=E2=80=AFPM Wade Fife <wade.fife@ettus.com=
-> wrote:
->>>>
->>>>> Hi Rob,
->>>>>
->>>>> I believe the underlying code that implements this is here:
->>>>>
->>>>>
->>>>> https://github.com/EttusResearch/uhd/blob/c354764c93b49c90be08958f942=
-b9bcb7704cbd5/fpga/usrp3/lib/control/simple_spi_core.v#L182
->>>>>
->>>>> It looks like the clock is inverted every divider+1 cycles, meaning
->>>>> divider+1 is half the SPI clock period, not the full period. If so, t=
-he
->>>>> frequency of the SPI clock would actually be (Radio_Clk / (divider + =
-1)) /
->>>>> 2.
->>>>>
->>>>> That seems to agree with what you're seeing? Just to confirm, can you
->>>>> share the URL for the documentation with this equation?
->>>>>
->>>>> Wade
->>>>>
->>>>>
->>>>>
->>>>> On Wed, Jun 25, 2025 at 4:25=E2=80=AFPM Rob Kossler via USRP-users <
->>>>> usrp-users@lists.ettus.com> wrote:
->>>>>
->>>>>> Hi,
->>>>>> The equation in the UHD manual for the X410 SPI clock rate is:
->>>>>>   SPI_clk =3D Radio_clk / (divider + 1)
->>>>>> However, I'm seeing half of that rate if I use the function:
->>>>>>   Radio_clk =3D usrp->get_radio_control()->get_rate();
->>>>>> Note that this returns the sample rate.  I'm wondering if maybe the
->>>>>> radio clock rate is half of the sample rate because it processes mul=
-tiple
->>>>>> samples per clock cycle.
->>>>>>
->>>>>> So, basically, my question is: what function or functions should I
->>>>>> call to determine the Radio clock rate needed for the equation above=
-? Or is
->>>>>> the equation wrong?
->>>>>>
->>>>>> Thanks.
->>>>>> Rob
->>>>>>
->>>>>> _______________________________________________
->>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>
->>>>>
-
---000000000000ca614606389566a2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Yes, you&#39;re right. The clock in this case is 245.=
-76 MHz, but the divider sets the duration of half the SPI clock period, so =
-the equation in your case would be 122.88 MHz / (divider=C2=A0+ 1). I agree=
-, the manual deserves some additional explanation. I&#39;ll see that it get=
-s updated.</div><div><br></div><div>Thanks for reporting this.</div><div><b=
-r></div><div>Wade</div></div><br><div class=3D"gmail_quote gmail_quote_cont=
-ainer"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 27, 2025 at 10:26=
-=E2=80=AFAM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.=
-edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>But, wouldn&#39;=
-t your previous comment apply regarding the logic inverting the spi clock e=
-very (divider+1) clock cycles such that a full spi clock cycle would consum=
-e 2*(divider+1) radio clock cycles?=C2=A0 If so, then this explains what I =
-see and the only issue is that the equation in the manual needs modified by=
- a factor of 2 and perhaps some additional info added regarding how the use=
-r would know what=C2=A0the=C2=A0underlying clock rate is (is it the master_=
-clock, the radio_clock, etc.).</div><div><br></div><div><div>If this is not=
- the case, I can open an issue. BTW, I am using UHD 4.8.</div></div><div>Ro=
-b</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Fri, Jun 27, 2025 at 11:17=E2=80=AFAM Wade Fife &lt;<a href=3D"ma=
-ilto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
-ltr"><div>Rob,</div><div><br></div><div>I don&#39;t know why you&#39;re see=
-ing that behavior. The radio_clk does actually run at 122.88 MHz in your ca=
-se but the clock driving the SPI controller is twice that rate, so I would =
-expect it to result in SPI_clk =3D 245.76 MHz / (divider + 1).</div><div><b=
-r></div><div>Which UHD version are you using?</div><div><br></div><div>I su=
-ggest opening an issue on=C2=A0<a href=3D"https://github.com/EttusResearch/=
-uhd/issues" target=3D"_blank">https://github.com/EttusResearch/uhd/issues</=
-a>. If you can, share your code for configuring the SPI rate and the the os=
-cilloscope screen shot.</div><div><br></div><div>Thanks,</div><div><br></di=
-v><div>Wade</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
-s=3D"gmail_attr">On Thu, Jun 26, 2025 at 8:25=E2=80=AFPM Rob Kossler &lt;<a=
- href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div dir=3D"ltr">Hi Wade,<div>Thanks for the response. Here are th=
-e answers:</div><div>- <a href=3D"https://files.ettus.com/manual/page_x400_=
-gpio_api.html#x4x0_spi_r_w" target=3D"_blank">here is the URL</a> for the e=
-quation in the UHD manual</div><div>- I am using the X410 with UC_200 FPGA =
-image with master clock rate of 245.76 MHz</div><div>- The function usrp-&g=
-t;get_radio_control()-&gt;get_rate() returns 245.76 MHz</div><div>- The SPI=
- clock as seen on my oscilloscope=C2=A0is half the rate I expect from the e=
-quation if I use 245.76 MHz</div><div>- I wasn&#39;t sure if the factor of =
-2 was because of the half-cycle issue you mentioned or if it had something =
-to do with the radio clock perhaps running=C2=A0at 122.88 MHz with 2 sample=
-s per cycle.</div><div><br></div><div>Rob</div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 26, 2025 at 4:37=
-=E2=80=AFPM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"=
-_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div dir=3D"ltr"><div>Actually it looks like X41=
-0 and X440 use different clocks for the SPI core. Can you confirm which dev=
-ice you saw this on and what master clock rate you&#39;re using?</div><div>=
-<br></div><div>For X410 with 200 MHz bandwidth, for example, I think the &q=
-uot;Radio_Clk&quot; value you should use in that original equation=C2=A0in =
-the documentation is 245.76 MHz or 250 MHz, depending on your master clock =
-rate. So:</div><div><br></div><div>=C2=A0 =C2=A0 SPI_clk =3D 245.76 MHz / (=
-divider + 1)</div><div><br></div><div>What value was returned by usrp-&gt;g=
-et_radio_control()-&gt;get_rate()?</div><div><br></div><div>Wade</div><div>=
-<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Thu, Jun 26, 2025 at 2:41=E2=80=AFPM Wade Fife &lt;<a href=3D"=
-mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div>Hi Rob,</div><div><br></div><div>I believe the underlying cod=
-e that implements this is here:</div><div><br></div><div><a href=3D"https:/=
-/github.com/EttusResearch/uhd/blob/c354764c93b49c90be08958f942b9bcb7704cbd5=
-/fpga/usrp3/lib/control/simple_spi_core.v#L182" target=3D"_blank">https://g=
-ithub.com/EttusResearch/uhd/blob/c354764c93b49c90be08958f942b9bcb7704cbd5/f=
-pga/usrp3/lib/control/simple_spi_core.v#L182</a></div><div><br></div><div>I=
-t looks like the clock is inverted every divider+1 cycles, meaning divider+=
-1 is half the SPI clock period,=C2=A0not the full period. If so, the freque=
-ncy of the SPI clock would actually be=C2=A0(Radio_Clk / (divider=C2=A0+ 1)=
-) / 2.</div><div><br></div><div>That seems to agree with what you&#39;re se=
-eing? Just to confirm, can you share the URL for the documentation with thi=
-s equation?</div><div><br></div><div>Wade</div><div><br></div><div><br></di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Wed, Jun 25, 2025 at 4:25=E2=80=AFPM Rob Kossler via USRP-users &lt;<a=
- href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@li=
-sts.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"ltr">Hi,<br><div>The equation in the UHD manual fo=
-r the X410 SPI clock rate is:</div><div>=C2=A0 SPI_clk =3D Radio_clk / (div=
-ider=C2=A0+ 1)</div><div>However, I&#39;m seeing half of that rate if I use=
- the function:</div><div>=C2=A0 Radio_clk =3D usrp-&gt;get_radio_control()-=
-&gt;get_rate();</div><div>Note that this returns the sample rate.=C2=A0 I&#=
-39;m wondering if maybe the radio clock rate is half of the sample rate bec=
-ause it processes multiple samples per clock cycle.=C2=A0</div><div><br></d=
-iv><div>So, basically, my question is: what function or functions should I =
-call to determine the Radio clock rate needed for the equation above? Or is=
- the equation wrong?</div><div><br></div><div>Thanks.</div><div>Rob</div><d=
-iv><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div></div>
-</div>
-</blockquote></div>
-
---000000000000ca614606389566a2--
-
---===============1020397927219195117==
+--===============0253066471103371533==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -358,4 +391,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1020397927219195117==--
+--===============0253066471103371533==--
