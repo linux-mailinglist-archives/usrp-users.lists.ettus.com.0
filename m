@@ -2,389 +2,293 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F80AEB7BF
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Jun 2025 14:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB02AEBB7C
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Jun 2025 17:18:27 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BB1EE38618C
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Jun 2025 08:33:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5206E386173
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Jun 2025 11:18:24 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1751027613; bh=WR1TgzBJl7MtOUjH1i8hYdsmozl1KcxGgYnXU0AuVxw=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=WYKQcMxJbr6L0utPFsmX2kaVwLVuI0bW9KcSiODCnR76ZcwKaojd+3k174wgt1KC6
-	 b2Wj/Hb3DNha21M02EANd+Ts9myEucY/8RujDSr4U4injmRMCon82Ppwcynp26PiDV
-	 drEe/WxfL6vpo8xntd1KNLJsPcxS0Jbksj1EaH+fm/SuhaRjNm8QpfGxdRw/63d3d2
-	 U9Nl1j677LKth115H1L9NYaHB6q7iIsZS+ExEbKjtquKjCsX3G0pFDKnM4/st2SfnD
-	 ahCY6cwfo9gwjz2AQ75/snoILZ4ggjxe1fW5O+rQZmCkfGbqvhvv5PDCzGiBERJBHT
-	 Tst1AmU2gFcMg==
-Received: from za-smtp-delivery-57.mimecast.co.za (za-smtp-delivery-57.mimecast.co.za [41.74.205.57])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7A68B386171
-	for <usrp-users@lists.ettus.com>; Fri, 27 Jun 2025 08:32:29 -0400 (EDT)
+	t=1751037504; bh=EdqJcZQcoRS41a/AMZk0nFPf4Xe/ltwsA12iNqgYbeo=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=fmZ9esKSawszvbxAQoqzGMh+7cDwKXUH6DJ2RtgqG+r8xR0fFakjGN9F3jUtfRxuC
+	 qjFql+0/mNn8kCiY6zWJO0PYJshk7aKkpFJU5VuYCVIj+tWvoc3o0RW5c4CA7WPUvv
+	 bB4NmVWDCsR3plzGQ/2WQaMJquGoitER5al4HA4ZuxQLROv9UpjzWqiFhsUa47Lgjj
+	 f0E0ARWJGVWnBu/ReJz6CcNjbuUAq2Gb0Er38lVIKgOsOYARQGGnWS75bIgAw/D+lH
+	 KNWshXTOCFrPR13G6oAhocdDYhoHiUr5S7fPSNyw8w1RMPSkdiO4niAp8fNkePzn7b
+	 Zh9IxSpgHj19g==
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 29D8C385C6C
+	for <usrp-users@lists.ettus.com>; Fri, 27 Jun 2025 11:17:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="eiHv1N6M";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="xYrbNLwb";
 	dkim-atps=neutral
-Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
- relay.mimecast.com with ESMTP id za-mta-74-IbDw9ZZkMxqeSLQxVTToDg-1; Fri,
- 27 Jun 2025 14:32:23 +0200
-X-MC-Unique: IbDw9ZZkMxqeSLQxVTToDg-1
-X-Mimecast-MFC-AGG-ID: IbDw9ZZkMxqeSLQxVTToDg_1751027543
-dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type:In-Reply-To:References;
-	bh=8sFvyG5nZDU10i9KCS+X/aO0KHZf4fQc5bUn+hszLa4=;
-	b=eiHv1N6MNp1sJLuekOsNzuKX0aeq2C3ddkVc5jdsb3kjkhiafgqCR0GbcNFcT7/r5gsos7NNMe9ejNR6ixTgEJSCSODqxov+9Mg/peH4qASyI1vvDCCfkT54nfGIXAEDT+00c7BG9vEoeSrhH+pcM6jzDGw8VlgUBn6P7kFhzS8=
-Received: from exchange3.vastech.co.za (Unknown [172.30.81.31])
-	by mail.vastech.co.za with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Fri, 27 Jun 2025 14:32:17 +0200
-Received: from exchange3.vastech.co.za (172.30.81.31) by
- exchange3.vastech.co.za (172.30.81.31) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 27 Jun 2025 14:32:17 +0200
-Received: from exchange3.vastech.co.za ([172.30.81.31]) by
- exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Fri, 27
- Jun 2025 14:32:17 +0200
-From: Kevin Williams <kevin.williams@vastech.co.za>
-To: "niels.steffen.garibaldi@emerson.com"
-	<niels.steffen.garibaldi@emerson.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [EXTERNAL][USRP-users] Re: adding a user ip repo
-Thread-Index: AQHb510yf6tQJAqCakqMTIttHZ24C7QW7dlw
-Date: Fri, 27 Jun 2025 12:32:17 +0000
-Message-ID: <2fdb5791477e49619bec18ae88480feb@vastech.co.za>
-References: 8fcb7a89f603499b8139865148bf59ed@vastech.co.za
- <cmpCXdWrS4wGpn1GNCaJNyFTQ3w0GqALRWlibNQo23g@lists.ettus.com>
-In-Reply-To: <cmpCXdWrS4wGpn1GNCaJNyFTQ3w0GqALRWlibNQo23g@lists.ettus.com>
-Accept-Language: en-US, en-ZA
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.168.3]
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-70e5d953c0bso26266917b3.1
+        for <usrp-users@lists.ettus.com>; Fri, 27 Jun 2025 08:17:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1751037445; x=1751642245; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=m09cnTbT0d44Or+loV22Zpn3pMz7GVEs3t6lDajkfew=;
+        b=xYrbNLwbsImhnH8kKxJH9ntN6VYrTPCRmqY20ZjdfkBGWehaONRWrV/NlxO7l/vy7w
+         7lx3Iy8HayKRIF6gwKQz02Mptke7sKQ64mwTjT/YeekTGXd4l2/YSnms4xVtViIqNRNM
+         9sgPNEA7z6Vj+xVfwuPWMrWxaN944UBmAM2RGQfQ6hyZnUqa3ceVw8zy0fSDE4rl4YZg
+         JRUltwRKrdKXZSmOwtJPOZl3+ZQXqUHni+lOrDQeMJCDYie15bGXiDcQGbx9FAdl8qB3
+         jNy+Dkmpe9d+2us0QMSZBY45KoGVo+q4tHeZrlD5Vnu7magE7Nj194mZgGhSM+yEr+/Q
+         HkjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751037445; x=1751642245;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m09cnTbT0d44Or+loV22Zpn3pMz7GVEs3t6lDajkfew=;
+        b=eOAy32rKjwUQMwugcC7z6D6OL2WZ0e0Xx2uZQsjG2k+KMsV4u9QIsjEofNL8tyHTmn
+         QhuiPHC5Bbs1lGk5L5MBBl83/K4MR07f2gFVD4rQ8+Wo95TMAFXzdHPQflAimI6cX6vB
+         1w7WRQIWhTlB6IXJSIg4P0HlnNB76wo3AeYh3mnArUEMH408A59QEV20APqFKy0ebxVm
+         VFcRWRu2lLvtJE3eKQ6hOgrdN5mZ1rNi/szm5iuQ8/Sa4ESBYHb6tkkUloGDPPs8zSIM
+         vj5iwd28t4p1EaLo0+FxU2gugNwE1AHJShZe4B/PmN4OmPyQPtWi37J5hdjTnuPPVoXU
+         uQuw==
+X-Gm-Message-State: AOJu0Yyi+eHcn5slgLVnwQdn8SBcmBHaAkQDM2d7svSTGgZX6mOHC6mQ
+	Q5jqkrQsI/6DYjqD5M/RQ+4ATl+a5tQ3YPYRc7fgK40mxKT2GueaAB8bSBtU8id0QZhunwfxN8/
+	yNs6EeEp1aa+TBKF4JXNZryls586FTCIk+FhKHEgFVQAv
+X-Gm-Gg: ASbGncuvXP3k7mpytS2K6Uu+2tD6oKvfG5l3ncL9k7rznMW7hFJX8bXs0jomSiDznZw
+	lQexqi9+Z7SJWJBFSH8bJx9lXFozMlu5ehtTxP8J94H1fpYFzSIAVTqRehP3pTgmedwzKSeoohy
+	F+5ylgpL8KVrXAJTZMD0vS9hPiMFYPJTC3s4oltvfCGGhIioFF9V8=
+X-Google-Smtp-Source: AGHT+IHM3nqg0ZLulp4gagpXwfD7ZRwR05hnzXYM5L+eu1Z0bJdTvcQaMg/K9xH3kn5r6S0dk6c7Zq0ne8AnbMyNeHM=
+X-Received: by 2002:a05:690c:6605:b0:714:691:6d1d with SMTP id
+ 00721157ae682-715171b53b1mr51426067b3.24.1751037445268; Fri, 27 Jun 2025
+ 08:17:25 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: S2BWHKUMUU3FOLEDDPVRDTJFTGWTMTE6
-X-Message-ID-Hash: S2BWHKUMUU3FOLEDDPVRDTJFTGWTMTE6
-X-MailFrom: kevin.williams@vastech.co.za
+References: <CAB__hTQB0JjEKNk0=SFDREonEeCVavhWpUR_-hcwy0-adDv8Cg@mail.gmail.com>
+ <CAFche=gdLTvuw1RpWzDDRyN=AvW=hDAKtcSMcxCNbFeB0o_MaQ@mail.gmail.com>
+ <CAFche=gc8kd2E=ZRODAzCuYkWbUmzqSitXV=tLkU9_+Ym+_PAg@mail.gmail.com> <CAB__hTSdEqtW=bHThXMt_DU5jdxbG3qaKmpgTxxYdrZ8QG-sfQ@mail.gmail.com>
+In-Reply-To: <CAB__hTSdEqtW=bHThXMt_DU5jdxbG3qaKmpgTxxYdrZ8QG-sfQ@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Fri, 27 Jun 2025 10:17:09 -0500
+X-Gm-Features: Ac12FXylTnXm5qbe1-LlwxGQKYT4EKXrpefGflCcSfMYp2eECTOEQfIoD323Mzk
+Message-ID: <CAFche=iwS+2TAPVpDPL0p8pctVb7RsZ2WUh4Fau_OqLEviiU2Q@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: IFZINREFRIIUESVSYFQUVNIMHYERDZOQ
+X-Message-ID-Hash: IFZINREFRIIUESVSYFQUVNIMHYERDZOQ
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [EXTERNAL]Re: adding a user ip repo
+Subject: [USRP-users] Re: X410 SPI clock rate
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S2BWHKUMUU3FOLEDDPVRDTJFTGWTMTE6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IFZINREFRIIUESVSYFQUVNIMHYERDZOQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6156552245586666912=="
+Content-Type: multipart/mixed; boundary="===============7892242767292337646=="
 
---===============6156552245586666912==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=2.16.840.1.101.3.4.2.3;
-	protocol="application/x-pkcs7-signature";
-	boundary="----=_NextPart_000_01CD_01DBE770.4756B5E0"
+--===============7892242767292337646==
+Content-Type: multipart/alternative; boundary="000000000000e9ff7606388f2c60"
 
-------=_NextPart_000_01CD_01DBE770.4756B5E0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_01CE_01DBE770.4756B5E0"
-
-
-------=_NextPart_001_01CE_01DBE770.4756B5E0
-Content-Type: text/plain;
-	charset="utf-8"
+--000000000000e9ff7606388f2c60
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Niels,
+Rob,
 
-=20
+I don't know why you're seeing that behavior. The radio_clk does actually
+run at 122.88 MHz in your case but the clock driving the SPI controller is
+twice that rate, so I would expect it to result in SPI_clk =3D 245.76 MHz /
+(divider + 1).
 
-Thanks for your reply.
+Which UHD version are you using?
 
-=20
+I suggest opening an issue on https://github.com/EttusResearch/uhd/issues.
+If you can, share your code for configuring the SPI rate and the the
+oscilloscope screen shot.
 
-As you mention, the issue I have is my module needs to generate an =
-instance of an IP core I create using other tools first.
+Thanks,
 
-=20
+Wade
 
-From browsing =E2=80=9Cviv_generate_ip=E2=80=9D and the other scripts it =
-seems that there is no place where user paths get added to the IP repo =
-list, although I did find one reference in =
-=E2=80=9Cviv_generate_bd.tcl=E2=80=9D which calls =E2=80=9Cset ip_repos =
-$::env(BD_IP_REPOS);# Any supporting IP repos=E2=80=9D.
+On Thu, Jun 26, 2025 at 8:25=E2=80=AFPM Rob Kossler <rkossler@nd.edu> wrote=
+:
 
-=20
+> Hi Wade,
+> Thanks for the response. Here are the answers:
+> - here is the URL
+> <https://files.ettus.com/manual/page_x400_gpio_api.html#x4x0_spi_r_w> for
+> the equation in the UHD manual
+> - I am using the X410 with UC_200 FPGA image with master clock rate of
+> 245.76 MHz
+> - The function usrp->get_radio_control()->get_rate() returns 245.76 MHz
+> - The SPI clock as seen on my oscilloscope is half the rate I expect from
+> the equation if I use 245.76 MHz
+> - I wasn't sure if the factor of 2 was because of the half-cycle issue yo=
+u
+> mentioned or if it had something to do with the radio clock perhaps
+> running at 122.88 MHz with 2 samples per cycle.
+>
+> Rob
+>
+> On Thu, Jun 26, 2025 at 4:37=E2=80=AFPM Wade Fife <wade.fife@ettus.com> w=
+rote:
+>
+>> Actually it looks like X410 and X440 use different clocks for the SPI
+>> core. Can you confirm which device you saw this on and what master clock
+>> rate you're using?
+>>
+>> For X410 with 200 MHz bandwidth, for example, I think the "Radio_Clk"
+>> value you should use in that original equation in the documentation is
+>> 245.76 MHz or 250 MHz, depending on your master clock rate. So:
+>>
+>>     SPI_clk =3D 245.76 MHz / (divider + 1)
+>>
+>> What value was returned by usrp->get_radio_control()->get_rate()?
+>>
+>> Wade
+>>
+>>
+>> On Thu, Jun 26, 2025 at 2:41=E2=80=AFPM Wade Fife <wade.fife@ettus.com> =
+wrote:
+>>
+>>> Hi Rob,
+>>>
+>>> I believe the underlying code that implements this is here:
+>>>
+>>>
+>>> https://github.com/EttusResearch/uhd/blob/c354764c93b49c90be08958f942b9=
+bcb7704cbd5/fpga/usrp3/lib/control/simple_spi_core.v#L182
+>>>
+>>> It looks like the clock is inverted every divider+1 cycles, meaning
+>>> divider+1 is half the SPI clock period, not the full period. If so, the
+>>> frequency of the SPI clock would actually be (Radio_Clk / (divider + 1)=
+) /
+>>> 2.
+>>>
+>>> That seems to agree with what you're seeing? Just to confirm, can you
+>>> share the URL for the documentation with this equation?
+>>>
+>>> Wade
+>>>
+>>>
+>>>
+>>> On Wed, Jun 25, 2025 at 4:25=E2=80=AFPM Rob Kossler via USRP-users <
+>>> usrp-users@lists.ettus.com> wrote:
+>>>
+>>>> Hi,
+>>>> The equation in the UHD manual for the X410 SPI clock rate is:
+>>>>   SPI_clk =3D Radio_clk / (divider + 1)
+>>>> However, I'm seeing half of that rate if I use the function:
+>>>>   Radio_clk =3D usrp->get_radio_control()->get_rate();
+>>>> Note that this returns the sample rate.  I'm wondering if maybe the
+>>>> radio clock rate is half of the sample rate because it processes multi=
+ple
+>>>> samples per clock cycle.
+>>>>
+>>>> So, basically, my question is: what function or functions should I cal=
+l
+>>>> to determine the Radio clock rate needed for the equation above? Or is=
+ the
+>>>> equation wrong?
+>>>>
+>>>> Thanks.
+>>>> Rob
+>>>>
+>>>> _______________________________________________
+>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>
+>>>
 
-I could probably add something like that to =
-=E2=80=9Cviv_generate_ip=E2=80=9D.
-
-=20
-
-Actually, if that works it will be better than hard-coding paths.
-
-=20
-
-Kind regards, Kevin
-
-=20
-
-From: niels.steffen.garibaldi--- via USRP-users =
-<usrp-users@lists.ettus.com>=20
-Sent: Friday, 27 June 2025 14:14
-To: usrp-users@lists.ettus.com
-Subject: [EXTERNAL][USRP-users] Re: adding a user ip repo
-
-=20
-
-Hi Kevin,=20
-have you tried giving your IP directory via the `--include-dir` argument =
-of the rfnoc_image_builder? That=E2=80=99s usually the way to include =
-OOT modules.
-
-Or does your IP need to be generated first and you want this to be part =
-of the overall bitfile generation process?
-
-The rfnoc_image_builder uses a gnu-make based build tooling, so you =
-might be able to add your path to one of the makefile related files, =
-depending on what they are and what should be done with them.
-
-It looks like the `viv_generate_ip.tcl` script you gets called via the =
-`build_vivado_ip` function that usually gets called from the respective =
-IP=E2=80=99s makefile in the targets ip directory, e.g. x4xx ip =
-<https://url.za.m.mimecastprotect.com/s/ZtWKC0gp77igE2phwfWh9GqeY?domain=3D=
-github.com> .
-
-If you had a similar makefile in your repo and added a link to it, e.g. =
-in the Makefile.inc =
-<https://url.za.m.mimecastprotect.com/s/nPYHCg5KEEcwglDuohKh4YoC7?domain=3D=
-github.com> , so that make can find it, that might also work.
-
-It is definitely not the recommended way, but if it works for you, it =
-might be sufficient.
-
-Regards,
-Niels
-
-
-
-
-------=_NextPart_001_01CE_01DBE770.4756B5E0
-Content-Type: text/html;
-	charset="utf-8"
+--000000000000e9ff7606388f2c60
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.prosemirror-selectednode, li.prosemirror-selectednode, =
-div.prosemirror-selectednode
-	{mso-style-name:prosemirror-selectednode;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'>Hi Niels,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Thanks for =
-your reply.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>As you =
-mention, the issue I have is my module needs to generate an instance of =
-an IP core I create using other tools first.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>From =
-browsing =E2=80=9Cviv_generate_ip=E2=80=9D and the other scripts it =
-seems that there is no place where user paths get added to the IP repo =
-list, although I did find one reference in =
-=E2=80=9Cviv_generate_bd.tcl=E2=80=9D which calls =E2=80=9Cset ip_repos =
-$::env(BD_IP_REPOS);# Any supporting IP =
-repos=E2=80=9D.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>I could =
-probably add something like that to =
-=E2=80=9Cviv_generate_ip=E2=80=9D.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Actually, =
-if that works it will be better than hard-coding =
-paths.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Kind =
-regards, Kevin<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><span lang=3DEN-US>From:</span></b><span =
-lang=3DEN-US> niels.steffen.garibaldi--- via USRP-users =
-&lt;usrp-users@lists.ettus.com&gt; <br><b>Sent:</b> Friday, 27 June 2025 =
-14:14<br><b>To:</b> usrp-users@lists.ettus.com<br><b>Subject:</b> =
-[EXTERNAL][USRP-users] Re: adding a user ip repo<o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3Dprosemirror-selectednode style=3D'margin-bottom:12.0pt'>Hi =
-Kevin, <br>have you tried giving your IP directory via the =
-`--include-dir` argument of the rfnoc_image_builder? That=E2=80=99s =
-usually the way to include OOT modules.<br><br>Or does your IP need to =
-be generated first and you want this to be part of the overall bitfile =
-generation process?<br><br>The rfnoc_image_builder uses a gnu-make based =
-build tooling, so you might be able to add your path to one of the =
-makefile related files, depending on what they are and what should be =
-done with them.<br><br>It looks like the `viv_generate_ip.tcl` script =
-you gets called via the `build_vivado_ip` function that usually gets =
-called from the respective IP=E2=80=99s makefile in the targets ip =
-directory, e.g. <a =
-href=3D"https://url.za.m.mimecastprotect.com/s/ZtWKC0gp77igE2phwfWh9GqeY?=
-domain=3Dgithub.com">x4xx ip</a>.<br><br>If you had a similar makefile =
-in your repo and added a link to it, e.g. <a =
-href=3D"https://url.za.m.mimecastprotect.com/s/nPYHCg5KEEcwglDuohKh4YoC7?=
-domain=3Dgithub.com">in the Makefile.inc</a>, so that make can find it, =
-that might also work.<br><br>It is definitely not the recommended way, =
-but if it works for you, it might be =
-sufficient.<br><br>Regards,<br>Niels<br><br><o:p></o:p></p></div></body><=
-/html>
-------=_NextPart_001_01CE_01DBE770.4756B5E0--
+<div dir=3D"ltr"><div>Rob,</div><div><br></div><div>I don&#39;t know why yo=
+u&#39;re seeing that behavior. The radio_clk does actually run at 122.88 MH=
+z in your case but the clock driving the SPI controller is twice that rate,=
+ so I would expect it to result in SPI_clk =3D 245.76 MHz / (divider + 1).<=
+/div><div><br></div><div>Which UHD version are you using?</div><div><br></d=
+iv><div>I suggest opening an issue on=C2=A0<a href=3D"https://github.com/Et=
+tusResearch/uhd/issues">https://github.com/EttusResearch/uhd/issues</a>. If=
+ you can, share your code for configuring the SPI rate and the the oscillos=
+cope screen shot.</div><div><br></div><div>Thanks,</div><div><br></div><div=
+>Wade</div></div><br><div class=3D"gmail_quote gmail_quote_container"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 26, 2025 at 8:25=E2=80=AFPM Ro=
+b Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr"><div dir=3D"ltr">Hi Wade,<div>Thanks for the response. Here are the a=
+nswers:</div><div>- <a href=3D"https://files.ettus.com/manual/page_x400_gpi=
+o_api.html#x4x0_spi_r_w" target=3D"_blank">here is the URL</a> for the equa=
+tion in the UHD manual</div><div>- I am using the X410 with UC_200 FPGA ima=
+ge with master clock rate of 245.76 MHz</div><div>- The function usrp-&gt;g=
+et_radio_control()-&gt;get_rate() returns 245.76 MHz</div><div>- The SPI cl=
+ock as seen on my oscilloscope=C2=A0is half the rate I expect from the equa=
+tion if I use 245.76 MHz</div><div>- I wasn&#39;t sure if the factor of 2 w=
+as because of the half-cycle issue you mentioned or if it had something to =
+do with the radio clock perhaps running=C2=A0at 122.88 MHz with 2 samples p=
+er cycle.</div><div><br></div><div>Rob</div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 26, 2025 at 4:37=E2=
+=80=AFPM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_bl=
+ank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr"><div>Actually it looks like X410 a=
+nd X440 use different clocks for the SPI core. Can you confirm which device=
+ you saw this on and what master clock rate you&#39;re using?</div><div><br=
+></div><div>For X410 with 200 MHz bandwidth, for example, I think the &quot=
+;Radio_Clk&quot; value you should use in that original equation=C2=A0in the=
+ documentation is 245.76 MHz or 250 MHz, depending on your master clock rat=
+e. So:</div><div><br></div><div>=C2=A0 =C2=A0 SPI_clk =3D 245.76 MHz / (div=
+ider + 1)</div><div><br></div><div>What value was returned by usrp-&gt;get_=
+radio_control()-&gt;get_rate()?</div><div><br></div><div>Wade</div><div><br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Thu, Jun 26, 2025 at 2:41=E2=80=AFPM Wade Fife &lt;<a href=3D"mai=
+lto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
+tr"><div>Hi Rob,</div><div><br></div><div>I believe the underlying code tha=
+t implements this is here:</div><div><br></div><div><a href=3D"https://gith=
+ub.com/EttusResearch/uhd/blob/c354764c93b49c90be08958f942b9bcb7704cbd5/fpga=
+/usrp3/lib/control/simple_spi_core.v#L182" target=3D"_blank">https://github=
+.com/EttusResearch/uhd/blob/c354764c93b49c90be08958f942b9bcb7704cbd5/fpga/u=
+srp3/lib/control/simple_spi_core.v#L182</a></div><div><br></div><div>It loo=
+ks like the clock is inverted every divider+1 cycles, meaning divider+1 is =
+half the SPI clock period,=C2=A0not the full period. If so, the frequency o=
+f the SPI clock would actually be=C2=A0(Radio_Clk / (divider=C2=A0+ 1)) / 2=
+.</div><div><br></div><div>That seems to agree with what you&#39;re seeing?=
+ Just to confirm, can you share the URL for the documentation with this equ=
+ation?</div><div><br></div><div>Wade</div><div><br></div><div><br></div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Wed, Jun 25, 2025 at 4:25=E2=80=AFPM Rob Kossler via USRP-users &lt;<a href=
+=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
+ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div dir=3D"ltr">Hi,<br><div>The equation in the UHD manual for the=
+ X410 SPI clock rate is:</div><div>=C2=A0 SPI_clk =3D Radio_clk / (divider=
+=C2=A0+ 1)</div><div>However, I&#39;m seeing half of that rate if I use the=
+ function:</div><div>=C2=A0 Radio_clk =3D usrp-&gt;get_radio_control()-&gt;=
+get_rate();</div><div>Note that this returns the sample rate.=C2=A0 I&#39;m=
+ wondering if maybe the radio clock rate is half of the sample rate because=
+ it processes multiple samples per clock cycle.=C2=A0</div><div><br></div><=
+div>So, basically, my question is: what function or functions should I call=
+ to determine the Radio clock rate needed for the equation above? Or is the=
+ equation wrong?</div><div><br></div><div>Thanks.</div><div>Rob</div><div><=
+br></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div></div>
+</blockquote></div>
 
-------=_NextPart_000_01CD_01DBE770.4756B5E0
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
+--000000000000e9ff7606388f2c60--
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgMFADCABgkqhkiG9w0BBwEAAKCCDBkw
-ggXtMIID1aADAgECAgFZMA0GCSqGSIb3DQEBCwUAMGkxJjAkBgkqhkiG9w0BCQEWF2l0c3VwcG9y
-dEB2YXN0ZWNoLmNvLnphMRswGQYDVQQDDBJWQVNUZWNoIFNBIFBUWSBMVEQxCzAJBgNVBAYTAlpB
-MRUwEwYDVQQHDAxTdGVsbGVuYm9zY2gwHhcNMjQwMzE5MTQ1MTE4WhcNMzQwMzE4MTQ1MTE4WjCB
-jTELMAkGA1UEBhMCWkExGzAZBgNVBAoMElZBU1RlY2ggU0EgUHR5IEx0ZDE0MDIGA1UEAwwrS2V2
-aW5fV2lsbGlhbXMta2V2aW4ud2lsbGlhbXNAdmFzdGVjaC5jby56YTErMCkGCSqGSIb3DQEJARYc
-a2V2aW4ud2lsbGlhbXNAdmFzdGVjaC5jby56YTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoC
-ggIBAMWGpvqe2N4BuT02dH+V8g0qvyXbWrn2Gz7wK9tdw560hrtas/GD6WQ2B7HSDrcgUSoNA4dG
-BujaH5Vv6+yH87FLBHhfXLv5N2ZTCNf9lne+94KgFgXFJ6XsTbjCQRgM/6NH7/aJMYAQBgUEnXfi
-aSbzG4vg0bltKtqoPCYbh4hVyzFARMjw42VmKln1XGbL9ao9w3T9hLSF3iGauWW6AbTHHMfxGAoJ
-4L3PSam04vKfYEo2Z0+NV65xRlZ5OV1xW8TH89tljQZ2Xnx5x2yisSXlsytTYZQSYxx3l5Ni/dpQ
-CHS7aj9pKQNgxe1+IEbP7+JcUJozq7jKkyvgNyKTQjbrVAT2mEKSXcLlcCVodKdhheMd6rYxIkaB
-O1Q5H+gPwgQymyrj3pQjDXeM+FcovG/rkdqW++hsy7kkSQC0W03IZWb6/k9RnX79v9Puu1OR8JOL
-Cq1V6Hm5jJm40VrHTSlRzyUK8zsBRsw3WKVmVOqADgNCa1nBit5wcRqdHHkAD9gxGgBJnNru6ssK
-DVpjI2aNewSotxDS9WQh9Qcx9+E33I7dGEnxhyzEa3BY4cDxb9dYIyE6p+VWxGgmqxRB35xnbVul
-HHQ2tjZnvKXLWpENLENavdMGdssjoQb54zPQ8TZwVFwvXI0mXFmj/zbM2lHqsz3CEnJ2G+huMJHV
-HJ+LAgMBAAGjezB5MAkGA1UdEwQCMAAwLAYJYIZIAYb4QgENBB8WHU9wZW5TU0wgR2VuZXJhdGVk
-IENlcnRpZmljYXRlMB0GA1UdDgQWBBRIb2HjnWl31+WiMJf04ly+Ei0USTAfBgNVHSMEGDAWgBQR
-ruX6fGvsOFzwRWYoQK/Ve0RwGzANBgkqhkiG9w0BAQsFAAOCAgEAFiPzlT4DS01wj3B+zIbDHyXc
-R0cCdguyevVfXKdis2Me7/fQOLVnX686IRQY+mmJfBYnBzxGbCgcixFa+F/mcUak5P4ygIC/6Wd4
-0CY1jecsISWwyrzXDSfhoB9QLu3r/UBCa0Q0zOGikf9jMWEVNJ2bTpcvbNxrKTmlGK8tlhNe3gQX
-C4k3r1EsLU6VLvus8qhlRhBoDMjfPTOkV2SrShTgLu5jk//fc69hDEijYB33iiKS2eOW95TFGUsZ
-jjsPq5KvsOogl8B/etOmhKab+DPZ3fQ5Gkbo2rWM94gv55+VPWgTKGdYYau08Ez2QCGU2TwwvyH5
-jrdLi8hzdUVBoWtFz0KYaqX1qSfxov3EPO5IlPOXTBOc85t8GxF0hCeJVG9jYZfABVpXORLXlrdy
-B9ThtZvKohKk2f6ND6BH0pd7WAQJBEDeS6sYrCUqv/q8mlxm6PMgZiFwCNBtlXIrhv40mYGTG3m/
-mUXm9DfugqrC7wRqsQqaQvPwn2VMdsXhQpQrebm8MjiKcsZBNhSV9TkNPe7VWcooyLlMIZhZAlan
-GuPVjZZWbg5nUzcKvJpsr0wXp/BjOdKhhDfCChsZdEhEyqqyeVI+8m5HZBy3Sufqq0tRWOsGBd/u
-+eGBS+rGXWhq5czhBw2znq9rkj5EyWTRj4EURLv6iUH3z0NmWP0wggYkMIIEDKADAgECAgkA/jVd
-5DmuX4MwDQYJKoZIhvcNAQELBQAwaTEmMCQGCSqGSIb3DQEJARYXaXRzdXBwb3J0QHZhc3RlY2gu
-Y28uemExGzAZBgNVBAMMElZBU1RlY2ggU0EgUFRZIExURDELMAkGA1UEBhMCWkExFTATBgNVBAcM
-DFN0ZWxsZW5ib3NjaDAeFw0yNDAzMTkxNDQ5MDRaFw0zNDAzMTcxNDQ5MDRaMGkxJjAkBgkqhkiG
-9w0BCQEWF2l0c3VwcG9ydEB2YXN0ZWNoLmNvLnphMRswGQYDVQQDDBJWQVNUZWNoIFNBIFBUWSBM
-VEQxCzAJBgNVBAYTAlpBMRUwEwYDVQQHDAxTdGVsbGVuYm9zY2gwggIiMA0GCSqGSIb3DQEBAQUA
-A4ICDwAwggIKAoICAQC6j3tD0mPRxASmpcVlJO0jRt+F2jpqgVqDbj87h2hZgUXDREJ/1TJm99ab
-q6eG/UbMoBHNInKcKlm3RSdyv8qevw9h3qoyJPpBJmSj8Cw+a9LDesM2OOEaGdFVzUa0Wv/bbV0K
-VylC2bELZizejHXfOSQ2KFiDfgm9WPiYpdX0lSt0N6LRI2hciO4UD48S8ab9q/heFNBvxMLRPD/r
-xLZ5jKkmU7oZGWrdGShXhvZSXsU+I0y+VZ4rUTBc6TA8dd5Tb9SqGcC2DlvTexzpuSrPj7mZhTAu
-QGKUCoihueMP3cqM76825hGWrfEaVZ/rbmJif9E+TmbSANDv62E/HV7K7/rev/BcrJEyAZBFVnZo
-BslGjCoZ9N9aARsh4yQ1kcZNhXx43YHfbSY51Qb+3qZGOfyLdJarjuskejwi/wdbSkTyeNYROhp8
-T+ofwOUv5Rgr84nCh1Ev/8Pstf/P9bAsQb/yVXLcXon6nzTjNxJBnycjAk59OssjsjBZqDDZJ70L
-HYPQ52SLKr+im20vjAJzkmjdrVFQ7qKEFIH2qR8c+eHnIht9pEI+BDzZEerglTanlbnVWNrsOQqP
-e2G0g2yyZwjp+StoRJyFMcu8Kk0sgjMqIgr82wcSfPXViQxWRHTyJGOzLI7MbvAvq7f0IsIHaMS+
-MVlt83pzamE4vBuiEwIDAQABo4HOMIHLMB0GA1UdDgQWBBQRruX6fGvsOFzwRWYoQK/Ve0RwGzCB
-mwYDVR0jBIGTMIGQgBQRruX6fGvsOFzwRWYoQK/Ve0RwG6FtpGswaTEmMCQGCSqGSIb3DQEJARYX
-aXRzdXBwb3J0QHZhc3RlY2guY28uemExGzAZBgNVBAMMElZBU1RlY2ggU0EgUFRZIExURDELMAkG
-A1UEBhMCWkExFTATBgNVBAcMDFN0ZWxsZW5ib3NjaIIJAP41XeQ5rl+DMAwGA1UdEwQFMAMBAf8w
-DQYJKoZIhvcNAQELBQADggIBAJyguGtMwc10ydLtksblz27VRj1QXtuFABjDFO85R96QuheQCugS
-zKpFMmaUBf9zL3MeBhddcc/aYT+l00VyMSqfRgNelZayMZxyiYa7xr4VTpMUQb3PMA6tUaJcMKQR
-KhMLSdrGHvAwnyaP3XhZoFtVj+e4i5ysS93uVRzqSaMCgt4N9zRAIoyXRIgganQPsuGMdP/wy5zi
-EU+2L2CMaQezzVp0Tq9SiHDVj4iHJPqlZJ2v5pRbEqHe0A43iNcq6+pcYVI6WuICmx3UvcXjHBuj
-Xv+BUeLEKmhQ8CLzRefB3udxwpgh9CQX7OIS00MWhLQaRFMTCmyMCltI8YgfbFU8B4IO7MUOo9PN
-nL4l8avY+BvXlsXgMAALhMBXy83dyWKe+O2EKLPatnpJX4+fFLEMLMak34Pm+B73kzQwBKTXLK9Z
-iv2ba//q/LBiuBM5HDfKkcDsjpKpi1e2ofADJbE2ajNpqYNCA/xkJLQl7hFFrnGoDPrpM4LOfFYn
-6DVkMpRS5dpwLfQFvCJQChp2mmrzwaWcCYeXPCVv7Yeka1fZRonbg2hFTlaR6Tw1DCTKEVnajfJt
-1pmfaQZZ5iPKU6+a9Z4Lb16wN1gvDAZ60V+BzObCclS3RUnCoF8P1ekVhFIsI8zE9cLTLe6VlAbq
-L9nC0AZauAaa8woBU71JhSI3MYIEvDCCBLgCAQEwbjBpMSYwJAYJKoZIhvcNAQkBFhdpdHN1cHBv
-cnRAdmFzdGVjaC5jby56YTEbMBkGA1UEAwwSVkFTVGVjaCBTQSBQVFkgTFREMQswCQYDVQQGEwJa
-QTEVMBMGA1UEBwwMU3RlbGxlbmJvc2NoAgFZMA0GCWCGSAFlAwQCAwUAoIICHzAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNTA2MjcxMjMyMTVaME8GCSqGSIb3DQEJ
-BDFCBEDgUOUKzdE05t00ZmihZkdbIzVpe+qwdLQG6fkHG7xy4v1XwfU0PuN430BB7FvFjOiOLnkY
-O1LI7XQFxNkw1GHXMH0GCSsGAQQBgjcQBDFwMG4waTEmMCQGCSqGSIb3DQEJARYXaXRzdXBwb3J0
-QHZhc3RlY2guY28uemExGzAZBgNVBAMMElZBU1RlY2ggU0EgUFRZIExURDELMAkGA1UEBhMCWkEx
-FTATBgNVBAcMDFN0ZWxsZW5ib3NjaAIBWTB/BgsqhkiG9w0BCRACCzFwoG4waTEmMCQGCSqGSIb3
-DQEJARYXaXRzdXBwb3J0QHZhc3RlY2guY28uemExGzAZBgNVBAMMElZBU1RlY2ggU0EgUFRZIExU
-RDELMAkGA1UEBhMCWkExFTATBgNVBAcMDFN0ZWxsZW5ib3NjaAIBWTCBkwYJKoZIhvcNAQkPMYGF
-MIGCMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCgYIKoZIhvcNAwcwCwYJYIZIAWUDBAECMA4G
-CCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDALBglghkgBZQMEAgMwCwYJYIZIAWUDBAICMAsG
-CWCGSAFlAwQCATAHBgUrDgMCGjANBgkqhkiG9w0BAQEFAASCAgCUQ27l8Npi1rFRVCM58HASqSrv
-Ikmpl9olzrW5kCDdlfxcB1dt3f8PnVYhFKbUTrUcOoZyIOy2A371vEydKTsa2cizRsfZyGLtCy3b
-Q38pCfdUpcHm978GGc6ApUuKZKVrFSF9+dogbw5zz7NFpCRIwa3U0JSiC128WGvGMRkeusXDyB/X
-dw0S1m85QdEhiivAG/64/BINGcvnfl0TqJuDzqrKMv24eoN+oMDbCpl5j5yorCERT/ljVF5dGFw/
-tG/pmhcHqyt6ZyjkJbgidZqcoyefujwN/v2fYycCe/9vSX9+/e+ylbwB9mWcMkioP4IyGAzM5VxK
-DRSNA65QyoHd17UZ1BjZWB4Wk1n5yQ04hTcoPcRL6F35UxkXpMjVYX81EybgHnMuP6YoIuy0D/zJ
-mgrDBU5PB6Smw5wLgpEFXkqfKa21tupy0Ihugg196142GymsKsmRL6TWPpJIi1TtR1oySP6iu9XT
-2LZlB3uPdhtZIRKN3toZVcMY8t40hpMMCjXrAwHyXyGAs7PIdf5sfeUu+onnk8ufZMwtu9eAO8sL
-dbVIOogfgxMU4M/xjUO1cviB5bTA+XGld3GjvRHxnNLLllqZeOlLe8xaBrc0g+s3oHfr1TR3oWGU
-s5sQD+oxZGdo2JjJ7uFnTd70LOgXeOgqhIV5hrAaX+48Yc87nwAAAAAAAA==
-
-------=_NextPart_000_01CD_01DBE770.4756B5E0--
-
---===============6156552245586666912==
+--===============7892242767292337646==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -394,4 +298,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6156552245586666912==--
+--===============7892242767292337646==--
