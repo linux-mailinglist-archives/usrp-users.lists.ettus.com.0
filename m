@@ -2,220 +2,242 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A14AEF7F4
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 14:11:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2885AEF869
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 14:28:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 390A43862E9
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 08:11:47 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7392B3862DF
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 08:28:21 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1751371907; bh=JPCy8cSdrb0imnKsJ5ZROWGCPen+mDRNuCgOWdZ0JhQ=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=adqa9iyDeEJcYEb1CwzuC9/OqM+1eTe+IMsGFx51whxiN1br307hemOwt3EE4Qu6w
-	 q3MTqPLSfImqYkfHuG909bMUeFm19LawLWc/zbIbhyW4Bc1NKjR3aOx4EQ8XHhClrG
-	 FyRnlEhCHOo3AiSmiUD1z4MYfg7kZGOhWmfytbsekhiZGJ7jqzYV5ZTImzjkohwOrD
-	 GVCF1yaH6mER8kYGCRdxIzZHv89tsFtmDxSQTYCdOZ6lFBKC66YKXSXR/9HMLnQKEn
-	 RE/0wSB/kaIB0yazbYKLZQ4uZ52uOXYHoQLhtub0WB31TFYQGEcOrNb+/zHK5XNMK6
-	 FwgvNSvyXY2jQ==
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id C33783862C2
-	for <usrp-users@lists.ettus.com>; Tue,  1 Jul 2025 08:11:30 -0400 (EDT)
+	t=1751372901; bh=fqPReOGy0XT3iolyCE9YlsKh48rzbtgEBB4svdI5xFw=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=iNVxIRi95YnEnx4RXNtaJZlNAYhMvKkiGSLFljl7164JYi18ZnOGwbKtW7SkO+qzq
+	 LukgBRfnRaLRGpkWjN0yDBluxUNOZ/viQvgbBvTr4dU6TP25RIoB/XN4ldHTFKzHYo
+	 yb87gwIM1tMnybVzkIMflILrs1yG1CbL9QtJ8uU+et4Y87/aI7Oy15XJBYuC5VkF8T
+	 Pc1AM0W2zl7Xi8vlQbDkDWewLHgcvMQNSz9XbPnw7hm/zvABDQoABi6PpUaJDlO6Rf
+	 PCOH42OuOpLLWHh9rTjNfhdTmK0W9vk6ItWNBTzk84YGrx+phI2uBHLuoXP3YdvBER
+	 LF44aI9sCEX/w==
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 783D138620E
+	for <usrp-users@lists.ettus.com>; Tue,  1 Jul 2025 08:27:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="BacmhCS2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UiT1ZxOB";
 	dkim-atps=neutral
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ae0de0c03e9so823038366b.2
-        for <usrp-users@lists.ettus.com>; Tue, 01 Jul 2025 05:11:30 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e8600a33792so2272711276.0
+        for <usrp-users@lists.ettus.com>; Tue, 01 Jul 2025 05:27:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1751371889; x=1751976689; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uFVNAbyS7b3HYcLu26bDlgofRknPAbmk0v2nYTSVIY8=;
-        b=BacmhCS25WMKsbdrp0Gc8G0Q34Srft8rfqiqS9DTpMrtJqU034fokgZdkh+dmDWa7L
-         95AYq0iG8mBb2Qu6rx6cxbADr8iIEMnEdg54YqxINAm6jEpjkk+3spcBGdzHGSiOqRFg
-         SI5MZC5aKUhhI1us42Rpx63RnG+BWopHHJ0hgmnSm7oFU2Y9VRad2q9K1NsjVGZEMrbS
-         vZ4keh+LE/+Ycy0FVbxdz93NSoikRdUMInOgcARYsaQHgTEkgCXclJawTJkEPVPbajoE
-         KZ5bOi6G3iTpYOXIfZp7wMYtFHAOfGu/troLwQswUO/SCWVtOrAx3C7mb+QrZGyLBxdp
-         nHDQ==
+        d=gmail.com; s=20230601; t=1751372876; x=1751977676; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3GZojg/tn3ZCVYQzW6dlYs1GsGGcbowLoX582xzNlE4=;
+        b=UiT1ZxOBWVs0aNFhJYwJJ9oTNvEUXv7X+rrxuavuLFmXSq2X3VYMY6RSDhuvStUuSr
+         McEaudyIwWi+D6NvIo4MtSqnQwCadlAfM67c+DJ+mQDSNTYVkMjOBmw6OAZM7oopXvH8
+         oyAGgFWPtvxdg3ZKjEFVGpCOPuvgKbTWGuph9tVxXlHVvwgnVoVwHj6aVS0WC8BF/FLJ
+         pTMLD2c7sWI4GPCvMSWGxYUaHuTAopVPQ+fL0O+QFRLWLMohQ5bO7QwyhkIoG4BcjZjo
+         mNvjS3+0wfdfRlUyTn6ZJ5Rd34zNgJRh72K4j6C4ujbezv4NRU0DWGBQ6V+AXlbwJLTW
+         8KFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751371889; x=1751976689;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uFVNAbyS7b3HYcLu26bDlgofRknPAbmk0v2nYTSVIY8=;
-        b=rOM4YZADxF1x7fYgMUwWpeDshKic4pWVctUlic03d5OmuTKbXxc4bz4ZWAnPHpHv/b
-         UtHBfqSK9SMyj1ayR67MAT0BP4IEtC/GzyFA3W9OrCeqtMX6pPWfVnrzdBn8BQKdqkhu
-         8v+QFEN/ZFfCqZWaEbTgeg+0H2P3AOWZ/K2xIEr/tihf2q/Ad3QYf+gCjCVIduXwkXdZ
-         Vu9YaDMz9HciJnWhirtynePCGZjgAXzWGr5rbWFnpRoKm43ms+Q0uzFxkmgVvDYwvdMm
-         yGK82zxFvu9xq5LAO/c2IwOciUSm9Lw9K8E7rjG4GnPZRxq7SkMeqvd+znYjslJAzAKN
-         eevA==
-X-Gm-Message-State: AOJu0YyeQiYL9LfAo+WmqOPqHCE9m3s388cKaf1GVnUmSdgGm3divcv/
-	MbT4inVACAaiNGPoECfOoyC3tzV3t88CtR5ngBeers+UCJu3Zt7TCAAjobfdnZ28NS2bybwEFFk
-	hSXoZE8XEBCe4EqL5oKshiOzghsKtT5B1CTTxCNN3jeqsNXiW1j567wE=
-X-Gm-Gg: ASbGncvXAs4VB6tj7gXLFnT9ApPh0SgXhBkoIYRTR4fhcTfNMB35184d5kSTeaFWnJ0
-	Mw+ENocVkqWVPINAG6QSBYyCtr61AXSoMWAIgavNcSVvoe/cg2XV6G4iSHS/a+xozIxauZxkhoq
-	QeXVIxzUns68rdPqahLgabXB/k2aH2fXk6F3bwXEcCWRxk7qcuV74NJY+fNF1qTuVGHExWhytoy
-	PE=
-X-Google-Smtp-Source: AGHT+IGgQZ3y8kaM5/VclISa9NW/eBXi+fup7GiqhzOUSuNRYSzVlcOmuisTtKGhwYpPdyDI8kaukVE/hYABv4/M6UU=
-X-Received: by 2002:a17:907:97cb:b0:ae0:d4f2:dffa with SMTP id
- a640c23a62f3a-ae34fd13de3mr1647302966b.3.1751371888458; Tue, 01 Jul 2025
- 05:11:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751372876; x=1751977676;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3GZojg/tn3ZCVYQzW6dlYs1GsGGcbowLoX582xzNlE4=;
+        b=HMEc0dlLvA+UmGUjZq6ZUUCIXRW6mVB6dSa1uUFhqLtj56r5/qaP0Nsgooc1riRwXu
+         7KLP2dyA2EIACMf+VkKKaFrN2upV6SBiox+USk75YxVE8MZfukgFgGaw/et164PJ0Mgb
+         XDrX1YuRLbkNKlDmi7eueRYavkRPl7OxyROxc3dCh66Ba6lXTe3I3Jb+eQJSaT3d2hXZ
+         A8odev60YoiKVnju0+94dWhkRS00vW2l0PJwUazx4AS4z3sPEP0gXp3MLhvJnBYXWfVI
+         i8nBOTObgjF5druP5l7iKKhXuKxolIcFi4CBMMg0dooMhnBxt19t/xnB1UPUbdaLRzNK
+         BUlA==
+X-Gm-Message-State: AOJu0YxnHN6wl6uEjoi5EF9ppT39QZDHTljq4SDJISFEOadTDNAK+zRc
+	hvnG6UP5ZnzgiKSliKhVfs5KfBLaiOh5w3dMp2XpxDFCZKjzSlss/ObD9F+lIEgCWaY52ODCLko
+	2MfcLLq0gBRYKlL8l+Gq3Pah3jUpjGs6Xe0jQdr4qeQ==
+X-Gm-Gg: ASbGnctThxoGy+aZOYP8OA1dDFiqEwX0KiNRUxEWddVpVaku1I5j8v9kAbR4cKRJa6g
+	GNfX3InrllFOvypFV+w9LSjKvYvYmLM0eyWyuvMFDi7mK1qcNFywVzn6eBBiLnq0cLg6ZSdl2IZ
+	drYV4xn//N9YzN27DcB4CU68RgvrFIWrFpZ3p6y/BShVdS
+X-Google-Smtp-Source: AGHT+IFtsaO9/sfAeqXeeG1lBoFG77vzdY1KeuEStYEdFpboo0xzRkJ5x2Pf+NmqRPaCqJBTBBkAuCxdEW8b/v0LsBw=
+X-Received: by 2002:a05:6902:988:b0:e89:6995:e3c8 with SMTP id
+ 3f1490d57ef6-e896995e5bfmr7945942276.36.1751372876059; Tue, 01 Jul 2025
+ 05:27:56 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAOj5YL7_6fGk5xX4CYSdZfO3NC43ny7-+KiqUg0E9y8qRyHDNA@mail.gmail.com>
-In-Reply-To: <CAOj5YL7_6fGk5xX4CYSdZfO3NC43ny7-+KiqUg0E9y8qRyHDNA@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 1 Jul 2025 14:11:16 +0200
-X-Gm-Features: Ac12FXypYspUS7ADiHHFnDD3TrybAJtX4EVcPd-h4jsf3dFGTSJM-u7cNmBf1Ls
-Message-ID: <CAFOi1A6wO9aravAdb5SMdjfxevDpXWGfWmZUBL6Omu3t=oQtRA@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: WTYTL6OECUHHHXE6AB2AKP2CXD3L7FI2
-X-Message-ID-Hash: WTYTL6OECUHHHXE6AB2AKP2CXD3L7FI2
-X-MailFrom: martin.braun@ettus.com
+ <CAFOi1A6wO9aravAdb5SMdjfxevDpXWGfWmZUBL6Omu3t=oQtRA@mail.gmail.com>
+In-Reply-To: <CAFOi1A6wO9aravAdb5SMdjfxevDpXWGfWmZUBL6Omu3t=oQtRA@mail.gmail.com>
+From: Ahmet Hes <nirkicatal1@gmail.com>
+Date: Tue, 1 Jul 2025 15:27:44 +0300
+X-Gm-Features: Ac12FXwu6zJpz_f57XHA-IJsKIq0kDdwM6yibm1jkOXLlf_xIllJzbCmDEx8Jug
+Message-ID: <CAOj5YL4dJaf0S+7z+k=w0-ieCjL8SkxQZ0Q2o2UOLC=_aUWR=A@mail.gmail.com>
+To: Martin Braun <martin.braun@ettus.com>
+Message-ID-Hash: XAVRN57J53U5BUPXMD26MASZMYUQDEYJ
+X-Message-ID-Hash: XAVRN57J53U5BUPXMD26MASZMYUQDEYJ
+X-MailFrom: nirkicatal1@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RFNoc Gain Block (UHD 4.8.0)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WTYTL6OECUHHHXE6AB2AKP2CXD3L7FI2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XAVRN57J53U5BUPXMD26MASZMYUQDEYJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1879691906765770694=="
+Content-Type: multipart/mixed; boundary="===============3026023299449260284=="
 
---===============1879691906765770694==
-Content-Type: multipart/related; boundary="0000000000004906a20638dd0bab"
+--===============3026023299449260284==
+Content-Type: multipart/related; boundary="00000000000025dce40638dd46ad"
 
---0000000000004906a20638dd0bab
-Content-Type: multipart/alternative; boundary="00000000000049069f0638dd0baa"
+--00000000000025dce40638dd46ad
+Content-Type: multipart/alternative; boundary="00000000000025dce30638dd46ac"
 
---00000000000049069f0638dd0baa
+--00000000000025dce30638dd46ac
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-The YAML files look fine... which version of UHD and GNU Radio are you
-using?
+UHD 4.8.0.0-0-g308126a4
 
---M
+GNURadio version  3.10.9.2
 
-On Mon, Jun 30, 2025 at 1:04=E2=80=AFPM Ahmet Hes <nirkicatal1@gmail.com> w=
-rote:
+Martin Braun <martin.braun@ettus.com>, 1 Tem 2025 Sal, 15:12 tarihinde =C5=
+=9Funu
+yazd=C4=B1:
 
-> Hello,
+> The YAML files look fine... which version of UHD and GNU Radio are you
+> using?
 >
-> I have followed the exact same steps as shown in this video:
-> https://www.youtube.com/watch?v=3DM9ntwQie9vs to create a custom RFNoC Ga=
-in
-> block. I successfully built the FPGA bitstream and booted the E310 device
-> with it.
+> --M
 >
-> After flashing, I confirmed that the RFNoC blocks were correctly loaded.
-> The output is:
-> RFNoC blocks on this device:
+> On Mon, Jun 30, 2025 at 1:04=E2=80=AFPM Ahmet Hes <nirkicatal1@gmail.com>=
+ wrote:
 >
->
->    - 0/Gain#0
->    - 0/Radio#0
->
-> Static connections on this device:
->
->    - 0/SEP#0:0 =3D=3D> 0/Radio#0:0
->    - 0/Radio#0:0 =3D=3D> 0/SEP#0:0
->    - 0/SEP#1:0 =3D=3D> 0/Radio#0:1
->    - 0/Radio#0:1 =3D=3D> 0/SEP#1:0
->    - 0/SEP#2:0 =3D=3D> 0/Gain#0:0
->    - 0/Gain#0:0 =3D=3D> 0/SEP#2:0
->
-> In addition to generating the bitstream, I also created and included the
-> required .yml files =E2=80=94 specifically the block descriptor (gain.yml=
-) and
-> image core (e310_rfnoc_image_core.yml). I confirmed that the image builde=
-r
-> detects them successfully when using --log-level debug.
->
-> [image: Screenshot from 2025-06-30 11-03-14.png]
->
-> However, when I try to recreate the block diagram in GNU Radio Companion,
-> following the same structure as shown in the video, I encounter the
-> following error during Python code generation:
->
-> Generating: "/home/aufer/Projects/rfnoc-gain/rfnoc_gain_trial.py"
-> Generate Error: Undefined
->
-> Failure
->
-> Traceback (most recent call last):
-> File
-> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/g=
-ui/Application.py",
->
-> line 758, in _handle_action
-> generator.write()
-> File
-> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/c=
-ore/generator/top_block.py",
->
-> line 86, in write
-> for filename, data in self._build_python_code_from_template():
-> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> File
-> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/c=
-ore/generator/top_block.py",
->
-> line 135, in _build_python_code_from_template
-> connections=3Dself._connections(),
-> ^^^^^^^^^^^^^^^^^^^
-> File
-> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/c=
-ore/generator/top_block.py",
->
-> line 328, in _connections
-> code =3D template.render(
-> ^^^^^^^^^^^^^^^^
-> File "/usr/lib/python3/dist-packages/mako/template.py", line 438, in
-> render
-> return runtime.*render(self, self.callable*, args, data)
-> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 874, in
-> _render
-> _render_context(
-> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 916, in
-> _render_context
-> _exec_template(inherit, lclcontext, args=3Dargs, kwargs=3Dkwargs)
-> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 943, in
->
-> *exec_template callable*(context, *args, **kwargs)
-> File "memory:0x77b7681a8ce0", line 32, in render_body
-> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 230, in
-> *str*
-> raise NameError("Undefined")
-> NameError: Undefined
->
-> This occurs when GRC attempts to generate the .py file.
->
-> Could you please advise what might be missing or misconfigured to cause
-> this =E2=80=9CUndefined=E2=80=9D error?
->
-> Best regards,
->
+>> Hello,
+>>
+>> I have followed the exact same steps as shown in this video:
+>> https://www.youtube.com/watch?v=3DM9ntwQie9vs to create a custom RFNoC
+>> Gain
+>> block. I successfully built the FPGA bitstream and booted the E310 devic=
+e
+>> with it.
+>>
+>> After flashing, I confirmed that the RFNoC blocks were correctly loaded.
+>> The output is:
+>> RFNoC blocks on this device:
+>>
+>>
+>>    - 0/Gain#0
+>>    - 0/Radio#0
+>>
+>> Static connections on this device:
+>>
+>>    - 0/SEP#0:0 =3D=3D> 0/Radio#0:0
+>>    - 0/Radio#0:0 =3D=3D> 0/SEP#0:0
+>>    - 0/SEP#1:0 =3D=3D> 0/Radio#0:1
+>>    - 0/Radio#0:1 =3D=3D> 0/SEP#1:0
+>>    - 0/SEP#2:0 =3D=3D> 0/Gain#0:0
+>>    - 0/Gain#0:0 =3D=3D> 0/SEP#2:0
+>>
+>> In addition to generating the bitstream, I also created and included the
+>> required .yml files =E2=80=94 specifically the block descriptor (gain.ym=
+l) and
+>> image core (e310_rfnoc_image_core.yml). I confirmed that the image
+>> builder
+>> detects them successfully when using --log-level debug.
+>>
+>> [image: Screenshot from 2025-06-30 11-03-14.png]
+>>
+>> However, when I try to recreate the block diagram in GNU Radio Companion=
+,
+>> following the same structure as shown in the video, I encounter the
+>> following error during Python code generation:
+>>
+>> Generating: "/home/aufer/Projects/rfnoc-gain/rfnoc_gain_trial.py"
+>> Generate Error: Undefined
+>>
+>> Failure
+>>
+>> Traceback (most recent call last):
+>> File
+>> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/=
+gui/Application.py",
+>>
+>> line 758, in _handle_action
+>> generator.write()
+>> File
+>> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/=
+core/generator/top_block.py",
+>>
+>> line 86, in write
+>> for filename, data in self._build_python_code_from_template():
+>> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>> File
+>> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/=
+core/generator/top_block.py",
+>>
+>> line 135, in _build_python_code_from_template
+>> connections=3Dself._connections(),
+>> ^^^^^^^^^^^^^^^^^^^
+>> File
+>> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/=
+core/generator/top_block.py",
+>>
+>> line 328, in _connections
+>> code =3D template.render(
+>> ^^^^^^^^^^^^^^^^
+>> File "/usr/lib/python3/dist-packages/mako/template.py", line 438, in
+>> render
+>> return runtime.*render(self, self.callable*, args, data)
+>> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 874, in
+>> _render
+>> _render_context(
+>> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 916, in
+>> _render_context
+>> _exec_template(inherit, lclcontext, args=3Dargs, kwargs=3Dkwargs)
+>> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 943, in
+>>
+>> *exec_template callable*(context, *args, **kwargs)
+>> File "memory:0x77b7681a8ce0", line 32, in render_body
+>> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 230, in
+>> *str*
+>> raise NameError("Undefined")
+>> NameError: Undefined
+>>
+>> This occurs when GRC attempts to generate the .py file.
+>>
+>> Could you please advise what might be missing or misconfigured to cause
+>> this =E2=80=9CUndefined=E2=80=9D error?
+>>
+>> Best regards,
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000049069f0638dd0baa
+--00000000000025dce30638dd46ac
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>The YAML files look fine... which version=C2=A0of UHD=
- and GNU Radio are you using?</div><div><br></div><div>--M</div></div><br><=
-div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Mon, Jun 30, 2025 at 1:04=E2=80=AFPM Ahmet Hes &lt;<a href=3D=
-"mailto:nirkicatal1@gmail.com">nirkicatal1@gmail.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><=
-div><p>Hello,</p>
+<div dir=3D"ltr"><div>UHD 4.8.0.0-0-g308126a4<br><br></div>GNURadio version=
+=C2=A0 3.10.9.2</div><br><div class=3D"gmail_quote gmail_quote_container"><=
+div dir=3D"ltr" class=3D"gmail_attr">Martin Braun &lt;<a href=3D"mailto:mar=
+tin.braun@ettus.com">martin.braun@ettus.com</a>&gt;, 1 Tem 2025 Sal, 15:12 =
+tarihinde =C5=9Funu yazd=C4=B1:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"ltr"><div>The YAML files look fine... which ver=
+sion=C2=A0of UHD and GNU Radio are you using?</div><div><br></div><div>--M<=
+/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Mon, Jun 30, 2025 at 1:04=E2=80=AFPM Ahmet Hes &lt;<a href=3D"mailt=
+o:nirkicatal1@gmail.com" target=3D"_blank">nirkicatal1@gmail.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr"><div><div><p>Hello,</p>
 <p>I have followed the exact same steps as shown in this video:
 <br><a rel=3D"noopener noreferrer" href=3D"https://www.youtube.com/watch?v=
 =3DM9ntwQie9vs" target=3D"_blank">https://www.youtube.com/watch?v=3DM9ntwQi=
@@ -314,10 +336,16 @@ rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---00000000000049069f0638dd0baa--
+--00000000000025dce30638dd46ac--
 
---0000000000004906a20638dd0bab
+--00000000000025dce40638dd46ad
 Content-Type: image/png; name="Screenshot from 2025-06-30 11-03-14.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2025-06-30 11-03-14.png"
@@ -6027,9 +6055,9 @@ IiIiIrKBKcATERERERERERHZwELn3L3eBxEREREREREREfkNVIEnIiIiIiIiIiKygWmIhYiIiIiI
 iIiIyAamAE9ERERERERERGQDU4AnIiIiIiIiIiKygWkNPBERERERERERkQ1MFXgiIiIiIiIiIiIb
 mAI8ERERERERERGRDUwttCIiIiIiIiIiIhuYKvBEREREREREREQ2MAV4IiIiIiIiIiIiG9j/AVL9
 MZigJsMAAAAAAElFTkSuQmCC
---0000000000004906a20638dd0bab--
+--00000000000025dce40638dd46ad--
 
---===============1879691906765770694==
+--===============3026023299449260284==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -6039,4 +6067,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1879691906765770694==--
+--===============3026023299449260284==--
