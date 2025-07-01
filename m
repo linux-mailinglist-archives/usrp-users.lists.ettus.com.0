@@ -2,295 +2,218 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99D1BAEF8B3
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 14:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5759EAEF911
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 14:45:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 25E7438632E
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 08:35:49 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 55E423862D8
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 08:45:45 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1751373349; bh=7RYLWExMdEFSe9PDqVnociwXlvM2aLDY1BYaE3H0LSg=;
+	t=1751373945; bh=7b059X6gARyfjzlPs0ZgE8wBz1P/jKMh6H8tsLxr4t8=;
 	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=kJjKKuM2ALs27dtqq5yulsFyyGsXgXJpEHIDi7RkGVIEAjVqze41MCY2PPOFyUnRi
-	 7i6hM/lw8HebhvKhU1EveE0SOKtpofLpZUN9bJW43SFvRnLrevKi8m0+qZkXm/XSAD
-	 zj/aZ5KDbUNdWfU18xHrrF1uVK6A8PbzzfupcCG9oFZ4T3GKFltVu/hXruJvXzFgi0
-	 EsUWKHoxA76QtFDBgyOcFVxON6FgeUUg/SXh9frJN4rshzyBVojAbZPIWAVWM5Ythz
-	 oxV/EqngvjB36LiFu2YYmfymRz9Pv5r+5vNKk7ruVnARXkTNwh7K53XKWXoDlfYHr5
-	 8G5El/ZoxoJuA==
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 52583385B65
-	for <usrp-users@lists.ettus.com>; Tue,  1 Jul 2025 08:35:33 -0400 (EDT)
+	b=mk2HGyQ3MCJmfIIyY6mCTaO386bM5mYIW8ll87H4aY6GuAtEOf8F8Czm2gHNlG3Co
+	 PXhoy0B6YiYDTlg9JCQruB3ZWi47RaPVX2XF3lmT+bKJeQV0OT7+kUeVJDGmsmUb1i
+	 aXTr07tpJkS5aiqoO3AGuvI3sdMZFmh1IcSsxh8Lmg2+Xl89QFyGqKPlX8bCYvd87z
+	 7SnMSwilN0wHLNNDd4MgyNaEROYRK1v0If/nz3VIEQ412+4Q31G2fIgGkwgWyXqz7s
+	 b5gGELAoLivwoARw0ZysRQXfYoJ0uwG70dddnqxf3M2TOWhZ130np8tZKu+kVJ3J0J
+	 Iylxy9uPBAXoQ==
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2430C385E8B
+	for <usrp-users@lists.ettus.com>; Tue,  1 Jul 2025 08:45:06 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="mfaC0gEc";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Un9J7zyy";
 	dkim-atps=neutral
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-60c79bedc19so5266896a12.3
-        for <usrp-users@lists.ettus.com>; Tue, 01 Jul 2025 05:35:33 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ae0d11bb2a7so824408366b.3
+        for <usrp-users@lists.ettus.com>; Tue, 01 Jul 2025 05:45:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1751373332; x=1751978132; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1751373905; x=1751978705; darn=lists.ettus.com;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M8WfoOPBtT0PLUdiC+m3GqAayMXs+cXRq1O+GGeA22s=;
-        b=mfaC0gEch7OstRqNrC/go6GyW6g8ey8JfeU4OldGSXtUM4TPARhxJg3bD2qfIobzsk
-         11zakxDG6Zaq4S/gxrjftPGVGnezKdlq8qiiNoQmQcamqGCDvNv6sNn6txTPrCQmCEQE
-         Y7+3ShV2NJPF6m1wLOQ6QuAf0JtjHZhRLNzvhjGvM+OU5lTOv34ge4Atp8cMeURbEev2
-         vuNhVcjh2eVzrhcPgOSe9d3BWuwHQoPrJjL/MJxMcosjtoe4nEO/tPg1lYwsNtbrX+sD
-         7flC42Z+X1m3+TmvCbMR2p0BPMCFgYSx1ywQLTmsPpmmo3S4Zof5rEumNf/LbG4HG3qm
-         /9cQ==
+        bh=WGZ7qOt3BCFcOTMlVFpLurvYeUa/3Xnna+QZbssAl5Y=;
+        b=Un9J7zyyDdjJOQhFGjl8TT68+5yIhL1rF23siXcVLamQR+/Zl1nnL/NPStJSCgAgaj
+         0PeA2OvviVs4hZadQ9mFhfCkOX/VQkoAH7EIgvYVoN1alAhp4FQqKmBSXmPjVqwGzzz0
+         wRfVMVtT7+/hmINbdW3V8Ml7vw7W0wL+YrrgmyA+geZq7v+t8zXZq/1AxjF6PV3qU0Fc
+         7UObdpVE8harNJWuYma6aeZqLMen8D/VyXcpRBSatMz2t9hKjVGJ9CVkuvVkCGcfN1OW
+         1wbOv6cx9mcSDHS/iVMh6lIXhsomCFdOCfvLWTJyzARiUWoS43lw+2852vbPJHj+oB8a
+         5lWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751373332; x=1751978132;
+        d=1e100.net; s=20230601; t=1751373905; x=1751978705;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M8WfoOPBtT0PLUdiC+m3GqAayMXs+cXRq1O+GGeA22s=;
-        b=ZGMQbWb1/r3TkCURFHqpAt+rWf7VOBL3w3fdtJ9KbZKTtNjePNyTmEDRCHXyICQtxy
-         R8Wrz7H0fY0e+cS2lKQichsg8RqTw8Mafyh9hQs2i/ccu+mk5qvtWvlTLSG0viZUuSSw
-         j/tJ1BTNvC/zin8YHVQnwaerSj+C+LRrPj2luXw2q9IvgzrjhQCufgiUFG7l1Fjyf6or
-         sN0AEPF+L9bgZJsCcB1Gz9nbz+I/dY0ZmBPohTRmf9srQm3D8rzJZL6coHp7SyDFNcVF
-         Du/d1LEkrIJCQ0pn+M4MdYdz48rlV4SbAItabWhPNrfC2SwJo4dErDI98rDknHCEd48k
-         0zzw==
-X-Gm-Message-State: AOJu0YxOz1IgXGwVIDlVKhpqEQPMFyh8B+SggaruxEZ9SMHFQN+wJ2gT
-	dsMpEppN/FCH+DAWy5QJXkbdO7b451o4Ib0+rxv70tblzpGPG10prCNBPO10Ettck59KDRG7oEY
-	HS/ShZI43VnRMxqmd3jLIYLMg2sDIE1aNEhGgHwRsNSdU7RVibA+eCT8=
-X-Gm-Gg: ASbGncsOUvshhW/jXXubkOatCEcYoUgFWada2zKz+B0iy8rmxsQCaPLusog/JbtzJjk
-	OrF+52I2d7/QcCsq8beCUNIu0U/01X5SsJmSYREsPHxkOmAWpF8C5epx+hFt4xteIOIm1eMKX/5
-	xbgISGmXuCeDeUSZzbvDK2Jl6SfNEQscoCcFL1VRDmDWbL/iY6xw5wPFCDCK1jmXbqoJQejxWHG
-	eE=
-X-Google-Smtp-Source: AGHT+IGQzdV2hKVD9Qe794InKMSbAh87MI/JzHMF2wkOotao0GM67JY5Rpxs/anYGlE1Okck2fZPaxPAxhPWElbEvrs=
-X-Received: by 2002:a17:907:986:b0:ae0:ae4c:6e90 with SMTP id
- a640c23a62f3a-ae3500b8d95mr2058186866b.29.1751373331894; Tue, 01 Jul 2025
- 05:35:31 -0700 (PDT)
+        bh=WGZ7qOt3BCFcOTMlVFpLurvYeUa/3Xnna+QZbssAl5Y=;
+        b=qHZQ1oRtq9A1hz4P9KrQF10Tft56ybqR1ta1hJZO5tWez26P895RH2x7TjzIjYgHkp
+         zkeXGs4rZHVsa+AE00dSuzeq0+Qk3/VoN2bM3y+z/1X2HRc+t8j06uOzZJ3u+swOyyS0
+         yjubIo64bg/vtkzpRGrUr4nIKzfLA2uvHY6sdahQ00EwiwB2ZBOJtBhGkyDZY3QCmmyY
+         YWWs7Zy4Hp5b0Z8Ji6bV5dXqSnbsfm3qaTufApvJV7UnnQ+t7ZHeHKB6oQXyiR3lNye7
+         kZLb2wz0jB6tX+p/CVxTkSUyiToApHTWtAei5Ze0nidYD7qGeBp8PV3vMIrn1/VddTmj
+         3mqg==
+X-Gm-Message-State: AOJu0YzL8V/d5g8bt9rLGTADMveasEMA58SqHHbh9hA6zrg/XzFPkiAy
+	J9ltwqW617CqqWs2VmLZQ/kDkeVIqELrrEbcYxz03VaC3jpsJrV2kUfcGo4coa1fWSuaMAgP38L
+	49T9Vfy6izz+FTK3vVu/iY+UdTmRbZjvCA5yVHZ9AVB0xzy89NYoHHfU=
+X-Gm-Gg: ASbGncs7A69NjFfIZ/Q8q8K0yjSJGC0w1kFRQjhTvup4jfzldTdU0CmM6wm2z2440Hx
+	UtOEo17Qw1BrBrk70Lg+tGGdkt8mR2OZLlhFnQ9UfSGpOMIf88eMMw7zYCb7hmHWtBEtMc9xliu
+	Y9GwGUvqvZxcwLwjfWUGPissBQTdZ8SEah78YBM7mZeZvfwmXI0CQadorpBGIEuLo4KPsKAOipN
+	aLB/Y2SVXywDA==
+X-Google-Smtp-Source: AGHT+IEmKnCq7RJwWKCJsYiR2etWNIS3/rYuLQmyU55KMtU8DYAs9O8cssdQrOz8Km1ZT9KcxKd/qaPtH6Qx9Xq/JPY=
+X-Received: by 2002:a17:907:a90a:b0:ae3:51c5:8d35 with SMTP id
+ a640c23a62f3a-ae351c58fd4mr1707953366b.48.1751373904589; Tue, 01 Jul 2025
+ 05:45:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <4c77f119f052486cbb4baace4acb7e92@vastech.co.za>
-In-Reply-To: <4c77f119f052486cbb4baace4acb7e92@vastech.co.za>
+References: <CAEXYVK7ZMeZHu-V+DHOqHzTXjFuXYEvV2zMREoBssfBQKzzJUA@mail.gmail.com>
+In-Reply-To: <CAEXYVK7ZMeZHu-V+DHOqHzTXjFuXYEvV2zMREoBssfBQKzzJUA@mail.gmail.com>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 1 Jul 2025 14:35:20 +0200
-X-Gm-Features: Ac12FXx3XEHduou_-QbrBbczlRC44naNdbrlKkTOWS_0YVE3ELJ_nFd1ZKFrJLg
-Message-ID: <CAFOi1A68zNcD8W6f5mMRbjGycK0js_cXMN1YZuT=hsGQY5aEwA@mail.gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: 5IIGWBBNTZRJQRC37TSH2FUKDQNF7TZS
-X-Message-ID-Hash: 5IIGWBBNTZRJQRC37TSH2FUKDQNF7TZS
+Date: Tue, 1 Jul 2025 14:44:53 +0200
+X-Gm-Features: Ac12FXw98lxagj2K3lORHMF2CwJTt7yZC47AxEIScz4X-G4yyTZGPzowOCxn6Xo
+Message-ID: <CAFOi1A4-PX5DsEGmvESxb9Da-ftDeYnwMXxWd=L=o=jXMMgZhQ@mail.gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: PCGOF2MKPQLGECACUURWS4X7JQS35ZZ7
+X-Message-ID-Hash: PCGOF2MKPQLGECACUURWS4X7JQS35ZZ7
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: graph warnings again
+Subject: [USRP-users] Re: X440 Remote Streaming Transmit
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5IIGWBBNTZRJQRC37TSH2FUKDQNF7TZS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PCGOF2MKPQLGECACUURWS4X7JQS35ZZ7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3508194222360382856=="
+Content-Type: multipart/mixed; boundary="===============4623846590255984641=="
 
---===============3508194222360382856==
-Content-Type: multipart/alternative; boundary="0000000000005128780638dd61cc"
+--===============4623846590255984641==
+Content-Type: multipart/alternative; boundary="00000000000073cd270638dd838e"
 
---0000000000005128780638dd61cc
+--00000000000073cd270638dd838e
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Kevin,
+Hey Brian,
 
-I'm assuming your flow graph is a variation of Radio -> [Your Block] -> Rx
-Streamer.
+remote streaming to the USRP is not a supported feature; it's on our
+roadmap, but with uncertain priority.
 
-When the radio suffers an overrun (as it does here), it will send a message
-downstream. If the last block downstream is an Rx Streamer, and you are in
-continuous streaming mode, it will try to restart the stream; the streamer
-and the radio have a handshake protocol for this.
+That said, if anyone can hack it in, it might be you. Here's some pointers:
 
-Now my guess is that your block is doing something with the action
-handling. Maybe you set your action forwarding policy to ONE_TO_ALL, or the
-topology is a bit more complex than I thought. But most likely, the
-streamer and radio are able to do their action handshake thing, but your
-block is forwarding messages to unconnected ports or something like that.
+- You will need to handle flow control on the Tx side, which is also
+something we don't provide simple code for. If you just try and jam UDP
+packets into the device, best case you lose data randomly, worst case you
+jam something up.
+- ...that is, unless your blocks directly connect to the QSFPs and are
+doing something smart.
+- ...and if you do that, you also don't need to bother with EPIDs.
+- EPIDs don't map to blocks! They map to SEPs. Of course, in a
+fixed topology, blocks map 1:1 to SEPs, but there's still a distinction.
+- In our current UHD code, the EPID assignment is indeed deterministic, but
+we make no guarantees that it will not change. For example, we might make
+it multithreaded if we get too many people doing multi-device applications
+and don't like the startup times.
+- There is no API to read the EPID, but the log messages will report them.
 
 --M
 
-On Sat, Jun 28, 2025 at 1:38=E2=80=AFAM Kevin Williams <kevin.williams@vast=
-ech.co.za>
-wrote:
+On Wed, Jun 25, 2025 at 1:00=E2=80=AFAM Brian Padalino <bpadalino@gmail.com=
+> wrote:
 
-> Hi Everyone,
+> I am trying to solve a remote streaming transmit problem and I am curious
+> how this might work in practice.
 >
+> The setup is an X440 with some custom transmit blocks. I have my baseband
+> processing for transmission being done by 8 different computers - one for
+> each antenna. I currently have a similar block structure like the radios =
+-
+> 2x custom TX blocks, 4 antennas for each block. A single streaming endpoi=
+nt
+> for each TX block, 4 outputs for each SEP.
 >
+> I want to modify the X440 to start up with my graph committed and running=
+,
+> and the 8 different computers can stream to my custom blocks to transmit
+> whenever they want.
 >
-> What is the reason for these warnings?
->
->
->
-> Somehow my rfnoc block and/or image/software/compile has resulted in thes=
+> The issue is going to be figuring out the routing for the endpoints, and
+> the sequence numbering for the packets coming in. Since all 8 machines wi=
+ll
+> be separate, they will not adhere to the sequence numbering for the singl=
 e
-> again, and I can=E2=80=99t nail it down to something.
+> endpoint.
 >
+> Is the solution here to utilize a unique endpoint for each TX antenna and
+> just "know" what EPID will be assigned to that block? Is it always
+> deterministic for the EPID to be the same?
 >
+> Is there a way to get a map of EPID and block ID? Are there other pitfall=
+s
+> that might make this a terrible/impossible idea?
 >
-> Some symptoms are an rx_streamer that receives a few 100 Mb of data, but
-> then stalls.
+> Sorry for the questions, thanks in advance for any insights.
 >
->
->
-> I can see in wireshark that data packets of the correct size flow from
-> both 10 gbe ports =E2=80=93 but stop quite soon after starting, and after=
- that just
-> a stream of some sort of control and ack packets.
->
->
->
-> Regards, Kevin
->
->
->
-> O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
->
-> O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:1, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:1, no neighbour found!
->
-> L[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action restart_request
-> from RxStreamer#0:INPUT_EDGE:0, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action restart_request
-> from RxStreamer#0:INPUT_EDGE:0, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action restart_request
-> from RxStreamer#0:INPUT_EDGE:0, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action restart_request
-> from RxStreamer#0:INPUT_EDGE:0, no neighbour found!
->
-> O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
->
-> O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:1, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:1, no neighbour found!
->
-> L[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
->
-> [WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from
-> 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!
->
->
->
->
+> Thanks,
+> Brian
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---0000000000005128780638dd61cc
+--00000000000073cd270638dd838e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Kevin,</div><div><br></div><div>I&#39;m assuming your=
- flow graph is a variation of Radio -&gt; [Your Block] -&gt; Rx Streamer.</=
-div><div><br></div><div>When the radio suffers an overrun (as it does here)=
-, it will send a message downstream. If the last block downstream is an Rx =
-Streamer, and you are in continuous streaming mode, it will try to restart =
-the stream; the streamer and the radio have a handshake protocol for this.<=
-/div><div><br></div><div>Now my guess is that your block is doing something=
- with the action handling. Maybe you set your action forwarding policy to O=
-NE_TO_ALL, or the topology is a bit more complex than I thought. But most l=
-ikely, the streamer and radio are able to do their action handshake thing, =
-but your block is forwarding messages to unconnected ports or something lik=
-e that.</div><div><br></div><div>--M</div></div><br><div class=3D"gmail_quo=
-te gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Jun=
- 28, 2025 at 1:38=E2=80=AFAM Kevin Williams &lt;<a href=3D"mailto:kevin.wil=
-liams@vastech.co.za">kevin.williams@vastech.co.za</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg266711714=
-0758238404"><div lang=3D"EN-ZA"><div class=3D"m_2667117140758238404WordSect=
-ion1"><p class=3D"MsoNormal"><span lang=3D"EN-US">Hi Everyone,<u></u><u></u=
-></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u=
-></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">What is the reason =
-for these warnings?<u></u><u></u></span></p><p class=3D"MsoNormal"><span la=
-ng=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span la=
-ng=3D"EN-US">Somehow my rfnoc block and/or image/software/compile has resul=
-ted in these again, and I can=E2=80=99t nail it down to something.<u></u><u=
-></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u=
-></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Some symptoms a=
-re an rx_streamer that receives a few 100 Mb of data, but then stalls.<u></=
-u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=
-=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">I can see =
-in wireshark that data packets of the correct size flow from both 10 gbe po=
-rts =E2=80=93 but stop quite soon after starting, and after that just a str=
-eam of some sort of control and ack packets.<u></u><u></u></span></p><p cla=
-ss=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p cla=
-ss=3D"MsoNormal"><span lang=3D"EN-US">Regards, Kevin<u></u><u></u></span></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-US">O[WARNING] [RFNOC::GRAPH::DET=
-AIL] Cannot forward action rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighb=
-our found!<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-=
-US">O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from 0=
-/Radio#0:OUTPUT_EDGE:0, no neighbour found!<u></u><u></u></span></p><p clas=
-s=3D"MsoNormal"><span lang=3D"EN-US">[WARNING] [RFNOC::GRAPH::DETAIL] Canno=
-t forward action rx_event from 0/Radio#0:OUTPUT_EDGE:1, no neighbour found!=
-<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">[WARNI=
-NG] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event from 0/Radio#0:OU=
-TPUT_EDGE:1, no neighbour found!<u></u><u></u></span></p><p class=3D"MsoNor=
-mal"><span lang=3D"EN-US">L[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward =
-action rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!<u></u><u>=
-</u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">[WARNING] [RFNOC=
-::GRAPH::DETAIL] Cannot forward action rx_event from 0/Radio#0:OUTPUT_EDGE:=
-0, no neighbour found!<u></u><u></u></span></p><p class=3D"MsoNormal"><span=
- lang=3D"EN-US">[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rest=
-art_request from RxStreamer#0:INPUT_EDGE:0, no neighbour found!<u></u><u></=
-u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">[WARNING] [RFNOC::=
-GRAPH::DETAIL] Cannot forward action restart_request from RxStreamer#0:INPU=
-T_EDGE:0, no neighbour found!<u></u><u></u></span></p><p class=3D"MsoNormal=
-"><span lang=3D"EN-US">[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward acti=
-on restart_request from RxStreamer#0:INPUT_EDGE:0, no neighbour found!<u></=
-u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">[WARNING] [=
-RFNOC::GRAPH::DETAIL] Cannot forward action restart_request from RxStreamer=
-#0:INPUT_EDGE:0, no neighbour found!<u></u><u></u></span></p><p class=3D"Ms=
-oNormal"><span lang=3D"EN-US">O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forw=
-ard action rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!<u></u=
-><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">[WARNING] [R=
-FNOC::GRAPH::DETAIL] Cannot forward action rx_event from 0/Radio#0:OUTPUT_E=
-DGE:0, no neighbour found!<u></u><u></u></span></p><p class=3D"MsoNormal"><=
-span lang=3D"EN-US">O[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action=
- rx_event from 0/Radio#0:OUTPUT_EDGE:1, no neighbour found!<u></u><u></u></=
-span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">[WARNING] [RFNOC::GRAP=
-H::DETAIL] Cannot forward action rx_event from 0/Radio#0:OUTPUT_EDGE:1, no =
-neighbour found!<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=
-=3D"EN-US">L[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action rx_event=
- from 0/Radio#0:OUTPUT_EDGE:0, no neighbour found!<u></u><u></u></span></p>=
-<p class=3D"MsoNormal"><span lang=3D"EN-US">[WARNING] [RFNOC::GRAPH::DETAIL=
-] Cannot forward action rx_event from 0/Radio#0:OUTPUT_EDGE:0, no neighbour=
- found!<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"=
-><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"=
-><u></u>=C2=A0<u></u></span></p></div></div>_______________________________=
-________________<br>
+<div dir=3D"ltr"><div>Hey Brian,</div><div><br></div><div>remote streaming =
+to the USRP is not a supported feature; it&#39;s on our roadmap, but with u=
+ncertain priority.</div><div><br></div><div>That said, if anyone can hack i=
+t in, it might be you. Here&#39;s some pointers:</div><div><br></div><div>-=
+ You will need to handle flow control on the Tx side, which is also somethi=
+ng we don&#39;t provide simple code for. If you just try and jam UDP packet=
+s into the device, best case you lose data randomly, worst case you jam som=
+ething up.</div><div>- ...that is, unless your blocks directly connect to t=
+he QSFPs and are doing something smart.</div><div>- ...and if you do that, =
+you also don&#39;t need to bother with EPIDs.</div><div>- EPIDs don&#39;t m=
+ap to blocks! They map to SEPs. Of course, in a fixed=C2=A0topology, blocks=
+ map 1:1 to SEPs, but there&#39;s still a distinction.</div><div>- In our c=
+urrent UHD code, the EPID assignment is indeed deterministic, but we make n=
+o guarantees that it will not change. For example, we might make it multith=
+readed if we get too many people doing multi-device applications and don&#3=
+9;t like the startup times.</div><div>- There is no API to read the EPID, b=
+ut the log messages will report them.</div><div><br></div><div>--M</div></d=
+iv><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Wed, Jun 25, 2025 at 1:00=E2=80=AFAM Brian Padalino &=
+lt;<a href=3D"mailto:bpadalino@gmail.com">bpadalino@gmail.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"lt=
+r">I am trying to solve a remote streaming transmit problem and I am curiou=
+s how this might work in practice.<div><br></div><div>The setup is an X440 =
+with some custom transmit blocks. I have my baseband processing for transmi=
+ssion being done by 8 different computers - one for each antenna. I current=
+ly have a similar block structure like the radios - 2x custom TX blocks, 4 =
+antennas for each block. A single streaming endpoint for each TX block, 4 o=
+utputs for each SEP.</div><div><br></div><div>I want to modify the X440 to =
+start up with my graph committed and running, and the 8 different computers=
+ can stream to my custom blocks to transmit whenever they want.</div><div><=
+br></div><div>The issue is going to be figuring out the routing for the end=
+points, and the sequence numbering for the packets coming in. Since all 8 m=
+achines will be separate, they will not adhere to the sequence numbering fo=
+r the single endpoint.</div><div><br></div><div>Is the solution here to uti=
+lize a unique endpoint for each TX antenna and just &quot;know&quot; what E=
+PID will be assigned to that block? Is it always deterministic for the EPID=
+ to be the same?</div><div><br></div><div>Is there a way to get a map of EP=
+ID and block ID? Are there other pitfalls that might make this a terrible/i=
+mpossible idea?</div><div><br></div><div>Sorry for the questions, thanks in=
+ advance for any insights.</div><div><br></div><div>Thanks,</div><div>Brian=
+</div></div>
+_______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</div></blockquote></div>
+</blockquote></div>
 
---0000000000005128780638dd61cc--
+--00000000000073cd270638dd838e--
 
---===============3508194222360382856==
+--===============4623846590255984641==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -300,4 +223,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3508194222360382856==--
+--===============4623846590255984641==--
