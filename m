@@ -2,198 +2,224 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD80DAEDA71
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Jun 2025 13:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7A14AEF7F4
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 14:11:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 09163386285
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Jun 2025 07:04:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 390A43862E9
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Jul 2025 08:11:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1751281462; bh=1L6UzMrNykTq6vzxYM9Eh0zmceDaFjRXzE3zLLs9uvU=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=TVum4YMI0u6StsWvCpgMINEj9IUzNrVO9708nxtAHlZTDgi9VjwOG475xHKVEE6+C
-	 3tAJqLaO+wpdaYJ1OooRWUx3TuOBfcW+gsIUQMEFZXUOJPQ03+o/wcwTe+a7+n753t
-	 BxJTjOmLdbreSg9NytlrilBjNFrPT2Sf1znrRxTtROYzd/Y7ju0eaRghu9bKnmVklx
-	 GL8usg1VyiGxuLzVuHB4kQoukcsRIcAn6YsdDqeauoTnuoQlMsqpWLH9hOukR3gTLm
-	 p32AIotrfOjBoYjuZ//fjoCgMlK0tLYV4XYXbnGEzYq3OgZSwgSCCAPvVRQ+/C7Qnn
-	 vfjJiCEWo0sOw==
-Received: from mail-yb1-f193.google.com (mail-yb1-f193.google.com [209.85.219.193])
-	by mm2.emwd.com (Postfix) with ESMTPS id DD1F9385597
-	for <usrp-users@lists.ettus.com>; Mon, 30 Jun 2025 07:04:04 -0400 (EDT)
+	t=1751371907; bh=JPCy8cSdrb0imnKsJ5ZROWGCPen+mDRNuCgOWdZ0JhQ=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=adqa9iyDeEJcYEb1CwzuC9/OqM+1eTe+IMsGFx51whxiN1br307hemOwt3EE4Qu6w
+	 q3MTqPLSfImqYkfHuG909bMUeFm19LawLWc/zbIbhyW4Bc1NKjR3aOx4EQ8XHhClrG
+	 FyRnlEhCHOo3AiSmiUD1z4MYfg7kZGOhWmfytbsekhiZGJ7jqzYV5ZTImzjkohwOrD
+	 GVCF1yaH6mER8kYGCRdxIzZHv89tsFtmDxSQTYCdOZ6lFBKC66YKXSXR/9HMLnQKEn
+	 RE/0wSB/kaIB0yazbYKLZQ4uZ52uOXYHoQLhtub0WB31TFYQGEcOrNb+/zHK5XNMK6
+	 FwgvNSvyXY2jQ==
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id C33783862C2
+	for <usrp-users@lists.ettus.com>; Tue,  1 Jul 2025 08:11:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SBGyglXx";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="BacmhCS2";
 	dkim-atps=neutral
-Received: by mail-yb1-f193.google.com with SMTP id 3f1490d57ef6-e8275f110c6so1397096276.2
-        for <usrp-users@lists.ettus.com>; Mon, 30 Jun 2025 04:04:04 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ae0de0c03e9so823038366b.2
+        for <usrp-users@lists.ettus.com>; Tue, 01 Jul 2025 05:11:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751281444; x=1751886244; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=QVR36/zN5AWnlqg7gf+y9YWNljDlfG7WjvSDEwykReU=;
-        b=SBGyglXxNoyKKKPIdxjDTDsenZAqryDhUHXp1USYbemBcve2N/IraW/2z6Caax0Ueo
-         5gi3Qhkgg8BTGGyuuIfU2kjRcDqkR/GmpRl34NZxnFCQ0BDDt9N+EoVhuufgwiR1/9CD
-         wxT1QczuRtOeeYH1tJR5+i13MzcI/WLyEl+8sRugzOAWrnbOyu3WDh9/XokbZ/ar9hu9
-         YArVsHRaAeP4XDsUONa2F/l94n38fxDf3T0qLrbKJvCiDAAiQO6ldmyyRARyjwHINMBn
-         l47nssh7WeTOWiBArGXB6VFbClk34gC723577prwRnFv5aCttYrB3Mi6fhuq+eUBgmWN
-         +VsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751281444; x=1751886244;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1751371889; x=1751976689; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QVR36/zN5AWnlqg7gf+y9YWNljDlfG7WjvSDEwykReU=;
-        b=VSN9WGEPzTIXLYezmYyerQEfZn8U15iqY7ysUJh7lswvEuzXnjt5Nl30oIbnzv95st
-         RFnYXnK8yznKac9RashwVwXvsdU49kD8uVuZtmB5B8d34CjImLd7q5ntIlv3qtW1XwHo
-         VZbSVpceJTVLcQkCU/5yPYkjY2gncdAp0lDFWnbilegrqQL6om771bEHa7ZbNCugfDsh
-         MK/DTHUbp6A/rKz3N2MD+7nx3uWKu+cc/1GftRpU950987SK3hFWzvWB56wzvVbUJ7Vm
-         D3dc20JkRf+8uEbbw14xTPNjkxpt7i7qNgFAe2sLbbJMtDG7XqmyURSB60OQlAdDXgu8
-         FWiQ==
-X-Gm-Message-State: AOJu0YwueUs3japkLV+vxSXp6yLmRDcu7OFYpVuJGuaV3qhseIWpuZJi
-	3bEYitIp16bFFyc2rlmnLd3z+K0UXlaDxlUFxYUObAWI6MoJMiPN9lyN4ghOTYrFL+l5cC3RPvS
-	rv8oCzRFN5Z68v1us39zcJH7uprmrPhR4QfkoIYgMDN+mtLk=
-X-Gm-Gg: ASbGncuTwYROteyyQF8SUyxtMEAd3U/t6ujMMAAqWviQ6Fv4HytBFe29sa/rzhxDaXM
-	CzSgI3bXxzPGfkCbPAcgB8a8Z6X5dpVdhqZNKMKyiEwMo4Sa0wwgx0jVrPI9ob0JQxrH/ARY/Mi
-	eKFsoPF2kNEBb4eZ2+UgNyOAK9byjU5MZDnvqA5R6GsP7s
-X-Google-Smtp-Source: AGHT+IEc9bscIIkd84EqzqXcx6qitVPGr5ZjfssM+YOCWw4JEIGqKNmYhgg671IdTiu7O2e8ObRhTLoSKysp3PWI1F8=
-X-Received: by 2002:a05:6902:6012:b0:e82:64c2:bd41 with SMTP id
- 3f1490d57ef6-e87a7b8e1b1mr11805061276.43.1751281443500; Mon, 30 Jun 2025
- 04:04:03 -0700 (PDT)
+        bh=uFVNAbyS7b3HYcLu26bDlgofRknPAbmk0v2nYTSVIY8=;
+        b=BacmhCS25WMKsbdrp0Gc8G0Q34Srft8rfqiqS9DTpMrtJqU034fokgZdkh+dmDWa7L
+         95AYq0iG8mBb2Qu6rx6cxbADr8iIEMnEdg54YqxINAm6jEpjkk+3spcBGdzHGSiOqRFg
+         SI5MZC5aKUhhI1us42Rpx63RnG+BWopHHJ0hgmnSm7oFU2Y9VRad2q9K1NsjVGZEMrbS
+         vZ4keh+LE/+Ycy0FVbxdz93NSoikRdUMInOgcARYsaQHgTEkgCXclJawTJkEPVPbajoE
+         KZ5bOi6G3iTpYOXIfZp7wMYtFHAOfGu/troLwQswUO/SCWVtOrAx3C7mb+QrZGyLBxdp
+         nHDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751371889; x=1751976689;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uFVNAbyS7b3HYcLu26bDlgofRknPAbmk0v2nYTSVIY8=;
+        b=rOM4YZADxF1x7fYgMUwWpeDshKic4pWVctUlic03d5OmuTKbXxc4bz4ZWAnPHpHv/b
+         UtHBfqSK9SMyj1ayR67MAT0BP4IEtC/GzyFA3W9OrCeqtMX6pPWfVnrzdBn8BQKdqkhu
+         8v+QFEN/ZFfCqZWaEbTgeg+0H2P3AOWZ/K2xIEr/tihf2q/Ad3QYf+gCjCVIduXwkXdZ
+         Vu9YaDMz9HciJnWhirtynePCGZjgAXzWGr5rbWFnpRoKm43ms+Q0uzFxkmgVvDYwvdMm
+         yGK82zxFvu9xq5LAO/c2IwOciUSm9Lw9K8E7rjG4GnPZRxq7SkMeqvd+znYjslJAzAKN
+         eevA==
+X-Gm-Message-State: AOJu0YyeQiYL9LfAo+WmqOPqHCE9m3s388cKaf1GVnUmSdgGm3divcv/
+	MbT4inVACAaiNGPoECfOoyC3tzV3t88CtR5ngBeers+UCJu3Zt7TCAAjobfdnZ28NS2bybwEFFk
+	hSXoZE8XEBCe4EqL5oKshiOzghsKtT5B1CTTxCNN3jeqsNXiW1j567wE=
+X-Gm-Gg: ASbGncvXAs4VB6tj7gXLFnT9ApPh0SgXhBkoIYRTR4fhcTfNMB35184d5kSTeaFWnJ0
+	Mw+ENocVkqWVPINAG6QSBYyCtr61AXSoMWAIgavNcSVvoe/cg2XV6G4iSHS/a+xozIxauZxkhoq
+	QeXVIxzUns68rdPqahLgabXB/k2aH2fXk6F3bwXEcCWRxk7qcuV74NJY+fNF1qTuVGHExWhytoy
+	PE=
+X-Google-Smtp-Source: AGHT+IGgQZ3y8kaM5/VclISa9NW/eBXi+fup7GiqhzOUSuNRYSzVlcOmuisTtKGhwYpPdyDI8kaukVE/hYABv4/M6UU=
+X-Received: by 2002:a17:907:97cb:b0:ae0:d4f2:dffa with SMTP id
+ a640c23a62f3a-ae34fd13de3mr1647302966b.3.1751371888458; Tue, 01 Jul 2025
+ 05:11:28 -0700 (PDT)
 MIME-Version: 1.0
-From: Ahmet Hes <nirkicatal1@gmail.com>
-Date: Mon, 30 Jun 2025 14:03:51 +0300
-X-Gm-Features: Ac12FXxKXBWNXGdgTSc43QEU2VfJnBCPxJAh2DfCNGdUWkUkPfvxC6lB1Wxt6js
-Message-ID: <CAOj5YL7_6fGk5xX4CYSdZfO3NC43ny7-+KiqUg0E9y8qRyHDNA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="0000000000005860360638c7fc59"
-Message-ID-Hash: JDOKF2DQEAV2ZKI3H7LMDEUC5CRRATMX
-X-Message-ID-Hash: JDOKF2DQEAV2ZKI3H7LMDEUC5CRRATMX
-X-MailFrom: nirkicatal1@gmail.com
+References: <CAOj5YL7_6fGk5xX4CYSdZfO3NC43ny7-+KiqUg0E9y8qRyHDNA@mail.gmail.com>
+In-Reply-To: <CAOj5YL7_6fGk5xX4CYSdZfO3NC43ny7-+KiqUg0E9y8qRyHDNA@mail.gmail.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Tue, 1 Jul 2025 14:11:16 +0200
+X-Gm-Features: Ac12FXypYspUS7ADiHHFnDD3TrybAJtX4EVcPd-h4jsf3dFGTSJM-u7cNmBf1Ls
+Message-ID: <CAFOi1A6wO9aravAdb5SMdjfxevDpXWGfWmZUBL6Omu3t=oQtRA@mail.gmail.com>
+Cc: usrp-users@lists.ettus.com
+Message-ID-Hash: WTYTL6OECUHHHXE6AB2AKP2CXD3L7FI2
+X-Message-ID-Hash: WTYTL6OECUHHHXE6AB2AKP2CXD3L7FI2
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] RFNoc Gain Block (UHD 4.8.0)
+Subject: [USRP-users] Re: RFNoc Gain Block (UHD 4.8.0)
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JDOKF2DQEAV2ZKI3H7LMDEUC5CRRATMX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WTYTL6OECUHHHXE6AB2AKP2CXD3L7FI2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============1879691906765770694=="
 
---0000000000005860360638c7fc59
-Content-Type: multipart/related; boundary="0000000000005860350638c7fc58"
+--===============1879691906765770694==
+Content-Type: multipart/related; boundary="0000000000004906a20638dd0bab"
 
---0000000000005860350638c7fc58
-Content-Type: multipart/alternative; boundary="0000000000005860340638c7fc57"
+--0000000000004906a20638dd0bab
+Content-Type: multipart/alternative; boundary="00000000000049069f0638dd0baa"
 
---0000000000005860340638c7fc57
+--00000000000049069f0638dd0baa
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+The YAML files look fine... which version of UHD and GNU Radio are you
+using?
 
-I have followed the exact same steps as shown in this video:
-https://www.youtube.com/watch?v=3DM9ntwQie9vs to create a custom RFNoC Gain
-block. I successfully built the FPGA bitstream and booted the E310 device
-with it.
+--M
 
-After flashing, I confirmed that the RFNoC blocks were correctly loaded.
-The output is:
-RFNoC blocks on this device:
+On Mon, Jun 30, 2025 at 1:04=E2=80=AFPM Ahmet Hes <nirkicatal1@gmail.com> w=
+rote:
 
+> Hello,
+>
+> I have followed the exact same steps as shown in this video:
+> https://www.youtube.com/watch?v=3DM9ntwQie9vs to create a custom RFNoC Ga=
+in
+> block. I successfully built the FPGA bitstream and booted the E310 device
+> with it.
+>
+> After flashing, I confirmed that the RFNoC blocks were correctly loaded.
+> The output is:
+> RFNoC blocks on this device:
+>
+>
+>    - 0/Gain#0
+>    - 0/Radio#0
+>
+> Static connections on this device:
+>
+>    - 0/SEP#0:0 =3D=3D> 0/Radio#0:0
+>    - 0/Radio#0:0 =3D=3D> 0/SEP#0:0
+>    - 0/SEP#1:0 =3D=3D> 0/Radio#0:1
+>    - 0/Radio#0:1 =3D=3D> 0/SEP#1:0
+>    - 0/SEP#2:0 =3D=3D> 0/Gain#0:0
+>    - 0/Gain#0:0 =3D=3D> 0/SEP#2:0
+>
+> In addition to generating the bitstream, I also created and included the
+> required .yml files =E2=80=94 specifically the block descriptor (gain.yml=
+) and
+> image core (e310_rfnoc_image_core.yml). I confirmed that the image builde=
+r
+> detects them successfully when using --log-level debug.
+>
+> [image: Screenshot from 2025-06-30 11-03-14.png]
+>
+> However, when I try to recreate the block diagram in GNU Radio Companion,
+> following the same structure as shown in the video, I encounter the
+> following error during Python code generation:
+>
+> Generating: "/home/aufer/Projects/rfnoc-gain/rfnoc_gain_trial.py"
+> Generate Error: Undefined
+>
+> Failure
+>
+> Traceback (most recent call last):
+> File
+> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/g=
+ui/Application.py",
+>
+> line 758, in _handle_action
+> generator.write()
+> File
+> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/c=
+ore/generator/top_block.py",
+>
+> line 86, in write
+> for filename, data in self._build_python_code_from_template():
+> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> File
+> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/c=
+ore/generator/top_block.py",
+>
+> line 135, in _build_python_code_from_template
+> connections=3Dself._connections(),
+> ^^^^^^^^^^^^^^^^^^^
+> File
+> "/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/c=
+ore/generator/top_block.py",
+>
+> line 328, in _connections
+> code =3D template.render(
+> ^^^^^^^^^^^^^^^^
+> File "/usr/lib/python3/dist-packages/mako/template.py", line 438, in
+> render
+> return runtime.*render(self, self.callable*, args, data)
+> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 874, in
+> _render
+> _render_context(
+> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 916, in
+> _render_context
+> _exec_template(inherit, lclcontext, args=3Dargs, kwargs=3Dkwargs)
+> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 943, in
+>
+> *exec_template callable*(context, *args, **kwargs)
+> File "memory:0x77b7681a8ce0", line 32, in render_body
+> File "/usr/lib/python3/dist-packages/mako/runtime.py", line 230, in
+> *str*
+> raise NameError("Undefined")
+> NameError: Undefined
+>
+> This occurs when GRC attempts to generate the .py file.
+>
+> Could you please advise what might be missing or misconfigured to cause
+> this =E2=80=9CUndefined=E2=80=9D error?
+>
+> Best regards,
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-   - 0/Gain#0
-   - 0/Radio#0
-
-Static connections on this device:
-
-   - 0/SEP#0:0 =3D=3D> 0/Radio#0:0
-   - 0/Radio#0:0 =3D=3D> 0/SEP#0:0
-   - 0/SEP#1:0 =3D=3D> 0/Radio#0:1
-   - 0/Radio#0:1 =3D=3D> 0/SEP#1:0
-   - 0/SEP#2:0 =3D=3D> 0/Gain#0:0
-   - 0/Gain#0:0 =3D=3D> 0/SEP#2:0
-
-In addition to generating the bitstream, I also created and included the
-required .yml files =E2=80=94 specifically the block descriptor (gain.yml) =
-and
-image core (e310_rfnoc_image_core.yml). I confirmed that the image builder
-detects them successfully when using --log-level debug.
-
-[image: Screenshot from 2025-06-30 11-03-14.png]
-
-However, when I try to recreate the block diagram in GNU Radio Companion,
-following the same structure as shown in the video, I encounter the
-following error during Python code generation:
-
-Generating: "/home/aufer/Projects/rfnoc-gain/rfnoc_gain_trial.py"
-Generate Error: Undefined
-
-Failure
-
-Traceback (most recent call last):
-File
-"/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/gui=
-/Application.py",
-
-line 758, in _handle_action
-generator.write()
-File
-"/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/cor=
-e/generator/top_block.py",
-
-line 86, in write
-for filename, data in self._build_python_code_from_template():
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-File
-"/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/cor=
-e/generator/top_block.py",
-
-line 135, in _build_python_code_from_template
-connections=3Dself._connections(),
-^^^^^^^^^^^^^^^^^^^
-File
-"/home/aufer/gnuradio-install/lib/python3.12/site-packages/gnuradio/grc/cor=
-e/generator/top_block.py",
-
-line 328, in _connections
-code =3D template.render(
-^^^^^^^^^^^^^^^^
-File "/usr/lib/python3/dist-packages/mako/template.py", line 438, in
-render
-return runtime.*render(self, self.callable*, args, data)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-File "/usr/lib/python3/dist-packages/mako/runtime.py", line 874, in
-_render
-_render_context(
-File "/usr/lib/python3/dist-packages/mako/runtime.py", line 916, in
-_render_context
-_exec_template(inherit, lclcontext, args=3Dargs, kwargs=3Dkwargs)
-File "/usr/lib/python3/dist-packages/mako/runtime.py", line 943, in
-
-*exec_template callable*(context, *args, **kwargs)
-File "memory:0x77b7681a8ce0", line 32, in render_body
-File "/usr/lib/python3/dist-packages/mako/runtime.py", line 230, in
-*str*
-raise NameError("Undefined")
-NameError: Undefined
-
-This occurs when GRC attempts to generate the .py file.
-
-Could you please advise what might be missing or misconfigured to cause
-this =E2=80=9CUndefined=E2=80=9D error?
-
-Best regards,
-
---0000000000005860340638c7fc57
+--00000000000049069f0638dd0baa
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail-message-body"><div><p>Hello,</p>
+<div dir=3D"ltr"><div>The YAML files look fine... which version=C2=A0of UHD=
+ and GNU Radio are you using?</div><div><br></div><div>--M</div></div><br><=
+div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Mon, Jun 30, 2025 at 1:04=E2=80=AFPM Ahmet Hes &lt;<a href=3D=
+"mailto:nirkicatal1@gmail.com">nirkicatal1@gmail.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><=
+div><p>Hello,</p>
 <p>I have followed the exact same steps as shown in this video:
-<br><a rel=3D"noopener noreferrer" target=3D"_blank" href=3D"https://www.yo=
-utube.com/watch?v=3DM9ntwQie9vs">https://www.youtube.com/watch?v=3DM9ntwQie=
-9vs</a> to create a custom RFNoC Gain
+<br><a rel=3D"noopener noreferrer" href=3D"https://www.youtube.com/watch?v=
+=3DM9ntwQie9vs" target=3D"_blank">https://www.youtube.com/watch?v=3DM9ntwQi=
+e9vs</a> to create a custom RFNoC Gain
 <br>block. I successfully built the FPGA bitstream and booted the E310 devi=
 ce
 <br>with it.</p><p>After flashing, I confirmed that the RFNoC blocks were c=
@@ -221,15 +247,9 @@ the block diagram in GNU Radio Companion,
 ot;
 <br>Generate Error: Undefined</p>
 </div>
-    <div class=3D"gmail-quote gmail-quote-hidden"><div class=3D"gmail-text-=
-right gmail-shq-ctrl"><i class=3D"gmail-fa gmail-fa-chevron-down gmail-shq =
-gmail-shq-down"></i></div><div></div>
-    <div class=3D"gmail-quote gmail-quote-hidden"><div class=3D"gmail-text-=
-right gmail-shq-ctrl"><i class=3D"gmail-fa gmail-fa-chevron-down gmail-shq =
-gmail-shq-down"></i></div><div></div>
-    <div class=3D"gmail-quote gmail-quote-hidden"><div class=3D"gmail-text-=
-right gmail-shq-ctrl"><i class=3D"gmail-fa gmail-fa-chevron-down gmail-shq =
-gmail-shq-down"></i></div><p>Failure</p>
+    <div><div><i></i></div><div></div>
+    <div><div><i></i></div><div></div>
+    <div><div><i></i></div><p>Failure</p>
 </div>
     <div></div>
     </div>
@@ -288,10 +308,16 @@ o/grc/core/generator/top_block.py&quot;,
 <p>Best regards,</p>
 </div>
     </div><br></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---0000000000005860340638c7fc57--
+--00000000000049069f0638dd0baa--
 
---0000000000005860350638c7fc58
+--0000000000004906a20638dd0bab
 Content-Type: image/png; name="Screenshot from 2025-06-30 11-03-14.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2025-06-30 11-03-14.png"
@@ -6001,179 +6027,9 @@ IiIiIrKBKcATERERERERERHZwELn3L3eBxEREREREREREfkNVIEnIiIiIiIiIiKygWmIhYiIiIiI
 iIiIyAamAE9ERERERERERGQDU4AnIiIiIiIiIiKygWkNPBERERERERERkQ1MFXgiIiIiIiIiIiIb
 mAI8ERERERERERGRDUwttCIiIiIiIiIiIhuYKvBEREREREREREQ2MAV4IiIiIiIiIiIiG9j/AVL9
 MZigJsMAAAAAAElFTkSuQmCC
---0000000000005860350638c7fc58--
+--0000000000004906a20638dd0bab--
 
---0000000000005860360638c7fc59
-Content-Type: application/x-yaml; name="e310_rfnoc_image_core.yml"
-Content-Disposition: attachment; filename="e310_rfnoc_image_core.yml"
-Content-Transfer-Encoding: base64
-Content-ID: <f_mcizm7f01>
-X-Attachment-Id: f_mcizm7f01
-
-IyBHZW5lcmFsIHBhcmFtZXRlcnMKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLQpzY2hlbWE6IHJmbm9jX2ltYWdlYnVpbGRlcl9hcmdzICAgICAgICAgIyBJZGVudGlm
-aWVyIGZvciB0aGUgc2NoZW1hIHVzZWQgdG8gdmFsaWRhdGUgdGhpcyBmaWxlCmNvcHlyaWdodDog
-Pi0gICAgICAgICAgICAgICAgICAgICAgICAgICAjIENvcHlyaWdodCBpbmZvcm1hdGlvbiB1c2Vk
-IGluIGZpbGUgaGVhZGVycwogIENvcHlyaWdodCAyMDIzIEV0dHVzIFJlc2VhcmNoLCBhIE5hdGlv
-bmFsIEluc3RydW1lbnRzIEJyYW5kCmxpY2Vuc2U6ID4tICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAjIExpY2Vuc2UgaW5mb3JtYXRpb24gdXNlZCBpbiBmaWxlIGhlYWRlcnMKICBTUERYLUxp
-Y2Vuc2UtSWRlbnRpZmllcjogTEdQTC0zLjAtb3ItbGF0ZXIKdmVyc2lvbjogJzEuMCcgICAgICAg
-ICAgICAgICAgICAgICAgICAgICMgRmlsZSB2ZXJzaW9uCmNoZHJfd2lkdGg6IDY0ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAjIEJpdCB3aWR0aCBvZiB0aGUgQ0hEUiBidXMgZm9yIHRoaXMgaW1h
-Z2UKZGV2aWNlOiAnZTMxMCcgICAgICAgICAgICAgICAgICAgICAgICAgICMgVVNSUCB0eXBlCmRl
-ZmF1bHRfdGFyZ2V0OiAnRTMxMF9TRzMnCmltYWdlX2NvcmVfbmFtZTogJ3VzcnBfZTMxMF9zZzNf
-ZnBnYScgICAjIE5hbWUgdG8gdXNlIGZvciB0aGUgZ2VuZXJhdGVkIG91dHB1dCBmaWxlcy4KICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgQ2hhbmdlIGltYWdlX2NvcmVf
-bmFtZSBhbmQgZGVmYXVsdF90YXJnZXQgaW4gdGFuZGVtLAogICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIyBiZWNhdXNlIHdlIHdvbid0IGdlbmVyYXRlIHRoZSBjb3JyZWN0
-IERUUyBmaWxlcyBvdGhlcndpc2UuCgojIEEgbGlzdCBvZiBhbGwgc3RyZWFtIGVuZHBvaW50cyBp
-biBkZXNpZ24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCnN0cmVh
-bV9lbmRwb2ludHM6CiAgZXAwOiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIFN0
-cmVhbSBlbmRwb2ludCBuYW1lCiAgICBjdHJsOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICAg
-ICAjIEVuZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAg
-ICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVm
-Zl9zaXplOiAxNjM4NCAgICAgICAgICAgICAgICAgICAgIyBJbmdyZXNzIGJ1ZmZlciBzaXplIGZv
-ciBkYXRhCiAgZXAxOgogICAgY3RybDogRmFsc2UKICAgIGRhdGE6IFRydWUKICAgIGJ1ZmZfc2l6
-ZTogMTYzODQKICBlcDI6CiAgICBjdHJsOiBGYWxzZQogICAgZGF0YTogVHJ1ZQogICAgYnVmZl9z
-aXplOiAxNjM4NAogICAgCiMgQSBsaXN0IG9mIGFsbCBOb0MgYmxvY2tzIGluIGRlc2lnbgojIC0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0Kbm9jX2Jsb2NrczoKICByYWRpbzA6ICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgTm9DIGJsb2NrIG5hbWUKICAgIGJsb2NrX2Rl
-c2M6ICdyYWRpby55bWwnICAgICAgICAgICAgICMgQmxvY2sgZGV2aWNlIGRlc2NyaXB0b3IKICAg
-IHBhcmFtZXRlcnM6CiAgICAgIE5VTV9QT1JUUzogMgogIGdhaW4wOgogICAgYmxvY2tfZGVzYzog
-J2dhaW4ueW1sJwojIEEgbGlzdCBvZiBhbGwgc3RhdGljIGNvbm5lY3Rpb25zIGluIGRlc2lnbgoj
-IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIEZvcm1hdDogQSBs
-aXN0IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlzdCBvZiBrZXktdmFsdWUgcGFpcnMpIHdpdGggdGhl
-IGZvbGxvd2luZyBrZXlzCiMgICAtIHNyY2JsayAgPSBTb3VyY2UgYmxvY2sgdG8gY29ubmVjdAoj
-ICAgLSBzcmNwb3J0ID0gUG9ydCBvbiB0aGUgc291cmNlIGJsb2NrIHRvIGNvbm5lY3QKIyAgIC0g
-ZHN0YmxrICA9IERlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKIyAgIC0gZHN0cG9ydCA9IFBv
-cnQgb24gdGhlIGRlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKY29ubmVjdGlvbnM6CiAgIyBU
-WCBBCiAgLSB7IHNyY2JsazogZXAwLCAgICBzcmNwb3J0OiBvdXQwLCAgZHN0YmxrOiByYWRpbzAs
-IGRzdHBvcnQ6IGluXzAgfQogICMgUlggQQogIC0geyBzcmNibGs6IHJhZGlvMCwgc3JjcG9ydDog
-b3V0XzAsIGRzdGJsazogZXAwLCAgICBkc3Rwb3J0OiBpbjAgIH0KICAjIFRYIEIKICAtIHsgc3Jj
-YmxrOiBlcDEsICAgIHNyY3BvcnQ6IG91dDAsICBkc3RibGs6IHJhZGlvMCwgZHN0cG9ydDogaW5f
-MSB9CiAgIyBSWCBCCiAgLSB7IHNyY2JsazogcmFkaW8wLCBzcmNwb3J0OiBvdXRfMSwgZHN0Ymxr
-OiBlcDEsICAgIGRzdHBvcnQ6IGluMCAgfQogICMgR2FpbiBCbG9jayBDb25uZWN0aW9ucwogIC0g
-eyBzcmNibGs6IGVwMiwgICBzcmNwb3J0OiBvdXQwLCBkc3RibGs6IGdhaW4wLCBkc3Rwb3J0OiBp
-biAgfQogIC0geyBzcmNibGs6IGdhaW4wLCBzcmNwb3J0OiBvdXQsICBkc3RibGs6IGVwMiwgICBk
-c3Rwb3J0OiBpbjAgfQogIAogICMgQlNQIENvbm5lY3Rpb25zCiAgLSB7IHNyY2JsazogcmFkaW8w
-LCAgIHNyY3BvcnQ6IGN0cmxwb3J0LCBkc3RibGs6IF9kZXZpY2VfLCBkc3Rwb3J0OiBjdHJscG9y
-dCB9CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IHJhZGlvLCAgICBkc3RibGs6IHJh
-ZGlvMCwgICBkc3Rwb3J0OiByYWRpbyAgICB9CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3Bv
-cnQ6IHRpbWUsICAgICBkc3RibGs6IHJhZGlvMCwgICBkc3Rwb3J0OiB0aW1lICAgICB9CgojIEEg
-bGlzdCBvZiBhbGwgY2xvY2sgZG9tYWluIGNvbm5lY3Rpb25zIGluIGRlc2lnbgojIC0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIEZvcm1hdDogQSBsaXN0
-IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlzdCBvZiBrZXktdmFsdWUgcGFpcnMpIHdpdGggdGhlIGZv
-bGxvd2luZyBrZXlzCiMgICAtIHNyY2JsayAgPSBTb3VyY2UgYmxvY2sgdG8gY29ubmVjdCAoQWx3
-YXlzICJfZGV2aWNlIl8pCiMgICAtIHNyY3BvcnQgPSBDbG9jayBkb21haW4gb24gdGhlIHNvdXJj
-ZSBibG9jayB0byBjb25uZWN0CiMgICAtIGRzdGJsayAgPSBEZXN0aW5hdGlvbiBibG9jayB0byBj
-b25uZWN0CiMgICAtIGRzdHBvcnQgPSBDbG9jayBkb21haW4gb24gdGhlIGRlc3RpbmF0aW9uIGJs
-b2NrIHRvIGNvbm5lY3QKY2xrX2RvbWFpbnM6CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3Bv
-cnQ6IHJhZGlvLCBkc3RibGs6IHJhZGlvMCwgZHN0cG9ydDogcmFkaW8gfQojICAtIHsgc3JjYmxr
-OiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJsazogZ2FpbjAsICBkc3Rwb3J0OiBjZSAg
-ICB9CiMgIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiByZm5vY19jaGRyLCBkc3RibGs6
-IGdhaW4wLCBkc3Rwb3J0OiBjdHJsX2NsayB9CiMgIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNw
-b3J0OiByZm5vY19jaGRyLCBkc3RibGs6IGdhaW4wLCBkc3Rwb3J0OiBjbGsgfQo=
---0000000000005860360638c7fc59
-Content-Type: application/x-yaml; name="gain.yml"
-Content-Disposition: attachment; filename="gain.yml"
-Content-Transfer-Encoding: base64
-Content-ID: <f_mcizmjll2>
-X-Attachment-Id: f_mcizmjll2
-
-c2NoZW1hOiByZm5vY19tb2R0b29sX2FyZ3MKbW9kdWxlX25hbWU6IGdhaW4KdmVyc2lvbjogIjEu
-MCIKcmZub2NfdmVyc2lvbjogIjEuMCIKY2hkcl93aWR0aDogNjQKbm9jX2lkOiAweEIxNgoKIyBU
-aGVzZSBwYXJhbWV0ZXJzIHdpbGwgYmUgYXZhaWxhYmxlIHRvIHRoZSBibG9jayBpbiB0aGUgaW1h
-Z2UgY29yZS4KcGFyYW1ldGVyczoKICBpcF9vcHRpb246IEhETF9JUAoKIyBJZiB0aGVyZSBpcyBh
-IHNlcGFyYXRlIGhkbF9wYXJhbWV0ZXJzIHNlY3Rpb24sIHRoZW4gdGhpcyBpcyB0aGUgbGlzdCBv
-ZgojIHBhcmFtZXRlcnMgdGhhdCB0aGUgSERMIG1vZHVsZSBjYW4gY29uc3VtZS4gSW4gdGhpcyBj
-YXNlLCB3ZSBvbmx5IGRvIHNvbWUKIyBzYW5pdGl6YXRpb24gb2YgdGhlIGlwX29wdGlvbiBwYXJh
-bWV0ZXIgYWJvdmUuCiMgTm90ZSB0aGUgdXNlIG9mIHRoZSAncScgKG9yICdxdW90ZScpIGZpbHRl
-ci4gVGhpcyBlbnN1cmVzIHRoYXQgdGhlIHN0cmluZyBpcwojIHJlbmRlcmVkIGluY2x1ZGluZyBx
-dW90ZXMsIHdoaWNoIGlzIG5lY2Vzc2FyeSBmb3IgdGhlIEhETCBtb2R1bGUgdG8gdXNlIHRoaXMK
-IyB2YWx1ZSBhcyBhIHN0cmluZyBwYXJhbWV0ZXIuCmhkbF9wYXJhbWV0ZXJzOgogIElQX09QVElP
-TjogJHsgcGFyYW1ldGVyc1snaXBfb3B0aW9uJ10gfCBxfQoKY2hlY2tzOgogIC0gY29uZGl0aW9u
-OiAkeyBwYXJhbWV0ZXJzWydpcF9vcHRpb24nXSBpbiAoJ0hETF9JUCcsICdJTl9UUkVFX0lQJywg
-J09VVF9PRl9UUkVFX0lQJykgfQogICAgbWVzc2FnZTogImlwX29wdGlvbiBwYXJhbWV0ZXIgbXVz
-dCBiZSBvbmUgb2YgSERMX0lQLCBJTl9UUkVFX0lQLCBPVVRfT0ZfVFJFRV9JUC4gSXM6ICR7IHBh
-cmFtZXRlcnNbJ2lwX29wdGlvbiddIH0iCgoKY2xvY2tzOgogIC0gbmFtZTogcmZub2NfY2hkcgog
-ICAgZnJlcTogIltdIgogIC0gbmFtZTogcmZub2NfY3RybAogICAgZnJlcTogIltdIgoKY29udHJv
-bDoKICBmcGdhX2lmYWNlOiBjdHJscG9ydAogIGludGVyZmFjZV9kaXJlY3Rpb246IHNsYXZlCiAg
-Zmlmb19kZXB0aDogMzIKICBjbGtfZG9tYWluOiByZm5vY19jdHJsCiAgY3RybHBvcnQ6CiAgICBi
-eXRlX21vZGU6IEZhbHNlCiAgICB0aW1lZDogRmFsc2UKICAgIGhhc19zdGF0dXM6IEZhbHNlCgpk
-YXRhOgogIGZwZ2FfaWZhY2U6IGF4aXNfcHlsZF9jdHh0CiAgY2xrX2RvbWFpbjogcmZub2NfY2hk
-cgogIGlucHV0czoKICAgIGluOgogICAgICBpdGVtX3dpZHRoOiAzMgogICAgICBuaXBjOiAxCiAg
-ICAgIGNvbnRleHRfZmlmb19kZXB0aDogMgogICAgICBwYXlsb2FkX2ZpZm9fZGVwdGg6IDIKICAg
-ICAgZm9ybWF0OiBpbnQzMgogIG91dHB1dHM6CiAgICBvdXQ6CiAgICAgIGl0ZW1fd2lkdGg6IDMy
-CiAgICAgIG5pcGM6IDEKICAgICAgY29udGV4dF9maWZvX2RlcHRoOiAyCiAgICAgIHBheWxvYWRf
-Zmlmb19kZXB0aDogMgogICAgICBmb3JtYXQ6IGludDMyCgpmcGdhX2luY2x1ZGVzOgogICAgIyBU
-aGlzIHBhdGggaXMgdGhlIGV4YWN0IHBhdGggdG8gdGhlIHJlbGV2YW50IE1ha2VmaWxlLnNyY3Mg
-aW4gdGhpcyByZXBvc2l0b3J5LgogICAgIyBBZnRlciBpbnN0YWxsYXRpb24sIHRoZSB3aG9sZSBk
-aXJlY3Rvcnkgd2lsbCBiZWNvbWUgYXZhaWxhYmxlIHVuZGVyIGEKICAgICMgc2ltaWxhciBwYXRo
-LCBhbHNvIGluIHRoZSBpbmNsdWRlIGRpcmVjdG9yaWVzIG9mIHRoZSBpbWFnZSBidWlsZGVyLCBl
-LmcuCiAgICAjIHVuZGVyIC91c3Ivc2hhcmUvdWhkL3Jmbm9jL2ZwZ2EvZ2Fpbi9yZm5vY19ibG9j
-a19nYWluL01ha2VmaWxlLnNyY3MuCiAgLSBpbmNsdWRlOiAiZnBnYS9nYWluL3Jmbm9jX2Jsb2Nr
-X2dhaW4vTWFrZWZpbGUuc3JjcyIKICAgICMgVGhpcyBtYWtlIHZhcmlhYmxlIGhhcyB0byBtYXRj
-aCB0aGUgb25lIGluIHRoZSBmaWxlIHJlZmVyZW5jZWQgYWJvdmUuCiAgICBtYWtlX3ZhcjogIiQo
-UkZOT0NfQkxPQ0tfR0FJTl9TUkNTKSIKICAgICMgQmVjYXVzZSB0aGlzIGJsb2NrIHJlcXVpcmVz
-IGV4dGVybmFsIElQLCB3ZSBhbHNvIGxpc3QgdGhhdCBoZXJlLgogIC0gaW5jbHVkZTogImZwZ2Ev
-Z2Fpbi9pcC9jbXBseF9tdWwvTWFrZWZpbGUuaW5jIgogICAgIyBMaWtlIGFib3ZlLCB0aGlzIGlz
-IHRoZSBNYWtlIHZhcmlhYmxlIHRoYXQgbGlzdHMgdGhlIHNvdXJjZXMgZm9yIHRoZSBJUAogICAg
-IyB3ZSByZXF1aXJlIGhlcmUuCiAgICBtYWtlX3ZhcjogIiQoTElCX0lQX0NNUExYX01VTF9TUkNT
-KSIKCgojIFRoaXMgaXMganVzdCBhbiBleGFtcGxlIG9uIGhvdyB0byBhZGQgRFRTIGluZm8uIFRo
-ZSBnYWluIGJsb2NrIGRvZXMgbm90CiMgcmVxdWlyZSBhbnkgRFRTIGZpbGVzLiBJdCBhbHNvIHNl
-cnZlcyBhcyBhbiBleGFtcGxlIGZvciBob3cgdG8gZHluYW1pY2FsbHkKIyBjb21wdXRlIERUUyBm
-aWxlcy4KZHRzX2luY2x1ZGVzOgogIC0gfAogICAgPCUKICAgICAgZHRzaV9maWxlID0gIiIKICAg
-ICAgaWYgY29uZmlnLmRldmljZS50eXBlID09ICd4NDEwJzoKICAgICAgICBkdHNpX2ZpbGUgPSAi
-ZHRzL2dhaW5fYmxvY2suZHRzaSIKICAgICU+JHsgZHRzaV9maWxlIH1cCg==
---0000000000005860360638c7fc59
-Content-Type: application/x-yaml; name="rfnoc_gain_rfnoc_gain.block.yml"
-Content-Disposition: attachment; filename="rfnoc_gain_rfnoc_gain.block.yml"
-Content-Transfer-Encoding: base64
-Content-ID: <f_mcizo7d24>
-X-Attachment-Id: f_mcizo7d24
-
-aWQ6IHJmbm9jX2dhaW5fZ2Fpbl9uYXRpdmUKbGFiZWw6IFJGTm9DIEdhaW4gQmxvY2sgKE5hdGl2
-ZSBDKysgVmVyc2lvbikKY2F0ZWdvcnk6ICdbcmZub2NfZ2Fpbl0nCgp0ZW1wbGF0ZXM6CiAgaW1w
-b3J0czogZnJvbSBnbnVyYWRpbyBpbXBvcnQgcmZub2NfZ2FpbgogIG1ha2U6IHJmbm9jX2dhaW4u
-cmZub2NfZ2FpbigKICAgICAgICBzZWxmLnJmbm9jX2dyYXBoLAogICAgICAgICR7Z2Fpbn0sCiAg
-ICAgICAgdWhkLmRldmljZV9hZGRyKCIiKSwKICAgICAgICAke2RldmljZV9zZWxlY3R9LAogICAg
-ICAgICR7aW5zdGFuY2VfaW5kZXh9KQogIGNhbGxiYWNrczoKICAgIC0gc2V0X2dhaW4oJHtnYWlu
-fSkKCnBhcmFtZXRlcnM6Ci0gaWQ6IGdhaW4KICBsYWJlbDogR2FpbgogIGR0eXBlOiBpbnQKICBk
-ZWZhdWx0OiAxCi0gaWQ6IGRldmljZV9zZWxlY3QKICBsYWJlbDogRGV2aWNlIFNlbGVjdAogIGR0
-eXBlOiBpbnQKICBkZWZhdWx0OiAtMQogIGhpZGU6ICR7ICdwYXJ0JyBpZiBkZXZpY2Vfc2VsZWN0
-ID09IC0xIGVsc2UgJ25vbmUnfQotIGlkOiBpbnN0YW5jZV9pbmRleAogIGxhYmVsOiBJbnN0YW5j
-ZSBTZWxlY3QKICBkdHlwZTogaW50CiAgZGVmYXVsdDogLTEKICBoaWRlOiAkeyAncGFydCcgaWYg
-aW5zdGFuY2VfaW5kZXggPT0gLTEgZWxzZSAnbm9uZSd9CgppbnB1dHM6Ci0gbGFiZWw6IGluCiAg
-ZG9tYWluOiByZm5vYwogIGR0eXBlOiBzYzE2CiAgdmxlbjogMQoKb3V0cHV0czoKLSBsYWJlbDog
-b3V0CiAgZG9tYWluOiByZm5vYwogIGR0eXBlOiBzYzE2CiAgdmxlbjogMQoKZmlsZV9mb3JtYXQ6
-IDEK
---0000000000005860360638c7fc59
-Content-Type: application/x-yaml;
-	name="rfnoc_gain_rfnoc_gain_generic.block.yml"
-Content-Disposition: attachment;
-	filename="rfnoc_gain_rfnoc_gain_generic.block.yml"
-Content-Transfer-Encoding: base64
-Content-ID: <f_mcizo7cu3>
-X-Attachment-Id: f_mcizo7cu3
-
-aWQ6IHJmbm9jX2dhaW5fZ2Fpbl9nZW5lcmljCmxhYmVsOiBSRk5vQyBHYWluIEJsb2NrIChHZW5l
-cmljIFZlcnNpb24pCmNhdGVnb3J5OiAnW3Jmbm9jX2dhaW5dJwoKdGVtcGxhdGVzOgogIGltcG9y
-dHM6IGZyb20gZ251cmFkaW8gaW1wb3J0IHVoZAogIG1ha2U6IHwtCiAgICB1aGQucmZub2NfYmxv
-Y2tfZ2VuZXJpYygKICAgICAgICBzZWxmLnJmbm9jX2dyYXBoLAogICAgICAgIHVoZC5kZXZpY2Vf
-YWRkcigiZ2Fpbj0ke2dhaW59IiksCiAgICAgICAgIkdhaW4iLAogICAgICAgICR7ZGV2aWNlX3Nl
-bGVjdH0sCiAgICAgICAgJHtpbnN0YW5jZV9pbmRleH0pCgpwYXJhbWV0ZXJzOgotIGlkOiBnYWlu
-CiAgbGFiZWw6IEdhaW4KICBkdHlwZTogaW50CiAgZGVmYXVsdDogMQotIGlkOiBkZXZpY2Vfc2Vs
-ZWN0CiAgbGFiZWw6IERldmljZSBTZWxlY3QKICBkdHlwZTogaW50CiAgZGVmYXVsdDogLTEKICBo
-aWRlOiAkeyAncGFydCcgaWYgZGV2aWNlX3NlbGVjdCA9PSAtMSBlbHNlICdub25lJ30KLSBpZDog
-aW5zdGFuY2VfaW5kZXgKICBsYWJlbDogSW5zdGFuY2UgU2VsZWN0CiAgZHR5cGU6IGludAogIGRl
-ZmF1bHQ6IC0xCiAgaGlkZTogJHsgJ3BhcnQnIGlmIGluc3RhbmNlX2luZGV4ID09IC0xIGVsc2Ug
-J25vbmUnfQoKaW5wdXRzOgotIGxhYmVsOiBpbgogIGRvbWFpbjogcmZub2MKICBkdHlwZTogc2Mx
-NgogIHZsZW46IDEKICBvcHRpb25hbDogZmFsc2UKCm91dHB1dHM6Ci0gbGFiZWw6IG91dAogIGRv
-bWFpbjogcmZub2MKICBkdHlwZTogc2MxNgogIHZsZW46IDEKICBvcHRpb25hbDogZmFsc2UKCmRv
-Y3VtZW50YXRpb246IHwtCiAgUkZOb0MgR2FpbiBCbG9jazoKICBNdWx0aXBsaWVzIHRoZSBzYW1w
-bGVzIG9mIHRoZSBpbnB1dCBzdHJlYW0gd2l0aCB0aGUgZ2FpbiB2YWx1ZS4KCmZpbGVfZm9ybWF0
-OiAxCg==
---0000000000005860360638c7fc59
+--===============1879691906765770694==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -6183,4 +6039,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---0000000000005860360638c7fc59--
+--===============1879691906765770694==--
