@@ -2,156 +2,322 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B8DBAF1619
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Jul 2025 14:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4CFAF6CA7
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Jul 2025 10:19:18 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 415D33861C9
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Jul 2025 08:51:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E58573862F8
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Jul 2025 04:18:56 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1751460712; bh=vr5+1jvZVCxi/fpmSYvSWEfPA4eY3z7TFHbbrKXbVd4=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=cisusZrgigrP2Es1lIEvz3wH7bdN6CoSwB8OfDEDb7YJ45HlR23QQhwxleEQtXB2b
-	 YRsuNxcAO5Dqa702Qx7fIgOffCY/S+9rWytHj6U7CnZc5SnVZvwuRy6Th/KR48J1zF
-	 d7a7jT40HQv5YLvoICrcFhgN5WvCjIvvaxtOqsjkPaRkYzLhuJJnmZMtLt52xpQZLW
-	 Ad4AAF1YW/FmiXZVHPqqGFOV9u3/h/JBFU9PIJJggeWn0n07qSz8n7g6J6EEeSrkEK
-	 gV3v4In7eC1bgekohLCepjm5S2JDpQDUrld0usKuzErWQ7a2b2Erx2C0X//vJ3sT/s
-	 /vNZx7iKW6eHg==
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id D7D6A385F0F
-	for <usrp-users@lists.ettus.com>; Wed,  2 Jul 2025 08:51:33 -0400 (EDT)
+	t=1751530736; bh=fG8CyC+BCU33Gitqo+Vft1UmHt8ASYiNx0lZ4rIq4qE=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=WQcaoh3N2qyf+EpLV4IMrCIDV/Ei4U7SpMLKXbddnWhYYVNbEmfIX1ZFbAtDPlgvH
+	 PdsXrn8cTGjN3sMGYTzeo6n3IwZ4FzbNsNKe78NivOQP+i4MI7IXXyfoy+l5/wzRzb
+	 IOQN4CH+Vmwa9wkL5iSBuH80IHi82EgPTWuIy9q2LRJF0T1vj0crXAQIlI5In8TW84
+	 YOVZd01TIYIvCPHk1HyhCh0Jw9oKQnfJqJHRnNIVemYkEclgTTmk1VqdopBZJK+jBV
+	 DZwuvxEX8uYkJGV3cq2Xwe3K/77dFpvWw8PHgaM2FXHRDXS9Noco/zbaoqufXz/hIj
+	 7AcrtKg5TFfSw==
+Received: from za-smtp-delivery-57.mimecast.co.za (za-smtp-delivery-57.mimecast.co.za [41.74.205.57])
+	by mm2.emwd.com (Postfix) with ESMTPS id 500BE3800A7
+	for <usrp-users@lists.ettus.com>; Thu,  3 Jul 2025 04:18:43 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qa7N/HW2";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="XCF4Z3td";
 	dkim-atps=neutral
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e87c86845d9so2728485276.1
-        for <usrp-users@lists.ettus.com>; Wed, 02 Jul 2025 05:51:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751460693; x=1752065493; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ddaDi2kVqmQ3wsUWGO7Dwzky7OoAp4CdOrlClouvtCs=;
-        b=Qa7N/HW2PDiw/VXN8A8usD2DUBaZpErUCx4qitNupbE1/bwe6tJpJXj9pC0E+UoDsf
-         7j7z1eIHPqkAB/BGhQ+5GyfxRUj5BCjSGN9y9wbi1RgwSvGgBPjZUT/KjC87iP8DCb3D
-         HJZHnu3lEIveyroudd9hvXF7n7aWGM6h8yOYvB2JShzZv6Lew3HWYQIAypVFJdTc9c7j
-         pKyIp5F2S3ckIs4B7Mmb6UDlMRI9cB0ttVA/b3Qjgt7Ye3w0WkwVxhY8bhWD+KCDRxbD
-         OCRZOIC2sLxOIHuohClj4X8TceHqbRrOnWCa2D3C75GFlxgCk8bZ2dK5ccs0a/MVykMQ
-         6wGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751460693; x=1752065493;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ddaDi2kVqmQ3wsUWGO7Dwzky7OoAp4CdOrlClouvtCs=;
-        b=pOclKOjpsPo2BmjZfSqwCgz4TCSs9b3JYpAyE6IXQ273X4ckkZvOnP+WhMk7l3T5RY
-         VOAZxu+ljKrVV4JNEhdU48DZWBeuwahKi5n4rtpPZNEogcXQJjnpEvOmzSfBzUlgnpvt
-         0iIeoFXlF+Qt03Ljx7ggUwCtOlZESzKCliEWxnzUl4rruaX/rj+rpbOQ53mZGpMHaAxA
-         s9p2EkwDM71kDH0lHdriPFnJTRSfQhn7SUNAhpulyP5qgx2/ijfR6m+0dj8NAyOHcgFH
-         T+teYRXxzc6PEfNCaakKIcq+67FFurGqEpWyISCMJF6mtNN3VqS7DhQGD2coY/1yER7H
-         2vBQ==
-X-Gm-Message-State: AOJu0YwkHOuni012joyRv+bW3qnch5SytwP+MOrG7z9xEBW4dfNjtcga
-	WLiVtuqcgW4qb0lmHztf3PogWrr12r0vjBHR0Cnwqyuxe1AyC2jU4hcT7imfWfChMTpbonBKh07
-	etX5AhX9CPBnzVpB200jb8wREzDqehkwJRsFm4+A=
-X-Gm-Gg: ASbGncshNSLc6bwbHymmtgiV7wqJ3VGRGeOYbk8VyRUV48SefAQ3fALmDCE4Njkx8jD
-	tlC0uLWFHOpGy5tr/nJJcJavpCtt6tn/s9zO6ZA+202wxpZTegAZSAShFE5opHfYcqbvvhq+Mpe
-	R7HHCBQ7+l+9yR+HK0RpIspO+DXeEcmxH76K4jdr/aDV7f
-X-Google-Smtp-Source: AGHT+IE2CvBjaJcZaYr6IZiT60WjI/sr/76kZML9C2NzlbWDp9ySwvmCp8BzNgdAseWQPBxkFA7w2v99XSmZezMG/rM=
-X-Received: by 2002:a05:6902:2504:b0:e81:b731:3c89 with SMTP id
- 3f1490d57ef6-e897e1cc548mr3377258276.11.1751460693026; Wed, 02 Jul 2025
- 05:51:33 -0700 (PDT)
+Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
+ relay.mimecast.com with ESMTP id za-mta-106-yThuIr4qO76q2h7kWW5G2g-1; Thu,
+ 03 Jul 2025 10:18:39 +0200
+X-MC-Unique: yThuIr4qO76q2h7kWW5G2g-1
+X-Mimecast-MFC-AGG-ID: yThuIr4qO76q2h7kWW5G2g_1751530718
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
+	bh=ST8HRzEiUcsAixSnubexNKycqkfrum8Jh7CT/n4PXNY=;
+	b=XCF4Z3tdvgLb84b/P1sw70rO2+6b7am1NsFXoui2rDYL3QmYGKSuv+rZlX8/97cfeFqS48REJYeR8jAob89rkktYUSppafh46ByFl/13skZdnIc1ZbHCl8R7kTHRPONX7wkvVzIioMEN/zbKnLtwpOAIyDs6yHO+S1n7S9x/72A=
+Received: from EXCHANGE2.vastech.co.za (Unknown [172.30.81.30])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Thu, 3 Jul 2025 10:18:33 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ EXCHANGE2.vastech.co.za (172.30.81.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 3 Jul 2025 10:18:33 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Thu, 3
+ Jul 2025 10:18:33 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: getting larger packets out of an rfnoc block
+Thread-Index: Advr8wa2oyw9BzK4Qce0iVJhHzNVvg==
+Date: Thu, 3 Jul 2025 08:18:33 +0000
+Message-ID: <031c7e33bcf743cf8a3d700778bb3e5a@vastech.co.za>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.3]
 MIME-Version: 1.0
-References: <CAOj5YL7_6fGk5xX4CYSdZfO3NC43ny7-+KiqUg0E9y8qRyHDNA@mail.gmail.com>
- <CAFOi1A6wO9aravAdb5SMdjfxevDpXWGfWmZUBL6Omu3t=oQtRA@mail.gmail.com> <CAOj5YL4dJaf0S+7z+k=w0-ieCjL8SkxQZ0Q2o2UOLC=_aUWR=A@mail.gmail.com>
-In-Reply-To: <CAOj5YL4dJaf0S+7z+k=w0-ieCjL8SkxQZ0Q2o2UOLC=_aUWR=A@mail.gmail.com>
-From: Ahmet Hes <nirkicatal1@gmail.com>
-Date: Wed, 2 Jul 2025 15:51:21 +0300
-X-Gm-Features: Ac12FXy4dvNgbQZeHObHBvXDCmcBmsL92iTfjU7KG3alNzSh-DJIl2AJeP48GsA
-Message-ID: <CAOj5YL4C9_xxE9-cYLEMHQaYuop-dc3Qe7d_AtUMB1MnFypz5Q@mail.gmail.com>
-To: Martin Braun <martin.braun@ettus.com>
-Message-ID-Hash: Z53KQFCJAMXEDUWGBACYDZYDHIIR3YR3
-X-Message-ID-Hash: Z53KQFCJAMXEDUWGBACYDZYDHIIR3YR3
-X-MailFrom: nirkicatal1@gmail.com
+Message-ID-Hash: CSHKTUQPMUHA5FPL25ASKZB2S4J2K3G2
+X-Message-ID-Hash: CSHKTUQPMUHA5FPL25ASKZB2S4J2K3G2
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoc Gain Block (UHD 4.8.0)
+Subject: [USRP-users] getting larger packets out of an rfnoc block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z53KQFCJAMXEDUWGBACYDZYDHIIR3YR3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CSHKTUQPMUHA5FPL25ASKZB2S4J2K3G2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3487808538621465430=="
+Content-Type: multipart/mixed; boundary="===============6709557528090481093=="
 
---===============3487808538621465430==
-Content-Type: multipart/alternative; boundary="000000000000722c6e0638f1b8ff"
+--===============6709557528090481093==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=2.16.840.1.101.3.4.2.3;
+	protocol="application/x-pkcs7-signature";
+	boundary="----=_NextPart_000_02E8_01DBEC03.D3A87050"
 
---000000000000722c6e0638f1b8ff
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_02E8_01DBEC03.D3A87050
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_02E9_01DBEC03.D3A87050"
+
+
+------=_NextPart_001_02E9_01DBEC03.D3A87050
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+ 
+
+I've managed to take some steps backwards with my rfnoc work. 
+
+ 
+
+In a test using the ADDSUB block and looking at packet sizes I see a maximum
+of 2000 samples per packet reported by the streamer, and 8058 byte packets
+received in wireshark.
+
+ 
+
+In my block I count valid's to assert tlast, and have been using 256 samples
+with "sideband at end".
+
+ 
+
+However, it seems I cannot increase that counter to 1024 samples where I get
+these errors (even if I set the streamer SPP to 1024):
+
+[ERROR] [STREAMER] The receive transport caught a value exception.
+
+ValueError: Bad CHDR header or invalid packet length.
+
+ 
+
+(Strangely, I still get the 1024-sample packets according to wireshark, so I
+guess its not related to the firmware?)
+
+ 
+
+BTW in my noc shell I have an MTU of 10, and have axis_data_to_chdr fifo's
+of 2048 samples.
+
+ 
+
+What do I need to do to ensure I can also get large packets out of my block,
+as smaller blocks are causing dropped packet headaches?
+
+ 
+
+Many thanks, Kevin
+
+ 
+
+
+------=_NextPart_001_02E9_01DBEC03.D3A87050
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-*Final Update:*
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DEN-US>Hi,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I&#8217;ve managed to take some =
+steps backwards with my rfnoc work. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>In a test using the ADDSUB block =
+and looking at packet sizes I see a maximum of 2000 samples per packet =
+reported by the streamer, and 8058 byte packets received in =
+wireshark.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>In my block I count valid&#8217;s to assert tlast, and have =
+been using 256 samples with &#8220;sideband at =
+end&#8221;.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+style=3D'margin:0cm;margin-bottom:.0001pt'><span lang=3DEN-US>However, =
+it seems I cannot increase that counter to 1024 samples where I get =
+these errors (even if I set the streamer SPP to =
+1024):<br><br></span><span lang=3DEN-US style=3D'font-family:"Courier =
+New"'>[ERROR] [STREAMER] The receive transport caught a value =
+exception.<o:p></o:p></span></p><p =
+style=3D'margin:0cm;margin-bottom:.0001pt'><span lang=3DEN-US =
+style=3D'font-family:"Courier New"'>ValueError: Bad CHDR header or =
+invalid packet length.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>(Strangely, I still get the 1024-sample packets according =
+to wireshark, so I guess its not related to the =
+firmware?)<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>BTW in my noc shell I have an MTU of 10, and have =
+axis_data_to_chdr fifo&#8217;s of 2048 samples.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>What do I need to do to ensure I =
+can also get large packets out of my block, as smaller blocks are =
+causing dropped packet headaches?<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Many thanks, =
+Kevin<o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_001_02E9_01DBEC03.D3A87050--
 
-I decided to ignore the warnings in GNU Radio and proceeded with the Python
-script.
+------=_NextPart_000_02E8_01DBEC03.D3A87050
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
-When I construct the graph as follows:
+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
 
-radio_noc_block =3D graph.get_block("0/Radio#0")
-radio_block =3D uhd.rfnoc.RadioControl(radio_noc_block)
-rx_streamer =3D graph.create_rx_streamer(1, uhd.usrp.StreamArgs("fc32",
-"sc16"))
-graph.connect("0/Radio#0", 0, rx_streamer, 0)
-graph.commit()
+------=_NextPart_000_02E8_01DBEC03.D3A87050--
 
-I=E2=80=99m able to receive samples successfully.
-
-However, when I insert my custom Gain block into the chain:
-
-radio_noc_block =3D graph.get_block("0/Radio#0")
-radio_block =3D uhd.rfnoc.RadioControl(radio_noc_block)
-rx_streamer =3D graph.create_rx_streamer(1, uhd.usrp.StreamArgs("fc32",
-"sc16"))
-graph.connect("0/Radio#0", 0, "0/Gain#0", 0, False)
-graph.connect("0/Gain#0", 0, rx_streamer, 0)
-print(graph)  # Inspect the connections
-graph.commit()
-
-I no longer receive any samples.
-
-I would really appreciate your help in identifying what might be going
-wrong with the custom block connection.
-
---000000000000722c6e0638f1b8ff
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><p><strong>Final Update:</strong></p>
-<p>I decided to ignore the warnings in GNU Radio and proceeded with the Pyt=
-hon script.</p>
-<p>When I construct the graph as follows:</p><p>radio_noc_block =3D graph.g=
-et_block(&quot;0/Radio#0&quot;)<br>radio_block =3D uhd.rfnoc.RadioControl(r=
-adio_noc_block)<br>rx_streamer =3D graph.create_rx_streamer(1, uhd.usrp.Str=
-eamArgs(&quot;fc32&quot;, &quot;sc16&quot;))<br>graph.connect(&quot;0/Radio=
-#0&quot;, 0, rx_streamer, 0)<br>graph.commit()<br><br></p><p>I=E2=80=99m ab=
-le to receive samples successfully.</p>
-<p>However, when I insert my custom Gain block into the chain:</p><p>radio_=
-noc_block =3D graph.get_block(&quot;0/Radio#0&quot;)<br>radio_block =3D uhd=
-.rfnoc.RadioControl(radio_noc_block)<br>rx_streamer =3D graph.create_rx_str=
-eamer(1, uhd.usrp.StreamArgs(&quot;fc32&quot;, &quot;sc16&quot;))<br>graph.=
-connect(&quot;0/Radio#0&quot;, 0, &quot;0/Gain#0&quot;, 0, False)<br>graph.=
-connect(&quot;0/Gain#0&quot;, 0, rx_streamer, 0)<br>print(graph) =C2=A0# In=
-spect the connections<br>graph.commit()<br><br></p><p>I no longer receive a=
-ny samples.</p>
-<p>I would really appreciate your help in identifying what might be going w=
-rong with the custom block connection.</p><p><br></p><p><br></p></div>
-
---000000000000722c6e0638f1b8ff--
-
---===============3487808538621465430==
+--===============6709557528090481093==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -161,4 +327,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3487808538621465430==--
+--===============6709557528090481093==--
