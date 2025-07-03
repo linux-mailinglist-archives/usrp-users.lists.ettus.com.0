@@ -2,322 +2,140 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C4CFAF6CA7
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Jul 2025 10:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68058AF6F8E
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Jul 2025 12:01:52 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E58573862F8
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Jul 2025 04:18:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E526D3862E2
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Jul 2025 06:01:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1751530736; bh=fG8CyC+BCU33Gitqo+Vft1UmHt8ASYiNx0lZ4rIq4qE=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=WQcaoh3N2qyf+EpLV4IMrCIDV/Ei4U7SpMLKXbddnWhYYVNbEmfIX1ZFbAtDPlgvH
-	 PdsXrn8cTGjN3sMGYTzeo6n3IwZ4FzbNsNKe78NivOQP+i4MI7IXXyfoy+l5/wzRzb
-	 IOQN4CH+Vmwa9wkL5iSBuH80IHi82EgPTWuIy9q2LRJF0T1vj0crXAQIlI5In8TW84
-	 YOVZd01TIYIvCPHk1HyhCh0Jw9oKQnfJqJHRnNIVemYkEclgTTmk1VqdopBZJK+jBV
-	 DZwuvxEX8uYkJGV3cq2Xwe3K/77dFpvWw8PHgaM2FXHRDXS9Noco/zbaoqufXz/hIj
-	 7AcrtKg5TFfSw==
-Received: from za-smtp-delivery-57.mimecast.co.za (za-smtp-delivery-57.mimecast.co.za [41.74.205.57])
-	by mm2.emwd.com (Postfix) with ESMTPS id 500BE3800A7
-	for <usrp-users@lists.ettus.com>; Thu,  3 Jul 2025 04:18:43 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="XCF4Z3td";
-	dkim-atps=neutral
-Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
- relay.mimecast.com with ESMTP id za-mta-106-yThuIr4qO76q2h7kWW5G2g-1; Thu,
- 03 Jul 2025 10:18:39 +0200
-X-MC-Unique: yThuIr4qO76q2h7kWW5G2g-1
-X-Mimecast-MFC-AGG-ID: yThuIr4qO76q2h7kWW5G2g_1751530718
-dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
-	bh=ST8HRzEiUcsAixSnubexNKycqkfrum8Jh7CT/n4PXNY=;
-	b=XCF4Z3tdvgLb84b/P1sw70rO2+6b7am1NsFXoui2rDYL3QmYGKSuv+rZlX8/97cfeFqS48REJYeR8jAob89rkktYUSppafh46ByFl/13skZdnIc1ZbHCl8R7kTHRPONX7wkvVzIioMEN/zbKnLtwpOAIyDs6yHO+S1n7S9x/72A=
-Received: from EXCHANGE2.vastech.co.za (Unknown [172.30.81.30])
-	by mail.vastech.co.za with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Thu, 3 Jul 2025 10:18:33 +0200
-Received: from exchange3.vastech.co.za (172.30.81.31) by
- EXCHANGE2.vastech.co.za (172.30.81.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 3 Jul 2025 10:18:33 +0200
-Received: from exchange3.vastech.co.za ([172.30.81.31]) by
- exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Thu, 3
- Jul 2025 10:18:33 +0200
-From: Kevin Williams <kevin.williams@vastech.co.za>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: getting larger packets out of an rfnoc block
-Thread-Index: Advr8wa2oyw9BzK4Qce0iVJhHzNVvg==
-Date: Thu, 3 Jul 2025 08:18:33 +0000
-Message-ID: <031c7e33bcf743cf8a3d700778bb3e5a@vastech.co.za>
-Accept-Language: en-US, en-ZA
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.168.3]
+	t=1751536909; bh=X2xIHo/BK8Cv+JV3kOVY0Dd8OJtGBMXa9uNmajgT13Q=;
+	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
+	 From;
+	b=aCcYf2pZCSKdeA3dOswM6I7ocEEp7SL171fIjewINmDzttDeLuxztaamAEoeXC6Sn
+	 AKnbSL7qFpLYxS7JdZFEVI4Fo7g92q7Llriv6h17MXTvELtRa3Kq38UI3O944lPo4x
+	 hrbWAR1V5Nxc4Y0dHkHjrKU50jm0u0IxcI46wtfSHenJwNSGJFVetOVsc2SK3hWh+F
+	 Qk6Sm7sBhiXmSpVamK9sO+LQta25qq5IxP9g8Cich9x/NwCWHa/zgryEiD+DCB7lzQ
+	 nxy8wlFGoQ9F4Md8HflsGKVrZ64MZ3wENDLV2qCIEir+HZAjf8oNlppEQQgJQ4aYy5
+	 +ZEWiYUdQQOBQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 802FD386279
+	for <usrp-users@lists.ettus.com>; Thu,  3 Jul 2025 06:01:36 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1751536896; bh=e63QiNeHKEqgH37t8UhiT8YOp8+eckO9ud2DdTSH/a8=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=P73AmDr5d1p0gN8GY6rW19rYTafrPFOK7MZixCvXo7mKkEIHJQUMjSbfPomJp5XP8
+	 6VUbfF2gVH8h4rxKXxLc/qtFnVc1p4LSgYHW4FYQx5QFzBgD0l3j1cNw1zkSE1t3ZS
+	 UdNaBif0yVlNmpifsYFSep/9UqWnOQL8RGAGxsm7f2/pZ5ci5SYQ6Mbx1G0TN+aH/A
+	 +NMfkJjpxsptov4WF+Gyz9lsV+FqO7WvuMCfluGnAIyZpaq1V0CyI3bkyeeNapWXeU
+	 azl1/Bw9ndhGWWAHXog2Kz5l2Ji+B0psaeJQPy/MJ2c1t99POrvpesWMM6vyLNwqie
+	 61YBXsZ5x00qg==
+Date: Thu, 3 Jul 2025 10:01:36 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <NmBIkWXxf6EprBCJ1JpyGgGiAMryWRfYr1fsaxJsQk@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: 031c7e33bcf743cf8a3d700778bb3e5a@vastech.co.za
 MIME-Version: 1.0
-Message-ID-Hash: CSHKTUQPMUHA5FPL25ASKZB2S4J2K3G2
-X-Message-ID-Hash: CSHKTUQPMUHA5FPL25ASKZB2S4J2K3G2
-X-MailFrom: kevin.williams@vastech.co.za
+Message-ID-Hash: 6HZF5D4OAESQJBY6RUILAN354VW76WT5
+X-Message-ID-Hash: 6HZF5D4OAESQJBY6RUILAN354VW76WT5
+X-MailFrom: niels.steffen.garibaldi@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] getting larger packets out of an rfnoc block
+Subject: [USRP-users] Re: getting larger packets out of an rfnoc block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CSHKTUQPMUHA5FPL25ASKZB2S4J2K3G2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6HZF5D4OAESQJBY6RUILAN354VW76WT5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6709557528090481093=="
+From: "niels.steffen.garibaldi--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: niels.steffen.garibaldi@emerson.com
+Content-Type: multipart/mixed; boundary="===============2954405880050049788=="
 
---===============6709557528090481093==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=2.16.840.1.101.3.4.2.3;
-	protocol="application/x-pkcs7-signature";
-	boundary="----=_NextPart_000_02E8_01DBEC03.D3A87050"
+This is a multi-part message in MIME format.
 
-------=_NextPart_000_02E8_01DBEC03.D3A87050
+--===============2954405880050049788==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_02E9_01DBEC03.D3A87050"
-
-
-------=_NextPart_001_02E9_01DBEC03.D3A87050
-Content-Type: text/plain;
-	charset="us-ascii"
+ boundary="b1_NmBIkWXxf6EprBCJ1JpyGgGiAMryWRfYr1fsaxJsQk"
 Content-Transfer-Encoding: 7bit
 
-Hi,
+This is a multi-part message in MIME format.
 
- 
-
-I've managed to take some steps backwards with my rfnoc work. 
-
- 
-
-In a test using the ADDSUB block and looking at packet sizes I see a maximum
-of 2000 samples per packet reported by the streamer, and 8058 byte packets
-received in wireshark.
-
- 
-
-In my block I count valid's to assert tlast, and have been using 256 samples
-with "sideband at end".
-
- 
-
-However, it seems I cannot increase that counter to 1024 samples where I get
-these errors (even if I set the streamer SPP to 1024):
-
-[ERROR] [STREAMER] The receive transport caught a value exception.
-
-ValueError: Bad CHDR header or invalid packet length.
-
- 
-
-(Strangely, I still get the 1024-sample packets according to wireshark, so I
-guess its not related to the firmware?)
-
- 
-
-BTW in my noc shell I have an MTU of 10, and have axis_data_to_chdr fifo's
-of 2048 samples.
-
- 
-
-What do I need to do to ensure I can also get large packets out of my block,
-as smaller blocks are causing dropped packet headaches?
-
- 
-
-Many thanks, Kevin
-
- 
-
-
-------=_NextPart_001_02E9_01DBEC03.D3A87050
-Content-Type: text/html;
-	charset="us-ascii"
+--b1_NmBIkWXxf6EprBCJ1JpyGgGiAMryWRfYr1fsaxJsQk
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US>Hi,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>I&#8217;ve managed to take some =
-steps backwards with my rfnoc work. <o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>In a test using the ADDSUB block =
-and looking at packet sizes I see a maximum of 2000 samples per packet =
-reported by the streamer, and 8058 byte packets received in =
-wireshark.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>In my block I count valid&#8217;s to assert tlast, and have =
-been using 256 samples with &#8220;sideband at =
-end&#8221;.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-style=3D'margin:0cm;margin-bottom:.0001pt'><span lang=3DEN-US>However, =
-it seems I cannot increase that counter to 1024 samples where I get =
-these errors (even if I set the streamer SPP to =
-1024):<br><br></span><span lang=3DEN-US style=3D'font-family:"Courier =
-New"'>[ERROR] [STREAMER] The receive transport caught a value =
-exception.<o:p></o:p></span></p><p =
-style=3D'margin:0cm;margin-bottom:.0001pt'><span lang=3DEN-US =
-style=3D'font-family:"Courier New"'>ValueError: Bad CHDR header or =
-invalid packet length.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>(Strangely, I still get the 1024-sample packets according =
-to wireshark, so I guess its not related to the =
-firmware?)<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>BTW in my noc shell I have an MTU of 10, and have =
-axis_data_to_chdr fifo&#8217;s of 2048 samples.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>What do I need to do to ensure I =
-can also get large packets out of my block, as smaller blocks are =
-causing dropped packet headaches?<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Many thanks, =
-Kevin<o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_001_02E9_01DBEC03.D3A87050--
+Hey Kevin,\
+\
+As far as I am aware, the FPGA has [a fixed MTU size of 8192 bytes](https=
+://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x400/x4xx.sv#L=
+334), which equates to 2^10 words of CHDR_W 64.
 
-------=_NextPart_000_02E8_01DBEC03.D3A87050
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
+The MTU size is distributed to all RFNoC blocks and as far as I know chan=
+ging this for an individual block will most likely break a lot of stuff a=
+nd not work correctly.\
+\
+Since you say that your MTU is 10, I am assuming that your CHDR_W is 64.\
+\
+I believe this MTU is for the whole packet,so payload plus the header, po=
+tential timestamps and metadata words.\
+If you set your packet to SPP=3D1024 just the The payload itself is alrea=
+dy at the MTU, and with the header, it=E2=80=99s probably over the MTU of=
+ 8192 bytes, and might therefor be to large for some of the buffers in RF=
+NoC.\
+\
+My suspicion is that when you receive the packet on the host, your packet=
+ header claims that the payload has 1024\*8 bytes, but the actual payload=
+ size in bytes is different due to the MTU limitations on the FPGA.\
+Maybe you can check your wireshark packet and check if the packet length =
+in bytes specified in the header length field is the same as the actual p=
+acket length.([There are some lua disectors that you can add to wireshark=
+ to disect UHD packets.](https://github.com/EttusResearch/uhd/tree/master=
+/tools/dissectors/lua) )\
+\
+I am not as familiar with the software side, but maybe if you set spp to =
+something slightly below 1024 it might work, although I do not know if th=
+ere is any requirements for any of the blocks in your chain for SPP to be=
+ a power of 2.\
+\
+Regards,\
+\
+Niels.\
 
-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
+--b1_NmBIkWXxf6EprBCJ1JpyGgGiAMryWRfYr1fsaxJsQk
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-------=_NextPart_000_02E8_01DBEC03.D3A87050--
+<p>Hey Kevin,<br><br>As far as I am aware, the FPGA has <a href=3D"https://=
+github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x400/x4xx.sv#L334" =
+title=3D"">a fixed MTU size of 8192 bytes</a>, which equates to 2^10 words =
+of CHDR_W 64.</p><p>The MTU size is distributed to all RFNoC blocks and as =
+far as I know changing this for an individual block will most likely break =
+a lot of stuff and not work correctly.<br><br>Since you say that your MTU i=
+s 10, I am assuming that your CHDR_W is 64.<br><br>I believe this MTU is fo=
+r the whole packet,so payload plus the header, potential timestamps and met=
+adata words.<br>If you set your packet to SPP=3D1024 just the The payload i=
+tself is already at the MTU, and with the header, it=E2=80=99s probably ove=
+r the MTU of 8192 bytes, and might therefor be to large for some of the buf=
+fers in RFNoC.<br><br>My suspicion is that when you receive the packet on t=
+he host, your packet header claims that the payload has 1024*8 bytes, but t=
+he actual payload size in bytes is different due to the MTU limitations on =
+the FPGA.<br>Maybe you can check your wireshark packet and check if the pac=
+ket length in bytes specified in the header length field is the same as the=
+ actual packet length.(<a href=3D"https://github.com/EttusResearch/uhd/tree=
+/master/tools/dissectors/lua" title=3D"">There are some lua disectors that =
+you can add to wireshark to disect UHD packets.</a> )<br><br>I am not as fa=
+miliar with the software side, but maybe if you set spp to something slight=
+ly below 1024 it might work, although I do not know if there is any require=
+ments for any of the blocks in your chain for SPP to be a power of 2.<br><b=
+r>Regards,<br><br>Niels.<br> <br><br><br></p>
 
---===============6709557528090481093==
+--b1_NmBIkWXxf6EprBCJ1JpyGgGiAMryWRfYr1fsaxJsQk--
+
+--===============2954405880050049788==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -327,4 +145,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6709557528090481093==--
+--===============2954405880050049788==--
