@@ -2,118 +2,126 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B6B8AF9BDA
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Jul 2025 23:09:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF75BAF9BDD
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Jul 2025 23:10:58 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 55AF2385D48
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Jul 2025 17:09:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EB4603861D2
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Jul 2025 17:10:57 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1751663365; bh=hk05Y+8plJI2BvIK2RcvXKC2T31ATAFGreJDqzgHtko=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=aKcTFiFbyYUZtiLAEZEbEzzc/m755gWojpsVtcqKEvO9JaWzMq91uyD8NtMkBz4Fd
-	 wG0xwIjANlSFHZ1+untQ+dTII1oAOzgQfcs7PNd0I2F6oEzS0TDOk/grT2ipR1busX
-	 0u+8eWoLRP97OOwzGMgI05tcNf48fdbehX/9hVRBbS1ag57R931wAwiSQTGQRIPedE
-	 IxoEVQqU6p+zgX5qM4w4oqoXTz7v6fpk+KgCu2/8pnZ6YhExoEgAmxjiC6PNSQ8lla
-	 COVmowijbwkkw6vHUlAfBeA4xsUPS0/QjK/EaO58jrHQ2IlZ/giOmgylU4Wr9IrKEI
-	 FGhBhbPWCKPlQ==
+	t=1751663457; bh=Gmo/GnhhWujqiQBvr2ooXPwJfOOqNmcj8mDltlsH6rE=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=xQK+RwT4su34i6OMFvvAgKIfhRVuQ0e9QaZ3H9EDcCiB8QkSkcirx1w95g8XJbcS7
+	 F66EqAcT2+eiYuc/tFjdxLC5d3zKwMdbvz6LlE4GocDcXikOF+RNYUQo82ynDA4lQ/
+	 yf3ABiJQ8QF2uW+55NTc5yZ+CSGCoOhMKlnO0/fjtjdYXHtpcCWyupxk4L531QKPYY
+	 PoLyvlWiUTThD/JeiAI3Ln/BNNcksZEupORz/2qgGPdLcodzbBIeaHtcjTWlbS4noZ
+	 ObAWsmuOIahFfVVD+Tk0OTINqYkJF2BezY2eICvHyXgnPicSTy6vCiVNlEiTtf33Ij
+	 dOdeKnZ+O54sw==
 Received: from email5-west.aero.org (email5-west.aero.org [130.221.16.30])
-	by mm2.emwd.com (Postfix) with ESMTPS id E9EAE385E30
-	for <usrp-users@lists.ettus.com>; Fri,  4 Jul 2025 17:08:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTPS id D57FC385849
+	for <usrp-users@lists.ettus.com>; Fri,  4 Jul 2025 17:10:43 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="SbRui7f1";
-	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="s/tfjd4T";
+	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="Rl4R34MM";
+	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="i2lRlweS";
 	dkim-atps=neutral
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
-  t=1751663321; x=1783199321;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=5JkM6+0SG0bT5wVLu54Oan/RTa9m2IKFQZwoLEa8uLs=;
-  b=SbRui7f1rQAj4B0tKyJY8/5GH4AC5WiTmEpzqWHaRjafCjpevjZRX/EN
-   CNclOL5RHMWndXSng8DMLpXFJyOsfjf9i7pXra2rc57QjdCsUYNz3O8jb
-   BjyS6zsQ6qGdhIY6534Pr5xCFsCFntyIDtJNCwITSp7lQLP8SXboo/Exd
+  t=1751663443; x=1783199443;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   mime-version;
+  bh=YvtVhVGSqrVYUt0K/BZwrr62VJDXuja44LxFywZNMqs=;
+  b=Rl4R34MMU9i3rIuzYY2rAUeYC4glqDeNqSOL9BVWXxyJXtl+QehaoU/w
+   TnYhPaIuzEBd25ORlEtq01G1Hq8YMlXVw/n/DldtjMcS7gDXUPeoa+gOJ
+   ekXc0jCSWin4WoK+TCztNiWectb7HVsx8u1LOsSWPGpEbE0Ca49IJjQ8x
    o=;
-X-CSE-ConnectionGUID: F3vW+vn9STyogriVC28iQw==
-X-CSE-MsgGUID: 1USHnJi4Qx2HDnCN9hbUIA==
+X-CSE-ConnectionGUID: 4IPdzJAsTsG9mc6SBCtMZw==
+X-CSE-MsgGUID: A2ovkv4uR+qkhjMKO47ECg==
 x-SBRS: 4.2
 x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6800,10657,11484"; a="7818611"
+X-IronPort-AV: E=McAfee;i="6800,10657,11484"; a="7818613"
 X-IronPort-AV: E=Sophos;i="6.16,288,1744095600";
-   d="scan'208,217";a="7818611"
-X-IPAS-Result: =?us-ascii?q?A2EGBACrQWhojhYOXShXAxwBAQE8AQEEBAEBAgEBBwEBF?=
- =?us-ascii?q?YFTAoE/gQNAAT2BZ64KhlaBJQNXDwEBAQEBAQEBAQcCFBMqBAEBAwSFAAKLe?=
- =?us-ascii?q?yc0CQ4BAgQBAQEBAwIDAQEBAQEBAQEOAQEBBQEBAQEBBwQBAgIQAQEBAQEBO?=
- =?us-ascii?q?QUOO4V7DYQHgSYBAQEBAQEBAQEBAQEdAjWBHAEBOBEBfycEG4J6gh0HBAsHA?=
- =?us-ascii?q?zKtV4E0gQGCDAEBBgQE2yEYY4FlCYFJAYN8gXCCZAEqgTOJPIFVRIEVQodrR?=
- =?us-ascii?q?YNOgi+CJoECFB2ROAcDIgiGWYFEIgMmMywBVRMXCwcFW4EIA4EPbjIdgSd+h?=
- =?us-ascii?q?gGEKitPhRGBGYNTEhJtDwaBHYERQAMLbT03FBsFBIE1BZEXGUOEKJZbjxaBf?=
- =?us-ascii?q?IxilGI0B4QfgV4GDKAcF6pkmQapEgIEAgQFAhAIgWhogS4zGjCDKlIZD446g?=
- =?us-ascii?q?2fBRng8AgcLAQEDCZJgAQE?=
-IronPort-PHdr: A9a23:EtNerBZGRZWOmYOQ1ojnkgX/LTAqhN3EVzX9orIriLNLJ6Kk+Zmqf
- EnS/u5kg1KBW4LHo+lFhOzbv+GFOyQA7J+NvWpEfMlKUBkI2skTlhYrVciCD0CzJfX2bis8S
- cJFUlIt/3yyPUVPXsjkYFiHq3Co6ngVABqsXTc=
-IronPort-Data: A9a23:QYIY8a//sHFSKgg9ZQBKDrUDFX6TJUtcMsCJ2f8bNWPcYEJGY0x3z
- jMaWGiHOfmCYTageNglYI/j80lSu5LTnYRrGwA6ryAxFiIbosfsO4+Ufxz6V8+wwmwvb67GA
- +E2MISowBUcFyeEzvuLGuax9SEUOYagH+OgWLKs1hhZHFIiEGF4z0o4w4bVu6Yw6fChGQSBp
- NjulMPWPV6hylZcP3kdg065gEsHUM/a5nVB4DTSWdgR5AWDzyZNUMpETU2MByKQrrd8T7bSq
- 9nrkenRElPxp38FFt6jm7DnRUwGKpa60d+m1xK684D76vRzjnRaPpQTbZLwWm8O49m9pO2d/
- f0W3XCGYVpwZPWUwIzxZDEDe812FfUuFLYquhFTu+TLp6HNWyOEL/mDkCjalGDXkwp6KTgmy
- BAWFNwCRj7Ymd313rTqcdV9gcs5LffAZtMeg241mFk1Dd5+KXzCa57jtOdihGYbu5gWR7DZe
- tYTbidpYFLYeRpTN1wLCZU42uC1mn34dD4eo1WQzUY1yzSLil0qluGxdoCPEjCJbZw9ckKwq
- 3/J8mL0RB4APc2BxCCt+3+2ganIhyyTtIc6S+3hpqAz2TV/wERKNSY2U3m6/cCp0G6SXfl5e
- kwexwsH+P1aGEuDFYKnA0LQTGS/lgMHQcIVDvY38hqlzqvP/x3fC3QYUyUHY9sj3PLaXhQv3
- 16N2sjuGCBvu7CTVWiU8qqPpCG2IXFKdTZaPXVeCwwY/9PkvYc/yArVScpuG7K0iduzHizsx
- zeNr241gLB7YdM3O7uT0wvZvHGyoMnych8y6R/WYEn/vgJAe9vwD2C30mTz4fFFJYefa1COu
- nkYhsSThNzi67ndy0Rhp81dQ9mUC+a5DdHKvbJ483AcG9mF/neiecVL5yxiJExkNNoecDv0e
- 0bBvRsIu8cKZCPwN+lwfp67DNkswe74D9P5W/vIb91IJJ9saAuA+yIobkmVt4wMrKTOuf9uU
- Xt4WZ/2ZZr/NUiB5GHqLwv6+eRyrh3SPUuJGfjGI+2PiNJynkK9R7YfK0epZesk9q6Cqwi92
- 48AapLXlUoCCLCvPHi/HWsvwbYifShT6Xfe+5w/SwJ/ClQ5STFJ5wL5ne1+JtQ5wfg9ehngr
- y/mAREBoLYAuZE3AV7RMCw8AF8edZN+pmg8JisiIR6j3GI7CbtDH49OH6bbiYIPrbQ5pdYtF
- qFtU5zZXpxnFG6bkxxDNsOVhNI5K3yWafemY3DNjM4XI8Q4H1ShFx6NVleHyRTi+QLu5Jtj+
- +H+jFiHKXfBLiw7ZPvrhDuU5wvZlRAgdChaBiMk/vE7lJ3QzbVX
-IronPort-HdrOrdr: A9a23:k2Ar0aMLAPZzXMBcTyP155DYdb4zR+YMi2TDiHoddfUFSKalfp
- 6V98jzjSWE7gr5K0tQ4OxoWZPwN080kKQY3WB/B8bHYOCLggqVxeJZnMLfKl/bakrDH4dmvM
- 8OHZSWY+eAbmSS+PyKhTVQZOxQouVvnprJuc7ui1NWCS16YaBp6Al0TiyBFFdteQVADZ0lUL
- KB+8tuvVObCD8qR/X+IkNAc/nIptXNmp6jSwUBHQQb5A6Hii7twKLmEiKfwgwVX1p0sP0fGC
- n+4kHED5eYwr6GIyznpiHuBqFt6ZfcI5V4dY2xY4MuW03RY06TFf9csvu5zXgISaiUmSsXeN
- WgmWZbA+1jr3zWZW27uh3rxk3p1ysv8WbrzRuCjWLkutGRfkNONyNtv/MrTvLi0TtTgPhslK
- ZQm26JvZteCh3N2Cz7+tjTThlv0k65u2Arn+Ifh2FWFdJ2Us4nkaUPuEdOVJsQFiPz744qVO
- FoEcHH/f5TNVeXdWrQsGVjyMGlGn4zAhCFSE4fvdH96UkjoFlpi08DgMAPlHYJ85wwD5FC+u
- TfK6xt0KpDS8cHBJgNdNvpgfHHe1AlbSi8Tl56e26XaJ3vE0i91KLK3A==
-X-Talos-CUID: 9a23:NsBR5mBW1zeR6xb6Ewc86nFXBMZ0SUHMy3jKInGTUzZocaLAHA==
-X-Talos-MUID: 9a23:d9CeUwtAL+XWZYNcj82n3QxZFMFK4viXGBotvZMtnZiEPxFREmLI
-Received: from mail-southcentralusazlp17010022.outbound.protection.outlook.com (HELO SA9PR09CU002.outbound.protection.outlook.com) ([40.93.14.22])
-  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2025 14:08:39 -0700
+   d="scan'208,217";a="7818613"
+X-IPAS-Result: =?us-ascii?q?A2HoAQASQ2hojhQOXShXAx0BATwBBQUBAgEJARWBUwKBP?=
+ =?us-ascii?q?4EDQAE9gWeuCoZWgSUDVw8BAQEBAQEBAQEHAhQTKgQBAQMEhQACi3snNAkOA?=
+ =?us-ascii?q?QIEAQEBAQMCAwEBAQEBAQEBDgEBAQUBAQEBAQcEAQICEAEBAQEBATkFDjuFe?=
+ =?us-ascii?q?w2EB4EmAQEBAQEBAQEBAQEBHQI1VgMDQAEBOA8CAQhGMSUCBBuCeoIdBwQLB?=
+ =?us-ascii?q?wMyrViBNIEBggwBAQYEBNshGGOBZQmBSQGDfIFwgmQBKoEziQY2gVVEgRVCg?=
+ =?us-ascii?q?mg+hEUfJoNOgi+CJoECFB2ROAcDIgiGWVJyIgMmMywBVRMXCwcFW0VDA4EPI?=
+ =?us-ascii?q?0sFLR2BJ36BTRqEGoQqK0+CIgF1gXlaP4NTEgwGbQ8GgR0bTgICAgUCG0ADC?=
+ =?us-ascii?q?209NxQbBQSBNQWRFwcSQ4QogXOUaI8WgXyMYpRiNAeEH4FeBgygHBeqZJkGq?=
+ =?us-ascii?q?RICBAIEBQIQCIFoghYzGjCDKlIZD446g2fBSHg8AgcLAQEDCZJgAQE?=
+IronPort-PHdr: A9a23:XjYraxy93tgHxGPXCzPangc9DxPP8534PQ8Qv5wgjb8GMqGu5I/rM
+ 0GX4/JxxETIUoPW57Mh6aLWvqnsVHZG7cOHt3YPI5BJXgUO3MMRmQFoCcWZCEr9efjtaSFyH
+ MlLWFJ/uX+hNk0AEcvkYBvVuHLhhQM=
+IronPort-Data: A9a23:vGJLb6iLHGZXj+Q18BbH4RgWX1619RAKZh0ujC45NGQN5FlHY01je
+ htvCjzXaPbbYjehct8la4i08UsCu5bdnYc2HVdk+CkxQ3gW8JqUDtmwEBz9bniYRiHhoOOLz
+ Cm/hv3odp1coqr0/0/1WlTHhScsjfngqp3UUbeYanwZqTdMEXpn0VQ63bZi2uaEuPDhayuVo
+ 9T+vsbDD1Gs3j9wIwo85rmKwP9VlKyaVAgw4BpnO5ingHeEzyNIVM1HefnqR5fFatA88tCSF
+ r6rII6RozuxEycFUruNjrv9e0sWdb/eVSDmZq1+BsBOKjAbzsAD+v5T2Mg0MC+7uB3Q9zxF8
+ +ihgLTrIesfFvCVwrxFC3G0JAklVUFO0OevzXFSKqV/xWWeG5fn660G4E3boeT0Uwu4aI1D3
+ aVwFdwDUvyMr76X+L6paMB3ut8MfczgYrg1kW1F/y6MWJ7KQbibK0nLzeRxjQ8K3pFlIK6GP
+ YwedCZlawnGb1tXIFALBZkineCuwH7ibzlfr1HTrq0yi4TR5FAplum2doOJPIbSLSlWth/wS
+ mbu8nn2DxcXctOFwCub/2iEj+LVmmX8Qo16+LiQqa4z0APKnQT/DjU/D1yloufll3T9QtFfK
+ Wk33XZxgIM9oRnDot7VBEbi/CHsUgQnc8dLCfV/9RqA0LH85weCGnNCQyJddcdgv8gzLQHGz
+ XeMltLtQCdoraGVQn+b6q2dqS6pMDoRNTZdPXZcFVFdpd7+vIs0kxTDCM55F7K4hcH0Hje2x
+ C2WqC85hPMYistjO7iHEU7v3xOUqorrZxUJ/SqGW2n71SlSeKuXeNn9gbTE1spoIIGcR1iHm
+ XELncmC8ewDZa1hcgTdH43h+5n5uJ643C3gvLJ5I3U2G92QF5OLeIlR5HRlI1p1Ms0JfyPza
+ UvOogpD4IcKYyPzNfctO8S2FtggyrXmGZL9TPfIY9FSY593Mgia4CVpYk3W1Gfo+KTNrU3dE
+ cnKGSpPJS9AYUiC8NZQb71MuVPM7ntkrV4/vbihk3yaPUO2PRZ5s4stPlqUdfwe56iZugjT+
+ Ns3H5LVlkwCDrKjOnSGr997wbU2wZ4TVcCeRyt/Jr7rH+aaMD9+Wq+5LU4JJ9I6wvwJyLugE
+ o+VCxEDkwSm7ZE4Fel6Qis4Mu+wNXqOhXc6NjYrJlGmxzAoZpy3hJrzhLNmFYTLANdLlKYuJ
+ 9FcIp3oKq0WFlzvpW5BBbGj99YKXErw2mqz09+NPGJXk2hIG1aRooeMk8qG3HVmMxdbQuNn8
+ u39jl+FG8FfL+mgZe6PAM+SI5qKlSB1sIpPs4Hge7G/pG2EHFBWFhHM
+IronPort-HdrOrdr: A9a23:anMbia0W47cFKx1YBIXwKgqjBSxyeYIsimQD101hICG9Lfb0qy
+ n+pp4mPEHP4wr5AEtQ4exoS5PwOk80lKQFqbX5WI3PYOCIghrNEGgP1+rfKnjbalTDH41mpO
+ xdmspFebrN5DFB5K6UjjVQUexQpuVvm5rY5ts2uk0dKD2CHJsQjTuRZDz6LmRGAC19QbYpHp
+ uV4cRK4xC6f24MU8i9Dn4ZG8DeutzijvvdEFM7Li9izDPLoSKj6bb8HRTd9AwZSSlzzbAr9n
+ WAuxDl55+kr+qwxnbnpiPuBtVt6ZTcI+l4dY2xY/suW3XRYzOTFcpcsvO5zXMISaqUmSwXeZ
+ H30mod1oJImjnslyiO0GTQMwWM6kdT11byjVCfmnftusr/WXYzDNdAn5tQdl/D51Mnp8wU6t
+ M944u1jesjMfr7plWI2/HYExVx0kakq3srluAey3RZTIsFcbdU6YgS5llcHpsMFD/zrNlPKp
+ gmMOjMoPJNNV+KZXHQuWdihNSqQ3QoBx+DBkwPoNac3TRalG1wi0EY2MsclHEd849Vcegz28
+ 3UdqBz0L1eRM4faqxwQO8HXMusE2TIBQnBNWqDSG6XZp3v+0i92KIfzI9FlN1CIqZ4sqfasK
+ 6xIW9liQ==
+X-Talos-CUID: 9a23:5hdDpG9rnJry0kUfwO6VvxI1Isw3UFTG8Gz/ckqzV11DY6Gwe0DFrQ==
+X-Talos-MUID: =?us-ascii?q?9a23=3AQLrp3Qwjy8TaF8lKuQKm5vmwLQ+aqI30D14Oj8k?=
+ =?us-ascii?q?bgYqdNixyHhS60GuaaYByfw=3D=3D?=
+Received: from mail-southcentralusazlp17010020.outbound.protection.outlook.com (HELO SA9PR09CU002.outbound.protection.outlook.com) ([40.93.14.20])
+  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2025 14:10:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mb5/clir8B66i74KdiOL8d7usHiiiPJi6/PHgOCDq1CaxHEjw+US8f5QbMK2wLJdB9IvAbLoI5SpvlxZ8qNuu7EARSqdlyeFnAIC+2a/DQ8VD8F5NvmTnJKdfq6s1+94S1I0jny8JrwD3F7mWK2UwErtDV5jMrLHEVj+RrMNs2sy7KPyxcH1o3lgiFGLAg9w381VtEPByqPsl2i12zbKwADFVTU50mHPPGz9E0On4OArVU2PnkIL1Nab4l8dLP928sAOGZs+82CbzJ+qyk9UzcGdXkcHjXBofYzcx68Cx3saxSWhISYdtszO+r3AJMIFXRgiydF1stMUn8ujrqA4IA==
+ b=gGC8T1GGINJErFqPljP95lZBNVgH+BtvSjnrPCQHc0K62ssOeym6Gl7fanjDfXKTxY0nKpiDDDzgYecCx9xZVr0SoYMilV5uSLZwa8BG7QNidt5dePDI23I2vLAS7+DZB6su5ezi1a/y266xYY7UEgVMtoM4TZdhWOiyYvv8IiAhth5asaedVXAZIPn8XOwtFcrzlM/bnmFpUF0NmWfg+kNv4Am+X0ZjxBaEr2k9TuAPWZGbovheoQM8XMUbZtU+Z4QkBnA2OF8Dh2ToWx8S1hDldvppsFkB82IDzDagmuKEb02sc7YbsRH5Hp/seZNtBco+bIhgXJ11AMKSaKFjfw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p0vS9zbvPIrzK+naXzNBGxaNFhye1xkmEc3imvHQIt8=;
- b=pprDf4ni9IwsXslWKxIb4gOllLtwKAQ7dLflwfpwfdzLRrFjczMiEuUqhVtneIAO1ofmIpB8ktm12blJXJNNhVyvPKY2UBDLSJjFKLb/zsuybWhpWtSeoVXMYM96fe54BcnSKupM7EN5B3wj5RvcNCKxiXAx9QGuMW+bxwvP8Iz+vkoyEEd3WlsiuMP7O3ViNWGrpHyIhXIBoi3pfVhBpciQZZ5vnsU2FVkYmP/eGGjvKMu49jXLDSAl/kLAMJ3FnEHlRbXX2xQUTTxZiE8sBrqr2J59V/wk6dexghmABBqCRqc1Vc9zVurMdyQxH4SsXLqHNbNMES7zLUaHh9ZtIg==
+ bh=Mi+MDvrMkSVEFmRDFvOy6EcacswFz9JxIylqC5I0tq4=;
+ b=D7irzv3jUCUC0fgdo9x51XcIhtV1fdTrziwjx1dBnFDocnHPmahKftwHCjAlJ67AP3MEU99wAeNVENj4GVQdcyPtJswO6lsWxgj8+StNY8Piu9DjoC5+I1opX4O8H2zgfzEg3shjryCIyL54l4mj+msCpv6Fjv6GgY3mtBlKFXKsL1Ovhzc2Shk3dYcQYkII2YP5rnnRkFRB5LrmT0fU1A/2L6sy3PAMabG5hD/v3d5TOps00S4dJvwqH+ulU+BkhRG/vaKqWZojIvevzsh0jU0EmbPkQGG2WUBecifO2uteuoIGgF5oqhCzMCmLNQY+DXCX+ITqPSwv8sDvqK3IRg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
  dkim=pass header.d=aero.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p0vS9zbvPIrzK+naXzNBGxaNFhye1xkmEc3imvHQIt8=;
- b=s/tfjd4T41cOucizrzBKJxOc+BJLRMbnMGoLY+Yrlfa0DrmBCcq39lBYv49C85QSTsRXUtn9TEe9UDECWsgNM6W4nt4B5Oed9OV4j9h8CnSB1ERA7pQgJeFjQJKTmddesyUTZ+HgjjnyLGnAiMcPcor8xASiDMou7GvW5fWAtXQ=
+ bh=Mi+MDvrMkSVEFmRDFvOy6EcacswFz9JxIylqC5I0tq4=;
+ b=i2lRlweSCLBPXcSvnXOa9W9jvqcZcU1JWA7lb4gTfTYy90MOa77TuzQlxV9E0AdBEhVlFqdlCl3sQ5ZTepjU4PflH/itk7pKhBoiBDH0fB3tOxxdWL32tGyWM6DTi/lreDbk9z0eBGhLovwvdHS7XfCVuud3Hb5wItx+wZInZ3U=
 Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
  by DS0PR09MB11254.namprd09.prod.outlook.com (2603:10b6:8:176::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.22; Fri, 4 Jul
- 2025 21:08:18 +0000
+ 2025 21:10:06 +0000
 Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
  ([fe80::3188:1f4d:693d:60d6]) by SJ0PR09MB9126.namprd09.prod.outlook.com
  ([fe80::3188:1f4d:693d:60d6%6]) with mapi id 15.20.8901.021; Fri, 4 Jul 2025
- 21:08:17 +0000
+ 21:10:06 +0000
 From: Eugene Grayver <eugene.grayver@aero.org>
 To: usrp-users <usrp-users@lists.ettus.com>
 Thread-Topic: control timebbbout waiting for ACK
-Thread-Index: AQHb7SdVqnsUEiBjPkq/NzARK68tVA==
-Date: Fri, 4 Jul 2025 21:08:17 +0000
+Thread-Index: AQHb7SdVqnsUEiBjPkq/NzARK68tVLQidYRG
+Date: Fri, 4 Jul 2025 21:10:06 +0000
 Message-ID: 
+ <SJ0PR09MB9126AF58A14EB228D487AA59EC42A@SJ0PR09MB9126.namprd09.prod.outlook.com>
+References: 
+ <SJ0PR09MB9126BF40779325611798B964EC42A@SJ0PR09MB9126.namprd09.prod.outlook.com>
+In-Reply-To: 
  <SJ0PR09MB9126BF40779325611798B964EC42A@SJ0PR09MB9126.namprd09.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
@@ -124,107 +132,108 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=aero.org;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|DS0PR09MB11254:EE_
-x-ms-office365-filtering-correlation-id: c67ce11a-fb85-4f64-7db6-08ddbb3ee5d1
+x-ms-office365-filtering-correlation-id: 098ea63a-38e0-44f7-f754-08ddbb3f26aa
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: 
  BCL:0;ARA:13230040|1800799024|366016|41320700013|38070700018|8096899003;
 x-microsoft-antispam-message-info: 
- =?iso-8859-1?Q?ZfyqOQbRwaxt8AGQx5Lt44/thCx6s/sNejWjZCW72Qz0WL/ty1NwVKri3w?=
- =?iso-8859-1?Q?gBYjKChpXaKp3goKK/Fbvi0lS0MYi8utvq4Htgqk1R2pI7Ez3QZQb7x6OB?=
- =?iso-8859-1?Q?CsOAnMJ2tGfW6nX5xAdl2AVXUlGzwSK9fRL1CeWOrni1J9UsgFn3zDp77f?=
- =?iso-8859-1?Q?1Cqqsa9nDappPXcg0ze3f+EB9aO5xu6GCmW+7a4dHjHuln9OSZAPVpoGwR?=
- =?iso-8859-1?Q?43XWC11yL5VS/2TnbyWAWeOUi+IxEz14T4ZSwrW3FTFmCSgjoE67Ai2I3F?=
- =?iso-8859-1?Q?lluNN4n1VaBqGvH3pFzLhsDGWqKDQXDncKT6ABBI0V1vaDVoqzZPkFX2Oc?=
- =?iso-8859-1?Q?4aZDSoLz4YXIPDQ4EuZ4GxL6cPaCJ4WCrlQIPsbJBHapVF1QfaWpeBmtEd?=
- =?iso-8859-1?Q?PZMkunwHWX+Tfrv1xngZhzWmeofjRg9TEUZT8O8/5mj96FvAsGI0LJppwd?=
- =?iso-8859-1?Q?62mgHQSZkJubk+zuohG+BjNDLQ9sC7/5R013oT00YTUCJjUFVpmk20ByvR?=
- =?iso-8859-1?Q?Sr8irr4c5do42ybuvl277y8pfq3aJStN15LkJs18UfxbcISKOvc2Yr+dia?=
- =?iso-8859-1?Q?lB6Uc5xbuLplYwB3Ejh4vO6uxxjwIvwC3hy0m/8Ukpi1bKg6ipltEtOJii?=
- =?iso-8859-1?Q?KU6t1kzXAK11XzwZJiA7clD8advvGcYC8qRePNycBAu9jYvCL0kXwQ2zuY?=
- =?iso-8859-1?Q?mWbDk02rH9E2tR+CwIsSXBau1864OyMn5t9QEnHbBnD4Bu7lIKwstpP94E?=
- =?iso-8859-1?Q?AnutP/NhbrptO6pXQfIEwdLCq2EQvjG1nhOeeaOpexp2zOk+2X5XgcdFeO?=
- =?iso-8859-1?Q?F4mEYjOWR7WlclUicn5Wh3YvQqF6x/JDvAI1qyuxt52+1mWceLQWkzuBCg?=
- =?iso-8859-1?Q?j8an7n6NFoZWC1vXl5tvxV1JS0/E8T+5SbKs3D2A/NgMl1p3JzXlWHSgIH?=
- =?iso-8859-1?Q?y62kLmn+lyMJT0nDoYQMPx77ylxgQ0wX5vF6SFbrWv6ZE54yk3pMDDaRyE?=
- =?iso-8859-1?Q?t+RQLH+Q8USkpjR1ssXq5dpAwPUhoIK2cg1+qZTn8NugTNZjsEPHr4eDtQ?=
- =?iso-8859-1?Q?sBKfHFqTKLPqB2vf96fwvsGEUwWle8Nw/7JlR2sG+1A1Dpg736NR4dt5Oh?=
- =?iso-8859-1?Q?FWDguX5btheQC+oNGv1yDOHovWuzrLm/ACr8tqkDaHxipSjoWR3cStWZ88?=
- =?iso-8859-1?Q?BmNFsB9sk/xJZzPD3/WJKeW3MKCEifDrlMAHdnVYUKArybXe36Rjr4eZ1Q?=
- =?iso-8859-1?Q?HsoWzpM+lXAqHFsolut/tYZArlLWyydu/CLCh5SFqyjAyxLnZXBuJPsteR?=
- =?iso-8859-1?Q?2Yu2LEqThQSkoQOpIq746hBlTq3oKw5g61RycahkPA5NrI/4AJ28B2uE/N?=
- =?iso-8859-1?Q?k1unpS7hknPRKziIi8B1GqrXpZl20FTOxFksVy/QJCHsHDs7CaPylErjJ7?=
- =?iso-8859-1?Q?izAxx4Luzij8HOkRtPm9ebpPFhUTeZB3oYoWDsn3/4Ya7MFbnSspvDTA2j?=
- =?iso-8859-1?Q?47tpOLZ6gEEPcdDn00JeKCln99QpZvRRlU6z1Y9NR8cA=3D=3D?=
+ =?iso-8859-1?Q?0aUWjgIT9L7bau8zw5e7k/VYMn1qFsvdTt1lO6lc1fuxAZxF0mJhuLLR0V?=
+ =?iso-8859-1?Q?S3oD2uxVccjQE/n1so03c5MN83KeJo4jeF61Fgc251tc9Kj9zpwAvOA7fk?=
+ =?iso-8859-1?Q?CmdgcnFVzbwkuo3ST5WWb7/D/0mBbQagPw1yWgFn4z2FvY3sieROcIvBMg?=
+ =?iso-8859-1?Q?NixNqITc3hX26+aK85EOVH30ZXv/sayZ01JwboyPWESPElUFUasJCDkYVC?=
+ =?iso-8859-1?Q?Slmh9FUW8b3FcSG+NcGzNZnaq+WptSJYJJIu+P96ePzC3FBFLuHk5Uw2hh?=
+ =?iso-8859-1?Q?blzgW+DmUPfBPThiCrwJZgsu0RiJTKVcTnSXhBhT9meeLQ+W7xCXb0yPwh?=
+ =?iso-8859-1?Q?FL6si96v9UGnucgAK/iYVRi1SOF9cUyEu1Wgz5NU6NnM2C+zGitKqH4lKk?=
+ =?iso-8859-1?Q?skKu2C/Sq3WaoIYQUwSAATdIAvrzAxG/255APh85DXl+1utAdjYOvgbO93?=
+ =?iso-8859-1?Q?HG/imKTFuVNVNh5OXI4ySK7eQQWaKF0JCWTBwbP+mWmd97JtJaBGdHNO8w?=
+ =?iso-8859-1?Q?gW6nj6J+19iYfhpDtQuYgyJUT7BHs+EI1ok0e6fMXhXYnCcb2BEAZ/yqap?=
+ =?iso-8859-1?Q?vD9YeyKo/f8cQnNZKhzYiW642yQOxQ7q/L9evB7fLfTgH8Kv4tzyJLlCRg?=
+ =?iso-8859-1?Q?RKNt7OB2dpnVbgzH6G4+i0YuKQTSXO3ZJtfUuisPl+ooizUNh3HZSq9QAV?=
+ =?iso-8859-1?Q?Gh1vErsocYANnIWjJ8JxN9t619JXlcUqw6xtDDOi7tadfO+pbOc1doVHO9?=
+ =?iso-8859-1?Q?JM0ckW0p6bWcL0xUYJDe3IrpHRhmUGhcVGsK+BXsle6K5T6eCaZS95pSV0?=
+ =?iso-8859-1?Q?dHDA32UGde7jHVIE15n70d2W0h72shGACKZ0PehDWmzjmW+ZL21hhxEstG?=
+ =?iso-8859-1?Q?5pfV6a3i/mdURr31OfqFT37BHXQx1Vwkmze/BIY6ViA2iYe0eT19jijncx?=
+ =?iso-8859-1?Q?l9P5WxxB1w5Q4deOKu4yOiLcLbYJd8WgxC+DljG8BxtzQbD0SnY4eJXY9d?=
+ =?iso-8859-1?Q?xg3bfaCc3xbhNZedK9dfx4Ug9SBXyH8irhy/k7mEsWDFfiFKg1HXMjg77W?=
+ =?iso-8859-1?Q?1vS/Wp2fo4PN0KX5Nly0OGfuSG5rCZZ+JbPaHvMvritfROOuFzAhNAF20k?=
+ =?iso-8859-1?Q?5YeUT6IoSSYus+r607o6z3APBxocvv9NpjU+6EMAuVfvgNIUkx/2r0MvWs?=
+ =?iso-8859-1?Q?cUqcyfU1PHJtCd7gsm9fhv0dQDH/6EIcNZqNnd8VwCG9lKaVBrNEzI3RGi?=
+ =?iso-8859-1?Q?+YhGUjNwKWPvsgxCOHOTPymW1Ew+FTJTlGsgw0ppQ98w7lI1z9BAISci4b?=
+ =?iso-8859-1?Q?O7SbX76EvDDJXtyUXPL5XZGA3eBQKsdvpHZiiiNNXx50RBqC3mTNhy9llB?=
+ =?iso-8859-1?Q?wELTWZLyj6BL5aJV/k+i+IIMDf2Gm5LDNihx4GFDtxJtsDGTd76D2AHuu8?=
+ =?iso-8859-1?Q?j6pRUvIW+FVcPEGEMsQc88H41HEsbHNjLF94fo+ehdz//eog6Y1oGAS1DA?=
+ =?iso-8859-1?Q?D/99BN96qHPxbNIzq/AW1GyIBbLa5zlijWo+oalD/SRA=3D=3D?=
 x-forefront-antispam-report: 
  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(41320700013)(38070700018)(8096899003);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?UMwv9OrS8XG5UH20xm0IiGqqmOZr2hLGO34J61HW6nclfdS3SDCErvopPA?=
- =?iso-8859-1?Q?RaUelyV4WD74efIkOqSj4s4LjlTMrQHepEgbzzCWyORpFwTYT9QT7f+bHm?=
- =?iso-8859-1?Q?rINxESDKtPYl8P5fFVuMiJoKdE4rU+zbjilnsLeMrR8pgG/cSyJb6p1vIY?=
- =?iso-8859-1?Q?WoLsK87zUQKmBxHQXcA44xrGa47sOqC5mCBu/7BW6fd+pSp8KWNzd2JaZn?=
- =?iso-8859-1?Q?JSZX0p9vpM/8iBaWGtyzEotNB2Dwr0fULlPSLjR64VOqi1Cip9WHxp1J5h?=
- =?iso-8859-1?Q?ZSzw9vyDnyeNX2ecv+DJLOoBdI8zF65lIImYvx4PzbXBN/OakspD3PV0QY?=
- =?iso-8859-1?Q?f0/hZCX3A0cwBqpl0DWFAqw586bb/RJfPEIFAJ0S29G0xYylHu6K2pyZIT?=
- =?iso-8859-1?Q?1pYxGdgkzm4twTwu/jh2eqnVhx5/NWI126SgTvUm9HloJRY/pFEc2UqDfK?=
- =?iso-8859-1?Q?SLpZXAhpwuG2KJoJB24mEfdEydHRbQXRNllDxSocDiHQ4IbHLR+xSJAMXB?=
- =?iso-8859-1?Q?jpu0WiajxBuPCOb5eNgEn4m+YLty3Aw+ML4JUMcfCLMosSPSHSCYWiS5AS?=
- =?iso-8859-1?Q?mrnk1NipdjJ/nZHrMd6M+4ygfC6vDQKD5z0F3nxa94fQDD/vBl3AbL7QSw?=
- =?iso-8859-1?Q?3AnlO5+moRrOSCFzVYYs8eJy3ohtRhkWi7TaC2+TIDH6XX8l+jiWAcdniA?=
- =?iso-8859-1?Q?svLkSTutgnRW4mNjpdijvg6CDEkoA+bg22z2nHJR+ekubESIJY1NgNfmH7?=
- =?iso-8859-1?Q?LMoX/NmiN0L/1hoxCYwxePZpvMLXguyKLNgaqbFGGEDo+BmuT23zRRoKYm?=
- =?iso-8859-1?Q?z/9Qytkq09UO9S0TZt4But2j9NrOI8jzlZ7r6oYwBUrDnO/jbTigq8e2O2?=
- =?iso-8859-1?Q?UuzaJxOoy2V/OZ8F4KpuloiscZxtaC5WHu9z5son9I2Pg9ouGh3exzMtOr?=
- =?iso-8859-1?Q?DeDg+2vZUIS0+tqPrcwB6sl7GsvzmDAtoZ/1iqxicGqrgQYfCEaZpcnukl?=
- =?iso-8859-1?Q?+mqYbY9WpFL7dGHldTEEezQ+L5PrR5zx3hf5Cg1U0nGWPQMcJ9ErUpvOMW?=
- =?iso-8859-1?Q?9Z5/MEHEUYfQCdFiKq6EUmeTdr++PaNQ+tOcn2WlkV+kayF8unfjNcFPm6?=
- =?iso-8859-1?Q?mC02zOOW5eAw7wid0XIVp7rVJrneeoD9JzFuPEzi6lH+2y2NKtNHRUDo9I?=
- =?iso-8859-1?Q?wV/U2nWPVZH4mjA15aJAwk+aqVhWU1ZukYB7d+XJZ77G904Idryps4q162?=
- =?iso-8859-1?Q?1mQiXoX1f7jawbPTAkaIuHw6Z3T60blBoST0nYemDfsD7qkd4mCy/visZW?=
- =?iso-8859-1?Q?b5hF7P+eaT7KMJO+J/en/H+ROCHktpwDL1vcml0/+NCKmWVSObFtQ/3PTz?=
- =?iso-8859-1?Q?95Pcq2IoVn5V9a8xLLlm8d7P1DiqG6vR0uxJ2+XDsfJXy1YH0iX2+OPjD6?=
- =?iso-8859-1?Q?p3gmPhHe21J+4DZGJ4kN43Y9eQvdjgzrTQQoZ0vPrYBKRc5W7wiq+9xBc/?=
- =?iso-8859-1?Q?weIr4U1ZMw0oSuMQYfYcFKVK+/2/KjluQxowYtCQ+9uTFV9p9bKPzFHFN3?=
- =?iso-8859-1?Q?yP4pMrFDqgSkLjE1B8FFrs6+I84G8HluSvfeePN681Eza1N7HoiL78qd9/?=
- =?iso-8859-1?Q?y8WqbedKmr61c=3D?=
+ =?iso-8859-1?Q?mS4ysR/CyiWLRQpQ2wyvdRy51onr42M5K6WnpBQWbYBWs9K/BzyncWhkKU?=
+ =?iso-8859-1?Q?tW+D+mp4qTgVLOyA7h7iO8NXhyRuLa6469eU0b5stt5umNsyIsRQWrQB8G?=
+ =?iso-8859-1?Q?CpQGVZLi8KAqjfCCtKeqeTJpC9Yy1wLiAaKljry72XByxMzNqqWNADXtsA?=
+ =?iso-8859-1?Q?/csrDUAmScyn8KpnaSF/NCGbCBfYqxeSjlFyX5xFhZsUBLIsAbnVjAGG5/?=
+ =?iso-8859-1?Q?OJvu+rExzZLMcH07wdJeJgZ0PhcrKdxpguS0SkerJNZv3OIogMvDHvDXF9?=
+ =?iso-8859-1?Q?J/1v6ZC0PPQA5P4Tbwhql4s6G+qVYda9fw9LEGnQnHz/7Vffc8k4q73YU0?=
+ =?iso-8859-1?Q?VkP7qaY/5CcN9q8X5r4PkTSmrAlcUapRfiao0hG6nZRly0KtaK0C7YgL7f?=
+ =?iso-8859-1?Q?g5zlvoTal3NBRmzcXtcz9+ECnsH5vTatP7WDXE+F3qh+X3S0jfgJqb2Zt6?=
+ =?iso-8859-1?Q?1UXWoAx+xSvZ7tCXFCkcsesnpA4VbsX9+dqjiN3IMQqddoihBITuC2cbRo?=
+ =?iso-8859-1?Q?kjNceCnPJZ0cKu51anlKTNBCez0Q76bD0FVFjsXoTj4MSUrHFXzJpAp+h7?=
+ =?iso-8859-1?Q?lYln2faRpg/whumvJCZeb4rNzYsY6WyqwkxEx8RYjgGpfIcgpxcH1taIai?=
+ =?iso-8859-1?Q?q7jS0Ia5VIErUex6ViQAKkCD1oiwD7N/AMOqPsZD6wFheq4Fb7wtd9N6YT?=
+ =?iso-8859-1?Q?q/nYGa0U7YyH9BDXVHwz6gVqHWqVl0FU9ZjmaYlp2iQ1nMJZ2/zbriBY7h?=
+ =?iso-8859-1?Q?JHTLahVys3Y2ki/0k3azXray+DenMo8j6s0qGhGNX3fto8AFZdFHYeQRy3?=
+ =?iso-8859-1?Q?/8Oq+VYNDYFhjukJEEHSaZEhXQU5WJvikz+upM5kDzOuDdK3tMxViv3W0F?=
+ =?iso-8859-1?Q?rRswthLnEyQWtLNjj+EXRCCAlAePxQIYxFruRSMYM5ozBR6iZQT4tMhcF8?=
+ =?iso-8859-1?Q?o9Mtt8YimOVblu/+aa34Jhllaq7z1w25WekdzlVtaJem+k/j4bi60vPVsf?=
+ =?iso-8859-1?Q?3biHEsZO0eRhf8Oxumkow1d8seRAXVqNBnchSJW8/Jv9MfAwqMvA1YmCMx?=
+ =?iso-8859-1?Q?2wY4sf28gkS3fxkIWhaG/lcoXVMZMaQ0jOyqNUhOe44TaPKeVK+QyM7hd8?=
+ =?iso-8859-1?Q?Q9PVWgfZbu7UXviud2kdiWtbXhg+3AUAHKGqJ1+Utdr0t6Ln+pOp+CV2tP?=
+ =?iso-8859-1?Q?e+5kGUgsJqaVSK+MEJ82y6YPtgEkpVgR+jDhvVwwwwXymiklJBAjaPzKFy?=
+ =?iso-8859-1?Q?m5d6KRjIuoCPqgEiGzk/ajfF40FZKCjOwjhw/t5AHAxaDBOOoiqkyhSUCj?=
+ =?iso-8859-1?Q?OoksZdA/yKPc8ShpeXIqjDI2lOnbbmCLQMSQ5ojS90ZrbPgLMUfIdhgNnQ?=
+ =?iso-8859-1?Q?HahdHT2Hlrik60UH+2x4UDhrokWL2md5CdlFBOojSCZ7fYk+0QU/XtwwhH?=
+ =?iso-8859-1?Q?N8sGSwe1m8QQG1w02GRhFJasSOSvCn6SqKVK7LJjad1t6TRwqG8np485rV?=
+ =?iso-8859-1?Q?XdnxNo/zVqhiYVpJqluSnnfuch8E9Uadzix8hEwettjhQrgTnSbV0vQy05?=
+ =?iso-8859-1?Q?FEGe0ILF1vM14VYxSkxEsemOfAJU50q1xJ9dioRAqWRBAqisBaL0RtBKYI?=
+ =?iso-8859-1?Q?63/f/tQ6fhq0M=3D?=
 MIME-Version: 1.0
 X-OriginatorOrg: aero.org
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c67ce11a-fb85-4f64-7db6-08ddbb3ee5d1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jul 2025 21:08:17.4130
+X-MS-Exchange-CrossTenant-Network-Message-Id: 098ea63a-38e0-44f7-f754-08ddbb3f26aa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jul 2025 21:10:06.2273
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR09MB11254
-Message-ID-Hash: 72QFWR2RQWROERCPAFX3PN7WB37P3K4U
-X-Message-ID-Hash: 72QFWR2RQWROERCPAFX3PN7WB37P3K4U
+Message-ID-Hash: ALIYIWEXLPCYHBPX6WO6AJKLHM4A6ACJ
+X-Message-ID-Hash: ALIYIWEXLPCYHBPX6WO6AJKLHM4A6ACJ
 X-MailFrom: prvs=2736e88a3=eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] control timebbbout waiting for ACK
+Subject: [USRP-users] Re: control timebbbout waiting for ACK
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PLXKBWGIERBDL76YK7XUSRPQO7MHDURS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BAVE55JBDAF4CEF5YA255RRJHBPIHSNF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6565093438652934205=="
+Content-Type: multipart/mixed; boundary="===============0144931587043207718=="
 
---===============6565093438652934205==
+--===============0144931587043207718==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR09MB9126BF40779325611798B964EC42ASJ0PR09MB9126namp_"
+	boundary="_000_SJ0PR09MB9126AF58A14EB228D487AA59EC42ASJ0PR09MB9126namp_"
 
---_000_SJ0PR09MB9126BF40779325611798B964EC42ASJ0PR09MB9126namp_
+--_000_SJ0PR09MB9126AF58A14EB228D487AA59EC42ASJ0PR09MB9126namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Correction to previous post: Sample rate is 125 Msps at a master_clock_rate=
+ of 250 MHz.
 
 I am
 
@@ -254,7 +263,7 @@ Eugene Grayver, Ph.D.
 Principal Engineer
 310-336-1274
 
---_000_SJ0PR09MB9126BF40779325611798B964EC42ASJ0PR09MB9126namp_
+--_000_SJ0PR09MB9126AF58A14EB228D487AA59EC42ASJ0PR09MB9126namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -266,91 +275,111 @@ Content-Transfer-Encoding: quoted-printable
 ttom:0;} </style>
 </head>
 <body dir=3D"ltr">
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-Hi,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Correction to previous post: Sample rate is 125 Msps at a master_clock_rate=
+ of 250 MHz.</div>
 <div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
 Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div id=3D"divRplyFwdMsg"></div>
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 I am</div>
 <ul data-editing-info=3D"{&quot;applyListStyleFromLevel&quot;:false,&quot;u=
-norderedStyleType&quot;:1}" style=3D"margin-top: 0px; margin-bottom: 0px; l=
-ist-style-type: disc;">
+norderedStyleType&quot;:1}" style=3D"direction: ltr; margin-top: 0px; margi=
+n-bottom: 0px; list-style-type: disc;">
 <li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
 alibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<div role=3D"presentation">using a N321 w/ UHD 4.6.0.&nbsp;</div>
+<div role=3D"presentation" style=3D"direction: ltr;">using a N321 w/ UHD 4.=
+6.0.&nbsp;</div>
 </li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
 ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<div role=3D"presentation">Running one channel at 100 Msps on a very fast m=
-achine.&nbsp;</div>
+<div role=3D"presentation" style=3D"direction: ltr;">Running one channel at=
+ 100 Msps on a very fast machine.&nbsp;</div>
 </li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
 ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<div role=3D"presentation">Interface over a 10 GbE over RJ45 (on-board inte=
-rface to PlanetLabs SFP-RJ45 transceiver).&nbsp;</div>
+<div role=3D"presentation" style=3D"direction: ltr;">Interface over a 10 Gb=
+E over RJ45 (on-board interface to PlanetLabs SFP-RJ45 transceiver).&nbsp;<=
+/div>
 </li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
 ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<div role=3D"presentation">Running a custom C++ application.&nbsp;</div>
+<div role=3D"presentation" style=3D"direction: ltr;">Running a custom C++ a=
+pplication.&nbsp;</div>
 </li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
 ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<div role=3D"presentation">Not using DPDK.</div>
+<div role=3D"presentation" style=3D"direction: ltr;">Not using DPDK.</div>
 </li></ul>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 I intermittently (once every 2-3 runs) get an error in the RX path.&nbsp; T=
 he error appears to be fatal (i.e. no more samples received).</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 RfnocError: OpTimeout: Control operation timed out waiting for ACK</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 Any suggestions?</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 Eugene.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 <br>
 </div>
-<div id=3D"Signature">
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div id=3D"x_Signature">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 Eugene Grayver, Ph.D.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 Principal Engineer</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"direction: ltr; font-family: Aptos, Aptos_EmbeddedFont, Aptos=
+_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb=
+(0, 0, 0);">
 310-336-1274</div>
 </div>
 </body>
 </html>
 
---_000_SJ0PR09MB9126BF40779325611798B964EC42ASJ0PR09MB9126namp_--
+--_000_SJ0PR09MB9126AF58A14EB228D487AA59EC42ASJ0PR09MB9126namp_--
 
---===============6565093438652934205==
+--===============0144931587043207718==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -360,4 +389,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6565093438652934205==--
+--===============0144931587043207718==--
