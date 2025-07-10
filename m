@@ -2,325 +2,256 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3CDB005A1
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Jul 2025 16:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1AB7B008DC
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Jul 2025 18:35:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5C2B03862EC
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Jul 2025 10:49:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8AC50386442
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Jul 2025 12:35:06 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1752158949; bh=0NnzhNnvrmkPR+vIQXrcM/jI7PGODQTwlLQL0w+i/MY=;
+	t=1752165306; bh=hqvr3yg+DZhL641oExmTODIQIwIZ0v6ggac64WE4PjI=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=YxaqNoPaE+94Jf8f6XwpwAStzFTWmUHC9U88xkL7aMWceXvo2SJzBaHxL5U81b47K
-	 belqfu009o9ZXgU2GRdu+Vw7+f8DFSYTCKaJXlmUDOlyBu/wtrRISLUl3GX7K0Btzf
-	 Q4kO6X3vxcyov5xzSdhmMwe5mQzjFEmJvLSZBNPoS9EaPkhbSfv7UkPWRPPSkmkQNy
-	 S9+qHS84P8/nUBJmpQF/p3KeWC/h+POnvas/lSyqG7kxyE0ZlsZp/8Ptf6IaHggPAA
-	 6tAqWeAey5G1s5RYcQWGQRTq8GdlmlTjmldhl86rIiiiNsb+rEQfEuO442oaiOftx9
-	 GeRgWjCZeVfmg==
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2071A3861C4
-	for <usrp-users@lists.ettus.com>; Thu, 10 Jul 2025 10:48:17 -0400 (EDT)
+	b=c5uf+X4/78Cavic1j+jGi20dEmzS/XN7o4jytQh2b8OdgxzmzOxXu/ArcKufGUc48
+	 XcWOZ94DAXiOMb9uZM4dOyCRAGAh6Ptx6gka8F6uqLJvHjnzOQf5uyhs0ZaElglzAz
+	 pcEG5Fe08UNpwalKa7NK5b0JI76QJCCIRK5olVXGo252qblbzTVLn494Kppdd0E8Ao
+	 NEEnoD6p0Asbaf7vnh59PDj41O380wCadzR0sPZ9wlLpWLAfF1cyCgZZ8QxquOq2Xs
+	 iTpl6Nrck3wKoINsBx9jU1ZCiag5Xs8w7bLrl/TXZXWUfAawMdWEflliWT/nX6etnH
+	 1dHSKhc3ejskQ==
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8AD8D386360
+	for <usrp-users@lists.ettus.com>; Thu, 10 Jul 2025 12:34:15 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="E/YVb4Bj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EFSQ41FX";
 	dkim-atps=neutral
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ae0dd7ac1f5so212129966b.2
-        for <usrp-users@lists.ettus.com>; Thu, 10 Jul 2025 07:48:16 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3df30d542caso4646975ab.1
+        for <usrp-users@lists.ettus.com>; Thu, 10 Jul 2025 09:34:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752158896; x=1752763696; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1752165255; x=1752770055; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yg/gNInaAkjTK1pJfbZGq26qVqicbSmHn4nc3goBeC0=;
-        b=E/YVb4Bjs4kv+WUBlDSnnkccTN1v7zorIDPgMuWKHEpzXcnkXj/yguLUA6+nTMLKtX
-         h7Qf5m2ZN635YgQuCDWlJV0oXOIMDGh/TQIcBDeNAOR7On2IX2Xclbuzk7WD8J8v4H4E
-         HpU6iFz/9/s7YjdU7uKHAHTACvg5UDbDf2iur9qNMzdVqcHo2iBMgxUpoOPHEek+0gZ6
-         KRXJegpyEiwAwNhQ85O56xNbFg9JJhsd/KgOhhFTdxJ/z+XJeOxEmWv7Mg5RuBs7S2xf
-         hIoNj4zk1n+cGl4jju8RsqJSFEuGG4VPVqnuk2SgHf3nmePectoyXrZNeNZXfc0L80C0
-         UJUA==
+        bh=VdgFyEYKsOje5CxR7soZfN3utfu4TMX62E6FyyYRyvo=;
+        b=EFSQ41FXMZnP6cJ2p9zpDCdDO67I9UtxxB3mjZMnFvBzTHDZ7vuwE3S1ofcEplG+4n
+         oiqrPa384FTGH+LSy2MOd86hCgMnxVEb3fkgrF79rPpXm2aY4BAwxpOklAaIQq5hYogo
+         oiBsdlyPpztpKAbbHQ2Fmww1aT0YfnJN2lvXH8yZMQjAGBFye3HAhKywDSA7wtg5FiKD
+         CVF10gWRYGDUNjZJPaSNQfBfTSrZ261rzA6IqAkEkKpu3kTq8nHpmPe8RDKWWglfLsfQ
+         MISHoF+Icn+CjRnOHI0VAjyCLxRo8Vf8KNn+ylKp4zdqCVfk34eTh4PhoFqhMTgp6bmu
+         dxLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752158896; x=1752763696;
+        d=1e100.net; s=20230601; t=1752165255; x=1752770055;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yg/gNInaAkjTK1pJfbZGq26qVqicbSmHn4nc3goBeC0=;
-        b=ULASf1zt1emutYL6qZe/Q38hnEhk4Mn3ec5/zlJy2sluAj30p1MJsJ4JXZYLAGCQlZ
-         UYvdtKxCTuhpsO4ft5Q5fDKKOoI5jraodXrULGnsHliPe92gos7p8EbGLK3sDkiSnzsR
-         KRte0bjYbJy8YWb8ayjPTuRyaE188OwPbbELruYKGxzuIv29hVQiiA4o1NIzoa/KzuuE
-         fzHBGdc4iigvBLDz+++RgyltVuWUqgc11EnfgYU/H+QjsuGrfMzlfoKSW8fI/fI6WnN1
-         JjocQ2M1rAjXU+Mi5BXM32CCOWRE8r7b4rayucRrpln+Mp4+2Jg3BralJUlGETLetRjr
-         NBLw==
-X-Gm-Message-State: AOJu0YyfbQGrjc2N9JHZfXGoO8ZyDZ9PoYGZTIh73V0+lJw5X+mUngvK
-	HgMSOs+Sr4atIbC5T7h53hAqp7MdsT8E6hPpcZTr+mZ0GXQW3o6+A1r/WHA6TtQUBiHFx4cjIKl
-	vgvRecP0xMDK8d1ol7ehXirJFIRfBhZ0Tng==
-X-Gm-Gg: ASbGncteZqXnturAZYYO4E91Gs1FwtxbZWEEBVQztMIBz1x1TpHQEn1uxBDrpqT89T6
-	RCy9BBQPhvUyZt/0CRKenhocHhbnzdDlcKl7tlR787XcwxoSw752cr7oojMAxGVlXT+XPJzDM3x
-	oCMLH+gNcmXBZSoqILiV07tWmSyicIzwPX4ru/H74UqFmm5mPwA5Qc8w==
-X-Google-Smtp-Source: AGHT+IFXDLfDDzN31T2fdUUKXa0LJ+JjBz9IJU+KttBNNfB0QPDZyqW9+d8Z/BTboA4UiLd9gNvmpyS/AUfWov3ygR8=
-X-Received: by 2002:a17:906:8417:b0:ae3:5887:4219 with SMTP id
- a640c23a62f3a-ae6e13f78bdmr329836766b.45.1752158895649; Thu, 10 Jul 2025
- 07:48:15 -0700 (PDT)
+        bh=VdgFyEYKsOje5CxR7soZfN3utfu4TMX62E6FyyYRyvo=;
+        b=aQkR7GTD6WmOFoPUr5otikBUEinNQZrGDZzmINj/QPuHZLy2e13iaSeDNUDgUtTBYy
+         gC4v0YdH1qFo5hy6T5JGQ95NhUkkxfUZ+l4OTQvAEoC2lHg99Wr5OmXtukTMasly8Uz0
+         Rxao5Q9zN1KDNgpscTuLaR+A7OtTxxfKyhz8p+Bpfz6kOW5WcrxcnFUVVPWB3IXpWTS7
+         Yv5G/ug30MyiTFMdSFnD+1zlFFOaQsLWQ1y+ZEA06hhPAAecKL8+VYhQzg2U8Px3ZbMI
+         hvLhWDos9+iO3uLq9h4Bi80wiFQ+USAFl9hHQZGEbVRtiHOQRpTNCNxXsDalE6RF9E1b
+         S5mg==
+X-Gm-Message-State: AOJu0Ywke79efCO8waXlnckHNXVn5TF56Lx7doqiRg02Z2rcjdbfAblc
+	x2k0KKsJL8obU4ejEF9hQewNLXIyzhTyKVMlHcBBH5p/zn1h+ljmbwO1vZL5uTpBqK0S0heaGg1
+	lKZ1yzORt4+tkxHtx/D4CTxaEkogWrk1bey2D
+X-Gm-Gg: ASbGncuKo9OdmuEawYL/JQBhb3QIB6jg8mupPWidtAm5YI8R1rGRs2jwStsiLDqvjTr
+	oPhgnUysxey8IuRTJf/d54tv36akVSQ5sc4XazmDOEaCLnYv2BBnJ7SkErJYbxNzf9VxiYd6Bo7
+	5+AEYh03sRH30u1pZf+YjLeHbVBvciEye44NYeuk4=
+X-Google-Smtp-Source: AGHT+IEGVP+RCTtzZwo5EuCIcXWNbiiSL/W2K9By3muGgq38CfM3pAum5KtrF5MV4RWynwclkp8a5w1GGoZ8Rh5laPk=
+X-Received: by 2002:a05:6e02:b4a:b0:3df:3222:278e with SMTP id
+ e9e14a558f8ab-3e2532878fcmr688625ab.1.1752165254682; Thu, 10 Jul 2025
+ 09:34:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEXYVK46aCpM7sxqS9nqH4yG7dCyXh3PvqO-29Ztqpd42Eih1Q@mail.gmail.com>
- <CAFOi1A4SS2d4mcSGBkWcjnELAhG6pENOtkc2=QdyPxO2H80XDA@mail.gmail.com>
-In-Reply-To: <CAFOi1A4SS2d4mcSGBkWcjnELAhG6pENOtkc2=QdyPxO2H80XDA@mail.gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Thu, 10 Jul 2025 10:48:03 -0400
-X-Gm-Features: Ac12FXzqqUlW6ZndFcZJjeQLLR6jTrq246bBuZxww1G01v1TUTorTOtOUsi-oFk
-Message-ID: <CAEXYVK5=dqp+Vp9Ti2K+5B8nFnGOi9O44ap6bNLnXpbik17uUA@mail.gmail.com>
+References: <CAAxXO2EaJ+bkxSGJkpBJV+3F=prauS1=RtgE17WdfTks3OB17Q@mail.gmail.com>
+ <CAFOi1A5KYE_PMAoY4ig3YrAqd4oALspwGohKjaU+y_Lsi4Fp2Q@mail.gmail.com> <CAAxXO2FH=oGaXW2FXqmS7pQMmcFW8v6=EKWOQk-EZYiogKzA8g@mail.gmail.com>
+In-Reply-To: <CAAxXO2FH=oGaXW2FXqmS7pQMmcFW8v6=EKWOQk-EZYiogKzA8g@mail.gmail.com>
+From: Nikos Balkanas <nbalkanas@gmail.com>
+Date: Thu, 10 Jul 2025 19:34:03 +0300
+X-Gm-Features: Ac12FXxR03PERi2ru58XtSo1X8TTeMeyLe_qnzyl6stmq0cgbF6EzWzKPZ5OxQ8
+Message-ID: <CAAxXO2H6dNA45fGLX+pt_SCk1VkitZzBYjiDpYoMib7m4AHZ_Q@mail.gmail.com>
 To: Martin Braun <martin.braun@ettus.com>
-Message-ID-Hash: W6UZXFOI2A4XRS57ZVGJLSNOL2ASZGVU
-X-Message-ID-Hash: W6UZXFOI2A4XRS57ZVGJLSNOL2ASZGVU
-X-MailFrom: bpadalino@gmail.com
+Message-ID-Hash: 4AZLKBJ55KJMJH53ERVKZWV5TK66EWNI
+X-Message-ID-Hash: 4AZLKBJ55KJMJH53ERVKZWV5TK66EWNI
+X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Minimal CHDR Crossbar
+Subject: [USRP-users] Re: Minimum number of dropped samples when changing frequency?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/W6UZXFOI2A4XRS57ZVGJLSNOL2ASZGVU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4AZLKBJ55KJMJH53ERVKZWV5TK66EWNI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2750974568647079210=="
+Content-Type: multipart/mixed; boundary="===============8722759798715440749=="
 
---===============2750974568647079210==
-Content-Type: multipart/alternative; boundary="00000000000090b9d406399448e1"
+--===============8722759798715440749==
+Content-Type: multipart/alternative; boundary="00000000000097e211063995c3a2"
 
---00000000000090b9d406399448e1
+--00000000000097e211063995c3a2
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hey Martin,
+Forgot to mention that this must be a uhd issue.
+Immediately after uhd_rx_streamer_recv
+I use fprintf to print the sample to a file.
+These spectra are from this file:(
 
-Thanks for the clarification. I understand I'm pushing a lot of boundaries
-and I appreciate the time you're putting in to explain.
+Nikos
 
-Going back to the route-not-found error, this configuration is not
-necessarily out of spec, I feel. I probably wasn't clear with the intention
-there. For the current state of how I have things working:
+On Thu, Jul 10, 2025 at 2:37=E2=80=AFPM Nikos Balkanas <nbalkanas@gmail.com=
+> wrote:
 
-  - The arm runs a python script to initialize the RFNoC graph and start
-streams. This all goes through int0.
-  - SEP tx0 has a control port and is able to communicate the
-configurations and is the first SEP in the list
-  - I have 8 RX SEP rx0-7, where rx0-3 have a connection in the crossbar to
-sfp0 and rx4-7 have a connection in the crossbar to sfp1
-  - All 8 RX SEP have a connection to and from int0
-  - All SEPs are being set to remotely stream
-
-My issue arises when I remove the RX SEP connections to/from int0 - I get
-that route-not-found error. My inclination is that since the RX SEPs only
-have an output data port and no ctrl port, it should be fine to only
-connect them in the crossbar to the TA they need to send their data.
-
-Do you think it's possible there is a bug in UHD when validating the
-destination is reachable it is not considering a remote streaming
-connection and is trying to connect back up to the SW endpoint?
-
-Thanks,
-Brian
-
-On Thu, Jul 10, 2025 at 6:19=E2=80=AFAM Martin Braun <martin.braun@ettus.co=
-m> wrote:
-
-> - The only way to combine multiple SEPs into one is if you mux/demux in
-> software as well as in a block after the SEP. The virtual channel
-> feature was so supposed to address this, but as you know, we never
-> implemented it.
-> - I think if you removed the crossbar, UHD/RFNoC wouldn't balk at first,
-> since it does a dynamic topology discovery, but I'm still not sure
-> everything would work. We had originally thought we would support any
-> number of crossbars (0, 1, 2, ...) but then eventually decided we'll use
-> the routing matrix feature instead, and always assume a crossbar.
-> - This means you cannot use the rfnoc_image_builder workflow to remove th=
-e
-> crossbar. You would need to generate your files with rfnoc_image_builder
-> -G, then manually remove the crossbar, then call make directly or do
-> rfnoc_image_builder --reuse.
-> - Like I said, not sure if this works at all. But it will definitely not
-> work if you don't observe these things:
->   - The primary connection to the device (from UHDs perspective) must hav=
-e
-> access to an SEP with a ctrl interface. We also have a known issue where
-> the first SEP that UHD connects to needs to be the one with the ctrl
-> interface.
-> - I'm not sure about the route-not-found error. Like I said, you're doing
-> something way out of spec.
+> Thank you Martin,
 >
-> --M
+> For your fast reply. I am already using the sensor lo_locked to prevent
+> center frequency LO leakage.
+> I am using an X-310 with Ubuntu 24.01 over a 10 GBe line.
+> Still getting signal corruption when switching frequencies. This is
+> something else.
+> It is gone when using an offset in my input buffers to drop the first
+> initial samples.
+> This shouldn't happen since I am using exact buffers with the streamer in
+> mode UHD_STREAM_MODE_NUM_SAMPS_AND_DONE
+> Check out these spectra:
 >
-> On Wed, Jul 9, 2025 at 6:32=E2=80=AFPM Brian Padalino <bpadalino@gmail.co=
-m> wrote:
->
->> I'm having a bit of a hard time understanding the minimal requirements
->> for the CHDR Crossbar and connectivity.
->>
->> I'm working with an X440, so I have 3 transport adapters (int0, sfp0,
->> sfp1), 2 blocks (radio0, radio1), 2 TX endpoints each with 4 ports (tx0,
->> tx1), and 8 RX endpoints each with 1 port (rx[0-7]).
->>
->> I have tx0 ctrlport enabled, and none of the other ctrlports are enabled=
-.
->> I know I want rx[0-3] to only ever stream out of sfp0, and I want rx[4-7=
-]
->> to only ever stream out of sfp1. I want tx0 and tx1 to both receive CHDR
->> packets from sfp0 and sfp1. I will always configure the device via int0.
->>
->> I also notice that rfnoc_core_kernel has a parameter for
->> CHDR_XBAR_PRESENT. The comment for the parameter states: "1 if the CHDR
->> crossbar is present. If 0 then transports are directly connected to SEPs=
-".
->>
->> Connecting everything through the crossbar even with a sparse routing
->> matrix ends up with around 18kLUT utilization.
->>
->> Since I know I want this extremely fixed and rigid design, I've got some
->> questions:
->>
->>   - How much of the CHDR crossbar can I remove? Can I get rid of it
->> altogether? Are there any examples of a design with no CHDR crossbar?
->>
->>   - Can I combine the RX SEPs into a single port per SFP connection usin=
-g
->> an AXI-Streaming mux of some type? Or is this accomplished in the same w=
-ay
->> in the crossbar with a sparse routing matrix?
->>
->>   - How would one connect the multiple SEPs directly to the TA without
->> going through the crossbar as the CHDR_XBAR_PRESENT parameter suggests i=
-s
->> possible? Is it possible to describe this in the yaml file or does it
->> require hand editing the generated rfnoc_image_core.sv file?
->>
->>   - Since configuration is happening from int0, and tx0 is the only SEP
->> with a ctrlport on it, does this suggest I need int0 to only be connecte=
+> 945.2_2 is the normal 945.2 Mhz spectrum 62.500 samples.
+> 945.2_2_16: is the same spectrum 16.384 samples with lo_locked sensor, no
+> offset.
+> 945.2_2_16x: is the same spectrum 16.384 samples with lo_locked sensor an=
 d
->> to tx0 in the connections and it doesn't need to go anywhere else? I wil=
-l
->> note that I tried this and I received a message saying a route couldn't =
-be
->> found for my remote streams. Is this maybe an oversight with remote
->> streaming and sparse connectivity in the crossbar?
->>
->> I appreciate any insights you might be able to give.
->>
->> Thanks,
->> Brian
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> offset.
 >
+> What is going  on?
+>
+> T=CE=99=CE=91
+> Nikos
+>
+>
+> On Thu, Jul 10, 2025 at 1:08=E2=80=AFPM Martin Braun <martin.braun@ettus.=
+com>
+> wrote:
+>
+>> Nikos,
+>>
+>> there is no one answer for this, it depends on hardware used, which
+>> specific frequencies, how your signal is flowing...
+>> Another important thing is: are you using timed commands or not. If you
+>> are using timed commands (and the device supports timed-tuning), then yo=
+u
+>> can wait exactly for the sample that should be the first sample after th=
+e
+>> tune request is processed, then wait a given, deterministic time dependi=
+ng
+>> on your hardware and frequencies (old and new). If your device does not
+>> support timed-tuning, or you're not using timed commands, then you must
+>> wait several milliseconds after submitting a tune request.
+>>
+>> If you are doing timed tunes, then I believe none of the hardware has an
+>> LO lock time that is worse than 100=C2=B5s (many are better).
+>>
+>> --M
+>>
+>> On Thu, Jul 10, 2025 at 4:25=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.=
+com>
+>> wrote:
+>>
+>>> Hello,
+>>>
+>>> What is the minimum number of samples to drop to flush uhd buffers when
+>>> changing frequencies?
+>>>
+>>> TIA
+>>> Nikos
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>
 
---00000000000090b9d406399448e1
+--00000000000097e211063995c3a2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hey Martin,<div><br></div><div>Thanks for the clarificatio=
-n. I understand I&#39;m pushing a lot of boundaries and I appreciate the ti=
-me you&#39;re putting in to explain.</div><div><br></div><div>Going back to=
- the route-not-found error, this configuration is not necessarily out of sp=
-ec,=C2=A0I feel. I probably wasn&#39;t clear with the intention there. For =
-the current state of how I have things working:</div><div><br></div><div>=
-=C2=A0 - The arm runs a python script=C2=A0to initialize the RFNoC graph an=
-d start streams. This all goes through int0.</div><div>=C2=A0 - SEP tx0 has=
- a control port and is able to communicate the configurations and is the fi=
-rst SEP=C2=A0in the list</div><div>=C2=A0 - I have 8 RX SEP rx0-7, where rx=
-0-3 have a connection in the crossbar to sfp0 and rx4-7 have a connection i=
-n the crossbar to sfp1</div><div>=C2=A0 - All 8 RX SEP have a connection to=
- and from int0</div><div>=C2=A0 - All SEPs are being set to remotely stream=
-</div><div><br></div><div>My issue arises when I remove the RX SEP connecti=
-ons to/from int0 - I get that route-not-found error. My inclination is that=
- since the RX SEPs only have an output data port and no ctrl port, it shoul=
-d be fine to only connect them in the crossbar to the TA they need to send =
-their data.</div><div><br></div><div>Do you think it&#39;s possible there i=
-s a bug in UHD when validating the destination is reachable it is not consi=
-dering a remote streaming connection and is trying to connect back up to th=
-e SW endpoint?</div><div><br></div><div>Thanks,</div><div>Brian</div></div>=
-<br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, Jul 10, 2025 at 6:19=E2=80=AFAM Martin Braun &lt;<a=
- href=3D"mailto:martin.braun@ettus.com">martin.braun@ettus.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
-tr"><div>- The only way to combine multiple SEPs into one is if you mux/dem=
-ux in software as well as in a block after the SEP. The virtual channel fea=
-ture=C2=A0was so supposed to address this, but as you know, we never implem=
-ented it.</div><div>- I think if you removed the crossbar, UHD/RFNoC wouldn=
-&#39;t balk at first, since it does a dynamic topology discovery, but I&#39=
-;m still not sure everything would work. We had originally thought we would=
- support any number of crossbars (0, 1, 2, ...) but then eventually decided=
- we&#39;ll use the routing matrix feature instead, and always assume a cros=
-sbar.</div><div>- This means you cannot use the rfnoc_image_builder workflo=
-w to remove the crossbar. You would need to generate your files with rfnoc_=
-image_builder -G, then manually remove the crossbar, then call make directl=
-y or do rfnoc_image_builder --reuse.</div><div>- Like I said, not sure if t=
-his works at all. But it will definitely not work if you don&#39;t observe =
-these things:</div><div>=C2=A0 - The primary connection to the device (from=
- UHDs perspective) must have access to an SEP with a ctrl interface. We als=
-o have a known issue where the first SEP that UHD connects to needs to be t=
-he one with the ctrl interface.</div><div>- I&#39;m not sure about the rout=
-e-not-found error. Like I said, you&#39;re doing something way out of spec.=
-</div><div><br></div><div>--M</div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 9, 2025 at 6:32=E2=80=AFPM B=
-rian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank">=
-bpadalino@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div dir=3D"ltr">I&#39;m having a bit of a hard time und=
-erstanding the minimal requirements for the CHDR Crossbar and connectivity.=
-<div><br></div><div>I&#39;m working with an X440, so I have 3 transport ada=
-pters (int0, sfp0, sfp1), 2 blocks (radio0, radio1), 2 TX endpoints each wi=
-th 4 ports (tx0, tx1), and 8 RX endpoints each with 1 port (rx[0-7]).</div>=
-<div><br></div><div>I have tx0 ctrlport enabled, and none of the other ctrl=
-ports are enabled. I know I want rx[0-3] to only ever stream out of sfp0, a=
-nd I want rx[4-7] to only ever stream out of sfp1. I want tx0 and tx1 to bo=
-th receive CHDR packets from sfp0 and sfp1. I will always configure the dev=
-ice via int0.</div><div><br></div><div>I also notice that rfnoc_core_kernel=
- has a parameter for CHDR_XBAR_PRESENT. The comment for the parameter state=
-s: &quot;1 if the CHDR crossbar is present. If 0 then transports are direct=
-ly connected to SEPs&quot;.</div><div><br></div><div>Connecting everything =
-through the crossbar even with a sparse routing matrix ends up with around =
-18kLUT utilization.</div><div><br></div><div>Since I know I want this extre=
-mely fixed and rigid design, I&#39;ve got some questions:</div><div><br></d=
-iv><div>=C2=A0 - How much=C2=A0of the CHDR crossbar can I remove? Can I get=
- rid of it altogether? Are there any examples of a design with no CHDR cros=
-sbar?</div><div><br></div><div>=C2=A0 - Can I combine the RX SEPs into a si=
-ngle port per SFP connection using an AXI-Streaming mux of some type? Or is=
- this accomplished in the same way in the crossbar with a sparse routing ma=
-trix?</div><div><br></div><div>=C2=A0 - How would one connect the multiple =
-SEPs directly to the TA without going through the crossbar as the CHDR_XBAR=
-_PRESENT parameter suggests is possible? Is it possible to describe this in=
- the yaml file or does it require hand editing the generated <a href=3D"htt=
-p://rfnoc_image_core.sv" target=3D"_blank">rfnoc_image_core.sv</a> file?</d=
-iv><div><br></div><div>=C2=A0 - Since configuration is happening from int0,=
- and tx0 is the only SEP with a ctrlport on it, does this suggest I need in=
-t0 to only be connected to tx0 in the connections and it doesn&#39;t need t=
-o go anywhere else? I will note that I tried this and I received a message =
-saying a route couldn&#39;t be found for my remote streams. Is this maybe a=
-n oversight with remote streaming and sparse connectivity in the crossbar?<=
-/div><div><br></div><div>I appreciate any insights you might be able to giv=
-e.</div><div><br></div><div>Thanks,</div><div>Brian</div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">For=
+got to mention that this must be a uhd issue.</div><div class=3D"gmail_defa=
+ult" style=3D"font-size:small">Immediately after uhd_rx_streamer_recv</div>=
+<div class=3D"gmail_default" style=3D"font-size:small">I use fprintf to pri=
+nt the sample to a file.</div><div class=3D"gmail_default" style=3D"font-si=
+ze:small">These spectra are from this file:(</div><div class=3D"gmail_defau=
+lt" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=
+=3D"font-size:small">Nikos</div></div><br><div class=3D"gmail_quote gmail_q=
+uote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 10, 2025 =
+at 2:37=E2=80=AFPM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.com=
+">nbalkanas@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D=
+"font-size:small">Thank you Martin,</div><div class=3D"gmail_default" style=
+=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-s=
+ize:small">For your fast reply. I am already using the sensor lo_locked to =
+prevent center frequency LO leakage.</div><div class=3D"gmail_default" styl=
+e=3D"font-size:small">I am using an X-310 with Ubuntu 24.01 over a 10 GBe l=
+ine.</div><div class=3D"gmail_default" style=3D"font-size:small">Still gett=
+ing signal corruption when switching frequencies. This is something else.</=
+div><div class=3D"gmail_default" style=3D"font-size:small">It is gone when =
+using an offset in my input buffers to drop the first initial samples.=C2=
+=A0</div><div class=3D"gmail_default" style=3D"font-size:small">This should=
+n&#39;t happen since I am using exact buffers with the streamer in mode=C2=
+=A0UHD_STREAM_MODE_NUM_SAMPS_AND_DONE</div><div class=3D"gmail_default" sty=
+le=3D"font-size:small">Check out these spectra:</div><div class=3D"gmail_de=
+fault" style=3D"font-size:small"><br></div><div class=3D"gmail_default" sty=
+le=3D"font-size:small">945.2_2 is the normal 945.2 Mhz spectrum 62.500 samp=
+les.</div><div class=3D"gmail_default" style=3D"font-size:small">945.2_2_16=
+: is the same spectrum 16.384 samples with lo_locked sensor, no offset.</di=
+v><div class=3D"gmail_default" style=3D"font-size:small">945.2_2_16x: is th=
+e same spectrum 16.384 samples with lo_locked sensor and offset.</div><div =
+class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"g=
+mail_default" style=3D"font-size:small">What is going=C2=A0 on?</div><div c=
+lass=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gm=
+ail_default" style=3D"font-size:small">T=CE=99=CE=91</div><div class=3D"gma=
+il_default" style=3D"font-size:small">Nikos</div><div class=3D"gmail_defaul=
+t" style=3D"font-size:small"><br></div></div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 10, 2025 at 1:08=E2=80=
+=AFPM Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"=
+_blank">martin.braun@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Nikos,</div><div><br></=
+div><div>there is no one answer for this, it depends on hardware used, whic=
+h specific frequencies, how your signal is flowing...</div><div>Another imp=
+ortant thing is: are you using timed commands or not. If you are using time=
+d commands (and the device supports timed-tuning), then you can wait exactl=
+y for the sample that should be the first sample after the tune request is =
+processed, then wait a given, deterministic time depending on your hardware=
+ and frequencies=C2=A0(old and new). If your device does not support timed-=
+tuning, or you&#39;re not using timed commands, then you must wait several =
+milliseconds after submitting a tune request.</div><div><br></div><div>If y=
+ou are doing timed tunes, then I believe none of the hardware has an LO loc=
+k time that is worse than 100=C2=B5s (many are better).</div><div><br></div=
+><div>--M</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Jul 10, 2025 at 4:25=E2=80=AFAM Nikos Balkanas &lt;=
+<a href=3D"mailto:nbalkanas@gmail.com" target=3D"_blank">nbalkanas@gmail.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">He=
+llo,</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div>=
+<div class=3D"gmail_default" style=3D"font-size:small">What is the minimum =
+number of samples to drop to flush uhd buffers when changing frequencies?</=
+div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div c=
+lass=3D"gmail_default" style=3D"font-size:small">TIA</div><div class=3D"gma=
+il_default" style=3D"font-size:small">Nikos</div></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 </blockquote></div>
 
---00000000000090b9d406399448e1--
+--00000000000097e211063995c3a2--
 
---===============2750974568647079210==
+--===============8722759798715440749==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -330,4 +261,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2750974568647079210==--
+--===============8722759798715440749==--
