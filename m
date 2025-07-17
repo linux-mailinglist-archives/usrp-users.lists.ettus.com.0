@@ -2,132 +2,196 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7204B07789
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jul 2025 16:01:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A25B0947C
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Jul 2025 20:53:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1251438673F
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jul 2025 10:01:28 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BE8573865FE
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Jul 2025 14:53:45 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1752674488; bh=i5W/FCAkTDki7mM/WPB8vvjulX76s/H5rJFcPdoUGKM=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=d8xOfusGJKwkopd7lHv+urEOffj1XD+AkkBuMIAlMjhm0hnyMy97VV1Cavp/5dlkv
-	 sqBoyuob90vF6BBbhi4e4ZjSPsLEN5w9XqV8r/tpU3CXI8AlKpg/hsSnGdkqil3AEu
-	 SxXvbHNX5owfCCO1rHt0Nm9OXLgZDmZ24XZy7qdLA8RD1/S3m0xgjGx7vphwdtwHkV
-	 yOrJYCy41tbVOEQ2vj8UBwWx8kMR7S7iGCMqaEGhr4OIQcSPMFmHrCrtRwsvILcLDw
-	 gEm6ha32tF7cEgmKMXNLplsz2powZo877pbCZUM+E2RuCrrkBaj3CzdEwqJlD94oO5
-	 HL7pLVhcuBayw==
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 74DC0386692
-	for <usrp-users@lists.ettus.com>; Wed, 16 Jul 2025 10:00:39 -0400 (EDT)
+	t=1752778425; bh=nAlZJq33sBBNEtnLrUv81QC+8se7BehWAPi/0WGVB5o=;
+	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=kdKjwgARj6azf0JxtnoVY8+uICEgBm2K27YhREJiGwUHqsUD5U8I6sqQSSjOi1sDk
+	 rzBX9sqIbAqp3CKiDTHZQsIowoNyKydxDvG/wgNgxwc6ePj8cYhQXS7nwH0IgznCFH
+	 yuFtcr/MzvXVKVJaD4UrGQ3xjMm/80anF/eNT/r6m7fuUiR5kmyYeQ9J/p43U8HJRS
+	 RhdGKb4acI7SEtKNM0Zt0zJ71zbsqjrcQZCSak2TIOTaslXYIHlRIOhuddwioE+yGC
+	 E49mZ+n/hGcgr7UOwLQjLC+FIyCXBECljU329EjF63Y6YpXUCjsYx/F04k1i39T1Qu
+	 BwDFlqOcYOA0g==
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4CAB138658B
+	for <usrp-users@lists.ettus.com>; Thu, 17 Jul 2025 14:53:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YozD2fWU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HA6mNkj6";
 	dkim-atps=neutral
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4ab5aec969eso65765291cf.3
-        for <usrp-users@lists.ettus.com>; Wed, 16 Jul 2025 07:00:39 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-41c3addd37cso948265b6e.3
+        for <usrp-users@lists.ettus.com>; Thu, 17 Jul 2025 11:53:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752674438; x=1753279238; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=1JIMxsjKdcu7coBykyQKVg5LZbyuMRZYNcwqbYgTy6A=;
-        b=YozD2fWUgkWa5as+BkM5rXfblhhDjwwMW2Av8zK/0f96KjzFCHULfRa7IiaNxv7YFo
-         Fd2gLHKLIAGRhagPXey1q3hf7avSt0sHHiKBQ55wg1Y559vEWBeETlaI/oNOYF/8DCmL
-         +QAueIHnvK4DyQhK5b1I/KeuGx9j/L9KINroPoAK8bWW2ettV3lSgnbufGs7itKrMwVf
-         H4yEu01jy1mZ8eaJnuef8Y9rK8TBFUyQRcLoOH6foneme9Q+9274YPPZRl5R3mUrWUKV
-         0HVQyrKV3bFEIa4lFuOKmrKUgFqbXlHVOs0/5IlzHybsJqkNN/kt/PCS2nOZx7/tTo/U
-         q9Hw==
+        d=gmail.com; s=20230601; t=1752778409; x=1753383209; darn=lists.ettus.com;
+        h=user-agent:to:from:subject:message-id:date:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QEwszp8jQ0h/uYHPCY94bnIm6OhGf0YQrrOSezwDYS8=;
+        b=HA6mNkj6vApkuQ/Ca5FyTs0oBPSlYb8yMvX/86OP2XfOUJAuSUj8FZXMyCPDkWSIIa
+         cy0enDPtGJSbyA6MuPFyD0wRuxyEbGMNVtQNzGuxo2Ho9yIJ+96VfMOo8v58TATyEUlK
+         H0U0/4vmoBGA5McK4/KFfn6fdsVkDZs7ENoSVbdVJX5n+m3Rh7vsMwWe7OmJvrv4jcT6
+         Hf9qxuPazWJOfBH5ik0UmZwfFy2u7GWqBc+KoEiVvVkRw+jIop/5mPMp8uCn/DKtinm1
+         yUbO4SDnGpxapG6tq7K91yFZqCIVxXSwG534MWyxw2jqxj3liwztFvyq4uBjQgMBWkql
+         1yyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752674438; x=1753279238;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1752778409; x=1753383209;
+        h=user-agent:to:from:subject:message-id:date:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1JIMxsjKdcu7coBykyQKVg5LZbyuMRZYNcwqbYgTy6A=;
-        b=XwDelKEuELdtFyckjSb1adsjvUjpfJddFuk/QkY/ol6zxuUzruUrghFyeoFXDRPE8J
-         Ykzi9paMXqUpMgarRsghTQllu6G8GoCl/ynj791Sv/XDhtFCFF1xIoVoAkn0d0BPMLgC
-         amtAiTikWQ9QpMAW6tYCJ3Ud7DBJK5lctTu9W7PEYSt0SNUlM/JvVvySMDoP0UbI/Q/a
-         oVUbhhNgtqLT7/7m6xw9cQmDu5+vOE5AoVXoTH2P7JgtY2JSIUZMAu1eJ3h4PNXc/mGD
-         dCe6z0vUJyvuxHBFKIHvtzgTSysN3spJowseR1hhPtO84S4GGVyobusdKM2G6XOfNa+Y
-         Pw7w==
-X-Gm-Message-State: AOJu0YxS1fEmV7zYVzAgQmH6fZEk2kAocvy3NGae6uWelvElfMLTC3HB
-	2ZSC9I/h7KiCfsO3YHFtI4rM+vlm9bVbJScM0FM17aHBD7HpomiTT/ksMl6PXg==
-X-Gm-Gg: ASbGnctGxMOsM/s1SdsFO7y1cdXP0KwOdVWfGXecVCc7aD/GHw3bHd10fKofwLCtsqS
-	UDLzJvLwIVs8K3+C8zi0EApdEBDr6/thgyIsKx1e8NziEq7qs6Gyot3qpLEW/yDBpUrdKaZ5m8I
-	d2OglI65Z52WsaUgoncccA4hYMyculGBfGEnObFJmHipHVXF9JVeixGolZqqGPWsVw7j6wN1uFB
-	PTsQb1bPvQwXAWBPEGzTQgG+jeXzd52KvNAq66O4CKSf3iQGn0/UOsor48mTcLYNlP4z4ItmCJw
-	LU4UPgB7RtvfZLMy2ovtghF/LHAKtKSqN8RwC2Dlyh84gBPMuQJM08hAxjRUyCorIWm23BJZmUt
-	FgGYxJ4VocCuMLstdkyF3FPo/ZKknIFSTOLk2P19RApM+n5tNPS63C3UnAGZp0PBuQNj6YpYqZy
-	rTnrgRHIF40z9db3X5Qg==
-X-Google-Smtp-Source: AGHT+IGYqQTmMHZKKZXg2y5SzdFCeLLus0WAsbGN2Dp/sgQvyMVdFjo7pj/lwqb5oLG/E7cDu1q/2w==
-X-Received: by 2002:a05:622a:44d:b0:4ab:5bf0:9322 with SMTP id d75a77b69052e-4ab909e9150mr57465981cf.14.1752674430729;
-        Wed, 16 Jul 2025 07:00:30 -0700 (PDT)
-Received: from [192.168.2.208] (bras-base-smflon1825w-grc-07-174-93-0-120.dsl.bell.ca. [174.93.0.120])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4ab67bd853bsm35357711cf.52.2025.07.16.07.00.30
+        bh=QEwszp8jQ0h/uYHPCY94bnIm6OhGf0YQrrOSezwDYS8=;
+        b=HaK4cpKCOT+wYEwHZLQmgZsjIr/2G4tpQ+JNUqWv+o08883Mu+7sSQIh3sT4I3Bbbt
+         LlZ1W34UpRy2IuQB4se515zFNNt4w4Ht0d5tic8T1joWPA7tUZtjKshxfcL1ZKMwIeBu
+         +ncFQEumLUPFmaEvQlI8YXmyO/JzHYfhVZQ+6lpMZozVmNX3NA/dqTgoeHyDWnbuBJkh
+         ycZWXnZh8rDfuELM5jNSX1Bm7Sk4uyQG7xX5AKNUDgbyTOhFKyKVaOy5P0fmkaKTaLZ6
+         qzCMadFIADhVJo7qCGf1xxZR0cXdkNBVtAWudtsv08k3cVzzJ1MyEpzK/Itzg+vJKUk2
+         5TIA==
+X-Gm-Message-State: AOJu0YyFQYWH4X+3AX6mFEG7K6EB3VAUtnFPTJjjLPleTPaIFJ/lmg/b
+	pSXbnFf7MOxnkp//J5/CSGJ+rqbJBJnTxaCf32+HZDQsGcjP61ld+MYD7yDqPQ==
+X-Gm-Gg: ASbGnctj+LGS+ZmceFfDUIzoRgN2A39Mjc6Drye6Yg/HUTV9WQ1R6ouTXaiRkVXiqX1
+	I9PXdAh9GO2svkRRkN8XoFDaQR4EShj99+w+lJFjA4sAfnaZWjNQt2MFeJf/+xpKy64OvopbwUp
+	/yNVL1UlLxL8xeqw0u+uafiMT9rI3FZw1ak+thVSZFySdZ6IY9yaDf9H3mCW/8CGQ8uqzDqS7M9
+	uVh+gfFX1+IXIcBc0eZ8qs0JPtRt9zm8qo+eD7wL/CeUS7188i7TBKoM16BHuWzL2V6UpWGyYW4
+	rESN22q7w3ZgfCdkAOLcCzPLaR1sVtCOOjRgDdXXTmIYT1EbllYACcABvIw4QxxbkaDgeqbg1K6
+	ZFkJ7YeSUj1dfZFUNbin+BbbYc1ubwF69Edustw==
+X-Google-Smtp-Source: AGHT+IG6TxPnNLuaSduZNHWqNa2TzW52XMTxPauolmr2OlTy58EBK7lH9gvD18cVTJnzXyo/0kz8Kw==
+X-Received: by 2002:a05:6808:f93:b0:3f9:76d2:e437 with SMTP id 5614622812f47-41d04e8e135mr6190903b6e.20.1752778408787;
+        Thu, 17 Jul 2025 11:53:28 -0700 (PDT)
+Received: from [192.168.5.40] ([47.186.162.138])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4141c1ac4f9sm3689185b6e.37.2025.07.17.11.53.27
         for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jul 2025 07:00:30 -0700 (PDT)
-Message-ID: <a9dcb1a0-6644-4ab3-b57c-1799f6830886@gmail.com>
-Date: Wed, 16 Jul 2025 10:00:28 -0400
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Jul 2025 11:53:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
-References: <xtYeKVj7Io6XGfE7HJxkiC1EXnQPihxvOp5q6RBnc0@lists.ettus.com>
-Content-Language: en-US
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <xtYeKVj7Io6XGfE7HJxkiC1EXnQPihxvOp5q6RBnc0@lists.ettus.com>
-Message-ID-Hash: R2NXEZDDJP7GDMUXNNSGYRVQNAOIARFY
-X-Message-ID-Hash: R2NXEZDDJP7GDMUXNNSGYRVQNAOIARFY
-X-MailFrom: patchvonbraun@gmail.com
+Date: Thu, 17 Jul 2025 13:53:06 -0500
+Message-ID: <Mailbird-67b125f3-6214-4b57-94f3-f1d53636cb82@gmail.com>
+From: "page heller" <pageheller@gmail.com>
+To: "usrp-users lists.ettus.com" <usrp-users@lists.ettus.com>
+User-Agent: Mailbird/3.0.39.0
+X-Mailbird-ID: Mailbird-67b125f3-6214-4b57-94f3-f1d53636cb82@gmail.com
+Message-ID-Hash: N4BSZOUZM3VJGDW3X6BCMKBHV6A4NOT2
+X-Message-ID-Hash: N4BSZOUZM3VJGDW3X6BCMKBHV6A4NOT2
+X-MailFrom: pageheller@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Leveraging Dual 10 Gigabit Ethernet SFP+ Ports
+Subject: [USRP-users] installing python3-uhd API
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/R2NXEZDDJP7GDMUXNNSGYRVQNAOIARFY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N4BSZOUZM3VJGDW3X6BCMKBHV6A4NOT2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6451804799734861202=="
 
-T24gMjAyNS0wNy0xNiAwOTo1MywgZ2VjaGIyMUBnbWFpbC5jb20gd3JvdGU6DQo+DQo+IFRoZSBV
-U1JQIFgzMTAgdXNlcyBkdWFsIDEwIEdpZ2FiaXQgRXRoZXJuZXQgU0ZQKyBwb3J0cyB0byBzdXBw
-b3J0IA0KPiBoaWdoLXRocm91Z2hwdXQgZGF0YSB0cmFuc2ZlcnMgYmV0d2VlbiB0aGUgaG9zdCBh
-bmQgRlBHQS4gSSBwbGFuIHRvIA0KPiB0cmFuc21pdCBhbmQgcmVjZWl2ZSBzYW1wbGVzIGluIHBh
-cmFsbGVsIG92ZXIgdGhlc2UgdHdvIFNGUCsgcG9ydHMgDQo+IHVzaW5nIGEgc2luZ2xlIFJGIHRy
-YW5zbWl0IGFuZCByZWNlaXZlIGNoYWluLiBUaGUgVUhEIGRyaXZlciBvbiB0aGUgDQo+IGhvc3Qg
-c3BsaXRzIGxhcmdlIHRyYW5zbWlzc2lvbiBkYXRhIHN0cmVhbXMgYWNyb3NzIHRoZSB0d28gRXRo
-ZXJuZXQgDQo+IGxpbmtzLCBzZW5kaW5nIHRoZW0gdG8gdGhlIEZQR0EgZm9yIHByb2Nlc3Npbmcu
-IE9uIHRoZSByZWNlaXZlIHNpZGUsIA0KPiBpdCBzaW1pbGFybHkgbWVyZ2VzIGRhdGEgc3RyZWFt
-cyBjb21pbmcgYmFjayBmcm9tIHRoZSBGUEdBIHRvIGZvcm0gYSANCj4gY29udGludW91cyBJUSBz
-YW1wbGUgc3RyZWFtIGZvciB0aGUgaG9zdC4gSW5zaWRlIHRoZSBGUEdBLCB0aGUgc3BsaXQgDQo+
-IHN0cmVhbXMgcmVjZWl2ZWQgb3ZlciB0aGUgdHdvIFNGUCsgcG9ydHMgYXJlIG1lcmdlZCBhbmQg
-YXNzZW1ibGVkIGludG8gDQo+IGNvbXBsZXRlIElRIHNhbXBsZXMgYmVmb3JlIGJlaW5nIHBhc3Nl
-ZCB0byB0aGUgREFDIGZvciB0cmFuc21pc3Npb24uIA0KPiBDb252ZXJzZWx5LCBvbiByZWNlcHRp
-b24sIHRoZSBGUEdBIHNwbGl0cyB0aGUgQURDIG91dHB1dCBzdHJlYW1zIGFuZCANCj4gZGlzdHJp
-YnV0ZXMgdGhlbSBhY3Jvc3MgdGhlIHR3byBTRlArIHBvcnRzIHRvIG1heGltaXplIHRocm91Z2hw
-dXQgYmFjayANCj4gdG8gdGhlIGhvc3Qgc2VydmVyLg0KPg0KPiBIb3cgZXhhY3RseSBkb2VzIHRo
-ZSBGUEdBIGF1dG9tYXRpY2FsbHkgbWVyZ2UgdGhlIHBhcmFsbGVsIEV0aGVybmV0IA0KPiBzdHJl
-YW1zIGZyb20gU0ZQKzAgYW5kIFNGUCsxIGludG8gb25lIGxvZ2ljYWwgY29udGlndW91cyBJUSBz
-dHJlYW0gDQo+IGJlZm9yZSBzZW5kaW5nIGl0IHRvIHRoZSBEQUM/IEFuZCBkdXJpbmcgcmVjZXB0
-aW9uLCBob3cgZG9lcyBpdCANCj4gY29vcmRpbmF0ZSBzcGxpdHRpbmcgdGhlIEFEQyBvdXRwdXQg
-dG8gZGlzdHJpYnV0ZSBkYXRhIHN0cmVhbXMgDQo+IGVmZmljaWVudGx5IGFjcm9zcyBib3RoIFNG
-UCsgcG9ydHM/IElzIHRoaXMgbWVyZ2luZyBhbmQgc3BsaXR0aW5nIA0KPiBlbnRpcmVseSBoYW5k
-bGVkIGJ5IHRoZSBVSEQgYW5kIEZQR0EgZmlybXdhcmUsIG9yIGRvIHdlIG5lZWQgdG8gDQo+IGlt
-cGxlbWVudCBjdXN0b20gUHl0aG9uL01BVExBQi9DKysgY29kZSB0byBtYW5hZ2UgaXQ/DQo+DQo+
-DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRv
-IHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
-cy5jb20NClVubGVzcyB0aGVyZSBoYXMgYmVlbiBhIGNoYW5nZSB0aGF0IEkgbWlzc2VkLCBkdWFs
-LWV0aGVybmV0IG1vZGUgYXBwbGllcyANCnRvIG11bHRpcGxlIGNoYW5uZWxzLsKgIFVIRCBkb2Vz
-bid0IHNjaGVkdWxlIHBhY2tldHMgZm9yIHRoZSBzYW1lDQogwqAgY2hhbm5lbCBhY3Jvc3MgdHdv
-IGludGVyZmFjZXMuDQoNCkJ1dCBhIHNpbmdsZSAxMEcgaW50ZXJmYWNlIGNhbiBoYW5kaWx5IGhh
-bmRsZSBmdWxsLXJhdGUgKDIwME1zcHMpIGZvciBhIA0Kc2luZ2xlIGNoYW5uZWwsIGFzc3VtaW5n
-IHlvdXIgaG9zdCBpcyB1cCB0byB0aGUgdGFzay4NCg0KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3Jw
-LXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============6451804799734861202==
+Content-Type: multipart/alternative;
+ boundary="----=_NextPart_53728188.872904595646"
+
+------=_NextPart_53728188.872904595646
+Content-Type: text/plain;
+ charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I'm having some trouble installing the python API. I've been using uhd for =
+a long time, but this is the first time for me to install the API. I am usi=
+ng Ubuntu 22.04 with "UHD 4.8.0.0ubuntu1-jammy1", as reported by the first =
+line of code below, and python 3.12.3.is from the manual webpage:
+To perform the mentioned steps, use the commands below:
+<UHD Install Dir>\bin\uhd_config_info.exe --version #find the version of UH=
+D <python> -m pip install uhd=3D=3D<version_from_config_info> #install matc=
+hing wheel
+$ python3 -m pip install uhd=3D=3DUHD_4.8.0.0ubuntu1-jammy1
+ERROR: Could not find a version that satisfies the requirement
+uhd=3D=3DUHD_4.8.0.0ubuntu1-jammy1 (from versions: none)
+ERROR: No matching distribution found for uhd=3D=3DUHD_4.8.0.0ubuntu1-jammy1
+
+$ python3 -m pip index versions uhd
+WARNING: pip index is currently an experimental command. It may be
+removed/changed in a future release without prior warning.
+ERROR: No matching distribution found for uhd
+I tried UHD with a space, with an underline, are removing it; same result e=
+ach time. What is the correct way to represent the specification for uhd=3D=
+=3D?=C2=A0 Is Ubuntu 22 a mismatch with uhd 4.8.0.0?
+
+------=_NextPart_53728188.872904595646
+Content-Type: text/html;
+ charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-family: Ar=
+ial;color: #1A1A1A;text-align: left" dir=3D"ltr">I'm having some trouble in=
+stalling the python API. I've been using uhd for a long time, but this is t=
+he first time for me to install the API. I am using Ubuntu 22.04 with "<spa=
+n style=3D"color: rgb(0, 0, 0);font-family: Arial, Helvetica, sans-serif;fo=
+nt-size: 13px">UHD 4.8.0.0ubuntu1-jammy1", as reported by the first line of=
+ code below, and python 3.12.3.is from the manual webpage:</span><div><p st=
+yle=3D"font-variant-numeric: normal;font-variant-east-asian: normal;font-va=
+riant-alternates: normal;font-size-adjust: none;font-kerning: auto;font-opt=
+ical-sizing: auto;font-feature-settings: normal;font-variation-settings: no=
+rmal;font-variant-position: normal;font-stretch: normal;font-size: 14px;lin=
+e-height: 22px;font-family: Roboto, sans-serif;color: rgb(0, 0, 0)">To perf=
+orm the mentioned steps, use the commands below:</p><pre class=3D"fragment"=
+ style=3D"direction: ltr;overflow: auto;border: 1px solid rgb(220, 224, 216=
+);background-color: rgb(253, 253, 252);padding: 4px 6px;margin: 4px 8px 4px=
+ 2px;overflow-wrap: break-word;line-height: 18.375px;font-family: monospace=
+, fixed;font-size: 14.7px;color: rgb(0, 0, 0)">&lt;UHD Install Dir&gt;\bin\=
+uhd_config_info.exe --version #find the version of UHD
+&lt;python&gt; -m pip install uhd=3D=3D&lt;version_from_config_info&gt; #in=
+stall matching wheel</pre><p style=3D"font-variant-numeric: normal;font-var=
+iant-east-asian: normal;font-variant-alternates: normal;font-size-adjust: n=
+one;font-kerning: auto;font-optical-sizing: auto;font-feature-settings: nor=
+mal;font-variation-settings: normal;font-variant-position: normal;font-stre=
+tch: normal;font-size: 14px;line-height: 22px;font-family: Roboto, sans-ser=
+if;color: rgb(0, 0, 0)"><span style=3D"font-family: Arial, Helvetica, sans-=
+serif;font-size: 13px">$ python3 -m pip install uhd=3D=3DUHD_4.8.0.0ubuntu1=
+-jammy1</span><br style=3D"font-family: Arial, Helvetica, sans-serif;font-s=
+ize: 13px"><span style=3D"font-family: Arial, Helvetica, sans-serif;font-si=
+ze: 13px">ERROR: Could not find a version that satisfies the requirement</s=
+pan><br style=3D"font-family: Arial, Helvetica, sans-serif;font-size: 13px"=
+><span style=3D"font-family: Arial, Helvetica, sans-serif;font-size: 13px">=
+uhd=3D=3DUHD_4.8.0.0ubuntu1-jammy1 (from versions: none)</span><br style=3D=
+"font-family: Arial, Helvetica, sans-serif;font-size: 13px"><span style=3D"=
+font-family: Arial, Helvetica, sans-serif;font-size: 13px">ERROR: No matchi=
+ng distribution found for uhd=3D=3DUHD_4.8.0.0ubuntu1-jammy1</span><br styl=
+e=3D"font-family: Arial, Helvetica, sans-serif;font-size: 13px"><br style=
+=3D"font-family: Arial, Helvetica, sans-serif;font-size: 13px"><span style=
+=3D"font-family: Arial, Helvetica, sans-serif;font-size: 13px">$ python3 -m=
+ pip index versions uhd</span><br style=3D"font-family: Arial, Helvetica, s=
+ans-serif;font-size: 13px"><span style=3D"font-family: Arial, Helvetica, sa=
+ns-serif;font-size: 13px">WARNING: pip index is currently an experimental c=
+ommand. It may be</span><br style=3D"font-family: Arial, Helvetica, sans-se=
+rif;font-size: 13px"><span style=3D"font-family: Arial, Helvetica, sans-ser=
+if;font-size: 13px">removed/changed in a future release without prior warni=
+ng.</span><br style=3D"font-family: Arial, Helvetica, sans-serif;font-size:=
+ 13px"><span style=3D"font-family: Arial, Helvetica, sans-serif;font-size: =
+13px">ERROR: No matching distribution found for uhd</span></p><p style=3D"f=
+ont-variant-numeric: normal;font-variant-east-asian: normal;font-variant-al=
+ternates: normal;font-size-adjust: none;font-kerning: auto;font-optical-siz=
+ing: auto;font-feature-settings: normal;font-variation-settings: normal;fon=
+t-variant-position: normal;font-stretch: normal;font-size: 14px;line-height=
+: 22px;font-family: Roboto, sans-serif;color: rgb(0, 0, 0)">I tried UHD wit=
+h a space, with an underline, are removing it; same result each time. What =
+is the correct way to represent the specification for uhd=3D=3D?&nbsp; Is U=
+buntu 22 a mismatch with uhd 4.8.0.0?</p><p style=3D"font-variant-numeric: =
+normal;font-variant-east-asian: normal;font-variant-alternates: normal;font=
+-size-adjust: none;font-kerning: auto;font-optical-sizing: auto;font-featur=
+e-settings: normal;font-variation-settings: normal;font-variant-position: n=
+ormal;font-stretch: normal;font-size: 14px;line-height: 22px;font-family: R=
+oboto, sans-serif;color: rgb(0, 0, 0)"><br></p></div></div>
+------=_NextPart_53728188.872904595646--
+
+--===============6451804799734861202==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6451804799734861202==--
