@@ -2,75 +2,75 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BACDB0ACD5
-	for <lists+usrp-users@lfdr.de>; Sat, 19 Jul 2025 02:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A67B0B143
+	for <lists+usrp-users@lfdr.de>; Sat, 19 Jul 2025 20:13:27 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 17C9A386421
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Jul 2025 20:33:47 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CD75A385F6B
+	for <lists+usrp-users@lfdr.de>; Sat, 19 Jul 2025 14:13:23 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1752885227; bh=uI9tkbxsYHdVWQ5SaxdnAdbDtux/vZ5/SIfz0KqN3WQ=;
+	t=1752948803; bh=K5SiKvqubRYp9753CQdoRnx5HP6wzSk0+BWGA2x45Gc=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=XkmzsKMD4nMtwlfZQW4jsiIKmfOUeSFD16HVrN1Iw3p9Qg/BWlqsKogHwHAfGjZgh
-	 ECFkm14dm2tf+NS5r6Qw+A7sZVOIsAnyx5s+8xuKVolVV5vs4kjIQnny3wj60ITCLv
-	 ft+xG8X35TXpAOp/d2zMlG5gf0Efjf1m2Xn7seWwViXGo8t0SFpwRTCKl+S87hM21V
-	 vp9Mj61a6o/m5TIsNzSsRSOb0tioSoO4sy9VQuDmMfZ5yiezwwsIcOqyLev+Ooz0wN
-	 r8LG6uFgkbaKoqCaoCkQLA1t9GPycv9kjDA/RgH9iJChD6OBxfhIraUALoDfvAYHkg
-	 Gakb0XS0cspaQ==
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id 194D2386355
-	for <usrp-users@lists.ettus.com>; Fri, 18 Jul 2025 20:33:00 -0400 (EDT)
+	b=Vvq8ZTr5nnZq5ybK56cZds2qgPLC1C4lOpqioVdyRZbDvH7TTL05lk0CBRJXs5KOg
+	 qgIToPhaahXsuUOzoWQy8eiruS3NwMQ2FhF6IT+D0mceGK2a9OmMMACwGSG6f1Sx4J
+	 gON6IAWhtDuoZg0sgPsfGwQHEDNwTMogekeFo2HipzG36SBgyR5kPa3OF6gYlbB+p7
+	 SLKM171/xRk2YirkmiFN5RDQQXyC5m0hQn286yWmu+vSzNxLvWHZPp4N/AAWfx8Y+V
+	 Tn14pSM94SrwkBZUN1dneCl2aZ9LmnH2GKFVuiuATx1DYb3cgbgE/3QXLT9vZB8MjZ
+	 4DmQ/MGw7fcBQ==
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id F124D385F2F
+	for <usrp-users@lists.ettus.com>; Sat, 19 Jul 2025 14:12:34 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="H23j/Ysj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dNlO6FxF";
 	dkim-atps=neutral
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a582e09144so1405350f8f.1
-        for <usrp-users@lists.ettus.com>; Fri, 18 Jul 2025 17:33:00 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a548a73ff2so2829825f8f.0
+        for <usrp-users@lists.ettus.com>; Sat, 19 Jul 2025 11:12:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752885180; x=1753489980; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1752948754; x=1753553554; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NHTLRUNByiK0w5zX8fT8xtAv75GusJtMRNq/j0o5HXQ=;
-        b=H23j/Ysj1Hs7KTCO2ptplNgXRQvaf3L/irPRhuhtgvHauJ1r/OTUR3zZ+pxE8pog/S
-         W2OEMQv72kJxFxOugrb6/XWKtSiLAsHfCyFqX83DQ5wDRNa8hIZD/6fiNv4xKUD5Je55
-         FI86FMQ+tyoQT6AW16r/nPcZd5N35TqOQpbvniUegRq3OEDwjB35oI7Ae9X1l7v7RN8O
-         lvHlTWb2XruOVw/vMaNGAw4JBt2my2VkXxR10fc2J87sK/6u+PjKiUXS3w+tH5kDpgJ4
-         pXCLdA36WHFaHN9z8CvVtfBW2Z1KkcERxgjLZa5f4GDmEDIiVl29wwwNm+hbEVsugdIA
-         2v5g==
+        bh=+b+mzDCEPo0rXPq9U5bih/3+Zvg2yMOOpL19b1pcRDE=;
+        b=dNlO6FxFSAiY6OVZFJHUkpT/CeMdDWZOqv69xVkpE3P5CDv1nWO0YH4JtNexyADQey
+         aKtqWHfTgbjsUGLMJvKMV7OFZALFtlpbYmVHDS1GtbZLoK5XTkAoxO98wFkvCwAXHWM3
+         LHNzfprskxrG1xHzYeClSemDFXteouM2nu2KNa41WeKeBvdM4uvfaBRoVF/ncf1WP29r
+         qqToF/wT+ZVCC66NZlMBiqcx3UfU8nSlCrdLgjnYrVDzNTIBmCAZ6xGlNGm520pvpe4/
+         y3BGE2OnMctX8KDTJtpBnPIWeNmgjgIhpSzZBg93MPARnPjZJf4MZ0m3w9REIoiBuknb
+         hIjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752885180; x=1753489980;
+        d=1e100.net; s=20230601; t=1752948754; x=1753553554;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NHTLRUNByiK0w5zX8fT8xtAv75GusJtMRNq/j0o5HXQ=;
-        b=X+iXQ+d3vLs2oBUykJU5SCQNtG6Y7cc9SfIodRNmq0hAet9009uOsnU3yFHbkqbBVv
-         YqhXhbwtiyNUv/qs5HP1pUcs27YxJOrNCfs6zS3YtEB38NoRVGyamw48E4bKG+niQi2R
-         CtIedcgcu3e7ObGitZH2YcnO2QhVIyCV9jfElgogxRIU6TibeFlQF7M0al8aqeNMPX6O
-         zg68M3cBfFUxhyY0AnDhX4eKnXeJz4TYYuC+EmUIMK8kcaYwNcmczUkPwkL4E2hVczdP
-         e5nu7lvtGSSCVbHL602SX9iCDOYMmGYwX8L5AtSngXM9wvQlrhC3SYrtEOkZRjC97iap
-         QCMw==
-X-Gm-Message-State: AOJu0YxZa1uUb67eOPTjA4h23K/ih7E1OUr/8n0+QuA1XJGaVklGFdrm
-	rcrO6oW8nJpVAmzlcvN12vgaIARspr93ujvwwihyY/STZ/zYo3smXWisIxE44+tfL4qW46P3M8F
-	2iszFIySB/huLmz3bAXWNpWsanqs28Fc=
-X-Gm-Gg: ASbGncvpHwDTGP1nY7eQ0EeYJzkh5dC9C78HBNH66Ood7uNLgGHGP00Nd3BTjep0LWh
-	j55/ax+X9UHx2SWvYr3tsA6sfIM3O1UVSWeG8q5j7SbLC3a7qjYi1mLo7YyBEpf8u3iXgTQGEuL
-	HY6xubL9BArrieZ793aTdvtlyrlaSxXE5iiLUFYcUae4/3QtNT0X4STWVDCRxDm7dMRGF/aygPt
-	Ffn6wfH1yGcIYhark+hB1j45ADvyX8XvUX6e3nssQ==
-X-Google-Smtp-Source: AGHT+IFcqyaRwwZ5qB56jbdj1Lg8GQ8xidMmZLyKkhFoLNH0NP04Yv2UIguTy6ayiwBphFiZiUJnRPXNIL2/oN7Pz1w=
-X-Received: by 2002:a05:6000:41ea:b0:3a5:2c18:b181 with SMTP id
- ffacd0b85a97d-3b60e54bb64mr9692240f8f.53.1752885179257; Fri, 18 Jul 2025
- 17:32:59 -0700 (PDT)
+        bh=+b+mzDCEPo0rXPq9U5bih/3+Zvg2yMOOpL19b1pcRDE=;
+        b=Hu7pnfPvYO+dzb1XhBU11kuvT4SHY8J5HzC0Ae/vrU6jKbOOxo8XjAIJPlvK9xdvm5
+         fgoddkHj0xtAxIuSUu7YWDajNQjT6xJBj8xn0lGqnED+alCHI7DvsPJlmIzZ/3ywn0Jo
+         OqjhySBC0Orj40HZwzefjft9cS+gE6aNGMxrnGpd99vay2QVlpf7a/jftpMblio4GL90
+         MBv8ydJecRJYwF4+ISQessvuxOo0olQpD2ZQBlTSWqPHWbwR7TD8uYsmyyboe6NKKor9
+         jARLASFipiJ93VO+dhOL3v2C5EGRTc6mvbrLDciTLLkU0Uj/Aq6htCvxIrZCHm+HybPY
+         L97g==
+X-Gm-Message-State: AOJu0YxSf/3ba+s5F/yCLvIz96HCb/7YA14Rmq5uOpvje64IP1STZ/36
+	IYebFR9wsOYd0Q4AtBrnHygkjwF5B6YRCkJ1ipMYfB9Tp9DUlzMDjJn6R98BKNp598oQKOgR3xi
+	dO4tSFkWY+m16vMLnkU+sxusBir7hWLU=
+X-Gm-Gg: ASbGncsLz617/ZbuVsBYr0Kb2YmxSVczCvZD7NQyNP0mTPcxPRT9H//AzqpqKhwwUqm
+	LofEAHdnCPaKGYRuaq0MeZwxFz7FW8v+NZ+9RBsqgBp5UFiei1dvwMzm069DHjpaRet/VSAOP3s
+	KSb1sl9bKD+yEsQVCjEt1mNRR00I4x8DNpctsgP9Pu4WWWJJLq3eswAx6VzgC1c2inQJ3IUw6vh
+	mXCSiQ=
+X-Google-Smtp-Source: AGHT+IFcCsvS1J61CgfjtaJKVl80ne1URTrEnMwJsoJMFHCeflrGGKfqmnQ0zm5r3NLelZqwQdpJ3j/MdphTFTtR65I=
+X-Received: by 2002:a05:6000:64b:b0:3a1:fe77:9e1d with SMTP id
+ ffacd0b85a97d-3b60dd4f79dmr12619151f8f.16.1752948752728; Sat, 19 Jul 2025
+ 11:12:32 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAE=q3UNNo4mr9RU5daZGzWKJV9ZH9ry6p3aTq8DpEojqw-XVyA@mail.gmail.com>
- <CAFOi1A4SEabuSr5b+7S9kxaX3Lb9E+7gW3NG6ELp-_e+HE+82A@mail.gmail.com>
-In-Reply-To: <CAFOi1A4SEabuSr5b+7S9kxaX3Lb9E+7gW3NG6ELp-_e+HE+82A@mail.gmail.com>
+ <CAFOi1A4SEabuSr5b+7S9kxaX3Lb9E+7gW3NG6ELp-_e+HE+82A@mail.gmail.com> <CAE=q3UOcJB1bOn0YPYaUAb4pZTvQbsdv1M3DC241Ws+zun=Y3Q@mail.gmail.com>
+In-Reply-To: <CAE=q3UOcJB1bOn0YPYaUAb4pZTvQbsdv1M3DC241Ws+zun=Y3Q@mail.gmail.com>
 From: David <vitishlsfan21@gmail.com>
-Date: Fri, 18 Jul 2025 17:33:33 -0700
-X-Gm-Features: Ac12FXzxZbqpVInrC8IPuIX5JqDEAFzUIZ7U79R8gflTLouGF8_ozSjhotMoxzo
-Message-ID: <CAE=q3UOcJB1bOn0YPYaUAb4pZTvQbsdv1M3DC241Ws+zun=Y3Q@mail.gmail.com>
+Date: Sat, 19 Jul 2025 11:12:21 -0700
+X-Gm-Features: Ac12FXwu54tXqo8-lgNztkh5WE4VHPw42oG_zV-WlMOGnXBnlOaDkaPM8hB8sN4
+Message-ID: <CAE=q3UNWbSHpWecsOj1q7tvtt1KS0it2PeMDLiUnQZRdfc6YCA@mail.gmail.com>
 To: Martin Braun <martin.braun@ettus.com>
-Message-ID-Hash: ZP3QVPOMN7FKAD2IOMXRVNVTDBRROJP4
-X-Message-ID-Hash: ZP3QVPOMN7FKAD2IOMXRVNVTDBRROJP4
+Message-ID-Hash: ZWYSQKE7GRNPB2HFJHDQJ5U3G2JWYP3M
+X-Message-ID-Hash: ZWYSQKE7GRNPB2HFJHDQJ5U3G2JWYP3M
 X-MailFrom: vitishlsfan21@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
@@ -78,42 +78,55 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Making Custom Block pymodule_library
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZP3QVPOMN7FKAD2IOMXRVNVTDBRROJP4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZWYSQKE7GRNPB2HFJHDQJ5U3G2JWYP3M/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3807633042716302144=="
+Content-Type: multipart/mixed; boundary="===============0873734534376532064=="
 
---===============3807633042716302144==
-Content-Type: multipart/related; boundary="000000000000724bdf063a3d6205"
+--===============0873734534376532064==
+Content-Type: multipart/related; boundary="000000000000b76959063a4c2ff6"
 
---000000000000724bdf063a3d6205
-Content-Type: multipart/alternative; boundary="000000000000724bde063a3d6204"
+--000000000000b76959063a4c2ff6
+Content-Type: multipart/alternative; boundary="000000000000b76958063a4c2ff5"
 
---000000000000724bde063a3d6204
+--000000000000b76958063a4c2ff5
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I am using Ubuntu 22.04, with cmake 3.22.1. I cloned UHD using the --branch
-UHD-4.8 option. Using the rfnoc-gain from uhd/host/examples/rfnoc-gain, if
-I run
+I think I fixed it for the gain example in a way that is repeatable. In
+uhd/host/examples/rfnoc-gain/python/CMakeLists.txt, I changed the
+target_link_libraries on line 32 from:
 
-cmake -DUHD_FPGA_DIR=3D$UHD_FPGA_DIR ..
+target_link_libraries(
+  ${PYMODULE_NAME}_python
+  PRIVATE
+  pybind11::pybind11
+  uhd
+)
 
-in a build directory, and try to make the target pymodule_libary, I get the
-following output:
+To:
 
-[image: image.png]
+target_link_libraries(
+  ${PYMODULE_NAME}_python
+  PRIVATE
+  pybind11::pybind11
+  ${UHD_LIBRARIES}
+)
 
-It looks like the link.txt is the same, and I can get the target to build
-in the same manner as I did in my custom blocks by removing the libuhd.so
-from the -L option. I am not very familiar with CMake, so I am having
-trouble finding what generates the link.txt.
+Since this CMakeLists.txt was generated by rfnoc_modtool, I ran
+"rfnoc_modtool --log-level debug create test" and can see that the
+CMakeLists.txt is copied out of my install directory:
 
-I generated my custom blocks with rfnoc_modtool using create and add.
+/opt/uhd/share/uhd/rfnoc-newmod/python/CMakeLLists.txt
+
+I changed the target_link_libraries() there as I did above, and creating a
+new test module was able to build the pymodule_library target.
+
+That is a sufficient fix for me.
 
 Thanks,
 
@@ -121,90 +134,139 @@ David
 
 
 
-On Fri, Jul 18, 2025 at 1:26=E2=80=AFAM Martin Braun <martin.braun@ettus.co=
-m> wrote:
+On Fri, Jul 18, 2025 at 5:33=E2=80=AFPM David <vitishlsfan21@gmail.com> wro=
+te:
 
-> David,
+> I am using Ubuntu 22.04, with cmake 3.22.1. I cloned UHD using the
+> --branch UHD-4.8 option. Using the rfnoc-gain from
+> uhd/host/examples/rfnoc-gain, if I run
 >
-> can you elaborate a bit how you got there? If you compile rfnoc-gain, do
-> you have the same issues?
+> cmake -DUHD_FPGA_DIR=3D$UHD_FPGA_DIR ..
 >
-> --M
+> in a build directory, and try to make the target pymodule_libary, I get
+> the following output:
 >
-> On Fri, Jul 18, 2025 at 5:50=E2=80=AFAM David <vitishlsfan21@gmail.com> w=
-rote:
+> [image: image.png]
 >
->> Hello all,
+> It looks like the link.txt is the same, and I can get the target to build
+> in the same manner as I did in my custom blocks by removing the libuhd.so
+> from the -L option. I am not very familiar with CMake, so I am having
+> trouble finding what generates the link.txt.
+>
+> I generated my custom blocks with rfnoc_modtool using create and add.
+>
+> Thanks,
+>
+> David
+>
+>
+>
+> On Fri, Jul 18, 2025 at 1:26=E2=80=AFAM Martin Braun <martin.braun@ettus.=
+com>
+> wrote:
+>
+>> David,
 >>
->> I upgraded to UHD 4.8 and the new features have been great. Still
->> exploring a lot. I ran into an issue when trying to run make target
->> "pymodule_library". It errors with:
+>> can you elaborate a bit how you got there? If you compile rfnoc-gain, do
+>> you have the same issues?
 >>
->> "/usr/bin/ld: cannot find -luhd: No such file or directory"
+>> --M
 >>
->> I traced this using remake to the build directory file
->> python/CMakeFiles/rfnoc_testmod_python.dir/link.text. The single line fi=
-le
->> uses "-L/opt/uhd/lib/libuhd.so", and when I corrected it to
->> "-L/opt/uhd/lib/", the linker was able to find uhd and the make command
->> completed.
+>> On Fri, Jul 18, 2025 at 5:50=E2=80=AFAM David <vitishlsfan21@gmail.com> =
+wrote:
 >>
->> Any suggestions on fixing this issue? I have seen it in my test block
->> above and another custom block I ported to UHD 4.8.
->>
->> Thanks,
->>
->> David
+>>> Hello all,
+>>>
+>>> I upgraded to UHD 4.8 and the new features have been great. Still
+>>> exploring a lot. I ran into an issue when trying to run make target
+>>> "pymodule_library". It errors with:
+>>>
+>>> "/usr/bin/ld: cannot find -luhd: No such file or directory"
+>>>
+>>> I traced this using remake to the build directory file
+>>> python/CMakeFiles/rfnoc_testmod_python.dir/link.text. The single line f=
+ile
+>>> uses "-L/opt/uhd/lib/libuhd.so", and when I corrected it to
+>>> "-L/opt/uhd/lib/", the linker was able to find uhd and the make command
+>>> completed.
+>>>
+>>> Any suggestions on fixing this issue? I have seen it in my test block
+>>> above and another custom block I ported to UHD 4.8.
+>>>
+>>> Thanks,
+>>>
+>>> David
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
 >> _______________________________________________
 >> USRP-users mailing list -- usrp-users@lists.ettus.com
 >> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---000000000000724bde063a3d6204
+--000000000000b76958063a4c2ff5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I am using Ubuntu 22.04, with cmake 3.22.1. I cloned UHD u=
-sing the --branch UHD-4.8 option. Using the rfnoc-gain from uhd/host/exampl=
-es/rfnoc-gain, if I run=C2=A0<div><br></div><div>cmake -DUHD_FPGA_DIR=3D$UH=
-D_FPGA_DIR ..</div><div><br></div><div>in a build directory, and try to mak=
-e the target pymodule_libary, I get the following output:</div><div><br></d=
-iv><div><img src=3D"cid:ii_md9i5upy0" alt=3D"image.png" style=3D"margin-rig=
-ht: 0px;"><br></div><div><br></div><div>It looks like the link.txt is the s=
-ame, and I can get the target to build in the same manner as I did in my cu=
-stom blocks by removing the libuhd.so from the -L option. I am not very fam=
-iliar with CMake, so I am having trouble finding what generates the link.tx=
-t.</div><div><br></div><div>I generated my custom blocks with rfnoc_modtool=
- using create and add.</div><div><br></div><div>Thanks,</div><div><br></div=
-><div>David</div><div><br></div><div><br></div></div><br><div class=3D"gmai=
-l_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Fri=
-, Jul 18, 2025 at 1:26=E2=80=AFAM Martin Braun &lt;<a href=3D"mailto:martin=
-.braun@ettus.com">martin.braun@ettus.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>David,</div><=
-div><br></div><div>can you elaborate a bit how you got there? If you compil=
-e rfnoc-gain, do you have the same issues?</div><div><br></div><div>--M</di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Fri, Jul 18, 2025 at 5:50=E2=80=AFAM David &lt;<a href=3D"mailto:vitis=
-hlsfan21@gmail.com" target=3D"_blank">vitishlsfan21@gmail.com</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"lt=
-r"><div>Hello all,</div><div><br></div><div>I upgraded to UHD 4.8 and the n=
-ew features have been great. Still exploring a lot. I ran into an issue whe=
-n trying to run make target &quot;pymodule_library&quot;. It errors with:</=
-div><div><br></div><div>&quot;/usr/bin/ld: cannot find -luhd: No such file =
-or directory&quot;</div><div><br></div><div>I traced this using remake to t=
-he build directory file python/CMakeFiles/rfnoc_testmod_python.dir/link.tex=
-t. The single line file uses &quot;-L/opt/uhd/lib/libuhd.so&quot;, and when=
- I corrected it to &quot;-L/opt/uhd/lib/&quot;, the linker was able to find=
- uhd and the make command completed.</div><div><br></div><div>Any suggestio=
-ns on fixing this issue? I have seen it in my test block above and another =
-custom block I ported to UHD 4.8.</div><div><br></div><div>Thanks,</div><di=
-v><br></div><div>David</div></div>
+<div dir=3D"ltr"><div>I think I fixed it for the gain example in a way that=
+ is repeatable. In uhd/host/examples/rfnoc-gain/python/CMakeLists.txt, I ch=
+anged the target_link_libraries on line 32 from:</div><div><br></div><div>t=
+arget_link_libraries(<br>=C2=A0 ${PYMODULE_NAME}_python<br>=C2=A0 PRIVATE<b=
+r>=C2=A0 pybind11::pybind11<br>=C2=A0 uhd<br>)</div><div><br></div><div>To:=
+</div><div><br></div><div>target_link_libraries(<br>=C2=A0 ${PYMODULE_NAME}=
+_python<br>=C2=A0 PRIVATE<br>=C2=A0 pybind11::pybind11</div><div>=C2=A0 ${U=
+HD_LIBRARIES}</div><div>)</div><div><br></div><div>Since this CMakeLists.tx=
+t was generated by rfnoc_modtool, I ran &quot;rfnoc_modtool --log-level deb=
+ug create test&quot; and can see that the CMakeLists.txt is copied out of m=
+y install directory:</div><div><br></div><div>/opt/uhd/share/uhd/rfnoc-newm=
+od/python/CMakeLLists.txt</div><div><br></div><div>I changed the target_lin=
+k_libraries() there as I did above, and creating a new test module was able=
+ to build the pymodule_library target.</div><div><br></div><div>That is a s=
+ufficient fix for me.</div><div><br></div><div>Thanks,</div><div><br></div>=
+<div>David</div><div><br></div><div><br></div></div><br><div class=3D"gmail=
+_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Fri,=
+ Jul 18, 2025 at 5:33=E2=80=AFPM David &lt;<a href=3D"mailto:vitishlsfan21@=
+gmail.com">vitishlsfan21@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I am using Ubuntu 22.04,=
+ with cmake 3.22.1. I cloned UHD using the --branch UHD-4.8 option. Using t=
+he rfnoc-gain from uhd/host/examples/rfnoc-gain, if I run=C2=A0<div><br></d=
+iv><div>cmake -DUHD_FPGA_DIR=3D$UHD_FPGA_DIR ..</div><div><br></div><div>in=
+ a build directory, and try to make the target pymodule_libary, I get the f=
+ollowing output:</div><div><br></div><div><img src=3D"cid:ii_md9i5upy0" alt=
+=3D"image.png" style=3D"margin-right: 0px;"><br></div><div><br></div><div>I=
+t looks like the link.txt is the same, and I can get the target to build in=
+ the same manner as I did in my custom blocks by removing the libuhd.so fro=
+m the -L option. I am not very familiar with CMake, so I am having trouble =
+finding what generates the link.txt.</div><div><br></div><div>I generated m=
+y custom blocks with rfnoc_modtool using create and add.</div><div><br></di=
+v><div>Thanks,</div><div><br></div><div>David</div><div><br></div><div><br>=
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">On Fri, Jul 18, 2025 at 1:26=E2=80=AFAM Martin Braun &lt;<a href=3D"m=
+ailto:martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr"><div>David,</div><div><br></div><div>can you elaborate a bit ho=
+w you got there? If you compile rfnoc-gain, do you have the same issues?</d=
+iv><div><br></div><div>--M</div></div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Fri, Jul 18, 2025 at 5:50=E2=80=AFAM Dav=
+id &lt;<a href=3D"mailto:vitishlsfan21@gmail.com" target=3D"_blank">vitishl=
+sfan21@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"ltr"><div>Hello all,</div><div><br></div><div>I=
+ upgraded to UHD 4.8 and the new features have been great. Still exploring =
+a lot. I ran into an issue when trying to run make target &quot;pymodule_li=
+brary&quot;. It errors with:</div><div><br></div><div>&quot;/usr/bin/ld: ca=
+nnot find -luhd: No such file or directory&quot;</div><div><br></div><div>I=
+ traced this using remake to the build directory file python/CMakeFiles/rfn=
+oc_testmod_python.dir/link.text. The single line file uses &quot;-L/opt/uhd=
+/lib/libuhd.so&quot;, and when I corrected it to &quot;-L/opt/uhd/lib/&quot=
+;, the linker was able to find uhd and the make command completed.</div><di=
+v><br></div><div>Any suggestions on fixing this issue? I have seen it in my=
+ test block above and another custom block I ported to UHD 4.8.</div><div><=
+br></div><div>Thanks,</div><div><br></div><div>David</div></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
@@ -217,10 +279,11 @@ rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---000000000000724bde063a3d6204--
+--000000000000b76958063a4c2ff5--
 
---000000000000724bdf063a3d6205
+--000000000000b76959063a4c2ff6
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2054,9 +2117,9 @@ qYKuCKdQKBSKTzwpK6+U+RSoq/mlUOoSQv/xub8ou5uPP6NQKBQVSnsiQO0KhUKhUCgUCoVCoVAo
 lCpCV4RTKBQKhUKhUCgUCoVCoVAoFAqFQqFQKBQK5amCrginUCgUihzliiznKKFcaS2uGHUjX1so
 8ymgWuGqLVbr+adQKBQKheLC3bguoBrfKRQKhUKhUCgUCoVCoVCc/H/7y6aY+jGpHwAAAABJRU5E
 rkJggg==
---000000000000724bdf063a3d6205--
+--000000000000b76959063a4c2ff6--
 
---===============3807633042716302144==
+--===============0873734534376532064==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2066,4 +2129,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3807633042716302144==--
+--===============0873734534376532064==--
