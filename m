@@ -2,55 +2,55 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE77AB0F3C7
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Jul 2025 15:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5F6B0F3EE
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Jul 2025 15:26:36 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0906B385B95
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Jul 2025 09:20:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 96AD6385CD0
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Jul 2025 09:26:35 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1753276822; bh=Al4+sexUgrYGr+5ynlEQho2zWYcsjUUQZNiYiB5Iih8=;
+	t=1753277195; bh=EHwGk9qOMmAkfMa8GGQmgtOYQIzUb8RXSkS9JvuDoKE=;
 	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=wV63HfbMC96nD5e54vzhg69yp9oNEHE4A92c5kp9SkwNV87OHVBLIofXNV5H60D/P
-	 J8WFddThfoQAda9GJmAXAsj2gOv0CJVULKnX5iyabySgz7rscLQkozlTa21EdsHF18
-	 FU6pHdB5gbNCf1CPWlTNBwryDnzTyh86vxw/FBzDLTTuvordXyTnNf2QxQxuIsqp+Z
-	 2fEq+pqdSmm6UqPGh98GKFSZUv4WzciE7vsyEJi9G4cTPfusL/+P5/785EcTPrGRRM
-	 aySkKdOh0bzUcib34Hrqg7HBkEbvvIDsLXWx9JTqhQfveoTdbizZyaRtRzD7TQEwju
-	 Bwy+3RA4DALag==
+	b=Amzna3HV1p9Wf+smlXAwmVT8tOt7ohk03Ued2+N2uUwxP6iIiS3tdBXKFuIvZMWgp
+	 qZlxMrlZirfHflS44UOeSX2StljGAPi9WeXFqlDQg1WT2ofRBgjjWnfIAOcIIvURMg
+	 KMF0e6YanB4ceouKw+BYBuN+W8SlvPkEBEW/6O/Wz9RLpetM5C0v2N8tw7rtbE/aKM
+	 EQT6fX2T0MPpp0rchpGVrJRRI8q8ZFLWVq7CmylC6KOosbUsPcMJQrHiE6a1dtgEp6
+	 j3ECZa5CJjubar+4SDxpcgUWDvMU5TJQFcDeU+LvXGmKmJTay2lIOnYc55dnihOFHw
+	 myFJFMPP3nOQg==
 Received: from za-smtp-delivery-57.mimecast.co.za (za-smtp-delivery-57.mimecast.co.za [41.74.201.57])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5ECF43858F4
-	for <usrp-users@lists.ettus.com>; Wed, 23 Jul 2025 09:19:31 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTPS id 6C9EC385B75
+	for <usrp-users@lists.ettus.com>; Wed, 23 Jul 2025 09:25:43 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="MCsYLlLp";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="Vk5pPTUF";
 	dkim-atps=neutral
 Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
- relay.mimecast.com with ESMTP id za-mta-77-5XVNANBEOzuBCjznSFFmWg-1; Wed,
- 23 Jul 2025 15:19:26 +0200
-X-MC-Unique: 5XVNANBEOzuBCjznSFFmWg-1
-X-Mimecast-MFC-AGG-ID: 5XVNANBEOzuBCjznSFFmWg_1753276766
+ relay.mimecast.com with ESMTP id za-mta-83-s4NGJnh-NN6guHy7fHD1rA-1; Wed,
+ 23 Jul 2025 15:25:38 +0200
+X-MC-Unique: s4NGJnh-NN6guHy7fHD1rA-1
+X-Mimecast-MFC-AGG-ID: s4NGJnh-NN6guHy7fHD1rA_1753277138
 dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
 	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
-	bh=hQFqXZY78kW2Ow8/41l+s69e4UgsM4h6PxYstzWoV7E=;
-	b=MCsYLlLph7D1IIBM+Z2bVO/oRtj41RYoRe/5Ef4v+ecLKWMKL18kLrrEpJ6AGFvJoih6H0Lip7Lk8XYYbEhO7nMSXawEZpK80gA2xgapA56AOmPz/7UB9JbUhaR8FLtYqGcwApHP/MthyeQp29QibOH0g/oOSy/Lj8HBq/gNJJo=
+	bh=v+A5vRqOxbm4d2J9E6xO8F2rtiSeLrByMoLcj3NB0uQ=;
+	b=Vk5pPTUFa23lsHa1jW/yAqoUtkNVqhxaT9Tq6BymxFTVKceJFfZjZ/4QxHhM0gwO00GmcrqW1SxksrMQyKbjymkeUhuUkEXgNQX8Y8VyjRF3739tqGm/ONWst1LvzFZHiJS3FTE1nZiy8NSx7TEyJiEjlEJxuuotKixFbWShtlU=
 Received: from EXCHANGE2.vastech.co.za (Unknown [172.30.81.30])
 	by mail.vastech.co.za with ESMTPSA
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Wed, 23 Jul 2025 15:19:23 +0200
+	; Wed, 23 Jul 2025 15:25:35 +0200
 Received: from exchange3.vastech.co.za (172.30.81.31) by
  EXCHANGE2.vastech.co.za (172.30.81.30) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 23 Jul 2025 15:19:23 +0200
+ 15.2.1118.40; Wed, 23 Jul 2025 15:25:35 +0200
 Received: from exchange3.vastech.co.za ([172.30.81.31]) by
  exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Wed, 23
- Jul 2025 15:19:23 +0200
+ Jul 2025 15:25:29 +0200
 From: Kevin Williams <kevin.williams@vastech.co.za>
 To: "nbalkanas@gmail.com" <nbalkanas@gmail.com>
 Thread-Topic: [EXTERNAL]Re: [USRP-users] remote streaming starts, but stops
  after a few packets received
-Thread-Index: Adv7yvkJv5zhuP5TSkWsizBU3L8RAf//8CgA///da5A=
-Date: Wed, 23 Jul 2025 13:19:22 +0000
-Message-ID: <00b1e2cd914e4e87a81ed418f7fa142c@vastech.co.za>
+Thread-Index: Adv7yvkJv5zhuP5TSkWsizBU3L8RAf//8CgA///b0JA=
+Date: Wed, 23 Jul 2025 13:25:29 +0000
+Message-ID: <f5f1203d882b491590eb5c124106d466@vastech.co.za>
 References: <111b29cda9ce4309b4966fcfcc3b7ece@vastech.co.za>
  <CAAxXO2HUxF7tDvb8_OzmZS4xat-SM=X_BMN465cvw5PzGQvQ+A@mail.gmail.com>
 In-Reply-To: <CAAxXO2HUxF7tDvb8_OzmZS4xat-SM=X_BMN465cvw5PzGQvQ+A@mail.gmail.com>
@@ -60,8 +60,8 @@ X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [192.168.168.4]
 MIME-Version: 1.0
-Message-ID-Hash: MBJPFNV4TC55QIWECF4HCDZWVM4T6L4O
-X-Message-ID-Hash: MBJPFNV4TC55QIWECF4HCDZWVM4T6L4O
+Message-ID-Hash: U2MLTENYTRYF2HVNXS6T6TT7WWB3ALKR
+X-Message-ID-Hash: U2MLTENYTRYF2HVNXS6T6TT7WWB3ALKR
 X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
@@ -69,27 +69,27 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but stops after a few packets received
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MBJPFNV4TC55QIWECF4HCDZWVM4T6L4O/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/U2MLTENYTRYF2HVNXS6T6TT7WWB3ALKR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0411586609828601955=="
+Content-Type: multipart/mixed; boundary="===============4859224257573062524=="
 
---===============0411586609828601955==
+--===============4859224257573062524==
 Content-Language: en-US
 Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
 	micalg=2.16.840.1.101.3.4.2.3;
-	boundary="----=_NextPart_000_00EF_01DBFBE5.2A7B0730"
+	boundary="----=_NextPart_000_00F6_01DBFBE6.04EDBA20"
 
-------=_NextPart_000_00EF_01DBFBE5.2A7B0730
+------=_NextPart_000_00F6_01DBFBE6.04EDBA20
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_00F0_01DBFBE5.2A7B0730"
+	boundary="----=_NextPart_001_00F7_01DBFBE6.04EDBA20"
 
 
-------=_NextPart_001_00F0_01DBFBE5.2A7B0730
+------=_NextPart_001_00F7_01DBFBE6.04EDBA20
 Content-Type: text/plain;
 	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -98,13 +98,16 @@ Hi Nikos,
 
 =20
 
-They are: =
-dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,dest_port=3D1234=
-,stream_mode=3Dfull_packet
+Just to clarify: this is using remote streaming where one can turn off =
+the header etc.
 
 =20
 
-Kind regards, Kevin
+Yes, using continuous mode also.
+
+=20
+
+Cheers, Kevin
 
 =20
 
@@ -186,7 +189,7 @@ To unsubscribe send an email to usrp-users-leave@lists.ettus.com =
 <mailto:usrp-users-leave@lists.ettus.com>=20
 
 
-------=_NextPart_001_00F0_01DBFBE5.2A7B0730
+------=_NextPart_001_00F7_01DBFBE6.04EDBA20
 Content-Type: text/html;
 	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -251,14 +254,15 @@ vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
 style=3D'mso-fareast-language:EN-US'>Hi Nikos,<o:p></o:p></span></p><p =
 class=3DMsoNormal><span =
 style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>They are: =
-</span><span =
-lang=3DEN-US>dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,des=
-t_port=3D1234,stream_mode=3Dfull_packet<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Just to =
+clarify: this is using remote streaming where one can turn off the =
+header etc.<o:p></o:p></span></p><p class=3DMsoNormal><span =
 style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Kind =
-regards, Kevin<o:p></o:p></span></p><p class=3DMsoNormal><span =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Yes, using =
+continuous mode also.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Cheers, =
+Kevin<o:p></o:p></span></p><p class=3DMsoNormal><span =
 style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
 class=3DMsoNormal><b><span lang=3DEN-US>From:</span></b><span =
 lang=3DEN-US> Nikos Balkanas &lt;nbalkanas@gmail.com&gt; =
@@ -339,9 +343,9 @@ target=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send =
 an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" =
 target=3D"_blank">usrp-users-leave@lists.ettus.com</a><o:p></o:p></p></di=
 v></blockquote></div></div></body></html>
-------=_NextPart_001_00F0_01DBFBE5.2A7B0730--
+------=_NextPart_001_00F7_01DBFBE6.04EDBA20--
 
-------=_NextPart_000_00EF_01DBFBE5.2A7B0730
+------=_NextPart_000_00F6_01DBFBE6.04EDBA20
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -404,29 +408,29 @@ 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
-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
+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
-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
+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
 
-------=_NextPart_000_00EF_01DBFBE5.2A7B0730--
+------=_NextPart_000_00F6_01DBFBE6.04EDBA20--
 
---===============0411586609828601955==
+--===============4859224257573062524==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -436,4 +440,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0411586609828601955==--
+--===============4859224257573062524==--
