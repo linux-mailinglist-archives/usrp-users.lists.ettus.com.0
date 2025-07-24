@@ -2,188 +2,139 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 896C4B10724
-	for <lists+usrp-users@lfdr.de>; Thu, 24 Jul 2025 11:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8E4B10768
+	for <lists+usrp-users@lfdr.de>; Thu, 24 Jul 2025 12:06:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4AA8A3858E6
-	for <lists+usrp-users@lfdr.de>; Thu, 24 Jul 2025 05:58:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5E4FA3859E1
+	for <lists+usrp-users@lfdr.de>; Thu, 24 Jul 2025 06:06:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1753351123; bh=eZhvOR7VShy4oVshBZabjz4hPotylCll/gvkuKr9n9Y=;
+	t=1753351618; bh=8XTWIcprILVUNhEhIJ6ZEih9jf4dg3SAZv+6OO7Hm8E=;
 	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=BSPsTG6UN/RkR0ENyvgB12tzq6RjzNWFLca03OwwVmesNB4uagdALbKDovNaQ/d/A
-	 2lh9zAm0l8acmAmH7FxIc940SVIZ7Vf7eWLiObaLf0/fYw3k3xorDBsLrvPpfWyHKz
-	 7cyKQDJwg85ZIGOByIkFsBIPAKMSoBO1ERZII88gNW0RjacE9yT3iIde5hN5vXsw9W
-	 DuqrL7UmzYnTc7C5d6Fr7kLAcBO0/fRMEN77OVhSc0GUwnt9NHgABnGmOCtQqBubTB
-	 HE+RPf7Zfkk5/Fh+H4b6vjA5Hnwae8ieSSqEzCGysJH5keOchetqnyEjEx/FwqmxBB
-	 SXytfC2Kg/+rg==
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id B0A483855C8
-	for <usrp-users@lists.ettus.com>; Thu, 24 Jul 2025 05:57:49 -0400 (EDT)
+	b=k74q9EizJ8OlHI2d8M7THpOzOJObG8X0WPySWQkTtlXaAlfk7Gk0tkUHsWmVRiFfu
+	 zuQfFysrleBUhT07qLg4pvinodsRz3cd9mWXfS079IhXOb0fL0t155NU/Pno8djZep
+	 NEG8it867L9njwPpgbYlo4hWoBqXKBGiDNneH2SQlu2rboHEka67DbWcvHCQM8x23s
+	 LXfEha9WEqn9QG58XKR9j9NgAO5nhs2sMchs07W6cw9D6I6+tt8eCkQNdsgVzfEsd2
+	 sAIjaisLumeI5EdIUhgcwDW2iV6l5uMPvwFb+kEF3B3UIR5OqOrTWc44uicyHb+/T3
+	 0sVj/gu4LNr1w==
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id 80BA13854B5
+	for <usrp-users@lists.ettus.com>; Thu, 24 Jul 2025 06:06:05 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Zq/ooSS+";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="pngEltfS";
 	dkim-atps=neutral
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-6077dea37easo1516722a12.3
-        for <usrp-users@lists.ettus.com>; Thu, 24 Jul 2025 02:57:49 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ae0b2ead33cso162876566b.0
+        for <usrp-users@lists.ettus.com>; Thu, 24 Jul 2025 03:06:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1753351068; x=1753955868; darn=lists.ettus.com;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1753351564; x=1753956364; darn=lists.ettus.com;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZZBomNpCJL5+4r4CyS8Y0JMM0n2u+bXFOzxpPMYLRtA=;
-        b=Zq/ooSS+wSfobqMruaRgiSGQruH+SmASZOh6vyfGAp/RP7idrnN32NC/s86eNIlrjY
-         A/6t6SFxdRCd/OpdAmrcGvjSMXjNEGwXpydZ4n24DLZLVpNKXBX3iqaNe0bfwlxl067p
-         14Uq7Cg14PY6DcTv4IM6vcc9gimTrTLyt1K/WhgQ6t37QtvfFs2BINtarp4Vqzk0g6uj
-         ihSb3yDqt0oQLqtA/IV1HPA9VLoXF5u2g8mMPCeKoXWgNI+N/p3HYGRtolGEeiCZ4cY5
-         godPrL54tetuNPVCbiHEsuqq8Ng5IRWhSpVpUY7pqvdByLfArSwGUKc2ZT7QdKND0jjI
-         34hA==
+        bh=IJGj6S/TfwdAkEhgxeUAXJpV7uzTqVdulCTN0h+q2h8=;
+        b=pngEltfSJzXTproEmZesCf2sE2sD+EJlM8/gR6cJ60ulNYkKtvTCln6M/tZTqLRu5X
+         8GwZSxoFoJmdqH4WMyCdafUhr05Z8HFBNdl3OYQaQgW87RrVo3aAWV5dvLK75v1iQnMQ
+         X8e/bwKVvb+MqYfbbC3X/AFC3nErDIv5PFjfqALVqCf3LT+l+8dJyv74sXJ6bzHkoEfJ
+         VUxdIUgQL5PQjM71Zoeefy11Jm+8SZ9BFMGynpoBFfiYbnMMwusoHINxBqdFp2qqCTbQ
+         IkIwLOdxw5xeJSKWykh7XO4mkwY5pc62xGiQ6p+1j6qv+0DfXO30spiUdsnFPWgzkDgX
+         z+jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753351068; x=1753955868;
+        d=1e100.net; s=20230601; t=1753351564; x=1753956364;
         h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZZBomNpCJL5+4r4CyS8Y0JMM0n2u+bXFOzxpPMYLRtA=;
-        b=GEyL9bHFjy+lDrBP3W7n0Rwyoph/COJyNgtF2nibiBBUDTYzyd5CTOnj+J57JJh4eR
-         BUOGYchfTa3g0y0cmM0xQlKtw+ovErcX4Ltnff/3aVQpbnKzSsmPYTjSUUvH6+R9XTyf
-         +KaRl/kvlG6fGHbuQ7ByYbYn0CDC0uV/ttHH8cppZmKzzBEwln8wfGERtt8lYriNECsF
-         hrKhIMWrtKJOS5D/UxFHfIG6VPpEzp3brqOni+RxBhV7f2sqiZ0t7M1YLDu/RhECyZMN
-         cD2HGPVFWuFvBqbet04/3kmjt4w0ocAB91k0keXJCcal9oVkodZBEV1FSV61cR2+3Vda
-         X4mQ==
-X-Gm-Message-State: AOJu0YxBYMYXCE++JZuBVOCuoVUvQU8U7wTh/FDjUhVAp5h3mPj8aTs1
-	J5HN4A6gYC33JV8lJRMSb19bPKy3BE+xRARKDajNICAMIIiC1DiUblmvKtZQQGtiXYteRxnZzNE
-	1cbZhoSb+oGXYdnhgw9U1ypDqmWXcTDoSVQ4CYV0QQItqQk4ky2qUT5k=
-X-Gm-Gg: ASbGncsbV7CT/XUx94utMdbxbx28DD8sFoaVTexDBx5aQK5ePxI+KZyclyWFHWE3nrV
-	KPuhEVeRQ+hMMuhZtfYjGLdSisuTlYnU7eXgyojmaOQ4EBwEbG2nP87bhnTVCPB58mhWwLzODly
-	SJ7xfVYBw/G+ZzAk9qB+7kGFQId21a34wR4xIhyUxKtVVh8Z4kVKt52GGN7p+3FFIDkd0sJxfVx
-	5cZc7iX40MOO7i9rv7/DW5dGEqJXVd+sQ8Rtc5Jyjm3IG6biQ==
-X-Google-Smtp-Source: AGHT+IHI+i+Rt8WpFGOOvN/MxJGjChJGv/ahDvanDkSsWE+Ied8f0vOsbUu36ZNAUSKCUB2Li1QSIjyzAQQ/GLNPLwc=
-X-Received: by 2002:a17:906:fe41:b0:ae3:a717:e90c with SMTP id
- a640c23a62f3a-af2f6f581e8mr666546966b.23.1753351068169; Thu, 24 Jul 2025
- 02:57:48 -0700 (PDT)
+        bh=IJGj6S/TfwdAkEhgxeUAXJpV7uzTqVdulCTN0h+q2h8=;
+        b=AxQCYHfCAWIvomzFjS2qZrRa3Yd2EMH8FS7BoAcc4PeLYsx5Us9mvxuL0pH5TMkH+w
+         H1fq8RwnvkxX4u+m0QjC9rh1qWk9tKEQd7E2DzywFtifA2RPw8+CB3/R4Uxe++skwScb
+         TnuvPHf254m6HG4knIt2BNwyd6q3xW1upVbsEAhu12RMd45tkZmCYhtdS8Haj7mcb2G1
+         SqqWoeFTCKJEfrPAB+HwJ3eqSllFn8HMpNJN3o6go+McM8mlBRQw+d41FlpanqvFWbL4
+         RYV8MYwfrrHSK1vjPaWFngoiR+9+FIP2ykGGbj+CvhaEjZWaP9zX5EizbIQXgTdqFq6C
+         AxGg==
+X-Gm-Message-State: AOJu0YwWH1K0xGmZcbn4k87w4i92Nbs9DUyQeo6OAv4SeJ/13oqsZwia
+	vWzRzqoF4NnN9BvV62OCZf2qVFhzPR09VswN2kleNirV8rE+YDCuofqZXTh1aoYXqJm75Tc60Ng
+	PC8faUcEVOHzpiRG+65ih67HsZ2Uiw1l1xGHDgxRCqP15HzaWGlLRE9g=
+X-Gm-Gg: ASbGncuSIUI5EXO2on694Y1HvZ24QWTeMT8HSy3EBWbl6DCUsCOdW2nb++b9slDvhI9
+	54wxPCBUDsJLBDH4Re8hi+/eiNsMIs+sx1PM15CyOs88B90qHenXwLZm7TeIDSjGWWqLOd4owy0
+	9s/07LuKfhFHWdu+BYV96z+KYG/qShAKGynsQvHLOhqQRX3SnAEGnx8rfNAd2D/bHt10xPqhtae
+	J4JB7S4iLe5U6V7zo2dZv6zGet4TtBFVSdPDKg=
+X-Google-Smtp-Source: AGHT+IF2uj5APuuSXJdHFYyd1b9LJUp4RwwMs5wNR99NZWENKY3wS3x9TVjBBf0s4pnaJ6ZPsqAkCaYCUwTJTK2mAHQ=
+X-Received: by 2002:a17:907:7f0f:b0:ae3:c777:6e5e with SMTP id
+ a640c23a62f3a-af4c325669fmr142737866b.19.1753351563923; Thu, 24 Jul 2025
+ 03:06:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <3JSjwAKJn0iIQ7e6LC065e1DOIEjmVGgnUQqG94qg@lists.ettus.com>
-In-Reply-To: <3JSjwAKJn0iIQ7e6LC065e1DOIEjmVGgnUQqG94qg@lists.ettus.com>
+References: <n69elKfNNlotbfMhQhYgVn799jSTJPogptvWH0shE@lists.ettus.com>
+In-Reply-To: <n69elKfNNlotbfMhQhYgVn799jSTJPogptvWH0shE@lists.ettus.com>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Thu, 24 Jul 2025 11:57:37 +0200
-X-Gm-Features: Ac12FXxgflzSVEr5CNro8NF7TVX9r6zC3zin-LT5eCYRdgtrLR1SfMPQENte6SY
-Message-ID: <CAFOi1A6-3w_eEP15WV8jEhxsz9q8or06QZG5BxEaC5FGzP6=Wg@mail.gmail.com>
+Date: Thu, 24 Jul 2025 12:05:52 +0200
+X-Gm-Features: Ac12FXzGSVLccYAw4gOXczVVrj4dCHgQA4r1WavVvqMUDqfz6LbYqgziJQHwFjg
+Message-ID: <CAFOi1A6yu2t0z57n5AH2BFbHOR6RWC_5ud_9W4NrKSWXEyd6TA@mail.gmail.com>
 Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: NQ2I2RFBICEBBEHSWOPY72RG53YSLZXW
-X-Message-ID-Hash: NQ2I2RFBICEBBEHSWOPY72RG53YSLZXW
+Message-ID-Hash: JPRPPYAR7VEXCWWS524NVG2BDKZULRWF
+X-Message-ID-Hash: JPRPPYAR7VEXCWWS524NVG2BDKZULRWF
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Power calibration USRP B210 UHD Python API
+Subject: [USRP-users] Re: Custom Metadata
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NQ2I2RFBICEBBEHSWOPY72RG53YSLZXW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JPRPPYAR7VEXCWWS524NVG2BDKZULRWF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2605406855990861956=="
+Content-Type: multipart/mixed; boundary="===============4282458315127221168=="
 
---===============2605406855990861956==
-Content-Type: multipart/alternative; boundary="00000000000095ce87063aa9db2c"
+--===============4282458315127221168==
+Content-Type: multipart/alternative; boundary="0000000000002268c8063aa9f925"
 
---00000000000095ce87063aa9db2c
+--0000000000002268c8063aa9f925
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hey Dennis,
+Hi,
 
-we recently had an issue here (by another Belgian USRP user, nonetheless!)
-where the files were not being loaded, and it was due to the environment
-variable XDG_DATA_HOME being set.
-
-To check, there's two things you can do:
-
-- Call uhd.get_cal_data_path(). If it matches the path you expect, then UHD
-will look for cal files in here.
-- Call has_tx_power_reference() on your multi_usrp object. It will return
-true if cal data was loaded.
-
-If you like, you can go low-level and query
-uhd.usrp.cal.database.read_cal_data() and see if it loads the right data...
-but that's pretty advanced, and I'll let you read the manual for that if
-you want to do that.
+metadata reading/writing in UHD is currently not implemented. If you think
+this is a relevant feature, reach out to your NI USRP rep to bump its
+priority.
 
 --M
 
-On Wed, Jul 23, 2025 at 7:43=E2=80=AFPM <dennis.joosens@uantwerpen.be> wrot=
-e:
+On Wed, Jul 16, 2025 at 11:48=E2=80=AFAM <nirkicatal1@gmail.com> wrote:
 
-> Hi,
+> Hello all,
 >
-> I am working on power calibration of the USRP B210 SDR specifically on th=
-e
-> RX side.
+> I plan to add metadata in my custom RFNoC block, reading the RFNoC
+> specification I noticed that the rx_streamer and tx_streamer handles
+> metadata. my question is:
 >
-> The power calibration worked, I managed to generate four .cal files:
+> Is this the same metadata specified in the context CHDR messages? if it i=
+s
+> not, how can we read at the host side, the metadata added in the rfnoc
+> block?
 >
-> b2xx_pwr_rx_tx+rx_316E278#A.cal
->
-> b2xx_pwr_rx_tx+rx_316E278#B.cal
->
-> b2xx_pwr_rx_rx2_316E278#A.cal
->
-> b2xx_pwr_rx_rx2_316E278#B.cal
->
-> and I can find them in the default directory ~/.local/share/uhd/cal
->
-> Now I am trying to load these .cal files using the UHD Python API. I can
-> check if these files exist and read their contents.
->
-> But I am wondering, can I assume that the UHD loads the .cal files when a
-> USRP stream is opened by default from this default folder? I can not seem
-> to find any function or output from API functions that can give me a
-> definite answer on that or even gives the possibility to check this.
->
-> If this is not the case. How is this handled by default? This seems a big
-> mystery in the documentation.
->
-> Thanks,
->
-> Dennis
+> Thank you.
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000095ce87063aa9db2c
+--0000000000002268c8063aa9f925
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hey Dennis,</div><div><br></div><div>we recently had =
-an issue here (by another Belgian USRP user, nonetheless!) where the files =
-were not being loaded, and it was due to the environment variable XDG_DATA_=
-HOME being set.</div><div><br></div><div>To check, there&#39;s two things y=
-ou can do:</div><div><br></div><div>- Call uhd.get_cal_data_path(). If it m=
-atches the path you expect, then UHD will look for cal files in here.</div>=
-<div>- Call has_tx_power_reference() on your multi_usrp object. It will ret=
-urn true if cal data was loaded.</div><div><br></div><div>If you like, you =
-can go low-level and query uhd.usrp.cal.database.read_cal_data() and see if=
- it loads the right data... but that&#39;s pretty advanced, and I&#39;ll le=
-t you read the manual for that if you want to do that.</div><div><br></div>=
-<div>--M</div></div><br><div class=3D"gmail_quote gmail_quote_container"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 23, 2025 at 7:43=E2=80=AFPM=
- &lt;<a href=3D"mailto:dennis.joosens@uantwerpen.be">dennis.joosens@uantwer=
-pen.be</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex"><p>Hi,</p><p>I am working on power calibration of the USRP B210 SDR s=
-pecifically on the RX side.</p><p> </p><p>The power calibration worked, I m=
-anaged to generate four .cal files:</p><p>b2xx_pwr_rx_tx+rx_316E278#A.cal</=
-p><p>b2xx_pwr_rx_tx+rx_316E278#B.cal</p><p>b2xx_pwr_rx_rx2_316E278#A.cal  <=
-/p><p>b2xx_pwr_rx_rx2_316E278#B.cal  </p><p>and I can find them in the defa=
-ult directory ~/.local/share/uhd/cal</p><p>Now I am trying to load these .c=
-al files using the UHD Python API. I can check if these files exist and rea=
-d their contents.</p><p>But I am wondering, can I assume that the UHD loads=
- the .cal files when a USRP stream is opened by default from this default f=
-older? I can not seem to find any function or output from API functions tha=
-t can give me a definite answer on that or even gives the possibility to ch=
-eck this.</p><p>If this is not the case. How is this handled by default? Th=
-is seems a big mystery in the documentation.</p><p>Thanks,</p><p>Dennis</p>
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>metadata reading/writing=
+ in UHD is currently not implemented. If you think this is a relevant featu=
+re, reach out to your NI USRP rep to bump its priority.</div><div><br></div=
+><div>--M</div></div><br><div class=3D"gmail_quote gmail_quote_container"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 16, 2025 at 11:48=E2=80=AF=
+AM &lt;<a href=3D"mailto:nirkicatal1@gmail.com">nirkicatal1@gmail.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hel=
+lo all,</p><p>I plan to add metadata in my custom RFNoC block, reading the =
+RFNoC specification I noticed that the rx_streamer and tx_streamer handles =
+metadata. my question is:</p><p>Is this the same metadata specified in the =
+context CHDR messages? if it is not, how can we read at the host side, the =
+metadata added in the rfnoc block?</p><p>Thank you.</p>
 
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
@@ -192,9 +143,9 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---00000000000095ce87063aa9db2c--
+--0000000000002268c8063aa9f925--
 
---===============2605406855990861956==
+--===============4282458315127221168==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -204,4 +155,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2605406855990861956==--
+--===============4282458315127221168==--
