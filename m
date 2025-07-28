@@ -2,487 +2,786 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85600B13C28
-	for <lists+usrp-users@lfdr.de>; Mon, 28 Jul 2025 15:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1F3B13CAB
+	for <lists+usrp-users@lfdr.de>; Mon, 28 Jul 2025 16:15:15 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 45C08386413
-	for <lists+usrp-users@lfdr.de>; Mon, 28 Jul 2025 09:57:34 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 17AFA3862E8
+	for <lists+usrp-users@lfdr.de>; Mon, 28 Jul 2025 10:15:15 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1753711054; bh=7SIzroomq6xHCby6w3yIVgANZCExrvY9wvS38bLTvlw=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=zj4DKj2wp2F95FQPJK+tc8aEORuMpiyh9o5TnuITlCXXVTvYH4X6jx0Bozf8JZiKt
-	 U55NyPox0ygZk4scDM2GpfCF3RY5RNbuAxUoQo3jnYVXimoIEbEHwRCAysVhplr4P9
-	 f935FHjEXOPDMhL3MRspuXhdI+y2Chz06BHOkj0oWwSntR5XAmXo9LBnXFN2QWR8lN
-	 IxEXhAFkNlEBRZ1ptxgttMS6rrpzWgqXJYeuM4/sWw7FgZpYuB/qCX9jAHX0RzWMbN
-	 VTvXvmriS0+4AxRnmKDCgxKczCc+bcUNVbzMvmv0OXIjnDhFEZ+TVnwxgprDxf1hYk
-	 s3+bZnLEqh5YA==
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id 820373861D9
-	for <usrp-users@lists.ettus.com>; Mon, 28 Jul 2025 09:56:58 -0400 (EDT)
+	t=1753712115; bh=QjQPc+vb+FscH6riI9FRPOobQNeQMibJxNw6jZ5BLno=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=Jj/OPWMM/7yOW/kNBS2LHM7ht8CYdXSfQAl/4WU1z4inTjrEi38Zlq849MR9WQmIL
+	 KKSCV3awt44wIb8wVRjmp3KHjBn4YLo81K/aiqJglRn11aUipNFb8KmywekXj/WF10
+	 zoF/jVSI4+KBvqZZulB1rTFPpaYhdSOumgb1fyyLtxh/M9BmW0TSboZD5KprFv2IXA
+	 Zc/ABm7QW5ESNneP52lqIBSyYbc5ptLS3MK5qNbvBXhWoEVn3p5civwT4XwTLg0A+Q
+	 yw1koMSSn5iWDr+4y3onWQXwY4wezkqhNceyRmkCICEfZkiG2ykcnfyT4NQQdPm6bt
+	 ctyjeipwStWnw==
+Received: from za-smtp-delivery-57.mimecast.co.za (za-smtp-delivery-57.mimecast.co.za [41.74.201.57])
+	by mm2.emwd.com (Postfix) with ESMTPS id E5D9A386296
+	for <usrp-users@lists.ettus.com>; Mon, 28 Jul 2025 10:14:14 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Xt6DyMlA";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="aWXg5Yep";
 	dkim-atps=neutral
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aef575ad59eso710853366b.2
-        for <usrp-users@lists.ettus.com>; Mon, 28 Jul 2025 06:56:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1753711017; x=1754315817; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f6EB4i9xT9ZBtIdCjDPirtPhiBSnnpAbY+5jDUFvqxI=;
-        b=Xt6DyMlAwu4/pUvMAz2f25hDvE4YbeQjBeVG8rgrf+JirTSKs3VmM3puUYzP50cxcJ
-         OZHwCpM8YVqmWEJthJvB2P8eVuUu0JfwIh/4PYmbyC6Huxx53MnfDOJCkVvHZlXrew3B
-         Tvbtep27p4LUPVBGz85mnw8wPruDwGEhm3g+3rtkL5y6CsyEToSRJ9d/6BCy88JGgpCJ
-         ntTOpPjL+oSZbMk1bk05rRT26g1ElXrXyLh6nSaOjL0NA8DS37eu+o+f+tV96cN4sVqZ
-         9j03x7aINTXXyMP2rRgV8ymmtV8DlPGkCENJ47bCrCm1A7i7z5xI9zg5hK34NlgTes0X
-         r7pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753711017; x=1754315817;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f6EB4i9xT9ZBtIdCjDPirtPhiBSnnpAbY+5jDUFvqxI=;
-        b=h/YEqZzpavOIXW64quZS1LjMVrmXxju56jJfXQwnOSlsx2WTCxd3seaq1XSCDlV6R4
-         /4t98Gb1X1nWBZ7f/liUfx9kTHd0nxCCY4G0IYC6c9ll49D6JtIcIuCuvcnGMgYXKCEm
-         78eg6P7uwNT0wIXDZSVIM0nbeucfcAT8Flq/AnWgCAzluLtrv+p8nVOhcOdwD5l1j8qn
-         WPx+FkxvmGYxTxaFfwF9u2qC5QherKLguV7rbG1Ck4ZTawvbBIOVHUxU8XBREOdZ8rQz
-         4B7YvSYKaz/PSiS6hc3an5DXWKYgFIk+egTY2DSXzlHef1CMmtZWiQDWJl4VS0NDCE7S
-         3+pQ==
-X-Gm-Message-State: AOJu0Yylzv3gPf3QLqLZ1S0ey3v/QXBy+xs7HNkNo8oBng7oIOr34xtK
-	gWSG5BHeSwWSkG5Vtdl3l6PYhRkcH2I0gPzvhuw85d/ZszJbVuVVKh79v/uz25c9GykjwO1Ud1v
-	ZuHYqMq4oH0WKST9l9PGBKBI2HKCLDNIpzZoP7EfcIHp8oEq9WUNhs7E=
-X-Gm-Gg: ASbGncuylbje7bQykRJITEt6sKPfNEvolL4aMsqW/x7hD1vy7oPZQUjVLxmMwu5rvRY
-	f60GiZGRQHXBxXeL8I59y27mHIRc7ombmbTC3tmoDvehLl5cGUQFidspsGY6vmpVd8W52+dFaVe
-	dkrbsRGbK1ZAxaqdzjU5X9GoUW/akgod/lgCZtBAdpEP+4xqH6d6WDVqDGJ4hyCerlIf09bnSEn
-	6/Ck1xUO+CpLcEvFTX27ytHQLy+8J4zK/258qY=
-X-Google-Smtp-Source: AGHT+IER/XlWGa6132OvOnq8ujRPxrhSgxBdoVoYs/+lGJCgcQaB88o8vVDa2BzG7bPWhKs7B56KrcTCg+g3GPu0Qzk=
-X-Received: by 2002:a17:907:c2a:b0:ae3:f16a:c165 with SMTP id
- a640c23a62f3a-af61cd9e820mr1344804966b.31.1753711016287; Mon, 28 Jul 2025
- 06:56:56 -0700 (PDT)
-MIME-Version: 1.0
+Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
+ relay.mimecast.com with ESMTP id za-mta-31-Pv8stOkwOfG9BLhbcTh8Bw-1; Mon,
+ 28 Jul 2025 16:14:09 +0200
+X-MC-Unique: Pv8stOkwOfG9BLhbcTh8Bw-1
+X-Mimecast-MFC-AGG-ID: Pv8stOkwOfG9BLhbcTh8Bw_1753712049
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
+	bh=tHw8hRYbwaAs9C1dgVWl3d1FEaLcl1G+7Grp14pF0qc=;
+	b=aWXg5Yep5RF5HQXaozwBf9LT0Bhr1NJXnOiNMs2NaC3zs5zK646wj5kXdrBQquETgbAGQ5QOPlMgLGzge5DnZln/wgmYZgvlFjfrkI+KbwkOknKXDe+6zCVH3sxByYRjqHH3Aa9f5dTWPwGt+WfkPhnqafOfF1HxOtep8TewXog=
+Received: from EXCHANGE2.vastech.co.za (Unknown [172.30.81.30])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Mon, 28 Jul 2025 16:14:04 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ EXCHANGE2.vastech.co.za (172.30.81.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 28 Jul 2025 16:14:03 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Mon, 28
+ Jul 2025 16:14:01 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "martin.braun@ettus.com" <martin.braun@ettus.com>
+Thread-Topic: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but
+ stops after a few packets received
+Thread-Index: AQHb++IkYMk+p2kicke3vxbc7X5L4bRCs8Hg///2/ACAACOsQIAEpzIAgAAlivA=
+Date: Mon, 28 Jul 2025 14:14:00 +0000
+Message-ID: <42dbe59d936f4847841d2f442a7ebdf8@vastech.co.za>
 References: <111b29cda9ce4309b4966fcfcc3b7ece@vastech.co.za>
  <CAAxXO2HUxF7tDvb8_OzmZS4xat-SM=X_BMN465cvw5PzGQvQ+A@mail.gmail.com>
- <00b1e2cd914e4e87a81ed418f7fa142c@vastech.co.za> <CAFOi1A79w6Yn703f7V+Jwe2X0PpR7or7Vn1naNgWmhYY3kJm-g@mail.gmail.com>
- <45a2d2bfa5784898840a602a2b31db9c@vastech.co.za> <CAFOi1A7k0F=vs7bhSVQFjoQFvBg=nNtfyLxq_zJypMPJUp_uhg@mail.gmail.com>
+ <00b1e2cd914e4e87a81ed418f7fa142c@vastech.co.za>
+ <CAFOi1A79w6Yn703f7V+Jwe2X0PpR7or7Vn1naNgWmhYY3kJm-g@mail.gmail.com>
+ <45a2d2bfa5784898840a602a2b31db9c@vastech.co.za>
+ <CAFOi1A7k0F=vs7bhSVQFjoQFvBg=nNtfyLxq_zJypMPJUp_uhg@mail.gmail.com>
  <a60e4a0ea3ec4a10b95d90103bd2a7f7@vastech.co.za>
-In-Reply-To: <a60e4a0ea3ec4a10b95d90103bd2a7f7@vastech.co.za>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Mon, 28 Jul 2025 15:56:44 +0200
-X-Gm-Features: Ac12FXys0By-LswaRkdJNqyxwrFv_fqTPOUTviqT_qqLoP8iggvKFgxH64Gmef0
-Message-ID: <CAFOi1A5oPd6pCJK8mh18Un=WDLGVYt+mGpQHp5J2UQR7xLNV+A@mail.gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: 6H5DNVDC5IWMPCC3NBQ7IMZU3NLPUS3V
-X-Message-ID-Hash: 6H5DNVDC5IWMPCC3NBQ7IMZU3NLPUS3V
-X-MailFrom: martin.braun@ettus.com
+ <CAFOi1A5oPd6pCJK8mh18Un=WDLGVYt+mGpQHp5J2UQR7xLNV+A@mail.gmail.com>
+In-Reply-To: <CAFOi1A5oPd6pCJK8mh18Un=WDLGVYt+mGpQHp5J2UQR7xLNV+A@mail.gmail.com>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.3]
+MIME-Version: 1.0
+Message-ID-Hash: 6PGQEQQH3VABE27AAYVGCTL7ENCRRDX3
+X-Message-ID-Hash: 6PGQEQQH3VABE27AAYVGCTL7ENCRRDX3
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but stops after a few packets received
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6H5DNVDC5IWMPCC3NBQ7IMZU3NLPUS3V/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6PGQEQQH3VABE27AAYVGCTL7ENCRRDX3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0514489006997722841=="
+Content-Type: multipart/mixed; boundary="===============5671672521447598335=="
 
---===============0514489006997722841==
-Content-Type: multipart/related; boundary="0000000000002abb9e063afdaaf7"
+--===============5671672521447598335==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=2.16.840.1.101.3.4.2.3;
+	boundary="----=_NextPart_000_0176_01DBFFDA.9FE32AE0"
 
---0000000000002abb9e063afdaaf7
-Content-Type: multipart/alternative; boundary="0000000000002abb9c063afdaaf6"
+------=_NextPart_000_0176_01DBFFDA.9FE32AE0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_001_0177_01DBFFDA.9FE32AE0"
 
---0000000000002abb9c063afdaaf6
-Content-Type: text/plain; charset="UTF-8"
+
+------=_NextPart_001_0177_01DBFFDA.9FE32AE0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_002_0178_01DBFFDA.9FE32AE0"
+
+
+------=_NextPart_002_0178_01DBFFDA.9FE32AE0
+Content-Type: text/plain;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Ah, gotcha. Well.... I'm going to have to assume your block is stalling for
-some other reason then :/
+I did an experiment today with just this (Ettus blocks only):
 
-Sorry, not that useful a response. Can you run an ILA to see if your block
-is not getting a tready on its output?
+=20
+
+connections:
+
+  - { srcblk: radio0,     srcport: out_0,    dstblk: ep0,       dstport: =
+in0}
+
+  - { srcblk: ep6,        srcport: out0,     dstblk: ddc0, dstport: in_0 =
+}
+
+  - { srcblk: ddc0,  srcport: out_0,    dstblk: ep6,       dstport: in0 =
+}
+
+=20
+
+Which did not work =E2=80=93 the remote streaming stopped.
+
+=20
+
+Changing the destination EP to a new one, ep7, worked again.
+
+=20
+
+From the RFNoC 4 workshop slides I was under the impression blocks could =
+start and end on the same SEP?
+
+=20
+
+From: Martin Braun <martin.braun@ettus.com>=20
+Sent: Monday, 28 July 2025 15:57
+Cc: usrp-users@lists.ettus.com
+Subject: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but =
+stops after a few packets received
+
+=20
+
+Ah, gotcha. Well.... I'm going to have to assume your block is stalling =
+for some other reason then :/
+
+=20
+
+Sorry, not that useful a response. Can you run an ILA to see if your =
+block is not getting a tready on its output?
+
+=20
 
 --M
 
-On Fri, Jul 25, 2025 at 2:56=E2=80=AFPM Kevin Williams <kevin.williams@vast=
-ech.co.za>
+=20
+
+On Fri, Jul 25, 2025 at 2:56=E2=80=AFPM Kevin Williams =
+<kevin.williams@vastech.co.za <mailto:kevin.williams@vastech.co.za> > =
 wrote:
 
-> Hi Martin,
->
->
->
-> I didn=E2=80=99t mean to suggest the Ettus examples are not working =E2=
-=80=93 they do, and
-> I get continuous streaming with the default image and even 2x remote
-> streams with ddc0 and ddc1.
->
->
->
-> I am trying to figure out what my block is not doing correctly, and also
-> trying to understand the mechanism that causes the usrp to stop remote
-> streaming.
->
->
->
-> Its unclear if this is perhaps related to too-small endpoint buffers, etc=
-.
->
->
->
-> Regards, Kevin
->
->
->
->
->
-> *From:* Martin Braun <martin.braun@ettus.com>
-> *Sent:* Friday, 25 July 2025 14:46
-> *To:* Kevin Williams <kevin.williams@vastech.co.za>
-> *Cc:* nbalkanas@gmail.com; usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,
-> but stops after a few packets received
->
->
->
-> Kevin,
->
->
->
-> does rx_to_remote_udp.py work (formerly known as remote_rx.py)? (It's an
-> example in host/examples/python).
->
->
->
-> --M
->
->
->
-> On Fri, Jul 25, 2025 at 1:20=E2=80=AFPM Kevin Williams <
-> kevin.williams@vastech.co.za> wrote:
->
-> HI,
->
->
->
-> It seems that explicitly adding =E2=80=9Cenable_fc=3D0=E2=80=9D does not =
-help.
->
->
->
-> I notice this control packet though, just a few packets before the
-> streaming stops.
->
->
->
-> Is that perhaps related to the issue?
->
->
->
-> Regards, Kevin
->
->
->
->
->
->
->
->
->
->
->
-> *From:* Martin Braun <martin.braun@ettus.com>
-> *Sent:* Wednesday, 23 July 2025 16:57
-> *To:* Kevin Williams <kevin.williams@vastech.co.za>
-> *Cc:* nbalkanas@gmail.com; usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,
-> but stops after a few packets received
->
->
->
-> Kevin,
->
->
->
-> are you specifying enable_fc=3D0 in the stream args or not? In the debug
-> statement above, they're shown, but not in your last email. I'm asking
-> because it looks like FC is kicking in and stopping the stream.
->
->
->
-> --M
->
->
->
-> On Wed, Jul 23, 2025 at 3:20=E2=80=AFPM Kevin Williams <
-> kevin.williams@vastech.co.za> wrote:
->
-> Hi Nikos,
->
->
->
-> They are:
-> dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,dest_port=3D1234=
-,stream_mode=3Dfull_packet
->
->
->
-> Kind regards, Kevin
->
->
->
-> *From:* Nikos Balkanas <nbalkanas@gmail.com>
-> *Sent:* Wednesday, 23 July 2025 15:15
-> *To:* Kevin Williams <kevin.williams@vastech.co.za>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [EXTERNAL]Re: [USRP-users] remote streaming starts, but stops
-> after a few packets received
->
->
->
-> Hi Kevin,
->
->
->
-> What are your stream_args?
->
-> Using UHD_STREAM_MODE_NUM_SAMPS_AND_DONE?
->
-> Not using RFNOC, but full_packet is not a UHD 4.6 mode:(
->
->
->
-> BR,
->
-> nikos
->
->
->
-> On Wed, Jul 23, 2025 at 3:14=E2=80=AFPM Kevin Williams <
-> kevin.williams@vastech.co.za> wrote:
->
-> Hi,
->
->
->
-> I have enabled remote streaming but according to wireshark I only receive
-> 6x 4k packets.
->
->
->
-> Everything about them is correct =E2=80=93 the destination ip, port, size=
-, etc.
->
->
->
-> From the debug logs the stream is set up as:
->
->
->
-> [DEBUG] [RFNOC] Creating diverted RX stream with arguments:
-> dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,dest_port=3D1234=
-,stream_mode=3Dfull_packet,__chdr_width=3D64,enable_remote_stream=3D1,enabl=
-e_fc=3D0
->
-> [DEBUG] [X300::SFP0::TA_CTL] On transport adapter 0: Adding route from
-> EPID 6 to destination 172.17.0.2:1234
-> <https://url.za.m.mimecastprotect.com/s/dnTlCnZXkkt3VJlI9f2iJBiQg?domain=
-=3D172.17.0.2>
-> (MAC Address: 02:42:ac:11:00:02), stream mode FULL_PACKET (0)
->
->
->
-> What could cause that streaming to stop (given there is no flow control)?
->
->
->
-> Many thanks, Kevin
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
+Hi Martin,
 
---0000000000002abb9c063afdaaf6
-Content-Type: text/html; charset="UTF-8"
+=20
+
+I didn=E2=80=99t mean to suggest the Ettus examples are not working =
+=E2=80=93 they do, and I get continuous streaming with the default image =
+and even 2x remote streams with ddc0 and ddc1.
+
+=20
+
+I am trying to figure out what my block is not doing correctly, and also =
+trying to understand the mechanism that causes the usrp to stop remote =
+streaming.
+
+=20
+
+Its unclear if this is perhaps related to too-small endpoint buffers, =
+etc.
+
+=20
+
+Regards, Kevin
+
+=20
+
+=20
+
+From: Martin Braun <martin.braun@ettus.com =
+<mailto:martin.braun@ettus.com> >=20
+Sent: Friday, 25 July 2025 14:46
+To: Kevin Williams <kevin.williams@vastech.co.za =
+<mailto:kevin.williams@vastech.co.za> >
+Cc: nbalkanas@gmail.com <mailto:nbalkanas@gmail.com> ; =
+usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>=20
+Subject: Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but =
+stops after a few packets received
+
+=20
+
+Kevin,
+
+=20
+
+does rx_to_remote_udp.py work (formerly known as remote_rx.py)? (It's an =
+example in host/examples/python).
+
+=20
+
+--M
+
+=20
+
+On Fri, Jul 25, 2025 at 1:20=E2=80=AFPM Kevin Williams =
+<kevin.williams@vastech.co.za <mailto:kevin.williams@vastech.co.za> > =
+wrote:
+
+HI,
+
+=20
+
+It seems that explicitly adding =E2=80=9Cenable_fc=3D0=E2=80=9D does not =
+help.
+
+=20
+
+I notice this control packet though, just a few packets before the =
+streaming stops.
+
+=20
+
+Is that perhaps related to the issue?
+
+=20
+
+Regards, Kevin
+
+=20
+
+=20
+
+
+
+=20
+
+=20
+
+
+
+=20
+
+From: Martin Braun <martin.braun@ettus.com =
+<mailto:martin.braun@ettus.com> >=20
+Sent: Wednesday, 23 July 2025 16:57
+To: Kevin Williams <kevin.williams@vastech.co.za =
+<mailto:kevin.williams@vastech.co.za> >
+Cc: nbalkanas@gmail.com <mailto:nbalkanas@gmail.com> ; =
+usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>=20
+Subject: Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but =
+stops after a few packets received
+
+=20
+
+Kevin,
+
+=20
+
+are you specifying enable_fc=3D0 in the stream args or not? In the debug =
+statement above, they're shown, but not in your last email. I'm asking =
+because it looks like FC is kicking in and stopping the stream.
+
+=20
+
+--M
+
+=20
+
+On Wed, Jul 23, 2025 at 3:20=E2=80=AFPM Kevin Williams =
+<kevin.williams@vastech.co.za <mailto:kevin.williams@vastech.co.za> > =
+wrote:
+
+Hi Nikos,
+
+=20
+
+They are: =
+dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,dest_port=3D1234=
+,stream_mode=3Dfull_packet
+
+=20
+
+Kind regards, Kevin
+
+=20
+
+From: Nikos Balkanas <nbalkanas@gmail.com <mailto:nbalkanas@gmail.com> > =
+
+Sent: Wednesday, 23 July 2025 15:15
+To: Kevin Williams <kevin.williams@vastech.co.za =
+<mailto:kevin.williams@vastech.co.za> >
+Cc: usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>=20
+Subject: [EXTERNAL]Re: [USRP-users] remote streaming starts, but stops =
+after a few packets received
+
+=20
+
+Hi Kevin,
+
+=20
+
+What are your stream_args?
+
+Using UHD_STREAM_MODE_NUM_SAMPS_AND_DONE?
+
+Not using RFNOC, but full_packet is not a UHD 4.6 mode:(
+
+=20
+
+BR,
+
+nikos
+
+=20
+
+On Wed, Jul 23, 2025 at 3:14=E2=80=AFPM Kevin Williams =
+<kevin.williams@vastech.co.za <mailto:kevin.williams@vastech.co.za> > =
+wrote:
+
+Hi,
+
+=20
+
+I have enabled remote streaming but according to wireshark I only =
+receive 6x 4k packets.
+
+=20
+
+Everything about them is correct =E2=80=93 the destination ip, port, =
+size, etc.
+
+=20
+
+From the debug logs the stream is set up as:
+
+=20
+
+[DEBUG] [RFNOC] Creating diverted RX stream with arguments: =
+dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,dest_port=3D1234=
+,stream_mode=3Dfull_packet,__chdr_width=3D64,enable_remote_stream=3D1,ena=
+ble_fc=3D0
+
+[DEBUG] [X300::SFP0::TA_CTL] On transport adapter 0: Adding route from =
+EPID 6 to destination 172.17.0.2:1234 =
+<https://url.za.m.mimecastprotect.com/s/uLPvCP1lEEINz0whzfMixbDH6?domain=3D=
+172.17.0.2>  (MAC Address: 02:42:ac:11:00:02), stream mode FULL_PACKET =
+(0)
+
+=20
+
+What could cause that streaming to stop (given there is no flow =
+control)?
+
+=20
+
+Many thanks, Kevin
+
+=20
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com =
+<mailto:usrp-users@lists.ettus.com>=20
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com =
+<mailto:usrp-users-leave@lists.ettus.com>=20
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com =
+<mailto:usrp-users@lists.ettus.com>=20
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com =
+<mailto:usrp-users-leave@lists.ettus.com>=20
+
+
+------=_NextPart_002_0178_01DBFFDA.9FE32AE0
+Content-Type: text/html;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Ah, gotcha. Well.... I&#39;m going to have to assume =
-your block is stalling for some other reason then :/</div><div><br></div><d=
-iv>Sorry, not that useful a response. Can you run an ILA to see if your blo=
-ck is not getting a tready on its output?</div><div><br></div><div>--M</div=
-></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Fri, Jul 25, 2025 at 2:56=E2=80=AFPM Kevin Willia=
-ms &lt;<a href=3D"mailto:kevin.williams@vastech.co.za">kevin.williams@vaste=
-ch.co.za</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div class=3D"msg7431241901291787732"><div lang=3D"EN-ZA"><div clas=
-s=3D"m_7431241901291787732WordSection1"><p class=3D"MsoNormal"><span>Hi Mar=
-tin,<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u><=
-/u></span></p><p class=3D"MsoNormal"><span>I didn=E2=80=99t mean to suggest=
- the Ettus examples are not working =E2=80=93 they do, and I get continuous=
- streaming with the default image and even 2x remote streams with ddc0 and =
-ddc1.<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u>=
-</u></span></p><p class=3D"MsoNormal"><span>I am trying to figure out what =
-my block is not doing correctly, and also trying to understand the mechanis=
-m that causes the usrp to stop remote streaming.<u></u><u></u></span></p><p=
- class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNo=
-rmal"><span>Its unclear if this is perhaps related to too-small endpoint bu=
-ffers, etc.<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=
-=A0<u></u></span></p><p class=3D"MsoNormal"><span>Regards, Kevin<u></u><u><=
-/u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><=
-p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoN=
-ormal"><b><span lang=3D"EN-US">From:</span></b><span lang=3D"EN-US"> Martin=
- Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank">mart=
-in.braun@ettus.com</a>&gt; <br><b>Sent:</b> Friday, 25 July 2025 14:46<br><=
-b>To:</b> Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za=
-" target=3D"_blank">kevin.williams@vastech.co.za</a>&gt;<br><b>Cc:</b> <a h=
-ref=3D"mailto:nbalkanas@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a=
->; <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-use=
-rs@lists.ettus.com</a><br><b>Subject:</b> Re: [USRP-users] Re: [EXTERNAL]Re=
-: remote streaming starts, but stops after a few packets received<u></u><u>=
-</u></span></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><div><p =
-class=3D"MsoNormal">Kevin,<u></u><u></u></p></div><div><p class=3D"MsoNorma=
-l"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">does rx_to_rem=
-ote_udp.py work (formerly known as remote_rx.py)? (It&#39;s an example in h=
-ost/examples/python).<u></u><u></u></p></div><div><p class=3D"MsoNormal"><u=
-></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">--M<u></u><u></u></=
-p></div></div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><div><p c=
-lass=3D"MsoNormal">On Fri, Jul 25, 2025 at 1:20=E2=80=AFPM Kevin Williams &=
-lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=3D"_blank">kevin.=
-williams@vastech.co.za</a>&gt; wrote:<u></u><u></u></p></div><blockquote st=
-yle=3D"border-width:medium medium medium 1pt;border-style:none none none so=
-lid;border-color:currentcolor currentcolor currentcolor rgb(204,204,204);pa=
-dding:0cm 0cm 0cm 6pt;margin-left:4.8pt;margin-right:0cm"><div><div><div><p=
- class=3D"MsoNormal">HI,<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u><=
-/u><u></u></p><p class=3D"MsoNormal">It seems that explicitly adding =E2=80=
-=9Cenable_fc=3D0=E2=80=9D does not help.<u></u><u></u></p><p class=3D"MsoNo=
-rmal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">I notice this control =
-packet though, just a few packets before the streaming stops.<u></u><u></u>=
-</p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">I=
-s that perhaps related to the issue?<u></u><u></u></p><p class=3D"MsoNormal=
-">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">Regards, Kevin<u></u><u></=
-u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal"=
->=C2=A0<u></u><u></u></p><p class=3D"MsoNormal"><img border=3D"0" width=3D"=
-1183" height=3D"488" style=3D"width: 12.3229in; height: 5.0833in;" id=3D"m_=
-7431241901291787732m_9166899014656955124Picture_x0020_2" src=3D"cid:ii_1985=
-1511daf4cff311"><u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></=
-u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal"=
-><img border=3D"0" width=3D"787" height=3D"560" style=3D"width: 8.1979in; h=
-eight: 5.8333in;" id=3D"m_7431241901291787732m_9166899014656955124Picture_x=
-0020_1" src=3D"cid:ii_19851511db05b16b22"><u></u><u></u></p><p class=3D"Mso=
-Normal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal"><b><span lang=3D"EN-=
-US">From:</span></b><span lang=3D"EN-US"> Martin Braun &lt;<a href=3D"mailt=
-o:martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; =
-<br><b>Sent:</b> Wednesday, 23 July 2025 16:57<br><b>To:</b> Kevin Williams=
- &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=3D"_blank">kevi=
-n.williams@vastech.co.za</a>&gt;<br><b>Cc:</b> <a href=3D"mailto:nbalkanas@=
-gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>; <a href=3D"mailto:usr=
-p-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><b=
-r><b>Subject:</b> Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming start=
-s, but stops after a few packets received</span><u></u><u></u></p><p class=
-=3D"MsoNormal">=C2=A0<u></u><u></u></p><div><div><p class=3D"MsoNormal">Kev=
-in,<u></u><u></u></p></div><div><p class=3D"MsoNormal">=C2=A0<u></u><u></u>=
-</p></div><div><p class=3D"MsoNormal">are you specifying enable_fc=3D0 in t=
-he=C2=A0stream args or not? In the debug statement above, they&#39;re shown=
-, but not in your last email. I&#39;m asking because it looks like FC is ki=
-cking in and stopping the stream.<u></u><u></u></p></div><div><p class=3D"M=
-soNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">--M<u><=
-/u><u></u></p></div></div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><d=
-iv><div><p class=3D"MsoNormal">On Wed, Jul 23, 2025 at 3:20=E2=80=AFPM Kevi=
-n Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=3D"_b=
-lank">kevin.williams@vastech.co.za</a>&gt; wrote:<u></u><u></u></p></div><b=
-lockquote style=3D"border-width:medium medium medium 1pt;border-style:none =
-none none solid;padding:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt;border-col=
-or:currentcolor currentcolor currentcolor rgb(204,204,204)"><div><div><div>=
-<p class=3D"MsoNormal">Hi Nikos,<u></u><u></u></p><p class=3D"MsoNormal">=
-=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">They are: <span lang=3D"EN-U=
-S">dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,dest_port=3D123=
-4,stream_mode=3Dfull_packet</span><u></u><u></u></p><p class=3D"MsoNormal">=
-=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">Kind regards, Kevin<u></u><u=
-></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNorm=
-al"><b><span lang=3D"EN-US">From:</span></b><span lang=3D"EN-US"> Nikos Bal=
-kanas &lt;<a href=3D"mailto:nbalkanas@gmail.com" target=3D"_blank">nbalkana=
-s@gmail.com</a>&gt; <br><b>Sent:</b> Wednesday, 23 July 2025 15:15<br><b>To=
-:</b> Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" ta=
-rget=3D"_blank">kevin.williams@vastech.co.za</a>&gt;<br><b>Cc:</b> <a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a><br><b>Subject:</b> [EXTERNAL]Re: [USRP-users] remote streaming=
- starts, but stops after a few packets received</span><u></u><u></u></p><p =
-class=3D"MsoNormal">=C2=A0<u></u><u></u></p><div><div><p class=3D"MsoNormal=
-"><span style=3D"font-size:12pt">Hi Kevin,</span><u></u><u></u></p></div><d=
-iv><p class=3D"MsoNormal"><span style=3D"font-size:12pt">=C2=A0</span><u></=
-u><u></u></p></div><div><p class=3D"MsoNormal"><span style=3D"font-size:12p=
-t">What are your stream_args?</span><u></u><u></u></p></div><div><p class=
-=3D"MsoNormal"><span style=3D"font-size:12pt">Using UHD_STREAM_MODE_NUM_SAM=
-PS_AND_DONE?</span><u></u><u></u></p></div><div><p class=3D"MsoNormal"><spa=
-n style=3D"font-size:12pt">Not using RFNOC, but full_packet is not a UHD 4.=
-6 mode:(</span><u></u><u></u></p></div><div><p class=3D"MsoNormal"><span st=
-yle=3D"font-size:12pt">=C2=A0</span><u></u><u></u></p></div><div><p class=
-=3D"MsoNormal"><span style=3D"font-size:12pt">BR,</span><u></u><u></u></p><=
-/div><div><p class=3D"MsoNormal"><span style=3D"font-size:12pt">nikos</span=
-><u></u><u></u></p></div></div><p class=3D"MsoNormal">=C2=A0<u></u><u></u><=
-/p><div><div><p class=3D"MsoNormal">On Wed, Jul 23, 2025 at 3:14=E2=80=AFPM=
- Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=
-=3D"_blank">kevin.williams@vastech.co.za</a>&gt; wrote:<u></u><u></u></p></=
-div><blockquote style=3D"border-width:medium medium medium 1pt;border-style=
-:none none none solid;padding:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt;bord=
-er-color:currentcolor currentcolor currentcolor rgb(204,204,204)"><div><div=
-><div><p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span lang=3D"EN-US">I have enabled remote stream=
-ing but according to wireshark I only receive 6x 4k packets.</span><u></u><=
-u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><=
-u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Everything about them=
- is correct =E2=80=93 the destination ip, port, size, etc.</span><u></u><u>=
-</u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u>=
-</u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">From the debug logs the=
- stream is set up as:</span><u></u><u></u></p><p class=3D"MsoNormal"><span =
-lang=3D"EN-US">=C2=A0</span><u></u><u></u></p><p class=3D"MsoNormal"><span =
-lang=3D"EN-US">[DEBUG] [RFNOC] Creating diverted RX stream with arguments: =
-dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,dest_port=3D1234,s=
-tream_mode=3Dfull_packet,__chdr_width=3D64,enable_remote_stream=3D1,enable_=
-fc=3D0</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=
-[DEBUG] [X300::SFP0::TA_CTL] On transport adapter 0: Adding route from EPID=
- 6 to destination <a href=3D"https://url.za.m.mimecastprotect.com/s/dnTlCnZ=
-Xkkt3VJlI9f2iJBiQg?domain=3D172.17.0.2" target=3D"_blank">172.17.0.2:1234</=
-a> (MAC Address: 02:42:ac:11:00:02), stream mode FULL_PACKET (0)</span><u><=
-/u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u><=
-/u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">What could cause =
-that streaming to stop (given there is no flow control)?</span><u></u><u></=
-u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></=
-u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Many thanks, Kevin</span>=
-<u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span>=
-<u></u><u></u></p></div></div><p class=3D"MsoNormal">______________________=
-_________________________<br>USRP-users mailing list -- <a href=3D"mailto:u=
-srp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>=
-<br>To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@list=
-s.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><u></u><=
-u></u></p></div></blockquote></div></div></div><p class=3D"MsoNormal">_____=
-__________________________________________<br>USRP-users mailing list -- <a=
- href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@li=
-sts.ettus.com</a><br>To unsubscribe send an email to <a href=3D"mailto:usrp=
--users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettu=
-s.com</a><u></u><u></u></p></div></blockquote></div></div></div></div></blo=
-ckquote></div></div></div></div></blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><!--[if =
+!mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>I did an experiment today with just =
+this (Ettus blocks only):<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>connections:<o:p></o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>=C2=A0 - { =
+srcblk: radio0,=C2=A0=C2=A0=C2=A0=C2=A0 srcport: =
+out_0,=C2=A0=C2=A0=C2=A0 dstblk: =
+ep0,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dstport: =
+in0}<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>=C2=A0 - { srcblk: <span =
+style=3D'background:yellow;mso-highlight:yellow'>ep6</span>,=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 srcport: out0,=C2=A0=C2=A0=C2=A0=C2=A0 =
+dstblk: ddc0, dstport: in_0 }<o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>=C2=A0 - { =
+srcblk: ddc0,=C2=A0 srcport: out_0,=C2=A0=C2=A0=C2=A0 dstblk: <span =
+style=3D'background:yellow;mso-highlight:yellow'>ep6</span>,=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 dstport: in0 }<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Which did =
+not work =E2=80=93 the remote streaming stopped.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Changing =
+the destination EP to a new one, ep7, worked =
+again.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>From the =
+RFNoC 4 workshop slides I was under the impression blocks could start =
+and end on the same SEP?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><b><span lang=3DEN-US>From:</span></b><span =
+lang=3DEN-US> Martin Braun &lt;martin.braun@ettus.com&gt; =
+<br><b>Sent:</b> Monday, 28 July 2025 15:57<br><b>Cc:</b> =
+usrp-users@lists.ettus.com<br><b>Subject:</b> [USRP-users] Re: =
+[EXTERNAL]Re: remote streaming starts, but stops after a few packets =
+received<o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p =
+class=3DMsoNormal>Ah, gotcha. Well.... I'm going to have to assume your =
+block is stalling for some other reason then =
+:/<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Sorry, not that useful a response. Can you run an ILA =
+to see if your block is not getting a tready on its =
+output?<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>--M<o:p></o:p></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DMsoNormal>On =
+Fri, Jul 25, 2025 at 2:56=E2=80=AFPM Kevin Williams &lt;<a =
+href=3D"mailto:kevin.williams@vastech.co.za">kevin.williams@vastech.co.za=
+</a>&gt; wrote:<o:p></o:p></p></div><blockquote =
+style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm 0cm =
+6.0pt;margin-left:4.8pt;margin-right:0cm'><div><div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hi =
+Martin,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I =
+didn=E2=80=99t mean to suggest the Ettus examples are not working =
+=E2=80=93 they do, and I get continuous streaming with the default image =
+and even 2x remote streams with ddc0 and ddc1.<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I am trying =
+to figure out what my block is not doing correctly, and also trying to =
+understand the mechanism that causes the usrp to stop remote =
+streaming.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Its unclear =
+if this is perhaps related to too-small endpoint buffers, =
+etc.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Regards, =
+Kevin<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
+lang=3DEN-US>From:</span></b><span lang=3DEN-US> Martin Braun &lt;<a =
+href=3D"mailto:martin.braun@ettus.com" =
+target=3D"_blank">martin.braun@ettus.com</a>&gt; <br><b>Sent:</b> =
+Friday, 25 July 2025 14:46<br><b>To:</b> Kevin Williams &lt;<a =
+href=3D"mailto:kevin.williams@vastech.co.za" =
+target=3D"_blank">kevin.williams@vastech.co.za</a>&gt;<br><b>Cc:</b> <a =
+href=3D"mailto:nbalkanas@gmail.com" =
+target=3D"_blank">nbalkanas@gmail.com</a>; <a =
+href=3D"mailto:usrp-users@lists.ettus.com" =
+target=3D"_blank">usrp-users@lists.ettus.com</a><br><b>Subject:</b> Re: =
+[USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but stops after =
+a few packets received</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Kevin,<o:p><=
+/o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>does =
+rx_to_remote_udp.py work (formerly known as remote_rx.py)? (It's an =
+example in host/examples/python).<o:p></o:p></p></div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>--M<o:p></o:=
+p></p></div></div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>On Fri, Jul =
+25, 2025 at 1:20=E2=80=AFPM Kevin Williams &lt;<a =
+href=3D"mailto:kevin.williams@vastech.co.za" =
+target=3D"_blank">kevin.williams@vastech.co.za</a>&gt; =
+wrote:<o:p></o:p></p></div><blockquote =
+style=3D'border:none;border-left:solid windowtext 1.0pt;padding:0cm 0cm =
+0cm =
+6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;margin-bottom:5=
+.0pt;border-color:currentcolor currentcolor currentcolor =
+rgb(204,204,204)'><div><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>HI,<o:p></o:=
+p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>It seems =
+that explicitly adding =E2=80=9Cenable_fc=3D0=E2=80=9D does not =
+help.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I notice =
+this control packet though, just a few packets before the streaming =
+stops.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Is that =
+perhaps related to the issue?<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Regards, =
+Kevin<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><img =
+border=3D0 width=3D1183 height=3D488 =
+style=3D'width:12.3229in;height:5.0833in' =
+id=3D"m_7431241901291787732m_9166899014656955124Picture_x0020_2" =
+src=3D"cid:image001.png@01DBFFDA.9F009310"><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><img =
+border=3D0 width=3D787 height=3D560 =
+style=3D'width:8.1979in;height:5.8333in' =
+id=3D"m_7431241901291787732m_9166899014656955124Picture_x0020_1" =
+src=3D"cid:image002.png@01DBFFDA.9F009310"><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
+lang=3DEN-US>From:</span></b><span lang=3DEN-US> Martin Braun &lt;<a =
+href=3D"mailto:martin.braun@ettus.com" =
+target=3D"_blank">martin.braun@ettus.com</a>&gt; <br><b>Sent:</b> =
+Wednesday, 23 July 2025 16:57<br><b>To:</b> Kevin Williams &lt;<a =
+href=3D"mailto:kevin.williams@vastech.co.za" =
+target=3D"_blank">kevin.williams@vastech.co.za</a>&gt;<br><b>Cc:</b> <a =
+href=3D"mailto:nbalkanas@gmail.com" =
+target=3D"_blank">nbalkanas@gmail.com</a>; <a =
+href=3D"mailto:usrp-users@lists.ettus.com" =
+target=3D"_blank">usrp-users@lists.ettus.com</a><br><b>Subject:</b> Re: =
+[USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but stops after =
+a few packets received</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Kevin,<o:p><=
+/o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>are you =
+specifying enable_fc=3D0 in the&nbsp;stream args or not? In the debug =
+statement above, they're shown, but not in your last email. I'm asking =
+because it looks like FC is kicking in and stopping the =
+stream.<o:p></o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>--M<o:p></o:=
+p></p></div></div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>On Wed, Jul =
+23, 2025 at 3:20=E2=80=AFPM Kevin Williams &lt;<a =
+href=3D"mailto:kevin.williams@vastech.co.za" =
+target=3D"_blank">kevin.williams@vastech.co.za</a>&gt; =
+wrote:<o:p></o:p></p></div><blockquote =
+style=3D'border:none;border-left:solid windowtext 1.0pt;padding:0cm 0cm =
+0cm =
+6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;margin-bottom:5=
+.0pt;border-color:currentcolor currentcolor currentcolor =
+rgb(204,204,204)'><div><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hi =
+Nikos,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>They are: =
+<span =
+lang=3DEN-US>dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,des=
+t_port=3D1234,stream_mode=3Dfull_packet</span><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Kind =
+regards, Kevin<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
+lang=3DEN-US>From:</span></b><span lang=3DEN-US> Nikos Balkanas &lt;<a =
+href=3D"mailto:nbalkanas@gmail.com" =
+target=3D"_blank">nbalkanas@gmail.com</a>&gt; <br><b>Sent:</b> =
+Wednesday, 23 July 2025 15:15<br><b>To:</b> Kevin Williams &lt;<a =
+href=3D"mailto:kevin.williams@vastech.co.za" =
+target=3D"_blank">kevin.williams@vastech.co.za</a>&gt;<br><b>Cc:</b> <a =
+href=3D"mailto:usrp-users@lists.ettus.com" =
+target=3D"_blank">usrp-users@lists.ettus.com</a><br><b>Subject:</b> =
+[EXTERNAL]Re: [USRP-users] remote streaming starts, but stops after a =
+few packets received</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:12.0pt'>Hi Kevin,</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:12.0pt'>&nbsp;</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:12.0pt'>What are your =
+stream_args?</span><o:p></o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:12.0pt'>Using =
+UHD_STREAM_MODE_NUM_SAMPS_AND_DONE?</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:12.0pt'>Not using RFNOC, but full_packet is not a UHD =
+4.6 mode:(</span><o:p></o:p></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:12.0pt'>&nbsp;</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:12.0pt'>BR,</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:12.0pt'>nikos</span><o:p></o:p></p></div></div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>On Wed, Jul =
+23, 2025 at 3:14=E2=80=AFPM Kevin Williams &lt;<a =
+href=3D"mailto:kevin.williams@vastech.co.za" =
+target=3D"_blank">kevin.williams@vastech.co.za</a>&gt; =
+wrote:<o:p></o:p></p></div><blockquote =
+style=3D'border:none;border-left:solid windowtext 1.0pt;padding:0cm 0cm =
+0cm =
+6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;margin-bottom:5=
+.0pt;border-color:currentcolor currentcolor currentcolor =
+rgb(204,204,204)'><div><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>Hi,</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>I have enabled remote streaming but according to wireshark =
+I only receive 6x 4k packets.</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>Everything about them is correct =E2=80=93 the destination =
+ip, port, size, etc.</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>From the debug logs the stream is set up =
+as:</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>[DEBUG] [RFNOC] Creating diverted RX stream with arguments: =
+dest_addr=3D172.17.0.2,dest_mac_addr=3D02:42:ac:11:00:02,dest_port=3D1234=
+,stream_mode=3Dfull_packet,__chdr_width=3D64,enable_remote_stream=3D1,ena=
+ble_fc=3D0</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>[DEBUG] [X300::SFP0::TA_CTL] On transport adapter 0: Adding =
+route from EPID 6 to destination <a =
+href=3D"https://url.za.m.mimecastprotect.com/s/uLPvCP1lEEINz0whzfMixbDH6?=
+domain=3D172.17.0.2" target=3D"_blank">172.17.0.2:1234</a> (MAC Address: =
+02:42:ac:11:00:02), stream mode FULL_PACKET (0)</span><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>What could cause that streaming to stop (given there is no =
+flow control)?</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>Many thanks, Kevin</span><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-US>&nbsp;</span><o:p></o:p></p></div></div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>____________=
+___________________________________<br>USRP-users mailing list -- <a =
+href=3D"mailto:usrp-users@lists.ettus.com" =
+target=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send =
+an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" =
+target=3D"_blank">usrp-users-leave@lists.ettus.com</a><o:p></o:p></p></di=
+v></blockquote></div></div></div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>____________=
+___________________________________<br>USRP-users mailing list -- <a =
+href=3D"mailto:usrp-users@lists.ettus.com" =
+target=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send =
+an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" =
+target=3D"_blank">usrp-users-leave@lists.ettus.com</a><o:p></o:p></p></di=
+v></blockquote></div></div></div></div></blockquote></div></div></div></d=
+iv></blockquote></div></div></body></html>
+------=_NextPart_002_0178_01DBFFDA.9FE32AE0--
 
---0000000000002abb9c063afdaaf6--
-
---0000000000002abb9e063afdaaf7
-Content-Type: image/png; name="image001.png"
-Content-Disposition: inline; filename="image001.png"
+------=_NextPart_001_0177_01DBFFDA.9FE32AE0
+Content-Type: image/png;
+	name="image001.png"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19851511daf4cff311>
-X-Attachment-Id: ii_19851511daf4cff311
+Content-ID: <image001.png@01DBFFDA.9F009310>
 
 iVBORw0KGgoAAAANSUhEUgAABJ8AAAHoCAYAAADnkk6vAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAP+lSURBVHhe7J0FeBRJE4YLd47D3eVwdycQSHA5
@@ -3898,12 +4197,12 @@ D54nLNPRc3RJEhaEVSE0ErtbRe5Zzp9+HZuahDqpDHd3pcVrgzhsVvLvQ2tOjIuckRx9A+PaALfm
 L0BmnDB/DT9Ta0gvxk+EXyLsH88Z80180Wq7xADea0he771yCz8PeN9FvXqj3yFZxdwci5yFi9dt
 p7VzhnHuK2PuPXxMY+au4hxKaFt4SH9f0NRjy5w8YImFa7ZyKg3sQhtdwaq1LlBBbkXX/lOUI5UU
 NHLmcr1sB9kBMj/ya0kkEokkOkT/B6z4yoP8zspYAAAAAElFTkSuQmCC
---0000000000002abb9e063afdaaf7
-Content-Type: image/png; name="image002.png"
-Content-Disposition: inline; filename="image002.png"
+
+------=_NextPart_001_0177_01DBFFDA.9FE32AE0
+Content-Type: image/png;
+	name="image002.png"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19851511db05b16b22>
-X-Attachment-Id: ii_19851511db05b16b22
+Content-ID: <image002.png@01DBFFDA.9F009310>
 
 iVBORw0KGgoAAAANSUhEUgAAAxMAAAIwCAYAAAD9FTZ8AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAP+lSURBVHhe7J0JvE1VF8A3IjNFfAkNSqQyJBJp
@@ -5289,9 +5588,95 @@ R9CZIIQQQgghhDiCzgQhhBBCCCHEEXQmCCGEEEIIIY6gM0EIIYQQQghxBJ0JQgghhBBCiCPoTBBC
 CCGEEEIcQWeCEEIIIYQQ4gg6E4QQQgghhBBH0JkghBBCCCGEOILOBCGEEEIIIcQRdCYIIYQQQggh
 jqAzQQghhBBCCHEEnQlCCCGEEEKII+hMEEIIIYQQQhxBZ4IQQgghhBDiCDoThBBCCCGEEEfQmSCE
 EEIIIYQ4gs4EIYQQQgghxBF0JgghhBBCCCEOUOr/AYDCQEuNvFjmAAAAAElFTkSuQmCC
---0000000000002abb9e063afdaaf7--
 
---===============0514489006997722841==
+------=_NextPart_001_0177_01DBFFDA.9FE32AE0--
+
+------=_NextPart_000_0176_01DBFFDA.9FE32AE0
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+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
+
+------=_NextPart_000_0176_01DBFFDA.9FE32AE0--
+
+--===============5671672521447598335==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -5301,4 +5686,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0514489006997722841==--
+--===============5671672521447598335==--
