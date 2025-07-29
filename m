@@ -2,65 +2,65 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08D52B14F85
-	for <lists+usrp-users@lfdr.de>; Tue, 29 Jul 2025 16:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C4AFB14FE7
+	for <lists+usrp-users@lfdr.de>; Tue, 29 Jul 2025 17:03:54 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 064BE386509
-	for <lists+usrp-users@lfdr.de>; Tue, 29 Jul 2025 10:49:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 86EAD386554
+	for <lists+usrp-users@lfdr.de>; Tue, 29 Jul 2025 11:03:53 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1753800582; bh=b1g3SWeHowDA/BBf+3EdwcF/8O7d3fXeXCIO7AgwCkE=;
+	t=1753801433; bh=QYZn6rfegNFKYKhkm+PnxO6ppDnHuAhGZX593V+QrU0=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=cKj4enmFXD9ZiGgOefWODudWObH+72O+NCTMr5WV4NpmtMsb//8IKBOvlzH/GaG+E
-	 RqTPc3tSjU6BQ1dWDauDki8XF7C6Zxrut4KFjzf0VFB4vlvsUixODj/7t+wV6ZXHWT
-	 H4XciG2MCL+RfG+NSPv3LULugeMW0V++AKH0LbYTCSWOrjn5BuaHI3BFk1zz5eM726
-	 E5io3r8E6nFOCbH0I9A3lNz3Dmwq3jucGGNIVMzoMbl8Vu/HubnAp807WFs2/duWSs
-	 oEzWP7VX4j7ekmGtb3XYTZ01hXne+wyXHCHVwd1lFXTgY42fb+G0JhXqHOLCNPZz0Y
-	 E6Z2uHx4+VvHg==
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 55A663862DA
-	for <usrp-users@lists.ettus.com>; Tue, 29 Jul 2025 10:49:02 -0400 (EDT)
+	b=vyUKticDJCrd9kcMIvi1LfjdUqWHPw6BFOKf7vX1E/bTzGubVRHsuc1ipQMpdIyEp
+	 vak+oZd9MRbunJy9LEqTXwjMTA5gIjSRvllvnyS5gU9TXJFNDRzZtmhKRzsliYm+3O
+	 zDTgaCfnt1H1dixnmYeE+/WZupKk4J5P2c2k6gZfcWg337AvVKL1Br9WPorFxCYuEr
+	 NP4UQkzHx4mW2lNlg3MsSZ3ZTDTqK0EGaNnHorpb53rWtUg7/NLAlaE4O2PSoRd54H
+	 mN74/TTcTXrHhh4fyFlaWHhoY8uIkwePDfNlVFo6ZWmgNeEojlIapC6i/PaXqjbn8I
+	 YVoIIsxKqecKw==
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2E09638650A
+	for <usrp-users@lists.ettus.com>; Tue, 29 Jul 2025 11:03:15 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="be6LIkxj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ViE5kI6f";
 	dkim-atps=neutral
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-87999c368e9so478617039f.0
-        for <usrp-users@lists.ettus.com>; Tue, 29 Jul 2025 07:49:02 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-2ffa1b10918so3184840fac.2
+        for <usrp-users@lists.ettus.com>; Tue, 29 Jul 2025 08:03:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753800541; x=1754405341; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1753801394; x=1754406194; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vpEBQW/QA2fTuZ6PpAitf9OYfrWqkkA2YGA6P0quImE=;
-        b=be6LIkxjGlkOZzwpgbTR/E2WE/aiAJ5+dj8/uIwYVAxpW2jsj49fe33WI0HB+mAqJe
-         BGGmEblm4AS++XJoyQLKQmKYLT3d0OlivOAMX1vlRC4N+ZZ17wbszFv+OothpCoMNvo9
-         3kjQ9f5IckfXxfiPt3Xc3LubNu+xoMb2piUpn7W+4DzwoL9/EcTOgB1sspqoSQ+zGhmO
-         WXlbTwa9uwKEHKIr0QZheTTnGF7eG6wzr2t68evZ10647/90L9E/9eSzEBIvjbkjyNf3
-         4rIYO5k7LZtQoqX943VOnpSv2dgKmyrtU91MbcMYdxEpyIruz9gn5RH/oAPLuh+eF4Ev
-         nZNg==
+        bh=CJlqCWGYzRTLJME1xjTURfb2MhrcU8Z2dDBe871Nc54=;
+        b=ViE5kI6f4Tye5uBnbQrjVuPt4+BGUzJstwvsOCXoebRBuX3QBg/bs9pvmLWrUT6hmw
+         4VBdqzmttecVe+3vha6+FuYTg4offfgOJH6AqfHCwe8iYT3emSLmSWcWTydPZNh+LUjR
+         kdlFQl41xWf0uiy8LKaO7xlG4sEW8Rj02t9EFZKNBw9765+RiTTKQvSTYGEOPlt90fK1
+         YM0LLtEi7KihoIYk8AaJg53dHaLYZ/ICEaeS6CRY5uj5vx1jTlRuncTItlqapow6Ai/8
+         dcezj2ADBydpOXBNVHJNoct3am1pdiG9I5uJpSlq79stAa0yjHECkY5QCKlZ3X7iRWBN
+         LveA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753800541; x=1754405341;
+        d=1e100.net; s=20230601; t=1753801394; x=1754406194;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vpEBQW/QA2fTuZ6PpAitf9OYfrWqkkA2YGA6P0quImE=;
-        b=OI7X/l/BHZ5l2Z1rNfENZ45x8JpN9WYhsVozGTmUKODCPIeoSfkR7XTL8lzvaZ7ujK
-         xT4ww0fWXCb3qoe+VM3sMt/hKHdqPFYMOotXPw9eNmNshJdMpLkeP0Aw8YisJ18xsO/D
-         HI9FzH5h2IAuCTFGKUXIKpjgNtD7nMnzHDVXhxHqN2f3klr0OZ5/jtdUOesVBuPPcLMR
-         1Opu+mnozXY4bgH8Pqq8oPps9Jhe+dF6ubmtlby5jW4+nLnpVyo00Gwh2pCbEqTXN8+v
-         ROtky25BXo7WE9bxVryFIFjtIOpeZmUa8Hje+koqI8WOPbYVmSg3Jdl9Lb1sRj9Rec0r
-         AlNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXocB0t3+COspbyqUigv5zB4kun+eAIvbwfvUGOmutIkLVuKEkMNhkOn6KBBtzRz9Hdg5LCnZSXuBL4@lists.ettus.com
-X-Gm-Message-State: AOJu0YwpK1/eqat/2W+waunG20ZyHqBlG1ZYKi7GJT+/jn5pYa9CZnAm
-	E62+oF5tFFfYfCZxvPnbeFSlZMuL2PBWm2DfMpaprakvXlXtCfJqfCgO8tQpxKG0lLD6JQHI6Sk
-	c16YSP7vb63I2uOFnQVfcVl09jAm+QtM=
-X-Gm-Gg: ASbGnct53e13BFl5FGGisYbKeDu5EH3PlBI8X5Xc5+xqFDhcHpju5+ehlzd0KUxQJ+U
-	NmthM9hO/t0E4Lan7HxEzlcD4niUclYw4Ftc2S7DB21fCrBzjxI0/LOiFCGZ0jET49EYvGJ1KZO
-	6L3mCe3WmE2V3TA7C5wIHysDx7ip5V+7yaHHutOwK7+UMZcc9xxC+84k9v88TLHJUzXnraTdMQf
-	xvXBXBZRHRuh9lc
-X-Google-Smtp-Source: AGHT+IHw1n61tZ4EvyZNPTsIYPWPyOKpZV945DPipa1jEpBrisy85DAVetwgYFXYbNOU4q6qHGinTdUtaTWp++J+IVE=
-X-Received: by 2002:a05:6602:1408:b0:87c:49fe:cafe with SMTP id
- ca18e2360f4ac-8802298192emr2823268139f.11.1753800541058; Tue, 29 Jul 2025
- 07:49:01 -0700 (PDT)
+        bh=CJlqCWGYzRTLJME1xjTURfb2MhrcU8Z2dDBe871Nc54=;
+        b=wIDeYThf2dzGJ3zscjKNEHHd/WL6nhNiJ08raGzHKW+TsrzpK38wPHOtL/ByufHff7
+         0RZxgHysBujpNFK6XWDoF8+JOom6THStGhMpUnzp9sbnsaCIxspD5lwFqJATr63f2uUz
+         InpGilFP6119cVGZSi7Tm7HLvt8Qs6Eo+fZNzPd9/k0BNbrKFhzwhOAJXtuLvFoAWfMh
+         viTER7DtBpIcWgCvOx3rReMZgMp+8TAgnKLtD9Nc9b5XCRjhSF6dCdygCliCYaquEj25
+         /KKeAT3kqedJvozwra7/PhHGkMHdFiVr7mipeBpx5iByqt1ub/sOoSU8O62fYJqEnAvj
+         bv6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWWcytpu+dGHJzrPaGHM6bcq5rqh8lo1Ek6ug2feoM6ZZiTtIPZX7HY/TPeJUQv/MzaDEotR49VJKOh@lists.ettus.com
+X-Gm-Message-State: AOJu0YyuuWAnMIDGCk65xxqA1zp0/VUW868+9e82GP1lVZshgUvBYUwX
+	RS3SDZ3AMcWeG6QZd9L5BRB9qAGatjFAuMqr6f+V0j7JclCKU5pSPe56mnZRTZPfzC3EtFLGxia
+	qf8sPadD3MULa5+uJgp+2C0XXXqTDOM7vOA==
+X-Gm-Gg: ASbGncv8u0ThASXxmkbBhLdpFZDCD6xp/2WRqCbFRvllNiP7xyzgqn9nVOdklxeLOb1
+	Wa8Z4TipX2mDu54v0FoZz5fNDkvDTzSRGUusAql5Lhu9f+fsq7lmHFKWDdPjayelyYpQtBmEqm2
+	DcCM74MxwjLLaRRJO75MxomUKYQ6R+kYEPqy8KOB7pYNhT2bgmoHHv7Tn7Y5ACV3ApvW+rYH8ex
+	m7JblM=
+X-Google-Smtp-Source: AGHT+IERTA010w+V/GcdUXsdH6/MPYm7JprRnGZHS5RoPFJDhjQ9+cIXKE4vhRO1k+h3V5QCsdyfZtb7xF48au23mIs=
+X-Received: by 2002:a05:6870:8289:b0:2d0:3078:e730 with SMTP id
+ 586e51a60fabf-30701cc3b74mr9833967fac.3.1753801393444; Tue, 29 Jul 2025
+ 08:03:13 -0700 (PDT)
 MIME-Version: 1.0
 References: <111b29cda9ce4309b4966fcfcc3b7ece@vastech.co.za>
  <CAAxXO2HUxF7tDvb8_OzmZS4xat-SM=X_BMN465cvw5PzGQvQ+A@mail.gmail.com>
@@ -72,15 +72,16 @@ References: <111b29cda9ce4309b4966fcfcc3b7ece@vastech.co.za>
  <CAFOi1A4X3PcST+MYSdpCSZUwZtNvBE14xSoHywGZ1RZeR7AP2g@mail.gmail.com>
  <f2f6f4a9aa574c9599c240b8353e2d02@vastech.co.za> <CAFOi1A4FsGYAbAz++Yg+rBphiXoPWYCjOLv_MYhWrmpNQZZOjA@mail.gmail.com>
  <827a6d39fb054bb4beb9eecdd59bd922@vastech.co.za> <CAFOi1A4LSO_cRQKGC_U+KNiU=UgEnUi_W9eDK9QaoLW9c+CWGw@mail.gmail.com>
- <CAAxXO2HbQ0dhjJYzgRUqhGRYmVpj_S6HjLdOfazUiNueEz8AJA@mail.gmail.com> <b874b353db35427fbba1515438423d5b@vastech.co.za>
-In-Reply-To: <b874b353db35427fbba1515438423d5b@vastech.co.za>
+ <CAAxXO2HbQ0dhjJYzgRUqhGRYmVpj_S6HjLdOfazUiNueEz8AJA@mail.gmail.com>
+ <b874b353db35427fbba1515438423d5b@vastech.co.za> <CAAxXO2H2UTX2YMv9yMajS_ZEgLN5L_D6qVh99woC+4xuNQh7eQ@mail.gmail.com>
+In-Reply-To: <CAAxXO2H2UTX2YMv9yMajS_ZEgLN5L_D6qVh99woC+4xuNQh7eQ@mail.gmail.com>
 From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Tue, 29 Jul 2025 17:48:47 +0300
-X-Gm-Features: Ac12FXxBPkT7PsBw8feFTcQGYsbIOy-CIBbM_NG51usIE7Fo9s-aj9yfxM-HjMw
-Message-ID: <CAAxXO2H2UTX2YMv9yMajS_ZEgLN5L_D6qVh99woC+4xuNQh7eQ@mail.gmail.com>
+Date: Tue, 29 Jul 2025 18:03:00 +0300
+X-Gm-Features: Ac12FXxTUP1MHdehMFcDUJ_dve0pZpnbNgJ_pNU2tliCS6sASqAtF8QuFQAUzwg
+Message-ID: <CAAxXO2F4z1uR58Wi5AirnQtWBTLnuh6L20c_pRgQtLjAw6N+8w@mail.gmail.com>
 To: Kevin Williams <kevin.williams@vastech.co.za>
-Message-ID-Hash: HD4SJC5TDPBTFJTK6WUL4AM3KYPITZ5B
-X-Message-ID-Hash: HD4SJC5TDPBTFJTK6WUL4AM3KYPITZ5B
+Message-ID-Hash: PDTN4XOZ4QPOMKUS3WT5ZJS5LFBRE72Y
+X-Message-ID-Hash: PDTN4XOZ4QPOMKUS3WT5ZJS5LFBRE72Y
 X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, Werner Bode <werner.bode@vastech.co.za>
@@ -88,888 +89,914 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but stops after a few packets received
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HD4SJC5TDPBTFJTK6WUL4AM3KYPITZ5B/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PDTN4XOZ4QPOMKUS3WT5ZJS5LFBRE72Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2102770467166014438=="
+Content-Type: multipart/mixed; boundary="===============9020758081209461251=="
 
---===============2102770467166014438==
-Content-Type: multipart/related; boundary="00000000000041de61063b128279"
+--===============9020758081209461251==
+Content-Type: multipart/related; boundary="000000000000104d44063b12b58c"
 
---00000000000041de61063b128279
-Content-Type: multipart/alternative; boundary="00000000000041de60063b128278"
+--000000000000104d44063b12b58c
+Content-Type: multipart/alternative; boundary="000000000000104d44063b12b58b"
 
---00000000000041de60063b128278
+--000000000000104d44063b12b58b
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Ooh. No problem.
-USRP will just see the single virtual host IP and send everything there
-using both its cables.
-Host will balance incoming data between its 2 NICS.
-Host will balance sending data to USRP 2 cables.
-I imagine that USRP can handle data arriving at its 2 ports simultaneously
-(merging streams?)
-So only 1side load balancing is needed.
-Either on USRP or on Host. Not both:)
-Using load balance on both would be wrong!
+Basically you are right. Both need to load balance.
+Since your USRP already has 2 ports, it must already balance between them:)
+Right now you only have 1/2 the balance.
+To complete it you also need your host LB:)
 
 HTH
 Nikos
 
+On Tue, Jul 29, 2025 at 5:48=E2=80=AFPM Nikos Balkanas <nbalkanas@gmail.com=
+> wrote:
 
-On Tue, Jul 29, 2025 at 4:58=E2=80=AFPM Kevin Williams <kevin.williams@vast=
-ech.co.za>
-wrote:
-
-> That=E2=80=99s an interesting concept, but I need the USRP to balance its=
- output
-> streams between the two 10 gbe nic=E2=80=99s.
+> Ooh. No problem.
+> USRP will just see the single virtual host IP and send everything there
+> using both its cables.
+> Host will balance incoming data between its 2 NICS.
+> Host will balance sending data to USRP 2 cables.
+> I imagine that USRP can handle data arriving at its 2 ports simultaneousl=
+y
+> (merging streams?)
+> So only 1side load balancing is needed.
+> Either on USRP or on Host. Not both:)
+> Using load balance on both would be wrong!
 >
->
->
-> I don=E2=80=99t think I can do that from the host side?
->
->
->
-> *From:* Nikos Balkanas <nbalkanas@gmail.com>
-> *Sent:* Tuesday, 29 July 2025 15:36
-> *To:* Martin Braun <martin.braun@ettus.com>
-> *Cc:* Kevin Williams <kevin.williams@vastech.co.za>;
-> usrp-users@lists.ettus.com; Werner Bode <werner.bode@vastech.co.za>
-> *Subject:* Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,
-> but stops after a few packets received
->
->
->
-> So you have 2 interfaces using the same IP...
->
-> I imagine you want them to load balance.
->
-> Try assigning both interfaces to the same virtual IP.
->
-> Then linux kernel will balance all in/out traffic from these interfaces:)
->
->
->
-> BR
->
+> HTH
 > Nikos
 >
 >
->
-> On Tue, Jul 29, 2025 at 4:26=E2=80=AFPM Martin Braun <martin.braun@ettus.=
-com>
-> wrote:
->
-> Ah, yes -- that is, in fact, the entire purpose of the CE clock. If you'r=
-e
-> doing sample processing, always use that clock. On all devices, we provid=
-e
-> that clock in a way that will let you do sample processing fast enough.
->
->
->
-> --M
->
->
->
-> On Tue, Jul 29, 2025 at 1:03=E2=80=AFPM Kevin Williams <
+> On Tue, Jul 29, 2025 at 4:58=E2=80=AFPM Kevin Williams <
 > kevin.williams@vastech.co.za> wrote:
 >
-> The resolution is that the x310 has the rfnoc_chdr clock (which I used to
-> clock my block) slower than the radio clock, whereas with my previous n30=
-0
-> that clock is faster..!
->
->
->
-> I need to create many output channels from my block now, so I think I wil=
-l
-> just ignore handshaking, and design on the basis of the radio streaming
-> continuously.
->
->
->
-> *From:* Martin Braun <martin.braun@ettus.com>
-> *Sent:* Tuesday, 29 July 2025 10:01
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but
-> stops after a few packets received
->
->
->
-> Normally flow control is the thing that will let the radio stall, but
-> maybe it's something else. From what I can see, there's two potential
-> culprits: 1) Your block is not permanently processing samples, but has so=
-me
-> bubble cycles or something like that. 2) The SEP->SEP connection has an
-> issue.
->
->
->
-> If you can, connect everything statically and see how that fares.
->
->
->
-> --M
->
->
->
-> On Tue, Jul 29, 2025 at 9:52=E2=80=AFAM Kevin Williams <
-> kevin.williams@vastech.co.za> wrote:
->
-> Hi Martin,
->
->
->
-> I do see a single =E2=80=9CO=E2=80=9D, but this is remote streaming so I =
-didn=E2=80=99t think that
-> should occur?
->
->
->
-> Yes, this is a radio -> my custom block dynamic connection.
->
->
->
-> Regards, Kevin
->
->
->
-> *From:* Martin Braun <martin.braun@ettus.com>
-> *Sent:* Tuesday, 29 July 2025 09:44
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but
-> stops after a few packets received
->
->
->
-> Kevin,
->
->
->
-> based on the src port, this looks like it's going from Device to Host, no=
-t
-> the other way around. This means it's an async message from an RFNoC bloc=
-k,
-> with address 0x1000. I can't tell for sure from this screenshot, but I
-> think this is coming from the radio, and 0x1000 is the "RX Error" address=
-.
-> The data is incorrectly formatted (probably an issue of the CHDR dissecto=
-r,
-> but I think it's telling us the data is "2" (if we read this in network
-> order).
->
->
->
-> Put these together, and we're looking at a simple overrun. Something in
-> your chain is holding up the radio after a few packets. Are you sure you'=
-re
-> not seeing an "O" anywhere in your output? You are using a radio block,
-> right?
->
->
->
-> --M
->
->
->
-> On Tue, Jul 29, 2025 at 9:19=E2=80=AFAM Kevin Williams <
-> kevin.williams@vastech.co.za> wrote:
->
-> Hi,
->
->
->
-> Another observation is the every time the streaming stalls, whether remot=
+>> That=E2=80=99s an interesting concept, but I need the USRP to balance it=
+s output
+>> streams between the two 10 gbe nic=E2=80=99s.
+>>
+>>
+>>
+>> I don=E2=80=99t think I can do that from the host side?
+>>
+>>
+>>
+>> *From:* Nikos Balkanas <nbalkanas@gmail.com>
+>> *Sent:* Tuesday, 29 July 2025 15:36
+>> *To:* Martin Braun <martin.braun@ettus.com>
+>> *Cc:* Kevin Williams <kevin.williams@vastech.co.za>;
+>> usrp-users@lists.ettus.com; Werner Bode <werner.bode@vastech.co.za>
+>> *Subject:* Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,
+>> but stops after a few packets received
+>>
+>>
+>>
+>> So you have 2 interfaces using the same IP...
+>>
+>> I imagine you want them to load balance.
+>>
+>> Try assigning both interfaces to the same virtual IP.
+>>
+>> Then linux kernel will balance all in/out traffic from these interfaces:=
+)
+>>
+>>
+>>
+>> BR
+>>
+>> Nikos
+>>
+>>
+>>
+>> On Tue, Jul 29, 2025 at 4:26=E2=80=AFPM Martin Braun <martin.braun@ettus=
+.com>
+>> wrote:
+>>
+>> Ah, yes -- that is, in fact, the entire purpose of the CE clock. If
+>> you're doing sample processing, always use that clock. On all devices, w=
 e
-> streaming or normal rx_streamer operation, I see this packet from the hos=
-t
-> to the x310 a few data packets before it stops.
->
->
->
-> What is this control write address (0x01000), and is it perhaps relevant?
->
->
->
->
->
-> *From:* Kevin Williams
-> *Sent:* Tuesday, 29 July 2025 07:53
-> *To:* 'bpadalino@gmail.com' <bpadalino@gmail.com>
-> *Cc:* 'martin.braun@ettus.com' <martin.braun@ettus.com>; '
-> usrp-users@lists.ettus.com' <usrp-users@lists.ettus.com>; Werner Bode <
-> werner.bode@vastech.co.za>
-> *Subject:* RE: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,
-> but stops after a few packets received
->
->
->
-> Hi Brian,
->
->
->
-> I=E2=80=99ve got two observations:
->
->
->
->    1. This is a summary of my custom block streaming where the data
->    packet stream ends with icmp packets about the destination becoming
->    unreachable:
->
->
->
-> No.         Time      Source  Destination         Protocol
-> Length  Info
->
-> 1              0.000000000       10.23.128.1         10.23.128.255
-> UDP       50           1534 =E2=86=92 1534 Len=3D8
->
-> 5343       49.277852197     10.22.128.3         10.23.128.1
-> UDP       60           49152 =E2=86=92 36716 Len=3D16
->
-> <5000-odd small udp and small rfnoc control & management packets. Setup I
-> guess.>
->
->
->
-> 7318       50.792688865     10.22.128.3         10.22.128.1         RFNOC
-> 4146       [Data]     ->   6
->
-> <first seq=3D0 rfnoc data packet of the correct size given my tlast count=
-er>
->
->
->
-> 7319       50.792748665     Intel_e8:c3:4c    Broadcast
-> ARP        42           Who has 10.22.128.1? Tell 10.23.128.1
->
-> 7320       50.792754229     10.22.128.3         10.22.128.1         RFNOC
-> 4146       [Data]     ->   6
->
-> <a few 100 more correct data packets>
->
->
->
-> 7775       50.795514072     10.22.128.3         10.22.128.1         RFNOC
-> 4146       [Data]     ->   6
->
->
->
-> <a string of more control and short 66 byte rfnoc packets, but no rfnoc
-> data packets>
->
->
->
-> 7968       52.854255766     Intel_e8:c3:4c    Broadcast
-> ARP        42           Who has 10.22.128.1? Tell 10.23.128.1
->
-> 7969       53.238261827     Intel_e8:c3:4e   NationalInst_35:aa:da
-> ARP        42           Who has 10.23.128.3? Tell 10.23.128.1 (duplicate
-> use of 10.23.128.1 detected!)
->
-> 7970       53.238475399     NationalInst_35:aa:da    Intel_e8:c3:4e
-> ARP        60           10.23.128.3 is at 00:80:2f:35:aa:da (duplicate us=
-e
-> of 10.23.128.1 detected!)
->
-> <then the destination becomes unreachable?>
->
->
->
-> 7971       53.878292746     10.23.128.1         10.22.128.3
-> ICMP     590         Destination unreachable (Host unreachable)
->
-> 7972       53.878302721     10.23.128.1         10.22.128.3
-> ICMP     590         Destination unreachable (Host unreachable)
->
-> 7973       53.878308143     10.23.128.1         10.22.128.3
-> ICMP     590         Destination unreachable (Host unreachable)
->
-> 7974       53.878314734     10.23.128.1         10.22.128.3
-> ICMP     590         Destination unreachable (Host unreachable)
->
-> 7975       53.878320545     10.23.128.1         10.22.128.3
-> ICMP     590         Destination unreachable (Host unreachable)
->
-> 7976       53.878326301     10.23.128.1         10.22.128.3
-> ICMP     590         Destination unreachable (Host unreachable)
->
->
->
-> <after that, just arp packets and the usrp broadcasting small udp packets=
->
->
->
->
-> 8014       137.075344888   NationalInst_35:aa:da    Broadcast
-> ARP        60           ARP Announcement for 10.23.128.3
->
-> 8015       137.075304321   NationalInst_35:aa:d9    Broadcast
-> ARP        60           ARP Announcement for 10.22.128.3
->
-> 8016       140.701925975   10.23.128.1         10.23.128.255     UDP
-> 50           38981 =E2=86=92 1534 Len=3D8
->
-> 8017       140.701942078   10.23.128.1         10.23.128.255     UDP
-> 50           38981 =E2=86=92 1534 Len=3D8
->
-> 8018       142.361983307   10.23.128.1         10.23.128.255     UDP
-> 50           59572 =E2=86=92 1534 Len=3D8
->
-> 8019       150.005535184   10.23.128.1         10.23.128.255     UDP
-> 50           1534 =E2=86=92 1534 Len=3D8
->
-> 8020       150.005558707   10.23.128.1         10.23.128.255     UDP
-> 50           1534 =E2=86=92 1534 Len=3D8
->
-> 8021       152.097709946   NationalInst_35:aa:d9    Broadcast
-> ARP        60           ARP Announcement for 10.22.128.3
->
-> 8022       152.097809876   NationalInst_35:aa:da    Broadcast
-> ARP        60           ARP Announcement for 10.23.128.3
->
-> 8023       155.702401576   10.23.128.1         10.23.128.255     UDP
-> 50           38981 =E2=86=92 1534 Len=3D8
->
-> 8024       155.702431967   10.23.128.1         10.23.128.255     UDP
-> 50           38981 =E2=86=92 1534 Len=3D8
->
-> 8025       157.378508296   10.23.128.1         10.23.128.255     UDP
-> 50           59572 =E2=86=92 1534 Len=3D8
->
->
->
->
->
->    2. ILA results
->
->
->
-> With my block I see a continuously asserted TREADY, with TLAST=E2=80=99s =
-at
-> exactly the correct sample counts, until streaming stops where I see TREA=
-DY
-> deasserted for 20-odd clocks, and then reasserted (without further
-> streaming).
->
->
->
-> Regards, Kevin
->
->
->
->
->
-> *From:* Brian Padalino <bpadalino@gmail.com>
-> *Sent:* Monday, 28 July 2025 16:49
-> *To:* Kevin Williams <kevin.williams@vastech.co.za>
-> *Cc:* martin.braun@ettus.com; usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,
-> but stops after a few packets received
->
->
->
-> On Mon, Jul 28, 2025 at 10:15=E2=80=AFAM Kevin Williams <
-> kevin.williams@vastech.co.za> wrote:
->
-> I did an experiment today with just this (Ettus blocks only):
->
->
->
-> connections:
->
->   - { srcblk: radio0,     srcport: out_0,    dstblk: ep0,       dstport:
-> in0}
->
->   - { srcblk: ep6,        srcport: out0,     dstblk: ddc0, dstport: in_0 =
+>> provide that clock in a way that will let you do sample processing fast
+>> enough.
+>>
+>>
+>>
+>> --M
+>>
+>>
+>>
+>> On Tue, Jul 29, 2025 at 1:03=E2=80=AFPM Kevin Williams <
+>> kevin.williams@vastech.co.za> wrote:
+>>
+>> The resolution is that the x310 has the rfnoc_chdr clock (which I used t=
+o
+>> clock my block) slower than the radio clock, whereas with my previous n3=
+00
+>> that clock is faster..!
+>>
+>>
+>>
+>> I need to create many output channels from my block now, so I think I
+>> will just ignore handshaking, and design on the basis of the radio
+>> streaming continuously.
+>>
+>>
+>>
+>> *From:* Martin Braun <martin.braun@ettus.com>
+>> *Sent:* Tuesday, 29 July 2025 10:01
+>> *Cc:* usrp-users@lists.ettus.com
+>> *Subject:* [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but
+>> stops after a few packets received
+>>
+>>
+>>
+>> Normally flow control is the thing that will let the radio stall, but
+>> maybe it's something else. From what I can see, there's two potential
+>> culprits: 1) Your block is not permanently processing samples, but has s=
+ome
+>> bubble cycles or something like that. 2) The SEP->SEP connection has an
+>> issue.
+>>
+>>
+>>
+>> If you can, connect everything statically and see how that fares.
+>>
+>>
+>>
+>> --M
+>>
+>>
+>>
+>> On Tue, Jul 29, 2025 at 9:52=E2=80=AFAM Kevin Williams <
+>> kevin.williams@vastech.co.za> wrote:
+>>
+>> Hi Martin,
+>>
+>>
+>>
+>> I do see a single =E2=80=9CO=E2=80=9D, but this is remote streaming so I=
+ didn=E2=80=99t think
+>> that should occur?
+>>
+>>
+>>
+>> Yes, this is a radio -> my custom block dynamic connection.
+>>
+>>
+>>
+>> Regards, Kevin
+>>
+>>
+>>
+>> *From:* Martin Braun <martin.braun@ettus.com>
+>> *Sent:* Tuesday, 29 July 2025 09:44
+>> *Cc:* usrp-users@lists.ettus.com
+>> *Subject:* [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but
+>> stops after a few packets received
+>>
+>>
+>>
+>> Kevin,
+>>
+>>
+>>
+>> based on the src port, this looks like it's going from Device to Host,
+>> not the other way around. This means it's an async message from an RFNoC
+>> block, with address 0x1000. I can't tell for sure from this screenshot, =
+but
+>> I think this is coming from the radio, and 0x1000 is the "RX Error"
+>> address. The data is incorrectly formatted (probably an issue of the CHD=
+R
+>> dissector, but I think it's telling us the data is "2" (if we read this =
+in
+>> network order).
+>>
+>>
+>>
+>> Put these together, and we're looking at a simple overrun. Something in
+>> your chain is holding up the radio after a few packets. Are you sure you=
+'re
+>> not seeing an "O" anywhere in your output? You are using a radio block,
+>> right?
+>>
+>>
+>>
+>> --M
+>>
+>>
+>>
+>> On Tue, Jul 29, 2025 at 9:19=E2=80=AFAM Kevin Williams <
+>> kevin.williams@vastech.co.za> wrote:
+>>
+>> Hi,
+>>
+>>
+>>
+>> Another observation is the every time the streaming stalls, whether
+>> remote streaming or normal rx_streamer operation, I see this packet from
+>> the host to the x310 a few data packets before it stops.
+>>
+>>
+>>
+>> What is this control write address (0x01000), and is it perhaps relevant=
+?
+>>
+>>
+>>
+>>
+>>
+>> *From:* Kevin Williams
+>> *Sent:* Tuesday, 29 July 2025 07:53
+>> *To:* 'bpadalino@gmail.com' <bpadalino@gmail.com>
+>> *Cc:* 'martin.braun@ettus.com' <martin.braun@ettus.com>; '
+>> usrp-users@lists.ettus.com' <usrp-users@lists.ettus.com>; Werner Bode <
+>> werner.bode@vastech.co.za>
+>> *Subject:* RE: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,
+>> but stops after a few packets received
+>>
+>>
+>>
+>> Hi Brian,
+>>
+>>
+>>
+>> I=E2=80=99ve got two observations:
+>>
+>>
+>>
+>>    1. This is a summary of my custom block streaming where the data
+>>    packet stream ends with icmp packets about the destination becoming
+>>    unreachable:
+>>
+>>
+>>
+>> No.         Time      Source  Destination         Protocol
+>> Length  Info
+>>
+>> 1              0.000000000       10.23.128.1         10.23.128.255
+>> UDP       50           1534 =E2=86=92 1534 Len=3D8
+>>
+>> 5343       49.277852197     10.22.128.3         10.23.128.1
+>> UDP       60           49152 =E2=86=92 36716 Len=3D16
+>>
+>> <5000-odd small udp and small rfnoc control & management packets. Setup =
+I
+>> guess.>
+>>
+>>
+>>
+>> 7318       50.792688865     10.22.128.3         10.22.128.1
+>> RFNOC  4146       [Data]     ->   6
+>>
+>> <first seq=3D0 rfnoc data packet of the correct size given my tlast coun=
+ter
+>> >
+>>
+>>
+>>
+>> 7319       50.792748665     Intel_e8:c3:4c    Broadcast
+>> ARP        42           Who has 10.22.128.1? Tell 10.23.128.1
+>>
+>> 7320       50.792754229     10.22.128.3         10.22.128.1
+>> RFNOC  4146       [Data]     ->   6
+>>
+>> <a few 100 more correct data packets>
+>>
+>>
+>>
+>> 7775       50.795514072     10.22.128.3         10.22.128.1
+>> RFNOC  4146       [Data]     ->   6
+>>
+>>
+>>
+>> <a string of more control and short 66 byte rfnoc packets, but no rfnoc
+>> data packets>
+>>
+>>
+>>
+>> 7968       52.854255766     Intel_e8:c3:4c    Broadcast
+>> ARP        42           Who has 10.22.128.1? Tell 10.23.128.1
+>>
+>> 7969       53.238261827     Intel_e8:c3:4e   NationalInst_35:aa:da
+>> ARP        42           Who has 10.23.128.3? Tell 10.23.128.1 (duplicate
+>> use of 10.23.128.1 detected!)
+>>
+>> 7970       53.238475399     NationalInst_35:aa:da    Intel_e8:c3:4e
+>> ARP        60           10.23.128.3 is at 00:80:2f:35:aa:da (duplicate u=
+se
+>> of 10.23.128.1 detected!)
+>>
+>> <then the destination becomes unreachable?>
+>>
+>>
+>>
+>> 7971       53.878292746     10.23.128.1         10.22.128.3
+>> ICMP     590         Destination unreachable (Host unreachable)
+>>
+>> 7972       53.878302721     10.23.128.1         10.22.128.3
+>> ICMP     590         Destination unreachable (Host unreachable)
+>>
+>> 7973       53.878308143     10.23.128.1         10.22.128.3
+>> ICMP     590         Destination unreachable (Host unreachable)
+>>
+>> 7974       53.878314734     10.23.128.1         10.22.128.3
+>> ICMP     590         Destination unreachable (Host unreachable)
+>>
+>> 7975       53.878320545     10.23.128.1         10.22.128.3
+>> ICMP     590         Destination unreachable (Host unreachable)
+>>
+>> 7976       53.878326301     10.23.128.1         10.22.128.3
+>> ICMP     590         Destination unreachable (Host unreachable)
+>>
+>>
+>>
+>> <after that, just arp packets and the usrp broadcasting small udp packet=
+s>
+>>
+>>
+>>
+>> 8014       137.075344888   NationalInst_35:aa:da    Broadcast
+>> ARP        60           ARP Announcement for 10.23.128.3
+>>
+>> 8015       137.075304321   NationalInst_35:aa:d9    Broadcast
+>> ARP        60           ARP Announcement for 10.22.128.3
+>>
+>> 8016       140.701925975   10.23.128.1         10.23.128.255
+>> UDP       50           38981 =E2=86=92 1534 Len=3D8
+>>
+>> 8017       140.701942078   10.23.128.1         10.23.128.255
+>> UDP       50           38981 =E2=86=92 1534 Len=3D8
+>>
+>> 8018       142.361983307   10.23.128.1         10.23.128.255
+>> UDP       50           59572 =E2=86=92 1534 Len=3D8
+>>
+>> 8019       150.005535184   10.23.128.1         10.23.128.255
+>> UDP       50           1534 =E2=86=92 1534 Len=3D8
+>>
+>> 8020       150.005558707   10.23.128.1         10.23.128.255
+>> UDP       50           1534 =E2=86=92 1534 Len=3D8
+>>
+>> 8021       152.097709946   NationalInst_35:aa:d9    Broadcast
+>> ARP        60           ARP Announcement for 10.22.128.3
+>>
+>> 8022       152.097809876   NationalInst_35:aa:da    Broadcast
+>> ARP        60           ARP Announcement for 10.23.128.3
+>>
+>> 8023       155.702401576   10.23.128.1         10.23.128.255
+>> UDP       50           38981 =E2=86=92 1534 Len=3D8
+>>
+>> 8024       155.702431967   10.23.128.1         10.23.128.255
+>> UDP       50           38981 =E2=86=92 1534 Len=3D8
+>>
+>> 8025       157.378508296   10.23.128.1         10.23.128.255
+>> UDP       50           59572 =E2=86=92 1534 Len=3D8
+>>
+>>
+>>
+>>
+>>
+>>    2. ILA results
+>>
+>>
+>>
+>> With my block I see a continuously asserted TREADY, with TLAST=E2=80=99s=
+ at
+>> exactly the correct sample counts, until streaming stops where I see TRE=
+ADY
+>> deasserted for 20-odd clocks, and then reasserted (without further
+>> streaming).
+>>
+>>
+>>
+>> Regards, Kevin
+>>
+>>
+>>
+>>
+>>
+>> *From:* Brian Padalino <bpadalino@gmail.com>
+>> *Sent:* Monday, 28 July 2025 16:49
+>> *To:* Kevin Williams <kevin.williams@vastech.co.za>
+>> *Cc:* martin.braun@ettus.com; usrp-users@lists.ettus.com
+>> *Subject:* Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,
+>> but stops after a few packets received
+>>
+>>
+>>
+>> On Mon, Jul 28, 2025 at 10:15=E2=80=AFAM Kevin Williams <
+>> kevin.williams@vastech.co.za> wrote:
+>>
+>> I did an experiment today with just this (Ettus blocks only):
+>>
+>>
+>>
+>> connections:
+>>
+>>   - { srcblk: radio0,     srcport: out_0,    dstblk: ep0,       dstport:
+>> in0}
+>>
+>>   - { srcblk: ep6,        srcport: out0,     dstblk: ddc0, dstport: in_0
+>> }
+>>
+>>   - { srcblk: ddc0,  srcport: out_0,    dstblk: ep6,       dstport: in0 =
 }
->
->   - { srcblk: ddc0,  srcport: out_0,    dstblk: ep6,       dstport: in0 }
->
->
->
-> Which did not work =E2=80=93 the remote streaming stopped.
->
->
->
-> Changing the destination EP to a new one, ep7, worked again.
->
->
->
-> From the RFNoC 4 workshop slides I was under the impression blocks could
-> start and end on the same SEP?
->
->
->
-> For what it's worth, I'm using remote streaming with a custom block and
-> it's working well.
->
->
->
-> In fact, the way remote streaming works (at least for an X440) is that th=
-e
-> Ethernet/UDP information is written here:
->
->
->
->
-> https://github.com/EttusResearch/uhd/blob/40403b7c00154e4559c47bd6dde924f=
-092992d45/fpga/usrp3/lib/rfnoc/xport_sv/chdr_xport_adapter.sv#L671
-> <https://url.za.m.mimecastprotect.com/s/g1I3CMjgAASkBYOhwfqi8MeC3?domain=
+>>
+>>
+>>
+>> Which did not work =E2=80=93 the remote streaming stopped.
+>>
+>>
+>>
+>> Changing the destination EP to a new one, ep7, worked again.
+>>
+>>
+>>
+>> From the RFNoC 4 workshop slides I was under the impression blocks could
+>> start and end on the same SEP?
+>>
+>>
+>>
+>> For what it's worth, I'm using remote streaming with a custom block and
+>> it's working well.
+>>
+>>
+>>
+>> In fact, the way remote streaming works (at least for an X440) is that
+>> the Ethernet/UDP information is written here:
+>>
+>>
+>>
+>>
+>> https://github.com/EttusResearch/uhd/blob/40403b7c00154e4559c47bd6dde924=
+f092992d45/fpga/usrp3/lib/rfnoc/xport_sv/chdr_xport_adapter.sv#L671
+>> <https://url.za.m.mimecastprotect.com/s/g1I3CMjgAASkBYOhwfqi8MeC3?domain=
 =3Dgithub.com>
->
->
->
-> The kv_map uses the destination EPID as the key for the ethernet
-> information which gets looked up for every packet.
->
->
->
-> So if the streaming works when not doing remote streaming it might be
-> something else since all data paths go through here.
->
->
->
-> If you get the first few packets and it stops, is there any way you're
-> providing `enable_fc` as an argument? That would enable flow control whic=
-h
-> obviously wouldn't be good if you aren't doing any flow control processin=
-g
-> on your RX side.
->
->
->
-> Lastly, I agree with Martin that you should probably add an ILA to your
-> block and the SEP interfaces to see where the AXI stream is getting stopp=
-ed
-> up.
->
->
->
-> Good luck.
->
->
->
-> Brian
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
+>>
+>>
+>>
+>> The kv_map uses the destination EPID as the key for the ethernet
+>> information which gets looked up for every packet.
+>>
+>>
+>>
+>> So if the streaming works when not doing remote streaming it might be
+>> something else since all data paths go through here.
+>>
+>>
+>>
+>> If you get the first few packets and it stops, is there any way you're
+>> providing `enable_fc` as an argument? That would enable flow control whi=
+ch
+>> obviously wouldn't be good if you aren't doing any flow control processi=
+ng
+>> on your RX side.
+>>
+>>
+>>
+>> Lastly, I agree with Martin that you should probably add an ILA to your
+>> block and the SEP interfaces to see where the AXI stream is getting stop=
+ped
+>> up.
+>>
+>>
+>>
+>> Good luck.
+>>
+>>
+>>
+>> Brian
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>>
 
---00000000000041de60063b128278
+--000000000000104d44063b12b58b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Ooh=
-. No problem.</div><div class=3D"gmail_default" style=3D"font-size:small">U=
-SRP will just see the single virtual host IP and send everything there usin=
-g both its cables.</div><div class=3D"gmail_default" style=3D"font-size:sma=
-ll">Host will balance incoming data between its 2 NICS.</div><div class=3D"=
-gmail_default" style=3D"font-size:small">Host will balance sending data to =
-USRP 2 cables.</div><div class=3D"gmail_default" style=3D"font-size:small">=
-I imagine that USRP can handle data arriving at its 2 ports simultaneously =
-(merging streams?)</div><div class=3D"gmail_default" style=3D"font-size:sma=
-ll">So only 1side load balancing is needed.</div><div class=3D"gmail_defaul=
-t" style=3D"font-size:small">Either on USRP or on Host. Not both:)</div><di=
-v class=3D"gmail_default" style=3D"font-size:small">Using load balance on b=
-oth would be wrong!</div><div class=3D"gmail_default" style=3D"font-size:sm=
-all"><br></div><div class=3D"gmail_default" style=3D"font-size:small">HTH=
-=C2=A0</div><div class=3D"gmail_default" style=3D"font-size:small">Nikos</d=
-iv><div class=3D"gmail_default" style=3D"font-size:small">=C2=A0</div></div=
-><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" clas=
-s=3D"gmail_attr">On Tue, Jul 29, 2025 at 4:58=E2=80=AFPM Kevin Williams &lt=
-;<a href=3D"mailto:kevin.williams@vastech.co.za">kevin.williams@vastech.co.=
-za</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div class=3D"msg-3472748589567216750"><div lang=3D"EN-ZA"><div class=3D"=
-m_-3472748589567216750WordSection1"><p class=3D"MsoNormal"><span>That=E2=80=
-=99s an interesting concept, but I need the USRP to balance its output stre=
-ams between the two 10 gbe nic=E2=80=99s.<u></u><u></u></span></p><p class=
-=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal">=
-<span>I don=E2=80=99t think I can do that from the host side?<u></u><u></u>=
-</span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p c=
-lass=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=3D"EN=
--US"> Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.com" target=3D"_=
-blank">nbalkanas@gmail.com</a>&gt; <br><b>Sent:</b> Tuesday, 29 July 2025 1=
-5:36<br><b>To:</b> Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.co=
-m" target=3D"_blank">martin.braun@ettus.com</a>&gt;<br><b>Cc:</b> Kevin Wil=
-liams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=3D"_blank"=
->kevin.williams@vastech.co.za</a>&gt;; <a href=3D"mailto:usrp-users@lists.e=
-ttus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>; Werner Bode &lt=
-;<a href=3D"mailto:werner.bode@vastech.co.za" target=3D"_blank">werner.bode=
-@vastech.co.za</a>&gt;<br><b>Subject:</b> Re: [USRP-users] Re: [EXTERNAL]Re=
-: remote streaming starts, but stops after a few packets received<u></u><u>=
-</u></span></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><div><p =
-class=3D"MsoNormal"><span style=3D"font-size:12pt">So you have 2 interfaces=
- using the same IP...<u></u><u></u></span></p></div><div><p class=3D"MsoNor=
-mal"><span style=3D"font-size:12pt">I imagine you want them to load balance=
-.<u></u><u></u></span></p></div><div><p class=3D"MsoNormal"><span style=3D"=
-font-size:12pt">Try assigning both interfaces to the same virtual IP.<u></u=
-><u></u></span></p></div><div><p class=3D"MsoNormal"><span style=3D"font-si=
-ze:12pt">Then linux kernel will balance all in/out traffic from these inter=
-faces:)<u></u><u></u></span></p></div><div><p class=3D"MsoNormal"><span sty=
-le=3D"font-size:12pt"><u></u>=C2=A0<u></u></span></p></div><div><p class=3D=
-"MsoNormal"><span style=3D"font-size:12pt">BR<u></u><u></u></span></p></div=
-><div><p class=3D"MsoNormal"><span style=3D"font-size:12pt">Nikos<u></u><u>=
-</u></span></p></div></div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><=
-div><div><p class=3D"MsoNormal">On Tue, Jul 29, 2025 at 4:26=E2=80=AFPM Mar=
-tin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank">m=
-artin.braun@ettus.com</a>&gt; wrote:<u></u><u></u></p></div><blockquote sty=
-le=3D"border-top:none;border-right:none;border-bottom:none;border-left:1pt =
-solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:4.8pt;margin-rig=
-ht:0cm"><div><div><p class=3D"MsoNormal">Ah, yes -- that is, in fact, the e=
-ntire purpose of the CE clock. If you&#39;re doing sample processing, alway=
-s use that clock. On all devices, we provide that clock in a way that will =
-let you do sample processing fast enough.<u></u><u></u></p></div><div><p cl=
-ass=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal"=
->--M<u></u><u></u></p></div></div><p class=3D"MsoNormal"><u></u>=C2=A0<u></=
-u></p><div><div><p class=3D"MsoNormal">On Tue, Jul 29, 2025 at 1:03=E2=80=
-=AFPM Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" ta=
-rget=3D"_blank">kevin.williams@vastech.co.za</a>&gt; wrote:<u></u><u></u></=
-p></div><blockquote style=3D"border-top:none;border-right:none;border-botto=
-m:none;border-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margi=
-n-left:4.8pt;margin-right:0cm"><div><div><div><p class=3D"MsoNormal">The re=
-solution is that the x310 has the rfnoc_chdr clock (which I used to clock m=
-y block) slower than the radio clock, whereas with my previous n300 that cl=
-ock is faster..!<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></=
-u></p><p class=3D"MsoNormal">I need to create many output channels from my =
-block now, so I think I will just ignore handshaking, and design on the bas=
-is of the radio streaming continuously.<u></u><u></u></p><p class=3D"MsoNor=
-mal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal"><b><span lang=3D"EN-US"=
->From:</span></b><span lang=3D"EN-US"> Martin Braun &lt;<a href=3D"mailto:m=
-artin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; <br=
-><b>Sent:</b> Tuesday, 29 July 2025 10:01<br><b>Cc:</b> <a href=3D"mailto:u=
-srp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>=
-<br><b>Subject:</b> [USRP-users] Re: [EXTERNAL]Re: remote streaming starts,=
- but stops after a few packets received</span><u></u><u></u></p><p class=3D=
-"MsoNormal">=C2=A0<u></u><u></u></p><div><div><p class=3D"MsoNormal">Normal=
-ly flow control is the thing that will let the radio stall, but maybe it&#3=
-9;s something else. From what I can see, there&#39;s two potential culprits=
-: 1) Your block is not permanently processing samples, but has some bubble =
-cycles or something like that. 2) The SEP-&gt;SEP connection has an issue.<=
-u></u><u></u></p></div><div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>=
-</div><div><p class=3D"MsoNormal">If you can, connect everything statically=
- and see how that fares.<u></u><u></u></p></div><div><p class=3D"MsoNormal"=
->=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">--M<u></u><u></u=
-></p></div></div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><div><div><=
-p class=3D"MsoNormal">On Tue, Jul 29, 2025 at 9:52=E2=80=AFAM Kevin William=
-s &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=3D"_blank">kev=
-in.williams@vastech.co.za</a>&gt; wrote:<u></u><u></u></p></div><blockquote=
- style=3D"border-top:none currentcolor;border-right:none currentcolor;borde=
-r-bottom:none currentcolor;border-left:1pt solid rgb(204,204,204);padding:0=
-cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt"><div><div><div><p class=3D"MsoNorm=
-al">Hi Martin,<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u>=
-</p><p class=3D"MsoNormal">I do see a single =E2=80=9CO=E2=80=9D, but this =
-is remote streaming so I didn=E2=80=99t think that should occur?<u></u><u><=
-/u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal=
-">Yes, this is a radio -&gt; my custom block dynamic connection.<u></u><u><=
-/u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal=
-">Regards, Kevin<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></=
-u></p><p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span =
-lang=3D"EN-US"> Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" =
-target=3D"_blank">martin.braun@ettus.com</a>&gt; <br><b>Sent:</b> Tuesday, =
-29 July 2025 09:44<br><b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.c=
-om" target=3D"_blank">usrp-users@lists.ettus.com</a><br><b>Subject:</b> [US=
-RP-users] Re: [EXTERNAL]Re: remote streaming starts, but stops after a few =
-packets received</span><u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></=
-u><u></u></p><div><div><p class=3D"MsoNormal">Kevin,<u></u><u></u></p></div=
-><div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D=
-"MsoNormal">based on the src port, this looks like it&#39;s going from Devi=
-ce to Host, not the other way around. This means it&#39;s an async message =
-from an RFNoC block, with address 0x1000. I can&#39;t tell for sure from th=
-is screenshot, but I think this is coming from the radio, and 0x1000 is the=
- &quot;RX Error&quot; address. The data is incorrectly formatted (probably =
-an issue of the CHDR dissector, but I think it&#39;s telling us the data is=
- &quot;2&quot; (if we read this in network order).<u></u><u></u></p></div><=
-div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"M=
-soNormal">Put these together, and we&#39;re looking at a simple overrun. So=
-mething in your chain is holding up the radio after a few packets. Are you =
-sure you&#39;re not seeing an &quot;O&quot; anywhere in your output? You ar=
-e using a radio block, right?<u></u><u></u></p></div><div><p class=3D"MsoNo=
-rmal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">--M<u></u><=
-u></u></p></div></div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><div><=
-div><p class=3D"MsoNormal">On Tue, Jul 29, 2025 at 9:19=E2=80=AFAM Kevin Wi=
-lliams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=3D"_blank=
-">kevin.williams@vastech.co.za</a>&gt; wrote:<u></u><u></u></p></div><block=
-quote style=3D"border-top:none currentcolor;border-right:none currentcolor;=
-border-bottom:none currentcolor;border-left:1pt solid rgb(204,204,204);padd=
-ing:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt"><div><div><div><p class=3D"Ms=
-oNormal">Hi,<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></=
-p><p class=3D"MsoNormal">Another observation is the every time the streamin=
-g stalls, whether remote streaming or normal rx_streamer operation, I see t=
-his packet from the host to the x310 a few data packets before it stops.<u>=
-</u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"M=
-soNormal">What is this control write address (0x01000), and is it perhaps r=
-elevant?<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p=
- class=3D"MsoNormal"><img border=3D"0" width=3D"643" height=3D"369" style=
-=3D"width: 6.6979in; height: 3.8437in;" id=3D"m_-3472748589567216750m_-5570=
-553598922812820m_6977248542852457416m_308529856188436682m_12758453329210587=
-04Picture_x0020_1" src=3D"cid:ii_198569bc8f34cff311"><u></u><u></u></p><p c=
-lass=3D"MsoNormal">=C2=A0<u></u><u></u></p><div><div style=3D"border-right:=
-none currentcolor;border-bottom:none currentcolor;border-left:none currentc=
-olor;border-top:1pt solid currentcolor;padding:3pt 0cm 0cm"><p class=3D"Mso=
-Normal"><b><span lang=3D"EN-US">From:</span></b><span lang=3D"EN-US"> Kevin=
- Williams <br><b>Sent:</b> Tuesday, 29 July 2025 07:53<br><b>To:</b> &#39;<=
-a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.com=
-</a>&#39; &lt;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpad=
-alino@gmail.com</a>&gt;<br><b>Cc:</b> &#39;<a href=3D"mailto:martin.braun@e=
-ttus.com" target=3D"_blank">martin.braun@ettus.com</a>&#39; &lt;<a href=3D"=
-mailto:martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>=
-&gt;; &#39;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a>&#39; &lt;<a href=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;; Werner Bod=
-e &lt;<a href=3D"mailto:werner.bode@vastech.co.za" target=3D"_blank">werner=
-.bode@vastech.co.za</a>&gt;<br><b>Subject:</b> RE: [USRP-users] Re: [EXTERN=
-AL]Re: remote streaming starts, but stops after a few packets received</spa=
-n><u></u><u></u></p></div></div><p class=3D"MsoNormal">=C2=A0<u></u><u></u>=
-</p><p class=3D"MsoNormal">Hi Brian,<u></u><u></u></p><p class=3D"MsoNormal=
-">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">I=E2=80=99ve got two obser=
-vations:<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><o=
-l start=3D"1" type=3D"1"><li class=3D"MsoNormal">This is a summary of my cu=
-stom block streaming where the data packet stream ends with icmp packets ab=
-out the destination becoming unreachable:<u></u><u></u></li></ol><p class=
-=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">No.=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Time=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-Source=C2=A0 Destination=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Pr=
-otocol=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 Length=C2=A0 Info<u></u><u></u></p><p class=3D"MsoNormal">1=
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Bas=
+ically you are right. Both need to load balance.</div><div class=3D"gmail_d=
+efault" style=3D"font-size:small">Since your USRP already has 2 ports, it m=
+ust already balance between them:)</div><div class=3D"gmail_default" style=
+=3D"font-size:small">Right now you only have 1/2 the balance.</div><div cla=
+ss=3D"gmail_default" style=3D"font-size:small">To complete it you also need=
+ your host LB:)</div><div class=3D"gmail_default" style=3D"font-size:small"=
+><br></div><div class=3D"gmail_default" style=3D"font-size:small">HTH</div>=
+<div class=3D"gmail_default" style=3D"font-size:small">Nikos</div></div><br=
+><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Tue, Jul 29, 2025 at 5:48=E2=80=AFPM Nikos Balkanas &lt;<a =
+href=3D"mailto:nbalkanas@gmail.com">nbalkanas@gmail.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
+v class=3D"gmail_default" style=3D"font-size:small">Ooh. No problem.</div><=
+div class=3D"gmail_default" style=3D"font-size:small">USRP will just see th=
+e single virtual host IP and send everything there using both its cables.</=
+div><div class=3D"gmail_default" style=3D"font-size:small">Host will balanc=
+e incoming data between its 2 NICS.</div><div class=3D"gmail_default" style=
+=3D"font-size:small">Host will balance sending data to USRP 2 cables.</div>=
+<div class=3D"gmail_default" style=3D"font-size:small">I imagine that USRP =
+can handle data arriving at its 2 ports simultaneously (merging streams?)</=
+div><div class=3D"gmail_default" style=3D"font-size:small">So only 1side lo=
+ad balancing is needed.</div><div class=3D"gmail_default" style=3D"font-siz=
+e:small">Either on USRP or on Host. Not both:)</div><div class=3D"gmail_def=
+ault" style=3D"font-size:small">Using load balance on both would be wrong!<=
+/div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div =
+class=3D"gmail_default" style=3D"font-size:small">HTH=C2=A0</div><div class=
+=3D"gmail_default" style=3D"font-size:small">Nikos</div><div class=3D"gmail=
+_default" style=3D"font-size:small">=C2=A0</div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 29, 2025 at 4:5=
+8=E2=80=AFPM Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co=
+.za" target=3D"_blank">kevin.williams@vastech.co.za</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div lang=3D"EN-ZA"=
+><div><p class=3D"MsoNormal"><span>That=E2=80=99s an interesting concept, b=
+ut I need the USRP to balance its output streams between the two 10 gbe nic=
+=E2=80=99s.<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=
+=A0<u></u></span></p><p class=3D"MsoNormal"><span>I don=E2=80=99t think I c=
+an do that from the host side?<u></u><u></u></span></p><p class=3D"MsoNorma=
+l"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><b><span lan=
+g=3D"EN-US">From:</span></b><span lang=3D"EN-US"> Nikos Balkanas &lt;<a hre=
+f=3D"mailto:nbalkanas@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>&=
+gt; <br><b>Sent:</b> Tuesday, 29 July 2025 15:36<br><b>To:</b> Martin Braun=
+ &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank">martin.bra=
+un@ettus.com</a>&gt;<br><b>Cc:</b> Kevin Williams &lt;<a href=3D"mailto:kev=
+in.williams@vastech.co.za" target=3D"_blank">kevin.williams@vastech.co.za</=
+a>&gt;; <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usr=
+p-users@lists.ettus.com</a>; Werner Bode &lt;<a href=3D"mailto:werner.bode@=
+vastech.co.za" target=3D"_blank">werner.bode@vastech.co.za</a>&gt;<br><b>Su=
+bject:</b> Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but =
+stops after a few packets received<u></u><u></u></span></p><p class=3D"MsoN=
+ormal"><u></u>=C2=A0<u></u></p><div><div><p class=3D"MsoNormal"><span style=
+=3D"font-size:12pt">So you have 2 interfaces using the same IP...<u></u><u>=
+</u></span></p></div><div><p class=3D"MsoNormal"><span style=3D"font-size:1=
+2pt">I imagine you want them to load balance.<u></u><u></u></span></p></div=
+><div><p class=3D"MsoNormal"><span style=3D"font-size:12pt">Try assigning b=
+oth interfaces to the same virtual IP.<u></u><u></u></span></p></div><div><=
+p class=3D"MsoNormal"><span style=3D"font-size:12pt">Then linux kernel will=
+ balance all in/out traffic from these interfaces:)<u></u><u></u></span></p=
+></div><div><p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=
+=C2=A0<u></u></span></p></div><div><p class=3D"MsoNormal"><span style=3D"fo=
+nt-size:12pt">BR<u></u><u></u></span></p></div><div><p class=3D"MsoNormal">=
+<span style=3D"font-size:12pt">Nikos<u></u><u></u></span></p></div></div><p=
+ class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><div><p class=3D"MsoNorma=
+l">On Tue, Jul 29, 2025 at 4:26=E2=80=AFPM Martin Braun &lt;<a href=3D"mail=
+to:martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt;=
+ wrote:<u></u><u></u></p></div><blockquote style=3D"border-top:none;border-=
+right:none;border-bottom:none;border-left:1pt solid rgb(204,204,204);paddin=
+g:0cm 0cm 0cm 6pt;margin-left:4.8pt;margin-right:0cm"><div><div><p class=3D=
+"MsoNormal">Ah, yes -- that is, in fact, the entire purpose of the CE clock=
+. If you&#39;re doing sample processing, always use that clock. On all devi=
+ces, we provide that clock in a way that will let you do sample processing =
+fast enough.<u></u><u></u></p></div><div><p class=3D"MsoNormal"><u></u>=C2=
+=A0<u></u></p></div><div><p class=3D"MsoNormal">--M<u></u><u></u></p></div>=
+</div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><div><p class=3D"=
+MsoNormal">On Tue, Jul 29, 2025 at 1:03=E2=80=AFPM Kevin Williams &lt;<a hr=
+ef=3D"mailto:kevin.williams@vastech.co.za" target=3D"_blank">kevin.williams=
+@vastech.co.za</a>&gt; wrote:<u></u><u></u></p></div><blockquote style=3D"b=
+order-top:none;border-right:none;border-bottom:none;border-left:1pt solid r=
+gb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:4.8pt;margin-right:0cm"=
+><div><div><div><p class=3D"MsoNormal">The resolution is that the x310 has =
+the rfnoc_chdr clock (which I used to clock my block) slower than the radio=
+ clock, whereas with my previous n300 that clock is faster..!<u></u><u></u>=
+</p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">I=
+ need to create many output channels from my block now, so I think I will j=
+ust ignore handshaking, and design on the basis of the radio streaming cont=
+inuously.<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><=
+p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=3D=
+"EN-US"> Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=
+=3D"_blank">martin.braun@ettus.com</a>&gt; <br><b>Sent:</b> Tuesday, 29 Jul=
+y 2025 10:01<br><b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br><b>Subject:</b> [USRP-use=
+rs] Re: [EXTERNAL]Re: remote streaming starts, but stops after a few packet=
+s received</span><u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u><=
+/u></p><div><div><p class=3D"MsoNormal">Normally flow control is the thing =
+that will let the radio stall, but maybe it&#39;s something else. From what=
+ I can see, there&#39;s two potential culprits: 1) Your block is not perman=
+ently processing samples, but has some bubble cycles or something like that=
+. 2) The SEP-&gt;SEP connection has an issue.<u></u><u></u></p></div><div><=
+p class=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNor=
+mal">If you can, connect everything statically and see how that fares.<u></=
+u><u></u></p></div><div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p></di=
+v><div><p class=3D"MsoNormal">--M<u></u><u></u></p></div></div><p class=3D"=
+MsoNormal">=C2=A0<u></u><u></u></p><div><div><p class=3D"MsoNormal">On Tue,=
+ Jul 29, 2025 at 9:52=E2=80=AFAM Kevin Williams &lt;<a href=3D"mailto:kevin=
+.williams@vastech.co.za" target=3D"_blank">kevin.williams@vastech.co.za</a>=
+&gt; wrote:<u></u><u></u></p></div><blockquote style=3D"border-top:none cur=
+rentcolor;border-right:none currentcolor;border-bottom:none currentcolor;bo=
+rder-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin:5pt 0cm=
+ 5pt 4.8pt"><div><div><div><p class=3D"MsoNormal">Hi Martin,<u></u><u></u><=
+/p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">I =
+do see a single =E2=80=9CO=E2=80=9D, but this is remote streaming so I didn=
+=E2=80=99t think that should occur?<u></u><u></u></p><p class=3D"MsoNormal"=
+>=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">Yes, this is a radio -&gt; =
+my custom block dynamic connection.<u></u><u></u></p><p class=3D"MsoNormal"=
+>=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">Regards, Kevin<u></u><u></u=
+></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">=
+<b><span lang=3D"EN-US">From:</span></b><span lang=3D"EN-US"> Martin Braun =
+&lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank">martin.brau=
+n@ettus.com</a>&gt; <br><b>Sent:</b> Tuesday, 29 July 2025 09:44<br><b>Cc:<=
+/b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a><br><b>Subject:</b> [USRP-users] Re: [EXTERNAL]Re: r=
+emote streaming starts, but stops after a few packets received</span><u></u=
+><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><div><div><p cla=
+ss=3D"MsoNormal">Kevin,<u></u><u></u></p></div><div><p class=3D"MsoNormal">=
+=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">based on the src =
+port, this looks like it&#39;s going from Device to Host, not the other way=
+ around. This means it&#39;s an async message from an RFNoC block, with add=
+ress 0x1000. I can&#39;t tell for sure from this screenshot, but I think th=
+is is coming from the radio, and 0x1000 is the &quot;RX Error&quot; address=
+. The data is incorrectly formatted (probably an issue of the CHDR dissecto=
+r, but I think it&#39;s telling us the data is &quot;2&quot; (if we read th=
+is in network order).<u></u><u></u></p></div><div><p class=3D"MsoNormal">=
+=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Put these togethe=
+r, and we&#39;re looking at a simple overrun. Something in your chain is ho=
+lding up the radio after a few packets. Are you sure you&#39;re not seeing =
+an &quot;O&quot; anywhere in your output? You are using a radio block, righ=
+t?<u></u><u></u></p></div><div><p class=3D"MsoNormal">=C2=A0<u></u><u></u><=
+/p></div><div><p class=3D"MsoNormal">--M<u></u><u></u></p></div></div><p cl=
+ass=3D"MsoNormal">=C2=A0<u></u><u></u></p><div><div><p class=3D"MsoNormal">=
+On Tue, Jul 29, 2025 at 9:19=E2=80=AFAM Kevin Williams &lt;<a href=3D"mailt=
+o:kevin.williams@vastech.co.za" target=3D"_blank">kevin.williams@vastech.co=
+.za</a>&gt; wrote:<u></u><u></u></p></div><blockquote style=3D"border-top:n=
+one currentcolor;border-right:none currentcolor;border-bottom:none currentc=
+olor;border-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin:=
+5pt 0cm 5pt 4.8pt"><div><div><div><p class=3D"MsoNormal">Hi,<u></u><u></u><=
+/p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">An=
+other observation is the every time the streaming stalls, whether remote st=
+reaming or normal rx_streamer operation, I see this packet from the host to=
+ the x310 a few data packets before it stops.<u></u><u></u></p><p class=3D"=
+MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">What is this cont=
+rol write address (0x01000), and is it perhaps relevant?<u></u><u></u></p><=
+p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal"><img b=
+order=3D"0" width=3D"643" height=3D"369" style=3D"width: 6.6979in; height: =
+3.8437in;" id=3D"m_-8350079480495551489m_-3472748589567216750m_-55705535989=
+22812820m_6977248542852457416m_308529856188436682m_1275845332921058704Pictu=
+re_x0020_1" src=3D"cid:ii_198569bc8f34cff311"><u></u><u></u></p><p class=3D=
+"MsoNormal">=C2=A0<u></u><u></u></p><div><div style=3D"border-right:none cu=
+rrentcolor;border-bottom:none currentcolor;border-left:none currentcolor;bo=
+rder-top:1pt solid currentcolor;padding:3pt 0cm 0cm"><p class=3D"MsoNormal"=
+><b><span lang=3D"EN-US">From:</span></b><span lang=3D"EN-US"> Kevin Willia=
+ms <br><b>Sent:</b> Tuesday, 29 July 2025 07:53<br><b>To:</b> &#39;<a href=
+=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.com</a>&#=
+39; &lt;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpadalino@=
+gmail.com</a>&gt;<br><b>Cc:</b> &#39;<a href=3D"mailto:martin.braun@ettus.c=
+om" target=3D"_blank">martin.braun@ettus.com</a>&#39; &lt;<a href=3D"mailto=
+:martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt;; =
+&#39;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&#39; &lt;<a href=3D"mailto:usrp-users@lists.ettus.=
+com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;; Werner Bode &lt;=
+<a href=3D"mailto:werner.bode@vastech.co.za" target=3D"_blank">werner.bode@=
+vastech.co.za</a>&gt;<br><b>Subject:</b> RE: [USRP-users] Re: [EXTERNAL]Re:=
+ remote streaming starts, but stops after a few packets received</span><u><=
+/u><u></u></p></div></div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p=
+ class=3D"MsoNormal">Hi Brian,<u></u><u></u></p><p class=3D"MsoNormal">=C2=
+=A0<u></u><u></u></p><p class=3D"MsoNormal">I=E2=80=99ve got two observatio=
+ns:<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><ol sta=
+rt=3D"1" type=3D"1"><li class=3D"MsoNormal">This is a summary of my custom =
+block streaming where the data packet stream ends with icmp packets about t=
+he destination becoming unreachable:<u></u><u></u></li></ol><p class=3D"Mso=
+Normal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">No.=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Time=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Source=
+=C2=A0 Destination=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Protocol=
 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 0.000000000=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=A0=C2=A0 =
-UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 1534 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p=
- class=3D"MsoNormal">5343=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 49.277852197=
-=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UDP=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 49152 =E2=86=92 36716 Len=3D16<u></u><u></u></p><p=
- class=3D"MsoNormal">&lt;5000-odd small udp and small rfnoc control &amp; m=
-anagement packets. Setup I guess.&gt;<u></u><u></u></p><p class=3D"MsoNorma=
-l">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">7318=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 50.792688865=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.1=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 RFNOC=C2=A0 4146=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 [Data]=C2=A0=C2=A0=C2=A0=C2=A0 -&gt;=C2=A0=C2=A0 6 <u></u><u></u></p><p=
- class=3D"MsoNormal">&lt;<span style=3D"background:yellow">first seq=3D0 rf=
-noc data packet of the correct size given my tlast counter</span>&gt;<u></u=
-><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoN=
-ormal">7319=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50.792748665=C2=A0=C2=A0=C2=
-=A0=C2=A0 Intel_e8:c3:4c=C2=A0=C2=A0=C2=A0 Broadcast=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 42=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 Who has 10.22.128.1? Tell 10.23.128.1<u></u><u></u></p><p class=3D"M=
-soNormal">7320=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50.792754229=C2=A0=C2=A0=
-=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10=
-.22.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RFNOC=C2=A0 4146=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 [Data]=C2=A0=C2=A0=C2=A0=C2=A0 -&gt;=
-=C2=A0=C2=A0 6 <u></u><u></u></p><p class=3D"MsoNormal">&lt;<span style=3D"=
-background:yellow">a few 100 more correct data packets</span>&gt;<u></u><u>=
-</u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNorma=
-l">7775=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50.795514072=C2=A0=C2=A0=C2=A0=
+=A0=C2=A0 Length=C2=A0 Info<u></u><u></u></p><p class=3D"MsoNormal">1=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.=
+000000000=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 1534 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p class=
+=3D"MsoNormal">5343=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 49.277852197=C2=A0=
+=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 49152 =E2=86=92 36716 Len=3D16<u></u><u></u></p><p class=
+=3D"MsoNormal">&lt;5000-odd small udp and small rfnoc control &amp; managem=
+ent packets. Setup I guess.&gt;<u></u><u></u></p><p class=3D"MsoNormal">=C2=
+=A0<u></u><u></u></p><p class=3D"MsoNormal">7318=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 50.792688865=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 RFNOC=C2=A0 4146=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 [Da=
+ta]=C2=A0=C2=A0=C2=A0=C2=A0 -&gt;=C2=A0=C2=A0 6 <u></u><u></u></p><p class=
+=3D"MsoNormal">&lt;<span style=3D"background:yellow">first seq=3D0 rfnoc da=
+ta packet of the correct size given my tlast counter</span>&gt;<u></u><u></=
+u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal"=
+>7319=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50.792748665=C2=A0=C2=A0=C2=A0=C2=
+=A0 Intel_e8:c3:4c=C2=A0=C2=A0=C2=A0 Broadcast=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 42=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ Who has 10.22.128.1? Tell 10.23.128.1<u></u><u></u></p><p class=3D"MsoNorm=
+al">7320=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50.792754229=C2=A0=C2=A0=C2=A0=
 =C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.12=
 8.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RFNOC=C2=A0 4146=C2=A0=
 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 [Data]=C2=A0=C2=A0=C2=A0=C2=A0 -&gt;=C2=A0=
-=C2=A0 6 <u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><=
-p class=3D"MsoNormal">&lt;a string of more control and short 66 byte rfnoc =
-packets, but no rfnoc data packets&gt;<u></u><u></u></p><p class=3D"MsoNorm=
-al">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">7968=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 52.854255766=C2=A0=C2=A0=C2=A0=C2=A0 Intel_e8:c3:4c=C2=
-=A0=C2=A0=C2=A0 Broadcast=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 42=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Who has 10.22.128.1?=
- Tell 10.23.128.1<u></u><u></u></p><p class=3D"MsoNormal">7969=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 53.238261827=C2=A0=C2=A0=C2=A0=C2=A0 Intel_e8:c3:4=
-e=C2=A0=C2=A0 NationalInst_35:aa:da=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 42=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 Who has 10.23.128.3? Tell 10.23.128.1 (duplicate use of 10.23.=
-128.1 detected!)<u></u><u></u></p><p class=3D"MsoNormal">7970=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 53.238475399=C2=A0=C2=A0=C2=A0=C2=A0 NationalInst_=
-35:aa:da=C2=A0=C2=A0=C2=A0 Intel_e8:c3:4e=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 10.23.128.3 is at 00:80:2f:35:aa:da (duplicate use of 10.23.12=
-8.1 detected!)<u></u><u></u></p><p class=3D"MsoNormal">&lt;<span style=3D"b=
-ackground:yellow">then the destination becomes unreachable?</span>&gt;<u></=
-u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"Mso=
-Normal">7971=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 53.878292746=C2=A0=C2=A0=
-=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10=
-.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=
-=C2=A0=C2=A0 590=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Destinatio=
-n unreachable (Host unreachable)<u></u><u></u></p><p class=3D"MsoNormal">79=
-72=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 53.878302721=C2=A0=C2=A0=C2=A0=C2=A0=
- 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 =
-590=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Destination unreachable=
- (Host unreachable)<u></u><u></u></p><p class=3D"MsoNormal">7973=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 53.878308143=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.=
-1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Destination unreachable (Host un=
-reachable)<u></u><u></u></p><p class=3D"MsoNormal">7974=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 53.878314734=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Destination unreachable (Host unreachable=
-)<u></u><u></u></p><p class=3D"MsoNormal">7975=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 53.878320545=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 Destination unreachable (Host unreachable)<u></u><=
-u></u></p><p class=3D"MsoNormal">7976=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 5=
-3.878326301=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 Destination unreachable (Host unreachable)<u></u><u></u></p><p=
- class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">&lt;aft=
-er that, just arp packets and the usrp broadcasting small udp packets&gt;<u=
-></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"=
-MsoNormal">8014=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 137.075344888=C2=A0=C2=
-=A0 NationalInst_35:aa:da=C2=A0=C2=A0=C2=A0 Broadcast=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 ARP Announcement for 10.23.128.3<u></u><u></u></p><p class=3D"MsoNor=
-mal">8015=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 137.075304321=C2=A0=C2=A0 Nat=
-ionalInst_35:aa:d9=C2=A0=C2=A0=C2=A0 Broadcast=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- ARP Announcement for 10.22.128.3<u></u><u></u></p><p class=3D"MsoNormal">8=
-016=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 140.701925975=C2=A0=C2=A0 10.23.128=
-.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=
-=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 38981 =E2=86=92 1534 Len=3D8<=
-u></u><u></u></p><p class=3D"MsoNormal">8017=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 140.701942078=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 38981 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p class=3D"MsoNorm=
-al">8018=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 142.361983307=C2=A0=C2=A0 10.2=
-3.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=
-=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 59572 =E2=86=92 1534 Len=
-=3D8<u></u><u></u></p><p class=3D"MsoNormal">8019=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 150.005535184=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 1534 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p class=3D"Ms=
-oNormal">8020=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 150.005558707=C2=A0=C2=A0=
- 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=
-=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1534 =E2=86=92 1534 =
-Len=3D8<u></u><u></u></p><p class=3D"MsoNormal">8021=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 152.097709946=C2=A0=C2=A0 NationalInst_35:aa:d9=C2=A0=C2=A0=
+=C2=A0 6 <u></u><u></u></p><p class=3D"MsoNormal">&lt;<span style=3D"backgr=
+ound:yellow">a few 100 more correct data packets</span>&gt;<u></u><u></u></=
+p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">777=
+5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50.795514072=C2=A0=C2=A0=C2=A0=C2=A0 =
+10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.1=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RFNOC=C2=A0 4146=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 [Data]=C2=A0=C2=A0=C2=A0=C2=A0 -&gt;=C2=A0=C2=A0 6=
+ <u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=
+=3D"MsoNormal">&lt;a string of more control and short 66 byte rfnoc packets=
+, but no rfnoc data packets&gt;<u></u><u></u></p><p class=3D"MsoNormal">=C2=
+=A0<u></u><u></u></p><p class=3D"MsoNormal">7968=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 52.854255766=C2=A0=C2=A0=C2=A0=C2=A0 Intel_e8:c3:4c=C2=A0=C2=A0=
 =C2=A0 Broadcast=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP Announcement for 10.22.12=
-8.3<u></u><u></u></p><p class=3D"MsoNormal">8022=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 152.097809876=C2=A0=C2=A0 NationalInst_35:aa:da=C2=A0=C2=A0=C2=A0=
- Broadcast=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP Announcement for 10.23.128.3<u>=
-</u><u></u></p><p class=3D"MsoNormal">8023=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 155.702401576=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 42=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Who has 10.22.128.1? Tell 10.=
+23.128.1<u></u><u></u></p><p class=3D"MsoNormal">7969=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 53.238261827=C2=A0=C2=A0=C2=A0=C2=A0 Intel_e8:c3:4e=C2=A0=
+=C2=A0 NationalInst_35:aa:da=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 42=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Who has 10.23.128.3? Tell 10.23.128.1 (duplicate use of 10.23.128.1 =
+detected!)<u></u><u></u></p><p class=3D"MsoNormal">7970=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 53.238475399=C2=A0=C2=A0=C2=A0=C2=A0 NationalInst_35:aa:=
+da=C2=A0=C2=A0=C2=A0 Intel_e8:c3:4e=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 10.23.128.3 is at 00:80:2f:35:aa:da (duplicate use of 10.23.128.1 de=
+tected!)<u></u><u></u></p><p class=3D"MsoNormal">&lt;<span style=3D"backgro=
+und:yellow">then the destination becomes unreachable?</span>&gt;<u></u><u><=
+/u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal=
+">7971=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 53.878292746=C2=A0=C2=A0=C2=A0=
+=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.12=
+8.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=
+=C2=A0 590=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Destination unre=
+achable (Host unreachable)<u></u><u></u></p><p class=3D"MsoNormal">7972=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 53.878302721=C2=A0=C2=A0=C2=A0=C2=A0 10.2=
+3.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Destination unreachable (H=
+ost unreachable)<u></u><u></u></p><p class=3D"MsoNormal">7973=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 53.878308143=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Destination unreachable (Host unrea=
+chable)<u></u><u></u></p><p class=3D"MsoNormal">7974=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 53.878314734=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Destination unreachable (Host unreachable)<u=
+></u><u></u></p><p class=3D"MsoNormal">7975=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 53.878320545=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 Destination unreachable (Host unreachable)<u></u><u><=
+/u></p><p class=3D"MsoNormal">7976=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 53.8=
+78326301=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 10.22.128.3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 ICMP=C2=A0=C2=A0=C2=A0=C2=A0 590=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 Destination unreachable (Host unreachable)<u></u><u></u></p><p cl=
+ass=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">&lt;after =
+that, just arp packets and the usrp broadcasting small udp packets&gt;<u></=
+u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"Mso=
+Normal">8014=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 137.075344888=C2=A0=C2=A0 =
+NationalInst_35:aa:da=C2=A0=C2=A0=C2=A0 Broadcast=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 ARP Announcement for 10.23.128.3<u></u><u></u></p><p class=3D"MsoNormal=
+">8015=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 137.075304321=C2=A0=C2=A0 Nation=
+alInst_35:aa:d9=C2=A0=C2=A0=C2=A0 Broadcast=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AR=
+P Announcement for 10.22.128.3<u></u><u></u></p><p class=3D"MsoNormal">8016=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 140.701925975=C2=A0=C2=A0 10.23.128.1=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=
+=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 38981 =E2=86=92 1534 Len=3D8<u><=
+/u><u></u></p><p class=3D"MsoNormal">8017=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 140.701942078=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
 =A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=
 =C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
 =C2=A0 38981 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p class=3D"MsoNormal"=
->8024=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 155.702431967=C2=A0=C2=A0 10.23.1=
+>8018=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 142.361983307=C2=A0=C2=A0 10.23.1=
 28.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=
 =A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 38981 =E2=86=92 1534 Len=3D8<=
-u></u><u></u></p><p class=3D"MsoNormal">8025=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 157.378508296=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 59572 =E2=86=92 1534 Len=3D8<=
+u></u><u></u></p><p class=3D"MsoNormal">8019=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 150.005535184=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
 =C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=
 =A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 59572 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p class=3D"MsoNorm=
-al">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>=
-<ol start=3D"2" type=3D"1"><li class=3D"MsoNormal">ILA results<u></u><u></u=
-></li></ol><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNo=
-rmal">With my block I see a continuously asserted TREADY, with TLAST=E2=80=
-=99s at exactly the correct sample counts, until streaming stops where I se=
-e TREADY deasserted for 20-odd clocks, and then reasserted (without further=
- streaming).<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></=
-p><p class=3D"MsoNormal">Regards, Kevin<u></u><u></u></p><p class=3D"MsoNor=
-mal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p=
-><p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
-=3D"EN-US"> Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" targe=
-t=3D"_blank">bpadalino@gmail.com</a>&gt; <br><b>Sent:</b> Monday, 28 July 2=
-025 16:49<br><b>To:</b> Kevin Williams &lt;<a href=3D"mailto:kevin.williams=
-@vastech.co.za" target=3D"_blank">kevin.williams@vastech.co.za</a>&gt;<br><=
-b>Cc:</b> <a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank">marti=
-n.braun@ettus.com</a>; <a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a><br><b>Subject:</b> Re: [USRP-use=
-rs] Re: [EXTERNAL]Re: remote streaming starts, but stops after a few packet=
-s received</span><u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u><=
-/u></p><div><div><p class=3D"MsoNormal">On Mon, Jul 28, 2025 at 10:15=E2=80=
-=AFAM Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" ta=
-rget=3D"_blank">kevin.williams@vastech.co.za</a>&gt; wrote:<u></u><u></u></=
-p></div><div><blockquote style=3D"border-top:none currentcolor;border-right=
-:none currentcolor;border-bottom:none currentcolor;border-left:1pt solid rg=
-b(204,204,204);padding:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt"><div><div>=
-<div><p class=3D"MsoNormal">I did an experiment today with just this (Ettus=
- blocks only):<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u>=
-</p><p class=3D"MsoNormal">connections:<u></u><u></u></p><p class=3D"MsoNor=
-mal">=C2=A0 - { srcblk: radio0,=C2=A0=C2=A0=C2=A0=C2=A0 srcport: out_0,=C2=
-=A0=C2=A0=C2=A0 dstblk: ep0,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dstport: i=
-n0}<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0 - { srcblk: <span style=
-=3D"background:yellow">ep6</span>,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 srcport: out0,=C2=A0=C2=A0=C2=A0=C2=A0 dstblk: ddc0, dstport: in_0 }<u>=
-</u><u></u></p><p class=3D"MsoNormal">=C2=A0 - { srcblk: ddc0,=C2=A0 srcpor=
-t: out_0,=C2=A0=C2=A0=C2=A0 dstblk: <span style=3D"background:yellow">ep6</=
-span>,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dstport: in0 }<u></u><u></u></p>=
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">Which=
- did not work =E2=80=93 the remote streaming stopped.<u></u><u></u></p><p c=
-lass=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">Changing =
-the destination EP to a new one, ep7, worked again.<u></u><u></u></p><p cla=
-ss=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">From the RF=
-NoC 4 workshop slides I was under the impression blocks could start and end=
- on the same SEP?<u></u><u></u></p></div></div></div></blockquote><div><p c=
-lass=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal=
-">For what it&#39;s worth, I&#39;m using remote streaming with a custom blo=
-ck and it&#39;s working well.<u></u><u></u></p></div><div><p class=3D"MsoNo=
-rmal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">In fact, th=
-e way remote streaming works (at least for an X440) is that the Ethernet/UD=
-P information is written here:<u></u><u></u></p></div><div><p class=3D"MsoN=
-ormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">=C2=A0=C2=
-=A0<a href=3D"https://url.za.m.mimecastprotect.com/s/g1I3CMjgAASkBYOhwfqi8M=
-eC3?domain=3Dgithub.com" target=3D"_blank">https://github.com/EttusResearch=
-/uhd/blob/40403b7c00154e4559c47bd6dde924f092992d45/fpga/usrp3/lib/rfnoc/xpo=
-rt_sv/chdr_xport_adapter.sv#L671</a><u></u><u></u></p></div><div><p class=
-=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Th=
-e kv_map uses the destination EPID as the key for the ethernet information =
-which gets looked up for every packet.<u></u><u></u></p></div><div><p class=
-=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">So=
- if the streaming works when not doing remote streaming it might be somethi=
-ng else since all data paths go through here.<u></u><u></u></p></div><div><=
-p class=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNor=
-mal">If you get the first few packets and it stops, is there any way you&#3=
-9;re providing `enable_fc` as an argument? That would enable flow control w=
-hich obviously wouldn&#39;t be good if you aren&#39;t doing any flow contro=
-l processing on your RX side.<u></u><u></u></p></div><div><p class=3D"MsoNo=
-rmal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Lastly, I a=
-gree with Martin that you should probably add an ILA to your block and the =
-SEP interfaces to see where the AXI stream is getting stopped up.<u></u><u>=
-</u></p></div><div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><di=
-v><p class=3D"MsoNormal">Good luck.<u></u><u></u></p></div><div><p class=3D=
-"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Brian=
-<u></u><u></u></p></div></div></div></div></div></div></blockquote></div></=
-div></div></div></blockquote></div></div></div></div></blockquote></div><p =
-class=3D"MsoNormal">_______________________________________________<br>USRP=
--users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send an email =
-to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank">us=
-rp-users-leave@lists.ettus.com</a><u></u><u></u></p></blockquote></div></di=
-v></div></div></blockquote></div>
+=A0=C2=A0 1534 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p class=3D"MsoNorma=
+l">8020=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 150.005558707=C2=A0=C2=A0 10.23=
+.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=
+=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1534 =E2=86=92 1534 Len=3D=
+8<u></u><u></u></p><p class=3D"MsoNormal">8021=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 152.097709946=C2=A0=C2=A0 NationalInst_35:aa:d9=C2=A0=C2=A0=C2=A0=
+ Broadcast=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 ARP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP Announcement for 10.22.128.3<u>=
+</u><u></u></p><p class=3D"MsoNormal">8022=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 152.097809876=C2=A0=C2=A0 NationalInst_35:aa:da=C2=A0=C2=A0=C2=A0 Broad=
+cast=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARP Announcement for 10.23.128.3<u></u><u></=
+u></p><p class=3D"MsoNormal">8023=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 155.7=
+02401576=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 38=
+981 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p class=3D"MsoNormal">8024=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 155.702431967=C2=A0=C2=A0 10.23.128.1=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=
+=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 38981 =E2=86=92 1534 Len=3D8<u></u>=
+<u></u></p><p class=3D"MsoNormal">8025=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+157.378508296=C2=A0=C2=A0 10.23.128.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 10.23.128.255=C2=A0=C2=A0=C2=A0=C2=A0 UDP=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 59572 =E2=86=92 1534 Len=3D8<u></u><u></u></p><p class=3D"MsoNormal">=
+=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><ol =
+start=3D"2" type=3D"1"><li class=3D"MsoNormal">ILA results<u></u><u></u></l=
+i></ol><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal=
+">With my block I see a continuously asserted TREADY, with TLAST=E2=80=99s =
+at exactly the correct sample counts, until streaming stops where I see TRE=
+ADY deasserted for 20-odd clocks, and then reasserted (without further stre=
+aming).<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p =
+class=3D"MsoNormal">Regards, Kevin<u></u><u></u></p><p class=3D"MsoNormal">=
+=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p c=
+lass=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=3D"EN=
+-US"> Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_=
+blank">bpadalino@gmail.com</a>&gt; <br><b>Sent:</b> Monday, 28 July 2025 16=
+:49<br><b>To:</b> Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vaste=
+ch.co.za" target=3D"_blank">kevin.williams@vastech.co.za</a>&gt;<br><b>Cc:<=
+/b> <a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank">martin.brau=
+n@ettus.com</a>; <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_b=
+lank">usrp-users@lists.ettus.com</a><br><b>Subject:</b> Re: [USRP-users] Re=
+: [EXTERNAL]Re: remote streaming starts, but stops after a few packets rece=
+ived</span><u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p=
+><div><div><p class=3D"MsoNormal">On Mon, Jul 28, 2025 at 10:15=E2=80=AFAM =
+Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za" target=
+=3D"_blank">kevin.williams@vastech.co.za</a>&gt; wrote:<u></u><u></u></p></=
+div><div><blockquote style=3D"border-top:none currentcolor;border-right:non=
+e currentcolor;border-bottom:none currentcolor;border-left:1pt solid rgb(20=
+4,204,204);padding:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt"><div><div><div=
+><p class=3D"MsoNormal">I did an experiment today with just this (Ettus blo=
+cks only):<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>=
+<p class=3D"MsoNormal">connections:<u></u><u></u></p><p class=3D"MsoNormal"=
+>=C2=A0 - { srcblk: radio0,=C2=A0=C2=A0=C2=A0=C2=A0 srcport: out_0,=C2=A0=
+=C2=A0=C2=A0 dstblk: ep0,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dstport: in0}=
+<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0 - { srcblk: <span style=3D"=
+background:yellow">ep6</span>,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sr=
+cport: out0,=C2=A0=C2=A0=C2=A0=C2=A0 dstblk: ddc0, dstport: in_0 }<u></u><u=
+></u></p><p class=3D"MsoNormal">=C2=A0 - { srcblk: ddc0,=C2=A0 srcport: out=
+_0,=C2=A0=C2=A0=C2=A0 dstblk: <span style=3D"background:yellow">ep6</span>,=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dstport: in0 }<u></u><u></u></p><p cla=
+ss=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">Which did n=
+ot work =E2=80=93 the remote streaming stopped.<u></u><u></u></p><p class=
+=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">Changing the =
+destination EP to a new one, ep7, worked again.<u></u><u></u></p><p class=
+=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">From the RFNo=
+C 4 workshop slides I was under the impression blocks could start and end o=
+n the same SEP?<u></u><u></u></p></div></div></div></blockquote><div><p cla=
+ss=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">=
+For what it&#39;s worth, I&#39;m using remote streaming with a custom block=
+ and it&#39;s working well.<u></u><u></u></p></div><div><p class=3D"MsoNorm=
+al">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">In fact, the =
+way remote streaming works (at least for an X440) is that the Ethernet/UDP =
+information is written here:<u></u><u></u></p></div><div><p class=3D"MsoNor=
+mal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">=C2=A0=C2=A0=
+<a href=3D"https://url.za.m.mimecastprotect.com/s/g1I3CMjgAASkBYOhwfqi8MeC3=
+?domain=3Dgithub.com" target=3D"_blank">https://github.com/EttusResearch/uh=
+d/blob/40403b7c00154e4559c47bd6dde924f092992d45/fpga/usrp3/lib/rfnoc/xport_=
+sv/chdr_xport_adapter.sv#L671</a><u></u><u></u></p></div><div><p class=3D"M=
+soNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">The kv_=
+map uses the destination EPID as the key for the ethernet information which=
+ gets looked up for every packet.<u></u><u></u></p></div><div><p class=3D"M=
+soNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">So if t=
+he streaming works when not doing remote streaming it might be something el=
+se since all data paths go through here.<u></u><u></u></p></div><div><p cla=
+ss=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">=
+If you get the first few packets and it stops, is there any way you&#39;re =
+providing `enable_fc` as an argument? That would enable flow control which =
+obviously wouldn&#39;t be good if you aren&#39;t doing any flow control pro=
+cessing on your RX side.<u></u><u></u></p></div><div><p class=3D"MsoNormal"=
+>=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Lastly, I agree =
+with Martin that you should probably add an ILA to your block and the SEP i=
+nterfaces to see where the AXI stream is getting stopped up.<u></u><u></u><=
+/p></div><div><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p></div><div><p =
+class=3D"MsoNormal">Good luck.<u></u><u></u></p></div><div><p class=3D"MsoN=
+ormal">=C2=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Brian<u></=
+u><u></u></p></div></div></div></div></div></div></blockquote></div></div><=
+/div></div></blockquote></div></div></div></div></blockquote></div><p class=
+=3D"MsoNormal">_______________________________________________<br>USRP-user=
+s mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_=
+blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send an email to <a=
+ href=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank">usrp-us=
+ers-leave@lists.ettus.com</a><u></u><u></u></p></blockquote></div></div></d=
+iv></div></blockquote></div>
+</blockquote></div>
 
---00000000000041de60063b128278--
+--000000000000104d44063b12b58b--
 
---00000000000041de61063b128279
+--000000000000104d44063b12b58c
 Content-Type: image/png; name="image001.png"
 Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
@@ -1807,9 +1834,9 @@ GcedOnUSGXz00Ueyb8w4sjVr1rQxw0a2z58/X/63WbNm9pprrrEPPvigzDj+4IMPRA6pziaG1atX
 tq39+eefA4lfn5jxaLt162ZjRqM98MAD7WOPPRZI/DJFURRFUfIfLUenKIqiKIpShNEwsaIoiqIo
 ShFGjUFFURRFUZQijBqDiqIoiqIoRRg1BhVFURRFUYowagwqiqIoiqIUYdQYVBRFURRFKcKoMago
 iqIoilJkMeb/A+cMmWNMhAssAAAAAElFTkSuQmCC
---00000000000041de61063b128279--
+--000000000000104d44063b12b58c--
 
---===============2102770467166014438==
+--===============9020758081209461251==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1819,4 +1846,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2102770467166014438==--
+--===============9020758081209461251==--
