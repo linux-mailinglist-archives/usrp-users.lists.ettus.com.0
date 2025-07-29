@@ -2,231 +2,397 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA57B1500A
-	for <lists+usrp-users@lfdr.de>; Tue, 29 Jul 2025 17:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 768B0B15021
+	for <lists+usrp-users@lfdr.de>; Tue, 29 Jul 2025 17:27:52 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7F94838655C
-	for <lists+usrp-users@lfdr.de>; Tue, 29 Jul 2025 11:12:49 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A4CBB38651B
+	for <lists+usrp-users@lfdr.de>; Tue, 29 Jul 2025 11:27:51 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1753801969; bh=HSh7a36XUWYpWLHxGtVTw3ccMWylnSWx7mX7QhWOx4w=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	t=1753802871; bh=lpP+L1hoKqoFuOTLDRMJRUJsqsQ07q55tca2cbPpjj8=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=P8XdIzssEpvyQE/CKci27QFmBKcldqHuwZMYLKrwA1QDM1gTLC6BRbzMNDS8IEpLQ
-	 VbMRrHzeUy45n7oGefCr2JFR2kA5efjkfFXTAtSl+4DXNM6rluZpXJXdSNdd1c6UaJ
-	 5HtBCNguO/gEb48Yti6l1/AJtvjyHpgFpuX12BEe0T2QE6dzg9yR+JEsv3O3RkczTI
-	 LMkCju2pcicdMxZsiQ8SRHxKvhAVmZjgbDfqfIjckvKEnbQZ7NsJlvJUreWvXnhMmG
-	 L5wlz/g9xwdkd0gSHQcsA5YMlQDnH2j9S9cwMoiY5ezgd3hk6PG8Luv8yCau1tSZk0
-	 qHtlqclxohzWg==
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 024F4385E43
-	for <usrp-users@lists.ettus.com>; Tue, 29 Jul 2025 11:11:59 -0400 (EDT)
+	b=F9aET0Sr2Q1hSuyJ/c6mlZCh+mh8O1pMxRrfxBrmjRlWt0NJpr5VWW0NcPrbi2LYD
+	 AjkOgyXV7+VcsPTzfwMDExOOadxLevZ9hk5NmGRO1SVuAv8zGkr914ke+KHe8J8BRf
+	 /ghfap1oQu8Cvr3g5AESz5E0v/WcMpFiEIj3ZaImFbY4ifj1JeL2j0sJvVgH+1Qs2E
+	 ipO5JoGZjXnJGJPkKqkUL7Gp0XxkYYExPMBvQtTOkBoKX/x1X4y81kitRNlnKKpiSh
+	 pGESZA3MYDogiuaNjprgt3ea8ltwu55lQCNSx26JWMjr1R/OR5PMabDTfUyp9Emu0F
+	 vlyQDpIGx6qfw==
+Received: from za-smtp-delivery-57.mimecast.co.za (za-smtp-delivery-57.mimecast.co.za [41.74.205.57])
+	by mm2.emwd.com (Postfix) with ESMTPS id 49F083862B8
+	for <usrp-users@lists.ettus.com>; Tue, 29 Jul 2025 11:26:59 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vkv0jUh0";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="LGXYcjIO";
 	dkim-atps=neutral
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ae0de0c03e9so888330166b.2
-        for <usrp-users@lists.ettus.com>; Tue, 29 Jul 2025 08:11:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753801919; x=1754406719; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=AY9EFK9Jdf8xZXGt9JdbwchJj2VVbjAUcRBEUaomJIw=;
-        b=Vkv0jUh0HZWICM+jBoNO6nxxan53bvglNR79M4B3FcM5plHvlgxuW9zyOOxYKhDkLv
-         65vRy8Aj3KU109sRVcm/v4+2NvLBeEGR9vidub3itD8Sy4TPx8ZkNQgP6a34B16uTPF4
-         tG+8nCNsPk4WaZ4Ts6w0aMLCJObGISoBxB8OVnjL9BofUvzvBXwdrekOZSlDkx94Z1ZO
-         wvRPYiqWGAzjrqMiWImsxGAHcyHG27yHRIy/tVVJu2o/t5fbma3z9mYoerrdvVHN4LbO
-         8c56ybrPF2l/QFElfumHpD8MrOyk5Zwcn7qjTP/4iyL/FcJ23KRCSnvN+2RlREVGv/fH
-         /5yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753801919; x=1754406719;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AY9EFK9Jdf8xZXGt9JdbwchJj2VVbjAUcRBEUaomJIw=;
-        b=vnkU9r6+xGvU+wS9Y75SMtkC8WEiFBxuqSotPkpBH2zUzE3VxtvnlE5EY8HQAEjAKc
-         Lurtt8w04E2Gafz3tjaaMrWNhHU/0Psdjhb0oHP5itGFnuY1wMk2GkiDPRQe1/P7xa28
-         ZLo1tXJTqXqkKcmlaI91i5RCWv0WrQmW3r1WNTTsb/yLb0BjZVwWS/tnH4lqP1FbcbQm
-         M2uaaBoIeQKRUIjBrMyiu1J5aIA/g8Uuc8WRUch5lUJ3GXH4Dhn6KbJLeqKq4oZy3NIP
-         e2EOksyk91e2y57BHnhKM+Tx2bosIG+m1LT01W0+qaV7yk16SEyI1NYk6ABOOpKVDvE4
-         xgaw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbTGZXeVWdsMWjpjkMCwDAlXxm5n9DtypcN1EXB7CTId6TrJPHxyGKgfepRep/pytUaM86wyPDm+wx@lists.ettus.com
-X-Gm-Message-State: AOJu0YwsUmsyg6oDsW0lo8i3M/PEHVhtEcV+HqD8JQyD+boWuwx0KrLw
-	h9lShz6DIHf1v6535UwsYnPAVPEBPdxYRIpaKvfI0IQwgFVvnWVRh10XLBmIRIGUlu9Mnb0D/q9
-	nI6QC6BqQbzzlxuGYWqFA6zDekhOhu6A=
-X-Gm-Gg: ASbGnctfMT6JyzKq2fcvrk8N3JGViWvAUCt7JIJxx0769OSlXO46rTWf4e9KPZ5h+3+
-	P6mSwzf6u/iA1zOzhnjlFwLQUX2zTbiS7A3pzvOy44nA4gG7jPwYvKSsYqZljc09Uuj2zd6xO1H
-	RaLtOawVGFzfLgM8Q4LZIkjPz0EzPL/zEnKYj5rSf/qH37iuZ4yCW9IgDMLPjsVfNyhmmMGG4v7
-	1JMr1sa96f1rxw4oA==
-X-Google-Smtp-Source: AGHT+IGSGpetIPgJRk2g/qd2gPh+sMG1RY+ikYPG9dSQBf/bD7unBdr/3RiegGhjbr/kXJgsAWpFzuJwstdzxrOzuQ8=
-X-Received: by 2002:a17:907:7248:b0:ad8:9d41:371e with SMTP id
- a640c23a62f3a-af61e05136dmr1795538766b.36.1753801917801; Tue, 29 Jul 2025
- 08:11:57 -0700 (PDT)
-MIME-Version: 1.0
+Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
+ relay.mimecast.com with ESMTP id za-mta-124-YkWxHqaiPJmJa4NhpRIHMA-1; Tue,
+ 29 Jul 2025 17:26:54 +0200
+X-MC-Unique: YkWxHqaiPJmJa4NhpRIHMA-1
+X-Mimecast-MFC-AGG-ID: YkWxHqaiPJmJa4NhpRIHMA_1753802814
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
+	bh=or65/0NtN/17VwRlu5lQAIjML26JPxiCO/WnAvv602k=;
+	b=LGXYcjIOBIk3TcFDLqiF+p0J1IZM5ijF4mOnDPtCWHiVJGaV1qe9gyLWdPjQYlI4L5xfDcuEETmHgiUoabTyMNqiZna7161eLUNgWym7f5CLk0HEPNpMe58DM2xaowsX0MKN3/GjzHg/RJIwl8v5xfg86wcqGje1xoyPR0esPFA=
+Received: from EXCHANGE2.vastech.co.za (Unknown [172.30.81.30])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Tue, 29 Jul 2025 17:26:49 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ EXCHANGE2.vastech.co.za (172.30.81.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 29 Jul 2025 17:26:48 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Tue, 29
+ Jul 2025 17:26:48 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "bpadalino@gmail.com" <bpadalino@gmail.com>
+Thread-Topic: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but
+ stops after a few packets received
+Thread-Index: AQHb++IkYMk+p2kicke3vxbc7X5L4bRCs8Hg///2/ACAACOsQIAEpzIAgAAlivD//+kdAIABGuHQgAAaqED//+YPAAAEaZ8w///hd4D//61/0IAArRqAgAAC1YD//9iUsIAAO9uA///bltAABVqngP//21/g
+Date: Tue, 29 Jul 2025 15:26:48 +0000
+Message-ID: <a9cb0ee7f5614d16986d9a12e209cbb7@vastech.co.za>
 References: <111b29cda9ce4309b4966fcfcc3b7ece@vastech.co.za>
  <CAAxXO2HUxF7tDvb8_OzmZS4xat-SM=X_BMN465cvw5PzGQvQ+A@mail.gmail.com>
- <00b1e2cd914e4e87a81ed418f7fa142c@vastech.co.za> <CAFOi1A79w6Yn703f7V+Jwe2X0PpR7or7Vn1naNgWmhYY3kJm-g@mail.gmail.com>
- <45a2d2bfa5784898840a602a2b31db9c@vastech.co.za> <CAFOi1A7k0F=vs7bhSVQFjoQFvBg=nNtfyLxq_zJypMPJUp_uhg@mail.gmail.com>
- <a60e4a0ea3ec4a10b95d90103bd2a7f7@vastech.co.za> <CAFOi1A5oPd6pCJK8mh18Un=WDLGVYt+mGpQHp5J2UQR7xLNV+A@mail.gmail.com>
- <42dbe59d936f4847841d2f442a7ebdf8@vastech.co.za> <CAEXYVK4MN=aNyP201VqABP=xbfB7DuiXF3kVu3t_WwVhnrf8sg@mail.gmail.com>
- <87a46c7a1cc643d9b30f2fc63e70cb40@vastech.co.za> <fb3ebac4d0aa48b7a1c3d9e7261ce06d@vastech.co.za>
+ <00b1e2cd914e4e87a81ed418f7fa142c@vastech.co.za>
+ <CAFOi1A79w6Yn703f7V+Jwe2X0PpR7or7Vn1naNgWmhYY3kJm-g@mail.gmail.com>
+ <45a2d2bfa5784898840a602a2b31db9c@vastech.co.za>
+ <CAFOi1A7k0F=vs7bhSVQFjoQFvBg=nNtfyLxq_zJypMPJUp_uhg@mail.gmail.com>
+ <a60e4a0ea3ec4a10b95d90103bd2a7f7@vastech.co.za>
+ <CAFOi1A5oPd6pCJK8mh18Un=WDLGVYt+mGpQHp5J2UQR7xLNV+A@mail.gmail.com>
+ <42dbe59d936f4847841d2f442a7ebdf8@vastech.co.za>
+ <CAEXYVK4MN=aNyP201VqABP=xbfB7DuiXF3kVu3t_WwVhnrf8sg@mail.gmail.com>
+ <87a46c7a1cc643d9b30f2fc63e70cb40@vastech.co.za>
+ <fb3ebac4d0aa48b7a1c3d9e7261ce06d@vastech.co.za>
  <CAFOi1A4X3PcST+MYSdpCSZUwZtNvBE14xSoHywGZ1RZeR7AP2g@mail.gmail.com>
- <f2f6f4a9aa574c9599c240b8353e2d02@vastech.co.za> <CAFOi1A4FsGYAbAz++Yg+rBphiXoPWYCjOLv_MYhWrmpNQZZOjA@mail.gmail.com>
- <827a6d39fb054bb4beb9eecdd59bd922@vastech.co.za> <CAFOi1A4LSO_cRQKGC_U+KNiU=UgEnUi_W9eDK9QaoLW9c+CWGw@mail.gmail.com>
+ <f2f6f4a9aa574c9599c240b8353e2d02@vastech.co.za>
+ <CAFOi1A4FsGYAbAz++Yg+rBphiXoPWYCjOLv_MYhWrmpNQZZOjA@mail.gmail.com>
+ <827a6d39fb054bb4beb9eecdd59bd922@vastech.co.za>
+ <CAFOi1A4LSO_cRQKGC_U+KNiU=UgEnUi_W9eDK9QaoLW9c+CWGw@mail.gmail.com>
  <CAAxXO2HbQ0dhjJYzgRUqhGRYmVpj_S6HjLdOfazUiNueEz8AJA@mail.gmail.com>
- <b874b353db35427fbba1515438423d5b@vastech.co.za> <CAAxXO2H2UTX2YMv9yMajS_ZEgLN5L_D6qVh99woC+4xuNQh7eQ@mail.gmail.com>
+ <b874b353db35427fbba1515438423d5b@vastech.co.za>
+ <CAAxXO2H2UTX2YMv9yMajS_ZEgLN5L_D6qVh99woC+4xuNQh7eQ@mail.gmail.com>
  <4dd2e3fa86e642cfa0f3059a07645ee4@vastech.co.za>
-In-Reply-To: <4dd2e3fa86e642cfa0f3059a07645ee4@vastech.co.za>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Tue, 29 Jul 2025 11:11:45 -0400
-X-Gm-Features: Ac12FXw6Ft133duEpEi2xofkcxFMVRaX23y5lgw-fhJgRARYuQ14lyUUd_3VISk
-Message-ID: <CAEXYVK5N1g_RZjDqKVO1vuUPtD2NqJP-JbibyFZgmwgJc+G5mg@mail.gmail.com>
-To: Kevin Williams <kevin.williams@vastech.co.za>
-Message-ID-Hash: 4I3VTYAJT6YXJ7HLYXAUYX6NKDSEGAJK
-X-Message-ID-Hash: 4I3VTYAJT6YXJ7HLYXAUYX6NKDSEGAJK
-X-MailFrom: bpadalino@gmail.com
+ <CAEXYVK5N1g_RZjDqKVO1vuUPtD2NqJP-JbibyFZgmwgJc+G5mg@mail.gmail.com>
+In-Reply-To: <CAEXYVK5N1g_RZjDqKVO1vuUPtD2NqJP-JbibyFZgmwgJc+G5mg@mail.gmail.com>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.3]
+MIME-Version: 1.0
+Message-ID-Hash: K5N6UCH47E57L7HRW2IR7YSRXAWTV7EQ
+X-Message-ID-Hash: K5N6UCH47E57L7HRW2IR7YSRXAWTV7EQ
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "nbalkanas@gmail.com" <nbalkanas@gmail.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, Werner Bode <werner.bode@vastech.co.za>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but stops after a few packets received
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4I3VTYAJT6YXJ7HLYXAUYX6NKDSEGAJK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K5N6UCH47E57L7HRW2IR7YSRXAWTV7EQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6157571111977801940=="
+Content-Type: multipart/mixed; boundary="===============2926016219160167009=="
 
---===============6157571111977801940==
-Content-Type: multipart/related; boundary="0000000000005172ac063b12d470"
+--===============2926016219160167009==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=SHA1; boundary="----=_NextPart_000_02D7_01DC00AD.F54B5790"
 
---0000000000005172ac063b12d470
-Content-Type: multipart/alternative; boundary="0000000000005172ab063b12d46f"
+------=_NextPart_000_02D7_01DC00AD.F54B5790
+Content-Type: multipart/related;
+	boundary="----=_NextPart_001_02D8_01DC00AD.F54B5790"
 
---0000000000005172ab063b12d46f
-Content-Type: text/plain; charset="UTF-8"
+
+------=_NextPart_001_02D8_01DC00AD.F54B5790
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_002_02D9_01DC00AD.F54B5790"
+
+
+------=_NextPart_002_02D9_01DC00AD.F54B5790
+Content-Type: text/plain;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 29, 2025 at 11:06=E2=80=AFAM Kevin Williams <
-kevin.williams@vastech.co.za> wrote:
+This is the issue =E2=80=93 my block processes inputs 1:1 without =
+requiring to give back-pressure.
 
-> This is strange.
->
->
->
-> I now assert tready permanently for the radio regardless. (I before used
-> to pass downstream tready up).
->
->
->
-> Now I still see the stream stalling, but after a few 10=E2=80=99000 packe=
-ts of
-> both usrp ports being used for tx (now 4x streams being transmitted).
->
->
->
-> It then drops to only one port, and then stalls =E2=80=93 even though thi=
-s is
-> remote streaming.
->
->
->
-> How is it possible that the host causes the usrp to abandon a nic in
-> remote streaming mode when the radio is always seeing tready?
->
->
->
-> Just before the stall I still see the usrp writing an overflow packet.
->
->
->
->
->
-> How is this possible?
->
->
->
->
->
->
->
->
+=20
+
+It decimates, sure, but that is 1:N.
+
+=20
+
+I don=E2=80=99t understand how that radio block can get its fifo nearly =
+full?
+
+=20
+
+From: Brian Padalino <bpadalino@gmail.com>=20
+Sent: Tuesday, 29 July 2025 17:12
+To: Kevin Williams <kevin.williams@vastech.co.za>
+Cc: nbalkanas@gmail.com; usrp-users@lists.ettus.com; Werner Bode =
+<werner.bode@vastech.co.za>
+Subject: Re: [USRP-users] Re: [EXTERNAL]Re: remote streaming starts, but =
+stops after a few packets received
+
+=20
+
+On Tue, Jul 29, 2025 at 11:06=E2=80=AFAM Kevin Williams =
+<kevin.williams@vastech.co.za <mailto:kevin.williams@vastech.co.za> > =
+wrote:
+
+This is strange.
+
+=20
+
+I now assert tready permanently for the radio regardless. (I before used =
+to pass downstream tready up).
+
+=20
+
+Now I still see the stream stalling, but after a few 10=E2=80=99000 =
+packets of both usrp ports being used for tx (now 4x streams being =
+transmitted).
+
+=20
+
+It then drops to only one port, and then stalls =E2=80=93 even though =
+this is remote streaming.
+
+=20
+
+How is it possible that the host causes the usrp to abandon a nic in =
+remote streaming mode when the radio is always seeing tready?
+
+=20
+
+Just before the stall I still see the usrp writing an overflow packet.
+
+=20
+
+
+
+=20
+
+How is this possible?
+
+=20
+
+
+
+=20
+
+=20
+
+=20
+
 It's because of the radio RX FSM here:
 
+=20
 
-https://github.com/EttusResearch/uhd/blob/40403b7c00154e4559c47bd6dde924f09=
-2992d45/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_rx_core.v#L565
+  =
+https://github.com/EttusResearch/uhd/blob/40403b7c00154e4559c47bd6dde924f=
+092992d45/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_rx_core.v#L=
+565 =
+<https://url.za.m.mimecastprotect.com/s/yS8OCg5KEEcwEvmhNf8i42SUD?domain=3D=
+github.com>=20
 
-When an error condition occurs, it reports the OVERFLOW then it waits for
-another stream command to start up again.
+=20
 
-For what it's worth, I don't think you should blindly give it TREADY
-asserted when things can't process things downstream. The block should be
-designed such that you know you can consume all the samples in real time.
+When an error condition occurs, it reports the OVERFLOW then it waits =
+for another stream command to start up again.
+
+=20
+
+For what it's worth, I don't think you should blindly give it TREADY =
+asserted when things can't process things downstream. The block should =
+be designed such that you know you can consume all the samples in real =
+time.
+
+=20
 
 Brian
 
---0000000000005172ab063b12d46f
-Content-Type: text/html; charset="UTF-8"
+
+------=_NextPart_002_02D9_01DC00AD.F54B5790
+Content-Type: text/html;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Tue, Jul 29, 2025 at 11:06=E2=80=AFAM =
-Kevin Williams &lt;<a href=3D"mailto:kevin.williams@vastech.co.za">kevin.wi=
-lliams@vastech.co.za</a>&gt; wrote:</div><div class=3D"gmail_quote gmail_qu=
-ote_container"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=
-=3D"msg1590977016333117940"><div lang=3D"EN-ZA"><div class=3D"m_15909770163=
-33117940WordSection1"><p class=3D"MsoNormal"><span>This is strange.<u></u><=
-u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></=
-p><p class=3D"MsoNormal"><span>I now assert tready permanently for the radi=
-o regardless. (I before used to pass downstream tready up).<u></u><u></u></=
-span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p cla=
-ss=3D"MsoNormal"><span>Now I still see the stream stalling, but after a few=
- 10=E2=80=99000 packets of both usrp ports being used for tx (now 4x stream=
-s being transmitted).<u></u><u></u></span></p><p class=3D"MsoNormal"><span>=
-<u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span>It then drops t=
-o only one port, and then stalls =E2=80=93 even though this is remote strea=
-ming.<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u>=
-</u></span></p><p class=3D"MsoNormal"><span>How is it possible that the hos=
-t causes the usrp to abandon a nic in remote streaming mode when the radio =
-is always seeing tready?<u></u><u></u></span></p><p class=3D"MsoNormal"><sp=
-an><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span>Just before =
-the stall I still see the usrp writing an overflow packet.<u></u><u></u></s=
-pan></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p clas=
-s=3D"MsoNormal"><span><img width=3D"1040" height=3D"838" style=3D"width: 10=
-.8333in; height: 8.7291in;" id=3D"m_1590977016333117940Picture_x0020_1" src=
-=3D"cid:ii_19856baba1d4cff311"></span><span><u></u><u></u></span></p><p cla=
-ss=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal=
-"><span>How is this possible?<u></u><u></u></span></p><p class=3D"MsoNormal=
-"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span><img wi=
-dth=3D"1165" height=3D"51" style=3D"width: 12.1354in; height: 0.5312in;" id=
-=3D"m_1590977016333117940Picture_x0020_2" src=3D"cid:ii_19856baba1d5b16b22"=
-></span><span><u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=
-=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></=
-span></p><p class=3D"MsoNormal"><b><span lang=3D"EN-US"></span></b></p></di=
-v></div></div></blockquote><div><br></div><div>It&#39;s because of the radi=
-o RX FSM here:</div><div><br></div><div>=C2=A0=C2=A0<a href=3D"https://gith=
-ub.com/EttusResearch/uhd/blob/40403b7c00154e4559c47bd6dde924f092992d45/fpga=
-/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_rx_core.v#L565">https://git=
-hub.com/EttusResearch/uhd/blob/40403b7c00154e4559c47bd6dde924f092992d45/fpg=
-a/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_rx_core.v#L565</a></div><d=
-iv><br></div><div>When an error condition occurs, it reports the OVERFLOW t=
-hen it waits for another stream command to start up again.</div><div><br></=
-div><div>For what it&#39;s worth, I don&#39;t think you should blindly give=
- it TREADY asserted when things can&#39;t process things downstream. The bl=
-ock should be designed such that you know you can consume all the samples i=
-n real time.</div><div><br></div><div>Brian</div></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><!--[if =
+!mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>This is the issue =E2=80=93 my =
+block processes inputs 1:1 without requiring to give =
+back-pressure.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>It =
+decimates, sure, but that is 1:N.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>I =
+don=E2=80=99t understand how that radio block can get its fifo nearly =
+full?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><b><span lang=3DEN-US>From:</span></b><span =
+lang=3DEN-US> Brian Padalino &lt;bpadalino@gmail.com&gt; =
+<br><b>Sent:</b> Tuesday, 29 July 2025 17:12<br><b>To:</b> Kevin =
+Williams &lt;kevin.williams@vastech.co.za&gt;<br><b>Cc:</b> =
+nbalkanas@gmail.com; usrp-users@lists.ettus.com; Werner Bode =
+&lt;werner.bode@vastech.co.za&gt;<br><b>Subject:</b> Re: [USRP-users] =
+Re: [EXTERNAL]Re: remote streaming starts, but stops after a few packets =
+received<o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DMsoNormal>On =
+Tue, Jul 29, 2025 at 11:06=E2=80=AFAM Kevin Williams &lt;<a =
+href=3D"mailto:kevin.williams@vastech.co.za">kevin.williams@vastech.co.za=
+</a>&gt; wrote:<o:p></o:p></p></div><div><blockquote =
+style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm 0cm =
+6.0pt;margin-left:4.8pt;margin-right:0cm'><div><div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>This is =
+strange.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I now =
+assert tready permanently for the radio regardless. (I before used to =
+pass downstream tready up).<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Now I still =
+see the stream stalling, but after a few 10=E2=80=99000 packets of both =
+usrp ports being used for tx (now 4x streams being =
+transmitted).<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>It then =
+drops to only one port, and then stalls =E2=80=93 even though this is =
+remote streaming.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>How is it =
+possible that the host causes the usrp to abandon a nic in remote =
+streaming mode when the radio is always seeing tready?<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Just before =
+the stall I still see the usrp writing an overflow =
+packet.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><img =
+border=3D0 width=3D1040 height=3D838 =
+style=3D'width:10.8333in;height:8.7291in' =
+id=3D"m_1590977016333117940Picture_x0020_1" =
+src=3D"cid:image001.png@01DC00AD.F4321F60"><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>How is this =
+possible?<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><img =
+border=3D0 width=3D1165 height=3D51 =
+style=3D'width:12.1354in;height:.5312in' =
+id=3D"m_1590977016333117940Picture_x0020_2" =
+src=3D"cid:image002.png@01DC00AD.F4321F60"><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div></div></div></blockquote><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>It's because of the radio RX FSM =
+here:<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>&nbsp;&nbsp;<a =
+href=3D"https://url.za.m.mimecastprotect.com/s/yS8OCg5KEEcwEvmhNf8i42SUD?=
+domain=3Dgithub.com">https://github.com/EttusResearch/uhd/blob/40403b7c00=
+154e4559c47bd6dde924f092992d45/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_ra=
+dio/radio_rx_core.v#L565</a><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>When an error condition occurs, it reports the =
+OVERFLOW then it waits for another stream command to start up =
+again.<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>For what it's worth, I don't think you should blindly =
+give it TREADY asserted when things can't process things downstream. The =
+block should be designed such that you know you can consume all the =
+samples in real time.<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Brian<o:p></o:p></p></div></div></div></div></body></ht=
+ml>
+------=_NextPart_002_02D9_01DC00AD.F54B5790--
 
---0000000000005172ab063b12d46f--
-
---0000000000005172ac063b12d470
-Content-Type: image/png; name="image001.png"
-Content-Disposition: inline; filename="image001.png"
+------=_NextPart_001_02D8_01DC00AD.F54B5790
+Content-Type: image/png;
+	name="image001.png"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19856baba1d4cff311>
-X-Attachment-Id: ii_19856baba1d4cff311
+Content-ID: <image001.png@01DC00AD.F4321F60>
 
 iVBORw0KGgoAAAANSUhEUgAABBAAAANGCAYAAABEFX2UAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAP+lSURBVHhe7J0HXBTHF8efLf7tvcUee++9i6CI
@@ -5351,12 +5517,12 @@ IRJWT58+FQWCIAiCIAiCIAiCIAi6WD158oS1BYkSJTIpEF6/fs2FgiAIgiAIgiAIgiAIwGSBAI4d
 O0Zly5bVzgRBEARBEARBEARBEAxYbd26VfwVBEEQBEEQBEEQBEHQxSooKEgUCIIgCIIgCIIgCIIg
 6JJI+ysIgiAIgiAIgiAICRLE60uaNGmcj4W4IRYIgiAIgiAIgiAIQoLGqAAICwuL07EQF4j+D8He
 up9zf485AAAAAElFTkSuQmCC
---0000000000005172ac063b12d470
-Content-Type: image/png; name="image002.png"
-Content-Disposition: inline; filename="image002.png"
+
+------=_NextPart_001_02D8_01DC00AD.F54B5790
+Content-Type: image/png;
+	name="image002.png"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19856baba1d5b16b22>
-X-Attachment-Id: ii_19856baba1d5b16b22
+Content-ID: <image002.png@01DC00AD.F4321F60>
 
 iVBORw0KGgoAAAANSUhEUgAABI0AAAAzCAYAAAAaR/giAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAEi4SURBVHhe7Z0HXFTHE8dHsaGIXbGCvcUee+9i
@@ -5687,9 +5853,94 @@ rDshtH+oc3/2LsOC0aDBzmxEQd/gPGwA9xvZxHW1/7YTjXMZSb169aN2erujrli5mILfBkfpzyTa
 mNIZJRKJRCJJbCRao5FEIpFIJBKJRIcxo9HnRhqNJBKJRCL575Nkw9MkEolEIpFIJBKJRCKRSCQJ
 hzQaSSQSiUQikSQBPDxWUIuWDWn+/FlKyedh1qyp3A7k3ZJIJBKJRPLfRoanSSQSiUQikUgkEolE
 IpFIDCD6P00zUXxK2rYyAAAAAElFTkSuQmCC
---0000000000005172ac063b12d470--
 
---===============6157571111977801940==
+------=_NextPart_001_02D8_01DC00AD.F54B5790--
+
+------=_NextPart_000_02D7_01DC00AD.F54B5790
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+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
+
+------=_NextPart_000_02D7_01DC00AD.F54B5790--
+
+--===============2926016219160167009==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -5699,4 +5950,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6157571111977801940==--
+--===============2926016219160167009==--
