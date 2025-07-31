@@ -2,129 +2,343 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE4EB17364
-	for <lists+usrp-users@lfdr.de>; Thu, 31 Jul 2025 16:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D768B175F8
+	for <lists+usrp-users@lfdr.de>; Thu, 31 Jul 2025 20:05:29 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2950D386409
-	for <lists+usrp-users@lfdr.de>; Thu, 31 Jul 2025 10:49:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 30F46386602
+	for <lists+usrp-users@lfdr.de>; Thu, 31 Jul 2025 14:05:28 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1753973378; bh=SmT2CDpJ+yDR01A+e/LX5+5Beqf9Z4E4kVHC43k3wb8=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=hpRhOHBiSwgkGCApzRVc2TSSPlAyC1WViwLpvuPAvVnuV+ql4pDLKE2SBJuU9FGCr
-	 ghPULDA3RH2CGUxgyKPHEyFv3Tds5Ak6+byFCks9payLyP4pc5/7ev74LWKSHNHia8
-	 eHDY+PzyKjPw5sNrcr1pQ8JCvon3vz/spA6ngBiFL1+qbRydGBBJta5akUrnO0kMlv
-	 IGnkL1F9SoyhBR7OoJ6W4DhAA7EEUXeMLAkbiQlePcyUP9K6mtMbYaCxJ+jHNk4CLM
-	 T7MLYsiNCD0D9+eJEEMUj31j8BLiLTLCZZ43fbgAMlVvosuPKKt9HhQxvybuKMUcTU
-	 7PQ8jsJRNY8kQ==
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id A3CB13863C7
-	for <usrp-users@lists.ettus.com>; Thu, 31 Jul 2025 10:49:10 -0400 (EDT)
+	t=1753985128; bh=cKMx1bpm63x66ildUCtilrLZ+a4xy5jpSvVZL+vZfAk=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=hCfQuGcnzTHmP2C9nhYX7mPlPrFHu9URyulOpMyG+ToqT8i9ftpUx/haLQFOGbBma
+	 ej5l13uWK5ld6bSj8GcbPmrRBCTyY+ZSueTKRmHVHYNtc//hLRhSNV+zXEhroxW4uQ
+	 7tNJqHi7nNptQbAUg7ABkSkB0aTgESF8S32zHjfHAgJwzRHICMlctTAfc32Z5TZp/q
+	 UOb0si6E4IHD1a4PROM0UPosqfc5c4JUo/zc96UhKYTfFtPIv4vr04tXjWQhpujXYk
+	 6UzLMHdQxpxtvOYA8jLDJvXGQ9ETko/QKb2log+4TqTYvhjws0tArCycckf6wAPpXZ
+	 CFUPRnlGs5q8A==
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id 01D6B386345
+	for <usrp-users@lists.ettus.com>; Thu, 31 Jul 2025 14:04:48 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kb5InkTR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NznG4yI1";
 	dkim-atps=neutral
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7e32c9577ddso96745485a.0
-        for <usrp-users@lists.ettus.com>; Thu, 31 Jul 2025 07:49:10 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3e3e4a5715dso331775ab.3
+        for <usrp-users@lists.ettus.com>; Thu, 31 Jul 2025 11:04:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753973349; x=1754578149; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=YiETLpGeerd7o71CrRaY0mSjv/7u3ZNHSa4AjQspF8E=;
-        b=kb5InkTRLK8MwWhaG2Ta26ytmtvqZxDPAeYYJ776TXor6VA3of5FwmRGGtLd4vUP8r
-         J7mct1e8XHdh6b77uy9PAPLFBfJPZpbH+1DKb6c7X26Paipn+icGkzhiCZPf+1IdB2y3
-         UsFYAzV7F0lN0AT2BOTDnBmjiLZe4/sWJzUKIkR+1Z/HqjTmoSEYh6ebR1brYHgH+zEg
-         /dKi6sgCEJt1+Gb9azOZCKJnPNnem7swBYWmbYfX4hs7C3FcuS229BYBt+cqVjrpXNkW
-         +VbZYEPHJybUEobNQiJU7fLakMt+x9IN5ExAtGXCJ87RfRT0T64WiSfUQq2qjRYI1LMt
-         bWKg==
+        d=gmail.com; s=20230601; t=1753985088; x=1754589888; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tREO0DH2OZbALmRqqNdDvLlyDr+hXZRzPIY5YxdDlvQ=;
+        b=NznG4yI10ip782Zxwc0QSHqk0e/7t0TJe0voaW2ljQRT9Yw+xuag4wNfFFYtrtAhd/
+         at1tWJRZVrtwxnupTQPX6559tsZcaOGs86Vuq4sDgTm90n2RJHrWLBHt6czTJrgim/Rx
+         4jki3s5mUpjgmfgqz6UKN7TZhh23iuEYIoPh++H/rzKLOh5O4U2/kWKlaVfPstU8838H
+         IhU6xlyOVgH0y+TDPQ3NU5l05H/qEXrhxrHcg6YcpW3tLr00t050/1MHkKVp6qJDv2UY
+         x33a098E3LsIz6L0z7sKLewUw2fLfwdNy2NXxXtQ8pIbOuX0phpgMLexgpsgGE4iCVE5
+         pRmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753973349; x=1754578149;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YiETLpGeerd7o71CrRaY0mSjv/7u3ZNHSa4AjQspF8E=;
-        b=gtkWtO3jgwtSAk7Mel66tMduHkNRzEP3+96pa+2CKFBFFzVrSAO0cGbSsbMzJ0xmtn
-         qRu960loZZUXfjzHthSpX+R8a6kmzta0VTfvWDDQl3EMkiDnIL47FCGvrkcgBAWAymTv
-         7v0Gk+gutRb2qEbFD2ZLXSJO8OQxK0trMrHxM2K8ceEn+2YY6C1AlcrcNdiPaqKGjbae
-         pPZSIMMS+vdsXsyH2TX1qmCHyDH4N2h8DkeMRvKJSEFc93IxG4VvbAyZB6Q1qR5GYMGN
-         573icNXqVbsnaYU7Q9k71FU29oXsQj6or8Zrg7h4i2U5sGAFEVJ8ojSeQHEt7RRsnTlj
-         4lTA==
-X-Gm-Message-State: AOJu0YwIvN7Yqk9nFZ7U1auF28X6674yG86DoS6Jrgn+7CvXedHDpXPT
-	oqpVy5zW76ImuVfaiAXhfJmwdcY41siyr+pN7RJ3Kd4MP+bxn4VduGZeyoEOxg==
-X-Gm-Gg: ASbGncsb4fpIRTjo2lsmbFBJogTOrCItL2Rftpt/4ovYheWpxW8PI0fStpNXjt+Va3v
-	ohC6cvfl0E95h1ywx+Ijksoki7W7BEOCPgQmvPqee5/+hEzvkSCctI1XjvlhLptDRaf/PRyrI+0
-	VPPIu7xMgqUvJyyTj5LkrjUNXNOSt12mQ40xCMydWGl15+HPiRno8ihMlNHUIcbM5xYZWDZ1OmP
-	/RTUi0KURqXV4O2eGlHU7tsG81jX5bbmVUmPrGvtCpqoAQuMSQLkycbmiJOK/FZhNukG7v2WEtI
-	LW0qePKVmes6nvKKUzvHumx1PCNviK2alpDT+yrRmZbCTNFF0bqmEXX0NMe2Wlye+EOCxmKRCwN
-	4ulkFWOdLRWC1wcm5UV4+bDaVX8bqIF6IlSKhqlVN5g==
-X-Google-Smtp-Source: AGHT+IHaMah2kAkXy877o7L095KWwcUl8ZxoQD2tVOkpY54kWkam9egNhWoDG/ruUtek8X8/w/H5sQ==
-X-Received: by 2002:a05:620a:444d:b0:7e6:391c:41ae with SMTP id af79cd13be357-7e66f3b0047mr956889985a.58.1753973349494;
-        Thu, 31 Jul 2025 07:49:09 -0700 (PDT)
-Received: from [192.168.2.208] ([174.93.0.120])
-        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7e67f5c30ffsm94094885a.33.2025.07.31.07.49.08
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Jul 2025 07:49:09 -0700 (PDT)
-Message-ID: <dbfaeec2-5f95-4447-a6c4-4b79b5f7f249@gmail.com>
-Date: Thu, 31 Jul 2025 10:48:58 -0400
+        d=1e100.net; s=20230601; t=1753985088; x=1754589888;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tREO0DH2OZbALmRqqNdDvLlyDr+hXZRzPIY5YxdDlvQ=;
+        b=cHtHwbJzx1u0Cncdd3D3cArIYxpP2qRLX/vlToBCKAtyRye9h9jNs6NSOkhAsPMHmV
+         Dcy4gfgNRUwa0E/vFa3aFWlA6UK1o13W5DleQkk0dpOZ9qDjj8OrfAK4N4txIc84vN33
+         OvCRCdTeXHhxgv1h6jQvRNml6dfm2RtUkAJ5ooLbkDbMkbOs5Ip/+PdpJppfWmWIH5io
+         H4YVyeEk2a9X0LahYaahdFy/d6PF92BZVbIWLk8agR8IQ3IzuI2CFjpVvv9hDsxAtwsv
+         Mhz50gW9uQ7D9B7Lsa48c0wNtnJHhPbrd82hMCVpbbO4NCDJ2uX2WoArg0YpIhv00C6v
+         J5XQ==
+X-Gm-Message-State: AOJu0YwRcscmHeIUjSkIT9GigSKzK7C8b381LudIe/vxqStD/gmzYjTi
+	QF6yMWnpx8wNBWw+NKe9ASoHUEpqhRJGa6x+WQq4Fk9mQU1qm0spgsJPVx0rDt6K8ih8Ez5cJkY
+	2mPw/XfusrjjdLGGm01ho8tUG0RpCsbw=
+X-Gm-Gg: ASbGncvfqhiDlygWme+ddVYfnXvNuFPMlUsNEqJJhXOC8brXyagoeoKspRjujd9abv+
+	jtZnIOsiy9f+HGzIsCrQXg4hJzm3/cniC8CraYhjTzDp9FhDsJ4ejEB++EoLmIYdd/lH2tLqb0K
+	CkEef+W+ry4/fsRfmH2ZGra4ZpegXlxld/FlpkGv8x/8ulmHWmch8yq1GdM3p/v7VTaIJAd//25
+	6wbEef/UsRFHR6/pmw=
+X-Google-Smtp-Source: AGHT+IHrXg95Esnyu8K7OOnfmG393VA/eHEVoQW7SndOrMd/NYcZnJ5c0JgiQClq9TSg4MOLQKX7r0GstbZp1idaVFM=
+X-Received: by 2002:a05:6e02:10b:b0:3e2:a40e:d29f with SMTP id
+ e9e14a558f8ab-3e3f61f4286mr98000035ab.9.1753985088063; Thu, 31 Jul 2025
+ 11:04:48 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
-References: <fWj6MRI5rIJLRu5Z8SjLUqE2poC1Ckawlvp0SQtY0@lists.ettus.com>
-Content-Language: en-US
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <fWj6MRI5rIJLRu5Z8SjLUqE2poC1Ckawlvp0SQtY0@lists.ettus.com>
-Message-ID-Hash: GJ4NTG3ZJWSQWL3JQLA5ZXDXME6E4FAM
-X-Message-ID-Hash: GJ4NTG3ZJWSQWL3JQLA5ZXDXME6E4FAM
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAAxXO2HOqxb7vT2a+gvzvWS+9fADzfQVqx6h7y-5DL6vxnTZzA@mail.gmail.com>
+ <CAAxXO2H46WizByNopDwDzvU9mH_h66j=vu54-Rp5V_FpRt3ojQ@mail.gmail.com> <CAFOi1A79+cM3zcm7pf2wez_UkZ8Fphw69qiX2KJe2qMW9D-xiA@mail.gmail.com>
+In-Reply-To: <CAFOi1A79+cM3zcm7pf2wez_UkZ8Fphw69qiX2KJe2qMW9D-xiA@mail.gmail.com>
+From: Nikos Balkanas <nbalkanas@gmail.com>
+Date: Thu, 31 Jul 2025 21:04:35 +0300
+X-Gm-Features: Ac12FXxIit4ODKClq5dYB8dOhb-KebonOvyPbP9N5gmVaVK0b2TFTH2jXfi1mWk
+Message-ID: <CAAxXO2HDKZCger_cVx6OOOz4ufycUH=YhNOD1JK1O4f4Qpa6Qw@mail.gmail.com>
+To: Martin Braun <martin.braun@ettus.com>
+Message-ID-Hash: LAGIAYX3VIU3Q2OTHI36ILCRDSZ7O2UE
+X-Message-ID-Hash: LAGIAYX3VIU3Q2OTHI36ILCRDSZ7O2UE
+X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Underflow Issue During Transmission and Reception with USRP X310
+Subject: [USRP-users] Re: Overflow rx_streamer issue
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GJ4NTG3ZJWSQWL3JQLA5ZXDXME6E4FAM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LAGIAYX3VIU3Q2OTHI36ILCRDSZ7O2UE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1578127292740261372=="
 
-T24gMjAyNS0wNy0zMSAxMDowNSwgZ2VjaGIyMUBnbWFpbC5jb20gd3JvdGU6DQo+DQo+DQo+IFdo
-ZW4gSSBydW4gdGhlIGZvbGxvd2luZyBjb21tYW5kOg0KPg0KPiAvdXNyL2xpYi91aGQvZXhhbXBs
-ZXMvdHhfc2FtcGxlc19mcm9tX2ZpbGUgLS1mcmVxIDI0ODRlNiAtLXJhdGUgM2U2IA0KPiAtLWdh
-aW4gMTAgLS13aXJlZm10IHNjMTYgLS1yZWY9aW50ZXJuYWwgLS1maWxlIA0KPiAvaG9tZS91YnVu
-dHV0eC91aGQvZXhhbXBsZXMvdHhfdHJhbnNtaXRfZGF0YS5kYXQgLS1yZXBlYXQNCj4NCj4gVUhE
-IGdlbmVyYXRlcyB0aGlzIHdhcm5pbmc6DQo+DQo+IOKAnFRoZSByZXF1ZXN0ZWQgaW50ZXJwb2xh
-dGlvbiBpcyBvZGQ7IHRoZSB1c2VyIHNob3VsZCBleHBlY3QgDQo+IENJQ8Kgcm9sbG9mZi7CoFNl
-bGVjdCBhbiBldmVuIGludGVycG9sYXRpb24gdG8gZW5zdXJlIHRoYXQgYSBoYWxmYmFuZCANCj4g
-ZmlsdGVyIGlzwqBlbmFibGVkLuKAnQ0KPg0KPiBUaGUgdHJhbnNtaXNzaW9uIGFwcGVhcnMgdG8g
-cnVuIHdpdGhvdXQgZXJyb3JzLCBidXQgSSBkb27igJl0IHNlZSBhbnkgDQo+IHNpZ25hbCBvbiB0
-aGUgc3BlY3RydW0gYW5hbHl6ZXIuIENvdWxkIHlvdSBwbGVhc2UgY2xhcmlmeSB3aGF0IHRoaXMg
-DQo+IHdhcm5pbmcgbWVhbnMgYW5kIGlmIGl0IG1pZ2h0IGJlIHJlbGF0ZWQgdG8gd2h5IHRoZSBz
-aWduYWwgaXNu4oCZdCANCj4gc2hvd2luZyB1cD8NCj4NCj4gVGhhbmtzLg0KPg0KPg0KPiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNj
-cmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpZ
-b3UgaGF2ZW4ndCBzYWlkIHdoaWNoIGRhdWdodGVyY2FyZChzKSB5b3UgaGF2ZSBpbnN0YWxsZWQs
-IHNvIHRoYXQgd2lsbCANCmZhY3RvciBpbnRvIHRoZSBhbnN3ZXIuDQoNCkJ1dCBhIGNvdXBsZSBv
-ZiBtYWluIHBvaW50czoNCg0KM2U2IFNQUyBkb2Vzbid0IGRpdmlkZSB0aGUgbWFzdGVyLWNsb2Nr
-IG9uIHRoZSBYMzEwIHByZWNpc2VseSAoZGVmYXVsdHMgDQp0byAyMDBNSHopLCBzbyBVSEQgd2ls
-bCBmaW5kIGEgcmF0ZcKgIHRoYXQgaXMgY2xvc2UgdGhhdCBET0VTIHNhdGlzZnkgdGhlIA0KcmVx
-dWlyZW1lbnQgdGhhdCB0aGUNCiDCoCBzYW1wbGUgcmF0ZSBiZSBhbiBpbnRlZ2VyIGZyYWN0aW9u
-IG9mIHRoZSBtYXN0ZXIgY2xvY2sgcmF0ZS4NCg0KSU4gQURESVRJT04sIHRoZSByZXN1bHRpbmcg
-cmF0ZSBwcm9kdWNlcyBhbiBpbnRlcnBvbGF0aW9uICpmYWN0b3IqIHRoYXQgDQppcyBvZiBvZGQg
-b3JkZXIsIHNvIHRoZSBmaWx0ZXIgYXJyYW5nZW1lbnQgaW4gdGhlIERVQyAodGhhdCByYXRlLWNo
-YW5nZXMgDQp5b3VyDQogwqAgZGVzaXJlZCBzYW1wbGUgcmF0ZSB0byB0aGUgcmF0ZSB0aGF0IHRo
-ZSBEQUNzIG9wZXJhdGUgYXQpIHdpbGwgDQpwcm9kdWNlIGEgdHlwaWNhbCBoYWxmLWJhbmQgcm9s
-bC1vZmYuwqAgVGhpcyBpcyBub3JtYWwgd2l0aCBEVUMvRERDIA0KaW1wbGVtZW50YXRpb25zIG9m
-DQogwqAgdGhpcyB0eXBlLg0KDQpTbywgaWYgeW91ciBkYXRhIGFyZSBzYW1wbGVkIGF0IGV4YWN0
-bHkgMy4wME1TUFMsIHlvdXIgZW50aXJlIFRYIA0Kc3BlY3RydW0gd2lsbCBiZSBzb21ld2hhdCAi
-b2ZmIiwgYnV0IHNob3VsZCBzdGlsbCBzaG93IHVwLsKgIFdoYXQgDQpkYXVnaHRlcmNhcmQocykg
-YXJlIHlvdSB1c2luZz8NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxp
-c3RzLmV0dHVzLmNvbQo=
+--===============1578127292740261372==
+Content-Type: multipart/alternative; boundary="0000000000001d8ebc063b3d7a77"
+
+--0000000000001d8ebc063b3d7a77
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks Martin,
+
+for your fast response.
+My bad not mentioning my setup. But you got them right:)
+Ubuntu 24.04, UHD 4.6, X310, 10 Gbe line.
+
+1) Yup. I start the recv() right after I start the streamer.
+2) Can't change that. Buffers are created in OpenCL and am mapping them to
+the host side to write them. They are limited to the FFT size, 1024 samples=
+.
+
+The interesting thing is that at first I am using an FFT batch size of 16x,
+that is 16384 samples.
+That means that I have to back and get more samples 16x!
+However, i am not getting  the OOs then.
+Later on, I only do a single pass, .num_samples =3D 1024, just enough for 1
+FFT, for now. This might change in the future.
+But this is where I'm getting the OO's.
+My test results, couldn't get OO's with 3e5 samples ~ 5 MB in 11 hrs. That
+shows that rx_streamer buffers are larger than 5 MB, in line with your
+estimation of 25 MBs:)
+These are big buffers:)
+Doing a few calculations, I read 1133 samples in 16x mode ~18.5 MB + 6.054
+MB in  1x single FFT mode ~24.6 MBs before OOs appear.
+Seems that I don't read anything! But I read every single sample:(
+Must be  that rx_streamer delivers the samples but doesn't reduce its
+buffers...
+
+This shouldn't be happening. Where in UHD sources is this controlled?
+
+TIA
+Nikos
+
+On Thu, Jul 31, 2025 at 12:00=E2=80=AFPM Martin Braun <martin.braun@ettus.c=
+om>
+wrote:
+
+> The size of the recv buffer depends on a bunch of things. On X310, when
+> using 10 GbE, UHD will try and make the socket buffer 25MB in size. Until
+> the socket buffer is full, there will be no overrun.
+>
+> BTW if you want to find O in UHD, grep for "\<O\>" (or ag "\bO\b"). But
+> you don't have to, I can tell you that you will end up in
+> radio_control_impl.cpp.
+>
+> There are several knobs for you to tune:
+>
+> - Are you starting your recv() call soon enough, or is the radio streamin=
+g
+> before you recv?
+> - Can you increase the buffer size that you pass into recv? In an extreme
+> case, you would pass a buffer that is big enough for all num_samps, and l=
+et
+> UHD handle it.
+>
+> Also, what's your rate, your device, your transport...
+>
+> --M
+>
+> On Thu, Jul 31, 2025 at 10:17=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.=
+com>
+> wrote:
+>
+>> Did some more testing. Tried to fill rx_streamer's buffers in purpose.
+>> .stream_mode =3D UHD_STREAM_MODE_NUM_SAMPS_AND_DONE
+>> streamer timeout set to 3".
+>>
+>> 1) .num_samples =3D 16384. Read 1024 each time in a loop sleeping 1" eac=
+h
+>> turn.
+>> More than 16" to complete the read. No OO's.
+>> 2) .num_samps =3D 3e5. Read 1024 samples each time in a loop adding 1" t=
+o
+>> sleep
+>> in each turn (1, 2, 3, 4, ...). 11 hrs to complete the read. No OO's.
+>>
+>> Is overflow even working right?
+>> How large are the streamer's receive buffers?
+>>
+>> Nikos
+>>
+>> On Wed, Jul 30, 2025 at 3:04=E2=80=AFPM Nikos Balkanas <nbalkanas@gmail.=
+com>
+>> wrote:
+>>
+>>> Hi,
+>>>
+>>> I am getting a few overflow errors after sometime, from using my code..
+>>> First OOs in stdout and then metadata at which point it stalls.
+>>> I'm using .stream_mode =3D UHD_STREAM_MODE_NUM_SAMPS_AND_DONE,
+>>> Each time I read .num_samps in a loop until complete and then restart
+>>> the streamer.
+>>> I can't think of any case that I don't read all of the samples, so this
+>>> shouldn't happen.
+>>> What tools are there to debug this issue?
+>>> A function to monitor the rx_streamer internal buffers would be very
+>>> useful.
+>>> Even the filename that implements this overflow would be helpful.
+>>> Grepping "OO" in the sources doesn't help. Always hits in "BOOST":(
+>>>
+>>> TIA
+>>> Nikos
+>>>
+>>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000001d8ebc063b3d7a77
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Tha=
+nks Martin,</div><div class=3D"gmail_default" style=3D"font-size:small"><br=
+></div><div class=3D"gmail_default" style=3D"font-size:small">for your fast=
+ response.</div><div class=3D"gmail_default" style=3D"font-size:small">My b=
+ad not mentioning my setup. But you got them right:)</div><div class=3D"gma=
+il_default" style=3D"font-size:small">Ubuntu 24.04, UHD 4.6, X310, 10 Gbe l=
+ine.</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div>=
+<div class=3D"gmail_default" style=3D"font-size:small">1) Yup. I start the =
+recv() right after I start the streamer.=C2=A0</div><div class=3D"gmail_def=
+ault" style=3D"font-size:small">2) Can&#39;t change that. Buffers are creat=
+ed in OpenCL and am mapping them to the host side to write them. They are l=
+imited to the FFT size, 1024 samples.</div><div class=3D"gmail_default" sty=
+le=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font=
+-size:small">The interesting thing is that at first I am using an FFT batch=
+ size of 16x, that is 16384 samples.</div><div class=3D"gmail_default" styl=
+e=3D"font-size:small">That means that I have to back and get more samples 1=
+6x!</div><div class=3D"gmail_default" style=3D"font-size:small">However, i =
+am not getting=C2=A0 the OOs then.</div><div class=3D"gmail_default" style=
+=3D"font-size:small">Later on, I only do a single pass, .num_samples =3D 10=
+24, just enough for 1 FFT, for now. This might change in the future.</div><=
+div class=3D"gmail_default" style=3D"font-size:small">But this is where I&#=
+39;m getting the OO&#39;s.</div><div class=3D"gmail_default" style=3D"font-=
+size:small">My test results, couldn&#39;t get OO&#39;s with 3e5 samples ~ 5=
+ MB in 11 hrs. That shows that rx_streamer buffers are larger than 5 MB, in=
+ line with your</div><div class=3D"gmail_default" style=3D"font-size:small"=
+>estimation of 25 MBs:)</div><div class=3D"gmail_default" style=3D"font-siz=
+e:small">These are big buffers:)</div><div class=3D"gmail_default" style=3D=
+"font-size:small">Doing a few calculations, I read 1133 samples in 16x mode=
+ ~18.5 MB=C2=A0+ 6.054 MB in=C2=A0 1x single FFT mode ~24.6 MBs before OOs =
+appear.</div><div class=3D"gmail_default" style=3D"font-size:small">Seems t=
+hat I don&#39;t read anything! But I read every single sample:(</div><div c=
+lass=3D"gmail_default" style=3D"font-size:small">Must be=C2=A0 that rx_stre=
+amer delivers the samples but doesn&#39;t reduce its buffers...</div><div c=
+lass=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gm=
+ail_default" style=3D"font-size:small">This shouldn&#39;t be happening. Whe=
+re in UHD sources is this controlled?</div><div class=3D"gmail_default" sty=
+le=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font=
+-size:small">TIA</div><div class=3D"gmail_default" style=3D"font-size:small=
+">Nikos</div></div><br><div class=3D"gmail_quote gmail_quote_container"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 31, 2025 at 12:00=E2=80=AFPM=
+ Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com">martin.braun@et=
+tus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><div dir=3D"ltr"><div>The size of the recv buffer depends on a bunch=
+ of things. On X310, when using 10 GbE, UHD will try and make the socket bu=
+ffer 25MB in size. Until the socket buffer is full, there will be no overru=
+n.</div><div><br></div><div>BTW if you want to find O in UHD, grep for &quo=
+t;\&lt;O\&gt;&quot; (or ag &quot;\bO\b&quot;). But you don&#39;t have to, I=
+ can tell you that you will end up in radio_control_impl.cpp.</div><div><br=
+></div><div>There are several knobs for you to tune:</div><div><br></div><d=
+iv>- Are you starting your recv() call soon enough, or is the radio streami=
+ng before=C2=A0you recv?</div><div>- Can you increase the=C2=A0buffer size =
+that you pass into recv? In an extreme case, you would pass a buffer that i=
+s big enough for all num_samps, and let UHD handle it.</div><div><br></div>=
+<div>Also, what&#39;s your rate, your device, your transport...</div><div><=
+br></div><div>--M</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Thu, Jul 31, 2025 at 10:17=E2=80=AFAM Nikos Balka=
+nas &lt;<a href=3D"mailto:nbalkanas@gmail.com" target=3D"_blank">nbalkanas@=
+gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size=
+:small">Did some more testing. Tried to fill rx_streamer&#39;s buffers in p=
+urpose.</div><div class=3D"gmail_default" style=3D"font-size:small">.stream=
+_mode =3D=C2=A0UHD_STREAM_MODE_NUM_SAMPS_AND_DONE</div><div class=3D"gmail_=
+default" style=3D"font-size:small">streamer timeout set to 3&quot;.</div><d=
+iv class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=
+=3D"gmail_default" style=3D"font-size:small">1) .num_samples =3D 16384. Rea=
+d 1024 each time in a loop sleeping 1&quot; each turn.</div><div class=3D"g=
+mail_default" style=3D"font-size:small">More than 16&quot; to complete the =
+read. No OO&#39;s.</div><div class=3D"gmail_default" style=3D"font-size:sma=
+ll">2) .num_samps =3D 3e5. Read 1024 samples each time in a loop adding 1&q=
+uot; to sleep</div><div class=3D"gmail_default" style=3D"font-size:small">i=
+n each turn (1, 2, 3, 4, ...). 11 hrs to complete the read. No OO&#39;s.</d=
+iv><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div cl=
+ass=3D"gmail_default" style=3D"font-size:small">Is overflow even working ri=
+ght?</div><div class=3D"gmail_default" style=3D"font-size:small">How large =
+are the streamer&#39;s receive buffers?</div><div class=3D"gmail_default" s=
+tyle=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"fo=
+nt-size:small">Nikos</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Wed, Jul 30, 2025 at 3:04=E2=80=AFPM Nikos Bal=
+kanas &lt;<a href=3D"mailto:nbalkanas@gmail.com" target=3D"_blank">nbalkana=
+s@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size=
+:small">Hi,</div><div class=3D"gmail_default" style=3D"font-size:small"><br=
+></div><div class=3D"gmail_default" style=3D"font-size:small">I am getting =
+a few overflow errors after sometime, from using my code..</div><div class=
+=3D"gmail_default" style=3D"font-size:small">First OOs in stdout and then m=
+etadata at which point it stalls.</div><div class=3D"gmail_default" style=
+=3D"font-size:small">I&#39;m using .stream_mode =3D=C2=A0UHD_STREAM_MODE_NU=
+M_SAMPS_AND_DONE,</div><div class=3D"gmail_default" style=3D"font-size:smal=
+l">Each time I read .num_samps in a loop until complete and then restart th=
+e streamer.</div><div class=3D"gmail_default" style=3D"font-size:small">I c=
+an&#39;t think of any case that I don&#39;t read all of the samples, so thi=
+s shouldn&#39;t happen.</div><div class=3D"gmail_default" style=3D"font-siz=
+e:small">What tools are there to debug this issue?</div><div class=3D"gmail=
+_default" style=3D"font-size:small">A function to monitor the rx_streamer i=
+nternal buffers would be very useful.</div><div class=3D"gmail_default" sty=
+le=3D"font-size:small">Even the filename that implements this overflow woul=
+d be helpful.</div><div class=3D"gmail_default" style=3D"font-size:small">G=
+repping &quot;OO&quot; in the sources doesn&#39;t help. Always hits in &quo=
+t;BOOST&quot;:(</div><div class=3D"gmail_default" style=3D"font-size:small"=
+><br></div><div class=3D"gmail_default" style=3D"font-size:small">TIA</div>=
+<div class=3D"gmail_default" style=3D"font-size:small">Nikos=C2=A0</div><di=
+v class=3D"gmail_default" style=3D"font-size:small"><br></div></div>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000001d8ebc063b3d7a77--
+
+--===============1578127292740261372==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1578127292740261372==--
