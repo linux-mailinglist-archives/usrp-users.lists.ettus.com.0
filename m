@@ -2,542 +2,285 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DAF2B18391
-	for <lists+usrp-users@lfdr.de>; Fri,  1 Aug 2025 16:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E27CEB18E48
+	for <lists+usrp-users@lfdr.de>; Sat,  2 Aug 2025 13:53:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E16E9386881
-	for <lists+usrp-users@lfdr.de>; Fri,  1 Aug 2025 10:20:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9CDAB3862C3
+	for <lists+usrp-users@lfdr.de>; Sat,  2 Aug 2025 07:52:53 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1754058059; bh=ddgWBLIh/eO8j4dBtWUhXMZTdZOAmrTNnu3IXi14P+c=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=c3sSiAnk2gyZdXnkaHjRWZ9JkveRV8+A6NEB85+rWJ4ardd7T6IO2+TzL581fd88h
-	 GywRPQl9k9yoWXjUWXE5WZJWgxouOqfLCvOaIG+C5x9D7kQ6bSnFioW/BIBDLukRHB
-	 xLjcblNhp7mJWGjGLvloLAl5z5UaeewKX9RxpG+GzzotiJ2OX9M9XMk7bbvdWIGFAg
-	 Msu9Iqjb0UJclAHG0t7TORUSzqF8YwCFqvXTvCR0L1+pUq8PqOvZRRi41DaXg1YpWH
-	 fuuz7LWm5ByMwlmwgtN38jhUQ0KCk9iepeNUzOGebDL2kLiuNciDwubP/h/FSaW9FT
-	 PlDPKLxkXampg==
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7C2463867CC
-	for <usrp-users@lists.ettus.com>; Fri,  1 Aug 2025 10:20:19 -0400 (EDT)
+	t=1754135573; bh=G4waj9B8y6Z4+L4XYs5zv1JkXV8RZrkb0jgbcRbVJZs=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=hRDdYu0Sdu8cufVqoFGmj2vj9/MTUPxPNKF1XteA6U93vSYtcOh7oc0Ok3/SRStoD
+	 tuq9toQwGa959JkHeVZB6ZRhIKQBoUNawtXpGaa2WGrrq7SeMDRgAMCy8uVynaDD+o
+	 hoNO/5KsQal6PsJHs4gACCVgppJD3LhDXa5vykqHIhGBAJGpX3KC1qM+nk6YpVBOMk
+	 ZCrrZaITZv+Spy1Z2VAmCOe2NnGk+MUCisPNijCFaoB6dTGpqgR82teFixse26/bLH
+	 wgKA1kpf6jymQ2X08DF5ALl81ytBJ/0LsC/2+o/PWBj4pJxjtNzMew35bx9VhOEiZg
+	 NfhLQaWQTafqA==
+Received: from za-smtp-delivery-57.mimecast.co.za (za-smtp-delivery-57.mimecast.co.za [41.74.205.57])
+	by mm2.emwd.com (Postfix) with ESMTPS id B093A385ECB
+	for <usrp-users@lists.ettus.com>; Sat,  2 Aug 2025 07:52:23 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ozgoqo6u";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="W8YkR9Fv";
 	dkim-atps=neutral
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2ffa1b10918so1229887fac.2
-        for <usrp-users@lists.ettus.com>; Fri, 01 Aug 2025 07:20:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754058019; x=1754662819; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bYptvcVfmQlJgaLAh71E35HpS3txFyZjRLJY4qz85bA=;
-        b=Ozgoqo6udrVmKYpTAqY1xyRplmg9VfiFv8HusqbhafVX+lu/TnmeBVL9nU6a0DdcM2
-         CceWJo492xHH040/cHMH/BHoUIeO8SXwTGnQ14WAKxNNKKCe0F1JVP9QdWoPB+ZckdIe
-         D7dkEICLsYOe8U8jdR97FM8c5gGSg+5lN5EHj13bRzX/Q6O5Zx7gqhGyp2IdkIcYO5o7
-         mejMK1tGCpLoBDDNGyonIPrn466n/ksnuRbzsADSSmKqqJf6FPyxZsnoBUURFzfQvtc5
-         ZoZlsmUhuF2x+DNFnZ58d3NROT3hsBj7W8rUImIJuy3GrFlVz0kiepbOhQDPEHt9i15n
-         gW0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754058019; x=1754662819;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bYptvcVfmQlJgaLAh71E35HpS3txFyZjRLJY4qz85bA=;
-        b=TmwwSMa8b86j7R2BNmUi6LreUPitND3ip0UzJkeO/mpmBVcFlm9H1Mc+YzpNKANPPm
-         C8h/jbnvA+yso4AaB7qf/4Z94KeEOoVW6XzDInyvpqPv7y/DTcbdTJ+mZM+jmzppUQQO
-         RVfB9AOdvMAR09tmOjD3qObcQqxm72/mOcZ/5Pwaz7AswMiSqUhIFDqRFsm4bOxGY2DJ
-         mrrjtVN8dtGNtyRgOZsrfXJzvVJfL6HzbfvxlscE/il7efeLiNPC//dLXHQmgFWnyUhZ
-         qGNZbVm4VaoeuZaoopJ6R8wFC0D0AukxX2MeLUN9fYgj+f+wPSJrPwFpv4RMnk0w0Wh5
-         Pr1w==
-X-Gm-Message-State: AOJu0Yw08ZgVGP87NI7ttuH5HVjeiVCgysP8SUWWPt4f8nFIIgDLWB/p
-	PzjCY9Uq7dQL45gnGRaWCx7eyEelhUirG0rT03WbH92H51ZuwrpiqJguoH2baBXI74yjENJERKY
-	Gfu3vD+D2UY8yODQNBB/L7HaMduuHbW4=
-X-Gm-Gg: ASbGncutv6c1XUPTfEwYdRQC6dMqhVPC6d1FCIFq4+KWxctyBDELHLz10IKEUPY4GrM
-	Q8uh7jkfBpJKt9mamgvLc+N4QLGsvOuvP9RN2j/5PTzYlraAZancexlut5PigWClMMauPdhBK0s
-	OrpSBBbiGqVRDAGR+X47X5R+2zMd4aRuExSwdwKx/z6sj6QpR2F2X3kW7tnymlvxl3Jo2jqQkhJ
-	r9SO5bIWE2q
-X-Google-Smtp-Source: AGHT+IEIcvSQKPiNJGGEIPUlOGIsj83FCRxRvqLDXzFhb7t+3k9L+qO/AGUD9keY2pGZR6hFh2GWyQ3h0Nw73gHWeVQ=
-X-Received: by 2002:a05:6870:d1ca:b0:2d5:b7b7:2d6e with SMTP id
- 586e51a60fabf-30785dd920emr7241123fac.38.1754058018394; Fri, 01 Aug 2025
- 07:20:18 -0700 (PDT)
+Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
+ relay.mimecast.com with ESMTP id za-mta-78-_zL1C_sWPwaVPwB3n14cng-1; Sat,
+ 02 Aug 2025 13:52:17 +0200
+X-MC-Unique: _zL1C_sWPwaVPwB3n14cng-1
+X-Mimecast-MFC-AGG-ID: _zL1C_sWPwaVPwB3n14cng_1754135537
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
+	bh=ePeAurTWY8j/L1VUdFAiiOchO5aKGCi7QcvjU/dHT0k=;
+	b=W8YkR9FvaupTh2cPFDJzuW2Y+0AKvM+AgdnWjwIRMHx2SIAlkG71OkmDsBJ4yMOoOF7z5sbJijM6c0E4l2S61LTLqaTe8Jp1ZjeUzOIKm7xe7cerDmjNHNwJTkp/S7VwnsIviXRndlVZxsRGKve7FS8YdRmprtdl5Z+UKEZhbVg=
+Received: from exchange3.vastech.co.za (Unknown [172.30.81.31])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Sat, 2 Aug 2025 13:52:15 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ exchange3.vastech.co.za (172.30.81.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sat, 2 Aug 2025 13:52:14 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Sat, 2
+ Aug 2025 13:52:06 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: custom clocks
+Thread-Index: AdwDoqvcjj17xNcpQ0S7K4mWV9/wQA==
+Date: Sat, 2 Aug 2025 11:52:06 +0000
+Message-ID: <e7dea99b96384c97b77d144180bcd361@vastech.co.za>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.3]
 MIME-Version: 1.0
-References: <CAAxXO2HOqxb7vT2a+gvzvWS+9fADzfQVqx6h7y-5DL6vxnTZzA@mail.gmail.com>
- <CAAxXO2H46WizByNopDwDzvU9mH_h66j=vu54-Rp5V_FpRt3ojQ@mail.gmail.com>
- <CAFOi1A79+cM3zcm7pf2wez_UkZ8Fphw69qiX2KJe2qMW9D-xiA@mail.gmail.com>
- <CAAxXO2HDKZCger_cVx6OOOz4ufycUH=YhNOD1JK1O4f4Qpa6Qw@mail.gmail.com>
- <CAFOi1A6Qv2zq6-CWZScBp=3Xh6uLR_u=xv=xTXecVhvDKVeCjw@mail.gmail.com>
- <CAAxXO2GFY0iYeezAk767dZegidxSTWLY7bqnnUksaneb=Xy-pw@mail.gmail.com>
- <CAAxXO2F=DQKHMnNT2zVEzkBuevBz-Uq8ovxxHKRbMU3bQWR8tQ@mail.gmail.com> <CAFOi1A45+R5vwQvr57YnGCF14_Poz349eUvi05Mp8vhSFz=T5g@mail.gmail.com>
-In-Reply-To: <CAFOi1A45+R5vwQvr57YnGCF14_Poz349eUvi05Mp8vhSFz=T5g@mail.gmail.com>
-From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Fri, 1 Aug 2025 17:20:06 +0300
-X-Gm-Features: Ac12FXyxJuj_R2y8YST3xV3fkMFkzu835I0AxsgDeWTbE7xZLYP4iD8nhXQ1NXM
-Message-ID: <CAAxXO2G-pxPnsOzz-5oNAAwf2t0TuUGcvX5+qXcd17FGSQadog@mail.gmail.com>
-To: Martin Braun <martin.braun@ettus.com>
-Message-ID-Hash: 77TS6V3OGS5UXSNIYTUXAKNL5C7KHSUJ
-X-Message-ID-Hash: 77TS6V3OGS5UXSNIYTUXAKNL5C7KHSUJ
-X-MailFrom: nbalkanas@gmail.com
+Message-ID-Hash: 54FTTRQ34WLF45MDZBSV6H7OHWS262VY
+X-Message-ID-Hash: 54FTTRQ34WLF45MDZBSV6H7OHWS262VY
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Overflow rx_streamer issue
+Subject: [USRP-users] custom clocks
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/77TS6V3OGS5UXSNIYTUXAKNL5C7KHSUJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/54FTTRQ34WLF45MDZBSV6H7OHWS262VY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4317757547969535733=="
+Content-Type: multipart/mixed; boundary="===============0514614442673508796=="
 
---===============4317757547969535733==
-Content-Type: multipart/alternative; boundary="0000000000001a150e063b4e75d7"
+--===============0514614442673508796==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=2.16.840.1.101.3.4.2.3;
+	boundary="----=_NextPart_000_0352_01DC03B4.A17D6AE0"
 
---0000000000001a150e063b4e75d7
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_0352_01DC03B4.A17D6AE0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_0353_01DC03B4.A17D6AE0"
+
+
+------=_NextPart_001_0353_01DC03B4.A17D6AE0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+ 
+
+I have ip cores that provide an axi-lite interface for control registers,
+but which do not seem to make timing when that interface is connected to the
+rfnoc_ctrl clock in an x310 design.
+
+ 
+
+I read in the docs that from UHD 4.7 it is possible to define a new module
+to create this clock, but it isn't clear how to implement this.
+
+ 
+
+Is there perhaps an example that someone could share?
+
+ 
+
+It would be first prize to generate a global clock that other of my rfnoc
+blocks could use but I don't want to develop inside the UHD repo itself.
+
+ 
+
+Many thanks, Kevin
+
+ 
+
+
+------=_NextPart_001_0353_01DC03B4.A17D6AE0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I'm receiving the correct signal and number of items received.
-But the buffer is not freed. After ~25 MBs I start getting OOs, until
-it stalls.
-GDB shows that it skips uhd code updating the pointer in the source buffer.
-That's bad:(
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DEN-US>Hi,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I have ip cores that provide an =
+axi-lite interface for control registers, but which do not seem to make =
+timing when that interface is connected to the rfnoc_ctrl clock in an =
+x310 design.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I read in the docs that from UHD 4.7 it is possible to =
+define a new module to create this clock, but it isn&#8217;t clear how =
+to implement this.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Is there perhaps an example that someone could =
+share?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>It would be first prize to generate a global clock that =
+other of my rfnoc blocks could use but I don&#8217;t want to develop =
+inside the UHD repo itself.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Many thanks, =
+Kevin<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+------=_NextPart_001_0353_01DC03B4.A17D6AE0--
 
-Nikos
+------=_NextPart_000_0352_01DC03B4.A17D6AE0
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
-On Fri, Aug 1, 2025 at 3:32=E2=80=AFPM Martin Braun <martin.braun@ettus.com=
-> wrote:
+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
 
-> The return value of recv() is the number of items that are pulled from th=
-e
-> receive buffer, and are copied to your OpenCL buffer. When it returns,
-> that's the amount of space freed in the receive buffer.
->
-> --M
->
-> On Fri, Aug 1, 2025 at 7:47=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.co=
-m> wrote:
->
->> Seems it runs through
->> host/lib/include/uhdlib/transport/rx_streamer_impl.hpp: 137
->> -> _recv_one_packet()            :  276
->> ->  _convert_to_out_buff()
->> -> _converters[chan]->conv(buffer_ptr, out_buffs, num_samps); 362
->> -> host/include/uhd/convert.hpp:35
->> -> host/lib/convert/sse2_sc16_to_fc32.cpp: 124
->> -> chdr_sc16_to_xx : 173
->> -> host/lib/convert/convert_common.hpp: 198
->> Where it does the generic (non-sse2) conversion.
->> When it returns it goes back
->> to host/lib/include/uhdlib/transport/rx_streamer_impl.hpp: 137 and retur=
-ns.
->> It should have gone instead
->> to host/lib/include/uhdlib/transport/rx_streamer_impl.hpp: 362 to contin=
-ue.
->> Next line would be: // Advance the pointer for the source buffer
->> which is never executed:(
->>
->> I cannot test if this is the OO problem, since gdb has a bug with
->> breakpoint locations.
->> The code in converters seems to mess up the memory for the IR register
->> (AMD CPU - next instruction)
->>
->> BR
->> Nikos
->>
->> On Fri, Aug 1, 2025 at 12:55=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.=
-com>
->> wrote:
->>
->>> I always read my buffers. That's the whole point. Not using my X310 for
->>> anything else.
->>> Not transmitting anything.
->>> Besides, between your X310 estimations and my calculations, it turns
->>> out, that *no buffer* is ever cleared.
->>> I could understand missing a couple of reads, which I don't, but all of
->>> them?
->>> The buffer current pointer is advanced fine. I always read in the new
->>> data, never the same.
->>> But it doesn't delete the old reads below the current pointer:(
->>> Maybe it has to do with the "strange memory" I use.
->>> UHD uses a lot of "weird" code that is not very portable.
->>> What UHD file is it? I need to check it, and run it through gdb...
->>>
->>> TIA
->>> Nikos
->>>
->>> On Thu, Jul 31, 2025 at 11:25=E2=80=AFPM Martin Braun <martin.braun@ett=
-us.com>
->>> wrote:
->>>
->>>> It sounds like you are not permanently reading samples. Everytime
->>>> rx_streamer::recv() returns, the samples are "removed" from the buffer=
-s.
->>>>
->>>> --M
->>>>
->>>> On Thu, Jul 31, 2025 at 8:04=E2=80=AFPM Nikos Balkanas <nbalkanas@gmai=
-l.com>
->>>> wrote:
->>>>
->>>>> Thanks Martin,
->>>>>
->>>>> for your fast response.
->>>>> My bad not mentioning my setup. But you got them right:)
->>>>> Ubuntu 24.04, UHD 4.6, X310, 10 Gbe line.
->>>>>
->>>>> 1) Yup. I start the recv() right after I start the streamer.
->>>>> 2) Can't change that. Buffers are created in OpenCL and am mapping
->>>>> them to the host side to write them. They are limited to the FFT size=
-, 1024
->>>>> samples.
->>>>>
->>>>> The interesting thing is that at first I am using an FFT batch size o=
-f
->>>>> 16x, that is 16384 samples.
->>>>> That means that I have to back and get more samples 16x!
->>>>> However, i am not getting  the OOs then.
->>>>> Later on, I only do a single pass, .num_samples =3D 1024, just enough
->>>>> for 1 FFT, for now. This might change in the future.
->>>>> But this is where I'm getting the OO's.
->>>>> My test results, couldn't get OO's with 3e5 samples ~ 5 MB in 11 hrs.
->>>>> That shows that rx_streamer buffers are larger than 5 MB, in line wit=
-h your
->>>>> estimation of 25 MBs:)
->>>>> These are big buffers:)
->>>>> Doing a few calculations, I read 1133 samples in 16x mode ~18.5 MB +
->>>>> 6.054 MB in  1x single FFT mode ~24.6 MBs before OOs appear.
->>>>> Seems that I don't read anything! But I read every single sample:(
->>>>> Must be  that rx_streamer delivers the samples but doesn't reduce its
->>>>> buffers...
->>>>>
->>>>> This shouldn't be happening. Where in UHD sources is this controlled?
->>>>>
->>>>> TIA
->>>>> Nikos
->>>>>
->>>>> On Thu, Jul 31, 2025 at 12:00=E2=80=AFPM Martin Braun <martin.braun@e=
-ttus.com>
->>>>> wrote:
->>>>>
->>>>>> The size of the recv buffer depends on a bunch of things. On X310,
->>>>>> when using 10 GbE, UHD will try and make the socket buffer 25MB in s=
-ize.
->>>>>> Until the socket buffer is full, there will be no overrun.
->>>>>>
->>>>>> BTW if you want to find O in UHD, grep for "\<O\>" (or ag "\bO\b").
->>>>>> But you don't have to, I can tell you that you will end up in
->>>>>> radio_control_impl.cpp.
->>>>>>
->>>>>> There are several knobs for you to tune:
->>>>>>
->>>>>> - Are you starting your recv() call soon enough, or is the radio
->>>>>> streaming before you recv?
->>>>>> - Can you increase the buffer size that you pass into recv? In an
->>>>>> extreme case, you would pass a buffer that is big enough for all num=
-_samps,
->>>>>> and let UHD handle it.
->>>>>>
->>>>>> Also, what's your rate, your device, your transport...
->>>>>>
->>>>>> --M
->>>>>>
->>>>>> On Thu, Jul 31, 2025 at 10:17=E2=80=AFAM Nikos Balkanas <nbalkanas@g=
-mail.com>
->>>>>> wrote:
->>>>>>
->>>>>>> Did some more testing. Tried to fill rx_streamer's buffers in
->>>>>>> purpose.
->>>>>>> .stream_mode =3D UHD_STREAM_MODE_NUM_SAMPS_AND_DONE
->>>>>>> streamer timeout set to 3".
->>>>>>>
->>>>>>> 1) .num_samples =3D 16384. Read 1024 each time in a loop sleeping 1=
-"
->>>>>>> each turn.
->>>>>>> More than 16" to complete the read. No OO's.
->>>>>>> 2) .num_samps =3D 3e5. Read 1024 samples each time in a loop adding=
- 1"
->>>>>>> to sleep
->>>>>>> in each turn (1, 2, 3, 4, ...). 11 hrs to complete the read. No OO'=
-s.
->>>>>>>
->>>>>>> Is overflow even working right?
->>>>>>> How large are the streamer's receive buffers?
->>>>>>>
->>>>>>> Nikos
->>>>>>>
->>>>>>> On Wed, Jul 30, 2025 at 3:04=E2=80=AFPM Nikos Balkanas <nbalkanas@g=
-mail.com>
->>>>>>> wrote:
->>>>>>>
->>>>>>>> Hi,
->>>>>>>>
->>>>>>>> I am getting a few overflow errors after sometime, from using my
->>>>>>>> code..
->>>>>>>> First OOs in stdout and then metadata at which point it stalls.
->>>>>>>> I'm using .stream_mode =3D UHD_STREAM_MODE_NUM_SAMPS_AND_DONE,
->>>>>>>> Each time I read .num_samps in a loop until complete and then
->>>>>>>> restart the streamer.
->>>>>>>> I can't think of any case that I don't read all of the samples, so
->>>>>>>> this shouldn't happen.
->>>>>>>> What tools are there to debug this issue?
->>>>>>>> A function to monitor the rx_streamer internal buffers would be
->>>>>>>> very useful.
->>>>>>>> Even the filename that implements this overflow would be helpful.
->>>>>>>> Grepping "OO" in the sources doesn't help. Always hits in "BOOST":=
-(
->>>>>>>>
->>>>>>>> TIA
->>>>>>>> Nikos
->>>>>>>>
->>>>>>>> _______________________________________________
->>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>
->>>>>> _______________________________________________
->>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>
->>>>> _______________________________________________
->>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>
->>> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+------=_NextPart_000_0352_01DC03B4.A17D6AE0--
 
---0000000000001a150e063b4e75d7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">I&#=
-39;m receiving the correct signal and number of items received.=C2=A0</div>=
-<div class=3D"gmail_default" style=3D"font-size:small">But the buffer is no=
-t freed. After ~25 MBs I start getting OOs, until</div><div class=3D"gmail_=
-default" style=3D"font-size:small">it stalls.</div><div class=3D"gmail_defa=
-ult" style=3D"font-size:small">GDB shows that it skips uhd code updating th=
-e pointer in the source buffer.</div><div class=3D"gmail_default" style=3D"=
-font-size:small">That&#39;s bad:(</div><div class=3D"gmail_default" style=
-=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-s=
-ize:small">Nikos</div></div><br><div class=3D"gmail_quote gmail_quote_conta=
-iner"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug 1, 2025 at 3:32=E2=
-=80=AFPM Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com">martin.=
-braun@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div dir=3D"ltr"><div>The return value of recv() is the numb=
-er of items that are pulled from the receive buffer, and are copied to your=
- OpenCL buffer. When it returns, that&#39;s the=C2=A0amount of space freed =
-in the receive buffer.</div><div><br></div><div>--M</div></div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug 1, 202=
-5 at 7:47=E2=80=AFAM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.c=
-om" target=3D"_blank">nbalkanas@gmail.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gma=
-il_default" style=3D"font-size:small">Seems it runs through host/lib/includ=
-e/uhdlib/transport/rx_streamer_impl.hpp: 137</div><div class=3D"gmail_defau=
-lt" style=3D"font-size:small">-&gt; _recv_one_packet()=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 :=C2=A0 276</div><div class=3D"gmail_default" style=3D=
-"font-size:small">-&gt;=C2=A0 _convert_to_out_buff()</div><div class=3D"gma=
-il_default" style=3D"font-size:small">-&gt; _converters[chan]-&gt;conv(buff=
-er_ptr, out_buffs, num_samps); 362</div><div class=3D"gmail_default" style=
-=3D"font-size:small">-&gt; host/include/uhd/convert.hpp:35</div><div class=
-=3D"gmail_default" style=3D"font-size:small">-&gt; host/lib/convert/sse2_sc=
-16_to_fc32.cpp: 124</div><div class=3D"gmail_default" style=3D"font-size:sm=
-all">-&gt;=C2=A0chdr_sc16_to_xx : 173</div><div class=3D"gmail_default" sty=
-le=3D"font-size:small">-&gt;=C2=A0host/lib/convert/convert_common.hpp: 198<=
-/div><div class=3D"gmail_default" style=3D"font-size:small">Where it does t=
-he generic (non-sse2) conversion.</div><div class=3D"gmail_default" style=
-=3D"font-size:small">When it returns it goes back to=C2=A0host/lib/include/=
-uhdlib/transport/rx_streamer_impl.hpp: 137 and returns.</div><div class=3D"=
-gmail_default" style=3D"font-size:small">It should have gone instead to=C2=
-=A0host/lib/include/uhdlib/transport/rx_streamer_impl.hpp: 362 to continue.=
-</div><div class=3D"gmail_default" style=3D"font-size:small">Next line woul=
-d be:=C2=A0// Advance the pointer for the source buffer</div><div class=3D"=
-gmail_default" style=3D"font-size:small">which is never executed:(</div><di=
-v class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D=
-"gmail_default" style=3D"font-size:small">I cannot test if this is the OO p=
-roblem, since gdb has a bug with breakpoint locations.</div><div class=3D"g=
-mail_default" style=3D"font-size:small">The code in converters seems to mes=
-s up the memory for the IR register (AMD CPU - next instruction)</div><div =
-class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"g=
-mail_default" style=3D"font-size:small">BR</div><div class=3D"gmail_default=
-" style=3D"font-size:small">Nikos</div></div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug 1, 2025 at 12:55=E2=80=
-=AFAM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.com" target=3D"_=
-blank">nbalkanas@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" sty=
-le=3D"font-size:small">I always read my buffers. That&#39;s the whole point=
-. Not using my X310 for anything else.</div><div class=3D"gmail_default" st=
-yle=3D"font-size:small">Not transmitting anything.</div><div class=3D"gmail=
-_default" style=3D"font-size:small">Besides, between your X310 estimations =
-and my calculations, it turns out, that *no buffer* is ever cleared.</div><=
-div class=3D"gmail_default" style=3D"font-size:small">I could understand mi=
-ssing a couple of reads, which I don&#39;t, but all of them?</div><div clas=
-s=3D"gmail_default" style=3D"font-size:small">The buffer current pointer is=
- advanced fine. I always read in the new data, never the same.</div><div cl=
-ass=3D"gmail_default" style=3D"font-size:small">But it doesn&#39;t delete t=
-he old reads below the current pointer:(</div><div class=3D"gmail_default" =
-style=3D"font-size:small">Maybe it has to do with the &quot;strange memory&=
-quot; I use.</div><div class=3D"gmail_default" style=3D"font-size:small">UH=
-D uses a lot of &quot;weird&quot; code that is not very portable.</div><div=
- class=3D"gmail_default" style=3D"font-size:small">What UHD file is it? I n=
-eed to check it, and run it through gdb...</div><div class=3D"gmail_default=
-" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D=
-"font-size:small">TIA</div><div class=3D"gmail_default" style=3D"font-size:=
-small">Nikos</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Thu, Jul 31, 2025 at 11:25=E2=80=AFPM Martin Braun &lt=
-;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank">martin.braun@e=
-ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr"><div>It sounds like you are not permanently=C2=A0r=
-eading samples. Everytime rx_streamer::recv() returns, the samples are &quo=
-t;removed&quot; from the buffers.</div><div><br></div><div>--M</div></div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu,=
- Jul 31, 2025 at 8:04=E2=80=AFPM Nikos Balkanas &lt;<a href=3D"mailto:nbalk=
-anas@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div =
-class=3D"gmail_default" style=3D"font-size:small">Thanks Martin,</div><div =
-class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"g=
-mail_default" style=3D"font-size:small">for your fast response.</div><div c=
-lass=3D"gmail_default" style=3D"font-size:small">My bad not mentioning my s=
-etup. But you got them right:)</div><div class=3D"gmail_default" style=3D"f=
-ont-size:small">Ubuntu 24.04, UHD 4.6, X310, 10 Gbe line.</div><div class=
-=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gmail_=
-default" style=3D"font-size:small">1) Yup. I start the recv() right after I=
- start the streamer.=C2=A0</div><div class=3D"gmail_default" style=3D"font-=
-size:small">2) Can&#39;t change that. Buffers are created in OpenCL and am =
-mapping them to the host side to write them. They are limited to the FFT si=
-ze, 1024 samples.</div><div class=3D"gmail_default" style=3D"font-size:smal=
-l"><br></div><div class=3D"gmail_default" style=3D"font-size:small">The int=
-eresting thing is that at first I am using an FFT batch size of 16x, that i=
-s 16384 samples.</div><div class=3D"gmail_default" style=3D"font-size:small=
-">That means that I have to back and get more samples 16x!</div><div class=
-=3D"gmail_default" style=3D"font-size:small">However, i am not getting=C2=
-=A0 the OOs then.</div><div class=3D"gmail_default" style=3D"font-size:smal=
-l">Later on, I only do a single pass, .num_samples =3D 1024, just enough fo=
-r 1 FFT, for now. This might change in the future.</div><div class=3D"gmail=
-_default" style=3D"font-size:small">But this is where I&#39;m getting the O=
-O&#39;s.</div><div class=3D"gmail_default" style=3D"font-size:small">My tes=
-t results, couldn&#39;t get OO&#39;s with 3e5 samples ~ 5 MB in 11 hrs. Tha=
-t shows that rx_streamer buffers are larger than 5 MB, in line with your</d=
-iv><div class=3D"gmail_default" style=3D"font-size:small">estimation of 25 =
-MBs:)</div><div class=3D"gmail_default" style=3D"font-size:small">These are=
- big buffers:)</div><div class=3D"gmail_default" style=3D"font-size:small">=
-Doing a few calculations, I read 1133 samples in 16x mode ~18.5 MB=C2=A0+ 6=
-.054 MB in=C2=A0 1x single FFT mode ~24.6 MBs before OOs appear.</div><div =
-class=3D"gmail_default" style=3D"font-size:small">Seems that I don&#39;t re=
-ad anything! But I read every single sample:(</div><div class=3D"gmail_defa=
-ult" style=3D"font-size:small">Must be=C2=A0 that rx_streamer delivers the =
-samples but doesn&#39;t reduce its buffers...</div><div class=3D"gmail_defa=
-ult" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=
-=3D"font-size:small">This shouldn&#39;t be happening. Where in UHD sources =
-is this controlled?</div><div class=3D"gmail_default" style=3D"font-size:sm=
-all"><br></div><div class=3D"gmail_default" style=3D"font-size:small">TIA</=
-div><div class=3D"gmail_default" style=3D"font-size:small">Nikos</div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Th=
-u, Jul 31, 2025 at 12:00=E2=80=AFPM Martin Braun &lt;<a href=3D"mailto:mart=
-in.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
-"><div>The size of the recv buffer depends on a bunch of things. On X310, w=
-hen using 10 GbE, UHD will try and make the socket buffer 25MB in size. Unt=
-il the socket buffer is full, there will be no overrun.</div><div><br></div=
-><div>BTW if you want to find O in UHD, grep for &quot;\&lt;O\&gt;&quot; (o=
-r ag &quot;\bO\b&quot;). But you don&#39;t have to, I can tell you that you=
- will end up in radio_control_impl.cpp.</div><div><br></div><div>There are =
-several knobs for you to tune:</div><div><br></div><div>- Are you starting =
-your recv() call soon enough, or is the radio streaming before=C2=A0you rec=
-v?</div><div>- Can you increase the=C2=A0buffer size that you pass into rec=
-v? In an extreme case, you would pass a buffer that is big enough for all n=
-um_samps, and let UHD handle it.</div><div><br></div><div>Also, what&#39;s =
-your rate, your device, your transport...</div><div><br></div><div>--M</div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Thu, Jul 31, 2025 at 10:17=E2=80=AFAM Nikos Balkanas &lt;<a href=3D"mai=
-lto:nbalkanas@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
-tr"><div class=3D"gmail_default" style=3D"font-size:small">Did some more te=
-sting. Tried to fill rx_streamer&#39;s buffers in purpose.</div><div class=
-=3D"gmail_default" style=3D"font-size:small">.stream_mode =3D=C2=A0UHD_STRE=
-AM_MODE_NUM_SAMPS_AND_DONE</div><div class=3D"gmail_default" style=3D"font-=
-size:small">streamer timeout set to 3&quot;.</div><div class=3D"gmail_defau=
-lt" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=
-=3D"font-size:small">1) .num_samples =3D 16384. Read 1024 each time in a lo=
-op sleeping 1&quot; each turn.</div><div class=3D"gmail_default" style=3D"f=
-ont-size:small">More than 16&quot; to complete the read. No OO&#39;s.</div>=
-<div class=3D"gmail_default" style=3D"font-size:small">2) .num_samps =3D 3e=
-5. Read 1024 samples each time in a loop adding 1&quot; to sleep</div><div =
-class=3D"gmail_default" style=3D"font-size:small">in each turn (1, 2, 3, 4,=
- ...). 11 hrs to complete the read. No OO&#39;s.</div><div class=3D"gmail_d=
-efault" style=3D"font-size:small"><br></div><div class=3D"gmail_default" st=
-yle=3D"font-size:small">Is overflow even working right?</div><div class=3D"=
-gmail_default" style=3D"font-size:small">How large are the streamer&#39;s r=
-eceive buffers?</div><div class=3D"gmail_default" style=3D"font-size:small"=
-><br></div><div class=3D"gmail_default" style=3D"font-size:small">Nikos</di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Wed, Jul 30, 2025 at 3:04=E2=80=AFPM Nikos Balkanas &lt;<a href=3D"mai=
-lto:nbalkanas@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
-tr"><div class=3D"gmail_default" style=3D"font-size:small">Hi,</div><div cl=
-ass=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gma=
-il_default" style=3D"font-size:small">I am getting a few overflow errors af=
-ter sometime, from using my code..</div><div class=3D"gmail_default" style=
-=3D"font-size:small">First OOs in stdout and then metadata at which point i=
-t stalls.</div><div class=3D"gmail_default" style=3D"font-size:small">I&#39=
-;m using .stream_mode =3D=C2=A0UHD_STREAM_MODE_NUM_SAMPS_AND_DONE,</div><di=
-v class=3D"gmail_default" style=3D"font-size:small">Each time I read .num_s=
-amps in a loop until complete and then restart the streamer.</div><div clas=
-s=3D"gmail_default" style=3D"font-size:small">I can&#39;t think of any case=
- that I don&#39;t read all of the samples, so this shouldn&#39;t happen.</d=
-iv><div class=3D"gmail_default" style=3D"font-size:small">What tools are th=
-ere to debug this issue?</div><div class=3D"gmail_default" style=3D"font-si=
-ze:small">A function to monitor the rx_streamer internal buffers would be v=
-ery useful.</div><div class=3D"gmail_default" style=3D"font-size:small">Eve=
-n the filename that implements this overflow would be helpful.</div><div cl=
-ass=3D"gmail_default" style=3D"font-size:small">Grepping &quot;OO&quot; in =
-the sources doesn&#39;t help. Always hits in &quot;BOOST&quot;:(</div><div =
-class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"g=
-mail_default" style=3D"font-size:small">TIA</div><div class=3D"gmail_defaul=
-t" style=3D"font-size:small">Nikos=C2=A0</div><div class=3D"gmail_default" =
-style=3D"font-size:small"><br></div></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000001a150e063b4e75d7--
-
---===============4317757547969535733==
+--===============0514614442673508796==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -547,4 +290,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4317757547969535733==--
+--===============0514614442673508796==--
