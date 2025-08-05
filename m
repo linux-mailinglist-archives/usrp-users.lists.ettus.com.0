@@ -2,173 +2,319 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 402B3B1AB20
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Aug 2025 00:57:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2486CB1B64C
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Aug 2025 16:23:19 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E57B53860B8
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Aug 2025 18:57:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EA734385F92
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Aug 2025 10:23:17 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1754348259; bh=EhN+NIrnro69zqH/BBOvSkPLmXSxX2+ntV38QCDpbak=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=SA3+d4Adgps/Itk5m49+c1F+LTyUzrT3ia6/UeSKJ90Rhn0mWYTXRlx/GtSavoBJx
-	 ht72RCHxK4ZpSvsIKyhtSMgIWTzytKrNgutk5+OOLWIyU5p9EaC2AklvIrr/UDC/+4
-	 K3lBnccFkCYosoffeHK6Z/1UxAQW+1+vX4k8Mol1HI2wH5DifLTkl2n+VJlENXBYbG
-	 x+QMw4zgGDSLLgHvZNTz//arD4ZmQiBIG0ZDP2tl34+Iq5rTs2aeG/jKxl8gt3IE/S
-	 DsDYjnnK6c817ABvAOkQ92bz2163GeyTc319gnAs/H1qA1WsC0sXTChMl1Q63AitvT
-	 7926VTAzkSUOw==
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4769E385CD6
-	for <usrp-users@lists.ettus.com>; Mon,  4 Aug 2025 18:56:52 -0400 (EDT)
+	t=1754403797; bh=Krl53rvY8H0Yn9QsS7kMBYWRa4PZHVL3dTQRluMJyoA=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=LZ+eGjrEhxkU/6P8uQH++rTzBzDvip0DQjcbL9CCEcqVHm7FgipxTkFd3Ftdau0qa
+	 as8agctX6aAhQnnQnFMS9Ko07S1sPoaJoLGud9Inlyhj9P3+4Vq+7/xL02O6KpEuCX
+	 A5F77pc6BqqZko5jAqjpUstosgqsd8juP1J85GGDgZ1NkmqJ0xQ3fj++YiadO4zRWv
+	 025mpwD+x0J0Zrt65GAngKd0ixj+SlP+U6o2WajxcN2wiYjNrpJY07cWd4LWqSBfZT
+	 97s8nFvrrfrYjC+qJ0wqiaZvmD1Vt1zLM+LLGnpJ1C2AWjSgQaKGidpdgGZAr8JxI3
+	 vKXnWt1E95lwA==
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5C728385CA8
+	for <usrp-users@lists.ettus.com>; Tue,  5 Aug 2025 10:22:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MdmAuvXz";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="GCu12Qcv";
 	dkim-atps=neutral
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4589b3e3820so49728785e9.3
-        for <usrp-users@lists.ettus.com>; Mon, 04 Aug 2025 15:56:52 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-af939afe5efso555054866b.2
+        for <usrp-users@lists.ettus.com>; Tue, 05 Aug 2025 07:22:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754348212; x=1754953012; darn=lists.ettus.com;
+        d=nd.edu; s=google; t=1754403749; x=1755008549; darn=lists.ettus.com;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=afVPYSAp4jvXITfNw4d+0jpoXhpTDXpe7qopZX+qwSA=;
-        b=MdmAuvXz6B1JE/MLZ1+i3EnJmU8pPoGQA1zD1HhMoWe99HJMIt1XVWVpbYU4mvcRLb
-         pO3pfpGheB/v4C8k4WgYnq/+o72iW7GRvTgCYKqAJdiMEdipED3Q3jWf9MbW8F+d/pUf
-         UNn0Oi4SjMrNMB0g8C1D5RIn2gVLxyFYTsaXGyhT7Xb4kSohKPPwesIgugZBtQwwHCy7
-         O2ff1ZCJBYmAs05M0Xp3dUdmuofYAderjLSothqVIW3GR2HfvqoL6l/46I2xFwwvhvIW
-         DFePMEFS+o+WlgQQgtDzaCBk3pzxUaJ7CzWtOaR8nKK18/sxH7W4SBWALwehW+JdUdso
-         OWYQ==
+        bh=rBO4zr/gYWbCTul71WngOpU2DUqioPNmrk7X3W3coI8=;
+        b=GCu12QcvH6V/lqUOErXF7epubnYu3ctI1cPojUwXICAGV8tj12pfgNdXfVo+gJ/a4e
+         Lq22psQQnCGhweN5cVQaQ+5A26ZJzIKWFlmCFeQdKs+lMB8G1bG48tl5m0D08491M+b/
+         Wf1OLKQ7iiaHMM+EFnydiB+IGIbUxn//SpVZoRJLvHY2AC7+Aux7bD967R63vXPD6Nj8
+         eC40/PE+XbSJXvG30ijKnwK8CxAm4b5kdlbprvAAmD1ZGyVEGV7x2Zkx5m9mXaZb02n8
+         eBp+irufimxKFluHfeslFyYFOa+SDbJ5yL6aTb8sjgk/1ytt9LFwpeIJxZ/h+JTZBm3y
+         GH+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754348212; x=1754953012;
+        d=1e100.net; s=20230601; t=1754403749; x=1755008549;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=afVPYSAp4jvXITfNw4d+0jpoXhpTDXpe7qopZX+qwSA=;
-        b=R91EJQ0+K4/N0JpEaxRPdlY3HmdvsBBg8yT6RjTd5E1uIJcuGjrTDML4qS7EbNBHFu
-         fXu43YvQRVpu/sODUE4xJ/i+huV6YUINS4JDZiZSZ9jNopiY/8nBTayHxn3XNtt6OJkY
-         cT+7Iqctrn0W2rGfnr+zyeAzkcXqtWWjX+6ihikjCzn6dln6hoCQb3hdtPgbGq8E+UxY
-         DCBMI18zSLgVHs9uF1FytK1qMRzFvH+qfdrbs2GXRl7OJAqEXpumBuNNI7iowC6q0qXT
-         yF7mbVtY0loTaD9NmEtc8cmCi6iYTr3KTu8os2sDKKYGo/Bf4FtkF2XuXzYu98ROeQq4
-         igqQ==
-X-Gm-Message-State: AOJu0YwQUZVvw2DDopkYmEEmubhrghKo1s4RI8gIucN+YPH0vO8cqb4m
-	Bt0FKnpCijHBdWDQ6giN2u+U5nfba4I3vwToO9nBM7QmAqzejsg+NF5+Ipqfa9j7VfYk/SNBMUH
-	NTMsFqB0waeE6STY2yGOI7b5UCVF/S2mIPXbl
-X-Gm-Gg: ASbGncuxMlcDivGF4Wv4UUTMjNYdHVK2OE+wZKNPaHykhsEciAuaebI2a//ZQfGwpMA
-	3OPH5pWmPPIn55xtiPR0f1ZBIyR+DjbsriWzk9c0MM9uUsccN9cd55x/GLEBe4+Bl9DvMAE+byR
-	YlyM0DWn/A/9xtu5+/kmj9Xcc+w+iYulRdr5nmgQSK1t3H/uON6li13RSIOuydgI776Q/fcPc4I
-	Rbx0rC2POpGcdvtTw==
-X-Google-Smtp-Source: AGHT+IGGm77C8LwBKSypysnJOxVHZsOhMNf0P2D0+jq7y/8wvqIWcd+yrhb80iXjAbkioigM+YexwWx0bQlYGM+AJOI=
-X-Received: by 2002:a05:600c:a0b:b0:456:fd4:5322 with SMTP id
- 5b1f17b1804b1-458b69dde9dmr79401315e9.11.1754348211518; Mon, 04 Aug 2025
- 15:56:51 -0700 (PDT)
+        bh=rBO4zr/gYWbCTul71WngOpU2DUqioPNmrk7X3W3coI8=;
+        b=NFxVpSAmVx0Z0ZobmzWd9FqMGry/VN88TxObZuYsUrAhZRDCws9LhSRfo6t+eU7Oxa
+         G7lU4vYMt2Z96kCoHe10RmyQhbfxpkbxeAwRG8Q/dOZZHn6nwM0gpVzewqtWXvXFkB23
+         z1tykEOLnqrCW/VRNnSeqIUWHswk2KdZrqS3X4LQXrMWiWIjuYu/OT9/na4/ZF4cf+yk
+         YcNdmJRnuFxaGj7yGnODeXvWc0zCC1oQbfLVrHV/rmCOkd2j3Ng6XNYm58zcoE52XLcN
+         gmcHQ2ufgTCz5swBna/HSyP/PqX/HgrELeyG+xHBjvltKENdRY+Gf/LVxEKbf73Z9v3R
+         rEFQ==
+X-Gm-Message-State: AOJu0YxKkpgWmclbLCrScCbjt7kdFFSBOc59kRmADgVZgmeO/HsBmH6V
+	Y3+sEQGGfKvNIePTQ6ImCqLJlipixC3MV1eV3mDf8flcYrt+NYLzAxUXmhyuBGIvmjwymZdIDhI
+	lBPCi4MiIm9jbj48QspZzWt41Lg5mpOGrdwCMN2Xcf3vN8DTu20ZYJQ==
+X-Gm-Gg: ASbGncumlIL3upcyp/P+JEuPG9PAdfP9g4at7V8mRsomy/V1yAQyu0PxkBMBjsaUpd5
+	Jx8rYCaAJ+aV1CfuP/vDeuIq18ciiBqbkqFYFItVgOv2uHfGT1wCs+KF3kESRWnYMCPfN5MtXJU
+	O7yCIWUETqiwwdDqYROP4xL+jhFwp42AfbXoKN7Qr40QGFXH4mkLhUC7VkNze54v/NBrdOpQnM7
+	AiGyUf8snWvAuuU9g==
+X-Google-Smtp-Source: AGHT+IFhTQWnqjFUqK6FUpyj7UVUbi2BkUi/HG+AnBgK4sznedz3gxNeSbFcmwwWGieYudHgIJ/gRFn5fHH387vuazM=
+X-Received: by 2002:a17:907:7295:b0:ae0:a116:b9d3 with SMTP id
+ a640c23a62f3a-af9401f48a8mr1386716566b.60.1754403748618; Tue, 05 Aug 2025
+ 07:22:28 -0700 (PDT)
 MIME-Version: 1.0
-From: David <vitishlsfan21@gmail.com>
-Date: Mon, 4 Aug 2025 15:56:40 -0700
-X-Gm-Features: Ac12FXx485R_v3XHMFMLv-UU97BSWQH40BsGkc05VW2HXkkgal42My6P4O_l65M
-Message-ID: <CAE=q3UN5HH7x1iWbLEGht5TNmFH_WVkBcERWBFsCHWBSQ-y2kA@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: UBOOSLFX5UI2NMQZMR3KDHULVDZTR623
-X-Message-ID-Hash: UBOOSLFX5UI2NMQZMR3KDHULVDZTR623
-X-MailFrom: vitishlsfan21@gmail.com
+Date: Tue, 5 Aug 2025 10:22:16 -0400
+X-Gm-Features: Ac12FXws-3bKD7RwnOTefvwDrLaxkzJQeK7Tc-49L-vGkYS5g7UywClHpAs3VXQ
+Message-ID: <CAB__hTSX9oOegJq6XvHty8U=UzJAvLc=xtAg4r4fhsQrRt0-eg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: OSH3Z4PQBZGSSMYPZ2LO37WNOZZFMEUN
+X-Message-ID-Hash: OSH3Z4PQBZGSSMYPZ2LO37WNOZZFMEUN
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Adding Constraints to an RFNoC Block
+Subject: [USRP-users] Using Replay block on X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UBOOSLFX5UI2NMQZMR3KDHULVDZTR623/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OSH3Z4PQBZGSSMYPZ2LO37WNOZZFMEUN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4223366928523097112=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============0403005068098769620=="
 
---===============4223366928523097112==
-Content-Type: multipart/alternative; boundary="000000000000f5c15b063b9205bb"
+--===============0403005068098769620==
+Content-Type: multipart/alternative; boundary="0000000000003ac048063b9ef41c"
 
---000000000000f5c15b063b9205bb
+--0000000000003ac048063b9ef41c
 Content-Type: text/plain; charset="UTF-8"
 
-Hello all,
+Hi,
+I recently received and starting using an X410.  I noticed that my custom
+software does not work when using the Replay block for playout in the
+transmit path (Replay=>DUC=>Radio). This software works with all of our
+other USRPs including N310, X310, and N321.  I don't get any error
+messages, but the transmit light simply does not turn on and there is no RF
+coming out.
 
-I would like to be able to add constraints to a custom block in a
-repeatable way. For some of my blocks that exist on different FPGA images,
-this is required. By constraint, I really mean a false path set in an XDC
-file.
+I then tried rfnoc_replay_samples_from_file (see command line and terminal
+output below).  This also does not show any error message but the transmit
+light does not turn on and there is no RF.
 
-What I have done is a brute force method where I set a false path in
-timing.xdc to a single register in my block, using an absolute path to the
-register. The problem with this is it's only valid for that specific image
-and image structure.
+I then tried tx_samples_from_file (see command line and terminal output
+below). This produces an error message "Cannot forward action tx_event from
+0/Radio#0:INPUT_EDGE:0, no neighbour found!".
 
-I would like to add the constraints to a "block.xdc" file in the custom
-block directory, and add the file to the Makefile.srcs. However, when
-looking at the Makefile.x300.inc file, line 96 states:
+Note that I am able to get RF output (and Tx light on) if I use the
+multi_usrp object (which sends the Tx samples real-time across the Ethernet
+link). I am also able to get RF output (and Tx light on) if I use the
+rf_siggen_gui utility.
 
-# The XDC files must be read in a specific order, motherboard (TOP_SRCS)
-first
-# and then SFP (SFP_SERDES_SRCS) and DRAM (DRAM_SRCS).
-DESIGN_SRCS = $(abspath $(FIFO_SRCS) \
-$(CONTROL_LIB_SRCS) $(SDR_LIB_SRCS) $(SERDES_SRCS) \
-$(SIMPLE_GEMAC_SRCS) $(TIMING_SRCS) $(COREGEN_DSP_SRCS) \
-$(UDP_SRCS) $(EXTRAM_SRCS) \
-$(ZPU_CORE_SRCS) $(WISHBONE_SRCS) \
-$(IOPORT2_SRCS) \
-$(PACKET_PROC_SRCS) $(DSP_SRCS) \
-$(AXI_SRCS) $(AXI4S_SV_SRCS) $(CAP_GEN_GENERIC_SRCS) $(IP_XCI_SRCS)
-$(BD_SRCS) \
-$(LIB_IP_XCI_SRCS) \
-$(RFNOC_FRAMEWORK_SRCS) $(RFNOC_SRCS) $(RFNOC_OOT_SRCS) \
-$(RFNOC_XPORT_SV_SRCS) \
-$(RFNOC_IMAGE_CORE_SRCS) \
-$(TOP_SRCS) $(SFP_SERDES_SRCS) $(DRAM_SRCS) \
-)
+I'm wondering if anyone can confirm that they are using the Replay block as
+a playout memory on the X410.  Any ideas what may be happening?
 
-I take the "specific order" to mean that I must add the clock after the
-$(DRAM_SRCS).
+Rob
 
-In my block Makefile.srcs, I am planning on making an RFNOC_OOT_TIMING_SRCS
-variable, and then adding it after DRAM_SRCS.
+Command line and terminal output from "rfnoc_samples_from_file"
+chisum-gnb@chisumgnb-Precision-5860-Tower:~$ rfnoc_replay_samples_from_file
+--freq 5800e6 --rate 30.72e6 --gain 50 --file
+~/Documents/waveforms/mtone_100_0p8_1.bin
 
-Is this the correct method, or is there another method that I should follow?
+Creating the RFNoC graph with args: ...
+[INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300;
+UHD_4.8.0.0-0ubuntu1~noble1
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=192.168.20.2,type=x4xx,product=x410,serial=3498DB3,name=ni-x4xx-3498DB3,fpga=UC_200,claimed=False,addr=192.168.20.2
+[INFO] [MPM.PeriphManager] init() called with device args
+`fpga=UC_200,mgmt_addr=192.168.20.2,name=ni-x4xx-3498DB3,product=x410,clock_source=internal,time_source=internal,initializing=True'.
+Using Radio Block:  0/Radio#0, channel 0
+Using Replay Block: 0/Replay#0, channel 0
+Using DUC Block:    0/DUC#0, channel 0
+[WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+Active connections:
+* 0/DUC#0:0==>0/Radio#0:0
+* 0/Replay#0:0-->0/DUC#0:0
+* TxStreamer#0:0-->0/Replay#0:0
+Requesting TX Freq: 5800.000000 MHz...
+TX Freq at Radio: 5800.000000 MHz...
 
-Thanks,
+Requesting TX Rate: 30.720000 Msps...
+DUC block found.
+  Interpolation value is 8
+Actual TX Rate: 30.720000 Msps...
 
-David
+Requesting TX Gain: 50.000000 dB...
+Actual TX Gain: 50.000000 dB...
 
---000000000000f5c15b063b9205bb
+Replay file size:     2000 bytes (250 qwords, 500 samples)
+Record base address:  0x0
+Record buffer size:   2000 bytes
+Record fullness:      0 bytes
+
+Emptying record buffer...
+Record fullness:      0 bytes
+
+Sending data to be recorded...
+Waiting for recording to complete...
+Record fullness:      2000 bytes
+
+Issuing replay command for 500 samps in continuous mode...
+Replaying data (Press Ctrl+C to stop)...
+
+
+Command line and terminal output using "tx_samples_from_file"
+chisum-gnb@chisumgnb-Precision-5860-Tower:~$ tx_samples_from_file --freq
+5800e6 --rate 30.72e6 --gain 50 --file
+~/Documents/waveforms/mtone_100_0p8_1.bin
+
+Creating the usrp device with: ...
+[INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300;
+UHD_4.8.0.0-0ubuntu1~noble1
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=192.168.20.2,type=x4xx,product=x410,serial=3498DB3,name=ni-x4xx-3498DB3,fpga=UC_200,claimed=False,addr=192.168.20.2
+[INFO] [MPM.PeriphManager] init() called with device args
+`fpga=UC_200,mgmt_addr=192.168.20.2,name=ni-x4xx-3498DB3,product=x410,clock_source=internal,time_source=internal,initializing=True'.
+Using Device: Single USRP:
+  Device: X400-Series Device
+  Mboard 0: x410
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: 0
+  RX Channel: 1
+    RX DSP: 1
+    RX Dboard: A
+    RX Subdev: 1
+  RX Channel: 2
+    RX DSP: 2
+    RX Dboard: B
+    RX Subdev: 0
+  RX Channel: 3
+    RX DSP: 3
+    RX Dboard: B
+    RX Subdev: 1
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: 0
+  TX Channel: 1
+    TX DSP: 1
+    TX Dboard: A
+    TX Subdev: 1
+  TX Channel: 2
+    TX DSP: 2
+    TX Dboard: B
+    TX Subdev: 0
+  TX Channel: 3
+    TX DSP: 3
+    TX Dboard: B
+    TX Subdev: 1
+
+Setting TX Rate: 30.720000 Msps...
+Actual TX Rate: 30.720000 Msps...
+
+Setting TX Freq: 5800.000000 MHz...
+Setting TX LO Offset: 0.000000 MHz...
+Actual TX Freq: 5800.000000 MHz...
+
+Setting TX Gain: 50.000000 dB...
+Actual TX Gain: 50.000000 dB...
+
+Checking TX: all_los: locked ...
+[WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+
+Done!
+
+[WARNING] [RFNOC::GRAPH::DETAIL] Cannot forward action tx_event from
+0/Radio#0:INPUT_EDGE:0, no neighbour found!
+chisum-gnb@chisumgnb-Precision-5860-Tower:~$
+
+--0000000000003ac048063b9ef41c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello all,</div><div><br></div><div>I would like to b=
-e able to add constraints to a custom block in a repeatable way. For some o=
-f my blocks that exist on different FPGA images, this is required. By const=
-raint, I really mean a false path set in an XDC file.</div><div><br></div><=
-div>What I have done is a brute force method where I set a false path in ti=
-ming.xdc to a single register in my block, using an absolute path to the re=
-gister. The problem with this is it&#39;s only valid for that specific imag=
-e and image structure.</div><div><br></div><div>I would like to add the con=
-straints to a &quot;block.xdc&quot; file in the custom block directory, and=
- add the file to the Makefile.srcs. However, when looking at the Makefile.x=
-300.inc file, line 96 states:</div><div><br></div><div># The XDC files must=
- be read in a specific order, motherboard (TOP_SRCS) first<br># and then SF=
-P (SFP_SERDES_SRCS) and DRAM (DRAM_SRCS).<br>DESIGN_SRCS =3D $(abspath $(FI=
-FO_SRCS) \<br>$(CONTROL_LIB_SRCS) $(SDR_LIB_SRCS) $(SERDES_SRCS) \<br>$(SIM=
-PLE_GEMAC_SRCS) $(TIMING_SRCS) $(COREGEN_DSP_SRCS) \<br>$(UDP_SRCS) $(EXTRA=
-M_SRCS) \<br>$(ZPU_CORE_SRCS) $(WISHBONE_SRCS) \<br>$(IOPORT2_SRCS) \<br>$(=
-PACKET_PROC_SRCS) $(DSP_SRCS) \<br>$(AXI_SRCS) $(AXI4S_SV_SRCS) $(CAP_GEN_G=
-ENERIC_SRCS) $(IP_XCI_SRCS) $(BD_SRCS) \<br>$(LIB_IP_XCI_SRCS) \<br>$(RFNOC=
-_FRAMEWORK_SRCS) $(RFNOC_SRCS) $(RFNOC_OOT_SRCS) \<br>$(RFNOC_XPORT_SV_SRCS=
-) \<br>$(RFNOC_IMAGE_CORE_SRCS) \<br>$(TOP_SRCS) $(SFP_SERDES_SRCS) $(DRAM_=
-SRCS) \<br>)</div><div><br></div><div>I take the &quot;specific order&quot;=
- to mean that I must add the clock after the $(DRAM_SRCS).=C2=A0</div><div>=
-<br></div><div>In my block Makefile.srcs, I am planning on making an RFNOC_=
-OOT_TIMING_SRCS variable, and then adding it after DRAM_SRCS.</div><div><br=
-></div><div>Is this the correct method, or is there another method that I s=
-hould follow?</div><div><br></div><div>Thanks,</div><div><br></div><div>Dav=
-id</div></div>
+<div dir=3D"ltr"><div>Hi,</div><div>I recently received and starting using =
+an X410.=C2=A0=C2=A0I noticed that my custom software does not work when us=
+ing the Replay block for playout in the transmit path (Replay=3D&gt;DUC=3D&=
+gt;Radio). This software works with all of our other USRPs including N310, =
+X310, and N321.=C2=A0 I don&#39;t get any error messages, but the transmit =
+light simply does not turn on and there is no RF coming out.</div><div><br>=
+</div><div>I then tried rfnoc_replay_samples_from_file (see command line an=
+d terminal output below).=C2=A0 This also does not show any error message b=
+ut the transmit light does not turn on and there is no RF.</div><div><br></=
+div><div>I then tried tx_samples_from_file (see command line and terminal o=
+utput below). This produces an error message &quot;Cannot forward action tx=
+_event from 0/Radio#0:INPUT_EDGE:0, no neighbour found!&quot;.</div><div><b=
+r></div><div>Note that I am able to get RF output (and Tx light on) if I us=
+e the multi_usrp object (which sends the Tx samples real-time across the Et=
+hernet link). I am also able to get RF output (and Tx light on) if I use th=
+e rf_siggen_gui utility.</div><div><br></div><div>I&#39;m wondering if anyo=
+ne can confirm that they are using the Replay block as a playout memory on =
+the X410.=C2=A0 Any ideas what may be happening?</div><div><br></div><div>R=
+ob</div><div><br></div><div>Command line and terminal output from &quot;rfn=
+oc_samples_from_file&quot;</div><div><span style=3D"font-family:monospace;c=
+olor:rgb(0,0,255)">chisum-gnb@chisumgnb-Precision-5860-Tower:~$ rfnoc_repla=
+y_samples_from_file --freq 5800e6 --rate 30.72e6 --gain 50 --file ~/Documen=
+ts/waveforms/mtone_100_0p8_1.bin <br><br>Creating the RFNoC graph with args=
+: ...<br>[INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300; UHD_4.8.=
+0.0-0ubuntu1~noble1<br>[INFO] [MPMD] Initializing 1 device(s) in parallel w=
+ith args: mgmt_addr=3D192.168.20.2,type=3Dx4xx,product=3Dx410,serial=3D3498=
+DB3,name=3Dni-x4xx-3498DB3,fpga=3DUC_200,claimed=3DFalse,addr=3D192.168.20.=
+2<br>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DUC_2=
+00,mgmt_addr=3D192.168.20.2,name=3Dni-x4xx-3498DB3,product=3Dx410,clock_sou=
+rce=3Dinternal,time_source=3Dinternal,initializing=3DTrue&#39;.<br>Using Ra=
+dio Block: =C2=A00/Radio#0, channel 0<br>Using Replay Block: 0/Replay#0, ch=
+annel 0<br>Using DUC Block: =C2=A0 =C2=A00/DUC#0, channel 0<br>[WARNING] [0=
+/Radio#0] Attempting to set tick rate to 0. Skipping.<br>Active connections=
+:<br>* 0/DUC#0:0=3D=3D&gt;0/Radio#0:0<br>* 0/Replay#0:0--&gt;0/DUC#0:0<br>*=
+ TxStreamer#0:0--&gt;0/Replay#0:0<br>Requesting TX Freq: 5800.000000 MHz...=
+<br>TX Freq at Radio: 5800.000000 MHz...<br><br>Requesting TX Rate: 30.7200=
+00 Msps...<br>DUC block found.<br>=C2=A0 Interpolation value is 8<br>Actual=
+ TX Rate: 30.720000 Msps...<br><br>Requesting TX Gain: 50.000000 dB...<br>A=
+ctual TX Gain: 50.000000 dB...<br><br>Replay file size: =C2=A0 =C2=A0 2000 =
+bytes (250 qwords, 500 samples)<br>Record base address: =C2=A00x0<br>Record=
+ buffer size: =C2=A0 2000 bytes<br>Record fullness: =C2=A0 =C2=A0 =C2=A00 b=
+ytes<br><br>Emptying record buffer...<br>Record fullness: =C2=A0 =C2=A0 =C2=
+=A00 bytes<br><br>Sending data to be recorded...<br>Waiting for recording t=
+o complete...<br>Record fullness: =C2=A0 =C2=A0 =C2=A02000 bytes<br><br>Iss=
+uing replay command for 500 samps in continuous mode...<br>Replaying data (=
+Press Ctrl+C to stop)...<br></span></div><div><br></div><div><br></div><div=
+>Command line and terminal output using &quot;tx_samples_from_file&quot;</d=
+iv><div><span style=3D"font-family:monospace;color:rgb(153,0,255)">chisum-g=
+nb@chisumgnb-Precision-5860-Tower:~$ tx_samples_from_file --freq 5800e6 --r=
+ate 30.72e6 --gain 50 --file ~/Documents/waveforms/mtone_100_0p8_1.bin <br>=
+<br>Creating the usrp device with: ...<br>[INFO] [UHD] linux; GNU C++ versi=
+on 13.3.0; Boost_108300; UHD_4.8.0.0-0ubuntu1~noble1<br>[INFO] [MPMD] Initi=
+alizing 1 device(s) in parallel with args: mgmt_addr=3D192.168.20.2,type=3D=
+x4xx,product=3Dx410,serial=3D3498DB3,name=3Dni-x4xx-3498DB3,fpga=3DUC_200,c=
+laimed=3DFalse,addr=3D192.168.20.2<br>[INFO] [MPM.PeriphManager] init() cal=
+led with device args `fpga=3DUC_200,mgmt_addr=3D192.168.20.2,name=3Dni-x4xx=
+-3498DB3,product=3Dx410,clock_source=3Dinternal,time_source=3Dinternal,init=
+ializing=3DTrue&#39;.<br>Using Device: Single USRP:<br>=C2=A0 Device: X400-=
+Series Device<br>=C2=A0 Mboard 0: x410<br>=C2=A0 RX Channel: 0<br>=C2=A0 =
+=C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: =
+0<br>=C2=A0 RX Channel: 1<br>=C2=A0 =C2=A0 RX DSP: 1<br>=C2=A0 =C2=A0 RX Db=
+oard: A<br>=C2=A0 =C2=A0 RX Subdev: 1<br>=C2=A0 RX Channel: 2<br>=C2=A0 =C2=
+=A0 RX DSP: 2<br>=C2=A0 =C2=A0 RX Dboard: B<br>=C2=A0 =C2=A0 RX Subdev: 0<b=
+r>=C2=A0 RX Channel: 3<br>=C2=A0 =C2=A0 RX DSP: 3<br>=C2=A0 =C2=A0 RX Dboar=
+d: B<br>=C2=A0 =C2=A0 RX Subdev: 1<br>=C2=A0 TX Channel: 0<br>=C2=A0 =C2=A0=
+ TX DSP: 0<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: 0<br>=
+=C2=A0 TX Channel: 1<br>=C2=A0 =C2=A0 TX DSP: 1<br>=C2=A0 =C2=A0 TX Dboard:=
+ A<br>=C2=A0 =C2=A0 TX Subdev: 1<br>=C2=A0 TX Channel: 2<br>=C2=A0 =C2=A0 T=
+X DSP: 2<br>=C2=A0 =C2=A0 TX Dboard: B<br>=C2=A0 =C2=A0 TX Subdev: 0<br>=C2=
+=A0 TX Channel: 3<br>=C2=A0 =C2=A0 TX DSP: 3<br>=C2=A0 =C2=A0 TX Dboard: B<=
+br>=C2=A0 =C2=A0 TX Subdev: 1<br><br>Setting TX Rate: 30.720000 Msps...<br>=
+Actual TX Rate: 30.720000 Msps...<br><br>Setting TX Freq: 5800.000000 MHz..=
+.<br>Setting TX LO Offset: 0.000000 MHz...<br>Actual TX Freq: 5800.000000 M=
+Hz...<br><br>Setting TX Gain: 50.000000 dB...<br>Actual TX Gain: 50.000000 =
+dB...<br><br>Checking TX: all_los: locked ...<br>[WARNING] [0/Radio#0] Atte=
+mpting to set tick rate to 0. Skipping.<br><br>Done!<br><br>[WARNING] [RFNO=
+C::GRAPH::DETAIL] Cannot forward action tx_event from 0/Radio#0:INPUT_EDGE:=
+0, no neighbour found!<br>chisum-gnb@chisumgnb-Precision-5860-Tower:~$ <br>=
+</span><br></div></div>
 
---000000000000f5c15b063b9205bb--
+--0000000000003ac048063b9ef41c--
 
---===============4223366928523097112==
+--===============0403005068098769620==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -178,4 +324,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4223366928523097112==--
+--===============0403005068098769620==--
