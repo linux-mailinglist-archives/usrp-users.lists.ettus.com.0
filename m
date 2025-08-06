@@ -2,165 +2,282 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2698CB1B69F
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Aug 2025 16:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7467B1C44D
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Aug 2025 12:30:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1A2AD38617D
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Aug 2025 10:36:21 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 906C5385FF8
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Aug 2025 06:30:12 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1754404581; bh=EqlT2U5kf3nf8cTsO809hh8xzbXL1g3YjveL3AHvDvg=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=tOdol/1v2yj43yIjFyBHWx7WmjwusNeCmjCh4zab5lhnnEn0lW7lJZiXOpwThIGJM
-	 VGLKCA1opQ73nTtQ5gdmys4zmIH/o0OdOJB/qC1IjaQhfm2L3t85pMLtFWwBtFWh66
-	 zBTGOrt09PhiqTdPAu6u5BTGD83MT6xnz1qtCORvaop+fAxnQRhRcn+q1+gcS4M6iw
-	 Q/6+aIvoa2SbOYaI2tboTnwAbFz7gnCHLeHi24shv1zw9VwxOXWvCsjE3Y+NNxycLj
-	 XR3nZUw2sb9MctJYnf36ER2yxSKnfPzdxO61pqre3KhUzBs5uR1NwaDN26Xku3j1kp
-	 rwbPtsvA6QLfQ==
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2C630385AFB
-	for <usrp-users@lists.ettus.com>; Tue,  5 Aug 2025 10:36:09 -0400 (EDT)
+	t=1754476212; bh=aJ+cY7lRszLujC0uwPeWaDrJxC7odK1DSWh1YLbfsNM=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=zAl/+hUCBr0z2v5GSA5f1wX+X5gd4ZgIXomHnxPFakLJCcHOr4GL7P6tN6ZLsfNcS
+	 bEfRj4sTCqOb1g7b3uTT1wOPTc17VxkUzvuJquqGi/VQi3QPU4lFNckzLy9NIrEep3
+	 0NkPZyocL9Ggzsjep3kCF+EmkeWoUBeo2cagNsoHM9X9sREvA9QfqcjG9ePtHxFJ50
+	 YVYDBexuHHbH11Ki7iGegdwX3A6uoqYf2f6dQO2S9xePkYfLaJ6EYwPzUVd23QuQuL
+	 8U5kBkn7NuQo7JLxcoyWRw2YDNUeXtXmpmuy97LA55xsHUnJ7cEYWcNQSOtELSSUFT
+	 tluTKP/t9+szg==
+Received: from za-smtp-delivery-132.mimecast.co.za (za-smtp-delivery-132.mimecast.co.za [41.74.205.132])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1D2D4385CEE
+	for <usrp-users@lists.ettus.com>; Wed,  6 Aug 2025 06:29:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="ezZ1fTH7";
+	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="i76GaBdz";
 	dkim-atps=neutral
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-af910372ab3so1055843366b.1
-        for <usrp-users@lists.ettus.com>; Tue, 05 Aug 2025 07:36:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1754404568; x=1755009368; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=G9ttX2tYO1ySciJ+01zwoMvn84RNMT1uGBsdfX1qT/8=;
-        b=ezZ1fTH7fbs0tSzHYk3iBRwRvD/2uB8sHuvtemDov8slG1VR4ln1ubX5IctKETZMIl
-         3/TqbD7HjU6Ucs+Mci7S0e/JBakDhHjj0CYIYJqnzDilCl469Pa+hvtx/tGqSBmYopa4
-         tpYaqv0//yoDQxcnfRGitSNSvrFT8P23LY/VQvbvtc6BRK4vNneUM9d5JqM4bocX9k9F
-         /Z+Wb5CARL4FeK7C8zQdHmqgZlxq1mkdtk8BVXOsonqCRAYYyRGt/wpkL16TyHMvS1AD
-         qsekSrxY7xQqXT8zoe2nhKUeARVOJBNMesMite6NNaC5lHupQeV+Tf7J//gKqbSS6WUf
-         G3gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754404568; x=1755009368;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G9ttX2tYO1ySciJ+01zwoMvn84RNMT1uGBsdfX1qT/8=;
-        b=V7Ebl9A4eEhZ8aSRN00KRwTDP+OG7klPmaNBiWyJ98c68dTXCvyHu2rRegJZ9ujTAn
-         LSvG4xJDJuVaqfKmNdE2F+VUUHY8eGFLDglENI9CEWdfS8mrVEnfIMEC6Pt3gxwFydqm
-         +z/I2DUiJdO9N9v33eIphYnuggxJKWY7l1s+pEvb2Jbe+GoSuJBQv9bk4OxJXopfNVFD
-         iSGL3IhgegjLvgvq8RVs7TOueTwMSDoFxkHW1o4OjX9ALXpZM8d6Qf4rbSl7ju2XNYxO
-         KhIfoQkAEDNtLcbDZKakFxaPD02zb7jGAv75UzufrGZR6N1bzOxJco4pWe2sJ5Mwxov0
-         tlbQ==
-X-Gm-Message-State: AOJu0Yzr5mKETBmWHPsspin3dC+6OQN/GRyfh7Kh8GfYb8aLfieAg/sp
-	/vTZemRRiexGBVsB/n7tXD6jq7DkJ4f/8Q6zepfi7w6edBe6lHWgVabA8wLub0lfYABPha5eB7y
-	OQlclS+D8G1Cy8IxadjeOgPXyxisRa8fKQEWGWgrk6bJMQmPtyr5gCg==
-X-Gm-Gg: ASbGncu6FNn6e9OldQ81b53pDWg0oGUkh1hrCIHUnZZ5KBhwvpCylxtbJ7aSAKVilPC
-	5trt+d3zOptaHBJrT+z7PE+91cqMNRK+9yR30N9J0gootGpXr4OLW6Q4YYnbhOIPIZ2+zM002aQ
-	8N6waFxpufGwRm57t14QhQGE33d0VfsP4M0Jfob4tKZIFIosMsUTl8a7+Ca0dCK9sdc6ln2x0Bq
-	eKnaFrZ5Q/Wn8jP2g==
-X-Google-Smtp-Source: AGHT+IFaQE15chxOJ701k/ebrbHKGna9qkahtWwzi7YElqnWPXzImxTCj8p4QP0v1c7YdW6q0ldbJuRKbkKQPSNBfJM=
-X-Received: by 2002:a17:907:1c26:b0:af9:116e:e373 with SMTP id
- a640c23a62f3a-af98d056495mr2220766b.21.1754404567993; Tue, 05 Aug 2025
- 07:36:07 -0700 (PDT)
+Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
+ relay.mimecast.com with ESMTP id za-mta-130-aEUzpG9vNRSRjzDMYJ4Zkw-1; Wed,
+ 06 Aug 2025 12:29:36 +0200
+X-MC-Unique: aEUzpG9vNRSRjzDMYJ4Zkw-1
+X-Mimecast-MFC-AGG-ID: aEUzpG9vNRSRjzDMYJ4Zkw_1754476176
+dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type;
+	bh=FYkfh9ZkmuxTfIsGRxO16ioBztW6NkJWkj7bdVr9AsI=;
+	b=i76GaBdzMjaZ/b7GrqFI0Y0dLmn/L63+umsc7LRxi3EmixrBYv8KVn5vvooLpTI6Cex6wLIueljH6lEo2rmyqFjWxbdWN1yypA/VYuoMaCP6exp9LLgszQs72seJWFuHXrOQrdxNI5tpdsPWXx6yCm1GxcLkhtgLq5dDfPH8BGg=
+Received: from exchange3.vastech.co.za (Unknown [172.30.81.31])
+	by mail.vastech.co.za with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Wed, 6 Aug 2025 12:29:33 +0200
+Received: from exchange3.vastech.co.za (172.30.81.31) by
+ exchange3.vastech.co.za (172.30.81.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 6 Aug 2025 12:29:32 +0200
+Received: from exchange3.vastech.co.za ([172.30.81.31]) by
+ exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Wed, 6
+ Aug 2025 12:29:32 +0200
+From: Kevin Williams <kevin.williams@vastech.co.za>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: "radio_tx_stb" input on radio_tx_core
+Thread-Index: AdwGvISHnzGtecb9QhuknEUJDlezlA==
+Date: Wed, 6 Aug 2025 10:29:32 +0000
+Message-ID: <34b0dd7790ed4764941ef68db06635e8@vastech.co.za>
+Accept-Language: en-US, en-ZA
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.168.4]
 MIME-Version: 1.0
-References: <esaDuWVk1afW5oTnqarBb2XiZ6m1UCkJFWljZaS40@lists.ettus.com>
-In-Reply-To: <esaDuWVk1afW5oTnqarBb2XiZ6m1UCkJFWljZaS40@lists.ettus.com>
-Date: Tue, 5 Aug 2025 10:35:55 -0400
-X-Gm-Features: Ac12FXzNMhmgWN4gnnjyhIJTXs0abRvMElQ0u6xJno_0n9KYiizE2MuvEGKbZRg
-Message-ID: <CAB__hTTW0Pr-N8qOkXomhRF_VqiKMxLn3bKACSZ2BjCaLj89zw@mail.gmail.com>
-To: gechb21@gmail.com
-Message-ID-Hash: M5VIE36SY4X5P44G2VZMZP6ZY2OC6UJD
-X-Message-ID-Hash: M5VIE36SY4X5P44G2VZMZP6ZY2OC6UJD
-X-MailFrom: rkossler@nd.edu
+Message-ID-Hash: WCGKV4ZRONO5FWUKBI2SUFRVTRPNMVUZ
+X-Message-ID-Hash: WCGKV4ZRONO5FWUKBI2SUFRVTRPNMVUZ
+X-MailFrom: kevin.williams@vastech.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] =?utf-8?q?Re=3A_Subject=3A_Inquiry_Regarding_Maximum_FPGA_Buffer_Capacity_for_Transmission_on_USRP_X310_=C2=A0?=
+Subject: [USRP-users] "radio_tx_stb" input on radio_tx_core
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M5VIE36SY4X5P44G2VZMZP6ZY2OC6UJD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WCGKV4ZRONO5FWUKBI2SUFRVTRPNMVUZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============1721428743526481508=="
+Content-Type: multipart/mixed; boundary="===============0075427603512205921=="
 
---===============1721428743526481508==
-Content-Type: multipart/alternative; boundary="0000000000001179b3063b9f2524"
+--===============0075427603512205921==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=2.16.840.1.101.3.4.2.3;
+	boundary="----=_NextPart_000_012C_01DC06CD.C276CC20"
 
---0000000000001179b3063b9f2524
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_012C_01DC06CD.C276CC20
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_012D_01DC06CD.C276CC20"
+
+
+------=_NextPart_001_012D_01DC06CD.C276CC20
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+ 
+
+What does the "radio_tx_stb" signal do here
+uhd/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_tx_core.v at
+40403b7c00154e4559c47bd6dde924f092992d45
+<https://github.com/EttusResearch/uhd/blob/40403b7c00154e4559c47bd6dde924f09
+2992d45/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_tx_core.v#L301>
+. EttusResearch/uhd?
+
+ 
+
+I am trying to find out why I cannot get RF loopback running using dual
+channel RFNoC blocks.
+
+ 
+
+I note that this signal is required to change states to end up in
+ST_TRANSMIT.
+
+ 
+
+Thanks, Kevin
+
+ 
+
+
+------=_NextPart_001_012D_01DC06CD.C276CC20
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-If you are using the "multi_usrp" object, it looks like you can use the
-Replay block as a FIFO in your transmit path using the tx_streamer arg
-"replay_buffered". This would be a very big FIFO.  But, at the rate you
-mentioned, this really shouldn't be needed.  The smaller FIFOs that are
-part of the SEPs and DUC RFNoC block should be sufficient. My guess is that
-if you are having underflow issues, perhaps something is
-configured incorrectly on your host.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DEN-US>Hi,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>What does the =
+&#8220;radio_tx_stb&#8221; signal do here </span><a =
+href=3D"https://github.com/EttusResearch/uhd/blob/40403b7c00154e4559c47bd=
+6dde924f092992d45/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_tx_=
+core.v#L301">uhd/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_tx_c=
+ore.v at 40403b7c00154e4559c47bd6dde924f092992d45 &middot; =
+EttusResearch/uhd</a>?<o:p></o:p></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I am trying to find out why I cannot get RF loopback =
+running using dual channel RFNoC blocks.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I note that this signal is required =
+to change states to end up in ST_TRANSMIT.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Thanks, =
+Kevin<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+------=_NextPart_001_012D_01DC06CD.C276CC20--
 
-I will also mention that if your transmit waveform has fixed length you can
-use the Replay block as a playout memory such that you send the Tx samples
-from the host to the Replay memory non-realtime and later issue a command
-to playout the samples directly from the Replay block at the desired time.
-If this is possible in your use case, you will not have any underruns.
-Rob
+------=_NextPart_000_012C_01DC06CD.C276CC20
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
-On Mon, Aug 4, 2025 at 1:21=E2=80=AFPM <gechb21@gmail.com> wrote:
+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
 
-> Hi Rob,
->
-> Thanks for the detailed explanation. I=E2=80=99m currently using a single=
- channel
-> with a sample rate of 20=E2=80=AFMS/s. The UHD version is: Linux; GNU C++=
- version
-> 13.3.0; Boost_108300; UHD_4.7.0.HEAD-0-ga5ed1872.
->
-> Thanks!
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+------=_NextPart_000_012C_01DC06CD.C276CC20--
 
---0000000000001179b3063b9f2524
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>If you are using the &quot;multi_usrp&quot; object, i=
-t looks like you can use the Replay block as a FIFO in your transmit path u=
-sing the tx_streamer arg &quot;replay_buffered&quot;. This would be a very =
-big FIFO.=C2=A0 But, at the rate you mentioned, this really shouldn&#39;t b=
-e needed.=C2=A0 The smaller FIFOs that are part of the SEPs and DUC RFNoC b=
-lock should be sufficient. My guess is that if you are having underflow iss=
-ues, perhaps something is configured=C2=A0incorrectly on your host.=C2=A0</=
-div><div><br></div><div>I will also mention that if your transmit waveform =
-has fixed length you can use the Replay block as a playout memory such that=
- you send the Tx samples from the host to the Replay memory non-realtime=C2=
-=A0and later issue a command to playout the samples directly from the Repla=
-y block at the desired time.=C2=A0 If this is possible in your use case, yo=
-u will not have any underruns.</div><div>Rob</div></div><br><div class=3D"g=
-mail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Mon, Aug 4, 2025 at 1:21=E2=80=AFPM &lt;<a href=3D"mailto:gechb21@gmail.com=
-">gechb21@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><p>Hi Rob,</p><p>Thanks for the detailed explanation. I=
-=E2=80=99m currently using a single channel with a sample rate of 20=E2=80=
-=AFMS/s. The UHD version is: Linux; GNU C++ version 13.3.0; Boost_108300; U=
-HD_4.7.0.HEAD-0-ga5ed1872.</p><p>Thanks!</p>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000001179b3063b9f2524--
-
---===============1721428743526481508==
+--===============0075427603512205921==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -170,4 +287,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1721428743526481508==--
+--===============0075427603512205921==--
