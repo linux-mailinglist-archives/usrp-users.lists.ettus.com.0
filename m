@@ -2,155 +2,158 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02AB5B1CDC9
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Aug 2025 22:43:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B374B1D49E
+	for <lists+usrp-users@lfdr.de>; Thu,  7 Aug 2025 11:16:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 456DD38561B
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Aug 2025 16:43:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D47DE386115
+	for <lists+usrp-users@lfdr.de>; Thu,  7 Aug 2025 05:16:42 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1754513032; bh=TGlo9aR+Fj0jBp0NBax9G8Vd7Lp8ysChDPf+QBK8uvs=;
-	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	t=1754558202; bh=B6zgOYB20dr6hyqIvZXgrMWdAF/ZRRvL2JoeiL+qoH8=;
+	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
 	 From;
-	b=bOn2luv8/XqIjTTdKLKV5tYPNvcGv/0w/pVajrW06q3q7OBhCYT3CffBzTdq8w0ec
-	 Kd9AO3OUWi/26eLaMxrE/sLlIaA14pPDWxIRx9EWLpE5soT1rVxt3lB3npifyY0CH0
-	 nHs2njHDp/og2lOYOCE/BMoQKTXQM1d3WDzjWzYDNx8dmrTvSRhIDxtbz9K++C98SD
-	 SIn5EvbFS0Srol+jnmvBtGAjgYNVLGfHD0TKQmvg77SCV6E/9FpP0vWeNrBHLSp4Rx
-	 gBsLA/gLnCdO8bcTDk+j4FXTNnCAnF64VJDic48H8vJJSkCASIV8jaTKF4sNApO4BH
-	 QFO8oR1BQL3TA==
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 88C0438561B
-	for <usrp-users@lists.ettus.com>; Wed,  6 Aug 2025 16:43:05 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VgU9lirt";
-	dkim-atps=neutral
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-af967835d0aso43774766b.0
-        for <usrp-users@lists.ettus.com>; Wed, 06 Aug 2025 13:43:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754512984; x=1755117784; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=57n+7w0afKIGEJRoz1C7Ob9HCrLKOazBzIxAU0WojJ0=;
-        b=VgU9lirt/9oC0zkP6HlAgAHtj9PeZyHKc9cq0S6kDXk0aSZW1aLxhG1V/0zsv34yqu
-         xuHMWWde4WqLH1EcPcarWVXh2Cy8js7SWVTKdD5bSLxBTfrbw2GTkpZ4jkPcc1PPdjT9
-         9/czT0VME4kchNexJPVsHmp1zltCEmFyi8i+pxQrf3MefQIOiYJPLFf686LHQIsEZ8tU
-         Y3EfeszmfOotCzuMw+4u/GLjGYPAOmtVIvJaebGB10XBAtL1e3Z9xQTJhtARk7c3JvmI
-         qLMQoiWgc4R6wwBNtDYxqYhfS66yztiF6aAKv9pF9xgY2K9EGjTjZb3jhC4tBK1SQJ/B
-         nqhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754512984; x=1755117784;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=57n+7w0afKIGEJRoz1C7Ob9HCrLKOazBzIxAU0WojJ0=;
-        b=hC961HrWSGXm2cwCiC5t2v54xdVl0KTVKutopkQk0oLkUSlQ1vQJ5k4/ROhxUQ8u5L
-         atHVstpici8XulA6un2T+9tkv95WUKxno48IF4FORGVw/y/y+AQ641XfdeDrhw5ngm93
-         tjps2z+go9d4kIDCfCg4DTIdNZAv4K3aatZj1YRDafVk2J+6+UvEqKvnjsb+79SQOj3b
-         bdMJz1Bser9KKvBf1SUU+WZPugeByuHSN0CPj0Ha73JY+av64yulCID9bAyxfqXZWpw5
-         lrKcvXPFqFB6OQj1OnqVZVfhXcvm84RfjYCDT7Xc4/nET5O8x12QVhoC0YL7BmUUcozO
-         3EgA==
-X-Gm-Message-State: AOJu0YyUxAFn/+kHurScfi/EwCXRpL4+dprEIixADdmXz0Wj4RipRzMn
-	FIRtGuTSs3h1zcvdnp+9Cefq8QzyohM/sc2GMm5V2EfxsXMXK0C3fXC0NvAeBHOZOcS/uzjbRlh
-	qSr6VuIm92GdksbxzDtvtqVP+r9lqsTtH6Kz+
-X-Gm-Gg: ASbGncsxECB+AiDTppIlGZ+0ddHsAG38ZIxqObNGOZoIATZHUuJe5lPz5jxmVhKRwna
-	+5Gydjs3Gfj0LG/ODbqsaG0dymW/ZRwpPGLM1m9Qs2msPULJJ7URTNpr6Im6vTBhBkNpzIeUbMt
-	y0P/kkuVRn6l0VNUIJ/B132qvcnEsRfBZNUJYNtMQYCmZt0hc16aGScAvaJSJZMJ1Xo0TI4tQg7
-	mE4oo4vRE0eHk1u2w==
-X-Google-Smtp-Source: AGHT+IEsyjg85ghDMXuchGNwKBIvXxr3C2uNDUBVrCMCEhE8e0BU3jzYblkkbnvSNvhX+Ukbeh7jz1j5X41Cg4Vp1HM=
-X-Received: by 2002:a17:907:980a:b0:ae0:d019:dac7 with SMTP id
- a640c23a62f3a-af9a60f99d8mr27264766b.23.1754512983928; Wed, 06 Aug 2025
- 13:43:03 -0700 (PDT)
+	b=q/+uje+l39rYtdZ2cvrYC8NldcocLzOk/jgVk2x2w7kXtQzf+LJ5AB7LfBAbXx5hO
+	 HzWLjcHPCI19QB0eYUkuEOU6WEu4NS0fQj/ato1Ix0mmxj9ZkkUYInHQ4qxYuIz4V3
+	 o2Mw/VDqn3rr2WEprgWZdVL88jWmDyNL+QY93XGfwU5Lr7lU+RDwSORGOeqWI7oyB4
+	 4pfpcTR6ATMpQtvndJd25afbZfLuHitBwe0khOTEBz6srqiGV0a1p3Uhsdifwh/lAe
+	 hHPcO2sFLGm0BURcTT6cnDvSwbm+YAJ/K42sDvPemUMtdsX9DxjRykUVtkSYuo4fsQ
+	 fmhJF+U2N+izg==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id D9688385C6E
+	for <usrp-users@lists.ettus.com>; Thu,  7 Aug 2025 05:16:12 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1754558172; bh=YVY4xV1jLkfqDkbdugNWNG4gDHeV26mn64mdHuEw4PI=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=SI78KJEuXM4VB5Fg9aZIgU7FtGRMGLKEmal/JDy5VZDaWE2Ogtcrv/c+X+tqiRP1K
+	 7rD4Ad4Qwy+jMMiefaqURGMrczm/LRjd2HuE+QfgpV8ZXOMH/zt/0AFGQGr6RUFBYC
+	 akvAchPf2Ycf0l4cAJtxP15X21wVXd+ynrKQG/sSYA02e081y6IlNrfmyAS70RZTKU
+	 5ozPpH067Bi58Ir/h5im0x1whAjccOj8qtpJ6F1mgF8FK0bczN0UhefBaSUlGEBODK
+	 GKP+Wp2Asg70JWXiZJZjiSJyAMWJ6x1eaUk6dWgIBQwYwHcS0FRPr56slI1fqgXp4K
+	 o5SNbTrLespCg==
+Date: Thu, 7 Aug 2025 09:16:12 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <21PpIjJqXU4VMUzg7fgWE0NoQujme7421kTgMZTZSo@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAE=q3UN5HH7x1iWbLEGht5TNmFH_WVkBcERWBFsCHWBSQ-y2kA@mail.gmail.com
 MIME-Version: 1.0
-References: <CAEXYVK7rTUg-C9fsxZyueKMzqckYkwYZzb5XSETJpUwq4nQfCQ@mail.gmail.com>
-In-Reply-To: <CAEXYVK7rTUg-C9fsxZyueKMzqckYkwYZzb5XSETJpUwq4nQfCQ@mail.gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Wed, 6 Aug 2025 16:42:52 -0400
-X-Gm-Features: Ac12FXwtxExiYEX4qj8REYQ6OQTjPcwNHm716mUtQUdIKagryv0DEYvJc9woA64
-Message-ID: <CAEXYVK5pqZtJ67ahe4tdt84VESetsHAoy2vKkHPTkH56Npk5mQ@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: P6DETWPCP2BFWPNIQMZUHAZSSDB64232
-X-Message-ID-Hash: P6DETWPCP2BFWPNIQMZUHAZSSDB64232
-X-MailFrom: bpadalino@gmail.com
+Message-ID-Hash: 4PFHLDWPOGEI6H6MHL6DLW7XKJZQALGB
+X-Message-ID-Hash: 4PFHLDWPOGEI6H6MHL6DLW7XKJZQALGB
+X-MailFrom: niels.steffen.garibaldi@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Issue Stream Command to Radio without 1:1 Endpoint
+Subject: [USRP-users] Re: Adding Constraints to an RFNoC Block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P6DETWPCP2BFWPNIQMZUHAZSSDB64232/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4PFHLDWPOGEI6H6MHL6DLW7XKJZQALGB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4981166495107877371=="
+From: "niels.steffen.garibaldi--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: niels.steffen.garibaldi@emerson.com
+Content-Type: multipart/mixed; boundary="===============2581746282719932385=="
 
---===============4981166495107877371==
-Content-Type: multipart/alternative; boundary="0000000000002931ea063bb863cc"
+This is a multi-part message in MIME format.
 
---0000000000002931ea063bb863cc
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============2581746282719932385==
+Content-Type: multipart/alternative;
+ boundary="b1_21PpIjJqXU4VMUzg7fgWE0NoQujme7421kTgMZTZSo"
+Content-Transfer-Encoding: 7bit
 
-Replying to myself since I just didn't see it beforehand. It seems like
-instead of asking the streamer to issue the command, I can ask the radio
-controller itself to do it for me as per:
+This is a multi-part message in MIME format.
 
+--b1_21PpIjJqXU4VMUzg7fgWE0NoQujme7421kTgMZTZSo
+Content-Type: text/plain; charset=us-ascii
 
-https://files.ettus.com/manual/classuhd_1_1rfnoc_1_1radio__control.html#a33=
-e138c4771e4dade783411224857a43
+Hi David,\
+\
+there is an option of adding contraints via the block description yaml file by specifying them in the constraints section.
 
-I'll give this a shot to see if it does what I want to do. Sorry for the
-chatter.
+For OOT blocks, you can find an example here on how this could be done:\
+[Aurora OOT block description file](https://github.com/EttusResearch/rfnoc-oot-blocks/blob/main/rfnoc/blocks/aurora.yml#L54)\
+\
+Hope this helps.\
+\
+Regards,\
+Niels
 
-Brian
+---
 
-On Wed, Aug 6, 2025 at 4:29=E2=80=AFPM Brian Padalino <bpadalino@gmail.com>=
- wrote:
+\
+David wrote:
 
-> In my application, I have a transform that I do at the radio block such
-> that the 4 RX ports turn into a single stream of data.
+> Hello all,
 >
-> I want to issue a stream command to each of the 4 RX ports, but I only
-> have a single streamer that it'll be outputting to.
+> I would like to be able to add constraints to a custom block in a
+> repeatable way. For some of my blocks that exist on different FPGA images,
+> this is required. By constraint, I really mean a false path set in an XDC
+> file.
 >
-> Is this paradigm possible with RFNoC, or do I need an EP for every RF por=
-t
-> such that I can connect to the endpoint and create an RX streamer?
+> What I have done is a brute force method where I set a false path in
+> timing.xdc to a single register in my block, using an absolute path to the
+> register. The problem with this is it's only valid for that specific image
+> and image structure.
+>
+> I would like to add the constraints to a "block.xdc" file in the custom
+> block directory, and add the file to the Makefile.srcs. However, when
+> looking at the Makefile.x300.inc file, line 96 states:
+>
+> # The XDC files must be read in a specific order, motherboard (TOP_SRCS)
+>
+> first
+>
+> # and then SFP (SFP_SERDES_SRCS) and DRAM (DRAM_SRCS).
+>
+> DESIGN_SRCS = $(abspath $(FIFO_SRCS) \
+> $(CONTROL_LIB_SRCS) $(SDR_LIB_SRCS) $(SERDES_SRCS) \
+> $(SIMPLE_GEMAC_SRCS) $(TIMING_SRCS) $(COREGEN_DSP_SRCS) \
+> $(UDP_SRCS) $(EXTRAM_SRCS) \
+> $(ZPU_CORE_SRCS) $(WISHBONE_SRCS) \
+> $(IOPORT2_SRCS) \
+> $(PACKET_PROC_SRCS) $(DSP_SRCS) \
+> $(AXI_SRCS) $(AXI4S_SV_SRCS) $(CAP_GEN_GENERIC_SRCS) $(IP_XCI_SRCS)
+> $(BD_SRCS) \
+> $(LIB_IP_XCI_SRCS) \
+> $(RFNOC_FRAMEWORK_SRCS) $(RFNOC_SRCS) $(RFNOC_OOT_SRCS) \
+> $(RFNOC_XPORT_SV_SRCS) \
+> $(RFNOC_IMAGE_CORE_SRCS) \
+> $(TOP_SRCS) $(SFP_SERDES_SRCS) $(DRAM_SRCS) \
+> )
+>
+> I take the "specific order" to mean that I must add the clock after the
+> $(DRAM_SRCS).
+>
+> In my block Makefile.srcs, I am planning on making an RFNOC_OOT_TIMING_SRCS
+> variable, and then adding it after DRAM_SRCS.
+>
+> Is this the correct method, or is there another method that I should follow?
 >
 > Thanks,
-> Brian
 >
+> David
 
---0000000000002931ea063bb863cc
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--b1_21PpIjJqXU4VMUzg7fgWE0NoQujme7421kTgMZTZSo
+Content-Type: text/html; charset=us-ascii
 
-<div dir=3D"ltr">Replying to myself=C2=A0since I just didn&#39;t see it bef=
-orehand. It seems like instead of asking the streamer to issue the command,=
- I can ask the radio controller itself to do it for me as per:<div><br></di=
-v><div>=C2=A0=C2=A0<a href=3D"https://files.ettus.com/manual/classuhd_1_1rf=
-noc_1_1radio__control.html#a33e138c4771e4dade783411224857a43">https://files=
-.ettus.com/manual/classuhd_1_1rfnoc_1_1radio__control.html#a33e138c4771e4da=
-de783411224857a43</a></div><div><br></div><div>I&#39;ll give this a shot to=
- see if it does what I want to do. Sorry for the chatter.</div><div><br></d=
-iv><div>Brian</div></div><br><div class=3D"gmail_quote gmail_quote_containe=
-r"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 6, 2025 at 4:29=E2=80=
-=AFPM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com">bpadalino@g=
-mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr">In my application, I have a transform=C2=A0that I =
-do at the radio block such that the 4 RX ports turn into a single stream of=
- data.<div><br></div><div>I want to issue a stream command to each of the 4=
- RX ports, but I only have a single streamer that it&#39;ll be outputting t=
-o.</div><div><br></div><div>Is this paradigm possible with RFNoC, or do I n=
-eed an EP for every RF port such that I can connect to the endpoint and cre=
-ate an RX streamer?</div><div><br></div><div>Thanks,</div><div>Brian</div><=
-/div>
-</blockquote></div>
+<p>Hi David,<br><br>there is an option of adding contraints via the block description yaml file by specifying them in the constraints section.</p><p>For OOT blocks, you can find an example here on how this could be done:<br><a href="https://github.com/EttusResearch/rfnoc-oot-blocks/blob/main/rfnoc/blocks/aurora.yml#L54" title="">Aurora OOT block description file</a><br><br>Hope this helps.<br><br>Regards,<br>Niels<br><br></p><div contenteditable="false"><hr></div><p><br>David wrote:</p><blockquote><p>Hello all,</p><p>I would like to be able to add constraints to a custom block in a
+repeatable way. For some of my blocks that exist on different FPGA images,
+this is required. By constraint, I really mean a false path set in an XDC
+file.</p><p>What I have done is a brute force method where I set a false path in
+timing.xdc to a single register in my block, using an absolute path to the
+register. The problem with this is it's only valid for that specific image
+and image structure.</p><p>I would like to add the constraints to a "block.xdc" file in the custom
+block directory, and add the file to the Makefile.srcs. However, when
+looking at the Makefile.x300.inc file, line 96 states:</p><h1>The XDC files must be read in a specific order, motherboard (TOP_SRCS)</h1><p>first</p><h1>and then SFP (SFP_SERDES_SRCS) and DRAM (DRAM_SRCS).</h1><p>DESIGN_SRCS = $(abspath $(FIFO_SRCS) <br>$(CONTROL_LIB_SRCS) $(SDR_LIB_SRCS) $(SERDES_SRCS) <br>$(SIMPLE_GEMAC_SRCS) $(TIMING_SRCS) $(COREGEN_DSP_SRCS) <br>$(UDP_SRCS) $(EXTRAM_SRCS) <br>$(ZPU_CORE_SRCS) $(WISHBONE_SRCS) <br>$(IOPORT2_SRCS) <br>$(PACKET_PROC_SRCS) $(DSP_SRCS) <br>$(AXI_SRCS) $(AXI4S_SV_SRCS) $(CAP_GEN_GENERIC_SRCS) $(IP_XCI_SRCS)
+$(BD_SRCS) <br>$(LIB_IP_XCI_SRCS) <br>$(RFNOC_FRAMEWORK_SRCS) $(RFNOC_SRCS) $(RFNOC_OOT_SRCS) <br>$(RFNOC_XPORT_SV_SRCS) <br>$(RFNOC_IMAGE_CORE_SRCS) <br>$(TOP_SRCS) $(SFP_SERDES_SRCS) $(DRAM_SRCS) <br>)</p><p>I take the "specific order" to mean that I must add the clock after the
+$(DRAM_SRCS).</p><p>In my block Makefile.srcs, I am planning on making an RFNOC_OOT_TIMING_SRCS
+variable, and then adding it after DRAM_SRCS.</p><p>Is this the correct method, or is there another method that I should follow?</p><p>Thanks,</p><p>David</p></blockquote><p><br><br><br></p>
 
---0000000000002931ea063bb863cc--
 
---===============4981166495107877371==
+--b1_21PpIjJqXU4VMUzg7fgWE0NoQujme7421kTgMZTZSo--
+
+--===============2581746282719932385==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -160,4 +163,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4981166495107877371==--
+--===============2581746282719932385==--
