@@ -2,172 +2,199 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06570B1E263
-	for <lists+usrp-users@lfdr.de>; Fri,  8 Aug 2025 08:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24FD9B1E963
+	for <lists+usrp-users@lfdr.de>; Fri,  8 Aug 2025 15:43:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B544A386562
-	for <lists+usrp-users@lfdr.de>; Fri,  8 Aug 2025 02:35:21 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D951C3863AB
+	for <lists+usrp-users@lfdr.de>; Fri,  8 Aug 2025 09:43:54 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1754634921; bh=3djvkwYvaVqIWKXCs/koYSaC0bupURNDomYw94jN94E=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=vf/mebBgeL2N5PdWYkhJgyajO+d4hQAM5jGvdgE2g6j/HpijOLsLCeOW1NH7RAbQq
-	 OkJTuCCFP/0Uk4T5mjMa2SXUmlxzA2q56eVxDn7o6R8B8ePxXnbaEr+/vi01p6s9KL
-	 AbxnV9gGWYr7CeIo6thmOxIauaq6f8lvSbVxA0bR0oTbieDpNitAPOxHDcIRLLYxVF
-	 TgyvsmXHoNyzNkIGZwuF/IRSP2zncLC8NyxXqVQD+Nic7OeSTz8/VZzHOCUBm2tNke
-	 AyimwE3ifn1JHfTSMAKQPAEID7KKyo2vMPUtpKwf3xVjghurSGPsYKyU8ta0YO/ghL
-	 My2I0H21Lkt2w==
-Received: from za-smtp-delivery-132.mimecast.co.za (za-smtp-delivery-132.mimecast.co.za [41.74.205.132])
-	by mm2.emwd.com (Postfix) with ESMTPS id A4CFE38443D
-	for <usrp-users@lists.ettus.com>; Fri,  8 Aug 2025 02:35:04 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="jtUtX2nd";
-	dkim-atps=neutral
-Received: from mail.vastech.co.za (41.193.248.106 [41.193.248.106]) by
- relay.mimecast.com with ESMTP id za-mta-122-tqKNmr-tOl6q6vGZFRihhA-1; Fri,
- 08 Aug 2025 08:33:56 +0200
-X-MC-Unique: tqKNmr-tOl6q6vGZFRihhA-1
-X-Mimecast-MFC-AGG-ID: tqKNmr-tOl6q6vGZFRihhA_1754634836
-dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type:In-Reply-To:References;
-	bh=Ft6kDqP/9yaaCQzkTJj7FSPv50yyqGP80a7ilbcZv9E=;
-	b=jtUtX2ndC+y1tue868p9EWXW+94HfCXjKH6xOxrZKyzki3NcvKB5zc4EF5vAXcHStjZu0Dba9sVFZTtcwAQUOJDrLwmVzcieYmY9q+MIc+9kgYt17o6NnQOawKIM2wLAbM+72BQzt8yrR2GLmt+5hd93Rkrrn1kNZ5SC6Bx1nLc=
-Received: from EXCHANGE2.vastech.co.za (Unknown [172.30.81.30])
-	by mail.vastech.co.za with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Fri, 8 Aug 2025 08:33:54 +0200
-Received: from exchange3.vastech.co.za (172.30.81.31) by
- EXCHANGE2.vastech.co.za (172.30.81.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 8 Aug 2025 08:33:53 +0200
-Received: from exchange3.vastech.co.za ([172.30.81.31]) by
- exchange3.vastech.co.za ([172.30.81.31]) with mapi id 15.02.1118.040; Fri, 8
- Aug 2025 08:33:44 +0200
-From: Kevin Williams <kevin.williams@vastech.co.za>
-To: "niels.steffen.garibaldi@emerson.com"
-	<niels.steffen.garibaldi@emerson.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [EXTERNAL][USRP-users] Re: "radio_tx_stb" input on radio_tx_core
-Thread-Index: AQHcB6zxJOMvQabIeEiJAEu5S7fXBbRYTOrQ
-Date: Fri, 8 Aug 2025 06:33:44 +0000
-Message-ID: <b465aeff768048768582890066948111@vastech.co.za>
-References: 34b0dd7790ed4764941ef68db06635e8@vastech.co.za
- <0ptyuAlb4mxAHduLC1KShfwseszgzHsLZO90raQ7HM@lists.ettus.com>
-In-Reply-To: <0ptyuAlb4mxAHduLC1KShfwseszgzHsLZO90raQ7HM@lists.ettus.com>
-Accept-Language: en-US, en-ZA
+	t=1754660634; bh=9mK2iVOZBMEfINZbJjyl1WcF5y9nC1q/P4AIASoQoYw=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=e9pjdq8aFsW0CeSx9TA56W4xYPJspXQ8E4/7cSVsuq1W1HirqbaoBCLDZwOYPqx0+
+	 m7U7kF9KkJa+Lx8U1Yd/z42pfG7TDOnP8jv6HbpBDcdhAn6MjOGw1IulaO9wGagCrh
+	 YwCiQvClO9JHu4Nk25I+TBR0RnRn1l2yUCHgX7rqnCiIu2wXazEXPNeYTbY4eDf72z
+	 +cT3nzom8VsTYjOlWEAw188V/NhHQqIKt4MmW3TwYD1+jFmFBMi73WQq8Apa5V9KH7
+	 pxt+X/t3+nV3iNyTWLApJffdF4q4r1wuGwVR0JREIWbIVnO3M3GEbh7D10FOKV2NvP
+	 CiG0LCsMyHvmQ==
+Received: from MX2.LL.MIT.EDU (mx2.ll.mit.edu [129.55.12.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id 68BC338635E
+	for <usrp-users@lists.ettus.com>; Fri,  8 Aug 2025 09:43:25 -0400 (EDT)
+Received: from LLEX2019-03.mitll.ad.local (llex2019-03.llan.ll.mit.edu [172.25.4.99])
+	by MX2.LL.MIT.EDU (8.18.1.2/8.18.1.2) with ESMTPS id 578DdnjS057285
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <usrp-users@lists.ettus.com>; Fri, 8 Aug 2025 09:39:49 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=QxLkADHL0cpty8/JsdzcCvrq0kWbmRbMt74J7U7cx4yRbK23Dj440l5HJsr8bZZkmOXs8v7XmiRdmNsg0W76XFLH5T4yuHBFFayz+pZ1aIqttMSP5KO2dCTA2jYvCKFIcWIUH6uDhgJPOuA7EuKNjo6n3rWdCAxXoXwaFUtTBUIt9p+ex9Jni96afnOvo7nUgpIUo0xESDeveMG+paEptTaasw0Ip7PCABATXbSvv5YzfZQx4ceZD1q4A1M0yPaO1TdXan0LNH4Fyphj4KvctmNcwi13YEU+WHzxIAfBkgc9+bINEgHv7qu7csfCO3BRZGd8ew67U6p0A/i2b9s1vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jFkadqCfMpio/ttlX2K9RPu0rEMUcLZZL7rkG1OoPhA=;
+ b=yX4gBX1Aekxg3W53l6H/Wyzbd838ioqT3MZJI6fovgCKVbuqZil5Pk3cNfzXPC171Slji6TXM9Q+dgzmLLVWy4O3XC/+G9Zsy8rTY6v3YlGEzeK4QfGYuTVn71QKY7MHYMHcrN9SYK5R5NuNlErqSijDvHeQIaqmUm6/i4mJg0mIy6uQKe4BlA3XaRHqjAGp3BR/UzSi16H+4RUJglZ61A3mEq9QCLb0TVlHw9Igc8f8FYv64zY/h6sQzTfWwR8mzoPZhE3k7kJXhSKb0g7S3JdHIOy29Pitg7O6dBQRW2wc6hKcXosqGBlS6pDB3CmM/fr8wWSYyzCtBHfrIR4PPQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ll.mit.edu; dmarc=pass action=none header.from=ll.mit.edu;
+ dkim=pass header.d=ll.mit.edu; arc=none
+From: "Mann, John - 0662 - MITLL" <mannj@ll.mit.edu>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Connecting an X410 to a 10 Gb SFP+ port
+Thread-Index: AdwIakIY2Uus3YiLRySGKK/dIYOsxQ==
+Date: Fri, 8 Aug 2025 13:43:22 +0000
+Message-ID: <PH1P110MB12848D088BBBDBE9711FF960982FA@PH1P110MB1284.NAMP110.PROD.OUTLOOK.COM>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.168.4]
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH1P110MB1284:EE_|BN0P110MB1843:EE_
+x-ms-office365-filtering-correlation-id: 71489a6d-2296-46a4-b110-08ddd6818af1
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|4053099003|8096899003|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?7DhLVd0eEjhdS4WV43ucnIC2XghmmrNyQI9gPmN/+80QM0G4p+td4KevW2N5?=
+ =?us-ascii?Q?NA6JpaIovmODIi+pYQbuo5Yprtxg+ofwfb/LeSIRGS7r522xKR5iSns0yqZa?=
+ =?us-ascii?Q?fvhTo7PEJV7107OG08MR7dnDyMLdK2uMitfee9zuG046KiJwnxvkBajgXI9y?=
+ =?us-ascii?Q?1/gbvtp5Vu/1Svv8kURVkpN3Rv/c4I8/iMo8T9f5vA+4OOYXXdkDO2oAa6+L?=
+ =?us-ascii?Q?hkmOmK40JtFDJCQ/Km7WouqV2ZZILMD2OWjLYO8YGfMQ4dcPiw4x7I3cglPc?=
+ =?us-ascii?Q?cwq0GZfADJ6NUYG7qDbfVmhCOx1AB5+ENHp0KFw3naZKTNwv+0EGQj71cLSq?=
+ =?us-ascii?Q?GAE3BHtri89D7O5PNNNTxKqJh6bILaPXT8xPDXs35NLoTsZbkkt5tjLLvZfn?=
+ =?us-ascii?Q?k1h8zq2fDXINucCIwkA8kyDIITOUGnyB7Go6eU8plgf/cxxgGN3GRgM82oiy?=
+ =?us-ascii?Q?rcJ8oUBJW4yEKs8Q3WeY3pBmJ6kiSPl6ltmfsJi5zdhvdn7QmaPwQOL9R5bA?=
+ =?us-ascii?Q?YjoPGL1wr/ItWS561XWSiIrv0Y91sntj8ENeswJDVhHbrxmFEkvO2N+sJjV+?=
+ =?us-ascii?Q?W9DtI/qDEVVNaQP3gizmmrFau7TEZDM4yep25tZsBJieKaejIGyr7+pu/Pzx?=
+ =?us-ascii?Q?Y1HPUkTYnfy+K9j104rPaNsoyii0tUHyoDIfVB0bUiCazwoVYj87rW9x2+xO?=
+ =?us-ascii?Q?JJVeVvkSMd7/3Dc/eTCx6Kc9xerIaA78WcyOyn/iAc1f7f7m4vP/BHGLXPFt?=
+ =?us-ascii?Q?688XfQ/bhw+RQrGoJCzzvEniOabveuLFjihOHSfgGzpicBX8yEEPhl/JgDsd?=
+ =?us-ascii?Q?aM6sM7t1PU6tYGObaZHHuc7uw38oVXee3voAZrX1erpKB5vE9+c2gr0kyH/B?=
+ =?us-ascii?Q?wQMv3nQxuKKm17n5Ite8ALug8zPp+paAplHx3/77TT5ulJ+5zM7M/hp8GasZ?=
+ =?us-ascii?Q?ddGbRTvHFJRBO2xBJI7BuhvN/3vVZjPPV6uLAWbhSIH5OFag0SaE9Afk240U?=
+ =?us-ascii?Q?p1NqXkKoW9238Cdiik+O39nLhzHx50zBk9U/GzmSioeEg6vK0xG+UQnifLQm?=
+ =?us-ascii?Q?8zEh6J8ZXtX94E32RXDKFHRaaCMo87Fu3MBHJeUA8W7gghgjd98wVO7InD0p?=
+ =?us-ascii?Q?pJiP6vzSMmZURz+1YwyQBZfqSoQhKpZnj7o0DxHLi+mkbM9AxRLtpIibjyJU?=
+ =?us-ascii?Q?H+wmv9z30+Fga3XLzT9lfPKAEFiXg8srLulmr+J3p1XdSk9uqwIaSozcV8Kv?=
+ =?us-ascii?Q?QDNzL2uXoAyihO5IP26OhB/vttWzkticyeKclG5QwIL8P1VcBuclyc5QEY36?=
+ =?us-ascii?Q?lBBnIczrvUBpx7E3aJnruf4Ao6GkddlaSIuZZejuaCDdynqalB916IVJiW4N?=
+ =?us-ascii?Q?isWW5P+6TYxoqfHDLXbBGDZgW8AEfPjdHX1+kCsoibgiQzcDURTOALdLH4e0?=
+ =?us-ascii?Q?iAxrrpuGbtt/NR6xMiUdNHGcs9png/lDK7/7Qoqs1PBmyfRtRZTEkwyIPT6o?=
+ =?us-ascii?Q?7psQYi0GJinY+o8=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1284.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(4053099003)(8096899003)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jhX66s6gy9QzETTeGfr7GPmC3MYDmagRa28nkF/eIdtTP/q9QvaCuUe0cJAI?=
+ =?us-ascii?Q?2bCSBIWxFaIdR7c7vmEoEJ72Ak/lZXniSbUxdsRQ+6Gr/aIgtOm7Rg2cZpnt?=
+ =?us-ascii?Q?RP3u/ZLywSAu5/ak9d/VkAMvP/mjrZ0+sKYYK37b0L+iXHSgJIlqsaLbuQos?=
+ =?us-ascii?Q?sP1zN7nprQvyd7fuHoCafWSqXFXU6huuds4hBixoDvD9ZC1FwlSmXrMEmj7o?=
+ =?us-ascii?Q?Yx2Zwj9ofaorall+TQ8nu1Fy/6QcXy+fsSDeTQjAoyRWcuIpRq6M8d8FolxV?=
+ =?us-ascii?Q?JteLCnBMGX/+YEhN6CYNwdW69uZc6zqWXCRagXrLPX/oyfAaP19vJoTbYMur?=
+ =?us-ascii?Q?kgnAWjhr6j9BqmPa1uSYePHMNV1hG5r/R+1lqq6lx+QfwJAVDI2IzRkn+MWp?=
+ =?us-ascii?Q?+fMZD4yGN4go7Gy3RZSdcs4nOcl3EhrjxOuogo9epb9hr7F14w0TKLSsQjtB?=
+ =?us-ascii?Q?wasBb9kIzrZdlk7YER6p+REe6hinSYMv3DV7snt9mxjG8EfOU7GbXdDW/NsM?=
+ =?us-ascii?Q?7rOoEOUcLrRfEk+BOzTM02+qDwUqQsJ4NhdGjk7lGsD1Jq65jm7OYgmKb9E+?=
+ =?us-ascii?Q?g54EZZ5RxFEtg49Mr0C1OTmoX8rVcyGtqS5gOLDkfUu4FtJglLf0ZNBxRfh2?=
+ =?us-ascii?Q?Xtw7XmCBUi7jvMlANtUgQdUerFy6J9z9XzRlp8faJdH9CJsy34HDLSt3ltRb?=
+ =?us-ascii?Q?ufrN7xuHqMl2m+3CwpnO4rtf+3UIMQtxme3fSaDplLd60afe2ItsXLscBau1?=
+ =?us-ascii?Q?Q31Fqc4cSZziZLuIzfjckSjf3Q9EHB1yqlBaMD0+T/TOKFxxvEqmDO+j2Hx3?=
+ =?us-ascii?Q?z0q58JWXt4FNShcuWcmtNAZ/9jO0v8gjZ6vP/EimM4L9GkpLZ9cRZX8LoCIk?=
+ =?us-ascii?Q?kh1vHeaVCGKZ2oNsYugCC250ETGjcM/l2EFoX7YTWw28P7ESYj7nYB0i/iSN?=
+ =?us-ascii?Q?VHmyBRyFX+2hE0p5omY66QKb6LMyF1OvyD4IVNSk4j6DKgvoYVg+3z2TEEpX?=
+ =?us-ascii?Q?IbsIj1DGNXzGWjdOGVEM98v4a/XaOWjSlzy8MW3o3fRK8gJVYnpuPxaqZiy9?=
+ =?us-ascii?Q?WM/dqvfGgQWsQ5fGg+cDICOg7ZDBfYNCn5I9OYryDXPfUAefxhlKx49Utyql?=
+ =?us-ascii?Q?Zowb0T0SPDCDzUSJZyRWm8Zkohkrtho+Wx1e9onYgqcGmzdTj4A8SPFJITSi?=
+ =?us-ascii?Q?5Kz7jrPmwJ/CYwo0w3zS3fXEetmOinODHIvZZDhe0W04wr7e50e/v+r2eC1w?=
+ =?us-ascii?Q?fMRfJnBwY3pG4le9j6Fo/WwShw09RW7//yzzzpdAqRFhz8NlPF9GwGvXPqYE?=
+ =?us-ascii?Q?prXAwybPoiR/GTXYILGia5k+JN6cdGoi7k+93Jm9TR8nsbPh/6/XIayP+qS+?=
+ =?us-ascii?Q?sttRAh/8nLBOZIwi5qvv67ky9TCsRbKZxFT9t3U1FwW1gT9qSIv5R0COMhMG?=
+ =?us-ascii?Q?2Rwo4XJzMD/xVSDK7hmwQMzjpYA70mvBlPQPlapSX1RsQtl3YY/E0M9hLyDl?=
+ =?us-ascii?Q?zkyLgofRsJS9jgM=3D?=
 MIME-Version: 1.0
-Message-ID-Hash: ZO7ZIGI7Q5FMILJ2MR45P565PGVFYNS4
-X-Message-ID-Hash: ZO7ZIGI7Q5FMILJ2MR45P565PGVFYNS4
-X-MailFrom: kevin.williams@vastech.co.za
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1284.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71489a6d-2296-46a4-b110-08ddd6818af1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Aug 2025 13:43:22.6412
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 83d1efe3-698e-4819-911b-0a8fbe79d01c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0P110MB1843
+X-Proofpoint-GUID: uBHrzQxiTVQUjunERcEGlSBoVapuv8DV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA4MDExMCBTYWx0ZWRfX343vSFP1cKiC
+ GwDDo8lug+mz1T20FRNsylMgWwA19jsEyWpWELVf8Eust8fqZJjsZP7HsB1Epe5NGfj93q7vlcS
+ 0CxsOHk1nYS4stNnLpy8ezIqLL8b1LHXQg2ktGblJj0mzZGw5sG8wxtuUhoJxmh2F0LecTvOSIO
+ HjXej0FJKB0JY8TMzY8h2hUUuKKIWqQkp387zwBqla4VAzdGhTkPlFJ7dTY7hGkWdJWSnjEvsl+
+ htb+NNj2GgUVF8fqdkQJZB6MjW8RSrgge6ajIeLZRJKX/G+SoIMg==
+X-Proofpoint-ORIG-GUID: uBHrzQxiTVQUjunERcEGlSBoVapuv8DV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-08_04,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
+ malwarescore=0 phishscore=0 suspectscore=0 mlxscore=0 bulkscore=0
+ mlxlogscore=849 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2507300000 definitions=main-2508080110
+Message-ID-Hash: 7LD3OLHKLLZ7RZ224DPNLM63X54FKOCF
+X-Message-ID-Hash: 7LD3OLHKLLZ7RZ224DPNLM63X54FKOCF
+X-MailFrom: prvs=2315ea4e51=mannj@ll.mit.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [EXTERNAL]Re: "radio_tx_stb" input on radio_tx_core
+Subject: [USRP-users] Connecting an X410 to a 10 Gb SFP+ port
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZO7ZIGI7Q5FMILJ2MR45P565PGVFYNS4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7LD3OLHKLLZ7RZ224DPNLM63X54FKOCF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1353352544765543901=="
+Content-Type: multipart/mixed; boundary="===============7424796995402956954=="
 
---===============1353352544765543901==
+--===============7424796995402956954==
 Content-Language: en-US
 Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=2.16.840.1.101.3.4.2.3;
-	boundary="----=_NextPart_000_0152_01DC083F.2667A200"
+	micalg=2.16.840.1.101.3.4.2.1;
+	boundary="----=_NextPart_000_02DE_01DC0848.E09F3530"
 
-------=_NextPart_000_0152_01DC083F.2667A200
+------=_NextPart_000_02DE_01DC0848.E09F3530
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_0153_01DC083F.2667A200"
+	boundary="----=_NextPart_001_02DF_01DC0848.E09F3530"
 
 
-------=_NextPart_001_0153_01DC083F.2667A200
+------=_NextPart_001_02DF_01DC0848.E09F3530
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Thanks Niels.
+So far, we have only used our X410s on servers with 100 Gbit QSFP28 ports.
+We now have an application that requires a connection to a server that only
+has 10 Gb (SFP+) ports.
 
  
 
-OK, so it seems that isn't my problem on the X310.
+It is my understanding that the X4_200 FPGA image supports using the Port 0
+QSFP28 interface as 4x10GbE connections.
 
  
 
-My deeper issue is that I can't get the USRP to start transmitting in
-internal loopback mode specifically when I need to combine both rx radios in
-a custom block.
+My question is which cable assembly I need to purchase to accomplish this.
 
  
 
-Kind regards, Kevin
+There appear to be adapters that go from QSFP+ to 4xSFP+, and there appear
+to be ones that go from QSFP28 to 4xSFP28.
 
  
 
-From: niels.steffen.garibaldi--- via USRP-users <usrp-users@lists.ettus.com>
-
-Sent: Thursday, 07 August 2025 17:06
-To: usrp-users@lists.ettus.com
-Subject: [EXTERNAL][USRP-users] Re: "radio_tx_stb" input on radio_tx_core
+I am a bit confused about which to buy.  If someone has done this already,
+and can recommend a particular product that they know works, that would be
+great!
 
  
 
-Hi Kevin,
-
-As far as I know, the `radio_*_stb` signals are strobe signals that are
-coming from outside of the image_core from the RF Analog HW on the
-daughterboards, signaling when the radio data can be transmitted/received.
-They can be understood as signals that are similar to tready signals of the
-AXI-Stream handshaking mechanism.
-
-If you trace the `radio_tx_stb` back to where it is assigned in x4xx.sv, it
-seems to be assigned based on the `dac_data_in_tready` signals:
-
-*	X410:
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x400/x4xx.sv
-#L2685
-<https://url.za.m.mimecastprotect.com/s/90I9Czm5zzHwQB7I4f3s9BkLy?domain=git
-hub.com> 
-*	X440:
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x400/x4xx.sv
-#L2664
-<https://url.za.m.mimecastprotect.com/s/Bi8mCAnollflLo8U8hYsGw75v?domain=git
-hub.com> 
-
-As I understand the `radio_tx_stb`, it indicates, that on the same clock
-cycle as `radio_tx_stb` is asserted, the data that you pass to the radio via
-the `radio_tx_data` bus is successfully transferred to the DAC and will be
-transmitted OTA down the line.
-
-If `radio_tx_stb` is not asserted, the radio_tx_data will not be
-transmitted.
-
-I have not checked all USRP types, and some might not use the strobe signals
-at all, but at the meaning should be nearly the same for all variants. It
-looks like e.g. X300 is not really using it and just constantly asserting it
-<https://url.za.m.mimecastprotect.com/s/SWzjCBgpmmiRpmytNixs2Kn08?domain=git
-hub.com> , as it seems it can always accept TX data. 
-
-Please someone with a better understanding correct me if this assumption is
-wrong.
-
-Hope this helps at least a little. 
-
-Regards,
-Niels
+Thanks ,
 
  
 
+John Mann
 
-------=_NextPart_001_0153_01DC083F.2667A200
+MIT Lincoln Laboratory
+
+
+------=_NextPart_001_02DF_01DC0848.E09F3530
 Content-Type: text/html;
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -176,14 +203,11 @@ Content-Transfer-Encoding: quoted-printable
 xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
 xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
 charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
 (filtered medium)"><style><!--
 /* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
@@ -192,268 +216,161 @@ charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
+	{margin:0in;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
+span.EmailStyle17
+	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
+	font-family:"Calibri",sans-serif;}
 @page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1189636595;
-	mso-list-template-ids:-623063188;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:36.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:72.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:108.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:144.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:180.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:216.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:252.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:288.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:324.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'>Thanks =
-Niels.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>OK, so it =
-seems that isn&#8217;t my problem on the X310.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>My deeper =
-issue is that I can&#8217;t get the USRP to start transmitting in =
-internal loopback mode specifically when I need to combine both rx =
-radios in a custom block.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Kind =
-regards, Kevin<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><span lang=3DEN-US>From:</span></b><span =
-lang=3DEN-US> niels.steffen.garibaldi--- via USRP-users =
-&lt;usrp-users@lists.ettus.com&gt; <br><b>Sent:</b> Thursday, 07 August =
-2025 17:06<br><b>To:</b> usrp-users@lists.ettus.com<br><b>Subject:</b> =
-[EXTERNAL][USRP-users] Re: &quot;radio_tx_stb&quot; input on =
-radio_tx_core<o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p>Hi Kevin,<br><br>As far as I =
-know, the `radio_*_stb` signals are strobe signals that are coming from =
-outside of the image_core from the RF Analog HW on the daughterboards, =
-signaling when the radio data can be transmitted/received.<br>They can =
-be understood as signals that are similar to tready signals of the =
-AXI-Stream handshaking mechanism.<br><br>If you trace the `radio_tx_stb` =
-back to where it is assigned in x4xx.sv, it seems to be assigned based =
-on the `dac_data_in_tready` signals:<o:p></o:p></p><ul type=3Ddisc><li =
-style=3D'mso-list:l0 level1 lfo1'>X410: <a =
-href=3D"https://url.za.m.mimecastprotect.com/s/90I9Czm5zzHwQB7I4f3s9BkLy?=
-domain=3Dgithub.com">https://github.com/EttusResearch/uhd/blob/master/fpg=
-a/usrp3/top/x400/x4xx.sv#L2685</a><o:p></o:p></li><li =
-style=3D'mso-list:l0 level1 lfo1'>X440: <a =
-href=3D"https://url.za.m.mimecastprotect.com/s/Bi8mCAnollflLo8U8hYsGw75v?=
-domain=3Dgithub.com">https://github.com/EttusResearch/uhd/blob/master/fpg=
-a/usrp3/top/x400/x4xx.sv#L2664</a><o:p></o:p></li></ul><p>As I =
-understand the `radio_tx_stb`, it indicates, that on the same clock =
-cycle as `radio_tx_stb` is asserted, the data that you pass to the radio =
-via the `radio_tx_data` bus is successfully transferred to the DAC and =
-will be transmitted OTA down the line.<o:p></o:p></p><p>If =
-`radio_tx_stb` is not asserted, the radio_tx_data will not be =
-transmitted.<o:p></o:p></p><p>I have not checked all USRP types, and =
-some might not use the strobe signals at all, but at the meaning should =
-be nearly the same for all variants. It looks like e.g. <a =
-href=3D"https://url.za.m.mimecastprotect.com/s/SWzjCBgpmmiRpmytNixs2Kn08?=
-domain=3Dgithub.com">X300 is not really using it and just constantly =
-asserting it</a>, as it seems it can always accept TX data. =
-<o:p></o:p></p><p>Please someone with a better understanding correct me =
-if this assumption is wrong.<br><br>Hope this helps at least a little. =
-<br><br>Regards,<br>Niels<o:p></o:p></p><p =
-style=3D'margin-bottom:12.0pt'><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_001_0153_01DC083F.2667A200--
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal>So far, we have only used our =
+X410s on servers with 100 Gbit QSFP28 ports.&nbsp; We now have an =
+application that requires a connection to a server that only has 10 Gb =
+(SFP+) ports.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>It is my understanding that the X4_200 FPGA image =
+supports using the Port 0 QSFP28 interface as 4x10GbE =
+connections.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>My question is which cable assembly I need to purchase =
+to accomplish this&#8230;<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>There appear =
+to be adapters that go from QSFP+ to 4xSFP+, and there appear to be ones =
+that go from QSFP28 to 4xSFP28.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I am a bit =
+confused about which to buy.&nbsp; If someone has done this already, and =
+can recommend a particular product that they know works, that would be =
+great!<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks ,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>John =
+Mann<o:p></o:p></p><p class=3DMsoNormal>MIT Lincoln =
+Laboratory<o:p></o:p></p></div></body></html>
+------=_NextPart_001_02DF_01DC0848.E09F3530--
 
-------=_NextPart_000_0152_01DC083F.2667A200
+------=_NextPart_000_02DE_01DC0848.E09F3530
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
 
-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
+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
 
-------=_NextPart_000_0152_01DC083F.2667A200--
+------=_NextPart_000_02DE_01DC0848.E09F3530--
 
---===============1353352544765543901==
+--===============7424796995402956954==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -463,4 +380,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1353352544765543901==--
+--===============7424796995402956954==--
