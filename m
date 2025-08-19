@@ -2,665 +2,224 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D62CB2C85C
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Aug 2025 17:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7A49B2C885
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Aug 2025 17:31:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 42F56385E8E
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Aug 2025 11:23:32 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7AF4E385E7A
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Aug 2025 11:31:55 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1755617012; bh=GIfmI4aQPUm/Lc1vOa83/o6/pjZAw4VU8N6WFc79WG4=;
-	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
-	 From;
-	b=S4OwXCOe73D+D87wdjtpeDWGRVdjAVDC2uqRLqCGW0drgABL+cfNEXuL5fY9HzJeO
-	 ngUoRX51NmlQ/hO2RR57eJnzH7U8Mnt9R8JsFNYtNaVCti3mL3wPcaZX7oUF10QkWh
-	 snDkPpnktZJwKKI7y/O0NmgQrHwBSwMo+vAtVhdbvq0FdASSp+85fsEbhyf5J+kSnC
-	 nLm/ozu8YPq/DrpCr2JtKCd/dudB2OuPVTVwZFpAEU8Pcg0HuHhRyPYWhEtHS9Egko
-	 kRJfjYXMPpDFIaLE1eOpiqCTq9ERsmsYHJCjwKF/zrWv7MlVT4OKU8IVopuL0of2wc
-	 BWPfTaUFBxGhg==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1187F38522C
-	for <usrp-users@lists.ettus.com>; Tue, 19 Aug 2025 11:22:38 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1755616958; bh=JGnmyJAKcfELvHqRr3KmpmfZvJEzt+ytomQ4B/Cfh5s=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=U16HTguCu6nk9R4ANhvOyFilNxfAQ/TsCzH6ByZGdxWIGU8OZYhsJC+/veD9ty8To
-	 xZWipmFWMTssY4JWCuudAz97bb2pSzcEPPKP0Lfqd80A0J0nzN6bGMhrpErN4sODPQ
-	 WV/Y0mKdUxfjEAv2ylIco6YGNgMP8HsP8UAWxwPIdlmlbzpmhFyOQ1RnmUHvEcGR+m
-	 KusHsXpTCoS3ZHbApxopgXRMJG15siamIZ7xkm2rs9U2jn634nPYmKD4aNcjoAzb0o
-	 7QK4d29zOrNWrqpNGqM9cpOx43+LIMhIyP/56jhk9cJeg6R+4UPY0WIrilJSCiYRIC
-	 GCmWNj78sZmQA==
-Date: Tue, 19 Aug 2025 15:22:38 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: PAXPR10MB4932AAC13E4187EA6BB37808F630A@PAXPR10MB4932.EURPRD10.PROD.OUTLOOK.COM
+	t=1755617515; bh=dbtjm6p5hZD3q6KPs3nmT+QxEX/BvZqphXTEcpYKP3M=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=axq2XgMG14n8gy16e7Y/7l7diKiXe2oE0XYNHpqE9PUwFUKXj1lYRm3uQIRWXt12u
+	 zyJYLXFZ1cxV89++JE+DNR1y8jdmkKf4zPIyeF40QxaqG7OUGZNl1FwQOOFMsJoHjI
+	 Gr5JpaEmxOT48KxxhC/9YF3w5nbrnDehXNoMBkZD4HTovh4leKPTlDb+Fmh7N5+0YK
+	 fK+6JQ7avYFF2rU/ECwLY3HhfYNV7I1FsfJRvCCzXMSWvOmLEnQhuidqLhQq7ZBLPT
+	 XFV3xPGhrfhqKHAtrBdr+B9FcjZd90RL/t4ySnXAvVURfN5wdB+5NF4MtPEQUk691I
+	 HqPlU8L3UIf8g==
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 075EF385DDD
+	for <usrp-users@lists.ettus.com>; Tue, 19 Aug 2025 11:31:19 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NM/Gv20S";
+	dkim-atps=neutral
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb78d5dcbso768785266b.1
+        for <usrp-users@lists.ettus.com>; Tue, 19 Aug 2025 08:31:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755617479; x=1756222279; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Go8b1s/8WGydO4hnm16CIDQydh/vNIqPqYPPRhn9dss=;
+        b=NM/Gv20S0lFdSJ6/cli/7C9Kq5veRQ5GbSyxIMq5RsjKx41sOmow4IxS09pECpaLU1
+         AY/xe5oXAwTpiK6XPHQUymdObTcoGicKBoY/k7fCG6CHmO9y7Clul89ZAHKppC4VAwTW
+         XPB3N/f69MXT/O/unQ6QOdp76R427gtPeGkLW3SoyFa+UCty8g2Hu6F6Lx+KM6xFOvov
+         VSGQS7C9pbnxEr9ApI3RZddZfxhQ5/uRk2izBCHY/lJp6uTL7WUsagAeG85hyJ7jQLeT
+         V3pW468gvuAm61XzTmmytAYTz/5Sp0JYg+IdtoEVdlV6dhP4hy4H7H3aXdqcr5HaSivz
+         +46g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755617479; x=1756222279;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Go8b1s/8WGydO4hnm16CIDQydh/vNIqPqYPPRhn9dss=;
+        b=WZBKp3oTcgBAlNO3K5C0R4JtIEWdbKmwUu3FFpGQyqeihmy+b1xw9iz4XBWx0nLQ7E
+         Flw4tQQ49Xi/RYcE1CHREV9LPi02aacp2dowgc1/SfouJ46PW/5t0aX+Rgs6QuuJP8ht
+         R+dH0fK5BuZ+dN97Pu40QfUo3O4Ai0yrfvO0zlG+or+vreNAc6HcLJSd7VnLqyq41GSB
+         l3t/a9b/U7Hqnkf4cmRDJ62D/H8Q2/TzhCFUXB05P7G01L7akI2uUigkP9ZtUoqLf9TO
+         EdnR5rbZnibl9Qt0kMbc5x3UUBH+QpgvBwDDvpef2RxH9JH/Nby0wHvvtgw0GLpBXNSp
+         P1gQ==
+X-Gm-Message-State: AOJu0Yznqwq/ejmcSn9Ai265vw9mrlIYpYbwA+OyWynAyRM9oL6Iux+d
+	op/yq9VYzREygRxLP3Gh3Ss4/MvqKYp2Mt+DDBFb5BOJHgyUaKAIasvCh1BTXSGb5j4Ji+/e/6S
+	uljgielPVhN1hXEMbVMg3nJHFiBQpJLYpfg==
+X-Gm-Gg: ASbGncssEv8lJj3iSczrlCTui6D3NUow5WPoMIHSfXUqUH01L3P0plhnq5f2/VzKKzY
+	Cz7mZgct0TpCwr/noEmCIBpH24TMz46kYZKXUP3t0ijY9YBA/cw+5sZSW46kUl1+57eEqsDP1Fp
+	8ffqqM6Rsf7D/j5JEb7F/k8Fqm/Jyk7uQNOx0Y0XCONKvWbDILnrvOSv87JqVJMNiocFb+eJlwU
+	ySpbus=
+X-Google-Smtp-Source: AGHT+IFm5ISyzkaGlPq+MEZk83VthSZxs43yZsfS5k7lrz64kM1Of7GWbIi8yXSVQY3KsKgxhql03T0T+0UatgWCq/4=
+X-Received: by 2002:a17:907:60cd:b0:aec:65de:5258 with SMTP id
+ a640c23a62f3a-afddc96124cmr306283666b.3.1755617478105; Tue, 19 Aug 2025
+ 08:31:18 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: ZOUROR4NWAB3QHHEXCSTU3KYSDLVWLJV
-X-Message-ID-Hash: ZOUROR4NWAB3QHHEXCSTU3KYSDLVWLJV
-X-MailFrom: niels.steffen.garibaldi@emerson.com
+References: <RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc@lists.ettus.com>
+In-Reply-To: <RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc@lists.ettus.com>
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Tue, 19 Aug 2025 11:31:05 -0400
+X-Gm-Features: Ac12FXyybVqmxvQ8pLTomACjhvFC6eYDJ2emuxPQrkZO6sUb3S6D1Lw6FOoRLNI
+Message-ID: <CAEXYVK6Y3gWMg4dd3gFtaXhNi8BSUhh5gVGDacjuys4gaHNUog@mail.gmail.com>
+To: niels.steffen.garibaldi@emerson.com
+Message-ID-Hash: MIP366MGDKKYEYKD7SSNY6IU22PVFG2O
+X-Message-ID-Hash: MIP366MGDKKYEYKD7SSNY6IU22PVFG2O
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Replay Block Command Rate Bottleneck at High PRF
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZOUROR4NWAB3QHHEXCSTU3KYSDLVWLJV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MIP366MGDKKYEYKD7SSNY6IU22PVFG2O/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "niels.steffen.garibaldi--- via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: niels.steffen.garibaldi@emerson.com
-Content-Type: multipart/mixed; boundary="===============5322153574381045035=="
+Content-Type: multipart/mixed; boundary="===============2193553144662847273=="
 
-This is a multi-part message in MIME format.
+--===============2193553144662847273==
+Content-Type: multipart/related; boundary="000000000000251a8b063cb98cc9"
 
---===============5322153574381045035==
-Content-Type: multipart/alternative;
- boundary="b1_RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc"
-Content-Transfer-Encoding: 7bit
+--000000000000251a8b063cb98cc9
+Content-Type: multipart/alternative; boundary="000000000000251a8a063cb98cc8"
 
-This is a multi-part message in MIME format.
-
---b1_RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc
-Content-Type: text/plain; charset=us-ascii
+--000000000000251a8a063cb98cc8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Arthur,\
-\
-Have you tried using tcpdump/wireshark on your machine to check the communi=
-cation/timing of the control transmissions going over the ethernet connecti=
-on?\
-As far as I am aware all UHD (Control) messages are using UDP, so your susp=
-icion regarding TCP algorithm slowdown should not hold as there is no TCP u=
-sed.\
-\
-Depending on your network topology, it might be the case that the slow down=
- you are seeing is due to your application constantly checking for fullness=
-.\
-I recently looked into an issue where I took some wireshark logs and saw th=
-at even if i just did a register read operation the time it took between wh=
-en the read request was sent out and when the read response with the ACKnow=
-ledgement took a little bit of time, if both host and SDR were even connect=
-ed to a single switch. \
-\
-Here is a snippet of one of my logs showing two register reads(what your fu=
-llness function using peek32 almost definitely uses.), that both took \~275=
-us between request and response.
+On Tue, Aug 19, 2025 at 11:23=E2=80=AFAM niels.steffen.garibaldi--- via USR=
+P-users <
+usrp-users@lists.ettus.com> wrote:
 
-![](data:image/png;base64,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
-ns716JXSeRKbGhy/bBU56eAP1ef0pppG7c9EJkCpEp2Y4vqp0QIAQIAUKAECAECAFCgBAgBIobA=
-R5BwgILRjwwLxVhK9d8DGN/8zO3rkXtusOkkZNj10tkSmzosn+QKfqoec9Dp6XvQZd1y3MNsqM/=
-0y4fl70ABWuByBQiUwpmfNQwIUAIEAKEACFACBAChAAhQAgUAQJZ5Es5wtlfD/nz7W7vXux9Dsy=
-6YETsnhKZEhu6/D4oR6q8dnQ/mH7J6PwKkbfWiEwhMiVvxkYNEQKEQBkgsHHmQJj2qJe83fv0hD=
-6TnoNuresVTe92fjYFnrtiDHwhSNR2yBzo178DKmPVxEPhpRc3FXWfigZcEoQQSICAN9ZOgzNm3=
-gVtEtRDjxIChED6CGRBppz12Djo++4sV9hJF42DRb1Oii14WZEpOxaMhkdumRoA47CxK6D3UfUR=
-gFbCwhF9Yf6S7bnfdGVlJ61+19EwaPxl0EwDO3eAdOUwOXlVYY6VTKjIyhcdNX2/34DZAy6Apbt=
-25aSvOOUxGHxV39hGxB5U+zRIWZRUZ1dukju/A9wfZg/4ICAnL12/a0MH/x5a/BeOWJzT6xkzD3=
-cWRtyZlus/bOyBjq3slRNKrEeWNKzeYNmZRrgW39XI6vjwOoJtUHRlvSd8W/RtT7Vz77eqkycHb=
-BHbfOhtG6AUNlRGBkGFCIGSRUCdD3Trmjq+4xMgNmPflNTg61rYnGOjJtN2eZ2lRKbY+kk2uJVj=
-Wd9nim/zMi6ifYX5krjPJq7Vvk8n1+PLrfp4paynNMgU2Q8O2yvIY1uvL9ln19uLOr/odSSPV/0=
-+wHyvZNO+DValY1fZYGWuK4As7MpGV6ayYmth2HhJm0xhl73cOuJk2HP7d6553Xrzn2F9m46xTa=
-1syBRMMRwV3cZNJBR0ZVVnhpdUJym5bNpkCmu53xPj4ZQ3n3WFYNmHx/3mefh287PK2y7c+dNve=
-qMIIr2FhW2kg5N+PsiUjTPXOW8nvWuu2AcjPeQyvGyxkCnjh/8BPu18ZOxBnc6DpgQJa820rOgU=
-yONHJVPsSEeVJPRxKC+nLx39Ui2EQPoI6MYstlHA19b4G0tvfWkf+WZZv6YHN5MMnbTJFBFx7rN=
-UhESmiOW9/m0rumgbAJp7bUaSOkbi27zcLh8Dh5zyN1i64hrNSz8zn43LGRy7XNc/jRxnNpgUQ9=
-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
-7XRRl0q+/8BILOb4h8Ri5EAAAAASUVORK5CYII=3D)
+> Hi Arthur,
+>
+> Have you tried using tcpdump/wireshark on your machine to check the
+> communication/timing of the control transmissions going over the ethernet
+> connection?
+> As far as I am aware all UHD (Control) messages are using UDP, so your
+> suspicion regarding TCP algorithm slowdown should not hold as there is no
+> TCP used.
+>
+> Depending on your network topology, it might be the case that the slow
+> down you are seeing is due to your application constantly checking for
+> fullness.
+> I recently looked into an issue where I took some wireshark logs and saw
+> that even if i just did a register read operation the time it took betwee=
+n
+> when the read request was sent out and when the read response with the
+> ACKnowledgement took a little bit of time, if both host and SDR were even
+> connected to a single switch.
+>
+> Here is a snippet of one of my logs showing two register reads(what your
+> fullness function using peek32 almost definitely uses.), that both took
+> ~275us between request and response.
+>
+>
+> Even with a direct connection, it might take a little bit of time to quer=
+y
+> the block command queue fullness.
+>
+>
+> What I suspect is happening is that the fullness query you are doing ever=
+y
+> cycle of your inner loop is at least in some cases blocking for longer th=
+an
+> your interpulse duration.
+>
+> You could try the follwoing:
+> - Send a single timed command and see how many spots in the queue it take=
+s
+> up(depending on the command it could be more than one.)
+> - Then when you are querying, instead of checking if ther is at least one
+> space, check if there is X spaces and then send out the next X timed
+> commands out one after the other.
+>
+> That way you probably only need to query the queue fill state once every
+> couple of milliseconds which should be doable.
+>
+> Otherwise, if you are experienced with making HDL changes, you could also
+> replace the fixed 32 space axi_fifo_short command FIFO module
+> <https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/bl=
+ocks/rfnoc_block_replay/axis_replay.v#L529>
+> with a size configurable axi_fifo with increased width, to see if that
+> circumvents your issues.
+>
+> Disclaimer: I am more of an FPGA developer so take any SW advice I might
+> give with a grain of salt.
+>
+> Regards,
+>
+> Niels
+>
+> P.S.: Seems like Brian was a little bit faster, but he does mention some
+> similar points
+>
+Niels makes excellent points. You should listen to him!
 
-Even with a direct connection, it might take a little bit of time to query =
-the block command queue fullness.
+Brian
 
-What I suspect is happening is that the fullness query you are doing every =
-cycle of your inner loop is at least in some cases blocking for longer than=
- your interpulse duration.\
-\
-You could try the follwoing:\
- - Send a single timed command and see how many spots in the queue it takes=
- up(depending on the command it could be more than one.)\
- - Then when you are querying, instead of checking if ther is at least one =
-space, check if there is X spaces and then send out the next X timed comman=
-ds out one after the other.
-
-That way you probably only need to query the queue fill state once every co=
-uple of milliseconds which should be doable.\
-\
-Otherwise, if you are experienced with making HDL changes, you could also r=
-eplace the [fixed 32 space axi_fifo_short command FIFO module](https://gith=
-ub.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_bloc=
-k_replay/axis_replay.v#L529) with a size configurable axi_fifo with increas=
-ed width, to see if that circumvents your issues.\
-\
-Disclaimer: I am more of an FPGA developer so take any SW advice I might gi=
-ve with a grain of salt.\
-\
-Regards,\
-\
-Niels
-
-P.S.: Seems like Brian was a little bit faster, but he does mention some si=
-milar points
---b1_RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc
-Content-Type: multipart/related;
- boundary="b2_RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc";
- type="text/html"
-
---b2_RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc
-Content-Type: text/html; charset=us-ascii
+--000000000000251a8a063cb98cc8
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi Arthur,<br><br>Have you tried using tcpdump/wireshark on your machine=
- to check the communication/timing of the control transmissions going over =
-the ethernet connection?<br>As far as I am aware all UHD (Control) messages=
- are using UDP, so your suspicion regarding TCP algorithm slowdown should n=
-ot hold as there is no TCP used.<br><br>Depending on your network topology,=
- it might be the case that the slow down you are seeing is due to your appl=
-ication constantly checking for fullness.<br>I recently looked into an issu=
-e where I took some wireshark logs and saw that even if i just did a regist=
-er read operation the time it took between when the read request was sent o=
-ut and when the read response with the ACKnowledgement took a little bit of=
- time, if both host and SDR were even connected to a single switch. <br><br=
->Here is a snippet of one of my logs showing two register reads(what your f=
-ullness function using peek32 almost definitely uses.), that both took ~275=
-us between request and response.</p><p><img src=3D"cid:dbe41bde1a2f86cae2fd=
-f9708aee8848@phpmailer.0" alt=3D"" contenteditable=3D"false" draggable=3D"t=
-rue"><br></p><p>Even with a direct connection, it might take a little bit o=
-f time to query the block command queue fullness.</p><p><br></p><p>What I s=
-uspect is happening is that the fullness query you are doing every cycle of=
- your inner loop is at least in some cases blocking for longer than your in=
-terpulse duration.<br><br>You could try the follwoing:<br> - Send a single =
-timed command and see how many spots in the queue it takes up(depending on =
-the command it could be more than one.)<br> - Then when you are querying, i=
-nstead of checking if ther is at least one space, check if there is X space=
-s and then send out the next X timed commands out one after the other.</p><=
-p>That way you probably only need to query the queue fill state once every =
-couple of milliseconds which should be doable.<br><br>Otherwise, if you are=
- experienced with making HDL changes, you could also replace the <a href=3D=
-"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/bloc=
-ks/rfnoc_block_replay/axis_replay.v#L529" title=3D"">fixed 32 space axi_fif=
-o_short command FIFO module</a> with a size configurable axi_fifo with incr=
-eased width, to see if that circumvents your issues.<br><br>Disclaimer: I a=
-m more of an FPGA developer so take any SW advice I might give with a grain=
- of salt.<br><br>Regards,<br><br>Niels</p><p>P.S.: Seems like Brian was a l=
-ittle bit faster, but he does mention some similar points</p>
---b2_RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc
+<div dir=3D"ltr"><div dir=3D"ltr">On Tue, Aug 19, 2025 at 11:23=E2=80=AFAM =
+niels.steffen.garibaldi--- via USRP-users &lt;<a href=3D"mailto:usrp-users@=
+lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:</div><div class=
+=3D"gmail_quote gmail_quote_container"><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><p>Hi Arthur,<br><br>Have you tried using tcpdump/wireshark o=
+n your machine to check the communication/timing of the control transmissio=
+ns going over the ethernet connection?<br>As far as I am aware all UHD (Con=
+trol) messages are using UDP, so your suspicion regarding TCP algorithm slo=
+wdown should not hold as there is no TCP used.<br><br>Depending on your net=
+work topology, it might be the case that the slow down you are seeing is du=
+e to your application constantly checking for fullness.<br>I recently looke=
+d into an issue where I took some wireshark logs and saw that even if i jus=
+t did a register read operation the time it took between when the read requ=
+est was sent out and when the read response with the ACKnowledgement took a=
+ little bit of time, if both host and SDR were even connected to a single s=
+witch. <br><br>Here is a snippet of one of my logs showing two register rea=
+ds(what your fullness function using peek32 almost definitely uses.), that =
+both took ~275us between request and response.</p><p><img src=3D"cid:ii_198=
+c2f407f1b2878c771" alt=3D""><br></p><p>Even with a direct connection, it mi=
+ght take a little bit of time to query the block command queue fullness.</p=
+><p><br></p><p>What I suspect is happening is that the fullness query you a=
+re doing every cycle of your inner loop is at least in some cases blocking =
+for longer than your interpulse duration.<br><br>You could try the follwoin=
+g:<br> - Send a single timed command and see how many spots in the queue it=
+ takes up(depending on the command it could be more than one.)<br> - Then w=
+hen you are querying, instead of checking if ther is at least one space, ch=
+eck if there is X spaces and then send out the next X timed commands out on=
+e after the other.</p><p>That way you probably only need to query the queue=
+ fill state once every couple of milliseconds which should be doable.<br><b=
+r>Otherwise, if you are experienced with making HDL changes, you could also=
+ replace the <a href=3D"https://github.com/EttusResearch/uhd/blob/master/fp=
+ga/usrp3/lib/rfnoc/blocks/rfnoc_block_replay/axis_replay.v#L529" title=3D""=
+ target=3D"_blank">fixed 32 space axi_fifo_short command FIFO module</a> wi=
+th a size configurable axi_fifo with increased width, to see if that circum=
+vents your issues.<br><br>Disclaimer: I am more of an FPGA developer so tak=
+e any SW advice I might give with a grain of salt.<br><br>Regards,<br><br>N=
+iels</p><p>P.S.: Seems like Brian was a little bit faster, but he does ment=
+ion some similar points</p></blockquote><div>Niels makes excellent points. =
+You should listen to him!</div><div><br></div><div>Brian</div></div></div>
+
+--000000000000251a8a063cb98cc8--
+
+--000000000000251a8b063cb98cc9
 Content-Type: image/png; name=embed0
-Content-Transfer-Encoding: base64
-Content-ID: <dbe41bde1a2f86cae2fdf9708aee8848@phpmailer.0>
 Content-Disposition: inline; filename=embed0
+Content-Transfer-Encoding: base64
+Content-ID: <ii_198c2f407f1b2878c771>
+X-Attachment-Id: ii_198c2f407f1b2878c771
 
 iVBORw0KGgoAAAANSUhEUgAABFMAAAB9CAYAAABuzSzEAAAgAElEQVR4Xu19CbgVxbF/sV1EBFG8
 iiwqIIuACxqD4flHDcYVweWJIWpUREVDFI1iUBYVoxF9EZcQXIIQNUaMD0ES94BIFJcgGiQsTy/I
@@ -1145,13 +704,9 @@ Oy+LOaqYHDqHNk39xFJqwR5Sx4cnCuZM6cp6T/i26OtUxdv7rerkyQH7xzYfetsGKIUNVcFUSg0T
 AnlBQJ0PdPOrOr7jb9Zsxr4pqcHXlrA5xwZS03Z5naVGpvhrcXw92uBZqmVtfcpC99MsMsUb9+/A
 jQWLXpFx1fu25v4/gOyL6m1b9kXD9gDy2NaTqubtq/OL6odzWzLHqtDWZ9O+OVY2ujLHysauAEzn
 S/P21X1T9NrlP2OyZ7XRRl0q+/8BILOb4h8Ri5EAAAAASUVORK5CYII=
+--000000000000251a8b063cb98cc9--
 
---b2_RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc--
-
-
---b1_RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc--
-
---===============5322153574381045035==
+--===============2193553144662847273==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1161,4 +716,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5322153574381045035==--
+--===============2193553144662847273==--
