@@ -2,711 +2,583 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A49B2C885
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Aug 2025 17:31:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA1EB2D236
+	for <lists+usrp-users@lfdr.de>; Wed, 20 Aug 2025 05:02:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7AF4E385E7A
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Aug 2025 11:31:55 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6BA76385DE2
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Aug 2025 23:01:59 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1755617515; bh=dbtjm6p5hZD3q6KPs3nmT+QxEX/BvZqphXTEcpYKP3M=;
+	t=1755658919; bh=chPBCH7Mp1V13BApGilmz57K5ysZ2sjtRsbLbSqA35w=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=axq2XgMG14n8gy16e7Y/7l7diKiXe2oE0XYNHpqE9PUwFUKXj1lYRm3uQIRWXt12u
-	 zyJYLXFZ1cxV89++JE+DNR1y8jdmkKf4zPIyeF40QxaqG7OUGZNl1FwQOOFMsJoHjI
-	 Gr5JpaEmxOT48KxxhC/9YF3w5nbrnDehXNoMBkZD4HTovh4leKPTlDb+Fmh7N5+0YK
-	 fK+6JQ7avYFF2rU/ECwLY3HhfYNV7I1FsfJRvCCzXMSWvOmLEnQhuidqLhQq7ZBLPT
-	 XFV3xPGhrfhqKHAtrBdr+B9FcjZd90RL/t4ySnXAvVURfN5wdB+5NF4MtPEQUk691I
-	 HqPlU8L3UIf8g==
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 075EF385DDD
-	for <usrp-users@lists.ettus.com>; Tue, 19 Aug 2025 11:31:19 -0400 (EDT)
+	b=XmsvDDZul/G6mbcqWdBl+qmJ9nzrCPHbySidU+EtVC1c3eYq7ADJHzcitEzABkR+D
+	 ky/DhfPUNjsv2i79c3tjhzSN+Fd7m/k+za7If3TuS4duNOLnbLziuJR+TIGI5muKl9
+	 /3I+OBuH8HLJHzWnKdq1cDC1DrHX3humq3fGfKL3y0KzEbKjEIMm8FzuC3xJWgwXZ6
+	 CeJ1+LIBTST84KqLaLgFGElyrkk7b5ELmCT/GsoeLArHxZ6d8QCXNo3rzOG+JU/oJo
+	 cqaPrK0ZQRhBoq/t+YwCiO78MwpBdQp8/AyS8QqQDSptecTY1qStHA4pv+b3AzngXW
+	 S57ip1ONfh8AA==
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id 933DA385C25
+	for <usrp-users@lists.ettus.com>; Tue, 19 Aug 2025 23:01:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NM/Gv20S";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eBmu17hL";
 	dkim-atps=neutral
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb78d5dcbso768785266b.1
-        for <usrp-users@lists.ettus.com>; Tue, 19 Aug 2025 08:31:19 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-3e67d83ed72so2511225ab.0
+        for <usrp-users@lists.ettus.com>; Tue, 19 Aug 2025 20:01:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755617479; x=1756222279; darn=lists.ettus.com;
+        d=gmail.com; s=20230601; t=1755658884; x=1756263684; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Go8b1s/8WGydO4hnm16CIDQydh/vNIqPqYPPRhn9dss=;
-        b=NM/Gv20S0lFdSJ6/cli/7C9Kq5veRQ5GbSyxIMq5RsjKx41sOmow4IxS09pECpaLU1
-         AY/xe5oXAwTpiK6XPHQUymdObTcoGicKBoY/k7fCG6CHmO9y7Clul89ZAHKppC4VAwTW
-         XPB3N/f69MXT/O/unQ6QOdp76R427gtPeGkLW3SoyFa+UCty8g2Hu6F6Lx+KM6xFOvov
-         VSGQS7C9pbnxEr9ApI3RZddZfxhQ5/uRk2izBCHY/lJp6uTL7WUsagAeG85hyJ7jQLeT
-         V3pW468gvuAm61XzTmmytAYTz/5Sp0JYg+IdtoEVdlV6dhP4hy4H7H3aXdqcr5HaSivz
-         +46g==
+        bh=+DmUuS6yTfm2SDsHNfC5dSgPf7Cd9rL1KZrTqGACzRI=;
+        b=eBmu17hL+0xd3/4zn6YcyaWYhfcJGBfwj6mqwHg2EIakNfvC0IMDcm+ZRSFGdAJB2o
+         HtCd+wonbEBquSROw6cyKjLhmYaL4sf2ECw9zPBrqZd5hHfh/ths6CgfHtaAYtHY6D5S
+         tv5dNLcUS5SpsX8GaR0oueikxSvEipFI5g7t0jUqGvfNTMfnQ5E4iZ40kXJKxXlxXl+T
+         goAOSEzBHY4AgySThJSDtenNTLe+KYL9DXrdqaq+4MYl1P7FJ0+avJc1y4tV6E9WZr68
+         sp/rM/THtsA8tNYzfxa8UsnO3jG/9zhMtDkwSAYpg9W+xYA0Xg0GXODh3LTP4imWme19
+         4uVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755617479; x=1756222279;
+        d=1e100.net; s=20230601; t=1755658884; x=1756263684;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Go8b1s/8WGydO4hnm16CIDQydh/vNIqPqYPPRhn9dss=;
-        b=WZBKp3oTcgBAlNO3K5C0R4JtIEWdbKmwUu3FFpGQyqeihmy+b1xw9iz4XBWx0nLQ7E
-         Flw4tQQ49Xi/RYcE1CHREV9LPi02aacp2dowgc1/SfouJ46PW/5t0aX+Rgs6QuuJP8ht
-         R+dH0fK5BuZ+dN97Pu40QfUo3O4Ai0yrfvO0zlG+or+vreNAc6HcLJSd7VnLqyq41GSB
-         l3t/a9b/U7Hqnkf4cmRDJ62D/H8Q2/TzhCFUXB05P7G01L7akI2uUigkP9ZtUoqLf9TO
-         EdnR5rbZnibl9Qt0kMbc5x3UUBH+QpgvBwDDvpef2RxH9JH/Nby0wHvvtgw0GLpBXNSp
-         P1gQ==
-X-Gm-Message-State: AOJu0Yznqwq/ejmcSn9Ai265vw9mrlIYpYbwA+OyWynAyRM9oL6Iux+d
-	op/yq9VYzREygRxLP3Gh3Ss4/MvqKYp2Mt+DDBFb5BOJHgyUaKAIasvCh1BTXSGb5j4Ji+/e/6S
-	uljgielPVhN1hXEMbVMg3nJHFiBQpJLYpfg==
-X-Gm-Gg: ASbGncssEv8lJj3iSczrlCTui6D3NUow5WPoMIHSfXUqUH01L3P0plhnq5f2/VzKKzY
-	Cz7mZgct0TpCwr/noEmCIBpH24TMz46kYZKXUP3t0ijY9YBA/cw+5sZSW46kUl1+57eEqsDP1Fp
-	8ffqqM6Rsf7D/j5JEb7F/k8Fqm/Jyk7uQNOx0Y0XCONKvWbDILnrvOSv87JqVJMNiocFb+eJlwU
-	ySpbus=
-X-Google-Smtp-Source: AGHT+IFm5ISyzkaGlPq+MEZk83VthSZxs43yZsfS5k7lrz64kM1Of7GWbIi8yXSVQY3KsKgxhql03T0T+0UatgWCq/4=
-X-Received: by 2002:a17:907:60cd:b0:aec:65de:5258 with SMTP id
- a640c23a62f3a-afddc96124cmr306283666b.3.1755617478105; Tue, 19 Aug 2025
- 08:31:18 -0700 (PDT)
+        bh=+DmUuS6yTfm2SDsHNfC5dSgPf7Cd9rL1KZrTqGACzRI=;
+        b=GBF0lU9FKn792AVrTwQX9vIHZiBgo99U9BkvbDgNjd94Mu22vo1N05GHqzkcMcFXm3
+         5AZyYjoLER5c/1wJKaVRBxhWsb35QbMi1GPRGYFPMMU1yyLRTjkmXvWGih6CURCqHlTL
+         8i+b3qI4VS08oPcBPufCS0/KDGSKVE86SbDbYu289clOek9ME0b5EY76jq09IGnUowUS
+         nkFIo2AGRkgF3S/y0uvjtqAZGYHMi0eQksygDUJLi91HURoeF7ZvP3x27RHx/lcD0O10
+         YPnrpkxmWiaA+nJ4vXH25YgAHYSiwgG/KDBjaybwnlr9n7FCqv+alOG3LUFjKDs4/Ynj
+         szMw==
+X-Gm-Message-State: AOJu0Yz9UA+wiu0TNB+557BPOU9V3H95cExkZP7LoOOh9k32dGCEALQK
+	IQwllrpLjJ82cFZXvnFk4U31fsKgk0SsY9Lwz5xTkJgUvyFpvl3ymYNNZjGxV6nQg5RP1bSPOp9
+	gnWoqwheSDXrmHFguHEbpDC37GqxaPmxceQ==
+X-Gm-Gg: ASbGnctBR1tH8TknCBsYRIAdLVta/m+8WNKz/p/I3WBVeR7WQ2CGoohlKWDNIE9XtbE
+	MibVEdkjxITE33lgDT8pnGVRvMnzO1yoPdd13S53D0EfV5q0lSOctlvC1VsfvdNRmJxvWm7XBqq
+	D+aYu1zbnyqxVnEBgeerTIshHo7Kgru6YAs4W7GjECAKnELglMSsbLOGA9/BTdF4pU2hEXf7x4U
+	oQ=
+X-Google-Smtp-Source: AGHT+IGv8qFdzZYjqTs1mnoRghs33wUZexP1BzBnwHLZ2pGwRvTAUkIN8OA4dwjZJ/1ZPdbjOKlf22vL3eJZ8HLU8kg=
+X-Received: by 2002:a05:6e02:1705:b0:3e5:83c2:f77a with SMTP id
+ e9e14a558f8ab-3e67c906605mr26434155ab.0.1755658884455; Tue, 19 Aug 2025
+ 20:01:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc@lists.ettus.com>
-In-Reply-To: <RKoNIgXGzB4Kq3NEMdCpAKafXo5gICcmXsasERBuc@lists.ettus.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Tue, 19 Aug 2025 11:31:05 -0400
-X-Gm-Features: Ac12FXyybVqmxvQ8pLTomACjhvFC6eYDJ2emuxPQrkZO6sUb3S6D1Lw6FOoRLNI
-Message-ID: <CAEXYVK6Y3gWMg4dd3gFtaXhNi8BSUhh5gVGDacjuys4gaHNUog@mail.gmail.com>
-To: niels.steffen.garibaldi@emerson.com
-Message-ID-Hash: MIP366MGDKKYEYKD7SSNY6IU22PVFG2O
-X-Message-ID-Hash: MIP366MGDKKYEYKD7SSNY6IU22PVFG2O
-X-MailFrom: bpadalino@gmail.com
+References: <CAAxXO2HOqxb7vT2a+gvzvWS+9fADzfQVqx6h7y-5DL6vxnTZzA@mail.gmail.com>
+ <CAAxXO2H46WizByNopDwDzvU9mH_h66j=vu54-Rp5V_FpRt3ojQ@mail.gmail.com>
+ <CAFOi1A79+cM3zcm7pf2wez_UkZ8Fphw69qiX2KJe2qMW9D-xiA@mail.gmail.com>
+ <CAAxXO2HDKZCger_cVx6OOOz4ufycUH=YhNOD1JK1O4f4Qpa6Qw@mail.gmail.com>
+ <CAFOi1A6Qv2zq6-CWZScBp=3Xh6uLR_u=xv=xTXecVhvDKVeCjw@mail.gmail.com>
+ <CAAxXO2GFY0iYeezAk767dZegidxSTWLY7bqnnUksaneb=Xy-pw@mail.gmail.com>
+ <CAAxXO2F=DQKHMnNT2zVEzkBuevBz-Uq8ovxxHKRbMU3bQWR8tQ@mail.gmail.com>
+ <CAFOi1A45+R5vwQvr57YnGCF14_Poz349eUvi05Mp8vhSFz=T5g@mail.gmail.com> <CAAxXO2G-pxPnsOzz-5oNAAwf2t0TuUGcvX5+qXcd17FGSQadog@mail.gmail.com>
+In-Reply-To: <CAAxXO2G-pxPnsOzz-5oNAAwf2t0TuUGcvX5+qXcd17FGSQadog@mail.gmail.com>
+From: Nikos Balkanas <nbalkanas@gmail.com>
+Date: Wed, 20 Aug 2025 06:01:12 +0300
+X-Gm-Features: Ac12FXwzkPxqFZpfyxOPX6wWrFuz6KQxEolcQPhE2zPd-nDBJsBgktz8QKpMYuw
+Message-ID: <CAAxXO2Huh-aq5eUqZFaAVhpSNVfJdrHTZffu4PqF3vJpj4Z1AQ@mail.gmail.com>
+To: Martin Braun <martin.braun@ettus.com>
+Message-ID-Hash: YEGA5PK2I3IKSRZXBWGT3EJNXZANKXKB
+X-Message-ID-Hash: YEGA5PK2I3IKSRZXBWGT3EJNXZANKXKB
+X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Replay Block Command Rate Bottleneck at High PRF
+Subject: [USRP-users] Re: Overflow rx_streamer issue
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MIP366MGDKKYEYKD7SSNY6IU22PVFG2O/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YEGA5PK2I3IKSRZXBWGT3EJNXZANKXKB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2193553144662847273=="
+Content-Type: multipart/mixed; boundary="===============4324382192135668209=="
 
---===============2193553144662847273==
-Content-Type: multipart/related; boundary="000000000000251a8b063cb98cc9"
+--===============4324382192135668209==
+Content-Type: multipart/alternative; boundary="00000000000027a12f063cc330d2"
 
---000000000000251a8b063cb98cc9
-Content-Type: multipart/alternative; boundary="000000000000251a8a063cb98cc8"
-
---000000000000251a8a063cb98cc8
+--00000000000027a12f063cc330d2
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 19, 2025 at 11:23=E2=80=AFAM niels.steffen.garibaldi--- via USR=
-P-users <
-usrp-users@lists.ettus.com> wrote:
+Since no one else reported this as a problem,
+it must be a C-API bug.
+Seems I'm the only one using it:(
+I could have fixed it, but since I have more issues with UHD,
+I opted to write my own C driver for it...
+bb friends, I'm leaving the group:(
 
-> Hi Arthur,
+BR
+Nikos
+
+On Fri, Aug 1, 2025 at 5:20=E2=80=AFPM Nikos Balkanas <nbalkanas@gmail.com>=
+ wrote:
+
+> I'm receiving the correct signal and number of items received.
+> But the buffer is not freed. After ~25 MBs I start getting OOs, until
+> it stalls.
+> GDB shows that it skips uhd code updating the pointer in the source buffe=
+r.
+> That's bad:(
 >
-> Have you tried using tcpdump/wireshark on your machine to check the
-> communication/timing of the control transmissions going over the ethernet
-> connection?
-> As far as I am aware all UHD (Control) messages are using UDP, so your
-> suspicion regarding TCP algorithm slowdown should not hold as there is no
-> TCP used.
+> Nikos
 >
-> Depending on your network topology, it might be the case that the slow
-> down you are seeing is due to your application constantly checking for
-> fullness.
-> I recently looked into an issue where I took some wireshark logs and saw
-> that even if i just did a register read operation the time it took betwee=
-n
-> when the read request was sent out and when the read response with the
-> ACKnowledgement took a little bit of time, if both host and SDR were even
-> connected to a single switch.
+> On Fri, Aug 1, 2025 at 3:32=E2=80=AFPM Martin Braun <martin.braun@ettus.c=
+om>
+> wrote:
 >
-> Here is a snippet of one of my logs showing two register reads(what your
-> fullness function using peek32 almost definitely uses.), that both took
-> ~275us between request and response.
->
->
-> Even with a direct connection, it might take a little bit of time to quer=
-y
-> the block command queue fullness.
->
->
-> What I suspect is happening is that the fullness query you are doing ever=
-y
-> cycle of your inner loop is at least in some cases blocking for longer th=
-an
-> your interpulse duration.
->
-> You could try the follwoing:
-> - Send a single timed command and see how many spots in the queue it take=
+>> The return value of recv() is the number of items that are pulled from
+>> the receive buffer, and are copied to your OpenCL buffer. When it return=
+s,
+>> that's the amount of space freed in the receive buffer.
+>>
+>> --M
+>>
+>> On Fri, Aug 1, 2025 at 7:47=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail.c=
+om>
+>> wrote:
+>>
+>>> Seems it runs through
+>>> host/lib/include/uhdlib/transport/rx_streamer_impl.hpp: 137
+>>> -> _recv_one_packet()            :  276
+>>> ->  _convert_to_out_buff()
+>>> -> _converters[chan]->conv(buffer_ptr, out_buffs, num_samps); 362
+>>> -> host/include/uhd/convert.hpp:35
+>>> -> host/lib/convert/sse2_sc16_to_fc32.cpp: 124
+>>> -> chdr_sc16_to_xx : 173
+>>> -> host/lib/convert/convert_common.hpp: 198
+>>> Where it does the generic (non-sse2) conversion.
+>>> When it returns it goes back
+>>> to host/lib/include/uhdlib/transport/rx_streamer_impl.hpp: 137 and retu=
+rns.
+>>> It should have gone instead
+>>> to host/lib/include/uhdlib/transport/rx_streamer_impl.hpp: 362 to conti=
+nue.
+>>> Next line would be: // Advance the pointer for the source buffer
+>>> which is never executed:(
+>>>
+>>> I cannot test if this is the OO problem, since gdb has a bug with
+>>> breakpoint locations.
+>>> The code in converters seems to mess up the memory for the IR register
+>>> (AMD CPU - next instruction)
+>>>
+>>> BR
+>>> Nikos
+>>>
+>>> On Fri, Aug 1, 2025 at 12:55=E2=80=AFAM Nikos Balkanas <nbalkanas@gmail=
+.com>
+>>> wrote:
+>>>
+>>>> I always read my buffers. That's the whole point. Not using my X310 fo=
+r
+>>>> anything else.
+>>>> Not transmitting anything.
+>>>> Besides, between your X310 estimations and my calculations, it turns
+>>>> out, that *no buffer* is ever cleared.
+>>>> I could understand missing a couple of reads, which I don't, but all o=
+f
+>>>> them?
+>>>> The buffer current pointer is advanced fine. I always read in the new
+>>>> data, never the same.
+>>>> But it doesn't delete the old reads below the current pointer:(
+>>>> Maybe it has to do with the "strange memory" I use.
+>>>> UHD uses a lot of "weird" code that is not very portable.
+>>>> What UHD file is it? I need to check it, and run it through gdb...
+>>>>
+>>>> TIA
+>>>> Nikos
+>>>>
+>>>> On Thu, Jul 31, 2025 at 11:25=E2=80=AFPM Martin Braun <martin.braun@et=
+tus.com>
+>>>> wrote:
+>>>>
+>>>>> It sounds like you are not permanently reading samples. Everytime
+>>>>> rx_streamer::recv() returns, the samples are "removed" from the buffe=
+rs.
+>>>>>
+>>>>> --M
+>>>>>
+>>>>> On Thu, Jul 31, 2025 at 8:04=E2=80=AFPM Nikos Balkanas <nbalkanas@gma=
+il.com>
+>>>>> wrote:
+>>>>>
+>>>>>> Thanks Martin,
+>>>>>>
+>>>>>> for your fast response.
+>>>>>> My bad not mentioning my setup. But you got them right:)
+>>>>>> Ubuntu 24.04, UHD 4.6, X310, 10 Gbe line.
+>>>>>>
+>>>>>> 1) Yup. I start the recv() right after I start the streamer.
+>>>>>> 2) Can't change that. Buffers are created in OpenCL and am mapping
+>>>>>> them to the host side to write them. They are limited to the FFT siz=
+e, 1024
+>>>>>> samples.
+>>>>>>
+>>>>>> The interesting thing is that at first I am using an FFT batch size
+>>>>>> of 16x, that is 16384 samples.
+>>>>>> That means that I have to back and get more samples 16x!
+>>>>>> However, i am not getting  the OOs then.
+>>>>>> Later on, I only do a single pass, .num_samples =3D 1024, just enoug=
+h
+>>>>>> for 1 FFT, for now. This might change in the future.
+>>>>>> But this is where I'm getting the OO's.
+>>>>>> My test results, couldn't get OO's with 3e5 samples ~ 5 MB in 11 hrs=
+.
+>>>>>> That shows that rx_streamer buffers are larger than 5 MB, in line wi=
+th your
+>>>>>> estimation of 25 MBs:)
+>>>>>> These are big buffers:)
+>>>>>> Doing a few calculations, I read 1133 samples in 16x mode ~18.5 MB +
+>>>>>> 6.054 MB in  1x single FFT mode ~24.6 MBs before OOs appear.
+>>>>>> Seems that I don't read anything! But I read every single sample:(
+>>>>>> Must be  that rx_streamer delivers the samples but doesn't reduce it=
 s
-> up(depending on the command it could be more than one.)
-> - Then when you are querying, instead of checking if ther is at least one
-> space, check if there is X spaces and then send out the next X timed
-> commands out one after the other.
+>>>>>> buffers...
+>>>>>>
+>>>>>> This shouldn't be happening. Where in UHD sources is this controlled=
+?
+>>>>>>
+>>>>>> TIA
+>>>>>> Nikos
+>>>>>>
+>>>>>> On Thu, Jul 31, 2025 at 12:00=E2=80=AFPM Martin Braun <martin.braun@=
+ettus.com>
+>>>>>> wrote:
+>>>>>>
+>>>>>>> The size of the recv buffer depends on a bunch of things. On X310,
+>>>>>>> when using 10 GbE, UHD will try and make the socket buffer 25MB in =
+size.
+>>>>>>> Until the socket buffer is full, there will be no overrun.
+>>>>>>>
+>>>>>>> BTW if you want to find O in UHD, grep for "\<O\>" (or ag "\bO\b").
+>>>>>>> But you don't have to, I can tell you that you will end up in
+>>>>>>> radio_control_impl.cpp.
+>>>>>>>
+>>>>>>> There are several knobs for you to tune:
+>>>>>>>
+>>>>>>> - Are you starting your recv() call soon enough, or is the radio
+>>>>>>> streaming before you recv?
+>>>>>>> - Can you increase the buffer size that you pass into recv? In an
+>>>>>>> extreme case, you would pass a buffer that is big enough for all nu=
+m_samps,
+>>>>>>> and let UHD handle it.
+>>>>>>>
+>>>>>>> Also, what's your rate, your device, your transport...
+>>>>>>>
+>>>>>>> --M
+>>>>>>>
+>>>>>>> On Thu, Jul 31, 2025 at 10:17=E2=80=AFAM Nikos Balkanas <nbalkanas@=
+gmail.com>
+>>>>>>> wrote:
+>>>>>>>
+>>>>>>>> Did some more testing. Tried to fill rx_streamer's buffers in
+>>>>>>>> purpose.
+>>>>>>>> .stream_mode =3D UHD_STREAM_MODE_NUM_SAMPS_AND_DONE
+>>>>>>>> streamer timeout set to 3".
+>>>>>>>>
+>>>>>>>> 1) .num_samples =3D 16384. Read 1024 each time in a loop sleeping =
+1"
+>>>>>>>> each turn.
+>>>>>>>> More than 16" to complete the read. No OO's.
+>>>>>>>> 2) .num_samps =3D 3e5. Read 1024 samples each time in a loop addin=
+g
+>>>>>>>> 1" to sleep
+>>>>>>>> in each turn (1, 2, 3, 4, ...). 11 hrs to complete the read. No
+>>>>>>>> OO's.
+>>>>>>>>
+>>>>>>>> Is overflow even working right?
+>>>>>>>> How large are the streamer's receive buffers?
+>>>>>>>>
+>>>>>>>> Nikos
+>>>>>>>>
+>>>>>>>> On Wed, Jul 30, 2025 at 3:04=E2=80=AFPM Nikos Balkanas <nbalkanas@=
+gmail.com>
+>>>>>>>> wrote:
+>>>>>>>>
+>>>>>>>>> Hi,
+>>>>>>>>>
+>>>>>>>>> I am getting a few overflow errors after sometime, from using my
+>>>>>>>>> code..
+>>>>>>>>> First OOs in stdout and then metadata at which point it stalls.
+>>>>>>>>> I'm using .stream_mode =3D UHD_STREAM_MODE_NUM_SAMPS_AND_DONE,
+>>>>>>>>> Each time I read .num_samps in a loop until complete and then
+>>>>>>>>> restart the streamer.
+>>>>>>>>> I can't think of any case that I don't read all of the samples, s=
+o
+>>>>>>>>> this shouldn't happen.
+>>>>>>>>> What tools are there to debug this issue?
+>>>>>>>>> A function to monitor the rx_streamer internal buffers would be
+>>>>>>>>> very useful.
+>>>>>>>>> Even the filename that implements this overflow would be helpful.
+>>>>>>>>> Grepping "OO" in the sources doesn't help. Always hits in "BOOST"=
+:(
+>>>>>>>>>
+>>>>>>>>> TIA
+>>>>>>>>> Nikos
+>>>>>>>>>
+>>>>>>>>> _______________________________________________
+>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>
+>>>>>>> _______________________________________________
+>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>
+>>>>>> _______________________________________________
+>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>
+>>>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 >
-> That way you probably only need to query the queue fill state once every
-> couple of milliseconds which should be doable.
->
-> Otherwise, if you are experienced with making HDL changes, you could also
-> replace the fixed 32 space axi_fifo_short command FIFO module
-> <https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/bl=
-ocks/rfnoc_block_replay/axis_replay.v#L529>
-> with a size configurable axi_fifo with increased width, to see if that
-> circumvents your issues.
->
-> Disclaimer: I am more of an FPGA developer so take any SW advice I might
-> give with a grain of salt.
->
-> Regards,
->
-> Niels
->
-> P.S.: Seems like Brian was a little bit faster, but he does mention some
-> similar points
->
-Niels makes excellent points. You should listen to him!
 
-Brian
-
---000000000000251a8a063cb98cc8
+--00000000000027a12f063cc330d2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Tue, Aug 19, 2025 at 11:23=E2=80=AFAM =
-niels.steffen.garibaldi--- via USRP-users &lt;<a href=3D"mailto:usrp-users@=
-lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:</div><div class=
-=3D"gmail_quote gmail_quote_container"><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex"><p>Hi Arthur,<br><br>Have you tried using tcpdump/wireshark o=
-n your machine to check the communication/timing of the control transmissio=
-ns going over the ethernet connection?<br>As far as I am aware all UHD (Con=
-trol) messages are using UDP, so your suspicion regarding TCP algorithm slo=
-wdown should not hold as there is no TCP used.<br><br>Depending on your net=
-work topology, it might be the case that the slow down you are seeing is du=
-e to your application constantly checking for fullness.<br>I recently looke=
-d into an issue where I took some wireshark logs and saw that even if i jus=
-t did a register read operation the time it took between when the read requ=
-est was sent out and when the read response with the ACKnowledgement took a=
- little bit of time, if both host and SDR were even connected to a single s=
-witch. <br><br>Here is a snippet of one of my logs showing two register rea=
-ds(what your fullness function using peek32 almost definitely uses.), that =
-both took ~275us between request and response.</p><p><img src=3D"cid:ii_198=
-c2f407f1b2878c771" alt=3D""><br></p><p>Even with a direct connection, it mi=
-ght take a little bit of time to query the block command queue fullness.</p=
-><p><br></p><p>What I suspect is happening is that the fullness query you a=
-re doing every cycle of your inner loop is at least in some cases blocking =
-for longer than your interpulse duration.<br><br>You could try the follwoin=
-g:<br> - Send a single timed command and see how many spots in the queue it=
- takes up(depending on the command it could be more than one.)<br> - Then w=
-hen you are querying, instead of checking if ther is at least one space, ch=
-eck if there is X spaces and then send out the next X timed commands out on=
-e after the other.</p><p>That way you probably only need to query the queue=
- fill state once every couple of milliseconds which should be doable.<br><b=
-r>Otherwise, if you are experienced with making HDL changes, you could also=
- replace the <a href=3D"https://github.com/EttusResearch/uhd/blob/master/fp=
-ga/usrp3/lib/rfnoc/blocks/rfnoc_block_replay/axis_replay.v#L529" title=3D""=
- target=3D"_blank">fixed 32 space axi_fifo_short command FIFO module</a> wi=
-th a size configurable axi_fifo with increased width, to see if that circum=
-vents your issues.<br><br>Disclaimer: I am more of an FPGA developer so tak=
-e any SW advice I might give with a grain of salt.<br><br>Regards,<br><br>N=
-iels</p><p>P.S.: Seems like Brian was a little bit faster, but he does ment=
-ion some similar points</p></blockquote><div>Niels makes excellent points. =
-You should listen to him!</div><div><br></div><div>Brian</div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Sin=
+ce no one else reported this as a problem,</div><div class=3D"gmail_default=
+" style=3D"font-size:small">it must be a C-API bug.</div><div class=3D"gmai=
+l_default" style=3D"font-size:small">Seems I&#39;m the only one using it:(<=
+/div><div class=3D"gmail_default" style=3D"font-size:small">I could have fi=
+xed it, but since I have more issues with UHD,</div><div class=3D"gmail_def=
+ault" style=3D"font-size:small">I opted to write my own C driver for it...<=
+/div><div class=3D"gmail_default" style=3D"font-size:small">bb friends, I&#=
+39;m leaving the group:(=C2=A0</div><div class=3D"gmail_default" style=3D"f=
+ont-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:s=
+mall">BR</div><div class=3D"gmail_default" style=3D"font-size:small">Nikos<=
+/div></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Fri, Aug 1, 2025 at 5:20=E2=80=AFPM Nikos Bal=
+kanas &lt;<a href=3D"mailto:nbalkanas@gmail.com">nbalkanas@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">I&#39;m re=
+ceiving the correct signal and number of items received.=C2=A0</div><div cl=
+ass=3D"gmail_default" style=3D"font-size:small">But the buffer is not freed=
+. After ~25 MBs I start getting OOs, until</div><div class=3D"gmail_default=
+" style=3D"font-size:small">it stalls.</div><div class=3D"gmail_default" st=
+yle=3D"font-size:small">GDB shows that it skips uhd code updating the point=
+er in the source buffer.</div><div class=3D"gmail_default" style=3D"font-si=
+ze:small">That&#39;s bad:(</div><div class=3D"gmail_default" style=3D"font-=
+size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:small=
+">Nikos</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Fri, Aug 1, 2025 at 3:32=E2=80=AFPM Martin Braun &lt;<a hre=
+f=3D"mailto:martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr"><div>The return value of recv() is the number of items th=
+at are pulled from the receive buffer, and are copied to your OpenCL buffer=
+. When it returns, that&#39;s the=C2=A0amount of space freed in the receive=
+ buffer.</div><div><br></div><div>--M</div></div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug 1, 2025 at 7:47=E2=
+=80=AFAM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.com" target=
+=3D"_blank">nbalkanas@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_defau=
+lt" style=3D"font-size:small">Seems it runs through host/lib/include/uhdlib=
+/transport/rx_streamer_impl.hpp: 137</div><div class=3D"gmail_default" styl=
+e=3D"font-size:small">-&gt; _recv_one_packet()=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 :=C2=A0 276</div><div class=3D"gmail_default" style=3D"font-s=
+ize:small">-&gt;=C2=A0 _convert_to_out_buff()</div><div class=3D"gmail_defa=
+ult" style=3D"font-size:small">-&gt; _converters[chan]-&gt;conv(buffer_ptr,=
+ out_buffs, num_samps); 362</div><div class=3D"gmail_default" style=3D"font=
+-size:small">-&gt; host/include/uhd/convert.hpp:35</div><div class=3D"gmail=
+_default" style=3D"font-size:small">-&gt; host/lib/convert/sse2_sc16_to_fc3=
+2.cpp: 124</div><div class=3D"gmail_default" style=3D"font-size:small">-&gt=
+;=C2=A0chdr_sc16_to_xx : 173</div><div class=3D"gmail_default" style=3D"fon=
+t-size:small">-&gt;=C2=A0host/lib/convert/convert_common.hpp: 198</div><div=
+ class=3D"gmail_default" style=3D"font-size:small">Where it does the generi=
+c (non-sse2) conversion.</div><div class=3D"gmail_default" style=3D"font-si=
+ze:small">When it returns it goes back to=C2=A0host/lib/include/uhdlib/tran=
+sport/rx_streamer_impl.hpp: 137 and returns.</div><div class=3D"gmail_defau=
+lt" style=3D"font-size:small">It should have gone instead to=C2=A0host/lib/=
+include/uhdlib/transport/rx_streamer_impl.hpp: 362 to continue.</div><div c=
+lass=3D"gmail_default" style=3D"font-size:small">Next line would be:=C2=A0/=
+/ Advance the pointer for the source buffer</div><div class=3D"gmail_defaul=
+t" style=3D"font-size:small">which is never executed:(</div><div class=3D"g=
+mail_default" style=3D"font-size:small"><br></div><div class=3D"gmail_defau=
+lt" style=3D"font-size:small">I cannot test if this is the OO problem, sinc=
+e gdb has a bug with breakpoint locations.</div><div class=3D"gmail_default=
+" style=3D"font-size:small">The code in converters seems to mess up the mem=
+ory for the IR register (AMD CPU - next instruction)</div><div class=3D"gma=
+il_default" style=3D"font-size:small"><br></div><div class=3D"gmail_default=
+" style=3D"font-size:small">BR</div><div class=3D"gmail_default" style=3D"f=
+ont-size:small">Nikos</div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Fri, Aug 1, 2025 at 12:55=E2=80=AFAM Nikos Ba=
+lkanas &lt;<a href=3D"mailto:nbalkanas@gmail.com" target=3D"_blank">nbalkan=
+as@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-siz=
+e:small">I always read my buffers. That&#39;s the whole point. Not using my=
+ X310 for anything else.</div><div class=3D"gmail_default" style=3D"font-si=
+ze:small">Not transmitting anything.</div><div class=3D"gmail_default" styl=
+e=3D"font-size:small">Besides, between your X310 estimations and my calcula=
+tions, it turns out, that *no buffer* is ever cleared.</div><div class=3D"g=
+mail_default" style=3D"font-size:small">I could understand missing a couple=
+ of reads, which I don&#39;t, but all of them?</div><div class=3D"gmail_def=
+ault" style=3D"font-size:small">The buffer current pointer is advanced fine=
+. I always read in the new data, never the same.</div><div class=3D"gmail_d=
+efault" style=3D"font-size:small">But it doesn&#39;t delete the old reads b=
+elow the current pointer:(</div><div class=3D"gmail_default" style=3D"font-=
+size:small">Maybe it has to do with the &quot;strange memory&quot; I use.</=
+div><div class=3D"gmail_default" style=3D"font-size:small">UHD uses a lot o=
+f &quot;weird&quot; code that is not very portable.</div><div class=3D"gmai=
+l_default" style=3D"font-size:small">What UHD file is it? I need to check i=
+t, and run it through gdb...</div><div class=3D"gmail_default" style=3D"fon=
+t-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:sma=
+ll">TIA</div><div class=3D"gmail_default" style=3D"font-size:small">Nikos</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Thu, Jul 31, 2025 at 11:25=E2=80=AFPM Martin Braun &lt;<a href=3D"ma=
+ilto:martin.braun@ettus.com" target=3D"_blank">martin.braun@ettus.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
+ir=3D"ltr"><div>It sounds like you are not permanently=C2=A0reading samples=
+. Everytime rx_streamer::recv() returns, the samples are &quot;removed&quot=
+; from the buffers.</div><div><br></div><div>--M</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 31, 2025=
+ at 8:04=E2=80=AFPM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.co=
+m" target=3D"_blank">nbalkanas@gmail.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmai=
+l_default" style=3D"font-size:small">Thanks Martin,</div><div class=3D"gmai=
+l_default" style=3D"font-size:small"><br></div><div class=3D"gmail_default"=
+ style=3D"font-size:small">for your fast response.</div><div class=3D"gmail=
+_default" style=3D"font-size:small">My bad not mentioning my setup. But you=
+ got them right:)</div><div class=3D"gmail_default" style=3D"font-size:smal=
+l">Ubuntu 24.04, UHD 4.6, X310, 10 Gbe line.</div><div class=3D"gmail_defau=
+lt" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=
+=3D"font-size:small">1) Yup. I start the recv() right after I start the str=
+eamer.=C2=A0</div><div class=3D"gmail_default" style=3D"font-size:small">2)=
+ Can&#39;t change that. Buffers are created in OpenCL and am mapping them t=
+o the host side to write them. They are limited to the FFT size, 1024 sampl=
+es.</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><=
+div class=3D"gmail_default" style=3D"font-size:small">The interesting thing=
+ is that at first I am using an FFT batch size of 16x, that is 16384 sample=
+s.</div><div class=3D"gmail_default" style=3D"font-size:small">That means t=
+hat I have to back and get more samples 16x!</div><div class=3D"gmail_defau=
+lt" style=3D"font-size:small">However, i am not getting=C2=A0 the OOs then.=
+</div><div class=3D"gmail_default" style=3D"font-size:small">Later on, I on=
+ly do a single pass, .num_samples =3D 1024, just enough for 1 FFT, for now.=
+ This might change in the future.</div><div class=3D"gmail_default" style=
+=3D"font-size:small">But this is where I&#39;m getting the OO&#39;s.</div><=
+div class=3D"gmail_default" style=3D"font-size:small">My test results, coul=
+dn&#39;t get OO&#39;s with 3e5 samples ~ 5 MB in 11 hrs. That shows that rx=
+_streamer buffers are larger than 5 MB, in line with your</div><div class=
+=3D"gmail_default" style=3D"font-size:small">estimation of 25 MBs:)</div><d=
+iv class=3D"gmail_default" style=3D"font-size:small">These are big buffers:=
+)</div><div class=3D"gmail_default" style=3D"font-size:small">Doing a few c=
+alculations, I read 1133 samples in 16x mode ~18.5 MB=C2=A0+ 6.054 MB in=C2=
+=A0 1x single FFT mode ~24.6 MBs before OOs appear.</div><div class=3D"gmai=
+l_default" style=3D"font-size:small">Seems that I don&#39;t read anything! =
+But I read every single sample:(</div><div class=3D"gmail_default" style=3D=
+"font-size:small">Must be=C2=A0 that rx_streamer delivers the samples but d=
+oesn&#39;t reduce its buffers...</div><div class=3D"gmail_default" style=3D=
+"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size=
+:small">This shouldn&#39;t be happening. Where in UHD sources is this contr=
+olled?</div><div class=3D"gmail_default" style=3D"font-size:small"><br></di=
+v><div class=3D"gmail_default" style=3D"font-size:small">TIA</div><div clas=
+s=3D"gmail_default" style=3D"font-size:small">Nikos</div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 31, 20=
+25 at 12:00=E2=80=AFPM Martin Braun &lt;<a href=3D"mailto:martin.braun@ettu=
+s.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>The si=
+ze of the recv buffer depends on a bunch of things. On X310, when using 10 =
+GbE, UHD will try and make the socket buffer 25MB in size. Until the socket=
+ buffer is full, there will be no overrun.</div><div><br></div><div>BTW if =
+you want to find O in UHD, grep for &quot;\&lt;O\&gt;&quot; (or ag &quot;\b=
+O\b&quot;). But you don&#39;t have to, I can tell you that you will end up =
+in radio_control_impl.cpp.</div><div><br></div><div>There are several knobs=
+ for you to tune:</div><div><br></div><div>- Are you starting your recv() c=
+all soon enough, or is the radio streaming before=C2=A0you recv?</div><div>=
+- Can you increase the=C2=A0buffer size that you pass into recv? In an extr=
+eme case, you would pass a buffer that is big enough for all num_samps, and=
+ let UHD handle it.</div><div><br></div><div>Also, what&#39;s your rate, yo=
+ur device, your transport...</div><div><br></div><div>--M</div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul =
+31, 2025 at 10:17=E2=80=AFAM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas=
+@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div clas=
+s=3D"gmail_default" style=3D"font-size:small">Did some more testing. Tried =
+to fill rx_streamer&#39;s buffers in purpose.</div><div class=3D"gmail_defa=
+ult" style=3D"font-size:small">.stream_mode =3D=C2=A0UHD_STREAM_MODE_NUM_SA=
+MPS_AND_DONE</div><div class=3D"gmail_default" style=3D"font-size:small">st=
+reamer timeout set to 3&quot;.</div><div class=3D"gmail_default" style=3D"f=
+ont-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:s=
+mall">1) .num_samples =3D 16384. Read 1024 each time in a loop sleeping 1&q=
+uot; each turn.</div><div class=3D"gmail_default" style=3D"font-size:small"=
+>More than 16&quot; to complete the read. No OO&#39;s.</div><div class=3D"g=
+mail_default" style=3D"font-size:small">2) .num_samps =3D 3e5. Read 1024 sa=
+mples each time in a loop adding 1&quot; to sleep</div><div class=3D"gmail_=
+default" style=3D"font-size:small">in each turn (1, 2, 3, 4, ...). 11 hrs t=
+o complete the read. No OO&#39;s.</div><div class=3D"gmail_default" style=
+=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-s=
+ize:small">Is overflow even working right?</div><div class=3D"gmail_default=
+" style=3D"font-size:small">How large are the streamer&#39;s receive buffer=
+s?</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><d=
+iv class=3D"gmail_default" style=3D"font-size:small">Nikos</div></div><br><=
+div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul=
+ 30, 2025 at 3:04=E2=80=AFPM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas=
+@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div clas=
+s=3D"gmail_default" style=3D"font-size:small">Hi,</div><div class=3D"gmail_=
+default" style=3D"font-size:small"><br></div><div class=3D"gmail_default" s=
+tyle=3D"font-size:small">I am getting a few overflow errors after sometime,=
+ from using my code..</div><div class=3D"gmail_default" style=3D"font-size:=
+small">First OOs in stdout and then metadata at which point it stalls.</div=
+><div class=3D"gmail_default" style=3D"font-size:small">I&#39;m using .stre=
+am_mode =3D=C2=A0UHD_STREAM_MODE_NUM_SAMPS_AND_DONE,</div><div class=3D"gma=
+il_default" style=3D"font-size:small">Each time I read .num_samps in a loop=
+ until complete and then restart the streamer.</div><div class=3D"gmail_def=
+ault" style=3D"font-size:small">I can&#39;t think of any case that I don&#3=
+9;t read all of the samples, so this shouldn&#39;t happen.</div><div class=
+=3D"gmail_default" style=3D"font-size:small">What tools are there to debug =
+this issue?</div><div class=3D"gmail_default" style=3D"font-size:small">A f=
+unction to monitor the rx_streamer internal buffers would be very useful.</=
+div><div class=3D"gmail_default" style=3D"font-size:small">Even the filenam=
+e that implements this overflow would be helpful.</div><div class=3D"gmail_=
+default" style=3D"font-size:small">Grepping &quot;OO&quot; in the sources d=
+oesn&#39;t help. Always hits in &quot;BOOST&quot;:(</div><div class=3D"gmai=
+l_default" style=3D"font-size:small"><br></div><div class=3D"gmail_default"=
+ style=3D"font-size:small">TIA</div><div class=3D"gmail_default" style=3D"f=
+ont-size:small">Nikos=C2=A0</div><div class=3D"gmail_default" style=3D"font=
+-size:small"><br></div></div>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
 
---000000000000251a8a063cb98cc8--
+--00000000000027a12f063cc330d2--
 
---000000000000251a8b063cb98cc9
-Content-Type: image/png; name=embed0
-Content-Disposition: inline; filename=embed0
-Content-Transfer-Encoding: base64
-Content-ID: <ii_198c2f407f1b2878c771>
-X-Attachment-Id: ii_198c2f407f1b2878c771
-
-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
---000000000000251a8b063cb98cc9--
-
---===============2193553144662847273==
+--===============4324382192135668209==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -716,4 +588,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2193553144662847273==--
+--===============4324382192135668209==--
