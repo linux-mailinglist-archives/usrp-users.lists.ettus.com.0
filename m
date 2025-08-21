@@ -2,49 +2,49 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52D9AB2FCF7
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Aug 2025 16:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E71B5B2FD29
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Aug 2025 16:46:28 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3D9C73866AC
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Aug 2025 10:39:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2B9BD386680
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Aug 2025 10:46:28 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1755787169; bh=EIuWxqcOGtO9qtC9loztGYWGaMPJuI+6zcs4ROW2Ano=;
+	t=1755787588; bh=ERZmofnptpXNmHJRtuZ53xussin0TuKB3OWFvWLGKaI=;
 	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
 	 From;
-	b=YOWHrV4mU3e/daNvl0rC0Gu9HZuiGvOgbh+fdN/SQticiXXeb2HCUIpADfOEIaTCa
-	 WD2/1vtmgOsMAGlWvUGzT2HXFOdPLkd4+u1kpCVHISRzT1yG3UUmCvLVL5ZNCCvgA6
-	 xaTP0TfeU8RbuTP27kxtYDoErXMYSTjiXRt9rJg4rOQNHYGBUu6UninQ/MQ5H1bhGi
-	 FZrCq4bXiBINYjrdGHSWb0g56VFH2Iz9p8SN5xQxAUbDrQ6RsU8fgz9YniXsw2XyUr
-	 LWVsHOheRVxkX/iBLPpbQJX/Ihu1AnOm+B/i9/jc/DulXlKcd25g/AyDUAX6lbKvaf
-	 XAIs9aF27S+TQ==
+	b=rOQj3xuNdw9Gx4tocDFFeBLGwfmXFQ2o5EwHwsR36w8I3+KH2MiqzD1e0pZ1kMey7
+	 Ded7267hpUlN2Wx0Olh2MhU3sLF2SsbudcDZ19nI9w/NF80+a7DQs0OAtrihblQ66S
+	 gEagoTdLBAbyZNJ03RJJ1rv1m3FujJtou3Z77URQAVIqMOBe1E0ogKRMeG8aOv7KCQ
+	 ad8lcK6z5jW++mJoaJAGeQfx32m5v+Ue/pxzJtOycnyXH6jceU6sGd3YWd4AOJ2I6t
+	 mK/MgM6y0ma+hi1QhcfBEOBMLol2icdwI0NQCiux84hH6bIf7judry1LqbxN6nTclR
+	 +0CO5w/UKm8dA==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2ADBA386646
-	for <usrp-users@lists.ettus.com>; Thu, 21 Aug 2025 10:38:36 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DFFF738666E
+	for <usrp-users@lists.ettus.com>; Thu, 21 Aug 2025 10:45:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1755787116; bh=85VDYQed9X1WGzTakBzYqN9Ebl69f0I7ravpAVwysdc=;
+	t=1755787547; bh=W1OO7e9xuqOBESzjozGQ+81EQitYmjdnnYYIoz8xNeA=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=LmxpP0/4tMHmPuoSuVc9nJG/hO4SUpa1tlHVXmFVW1t3lw8+dgO3ivG0zzWhPEakk
-	 fTpUP9OB8rnULWgqNadHR5qe1mBfvxJQVEBEzJupy38C+PQiNVejeg5/iYgDr/h97l
-	 kW5BPBwgjunAiiy0iUAG40T9J/0QqUi1fv5melChStOqdW/dVY5ZkdJZUVP9jgy4tn
-	 SK7jr2cfI5h9LIDzhw/OgF1TCpkfoTVN3jlpU3LL4EIHcI95pCs/IUb2jT4slgtMC5
-	 +74QjUJSk7uaTDgIau5Ji/a/MqdLHNcOt8c+xEszvC10Nq727tZN62x9d4OnTcPiQH
-	 vrSYy2lri1njA==
-Date: Thu, 21 Aug 2025 14:38:36 +0000
+	b=YcLkbosyqrHoL2pg4uRNa5Rqmsx6SJz6P1CXcnJhD8u3/7/rojEWIsqHNvZ1KOZSx
+	 TpJkUSyhTBtbEkXoaKDT1Mea8aMf/o/brAtN38BNQ7mSE9fF8Ctnm7wpvTFdcthiJv
+	 /rBTk5kpE47R8eeit1CaQqGbtpIk2QZNuGRbOWY7eGPDgD/HYiFnYw3d4CfVBs44/r
+	 UYPcHQ42PlRYUVBQP9vIZb8VBXNhyNgL96OvJGQqKpL/ENBPY1hJt41YtrbfX0nK95
+	 FeyG+e5K5n/7y04j6mEt2aqLIZtKtPFHeUo+Dja9T0DRTrtalh5Pn73nCwFllBSHX1
+	 oAA5dRj+3NSUA==
+Date: Thu, 21 Aug 2025 14:45:47 +0000
 To: usrp-users@lists.ettus.com
-Message-ID: <EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68@lists.ettus.com>
+Message-ID: <bqiZaJrprUOyErXwl0zNM012RWGauIwzThFQrLcJEWM@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CH0PR10MB5179F6CDC06E17C3A7AE5FF09932A@CH0PR10MB5179.namprd10.prod.outlook.com
+In-Reply-To: EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68@lists.ettus.com
 MIME-Version: 1.0
-Message-ID-Hash: MOM4KAKHTDZO3C4TYMSRCQNINA63BHZ5
-X-Message-ID-Hash: MOM4KAKHTDZO3C4TYMSRCQNINA63BHZ5
+Message-ID-Hash: THSLZIBH3QNSIXAFTGLSGS3YBQ7JBRWT
+X-Message-ID-Hash: THSLZIBH3QNSIXAFTGLSGS3YBQ7JBRWT
 X-MailFrom: rfserranor@indra.es
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Error with ettus x440: Failure to create rfnoc_graph.
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MOM4KAKHTDZO3C4TYMSRCQNINA63BHZ5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/THSLZIBH3QNSIXAFTGLSGS3YBQ7JBRWT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
@@ -53,67 +53,46 @@ List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
 From: =?utf-8?q?Rub=C3=A9n_Serrano_via_USRP-users?= <usrp-users@lists.ettus.com>
 Reply-To: rfserranor@indra.es
-Content-Type: multipart/mixed; boundary="===============3347699023668462043=="
+Content-Type: multipart/mixed; boundary="===============2377206082983577576=="
 
 This is a multi-part message in MIME format.
 
---===============3347699023668462043==
+--===============2377206082983577576==
 Content-Type: multipart/alternative;
- boundary="b1_EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68"
+ boundary="b1_bqiZaJrprUOyErXwl0zNM012RWGauIwzThFQrLcJEWM"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68
+--b1_bqiZaJrprUOyErXwl0zNM012RWGauIwzThFQrLcJEWM
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 Hi Martin,
 
-=C2=B7 Yes, the output on the erroneous device has been generated by runn=
-ing that command when i am logged into the device via SSH.=20
+I have took a look to the manual that you linked in the reply and i can s=
+ay that i followed all the checks (in order) and for that i logged in her=
+e in this forum. So i do not think that the part of the manual that helps=
+ to avoid this problem could help me.
 
-=C2=B7 I have checked the Ip configurations, which they are 192.168.0.3 f=
-or the good device, 192.168.0.4 for the erroneous, 192.168.0.10 for the h=
-ost (which only have 1 because i plugged and unplugged the devices so the=
-y have been tested separately) and DHCP 192.168.0.255.
+Thank you,
 
-=C2=B7 Also the subnet and subnet mask are configurated the same for all =
-the network (ettus devices and host).
+    Rub=C3=A9n.
 
-I am going to check out the manual that you send to me via link and see i=
-f i have set up anything wrong.
-
-Also in my first tries to make the devices run, I have configured the set=
- up as you remarked in the reply, but suddenly when all goes wrong I only=
- have tested the devices with the RJ45 connection. I will try to let the =
-configuration as you recommended, but when i did i had the same issue.=20
-
-Thank you so much for the quick reply.
-
---b1_EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68
+--b1_bqiZaJrprUOyErXwl0zNM012RWGauIwzThFQrLcJEWM
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi Martin,</p><p>=C2=B7 Yes, the output on the erroneous device has be=
-en generated by running that command when i am logged into the device via=
- SSH. </p><p>=C2=B7 I have checked the Ip configurations, which they are =
-192.168.0.3 for the good device, 192.168.0.4 for the erroneous, 192.168.0=
-.10 for the host (which only have 1 because i plugged and unplugged the d=
-evices so they have been tested separately) and DHCP 192.168.0.255.</p><p=
->=C2=B7 Also the subnet and subnet mask are configurated the same for all=
- the network (ettus devices and host).</p><p>I am going to check out the =
-manual that you send to me via link and see if i have set up anything wro=
-ng.</p><p>Also in my first tries to make the devices run, I have configur=
-ed the set up as you remarked in the reply, but suddenly when all goes wr=
-ong I only have tested the devices with the RJ45 connection. I will try t=
-o let the configuration as you recommended, but when i did i had the same=
- issue. </p><p>Thank you so much for the quick reply.</p>
+<p>Hi Martin,</p><p>I have took a look to the manual that you linked in t=
+he reply and i can say that i followed all the checks (in order) and for =
+that i logged in here in this forum. So i do not think that the part of t=
+he manual that helps to avoid this problem could help me.</p><p>Thank you=
+,</p><p>    Rub=C3=A9n. </p>
 
 
---b1_EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68--
+--b1_bqiZaJrprUOyErXwl0zNM012RWGauIwzThFQrLcJEWM--
 
---===============3347699023668462043==
+--===============2377206082983577576==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +102,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3347699023668462043==--
+--===============2377206082983577576==--
