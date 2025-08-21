@@ -2,171 +2,118 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075ACB2F80F
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Aug 2025 14:32:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52D9AB2FCF7
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Aug 2025 16:39:30 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7B8C73864F1
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Aug 2025 08:32:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3D9C73866AC
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Aug 2025 10:39:29 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1755779559; bh=eHN7RVoo2lQkhUONYNaSobUGq3pENuqSX1EsoiOb138=;
+	t=1755787169; bh=EIuWxqcOGtO9qtC9loztGYWGaMPJuI+6zcs4ROW2Ano=;
 	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
 	 From;
-	b=mSRvMnWE4PYbdF/yweXNAGwX9IUDfBNcvgxSGpS7aXfe/qf7nKByMR+JQutA6SGKr
-	 MTC+leIMEXkD4erHcrGuAI8rpUXxnf8e3A47RTjNa88jDz1zU/jWxqGwte5M6p5uSJ
-	 ybrM4TQjkdK/jw1KLFEgZaLqRh+Kj9sp09zYajbQNElpKbb4PyIO5UUQclDhkj4407
-	 wozwCudwgGQfjpkKd2rngAwul3CpdWfkCUR2gZRrwrR8bnPaY4UZiY21ugnNKOJRU3
-	 gsOzx6qFC1RhzhoX8hHH4dGV7wcd64l4KcFXElcNPwEEy/ipf178Y1Jdk2NlQnptzB
-	 b4NX8aA5bWZEg==
+	b=YOWHrV4mU3e/daNvl0rC0Gu9HZuiGvOgbh+fdN/SQticiXXeb2HCUIpADfOEIaTCa
+	 WD2/1vtmgOsMAGlWvUGzT2HXFOdPLkd4+u1kpCVHISRzT1yG3UUmCvLVL5ZNCCvgA6
+	 xaTP0TfeU8RbuTP27kxtYDoErXMYSTjiXRt9rJg4rOQNHYGBUu6UninQ/MQ5H1bhGi
+	 FZrCq4bXiBINYjrdGHSWb0g56VFH2Iz9p8SN5xQxAUbDrQ6RsU8fgz9YniXsw2XyUr
+	 LWVsHOheRVxkX/iBLPpbQJX/Ihu1AnOm+B/i9/jc/DulXlKcd25g/AyDUAX6lbKvaf
+	 XAIs9aF27S+TQ==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D36B1386413
-	for <usrp-users@lists.ettus.com>; Thu, 21 Aug 2025 08:32:02 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2ADBA386646
+	for <usrp-users@lists.ettus.com>; Thu, 21 Aug 2025 10:38:36 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1755779522; bh=14xz4qcC2MwfhTRFkdYsZNeIxT6m1KZ8oiVF4srY01g=;
+	t=1755787116; bh=85VDYQed9X1WGzTakBzYqN9Ebl69f0I7ravpAVwysdc=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=qz/trK6rO5un+87s7XgMUM+5gTYJxB2lidvSp6ndjp5oa7bEYf98132L8X/1o+vnq
-	 m/blpp441lWLr6V6k/5Yp1X8IKPi6jAeAruT43vqsHcprX/Ix+ifFweeMthmaBBOyF
-	 bsQiTaAKZ4TDOzzWzojC1hYxVbJFIJ8lBCFSjf55/rx4CIOeckRae8kBICWWHRkzlH
-	 bKRp/UvJ9HEKmNkS5xB+WAbWo58DY5YT21VZUskiXo0lnMlXrfSMOGfoQ9fztc1Wg3
-	 VUkCjn0hPGjuZm7PnfR0JO4HuuIBr6k22vEZTwe4uzRxf/eyKnwHR22wSOxJ1GI55m
-	 XghtX3ffJ+YIQ==
-Date: Thu, 21 Aug 2025 12:32:02 +0000
+	b=LmxpP0/4tMHmPuoSuVc9nJG/hO4SUpa1tlHVXmFVW1t3lw8+dgO3ivG0zzWhPEakk
+	 fTpUP9OB8rnULWgqNadHR5qe1mBfvxJQVEBEzJupy38C+PQiNVejeg5/iYgDr/h97l
+	 kW5BPBwgjunAiiy0iUAG40T9J/0QqUi1fv5melChStOqdW/dVY5ZkdJZUVP9jgy4tn
+	 SK7jr2cfI5h9LIDzhw/OgF1TCpkfoTVN3jlpU3LL4EIHcI95pCs/IUb2jT4slgtMC5
+	 +74QjUJSk7uaTDgIau5Ji/a/MqdLHNcOt8c+xEszvC10Nq727tZN62x9d4OnTcPiQH
+	 vrSYy2lri1njA==
+Date: Thu, 21 Aug 2025 14:38:36 +0000
 To: usrp-users@lists.ettus.com
-Message-ID: <2x1B7T1biy0eBDR75DKIlbwBCQVLf50ocVDicZ3ziM@lists.ettus.com>
+Message-ID: <EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAB-=5jZoAVoMmtiZ76esaQy2806vrUhg0kB0Bmvh_E_bWODX8g@mail.gmail.com
+In-Reply-To: CH0PR10MB5179F6CDC06E17C3A7AE5FF09932A@CH0PR10MB5179.namprd10.prod.outlook.com
 MIME-Version: 1.0
-Message-ID-Hash: NYZRFYFDNAZGDH3R7OJGCSVJSCQVOEN4
-X-Message-ID-Hash: NYZRFYFDNAZGDH3R7OJGCSVJSCQVOEN4
-X-MailFrom: niels.steffen.garibaldi@emerson.com
+Message-ID-Hash: MOM4KAKHTDZO3C4TYMSRCQNINA63BHZ5
+X-Message-ID-Hash: MOM4KAKHTDZO3C4TYMSRCQNINA63BHZ5
+X-MailFrom: rfserranor@indra.es
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: tlast in the CHDR packet
+Subject: [USRP-users] Re: Error with ettus x440: Failure to create rfnoc_graph.
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NYZRFYFDNAZGDH3R7OJGCSVJSCQVOEN4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MOM4KAKHTDZO3C4TYMSRCQNINA63BHZ5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "niels.steffen.garibaldi--- via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: niels.steffen.garibaldi@emerson.com
-Content-Type: multipart/mixed; boundary="===============3948841360279187206=="
+From: =?utf-8?q?Rub=C3=A9n_Serrano_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: rfserranor@indra.es
+Content-Type: multipart/mixed; boundary="===============3347699023668462043=="
 
 This is a multi-part message in MIME format.
 
---===============3948841360279187206==
+--===============3347699023668462043==
 Content-Type: multipart/alternative;
- boundary="b1_2x1B7T1biy0eBDR75DKIlbwBCQVLf50ocVDicZ3ziM"
+ boundary="b1_EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_2x1B7T1biy0eBDR75DKIlbwBCQVLf50ocVDicZ3ziM
+--b1_EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jons,
+Hi Martin,
 
-TL;DR: If you configure the packet size of your (TX) streamer by specifyi=
-ng the SPP parameter of your stream_args, inside of your RFNoC block you =
-can assume that every time tlast is asserted, have received a full packet=
- consisting of 32 samples.\
-\
-\
-Technically you can make your packets whatever size you like, especially =
-if you are not interfacing with any other data processing RFNoC blocks.\
-\
-Some blocks have special requirements on the packet size, for example the=
- fft block. This block takes the full packet and then processes it as a w=
-hole, similar to how it seems your custom block is operating. If you are =
-doing using an FFT size of 1024, the fft block expects every packet to co=
-nsist of exactly 1024 (sc16) samples.
+=C2=B7 Yes, the output on the erroneous device has been generated by runn=
+ing that command when i am logged into the device via SSH.=20
 
-In RFNoC, you can specify the size of the TX or RX streamer packet sample=
- payload by specifying the SPP(Samples Per Packet) parameter in the strea=
-m_args.\
-See <https://uhd.readthedocs.io/en/latest/page_stream.html#stream_intro> =
-example code on a basic way to do that.
+=C2=B7 I have checked the Ip configurations, which they are 192.168.0.3 f=
+or the good device, 192.168.0.4 for the erroneous, 192.168.0.10 for the h=
+ost (which only have 1 because i plugged and unplugged the devices so the=
+y have been tested separately) and DHCP 192.168.0.255.
 
-When it comes to the FPGA side and tlast, it gets slightly more complicat=
-ed:
+=C2=B7 Also the subnet and subnet mask are configurated the same for all =
+the network (ettus devices and host).
 
-RFNoC blocks communicate with each other using CHDR packets, that are tra=
-nsmitted over the CHDR data bus connections between them.=20
+I am going to check out the manual that you send to me via link and see i=
+f i have set up anything wrong.
 
-The width of this bus is determined by the \`CHDR_W\` parameter of the bi=
-t file variant you are using your block in. A packet is split into data w=
-ords of width \`CHDR_W\` and then forwarded one word per clock cycle of t=
-he data clock \`chdr_clk\`.=20
+Also in my first tries to make the devices run, I have configured the set=
+ up as you remarked in the reply, but suddenly when all goes wrong I only=
+ have tested the devices with the RJ45 connection. I will try to let the =
+configuration as you recommended, but when i did i had the same issue.=20
 
-This means that if you are using a \`CHDR_W\` of 64 as used in the 200MHz=
- BW variant bitfile, the =E2=80=9CSPP=3D32=E2=80=9D packet you have sent =
-from the host will be resized, and tlast will be asserted after 1 CHDR he=
-ader word + 16 payload Data words each containing two samples (equivalent=
- to =E2=80=9CNIPC=3D2=E2=80=9D with your sample width of sc16 being =E2=80=
-=9CITEM_W=3D32=E2=80=9D).\
-\
-I=E2=80=99m not as familiar with gnuradio but i am assuming that if you a=
-re setting the spp for your streamer your block should be fine.
+Thank you so much for the quick reply.
 
-The size of the return packet is you depends on what the output of your c=
-ustom RFNoC block is, and whenever you assert tlast inside of your block.=
-\
-\
-By the way, I am assuming there is a typo in your processing chain:\
-\
-GNU Radio block A --> TX streamer --> custom RFNoC block --> **RX** strea=
-mer \
-\--> GNU Radio block B\
-\
-Regards,\
-Niels
-
---b1_2x1B7T1biy0eBDR75DKIlbwBCQVLf50ocVDicZ3ziM
+--b1_EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi Jons,</p><p>TL;DR: If you configure the packet size of your (TX) stre=
-amer by specifying the SPP parameter of your stream_args, inside of your RF=
-NoC block you can assume that every time tlast is asserted, have received a=
- full packet consisting of 32 samples.<br><br><br>Technically you can make =
-your packets whatever size you like, especially if you are not interfacing =
-with any other data processing RFNoC blocks.<br><br>Some blocks have specia=
-l requirements on the packet size, for example the fft block. This block ta=
-kes the full packet and then processes it as a whole, similar to how it see=
-ms your custom block is operating. If you are doing using an FFT size of 10=
-24, the fft block expects every packet to consist of exactly 1024 (sc16) sa=
-mples.</p><p>In RFNoC, you can specify the size of the TX or RX streamer pa=
-cket sample payload by specifying the SPP(Samples Per Packet) parameter in =
-the stream_args.<br>See <a href=3D"https://uhd.readthedocs.io/en/latest/pag=
-e_stream.html#stream_intro" title=3D"">https://uhd.readthedocs.io/en/latest=
-/page_stream.html#stream_intro</a> example code on a basic way to do that.<=
-/p><p>When it comes to the FPGA side and tlast, it gets slightly more compl=
-icated:</p><p>RFNoC blocks communicate with each other using CHDR packets, =
-that are transmitted over the CHDR data bus connections between them. </p><=
-p>The width of this bus is determined by the `CHDR_W` parameter of the bit =
-file variant you are using your block in. A packet is split into data words=
- of width `CHDR_W` and then forwarded one word per clock cycle of the data =
-clock `chdr_clk`. </p><p>This means that if you are using a `CHDR_W` of 64 =
-as used in the 200MHz BW variant bitfile, the =E2=80=9CSPP=3D32=E2=80=9D pa=
-cket you have sent from the host will be resized, and tlast will be asserte=
-d after 1 CHDR header word + 16 payload Data words each containing two samp=
-les (equivalent to =E2=80=9CNIPC=3D2=E2=80=9D with your sample width of sc1=
-6 being =E2=80=9CITEM_W=3D32=E2=80=9D).<br><br>I=E2=80=99m not as familiar =
-with gnuradio but i am assuming that if you are setting the spp for your st=
-reamer your block should be fine.</p><p>The size of the return packet is yo=
-u depends on what the output of your custom RFNoC block is, and whenever yo=
-u assert tlast inside of your block.<br><br>By the way, I am assuming there=
- is a typo in your processing chain:<br><br>GNU Radio block A --&gt; TX str=
-eamer --&gt; custom RFNoC block --&gt; <strong>RX</strong> streamer <br>--&=
-gt; GNU Radio block B<br><br>Regards,<br>Niels</p>
+<p>Hi Martin,</p><p>=C2=B7 Yes, the output on the erroneous device has be=
+en generated by running that command when i am logged into the device via=
+ SSH. </p><p>=C2=B7 I have checked the Ip configurations, which they are =
+192.168.0.3 for the good device, 192.168.0.4 for the erroneous, 192.168.0=
+.10 for the host (which only have 1 because i plugged and unplugged the d=
+evices so they have been tested separately) and DHCP 192.168.0.255.</p><p=
+>=C2=B7 Also the subnet and subnet mask are configurated the same for all=
+ the network (ettus devices and host).</p><p>I am going to check out the =
+manual that you send to me via link and see if i have set up anything wro=
+ng.</p><p>Also in my first tries to make the devices run, I have configur=
+ed the set up as you remarked in the reply, but suddenly when all goes wr=
+ong I only have tested the devices with the RJ45 connection. I will try t=
+o let the configuration as you recommended, but when i did i had the same=
+ issue. </p><p>Thank you so much for the quick reply.</p>
 
---b1_2x1B7T1biy0eBDR75DKIlbwBCQVLf50ocVDicZ3ziM--
 
---===============3948841360279187206==
+--b1_EyqwXIECdCjm5ws9Hhc2V4wISRqDCqh8FV79Y6oi68--
+
+--===============3347699023668462043==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -176,4 +123,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3948841360279187206==--
+--===============3347699023668462043==--
