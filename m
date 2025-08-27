@@ -2,153 +2,124 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF77B370D2
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Aug 2025 19:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 142BBB3819B
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Aug 2025 13:44:26 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 633D93860C3
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Aug 2025 13:01:15 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8B2C53860C3
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Aug 2025 07:44:24 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1756227675; bh=vPx6FgCOCQbNQjQv5IAoElW1R8MTcxU6u3mNf7sqMhI=;
-	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1756295064; bh=CKjM+hDudpD6yFeZo7mfxd+o8MEy3RUBTbHNFdWNMPY=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=EuiW1FcuKobEDdf13w8WIxGhC+He796PiSkg9ytnMbjYs5uKx8WVshXBehY+Zzy4S
-	 S6/wvH+ZK3JY5CfQwjzxM7UZneGnmQs7PgVmSW7tmMI3XqZoEnO4QZehMGMoAbY4lB
-	 m4Kk9aJ1PLJAaJ+BQHPSjtZzM6NdqY8F1Ik3+7NPE2P4tCA+wb7OvXg+cRLvleSd94
-	 JpB7/ySgIAB3QccbkAEW+ywQfs2rjXwzWoBT3M7l17pI5Ax4YV6fLkAxtGRkU/Gk7H
-	 HmDGaql5Ht0A8KxpXWSRkQG+56Wmx5Qkv6jzPGOPutkMrDh6pvVBN3mBepUJk4uDAo
-	 Se+eWL99ZxO2w==
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id F3E1F385F00
-	for <usrp-users@lists.ettus.com>; Tue, 26 Aug 2025 13:01:10 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=febo.com header.i=@febo.com header.b="F1C9WmEU";
-	dkim-atps=neutral
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3ee1ffc230cso14545935ab.3
-        for <usrp-users@lists.ettus.com>; Tue, 26 Aug 2025 10:01:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=febo.com; s=google; t=1756227670; x=1756832470; darn=lists.ettus.com;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hpYC1J/Ce+LUtzpiQqfFPsTRFX8FZodkyxOV/zkwHE8=;
-        b=F1C9WmEUc0Nw0yLiIFM+aXpZUugXXVqPSYinGO9vHDq2VKd9LwSI8nRTD7bZGvgQo1
-         i0dqNgUEEf/trTuluji4Sz9XWJg4Czmk3sIFSXgDldaOA6T3NsP4G5ILjkzGXvX7MQUR
-         YMZCcqG/M7bCSrabTtWpLeQDJtHjW48KYwhJZvfGBLVr/CXVHPCOe9LAo2k2dx9R3cCz
-         9QHCpx3b0xrywkGHr/qWVvKaP+4cky+k5H+Ltjjf/b1b30QagNPjCdRTiSNeaeXI9dSc
-         PLOsbCPQk4vWaDM4jecibxrovjyrUSempK0LsYYV3nHkHkbEeNP1V4x3HtqQAyS1WWkF
-         txSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756227670; x=1756832470;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hpYC1J/Ce+LUtzpiQqfFPsTRFX8FZodkyxOV/zkwHE8=;
-        b=k3sfXIzchE5iLOdqbgpnT+tyvCkXmbOCnHlitO5mzGUm52hZ10uLp//8Mq52T+TE2I
-         IdaSf/rWMuoy99vq7i7xIpuutgpzHkZGwc3HsAJzJR9ZhFZTrcniadruG0lcf/NNgvFG
-         TyOL+z92f5/vqw7FGnFlC6ksFZNPhidKzGkHJZgAKZFl0mnQaQ0YjgfSHx/IaPhObcaM
-         ah5VWJACYvFEROtM8cMKD/nJH/rXE580GuMR5ylYoNwtzspwViaKBAYUPUMR8IlaSWzp
-         ryqK0tY7EwIIePaY7z856MeVxrkpw3b6qvag1EUlrK2t6DnGe2K6WoN5wreubkL8V6Is
-         qeRw==
-X-Gm-Message-State: AOJu0YyFJZWlesJ39vtCFSU+yc65CZYOfmTTgTpV50KaCRKxhMOQl625
-	w27a//Nlhn4OjzLRRq9XsVnUjAFAgJnbTV7nylM4jhNk4BB8zVFsTGqgZK3+WYiJKnU0oBewN9l
-	dQnYv
-X-Gm-Gg: ASbGnctrSPK/3APtwsfYniNkf1FU6a9SUaqfTaNXh+bWctNM+VxEYDCwJjUr+tNHAFa
-	lF4F980UTtT/sllGSEyALygiceAXN2bmw1eaUNxuu3iKk32/eqM2Bo4ICKiNgmhlgGpOb3kcfFk
-	T/rI4rWuvJQqU5o5yoyS1+mJ4v0Zorx9pmstwNPR7jR+hhE25EjI9XsMXHa+4VqDEyzKv4asRtX
-	QyKPxqe0yEjWieybgqd6eEFDQnYKh3Jhz9kKUAr5d5NHI7C1WH3aCbZE7yluWRJia1s+WPUykvq
-	mrES/ADEcRa4oF8jMXwm0jeSv9JAO/LAw+cSdtaaAzKSX+ckhYGDpQprZfUM7y+VlQuuUkNZOUl
-	WvJ4UAavQKSjY5IjW9Fr1rQ==
-X-Google-Smtp-Source: AGHT+IGGQ79tSC2N7aLaG8AHZ28+MTD9dngkbMe/yt2TT1J7sLBigXMkit/uvQB3+wz7Fy9KR0gH2w==
-X-Received: by 2002:a05:6e02:1446:b0:3eb:5862:7cd0 with SMTP id e9e14a558f8ab-3eb58627ebbmr152455995ab.22.1756227669645;
-        Tue, 26 Aug 2025 10:01:09 -0700 (PDT)
-Received: from [10.73.3.60] ([104.185.8.17])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3ea4e457cc9sm73105115ab.34.2025.08.26.10.01.09
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Aug 2025 10:01:09 -0700 (PDT)
-Message-ID: <0d34b260-fcfc-4669-9b4e-61b4196a727b@febo.com>
-Date: Tue, 26 Aug 2025 13:01:08 -0400
+	 From;
+	b=ucm7FuModky9wfUbFktMzGl0YgUzyz4gvBQA8ThMxVH0KU29zhZtu2swjiUBlmNV7
+	 V9ylzgjzWPw//LOClipcon5LF1Q6M5/BglMSFttbzQxtzZM6Z2+21xQbT+KiTM8aK9
+	 DCE9EsdxkqN8rIicHtmu9wVMpfNdpKK5IZDES0+9Z4oowiY/n3L7BkoNmtYDkhSmJq
+	 9qaT9Ih1epYqEciqDYKqRc3YJK6nN/jchtRNdt/fsr7fkH1UNgJ5WhzvnqQsKR0SeK
+	 hLkuxp8t2+wNMSb+Y4UQ5MxFNEP2S3qdmq2HhFMheYPaWXVuh4OfSCOfmjb3GGvLcc
+	 1Xt0TOAKW4Ptw==
+Received: from baseband.digital (baseband.digital [162.55.218.138])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8FD8E385D94
+	for <usrp-users@lists.ettus.com>; Wed, 27 Aug 2025 07:44:20 -0400 (EDT)
+Received: from [IPV6:2001:16b8:cc6c:f900:bf5:d22c:2206:8fff] (unknown [IPv6:2001:16b8:cc6c:f900:bf5:d22c:2206:8fff])
+	by baseband.digital (Postfix) with ESMTPSA id 4A5AE5DCAF
+	for <usrp-users@lists.ettus.com>; Wed, 27 Aug 2025 13:44:19 +0200 (CEST)
+Message-ID: <ac34601a-b031-4ef9-9901-632991eaeffa@baseband.digital>
+Date: Wed, 27 Aug 2025 13:44:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 To: usrp-users@lists.ettus.com
 References: <URBT2oW9yHCCQED5wSMVTZS2picdEqDS37NNg6h5mmI@lists.ettus.com>
+ <0d34b260-fcfc-4669-9b4e-61b4196a727b@febo.com>
 Content-Language: en-US
-In-Reply-To: <URBT2oW9yHCCQED5wSMVTZS2picdEqDS37NNg6h5mmI@lists.ettus.com>
-Message-ID-Hash: MW75YA6GQTX2MS2VW3I4I4ZJLUQSGEYX
-X-Message-ID-Hash: MW75YA6GQTX2MS2VW3I4I4ZJLUQSGEYX
-X-MailFrom: jra@febo.com
+From: =?UTF-8?Q?Marcus_M=C3=BCller?= <mueller_usrp_users@baseband.digital>
+In-Reply-To: <0d34b260-fcfc-4669-9b4e-61b4196a727b@febo.com>
+Message-ID-Hash: NFHJSVDJ3GOX6UEOQBBUQ6XYOTHVRYXF
+X-Message-ID-Hash: NFHJSVDJ3GOX6UEOQBBUQ6XYOTHVRYXF
+X-MailFrom: mueller_usrp_users@baseband.digital
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: PPS signal OctoClock-G
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MW75YA6GQTX2MS2VW3I4I4ZJLUQSGEYX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NFHJSVDJ3GOX6UEOQBBUQ6XYOTHVRYXF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: John Ackermann N8UR via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: John Ackermann N8UR <jra@febo.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Agreed that it would be good for the datasheet to have mentioned this, 
-as it's a frequent cause of confusion.
-
-While SMA connectors are designed for 50 ohms, it's really not safe to 
-rely on that to identify signal characteristics.  After all, most 
-oscilloscopes use 50 ohm BNC connectors while their input impedance is 1 
-Mohm or more.
-
-As I mentioned, there is no standardization for PPS signals 
-characteristics.  As an example, older HP atomic clocks have PPS output 
-on a BNC connector that is well over 10 volts into 50 ohms (unloaded 
-it's way higher).  They did that to increase the slew rate to get more 
-precise triggering in an era before modern logic gates were widely used. 
-  But the width is very narrow (~20us) so the total power in the pulse 
-isn't that high.
-
-Most modern systems use logic gate outputs don't always consider what 
-the load will be and that can cause issues.  For example, running a 
-u-blox GNSS timepulse output into coax cable does not work well at all; 
-the source impedance is quite high and you don't get reliable triggering 
-at the far end of even a fairly short cable regardless of termination. 
-You need to buffer the signal before feeding it into coax.
-
-I've designed several products with PPS outputs and use three 74AC04 
-gates in parallel to provide 5 volt no-load outputs with enough drive 
-capability to deliver at least 3 volts into 50 ohms.  That has worked 
-very well driving many types of counters and other devices.
-
-John
-----
-
-On 8/26/25 11:49, dennis.joosens@uantwerpen.be wrote:
-> Hi John,
-> 
-> Thanks for this interesting insight!
-> 
-> However, I would think it is measured at 50 ohms as the outputs of the 
-> PPS on the OctoClock-G are SMA connectors. As far as I am aware, SMA 
-> connectors do not have a 1 Mohm impedance.
-> 
-> I found that inverters are placed before the PPS outputs, which have a 
-> minimum output of 2.4 V and a typical output of 3.4 V. The input of the 
-> USRP B210 (which takes in the signal from the OctoClock-G) has an input 
-> range of 1.8 V to 5 V. So, I am not ruling out that mismatching or 
-> matching at 1 Mohm can work too.
-> 
-> So it is not really an error in the datasheet. But, it would have been 
-> nice if they had added an extra row in the table, pointing out at which 
-> impedance this was measured, similar to the 10 MHz signal.
-> 
-> 
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+TGV0IG1lIGdpdmUgYSB2b2ljZSBmcm9tIHRoZSBvZmY6DQoNCi0gc2xldyByYXRlIGlzbid0IGFz
+IHJlbGV2YW50IGZvciB0aGUgT2N0b2Nsb2NrIGFzIGNsb2NrL3RpbWUgc291cmNlIGZvciBVU1JQ
+cyDigJMgdGhlc2UgDQpsYXRjaCB0aGUgUFBTIHN0YXRlIG9uIHRoZSByaXNpbmcgZWRnZSBvZiB0
+aGUgaW50ZXJuYWwgY2xvY2ssIHdoaWNoIG1pZ2h0IG9yIG1pZ2h0IG5vdCBiZSANCmRlcml2ZWQg
+ZnJvbSB0aGUgMTAgTUh6IGZyb20gdGhlIE9jdG9jbG9jayBhbmQgY2xlYW5lZCB1cCBhZnRlci4g
+VGhhdCdzIHdoeSB5b3UnbGwgZmluZCANCnRoZSBzY2hlbWF0aWNzIFsxXSBmZWF0dXJlIHNpbXBs
+ZSBjYXNjYWRlZCA3NDAwIHNlcmllcyBpbnZlcnRlcnMNCg0KLSB5b3UncmUgcmlnaHQsIHN0YXRp
+bmcgZXhwbGljaXRseSB0aGF0IHRoaXMgaXMgdGhlIHVubG9hZGVkIG91dHB1dCBtaWdodCBoYXZl
+IGJlZW4gbmljZSwgDQpidXQgdGhlbiBhZ2Fpbiwgc2luY2UgY2hhcmFjdGVyaXN0aWMgaW1wZWRh
+bmNlIGRvZXNuJ3QgbWF0dGVyIGZvciBhIHNpZ25hbCB0aGF0J3MgREMgZm9yIA0KID49IDEwMCBt
+cywgYW5kIHNpbmNlIGl0J3MgImV4cGxpY2l0bHkiIG9taXR0ZWQsIEkgdGhpbmsgdGhhdCdzIGEg
+ZmFpciBhc3N1bXB0aW9uLiBZb3UnbGwgDQpldmVuIGZpbmQgaW4gdGhlIFVTUlAgWDMwMCBzY2hl
+bWF0aWNzIChzaGVldCAxMikgdGhhdCB0aGUgcG9ydCBpcyBhYm91dCA1MCDOqS1sb2FkZWQgZm9y
+IA0Kc3VmZmljaWVudGx5IGhpZ2ggZnJlcXVlbmNpZXMsIGJ1dCBhdCBEQyBpcyBlZmZlY3RpdmVs
+eSAzIGvOqS10ZXJtaW5hdGVkLiBGbGF0IGZyZXF1ZW5jeSANCnJlc3BvbnNlIHdhcyBzZWVtaW5n
+bHkgbm90IGEgZGVzaWduIGdvYWwsIGJ1dCByYXBpZCBkYW1wZW5pbmcgb2Ygb3ZlcnNob290IGF0
+IGxvdyBEQyBwb3dlciANCndhcy4NCg0KQ2hlZXJzLA0KTWFyY3VzDQoNCg0KWzFdIGh0dHBzOi8v
+ZmlsZXMuZXR0dXMuY29tL3NjaGVtYXRpY3Mvb2N0b2Nsb2NrLw0KDQpPbiA4LzI2LzI1IDc6MDEg
+UE0sIEpvaG4gQWNrZXJtYW5uIE44VVIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQo+IEFncmVlZCB0
+aGF0IGl0IHdvdWxkIGJlIGdvb2QgZm9yIHRoZSBkYXRhc2hlZXQgdG8gaGF2ZSBtZW50aW9uZWQg
+dGhpcywgYXMgaXQncyBhIA0KPiBmcmVxdWVudCBjYXVzZSBvZiBjb25mdXNpb24uDQo+DQo+IFdo
+aWxlIFNNQSBjb25uZWN0b3JzIGFyZSBkZXNpZ25lZCBmb3IgNTAgb2htcywgaXQncyByZWFsbHkg
+bm90IHNhZmUgdG8gcmVseSBvbiB0aGF0IHRvIA0KPiBpZGVudGlmeSBzaWduYWwgY2hhcmFjdGVy
+aXN0aWNzLsKgIEFmdGVyIGFsbCwgbW9zdCBvc2NpbGxvc2NvcGVzIHVzZSA1MCBvaG0gQk5DIA0K
+PiBjb25uZWN0b3JzIHdoaWxlIHRoZWlyIGlucHV0IGltcGVkYW5jZSBpcyAxIE1vaG0gb3IgbW9y
+ZS4NCj4NCj4gQXMgSSBtZW50aW9uZWQsIHRoZXJlIGlzIG5vIHN0YW5kYXJkaXphdGlvbiBmb3Ig
+UFBTIHNpZ25hbHMgY2hhcmFjdGVyaXN0aWNzLsKgIEFzIGFuIA0KPiBleGFtcGxlLCBvbGRlciBI
+UCBhdG9taWMgY2xvY2tzIGhhdmUgUFBTIG91dHB1dCBvbiBhIEJOQyBjb25uZWN0b3IgdGhhdCBp
+cyB3ZWxsIG92ZXIgMTAgDQo+IHZvbHRzIGludG8gNTAgb2htcyAodW5sb2FkZWQgaXQncyB3YXkg
+aGlnaGVyKS7CoCBUaGV5IGRpZCB0aGF0IHRvIGluY3JlYXNlIHRoZSBzbGV3IHJhdGUgDQo+IHRv
+IGdldCBtb3JlIHByZWNpc2UgdHJpZ2dlcmluZyBpbiBhbiBlcmEgYmVmb3JlIG1vZGVybiBsb2dp
+YyBnYXRlcyB3ZXJlIHdpZGVseSB1c2VkLiANCj4gwqBCdXQgdGhlIHdpZHRoIGlzIHZlcnkgbmFy
+cm93ICh+MjB1cykgc28gdGhlIHRvdGFsIHBvd2VyIGluIHRoZSBwdWxzZSBpc24ndCB0aGF0IGhp
+Z2guDQo+DQo+IE1vc3QgbW9kZXJuIHN5c3RlbXMgdXNlIGxvZ2ljIGdhdGUgb3V0cHV0cyBkb24n
+dCBhbHdheXMgY29uc2lkZXIgd2hhdCB0aGUgbG9hZCB3aWxsIGJlIA0KPiBhbmQgdGhhdCBjYW4g
+Y2F1c2UgaXNzdWVzLsKgIEZvciBleGFtcGxlLCBydW5uaW5nIGEgdS1ibG94IEdOU1MgdGltZXB1
+bHNlIG91dHB1dCBpbnRvIA0KPiBjb2F4IGNhYmxlIGRvZXMgbm90IHdvcmsgd2VsbCBhdCBhbGw7
+IHRoZSBzb3VyY2UgaW1wZWRhbmNlIGlzIHF1aXRlIGhpZ2ggYW5kIHlvdSBkb24ndCANCj4gZ2V0
+IHJlbGlhYmxlIHRyaWdnZXJpbmcgYXQgdGhlIGZhciBlbmQgb2YgZXZlbiBhIGZhaXJseSBzaG9y
+dCBjYWJsZSByZWdhcmRsZXNzIG9mIA0KPiB0ZXJtaW5hdGlvbi4gWW91IG5lZWQgdG8gYnVmZmVy
+IHRoZSBzaWduYWwgYmVmb3JlIGZlZWRpbmcgaXQgaW50byBjb2F4Lg0KPg0KPiBJJ3ZlIGRlc2ln
+bmVkIHNldmVyYWwgcHJvZHVjdHMgd2l0aCBQUFMgb3V0cHV0cyBhbmQgdXNlIHRocmVlIDc0QUMw
+NCBnYXRlcyBpbiBwYXJhbGxlbCANCj4gdG8gcHJvdmlkZSA1IHZvbHQgbm8tbG9hZCBvdXRwdXRz
+IHdpdGggZW5vdWdoIGRyaXZlIGNhcGFiaWxpdHkgdG8gZGVsaXZlciBhdCBsZWFzdCAzIA0KPiB2
+b2x0cyBpbnRvIDUwIG9obXMuIFRoYXQgaGFzIHdvcmtlZCB2ZXJ5IHdlbGwgZHJpdmluZyBtYW55
+IHR5cGVzIG9mIGNvdW50ZXJzIGFuZCBvdGhlciANCj4gZGV2aWNlcy4NCj4NCj4gSm9obg0KPiAt
+LS0tDQo+DQo+IE9uIDgvMjYvMjUgMTE6NDksIGRlbm5pcy5qb29zZW5zQHVhbnR3ZXJwZW4uYmUg
+d3JvdGU6DQo+PiBIaSBKb2huLA0KPj4NCj4+IFRoYW5rcyBmb3IgdGhpcyBpbnRlcmVzdGluZyBp
+bnNpZ2h0IQ0KPj4NCj4+IEhvd2V2ZXIsIEkgd291bGQgdGhpbmsgaXQgaXMgbWVhc3VyZWQgYXQg
+NTAgb2htcyBhcyB0aGUgb3V0cHV0cyBvZiB0aGUgUFBTIG9uIHRoZSANCj4+IE9jdG9DbG9jay1H
+IGFyZSBTTUEgY29ubmVjdG9ycy4gQXMgZmFyIGFzIEkgYW0gYXdhcmUsIFNNQSBjb25uZWN0b3Jz
+IGRvIG5vdCBoYXZlIGEgMSANCj4+IE1vaG0gaW1wZWRhbmNlLg0KPj4NCj4+IEkgZm91bmQgdGhh
+dCBpbnZlcnRlcnMgYXJlIHBsYWNlZCBiZWZvcmUgdGhlIFBQUyBvdXRwdXRzLCB3aGljaCBoYXZl
+IGEgbWluaW11bSBvdXRwdXQgDQo+PiBvZiAyLjQgViBhbmQgYSB0eXBpY2FsIG91dHB1dCBvZiAz
+LjQgVi4gVGhlIGlucHV0IG9mIHRoZSBVU1JQIEIyMTAgKHdoaWNoIHRha2VzIGluIHRoZSANCj4+
+IHNpZ25hbCBmcm9tIHRoZSBPY3RvQ2xvY2stRykgaGFzIGFuIGlucHV0IHJhbmdlIG9mIDEuOCBW
+IHRvIDUgVi4gU28sIEkgYW0gbm90IHJ1bGluZyANCj4+IG91dCB0aGF0IG1pc21hdGNoaW5nIG9y
+IG1hdGNoaW5nIGF0IDEgTW9obSBjYW4gd29yayB0b28uDQo+Pg0KPj4gU28gaXQgaXMgbm90IHJl
+YWxseSBhbiBlcnJvciBpbiB0aGUgZGF0YXNoZWV0LiBCdXQsIGl0IHdvdWxkIGhhdmUgYmVlbiBu
+aWNlIGlmIHRoZXkgaGFkIA0KPj4gYWRkZWQgYW4gZXh0cmEgcm93IGluIHRoZSB0YWJsZSwgcG9p
+bnRpbmcgb3V0IGF0IHdoaWNoIGltcGVkYW5jZSB0aGlzIHdhcyBtZWFzdXJlZCwgDQo+PiBzaW1p
+bGFyIHRvIHRoZSAxMCBNSHogc2lnbmFsLg0KPj4NCj4+DQo+PiBfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
+LS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4g
+ZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2Vu
+ZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
+IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
