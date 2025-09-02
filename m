@@ -2,152 +2,189 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E3DB3BE8E
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Aug 2025 16:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CD8B3F6C3
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Sep 2025 09:34:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BBC41385C1A
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Aug 2025 10:52:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2BBBA385947
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Sep 2025 03:34:06 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1756479134; bh=4dLqKTU2/2fq2GM7I1CPvu3I35UBKxT7dHEwu29NFA8=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=0kQnFvFMxFa+ZFlfw8g+dAlQczhBkKEUFQlBo9bu7NlQYXjRkfTEZBGbz+p+bmw+u
-	 BZqsfk3ZqT5gVyKgfV9TwZWvk9m2dGB5+447En40kq4wqXxe308IQNIbtmtT0Klfuk
-	 eVV+IHLPm8OFWnw4GQQkFZsHYiDw6+lVczm2oiHetN07nzyg1lKmOb+QUhhF4MuFA4
-	 80qDFKwVy3b+Aq49W5HstemkA2fn78uBdCkyq9eBAp4uqjxeJug7odQBFOGCVODlzT
-	 0ULi173VMj4gXsLVeFfQlMCODXqM57YhOJv9OV6JYRN4UArFjNBkbU3uL8c4e/485n
-	 Sx798IuaPWhKg==
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 745BF3859F6
-	for <usrp-users@lists.ettus.com>; Fri, 29 Aug 2025 10:52:10 -0400 (EDT)
+	t=1756798446; bh=u7WHSZdG+EEigM7mtQ0jcZmk9rJV04dnHyUDKmEVm/A=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=ynkOlGJqkf8eAR0RVqQxnQg6Km59IqoqupLskvs7ZB2UGHNP3fp0qNclpCh8fDLEy
+	 U3JWyJallxWPlQm3fQJO0ftve326WNcGzxoKQ9PI1Aoj6JKl5w3unIyY2Pfu5PMr6p
+	 5GWQXBeWHlp5V8fwtmOm/ThFu9a7jQ7wuJ/AG1pMOQMj2N+fR0z+w6xy8vcs8l644A
+	 bgz02VjfdMFl06BeGvtvmbYedxl9ID3jCgQnnEuz00JgFibRTMhM5dIjUVZEli2DdC
+	 YEIYKeQkOYJKovKdjfyE/R+7CsJCVd7CKXV5zPkRROayR2S4TVskk9jKPwuXylQ9Xm
+	 iugwBbF95pIBQ==
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 00551383E3A
+	for <usrp-users@lists.ettus.com>; Tue,  2 Sep 2025 03:33:48 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="XyMG2xE7";
+	dkim=pass (1024-bit key; unprotected) header.d=vvdntech.in header.i=@vvdntech.in header.b="Etrc+8QI";
 	dkim-atps=neutral
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-61c51f57224so3108357a12.2
-        for <usrp-users@lists.ettus.com>; Fri, 29 Aug 2025 07:52:10 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-53096b2c5c9so130273137.0
+        for <usrp-users@lists.ettus.com>; Tue, 02 Sep 2025 00:33:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1756479129; x=1757083929; darn=lists.ettus.com;
+        d=vvdntech.in; s=google; t=1756798428; x=1757403228; darn=lists.ettus.com;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=grGCb3aRMBRgG2vpyI/HTgzcA83SCP8NrROXIEPu174=;
-        b=XyMG2xE7PFRf+5YAQ3ay/a7V+6H0E9p3cWgwQpmldy1dhEafw6SxrODB6PId8MKM0A
-         YGpoewLSttV7XhzsGS2RR0d1dg5ZquwMjhWcuBsmYmXxZDVfgi/2ka17EIB9xg0HDKGT
-         aYV3EcO77VMoP34Tr5+ya3bmiL4NHktA1YpS8auIBCg15dF7aQGZuhKZpQMwaKZKQ2RO
-         JmFONhF6TeCRLNrKQ8E0Tmb05JbJNPtvIEX3azi9XQih6MAmDzCkUD1PVJJPUUHam16d
-         hJWsonjun8poH+vcYzibNLr1t49x19jaNzfwSsdhrd/gyTiUzmJpMBRZSbvNb92JrcQx
-         RBIg==
+        bh=Fg+bnLt9k+Sqj4HFrOqIVoVT9MJpoxCDwzxIoHMJEFw=;
+        b=Etrc+8QIGPptvKCw+nsrl94Jhcpx943RpOxL1O0vCtG69PmArOtChdTG4CumThlgUy
+         jm3nuwyDJUwgcBgO11bUXHujM+rLqwLiq9cOLkrJzLKAzzKSM2IqHUxt/VBWh0V7BvOW
+         W0UZDgGNKxQKUN83kmlg17wEinPVskucS7p20=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756479129; x=1757083929;
+        d=1e100.net; s=20230601; t=1756798428; x=1757403228;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=grGCb3aRMBRgG2vpyI/HTgzcA83SCP8NrROXIEPu174=;
-        b=SvhjKhCn0GjYuOJp6duxAndZsoMDzxNaq1e8e5TGTukZcrG91T2HJ7YeifHXRIpG7Y
-         DQ4HksM0ToEbYjB1WHRETktYW96R6JtxchNpvIKqsmhDDAUq9aW1ApH4MpQuN447Nt3o
-         UPnXquTpP1VcYgSEwQAzIfreUAYRw8JFUAzyCGBf3cLfQ4a2ylN/f87Fc6EkzBt2C04e
-         Opr6wo5x5wJDRROpmcuZbVHj//jrs2N3s2WZgFxNNzUNO1xoEgYnkysUZLQCeHUSdnJa
-         LfbuC8QezdsMNdHR2bN5TgYTdnYgzjpfI6dfjNJGlX47YIhUhzv6pFxzhecgoxZ2VPyV
-         peDQ==
-X-Gm-Message-State: AOJu0Yy2dxrNHnJHVk8UUCqlZiTpD+rvzm7KeU3n+G7goBes60CwKgkY
-	JlDSOr3v2wiKU9crxBYL5TnX7p3UyuUFrMwWJE1PrJYHrUqWjTPBpQ0vM863vHXF0vf4q1J3i8v
-	g9WYiIVyZQGnhOIkDceIqecsCI7EfDqqzmmcX2eshbXcJErWY4gfubTbm7A==
-X-Gm-Gg: ASbGncs1JY60fiaL4hNvG1ATqbOjQBY8rV2VRIwhFkdMhbOh/t4y97R0dVMvqCOVgOU
-	HgOHhJDE89P6qFM5bpiBAN4c9mRuCQqmjwo8dDY2U2Eru+V0BM+/3OF/U9Wb4YdCCTXayGkJWya
-	o2Zi3cK8oks7nJX8dCbcAiPG37h3M8+mlj3JY0O4OdfMIglYg0i5fNqg02uu6Zmj/aHrNXbAYDZ
-	aDgeQL7Uay70ceSlA==
-X-Google-Smtp-Source: AGHT+IFPw5+74AM/s/VV/bMpgaP48pbeFuyDHQcZmMoIG/fgWI2HBgY8+raRdFjBrIrKKR7p7wX/PNbnBkoWgZWiwb8=
-X-Received: by 2002:a05:6402:52ca:b0:618:afa:70f7 with SMTP id
- 4fb4d7f45d1cf-61c1b490275mr22772773a12.12.1756479128852; Fri, 29 Aug 2025
- 07:52:08 -0700 (PDT)
+        bh=Fg+bnLt9k+Sqj4HFrOqIVoVT9MJpoxCDwzxIoHMJEFw=;
+        b=cYeN4Y33HyG+rtKSu6jUkCUt+kzOLc4XJ3IF5VrRv/udmAK4clrpfkTIrk5AHvTa5q
+         F2N7ps6XbmulMoNnfRe1hKiVAabeDehZImDFdi+W8d+9vS2V/pK1PwnFqJhIyRk/Myx2
+         KzF/opd5Kc8J9iuAJ0oza1j6Vypl+ODvmQ28pG8KooL45C90RbGGxAjhx6c2O+GEmHcy
+         WtmG9J1Pk/kHr0jrk651KFKgmiijY15Pqaelxir8XI2vouTrEbM94C1RsOj/cIIkMyxn
+         ZirNyO8kK0DWw/wViBcy6pEnOPG8m3TJn1G6pvSIDvOdXNoMbUFM08JjGM7FXBoby0Db
+         sEYA==
+X-Gm-Message-State: AOJu0Yx75ZvEDmcrlvo2TgAZQediISyoTKofefElMDbdVe8LpDvv1BEJ
+	7sEA7fnT4DgrwbZF25jb8W0tt+V4nTQvYHrqX2Qw2Zy8Vt7jVc82FK8HWS6U0Pc2S/QSflj63XB
+	5i7A3ti/Hd9QKhFR5iCB2sqju5fYHtQJWIjLyIK1aB53/7WyQb2th/8G8orNsjdTJUYniZvAn3a
+	JtQg6IAqsXRzuNGLL8qEBCupJB6xbHDjcEox7lClEk8aEq
+X-Gm-Gg: ASbGncutEBoTLxP6agf/cSo7c11MyTWhDaPAG4Tv1vC1kJS0NNun6RxARv1fE5fdi8e
+	BbRTndDoVOy8dnkD3IB/wccn9gopAmgC6L5ol5CFHjuYf2/iX+PHlVzvbTrIJMRTVl4HfISorKS
+	NRgKa+/uKd0S6Qnta6jq/EF22BBGmeSxTu7KaqUcLYt7GVUrStIdDUTUeBSit9cQc++CQudXboM
+	JbvmL0=
+X-Google-Smtp-Source: AGHT+IHyPJaVMnBGPnrd46Lm9QeM6bmG7fgS9usnjZCiy7c02nX2I9combPKv7s2+W2XrCiJmqnkXyy1nSo7tX50mfY=
+X-Received: by 2002:a05:6102:5a8c:b0:524:c7ab:6bef with SMTP id
+ ada2fe7eead31-52b1b809c7fmr2520566137.22.1756798427981; Tue, 02 Sep 2025
+ 00:33:47 -0700 (PDT)
 MIME-Version: 1.0
-From: Martin Braun <martin.braun@ettus.com>
-Date: Fri, 29 Aug 2025 16:51:58 +0200
-X-Gm-Features: Ac12FXyppkdJkmp5QGOZkEjKPhof-3pUOuGaDEBfC6zLs-V4BSwo0PYd7GBNNgY
-Message-ID: <CAFOi1A5nRD3wU3edy+EmXzk8d1qkkeDPwECkcX=6O9GxHY4FGw@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: PSJIY6RKEXSDEWFTTPRSRLI762SIWDSU
-X-Message-ID-Hash: PSJIY6RKEXSDEWFTTPRSRLI762SIWDSU
-X-MailFrom: martin.braun@ettus.com
+Date: Tue, 2 Sep 2025 13:03:37 +0530
+X-Gm-Features: Ac12FXwcPfYlem5ovNu7F6V7Z8Rsue1TgNQC-YMENyD9ShVYumfs6Jo70CR0IDI
+Message-ID: <CAPP35V_R40Cfwn=jRhO60mc7Rf=3v1J3JtW2sPVDhx=NF9S9JQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: KXLH3HIGIQFBM6UNYQ2ZYFYWUV5EH456
+X-Message-ID-Hash: KXLH3HIGIQFBM6UNYQ2ZYFYWUV5EH456
+X-MailFrom: ravi.paswan@vvdntech.in
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Out-of-tree RFNoC modules on github
+Subject: [USRP-users] =?utf-8?q?Visualization_of_USRP_Signals_in_C++_Application_=E2=80=93_Best_Practices=3F?=
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PSJIY6RKEXSDEWFTTPRSRLI762SIWDSU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KXLH3HIGIQFBM6UNYQ2ZYFYWUV5EH456/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4308589285806713250=="
+From: Ravi Paswan via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ravi Paswan <ravi.paswan@vvdntech.in>
+Content-Type: multipart/mixed; boundary="===============2248775352934982984=="
 
---===============4308589285806713250==
-Content-Type: multipart/alternative; boundary="00000000000087e83b063d822af9"
+--===============2248775352934982984==
+Content-Type: multipart/alternative; boundary="0000000000003dff30063dcc82a1"
 
---00000000000087e83b063d822af9
+--0000000000003dff30063dcc82a1
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+Dear USRP Community,
 
-question: Does anyone in this community have RFNoC blocks published to
-github (or some other public location) and would like to talk about it?
+I=E2=80=99m currently working on a project using a *single USRP device* and
+programming it in *C++ via the UHD API*. My goal is to *receive baseband
+samples and visualize them* (time domain, spectrum, etc.) in real time or
+near-real time.
 
-Background to this question is that we are thinking about creating a
-publicly available list of RFNoC blocks, similar to CGRAN for GNU Radio OOT
-modules. If you would like to be included in this list, please respond to
-this email with a git repo location! Note that we will only be including
-repositories compatible with recent versions of UHD.
+I understand that UHD allows only one application to access the USRP device
+at a time, so running a separate Python/GNU Radio application for
+visualization concurrently is not an option for me.
 
-On that topic: we recently released an out-of-tree RFNoC blocks repository
-ourself: https://github.com/EttusResearch/rfnoc-oot-blocks
+I=E2=80=99d appreciate any advice or best practices on the following:
 
-Going forward, we will be using that repository for blocks that are not
-part of core UHD. There is a potential future where we move blocks from UHD
-to this repo, but we don't want to break anyone's code so that's not really
-a priority. New blocks, however, will be put here.
+   1.
 
-This serves multiple purposes:
+   *What are the recommended approaches for visualizing signals directly
+   within a C++ application* that interacts with the USRP?
+   2.
 
-- We cut down on the complexity of UHD itself
-- We provide an example repository for how to publish blocks out-of-tree
+   Has anyone successfully used C++ GUI libraries like *Qt
+   (QCustomPlot/Qwt)* or *Dear ImGui + ImPlot* for real-time signal
+   plotting?
+   3.
 
-At the moment, there is one block in this new OOT module, the Aurora block.
-This is a block that allows connecting to a USRP via Aurora instead of
-Ethernet.
+   Are there any examples or open-source projects demonstrating signal
+   acquisition from UHD and real-time visualization in C++?
+   4.
 
-Cheers,
-Martin
+   Would it be better to log the data to disk in C++ and visualize it
+   separately post-capture (e.g., in Python), especially for debugging?
 
---00000000000087e83b063d822af9
+Any insights, shared experiences, or example code would be greatly
+appreciated.
+
+Best regards,
+*Ravi Paswan*
+
+--=20
+_Disclaimer:=C2=A0_=C2=A9 2025 VVDN Technologies Pvt. Ltd. This e-mail cont=
+ains=20
+PRIVILEGED AND CONFIDENTIAL INFORMATION intended solely for the use of the=
+=20
+addressee(s). If you are not the intended recipient, please notify the=20
+sender by e-mail and delete the original message. Further, you are not to=
+=20
+copy, disclose, or distribute this e-mail or its contents to any other=20
+person and any such actions are unlawful.__
+
+--0000000000003dff30063dcc82a1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div></div><div>Hi everyone,</div><div><br></div><div>ques=
-tion: Does anyone in this community have RFNoC blocks published to github (=
-or some other public location) and would like to talk about it?</div><div><=
-br></div><div>Background to this question is that we are thinking about cre=
-ating a publicly available list of RFNoC blocks, similar to CGRAN for GNU R=
-adio OOT modules. If you would like to be included in this list, please res=
-pond to this email with a git repo location! Note that we will only be incl=
-uding repositories compatible with recent versions of UHD.</div><div><br></=
-div><div>On that topic: we recently released an out-of-tree RFNoC blocks re=
-pository ourself:=C2=A0<a href=3D"https://github.com/EttusResearch/rfnoc-oo=
-t-blocks">https://github.com/EttusResearch/rfnoc-oot-blocks</a></div><div><=
-br></div><div>Going forward, we will be using that repository for blocks th=
-at are not part of core UHD. There is a potential future where we move bloc=
-ks from UHD to this repo, but we don&#39;t want to break anyone&#39;s code =
-so that&#39;s not really a priority. New blocks, however, will be put here.=
-</div><div><br></div><div>This serves multiple purposes:</div><div><br></di=
-v><div>- We cut down on the complexity of UHD itself</div><div>- We provide=
- an example repository for how to publish blocks out-of-tree</div><div><br>=
-</div><div>At the moment, there is one block in this new OOT module, the Au=
-rora block. This is a block that allows connecting to a USRP via Aurora ins=
-tead of Ethernet.</div><div><br></div><div>Cheers,</div><div>Martin</div><d=
-iv><br></div><div><br></div><div><br></div></div>
+<div dir=3D"ltr"><p>Dear USRP Community,</p>
+<p>I=E2=80=99m currently working on a project using a <strong>single USRP d=
+evice</strong> and programming it in <strong>C++ via the UHD API</strong>. =
+My goal is to <strong>receive baseband samples and visualize them</strong> =
+(time domain, spectrum, etc.) in real time or near-real time.</p>
+<p>I understand that UHD allows only one application to access the USRP dev=
+ice at a time, so running a separate Python/GNU Radio application for visua=
+lization concurrently is not an option for me.</p>
+<p>I=E2=80=99d appreciate any advice or best practices on the following:</p=
+>
+<ol>
+<li>
+<p><strong>What are the recommended approaches for visualizing signals dire=
+ctly within a C++ application</strong> that interacts with the USRP?</p>
+</li>
+<li>
+<p>Has anyone successfully used C++ GUI libraries like <strong>Qt (QCustomP=
+lot/Qwt)</strong> or <strong>Dear ImGui + ImPlot</strong> for real-time sig=
+nal plotting?</p>
+</li>
+<li>
+<p>Are there any examples or open-source projects demonstrating signal acqu=
+isition from UHD and real-time visualization in C++?</p>
+</li>
+<li>
+<p>Would it be better to log the data to disk in C++ and visualize it separ=
+ately post-capture (e.g., in Python), especially for debugging?</p>
+</li>
+</ol>
+<p>Any insights, shared experiences, or example code would be greatly appre=
+ciated.</p>
+<p>Best regards,<br><b>Ravi Paswan</b></p></div>
 
---00000000000087e83b063d822af9--
+<br>
+<div style=3D"text-align:left"><i style=3D"font-family:georgia,serif;font-s=
+ize:small;color:rgb(80,0,80)">Disclaimer:=C2=A0</i><i style=3D"font-family:=
+georgia,serif;color:rgb(80,0,80);font-size:12px;text-align:justify">=C2=A9 =
+2025 VVDN Technologies Pvt. Ltd. This e-mail contains PRIVILEGED AND CONFID=
+ENTIAL INFORMATION intended solely for the use of the addressee(s). If you =
+are not the intended recipient, please notify the sender by e-mail and dele=
+te the original message. Further, you are not to copy, disclose, or distrib=
+ute this e-mail or its contents to any other person and any such actions ar=
+e unlawful.</i></div>
+--0000000000003dff30063dcc82a1--
 
---===============4308589285806713250==
+--===============2248775352934982984==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -157,4 +194,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4308589285806713250==--
+--===============2248775352934982984==--
