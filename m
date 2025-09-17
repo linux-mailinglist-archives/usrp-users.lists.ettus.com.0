@@ -2,110 +2,200 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A6DB7C7DD
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Sep 2025 14:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D946B8075D
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Sep 2025 17:16:53 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A3C6F385E78
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Sep 2025 04:29:23 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 338FF385ADC
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Sep 2025 11:16:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1758097763; bh=MMmu02wlxi8DIsT2HtYEGS0KHvONbNxE3BFJPdlw8lY=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=zznHjHm4fQXRge0HT187+mQhg3POhGjzkU7Wjv0jPGd4FE7xp1jB+L/wMLWSUZSLW
-	 SEtbxn4c3WtMpDoSAZ0qaYIkAJbKYoyLuu0ai6g4e2ZXPl6JJrdiMrOmW0YOPSL1VA
-	 rw6+BLIft6NVbiGJ15kNDvuJAAjRXYSqpuyiPHloUSGJzyyUj6zhpgCz8ByYgTmzvG
-	 4SWULD/ykyxEfJErkAP40fr4AIuBew8rOAX1RNdsir8vtm291JKtz2tgl6yv5OgQC7
-	 bUE04ctPwG1irSQZq3zArnLDVXduBEqHhjM6/7lVQgUADdEtM2UQ3nXUpWbqkMrXY6
-	 At8PFlKIouG8A==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B80E73859F8
-	for <usrp-users@lists.ettus.com>; Wed, 17 Sep 2025 04:28:27 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1758097707; bh=t/Mc+ZNnOHIFHj3+xIVohteFLMcoCHtdBGXkWD/eA/g=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=A6AyOtogQDBV4GrQxg4neCSHG5t3GkM64kKaI9PFgS+X2ZDhzmZT9AbBdjMZLBoJH
-	 svFpjFO1xHLZauFDhvXxlaeJeAtXZtV5HJ6wMA7hjNlnUFZBFAu2J03xUiMZT0GZOS
-	 GOHN2j+uoeOgr/w2OjG87Q9nH7uFeeNh5xaGYC1HssUQesFeE2GsqYmTAwlUxc7URB
-	 fZQ19nSxMjgTTFZb+iJ4KfrkiwefBGt+SZjiPqG984KY2m1sssINoZbdjk8Nv1CmT7
-	 Djy7EThQGJa81/XfYIKjxQ2j990a2aAR5RhT2Xu1AjcEUEAMenfWdwph2LBPZ85ksa
-	 ydwRldNj0jTlw==
-Date: Wed, 17 Sep 2025 08:28:27 +0000
-To: usrp-users@lists.ettus.com
-From: dennis.joosens@uantwerpen.be
-Message-ID: <1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAFOi1A6-3w_eEP15WV8jEhxsz9q8or06QZG5BxEaC5FGzP6=Wg@mail.gmail.com
+	t=1758122212; bh=5ureG9GSxtxrtdr57x2mTzJ4Mfjr/IWnpt8olxQWsOM=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=q0+uL1UXzGnbWEesq0NQBQ5tQpafc1eO832RDYM8EDNqyZffS/RQBGg2cqZzdRDY1
+	 ElkJXpgVr6Os3hbDhHibJHTRjSxvfkF/rOSrjOBOLkL7EC7A3OITfLlByIZVTTRMi7
+	 t8K8XgtZOfYGccs+v1kyifSV194oK+4PrjLxtOdxVM3YpF+mLZo1JcXZk32CN8nnbd
+	 UH1bylKCVeyvMlr6gI2s1jejms1bdG5IA3wJCW+eINAPnCoUqgvFKT8JAbwDDH84Cj
+	 HtnqDAXG/ujGFGZTQMgfhrqZYUdgeOGI9hf9kL48hZ5nXUXUv5tDbzNytqB7hiJ88W
+	 58mUEhJIJJ/dg==
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 723BA385850
+	for <usrp-users@lists.ettus.com>; Wed, 17 Sep 2025 11:16:25 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="rQu4nL/Q";
+	dkim-atps=neutral
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-62ec5f750f7so12393542a12.3
+        for <usrp-users@lists.ettus.com>; Wed, 17 Sep 2025 08:16:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1758122184; x=1758726984; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Av8K6DbrMqMcMcfvKHNC9F9oHRTzK619/G7CPZmAWVA=;
+        b=rQu4nL/Q1FWGiJFZbMS1WiA4ucCW82LJQRE6I23HBdbkehS6t0qeOEamRHmr7MY8R3
+         HkF42Jw8+P2tqbEcoD0o35ETzajEEV3jP10bFegZoeNVuNrCqBO7jSsRjCEiCod4oaP9
+         vqgIEuGLEIoIveGTwwUrKJQWj8O0GT749xRsL88KBJk+khb+JMUAandBV96vomHu/j2x
+         ZJkyiVMrR0vDHPc+nAlBfo5qcTEzdg8KOauGWKgSyUt3nFMhpMQGD1UA15dhJVdreh+Y
+         Kp9ofiLuKpcjTkDZWMtTfoz3JCgs1ub4opFCF2S9u0vjUBqG9uXbsSzaRVMscSUueeJM
+         Dl5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758122184; x=1758726984;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Av8K6DbrMqMcMcfvKHNC9F9oHRTzK619/G7CPZmAWVA=;
+        b=iYcrZ34uI9REeC5aY5wWcB8idVJYa5L6DK2r5wb35/Gq+GFLyzhT1uaqovUa8oEPxS
+         MPxYRqRCpblvhvHeL4G4dvhWOaBtnnV4iYD+1/RUC5I84BmmKegxo3D+JDA/rj3BIw1n
+         F32/1qTuicBmsCo2X3r9VdMISf9pwqYl7TNhlaqqf6n6godEdIiVA3rzMlKohzWypGqn
+         +PpHRb6cDdx0/PBpMpqVBov49JuZ7b9vRC/LGS85pfNxEqRHNTkR3mH6I3SA7sbNVNh8
+         +9yo4c7ZyEURNUq3fSthUT8cAPnQ9mRNXkEfRMVvsU5IwcgPJO0E8s15rKuPXa9kBz1Q
+         ZozQ==
+X-Gm-Message-State: AOJu0YzIb5vQkkeknIlHGiyHMffgnpxd3f/kHOL+0T4iG8iWPXGASyg9
+	egzPhVJOXq8v7hWSh93YSA38Kf3InmTId7yAUdRU0bkIhmfGCRL70tjMrNvtX5220/QN/rUN/af
+	6odK3QLee5tEm8ACrcr/8w0glnCGsPWLODBXuVHLmfC20yjnT1WP/88A=
+X-Gm-Gg: ASbGncuZR4fvmnCnsVBPhHtgbIb8OabcHb+yRo+RJeQH/COprIgN8fV/gpLMjQGOYun
+	nsanWjOS3fbHuFEgz+DFb8T3aEmNpxSob62+Es2ThnvbPAkWwSjgDJ8lHpAk5SLZmrkgcvHVK3a
+	JONqY7r0osEFtp7i79N0Upluym/OSZooAYie6sAsDTEtKXH0QC1OvgOzcq1y6xyPsCBnrY7VbnY
+	9i3WqCvLdHqeDafX320kv0/0JMAKD1qBVg3CPY=
+X-Google-Smtp-Source: AGHT+IFBYLIA6XtYmU2vDVoM+kdW5KdG65NaMfmBLZzS4uJN2QJS9GTQLgTyGQ7IcQ7vBsd1LEj9DGpqrQmvmD++Dc8=
+X-Received: by 2002:a05:6402:847:b0:62f:4b7b:4947 with SMTP id
+ 4fb4d7f45d1cf-62f84230941mr2396329a12.16.1758122183847; Wed, 17 Sep 2025
+ 08:16:23 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: AWQDFLFBEPPYRBND3553C3LEPQKSQULH
-X-Message-ID-Hash: AWQDFLFBEPPYRBND3553C3LEPQKSQULH
-X-MailFrom: dennis.joosens@uantwerpen.be
+References: <n1U8QdaJHFBrbIeBbJdrcKxKImYxzcNgQRUkywMeY@lists.ettus.com>
+In-Reply-To: <n1U8QdaJHFBrbIeBbJdrcKxKImYxzcNgQRUkywMeY@lists.ettus.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Wed, 17 Sep 2025 17:16:12 +0200
+X-Gm-Features: AS18NWBprU3btVrhzott0otKHjaMd6Vcn2pq7VAGNG5ij_G7sqUDKa8ETe-nvyY
+Message-ID: <CAFOi1A62p8-i5pieA1gWfMEsbvH3BZ9+UO0_eLMbJgk7GN-JLQ@mail.gmail.com>
+Cc: usrp-users@lists.ettus.com
+Message-ID-Hash: QJTEKVXQAWFMRMHFJSLE4ONSXK7L2S2G
+X-Message-ID-Hash: QJTEKVXQAWFMRMHFJSLE4ONSXK7L2S2G
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Power calibration USRP B210 UHD Python API
+Subject: [USRP-users] Re: How to pin a specific UHD version across machines/devcontainers?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AWQDFLFBEPPYRBND3553C3LEPQKSQULH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QJTEKVXQAWFMRMHFJSLE4ONSXK7L2S2G/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8127206808099285212=="
+Content-Type: multipart/mixed; boundary="===============1042657067711120211=="
 
-This is a multi-part message in MIME format.
+--===============1042657067711120211==
+Content-Type: multipart/alternative; boundary="0000000000003d85b7063f00b802"
 
---===============8127206808099285212==
-Content-Type: multipart/alternative;
- boundary="b1_1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U
-Content-Type: text/plain; charset=us-ascii
-
-Hi Martin,
-
-I am a bit stuck here (still). I performed several measurements using an OFDM signal (20 MHz, synthetic signal) and a sine wave on a smaller bandwidth (1 MHz, via uhd_siggen) to verify the effectiveness of the B210 RX calibration files that I had created. All in a controlled, cabled setup with a 30 dB attenuator in place. To this point, it is hard to tell, as I see little to no difference in power when loading the calibration files. Therefore, I have three hypotheses:
-
-1) These values are so small that the power calibration is negligible.
-
-2) The calibration file is not loaded correctly for the B210. Missing something in the code (I only get a True or False when found or not found)
-
-3) A specific value in the calibration file is not loaded because of frequency offsets, which, by default, exist (I measured this), and so the value of the calibration file is not used.
-
-Is there another way to determine if a specific power value from the calibration file is loaded? Rather than getting the message now: "I am a B210 and found a valid calibration file for channel X or Y".
-
-Could you give me some advice on these points? Or am I missing some other critical point here?
-
-Thank you!
-
---b1_1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U
-Content-Type: text/html; charset=us-ascii
+--0000000000003d85b7063f00b802
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi Martin,</p><p>I am a bit stuck here (still). I performed several meas=
-urements using an OFDM signal (20 MHz, synthetic signal) and a sine wave on=
- a smaller bandwidth (1 MHz, via uhd_siggen) to verify the effectiveness of=
- the B210 RX calibration files that I had created. All in a controlled, cab=
-led setup with a 30 dB attenuator in place. To this point, it is hard to te=
-ll, as I see little to no difference in power when loading the calibration =
-files. Therefore, I have three hypotheses:</p><p>1) These values are so sma=
-ll that the power calibration is negligible.</p><p>2) The calibration file =
-is not loaded correctly for the B210. Missing something in the code (I only=
- get a True or False when found or not found)</p><p>3) A specific value in =
-the calibration file is not loaded because of frequency offsets, which, by =
-default, exist (I measured this), and so the value of the calibration file =
-is not used.</p><p><br></p><p>Is there another way to determine if a specif=
-ic power value from the calibration file is loaded? Rather than getting the=
- message now: "I am a B210 and found a valid calibration file for channel X=
- or Y".</p><p>Could you give me some advice on these points? Or am I missin=
-g some other critical point here?</p><p>Thank you!</p>
+In general, we think installing from the PPA/Launchpad is a good idea. It
+gives you tested binaries, and you have no hassle of figuring out
+dependencies, etc. The only problem is that the way Launchpad works, there
+is no guarantee that you will be able to download the same binaries in the
+future. That means, if you can't be sure that you can archive the
+container, then building from source is more future-proof (but also more
+annoying). That's your tradeoff.
 
---b1_1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U--
+Note that if you pin your container distro version (e.g., to Ubuntu 24.04
+with a fixed date) and are OK with using the distro version of UHD, then
+you also don't have that problem (but you also don't get the latest UHD
+necessarily).
 
---===============8127206808099285212==
+We always suggest people use binary installers that we provide (or that the
+distro provides) over building from source if they're not super comfortable
+doing that. But there are corner cases where it's the wrong approach. I
+can't tell exactly where you land.
+
+--M
+
+On Tue, Sep 16, 2025 at 3:49=E2=80=AFPM <ardelgado@gradiant.org> wrote:
+
+> Hi Martin,
+>
+> The issue about python API was my mistake, srry about that =F0=9F=98=85. =
+I was
+> experimenting with different installations in a devcontainer and I didn=
+=E2=80=99t
+> realise I had skipped the previous dependency commands:
+>
+> sudo apt update && sudo apt install -y \
+>
+>     git build-essential cmake libboost-all-dev \
+>
+>     libusb-1.0-0-dev libudev-dev python3-dev \
+>
+>     python3-mako python3-numpy python3-requests \
+>
+>     python3-setuptools python3-pip
+>
+> I understand that, in your opinion, building UHD from source is the bette=
+r
+> approach. Do you not recommend using the PPA option? I=E2=80=99m really a=
+fraid
+> about potential version missmatches between devices and USRPs (e.g. N310 =
+or
+> X410 images).
+>
+> Thanks for your fast support.
+>
+> Best regards,
+>
+> =C3=81lvaro
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000003d85b7063f00b802
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>In general, we think installing from the PPA/Launchpa=
+d is a good idea. It gives you tested binaries, and you have no hassle of f=
+iguring out dependencies, etc. The only problem is that the way Launchpad w=
+orks, there is no guarantee that you will be able to download=C2=A0the same=
+ binaries in the future. That means, if you can&#39;t be sure that you can =
+archive the container, then building from source is more future-proof (but =
+also more annoying). That&#39;s your tradeoff.</div><div><br></div><div>Not=
+e that if you pin your container distro version (e.g., to Ubuntu 24.04 with=
+ a fixed date) and are OK with using the distro version of UHD, then you al=
+so don&#39;t have that problem (but you also don&#39;t get the latest UHD n=
+ecessarily).</div><div><br></div><div>We always suggest people use binary i=
+nstallers that we provide (or that the distro provides) over building from =
+source if they&#39;re not super comfortable doing that. But there are corne=
+r cases where it&#39;s the wrong approach. I can&#39;t tell exactly where y=
+ou land.</div><div><br></div><div>--M</div></div><br><div class=3D"gmail_qu=
+ote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Se=
+p 16, 2025 at 3:49=E2=80=AFPM &lt;<a href=3D"mailto:ardelgado@gradiant.org"=
+>ardelgado@gradiant.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><p>Hi Martin,</p><p>The issue about python API was m=
+y mistake, srry about that =F0=9F=98=85. I was experimenting with different=
+ installations in a devcontainer and I didn=E2=80=99t realise I had skipped=
+ the previous dependency commands:<br><br>sudo apt update &amp;&amp; sudo a=
+pt install -y \</p><p>=C2=A0=C2=A0=C2=A0 git build-essential cmake libboost=
+-all-dev \</p><p>=C2=A0=C2=A0=C2=A0 libusb-1.0-0-dev libudev-dev python3-de=
+v \</p><p>=C2=A0=C2=A0=C2=A0 python3-mako python3-numpy python3-requests \<=
+/p><p>=C2=A0=C2=A0=C2=A0 python3-setuptools python3-pip<br><br>I understand=
+ that, in your opinion, building UHD from source is the better approach. Do=
+ you not recommend using the PPA option? I=E2=80=99m really afraid about po=
+tential version missmatches between devices and USRPs (e.g. N310 or X410 im=
+ages). </p><p>Thanks for your fast support.</p><p>Best regards,</p><p>=C3=
+=81lvaro</p>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000003d85b7063f00b802--
+
+--===============1042657067711120211==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +205,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8127206808099285212==--
+--===============1042657067711120211==--
