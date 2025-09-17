@@ -2,119 +2,110 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F44B59820
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Sep 2025 15:49:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81A6DB7C7DD
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Sep 2025 14:04:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E63C438621B
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Sep 2025 09:49:18 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A3C6F385E78
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Sep 2025 04:29:23 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1758030558; bh=iIt6kyhI0/it+P6clLgH9R0k8dndgXiPjm2lNSdsnI0=;
+	t=1758097763; bh=MMmu02wlxi8DIsT2HtYEGS0KHvONbNxE3BFJPdlw8lY=;
 	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=Tlg97mSc7Mhg1D2x0CybFibGa8u563eBB99tPB64PnhVT7kRF4mz6P3AH3mQRIlnI
-	 QmqPMuOWeVFnKlJ/LH6em1CwYylDHT5y5s7pRy45BrD4l/XL9kbxe0nJdGvv/7VLSe
-	 3aE76ptjG4zGjsbOZW5yMtaJDq4g6FbCb3oxwE3E/6lC2kXCyx8C0DceRaRP3vMr0W
-	 gKZsb5MQSSEwYN3VB2lCB3A5lRHGbIxlpJu1kI0qd9cezftQaDtDtQclE+l237OE+J
-	 DH4tuDtRkiPK2bPVZCqbcLFjkVND2zJ+FpR3CbzPSehddt+4p6Tkqzs/uYkZb+l4jS
-	 SPQ8YEf+4RtIQ==
+	b=zznHjHm4fQXRge0HT187+mQhg3POhGjzkU7Wjv0jPGd4FE7xp1jB+L/wMLWSUZSLW
+	 SEtbxn4c3WtMpDoSAZ0qaYIkAJbKYoyLuu0ai6g4e2ZXPl6JJrdiMrOmW0YOPSL1VA
+	 rw6+BLIft6NVbiGJ15kNDvuJAAjRXYSqpuyiPHloUSGJzyyUj6zhpgCz8ByYgTmzvG
+	 4SWULD/ykyxEfJErkAP40fr4AIuBew8rOAX1RNdsir8vtm291JKtz2tgl6yv5OgQC7
+	 bUE04ctPwG1irSQZq3zArnLDVXduBEqHhjM6/7lVQgUADdEtM2UQ3nXUpWbqkMrXY6
+	 At8PFlKIouG8A==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 52CC23861BF
-	for <usrp-users@lists.ettus.com>; Tue, 16 Sep 2025 09:48:50 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B80E73859F8
+	for <usrp-users@lists.ettus.com>; Wed, 17 Sep 2025 04:28:27 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1758030530; bh=5H9k5viSt+2lPNBvUfC+KeLURkiLpAQeNLvCIpHgacI=;
+	t=1758097707; bh=t/Mc+ZNnOHIFHj3+xIVohteFLMcoCHtdBGXkWD/eA/g=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=OdYpk4WueEhijBMugIj+oGFuDqKfgvor7c054+5cTAhXeiN1wPtmArnPxkw2hR/h7
-	 MGSAMr5wkW3y6KkQdY9/2cnEwI5ovmSwh98fereTqSqvDnLM9eQLkoSSnFsCeEgvaJ
-	 l7WvxVJ7vdH1/PA8Mo/7FPoJnHYjTY7Y+me/MPkzThcd25RfkOtf0k4DceBiUkga77
-	 3DTqJAErVEX1lOO8YSW0kvievhMgngG+DFKWQ/FgK2DcnTTdSSnk8bU36BLGMt/KMq
-	 vaEGZP8ooky/niLpMJqQGWqF4joda/hEgoW/8FNsGUnBDJLDOR7GNNaJdH13P/GGbK
-	 jfXpavFaJ1H5Q==
-Date: Tue, 16 Sep 2025 13:48:50 +0000
+	b=A6AyOtogQDBV4GrQxg4neCSHG5t3GkM64kKaI9PFgS+X2ZDhzmZT9AbBdjMZLBoJH
+	 svFpjFO1xHLZauFDhvXxlaeJeAtXZtV5HJ6wMA7hjNlnUFZBFAu2J03xUiMZT0GZOS
+	 GOHN2j+uoeOgr/w2OjG87Q9nH7uFeeNh5xaGYC1HssUQesFeE2GsqYmTAwlUxc7URB
+	 fZQ19nSxMjgTTFZb+iJ4KfrkiwefBGt+SZjiPqG984KY2m1sssINoZbdjk8Nv1CmT7
+	 Djy7EThQGJa81/XfYIKjxQ2j990a2aAR5RhT2Xu1AjcEUEAMenfWdwph2LBPZ85ksa
+	 ydwRldNj0jTlw==
+Date: Wed, 17 Sep 2025 08:28:27 +0000
 To: usrp-users@lists.ettus.com
-From: ardelgado@gradiant.org
-Message-ID: <n1U8QdaJHFBrbIeBbJdrcKxKImYxzcNgQRUkywMeY@lists.ettus.com>
+From: dennis.joosens@uantwerpen.be
+Message-ID: <1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAFOi1A53VJvS67LeUbTSzSOqLr9adK=pW9ukwTGJ_GakB2jy0A@mail.gmail.com
+In-Reply-To: CAFOi1A6-3w_eEP15WV8jEhxsz9q8or06QZG5BxEaC5FGzP6=Wg@mail.gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: ZJYNFZNWMAVPX2YINHJM4O2XP5IQ67OA
-X-Message-ID-Hash: ZJYNFZNWMAVPX2YINHJM4O2XP5IQ67OA
-X-MailFrom: ardelgado@gradiant.org
+Message-ID-Hash: AWQDFLFBEPPYRBND3553C3LEPQKSQULH
+X-Message-ID-Hash: AWQDFLFBEPPYRBND3553C3LEPQKSQULH
+X-MailFrom: dennis.joosens@uantwerpen.be
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: How to pin a specific UHD version across machines/devcontainers?
+Subject: [USRP-users] Re: Power calibration USRP B210 UHD Python API
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZJYNFZNWMAVPX2YINHJM4O2XP5IQ67OA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AWQDFLFBEPPYRBND3553C3LEPQKSQULH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2231632882847832961=="
+Content-Type: multipart/mixed; boundary="===============8127206808099285212=="
 
 This is a multi-part message in MIME format.
 
---===============2231632882847832961==
+--===============8127206808099285212==
 Content-Type: multipart/alternative;
- boundary="b1_n1U8QdaJHFBrbIeBbJdrcKxKImYxzcNgQRUkywMeY"
+ boundary="b1_1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_n1U8QdaJHFBrbIeBbJdrcKxKImYxzcNgQRUkywMeY
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--b1_1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U
+Content-Type: text/plain; charset=us-ascii
 
 Hi Martin,
 
-The issue about python API was my mistake, srry about that =F0=9F=98=85. =
-I was experimenting with different installations in a devcontainer and I =
-didn=E2=80=99t realise I had skipped the previous dependency commands:\
-\
-sudo apt update && sudo apt install -y \\
+I am a bit stuck here (still). I performed several measurements using an OFDM signal (20 MHz, synthetic signal) and a sine wave on a smaller bandwidth (1 MHz, via uhd_siggen) to verify the effectiveness of the B210 RX calibration files that I had created. All in a controlled, cabled setup with a 30 dB attenuator in place. To this point, it is hard to tell, as I see little to no difference in power when loading the calibration files. Therefore, I have three hypotheses:
 
-=C2=A0=C2=A0=C2=A0 git build-essential cmake libboost-all-dev \\
+1) These values are so small that the power calibration is negligible.
 
-=C2=A0=C2=A0=C2=A0 libusb-1.0-0-dev libudev-dev python3-dev \\
+2) The calibration file is not loaded correctly for the B210. Missing something in the code (I only get a True or False when found or not found)
 
-=C2=A0=C2=A0=C2=A0 python3-mako python3-numpy python3-requests \\
+3) A specific value in the calibration file is not loaded because of frequency offsets, which, by default, exist (I measured this), and so the value of the calibration file is not used.
 
-=C2=A0=C2=A0=C2=A0 python3-setuptools python3-pip\
-\
-I understand that, in your opinion, building UHD from source is the bette=
-r approach. Do you not recommend using the PPA option? I=E2=80=99m really=
- afraid about potential version missmatches between devices and USRPs (e.=
-g. N310 or X410 images).=20
+Is there another way to determine if a specific power value from the calibration file is loaded? Rather than getting the message now: "I am a B210 and found a valid calibration file for channel X or Y".
 
-Thanks for your fast support.
+Could you give me some advice on these points? Or am I missing some other critical point here?
 
-Best regards,
+Thank you!
 
-=C3=81lvaro
-
---b1_n1U8QdaJHFBrbIeBbJdrcKxKImYxzcNgQRUkywMeY
-Content-Type: text/html; charset=UTF-8
+--b1_1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi Martin,</p><p>The issue about python API was my mistake, srry about=
- that =F0=9F=98=85. I was experimenting with different installations in a=
- devcontainer and I didn=E2=80=99t realise I had skipped the previous dep=
-endency commands:<br><br>sudo apt update &amp;&amp; sudo apt install -y \=
-</p><p>&nbsp;&nbsp;&nbsp; git build-essential cmake libboost-all-dev \</p=
-><p>&nbsp;&nbsp;&nbsp; libusb-1.0-0-dev libudev-dev python3-dev \</p><p>&=
-nbsp;&nbsp;&nbsp; python3-mako python3-numpy python3-requests \</p><p>&nb=
-sp;&nbsp;&nbsp; python3-setuptools python3-pip<br><br>I understand that, =
-in your opinion, building UHD from source is the better approach. Do you =
-not recommend using the PPA option? I=E2=80=99m really afraid about poten=
-tial version missmatches between devices and USRPs (e.g. N310 or X410 ima=
-ges). </p><p>Thanks for your fast support.</p><p>Best regards,</p><p>=C3=81=
-lvaro</p>
+<p>Hi Martin,</p><p>I am a bit stuck here (still). I performed several meas=
+urements using an OFDM signal (20 MHz, synthetic signal) and a sine wave on=
+ a smaller bandwidth (1 MHz, via uhd_siggen) to verify the effectiveness of=
+ the B210 RX calibration files that I had created. All in a controlled, cab=
+led setup with a 30 dB attenuator in place. To this point, it is hard to te=
+ll, as I see little to no difference in power when loading the calibration =
+files. Therefore, I have three hypotheses:</p><p>1) These values are so sma=
+ll that the power calibration is negligible.</p><p>2) The calibration file =
+is not loaded correctly for the B210. Missing something in the code (I only=
+ get a True or False when found or not found)</p><p>3) A specific value in =
+the calibration file is not loaded because of frequency offsets, which, by =
+default, exist (I measured this), and so the value of the calibration file =
+is not used.</p><p><br></p><p>Is there another way to determine if a specif=
+ic power value from the calibration file is loaded? Rather than getting the=
+ message now: "I am a B210 and found a valid calibration file for channel X=
+ or Y".</p><p>Could you give me some advice on these points? Or am I missin=
+g some other critical point here?</p><p>Thank you!</p>
 
+--b1_1Daj2uqX8lO6RCY1QY5xQvkXbt7Fj1fFXdPtnHxoT3U--
 
---b1_n1U8QdaJHFBrbIeBbJdrcKxKImYxzcNgQRUkywMeY--
-
---===============2231632882847832961==
+--===============8127206808099285212==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +115,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2231632882847832961==--
+--===============8127206808099285212==--
