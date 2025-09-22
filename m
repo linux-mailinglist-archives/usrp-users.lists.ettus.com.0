@@ -2,252 +2,200 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09923B8F653
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Sep 2025 10:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD02EB9277F
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Sep 2025 19:47:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D84453861BC
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Sep 2025 04:03:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 60D4E386225
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Sep 2025 13:46:34 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1758528190; bh=tAlfq2s11KAHZPDWCRTyhrgKvnQ9lvx/g2lKa+DtCmY=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=OjYtSyd02XUBsjWDByA/IvALw14mLXPJdQvVIiSJKV0OH+KPNeIsmNI4kfLsbYpMe
-	 WQnZXspXlrDPOemL6Rwwmf/9HOS790MxQ+gqUpWFxELDQ+xr0wr3b39GhxYeBDnP1z
-	 xpMIAkqEUC5uTtCnLGhP/p6nh+wTU78r+i5OK7hyHmR8DWLR1KSv8bbhg+tHwEcD/Q
-	 ABOHJkH9Vi/kr2/0fVx/CgjkA7akEu/XFGPfkNVZF2tX2ummGD6ZJy4FZ0Q3lGKUTB
-	 TIU1IKdieJCqql0uEJRP28DXAo2OEORYsPnFrPQLuneXGXajXkx10+91FGiY1zLec4
-	 13lwTNorU+Z/Q==
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9AE9138617D
-	for <usrp-users@lists.ettus.com>; Mon, 22 Sep 2025 04:02:32 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="WKCOBQHO";
-	dkim-atps=neutral
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-61cc281171cso6243048a12.0
-        for <usrp-users@lists.ettus.com>; Mon, 22 Sep 2025 01:02:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1758528151; x=1759132951; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yFNVJecJt2Efu9QZg6+Zz86596Um1cxTWoXiaFcYxq8=;
-        b=WKCOBQHOVmhQg6l7L4bmK02nM/YoFAXo6i4I9nd/2nIkrP4Lpdl1E/uMpR1C1qIeqe
-         +DCe26fDSdOUPoD6zqtgqrF+Tkb+KgVhiCrC2wqmkLDzJx9Xc55Mn2wxUSwzjz5zL6tK
-         5zh/HOVP1fqcQBocwP6QCrZ8FFEb5VcgAQekrOCYO27FEV6al7cDoczKgEU/zLR0SI8u
-         H0hqHuX0zSGOpjCEqhDkJqUj2+JkkdSaRBv69AWTj2gqj0P/xgV+5cCs/zFSZmJjuAOC
-         Nnf/BI1K8wavBbhDLCZyWLq0qWQaohJQl7bZmtprv3mHKYBarsB+5qtgdg/3yUbIDDXc
-         xlcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758528151; x=1759132951;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yFNVJecJt2Efu9QZg6+Zz86596Um1cxTWoXiaFcYxq8=;
-        b=ZYQEAPw4exBUG4oopL9fRliNJODxWPSPesuYtp9yno5Y+mtz6vroAFofYE3Neard4x
-         fbmdRPB62HPvIPen69tJQ9Gxuh4twDJsYhnvaWSODE595fCJ1bHZYUfXoNnq0F9e4fuz
-         DM+mIAMSELohbue/AD+O4XKTadsx2O3wNYLxBmhqhrGMrAVmr2HZ3Qig2LGvoUSWhKzr
-         dGb2LqtZPB7PMRC7ifLv477jio1u8dBnLkAcOOGhZgRhMzZt/DbjXPuxMA74eku1uWCa
-         1y61adKISVsIJz3fDDZnHQjYcvDymD2guzuNo5fzP60NrdHyMJMee1eq4zTFO3j5d49m
-         BGgA==
-X-Gm-Message-State: AOJu0YwRssyupdhJDAnhiWQgIR7+hK50dHU534/hx99NfHi+73qCGcMM
-	Ox/b9Sv2p9MO0geuZSmEHR+aJTOT6gu06OQt4aRyx8O8pJcIQ67fAGypLLwqFh2JxHinkOha/K1
-	//RjCQs07SMPJMM/+mPS+iOzFCLu3YAv8wRQ6WGHfJQELixvv4ovFsaCEEw==
-X-Gm-Gg: ASbGncvMd4JJRSOF/w9bEdFVe/igla1aYeox1ZToFMPzbddpKPgzsOHLZIsUQfYMDTB
-	MBMTp2hyYZhzg0nvOqWE1+aoEyQwYcx3bWctQQYFoGp41IHiz/D0F70KqbGO4bTtCY5e83tEEns
-	Kz/YfTp5YOJRfxT7ZvlMkFqs53jmdcRDXmviqExA8zEG2xnU7pMK1GZks82TmXu9KLksW5uqgow
-	E9V5wP2dDI5+8wsyg9EIHBZcSLDV9r8EXWoHPqSX6wCjLkZ
-X-Google-Smtp-Source: AGHT+IHyvRZuPlM8hOoNtFtN3ObIEa0aVO+8WPIkIcl3Hc0WtQcD+XT5Q7NNwJi/hAIPWnPwvKLM+F0YpbdtGoqRth4=
-X-Received: by 2002:a05:6402:46da:b0:632:466d:5d10 with SMTP id
- 4fb4d7f45d1cf-632467ca31amr4917206a12.20.1758528151076; Mon, 22 Sep 2025
- 01:02:31 -0700 (PDT)
+	t=1758563194; bh=6ESpPlNuVr3QF6wb/H+RU17ECkdt5gOpeyQgGHE7tyc=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=uB5GoH5ocIb6/b1yxoYs2BiALwxXZT2DtT6EVC+j88P63enVJzZUOmGv8loVAP6S2
+	 AlGElTVmaHtLcvN+w191I2KQisIVoJmfdU3GD063LzcS1OqafRamyzwtN3o5M19J+I
+	 P9UyB864o4Ilgyh63R65EXGwrVsSiaHrLMZ3YvwFdkhz7OnLtdFZWn4KfCnXfs6vbW
+	 xWvP/7jG0QgPx8dmr2JPTKYLv0soHpH9yWcGvFBW/yoZY4x1H+FE5UUqqlVIAjrBfw
+	 Ju/9DnZoBYEKJvSXhZpyCOwMbunAgSoLs4gQbgmpvWjJuJ5iFlXrmHkrKRT9jvsH3j
+	 RAbvcejePNRYQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 4C980386209
+	for <usrp-users@lists.ettus.com>; Mon, 22 Sep 2025 13:45:55 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1758563155; bh=JaqWOR3tSLKdk7BF6KMAbeU0ZA9cP/k8nKDskF3YqsU=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=upPv1pPO1LXzPoOpEhi8A6yvu80ctiXTVEC0v9AQSdHePhBiwZNFgo68gyvJklx5K
+	 TcOmMYM/Sivj8kQQCL43yfHM7hv70jcPlDbdlzDgQr+rDvtsZ8aKR552JejElTLmmE
+	 5NY7+72Dc3F7F8ZqYnpYEq33NBtJ99BmkLIG94UJyhjcsFdm6r6nPgCvCDPEXTRVJ2
+	 OYLVsGmp2KoYF8kUJLHAlMnzF06GHIoKrkkbAMEd5w4S6nh/ZkBjcVhaY58H28y+4r
+	 XmpfFbnEvDj0t82XnLW0Ufsgh31ZN8ZaaQ5/FvA5E39CU7kTnuIjeP9NWl5pSK8O3b
+	 A9VCyoYUXilHg==
+Date: Mon, 22 Sep 2025 17:45:55 +0000
+To: usrp-users@lists.ettus.com
+From: perper@o2.pl
+Message-ID: <edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAEXYVK7EzbT9Q0nWcTSGWS1MWmE2bDVKY7yUwNpE=JZirY4GOg@mail.gmail.com
 MIME-Version: 1.0
-References: <G2CLM3AGKKsZMCLh0uW8Rgt6Vp17ZquF4lPzHYBrY@lists.ettus.com>
-In-Reply-To: <G2CLM3AGKKsZMCLh0uW8Rgt6Vp17ZquF4lPzHYBrY@lists.ettus.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Mon, 22 Sep 2025 10:02:20 +0200
-X-Gm-Features: AS18NWDg1jTyoFue_F2eidqu3uiFvNBH3CMSh5iM0_JWNptZH_5GMou9Y8i_9q8
-Message-ID: <CAFOi1A61wB3Y58BXT_z=5dN4eudWw6ymQEtkdC0uf6-opG753g@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: ZWPDC26SZVUKUDKNRQPPEIBYYNFQNREP
-X-Message-ID-Hash: ZWPDC26SZVUKUDKNRQPPEIBYYNFQNREP
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: 6GZ7UBOHPFK2FDGBS2FUXRDRVPJPSZLO
+X-Message-ID-Hash: 6GZ7UBOHPFK2FDGBS2FUXRDRVPJPSZLO
+X-MailFrom: perper@o2.pl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Getting Started RFNoC
+Subject: [USRP-users] Re: X440 Rebuilding boot.bin
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZWPDC26SZVUKUDKNRQPPEIBYYNFQNREP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6GZ7UBOHPFK2FDGBS2FUXRDRVPJPSZLO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7426069210103869123=="
+Content-Type: multipart/mixed; boundary="===============2254983879131917027=="
 
---===============7426069210103869123==
-Content-Type: multipart/alternative; boundary="000000000000c5ce64063f5f3dad"
+This is a multi-part message in MIME format.
 
---000000000000c5ce64063f5f3dad
-Content-Type: text/plain; charset="UTF-8"
+--===============2254983879131917027==
+Content-Type: multipart/alternative;
+ boundary="b1_edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Peter,
+Hello Brian,
 
-welcome to the world of RFNoC. You did almost everything right. A couple of
-notes:
+I had to go through this topic thoroughly when I did port of X410 code to=
+ ZCU111. It was over two years ago but I still remember something.
 
-- The statement about SEPs being automatically corrected predates the
-feature of providing a crossbar matrix. If there was no crossbar matrix,
-then this would autoconnect everything.
-- On an FPGA, there is limited hardware to implement all the logic. The
-"fuller" the design, the less likely the FPGA build tool (Vivado) will be
-able to generate a valid design. That's when you get the timing error. The
-x440_X4_1600 image is already pretty full, so I'm not surprised it fails.
-- You can still try and make it work by finding some optimizations. Here
-are options:
-  - You can statically connect the FFT instead of dynamically. That will
-reduce the size of the crossbar and require one less stream endpoint.
-  - You can try and turn more 1s in the crossbar routes matrix into zeros.
-The reason we have this matrix in the first place is to exactly solve this
-problem (not enough resources on the FPGA).
-  - You can also try and kick off several builds and hope you get lucky
-(but only if the design is not too full).
-  - If necessary, you might have to remove some blocks (do you need the
-replay blocks, for example?)
+X410 and X440 don=E2=80=99t use FSBL code from Xilinx to boot RFSoC like =
+in autogenerated Petalinux projects.
 
-I hope this gets you unstuck.
+They took some files from hardware exported in Vivado for the project (Fi=
+le->Export->Export Hardware - it generates a zip file) and put them into =
+SPL (Secondary Program Loader) which is u-boot=E2=80=99s replacement for =
+FSBL.
 
---M
+In the exported hardware there is file psu_init_gpl.c. The configuration =
+that you need to set is most probably stored in it.This file + pm_cfg_obj=
+.c (I=E2=80=99ll describe generation of this file later) are added to u-b=
+oot by this patch:https://github.com/EttusResearch/meta-ettus/blob/kirkst=
+one/meta-ettus-bsp/recipes-bsp/u-boot/files/ni-titanium/0006-board-ni-add=
+-support-for-X410.patch
 
-On Sun, Sep 21, 2025 at 10:38=E2=80=AFPM Peter Gu via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+There=E2=80=99s one pair of such files for each X410=E2=80=99s revision b=
+ut I don=E2=80=99t see any for X440. Maybe they share them between X410 a=
+nd X440.
 
-> Hello,
->
-> to try out RFNoC on my X440 under UHD 4.8 I followed this instruction:
->
-> https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
->
-> Building the default FPGA Image via x440_X4_1600_rfnoc_image_core.yml
-> works.
->
-> But when I try to continue with =E2=80=9CExample: Adding an FFT Block=E2=
-=80=9C it doesn=E2=80=99t
-> work anymore.
->
-> 1.) Although the tutorial states that =E2=80=9CAll SEPs are automatically
-> connected to the CHDR crossbar, so this effectively connects the FFT bloc=
-k
-> to the crossbar, allowing it to communicate with anything on the RFNoC
-> network.=E2=80=9C, I will get an error that it needs an 10x10 matrix for
-> crossbar_routes. So I fixed this with the following matrix:
->
-> crossbar_routes:
->
-> # eth0 eth2 dma ep1 ep3
->
-> # eth1 eth3 ep0 ep2
->
-> - [ 1, 0, 0, 0, 0, 1, 1, 1, 1, 1 ] # eth0 (QSFP Port 0, Lane 0)
->
-> - [ 0, 1, 0, 0, 0, 1, 1, 1, 1, 1 ] # eth1 (QSFP Port 0, Lane 1)
->
-> - [ 0, 0, 1, 0, 0, 1, 1, 1, 1, 1 ] # eth2 (QSFP Port 0, Lane 2)
->
-> - [ 0, 0, 0, 1, 0, 1, 1, 1, 1, 1 ] # eth3 (QSFP Port 0, Lane 3)
->
-> - [ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1 ] # dma
->
-> - [ 1, 1, 1, 1, 1, 0, 0, 1, 1, 1 ] # ep0 (radio0.0)
->
-> - [ 1, 1, 1, 1, 1, 0, 0, 1, 1, 1 ] # ep1 (radio1.0)
->
-> - [ 1, 1, 1, 1, 1, 1, 1, 0, 0, 0 ] # ep2 (replay0.0)
->
-> - [ 1, 1, 1, 1, 1, 1, 1, 0, 0, 0 ] # ep3 (replay1.0)
->
-> - [ 1, 1, 1, 1, 1, 1, 1, 0, 0, 0 ] # ep3 (fft)
->
->
-> 2) The image build fails after roughly 7 hours, with the error:
->
-> CRITICAL WARNING: [Route 35-39] The design did not meet timing
-> requirements. Please run report_timing_summary for detailed reports.
->
->
-> Do you know where I did a mistake in understanding the tutorial?
->
->
-> Thanks!
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Now I don=E2=80=99t have the exact guide how to do the export. Only what =
+I remember, so there might be something wrong/missing.I did it by generat=
+ing a project that can be normally opened and modified in Vivado.To gener=
+ate the project I modified this line:
 
---000000000000c5ce64063f5f3dad
-Content-Type: text/html; charset="UTF-8"
+https://github.com/EttusResearch/uhd/blob/07a7a92ad6e09cc7e84aae5990aff56=
+3a4546e83/fpga/usrp3/top/x400/build_x4xx.tcl#L11tovivado_utils::initializ=
+e_project 1Then in uhd/pga/usrp3/top/x400/ do:source setupenv.shmakeAfter=
+ this ends you should have an \*.xpr file in one of build directories. Yo=
+u can open this file Vivado. Then find x4xx_ps_rfdc_bd block diagram, ope=
+n it and edit ZYNQ configuration to enable the bus that you need. After t=
+hat I don=E2=80=99t remember if you have to do synthesis or you can strai=
+ght away go to File->Export->Export Hardware and create a zip file with p=
+su_init_gpl.c and a header (psu_init_gpl.h ?).
+
+From this file you generate a pm_cfg_obj.c file with use of this tool:
+
+https://github.com/u-boot/u-boot/blob/master/tools/zynqmp_psu_init_minimi=
+ze.sh
+
+The usage is in the source code of this script (this particular step was =
+figured out by Emil J Tywoniak, so credit goes to him here):
+
+zynqmp_psu_init_minimize.sh /path/to/original/psu_init_gpl_c_and_h/ outdi=
+r
+
+Last time I used this script (over 2 years ago) it was failing on some #i=
+fdef boilerplate from the psu_init_gpl.c file. So I had to remove that pa=
+rt for the generation to pass.
+
+Then you need to take the generated files (pm_cfg_obj.c, psu_init_gpl.c),=
+ compare them with the files from the 0006-board-ni-add-support-for-X410.=
+patch and either edit this patch or create a new one with you changes onl=
+y. Forgive me, but I don't remember easiest way to do that with yocto. On=
+e way is to build yocto image for X440 with use of kas, find u-boot sourc=
+e code in the build directory, change the files there and create a patch =
+with use of git.
+
+Then add the path to the patch here:
+
+https://github.com/EttusResearch/meta-ettus/blob/1c00f1ce66d4d141f0be6565=
+fbd562d8692777d2/meta-ettus-bsp/recipes-bsp/u-boot/u-boot_2020.10_ni.inc#=
+L13
+
+Then build the whole yocto image (or just u-boot if you know how) for X41=
+0/X440 and flash it on an SD-CARD
+
+I hope there is a simpler way to do what you want, but I don't know any.
+
+Best Regards,\
+Piotr Krysik
+
+--b1_edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Peter,</div><div><br></div><div>welcome to the world =
-of RFNoC. You did almost everything right. A couple of notes:</div><div><br=
-></div><div>- The statement about SEPs being automatically corrected predat=
-es=C2=A0the feature of providing a crossbar matrix. If there was no crossba=
-r matrix,=C2=A0 then this would autoconnect everything.</div><div>- On an F=
-PGA, there is limited hardware to implement all the logic. The &quot;fuller=
-&quot; the design, the less likely the FPGA build tool (Vivado) will be abl=
-e to generate a valid design. That&#39;s when you get the timing error. The=
- x440_X4_1600 image is already pretty full, so I&#39;m not surprised it fai=
-ls.</div><div>- You can still try and make it work by finding some optimiza=
-tions. Here are options:</div><div>=C2=A0 - You can statically connect the =
-FFT instead of dynamically. That will reduce the size of the crossbar and r=
-equire one less stream endpoint.</div><div>=C2=A0 - You can try and turn mo=
-re 1s in the crossbar routes matrix into zeros. The reason we have this mat=
-rix in the first place is to exactly solve this problem (not enough resourc=
-es on the FPGA).</div><div>=C2=A0 - You can also try and kick off several b=
-uilds and hope you get lucky (but only if the design is not too full).</div=
-><div>=C2=A0 - If necessary, you might have to remove some blocks (do you n=
-eed the replay blocks, for example?)</div><div><br></div><div>I hope this g=
-ets you unstuck.</div><div><br></div><div>--M</div></div><br><div class=3D"=
-gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Sun, Sep 21, 2025 at 10:38=E2=80=AFPM Peter Gu via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hello,<=
-/p><p>to try out RFNoC on my X440 under UHD 4.8 I followed this instruction=
-:</p><p><a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4=
-.0" target=3D"_blank">https://kb.ettus.com/Getting_Started_with_RFNoC_in_UH=
-D_4.0</a></p><p>Building the default FPGA Image via x440_X4_1600_rfnoc_imag=
-e_core.yml works.</p><p>But when I try to continue with =E2=80=9CExample: A=
-dding an FFT Block=E2=80=9C it doesn=E2=80=99t work anymore.</p><p>1.) Alth=
-ough the tutorial states that =E2=80=9CAll SEPs are automatically connected=
- to the CHDR crossbar, so this effectively connects the FFT block to the cr=
-ossbar, allowing it to communicate with anything on the RFNoC network.=E2=
-=80=9C, I will get an error that it needs an 10x10 matrix for crossbar_rout=
-es. So I fixed this with the following matrix:</p><p>crossbar_routes:</p><p=
-># eth0 eth2 dma ep1 ep3</p><p># eth1 eth3 ep0 ep2</p><p> - [ 1, 0, 0, 0, 0=
-, 1, 1, 1, 1, 1 ] # eth0 (QSFP Port 0, Lane 0)</p><p> - [ 0, 1, 0, 0, 0, 1,=
- 1, 1, 1, 1 ] # eth1 (QSFP Port 0, Lane 1)</p><p> - [ 0, 0, 1, 0, 0, 1, 1, =
-1, 1, 1 ] # eth2 (QSFP Port 0, Lane 2)</p><p> - [ 0, 0, 0, 1, 0, 1, 1, 1, 1=
-, 1 ] # eth3 (QSFP Port 0, Lane 3)</p><p> - [ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1 =
-] # dma</p><p> - [ 1, 1, 1, 1, 1, 0, 0, 1, 1, 1 ] # ep0 (radio0.0)</p><p> -=
- [ 1, 1, 1, 1, 1, 0, 0, 1, 1, 1 ] # ep1 (radio1.0)</p><p> - [ 1, 1, 1, 1, 1=
-, 1, 1, 0, 0, 0 ] # ep2 (replay0.0)</p><p> - [ 1, 1, 1, 1, 1, 1, 1, 0, 0, 0=
- ] # ep3 (replay1.0)</p><p> - [ 1, 1, 1, 1, 1, 1, 1, 0, 0, 0 ] # ep3 (fft)<=
-/p><p><br></p><p>2) The image build fails after roughly 7 hours, with the e=
-rror: </p><p>CRITICAL WARNING: [Route 35-39] The design did not meet timing=
- requirements. Please run report_timing_summary for detailed reports.</p><p=
-><br></p><p>Do you know where I did a mistake in understanding the tutorial=
-?</p><p><br></p><p>Thanks!</p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<p>Hello Brian,</p><p>I had to go through this topic thoroughly when I did =
+port of X410 code to ZCU111. It was over two years ago but I still remember=
+ something.</p><p>X410 and X440 don=E2=80=99t use FSBL code from Xilinx to =
+boot RFSoC like in autogenerated Petalinux projects.</p><p>They took some f=
+iles from hardware exported in Vivado for the project (File-&gt;Export-&gt;=
+Export Hardware - it generates a zip file) and put them into SPL (Secondary=
+ Program Loader) which is u-boot=E2=80=99s replacement for FSBL.</p><p>In t=
+he exported hardware there is file psu_init_gpl.c. The configuration that y=
+ou need to set is most probably stored in it.This file + pm_cfg_obj.c (I=
+=E2=80=99ll describe generation of this file later) are added to u-boot by =
+this patch:https://github.com/EttusResearch/meta-ettus/blob/kirkstone/meta-=
+ettus-bsp/recipes-bsp/u-boot/files/ni-titanium/0006-board-ni-add-support-fo=
+r-X410.patch</p><p>There=E2=80=99s one pair of such files for each X410=
+=E2=80=99s revision but I don=E2=80=99t see any for X440. Maybe they share =
+them between X410 and X440.</p><p>Now I don=E2=80=99t have the exact guide =
+how to do the export. Only what I remember, so there might be something wro=
+ng/missing.I did it by generating a project that can be normally opened and=
+ modified in Vivado.To generate the project I modified this line:</p><p>htt=
+ps://github.com/EttusResearch/uhd/blob/07a7a92ad6e09cc7e84aae5990aff563a454=
+6e83/fpga/usrp3/top/x400/build_x4xx.tcl#L11tovivado_utils::initialize_proje=
+ct 1Then in uhd/pga/usrp3/top/x400/ do:source setupenv.shmakeAfter this end=
+s you should have an *.xpr file in one of build directories. You can open t=
+his file Vivado. Then find x4xx_ps_rfdc_bd block diagram, open it and edit =
+ZYNQ configuration to enable the bus that you need. After that I don=
+=E2=80=99t remember if you have to do synthesis or you can straight away go=
+ to File-&gt;Export-&gt;Export Hardware and create a zip file with psu_init=
+_gpl.c and a header (psu_init_gpl.h ?).</p><p>From this file you generate a=
+ pm_cfg_obj.c file with use of this tool:</p><p>https://github.com/u-boot/u=
+-boot/blob/master/tools/zynqmp_psu_init_minimize.sh</p><p>The usage is in t=
+he source code of this script (this particular step was figured out by Emil=
+ J Tywoniak, so credit goes to him here):</p><p>zynqmp_psu_init_minimize.sh=
+ /path/to/original/psu_init_gpl_c_and_h/ outdir</p><p>Last time I used this=
+ script (over 2 years ago) it was failing on some #ifdef boilerplate from t=
+he psu_init_gpl.c file. So I had to remove that part for the generation to =
+pass.</p><p>Then you need to take the generated files (pm_cfg_obj.c, psu_in=
+it_gpl.c), compare them with the files from the 0006-board-ni-add-support-f=
+or-X410.patch and either edit this patch or create a new one with you chang=
+es only. Forgive me, but I don't remember easiest way to do that with yocto=
+. One way is to build yocto image for X440 with use of kas, find u-boot sou=
+rce code in the build directory, change the files there and create a patch =
+with use of git.</p><p>Then add the path to the patch here:</p><p>https://g=
+ithub.com/EttusResearch/meta-ettus/blob/1c00f1ce66d4d141f0be6565fbd562d8692=
+777d2/meta-ettus-bsp/recipes-bsp/u-boot/u-boot_2020.10_ni.inc#L13</p><p>The=
+n build the whole yocto image (or just u-boot if you know how) for X410/X44=
+0 and flash it on an SD-CARD</p><p>I hope there is a simpler way to do what=
+ you want, but I don't know any.</p><p>Best Regards,<br>Piotr Krysik</p>
 
---000000000000c5ce64063f5f3dad--
+--b1_edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk--
 
---===============7426069210103869123==
+--===============2254983879131917027==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -257,4 +205,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7426069210103869123==--
+--===============2254983879131917027==--
