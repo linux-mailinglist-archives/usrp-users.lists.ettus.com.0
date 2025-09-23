@@ -2,200 +2,135 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD02EB9277F
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Sep 2025 19:47:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C355B94138
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Sep 2025 05:16:55 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 60D4E386225
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Sep 2025 13:46:34 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EA5243862F8
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Sep 2025 23:16:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1758563194; bh=6ESpPlNuVr3QF6wb/H+RU17ECkdt5gOpeyQgGHE7tyc=;
+	t=1758597412; bh=Mr5KSIqRsCcaPkX6FTbd5q01u0XPuh1lIch0ZR9f7LU=;
 	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=uB5GoH5ocIb6/b1yxoYs2BiALwxXZT2DtT6EVC+j88P63enVJzZUOmGv8loVAP6S2
-	 AlGElTVmaHtLcvN+w191I2KQisIVoJmfdU3GD063LzcS1OqafRamyzwtN3o5M19J+I
-	 P9UyB864o4Ilgyh63R65EXGwrVsSiaHrLMZ3YvwFdkhz7OnLtdFZWn4KfCnXfs6vbW
-	 xWvP/7jG0QgPx8dmr2JPTKYLv0soHpH9yWcGvFBW/yoZY4x1H+FE5UUqqlVIAjrBfw
-	 Ju/9DnZoBYEKJvSXhZpyCOwMbunAgSoLs4gQbgmpvWjJuJ5iFlXrmHkrKRT9jvsH3j
-	 RAbvcejePNRYQ==
+	b=XZOCxPVyno8xgY99dszYsB7wlxS4XJ19eIKKu5C+TbutnqLBY0GlNhSG+6VCywoeU
+	 0Ny4b0hxZJWL8JxoYE/3pPSRmYGj95VeFsLj1tcX/lHBJJ/t5GVVdBfRaKhxi3hD3e
+	 l+Bu+E84vKE5TJb9qNittkZfAbsH1qy2RkejvWbg4HF22kL+PoXeX95V8S0Sh9AT7K
+	 bLys0tDpPifWhcVxz8bU0uKHnzPdOLZoCJekwXEnv/fQwvNQzNQeRCIEGhX7VTzNyj
+	 RRzEDZB8qDgfEjVEIrpjmzUzskhtecB10CECawRG1CttHoZi+N0kksIActk3W+/4Sd
+	 PvPVOjNWKVP0A==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4C980386209
-	for <usrp-users@lists.ettus.com>; Mon, 22 Sep 2025 13:45:55 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4AC2D3862EC
+	for <usrp-users@lists.ettus.com>; Mon, 22 Sep 2025 23:15:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1758563155; bh=JaqWOR3tSLKdk7BF6KMAbeU0ZA9cP/k8nKDskF3YqsU=;
+	t=1758597358; bh=eBIA4uvRL38RJRck2HF6H1RY3bnw3UW/B5cVdXan4jI=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=upPv1pPO1LXzPoOpEhi8A6yvu80ctiXTVEC0v9AQSdHePhBiwZNFgo68gyvJklx5K
-	 TcOmMYM/Sivj8kQQCL43yfHM7hv70jcPlDbdlzDgQr+rDvtsZ8aKR552JejElTLmmE
-	 5NY7+72Dc3F7F8ZqYnpYEq33NBtJ99BmkLIG94UJyhjcsFdm6r6nPgCvCDPEXTRVJ2
-	 OYLVsGmp2KoYF8kUJLHAlMnzF06GHIoKrkkbAMEd5w4S6nh/ZkBjcVhaY58H28y+4r
-	 XmpfFbnEvDj0t82XnLW0Ufsgh31ZN8ZaaQ5/FvA5E39CU7kTnuIjeP9NWl5pSK8O3b
-	 A9VCyoYUXilHg==
-Date: Mon, 22 Sep 2025 17:45:55 +0000
+	b=o8g8maCI6bNa3rbW2E5jGs/tfeO6XJt2n19UFug4h4QC8x9kLdplgmsC5H3/q94TI
+	 qvtpoVDnAgDxtkTAC2+GLi858HtEwdBwYUsEw/TRvqJF0HrKGWooGjvLK3O76U1hnU
+	 62UzZtNo4Cua4jyi5CaV0w6p+0A06ez7BHI+XsRBnwXTLI3aMti0Owe4YUYaDLW4gQ
+	 E4BJs+/T5u9wLzKOmqU61bvgvMXZpzoxeFzam8iIiQhdct4UvANq2AU+uersO4nB40
+	 Ye65vwmodNA4nuNmxSTrnh+Hq8PQ/8x8H+KwOlJzyUF77Yn64dW83FM0QeLCF2UTsc
+	 Htf71g8cWck/w==
+Date: Tue, 23 Sep 2025 03:15:58 +0000
 To: usrp-users@lists.ettus.com
 From: perper@o2.pl
-Message-ID: <edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk@lists.ettus.com>
+Message-ID: <DWyCFTcUUpewxcwXn70xJ3RTrseY6tvfsQPOhqDdHk@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAEXYVK7EzbT9Q0nWcTSGWS1MWmE2bDVKY7yUwNpE=JZirY4GOg@mail.gmail.com
+In-Reply-To: edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk@lists.ettus.com
 MIME-Version: 1.0
-Message-ID-Hash: 6GZ7UBOHPFK2FDGBS2FUXRDRVPJPSZLO
-X-Message-ID-Hash: 6GZ7UBOHPFK2FDGBS2FUXRDRVPJPSZLO
+Message-ID-Hash: QNWBGOGZ44UGRRQP7JDT2NGZ5G535N6R
+X-Message-ID-Hash: QNWBGOGZ44UGRRQP7JDT2NGZ5G535N6R
 X-MailFrom: perper@o2.pl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X440 Rebuilding boot.bin
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6GZ7UBOHPFK2FDGBS2FUXRDRVPJPSZLO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QNWBGOGZ44UGRRQP7JDT2NGZ5G535N6R/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2254983879131917027=="
+Content-Type: multipart/mixed; boundary="===============7423611052805376499=="
 
 This is a multi-part message in MIME format.
 
---===============2254983879131917027==
+--===============7423611052805376499==
 Content-Type: multipart/alternative;
- boundary="b1_edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk"
+ boundary="b1_DWyCFTcUUpewxcwXn70xJ3RTrseY6tvfsQPOhqDdHk"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk
+--b1_DWyCFTcUUpewxcwXn70xJ3RTrseY6tvfsQPOhqDdHk
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello Brian,
+perper@o2.pl wrote:
 
-I had to go through this topic thoroughly when I did port of X410 code to=
- ZCU111. It was over two years ago but I still remember something.
+> https://github.com/EttusResearch/uhd/blob/07a7a92ad6e09cc7e84aae5990aff=
+563a4546e83/fpga/usrp3/top/x400/build_x4xx.tcl#L11tovivado_utils::initial=
+ize_project 1Then in uhd/pga/usrp3/top/x400/ do:source setupenv.shmakeAft=
+er this ends you should have an \*.xpr file in one of build directories. =
+You can open this file Vivado. Then find x4xx_ps_rfdc_bd block diagram, o=
+pen it and edit ZYNQ configuration to enable the bus that you need. After=
+ that I don=E2=80=99t remember if you have to do synthesis or you can str=
+aight away go to File->Export->Export Hardware and create a zip file with=
+ psu_init_gpl.c and a header (psu_init_gpl.h ?).
 
-X410 and X440 don=E2=80=99t use FSBL code from Xilinx to boot RFSoC like =
-in autogenerated Petalinux projects.
-
-They took some files from hardware exported in Vivado for the project (Fi=
-le->Export->Export Hardware - it generates a zip file) and put them into =
-SPL (Secondary Program Loader) which is u-boot=E2=80=99s replacement for =
-FSBL.
-
-In the exported hardware there is file psu_init_gpl.c. The configuration =
-that you need to set is most probably stored in it.This file + pm_cfg_obj=
-.c (I=E2=80=99ll describe generation of this file later) are added to u-b=
-oot by this patch:https://github.com/EttusResearch/meta-ettus/blob/kirkst=
-one/meta-ettus-bsp/recipes-bsp/u-boot/files/ni-titanium/0006-board-ni-add=
--support-for-X410.patch
-
-There=E2=80=99s one pair of such files for each X410=E2=80=99s revision b=
-ut I don=E2=80=99t see any for X440. Maybe they share them between X410 a=
-nd X440.
-
-Now I don=E2=80=99t have the exact guide how to do the export. Only what =
-I remember, so there might be something wrong/missing.I did it by generat=
-ing a project that can be normally opened and modified in Vivado.To gener=
-ate the project I modified this line:
+Something was messed with this paragraph. It was:
 
 https://github.com/EttusResearch/uhd/blob/07a7a92ad6e09cc7e84aae5990aff56=
-3a4546e83/fpga/usrp3/top/x400/build_x4xx.tcl#L11tovivado_utils::initializ=
-e_project 1Then in uhd/pga/usrp3/top/x400/ do:source setupenv.shmakeAfter=
- this ends you should have an \*.xpr file in one of build directories. Yo=
-u can open this file Vivado. Then find x4xx_ps_rfdc_bd block diagram, ope=
-n it and edit ZYNQ configuration to enable the bus that you need. After t=
-hat I don=E2=80=99t remember if you have to do synthesis or you can strai=
-ght away go to File->Export->Export Hardware and create a zip file with p=
-su_init_gpl.c and a header (psu_init_gpl.h ?).
+3a4546e83/fpga/usrp3/top/x400/build_x4xx.tcl#L11
 
-From this file you generate a pm_cfg_obj.c file with use of this tool:
+to
 
-https://github.com/u-boot/u-boot/blob/master/tools/zynqmp_psu_init_minimi=
-ze.sh
+vivado_utils::initialize_project 1
 
-The usage is in the source code of this script (this particular step was =
-figured out by Emil J Tywoniak, so credit goes to him here):
+Then in uhd/pga/usrp3/top/x400/ do:
 
-zynqmp_psu_init_minimize.sh /path/to/original/psu_init_gpl_c_and_h/ outdi=
-r
+source setupenv.sh\
+make
 
-Last time I used this script (over 2 years ago) it was failing on some #i=
-fdef boilerplate from the psu_init_gpl.c file. So I had to remove that pa=
-rt for the generation to pass.
+After this ends you should have an \*.xpr file in one of build directorie=
+s. You can open this file Vivado. Then find x4xx_ps_rfdc_bd block diagram=
+, open it and edit ZYNQ configuration to enable the bus that you need. Af=
+ter that I don=E2=80=99t remember if you have to do synthesis or you can =
+straight away go to File->Export->Export Hardware and create a zip file w=
+ith psu_init_gpl.c and a header (psu_init_gpl.h ?).
 
-Then you need to take the generated files (pm_cfg_obj.c, psu_init_gpl.c),=
- compare them with the files from the 0006-board-ni-add-support-for-X410.=
-patch and either edit this patch or create a new one with you changes onl=
-y. Forgive me, but I don't remember easiest way to do that with yocto. On=
-e way is to build yocto image for X440 with use of kas, find u-boot sourc=
-e code in the build directory, change the files there and create a patch =
-with use of git.
+=E2=80=A6
 
-Then add the path to the patch here:
-
-https://github.com/EttusResearch/meta-ettus/blob/1c00f1ce66d4d141f0be6565=
-fbd562d8692777d2/meta-ettus-bsp/recipes-bsp/u-boot/u-boot_2020.10_ni.inc#=
-L13
-
-Then build the whole yocto image (or just u-boot if you know how) for X41=
-0/X440 and flash it on an SD-CARD
-
-I hope there is a simpler way to do what you want, but I don't know any.
-
-Best Regards,\
 Piotr Krysik
 
---b1_edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk
+--b1_DWyCFTcUUpewxcwXn70xJ3RTrseY6tvfsQPOhqDdHk
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hello Brian,</p><p>I had to go through this topic thoroughly when I did =
-port of X410 code to ZCU111. It was over two years ago but I still remember=
- something.</p><p>X410 and X440 don=E2=80=99t use FSBL code from Xilinx to =
-boot RFSoC like in autogenerated Petalinux projects.</p><p>They took some f=
-iles from hardware exported in Vivado for the project (File-&gt;Export-&gt;=
-Export Hardware - it generates a zip file) and put them into SPL (Secondary=
- Program Loader) which is u-boot=E2=80=99s replacement for FSBL.</p><p>In t=
-he exported hardware there is file psu_init_gpl.c. The configuration that y=
-ou need to set is most probably stored in it.This file + pm_cfg_obj.c (I=
-=E2=80=99ll describe generation of this file later) are added to u-boot by =
-this patch:https://github.com/EttusResearch/meta-ettus/blob/kirkstone/meta-=
-ettus-bsp/recipes-bsp/u-boot/files/ni-titanium/0006-board-ni-add-support-fo=
-r-X410.patch</p><p>There=E2=80=99s one pair of such files for each X410=
-=E2=80=99s revision but I don=E2=80=99t see any for X440. Maybe they share =
-them between X410 and X440.</p><p>Now I don=E2=80=99t have the exact guide =
-how to do the export. Only what I remember, so there might be something wro=
-ng/missing.I did it by generating a project that can be normally opened and=
- modified in Vivado.To generate the project I modified this line:</p><p>htt=
-ps://github.com/EttusResearch/uhd/blob/07a7a92ad6e09cc7e84aae5990aff563a454=
-6e83/fpga/usrp3/top/x400/build_x4xx.tcl#L11tovivado_utils::initialize_proje=
-ct 1Then in uhd/pga/usrp3/top/x400/ do:source setupenv.shmakeAfter this end=
-s you should have an *.xpr file in one of build directories. You can open t=
-his file Vivado. Then find x4xx_ps_rfdc_bd block diagram, open it and edit =
-ZYNQ configuration to enable the bus that you need. After that I don=
-=E2=80=99t remember if you have to do synthesis or you can straight away go=
- to File-&gt;Export-&gt;Export Hardware and create a zip file with psu_init=
-_gpl.c and a header (psu_init_gpl.h ?).</p><p>From this file you generate a=
- pm_cfg_obj.c file with use of this tool:</p><p>https://github.com/u-boot/u=
--boot/blob/master/tools/zynqmp_psu_init_minimize.sh</p><p>The usage is in t=
-he source code of this script (this particular step was figured out by Emil=
- J Tywoniak, so credit goes to him here):</p><p>zynqmp_psu_init_minimize.sh=
- /path/to/original/psu_init_gpl_c_and_h/ outdir</p><p>Last time I used this=
- script (over 2 years ago) it was failing on some #ifdef boilerplate from t=
-he psu_init_gpl.c file. So I had to remove that part for the generation to =
-pass.</p><p>Then you need to take the generated files (pm_cfg_obj.c, psu_in=
-it_gpl.c), compare them with the files from the 0006-board-ni-add-support-f=
-or-X410.patch and either edit this patch or create a new one with you chang=
-es only. Forgive me, but I don't remember easiest way to do that with yocto=
-. One way is to build yocto image for X440 with use of kas, find u-boot sou=
-rce code in the build directory, change the files there and create a patch =
-with use of git.</p><p>Then add the path to the patch here:</p><p>https://g=
-ithub.com/EttusResearch/meta-ettus/blob/1c00f1ce66d4d141f0be6565fbd562d8692=
-777d2/meta-ettus-bsp/recipes-bsp/u-boot/u-boot_2020.10_ni.inc#L13</p><p>The=
-n build the whole yocto image (or just u-boot if you know how) for X410/X44=
-0 and flash it on an SD-CARD</p><p>I hope there is a simpler way to do what=
- you want, but I don't know any.</p><p>Best Regards,<br>Piotr Krysik</p>
+<p>perper@o2.pl wrote:</p><blockquote><p>https://github.com/EttusResearch/u=
+hd/blob/07a7a92ad6e09cc7e84aae5990aff563a4546e83/fpga/usrp3/top/x400/build_=
+x4xx.tcl#L11tovivado_utils::initialize_project 1Then in uhd/pga/usrp3/top/x=
+400/ do:source setupenv.shmakeAfter this ends you should have an *.xpr file=
+ in one of build directories. You can open this file Vivado. Then find x4xx=
+_ps_rfdc_bd block diagram, open it and edit ZYNQ configuration to enable th=
+e bus that you need. After that I don=E2=80=99t remember if you have to do =
+synthesis or you can straight away go to File-&gt;Export-&gt;Export Hardwar=
+e and create a zip file with psu_init_gpl.c and a header (psu_init_gpl.h ?)=
+.</p></blockquote><p>Something was messed with this paragraph. It was:<br><=
+br></p><p>https://github.com/EttusResearch/uhd/blob/07a7a92ad6e09cc7e84aae5=
+990aff563a4546e83/fpga/usrp3/top/x400/build_x4xx.tcl#L11</p><p>to</p><p>viv=
+ado_utils::initialize_project 1</p><p>Then in uhd/pga/usrp3/top/x400/ do:</=
+p><p>source setupenv.sh<br>make</p><p>After this ends you should have an *.=
+xpr file in one of build directories. You can open this file Vivado. Then f=
+ind x4xx_ps_rfdc_bd block diagram, open it and edit ZYNQ configuration to e=
+nable the bus that you need. After that I don=E2=80=99t remember if you hav=
+e to do synthesis or you can straight away go to File-&gt;Export-&gt;Export=
+ Hardware and create a zip file with psu_init_gpl.c and a header (psu_init_=
+gpl.h ?).</p><p>=E2=80=A6</p><p>Piotr Krysik</p>
 
---b1_edF0kZYjfRJ5jGC3eYUDuzWwzkyI95EInMq4flkCk--
+--b1_DWyCFTcUUpewxcwXn70xJ3RTrseY6tvfsQPOhqDdHk--
 
---===============2254983879131917027==
+--===============7423611052805376499==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -205,4 +140,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2254983879131917027==--
+--===============7423611052805376499==--
