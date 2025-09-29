@@ -2,148 +2,198 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79A7CBA4FB8
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Sep 2025 21:37:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A566FBA8D7B
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 12:15:46 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 875713862C4
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Sep 2025 15:37:35 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DCB3E3861FD
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 06:15:42 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1758915455; bh=HgSLJEbVbj7wWxLuERGq01Rh87QmeMBUWVu4Egv2tKg=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=m0QHgU+ISEsD9A6nRIg+/EBhUs3vJGj/Y8PYuaBhN6iez1xDFBUSNNEG3NUXsWb4C
-	 H4mTghDl60dkzMEHmKXDbj+IH7kW3FiSrpPPVoRcoEw9GyoROzTbiFmHrXLybOdBOI
-	 LyU/mATdNAyIPA2HKzhRIs7QEe0VozAWbDSadhdUHyvJeF+dngva1ENmFqwy7SAyer
-	 H2HwtpMVnJKM8eUAtaLo+k1eB8LySC+rnlVwbQrly0iWB6I7BsBiO72Ug+8G1BWaXk
-	 HOYUcEjjwgewDTKxEH4SaQYKKhhLDsQ2X9u3QkSoVZ5nwzkJzk1y182tXOh9+YScpC
-	 0lSgg91BWfl9g==
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3FBCF3862B3
-	for <usrp-users@lists.ettus.com>; Fri, 26 Sep 2025 15:36:53 -0400 (EDT)
+	t=1759140942; bh=oQFDME4as8SCOrR1RV5+y8sALFk6NMv+Nw5M5kvvp7U=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=MXCG4RPB7IgQ5naFUB6bM5R07fpsIE5gsuxvmEmbYO/lnQfnmSI8x9SYIPbJZ3SNc
+	 P+saT9dtRB4pFP3HZeLrKTL0vnXemQ3XcnKVPAgqyqBqicZ+54zEP+bhWq62zkou4Y
+	 x1ivOD1tiL79D/SckE+RdnCuo52htLA78Txdt2VDqFUg6flSSL/00hkgNQF8e1HYsS
+	 HRP60R3xRY0E8NFJMfrOgXxpfpALPcRUH0mjkJFusItl1QdsCumHUntezi/BWTSPdc
+	 9O+GJxdwEUeoMoYbth6vZARScczvCLLBcihcW+T8reU4m/YZhzG9uSGk+Jr6/upfZE
+	 xcBO2b1L8vSHA==
+Received: from corg.destevez.net (corg.destevez.net [51.75.17.244])
+	by mm2.emwd.com (Postfix) with ESMTPS id 28986386190
+	for <usrp-users@lists.ettus.com>; Mon, 29 Sep 2025 06:15:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="BVbYxBVH";
+	dkim=pass (4096-bit key; unprotected) header.d=destevez.net header.i=@destevez.net header.b="LPSEZKaB";
 	dkim-atps=neutral
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-63470a6f339so2213777d50.0
-        for <usrp-users@lists.ettus.com>; Fri, 26 Sep 2025 12:36:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1758915412; x=1759520212; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LJzsxPv+qdZ/5iKSSC497DFSx7pXWTAqF/LQpMvmLgM=;
-        b=BVbYxBVHrdsB6uU+aLhL3snbS7Yswp9Q8SY13MeRaUGFTdM6TTzkhvRVMfBPJvUyvz
-         NOWTxA1ZuxnKmRieOVP0R0555een9T3RaqUXz0vVIWvCC1dTorfHvWdicqTUT0j2pMzi
-         +HhhGceD4i65UjVU8oQOUwkfXA05z/ZuZtVr9VOv0AJoWjerIkz7ZdT/H1n47I+AYvz4
-         crjJEZMvfPiJlOHIlZVW9F/G+/fZAdH3DfA6k5BWPxNYkLUPZuyq4XnCZF+TSkJNAml2
-         3scxdq3L28drLyQGnN+99FmY/mUWPdrpZoq90QYfdP5pklaPxshFXs05tfmvbZ0xTBW3
-         nn+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758915412; x=1759520212;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LJzsxPv+qdZ/5iKSSC497DFSx7pXWTAqF/LQpMvmLgM=;
-        b=I5jrlx694JSFnFEziynkXOXCwy8ZDi2lR/snswdromoJrJ53Z8NBT+jr0DzEY3kIoi
-         2w0ocJXBUWSwsOQQ9a5iEr/elgYq6PgF8tOASs75G7ZU2l8himzGzsv6sKgGpVNFBy5I
-         JXAdra6iKS/VXQRLhXNAusgi3PhfkSlLGJYvIP+qeB77OR2M19FXTLANBstUOuVaWlY/
-         1kXUmrUSu0bFyCy5m3nIndff8QR1XiXWGWR8e8oo6PtD2qHnuiIlCzhZjlzZPgrNhUdz
-         qpdoKVtKYWhmBZIl33mV+DI1yKDsd5uNSbQ0wPdrxu9AxIv6B+6Sozf58qO/JJgI76Hn
-         JwyA==
-X-Gm-Message-State: AOJu0YyHWA91QrotdnzweSceZ33TlqoUjC6ms/siN2zTbG4mbtxH6T7t
-	VIlhObJkOWF17L4XcW1kmdEqcEarBYTRjnrEHZD4hz49YLbiK1I0xT/nTDkDagWig+aM2BMOjHD
-	q2sRfasyyeTltJlq4onjDpAS0zD7gufSWf6NwsXAqJUMZR52y9rs=
-X-Gm-Gg: ASbGncvaKMY5TOQ5x0Nmozk6P8ADuFC0Any86uES5v2CdGayihKyITrxf9LtehM4GjG
-	8LEHcUUUtSTD+nkpO/fUwnkowvogcVHy8I02UN4PSxeD4ZzgDy/sGlOQKM2t8rR0m3IPv7vghLV
-	bn9U5tN48hFv8YllMDDqcnNjBIAurgZ7BsphAyhHI8sVany06VGLXs/3SUzMU+utX3zbVdCuQBO
-	7mxEZm0XWcyK5ODIPhGaHE=
-X-Google-Smtp-Source: AGHT+IFY/ri45SDiHLzMB6mpKy4bSYenxSbNQJlormJ+gdfeP12FM/JwHnyemtQKyykoEcY+4c8Wjv2y2V/tRoIuHYU=
-X-Received: by 2002:a53:b10b:0:b0:635:4ed0:5767 with SMTP id
- 956f58d0204a3-6361a89bd16mr7052474d50.53.1758915412469; Fri, 26 Sep 2025
- 12:36:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=destevez.net; s=corg; h=Content-Type:Subject:From:To:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=kmNip15lOtxAXQdoMSUj8kekUN+TYJPli9iCXo4y2pQ=; b=LPSEZKaB+66jQ0KqABRtSF01v6
+	Ai5J0R2nJAT6zPc/4ePPMwdJz+FdsYxfjaQ6X8bHxW9Roz4ytv2O8iniaycNvRMJRnkJ64sIrO3WP
+	NE999Xxsi260bMUPuvhI+RptGQdDLcBkcHPzH8toP2blXZZX8o8p3BHdPGm5sjPA8PV3IWOd5KNJL
+	bh7VLAFtrhRF7ONI000FyYJr7rNaewVJtwZnFycEa6p2MhriktJcou+FO2MnVZnf8kfyDiOj6WP9s
+	doE5TVVbv3sUQ2z8l5I7ev/9ucXD73ojSI5mTetV/83JFUzVUkiu477qQNkBXrdJDSn/phepNxdQV
+	T8LeIg3v3vNMYGlWVO3xFBbHG1KfKilXEkIrOivGb1Yg3mMsk0gLhEX27DnaKf2jRysHga9HAz4EA
+	XUmUbzwPWG/FfWPafwK+MGnvy5ML/ujEJq5Fr3TlCgAz2O8WfL6u2Zx7EYIHX5NJEV9VMY+Hac+C+
+	vX0Xp5KQdBaFpbAqSqqspySVbUIF+F9gPNqwXLZOF5gqxwShr0XlW4/DC8JUH0MZz65/CEAl43VA3
+	LCFoydnS0xFKvNvNmiAICLd2cxolYW2fotCWoo344j5ij+TN4EuEdUBPVM03yLb4mO9ayV5yqQSUF
+	ky2E//TGdjev5Vhmf896sPDW3F5zEJ7npexABRo6c=;
+Received: from [2001:470:6915:1:2e0:4cff:fe68:540]
+	by corg.destevez.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.98.2)
+	(envelope-from <daniel@destevez.net>)
+	id 1v3Auh-00000001xGC-3kcA
+	for usrp-users@lists.ettus.com;
+	Mon, 29 Sep 2025 12:15:24 +0200
+Message-ID: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
+Date: Mon, 29 Sep 2025 12:15:18 +0200
 MIME-Version: 1.0
-Date: Fri, 26 Sep 2025 15:36:41 -0400
-X-Gm-Features: AS18NWB42P2KD4MsJiLi4F9iaBqrzayvq_4uoqiQ3yNdsG5gkS1hvU9LTAzosxw
-Message-ID: <CAB__hTRcNyfshCagutk5SJVp+aaxRLbL8AdBO4pcoSrjyadXPg@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: MUIAA66U5LGNRFAOV4KKBENTVCDJ7S46
-X-Message-ID-Hash: MUIAA66U5LGNRFAOV4KKBENTVCDJ7S46
-X-MailFrom: rkossler@nd.edu
+User-Agent: Mozilla Thunderbird
+To: usrp-users@lists.ettus.com
+Content-Language: en-US
+From: =?UTF-8?Q?Daniel_Est=C3=A9vez?= <daniel@destevez.net>
+Autocrypt: addr=daniel@destevez.net; keydata=
+ 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
+Message-ID-Hash: BJWNSQWVRFB23OUBCPPHYPS6KJAPUXHS
+X-Message-ID-Hash: BJWNSQWVRFB23OUBCPPHYPS6KJAPUXHS
+X-MailFrom: daniel@destevez.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] How to know streaming rate in arbitrary graph
+Subject: [USRP-users] Half duplex with USRP B2xx and GNU Radio
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MUIAA66U5LGNRFAOV4KKBENTVCDJ7S46/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BJWNSQWVRFB23OUBCPPHYPS6KJAPUXHS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============6790774059302257277=="
+Content-Type: multipart/mixed; boundary="===============6949046853566534544=="
 
---===============6790774059302257277==
-Content-Type: multipart/alternative; boundary="00000000000059d372063fb96838"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============6949046853566534544==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------7UVEwc7YJJWSsIhRWYx56ZVI"
 
---00000000000059d372063fb96838
-Content-Type: text/plain; charset="UTF-8"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------7UVEwc7YJJWSsIhRWYx56ZVI
+Content-Type: multipart/mixed; boundary="------------mAHLJ1BuTNXc30GunZU8ipni";
+ protected-headers="v1"
+From: =?UTF-8?Q?Daniel_Est=C3=A9vez?= <daniel@destevez.net>
+To: usrp-users@lists.ettus.com
+Message-ID: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
+Subject: Half duplex with USRP B2xx and GNU Radio
 
-Hi,
-I have a custom c++ application that uses UHD to connect to RFNoC USRPs and
-tries to behave appropriately for arbitrary graphs. I'm most interested in
-directed graphs that go from the Rx radio to Rx streamers through some
-series of blocks including rate changing blocks such as DDC. I'm wondering
-if there is a generalized approach that would allow me to know the sample
-rate of the samples coming through a given streamer.
+--------------mAHLJ1BuTNXc30GunZU8ipni
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Specifically, I just built an RFNoC image where the one Rx radio output was
-connected to a 1:2 SplitStream block and then to a 2-channel DDC which
-would allow me to downconvert 2 areas of the instantaneous spectrum from a
-single radio channel (e.g., GPS at 1176 and 1226 MHz).  The DDC outputs
-then go to 2 Rx streamers.
+SGVsbG8sDQoNCkkgYW0gaW1wbGVtZW50aW5nIGEgaGFsZi1kdXBsZXggbW9kZW0gd2l0aCBH
+TlUgUmFkaW8gYW5kIGEgVVNSUCBCMnh4IA0KdGhhdCB1c2VzIENTTUEgdG8gY29udHJvbCBt
+ZWRpdW0gYWNjZXNzLiBJIGhhdmUgYSBHTlUgUmFkaW8gZmxvd2dyYXBoIA0Kd2l0aCBhIFVT
+UlAgU291cmNlIGFuZCBVU1JQIFNpbmsgYmxvY2tzIGJvdGggc2V0IHRvIHVzZSB0aGUgVFgv
+UlggDQphbnRlbm5hLiBUaGUgVVNSUCBTaW5rIGJsb2NrIHVzZXMgYnVyc3QgdHJhbnNtaXNz
+aW9uLiBXaGVuIGEgYnVyc3QgaXMgDQpzZW50LCB0aGUgQjJ4eCBhdXRvbWF0aWNhbGx5IHN3
+aXRjaGVzIHRoZSByZWNlaXZlIHRvIHRoZSBSWDIgcG9ydC4NCg0KVGhlIGlzc3VlIGlzIHRo
+YXQgdGhlcmUgaXMgZW5vdWdoIGxlYWthZ2UgdGhyb3VnaCB0aGUgUlgyIHBvcnQgdGhhdCB0
+aGUgDQpzeXN0ZW0gaXMgYWJsZSB0byByZWNlaXZlIGl0cyBvd24gdHJhbnNtaXQgcGFja2V0
+cyB3aXRoIGdvb2QgU05SLiBUaGlzIA0KaXMgYSBwcm9ibGVtIGZvciB0aGUgQ1NNQSBzeXN0
+ZW0gYmVjYXVzZSBpdCBtYWtlcyB0aGUgc3lzdGVtIGRldGVjdCB0aGF0IA0KdGhlIGNoYW5u
+ZWwgaXMgYnVzeSB3aGlsZSBpdCBpcyB0cmFuc21pdHRpbmcgaXRzIG93biBwYWNrZXQuIER1
+ZSB0byB0aGUgDQpsYXRlbmN5IGJldHdlZW4gdGhlIFJYIGFuZCBUWCBzdHJlYW1zIGluIEdO
+VSBSYWRpbywgdGhpcyBwcmV2ZW50cyB0aGUgDQptb2RlbSBmcm9tIHRyYW5zbWl0dGluZyBi
+YWNrLXRvLWJhY2sgcGFja2V0cyAod2hpY2ggaXMgYWxsb3dlZCBhbmQgDQpleHBlY3RlZCBi
+eSB0aGlzIENTTUEgc2NoZW1lKSwgYmVjYXVzZSB3aGVuIHRoZSBzZWNvbmQgcGFja2V0IGlz
+IGFib3V0IA0KdG8gYmUgc2VudCwgdGhlIG1vZGVtIHJlY2VpdmVyIGlzIHN0aWxsIHNlZWlu
+ZyB0aGUgZW5kIG9mIHRoZSBwcmV2aW91cyANCnBhY2tldCBhbmQgZGV0ZXJtaW5lcyB0aGF0
+IHRoZSBjaGFubmVsIGlzIHN0aWxsIGJ1c3kuDQoNClRvIHNvbHZlIHRoaXMgaXNzdWUsIEkg
+d291bGQgbGlrZSB0aGUgVVNSUCBTb3VyY2UgdG8gcmVjZWl2ZSBlaXRoZXIgDQp6ZXJvcywg
+bm8gc2FtcGxlcyBhdCBhbGwsIG9yIHNvbWV0aGluZyB0aGF0IGF0IGxlYXN0IGRvZXMgbm90
+IGhhdmUgc28gDQptdWNoIGxlYWthZ2Ugb2YgaXRzIG93biBUWCBzaWduYWwuDQoNCklzIGl0
+IHBvc3NpYmxlIHRvIGRvIHRoaXMgZWl0aGVyIGJ5IGFwcHJvcHJpYXRlIGNvbmZpZ3VyYXRp
+b24gaW4gR05VIA0KUmFkaW8gb3IgVUhEPw0KDQpJJ3ZlIGJlZW4gc3R1ZHlpbmcgdGhlIHNv
+dXJjZXMgb2YgVUhEIGFuZCBHTlUgUmFkaW8gdG8gc2VlIGhvdyB0aGlzIA0KY291bGQgYmUg
+ZG9uZS4gVGhlIG9ubHkgdGhpbmcgSSBoYXZlIGZvdW5kIGlzIHRoYXQgdGhpcyB3b3VsZCBi
+ZSANCnBvc3NpYmxlIHdpdGggYSBzbWFsbCBjaGFuZ2UgdG8gdGhlIEZQR0EgaW1hZ2UuIEZv
+ciBpbnN0YW5jZSwgdGhpcyBsaW5lDQoNCmh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2Vh
+cmNoL3VoZC9ibG9iL21hc3Rlci9mcGdhL3VzcnAzL2xpYi9yYWRpb18yMDAvcmFkaW9fbGVn
+YWN5LnYjTDQ0Ng0KDQpjb3VsZCBiZSBtb2RpZmllZCB0byByZXBsYWNlIHRoZSBSWCBzYW1w
+bGVzIGJ5IHplcm9zIHdoZW5ldmVyIHJ1bl9yeCBpcyANCmFzc2VydGVkLg0KDQpIb3dldmVy
+IEkgd291bGQgcHJlZmVyIG5vdCB0byBidWlsZCBhIG1vZGlmaWVkIEZQR0EgaW1hZ2UgZm9y
+IHRoaXMgDQpzeXN0ZW0sIHNvIEkgd2FzIHdvbmRlcmluZyBpZiBvdGhlciBzb2x1dGlvbnMg
+ZXhpc3QuDQoNCkJlc3QsDQpEYW5pZWwuDQoNCg==
 
-My understanding is that property propagation would cause the DDC to notify
-downstream blocks of the change to the EDGE property "samp_rate" or
-something like that.  But, how can the UHD API user get access to this
-info.  I realize that the rx_streamer is not actually an RFNoC block but it
-is conceptually similar in many ways.  If I could call a function on the
-rx_streamer such as "get_input_rate()" (as I can using the DDC block
-controller), I would have a generic way to know the sample rate of the
-incoming stream.
+--------------mAHLJ1BuTNXc30GunZU8ipni--
 
-Let me know if there is some way to obtain this information from UHD.
-Thanks.
-Rob
+--------------7UVEwc7YJJWSsIhRWYx56ZVI
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
---00000000000059d372063fb96838
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+-----BEGIN PGP SIGNATURE-----
 
-<div dir=3D"ltr"><div>Hi,</div><div>I have a custom c++ application that us=
-es UHD to connect to RFNoC USRPs and tries to behave appropriately for arbi=
-trary graphs. I&#39;m most interested in directed graphs that go from the R=
-x radio to Rx streamers through some series of blocks including rate changi=
-ng blocks such as DDC. I&#39;m wondering if there is a generalized approach=
- that would allow me to know the sample rate of the samples coming through =
-a given streamer.=C2=A0</div><div><br></div><div>Specifically, I just built=
- an RFNoC image where the one Rx radio output was connected to a 1:2 SplitS=
-tream block and then to a 2-channel DDC which would allow me to downconvert=
- 2 areas of the instantaneous spectrum from a single radio channel (e.g., G=
-PS at 1176 and 1226 MHz).=C2=A0 The DDC outputs then go to 2 Rx streamers.=
-=C2=A0=C2=A0</div><div><br></div><div>My understanding is that property pro=
-pagation would cause the DDC to notify downstream blocks of the change to t=
-he EDGE property &quot;samp_rate&quot; or something like that.=C2=A0 But, h=
-ow can the UHD API user get access to this info.=C2=A0 I realize that the r=
-x_streamer is not actually an RFNoC block but it is conceptually similar in=
- many ways.=C2=A0 If I could call a function on the rx_streamer such as &qu=
-ot;get_input_rate()&quot; (as I can using the DDC block controller), I woul=
-d have a generic way to know the sample rate of the incoming stream.</div><=
-div><br></div><div>Let me know if there is some way to obtain this informat=
-ion from UHD.</div><div>Thanks.</div><div>Rob</div><div><br></div></div>
+iQIzBAEBCgAdFiEEOn0gFAd3OQG8ow6EtFwrk3lBwykFAmjaXDYACgkQtFwrk3lB
+wymLrA/8D01ek8uOOPsbTnxvaLlIjwFcFA7GEwYeRMmF87IZfDKQroSH2xuOoSKz
+Fz48sHEW46X7uYkscxDvfMiUp+beIH8mVIPo4n4GZ0SEb8S1CmBB01od4G1ItNC0
+OAilgYJKY3TwZTDXGGtIkcOhKjpgJSHKPLYn3s6U42bY4cG6XwKy0sz5jw50TaUe
+eGfgZZ2SgFlyauRdt5xOVG88OM797dEuTCOVAnKCmJR9NPTr6UyTFwd9d9WJFRJX
+OGyvlEr33/TfclhKWQtMOBiKyySYogzPTmfkB3DmUxqszDKI0UCG8ErYHcSoYs19
+I4G/QOcEERKaA2SgZPaD5+r+dx2YQ0EOMX+hHk7GtWhbjaImAgUd+O1fSMJ+MVha
+ZAOkrrwBdn1AmqeLLsEyf/Il7tPk5sVQyR93CKGBt3h40WxcQho64MIgNw3vIyV1
+cUUFPLy5kyXFMkNJt5d+xuWOJfK7xHrFqpv7WwE++MkvMrLDw6wxBY1F/DnlbK+l
+S4TxE4W/cQ1Rx5k71hOY+cG4TY8eOBpaoCuYc9sIaZU37m2ps5+ucMMo125Bcxej
+0IaLlLnofxgZ5pAg11yFkRRk9mzT3oOFMj8Py4floEY382cNjS0RA8JaHX+Y1Jot
+eFrFhub1i9VLJb/u0Ka8t7gqFIZPw2xdBSPCCzxxKRfi2L9MRH4=
+=J4yQ
+-----END PGP SIGNATURE-----
 
---00000000000059d372063fb96838--
+--------------7UVEwc7YJJWSsIhRWYx56ZVI--
 
---===============6790774059302257277==
+--===============6949046853566534544==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +203,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6790774059302257277==--
+--===============6949046853566534544==--
