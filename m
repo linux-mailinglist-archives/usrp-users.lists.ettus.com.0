@@ -2,198 +2,283 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A566FBA8D7B
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 12:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2DD8BA94C3
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 15:15:39 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DCB3E3861FD
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 06:15:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A6D2A3863D4
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 09:15:38 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1759140942; bh=oQFDME4as8SCOrR1RV5+y8sALFk6NMv+Nw5M5kvvp7U=;
-	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=MXCG4RPB7IgQ5naFUB6bM5R07fpsIE5gsuxvmEmbYO/lnQfnmSI8x9SYIPbJZ3SNc
-	 P+saT9dtRB4pFP3HZeLrKTL0vnXemQ3XcnKVPAgqyqBqicZ+54zEP+bhWq62zkou4Y
-	 x1ivOD1tiL79D/SckE+RdnCuo52htLA78Txdt2VDqFUg6flSSL/00hkgNQF8e1HYsS
-	 HRP60R3xRY0E8NFJMfrOgXxpfpALPcRUH0mjkJFusItl1QdsCumHUntezi/BWTSPdc
-	 9O+GJxdwEUeoMoYbth6vZARScczvCLLBcihcW+T8reU4m/YZhzG9uSGk+Jr6/upfZE
-	 xcBO2b1L8vSHA==
-Received: from corg.destevez.net (corg.destevez.net [51.75.17.244])
-	by mm2.emwd.com (Postfix) with ESMTPS id 28986386190
-	for <usrp-users@lists.ettus.com>; Mon, 29 Sep 2025 06:15:25 -0400 (EDT)
+	t=1759151738; bh=dVEqSdwkpKfKgiQBDOMyVEBd14VmV/C2hk9FGZdDiWk=;
+	h=To:Date:In-Reply-To:References:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=yJDZbdCCi4voBW9CrQDIDhFtLDkwCjCkRqyjY3avYwvV9TkuhhwlvEISu8tVXrSZc
+	 cmFDodTbmzn8wwE356rf32ajlVCVmXXnSN6G7ObRO7ww739CPn52k9pSP3HK2O24d7
+	 dT+X7Bmi79B7/84oyyqmYzHIXb3l9H+np0rrv+p5Qb+lL4Hj0Mz8t87PCUE4Ue/c3E
+	 mHzf7fsbHKNbc/y7CdXiR6AOaElzEgbpgB/F+CqyL3FlMR/Baz4Ijr6U0lwlAC0lGs
+	 KQenaRvEHO9p1kONFPfzkR8RVKy8H0zCwCIUmEJG08DWUrzV4iFkoFL6sZl/hoeWLM
+	 t3jldT5enXDgQ==
+Received: from omr02.pc4.atmailcloud.com (omr02.pc4.atmailcloud.com [54.217.190.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id F2D68386311
+	for <usrp-users@lists.ettus.com>; Mon, 29 Sep 2025 09:14:33 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (4096-bit key; unprotected) header.d=destevez.net header.i=@destevez.net header.b="LPSEZKaB";
+	dkim=pass (1024-bit key; unprotected) header.d=manx.net header.i=@manx.net header.b="eY2OpMtR";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=destevez.net; s=corg; h=Content-Type:Subject:From:To:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=kmNip15lOtxAXQdoMSUj8kekUN+TYJPli9iCXo4y2pQ=; b=LPSEZKaB+66jQ0KqABRtSF01v6
-	Ai5J0R2nJAT6zPc/4ePPMwdJz+FdsYxfjaQ6X8bHxW9Roz4ytv2O8iniaycNvRMJRnkJ64sIrO3WP
-	NE999Xxsi260bMUPuvhI+RptGQdDLcBkcHPzH8toP2blXZZX8o8p3BHdPGm5sjPA8PV3IWOd5KNJL
-	bh7VLAFtrhRF7ONI000FyYJr7rNaewVJtwZnFycEa6p2MhriktJcou+FO2MnVZnf8kfyDiOj6WP9s
-	doE5TVVbv3sUQ2z8l5I7ev/9ucXD73ojSI5mTetV/83JFUzVUkiu477qQNkBXrdJDSn/phepNxdQV
-	T8LeIg3v3vNMYGlWVO3xFBbHG1KfKilXEkIrOivGb1Yg3mMsk0gLhEX27DnaKf2jRysHga9HAz4EA
-	XUmUbzwPWG/FfWPafwK+MGnvy5ML/ujEJq5Fr3TlCgAz2O8WfL6u2Zx7EYIHX5NJEV9VMY+Hac+C+
-	vX0Xp5KQdBaFpbAqSqqspySVbUIF+F9gPNqwXLZOF5gqxwShr0XlW4/DC8JUH0MZz65/CEAl43VA3
-	LCFoydnS0xFKvNvNmiAICLd2cxolYW2fotCWoo344j5ij+TN4EuEdUBPVM03yLb4mO9ayV5yqQSUF
-	ky2E//TGdjev5Vhmf896sPDW3F5zEJ7npexABRo6c=;
-Received: from [2001:470:6915:1:2e0:4cff:fe68:540]
-	by corg.destevez.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.98.2)
-	(envelope-from <daniel@destevez.net>)
-	id 1v3Auh-00000001xGC-3kcA
-	for usrp-users@lists.ettus.com;
-	Mon, 29 Sep 2025 12:15:24 +0200
-Message-ID: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
-Date: Mon, 29 Sep 2025 12:15:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=manx.net;
+	s=20160330; h=Content-Type:MIME-Version:Message-Id:Date:Subject:To:From;
+	bh=qkKauKFA0D9X05ZV6VshBsPhybNnMrZjq9w1Dvi39vk=; b=eY2OpMtRmH17fIQiKxZh2qLKx5
+	VN7z8IapjpX4tivM8lfIwMUmcFTu0J2e4itfhirpRZ5w7YCKWbntbb+CVB3I/4p5TyehsbvpXv1r3
+	Ms3Ar9NvyDKcCM+JUD9TNaGd9eJdlcSp1S1d1vCqJEKOEtxrS4ac/PkBkG0QiCPkDyRY=;
+Received: from cmr-cushag.internal.pc4.atmailcloud.com (cmr-cushag.internal.pc4.atmailcloud.com [192.168.1.13])
+	by omr.internal.pc4.atmailcloud.com (Exim/cmr-cushag.i-0ec42f760acdbcea8) with ESMTPS
+	(envelope-from <drtaylor@manx.net>)
+	id 1v3Di4-000000001zJ-1nGY ;
+	Mon, 29 Sep 2025 13:14:32 +0000
+Received: from  ([IPv6:::ffff:192.168.1.168] [213.137.15.32])
+	by cmr-cushag.internal.pc4.atmailcloud.com (Exim/[ipv6:::ffff:192.168.1.168]) with ESMTPSA
+	(envelope-from <drtaylor@manx.net>)
+	id 1v3Di4-000000003yN-0QxK ;
+	Mon, 29 Sep 2025 13:14:32 +0000
+To: =?utf-8?q?Daniel=20Est=c3=a9vez?= <daniel@destevez.net>,
+ usrp-users@lists.ettus.com
+Date: Mon, 29 Sep 2025 13:14:31 +0000
+Message-Id: <em04cff5b9-3004-4f65-9531-fe4ad5a873e1@2107a28f.com>
+In-Reply-To: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
+References: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
+User-Agent: eM_Client/10.3.2619.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: usrp-users@lists.ettus.com
-Content-Language: en-US
-From: =?UTF-8?Q?Daniel_Est=C3=A9vez?= <daniel@destevez.net>
-Autocrypt: addr=daniel@destevez.net; keydata=
- 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
-Message-ID-Hash: BJWNSQWVRFB23OUBCPPHYPS6KJAPUXHS
-X-Message-ID-Hash: BJWNSQWVRFB23OUBCPPHYPS6KJAPUXHS
-X-MailFrom: daniel@destevez.net
+X-Atmail-Id: drtaylor@manx.net
+X-atmailcloud-spam-action: no action
+X-Cm-Analysis: v=2.4 cv=HqJwGVTS c=1 sm=1 tr=0 ts=68da8638 a=/w/bpNuGKTEK/snkzY3zrQ==:117 a=/w/bpNuGKTEK/snkzY3zrQ==:17 a=xqWC_Br6kY4A:10 a=yJojWOMRYYMA:10 a=NEAV23lmAAAA:8 a=iXaKlsfVAAAA:8 a=etiEgX_XAAAA:8 a=ByJ2BlTVV13VR7CJPVQA:9 a=QEXdDO2ut3YA:10 a=_kenLAQrpHgUoq7vy_EA:9 a=DpEftlfeedk6sh68:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10 a=lqcHg5cX4UMA:10 a=AWtWtc0RukrYRNvQ_1Zp:22 a=MLbIUA-Bjd6y1alW9qBG:22
+X-Cm-Envelope: MS4xfGVa/5gDv0nBWLzFxwN3EM2XAyki7F7qNNPE0UWAivOwIB1zxiD8iuLSpET6WLaoeWn0rdoHyD+P0f8IcFe8gMo/CLh1ZKzYiHbxDSnRZozg7EEXozsj WHKNeFRJASTHg23u+oCawC34dxkCR43UTySOTatxccGpDXuxEsV7eiNF
+X-atmailcloud-route: unknown
+Message-ID-Hash: 7T2TZWPO65RZTVHH4IRRHZXWSVQH7FLU
+X-Message-ID-Hash: 7T2TZWPO65RZTVHH4IRRHZXWSVQH7FLU
+X-MailFrom: drtaylor@manx.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Half duplex with USRP B2xx and GNU Radio
+Subject: [USRP-users] Re: Half duplex with USRP B2xx and GNU Radio
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BJWNSQWVRFB23OUBCPPHYPS6KJAPUXHS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7T2TZWPO65RZTVHH4IRRHZXWSVQH7FLU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6949046853566534544=="
+From: "David Taylor (manx.net) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "David Taylor (manx.net)" <drtaylor@manx.net>
+Content-Type: multipart/mixed; boundary="===============4311362938762445481=="
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============6949046853566534544==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------7UVEwc7YJJWSsIhRWYx56ZVI"
+--===============4311362938762445481==
+Content-Type: multipart/alternative;
+ boundary="------=_MB42A40AFF-6263-487A-BB63-4599D2EF7604"
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------7UVEwc7YJJWSsIhRWYx56ZVI
-Content-Type: multipart/mixed; boundary="------------mAHLJ1BuTNXc30GunZU8ipni";
- protected-headers="v1"
-From: =?UTF-8?Q?Daniel_Est=C3=A9vez?= <daniel@destevez.net>
-To: usrp-users@lists.ettus.com
-Message-ID: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
-Subject: Half duplex with USRP B2xx and GNU Radio
+--------=_MB42A40AFF-6263-487A-BB63-4599D2EF7604
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
---------------mAHLJ1BuTNXc30GunZU8ipni
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Hi Daniel,
 
-SGVsbG8sDQoNCkkgYW0gaW1wbGVtZW50aW5nIGEgaGFsZi1kdXBsZXggbW9kZW0gd2l0aCBH
-TlUgUmFkaW8gYW5kIGEgVVNSUCBCMnh4IA0KdGhhdCB1c2VzIENTTUEgdG8gY29udHJvbCBt
-ZWRpdW0gYWNjZXNzLiBJIGhhdmUgYSBHTlUgUmFkaW8gZmxvd2dyYXBoIA0Kd2l0aCBhIFVT
-UlAgU291cmNlIGFuZCBVU1JQIFNpbmsgYmxvY2tzIGJvdGggc2V0IHRvIHVzZSB0aGUgVFgv
-UlggDQphbnRlbm5hLiBUaGUgVVNSUCBTaW5rIGJsb2NrIHVzZXMgYnVyc3QgdHJhbnNtaXNz
-aW9uLiBXaGVuIGEgYnVyc3QgaXMgDQpzZW50LCB0aGUgQjJ4eCBhdXRvbWF0aWNhbGx5IHN3
-aXRjaGVzIHRoZSByZWNlaXZlIHRvIHRoZSBSWDIgcG9ydC4NCg0KVGhlIGlzc3VlIGlzIHRo
-YXQgdGhlcmUgaXMgZW5vdWdoIGxlYWthZ2UgdGhyb3VnaCB0aGUgUlgyIHBvcnQgdGhhdCB0
-aGUgDQpzeXN0ZW0gaXMgYWJsZSB0byByZWNlaXZlIGl0cyBvd24gdHJhbnNtaXQgcGFja2V0
-cyB3aXRoIGdvb2QgU05SLiBUaGlzIA0KaXMgYSBwcm9ibGVtIGZvciB0aGUgQ1NNQSBzeXN0
-ZW0gYmVjYXVzZSBpdCBtYWtlcyB0aGUgc3lzdGVtIGRldGVjdCB0aGF0IA0KdGhlIGNoYW5u
-ZWwgaXMgYnVzeSB3aGlsZSBpdCBpcyB0cmFuc21pdHRpbmcgaXRzIG93biBwYWNrZXQuIER1
-ZSB0byB0aGUgDQpsYXRlbmN5IGJldHdlZW4gdGhlIFJYIGFuZCBUWCBzdHJlYW1zIGluIEdO
-VSBSYWRpbywgdGhpcyBwcmV2ZW50cyB0aGUgDQptb2RlbSBmcm9tIHRyYW5zbWl0dGluZyBi
-YWNrLXRvLWJhY2sgcGFja2V0cyAod2hpY2ggaXMgYWxsb3dlZCBhbmQgDQpleHBlY3RlZCBi
-eSB0aGlzIENTTUEgc2NoZW1lKSwgYmVjYXVzZSB3aGVuIHRoZSBzZWNvbmQgcGFja2V0IGlz
-IGFib3V0IA0KdG8gYmUgc2VudCwgdGhlIG1vZGVtIHJlY2VpdmVyIGlzIHN0aWxsIHNlZWlu
-ZyB0aGUgZW5kIG9mIHRoZSBwcmV2aW91cyANCnBhY2tldCBhbmQgZGV0ZXJtaW5lcyB0aGF0
-IHRoZSBjaGFubmVsIGlzIHN0aWxsIGJ1c3kuDQoNClRvIHNvbHZlIHRoaXMgaXNzdWUsIEkg
-d291bGQgbGlrZSB0aGUgVVNSUCBTb3VyY2UgdG8gcmVjZWl2ZSBlaXRoZXIgDQp6ZXJvcywg
-bm8gc2FtcGxlcyBhdCBhbGwsIG9yIHNvbWV0aGluZyB0aGF0IGF0IGxlYXN0IGRvZXMgbm90
-IGhhdmUgc28gDQptdWNoIGxlYWthZ2Ugb2YgaXRzIG93biBUWCBzaWduYWwuDQoNCklzIGl0
-IHBvc3NpYmxlIHRvIGRvIHRoaXMgZWl0aGVyIGJ5IGFwcHJvcHJpYXRlIGNvbmZpZ3VyYXRp
-b24gaW4gR05VIA0KUmFkaW8gb3IgVUhEPw0KDQpJJ3ZlIGJlZW4gc3R1ZHlpbmcgdGhlIHNv
-dXJjZXMgb2YgVUhEIGFuZCBHTlUgUmFkaW8gdG8gc2VlIGhvdyB0aGlzIA0KY291bGQgYmUg
-ZG9uZS4gVGhlIG9ubHkgdGhpbmcgSSBoYXZlIGZvdW5kIGlzIHRoYXQgdGhpcyB3b3VsZCBi
-ZSANCnBvc3NpYmxlIHdpdGggYSBzbWFsbCBjaGFuZ2UgdG8gdGhlIEZQR0EgaW1hZ2UuIEZv
-ciBpbnN0YW5jZSwgdGhpcyBsaW5lDQoNCmh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2Vh
-cmNoL3VoZC9ibG9iL21hc3Rlci9mcGdhL3VzcnAzL2xpYi9yYWRpb18yMDAvcmFkaW9fbGVn
-YWN5LnYjTDQ0Ng0KDQpjb3VsZCBiZSBtb2RpZmllZCB0byByZXBsYWNlIHRoZSBSWCBzYW1w
-bGVzIGJ5IHplcm9zIHdoZW5ldmVyIHJ1bl9yeCBpcyANCmFzc2VydGVkLg0KDQpIb3dldmVy
-IEkgd291bGQgcHJlZmVyIG5vdCB0byBidWlsZCBhIG1vZGlmaWVkIEZQR0EgaW1hZ2UgZm9y
-IHRoaXMgDQpzeXN0ZW0sIHNvIEkgd2FzIHdvbmRlcmluZyBpZiBvdGhlciBzb2x1dGlvbnMg
-ZXhpc3QuDQoNCkJlc3QsDQpEYW5pZWwuDQoNCg==
+I too have experienced RF leakage problems between the TX/RX and RX=20
+ports on my B210 (and B200) when operating in a full-duplex modem=20
+application.
+In my case I am transmitting continuously repeated Pseudorandom Noise=20
+Sequences of various lengths and chipping rate, and a tracking GNSS type=20
+correlator is implemented in the receiver.
 
---------------mAHLJ1BuTNXc30GunZU8ipni--
+I found that when operating at identical or close TX and RX frequencies,=20
+a combination of poor TX to RX port leakage in the B210 and high=20
+correlator receiver gain made testing very difficult or impossible, and=20
+this was irrespective of RX and TX gain settings in the USRP=20
+transceiver.
 
---------------7UVEwc7YJJWSsIhRWYx56ZVI
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+To test the receiver software, I used substantially different TX and RX=20
+frequencies and an external passive diode mixer and local oscillator to=20
+provide the necessary frequency separation, when using a single USRP.
+I have tried converting 450 MHz TX to 100 MHz RX and 2.4 GHz TX to 1.2=20
+GHz RX , both with some success.
 
------BEGIN PGP SIGNATURE-----
+In-circuit signal power measurements taken at the TX and RX connections=20
+in a leakage loop configuration using a spectrum analyser would indicate=20
+a TX/Rx to RX port isolation value of no better than 20 dB (100 MHz to 3=20
+GHz).
+This was concurred using a VNA on an un-powered B210 device.
 
-iQIzBAEBCgAdFiEEOn0gFAd3OQG8ow6EtFwrk3lBwykFAmjaXDYACgkQtFwrk3lB
-wymLrA/8D01ek8uOOPsbTnxvaLlIjwFcFA7GEwYeRMmF87IZfDKQroSH2xuOoSKz
-Fz48sHEW46X7uYkscxDvfMiUp+beIH8mVIPo4n4GZ0SEb8S1CmBB01od4G1ItNC0
-OAilgYJKY3TwZTDXGGtIkcOhKjpgJSHKPLYn3s6U42bY4cG6XwKy0sz5jw50TaUe
-eGfgZZ2SgFlyauRdt5xOVG88OM797dEuTCOVAnKCmJR9NPTr6UyTFwd9d9WJFRJX
-OGyvlEr33/TfclhKWQtMOBiKyySYogzPTmfkB3DmUxqszDKI0UCG8ErYHcSoYs19
-I4G/QOcEERKaA2SgZPaD5+r+dx2YQ0EOMX+hHk7GtWhbjaImAgUd+O1fSMJ+MVha
-ZAOkrrwBdn1AmqeLLsEyf/Il7tPk5sVQyR93CKGBt3h40WxcQho64MIgNw3vIyV1
-cUUFPLy5kyXFMkNJt5d+xuWOJfK7xHrFqpv7WwE++MkvMrLDw6wxBY1F/DnlbK+l
-S4TxE4W/cQ1Rx5k71hOY+cG4TY8eOBpaoCuYc9sIaZU37m2ps5+ucMMo125Bcxej
-0IaLlLnofxgZ5pAg11yFkRRk9mzT3oOFMj8Py4floEY382cNjS0RA8JaHX+Y1Jot
-eFrFhub1i9VLJb/u0Ka8t7gqFIZPw2xdBSPCCzxxKRfi2L9MRH4=
-=J4yQ
------END PGP SIGNATURE-----
+To improve my test arrangement, I used the B210 and B200 as receiver and=20
+transmitter respectively, each with their own PC, but with shared 10 MHz=20
+external reference inputs.
+Best regards,
 
---------------7UVEwc7YJJWSsIhRWYx56ZVI--
+David GD4FMB
 
---===============6949046853566534544==
+
+
+------ Original Message ------
+From "Daniel Est=C3=A9vez" <daniel@destevez.net>
+To usrp-users@lists.ettus.com
+Date 29/09/2025 11:15:18
+Subject [USRP-users] Half duplex with USRP B2xx and GNU Radio
+
+>Hello,
+>
+>I am implementing a half-duplex modem with GNU Radio and a USRP B2xx that=
+ uses CSMA to control medium access. I have a GNU Radio flowgraph with a USR=
+P Source and USRP Sink blocks both set to use the TX/RX antenna. The USRP S=
+ink block uses burst transmission. When a burst is sent, the B2xx automatic=
+ally switches the receive to the RX2 port.
+>
+>The issue is that there is enough leakage through the RX2 port that the sy=
+stem is able to receive its own transmit packets with good SNR. This is a p=
+roblem for the CSMA system because it makes the system detect that the chan=
+nel is busy while it is transmitting its own packet. Due to the latency bet=
+ween the RX and TX streams in GNU Radio, this prevents the modem from trans=
+mitting back-to-back packets (which is allowed and expected by this CSMA sc=
+heme), because when the second packet is about to be sent, the modem receiv=
+er is still seeing the end of the previous packet and determines that the c=
+hannel is still busy.
+>
+>To solve this issue, I would like the USRP Source to receive either zeros, =
+no samples at all, or something that at least does not have so much leakag=
+e of its own TX signal.
+>
+>Is it possible to do this either by appropriate configuration in GNU Radio =
+or UHD?
+>
+>I've been studying the sources of UHD and GNU Radio to see how this could=
+ be done. The only thing I have found is that this would be possible with a=
+ small change to the FPGA image. For instance, this line
+>
+>https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/radio_200/=
+radio_legacy.v#L446
+>
+>could be modified to replace the RX samples by zeros whenever run_rx is as=
+serted.
+>
+>However I would prefer not to build a modified FPGA image for this system, =
+so I was wondering if other solutions exist.
+>
+>Best,
+>Daniel.
+>
+--------=_MB42A40AFF-6263-487A-BB63-4599D2EF7604
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+
+<style id=3D"css_styles" type=3D"text/css"><!--blockquote.cite { margin-lef=
+t: 5px; margin-right: 0px; padding-left: 10px; padding-right:0px; border-le=
+ft: 1px solid #cccccc }
+blockquote.cite2 {margin-left: 5px; margin-right: 0px; padding-left: 10px;=
+ padding-right:0px; border-left: 1px solid #cccccc; margin-top: 3px; padding=
+-top: 0px; }
+a img { border: 0px; }
+li[style=3D'text-align: center;'], li[style=3D'text-align: center; '], li[s=
+tyle=3D'text-align: right;'], li[style=3D'text-align: right; '] {  list-sty=
+le-position: inside;}
+body { font-family: 'Segoe UI'; font-size: 12pt; }
+.quote { margin-left: 1em; margin-right: 1em; border-left: 5px #ebebeb soli=
+d; padding-left: 0.3em; }
+a.em-mention[href] { text-decoration: none; color: inherit; border-radius:=
+ 3px; padding-left: 2px; padding-right: 2px; background-color: #e2e2e2; }
+._em_placeholder {color: gray; border-bottom: 1px dotted lightblue;} ._em_p=
+laceholder:before{color:gray; content: '{{ ';} ._em_placeholder:after{color=
+:gray; content: ' }}';}
+--></style></head>
+<body><div>Hi Daniel,
+</div><div><br /></div><div>I too have experienced RF leakage problems betw=
+een the TX/RX and RX ports on my B210 (and B200) when operating in a full-d=
+uplex modem application.
+</div><div><span>In my case I am transmitting continuously repeated Pseudor=
+andom Noise Sequences of various lengths and chipping rate, and a tracking=
+ GNSS type correlator is implemented in the receiver.=C2=A0</span></div><div=
+><br /></div><div>I found that when operating at identical or close TX and=
+ RX frequencies, a combination of poor TX to RX port leakage in the B210 and =
+high correlator receiver gain made testing very difficult or impossible, a=
+nd this was irrespective of RX and TX gain settings in the USRP transceiver=
+.
+</div><div><br /></div><div>To test the receiver software, I used substanti=
+ally different TX and RX frequencies and an external passive diode mixer an=
+d local oscillator to provide the necessary frequency separation, when usin=
+g a single USRP.</div><div>I have tried converting 450 MHz TX to 100 MHz RX =
+and 2.4 GHz TX to 1.2 GHz RX , both with some success.
+</div><div><br /></div><div>In-circuit signal power measurements taken at t=
+he TX and RX connections in a leakage loop configuration using a spectrum a=
+nalyser would indicate a TX/Rx to RX port isolation value of no better than =
+20 dB (100 MHz to 3 GHz).</div><div>This was concurred using a VNA on an u=
+n-powered B210 device.</div><div><br /></div><div>To improve my test arrang=
+ement, I used the B210 and B200 as receiver and transmitter respectively, e=
+ach with their own PC, but with shared 10 MHz external reference inputs.
+</div><div>Best regards,</div><div><br /></div><div>David GD4FMB</div><div>=
+<br /></div>
+<div><br /></div>
+<div x-em-replyforwardheader=3D""><br /></div>
+<div>
+<div>------ Original Message ------</div>
+<div>From "Daniel Est=C3=A9vez" &lt;<a href=3D"mailto:daniel@destevez.net">=
+daniel@destevez.net</a>&gt;</div>
+<div>To <a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettu=
+s.com</a></div>
+<div>Date 29/09/2025 11:15:18</div>
+<div>Subject [USRP-users] Half duplex with USRP B2xx and GNU Radio</div></d=
+iv><div x-em-quote=3D""><br /></div>
+<div id=3D"xde5d44ddac324c5" class=3D"plain"><blockquote cite=3D"899f5b67-8=
+09c-494b-a4d2-1b7be3a3b1e3@destevez.net" type=3D"cite" class=3D"cite2">
+
+<div class=3D"plain_line">Hello,</div>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line">I am implementing a half-duplex modem with GNU Ra=
+dio and a USRP B2xx that uses CSMA to control medium access. I have a GNU R=
+adio flowgraph with a USRP Source and USRP Sink blocks both set to use the=
+ TX/RX antenna. The USRP Sink block uses burst transmission. When a burst is =
+sent, the B2xx automatically switches the receive to the RX2 port.</div>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line">The issue is that there is enough leakage through =
+the RX2 port that the system is able to receive its own transmit packets w=
+ith good SNR. This is a problem for the CSMA system because it makes the sy=
+stem detect that the channel is busy while it is transmitting its own packe=
+t. Due to the latency between the RX and TX streams in GNU Radio, this prev=
+ents the modem from transmitting back-to-back packets (which is allowed and =
+expected by this CSMA scheme), because when the second packet is about to=
+ be sent, the modem receiver is still seeing the end of the previous packet=
+ and determines that the channel is still busy.</div>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line">To solve this issue, I would like the USRP Source =
+to receive either zeros, no samples at all, or something that at least doe=
+s not have so much leakage of its own TX signal.</div>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line">Is it possible to do this either by appropriate c=
+onfiguration in GNU Radio or UHD?</div>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line">I've been studying the sources of UHD and GNU Rad=
+io to see how this could be done. The only thing I have found is that this=
+ would be possible with a small change to the FPGA image. For instance, this =
+line</div>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line"><a href=3D"https://github.com/EttusResearch/uhd/b=
+lob/master/fpga/usrp3/lib/radio_200/radio_legacy.v#L446">https://github.com=
+/EttusResearch/uhd/blob/master/fpga/usrp3/lib/radio_200/radio_legacy.v#L446=
+</a></div>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line">could be modified to replace the RX samples by ze=
+ros whenever run_rx is asserted.</div>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line">However I would prefer not to build a modified FP=
+GA image for this system, so I was wondering if other solutions exist.</div=
+>
+<div class=3D"plain_line">=C2=A0</div>
+<div class=3D"plain_line">Best,</div>
+<div class=3D"plain_line">Daniel.</div>
+<div class=3D"plain_line">=C2=A0</div>
+</blockquote></div>
+
+
+</body></html>
+--------=_MB42A40AFF-6263-487A-BB63-4599D2EF7604--
+
+--===============4311362938762445481==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,4 +288,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6949046853566534544==--
+--===============4311362938762445481==--
