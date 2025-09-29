@@ -2,290 +2,150 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2DD8BA94C3
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 15:15:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E94BA9DE6
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 17:52:34 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A6D2A3863D4
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 09:15:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A636E3865C3
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 11:52:33 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1759151738; bh=dVEqSdwkpKfKgiQBDOMyVEBd14VmV/C2hk9FGZdDiWk=;
-	h=To:Date:In-Reply-To:References:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=yJDZbdCCi4voBW9CrQDIDhFtLDkwCjCkRqyjY3avYwvV9TkuhhwlvEISu8tVXrSZc
-	 cmFDodTbmzn8wwE356rf32ajlVCVmXXnSN6G7ObRO7ww739CPn52k9pSP3HK2O24d7
-	 dT+X7Bmi79B7/84oyyqmYzHIXb3l9H+np0rrv+p5Qb+lL4Hj0Mz8t87PCUE4Ue/c3E
-	 mHzf7fsbHKNbc/y7CdXiR6AOaElzEgbpgB/F+CqyL3FlMR/Baz4Ijr6U0lwlAC0lGs
-	 KQenaRvEHO9p1kONFPfzkR8RVKy8H0zCwCIUmEJG08DWUrzV4iFkoFL6sZl/hoeWLM
-	 t3jldT5enXDgQ==
-Received: from omr02.pc4.atmailcloud.com (omr02.pc4.atmailcloud.com [54.217.190.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id F2D68386311
-	for <usrp-users@lists.ettus.com>; Mon, 29 Sep 2025 09:14:33 -0400 (EDT)
+	t=1759161153; bh=iKaRwUzKgb5gOeZS0KOHlvXfCnhTurnzNflvHkEnq74=;
+	h=From:In-Reply-To:Date:References:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=DKFC3/x9he4xBuTDSubPmpiXXPfVnP24XavLJGfdqKQA7yrxHyWWArtMCuQyeaPXU
+	 V93LRbkTWdgJo4Xg7b/T8MZvEKmqZVn2SH2OMMQ/KhhX2r4sZedmJM3UPM+WsJUnnZ
+	 0/C63WbFrrtJcQuoWg0mXKxPT58otM1HWmvrnD9/j68QDGZEBjtv2aodKKcZZQBXhc
+	 044dWcjX24EFpaYBLPSL//r4zONYgKuvL4O9pNtOReA5+fI1lqxF6DUrrb+CmSj/gt
+	 aCySlSBnwfySU5RjzwjUuhWFiAPbnkfDUcxL1a/pOV6bqbVlWjG2beOdF+gBu7uhHb
+	 bPuDCImbXmprw==
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 76CE73865BD
+	for <usrp-users@lists.ettus.com>; Mon, 29 Sep 2025 11:51:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=manx.net header.i=@manx.net header.b="eY2OpMtR";
+	dkim=pass (2048-bit key; unprotected) header.d=ionconcepts-com.20230601.gappssmtp.com header.i=@ionconcepts-com.20230601.gappssmtp.com header.b="VfKBtjR7";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=manx.net;
-	s=20160330; h=Content-Type:MIME-Version:Message-Id:Date:Subject:To:From;
-	bh=qkKauKFA0D9X05ZV6VshBsPhybNnMrZjq9w1Dvi39vk=; b=eY2OpMtRmH17fIQiKxZh2qLKx5
-	VN7z8IapjpX4tivM8lfIwMUmcFTu0J2e4itfhirpRZ5w7YCKWbntbb+CVB3I/4p5TyehsbvpXv1r3
-	Ms3Ar9NvyDKcCM+JUD9TNaGd9eJdlcSp1S1d1vCqJEKOEtxrS4ac/PkBkG0QiCPkDyRY=;
-Received: from cmr-cushag.internal.pc4.atmailcloud.com (cmr-cushag.internal.pc4.atmailcloud.com [192.168.1.13])
-	by omr.internal.pc4.atmailcloud.com (Exim/cmr-cushag.i-0ec42f760acdbcea8) with ESMTPS
-	(envelope-from <drtaylor@manx.net>)
-	id 1v3Di4-000000001zJ-1nGY ;
-	Mon, 29 Sep 2025 13:14:32 +0000
-Received: from  ([IPv6:::ffff:192.168.1.168] [213.137.15.32])
-	by cmr-cushag.internal.pc4.atmailcloud.com (Exim/[ipv6:::ffff:192.168.1.168]) with ESMTPSA
-	(envelope-from <drtaylor@manx.net>)
-	id 1v3Di4-000000003yN-0QxK ;
-	Mon, 29 Sep 2025 13:14:32 +0000
-To: =?utf-8?q?Daniel=20Est=c3=a9vez?= <daniel@destevez.net>,
- usrp-users@lists.ettus.com
-Date: Mon, 29 Sep 2025 13:14:31 +0000
-Message-Id: <em04cff5b9-3004-4f65-9531-fe4ad5a873e1@2107a28f.com>
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-32eb45ab7a0so5429427a91.0
+        for <usrp-users@lists.ettus.com>; Mon, 29 Sep 2025 08:51:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ionconcepts-com.20230601.gappssmtp.com; s=20230601; t=1759161089; x=1759765889; darn=lists.ettus.com;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mCoxdFA92DovSPaZi03dqTSlMVQi5nDAS/dYJfH+plw=;
+        b=VfKBtjR7HCqPzbw0MjxL+oH/D6PFx158jWbmynZT53nmgk/S4mfB5LIKj/M2ptzhKR
+         ypBHobzg89KJkDODyW+ODLtqZCka0UeL22lsx++jdT7AN/WJRHqUYb3vRUKccptJedw3
+         OA07EtfVkDfHrFQTp7EZNT/wf1COw8NNFeIjigchPXzclmrflITz0z/eef713mQRRI19
+         gbfnBqHqAgsVK73f2V7tiCSrX8OY0ztQRwCjQRVGOTLLCiZ8hzzhiKmR2+D90p0/s3dw
+         vYUF6Saju3POgE02OLf255irnfPdCcTYj8GZjnuN6+Hlyj0aoMNvfCKZOHdgmHoerZfM
+         LH1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759161089; x=1759765889;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mCoxdFA92DovSPaZi03dqTSlMVQi5nDAS/dYJfH+plw=;
+        b=unQ6EO0cu+b2K89h2nVuK7/gFUPG/OXaIgzcCRrtpqAVM+Cz+OGDQVS1LT5eqmCrC8
+         mq5SM8YIURPfGvbiXv2lqmlomPoGBolODz4/Uxj4SVJ1bYlEEtLKwV6Z08/0UDLJ7pMz
+         pREu9J1lvPKXrqf1FvHd5JRVuKoYS3Tl2GKfKVZgpracz2TMfZnqd/zg6a/zcjpQLHXd
+         YR4dfsYhIgRe4eRcBkiE5t0tMpTWqkSl5SLrgyIOjrifUZfZYWLxEx8iXsBvqEwAwfe1
+         4jaaYrrz9WWrmNh/fSkkfgSfTnbHwhXnsSpf1vkCSRtKPWVTHceUzhswS2L2Q4FrPbz1
+         +dZA==
+X-Gm-Message-State: AOJu0Yxce9cmW9fRBTzu8aA1jr8FSY0TWIwAl6+v9Got+gi7p51bdyKa
+	M8poAkgOJiyJuuDVC60jPpVs7sU2OSGqghKQ0FoJPMkC5GMZCR5VTrEC/4BDvXVjFvJQ4XfMabQ
+	CL+hN
+X-Gm-Gg: ASbGnctXT3jT/pi/1sWC1xR1OXnRe0uC3LeyBH5/TyQd4392MC/fO6gRUcJuBBSqkCR
+	r7NZ07Ai9adDQJlm4EHVwaGoxul4c7BW2ZBaTeuyV4pBIqRQjtnaZCQg/1TmOWnOE/cl7aZtUiT
+	6m37LQk1bVUxPg7GCu0TpaGrZVPZv/1HjSTk6ACyH+M0ySLV4TmRubDao8SWC6Cy98aJadbqAmY
+	crEXAFUmDuuaFq/2mTT+q2k7ipptMo3BPDnftMhHFQ/azQdbk119q/iNeRpR7ZEzXaf0EVDvAqt
+	E8hGXT041H1xIbqfgEO3S8Ph2gQuecqaQ87WXuVDR3GPQ1lPNU3S63zIvqQSlP2uLf4WQImS6UZ
+	mg2AuNWVwa1ChS5YTwomsruX6K8sW6nSpC2tUNwtDV5D2ULAh3CQkoTQwJ4KWSxslVr+a9794Pz
+	4Tv/QIL88Pg0rvPQvd8RXYg37sesbD
+X-Google-Smtp-Source: AGHT+IHtjdCfVuutprQV9j3LdqdytaEtLN8xsVdxd6J3JpLnOpDtHuRHuyKLwZPVpzm26KhVmNyIlw==
+X-Received: by 2002:a17:90b:4f47:b0:32e:9daa:7347 with SMTP id 98e67ed59e1d1-3342a242c87mr17939566a91.7.1759161089378;
+        Mon, 29 Sep 2025 08:51:29 -0700 (PDT)
+Received: from smtpclient.apple (h208-100-179-5.bendor.broadband.dynamic.tds.net. [208.100.179.5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33838745ff3sm1623943a91.27.2025.09.29.08.51.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Sep 2025 08:51:29 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
+From: Ian Buckley <ianb@ionconcepts.com>
 In-Reply-To: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
+Date: Mon, 29 Sep 2025 08:51:18 -0700
+Message-Id: <6504F6BE-ECE9-4123-8D19-C9BA6DB5C358@ionconcepts.com>
 References: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
-User-Agent: eM_Client/10.3.2619.0
-MIME-Version: 1.0
-X-Atmail-Id: drtaylor@manx.net
-X-atmailcloud-spam-action: no action
-X-Cm-Analysis: v=2.4 cv=HqJwGVTS c=1 sm=1 tr=0 ts=68da8638 a=/w/bpNuGKTEK/snkzY3zrQ==:117 a=/w/bpNuGKTEK/snkzY3zrQ==:17 a=xqWC_Br6kY4A:10 a=yJojWOMRYYMA:10 a=NEAV23lmAAAA:8 a=iXaKlsfVAAAA:8 a=etiEgX_XAAAA:8 a=ByJ2BlTVV13VR7CJPVQA:9 a=QEXdDO2ut3YA:10 a=_kenLAQrpHgUoq7vy_EA:9 a=DpEftlfeedk6sh68:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10 a=lqcHg5cX4UMA:10 a=AWtWtc0RukrYRNvQ_1Zp:22 a=MLbIUA-Bjd6y1alW9qBG:22
-X-Cm-Envelope: MS4xfGVa/5gDv0nBWLzFxwN3EM2XAyki7F7qNNPE0UWAivOwIB1zxiD8iuLSpET6WLaoeWn0rdoHyD+P0f8IcFe8gMo/CLh1ZKzYiHbxDSnRZozg7EEXozsj WHKNeFRJASTHg23u+oCawC34dxkCR43UTySOTatxccGpDXuxEsV7eiNF
-X-atmailcloud-route: unknown
-Message-ID-Hash: 7T2TZWPO65RZTVHH4IRRHZXWSVQH7FLU
-X-Message-ID-Hash: 7T2TZWPO65RZTVHH4IRRHZXWSVQH7FLU
-X-MailFrom: drtaylor@manx.net
+To: =?utf-8?Q?Daniel_Est=C3=A9vez?= <daniel@destevez.net>
+X-Mailer: Apple Mail (2.3826.600.51.1.1)
+Message-ID-Hash: SWXG3ZFT24T7AJH24JC4KD2MWCSRCNQL
+X-Message-ID-Hash: SWXG3ZFT24T7AJH24JC4KD2MWCSRCNQL
+X-MailFrom: ianb@ionconcepts.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Half duplex with USRP B2xx and GNU Radio
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7T2TZWPO65RZTVHH4IRRHZXWSVQH7FLU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SWXG3ZFT24T7AJH24JC4KD2MWCSRCNQL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "David Taylor (manx.net) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "David Taylor (manx.net)" <drtaylor@manx.net>
-Content-Type: multipart/mixed; boundary="===============4311362938762445481=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---===============4311362938762445481==
-Content-Type: multipart/alternative;
- boundary="------=_MB42A40AFF-6263-487A-BB63-4599D2EF7604"
-
---------=_MB42A40AFF-6263-487A-BB63-4599D2EF7604
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-
-Hi Daniel,
-
-I too have experienced RF leakage problems between the TX/RX and RX=20
-ports on my B210 (and B200) when operating in a full-duplex modem=20
-application.
-In my case I am transmitting continuously repeated Pseudorandom Noise=20
-Sequences of various lengths and chipping rate, and a tracking GNSS type=20
-correlator is implemented in the receiver.
-
-I found that when operating at identical or close TX and RX frequencies,=20
-a combination of poor TX to RX port leakage in the B210 and high=20
-correlator receiver gain made testing very difficult or impossible, and=20
-this was irrespective of RX and TX gain settings in the USRP=20
-transceiver.
-
-To test the receiver software, I used substantially different TX and RX=20
-frequencies and an external passive diode mixer and local oscillator to=20
-provide the necessary frequency separation, when using a single USRP.
-I have tried converting 450 MHz TX to 100 MHz RX and 2.4 GHz TX to 1.2=20
-GHz RX , both with some success.
-
-In-circuit signal power measurements taken at the TX and RX connections=20
-in a leakage loop configuration using a spectrum analyser would indicate=20
-a TX/Rx to RX port isolation value of no better than 20 dB (100 MHz to 3=20
-GHz).
-This was concurred using a VNA on an un-powered B210 device.
-
-To improve my test arrangement, I used the B210 and B200 as receiver and=20
-transmitter respectively, each with their own PC, but with shared 10 MHz=20
-external reference inputs.
-Best regards,
-
-David GD4FMB
-
-
-
------- Original Message ------
-From "Daniel Est=C3=A9vez" <daniel@destevez.net>
-To usrp-users@lists.ettus.com
-Date 29/09/2025 11:15:18
-Subject [USRP-users] Half duplex with USRP B2xx and GNU Radio
-
->Hello,
->
->I am implementing a half-duplex modem with GNU Radio and a USRP B2xx that=
- uses CSMA to control medium access. I have a GNU Radio flowgraph with a USR=
-P Source and USRP Sink blocks both set to use the TX/RX antenna. The USRP S=
-ink block uses burst transmission. When a burst is sent, the B2xx automatic=
-ally switches the receive to the RX2 port.
->
->The issue is that there is enough leakage through the RX2 port that the sy=
-stem is able to receive its own transmit packets with good SNR. This is a p=
-roblem for the CSMA system because it makes the system detect that the chan=
-nel is busy while it is transmitting its own packet. Due to the latency bet=
-ween the RX and TX streams in GNU Radio, this prevents the modem from trans=
-mitting back-to-back packets (which is allowed and expected by this CSMA sc=
-heme), because when the second packet is about to be sent, the modem receiv=
-er is still seeing the end of the previous packet and determines that the c=
-hannel is still busy.
->
->To solve this issue, I would like the USRP Source to receive either zeros, =
-no samples at all, or something that at least does not have so much leakag=
-e of its own TX signal.
->
->Is it possible to do this either by appropriate configuration in GNU Radio =
-or UHD?
->
->I've been studying the sources of UHD and GNU Radio to see how this could=
- be done. The only thing I have found is that this would be possible with a=
- small change to the FPGA image. For instance, this line
->
->https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/radio_200/=
-radio_legacy.v#L446
->
->could be modified to replace the RX samples by zeros whenever run_rx is as=
-serted.
->
->However I would prefer not to build a modified FPGA image for this system, =
-so I was wondering if other solutions exist.
->
->Best,
->Daniel.
->
---------=_MB42A40AFF-6263-487A-BB63-4599D2EF7604
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head>
-
-<style id=3D"css_styles" type=3D"text/css"><!--blockquote.cite { margin-lef=
-t: 5px; margin-right: 0px; padding-left: 10px; padding-right:0px; border-le=
-ft: 1px solid #cccccc }
-blockquote.cite2 {margin-left: 5px; margin-right: 0px; padding-left: 10px;=
- padding-right:0px; border-left: 1px solid #cccccc; margin-top: 3px; padding=
--top: 0px; }
-a img { border: 0px; }
-li[style=3D'text-align: center;'], li[style=3D'text-align: center; '], li[s=
-tyle=3D'text-align: right;'], li[style=3D'text-align: right; '] {  list-sty=
-le-position: inside;}
-body { font-family: 'Segoe UI'; font-size: 12pt; }
-.quote { margin-left: 1em; margin-right: 1em; border-left: 5px #ebebeb soli=
-d; padding-left: 0.3em; }
-a.em-mention[href] { text-decoration: none; color: inherit; border-radius:=
- 3px; padding-left: 2px; padding-right: 2px; background-color: #e2e2e2; }
-._em_placeholder {color: gray; border-bottom: 1px dotted lightblue;} ._em_p=
-laceholder:before{color:gray; content: '{{ ';} ._em_placeholder:after{color=
-:gray; content: ' }}';}
---></style></head>
-<body><div>Hi Daniel,
-</div><div><br /></div><div>I too have experienced RF leakage problems betw=
-een the TX/RX and RX ports on my B210 (and B200) when operating in a full-d=
-uplex modem application.
-</div><div><span>In my case I am transmitting continuously repeated Pseudor=
-andom Noise Sequences of various lengths and chipping rate, and a tracking=
- GNSS type correlator is implemented in the receiver.=C2=A0</span></div><div=
-><br /></div><div>I found that when operating at identical or close TX and=
- RX frequencies, a combination of poor TX to RX port leakage in the B210 and =
-high correlator receiver gain made testing very difficult or impossible, a=
-nd this was irrespective of RX and TX gain settings in the USRP transceiver=
-.
-</div><div><br /></div><div>To test the receiver software, I used substanti=
-ally different TX and RX frequencies and an external passive diode mixer an=
-d local oscillator to provide the necessary frequency separation, when usin=
-g a single USRP.</div><div>I have tried converting 450 MHz TX to 100 MHz RX =
-and 2.4 GHz TX to 1.2 GHz RX , both with some success.
-</div><div><br /></div><div>In-circuit signal power measurements taken at t=
-he TX and RX connections in a leakage loop configuration using a spectrum a=
-nalyser would indicate a TX/Rx to RX port isolation value of no better than =
-20 dB (100 MHz to 3 GHz).</div><div>This was concurred using a VNA on an u=
-n-powered B210 device.</div><div><br /></div><div>To improve my test arrang=
-ement, I used the B210 and B200 as receiver and transmitter respectively, e=
-ach with their own PC, but with shared 10 MHz external reference inputs.
-</div><div>Best regards,</div><div><br /></div><div>David GD4FMB</div><div>=
-<br /></div>
-<div><br /></div>
-<div x-em-replyforwardheader=3D""><br /></div>
-<div>
-<div>------ Original Message ------</div>
-<div>From "Daniel Est=C3=A9vez" &lt;<a href=3D"mailto:daniel@destevez.net">=
-daniel@destevez.net</a>&gt;</div>
-<div>To <a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettu=
-s.com</a></div>
-<div>Date 29/09/2025 11:15:18</div>
-<div>Subject [USRP-users] Half duplex with USRP B2xx and GNU Radio</div></d=
-iv><div x-em-quote=3D""><br /></div>
-<div id=3D"xde5d44ddac324c5" class=3D"plain"><blockquote cite=3D"899f5b67-8=
-09c-494b-a4d2-1b7be3a3b1e3@destevez.net" type=3D"cite" class=3D"cite2">
-
-<div class=3D"plain_line">Hello,</div>
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line">I am implementing a half-duplex modem with GNU Ra=
-dio and a USRP B2xx that uses CSMA to control medium access. I have a GNU R=
-adio flowgraph with a USRP Source and USRP Sink blocks both set to use the=
- TX/RX antenna. The USRP Sink block uses burst transmission. When a burst is =
-sent, the B2xx automatically switches the receive to the RX2 port.</div>
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line">The issue is that there is enough leakage through =
-the RX2 port that the system is able to receive its own transmit packets w=
-ith good SNR. This is a problem for the CSMA system because it makes the sy=
-stem detect that the channel is busy while it is transmitting its own packe=
-t. Due to the latency between the RX and TX streams in GNU Radio, this prev=
-ents the modem from transmitting back-to-back packets (which is allowed and =
-expected by this CSMA scheme), because when the second packet is about to=
- be sent, the modem receiver is still seeing the end of the previous packet=
- and determines that the channel is still busy.</div>
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line">To solve this issue, I would like the USRP Source =
-to receive either zeros, no samples at all, or something that at least doe=
-s not have so much leakage of its own TX signal.</div>
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line">Is it possible to do this either by appropriate c=
-onfiguration in GNU Radio or UHD?</div>
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line">I've been studying the sources of UHD and GNU Rad=
-io to see how this could be done. The only thing I have found is that this=
- would be possible with a small change to the FPGA image. For instance, this =
-line</div>
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line"><a href=3D"https://github.com/EttusResearch/uhd/b=
-lob/master/fpga/usrp3/lib/radio_200/radio_legacy.v#L446">https://github.com=
-/EttusResearch/uhd/blob/master/fpga/usrp3/lib/radio_200/radio_legacy.v#L446=
-</a></div>
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line">could be modified to replace the RX samples by ze=
-ros whenever run_rx is asserted.</div>
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line">However I would prefer not to build a modified FP=
-GA image for this system, so I was wondering if other solutions exist.</div=
->
-<div class=3D"plain_line">=C2=A0</div>
-<div class=3D"plain_line">Best,</div>
-<div class=3D"plain_line">Daniel.</div>
-<div class=3D"plain_line">=C2=A0</div>
-</blockquote></div>
-
-
-</body></html>
---------=_MB42A40AFF-6263-487A-BB63-4599D2EF7604--
-
---===============4311362938762445481==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4311362938762445481==--
+VGhlcmUgc2hvdWxkIGJlID49IDUwZEIgaXNvbGF0aW9uIGJldHdlZW4gUlgyIGFuZCBSWC9UWCBv
+biB0aGUgZGlyZWN0IHBhdGggdGhyb3VnaCB0aGUgc3dpdGNoZXMgYnV0IG9mIGNvdXJzZSB0aGVy
+ZSBpcyBsb3RzIG9mIG9wcG9ydHVuaXR5IGZvciBjb3VwbGluZyBpbiBvdGhlciBwbGFjZXMgaW4g
+dGhlIHNpZ25hbCBjaGFpbiBhbmQgdGhhdOKAmXMgbm90IG11Y2ggZm9yIGEgc2Vuc2l0aXZlIHJl
+Y2VpdmVyLg0KDQpaZXJvaXppbmcgUlggc2FtcGxlcyBiZWZvcmUgdGhlIEREQyBpbnB1dCBiYXNl
+ZCBvbiBydW5fdHggd29ya3Mgd2VsbCBidXQgeW91IGRvIGhhdmUgdG8gYWNjb3VudCBmb3IgdGhl
+IGdyb3VwIGRlbGF5IG9mIHRoZSBBRDkzNjEgYWxzbyB3aGljaCBpcyBub24gdHJpdmlhbCwgc28g
+eW91IG1heSBoYXZlIHRvIGV4dGVuZCB0aGUgdGFpbCBvZiB6ZXJvaXphdGlvbiBkZXBlbmRpbmcg
+b24gaWYgeW91IGFyZSBzZW5zaW5nIHBvd2VyIG9yIGFjY2VzcyBjb2RlLg0KDQpBIG1lc3NhZ2Ug
+cGFzc2luZyBpbnRlcmZhY2UgZnJvbSBUWCBidXJzdCBsb2dpYyB0byBSWCBwYWNrZXQgZGV0ZWN0
+IG1pZ2h0IG5vdCBiZSBhIGJhZCBTL1cgc29sdXRpb24sIGJ1dCB5b3UgaGF2ZSBhIHByZXR0eSB0
+aWdodCB0aW1pbmcgY29uc3RyYWludCB0aGVyZSB3aXRoIGl0IHJhY2luZyB0aGUgUkYgcGF0aC4g
+TWF5YmUgdGhlcmUgaXMgYSBoYWNrIGhlcmUgd2hlcmUgeW91IGlzc3VlIGEgY291cGxlIHRpbWVk
+IFJYIGNvbW1hbmRzIHdoaWxzdCBpc3N1aW5nIHRoZSBUWCBidXJzdCDigKZzb21ldGhpbmcgbGlr
+ZSBhIENPUkRJQyBvZmZzZXQgdGhhdCBtb3ZlcyB0aGUgc2lnbmFsIG91dCBvZiB0aGUgcmVjZWl2
+ZXIgdHJhY2tpbmcgYmFuZHdpZHRoLg0KDQo+IE9uIFNlcCAyOSwgMjAyNSwgYXQgMzoxNeKAr0FN
+LCBEYW5pZWwgRXN0w6l2ZXogPGRhbmllbEBkZXN0ZXZlei5uZXQ+IHdyb3RlOg0KPiANCj4gSGVs
+bG8sDQo+IA0KPiBJIGFtIGltcGxlbWVudGluZyBhIGhhbGYtZHVwbGV4IG1vZGVtIHdpdGggR05V
+IFJhZGlvIGFuZCBhIFVTUlAgQjJ4eCB0aGF0IHVzZXMgQ1NNQSB0byBjb250cm9sIG1lZGl1bSBh
+Y2Nlc3MuIEkgaGF2ZSBhIEdOVSBSYWRpbyBmbG93Z3JhcGggd2l0aCBhIFVTUlAgU291cmNlIGFu
+ZCBVU1JQIFNpbmsgYmxvY2tzIGJvdGggc2V0IHRvIHVzZSB0aGUgVFgvUlggYW50ZW5uYS4gVGhl
+IFVTUlAgU2luayBibG9jayB1c2VzIGJ1cnN0IHRyYW5zbWlzc2lvbi4gV2hlbiBhIGJ1cnN0IGlz
+IHNlbnQsIHRoZSBCMnh4IGF1dG9tYXRpY2FsbHkgc3dpdGNoZXMgdGhlIHJlY2VpdmUgdG8gdGhl
+IFJYMiBwb3J0Lg0KPiANCj4gVGhlIGlzc3VlIGlzIHRoYXQgdGhlcmUgaXMgZW5vdWdoIGxlYWth
+Z2UgdGhyb3VnaCB0aGUgUlgyIHBvcnQgdGhhdCB0aGUgc3lzdGVtIGlzIGFibGUgdG8gcmVjZWl2
+ZSBpdHMgb3duIHRyYW5zbWl0IHBhY2tldHMgd2l0aCBnb29kIFNOUi4gVGhpcyBpcyBhIHByb2Js
+ZW0gZm9yIHRoZSBDU01BIHN5c3RlbSBiZWNhdXNlIGl0IG1ha2VzIHRoZSBzeXN0ZW0gZGV0ZWN0
+IHRoYXQgdGhlIGNoYW5uZWwgaXMgYnVzeSB3aGlsZSBpdCBpcyB0cmFuc21pdHRpbmcgaXRzIG93
+biBwYWNrZXQuIER1ZSB0byB0aGUgbGF0ZW5jeSBiZXR3ZWVuIHRoZSBSWCBhbmQgVFggc3RyZWFt
+cyBpbiBHTlUgUmFkaW8sIHRoaXMgcHJldmVudHMgdGhlIG1vZGVtIGZyb20gdHJhbnNtaXR0aW5n
+IGJhY2stdG8tYmFjayBwYWNrZXRzICh3aGljaCBpcyBhbGxvd2VkIGFuZCBleHBlY3RlZCBieSB0
+aGlzIENTTUEgc2NoZW1lKSwgYmVjYXVzZSB3aGVuIHRoZSBzZWNvbmQgcGFja2V0IGlzIGFib3V0
+IHRvIGJlIHNlbnQsIHRoZSBtb2RlbSByZWNlaXZlciBpcyBzdGlsbCBzZWVpbmcgdGhlIGVuZCBv
+ZiB0aGUgcHJldmlvdXMgcGFja2V0IGFuZCBkZXRlcm1pbmVzIHRoYXQgdGhlIGNoYW5uZWwgaXMg
+c3RpbGwgYnVzeS4NCj4gDQo+IFRvIHNvbHZlIHRoaXMgaXNzdWUsIEkgd291bGQgbGlrZSB0aGUg
+VVNSUCBTb3VyY2UgdG8gcmVjZWl2ZSBlaXRoZXIgemVyb3MsIG5vIHNhbXBsZXMgYXQgYWxsLCBv
+ciBzb21ldGhpbmcgdGhhdCBhdCBsZWFzdCBkb2VzIG5vdCBoYXZlIHNvIG11Y2ggbGVha2FnZSBv
+ZiBpdHMgb3duIFRYIHNpZ25hbC4NCj4gDQo+IElzIGl0IHBvc3NpYmxlIHRvIGRvIHRoaXMgZWl0
+aGVyIGJ5IGFwcHJvcHJpYXRlIGNvbmZpZ3VyYXRpb24gaW4gR05VIFJhZGlvIG9yIFVIRD8NCj4g
+DQo+IEkndmUgYmVlbiBzdHVkeWluZyB0aGUgc291cmNlcyBvZiBVSEQgYW5kIEdOVSBSYWRpbyB0
+byBzZWUgaG93IHRoaXMgY291bGQgYmUgZG9uZS4gVGhlIG9ubHkgdGhpbmcgSSBoYXZlIGZvdW5k
+IGlzIHRoYXQgdGhpcyB3b3VsZCBiZSBwb3NzaWJsZSB3aXRoIGEgc21hbGwgY2hhbmdlIHRvIHRo
+ZSBGUEdBIGltYWdlLiBGb3IgaW5zdGFuY2UsIHRoaXMgbGluZQ0KPiANCj4gaHR0cHM6Ly9naXRo
+dWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvbWFzdGVyL2ZwZ2EvdXNycDMvbGliL3JhZGlv
+XzIwMC9yYWRpb19sZWdhY3kudiNMNDQ2DQo+IA0KPiBjb3VsZCBiZSBtb2RpZmllZCB0byByZXBs
+YWNlIHRoZSBSWCBzYW1wbGVzIGJ5IHplcm9zIHdoZW5ldmVyIHJ1bl9yeCBpcyBhc3NlcnRlZC4N
+Cj4gDQo+IEhvd2V2ZXIgSSB3b3VsZCBwcmVmZXIgbm90IHRvIGJ1aWxkIGEgbW9kaWZpZWQgRlBH
+QSBpbWFnZSBmb3IgdGhpcyBzeXN0ZW0sIHNvIEkgd2FzIHdvbmRlcmluZyBpZiBvdGhlciBzb2x1
+dGlvbnMgZXhpc3QuDQo+IA0KPiBCZXN0LA0KPiBEYW5pZWwuDQo+IA0KPiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5k
+IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
+IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
