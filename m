@@ -2,150 +2,169 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E94BA9DE6
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 17:52:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A25BAD256
+	for <lists+usrp-users@lfdr.de>; Tue, 30 Sep 2025 16:08:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A636E3865C3
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Sep 2025 11:52:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DF5B9385C56
+	for <lists+usrp-users@lfdr.de>; Tue, 30 Sep 2025 10:08:39 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1759161153; bh=iKaRwUzKgb5gOeZS0KOHlvXfCnhTurnzNflvHkEnq74=;
-	h=From:In-Reply-To:Date:References:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=DKFC3/x9he4xBuTDSubPmpiXXPfVnP24XavLJGfdqKQA7yrxHyWWArtMCuQyeaPXU
-	 V93LRbkTWdgJo4Xg7b/T8MZvEKmqZVn2SH2OMMQ/KhhX2r4sZedmJM3UPM+WsJUnnZ
-	 0/C63WbFrrtJcQuoWg0mXKxPT58otM1HWmvrnD9/j68QDGZEBjtv2aodKKcZZQBXhc
-	 044dWcjX24EFpaYBLPSL//r4zONYgKuvL4O9pNtOReA5+fI1lqxF6DUrrb+CmSj/gt
-	 aCySlSBnwfySU5RjzwjUuhWFiAPbnkfDUcxL1a/pOV6bqbVlWjG2beOdF+gBu7uhHb
-	 bPuDCImbXmprw==
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 76CE73865BD
-	for <usrp-users@lists.ettus.com>; Mon, 29 Sep 2025 11:51:30 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ionconcepts-com.20230601.gappssmtp.com header.i=@ionconcepts-com.20230601.gappssmtp.com header.b="VfKBtjR7";
-	dkim-atps=neutral
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-32eb45ab7a0so5429427a91.0
-        for <usrp-users@lists.ettus.com>; Mon, 29 Sep 2025 08:51:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ionconcepts-com.20230601.gappssmtp.com; s=20230601; t=1759161089; x=1759765889; darn=lists.ettus.com;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mCoxdFA92DovSPaZi03dqTSlMVQi5nDAS/dYJfH+plw=;
-        b=VfKBtjR7HCqPzbw0MjxL+oH/D6PFx158jWbmynZT53nmgk/S4mfB5LIKj/M2ptzhKR
-         ypBHobzg89KJkDODyW+ODLtqZCka0UeL22lsx++jdT7AN/WJRHqUYb3vRUKccptJedw3
-         OA07EtfVkDfHrFQTp7EZNT/wf1COw8NNFeIjigchPXzclmrflITz0z/eef713mQRRI19
-         gbfnBqHqAgsVK73f2V7tiCSrX8OY0ztQRwCjQRVGOTLLCiZ8hzzhiKmR2+D90p0/s3dw
-         vYUF6Saju3POgE02OLf255irnfPdCcTYj8GZjnuN6+Hlyj0aoMNvfCKZOHdgmHoerZfM
-         LH1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759161089; x=1759765889;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mCoxdFA92DovSPaZi03dqTSlMVQi5nDAS/dYJfH+plw=;
-        b=unQ6EO0cu+b2K89h2nVuK7/gFUPG/OXaIgzcCRrtpqAVM+Cz+OGDQVS1LT5eqmCrC8
-         mq5SM8YIURPfGvbiXv2lqmlomPoGBolODz4/Uxj4SVJ1bYlEEtLKwV6Z08/0UDLJ7pMz
-         pREu9J1lvPKXrqf1FvHd5JRVuKoYS3Tl2GKfKVZgpracz2TMfZnqd/zg6a/zcjpQLHXd
-         YR4dfsYhIgRe4eRcBkiE5t0tMpTWqkSl5SLrgyIOjrifUZfZYWLxEx8iXsBvqEwAwfe1
-         4jaaYrrz9WWrmNh/fSkkfgSfTnbHwhXnsSpf1vkCSRtKPWVTHceUzhswS2L2Q4FrPbz1
-         +dZA==
-X-Gm-Message-State: AOJu0Yxce9cmW9fRBTzu8aA1jr8FSY0TWIwAl6+v9Got+gi7p51bdyKa
-	M8poAkgOJiyJuuDVC60jPpVs7sU2OSGqghKQ0FoJPMkC5GMZCR5VTrEC/4BDvXVjFvJQ4XfMabQ
-	CL+hN
-X-Gm-Gg: ASbGnctXT3jT/pi/1sWC1xR1OXnRe0uC3LeyBH5/TyQd4392MC/fO6gRUcJuBBSqkCR
-	r7NZ07Ai9adDQJlm4EHVwaGoxul4c7BW2ZBaTeuyV4pBIqRQjtnaZCQg/1TmOWnOE/cl7aZtUiT
-	6m37LQk1bVUxPg7GCu0TpaGrZVPZv/1HjSTk6ACyH+M0ySLV4TmRubDao8SWC6Cy98aJadbqAmY
-	crEXAFUmDuuaFq/2mTT+q2k7ipptMo3BPDnftMhHFQ/azQdbk119q/iNeRpR7ZEzXaf0EVDvAqt
-	E8hGXT041H1xIbqfgEO3S8Ph2gQuecqaQ87WXuVDR3GPQ1lPNU3S63zIvqQSlP2uLf4WQImS6UZ
-	mg2AuNWVwa1ChS5YTwomsruX6K8sW6nSpC2tUNwtDV5D2ULAh3CQkoTQwJ4KWSxslVr+a9794Pz
-	4Tv/QIL88Pg0rvPQvd8RXYg37sesbD
-X-Google-Smtp-Source: AGHT+IHtjdCfVuutprQV9j3LdqdytaEtLN8xsVdxd6J3JpLnOpDtHuRHuyKLwZPVpzm26KhVmNyIlw==
-X-Received: by 2002:a17:90b:4f47:b0:32e:9daa:7347 with SMTP id 98e67ed59e1d1-3342a242c87mr17939566a91.7.1759161089378;
-        Mon, 29 Sep 2025 08:51:29 -0700 (PDT)
-Received: from smtpclient.apple (h208-100-179-5.bendor.broadband.dynamic.tds.net. [208.100.179.5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33838745ff3sm1623943a91.27.2025.09.29.08.51.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 Sep 2025 08:51:29 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
-From: Ian Buckley <ianb@ionconcepts.com>
-In-Reply-To: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
-Date: Mon, 29 Sep 2025 08:51:18 -0700
-Message-Id: <6504F6BE-ECE9-4123-8D19-C9BA6DB5C358@ionconcepts.com>
-References: <899f5b67-809c-494b-a4d2-1b7be3a3b1e3@destevez.net>
-To: =?utf-8?Q?Daniel_Est=C3=A9vez?= <daniel@destevez.net>
-X-Mailer: Apple Mail (2.3826.600.51.1.1)
-Message-ID-Hash: SWXG3ZFT24T7AJH24JC4KD2MWCSRCNQL
-X-Message-ID-Hash: SWXG3ZFT24T7AJH24JC4KD2MWCSRCNQL
-X-MailFrom: ianb@ionconcepts.com
+	t=1759241319; bh=BBpUiDczuSOMxq4wofMsgjpbCAPhG0qaiSoys13G0gA=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=VejQYHFh2XGoxkCm79hIT/bHIOwYfnvtRUfbiU+PQH+x2rPRGA0366i5XLbj8yqde
+	 v/eaLQFznrX7yduvgKoHFS1g6gsjU2ifxTUtWxjKmrsFrJlnitrW2XH/FpFQEjXq+2
+	 z/Y2KWyB0YM/aGQPo9MT821AtNx8jlT0Ax7BL/FxA06fTJXI1QVXUNfkNroz5f3A1H
+	 alYe6qJdEv49Kr5oVCg9MyK+NZ+cONJ53xqK7/A0Ysd76jACJ5COxzHdf0NJvUf9nz
+	 eTpOyTQZFO/Aco0ZzL/GF2cVdgL3TyL92EJlDjOV1K8hPmW8fTR/R4CsWwp9appXMt
+	 qMk+N2uiDYWPg==
+Received: from baseband.digital (baseband.digital [162.55.218.138])
+	by mm2.emwd.com (Postfix) with ESMTPS id 85764386244
+	for <usrp-users@lists.ettus.com>; Tue, 30 Sep 2025 10:07:30 -0400 (EDT)
+Received: from [IPV6:2001:16b8:cc76:3500:bf5:d22c:2206:8fff] (unknown [IPv6:2001:16b8:cc76:3500:bf5:d22c:2206:8fff])
+	by baseband.digital (Postfix) with ESMTPSA id 420785E66D
+	for <usrp-users@lists.ettus.com>; Tue, 30 Sep 2025 16:07:29 +0200 (CEST)
+Message-ID: <cfff8c29-7926-49d5-8a76-d2fc6700530b@baseband.digital>
+Date: Tue, 30 Sep 2025 16:07:28 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+To: usrp-users@lists.ettus.com
+References: <fl4ODZ2kLwqDKfYZpq6Lt1eSFmOrhV6VyIU639jaTY@lists.ettus.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Marcus_M=C3=BCller?= <mueller_usrp_users@baseband.digital>
+In-Reply-To: <fl4ODZ2kLwqDKfYZpq6Lt1eSFmOrhV6VyIU639jaTY@lists.ettus.com>
+Message-ID-Hash: ESZQAAZFCTJ3H6O3RSGWASFXONRORVAN
+X-Message-ID-Hash: ESZQAAZFCTJ3H6O3RSGWASFXONRORVAN
+X-MailFrom: mueller_usrp_users@baseband.digital
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Half duplex with USRP B2xx and GNU Radio
+Subject: [USRP-users] Re: Getting Started RFNoC
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SWXG3ZFT24T7AJH24JC4KD2MWCSRCNQL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ESZQAAZFCTJ3H6O3RSGWASFXONRORVAN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Transfer-Encoding: 7bit
 
-VGhlcmUgc2hvdWxkIGJlID49IDUwZEIgaXNvbGF0aW9uIGJldHdlZW4gUlgyIGFuZCBSWC9UWCBv
-biB0aGUgZGlyZWN0IHBhdGggdGhyb3VnaCB0aGUgc3dpdGNoZXMgYnV0IG9mIGNvdXJzZSB0aGVy
-ZSBpcyBsb3RzIG9mIG9wcG9ydHVuaXR5IGZvciBjb3VwbGluZyBpbiBvdGhlciBwbGFjZXMgaW4g
-dGhlIHNpZ25hbCBjaGFpbiBhbmQgdGhhdOKAmXMgbm90IG11Y2ggZm9yIGEgc2Vuc2l0aXZlIHJl
-Y2VpdmVyLg0KDQpaZXJvaXppbmcgUlggc2FtcGxlcyBiZWZvcmUgdGhlIEREQyBpbnB1dCBiYXNl
-ZCBvbiBydW5fdHggd29ya3Mgd2VsbCBidXQgeW91IGRvIGhhdmUgdG8gYWNjb3VudCBmb3IgdGhl
-IGdyb3VwIGRlbGF5IG9mIHRoZSBBRDkzNjEgYWxzbyB3aGljaCBpcyBub24gdHJpdmlhbCwgc28g
-eW91IG1heSBoYXZlIHRvIGV4dGVuZCB0aGUgdGFpbCBvZiB6ZXJvaXphdGlvbiBkZXBlbmRpbmcg
-b24gaWYgeW91IGFyZSBzZW5zaW5nIHBvd2VyIG9yIGFjY2VzcyBjb2RlLg0KDQpBIG1lc3NhZ2Ug
-cGFzc2luZyBpbnRlcmZhY2UgZnJvbSBUWCBidXJzdCBsb2dpYyB0byBSWCBwYWNrZXQgZGV0ZWN0
-IG1pZ2h0IG5vdCBiZSBhIGJhZCBTL1cgc29sdXRpb24sIGJ1dCB5b3UgaGF2ZSBhIHByZXR0eSB0
-aWdodCB0aW1pbmcgY29uc3RyYWludCB0aGVyZSB3aXRoIGl0IHJhY2luZyB0aGUgUkYgcGF0aC4g
-TWF5YmUgdGhlcmUgaXMgYSBoYWNrIGhlcmUgd2hlcmUgeW91IGlzc3VlIGEgY291cGxlIHRpbWVk
-IFJYIGNvbW1hbmRzIHdoaWxzdCBpc3N1aW5nIHRoZSBUWCBidXJzdCDigKZzb21ldGhpbmcgbGlr
-ZSBhIENPUkRJQyBvZmZzZXQgdGhhdCBtb3ZlcyB0aGUgc2lnbmFsIG91dCBvZiB0aGUgcmVjZWl2
-ZXIgdHJhY2tpbmcgYmFuZHdpZHRoLg0KDQo+IE9uIFNlcCAyOSwgMjAyNSwgYXQgMzoxNeKAr0FN
-LCBEYW5pZWwgRXN0w6l2ZXogPGRhbmllbEBkZXN0ZXZlei5uZXQ+IHdyb3RlOg0KPiANCj4gSGVs
-bG8sDQo+IA0KPiBJIGFtIGltcGxlbWVudGluZyBhIGhhbGYtZHVwbGV4IG1vZGVtIHdpdGggR05V
-IFJhZGlvIGFuZCBhIFVTUlAgQjJ4eCB0aGF0IHVzZXMgQ1NNQSB0byBjb250cm9sIG1lZGl1bSBh
-Y2Nlc3MuIEkgaGF2ZSBhIEdOVSBSYWRpbyBmbG93Z3JhcGggd2l0aCBhIFVTUlAgU291cmNlIGFu
-ZCBVU1JQIFNpbmsgYmxvY2tzIGJvdGggc2V0IHRvIHVzZSB0aGUgVFgvUlggYW50ZW5uYS4gVGhl
-IFVTUlAgU2luayBibG9jayB1c2VzIGJ1cnN0IHRyYW5zbWlzc2lvbi4gV2hlbiBhIGJ1cnN0IGlz
-IHNlbnQsIHRoZSBCMnh4IGF1dG9tYXRpY2FsbHkgc3dpdGNoZXMgdGhlIHJlY2VpdmUgdG8gdGhl
-IFJYMiBwb3J0Lg0KPiANCj4gVGhlIGlzc3VlIGlzIHRoYXQgdGhlcmUgaXMgZW5vdWdoIGxlYWth
-Z2UgdGhyb3VnaCB0aGUgUlgyIHBvcnQgdGhhdCB0aGUgc3lzdGVtIGlzIGFibGUgdG8gcmVjZWl2
-ZSBpdHMgb3duIHRyYW5zbWl0IHBhY2tldHMgd2l0aCBnb29kIFNOUi4gVGhpcyBpcyBhIHByb2Js
-ZW0gZm9yIHRoZSBDU01BIHN5c3RlbSBiZWNhdXNlIGl0IG1ha2VzIHRoZSBzeXN0ZW0gZGV0ZWN0
-IHRoYXQgdGhlIGNoYW5uZWwgaXMgYnVzeSB3aGlsZSBpdCBpcyB0cmFuc21pdHRpbmcgaXRzIG93
-biBwYWNrZXQuIER1ZSB0byB0aGUgbGF0ZW5jeSBiZXR3ZWVuIHRoZSBSWCBhbmQgVFggc3RyZWFt
-cyBpbiBHTlUgUmFkaW8sIHRoaXMgcHJldmVudHMgdGhlIG1vZGVtIGZyb20gdHJhbnNtaXR0aW5n
-IGJhY2stdG8tYmFjayBwYWNrZXRzICh3aGljaCBpcyBhbGxvd2VkIGFuZCBleHBlY3RlZCBieSB0
-aGlzIENTTUEgc2NoZW1lKSwgYmVjYXVzZSB3aGVuIHRoZSBzZWNvbmQgcGFja2V0IGlzIGFib3V0
-IHRvIGJlIHNlbnQsIHRoZSBtb2RlbSByZWNlaXZlciBpcyBzdGlsbCBzZWVpbmcgdGhlIGVuZCBv
-ZiB0aGUgcHJldmlvdXMgcGFja2V0IGFuZCBkZXRlcm1pbmVzIHRoYXQgdGhlIGNoYW5uZWwgaXMg
-c3RpbGwgYnVzeS4NCj4gDQo+IFRvIHNvbHZlIHRoaXMgaXNzdWUsIEkgd291bGQgbGlrZSB0aGUg
-VVNSUCBTb3VyY2UgdG8gcmVjZWl2ZSBlaXRoZXIgemVyb3MsIG5vIHNhbXBsZXMgYXQgYWxsLCBv
-ciBzb21ldGhpbmcgdGhhdCBhdCBsZWFzdCBkb2VzIG5vdCBoYXZlIHNvIG11Y2ggbGVha2FnZSBv
-ZiBpdHMgb3duIFRYIHNpZ25hbC4NCj4gDQo+IElzIGl0IHBvc3NpYmxlIHRvIGRvIHRoaXMgZWl0
-aGVyIGJ5IGFwcHJvcHJpYXRlIGNvbmZpZ3VyYXRpb24gaW4gR05VIFJhZGlvIG9yIFVIRD8NCj4g
-DQo+IEkndmUgYmVlbiBzdHVkeWluZyB0aGUgc291cmNlcyBvZiBVSEQgYW5kIEdOVSBSYWRpbyB0
-byBzZWUgaG93IHRoaXMgY291bGQgYmUgZG9uZS4gVGhlIG9ubHkgdGhpbmcgSSBoYXZlIGZvdW5k
-IGlzIHRoYXQgdGhpcyB3b3VsZCBiZSBwb3NzaWJsZSB3aXRoIGEgc21hbGwgY2hhbmdlIHRvIHRo
-ZSBGUEdBIGltYWdlLiBGb3IgaW5zdGFuY2UsIHRoaXMgbGluZQ0KPiANCj4gaHR0cHM6Ly9naXRo
-dWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvbWFzdGVyL2ZwZ2EvdXNycDMvbGliL3JhZGlv
-XzIwMC9yYWRpb19sZWdhY3kudiNMNDQ2DQo+IA0KPiBjb3VsZCBiZSBtb2RpZmllZCB0byByZXBs
-YWNlIHRoZSBSWCBzYW1wbGVzIGJ5IHplcm9zIHdoZW5ldmVyIHJ1bl9yeCBpcyBhc3NlcnRlZC4N
-Cj4gDQo+IEhvd2V2ZXIgSSB3b3VsZCBwcmVmZXIgbm90IHRvIGJ1aWxkIGEgbW9kaWZpZWQgRlBH
-QSBpbWFnZSBmb3IgdGhpcyBzeXN0ZW0sIHNvIEkgd2FzIHdvbmRlcmluZyBpZiBvdGhlciBzb2x1
-dGlvbnMgZXhpc3QuDQo+IA0KPiBCZXN0LA0KPiBEYW5pZWwuDQo+IA0KPiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcg
-bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5k
-IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcg
-bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
-IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+Hi Peter,
+
+as Martin said, unlikely ("no way") you'll be processing 2 GS/s in computer software, DPDK 
+or not. Start smaller; channelize / process-on-FPGA as needed.
+
+Best,
+Marcus
+
+On 9/26/25 7:56 PM, Peter Gu via USRP-users wrote:
+>
+> Hi Martin,
+>
+> I tried to get rid of the underflow issue but didnt succeed. Our setup consists of a 
+> host PC equipped with an AMD Threadripper Pro 3955WX (16 cores), 160 GB of RAM, and a 
+> Mellanox MT27800. It is connected to the X440 via a single 100 GbE cable.
+>
+> Im using the default X440_X4_1600 image and UHD4.8.0.0
+>
+> To use DPDK I followed this instruction: 
+> https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD
+>
+> The only thing I changed was the line 
+> dpdk_driver=/usr/lib/x86_64-linux-gnu/dpdk/pmds-20.0/ -> 
+> dpdk_driver=/usr/lib/x86_64-linux-gnu/dpdk/pmds-22.0/ in uhd.conf
+>
+> I also played around with dpdk_num_mbufs by setting it to e.g. 8192.
+>
+>
+> However, I still get underflow issues:
+>
+> [INFO] [UHD] linux; GNU C++ version 13.1.0; Boost_107400; DPDK_21.11; 
+> UHD_4.8.0.0-0-g308126a4
+>
+> EAL: Detected CPU lcores: 32
+>
+> EAL: Detected NUMA nodes: 1
+>
+> EAL: Detected shared linkage of DPDK
+>
+> EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
+>
+> EAL: Selected IOVA mode 'VA'
+>
+> EAL: No available 1048576 kB hugepages reported
+>
+> EAL: Probe PCI driver: mlx5_pci (15b3:1017) device: 0000:41:00.0 (socket 0)
+>
+> EAL: Probe PCI driver: mlx5_pci (15b3:1017) device: 0000:41:00.1 (socket 0)
+>
+> TELEMETRY: No legacy callbacks, legacy socket not created
+>
+> [00:00:00.000240] Creating the usrp device with: 
+> addr=192.168.60.243,mgmt_addr=10.157.161.243,master_clock_rate=2e9,use_dpdk=1...
+>
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: 
+> mgmt_addr=10.157.161.243,type=x4xx,product=x440,serial=32C7660,name=ni-x4xx-32C7660,fpga=X4_1600,claimed=False,addr=192.168.60.243,master_clock_rate=2e9,use_dpdk=1
+>
+> [WARNING] [MPM.RPCServer] A timeout event occured!
+>
+> [INFO] [MPM.PeriphManager] init() called with device args 
+> `fpga=X4_1600,master_clock_rate=(2000000000.0, 
+> 2000000000.0),mgmt_addr=10.157.161.243,name=ni-x4xx-32C7660,product=x440,use_dpdk=1,clock_source=internal,time_source=internal,initializing=True'.
+>
+> Using Device: Single USRP:
+>
+> Device: X400-Series Device
+>
+> Mboard 0: x440
+>
+> RX Channel: 0
+>
+> RX DSP: n/a
+>
+> RX Dboard: A
+>
+> RX Subdev: 0
+>
+> TX Channel: 0
+>
+> TX DSP: n/a
+>
+> TX Dboard: A
+>
+> TX Subdev: 0
+>
+> [00:00:03.670625969] Setting device timestamp to 0...
+>
+> [00:00:03.673117806] Testing receive rate 2000.000000 Msps on 1 channels
+>
+> Setting TX samples per packet (spp) to 1984
+>
+> Setting TX samples per burst (spb) to 1984
+>
+> [00:00:03.675296572] Testing transmit rate 2000.000000 Msps on 1 channels
+>
+> OUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUterminate 
+> called after throwing an instance of 'uhd::op_timeout'
+>
+> what(): RfnocError: OpTimeout: Control operation timed out waiting for ACK
+>
+> Aborted (core dumped)
+>
+>
+> What can be the issue here?
+>
+>
+> Best,
+>
+> Peter
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
