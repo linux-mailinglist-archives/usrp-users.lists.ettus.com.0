@@ -2,138 +2,197 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D667BBDAD0
-	for <lists+usrp-users@lfdr.de>; Mon, 06 Oct 2025 12:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83371BBE81E
+	for <lists+usrp-users@lfdr.de>; Mon, 06 Oct 2025 17:39:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 92D1E385B63
-	for <lists+usrp-users@lfdr.de>; Mon,  6 Oct 2025 06:24:53 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 05EB03859C4
+	for <lists+usrp-users@lfdr.de>; Mon,  6 Oct 2025 11:39:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1759746293; bh=v3+phGetdd93ibt2Z8aJLwqzKyzzTSaayl4hMULiKfQ=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=zAokOBclIpCI+m78iNNaJ2FsHRbKeFQB7EZPQ4PSkVx2kJPCFBN2P7WE7hjM57hR6
-	 b4iKCECO5iaWfGmvTO//EzGkLmfel2CSxJZepKuO+GVpKPYiwWc9hNmed2cyMkdTYO
-	 sv0vV61b0VjlIQ09y0VPU0UPPYJ/YZNVE4nPI8XVP5HPlVuASYITy/m8PufFvQAk6c
-	 1OAO8FjlKtzbDFMW9GmfY60vVWUdEbqKx5moURcStbXot4AMXuTxXocFC0Sn6fTC+W
-	 athjYeNJBCpLrNr/UsNxGNgTdL4etfVcArF54ood9REdfdhkscdAnmjtPFkRk+xDOO
-	 lw/VbylLs5Gxg==
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 86272385947
-	for <usrp-users@lists.ettus.com>; Mon,  6 Oct 2025 06:22:32 -0400 (EDT)
+	t=1759765147; bh=6HwbRlJb45bId40PLGB0Xs0hxQDHx6bDDwAL1QTRILs=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=dRu/L5X88EQe8R0YUTttYY+ltNtVkNHszhWVNCf7vVqJ7+2afE52CZyvZB80zggw3
+	 vIJ1qnokOmzBkEDTZ7qnAeM2GaC884nUHgcBxZP0G6Q5/uKuBosypdYTGOAKYAA7Hd
+	 VmogESGGITssaa94BwjKjb3T7w/C8H/yf4/bKbefG5HJlxeZeUA/Xx20B/DqDqXFDU
+	 tSfz6JG8c32V6WUfE8UyxKeRmFxX+lakPvS5Lc0+zt69QssQxKIk+2aRotUiiajusE
+	 +o7bKD0ZJihlghvNDkL6XbVGOFfzQQk3eCKMM5N2/2rZUE5I4Z7mulDoNi3aqKc1e2
+	 c9UpgFtwqXeBQ==
+Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 50255385926
+	for <usrp-users@lists.ettus.com>; Mon,  6 Oct 2025 11:38:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UFDbz2Vc";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Yf9thPWn";
 	dkim-atps=neutral
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-57b8fc6097fso6491258e87.1
-        for <usrp-users@lists.ettus.com>; Mon, 06 Oct 2025 03:22:32 -0700 (PDT)
+Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-63bc1aeb427so2340352d50.3
+        for <usrp-users@lists.ettus.com>; Mon, 06 Oct 2025 08:38:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759746151; x=1760350951; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=YDBIT47uBg7NNo1jVFFm/mrbpU8jlzcH3KR9oyzKoFg=;
-        b=UFDbz2VcE6Q71KIt3T+3n9WOpQq4ohhsLcwYx9//Q4mxoJ4iQlNvYs2iNDgj707Po+
-         UCjg4TBr7IvgFrKN22z2tY/nkK35zVUdoY92wEY9bCc/Nts6yMSYCwQcgzjZ3MK0quEe
-         gJ1m1ryRl2KAf0WoKSNqnUUvyVN+y5Frig8Tspdyo7lIf2r//f0wii8qpEbdGgfB6ax/
-         SAxie2p1/7EH/EbDfpzbQxVoAXQ46YV79ajQCyETfQnvaQV41xgyA1zlMmYgHCQBGYiA
-         syJ+8ZNVi6+H8+1wp0AfnQeehmurT41MuXxbwYNNYQdAogrYaXntQg9KRgP5gd9wdpLY
-         c9Eg==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1759765104; x=1760369904; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u36vEkDOS2DB5vO0MI2tfhtKVgFCKVKZA9tzdBNGirM=;
+        b=Yf9thPWnqrngMSWgTvTkP0ou1/00oConuIvTeQTmlXCZ/eF6gkFJdWjVsvJiLOYHPf
+         qIeES5aj0hSHKhzHHRIX60rwR7eIGe8FjL/HWmdMtZRLIzrbq1X48Xrbhn8bjh62LVFl
+         jnX+aabZLHwwq+U9aoOVVxtt3HcxU8NC+zkYVXjmKR3Ymo8cnwnAwIr2bcaT550ID8WL
+         kS4ImMTLdArTUxSCC7ybJriGSiG6t9/poy/IfDdAPdiVHfPCR49p94m14S2v0iwWnGLj
+         Ai2sI9i4izrNYRyoCkET28pGdNN3IvNC7vtZRdISD+3dOFr4+EDMN0whmdauyH11LWv7
+         lR5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759746151; x=1760350951;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YDBIT47uBg7NNo1jVFFm/mrbpU8jlzcH3KR9oyzKoFg=;
-        b=DoakyvXcxRojfao3QfjKQE0hAPtbP2NACIXkRzD9NBmtaeBAUo0cpSL7JbWfR3vDKu
-         wJPbwj18s2bJtK5c7ZtPEsuCrMXZw9ydvVKrpg3l+p/Pm4iAXmDJxKi5fv/4xyyCnka1
-         /qoXfhVUJmdP2690uyFzJaus1IJ8Pk60/c6bkpwCGu/pErVLKCxDeI58staX+FjKzzjX
-         Pql1a+V4ALbleyipN252Dv9unIiX6Sf6+bGrkFejrEWTbKv6MhbwFyt5jlD1AsyoJwhc
-         SnR9vSSIptEyoO7jGRZfTYo7QMMKdR6QMF8hrj+zteZK4uSH/MBldCaLQcQEKvyN/Px/
-         p++w==
-X-Gm-Message-State: AOJu0Yw+OymjS+tQk0Snb5z3jvStvslDERMFi+F6dzZexEVZnLSx6+bB
-	mVDbbkWK8VH1kacHvUDgJsv9Tw7wQyP3z8lxtsD2Fxnvd5HK7EMs9IgNA/znkaqFSPrt4zHHT8Y
-	RIbA8E/K0WZZcHCLdLKiG4LJy9syN465K9YdMTyU=
-X-Gm-Gg: ASbGncs981PG13HJYJv8qbjj7Fd93aL+Jjx4FlCCY4a8QQrCwCh5ngsLLZSQw8LDAWG
-	4vFakQsFhAtuYErRMaZzvk4lmw3zojV91W7zmDtbc6NBMRuteaV95PlqWy/UACVhlBMtoDgj9y0
-	Domhj9N62BM2lmvbP63Vq5rDbO0IOVZx3k7J8D7KYNic9l75zBgwj3yvV6wtx4g9klojCWPSKdn
-	i/kd44UaMoi/jxH4gtPhLX1a5qSL74JwS+LPOR+PDUSEekG3qHO6F8clr7gbYY=
-X-Google-Smtp-Source: AGHT+IF0nTer/o2ujlv39JgfTk8c48XH8Ei7sg6Rfxz9H/sMZncqbvyOkR+68g11CYoEWfLmunMAhucBPkDj8FPeofI=
-X-Received: by 2002:a05:6512:124b:b0:578:ed03:7b70 with SMTP id
- 2adb3069b0e04-58cbb441733mr3573099e87.28.1759746149791; Mon, 06 Oct 2025
- 03:22:29 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759765104; x=1760369904;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u36vEkDOS2DB5vO0MI2tfhtKVgFCKVKZA9tzdBNGirM=;
+        b=cO5f7+UNtBD+/1wBcbHJ5uAh9bp9YacXsH/Hd2KpLaF2U4Ci4byrcYfP/198yqL199
+         jSTZFVd88Yqw0kANgO9cWz4EnvAi00/eTT/sbDEy6nXpf4SBFqDcR/ik8rARMbMMWiKc
+         EyA/+7Gzx0pcKyLGxbtv5evw3GWAoujeGVDpxir4M8yaZbrNUA0p7WsJ+6SiuS2UuO89
+         +t2ZnzrkjvAaNwWrnnV9m2PcaZv4Rr9KExsaPNNOgSI41yr8j6xemiqHKWgIsvR6ZErL
+         8wnIIZDrBitWqXrXnhgXCUE7piXDs/0RX4gnakn14EH8/7EaVx8x9JnBtHI6KXNXtAZU
+         E4YQ==
+X-Gm-Message-State: AOJu0YzcdEIayP/A91YVOUQCUl8F/VE7Ra65rHy2EqeP4NZ8FZGgrF8m
+	/EzfIiTnhxmqc6zXawe+quz/oMWxbGANd1+Qtxwv7an+7xTQY7WYhdfueYOid4VfMyGYEIgEMTC
+	Imkp4+5T3xvCXMpY6aEvnjF9iVoKiNGczMBbvazVmwUxw
+X-Gm-Gg: ASbGncuZpAn5wPL/gHEdHLKRVdtvSKNc+gfbTgNsWZA2qYSv+uY1NF8RMxNFsKz5JCz
+	iaTrNn9pOlJWqcVuQSwKvOXvX2tzhALvswtgBmilnFZh2JD5U4fPOzlAtX4SgwDEl1bi7d4PwYO
+	4gAHgcqcmrCbpn4CiTGopBgUuu76Xukh2LvqLyVSI+pBc5xNboknWJFX6tfK69p81uqDRo+rNUy
+	YbLifLEtfcinD49USZ+7XNNjo7lPKiawQjDu4U=
+X-Google-Smtp-Source: AGHT+IFtRF4krAHJxMNQY3Y6MWcpvdRRdaOyI1mwBpHuGMmkfKXrB1F97ShvFMtLvUlMOMspQPYyhZ0tMHkRysA1mII=
+X-Received: by 2002:a53:ad8e:0:b0:63b:17b0:2c83 with SMTP id
+ 956f58d0204a3-63b9a0fcb8bmr10001676d50.41.1759765102650; Mon, 06 Oct 2025
+ 08:38:22 -0700 (PDT)
 MIME-Version: 1.0
-From: Daniel Ozer <danielozer22@gmail.com>
-Date: Mon, 6 Oct 2025 13:22:17 +0300
-X-Gm-Features: AS18NWBK1xrD0BldW13HaaUmQaPz51WSM4JhONZr5eGRQPvvJBXVHVL-jUnGBoM
-Message-ID: <CAE_Rk547dAxULeorFxtS8kFFBeUNZMLd+qKPzcvgQ-Lmh4xEWw@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: 4PJRRCJNL7M6EYMHXLX6IH4BJD3QUJ2D
-X-Message-ID-Hash: 4PJRRCJNL7M6EYMHXLX6IH4BJD3QUJ2D
-X-MailFrom: danielozer22@gmail.com
+References: <CAE_Rk547dAxULeorFxtS8kFFBeUNZMLd+qKPzcvgQ-Lmh4xEWw@mail.gmail.com>
+In-Reply-To: <CAE_Rk547dAxULeorFxtS8kFFBeUNZMLd+qKPzcvgQ-Lmh4xEWw@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Mon, 6 Oct 2025 10:38:05 -0500
+X-Gm-Features: AS18NWCHiSdKIVcWujvUsc74AZZ1K2G5xPx4XvnjCX2gfiVIMFoRVgu4ZSJ5FT0
+Message-ID: <CAFche=hTCHBFwZKzdEgVrz6WB+spzyg-_bcWODwcUX9KjGC3PQ@mail.gmail.com>
+To: Daniel Ozer <danielozer22@gmail.com>
+Message-ID-Hash: 36OETEBGC7UKCMT56CRVJOV3SWN6B4SO
+X-Message-ID-Hash: 36OETEBGC7UKCMT56CRVJOV3SWN6B4SO
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] usrp x440 bitfile creation of X4_200 image result in timing error
+Subject: [USRP-users] Re: usrp x440 bitfile creation of X4_200 image result in timing error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4PJRRCJNL7M6EYMHXLX6IH4BJD3QUJ2D/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/36OETEBGC7UKCMT56CRVJOV3SWN6B4SO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8274898227791863642=="
+Content-Type: multipart/mixed; boundary="===============0720499824115187524=="
 
---===============8274898227791863642==
-Content-Type: multipart/related; boundary="00000000000027654906407ad493"
+--===============0720499824115187524==
+Content-Type: multipart/related; boundary="000000000000d5ee1706407f3d95"
 
---00000000000027654906407ad493
-Content-Type: multipart/alternative; boundary="00000000000027654706407ad492"
+--000000000000d5ee1706407f3d95
+Content-Type: multipart/alternative; boundary="000000000000d5ee1606407f3d94"
 
---00000000000027654706407ad492
+--000000000000d5ee1606407f3d94
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Daniel,
 
-for the past week im trying to create a new bitfile for the X440.
+It looks like some constraints are missing. If you didn't change anything
+then I suspect it's because you're using project mode in Vivado. The USRP
+build flow is designed to use non-project mode. So, if you create a project
+and use that instead then it's up to you to manage your project and make
+sure all the right files are pulled in for your build. The --save-project
+option does some of that work for you, but it could be that some files are
+missing.
 
-As a first step i successfully managed to create the X440_400 variants
-bitfile using the giving yamls.
+Try building it using the normal flow and see if that resolves the issue:
 
-While trying to recreate the  X4_200 image (without any changes) the
-implementation resulted in many timing errors, altough i tried using many
-implementation strategy.
+    rfnoc_image_builder -y
+/home/Desktop/workspace/uhd/fpga/usrp3/top/x400/x440_X4_200_rfnoc_image_cor=
+e.yml
 
-this issue still occur when i strip all the duc and radio blocks.
- Is it a known issue? can i avoid it? am i doing something wrong?
-[image: Screenshot from 2025-10-05 22-44-51.png]
+You might also try cleaning up anything that was leftover from previous
+builds.
 
+    cd /home/Desktop/workspace/uhd/fpga/usrp3/top/x400/
+    make cleanall
 
-[image: Screenshot from 2025-10-05 22-45-11.png]
-
-
-[image: Screenshot from 2025-10-05 22-43-38.png]
+Wade
 
 
+On Mon, Oct 6, 2025 at 5:23=E2=80=AFAM Daniel Ozer <danielozer22@gmail.com>=
+ wrote:
 
+> Hello,
+>
+> for the past week im trying to create a new bitfile for the X440.
+>
+> As a first step i successfully managed to create the X440_400 variants
+> bitfile using the giving yamls.
+>
+> While trying to recreate the  X4_200 image (without any changes) the
+> implementation resulted in many timing errors, altough i tried using many
+> implementation strategy.
+>
+> this issue still occur when i strip all the duc and radio blocks.
+>  Is it a known issue? can i avoid it? am i doing something wrong?
+> [image: Screenshot from 2025-10-05 22-44-51.png]
+>
+>
+> [image: Screenshot from 2025-10-05 22-45-11.png]
+>
+>
+> [image: Screenshot from 2025-10-05 22-43-38.png]
+>
+>
+>
+>
+>
+>  - ubuntu 22.04
+>
+>   - vivado 2021 with the patch
+>
+>   - uhd 4.9.0
+>
+> the command i used:
+>
+> sudo -E rfnoc_image_builder -d x440 -y
+>
+> /home/Desktop/workspace/uhd/fpga/usrp3/top/x400/x440_X4_200_rfnoc_image_c=
+ore.yml
+> --save-project --GUI
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-
- - ubuntu 22.04
-
-  - vivado 2021 with the patch
-
-  - uhd 4.9.0
-
-the command i used:
-
-sudo -E rfnoc_image_builder -d x440 -y
-/home/Desktop/workspace/uhd/fpga/usrp3/top/x400/x440_X4_200_rfnoc_image_core.yml
---save-project --GUI
-
---00000000000027654706407ad492
+--000000000000d5ee1606407f3d94
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"rtl"><div dir=3D"rtl"><div style=3D"text-align:left" dir=3D"ltr=
-"><span style=3D"font-family:&quot;Helvetica Neue&quot;;font-size:13px">Hel=
-lo,=C2=A0</span></div><div style=3D"text-align:left" dir=3D"ltr">
+<div dir=3D"ltr"><div>Hi Daniel,</div><div><br></div><div>It looks like som=
+e constraints are missing. If you didn&#39;t change anything then I suspect=
+ it&#39;s because you&#39;re using project mode in Vivado. The USRP build f=
+low is designed to use non-project mode. So, if you create a project and us=
+e that instead then it&#39;s up to you to manage your project and make sure=
+ all the right files are pulled in for your build. The --save-project optio=
+n does some of that work for you, but it could be that some files are missi=
+ng.</div><div><br></div><div>Try building it using the normal flow and see =
+if that resolves the issue:<br><br></div><div>=C2=A0 =C2=A0 rfnoc_image_bui=
+lder -y /home/Desktop/workspace/uhd/fpga/usrp3/top/x400/x440_X4_200_rfnoc_i=
+mage_core.yml</div><div><br></div><div>You might also try cleaning up anyth=
+ing that was leftover from previous builds.</div><div><br></div><div>=C2=A0=
+ =C2=A0 cd /home/Desktop/workspace/uhd/fpga/usrp3/top/x400/</div><div>=C2=
+=A0 =C2=A0 make cleanall</div><div><br></div><div>Wade</div><div><br></div>=
+</div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Mon, Oct 6, 2025 at 5:23=E2=80=AFAM Daniel Ozer &l=
+t;<a href=3D"mailto:danielozer22@gmail.com">danielozer22@gmail.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"rtl"><div dir=3D"rtl"><div style=3D"text-align:left" dir=3D"ltr"><span =
+style=3D"font-family:&quot;Helvetica Neue&quot;;font-size:13px">Hello,=C2=
+=A0</span></div><div style=3D"text-align:left" dir=3D"ltr">
 <p style=3D"margin:0px;font-variant-numeric:normal;font-variant-east-asian:=
 normal;font-variant-alternates:normal;font-size-adjust:none;font-kerning:au=
 to;font-feature-settings:normal;font-stretch:normal;font-size:13px;line-hei=
@@ -200,10 +259,16 @@ builder -d x440 -y<br>
 e.yml<br>
 --save-project --GUI</p></div></div>
 </div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---00000000000027654706407ad492--
+--000000000000d5ee1606407f3d94--
 
---00000000000027654906407ad493
+--000000000000d5ee1706407f3d95
 Content-Type: image/png; name="Screenshot from 2025-10-05 22-45-11.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2025-10-05 22-45-11.png"
@@ -6833,7 +6898,7 @@ YgMAAAAAAAAc20lbQJcrC3Sb7BC7So5Lrn8GAAAAAAAAyLPwFtBxoDu2vruuuUmO51D/DAAAAAAA
 APzffaMW0KcIj8fWJ7YFAAAAAAAA2PlGLaD7QexcHGyfXgAAAAAAAIDjOMoewHN1ufn79B5LXgAt
 pgYAAAAAAADWJjMAXk4cev+V5AXQDx1TAwAAAAAAAJTKDICXE4cuZyUAAAAAAAAAy3KUFtCntJza
 ZAAAAAAAAICHtfoAWEUwAAAAAAAAQGv1ATAAAAAAAAAArf8A2w6KsRSxR78AAAAASUVORK5CYII=
---00000000000027654906407ad493
+--000000000000d5ee1706407f3d95
 Content-Type: image/png; name="Screenshot from 2025-10-05 22-44-51.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2025-10-05 22-44-51.png"
@@ -13533,7 +13598,7 @@ R2wLAAAAAAAAAAAAAJYSagHtDmJjxcHs0wsAAAAAAAAAAAAAqZGSPYBj1eUmvk9vqiQWQBNTAwAA
 AAAAAAAAAKhoEgyAy08ceu4zSSyALuuYGgAAAAAAAAAAAACSlWAAXH7i0PIzEwAAAAAAAAAAAAAo
 X1LSAro0lZ/aZAAAAAAAAAAAAAAoWxU+AKYiGAAAAAAAAAAAAAACKnwADAAAAAAAAAAAAAAI+C/A
 I3XydZFqNQAAAABJRU5ErkJggg==
---00000000000027654906407ad493
+--000000000000d5ee1706407f3d95
 Content-Type: image/png; name="Screenshot from 2025-10-05 22-43-38.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2025-10-05 22-43-38.png"
@@ -20092,9 +20157,9 @@ UUJTrdJbiE+5xYErYolnbyqyJSVSgjUb15ZZeWlpaTHvJUvVG8cEERERERERERERERERlSWPM4AT
 I/gLJFJLiIiIiIiIiIiIiIiIiIgSS1JlN6C0EmduMlH5ibSUNmcPExERERERERERERERkVmVDwBX
 peAvg3Vk53VMcOwQERERERERERERERGRFx6XgCYiIiIiIiIiIiIiIiIiokT3/5LvzPxaITQPAAAA
 AElFTkSuQmCC
---00000000000027654906407ad493--
+--000000000000d5ee1706407f3d95--
 
---===============8274898227791863642==
+--===============0720499824115187524==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -20104,4 +20169,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8274898227791863642==--
+--===============0720499824115187524==--
