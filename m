@@ -2,165 +2,122 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3CFC2C1AC
-	for <lists+usrp-users@lfdr.de>; Mon, 03 Nov 2025 14:33:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32670C406FB
+	for <lists+usrp-users@lfdr.de>; Fri, 07 Nov 2025 15:52:31 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 90FA9385F8A
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Nov 2025 08:33:23 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 3D2C53864A3
+	for <lists+usrp-users@lfdr.de>; Fri,  7 Nov 2025 09:52:29 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1762176803; bh=MZS5W+1v/K7fsCNgqtXIIBYXgMkDfK9CNUEG/tbeMQI=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=odd9w15YxtJwEhc454G6SWd5RtX+ViCOFbtYMR6paKFl+SSYagQynYw+3i0WL1uNd
-	 9ZY9BDEGkzMtWV4Rha8JtufyW2z2HtoFos7QEC+zkfZIwBqRTyxSXOeIIgvyw/q84N
-	 +4hQS6VbaAEAaYwvJtE4Es9WTmAjHqitMqIEwdjamqzJhEc7kjaiV/cjFIlb4UvEdu
-	 nIDnUe8byJN2YQ48FokNauVUzQ2WEKR0ic4APRBeTI8DZiIwporhpKq0N5xFPj74RC
-	 CvLSdPn6Ly78xjsXOGEpSqik09aziQzr2iUlFC3AyCUKVQLL2ZM12gHa2rUbXimvb8
-	 IjMfkLjiDdjTw==
+	t=1762527149; bh=Hgkojc2B8aqLN4erq+4cTs3zp4R7VzlCIZOFz2z8JBY=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=TZjLDK4njbQriEVrfJ1sRSCUNrB0zAvEu5LdVTMaL7ruM3djzS9LzeJ0AIvoxhWdG
+	 DKQGS+zobItvVJ0jV+fqcg6t0N3bwjsvTrb4Hj4UX0LnI5hIfmc5CueiBrhp6Xu+bg
+	 QN4LMBkHB9xhll1TBg2LQkmzOPC3g0wtBuO+lG9v9W5uvov2Bkik/Dj1oiJ9ygaiWr
+	 ZPN2DOxI1CjX599uaP7KpD9AxTlLdcLI4VsFHU0IvG7ckOpboRhEiXcwycqW4A7ixr
+	 hzRQfy4iGRbEPD3t5P9VOnsC/JZj4eOwgd8Mbl9vuv3rvBoJpRjmztaMvij21aABth
+	 Ii8OaUcueu1rg==
 Received: from lists.ctbirding.org (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2C9B53862DB
-	for <usrp-users@lists.ettus.com>; Mon,  3 Nov 2025 08:32:18 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id D80B938631B
+	for <usrp-users@lists.ettus.com>; Fri,  7 Nov 2025 09:51:21 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1762176738; bh=QufYPCO/krhapEHiPB5sfWScTK54Pbh6iCeZNV3RagQ=;
+	t=1762527081; bh=+Gt6uSS72VmY4rP14YBNobnTd8DbDNpDNLUp2PU7p3s=;
 	h=Date:To:From:Subject:From;
-	b=vgjEZHR38HtMJCQAvG/kfWr8hg0I7/gl9x8Sfa7G4q9RO1LBKRlVRopmOo2QBtXbf
-	 4+IZCLa63TpLh4T6N+gStwOVCxJU6QySjT0CNQdQYNY9YDNbA9OOEEkdJPa5G8aHPH
-	 BsffVVyLlWpvV+0u1K/Vlg7S6/xn9N64KGyN2wBxczjXBLOBtBoQsQEQdajIwk0jv/
-	 C10HosNhzvjA9joUqxOGCUXnRKZ0844+vQSltuDUvTTuTVgcm6lDF7tby/5Cn8vjGn
-	 a0HA9g2LAPzaq4i4uLTnnBV9fWHi5PupJWDtDzTocZTMCjidE/MFkKv2yaAwozibJZ
-	 /2UKiIzWi/zrw==
-Date: Mon, 3 Nov 2025 13:32:18 +0000
+	b=VwEtGsws/69/BMvBC8LC4e1Poazvh7KRekfC4T0TuxUqC77deNsQJoJA75odrZEiR
+	 wciyaQtEUc9EwwF1UXOmIMTV7Fj0JMDO2IR2R/u/g+xaPEWQpJmjRbXnFU0NschFXw
+	 jZYP6a+CieH3PvUkE61c8yveHMDm4b9tnAkmO+P1TAMo9TfBjaO6zi7LKTi32oTt7q
+	 gAMFqzRifNe2IXgFIWEFMpsya6B8aifjc2X8cpTxSx1hLl53gdbgS4I4YyWAdESI+6
+	 wElvOg5/4EDegq5P1Fgc96g8Xe/ydSaer2aHJUfwaZC0ux4oLrNAsD581k2cHnndXQ
+	 JlX5BL+NRO9Nw==
+Date: Fri, 7 Nov 2025 14:51:21 +0000
 To: usrp-users@lists.ettus.com
-Message-ID: <J5pSHXsUiW5M0MUjtxWxZA2db3K13ik8ZmEjWOrWlA@lists.ctbirding.org>
+From: ryan.a.wolfarth@gmail.com
+Message-ID: <Bq69aHbfqUtrQLdcQFgZHu1ID9BJVzX3buMo6gunY@lists.ctbirding.org>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-Message-ID-Hash: 4TSPB4YI5GTZ3LSX5MNNSVVEVSKDYWQY
-X-Message-ID-Hash: 4TSPB4YI5GTZ3LSX5MNNSVVEVSKDYWQY
-X-MailFrom: yunxi.chen@tum.de
+Message-ID-Hash: L4XSNBESSSALPPPY5AFOD4IVZ5GCFBSJ
+X-Message-ID-Hash: L4XSNBESSSALPPPY5AFOD4IVZ5GCFBSJ
+X-MailFrom: ryan.a.wolfarth@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] X410 RFNoC Image Builder Cannot Find x410_radio_base.yml During Inheritance
+Subject: [USRP-users] Deadlock in OOT RFNoC Block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4TSPB4YI5GTZ3LSX5MNNSVVEVSKDYWQY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/L4XSNBESSSALPPPY5AFOD4IVZ5GCFBSJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "yunxi.chen--- via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: yunxi.chen@tum.de
-Content-Type: multipart/mixed; boundary="===============1010170414972775396=="
+Content-Type: multipart/mixed; boundary="===============6768037072707479731=="
 
 This is a multi-part message in MIME format.
 
---===============1010170414972775396==
+--===============6768037072707479731==
 Content-Type: multipart/alternative;
- boundary="b1_J5pSHXsUiW5M0MUjtxWxZA2db3K13ik8ZmEjWOrWlA"
+ boundary="b1_Bq69aHbfqUtrQLdcQFgZHu1ID9BJVzX3buMo6gunY"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_J5pSHXsUiW5M0MUjtxWxZA2db3K13ik8ZmEjWOrWlA
+--b1_Bq69aHbfqUtrQLdcQFgZHu1ID9BJVzX3buMo6gunY
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+Greetings,
 
-I=E2=80=99m working on a custom OOT RFNoC block for the USRP X410 using U=
-HD 4.8 and RFNoC 4.
+We=E2=80=99re in the process of troubleshooting a custom RFNoC block for =
+the X310. The block takes input from both receive channels, detects speci=
+fic emissions, and responds on one or both transmit channels depending on=
+ what it receives. The project has latency requirements that preclude us =
+from streaming IQ to/from the host, so all the signal processing is done =
+in the block.
 
-The block builds successfully (make and make install work), but when I tr=
-y to generate the bitstream with:
+The host is primarily used to setup the radios and start the stream, but =
+we included several registers that can be set by our block controller to =
+illicit specific behavior. For troubleshooting purposes, we are attemptin=
+g to continuously stream a fixed frequency signal out of a LUT to both tr=
+ansmit channels. No streaming occurs when our block is included in the gr=
+aph. We confirmed streaming starts if we remove our block and configure t=
+he graph as a loopback, so something is deadlocked in the custom block.
 
-rfnoc_image_builder -F \~/uhd/fpga -y \~/rfnoc-mymodule/icores/x410_rfnoc=
-_image_core.yml
+Using ChipScope, we see tready is set high at the input of our block=E2=80=
+=99s NOC shell, but tready from the NOC shell to our logic is never asser=
+ted. We successfully simulated the logic independent of RFNoC, so we thin=
+k we=E2=80=99re missing/not doing something specific that the RFNoC archi=
+tecture requires. Can anyone help us identify what might be at fault?
 
-always get this error:  ERROR:root:Cannot find parent file x410_radio_bas=
-e.yml requested by /home/yunxi/rfnoc-mymodule/icores/x410_rfnoc_image_cor=
-e.yml
+Thank you,
 
-My YAML file contains:
+Ryan
 
-schema: rfnoc_imagebuilder_args
-
-device: x410
-
-chdr_width: 128
-
-inherit:
-
-  - 'x410_radio_base.yml'
-
-  - 'x4xx_x4_base.yml'
-
-blocks:
-
-  - ISAC_PDSC
-
-The two base files actually exist at
-
-\~/uhd/fpga/usrp3/top/x400/yaml_include/x410_radio_base.yml
-
-and
-
-\~/uhd/fpga/usrp3/top/x400/yaml_include/x4xx_x4_base.yml.
-
-I have tried:
-
-* using absolute paths in inherit
-
-* setting RFNOC_YAML_PATH=3D/home/yunxi/uhd/fpga/usrp3/top/x400/yaml_incl=
-ude
-
-* confirming the files exist
-
-but the builder still says it cannot find them.
-
-Could someone clarify how rfnoc_image_builder resolves inherited YAML fil=
-es on UHD 4.8 / X410?
-
-Does it support absolute paths, or is there another way to specify the in=
-clude search path?
-
-Any working example for an X410 image with a custom block would be greatl=
-y appreciated.
-
-Best,
-
-Yunxi
-
---b1_J5pSHXsUiW5M0MUjtxWxZA2db3K13ik8ZmEjWOrWlA
+--b1_Bq69aHbfqUtrQLdcQFgZHu1ID9BJVzX3buMo6gunY
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi everyone,</p><p><br></p><p>I=E2=80=99m working on a custom OOT RFNoC =
-block for the USRP X410 using UHD 4.8 and RFNoC 4.</p><p>The block builds s=
-uccessfully (make and make install work), but when I try to generate the bi=
-tstream with:</p><p>rfnoc_image_builder -F ~/uhd/fpga -y ~/rfnoc-mymodule/i=
-cores/x410_rfnoc_image_core.yml</p><p><br></p><p>always get this error:  ER=
-ROR:root:Cannot find parent file x410_radio_base.yml requested by /home/yun=
-xi/rfnoc-mymodule/icores/x410_rfnoc_image_core.yml</p><p><br></p><p>My YAML=
- file contains:</p><p>schema: rfnoc_imagebuilder_args</p><p>device: x410</p=
-><p>chdr_width: 128</p><p>inherit:</p><p>  - 'x410_radio_base.yml'</p><p>  =
-- 'x4xx_x4_base.yml'</p><p>blocks:</p><p>  - ISAC_PDSC</p><p><br></p><p>The=
- two base files actually exist at</p><p>~/uhd/fpga/usrp3/top/x400/yaml_incl=
-ude/x410_radio_base.yml</p><p>and</p><p>~/uhd/fpga/usrp3/top/x400/yaml_incl=
-ude/x4xx_x4_base.yml.</p><p><br><br></p><p>I have tried:</p><p><br><br></p>=
-<ul style=3D""><li><p>using absolute paths in inherit</p></li><li><p>settin=
-g RFNOC_YAML_PATH=3D/home/yunxi/uhd/fpga/usrp3/top/x400/yaml_include</p></l=
-i><li><p>confirming the files exist</p></li></ul><p><br><br></p><p><br><br>=
-</p><p>but the builder still says it cannot find them.</p><p><br><br></p><p=
->Could someone clarify how rfnoc_image_builder resolves inherited YAML file=
-s on UHD 4.8 / X410?</p><p>Does it support absolute paths, or is there anot=
-her way to specify the include search path?</p><p>Any working example for a=
-n X410 image with a custom block would be greatly appreciated.</p><p><br></=
-p><p>Best,</p><p>Yunxi</p><p><br><br></p>
+<p>Greetings,</p><p>We=E2=80=99re in the process of troubleshooting a custo=
+m RFNoC block for the X310. The block takes input from both receive channel=
+s, detects specific emissions, and responds on one or both transmit channel=
+s depending on what it receives. The project has latency requirements that =
+preclude us from streaming IQ to/from the host, so all the signal processin=
+g is done in the block.</p><p>The host is primarily used to setup the radio=
+s and start the stream, but we included several registers that can be set b=
+y our block controller to illicit specific behavior. For troubleshooting pu=
+rposes, we are attempting to continuously stream a fixed frequency signal o=
+ut of a LUT to both transmit channels. No streaming occurs when our block i=
+s included in the graph. We confirmed streaming starts if we remove our blo=
+ck and configure the graph as a loopback, so something is deadlocked in the=
+ custom block.</p><p>Using ChipScope, we see tready is set high at the inpu=
+t of our block=E2=80=99s NOC shell, but tready from the NOC shell to our lo=
+gic is never asserted. We successfully simulated the logic independent of R=
+FNoC, so we think we=E2=80=99re missing/not doing something specific that t=
+he RFNoC architecture requires. Can anyone help us identify what might be a=
+t fault?</p><p>Thank you,</p><p>Ryan</p>
 
---b1_J5pSHXsUiW5M0MUjtxWxZA2db3K13ik8ZmEjWOrWlA--
+--b1_Bq69aHbfqUtrQLdcQFgZHu1ID9BJVzX3buMo6gunY--
 
---===============1010170414972775396==
+--===============6768037072707479731==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -170,4 +127,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1010170414972775396==--
+--===============6768037072707479731==--
