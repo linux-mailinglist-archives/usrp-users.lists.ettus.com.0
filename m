@@ -2,146 +2,138 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FB6CCF7CE
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Dec 2025 11:55:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C877CFA16D
+	for <lists+usrp-users@lfdr.de>; Tue, 06 Jan 2026 19:22:47 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D5D543863FA
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Dec 2025 05:55:24 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id A82633866FE
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jan 2026 13:22:45 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1766141724; bh=gJm+ok+kns9AObhdU95DhwWUkvsG2S9xg6LljnHuGT8=;
-	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=D4aDReecc3U4Kkwf2WMejc9guXpypPffb7yuFxji5agv/x3l5szDNzRWjtJFpB0VO
-	 vVoV5HBQuarHJHBorqfC3eFwQ3Bxww7vRW2AEl6YOiChqS6kwzSv+qgPD0d0rvh9r1
-	 /pRVfP3lnOYpLr1uNIDHUy2cF6LXuKaoNrhTVOg3aTTBg1k7Gr1YEOM/yTCYmYIFuy
-	 HLhEALY4UaQXXsUENAsSeuXOSO4EAvkh1mBeQxP3f6m89GioKQ5TDKsTk7MYAUbRhR
-	 xfMGL/MCd76ZcHj7K8ldC13TjrHWie3eJigjiQZKie67/lYUvR5bQH2Mc5bY33NCMI
-	 gEClQUTdv7/3w==
-Received: from lists.ctbirding.org (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 27B0838632B
-	for <usrp-users@lists.ettus.com>; Fri, 19 Dec 2025 05:54:16 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1766141656; bh=Ag6eqHx3dwU19jiFOy1uB/F7alyTF5+U7LsGkmXcHYw=;
-	h=Date:To:From:Subject:From;
-	b=MmdgHBT4XveImjmsFMbMHr8egM1r9W5v2IQVqAhKLZ99dG50diLUcDY8D3UWTwvW9
-	 Q8mZoPUNJca/DEuWcCF8BD7tI9/wzDLveJwHQ8AiZNVANif4Z43xhkNH14efGTs4mI
-	 UBo0psP+7uP0HG5lHucdDfPCtbTL34K3yTrpGe+26lfcMPFEt2dRn7H7JoGFMYMqZw
-	 zPiuKwxWg1PrSgLhFA+hXhRc4Id2kMNLHOf7uwMIVnklFELaVvGN819W3611Fw3NdY
-	 Ig72dn9z2xgGe+53BWpLYkNP4oB7er7iHbkpMQ5hp7kEaQdxmS6Fkc86GEgqsW6/nV
-	 o+im2JqWOTMMg==
-Date: Fri, 19 Dec 2025 10:54:16 +0000
-To: usrp-users@lists.ettus.com
-From: adri96roll@gmail.com
-Message-ID: <WfobIvE6TbpYRJmblJH1mBkfTuesDCPSiUbEtp6gdn0@lists.ctbirding.org>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	t=1767723765; bh=Hjc3xFL2D1Ugluu+Lkzb8XlGBAep3hrKrxMw4NE7Sp8=;
+	h=References:In-Reply-To:Date:To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=kkRK34kSJGZ/Gc/Nh73aA+GwqfOtlDwI0J4etBfSuayxPi3K/iwiFvMEC+IwdRSYV
+	 4xNjzx209BClbR0ZjwAvG50AoD/1Vnt2L9OANucjRMtFOx6v4sMKt3XktjD211ZadX
+	 uQnYN5h4Sh/uRgqk5FEqZpMQJmZc2LXUcrPqSGwlNOPomKKtLEpkJ03IgT0ZJUyQLI
+	 fnPhkAvAK0/4NcxY0e7McR3ftG1PLat+IIdEXAw/nTE86TyrivjQY0/Z9vEpCDw8xb
+	 7HtFiG9QvGc90WGDixosI2yz6LmzXY/zD6hIFu/+TiwAkhYCP7IvsYlYrbTIydQFWf
+	 TWrFlwED9MV6g==
+Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3C9783866FE
+	for <usrp-users@lists.ettus.com>; Tue,  6 Jan 2026 13:21:31 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="OTYpk/Aw";
+	dkim-atps=neutral
+Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-6455a60c12bso1282238d50.3
+        for <usrp-users@lists.ettus.com>; Tue, 06 Jan 2026 10:21:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google; t=1767723690; x=1768328490; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QLAAJIwojlbTPok+jbK/IgneS+9dzkYDhc0jUXQc9QU=;
+        b=OTYpk/AwlvOgUYAyVZoEKkg4LN2uSIcbkzW4l712KrvVtMVLegHyrlRSYCgx4A+8YV
+         qvEhW5ApaCZ/O6emkqcwC2LguZbtrqI1NudelEy2gZmtRWllxtNDh9PxhbvKwBfyKIzL
+         ln1K6ShL+m7+81A9FNQstZQW0YMeMXY0IXuRN7jknYpW/j4iFUHVLLXaAg1uRYuqOcn4
+         mONsGqhfEEaNr3Df4v70qErBpj2JlYIOQOAaraJUg+C5hzJnXwwViBcoMjM+jijbQWEs
+         VferPndQyZ6A19Epfqv/IOKlXAFSzGx7LKOiqKVVoFXj6UfGFskXmjndYriPCNcYE2wm
+         x8kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767723690; x=1768328490;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QLAAJIwojlbTPok+jbK/IgneS+9dzkYDhc0jUXQc9QU=;
+        b=PPo5de+6fxHJ4YgCKQ/Voo2kNm4JTXmVMyN7slq4vZd/1Byk2FGe5C1u9YlUFGY2ds
+         XSz15T7TGXIJuiKHjPXNt3IRrfVVoBObBupGi/D3GOmpCxi0HH9c9HS0+ObtBSnOZvK9
+         5/z8aBnMgLtqaecGvXf9cHZ9fiSKo65WDhoVGmk30jqRzkU1aalPwlnfrCYZSa0hL+i/
+         Vo+DvN9ji64SpMMP0qk2GaNxvfYPRcdjOIl3UC0JJqNLKT3oRHha1rQE721Eu+z05UmU
+         oh9T+hQPjYAYHWbzmmh98VNPiR2/oP7QlFaWBeZ/dF6iK9BNvW7R8WKQ7551eWWjVV8D
+         9AAw==
+X-Gm-Message-State: AOJu0Yw7J/BDlZZpTgoWyvgCZAG8naSzHAcJayEebAHtLgGMo0iyGLuK
+	kqppyZvE7DUCbwoPJ/17Use9vg74vm8HsCiZsI9DiOvVxg5/Le97Ew9U98mrgkHiHxy+d+20X40
+	oY0pbDfhF74CvwP/i0n6MGP/b8yyLi3Jya7+tmUboEwptGZUnrwA=
+X-Gm-Gg: AY/fxX5N4E3HLdMgvStF7RLcqP07Lg8BCaF618UluSqyyUGTu7uqpqxJ5SohF5XVm7w
+	OguFHYApo/xFVMFq33d19b/oHL+MF+sHHaT0j7UJDP2T+ITsBpRRsZX6ae0KORve3ReQi89Zj+d
+	ItQzYbXJO4oXaDqHAgPf9a59LSqJldJcV/pnkQwj1Lc/LYAJbIZDLL+mdO/1a298BVcoOrX/UQs
+	rJxjNBArQLnQScksK+GSaSZgJgCD0TuEoPV8b8uh6sLlDTYGbDtosZOkqGdh7xOYCjz52B/x7il
+	zu8RzYlFfy7G4+rQEiDta/HjbmfIXNSos9jSHwlM
+X-Google-Smtp-Source: AGHT+IFUXk70zTUAkogoyNuJW+Z9Om5Gvg9GA3j5ynYU2ZLekLr4k3tIgWnzcbbs4cDHDNzJUZPWRVMih+h78JGxDjs=
+X-Received: by 2002:a05:690e:15d7:b0:63f:4b71:18d9 with SMTP id
+ 956f58d0204a3-6470c9180d5mr2331806d50.69.1767723688968; Tue, 06 Jan 2026
+ 10:21:28 -0800 (PST)
 MIME-Version: 1.0
-Message-ID-Hash: Q7EYFQ6NVRK6KD5Y36VVSIKA2ZBG4SJN
-X-Message-ID-Hash: Q7EYFQ6NVRK6KD5Y36VVSIKA2ZBG4SJN
-X-MailFrom: adri96roll@gmail.com
+References: <CAB__hTQuxNyesoE5kseMRymAZCbx2D5zyvpn9AUoFE=YaJ3sJw@mail.gmail.com>
+In-Reply-To: <CAB__hTQuxNyesoE5kseMRymAZCbx2D5zyvpn9AUoFE=YaJ3sJw@mail.gmail.com>
+Date: Tue, 6 Jan 2026 12:21:18 -0600
+X-Gm-Features: AQt7F2rvV_UFY1cQ6w9v9gexnUEjMU2PylxrhQHbqYp270Rex071GMAqBI7ywgI
+Message-ID: <CAB__hTTRiZRWU=W5WDX7q0dv48L_+Js8BbhtvDrbDzvHkMMomg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: QRDEOLHYTJ77OZW3MCG2LYSMNDLLSQAO
+X-Message-ID-Hash: QRDEOLHYTJ77OZW3MCG2LYSMNDLLSQAO
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Question about RFNoC Radio/DDC packet timing and spacing
+Subject: [USRP-users] Extensions & antenna mixin bug?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Q7EYFQ6NVRK6KD5Y36VVSIKA2ZBG4SJN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QRDEOLHYTJ77OZW3MCG2LYSMNDLLSQAO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4443175657583611835=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============8176124674115480540=="
 
-This is a multi-part message in MIME format.
+--===============8176124674115480540==
+Content-Type: multipart/alternative; boundary="0000000000008adb1e0647bc3e8b"
 
---===============4443175657583611835==
-Content-Type: multipart/alternative;
- boundary="b1_WfobIvE6TbpYRJmblJH1mBkfTuesDCPSiUbEtp6gdn0"
-Content-Transfer-Encoding: 7bit
+--0000000000008adb1e0647bc3e8b
+Content-Type: text/plain; charset="UTF-8"
 
-This is a multi-part message in MIME format.
+Hi,
+I am playing around with the extensions interface for the first time and so
+I compiled the example, installed the extension in the appropriate folder,
+and ran the example "rx_samples_to_file".  If I don't specify an antenna,
+it runs successfully.  If I do specify the antenna (e.g., "--ant RX2") it
+dies with a segmentation fault at the call usrp->set_rx_antenna().
 
---b1_WfobIvE6TbpYRJmblJH1mBkfTuesDCPSiUbEtp6gdn0
-Content-Type: text/plain; charset=UTF-8
+# using N320
+# using head of UHD-4.9 (d589cd50)
+# here is the command that dies with the segmentation fault
+$ rx_samples_to_file --freq 2450e6 --gain 30 --nsamps 1000 --rate 30.72e6
+--args="extension=extension_example" --ant RX2
+
+I then modified the example and determined that all of the "rx_antenna"
+commands cause a segmentation fault. Is this a bug or am I doing something
+wrong?
+Rob
+
+--0000000000008adb1e0647bc3e8b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<div dir=3D"ltr"><div class=3D"gmail_quote gmail_quote_container"><div dir=
+=3D"ltr">Hi,<br><div>I am playing around with the extensions interface for =
+the first time and so I compiled the example, installed the extension in th=
+e appropriate folder, and ran the example &quot;rx_samples_to_file&quot;.=
+=C2=A0 If I don&#39;t specify an antenna, it runs successfully.=C2=A0 If I =
+do specify the antenna (e.g., &quot;--ant RX2&quot;) it dies with a segment=
+ation fault at the call usrp-&gt;set_rx_antenna().=C2=A0 </div><div><br></d=
+iv><div># using N320</div><div># using head of UHD-4.9 (d589cd50)</div><div=
+># here is the command that dies with the segmentation fault</div><div>$ rx=
+_samples_to_file --freq 2450e6 --gain 30 --nsamps 1000 --rate 30.72e6 --arg=
+s=3D&quot;extension=3Dextension_example&quot; --ant RX2</div><div><br></div=
+><div>I then modified the example and determined that all of the &quot;rx_a=
+ntenna&quot; commands cause a segmentation fault. Is this a bug or am I doi=
+ng something wrong?</div><div>Rob</div></div>
+</div></div>
 
-I am working with RFNoC and trying to better understand how sample data i=
-s actually delivered over CHDR after the Radio + DDC block, particularly =
-in terms of **packet spacing vs. bus rate**.
+--0000000000008adb1e0647bc3e8b--
 
-My assumption is:
-
-* The RF chain (Radio + DDC) outputs samples at a configured sample rate,=
- e.g., 250 KHz.
-
-* RFNoC groups samples into packets of SPP samples (for example, 64 sampl=
-es per CHDR packet).
-
-* When a packet is produced, it is transmitted across the RFNoC fabric at=
- the **fabric clock rate** (e.g., 200 MHz), meaning the packet data appea=
-rs as a short **burst** of consecutive valid cycles.
-
-* After that burst, there is a gap (idle time) until enough samples are a=
-ccumulated to form the next packet.
-
-So, for example, at:
-
-* Fs =3D 250 kS/s
-
-* SPP =3D 64
-
-Then we would expect:
-
-* One packet every 64 / 250k =3D 256 =C2=B5s
-
-* Packet burst duration =3D 64 cycles at 200 MHz =E2=89=88 320 ns
-
-* Approximately 256 =C2=B5s =E2=80=93 320 ns of idle time before the next=
- packet.
-
-### My questions are:
-
-1. Is this understanding correct?
-
-2. Is RFNoC guaranteed to behave this way, or can buffering cause multipl=
-e packets to be sent back-to-back with no idle gap?
-
-3. Is there any official documentation describing packetization timing be=
-havior of Radio/DDC  RFNoC fabric?
-
-Thanks in advance!
-
---b1_WfobIvE6TbpYRJmblJH1mBkfTuesDCPSiUbEtp6gdn0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello,</p><p>I am working with RFNoC and trying to better understand how=
- sample data is actually delivered over CHDR after the Radio + DDC block, p=
-articularly in terms of <strong>packet spacing vs. bus rate</strong>.</p><p=
->My assumption is:</p><ul><li><p>The RF chain (Radio + DDC) outputs samples=
- at a configured sample rate, e.g., 250 KHz.</p></li><li><p>RFNoC groups sa=
-mples into packets of SPP samples (for example, 64 samples per CHDR packet)=
-.</p></li><li><p>When a packet is produced, it is transmitted across the RF=
-NoC fabric at the <strong>fabric clock rate</strong> (e.g., 200 MHz), meani=
-ng the packet data appears as a short <strong>burst</strong> of consecutive=
- valid cycles.</p></li><li><p>After that burst, there is a gap (idle time) =
-until enough samples are accumulated to form the next packet.</p></li></ul>=
-<p>So, for example, at:</p><ul><li><p>Fs =3D 250 kS/s</p></li><li><p>SPP =
-=3D 64</p></li></ul><p>Then we would expect:</p><ul><li><p>One packet every=
- 64 / 250k =3D 256 =C2=B5s</p></li><li><p>Packet burst duration =3D 64 cycl=
-es at 200 MHz =E2=89=88 320 ns</p></li><li><p>Approximately 256 =C2=B5s =
-=E2=80=93 320 ns of idle time before the next packet.</p></li></ul><h3>My q=
-uestions are:</h3><ol><li><p>Is this understanding correct?</p></li><li><p>=
-Is RFNoC guaranteed to behave this way, or can buffering cause multiple pac=
-kets to be sent back-to-back with no idle gap?</p></li><li><p>Is there any =
-official documentation describing packetization timing behavior of Radio/DD=
-C  RFNoC fabric?</p></li></ol><p><br></p><p>Thanks in advance!</p>
-
---b1_WfobIvE6TbpYRJmblJH1mBkfTuesDCPSiUbEtp6gdn0--
-
---===============4443175657583611835==
+--===============8176124674115480540==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -151,4 +143,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4443175657583611835==--
+--===============8176124674115480540==--
