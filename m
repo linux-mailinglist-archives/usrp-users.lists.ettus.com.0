@@ -2,81 +2,81 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C877CFA16D
-	for <lists+usrp-users@lfdr.de>; Tue, 06 Jan 2026 19:22:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC94CFA182
+	for <lists+usrp-users@lfdr.de>; Tue, 06 Jan 2026 19:24:00 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A82633866FE
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Jan 2026 13:22:45 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 7337838679A
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jan 2026 13:23:59 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1767723765; bh=Hjc3xFL2D1Ugluu+Lkzb8XlGBAep3hrKrxMw4NE7Sp8=;
+	t=1767723839; bh=YcLoN6dbs84JJ2VJZLorAqh/igJcs+xYzW84nNkY4cw=;
 	h=References:In-Reply-To:Date:To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From:Reply-To:From;
-	b=kkRK34kSJGZ/Gc/Nh73aA+GwqfOtlDwI0J4etBfSuayxPi3K/iwiFvMEC+IwdRSYV
-	 4xNjzx209BClbR0ZjwAvG50AoD/1Vnt2L9OANucjRMtFOx6v4sMKt3XktjD211ZadX
-	 uQnYN5h4Sh/uRgqk5FEqZpMQJmZc2LXUcrPqSGwlNOPomKKtLEpkJ03IgT0ZJUyQLI
-	 fnPhkAvAK0/4NcxY0e7McR3ftG1PLat+IIdEXAw/nTE86TyrivjQY0/Z9vEpCDw8xb
-	 7HtFiG9QvGc90WGDixosI2yz6LmzXY/zD6hIFu/+TiwAkhYCP7IvsYlYrbTIydQFWf
-	 TWrFlwED9MV6g==
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3C9783866FE
-	for <usrp-users@lists.ettus.com>; Tue,  6 Jan 2026 13:21:31 -0500 (EST)
+	b=Mcma72XL/V+f9/5nKH2vSEtl0SHcUdJ8u7YuHioheDkXcpwq+dX8u2a2+8tDNXjGT
+	 m59gFqFm+B8vADeJeyn5YaDVZvmVAi8kAWzbtcugcFsbQB470n/BKyJ2qrmlUxXiXk
+	 6c05QdcebeHjufE3AYg9G6qcd38BDLHJiZdUANbghwYuHdOTcpyxD4n8a5lRl4UDq0
+	 Ph54v9CPYktXezRWJ1cAWplOecmFhSuYUPDimEMtmdV1X4Nep0DgHbIojxhGq123Qn
+	 eP/yRLIq0KwCAOVwn9aXa/57RKDwvm17QqZzoJXmlYR5jFlv4zIfhw1qgQvH2rW1mJ
+	 kRGptZ7SEw4Ug==
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0CD103867C5
+	for <usrp-users@lists.ettus.com>; Tue,  6 Jan 2026 13:22:09 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="OTYpk/Aw";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="cTkyPDgM";
 	dkim-atps=neutral
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-6455a60c12bso1282238d50.3
-        for <usrp-users@lists.ettus.com>; Tue, 06 Jan 2026 10:21:31 -0800 (PST)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-78f99901ed5so14140807b3.3
+        for <usrp-users@lists.ettus.com>; Tue, 06 Jan 2026 10:22:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1767723690; x=1768328490; darn=lists.ettus.com;
+        d=nd.edu; s=google; t=1767723729; x=1768328529; darn=lists.ettus.com;
         h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QLAAJIwojlbTPok+jbK/IgneS+9dzkYDhc0jUXQc9QU=;
-        b=OTYpk/AwlvOgUYAyVZoEKkg4LN2uSIcbkzW4l712KrvVtMVLegHyrlRSYCgx4A+8YV
-         qvEhW5ApaCZ/O6emkqcwC2LguZbtrqI1NudelEy2gZmtRWllxtNDh9PxhbvKwBfyKIzL
-         ln1K6ShL+m7+81A9FNQstZQW0YMeMXY0IXuRN7jknYpW/j4iFUHVLLXaAg1uRYuqOcn4
-         mONsGqhfEEaNr3Df4v70qErBpj2JlYIOQOAaraJUg+C5hzJnXwwViBcoMjM+jijbQWEs
-         VferPndQyZ6A19Epfqv/IOKlXAFSzGx7LKOiqKVVoFXj6UfGFskXmjndYriPCNcYE2wm
-         x8kQ==
+        bh=afzHZAS0qUVLtM59lJEGgvVEROm13FR0fGpLfeO3RcY=;
+        b=cTkyPDgMZb4hLgGXLgzcuI/ULPb99P2b8XBFFF3tmFFvfLWOG+LgZKMi3cmldVUp1w
+         uYqJkgo2H1CAPH/YirqMBvfKeZmVQvHiDhOWF5NWQftYIc2iSoeDNy35fYP0LZ86QQzC
+         wO2gwWEM/LdwTuGno69BNKES/w86W0Z45+/5KbMBVP+ynYuJdhP3YatSG0G+87+81q+p
+         a8YwaOQoLz9mXiN1tJZX4p7iQtMCmtGTm4pNA0p9fedAD2Ln58eUCK1NYOQ+lrRexZZT
+         f1xfmb1/hkiWeYNBAOnd3CmsxzGkW/4tB5hsTTObwGxjBjI/m0MeV448sT+ipp/3pm/u
+         jKew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767723690; x=1768328490;
+        d=1e100.net; s=20230601; t=1767723729; x=1768328529;
         h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QLAAJIwojlbTPok+jbK/IgneS+9dzkYDhc0jUXQc9QU=;
-        b=PPo5de+6fxHJ4YgCKQ/Voo2kNm4JTXmVMyN7slq4vZd/1Byk2FGe5C1u9YlUFGY2ds
-         XSz15T7TGXIJuiKHjPXNt3IRrfVVoBObBupGi/D3GOmpCxi0HH9c9HS0+ObtBSnOZvK9
-         5/z8aBnMgLtqaecGvXf9cHZ9fiSKo65WDhoVGmk30jqRzkU1aalPwlnfrCYZSa0hL+i/
-         Vo+DvN9ji64SpMMP0qk2GaNxvfYPRcdjOIl3UC0JJqNLKT3oRHha1rQE721Eu+z05UmU
-         oh9T+hQPjYAYHWbzmmh98VNPiR2/oP7QlFaWBeZ/dF6iK9BNvW7R8WKQ7551eWWjVV8D
-         9AAw==
-X-Gm-Message-State: AOJu0Yw7J/BDlZZpTgoWyvgCZAG8naSzHAcJayEebAHtLgGMo0iyGLuK
-	kqppyZvE7DUCbwoPJ/17Use9vg74vm8HsCiZsI9DiOvVxg5/Le97Ew9U98mrgkHiHxy+d+20X40
-	oY0pbDfhF74CvwP/i0n6MGP/b8yyLi3Jya7+tmUboEwptGZUnrwA=
-X-Gm-Gg: AY/fxX5N4E3HLdMgvStF7RLcqP07Lg8BCaF618UluSqyyUGTu7uqpqxJ5SohF5XVm7w
-	OguFHYApo/xFVMFq33d19b/oHL+MF+sHHaT0j7UJDP2T+ITsBpRRsZX6ae0KORve3ReQi89Zj+d
-	ItQzYbXJO4oXaDqHAgPf9a59LSqJldJcV/pnkQwj1Lc/LYAJbIZDLL+mdO/1a298BVcoOrX/UQs
-	rJxjNBArQLnQScksK+GSaSZgJgCD0TuEoPV8b8uh6sLlDTYGbDtosZOkqGdh7xOYCjz52B/x7il
-	zu8RzYlFfy7G4+rQEiDta/HjbmfIXNSos9jSHwlM
-X-Google-Smtp-Source: AGHT+IFUXk70zTUAkogoyNuJW+Z9Om5Gvg9GA3j5ynYU2ZLekLr4k3tIgWnzcbbs4cDHDNzJUZPWRVMih+h78JGxDjs=
-X-Received: by 2002:a05:690e:15d7:b0:63f:4b71:18d9 with SMTP id
- 956f58d0204a3-6470c9180d5mr2331806d50.69.1767723688968; Tue, 06 Jan 2026
- 10:21:28 -0800 (PST)
+        bh=afzHZAS0qUVLtM59lJEGgvVEROm13FR0fGpLfeO3RcY=;
+        b=ufGqj/eUq4uk6V6Lz7NUsDi8H8U1IADqQPTjHQb4zfL5fuiLq020oamaXwt214uS7H
+         Y+XqOZIGRiAHVo40WXpKSj9VetCXG8tQ+nouvaP5MQ9FLjGT7zeIcxYLmu6vMtOc4ADC
+         CRIr/s2foaElUh9F2HBX1PXBsAdUCOAz+cCIlVm2DUqEyCjrjBivy+K4tlOeO/tGQvez
+         fFRyDz4BWt5DuUPKlVCdLtv3lZkZ112hLEA5g3Qe+ksB18XuF3DroSXfg/MmB0uY8sYd
+         9zfRJqliP3ifYILZ3PRK3hlzh2AccL2Mdp12yuvB3+qP155zs5gx976Il//MFM+lKy8m
+         RtIQ==
+X-Gm-Message-State: AOJu0YxUgaLcorWHm987nfRmEDccASej2pSTHC8KQzRFjcd2GnBgk7aP
+	NQ2QUJYVuo40th4xDv1AgFyIE8FKvMpZ+FruMHuCGDqUfo+EYSRSV/cdUwONDD4b209D9hBXsgH
+	+L8qlgDwCVTX1wxrAO5omNuxJVhB3UGk+G0bkE2ct34JoBzmmeow=
+X-Gm-Gg: AY/fxX5p6ClG4qFxfoaJezuZBvnebcUutO9rRTcI46+lkEINW5FlB6svInvV3ZGVba5
+	zzYDa3elhksc0Tgdhi+BS8xRrMrx2H0e7biVrqHOzEcVoVM4lNXQQJZ7fCpb/0NfodeRF0Y91PC
+	o/n3IYazbE3yN4x0vvbv7UmrQ9kauSoTNEVjiziKPWZ59jlglOnoR+zJrz+vMAn/Gj3Gm28iprY
+	doLXBib33E2fmI5teWiKOUsXhK4bmheaiDsgaMdYLh1I9M2GYC+ANIacnJVyQArultv6t5BOnhR
+	u//rtqx7Q16ZqO1WXi0ZQu0q4BbB1Q==
+X-Google-Smtp-Source: AGHT+IEOTQEYEwYcoo+xTD2Adc57iZokBG+bw3q5s64IX70UKIj3jx6Avxn2nksehZoIymIEJYrozXrUrNtCFVCr19w=
+X-Received: by 2002:a05:690e:424d:b0:641:f5bc:696f with SMTP id
+ 956f58d0204a3-6470c918aafmr2387358d50.75.1767723729250; Tue, 06 Jan 2026
+ 10:22:09 -0800 (PST)
 MIME-Version: 1.0
-References: <CAB__hTQuxNyesoE5kseMRymAZCbx2D5zyvpn9AUoFE=YaJ3sJw@mail.gmail.com>
-In-Reply-To: <CAB__hTQuxNyesoE5kseMRymAZCbx2D5zyvpn9AUoFE=YaJ3sJw@mail.gmail.com>
-Date: Tue, 6 Jan 2026 12:21:18 -0600
-X-Gm-Features: AQt7F2rvV_UFY1cQ6w9v9gexnUEjMU2PylxrhQHbqYp270Rex071GMAqBI7ywgI
-Message-ID: <CAB__hTTRiZRWU=W5WDX7q0dv48L_+Js8BbhtvDrbDzvHkMMomg@mail.gmail.com>
+References: <CAB__hTR6tpMLh6P+zb0nog2hOL8_ksJDUb0vPJOGr0SgLOcG=w@mail.gmail.com>
+In-Reply-To: <CAB__hTR6tpMLh6P+zb0nog2hOL8_ksJDUb0vPJOGr0SgLOcG=w@mail.gmail.com>
+Date: Tue, 6 Jan 2026 12:21:58 -0600
+X-Gm-Features: AQt7F2onD_rwCgbkpBhtgxGhSp7EC0MBTeia0-2zV9HsVBsIyHIazN9J4A3e_bg
+Message-ID: <CAB__hTSE_GpkrXsh0KvGw7BjmcduM=gNJmxBD3FivxUhLMyeHA@mail.gmail.com>
 To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: QRDEOLHYTJ77OZW3MCG2LYSMNDLLSQAO
-X-Message-ID-Hash: QRDEOLHYTJ77OZW3MCG2LYSMNDLLSQAO
+Message-ID-Hash: KCEURJNEHS22JV4ZXKFM6SNP3GI3LWT7
+X-Message-ID-Hash: KCEURJNEHS22JV4ZXKFM6SNP3GI3LWT7
 X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Extensions & antenna mixin bug?
+Subject: [USRP-users] Using extension interface with RFNoC API
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QRDEOLHYTJ77OZW3MCG2LYSMNDLLSQAO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KCEURJNEHS22JV4ZXKFM6SNP3GI3LWT7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
@@ -85,55 +85,45 @@ List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8176124674115480540=="
+Content-Type: multipart/mixed; boundary="===============4366909828260334492=="
 
---===============8176124674115480540==
-Content-Type: multipart/alternative; boundary="0000000000008adb1e0647bc3e8b"
+--===============4366909828260334492==
+Content-Type: multipart/alternative; boundary="000000000000f18ed80647bc409d"
 
---0000000000008adb1e0647bc3e8b
+--000000000000f18ed80647bc409d
 Content-Type: text/plain; charset="UTF-8"
 
 Hi,
-I am playing around with the extensions interface for the first time and so
-I compiled the example, installed the extension in the appropriate folder,
-and ran the example "rx_samples_to_file".  If I don't specify an antenna,
-it runs successfully.  If I do specify the antenna (e.g., "--ant RX2") it
-dies with a segmentation fault at the call usrp->set_rx_antenna().
-
-# using N320
-# using head of UHD-4.9 (d589cd50)
-# here is the command that dies with the segmentation fault
-$ rx_samples_to_file --freq 2450e6 --gain 30 --nsamps 1000 --rate 30.72e6
---args="extension=extension_example" --ant RX2
-
-I then modified the example and determined that all of the "rx_antenna"
-commands cause a segmentation fault. Is this a bug or am I doing something
-wrong?
+When using the multi_usrp API, it is relatively clear how to use the
+extensions interface. However, for an arbitrary RFNoC graph using the RFNoC
+API, it does not seem possible (without some cheating).  Specifically, the
+function "get_extension_factory", which is needed to get an extension is
+not a public function.  This function is called internally from
+multi_usrp_rfnoc, which is possible because this class uses include files
+from <uhdlib/...>.  Is there a reason that extensions shouldn't be used
+without the multi_usrp API?  Or, perhaps I am doing something wrong?
 Rob
 
---0000000000008adb1e0647bc3e8b
+--000000000000f18ed80647bc409d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_quote gmail_quote_container"><div dir=
-=3D"ltr">Hi,<br><div>I am playing around with the extensions interface for =
-the first time and so I compiled the example, installed the extension in th=
-e appropriate folder, and ran the example &quot;rx_samples_to_file&quot;.=
-=C2=A0 If I don&#39;t specify an antenna, it runs successfully.=C2=A0 If I =
-do specify the antenna (e.g., &quot;--ant RX2&quot;) it dies with a segment=
-ation fault at the call usrp-&gt;set_rx_antenna().=C2=A0 </div><div><br></d=
-iv><div># using N320</div><div># using head of UHD-4.9 (d589cd50)</div><div=
-># here is the command that dies with the segmentation fault</div><div>$ rx=
-_samples_to_file --freq 2450e6 --gain 30 --nsamps 1000 --rate 30.72e6 --arg=
-s=3D&quot;extension=3Dextension_example&quot; --ant RX2</div><div><br></div=
-><div>I then modified the example and determined that all of the &quot;rx_a=
-ntenna&quot; commands cause a segmentation fault. Is this a bug or am I doi=
-ng something wrong?</div><div>Rob</div></div>
+=3D"ltr"><div>Hi,</div><div>When using the multi_usrp API, it is relatively=
+ clear how to use the extensions interface. However, for an arbitrary RFNoC=
+ graph using the RFNoC API, it does not seem possible (without some cheatin=
+g).=C2=A0 Specifically, the function &quot;get_extension_factory&quot;, whi=
+ch is needed to get an extension is not a public function.=C2=A0 This funct=
+ion is called internally from multi_usrp_rfnoc, which is possible because t=
+his class uses include files from &lt;uhdlib/...&gt;.=C2=A0 Is there a reas=
+on that extensions shouldn&#39;t be used without the multi_usrp API?=C2=A0 =
+Or, perhaps I am doing something wrong?</div><div>Rob</div><div><br></div><=
+/div>
 </div></div>
 
---0000000000008adb1e0647bc3e8b--
+--000000000000f18ed80647bc409d--
 
---===============8176124674115480540==
+--===============4366909828260334492==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -143,4 +133,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8176124674115480540==--
+--===============4366909828260334492==--
