@@ -2,243 +2,160 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1698D1F99B
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Jan 2026 16:04:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E84DBD203A5
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Jan 2026 17:35:57 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7075938636A
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Jan 2026 10:04:55 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id C9FF33865EA
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Jan 2026 11:35:56 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1768403095; bh=JTXiGqhWjqR9Hti2cEXkfIjLec/W8epP1wbPHXng4p8=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	t=1768408556; bh=PIEo0ajsOtKW0REo4zc0ozNrWLWEewOC4ASHvFHnq/A=;
+	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
 	 From;
-	b=VKKHGfO8eVdwKfxiu0+lGQVM+ce2oegROE71zlC73TLs+d/ypPULI+pNtWkKuPXBX
-	 Q4BbZLyHD5hazsgIwzIjRylo6LGmIZIoOp/ErBTCk1FIb8LcP8bjURhZADy8lTr7ET
-	 DaA3aGZwav2nsSlWU2o87a54QEWdBlaWk+X7tBbVsUgbKrSV6fmTGDZ/h978VYavDB
-	 B8ZbIm9n9/8aTrHL9KIkKAZ5gAJv/aBW8SjkvP26P50Ne1HXpnURRkDUV5AF8zG5hw
-	 /7F1Sxe8SOLWel9ZV+QB6ASb3dgDv7PZsx6jqNk9ML91hF8OY/Bc5z3MZdZMDwL8Ni
-	 P8KEn4CSXBTSQ==
-Received: from mx02.hhi.fraunhofer.de (mx02.HHI.FRAUNHOFER.DE [193.174.67.55])
-	by mm2.emwd.com (Postfix) with ESMTPS id D55B3386483
-	for <usrp-users@lists.ettus.com>; Wed, 14 Jan 2026 10:03:51 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=hhi.fraunhofer.de header.i=@hhi.fraunhofer.de header.b="bmWIT95C";
-	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=hhi.fraunhofer.de; i=@hhi.fraunhofer.de; q=dns/txt;
-  s=s1; t=1768403032; x=1799939032;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   mime-version;
-  bh=geHPJwe5PVMHSwggRIWa664u8AnBgYZYMSnztcYJ6cI=;
-  b=bmWIT95ChnKqcXI8RpVdQl5QHyWGkvGdpsO1vuF8tU5fMeyFQX/P33t8
-   1ylRDXLNWTWz1mtPyYUkdO9Q45QI9eQ5gb87GbPrxlFdIRS/jUX29UVlb
-   /YbrxTtEBsaQax3gcY0hHHg8KJHoyGbPm8NcGt/7pj05WPvgrYQnYqR7P
-   jSxmxY590qm+9FPSjjFAy785QsPZffRZ7iNsTbe3iuy/fpWJbq1X8Vdsr
-   68ubK7tk3DQbhSgQftWnSuKtauJS8ksbvzvgcDFMzqBItlPY7JjkiaGvv
-   nPWggGSLzULz/lJ9jb2cgRJDck9gAXJLSWQKn01m8zd7CfPhp/bfpl/QI
-   w==;
-X-CSE-ConnectionGUID: JMp/dOL0QGeYmAvz4G8gjA==
-X-CSE-MsgGUID: rYnsoq03T5q3T1Mve71Uug==
-X-IronPort-AV: E=Sophos;i="6.21,225,1763420400";
-   d="scan'208,217";a="375453"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO mx.fe.hhi.de) ([172.16.0.105])
-  by mx02.hhi.fraunhofer.de with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 16:03:49 +0100
-Received: from mxsrv3.fe.hhi.de (fd96:94f9:8b84:4849:b9f3:3f38:53b5:461a) by
- mxsrv2.fe.hhi.de (fd96:94f9:8b84:4849:df3e:c2d7:75cf:faa1) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Wed, 14 Jan 2026 16:03:52 +0100
-Received: from mxsrv3.fe.hhi.de ([fe80::ad2b:b94c:74a4:fae9]) by
- mxsrv3.fe.hhi.de ([fe80::ad2b:b94c:74a4:fae9%5]) with mapi id 15.02.2562.035;
- Wed, 14 Jan 2026 16:03:52 +0100
-From: "Lindstedt, Ralf" <ralf.lindstedt@hhi.fraunhofer.de>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: N320 SMA model number
-Thread-Index: AQHcY7Q2yzJhYyv4mECXvURCDzz/GbVR9c2A
-Date: Wed, 14 Jan 2026 15:03:52 +0000
-Message-ID: <00f924b7174dab9b4911789058b2759222bf89df.camel@hhi.fraunhofer.de>
-References: <wgUBSvSnhUkG1Pt5M5VEmN5i3NCTuxdpO8t3sqVNVY@lists.ctbirding.org>
-In-Reply-To: <wgUBSvSnhUkG1Pt5M5VEmN5i3NCTuxdpO8t3sqVNVY@lists.ctbirding.org>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.22.100]
+	b=WtxU8Vwk0Mq2Ehgdz7s00O5el+JSoJrA4AcM58zYB8IjjJP/EapBm28C/oqY9q1nt
+	 kiIZM3yILqMxStUSyJpZIs6sdhRSwCma7TkSwA78P3Xbi+3wPacdUR3hJn8s8fCblm
+	 U+7XxxwyHN/Supe4KbJu7e1jrDKWN90vDaCF28fAwZfeHjJCVY0DyVZzj/sIZHHEzK
+	 vBmwtRrPd1bQHi3NMUqcl0QkvItcKAmvFSzoxhT4MJWt5tSExqyfWbMan9bt0rF2mn
+	 wZps0XLnNfK2YF9V57FIJmHXQOJhRIrbtvmKMjymapTq1LQlW1V4rHQoUawCUwk4PB
+	 yZaSjOKb/w6gA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 58420386567
+	for <usrp-users@lists.ettus.com>; Wed, 14 Jan 2026 11:34:54 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1768408494; bh=pv+l8Vac9ASDbIUAkgf9zIllxAo8OIpOM88mG7DG6ww=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=KfNjsoBDAArkt3cEFvapu+aWNEWLZoTF8rlufjyDzW75vtxcxgsyscI/FDyclQEDw
+	 W+lIw4py5WCFRcuTy6Fv6zXT7NxMooEjLIjB8gzHkRgw5VHvhsm1Zzz+BmXatgYQQz
+	 aU4to39ALfWhZpbDn48m5bBhYq2z7AUPnVPaCMYg61AD4YtbKdhnDJklk2WuladIh1
+	 gFW5ZQBQx2TEUH2jBlNeEHtJlGnwuqqC5YNCdNsXJeCV5seV2TVQ5gFwg1l3p94h3T
+	 362mrTJcWkf9uv3NBBDOf+pBH5e9ReJaH+FhsKtYpgbbfHkRSv2pa5mpqi7d7uPnZ/
+	 rNPnkqAnm3Z6A==
+Date: Wed, 14 Jan 2026 16:34:54 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <opvBtdJRjFznFDZtTPSk8huJqKCStTx50oICCtWaQrA@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAE_Rk571Jp1DPYM7+-EvBRRpysWH_=murK68afj-kU4RGZ7_9Q@mail.gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: KV6GUBY3BLVD4ULHBLXLVN5246KJUU4Q
-X-Message-ID-Hash: KV6GUBY3BLVD4ULHBLXLVN5246KJUU4Q
-X-MailFrom: prvs=4676af9de=ralf.lindstedt@hhi.fraunhofer.de
+Message-ID-Hash: FVMEKXA2MG7DNI6ZAIK2ZZCYPDOQAPYE
+X-Message-ID-Hash: FVMEKXA2MG7DNI6ZAIK2ZZCYPDOQAPYE
+X-MailFrom: niels.steffen.garibaldi@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320 SMA model number
+Subject: [USRP-users] =?utf-8?b?UmU6IFg0NDAgWDRfNDAwIHdpdGggRERDIG5vdCB3b3JraW5n4oCP4oCP?=
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KV6GUBY3BLVD4ULHBLXLVN5246KJUU4Q/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FVMEKXA2MG7DNI6ZAIK2ZZCYPDOQAPYE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5744363049873085081=="
+From: "niels.steffen.garibaldi--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: niels.steffen.garibaldi@emerson.com
+Content-Type: multipart/mixed; boundary="===============5915248663056801903=="
 
---===============5744363049873085081==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+
+--===============5915248663056801903==
 Content-Type: multipart/alternative;
-	boundary="_000_00f924b7174dab9b4911789058b2759222bf89dfcamelhhifraunho_"
+ boundary="b1_opvBtdJRjFznFDZtTPSk8huJqKCStTx50oICCtWaQrA"
+Content-Transfer-Encoding: 7bit
 
---_000_00f924b7174dab9b4911789058b2759222bf89dfcamelhhifraunho_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
 
-SGkgSmFzb24sDQoNCmRvIHlvdSBoYXZlIHRoZSBuZXdlciBOSS12ZXJzaW9uIG9yIHRoZSBFdHR1
-cy12ZXJzaW9uIG9mIHRoZSBOMzIwPw0KDQpXZSBoYXZlIHRoZSBvbGRlciBFdHR1cyBvbmUgYW5k
-IGl0IGxvb2tzIGxpa2UgdGhpcyBTTUEgY29ubmVjdG9yIHdhcw0KYXNzZW1ibGVkIHRoZXJlOg0K
-aHR0cHM6Ly93d3cuY2luY2guY29tL3Byb2R1Y3RzL3JmLW1pY3Jvd2F2ZS9jb25uZWN0b3JzLzE0
-Mi0wNzYxLTg1MQ0KDQpXYXMgdGhpcyBhbHNvIG1lbnRpb25lZCBmcm9tIHlvdXIgTkkgY29udGFj
-dD8NCg0KQmVzdA0KUmFsZg0KDQpPbiBUdWUsIDIwMjUtMTItMDIgYXQgMTc6NDkgKzAwMDAsIGph
-c29uQGdhcmRldHRvZW5naW5lZXJpbmcuY29tIHdyb3RlOg0KDQpJbiBjYXNlIHNvbWVvbmUgc3R1
-bWJsZWQgdXBvbiB0aGlzIGRvd24gdGhlIHJvYWQsIHRoaXMgaXMgd2hhdCBOSSB0b2xkIG1lIHRv
-IHVzZToNCmh0dHBzOi8vd3d3LmNpbmNoLmNvbS9wcm9kdWN0cy9yZi1taWNyb3dhdmUvY29ubmVj
-dG9ycy8xNDItMTcyMS04ODENCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFp
-bHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KDQo=
+--b1_opvBtdJRjFznFDZtTPSk8huJqKCStTx50oICCtWaQrA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---_000_00f924b7174dab9b4911789058b2759222bf89dfcamelhhifraunho_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <301F59F47E9ACD44BC6EE6C7D86410F6@hhi.fraunhofer.de>
-Content-Transfer-Encoding: base64
+Hi Daniel,\
+\
+The short answer is that the current DDC/DUC implementations will not wor=
+k for Sampling rates above 250MHz.\
+\
+The long Answer:\
+The current implementation of the DDC/DUC RFNoC blocks only supports a si=
+ngle sample per clock cycle processing of data.\
+\
+Internally the DDC/DUC blocks use the faster CE(Compute Engine) clocks to=
+ do the Down-/Upconverting, [which on your X440 device is running at 266.=
+66MHz](https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#X440).\
+\
+Therefore the highest sampling rates supported by the DDC/DUC blocks is 2=
+50MHz, which corresponds to the 200MHz BW variants of the provided bitfil=
+es.\
+\
+If the radio provides samples at a higher rate, they will still reach the=
+ DDC block but the internal serialization buffers will fill up quickly as=
+ the block can not process incoming samples fast enough. This will lead t=
+o an overflow, which might be related to why your rfnoc session times out=
+.\
+\
+This is the also the main reason why only the =E2=80=9C\*_200_rfnoc_image=
+_core.yml=E2=80=9D variants have the DDC/DUC blocks included.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZT5wcmUsY29kZSxhZGRyZXNzIHsNCiAg
-bWFyZ2luOiAwcHg7DQp9DQpoMSxoMixoMyxoNCxoNSxoNiB7DQogIG1hcmdpbi10b3A6IDAuMmVt
-Ow0KICBtYXJnaW4tYm90dG9tOiAwLjJlbTsNCn0NCm9sLHVsIHsNCiAgbWFyZ2luLXRvcDogMGVt
-Ow0KICBtYXJnaW4tYm90dG9tOiAwZW07DQp9DQpibG9ja3F1b3RlIHsNCiAgbWFyZ2luLXRvcDog
-MGVtOw0KICBtYXJnaW4tYm90dG9tOiAwZW07DQp9DQo8L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHk+
-DQo8ZGl2IHN0eWxlPSJ1bmljb2RlLWJpZGk6IHBsYWludGV4dDsgY2FyZXQtY29sb3I6IHJnYigw
-LCAwLCAwKTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1mYW1pbHk6ICZxdW90O1VidW50dSBT
-YW5zJnF1b3Q7OyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudC1jYXBzOiBub3JtYWw7
-IGZvbnQtd2VpZ2h0OiA0MDA7IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IHRleHQtYWxpZ246IHN0
-YXJ0OyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6
-IG5vcm1hbDsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjog
-cmdiYSgwLCAwLCAwLCAwLjQpOyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7IHRleHQt
-ZGVjb3JhdGlvbjogbm9uZTsiPg0KSGkgSmFzb24sPC9kaXY+DQo8ZGl2IHN0eWxlPSJ1bmljb2Rl
-LWJpZGk6IHBsYWludGV4dDsgY2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTsgY29sb3I6IHJnYigw
-LCAwLCAwKTsgZm9udC1mYW1pbHk6ICZxdW90O1VidW50dSBTYW5zJnF1b3Q7OyBmb250LXN0eWxl
-OiBub3JtYWw7IGZvbnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7IGxl
-dHRlci1zcGFjaW5nOiBub3JtYWw7IHRleHQtYWxpZ246IHN0YXJ0OyB0ZXh0LWluZGVudDogMHB4
-OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5vcm1hbDsgd29yZC1zcGFjaW5n
-OiAwcHg7IC13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjQpOyAt
-d2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7IHRleHQtZGVjb3JhdGlvbjogbm9uZTsiPg0K
-PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ1bmljb2RlLWJpZGk6IHBsYWludGV4dDsgY2FyZXQt
-Y29sb3I6IHJnYigwLCAwLCAwKTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1mYW1pbHk6ICZx
-dW90O1VidW50dSBTYW5zJnF1b3Q7OyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudC1j
-YXBzOiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IHRl
-eHQtYWxpZ246IHN0YXJ0OyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsg
-d2hpdGUtc3BhY2U6IG5vcm1hbDsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGFwLWhpZ2hs
-aWdodC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjQpOyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRo
-OiAwcHg7IHRleHQtZGVjb3JhdGlvbjogbm9uZTsiPg0KZG8geW91IGhhdmUgdGhlIG5ld2VyIE5J
-LXZlcnNpb24gb3IgdGhlIEV0dHVzLXZlcnNpb24gb2YgdGhlIE4zMjA/PC9kaXY+DQo8ZGl2IHN0
-eWxlPSJ1bmljb2RlLWJpZGk6IHBsYWludGV4dDsgY2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTsg
-Y29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1mYW1pbHk6ICZxdW90O1VidW50dSBTYW5zJnF1b3Q7
-OyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IGZvbnQtd2Vp
-Z2h0OiA0MDA7IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IHRleHQtYWxpZ246IHN0YXJ0OyB0ZXh0
-LWluZGVudDogMHB4OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5vcm1hbDsg
-d29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjogcmdiYSgwLCAw
-LCAwLCAwLjQpOyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7IHRleHQtZGVjb3JhdGlv
-bjogbm9uZTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ1bmljb2RlLWJpZGk6IHBsYWlu
-dGV4dDsgY2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9u
-dC1mYW1pbHk6ICZxdW90O1VidW50dSBTYW5zJnF1b3Q7OyBmb250LXN0eWxlOiBub3JtYWw7IGZv
-bnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7IGxldHRlci1zcGFjaW5n
-OiBub3JtYWw7IHRleHQtYWxpZ246IHN0YXJ0OyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRyYW5z
-Zm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5vcm1hbDsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJr
-aXQtdGFwLWhpZ2hsaWdodC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjQpOyAtd2Via2l0LXRleHQt
-c3Ryb2tlLXdpZHRoOiAwcHg7IHRleHQtZGVjb3JhdGlvbjogbm9uZTsiPg0KV2UgaGF2ZSB0aGUg
-b2xkZXIgRXR0dXMgb25lIGFuZCBpdCBsb29rcyBsaWtlIHRoaXMgU01BIGNvbm5lY3RvciB3YXMm
-bmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9InVuaWNvZGUtYmlkaTogcGxhaW50ZXh0OyBjYXJldC1j
-b2xvcjogcmdiKDAsIDAsIDApOyBjb2xvcjogcmdiKDAsIDAsIDApOyBmb250LWZhbWlseTogJnF1
-b3Q7VWJ1bnR1IFNhbnMmcXVvdDs7IGZvbnQtc3R5bGU6IG5vcm1hbDsgZm9udC12YXJpYW50LWNh
-cHM6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgdGV4
-dC1hbGlnbjogc3RhcnQ7IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3
-aGl0ZS1zcGFjZTogbm9ybWFsOyB3b3JkLXNwYWNpbmc6IDBweDsgLXdlYmtpdC10YXAtaGlnaGxp
-Z2h0LWNvbG9yOiByZ2JhKDAsIDAsIDAsIDAuNCk7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6
-IDBweDsgdGV4dC1kZWNvcmF0aW9uOiBub25lOyI+DQphc3NlbWJsZWQgdGhlcmU6PC9kaXY+DQo8
-ZGl2IHN0eWxlPSJ1bmljb2RlLWJpZGk6IHBsYWludGV4dDsgY2FyZXQtY29sb3I6IHJnYigwLCAw
-LCAwKTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1mYW1pbHk6ICZxdW90O1VidW50dSBTYW5z
-JnF1b3Q7OyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IGZv
-bnQtd2VpZ2h0OiA0MDA7IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IHRleHQtYWxpZ246IHN0YXJ0
-OyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5v
-cm1hbDsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjogcmdi
-YSgwLCAwLCAwLCAwLjQpOyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7IHRleHQtZGVj
-b3JhdGlvbjogbm9uZTsiPg0KPGEgaHJlZj0iaHR0cHM6Ly93d3cuY2luY2guY29tL3Byb2R1Y3Rz
-L3JmLW1pY3Jvd2F2ZS9jb25uZWN0b3JzLzE0Mi0wNzYxLTg1MSI+aHR0cHM6Ly93d3cuY2luY2gu
-Y29tL3Byb2R1Y3RzL3JmLW1pY3Jvd2F2ZS9jb25uZWN0b3JzLzE0Mi0wNzYxLTg1MTwvYT48L2Rp
-dj4NCjxkaXYgc3R5bGU9InVuaWNvZGUtYmlkaTogcGxhaW50ZXh0OyBjYXJldC1jb2xvcjogcmdi
-KDAsIDAsIDApOyBjb2xvcjogcmdiKDAsIDAsIDApOyBmb250LWZhbWlseTogJnF1b3Q7VWJ1bnR1
-IFNhbnMmcXVvdDs7IGZvbnQtc3R5bGU6IG5vcm1hbDsgZm9udC12YXJpYW50LWNhcHM6IG5vcm1h
-bDsgZm9udC13ZWlnaHQ6IDQwMDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgdGV4dC1hbGlnbjog
-c3RhcnQ7IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1zcGFj
-ZTogbm9ybWFsOyB3b3JkLXNwYWNpbmc6IDBweDsgLXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9y
-OiByZ2JhKDAsIDAsIDAsIDAuNCk7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgdGV4
-dC1kZWNvcmF0aW9uOiBub25lOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9InVuaWNvZGUt
-YmlkaTogcGxhaW50ZXh0OyBjYXJldC1jb2xvcjogcmdiKDAsIDAsIDApOyBjb2xvcjogcmdiKDAs
-IDAsIDApOyBmb250LWZhbWlseTogJnF1b3Q7VWJ1bnR1IFNhbnMmcXVvdDs7IGZvbnQtc3R5bGU6
-IG5vcm1hbDsgZm9udC12YXJpYW50LWNhcHM6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsgbGV0
-dGVyLXNwYWNpbmc6IG5vcm1hbDsgdGV4dC1hbGlnbjogc3RhcnQ7IHRleHQtaW5kZW50OiAwcHg7
-IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1zcGFjZTogbm9ybWFsOyB3b3JkLXNwYWNpbmc6
-IDBweDsgLXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9yOiByZ2JhKDAsIDAsIDAsIDAuNCk7IC13
-ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgdGV4dC1kZWNvcmF0aW9uOiBub25lOyI+DQpX
-YXMgdGhpcyBhbHNvIG1lbnRpb25lZCZuYnNwO2Zyb20geW91ciBOSSBjb250YWN0PzwvZGl2Pg0K
-PGRpdiBzdHlsZT0idW5pY29kZS1iaWRpOiBwbGFpbnRleHQ7IGNhcmV0LWNvbG9yOiByZ2IoMCwg
-MCwgMCk7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGZvbnQtZmFtaWx5OiAmcXVvdDtVYnVudHUgU2Fu
-cyZxdW90OzsgZm9udC1zdHlsZTogbm9ybWFsOyBmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsOyBm
-b250LXdlaWdodDogNDAwOyBsZXR0ZXItc3BhY2luZzogbm9ybWFsOyB0ZXh0LWFsaWduOiBzdGFy
-dDsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06IG5vbmU7IHdoaXRlLXNwYWNlOiBu
-b3JtYWw7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRhcC1oaWdobGlnaHQtY29sb3I6IHJn
-YmEoMCwgMCwgMCwgMC40KTsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyB0ZXh0LWRl
-Y29yYXRpb246IG5vbmU7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0idW5pY29kZS1iaWRp
-OiBwbGFpbnRleHQ7IGNhcmV0LWNvbG9yOiByZ2IoMCwgMCwgMCk7IGNvbG9yOiByZ2IoMCwgMCwg
-MCk7IGZvbnQtZmFtaWx5OiAmcXVvdDtVYnVudHUgU2FucyZxdW90OzsgZm9udC1zdHlsZTogbm9y
-bWFsOyBmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsOyBmb250LXdlaWdodDogNDAwOyBsZXR0ZXIt
-c3BhY2luZzogbm9ybWFsOyB0ZXh0LWFsaWduOiBzdGFydDsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4
-dC10cmFuc2Zvcm06IG5vbmU7IHdoaXRlLXNwYWNlOiBub3JtYWw7IHdvcmQtc3BhY2luZzogMHB4
-OyAtd2Via2l0LXRhcC1oaWdobGlnaHQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC40KTsgLXdlYmtp
-dC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyB0ZXh0LWRlY29yYXRpb246IG5vbmU7Ij4NCkJlc3Q8
-L2Rpdj4NCjxkaXYgc3R5bGU9InVuaWNvZGUtYmlkaTogcGxhaW50ZXh0OyBjYXJldC1jb2xvcjog
-cmdiKDAsIDAsIDApOyBjb2xvcjogcmdiKDAsIDAsIDApOyBmb250LWZhbWlseTogJnF1b3Q7VWJ1
-bnR1IFNhbnMmcXVvdDs7IGZvbnQtc3R5bGU6IG5vcm1hbDsgZm9udC12YXJpYW50LWNhcHM6IG5v
-cm1hbDsgZm9udC13ZWlnaHQ6IDQwMDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgdGV4dC1hbGln
-bjogc3RhcnQ7IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1z
-cGFjZTogbm9ybWFsOyB3b3JkLXNwYWNpbmc6IDBweDsgLXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNv
-bG9yOiByZ2JhKDAsIDAsIDAsIDAuNCk7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsg
-dGV4dC1kZWNvcmF0aW9uOiBub25lOyI+DQpSYWxmPC9kaXY+DQo8ZGl2IHN0eWxlPSJ1bmljb2Rl
-LWJpZGk6IHBsYWludGV4dDsgY2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTsgY29sb3I6IHJnYigw
-LCAwLCAwKTsgZm9udC1mYW1pbHk6ICZxdW90O1VidW50dSBTYW5zJnF1b3Q7OyBmb250LXN0eWxl
-OiBub3JtYWw7IGZvbnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IGZvbnQtd2VpZ2h0OiA0MDA7IGxl
-dHRlci1zcGFjaW5nOiBub3JtYWw7IHRleHQtYWxpZ246IHN0YXJ0OyB0ZXh0LXRyYW5zZm9ybTog
-bm9uZTsgd2hpdGUtc3BhY2U6IG5vcm1hbDsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGFw
-LWhpZ2hsaWdodC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjQpOyAtd2Via2l0LXRleHQtc3Ryb2tl
-LXdpZHRoOiAwcHg7IHRleHQtZGVjb3JhdGlvbjogbm9uZTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2
-Pk9uIFR1ZSwgMjAyNS0xMi0wMiBhdCAxNzo0OSAmIzQzOzAwMDAsIGphc29uQGdhcmRldHRvZW5n
-aW5lZXJpbmcuY29tIHdyb3RlOjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSIgc3R5bGU9
-Im1hcmdpbjowIDAgMCAuOGV4OyBib3JkZXItbGVmdDoycHggIzcyOWZjZiBzb2xpZDtwYWRkaW5n
-LWxlZnQ6MWV4Ij4NCjxwPkluIGNhc2Ugc29tZW9uZSBzdHVtYmxlZCB1cG9uIHRoaXMgZG93biB0
-aGUgcm9hZCwgdGhpcyBpcyB3aGF0IE5JIHRvbGQgbWUgdG8gdXNlOjxicj4NCmh0dHBzOi8vd3d3
-LmNpbmNoLmNvbS9wcm9kdWN0cy9yZi1taWNyb3dhdmUvY29ubmVjdG9ycy8xNDItMTcyMS04ODE8
-L3A+DQo8ZGl2Pl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-PGJyPg0KPC9kaXY+DQo8ZGl2PlVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1h
-aWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b208L2E+PGJyPg0KPC9kaXY+DQo8ZGl2PlRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8g
-PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIj4NCnVzcnAt
-dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3Rl
-Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+PHNwYW4+PC9zcGFuPjwvZGl2Pg0KPC9ib2R5Pg0K
-PC9odG1sPg0K
+You can still capture samples at a faster sampling rate, but you will hav=
+e to stream them to your host first and then do the downconversion there.=
+\
+Be aware that this requires a fast connection between USRP and Host, whic=
+h can be challenging in some setups.\
+\
+Another thing you could try is to reduce the MCR closer to your target sa=
+mpling rate. The x440 supports a wider variety of flexible sampling rates=
+ than the other USRPs, so if you only care about the downsampled waveform=
+, you could just try to get close to your desired sampling rate that way.=
+ See [the appendix of this document for a list of supported sampling rate=
+s of the x440](https://kb.ettus.com/About_Sampling_Rates_and_Master_Clock=
+_Rates_for_the_USRP_X440#Appendix).\
+\
+If you still require this feature, you will either have to update the imp=
+lementation yourself and make the DDC/DUC multisample capable, or you cou=
+ld try and contact Ettus/NI/Emerson support and put in a feature request.=
+ Depending on your business case the implementation might be prioritized =
+and updated in a future release.\
+\
+Regards,\
+Niels
 
---_000_00f924b7174dab9b4911789058b2759222bf89dfcamelhhifraunho_--
+--b1_opvBtdJRjFznFDZtTPSk8huJqKCStTx50oICCtWaQrA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---===============5744363049873085081==
+<p>Hi Daniel,<br><br>The short answer is that the current DDC/DUC implement=
+ations will not work for Sampling rates above 250MHz.<br><br>The long Answe=
+r:<br>The current implementation of the DDC/DUC RFNoC blocks only supports =
+a single sample per clock cycle processing of data.<br><br>Internally the D=
+DC/DUC blocks use the faster CE(Compute Engine) clocks to do the Down-/Upco=
+nverting, <a href=3D"https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#=
+X440" title=3D"">which on your X440 device is running at 266.66MHz</a>.<br>=
+<br>Therefore the highest sampling rates supported by the DDC/DUC blocks is=
+ 250MHz, which corresponds to the 200MHz BW variants of the provided bitfil=
+es.<br><br>If the radio provides samples at a higher rate, they will still =
+reach the DDC block but the internal serialization buffers will fill up qui=
+ckly as the block can not process incoming samples fast enough. This will l=
+ead to an overflow, which might be related to why your rfnoc session times =
+out.<br><br>This is the also the main reason why only the =E2=80=9C*_200_rf=
+noc_image_core.yml=E2=80=9D variants have the DDC/DUC blocks included.</p><=
+p>You can still capture samples at a faster sampling rate, but you will hav=
+e to stream them to your host first and then do the downconversion there.<b=
+r>Be aware that this requires a fast connection between USRP and Host, whic=
+h can be challenging in some setups.<br><br>Another thing you could try is =
+to reduce the MCR closer to your target sampling rate. The x440 supports a =
+wider variety of flexible sampling rates than the other USRPs, so if you on=
+ly care about the downsampled waveform, you could just try to get close to =
+your desired sampling rate that way. See <a href=3D"https://kb.ettus.com/Ab=
+out_Sampling_Rates_and_Master_Clock_Rates_for_the_USRP_X440#Appendix" title=
+=3D"">the appendix of this document for a list of supported sampling rates =
+of the x440</a>.<br><br>If you still require this feature, you will either =
+have to update the implementation yourself and make the DDC/DUC multisample=
+ capable, or you could try and contact Ettus/NI/Emerson support and put in =
+a feature request. Depending on your business case the implementation might=
+ be prioritized and updated in a future release.<br><br>Regards,<br>Niels</=
+p>
+
+--b1_opvBtdJRjFznFDZtTPSk8huJqKCStTx50oICCtWaQrA--
+
+--===============5915248663056801903==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -248,4 +165,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5744363049873085081==--
+--===============5915248663056801903==--
