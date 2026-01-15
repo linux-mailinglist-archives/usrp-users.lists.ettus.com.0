@@ -2,274 +2,319 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B167D233D9
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Jan 2026 09:48:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B5BD24C56
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Jan 2026 14:41:31 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0CF7F386818
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Jan 2026 03:48:04 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id BD72C386D6A
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Jan 2026 08:41:30 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1768466884; bh=SgEqZGPYorz6lVmr85KzvzNcDDKuTw3TWWUoAnsM3QU=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=0h/0bFFToHxGjRWPph5zHhDjbFrgIvf+tbtC/j8xxC5thfnk/OoEKqY/fXTsrfzyS
-	 fAuqZ2A89mdlUvgrfiLbPsWrtJIwATrUFZVluZa2J1303OdfZRLh92i6d9yNrBuk5F
-	 LfpNy1Th0VAbmq9K3NMzIhhnX1unK0ACYxwCWbS2i+Z1q5KdxZhByBUZfAxKzfqI/w
-	 erMs6IEwncJxgcC1JaHhmUPw8wKG7r2jk7CJzBSuxMXqGrVzeJ+FBwh/0++6BytZJJ
-	 AFwd/mBIkvbAXbBIoLNJnqCzP9qDvGWfbjblwtx/XlN8YIRCK4/5XvhAo64+u90qiU
-	 WHOYutsouvscw==
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 689EE3867F6
-	for <usrp-users@lists.ettus.com>; Thu, 15 Jan 2026 03:46:49 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="mxo5gVnf";
-	dkim-atps=neutral
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-6505d3adc3aso979636a12.1
-        for <usrp-users@lists.ettus.com>; Thu, 15 Jan 2026 00:46:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1768466808; x=1769071608; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AWKY7EfOURQSLuh+iJqURv9h5bUG0K6ywyrL0brkl/Q=;
-        b=mxo5gVnfg54kCuV3xjGBMJ6y4sWUI4Q37hXRJ2jRGNG9umNweqm8Tuc1vKD32he05x
-         TfAjv0BNcqHPBbXbBIj7dz1aQZTSMq7k8Q5UYZeX7eYXi8u6Oy1xCDwZh4OE75V8y5T4
-         DCr43TmKbW9CltCtCvtbD/t0IpDCG3ZDmfd39ZYNPzfm8ZQrfciDdAwWvtOqGPGkqR7T
-         N11IUw8pft7XVZUQsuree71HYfF9QnZQcux6uFINS7+3a72dvzFJsGZtQl/X60HrhtWo
-         YktGGVUujFipgWTCrE29Yu3OtbAgrfEfQiTX31bCv0OSuA1MIbz3pR2JQb4alTv1uc6s
-         bDkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768466808; x=1769071608;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AWKY7EfOURQSLuh+iJqURv9h5bUG0K6ywyrL0brkl/Q=;
-        b=ZD53kp8TIazIOXg6Yji2PQjwFCeCuLPVCjjditfyUXwoJCmRVXVv4woHhFoLVx+C3k
-         03irqRuuuwxh232LyLKbGsiNZe5eRH6qkTTQmhc/rAkde7rom5pX6RyJIyFjVe9Qc45y
-         hTOG4zfHLgtrZEss6S6r9vp7L63xdFdjGyHu/zZU+wDtHFhoGzOdHtyvXMCWSetYxovA
-         ZsFW0NmUqkLYN82x9Y3TLKtbuqvK/Ma4C0DXB0qJOhONAx6co5+KkuaWo7aOwnWX5Ql/
-         bfWR//lMYlk6SwG1PUmMmyu2U5w8f6lA2yIkghzd9uZyVmI99SZVCWg/275ORJlkanFp
-         nBsg==
-X-Gm-Message-State: AOJu0YyVBfGKOYydXQsB1VCNymZopBlFea5NXLimuLvcoyO+OvijXMhX
-	EOOq/10KCikKgPOnP27ig3+8ggB8/bBPcNjnzpJsKh1zPAJHqsOYrOPbAdrl9UGn9uo/wqnAonp
-	614Ebvw4dmChBwEMfEnrtieMKhskowc/77k72Ixo1jZJgPL67OUBcWag=
-X-Gm-Gg: AY/fxX7FxJbNor9TK62iKjLCFWDAvQrYK9RAUStCCX6HAe1vQko6YCREON4ihaRpMLe
-	hVUQQwF58nia0JCnEU0AVw4nKt1I0i5i6ThiEjrI3NOdWjNK1X+4Oiy09KC1ZMwXNYvUwg61ANQ
-	6y2CxUDXlOOz1MtFTBZmlse/fibTEtCo6kQFxFQuLkIt4o5gdEoKkjKFUbwXvArL8FCh+4K8UdH
-	sMI+g4J8PGfs/ksyPJA/eLeRhsG0Xw0UaslQzQkvpU5CMi6LwtI2NW1X2RzK+kSPFRdSA/KVfiB
-	usl7grXOuRq/IpQrrFD9auz4orU=
-X-Received: by 2002:a05:6402:2794:b0:649:815e:3f9b with SMTP id
- 4fb4d7f45d1cf-653ec10b28emr4391595a12.3.1768466807653; Thu, 15 Jan 2026
- 00:46:47 -0800 (PST)
+	t=1768484490; bh=fZfOUCuZmCuxbUdbAmInwD9U2Cr7+hNW0sFk3apOBp8=;
+	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=zGThpFSnCv6mvkHKs7oL5otmRXLePh09GjqIAmXgBLs4XYyPRei/zT3vixmmOSu0E
+	 n2TZ0VcM/X36+34S3Ld2yZ2hTp+HjQj7ZYLtK+8XqnH2mHiBvI7Tx4zJnuUbWqBllt
+	 jfenVo8Srlk226iMmgEEHwSQ+bNcP2boAV0x28rYgjoCl88f/rBFyZ/i1S4eHtHjsA
+	 qX/eM4mYif3lfA5cgxV1ykrcJrjZqBWLad4CGlmw+D7UastBj9uqOAFgeYEg6aYByX
+	 2R+OLOrAOsJO9dtbGmm23SwXrAHWktlYQdeJANIUgCRq32F3L9LNY9D8NbjazuiOs5
+	 PdVZaPNQCxsWQ==
+Received: from lxmtout2.gsi.de (lxmtout2.gsi.de [140.181.3.112])
+	by mm2.emwd.com (Postfix) with ESMTPS id E6444386D14
+	for <usrp-users@lists.ettus.com>; Thu, 15 Jan 2026 08:40:25 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by lxmtout2.gsi.de (Postfix) with ESMTP id 3F33820350E8
+	for <usrp-users@lists.ettus.com>; Thu, 15 Jan 2026 14:40:24 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at lxmtout2.gsi.de
+Received: from lxmtout2.gsi.de ([127.0.0.1])
+	by localhost (lxmtout2.gsi.de [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id 0ddDXneHNh91 for <usrp-users@lists.ettus.com>;
+	Thu, 15 Jan 2026 14:40:24 +0100 (CET)
+Received: from srvEX6.campus.gsi.de (unknown [10.10.4.96])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by lxmtout2.gsi.de (Postfix) with ESMTPS id 2A02C20350E6
+	for <usrp-users@lists.ettus.com>; Thu, 15 Jan 2026 14:40:24 +0100 (CET)
+Received: from [140.181.69.163] (140.181.3.12) by srvEX6.campus.gsi.de
+ (10.10.4.96) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Thu, 15 Jan
+ 2026 14:40:23 +0100
+Message-ID: <2ce8603c-3e73-4dc7-819a-de10356057ba@gsi.de>
+Date: Thu, 15 Jan 2026 14:40:23 +0100
 MIME-Version: 1.0
-References: <SA1P110MB19324582F1B8CFDD8469BBA6B78FA@SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM>
- <217ceb53-0caa-412a-a79d-dfc2c47208ff@gmail.com>
-In-Reply-To: <217ceb53-0caa-412a-a79d-dfc2c47208ff@gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Thu, 15 Jan 2026 09:46:35 +0100
-X-Gm-Features: AZwV_QhYdPsSWGWXvo4TRbqBmsRVCb28KwYQRK0qWdjjPMks5ok_Lal4FurucLc
-Message-ID: <CAFOi1A5Jbr+bPB-C-kCpDXWcP-X06eBxRpsBEnbJsFqNC5ZeoQ@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Message-ID-Hash: N3UE2LSB3XDXWFPH236W6SKY6G7U52FS
-X-Message-ID-Hash: N3UE2LSB3XDXWFPH236W6SKY6G7U52FS
-X-MailFrom: martin.braun@ettus.com
+User-Agent: Mozilla Thunderbird
+From: Philipp Niedermayer <p.niedermayer@gsi.de>
+Content-Language: de-DE, en-GB
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+X-Originating-IP: [140.181.3.12]
+X-ClientProxiedBy: srvex5.Campus.gsi.de (10.10.4.95) To srvEX6.campus.gsi.de
+ (10.10.4.96)
+Message-ID-Hash: JU6JH5VWMFDMTNYOQVABJ7XCICLVH4YU
+X-Message-ID-Hash: JU6JH5VWMFDMTNYOQVABJ7XCICLVH4YU
+X-MailFrom: P.Niedermayer@gsi.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Using USRP B206mini with Octoclock 10MHz+PPS
+Subject: [USRP-users] NI-RIO error using USRP X310 over MXI with PCIe-8371 adapter on Ubuntu 24.04 LTS
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N3UE2LSB3XDXWFPH236W6SKY6G7U52FS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JU6JH5VWMFDMTNYOQVABJ7XCICLVH4YU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2767754349834415112=="
+Content-Type: multipart/mixed; boundary="===============0435918982684644231=="
 
---===============2767754349834415112==
-Content-Type: multipart/alternative; boundary="000000000000de11ba064869432d"
+--===============0435918982684644231==
+Content-Language: de-DE, en-GB
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha-512; boundary="------------ms080003010200000700070708"
 
---000000000000de11ba064869432d
-Content-Type: text/plain; charset="UTF-8"
+--------------ms080003010200000700070708
+Content-Type: multipart/alternative;
+ boundary="------------AUQoHi1PtVObLpnPIaWLRxWw"
+
+--------------AUQoHi1PtVObLpnPIaWLRxWw
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
+
+RGVhciBhbGwsDQoNCndlIGFyZSB1c2luZyB0aGUgVVNSUCBYMzEwIGNvbm5lY3RlZCBvdmVy
+IE1YSSB3aXRoIGEgUENJZS04MzcxIGNhcmQuIA0KVGhpcyB1c2VkIHRvIHdvcmsgd2VsbCB1
+cCB0byBpbmNsdWRpbmcgVWJ1bnR1IDIyLjA0IExUUy4gTm93IGFmdGVyIA0KdXBkYXRpbmcg
+dG8gVWJ1bnR1IDI0LjA0IExUUyB3ZSBhcmUgZXhwZXJpZW5jaW5nIHRoZSBjb25uZWN0aW5n
+IGlzc3VlIA0KZGVzY3JpYmVkIGluIHRoZSBmb2xsb3dpbmcuIEkgYW0gYXdhcmUgdGhhdCAx
+MEcgRXRoZXJuZXQgaXMgdGhlIA0KcmVjb21tZW5kZWQgYWx0ZXJuYXRpdmUsIGJ1dCB0aGUg
+UENJZSBjb25uZWN0aW9uIGlzIGJlbmVmaWNpYWwgZm9yIHVzLCANCmFzIGl0IGFsbG93cyB0
+byBxdWlja2x5IHN3aXRjaCBiZXR3ZWVuIEZQR0EgaW1hZ2VzIGZvciBkaWZmZXJlbnQgDQph
+cHBsaWNhdGlvbnMgb24tdGhlLWZseSB3aXRob3V0IGhhdmluZyB0byBwb3dlciBjeWNsaW5n
+IHRoZSBYMzEwIChyZW1vdGUgDQpvcGVyYXRpb24pLiBBY2NvcmRpbmcgdG8gTkksIFJJTyBp
+cyBmdWxseSBzdXBwb3J0ZWQgb24gVWJ1bnR1IDI0LjA0IExUUyANCnNvIGl0IHNob3VsZCB3
+b3JrLg0KDQpEb2VzIGFueW9uZSBoYXZlIGV4cGVyaWVuY2Ugd2l0aCB0aGlzIG9uIFVidW50
+dSAyNC4wNCBMVFMgb3IgYW55IA0Kc3VnZ2VzdGlvbnMgaG93IHRvIGlkZW50aWZ5IGFuZCBm
+aXggdGhlIGlzc3VlIHdvdWxkIGJlIHdlbGNvbWUhDQoNCg0KKklzc3VlIGRlc2NyaXB0aW9u
+OioNCg0KVGhlIFVTUlAgWDMxMCBpcyBkaXNjb3ZlcmFibGUgdXNpbmcgInVoZF9maW5kX2Rl
+dmljZXMiIGFuZCBzaG93cyB1cCANCmNvcnJlY3RseSBhcyByZXNvdXJjZSBSSU8wLiBJdCdz
+IGNvcnJlY3RseSBlbnVtZXJhdGVkIGluIGxzcGNpZSB1c2luZyANCm5pdXNycHJpb2sgZHJp
+dmVycyBhbmQgdGhlIG5pdXNycHJpb3BjIHNlcnZpY2UgaXMgcnVubmluZy4gSG93ZXZlciwg
+DQpldmVyeXRoaW5nIGJleW9uZCB0aGF0IGRvZXMgbm90IHdvcmssIGkuZS4gYW55IGZsb3dn
+cmFwaCBmYWlscy4gRXZlbiB0aGUgDQoidWhkX3VzcnBfcHJvYmUiIGZhaWxzIHdpdGggdGhl
+IGZvbGxvd2luZyBhZnRlciBhIGNsZWFuIHJlYm9vdDoNCg0KJCB1aGRfdXNycF9wcm9iZQ0K
+W0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gMTMuMy4wOyBCb29zdF8xMDgz
+MDA7IA0KVUhEXzQuOS4wLjArZHMxLTF+bm9ibGUyDQpbSU5GT10gW1gzMDBdIFgzMDAgaW5p
+dGlhbGl6YXRpb24gc2VxdWVuY2UuLi4NCltJTkZPXSBbWDMwMF0gQ29ubmVjdGluZyB0byBu
+aXVzcnByaW9ycGMgYXQgbG9jYWxob3N0OjU0NDQuLi4NCltJTkZPXSBbWDMwMF0gVXNpbmcg
+TFZCSVRYIGJpdGZpbGUgDQovdXNyL3NoYXJlL3VoZC80LjkuMC9pbWFnZXMvdXNycF94MzEw
+X2ZwZ2FfSEcubHZiaXR4DQpFcnJvcjogUnVudGltZUVycm9yOiB4MzAwX2ltcGw6IENvdWxk
+IG5vdCBpbml0aWFsaXplIFJJTyBzZXNzaW9uLiANClVua25vd24gZXJyb3IuIChFcnJvciBj
+b2RlIC02MzE1MCkNCg0KJCB1aGRfdXNycF9wcm9iZQ0KW0lORk9dIFtVSERdIGxpbnV4OyBH
+TlUgQysrIHZlcnNpb24gMTMuMy4wOyBCb29zdF8xMDgzMDA7IA0KVUhEXzQuOS4wLjArZHMx
+LTF+bm9ibGUyDQpbSU5GT10gW1gzMDBdIFgzMDAgaW5pdGlhbGl6YXRpb24gc2VxdWVuY2Uu
+Li4NCltJTkZPXSBbWDMwMF0gQ29ubmVjdGluZyB0byBuaXVzcnByaW9ycGMgYXQgbG9jYWxo
+b3N0OjU0NDQuLi4NCltJTkZPXSBbWDMwMF0gVXNpbmcgTFZCSVRYIGJpdGZpbGUgDQovdXNy
+L3NoYXJlL3VoZC80LjkuMC9pbWFnZXMvdXNycF94MzEwX2ZwZ2FfSEcubHZiaXR4DQpFcnJv
+cjogUnVudGltZUVycm9yOiB4MzAwX2ltcGw6IENvdWxkIG5vdCBpbml0aWFsaXplIFJJTyBz
+ZXNzaW9uLiBBIA0KZmF1bHQgb24gdGhlIG5ldHdvcmsgY2F1c2VkIHRoZSBSUEMgb3BlcmF0
+aW9uIHRvIGZhaWwuIChFcnJvciBjb2RlIC02MzA0MikNCg0KQW5kIGV2ZXJ5IHN1YnNlcXVl
+bnQgdHJ5IHJlc3VsdHMgaW4gdGhlIHNhbWUgbmV0d29yayBmYXVsdCBlcnJvci4NCg0KDQoq
+U2V0dXA6Kg0KDQogICogVVNSUCBYMzEwIGNvbm5lY3RlZCBvdmVyIE1YSSB3aXRoIGEgUENJ
+ZS04MzcxIGNhcmQuIFVidW50dSAyNC4wNCBMVFMNCiAgICB4ODZfNjQgd2l0aCBLZXJuZWwg
+Ni44LjAtOTAtZ2VuZXJpYw0KICAqIFVIRCA0LjkuMC4wK2RzMS0xfm5vYmxlMiBhbmQgR05V
+IFJhZGlvIDMuMTAuMTIgc3RhY2sgaW5zdGFsbGVkIHZpYQ0KICAgIHRoZSBwcGE6Z251cmFk
+aW8vZ251cmFkaW8tcmVsZWFzZXMgcmVwb3NpdG9yeQ0KICAqIE5JIGRyaXZlcnMgMjAyNSBR
+NCBpbnN0YWxsZWQgYXMgZGVzY3JpYmVkIGhlcmU6DQogICAgaHR0cHM6Ly9maWxlcy5ldHR1
+cy5jb20vbWFudWFsL3BhZ2VfdXNycF94M3gwLmh0bWwjeDN4MF9od19wY2llDQoNCg0KRG9l
+cyBhbnlvbmUgaGF2ZSBleHBlcmllbmNlIHdpdGggdGhpcyBvbiBVYnVudHUgMjQuMDQgTFRT
+IG9yIGFueSANCnN1Z2dlc3Rpb25zIGhvdyB0byBpZGVudGlmeSBhbmQgZml4IHRoZSBpc3N1
+ZSB3b3VsZCBiZSB3ZWxjb21lIQ0KDQoNCkJlc3QgcmVnYXJkcw0KUGhpbGlwcA0KDQoNCg==
+
+--------------AUQoHi1PtVObLpnPIaWLRxWw
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hey David,
+<!DOCTYPE html>
+<html>
+  <head>
 
-to add onto what Marcus said: The minis don't have a hardware PLL (unlike
-the B200/B210, and all other USRPs). Before you go down the rabbit hole of
-modifying the FPGA, you might want to run a few B2xx-minis from an
-Octoclock (ignore PPS for now), and check if the phase stability is good
-enough for your application.
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <p>Dear all,</p>
+    <p>we are using the USRP X310 connected over MXI with a PCIe-8371
+      card. This used to work well up to including Ubuntu 22.04 LTS. Now
+      after updating to Ubuntu 24.04 LTS we are experiencing the
+      connecting issue described in the following. I am aware that 10G
+      Ethernet is the recommended alternative, but the PCIe connection
+      is beneficial for us, as it allows to quickly switch between FPGA
+      images for different applications on-the-fly without having to
+      power cycling the X310 (remote operation). According to NI, RIO is
+      fully supported on Ubuntu 24.04 LTS so it should work.</p>
+    <p>Does anyone have experience with this on Ubuntu 24.04 LTS or any
+      suggestions how to identify and fix the issue would be welcome!</p>=
 
-Other than that, it would be possible to use a GPIO input for PPS, but
-neither the software nor the FPGA expect that, and both will require
-modifications. For a USRP/UHD veteran such as yourself, that sounds
-feasible, but be aware it's a lot of work and might not give you what you
-need.
+    <p><br>
+    </p>
+    <p><b>Issue description:</b></p>
+    <p>The USRP X310 is discoverable using "uhd_find_devices" and shows
+      up correctly as resource RIO0. It's correctly enumerated in lspcie
+      using niusrpriok drivers and the niusrpriopc service is running.
+      However, everything beyond that does not work, i.e. any flowgraph
+      fails. Even the "uhd_usrp_probe" fails with the following after a
+      clean reboot:</p>
+    <p><font face=3D"monospace">$ uhd_usrp_probe=C2=A0<br>
+        [INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300;
+        UHD_4.9.0.0+ds1-1~noble2<br>
+        [INFO] [X300] X300 initialization sequence...<br>
+        [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...<br>=
 
---M
+        [INFO] [X300] Using LVBITX bitfile
+        /usr/share/uhd/4.9.0/images/usrp_x310_fpga_HG.lvbitx<br>
+        Error: RuntimeError: x300_impl: Could not initialize RIO
+        session. Unknown error. (Error code -63150)<br>
+      </font></p>
+    <p><font face=3D"monospace">$ uhd_usrp_probe=C2=A0<br>
+        [INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300;
+        UHD_4.9.0.0+ds1-1~noble2<br>
+        [INFO] [X300] X300 initialization sequence...<br>
+        [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...<br>=
 
-On Wed, Jan 14, 2026 at 9:20=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmai=
-l.com>
-wrote:
+        [INFO] [X300] Using LVBITX bitfile
+        /usr/share/uhd/4.9.0/images/usrp_x310_fpga_HG.lvbitx<br>
+        Error: RuntimeError: x300_impl: Could not initialize RIO
+        session. A fault on the network caused the RPC operation to
+        fail. (Error code -63042)</font></p>
+    <p>And every subsequent try results in the same network fault error.<=
+/p>
+    <p><br>
+    </p>
+    <p><b>Setup:</b></p>
+    <ul>
+      <li>USRP X310 connected over MXI with a PCIe-8371 card. Ubuntu
+        24.04 LTS x86_64 with Kernel 6.8.0-90-generic</li>
+      <li>UHD 4.9.0.0+ds1-1~noble2 and GNU Radio 3.10.12 stack installed
+        via the ppa:gnuradio/gnuradio-releases repository=C2=A0</li>
+      <li>NI drivers 2025 Q4 installed as described here:=C2=A0<a class=3D=
+"moz-txt-link-freetext" href=3D"https://files.ettus.com/manual/page_usrp_=
+x3x0.html#x3x0_hw_pcie">https://files.ettus.com/manual/page_usrp_x3x0.htm=
+l#x3x0_hw_pcie</a></li>
+    </ul>
+    <p><br>
+    </p>
+    <p>Does anyone have experience with this on Ubuntu 24.04 LTS or any
+      suggestions how to identify and fix the issue would be welcome!</p>=
 
-> On 2026-01-14 14:57, David Raeman via USRP-users wrote:
->
-> Hello,
->
->
->
-> I have a project currently hosted on a USRP E320 that involves distribute=
-d
-> signal coherence. During development I sometimes do over-the-wire testing
-> using an Octoclock=E2=80=99s 10MHz and PPS outputs to synchronize multipl=
-e radios
-> on the bench.
->
->
->
-> I=E2=80=99m starting to investigate the viability of rehosting this appli=
-cation on
-> a USRP B206mini to reduce size and cost. As far as I can discern, this
-> radio only has a single port that can accept either a 10MHz reference inp=
-ut
-> or a PPS input. Is it possible to somehow use the radio with both clock a=
-nd
-> PPS outputs from an Octoclock with out-of-the-box UHD? If not, would it b=
-e
-> viable for me to add a bit of FPGA logic and UHD tweaks such that softwar=
-e
-> can specify a GPIO pin as the PPS input while using the SMA as the 10MHz
-> input? Or are there hardware or systems constraints that would preclude
-> that approach?
->
->
->
-> Thanks!
->
-> David Raeman
->
-> Synoptic Engineering
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> You could probably add some FPGA functionality to implement a separate PP=
-S
-> input.
->
-> But I should warn you that the clock servo in the B205x series is simply
-> NOT UP TO THE TASK of building-out multi-unit coherent applications.
->
-> The mutual phase-noise is way too high.  The B205 was never intended for
-> such applications to begin with, and the clock servo just doesn't work th=
-at
-> well.
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+    <p><br>
+    </p>
+    <p>Best regards<br>
+      Philipp</p>
+    <p><br>
+    </p>
+  </body>
+</html>
 
---000000000000de11ba064869432d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------AUQoHi1PtVObLpnPIaWLRxWw--
 
-<div dir=3D"ltr"><div>Hey David,</div><div><br></div><div>to add onto what =
-Marcus said: The minis don&#39;t have a hardware PLL (unlike the B200/B210,=
- and all other USRPs). Before you go down the rabbit hole of modifying the =
-FPGA, you might want to run a few B2xx-minis from an Octoclock (ignore PPS =
-for now), and check if the phase stability is good enough for your applicat=
-ion.</div><div><br></div><div>Other than that, it would be possible to use =
-a GPIO input for PPS, but neither the software nor the FPGA expect that, an=
-d both will require modifications. For a USRP/UHD veteran such as yourself,=
- that sounds feasible, but be aware it&#39;s a lot of work and might not gi=
-ve you what you need.</div><div><br></div><div>--M</div></div><br><div clas=
-s=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Wed, Jan 14, 2026 at 9:20=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"m=
-ailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><u></u>
+--------------ms080003010200000700070708
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: Kryptografische S/MIME-Signatur
 
- =20
-   =20
- =20
-  <div>
-    <div>On 2026-01-14 14:57, David Raeman via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-     =20
-     =20
-      <div>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt">Hello,<u></u>=
-<u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0=
-<u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt">I have a
-            project currently hosted on a USRP E320 that involves
-            distributed signal coherence. During development I sometimes
-            do over-the-wire testing using an Octoclock=E2=80=99s 10MHz and=
- PPS
-            outputs to synchronize multiple radios on the bench.<u></u><u><=
-/u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0=
-<u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt">I=E2=80=99m s=
-tarting
-            to investigate the viability of rehosting this application
-            on a USRP B206mini to reduce size and cost. As far as I can
-            discern, this radio only has a single port that can accept
-            either a 10MHz reference input or a PPS input. Is it
-            possible to somehow use the radio with both clock and PPS
-            outputs from an Octoclock with out-of-the-box UHD? If not,
-            would it be viable for me to add a bit of FPGA logic and UHD
-            tweaks such that software can specify a GPIO pin as the PPS
-            input while using the SMA as the 10MHz input? Or are there
-            hardware or systems constraints that would preclude that
-            approach?<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0=
-<u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks!<u></u=
-><u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt">David Raeman<=
-u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:11pt">Synoptic
-            Engineering<u></u><u></u></span></p>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    You could probably add some FPGA functionality to implement a
-    separate PPS input.<br>
-    <br>
-    But I should warn you that the clock servo in the B205x series is
-    simply NOT UP TO THE TASK of building-out multi-unit coherent
-    applications.<br>
-    <br>
-    The mutual phase-noise is way too high.=C2=A0 The B205 was never intend=
-ed
-    for such applications to begin with, and the clock servo just
-    doesn&#39;t work that well.<br>
-  </div>
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgMFADCABgkqhkiG9w0BBwEAAKCC
+Dg4wggbmMIIEzqADAgECAhAxAnDUNb6bJJr4VtDh4oVJMA0GCSqGSIb3DQEBDAUAMIGIMQsw
+CQYDVQQGEwJVUzETMBEGA1UECBMKTmV3IEplcnNleTEUMBIGA1UEBxMLSmVyc2V5IENpdHkx
+HjAcBgNVBAoTFVRoZSBVU0VSVFJVU1QgTmV0d29yazEuMCwGA1UEAxMlVVNFUlRydXN0IFJT
+QSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTAeFw0yMDAyMTgwMDAwMDBaFw0zMzA1MDEyMzU5
+NTlaMEYxCzAJBgNVBAYTAk5MMRkwFwYDVQQKExBHRUFOVCBWZXJlbmlnaW5nMRwwGgYDVQQD
+ExNHRUFOVCBQZXJzb25hbCBDQSA0MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA
+s0riIl4nW+kEWxQENTIgFK600jFAxs1QwB6hRMqvnkphfy2Q3mKbM2otpELKlgE8/3AQPYBo
+7p7yeORuPMnAuA+oMGRb2wbeSaLcZbpwXgfCvnKxmq97/kQkOFX706F9O7/h0yehHhDjUdyM
+yT0zMs4AMBDRrAFn/b2vR3j0BSYgoQs16oSqadM3p+d0vvH/YrRMtOhkvGpLuzL8m+LTAQWv
+QJ92NwCyKiHspoP4mLPJvVpEpDMnpDbRUQdftSpZzVKTNORvPrGPRLnJ0EEVCHR82LL6oz91
+5WkrgeCY9ImuulBn4uVsd9ZpubCgM/EXvVBlViKqusChSsZEn7juIsGIiDyaIhhLsd3amm8B
+S3bgK6AxdSMROND6hiHT182Lmf8C+gRHxQG9McvG35uUvRu8v7bPZiJRaT7ZC2f50P4lTlnb
+LvWpXv5yv7hheO8bMXltiyLweLB+VNvg+GnfL6TW3Aq1yF1yrZAZzR4MbpjTWdEdSLKvz8+0
+wCwscQ81nbDOwDt9vyZ+0eJXbRkWZiqScnwAg5/B1NUD4TrYlrI4n6zFp2pyYUOiuzP+as/A
+Znz63GvjFK69WODR2W/TK4D7VikEMhg18vhuRf4hxnWZOy0vhfDR/g3aJbdsGac+diahjEwz
+yB+UKJOCyzvecG8bZ/u/U8PsEMZg07iIPi8CAwEAAaOCAYswggGHMB8GA1UdIwQYMBaAFFN5
+v1qqK0rPVIDh2JvAnfKyA2bLMB0GA1UdDgQWBBRpAKHHIVj44MUbILAK3adRvxPZ5DAOBgNV
+HQ8BAf8EBAMCAYYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHSUEFjAUBggrBgEFBQcDAgYI
+KwYBBQUHAwQwOAYDVR0gBDEwLzAtBgRVHSAAMCUwIwYIKwYBBQUHAgEWF2h0dHBzOi8vc2Vj
+dGlnby5jb20vQ1BTMFAGA1UdHwRJMEcwRaBDoEGGP2h0dHA6Ly9jcmwudXNlcnRydXN0LmNv
+bS9VU0VSVHJ1c3RSU0FDZXJ0aWZpY2F0aW9uQXV0aG9yaXR5LmNybDB2BggrBgEFBQcBAQRq
+MGgwPwYIKwYBBQUHMAKGM2h0dHA6Ly9jcnQudXNlcnRydXN0LmNvbS9VU0VSVHJ1c3RSU0FB
+ZGRUcnVzdENBLmNydDAlBggrBgEFBQcwAYYZaHR0cDovL29jc3AudXNlcnRydXN0LmNvbTAN
+BgkqhkiG9w0BAQwFAAOCAgEACgVOew2PHxM5AP1v7GLGw+3tF6rjAcx43D9Hl110Q+BABABg
+lkrPkES/VyMZsfuds8fcDGvGE3o5UfjSno4sij0xdKut8zMazv8/4VMKPCA3EUS0tDUoL01u
+gDdqwlyXuYizeXyH2ICAQfXMtS+raz7mf741CZvO50OxMUMxqljeRfVPDJQJNHOYi2pxuxgj
+KDYx4hdZ9G2o+oLlHhu5+anMDkE8g0tffjRKn8I1D1BmrDdWR/IdbBOj6870abYvqys1qYlP
+otv5N5dm+XxQ8vlrvY7+kfQaAYeO3rP1DM8BGdpEqyFVa+I0rpJPhaZkeWW7cImDQFerHW9b
+KzBrCC815a3WrEhNpxh72ZJZNs1HYJ+29NTB6uu4NJjaMxpk+g2puNSm4b9uVjBbPO9V6sFS
+G+IBqE9ckX/1XjzJtY8Grqoo4SiRb6zcHhp3mxj3oqWi8SKNohAOKnUc7RIP6ss1hqIFyv0x
+XZor4N9tnzD0Fo0JDIURjDPEgo5WTdti/MdGTmKFQNqxyZuT9uSI2Xvhz8p+4pCYkiZqpahZ
+lHqMFxdw9XRZQgrP+cgtOkWEaiNkRBbvtvLdp7MCL2OsQhQEdEbUvDM9slzZXdI7NjJokVBq
+3O4pls3VD2z3L/bHVBe0rBERjyM2C/HSIh84rfmAqBgklzIOqXhd+4RzadUwggcgMIIFCKAD
+AgECAhEA1ZBgQnSJuTR8cXVujp3b/jANBgkqhkiG9w0BAQwFADBGMQswCQYDVQQGEwJOTDEZ
+MBcGA1UEChMQR0VBTlQgVmVyZW5pZ2luZzEcMBoGA1UEAxMTR0VBTlQgUGVyc29uYWwgQ0Eg
+NDAeFw0yNDEyMDQwMDAwMDBaFw0yNjEyMDQyMzU5NTlaMIGaMQswCQYDVQQGEwJERTEPMA0G
+A1UECBMGSGVzc2VuMTwwOgYDVQQKDDNHU0kgSGVsbWhvbHR6emVudHJ1bSBmw7xyIFNjaHdl
+cmlvbmVuZm9yc2NodW5nIEdtYkgxFzAVBgNVBGETDk5UUkRFLUhSQiAxNTI4MSMwIQYJKoZI
+hvcNAQkBFhRwLm5pZWRlcm1heWVyQGdzaS5kZTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCC
+AgoCggIBANGDDBss4T9z/SpIY6oS9mX7izIJnpzOXzoEoFewhzHFrG1zdKQXJkFkxGq9XHlg
+j+Y9ObhPWHGDt5MeGv4l1eoAmPuhhRq4w4fz0jZqRecbX0Pt2/UIRIcvDB5vVY1aYUOaHx//
+71wX3qKZiUuEmzCvz+9tG/yz61UUoCsJYSC+CwnnK69vDEjBJdZewhmY3d8yDBZQGsXmF2S+
+RPuEyiN9ULe8F299mxX34bHfUxdqn3paCF2ujXD68ZVdkQk9yP/xlyWQWclBk1Yo9vk5MKD4
+1DvUaV+S0Pk5/J4QThpRpkGcjItJkM3NzEsua+FjVh4oMlwSP7kbepGGaJ/kHXkxwpxRGiJk
+/cwmRyI1X5PVvDGt0xaB3YNoM7cDiivBHS4jphb4ItB4Qp6guA8k2CpnFmro1y6nx6Y8rD+6
+kEUjis/I+pvQB3Pxp+836lE6o9/czhgBEPmJdjloDb1rResEVK+ckifqHL1HGHrFlGUEkCFf
+hQw7rXqyzACxfJJaTHYuvjxJUgb6VD5JHaWEp/4Rp8zKNvnrTDNXTZ8q+e0GaCTt0gcaIgOc
+A6V4EeDUaW9yGIy40iReHVJkdx7/rZDTCZtcgeLhtdOTGuSHHuQpe3k1h2AVlsshvkbeZbjA
+Q7tfyk1nwoOnWn1BJZ5uTjLeDeCw2aCeVUDT8tg3NX9HAgMBAAGjggGyMIIBrjAfBgNVHSME
+GDAWgBRpAKHHIVj44MUbILAK3adRvxPZ5DAdBgNVHQ4EFgQUnBN5YxdPSwDFTa3cjKLNtyam
+DBIwDgYDVR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwQG
+CCsGAQUFBwMCMFAGA1UdIARJMEcwOgYMKwYBBAGyMQECAQoDMCowKAYIKwYBBQUHAgEWHGh0
+dHBzOi8vc2VjdGlnby5jb20vU01JTUVDUFMwCQYHZ4EMAQUCAjBCBgNVHR8EOzA5MDegNaAz
+hjFodHRwOi8vR0VBTlQuY3JsLnNlY3RpZ28uY29tL0dFQU5UUGVyc29uYWxDQTQuY3JsMHgG
+CCsGAQUFBwEBBGwwajA9BggrBgEFBQcwAoYxaHR0cDovL0dFQU5ULmNydC5zZWN0aWdvLmNv
+bS9HRUFOVFBlcnNvbmFsQ0E0LmNydDApBggrBgEFBQcwAYYdaHR0cDovL0dFQU5ULm9jc3Au
+c2VjdGlnby5jb20wHwYDVR0RBBgwFoEUcC5uaWVkZXJtYXllckBnc2kuZGUwDQYJKoZIhvcN
+AQEMBQADggIBAIBmQZxkYRM5fy00mOQpCOlJmxuyoRzFOo344Ti9xsX8OSrAqNU8Z9JZclxn
+cTA6VoTPukOvz7VIAAFLWBzDtnIsrDmgRkwrRoTpY0Ln7pKcSbh+KlaK/tIJ9rXg2caUWFMg
+DS/qqaGyU3RrqX7XZQvfqu9uo/em3lWmWwYkNR/9uUd5Hs9J/J3q6ZP8EFt7Yntcxs/2158s
+n1jrHydVlqw9NXaqhXa9pAj2XkXNR12MiB80spjEinGrNtcZ2dURpi9pj5sfRYnVqrlNUNVn
+SJ4aUouS1gxDeQcliKBWWFIt8vhG9Lharjj58ItUBH+z4O7ArZcvm+RANiqsBMMPoY1efS5H
+mqNZq+f8YzJfnBUPqkTQjgAHtPbEsPGJBn7gyOIOkaYABOknHo1mlCX5fV5ZcBTBb7LwLc9a
+N8dEbGC3ti9ulFcSriXO3PIpcLX2GlFYmIHENRZDnpFsHd8B+MJxO9EBDM3WMH2yhnaw3Pti
+xO49gG8rp8wmIemaZ7py1kBHIW6s9XmDI7676zf8N8nWTJuL1hAJZ/yxiTWUlfENQJ9l8Y/E
+ptLZsDNhyJxoOsPn991LQ3OBmjmHxMjOYv/QUef7j290qrqc+QfG3xnnwkIxKV4fFmq781MJ
+9r+BBfqhMc/gTVyScDtktU3fj1HaLhfnJ8uxHOBPOOL9en2GMYIFSDCCBUQCAQEwWzBGMQsw
+CQYDVQQGEwJOTDEZMBcGA1UEChMQR0VBTlQgVmVyZW5pZ2luZzEcMBoGA1UEAxMTR0VBTlQg
+UGVyc29uYWwgQ0EgNAIRANWQYEJ0ibk0fHF1bo6d2/4wDQYJYIZIAWUDBAIDBQCgggK+MBgG
+CSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI2MDExNTEzNDAyM1ow
+TwYJKoZIhvcNAQkEMUIEQOHTKHQ0MPkXImwCnmk6IMn4TfeIUkqFnLrz8zrcDqP7fHjc+8yA
+fxqh9jzDE6gC4u3SOTrfKNwJUnXzZut+YiQwagYJKwYBBAGCNxAEMV0wWzBGMQswCQYDVQQG
+EwJOTDEZMBcGA1UEChMQR0VBTlQgVmVyZW5pZ2luZzEcMBoGA1UEAxMTR0VBTlQgUGVyc29u
+YWwgQ0EgNAIRANWQYEJ0ibk0fHF1bo6d2/4wbAYLKoZIhvcNAQkQAgsxXaBbMEYxCzAJBgNV
+BAYTAk5MMRkwFwYDVQQKExBHRUFOVCBWZXJlbmlnaW5nMRwwGgYDVQQDExNHRUFOVCBQZXJz
+b25hbCBDQSA0AhEA1ZBgQnSJuTR8cXVujp3b/jCCAVcGCSqGSIb3DQEJDzGCAUgwggFEMAsG
+CWCGSAFlAwQBKjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwDQYIKoZIhvcNAwICAQUwDQYI
+KoZIhvcNAwICAQUwBwYFKw4DAgcwDQYIKoZIhvcNAwICAQUwBwYFKw4DAhowCwYJYIZIAWUD
+BAIBMAsGCWCGSAFlAwQCAjALBglghkgBZQMEAgMwCwYJYIZIAWUDBAIEMAsGCWCGSAFlAwQC
+BzALBglghkgBZQMEAggwCwYJYIZIAWUDBAIJMAsGCWCGSAFlAwQCCjALBgkqhkiG9w0BAQEw
+CwYJK4EFEIZIPwACMAgGBiuBBAELADAIBgYrgQQBCwEwCAYGK4EEAQsCMAgGBiuBBAELAzAL
+BgkrgQUQhkg/AAMwCAYGK4EEAQ4AMAgGBiuBBAEOATAIBgYrgQQBDgIwCAYGK4EEAQ4DMA0G
+CSqGSIb3DQEBAQUABIICAEA2E5d4jODU75XITmSIpxeWPUXFyVTSO/J2PB8A27FQA0rbG2x+
+wsQ+o8z1jDGlYHWhNB+LUUpSGy+xmEy1PRJTuOcyomI5oOW5kXtNTnOowwKrJH4MAd4B5SHi
+HCx3fTzBeAZXwvP4kx0a+XdiedxkhjdFMPH4uR8TH0XjeqSUwgrMPqpykTHtCT80it0EOuHN
+HjogrfP221hSFfv4krW8kb1tcuVyEUnziFMEn6dZiJGQ6G5eFPCL4qV89Tgv7ufvfWc5Ov1M
+0QRBSr86alXazlACHzU7lSb7k9ap6rHgTfkd+XMixiayz1LiHPHBWn75POtxvZ2oBgG6YRMD
+pxjAQreWtqxFkI2mgabuIOPacE051kExz2ODYA1pyXh8BElhypd5U+UJFUfd6/amf4C6gIjg
+A/F1XmToXU3gV4iBisQWrdv9NZoFcTr76x+Cf0a18J8xqQ+7se6FnsrolZlIACar8jMQb+5/
+u42EnUShT+R6p7TTyVty2EKB/aGJOU1q9wT1S/INUd4z9X3cLf6cf2B36ogfpezTsUOqia/G
+OY/qSR+qq5XWVvoGWC///Jx2TLuteBdSO92Wjhny2+RQdAF6jTm13b1bkz4YLb7Aost7dtlq
+GD51KgOd1mxqcnUOdn5qTKaXtV+wC5HDcYfKxDzD+C1e8g33oHzvaGyfAAAAAAAA
+--------------ms080003010200000700070708--
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000de11ba064869432d--
-
---===============2767754349834415112==
+--===============0435918982684644231==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -279,4 +324,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2767754349834415112==--
+--===============0435918982684644231==--
