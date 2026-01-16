@@ -2,416 +2,470 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D95FD25C8C
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Jan 2026 17:37:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C30ED2D185
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Jan 2026 08:21:57 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2C521386E9B
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Jan 2026 11:37:47 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 1F4B9386655
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Jan 2026 02:21:56 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1768495067; bh=xR2eGkQ6KYCuG9Gs6QqTHRjRDcvCYkNn12a3tnLu8Cg=;
-	h=To:Date:References:In-Reply-To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=ONtttMs22PdTOJaZITmmk98pva3xD4m6KY4STrafKl7wcTkSHMzJlF0pZ0b6vXjU4
-	 w7bRTB3nWNz6UJGEj60ZNYNAcSr0+dXac8O9WycUqH9BZkw6W1aaXMCgwUr7MHUfCh
-	 jyHXXug9+Nyup3dXPTstpnNOENfK5CpZIuQUbzyeR+PeEJtJXf/NiUErmdsoyvl0Od
-	 4VK6fW8uVr7mvoHKpwQ9qE7w41vh4u8yvGmGP0VEK6Vr6izRu+CVEg6LU1X7PeAnqD
-	 l1WwPTJarTIuGKE8xX6V5YDEkMnyUtcaFJRgdVmkX+bB9B+0QQ3MzmGKMIi6uDR5mA
-	 LRQAw+cWjzm3Q==
-Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0052.outbound.protection.office365.us [23.103.209.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 865C3386D52
-	for <usrp-users@lists.ettus.com>; Thu, 15 Jan 2026 11:37:10 -0500 (EST)
+	t=1768548116; bh=m6HCHgqcQARavW3SQnPkXeviYUZ5/B6TLpv4EnPTHQM=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=byr48NqEatJwxSj2adcYpoUGe/I0Udsn8KkdGqzxwfV5NuJ3UrwaAp3F77xhtc6T0
+	 8BzjpnplYPlw2k5S6i+Po2F9mv4SCTDhuSsSzPGt9YQ7tyAhkFtgpROt7KkVEpgvQ5
+	 51IKbokNiQAYP8ziGDyZufBf03F9OjvG6I4EImNskxhMtvSvccTlOtRegf6x8y6S98
+	 QSgF2AcyQAyNIi4qgsXX3avwhlSpQuFU6cfqrpEHsJPIdYPVBW20dWjLcysfc9pO61
+	 twsQf+Pq/JYNXInYm6hRMe6l0mulMSDoABZH9W/3/uNVDz7Z5TPmD6PV2l0ZAXlMED
+	 nzE49PvrgVYTQ==
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id D6551386562
+	for <usrp-users@lists.ettus.com>; Fri, 16 Jan 2026 02:21:19 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="Py8E/KNd";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="k+6JcHPX";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=F1VYOXDfui+n1gSCz/kVWA0SahRQC48BAm9LxBixvt2bFuGlQxKY118ew/B1hoMXEBy1tNB838rY6mxbjzsUS3ScrZUTyly0tRsqOAXf4KeO7uvM+QVmQQXC6I/tL0DUsK1o5X82x367ksErecQctaYaW8MtKHcy/haYc+mVlCCNi8L3hWZoz6EiaIt7J4sNtrcpVWEsZZaeDDio7QTzTZcjtFW7JXBMYlZ26kFH3K1iW/qsZVuFL/irElZmIiXSx5C1DaHH6i1fY+5imzuoczxaW05xXywIUhE2xOfDHJLibE/9b0SMp0IAebeVupI6nPnY0m66NpwPWXEoBeuwpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RK96qy9ubX+mVQ0TCy9qWPTVPJVYKyGQ/wl2c7Q1yhY=;
- b=kC5c/odeNTOpTB1VBsbWemRdIq3UBtCT0Vl5FaycE8Rxw80s/w91uN3Qx3KxA2BVvMPvFj6RnBb7lyp9enCq10NqR+VmRSe/OGgJBBc91vojOTMaPjNdqX2c8W/1jzct59N7QiSaHKfXzSzleQIPcpp3ZkiGXUErnUY2jVDNcG2NcLGtBG//KN+OmOzlP1qAe9eqfU9Kh8em6SFT8m1Pvc1hVyk5Q6CGke/DHeF5GRsh9X+X9kRZSGHd3gVGBuKDzNCvsyxxj4GiUQLy9RJEi2rA+cX12yUvHIfVPA8L8f1DdGf2ShYp/dM2cAxtkdITH2jDDoDGGZlMhtqVvfOuWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-c2a9a9b43b1so1190911a12.2
+        for <usrp-users@lists.ettus.com>; Thu, 15 Jan 2026 23:21:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768548079; cv=none;
+        d=google.com; s=arc-20240605;
+        b=eGlI5f7jqM0/4A4fWjdo42WF4O+khj6qTqCkVYu1xVZXs4LF89aTlioPYD16x0qXZi
+         2xLmVvUm/9gJuvjmndgreeriTGGd6zUQJ292fTBNP2XiLV8kpscsvBubbNGBFu245xT8
+         ZScSpFJAvOly2vhYvGzKLhfWgxR5YKEf4rBtOZENlMbBdbSlE47u29rTpOOPGNi6qQhP
+         gQPgdc1bXHuLXJ1mVcygqBQOq9sKH/c80o9oznY6Ba52Bl7UtzM6npFaeqLZkcUjsYKT
+         YKL1U272ZkdM/95wSqgKAL2xqDGud+/GAmpSM8WOLDsn1Ztd58MwA+v84jxMV4nD6EV1
+         ORLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=hHBeq4L0cWwQI5YhXz+lbRP2+XTXnpv20XIkHtbP1Bo=;
+        fh=IPOdNLNbfziQbSoRl85xQjZKBShajdsGp99FASxp8Qw=;
+        b=gdjXk2aUMup7rOyVzP1OWcsmZurq0Ky3doSwOkWnnqM+19eyNQRTb2Mu6SoBwJeD34
+         ZcRC/hegkq0H50dvOwDAHS6yf5zL99t2h+7dP9rkqbFGHc3CKPemxcb9kvOWivYMlkB4
+         EHYwnbujzc/03ekr7JQvvw19IJWjie2A1FHwzGMNb8GtrQH2H9Rkg1rr+LfNs+n4iuWG
+         nwBnhCnIn8MMWDw31t6Z9B19qzGN1wjh+0Jnr3mgKmbCGbxfdTYxuMcKxNyl31dYVpH5
+         8i6tDCXyy0yRAqhzlDEKo6HnnC1KJDw8K2DLvjqOAOeoDQSio2OUwxPqkb2aUaKaNehf
+         FSyg==;
+        darn=lists.ettus.com
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RK96qy9ubX+mVQ0TCy9qWPTVPJVYKyGQ/wl2c7Q1yhY=;
- b=Py8E/KNdaL4Tdj5jz/kWLYrpkcIg/P9BWz4ZlSxajT/ZIUve/2fOdDRN/DTiME4iY3BFvzuaekboGEDAxsBzINyBZZ5eCqDDK10HKriG+sccBPeFUqmq5+12JdyG0aOynN9azsHrE5SPap8rUrsP+NLqewJC5HRfj2O+pA/plSROixnB/mPVN0ySpDG9bvnyixOlEpcMxPX2reXrcRJfERAawjzPAhZXa+P51Bga9AvtwA9nOmzgKWHerXHp7VEp+Ja2XQHdEUX0hSlzjFHfVuDTOzRlwjor/0dlT9fwzk98e4DGxXDKfaM2kWM/lnPktXebdcAJfrj3L+n/R8Gftw==
-Received: from SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:198::9)
- by SA1P110MB2297.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:166::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.9; Thu, 15 Jan
- 2026 16:37:06 +0000
-Received: from SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM
- ([fe80::6905:cffb:f7d5:9517]) by SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM
- ([fe80::6905:cffb:f7d5:9517%6]) with mapi id 15.20.9456.008; Thu, 15 Jan 2026
- 16:37:06 +0000
-To: Martin Braun <martin.braun@ettus.com>
-Thread-Topic: [USRP-users] Re: Using USRP B206mini with Octoclock 10MHz+PPS
-Thread-Index: AdyFj2UmKxVSbu83RYa9OfsH3BriAAAA8bkAABoSFYAAEBt5EA==
-Date: Thu, 15 Jan 2026 16:37:06 +0000
-Message-ID: 
- <SA1P110MB1932E5C43DC39E78CD7E0687B78CA@SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM>
-References: 
- <SA1P110MB19324582F1B8CFDD8469BBA6B78FA@SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM>
- <217ceb53-0caa-412a-a79d-dfc2c47208ff@gmail.com>
- <CAFOi1A5Jbr+bPB-C-kCpDXWcP-X06eBxRpsBEnbJsFqNC5ZeoQ@mail.gmail.com>
-In-Reply-To: 
- <CAFOi1A5Jbr+bPB-C-kCpDXWcP-X06eBxRpsBEnbJsFqNC5ZeoQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1P110MB1932:EE_|SA1P110MB2297:EE_
-x-ms-office365-filtering-correlation-id: 30600fc5-93be-4db8-d40a-08de5454520e
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|366016|41320700013|1800799024|4022899009|8096899003|7053199007|38070700021;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?bStKZnBHYkluejgrVTRhdWwrZElnaVFCd1FuaTVzSW9pZnRrOFFDNmU0OVpH?=
- =?utf-8?B?eHBmUEQ0UVYrNFVyR0J2TXFVVThPQWVKamt3eVBiZDZRa1FRVDdXSjUrbk96?=
- =?utf-8?B?QlJ1TzNtU3liaFpWNDJyUDhpL2FoVjlCOVhLM00vUmtXU3JPUXpDd2lWeGsx?=
- =?utf-8?B?L2NZblN6NFZ0S05NNDNZRFdrbXB3L2ZGRno5M0cxTk0wTWNuOUVLaUNOdXRZ?=
- =?utf-8?B?ZDJIV2xLSFI2cHRSU1dXZE9wKy9taVRac0E1aWJJMGRGR01aOVZha3M4VXBC?=
- =?utf-8?B?SHJuK0VsNlZFYWRHdmkxV1RSWk9BT1p5cHExclFCNUFVbk5NZ1Z0MmJKeGly?=
- =?utf-8?B?a0xmS0V6dmM4TFJ5b2NFVEpqeThLaHJlMHNYNTJMUGpEZE1VY3czeGR0bGNt?=
- =?utf-8?B?c1FBdjJrV2tMUjBLelFxcGR5Uy9PSE84b0FJR094RU92Z1JjSTErMEloNnVE?=
- =?utf-8?B?TWNsSzdvblVPRW8rdFNRNUIvb1M1UEpSNGVaTWtobGlRcHF4SG5aQUZqSmlz?=
- =?utf-8?B?WUJFdGFjTG9TUEhYcGx6N3hKNzVsNlpHUlJOWjZLUWp3V2pKWUVrYjVoTnlW?=
- =?utf-8?B?WFpMMlp3VWNPYXlBbW1MT0taT2lMc3lTb3BNUFJMZUpWWnF3YlkvZ0ZGQ2gz?=
- =?utf-8?B?Q3I1Skg3WkpmUHhkelVDRUZ0NTZTUUtOVGdRaWN3bEViblNIVGpPUzhNQjBG?=
- =?utf-8?B?WWhoQUdYUFJqMnUzTHZNOUpXVGFPbkIzT0FNVTNnT3VMVTdLdEp4R0k4bVlH?=
- =?utf-8?B?YlV5RFQrcExQT0hFeTJVK20yd2JOTkJraWprZG8vU1Fqb2kvNy9RdFhxWXYy?=
- =?utf-8?B?SVRWRnhsZXF1bGhZVWIzQ0I3MW85OTNFZkdNbzVITVBCMTg0M05hWUp0WWpo?=
- =?utf-8?B?eUVGbDN6T1pBcVByVFk0c3FMVzlFd3VoeG1WbnI3Y2FCb1VVTnpXeDlNNEJB?=
- =?utf-8?B?WWRrR2txRGdFZm1UdHBkT0J2eUcvNXFCNmNtRWN4Tk5ZV2hZemY0ZE1DVkwz?=
- =?utf-8?B?aHNteTJSbUVJNEZaRENYWGF1eFRsbTl5OHJ0VHJ2MFdIeFZqRXVmdzBhREsz?=
- =?utf-8?B?MkljRWZNTE11UUJLNXU0QjJCTHBsVWdWQmZrTlA4S053V3dudzNvcXBSQW5E?=
- =?utf-8?B?aTVLOE4wRkNsQ20rRy9GMzdEd3RSblVyT2NGMlUyZEgrNEVaMEdQZGV6OGVJ?=
- =?utf-8?B?eXBzQTlpSTlPSFVVVzUvTTI4c1JvMjdJTzBxOWNGNVM1N25pS2tSMmpZQlMv?=
- =?utf-8?B?RkdPcWNTdm9jRG1xa3lxOUJJUk0rWUZQRElqUGNTLytMRWRZZlB2bE4ybGg2?=
- =?utf-8?B?NlkxZytadzR5R0R2Q2xzeVRuTUE0RTBld2xLVXA5aTl2c1BNNDl5VXFqcTJL?=
- =?utf-8?B?U0FjZ2p3MHZvRGk1NFo0Y2JIczFtRjIyOVlQQ3p6K1J0WWVvbExYam53T0JQ?=
- =?utf-8?B?K0lPaDZ4VE8rYUxnZlR5NTNVaS9YS081bXVmTzdxL01WYzhnOXliZWE1WmQ5?=
- =?utf-8?B?TXcxRk9VbG9kc1BtaXhUc29OU0d1bzVhRkVsNE1ub1plYUtkZkQ0SS9uREwr?=
- =?utf-8?B?aEtMSGtLZGpqTkRDTDU3SVBVWFJ4YU55K0JwRVpzRjRwUmhzaVNBeW4zM2ls?=
- =?utf-8?B?eERNYmw1NE1BajBzR3h2Y1diVXpyQ2RJamVOWW15bHRrc2JRYUhtZVF0TDI5?=
- =?utf-8?B?Qml3VENPTHRmNkZYTi9NckNyV0tNcUhIdm5RRkRsQVJ2OUNNSnl3VW1YZG5L?=
- =?utf-8?B?STZPUDdCUlRsQ2Z3QVBtVXc4eE5Wc1l4ZmVnNHFxNmZBejJuZ24xcFoxcGVE?=
- =?utf-8?B?UmhzRkRPSzB3dXFpQitxbGFqa1NLaFN5SVVINWZJSDhaVVZxeEZuVUpEMC9Z?=
- =?utf-8?B?d1ZrWmFMcWo5QWRjOGR3SmtDVVFqczhnNnBhQ3lad1lRN3lGb2hsWXd4OXRK?=
- =?utf-8?B?RmhSMHI1eFlrbHd0bm1mQmFlOTN0dnZFS1Y4ZTVnS256cG1SdkhtREprejBU?=
- =?utf-8?B?cVJmbi9MSTE4VFl0eklXbU5xNkI4aHFPeVIwZ0E1S01DOWVlcEFpRUtQK2l3?=
- =?utf-8?B?RmpoWjB2ZktwMk5NSVNqTGZqelJVREh0WTE3R2lQN0NxbHJJb0h6UHo1V2xt?=
- =?utf-8?B?ZXE0cnRzUTRMd0ZJVjJNbFZXMmxmWDFlOWZOdXphQzg5Y010Szl2UGRhYlB3?=
- =?utf-8?Q?Qa26Dedi1N3VelGDbk79Opg=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(41320700013)(1800799024)(4022899009)(8096899003)(7053199007)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?T3diNHNHWkdveDNGTUQ3OGtRZVF5YmdBcG9SWWxQczRqV08wcjBTMlEwVUMv?=
- =?utf-8?B?aFI5R1lrTGM5Y2lQV2oyZmd0T0pESG1GdWszTjQ2M0R3YW5kamMyNEdxZjl5?=
- =?utf-8?B?TmtDeEduRjB5QW1zR3NNSmpmRmNjZGJBWGFQenNqMVJJRHpGdzVuUjVNVDVW?=
- =?utf-8?B?dGNMcEVpQjA3RmFZbzloMzUrMncwZUYxZGtoYTVoaFZoWkYxbDBnQzVWNnlK?=
- =?utf-8?B?MnJQTEJCSTFSMTVLYTltcjJ2N1o4TXpteUFCNEIvNXlPSWp0Y3ViZVBnUmdT?=
- =?utf-8?B?UVlRSjkyTXBYaUlJVFFxUXN2SDhGMmFOMUE2U1p4dzVZc3FySUdBL0VOQ0FO?=
- =?utf-8?B?QU53OHhaQnJaTkNoSUpOVWFqRUhYVVpTeXdqazZFdlNrM3RKWHQrKy9UNjJF?=
- =?utf-8?B?NCszNG9RSElGMWh2cm10WC9YVUJMYmNVQ2VRTXlIUWo4cGV4RDVLYTJ3QUhk?=
- =?utf-8?B?VFlLenFrdlhwRStjZkhLM2V5ekpIc1A4N2VFY0lWSTBYdHQzeGcrWEJxZ2hV?=
- =?utf-8?B?ZlR0UTQyOHZtNVJlY2YvK0YveWpsYndPTU1HWGJyY0lVUFFZcVFxeFdMQzh1?=
- =?utf-8?B?SDF1SitsVi9nN3RoN3BkQ3lYM3dsR2VQSTV0VmVVc2d1UXRhVWkxcTZqQ3BW?=
- =?utf-8?B?V1NsV3FpckRqeEwyVFBsT2ZOdGRRMjZ5dzBrS1RMak9WdEZJeS92SkUwWU9h?=
- =?utf-8?B?ZTYzUGpwZUxPRWY5WkR0TUJnRjVvSEl6aHExY1RUUzZLSjB5NUgyVDBjeWI0?=
- =?utf-8?B?SzY5TXlpRDhPVlJsT2p6TlNFL0trN1FzYWlRaUI5WGRCYXk0QUx3cVpucGxq?=
- =?utf-8?B?YTBJYVNqVnNPb2UrclltVS85M1lRbTlUL05xK1Q3M3Jyb2x0Q0VLNWNjaVJa?=
- =?utf-8?B?MjdwTFJSZXExQkRGN3BGeFdreU1HSjFUbEdwN1ZtVWEweHpyY3Z5N1pvQjRR?=
- =?utf-8?B?Y3c5dFdva2c3TXZUV2UweVV5cFF3TDVORlltQUlidjVqNWhDNGNmM20xd3BI?=
- =?utf-8?B?M09ub3R2cEhnK1RoYkFScUNyRlV5ZzkwMFYxNlYrUVpaUm9VSWVkSVFXVlRs?=
- =?utf-8?B?bEFVSEpLU0Q4N1hjdjdMV2ttWmtMZjNjRTVTT1ZxcGhTK1BpQ0ZkWVlPdHlE?=
- =?utf-8?B?Yi85cDVaWVdsVU1yR3hHL3dESlR1UW90TWpLUzEvZEMxcUZrbU12Z0NDWVNq?=
- =?utf-8?B?TWNMVzlUUHQ3Q0ZxWnVvK2cvT2UwSmE1NGVjckdqc3k0WXpUTTdvRXBUSFVz?=
- =?utf-8?B?SDBjQ09QQlpmR0p3dXN0YkpodFZjc201S2tGSjBidExmRlhIQXFVYWVzaGMw?=
- =?utf-8?B?K1NpRkwrczBRM2JUZ0ltM0k4MEZOZEtpcmFnalpMTnVjdTlUdXJFUm5uaWZP?=
- =?utf-8?B?QUgrWEFTRFpqSXY4ZTVjMDlBRnkwVnNJMFRCUGVlU0ZVWUl5cVloMG1MeEJF?=
- =?utf-8?B?bittaG11SVhXU2dXV0dPMCt3RFF0VWp4MUlzSE9pbEdlY2Z4dnVoeUUybmZG?=
- =?utf-8?B?dSt6c0FOSklNeTZzK1A3c3BZL28vVlpTeEM5emRaakhnb2x0Wk1wNUZwNzNU?=
- =?utf-8?B?clpSTkpwMlBqMEQzRWJJVnF6TVJiSXNLYkZTV1RNRm9RV3pwVUZsbmQyWTV6?=
- =?utf-8?B?SnZSbnVEMlc5WnMxajY1SjlDUlpEdXJhbXZYYWxsclFRWWJYa1lCZHF1ZXJS?=
- =?utf-8?B?TVBuMC9Gb08zc3FzUDE4aWRxNjNXZW5zbEY1Y2NmZHQ2a2oyTG0yTjZlcGF1?=
- =?utf-8?B?UWtsTSs1eTI0VkVNQWRVSmQ2c2s2TlF5aUlkaHRiSjgxSW1hU1JmWUhyZEhy?=
- =?utf-8?B?aXZGSEgrbTdyL0xVTklGZkZmaGdWOXpza2ZYOHdwNG10cGQ0SmdFdnd5alcv?=
- =?utf-8?B?SVVSa3JEUDlHeG5vV1FBM2lwSDVTZk5mTlNTOVpTbjl3TE03cUYydW5zZVN3?=
- =?utf-8?B?Zlo3bEpvMW5JNEpEOG9MQVZjZFZmbzFLN3JrQXhCd2FsWDJPc2JvSHhDOHBV?=
- =?utf-8?B?cWp6UFhvZ3dMaVo3N000RnVaNEY4TlFlajAweWVYQi93eDhLTzhLQnlic3Nv?=
- =?utf-8?Q?JruHH7?=
+        d=gmail.com; s=20230601; t=1768548079; x=1769152879; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hHBeq4L0cWwQI5YhXz+lbRP2+XTXnpv20XIkHtbP1Bo=;
+        b=k+6JcHPX8C7DYhKremlvnO+4Pk3nA9sozP05SY6fm3M29k7RtOmxTi0nf5tGwLoguV
+         ReMgLKQ+VFGsfIckoZe2l+BHGNtG1tlnFV8rhPlJ2OGfBpH7rIknQKgQ3IcDGHxXuciM
+         JWcMZBkfIsUwa47iqB0Pf7lVJQdb9JcRz+emXqQiHuhHJQ/HDXxQH83cTcMGyaHTO+Qj
+         2nYBNdkovgBnMjdooSQM4eDw7738WSGwQmcL9FSGXOYOF/Xtsnbr3yKkTMEEJrUVswt6
+         Al85uDtPlTlhNutYIG1vjpuw29ahlch4Kf5WyPdXMIGVN1+iD9XQsSXieb0V8G7VPTgJ
+         BZiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768548079; x=1769152879;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hHBeq4L0cWwQI5YhXz+lbRP2+XTXnpv20XIkHtbP1Bo=;
+        b=T8oTs8ZSpkhc9jd3z/ap36lf9YVJqfG1/ADOB083uvwBMGQhLCR1WA6gwY8evbvndd
+         vC3VYsX1onnYk3S9B201eQTNLjy5QEp+C6h1Xy0ZkaDYvuf+HYi/Bhm2kJDdDMe9qGuG
+         GPLs7k6mYYvfQMBunLYBHp97wc3VXKES+pKCbJ9iTxY0i1QcpBkCCHdxQ/QrDI7nznJM
+         5Yymb2b4ENSJ+TGqph2F/wltcRmARDFjfM2U3qjb13FkUz2poX4roFO/xpznnuI3zL00
+         Uq6BMf8HRtKMabVGj5/0UpIjWW2hRQiS/xviPnZS4AHo/Qn2gEdHLMHODIOQDJ4Z7zVj
+         7riw==
+X-Forwarded-Encrypted: i=1; AJvYcCVEe8b/Iv22Qb1n0P78I7siq7rvLgUXQsfwjuK/831P3zwTAXK2lmjuni3xhJSWDmXiCScMnc3H+y8p@lists.ettus.com
+X-Gm-Message-State: AOJu0YylGqWzqXbWXWLRZyYNdBZyLycvhjCJ7mDa4BmTVrrdccxc3203
+	73jXuOdVdysaRtgkfMq2SyFOBZ1vy0DlUwnC1HpKLjwjxoXIyXLK6X2EDMvhMslWzbhi3CZRSwT
+	DofSzrhozGJf5sONLOXWhuhq+ly7OxVKxDobp
+X-Gm-Gg: AY/fxX4dhBxw6N3Edp1/YSHeSrqzYS21CfzCtk/sKcJw8/K3SZGEr3WnMTVONYcNDBb
+	TvpInuk7pJSs7fPiqJxXKeZr1b4BdvYJCuOm2a1VhkUrpwGenylmbrWCU2UkWMLlhRitQiAn/ri
+	35liwOLprOEzbta7HGZsisEPPZXM2YeX8cRhJxX7zIWoQSi79zv94NyjxfXkEr2B8Z8nUgrtXZ8
+	AlLK/1kVaIjm9qCOD+ThZGtcN7jsdjXAW/fzHe7vqJzceEbLy+Gd+Y1JAKvOxdbgG5z3EZt3JZV
+	J+IMe1wARlXg+pdJQdORX2BLEXM=
+X-Received: by 2002:a17:90b:5344:b0:34c:904a:d92 with SMTP id
+ 98e67ed59e1d1-35273274567mr1771318a91.26.1768548078731; Thu, 15 Jan 2026
+ 23:21:18 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30600fc5-93be-4db8-d40a-08de5454520e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2026 16:37:06.3773
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1P110MB2297
-Message-ID-Hash: DFPMV25O47RD7SLODX2QJOUT6TVPPYOL
-X-Message-ID-Hash: DFPMV25O47RD7SLODX2QJOUT6TVPPYOL
-X-MailFrom: david@SynopticEngineering.com
+References: <SA1P110MB19324582F1B8CFDD8469BBA6B78FA@SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM>
+ <217ceb53-0caa-412a-a79d-dfc2c47208ff@gmail.com> <CAFOi1A5Jbr+bPB-C-kCpDXWcP-X06eBxRpsBEnbJsFqNC5ZeoQ@mail.gmail.com>
+ <SA1P110MB1932E5C43DC39E78CD7E0687B78CA@SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM>
+In-Reply-To: <SA1P110MB1932E5C43DC39E78CD7E0687B78CA@SA1P110MB1932.NAMP110.PROD.OUTLOOK.COM>
+From: walter <walter.tackett@gmail.com>
+Date: Thu, 15 Jan 2026 23:21:07 -0800
+X-Gm-Features: AZwV_QjskYB0I0YLWYJsaJ8Fp4uTHglEkizP0slA_D2ZT6gFhH9tChqbpl35qXs
+Message-ID: <CAKVCmaownKUMke8z5ydBBXdVuHw75ed7=nOJhqt__gmNSaV2Bw@mail.gmail.com>
+To: David Raeman <david@synopticengineering.com>
+Message-ID-Hash: CAT6RC3GBG5OS6IVJT6XVLP5CBTMXSHE
+X-Message-ID-Hash: CAT6RC3GBG5OS6IVJT6XVLP5CBTMXSHE
+X-MailFrom: walter.tackett@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Using USRP B206mini with Octoclock 10MHz+PPS
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S4IG6SXR7ACVJSJHDQMMTX7OBFC47A7I/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CAT6RC3GBG5OS6IVJT6XVLP5CBTMXSHE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: David Raeman via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Raeman <david@SynopticEngineering.com>
-Content-Type: multipart/mixed; boundary="===============8573011488361226356=="
+Content-Type: multipart/mixed; boundary="===============2763453815739821398=="
 
---===============8573011488361226356==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SA1P110MB1932E5C43DC39E78CD7E0687B78CASA1P110MB1932NAMP_"
+--===============2763453815739821398==
+Content-Type: multipart/alternative; boundary="0000000000000045eb06487c30d6"
 
---_000_SA1P110MB1932E5C43DC39E78CD7E0687B78CASA1P110MB1932NAMP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000000045eb06487c30d6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-TWFydGluIGFuZCBNYXJjdXMsDQoNClRoYW5rIHlvdSBib3RoIHZlcnkgbXVjaCBmb3IgdGhlIGZl
-ZWRiYWNrLiBGb3IgdGhpcyBhcHBsaWNhdGlvbiwgd2hlbiBub3QgYXR0YWNoZWQgdG8gdGhlIE9j
-dG9jbG9jaywgSSB1c2UgYSBoaWdoIHF1YWxpdHkgT0NYTyByZWZlcmVuY2UgYW5kIEkgbmVlZCBz
-b21ld2hhdCBzdGFibGUsIHRyYWNrYWJsZSByZWxhdGl2ZSBwaGFzZSBkcmlmdCBjaGFyYWN0ZXJp
-c3RpY3MgYmV0d2VlbiByYWRpb3MuIEkgZGlkbuKAmXQgcmVhbGl6ZSB0aGUgbWluaXMgbGFjayBh
-IGRlZGljYXRlZCBoYXJkd2FyZSBQTEwgYW5kIHJlbHkgb25seSBvbiBhIGRpZ2l0YWwgY29udHJv
-bCBsb29wLiBJdCBzb3VuZHMgbGlrZSB0aGUgaGlnaCBzdG9jaGFzdGljIGppdHRlciBjb3VsZCBp
-bmRlZWQgYmUgcHJvYmxlbWF0aWMgZm9yIG1lIGFuZCBpcyBhbiB1bmF2b2lkYWJsZSBsaW1pdGF0
-aW9uIG9mIHRoZSBzbWFsbCBmb3JtLWZhY3RvciBVU1JQcy4NCg0KSeKAmWxsIHN0aWxsIHBva2Ug
-YXQgaXQgYSBiaXQsIGJ1dCBJIHZlcnkgbXVjaCBhcHByZWNpYXRlIHRoZSBoZWFkcy11cCENCi1E
-YXZpZA0KDQoNCkZyb206IE1hcnRpbiBCcmF1biA8bWFydGluLmJyYXVuQGV0dHVzLmNvbT4NClNl
-bnQ6IFRodXJzZGF5LCBKYW51YXJ5IDE1LCAyMDI2IDM6NDcgQU0NCkNjOiB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBVc2luZyBVU1JQIEIyMDZt
-aW5pIHdpdGggT2N0b2Nsb2NrIDEwTUh6K1BQUw0KDQpIZXkgRGF2aWQsDQoNCnRvIGFkZCBvbnRv
-IHdoYXQgTWFyY3VzIHNhaWQ6IFRoZSBtaW5pcyBkb24ndCBoYXZlIGEgaGFyZHdhcmUgUExMICh1
-bmxpa2UgdGhlIEIyMDAvQjIxMCwgYW5kIGFsbCBvdGhlciBVU1JQcykuIEJlZm9yZSB5b3UgZ28g
-ZG93biB0aGUgcmFiYml0IGhvbGUgb2YgbW9kaWZ5aW5nIHRoZSBGUEdBLCB5b3UgbWlnaHQgd2Fu
-dCB0byBydW4gYSBmZXcgQjJ4eC1taW5pcyBmcm9tIGFuIE9jdG9jbG9jayAoaWdub3JlIFBQUyBm
-b3Igbm93KSwgYW5kIGNoZWNrIGlmIHRoZSBwaGFzZSBzdGFiaWxpdHkgaXMgZ29vZCBlbm91Z2gg
-Zm9yIHlvdXIgYXBwbGljYXRpb24uDQoNCk90aGVyIHRoYW4gdGhhdCwgaXQgd291bGQgYmUgcG9z
-c2libGUgdG8gdXNlIGEgR1BJTyBpbnB1dCBmb3IgUFBTLCBidXQgbmVpdGhlciB0aGUgc29mdHdh
-cmUgbm9yIHRoZSBGUEdBIGV4cGVjdCB0aGF0LCBhbmQgYm90aCB3aWxsIHJlcXVpcmUgbW9kaWZp
-Y2F0aW9ucy4gRm9yIGEgVVNSUC9VSEQgdmV0ZXJhbiBzdWNoIGFzIHlvdXJzZWxmLCB0aGF0IHNv
-dW5kcyBmZWFzaWJsZSwgYnV0IGJlIGF3YXJlIGl0J3MgYSBsb3Qgb2Ygd29yayBhbmQgbWlnaHQg
-bm90IGdpdmUgeW91IHdoYXQgeW91IG5lZWQuDQoNCi0tTQ0KDQpPbiBXZWQsIEphbiAxNCwgMjAy
-NiBhdCA5OjIw4oCvUE0gTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbTxt
-YWlsdG86cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+PiB3cm90ZToNCk9uIDIwMjYtMDEtMTQgMTQ6
-NTcsIERhdmlkIFJhZW1hbiB2aWEgVVNSUC11c2VycyB3cm90ZToNCkhlbGxvLA0KDQpJIGhhdmUg
-YSBwcm9qZWN0IGN1cnJlbnRseSBob3N0ZWQgb24gYSBVU1JQIEUzMjAgdGhhdCBpbnZvbHZlcyBk
-aXN0cmlidXRlZCBzaWduYWwgY29oZXJlbmNlLiBEdXJpbmcgZGV2ZWxvcG1lbnQgSSBzb21ldGlt
-ZXMgZG8gb3Zlci10aGUtd2lyZSB0ZXN0aW5nIHVzaW5nIGFuIE9jdG9jbG9ja+KAmXMgMTBNSHog
-YW5kIFBQUyBvdXRwdXRzIHRvIHN5bmNocm9uaXplIG11bHRpcGxlIHJhZGlvcyBvbiB0aGUgYmVu
-Y2guDQoNCknigJltIHN0YXJ0aW5nIHRvIGludmVzdGlnYXRlIHRoZSB2aWFiaWxpdHkgb2YgcmVo
-b3N0aW5nIHRoaXMgYXBwbGljYXRpb24gb24gYSBVU1JQIEIyMDZtaW5pIHRvIHJlZHVjZSBzaXpl
-IGFuZCBjb3N0LiBBcyBmYXIgYXMgSSBjYW4gZGlzY2VybiwgdGhpcyByYWRpbyBvbmx5IGhhcyBh
-IHNpbmdsZSBwb3J0IHRoYXQgY2FuIGFjY2VwdCBlaXRoZXIgYSAxME1IeiByZWZlcmVuY2UgaW5w
-dXQgb3IgYSBQUFMgaW5wdXQuIElzIGl0IHBvc3NpYmxlIHRvIHNvbWVob3cgdXNlIHRoZSByYWRp
-byB3aXRoIGJvdGggY2xvY2sgYW5kIFBQUyBvdXRwdXRzIGZyb20gYW4gT2N0b2Nsb2NrIHdpdGgg
-b3V0LW9mLXRoZS1ib3ggVUhEPyBJZiBub3QsIHdvdWxkIGl0IGJlIHZpYWJsZSBmb3IgbWUgdG8g
-YWRkIGEgYml0IG9mIEZQR0EgbG9naWMgYW5kIFVIRCB0d2Vha3Mgc3VjaCB0aGF0IHNvZnR3YXJl
-IGNhbiBzcGVjaWZ5IGEgR1BJTyBwaW4gYXMgdGhlIFBQUyBpbnB1dCB3aGlsZSB1c2luZyB0aGUg
-U01BIGFzIHRoZSAxME1IeiBpbnB1dD8gT3IgYXJlIHRoZXJlIGhhcmR3YXJlIG9yIHN5c3RlbXMg
-Y29uc3RyYWludHMgdGhhdCB3b3VsZCBwcmVjbHVkZSB0aGF0IGFwcHJvYWNoPw0KDQpUaGFua3Mh
-DQpEYXZpZCBSYWVtYW4NClN5bm9wdGljIEVuZ2luZWVyaW5nDQoNCg0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVVNSUC11c2VycyBtYWlsaW5nIGxp
-c3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPg0KDQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMt
-bGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
-LmNvbT4NCllvdSBjb3VsZCBwcm9iYWJseSBhZGQgc29tZSBGUEdBIGZ1bmN0aW9uYWxpdHkgdG8g
-aW1wbGVtZW50IGEgc2VwYXJhdGUgUFBTIGlucHV0Lg0KDQpCdXQgSSBzaG91bGQgd2FybiB5b3Ug
-dGhhdCB0aGUgY2xvY2sgc2Vydm8gaW4gdGhlIEIyMDV4IHNlcmllcyBpcyBzaW1wbHkgTk9UIFVQ
-IFRPIFRIRSBUQVNLIG9mIGJ1aWxkaW5nLW91dCBtdWx0aS11bml0IGNvaGVyZW50IGFwcGxpY2F0
-aW9ucy4NCg0KVGhlIG11dHVhbCBwaGFzZS1ub2lzZSBpcyB3YXkgdG9vIGhpZ2guICBUaGUgQjIw
-NSB3YXMgbmV2ZXIgaW50ZW5kZWQgZm9yIHN1Y2ggYXBwbGljYXRpb25zIHRvIGJlZ2luIHdpdGgs
-IGFuZCB0aGUgY2xvY2sgc2Vydm8ganVzdCBkb2Vzbid0IHdvcmsgdGhhdCB3ZWxsLg0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11
-c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
-ZXR0dXMuY29tPg0K
+Hi David,
 
---_000_SA1P110MB1932E5C43DC39E78CD7E0687B78CASA1P110MB1932NAMP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I've researched this before with the earlier model b200-mini.  As a retail
+customer without the deeper resources and knowledge of our esteemed hosts,
+I'd characterize the project as follows:
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpBcHRvczt9DQpAZm9udC1mYWNlDQoJe2Zv
-bnQtZmFtaWx5OkNvbnNvbGFzOw0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8q
-IFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNv
-Tm9ybWFsDQoJe21hcmdpbjowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToi
-QXB0b3MiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5
-bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5l
-O30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwg
-UHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0
-Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpzcGFu
-LkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJIVE1MIFByZWZvcm1hdHRl
-ZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwg
-UHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseTpDb25zb2xhczsNCgltc28tbGlnYXR1cmVzOm5v
-bmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7
-DQoJZm9udC1mYW1pbHk6IkFwdG9zIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0K
-Lk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7fQ0KQHBhZ2UgV29y
-ZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBp
-biAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
-c3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJl
-ZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNv
-IDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0i
-ZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwv
-aGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHls
-ZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5NYXJ0aW4g
-YW5kIE1hcmN1cyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPlRo
-YW5rIHlvdSBib3RoIHZlcnkgbXVjaCBmb3IgdGhlIGZlZWRiYWNrLiBGb3IgdGhpcyBhcHBsaWNh
-dGlvbiwgd2hlbiBub3QgYXR0YWNoZWQgdG8gdGhlIE9jdG9jbG9jaywgSSB1c2UgYSBoaWdoIHF1
-YWxpdHkgT0NYTyByZWZlcmVuY2UgYW5kIEkgbmVlZCBzb21ld2hhdCBzdGFibGUsIHRyYWNrYWJs
-ZSByZWxhdGl2ZSBwaGFzZSBkcmlmdCBjaGFyYWN0ZXJpc3RpY3MNCiBiZXR3ZWVuIHJhZGlvcy4g
-SSBkaWRu4oCZdCByZWFsaXplIHRoZSBtaW5pcyBsYWNrIGEgZGVkaWNhdGVkIGhhcmR3YXJlIFBM
-TCBhbmQgcmVseSBvbmx5IG9uIGEgZGlnaXRhbCBjb250cm9sIGxvb3AuIEl0IHNvdW5kcyBsaWtl
-IHRoZSBoaWdoIHN0b2NoYXN0aWMgaml0dGVyIGNvdWxkIGluZGVlZCBiZSBwcm9ibGVtYXRpYyBm
-b3IgbWUgYW5kIGlzIGFuIHVuYXZvaWRhYmxlIGxpbWl0YXRpb24gb2YgdGhlIHNtYWxsIGZvcm0t
-ZmFjdG9yIFVTUlBzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+
-SeKAmWxsIHN0aWxsIHBva2UgYXQgaXQgYSBiaXQsIGJ1dCBJIHZlcnkgbXVjaCBhcHByZWNpYXRl
-IHRoZSBoZWFkcy11cCE8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+LURhdmlkPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFk
-ZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
-bnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBNYXJ0aW4gQnJhdW4g
-Jmx0O21hcnRpbi5icmF1bkBldHR1cy5jb20mZ3Q7DQo8YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNk
-YXksIEphbnVhcnkgMTUsIDIwMjYgMzo0NyBBTTxicj4NCjxiPkNjOjwvYj4gdXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW1VTUlAtdXNlcnNdIFJlOiBVc2lu
-ZyBVU1JQIEIyMDZtaW5pIHdpdGggT2N0b2Nsb2NrIDEwTUh6K1BQUzxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
-DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhleSBEYXZpZCw8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+dG8gYWRkIG9udG8g
-d2hhdCBNYXJjdXMgc2FpZDogVGhlIG1pbmlzIGRvbid0IGhhdmUgYSBoYXJkd2FyZSBQTEwgKHVu
-bGlrZSB0aGUgQjIwMC9CMjEwLCBhbmQgYWxsIG90aGVyIFVTUlBzKS4gQmVmb3JlIHlvdSBnbyBk
-b3duIHRoZSByYWJiaXQgaG9sZSBvZiBtb2RpZnlpbmcgdGhlIEZQR0EsIHlvdSBtaWdodCB3YW50
-IHRvIHJ1biBhIGZldyBCMnh4LW1pbmlzIGZyb20gYW4gT2N0b2Nsb2NrIChpZ25vcmUgUFBTDQog
-Zm9yIG5vdyksIGFuZCBjaGVjayBpZiB0aGUgcGhhc2Ugc3RhYmlsaXR5IGlzIGdvb2QgZW5vdWdo
-IGZvciB5b3VyIGFwcGxpY2F0aW9uLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5PdGhlciB0aGFuIHRoYXQsIGl0IHdvdWxkIGJlIHBvc3NpYmxl
-IHRvIHVzZSBhIEdQSU8gaW5wdXQgZm9yIFBQUywgYnV0IG5laXRoZXIgdGhlIHNvZnR3YXJlIG5v
-ciB0aGUgRlBHQSBleHBlY3QgdGhhdCwgYW5kIGJvdGggd2lsbCByZXF1aXJlIG1vZGlmaWNhdGlv
-bnMuIEZvciBhIFVTUlAvVUhEIHZldGVyYW4gc3VjaCBhcyB5b3Vyc2VsZiwgdGhhdCBzb3VuZHMg
-ZmVhc2libGUsIGJ1dCBiZSBhd2FyZSBpdCdzDQogYSBsb3Qgb2Ygd29yayBhbmQgbWlnaHQgbm90
-IGdpdmUgeW91IHdoYXQgeW91IG5lZWQuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPi0tTTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBXZWQsIEphbiAxNCwgMjAyNiBhdCA5OjIwPHNwYW4g
-c3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPuKArzwvc3Bh
-bj5QTSBNYXJjdXMgRC4gTGVlY2ggJmx0OzxhIGhyZWY9Im1haWx0bzpwYXRjaHZvbmJyYXVuQGdt
-YWlsLmNvbSI+cGF0Y2h2b25icmF1bkBnbWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0
-OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVm
-dDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+T24gMjAyNi0wMS0xNCAxNDo1NywgRGF2aWQgUmFlbWFuIHZpYSBVU1JQLXVzZXJzIHdy
-b3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRv
-cDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5IZWxsbyw8L3NwYW4+PG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
-dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0Ij4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
-dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5JIGhhdmUgYSBwcm9qZWN0IGN1cnJlbnRs
-eSBob3N0ZWQgb24gYSBVU1JQIEUzMjAgdGhhdCBpbnZvbHZlcyBkaXN0cmlidXRlZCBzaWduYWwg
-Y29oZXJlbmNlLiBEdXJpbmcgZGV2ZWxvcG1lbnQgSSBzb21ldGltZXMgZG8gb3Zlci10aGUtd2ly
-ZSB0ZXN0aW5nDQogdXNpbmcgYW4gT2N0b2Nsb2Nr4oCZcyAxME1IeiBhbmQgUFBTIG91dHB1dHMg
-dG8gc3luY2hyb25pemUgbXVsdGlwbGUgcmFkaW9zIG9uIHRoZSBiZW5jaC48L3NwYW4+PG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
-OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0Ij4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5J4oCZbSBzdGFydGluZyB0byBpbnZl
-c3RpZ2F0ZSB0aGUgdmlhYmlsaXR5IG9mIHJlaG9zdGluZyB0aGlzIGFwcGxpY2F0aW9uIG9uIGEg
-VVNSUCBCMjA2bWluaSB0byByZWR1Y2Ugc2l6ZSBhbmQgY29zdC4gQXMgZmFyIGFzIEkgY2FuIGRp
-c2Nlcm4sIHRoaXMNCiByYWRpbyBvbmx5IGhhcyBhIHNpbmdsZSBwb3J0IHRoYXQgY2FuIGFjY2Vw
-dCBlaXRoZXIgYSAxME1IeiByZWZlcmVuY2UgaW5wdXQgb3IgYSBQUFMgaW5wdXQuIElzIGl0IHBv
-c3NpYmxlIHRvIHNvbWVob3cgdXNlIHRoZSByYWRpbyB3aXRoIGJvdGggY2xvY2sgYW5kIFBQUyBv
-dXRwdXRzIGZyb20gYW4gT2N0b2Nsb2NrIHdpdGggb3V0LW9mLXRoZS1ib3ggVUhEPyBJZiBub3Qs
-IHdvdWxkIGl0IGJlIHZpYWJsZSBmb3IgbWUgdG8gYWRkIGEgYml0IG9mDQogRlBHQSBsb2dpYyBh
-bmQgVUhEIHR3ZWFrcyBzdWNoIHRoYXQgc29mdHdhcmUgY2FuIHNwZWNpZnkgYSBHUElPIHBpbiBh
-cyB0aGUgUFBTIGlucHV0IHdoaWxlIHVzaW5nIHRoZSBTTUEgYXMgdGhlIDEwTUh6IGlucHV0PyBP
-ciBhcmUgdGhlcmUgaGFyZHdhcmUgb3Igc3lzdGVtcyBjb25zdHJhaW50cyB0aGF0IHdvdWxkIHBy
-ZWNsdWRlIHRoYXQgYXBwcm9hY2g/PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
-LWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7PC9zcGFuPjxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
-LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdCI+VGhhbmtzITwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1h
-bHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPkRhdmlkIFJhZW1hbjwvc3Bh
-bj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
-LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQiPlN5bm9wdGljIEVuZ2luZWVyaW5nPC9zcGFuPjxvOnA+PC9vOnA+PC9w
-Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxw
-cmU+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188bzpwPjwv
-bzpwPjwvcHJlPg0KPHByZT5VU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWls
-dG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5UbyB1bnN1YnNjcmli
-ZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
-LmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMu
-Y29tPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5Zb3UgY291bGQgcHJvYmFibHkgYWRkIHNvbWUgRlBHQSBmdW5jdGlvbmFsaXR5IHRvIGlt
-cGxlbWVudCBhIHNlcGFyYXRlIFBQUyBpbnB1dC48YnI+DQo8YnI+DQpCdXQgSSBzaG91bGQgd2Fy
-biB5b3UgdGhhdCB0aGUgY2xvY2sgc2Vydm8gaW4gdGhlIEIyMDV4IHNlcmllcyBpcyBzaW1wbHkg
-Tk9UIFVQIFRPIFRIRSBUQVNLIG9mIGJ1aWxkaW5nLW91dCBtdWx0aS11bml0IGNvaGVyZW50IGFw
-cGxpY2F0aW9ucy48YnI+DQo8YnI+DQpUaGUgbXV0dWFsIHBoYXNlLW5vaXNlIGlzIHdheSB0b28g
-aGlnaC4mbmJzcDsgVGhlIEIyMDUgd2FzIG5ldmVyIGludGVuZGVkIGZvciBzdWNoIGFwcGxpY2F0
-aW9ucyB0byBiZWdpbiB3aXRoLCBhbmQgdGhlIGNsb2NrIHNlcnZvIGp1c3QgZG9lc24ndCB3b3Jr
-IHRoYXQgd2VsbC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9h
-Pjxicj4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVz
-cnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVz
-ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90
-ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Net-net, to incorporate both PPS and 10MHz REF in a b200-mini (
+*hackily-at-best**) invokes cost, complexity, and *time spent*** to such a
+degree that less resources are involved in purchasing a B-210 (not a typo),
+possibly two B210s (also not a typo).
 
---_000_SA1P110MB1932E5C43DC39E78CD7E0687B78CASA1P110MB1932NAMP_--
+*Footnotes:*
+* *Hackily-at-best* includes the nonzero probability of smoking your
+b200-mini.
+***Cost of time spent* assumes you value your labor at
+"McDonald's-high-school-summer-job-level" wages or higher.
 
---===============8573011488361226356==
+*.--*
+
+Walter Alden Tackett
+415 407 0660
+walter.tackett@gmail.com
+
+
+
+
+
+On Thu, Jan 15, 2026 at 8:37=E2=80=AFAM David Raeman via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Martin and Marcus,
+>
+>
+>
+> Thank you both very much for the feedback. For this application, when not
+> attached to the Octoclock, I use a high quality OCXO reference and I need
+> somewhat stable, trackable relative phase drift characteristics between
+> radios. I didn=E2=80=99t realize the minis lack a dedicated hardware PLL =
+and rely
+> only on a digital control loop. It sounds like the high stochastic jitter
+> could indeed be problematic for me and is an unavoidable limitation of th=
+e
+> small form-factor USRPs.
+>
+>
+>
+> I=E2=80=99ll still poke at it a bit, but I very much appreciate the heads=
+-up!
+>
+> -David
+>
+>
+>
+>
+>
+> *From:* Martin Braun <martin.braun@ettus.com>
+> *Sent:* Thursday, January 15, 2026 3:47 AM
+> *Cc:* usrp-users@lists.ettus.com
+> *Subject:* [USRP-users] Re: Using USRP B206mini with Octoclock 10MHz+PPS
+>
+>
+>
+> Hey David,
+>
+>
+>
+> to add onto what Marcus said: The minis don't have a hardware PLL (unlike
+> the B200/B210, and all other USRPs). Before you go down the rabbit hole o=
+f
+> modifying the FPGA, you might want to run a few B2xx-minis from an
+> Octoclock (ignore PPS for now), and check if the phase stability is good
+> enough for your application.
+>
+>
+>
+> Other than that, it would be possible to use a GPIO input for PPS, but
+> neither the software nor the FPGA expect that, and both will require
+> modifications. For a USRP/UHD veteran such as yourself, that sounds
+> feasible, but be aware it's a lot of work and might not give you what you
+> need.
+>
+>
+>
+> --M
+>
+>
+>
+> On Wed, Jan 14, 2026 at 9:20=E2=80=AFPM Marcus D. Leech <patchvonbraun@gm=
+ail.com>
+> wrote:
+>
+> On 2026-01-14 14:57, David Raeman via USRP-users wrote:
+>
+> Hello,
+>
+>
+>
+> I have a project currently hosted on a USRP E320 that involves distribute=
+d
+> signal coherence. During development I sometimes do over-the-wire testing
+> using an Octoclock=E2=80=99s 10MHz and PPS outputs to synchronize multipl=
+e radios
+> on the bench.
+>
+>
+>
+> I=E2=80=99m starting to investigate the viability of rehosting this appli=
+cation on
+> a USRP B206mini to reduce size and cost. As far as I can discern, this
+> radio only has a single port that can accept either a 10MHz reference inp=
+ut
+> or a PPS input. Is it possible to somehow use the radio with both clock a=
+nd
+> PPS outputs from an Octoclock with out-of-the-box UHD? If not, would it b=
+e
+> viable for me to add a bit of FPGA logic and UHD tweaks such that softwar=
+e
+> can specify a GPIO pin as the PPS input while using the SMA as the 10MHz
+> input? Or are there hardware or systems constraints that would preclude
+> that approach?
+>
+>
+>
+> Thanks!
+>
+> David Raeman
+>
+> Synoptic Engineering
+>
+>
+>
+> _______________________________________________
+>
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+>
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> You could probably add some FPGA functionality to implement a separate PP=
+S
+> input.
+>
+> But I should warn you that the clock servo in the B205x series is simply
+> NOT UP TO THE TASK of building-out multi-unit coherent applications.
+>
+> The mutual phase-noise is way too high.  The B205 was never intended for
+> such applications to begin with, and the clock servo just doesn't work th=
+at
+> well.
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000000045eb06487c30d6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi David,</div><div><br>I&#39;ve researched this befo=
+re with the earlier model b200-mini.=C2=A0 As a retail customer without the=
+ deeper resources and knowledge of our esteemed hosts, I&#39;d characterize=
+ the project as follows:<br><br></div><div>Net-net, to incorporate=C2=A0bot=
+h PPS and 10MHz REF in a b200-mini (<i><u>hackily-at-best</u></i>*) invokes=
+ cost, complexity, and <i><u>time spent</u></i>** to such a degree that=C2=
+=A0less resources are involved in=C2=A0purchasing a B-210 (not a typo), pos=
+sibly two B210s (also not a typo).</div><div><br></div><div><b>Footnotes:</=
+b></div><div>* <i><u>Hackily-at-best</u></i> includes the nonzero probabili=
+ty of smoking your b200-mini.</div><div>**<i><u>Cost of time spent</u></i> =
+assumes you value your labor at &quot;McDonald&#39;s-high-school-summer-job=
+-level&quot; wages or higher.</div><div><br></div><div><b>.--</b></div><div=
+><br></div><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature"><div dir=3D"ltr">Walter Alden Tackett<br>415 407 0660<=
+br><a href=3D"mailto:walter.tackett@gmail.com" target=3D"_blank">walter.tac=
+kett@gmail.com</a><div><br></div><div><br></div><div><br></div></div></div>=
+</div><br></div><br><div class=3D"gmail_quote gmail_quote_container"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 15, 2026 at 8:37=E2=80=AFAM Dav=
+id Raeman via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
+usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div class=3D"msg-1669323594085702248">
+
+
+
+
+
+<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_-1669323594085702248WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Martin and Marcus,<u>=
+</u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thank you both very m=
+uch for the feedback. For this application, when not attached to the Octocl=
+ock, I use a high quality OCXO reference and I need somewhat stable, tracka=
+ble relative phase drift characteristics
+ between radios. I didn=E2=80=99t realize the minis lack a dedicated hardwa=
+re PLL and rely only on a digital control loop. It sounds like the high sto=
+chastic jitter could indeed be problematic for me and is an unavoidable lim=
+itation of the small form-factor USRPs.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">I=E2=80=99ll still po=
+ke at it a bit, but I very much appreciate the heads-up!<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">-David<u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:Calibri=
+,sans-serif">From:</span></b><span style=3D"font-size:11pt;font-family:Cali=
+bri,sans-serif"> Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com"=
+ target=3D"_blank">martin.braun@ettus.com</a>&gt;
+<br>
+<b>Sent:</b> Thursday, January 15, 2026 3:47 AM<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> [USRP-users] Re: Using USRP B206mini with Octoclock 10MHz+P=
+PS<u></u><u></u></span></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hey David,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">to add onto what Marcus said: The minis don&#39;t ha=
+ve a hardware PLL (unlike the B200/B210, and all other USRPs). Before you g=
+o down the rabbit hole of modifying the FPGA, you might want to run a few B=
+2xx-minis from an Octoclock (ignore PPS
+ for now), and check if the phase stability is good enough for your applica=
+tion.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Other than that, it would be possible to use a GPIO =
+input for PPS, but neither the software nor the FPGA expect that, and both =
+will require modifications. For a USRP/UHD veteran such as yourself, that s=
+ounds feasible, but be aware it&#39;s
+ a lot of work and might not give you what you need.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">--M<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Wed, Jan 14, 2026 at 9:20<span style=3D"font-fami=
+ly:Arial,sans-serif">=E2=80=AF</span>PM Marcus D. Leech &lt;<a href=3D"mail=
+to:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&g=
+t; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:4=
+.8pt;margin-right:0in">
+<div>
+<div>
+<p class=3D"MsoNormal">On 2026-01-14 14:57, David Raeman via USRP-users wro=
+te:<u></u><u></u></p>
+</div>
+<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Hello,</span><u></u><=
+u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0</span><u></u><=
+u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">I have a project curr=
+ently hosted on a USRP E320 that involves distributed signal coherence. Dur=
+ing development I sometimes do over-the-wire testing
+ using an Octoclock=E2=80=99s 10MHz and PPS outputs to synchronize multiple=
+ radios on the bench.</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0</span><u></u><=
+u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">I=E2=80=99m starting =
+to investigate the viability of rehosting this application on a USRP B206mi=
+ni to reduce size and cost. As far as I can discern, this
+ radio only has a single port that can accept either a 10MHz reference inpu=
+t or a PPS input. Is it possible to somehow use the radio with both clock a=
+nd PPS outputs from an Octoclock with out-of-the-box UHD? If not, would it =
+be viable for me to add a bit of
+ FPGA logic and UHD tweaks such that software can specify a GPIO pin as the=
+ PPS input while using the SMA as the 10MHz input? Or are there hardware or=
+ systems constraints that would preclude that approach?</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0</span><u></u><=
+u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks!</span><u></u>=
+<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">David Raeman</span><u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Synoptic Engineering<=
+/span><u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<pre>_______________________________________________<u></u><u></u></pre>
+<pre>USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><u></u><u></u></pre>
+<pre>To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><u></u>=
+<u></u></pre>
+</blockquote>
+<p class=3D"MsoNormal">You could probably add some FPGA functionality to im=
+plement a separate PPS input.<br>
+<br>
+But I should warn you that the clock servo in the B205x series is simply NO=
+T UP TO THE TASK of building-out multi-unit coherent applications.<br>
+<br>
+The mutual phase-noise is way too high.=C2=A0 The B205 was never intended f=
+or such applications to begin with, and the clock servo just doesn&#39;t wo=
+rk that well.<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><u></u><u></u></p>
+</blockquote>
+</div>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--0000000000000045eb06487c30d6--
+
+--===============2763453815739821398==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -421,4 +475,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8573011488361226356==--
+--===============2763453815739821398==--
