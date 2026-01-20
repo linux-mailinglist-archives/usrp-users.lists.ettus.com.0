@@ -2,296 +2,323 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD6FD3C304
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 10:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60786D3C308
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 10:09:56 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0E45838612D
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 04:09:16 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id B3FC938608E
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 04:09:55 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1768900156; bh=wag7QyyFauq5LFMjYSt8SkRqUmi65Zxol3UpLpj3iY4=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=JFqmELm/E37wwDNRJvvNXRFGfNQnQ1quXgTnBcrdJaFkQjHuYDSCvbogF8yz9o+4n
-	 +w/iSHLevgNjcm1ncKIhStUnfThAMq3pj0lBlagKWoCW8hw0eed7cPAiOeeT5GEBIH
-	 fZ2S0/483M472r1iskZCJCr1vI2LfyWx3zX0mIj5QSYzvl4uA7Pdcqmn7oFFQw5DOy
-	 g71AfxfdlY5cFReeezbM97W3C/JU7/qlqoX2nmnjwYeVrHKHjAVJzeCXD4Yotsye06
-	 7qHOpRiS+agFrRA4uw4lh2kPBPRduEJUWcBvOzlIrzmOupIfe/0DIFodtuaet0lEEi
-	 OZmwgJI1wWf8Q==
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 84E4638607D
-	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 04:08:09 -0500 (EST)
+	t=1768900195; bh=gbwAIYh2OU/elqt7XBtbAlm5ep+AznyPR4vizS5c3jQ=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=MwNBmCAmT2kIxsvnsAck+Dpppn/dCWX9S+6Rg6mAMZosq5Y5YuvO06iFdt4Phg2Li
+	 7ht9w/pwWlZojnL6AiYc/T/XUcGfZKpxTrJtUD0ZkCDOsIb328MsFDu0phe4DanWEx
+	 zAyJLElHMeEyLT1OBuDR6AoD7auQsphKcy9jNjjkeaB6DfuUNDM6BtshE76OtlUSqX
+	 E+oUqQ1AednW9WzxZTmQyIYA/wFXogQKGtM8hhiiKCjrmo1f2+7t1QJP0pGn1BoSL+
+	 fmgIDDtb2rMv3Z0a8At0MBlPUCv8nisCU9vGQw/aYA4NEky0ZEDFv/LcRoQbambo4z
+	 ZViwPEQJHDAsg==
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id CF9FA386268
+	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 04:08:56 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="QjnkgvLv";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="kYwKHwr6";
 	dkim-atps=neutral
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-8888a1c50e8so63289206d6.0
-        for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 01:08:09 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1768900088; cv=none;
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-88a2e3bd3cdso51952096d6.0
+        for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 01:08:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768900136; cv=none;
         d=google.com; s=arc-20240605;
-        b=iQfzQyvoZR8kP5DWfRrd56a93nKAudiUyw5PCUfKWIHWxr7uFQDnv38dyUjMJfkK08
-         LeXpy2zD7FLaC1vFvGq282+0U6CcsgOuTmnMFkfQbyLZxhZgVk7+CBitAz3gYVAFGukf
-         2eMPdmyCCnq90qROUqJdsyJSWThbgEG5rvL4FPHee6Lt52r/hfNlvhAa/L/UEo4Brf16
-         KfQdM8y8L/O2ov+FSGC1MtHtFh8OAHyMogbP0yGaib8cRrrn6ZWlr8NsW9rVva+82hz2
-         w8rHsMUquIHF4anlV+XEnDYcwAsbJp+qXyXp0LtrfPhiFgiom9gMLdZBqhM/L7ZwfPzp
-         E5XA==
+        b=JcIl8npNPoAd2oaaKRK6U4Tf9V16i7O7Z0puUYrOCJuoAerAK/ube9bT/EFdaJwigF
+         m/iYW95OzPglv0T2T2F/+uor96gomhGKLaUW8wdOROnHHAad2w4xsBAhsmyoP39bkqdS
+         P78GdWyiEpXj0rdci7wZPJju/nrrpUpYRYbNX/noEUGyNbDdxX9BHz0Ufis1hW3x7ukU
+         v3WQcDNQHk8C8lX49c+y82EJ8tykrhRfIdEgtQ2D4IZX3CZvFJjMkhM91Lj/O1VESN3E
+         7pdz7kVwD+kT2chyz32hc13AeiE/AU9FN0BZN2sz7ZrbUG9xnoUbWtkjy5bYWU2u2lY3
+         2v2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=dQ/7xnCGJ44Lguzs/Xs41+fQA+xcq/VCW05q+tBbv/E=;
-        fh=w7oQ9WL2gA4DrMO4z7zUu8Ij12W43ckkLa1NAxhiwRs=;
-        b=STZ9kivXlh+NWwRxwcQvIe0PIK8r2/dr45QTpbuG6zgtVYcflGVLttx7Aid4BwABXi
-         5itKNCx+DyGv0t+oMGGI/bvoeGjQiYybwPkgx2Qe3uzsNVQdcfJ+4MO+FAuY/zww1YBB
-         m9OdimsLKdw72fdjoi38yQbQ+n48SO0XA5IfBFdC0w4HIyjUvK2QsqvSXTTHM+QuVz8u
-         ezGzS3AcbLidE3XbV+/xFMvgzdjRqsJ8ZPS6R1ioVEo+TjfbmIn55KefFccU9ILrS6o1
-         FqQLxwSR79dH0RHq91NU9xmRHna3Uc6awxDLypJjwgISrFDO1wA8keP8faCdsCVII58X
-         XBGA==;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=GKgPNGv7dF5zfcjxHm4x62hRWgK1F3FjfG9JyDc65J8=;
+        fh=p7VlfDdZp+EpD6H9MeMQavN8IacX+oZG4K/LI1eE0ss=;
+        b=ImfY1lFwDZRrJJD+I14bxb3ZlF8bYpAk4b7mc38tD0Q8mlZi3dwSppjEkRneBkjdsP
+         d04i7Jg97X4WBQCxMjfFHA+aBUq03p5P3jJvD8qGRhrGJhxMCewNK9Dzak+Le0HrxYek
+         LcC5ne2j5JsephsoNzvG6tWX5cwBuGkZynCzbHArtt2NfO+Lyr3anjwSUJ1FLjFzkDJh
+         HE9pljrurVwK2i9KpAo9ymuoG6cIEXm2cm1S5XfCYDYEd+DIbEViFHIZAfzh7niDcBcB
+         e11WFyEtpdWQLREh1xiVH47dj90tgiCbY2aZdI6MJCR5sXrjEi60TdhcjE8Kco68Z4yD
+         wf3A==;
         darn=lists.ettus.com
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1768900088; x=1769504888; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dQ/7xnCGJ44Lguzs/Xs41+fQA+xcq/VCW05q+tBbv/E=;
-        b=QjnkgvLv/wdgD3vmEOskQdNUnqZtVEX4HwS63kUt2V5g2KnzcqQ9TDOZRHKbVtWvxU
-         b5Layf+GpC83AGVRLV+UhK+AMu/4HnN+al6yDSaD+VORGh5Jjahd2QbwVQ1NmEvDx4Rw
-         ci9JNGBOWWIcFDMYY/quvgpwpeCNC4X1tUwpT7pVjREyd38hU/5guNHek4dMtXkybHPo
-         tFsHC2JJJuS523rHbCKPNhszFRqr7JvfiH3gWDniIZX9wQvD7l8R0tTeAXOB1ccpqokh
-         LACgikxomNZgclPPR2DnscNhs9YWnfjLSglkuoIbmfQ+Vw8hcO0gK8S7YhwiXovFWmS8
-         lCOg==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1768900136; x=1769504936; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GKgPNGv7dF5zfcjxHm4x62hRWgK1F3FjfG9JyDc65J8=;
+        b=kYwKHwr6GbbJVUSf5HDPXj1rtBJ2lc5boJlzgfFDaqkbPoCk5/OhCwxFCwVj897cIl
+         8L8hIEVqk4xqS8fLvd0i/ua57bL2mAZltPKy1gRHXWBqIR1FL+6FXp88ChjXy6H6p6wQ
+         Gl+HoeMk9rFFCI3kvQd6HH7fsnJa+ppHlvZzHiHNLr6Li0iaP3XWmbO0+VltjS6tJvbu
+         pPRHY55FyTESK8gsbeTFuP1INrHVezQG+DySrLXW3ZoVdPR/ijTGrzTDtdCA6yZFJBo2
+         oZzokCg2zSo+IFVF2RA2uXXLYO8FsRVp8Ny0E5Fi6QSVtpb1cfn66h1SjBUG2FTccL/W
+         pAzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768900088; x=1769504888;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dQ/7xnCGJ44Lguzs/Xs41+fQA+xcq/VCW05q+tBbv/E=;
-        b=WAidtBKqJghU4NGeMGWfBA5YxmjTQ3txSAYWgZ0a+5eoqeWKcdYnTdrvva98vKKpMO
-         zYKMDvq2qAJLQZFZrVAUNNYCukCxPRNKBQd5ey4/k/xi8s1j7jE9KVyEZ/Eibvgp16gY
-         6f2ZPZQ/QxdAivaVCcIRIw8vgdOHvEvsPmn888SilvF0AT5S4GsF4NsjThyennYleedO
-         s94UxkjBmc6qhbqRcMNbuzL+TYrNovHoSK9kYVtCmKiXj17/rhx9foeD+/6fDBTF0boA
-         njCA1O/HHlkaU5r/LwGQvqyrk1T6kHBWKQod7LzEa2++A4Lu8Y8+Gatn8Ou/eWn2F56r
-         GeGw==
-X-Gm-Message-State: AOJu0YzG18Zt4LqIF6MUMwec3aXgB1eD8P2d6kdkQltHEF5OZh2Itpug
-	y8pJIa0SRIPraTjI+I8C8Zy0Udb5gB+CpOZa29lgO3alLQgaRvX15EXlrzFQ9wu6RarUSgr6P9u
-	lwKY9x4QLU21B8embpLbVaOulRUJhAt3qerK4eNh/ij+F8+fBGIJzucb6UA==
-X-Gm-Gg: AZuq6aIUl2fZ7yqPBPbceIX1nZtAh5vEDzIdBCfo3+WR+vtYGD46kMl9PdwpvyX+c+8
-	JWdldE1XyT15payZvGqLK5V0o2edhIgLIitfkur1rb4zdzMVoKzVlDjGhmkI3kqSLeteyrLQiP2
-	+7Gn6jmZ3pycOJHper7vhEKu2CvkRtTCSoFq+TBxo3ZYjOVKURdpASm4PYlvPOAwETq4ZqRyAPK
-	mnLh1DXOzS3eprKTLvhwQEN9XFmn8+zWR26ajCQr7yLavw0pbD/fDNPHZkgRgO0Ak27YUHlzvOW
-	YuXRGiOi4ifoATJR+iAirkyU9A==
-X-Received: by 2002:a05:6214:f01:b0:890:6330:97bf with SMTP id
- 6a1803df08f44-89463ea6a2cmr15229596d6.60.1768900088413; Tue, 20 Jan 2026
- 01:08:08 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768900136; x=1769504936;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GKgPNGv7dF5zfcjxHm4x62hRWgK1F3FjfG9JyDc65J8=;
+        b=taTBU1yfgXED/yKMvor87/H6k3PKY1zv/AXMX11wAB6lvIoBxQhZfGO21c5BRQ2Kgt
+         slQFiNy2spMwhukv3jHY2rQBdaa2ukVbOwxT81t1N1LzLZSkJrPFVtEkC6KL5Cep1gCy
+         5tw5qDwoN+F+3TJP/4ClLJ8DxDwzMBLOSjoDuiS8YGGuVLJKCmLBVgyT0UItW9R662yJ
+         6vGj6CR4hl9ir0H/X367nBsdUoo7n3UAc0FndAnoBgoodmrAEJ5JfOU6so3377NBrJCx
+         asH//CsH4tpOSdRSYYaJjf2oCti8jWuOU+gcSHzSsIiw8+IfXpujms9ak3TtoejZlAFK
+         lg6w==
+X-Gm-Message-State: AOJu0Ywg/mhi0sG+93ruXAMzIIm4KFAH3nks+ga5egsOeZVSI/VaPgJc
+	ShYw92+pzhM/mmGCAjXDDxCPfRIzqQVD31VIhK8muXWSiHAV09O0cLE6Ux4sbffULHXokAaMKGY
+	2yagF0yKqjzkBat1O5mY69+HVGN2/7UYsgmYqTjsXsLRthOJQdKZws7IbRg==
+X-Gm-Gg: AZuq6aK8xQaFc+fLHzwjl/Xd0EYloukFroKLNUehfvjl5mD4z2GSkfqnYS6VVZHjvjx
+	GmKsf7girQvbRNwBZtzEY5esTBcWlw+TwAfRlDCCbI/sJA3E2zHDgk9UXqBwxGSB/6VNP6NORFn
+	XA3pjKtPbKZhGKooo1nc+vGSXNm4FuBd+n4kEUDmL/NikZWruyXgFGi/jZqPgOYyQqpXnSEa3cV
+	pE2Ub3CNoUAzozQ7iRqG56jx3aEwD1wj0tjGy6o9hqMl97fJgYkUVM8yKinYUXNdrlHVMkkU5lt
+	LQH/rZK0hDwZ3lTYiI0W2KeQag==
+X-Received: by 2002:a05:6214:f28:b0:88a:2ed6:252 with SMTP id
+ 6a1803df08f44-89389f8586emr218193156d6.5.1768900136061; Tue, 20 Jan 2026
+ 01:08:56 -0800 (PST)
 MIME-Version: 1.0
-References: <2ce8603c-3e73-4dc7-819a-de10356057ba@gsi.de>
-In-Reply-To: <2ce8603c-3e73-4dc7-819a-de10356057ba@gsi.de>
+References: <CABQiKjyLQZqYX=R45sOzGgEz734g8p5siB000cd=R2L0P0zPUg@mail.gmail.com>
+In-Reply-To: <CABQiKjyLQZqYX=R45sOzGgEz734g8p5siB000cd=R2L0P0zPUg@mail.gmail.com>
 From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 20 Jan 2026 10:07:57 +0100
-X-Gm-Features: AZwV_QhRtuMOPlQ4mYp9RByK6TxGsz6A5JRrD0uslowKM5hrHAwYB-14WTchl_c
-Message-ID: <CAFOi1A7tGJKFGaX1V3oSaVadj-L7Lj75qC+THRBUog_ad+t+jA@mail.gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: XEF5NYANUSFXHNGWRYXNXQFFIUHAQ5ED
-X-Message-ID-Hash: XEF5NYANUSFXHNGWRYXNXQFFIUHAQ5ED
+Date: Tue, 20 Jan 2026 10:08:45 +0100
+X-Gm-Features: AZwV_Qi2SWzZ1f9RldxyWx674-FIehwOUj_-Zr4bCmcQHQAdzm07lrusB5ZUPvE
+Message-ID: <CAFOi1A5ykqB8vgS9dgxfOXWu8BzbiCSo5HO+HvjsLVg-wFOG0Q@mail.gmail.com>
+To: P S Vishwanath Koushik <koushikpsvishwanath@gmail.com>
+Message-ID-Hash: TLJBLCTDGVJI7JE5JJU33IKFCKLA7XBL
+X-Message-ID-Hash: TLJBLCTDGVJI7JE5JJU33IKFCKLA7XBL
 X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: NI-RIO error using USRP X310 over MXI with PCIe-8371 adapter on Ubuntu 24.04 LTS
+Subject: [USRP-users] Re: USRP-2952R (X310) PCIe interface issue with UHD (built from OAI source)on Ubuntu 22.04
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XEF5NYANUSFXHNGWRYXNXQFFIUHAQ5ED/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TLJBLCTDGVJI7JE5JJU33IKFCKLA7XBL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0148273713733800557=="
+Content-Type: multipart/mixed; boundary="===============5725268058589936855=="
 
---===============0148273713733800557==
-Content-Type: multipart/alternative; boundary="00000000000069cb740648ce25dd"
+--===============5725268058589936855==
+Content-Type: multipart/alternative; boundary="00000000000040dcf60648ce287e"
 
---00000000000069cb740648ce25dd
+--00000000000040dcf60648ce287e
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Philipp and others,
+Hi Vishwanath,
 
-we have gotten sporadic bug reports on this issue, and have started
-collecting them here: https://github.com/EttusResearch/uhd/issues/818
+can you please amend this bug report:
+https://github.com/EttusResearch/uhd/issues/818 ...with your system details
+so we can get a bigger picture of what's happening.
 
-If you can please extend the bug report with some system details, we might
-be able to narrow things down.
+Thanks!
 
 --Martin
 
-On Thu, Jan 15, 2026 at 2:40=E2=80=AFPM Philipp Niedermayer <p.niedermayer@=
-gsi.de>
-wrote:
+On Sat, Jan 17, 2026 at 2:32=E2=80=AFPM P S Vishwanath Koushik <
+koushikpsvishwanath@gmail.com> wrote:
 
-> Dear all,
+> Hello community,
 >
-> we are using the USRP X310 connected over MXI with a PCIe-8371 card. This
-> used to work well up to including Ubuntu 22.04 LTS. Now after updating to
-> Ubuntu 24.04 LTS we are experiencing the connecting issue described in th=
-e
-> following. I am aware that 10G Ethernet is the recommended alternative, b=
-ut
-> the PCIe connection is beneficial for us, as it allows to quickly switch
-> between FPGA images for different applications on-the-fly without having =
-to
-> power cycling the X310 (remote operation). According to NI, RIO is fully
-> supported on Ubuntu 24.04 LTS so it should work.
+> I am seeking guidance regarding using *USRP-2952R (X310)* over *PCIe* on
+> a Linux host, and I would appreciate any suggestions or known-good
+> configurations.
 >
-> Does anyone have experience with this on Ubuntu 24.04 LTS or any
-> suggestions how to identify and fix the issue would be welcome!
+> *System and software setup:*
 >
+>    -
 >
-> *Issue description:*
+>    Host OS: Ubuntu 22.04 LTS
+>    -
 >
-> The USRP X310 is discoverable using "uhd_find_devices" and shows up
-> correctly as resource RIO0. It's correctly enumerated in lspcie using
-> niusrpriok drivers and the niusrpriopc service is running. However,
-> everything beyond that does not work, i.e. any flowgraph fails. Even the
-> "uhd_usrp_probe" fails with the following after a clean reboot:
+>    USRP: NI USRP-2952R (X310), PCIe (RIO) interface
+>    -
 >
-> $ uhd_usrp_probe
-> [INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300;
-> UHD_4.9.0.0+ds1-1~noble2
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...
-> [INFO] [X300] Using LVBITX bitfile
-> /usr/share/uhd/4.9.0/images/usrp_x310_fpga_HG.lvbitx
-> Error: RuntimeError: x300_impl: Could not initialize RIO session. Unknown
-> error. (Error code -63150)
+>    UHD: Built from source (UHD version bundled with / referenced by OAI
+>    source tree)
+>    -
 >
-> $ uhd_usrp_probe
-> [INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300;
-> UHD_4.9.0.0+ds1-1~noble2
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...
-> [INFO] [X300] Using LVBITX bitfile
-> /usr/share/uhd/4.9.0/images/usrp_x310_fpga_HG.lvbitx
-> Error: RuntimeError: x300_impl: Could not initialize RIO session. A fault
-> on the network caused the RPC operation to fail. (Error code -63042)
+>    NI Linux Device Drivers: *NI USRP 2025 Q2  driver linkj
+>    <https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html=
+?srsltid=3DAfmBOor6EEe0WKBK67bW6htIgwYHrSZHCqjQNjITK3N8gELTv-JB5AbO#565446>=
+*
+>    -
 >
-> And every subsequent try results in the same network fault error.
+>    Installed NI packages:
+>    -
+>
+>       ni-fpga-interface
+>       -
+>
+>       ni-rio-mxie
+>       -
+>
+>       ni-rseries
+>       -
+>
+>       ni-hwcfg-utility
+>       -
+>
+>       ni-usrp-rio
 >
 >
-> *Setup:*
 >
->    - USRP X310 connected over MXI with a PCIe-8371 card. Ubuntu 24.04 LTS
->    x86_64 with Kernel 6.8.0-90-generic
->    - UHD 4.9.0.0+ds1-1~noble2 and GNU Radio 3.10.12 stack installed via
->    the ppa:gnuradio/gnuradio-releases repository
->    - NI drivers 2025 Q4 installed as described here:
->    https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_hw_pcie
+> *Use case:*
+> I am trying to interface the USRP-2952R with an *OAI-based host machine*,
+> using UHD over PCIe (RIO), not Ethernet.
+>
+> *Observed behavior:*
+>
+>    -
+>
+>    The device is detected correctly using uhd_find_devices
+>    -
+>
+>    [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
+>    UHD_4.8.0.HEAD-0-g308126a4
+>    --------------------------------------------------
+>    -- UHD Device 0
+>    --------------------------------------------------
+>    Device Address:
+>        serial:
+>        fpga: HG
+>        name:
+>        product: X310
+>        resource: RIO0
+>        type: x300
+>
+>    -
+>
+>    UHD finds and selects the correct FPGA image (usrp_x310_fpga_HG.lvbitx=
+)
+>    -
+>
+>    However, uhd_usrp_probe fails during RIO initialization with:
+>
+>    RuntimeError: x300_impl: Could not initialize RIO session.
+>    Unknown error. (Error code -63150)
+>
+>    -
+>
+>    vishwanath@vishwanath:~$ sudo uhd_usrp_probe
+>    [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; UHD_4.8.0.HE=
+AD-0-g308126a4
+>    [INFO] [X300] X300 initialization sequence...
+>    [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...
+>    [INFO] [X300] Using LVBITX bitfile /usr/local/share/uhd/images/usrp_x3=
+10_fpga_HG.lvbitx
+>    Error: RuntimeError: x300_impl: Could not initialize RIO session. Unkn=
+own error. (Error code -63150)
 >
 >
-> Does anyone have experience with this on Ubuntu 24.04 LTS or any
-> suggestions how to identify and fix the issue would be welcome!
+> This suggests the failure occurs after FPGA image selection, during NI-RI=
+O
+> session initialization.
 >
+> *Questions:*
 >
-> Best regards
-> Philipp
+>    1.
 >
+>    Is *NI Linux Device Drivers 2025 Q2* known to be compatible with UHD
+>    (especially when UHD is built from OAI sources) for X310/USRP-2952R ov=
+er
+>    PCIe?
+>    2.
+>
+>    Are there any *recommended UHD versions* or commits known to work
+>    reliably with USRP-2952R + PCIe on Ubuntu 22.04?
+>    3.
+>
+>    Has anyone successfully used *OAI with USRP-2952R over PCIe*, and if
+>    so, could you share the software stack versions?
+>    4.
+>
+>    Are there additional NI-RIO or kernel requirements that UHD depends on
+>    for PCIe-based X310 devices?
+>
+> Any insights, known limitations, or recommended downgrade/upgrade paths
+> would be very helpful.
+>
+> Thank you for your time and support.
+>
+> Regards,
+> Vishwanath
 >
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000069cb740648ce25dd
+--00000000000040dcf60648ce287e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Philipp and others,</div><div><br></div><div>we ha=
-ve gotten sporadic bug reports on this=C2=A0issue, and have started collect=
-ing them here:=C2=A0<a href=3D"https://github.com/EttusResearch/uhd/issues/=
-818">https://github.com/EttusResearch/uhd/issues/818</a></div><div><br></di=
-v><div>If you can please extend the bug report with some system details, we=
- might be able to narrow things=C2=A0down.</div><div><br></div><div>--Marti=
-n</div></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Thu, Jan 15, 2026 at 2:40=E2=80=AFPM Phili=
-pp Niedermayer &lt;<a href=3D"mailto:p.niedermayer@gsi.de">p.niedermayer@gs=
-i.de</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><u></u>
-
- =20
-
-   =20
- =20
-  <div>
-    <p>Dear all,</p>
-    <p>we are using the USRP X310 connected over MXI with a PCIe-8371
-      card. This used to work well up to including Ubuntu 22.04 LTS. Now
-      after updating to Ubuntu 24.04 LTS we are experiencing the
-      connecting issue described in the following. I am aware that 10G
-      Ethernet is the recommended alternative, but the PCIe connection
-      is beneficial for us, as it allows to quickly switch between FPGA
-      images for different applications on-the-fly without having to
-      power cycling the X310 (remote operation). According to NI, RIO is
-      fully supported on Ubuntu 24.04 LTS so it should work.</p>
-    <p>Does anyone have experience with this on Ubuntu 24.04 LTS or any
-      suggestions how to identify and fix the issue would be welcome!</p>
-    <p><br>
-    </p>
-    <p><b>Issue description:</b></p>
-    <p>The USRP X310 is discoverable using &quot;uhd_find_devices&quot; and=
- shows
-      up correctly as resource RIO0. It&#39;s correctly enumerated in lspci=
-e
-      using niusrpriok drivers and the niusrpriopc service is running.
-      However, everything beyond that does not work, i.e. any flowgraph
-      fails. Even the &quot;uhd_usrp_probe&quot; fails with the following a=
-fter a
-      clean reboot:</p>
-    <p><font face=3D"monospace">$ uhd_usrp_probe=C2=A0<br>
-        [INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300;
-        UHD_4.9.0.0+ds1-1~noble2<br>
-        [INFO] [X300] X300 initialization sequence...<br>
-        [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...<br>
-        [INFO] [X300] Using LVBITX bitfile
-        /usr/share/uhd/4.9.0/images/usrp_x310_fpga_HG.lvbitx<br>
-        Error: RuntimeError: x300_impl: Could not initialize RIO
-        session. Unknown error. (Error code -63150)<br>
-      </font></p>
-    <p><font face=3D"monospace">$ uhd_usrp_probe=C2=A0<br>
-        [INFO] [UHD] linux; GNU C++ version 13.3.0; Boost_108300;
-        UHD_4.9.0.0+ds1-1~noble2<br>
-        [INFO] [X300] X300 initialization sequence...<br>
-        [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...<br>
-        [INFO] [X300] Using LVBITX bitfile
-        /usr/share/uhd/4.9.0/images/usrp_x310_fpga_HG.lvbitx<br>
-        Error: RuntimeError: x300_impl: Could not initialize RIO
-        session. A fault on the network caused the RPC operation to
-        fail. (Error code -63042)</font></p>
-    <p>And every subsequent try results in the same network fault error.</p=
->
-    <p><br>
-    </p>
-    <p><b>Setup:</b></p>
-    <ul>
-      <li>USRP X310 connected over MXI with a PCIe-8371 card. Ubuntu
-        24.04 LTS x86_64 with Kernel 6.8.0-90-generic</li>
-      <li>UHD 4.9.0.0+ds1-1~noble2 and GNU Radio 3.10.12 stack installed
-        via the ppa:gnuradio/gnuradio-releases repository=C2=A0</li>
-      <li>NI drivers 2025 Q4 installed as described here:=C2=A0<a href=3D"h=
-ttps://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_hw_pcie" target=3D"_=
-blank">https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_hw_pcie</a><=
-/li>
-    </ul>
-    <p><br>
-    </p>
-    <p>Does anyone have experience with this on Ubuntu 24.04 LTS or any
-      suggestions how to identify and fix the issue would be welcome!</p>
-    <p><br>
-    </p>
-    <p>Best regards<br>
-      Philipp</p>
-    <p><br>
-    </p>
-  </div>
-
+<div dir=3D"ltr"><div>Hi Vishwanath,</div><div><br></div><div>can you pleas=
+e amend this bug report:=C2=A0<a href=3D"https://github.com/EttusResearch/u=
+hd/issues/818">https://github.com/EttusResearch/uhd/issues/818</a> ...with =
+your system details so we can get a bigger picture of what&#39;s happening.=
+</div><div><br></div><div>Thanks!</div><div><br></div><div>--Martin</div></=
+div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Sat, Jan 17, 2026 at 2:32=E2=80=AFPM P S Vishwanath =
+Koushik &lt;<a href=3D"mailto:koushikpsvishwanath@gmail.com">koushikpsvishw=
+anath@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"ltr"><p>Hello community,</p><p>I am seeking guid=
+ance regarding using <strong>USRP-2952R (X310)</strong> over <strong>PCIe</=
+strong> on a Linux host, and I would appreciate any suggestions or known-go=
+od configurations.</p><p><strong>System and software setup:</strong></p><ul=
+><li><p>Host OS: Ubuntu 22.04 LTS</p></li><li><p>USRP: NI USRP-2952R (X310)=
+, PCIe (RIO) interface</p></li><li><p>UHD: Built from source (UHD version b=
+undled with / referenced by OAI source tree)</p></li><li><p>NI Linux Device=
+ Drivers: <strong>NI USRP 2025 Q2=C2=A0<a href=3D"https://www.ni.com/en/sup=
+port/downloads/drivers/download.ni-usrp.html?srsltid=3DAfmBOor6EEe0WKBK67bW=
+6htIgwYHrSZHCqjQNjITK3N8gELTv-JB5AbO#565446" target=3D"_blank">=C2=A0driver=
+ linkj</a></strong></p></li><li><p>Installed NI packages:</p><ul><li><p>ni-=
+fpga-interface</p></li><li><p>ni-rio-mxie</p></li><li><p>ni-rseries</p></li=
+><li><p>ni-hwcfg-utility</p></li><li><pre>ni-usrp-rio</pre><p><br></p></li>=
+</ul></li></ul><p><strong>Use case:</strong><br>I am trying to interface th=
+e USRP-2952R with an <strong>OAI-based host machine</strong>, using UHD ove=
+r PCIe (RIO), not Ethernet.</p><p><strong>Observed behavior:</strong></p><u=
+l><li><p>The device is detected correctly using <code>uhd_find_devices</cod=
+e></p></li><li><p>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;=
+ UHD_4.8.0.HEAD-0-g308126a4<br>--------------------------------------------=
+------<br>-- UHD Device 0<br>----------------------------------------------=
+----<br>Device Address:<br>=C2=A0 =C2=A0 serial: <br>=C2=A0 =C2=A0 fpga: HG=
+<br>=C2=A0 =C2=A0 name: <br>=C2=A0 =C2=A0 product: X310<br>=C2=A0 =C2=A0 re=
+source: RIO0<br>=C2=A0 =C2=A0 type: x300<br><code><br></code></p></li><li><=
+p>UHD finds and selects the correct FPGA image (<code>usrp_x310_fpga_HG.lvb=
+itx</code>)</p></li><li><p>However, <code>uhd_usrp_probe</code> fails durin=
+g RIO initialization with:</p><pre><code>RuntimeError: x300_impl: Could not=
+ initialize RIO session.
+Unknown error. (Error code -63150)</code></pre></li><li><pre>vishwanath@vis=
+hwanath:~$ sudo uhd_usrp_probe<br>[INFO] [UHD] linux; GNU C++ version 11.4.=
+0; Boost_107400; UHD_4.8.0.HEAD-0-g308126a4<br>[INFO] [X300] X300 initializ=
+ation sequence...<br>[INFO] [X300] Connecting to niusrpriorpc at localhost:=
+5444...<br>[INFO] [X300] Using LVBITX bitfile /usr/local/share/uhd/images/u=
+srp_x310_fpga_HG.lvbitx<br>Error: RuntimeError: x300_impl: Could not initia=
+lize RIO session. Unknown error. (Error code -63150)<br><code>
+</code></pre></li></ul><p>This suggests the failure occurs after FPGA image=
+ selection, during NI-RIO session initialization.</p><p><strong>Questions:<=
+/strong></p><ol><li><p>Is <strong>NI Linux Device Drivers 2025 Q2</strong> =
+known to be compatible with UHD (especially when UHD is built from OAI sour=
+ces) for X310/USRP-2952R over PCIe?</p></li><li><p>Are there any <strong>re=
+commended UHD versions</strong> or commits known to work reliably with USRP=
+-2952R + PCIe on Ubuntu 22.04?</p></li><li><p>Has anyone successfully used =
+<strong>OAI with USRP-2952R over PCIe</strong>, and if so, could you share =
+the software stack versions?</p></li><li><p>Are there additional NI-RIO or =
+kernel requirements that UHD depends on for PCIe-based X310 devices?</p></l=
+i></ol><p>Any insights, known limitations, or recommended downgrade/upgrade=
+ paths would be very helpful.</p><p>Thank you for your time and support.</p=
+><p>Regards,<br>Vishwanath</p><br></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
@@ -299,9 +326,9 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---00000000000069cb740648ce25dd--
+--00000000000040dcf60648ce287e--
 
---===============0148273713733800557==
+--===============5725268058589936855==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -311,4 +338,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0148273713733800557==--
+--===============5725268058589936855==--
