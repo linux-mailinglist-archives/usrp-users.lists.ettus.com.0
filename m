@@ -2,284 +2,308 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOdOLgSib2kLCAAAu9opvQ
+	id O6eWDEHXb2n8RwAAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 16:40:52 +0100
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 20:28:01 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2340465BB
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 16:40:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5C04A5AA
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 20:28:00 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C6915385E37
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 10:21:04 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 987EE386338
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 14:27:59 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1768922464; bh=vuVwG0Z8rntjhOv9uoz3aI+kNRmZCPzSEN5QLbsyyMQ=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=AwoyWgwWyGmQshz/RqeerSwPTm+3nkCuU5XEQq5MqCoKOULn0hVao5Btj5FIUq9TU
-	 KJ9OjgjqwjP7GTuRXehrZgEtRXt9URvSrVE84CVayuz3kiIw9Bc6pTVMCL5M0G5DX3
-	 eIhWw+k7NEwrDC5N/YBheAIsqNXJfrjrFRDspImtUoI3dZ1AsqyKi7fpk6VSNK1mEV
-	 mNLlcHiFon0FonmBE1vJbvk0Ls61LRe8VIxilHEwGF3bJ25ZOQusWfS+cOsy2plYlt
-	 TqZznizYSCpzEBPe4xhmeQodQp1FBTka4mOAPbG7Cv4/JLHYYfpfIUJGAMThMNJSbC
-	 gw6Hoq/Mg+eJg==
-Received: from MX3.LL.MIT.EDU (mx3.ll.mit.edu [129.55.12.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id B77F8385E93
-	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 10:19:57 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ll.mit.edu header.i=@ll.mit.edu header.b="QyFfkFQ6";
-	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ll.mit.edu; h=content-type : date :
- from : message-id : mime-version : subject : to; s=dkim1;
- bh=avXyWhIZup+Zt1J8xTnVUbWfAJI6OQIYQAmftMkBGyQ=;
- b=QyFfkFQ6RugIiqMeoo5ILIgs7/3yvJUpFPvCUT2YjRolcyqhkFnqSflIjAheGT7Q5rRk
- w6lCKlckVHTCTalQuOlYDNWGDKBm6d5HgGgEYGukbcfSfHXlhDVg4JyqFbERMTqkIAyL
- vmc3+UmV6JGYdAMQtAshe8Xwg55wqwGrGcywTtiI+sz8x8dKpmYHa5rLw+8Vmb8s6eHK
- uJe8bdwz7XVCqM74p4Q65g5Wh4KiL8j8YE0NOyKoD3ad0GMB0mOGZFWBrbj+dx+GAb6E
- /GCdmjRVVoyRtqAwEwIYY46hcxdZ7TntRTvfLZumDKNjpYlibUEGsxpAbytvwXmPaAej fQ==
-Received: from LLEX2019-01.mitll.ad.local (llex2019-01.llan.ll.mit.edu [172.25.4.97])
-	by MX3.LL.MIT.EDU (8.18.1.2/8.18.1.2) with ESMTPS id 60KFJvws098006
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 10:19:57 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=RidinxH22NyT8Cbzdi2LxQ9Exbc+ML+Q9jiFsYekr2DVDRUzawfdYhU0yi6fRwwu88RBDZ/2BiwiE2Of8hzaeS0LeMmJOuhXMdvb2eT5E+O5tShKfJmx6+snkIOODwxoEYFpyHdgGZml+g7dOouZyNR2bNfnPGVNnrEiWDYGscfCD88EMC1FeyjMy03IAZqXSiLL0z1BMokO+IUO2xUT9tiGjZrmopJ9+oBj7Ocv7Lyi2lvrUzp9e8kaLAXvKjtd7n2qNb3oIsPgSEuoMw/cxkq2H5m7+jaXPdbr5sam322M/uHJ36/PE8Kp/4gu+2TJXyjq9yr3IgFM7zqwOUadkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=avXyWhIZup+Zt1J8xTnVUbWfAJI6OQIYQAmftMkBGyQ=;
- b=LCjXxE1/Fx/qsU7chJQ4tu5jBGkdxAy7KtopNVobkRdHE8qfbRq9yKQ578nMeB8mFPzsiXyYdL9xz4cDRL2Edk++Pjy1dp5d5NwmjJpYGifpHjaMlyBYY0hWBt4DpfaqJuoK8O5ZcUJYwVvkxqe/o9HyeA+lky33LtcxabAT4dzVxcvJdN2AJCKMAA1r1wCgFbXkM1FMOCtk2qGZGzlcElnO+ZGArR6D2HtdyFpq8HDay7SBliEEjqrVQLIbjPx726DNvrWIIwXt5BnhSDGZUQl1s8wXMU5TvmAnJsagSBkw4wHsjAwEQseww3AqQOgcRYe63ixl6YDNdGC6mjIkKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ll.mit.edu; dmarc=pass action=none header.from=ll.mit.edu;
- dkim=pass header.d=ll.mit.edu; arc=none
-From: "Jimenez Vargas, Juan - 0994 - MITLL" <Juan.JimenezVargas@ll.mit.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: RFNOC Front Panel GPIO
-Thread-Index: AQHciiAuOi2DdJhAfUC9qlKn9n+f9w==
-Date: Tue, 20 Jan 2026 15:19:54 +0000
-Message-ID: <CY1P110MB0888416ED25C0744A4AE0F17AA89A@CY1P110MB0888.NAMP110.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY1P110MB0888:EE_|PH3P110MB1799:EE_
-x-ms-office365-filtering-correlation-id: d0f0d66d-dcaf-4213-974b-08de58375d2a
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|38070700021|8096899003;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?Gx2ntwNFpoF8NCvf+lTL34hn/KhezX9EUuxfTW81mdXvYL/EvlGyFszX2o?=
- =?iso-8859-1?Q?Txq7BspFvMsfA8lCAcktslDr9bLl90vw9oxuhliBY1s9V1N2k65Z+dB7oY?=
- =?iso-8859-1?Q?bXRUjDrMIj3JL8J724wAY9tCLwinVGl1JVLH4RRNbeAuJ8EQ8x62dINirS?=
- =?iso-8859-1?Q?kkrcXwNxVadgPIG4chgut2X3MajeQ2MAOVn5ejps9iQIfeyEZaFSKpJcq7?=
- =?iso-8859-1?Q?LdmLoKmwzY4i7UOHq5kh4bnTJlJ5w7kUrJvQdbgETytPWixVvJXpuaQW9x?=
- =?iso-8859-1?Q?F5B8qqmQGoKvE/pZ6bjWdgJN/TLHYmeiKilprYkb0FCoJeGazBmWrP+Ngs?=
- =?iso-8859-1?Q?khoJN7NoiOrzDfJfxrB2H9isda+KZvVGmWBF7nW2ehfpsGOZF8Oyu+p4Fq?=
- =?iso-8859-1?Q?GCycO8A7ecVuRh4OWQlvB75g1TGVDdfc00umN8f8eRGy6I6tJtIaaaJNna?=
- =?iso-8859-1?Q?cGS2I/MpKb+JLYWYaKSFoEcDGR4nrX/E4sdHHebXq8kOSsalq+yi8HRifs?=
- =?iso-8859-1?Q?TVoBeU/P7erovDDp1mWQJ+ZNo+X1iKNbgc+5Es8egIZJvZ1erztTUHywqM?=
- =?iso-8859-1?Q?CzAfPOSu8uPantMnltrQvI6eMFvyrdqqhGYW/RlZ3e5E1URInoApp2PN2B?=
- =?iso-8859-1?Q?MX42n+AuXPx1j4cXByhcePiPP0FYbwWbys1imTO7xh3sHC2dGYsWzwTb0x?=
- =?iso-8859-1?Q?CGBRpJWGBlVHsyTuHWPHtr5GF4IFQchANDoSTHc/uqlEQFKv7KYsXCBqiC?=
- =?iso-8859-1?Q?f6mUSMpoN19wrQ0dgZZwrNlw01qopSdTdVWWNP9H27CZ4LSVdF8QCJDTjD?=
- =?iso-8859-1?Q?ORAui2Vgc2TnYaa04Y9oOJyPgwnFwjK7Og8Okf9UloyRHsWIa4vzvt55es?=
- =?iso-8859-1?Q?n34Vk3++nT/qtayF/ExihVDitjaddbiiwFCucFLW9XQnqMbNSB0skTGjv0?=
- =?iso-8859-1?Q?8DXiofMh8e5ZqLT9YSRR2Re10a+/K5bVBkmrrdXBUQAjxdiQp91TdVdbex?=
- =?iso-8859-1?Q?/2jAoqUX/jASGslBDQI0u/NIvOG9166EHqHGqbDxXlqXhWQTGfzy7dY1Lz?=
- =?iso-8859-1?Q?S7r4aFyNty0LEDBvvX7OsKRvobtY791XGzL8AHnf60ZMSzs/BssO1R7EL8?=
- =?iso-8859-1?Q?cfFQRSuZ8zXBg4LTSxocg/MlcNW4FOMIDNSSzruLD8RAvMgAFA4JXHJf7d?=
- =?iso-8859-1?Q?7LSEI3kor3u7hK69sx+iydrw/tjZ/Dqe8l86I1yMhl0Wl0VYVdb0kAgiEz?=
- =?iso-8859-1?Q?+2Qav/TgWATvGknHu2adHhJfPTYEh8X/rkk5rJMrETe87I4OYOC+LPwcOo?=
- =?iso-8859-1?Q?cvqo0HbUnGiojUJ5ajTcXrnu/6codXee898eDwayKFaoayUiFDIfBf+wj4?=
- =?iso-8859-1?Q?+rryI/Jouf0/9cwgYWSQXjVDSeWzKyVH7PzIvrR2fwCZ24EXtJVIxdO3k1?=
- =?iso-8859-1?Q?OD1qMGOjmakR27gh0SnmYQRb/FyPnfPLyF2T/zuot0yIXv/ockVtbO5/qH?=
- =?iso-8859-1?Q?idcogJx5UrUFDfAYlaNDQrqP87BCqUjavAoiXPeDQKTtifSPla+jj1qJ9N?=
- =?iso-8859-1?Q?0Z+5flDDCblPzzbbbkT7o0QKfnMNSZWsKC2PHFLyLfzVDZjNM9RN5+6E5q?=
- =?iso-8859-1?Q?hw7fOhXuqqK54OxtbA99BqWBKGzgbRhyEuS9M0zmJKMYpICECnngYIalBY?=
- =?iso-8859-1?Q?8vdVW/E0Up1/uYvaqQA=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY1P110MB0888.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(38070700021)(8096899003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?6x62z/8OaXHG72GqlFXxe9accV9A0LkTee3m7Uv7e9TourIynkIqEajyXe?=
- =?iso-8859-1?Q?irniQJ4HRNw7HQ/6aV29c7rk9mk1PsoAUpZs1YzscLeIo9J5F/5fs4Nzsy?=
- =?iso-8859-1?Q?vEn8bJb7SrV33TdTOFA5Z9a7MnTicYGwtmB4QlIzOEJ9zrm+e+gPgj5JBf?=
- =?iso-8859-1?Q?XHI5cjdfd3jGDwBp24tUaSUrWknrZZufGuXRmpNSaZUOZZ1HYhosHQzs9s?=
- =?iso-8859-1?Q?pQ6CASVg2Y2nxIR2Tim07GKcZI7WQpOehLmuuWFiXpXxZi2GiWlAzDvCUk?=
- =?iso-8859-1?Q?1Mc4dfIe/SVNW8Nl8i8i2vvAWWDe612SarWU1mM9Rqk1HZPz+P0GSyQFyk?=
- =?iso-8859-1?Q?qfBiLjyO3kzHH1CZKDAhaer+fkED4vJ0RMQ3uADzbBlySLhsTtA8f7qiZv?=
- =?iso-8859-1?Q?gVmLQD/xbitjbupKGCLZnq1roEMeJiuMnBvcVwmIu0ntyLskfzUcA4jusW?=
- =?iso-8859-1?Q?UQnI1qkc4J43WWvG4M1x+SbzcUA97jcKIm/A+aOwbJBeYx8WNCV6UxBHoQ?=
- =?iso-8859-1?Q?+Lat2aNxh5eNAw9b2L1tfyL1D1OQoTBODJKSzoXCJs4VXd+ICv4l9B95yD?=
- =?iso-8859-1?Q?4b/KkDalqCIuXKoDO22i2XCNa59UtigJt7IUw25Wo8lVl1C7eDbSCbRgJt?=
- =?iso-8859-1?Q?hTiYYAvuxSQJvkpLA7gdXwJa5Wbe3xicfKrWjv9fyfwMlF8kwZzwlZXctD?=
- =?iso-8859-1?Q?MmUgtzirl5u3btF/gjVGgTrx+55jsd95iLdg+pggzqk+3jNCQXigerRHYO?=
- =?iso-8859-1?Q?2a9R683GaAbLmBtsforv9AVT5cR8GDy0SQFby4e/v/jqOgirxx5uNax87E?=
- =?iso-8859-1?Q?mUcVj+p1r0sBsImBWKrrphuoOy4sr/H3YAuBj1wA/7s0KiGveWNWThCa8k?=
- =?iso-8859-1?Q?sD7355KQFPX0oU0Zk8qW6gncEkX5dZBKtS+Qg/luZC/PrLjBvjcTjcgJCQ?=
- =?iso-8859-1?Q?1BnQ47oEcku1T0UNAT/puCfDjeee4p6xwT4aOkfo+s0G5SWfAwFsS5m01T?=
- =?iso-8859-1?Q?BDmzTo+MI8hD0uJeBhYi/2oFRo2yDzIafGn5YO7eg0m+br/Ofuu1kp+wGa?=
- =?iso-8859-1?Q?zxQZNz20n36HzlnAVokIzxhIm8X1zy9M1MRsq4aUoA7chLz4SKkYkeATQS?=
- =?iso-8859-1?Q?icJ47yo526a3ytCiqkF2zU7YqNXknO7C7R2Ym6qjkR8kOJnhzBQsS3pvYJ?=
- =?iso-8859-1?Q?80yQwNVoB1MG/58cf7VWRkjia7ru9J7mn2Ude1mGSNkhTAkKdvmOIXksus?=
- =?iso-8859-1?Q?Jm3pDa1nSwvadLDBPolTNQh6eB6aWl/QuNb2Va25aCuZs5ktztolsRE1EQ?=
- =?iso-8859-1?Q?IkUqaZmhA1KVRZWCwB8Gk1W8zvr4RusMk8QWDToeeIsDs0qRQMf7gZPhN5?=
- =?iso-8859-1?Q?Fi2VyGpPFRk6R5tmWFztYJP/KtrQ1E3OwZTlSMohaq3tro7lsE/o8wtXlj?=
- =?iso-8859-1?Q?JEzc/mODtHVW2texoeIR6DjOBI7nMofcZ0Ynj/tOfFmKM+/ZKJ+arUMgX/?=
- =?iso-8859-1?Q?sWrcEUU/Jtrw+N/Eh57I+wFXUlgX7MGPERQTlW0bWVzhtYfQu68GeY+gQ+?=
- =?iso-8859-1?Q?GAYBCNb2rt/Ciqr3Se2LHA8aY/dl?=
+	t=1768937279; bh=Mx+yJembamsCF0hlE4/RSEJKP8A7j3q9NNXNXOMSM7I=;
+	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
+	 From;
+	b=nmMbGIq4S15Pmchlu08S24omNzD9BaDVxky3rZ2buR0PDOK6Jql+fi84TI8Wt6reo
+	 vU1AXBBrBAjJeNEedKAKUbWGZA9Ak+8Xvyoqac0xG5J2BJjie4cvPxKlgyqbl9QKNx
+	 79SXQhUTI5ZgpAaoLoVG7rco1hupnfhHI7WXPREnCBNFucIskH9HXZQjZuGfzD3uGL
+	 Z3uOdJ3AInomgWjhCLVVi/t8vIsU1Kw4Xj2gXEsdqYmrtXX+d9Pih7glU0C6j1v5Fr
+	 t+NFdZ+SLLY4OvLXuf2jB0iGjM00CpwBYPn0U7A7OTsCqk4QZOVZgJcIz/jl7ascFh
+	 sF2orlcaMfMOg==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id DBC20385A65
+	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 14:26:48 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1768937208; bh=POrshkNq7tUfaebHx3Wd3Sgn98EwIW6C3NtZYWB/YYA=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=Vw/m9nWrkeSJyTy8dJxMboiAtgooeIiz4XZr7RaHg+AccyhQou/nlVly8M2dnFYga
+	 3CW193LinMvexNUcWogyMNfPOc+0GO+eamSKp++bk4J7bIvVNT77hiP3xq1+0y6yiR
+	 /tzKQj9dcM9jZfmojvvYqToQrN9KiTqH5fC4Kc6ZfyTAidjm8PKnv+r43hsZTv9rYq
+	 cAN35fTv8Px0tbldaGZ2MfN69y0jZimaUeKa4rlyT89/YB3d3+Cd7/Sqa/vhVicFQA
+	 +P3s/2p00f4hj2Gk6btIM4C9BVIt4Ca8KWWqCidbWvaFzN4UIdEunDeJZqIWIvQkoY
+	 wF0DDmSkzSzAA==
+Date: Tue, 20 Jan 2026 19:26:48 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <sMlLGLRKWHiFIG0jFKd8Cx2lK6U2M32BelF4mjpo@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CY1P110MB0888416ED25C0744A4AE0F17AA89A@CY1P110MB0888.NAMP110.PROD.OUTLOOK.COM
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY1P110MB0888.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0f0d66d-dcaf-4213-974b-08de58375d2a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2026 15:19:54.2447
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 83d1efe3-698e-4819-911b-0a8fbe79d01c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3P110MB1799
-X-Proofpoint-ORIG-GUID: j72JW2y199YMqhr4eiRfQzVKBxVWuU-j
-X-Proofpoint-GUID: j72JW2y199YMqhr4eiRfQzVKBxVWuU-j
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDEyNiBTYWx0ZWRfX+Qxzad1ujaPy
- gvrMyvKAcA2z2lN4zlnTEOn1UIicsKnSingU+VkuFhgGOYzBgG9zqtMfggcfGQ417yP25t+gZbF
- alUbREnSFHP3XZf2c8l6z9WXeTKgwFQRigRG5B5T5hO5eW8vyTpYVWfKckes3zV/CBRgK4T3hk3
- nUSLRaK2wfe+Gj4Dz5Ca4LkWV3zljY51I0/9o8PZ2P/lnGtoxvBqDNqKldrV3bRMcVJYiUokbvc
- TXVORNit4z4x93ca1YcswC7zqwzgf1kVpVnC5V9VrvgPxO+guVZw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-20_04,2026-01-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- mlxlogscore=368 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2601150000 definitions=main-2601200126
-Message-ID-Hash: NZ4OHZ7UYVXJB7W52YCXWWBBFYXE43V5
-X-Message-ID-Hash: NZ4OHZ7UYVXJB7W52YCXWWBBFYXE43V5
-X-MailFrom: prvs=7480cde64f=juan.jimenezvargas@ll.mit.edu
+Message-ID-Hash: 2LEDG5CH7NKOYR2BW3JPG5XT6NDHEMBV
+X-Message-ID-Hash: 2LEDG5CH7NKOYR2BW3JPG5XT6NDHEMBV
+X-MailFrom: joerg.hofrichter@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] RFNOC Front Panel GPIO
+Subject: [USRP-users] Re: RFNOC Front Panel GPIO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NZ4OHZ7UYVXJB7W52YCXWWBBFYXE43V5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2LEDG5CH7NKOYR2BW3JPG5XT6NDHEMBV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7702082006675940037=="
-X-Spamd-Result: default: False [0.59 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+From: "joerg.hofrichter--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: joerg.hofrichter@emerson.com
+Content-Type: multipart/mixed; boundary="===============0230404852314190466=="
+X-Spamd-Result: default: False [-0.51 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
-	DMARC_POLICY_SOFTFAIL(0.10)[ll.mit.edu : No valid SPF, DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	TAGGED_RCPT(0.00)[usrp-users];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_ONE(0.00)[1];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	R_SPF_NA(0.00)[no SPF record];
-	DKIM_MIXED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Juan.JimenezVargas@ll.mit.edu,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_REJECT(0.00)[ll.mit.edu:s=dkim1];
-	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[emwd.com:+,ll.mit.edu:-]
-X-Rspamd-Queue-Id: D2340465BB
+	HAS_PHPMAILER_SIG(0.00)[];
+	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
+	DKIM_MIXED(0.00)[];
+	DMARC_NA(0.00)[ettus.com];
+	R_SPF_NA(0.00)[no SPF record];
+	RCPT_COUNT_ONE(0.00)[1];
+	TO_EQ_FROM(0.00)[];
+	R_DKIM_REJECT(0.00)[emwd.com:s=harmony];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,emwd.com:-];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	HAS_REPLYTO(0.00)[joerg.hofrichter@emerson.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[usrp-users];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ettus.com:email,uhd.readthedocs.io:url]
+X-Rspamd-Queue-Id: 8D5C04A5AA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============7702082006675940037==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+
+--===============0230404852314190466==
 Content-Type: multipart/alternative;
-	boundary="_000_CY1P110MB0888416ED25C0744A4AE0F17AA89ACY1P110MB0888NAMP_"
+ boundary="b1_sMlLGLRKWHiFIG0jFKd8Cx2lK6U2M32BelF4mjpo"
+Content-Transfer-Encoding: 7bit
 
---_000_CY1P110MB0888416ED25C0744A4AE0F17AA89ACY1P110MB0888NAMP_
-Content-Type: text/plain; charset="iso-8859-1"
+This is a multi-part message in MIME format.
+
+--b1_sMlLGLRKWHiFIG0jFKd8Cx2lK6U2M32BelF4mjpo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Juan,
 
-I am interested in making a custom RFNOC block that drives the GPIO of an N=
-310 device based on the LSB of the incoming samples. Is there some interfac=
-e for controlling the GPIO of a device through RFNOC? Would anyone happen t=
-o know a method for directly controlling the state of the GPIO from within =
-a RFNOC block without breaking the logic that already controls the GPIO in =
-the devices?
+your question comes just at the right time - we were working on exactly t=
+his feature (front-panel access from custom RFNoC blocks - for **all** RF=
+NoC enabled devices) recently. The necessary changes are now available in=
+ uhd master and were not yet published as an official UHD release (latest=
+ UHD release at the time of writing, mid January 2026: UHD 4.9.0.1).
 
-Thanks,
+What you need is the following:
 
-Juan Jimenez
+1. Build and Install UHD
 
+   * Build UHD from source using uhd master; install UHD (as long as ther=
+e is no new official UHD release after UHD 4.9.0.1)
 
---_000_CY1P110MB0888416ED25C0744A4AE0F17AA89ACY1P110MB0888NAMP_
-Content-Type: text/html; charset="iso-8859-1"
+2. Prepare your RFNoC block
+
+   * Write your own RFNoC block. For writing the block as an out-of-tree =
+block, use the =E2=80=9Crfnoc_modtool=E2=80=9D utility. It now offers an =
+interactive dialogue for creating new RFNoC blocks.
+
+     * your RFNoC block .yml file (e.g. my_gpio_block.yml) needs to have =
+an IO port of type =E2=80=9Cgpio=E2=80=9D:\
+       parameters:\
+         GPIO_WIDTH: ${ config.device.parameters\['FP_GPIO_BANK_WIDTH'\] =
+}\
+       (=E2=80=A6)\
+       io_ports:\
+         gpio:\
+           type: gpio\
+           drive: master\
+           parameters:\
+             width: "${parameters\['GPIO_WIDTH'\]}"
+
+     * Your RFNoC block implementation in Verilog (e.g. rfnoc_block_my_gp=
+io_block.v) needs these additional signals:\
+       // GPIO interface\
+       output wire \[GPIO_WIDTH-1:0\]  gpio_out,\
+       output wire \[GPIO_WIDTH-1:0\]  gpio_ddr,\
+       input wire  \[GPIO_WIDTH-1:0\]  gpio_in
+
+     * In your RFNoC block implementation in Verilog (e.g. rfnoc_block_my=
+_gpio_block.v), set gpio_ddr\[i\] to 1 if you want GPIO pin i to be outpu=
+t. Set gpio_out\[i\] to 1 if you want to drive the GPIO pin i high. gpio_=
+in\[i\] is the input value.
+
+     * Your RFNoC image core .yml file (e.g. n310_rfnoc_image_core_with_m=
+y_gpio.yml) needs to instantiate the new block. Connect the =E2=80=9Cgpio=
+=E2=80=9D port of your block (e.g. =E2=80=9Cmy_gpio_block0=E2=80=9D) to t=
+he fp_gpio port of the device:\
+       noc_blocks:\
+         (=E2=80=A6)\
+         my_gpio_block0:\
+           block_desc: 'my_gpio_block.yml'\
+       connections:\
+         (=E2=80=A6)\
+         # BSP connections\
+         (=E2=80=A6)\
+         - { srcblk: my_gpio_block0, srcport: gpio,     dstblk: _device_,=
+   dstport: fp_gpio         }
+
+3. Build the FPGA
+
+   * Use rfnoc_image_builder to build the FPGA from your image core file =
+(e.g. rfnoc_image_core -y n310_rfnoc_image_core_with_my_gpio.yml (=E2=80=A6=
+) )
+
+4. Embedded filesystem on the N310 :
+
+   * Use UHD 4.9.0.0/4.9.0.1 filesystem (as long there is no new UHD rele=
+ase after UHD 4.9.0.1)
+
+   * apply the following patch on the device (below /usr/lib/python3.10/s=
+ite-packages/usrp_mpm): https://github.com/EttusResearch/uhd/commit/d7a5d=
+ba76e261e111c1b0169654b0ce956a4673e (as long there is no new UHD release =
+after UHD 4.9.0.1)
+
+   * after applying patch, either reboot or execute =E2=80=9Csystemctl re=
+start usrp-hwd=E2=80=9D
+
+5. Write and run your host application
+
+   * The host application needs to set the GPIO source for the desired GP=
+IO pins to =E2=80=9CUSER_APP=E2=80=9D (which stands for: the GPIO pin is =
+controlled by user logic).
+
+   * Use the API functions uhd::usrp::multi_usrp::set_gpio_src \[1\] or u=
+hd::rfnoc::mb_controller::set_gpio_src \[2\] for this.
+
+   * Example for using the multi-USRP API from Python:\
+     usrp =3D uhd.usrp.MultiUSRP("addr=3D192.168.10.2") # replace with th=
+e actual IP address of your N310\
+     usrp.get_gpio_src_banks() # this returns \['FP0'\]\
+     usrp.get_gpio_src(=E2=80=9CFP0=E2=80=9D) # this returns \['RF0', 'RF=
+0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0'\=
+] in case the sources were not modified after UHD session initialization\
+     n =3D 1\
+     m =3D 11\
+     usrp.set_gpio_src(=E2=80=9CFP0=E2=80=9D, \[=E2=80=9CUSER_APP=E2=80=9D=
+\]\*n + \[=E2=80=9CRF0=E2=80=9D\]\*m) # use RFNoC as source for the first=
+ n GPIO pins, use the GPIO ATR states for the other m GPIO pins.\
+     usrp.get_gpio_src(=E2=80=9CFP0=E2=80=9D) # this should return the de=
+sired GPIO sources
+
+   * After the GPIO source was set to =E2=80=9CUSER_APP=E2=80=9D for the =
+desired pin, the physical value of this pin will be determined by the log=
+ic which you have defined in your RFNoC block (e.g. rfnoc_block_my_gpio_b=
+lock.v). **Please** **double check** that you are not driving pins from t=
+wo sources (e.g. for the pins that you defined as output in the FPGA, don=
+=E2=80=99t connect circuitry to the GPIO pins which drives the wire).
+
+Please let me know if you were successful in using the new front-panel GP=
+IO from RFNoC feature. If not, feel free to ask additional questions.
+
+Kind regards,\
+J=C3=B6rg
+
+\[1\] https://uhd.readthedocs.io/en/latest/classuhd_1_1usrp_1_1multi__usr=
+p.html#a50538e29e9b2053fe303dfc9dd3a217b\
+\[2\] https://uhd.readthedocs.io/en/latest/classuhd_1_1rfnoc_1_1mb__contr=
+oller.html#ad278664eb8b74f9695237393553897bd
+
+--b1_sMlLGLRKWHiFIG0jFKd8Cx2lK6U2M32BelF4mjpo
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
-, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
-ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
-0, 0);" class=3D"elementToProof">
-Hello,</div>
-<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
-, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
-ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
-0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
-, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
-ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
-0, 0);" class=3D"elementToProof">
-I am interested in making a custom RFNOC block that drives the GPIO of an N=
-310 device based on the LSB of the incoming samples. Is there some interfac=
-e for controlling the GPIO of a device through RFNOC? Would anyone happen t=
-o know a method for directly controlling
- the state of the GPIO from within a RFNOC block without breaking the logic=
- that already controls the GPIO in the devices?</div>
-<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
-, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
-ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
-0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
-, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
-ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
-0, 0);" class=3D"elementToProof">
-Thanks,</div>
-<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
-, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
-ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
-0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
-, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
-ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
-0, 0);" class=3D"elementToProof">
-Juan Jimenez</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-</body>
-</html>
+<p>Hi Juan,</p><p>your question comes just at the right time - we were work=
+ing on exactly this feature (front-panel access from custom RFNoC blocks - =
+for <strong>all</strong> RFNoC enabled devices) recently. The necessary cha=
+nges are now available in uhd master and were not yet published as an offic=
+ial UHD release (latest UHD release at the time of writing, mid January 202=
+6: UHD 4.9.0.1).</p><p>What you need is the following:</p><ol><li><p>Build =
+and Install UHD</p><ul><li><p>Build UHD from source using uhd master; insta=
+ll UHD (as long as there is no new official UHD release after UHD 4.9.0.1)<=
+/p></li></ul></li><li><p>Prepare your RFNoC block</p><ul><li><p>Write your =
+own RFNoC block. For writing the block as an out-of-tree block, use the =
+=E2=80=9Crfnoc_modtool=E2=80=9D utility. It now offers an interactive dialo=
+gue for creating new RFNoC blocks.</p><ul><li><p>your RFNoC block .yml file=
+ (e.g. my_gpio_block.yml) needs to have an IO port of type =E2=80=9Cgpio=
+=E2=80=9D:<br>parameters:<br>  GPIO_WIDTH: ${ config.device.parameters['FP_=
+GPIO_BANK_WIDTH'] }<br>(=E2=80=A6)<br>io_ports:<br>  gpio:<br>    type: gpi=
+o<br>    drive: master<br>    parameters:<br>      width: "${parameters['GP=
+IO_WIDTH']}"</p></li><li><p>Your RFNoC block implementation in Verilog (e.g=
+. rfnoc_block_my_gpio_block.v) needs these additional signals:<br>// GPIO i=
+nterface<br>output wire [GPIO_WIDTH-1:0]  gpio_out,<br>output wire [GPIO_WI=
+DTH-1:0]  gpio_ddr,<br>input wire  [GPIO_WIDTH-1:0]  gpio_in</p></li><li><p=
+>In your RFNoC block implementation in Verilog (e.g. rfnoc_block_my_gpio_bl=
+ock.v), set gpio_ddr[i] to 1 if you want GPIO pin i to be output. Set gpio_=
+out[i] to 1 if you want to drive the GPIO pin i high. gpio_in[i] is the inp=
+ut value.</p></li><li><p>Your RFNoC image core .yml file (e.g. n310_rfnoc_i=
+mage_core_with_my_gpio.yml) needs to instantiate the new block. Connect the=
+ =E2=80=9Cgpio=E2=80=9D port of your block (e.g. =E2=80=9Cmy_gpio_block0=
+=E2=80=9D) to the fp_gpio port of the device:<br>noc_blocks:<br>  (=
+=E2=80=A6)<br>  my_gpio_block0:<br>    block_desc: 'my_gpio_block.yml'<br>c=
+onnections:<br>  (=E2=80=A6)<br>  # BSP connections<br>  (=E2=80=A6)<br>  -=
+ { srcblk: my_gpio_block0, srcport: gpio,     dstblk: _device_,   dstport: =
+fp_gpio         }</p></li></ul></li></ul></li><li><p>Build the FPGA</p><ul>=
+<li><p>Use rfnoc_image_builder to build the FPGA from your image core file =
+(e.g. rfnoc_image_core -y n310_rfnoc_image_core_with_my_gpio.yml (=E2=80=
+=A6) )</p></li></ul></li><li><p>Embedded filesystem on the N310 :</p><ul><l=
+i><p>Use UHD 4.9.0.0/4.9.0.1 filesystem (as long there is no new UHD releas=
+e after UHD 4.9.0.1)</p></li><li><p>apply the following patch on the device=
+ (below /usr/lib/python3.10/site-packages/usrp_mpm): https://github.com/Ett=
+usResearch/uhd/commit/d7a5dba76e261e111c1b0169654b0ce956a4673e (as long the=
+re is no new UHD release after UHD 4.9.0.1)</p></li><li><p>after applying p=
+atch, either reboot or execute =E2=80=9Csystemctl restart usrp-hwd=E2=80=
+=9D</p></li></ul></li><li><p>Write and run your host application</p><ul><li=
+><p>The host application needs to set the GPIO source for the desired GPIO =
+pins to =E2=80=9CUSER_APP=E2=80=9D (which stands for: the GPIO pin is contr=
+olled by user logic).</p></li><li><p>Use the API functions uhd::usrp::multi=
+_usrp::set_gpio_src [1] or uhd::rfnoc::mb_controller::set_gpio_src [2] for =
+this.</p></li><li><p>Example for using the multi-USRP API from Python:<br>u=
+srp =3D uhd.usrp.MultiUSRP("addr=3D192.168.10.2") # replace with the actual=
+ IP address of your N310<br>usrp.get_gpio_src_banks() # this returns ['FP0'=
+]<br>usrp.get_gpio_src(=E2=80=9CFP0=E2=80=9D) # this returns ['RF0', 'RF0',=
+ 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0', 'RF0'] in c=
+ase the sources were not modified after UHD session initialization<br>n =3D=
+ 1<br>m =3D 11<br>usrp.set_gpio_src(=E2=80=9CFP0=E2=80=9D, [=E2=80=9CUSER_A=
+PP=E2=80=9D]*n + [=E2=80=9CRF0=E2=80=9D]*m) # use RFNoC as source for the f=
+irst n GPIO pins, use the GPIO ATR states for the other m GPIO pins.<br>usr=
+p.get_gpio_src(=E2=80=9CFP0=E2=80=9D) # this should return the desired GPIO=
+ sources</p></li><li><p>After the GPIO source was set to =E2=80=9CUSER_APP=
+=E2=80=9D for the desired pin, the physical value of this pin will be deter=
+mined by the logic which you have defined in your RFNoC block (e.g. rfnoc_b=
+lock_my_gpio_block.v). <strong>Please</strong> <strong>double check </stron=
+g>that you are not driving pins from two sources (e.g. for the pins that yo=
+u defined as output in the FPGA, don=E2=80=99t connect circuitry to the GPI=
+O pins which drives the wire).</p></li></ul></li></ol><p>Please let me know=
+ if you were successful in using the new front-panel GPIO from RFNoC featur=
+e. If not, feel free to ask additional questions.</p><p>Kind regards,<br>J=
+=C3=B6rg</p><p>[1] https://uhd.readthedocs.io/en/latest/classuhd_1_1usrp_1_=
+1multi__usrp.html#a50538e29e9b2053fe303dfc9dd3a217b<br>[2] https://uhd.read=
+thedocs.io/en/latest/classuhd_1_1rfnoc_1_1mb__controller.html#ad278664eb8b7=
+4f9695237393553897bd</p>
 
---_000_CY1P110MB0888416ED25C0744A4AE0F17AA89ACY1P110MB0888NAMP_--
+--b1_sMlLGLRKWHiFIG0jFKd8Cx2lK6U2M32BelF4mjpo--
 
---===============7702082006675940037==
+--===============0230404852314190466==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -289,4 +313,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7702082006675940037==--
+--===============0230404852314190466==--
