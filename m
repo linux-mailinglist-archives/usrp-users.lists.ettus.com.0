@@ -1,334 +1,285 @@
 Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
-X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
+Received: from mail.lfdr.de
+	by lfdr with LMTP
+	id eOdOLgSib2kLCAAAu9opvQ
+	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 16:40:52 +0100
+X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60786D3C308
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 10:09:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2340465BB
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 16:40:51 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B3FC938608E
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 04:09:55 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id C6915385E37
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 10:21:04 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1768900195; bh=gbwAIYh2OU/elqt7XBtbAlm5ep+AznyPR4vizS5c3jQ=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=MwNBmCAmT2kIxsvnsAck+Dpppn/dCWX9S+6Rg6mAMZosq5Y5YuvO06iFdt4Phg2Li
-	 7ht9w/pwWlZojnL6AiYc/T/XUcGfZKpxTrJtUD0ZkCDOsIb328MsFDu0phe4DanWEx
-	 zAyJLElHMeEyLT1OBuDR6AoD7auQsphKcy9jNjjkeaB6DfuUNDM6BtshE76OtlUSqX
-	 E+oUqQ1AednW9WzxZTmQyIYA/wFXogQKGtM8hhiiKCjrmo1f2+7t1QJP0pGn1BoSL+
-	 fmgIDDtb2rMv3Z0a8At0MBlPUCv8nisCU9vGQw/aYA4NEky0ZEDFv/LcRoQbambo4z
-	 ZViwPEQJHDAsg==
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id CF9FA386268
-	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 04:08:56 -0500 (EST)
+	t=1768922464; bh=vuVwG0Z8rntjhOv9uoz3aI+kNRmZCPzSEN5QLbsyyMQ=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=AwoyWgwWyGmQshz/RqeerSwPTm+3nkCuU5XEQq5MqCoKOULn0hVao5Btj5FIUq9TU
+	 KJ9OjgjqwjP7GTuRXehrZgEtRXt9URvSrVE84CVayuz3kiIw9Bc6pTVMCL5M0G5DX3
+	 eIhWw+k7NEwrDC5N/YBheAIsqNXJfrjrFRDspImtUoI3dZ1AsqyKi7fpk6VSNK1mEV
+	 mNLlcHiFon0FonmBE1vJbvk0Ls61LRe8VIxilHEwGF3bJ25ZOQusWfS+cOsy2plYlt
+	 TqZznizYSCpzEBPe4xhmeQodQp1FBTka4mOAPbG7Cv4/JLHYYfpfIUJGAMThMNJSbC
+	 gw6Hoq/Mg+eJg==
+Received: from MX3.LL.MIT.EDU (mx3.ll.mit.edu [129.55.12.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id B77F8385E93
+	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 10:19:57 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="kYwKHwr6";
+	dkim=pass (2048-bit key; unprotected) header.d=ll.mit.edu header.i=@ll.mit.edu header.b="QyFfkFQ6";
 	dkim-atps=neutral
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-88a2e3bd3cdso51952096d6.0
-        for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 01:08:56 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1768900136; cv=none;
-        d=google.com; s=arc-20240605;
-        b=JcIl8npNPoAd2oaaKRK6U4Tf9V16i7O7Z0puUYrOCJuoAerAK/ube9bT/EFdaJwigF
-         m/iYW95OzPglv0T2T2F/+uor96gomhGKLaUW8wdOROnHHAad2w4xsBAhsmyoP39bkqdS
-         P78GdWyiEpXj0rdci7wZPJju/nrrpUpYRYbNX/noEUGyNbDdxX9BHz0Ufis1hW3x7ukU
-         v3WQcDNQHk8C8lX49c+y82EJ8tykrhRfIdEgtQ2D4IZX3CZvFJjMkhM91Lj/O1VESN3E
-         7pdz7kVwD+kT2chyz32hc13AeiE/AU9FN0BZN2sz7ZrbUG9xnoUbWtkjy5bYWU2u2lY3
-         2v2g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=GKgPNGv7dF5zfcjxHm4x62hRWgK1F3FjfG9JyDc65J8=;
-        fh=p7VlfDdZp+EpD6H9MeMQavN8IacX+oZG4K/LI1eE0ss=;
-        b=ImfY1lFwDZRrJJD+I14bxb3ZlF8bYpAk4b7mc38tD0Q8mlZi3dwSppjEkRneBkjdsP
-         d04i7Jg97X4WBQCxMjfFHA+aBUq03p5P3jJvD8qGRhrGJhxMCewNK9Dzak+Le0HrxYek
-         LcC5ne2j5JsephsoNzvG6tWX5cwBuGkZynCzbHArtt2NfO+Lyr3anjwSUJ1FLjFzkDJh
-         HE9pljrurVwK2i9KpAo9ymuoG6cIEXm2cm1S5XfCYDYEd+DIbEViFHIZAfzh7niDcBcB
-         e11WFyEtpdWQLREh1xiVH47dj90tgiCbY2aZdI6MJCR5sXrjEi60TdhcjE8Kco68Z4yD
-         wf3A==;
-        darn=lists.ettus.com
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1768900136; x=1769504936; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GKgPNGv7dF5zfcjxHm4x62hRWgK1F3FjfG9JyDc65J8=;
-        b=kYwKHwr6GbbJVUSf5HDPXj1rtBJ2lc5boJlzgfFDaqkbPoCk5/OhCwxFCwVj897cIl
-         8L8hIEVqk4xqS8fLvd0i/ua57bL2mAZltPKy1gRHXWBqIR1FL+6FXp88ChjXy6H6p6wQ
-         Gl+HoeMk9rFFCI3kvQd6HH7fsnJa+ppHlvZzHiHNLr6Li0iaP3XWmbO0+VltjS6tJvbu
-         pPRHY55FyTESK8gsbeTFuP1INrHVezQG+DySrLXW3ZoVdPR/ijTGrzTDtdCA6yZFJBo2
-         oZzokCg2zSo+IFVF2RA2uXXLYO8FsRVp8Ny0E5Fi6QSVtpb1cfn66h1SjBUG2FTccL/W
-         pAzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768900136; x=1769504936;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GKgPNGv7dF5zfcjxHm4x62hRWgK1F3FjfG9JyDc65J8=;
-        b=taTBU1yfgXED/yKMvor87/H6k3PKY1zv/AXMX11wAB6lvIoBxQhZfGO21c5BRQ2Kgt
-         slQFiNy2spMwhukv3jHY2rQBdaa2ukVbOwxT81t1N1LzLZSkJrPFVtEkC6KL5Cep1gCy
-         5tw5qDwoN+F+3TJP/4ClLJ8DxDwzMBLOSjoDuiS8YGGuVLJKCmLBVgyT0UItW9R662yJ
-         6vGj6CR4hl9ir0H/X367nBsdUoo7n3UAc0FndAnoBgoodmrAEJ5JfOU6so3377NBrJCx
-         asH//CsH4tpOSdRSYYaJjf2oCti8jWuOU+gcSHzSsIiw8+IfXpujms9ak3TtoejZlAFK
-         lg6w==
-X-Gm-Message-State: AOJu0Ywg/mhi0sG+93ruXAMzIIm4KFAH3nks+ga5egsOeZVSI/VaPgJc
-	ShYw92+pzhM/mmGCAjXDDxCPfRIzqQVD31VIhK8muXWSiHAV09O0cLE6Ux4sbffULHXokAaMKGY
-	2yagF0yKqjzkBat1O5mY69+HVGN2/7UYsgmYqTjsXsLRthOJQdKZws7IbRg==
-X-Gm-Gg: AZuq6aK8xQaFc+fLHzwjl/Xd0EYloukFroKLNUehfvjl5mD4z2GSkfqnYS6VVZHjvjx
-	GmKsf7girQvbRNwBZtzEY5esTBcWlw+TwAfRlDCCbI/sJA3E2zHDgk9UXqBwxGSB/6VNP6NORFn
-	XA3pjKtPbKZhGKooo1nc+vGSXNm4FuBd+n4kEUDmL/NikZWruyXgFGi/jZqPgOYyQqpXnSEa3cV
-	pE2Ub3CNoUAzozQ7iRqG56jx3aEwD1wj0tjGy6o9hqMl97fJgYkUVM8yKinYUXNdrlHVMkkU5lt
-	LQH/rZK0hDwZ3lTYiI0W2KeQag==
-X-Received: by 2002:a05:6214:f28:b0:88a:2ed6:252 with SMTP id
- 6a1803df08f44-89389f8586emr218193156d6.5.1768900136061; Tue, 20 Jan 2026
- 01:08:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ll.mit.edu; h=content-type : date :
+ from : message-id : mime-version : subject : to; s=dkim1;
+ bh=avXyWhIZup+Zt1J8xTnVUbWfAJI6OQIYQAmftMkBGyQ=;
+ b=QyFfkFQ6RugIiqMeoo5ILIgs7/3yvJUpFPvCUT2YjRolcyqhkFnqSflIjAheGT7Q5rRk
+ w6lCKlckVHTCTalQuOlYDNWGDKBm6d5HgGgEYGukbcfSfHXlhDVg4JyqFbERMTqkIAyL
+ vmc3+UmV6JGYdAMQtAshe8Xwg55wqwGrGcywTtiI+sz8x8dKpmYHa5rLw+8Vmb8s6eHK
+ uJe8bdwz7XVCqM74p4Q65g5Wh4KiL8j8YE0NOyKoD3ad0GMB0mOGZFWBrbj+dx+GAb6E
+ /GCdmjRVVoyRtqAwEwIYY46hcxdZ7TntRTvfLZumDKNjpYlibUEGsxpAbytvwXmPaAej fQ==
+Received: from LLEX2019-01.mitll.ad.local (llex2019-01.llan.ll.mit.edu [172.25.4.97])
+	by MX3.LL.MIT.EDU (8.18.1.2/8.18.1.2) with ESMTPS id 60KFJvws098006
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 10:19:57 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=RidinxH22NyT8Cbzdi2LxQ9Exbc+ML+Q9jiFsYekr2DVDRUzawfdYhU0yi6fRwwu88RBDZ/2BiwiE2Of8hzaeS0LeMmJOuhXMdvb2eT5E+O5tShKfJmx6+snkIOODwxoEYFpyHdgGZml+g7dOouZyNR2bNfnPGVNnrEiWDYGscfCD88EMC1FeyjMy03IAZqXSiLL0z1BMokO+IUO2xUT9tiGjZrmopJ9+oBj7Ocv7Lyi2lvrUzp9e8kaLAXvKjtd7n2qNb3oIsPgSEuoMw/cxkq2H5m7+jaXPdbr5sam322M/uHJ36/PE8Kp/4gu+2TJXyjq9yr3IgFM7zqwOUadkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=avXyWhIZup+Zt1J8xTnVUbWfAJI6OQIYQAmftMkBGyQ=;
+ b=LCjXxE1/Fx/qsU7chJQ4tu5jBGkdxAy7KtopNVobkRdHE8qfbRq9yKQ578nMeB8mFPzsiXyYdL9xz4cDRL2Edk++Pjy1dp5d5NwmjJpYGifpHjaMlyBYY0hWBt4DpfaqJuoK8O5ZcUJYwVvkxqe/o9HyeA+lky33LtcxabAT4dzVxcvJdN2AJCKMAA1r1wCgFbXkM1FMOCtk2qGZGzlcElnO+ZGArR6D2HtdyFpq8HDay7SBliEEjqrVQLIbjPx726DNvrWIIwXt5BnhSDGZUQl1s8wXMU5TvmAnJsagSBkw4wHsjAwEQseww3AqQOgcRYe63ixl6YDNdGC6mjIkKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ll.mit.edu; dmarc=pass action=none header.from=ll.mit.edu;
+ dkim=pass header.d=ll.mit.edu; arc=none
+From: "Jimenez Vargas, Juan - 0994 - MITLL" <Juan.JimenezVargas@ll.mit.edu>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: RFNOC Front Panel GPIO
+Thread-Index: AQHciiAuOi2DdJhAfUC9qlKn9n+f9w==
+Date: Tue, 20 Jan 2026 15:19:54 +0000
+Message-ID: <CY1P110MB0888416ED25C0744A4AE0F17AA89A@CY1P110MB0888.NAMP110.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY1P110MB0888:EE_|PH3P110MB1799:EE_
+x-ms-office365-filtering-correlation-id: d0f0d66d-dcaf-4213-974b-08de58375d2a
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|38070700021|8096899003;
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?Gx2ntwNFpoF8NCvf+lTL34hn/KhezX9EUuxfTW81mdXvYL/EvlGyFszX2o?=
+ =?iso-8859-1?Q?Txq7BspFvMsfA8lCAcktslDr9bLl90vw9oxuhliBY1s9V1N2k65Z+dB7oY?=
+ =?iso-8859-1?Q?bXRUjDrMIj3JL8J724wAY9tCLwinVGl1JVLH4RRNbeAuJ8EQ8x62dINirS?=
+ =?iso-8859-1?Q?kkrcXwNxVadgPIG4chgut2X3MajeQ2MAOVn5ejps9iQIfeyEZaFSKpJcq7?=
+ =?iso-8859-1?Q?LdmLoKmwzY4i7UOHq5kh4bnTJlJ5w7kUrJvQdbgETytPWixVvJXpuaQW9x?=
+ =?iso-8859-1?Q?F5B8qqmQGoKvE/pZ6bjWdgJN/TLHYmeiKilprYkb0FCoJeGazBmWrP+Ngs?=
+ =?iso-8859-1?Q?khoJN7NoiOrzDfJfxrB2H9isda+KZvVGmWBF7nW2ehfpsGOZF8Oyu+p4Fq?=
+ =?iso-8859-1?Q?GCycO8A7ecVuRh4OWQlvB75g1TGVDdfc00umN8f8eRGy6I6tJtIaaaJNna?=
+ =?iso-8859-1?Q?cGS2I/MpKb+JLYWYaKSFoEcDGR4nrX/E4sdHHebXq8kOSsalq+yi8HRifs?=
+ =?iso-8859-1?Q?TVoBeU/P7erovDDp1mWQJ+ZNo+X1iKNbgc+5Es8egIZJvZ1erztTUHywqM?=
+ =?iso-8859-1?Q?CzAfPOSu8uPantMnltrQvI6eMFvyrdqqhGYW/RlZ3e5E1URInoApp2PN2B?=
+ =?iso-8859-1?Q?MX42n+AuXPx1j4cXByhcePiPP0FYbwWbys1imTO7xh3sHC2dGYsWzwTb0x?=
+ =?iso-8859-1?Q?CGBRpJWGBlVHsyTuHWPHtr5GF4IFQchANDoSTHc/uqlEQFKv7KYsXCBqiC?=
+ =?iso-8859-1?Q?f6mUSMpoN19wrQ0dgZZwrNlw01qopSdTdVWWNP9H27CZ4LSVdF8QCJDTjD?=
+ =?iso-8859-1?Q?ORAui2Vgc2TnYaa04Y9oOJyPgwnFwjK7Og8Okf9UloyRHsWIa4vzvt55es?=
+ =?iso-8859-1?Q?n34Vk3++nT/qtayF/ExihVDitjaddbiiwFCucFLW9XQnqMbNSB0skTGjv0?=
+ =?iso-8859-1?Q?8DXiofMh8e5ZqLT9YSRR2Re10a+/K5bVBkmrrdXBUQAjxdiQp91TdVdbex?=
+ =?iso-8859-1?Q?/2jAoqUX/jASGslBDQI0u/NIvOG9166EHqHGqbDxXlqXhWQTGfzy7dY1Lz?=
+ =?iso-8859-1?Q?S7r4aFyNty0LEDBvvX7OsKRvobtY791XGzL8AHnf60ZMSzs/BssO1R7EL8?=
+ =?iso-8859-1?Q?cfFQRSuZ8zXBg4LTSxocg/MlcNW4FOMIDNSSzruLD8RAvMgAFA4JXHJf7d?=
+ =?iso-8859-1?Q?7LSEI3kor3u7hK69sx+iydrw/tjZ/Dqe8l86I1yMhl0Wl0VYVdb0kAgiEz?=
+ =?iso-8859-1?Q?+2Qav/TgWATvGknHu2adHhJfPTYEh8X/rkk5rJMrETe87I4OYOC+LPwcOo?=
+ =?iso-8859-1?Q?cvqo0HbUnGiojUJ5ajTcXrnu/6codXee898eDwayKFaoayUiFDIfBf+wj4?=
+ =?iso-8859-1?Q?+rryI/Jouf0/9cwgYWSQXjVDSeWzKyVH7PzIvrR2fwCZ24EXtJVIxdO3k1?=
+ =?iso-8859-1?Q?OD1qMGOjmakR27gh0SnmYQRb/FyPnfPLyF2T/zuot0yIXv/ockVtbO5/qH?=
+ =?iso-8859-1?Q?idcogJx5UrUFDfAYlaNDQrqP87BCqUjavAoiXPeDQKTtifSPla+jj1qJ9N?=
+ =?iso-8859-1?Q?0Z+5flDDCblPzzbbbkT7o0QKfnMNSZWsKC2PHFLyLfzVDZjNM9RN5+6E5q?=
+ =?iso-8859-1?Q?hw7fOhXuqqK54OxtbA99BqWBKGzgbRhyEuS9M0zmJKMYpICECnngYIalBY?=
+ =?iso-8859-1?Q?8vdVW/E0Up1/uYvaqQA=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY1P110MB0888.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(38070700021)(8096899003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?6x62z/8OaXHG72GqlFXxe9accV9A0LkTee3m7Uv7e9TourIynkIqEajyXe?=
+ =?iso-8859-1?Q?irniQJ4HRNw7HQ/6aV29c7rk9mk1PsoAUpZs1YzscLeIo9J5F/5fs4Nzsy?=
+ =?iso-8859-1?Q?vEn8bJb7SrV33TdTOFA5Z9a7MnTicYGwtmB4QlIzOEJ9zrm+e+gPgj5JBf?=
+ =?iso-8859-1?Q?XHI5cjdfd3jGDwBp24tUaSUrWknrZZufGuXRmpNSaZUOZZ1HYhosHQzs9s?=
+ =?iso-8859-1?Q?pQ6CASVg2Y2nxIR2Tim07GKcZI7WQpOehLmuuWFiXpXxZi2GiWlAzDvCUk?=
+ =?iso-8859-1?Q?1Mc4dfIe/SVNW8Nl8i8i2vvAWWDe612SarWU1mM9Rqk1HZPz+P0GSyQFyk?=
+ =?iso-8859-1?Q?qfBiLjyO3kzHH1CZKDAhaer+fkED4vJ0RMQ3uADzbBlySLhsTtA8f7qiZv?=
+ =?iso-8859-1?Q?gVmLQD/xbitjbupKGCLZnq1roEMeJiuMnBvcVwmIu0ntyLskfzUcA4jusW?=
+ =?iso-8859-1?Q?UQnI1qkc4J43WWvG4M1x+SbzcUA97jcKIm/A+aOwbJBeYx8WNCV6UxBHoQ?=
+ =?iso-8859-1?Q?+Lat2aNxh5eNAw9b2L1tfyL1D1OQoTBODJKSzoXCJs4VXd+ICv4l9B95yD?=
+ =?iso-8859-1?Q?4b/KkDalqCIuXKoDO22i2XCNa59UtigJt7IUw25Wo8lVl1C7eDbSCbRgJt?=
+ =?iso-8859-1?Q?hTiYYAvuxSQJvkpLA7gdXwJa5Wbe3xicfKrWjv9fyfwMlF8kwZzwlZXctD?=
+ =?iso-8859-1?Q?MmUgtzirl5u3btF/gjVGgTrx+55jsd95iLdg+pggzqk+3jNCQXigerRHYO?=
+ =?iso-8859-1?Q?2a9R683GaAbLmBtsforv9AVT5cR8GDy0SQFby4e/v/jqOgirxx5uNax87E?=
+ =?iso-8859-1?Q?mUcVj+p1r0sBsImBWKrrphuoOy4sr/H3YAuBj1wA/7s0KiGveWNWThCa8k?=
+ =?iso-8859-1?Q?sD7355KQFPX0oU0Zk8qW6gncEkX5dZBKtS+Qg/luZC/PrLjBvjcTjcgJCQ?=
+ =?iso-8859-1?Q?1BnQ47oEcku1T0UNAT/puCfDjeee4p6xwT4aOkfo+s0G5SWfAwFsS5m01T?=
+ =?iso-8859-1?Q?BDmzTo+MI8hD0uJeBhYi/2oFRo2yDzIafGn5YO7eg0m+br/Ofuu1kp+wGa?=
+ =?iso-8859-1?Q?zxQZNz20n36HzlnAVokIzxhIm8X1zy9M1MRsq4aUoA7chLz4SKkYkeATQS?=
+ =?iso-8859-1?Q?icJ47yo526a3ytCiqkF2zU7YqNXknO7C7R2Ym6qjkR8kOJnhzBQsS3pvYJ?=
+ =?iso-8859-1?Q?80yQwNVoB1MG/58cf7VWRkjia7ru9J7mn2Ude1mGSNkhTAkKdvmOIXksus?=
+ =?iso-8859-1?Q?Jm3pDa1nSwvadLDBPolTNQh6eB6aWl/QuNb2Va25aCuZs5ktztolsRE1EQ?=
+ =?iso-8859-1?Q?IkUqaZmhA1KVRZWCwB8Gk1W8zvr4RusMk8QWDToeeIsDs0qRQMf7gZPhN5?=
+ =?iso-8859-1?Q?Fi2VyGpPFRk6R5tmWFztYJP/KtrQ1E3OwZTlSMohaq3tro7lsE/o8wtXlj?=
+ =?iso-8859-1?Q?JEzc/mODtHVW2texoeIR6DjOBI7nMofcZ0Ynj/tOfFmKM+/ZKJ+arUMgX/?=
+ =?iso-8859-1?Q?sWrcEUU/Jtrw+N/Eh57I+wFXUlgX7MGPERQTlW0bWVzhtYfQu68GeY+gQ+?=
+ =?iso-8859-1?Q?GAYBCNb2rt/Ciqr3Se2LHA8aY/dl?=
 MIME-Version: 1.0
-References: <CABQiKjyLQZqYX=R45sOzGgEz734g8p5siB000cd=R2L0P0zPUg@mail.gmail.com>
-In-Reply-To: <CABQiKjyLQZqYX=R45sOzGgEz734g8p5siB000cd=R2L0P0zPUg@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 20 Jan 2026 10:08:45 +0100
-X-Gm-Features: AZwV_Qi2SWzZ1f9RldxyWx674-FIehwOUj_-Zr4bCmcQHQAdzm07lrusB5ZUPvE
-Message-ID: <CAFOi1A5ykqB8vgS9dgxfOXWu8BzbiCSo5HO+HvjsLVg-wFOG0Q@mail.gmail.com>
-To: P S Vishwanath Koushik <koushikpsvishwanath@gmail.com>
-Message-ID-Hash: TLJBLCTDGVJI7JE5JJU33IKFCKLA7XBL
-X-Message-ID-Hash: TLJBLCTDGVJI7JE5JJU33IKFCKLA7XBL
-X-MailFrom: martin.braun@ettus.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY1P110MB0888.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0f0d66d-dcaf-4213-974b-08de58375d2a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2026 15:19:54.2447
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 83d1efe3-698e-4819-911b-0a8fbe79d01c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3P110MB1799
+X-Proofpoint-ORIG-GUID: j72JW2y199YMqhr4eiRfQzVKBxVWuU-j
+X-Proofpoint-GUID: j72JW2y199YMqhr4eiRfQzVKBxVWuU-j
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDEyNiBTYWx0ZWRfX+Qxzad1ujaPy
+ gvrMyvKAcA2z2lN4zlnTEOn1UIicsKnSingU+VkuFhgGOYzBgG9zqtMfggcfGQ417yP25t+gZbF
+ alUbREnSFHP3XZf2c8l6z9WXeTKgwFQRigRG5B5T5hO5eW8vyTpYVWfKckes3zV/CBRgK4T3hk3
+ nUSLRaK2wfe+Gj4Dz5Ca4LkWV3zljY51I0/9o8PZ2P/lnGtoxvBqDNqKldrV3bRMcVJYiUokbvc
+ TXVORNit4z4x93ca1YcswC7zqwzgf1kVpVnC5V9VrvgPxO+guVZw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-20_04,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ mlxlogscore=368 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2601150000 definitions=main-2601200126
+Message-ID-Hash: NZ4OHZ7UYVXJB7W52YCXWWBBFYXE43V5
+X-Message-ID-Hash: NZ4OHZ7UYVXJB7W52YCXWWBBFYXE43V5
+X-MailFrom: prvs=7480cde64f=juan.jimenezvargas@ll.mit.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP-2952R (X310) PCIe interface issue with UHD (built from OAI source)on Ubuntu 22.04
+Subject: [USRP-users] RFNOC Front Panel GPIO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TLJBLCTDGVJI7JE5JJU33IKFCKLA7XBL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NZ4OHZ7UYVXJB7W52YCXWWBBFYXE43V5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5725268058589936855=="
+Content-Type: multipart/mixed; boundary="===============7702082006675940037=="
+X-Spamd-Result: default: False [0.59 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+	DMARC_POLICY_SOFTFAIL(0.10)[ll.mit.edu : No valid SPF, DKIM not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	TAGGED_RCPT(0.00)[usrp-users];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_ONE(0.00)[1];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	R_SPF_NA(0.00)[no SPF record];
+	DKIM_MIXED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Juan.JimenezVargas@ll.mit.edu,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_REJECT(0.00)[ll.mit.edu:s=dkim1];
+	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
+	TO_DN_EQ_ADDR_ALL(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,ll.mit.edu:-]
+X-Rspamd-Queue-Id: D2340465BB
+X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
---===============5725268058589936855==
-Content-Type: multipart/alternative; boundary="00000000000040dcf60648ce287e"
+--===============7702082006675940037==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY1P110MB0888416ED25C0744A4AE0F17AA89ACY1P110MB0888NAMP_"
 
---00000000000040dcf60648ce287e
-Content-Type: text/plain; charset="UTF-8"
+--_000_CY1P110MB0888416ED25C0744A4AE0F17AA89ACY1P110MB0888NAMP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Vishwanath,
+Hello,
 
-can you please amend this bug report:
-https://github.com/EttusResearch/uhd/issues/818 ...with your system details
-so we can get a bigger picture of what's happening.
+I am interested in making a custom RFNOC block that drives the GPIO of an N=
+310 device based on the LSB of the incoming samples. Is there some interfac=
+e for controlling the GPIO of a device through RFNOC? Would anyone happen t=
+o know a method for directly controlling the state of the GPIO from within =
+a RFNOC block without breaking the logic that already controls the GPIO in =
+the devices?
 
-Thanks!
+Thanks,
 
---Martin
+Juan Jimenez
 
-On Sat, Jan 17, 2026 at 2:32=E2=80=AFPM P S Vishwanath Koushik <
-koushikpsvishwanath@gmail.com> wrote:
 
-> Hello community,
->
-> I am seeking guidance regarding using *USRP-2952R (X310)* over *PCIe* on
-> a Linux host, and I would appreciate any suggestions or known-good
-> configurations.
->
-> *System and software setup:*
->
->    -
->
->    Host OS: Ubuntu 22.04 LTS
->    -
->
->    USRP: NI USRP-2952R (X310), PCIe (RIO) interface
->    -
->
->    UHD: Built from source (UHD version bundled with / referenced by OAI
->    source tree)
->    -
->
->    NI Linux Device Drivers: *NI USRP 2025 Q2  driver linkj
->    <https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html=
-?srsltid=3DAfmBOor6EEe0WKBK67bW6htIgwYHrSZHCqjQNjITK3N8gELTv-JB5AbO#565446>=
-*
->    -
->
->    Installed NI packages:
->    -
->
->       ni-fpga-interface
->       -
->
->       ni-rio-mxie
->       -
->
->       ni-rseries
->       -
->
->       ni-hwcfg-utility
->       -
->
->       ni-usrp-rio
->
->
->
-> *Use case:*
-> I am trying to interface the USRP-2952R with an *OAI-based host machine*,
-> using UHD over PCIe (RIO), not Ethernet.
->
-> *Observed behavior:*
->
->    -
->
->    The device is detected correctly using uhd_find_devices
->    -
->
->    [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;
->    UHD_4.8.0.HEAD-0-g308126a4
->    --------------------------------------------------
->    -- UHD Device 0
->    --------------------------------------------------
->    Device Address:
->        serial:
->        fpga: HG
->        name:
->        product: X310
->        resource: RIO0
->        type: x300
->
->    -
->
->    UHD finds and selects the correct FPGA image (usrp_x310_fpga_HG.lvbitx=
-)
->    -
->
->    However, uhd_usrp_probe fails during RIO initialization with:
->
->    RuntimeError: x300_impl: Could not initialize RIO session.
->    Unknown error. (Error code -63150)
->
->    -
->
->    vishwanath@vishwanath:~$ sudo uhd_usrp_probe
->    [INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; UHD_4.8.0.HE=
-AD-0-g308126a4
->    [INFO] [X300] X300 initialization sequence...
->    [INFO] [X300] Connecting to niusrpriorpc at localhost:5444...
->    [INFO] [X300] Using LVBITX bitfile /usr/local/share/uhd/images/usrp_x3=
-10_fpga_HG.lvbitx
->    Error: RuntimeError: x300_impl: Could not initialize RIO session. Unkn=
-own error. (Error code -63150)
->
->
-> This suggests the failure occurs after FPGA image selection, during NI-RI=
-O
-> session initialization.
->
-> *Questions:*
->
->    1.
->
->    Is *NI Linux Device Drivers 2025 Q2* known to be compatible with UHD
->    (especially when UHD is built from OAI sources) for X310/USRP-2952R ov=
-er
->    PCIe?
->    2.
->
->    Are there any *recommended UHD versions* or commits known to work
->    reliably with USRP-2952R + PCIe on Ubuntu 22.04?
->    3.
->
->    Has anyone successfully used *OAI with USRP-2952R over PCIe*, and if
->    so, could you share the software stack versions?
->    4.
->
->    Are there additional NI-RIO or kernel requirements that UHD depends on
->    for PCIe-based X310 devices?
->
-> Any insights, known limitations, or recommended downgrade/upgrade paths
-> would be very helpful.
->
-> Thank you for your time and support.
->
-> Regards,
-> Vishwanath
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000040dcf60648ce287e
-Content-Type: text/html; charset="UTF-8"
+--_000_CY1P110MB0888416ED25C0744A4AE0F17AA89ACY1P110MB0888NAMP_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Vishwanath,</div><div><br></div><div>can you pleas=
-e amend this bug report:=C2=A0<a href=3D"https://github.com/EttusResearch/u=
-hd/issues/818">https://github.com/EttusResearch/uhd/issues/818</a> ...with =
-your system details so we can get a bigger picture of what&#39;s happening.=
-</div><div><br></div><div>Thanks!</div><div><br></div><div>--Martin</div></=
-div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">On Sat, Jan 17, 2026 at 2:32=E2=80=AFPM P S Vishwanath =
-Koushik &lt;<a href=3D"mailto:koushikpsvishwanath@gmail.com">koushikpsvishw=
-anath@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div dir=3D"ltr"><p>Hello community,</p><p>I am seeking guid=
-ance regarding using <strong>USRP-2952R (X310)</strong> over <strong>PCIe</=
-strong> on a Linux host, and I would appreciate any suggestions or known-go=
-od configurations.</p><p><strong>System and software setup:</strong></p><ul=
-><li><p>Host OS: Ubuntu 22.04 LTS</p></li><li><p>USRP: NI USRP-2952R (X310)=
-, PCIe (RIO) interface</p></li><li><p>UHD: Built from source (UHD version b=
-undled with / referenced by OAI source tree)</p></li><li><p>NI Linux Device=
- Drivers: <strong>NI USRP 2025 Q2=C2=A0<a href=3D"https://www.ni.com/en/sup=
-port/downloads/drivers/download.ni-usrp.html?srsltid=3DAfmBOor6EEe0WKBK67bW=
-6htIgwYHrSZHCqjQNjITK3N8gELTv-JB5AbO#565446" target=3D"_blank">=C2=A0driver=
- linkj</a></strong></p></li><li><p>Installed NI packages:</p><ul><li><p>ni-=
-fpga-interface</p></li><li><p>ni-rio-mxie</p></li><li><p>ni-rseries</p></li=
-><li><p>ni-hwcfg-utility</p></li><li><pre>ni-usrp-rio</pre><p><br></p></li>=
-</ul></li></ul><p><strong>Use case:</strong><br>I am trying to interface th=
-e USRP-2952R with an <strong>OAI-based host machine</strong>, using UHD ove=
-r PCIe (RIO), not Ethernet.</p><p><strong>Observed behavior:</strong></p><u=
-l><li><p>The device is detected correctly using <code>uhd_find_devices</cod=
-e></p></li><li><p>[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400;=
- UHD_4.8.0.HEAD-0-g308126a4<br>--------------------------------------------=
-------<br>-- UHD Device 0<br>----------------------------------------------=
-----<br>Device Address:<br>=C2=A0 =C2=A0 serial: <br>=C2=A0 =C2=A0 fpga: HG=
-<br>=C2=A0 =C2=A0 name: <br>=C2=A0 =C2=A0 product: X310<br>=C2=A0 =C2=A0 re=
-source: RIO0<br>=C2=A0 =C2=A0 type: x300<br><code><br></code></p></li><li><=
-p>UHD finds and selects the correct FPGA image (<code>usrp_x310_fpga_HG.lvb=
-itx</code>)</p></li><li><p>However, <code>uhd_usrp_probe</code> fails durin=
-g RIO initialization with:</p><pre><code>RuntimeError: x300_impl: Could not=
- initialize RIO session.
-Unknown error. (Error code -63150)</code></pre></li><li><pre>vishwanath@vis=
-hwanath:~$ sudo uhd_usrp_probe<br>[INFO] [UHD] linux; GNU C++ version 11.4.=
-0; Boost_107400; UHD_4.8.0.HEAD-0-g308126a4<br>[INFO] [X300] X300 initializ=
-ation sequence...<br>[INFO] [X300] Connecting to niusrpriorpc at localhost:=
-5444...<br>[INFO] [X300] Using LVBITX bitfile /usr/local/share/uhd/images/u=
-srp_x310_fpga_HG.lvbitx<br>Error: RuntimeError: x300_impl: Could not initia=
-lize RIO session. Unknown error. (Error code -63150)<br><code>
-</code></pre></li></ul><p>This suggests the failure occurs after FPGA image=
- selection, during NI-RIO session initialization.</p><p><strong>Questions:<=
-/strong></p><ol><li><p>Is <strong>NI Linux Device Drivers 2025 Q2</strong> =
-known to be compatible with UHD (especially when UHD is built from OAI sour=
-ces) for X310/USRP-2952R over PCIe?</p></li><li><p>Are there any <strong>re=
-commended UHD versions</strong> or commits known to work reliably with USRP=
--2952R + PCIe on Ubuntu 22.04?</p></li><li><p>Has anyone successfully used =
-<strong>OAI with USRP-2952R over PCIe</strong>, and if so, could you share =
-the software stack versions?</p></li><li><p>Are there additional NI-RIO or =
-kernel requirements that UHD depends on for PCIe-based X310 devices?</p></l=
-i></ol><p>Any insights, known limitations, or recommended downgrade/upgrade=
- paths would be very helpful.</p><p>Thank you for your time and support.</p=
-><p>Regards,<br>Vishwanath</p><br></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
+, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
+ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
+0, 0);" class=3D"elementToProof">
+Hello,</div>
+<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
+, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
+ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
+0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
+, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
+ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
+0, 0);" class=3D"elementToProof">
+I am interested in making a custom RFNOC block that drives the GPIO of an N=
+310 device based on the LSB of the incoming samples. Is there some interfac=
+e for controlling the GPIO of a device through RFNOC? Would anyone happen t=
+o know a method for directly controlling
+ the state of the GPIO from within a RFNOC block without breaking the logic=
+ that already controls the GPIO in the devices?</div>
+<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
+, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
+ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
+0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
+, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
+ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
+0, 0);" class=3D"elementToProof">
+Thanks,</div>
+<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
+, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
+ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
+0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"text-align: left; text-indent: 0px; background-color: rgb(255=
+, 255, 255); margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSF=
+ontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, =
+0, 0);" class=3D"elementToProof">
+Juan Jimenez</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+</body>
+</html>
 
---00000000000040dcf60648ce287e--
+--_000_CY1P110MB0888416ED25C0744A4AE0F17AA89ACY1P110MB0888NAMP_--
 
---===============5725268058589936855==
+--===============7702082006675940037==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -338,4 +289,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5725268058589936855==--
+--===============7702082006675940037==--
