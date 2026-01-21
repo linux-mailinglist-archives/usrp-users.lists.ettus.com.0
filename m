@@ -2,186 +2,201 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GDEcJ0vjb2n8RwAAu9opvQ
+	id kNstEYSKcGkEYQAAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 21:19:23 +0100
+	for <lists+usrp-users@lfdr.de>; Wed, 21 Jan 2026 09:12:52 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B06AF4B2C6
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 21:19:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E445534C7
+	for <lists+usrp-users@lfdr.de>; Wed, 21 Jan 2026 09:12:51 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7BB303867F8
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Jan 2026 15:19:21 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 427D1386A6B
+	for <lists+usrp-users@lfdr.de>; Wed, 21 Jan 2026 03:12:50 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1768940361; bh=zP74ABu12Kcx3d060begr1QG4zqoF/HlKI+Ts9lM5hY=;
-	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
-	 From;
-	b=ls45n7zO+I/OwTp4u8CndkMTZ54eXgHEe0VlfoqpyzW6jbj/BKq60pzsxITmyy+HT
-	 QqqTuUDWMavLe8R/LdVSrQFg0r+kXfCBr1JTZVpY5cM9wjKSp7VPxH+9K5DYCbSEZI
-	 2M6LTiyvTlf81b1NRKVDXYKCyengF+qdqF7aUsyaFiHoU+XwySszLNVbBojitEbBJ7
-	 nWuSn0kSHtqTm6nYhVAeBqXKOBkPZrXoXyEZqXuVTMwHtHjLivgVnnhIskLYI2o2Jx
-	 lZuUcvsWRRFGwPYM9LXJhzKQlZ+/9EiWAkIJ9tnIB9FuFthqBpcBfTWg6QUho+Vfsi
-	 Mu+hfVECovlZQ==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D84B3386764
-	for <usrp-users@lists.ettus.com>; Tue, 20 Jan 2026 15:18:12 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1768940292; bh=jLXGW9BffFkOf0wfA74q4/qNU7s7OmLaN8TfRm8O0DU=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=XXAaif/x/5abe/6amuOjOaIPt2nEb/MyxlNSSK3aaSsxrjpPaoNIl24ud/AUGI+Ef
-	 FRgLVbgCXldPB9Tg3fCa39DagaIldiy2D3yaJcwPVsplJMQudI9lDvnHT9qj3qppF0
-	 p+HZ0IDuiPYXrufhC98xwc/zFNysqNb9vEOuZFA5bR5Oq6z7q1axcPclgNWo/vO2Tn
-	 UPBvat0JSiSoB4HK64KUDblG6p2xCXrUGtiggFWCGBk8nZYxrx8CTxeXdkr/k/NNqr
-	 Zv8Ic9X8vRj2+YUFE5rLaMS9IyKS20Hc8wwWZirtKfijFywwfcbYvMA73C2oiI5IFQ
-	 hVBkrGZu+DJfQ==
-Date: Tue, 20 Jan 2026 20:18:12 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <cSD3dQhVOls0juDqafYzHJsqXS57QetBIcJdQtPpr4@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: sMlLGLRKWHiFIG0jFKd8Cx2lK6U2M32BelF4mjpo@lists.ettus.com
+	t=1768983170; bh=55+YjZT00xiqHVjJboE4eSip4PQnZ80URltOmlNdQtg=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=tRvQ3WEF5a0eq51/jHeNcmyCCxdM4UHhiNTHnpjMXn9x0ZVg28uBEI0aCBZ5ZT3Jb
+	 ph58/nyhFRu8UPX4Q8UdhFzdfEp2jSZy4FLNl4OZCNkyBBXr6IABf63KwkYIQ5BPk3
+	 0BLYvkindwXYv+nDJ2ALhhe37RA5d7taCJh06zYH+aGOHfA0VoE940rzHGbeW9R+ct
+	 OgilWcCjv2LyOiwLHCwuUZbTZYFQmhy1W6Bb2mhk5ipuNs2TTdHXVJqCxoDMTnKI/R
+	 jHml7gHTss7W0zCJlhIz10aiCeF6VIh5hwZInzg3mVGqleru3VPSf3u1qjK3SnotN6
+	 oJQbAL2TeN3uQ==
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8C096384E6F
+	for <usrp-users@lists.ettus.com>; Wed, 21 Jan 2026 03:11:46 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="iKh4UJvR";
+	dkim-atps=neutral
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-894724bc5cbso4234296d6.1
+        for <usrp-users@lists.ettus.com>; Wed, 21 Jan 2026 00:11:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768983106; cv=none;
+        d=google.com; s=arc-20240605;
+        b=C7BEDBqCnuZo1syVYRQNsLbrV7oVEG+i3i5mkRKNk8JzTdRhVcH7Dou95BaYGsSgpN
+         hsebnz3akbRUwWKVeeVKwUtHe4bXP8q4Eqq598DMgmwb1pKkAjhyNo3FtHqsYeBWpr4B
+         V5bb6j4WYPVxqibBeXTUbFRHw+pdUE6soa0QJzo9eeLrkeeR2nG3WIWChzB+3YGpIRLw
+         xxoFtI41DeB75X9e0BVAAfdu7zdUNj8yv7hjXNBfLLq/tWM3m+blMcbV6HpPXa9tPyyC
+         zYZI7aEs8Cdq3KAlBzQ+cuo6LFuPiD75UzYXr1CESWlg4Sh6OanuKBjhr5rfsHBX5rr3
+         0v4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=MTRCwWq7P/CcmbnA8xU6Vur6unV0uIfHeFkm7nQl2pY=;
+        fh=9CUBuACEF7a4/qEm7ltrWraAgj2qU8WjZ8LgOx5Sr9U=;
+        b=FZ9GM+Ch4NyO1+BZwwTUh1yMOPtZiWWHGnkz5SVcndayi4mSPX0dLa2tFdQCZ/udk8
+         pC+gCviI9LSmPKYbiMDJKO09zWoW+mQtnAzzaINY5k1Cs/JpsEynLz6dGBslxFMaLdpx
+         qF/hLN7NcWqS4uWW8R3ZVAxeYwCvoaF3GrorDU7XFfI33SPonhp4SAAv83dLWaP9oIai
+         +Z60rBSRfcvyMZECdtKrv95yEgM1WMTaiETLqUIlfCO/RMTsi1X6VjEIEgL8jELR1lKn
+         fIYmjP5EqiWmBi7io2jVYhJCaIjVoOrO5T2adSYvS6Gbw411UvbdyD1nmvhu0B7zptaC
+         5BMQ==;
+        darn=lists.ettus.com
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1768983106; x=1769587906; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=MTRCwWq7P/CcmbnA8xU6Vur6unV0uIfHeFkm7nQl2pY=;
+        b=iKh4UJvRVqhTNI6VpJoi2Pv4Dga/hzMHeQMIHb8/2/3X4tQImxgbmJbLyrrxnzl99O
+         A4zPeayfIwZii37B9iBfQaE8G1gqUwjVAyRDo3NwdPA2Ak9k7lp/3amQnX1hDTFxGV7v
+         LdiJPtHXy46lU/98zI11tBgwjy/xR2p3pza4GMokYB+4JTz4yv8mMWy8DaqCpJnwec5F
+         7QvB8pEXPQP9YCyg1dluHdqtgYvrEJAVTVvfRbrSsm7HVOHaS5F7dOPmlntp92ew9me9
+         ZRuKJ7QaHLasIOjA8vnxXYALOAgQ+exawTslokafevvqAzJyhp4vqcpT4Cd1jdV9SLlQ
+         oOMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768983106; x=1769587906;
+        h=to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MTRCwWq7P/CcmbnA8xU6Vur6unV0uIfHeFkm7nQl2pY=;
+        b=cKFWSNjDLKEZr+evJhq5WVYozdSa8f0d9iqGeJfXnI3mvJf+D5lOfoUcv8SsywPbcw
+         Pbdt7M+wxjc8pn/KnZG4pyYZ6+Qy4TAvAXGa/NseEbjLhAiMNDpsFRfyzGs9e06AAKZI
+         cboZYBDQbiDaQBig3pVZnE3v92XE9XR7fgsDfHXzBIZXERXda7N21Jaw5nlYPJNtxf2P
+         rZgteCsvu7rODe6QCsmnGiuZbWbBVGfiq6UaI05v4Rgs01mjFBIAd8cHkzBnYLhejt3x
+         SvPg705kd9QIBHxXb8MA4H57TdCUkBRlYxXciPOdAm8aNXjVnBuWUFUA6oEKaWjyWPTb
+         9ojQ==
+X-Gm-Message-State: AOJu0YzvwJoTsGD7u3BHald1STUcrjFI2A14VTMiYdsa2X5+8fyJiaSY
+	qAttO14WuAOCMw5Bp18T5iOT9m/yhQhbtAEtUepOU0ekecsdD9JHK+zAXvNVUNh55K4Hya8iK/z
+	gv85Cq6mVKpWImmleFzFwDKxFQTFg4beVSKlc1hyGI2Q93H7QUvK6TLE=
+X-Gm-Gg: AZuq6aINx9/+2ie1OYCAVCRcfAA44RWFid4slWQCBCOgSOmg0jU2cIL6xlpFCOfFaIB
+	GKhzGZVkzZnELXJ4IIc3nwBhGW+M2m9w43I0/XL5v77CAAv0ug7L4JBqZuIMNvTnI/XQiS7AQVS
+	p329wLj+7m+agvPpFjkdjCmfODiTLjNTAwm0xcQ8R4EzdcEdWSNH7kLh3lAW2cjLznmGJwgdWvj
+	OvT3Id6EO5jJaFbGQFcWPl2n2Tm1HpPJ85a+gGsQ99oY5yCd/j+aIze/McpCQv7GjxDoLseKFsm
+	K3QriirjoMao9k6ZyRzgShqriuypmGeUXvrZ
+X-Received: by 2002:ad4:5bc1:0:b0:888:804f:3098 with SMTP id
+ 6a1803df08f44-8942d5f7c70mr240332456d6.3.1768983105757; Wed, 21 Jan 2026
+ 00:11:45 -0800 (PST)
 MIME-Version: 1.0
-Message-ID-Hash: H6EKIIUZ74O5W7F4OX2AS26IOG5H5VCU
-X-Message-ID-Hash: H6EKIIUZ74O5W7F4OX2AS26IOG5H5VCU
-X-MailFrom: joerg.hofrichter@emerson.com
+From: Martin Braun <martin.braun@ettus.com>
+Date: Wed, 21 Jan 2026 09:11:34 +0100
+X-Gm-Features: AZwV_Qhm_Op_0kxvKWDyxdY7Rj0XdCUvyGGW5VRLMM3aLTg_U0-Ve4BAjT0krN4
+Message-ID: <CAFOi1A6LeWXW04k7srqWNz1Y4ZHVLOBkLw6=3aBeb2MOpgR62w@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: AI7HSS67E5DQAYLIYOLWPEQBH47CYNNM
+X-Message-ID-Hash: AI7HSS67E5DQAYLIYOLWPEQBH47CYNNM
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNOC Front Panel GPIO
+Subject: [USRP-users] GPIO Support for RFNoC Blocks
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/H6EKIIUZ74O5W7F4OX2AS26IOG5H5VCU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AI7HSS67E5DQAYLIYOLWPEQBH47CYNNM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "joerg.hofrichter--- via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: joerg.hofrichter@emerson.com
-Content-Type: multipart/mixed; boundary="===============4561129464620688221=="
-X-Spamd-Result: default: False [-0.51 / 15.00];
+Content-Type: multipart/mixed; boundary="===============5746660210604470492=="
+X-Spamd-Result: default: False [0.49 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_PHPMAILER_SIG(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	DKIM_MIXED(0.00)[];
-	DMARC_NA(0.00)[ettus.com];
+	RCVD_TLS_LAST(0.00)[];
 	R_SPF_NA(0.00)[no SPF record];
-	RCPT_COUNT_ONE(0.00)[1];
-	TO_EQ_FROM(0.00)[];
-	R_DKIM_REJECT(0.00)[emwd.com:s=harmony];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[emwd.com:+,emwd.com:-];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
-	HAS_REPLYTO(0.00)[joerg.hofrichter@emerson.com];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DMARC_NA(0.00)[ettus.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_ONE(0.00)[1];
+	TO_DN_EQ_ADDR_ALL(0.00)[];
+	DKIM_MIXED(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
 	TAGGED_RCPT(0.00)[usrp-users];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[martin.braun@ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	R_DKIM_REJECT(0.00)[ettus-com.20230601.gappssmtp.com:s=20230601];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim,emerson.com:replyto,lists.ettus.com:mid]
-X-Rspamd-Queue-Id: B06AF4B2C6
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,ettus-com.20230601.gappssmtp.com:-];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 6E445534C7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is a multi-part message in MIME format.
+--===============5746660210604470492==
+Content-Type: multipart/alternative; boundary="000000000000a1ef960648e17962"
 
---===============4561129464620688221==
-Content-Type: multipart/alternative;
- boundary="b1_cSD3dQhVOls0juDqafYzHJsqXS57QetBIcJdQtPpr4"
-Content-Transfer-Encoding: 7bit
+--000000000000a1ef960648e17962
+Content-Type: text/plain; charset="UTF-8"
 
-This is a multi-part message in MIME format.
+Hi all,
 
---b1_cSD3dQhVOls0juDqafYzHJsqXS57QetBIcJdQtPpr4
-Content-Type: text/plain; charset=UTF-8
+Since GPIO support for RFNoC blocks has been requested so often, and by so
+many people, it deserves its own email.
+
+With the latest push of commits onto our master branch, we now have support
+for connecting your RFNoC blocks to front-panel GPIOs on *all* of our RFNoC
+devices (so including the often requested X310, the recently requested
+N310, but also all the other devices, i.e. X410/X440/E320). If you're
+interested in the details, see this and the following commits:
+https://github.com/EttusResearch/uhd/commit/789301bde1c612a09290a54a4d36ff8962b36dfa.
+In a nutshell, RFNoC blocks can be connected to the front panel through
+regular IO ports. All the RFNoC tooling will make it reasonably simple to
+build blocks that require access to GPIOs. You can even select which GPIO
+pins are driven by your RFNoC block, and which pins are driven by the radio
+(so you don't lose any features this way).
+
+We will be also providing an example in the rfnoc-oot-blocks repository,
+but that is not quite ship-shape yet. Keep your eyes on that repo (
+https://github.com/EttusResearch/rfnoc-oot-blocks). We just want to give
+you usrp-users subscribers a heads-up!
+
+Thanks to all the folks who provided feedback on this feature!
+
+--Martin and the UHD team
+
+--000000000000a1ef960648e17962
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi again,
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>Sin=
+ce GPIO support for RFNoC blocks has been requested so often, and by so man=
+y people, it deserves its own email.</div><div><br></div><div>With the late=
+st push of commits onto our master branch, we now have support for connecti=
+ng your RFNoC blocks to front-panel GPIOs on *all* of our RFNoC devices (so=
+ including the often requested X310, the recently requested N310, but also =
+all the other devices, i.e. X410/X440/E320). If you&#39;re interested in th=
+e details, see this and the following commits:=C2=A0<a href=3D"https://gith=
+ub.com/EttusResearch/uhd/commit/789301bde1c612a09290a54a4d36ff8962b36dfa" t=
+arget=3D"_blank">https://github.com/EttusResearch/uhd/commit/789301bde1c612=
+a09290a54a4d36ff8962b36dfa</a>. In a nutshell, RFNoC blocks can be connecte=
+d to the front panel through regular IO ports. All the RFNoC tooling will m=
+ake it reasonably simple to build blocks that require access to GPIOs. You =
+can even select which GPIO pins are driven by your RFNoC block, and which p=
+ins are driven by the radio (so you don&#39;t lose any features this way).<=
+br><br></div><div>We will be also providing an example in the rfnoc-oot-blo=
+cks repository, but that is not quite ship-shape yet. Keep your eyes on tha=
+t repo (<a href=3D"https://github.com/EttusResearch/rfnoc-oot-blocks" targe=
+t=3D"_blank">https://github.com/EttusResearch/rfnoc-oot-blocks</a>). We jus=
+t want to give you usrp-users subscribers a heads-up!</div><div><br></div><=
+div>Thanks to all the folks who provided feedback on this feature!</div><di=
+v><br></div><div>--Martin and the UHD team</div><div><br></div></div>
+</div>
 
-unfortunately the formatting of the code listings got lost. Here I am try=
-ing again:
+--000000000000a1ef960648e17962--
 
-* your RFNoC block .yml file (e.g. my_gpio_block.yml) needs to have an IO=
- port of type =E2=80=9Cgpio=E2=80=9D:
-
-```
-parameters:
-  GPIO_WIDTH: ${ config.device.parameters['FP_GPIO_BANK_WIDTH'] }
-(=E2=80=A6)
-io_ports:
-  gpio:
-    type: gpio
-    drive: master
-    parameters:
-      width: "${parameters['GPIO_WIDTH']}"
-```
-
-* Your RFNoC block implementation in Verilog (e.g. rfnoc_block_my_gpio_bl=
-ock.v) needs these additional signals: =E2=80=9Cmy_gpio_block0=E2=80=9D) =
-to the fp_gpio port of the device:
-
-```
-noc_blocks:
-  (=E2=80=A6)
-  my_gpio_block0:
-    block_desc: 'my_gpio_block.yml'
-connections:
-  (=E2=80=A6)
-  # BSP connections
-  (=E2=80=A6)
-  - { srcblk: my_gpio_block0, srcport: gpio,=C2=A0 =C2=A0 dstblk: device,=
-=C2=A0 dstport: fp_gpio=C2=A0 =C2=A0 =C2=A0 =C2=A0 }
-```
-
-I hope the listings are readable now.
-
-Kind regards,\
-J=C3=B6rg
-
---b1_cSD3dQhVOls0juDqafYzHJsqXS57QetBIcJdQtPpr4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi again,</p><p>unfortunately the formatting of the code listings got =
-lost. Here I am trying again:</p><ul><li><p>your RFNoC block .yml file (e=
-.g. my_gpio_block.yml) needs to have an IO port of type =E2=80=9Cgpio=E2=80=
-=9D:</p></li></ul><pre><code>parameters:
-  GPIO_WIDTH: ${ config.device.parameters['FP_GPIO_BANK_WIDTH'] }
-(=E2=80=A6)
-io_ports:
-  gpio:
-    type: gpio
-    drive: master
-    parameters:
-      width: "${parameters['GPIO_WIDTH']}"</code></pre><ul><li><p>Your RF=
-NoC block implementation in Verilog (e.g. rfnoc_block_my_gpio_block.v) ne=
-eds these additional signals: =E2=80=9Cmy_gpio_block0=E2=80=9D) to the fp=
-_gpio port of the device:</p></li></ul><pre><code>noc_blocks:
-  (=E2=80=A6)
-  my_gpio_block0:
-    block_desc: 'my_gpio_block.yml'
-connections:
-  (=E2=80=A6)
-  # BSP connections
-  (=E2=80=A6)
-  - { srcblk: my_gpio_block0, srcport: gpio,&nbsp; &nbsp; dstblk: device,=
-&nbsp; dstport: fp_gpio&nbsp; &nbsp; &nbsp; &nbsp; }</code></pre><p>I hop=
-e the listings are readable now.</p><p>Kind regards,<br>J=C3=B6rg</p>
-
-
---b1_cSD3dQhVOls0juDqafYzHJsqXS57QetBIcJdQtPpr4--
-
---===============4561129464620688221==
+--===============5746660210604470492==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -191,4 +206,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4561129464620688221==--
+--===============5746660210604470492==--
