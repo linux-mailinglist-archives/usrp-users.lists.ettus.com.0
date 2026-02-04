@@ -2,305 +2,351 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mMrsKIBIfWlZRQIAu9opvQ
+	id IIjiM72kg2nprQMAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Sat, 31 Jan 2026 01:10:40 +0100
+	for <lists+usrp-users@lfdr.de>; Wed, 04 Feb 2026 20:57:49 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C935CBF804
-	for <lists+usrp-users@lfdr.de>; Sat, 31 Jan 2026 01:10:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E214AEC4CE
+	for <lists+usrp-users@lfdr.de>; Wed, 04 Feb 2026 20:57:48 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A91283868EB
-	for <lists+usrp-users@lfdr.de>; Fri, 30 Jan 2026 19:10:38 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8213A38664F
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Feb 2026 14:57:47 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1769818238; bh=4Q/NIo5UP6HzQ360veQj1+FvpSPTYwBJw0a17z1mDdY=;
+	t=1770235067; bh=l9u9HZ3i7sBLufKS+HENjSMdya42FKOm4qE/4a01Fx0=;
 	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=HByxvykx2kgbXxbSRiomh4yfp+gb9EHj1/h8pC86sTHyqZftCtHtEtTkgh7TP2Pb9
-	 17U44nzMEXyMGb8VFgwhvP4aaDopPhHBEv23nBH8lup3z9ArKVgl9sn9LwooTHd4gE
-	 vF9XhnMGF3xPap3fD+w7qNHyZHre8ytMENmhUmo1/npuNBSPQB3l0T7GrDfTPZNpwU
-	 N6FGfKf5iOI29yJIJ6tLPpVLJAzMSjZCPCB8MDS9IvwbTbwapwotMruX83E3EObc+I
-	 X/WC9kT++VqUWPYCYta5Sman89r5rsJeeB7zdsTQAJ4Cqrq7wSE0RRSW33fqulJzpL
-	 52gykY+ax6FSQ==
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0073.outbound.protection.office365.us [23.103.208.73])
-	by mm2.emwd.com (Postfix) with ESMTPS id 631AC387393
-	for <usrp-users@lists.ettus.com>; Fri, 30 Jan 2026 19:09:30 -0500 (EST)
+	b=hEOxCUFUNbwnd71qFANFg+dYZACbMpgEFnQ9k6U34u5nd87mTCx6phYq7UDouQmYq
+	 m+A0FiQ6PeMRa2SmNh1iZ6ISQQ2zktZ/CADOLcInLjzwc53xkNgwY6iNjJLRwIpPCX
+	 e/9SFjthZtQLQ3QwfuYx3GcrNb0jx1eV0UZcUmCvuNiSAGu0tUg9GEtrzEUW484/+r
+	 dsAJpFFCMyo77ssI4j/t8WGE/GtTF4/c7oOzeOMm2N4+ADM59sxu1edWxgm3S3WxmJ
+	 XIv6Grnvfanef49T4bydIKKVqdRJAZGBM2NLdD8Pf/l0TT31G+sTjGIZ2kiVQK1MPN
+	 psReXuse11zlw==
+Received: from BN8PR09CU001.outbound.protection.outlook.com (mail-eastus2azon11012020.outbound.protection.outlook.com [52.101.58.20])
+	by mm2.emwd.com (Postfix) with ESMTPS id 195233864FB
+	for <usrp-users@lists.ettus.com>; Wed,  4 Feb 2026 14:56:48 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=W5USA.onmicrosoft.com header.i=@W5USA.onmicrosoft.com header.b="If1MjlDY";
+	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="mTbEJtEA";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=wcQSQ+G+2Vjyuq9lFz4iPIg9KZmeM5OeM9Fsgv7hpPEERuAFSJMVszkuMAwy6TrjjadlJ4Ej9yKKNUh5DENBA6r6AHqxB1nTwJpzk13YAHQiEocm5GIOoHl0JaRIUvBuCP68MCt9vZ9z3ckqFZgONcRNZBdBkP9NluC8KV7bqHsbL6J0RPjH8N5R7mFj6ugyRpOyHVwTXGeR7+RFZ6hWp83OaaSz3MSauzfRA7cwwT/GI1Jl3ZT44p+wwcZldNgL62vozDJSuN20AjLYTEfHPjICwCEd7dXebSpDCQ0x2JOw+j0eLYNZLUHCokZNcw7GA8GInfcUKFDg/LOKLQ6lXQ==
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ROTL05qLtxxikECvPBUcGDp1oPdfTXB7JxDlNO1ysitBCVc8gzeq9/NfIUS1iCbzH6U+BMDHVUBL1XFRkilG41bdYImziBZ5xKcMHW9eq+W8oNOqdK7LRuQ+sBZDeIwOsdoHn2q6aYokCK7alu5KyTa6GBKAaudNxwzDDC6RYY3jB4TcAbYBizZAON7bxMoGFt3bWrdT05LJm+323C6bW1H+GNrxvEQ7DVax8jSM8cKqHBiSdE3tN75GoOadn4OEpBPkHq0YDh3EbG01aVE2EZOOKpFcOoLdW8ml+POPvKAquhbJN0FOdwrxLULZl2XU0tfC2B4tO+ZZbnYOw3CXfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
+ s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wax2oupHk0sqsylT3y3CJGifJeo2CUglIUp4JAMfL7k=;
- b=f84UukqSaVmwugF83JrOaNHolzv6bu9U4zepqaX5mzS/m83vekI+0/Ktdefjh+0QUGx1Q/Ylj7vt1fUitJsmR66HZlch01WXeXNF/ozsftJxd2+dUfPd5kCGyWDazgK4I+adJbp3HV+L9UxuFSzQ9Sk5MQlinKe1sIFdr+XnTb9o9lE+4ynpN7TbGC8U6mXvOKyMmMw9n0TgN1a3QewX1ne4G7OoMThYEVtlk6G+mAJiA2AjVtLPo6qwTpwV2QoVdYWSrphLN1EF7+ux7oH8S7ASjKFwWWykz6ho+1cjzOXlLh47q7E2xCmAS9txXVv4yDNNXjIbsso0/mbxZM8alg==
+ bh=h5hmqid4KirVxkEutYfP9ujRGuDESw1VV1c+6CEavSM=;
+ b=Ksb1qeYVRifUC6xUf5FhQsTVHvoP7d/Zxhb3kzqDNVVGH9kRFvofCmRc1h8j+fV3qnTrUvIxq4hMC/UCxQSl2wNaptZlc1Y+UrKOwr4+fKLNRuWaa5eG+u76fzO+GKGaoPKApA0tuawnbrSIeL9jdoHKB4CsWzlsqOOukmBdrcSdPLU0/5/2eBXZ0BE2ZE9ieTEJqrU27I7CNK3jnA0eFTr0jlHpIHHrXaxa7o/0rst/+xtHvDNTU7OxIYxKmL1Zj32nTZ1KEm6+gSWvzj9rw3voy5SOw9lRDFC8Y+5clBj5sDJq3RSn3O5kPnRXOnhYGL9VNOYXk22jRtmEyN3YUg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=w5tech.com; dmarc=pass action=none header.from=w5tech.com;
- dkim=pass header.d=w5tech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=W5USA.onmicrosoft.com;
- s=selector1-W5USA-onmicrosoft-com;
+ smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
+ dkim=pass header.d=aero.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wax2oupHk0sqsylT3y3CJGifJeo2CUglIUp4JAMfL7k=;
- b=If1MjlDY5hVjqquxtt4StLwA4TzOyYFcm8qGlDFqL6a8rOpjxlbjmV6Kkc4H9NS/FyxplBCQ7QbSiGmCEzyRI8tsum7Pri54Ude/SDNg5Tw6gapmhGYhPOqDSVV9jqsqzYNLZidjK+V6QTttsSiuFLyqc4NzNHpalwXRbKv1qoxeN0VCBVwmkMNo+WzHr7JwS4q4rshhyTSGOlJE8/00BhmzmnKpIuzhC0AIWioD90Ss+N2pG3h/KcgIX868s2qTJ/rnJGyePt/2N/mLcECt+DJ+f/5YKsw10o4D+PCgeBhdBsEY5tqYj+QumFEH6kpfOciWMyq4T04f5QOu636ymg==
-Received: from BNAP110MB1885.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:1a8::8)
- by BN0P110MB1195.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:182::12) with
+ bh=h5hmqid4KirVxkEutYfP9ujRGuDESw1VV1c+6CEavSM=;
+ b=mTbEJtEA54GKuhIPGE9HWwt+tLhgPTOnRTa8R/J69v3rBokj6/cRgyarwnDPT+Br9BNsd0ktLUKfVCkdTt9YazWcVD0SghWrPimeoLFzSgHPQVTKHk344hebFAXPpgVFmM7uNG5tfkIVueq3+yp9PDLFn8LrajJfXFPaakI6lTs=
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
+ by MN2PR09MB5692.namprd09.prod.outlook.com (2603:10b6:208:213::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.9; Sat, 31 Jan
- 2026 00:09:28 +0000
-Received: from BNAP110MB1885.NAMP110.PROD.OUTLOOK.COM
- ([fe80::a7c9:fb57:d8bf:259b]) by BNAP110MB1885.NAMP110.PROD.OUTLOOK.COM
- ([fe80::a7c9:fb57:d8bf:259b%6]) with mapi id 15.20.9520.014; Sat, 31 Jan 2026
- 00:09:28 +0000
-From: Tommy Tsui <tommytsui@w5tech.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: DUC set_freq() function
-Thread-Index: AdySRDyHTnCaBPuuQBKOQMwNShqlsg==
-Date: Sat, 31 Jan 2026 00:09:28 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 4 Feb
+ 2026 19:56:45 +0000
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::4b5:d448:c89e:48e8]) by SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::4b5:d448:c89e:48e8%4]) with mapi id 15.20.9587.010; Wed, 4 Feb 2026
+ 19:56:45 +0000
+From: Eugene Grayver <eugene.grayver@aero.org>
+To: usrp-users <usrp-users@lists.ettus.com>
+Thread-Topic: X440 Dual DDC per channel
+Thread-Index: AQHclg/BBzKnB5J0jUq6d9dKTVwjLQ==
+Date: Wed, 4 Feb 2026 19:56:44 +0000
 Message-ID: 
- <BNAP110MB18857ED81B736FAF92F35617949CA@BNAP110MB1885.NAMP110.PROD.OUTLOOK.COM>
+ <SJ0PR09MB912622C7566AE804EB53B2D0EC98A@SJ0PR09MB9126.namprd09.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+msip_labels: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=w5tech.com;
+ header.d=none;dmarc=none action=none header.from=aero.org;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BNAP110MB1885:EE_|BN0P110MB1195:EE_
-x-ms-office365-filtering-correlation-id: ba281970-d1b8-45d9-303e-08de605d0030
+x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|MN2PR09MB5692:EE_
+x-ms-office365-filtering-correlation-id: 8a79c3fa-7a05-432a-9dce-08de6427861b
 x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: 
  BCL:0;ARA:13230040|1800799024|366016|41320700013|38070700021|8096899003;
 x-microsoft-antispam-message-info: 
- =?us-ascii?Q?xBJVMKHw07mvyHU+0HM/Qi5b71q4pQOall7wKpEnYN6ZmqZMGCLHl75aXXwj?=
- =?us-ascii?Q?KQc5mF+B/FEScM+QIVB/pfKZmG1FSZ9Qpu/gWl3tK6bhJO/mWyNI2HvhPFql?=
- =?us-ascii?Q?1WP3+DgawfvJ+oDoYl0ZAJshvTb5nt5Vg/qzb9NJj3pneqM/89uCT1kNruhc?=
- =?us-ascii?Q?SDJR61LsMc60za1V8stfExI/B+9yzu4hAhCeIQVEPGKLK3Os+DP8Th8Bsi1f?=
- =?us-ascii?Q?4+ChS0OgkRrysljsg3cKUar7dMXNIB0VrD2ostNIKr+Zl10a/TRMrj8LbpAL?=
- =?us-ascii?Q?FemVeN0Qe+6EvpLXGi8WbzkquI8GMCJkRykMiDqtLbtv4GUUoLilNLsyrtw7?=
- =?us-ascii?Q?1UL+pV8hlR6/Do/1KKAKnL4DIAV2lYC7cCW3GXgBjfCK+fTtOHU+fSk/C7ln?=
- =?us-ascii?Q?ZxygQ1DOLVrWvWP7LB1EvfVTD8rEONN5Jal/8zgV+ZFIClFZF/ZpEZQbVePd?=
- =?us-ascii?Q?aVb1eI/jFtRS9Etevyu+S0+JBNxWIdWQLCYQDA6q3SuX5tgt94fTJzWLmjYK?=
- =?us-ascii?Q?D56NQrB69w1qtN9G+cR/12qn5IwrJuy1+jqxehDVV8X1TBw4gN08UD6uQLpW?=
- =?us-ascii?Q?NyvPMGqhn/036pCCRqt8aiThBRrTPAmHoqXAmY49ms5lDzHlZmxiNvZGoKGz?=
- =?us-ascii?Q?AnTfs69J4vHotapzX9UoNnItMOz4wzHOF9ezTGmUuRQgjUw7NkmS9gAMvdt+?=
- =?us-ascii?Q?HHv56sUXOfyjDeDFh2V8QGos3WV43zz8i9armm2iKPk0hP8oGn7NLkPr+0d8?=
- =?us-ascii?Q?qrztXqx6D+vEpQZ2q11cm3q1Ur5nH900r8ytlRIcBKlum+YHL0ekefqvjhyF?=
- =?us-ascii?Q?RpiAjmCmAAYG7W4EhjImidItiDhfQxyowU85ACQdxt2zD43f+mk3eSiuJ4N4?=
- =?us-ascii?Q?2Zd6DH8zcfOt8Zx2kp3EbfYrAl8Cdeap3nX9PFzLKMgnxWxxJxHRp8arRF5C?=
- =?us-ascii?Q?j++hx1Dj+DiqYge1u+nWZB7mLBy1GMNkb9GlPYPyEvBTC4idEDhLOsTfYsMz?=
- =?us-ascii?Q?pt7Yyw4glECdr2/UOzR/DsFWpIHe4e41BUzSli168y/B/svYUKifnk5SjEQH?=
- =?us-ascii?Q?1cAf+p+Ps3Fjmfx9BAU2Ce+KHPvta3fdnmhE7w4oNUxhgo4cYL4J1kldvuom?=
- =?us-ascii?Q?/9prAzjBGYhuuACbi6EJznLv8nKHRiM7j6u6lB986jDOINMrFxdPWCXwku7d?=
- =?us-ascii?Q?Xg282ATi8f5oJMT7iUmEydZ3ygXPv2FJCm8CfU1AYI8KPBdaFd+Ce7UmTDQX?=
- =?us-ascii?Q?54DbWTLaWzz3VFdKRMuA0mlRxh2g8YUXwgfYFWhdNjXk70jxzxiIOVp1gIxA?=
- =?us-ascii?Q?0DXJP2r9L7N9dTx//WckxO/98BgMUgRQc6PfYnYQRv/rc6YhXW5JfMSGbhq1?=
- =?us-ascii?Q?tLLhR3egCtd74tBDNjdA0Iix2mZI91mztl9dEeEGmX44f40JBmbI32/gYXkU?=
- =?us-ascii?Q?CKonioCs5Is1V9eAiDRk9uXyuM7w/XHwIGHaRAldSUz+kZHGMTXCmqBnQfr1?=
- =?us-ascii?Q?Pe9FcBfd4G2orMqQnYjziB1DYkBeBx7Dddz5Uqr84WueV2nZqVAFHI/Mx5t/?=
- =?us-ascii?Q?ei9bhZ2dMrcrnHkHNpi3yISO2x0QWKFDSvOyq6Ca1YonoW0mWaaWXvnOFp6u?=
- =?us-ascii?Q?UvJumD+Q+KFEDtdL8e5ZHg4=3D?=
+ =?iso-8859-1?Q?AYRzZR4z2f0S86vZLM77Wt+E7KIJVMx7YwxzqY2cIIvrR7Lm2pLkmSLD+6?=
+ =?iso-8859-1?Q?m1m3qKpubdF+cj+DTWEoccBr9ZvtejC0zkYZjntoEy2GS8On5TYV0LTI/c?=
+ =?iso-8859-1?Q?0wXAr7JQuJfQWpacusqpMW5KkX3uGZG5qx36XbLpCfx+z8jvxY5xX5cOcb?=
+ =?iso-8859-1?Q?ejiDyTjKfuNCUX9Bwmmc9HZ1bl8mYH+Rbk0gnJrXOny3hvv+Ue9bt4hnah?=
+ =?iso-8859-1?Q?z5E7u/75fWpEo6FRD/6VBpzwthIxAxQvk8azKGcxyXWDHgYkQFqRTD8z8X?=
+ =?iso-8859-1?Q?QKwHLxs6E0ie7gmAkzpLI01Y7B84HNGHHuK5jOnPHevW0bB+Iu7bkIlt+c?=
+ =?iso-8859-1?Q?oBE/7MuYN0gPZ78MyLSLCoSvwuSyi50vlMniQHquJ0b97U7LkCxCqo5rFo?=
+ =?iso-8859-1?Q?DemqRuF0gKhD1+Sry4TtwB0BpDXPMd50ywyhvhY/xxCDXPQgBofkjVXMz/?=
+ =?iso-8859-1?Q?g1Ye3bldBOFFDlNFocw68u0T8DFkbGKCXL/9xPSmOgIKNcO61BrV+J87NE?=
+ =?iso-8859-1?Q?SOKpsAeSc7hT2ijQMBWlGL+W9QXobAGJ1AeLeTeartviYO4GXV+yd8Yu5B?=
+ =?iso-8859-1?Q?/tTmjhjsChk35fVyJ55SRTKDs7JHZIpXJBfNvP03hUMXlwuNpiKW/NIoFd?=
+ =?iso-8859-1?Q?8CJSMOS7crcUcDGxMtcmV3YlS9I9nFKZs5IJkcqLxpir1proMbHPshEx7B?=
+ =?iso-8859-1?Q?WVoATz75k788+4QqJLGRHapC5r3qPEViOhy55VQu0/GiSaVriS02tNQDB7?=
+ =?iso-8859-1?Q?/AcRr7/urnF4xbL6xiH7GqktFyvBAobd/yM4XTAkZvlMhylpUStrTOA1iD?=
+ =?iso-8859-1?Q?yP05liYUYqbYCXH5lES7QKm3trnBNL/KDO6bkBm1+3uFJ7uy0vMk+IZk6Z?=
+ =?iso-8859-1?Q?O5UUSTlfklnicWCDPQqKVYQF+SnPyiqLpkinqIly6lL/rExtVD1/YK1+sT?=
+ =?iso-8859-1?Q?I24dWR/HhqnKNmSuGBDWJKuZq4pO7WDSyIykwTscA+oLmWUcXMrhBiFsgG?=
+ =?iso-8859-1?Q?mNAZI8RRcCZU5J+ibHBCsKIKgUsNDLv3eaeXRsRS0Cqxe9QXu6hHDohul+?=
+ =?iso-8859-1?Q?Qd10PuhJLS774GJcEgW4R70A7lI8BwJZJaLLpAVkMYBMnr3BLNChak73bO?=
+ =?iso-8859-1?Q?bdIMO7Nb5AM7LL9UnKFcobqWYfJpsUVFHs2BEY7Bx6IKt4xuyDfv0rcJiI?=
+ =?iso-8859-1?Q?0ramaP9EJjK2JiyLrnRDqLKq9D2hJ98g/oAN9O00hzYg3rUWMOjy8uj5Ys?=
+ =?iso-8859-1?Q?rMwkyqp0qZh2LnUIRjf5DgJiqAutrE9zRTxz8yr2vkK2zj2fl+KKw6Xfxi?=
+ =?iso-8859-1?Q?02UjF8wY4RcWTs5ngl9jueY4mZ1Bsl0S9i9fT/q0CkUUdD8uxD4qJmMMlN?=
+ =?iso-8859-1?Q?NX12LrbbZlMtOtXrh7+BS0bdN3FmT2W7hkLitq7gozdua9VHrsKy2iBsh/?=
+ =?iso-8859-1?Q?gIypA2PTrrBEOOwAdZQYIYVgDU0SS4sVKFrJwRL2vWQhvgUzRvcdfk2817?=
+ =?iso-8859-1?Q?HH60aFIoMLfstQgWzyHpNFJydeJOOEYxnHksMmrbQ4r1UHGm74q7o8+gZG?=
+ =?iso-8859-1?Q?m0N1u+ECtJ1Vz71kH4hnhk7UsY4p8xoExRE8hIxDe++9qCeAx0kUc/44Y0?=
+ =?iso-8859-1?Q?j3jQoKI6tu5wsXei1JMDVGjKLaY/lTzcblPIyOzOQYvzQ5kCsYPqHlhmyW?=
+ =?iso-8859-1?Q?wsYT8mo/ylZLyKusCl8=3D?=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BNAP110MB1885.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(41320700013)(38070700021)(8096899003);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(41320700013)(38070700021)(8096899003);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?5nTMWNfNJqA6qrywqpDPvwHVCT5UWluBVqoywtow/qv+kYgBlGH8SDBx49UY?=
- =?us-ascii?Q?NS+nG7qKuaKzGorWOj1+IttTNCmYpr98NfL1pBP/r9Qw4tvc8lBWjsUGK1vt?=
- =?us-ascii?Q?FddDGaS3mqqblZq4S1Uf64CZh+S5zybV9j/+lEDfAKbC6wsOtv2thePP6YnP?=
- =?us-ascii?Q?Val7VC+K89QySQWQB577hgAbRxNsllDdP8dV6UxYdGy2E2K44b7wgNx+GXsP?=
- =?us-ascii?Q?YDCYYNiH/NUElpcExEe93YlYx8tvahNjmAY3ct5fTwn6tv7gE50nuUAAYYGv?=
- =?us-ascii?Q?/t35ToNEljf9E+OhiUr5FqNNqA1/bzeobE6sS66k5SM+CiSEUPyqg/rNRwCp?=
- =?us-ascii?Q?JyO8DoYvUUog5a61bfhR1rxIpqHDBLOhW0cnlGdRt74vcQU4B++mGR42rLCT?=
- =?us-ascii?Q?wuoWPto6CHkkSX2viJu/rswg3IOCPkl8/EWoVp2TlVo1mEig1ERY8xP6f++y?=
- =?us-ascii?Q?ZsTYMbusvwye1cAbx2tfmY47SsL8OLsT+/0OGcyqkKDXnjS7I+617tL5FA9c?=
- =?us-ascii?Q?wrEaYqJeBbTGMYcyi7I+YJRB44bXyHsrNX2gGmKpXn/0SX0dEtyYpQ52iUGH?=
- =?us-ascii?Q?dgMhhscTGVqC3XCFn+O6QOlAE85wdJVo/8A3ikuxlhVWWTAU5H5/BLPHaSxR?=
- =?us-ascii?Q?Tq9ZsqD5GapJX+EeQAri4HRAW/dMQlpYgG6gjVaTDA0JyoXmqQtQwMXIvOlD?=
- =?us-ascii?Q?9SnIY0HKeScPR2ZvKWUfHop/7t6Lr4hLeOe8vzcNvUjtMSbAfmqXfjR0i4Dt?=
- =?us-ascii?Q?48qi44wZ/ZaW3jGT0BhSasJt90T3Op2hf3HDuBn/UmBExOPZ78BfjbbLYoi8?=
- =?us-ascii?Q?GFfFpKZszPFr6D73Noo5765Cti5Ms2/sTyXtn8V6qM9/pIma0PVJBe/mbOn5?=
- =?us-ascii?Q?eD2NjDpijG16OBUd8M5VylgVrX7XjV7cUplyJ4O4EDrttTBP7Mh0zSHkGtF6?=
- =?us-ascii?Q?XSbTLPaVQZSBvbHao0/j7oM9R+fcl/EbFjYmF1bQSMdl/jcuDW47CSfSvDRw?=
- =?us-ascii?Q?IzxSRvSxdCyJqC70N6EL2iiFbJGd5Kzvm6BHrOLiOgd2rgaam8VY+1xBI5hk?=
- =?us-ascii?Q?zBByditQDihBpF8rZLTixV8MMy7G7OkwWslrbVsvKrB53hGBRXPMiUsN2osE?=
- =?us-ascii?Q?ohQVDM1icapBELXSP2oyaKkXUn92weR8FRWHa91ae7yQPU8bT9Ar0UWFFABC?=
- =?us-ascii?Q?YtWhL2W0fKcKlRvCTbuyQ3b559Lz8Ur4ys87TeRQIOzNdABs7Rqkcm41/qwX?=
- =?us-ascii?Q?xH8uqG1YsSLV4f4WV0xAs3vKDEqSjrmJEMgMYsjeXRVbRk0c5zfu8I6lXtEX?=
- =?us-ascii?Q?5sY7VvtQzJ8pWbM1m/UBviIGkuxK6uvrny1Rmw3KxUJbOiJ4i+inlqylDeA1?=
- =?us-ascii?Q?ahrHMqghz4Su1oVQt3tVBm1EDm282Mzaz9za+mz90o9k+0kWli7qxUAOAmdd?=
- =?us-ascii?Q?nn2TQz8GbGp88dzOYgSmqcV9nau2vEFbWxina7I8OxvJ4aq8PcAPpR1vMxjd?=
- =?us-ascii?Q?sD1/S0AawnAoZlc=3D?=
+ =?iso-8859-1?Q?doTLkq55tc7CwjbHDbO/djyhMUayPdrKfk8Ndz9BU9W4sLqkiphqOYOaKt?=
+ =?iso-8859-1?Q?yNyqDIg4vIxbFq0k84MDGwGMc/cSAobdrPVzB1hM3mTxv5xnZuig60lcFc?=
+ =?iso-8859-1?Q?nDMnTxJzT2cNeQfp8tASJrs0UrYLmGGvNY4DmrX6dlSy/ma61z6QnGWM8y?=
+ =?iso-8859-1?Q?ZAPZ1RzcvcExDAR6MNh6gZeGgQ3glM6XgN4s4Yuf20uVA6gaSdHKAh2mn9?=
+ =?iso-8859-1?Q?LlRJ/Fp/Y3Hvbai7xV8CemSQ9/c27GewpsJqffpjVtK/ZoVxYKGn8bajiQ?=
+ =?iso-8859-1?Q?ehcTJ1N0CAY0f+HO05URdGVNTmQPPIrA3PVrmgFikfbxqQ6bSpfPnhbTrF?=
+ =?iso-8859-1?Q?cmLkRHpb304+k7+YH3MJgMq5IFAyAoM5dVXnHcL5fRDyoatW/e5hHiLL8E?=
+ =?iso-8859-1?Q?tNxFQ7NJD+z5mtIIl/lRP81+pMPbQNoisNLhIjjpYPdFKOgqa8FuPM8Lx8?=
+ =?iso-8859-1?Q?5W6+vaL2LAoAK2reAJl/+CU9998SfRWsobPg/N07heaKbyclo8H6gESPd0?=
+ =?iso-8859-1?Q?l8SSYEXc9Zvcg5wadvSLfAQHM0sOLS8TyQVktUImA3fDbut7vZr/jhwW2p?=
+ =?iso-8859-1?Q?rqwN09yHaosKQDgbD0Vmcp88R26olXqBcyf1oZLCjoL3Mhl/dQRbkK9m0y?=
+ =?iso-8859-1?Q?+aU6wezxl07MlMuHqgKdb+iITIeurW4PbgCx/1+9x5jXJsN1/zKeiUyPYj?=
+ =?iso-8859-1?Q?oABBZbD2ij7WP0o7PB7NAjZ254g7wmbehj5ZeA+M2m2xY5gT20OKW4+JK3?=
+ =?iso-8859-1?Q?EYS4KpMRl0PgfApEakx4ToJNT0z6VBwQ4Mkfmf8JS+sb7AZrwnwLw4nlk2?=
+ =?iso-8859-1?Q?riqWZ5r0l/OjoR1IFjKlzs0XuvTm6S/bQgWR93x/VPLznPKvOo21glDAf/?=
+ =?iso-8859-1?Q?PRN9eOSy2ogH2OVyHUPVtJGPGUAhRkjAJGD//bMw3afHws3SPIyOvRu604?=
+ =?iso-8859-1?Q?fUJuAaVymFf+wTAmYayWpAGdvOZE/+wzgFReND3U9zUph3YbSg5tSZdkjM?=
+ =?iso-8859-1?Q?tY4ve6P2XxSjQ+n/9uQiphE3bYLOOLa6yND6zwh5sGjGzBe5k6weuJ73ky?=
+ =?iso-8859-1?Q?EjTrQCkNfPvfy3u7Cna21iTHyBvbLHB8JlC0sWME0tnYPlcLatNbY8ocyV?=
+ =?iso-8859-1?Q?rFerukif2p1XzZ45n7noBfnRf9zQVueBDy46Q0W4jeWJlQf5eridVmjtyZ?=
+ =?iso-8859-1?Q?vX31Mldfc/A6lO6C3nwXuCD+MCo5a0x2ws9Y2DtFgfxWcMLnfvdVIoRaPP?=
+ =?iso-8859-1?Q?gjEa9tCtAIbixs1qKd2mM8VTTj31aJivFm71WBkC0YTC9f8lC67b8ScoP5?=
+ =?iso-8859-1?Q?/eR8wTsIxqaIl/5cVlFFLTbyHcjMESPmX07I91UMHC/a9i4r101ZJRA4ZU?=
+ =?iso-8859-1?Q?0J9JPtVuh4d85/8w7+nI/I9ccXOev1AfAbMRCAksDMwnt5PYyblykRzxwf?=
+ =?iso-8859-1?Q?kN4YfjF+T5HFDBKfdUB7Ogh72cOPHj91C3lH+NOviTaWE483AcTeLE/y26?=
+ =?iso-8859-1?Q?cqbjF0pMMnVq+dwSlKGgxdGc9DKnr96HFoxATzbo7/v4o0vXf8lZSQeTEJ?=
+ =?iso-8859-1?Q?fI/U11AuGDs/Ur+SVa+Blj0t6t5yGgOjXAsBWltTO/2znbSbMkpe2y9v7K?=
+ =?iso-8859-1?Q?WsqLJNX43SxM8eGptxDpIq66i4+4i06F/dkCwh00D29i9QVj9lOEHEq1Ef?=
+ =?iso-8859-1?Q?OVFQkbfNp6qWzMDv2VmEeqofIZ1Zc5B8ThSFoiWn0UN1KlNu7Cti2rIBXG?=
+ =?iso-8859-1?Q?KXIRvIeYmschDHmo5RxKKHLaS//Mn7cQWgcijAu+8V8oE9?=
 MIME-Version: 1.0
-X-OriginatorOrg: w5tech.com
+X-OriginatorOrg: aero.org
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BNAP110MB1885.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba281970-d1b8-45d9-303e-08de605d0030
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2026 00:09:28.4176
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a79c3fa-7a05-432a-9dce-08de6427861b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2026 19:56:44.9380
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7e629b05-df8b-47da-97f7-2ae859536370
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0P110MB1195
-Message-ID-Hash: IJYRIBG6DNE22QIR2KDKFPM4AMH7ZW4O
-X-Message-ID-Hash: IJYRIBG6DNE22QIR2KDKFPM4AMH7ZW4O
-X-MailFrom: tommytsui@w5tech.com
+X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR09MB5692
+Message-ID-Hash: 5JCLC5GOXEINM3WB76VN6LWGWNOV47IB
+X-Message-ID-Hash: 5JCLC5GOXEINM3WB76VN6LWGWNOV47IB
+X-MailFrom: eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] DUC set_freq() function
+Subject: [USRP-users] X440 Dual DDC per channel
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XN5JAQJHT2EOZCIJ33HLHNJQ4QWAIVVQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3WHP7Y4WVHHPNQVBXM2QFJMXFGO6QXLI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7151216013918608155=="
+Content-Type: multipart/mixed; boundary="===============8014352793918898330=="
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.39 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
-	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[w5tech.com : No valid SPF, DKIM not aligned (relaxed),none];
+	DMARC_POLICY_SOFTFAIL(0.10)[aero.org : No valid SPF, DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TO_DN_ALL(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	R_SPF_NA(0.00)[no SPF record];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_ONE(0.00)[1];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
-	DKIM_MIXED(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	R_DKIM_REJECT(0.00)[aerospacecloud.onmicrosoft.com:s=selector2-aerospacecloud-onmicrosoft-com];
+	DKIM_TRACE(0.00)[emwd.com:+,aerospacecloud.onmicrosoft.com:-];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[tommytsui@w5tech.com,usrp-users-bounces@lists.ettus.com];
+	FROM_NEQ_ENVFROM(0.00)[eugene.grayver@aero.org,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
-	R_DKIM_REJECT(0.00)[W5USA.onmicrosoft.com:s=selector1-W5USA-onmicrosoft-com];
+	DKIM_MIXED(0.00)[];
 	TAGGED_RCPT(0.00)[usrp-users];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DKIM_TRACE(0.00)[emwd.com:+,W5USA.onmicrosoft.com:-];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim,BNAP110MB1885.NAMP110.PROD.OUTLOOK.COM:mid]
-X-Rspamd-Queue-Id: C935CBF804
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ettus.com:email,mm2.emwd.com:helo,mm2.emwd.com:rdns]
+X-Rspamd-Queue-Id: E214AEC4CE
 X-Rspamd-Action: no action
 
---===============7151216013918608155==
+--===============8014352793918898330==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BNAP110MB18857ED81B736FAF92F35617949CABNAP110MB1885NAMP_"
+	boundary="_000_SJ0PR09MB912622C7566AE804EB53B2D0EC98ASJ0PR09MB9126namp_"
 
---_000_BNAP110MB18857ED81B736FAF92F35617949CABNAP110MB1885NAMP_
-Content-Type: text/plain; charset="us-ascii"
+--_000_SJ0PR09MB912622C7566AE804EB53B2D0EC98ASJ0PR09MB9126namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-Hi everyone,
+I may be getting greedy but ...
 
-I was able to use RFNOC DUC set_freq() function to shift the Tx radio block=
- output frequency successfully on X310, but it worked only when the functio=
-n is called before the stream start. After the stream started, the function=
- call has no effect.  Is it a limitation of DUC set_freq() function? The on=
-line man page doesn't mention about such limitation.
+I want to record GPS signal with separate streams for L1 (at 1.6 GHz)  and =
+L2 (at 1.2 GHz)  Each signal is about 50 MHz wide by itself, but getting bo=
+th would require ~400 Msps.
 
-I want my app to be able to shift the Tx radio block output frequency sligh=
-tly at runtime after the RX and TX stream started. Is there any RFNOC funct=
-ion capable of doing this?
+I need all 8 channels of the X440.
 
-Thanks,
-Thomas
-________________________________
-The information contained in this e-mail and any attachments from W5 Techno=
-logies, Inc. may contain confidential and/or proprietary information, and i=
-s intended only for the named recipient to whom it was originally addressed=
-. If you are not the intended recipient, any disclosure, distribution, or c=
-opying of this e-mail or its attachments is strictly prohibited. If you hav=
-e received this e-mail in error, please notify the sender immediately by re=
-turn e-mail and permanently delete the e-mail and any attachments.
+Ideally, I would use the 200 MHz variant with **two** DDCs per channel.  On=
+e DDC for L1 and one for L2.  That way the total sample rate would be only =
+100 Msps (vs. 400).
 
---_000_BNAP110MB18857ED81B736FAF92F35617949CABNAP110MB1885NAMP_
-Content-Type: text/html; charset="us-ascii"
+
+  *
+Would UHD support that?
+  *
+I assume it's a custom RFNoC build
+
+Any suggestions on how to set that up?  Would 16 streams even work?
+
+Thanks
+
+Eugene Grayver, Ph.D.
+Principal Engineer
+310-336-1274
+
+--_000_SJ0PR09MB912622C7566AE804EB53B2D0EC98ASJ0PR09MB9126namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
-fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Aptos;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;
-	mso-ligatures:standardcontextual;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Aptos",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
 </head>
-<body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Hi everyone,<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">I was able to use R=
-FNOC DUC set_freq() function to shift the Tx radio block output frequency s=
-uccessfully on X310, but it worked only when the function is called before =
-the stream start. After the stream started,
- the function call has no effect. &nbsp;Is it a limitation of DUC set_freq(=
-) function? The online man page doesn&#8217;t mention about such limitation=
-.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">I want my app to be=
- able to shift the Tx radio block output frequency slightly at runtime afte=
-r the RX and TX stream started. Is there any RFNOC function capable of doin=
-g this?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Thanks,<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Thomas<o:p></o:p></=
-span></p>
+<body dir=3D"ltr">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Hi,</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
 </div>
-<div style=3D"font-size:8pt; font-family: 'Calibri',sans-serif;">
-<hr>
-The information contained in this e-mail and any attachments from W5 Techno=
-logies, Inc. may contain confidential and/or proprietary information, and i=
-s intended only for the named recipient to whom it was originally addressed=
-. If you are not the intended recipient,
- any disclosure, distribution, or copying of this e-mail or its attachments=
- is strictly prohibited. If you have received this e-mail in error, please =
-notify the sender immediately by return e-mail and permanently delete the e=
--mail and any attachments.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+I may be getting greedy but ...</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+I want to record GPS signal with separate streams for L1 (at 1.6 GHz)&nbsp;=
+ and L2 (at 1.2 GHz)&nbsp; Each signal is about 50 MHz wide by itself, but =
+getting both would require ~400 Msps.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+I need all 8 channels of the X440.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Ideally, I would use the 200 MHz variant with **two** DDCs per channel.&nbs=
+p; One DDC for L1 and one for L2.&nbsp; That way the total sample rate woul=
+d be only 100 Msps (vs. 400).</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<ul style=3D"margin-top: 0px; margin-bottom: 0px; list-style-type: disc;" d=
+ata-editing-info=3D"{&quot;applyListStyleFromLevel&quot;:false,&quot;unorde=
+redStyleType&quot;:1}">
+<li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
+alibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">Would UHD support that?=
+&nbsp;&nbsp;</div>
+</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
+ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">I assume it's a custom =
+RFNoC build</div>
+</li></ul>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Any suggestions on how to set that up?&nbsp; Would 16 streams even work?</d=
+iv>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Thanks</div>
+<div class=3D"elementToProof" id=3D"Signature">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Eugene Grayver, Ph.D.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Principal Engineer</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+310-336-1274</div>
+</div>
 </body>
 </html>
 
---_000_BNAP110MB18857ED81B736FAF92F35617949CABNAP110MB1885NAMP_--
+--_000_SJ0PR09MB912622C7566AE804EB53B2D0EC98ASJ0PR09MB9126namp_--
 
---===============7151216013918608155==
+--===============8014352793918898330==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -310,4 +356,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7151216013918608155==--
+--===============8014352793918898330==--
