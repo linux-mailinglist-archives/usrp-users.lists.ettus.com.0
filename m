@@ -2,228 +2,233 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOulBjpbhGl92gMAu9opvQ
+	id cJEmGYXmhGlf6QMAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 05 Feb 2026 09:56:26 +0100
+	for <lists+usrp-users@lfdr.de>; Thu, 05 Feb 2026 19:50:45 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E00AF01F0
-	for <lists+usrp-users@lfdr.de>; Thu, 05 Feb 2026 09:56:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E818F693E
+	for <lists+usrp-users@lfdr.de>; Thu, 05 Feb 2026 19:50:44 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 33F4B385F12
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Feb 2026 03:56:24 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 27F5D386872
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Feb 2026 13:50:43 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1770281784; bh=kw1weA6cUvvBVOD5s1M3fDrbwa5uW1Vsx96pjFr5Yk0=;
-	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
+	t=1770317443; bh=Epb9Q7q/4jNWmjXiNkxr0WadLrcx9p8Nas3DXysodX4=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=vDhN3aSxKhv0g3whwgX6hrGDsaR6PwZHfMjynfT3uGdW7nfOoOEZov+/vhbRdxqKp
-	 6jCeBlgN9qrgDeNfDtJvcG9H07HVE73J9PtgHmBYgCEUeh3HwQ8Ixs0skHQX5ijNGH
-	 hWvM2xH0OKexfrhC41JWtIOwwxM9VjmHiowhs5fmvocXGHoqml0l8ZCSsLLOKGJByW
-	 A0cfEMQ190d+5RI8M68PEbUlyA28CgJdALNAOn7iRXeM51wBmLWXsV25qmSGg6BePo
-	 eT6B7jg0NiAiN4LUwR7SLtPAvJ0k9KknSaARvn06ZwsxTREjpr/16OIox4fXVkgrr/
-	 E9YBja9UAii8Q==
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6F3C7385D7F
-	for <usrp-users@lists.ettus.com>; Thu,  5 Feb 2026 03:55:44 -0500 (EST)
+	b=MfuRVw3PdnF4iF+SHXBxZTBUuHnXybDlT5oFdEBEcBQr1FslV8Ym5vYvdnAhNPvBP
+	 ssIZnBU8NnjV6qYz9As6uicGv6Dt3yP5SYpMn/zKia+rpdNEZAFei4Jc6ZVf/XtPj4
+	 /9SOQUTrL8KqQ3LLZYaUVDM5j24JatXTPbT9BLwbNLooJBB8VQI6gf547GuHREMh9j
+	 u/dGR1sZX6+uDZFr9/NOxNs+yiVXgCdj4l2haoELnN9oS6waW6gaQ0dh8ySDTetpZS
+	 ISjOGDdG7z5L8wTlyWEnt3xioPFDVPiY86yrsI5nrH5wNPWR+H4/QezW+q9kU/q7fW
+	 5hXPDMOB6HBKA==
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id C3C1F38660F
+	for <usrp-users@lists.ettus.com>; Thu,  5 Feb 2026 13:50:02 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A3m2usw2";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="a66WSjBn";
 	dkim-atps=neutral
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59b834e3d64so836775e87.2
-        for <usrp-users@lists.ettus.com>; Thu, 05 Feb 2026 00:55:44 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770281743; cv=none;
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-89476eaaf16so11275836d6.1
+        for <usrp-users@lists.ettus.com>; Thu, 05 Feb 2026 10:50:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770317402; cv=none;
         d=google.com; s=arc-20240605;
-        b=cfhWU7rvHhuj7tsIDaerscOSFur2L+3O+z9VwEeGHBmJARiPIzFeL4ua/M77M1BwPW
-         5FZ5eFNOEd9eGU5e80mrVzSsOLfHACc5n09NnWsewrHyIldKhjRUPLPSttQ9LwXkQSWT
-         1gprD3AVV/FgKCkDaomuINpbInK6LbeQ47E9ZR2hINQiMQm5xjmZTbQB1i3h041bnn2S
-         x8K9BuoKthLNccutUq8SSH3AJrZZvbcuKq8xdEjDckh9zeBVw0VMXC2PEccLCEvCN7Kk
-         SY4wGG2hx5KHaEsmTsqK1eq1OQcx+N4dX7YnCxsV8/q5/PTXLfLKEmYVAI736X1SIlT1
-         FoRQ==
+        b=TsrO7AUgvpNd1LRpoYKymV7TIPjXJAzc8CAAMV8+tX5pxI9tUOm4cjvxfz3Mxz762y
+         gu/6VF7QLnVloGIgmcq8szLnV/avgsildPyPsKBpXqO18hHrYX4oeyiifNAcvZ7MrVh1
+         Owp5laztXtl3bqTXHQQUu16IOX16H2C3Rk6oQ/JNixV//oIdq2nzN0/VfLQ8J1V5aRCw
+         euDzTjBsfchHjFL+H5Dscv0EMGDg/Gc9jaIjH8p3fk3Qy2Z5b+ZvqgfQ+OBwLUjx82f4
+         cRZQ1cYYGGtEVg6P2HKLV1Z2ebew0U7eTbRHyO0tRBoD+vzq7iuzxyIpgBgRhWH7/EMi
+         c/7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :dkim-signature;
-        bh=aYJRowO9DVMkNjmp1AvCgprBgy8ROCzdkQHLqbDb0LY=;
-        fh=9CUBuACEF7a4/qEm7ltrWraAgj2qU8WjZ8LgOx5Sr9U=;
-        b=H8o/Ose5UWwZbXQagLx2tEdvkEJl+J9Kmo+6SL3VUcHp30uQ3lilko2Y1VUnjYDpHV
-         oSJHYk1R8OL9MISdWWaYM9NLmNEiss+b5LtfCviS8BNC+/41e4zNhVKOuysYybQTJtsR
-         nY7v/5k5SnBKkG9+fuxsPpgqc7wUK5LwKj71nOJeSNsDb7St7+dLJXSfK17SZF77TNIf
-         yUJmYDiAJnojHnXQlc354rGD+jcQmwywV23GApUOqA92LNd7ucsqR/tfGJ8enr42lX8a
-         XhOE+z+9IEPhqamzDMnoq1ZiLUN+f5ZfWImCizC6S4hvNHdKSFiErh1PHD6VP6KCsI0V
-         f7Pw==;
+        bh=uuA4d/1kc8Xmw9nqDfhIrwgdfeo0xuB29sJDIxkU30Q=;
+        fh=Rni46yqVkxPnzoJaeasF2jRWS6SwffKhmhdmBaa8z1Q=;
+        b=Px5atkbfJf8KR4vw7njA6hT14K+sp4GSjaxWZqbOWSp0HZvXEUI1fVKFtLsuBV5HJK
+         W+SaXQ61QUj7T8XGtTrbdkZnzLyhn+TfQkcMG3FM6a5oVp8guwhGieC/qNcXOmqt79jk
+         fLPhpvn4VE/rW5ovc1sD/1a3hlOhSjR5Gr9luR50UVL6EPedLitUfb8bC4wdLUdgNS2Y
+         XHYXL5gwNhhApV1sOKu1K3rXupwZQSQPUzEJ8gG6byReZa40/b4ClygYDH3L4dHn4Nu/
+         Lo8Y0KHRK8T/QvE9djSgglIS7MpeturQAAuXvKC6tI/lDmHlmwkvD1hMI57/1adHIf2p
+         n3kA==;
         darn=lists.ettus.com
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770281743; x=1770886543; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1770317402; x=1770922202; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aYJRowO9DVMkNjmp1AvCgprBgy8ROCzdkQHLqbDb0LY=;
-        b=A3m2usw2Ar+kmcxgw6Qreut/HDWl3ZTw4q2Qa7a+mKZmelsKjkAPhB0FsSuwakZgJ3
-         Z6wocNnJ9yz02S/CZXqfH8T7kIwqUgLzovJC+usXLeDTSR/9aFGrbNCl62VMgPLJ7FYE
-         cNY8kjLkW5uxxYuaK8j78xscp2SGjpzFgdB5fTQL1xY6iCgQ3URHi/1KQgEUfWjEw9UT
-         lJzdCQIwEeuhe2HLPcHmBz7YBaghc7+A4rNSd4XjcWfocrOHoHxZ14BN3Kw3Kuytu7Ty
-         XXoQE97su6nHKDWayrbpyrcPts7GiItZbYrLqHWbxY+ve4WZpQVAyU1l93jK0XLKVJOs
-         qp8A==
+        bh=uuA4d/1kc8Xmw9nqDfhIrwgdfeo0xuB29sJDIxkU30Q=;
+        b=a66WSjBnKc5brKmr1FfqEbO/BUrinxruw7ltAk7DCrkP4YZDGuRQqi7rgv5RpaUFLZ
+         kCJYgx6bdO5Y96UZYh9qOY0mOwco5E3MXTIEIFmoFRMDfVq+R8tg3arbVM9QyuFkmuRT
+         J6BvJkACpsJf5/LtucixT5F1tA2WpCSXh5q/F1PVIWgSeJXI000+x8AjtTlRr1++xpQE
+         8gybVyJxHbedftwc1r1a8MTl5Wn8shrWMlCZ7WrlJncuF3ZkSAHjJSJZM78fvA5ZDtE8
+         +jwMnoDGwC+pZAUIgTRkhAcnMHHWkEBcazOQO9A9V3nR2J+301x5EsYNuKwbUu+OsC/J
+         GjAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770281743; x=1770886543;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+        d=1e100.net; s=20230601; t=1770317402; x=1770922202;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=aYJRowO9DVMkNjmp1AvCgprBgy8ROCzdkQHLqbDb0LY=;
-        b=A5xkXuKMVegfLjpcFvXk7qU0yDqTt3YVAWVDoPJCy3Q/szX4Vygypw+6knKqS8UgW1
-         83+2zCysudo+WHGiC+ij1Nm02E1GvK4b7BQMlibDsALgfY3HqOB6kc06cUbOa04UljKU
-         F20I+eC6M8oj8bfDAnRDY4VBisT6ARX2rKB4MscLGEPCFF7ECUwlyQ8qxrK4zhDpSCWV
-         W3+s33O8hS5mZGjzzrTGq9TYAs+C6fxOzB8gci+FCVkqlCmBPNDCqQueDtJjw1qZAHs+
-         9twPCDMI3+Z3V1qYw3YjXMt4KVd34P2LvhXTUwTBnaa90W9IVSgoicWMxs6zR2HykX4k
-         rI/A==
-X-Gm-Message-State: AOJu0Ywa1g+4RQJelxSaHjvbaC8r4UzOEnnP/mk1aGcVdA+xjtQHZGLX
-	jQ1AV2h6l2FKVE7O6c4wqbi+3odwL8EcDpTiKE4e6Sc6Bx4sSk8MA3ZZ0FyG6Te6U50i/pnCtz1
-	78WlXANRJ2e1hBjL99/+wWW16tQWOw2poIA==
-X-Gm-Gg: AZuq6aKl20O/pAN6g3sB1YXXBmKCULz3W5NyV3ESvbdHpbqq9GwFlWiA/tnL6nojXLm
-	cZl2aj72G+7wU+44hlQv3xfR+cdzlqbZ4Eq89EAGTgK3nT25daXOJkP3smlo5JYCfFgadxO1rNp
-	7+XaObvOJ9SsGl/oBofmBU6aMQxDuCdbzvFnQwvTXMX1EqLsHfZfA9sVs7C+zm7hYFm1d6CUyqg
-	23pPowWXrMR24Axn2aBKOGMCdGll70GXLqG1cS9falJUOD/AQ9rugP4y7JbvqlXatWmz4mIqyII
-	Mef3QgsHxwZucJ4LS6ObXU7C2rO6vWq2og5WUaBHNZ2BUP2pgj4i/DS9CHWWYl9XpWuX
-X-Received: by 2002:a05:6512:3b27:b0:59c:c05f:be with SMTP id
- 2adb3069b0e04-59e38c0235bmr1962649e87.1.1770281742472; Thu, 05 Feb 2026
- 00:55:42 -0800 (PST)
+        bh=uuA4d/1kc8Xmw9nqDfhIrwgdfeo0xuB29sJDIxkU30Q=;
+        b=rNp0lPuqZjX62jdMowp+fDynbXbd0W2XCnWdSKKgDNZFQEee5RoceaUMj1raGvyKNP
+         dDNUAZryucJgD/6uI8CWaRxDKbtQ+W6432OkdhxT8wpn2NJoQrXc6otlE97mvtGTpWh3
+         jjSBDjLVvzO+eyJ2WHw0b39bsnz2XeYwltMGzIWYJ0lYD21qdehDvdAOTB3E0zxhmC51
+         zK3YdPv/cIEVJNvsJY1fV/b5Inqw6dFvmez47qHqwp/L6dAqB3CiNKbAPD3fto7nYzRg
+         jdc+xzHtRes96VmD0rtHhjFwtS0J8oW/v6Ubw1brnIIOlJwftqW5DNYImGLB9eAW59iS
+         rn6Q==
+X-Gm-Message-State: AOJu0YzC4mtIwOEmruSg9y2e8QZLKHm6ZTINJ3UhRUQbEMs6YddxGgfE
+	bOV9vnnyUcNqf6mBY0mJNQHk7A0QgEoufTebzs71jmKZon3aYov38BaAEnCEkXCpjiLWLZJS9pZ
+	P54ukf4lYhG7pAFSk4sXzUAVE0sdAEflT1yyPUw2cgNHcwHbIoa2rriryTg==
+X-Gm-Gg: AZuq6aK8sKZVkW2FCg48obP2JzHNNAMqry9XFSABq4LtJgrhqm60d3WqJiAbBI0g191
+	SxWkYGnYubMEJRGBtO/ff17J8vIxAAjZZtud5n/cYq+mNmxF1BouMdZcb0Wb8AsT+9UkpTvkLNb
+	V2MGNyUpdXdsTSwYPGFQ0hjnvb+A546ZuEUTfRGnZpfP5prPij/a6IFGp6U5hv0BezA1w/d9Cr/
+	6QLgOxVkxIzp1oBqhZHhGGvH7NvySMTjSCt/7cP8RwytBV87Sa/QmVqM0HGQFABJhGoKK7h5Q/r
+	j4G9t5oOg+tslnVYtaCsZ6YQ1o5eQuIM7M9Qtg==
+X-Received: by 2002:a05:6214:29e6:b0:894:2c12:aed9 with SMTP id
+ 6a1803df08f44-8953c7f212dmr1564256d6.5.1770317401846; Thu, 05 Feb 2026
+ 10:50:01 -0800 (PST)
 MIME-Version: 1.0
-References: <CAE_Rk56j50WBbXViEyE7A2DDny17g0XkFfp+=M=bbYWh5ywU+g@mail.gmail.com>
-In-Reply-To: <CAE_Rk56j50WBbXViEyE7A2DDny17g0XkFfp+=M=bbYWh5ywU+g@mail.gmail.com>
-From: Daniel Ozer <danielozer22@gmail.com>
-Date: Thu, 5 Feb 2026 10:55:31 +0200
-X-Gm-Features: AZwV_Qj5agaJvOgdo1skQXDEBOD5oVcQAvOpNRSiYvfs_QAwjcNDABzzdUKOTRQ
-Message-ID: <CAE_Rk540uFo9aojLwrkxpLzowHGr_YUY3UyzxH1aTMaSezCsFA@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: 6P4EH2TD37RNUKLC2VQ3IBLUTK6ETX3M
-X-Message-ID-Hash: 6P4EH2TD37RNUKLC2VQ3IBLUTK6ETX3M
-X-MailFrom: danielozer22@gmail.com
+References: <CAPP35V-Y6Nr6du9kiQOg5hMG9xkDYDnQ8NaXUPGhatOK0pE10Q@mail.gmail.com>
+In-Reply-To: <CAPP35V-Y6Nr6du9kiQOg5hMG9xkDYDnQ8NaXUPGhatOK0pE10Q@mail.gmail.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Thu, 5 Feb 2026 19:49:50 +0100
+X-Gm-Features: AZwV_QjyeTp5Dvd3MasBtkS2093TPJUgI9dr5DkCyI5Hqf5s1086SX3zol7jjZ4
+Message-ID: <CAFOi1A4w9idRL_v_r0s4tdwmZzQ-sFpxLOs=6gX9jbtaA+qo+A@mail.gmail.com>
+Cc: usrp-users@lists.ettus.com
+Message-ID-Hash: BGS5E27BWEDDRMAMFL55EWEIC3DVSTM3
+X-Message-ID-Hash: BGS5E27BWEDDRMAMFL55EWEIC3DVSTM3
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: error when loading a bitfile with more than 8 eps
+Subject: [USRP-users] Re: USRP N210 with LFTX / LFRX supported LabVIEW version
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6P4EH2TD37RNUKLC2VQ3IBLUTK6ETX3M/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BGS5E27BWEDDRMAMFL55EWEIC3DVSTM3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0217806383059575137=="
+Content-Type: multipart/mixed; boundary="===============2214688765322120554=="
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.39 / 15.00];
+X-Spamd-Result: default: False [2.29 / 15.00];
+	MISSING_TO(2.00)[];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : No valid SPF, DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	R_SPF_NA(0.00)[no SPF record];
+	R_DKIM_REJECT(0.00)[ettus-com.20230601.gappssmtp.com:s=20230601];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	R_SPF_NA(0.00)[no SPF record];
 	RCVD_COUNT_THREE(0.00)[3];
 	RCPT_COUNT_ONE(0.00)[1];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
+	DMARC_NA(0.00)[ettus.com];
 	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	R_DKIM_REJECT(0.00)[gmail.com:s=20230601];
-	DKIM_TRACE(0.00)[emwd.com:+,gmail.com:-];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[danielozer22@gmail.com,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
 	DKIM_MIXED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,ettus-com.20230601.gappssmtp.com:-];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[martin.braun@ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
 	TAGGED_RCPT(0.00)[usrp-users];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 3E00AF01F0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,emwd.com:dkim,ettus.com:email]
+X-Rspamd-Queue-Id: 6E818F693E
 X-Rspamd-Action: no action
 
---===============0217806383059575137==
-Content-Type: multipart/alternative; boundary="00000000000069968f064a0fd60c"
+--===============2214688765322120554==
+Content-Type: multipart/alternative; boundary="000000000000e083c8064a18233c"
 
---00000000000069968f064a0fd60c
+--000000000000e083c8064a18233c
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-it seems that the problem is when I use more than 8 eps.
-but i don't find any limitation on this.
+Hi Ravi,
 
-=E2=80=AB=D7=91=D7=AA=D7=90=D7=A8=D7=99=D7=9A =D7=99=D7=95=D7=9D =D7=93=D7=
-=B3, 28 =D7=91=D7=99=D7=A0=D7=95=D7=B3 2026 =D7=91-10:34 =D7=9E=D7=90=D7=AA=
- =E2=80=AADaniel Ozer=E2=80=AC=E2=80=8F <=E2=80=AA
-danielozer22@gmail.com=E2=80=AC=E2=80=8F>:=E2=80=AC
+there's usually not a lot of LabView-related chatter here, so don't be
+surprised if you don't get an answer. In this case, I believe there is
+no restriction. Any LV version from the last few years should be fine.
 
-> Hello everyone,
-> I need to create a bitfile for the X440 usrp (based on the X4_200 variant=
-,
-> with uhd 4.9.0.0) which takes each rx port split it 2^n ports, each port =
-go
-> to a ddc then to the eps.
-> While i managed to accomplish it when the number of the eps is equal/lowe=
-r
-> than 8, each time when there is more than 8 eps i successfully passed the
-> creation of the bitfile but when trying to load (using the
-> uhd_image_loader) it on the usrp i get the following error at the end:
+--M
+
+On Fri, Jan 23, 2026 at 5:29=E2=80=AFAM Ravi Paswan via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello Community,
 >
-> [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
-> RfnocError: Specified destination address is unreachable: 1:0
-> Error: RuntimeError: Failure to create rfnoc_graph
+> I am looking for information regarding which version of LabVIEW is
+> supported or recommended for use with the USRP N210, specifically when
+> using LFRX and LFTX daughterboards.
 >
-> I tried many variation (see the attached yml) -which include adding to al=
-l
-> eps True on the CTRL option, i tried to use only 2 eps with 8 in_ports an=
-d
-> more.
+> Could you please provide guidance on the most compatible version for this
+> hardware configuration?
 >
-> What may cause the problem?
-> it seems in the documation there is no limit for the number of the eps (o=
-r
-> ddc,splitter) as long as I managed to implement it successfully on the fp=
-ga.
+> Best regards,
+> Ravi Paswan
 >
-> thank you all in advance.
+>
+> *Disclaimer: **=C2=A9 2026 VVDN Technologies Pvt. Ltd. This e-mail contai=
+ns
+> PRIVILEGED AND CONFIDENTIAL INFORMATION intended solely for the use of th=
+e
+> addressee(s). If you are not the intended recipient, please notify the
+> sender by e-mail and delete the original message. Further, you are not to
+> copy, disclose, or distribute this e-mail or its contents to any other
+> person and any such actions are unlawful.*
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000069968f064a0fd60c
+--000000000000e083c8064a18233c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"rtl"><div dir=3D"ltr">it seems that the problem is when I use m=
-ore than 8 eps.</div><div dir=3D"ltr">but i don&#39;t=C2=A0find any limitat=
-ion=C2=A0on this.</div></div><br><div class=3D"gmail_quote gmail_quote_cont=
-ainer"><div dir=3D"rtl" class=3D"gmail_attr">=E2=80=AB=D7=91=D7=AA=D7=90=D7=
-=A8=D7=99=D7=9A =D7=99=D7=95=D7=9D =D7=93=D7=B3, 28 =D7=91=D7=99=D7=A0=D7=
-=95=D7=B3 2026 =D7=91-10:34 =D7=9E=D7=90=D7=AA =E2=80=AADaniel Ozer=E2=80=
-=AC=E2=80=8F &lt;=E2=80=AA<a href=3D"mailto:danielozer22@gmail.com">danielo=
-zer22@gmail.com</a>=E2=80=AC=E2=80=8F&gt;:=E2=80=AC<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div dir=3D"rtl"><div dir=3D"ltr">Hello=
- everyone,</div><div dir=3D"ltr">I need to create a bitfile for the X440 us=
-rp (based on the X4_200 variant, with uhd 4.9.0.0) which takes each rx port=
- split it 2^n ports, each port go to a ddc then to the eps.</div><div dir=
-=3D"ltr">While i managed to accomplish it when the number of the eps is equ=
-al/lower than 8, each time when there is more than 8 eps i successfully pas=
-sed the creation of the bitfile but when trying to load (using the uhd_imag=
-e_loader) it on the usrp i get the following error at the end:<br><br></div=
-><div dir=3D"ltr">[ERROR] [RFNOC::GRAPH] Caught exception while initializin=
-g graph: RfnocError: Specified destination address is unreachable: 1:0<br>E=
-rror: RuntimeError: Failure to create rfnoc_graph<br>=C2=A0</div><div dir=
-=3D"ltr">I tried many variation (see the attached yml) -which include addin=
-g to all eps True on the CTRL option, i tried to use only=C2=A02 eps with 8=
- in_ports and more.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">What=
-=C2=A0may cause the problem?<br>it seems in the=C2=A0documation there is no=
- limit for the number of the eps (or ddc,splitter) as long as I managed to =
-implement=C2=A0it successfully on the fpga.</div><div dir=3D"ltr"><br></div=
-><div dir=3D"ltr">thank you all in=C2=A0advance.</div></div>
+<div dir=3D"ltr"><div>Hi Ravi,</div><div><br></div><div>there&#39;s usually=
+ not a lot of LabView-related chatter here, so don&#39;t be surprised if yo=
+u don&#39;t get an answer. In this case, I believe there is no=C2=A0restric=
+tion. Any LV version from the last few years should be fine.</div><div><br>=
+</div><div>--M</div></div><br><div class=3D"gmail_quote gmail_quote_contain=
+er"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jan 23, 2026 at 5:29=E2=
+=80=AFAM Ravi Paswan via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.=
+ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello Community,=
+</div><div><br></div><div>I am looking for information regarding which vers=
+ion of LabVIEW is supported or recommended for use with the USRP N210, spec=
+ifically when using LFRX and LFTX daughterboards.</div><div><br></div><div>=
+Could you please provide guidance on the most compatible version for this h=
+ardware configuration?</div><div><br></div><div>Best regards,</div><div>Rav=
+i Paswan</div><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"l=
+tr"><div><div><br></div></div></div></div></div></div>
+
+<br>
+<div style=3D"text-align:left"><img src=3D"https://vvdnnewdev.vvdncloud.com=
+/images/it/vvdn_at_mwc.jpg"></div><div style=3D"text-align:left"><i style=
+=3D"font-family:georgia,serif;font-size:small;color:rgb(80,0,80)">Disclaime=
+r:=C2=A0</i><i style=3D"font-family:georgia,serif;color:rgb(80,0,80);font-s=
+ize:12px;text-align:justify">=C2=A9 2026 VVDN Technologies Pvt. Ltd. This e=
+-mail contains PRIVILEGED AND CONFIDENTIAL INFORMATION intended solely for =
+the use of the addressee(s). If you are not the intended recipient, please =
+notify the sender by e-mail and delete the original message. Further, you a=
+re not to copy, disclose, or distribute this e-mail or its contents to any =
+other person and any such actions are unlawful.</i></div>__________________=
+_____________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---00000000000069968f064a0fd60c--
+--000000000000e083c8064a18233c--
 
---===============0217806383059575137==
+--===============2214688765322120554==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -233,4 +238,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0217806383059575137==--
+--===============2214688765322120554==--
