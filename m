@@ -2,313 +2,228 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8GfTBjOtg2lvsgMAu9opvQ
+	id aOulBjpbhGl92gMAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Wed, 04 Feb 2026 21:33:55 +0100
+	for <lists+usrp-users@lfdr.de>; Thu, 05 Feb 2026 09:56:26 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 476ADEC7C9
-	for <lists+usrp-users@lfdr.de>; Wed, 04 Feb 2026 21:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E00AF01F0
+	for <lists+usrp-users@lfdr.de>; Thu, 05 Feb 2026 09:56:25 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F2BD03865C3
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Feb 2026 15:33:52 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 33F4B385F12
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Feb 2026 03:56:24 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1770237232; bh=TZ3B43jkTsvma69oxbBP51LyLpf6Uavp0JieiSryNW0=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	t=1770281784; bh=kw1weA6cUvvBVOD5s1M3fDrbwa5uW1Vsx96pjFr5Yk0=;
+	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=WiP7WRgk2QGFCrFFUdiJqPn2NoIagE7hDR+9EF3e8WWMlLWmzddCze5Zy8PiNtQHW
-	 i3XbYVvfyW1TlMY9CBNoBj8Am3vR4h3zw5z/EH3+p+jYTrdEYmsKW/RRAEg1UsFniv
-	 X1VfjTkxa5g0YsT7dwrv7Lc5T4+7TjkEJ00FOnuYdnSGQxjoJxHi69WkRyrlQRXeT6
-	 NuW9YYV3x3sMPhN9g/poAkg4+FSJZfMHn1E1c9sEvzkEchinUlXO3bO2LfL0hcYfTJ
-	 RH9SKBsXoNU7odEiqhzoN8UINsK2p7L4HtQTPDolQ8M9JhPdZb8HRAuduApQxZcLLY
-	 ok71nDzck44+w==
-Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com [74.125.224.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id D752138659C
-	for <usrp-users@lists.ettus.com>; Wed,  4 Feb 2026 15:32:42 -0500 (EST)
+	 From;
+	b=vDhN3aSxKhv0g3whwgX6hrGDsaR6PwZHfMjynfT3uGdW7nfOoOEZov+/vhbRdxqKp
+	 6jCeBlgN9qrgDeNfDtJvcG9H07HVE73J9PtgHmBYgCEUeh3HwQ8Ixs0skHQX5ijNGH
+	 hWvM2xH0OKexfrhC41JWtIOwwxM9VjmHiowhs5fmvocXGHoqml0l8ZCSsLLOKGJByW
+	 A0cfEMQ190d+5RI8M68PEbUlyA28CgJdALNAOn7iRXeM51wBmLWXsV25qmSGg6BePo
+	 eT6B7jg0NiAiN4LUwR7SLtPAvJ0k9KknSaARvn06ZwsxTREjpr/16OIox4fXVkgrr/
+	 E9YBja9UAii8Q==
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6F3C7385D7F
+	for <usrp-users@lists.ettus.com>; Thu,  5 Feb 2026 03:55:44 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="c6etS8Cp";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A3m2usw2";
 	dkim-atps=neutral
-Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-649e456e8a2so365560d50.0
-        for <usrp-users@lists.ettus.com>; Wed, 04 Feb 2026 12:32:42 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770237162; cv=none;
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59b834e3d64so836775e87.2
+        for <usrp-users@lists.ettus.com>; Thu, 05 Feb 2026 00:55:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770281743; cv=none;
         d=google.com; s=arc-20240605;
-        b=F32mRZxqFw++Pqk30I9oBGGkdotjmtDNGrwTSDxW8Ec0fY3zvVO1GUAl2jK6FqBede
-         ZZH9/cn6/2lrP+xWz8lUVpSPCvtjW/Rstsf5H6bKbxTIpUM8svEntneFN/nHbwC/3T2j
-         2tOHLolQAW1oaAlPZDz3xhhsRto1/oxLE9C3+QhF/TPmPZ6jTtRKCYb0PrIPYk5N/0VA
-         96IJ1Jy68Bk5FW+aepxJitmmgnZmtniJjK8MjAcOelhopIimomSI5B4cmnKZeZ+EV42N
-         +Aj/g9+XyjzCP6YmGDwstW3Hv0v9nI5/PpEwftLaTWo38kCUY1o0Xn9WCEUsSn2g8NIZ
-         ZXqQ==
+        b=cfhWU7rvHhuj7tsIDaerscOSFur2L+3O+z9VwEeGHBmJARiPIzFeL4ua/M77M1BwPW
+         5FZ5eFNOEd9eGU5e80mrVzSsOLfHACc5n09NnWsewrHyIldKhjRUPLPSttQ9LwXkQSWT
+         1gprD3AVV/FgKCkDaomuINpbInK6LbeQ47E9ZR2hINQiMQm5xjmZTbQB1i3h041bnn2S
+         x8K9BuoKthLNccutUq8SSH3AJrZZvbcuKq8xdEjDckh9zeBVw0VMXC2PEccLCEvCN7Kk
+         SY4wGG2hx5KHaEsmTsqK1eq1OQcx+N4dX7YnCxsV8/q5/PTXLfLKEmYVAI736X1SIlT1
+         FoRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=zXsgFKpxPJ1KLuIfqC/2p2DyfpNGF/Ok3gpASbkobdM=;
-        fh=H8HwgJph1caNltFILmOxHNp/dA7xFDJSwI9mck8jZPQ=;
-        b=Q0vb+yElrGDHQLQ8mF3tKehP1i2LalHzUX29q9t5Fo7y+IKP/9jaoPZgtmN/oCWXXg
-         J4dl5t25vOx8FmgnK+G/mXb+4EKMRmiR3oXsdt40tTjJY4omfiD2Nkwro6WIXE8csMUf
-         A3JcIcZrI/7X1nKyPzOhMp4b/pZ2GzB/ciMAOFNwbTaK2siFPi1/5vW+1TPxKVFhZzxn
-         aPwl7dLlXcjdBVU7Gysq1SozcX4Iy71NCnWOIAB3Yf58PnAWMiY69wcrSam4deb2Ev2d
-         M1dCq5gdiLLFmVv1AAsth0+OVs328yvX4bxjdQp7HkZbeLSVdzCa2tG+GXwcHaTOKA72
-         YmPA==;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=aYJRowO9DVMkNjmp1AvCgprBgy8ROCzdkQHLqbDb0LY=;
+        fh=9CUBuACEF7a4/qEm7ltrWraAgj2qU8WjZ8LgOx5Sr9U=;
+        b=H8o/Ose5UWwZbXQagLx2tEdvkEJl+J9Kmo+6SL3VUcHp30uQ3lilko2Y1VUnjYDpHV
+         oSJHYk1R8OL9MISdWWaYM9NLmNEiss+b5LtfCviS8BNC+/41e4zNhVKOuysYybQTJtsR
+         nY7v/5k5SnBKkG9+fuxsPpgqc7wUK5LwKj71nOJeSNsDb7St7+dLJXSfK17SZF77TNIf
+         yUJmYDiAJnojHnXQlc354rGD+jcQmwywV23GApUOqA92LNd7ucsqR/tfGJ8enr42lX8a
+         XhOE+z+9IEPhqamzDMnoq1ZiLUN+f5ZfWImCizC6S4hvNHdKSFiErh1PHD6VP6KCsI0V
+         f7Pw==;
         darn=lists.ettus.com
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1770237162; x=1770841962; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zXsgFKpxPJ1KLuIfqC/2p2DyfpNGF/Ok3gpASbkobdM=;
-        b=c6etS8CpTq4xDrVxPVh3wiu+dfHjpgpbM70If5/ZdLWtIyaLOPJZI0Wp2YsKAgXDUC
-         pfWlGSczbrYpM2Nq5egBeVCJE/pVISYMtvZmvz+QhiqvL6/ZWyrT1/1+4OUA1iRDlX/P
-         3OeY3IQfnQO83obLsgXwsQzFtjyJulC2WLpvjffkULCQJ43SYyQv7fw9ZedYvsaV+hEg
-         bqPM3ucwl6v8xZDW6lAbrL8Fv9hsIuUMGcxCP5cqtQ87Z7FEy7s2Arj9Za1yQdz6wq4V
-         gtyJFSN0whP+tEDLlr+0lD2UXib8GGX1Ofv8deiv4aHVvhpPKwg54oNf7Nk0/As4ZvE7
-         KZ2Q==
+        d=gmail.com; s=20230601; t=1770281743; x=1770886543; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aYJRowO9DVMkNjmp1AvCgprBgy8ROCzdkQHLqbDb0LY=;
+        b=A3m2usw2Ar+kmcxgw6Qreut/HDWl3ZTw4q2Qa7a+mKZmelsKjkAPhB0FsSuwakZgJ3
+         Z6wocNnJ9yz02S/CZXqfH8T7kIwqUgLzovJC+usXLeDTSR/9aFGrbNCl62VMgPLJ7FYE
+         cNY8kjLkW5uxxYuaK8j78xscp2SGjpzFgdB5fTQL1xY6iCgQ3URHi/1KQgEUfWjEw9UT
+         lJzdCQIwEeuhe2HLPcHmBz7YBaghc7+A4rNSd4XjcWfocrOHoHxZ14BN3Kw3Kuytu7Ty
+         XXoQE97su6nHKDWayrbpyrcPts7GiItZbYrLqHWbxY+ve4WZpQVAyU1l93jK0XLKVJOs
+         qp8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770237162; x=1770841962;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zXsgFKpxPJ1KLuIfqC/2p2DyfpNGF/Ok3gpASbkobdM=;
-        b=F+MAI1deTOSrGUuAtiD19kaKPkNZZFVl1PFygwRWPxtUGKgVIBJ4M9NJ+rFzWsEzNG
-         mpsWMY4eWRNoEBnhq1/081Mh8ppS+zoD4NJVREAPkFYQcfVasErqEeL6jRjK99Q3ygJL
-         cTnxM0RFy4S5yzuKC+GqtBL430+IIjFyoBsMdQMAQzHGSL2PpQzMnBK+k/Dgbj/sn3QL
-         9EXV+NxsJPHz1eozHusMv640KR1pdeYg8dYMiTHB1Wen86r8/U3z0rKLEiI64RvT9oG1
-         Zl5sFp6D4ilI4znL0c9a9bJ80NDZ6zvPzKle72jG4q6Cx7IzfYnYWfnnsFhsc007TTc3
-         EV5w==
-X-Gm-Message-State: AOJu0YxdKvE4l+NchFn+QwKRS+000AgxBYho17b2F52HFROj53J4Chfq
-	GYJRrQMmfLa7KUdiL2HrYQUxKrz6Dg7Ezf4/mGb1Sm3uKFny28OEpIDgExgUueGXJ2ia536IdOg
-	unPbLng9C0WmuRAY1vecdUK6lm7maprE9D7LT1Xv+
-X-Gm-Gg: AZuq6aKOQqJ30Nq47w164umDW9Jg7ovdJtXrYS7UwqWSSR82OsmMzARs7IMu/KmcUSB
-	J7hdfLhAWAMTPm++3k7nUaNjXHQozVpDf31eI6tYUK64FH5WAwlZuBoyF9naEzOyYAS4F2iyWOZ
-	vi8tXgjrtrmrZoUKqT/JBqsbVySgHv8ACvPSg6boSRh9yKP7lF43LvLtSRQyMtsmTN3oePpcE3P
-	3koxTHNMs9HDxoZOA3UvfIPGcn7sog7jt18jeJ/shNNkDSw+T8rnu4Cy2gmYXPfpPCbv+UvcHzf
-	ftwjzXYB5ImikQY5iEz9DIDhUas=
-X-Received: by 2002:a05:690c:25c1:b0:795:fb7:6f1b with SMTP id
- 00721157ae682-7950fb77010mr29675577b3.12.1770237162027; Wed, 04 Feb 2026
- 12:32:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770281743; x=1770886543;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aYJRowO9DVMkNjmp1AvCgprBgy8ROCzdkQHLqbDb0LY=;
+        b=A5xkXuKMVegfLjpcFvXk7qU0yDqTt3YVAWVDoPJCy3Q/szX4Vygypw+6knKqS8UgW1
+         83+2zCysudo+WHGiC+ij1Nm02E1GvK4b7BQMlibDsALgfY3HqOB6kc06cUbOa04UljKU
+         F20I+eC6M8oj8bfDAnRDY4VBisT6ARX2rKB4MscLGEPCFF7ECUwlyQ8qxrK4zhDpSCWV
+         W3+s33O8hS5mZGjzzrTGq9TYAs+C6fxOzB8gci+FCVkqlCmBPNDCqQueDtJjw1qZAHs+
+         9twPCDMI3+Z3V1qYw3YjXMt4KVd34P2LvhXTUwTBnaa90W9IVSgoicWMxs6zR2HykX4k
+         rI/A==
+X-Gm-Message-State: AOJu0Ywa1g+4RQJelxSaHjvbaC8r4UzOEnnP/mk1aGcVdA+xjtQHZGLX
+	jQ1AV2h6l2FKVE7O6c4wqbi+3odwL8EcDpTiKE4e6Sc6Bx4sSk8MA3ZZ0FyG6Te6U50i/pnCtz1
+	78WlXANRJ2e1hBjL99/+wWW16tQWOw2poIA==
+X-Gm-Gg: AZuq6aKl20O/pAN6g3sB1YXXBmKCULz3W5NyV3ESvbdHpbqq9GwFlWiA/tnL6nojXLm
+	cZl2aj72G+7wU+44hlQv3xfR+cdzlqbZ4Eq89EAGTgK3nT25daXOJkP3smlo5JYCfFgadxO1rNp
+	7+XaObvOJ9SsGl/oBofmBU6aMQxDuCdbzvFnQwvTXMX1EqLsHfZfA9sVs7C+zm7hYFm1d6CUyqg
+	23pPowWXrMR24Axn2aBKOGMCdGll70GXLqG1cS9falJUOD/AQ9rugP4y7JbvqlXatWmz4mIqyII
+	Mef3QgsHxwZucJ4LS6ObXU7C2rO6vWq2og5WUaBHNZ2BUP2pgj4i/DS9CHWWYl9XpWuX
+X-Received: by 2002:a05:6512:3b27:b0:59c:c05f:be with SMTP id
+ 2adb3069b0e04-59e38c0235bmr1962649e87.1.1770281742472; Thu, 05 Feb 2026
+ 00:55:42 -0800 (PST)
 MIME-Version: 1.0
-References: <SJ0PR09MB912622C7566AE804EB53B2D0EC98A@SJ0PR09MB9126.namprd09.prod.outlook.com>
-In-Reply-To: <SJ0PR09MB912622C7566AE804EB53B2D0EC98A@SJ0PR09MB9126.namprd09.prod.outlook.com>
-Date: Wed, 4 Feb 2026 15:32:31 -0500
-X-Gm-Features: AZwV_Qhmi_NeP6QJwgiFRdsakU-1-Jpbpn5idFYGkwnTnIf09RlNz8OEOD297AI
-Message-ID: <CAB__hTREZ2GjYqbCuzWVCtQBruUdvqKTcU6fL-RJcxRLRRC7Xw@mail.gmail.com>
-To: Eugene Grayver <eugene.grayver@aero.org>
-Message-ID-Hash: E3PBVGOH26VROEFUBMBIQRIVQOYRWNKC
-X-Message-ID-Hash: E3PBVGOH26VROEFUBMBIQRIVQOYRWNKC
-X-MailFrom: rkossler@nd.edu
+References: <CAE_Rk56j50WBbXViEyE7A2DDny17g0XkFfp+=M=bbYWh5ywU+g@mail.gmail.com>
+In-Reply-To: <CAE_Rk56j50WBbXViEyE7A2DDny17g0XkFfp+=M=bbYWh5ywU+g@mail.gmail.com>
+From: Daniel Ozer <danielozer22@gmail.com>
+Date: Thu, 5 Feb 2026 10:55:31 +0200
+X-Gm-Features: AZwV_Qj5agaJvOgdo1skQXDEBOD5oVcQAvOpNRSiYvfs_QAwjcNDABzzdUKOTRQ
+Message-ID: <CAE_Rk540uFo9aojLwrkxpLzowHGr_YUY3UyzxH1aTMaSezCsFA@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: 6P4EH2TD37RNUKLC2VQ3IBLUTK6ETX3M
+X-Message-ID-Hash: 6P4EH2TD37RNUKLC2VQ3IBLUTK6ETX3M
+X-MailFrom: danielozer22@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X440 Dual DDC per channel
+Subject: [USRP-users] Re: error when loading a bitfile with more than 8 eps
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/E3PBVGOH26VROEFUBMBIQRIVQOYRWNKC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6P4EH2TD37RNUKLC2VQ3IBLUTK6ETX3M/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============1671501090136776600=="
+Content-Type: multipart/mixed; boundary="===============0217806383059575137=="
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.29 / 15.00];
+X-Spamd-Result: default: False [0.39 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
+	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
-	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : No valid SPF, DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_ALL(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	R_SPF_NA(0.00)[no SPF record];
-	DMARC_NA(0.00)[ettus.com];
-	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_ONE(0.00)[1];
+	TO_DN_EQ_ADDR_ALL(0.00)[];
 	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_MIXED(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rkossler@nd.edu];
+	R_DKIM_REJECT(0.00)[gmail.com:s=20230601];
+	DKIM_TRACE(0.00)[emwd.com:+,gmail.com:-];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[usrp-users];
-	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_NEQ_ENVFROM(0.00)[danielozer22@gmail.com,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
-	R_DKIM_REJECT(0.00)[nd.edu:s=google];
+	DKIM_MIXED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	TAGGED_RCPT(0.00)[usrp-users];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[emwd.com:+,nd.edu:-];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,ettus.com:email,aero.org:email,mm2.emwd.com:helo,mm2.emwd.com:rdns,emwd.com:dkim]
-X-Rspamd-Queue-Id: 476ADEC7C9
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 3E00AF01F0
 X-Rspamd-Action: no action
 
---===============1671501090136776600==
-Content-Type: multipart/alternative; boundary="0000000000003620bc064a057577"
+--===============0217806383059575137==
+Content-Type: multipart/alternative; boundary="00000000000069968f064a0fd60c"
 
---0000000000003620bc064a057577
+--00000000000069968f064a0fd60c
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Eugene,
-Your question is pretty similar to a recent post "X440 X4_400 with DDC not
-working".  It seems that the DDC has a maximum clock rate that is smaller
-than needed in order to handle a high sample rate (e.g., 500 MS/s) coming
-from the radio.  The latter is needed to capture the full RF bandwidth that
-you need to include both L1 and L2. Take a look at that other post to see
-if anything is helpful.  There may not be an easy answer....
-Rob
+it seems that the problem is when I use more than 8 eps.
+but i don't find any limitation on this.
 
-On Wed, Feb 4, 2026 at 2:57=E2=80=AFPM Eugene Grayver <eugene.grayver@aero.=
-org>
-wrote:
+=E2=80=AB=D7=91=D7=AA=D7=90=D7=A8=D7=99=D7=9A =D7=99=D7=95=D7=9D =D7=93=D7=
+=B3, 28 =D7=91=D7=99=D7=A0=D7=95=D7=B3 2026 =D7=91-10:34 =D7=9E=D7=90=D7=AA=
+ =E2=80=AADaniel Ozer=E2=80=AC=E2=80=8F <=E2=80=AA
+danielozer22@gmail.com=E2=80=AC=E2=80=8F>:=E2=80=AC
 
-> Hi,
+> Hello everyone,
+> I need to create a bitfile for the X440 usrp (based on the X4_200 variant=
+,
+> with uhd 4.9.0.0) which takes each rx port split it 2^n ports, each port =
+go
+> to a ddc then to the eps.
+> While i managed to accomplish it when the number of the eps is equal/lowe=
+r
+> than 8, each time when there is more than 8 eps i successfully passed the
+> creation of the bitfile but when trying to load (using the
+> uhd_image_loader) it on the usrp i get the following error at the end:
 >
-> I may be getting greedy but ...
+> [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
+> RfnocError: Specified destination address is unreachable: 1:0
+> Error: RuntimeError: Failure to create rfnoc_graph
 >
-> I want to record GPS signal with separate streams for L1 (at 1.6 GHz)  an=
+> I tried many variation (see the attached yml) -which include adding to al=
+l
+> eps True on the CTRL option, i tried to use only 2 eps with 8 in_ports an=
 d
-> L2 (at 1.2 GHz)  Each signal is about 50 MHz wide by itself, but getting
-> both would require ~400 Msps.
+> more.
 >
-> I need all 8 channels of the X440.
+> What may cause the problem?
+> it seems in the documation there is no limit for the number of the eps (o=
+r
+> ddc,splitter) as long as I managed to implement it successfully on the fp=
+ga.
 >
-> Ideally, I would use the 200 MHz variant with **two** DDCs per channel.
-> One DDC for L1 and one for L2.  That way the total sample rate would be
-> only 100 Msps (vs. 400).
->
->
->    - Would UHD support that?
->    - I assume it's a custom RFNoC build
->
->
-> Any suggestions on how to set that up?  Would 16 streams even work?
->
-> Thanks
->
-> Eugene Grayver, Ph.D.
-> Principal Engineer
-> 310-336-1274
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> thank you all in advance.
 >
 
---0000000000003620bc064a057577
+--00000000000069968f064a0fd60c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0Eugene,<div>Your question is pret=
-ty similar to a recent post &quot;X440 X4_400 with DDC not working&quot;.=
-=C2=A0 It seems that the DDC has a maximum clock rate that is smaller than =
-needed in order to handle a high sample rate (e.g., 500 MS/s) coming from t=
-he radio.=C2=A0 The latter is needed to capture the full RF bandwidth that =
-you need to include both L1 and L2. Take a look at that other post to see i=
-f anything is helpful.=C2=A0 There may not be an easy answer....</div><div>=
-Rob</div></div><br><div class=3D"gmail_quote gmail_quote_container"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Wed, Feb 4, 2026 at 2:57=E2=80=AFPM Eugen=
-e Grayver &lt;<a href=3D"mailto:eugene.grayver@aero.org">eugene.grayver@aer=
-o.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><div class=3D"msg8552167200434943762">
+<div dir=3D"rtl"><div dir=3D"ltr">it seems that the problem is when I use m=
+ore than 8 eps.</div><div dir=3D"ltr">but i don&#39;t=C2=A0find any limitat=
+ion=C2=A0on this.</div></div><br><div class=3D"gmail_quote gmail_quote_cont=
+ainer"><div dir=3D"rtl" class=3D"gmail_attr">=E2=80=AB=D7=91=D7=AA=D7=90=D7=
+=A8=D7=99=D7=9A =D7=99=D7=95=D7=9D =D7=93=D7=B3, 28 =D7=91=D7=99=D7=A0=D7=
+=95=D7=B3 2026 =D7=91-10:34 =D7=9E=D7=90=D7=AA =E2=80=AADaniel Ozer=E2=80=
+=AC=E2=80=8F &lt;=E2=80=AA<a href=3D"mailto:danielozer22@gmail.com">danielo=
+zer22@gmail.com</a>=E2=80=AC=E2=80=8F&gt;:=E2=80=AC<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><div dir=3D"rtl"><div dir=3D"ltr">Hello=
+ everyone,</div><div dir=3D"ltr">I need to create a bitfile for the X440 us=
+rp (based on the X4_200 variant, with uhd 4.9.0.0) which takes each rx port=
+ split it 2^n ports, each port go to a ddc then to the eps.</div><div dir=
+=3D"ltr">While i managed to accomplish it when the number of the eps is equ=
+al/lower than 8, each time when there is more than 8 eps i successfully pas=
+sed the creation of the bitfile but when trying to load (using the uhd_imag=
+e_loader) it on the usrp i get the following error at the end:<br><br></div=
+><div dir=3D"ltr">[ERROR] [RFNOC::GRAPH] Caught exception while initializin=
+g graph: RfnocError: Specified destination address is unreachable: 1:0<br>E=
+rror: RuntimeError: Failure to create rfnoc_graph<br>=C2=A0</div><div dir=
+=3D"ltr">I tried many variation (see the attached yml) -which include addin=
+g to all eps True on the CTRL option, i tried to use only=C2=A02 eps with 8=
+ in_ports and more.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">What=
+=C2=A0may cause the problem?<br>it seems in the=C2=A0documation there is no=
+ limit for the number of the eps (or ddc,splitter) as long as I managed to =
+implement=C2=A0it successfully on the fpga.</div><div dir=3D"ltr"><br></div=
+><div dir=3D"ltr">thank you all in=C2=A0advance.</div></div>
+</blockquote></div>
 
+--00000000000069968f064a0fd60c--
 
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Hi,</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-I may be getting greedy but ...</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-I want to record GPS signal with separate streams for L1 (at 1.6 GHz)=C2=A0=
- and L2 (at 1.2 GHz)=C2=A0 Each signal is about 50 MHz wide by itself, but =
-getting both would require ~400 Msps.</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-I need all 8 channels of the X440.</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Ideally, I would use the 200 MHz variant with **two** DDCs per channel.=C2=
-=A0 One DDC for L1 and one for L2.=C2=A0 That way the total sample rate wou=
-ld be only 100 Msps (vs. 400).</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<ul style=3D"margin-top:0px;margin-bottom:0px;list-style-type:disc">
-<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
-ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">Would UHD support that?=C2=A0=C2=A0</div>
-</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
-Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">I assume it&#39;s a custom RFNoC build</div>
-</li></ul>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Any suggestions on how to set that up?=C2=A0 Would 16 streams even work?</d=
-iv>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Thanks</div>
-<div id=3D"m_8552167200434943762Signature">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Eugene Grayver, Ph.D.</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Principal Engineer</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-310-336-1274</div>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</div></blockquote></div></div>
-
---0000000000003620bc064a057577--
-
---===============1671501090136776600==
+--===============0217806383059575137==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -318,4 +233,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1671501090136776600==--
+--===============0217806383059575137==--
