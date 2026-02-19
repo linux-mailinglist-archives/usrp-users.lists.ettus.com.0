@@ -2,949 +2,322 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJvhGpPmlmkuqwIAu9opvQ
+	id xawvFOf9lmmItQIAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 11:31:47 +0100
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 13:11:19 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D892115DCD9
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 11:31:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B2B15E7F7
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 13:11:18 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B1487385D10
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 05:31:45 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 290853853DC
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 07:11:17 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1771497105; bh=FAIWOTNfUI5rVSwjGGPBdwBiRNtGAOgWPuTyICWWN6g=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=mNTJpafPyES20SWVQBH28Z+7veSwxkA9yXUoTEFTnDp+KY8sFqb9VIwCTMkV+s6C+
-	 lTah20tkjfSGjf7yLhtchz5s7FDr9Yvx+bKq1Gf4WZg4vFimL0BFdd7M9UiFR8gNSr
-	 r5NdPT2mH5KxiOoTKY792qKLWh4F6LBYDUEoOs/98OBCY0XLgoQgmi8lg3QtjsFkPd
-	 +q7eVeivZDhPchDYCkxd2u4dZqy+NzBL+abFj/gW8S/NX4xV2mP3kUNKrNYhgi56C+
-	 M1vh3OZOngKIdmVR0N9mLwllAZo6j7yMeaLMyGdqQOC6aqvBxuxuLZgSDKSWpMUBU5
-	 GIaMWQT1H+zgw==
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0E256385A0B
-	for <usrp-users@lists.ettus.com>; Thu, 19 Feb 2026 05:31:19 -0500 (EST)
+	t=1771503077; bh=3uWoL72XYYON64/gIzyn4HvrbjpwpTA1ko4fudxUWaw=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=wgOmtQol6XTA/aDc1KOxyZdD52OweB3Qfk6RewYO0XT3uSKbS4S6l4ftoUqHeVP+P
+	 yN6Ty7nfI0ZXnrRDq5yM4TjC6/mWoKri2KBJhxdhagMGz9m1DWg2pxAw8Czh/15rsk
+	 6MIwy37utilCijrlyUfQ8keQ5VyD+xnJkyoObpaeLl9ANzEnhNQOlcnwygvF3rGRHS
+	 LBb0g9F5feaMGevYvXUbxCEYDUk3jgftvrqOw1p+iU9KxjorO/ToXbEphO4+qcgiEm
+	 Hnzf7cWobQhI2kCy/nUEoZjFk7yLGyAz0w4cTvDhnUgqIZ+yfX6qufbkFe7b3O5fu9
+	 c3irhnS1+ZnAA==
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7AB01384E77
+	for <usrp-users@lists.ettus.com>; Thu, 19 Feb 2026 07:10:51 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VhrIcSCo";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="Plm1wuI8";
 	dkim-atps=neutral
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56636dc53a6so265974e0c.2
-        for <usrp-users@lists.ettus.com>; Thu, 19 Feb 2026 02:31:19 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771497079; cv=none;
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-8cb5c9ba82bso135823685a.2
+        for <usrp-users@lists.ettus.com>; Thu, 19 Feb 2026 04:10:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771503051; cv=none;
         d=google.com; s=arc-20240605;
-        b=IKQS/DFZ/O4ZcoKkFITR5zT2eFRxaRtGWFSFLFkEMccjXHva+oWHx3yYcVs5Aem99j
-         RQjmsccc0AeIyWUQKIEFTaIvGBw+lUvnbSlONAqWAFh2rTN3ASI4tmDWpiz1cSIn3nwl
-         BYssw8ASN7zdijF5l0wfK2kuFGY2R7r2PkAitS1XgETR+0EUUnjw9hCf+mLX7h/nEpF+
-         gJJz/JfWmd7abrBPmJ3QUtFtJAmdZTwBUsEclC4LEFX2BQqeRIAg96BT1smkjlum7DG6
-         Qy/2a/xqgh1iizp7nAbjyx1DsRFM9n9hC1NLmqIkFFz/wtGLUBJcbCPBsQfz2qqsrbom
-         WRuQ==
+        b=UHASJpG0QxxGl94Ba4Rzj7abJmLLUBgldf5EPKhQab2ICrJQdrD43C+rGPrWXl+c1O
+         GhPgDXDwKakp4dZKAL0bqX+uXL8KDJGwnbi1bI6U/CreHZjSNV7nbDPV6PmSlYolyszz
+         4IpyIlBbFBegztoRLOeGhs+qaFJqp7kWfgPnjm3Vu0n/Voen2mCsxyFKnAyNpmVkzEHs
+         ztET8SsSrYOFAHiFKe/lsUVTwDDwh+x1Dyzp/QoUunAeVpr5+B7bbph8ovjRfGZ024Sy
+         vr5jVk11Xx3yclntwUoAGuAPkBzbhy6Vwgokrp/lycaNHgxNEJO4ftZIuUUHn/MJRvGN
+         uEGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=dYeTsrbZ9eOJPE2EtyiHaJz8P5N175a3UGuttFqci0c=;
-        fh=vj2MHvLR32WxuQprBUVL44zYYgIQJclnSJ8R0m0Tg2M=;
-        b=WZXnIFcMd0CWD9irypKtFuKRW9inrCziOYMdzGmB7fmFN3ZOHbWI3FUaXFmeD8TwvD
-         czskM9tzM6xa9GXkOpJseX2vmmvJhUh80+xzKLgO7vM9Ck6Lbfx8UEYlCnunlpEsbFux
-         ywM6WPISydwtQKanuUamWAMucj1mx3HdoiNKdwcGEm7xGCQq8+LKaG13FDuKj37p+0M6
-         si+h7F5WqSVeP568tuoS9VCD1gJKl4xcCkPONbexbPLZPp1mVOsswH7HgBOKVl+GLz+P
-         T8va6Qqrdg5mXraK6Ie7rK0IC4D6cs5ZyYTbZgYpWiW/v5CSi122iEVmJh6ZzAo/FY7+
-         4ljg==;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=YIsFUAlXPtPYEXSfWOXd4Dfhl1VQDiYFwJw4Rb46aww=;
+        fh=coLTCVRQ3oJxudDSCc+F10d+hsWal9fApncbsOLe8mQ=;
+        b=dBfhjXlbRtqo7pbTxYxwpu8XuVSq9Pien32YGsE3TGhxtZFE/ETPhf9uzuu26A4b8F
+         WEe2UxnYxcirS6ENO9OBCP58cJKESPqIPqGSfnRy+UPWCUB1i073phKL+P0qeGC13EYk
+         NzNTKXLL/JIuZvgxAe6iyvT4JrQv5JmeTzGu1HXUZ2KZSa7/kRVfv9h9CEqzdPe9EkAJ
+         rc8M4AXHo7GfNljUfp0s3e+aIL5B37hDHdAQWVNJYJlOSe7NwsDRgS1rKHgFApoYNHLR
+         LVQmz58vWIPdlMLt+nlivBMWWBi84y1QBtJpwrltI3EyGzg8CvLeaX7GPnn5fpY/FdLo
+         rX5A==;
         darn=lists.ettus.com
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771497079; x=1772101879; darn=lists.ettus.com;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dYeTsrbZ9eOJPE2EtyiHaJz8P5N175a3UGuttFqci0c=;
-        b=VhrIcSCoA02Hs+j3irhG1J4UZrN9lRktMvCX6LqXlUrigYDgtS9d+zksMxOAhLSHg/
-         hqisCmqJZzUtH/mNSLVPZsOANnuo4v17PKYhfi2RaLU5Kv0QZ7CN1y5gi0DHoacqI9BI
-         prhvsC+aqB5F/ts+tVmidSUFnYyB0EOcvS58d4Es1RlZhb26z/Q93lN4epov1MjxwzAD
-         hPywnOgWT3Jaw112lVmZCZQV6SZrqLGezkxNm/Kjof8na2c/BiBUQ1Cur12JZO0LdIH0
-         8t/Q8Igix7Qfqzkbt93mST27+TE1Zeoh7BD3lpKbOHrQKC+BmjYnIaGDvd53cc0xYlZC
-         TW8g==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1771503051; x=1772107851; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YIsFUAlXPtPYEXSfWOXd4Dfhl1VQDiYFwJw4Rb46aww=;
+        b=Plm1wuI87NZf8cDVwwEt6xGTYwjM6TrOM64qEdxMgafxq8Y38KEFFPan77b93s3p9B
+         pU/vFbf/XNA/LWvYHVCUiUb8xwOAf6YERDIKSgDA8fVTlCC1nzitfMJQ0/3YGSYpRSh1
+         36b4rUjmIeVSiz/C1+BtDxZMiAU9jiOynJ6pAAuMZRqObgTkyj/X/flmwgKec7MRA6Z4
+         Sguz9sA5Ppb7eJK2W//kTEdkib2f7IuKB9jcT4snUNbolQt1BT+ToX0r7lM5MstDD/XI
+         WIgFuuhrf91IRZizHaGIq5UBicIhzaWpAAstgVSzwwnUXmOKeTWc/TI86X50ncYEOh13
+         qChw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771497079; x=1772101879;
-        h=to:subject:message-id:date:from:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dYeTsrbZ9eOJPE2EtyiHaJz8P5N175a3UGuttFqci0c=;
-        b=qsjh7+jM0VAV3JSuu4vzpb5YUGa2iGcsXyX5xYNp2NC8eRPSJRwX4qEX7tE3FtKES/
-         VVUZ7247zBsvIjZbj6C6CFr9cm1zYGvCqm8gPwu6Q2d3f2BLnK4LjZWCEv8bcZAIrWdp
-         26NF5rYW2kEE55aZ/HoddQUwSp5yWLdqFXBcDrWesOecdnjyM82IhMjbRFf7LbYn4EM2
-         CcI4P3Yth9Dkx9yog307226AugrhoazarOopt7i1p5aUVIcj9r3qWUtj9FN1WpZMAgMV
-         EjUMJmoeolU5fRyC1HsvkQKITK5xCX9ldX47Lnwgp/IeYmuWaCP4qSoKdWc0OSFtB2KG
-         vnyw==
-X-Gm-Message-State: AOJu0Yyyrplfw7AIbygdq1Xvjg5S4dUexGZfdgHywvNL0CURYzJ+uhpG
-	Bz7omtX0xV2Bw0jGYmfYwQlpHmoynuE9gHzvSBiJp+a6lMA/ns++eWC46m73BIyPL1bnqxI593j
-	4AlPug/XfTb8zdLxB9kxUvwVzuMC7jVVTSSkc
-X-Gm-Gg: AZuq6aKML08/97QOFLcDnc6walA7v+hKbBaWWxn+jDm6L0StIhAwsXixtNposNHe3gD
-	CvnOGdjm5iHKsPglImMv7wgNGwM0AJZDL1zsQnxPlS/opTBEp+tDMs571v8SO0h/NYRXeY3x/B4
-	cBod7cFmaYDmYYIbVirHLqePd3aKgxXOnN5+XLTKcA1Q1Y5HbpUaJV6eSL6io8jv1D1jpg+ciwH
-	pAUeLC6IqFIplx5Ae45FU1Pec/Y+8y1fqc//OFFsrrMiV2x3XOx5KstUbnljFGx3G4cyrxRTc/w
-	tP1pXp9qz1a+0WUlwWYsZeIymZl9y1tNmqX+VA==
-X-Received: by 2002:a05:6122:658d:b0:566:36e7:8934 with SMTP id
- 71dfb90a1353d-568ca1702e1mr929971e0c.16.1771497078951; Thu, 19 Feb 2026
- 02:31:18 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771503051; x=1772107851;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YIsFUAlXPtPYEXSfWOXd4Dfhl1VQDiYFwJw4Rb46aww=;
+        b=lpMPmR2sJRfLCoU5KbN3+s/6o2Hf/i/poxN0SURd/v+QRVm+ULxLPa7WE/o5/pzjQv
+         1qLuW6ZxTFwG/4kmZztSdBgoQh1gUHQCLHw8u1jTW9peboUvNX9h5cGNqzX0By5pTvb/
+         gIpdH9+9M9gOI+stsCUory0Wyg0k8GNaSpJkf/t9Wq4cg9H7bJo2xLWx+dKsRefr820C
+         pGfjEoiXEGgS6UBumO1GJ6J0M3DmMjmy31KIQrelWe1CzCgHwtDIQDkPVtUTcXrV0m/l
+         hrZf6sCrPrtjYuxs7pJmDTRrCOFMp7p8CDCsVKwIrBwzbADvb6Oeg4ljTOJ7wiFYq/Je
+         bKwg==
+X-Gm-Message-State: AOJu0YxP8Z7CVqb4Dh6mwOzsK0Ul6f/lJSfuU8tmyJPF32wzsCDvITxX
+	Pc/lzSsu9P9vMxwmc19xCdDzzrh3CLGYqQyrDG59RX29l5n/vnBDmOyKCI+dmIkyqFgI6A8KNKk
+	0YppAyavKp5+Kds7TVa3f6i1NTHVMcU85p05dQ2adbMDiMpv0mKOwT3abSQ==
+X-Gm-Gg: AZuq6aKUNQTj1TRiyDCR98fM8aAt9jGyk5AzvtPFm0NbWkQ3wbfe6jQFlGi/Xj/uXSU
+	5IuFTYp79vJ+Jq/lPVOgvAoY6a6xlsf+yqnPxVGqrMASjgbfzfNYI5wY3LmyUBc4vODs64M3FAi
+	JKluu/KCPy/K/bY/Kr6pHZZ1Q2JPkK2aZianc9rY1QypLCTtHi6F6gMLkHnwQVl5Ro1uokDZILV
+	UMW5s77hQqduN107RXLjGDOhXaLiCGDqLxmcKwIkaEUH1WulJs8UfTEgdRm3VGtROQGVRykOJ4N
+	O0JCM1fzYQd4W5No0eoaj7WuVzGoWvSJ/wY+6w==
+X-Received: by 2002:a05:620a:1a9e:b0:8ca:d5cb:683e with SMTP id
+ af79cd13be357-8cb4c025d13mr1990848585a.75.1771503050674; Thu, 19 Feb 2026
+ 04:10:50 -0800 (PST)
 MIME-Version: 1.0
-From: P S Vishwanath Koushik <koushikpsvishwanath@gmail.com>
-Date: Thu, 19 Feb 2026 16:01:07 +0530
-X-Gm-Features: AaiRm52Gpl9PNAKvD_wkZNZs-0avG6BLNIHNgQmwrnRpxzlPFC2OuoSwBoMIvH4
-Message-ID: <CABQiKjxzyMetFOQPRv-oEa+nm-jGbPEdtschXYA7eaP6e4tNcA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="0000000000001ca763064b2ace52"
-Message-ID-Hash: 6LROVKXUN4WG67QBZOLIQJMZHKYNXYK4
-X-Message-ID-Hash: 6LROVKXUN4WG67QBZOLIQJMZHKYNXYK4
-X-MailFrom: koushikpsvishwanath@gmail.com
+References: <SJ0PR09MB912622C7566AE804EB53B2D0EC98A@SJ0PR09MB9126.namprd09.prod.outlook.com>
+In-Reply-To: <SJ0PR09MB912622C7566AE804EB53B2D0EC98A@SJ0PR09MB9126.namprd09.prod.outlook.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Thu, 19 Feb 2026 13:10:39 +0100
+X-Gm-Features: AaiRm53iZRVQ1L7SzVN9MFIYUw9TwIvidye1iRE0pIu9wG9jHoKFJTWx_mE5VwQ
+Message-ID: <CAFOi1A4JT_iyhA47Egg0CqLDrCEyd8yBXzsBb9P6DzfMD0=Byw@mail.gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: 3SRJ7FXKG7PKUTDPKOOGIT2SF74FSD45
+X-Message-ID-Hash: 3SRJ7FXKG7PKUTDPKOOGIT2SF74FSD45
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Sample Rate Forcing to 184.32 MSps on USRP-2952R (X310) for 122.88 MSps Request and Buffer Overflow issue
+Subject: [USRP-users] Re: X440 Dual DDC per channel
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6LROVKXUN4WG67QBZOLIQJMZHKYNXYK4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3SRJ7FXKG7PKUTDPKOOGIT2SF74FSD45/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8470728899889856195=="
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.39 / 15.00];
+X-Spamd-Result: default: False [2.29 / 15.00];
+	MISSING_TO(2.00)[];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
-	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+	MAILLIST(-0.20)[mailman];
+	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : No valid SPF, DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	R_SPF_NA(0.00)[no SPF record];
-	R_DKIM_REJECT(0.00)[gmail.com:s=20230601];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:~,5:+];
+	TO_DN_ALL(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
 	RCPT_COUNT_ONE(0.00)[1];
-	DKIM_MIXED(0.00)[];
-	HAS_ATTACHMENT(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[ettus.com];
+	R_DKIM_REJECT(0.00)[ettus-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_NA(0.00)[no SPF record];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[koushikpsvishwanath@gmail.com,usrp-users-bounces@lists.ettus.com];
+	NEURAL_HAM(-0.00)[-0.995];
+	FROM_NEQ_ENVFROM(0.00)[martin.braun@ettus.com,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[emwd.com:+,gmail.com:-];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	DKIM_MIXED(0.00)[];
 	TAGGED_RCPT(0.00)[usrp-users];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,ettus.com:email,emwd.com:dkim,mm2.emwd.com:helo,mm2.emwd.com:rdns]
-X-Rspamd-Queue-Id: D892115DCD9
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	DKIM_TRACE(0.00)[emwd.com:+,ettus-com.20230601.gappssmtp.com:-];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,aero.org:email,mm2.emwd.com:helo,mm2.emwd.com:rdns]
+X-Rspamd-Queue-Id: A4B2B15E7F7
 X-Rspamd-Action: no action
 
---0000000000001ca763064b2ace52
-Content-Type: multipart/alternative; boundary="0000000000001ca760064b2ace50"
+--===============8470728899889856195==
+Content-Type: multipart/alternative; boundary="0000000000000dfe02064b2c32c2"
 
---0000000000001ca760064b2ace50
+--0000000000000dfe02064b2c32c2
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Dear USRP Community,
+HI Eugene,
 
-I am currently working with OpenAirInterface (OAI) 2026.w06 and using a
-NI/Ettus USRP-2952R (X310 class device, XG FPGA image, reported type as
-x300) for 5G NR gNB experiments.
+like Rob said, you would need to run the converters at 500 Msps, and then
+decimate down from there, which requires a super-sample capable DDC block.
+Such a block does not exist for RFNoC, at least not right now. The bigger
+issue is that the 500 Msps images are built for only two channels total
+(the 8-channel images top out at 250 Msps). Bottom line is, I think this is
+stretching the capabilities of X440 a bit too far.
 
-I am attempting to configure a 100 MHz NR carrier (273 PRB, 30 kHz SCS,
-band 77). Based on 3GPP numerology, the expected sampling rate is 122.88
-MSps. However, when configuring the device, UHD reports:
+You could try building an X4_200 image with 16 DDCs (make sure you reduce
+the number of halfbands to 1, and the max CIC depth to 5 to match your 500
+-> 50 resampling requirement). Does that even fit onto the FPGA? If there
+should be any chance of making it work, this would have to fit with
+resources to spare.
 
-"[WARNING] [MULTI_USRP] Could not set RX rate to 122.880 MHz. Actual rate
-is 184.320 MHz"
-"[WARNING] [MULTI_USRP] Could not set TX rate to 122.880 MHz. Actual rate
-is 184.320 MHz"
+--M
 
-The device is therefore running at 184.32 MSps instead of the requested
-122.88 MSps.
 
-System Details:
+On Wed, Feb 4, 2026 at 8:57=E2=80=AFPM Eugene Grayver <eugene.grayver@aero.=
+org>
+wrote:
 
-=E2=80=A2 SDR: USRP-2952R (X310 class, XG FPGA image)
-=E2=80=A2 Master clock observed: 184.32 MHz
-=E2=80=A2 UHD version: 4.8.0
-=E2=80=A2 OAI version: 2026.w06
-=E2=80=A2 Host CPU: Intel i7-7700 (4 cores / 8 threads)
-=E2=80=A2 CPU governor: performance (all cores locked to max frequency)
-=E2=80=A2 NIC: Single 10G interface
-=E2=80=A2 MTU of 10G Interface : 9000
-=E2=80=A2 Network buffers configured as:
+> Hi,
+>
+> I may be getting greedy but ...
+>
+> I want to record GPS signal with separate streams for L1 (at 1.6 GHz)  an=
+d
+> L2 (at 1.2 GHz)  Each signal is about 50 MHz wide by itself, but getting
+> both would require ~400 Msps.
+>
+> I need all 8 channels of the X440.
+>
+> Ideally, I would use the 200 MHz variant with **two** DDCs per channel.
+> One DDC for L1 and one for L2.  That way the total sample rate would be
+> only 100 Msps (vs. 400).
+>
+>
+>    - Would UHD support that?
+>    - I assume it's a custom RFNoC build
+>
+>
+> Any suggestions on how to set that up?  Would 16 streams even work?
+>
+> Thanks
+>
+> Eugene Grayver, Ph.D.
+> Principal Engineer
+> 310-336-1274
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-net.core.wmem_max=3D33554432
-net.core.rmem_max=3D33554432
-net.core.wmem_default=3D33554432
-net.core.rmem_default=3D33554432
-
-=E2=80=A2 Using single 10G link
-
-Observed behavior:
-
-When operating at 273 PRB (100 MHz), I see continuous sequences of:
-
-*LLLLLLLLLLLL*
-
-along with:
-
-*L[HW]* *Buffer overflow, count_write =3D 10, start =3D 4 end =3D 4, resett=
-ing
-write package.*
-
-It appears that because 122.88 MSps does not satisfy the integer
-MCR/decimation requirement (184.32 / 122.88 =3D 1.5), UHD forces the sampli=
-ng
-rate to 184.32 MSps (decimation =3D 1). This significantly increases host
-data throughput and processing load, possibly contributing to the buffer
-overflows and late processing.
-
-I would appreciate clarification on the following:
-
-   1.
-
-   Is 122.88 MSps fundamentally unsupported with MCR =3D 184.32 MHz on the
-   X310 architecture?
-   2.
-
-   Is there a recommended master clock configuration for stable 100 MHz NR
-   operation?
-
-OAI gNB Logs are attached for your reference.
-
-Thank you for your guidance.
-
-Regards,
-Vishwanath
-
---0000000000001ca760064b2ace50
+--0000000000000dfe02064b2c32c2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><p>Dear USRP Community,</p><p>I am currently working with =
-OpenAirInterface (OAI) 2026.w06 and using a NI/Ettus USRP-2952R (X310 class=
- device, XG FPGA image, reported type as x300) for 5G NR gNB experiments.</=
-p><p>I am attempting to configure a 100 MHz NR carrier (273 PRB, 30 kHz SCS=
-, band 77). Based on 3GPP numerology, the expected sampling rate is 122.88 =
-MSps. However, when configuring the device, UHD reports:</p><p>&quot;[WARNI=
-NG] [MULTI_USRP] Could not set RX rate to 122.880 MHz. Actual rate is 184.3=
-20 MHz&quot;<br>&quot;[WARNING] [MULTI_USRP] Could not set TX rate to 122.8=
-80 MHz. Actual rate is 184.320 MHz&quot;</p><p>The device is therefore runn=
-ing at 184.32 MSps instead of the requested 122.88 MSps.</p><p>System Detai=
-ls:</p><p>=E2=80=A2 SDR: USRP-2952R (X310 class, XG FPGA image)<br>=E2=80=
-=A2 Master clock observed: 184.32 MHz<br>=E2=80=A2 UHD version: 4.8.0<br>=
-=E2=80=A2 OAI version: 2026.w06<br>=E2=80=A2 Host CPU: Intel i7-7700 (4 cor=
-es / 8 threads)<br>=E2=80=A2 CPU governor: performance (all cores locked to=
- max frequency)<br>=E2=80=A2 NIC: Single 10G interface<br>=E2=80=A2 MTU of =
-10G Interface : 9000=C2=A0<br>=E2=80=A2 Network buffers configured as:</p><=
-p>net.core.wmem_max=3D33554432<br>net.core.rmem_max=3D33554432<br>net.core.=
-wmem_default=3D33554432<br>net.core.rmem_default=3D33554432</p><p>=E2=80=A2=
- Using single 10G link</p><p>Observed behavior:</p><p>When operating at 273=
- PRB (100 MHz), I see continuous sequences of:</p><p><b>LLLLLLLLLLLL</b></p=
-><p>along with:</p><p><b>L[HW]</b> <b>Buffer overflow, count_write =3D 10, =
-start =3D 4 end =3D 4, resetting write package.</b></p><p>It appears that b=
-ecause 122.88 MSps does not satisfy the integer MCR/decimation requirement =
-(184.32 / 122.88 =3D 1.5), UHD forces the sampling rate to 184.32 MSps (dec=
-imation =3D 1). This significantly increases host data throughput and proce=
-ssing load, possibly contributing to the buffer overflows and late processi=
-ng.</p><p>I would appreciate clarification on the following:</p><ol><li><p>=
-Is 122.88 MSps fundamentally unsupported with MCR =3D 184.32 MHz on the X31=
-0 architecture?</p></li><li><p>Is there a recommended master clock configur=
-ation for stable 100 MHz NR operation?</p></li></ol><p>OAI gNB Logs are att=
-ached for your reference.</p><p>Thank you for your guidance.</p><p>Regards,=
-<br>Vishwanath</p><br></div>
+<div dir=3D"ltr"><div>HI Eugene,</div><div><br></div><div>like Rob said, yo=
+u would need to run the converters at 500 Msps, and then decimate down from=
+ there, which requires a super-sample capable DDC block. Such a block does =
+not exist for RFNoC, at least not right now. The bigger issue is that the 5=
+00 Msps images are built for only two channels total (the 8-channel images =
+top out at 250 Msps). Bottom line is, I think this is stretching the capabi=
+lities of X440 a bit too far.</div><div><br></div><div>You could try buildi=
+ng an X4_200 image with 16 DDCs (make sure you reduce the number of halfban=
+ds to 1, and the max CIC depth to 5 to match your 500 -&gt; 50 resampling r=
+equirement). Does that even fit onto the FPGA? If there should be any chanc=
+e of making it work, this would have to fit with resources to spare.</div><=
+div><br></div><div>--M</div></div><div dir=3D"ltr"><br></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 4, 2026 =
+at 8:57=E2=80=AFPM Eugene Grayver &lt;<a href=3D"mailto:eugene.grayver@aero=
+.org" target=3D"_blank">eugene.grayver@aero.org</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><div>
 
---0000000000001ca760064b2ace50--
 
---0000000000001ca763064b2ace52
-Content-Type: application/octet-stream; name=oaigNBlog_Sample rate issue
-Content-Disposition: attachment; filename=oaigNBlog_Sample rate issue
-Content-Transfer-Encoding: base64
-Content-ID: <f_mltbk8ob0>
-X-Attachment-Id: f_mltbk8ob0
 
-dmlzaHdhbmF0aEB2aXNod2FuYXRoOn4vZ25iYXJlYTIvb3BlbmFpcmludGVyZmFjZTVnL2NtYWtl
-X3RhcmdldHMvcmFuX2J1aWxkL2J1aWxkJCBzdWRvIC4vbnItc29mdG1vZGVtIC1PIC4uLy4uLy4u
-L3RhcmdldHMvUFJPSkVDVFMvR0VORVJJQy1OUi01R0MvQ09ORi9nbmIuc2EuYmFuZDc3LmZyMS4y
-NzNQUkIudXNycHgzMDAuY29uZiAgLS1nTkJzLlswXS5taW5fcnh0eHRpbWUgNiAtLXVzcnAtdHgt
-dGhyZWFkLWNvbmZpZyAxIC0tY29udGludW91cy10eAoKW3N1ZG9dIHBhc3N3b3JkIGZvciB2aXNo
-d2FuYXRoOiAKQ01ETElORTogIi4vbnItc29mdG1vZGVtIiAiLU8iICIuLi8uLi8uLi90YXJnZXRz
-L1BST0pFQ1RTL0dFTkVSSUMtTlItNUdDL0NPTkYvZ25iLnNhLmJhbmQ3Ny5mcjEuMjczUFJCLnVz
-cnB4MzAwLmNvbmYiICItLWdOQnMuWzBdLm1pbl9yeHR4dGltZSIgIjYiICItLXVzcnAtdHgtdGhy
-ZWFkLWNvbmZpZyIgIjEiICItLWNvbnRpbnVvdXMtdHgiIApbQ09ORklHXSBmdW5jdGlvbiBjb25m
-aWdfbGliY29uZmlnX2luaXQgcmV0dXJuZWQgMApbVVRJTF0gICBydW5uaW5nIGluIFNBIG1vZGUg
-KG5vIC0tcGh5LXRlc3QsIC0tZG8tcmEsIC0tbnNhIG9wdGlvbiBwcmVzZW50KQpbT1BUXSAgICBP
-UFQgZGlzYWJsZWQKW0hXXSAgICAgVmVyc2lvbjogQnJhbmNoOiBIRUFEIEFicmV2LiBIYXNoOiA5
-Nzc3ZDIzMTczIERhdGU6IEZyaSBGZWIgNiAwNzo0MjowOSAyMDI2ICswMDAwCltHTkJfQVBQXSBJ
-bml0aWFsaXplZCBSQU4gQ29udGV4dDogUkMubmJfbnJfaW5zdCA9IDEsIFJDLm5iX25yX21hY3Js
-Y19pbnN0ID0gMSwgUkMubmJfbnJfTDFfaW5zdCA9IDEsIFJDLm5iX1JVID0gMSwgUkMubmJfbnJf
-Q0NbMF0gPSAxCltOUl9QSFldIEluaXRpYWxpemluZyBnTkIgUkFOIGNvbnRleHQ6IFJDLm5iX25y
-X0wxX2luc3QgPSAxIApbTlJfUEhZXSBSZWdpc3RlcmVkIHdpdGggTUFDIGludGVyZmFjZSBtb2R1
-bGUgKDB4NTllMTZlNzhhNjgwKQpbTlJfUEhZXSBJbml0aWFsaXppbmcgTlIgTDE6IFJDLm5iX25y
-X0wxX2luc3QgPSAxCltOUl9QSFldIEwxX1JYX1RIUkVBRF9DT1JFIC0xICgxNSkKW05SX1BIWV0g
-VFhfQU1QID0gNTE5ICgtMzYgZEJGUykKW1BIWV0gICAgTm8gcHJzX2NvbmZpZyBjb25maWd1cmF0
-aW9uIGZvdW5kLi4hIQpbR05CX0FQUF0gcGRzY2hfQW50ZW5uYVBvcnRzIE4xIDEgTjIgMSBYUCAx
-IHB1c2NoX0FudGVubmFQb3J0cyAxCltHTkJfQVBQXSBtaW5UWFJYVElNRSA2CltHTkJfQVBQXSBD
-U0ktUlMgMSwgU1JTIDEsIHJlcG9ydCB0eXBlIDAgKHNzYl9yc3JwKSwgMjU2IFFBTSBtYXkgYmUg
-b24sIGRlbHRhX01DUyBvZmYsIG1heE1JTU9fTGF5ZXJzIC0xLCBIQVJRIGZlZWRiYWNrIGVuYWJs
-ZWQsIG51bSBETEhBUlE6MTYsIG51bSBVTEhBUlE6MTYKW0dOQl9BUFBdIE5vIFJlZENhcCBjb25m
-aWd1cmF0aW9uIGZvdW5kCltHTkJfQVBQXSBObyBQVFJTIGNvbmZpZ3VyYXRpb24gZm91bmQKW0dO
-Ql9BUFBdIHNyX1Byb2hpYml0VGltZXIgMCwgc3JfVHJhbnNNYXggNjQsIHNyX1Byb2hpYml0VGlt
-ZXJfdjE3MDAgMCwgdDMwMCA0MDAsIHQzMDEgNDAwLCB0MzEwIDIwMDAsIG4zMTAgMTAsIHQzMTEg
-MzAwMCwgbjMxMSAxLCB0MzE5IDQwMApbTlJfTUFDXSBDYW5kaWRhdGVzIHBlciBQRENDSCBhZ2dy
-ZWdhdGlvbiBsZXZlbCBvbiBVRVNTOiBMMTogMCwgTDI6IDIsIEw0OiAwLCBMODogMCwgTDE2OiAw
-CltSUkNdICAgIFJlYWQgaW4gU2VydmluZ0NlbGxDb25maWdDb21tb24gKFBoeXNDZWxsSWQgMCwg
-QUJTRlJFUVNTQiA2NjMyNjQsIERMQmFuZCA3NywgQUJTRlJFUVBPSU5UQSA2NjAwNDAsIERMQlcg
-MjczLFJBQ0hfVGFyZ2V0UmVjZWl2ZWRQb3dlciAtOTAKW1JSQ10gICAgYWJzb2x1dGVGcmVxdWVu
-Y3lTU0IgNjYzMjY0IGNvcnJlc3BvbmRzIHRvIDM5NDg5NjAwMDAgSHoKW05SX01BQ10gVEREIHBl
-cmlvZCBpbmRleCA9IDYsIGJhc2VkIG9uIHRoZSBzdW0gb2YgZGxfVUxfVHJhbnNtaXNzaW9uUGVy
-aW9kaWNpdHkgZnJvbSBQYXR0ZXJuMSAoNS4wMDAwMDAgbXMpIGFuZCBQYXR0ZXJuMiAoMC4wMDAw
-MDAgbXMpOiBUb3RhbCA9IDUuMDAwMDAwIG1zCltVVElMXSAgIHRocmVhZENyZWF0ZSgpIGZvciBN
-QUNfU1RBVFM6IGNyZWF0aW5nIHRocmVhZCB3aXRoIGFmZmluaXR5IGZmZmZmZmZmLCBwcmlvcml0
-eSAyCltOUl9NQUNdIFBVU0NIIFRhcmdldCAzMDAsIFBVQ0NIIFRhcmdldCAyMDAsIFBVQ0NIIEZh
-aWx1cmUgMTAsIFBVU0NIIEZhaWx1cmUgMTAwMApbTlJfUEhZXSBDb3B5aW5nIDQgYmxhY2tsaXN0
-ZWQgUFJCIHRvIEwxIGNvbnRleHQKW05SX01BQ10gU2V0IFRYIGFudGVubmEgbnVtYmVyIHRvIDEs
-IFNldCBSWCBhbnRlbm5hIG51bWJlciB0byAxIChudW0gc3NiIDE6IDgwMDAwMDAwLDApCltOUl9N
-QUNdIFRERCBwZXJpb2QgaW5kZXggPSA2LCBiYXNlZCBvbiB0aGUgc3VtIG9mIGRsX1VMX1RyYW5z
-bWlzc2lvblBlcmlvZGljaXR5IGZyb20gUGF0dGVybjEgKDUuMDAwMDAwIG1zKSBhbmQgUGF0dGVy
-bjIgKDAuMDAwMDAwIG1zKTogVG90YWwgPSA1LjAwMDAwMCBtcwpbTlJfTUFDXSBTZXQgVEREIGNv
-bmZpZ3VyYXRpb24gcGVyaW9kIHRvOiA4IERMIHNsb3RzLCAzIFVMIHNsb3RzLCAxMCBzbG90cyBw
-ZXIgcGVyaW9kIChOUl9URERfVUxfRExfUGF0dGVybiBpcyA3IERMIHNsb3RzLCAyIFVMIHNsb3Rz
-LCA2IERMIHN5bWJvbHMsIDQgVUwgc3ltYm9scykKW05SX01BQ10gQ29uZmlndXJlZCAxIFRERCBw
-YXR0ZXJucyAodG90YWwgc2xvdHM6IHBhdHRlcm4xID0gMTAsIHBhdHRlcm4yID0gMCkKW05SX1BI
-WV0gU2V0IFRERCBQZXJpb2QgQ29uZmlndXJhdGlvbjogMiBwZXJpb2RzIHBlciBmcmFtZSwgMjAg
-c2xvdHMgdG8gYmUgY29uZmlndXJlZCAoOCBETCwgMyBVTCkKW05SX1BIWV0gVEREIHBlcmlvZCBj
-b25maWd1cmF0aW9uOiBzbG90IDAgaXMgRE9XTkxJTksKW05SX1BIWV0gVEREIHBlcmlvZCBjb25m
-aWd1cmF0aW9uOiBzbG90IDEgaXMgRE9XTkxJTksKW05SX1BIWV0gVEREIHBlcmlvZCBjb25maWd1
-cmF0aW9uOiBzbG90IDIgaXMgRE9XTkxJTksKW05SX1BIWV0gVEREIHBlcmlvZCBjb25maWd1cmF0
-aW9uOiBzbG90IDMgaXMgRE9XTkxJTksKW05SX1BIWV0gVEREIHBlcmlvZCBjb25maWd1cmF0aW9u
-OiBzbG90IDQgaXMgRE9XTkxJTksKW05SX1BIWV0gVEREIHBlcmlvZCBjb25maWd1cmF0aW9uOiBz
-bG90IDUgaXMgRE9XTkxJTksKW05SX1BIWV0gVEREIHBlcmlvZCBjb25maWd1cmF0aW9uOiBzbG90
-IDYgaXMgRE9XTkxJTksKW05SX1BIWV0gVEREIHBlcmlvZCBjb25maWd1cmF0aW9uOiBzbG90IDcg
-aXMgRkxFWElCTEU6IEREREREREZGRkZVVVVVCltOUl9QSFldIFRERCBwZXJpb2QgY29uZmlndXJh
-dGlvbjogc2xvdCA4IGlzIFVQTElOSwpbTlJfUEhZXSBUREQgcGVyaW9kIGNvbmZpZ3VyYXRpb246
-IHNsb3QgOSBpcyBVUExJTksKW05SX01BQ10gQ29tbWFuZCBsaW5lIHBhcmFtZXRlcnMgZm9yIE9B
-SSBVRTogLUMgMzk0OTc0MDAwMCAtciAyNzMgLS1udW1lcm9sb2d5IDEgLS1iYW5kIDc3IC0tc3Ni
-IDE0OTIgCltOUl9QSFldIGRsZnJlcTozOTQ5NzQwIHVsZnJlcTozOTQ5NzQwIGRlbHRhZHVwbGV4
-OjAga2h6LCB1bGRsX21pbl9vZmZzZXQ6MCBraHoKW05SX1BIWV0gZGxmcmVxOjM5NDk3NDAgdWxm
-cmVxOjM5NDk3NDAgZGVsdGFkdXBsZXg6MCBraHosIHVsZGxfbWluX29mZnNldDowIGtoegpETCBm
-cmVxdWVuY3kgMzk0OTc0MDAwMDogYmFuZCA3NywgVUwgZnJlcXVlbmN5IDM5NDk3NDAwMDAKW1BI
-WV0gICAgREwgZnJlcXVlbmN5IDM5NDk3NDAwMDAgSHosIFVMIGZyZXF1ZW5jeSAzOTQ5NzQwMDAw
-IEh6OiBiYW5kIDc3LCB1bGRsIG9mZnNldCAwIEh6CltQSFldICAgIEluaXRpYWxpemluZyBmcmFt
-ZSBwYXJtcyBmb3IgbXUgMSwgTl9SQiAyNzMsIE5jcCAwCltQSFldICAgIEluaXQ6IE5fUkJfREwg
-MjczLCBmaXJzdF9jYXJyaWVyX29mZnNldCAyNDU4LCBuYl9wcmVmaXhfc2FtcGxlcyAyODgsbmJf
-cHJlZml4X3NhbXBsZXMwIDM1Miwgb2ZkbV9zeW1ib2xfc2l6ZSA0MDk2CltOUl9NQUNdIFREQSBp
-bmRleCAwOiBzdGFydCAwIGxlbmd0aCAxMyBrMiA2CltOUl9NQUNdIFREQSBpbmRleCAxOiBzdGFy
-dCAwIGxlbmd0aCAxMiBrMiA2CltOUl9NQUNdIFREQSBpbmRleCAyOiBzdGFydCAxMCBsZW5ndGgg
-MyBrMiA2CltOUl9SUkNdIFNJQjEgZnJlcTogb2Zmc2V0VG9Qb2ludEEgMjQ4CltHTkJfQVBQXSBG
-MUFQOiBnTkIgaWR4IDAgZ05CX0RVX2lkIDM1ODQsIGdOQl9EVV9uYW1lIGdOQi1PQUksIFRBQyA0
-MDk2MCBNQ0MvTU5DL2xlbmd0aCAxLzEvMiBjZWxsSUQgMTIzNDU2NzgKW0dOQl9BUFBdIG5ncmFu
-X0RVOiBDb25maWd1cmluZyBDZWxsIDAgZm9yIFRERApbR05CX0FQUF0gU0RBUCBsYXllciBpcyBk
-aXNhYmxlZApbR05CX0FQUF0gRGF0YSBSYWRpbyBCZWFyZXIgY291bnQgMQpbR05CX0FQUF0gUGFy
-c2VkIElQdjQgYWRkcmVzcyBmb3IgTkcgQU1GOiAxOTIuMTY4LjQwLjEKW1VUSUxdICAgdGhyZWFk
-Q3JlYXRlKCkgZm9yIFRBU0tfU0NUUDogY3JlYXRpbmcgdGhyZWFkIHdpdGggYWZmaW5pdHkgZmZm
-ZmZmZmYsIHByaW9yaXR5IDUwCltYMkFQXSAgIFgyQVAgaXMgZGlzYWJsZWQuCltVVElMXSAgIHRo
-cmVhZENyZWF0ZSgpIGZvciBUQVNLX05HQVA6IGNyZWF0aW5nIHRocmVhZCB3aXRoIGFmZmluaXR5
-IGZmZmZmZmZmLCBwcmlvcml0eSA1MApbTkdBUF0gICBTdGFydGluZyBOR0FQIGxheWVyCltVVElM
-XSAgIHRocmVhZENyZWF0ZSgpIGZvciBUQVNLX1JSQ19HTkI6IGNyZWF0aW5nIHRocmVhZCB3aXRo
-IGFmZmluaXR5IGZmZmZmZmZmLCBwcmlvcml0eSA1MApbTkdBUF0gICBSZWdpc3RlcmVkIG5ldyBn
-TkJbMF0gYW5kIG1hY3JvIGdOQiBpZCAzNTg0CltOR0FQXSAgIFtnTkIgMF0gY2hlY2sgdGhlIGFt
-ZiByZWdpc3RyYXRpb24gc3RhdGUKW05SX1JSQ10gRW50ZXJpbmcgbWFpbiBsb29wIG9mIE5SX1JS
-QyBtZXNzYWdlIHRhc2sKW0dUUFVdICAgQ29uZmlndXJpbmcgR1RQdQpbR1RQVV0gICBTQSBtb2Rl
-IApbR1RQVV0gICBDb25maWd1cmluZyBHVFB1IGFkZHJlc3MgOiAxOTIuMTY4LjQwLjEsIHBvcnQg
-OiAyMTUyCltHVFBVXSAgIEluaXRpYWxpemluZyBVRFAgZm9yIGxvY2FsIGFkZHJlc3MgMTkyLjE2
-OC40MC4xIHdpdGggcG9ydCAyMTUyCltHVFBVXSAgIENyZWF0ZWQgZ3RwdSBpbnN0YW5jZSBpZDog
-OTEKW1VUSUxdICAgdGhyZWFkQ3JlYXRlKCkgZm9yIEdUUHJ4XzkxOiBjcmVhdGluZyB0aHJlYWQg
-d2l0aCBhZmZpbml0eSBmZmZmZmZmZiwgcHJpb3JpdHkgNTAKW05HQVBdICAgU2VuZCBOR1NldHVw
-UmVxdWVzdCB0byBBTUYKW05HQVBdICAgMzU4NCAtPiAwMDAwZTAwMApbTkdBUF0gICBTZXJ2ZWQg
-R1VBTUlzIGZvciBBTUYgT0FJLUFNRiAoYXNzb2NfaWQ9OSk6CltOR0FQXSAgICBHVUFNSToKW05H
-QVBdICAgICAgUExNTjogTUNDPTAwMSwgTU5DPTAxCltOR0FQXSAgICAgIEFNRiBSZWdpb24gSUQ6
-IDEKW05HQVBdICAgICAgQU1GIFNldCBJRDogMQpbTkdBUF0gICAgICBBTUYgUG9pbnRlcjogMQpb
-TkdBUF0gICAgR1VBTUk6CltOR0FQXSAgICAgIFBMTU46IE1DQz0wMDEsIE1OQz0wMQpbTkdBUF0g
-ICAgICBBTUYgUmVnaW9uIElEOiAxCltOR0FQXSAgICAgIEFNRiBTZXQgSUQ6IDEKW05HQVBdICAg
-ICAgQU1GIFBvaW50ZXI6IDEKW05HQVBdICAgU3VwcG9ydGVkIFBMTU4gMDogTUNDPTAwMSBNTkM9
-MDEKW05HQVBdICAgU3VwcG9ydGVkIHNsaWNlIChQTE1OIDApOiBTU1Q9MHgwMSBTRD0wMDAKW05H
-QVBdICAgU3VwcG9ydGVkIHNsaWNlIChQTE1OIDApOiBTU1Q9MHgwMSBTRD0wMDEKW05HQVBdICAg
-U3VwcG9ydGVkIHNsaWNlIChQTE1OIDApOiBTU1Q9MHhkZSBTRD0wMDEyMwpbTkdBUF0gICBSZWNl
-aXZlZCBOR1NldHVwUmVzcG9uc2UgZnJvbSBBTUYKW1VUSUxdICAgdGhyZWFkQ3JlYXRlKCkgZm9y
-IFRBU0tfR05CX0FQUDogY3JlYXRpbmcgdGhyZWFkIHdpdGggYWZmaW5pdHkgZmZmZmZmZmYsIHBy
-aW9yaXR5IDUwCltOUl9SUkNdIEFjY2VwdGluZyBuZXcgQ1UtVVAgSUQgMzU4NCBuYW1lIGdOQi1P
-QUkgKGFzc29jX2lkIC0xKQpbVVRJTF0gICB0aHJlYWRDcmVhdGUoKSBmb3IgVEFTS19HVFBWMV9V
-OiBjcmVhdGluZyB0aHJlYWQgd2l0aCBhZmZpbml0eSBmZmZmZmZmZiwgcHJpb3JpdHkgNTAKW0dO
-Ql9BUFBdIFtnTkIgMF0gUmVjZWl2ZWQgTkdBUF9SRUdJU1RFUl9HTkJfQ05GOiBhc3NvY2lhdGVk
-IEFNRiAxCltOUl9SUkNdIFJlY2VpdmVkIEYxIFNldHVwIFJlcXVlc3QgZnJvbSBnTkJfRFUgMzU4
-NCAoZ05CLU9BSSkgb24gYXNzb2NfaWQgLTEKW05SX1JSQ10gQWNjZXB0aW5nIERVIDM1ODQgKGdO
-Qi1PQUkpLCBzZW5kaW5nIEYxIFNldHVwIFJlc3BvbnNlCltOUl9SUkNdIERVIHVzZXMgUlJDIHZl
-cnNpb24gMTcuMy4wCltNQUNdICAgIHJlY2VpdmVkIEYxIFNldHVwIFJlc3BvbnNlIGZyb20gQ1Ug
-KG51bGwpCltNQUNdICAgIENVIHVzZXMgUlJDIHZlcnNpb24gMTcuMy4wCltNQUNdICAgIENsZWFy
-aW5nIHRoZSBEVSdzIFVFIHN0YXRlcyBiZWZvcmUsIGlmIGFueS4KW05SX1JSQ10gY2VsbCBQTE1O
-IDAwMS4wMSBDZWxsIElEIDEyMzQ1Njc4IGlzIGluIHNlcnZpY2UKW01BQ10gICAgcmVjZWl2ZWQg
-Z05CLURVIGNvbmZpZ3VyYXRpb24gdXBkYXRlIGFja25vd2xlZGdlCltVVElMXSAgIHRocmVhZENy
-ZWF0ZSgpIGZvciB0aW1lIHNvdXJjZSByZWFsdGltZTogY3JlYXRpbmcgdGhyZWFkIHdpdGggYWZm
-aW5pdHkgZmZmZmZmZmYsIHByaW9yaXR5IDIKW1VUSUxdICAgdGltZSBtYW5hZ2VyIGNvbmZpZ3Vy
-YXRpb246IFt0aW1lIHNvdXJjZTogcmVhdGltZV0gW21vZGU6IHN0YW5kYWxvbmVdIFtzZXJ2ZXIg
-SVA6IDEyNy4wLjAuMX0gW3NlcnZlciBwb3J0OiA3Mzc0XSAoc2VydmVyIElQL3BvcnQgbm90IHVz
-ZWQpCltQSFldICAgIG51bWJlciBvZiBMMSBpbnN0YW5jZXMgMSwgbnVtYmVyIG9mIFJVIDEsIG51
-bWJlciBvZiBDUFUgY29yZXMgOApbUEhZXSAgICBJbml0aWFsaXplZCBSVSBwcm9jIDAgKCxzeW5j
-aF90b19leHRfZGV2aWNlKSwKW1BIWV0gICAgUlUgdGhyZWFkLXBvb2wgY29yZSBzdHJpbmcgLTEs
-LTEgKHNpemUgMikKW1VUSUxdICAgdGhyZWFkQ3JlYXRlKCkgZm9yIFRwb29sMF8tMTogY3JlYXRp
-bmcgdGhyZWFkIHdpdGggYWZmaW5pdHkgZmZmZmZmZmYsIHByaW9yaXR5IDk3CltVVElMXSAgIHRo
-cmVhZENyZWF0ZSgpIGZvciBUcG9vbDFfLTE6IGNyZWF0aW5nIHRocmVhZCB3aXRoIGFmZmluaXR5
-IGZmZmZmZmZmLCBwcmlvcml0eSA5NwpbVVRJTF0gICB0aHJlYWRDcmVhdGUoKSBmb3IgcnVfdGhy
-ZWFkOiBjcmVhdGluZyB0aHJlYWQgd2l0aCBhZmZpbml0eSBmZmZmZmZmZiwgcHJpb3JpdHkgOTcK
-W1BIWV0gICAgU3RhcnRpbmcgUlUgMCAoLHN5bmNoX3RvX2V4dF9kZXZpY2UpIG9uIGNwdSA3CltQ
-SFldICAgIEluaXRpYWxpemluZyBmcmFtZSBwYXJtcyBmb3IgbXUgMSwgTl9SQiAyNzMsIE5jcCAw
-CltQSFldICAgIEluaXQ6IE5fUkJfREwgMjczLCBmaXJzdF9jYXJyaWVyX29mZnNldCAyNDU4LCBu
-Yl9wcmVmaXhfc2FtcGxlcyAyODgsbmJfcHJlZml4X3NhbXBsZXMwIDM1Miwgb2ZkbV9zeW1ib2xf
-c2l6ZSA0MDk2CltQSFldICAgIGZwLT5zY3M9MzAwMDAKW1BIWV0gICAgZnAtPm9mZG1fc3ltYm9s
-X3NpemU9NDA5NgpbUEhZXSAgICBmcC0+bmJfcHJlZml4X3NhbXBsZXMwPTM1MgpbUEhZXSAgICBm
-cC0+bmJfcHJlZml4X3NhbXBsZXM9Mjg4CltQSFldICAgIGZwLT5zbG90c19wZXJfc3ViZnJhbWU9
-MgpbUEhZXSAgICBmcC0+c2FtcGxlc19wZXJfc3ViZnJhbWVfd0NQPTExNDY4OApbUEhZXSAgICBm
-cC0+c2FtcGxlc19wZXJfZnJhbWVfd0NQPTExNDY4ODAKW1BIWV0gICAgZnAtPnNhbXBsZXNfcGVy
-X3N1YmZyYW1lPTEyMjg4MApbUEhZXSAgICBmcC0+c2FtcGxlc19wZXJfZnJhbWU9MTIyODgwMApb
-UEhZXSAgICBmcC0+ZGxfQ2FycmllckZyZXE9Mzk0OTc0MDAwMApbUEhZXSAgICBmcC0+dWxfQ2Fy
-cmllckZyZXE9Mzk0OTc0MDAwMApbUEhZXSAgICBmcC0+TmlkX2NlbGw9MApbUEhZXSAgICBmcC0+
-Zmlyc3RfY2Fycmllcl9vZmZzZXQ9MjQ1OApbUEhZXSAgICBmcC0+c3NiX3N0YXJ0X3N1YmNhcnJp
-ZXI9MApbUEhZXSAgICBmcC0+TmNwPTAKW1BIWV0gICAgZnAtPk5fUkJfREw9MjczCltQSFldICAg
-IGZwLT5udW1lcm9sb2d5X2luZGV4PTEKW1BIWV0gICAgZnAtPm5yX2JhbmQ9NzcKW1BIWV0gICAg
-ZnAtPm9mZG1fb2Zmc2V0X2Rpdmlzb3I9OApbUEhZXSAgICBmcC0+dGhyZWVxdWFydGVyX2ZzPTAK
-W1BIWV0gICAgZnAtPnNsX0NhcnJpZXJGcmVxPTAKW1BIWV0gICAgZnAtPk5fUkJfU0w9MApbTlJf
-UEhZXSBuYl90eF9zdHJlYW1zIDEsIG5iX3J4X3N0cmVhbXMgMSwgbnVtX0JlYW1zX3BlcmlvZCAx
-CltQSFldICAgIFNldHRpbmcgUkYgY29uZmlnIGZvciBOX1JCIDI3MywgTkJfUlggMSwgTkJfVFgg
-MQpbUEhZXSAgICB0dW5lX29mZnNldCAwIEh6LCBzYW1wbGVfcmF0ZSAxMjI4ODAwMDAgSHoKW1BI
-WV0gICAgQ2hhbm5lbCAwOiBzZXR0aW5nIHR4X2dhaW4gb2Zmc2V0IDAsIHR4X2ZyZXEgMzk0OTc0
-MDAwMCBIegpbUEhZXSAgICBDaGFubmVsIDA6IHNldHRpbmcgcnhfZ2FpbiBvZmZzZXQgNzUsIHJ4
-X2ZyZXEgMzk0OTc0MDAwMCBIegpbSFddICAgICBvcGVuYWlyMF9jZmdbMF0uc2RyX2FkZHJzID09
-ICdhZGRyPTE5Mi4xNjguNDAuMixjbG9ja19zb3VyY2U9aW50ZXJuYWwsdGltZV9zb3VyY2U9aW50
-ZXJuYWwnCltIV10gICAgIG9wZW5haXIwX2NmZ1swXS5jbG9ja19zb3VyY2UgPT0gJzAnIChpbnRl
-cm5hbCA9IDAsIGV4dGVybmFsID0gMSkKW0hXXSAgICAgVUhEIHZlcnNpb24gNC44LjAuSEVBRC0w
-LWczMDgxMjZhNCAoNC44LjApCltIV10gICAgIENoZWNraW5nIGZvciBVU1JQIHdpdGggYXJncyBh
-ZGRyPTE5Mi4xNjguNDAuMixjbG9ja19zb3VyY2U9aW50ZXJuYWwsdGltZV9zb3VyY2U9aW50ZXJu
-YWwKW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gMTEuNC4wOyBCb29zdF8xMDc0
-MDA7IFVIRF80LjguMC5IRUFELTAtZzMwODEyNmE0CltIV10gICAgIEZvdW5kIFVTUlAgeDMwMApG
-b3VuZCBVU1JQIHgzMDAKbmV0LmNvcmUucm1lbV9tYXggPSAzMzU1NDQzMgpuZXQuY29yZS53bWVt
-X21heCA9IDMzNTU0NDMyCltJTkZPXSBbWDMwMF0gWDMwMCBpbml0aWFsaXphdGlvbiBzZXF1ZW5j
-ZS4uLgpbSU5GT10gW1gzMDBdIE1heGltdW0gZnJhbWUgc2l6ZTogODAwMCBieXRlcy4KW0lORk9d
-IFtHUFNdIEZvdW5kIGFuIGludGVybmFsIEdQU0RPOiBMQ19YTywgRmlybXdhcmUgUmV2IDAuOTI5
-YQpbV0FSTklOR10gW0dQU10gdXBkYXRlX2NhY2hlKCk6IE1hbGZvcm1lZCBHUFNETyBzdHJpbmc6
-IExDX1hPLCBGaXJtd2FyZSBSZXYgMC45MjlhCltJTkZPXSBbWDMwMF0gUmFkaW8gMXggY2xvY2s6
-IDE4NC4zMiBNSHoKLS0gVXNpbmcgY2FsaWJyYXRpb24gdGFibGU6IGNhbGliX3RhYmxlX3gzMTAK
-W0hXXSAgICAgZGV2aWNlX2luaXQoKSBzYW1wbGVfcmF0ZToxMjI4ODAwMDAKW1dBUk5JTkddIFtN
-VUxUSV9VU1JQXSBDb3VsZCBub3Qgc2V0IFJYIHJhdGUgdG8gMTIyLjg4MCBNSHouIEFjdHVhbCBy
-YXRlIGlzIDE4NC4zMjAgTUh6CltIV10gICAgIGNhbCAwOiBmcmVxIDM1MDAwMDAwMDAuMDAwMDAw
-LCBvZmZzZXQgNzcuMDAwMDAwLCBkaWZmIDQ0OTc0MDAwMC4wMDAwMDAKW0hXXSAgICAgY2FsIDE6
-IGZyZXEgMjY2MDAwMDAwMC4wMDAwMDAsIG9mZnNldCA4MS4wMDAwMDAsIGRpZmYgMTI4OTc0MDAw
-MC4wMDAwMDAKW0hXXSAgICAgY2FsIDI6IGZyZXEgMjMwMDAwMDAwMC4wMDAwMDAsIG9mZnNldCA4
-MS4wMDAwMDAsIGRpZmYgMTY0OTc0MDAwMC4wMDAwMDAKW0hXXSAgICAgY2FsIDM6IGZyZXEgMTg4
-MDAwMDAwMC4wMDAwMDAsIG9mZnNldCA4Mi4wMDAwMDAsIGRpZmYgMjA2OTc0MDAwMC4wMDAwMDAK
-W0hXXSAgICAgY2FsIDQ6IGZyZXEgODE2MDAwMDAwLjAwMDAwMCwgb2Zmc2V0IDg1LjAwMDAwMCwg
-ZGlmZiAzMTMzNzQwMDAwLjAwMDAwMApbSFddICAgICBSWCBHYWluIDAgNzUuMDAwMDAwICg3Ny4w
-MDAwMDApID0+IC0yLjAwMDAwMCAobWF4IDM3LjUwMDAwMCkKW1dBUk5JTkddIFtNVUxUSV9VU1JQ
-XSBDb3VsZCBub3Qgc2V0IFRYIHJhdGUgdG8gMTIyLjg4MCBNSHouIEFjdHVhbCByYXRlIGlzIDE4
-NC4zMjAgTUh6CltIV10gICAgIFVTUlAgVFhfR0FJTjozMS41MCBnYWluX3JhbmdlOjMxLjUwIHR4
-X2dhaW46MC4wMApbSFddICAgICBDbG9jayBzb3VyY2Ugc2V0IGluIGJvdGggdXNycF9hcmdzIGFu
-ZCBpbiBjbG9ja19zb3VyY2UsIGluZ25vcmluZyB0aGUgbGF0dGVyIQpbSFddICAgICBUaW1lIHNv
-dXJjZSBzZXQgaW4gYm90aCB1c3JwX2FyZ3MgYW5kIGluIG9wZW5haXIwX2NmZ1swXS50aW1lX3Nv
-dXJjZSwgaWdub3JpbmcgdGhlIGxhdHRlciEKW0hXXSAgICAgQWN0dWFsIG1hc3RlciBjbG9jazog
-MTg0LjMyMDAwME1Iei4uLgpbSFddICAgICBBY3R1YWwgY2xvY2sgc291cmNlIGludGVybmFsLi4u
-CltIV10gICAgIEFjdHVhbCB0aW1lIHNvdXJjZSBpbnRlcm5hbC4uLgpbSFddICAgICBzZXR0aW5n
-IHJ4IGNoYW5uZWwgMApbSFddICAgICBSRiBib2FyZCBtYXggcGFja2V0IHNpemUgMTk5Niwgc2l6
-ZSBmb3IgMTAwwrVzIGppdHRlciAxMjI4OCAKW0hXXSAgICAgcnhfbWF4X251bV9zYW1wcyAxOTk2
-CltIV10gICAgIFJYIENoYW5uZWwgMApbSFddICAgICAgIEFjdHVhbCBSWCBzYW1wbGUgcmF0ZTog
-MTg0LjMyMDAwME1TcHMuLi4KW0hXXSAgICAgICBBY3R1YWwgUlggZnJlcXVlbmN5OiAzLjk0OTc0
-MEdIei4uLgpbSFddICAgICAgIEFjdHVhbCBSWCBnYWluOiAwLjAwMDAwMC4uLgpbSFddICAgICAg
-IEFjdHVhbCBSWCBiYW5kd2lkdGg6IDEyMC4wMDAwMDBNLi4uCltIV10gICAgICAgQWN0dWFsIFJY
-IGFudGVubmE6IFJYMi4uLgpbSFddICAgICBUWCBDaGFubmVsIDAKW0hXXSAgICAgICBBY3R1YWwg
-VFggc2FtcGxlIHJhdGU6IDE4NC4zMjAwMDBNU3BzLi4uCltIV10gICAgICAgQWN0dWFsIFRYIGZy
-ZXF1ZW5jeTogMy45NDk3NDBHSHouLi4KW0hXXSAgICAgICBBY3R1YWwgVFggZ2FpbjogMzEuNTAw
-MDAwLi4uCltIV10gICAgICAgQWN0dWFsIFRYIGJhbmR3aWR0aDogMTIwLjAwMDAwME0uLi4KW0hX
-XSAgICAgICBBY3R1YWwgVFggYW50ZW5uYTogVFgvUlguLi4KW0hXXSAgICAgICBBY3R1YWwgVFgg
-cGFja2V0IHNpemU6IDE5OTYKVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoKICBEZXZpY2U6IFgt
-U2VyaWVzIERldmljZQogIE1ib2FyZCAwOiBYMzEwCiAgUlggQ2hhbm5lbDogMAogICAgUlggRFNQ
-OiAwCiAgICBSWCBEYm9hcmQ6IEEKICAgIFJYIFN1YmRldjogU0JYLTEyMCBSWAogIFJYIENoYW5u
-ZWw6IDEKICAgIFJYIERTUDogMQogICAgUlggRGJvYXJkOiBCCiAgICBSWCBTdWJkZXY6IFNCWC0x
-MjAgUlgKICBUWCBDaGFubmVsOiAwCiAgICBUWCBEU1A6IDAKICAgIFRYIERib2FyZDogQQogICAg
-VFggU3ViZGV2OiBTQlgtMTIwIFRYCiAgVFggQ2hhbm5lbDogMQogICAgVFggRFNQOiAxCiAgICBU
-WCBEYm9hcmQ6IEIKICAgIFRYIFN1YmRldjogU0JYLTEyMCBUWAoKW0hXXSAgICAgRGV2aWNlIHRp
-bWVzdGFtcDogMC4wMzgyNTAuLi4KW0hXXSAgICAgW1JBVV0gaGFzIGxvYWRlZCBVU1JQIFgzMDAg
-ZGV2aWNlLgpbUEhZXSAgICBSVSAwIFNldHRpbmcgTl9UQV9vZmZzZXQgdG8gMTYwMCBzYW1wbGVz
-IChVTCBGcmVxIDM5MDA2MDAsIE5fUkIgMjczLCBtdSAxKQpbUEhZXSAgICBTaWduYWxpbmcgbWFp
-biB0aHJlYWQgdGhhdCBSVSAwIGlzIHJlYWR5LCBzbF9haGVhZCA2CltQSFldICAgIEwxIGNvbmZp
-Z3VyZWQgd2l0aG91dCBhbmFsb2cgYmVhbWZvcm1pbmcKW1BIWV0gICAgQXR0YWNoaW5nIFJVIDAg
-YW50ZW5uYSAwIHRvIGdOQiBhbnRlbm5hIDAKW1VUSUxdICAgdGhyZWFkQ3JlYXRlKCkgZm9yIFRw
-b29sMF8tMTogY3JlYXRpbmcgdGhyZWFkIHdpdGggYWZmaW5pdHkgZmZmZmZmZmYsIHByaW9yaXR5
-IDk3CltVVElMXSAgIHRocmVhZENyZWF0ZSgpIGZvciBUcG9vbDFfLTE6IGNyZWF0aW5nIHRocmVh
-ZCB3aXRoIGFmZmluaXR5IGZmZmZmZmZmLCBwcmlvcml0eSA5NwpbVVRJTF0gICB0aHJlYWRDcmVh
-dGUoKSBmb3IgVHBvb2wyXy0xOiBjcmVhdGluZyB0aHJlYWQgd2l0aCBhZmZpbml0eSBmZmZmZmZm
-ZiwgcHJpb3JpdHkgOTcKW1VUSUxdICAgdGhyZWFkQ3JlYXRlKCkgZm9yIFRwb29sM18tMTogY3Jl
-YXRpbmcgdGhyZWFkIHdpdGggYWZmaW5pdHkgZmZmZmZmZmYsIHByaW9yaXR5IDk3CltVVElMXSAg
-IHRocmVhZENyZWF0ZSgpIGZvciBUcG9vbDRfLTE6IGNyZWF0aW5nIHRocmVhZCB3aXRoIGFmZmlu
-aXR5IGZmZmZmZmZmLCBwcmlvcml0eSA5NwpbVVRJTF0gICB0aHJlYWRDcmVhdGUoKSBmb3IgVHBv
-b2w1Xy0xOiBjcmVhdGluZyB0aHJlYWQgd2l0aCBhZmZpbml0eSBmZmZmZmZmZiwgcHJpb3JpdHkg
-OTcKW1VUSUxdICAgdGhyZWFkQ3JlYXRlKCkgZm9yIFRwb29sNl8tMTogY3JlYXRpbmcgdGhyZWFk
-IHdpdGggYWZmaW5pdHkgZmZmZmZmZmYsIHByaW9yaXR5IDk3CltVVElMXSAgIHRocmVhZENyZWF0
-ZSgpIGZvciBUcG9vbDdfLTE6IGNyZWF0aW5nIHRocmVhZCB3aXRoIGFmZmluaXR5IGZmZmZmZmZm
-LCBwcmlvcml0eSA5NwpbVVRJTF0gICB0aHJlYWRDcmVhdGUoKSBmb3IgTDFfcnhfdGhyZWFkOiBj
-cmVhdGluZyB0aHJlYWQgd2l0aCBhZmZpbml0eSBmZmZmZmZmZiwgcHJpb3JpdHkgOTcKW1VUSUxd
-ICAgdGhyZWFkQ3JlYXRlKCkgZm9yIEwxX3R4X3RocmVhZDogY3JlYXRpbmcgdGhyZWFkIHdpdGgg
-YWZmaW5pdHkgZmZmZmZmZmYsIHByaW9yaXR5IDk3CltVVElMXSAgIHRocmVhZENyZWF0ZSgpIGZv
-ciBMMV9zdGF0czogY3JlYXRpbmcgdGhyZWFkIHdpdGggYWZmaW5pdHkgZmZmZmZmZmYsIHByaW9y
-aXR5IDEKVFlQRSA8Q1RSTC1DPiBUTyBURVJNSU5BVEUKW1BIWV0gICAgZ290IHN5bmMgKHJ1X3Ro
-cmVhZCkKW1BIWV0gICAgZ290IHN5bmMgKEwxX3N0YXRzX3RocmVhZCkKW0hXXSAgICAgY3VycmVu
-dCBwcHMgYXQgMS4wMDAwMDAsIHN0YXJ0aW5nIHN0cmVhbWluZyBhdCAyLjAwMDAwMApbUEhZXSAg
-ICBSVSAwIHJmIGRldmljZSByZWFkeQpbUEhZXSAgICBSVSAwIFJGIHN0YXJ0ZWQgY3B1X21lYXNf
-ZW5hYmxlZCAwCmluaXRpYWxpemluZyB0eCB3cml0ZSB0aHJlYWQKZW5kIG9mIHR4IHdyaXRlIHRo
-cmVhZApbVVRJTF0gICB0aHJlYWRDcmVhdGUoKSBmb3IgdHJ4X3VzcnBfd3JpdGVfdGhyZWFkOiBj
-cmVhdGluZyB0aHJlYWQgd2l0aCBhZmZpbml0eSBmZmZmZmZmZiwgcHJpb3JpdHkgOTcKdHJ4X3Vz
-cnBfd3JpdGVfdGhyZWFkIHN0YXJ0ZWQgb24gY3B1IDYKW1BIWV0gICAgdHggd3JpdGUgdGhyZWFk
-IHJlYWR5CnNsZWVwLi4uCnNsZWVwLi4uCnNsZWVwLi4uCnNsZWVwLi4uCnNsZWVwLi4uCnNsZWVw
-Li4uCnNsZWVwLi4uCnNsZWVwLi4uCnNsZWVwLi4uCltQSFldICAgIENvbW1hbmQgbGluZSBwYXJh
-bWV0ZXJzIGZvciBPQUkgVUU6IC1DIDM5NDk3NDAwMDAgLXIgMjczIC0tbnVtZXJvbG9neSAxIC0t
-c3NiIDE0OTIgCltOUl9NQUNdIEZyYW1lLlNsb3QgMzg0LjAKCltOUl9NQUNdIEZyYW1lLlNsb3Qg
-NTEyLjAKClVMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExbSFddICAgICBCdWZmZXIg
-b3ZlcmZsb3csIGNvdW50X3dyaXRlID0gMTAsIHN0YXJ0ID0gNCBlbmQgPSA0LCByZXNldHRpbmcg
-d3JpdGUgcGFja2FnZQpMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMW05SX01BQ10gRnJhbWUuU2xvdCA2
-NDAuMAoKTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTFtIV10gICAgIEJ1ZmZlciBvdmVyZmxvdywgY291
-bnRfd3JpdGUgPSAxMCwgc3RhcnQgPSAzIGVuZCA9IDMsIHJlc2V0dGluZyB3cml0ZSBwYWNrYWdl
-CkxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMW0hXXSAgICAgQnVmZmVyIG92ZXJmbG93LCBjb3VudF93cml0ZSA9
-IDEwLCBzdGFydCA9IDIgZW5kID0gMiwgcmVzZXR0aW5nIHdyaXRlIHBhY2thZ2UKTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMW05SX01BQ10gRnJhbWUuU2xvdCA3NjguMAoKTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExbSFddICAg
-ICBCdWZmZXIgb3ZlcmZsb3csIGNvdW50X3dyaXRlID0gMTAsIHN0YXJ0ID0gMyBlbmQgPSAzLCBy
-ZXNldHRpbmcgd3JpdGUgcGFja2FnZQpMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMW05SX01BQ10gRnJhbWUuU2xvdCA4OTYuMAoKTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTFtIV10gICAgIEJ1ZmZlciBvdmVyZmxvdywgY291bnRfd3JpdGUgPSAxMCwgc3RhcnQg
-PSAyIGVuZCA9IDIsIHJlc2V0dGluZyB3cml0ZSBwYWNrYWdlCkxMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMW0hXXSAgICAgQnVmZmVyIG92ZXJmbG93
-LCBjb3VudF93cml0ZSA9IDEwLCBzdGFydCA9IDEgZW5kID0gMSwgcmVzZXR0aW5nIHdyaXRlIHBh
-Y2thZ2UKTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExM
-TExMTExMTExMTExMTExMTExMTExMTF5DCioqIENhdWdodCBTSUdURVJNLCBzaHV0dGluZyBkb3du
-CkxSZXR1cm5lZCBmcm9tIElUVEkgc2lnbmFsIGhhbmRsZXIKW0dOQl9BUFBdIHN0b3BwaW5nIG5y
-LXNvZnRtb2RlbQpbUEhZXSAgICBLaWxsaW5nIGdOQiAwIHByb2Nlc3NpbmcgdGhyZWFkcwpMTExM
-TExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTE9eQwoq
-KiBDYXVnaHQgU0lHVEVSTSwgc2h1dHRpbmcgZG93bgpbUEhZXSAgICBTdG9wcGluZyBSVSAwIHBy
-b2Nlc3NpbmcgdGhyZWFkcwpbSFddICAgICByZWxlYXNpbmcgVVNSUApbSFddICAgICBzdG9wcGVk
-IFVTUlAgd3JpdGUgdGhyZWFkCkxeQwoqKiBDYXVnaHQgU0lHVEVSTSwgc2h1dHRpbmcgZG93bgpb
-UEhZXSAgICBSVSAwIFJGIGRldmljZSBzdG9wcGVkCl5DCioqIENhdWdodCBTSUdURVJNLCBzaHV0
-dGluZyBkb3duCkJ5ZS4KCg==
---0000000000001ca763064b2ace52
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Hi,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I may be getting greedy but ...</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I want to record GPS signal with separate streams for L1 (at 1.6 GHz)=C2=A0=
+ and L2 (at 1.2 GHz)=C2=A0 Each signal is about 50 MHz wide by itself, but =
+getting both would require ~400 Msps.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I need all 8 channels of the X440.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Ideally, I would use the 200 MHz variant with **two** DDCs per channel.=C2=
+=A0 One DDC for L1 and one for L2.=C2=A0 That way the total sample rate wou=
+ld be only 100 Msps (vs. 400).</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<ul style=3D"margin-top:0px;margin-bottom:0px;list-style-type:disc">
+<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div role=3D"presentation">Would UHD support that?=C2=A0=C2=A0</div>
+</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
+Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div role=3D"presentation">I assume it&#39;s a custom RFNoC build</div>
+</li></ul>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Any suggestions on how to set that up?=C2=A0 Would 16 streams even work?</d=
+iv>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Thanks</div>
+<div id=3D"m_-4035741367840544307m_-2490841620321741595Signature">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Eugene Grayver, Ph.D.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Principal Engineer</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+310-336-1274</div>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--0000000000000dfe02064b2c32c2--
+
+--===============8470728899889856195==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -954,4 +327,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---0000000000001ca763064b2ace52--
+--===============8470728899889856195==--
