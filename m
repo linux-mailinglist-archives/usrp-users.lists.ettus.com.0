@@ -2,333 +2,435 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMKVNacLl2lEuAIAu9opvQ
+	id MG1rH9Iil2lAvAIAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 14:09:59 +0100
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 15:48:50 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3988F15EEE1
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 14:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AEB915FC07
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 15:48:49 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 31B71383681
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 08:09:58 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 78653385A6F
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Feb 2026 09:48:48 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1771506598; bh=9PBxXx8YNNxmKPVIn/XpmzYt92huG6JL0yHU4hA/LvE=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=OoEM0HUGjLK9+gjZN+dJjwh4BQpqpXA5V5Qz5K3+g2Uwbw7VUHCL66nnHS+XYe+Uk
-	 Kh6Rl4gS6MDjV5w9t1g4SJ+OgKizWZPWoXqBsiKrXEymE/4bBrzVtKHLHtvGxA3Csr
-	 3UlRIxl504lAipMfMp5IdQXH8gy5zwXU5peMoOxVT6F8vs4IZokIi1DlZDyJqQd3TQ
-	 WW/t3QyyKUFNHVJ2Vq9Go3Yf6jv9XR+WAaXkjFweF0P8Hx+eOlC/62wK6zHQVi3xRE
-	 Za1MJlm0vmbPhfmueSmLR6yUqGZlVcVGEy7OOfS12qXAL9n8SiYRCXMFJibzBmzt7Z
-	 QKoJ4Ophp01lg==
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 83B3438558A
-	for <usrp-users@lists.ettus.com>; Thu, 19 Feb 2026 08:09:19 -0500 (EST)
+	t=1771512528; bh=g75wPK3OUWRGx2sm7cu9mqmlMEWwhLsanpBT6n4Y6v8=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=sq5h5NWo1CTbg7BRols0AuHQEQ398yDaaBuPz4dy8zKolUdSO1dxTIB1jvS+P6Awk
+	 g5PJOV5+wKmcEh1mwXVpkQMdeAn2gMM5DrubUAyKDCkYvbR+SFI/7LAWpvA/jq8Ah5
+	 QVkiyR+kfL3ahlVAblqU+U9ngzDCymsq7Hda9wfinYd8Ml7KXMN8+ImfvZEU9ubhgP
+	 fR2CAmr3lSy9W8YX/RA2i9O38mS28F0vUWkQ5CgshjXcaLuFozmnuuBJODzCo1sx+V
+	 Ftk8mu3hDRP0gK4rGLw1r7pUXGECYYNE2g3C6kWg+UO8CDKARVkEcyStNS3pFwgP4d
+	 J9IwXpS/cXIfQ==
+Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id ED988384E77
+	for <usrp-users@lists.ettus.com>; Thu, 19 Feb 2026 09:48:11 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NhL4lx2b";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="AQlB9Ro5";
 	dkim-atps=neutral
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5662c2937fdso943518e0c.0
-        for <usrp-users@lists.ettus.com>; Thu, 19 Feb 2026 05:09:19 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771506559; cv=none;
+Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-649dbff9727so1035566d50.3
+        for <usrp-users@lists.ettus.com>; Thu, 19 Feb 2026 06:48:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771512491; cv=none;
         d=google.com; s=arc-20240605;
-        b=F+5khfGcuJlzxjmBDZF2MaN3DNcOBkJ51obHB+qEFLp/VrWVconNJfBWMoCEtwR0/H
-         HmtfGETNl3IHR9fMgrAut2tg8I6D3nvVNWrqLZ8IFUqj8po9KpkOPlE2aBy5YSThsA55
-         zKgZn0Wh9s7Dmc3kd+MsnrlUBdioLATaE0tP5PujL0sa6wmyxIE3jyQkJir/oih7MY0t
-         ZdCntadUdJKAtqTu+h8OnSGo/AnOpdHQ7Q54pikf0JIVEWRyMWKcdXDngl605b8xZ2cw
-         yOPqg/Y8kcw3jAn692LryJVZHlDQnjVDDafN47OQx9ytlDrMBF4YIYwrcySJnTlZgR4/
-         J/hQ==
+        b=U5RfpwLeJNGXEXOxz3i9+WWyV7F7Sl8lQOILAmpMPchE7B9l/CQAWxdeUrjSSv0ANA
+         09PrywH9e4FruuPVJ8wrbpO0JObvoXIpOOYutyn0HhYJDX50HyCOlv1xA9W5qIXM3S6V
+         2MgmeulfyQrEE2Xc2kX7qTv3+WjIvLcJ1Kg36g58dBRp/z1vNkSYQo1FXOmu1AVcksQS
+         D4Xt6BpsbtfpC8Lvb3JrJx2MMJoFZOumMPhU7qAYbf2W+cr6Epg0ga8XjGSlv5ph4Fim
+         BMHYi+teD3XqMGK5Zy9rCF936ym4a2vDXAkYCbs7n0+M4jK2ZLP/YR3ecmJLDzo5DUD/
+         2/ow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=dpj0htRJX+y7FM4DAaxyGG/WiJSFRgrl2JtZLpPRwPI=;
-        fh=x7UDagx2lyXljdsYDFOjF4R7YTS3zNeknQyznuHymcw=;
-        b=Am/azRc+htkqzFUhCUby1w167BeMMZ4oEyK9WZwGRLnAnFsuHkA37/7bqCL73PFBwB
-         I8wcLMD07IxN5dOD+azKL0aXRYnsBIXvYHkI6AxikUXRyYCJO96MEhCM/D9gLSfJ4PsZ
-         ZWkresuJHu09ouiCQ9DgFdYJWK9nyNpHRcxTxXZlBc636NoUrmK+QgheXEDfJp+xukyJ
-         C3fIaUE/M6l26Ee/sSWwdgIMa3a2FY4LuCc02aJdEt5JPKGeJHOF1Z9cf42Y5bOcrprm
-         Mh+BsD4+Zef3ki0SBoSRQSzawBOfC8/TOU3BsHTWDsx1dH1H+C4cUhVK4LgXTUc8xnOF
-         M9jw==;
+        bh=jwzpcuGo1El3ZI3C76emz9kLkaMGbarCOLwO880wah8=;
+        fh=cAU1CtYvR3ew8ZgRA79FiHfwcVu5AMySgSggALul32A=;
+        b=POyMzYDhSthYCpl1j+pfBJuK4xfPJ1bzlEbpn+9vs+KRonq1gwA+/6gbyIbpph2c1m
+         JXIZkgVsKF4m9UIHzpR9xuhrKmGoiR7jMumEW/J6eoFiVvEob/0fBQ78dc+6upZXHfDj
+         MKTjgcDgO2R5ukXK4OxWKCtSUuuIIQllZLZH+esQBggw+fohbrVK1BnkVdb0iBDDI+A2
+         RoaT9+6U49DqotcoqCFOKSywDi4Irsf+X+UObYdW0tmrc6M5vNDZVsKiqTyi2Kwj6oV+
+         57LTo3T3Nm93FaKWdb5+yjvi+BJXzCx4EKCR7lUKkg2/hQG+Nr+nP8CGZVjHHFTZaTzj
+         RoFw==;
         darn=lists.ettus.com
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771506559; x=1772111359; darn=lists.ettus.com;
+        d=nd.edu; s=google; t=1771512491; x=1772117291; darn=lists.ettus.com;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dpj0htRJX+y7FM4DAaxyGG/WiJSFRgrl2JtZLpPRwPI=;
-        b=NhL4lx2bKkDg28BD4k2F6FzefXxQWTpKfXeQMyDWBs1yg5SPEnkV5lUUzTdVjnaACD
-         uWWZBhMgLIj5qOpXGlOpW8dTbLcwBgFtYuJz42nJDADg/8Ah9D6TD0XA4VcmCSTmivNQ
-         pmlThExn29FWGvcBajd1OSVD64B3TKXVJ38+wbXjZPju+S+Qvse1lkxH3WQw+8yXLIp6
-         g1tUthIWjOfo3gcNS5kWrIYMxtJvm7O0fKdipfuvC4QVxcpAc7mH8OSBV36MJ8gwfd30
-         iwHVE2LWYIKaOu+tO5HKXGPok2Z8x2x/hvfcVB4EPALg7MulCdnqALbhRPQ77POwLNzr
-         YC8Q==
+        bh=jwzpcuGo1El3ZI3C76emz9kLkaMGbarCOLwO880wah8=;
+        b=AQlB9Ro58wtNwpT7kX8DcDwDNOM45sIaDmhDyb3QnMLJZHyKBYY6cE8AtyFmO61xB3
+         /AORLDrJ2oMeOAqd5cp3WR+MIadTwe71HSAgWbhvSNkToywjGKStpaRA7di2fr5CBV9Z
+         ppAnW6OZOJlskXzLc2NKY7u0gHGMzzu0tKA10PynPCz+sr2NXEbmLtz9doLxZerjeMNb
+         +sG28m65t42uzaSEm+DriLHBimJKUdca/VyhYS8Z6xf0PREGf51dkWROpUpPVN9kpD/n
+         aGLX73DH3ZN7YAnZeHpw/m2CetGZ35zCun7LbHeOQYqJMDwCvGdag+n9vbz4OtdnNUpR
+         8jrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771506559; x=1772111359;
+        d=1e100.net; s=20230601; t=1771512491; x=1772117291;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dpj0htRJX+y7FM4DAaxyGG/WiJSFRgrl2JtZLpPRwPI=;
-        b=PTLm6vOQPt2MininFlMr4CduFyLh/3p64h6SSnL07aCmedDPiDT08BwkLKgBLB8QeL
-         wZb8Uxb7XT1hNkcKJkIv4p7Dh1tAxpNnKkbqmpHkBcy6P/KHWmIO1ssvt/8rECg5tCB6
-         zB1oou7gOFdRU90g7V/AzSKgylSAljIpYqy0lGGyjvNzdqZ56GqFJTgjwVMELjlFCf2d
-         JHA+hhJbwngTrnnYq4VSPse/lAHDScidOn8POD2C7SHTatZaXPHVQB25AF2qK+b1PBPt
-         T1UIXovFiEj3htWfiR5swZq2f1N27BpbZhAb8ZRDqI7EfRLSd6uzxzu7OyRD2DNGNypJ
-         rObw==
-X-Gm-Message-State: AOJu0YyPAM8adTCl+Hw7fXQu2KkzVDw2G9xpaUM5qcPQ31guH4PryZbt
-	+sn7zotuGMxMwTV9MDONONa5q0XmcKMYCVahQLuYO+iDnSAyZG79iJ6QwmzT7XqlwWD2m6clJ/m
-	ly+hFJVNkuGq04tyIj7PLtPQIV8UsBrFdHQ==
-X-Gm-Gg: AZuq6aJ73gzxEnjYW6+mru95CHPnwbcakslcIc2SzL77er+HO+uxLKNt+BweIL0BM3k
-	hD6aNGnTuDQv4tMjnwo7IOhsC3KpeNT1yyeM5dbZQ3U3OxlNUgGltBhxUP2RaCm3I21D5ngT+IU
-	OqFJsg5TRbMkeNYeTQsILx3Cxn46GK9pFw6rt1hpBmdN5iC7y7qa99IJMiN61mJTjpYEyEf2v+n
-	icPlFCD1xpmWLy57et4lAbU02NK6ko39K0Xq8JSiV5FVyytT40Sv8qkdtLBEVbC2shpZz+/AKNu
-	Lrj918gfjPPh0Oh+JrZEPB3uJooVwEEQOn3lvA==
-X-Received: by 2002:a05:6122:1dac:b0:567:fb8:c7ea with SMTP id
- 71dfb90a1353d-568cdcff321mr832313e0c.8.1771506558574; Thu, 19 Feb 2026
- 05:09:18 -0800 (PST)
+        bh=jwzpcuGo1El3ZI3C76emz9kLkaMGbarCOLwO880wah8=;
+        b=XOPjgwfUg2mzrSlQ4wjKhTTLHREWL+Bmwf66uwvCxQceTDjH2OyKT9BgtiogDVhGvC
+         wTXsCoWF5rGT46KMSxxaJOQaYpk8DgLQbzKSgpxVQG4Ti0epyLe8vHA6Xj0EQx1rlvPV
+         tChIagUMpFIKLRd03nBP1h3bgBRdydWrz4zF6XJCmKXFTI3HHAl7Z2Cnj7EvvvhIQBA3
+         dvEvhRZePm7zKJfVW2AFRDTlrlSRlu206PtpgPO8I4geOyEtAzqcjS+3v9B/tizh8XsR
+         0eR6W1Y+4MuWb9n8eTuw61F2C89sszmIr10ku79PGjebBZJoaGNqz5s17eMVZbVPtW9F
+         syMQ==
+X-Gm-Message-State: AOJu0YxeCBkJ7/ShJU2nDzWGzw1/Og929rXF2avk6TLqlHIyL2UMcpps
+	wspN2Z+Xt+2yrGm9WS0BkxWIvBqGmnyW+RknN1lDI/vqBaT4uqrjiAMpBZcxLuFR4tlNzLkh9E+
+	SW8l2NZATHd+9b/fwvEUDEvWisVrJBaLN1kXzyPSVR31c0ONjvsU=
+X-Gm-Gg: AZuq6aLo9QXoQOjLnLjLAHZF7SU6gLphtbCUd5oCYT01XEFFll2LxYaNbIM9xWmjgbv
+	xfunjNoqJ9pmXkyNLzhdn0yHY/Iyn5w7zSrF5nTJctj1nKJ8h3f1ZLHICHMuua0UPRHfkSoEAlH
+	ikXPhysqAd3ZocDLosM/xC4L277toaC3bjIzLXDP5DhEHLiIzPwu3kSDz1Ro5cGi7K7Ff4zV0nI
+	EkdHwJDPbMk2DPAtfb0BZF5bm2USKfXJ8VOfoLkDV6lijXPwONCAe4SOtD0ycsf2LEY8C4kKuMD
+	eJw1jAOeGHmWGBvC3zJ4Kijku4byMyOcbabpyHs=
+X-Received: by 2002:a05:690e:1513:b0:64a:d6fa:2c6b with SMTP id
+ 956f58d0204a3-64c21b6f41fmr13653595d50.76.1771512491242; Thu, 19 Feb 2026
+ 06:48:11 -0800 (PST)
 MIME-Version: 1.0
-References: <CABQiKjxzyMetFOQPRv-oEa+nm-jGbPEdtschXYA7eaP6e4tNcA@mail.gmail.com>
- <CAFOi1A4Sv9ajhuRnbcdD0aT8Znw6x0EC2Y1yXaAkP09w1g41kg@mail.gmail.com>
-In-Reply-To: <CAFOi1A4Sv9ajhuRnbcdD0aT8Znw6x0EC2Y1yXaAkP09w1g41kg@mail.gmail.com>
-From: P S Vishwanath Koushik <koushikpsvishwanath@gmail.com>
-Date: Thu, 19 Feb 2026 18:39:05 +0530
-X-Gm-Features: AaiRm50IZJk7oNOQ6Wxjfe5mAmTZ-8nqq6MTlIpwK4itaNgCnbwgg9cwEAdfWRU
-Message-ID: <CABQiKjzhPkXoQ1H+OohWN5szSesSTW89=0s=Ggp-=ToZBUTUWQ@mail.gmail.com>
+References: <SJ0PR09MB91268FDF57110D4B6B826462EC93A@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <CAB__hTRGg_=E=WiULHMUYA6iMY1yvgFw5WexYw56NNyrz7nS8g@mail.gmail.com>
+ <SA1PR09MB9130FE71184277820E79EAA8EC90A@SA1PR09MB9130.namprd09.prod.outlook.com>
+ <CAFOi1A50oN_=rkq1NSsZT_YbfOV5NHaLpv5Tz+qxHFDL2niUvg@mail.gmail.com>
+In-Reply-To: <CAFOi1A50oN_=rkq1NSsZT_YbfOV5NHaLpv5Tz+qxHFDL2niUvg@mail.gmail.com>
+Date: Thu, 19 Feb 2026 09:48:02 -0500
+X-Gm-Features: AZwV_Qgabbt5ilYG6s4or-6SFj9TltacP7DUoCxqKkr3XtGhUFReUBH3KMMYeZc
+Message-ID: <CAB__hTSD_3qWxWz2gVa_Ac4fkYCDwr_0-GB-p0oYJJmWt+7SGg@mail.gmail.com>
 To: Martin Braun <martin.braun@ettus.com>
-Message-ID-Hash: SWGL4U3RALR7UUW3RRLW4XGY5727HSY4
-X-Message-ID-Hash: SWGL4U3RALR7UUW3RRLW4XGY5727HSY4
-X-MailFrom: koushikpsvishwanath@gmail.com
+Message-ID-Hash: STSKBJUTE7GWPKGDV4SBO2LOG73HVEQX
+X-Message-ID-Hash: STSKBJUTE7GWPKGDV4SBO2LOG73HVEQX
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Sample Rate Forcing to 184.32 MSps on USRP-2952R (X310) for 122.88 MSps Request and Buffer Overflow issue
+Subject: [USRP-users] Re: [EXTERNAL] Re: TX DRAM buffer
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SWGL4U3RALR7UUW3RRLW4XGY5727HSY4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/STSKBJUTE7GWPKGDV4SBO2LOG73HVEQX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4742780443637427328=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============6482152457595100371=="
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.39 / 15.00];
+X-Spamd-Result: default: False [0.29 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
-	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
 	MAILLIST(-0.20)[mailman];
+	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : No valid SPF, DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	TO_DN_ALL(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	R_SPF_NA(0.00)[no SPF record];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[ettus.com];
 	RCPT_COUNT_TWO(0.00)[2];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	R_DKIM_REJECT(0.00)[gmail.com:s=20230601];
-	DKIM_TRACE(0.00)[emwd.com:+,gmail.com:-];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[koushikpsvishwanath@gmail.com,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_MIXED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rkossler@nd.edu];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[usrp-users];
+	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	R_DKIM_REJECT(0.00)[nd.edu:s=google];
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,emwd.com:dkim]
-X-Rspamd-Queue-Id: 3988F15EEE1
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,nd.edu:-];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nd.edu:replyto,nd.edu:email,ettus.com:email,mm2.emwd.com:helo,mm2.emwd.com:rdns]
+X-Rspamd-Queue-Id: 8AEB915FC07
 X-Rspamd-Action: no action
 
---===============4742780443637427328==
-Content-Type: multipart/alternative; boundary="000000000000242597064b2d03ba"
+--===============6482152457595100371==
+Content-Type: multipart/alternative; boundary="000000000000c19e59064b2e640a"
 
---000000000000242597064b2d03ba
+--000000000000c19e59064b2e640a
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 Hi Martin,
-Thank you very much for precisely pointing out the solution for operating
-at 122.88Msps. Can you please suggest on how can i resolve this issue of
-"LLLLLLL" sequence? Is there any OS level tuning/configuration required?
+For my own understanding,....  Although the endpoint buffers don't use DRAM
+as you pointed out, the replay block acting as a FIFO does, correct?  So,
+if the first block on the FPGA side of the endpoint is the replay block,
+won't you achieve the goal of a large FIFO. In other words, in this
+scenario, isn't it basically guaranteed that the endpoint buffer will not
+fill up (prior to the replay DRAM filling up) since it will be able to dump
+into the replay DRAM (and assuming that you don't exceed the DRAM
+bandwidth)?
+Rob
 
-Regards,
-Vishwanath
+On Thu, Feb 19, 2026 at 7:21=E2=80=AFAM Martin Braun <martin.braun@ettus.co=
+m> wrote:
 
-On Thu, 19 Feb 2026 at 17:43, Martin Braun <martin.braun@ettus.com> wrote:
-
-> 122.88 Msps is not supported on X310 out of the box. The N310 and N320
-> series can do this, and of course the X410.
+> One important thing to point out is that we do *not* use DRAM for the
+> buffers, we use BRAM (of which much less is available). The requirement f=
+or
+> an endpoint buffer is that we can write to it synchronously. This is not
+> possible with DRAM, you must go through a memory interface, and then wait
+> for your write cycle, etc. The default Tx buffers are therefore already
+> close to the limit. If you want to increase it, you typically have to
+> change the design (e.g., take away the buffer from channel 1 and put it o=
+n
+> channel 0). But then you need to rebuild the image, which you're trying t=
+o
+> avoid.
 >
-> It is possible to create a 1.5x resampler as an RFNoC block, but such a
-> block is not available as a turnkey solution, so you would have to do FPG=
-A
-> development to enable that. If you had such a block, you could run at
-> 184.32 MHz master clock rate and decimate by 1.5 giving you your desired
-> rate.
+> The 1 GiB of PL-DRAM memory included with the N320 is fantastic for
+> storing large amounts of memory, e.g., for capture/replay. The *average*
+> throughput of the DRAM is also fast enough to capture both channels at ma=
+x
+> rate (it's just that average throughput is not the only requirement for a=
+n
+> endpoint buffer). So if you can do replay/capture, then you're good. You
+> can also try the replay_buffered stream arg, although it's not a silver
+> bullet. It helps in some scenarios but not others, YMMV.
 >
 > --M
 >
-> On Thu, Feb 19, 2026 at 11:32=E2=80=AFAM P S Vishwanath Koushik <
-> koushikpsvishwanath@gmail.com> wrote:
+> On Tue, Jan 27, 2026 at 8:01=E2=80=AFPM Eugene Grayver <eugene.grayver@ae=
+ro.org>
+> wrote:
 >
->> Dear USRP Community,
+>> Thanks.  I saw notes that seem to indicate that option. Anyone at
+>> Ettus/NI care to chime in as to how to do it?  I found an example for E3=
+20
+>> that shows an RFNoC .yml with a dram FIFO.  I could make one for N320, b=
+ut
+>> it is not clear how to use it from gnuradio.
+>> ------------------------------
+>> *From:* Rob Kossler <rkossler@nd.edu>
+>> *Sent:* Tuesday, January 27, 2026 6:45 AM
+>> *To:* Eugene Grayver <eugene.grayver@aero.org>
+>> *Cc:* usrp-users <usrp-users@lists.ettus.com>
+>> *Subject:* [EXTERNAL] Re: [USRP-users] TX DRAM buffer
 >>
->> I am currently working with OpenAirInterface (OAI) 2026.w06 and using a
->> NI/Ettus USRP-2952R (X310 class device, XG FPGA image, reported type as
->> x300) for 5G NR gNB experiments.
 >>
->> I am attempting to configure a 100 MHz NR carrier (273 PRB, 30 kHz SCS,
->> band 77). Based on 3GPP numerology, the expected sampling rate is 122.88
->> MSps. However, when configuring the device, UHD reports:
+>> *Do not open links or attachments unless you recognize the sender. If
+>> unsure, click the Report Phish button or forward the email to OPSEC. *
+>> Hi Eugene,
+>> I "think" that the replay block can act as a FIFO in recent UHD images.
+>> But, there is a possibility I am wrong such that there is a build-time
+>> parameter that is needed to config this.  Another option would be DPDK i=
+f
+>> you are not already using it.
+>> Rob
 >>
->> "[WARNING] [MULTI_USRP] Could not set RX rate to 122.880 MHz. Actual rat=
-e
->> is 184.320 MHz"
->> "[WARNING] [MULTI_USRP] Could not set TX rate to 122.880 MHz. Actual rat=
-e
->> is 184.320 MHz"
+>> On Mon, Jan 26, 2026 at 7:00=E2=80=AFPM Eugene Grayver <eugene.grayver@a=
+ero.org>
+>> wrote:
 >>
->> The device is therefore running at 184.32 MSps instead of the requested
->> 122.88 MSps.
+>> Hi,
 >>
->> System Details:
+>> The default TX buffer for N32x is 128k samples =3D 512 kB.  The box has =
+1
+>> GB of DRAM.  I am getting occasional underflows when streaming at 200 Ms=
+ps,
+>> even though the CPU is not very loaded and easily meets the average
+>> throughput.
 >>
->> =E2=80=A2 SDR: USRP-2952R (X310 class, XG FPGA image)
->> =E2=80=A2 Master clock observed: 184.32 MHz
->> =E2=80=A2 UHD version: 4.8.0
->> =E2=80=A2 OAI version: 2026.w06
->> =E2=80=A2 Host CPU: Intel i7-7700 (4 cores / 8 threads)
->> =E2=80=A2 CPU governor: performance (all cores locked to max frequency)
->> =E2=80=A2 NIC: Single 10G interface
->> =E2=80=A2 MTU of 10G Interface : 9000
->> =E2=80=A2 Network buffers configured as:
+>> I have done all the usual stuff =E2=80=94 isolated cores, pin threads to=
+ cores,
+>> etc.
 >>
->> net.core.wmem_max=3D33554432
->> net.core.rmem_max=3D33554432
->> net.core.wmem_default=3D33554432
->> net.core.rmem_default=3D33554432
+>> Is there a way to increase the default DRAM buffer size w/out rebuilding
+>> the FPGA image?
 >>
->> =E2=80=A2 Using single 10G link
+>> Thanks.
 >>
->> Observed behavior:
->>
->> When operating at 273 PRB (100 MHz), I see continuous sequences of:
->>
->> *LLLLLLLLLLLL*
->>
->> along with:
->>
->> *L[HW]* *Buffer overflow, count_write =3D 10, start =3D 4 end =3D 4, res=
-etting
->> write package.*
->>
->> It appears that because 122.88 MSps does not satisfy the integer
->> MCR/decimation requirement (184.32 / 122.88 =3D 1.5), UHD forces the sam=
-pling
->> rate to 184.32 MSps (decimation =3D 1). This significantly increases hos=
-t
->> data throughput and processing load, possibly contributing to the buffer
->> overflows and late processing.
->>
->> I would appreciate clarification on the following:
->>
->>    1.
->>
->>    Is 122.88 MSps fundamentally unsupported with MCR =3D 184.32 MHz on t=
-he
->>    X310 architecture?
->>    2.
->>
->>    Is there a recommended master clock configuration for stable 100 MHz
->>    NR operation?
->>
->> OAI gNB Logs are attached for your reference.
->>
->> Thank you for your guidance.
->>
->> Regards,
->> Vishwanath
+>> Eugene Grayver, Ph.D.
+>> Principal Engineer
+>> 310-336-1274
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>
 >> _______________________________________________
 >> USRP-users mailing list -- usrp-users@lists.ettus.com
 >> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---000000000000242597064b2d03ba
+--000000000000c19e59064b2e640a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>Hi Martin,<br></div>Thank you very much for=
- precisely pointing out the solution for operating at 122.88Msps. Can you p=
-lease suggest on how can i resolve this issue of &quot;LLLLLLL&quot; sequen=
-ce? Is there any OS level tuning/configuration required?=C2=A0<br><br></div=
->Regards,<br></div>Vishwanath</div><br><div class=3D"gmail_quote gmail_quot=
-e_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 19 Feb 2026 at 1=
-7:43, Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com">martin.bra=
-un@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div dir=3D"ltr"><div>122.88 Msps is not supported on X310 out =
-of the box. The N310 and N320 series can do this, and of course the X410.</=
-div><div><br></div><div>It is possible to create a 1.5x resampler as an RFN=
-oC block, but such a block is not available as a turnkey solution, so you w=
-ould have to do FPGA development to enable that. If you had such a block, y=
-ou could run at 184.32 MHz master clock rate and decimate by 1.5 giving you=
- your desired rate.</div><div><br></div><div>--M</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 19, 2026=
- at 11:32=E2=80=AFAM P S Vishwanath Koushik &lt;<a href=3D"mailto:koushikps=
-vishwanath@gmail.com" target=3D"_blank">koushikpsvishwanath@gmail.com</a>&g=
+<div dir=3D"ltr">Hi Martin,<div>For my own understanding,....=C2=A0 Althoug=
+h the endpoint buffers don&#39;t use DRAM as you pointed out, the replay=C2=
+=A0block acting as a FIFO does, correct?=C2=A0 So, if the first block on th=
+e FPGA side of the endpoint is the replay block, won&#39;t you achieve the =
+goal of a large FIFO. In other words, in this scenario, isn&#39;t it basica=
+lly guaranteed that the endpoint buffer will not fill up (prior to the repl=
+ay DRAM filling up) since it will be able to dump into the replay DRAM (and=
+ assuming that you don&#39;t exceed the DRAM bandwidth)?</div><div>Rob</div=
+></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Thu, Feb 19, 2026 at 7:21=E2=80=AFAM Martin Braun=
+ &lt;<a href=3D"mailto:martin.braun@ettus.com">martin.braun@ettus.com</a>&g=
 t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
 x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr"><p>Dear USRP Community,</p><p>I am currently working with OpenAi=
-rInterface (OAI) 2026.w06 and using a NI/Ettus USRP-2952R (X310 class devic=
-e, XG FPGA image, reported type as x300) for 5G NR gNB experiments.</p><p>I=
- am attempting to configure a 100 MHz NR carrier (273 PRB, 30 kHz SCS, band=
- 77). Based on 3GPP numerology, the expected sampling rate is 122.88 MSps. =
-However, when configuring the device, UHD reports:</p><p>&quot;[WARNING] [M=
-ULTI_USRP] Could not set RX rate to 122.880 MHz. Actual rate is 184.320 MHz=
-&quot;<br>&quot;[WARNING] [MULTI_USRP] Could not set TX rate to 122.880 MHz=
-. Actual rate is 184.320 MHz&quot;</p><p>The device is therefore running at=
- 184.32 MSps instead of the requested 122.88 MSps.</p><p>System Details:</p=
-><p>=E2=80=A2 SDR: USRP-2952R (X310 class, XG FPGA image)<br>=E2=80=A2 Mast=
-er clock observed: 184.32 MHz<br>=E2=80=A2 UHD version: 4.8.0<br>=E2=80=A2 =
-OAI version: 2026.w06<br>=E2=80=A2 Host CPU: Intel i7-7700 (4 cores / 8 thr=
-eads)<br>=E2=80=A2 CPU governor: performance (all cores locked to max frequ=
-ency)<br>=E2=80=A2 NIC: Single 10G interface<br>=E2=80=A2 MTU of 10G Interf=
-ace : 9000=C2=A0<br>=E2=80=A2 Network buffers configured as:</p><p>net.core=
-.wmem_max=3D33554432<br>net.core.rmem_max=3D33554432<br>net.core.wmem_defau=
-lt=3D33554432<br>net.core.rmem_default=3D33554432</p><p>=E2=80=A2 Using sin=
-gle 10G link</p><p>Observed behavior:</p><p>When operating at 273 PRB (100 =
-MHz), I see continuous sequences of:</p><p><b>LLLLLLLLLLLL</b></p><p>along =
-with:</p><p><b>L[HW]</b> <b>Buffer overflow, count_write =3D 10, start =3D =
-4 end =3D 4, resetting write package.</b></p><p>It appears that because 122=
-.88 MSps does not satisfy the integer MCR/decimation requirement (184.32 / =
-122.88 =3D 1.5), UHD forces the sampling rate to 184.32 MSps (decimation =
-=3D 1). This significantly increases host data throughput and processing lo=
-ad, possibly contributing to the buffer overflows and late processing.</p><=
-p>I would appreciate clarification on the following:</p><ol><li><p>Is 122.8=
-8 MSps fundamentally unsupported with MCR =3D 184.32 MHz on the X310 archit=
-ecture?</p></li><li><p>Is there a recommended master clock configuration fo=
-r stable 100 MHz NR operation?</p></li></ol><p>OAI gNB Logs are attached fo=
-r your reference.</p><p>Thank you for your guidance.</p><p>Regards,<br>Vish=
-wanath</p><br></div>
+ir=3D"ltr"><div>One important thing to point out is that we do *not* use DR=
+AM for the buffers, we use BRAM (of which much less is available). The requ=
+irement for an endpoint buffer is that we can write to it synchronously. Th=
+is is not possible with DRAM, you must go through a memory interface, and t=
+hen wait for your write cycle, etc. The default Tx buffers are therefore al=
+ready close to the limit. If you want to increase it, you typically have to=
+ change the design (e.g., take away the buffer from channel 1 and put it on=
+ channel 0). But then you need to rebuild the image, which you&#39;re tryin=
+g=C2=A0to avoid.</div><div><br></div><div>The 1 GiB of PL-DRAM memory inclu=
+ded with the=C2=A0N320 is fantastic for storing large amounts of memory, e.=
+g., for capture/replay. The *average* throughput of the DRAM is also fast e=
+nough to capture both channels at max rate (it&#39;s just that average thro=
+ughput is not the only requirement for an endpoint buffer). So if you can d=
+o replay/capture, then you&#39;re good. You can also try the replay_buffere=
+d stream arg, although it&#39;s not a silver bullet. It helps in some scena=
+rios but not others, YMMV.</div><div><br></div><div>--M</div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jan 27=
+, 2026 at 8:01=E2=80=AFPM Eugene Grayver &lt;<a href=3D"mailto:eugene.grayv=
+er@aero.org" target=3D"_blank">eugene.grayver@aero.org</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Thanks.=C2=A0 I saw notes that seem to indicate that option. Anyone at Ettu=
+s/NI care to chime in as to how to do it?=C2=A0 I found an example for E320=
+ that shows an RFNoC .yml with a dram FIFO.=C2=A0 I could make one for N320=
+, but it is not clear how to use it from gnuradio.</div>
+<div id=3D"m_-1825515750492054494m_-4152883299313261974appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_-1825515750492054494m_-4152883299313261974divRplyFwdMsg" dir=
+=3D"ltr"><font face=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=
+=3D"#000000"><b>From:</b> Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu=
+" target=3D"_blank">rkossler@nd.edu</a>&gt;<br>
+<b>Sent:</b> Tuesday, January 27, 2026 6:45 AM<br>
+<b>To:</b> Eugene Grayver &lt;<a href=3D"mailto:eugene.grayver@aero.org" ta=
+rget=3D"_blank">eugene.grayver@aero.org</a>&gt;<br>
+<b>Cc:</b> usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
+get=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> [EXTERNAL] Re: [USRP-users] TX DRAM buffer</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<p style=3D"background-color:rgb(94,138,180);color:rgb(255,255,255);font-si=
+ze:10pt;padding:1em">
+<strong>Do not open links or attachments unless you recognize the sender. I=
+f unsure, click the Report Phish button or forward the email to OPSEC.
+</strong></p>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Hi Eugene,
+<div>I &quot;think&quot; that the replay block can act as a FIFO in recent =
+UHD images.=C2=A0 But, there is a possibility I am wrong such that there is=
+ a build-time parameter that is needed to config this.=C2=A0 Another option=
+ would be DPDK if you are not already using it.</div>
+<div>Rob</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Mon, Jan 26, 2026 at 7:00=E2=80=AFPM Eugene Grayver &lt=
+;<a href=3D"mailto:eugene.grayver@aero.org" target=3D"_blank">eugene.grayve=
+r@aero.org</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Hi,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+The default TX buffer for N32x is 128k samples =3D 512 kB.=C2=A0 The box ha=
+s 1 GB of DRAM.=C2=A0 I am getting occasional underflows when streaming at =
+200 Msps, even though the CPU is not very loaded and easily meets the avera=
+ge throughput.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I have done all the usual stuff =E2=80=94 isolated cores, pin threads to co=
+res, etc.=C2=A0=C2=A0</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Is there a way to increase the default DRAM buffer size w/out rebuilding th=
+e FPGA image?</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Thanks.</div>
+<div id=3D"m_-1825515750492054494m_-4152883299313261974x_m_-821198415052638=
+2119Signature">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Eugene Grayver, Ph.D.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Principal Engineer</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+310-336-1274</div>
+</div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div>
 
---000000000000242597064b2d03ba--
+--000000000000c19e59064b2e640a--
 
---===============4742780443637427328==
+--===============6482152457595100371==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -338,4 +440,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4742780443637427328==--
+--===============6482152457595100371==--
