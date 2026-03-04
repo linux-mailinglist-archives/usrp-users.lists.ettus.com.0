@@ -2,457 +2,469 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLyMKJQ9qGl6rQAAu9opvQ
+	id yDMUDkd/qGmYvAAAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Wed, 04 Mar 2026 15:11:32 +0100
+	for <lists+usrp-users@lfdr.de>; Wed, 04 Mar 2026 19:51:51 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C002010D4
-	for <lists+usrp-users@lfdr.de>; Wed, 04 Mar 2026 15:11:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DC32206A67
+	for <lists+usrp-users@lfdr.de>; Wed, 04 Mar 2026 19:51:50 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5738D386552
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Mar 2026 09:11:30 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id B37C9386311
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Mar 2026 13:51:48 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1772633490; bh=4OGnKd68ILAMVbS1EXD20A/vZyBDrrq7HttHfS9RGKo=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=I4YJ7BagvH7ulv/w7lDMhOWWj0wR+TXeDwIsJUl2L+SVcoGWpvyKyATUoys4K5EZ1
-	 Ec/lYulnTvk1bPKiiK9umijAE0dGbe1jDxyA6oKE2vl3lV8keMVOrQGSDewjEMvsYn
-	 XqJdUXDuExKxkjLlV1lSXwtA9etM4Aj8hNCglVRn+0wlsjC+o9mV6rcgCQ1vYV7y5b
-	 I0jQtI8oej5iU4AX8ru8MDqG3bP42NZfs0aBK4KAoE4OjxKzp3aMzKytCsfqyehy/f
-	 VQZiGe9WBsOjWVJnXiPw83hHA/5s+j6cuPUnq7Q5/ugwMG6wzMaoakL/sLxVYFeoFL
-	 +vPy0o4LkJZtg==
-Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5251A385B35
-	for <usrp-users@lists.ettus.com>; Wed,  4 Mar 2026 09:10:46 -0500 (EST)
+	t=1772650308; bh=eFb0e5px0LJZfpZYq/tnSQNP0zAzsBUV+sLHIIodnHY=;
+	h=To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=DLYvXG6ofcQ79cLqCngoPv8V5gzGJOQZSGKE2TBdJufW1b/0nwrrQJYYtcXAde55v
+	 DKLWnnZ0YN4h2KR/UVrDaS5iFau5+yDfaua3oc7yrrqPh/X9QTSPTjA4au/PNGrysF
+	 jwUlLyzRfiFcss1hKNJlc/VcTiqbuS4bgn93WvufBUkm1isGRct7VCiHkowP2T1n8J
+	 I5y9+Sf+wI6pUTheGvH74RumW2WohhHBc3JG2wvQHrkY1HxZWb0WehLGnkzQuQ4pHn
+	 vB3T7Gyy6BGAdgscR/JG2W7+L1IWE6bHIpQwQNOeFHhMxBSn1KmuCaP14lWJR7xARr
+	 7NWSmXqH6sWMg==
+Received: from mx0a-00300601.pphosted.com (mx0a-00300601.pphosted.com [148.163.146.64])
+	by mm2.emwd.com (Postfix) with ESMTPS id CF113386175
+	for <usrp-users@lists.ettus.com>; Wed,  4 Mar 2026 13:51:33 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="tPf88rSX";
+	dkim=pass (2048-bit key; unprotected) header.d=emerson.com header.i=@emerson.com header.b="up8K4L7j";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=Emerson.com header.i=@Emerson.com header.b="jU7qqhz7";
 	dkim-atps=neutral
-Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-649278a69c5so5879423d50.3
-        for <usrp-users@lists.ettus.com>; Wed, 04 Mar 2026 06:10:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772633445; cv=none;
-        d=google.com; s=arc-20240605;
-        b=ZducCQDChGvequ1L1mdTiqqVjV99JJJWuTg9DBwVct/fqSTfMizyieJm9qQko3qEML
-         1ppAi0/wQ0KhrNWwQnowsZsk58AyPCO9D7TMCr/HoMISPaVe8lvACWT9XSSTIxzCeesq
-         5NM2MsfycOsaKQLcXZT0UNe8Sx0BqW4CbJCpjT594MAY6QngN/7vio7LyHmAJyq1chxY
-         tqHOP2Ps2a5pq6WPgBGQTU5skaXCMCgL0KLfQg1h5rlt0pwNo9olHpcRxYVAcobQjG93
-         uJxYh5Ses4lCcAU2C6p+Gq+zFLdIz2+jsLr49Sn0xO1lRYa2iQZFlYmI5PppzdECvcdp
-         Z9nw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=tJKvKOQ5WQi0X4GwilcTrLotkec1HpZCGtcHEhp6dgw=;
-        fh=KaTa+wniHGkZCSOrt4AM2/GAQ+cQaK3nY+us6UO3qtE=;
-        b=ZEQG0Z2UOiIpiK2hOVwHIVLz2JU8X0wNPtqsY68XofNWTd4qxaotoDN5VgeKtQdRpE
-         4yvMeMSrFZ5i0M9SsArxvXCY3XtGw1d82WfCm1REPFha+J9T0jes6fQ6H6zNrDtwMGP0
-         DprYYdHx5Fd8pxtHsuCRONbLXp7A6GoKP4Q+BS0dO07q5E/f8Q8zf7uyZJwJuzGVvaDo
-         2TIDFwo18RZ2B/gXUCuj41OWhG7u3zkKzTg5o+cbMglIDdIibGvoNnSPtEp9W59/PQ5O
-         YsGxga2u8B4VdnOstGE93Y5EbQih8SQwEBvJMYc+CpKEIo5r8eC8SaMdSdzi9nkm3X6W
-         uAZw==;
-        darn=lists.ettus.com
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1772633445; x=1773238245; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tJKvKOQ5WQi0X4GwilcTrLotkec1HpZCGtcHEhp6dgw=;
-        b=tPf88rSXbtIEZikhpD2GoHIa3cqiGu89ccDNayWIWhOpSwFKF/9tqEXm3d287x0mN8
-         HrJOtq3KlE38dQS1jof1TR0wIeg1epKqjhjyuLQ46FQ8xt3OAilvxlD5BfVGSl6BtutA
-         XBlXXe1beCOgN+r9BcdPIne0KKEPHQY9cFQZ4mTPRIJc0MUpwYslW2ufBxauNDjvyQuU
-         CqhO4A0TwrGAfqNxsY/e0yo9xtrGwt7zWK30rZDLRiujf3ebEDVHiHzByHTiM8U5WgS0
-         FDc7rl19lGlJSrXfW60fG0iJY6yLVaho2BWvlgLnhkVYtGaWEtim5WIZkbHRHKyGFg5x
-         8IqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772633445; x=1773238245;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tJKvKOQ5WQi0X4GwilcTrLotkec1HpZCGtcHEhp6dgw=;
-        b=CMFvPtPjbKM3V0kPFUGa5f5Hy31W6V+sYz7PwRNAjK471EtYxTjWUEojXQnPw/yXgm
-         17/l2CnCDDsiibMop4ZsJx7fJ4oqugomvFDNFB7TxGOckokL+Pu6VUEH+kF24QrddEy7
-         GNNndrlkdmuIzD26r5lBfeTQ/wkPjkTCMPnVOAU0JqkV1ziPmYGM2BArHhF4IvIXC1H3
-         bUTYZIb1KoJ0FOrpEnZ5l2Ho2XWjSRWv6Psq4OtGELgNSIExgtSOSTlDbG9Fnl0Vupkm
-         3uv3wGeW7aQfYlmW/qbl+3xtBPvilc6B+m6iiG04dQA3RX8ebcgn/vchqyuKGmBdVu3i
-         KuFA==
-X-Forwarded-Encrypted: i=1; AJvYcCXJbGRQIPLdZw4Gr2Y7L72o2a6xTDaGtjN76KZyfL92dtzBQfEDn1NjDZcCtdT07fpipkoi4IYbI8i3@lists.ettus.com
-X-Gm-Message-State: AOJu0YwndwOryixbhCulfKtgMnKFY1NkuOpYULw5ZHMxrW6lAU7wHS+R
-	OzrfbWXhXrnluZd5NHncw7wykNMfXF6r7iuSh+Sj9za84NqShYxrUjmwiyo+Hyb5Fd0KFSl96Vm
-	oD9TPx4UijdUh7EmrAQ85TTRMeiUbuGOVpmR4MUIPUO/S
-X-Gm-Gg: ATEYQzwf5ciOB6DfageE4Av4BRhCyrdGR9PrivsTYCPMR9R0ule/IPA5iF/p8gdJbkL
-	PLQLkeW9Y9ZRitODebNojL39dToVvn9zwV7herAsIFXPCeZc5ypNt42TqXBlCrvEyx6Gmei8acq
-	VpuHKhpjVOyLBe7QnV52jKlMaloS0XzqAGH1ZgYgdzryncIy1N9/mBjfM/bUh+F9U84er7PwkmI
-	ANL5HI4q0+xehxnH22fnPgDIzuInpnPCJAPxio30iW4iA21WI5VWTZDeFQIUTNikAdrLgK8Whwj
-	Fq2LZgQIZ49OrJmsfw==
-X-Received: by 2002:a05:690e:e17:b0:649:4302:cea2 with SMTP id
- 956f58d0204a3-64cf9bad090mr1306445d50.43.1772633445538; Wed, 04 Mar 2026
- 06:10:45 -0800 (PST)
+Received: from pps.filterd (m0484890.ppops.net [127.0.0.1])
+	by mx0b-00300601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 624B4lu3023207
+	for <usrp-users@lists.ettus.com>; Wed, 4 Mar 2026 18:51:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emerson.com; h=
+	content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=email; bh=KT4RLJljZR+JbVsSIChQVPhIO8y/
+	kybullTiUc3S4r8=; b=up8K4L7jxV4TaSCOM28e5dRosAmWcySNpzMXE3/DxMLO
+	noM/3ADw2eQ867X5aXRxeuq/NUgVlJJUXx9cg20XDEFuII9KAKXbU0XgEeXQ75h3
+	LHN3BsPLd3wOB6TvNYi8yrI+BYE9AxYTdZnTddB2RSQlxlQDaOjRX8acs/7EN48k
+	n0SCMRPnXK+FK34Q1MKFWevQ440MiNK0NIlr39XIALEs58l2dADxWAlxlhyO9duG
+	klcKaBUe9JoTFc+fYMshthJPYzvoab/tZlWN4S2eaiwfqYi5GyOzzbQNQQ1slRO5
+	V+NtEVC33GPcFo5BEaktOxNAjFvndjW8XukrFJ8tpA==
+Received: from ph8pr06cu001.outbound.protection.outlook.com (mail-westus3azon11012044.outbound.protection.outlook.com [40.107.209.44])
+	by mx0b-00300601.pphosted.com (PPS) with ESMTPS id 4cpkj33gma-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <usrp-users@lists.ettus.com>; Wed, 04 Mar 2026 18:51:32 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=l0z/r2ij5AX+Oj/8r1RijS4nXKUdGZX6W5UvpoGmtzSsdt1/cNvSjllAqBixwS8UK1DFGaiVE7/4sAc4SL7T1vzSoM7OGJOwiYDG/twv/veC64RUxqZWRFDH1MJaPQOkZbPen/BBaRmZDq9hG7bsgQ56HiqlIqqMkHreqBvQi4g/zMMkspD/m9C5UR3Zt3WOwfcFFwcuUPKFZwK+LPvaSvQ2N80PwyTvmqIQ+EeHmZC+bK6Pags/tq3BcpjFoM9RhRYfJXWFK6+1eFtHYuuz9SEcGv2QhJ2dIvELUq9FLm0+DNknsV4W2M45WjlcZx3HWcB/cKp1nKCxuwGwPYm3iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hANtUIg6cTZgQHfPnh2cHWl8Fh1VlI1WZP0eSJgfyOw=;
+ b=idE8r5+y79kq7cwVLHoRlG67cbM3W4ISs/kpgxduZ1F1sI8LYCb3bO7Ik4EhdVQKE0/JInnAgu+bEiS7tTxn5+JYv3iKYbWjpVpXfaEvPxJbbs4EPl86Ioa8bjMpavsVCBlPLjIFghEqQEJjQTx7rziUzV8Nlt0qmbbjfBCYfmcxBqV6R+mTwF5Wx8Bceiapfj7kQQzCrpyoa/xCtMjyuny5YA+RJUAfUEtvIZLkocjf/Xm0ZYWcKTpmA+v83ZiEKm9O14g3Q1y83ssNuIrZpDpnWgihscIz8qHfK9H7Ounp4QlgPYaNzhRGV867GruA+0QSO0yGwyrWfWqy8+rTnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=emerson.com; dmarc=pass action=none header.from=emerson.com;
+ dkim=pass header.d=emerson.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Emerson.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hANtUIg6cTZgQHfPnh2cHWl8Fh1VlI1WZP0eSJgfyOw=;
+ b=jU7qqhz77Ssg5CSrRUgJVx8OppsGAfB9VLtzw8jNJD09aw2XFGfqCzq3SuZ8Lr4jW6lAvAWUv1mxGZOUbmL91R91oUc2R5RfOB2Po5kZWyXtMv9Bc8a2qaM2QVbxLDtBHBNBRMVPYh15hpQoXtv02MTUkVxaRJ362IoJbzDTiM5B87FBXR1WyGXX/TGm9UNM8wcZJPi6PpEC+ZcGkfBcIkq/W++2t4qaaqlg60aY6/OSeyxntf5wqldjdp5mHdR1T4LVhriuFRoi5eebynBYAgE1VymiiP7A04rTL+T9mVxVX2vKXFZxmZ07AFANSVVbFY+U5q1VTev4vge2hZX+kQ==
+Received: from CH0PR10MB5179.namprd10.prod.outlook.com (2603:10b6:610:c7::21)
+ by DS4PPFAEF42CAE1.namprd10.prod.outlook.com (2603:10b6:f:fc00::d40) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
+ 2026 18:51:30 +0000
+Received: from CH0PR10MB5179.namprd10.prod.outlook.com
+ ([fe80::4415:6064:40b9:6705]) by CH0PR10MB5179.namprd10.prod.outlook.com
+ ([fe80::4415:6064:40b9:6705%4]) with mapi id 15.20.9678.016; Wed, 4 Mar 2026
+ 18:51:29 +0000
+To: usrp-users <usrp-users@lists.ettus.com>
+Thread-Topic: X440: Could not find appropriate gain for performing ADC self
+ cal
+Thread-Index: AQHcqzOU6IK1tFLOLEeqCnZzlrZldbWesKsj
+Date: Wed, 4 Mar 2026 18:51:29 +0000
+Message-ID: 
+ <CH0PR10MB5179630FED3F1AEF917D9312997CA@CH0PR10MB5179.namprd10.prod.outlook.com>
+References: 
+ <SJ0PR09MB912686CBC2CC3BA97673827BEC7FA@SJ0PR09MB9126.namprd09.prod.outlook.com>
+In-Reply-To: 
+ <SJ0PR09MB912686CBC2CC3BA97673827BEC7FA@SJ0PR09MB9126.namprd09.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR10MB5179:EE_|DS4PPFAEF42CAE1:EE_
+x-ms-office365-filtering-correlation-id: 4b41f9fd-354a-4fd6-e42a-08de7a1f0c14
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|10070799003|376014|366016|1800799024|38070700021|8096899003|7053199007;
+x-microsoft-antispam-message-info: 
+ Qev7vwu7dcGd7KialuhuL0FTmT7yG0fPS3BFWKImTUG9CvvM0UxgLRXhMZ66U60fFSyLR62gDI8XqpWHS0CVx6FoLbUiE/nazjPz7pK8BvO7kaIj8NG+3kpmvMEFKbWesTB4h8aLtcpXqzT5Fh/E42WHwCJvOIxOk3GzIQABCniAPPrPuFWZBJ6TMCZVxgodLK12BuPFsWzckn9mZ2g+/IHvmkAGKcV/oSMJtMqjQU3+I4m5glXg1a7tVQwS4PYyfY/uHIdldvk5lp1CdFvObAzSFVXmkAh+kdiaDuYn1o1305hcPtnXcxUS4/AuR9XhGEHaJ8K5/bDaGeOk5qwtxq1ACgrJtcZeFMrEuxJTiFl4BCT7lrhezhu4H93i2NQJzGT71y+MW+VED498rbU9RgcQtzCT6YP6lSvMShUkXouSnyDHsZqLpc/mdKQ9hqpQPHPURtjXXjKg/y50VJ7XU0uN9uB5w5KnpCV8rQOxC8zblP5i6UQHBLNwHJ+zWKSUHHzQtMcCx4k06R5o8gTm3vhOZYhYlhOKEoBKoTJ49uicaCwEO5u2uJ4sGCCYPCxvnnt83iXBmgkyDtdaJiN3noqlfcABK7DRrdKnvayOVRYl60CYsSzGs1mAFrnn+J4POV5Ze9QZigvz5nHjxEv9QeYZU4RBbuaGWuPe22zVjEM5SQD3i2+FK48fD9Bl/79BE1CKPb4/XA3bwQvHQEnEKlXQoDaJaJC7AqoxEc5BUL8QbTCF4uQsZ12VOUbXsC7X2vOHZxJGi86qXnG9UTsYrSwWSqhgeB4EKoNNnk3hnec=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR10MB5179.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(376014)(366016)(1800799024)(38070700021)(8096899003)(7053199007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?aTVqWjlRbUpjVE9pRFVDTEtBL094Q1VQYnRWRGRBb1NVVEZsdDVTR2pPVlZH?=
+ =?utf-8?B?c0pDZzZsQ0k2MlpmcGtTa1h6ZVhZWWVIdlJMNktGaWpmMkw3REJWcEI3WlN2?=
+ =?utf-8?B?MVcwbFkvNUFtV0wzQ2RYdDEvbndKWlFvVlh4U21zUWFHdnFia3VDeUNEakox?=
+ =?utf-8?B?UWNubjVRMmZEN21JQk1lRWJSdkM1bXZ5cjh0aGhBMDZKT3NBTzlha0FWdlk0?=
+ =?utf-8?B?R29iMnpleUU1cHRZS2lYYTVJNHQ2MlA2dytUMVk5a1ZFRUxJYzJXeWRYeHVS?=
+ =?utf-8?B?UUp3RFNlWXFCVnlJTlhiNk9SbU9iTjJudHl2YUVYaHR3QXRGdEMzbGtpQlNY?=
+ =?utf-8?B?N1RGQW53ZWVmdVFjZE5LWnMzL1hXdmhrMGV4MzZkUm90K3FVamVuUG5DUGZi?=
+ =?utf-8?B?RGJwdXNIdmk5ZkprUm1DTWIrb0dSekhVcHVseWlMY3IvblcvcU03QXlRU2Zq?=
+ =?utf-8?B?M1NmREVOemw2RVNINkEwQ2xhei9TcXk5TVBIeDE1N25xc1hwUGJiRGVGdVFq?=
+ =?utf-8?B?Z2MyQTJuWWhxSGtMczBGakJyQkRnY1hjNU9RSlJzR2xiOTQyblVrREJuTXM4?=
+ =?utf-8?B?MDNkVitYL2huMm9ySjdBTkdIOGxtRitwdlJJQklUdzhHRUJqQlJhWEpUbWJp?=
+ =?utf-8?B?UkIrZ29FMHlWbjNCanFzUVI2R3Y4TkQ2Q2lGL3k3amFqYjVlOU5VQ3dGQmRt?=
+ =?utf-8?B?MDR0VTFnckJ6NjhHS2lJTlc3ZWxIUHpOV3dyVng1UUtHaVRDRENuSDBielRQ?=
+ =?utf-8?B?akdEbXlveUZqd3RuWlBKeHlaUGJIUVFQaHd1c0UyamtDWi9Fd0dGbW5HSUFI?=
+ =?utf-8?B?emV2ZEtvTzRUUTdvM2dxdW54YVBNdjV1bXNiNk9sblI3SDBISUlNNU1WcGQx?=
+ =?utf-8?B?TWU1UDlEcXlDQ0NhYVBmV2ZZYnU4Y0FDNXVncDc4SWZpYWtrdkFBWTJ4VmRp?=
+ =?utf-8?B?N0s5TDJBTSswSG9VeU1qMk55dTFtalptUFdBUWluWWFzVThQRVpERXUyMXFp?=
+ =?utf-8?B?MkVZQUVnVmovazI1Q2JRMlFxcGc1dDRBaDc4OUhRM1pLTER3aG96SWdKVkNu?=
+ =?utf-8?B?Nnl0RWV4Mmt1Nzd2cW9KWGlVZmxYa0JYSUlIUEZuakJmcFQ1SGdPdGZIaWNq?=
+ =?utf-8?B?QXpWSDVFWDBwWTkxN3NhTURFb3FZeXBDVVdTWEVlWFpoMXMxOFpwM004bXR2?=
+ =?utf-8?B?dlYydFo2dWl4eUwyZHdMbTAwSWRuK1JUcGFObkhuaWU1dDcvNG1OcFloMkJ6?=
+ =?utf-8?B?SVE5Y1Rvbmx4VGFZYkR5aUk2Z3BFemkrSk82TW1xWDdOTGlTeTNhS1F0VEFx?=
+ =?utf-8?B?aWVOSytZNWJtbVFVeTkrR3pzd0s0U21RdHVIbVU4blhwNzUvWWZ3OWd4cGZF?=
+ =?utf-8?B?aTBRY1k4T1NhQk8ybHprb0tsRkp0cnZHZ3JoWk1kME9nQ25ZaUpTSDcxNEJJ?=
+ =?utf-8?B?ZDVPcEM4aERSWmhKSENmYlczWEFaWVc5MUNtYXljWFJpc3hPRTdsMlpvQjM2?=
+ =?utf-8?B?T0pvbi9hM2FKdWo0aGFiWUpTY2FQNFRiOFcvcHdOLzJlU0JtQk9aL041byt2?=
+ =?utf-8?B?QjIzMDVXY2RPdEtvS0xhRVo4V3RvZ2dhVG5QM2dpKy9mQ21ZdXFYbmdXeHZF?=
+ =?utf-8?B?VE4zQU5LSnc4TGZFZUE3NVdyVUJkWVQ1K3d4Z0tjbkFJWGliNVVQaUk0MlI5?=
+ =?utf-8?B?Ym9BUUVlRTk5TXVmZUJLYStXNGh3VEpxRmdBMHNLdFp4M1VyUzlhcFd2U1Fp?=
+ =?utf-8?B?QVVVbkpHUy9TeVY1dG1GTzVwaHZGaGNIMlNmNEJJQ0tWQVUwKzJTS3N2QVlu?=
+ =?utf-8?B?U0xyQ243WjRoNTMyU1lUanoxUHNVakNSVHY2dklCSVdmVjVxNTdiZitYL2Rh?=
+ =?utf-8?B?clg1Nmw2Uy9MYjN6N3MvYU5KWnArcUhyN2N4NUJORkdweGh0S3V6OUo5Q3lI?=
+ =?utf-8?B?dWdoQ1k0N3R1UC9UeW9pTi9YU3VlMzhuNi84dGxpZWRUOHAvZ0RtU1Y0dTdo?=
+ =?utf-8?B?M3ZDMXBKTEtnM1ZTRmZzSGRiRk5PQ0pBRmVjTWpGanhOdnBqaWlpWFJRbFdM?=
+ =?utf-8?B?U3RjRXlHSTRjYjk0eGdxcys5bmZ6ZnVLUkNwM2FybmJaNVNwK0Vua2piK213?=
+ =?utf-8?B?T21YMVpxM1JucGdBT1RJdkpiVEd6cnArVTdEbFhES0R0K3hCWURTY21FOU45?=
+ =?utf-8?B?KzVYdG40OStEbXE3c1pPTVFRNnpiNVFVY3ZMMjhJdm04T25zc1hTSTBmeHhm?=
+ =?utf-8?B?c1RmSG1lTm1Qb0E4MzRtS1FzQWhpUUFwNnBMVUdCcFVucXlmZzVVR0g0Z2dm?=
+ =?utf-8?B?YnhBc1JnWGcyMm9mR2U5alZiMkNmb21tZG1lbW5kVGs0U2dKWEp1bzhxVzBX?=
+ =?utf-8?Q?M15GnG+PGWzJ+gALX1H/8Gl8SJ5Bn5pgguKVWGXCmuauj?=
+x-ms-exchange-antispam-messagedata-1: PAMnbMmI1DCuIQ==
 MIME-Version: 1.0
-References: <SJ0PR09MB9126F8AA5D78227FFCE1A9CCEC7FA@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <CAOEzSFR+NxLvPHQN8Lt7gQtp4rD3y-YVV3eDqsqLbc5mcvP5MA@mail.gmail.com>
-In-Reply-To: <CAOEzSFR+NxLvPHQN8Lt7gQtp4rD3y-YVV3eDqsqLbc5mcvP5MA@mail.gmail.com>
-From: Michael Dickens <michael.dickens@ettus.com>
-Date: Wed, 4 Mar 2026 09:10:34 -0500
-X-Gm-Features: AaiRm500TQ0NdcKjgZnCMjDSwouWZQzSKFvu3ldQmF49Q-abn-nZ9NzbjeRmoBY
-Message-ID: <CAGNhwTOMpGMKR5Rdsa4sAiWwv55VBLqY5zy5KNfGD55YiE94Jg@mail.gmail.com>
-To: Chris Rogers <c1337rogers@gmail.com>
-Message-ID-Hash: JMIC6MUWK2XFUMZLV6X22K6KL6U4MX22
-X-Message-ID-Hash: JMIC6MUWK2XFUMZLV6X22K6KL6U4MX22
-X-MailFrom: michael.dickens@ettus.com
+X-OriginatorOrg: Emerson.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR10MB5179.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4b41f9fd-354a-4fd6-e42a-08de7a1f0c14
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2026 18:51:29.8354
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eb06985d-06ca-4a17-81da-629ab99f6505
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1yXBHPM+W8DKN3Ys6uRPdRz9GqTjKHaFLrO68TYK2RyE8lBaMUb9wUyQJqQGgjjOm9FNHjU7gMbeuUfi4of8GL+Y+hOI2l3Ik3VIFyWEbIo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFAEF42CAE1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA0MDE1MyBTYWx0ZWRfX+cQO6twCzfAD sWUGOfnyzpPXtnkzvp5IvGSPgK609Y9zTh8ApqXXYYHc4K/ecWn+UKcFnwY/JJVr89tIdWxVU5X wF8UtNYzHijnNWvC6Us0uhQQ9rBPQ02PrLqen8mjDVykTyuWjgVv8K/5mfLHEWsMvHjykD9/0lb
+ i+y+PlQiDWHHrC8OT4bNNNMl6UuKUn/orFkbfEw+ZTtq49yZQYvzhm+1SYWZXnlT+xk9aErGcF6 lxOyM73JbMIAfeYjM7U9Ioz2oK52/871tUe/lIqrXMFDBpmg8+x4EXLxgbdZxcUXd+WewFAmYEG VVYNJ1OqbcvtC53whZYXcm565sXuEcSigVMgP0O2HrMTU0qr7+fp3CYYoLWluFvx+RL8HMHqIw+
+ xbJMJXSmnKlk6m6TR3uGu6pwIlGLjSRVDN6zdsTdFkfKRgLIkPTdHnlifaMpXC2gHD5Ot/XClIy GF1rQp0z6yyd8kdVUVg==
+X-Authority-Analysis: v=2.4 cv=SI1PlevH c=1 sm=1 tr=0 ts=69a87f34 cx=c_pps a=rlKp08D5gBKtwCtLUzcdEg==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=vjhoQbBNYuW6rkOA:21 a=xqWC_Br6kY4A:10 a=Yq5XynenixoA:10 a=ZPWZ4rD8_x8A:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Ps6gwBxKFAOpZu8f3VnT:22 a=SDIZ3FJ79mIEoUtHsglc:22 a=qHnpajyiAAAA:20 a=RpNjiQI2AAAA:8 a=8CGCo7kxAAAA:8 a=etiEgX_XAAAA:8 a=pNW3P0H_6qD11QG32M8A:9 a=QEXdDO2ut3YA:10 a=yxvHZJhp1Br9zMNbgjkA:9 a=2q4O/K3rjNU7EHYdBHB6dYyilSc=:19
+ a=VRo8943Gqmmh-9zx:21 a=_W_S_7VecoQA:10 a=uyKDLsAT3yn652Fg1vMC:22 a=MLbIUA-Bjd6y1alW9qBG:22 a=gnNuOjCqZ2Tg-SG9DWp8:22 a=bA3UWDv6hWIuX7UZL3qL:22
+X-Proofpoint-GUID: dJ1Zu2ZR1tJzzlTbzm_VYvhtkO6pfZw1
+X-Proofpoint-ORIG-GUID: dJ1Zu2ZR1tJzzlTbzm_VYvhtkO6pfZw1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-04_07,2026-03-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
+ spamscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0 malwarescore=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2602130000 definitions=main-2603040153
+Message-ID-Hash: XTNHSXLQ5LXFYV7YPQQ24DNHKYXV72XJ
+X-Message-ID-Hash: XTNHSXLQ5LXFYV7YPQQ24DNHKYXV72XJ
+X-MailFrom: prvs=45233425a7=martin.anderseck@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Eugene Grayver <eugene.grayver@aero.org>, usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X440 - Phase alignment between two USRPs
+Subject: [USRP-users] Re: X440: Could not find appropriate gain for performing ADC self cal
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JMIC6MUWK2XFUMZLV6X22K6KL6U4MX22/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PBTHU2AUYPXQ45FVUM4KGM23TBWX7DE5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9138755068867113852=="
-X-Rspamd-Queue-Id: B9C002010D4
+From: "Anderseck, Martin via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Anderseck, Martin" <martin.anderseck@emerson.com>
+Content-Type: multipart/mixed; boundary="===============7671529704818875425=="
+X-Rspamd-Queue-Id: 5DC32206A67
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.29 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
-	MAILLIST(-0.20)[mailman];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
 	TO_DN_ALL(0.00)[];
-	R_SPF_NA(0.00)[no SPF record];
+	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[ettus.com];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	R_SPF_NA(0.00)[no SPF record];
+	RCPT_COUNT_ONE(0.00)[1];
+	TO_EQ_FROM(0.00)[];
 	DKIM_MIXED(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	R_DKIM_REJECT(0.00)[emerson.com:s=email,Emerson.com:s=selector1];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[martin.anderseck@emerson.com];
+	RCVD_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-0.997];
-	FROM_NEQ_ENVFROM(0.00)[michael.dickens@ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
-	R_DKIM_REJECT(0.00)[ettus-com.20230601.gappssmtp.com:s=20230601];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[usrp-users];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	DKIM_TRACE(0.00)[emwd.com:+,ettus-com.20230601.gappssmtp.com:-];
-	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,emwd.com:dkim,ettus.com:url,ettus.com:email,ti.com:url,aero.org:email]
+	DKIM_TRACE(0.00)[emwd.com:+,emerson.com:-,Emerson.com:-];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aero.org:email,emwd.com:dkim,CH0PR10MB5179.namprd10.prod.outlook.com:mid]
 X-Rspamd-Action: no action
 
---===============9138755068867113852==
-Content-Type: multipart/alternative; boundary="000000000000d6b2d4064c336294"
+--===============7671529704818875425==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CH0PR10MB5179630FED3F1AEF917D9312997CACH0PR10MB5179namp_"
 
---000000000000d6b2d4064c336294
-Content-Type: text/plain; charset="UTF-8"
+--_000_CH0PR10MB5179630FED3F1AEF917D9312997CACH0PR10MB5179namp_
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-(1) make sure you're using UHD 4.9. 4.9.0.[01] release is fine; the UHD-4.9
-branch has some desirable fixes that will be part of the UHD 4.10 release,
-so if you're building from source then go with this branch.
+Unfortunately, this really points towards some hardware issue.
+How do we get to this error: The ADC Selfcal is shared code between X410 an=
+d X440. We play a tone with our DACs through the loopback towards the ADC t=
+o be calibrated. On the ADC side we configure a threshold value that we nee=
+d to hit with the calibration tone. Therefore, in X410 we increase the gain=
+ until that's the case. In X440 we don't have any gain stages. Therefore we=
+ can only check if we are above the configured threshold. If that's not the=
+ case we throw this error because then we know that the cal tone is not lou=
+d enough to create a good calibration. We have a utility to check which thr=
+eshold values your ADCs achieve:
+https://github.com/EttusResearch/uhd/blob/master/host/utils/x4xx_query_adc_=
+threshold.py
 
-(2) Try first tuning =C2=B11 GHz off of the desired RF Fc and then to the a=
-ctual
-desired RF Fc. Use timed commands for both to be safe; technically I think
-the first doesn't have to be.
+This may give you an idea about how bad the erroneous ADC really is compare=
+d to the others. From our experience this isn't an intermittent kind of iss=
+ue, so RMA seems to be the way forward. I cannot say how often this occurs =
+in the field - we have mainly seen it during development when daughterboard=
+ connections were bad. Using the cal_ch_list argument helps to open a UHD s=
+ession by skipping the calibration for that one channel. But even without t=
+his argument the second session after startup/clocking change will work any=
+way because it will have tried the ADC Selfcal already in the session befor=
+e. The erroneous channel will never have been calibrated completely, though.
 
-While the phase alignment (initial phase offset) will still be random, the
-phase relationship between any 2 channels should now be repeatable. This
-applies to 1,2, .... N X440 USRPs [though if using an OctoClock to
-distribute GPSDO signals the channel to channel (C2C) phase coherence and
-relationship will be tighter than using multiple OctoClock tiers. There
-are, of course, other GPSDO signal distribution systems that have more than
-8x replication.]
+I hope that helps understanding what is going on.
 
-For the initial offset tune you should see something about "resetting
-gearbox"; subsequent (re)tunes may or not show this info.
+/Martin
 
-We will update the language that you note, which applies to UHD 4.8, with
-the UHD 4.10 release as, when done correctly, one can attain channel to
-channel (C2C) phase coherence and relationship between (re)tunes, UHD
-instantiations, and device reboots.
-
-Please try this and let us know how it goes.
----
-Michael L Dickens, PhD
-Emerson/NI/Ettus SDR RF Principal Application Engineer
-Teams: +1-512-683-5305
-Cell: +1-512-585-1391
-michael.l.dickens@emerson.com <michael.dickens@ni.com>
-michael.dickens@ettus.com
+________________________________
+From: Eugene Grayver <eugene.grayver@aero.org>
+Sent: Tuesday, March 3, 2026 6:33 PM
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [EXTERNAL] [USRP-users] X440: Could not find appropriate gain for =
+performing ADC self cal
 
 
-On Tue, Mar 3, 2026 at 3:55=E2=80=AFPM Chris Rogers <c1337rogers@gmail.com>=
- wrote:
 
-> The X440 has a clock board (
-> https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_too_clocking)
-> which uses the LMK04832 PLL (
-> https://www.ti.com/lit/ds/symlink/lmk04832.pdf?ts=3D1772540151834) to
-> actually generate the RFSoC sample clock from the 10 MHz input. This PLL
-> output will have a phase ambiguity WRT the 10 MHz input signal because of
-> PLL physics, and this is why you see a random relative phase run to run. =
-It
-> looks like this chip supports a synchronization input to align output clo=
-ck
-> edges and the X440 technically has a sync input port on the front, but I
-> dont know if these inputs are actually connected to each other. It could =
-be
-> worth looking into what the X440 Sync In does... last I checked, it didn'=
-t
-> actually do anything but that was at least a year ago
->
-> On Tue, Mar 3, 2026 at 2:37=E2=80=AFPM Eugene Grayver <eugene.grayver@aer=
-o.org>
-> wrote:
->
->> I have two X440 w/ X4_200 FPGA image.  I need to get consistent phase
->> between channels on USRP1 and USRP2 across multiple runs.  I must be doi=
-ng
->> something wrong because I observe consistent phase between channels on a=
-ny
->> ONE USRP, but not across two.  The phase appears to be random between th=
-e
->> two on each run.
->>
->> Here's my setup:
->>
->>    - Common 10 MHz and 1 PPS
->>    -
->>    Addr0=3D192.168.10.2,second_addr0=3D192.168.11.2,mgmt_addr0=3D192.168=
-.1.10,addr1=3D192.168.15.2,second_addr1=3D192.168.16.2,mgmt_addr1=3D192.168=
-.1.20,time_source=3Dexternal,clock_source=3Dexternal
->>    - I modified the 'stock' rx_samples_to_file as follows:
->>    - Usrp->set_time_next_pps(uhd::time_spec_t(0.0));
->>       std::this_thread::sleep_for(std::chrono::milliseconds(1000));
->>       - usrp->set_command_time(uhd::time_spec_t(COMMAND_START_S, 0));
->>       // Set the rate, freq, gain, etc
->>       std::this_thread::sleep_for(std::chrono::milliseconds(COMMAND_STAR=
-T_S
->>       * 1000));
->>       usrp->clear_command_time();
->>       - Each streamer is created in a separate thread
->>       -     stream_cmd.stream_now =3D false;
->>           // Time was reset to zero before thread was created
->>           stream_cmd.time_spec  =3D uhd::time_spec_t(STREAM_START_S, 0);
->>           rx_stream->issue_stream_cmd(stream_cmd);
->>
->>
->> What am I missing?  I assume commands apply to both USRPs since I create
->> a multi_usrp.  Do I need to explicitly specify the motherboard for some =
-of
->> the commands?
->>
->>
->> Eugene Grayver, Ph.D.
->> Principal Engineer
->> 310-336-1274
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Hi,
 
---000000000000d6b2d4064c336294
-Content-Type: text/html; charset="UTF-8"
+I get the following error about every fourth time I start the software.
+
+-------
+Error during initialization of block 0/Radio#0! [ERROR] [RFNOC::GRAPH] Caug=
+ht exception while initializing graph: RuntimeError: Could not find appropr=
+iate gain for performing ADC self cal Error: RuntimeError: Failure to creat=
+e rfnoc_graph.
+-------
+
+UHD 4.9.0.1
+I see it with either uhd_usrp_probe OR rx_samples_to_file.
+
+NOTE: there may be an actual hardware problem with one of the channels (TBD=
+).
+
+Anyone seen this?
+
+Thanks.
+
+
+Eugene Grayver, Ph.D.
+Principal Engineer
+310-336-1274
+
+--_000_CH0PR10MB5179630FED3F1AEF917D9312997CACH0PR10MB5179namp_
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>(1) make sure you&#39;re using UHD 4.9. 4.9.0.[01] re=
-lease is fine; the UHD-4.9 branch has some desirable fixes that will be par=
-t of the UHD 4.10 release, so if you&#39;re building from source then go wi=
-th this branch.</div><div><br></div><div>(2) Try first tuning =C2=B11 GHz o=
-ff of the desired RF Fc and then to the actual desired RF Fc. Use timed com=
-mands for both to be safe; technically I think the first doesn&#39;t have t=
-o be.</div><div><br></div><div>While the phase alignment (initial phase off=
-set) will still be random, the phase relationship between any 2 channels sh=
-ould now be repeatable. This applies to 1,2, .... N X440 USRPs [though if u=
-sing an OctoClock to distribute GPSDO signals the channel to channel (C2C) =
-phase coherence and relationship will be tighter than using multiple OctoCl=
-ock tiers. There are, of course, other GPSDO signal distribution systems th=
-at have more than 8x replication.]</div><div><br></div><div>For the initial=
- offset tune you should see something about &quot;resetting gearbox&quot;; =
-subsequent (re)tunes may or not show this info.</div><div><br></div><div>We=
- will update the language that you note, which applies to UHD 4.8, with the=
- UHD 4.10 release as, when done correctly, one can attain channel to channe=
-l (C2C) phase coherence and relationship between (re)tunes, UHD instantiati=
-ons, and device reboots.</div><div><br></div><div>Please try this and let u=
-s know how it goes.</div><div><div dir=3D"ltr" class=3D"gmail_signature" da=
-ta-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div sty=
-le=3D"border:0px;font-stretch:inherit;line-height:inherit;margin:0px;paddin=
-g:0px;vertical-align:baseline;color:rgb(0,0,0)"><div style=3D"border:0px;fo=
-nt-stretch:inherit;line-height:inherit;margin:0px;padding:0px;vertical-alig=
-n:baseline"><font face=3D"arial, sans-serif">---</font></div><div style=3D"=
-border:0px;font-stretch:inherit;line-height:inherit;margin:0px;padding:0px;=
-vertical-align:baseline"><font face=3D"arial, sans-serif">Michael L Dickens=
-, PhD</font></div><div style=3D"border:0px;font-stretch:inherit;line-height=
-:inherit;margin:0px;padding:0px;vertical-align:baseline"><font face=3D"aria=
-l, sans-serif">Emerson/NI/Ettus SDR RF=C2=A0</font><span style=3D"font-fami=
-ly:arial,sans-serif">Principal</span><font face=3D"arial, sans-serif">=C2=
-=A0Application Engineer</font><br></div><div style=3D"border:0px;font-stret=
-ch:inherit;line-height:inherit;margin:0px;padding:0px;vertical-align:baseli=
-ne"><font face=3D"arial, sans-serif">Teams: +1-512-683-5305<br></font></div=
-><div style=3D"border:0px;font-stretch:inherit;line-height:inherit;margin:0=
-px;padding:0px;vertical-align:baseline"><font face=3D"arial, sans-serif">Ce=
-ll: +1-512-585-1391</font></div><div style=3D"border:0px;font-stretch:inher=
-it;line-height:inherit;margin:0px;padding:0px;vertical-align:baseline"><a h=
-ref=3D"mailto:michael.dickens@ni.com" style=3D"color:rgb(17,85,204);font-fa=
-mily:arial,sans-serif" target=3D"_blank">michael.l.dickens@emerson.com</a><=
-/div><div style=3D"border:0px;font-stretch:inherit;line-height:inherit;marg=
-in:0px;padding:0px;vertical-align:baseline"><font face=3D"arial, sans-serif=
-"><a href=3D"mailto:michael.dickens@ettus.com" style=3D"color:rgb(17,85,204=
-)" target=3D"_blank">michael.dickens@ettus.com</a></font></div></div></div>=
-</div></div></div><br></div><br><div class=3D"gmail_quote gmail_quote_conta=
-iner"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 3, 2026 at 3:55=E2=
-=80=AFPM Chris Rogers &lt;<a href=3D"mailto:c1337rogers@gmail.com">c1337rog=
-ers@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"ltr">The X440 has a clock board (<a href=3D"https:=
-//files.ettus.com/manual/page_usrp_x4xx.html#x4xx_too_clocking" target=3D"_=
-blank">https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_too_clocking=
-</a>) which uses the LMK04832 PLL (<a href=3D"https://www.ti.com/lit/ds/sym=
-link/lmk04832.pdf?ts=3D1772540151834" target=3D"_blank">https://www.ti.com/=
-lit/ds/symlink/lmk04832.pdf?ts=3D1772540151834</a>) to actually generate th=
-e RFSoC sample clock from the 10 MHz input. This PLL output will have a pha=
-se ambiguity WRT the 10 MHz input signal because of PLL physics, and this i=
-s why you see a random relative phase run to run. It looks like this chip s=
-upports a synchronization input to align output clock edges and the X440 te=
-chnically has a sync input port on the front, but I dont know if these inpu=
-ts are actually connected to each other. It could be worth looking into wha=
-t the X440 Sync In does... last I checked, it didn&#39;t actually do anythi=
-ng but that was at least a year ago</div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 3, 2026 at 2:37=E2=80=AFPM E=
-ugene Grayver &lt;<a href=3D"mailto:eugene.grayver@aero.org" target=3D"_bla=
-nk">eugene.grayver@aero.org</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div>
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-I have two X440 w/ X4_200 FPGA image.=C2=A0 I need to get consistent phase =
-between channels on USRP1 and USRP2 across multiple runs.=C2=A0 I must be d=
-oing something wrong because I observe consistent phase between channels on=
- any ONE USRP, but not across two.=C2=A0 The phase
- appears to be random between the two on each run.</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Here&#39;s my setup:</div>
-<ul style=3D"margin-top:0px;margin-bottom:0px;list-style-type:disc">
-<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
-ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">Common 10 MHz and 1 PPS</div>
-</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
-Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">Addr0=3D192.168.10.2,second_addr0=3D192.168.11.2=
-,mgmt_addr0=3D192.168.1.10,addr1=3D192.168.15.2,second_addr1=3D192.168.16.2=
-,mgmt_addr1=3D192.168.1.20,time_source=3Dexternal,clock_source=3Dexternal</=
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+</head>
+<body>
+<div>Unfortunately, this really points towards some hardware issue.&nbsp;</=
 div>
-</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
-Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">I modified the &#39;stock&#39; rx_samples_to_fil=
-e as follows:</div>
-</li><ul style=3D"margin-top:0px;margin-bottom:0px;list-style-type:circle">
-<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
-ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">
-<div style=3D"line-height:19px">Usrp-&gt;set_time_next_pps(uhd::time_spec_t=
-(0.0));</div>
+<div>How do we get to this error: The ADC Selfcal is shared code between X4=
+10 and X440. We play a tone with our DACs through the loopback towards the =
+ADC to be calibrated. On the ADC side we configure a threshold value that w=
+e need to hit with the calibration
+ tone. Therefore, in X410 we increase the gain until that's the case. In X4=
+40 we don't have any gain stages. Therefore we can only check if we are abo=
+ve the configured threshold. If that's not the case we throw this error bec=
+ause then we know that the cal tone
+ is not loud enough to create a good calibration. We have a utility to chec=
+k which threshold values your ADCs achieve:</div>
+<div>https://github.com/EttusResearch/uhd/blob/master/host/utils/x4xx_query=
+_adc_threshold.py</div>
+<div style=3D"font-family: inherit; font-size: inherit; color: rgb(0, 0, 0)=
+;"><br>
+</div>
+<div style=3D"font-family: inherit; font-size: inherit; color: rgb(0, 0, 0)=
+;">This may give you an idea about how bad the erroneous ADC really is comp=
+ared to the others. From our experience this isn't an intermittent kind of =
+issue, so RMA seems to be the way
+ forward. I cannot say how often this occurs in the field - we have mainly =
+seen it during development when daughterboard connections were bad. Using t=
+he cal_ch_list argument helps to open a UHD session by skipping the calibra=
+tion for that one channel. But even
+ without this argument the second session after startup/clocking change wil=
+l work anyway because it will have tried the ADC Selfcal already in the ses=
+sion before. The erroneous channel will never have been calibrated complete=
+ly, though.</div>
+<div style=3D"font-family: inherit; font-size: inherit; color: rgb(0, 0, 0)=
+;"><br>
+</div>
+<div style=3D"font-family: inherit; font-size: inherit; color: rgb(0, 0, 0)=
+;">I hope that helps understanding what is going on.&nbsp;</div>
+<div style=3D"font-family: inherit; font-size: inherit; color: rgb(0, 0, 0)=
+;"><br>
+</div>
+<div style=3D"font-family: inherit; font-size: inherit; color: rgb(0, 0, 0)=
+;">/Martin&nbsp;</div>
+<div></div>
+<br>
+<hr tabindex=3D"-1" style=3D"display:inline-block;width:98%">
+<div dir=3D"ltr" id=3D"divRplyFwdMsg"><font color=3D"#000000" style=3D"font=
+-size: 11pt;" face=3D"Calibri, sans-serif" data-ogsc=3D""><b>From:</b> Euge=
+ne Grayver &lt;eugene.grayver@aero.org&gt;<br>
+<b>Sent:</b> Tuesday, March 3, 2026 6:33 PM<br>
+<b>To:</b> usrp-users &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> [EXTERNAL] [USRP-users] X440: Could not find appropriate ga=
+in for performing ADC self cal</font>
+<div>&nbsp;</div>
+</div>
 <div>
-<div style=3D"line-height:19px">std::this_thread::sleep_for(std::chrono::mi=
-lliseconds(1000));</div>
+<div style=3D"display: none !important; visibility: hidden; font-size: 1px;=
+ line-height: 1px; height: 0px; max-height: 0px; opacity: 0; overflow: hidd=
+en;">
 </div>
+<div style=3D"display: none !important; visibility: hidden; font-size: 1px;=
+ line-height: 1px; max-height: 0px; opacity: 0; overflow: hidden;">
 </div>
-</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
-Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">
-<div style=3D"line-height:19px">usrp-&gt;set_command_time(uhd::time_spec_t(=
-COMMAND_START_S, 0));</div>
-<div style=3D"line-height:19px">// Set the rate, freq, gain, etc</div>
-<div>
-<div style=3D"line-height:19px">std::this_thread::sleep_for(std::chrono::mi=
-lliseconds(COMMAND_START_S * 1000));</div>
-<div style=3D"line-height:19px">usrp-&gt;clear_command_time();</div>
-</div>
-</div>
-</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
-Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">Each streamer is created in a separate thread</d=
-iv>
-</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
-Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<div role=3D"presentation">
-<div style=3D"line-height:19px">=C2=A0 =C2=A0 stream_cmd.stream_now =3D fal=
-se;</div>
-<div style=3D"line-height:19px">=C2=A0 =C2=A0 // Time was reset to zero bef=
-ore thread was created</div>
-<div style=3D"line-height:19px">=C2=A0 =C2=A0 stream_cmd.time_spec=C2=A0 =
-=3D uhd::time_spec_t(STREAM_START_S, 0);</div>
-<div style=3D"line-height:19px">=C2=A0 =C2=A0 rx_stream-&gt;issue_stream_cm=
-d(stream_cmd);</div>
-</div>
-</li></ul>
-</ul>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+Hi,</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
 <br>
 </div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-What am I missing?=C2=A0 I assume commands apply to both USRPs since I crea=
-te a multi_usrp.=C2=A0 Do I need to explicitly specify the motherboard for =
-some of the commands?</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+I get the following error about every fourth time I start the software.</di=
+v>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
 <br>
 </div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+-------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+Error during initialization of block 0/Radio#0! [ERROR] [RFNOC::GRAPH] Caug=
+ht exception while initializing graph: RuntimeError: Could not find appropr=
+iate gain for performing ADC self cal Error: RuntimeError: Failure to creat=
+e rfnoc_graph.</div>
+<div id=3D"x_Signature" class=3D"x_elementToProof">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+-------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
 <br>
 </div>
-<div id=3D"m_6246226188310196639m_2065451845372422816Signature">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+UHD 4.9.0.1</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+I see it with either uhd_usrp_probe OR rx_samples_to_file.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+NOTE: there may be an actual hardware problem with one of the channels (TBD=
+).</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+Anyone seen this?</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+Thanks.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
 Eugene Grayver, Ph.D.</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
 Principal Engineer</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"x_elementToProof">
 310-336-1274</div>
 </div>
 </div>
+</body>
+</html>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</div></blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+--_000_CH0PR10MB5179630FED3F1AEF917D9312997CACH0PR10MB5179namp_--
 
---000000000000d6b2d4064c336294--
-
---===============9138755068867113852==
+--===============7671529704818875425==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -462,4 +474,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9138755068867113852==--
+--===============7671529704818875425==--
