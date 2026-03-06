@@ -2,130 +2,122 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CLssFT3QqWmYFgEAu9opvQ
+	id UMGIGqVEq2nJbgEAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 05 Mar 2026 19:49:33 +0100
+	for <lists+usrp-users@lfdr.de>; Fri, 06 Mar 2026 22:18:29 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A81262171F4
-	for <lists+usrp-users@lfdr.de>; Thu, 05 Mar 2026 19:49:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77772227DBE
+	for <lists+usrp-users@lfdr.de>; Fri, 06 Mar 2026 22:18:28 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C8E3C385F9F
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Mar 2026 13:49:30 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 00A1B38656C
+	for <lists+usrp-users@lfdr.de>; Fri,  6 Mar 2026 16:18:27 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1772736570; bh=DpMVjY3mfJ9US7B3oHeB091UunvcB5jWHNDJPgEEuA4=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=xsBT0oAVzqtDoljRrTNwGItD2og7HiDUIZRQ7PW1SI57t1AcohvVg9DTNhEzQiXMy
-	 PS9tkAyRMMpXRxHroDcuE7g0+BbulCPqKtMYdaOal2GfWriMn7n7eF12IqFvRQjVUz
-	 B+yq/bti67p+g/YpCxGX0gk0UtRXZ/dWCXUXOOn7KqW/gp/GV8gChYzJK4E/nssynf
-	 ZRi9CIZWnSf/UBVh2XkQUeLfGCUVXqBqEr6/NZXi8+hL0aJ79HkB5ZiSWHJzKIdO9f
-	 ou8D6dYymC5qaxQ7CQA6nr2YMCde7imjn8xuNX2CJ6CIj+NmOIAg6ThLkm1HBKZOj8
-	 dobKXvRRRw9xg==
+	t=1772831907; bh=bS0QwnhRlivdGNovMDAwWIJRugj+d0xxIgfe01TYc10=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=AU734Pejc5XaeViINc9GOLkSX0T3gIQsldUwL/A/TdpzPsoQW88kar4ko2qNrS5pU
+	 iHVMr3f5QuK2DQUVa/3VEN2aUrDzaRUxABYtJPnGcoDYKUjWKr6bejOo1oR8zGUpRq
+	 gWK/SYROjtGv7zJ+yomgN+Rt/HZStJHmIHHTWO8AY1PZ03FjdEkCJlB6/qhcn+6+yd
+	 gbUtcmcMYjMF+cD6zzCpI97xUtulcQ4EYBO6Xd8RQTdfVoUjCsDRBKwowTxYj7l64/
+	 hiN4fsHb7Zr3dgjgTeLnH8ztwu5s3FSMifaUbJp+7nlc994kXYJVHSXL8HK8VII3pT
+	 4GPtA/fUHcGKQ==
 Received: from email5-west.aero.org (email5-west.aero.org [130.221.16.30])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5F01C385F9F
-	for <usrp-users@lists.ettus.com>; Thu,  5 Mar 2026 13:48:19 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTPS id 268D138644F
+	for <usrp-users@lists.ettus.com>; Fri,  6 Mar 2026 16:17:13 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="oPA2z7jE";
-	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="UOGAwglM";
+	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="myt3xAq1";
+	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="wcOfkeh9";
 	dkim-atps=neutral
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
-  t=1772736499; x=1804272499;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   mime-version;
-  bh=AfO9Kukf/5Uk0+EMFNnMiicox6/19N5UW0VRnDlqRpQ=;
-  b=oPA2z7jEfgEav0JbuZg23g5vO7EJFhgGOd+trdDJ32bZEM6BcF86Q+pX
-   n20+sa2i12IK0bDY/l2TYT3sVuUYggZx2iGbDkOjFRs1KHUUIeAgUr6va
-   m8X7PsIPT+LhCe+zhbRO1OncCwNbepLBoOBbEE3fY3Wq3kd0IPzDLNiSi
-   w=;
-X-CSE-ConnectionGUID: YY3cevO2QuO/ohP+Vw0/UA==
-X-CSE-MsgGUID: MRG0ERbWRFKYcGO3PtRqpw==
+  t=1772831834; x=1804367834;
+  h=from:to:subject:date:message-id:mime-version;
+  bh=BarBttShd2wzqSR5lmaUg0nqh3t9DHQAv8F19HJufuM=;
+  b=myt3xAq14+9e6UuhfwuNFPOxxLCW5/s6r74Uxq+nYc5trXkZTNrL6lVR
+   MqcNvIGsIW+MV7BRhq4UR/4QRsp68rPC8Q1uNzioV/fAaiPYrjdLrewZc
+   qj/EFEI52jQBkUJb2Z/eZTrwv+NJlOidZNSUT7zRLB4eraSCQnj6mwL58
+   g=;
+X-CSE-ConnectionGUID: k2Gt44miQJqkDdn46WHLvA==
+X-CSE-MsgGUID: 6wZQFXDKQbS4yASHcQdsnw==
 x-SBRS: 4.2
 x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="8658347"
-X-IronPort-AV: E=Sophos;i="6.23,103,1770624000";
-   d="scan'208,217";a="8658347"
-X-IPAS-Result: =?us-ascii?q?A2FXAQA/z6lpjjQMXShSBQOBCYFQgT0BgQNBAUOBbJZPl?=
- =?us-ascii?q?0OGVxSBEQNIDw8BAQEBAQEBAQEHAi4BIgQBAQMEggyCdAKNISc1CA4BAgQBA?=
+X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="8670181"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000";
+   d="scan'208,217";a="8670181"
+X-IPAS-Result: =?us-ascii?q?A2H8AgBdQ6tpjjMMXShXAx0BATwBBQUBAgEJARWBUoE7g?=
+ =?us-ascii?q?QRBAUOBbK4Sh3wDVw8BAQEBAQEBAQEHAhQTKgQBAQMEhQACjSInOBMBAgQBA?=
  =?us-ascii?q?QEBAwIDAQEBAQEBAQEOAQEBBQEBAQEBBwQBAgIQAQEBAQEBOQUOO4ZPDYQHg?=
- =?us-ascii?q?SYBAQEBAQEBAQEBAQEdAjVVAQEBAQMBPwEBOA8CAQgRBAEBLycKHQgCBBMIg?=
- =?us-ascii?q?nqCHgcECwcDNqpQeIE0gQGCDAEBBgQE2ycYY4FnCRWBOIN9gT8zgmQBASqBN?=
- =?us-ascii?q?YJbgSEZhHo2gVVEgVeCMDg+hBwOGx8mg06CL4ImehQddTOGE4QwXYZBUnIiA?=
- =?us-ascii?q?yYzLAFVExcLBwVeRUMDgQYjSwUtHYEjIR0XFB9YGwcFEiEqgXR4ggEPhmt5A?=
- =?us-ascii?q?y54DiICOlxKPgtaBYIYAwttPTcUGwMEgTUFjRVcPoMvEzGCRaJujl+UYzQHh?=
- =?us-ascii?q?B+BXgYMl2yIMheEBKZnmQaCWKY+AgQCBAUCEAiBagOCETMaMEOCZ1IZD44tD?=
- =?us-ascii?q?QmDXsgVeDwCBwsBAQMJkwlgAQE?=
-IronPort-PHdr: A9a23:wCmvORBcJQE037g+UiqHUyQVaxdPi9zP1kY95pkmjudIdaKut9TnM
- VfE7PpgxFnOQc3A6v1ChuaX1sKoWWEJ7Zub9nxXdptKWkwJjMwMlFkmB8iIQUTwMP/taXk8G
- 8JPHF9o9n22Kw5bAsH7MlTfuHr06iQdSX3C
-IronPort-Data: A9a23:1Gk7WakP6HgaIDt2co+TybTo5gyJJkRdPkR7XQ2eYbSJt1+Wr1Gzt
- xIWCmCCOf/eNmKmKo8iOY3j/UtVvpaBz9diGgI6+S0wEC4T+ZvOCP2ndUqhZCn6wu8v7a5EA
- 2TyTvGacajYm1eF/k/F3p7J8ykkjclkYZKlUbGeYkidfSc9FWF5z0slw7Vh6mJRqYDRKxuXv
- t/vqNHoNlag2jplWkoZ8KvrRClH5JwegxtG+AZlDRx3lAWGzSdNV8pCffrZw0bQG+G4IMbrH
- 44v85nkpgs1zz91Yvu5n7DydFE9Q7K6FWBiXVILM0QKqkEqSh0ais7XBtJFAatko2zhc+RK9
- Tl4ncfYpTEBY/SWwLxFO/VvO3oW0aVuoNcrKJUk2CCZ5xWun3DEm52CAKyqVGGxFyke7Wxmr
- JQlxD4xgh+rttPty7+lbbNVm+NkK8nTf70A4jZd5GSMZRomacirr6Tiz/kI5A1o1+tzRa6HI
- c0EdTBocRLMJQVVPUsaA44/m+HugWTjdzpfqxSeoq9fD2r7kFQ3geOraYCTJ4biqcZ9xy50o
- krL4mv0BBxcO8aW2CSI6Fqli/XI2yThV+r+EZXoqKM62wHMroAVIDgsegOWm/OGsGCdatlwD
- Bcs5hA3tbdnoSRHSfGmBEfk/xZopCU0RsFKC6gn8wyX0YLQ4h2FHS4JUiJcc5ots8peeNAx/
- lqAntesCDV0rKCOE3uP8q/N8mvrY3BIdykFeDMOShYD75/7uoYvgxnTT9FlVqmoktnyHjK2y
- DePxMQju1kNpf86jK6243edui+L4Z/Jdk0L+V2QY0vwu2uVe7WZi5qUBU83BMuswa6cR1iF+
- XUNgNSD97oHH5WVzXPVGb9VQevv4OuZOjrBh1IpB4Mm6zmm53+ke8ZX/S16I0BqdM0DfFcFg
- XM/WysOuve/31PzN8ebhr5d7exxksAM8vy+CJjpgiJmOMQZSeN+1HgGibSsM5/RfLgEyvplZ
- cjznTeECHcRE6N8yzSqD+way6dD+x3SMVj7HMihpzz+iOL2TCfMFd8tbgHSBshnt/nsiFuOr
- L5i2z6il083vBvWPnOPqdZ7wJFjBSRTOK0aXOQML7TTeVc4Qz9/YxITqJt4E7FYc21uvr+g1
- hmAtoVwkTITWVWvxd22V01e
-IronPort-HdrOrdr: A9a23:wmP4XaHqiT64XUbTpLqFdpHXdLJyesId70hD6qkvc3Fom52j/f
- xGws5x6fatskdoZJhSo6H6BEDgewKVyXcR2+Us1NiZLW3bUQeTTb2KqLGSugEIeBeOvdK1t5
- 0QFJSWYeeYZTcVsS+52njfLz9K+qjlzEncv5a6854bd3AJV0gP1WdEIzfeNnczaBhNBJI/Gp
- bZzNFAvSCcdXMeadn+LmUZXsDYzue72a7OUFojPVoK+QOOhTSn5PrRCB6DxCoTVDtJ3PML7X
- XFqQrk/a+u2svLhiM0llWjoKi+quGRi+erN/b8yvT9Hw+cxDpAKr4RGIFq9wpF2t1HoGxa7e
- Uk5S1QdfibokmhAV1crXbWqnXd+Sdr5Hn4xVCCh3z/5cT/WTIhEsJEwZlUax3D9iMbzaZBOY
- 9wrhekXqBsfGf9tTW448KNWwBhl0Kyr3ZnmekPj2ZHWY9bbLNKt4QQ8E5cDZ9FRUvBmckaOf
- grCNuZ6OddcFucYXyctm5zwMa0VnB2GhudWEANtsGczjATlnFkyEkTwtAZgx47heQAYogB4/
- 6BPrVjlblIQMNTZaVhBP0ZSc/yEWDJSQKkChPhHb0mLtB1B5vgke+G3Fxu3pDVRHUh9upCpK
- j8
-X-Talos-CUID: 9a23:SomTvW2RY2GDjGcBSt0JAbxfK/F+eXDD6y3pPmj/DmZRC4OKERit0fYx
-X-Talos-MUID: 9a23:i2RCfAvorem6whP4Pc2noQtNbOpS6ZuUJmM8mroh4PGYDzVoJGLI
-Received: from mail-eastus2azlp17012052.outbound.protection.outlook.com (HELO BN8PR09CU001.outbound.protection.outlook.com) ([40.93.12.52])
-  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2026 10:48:17 -0800
+ =?us-ascii?q?SYBAQEBAQEBAQEBAQEdAjWBHAEBOBEBfycEG4J6gh4HBAsHAzatOYE0gQGCD?=
+ =?us-ascii?q?AEBBgQE2ycYY4FnCYFNAYN8gXKCZQEqgTUBhBSFMIFVRIFXh2sfJoNOgg0ig?=
+ =?us-ascii?q?iZ6FB2BKIYLhDCHJ4FEIgMmMywBVRMXCwcFXoEIA4EGbjIdgSM+FzNYGwcFh?=
+ =?us-ascii?q?T8PilSBE4MAAwttPTcUGwMEgTUFjRYHVT6Dc4ItAaMFo0I0B4QfgV4GDKAeF?=
+ =?us-ascii?q?6prLogakD6pFgIEAgQFAhAIgX+BfzMaMIMqUhkPjjqDZ8g5eDwCBwsBAQMJk?=
+ =?us-ascii?q?2kBAQ?=
+IronPort-PHdr: A9a23:GpZr0RfW0EVz1UB/4EJ+hoFhlGM/toqcDmcuAtIPh7FPd/Gl+JLvd
+ Aza6O52hVDEFYPc97pfiuXQvqyhPA5I4ZuIvH0YNpAZURgDhJYamgU6C5uDDkv2ZPfhcy09G
+ pFEU1lot3G2OERYAoDwfVrX93S/9zlUHQ/wZmJI
+IronPort-Data: A9a23:6e+ZkqwJL4fmf6xUaId6t+c/xirEfRIJ4+MujC+fZmUNrF6WrkUEn
+ GIaXGmAbK6DZGWkKtsiPISwpxsDvcKAz4NgGVY9qC00HyNBpOP7XtnIdU2Y0wF+jyHgoOOLy
+ +1EN7Es+ehtFie0SjGFbOi59RGQ8onRH+WmUYYoAggoGEk8Dn5n0Uk78wIAqtYAqcCjBA+Qs
+ s/FrcTaOVu0sxZ5KWt8B5ir8HuDh9ys/mlD1rACTaoT5gGGzCFLVMt3yZyZdhMUfKEFRoZWe
+ M6elNlVzkuBlz8xB9WslKrMc0FiatY+6iDT4pb+c/HKbilq/kTe4I5iXBYvQR4/ZwGyojxE4
+ I4lWaqYFF5zZvWU8Agqe0Iw/ylWZcWq8VJcSJS1mZT7I0buKxMAzxjyZa2f0EJxFutfWAlzG
+ fIkxD8lbUqsm77qxbOCaPBvqsglcJfUHKcBkyQ1pd3ZJa5OrZHraYOa3eUAjRwN3pgXW/HDe
+ 8AedDxjKgzaZAFCMUsWD5R4m/q0gn74cHtTr1f9SagfvzCVnVc3ieKrbYO9lt+iHK25mm6Vu
+ 23L+Wm/DQsTJcKS0xKM/2irwOjVkksXXapCSuLgr64z6LGV7jIMOiQ4ZXeYmPOC1l+XYPJUE
+ kAP/DV7+MDe82TwFYOhAHVUukWsowUGQ59NCOAg8ymJy7HI+ECUGnQZVXhKb9lOiSMtbTkj1
+ 1vMktryGSF06rSHTWrEqe/N92vvYG4SMHMIYjICQU0d+d7/rYovjxXJCNF+DKqyid6zEjb1q
+ 9yXkMQgr7ZJotJXi6C6xHLegB6goMSXcS4R+CyCCwpJ8ThFiJiZi5tEAGU3AN5FJYedC1SIp
+ 2QZgJKX/uQWVM7VzXbVHbxLG6y17fGYNjGamURoA5Qq6zWq/TikYJxU5zZ9YkxuN67omAMFg
+ meM4mu9B7cJZRNGiJObharqWqzGKoC7S7zYugj8NIYmX3SIXFbvENtSibGsM5DFyxN2zf5X1
+ WazdMenF3EBDqp7hDGxXf917ILHMhsWnDuJLbiilkzP+ePHOBa9F+1ZWHPQNbpRxP3f/23oH
+ yN3a5HiJ+N3DLemOnG/HE96BQxiEEXX8ris9ZcGJrLYfls4cIzjYteIqY4cl0Vet/w9vo/1E
+ ruVAye0FHKXaaX7FDi3
+IronPort-HdrOrdr: A9a23:1eHV26pSO07Pdq6eGeTlXE4aV5vJL9V00zEX/kB9WHVpm5Oj+v
+ xGzc5w6farsl0ssSkb6La90dq7MArhHP9OkP8s1NKZMDUO11HYSL2KgbGC/9SCIVy2ygc+79
+ YGT0EWMrSZYjZHZK3BkWqF+qMbsby6GdeT9IXjJhlWLT1CWuVF1UNUGwybGkp5SE1tHpwiDq
+ eR4cJBun6JZWkXRt7TPAhPY8Hz4/nw0L72ax8PABAqrCOUiymz1bL8Gx+Emj8DTjJ0x6s4+2
+ StqX2y2kzjiYD39vbv7R6d031koqqu9jJ3Pr3BtiFaEESstu/iXvUYZ1TLhkFPnAjo0idjrD
+ CEmWZcAyx+hkmhBF2dsF/j3RLt3y0p7GKnwViEgWH7qci8Xz4iDdFd7LgpBycxxnBQz+2U6p
+ g7rV6xpt5SF1fNjS7979/HW1VjkVe1u2MrlaoWg2ZEWYUTZbdNpchHlXklZ6soDWb/8sQqAe
+ NuBMbT6LJfdk6bdWnQui1qzMa3Vno+Ex+aSgwJu9CT0TJRgHdlpnFosPA3jzMF7tYwWpNE7+
+ PLPuBhk6xPVNYfaeZnCOIIUaKMexzwqNL3QROvyHjcZd860ij22uLKCZ0OlZ6XRKA=
+X-Talos-CUID: 9a23:8rAhd2M89qQC6+5DW3NI6BJIH8EcUGTe4HvWfxGHKUJ3YejA
+X-Talos-MUID: 9a23:a1kM8wQvyiEWxa2eRXSymwNbGvdEwJ2kMxwcuK4msPCILipvbmI=
+Received: from mail-eastus2azlp17012051.outbound.protection.outlook.com (HELO BN8PR09CU001.outbound.protection.outlook.com) ([40.93.12.51])
+  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2026 13:17:12 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fRYr/t8lvIcwk8nEgTUtZp8tMhqpU8D/uBF4Ol5kBtPSo1m0QGchufAdUpo9vo1QzyspAkT48CnILQPm9O68BUXXCE0ODPs/qL5T+/HElBVFouzTalz62ylw/lA0AHp/KMsUIwzoQJSSa0hxtMxEO/u0kyzlroB3yjL667jXPjclAtPjzLnfsEuHOHzh04xnLKTU1m+ShyFlnuYYSPn1hQZd1Pncrkl6cpHxsUxmTpnXS/CeDGjkRAroDurxcYULQdFeq/glebTZNDAWN78QC2rVMdrGGZDGZGlo2JwJpzUCMdfm/4UTz1hjhL5l9mNS2GZd9D1vHPOd5/9ucKEsXQ==
+ b=kikCyXEQtyNjpeNf4STaQ8LvMCzCdl6Lz0CQM73EsN5Jrpgdlc5y6B5j9makQ9Q6QA5fD2cVfj2Btx5TNWQByZ0VJa7Lp6XDQx+UaWLCwarJuUjly4sSbQ30VgVRpDp9mvcxYc4Xbu39zd2rHuWhiv7fxQtqXzlQIJAwVnbDglmopRb6Dn29b/9LGMvAljf6pcXhEFcKWFGrRxdI1dXuPeFYWWjRYvGbcxkt2Rf8rcCaVWNUAnQY8u9VUEm/y0+qWM4MlKyVKLswb67TwMHIZh7/GW+3hrTI6OJYsI+5LfpOIvTEYkW/9TrAHfRKRi6Si1aC9Qk8AWJE462TarFtIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ha9t05j1mljn1GqyUGm7lyXcnmDx/XMfFiPwd4ko4p0=;
- b=fqYnnbUHvhEG+qrtY858ThwnF8hCFWx6jLJh8H9fsLPjjjoNhnbKSSmjsQ5z8BmL787GWUJR6KZ2Nz2a4ICBx5qAvc53osdbBHgbxP4Kjj3JCKO0RsKTsBAOR8eo1UWEDmD7CSMRnmKhrGNUN6oRQ7NOCz7GH7vLR9ZZLaGop7uIkiJlUQY36DMukAodWCU3nzvIXLAqvvRPsx1nCgXA/69XucXhco11A0ZnuD//qdtkSKsiSoGWLCtx8qJoNebY/xj8IR1no7Nf9Oc3XptrUj6D6F6E57uqVO0Oh73RhkqUuSnnBLoI5X/wc4IpV5k3mDTJ5ddvyf511ZyfWl9hZw==
+ bh=s16l5XWjaftJMnrFTyp098brafOlNOvRhKdgcaX6kSI=;
+ b=vxPyLzvIwBNFWXy1CO9xOEX9X3sBiV8gOZJ0bvsnEv6vkJUa76OueIS6hcQLS4QtwJHWOcCj7/PdDlmTDqDSfed99rBTEpvotN+mnkbJVJ66i1m65LlYdWwjJFKTkOua0RSeLxHEZWeFU4IAo7V7egW3tVuE4ks6mwWZrZivoKTIO/KofXU9XnTNOvF391+JeYqSwj+tXT/jHcr/lJ6fC6LSbYMJTp6+6ImcTytv/aKoBJZuab4aD2IY3hH11zk8fHWgTkTYfyqX4nIXon82fS8dM1/qZb2pyZ4cF8H1M4aFG2TCOMG+mU0L8qTnCikOefknLp7TI7MlrIDLSAfQvQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
  dkim=pass header.d=aero.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ha9t05j1mljn1GqyUGm7lyXcnmDx/XMfFiPwd4ko4p0=;
- b=UOGAwglM/RYkEL+C/SiGtOZiVS9oI6yurFA6jShJl421lDniU+crRcKP+9BH2vh/shZ33FBSB7rme9kc/sGfqJUsAIBDZfGmMPwM0+xBmQ/lBn4tX7GyZuJGoHjTKlws4E53qNbbnyNBdSrdBrAhFQIynCU1YT4Pey8FDLzj0NY=
+ bh=s16l5XWjaftJMnrFTyp098brafOlNOvRhKdgcaX6kSI=;
+ b=wcOfkeh9P1JPDnxXGoliVidaMQOt09uRPYLfBNVVDbU2x9g4WC/suTPReDExc0lwZnRfKL2FAfPLi43tYroEMyP2omDRXm/uDdQwXeRDh8tgM6nF8dtDUUHKEebDNdQZ88d7Sj5N8abb0k03ksQlLgNbdYBkFTqWC1esoJ/Vbqs=
 Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
- by SJ0PR09MB6399.namprd09.prod.outlook.com (2603:10b6:a03:268::23) with
+ by SA1PR09MB11756.namprd09.prod.outlook.com (2603:10b6:806:36d::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Thu, 5 Mar
- 2026 18:48:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.20; Fri, 6 Mar
+ 2026 21:17:09 +0000
 Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
  ([fe80::4b5:d448:c89e:48e8]) by SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::4b5:d448:c89e:48e8%4]) with mapi id 15.20.9678.017; Thu, 5 Mar 2026
- 18:48:14 +0000
+ ([fe80::4b5:d448:c89e:48e8%4]) with mapi id 15.20.9678.017; Fri, 6 Mar 2026
+ 21:17:09 +0000
 From: Eugene Grayver <eugene.grayver@aero.org>
 To: usrp-users <usrp-users@lists.ettus.com>
-Thread-Topic: IP locked for X440 RFNoC build 
-Thread-Index: AQHcrMLQBGp+5ilY60icOpb46GQ1OrWgR3oZ
-Date: Thu, 5 Mar 2026 18:48:14 +0000
+Thread-Topic: X440 X4_200 image TX underflows
+Thread-Index: AQHcra1pIGa4J647DkyptKq4MYHpkw==
+Date: Fri, 6 Mar 2026 21:17:08 +0000
 Message-ID: 
- <SJ0PR09MB912636EC994B2FF3946E78F1EC7DA@SJ0PR09MB9126.namprd09.prod.outlook.com>
-References: 
- <SJ0PR09MB912699CCC9BC55341AD91928EC7DA@SJ0PR09MB9126.namprd09.prod.outlook.com>
-In-Reply-To: 
- <SJ0PR09MB912699CCC9BC55341AD91928EC7DA@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <SJ0PR09MB912604328C9A23C7AD07A357EC7AA@SJ0PR09MB9126.namprd09.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -134,88 +126,87 @@ msip_labels:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=aero.org;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|SJ0PR09MB6399:EE_
-x-ms-office365-filtering-correlation-id: 0dd5c55e-9764-43b4-b481-08de7ae7c1df
+x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|SA1PR09MB11756:EE_
+x-ms-office365-filtering-correlation-id: 51f33a72-df21-4b00-bc42-08de7bc5b9bf
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|366016|41320700013|8096899003|38070700021|7053199007;
+ BCL:0;ARA:13230040|1800799024|41320700013|366016|8096899003|38070700021;
 x-microsoft-antispam-message-info: 
- ZzS9gCM327leKO6Rsa0f6JZRQDlgANeRrLdICs0sRAu/vQk6QcL0joVxvwJULkY6cg6yJiULV4dVHtkbKgiAiNtEDMfd59T7rhOGa/BhXa9DErC/S2Ltc1/7ZLotyDxhPV03uF2chpB4wXjnycTvPZ77fstAMvFJdoy7bpUpKsuhsOfNp6S88eqbS8NrPNod/jkRWBKc+aWlli2/i4XV/fsLbL597VcnZlUCnEHy9Te7Dx2p2A9tkT64sPE3hnm5HliXoIbrbglSYJLy/nJ4gl+d6V6aGRUnoJVcRrPuUFw/zERgkWtte+SwGyZ+Tl/NmWcAHnveyOihFRrznIlEveKAoLcHMnV57aRSGPsFM0bFTPCwR9t/cSRjcxekW1BvLkNaxhbGf2dffXM+NYbkgk2JvPqwKTCjQv/XxolKK5wqbaL5e6qQ0KnZjPi9sAvy/JaQBgkxazADb66Bld/l/07iD5xIoMQSj3zxlxyreNsuCopjqtxPWU165UJZkb5jHfLl+UtzciZpz7LnXqEJcooXoKxBDfTEMRBf4VCeNycoXJP8E6qQAnyIriyHGL8nwH6QTZmpBj4fE+lWglmK7TaVxtRK8pMP3Vi4CZBvuYfesmNjmbCBgh9HcwLwKuBRR7NH9YTLc3T4mTfdb0SswPo+IByMTSKfssvn6nJEPsEQnALDMSWPFzlFfo+4Fw7qnUeIm1A5zVKWnIyPYaGOKwFZmhEyFL1+XaMVnebYdK0lZzEEov8EGLKSYu5MhQcP0LXbaYYc6/UFcnGAjbXJ/mwDwTUQM1FmALHd6JgQZpE=
+ y/+2YQTW0EKFlA9SUgbgxNbIaSXD3D1dDk1MZUmZyEfQikhw0GEec6ShLQxGzxhslOIonlBnhnD9UKLFJDjLUAGRHZieuisDCqPTmDpxUNc+RdKkBTNJ+fzMaOLGV9aogJJF2Yby9cqnaliJ/By5bvTzhdvzMIZksDKea0VKtvPnuUvCqpJHCZaeTWEQsyPxLH5fX69My5BhOkpNXTNNcfbAikkYIQwvV/lJdhGr5ASkRINjpwF4pV1CO484ziVDzlgisrsvDf3OxbBBAOaYC6jZ0Fuko5wVgwSekN4wqiwY2S5WSERx4hcgERMG98kjlkz5Xi/0x4rKKNLzyx68MJuQWJpfT0eB32YpKmcOWTQ0l8GVcLEVLjS6EcQevzxtqfGl6xhBBaFwtMDGHaQkvtk1d65+y5c1tTAOwhSGxBYBnk7jW0GsFr0mJcoWjf4ZGkSTwe9sJAxlcMTyIm9j0Ywdh3yyKT/geazRW9bGmk8ldsRgPqcRSkcweKEGQMVWb+9GapGvOc9PuIqahP3x+R0ezYKul/lpNe9QNfosMYioebX7Vdn50AXqkzxAPLcCm6Nx2yJuZbCGPUjF2ttK9HRE7WkUaXUpcT96zBp92BRR4aKwPnVwNwuuvLYSH8B63VL4+1ZVXLZOJEM/cKWAh3G1XG+coc3AhJtBrM4aH2IivBIZs84DuR3Pv87s+16vZHV3O6nPtyuABe9FoNAuqmD/cuBcq7plJf6bjjY3+xA2Gcwb7GN78WDd4wrYXAUDSB8Wz5rPi8WPLRvq5fgipn//cEnoaBpUI1NMdm4RNRM=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(41320700013)(8096899003)(38070700021)(7053199007);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(41320700013)(366016)(8096899003)(38070700021);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?Windows-1252?Q?XARHurTdO/vRIelP3RJ+VnOihZt8YKx9FoK2R7T39xqiMrUwzAjMW1Yw?=
- =?Windows-1252?Q?y/3c03eyVL84DKC+vlUwhmLl/6FWzJdL190UWo31UKo+s+dKdByjIxtz?=
- =?Windows-1252?Q?JaHpFlGf275SH7o6yWb1ncAqVvLrv1Q9ClH+dwdNFsP7AhCespW5Y8iT?=
- =?Windows-1252?Q?PWvuKYYKCX7JAlZ86esbArZrDe/bAilJQHTajSTWXJIYKiywEnJCozQJ?=
- =?Windows-1252?Q?aALaQRDvJhb73nugwypWXDG2D8D0IS1sdHUpjR7y64jeRbL3YAsZrVvo?=
- =?Windows-1252?Q?xsnPhmYo3MGhi1wcW2/Eqmpbo970gHHP/RMkWvOVMI+t2Mua5seVTBTp?=
- =?Windows-1252?Q?yDGQtLUQU97AVuWFBRvSYTRTCNwJRHYp9V5bEv9w22/Qi3azWGe/diO4?=
- =?Windows-1252?Q?RhME3Y7c6NFv0zsrskta6ACmXHHlSSUKUXxAdDpxobZSbTrv2UyjTvCV?=
- =?Windows-1252?Q?dgCEpn67SmKtm2L6amFKiblJOWLzIMRb8cL9pzRKPtZdL20lahw1Eu6F?=
- =?Windows-1252?Q?YmbdrT7vRuxtfGPycSoRTMrqPhRMIgi/g6FtPhsbmekFj6g0sR/HCc2t?=
- =?Windows-1252?Q?hCE1nrGfho4xV9OSrXncci76GSVVoz7O8P/9P8jHbsGyEbjPd5WYioPm?=
- =?Windows-1252?Q?OcxDUCtYuWWBYTekfKx1DV8M9wBCqR8t02Xf+t/P3vZ5hGUa5J8xoiT2?=
- =?Windows-1252?Q?w3zCCDawVYauH/fjN1GEHWMUUoGfZYxU1J3ljPcKn1lrk5kJdnwRxH9n?=
- =?Windows-1252?Q?iaDuwavVNBazRQtcNsx+PC68+kXhIxFIbZ5n6i15/aMWNgn4Sh0T7jWt?=
- =?Windows-1252?Q?vr2Q8QA4sFgPqSmdn6LfTBjDc/+Qmteni9MnZvCdfk+XHGpuNGG/At14?=
- =?Windows-1252?Q?iGUPYCSP08PFEEy39yz9J36PJp36iIFMg3dmDCzpFWO6zrEqjG9FCAjV?=
- =?Windows-1252?Q?YP2h+LYW0RlJk9hY6oS0IdBjHdfvZqnVvXIlKV6O5vyBIGwnXX0No8DR?=
- =?Windows-1252?Q?DDE1uNOiOQ2GzlP11vjbrc6T9aVo+izuM3uigJfRF4hUhOYOJGC7CT7O?=
- =?Windows-1252?Q?jSmrwElmqKL95xw2ljBV5zE8r5hScDc3qvSVVZlZOP8CrvvqhUxf5I7n?=
- =?Windows-1252?Q?IcCQNqP9E+ERPvOF6WOgQlGE/Zdjg6u2IKxGYtlscZ+grMG1mwpB2//3?=
- =?Windows-1252?Q?oVo4LJes9ZDW+f5LNWwXTBrIjnmqV5fDgMmtpujduzuNSprNqoTbeLXz?=
- =?Windows-1252?Q?v7aCeO1j62go3gd8OOMvTvBW/NAJp9gV6IlCvxI3GwwVmuxpYIli8Cd7?=
- =?Windows-1252?Q?V/XYM4nWSjLrMTa2jNJcsJQIQMkqhlpzWPIkzzZhzKd1b1krRy1tnq4l?=
- =?Windows-1252?Q?ScchhIKQ0ikZr7zUJMV8J+0R82dJTmV0aQGtWQzyqGg/SJ7qk7dyg2LM?=
- =?Windows-1252?Q?OQ0JFwFq+3ny39E2eXygmbP5f9Kic88z+jVDTPcMVLjAcYBvOSk+RRcq?=
- =?Windows-1252?Q?RpTWwDPg3MfiAHsdp32tXoRsbFrZhGYbtv3+WcA8VJ2yAX7sy5BErJdj?=
- =?Windows-1252?Q?qrCB6n5HN7+10z9AITZTiFysKJgliE62pRmg3eWVNM0g8xTktrlr1a3G?=
- =?Windows-1252?Q?OD971gNoxXfCFJQsw//K/aT4SOtW8wvZTPAzEMC5xFKZTQ7qN5+ZqaPb?=
- =?Windows-1252?Q?CS3laoIfOuZU7K4G3m4Wdnl/DwNm6tRXr7f3pWqVYgq6uXoWcN9WN1ZG?=
- =?Windows-1252?Q?hhg68+m1JxrSr2f+a/s7z24q3WIaKNU0tDySd3Zd8Ud8wnyEpSLT62Qk?=
- =?Windows-1252?Q?AwByZ6hTfAAe22UutYVzdiRJ16WjM6x5+w1pGV1cI+f/IyyA?=
+ =?Windows-1252?Q?Wnxn0tXQyM7eFV/R42vuSklv1+PY+iOPVHrLku9FgWDQfNr8Zl1gcs8J?=
+ =?Windows-1252?Q?eR3R3gQSDtSE5HEZcyJ9OmG6g3tcYrFbdCLLlE1/EBGkZwyXcCRCOrlX?=
+ =?Windows-1252?Q?G05F6GjGbob1rUWwkhAEYqiHP7MZ7weh5q9smI+yAYWYDbdSOQnFsVW7?=
+ =?Windows-1252?Q?3bqJuUlGFoUADqxMnJHA+mA5uXs+fL3dfAh98FpD4MkF+LYrR6iwTJit?=
+ =?Windows-1252?Q?vgVe0TuBVJr/i2Lju1c3XyuOxmprRoUpKmz8b3G2h+v4M7AMrK7wkUfz?=
+ =?Windows-1252?Q?UtSzRmpuFko6RcODVYnhZQA+Zq2Uc/CwdImXYaqT/oGg0rZfqnYLKhJx?=
+ =?Windows-1252?Q?f7yBUez0SpdjBqcE1tdZoI9vzeSff2rQnh6UhlRh3QrqZ/q3B8goXgYR?=
+ =?Windows-1252?Q?cRO0Mk172wW3EcSXZCvr3JKuxhngtfkvTaIlMKxh6N8lNgAH6fJ20jdT?=
+ =?Windows-1252?Q?6KRfq8tKkzN9ZaAtU+YAgZ/WhQ3wiYX5eTm9VGWfEqX1Se/5MaFjqRP/?=
+ =?Windows-1252?Q?dK+bLZj1tYIUNUIv7tx54tN5ZsEo4u0u0LjMrj5q2jl6Py+iyA96xjDX?=
+ =?Windows-1252?Q?xdxgXR2D67ZHhokGTN7kKsDi/CfKQkBWlNGTf0aX0a1ajtW7h1oR+9D3?=
+ =?Windows-1252?Q?0fuWWrEahjz8OsNG5lU88jczuUKbsZODj35IBRAfMFUQg08BoR4kYaoF?=
+ =?Windows-1252?Q?4S4TpcMMWMZVajc1ENcXYuPX/znApr4Ivz8amGf7NHIy3llSGBHlVNEL?=
+ =?Windows-1252?Q?8XSZ3tRtq3k05OH0S+YlrF3wq7XYGjA/ewgqDjRg+CMZz+nSUKLpJod8?=
+ =?Windows-1252?Q?O9zq0b+hf8hhWCaisIIEGxpA4Ka0Es5y8yT8qZ4kVC23vdNnyOdYewU7?=
+ =?Windows-1252?Q?U5362fbHwmY6JJhNbnKdVwqwue6+hzhM2ooq7qUM5z0DaOMe/waftIAO?=
+ =?Windows-1252?Q?74d/LR97QCYWj+ReVaT0TvYW67Sg/pmCL1SKQ84TZq8ckXSTojbZVhxn?=
+ =?Windows-1252?Q?MD6vI/5Jk2uQ34zFJt04UUlMQUWwxx+ssFnJc8jtxwTVhpdcnGtNxTmE?=
+ =?Windows-1252?Q?VgTrugEEd05u4VBRE//7dPG/xrL48RC2Xye4L3jJPElQn7kaZ1hwgvTS?=
+ =?Windows-1252?Q?1x/1sOMlfhFrETwxJatcel8GGuMuk/ecB62WLVa+UE4CIrVOmOWG4yhT?=
+ =?Windows-1252?Q?JCnaSLXcr3yLX9hY1m1rMM1bqfYRY7I3fVn2zWIw9mqwNSvHaS9+BbTr?=
+ =?Windows-1252?Q?5DqmdVQotWQqbPCzcUXl45YzJCiWrjMyhfx5QRJwR2v9hqNbCtPtq0Jw?=
+ =?Windows-1252?Q?+OZKxwxp+LMHrcuZqAoZIJl7iks9O8R/lkUhX6/rvtHqAI/d6igs/1iS?=
+ =?Windows-1252?Q?I2kdOaRKPxCRk8UbEcUVFzf+9w8vsDgwi3zCQwKi32ZbJPlf2HjulR/v?=
+ =?Windows-1252?Q?hLRMqDgRnob1MIRSjXbpQAdiXQg11hKwneqXTL522ZQRnmpgo5X3Vjmg?=
+ =?Windows-1252?Q?vObvZXpqa5iG2FCmm7x1v+EeKgbP3HaL6dogLED3z8fh6e16Zxap7ai2?=
+ =?Windows-1252?Q?9d2QshwS90+TZAn1a9eNIde/mGDOx9rSU/ho0fG/rha3v/9I1Zzau3gl?=
+ =?Windows-1252?Q?3b0bprdN1lN/H7Cp165ZdIz9j478D4wwi4wWBXjM4Ha48/30fzaoGAp+?=
+ =?Windows-1252?Q?MWTco6dEnAnqBXCt3rBK0x6s5KQa8Um+Lqz6iPY/974Bex5N5F/gblJ3?=
+ =?Windows-1252?Q?9mEYabnHuP+zop0zayjBsge0VW6Y3paCX9vRM4TpmfX3Un61hroWobRX?=
+ =?Windows-1252?Q?SM8RhYWCtICMvjPTT7TCT23Etc2HF4wyQ/egUUdUyWDFo3x2?=
 MIME-Version: 1.0
 X-OriginatorOrg: aero.org
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0dd5c55e-9764-43b4-b481-08de7ae7c1df
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Mar 2026 18:48:14.1499
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51f33a72-df21-4b00-bc42-08de7bc5b9bf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2026 21:17:08.7785
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR09MB6399
-Message-ID-Hash: G5SJXN6G2TYXNCZPS6CIXJNVGNALQG5J
-X-Message-ID-Hash: G5SJXN6G2TYXNCZPS6CIXJNVGNALQG5J
-X-MailFrom: prvs=5175abe20=eugene.grayver@aero.org
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR09MB11756
+Message-ID-Hash: 6ND4WB33BA7MLVZ4ICUY37S53RUWN62H
+X-Message-ID-Hash: 6ND4WB33BA7MLVZ4ICUY37S53RUWN62H
+X-MailFrom: prvs=51832ae1a=eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: IP locked for X440 RFNoC build 
+Subject: [USRP-users] X440 X4_200 image TX underflows
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HCEON56B3IAWHHLGHCJ5ZVMLRKBJJO6R/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GP6TIKMERLVENE62ZD2LAC6SQLIRU3OM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9157545874693918738=="
-X-Rspamd-Queue-Id: A81262171F4
+Content-Type: multipart/mixed; boundary="===============7947902872085475323=="
+X-Rspamd-Queue-Id: 77772227DBE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.89 / 15.00];
+X-Spamd-Result: default: False [0.39 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	SUBJECT_ENDS_SPACES(0.50)[];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
 	MAILLIST(-0.20)[mailman];
 	DMARC_POLICY_SOFTFAIL(0.10)[aero.org : No valid SPF, DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
 	TO_DN_ALL(0.00)[];
+	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	R_SPF_NA(0.00)[no SPF record];
 	RCPT_COUNT_ONE(0.00)[1];
@@ -228,52 +219,56 @@ X-Spamd-Result: default: False [0.89 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[eugene.grayver@aero.org,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[emwd.com:+,aero.org:-,aerospacecloud.onmicrosoft.com:-];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.990];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
 	TAGGED_RCPT(0.00)[usrp-users];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim,SJ0PR09MB9126.namprd09.prod.outlook.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ettus.com:email,mm2.emwd.com:rdns,mm2.emwd.com:helo]
 X-Rspamd-Action: no action
 
---===============9157545874693918738==
+--===============7947902872085475323==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR09MB912636EC994B2FF3946E78F1EC7DASJ0PR09MB9126namp_"
+	boundary="_000_SJ0PR09MB912604328C9A23C7AD07A357EC7AASJ0PR09MB9126namp_"
 
---_000_SJ0PR09MB912636EC994B2FF3946E78F1EC7DASJ0PR09MB9126namp_
+--_000_SJ0PR09MB912604328C9A23C7AD07A357EC7AASJ0PR09MB9126namp_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Sorry for spamming this list =97 it was my mistake =97 the Vivado patch was=
- applied incorrectly such that it reported the new version but did not actu=
-ally update the software.
-________________________________
-From: Eugene Grayver
-Sent: Thursday, March 5, 2026 9:45 AM
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: IP locked for X440 RFNoC build
-
-I am trying to rebuild X440 image X4_200.  No changes to the yaml (yet).  G=
-etting an error:
-
- [filemgmt 20-1366] Unable to reset target(s) for the following file is loc=
-ked: /home/eg26648/uhd-git/fpga/usrp3/top/x400/build-ip/xczu28drffvg1517-2e=
-/hb47_1to2/hb47_1to2.xci
-
-
   *
-The Vivado version is correct.
+I am trying to send out 16 channels of 40 Msps data from two X440s.
   *
-Tried it for both tag 4.9.0 and the master branch =97 same error
+Getting many underflows (~1/s or more)
+  *
+As far as I can tell the X440 are synchronized correctly
+     *
+Set time to 0 on next PPS (external)
+     *
+Start TX at a future time (5s) using a time_spec in TX metadata
+  *
+Each TX streamer is in a separate thread
+     *
+Each thread pinned to a different core
+     *
+CPU utilization is about 20%
+  *
+I am NOT reading anything from disk =97 just sending the same buffer over a=
+nd over
+  *
+wmem_max size is 25 MB
+  *
+MTU is 9000
+  *
+UHD 4.9.0
 
-Suggestions?
+What could be wrong?
 
 
 Eugene Grayver, Ph.D.
 Principal Engineer
 310-336-1274
 
---_000_SJ0PR09MB912636EC994B2FF3946E78F1EC7DASJ0PR09MB9126namp_
+--_000_SJ0PR09MB912604328C9A23C7AD07A357EC7AASJ0PR09MB9126namp_
 Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -285,100 +280,100 @@ Content-Transfer-Encoding: quoted-printable
 ttom:0;} </style>
 </head>
 <body dir=3D"ltr">
+<ul style=3D"margin-top: 0px; margin-bottom: 0px; list-style-type: disc;" d=
+ata-editing-info=3D"{&quot;applyListStyleFromLevel&quot;:false,&quot;unorde=
+redStyleType&quot;:1}">
+<li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
+alibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">I am trying to send out=
+ 16 channels of 40 Msps data from two X440s.</div>
+</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
+ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">Getting many underflows=
+ (~1/s or more)</div>
+</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
+ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">As far as I can tell th=
+e X440 are synchronized correctly</div>
+</li><ul style=3D"margin-top: 0px; margin-bottom: 0px; list-style-type: cir=
+cle;" data-editing-info=3D"{&quot;applyListStyleFromLevel&quot;:true}">
+<li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
+alibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">Set time to 0 on next P=
+PS (external)</div>
+</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
+ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">Start TX at a future ti=
+me (5s) using a time_spec in TX metadata</div>
+</li></ul>
+<li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
+alibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">Each TX streamer is in =
+a separate thread</div>
+</li><ul style=3D"margin-top: 0px; margin-bottom: 0px; list-style-type: cir=
+cle;" data-editing-info=3D"{&quot;applyListStyleFromLevel&quot;:true}">
+<li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
+alibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">Each thread pinned to a=
+ different core</div>
+</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
+ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation">CPU utilization is about 20%</div>
+</li></ul>
+<li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
+alibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">I am <b>NOT </b>reading=
+ anything from disk =97 just sending the same buffer over and over</div>
+</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
+ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">wmem_max size is 25 MB<=
+/div>
+</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
+ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">MTU is 9000</div>
+</li><li style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontServi=
+ce, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div role=3D"presentation" class=3D"elementToProof">UHD 4.9.0</div>
+</li></ul>
 <div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
 Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
 s=3D"elementToProof">
-Sorry for spamming this list =97 it was my mistake =97 the Vivado patch was=
- applied incorrectly such that it reported the new version but did not actu=
-ally update the software.</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Eugene Grayver<br>
-<b>Sent:</b> Thursday, March 5, 2026 9:45 AM<br>
-<b>To:</b> usrp-users &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> IP locked for X440 RFNoC build </font>
-<div>&nbsp;</div>
-</div>
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-I am trying to rebuild X440 image X4_200.&nbsp; No changes to the yaml (yet=
-).&nbsp; Getting an error:</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
 <br>
 </div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-&nbsp;[filemgmt 20-1366] Unable to reset target(s) for the following file i=
-s locked: /home/eg26648/uhd-git/fpga/usrp3/top/x400/build-ip/xczu28drffvg15=
-17-2e/hb47_1to2/hb47_1to2.xci</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+What could be wrong?</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
 <br>
 </div>
-<ul data-editing-info=3D"{&quot;applyListStyleFromLevel&quot;:false,&quot;u=
-norderedStyleType&quot;:1}" style=3D"margin-top:0px; margin-bottom:0px; lis=
-t-style-type:disc">
-<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
-ri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-<div role=3D"presentation" class=3D"x_elementToProof">The Vivado version is=
- correct.</div>
-</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
-Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-<div role=3D"presentation" class=3D"x_elementToProof">Tried it for both tag=
- 4.9.0 and the master branch =97 same error</div>
-</li></ul>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
+<div class=3D"elementToProof" id=3D"Signature">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
 <br>
 </div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-Suggestions?</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_elementToProof" id=3D"x_Signature">
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
 Eugene Grayver, Ph.D.</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
 Principal Engineer</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
 310-336-1274</div>
-</div>
 </div>
 </body>
 </html>
 
---_000_SJ0PR09MB912636EC994B2FF3946E78F1EC7DASJ0PR09MB9126namp_--
+--_000_SJ0PR09MB912604328C9A23C7AD07A357EC7AASJ0PR09MB9126namp_--
 
---===============9157545874693918738==
+--===============7947902872085475323==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -388,4 +383,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9157545874693918738==--
+--===============7947902872085475323==--
