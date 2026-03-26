@@ -2,178 +2,167 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AGn1MsSCxWlc+wQAu9opvQ
+	id SHTLJ9OSxWlG/QQAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 20:02:28 +0100
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 21:10:59 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ECAC33AA4E
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 20:02:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F3033B473
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 21:10:58 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E72C3386710
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 15:02:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0F8613866F7
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 16:05:12 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1774551742; bh=Pkjdi6a/BSdqM2V6cNXLkb0kT3tfwZma45f/maZL0rk=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	t=1774555512; bh=gonLOZ+O24KQN0MTFT/MKVqNkvCMl8MD9vLh7Kt5ycY=;
+	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=WUl2oFinOw4TcCVS+4JgK1qQMubHZ/aH8GVSN0nOHVUQZEmubMxKfLWL7ZIfhCx2W
-	 okz/zx70JsKAy2x8pMvIl4EzkA5P+S3VSWvIph+mCHNzFL6Fd2TSEAIrhV+Effbp4/
-	 nB5nyAIa9EoG4Kb3B9rINjrvrohE1tstI3tHHLQI/+6AJvARDC7miIsW5QeSK7JOdk
-	 Buu8Rps0NTlTzdGVLQjp9AEbJxOcg+pMVq2lnEYzYKks3JBoFxGWj9FFEW3bGzA5C1
-	 d5VPTzYhwlxxI9t4N5ydYTwXVvLJVyOPWz17XILmmZQ7jJAuYKellIHON37hOyrEgI
-	 ljeu09BkalmeQ==
-Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5B718386711
-	for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 15:01:25 -0400 (EDT)
+	 From;
+	b=H6wTVIiy9EDzaoMrDOdccWcPFnX6Y8NNqry4Af6v2UmroGO5//d23GUZPxlnqZY5V
+	 vg/1ZjOXANQdvy4XsMcfxCI6AcSj9uy2YnM3/rb5mQWQmRin8RuUMLoUPMmcXhK2/u
+	 9FgtgS/7hx1ARXem3TEghaMQZzwb71A0wH8OrBxXF9JxN1bYcLX7SF/o9BpKIrvjId
+	 yAbTd+Aiq8G7ThcYiYxI2vDHF8fViCYq9QkZhVBA0ZP68aJyjWRCQYwg4ABZWyg1RH
+	 au6xEZhfkXSF+BrB3GFljwMI842JLuYrbvwNhSYE2iTfltj7T/NH0gl1fWcR/KAA6M
+	 bHm+fwpfF9arQ==
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9AC70386217
+	for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 16:04:31 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="c/bkRQx3";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="IqL+I/Gt";
 	dkim-atps=neutral
-Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-64ae222d87dso1459193d50.2
-        for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 12:01:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774551685; cv=none;
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-89a6ac6f389so15610246d6.3
+        for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 13:04:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774555471; cv=none;
         d=google.com; s=arc-20240605;
-        b=EV4Kgxk+4IseabsMQEv1XIMtHoq0xIYhY7UtdkC/an9YYu8O1bXz3J1HQy/i0IoU6v
-         hcSkT2KyPLfYiiaZcvPBiSE5FlUkZ2texfvTAdotZ+8MFC7BXjouliI03LSkSypov3dZ
-         yuC8cZIxR69/CVZktob9//uYR9yhCQAIHrG57ulvw9IKJi2CW+mL2X6e8oj70o4M5RMV
-         YNwotUTtB/qnvOldutWCjE7RccXxm0xCCccl0FUdFrXvSdbbpmYG6jxNN+Jg5q4iyuPM
-         khCAtczzoUQu5ERrh2+j5Asij9Pk4C17Sf7Gxsah5BGbTZsowliJVgbjan3fkG1ryigk
-         ZcWg==
+        b=NILyu2CKk1WMpPD46H0qNfb3trhEL9RcleRrG03aF3GNvfilVjfLnTUONR29NxhPhY
+         uTcYwHLvoM3FUmQ75uTf1pi1s7Bb1gtuhMThPP1cjNGB1IfIU9BGdqnjYOTaGfHYeQyV
+         RKT/O32+3NCjZeeSA2EorVheOzQlY32xxgZfAA5v7SXOdAieL1xe0RCep6FRXP122Cg4
+         v/2tV8nDvRDbfZq/AlRXL3iDTaNyIkEWKH2BJat5lFMGaNGAl4RmB8AbbagC+NHbPdK9
+         V+8nfC8nx4aUAeVcjx4qqaB9akBNYopepOl88OPevgEaVUORrRtSnlHbcp0i+XlpU+BH
+         waWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=lNn+kbFyCNEzltL+KaZmszOyeBxyLMSgB1mtcHm0V1c=;
-        fh=xFzpIG3rT24F4s6Jd1MCPiJdqFe/Zc8C846nEHTqcnc=;
-        b=GyHjGPTwBiIqIm42jsn/7wFuIjsSwXIZ+2D/Ty8Q8wgObGVR7qP3DhIcReTqXBlnL0
-         t6OJhRqZPU9IRPCm1R6P+N+DOp529U2pN9hcUr2vDibvcy6U6et0FGko0kDMBesYsGgR
-         mj0pX/agoiDGqo23Q4yNCLWDC8UaGqU2xjvSIqg9h66s14L3nHBjhu8EK+Kyc+xKJwZQ
-         dgi9NQJvBrksW/oxErAEnPpIRsrmEndNqHT1ziEUpgRTCxRYRCG8Btc+wX7vqwChNlFz
-         p8ae1P1tys450tWhLJsU6tHtQNYadhjLwoF0ngJtjCkGXZGYUg58El112ao9y0NYy1g5
-         tUZQ==;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=B3zJCv/PEEab1RS+LiAk9dktafVJU7h1sBCt7jdphnw=;
+        fh=1adcuLN4VePyAip7Shvc4XVYUZRXr323UxdtkoipyMM=;
+        b=hEqVjrp336wGjz5SOnyJrMhO3lRn0DA+nHxdWl6sgQ8tlqllLsL0yTN/1pNMbt5B+k
+         d832Dvhf+VhZ69xz9ZTXxeCN/0ogzdRXxLizvS0XTWKcASF8F7zajhkBquOKf4w43Qyk
+         xnnAumUSWMC/y4fMH/biZgD8WD/rQrs/XTjNDCrrFppxJrvi3ZGJKONA8L0mFUZpLdBw
+         jYp0sRnlJYFn2I5bgPlqVhdvc9pQcJBqf868JCZaz8G3zOqTbQ90jIkBDjJQYKAmO7+E
+         JGtiOFc2PxcktChu/kj6Kun+U3eQsTmSYYfafTBuV8ylc32thgZNpM2qKZJip7ObX7N9
+         NvGQ==;
         darn=lists.ettus.com
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1774551684; x=1775156484; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lNn+kbFyCNEzltL+KaZmszOyeBxyLMSgB1mtcHm0V1c=;
-        b=c/bkRQx3CBj7yKaG+B/ptwiNo5yG/FZaeJmd76IcstqexuzVWra4EXxN3ChHMLVbIm
-         +qTg3xrhXTYevSsA7HZu1ZLdWXCKngHIhgjnab5GiLAm7bpkJNYiXiUoXp4YtOiLaw/Z
-         edspQGEOxYJgg/NfWWMiI57SAMPzW/XPo1AFOwBfIesAr36SRJvUiQQg5TYVhBA3Ugvx
-         LTBmtFJ3Zuq0IwLxNwWITx53t7UvvShL9I9O7X/+FC1mizt9K9urmtyAHLtsFOs1SL4a
-         ZoNY9zkLfOa6ckc2iZXOUHuuGL3obaxQc8uhQ0UFPGVk+ZSv9L4x6UUlvPXjfZPss1dq
-         CoJg==
+        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1774555471; x=1775160271; darn=lists.ettus.com;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B3zJCv/PEEab1RS+LiAk9dktafVJU7h1sBCt7jdphnw=;
+        b=IqL+I/Gt6mQ2dH2Q97UGOwPnH3mP3uFm2GPGLpfazU839mwQ2lK5jUrjKP3eRoU4CR
+         cjz1unSs0LmlCsyKlUKKqwZWRrO2NZTNtfTeHWBu/S7z/90+08W30nZudlr0wYr74Wr/
+         6PjVyTKPpFM2mJtEuMhsruaQ21ufhRudqj87Xm84GkP07rq7T0dbjbYx3oLiXsB3IbML
+         rDeFicpltbUQbYTAkVEEdJQW+fjm0qXPsCtRCo67lwxLKapStBP9w/uL9G9mQGeEeHY9
+         AF9z5y32czqaUCQRhpbmFHwJDRXZeo/18Sdau44XVZcu0qCQ/NHbQ2VwXZmRTOhjhfGi
+         U2ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774551684; x=1775156484;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lNn+kbFyCNEzltL+KaZmszOyeBxyLMSgB1mtcHm0V1c=;
-        b=dl5hDKg0GoGLb+8eyXpHcIdmMNAnHOIxBg3b+aPbqhohd27ty4XuLh1mjWqDOtAPZZ
-         mORWIAcXm/HimY+1u/nRH47GgexeeZxQ70uFNpA+bsgj6UuzrJYIycqkC/gwBnykHfxv
-         lCkSqS3snwt5VJq+atfO4LMvYpBWQOvxELPgeNacdFQtYdmqqsVoyVCPci1tDAfq0wgs
-         yzyOYF76vx7AZH6H4/vG+6PubTXLZhEpPtsuiuoIXsLh9w50UDrvW0FWS3yjTQ61Y5ap
-         Bi0XxndV5RGVqKSjPdFHeCilj47xYtVyIPxo+aJf/aS8h9RIEMfxHQLd+45qIOZK3GOi
-         wtyQ==
-X-Gm-Message-State: AOJu0Ywgl/gAiY9JLkjcrVvWdlw39LSBjk7HipHwxr+rz5VVg1R09GqG
-	rAvwUFPlcoTUsdu3sRdlTNipr0yxQ3v5Lw1/c1U2Z3aEfaSH3Kmt1jL5JmzZUHNoviaM2itxXU6
-	O49WSbC8MxB+v1jZKz8/Q4c5sve//n9Omn6Lj2Ksc
-X-Gm-Gg: ATEYQzxVNz7tV75xTAWAIxmUWEaQF8NQ7S5zZaHpEKD2mn+4sSMkLLldxlFU+4cjmEC
-	38yCC0RBLkbrv4DCs7RnZYLAc2l6qnCrYnidvRZAx6zo4APzFk8h92w0cWmimN1h5P1rUmPtwJG
-	ITevVSOJTsDcEvg37yFUHtuhRF6oOpPOBsmCe/kGrLQ6ogXNsV/TzUGiIA6W7IXw5gPLIYnfLAH
-	isqh9BOTcW7uGXfwTGoZmSYYs0e6XJMiMlwVAzAGrPfP4H7je13tzWM8w8TrHw1KgcshMLdbVC0
-	LHUt9FHS+7tSo0PS0jkratZkwxKl+c1Sf4cgGg==
-X-Received: by 2002:a05:690e:4084:b0:64d:568b:bcc1 with SMTP id
- 956f58d0204a3-64ee60873d9mr8478191d50.3.1774551683879; Thu, 26 Mar 2026
- 12:01:23 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1774555471; x=1775160271;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B3zJCv/PEEab1RS+LiAk9dktafVJU7h1sBCt7jdphnw=;
+        b=Lcj/twuJ2F6aEWGR42WYNzVdwvM4F1vkn/cCUs5tgyAv/o0i1viGYXzPwReIr5/4S9
+         X++v6WhZaXbFHsQsLHN4IgvnI3Ts93e0akS4/0e0OU1vPDNV/okHoKkzhUfTEBz7juBe
+         VuKI4MPLFJ+fRdBpZ2R1q0XB94szK9VnKxBzZX8/dXHNFpQUpb9IwYTDpxppcUePEmHA
+         yhyZUNu4gl49UGV+SE6rvrkfx+aqFQ+lUJqebOtCfxjzmp+0yrmevIVyUMmovjxunfkU
+         YfJ3QreOyL5Ff4PJF+rC6SnJK3TwDiFV2g+xMLDTJYeIM1xBwQxCyM3MjJRBktx7PCYg
+         c7VQ==
+X-Gm-Message-State: AOJu0Ywudu8GSeQ5gVVpAlwkYiuNOl19W3LB0fOG7M0i/Z8BrSZ4GkKW
+	i+jhwj6r9nu+AZt0NxccknNEp56sxpkDBZQC40NKoaKN8v4dj+kstP5T4Gxfe1gcv19PsPOtkx+
+	6tpxx3gd7DCk5kiQlWIzvfwOAfjyXI28eD50HQc0YIzIipcH4xzZuQHY=
+X-Gm-Gg: ATEYQzzFpLH5d/3DWAkVUiPBgr4gaee92511XyYVq3NWOjyImteEwEIaINVYxoRRhaq
+	HM/iaBNIpMOi3IzbjYXvengNt7y+csxIMUM4r3OLtl7yf3adBGG53j2YLMEdLMVToB97N05YDjj
+	cq5HVaaz4/bcO++TLc9a0RVWrmhAAsRytF63A8dQYa8NmbgOjB2Gb5nVRxp1ieJ/R/O36UZ5tiD
+	tCz3uYhLzCoam2cYQVh0ctxkLA5xAHegbxPhwIo0elts0EBCd8B1xCMY+AHluelOQm7YhozETS1
+	T6aPpxKUM9n+pLpBzwTkmoSu8mFvS0gE7eUzXFw=
+X-Received: by 2002:a05:6214:3d02:b0:89c:9c8d:e985 with SMTP id
+ 6a1803df08f44-89cc49f1f40mr127532666d6.27.1774555470403; Thu, 26 Mar 2026
+ 13:04:30 -0700 (PDT)
 MIME-Version: 1.0
 References: <PH1P110MB16176765322CF5BB7B44FA71D949A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
  <CAEXYVK5uEmwy2X9wx0eKUfWw+J8N5fPv6fjB_NE+uqCgkgHNTQ@mail.gmail.com>
  <CAFOi1A4H0OTnc=kY5cwCUN3J9dkvaMGFb1r7FGCvMQwV7hQELg@mail.gmail.com> <PH1P110MB16176284D0E24DF6FA5BE84DD956A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
 In-Reply-To: <PH1P110MB16176284D0E24DF6FA5BE84DD956A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
-Date: Thu, 26 Mar 2026 15:01:10 -0400
-X-Gm-Features: AQROBzBiwXbLxakgg4hXri9hRk1rP-H93YAaC2LMGzMKHcNRBgCu7DVEloz4sYM
-Message-ID: <CAB__hTTw7o7qZj-_YAuPTbrpskAVJpQ9js023fJ8z3Wp2JVTMw@mail.gmail.com>
-To: "Barnard, Michael T" <Michael.Barnard@udri.udayton.edu>
-Message-ID-Hash: JNPOGGPAL5IGVKUMUXDPHZXVVEAFCSLJ
-X-Message-ID-Hash: JNPOGGPAL5IGVKUMUXDPHZXVVEAFCSLJ
-X-MailFrom: rkossler@nd.edu
+From: Martin Braun <martin.braun@ettus.com>
+Date: Thu, 26 Mar 2026 21:04:17 +0100
+X-Gm-Features: AQROBzAmWgXSZoxqsOkQKtk6Psni6jLho2KQf_lOtAOUEkOHj_1pmAim8Xfo0ZY
+Message-ID: <CAFOi1A4hpBPBZszUf+-AG+o=_H8nrqSQCE4-GGy9fWPJeG+y8Q@mail.gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: K5MSTSB6RCKIOV6RYMQV6CC2ILRKZYDK
+X-Message-ID-Hash: K5MSTSB6RCKIOV6RYMQV6CC2ILRKZYDK
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X310 Precise Transmit Control
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JNPOGGPAL5IGVKUMUXDPHZXVVEAFCSLJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K5MSTSB6RCKIOV6RYMQV6CC2ILRKZYDK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============7461402767145676191=="
-X-Spamd-Result: default: False [2.49 / 15.00];
+Content-Type: multipart/mixed; boundary="===============3276467606757243104=="
+X-Spamd-Result: default: False [4.49 / 15.00];
+	MISSING_TO(2.00)[];
 	PHISHING(2.00)[github.com->urldefense.us];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/related,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	R_SPF_NA(0.00)[no SPF record];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	RCPT_COUNT_TWO(0.00)[2];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:+,4:~,5:~,6:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	GREYLIST(0.00)[pass,body];
+	TO_DN_EQ_ADDR_ALL(0.00)[];
 	DMARC_NA(0.00)[ettus.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:+,4:~,5:~,6:+];
+	RCPT_COUNT_ONE(0.00)[1];
+	R_DKIM_REJECT(0.00)[ettus-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_NA(0.00)[no SPF record];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_MIXED(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rkossler@nd.edu];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[usrp-users];
-	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_NEQ_ENVFROM(0.00)[martin.braun@ettus.com,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
-	R_DKIM_REJECT(0.00)[nd.edu:s=google];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_MIXED(0.00)[];
+	TAGGED_RCPT(0.00)[usrp-users];
 	MISSING_XM_UA(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[emwd.com:+,nd.edu:-];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nd.edu:replyto,ettus.com:email,emwd.com:dkim]
-X-Rspamd-Queue-Id: 4ECAC33AA4E
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	DKIM_TRACE(0.00)[emwd.com:+,ettus-com.20230601.gappssmtp.com:-];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,emwd.com:dkim,ettus.com:email,urldefense.us:url,mm2.emwd.com:helo,mm2.emwd.com:rdns]
+X-Rspamd-Queue-Id: B9F3033B473
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============7461402767145676191==
-Content-Type: multipart/related; boundary="000000000000c175b2064df20223"
+--===============3276467606757243104==
+Content-Type: multipart/related; boundary="00000000000072bf4d064df2e45a"
 
---000000000000c175b2064df20223
-Content-Type: multipart/alternative; boundary="000000000000c175b1064df20222"
+--00000000000072bf4d064df2e45a
+Content-Type: multipart/alternative; boundary="00000000000072bf4c064df2e459"
 
---000000000000c175b1064df20222
+--00000000000072bf4c064df2e459
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Michael,
-Is this a "repeater-like" application where one or more receive channels is
-eventually routed back to one or more transmit channels?  If so, then you
-could use the time stamp from the receive stream, add a delay that is >=3D =
-to
-the expected FPGA processing delay, and use that for the transmit time
-stamp.  For typical operation using the UHD API, an application would
-typically ask UHD for the current time, add a little time to account for
-command processing, and then use this time as the time stamp for transmit
-samples.  But, given that you are operating completely on the FPGA, it is
-not obvious to me what the purpose of your time stamp is (as opposed to
-immediate streaming which ignores time stamps).
-Rob
+Even if the processing does not touch the host, then unless you're doing
+something crazy, you are still running UHD to set up the session, configure
+the radio, etc. That's where you can get your timestamp from. Typically,
+you would know when to send based on what your algorithm is.
 
-On Thu, Mar 26, 2026 at 1:55=E2=80=AFPM Barnard, Michael T <
+--M
+
+On Thu, Mar 26, 2026 at 6:55=E2=80=AFPM Barnard, Michael T <
 Michael.Barnard@udri.udayton.edu> wrote:
 
 > Thanks for the insight; I've got a better handle on things now. I'm still
@@ -322,27 +311,21 @@ d
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---000000000000c175b1064df20222
+--00000000000072bf4c064df2e459
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Michael,<div>Is this a &quot;repeater-like&quot; applic=
-ation where one or more receive channels is eventually routed back to one o=
-r more transmit channels?=C2=A0 If so, then you could use the time stamp fr=
-om the receive stream, add a delay that is &gt;=3D to the expected FPGA pro=
-cessing delay, and use that for the transmit time stamp.=C2=A0 For typical =
-operation using=C2=A0the UHD API, an application would typically ask UHD fo=
-r the current time, add a little time to account for command processing, an=
-d then use this time as the time stamp for transmit samples.=C2=A0 But, giv=
-en that you are operating completely on the FPGA, it is not obvious to me w=
-hat the purpose of your time stamp is (as opposed to immediate streaming wh=
-ich ignores=C2=A0time stamps).</div><div>Rob</div></div><br><div class=3D"g=
-mail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Thu, Mar 26, 2026 at 1:55=E2=80=AFPM Barnard, Michael T &lt;<a href=3D"mail=
-to:Michael.Barnard@udri.udayton.edu">Michael.Barnard@udri.udayton.edu</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div c=
-lass=3D"msg2832095692416456809">
+<div dir=3D"ltr"><div>Even if the processing does not touch the host, then =
+unless you&#39;re doing something crazy, you are still running UHD to set u=
+p the session, configure the radio, etc. That&#39;s where you can get your =
+timestamp from.=C2=A0Typically, you would know when to send based on what y=
+our algorithm is.</div><div><br></div><div>--M</div></div><br><div class=3D=
+"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Thu, Mar 26, 2026 at 6:55=E2=80=AFPM Barnard, Michael T &lt;<a href=3D"ma=
+ilto:Michael.Barnard@udri.udayton.edu">Michael.Barnard@udri.udayton.edu</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ class=3D"msg1659286010773819756">
 
 
 
@@ -355,7 +338,7 @@ Thanks for the insight; I&#39;ve got a better handle on things now. I&#39;m=
 &#39;t touch the host PC at all everything is contained in the FPGA. Is the=
  timestamp distributed to the cores or do I
  need to request the value from somewhere else in the FPGA?</div>
-<div id=3D"m_2832095692416456809Signature">
+<div id=3D"m_1659286010773819756Signature">
 <div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
 bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
 <br>
@@ -386,8 +369,8 @@ r:rgb(117,123,128)">300 College Park, Dayton, OH 45469-0031</span></p>
 x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
 <span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
 r:rgb(117,123,128)">O:(937) 713-4271 | C:(440) 622-6486 |
-<a style=3D"margin:0px" rel=3D"noopener noreferrer" id=3D"m_283209569241645=
-6809OWA86171a95-3d6c-d7f7-17e2-559527a12dfc" href=3D"http://udri.udayton.ed=
+<a style=3D"margin:0px" rel=3D"noopener noreferrer" id=3D"m_165928601077381=
+9756OWA86171a95-3d6c-d7f7-17e2-559527a12dfc" href=3D"http://udri.udayton.ed=
 u/" target=3D"_blank">
 udri.udayton.edu</a></span></p>
 <p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
@@ -395,20 +378,20 @@ x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
 <span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
 r:rgb(117,123,128)"><img style=3D"height: auto; max-width: 100%; min-width:=
  auto; min-height: auto; margin: 0px;" alt=3D"1621527942842" src=3D"cid:ii_=
-19d2b818de9cf2d7edc1"></span></p>
+19d2bbe666acf2d7edc1"></span></p>
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
 ;color:rgb(0,0,0)">
 <span style=3D"background-color:rgb(255,255,255)"><br>
 </span></div>
 </div>
-<div id=3D"m_2832095692416456809appendonsend"></div>
+<div id=3D"m_1659286010773819756appendonsend"></div>
 <div><br>
 <div style=3D"font-family:Calibri;text-align:left;color:rgb(0,0,0);margin-l=
 eft:5pt;font-size:8pt">
 UDRI Proprietary - Unprotected</div>
 </div>
 <hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_2832095692416456809divRplyFwdMsg" dir=3D"ltr"><font face=3D"Ca=
+<div id=3D"m_1659286010773819756divRplyFwdMsg" dir=3D"ltr"><font face=3D"Ca=
 libri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> =
 Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank=
 ">martin.braun@ettus.com</a>&gt;<br>
@@ -422,7 +405,8 @@ usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
 <div>
 <div style=3D"background-color:rgb(255,235,156);width:100%;border-style:sol=
 id;border-color:rgb(156,101,0);border-width:1pt;padding:2pt;font-size:10pt;=
-line-height:12pt;font-family:Calibri;color:black;text-align:left">
+line-height:12pt;font-family:&quot;Calibri&quot;;color:black;text-align:lef=
+t">
 <span style=3D"color:rgb(156,101,0);font-weight:bold">CAUTION:</span> This =
 email originated from outside of the organization. Do not click links or op=
 en attachments unless you recognize the sender and know the content is safe=
@@ -472,7 +456,7 @@ Michael.Barnard@udri.udayton.edu</a>&gt; wrote:<br>
 ,204,204);padding-left:1ex">
 <div>
 <div dir=3D"ltr">
-<div id=3D"m_2832095692416456809x_m_-6235865515734214039m_23683023910103157=
+<div id=3D"m_1659286010773819756x_m_-6235865515734214039m_23683023910103157=
 13bodyDisplay">
 <div style=3D"margin-top:1em;margin-bottom:1em;font-family:Aptos,Aptos_Embe=
 ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
@@ -505,7 +489,7 @@ gle CHDR packet, so EOV is used.</div>
 ,204,204);padding-left:1ex">
 <div>
 <div dir=3D"ltr">
-<div id=3D"m_2832095692416456809x_m_-6235865515734214039m_23683023910103157=
+<div id=3D"m_1659286010773819756x_m_-6235865515734214039m_23683023910103157=
 13bodyDisplay">
 <div style=3D"margin-top:1em;margin-bottom:1em;font-family:Aptos,Aptos_Embe=
 ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
@@ -566,7 +550,7 @@ usrp-users-leave@lists.ettus.com</a><br>
 </div>
 </div>
 </div>
-<div style=3D"font-size:8pt;font-family:Calibri,sans-serif">
+<div style=3D"font-size:8pt;font-family:&quot;Calibri&quot;,sans-serif">
 <hr>
 The information contained in this e-mail and any attachments from UDRI may =
 contain confidential and/or proprietary information, and is intended only f=
@@ -585,14 +569,14 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </div></blockquote></div>
 
---000000000000c175b1064df20222--
+--00000000000072bf4c064df2e459--
 
---000000000000c175b2064df20223
+--00000000000072bf4d064df2e45a
 Content-Type: image/png; name="Outlook-1621527942.png"
 Content-Disposition: inline; filename="Outlook-1621527942.png"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_19d2b818de9cf2d7edc1>
-X-Attachment-Id: ii_19d2b818de9cf2d7edc1
+Content-ID: <ii_19d2bbe666acf2d7edc1>
+X-Attachment-Id: ii_19d2bbe666acf2d7edc1
 
 iVBORw0KGgoAAAANSUhEUgAAANgAAAAvCAYAAACBtwRMAAAAAXNSR0IArs4c6QAAIABJREFUeF7s
 vXeUVWXy7v/Z8aTO3dDkYEIwB8wZFUdARQXDKIKKYAADoKIgSBAEVFSSAQNgQJBgQsUcUHF0dAwz
@@ -920,9 +904,9 @@ XXk9+Sd2EboNKFdswfafkwQksrQITYftGYael9Vy6c5NLocnec9RgBkoPTeJji4yds5soosuJ5Pk
 NGq13xxDsn39OEkl/PUlrJby1197iCtgqLBfKbtAVSyebekYGuJMjPH4Gvof30Dy9CuoniFtciJm
 m6GEVIeiqNV+Srgy6Krhkm1nWRvLRFhT28kdP4HsybOwp5+ttTmyQImEX4SGAv4KnCkOT9LRHO4W
 1/Du9ZfWK3BoK/Afv/q0Dz6vlvUAAAAASUVORK5CYII=
---000000000000c175b2064df20223--
+--00000000000072bf4d064df2e45a--
 
---===============7461402767145676191==
+--===============3276467606757243104==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -932,4 +916,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7461402767145676191==--
+--===============3276467606757243104==--
