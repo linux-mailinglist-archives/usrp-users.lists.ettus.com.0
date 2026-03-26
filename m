@@ -2,513 +2,597 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oIwzNiJzxWmN+QQAu9opvQ
+	id AGn1MsSCxWlc+wQAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 18:55:46 +0100
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 20:02:28 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B78B4339952
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 18:55:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ECAC33AA4E
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 20:02:24 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5D849386733
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 13:55:44 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E72C3386710
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 15:02:22 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1774547744; bh=0LRVCLlWW3acgVy1HxrMjHvgamV3KmeIKqwUemgqxZM=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1774551742; bh=Pkjdi6a/BSdqM2V6cNXLkb0kT3tfwZma45f/maZL0rk=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=B6NbH3AJABlMO3fY/wpqyBdORTzGODQhNlq90LvT453ASWeej0ITFiUp5jOjJrAww
-	 qH/L9GptifMkLaUiwzyZD8R28nGy74PpCE5WKYkH2Em3oEpxUTESP/z7a+pGlX+vIr
-	 +TXdQrgQfohR4q+qf9Ap65Ah+3v2FfzoZUS2Jdr8hYWhR8X2tuZ9xyaPve1M8faEPe
-	 u6sQoLjPf4Evhw2SoY25fhhpD0Lj47aJy80hUXlEbBrvf+S9zFEZkx/nqoLdGX6Waj
-	 9/CBsXpkywMa/jtamLWpZiBNquTmtiNQJupTuGgJSc16CCpjgi/uTPypCTnA0Bsm1v
-	 GwukHarT0AR5A==
-Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0077.outbound.protection.office365.us [23.103.209.77])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4B23738659B
-	for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 13:55:02 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=k5bfxO+7xv02eovvT8v+Meaqzm8usMc0aLbTXqjQyBdDE8Yvz4nS6J7EivnfurPqLAtxku1a6qaZ+rMLX6H7WWOVZBXcQzmCU22K/HFru1MVXYH5D6/6Tgs/zb9SPx34CiI2Z7LEdBVyLIqg0DnWf4d9E990Ypn9KHyZUvzv1Duf/DfnTk16L8oxiWtUpgOPkxfFDseJizEb3CIpEo8WUSl0xxTtpbKGopZL/IUK9L0VLdmj4h9mwv2fuOt7OpeP2QjO0QUM6dImfC9hyupvZF0lWCr8gMr6zdAiovQExqcrPzDHcFCZcXw/Nts1iyXkduUtEVMgorU4CEZ720IDlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e/tineinGawgJeJkcr8mAAQw/lhFohe1t1VRxtYYC6c=;
- b=nnMF0Pxut9Nbog3U0BelndujENqr4c1Xi43MIjCijTvi5LBXTr02F/UrZNg2RqslMfG2lkH6YETWwagEAVIbaAdt+6BVeC53YEkgcd1iRmm5DgQ4S8A6prTEP2OTEM58Xf3LfMWU7nMaFOLfLaTYie2HCu4OGdBnSlM9ppFgFCSUMLkzWA0YO2/y9DjOre5udCzxIHimFnsvEITzJp93qpO7NYX+n6OcgYAQ1NsXHkcxUtEWrgqFkZ78WXTioaFr9twrvzYHafyq7L+L1XwIm8VX+sjEefmKbI8XXgIA/gx7FDnfzVQsqQHDzYTrv/wCZNLY+KQidl9nC5pfXI8yXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=udri.udayton.edu; dmarc=pass action=none
- header.from=udri.udayton.edu; dkim=pass header.d=udri.udayton.edu; arc=none
-Received: from PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::17)
- by SA1P110MB1829.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:1aa::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.21; Thu, 26 Mar
- 2026 17:54:59 +0000
-Received: from PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM
- ([fe80::bbc9:54bb:3b7d:f7f]) by PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM
- ([fe80::bbc9:54bb:3b7d:f7f%4]) with mapi id 15.20.9745.020; Thu, 26 Mar 2026
- 17:54:59 +0000
-From: "Barnard, Michael T" <Michael.Barnard@udri.udayton.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: X310 Precise Transmit Control
-Thread-Index: AQHcvJeF50/78rNL3kOuewc0WnVdUbW/ugmAgAEWWICAAD4PDw==
-Date: Thu, 26 Mar 2026 17:54:59 +0000
-Message-ID: 
- <PH1P110MB16176284D0E24DF6FA5BE84DD956A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
-References: 
- <PH1P110MB16176765322CF5BB7B44FA71D949A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
- <CAEXYVK5uEmwy2X9wx0eKUfWw+J8N5fPv6fjB_NE+uqCgkgHNTQ@mail.gmail.com>
- <CAFOi1A4H0OTnc=kY5cwCUN3J9dkvaMGFb1r7FGCvMQwV7hQELg@mail.gmail.com>
-In-Reply-To: 
- <CAFOi1A4H0OTnc=kY5cwCUN3J9dkvaMGFb1r7FGCvMQwV7hQELg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-msip_labels: 
- MSIP_Label_9a4223ec-2ace-4b6f-97cb-2781c95c6a57_Enabled=True;MSIP_Label_9a4223ec-2ace-4b6f-97cb-2781c95c6a57_SiteId=f2d5b9a2-5ebd-42ba-8690-a10d6bbed085;MSIP_Label_9a4223ec-2ace-4b6f-97cb-2781c95c6a57_SetDate=2026-03-26T17:54:59.002Z;MSIP_Label_9a4223ec-2ace-4b6f-97cb-2781c95c6a57_Name=Anyone
- (unprotected);MSIP_Label_9a4223ec-2ace-4b6f-97cb-2781c95c6a57_ContentBits=1;MSIP_Label_9a4223ec-2ace-4b6f-97cb-2781c95c6a57_Method=Standard;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=udri.udayton.edu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH1P110MB1617:EE_|SA1P110MB1829:EE_
-x-ms-office365-filtering-correlation-id: 8fa53213-1f51-4e0d-e450-08de8b60cc7f
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|366016|41320700013|4022899009|6049299003|13003099007|4013099003|4053099003|38070700021|8096899003|18002099003|22082099003|56012099003;
-x-microsoft-antispam-message-info: 
- GvJ5wbeGRgCqA6VuR1mi8HjioR0nq2HQLjPItdfn+woVWrHdP7u88ELuKH0e4qKGjRJqoDAZpDI2OjX+Rm3grpzttNhm49wYzI4b7419j3vJtbHoezr+ZsUVhsVkynKlk05+onPMkscdlcvJ0PbPFAW6oJyGKJVcBzpr+fd0U1SfXuz9LvV2GUMmgJpHAup+JrOe1/ZA/urmlX9Wpojo5YZLLH3HUK6nKqlAPWc4eoI9DakDJzWACClefsiz8swxZQvOdj2vhth1tN/INpYUwxKCGlbvVk08YISCWqdnAzlWtb101ruFVLL1RkoL6Rm7z34WAwgXZD8qeLU2ghPg1knh9+CF94wCLoLrw2kVQ9y9Rg4MIKVMkN98llM43sXh3MvmsOcwD/EVK6xWGZpcJ6YFZBD0WTI3qXBhVIRyArYQAOGH0cCmuCdIBIv+aCGTxgxQMBnHv6Urlu9nAk0m5vSeC9tEyuOlliE7W1GSkxGgOk/FoqpNJuhMnll9OPGUP4G2jrJvV6YuOXUGmVaUxt7wjCTBDXXcs2iKT6SIlxJMcqcZoQ1gDmuVYCq3yIUqthS5eNEU9OwN1m+t0cIbBwfr4dHiv/gNVzwWHOhaS5O0OSaIIxzccs8Rh9MlZJmAgYqeGf6z2K3z4oRCZFR68Jr62A7iq7bE0JvHfiz3qjuIROe45D6IyMefMJ+ORSP4OWCbUFAIY17yYRQQ/Ke46ySlGfqyrb7XaEJn1Oz0XyQ=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(41320700013)(4022899009)(6049299003)(13003099007)(4013099003)(4053099003)(38070700021)(8096899003)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?Tm0xL21Ub1ZwcjlyYWgrQmhhbDJpRjduTHl1TjZqT2xnSjhlZ25iL1ZDK2dZ?=
- =?utf-8?B?am1lakJXZGprV0lqa1pEeSt3RkdhZ0t2VUhVTmFvRitJSEFMcDVWRmlVQUE2?=
- =?utf-8?B?ekVuT0k2aWoxS1FtRUxFZzNCTHhXS2kwQ1NsR0w1bDRBOTd5ckxHdGhsODRR?=
- =?utf-8?B?VktQQ3EyaHNraXFiNFNHTDZOMFJuaDFCTHpSKzh6dzBXeURNOERhRWlVelNI?=
- =?utf-8?B?V2V6VmRCRTArcU9JS0xoVlNhaUs5OXk5MFpyTFY4M09VTzQ1ZzNVZ2RaRit3?=
- =?utf-8?B?NmtySUQzT2xOTzk3MVh6cmNZMG1oYXhZOG0rQ1RoYzdOSkYrSzc3ZllUVFZv?=
- =?utf-8?B?azdWRFpLSmd6VFE4NHRDN0RIZGt6SHpLU1Q1aHJqdDM1Ly9RSHBnM0lJUFBY?=
- =?utf-8?B?aEVIb1NFZGVoVzQ1UDBGcFpiNFFUc0hOQS9FR25WOUFLSGRFQ1d2b3Vja0Z5?=
- =?utf-8?B?b2RWaGw4aS9OR1V5cjhOVEJDaFpVNHVJdXRkNXJ0emVMck15MTd1cHN3WVc0?=
- =?utf-8?B?ZGtkbVFFMVAwMGFZSFJtSEgxc2dvQVBnRDU0UXlIUVlnTmRyem5YSm13WEF4?=
- =?utf-8?B?a3lsckRwbU85VEJtNHN6QjB5RW1VWDdiMDVobzFpWnF3WVF1cTRLK1RNNGM3?=
- =?utf-8?B?cmVERnQ0N0toVlRtNHZFZENqNDZEc3FBVEk3TkhiTCtKMTRPNzVhaHArdS85?=
- =?utf-8?B?Ui9JRGhhVEV5NjQyMzF5OEtmelhPdlBWU3l4UWw4dWVBdEYxZjc5WnRjVmcr?=
- =?utf-8?B?QXVoelA1KzV3VVgxNVd4NXEwRzg3VW05MzYwcXV5TVprTmY5STdMeU1pTG5w?=
- =?utf-8?B?aExWRUZIS0lSS3pyOXlIaUphbW1oaUh6cmRoaVROTzExR1k4MHZZRHJaNjE3?=
- =?utf-8?B?cWpUZHdZZVJCWTdxaVJ2anl5czR3SWV1U0ZYY2t6aXQ0alJyakZSc3hUR0xR?=
- =?utf-8?B?b09LdER5bENnZUdnektLdCtaN2tqQURVWmNNR244OHI3ZFdUZDJjSXBVNERH?=
- =?utf-8?B?Q1Q2TTVyVStuTDhNbXNEQ3RWREVtcW1GUEZpdWJ3YWU4Q0tsNHMrenc0dU1J?=
- =?utf-8?B?RW9hTjVKUjFnSFc2RElPOFVuMUczcGVocno4N0ZObzJ0SGs0dm5TM2dzYXBS?=
- =?utf-8?B?YWt2NnVXSENCWmhXS3Bac2tOZFNOWmU4aW1QbW5zMXBNc1JKLy9LWThFaFRC?=
- =?utf-8?B?N3EzTURidDVYMmVrL2pQb3hSamxFRHkxenBhTFlxT1RBNnBQNFAzOTRWeUVo?=
- =?utf-8?B?a2lXejVwL0VtdmZrWEFIMTBBTi9FSnhwbkgyVERncktqWVBldnVDZXowcThU?=
- =?utf-8?B?VVM0Um1JNTZVUEZNMDhTRE45N1YvU2dyMFNTMXJYK3N4TjVjOGNHbHJqWkF5?=
- =?utf-8?B?Wmlnbk9nK3VFalFmTndYcTZOV05lZ1Uyc2tCVDF5a1FhdUo3bklSUEo5amV1?=
- =?utf-8?B?OWFYTEFmZ1NtTXhYdVFZakxzeWdlaW5ZQWhYcmg5ZDJBeWhEYXN3M3Q0dnhu?=
- =?utf-8?B?M0ZteUZObDdmaGUwK0NFcjNYRUw1MHBFdldoK1R3UmhNOWdHdk5nWDVvSm5p?=
- =?utf-8?B?TlFLbG1DOWIxSXByUHUxTkFzL0xyRnRUbFU4cUx3eDFLcHYvZlIrOTVMWWdW?=
- =?utf-8?B?TVJPR21lRmhTNlBKeFNmTmV6Y05tNmFIR2hsQzdBYjJUSmIrQ2MxSEJqSEVQ?=
- =?utf-8?B?Wmx0aTFXSzZSODdPemhkck9OVitsYW50dlB3ZkZkeUtkT0Rqc29ua29pYUli?=
- =?utf-8?B?NVNmV1JDUURaeGpGV1l3K09LWktRaVRaUjBXTDNJMERjNTJzNi80MThmdE9l?=
- =?utf-8?B?S25DeE9GcmFOalk5RWdQM1JleS9mL2xWcUpobVBsTHpTQklJRzdtZ24vbW92?=
- =?utf-8?B?NjRPMXdIRUwvTEdaWTRUdWE3UlFaS3VoYy8yM3NFR1hkeHpHLzlTMEhLRUVV?=
- =?utf-8?B?bDJYaHJUM0ZXN0E0czZsaitJMFhGa1BpSmhKYzEwN1pLN0Z4MUczUEpWbktR?=
- =?utf-8?B?UHIzY0FSUVBWNzVPcjU1RGJvR2hGZTFqbllnWXpwNktodndzTzhVSFNlekIx?=
- =?utf-8?B?dTZjZ21ya2RLbHN1VTZkV3BEUXZwcy9PLy96SWJOcm5Vd0ROSXJSOU40bDlh?=
- =?utf-8?B?QlJpbURXZjV4YXBBU1hnOGxIMk9PVUoxSGQrd0ViU0hOWDBKTkF1QU9rQTcv?=
- =?utf-8?B?Zk12R3Z5alJiWG9VVkNneGdNbEFNU2lSNzlqZHFDNUY3enhvSE5xK2xRV2Nw?=
- =?utf-8?Q?Ziw2vMDloui8UqckLwvl9iOvNEHGOIAIP23CumWV9A=3D?=
+	 From:Reply-To:From;
+	b=WUl2oFinOw4TcCVS+4JgK1qQMubHZ/aH8GVSN0nOHVUQZEmubMxKfLWL7ZIfhCx2W
+	 okz/zx70JsKAy2x8pMvIl4EzkA5P+S3VSWvIph+mCHNzFL6Fd2TSEAIrhV+Effbp4/
+	 nB5nyAIa9EoG4Kb3B9rINjrvrohE1tstI3tHHLQI/+6AJvARDC7miIsW5QeSK7JOdk
+	 Buu8Rps0NTlTzdGVLQjp9AEbJxOcg+pMVq2lnEYzYKks3JBoFxGWj9FFEW3bGzA5C1
+	 d5VPTzYhwlxxI9t4N5ydYTwXVvLJVyOPWz17XILmmZQ7jJAuYKellIHON37hOyrEgI
+	 ljeu09BkalmeQ==
+Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5B718386711
+	for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 15:01:25 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="c/bkRQx3";
+	dkim-atps=neutral
+Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-64ae222d87dso1459193d50.2
+        for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 12:01:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774551685; cv=none;
+        d=google.com; s=arc-20240605;
+        b=EV4Kgxk+4IseabsMQEv1XIMtHoq0xIYhY7UtdkC/an9YYu8O1bXz3J1HQy/i0IoU6v
+         hcSkT2KyPLfYiiaZcvPBiSE5FlUkZ2texfvTAdotZ+8MFC7BXjouliI03LSkSypov3dZ
+         yuC8cZIxR69/CVZktob9//uYR9yhCQAIHrG57ulvw9IKJi2CW+mL2X6e8oj70o4M5RMV
+         YNwotUTtB/qnvOldutWCjE7RccXxm0xCCccl0FUdFrXvSdbbpmYG6jxNN+Jg5q4iyuPM
+         khCAtczzoUQu5ERrh2+j5Asij9Pk4C17Sf7Gxsah5BGbTZsowliJVgbjan3fkG1ryigk
+         ZcWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=lNn+kbFyCNEzltL+KaZmszOyeBxyLMSgB1mtcHm0V1c=;
+        fh=xFzpIG3rT24F4s6Jd1MCPiJdqFe/Zc8C846nEHTqcnc=;
+        b=GyHjGPTwBiIqIm42jsn/7wFuIjsSwXIZ+2D/Ty8Q8wgObGVR7qP3DhIcReTqXBlnL0
+         t6OJhRqZPU9IRPCm1R6P+N+DOp529U2pN9hcUr2vDibvcy6U6et0FGko0kDMBesYsGgR
+         mj0pX/agoiDGqo23Q4yNCLWDC8UaGqU2xjvSIqg9h66s14L3nHBjhu8EK+Kyc+xKJwZQ
+         dgi9NQJvBrksW/oxErAEnPpIRsrmEndNqHT1ziEUpgRTCxRYRCG8Btc+wX7vqwChNlFz
+         p8ae1P1tys450tWhLJsU6tHtQNYadhjLwoF0ngJtjCkGXZGYUg58El112ao9y0NYy1g5
+         tUZQ==;
+        darn=lists.ettus.com
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google; t=1774551684; x=1775156484; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lNn+kbFyCNEzltL+KaZmszOyeBxyLMSgB1mtcHm0V1c=;
+        b=c/bkRQx3CBj7yKaG+B/ptwiNo5yG/FZaeJmd76IcstqexuzVWra4EXxN3ChHMLVbIm
+         +qTg3xrhXTYevSsA7HZu1ZLdWXCKngHIhgjnab5GiLAm7bpkJNYiXiUoXp4YtOiLaw/Z
+         edspQGEOxYJgg/NfWWMiI57SAMPzW/XPo1AFOwBfIesAr36SRJvUiQQg5TYVhBA3Ugvx
+         LTBmtFJ3Zuq0IwLxNwWITx53t7UvvShL9I9O7X/+FC1mizt9K9urmtyAHLtsFOs1SL4a
+         ZoNY9zkLfOa6ckc2iZXOUHuuGL3obaxQc8uhQ0UFPGVk+ZSv9L4x6UUlvPXjfZPss1dq
+         CoJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774551684; x=1775156484;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lNn+kbFyCNEzltL+KaZmszOyeBxyLMSgB1mtcHm0V1c=;
+        b=dl5hDKg0GoGLb+8eyXpHcIdmMNAnHOIxBg3b+aPbqhohd27ty4XuLh1mjWqDOtAPZZ
+         mORWIAcXm/HimY+1u/nRH47GgexeeZxQ70uFNpA+bsgj6UuzrJYIycqkC/gwBnykHfxv
+         lCkSqS3snwt5VJq+atfO4LMvYpBWQOvxELPgeNacdFQtYdmqqsVoyVCPci1tDAfq0wgs
+         yzyOYF76vx7AZH6H4/vG+6PubTXLZhEpPtsuiuoIXsLh9w50UDrvW0FWS3yjTQ61Y5ap
+         Bi0XxndV5RGVqKSjPdFHeCilj47xYtVyIPxo+aJf/aS8h9RIEMfxHQLd+45qIOZK3GOi
+         wtyQ==
+X-Gm-Message-State: AOJu0Ywgl/gAiY9JLkjcrVvWdlw39LSBjk7HipHwxr+rz5VVg1R09GqG
+	rAvwUFPlcoTUsdu3sRdlTNipr0yxQ3v5Lw1/c1U2Z3aEfaSH3Kmt1jL5JmzZUHNoviaM2itxXU6
+	O49WSbC8MxB+v1jZKz8/Q4c5sve//n9Omn6Lj2Ksc
+X-Gm-Gg: ATEYQzxVNz7tV75xTAWAIxmUWEaQF8NQ7S5zZaHpEKD2mn+4sSMkLLldxlFU+4cjmEC
+	38yCC0RBLkbrv4DCs7RnZYLAc2l6qnCrYnidvRZAx6zo4APzFk8h92w0cWmimN1h5P1rUmPtwJG
+	ITevVSOJTsDcEvg37yFUHtuhRF6oOpPOBsmCe/kGrLQ6ogXNsV/TzUGiIA6W7IXw5gPLIYnfLAH
+	isqh9BOTcW7uGXfwTGoZmSYYs0e6XJMiMlwVAzAGrPfP4H7je13tzWM8w8TrHw1KgcshMLdbVC0
+	LHUt9FHS+7tSo0PS0jkratZkwxKl+c1Sf4cgGg==
+X-Received: by 2002:a05:690e:4084:b0:64d:568b:bcc1 with SMTP id
+ 956f58d0204a3-64ee60873d9mr8478191d50.3.1774551683879; Thu, 26 Mar 2026
+ 12:01:23 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: udri.udayton.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8fa53213-1f51-4e0d-e450-08de8b60cc7f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2026 17:54:59.6785
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f2d5b9a2-5ebd-42ba-8690-a10d6bbed085
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1P110MB1829
-Message-ID-Hash: AWGJXXPM3OIEGTESQ4FEXZHOHSFYVE42
-X-Message-ID-Hash: AWGJXXPM3OIEGTESQ4FEXZHOHSFYVE42
-X-MailFrom: Michael.Barnard@udri.udayton.edu
+References: <PH1P110MB16176765322CF5BB7B44FA71D949A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
+ <CAEXYVK5uEmwy2X9wx0eKUfWw+J8N5fPv6fjB_NE+uqCgkgHNTQ@mail.gmail.com>
+ <CAFOi1A4H0OTnc=kY5cwCUN3J9dkvaMGFb1r7FGCvMQwV7hQELg@mail.gmail.com> <PH1P110MB16176284D0E24DF6FA5BE84DD956A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
+In-Reply-To: <PH1P110MB16176284D0E24DF6FA5BE84DD956A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
+Date: Thu, 26 Mar 2026 15:01:10 -0400
+X-Gm-Features: AQROBzBiwXbLxakgg4hXri9hRk1rP-H93YAaC2LMGzMKHcNRBgCu7DVEloz4sYM
+Message-ID: <CAB__hTTw7o7qZj-_YAuPTbrpskAVJpQ9js023fJ8z3Wp2JVTMw@mail.gmail.com>
+To: "Barnard, Michael T" <Michael.Barnard@udri.udayton.edu>
+Message-ID-Hash: JNPOGGPAL5IGVKUMUXDPHZXVVEAFCSLJ
+X-Message-ID-Hash: JNPOGGPAL5IGVKUMUXDPHZXVVEAFCSLJ
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X310 Precise Transmit Control
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZSWIAFXJWLE5Y42H7LXSSRYDW7PGWBDJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JNPOGGPAL5IGVKUMUXDPHZXVVEAFCSLJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0930467195067885265=="
-X-Spamd-Result: default: False [2.69 / 15.00];
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============7461402767145676191=="
+X-Spamd-Result: default: False [2.49 / 15.00];
 	PHISHING(2.00)[github.com->urldefense.us];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
 	MAILLIST(-0.20)[mailman];
-	MIME_BASE64_TEXT(0.10)[];
+	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/related,multipart/alternative,text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[udri.udayton.edu : No valid SPF, DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:+,4:~,5:~,6:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	R_SPF_NA(0.00)[no SPF record];
-	DKIM_TRACE(0.00)[emwd.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
+	RCPT_COUNT_TWO(0.00)[2];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:+,4:~,5:~,6:+];
+	DMARC_NA(0.00)[ettus.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_MIXED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rkossler@nd.edu];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[Michael.Barnard@udri.udayton.edu,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
 	TAGGED_RCPT(0.00)[usrp-users];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	R_DKIM_REJECT(0.00)[nd.edu:s=google];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim]
-X-Rspamd-Queue-Id: B78B4339952
+	MISSING_XM_UA(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,nd.edu:-];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nd.edu:replyto,ettus.com:email,emwd.com:dkim]
+X-Rspamd-Queue-Id: 4ECAC33AA4E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============0930467195067885265==
-Content-Language: en-US
-Content-Type: multipart/related;
-	boundary="_004_PH1P110MB16176284D0E24DF6FA5BE84DD956APH1P110MB1617NAMP_";
-	type="multipart/alternative"
+--===============7461402767145676191==
+Content-Type: multipart/related; boundary="000000000000c175b2064df20223"
 
---_004_PH1P110MB16176284D0E24DF6FA5BE84DD956APH1P110MB1617NAMP_
-Content-Type: multipart/alternative;
-	boundary="_000_PH1P110MB16176284D0E24DF6FA5BE84DD956APH1P110MB1617NAMP_"
+--000000000000c175b2064df20223
+Content-Type: multipart/alternative; boundary="000000000000c175b1064df20222"
 
---_000_PH1P110MB16176284D0E24DF6FA5BE84DD956APH1P110MB1617NAMP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000c175b1064df20222
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmtzIGZvciB0aGUgaW5zaWdodDsgSSd2ZSBnb3QgYSBiZXR0ZXIgaGFuZGxlIG9uIHRoaW5n
-cyBub3cuIEknbSBzdGlsbCBub3Qgc3VyZSB3aGVyZSB0byBnZXQgdGhlIHRpbWVzdGFtcCB2YWx1
-ZSBmcm9tLiBUaGUgcHJvY2Vzc2luZyBkb2Vzbid0IHRvdWNoIHRoZSBob3N0IFBDIGF0IGFsbCBl
-dmVyeXRoaW5nIGlzIGNvbnRhaW5lZCBpbiB0aGUgRlBHQS4gSXMgdGhlIHRpbWVzdGFtcCBkaXN0
-cmlidXRlZCB0byB0aGUgY29yZXMgb3IgZG8gSSBuZWVkIHRvIHJlcXVlc3QgdGhlIHZhbHVlIGZy
-b20gc29tZXdoZXJlIGVsc2UgaW4gdGhlIEZQR0E/DQoNCg0KTWljaGFlbCBCYXJuYXJkDQoNClRM
-IENvbXB1dGVyIEVuZ2luZWVyLCBTY2FsYWJsZSBDb21wdXRpbmcgR3JvdXANCg0KQXBwbGllZCBT
-ZW5zaW5nIERpdmlzaW9uDQoNCg0KMzAwIENvbGxlZ2UgUGFyaywgRGF5dG9uLCBPSCA0NTQ2OS0w
-MDMxDQoNCk86KDkzNykgNzEzLTQyNzEgfCBDOig0NDApIDYyMi02NDg2IHwgdWRyaS51ZGF5dG9u
-LmVkdTxodHRwOi8vdWRyaS51ZGF5dG9uLmVkdS8+DQoNClsxNjIxNTI3OTQyODQyXQ0KDQoNClVE
-UkkgUHJvcHJpZXRhcnkgLSBVbnByb3RlY3RlZA0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18NCkZyb206IE1hcnRpbiBCcmF1biA8bWFydGluLmJyYXVuQGV0dHVzLmNvbT4NClNlbnQ6
-IFRodXJzZGF5LCBNYXJjaCAyNiwgMjAyNiA5OjMwIEFNDQpDYzogdXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogW1VTUlAtdXNl
-cnNdIFJlOiBYMzEwIFByZWNpc2UgVHJhbnNtaXQgQ29udHJvbA0KDQpDQVVUSU9OOiBUaGlzIGVt
-YWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRlIG9mIHRoZSBvcmdhbml6YXRpb24uIERvIG5vdCBj
-bGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3UgcmVjb2duaXplIHRoZSBz
-ZW5kZXIgYW5kIGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZS4NCg0KU29tZSBhZGRpdGlvbmFsIGNv
-bW1lbnRzOg0KDQotIFlvdSBjYW4gcHJvYmFibHkgaWdub3JlIEVPVg0KLSBJZiB5b3UgZG8gdXNl
-IEVPViwgbm90ZSB0aGF0IGl0IGlzIHRyZWF0ZWQgZGlmZmVyZW50bHkgdGhhbiBFT0IgaW4gc29t
-ZSBwbGFjZXMuIEZvciBleGFtcGxlLCB0aGUgcmVjdigpIGNhbGwgKGluIHNvZnR3YXJlKSB3aWxs
-IHRlcm1pbmF0ZSBpbW1lZGlhdGVseSB3aGVuIGl0IHNlZXMgYW4gRU9CLCBidXQgeW91IGNhbiBo
-YXZlIG11bHRpcGxlIEVPVnMgaW4gYSBzaW5nbGUgYnVyc3QgKHNvIGZyb20gdGhhdCByZWN2KCkg
-Y2FsbCwgeW91IGNhbiBuZXZlciBoYXZlIG1vcmUgdGhhbiBvbmUgRU9CLCBidXQgYW55IG51bWJl
-ciBvZiBFT1ZzKS4NCi0gSWYgeW91IGNvbWUgZnJvbSBhIHN0cmljdCBGUEdBIGJhY2tncm91bmQs
-IGl0J3MgaW1wb3J0YW50IHRvIGdldCBiZWhpbmQgdGhlICJuZXR3b3JrIG9uIGNoaXAiIHBhcnQg
-b2YgUkZOb0MuIFlvdXIgY2xvY2tzIGRvbid0IHJlYWxseSBtYXR0ZXIgaGVyZS4gV2hhdCBtYXR0
-ZXJzIGlzLCB3aGVuIHRoZSByYWRpbyBnZXRzIGEgQ0hEUiBwYWNrZXQsIGl0IHdpbGwgcmVhZCB0
-aGUgdGltZXN0YW1wIGFuZCBjb21wYXJlIGl0IGFnYWluc3QgdGhlIGNvcnJlc3BvbmRpbmcgdGlt
-ZXIuIFdoZW4gYSBDSERSIHBhY2tldCBsZWF2ZXMgb25lIGJsb2NrLCB5b3Ugc2hvdWxkbid0IGNh
-cmUgKGF0IGRlc2lnbiB0aW1lKSBpZiB0aGUgbmV4dCBibG9jayBpcyByaWdodCBuZXh0IHRvIGl0
-LCBvciAxMDAga20gYXdheSBvdmVyIGFuIEV0aGVybmV0IGxpbmUuIEknbSBleGFnZ2VyYXRpbmcs
-IGJ1dCBJIGhvcGUgdGhpcyBoZWxwcyB1bmRlcnN0YW5kIHRoaXMgY29uY2VwdC4NCg0KLS1NDQoN
-Ck9uIFdlZCwgTWFyIDI1LCAyMDI2IGF0IDk6NTbigK9QTSBCcmlhbiBQYWRhbGlubyA8YnBhZGFs
-aW5vQGdtYWlsLmNvbTxtYWlsdG86YnBhZGFsaW5vQGdtYWlsLmNvbT4+IHdyb3RlOg0KDQoNCk9u
-IFdlZCwgTWFyIDI1LCAyMDI2IGF0IDQ6NDHigK9QTSBCYXJuYXJkLCBNaWNoYWVsIFQgPE1pY2hh
-ZWwuQmFybmFyZEB1ZHJpLnVkYXl0b24uZWR1PG1haWx0bzpNaWNoYWVsLkJhcm5hcmRAdWRyaS51
-ZGF5dG9uLmVkdT4+IHdyb3RlOg0KSSBhbSBhIEZQR0EgZGV2ZWxvcGVyIHdvcmtpbmcgaW4gVmVy
-aWxvZyB3aXRoIGFuIFgzMTAgd3JpdGluZyBjb2RlIGluIGEgY3VzdG9tIFJGTm9DIGJsb2NrLiBJ
-IHJlY2VudGx5IGdvdCBpbmRlcGVuZGVudCBzdHJlYW1pbmcgY29udHJvbCB3b3JraW5nIHRvIG91
-dHB1dCBzYW1wbGVzIGF0IG15IGRpc2NyZXRpb24gdG8gYSBzdHJlYW1pbmcgZW5kcG9pbnQgdGhl
-biB0aHJvdWdoIHRoZSBjcm9zcyBiYXIgYnV0IEkgZG8gaGF2ZSBzb21lIHF1ZXN0aW9ucyBvbiBw
-YXJ0cyBvZiB0aGUgY29udHJvbCBiZWhhdmlvci4NCkl04oCZcyBub3QgY2xlYXIgdG8gbWUgd2hh
-dCB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIEVuZCBvZiBCdXJzdCAoRU9CKSBhbmQgRW5kIG9mIFZl
-Y3RvciAoRU9WKSBpcyBvciB3aGVuIEkgbmVlZCB0byB1c2Ugb25lIG9yIHRoZSBvdGhlci4gTXkg
-Y3VycmVudCBkZXNpZ24gb25seSB1c2VzIEVPQiBvbiB0aGUgbGFzdCBkYXRhIHBhY2tldCB3aGls
-ZSBFT1YgaXMgYWx3YXlzIHNldCB0byAwLiBJ4oCZbSBnZXR0aW5nIHVuZGVyZmxvdyBlcnJvcnMg
-b2NjYXNpb25hbGx5IGJ1dCBJIGNhbuKAmXQgY29uZmlkZW50bHkgc2F5IHdoaWNoIHBhY2tldHMg
-dGhleeKAmXJlIGFzc29jaWF0ZWQgd2l0aC4gSSBhbHNvIG5lZWQgdG8gc2VuZCBhIHNlY29uZCBw
-YWNrZXQgd2l0aCBFT0IgaGlnaCB0byBmbHVzaCB0aGUgZmlyc3QgcGFja2V0IG91dCBvZiB0aGUg
-YnVmZmVyOyBteSBndWVzcyB3b3VsZCBiZSB0aGF0IHRoZSBmaXJzdCBFT0Igd291bGQgZm9yY2Ug
-YSBidWZmZXIgZmx1c2guIElzIHRoZXJlIGFueQ0KRU9WIHdhcyBhZGRlZCBmb3Igd2hlbiB5b3Vy
-IGRhdGEgbWlnaHQgYmUgdG9vIGxhcmdlIGZvciBhIHNpbmdsZSBDSERSIHBhY2tldC4gVGhpbmsg
-bGlrZSBhIDE2Mzg0IHNhbXBsZSBGRlQgZnJhbWUgLSBpdCBjYW4ndCBmaXQgaW5zaWRlIGEgc2lu
-Z2xlIENIRFIgcGFja2V0LCBzbyBFT1YgaXMgdXNlZC4NCg0KSeKAmW0gYWxzbyB3b25kZXJpbmcg
-aWYgdGhlcmUgaXMgYSB3YXkgdG8gcHJlY2lzZWx5IHNjaGVkdWxlIHNhbXBsZXMgb3IgcGFja2V0
-cyBmb3IgdHJhbnNtaXQgb3V0IG9mIHRoZSByYWRpby4gSeKAmXZlIG9ic2VydmVkIHRoYXQgYmVj
-YXVzZSB0aGUgZGF0YSBpcyBwcm9jZXNzZWQgYXQgfjIxNSBNSHogaW4gdGhlIFJGTm9DIGJsb2Nr
-IGFuZCBmZWQgaW50byB0aGUgREFDIGF0IDIwMCBNSHogcGF1c2VzIGhhdmUgdG8gYmUgaW5jbHVk
-ZWQgYmV0d2VlbiBlYWNoIHBhY2tldCB0byBwcmV2ZW50IG92ZXJmaWxsaW5nIHRoZSB0cmFuc21p
-dCBidWZmZXIgYnV0IHRoaXMgYWxzbyBtZWFucyB0aGF0IGEgdGltaW5nIGluIHRoZSAyMTUgTUh6
-IGRvbWFpbiBtYXkgbm90IGJlIHJlZmxlY3RlZCBpbiB0aGUgMjAwIE1IeiBkb21haW4uIElzIHRo
-ZXJlIGEgd2F5IHRvIHRlbGwgdGhlIHRyYW5zbWl0IGxvZ2ljL2Zyb250IGVuZCB0byBzdGFydCB0
-cmFuc21pdHRpbmcgYXQgYSBwYXJ0aWN1bGFyIHRpbWUgZWl0aGVyIGluIHRoZSBDSERSIGhlYWRl
-ciBvciB1c2luZyB0aGUgdGltZXN0YW1wPyBPciBhbSBJIGF0IHRoZSBtZXJjeSBvZiB0aGUgZnJv
-bnQgZW5kIGNvbXBvbmVudHMgd2l0aG91dCBhbnkgZmluZSBjb250cm9sIG9mIHRyYW5zbWl0IHRp
-bWluZz8NClRoZSBDSERSIHdpdGggVGltZXN0YW1wIGlzIHVzZWQgdGhlcmUuIFdoZW4gaXQncyB0
-aGUgZmlyc3QgcGFja2V0IGluIGEgYnVyc3QsIHRoYXQgdGltZSBpcyBjb21wYXJlZCBhZ2FpbnN0
-IHRoZSB0aW1lc3RhbXAgb2YgdGhlIHJhZGlvLiBJZiBpdCdzIGxhdGUsIHRoZW4gdGhlIHJhZGlv
-IHNldHMgYW4gZXJyb3IgY29uZGl0aW9uIHRoYXQgaXMgc2VudCBiYWNrIHRvIHRoZSBob3N0IGFu
-ZCB0aGUgcmFkaW8gYmxvY2sgd2lsbCBjb25zdW1lIHRoZSBwYWNrZXRzIGFzIGZhc3QgYXMgcG9z
-c2libGUgdW50aWwgaXQgc2VlcyB0aGUgRU9CLiBUaGVyZSBhcmUgb3RoZXIgbW9kZXMgb2Ygb3Bl
-cmF0aW9uIGRlcGVuZGluZyBvbiBob3cgeW91IHNldCB1cCB5b3VyIFJGTm9DIGdyYXBoIGFzIHRv
-IHdoYXQgdG8gZG8gZHVyaW5nIHRoZXNlIGVycm9yIGNvbmRpdGlvbnMuIENoZWNrIHRoZSBzdGF0
-ZSBtYWNoaW5lIGhlcmU6DQoNCiAgaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhk
-L2Jsb2IvbWFzdGVyL2ZwZ2EvdXNycDMvbGliL3Jmbm9jL2Jsb2Nrcy9yZm5vY19ibG9ja19yYWRp
-by9yYWRpb190eF9jb3JlLnYjTDI5OSBbZ2l0aHViLmNvbV08aHR0cHM6Ly91cmxkZWZlbnNlLnVz
-L3YyL3VybD91PWh0dHBzLTNBX19naXRodWIuY29tX0V0dHVzUmVzZWFyY2hfdWhkX2Jsb2JfbWFz
-dGVyX2ZwZ2FfdXNycDNfbGliX3Jmbm9jX2Jsb2Nrc19yZm5vYy01RmJsb2NrLTVGcmFkaW9fcmFk
-aW8tNUZ0eC01RmNvcmUudi0yM0wyOTkmZD1Ed01GYVEmYz1wZnREb1V5enZEZ05HVG9DMVRDMmZB
-WVRqYktQU3F2MENUV29OZGlrZkkwJnI9X1lOdzEyUmVZNEgzOHR6Nkw5ZDE0VUk5S21ESDRUV21X
-bzRUekpTYnh3OVN1Q3FkdEstQVQtMjU5a2Z4ZVpzaCZtPWJWdnRxYXVQUUtrd09GeXA2cElhcXlv
-blFhc3kxbzQ1NlVwSkF1d3ZZOEFaT1NydjI0U3VmVzdwSlpURUZJZFMmcz1zdllXam1ybmN4TDRz
-STFrbGxTOXJpVUR6dk8xdE5sYTd3c1JaNjZfX0xjJmU9Pg0KDQpBcyBmb3IgdGhlIHByb2Nlc3Np
-bmcgY2xvY2sgdmVyc3VzIHJhZGlvIGNsb2NrLCB5b3Ugc2hvdWxkIGJlIGFkaGVyaW5nIHRvIHRo
-ZSBBWEkgc3RyZWFtaW5nIHRyZWFkeSBzaWduYWwgZm9yIGJhY2sgcHJlc3N1cmUuIFlvdSBjYW4g
-ZmlsbCB1cCB0aGF0IHBpcGVsaW5lIGFuZCB0aGluZ3Mgc2hvdWxkIGJlIGZpbmUuDQoNCkdvb2Qg
-bHVjay4NCg0KQnJpYW4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmliZSBz
-ZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1
-c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fDQpUaGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgZS1tYWlsIGFuZCBh
-bnkgYXR0YWNobWVudHMgZnJvbSBVRFJJIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBhbmQvb3Ig
-cHJvcHJpZXRhcnkgaW5mb3JtYXRpb24sIGFuZCBpcyBpbnRlbmRlZCBvbmx5IGZvciB0aGUgbmFt
-ZWQgcmVjaXBpZW50IHRvIHdob20gaXQgd2FzIG9yaWdpbmFsbHkgYWRkcmVzc2VkLiBJZiB5b3Ug
-YXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBhbnkgZGlzY2xvc3VyZSwgZGlzdHJpYnV0
-aW9uLCBvciBjb3B5aW5nIG9mIHRoaXMgZS1tYWlsIG9yIGl0cyBhdHRhY2htZW50cyBpcyBzdHJp
-Y3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGUtbWFpbCBpbiBlcnJv
-ciwgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGJ5IHJldHVybiBlLW1haWwg
-YW5kIHBlcm1hbmVudGx5IGRlbGV0ZSB0aGUgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVudHMuDQo=
+Hi Michael,
+Is this a "repeater-like" application where one or more receive channels is
+eventually routed back to one or more transmit channels?  If so, then you
+could use the time stamp from the receive stream, add a delay that is >=3D =
+to
+the expected FPGA processing delay, and use that for the transmit time
+stamp.  For typical operation using the UHD API, an application would
+typically ask UHD for the current time, add a little time to account for
+command processing, and then use this time as the time stamp for transmit
+samples.  But, given that you are operating completely on the FPGA, it is
+not obvious to me what the purpose of your time stamp is (as opposed to
+immediate streaming which ignores time stamps).
+Rob
 
---_000_PH1P110MB16176284D0E24DF6FA5BE84DD956APH1P110MB1617NAMP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Thu, Mar 26, 2026 at 1:55=E2=80=AFPM Barnard, Michael T <
+Michael.Barnard@udri.udayton.edu> wrote:
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBB
-cHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBI
-ZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAw
-KTsiIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiI+DQpUaGFua3MgZm9yIHRoZSBpbnNpZ2h0OyBJJ3Zl
-IGdvdCBhIGJldHRlciBoYW5kbGUgb24gdGhpbmdzIG5vdy4gSSdtIHN0aWxsIG5vdCBzdXJlIHdo
-ZXJlIHRvIGdldCB0aGUgdGltZXN0YW1wIHZhbHVlIGZyb20uIFRoZSBwcm9jZXNzaW5nIGRvZXNu
-J3QgdG91Y2ggdGhlIGhvc3QgUEMgYXQgYWxsIGV2ZXJ5dGhpbmcgaXMgY29udGFpbmVkIGluIHRo
-ZSBGUEdBLiBJcyB0aGUgdGltZXN0YW1wIGRpc3RyaWJ1dGVkIHRvIHRoZSBjb3JlcyBvciBkbyBJ
-DQogbmVlZCB0byByZXF1ZXN0IHRoZSB2YWx1ZSBmcm9tIHNvbWV3aGVyZSBlbHNlIGluIHRoZSBG
-UEdBPzwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIGlkPSJTaWduYXR1cmUiPg0K
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9z
-X01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
-OiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xhc3M9ImVsZW1lbnRUb1Byb29mIj4NCjxi
-cj4NCjwvZGl2Pg0KPHAgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0idGV4dC1hbGlnbjog
-bGVmdDsgYmFja2dyb3VuZC1jb2xvcjogcmdiKDI1NSwgMjU1LCAyNTUpOyBtYXJnaW4tdG9wOiAw
-cHg7IG1hcmdpbi1ib3R0b206IDBweDsgZm9udC1mYW1pbHk6IFRhaG9tYTsgZm9udC1zaXplOiAx
-M3B4OyI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEhlbHZldGljYSwgc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOiAxNHB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+PGI+TWljaGFl
-bCBCYXJuYXJkPC9iPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxl
-PSJ0ZXh0LWFsaWduOiBsZWZ0OyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7
-IG1hcmdpbi10b3A6IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyBmb250LWZhbWlseTogVGFob21h
-OyBmb250LXNpemU6IDEzcHg7Ij4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwg
-SGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMTE3LCAx
-MjMsIDEyOCk7Ij5UTCBDb21wdXRlciBFbmdpbmVlciwgU2NhbGFibGUgQ29tcHV0aW5nIEdyb3Vw
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9InRleHQtYWxpZ246
-IGxlZnQ7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTsgbWFyZ2luLXRvcDog
-MHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQtZmFtaWx5OiBUYWhvbWE7IGZvbnQtc2l6ZTog
-MTNweDsiPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFwdDsgY29sb3I6IHJnYigxMTcsIDEyMywgMTI4KTsiPkFw
-cGxpZWQgU2Vuc2luZyBEaXZpc2lvbjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iZWxlbWVudFRvUHJv
-b2YiIHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAy
-NTUsIDI1NSk7IG1hcmdpbi10b3A6IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyBmb250LWZhbWls
-eTogVGFob21hOyBmb250LXNpemU6IDEzcHg7Ij4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTog
-Q2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDExcHQ7IGNvbG9yOiBy
-Z2IoMTE3LCAxMjMsIDEyOCk7Ij48YnI+DQo8L3NwYW4+PC9wPg0KPHAgY2xhc3M9ImVsZW1lbnRU
-b1Byb29mIiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgYmFja2dyb3VuZC1jb2xvcjogcmdiKDI1
-NSwgMjU1LCAyNTUpOyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgZm9udC1m
-YW1pbHk6IFRhaG9tYTsgZm9udC1zaXplOiAxM3B4OyI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1p
-bHk6IENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMXB0OyBjb2xv
-cjogcmdiKDExNywgMTIzLCAxMjgpOyI+MzAwIENvbGxlZ2UgUGFyaywgRGF5dG9uLCBPSCA0NTQ2
-OS0wMDMxPC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9InRleHQt
-YWxpZ246IGxlZnQ7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTsgbWFyZ2lu
-LXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQtZmFtaWx5OiBUYWhvbWE7IGZvbnQt
-c2l6ZTogMTNweDsiPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRp
-Y2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFwdDsgY29sb3I6IHJnYigxMTcsIDEyMywgMTI4
-KTsiPk86KDkzNykgNzEzLTQyNzEgfCBDOig0NDApIDYyMi02NDg2IHwNCjxhIGRhdGEtb2dzYz0i
-IiBkYXRhLWxpbmtpbmRleD0iMCIgZGF0YS1zYWZlbGluaz0idHJ1ZSIgZGF0YS1hdXRoPSJOb3RB
-cHBsaWNhYmxlIiBzdHlsZT0ibWFyZ2luOiAwcHg7IiByZWw9Im5vb3BlbmVyIG5vcmVmZXJyZXIi
-IGNsYXNzPSJDb250ZW50UGFzdGVkMCBPV0FBdXRvTGluayIgaWQ9Ik9XQTg2MTcxYTk1LTNkNmMt
-ZDdmNy0xN2UyLTU1OTUyN2ExMmRmYyIgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHA6Ly91ZHJp
-LnVkYXl0b24uZWR1LyI+DQp1ZHJpLnVkYXl0b24uZWR1PC9hPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyBiYWNrZ3JvdW5kLWNv
-bG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7IG1hcmdpbi10b3A6IDBweDsgbWFyZ2luLWJvdHRvbTog
-MHB4OyBmb250LWZhbWlseTogVGFob21hOyBmb250LXNpemU6IDEzcHg7Ij4NCjxzcGFuIHN0eWxl
-PSJmb250LWZhbWlseTogQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDExcHQ7IGNvbG9yOiByZ2IoMTE3LCAxMjMsIDEyOCk7Ij48aW1nIHN0eWxlPSJoZWlnaHQ6IGF1
-dG87IG1heC13aWR0aDogMTAwJTsgbWluLXdpZHRoOiBhdXRvOyBtaW4taGVpZ2h0OiBhdXRvOyBt
-YXJnaW46IDBweDsiIGFsdD0iMTYyMTUyNzk0Mjg0MiIgZGF0YS1vdXRsb29rLXRyYWNlPSJGOjF8
-VDoxIiBzcmM9ImNpZDoxMTNiNDcwYy1hMTVhLTQ2YjQtYTA0Yi04OWVkZjMyODI4ZTAiPjwvc3Bh
-bj48L3A+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGlj
-YSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xh
-c3M9ImVsZW1lbnRUb1Byb29mIj4NCjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2Io
-MjU1LCAyNTUsIDI1NSk7Ij48YnI+DQo8L3NwYW4+PC9kaXY+DQo8L2Rpdj4NCjxkaXYgaWQ9ImFw
-cGVuZG9uc2VuZCI+PC9kaXY+DQo8ZGl2Pjxicj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpOyB0ZXh0LWFsaWduOiBsZWZ0OyBjb2xvcjogcmdiKDAsIDAsIDApOyBtYXJnaW4tbGVm
-dDogNXB0OyBmb250LXNpemU6IDhwdDsiPg0KVURSSSBQcm9wcmlldGFyeSAtIFVucHJvdGVjdGVk
-PC9kaXY+DQo8L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTgl
-IiB0YWJpbmRleD0iLTEiPg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250
-IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIHN0eWxlPSJmb250LXNpemU6MTFwdCIgY29sb3I9
-IiMwMDAwMDAiPjxiPkZyb206PC9iPiBNYXJ0aW4gQnJhdW4gJmx0O21hcnRpbi5icmF1bkBldHR1
-cy5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBNYXJjaCAyNiwgMjAyNiA5OjMw
-IEFNPGJyPg0KPGI+Q2M6PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSAmbHQ7dXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFtVU1JQLXVzZXJz
-XSBSZTogWDMxMCBQcmVjaXNlIFRyYW5zbWl0IENvbnRyb2w8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwv
-ZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojRkZFQjlD
-OyB3aWR0aDoxMDAlOyBib3JkZXItc3R5bGU6c29saWQ7IGJvcmRlci1jb2xvcjojOUM2NTAwOyBi
-b3JkZXItd2lkdGg6MXB0OyBwYWRkaW5nOjJwdDsgZm9udC1zaXplOjEwcHQ7IGxpbmUtaGVpZ2h0
-OjEycHQ7IGZvbnQtZmFtaWx5OidDYWxpYnJpJzsgY29sb3I6QmxhY2s7IHRleHQtYWxpZ246bGVm
-dCI+DQo8c3BhbiBzdHlsZT0iY29sb3I6IzlDNjUwMDsgZm9udC13ZWlnaHQ6Ym9sZCI+Q0FVVElP
-Tjo8L3NwYW4+IFRoaXMgZW1haWwgb3JpZ2luYXRlZCBmcm9tIG91dHNpZGUgb2YgdGhlIG9yZ2Fu
-aXphdGlvbi4gRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlv
-dSByZWNvZ25pemUgdGhlIHNlbmRlciBhbmQga25vdyB0aGUgY29udGVudCBpcyBzYWZlLjwvZGl2
-Pg0KPGJyPg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj5Tb21lIGFkZGl0aW9uYWwgY29t
-bWVudHM6PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4tIFlvdSBjYW4gcHJvYmFibHkg
-aWdub3JlIEVPVjwvZGl2Pg0KPGRpdj4tIElmIHlvdSBkbyB1c2UgRU9WLCBub3RlIHRoYXQgaXQg
-aXMgdHJlYXRlZCBkaWZmZXJlbnRseSB0aGFuIEVPQiBpbiBzb21lIHBsYWNlcy4gRm9yIGV4YW1w
-bGUsIHRoZSByZWN2KCkgY2FsbCAoaW4gc29mdHdhcmUpIHdpbGwgdGVybWluYXRlIGltbWVkaWF0
-ZWx5IHdoZW4gaXQgc2VlcyBhbiBFT0IsIGJ1dCB5b3UgY2FuIGhhdmUgbXVsdGlwbGUgRU9WcyBp
-biBhIHNpbmdsZSBidXJzdCAoc28gZnJvbSB0aGF0IHJlY3YoKSBjYWxsLCB5b3UNCiBjYW4gbmV2
-ZXIgaGF2ZSBtb3JlIHRoYW4gb25lIEVPQiwgYnV0IGFueSBudW1iZXIgb2YgRU9WcykuPC9kaXY+
-DQo8ZGl2Pi0gSWYgeW91IGNvbWUgZnJvbSBhIHN0cmljdCBGUEdBIGJhY2tncm91bmQsIGl0J3Mg
-aW1wb3J0YW50IHRvIGdldCBiZWhpbmQgdGhlICZxdW90O25ldHdvcmsgb24gY2hpcCZxdW90OyBw
-YXJ0IG9mIFJGTm9DLiBZb3VyIGNsb2NrcyBkb24ndCByZWFsbHkgbWF0dGVyIGhlcmUuIFdoYXQg
-bWF0dGVycyBpcywgd2hlbiB0aGUgcmFkaW8gZ2V0cyBhIENIRFIgcGFja2V0LCBpdCB3aWxsIHJl
-YWQgdGhlIHRpbWVzdGFtcCBhbmQgY29tcGFyZSBpdCBhZ2FpbnN0IHRoZQ0KIGNvcnJlc3BvbmRp
-bmcgdGltZXIuIFdoZW4gYSBDSERSIHBhY2tldCBsZWF2ZXMgb25lIGJsb2NrLCB5b3Ugc2hvdWxk
-bid0IGNhcmUgKGF0IGRlc2lnbiB0aW1lKSBpZiB0aGUgbmV4dCBibG9jayBpcyByaWdodCBuZXh0
-IHRvIGl0LCBvciAxMDAga20gYXdheSBvdmVyIGFuIEV0aGVybmV0IGxpbmUuIEknbSBleGFnZ2Vy
-YXRpbmcsIGJ1dCBJIGhvcGUgdGhpcyBoZWxwcyB1bmRlcnN0YW5kJm5ic3A7dGhpcyBjb25jZXB0
-LjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+LS1NPC9kaXY+DQo8L2Rpdj4NCjxicj4N
-CjxkaXYgY2xhc3M9InhfZ21haWxfcXVvdGUgeF9nbWFpbF9xdW90ZV9jb250YWluZXIiPg0KPGRp
-diBkaXI9Imx0ciIgY2xhc3M9InhfZ21haWxfYXR0ciI+T24gV2VkLCBNYXIgMjUsIDIwMjYgYXQg
-OTo1NuKAr1BNIEJyaWFuIFBhZGFsaW5vICZsdDs8YSBocmVmPSJtYWlsdG86YnBhZGFsaW5vQGdt
-YWlsLmNvbSI+YnBhZGFsaW5vQGdtYWlsLmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj4NCjwvZGl2Pg0K
-PGJsb2NrcXVvdGUgY2xhc3M9InhfZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4IDBweCAw
-cHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwyMDQpOyBwYWRkaW5n
-LWxlZnQ6MWV4Ij4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+PGJyPg0KPC9kaXY+
-DQo8YnI+DQo8ZGl2IGNsYXNzPSJ4X2dtYWlsX3F1b3RlIj4NCjxkaXYgZGlyPSJsdHIiIGNsYXNz
-PSJ4X2dtYWlsX2F0dHIiPk9uIFdlZCwgTWFyIDI1LCAyMDI2IGF0IDQ6NDHigK9QTSBCYXJuYXJk
-LCBNaWNoYWVsIFQgJmx0OzxhIGhyZWY9Im1haWx0bzpNaWNoYWVsLkJhcm5hcmRAdWRyaS51ZGF5
-dG9uLmVkdSIgdGFyZ2V0PSJfYmxhbmsiPk1pY2hhZWwuQmFybmFyZEB1ZHJpLnVkYXl0b24uZWR1
-PC9hPiZndDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBjbGFzcz0ieF9nbWFpbF9x
-dW90ZSIgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNv
-bGlkIHJnYigyMDQsMjA0LDIwNCk7IHBhZGRpbmctbGVmdDoxZXgiPg0KPGRpdj4NCjxkaXYgZGly
-PSJsdHIiPg0KPGRpdiBpZD0ieF9tXy02MjM1ODY1NTE1NzM0MjE0MDM5bV8yMzY4MzAyMzkxMDEw
-MzE1NzEzYm9keURpc3BsYXkiPg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDoxZW07IG1hcmdpbi1i
-b3R0b206MWVtOyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNG
-b250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsg
-Y29sb3I6cmdiKDAsMCwwKSI+DQpJIGFtIGEgRlBHQSBkZXZlbG9wZXIgd29ya2luZyBpbiBWZXJp
-bG9nIHdpdGggYW4gWDMxMCB3cml0aW5nIGNvZGUgaW4gYSBjdXN0b20gUkZOb0MgYmxvY2suJm5i
-c3A7SSByZWNlbnRseSBnb3QgaW5kZXBlbmRlbnQgc3RyZWFtaW5nIGNvbnRyb2wgd29ya2luZyB0
-byBvdXRwdXQgc2FtcGxlcyBhdCBteSBkaXNjcmV0aW9uIHRvIGEgc3RyZWFtaW5nIGVuZHBvaW50
-IHRoZW4gdGhyb3VnaCB0aGUgY3Jvc3MgYmFyIGJ1dCBJIGRvIGhhdmUgc29tZSBxdWVzdGlvbnMN
-CiBvbiBwYXJ0cyBvZiB0aGUgY29udHJvbCBiZWhhdmlvci4mbmJzcDs8L2Rpdj4NCjxkaXYgc3R5
-bGU9Im1hcmdpbi10b3A6MWVtOyBtYXJnaW4tYm90dG9tOjFlbTsgZm9udC1mYW1pbHk6QXB0b3Ms
-QXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Es
-c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSXTigJlzIG5v
-dCBjbGVhciB0byBtZSB3aGF0IHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gRW5kIG9mIEJ1cnN0IChF
-T0IpIGFuZCBFbmQgb2YgVmVjdG9yIChFT1YpIGlzIG9yIHdoZW4gSSBuZWVkIHRvIHVzZSBvbmUg
-b3IgdGhlIG90aGVyLiBNeSBjdXJyZW50IGRlc2lnbiBvbmx5IHVzZXMgRU9CIG9uIHRoZSBsYXN0
-IGRhdGEgcGFja2V0IHdoaWxlIEVPViBpcyBhbHdheXMgc2V0IHRvIDAuIEnigJltIGdldHRpbmcg
-dW5kZXJmbG93IGVycm9ycyBvY2Nhc2lvbmFsbHkNCiBidXQgSSBjYW7igJl0IGNvbmZpZGVudGx5
-IHNheSB3aGljaCBwYWNrZXRzIHRoZXnigJlyZSBhc3NvY2lhdGVkIHdpdGguIEkgYWxzbyBuZWVk
-IHRvIHNlbmQgYSBzZWNvbmQgcGFja2V0IHdpdGggRU9CIGhpZ2ggdG8gZmx1c2ggdGhlIGZpcnN0
-IHBhY2tldCBvdXQgb2YgdGhlIGJ1ZmZlcjsgbXkgZ3Vlc3Mgd291bGQgYmUgdGhhdCB0aGUgZmly
-c3QgRU9CIHdvdWxkIGZvcmNlIGEgYnVmZmVyIGZsdXNoLiBJcyB0aGVyZSBhbnkgJm5ic3A7PC9k
-aXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2PkVPViB3YXMg
-YWRkZWQgZm9yIHdoZW4geW91ciBkYXRhIG1pZ2h0IGJlIHRvbyBsYXJnZSBmb3IgYSBzaW5nbGUg
-Q0hEUiBwYWNrZXQuIFRoaW5rIGxpa2UgYSAxNjM4NCBzYW1wbGUgRkZUIGZyYW1lIC0gaXQgY2Fu
-J3QgZml0IGluc2lkZSBhIHNpbmdsZSBDSERSIHBhY2tldCwgc28gRU9WIGlzIHVzZWQuPC9kaXY+
-DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPGJsb2NrcXVvdGUgY2xhc3M9InhfZ21haWxfcXVvdGUiIHN0
-eWxlPSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2Io
-MjA0LDIwNCwyMDQpOyBwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRyIj4N
-CjxkaXYgaWQ9InhfbV8tNjIzNTg2NTUxNTczNDIxNDAzOW1fMjM2ODMwMjM5MTAxMDMxNTcxM2Jv
-ZHlEaXNwbGF5Ij4NCjxkaXYgc3R5bGU9Im1hcmdpbi10b3A6MWVtOyBtYXJnaW4tYm90dG9tOjFl
-bTsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZp
-Y2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJn
-YigwLDAsMCkiPg0KSeKAmW0gYWxzbyB3b25kZXJpbmcgaWYgdGhlcmUgaXMgYSB3YXkgdG8gcHJl
-Y2lzZWx5IHNjaGVkdWxlIHNhbXBsZXMgb3IgcGFja2V0cyBmb3IgdHJhbnNtaXQgb3V0IG9mIHRo
-ZSByYWRpby4gSeKAmXZlIG9ic2VydmVkIHRoYXQgYmVjYXVzZSB0aGUgZGF0YSBpcyBwcm9jZXNz
-ZWQgYXQgfjIxNSBNSHogaW4gdGhlIFJGTm9DIGJsb2NrIGFuZCBmZWQgaW50byB0aGUgREFDIGF0
-IDIwMCBNSHogcGF1c2VzIGhhdmUgdG8gYmUgaW5jbHVkZWQgYmV0d2VlbiBlYWNoDQogcGFja2V0
-IHRvIHByZXZlbnQgb3ZlcmZpbGxpbmcgdGhlIHRyYW5zbWl0IGJ1ZmZlciBidXQgdGhpcyBhbHNv
-IG1lYW5zIHRoYXQgYSB0aW1pbmcgaW4gdGhlIDIxNSBNSHogZG9tYWluIG1heSBub3QgYmUgcmVm
-bGVjdGVkIGluIHRoZSAyMDAgTUh6IGRvbWFpbi4gSXMgdGhlcmUgYSB3YXkgdG8gdGVsbCB0aGUg
-dHJhbnNtaXQgbG9naWMvZnJvbnQgZW5kIHRvIHN0YXJ0IHRyYW5zbWl0dGluZyBhdCBhIHBhcnRp
-Y3VsYXIgdGltZSBlaXRoZXIgaW4gdGhlDQogQ0hEUiBoZWFkZXIgb3IgdXNpbmcgdGhlIHRpbWVz
-dGFtcD8gT3IgYW0gSSBhdCB0aGUgbWVyY3kgb2YgdGhlIGZyb250IGVuZCBjb21wb25lbnRzIHdp
-dGhvdXQgYW55IGZpbmUgY29udHJvbCBvZiB0cmFuc21pdCB0aW1pbmc/Jm5ic3A7PC9kaXY+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2PlRoZSBDSERSIHdpdGgg
-VGltZXN0YW1wIGlzIHVzZWQgdGhlcmUuIFdoZW4gaXQncyB0aGUgZmlyc3QgcGFja2V0IGluIGEg
-YnVyc3QsIHRoYXQgdGltZSBpcyBjb21wYXJlZCBhZ2FpbnN0IHRoZSB0aW1lc3RhbXAgb2YgdGhl
-IHJhZGlvLiBJZiBpdCdzIGxhdGUsIHRoZW4gdGhlIHJhZGlvIHNldHMgYW4gZXJyb3IgY29uZGl0
-aW9uIHRoYXQgaXMgc2VudCBiYWNrIHRvIHRoZSBob3N0IGFuZCB0aGUgcmFkaW8gYmxvY2sgd2ls
-bCBjb25zdW1lDQogdGhlIHBhY2tldHMgYXMgZmFzdCBhcyBwb3NzaWJsZSB1bnRpbCBpdCBzZWVz
-IHRoZSBFT0IuIFRoZXJlIGFyZSBvdGhlciBtb2RlcyBvZiBvcGVyYXRpb24gZGVwZW5kaW5nIG9u
-IGhvdyB5b3Ugc2V0IHVwIHlvdXIgUkZOb0MgZ3JhcGggYXMgdG8gd2hhdCB0byBkbyBkdXJpbmcg
-dGhlc2UgZXJyb3IgY29uZGl0aW9ucy4gQ2hlY2sgdGhlIHN0YXRlIG1hY2hpbmUgaGVyZTo8L2Rp
-dj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PiZuYnNwOyZuYnNwOzxhIGhyZWY9Imh0dHBzOi8v
-dXJsZGVmZW5zZS51cy92Mi91cmw/dT1odHRwcy0zQV9fZ2l0aHViLmNvbV9FdHR1c1Jlc2VhcmNo
-X3VoZF9ibG9iX21hc3Rlcl9mcGdhX3VzcnAzX2xpYl9yZm5vY19ibG9ja3NfcmZub2MtNUZibG9j
-ay01RnJhZGlvX3JhZGlvLTVGdHgtNUZjb3JlLnYtMjNMMjk5JmFtcDtkPUR3TUZhUSZhbXA7Yz1w
-ZnREb1V5enZEZ05HVG9DMVRDMmZBWVRqYktQU3F2MENUV29OZGlrZkkwJmFtcDtyPV9ZTncxMlJl
-WTRIMzh0ejZMOWQxNFVJOUttREg0VFdtV280VHpKU2J4dzlTdUNxZHRLLUFULTI1OWtmeGVac2gm
-YW1wO209YlZ2dHFhdVBRS2t3T0Z5cDZwSWFxeW9uUWFzeTFvNDU2VXBKQXV3dlk4QVpPU3J2MjRT
-dWZXN3BKWlRFRklkUyZhbXA7cz1zdllXam1ybmN4TDRzSTFrbGxTOXJpVUR6dk8xdE5sYTd3c1Ja
-NjZfX0xjJmFtcDtlPSIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jl
-c2VhcmNoL3VoZC9ibG9iL21hc3Rlci9mcGdhL3VzcnAzL2xpYi9yZm5vYy9ibG9ja3MvcmZub2Nf
-YmxvY2tfcmFkaW8vcmFkaW9fdHhfY29yZS52I0wyOTkNCiBbZ2l0aHViLmNvbV08L2E+PC9kaXY+
-DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5BcyBmb3IgdGhlIHByb2Nlc3NpbmcgY2xvY2sgdmVy
-c3VzIHJhZGlvIGNsb2NrLCB5b3Ugc2hvdWxkIGJlIGFkaGVyaW5nIHRvIHRoZSBBWEkgc3RyZWFt
-aW5nIHRyZWFkeSBzaWduYWwgZm9yIGJhY2sgcHJlc3N1cmUuIFlvdSBjYW4gZmlsbCB1cCB0aGF0
-IHBpcGVsaW5lIGFuZCB0aGluZ3Mgc2hvdWxkIGJlIGZpbmUuPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
-ZGl2Pg0KPGRpdj5Hb29kIGx1Y2suPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5Ccmlh
-bjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0i
-bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
-YWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIg
-dGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PGJy
-Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9u
-dC1zaXplOjhwdDsgZm9udC1mYW1pbHk6ICdDYWxpYnJpJyxzYW5zLXNlcmlmOyI+DQo8aHI+DQpU
-aGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVu
-dHMgZnJvbSBVRFJJIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBhbmQvb3IgcHJvcHJpZXRhcnkg
-aW5mb3JtYXRpb24sIGFuZCBpcyBpbnRlbmRlZCBvbmx5IGZvciB0aGUgbmFtZWQgcmVjaXBpZW50
-IHRvIHdob20gaXQgd2FzIG9yaWdpbmFsbHkgYWRkcmVzc2VkLiBJZiB5b3UgYXJlIG5vdCB0aGUg
-aW50ZW5kZWQgcmVjaXBpZW50LCBhbnkgZGlzY2xvc3VyZSwNCiBkaXN0cmlidXRpb24sIG9yIGNv
-cHlpbmcgb2YgdGhpcyBlLW1haWwgb3IgaXRzIGF0dGFjaG1lbnRzIGlzIHN0cmljdGx5IHByb2hp
-Yml0ZWQuIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZS1tYWlsIGluIGVycm9yLCBwbGVhc2Ug
-bm90aWZ5IHRoZSBzZW5kZXIgaW1tZWRpYXRlbHkgYnkgcmV0dXJuIGUtbWFpbCBhbmQgcGVybWFu
-ZW50bHkgZGVsZXRlIHRoZSBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50cy48L2Rpdj4NCjwvYm9k
-eT4NCjwvaHRtbD4NCg==
+> Thanks for the insight; I've got a better handle on things now. I'm still
+> not sure where to get the timestamp value from. The processing doesn't
+> touch the host PC at all everything is contained in the FPGA. Is the
+> timestamp distributed to the cores or do I need to request the value from
+> somewhere else in the FPGA?
+>
+> *Michael Barnard*
+>
+> TL Computer Engineer, Scalable Computing Group
+>
+> Applied Sensing Division
+>
+>
+> 300 College Park, Dayton, OH 45469-0031
+>
+> O:(937) 713-4271 | C:(440) 622-6486 | udri.udayton.edu
+>
+> [image: 1621527942842]
+>
+>
+> UDRI Proprietary - Unprotected
+> ------------------------------
+> *From:* Martin Braun <martin.braun@ettus.com>
+> *Sent:* Thursday, March 26, 2026 9:30 AM
+> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] Re: X310 Precise Transmit Control
+>
+> CAUTION: This email originated from outside of the organization. Do not
+> click links or open attachments unless you recognize the sender and know
+> the content is safe.
+>
+> Some additional comments:
+>
+> - You can probably ignore EOV
+> - If you do use EOV, note that it is treated differently than EOB in some
+> places. For example, the recv() call (in software) will terminate
+> immediately when it sees an EOB, but you can have multiple EOVs in a sing=
+le
+> burst (so from that recv() call, you can never have more than one EOB, bu=
+t
+> any number of EOVs).
+> - If you come from a strict FPGA background, it's important to get behind
+> the "network on chip" part of RFNoC. Your clocks don't really matter here=
+.
+> What matters is, when the radio gets a CHDR packet, it will read the
+> timestamp and compare it against the corresponding timer. When a CHDR
+> packet leaves one block, you shouldn't care (at design time) if the next
+> block is right next to it, or 100 km away over an Ethernet line. I'm
+> exaggerating, but I hope this helps understand this concept.
+>
+> --M
+>
+> On Wed, Mar 25, 2026 at 9:56=E2=80=AFPM Brian Padalino <bpadalino@gmail.c=
+om>
+> wrote:
+>
+>
+>
+> On Wed, Mar 25, 2026 at 4:41=E2=80=AFPM Barnard, Michael T <
+> Michael.Barnard@udri.udayton.edu> wrote:
+>
+> I am a FPGA developer working in Verilog with an X310 writing code in a
+> custom RFNoC block. I recently got independent streaming control working =
+to
+> output samples at my discretion to a streaming endpoint then through the
+> cross bar but I do have some questions on parts of the control behavior.
+> It=E2=80=99s not clear to me what the difference between End of Burst (EO=
+B) and
+> End of Vector (EOV) is or when I need to use one or the other. My current
+> design only uses EOB on the last data packet while EOV is always set to 0=
+.
+> I=E2=80=99m getting underflow errors occasionally but I can=E2=80=99t con=
+fidently say which
+> packets they=E2=80=99re associated with. I also need to send a second pac=
+ket with
+> EOB high to flush the first packet out of the buffer; my guess would be
+> that the first EOB would force a buffer flush. Is there any
+>
+> EOV was added for when your data might be too large for a single CHDR
+> packet. Think like a 16384 sample FFT frame - it can't fit inside a singl=
+e
+> CHDR packet, so EOV is used.
+>
+>
+> I=E2=80=99m also wondering if there is a way to precisely schedule sample=
+s or
+> packets for transmit out of the radio. I=E2=80=99ve observed that because=
+ the data
+> is processed at ~215 MHz in the RFNoC block and fed into the DAC at 200 M=
+Hz
+> pauses have to be included between each packet to prevent overfilling the
+> transmit buffer but this also means that a timing in the 215 MHz domain m=
+ay
+> not be reflected in the 200 MHz domain. Is there a way to tell the transm=
+it
+> logic/front end to start transmitting at a particular time either in the
+> CHDR header or using the timestamp? Or am I at the mercy of the front end
+> components without any fine control of transmit timing?
+>
+> The CHDR with Timestamp is used there. When it's the first packet in a
+> burst, that time is compared against the timestamp of the radio. If it's
+> late, then the radio sets an error condition that is sent back to the hos=
+t
+> and the radio block will consume the packets as fast as possible until it
+> sees the EOB. There are other modes of operation depending on how you set
+> up your RFNoC graph as to what to do during these error conditions. Check
+> the state machine here:
+>
+>   https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/b=
+locks/rfnoc_block_radio/radio_tx_core.v#L299
+> [github.com]
+> <https://urldefense.us/v2/url?u=3Dhttps-3A__github.com_EttusResearch_uhd_=
+blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblock-5Fradio_radio-5Ftx-5F=
+core.v-23L299&d=3DDwMFaQ&c=3DpftDoUyzvDgNGToC1TC2fAYTjbKPSqv0CTWoNdikfI0&r=
+=3D_YNw12ReY4H38tz6L9d14UI9KmDH4TWmWo4TzJSbxw9SuCqdtK-AT-259kfxeZsh&m=3DbVv=
+tqauPQKkwOFyp6pIaqyonQasy1o456UpJAuwvY8AZOSrv24SufW7pJZTEFIdS&s=3DsvYWjmrnc=
+xL4sI1kllS9riUDzvO1tNla7wsRZ66__Lc&e=3D>
+>
+> As for the processing clock versus radio clock, you should be adhering to
+> the AXI streaming tready signal for back pressure. You can fill up that
+> pipeline and things should be fine.
+>
+> Good luck.
+>
+> Brian
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> ------------------------------
+> The information contained in this e-mail and any attachments from UDRI ma=
+y
+> contain confidential and/or proprietary information, and is intended only
+> for the named recipient to whom it was originally addressed. If you are n=
+ot
+> the intended recipient, any disclosure, distribution, or copying of this
+> e-mail or its attachments is strictly prohibited. If you have received th=
+is
+> e-mail in error, please notify the sender immediately by return e-mail an=
+d
+> permanently delete the e-mail and any attachments.
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---_000_PH1P110MB16176284D0E24DF6FA5BE84DD956APH1P110MB1617NAMP_--
+--000000000000c175b1064df20222
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---_004_PH1P110MB16176284D0E24DF6FA5BE84DD956APH1P110MB1617NAMP_
+<div dir=3D"ltr">Hi Michael,<div>Is this a &quot;repeater-like&quot; applic=
+ation where one or more receive channels is eventually routed back to one o=
+r more transmit channels?=C2=A0 If so, then you could use the time stamp fr=
+om the receive stream, add a delay that is &gt;=3D to the expected FPGA pro=
+cessing delay, and use that for the transmit time stamp.=C2=A0 For typical =
+operation using=C2=A0the UHD API, an application would typically ask UHD fo=
+r the current time, add a little time to account for command processing, an=
+d then use this time as the time stamp for transmit samples.=C2=A0 But, giv=
+en that you are operating completely on the FPGA, it is not obvious to me w=
+hat the purpose of your time stamp is (as opposed to immediate streaming wh=
+ich ignores=C2=A0time stamps).</div><div>Rob</div></div><br><div class=3D"g=
+mail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Thu, Mar 26, 2026 at 1:55=E2=80=AFPM Barnard, Michael T &lt;<a href=3D"mail=
+to:Michael.Barnard@udri.udayton.edu">Michael.Barnard@udri.udayton.edu</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div c=
+lass=3D"msg2832095692416456809">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Thanks for the insight; I&#39;ve got a better handle on things now. I&#39;m=
+ still not sure where to get the timestamp value from. The processing doesn=
+&#39;t touch the host PC at all everything is contained in the FPGA. Is the=
+ timestamp distributed to the cores or do I
+ need to request the value from somewhere else in the FPGA?</div>
+<div id=3D"m_2832095692416456809Signature">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
+x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
+<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:14pt;colo=
+r:rgb(0,0,0)"><b>Michael Barnard</b></span></p>
+<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
+x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
+<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;colo=
+r:rgb(117,123,128)">TL Computer Engineer, Scalable Computing Group</span></=
+p>
+<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
+x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
+<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
+r:rgb(117,123,128)">Applied Sensing Division</span></p>
+<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
+x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
+<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
+r:rgb(117,123,128)"><br>
+</span></p>
+<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
+x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
+<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
+r:rgb(117,123,128)">300 College Park, Dayton, OH 45469-0031</span></p>
+<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
+x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
+<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
+r:rgb(117,123,128)">O:(937) 713-4271 | C:(440) 622-6486 |
+<a style=3D"margin:0px" rel=3D"noopener noreferrer" id=3D"m_283209569241645=
+6809OWA86171a95-3d6c-d7f7-17e2-559527a12dfc" href=3D"http://udri.udayton.ed=
+u/" target=3D"_blank">
+udri.udayton.edu</a></span></p>
+<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
+x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
+<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
+r:rgb(117,123,128)"><img style=3D"height: auto; max-width: 100%; min-width:=
+ auto; min-height: auto; margin: 0px;" alt=3D"1621527942842" src=3D"cid:ii_=
+19d2b818de9cf2d7edc1"></span></p>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<span style=3D"background-color:rgb(255,255,255)"><br>
+</span></div>
+</div>
+<div id=3D"m_2832095692416456809appendonsend"></div>
+<div><br>
+<div style=3D"font-family:Calibri;text-align:left;color:rgb(0,0,0);margin-l=
+eft:5pt;font-size:8pt">
+UDRI Proprietary - Unprotected</div>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_2832095692416456809divRplyFwdMsg" dir=3D"ltr"><font face=3D"Ca=
+libri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> =
+Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank=
+">martin.braun@ettus.com</a>&gt;<br>
+<b>Sent:</b> Thursday, March 26, 2026 9:30 AM<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> [USRP-users] Re: X310 Precise Transmit Control</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div style=3D"background-color:rgb(255,235,156);width:100%;border-style:sol=
+id;border-color:rgb(156,101,0);border-width:1pt;padding:2pt;font-size:10pt;=
+line-height:12pt;font-family:Calibri;color:black;text-align:left">
+<span style=3D"color:rgb(156,101,0);font-weight:bold">CAUTION:</span> This =
+email originated from outside of the organization. Do not click links or op=
+en attachments unless you recognize the sender and know the content is safe=
+.</div>
+<br>
+<div>
+<div dir=3D"ltr">
+<div>Some additional comments:</div>
+<div><br>
+</div>
+<div>- You can probably ignore EOV</div>
+<div>- If you do use EOV, note that it is treated differently than EOB in s=
+ome places. For example, the recv() call (in software) will terminate immed=
+iately when it sees an EOB, but you can have multiple EOVs in a single burs=
+t (so from that recv() call, you
+ can never have more than one EOB, but any number of EOVs).</div>
+<div>- If you come from a strict FPGA background, it&#39;s important to get=
+ behind the &quot;network on chip&quot; part of RFNoC. Your clocks don&#39;=
+t really matter here. What matters is, when the radio gets a CHDR packet, i=
+t will read the timestamp and compare it against the
+ corresponding timer. When a CHDR packet leaves one block, you shouldn&#39;=
+t care (at design time) if the next block is right next to it, or 100 km aw=
+ay over an Ethernet line. I&#39;m exaggerating, but I hope this helps under=
+stand=C2=A0this concept.</div>
+<div><br>
+</div>
+<div>--M</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Wed, Mar 25, 2026 at 9:56=E2=80=AFPM Brian Padalino &lt=
+;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.c=
+om</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div dir=3D"ltr">
+<div dir=3D"ltr"><br>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Wed, Mar 25, 2026 at 4:41=E2=80=AFPM Barnard, Michael T=
+ &lt;<a href=3D"mailto:Michael.Barnard@udri.udayton.edu" target=3D"_blank">=
+Michael.Barnard@udri.udayton.edu</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div id=3D"m_2832095692416456809x_m_-6235865515734214039m_23683023910103157=
+13bodyDisplay">
+<div style=3D"margin-top:1em;margin-bottom:1em;font-family:Aptos,Aptos_Embe=
+ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
+lor:rgb(0,0,0)">
+I am a FPGA developer working in Verilog with an X310 writing code in a cus=
+tom RFNoC block.=C2=A0I recently got independent streaming control working =
+to output samples at my discretion to a streaming endpoint then through the=
+ cross bar but I do have some questions
+ on parts of the control behavior.=C2=A0</div>
+<div style=3D"margin-top:1em;margin-bottom:1em;font-family:Aptos,Aptos_Embe=
+ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
+lor:rgb(0,0,0)">
+It=E2=80=99s not clear to me what the difference between End of Burst (EOB)=
+ and End of Vector (EOV) is or when I need to use one or the other. My curr=
+ent design only uses EOB on the last data packet while EOV is always set to=
+ 0. I=E2=80=99m getting underflow errors occasionally
+ but I can=E2=80=99t confidently say which packets they=E2=80=99re associat=
+ed with. I also need to send a second packet with EOB high to flush the fir=
+st packet out of the buffer; my guess would be that the first EOB would for=
+ce a buffer flush. Is there any =C2=A0</div>
+</div>
+</div>
+</div>
+</blockquote>
+<div>EOV was added for when your data might be too large for a single CHDR =
+packet. Think like a 16384 sample FFT frame - it can&#39;t fit inside a sin=
+gle CHDR packet, so EOV is used.</div>
+<div>=C2=A0</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div id=3D"m_2832095692416456809x_m_-6235865515734214039m_23683023910103157=
+13bodyDisplay">
+<div style=3D"margin-top:1em;margin-bottom:1em;font-family:Aptos,Aptos_Embe=
+ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
+lor:rgb(0,0,0)">
+I=E2=80=99m also wondering if there is a way to precisely schedule samples =
+or packets for transmit out of the radio. I=E2=80=99ve observed that becaus=
+e the data is processed at ~215 MHz in the RFNoC block and fed into the DAC=
+ at 200 MHz pauses have to be included between each
+ packet to prevent overfilling the transmit buffer but this also means that=
+ a timing in the 215 MHz domain may not be reflected in the 200 MHz domain.=
+ Is there a way to tell the transmit logic/front end to start transmitting =
+at a particular time either in the
+ CHDR header or using the timestamp? Or am I at the mercy of the front end =
+components without any fine control of transmit timing?=C2=A0</div>
+</div>
+</div>
+</div>
+</blockquote>
+<div>The CHDR with Timestamp is used there. When it&#39;s the first packet =
+in a burst, that time is compared against the timestamp of the radio. If it=
+&#39;s late, then the radio sets an error condition that is sent back to th=
+e host and the radio block will consume
+ the packets as fast as possible until it sees the EOB. There are other mod=
+es of operation depending on how you set up your RFNoC graph as to what to =
+do during these error conditions. Check the state machine here:</div>
+<div><br>
+</div>
+<div>=C2=A0=C2=A0<a href=3D"https://urldefense.us/v2/url?u=3Dhttps-3A__gith=
+ub.com_EttusResearch_uhd_blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fbl=
+ock-5Fradio_radio-5Ftx-5Fcore.v-23L299&amp;d=3DDwMFaQ&amp;c=3DpftDoUyzvDgNG=
+ToC1TC2fAYTjbKPSqv0CTWoNdikfI0&amp;r=3D_YNw12ReY4H38tz6L9d14UI9KmDH4TWmWo4T=
+zJSbxw9SuCqdtK-AT-259kfxeZsh&amp;m=3DbVvtqauPQKkwOFyp6pIaqyonQasy1o456UpJAu=
+wvY8AZOSrv24SufW7pJZTEFIdS&amp;s=3DsvYWjmrncxL4sI1kllS9riUDzvO1tNla7wsRZ66_=
+_Lc&amp;e=3D" target=3D"_blank">https://github.com/EttusResearch/uhd/blob/m=
+aster/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_tx_core.v#L299
+ [github.com]</a></div>
+<div><br>
+</div>
+<div>As for the processing clock versus radio clock, you should be adhering=
+ to the AXI streaming tready signal for back pressure. You can fill up that=
+ pipeline and things should be fine.</div>
+<div><br>
+</div>
+<div>Good luck.</div>
+<div><br>
+</div>
+<div>Brian</div>
+</div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+</blockquote>
+</div>
+</div>
+</div>
+<div style=3D"font-size:8pt;font-family:Calibri,sans-serif">
+<hr>
+The information contained in this e-mail and any attachments from UDRI may =
+contain confidential and/or proprietary information, and is intended only f=
+or the named recipient to whom it was originally addressed. If you are not =
+the intended recipient, any disclosure,
+ distribution, or copying of this e-mail or its attachments is strictly pro=
+hibited. If you have received this e-mail in error, please notify the sende=
+r immediately by return e-mail and permanently delete the e-mail and any at=
+tachments.</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--000000000000c175b1064df20222--
+
+--000000000000c175b2064df20223
 Content-Type: image/png; name="Outlook-1621527942.png"
-Content-Description: Outlook-1621527942.png
-Content-Disposition: inline; filename="Outlook-1621527942.png"; size=18557;
-	creation-date="Thu, 26 Mar 2026 17:54:59 GMT";
-	modification-date="Thu, 26 Mar 2026 17:54:59 GMT"
-Content-ID: <113b470c-a15a-46b4-a04b-89edf32828e0>
+Content-Disposition: inline; filename="Outlook-1621527942.png"
 Content-Transfer-Encoding: base64
+Content-ID: <ii_19d2b818de9cf2d7edc1>
+X-Attachment-Id: ii_19d2b818de9cf2d7edc1
 
 iVBORw0KGgoAAAANSUhEUgAAANgAAAAvCAYAAACBtwRMAAAAAXNSR0IArs4c6QAAIABJREFUeF7s
 vXeUVWXy7v/Z8aTO3dDkYEIwB8wZFUdARQXDKIKKYAADoKIgSBAEVFSSAQNgQJBgQsUcUHF0dAwz
@@ -836,10 +920,9 @@ XXk9+Sd2EboNKFdswfafkwQksrQITYftGYael9Vy6c5NLocnec9RgBkoPTeJji4yds5soosuJ5Pk
 NGq13xxDsn39OEkl/PUlrJby1197iCtgqLBfKbtAVSyebekYGuJMjPH4Gvof30Dy9CuoniFtciJm
 m6GEVIeiqNV+Srgy6Krhkm1nWRvLRFhT28kdP4HsybOwp5+ttTmyQImEX4SGAv4KnCkOT9LRHO4W
 1/Du9ZfWK3BoK/Afv/q0Dz6vlvUAAAAASUVORK5CYII=
+--000000000000c175b2064df20223--
 
---_004_PH1P110MB16176284D0E24DF6FA5BE84DD956APH1P110MB1617NAMP_--
-
---===============0930467195067885265==
+--===============7461402767145676191==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -849,4 +932,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0930467195067885265==--
+--===============7461402767145676191==--
