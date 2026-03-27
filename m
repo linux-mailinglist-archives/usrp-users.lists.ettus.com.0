@@ -2,911 +2,705 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHTLJ9OSxWlG/QQAu9opvQ
+	id wNPHIaR4xmnwKgUAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 21:10:59 +0100
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Mar 2026 13:31:32 +0100
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F3033B473
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 21:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DDF1344385
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Mar 2026 13:31:31 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0F8613866F7
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Mar 2026 16:05:12 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3DCDE3867BC
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Mar 2026 08:31:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1774555512; bh=gonLOZ+O24KQN0MTFT/MKVqNkvCMl8MD9vLh7Kt5ycY=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	t=1774614690; bh=YI9iiNsV4Vl8UwziSXE+sq7GiPQDb2+a2lcVbhfQ5cU=;
+	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
 	 From;
-	b=H6wTVIiy9EDzaoMrDOdccWcPFnX6Y8NNqry4Af6v2UmroGO5//d23GUZPxlnqZY5V
-	 vg/1ZjOXANQdvy4XsMcfxCI6AcSj9uy2YnM3/rb5mQWQmRin8RuUMLoUPMmcXhK2/u
-	 9FgtgS/7hx1ARXem3TEghaMQZzwb71A0wH8OrBxXF9JxN1bYcLX7SF/o9BpKIrvjId
-	 yAbTd+Aiq8G7ThcYiYxI2vDHF8fViCYq9QkZhVBA0ZP68aJyjWRCQYwg4ABZWyg1RH
-	 au6xEZhfkXSF+BrB3GFljwMI842JLuYrbvwNhSYE2iTfltj7T/NH0gl1fWcR/KAA6M
-	 bHm+fwpfF9arQ==
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9AC70386217
-	for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 16:04:31 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20230601.gappssmtp.com header.i=@ettus-com.20230601.gappssmtp.com header.b="IqL+I/Gt";
-	dkim-atps=neutral
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-89a6ac6f389so15610246d6.3
-        for <usrp-users@lists.ettus.com>; Thu, 26 Mar 2026 13:04:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774555471; cv=none;
-        d=google.com; s=arc-20240605;
-        b=NILyu2CKk1WMpPD46H0qNfb3trhEL9RcleRrG03aF3GNvfilVjfLnTUONR29NxhPhY
-         uTcYwHLvoM3FUmQ75uTf1pi1s7Bb1gtuhMThPP1cjNGB1IfIU9BGdqnjYOTaGfHYeQyV
-         RKT/O32+3NCjZeeSA2EorVheOzQlY32xxgZfAA5v7SXOdAieL1xe0RCep6FRXP122Cg4
-         v/2tV8nDvRDbfZq/AlRXL3iDTaNyIkEWKH2BJat5lFMGaNGAl4RmB8AbbagC+NHbPdK9
-         V+8nfC8nx4aUAeVcjx4qqaB9akBNYopepOl88OPevgEaVUORrRtSnlHbcp0i+XlpU+BH
-         waWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=B3zJCv/PEEab1RS+LiAk9dktafVJU7h1sBCt7jdphnw=;
-        fh=1adcuLN4VePyAip7Shvc4XVYUZRXr323UxdtkoipyMM=;
-        b=hEqVjrp336wGjz5SOnyJrMhO3lRn0DA+nHxdWl6sgQ8tlqllLsL0yTN/1pNMbt5B+k
-         d832Dvhf+VhZ69xz9ZTXxeCN/0ogzdRXxLizvS0XTWKcASF8F7zajhkBquOKf4w43Qyk
-         xnnAumUSWMC/y4fMH/biZgD8WD/rQrs/XTjNDCrrFppxJrvi3ZGJKONA8L0mFUZpLdBw
-         jYp0sRnlJYFn2I5bgPlqVhdvc9pQcJBqf868JCZaz8G3zOqTbQ90jIkBDjJQYKAmO7+E
-         JGtiOFc2PxcktChu/kj6Kun+U3eQsTmSYYfafTBuV8ylc32thgZNpM2qKZJip7ObX7N9
-         NvGQ==;
-        darn=lists.ettus.com
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20230601.gappssmtp.com; s=20230601; t=1774555471; x=1775160271; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B3zJCv/PEEab1RS+LiAk9dktafVJU7h1sBCt7jdphnw=;
-        b=IqL+I/Gt6mQ2dH2Q97UGOwPnH3mP3uFm2GPGLpfazU839mwQ2lK5jUrjKP3eRoU4CR
-         cjz1unSs0LmlCsyKlUKKqwZWRrO2NZTNtfTeHWBu/S7z/90+08W30nZudlr0wYr74Wr/
-         6PjVyTKPpFM2mJtEuMhsruaQ21ufhRudqj87Xm84GkP07rq7T0dbjbYx3oLiXsB3IbML
-         rDeFicpltbUQbYTAkVEEdJQW+fjm0qXPsCtRCo67lwxLKapStBP9w/uL9G9mQGeEeHY9
-         AF9z5y32czqaUCQRhpbmFHwJDRXZeo/18Sdau44XVZcu0qCQ/NHbQ2VwXZmRTOhjhfGi
-         U2ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774555471; x=1775160271;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B3zJCv/PEEab1RS+LiAk9dktafVJU7h1sBCt7jdphnw=;
-        b=Lcj/twuJ2F6aEWGR42WYNzVdwvM4F1vkn/cCUs5tgyAv/o0i1viGYXzPwReIr5/4S9
-         X++v6WhZaXbFHsQsLHN4IgvnI3Ts93e0akS4/0e0OU1vPDNV/okHoKkzhUfTEBz7juBe
-         VuKI4MPLFJ+fRdBpZ2R1q0XB94szK9VnKxBzZX8/dXHNFpQUpb9IwYTDpxppcUePEmHA
-         yhyZUNu4gl49UGV+SE6rvrkfx+aqFQ+lUJqebOtCfxjzmp+0yrmevIVyUMmovjxunfkU
-         YfJ3QreOyL5Ff4PJF+rC6SnJK3TwDiFV2g+xMLDTJYeIM1xBwQxCyM3MjJRBktx7PCYg
-         c7VQ==
-X-Gm-Message-State: AOJu0Ywudu8GSeQ5gVVpAlwkYiuNOl19W3LB0fOG7M0i/Z8BrSZ4GkKW
-	i+jhwj6r9nu+AZt0NxccknNEp56sxpkDBZQC40NKoaKN8v4dj+kstP5T4Gxfe1gcv19PsPOtkx+
-	6tpxx3gd7DCk5kiQlWIzvfwOAfjyXI28eD50HQc0YIzIipcH4xzZuQHY=
-X-Gm-Gg: ATEYQzzFpLH5d/3DWAkVUiPBgr4gaee92511XyYVq3NWOjyImteEwEIaINVYxoRRhaq
-	HM/iaBNIpMOi3IzbjYXvengNt7y+csxIMUM4r3OLtl7yf3adBGG53j2YLMEdLMVToB97N05YDjj
-	cq5HVaaz4/bcO++TLc9a0RVWrmhAAsRytF63A8dQYa8NmbgOjB2Gb5nVRxp1ieJ/R/O36UZ5tiD
-	tCz3uYhLzCoam2cYQVh0ctxkLA5xAHegbxPhwIo0elts0EBCd8B1xCMY+AHluelOQm7YhozETS1
-	T6aPpxKUM9n+pLpBzwTkmoSu8mFvS0gE7eUzXFw=
-X-Received: by 2002:a05:6214:3d02:b0:89c:9c8d:e985 with SMTP id
- 6a1803df08f44-89cc49f1f40mr127532666d6.27.1774555470403; Thu, 26 Mar 2026
- 13:04:30 -0700 (PDT)
+	b=AFBgbMQLeLXocj9KyC9/xa1J2fwim0JKZmJZh3twPaEuSuOoPDr1DFxcVHDkIqdry
+	 EgT/QrWUzvhFjDdBWo2DKzsyq9/ePZVeZgOW3YOeHDjuKa4QxKRUP9pL9hCUa7jx8X
+	 Mmb3nKDli5X9mWVY7j6XAMpfopLVAsQPFLr3EQcpH++SAEjp+8G2NGvw62zsQUjhdd
+	 dVktcq0hOOxZhElcLlKm6kiNQJS3CdMcP0B41E8LqSDKq+HhjVcsur5YgoIP+L8uOx
+	 G3t5r4QIYd4xy+dhi/p0CUNqv9aZCUD7Qew5Kugl5p2FiDxeLqmaiqDKz50jgN3dAj
+	 WXoorL6WtxVmA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 5525F38661C
+	for <usrp-users@lists.ettus.com>; Fri, 27 Mar 2026 08:30:49 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1774614649; bh=voDUIukqezsl11z+SamCieTUY7jmXdo3Qi/2o8FlOFU=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=QnIaLGt11VnSNGwHy/LkNzsgHqpSna/BbMPlDHQzn0Ahte1ATwfKo/Fg5ar0EKQ+n
+	 bNzvo9Is9tZ7v7Zd3jbKIf/waaGp8PGwJVZzrMxRDoh5rOWhscLLzCmHdcwG/WtcNa
+	 TWZSwpUAWnBiFunFViRxg4XFR4h5yE3ftOkj0gTRzEXQcGWkJNZm1AEdYwl+fDVi76
+	 CutxF6VTjHhGcrK2bSk+sZYRgaOxwDetkp8s2yd4Ze0HU1IlmGlvfVVL8S63+wPO0R
+	 q94D93ZU5ms4SssV8u9We1F/DxWDf0y/QHNlirPdnm5BhCmOf48p3NujP8y8iMhHCN
+	 OpfXzo5ZPtlLg==
+Date: Fri, 27 Mar 2026 12:30:49 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <L1S2fdxYLRks4vqNMkNlaav8DDV59DD6TzPnhYJM8ao@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAFOi1A4hpBPBZszUf+-AG+o=_H8nrqSQCE4-GGy9fWPJeG+y8Q@mail.gmail.com
 MIME-Version: 1.0
-References: <PH1P110MB16176765322CF5BB7B44FA71D949A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
- <CAEXYVK5uEmwy2X9wx0eKUfWw+J8N5fPv6fjB_NE+uqCgkgHNTQ@mail.gmail.com>
- <CAFOi1A4H0OTnc=kY5cwCUN3J9dkvaMGFb1r7FGCvMQwV7hQELg@mail.gmail.com> <PH1P110MB16176284D0E24DF6FA5BE84DD956A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
-In-Reply-To: <PH1P110MB16176284D0E24DF6FA5BE84DD956A@PH1P110MB1617.NAMP110.PROD.OUTLOOK.COM>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Thu, 26 Mar 2026 21:04:17 +0100
-X-Gm-Features: AQROBzAmWgXSZoxqsOkQKtk6Psni6jLho2KQf_lOtAOUEkOHj_1pmAim8Xfo0ZY
-Message-ID: <CAFOi1A4hpBPBZszUf+-AG+o=_H8nrqSQCE4-GGy9fWPJeG+y8Q@mail.gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: K5MSTSB6RCKIOV6RYMQV6CC2ILRKZYDK
-X-Message-ID-Hash: K5MSTSB6RCKIOV6RYMQV6CC2ILRKZYDK
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: QLVMXIWDPKVMZ3T4J7XTCJKM7UJNW52Y
+X-Message-ID-Hash: QLVMXIWDPKVMZ3T4J7XTCJKM7UJNW52Y
+X-MailFrom: niels.steffen.garibaldi@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X310 Precise Transmit Control
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K5MSTSB6RCKIOV6RYMQV6CC2ILRKZYDK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QLVMXIWDPKVMZ3T4J7XTCJKM7UJNW52Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3276467606757243104=="
-X-Spamd-Result: default: False [4.49 / 15.00];
-	MISSING_TO(2.00)[];
-	PHISHING(2.00)[github.com->urldefense.us];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
+From: "niels.steffen.garibaldi--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: niels.steffen.garibaldi@emerson.com
+Content-Type: multipart/mixed; boundary="===============8481768741659102632=="
+X-Spamd-Result: default: False [-0.51 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
-	MIME_GOOD(-0.10)[multipart/mixed,multipart/related,multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	HAS_PHPMAILER_SIG(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	GREYLIST(0.00)[pass,body];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
-	DMARC_NA(0.00)[ettus.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:+,4:~,5:~,6:+];
-	RCPT_COUNT_ONE(0.00)[1];
-	R_DKIM_REJECT(0.00)[ettus-com.20230601.gappssmtp.com:s=20230601];
-	R_SPF_NA(0.00)[no SPF record];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[martin.braun@ettus.com,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
 	DKIM_MIXED(0.00)[];
+	DMARC_NA(0.00)[ettus.com];
+	R_SPF_NA(0.00)[no SPF record];
+	RCPT_COUNT_ONE(0.00)[1];
+	TO_EQ_FROM(0.00)[];
+	R_DKIM_REJECT(0.00)[emwd.com:s=harmony];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,emwd.com:-];
+	HAS_REPLYTO(0.00)[niels.steffen.garibaldi@emerson.com];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[usrp-users];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	DKIM_TRACE(0.00)[emwd.com:+,ettus-com.20230601.gappssmtp.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,emwd.com:dkim,ettus.com:email,urldefense.us:url,mm2.emwd.com:helo,mm2.emwd.com:rdns]
-X-Rspamd-Queue-Id: B9F3033B473
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim,urldefense.us:url,mm2.emwd.com:helo,mm2.emwd.com:rdns,uhd.readthedocs.io:url]
+X-Rspamd-Queue-Id: 8DDF1344385
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============3276467606757243104==
-Content-Type: multipart/related; boundary="00000000000072bf4d064df2e45a"
+This is a multi-part message in MIME format.
 
---00000000000072bf4d064df2e45a
-Content-Type: multipart/alternative; boundary="00000000000072bf4c064df2e459"
+--===============8481768741659102632==
+Content-Type: multipart/alternative;
+ boundary="b1_L1S2fdxYLRks4vqNMkNlaav8DDV59DD6TzPnhYJM8ao"
+Content-Transfer-Encoding: 7bit
 
---00000000000072bf4c064df2e459
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+
+--b1_L1S2fdxYLRks4vqNMkNlaav8DDV59DD6TzPnhYJM8ao
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Even if the processing does not touch the host, then unless you're doing
-something crazy, you are still running UHD to set up the session, configure
-the radio, etc. That's where you can get your timestamp from. Typically,
-you would know when to send based on what your algorithm is.
+Hey Michael,\
+\
+Just to give some context:\
+\
+**Regarding EoB and EoV**:\
+[In RFNoC, a burst denotes a  series of contiguous samples.](https://uhd.=
+readthedocs.io/en/latest/page_rfnoc_fpga.html#autotoc_md212)\
+In practice, and specifically in the context of samples and the radio blo=
+ck, this means that if you are sending data packets to the radio, the rad=
+io expects you to provide it with enough data such that for each clock cy=
+cle of the radio clock, the radio has a new sample that it can transmit.\
+If you do not tell the radio block that you want to stop transmitting dat=
+a, and just stop providing new samples, the the radio will run out of sam=
+ples and generate an Underflow warning, that it sends to the host(usually=
+ a =E2=80=9CU=E2=80=9D in the terminal output).
 
---M
+The radio block internally has some space to buffer samples ahead of time=
+ and also support flow control/backpressure via the AXI-Stream Handshakin=
+g interface(tvalid/tready) so usually you can just send data as fast as y=
+ou can, and let the back-pressure mechanism worry about ensuring that the=
+ radio always has data to send.=20
 
-On Thu, Mar 26, 2026 at 6:55=E2=80=AFPM Barnard, Michael T <
-Michael.Barnard@udri.udayton.edu> wrote:
+In this context, the EoB flag is meant as a signal to the Radio block tha=
+t you will not be providing further samples and that the radio block shou=
+ld therefore not expect additional samples coming in after the current pa=
+cket with the EoB flag.
 
-> Thanks for the insight; I've got a better handle on things now. I'm still
-> not sure where to get the timestamp value from. The processing doesn't
-> touch the host PC at all everything is contained in the FPGA. Is the
-> timestamp distributed to the cores or do I need to request the value from
-> somewhere else in the FPGA?
+This means that implicitly, every time the you are sending data to the ra=
+dio, the radio assumes that this is the start of a new burst, and the rad=
+io will therefore assume that more data is coming unless you set the EoB =
+flag in the packet that contains the end of the samples you want to trans=
+mit. \
+When streaming from the host, the UHD driver will take care of this for y=
+ou and automatically set the EoB flag, unless you manually override this.
+
+The EoV flag on the other hand, as others have already mentioned, is mean=
+t to logically distinguish different units of your contiguous stream of s=
+amples. How each Block interprets the EoV is implementation dependent and=
+ actually most blocks do not even check it.\
+It is mostly meant as a tool for users to compartmentalize samples in ord=
+er to do some sort of batch processing in a custom block on the FPGA.\
+Some examples here are 5G radio frames, that are comprised of contiguous =
+samples that cover the full frame, but depending on your configuration, t=
+he frame can be subdivided into different slots, that a custom block migh=
+t want to process individually. If one of these slots is too big to encap=
+sulate into a single packet, it can make sense to use the EoV flag to ind=
+icate slot boundaries.\
+Another example could be the FFT-size, as was already mentioned in this t=
+hread.\
+\
+**Regarding Timestamps**:\
+I am making the assumption that you are only talking about timestamps as =
+they relate to IQ data, and are not talking about timed (control) command=
+s here.
+
+RFNoC provides the option to do timed and untimed data streaming. Again, =
+technically how a block processes the timestamps depends on the type of b=
+lock. I will only talk about how the radio block interprets the timestamp=
+ as the radio block is an integral part of almost every design.
+
+When you are requesting samples from the radio block starting at a specif=
+ic point in time,  this is what we usually call timed RX streaming. The r=
+adio block will start sending packets as soon as the time start time that=
+ was specified arrives and will start sending out a new burst of samples =
+until either the specified number of samples have been sent, or the radio=
+ receives a stop command to stop sending RX samples(EoB is set for the la=
+st packet).\
+\
+Timed streaming means that the [RFNoC CHDR packet type](https://uhd.readt=
+hedocs.io/en/latest/page_rfnoc_fpga.html#autotoc_md210) used to transmit =
+these samples has additional timestamp information included in the header=
+(CHDR packet type 0x7 =3D> =E2=80=9Cdata with timestamp=E2=80=9D)
+
+For the first packet of the timed streaming burst the timestamp is mandat=
+ory, and the timestamp always refers to the first sample contained in the=
+ payload of a CHDR data packet.
+
+E.g. if your packet has a timestamp of 0x1000, that means that the radio =
+received sample_0 at time 0x1000, sample_1 at 0x1001, sample_2 at 0x1002,=
+ etc. for all samples of the CHDR packet.\*
+
+Since we already know that a burst always contains contiguous samples wit=
+hout any gaps as it relates to the radio sampling clock\*, subsequent pac=
+kets of the same burst technically do not need to include a timestamp, as=
+ we have all information available to calculate the time for each sample =
+just with the timestamp of the first packet and the number of samples tha=
+t have been received already, but for convenience subsequent packets can =
+still include timestamps, as long as they match the correct time at which=
+ the first sample of each packet is received/transmitted by the radio.\
+\
+If you are incorrectly setting the timestamp manually in your custom bloc=
+k and then are forwarding the packets to the radio, if there are any gaps=
+ between the calculated timestamp of the last sample of the previous pack=
+et and the timestamp corresponding to the first sample of the current pac=
+ket, the radio will notice the missmatch and in the case that this leads =
+to timestamps where the radio does not have any valid samples to send wil=
+l generate an Underflow (=E2=80=9CU=E2=80=9D).
+
+\
+This is probably what you were seeing in your implementation, if your are=
+ pausing between sending packets to the Radio as you stated in your initi=
+al question.\
+As stated above, you do not have to worry that you will fill up the buffe=
+rs as there should be backpressure mechanisms in place that will prevent =
+overflowing the radio transmit buffers.\
+Of course it is your own responsibility to ensure that your custom IP als=
+o correctly adheres to the AXI-Stream handshaking rules internally.
+
+If you want to get access to the internal device time there are multiple =
+ways this can be done, but I will only mention the two most common ones h=
+ere:
+
+* From Host: There are API functions to get the current device time from =
+the USRP device timerkeeper. Usually the main device timer is accessible =
+via the Motherboard interface, and there are functions like [get_tick_rat=
+e()](https://uhd.readthedocs.io/en/latest/classuhd_1_1rfnoc_1_1mb__contro=
+ller_1_1timekeeper.html#ac578c97f308f7ab99ece620cae6c3368) to get the cur=
+rent device tick rate, as well as [get_ticks_now()](https://uhd.readthedo=
+cs.io/en/latest/classuhd_1_1rfnoc_1_1mb__controller_1_1timekeeper.html#a1=
+7738f2ce94478654151c265df75cff1) and [get_ticks_last_pps()](https://uhd.r=
+eadthedocs.io/en/latest/classuhd_1_1rfnoc_1_1mb__controller_1_1timekeeper=
+.html#aff03009ee9343e9e36669072a68eb769). \
+  You could use the host TX/RX streamers to do timed streaming from the h=
+ost via your custom block and just route the packets through your process=
+ing block and do not touch the timestamps at all. If you send th edata do=
+wn far enough ahead of time for your processing to be finished by the tim=
+e the packets reach the radio block, you probably will not have to touch =
+the timestamps at all in your custom block on the FPGA.\
+  If you do want to manually set the timestamps, you could query the time=
+ from the host, calculate a relative time in advance for your processing =
+and then send this time down to your custom block via the register interf=
+ace and use this timestamp to set the correct header fields in the packet=
+ your custom block is processing. [Have a look at the different Data inte=
+rface types you can configure for your custom blocks CHDR data interface =
+here.](https://uhd.readthedocs.io/en/latest/page_rfnoc_fpga.html#autotoc_=
+md236)
+
+* From the FPGA: You can configure your custom block to have direct acces=
+s to the Motherboard timekeeper by adding the timekeeper port to your blo=
+ck description when you generate your block template. [See the radio bloc=
+k block description for an example.](https://github.com/EttusResearch/uhd=
+/blob/master/host/include/uhd/rfnoc/blocks/radio.yml#L77C3-L82C54) If thi=
+s port is available for your custom block, you can connect it to the glob=
+al timekeeper by adding the connection in your rfnoc_image_core.yml file =
+when you instantiate your block, again [see the radio block as an example=
+](https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x400/ya=
+ml_include/x410_radio_base.yml#L49) of how to add this in your connection=
+s section.
+
+\
+Sorry for the wall of text, I just had the impression that some more back=
+ground might be helpful to better understand how to integrate your own bl=
+ock into the existing RFNoC infrastructure.\
+\
+Hope this helps put everything into the proper context.\
+\
+Regards, \
+Niels
+
+\
+\
+\* Unless of course the samples were previously decimated and therefore d=
+o not have the same sampling rate as the radio.
+
+---
+
+Martin Braun wrote:
+
+> Even if the processing does not touch the host, then unless you're doin=
+g
+> something crazy, you are still running UHD to set up the session, confi=
+gure
+> the radio, etc. That's where you can get your timestamp from. Typically=
+,
+> you would know when to send based on what your algorithm is.
 >
-> *Michael Barnard*
+> \--M
 >
-> TL Computer Engineer, Scalable Computing Group
->
-> Applied Sensing Division
->
->
-> 300 College Park, Dayton, OH 45469-0031
->
-> O:(937) 713-4271 | C:(440) 622-6486 | udri.udayton.edu
->
-> [image: 1621527942842]
->
->
-> UDRI Proprietary - Unprotected
-> ------------------------------
-> *From:* Martin Braun <martin.braun@ettus.com>
-> *Sent:* Thursday, March 26, 2026 9:30 AM
-> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* [USRP-users] Re: X310 Precise Transmit Control
->
-> CAUTION: This email originated from outside of the organization. Do not
-> click links or open attachments unless you recognize the sender and know
-> the content is safe.
->
-> Some additional comments:
->
-> - You can probably ignore EOV
-> - If you do use EOV, note that it is treated differently than EOB in some
-> places. For example, the recv() call (in software) will terminate
-> immediately when it sees an EOB, but you can have multiple EOVs in a sing=
-le
-> burst (so from that recv() call, you can never have more than one EOB, bu=
-t
-> any number of EOVs).
-> - If you come from a strict FPGA background, it's important to get behind
-> the "network on chip" part of RFNoC. Your clocks don't really matter here=
-.
-> What matters is, when the radio gets a CHDR packet, it will read the
-> timestamp and compare it against the corresponding timer. When a CHDR
-> packet leaves one block, you shouldn't care (at design time) if the next
-> block is right next to it, or 100 km away over an Ethernet line. I'm
-> exaggerating, but I hope this helps understand this concept.
->
-> --M
->
-> On Wed, Mar 25, 2026 at 9:56=E2=80=AFPM Brian Padalino <bpadalino@gmail.c=
-om>
-> wrote:
->
->
->
-> On Wed, Mar 25, 2026 at 4:41=E2=80=AFPM Barnard, Michael T <
+> On Thu, Mar 26, 2026 at 6:55=E2=80=AFPM Barnard, Michael T <
 > Michael.Barnard@udri.udayton.edu> wrote:
 >
-> I am a FPGA developer working in Verilog with an X310 writing code in a
-> custom RFNoC block. I recently got independent streaming control working =
-to
-> output samples at my discretion to a streaming endpoint then through the
-> cross bar but I do have some questions on parts of the control behavior.
-> It=E2=80=99s not clear to me what the difference between End of Burst (EO=
-B) and
-> End of Vector (EOV) is or when I need to use one or the other. My current
-> design only uses EOB on the last data packet while EOV is always set to 0=
-.
-> I=E2=80=99m getting underflow errors occasionally but I can=E2=80=99t con=
-fidently say which
-> packets they=E2=80=99re associated with. I also need to send a second pac=
-ket with
-> EOB high to flush the first packet out of the buffer; my guess would be
-> that the first EOB would force a buffer flush. Is there any
->
-> EOV was added for when your data might be too large for a single CHDR
-> packet. Think like a 16384 sample FFT frame - it can't fit inside a singl=
-e
-> CHDR packet, so EOV is used.
->
->
-> I=E2=80=99m also wondering if there is a way to precisely schedule sample=
-s or
-> packets for transmit out of the radio. I=E2=80=99ve observed that because=
- the data
-> is processed at ~215 MHz in the RFNoC block and fed into the DAC at 200 M=
-Hz
-> pauses have to be included between each packet to prevent overfilling the
-> transmit buffer but this also means that a timing in the 215 MHz domain m=
-ay
-> not be reflected in the 200 MHz domain. Is there a way to tell the transm=
-it
-> logic/front end to start transmitting at a particular time either in the
-> CHDR header or using the timestamp? Or am I at the mercy of the front end
-> components without any fine control of transmit timing?
->
-> The CHDR with Timestamp is used there. When it's the first packet in a
-> burst, that time is compared against the timestamp of the radio. If it's
-> late, then the radio sets an error condition that is sent back to the hos=
+> > Thanks for the insight; I've got a better handle on things now. I'm s=
+till
+> > not sure where to get the timestamp value from. The processing doesn'=
 t
-> and the radio block will consume the packets as fast as possible until it
-> sees the EOB. There are other modes of operation depending on how you set
-> up your RFNoC graph as to what to do during these error conditions. Check
-> the state machine here:
->
->   https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/b=
-locks/rfnoc_block_radio/radio_tx_core.v#L299
-> [github.com]
-> <https://urldefense.us/v2/url?u=3Dhttps-3A__github.com_EttusResearch_uhd_=
-blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblock-5Fradio_radio-5Ftx-5F=
-core.v-23L299&d=3DDwMFaQ&c=3DpftDoUyzvDgNGToC1TC2fAYTjbKPSqv0CTWoNdikfI0&r=
-=3D_YNw12ReY4H38tz6L9d14UI9KmDH4TWmWo4TzJSbxw9SuCqdtK-AT-259kfxeZsh&m=3DbVv=
-tqauPQKkwOFyp6pIaqyonQasy1o456UpJAuwvY8AZOSrv24SufW7pJZTEFIdS&s=3DsvYWjmrnc=
-xL4sI1kllS9riUDzvO1tNla7wsRZ66__Lc&e=3D>
->
-> As for the processing clock versus radio clock, you should be adhering to
-> the AXI streaming tready signal for back pressure. You can fill up that
-> pipeline and things should be fine.
->
-> Good luck.
->
-> Brian
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> ------------------------------
-> The information contained in this e-mail and any attachments from UDRI ma=
-y
-> contain confidential and/or proprietary information, and is intended only
-> for the named recipient to whom it was originally addressed. If you are n=
+> > touch the host PC at all everything is contained in the FPGA. Is the
+> > timestamp distributed to the cores or do I need to request the value =
+from
+> > somewhere else in the FPGA?
+> >
+> > *Michael Barnard*
+> >
+> > TL Computer Engineer, Scalable Computing Group
+> >
+> > Applied Sensing Division
+> >
+> > 300 College Park, Dayton, OH 45469-0031
+> >
+> > O:(937) 713-4271 | C:(440) 622-6486 | udri.udayton.edu
+> >
+> > \[image: 1621527942842\]
+> >
+> > ## UDRI Proprietary - Unprotected
+> >
+> > *From:* Martin Braun [martin.braun@ettus.com](mailto:martin.braun@ett=
+us.com)
+> > *Sent:* Thursday, March 26, 2026 9:30 AM
+> > *Cc:* usrp-users@lists.ettus.com [usrp-users@lists.ettus.com](mailto:=
+usrp-users@lists.ettus.com)
+> > *Subject:* \[USRP-users\] Re: X310 Precise Transmit Control
+> >
+> > CAUTION: This email originated from outside of the organization. Do n=
 ot
-> the intended recipient, any disclosure, distribution, or copying of this
-> e-mail or its attachments is strictly prohibited. If you have received th=
-is
-> e-mail in error, please notify the sender immediately by return e-mail an=
-d
-> permanently delete the e-mail and any attachments.
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+> > click links or open attachments unless you recognize the sender and k=
+now
+> > the content is safe.
+> >
+> > Some additional comments:
+> >
+> > * You can probably ignore EOV
+> > * If you do use EOV, note that it is treated differently than EOB in =
+some
+> >   places. For example, the recv() call (in software) will terminate
+> >   immediately when it sees an EOB, but you can have multiple EOVs in =
+a single
+> >   burst (so from that recv() call, you can never have more than one E=
+OB, but
+> >   any number of EOVs).
+> > * If you come from a strict FPGA background, it's important to get be=
+hind
+> >   the "network on chip" part of RFNoC. Your clocks don't really matte=
+r here.
+> >   What matters is, when the radio gets a CHDR packet, it will read th=
+e
+> >   timestamp and compare it against the corresponding timer. When a CH=
+DR
+> >   packet leaves one block, you shouldn't care (at design time) if the=
+ next
+> >   block is right next to it, or 100 km away over an Ethernet line. I'=
+m
+> >   exaggerating, but I hope this helps understand this concept.
+> >
+> > \--M
+> >
+> > On Wed, Mar 25, 2026 at 9:56=E2=80=AFPM Brian Padalino [bpadalino@gma=
+il.com](mailto:bpadalino@gmail.com)
+> > wrote:
+> >
+> > On Wed, Mar 25, 2026 at 4:41=E2=80=AFPM Barnard, Michael T <
+> > Michael.Barnard@udri.udayton.edu> wrote:
+> >
+> > I am a FPGA developer working in Verilog with an X310 writing code in=
+ a
+> > custom RFNoC block. I recently got independent streaming control work=
+ing to
+> > output samples at my discretion to a streaming endpoint then through =
+the
+> > cross bar but I do have some questions on parts of the control behavi=
+or.
+> > It=E2=80=99s not clear to me what the difference between End of Burst=
+ (EOB) and
+> > End of Vector (EOV) is or when I need to use one or the other. My cur=
+rent
+> > design only uses EOB on the last data packet while EOV is always set =
+to 0.
+> > I=E2=80=99m getting underflow errors occasionally but I can=E2=80=99t=
+ confidently say which
+> > packets they=E2=80=99re associated with. I also need to send a second=
+ packet with
+> > EOB high to flush the first packet out of the buffer; my guess would =
+be
+> > that the first EOB would force a buffer flush. Is there any
+> >
+> > EOV was added for when your data might be too large for a single CHDR
+> > packet. Think like a 16384 sample FFT frame - it can't fit inside a s=
+ingle
+> > CHDR packet, so EOV is used.
+> >
+> > I=E2=80=99m also wondering if there is a way to precisely schedule sa=
+mples or
+> > packets for transmit out of the radio. I=E2=80=99ve observed that bec=
+ause the data
+> > is processed at \~215 MHz in the RFNoC block and fed into the DAC at =
+200 MHz
+> > pauses have to be included between each packet to prevent overfilling=
+ the
+> > transmit buffer but this also means that a timing in the 215 MHz doma=
+in may
+> > not be reflected in the 200 MHz domain. Is there a way to tell the tr=
+ansmit
+> > logic/front end to start transmitting at a particular time either in =
+the
+> > CHDR header or using the timestamp? Or am I at the mercy of the front=
+ end
+> > components without any fine control of transmit timing?
+> >
+> > The CHDR with Timestamp is used there. When it's the first packet in =
+a
+> > burst, that time is compared against the timestamp of the radio. If i=
+t's
+> > late, then the radio sets an error condition that is sent back to the=
+ host
+> > and the radio block will consume the packets as fast as possible unti=
+l it
+> > sees the EOB. There are other modes of operation depending on how you=
+ set
+> > up your RFNoC graph as to what to do during these error conditions. C=
+heck
+> > the state machine here:
+> >
+> > https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc=
+/blocks/rfnoc_block_radio/radio_tx_core.v#L299
+> > \[github.com\]
+> > <https://urldefense.us/v2/url?u=3Dhttps-3A__github.com_EttusResearch_=
+uhd_blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblock-5Fradio_radio-5=
+Ftx-5Fcore.v-23L299&d=3DDwMFaQ&c=3DpftDoUyzvDgNGToC1TC2fAYTjbKPSqv0CTWoNd=
+ikfI0&r=3D_YNw12ReY4H38tz6L9d14UI9KmDH4TWmWo4TzJSbxw9SuCqdtK-AT-259kfxeZs=
+h&m=3DbVvtqauPQKkwOFyp6pIaqyonQasy1o456UpJAuwvY8AZOSrv24SufW7pJZTEFIdS&s=3D=
+svYWjmrncxL4sI1kllS9riUDzvO1tNla7wsRZ66__Lc&e=3D>
+> >
+> > As for the processing clock versus radio clock, you should be adherin=
+g to
+> > the AXI streaming tready signal for back pressure. You can fill up th=
+at
+> > pipeline and things should be fine.
+> >
+> > Good luck.
+> >
+> > Brian
+> >
+> > ---
+> >
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> >
+> > ---
+> >
+> > The information contained in this e-mail and any attachments from UDR=
+I may
+> > contain confidential and/or proprietary information, and is intended =
+only
+> > for the named recipient to whom it was originally addressed. If you a=
+re not
+> > the intended recipient, any disclosure, distribution, or copying of t=
+his
+> > e-mail or its attachments is strictly prohibited. If you have receive=
+d this
+> > e-mail in error, please notify the sender immediately by return e-mai=
+l and
+> > permanently delete the e-mail and any attachments.
+> >
+> > ---
+> >
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---00000000000072bf4c064df2e459
-Content-Type: text/html; charset="UTF-8"
+--b1_L1S2fdxYLRks4vqNMkNlaav8DDV59DD6TzPnhYJM8ao
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Even if the processing does not touch the host, then =
-unless you&#39;re doing something crazy, you are still running UHD to set u=
-p the session, configure the radio, etc. That&#39;s where you can get your =
-timestamp from.=C2=A0Typically, you would know when to send based on what y=
-our algorithm is.</div><div><br></div><div>--M</div></div><br><div class=3D=
-"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">O=
-n Thu, Mar 26, 2026 at 6:55=E2=80=AFPM Barnard, Michael T &lt;<a href=3D"ma=
-ilto:Michael.Barnard@udri.udayton.edu">Michael.Barnard@udri.udayton.edu</a>=
-&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
- class=3D"msg1659286010773819756">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Thanks for the insight; I&#39;ve got a better handle on things now. I&#39;m=
- still not sure where to get the timestamp value from. The processing doesn=
-&#39;t touch the host PC at all everything is contained in the FPGA. Is the=
- timestamp distributed to the cores or do I
- need to request the value from somewhere else in the FPGA?</div>
-<div id=3D"m_1659286010773819756Signature">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
-x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:14pt;colo=
-r:rgb(0,0,0)"><b>Michael Barnard</b></span></p>
-<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
-x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;colo=
-r:rgb(117,123,128)">TL Computer Engineer, Scalable Computing Group</span></=
-p>
-<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
-x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
-r:rgb(117,123,128)">Applied Sensing Division</span></p>
-<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
-x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
-r:rgb(117,123,128)"><br>
-</span></p>
-<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
-x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
-r:rgb(117,123,128)">300 College Park, Dayton, OH 45469-0031</span></p>
-<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
-x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
-r:rgb(117,123,128)">O:(937) 713-4271 | C:(440) 622-6486 |
-<a style=3D"margin:0px" rel=3D"noopener noreferrer" id=3D"m_165928601077381=
-9756OWA86171a95-3d6c-d7f7-17e2-559527a12dfc" href=3D"http://udri.udayton.ed=
-u/" target=3D"_blank">
-udri.udayton.edu</a></span></p>
-<p style=3D"text-align:left;background-color:rgb(255,255,255);margin-top:0p=
-x;margin-bottom:0px;font-family:Tahoma;font-size:13px">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:11pt;colo=
-r:rgb(117,123,128)"><img style=3D"height: auto; max-width: 100%; min-width:=
- auto; min-height: auto; margin: 0px;" alt=3D"1621527942842" src=3D"cid:ii_=
-19d2bbe666acf2d7edc1"></span></p>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span style=3D"background-color:rgb(255,255,255)"><br>
-</span></div>
-</div>
-<div id=3D"m_1659286010773819756appendonsend"></div>
-<div><br>
-<div style=3D"font-family:Calibri;text-align:left;color:rgb(0,0,0);margin-l=
-eft:5pt;font-size:8pt">
-UDRI Proprietary - Unprotected</div>
-</div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_1659286010773819756divRplyFwdMsg" dir=3D"ltr"><font face=3D"Ca=
-libri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> =
-Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" target=3D"_blank=
-">martin.braun@ettus.com</a>&gt;<br>
-<b>Sent:</b> Thursday, March 26, 2026 9:30 AM<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
-.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> [USRP-users] Re: X310 Precise Transmit Control</font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div style=3D"background-color:rgb(255,235,156);width:100%;border-style:sol=
-id;border-color:rgb(156,101,0);border-width:1pt;padding:2pt;font-size:10pt;=
-line-height:12pt;font-family:&quot;Calibri&quot;;color:black;text-align:lef=
-t">
-<span style=3D"color:rgb(156,101,0);font-weight:bold">CAUTION:</span> This =
-email originated from outside of the organization. Do not click links or op=
-en attachments unless you recognize the sender and know the content is safe=
-.</div>
-<br>
-<div>
-<div dir=3D"ltr">
-<div>Some additional comments:</div>
-<div><br>
-</div>
-<div>- You can probably ignore EOV</div>
-<div>- If you do use EOV, note that it is treated differently than EOB in s=
-ome places. For example, the recv() call (in software) will terminate immed=
-iately when it sees an EOB, but you can have multiple EOVs in a single burs=
-t (so from that recv() call, you
- can never have more than one EOB, but any number of EOVs).</div>
-<div>- If you come from a strict FPGA background, it&#39;s important to get=
- behind the &quot;network on chip&quot; part of RFNoC. Your clocks don&#39;=
-t really matter here. What matters is, when the radio gets a CHDR packet, i=
-t will read the timestamp and compare it against the
- corresponding timer. When a CHDR packet leaves one block, you shouldn&#39;=
-t care (at design time) if the next block is right next to it, or 100 km aw=
-ay over an Ethernet line. I&#39;m exaggerating, but I hope this helps under=
-stand=C2=A0this concept.</div>
-<div><br>
-</div>
-<div>--M</div>
-</div>
-<br>
-<div>
-<div dir=3D"ltr">On Wed, Mar 25, 2026 at 9:56=E2=80=AFPM Brian Padalino &lt=
-;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.c=
-om</a>&gt; wrote:<br>
-</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
-<div dir=3D"ltr">
-<div dir=3D"ltr"><br>
-</div>
-<br>
-<div>
-<div dir=3D"ltr">On Wed, Mar 25, 2026 at 4:41=E2=80=AFPM Barnard, Michael T=
- &lt;<a href=3D"mailto:Michael.Barnard@udri.udayton.edu" target=3D"_blank">=
-Michael.Barnard@udri.udayton.edu</a>&gt; wrote:<br>
-</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
-<div>
-<div dir=3D"ltr">
-<div id=3D"m_1659286010773819756x_m_-6235865515734214039m_23683023910103157=
-13bodyDisplay">
-<div style=3D"margin-top:1em;margin-bottom:1em;font-family:Aptos,Aptos_Embe=
-ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0)">
-I am a FPGA developer working in Verilog with an X310 writing code in a cus=
-tom RFNoC block.=C2=A0I recently got independent streaming control working =
-to output samples at my discretion to a streaming endpoint then through the=
- cross bar but I do have some questions
- on parts of the control behavior.=C2=A0</div>
-<div style=3D"margin-top:1em;margin-bottom:1em;font-family:Aptos,Aptos_Embe=
-ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0)">
+<p>Hey Michael,<br><br>Just to give some context:<br><br><strong>Regarding =
+EoB and EoV</strong>:<br><a href=3D"https://uhd.readthedocs.io/en/latest/pa=
+ge_rfnoc_fpga.html#autotoc_md212" title=3D"">In RFNoC, a burst denotes a  s=
+eries of contiguous samples.</a><br>In practice, and specifically in the co=
+ntext of samples and the radio block, this means that if you are sending da=
+ta packets to the radio, the radio expects you to provide it with enough da=
+ta such that for each clock cycle of the radio clock, the radio has a new s=
+ample that it can transmit.<br>If you do not tell the radio block that you =
+want to stop transmitting data, and just stop providing new samples, the th=
+e radio will run out of samples and generate an Underflow warning, that it =
+sends to the host(usually a =E2=80=9CU=E2=80=9D in the terminal output).</p=
+><p>The radio block internally has some space to buffer samples ahead of ti=
+me and also support flow control/backpressure via the AXI-Stream Handshakin=
+g interface(tvalid/tready) so usually you can just send data as fast as you=
+ can, and let the back-pressure mechanism worry about ensuring that the rad=
+io always has data to send. </p><p>In this context, the EoB flag is meant a=
+s a signal to the Radio block that you will not be providing further sample=
+s and that the radio block should therefore not expect additional samples c=
+oming in after the current packet with the EoB flag.</p><p>This means that =
+implicitly, every time the you are sending data to the radio, the radio ass=
+umes that this is the start of a new burst, and the radio will therefore as=
+sume that more data is coming unless you set the EoB flag in the packet tha=
+t contains the end of the samples you want to transmit. <br>When streaming =
+from the host, the UHD driver will take care of this for you and automatica=
+lly set the EoB flag, unless you manually override this.</p><p>The EoV flag=
+ on the other hand, as others have already mentioned, is meant to logically=
+ distinguish different units of your contiguous stream of samples. How each=
+ Block interprets the EoV is implementation dependent and actually most blo=
+cks do not even check it.<br>It is mostly meant as a tool for users to comp=
+artmentalize samples in order to do some sort of batch processing in a cust=
+om block on the FPGA.<br>Some examples here are 5G radio frames, that are c=
+omprised of contiguous samples that cover the full frame, but depending on =
+your configuration, the frame can be subdivided into different slots, that =
+a custom block might want to process individually. If one of these slots is=
+ too big to encapsulate into a single packet, it can make sense to use the =
+EoV flag to indicate slot boundaries.<br>Another example could be the FFT-s=
+ize, as was already mentioned in this thread.<br><br><strong>Regarding Time=
+stamps</strong>:<br>I am making the assumption that you are only talking ab=
+out timestamps as they relate to IQ data, and are not talking about timed (=
+control) commands here.</p><p>RFNoC provides the option to do timed and unt=
+imed data streaming. Again, technically how a block processes the timestamp=
+s depends on the type of block. I will only talk about how the radio block =
+interprets the timestamp as the radio block is an integral part of almost e=
+very design.</p><p>When you are requesting samples from the radio block sta=
+rting at a specific point in time,  this is what we usually call timed RX s=
+treaming. The radio block will start sending packets as soon as the time st=
+art time that was specified arrives and will start sending out a new burst =
+of samples until either the specified number of samples have been sent, or =
+the radio receives a stop command to stop sending RX samples(EoB is set for=
+ the last packet).<br><br>Timed streaming means that the <a href=3D"https:/=
+/uhd.readthedocs.io/en/latest/page_rfnoc_fpga.html#autotoc_md210" title=3D"=
+">RFNoC CHDR packet type</a> used to transmit these samples has additional =
+timestamp information included in the header(CHDR packet type 0x7 =3D&gt; =
+=E2=80=9Cdata with timestamp=E2=80=9D)</p><p>For the first packet of the ti=
+med streaming burst the timestamp is mandatory, and the timestamp always re=
+fers to the first sample contained in the payload of a CHDR data packet.</p=
+><p>E.g. if your packet has a timestamp of 0x1000, that means that the radi=
+o received sample_0 at time 0x1000, sample_1 at 0x1001, sample_2 at 0x1002,=
+ etc. for all samples of the CHDR packet.*</p><p>Since we already know that=
+ a burst always contains contiguous samples without any gaps as it relates =
+to the radio sampling clock*, subsequent packets of the same burst technica=
+lly do not need to include a timestamp, as we have all information availabl=
+e to calculate the time for each sample just with the timestamp of the firs=
+t packet and the number of samples that have been received already, but for=
+ convenience subsequent packets can still include timestamps, as long as th=
+ey match the correct time at which the first sample of each packet is recei=
+ved/transmitted by the radio.<br><br>If you are incorrectly setting the tim=
+estamp manually in your custom block and then are forwarding the packets to=
+ the radio, if there are any gaps between the calculated timestamp of the l=
+ast sample of the previous packet and the timestamp corresponding to the fi=
+rst sample of the current packet, the radio will notice the missmatch and i=
+n the case that this leads to timestamps where the radio does not have any =
+valid samples to send will generate an Underflow (=E2=80=9CU=E2=80=9D).</p>=
+<p><br>This is probably what you were seeing in your implementation, if you=
+r are pausing between sending packets to the Radio as you stated in your in=
+itial question.<br>As stated above, you do not have to worry that you will =
+fill up the buffers as there should be backpressure mechanisms in place tha=
+t will prevent overflowing the radio transmit buffers.<br>Of course it is y=
+our own responsibility to ensure that your custom IP also correctly adheres=
+ to the AXI-Stream handshaking rules internally.</p><p>If you want to get a=
+ccess to the internal device time there are multiple ways this can be done,=
+ but I will only mention the two most common ones here:</p><ul><li><p>From =
+Host: There are API functions to get the current device time from the USRP =
+device timerkeeper. Usually the main device timer is accessible via the Mot=
+herboard interface, and there are functions like <a href=3D"https://uhd.rea=
+dthedocs.io/en/latest/classuhd_1_1rfnoc_1_1mb__controller_1_1timekeeper.htm=
+l#ac578c97f308f7ab99ece620cae6c3368" title=3D"">get_tick_rate()</a> to get =
+the current device tick rate, as well as <a href=3D"https://uhd.readthedocs=
+.io/en/latest/classuhd_1_1rfnoc_1_1mb__controller_1_1timekeeper.html#a17738=
+f2ce94478654151c265df75cff1" title=3D"">get_ticks_now()</a> and <a href=3D"=
+https://uhd.readthedocs.io/en/latest/classuhd_1_1rfnoc_1_1mb__controller_1_=
+1timekeeper.html#aff03009ee9343e9e36669072a68eb769" title=3D"">get_ticks_la=
+st_pps()</a>. <br>You could use the host TX/RX streamers to do timed stream=
+ing from the host via your custom block and just route the packets through =
+your processing block and do not touch the timestamps at all. If you send t=
+h edata down far enough ahead of time for your processing to be finished by=
+ the time the packets reach the radio block, you probably will not have to =
+touch the timestamps at all in your custom block on the FPGA.<br>If you do =
+want to manually set the timestamps, you could query the time from the host=
+, calculate a relative time in advance for your processing and then send th=
+is time down to your custom block via the register interface and use this t=
+imestamp to set the correct header fields in the packet your custom block i=
+s processing. <a href=3D"https://uhd.readthedocs.io/en/latest/page_rfnoc_fp=
+ga.html#autotoc_md236" title=3D"">Have a look at the different Data interfa=
+ce types you can configure for your custom blocks CHDR data interface here.=
+</a></p></li><li><p>From the FPGA: You can configure your custom block to h=
+ave direct access to the Motherboard timekeeper by adding the timekeeper po=
+rt to your block description when you generate your block template. <a href=
+=3D"https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfnoc=
+/blocks/radio.yml#L77C3-L82C54" title=3D"">See the radio block block descri=
+ption for an example.</a> If this port is available for your custom block, =
+you can connect it to the global timekeeper by adding the connection in you=
+r rfnoc_image_core.yml file when you instantiate your block, again <a href=
+=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x400/ya=
+ml_include/x410_radio_base.yml#L49" title=3D"">see the radio block as an ex=
+ample</a> of how to add this in your connections section.</p></li></ul><p><=
+br></p><p><br>Sorry for the wall of text, I just had the impression that so=
+me more background might be helpful to better understand how to integrate y=
+our own block into the existing RFNoC infrastructure.<br><br>Hope this help=
+s put everything into the proper context.<br><br>Regards, <br>Niels</p><p><=
+br><br>* Unless of course the samples were previously decimated and therefo=
+re do not have the same sampling rate as the radio.</p><div contenteditable=
+=3D"false" class=3D""><hr></div><p>Martin Braun wrote:</p><blockquote><p>Ev=
+en if the processing does not touch the host, then unless you're doing
+something crazy, you are still running UHD to set up the session, configure
+the radio, etc. That's where you can get your timestamp from. Typically,
+you would know when to send based on what your algorithm is.</p><p>--M</p><=
+p>On Thu, Mar 26, 2026 at 6:55=E2=80=AFPM Barnard, Michael T &lt;
+Michael.Barnard@udri.udayton.edu&gt; wrote:</p><blockquote><p>Thanks for th=
+e insight; I've got a better handle on things now. I'm still
+not sure where to get the timestamp value from. The processing doesn't
+touch the host PC at all everything is contained in the FPGA. Is the
+timestamp distributed to the cores or do I need to request the value from
+somewhere else in the FPGA?</p><p><em>Michael Barnard</em></p><p>TL Compute=
+r Engineer, Scalable Computing Group</p><p>Applied Sensing Division</p><p>3=
+00 College Park, Dayton, OH 45469-0031</p><p>O:(937) 713-4271 | C:(440) 622=
+-6486 | udri.udayton.edu</p><p>[image: 1621527942842]</p><h2>UDRI Proprieta=
+ry - Unprotected</h2><p><em>From:</em> Martin Braun <a href=3D"mailto:marti=
+n.braun@ettus.com">martin.braun@ettus.com</a>
+<em>Sent:</em> Thursday, March 26, 2026 9:30 AM
+<em>Cc:</em> usrp-users@lists.ettus.com <a href=3D"mailto:usrp-users@lists.=
+ettus.com">usrp-users@lists.ettus.com</a>
+<em>Subject:</em> [USRP-users] Re: X310 Precise Transmit Control</p><p>CAUT=
+ION: This email originated from outside of the organization. Do not
+click links or open attachments unless you recognize the sender and know
+the content is safe.</p><p>Some additional comments:</p><ul data-tight=3D"t=
+rue"><li><p>You can probably ignore EOV</p></li><li><p>If you do use EOV, n=
+ote that it is treated differently than EOB in some
+places. For example, the recv() call (in software) will terminate
+immediately when it sees an EOB, but you can have multiple EOVs in a single
+burst (so from that recv() call, you can never have more than one EOB, but
+any number of EOVs).</p></li><li><p>If you come from a strict FPGA backgrou=
+nd, it's important to get behind
+the "network on chip" part of RFNoC. Your clocks don't really matter here.
+What matters is, when the radio gets a CHDR packet, it will read the
+timestamp and compare it against the corresponding timer. When a CHDR
+packet leaves one block, you shouldn't care (at design time) if the next
+block is right next to it, or 100 km away over an Ethernet line. I'm
+exaggerating, but I hope this helps understand this concept.</p></li></ul><=
+p>--M</p><p>On Wed, Mar 25, 2026 at 9:56=E2=80=AFPM Brian Padalino <a href=
+=3D"mailto:bpadalino@gmail.com">bpadalino@gmail.com</a>
+wrote:</p><p>On Wed, Mar 25, 2026 at 4:41=E2=80=AFPM Barnard, Michael T &lt=
+;
+Michael.Barnard@udri.udayton.edu&gt; wrote:</p><p>I am a FPGA developer wor=
+king in Verilog with an X310 writing code in a
+custom RFNoC block. I recently got independent streaming control working to
+output samples at my discretion to a streaming endpoint then through the
+cross bar but I do have some questions on parts of the control behavior.
 It=E2=80=99s not clear to me what the difference between End of Burst (EOB)=
- and End of Vector (EOV) is or when I need to use one or the other. My curr=
-ent design only uses EOB on the last data packet while EOV is always set to=
- 0. I=E2=80=99m getting underflow errors occasionally
- but I can=E2=80=99t confidently say which packets they=E2=80=99re associat=
-ed with. I also need to send a second packet with EOB high to flush the fir=
-st packet out of the buffer; my guess would be that the first EOB would for=
-ce a buffer flush. Is there any =C2=A0</div>
-</div>
-</div>
-</div>
-</blockquote>
-<div>EOV was added for when your data might be too large for a single CHDR =
-packet. Think like a 16384 sample FFT frame - it can&#39;t fit inside a sin=
-gle CHDR packet, so EOV is used.</div>
-<div>=C2=A0</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
-<div>
-<div dir=3D"ltr">
-<div id=3D"m_1659286010773819756x_m_-6235865515734214039m_23683023910103157=
-13bodyDisplay">
-<div style=3D"margin-top:1em;margin-bottom:1em;font-family:Aptos,Aptos_Embe=
-ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0)">
-I=E2=80=99m also wondering if there is a way to precisely schedule samples =
-or packets for transmit out of the radio. I=E2=80=99ve observed that becaus=
-e the data is processed at ~215 MHz in the RFNoC block and fed into the DAC=
- at 200 MHz pauses have to be included between each
- packet to prevent overfilling the transmit buffer but this also means that=
- a timing in the 215 MHz domain may not be reflected in the 200 MHz domain.=
- Is there a way to tell the transmit logic/front end to start transmitting =
-at a particular time either in the
- CHDR header or using the timestamp? Or am I at the mercy of the front end =
-components without any fine control of transmit timing?=C2=A0</div>
-</div>
-</div>
-</div>
-</blockquote>
-<div>The CHDR with Timestamp is used there. When it&#39;s the first packet =
-in a burst, that time is compared against the timestamp of the radio. If it=
-&#39;s late, then the radio sets an error condition that is sent back to th=
-e host and the radio block will consume
- the packets as fast as possible until it sees the EOB. There are other mod=
-es of operation depending on how you set up your RFNoC graph as to what to =
-do during these error conditions. Check the state machine here:</div>
-<div><br>
-</div>
-<div>=C2=A0=C2=A0<a href=3D"https://urldefense.us/v2/url?u=3Dhttps-3A__gith=
-ub.com_EttusResearch_uhd_blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fbl=
-ock-5Fradio_radio-5Ftx-5Fcore.v-23L299&amp;d=3DDwMFaQ&amp;c=3DpftDoUyzvDgNG=
-ToC1TC2fAYTjbKPSqv0CTWoNdikfI0&amp;r=3D_YNw12ReY4H38tz6L9d14UI9KmDH4TWmWo4T=
-zJSbxw9SuCqdtK-AT-259kfxeZsh&amp;m=3DbVvtqauPQKkwOFyp6pIaqyonQasy1o456UpJAu=
-wvY8AZOSrv24SufW7pJZTEFIdS&amp;s=3DsvYWjmrncxL4sI1kllS9riUDzvO1tNla7wsRZ66_=
-_Lc&amp;e=3D" target=3D"_blank">https://github.com/EttusResearch/uhd/blob/m=
-aster/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_tx_core.v#L299
- [github.com]</a></div>
-<div><br>
-</div>
-<div>As for the processing clock versus radio clock, you should be adhering=
- to the AXI streaming tready signal for back pressure. You can fill up that=
- pipeline and things should be fine.</div>
-<div><br>
-</div>
-<div>Good luck.</div>
-<div><br>
-</div>
-<div>Brian</div>
-</div>
-</div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">
-usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-<div style=3D"font-size:8pt;font-family:&quot;Calibri&quot;,sans-serif">
-<hr>
-The information contained in this e-mail and any attachments from UDRI may =
-contain confidential and/or proprietary information, and is intended only f=
-or the named recipient to whom it was originally addressed. If you are not =
-the intended recipient, any disclosure,
- distribution, or copying of this e-mail or its attachments is strictly pro=
-hibited. If you have received this e-mail in error, please notify the sende=
-r immediately by return e-mail and permanently delete the e-mail and any at=
-tachments.</div>
-</div>
+ and
+End of Vector (EOV) is or when I need to use one or the other. My current
+design only uses EOB on the last data packet while EOV is always set to 0.
+I=E2=80=99m getting underflow errors occasionally but I can=E2=80=99t confi=
+dently say which
+packets they=E2=80=99re associated with. I also need to send a second packe=
+t with
+EOB high to flush the first packet out of the buffer; my guess would be
+that the first EOB would force a buffer flush. Is there any</p><p>EOV was a=
+dded for when your data might be too large for a single CHDR
+packet. Think like a 16384 sample FFT frame - it can't fit inside a single
+CHDR packet, so EOV is used.</p><p>I=E2=80=99m also wondering if there is a=
+ way to precisely schedule samples or
+packets for transmit out of the radio. I=E2=80=99ve observed that because t=
+he data
+is processed at ~215 MHz in the RFNoC block and fed into the DAC at 200 MHz
+pauses have to be included between each packet to prevent overfilling the
+transmit buffer but this also means that a timing in the 215 MHz domain may
+not be reflected in the 200 MHz domain. Is there a way to tell the transmit
+logic/front end to start transmitting at a particular time either in the
+CHDR header or using the timestamp? Or am I at the mercy of the front end
+components without any fine control of transmit timing?</p><p>The CHDR with=
+ Timestamp is used there. When it's the first packet in a
+burst, that time is compared against the timestamp of the radio. If it's
+late, then the radio sets an error condition that is sent back to the host
+and the radio block will consume the packets as fast as possible until it
+sees the EOB. There are other modes of operation depending on how you set
+up your RFNoC graph as to what to do during these error conditions. Check
+the state machine here:</p><p>https://github.com/EttusResearch/uhd/blob/mas=
+ter/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/radio_tx_core.v#L299
+[github.com]
+<a href=3D"https://urldefense.us/v2/url?u=3Dhttps-3A__github.com_EttusResea=
+rch_uhd_blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblock-5Fradio_radio=
+-5Ftx-5Fcore.v-23L299&amp;d=3DDwMFaQ&amp;c=3DpftDoUyzvDgNGToC1TC2fAYTjbKPSq=
+v0CTWoNdikfI0&amp;r=3D_YNw12ReY4H38tz6L9d14UI9KmDH4TWmWo4TzJSbxw9SuCqdtK-AT=
+-259kfxeZsh&amp;m=3DbVvtqauPQKkwOFyp6pIaqyonQasy1o456UpJAuwvY8AZOSrv24SufW7=
+pJZTEFIdS&amp;s=3DsvYWjmrncxL4sI1kllS9riUDzvO1tNla7wsRZ66__Lc&amp;e=3D">htt=
+ps://urldefense.us/v2/url?u=3Dhttps-3A__github.com_EttusResearch_uhd_blob_m=
+aster_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblock-5Fradio_radio-5Ftx-5Fcore.v=
+-23L299&amp;d=3DDwMFaQ&amp;c=3DpftDoUyzvDgNGToC1TC2fAYTjbKPSqv0CTWoNdikfI0&=
+amp;r=3D_YNw12ReY4H38tz6L9d14UI9KmDH4TWmWo4TzJSbxw9SuCqdtK-AT-259kfxeZsh&am=
+p;m=3DbVvtqauPQKkwOFyp6pIaqyonQasy1o456UpJAuwvY8AZOSrv24SufW7pJZTEFIdS&amp;=
+s=3DsvYWjmrncxL4sI1kllS9riUDzvO1tNla7wsRZ66__Lc&amp;e=3D</a></p><p>As for t=
+he processing clock versus radio clock, you should be adhering to
+the AXI streaming tready signal for back pressure. You can fill up that
+pipeline and things should be fine.</p><p>Good luck.</p><p>Brian</p><div co=
+ntenteditable=3D"false"><hr></div><p>USRP-users mailing list -- usrp-users@=
+lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com</p><div co=
+ntenteditable=3D"false"><hr></div><p>The information contained in this e-ma=
+il and any attachments from UDRI may
+contain confidential and/or proprietary information, and is intended only
+for the named recipient to whom it was originally addressed. If you are not
+the intended recipient, any disclosure, distribution, or copying of this
+e-mail or its attachments is strictly prohibited. If you have received this
+e-mail in error, please notify the sender immediately by return e-mail and
+permanently delete the e-mail and any attachments.</p><div contenteditable=
+=3D"false"><hr></div><p>USRP-users mailing list -- usrp-users@lists.ettus.c=
+om
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com</p></block=
+quote></blockquote><p><br></p><p><br></p><p><br></p>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</div></blockquote></div>
+--b1_L1S2fdxYLRks4vqNMkNlaav8DDV59DD6TzPnhYJM8ao--
 
---00000000000072bf4c064df2e459--
-
---00000000000072bf4d064df2e45a
-Content-Type: image/png; name="Outlook-1621527942.png"
-Content-Disposition: inline; filename="Outlook-1621527942.png"
-Content-Transfer-Encoding: base64
-Content-ID: <ii_19d2bbe666acf2d7edc1>
-X-Attachment-Id: ii_19d2bbe666acf2d7edc1
-
-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
---00000000000072bf4d064df2e45a--
-
---===============3276467606757243104==
+--===============8481768741659102632==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -916,4 +710,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3276467606757243104==--
+--===============8481768741659102632==--
