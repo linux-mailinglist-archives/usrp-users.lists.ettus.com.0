@@ -2,270 +2,508 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cPqCJvyx2Gk8hAgAu9opvQ
+	id GKW7LA8O2Wl+lggAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2026 10:17:00 +0200
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2026 16:49:51 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16DCD3D3E11
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2026 10:17:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC2FD3D8CCD
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2026 16:49:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3F7453860DC
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2026 04:16:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 42AA538717E
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2026 10:49:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1775809019; bh=NmcdWtQjQYgWwjphxelntMJoWrLs9wqOPln733glotI=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=wed2PiB+clfGU1UCIF+pOHFM7LSuWj+C858NIXJLEno3Q+pJzk+KOqFRnCTbI3K1V
-	 8hagT/OmlUFvxa/idYSYI4JYld2f3lryEjZ1epmZ9PN4zfl+MPHCf38pXGi5iRI98o
-	 Ez6mpwHrtGE7dub3fRhHf2TYalI7tPY0wjPxj0X8n/E6enBvPFyZ3aCKm1LlKJ5TjX
-	 XbB4iLdpgDNCeaQhiGT/GLdAxLTlvbwn5rBRJxO9jK5cZEtTlpqOMKuUPQqitrWuuP
-	 gTql10pKoWB8Lr6jYJlXBcuvb1FY0EbWN3zcNlwIaY67yUh0ftAGsE6toeEMJD6P/d
-	 nT7wffXKcTlTw==
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id A9EAA38650C
-	for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2026 04:16:01 -0400 (EDT)
+	t=1775832589; bh=v32oUr5Hs4lKPF6hGtPhrhjnas4FqLmpSJVlTLnPmCQ=;
+	h=Date:From:To:In-Reply-To:References:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=vOjYJSJhyxlkHH0EVey7fw8pW5szmYFwXXrSCC6WiIiXl6EmU1Tgs/Z23eyhha165
+	 b9U3WxznN85ns55blXidFtgmuY6D49SWB7No9kibeSEk6gngacC51JdivRXTDEO7/7
+	 ri8KeYY0u3d2DKRsrE+S74uc+G4VyFWgm2mM2nziN4u29VuynJ0vs8cihJJnhaG85n
+	 jsAsdkILpzvnjse+ZBlMY8agxZa6HNiwjPPCPjVilMsBjvFJGMRPXXSpqKLB3GJcmI
+	 4ZRGon2zQHWbFZLZy1sotYFHLh0RiyG6qHkQHtTmUVDQNqakE5RMPY1Hr1+h9Dw75B
+	 /WM+kiUmkv3zw==
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 77A4C387102
+	for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2026 10:49:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20251104.gappssmtp.com header.i=@ettus-com.20251104.gappssmtp.com header.b="CpztAIoP";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="n6kUpYZ4";
 	dkim-atps=neutral
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-8a4b8c3a30bso20136016d6.3
-        for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2026 01:16:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775808961; cv=none;
-        d=google.com; s=arc-20240605;
-        b=B6XEgv8R6zsliyr5C/RFxVc8lx2XLqnd8RyGQrfm7cqNMkOTo9RLLQpWkgK4V5lxgj
-         QK39sChusP2b7sOzVbzrU8mBmmI9KGtU9/BUaBcR9mYzEX46qB9G7xtWslJkexCvTuC+
-         z6azetaQojJxUIjYpukztrHTyCJ4XV1Qa1Sq4t/9CalhaxHtREHF3HNaL2+eD21nLvxh
-         KD0Ac84E3JISQ0VtMm1al0e+z+gizZPBtgu3O6A6djcgOtnkc2nhxEI3Skzt4p9CKBL+
-         CEFjv+rmHtBp9S0n2R8ihzZTwisyCbuMNzODLdglrSP7mizgFm6ecE5alC3DVvM8KcRW
-         UWRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=Wxlu+GMGrQLxkY2w02OZDsJ/yNOvZkRqHEyyVjXNxUw=;
-        fh=1adcuLN4VePyAip7Shvc4XVYUZRXr323UxdtkoipyMM=;
-        b=Futyfb0wybEmKk/lWNvGbNFjQ81jozMtCQFBjV6L0js0hvTh11+uIRze91Ff4iZjHs
-         Qm5tG7I1uNJFIs+stR5E79vwG5Jrqs9gFQRd7Lo82ZOiyOMHO5kqVjkPa5Bqt4oFRGJw
-         StDThduJz2ZBIZwcw6pW0phYOFuk4xU49xfw7utA4usW037BPnd6+fJmBwAFZryj+R9P
-         dLzvekIcI2OF+F3ns1KbmW+p2YVJfp9nHdt+fr9HeBVVNYfXlsrMi2GEM6aGBJ7wcFUI
-         fEzvYZygV8jSony3S4W09+9QbgV6+RSg3duo7rnjczVP7uewabThK6mB3qvj1Jmt5aqD
-         GOEA==;
-        darn=lists.ettus.com
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-8a3342d301aso21728936d6.2
+        for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2026 07:49:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20251104.gappssmtp.com; s=20251104; t=1775808961; x=1776413761; darn=lists.ettus.com;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Wxlu+GMGrQLxkY2w02OZDsJ/yNOvZkRqHEyyVjXNxUw=;
-        b=CpztAIoP49whyvEyRbK9s1EADDyw4M4+gVUGJlO0qkKG9hTxP7fdyGjJSdl1OUTDWv
-         B7SrX4/Qwkqliq0s2235f3FUVt0paE60zYHgwF7GVZuNzSiVqf8FDDqTLWaHw7ekOn+0
-         z7qGwSsJm+WTIHbrqdaOsXnW91bHtYsHBkRFDGkV69IWelO7+/qKmfUxF65Lstz7R3YZ
-         RPVK9OhjQFJVLh76/iVs8/ua9V2pYFYC8duICRzpE0tfjZ4xa+Mhop1XA/JlHoTo5d0m
-         KJtUSzgMH32rlDW+IE8E+mVD6gEuBty+acgmR1XeFY2wow7jE7YUD+M+y6wrBdsbaMvq
-         eQVA==
+        d=gmail.com; s=20251104; t=1775832542; x=1776437342; darn=lists.ettus.com;
+        h=user-agent:references:in-reply-to:cc:to:from:subject:message-id
+         :date:mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MB6/v6DYWFcf+fPbbM/0gD1yXAa7n33bRGHl03dde0c=;
+        b=n6kUpYZ4ccwCKh1hx7R8RmlWMWoFv2fMyGRSPj2jj7eAzK+5qeA/Kdt+akCBLzaXIo
+         1xnejfdjst8rZYae2xp2md7eLcKY9TOu/eI+V0OXYfhuZRn+oFrN+kQll5Drrxgp+6XP
+         IZPC0Tjjyz7q0sxwZN/FYneyDNXQXF3xlQ4pKJ1JeV5DyhciHt+QxVeZtWjDdxSMsK4N
+         +gwJsB4L2HX04OdgqlQMfRlwtZTI4Uy1+qnJsG4TVnjZJ2d/WvMcGGahPN5n7mChJyoO
+         Y6W7BAC1GVwXXkJsW5SH5WkESTCq4B3ut289Kkh1OJRlZy1ZMt9s0CNVzAqxPf6UmwHp
+         U2XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775808961; x=1776413761;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Wxlu+GMGrQLxkY2w02OZDsJ/yNOvZkRqHEyyVjXNxUw=;
-        b=oWsRMXVcOCI8JIy5jpxVsWYEEDfguosHjRN5dO2i+/b8wpwGzLX8UOVBXT1czYj5B6
-         4p5fGPrLJ4VTVKt8eFCFYdWVxqQYqTgQGzNBg/NhOroMVbrL1AjRaACTEIkiCsDq4O9r
-         ez8VgxhSnu0qacxPQ1Qw5ysVKvf0j1kytQULO7hYhXEynsKosLijxEz2EUmpSXwqX8br
-         GYJE3eiy6+QTNHGEdV+vFkM0KnZfLFFaHwHw//wBJbCcxmuI0WkjqUkMAjyW0VQoCWbT
-         QR44GdINvcztsRS8iuXni7Ick1mH/nQrMNd0C+EwnRvupp/RL5XBL4ScZDdYbyfsQOur
-         nAAA==
-X-Gm-Message-State: AOJu0YyZAFVX+By9jmWiprW1ZRueHEJ+dwNAcLA7qAVU+AD4ezJ2jc2G
-	AgwcST4zlMlgqBD/tIZx2k65qX1R6cC/mASh8x+P4SNUlTFKVjZOJfAGCJXQa5OVTRtbhPqwruP
-	AxX20zRaGFxBWJ8eVd3O1YGskuCl79nZIp29iqgiGMh6s54/h4SbXOT8=
-X-Gm-Gg: AeBDievWg9f30WJkBNyb30HtPE1Ry/9kWfqh35PaZ5P+2mA/IYPqNPFsmlCfhyh0HkD
-	dt5FZsibOWWAbQ3slWds2xEFmP1Gq/845sgGKf9lZPC23wAcLkinGoQFtWiAPBttjKAOBf94en+
-	kbdghLnvPhhq2FrgzjpAjWgTwAnR5iprlX95lXSjm2lHpd+qFJFUzyN+/ZQCEw43m2XVtRhAZO/
-	ZTx3P0lyOjW4Yr6Km3sxkIAS1XZC0gJmoQaNkD/I37HSZUxTEFBhJaGVkb7quM6MF9az3O7FnVo
-	sVEekJK0f0rXFtieeODwXwJFf2Q18V+nwr4en7JKLMbEOxhOXg==
-X-Received: by 2002:a05:6214:c2b:b0:8ac:8337:ca08 with SMTP id
- 6a1803df08f44-8ac86245532mr32386776d6.51.1775808960854; Fri, 10 Apr 2026
- 01:16:00 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1775832542; x=1776437342;
+        h=user-agent:references:in-reply-to:cc:to:from:subject:message-id
+         :date:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=MB6/v6DYWFcf+fPbbM/0gD1yXAa7n33bRGHl03dde0c=;
+        b=Z/Emnwl6HOYtWVbDyHF6xVxkvFzSxvvTn0rVjhL8xvjMUQV/iqDhluga221HoGVzqd
+         g+0RdywtRgIv46OVfGhCxj4q7p7P4dlyOKo3RYimVYbsTMjrq1pxqbUTvtVv0cbPlZ3y
+         n4iaYyI81zM2F34iITvNytSunPowt9Z0RrOZMY9IgW2W0TDUWqYj4gfSZcKUn2rXrxic
+         qVCSoZiSAtD9fo2nU5nbXyXnuVwg8vO+HGAADhsz4spjp+C7KX7w5zpWpaeZmHhEiglv
+         RMP1wIdlaedz3YHsVOnlpKhvaX9P5aQBA7NFpgEMN2+NTOuUyv+jCHPR6uGZqtu0m6JM
+         es7A==
+X-Gm-Message-State: AOJu0YxE6JyRxvWThsX/mUJ0cgegV+9+uxwEj5OJElw1V0/mPJ47OjFF
+	AcHjDnDCsuXBbrg5OchQibfVAcTmPkh2K7DPzIMZiey3xFs3/G9lUhEmJKdyTg==
+X-Gm-Gg: AeBDieuGaiuXdtA7CrL2wXOJFc3/J2VOoL31GI479W2SRpOx0dcDz0/zw0OSw0qqBIh
+	3CDn7q67AsHOwVc0g14C2BbP9BU9h0HxFd7uKut55+2/An+SXKlr2Rc+iOfn6CGosCTFXsrP3WX
+	NWEJFgW9q8JmU6nqoGgSHq5riTHemw8JU0lnK5bgkonlVCAqwLazLwLXfhlzsWqLogaafd8IWZS
+	QL9+pndLy86d/hte3lwM0wCOWFouJngcaL9+hJjxGeucwk+sPj5kiTWjdflxV585JsmRmeagn5N
+	wFT2Q76HjjC5/hWt9KOwy2/j2R/ruwuvEMBaLYuH7sCcvNuH22hac1OOxgm2OHfVswhyqs9jkxe
+	uY79MbzIPb5V8RXLz97QRUwKqzT1Of4oqPnSNaLeIOYdent8mwS89Z5zm/6n4e4Mdo0k9QDXupM
+	LcjB2tKt8HPZ8cviKjgI4XMPoRbA6az3TGByG8LA==
+X-Received: by 2002:ad4:4eab:0:b0:89c:52b6:ba76 with SMTP id 6a1803df08f44-8ac861567eemr53229666d6.7.1775832541404;
+        Fri, 10 Apr 2026 07:49:01 -0700 (PDT)
+Received: from [192.168.5.59] ([47.186.162.138])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8ac84a45552sm24444236d6.20.2026.04.10.07.49.00
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 Apr 2026 07:49:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <mail.bb7c0fed-7c8e-4098-991f-501490c95c59@storage.wm.amazon.com> <0100019d6d58baa7-4c4077d4-6be1-49d9-a339-32daac5455f4-000000@email.amazonses.com>
-In-Reply-To: <0100019d6d58baa7-4c4077d4-6be1-49d9-a339-32daac5455f4-000000@email.amazonses.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Fri, 10 Apr 2026 10:15:49 +0200
-X-Gm-Features: AQROBzDNYnLvWrI_QSPJCRGVxSkGww8hyyB2arOpFYVzuIbomFRaKN6MsIiEBJ0
-Message-ID: <CAFOi1A5QekG27WDjZRJEF4kSKkGS32HB0arXieHG8=Ofowmb3Q@mail.gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: Y5HZCETUKLQCCM3X4MDCPIEUITX2X6N7
-X-Message-ID-Hash: Y5HZCETUKLQCCM3X4MDCPIEUITX2X6N7
-X-MailFrom: martin.braun@ettus.com
+Date: Fri, 10 Apr 2026 09:48:40 -0500
+Message-ID: <Mailbird-ea503f2a-55f3-4750-a9a3-215f6b514efe@gmail.com>
+From: "page heller" <pageheller@gmail.com>
+To: "Martin Braun" <martin.braun@ettus.com>
+In-Reply-To: <CAFOi1A4aVMq5-cs6=ZtMSSeEzfZS-tD2tJim_Ew=OeQzkrdcAw@mail.gmail.com>
+References: <Mailbird-2c382234-25a9-4120-81b8-4c0a3b62f1f6@gmail.com>
+ <CAFOi1A4aVMq5-cs6=ZtMSSeEzfZS-tD2tJim_Ew=OeQzkrdcAw@mail.gmail.com>
+User-Agent: Mailbird/3.0.53.0
+X-Mailbird-ID: Mailbird-ea503f2a-55f3-4750-a9a3-215f6b514efe@gmail.com
+Message-ID-Hash: UHJG6JCE6AT2B4BQU3YCFT3FD4YAPNJF
+X-Message-ID-Hash: UHJG6JCE6AT2B4BQU3YCFT3FD4YAPNJF
+X-MailFrom: pageheller@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E310 Update Issue
+Subject: [USRP-users] Re: B210 GPIO SPI support using UHD Python API
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y5HZCETUKLQCCM3X4MDCPIEUITX2X6N7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UHJG6JCE6AT2B4BQU3YCFT3FD4YAPNJF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6384075826521681661=="
-X-Spamd-Result: default: False [2.49 / 15.00];
-	MISSING_TO(2.00)[];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
+Content-Type: multipart/mixed; boundary="===============8663805766915093728=="
+X-Spamd-Result: default: False [-0.41 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : No valid SPF, DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	DMARC_NA(0.00)[ettus.com];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	RCPT_COUNT_ONE(0.00)[1];
-	R_DKIM_REJECT(0.00)[ettus-com.20251104.gappssmtp.com:s=20251104];
+	RCPT_COUNT_TWO(0.00)[2];
 	R_SPF_NA(0.00)[no SPF record];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[martin.braun@ettus.com,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	R_DKIM_REJECT(0.00)[gmail.com:s=20251104];
 	DKIM_MIXED(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,gmail.com:-];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[pageheller@gmail.com,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[usrp-users];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	DKIM_TRACE(0.00)[emwd.com:+,ettus-com.20251104.gappssmtp.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,ettus.com:email,emwd.com:dkim]
-X-Rspamd-Queue-Id: 16DCD3D3E11
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim,youtu.be:url,mm2.emwd.com:helo,mm2.emwd.com:rdns]
+X-Rspamd-Queue-Id: AC2FD3D8CCD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============6384075826521681661==
-Content-Type: multipart/alternative; boundary="0000000000004d0e25064f16bedb"
+--===============8663805766915093728==
+Content-Type: multipart/alternative;
+ boundary="----=_NextPart_46017686.982231066086"
 
---0000000000004d0e25064f16bedb
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_46017686.982231066086
+Content-Type: text/plain;
+ charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Tom,
+Martin, thanks for your hints. I had indeed watched the video on the gpio p=
+ins. The only difference I see is that I am trying to use the Python API to=
+ read the pins. I have a question on permissions as I get underway here.
 
-the overlay warnings can be ignored. Are there any other errors or
-warnings? What happens when you run uhd_find_devices or uhd_usrp_probe
-against your device? What if you ssh onto the device and run those commands
-there?
-Or does the boot process just stop there?
+If I run my python3 program as the user, I get a permission-denied error wh=
+en retrieving the chip0 name. If I run it as super user, it can't fund uhd =
+to import. I read through a number of recommendations, and decided defining=
+ PATHs in ./basrc was the way to solve this. But, with the paths I show bel=
+ow, the same errors occur. I am not using a virtual environment since this =
+is a dedicated machine for a single purpose/single user. -page
+Linux 6.17.0-14-generic
+Ubuntu 24.04.4 LTS
+Python 3.12.3
+uhd 4.9.0
+
+
+user@9i:~$ python3 b210_get_time6_bitbang.py
+gpiochip0 0 2 6 1e-05
+192
+Traceback (most recent call last):
+File "/home/endpoint/b210_get_time6_bitbang.py", line 77, in <module>
+read_spi(args.chip, args.clk, args.cs, args.mosi, args.bits, args.half_peri=
+od)
+File "/home/endpoint/b210_get_time6_bitbang.py", line 10, in read_spi
+chip =3D gpiod.Chip(chip_name)
+^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied
+
+
+user@9i:~$ sudo python3 b210_get_time6_bitbang.py
+Traceback (most recent call last):
+File "/home/endpoint/b210_get_time6_bitbang.py", line 5, in <module>
+import uhd
+ModuleNotFoundError: No module named 'uhd'
+
+
+
+user@9i:~$ ls /usr/local/include
+uhd uhd.h
+user@9i:~$ ls /usr/local/include/uhd
+build_info.hpp device.hpp features stream.hpp utils
+cal error.h property_tree.hpp transport version.h
+config.h exception.hpp property_tree.ipp types version.hpp
+config.hpp experts rfnoc usrp
+convert.hpp extension rfnoc_graph.hpp usrp_clock
+user@9i:~$ ls /usr/local/lib
+cmake libuhd.so libuhd.so.4.9.0 pkgconfig python3.12 uhd
+
+
+
+user@9i:~$ sudo nano .bashrc
+=E2=80=A6
+# set up uhd
+export LD_LIBRARY_PATH=3D/usr/local/lib/
+export LD_LIBRARY_PATH=3D/usr/local/include/:$LD_LIBRARY_PATH
+export PYTHONPATH=3D/usr/local/lib/python3.12/site-packages/:$PYTHONPATH
+
+On 2/19/2026 2:48:28 AM, Martin Braun <martin.braun@ettus.com> wrote:
+Hi Page,
+
+I'm not sure where you got the 3.3V info from, but this section in the manu=
+al shows the pins:
+
+https://uhd.readthedocs.io/en/latest/page_usrp_b200.html#b200_switches [htt=
+ps://uhd.readthedocs.io/en/latest/page_usrp_b200.html#b200_switches]
+
+From here, this is the pinout: 1=3DGPIO_0, 2=3DGPIO_1, 3=3DGPIO_2, 4=3DGPIO=
+_3, 5=3DGPIO_4, 6=3DGPIO_5, 7=3DGPIO_6, 8=3DGPIO_7, 9=3DGND, 10=3DGND
+
+Make sure you share a ground pin with your Pi Zero.
+
+If you're just reading pins, follow the manual for set_gpio_attr() (https:/=
+/uhd.readthedocs.io/en/latest/classuhd_1_1usrp_1_1multi__usrp.html#a57f25d1=
+18d20311aca261e6dd252625e [https://uhd.readthedocs.io/en/latest/classuhd_1_=
+1usrp_1_1multi__usrp.html#a57f25d118d20311aca261e6dd252625e]) to do the fol=
+lowing:
+* Set desired pins CTRL to 0 (GPIO mode)
+* Set DDR to 0 (input)
+* Call get_gpio_attr() on the READBACK attribute. You will get all 8 pins b=
+ack, not just the ones you set to input (the others will be whatever their =
+state is).
+You're right that the manual page for the GPIO API does not spell out B210 =
+specifically, but everything there also applies to B210: https://uhd.readth=
+edocs.io/en/latest/page_gpio_api.html [https://uhd.readthedocs.io/en/latest=
+/page_gpio_api.html]
+
+Start slowly, without SPI, and read back known pin values. Then, poll the G=
+PIO bank more quickly to get your bit-banging functionality.
+
+While this does not specifically talk about reading GPIOs, it maybe also be=
+ useful: https://youtu.be/ppD06ZETnek?si=3DEYGKvF5jfKG9RiGv [https://youtu.=
+be/ppD06ZETnek?si=3DEYGKvF5jfKG9RiGv]
 
 --M
 
-On Wed, Apr 8, 2026 at 3:47=E2=80=AFPM Tom Wallace via USRP-users <
-usrp-users@lists.ettus.com> wrote:
 
-> I have a couple of E310s (the early speed grade 1 models) that have been
-> on the shelf for a long while, and I=E2=80=99m trying to check them out. =
-They boot
-> properly with current sg1 card images, but any attempt to update the
-> firmware fails. Here=E2=80=99s example output from the auto-update that o=
-ccurs
-> immediately after boot using the 3.15.0 SD image:
->
->
->
-> [   31.931863] fpga_manager fpga0: writing e310_sg1_idle.bin to Xilinx
-> Zynq FPGA Manager
-> [   32.105915] OF: overlay: WARNING: memory leak will occur if overlay
-> removed, property: /fpga-full/firmware-name
-> [   32.136579] OF: overlay: WARNING: memory leak will occur if overlay
-> removed, property: /__symbols__/devctrl
-> [   32.149637] OF: overlay: WARNING: memory leak will occur if overlay
-> removed, property: /__symbols__/charger
-> [   32.181045] OF: overlay: WARNING: memory leak will occur if overlay
-> removed, property: /__symbols__/battery
-> [   32.701432] e31x-pmu fpga-full:pmu: Unsupported firmware version 0.0
-> [   32.718069] e31x-pmu: probe of fpga-full:pmu failed with error -524
->
->
-> I see the same error with 4.6.0, and when running uhd_image_loader =E2=80=
-=93args
-> type=3De3xx on both 3.15.0 and 4.6.0 (there are additional complaints fro=
-m
-> MPM.PeriphManager on 4.6.0).
->
->
->
-> This occurs on both systems with identical symptoms. Is this a known issu=
-e
-> with upgrading older E310s, and if so, is there a solution?
->
->
->
-> ---
->
->   Tom Wallace
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
 
---0000000000004d0e25064f16bedb
-Content-Type: text/html; charset="UTF-8"
+On Thu, Feb 12, 2026 at 7:43 PM page heller <pageheller@gmail.com [mailto:p=
+ageheller@gmail.com]> wrote:
+
+I am struggling with the GPIO on the Ettus B210 (J504). I am connecting it =
+to a Raspberry Pi Zero acting as the Master for SPI communications, sending=
+ the chip select and clock to the B210. The loopback test on the Pi is succ=
+essful. The NI-provided Python example code on the B210 side appears to 'ge=
+t' (read) the pins on J504. Disconnected I see the chip select signal go lo=
+w and back high, but when I connect it to J504, the software to 'get' the p=
+in doesn't change (same code, but in a for-loop). I'm using pin 1 as the ch=
+ip select, 3 for clock, 6 for MOSI. I'm not using MISO.
+
+Some references on line suggest that pin 1 is an output on J504 of 3.3V pow=
+er, but, I don't think so. It most certainly is not 3.3V and appears to be =
+just like the other pins.
+
+I need some help. I've invested about ten hours trying a number of differen=
+t methods and code examples. I've tried getting SPI to work, but the docume=
+ntation is so poor, I can only guess on the actual implementation. When tha=
+t didn't work, I went to bit-banging; also with no success. I'm just sendin=
+g datetime from the pi to the B210 to synch them (doesn't have to be exact,=
+ just within hundreds of microseconds). So, I'm only sending a handful of b=
+ytes once, so bit-banging is just fine for this application. But, I can't g=
+et either the SPI nor the bit-banging to work. If I can't see the pin chang=
+e when I use the example 'get' python code, then nothing will work.
+
+I'd love to talk with someone who has transferred data over the B210 GPIO. =
+(Am I supposed to call this the NI 2109 now?) Thanks. -page
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com [mailto:usrp-users@li=
+sts.ettus.com]
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com [mailto:us=
+rp-users-leave@lists.ettus.com]
+
+_______________________________________________ USRP-users mailing list -- =
+usrp-users@lists.ettus.com To unsubscribe send an email to usrp-users-leave=
+@lists.ettus.com
+------=_NextPart_46017686.982231066086
+Content-Type: text/html;
+ charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Tom,</div><div><br></div><div>the overlay warnings ca=
-n be ignored. Are there any other errors or warnings? What happens when you=
- run uhd_find_devices or uhd_usrp_probe against your device? What if you ss=
-h onto the device and run those commands there?</div><div>Or does the boot =
-process just stop there?</div><div><br></div><div>--M</div></div><br><div c=
-lass=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Wed, Apr 8, 2026 at 3:47=E2=80=AFPM Tom Wallace via USRP-users &lt=
-;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv class=3D"msg6357364939539446976"><div lang=3D"EN-US" style=3D"overflow-w=
-rap: break-word;"><div class=3D"m_6357364939539446976WordSection1"><p class=
-=3D"MsoNormal"><span style=3D"font-size:11pt">I have a couple of E310s (the=
- early speed grade 1 models) that have been on the shelf for a long while, =
-and I=E2=80=99m trying to check them out. They boot properly with current s=
-g1 card images, but any attempt to update the firmware fails. Here=E2=80=99=
-s example output from the auto-update that occurs immediately after boot us=
-ing the 3.15.0 SD image:<u></u><u></u></span></p><p class=3D"MsoNormal"><sp=
-an style=3D"font-size:11pt"><u></u>=C2=A0<u></u></span></p><p style=3D"marg=
-in:0in"><span style=3D"font-family:&quot;Arial&quot;,sans-serif">[=C2=A0 =
-=C2=A031.931863] fpga_manager fpga0: writing e310_sg1_idle.bin to Xilinx Zy=
-nq FPGA Manager<br>[=C2=A0 =C2=A032.105915] OF: overlay: WARNING: memory le=
-ak will occur if overlay removed, property: /fpga-full/firmware-name<br>[=
-=C2=A0 =C2=A032.136579] OF: overlay: WARNING: memory leak will occur if ove=
-rlay removed, property: /__symbols__/devctrl<br>[=C2=A0 =C2=A032.149637] OF=
-: overlay: WARNING: memory leak will occur if overlay removed, property: /_=
-_symbols__/charger<br>[=C2=A0 =C2=A032.181045] OF: overlay: WARNING: memory=
- leak will occur if overlay removed, property: /__symbols__/battery<br>[=C2=
-=A0 =C2=A032.701432] e31x-pmu fpga-full:pmu: Unsupported firmware version 0=
-.0<br>[=C2=A0 =C2=A032.718069] e31x-pmu: probe of fpga-full:pmu failed with=
- error -524<u></u><u></u></span></p><p class=3D"MsoNormal"><span style=3D"f=
-ont-family:&quot;Arial&quot;,sans-serif"><br></span><span style=3D"font-siz=
-e:11pt">I see the same error with 4.6.0, and when running uhd_image_loader =
-=E2=80=93args type=3De3xx on both 3.15.0 and 4.6.0 (there are additional co=
-mplaints from MPM.PeriphManager on 4.6.0).<u></u><u></u></span></p><p class=
-=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u></span></=
-p><p class=3D"MsoNormal"><span style=3D"font-size:11pt">This occurs on both=
- systems with identical symptoms. Is this a known issue with upgrading olde=
-r E310s, and if so, is there a solution?<u></u><u></u></span></p><p class=
-=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u></span></=
-p><p class=3D"MsoNormal"><span style=3D"font-size:11pt">---<u></u><u></u></=
-span></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0 Tom W=
-allace <u></u><u></u></span></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u>=
-</p></div></div>_______________________________________________<br>
+<body><div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-fami=
+ly: Arial;color: #1A1A1A;text-align: left" dir=3D"ltr">
+                                        Martin, thanks for your hints. I ha=
+d indeed watched the video on the gpio pins. The only difference I see is t=
+hat I am trying to use the Python API to read the pins. I have a question o=
+n permissions as I get underway here.<div><br></div><div>If I run my python=
+3 program as the user, I get a permission-denied error when retrieving the =
+chip0 name. If I run it as super user, it can't fund uhd to import. I read =
+through a number of recommendations, and decided defining PATHs in ./basrc =
+was the way to solve this. But, with the paths I show below, the same error=
+s occur. I am not using a virtual environment since this is a dedicated mac=
+hine for a single purpose/single user. -page</div><div><span style=3D"color=
+: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt=
+">Linux 6.17.0-14-generic</span><br style=3D"color: rgb(34, 34, 34);font-fa=
+mily: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: r=
+gb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">U=
+buntu 24.04.4 LTS</span><br style=3D"color: rgb(34, 34, 34);font-family: Ar=
+ial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 3=
+4, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">Python 3.=
+12.3</span><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetic=
+a, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-f=
+amily: Arial, Helvetica, sans-serif;font-size: 10pt">uhd 4.9.0</span></div>=
+<div><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, san=
+s-serif;font-size: 10pt"><br style=3D"color: rgb(34, 34, 34);font-family: A=
+rial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, =
+34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">user@9i:=
+~$ python3 b210_get_time6_bitbang.py</span><br style=3D"color: rgb(34, 34, =
+34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=
+=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-s=
+ize: 10pt">gpiochip0 0 2 6 1e-05</span><br style=3D"color: rgb(34, 34, 34);=
+font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"c=
+olor: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: =
+10pt">192</span><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Hel=
+vetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);f=
+ont-family: Arial, Helvetica, sans-serif;font-size: 10pt">Traceback (most r=
+ecent call last):</span><br style=3D"color: rgb(34, 34, 34);font-family: Ar=
+ial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 3=
+4, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">File "/ho=
+me/endpoint/b210_get_</span><wbr style=3D"color: rgb(34, 34, 34);font-famil=
+y: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(=
+34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">time=
+6_bitbang.py", line 77, in &lt;module&gt;</span><br style=3D"color: rgb(34,=
+ 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span s=
+tyle=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;fo=
+nt-size: 10pt">read_spi(args.chip, args.clk, args.cs, args.mosi, args.bits,=
+ args.half_period)</span><br style=3D"color: rgb(34, 34, 34);font-family: A=
+rial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, =
+34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">File "/h=
+ome/endpoint/b210_get_</span><wbr style=3D"color: rgb(34, 34, 34);font-fami=
+ly: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb=
+(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">tim=
+e6_bitbang.py", line 10, in read_spi</span><br style=3D"color: rgb(34, 34, =
+34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=
+=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-s=
+ize: 10pt">chip =3D gpiod.Chip(chip_name)</span><br style=3D"color: rgb(34,=
+ 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span s=
+tyle=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;fo=
+nt-size: 10pt">^^^^^^^^^^^^^^^^^^^^^</span><br style=3D"color: rgb(34, 34, =
+34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=
+=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-s=
+ize: 10pt">PermissionError: [Errno 13] Permission denied</span><br style=3D=
+"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size=
+: 10pt"><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, =
+sans-serif;font-size: 10pt"><br style=3D"color: rgb(34, 34, 34);font-family=
+: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(3=
+4, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">user@=
+9i:~$ sudo python3 b210_get_time6_bitbang.py</span><br style=3D"color: rgb(=
+34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><spa=
+n style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif=
+;font-size: 10pt">Traceback (most recent call last):</span><br style=3D"col=
+or: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10=
+pt"><span style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sa=
+ns-serif;font-size: 10pt">File "/home/endpoint/b210_get_</span><wbr style=
+=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-s=
+ize: 10pt"><span style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvet=
+ica, sans-serif;font-size: 10pt">time6_bitbang.py", line 5, in &lt;module&g=
+t;</span><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica,=
+ sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-fam=
+ily: Arial, Helvetica, sans-serif;font-size: 10pt">import uhd</span><br sty=
+le=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font=
+-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-family: Arial, Helv=
+etica, sans-serif;font-size: 10pt">ModuleNotFoundError: No module named 'uh=
+d'</span><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica,=
+ sans-serif;font-size: 10pt"><br style=3D"color: rgb(34, 34, 34);font-famil=
+y: Arial, Helvetica, sans-serif;font-size: 10pt"><br style=3D"color: rgb(34=
+, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><br st=
+yle=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;fon=
+t-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-family: Arial, Hel=
+vetica, sans-serif;font-size: 10pt">user@9i:~$ ls /usr/local/include</span>=
+<br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-ser=
+if;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-family: Aria=
+l, Helvetica, sans-serif;font-size: 10pt">uhd uhd.h</span><br style=3D"colo=
+r: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10p=
+t"><span style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, san=
+s-serif;font-size: 10pt">user@9i:~$ ls /usr/local/include/uhd</span><br sty=
+le=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font=
+-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-family: Arial, Helv=
+etica, sans-serif;font-size: 10pt">build_info.hpp device.hpp features strea=
+m.hpp utils</span><br style=3D"color: rgb(34, 34, 34);font-family: Arial, H=
+elvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34)=
+;font-family: Arial, Helvetica, sans-serif;font-size: 10pt">cal error.h pro=
+perty_tree.hpp transport version.h</span><br style=3D"color: rgb(34, 34, 34=
+);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=3D=
+"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size=
+: 10pt">config.h exception.hpp property_tree.ipp types version.hpp</span><b=
+r style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif=
+;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-family: Arial,=
+ Helvetica, sans-serif;font-size: 10pt">config.hpp experts rfnoc usrp</span=
+><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-se=
+rif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-family: Ari=
+al, Helvetica, sans-serif;font-size: 10pt">convert.hpp extension rfnoc_grap=
+h.hpp usrp_clock</span><br style=3D"color: rgb(34, 34, 34);font-family: Ari=
+al, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34=
+, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">user@9i:~$=
+ ls /usr/local/lib</span><br style=3D"color: rgb(34, 34, 34);font-family: A=
+rial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, =
+34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">cmake li=
+buhd.so libuhd.so.4.9.0 pkgconfig python3.12 uhd</span><br style=3D"color: =
+rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">=
+<br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-ser=
+if;font-size: 10pt"><br style=3D"color: rgb(34, 34, 34);font-family: Arial,=
+ Helvetica, sans-serif;font-size: 10pt"><br style=3D"color: rgb(34, 34, 34)=
+;font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"=
+color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size:=
+ 10pt">user@9i:~$ sudo nano .bashrc</span><br style=3D"color: rgb(34, 34, 3=
+4);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"><span style=
+=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-serif;font-s=
+ize: 10pt">=E2=80=A6</span><br style=3D"color: rgb(34, 34, 34);font-family:=
+ Arial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34=
+, 34, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt"># set =
+up uhd</span><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvet=
+ica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font=
+-family: Arial, Helvetica, sans-serif;font-size: 10pt">export LD_LIBRARY_PA=
+TH=3D/usr/local/</span><wbr style=3D"color: rgb(34, 34, 34);font-family: Ar=
+ial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 3=
+4, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">lib/</spa=
+n><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvetica, sans-s=
+erif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-family: Ar=
+ial, Helvetica, sans-serif;font-size: 10pt">export LD_LIBRARY_PATH=3D/usr/l=
+ocal/</span><wbr style=3D"color: rgb(34, 34, 34);font-family: Arial, Helvet=
+ica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font=
+-family: Arial, Helvetica, sans-serif;font-size: 10pt">include/:$LD_LIBRARY=
+_PATH</span><br style=3D"color: rgb(34, 34, 34);font-family: Arial, Helveti=
+ca, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34, 34);font-=
+family: Arial, Helvetica, sans-serif;font-size: 10pt">export PYTHONPATH=3D/=
+usr/local/lib/</span><wbr style=3D"color: rgb(34, 34, 34);font-family: Aria=
+l, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 34,=
+ 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">python3.12/=
+site-packages/:$</span><wbr style=3D"color: rgb(34, 34, 34);font-family: Ar=
+ial, Helvetica, sans-serif;font-size: 10pt"><span style=3D"color: rgb(34, 3=
+4, 34);font-family: Arial, Helvetica, sans-serif;font-size: 10pt">PYTHONPAT=
+H</span></div><div><span style=3D"color: rgb(34, 34, 34);font-family: Arial=
+, Helvetica, sans-serif;font-size: 10pt"><br></span></div><blockquote class=
+=3D'history_container' type=3D'cite' style=3D'border-left-style:solid;borde=
+r-width:1px; margin-top:20px; margin-left:0px;padding-left:10px;'>
+                        <p style=3D'color: #AAAAAA; margin-top: 10px;'>On 2=
+/19/2026 2:48:28 AM, Martin Braun &lt;martin.braun@ettus.com&gt; wrote:</p>=
+<div style=3D'font-family:Arial,Helvetica,sans-serif'><div dir=3D"ltr"><div=
+>Hi Page,</div><div><br></div><div>I&#39;m not sure where you got the 3.3V =
+info from, but this section in the manual shows the pins:</div><div><br></d=
+iv><div><a href=3D"https://uhd.readthedocs.io/en/latest/page_usrp_b200.html=
+#b200_switches">https://uhd.readthedocs.io/en/latest/page_usrp_b200.html#b2=
+00_switches</a></div><div><br></div><div>From here, this is the pinout:=C2=
+=A0
+1=3DGPIO_0, 2=3DGPIO_1, 3=3DGPIO_2, 4=3DGPIO_3, 5=3DGPIO_4, 6=3DGPIO_5, 7=
+=3DGPIO_6, 8=3DGPIO_7, 9=3DGND, 10=3DGND</div><div><br></div><div>Make sure=
+ you share a ground pin with your Pi Zero.</div><div><br></div><div>If you&=
+#39;re just reading pins, follow the manual for set_gpio_attr() (<a href=3D=
+"https://uhd.readthedocs.io/en/latest/classuhd_1_1usrp_1_1multi__usrp.html#=
+a57f25d118d20311aca261e6dd252625e">https://uhd.readthedocs.io/en/latest/cla=
+ssuhd_1_1usrp_1_1multi__usrp.html#a57f25d118d20311aca261e6dd252625e</a>) to=
+ do the following:</div><div><ul><li>Set desired pins CTRL to 0 (GPIO mode)=
+</li><li>Set DDR to 0 (input)</li><li>Call get_gpio_attr() on the READBACK =
+attribute. You will get all 8 pins back, not just the ones you set to input=
+ (the others will be whatever their state is).</li></ul></div><div>You&#39;=
+re right that the manual page for the GPIO API does not spell out B210 spec=
+ifically, but everything there also applies to B210: <a href=3D"https://uhd=
+.readthedocs.io/en/latest/page_gpio_api.html">https://uhd.readthedocs.io/en=
+/latest/page_gpio_api.html</a></div><div><br></div><div>Start slowly, witho=
+ut SPI, and read back known pin values. Then, poll the GPIO bank more quick=
+ly to get your bit-banging functionality.</div><div><br></div><div>While th=
+is does not specifically talk about reading GPIOs, it maybe also be useful:=
+=C2=A0<a href=3D"https://youtu.be/ppD06ZETnek?si=3DEYGKvF5jfKG9RiGv">https:=
+//youtu.be/ppD06ZETnek?si=3DEYGKvF5jfKG9RiGv</a></div><div><br></div><div>-=
+-M</div><div><br></div><div><br></div></div><br><div class=3D"gmail_quote g=
+mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 12,=
+ 2026 at 7:43=E2=80=AFPM page heller &lt;<a href=3D"mailto:pageheller@gmail=
+.com">pageheller@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div id=3D"m_5982087996159542787__MailbirdStyleCo=
+ntent" style=3D"font-size: 10pt;font-family: Arial;color: rgb(26,26,26);tex=
+t-align: left" dir=3D"ltr">I am struggling with the GPIO on the Ettus B210 =
+(J504). I am connecting it to a Raspberry Pi Zero acting as the Master for =
+SPI communications, sending the chip select and clock to the B210. The loop=
+back test on the Pi is successful. The NI-provided Python example code on t=
+he B210 side appears to &#39;get&#39; (read) the pins on J504. Disconnected=
+ I see the chip select signal go low and back high, but when I connect it t=
+o J504, the software to &#39;get&#39; the pin doesn&#39;t change (same code=
+, but in a for-loop). I&#39;m using pin 1 as the chip select, 3 for clock, =
+6 for MOSI. I&#39;m not using MISO.=C2=A0<div><br></div><div>Some reference=
+s on line suggest that pin 1 is an output on J504 of 3.3V power, but, I don=
+&#39;t think so. It most certainly is not 3.3V and appears to be just like =
+the other pins.</div><div><br></div><div>I need some help. I&#39;ve investe=
+d about ten hours trying a number of different methods and code examples. I=
+&#39;ve tried getting SPI to work, but the documentation is so poor, I can =
+only guess on the actual implementation. When that didn&#39;t work, I went =
+to bit-banging; also with no success. I&#39;m just sending datetime from th=
+e pi to the B210 to synch them (doesn&#39;t have to be exact, just within h=
+undreds of microseconds). So, I&#39;m only sending a handful of bytes once,=
+ so bit-banging is just fine for this application. But, I can&#39;t get eit=
+her the SPI nor the bit-banging to work. If I can&#39;t see the pin change =
+when I use the example &#39;get&#39; python code, then nothing will work.</=
+div><div><br></div><div>I&#39;d love to talk with someone who has transferr=
+ed data over the B210 GPIO. (Am I supposed to call this the NI 2109 now?) T=
+hanks. -page</div></div>_______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</div></blockquote></div>
+</blockquote></div>
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+</div></blockquote>
+                                        </div></body>
+------=_NextPart_46017686.982231066086--
 
---0000000000004d0e25064f16bedb--
-
---===============6384075826521681661==
+--===============8663805766915093728==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -275,4 +513,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6384075826521681661==--
+--===============8663805766915093728==--
