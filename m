@@ -2,556 +2,546 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OAPGHLoB3Wk3YwkAu9opvQ
+	id YJerDL1q32niSgAAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Apr 2026 16:46:18 +0200
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Apr 2026 12:38:53 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F3A53ED7C1
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Apr 2026 16:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5449F403562
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Apr 2026 12:38:52 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0CF3538599E
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Apr 2026 10:46:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C39E7385B65
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Apr 2026 06:38:50 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1776091576; bh=KNm1sqfAEG0yLuZbKtKpsHfM6s1A2g4k/QcQZH83YY0=;
-	h=Date:From:To:In-Reply-To:References:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=rPuRW/UBtaN53K/DD0NASfMpKwpF2jd1+xIWf8kK87tD5LnOO+p8oe/iDrRAqtLP4
-	 usGUlNNvKq1ze+C23L7A/pthOC5IplSSqb7LMX4F8jGTXgDM48JfyiVvHvQ+JTsoLy
-	 vbeDk11xmI4yOGVnYbABljvqyMllflOD2PE/8dwhaZrQQGNkdzgBfrMosp8as+g/rX
-	 YhBtvqYlqpxmHO+/McKwIEXQtdCNy1/gyuWIMjJfxFWxkFKByEtmXFEBFXGc6FKwqZ
-	 5z3HyNIbLuhZ37ydaetfip4JMx9/1bRC4au1S+EthyVgktgFUEYhne42nZqLD+IwkF
-	 QvD+1vJAYOdyg==
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id EF3BD38599E
-	for <usrp-users@lists.ettus.com>; Mon, 13 Apr 2026 10:45:40 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MfrEb5KP";
-	dkim-atps=neutral
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-50d876329bbso48324951cf.2
-        for <usrp-users@lists.ettus.com>; Mon, 13 Apr 2026 07:45:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776091540; x=1776696340; darn=lists.ettus.com;
-        h=user-agent:references:in-reply-to:cc:to:from:subject:message-id
-         :date:mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=FBvkf+F9OepPQxrbel4/z/1I3xFm9b5sOgl0ojYyaxg=;
-        b=MfrEb5KPmYwcn7No5j9ByjoyUFwyQtbVmw+KCkADUEU1LXzKb0dvn8EjTQ4K07qHJX
-         pw2Jk7/QLyuDoRCBUBoadIywo5Hprc/yXCvslv4dIEBTvKMGJDZndXJ6+0m221MxOZ3T
-         /xKr1NDdnFtjwrFPn+Waw+HmDGyWmabYKh4WkuRgU3yMFo3Fcz9q1RSstUBwfPVgXwzG
-         EFoMPyUE4L1DJnfKMO1Fi4KOSp7AwOEJPgAHq0prdtb9QfW8LUeRZ29pnFylZZj3AgpP
-         jb3Ga2P+jgAoh6DfLbfQUGHF7hHuy/hYmiBTTBVgRSqZo6MqWRz5apfpnngf1iJDAL2a
-         Ietw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776091540; x=1776696340;
-        h=user-agent:references:in-reply-to:cc:to:from:subject:message-id
-         :date:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=FBvkf+F9OepPQxrbel4/z/1I3xFm9b5sOgl0ojYyaxg=;
-        b=DwnPXMKXi9VTRtzCbVP+U35QzpvxqVQA5cC5IzoyR1m/wHxAkTLWr2SJ5sCVFuf3Tw
-         fg1IooVrdohMwT0bR+BJ6IG+9A3VZ4aMxMfVsFB0T7ScttHGQWzpMgHCjRZZ4PWvgCnB
-         kjDWUW9vQcBZD5D4sYNAbwfyaUboeU0wPAH/GqMwfLzuhJtN60Pb5X0PnJvI5WI5vnPb
-         DA7NrZ6VImmcKzqrrtOnPQ1Bg4z87xNWR22gye2IJ3jJbM4+BZrKHcA9EV7+G+PcWTK0
-         cKesDDcvln9hyJaiKIFSalmFfVqxWBQIdzAtGgl3/ZaicjFr+ukP5KPhIyXNiisZ7+cJ
-         rvzw==
-X-Gm-Message-State: AOJu0YyGm8aCySsScXgoT5uNxub0qKexjpfgJd9abCuUUN4M9w9D8U2b
-	Z0cQvGiEgrXOdKKS2Nx/kpbWRx47HG2KJq2Z6HT6K9pNYK5F4AdUPvA01Euv3A==
-X-Gm-Gg: AeBDiesBfyKjXRrIknGmQzwiLldn6E3MEgBOC7ssxLStPT/2pdCB4qAvPuarugR6UdQ
-	haSHuvVwFIVfq5ggfXwkvISiwC19LQRnjqboJ3LyV7IOV6smXNEyNDQGOCF/kk6CQBqZ0tKAkBO
-	lpHh/plI2zFADMq1scHYFZqcCFf0eh6LolcLrsBGipAmnWa8A7d1+dAMIO/DquhtkI0yutFaOQh
-	c1+Cq9Yfwdj7nYuuS1XuUx7hFDobfQNJkxKJYUZpuqeIHK4DoVh4dGlbPVsQGVOXzzq9FAL+LLp
-	uyjfo0lkscepTkW3MIj5LGH0ptcls7PaYDdEK8Dibki2pwGjAudMsuhLjJ+M/deCLmaAbzWR+yv
-	NPufxaymZcOF54gYQePF4jQZCfDNlIlALSpZ6ueeFzZc+OXnAQkpGe4GQ/rS80s4oZrs1A5fVLm
-	s9UuDnmXDtrID1jN/A/ytv+MAtnmKd5SqskZo1zA==
-X-Received: by 2002:a05:622a:141:b0:50d:8080:2a7 with SMTP id d75a77b69052e-50dd5adb7a6mr211065711cf.21.1776091539728;
-        Mon, 13 Apr 2026 07:45:39 -0700 (PDT)
-Received: from [192.168.5.59] ([47.186.162.138])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50df2f4fa51sm39804041cf.5.2026.04.13.07.45.38
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 13 Apr 2026 07:45:39 -0700 (PDT)
+	t=1776249530; bh=ROBu2y8yXWklCzYJHJyiEN/ScMptJG1EJSiKhYlFs5A=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=tLgnVNknpF4wrw2ZWr8/pMEjp/2EHGLAP6d27OZZcdRk7TCGDxdp2zOIG2ySEi1w7
+	 LbBIa8nPyRmHTwAbrcMDh1Z188jk8qvUN5XIoy73l4DykzemlFWg7sB7QeBQ0zXY5o
+	 7mCeTW5oSw09ISvhVOf8hOoqz2CbB/TL2W8AfZRGMYBPNtdcscs6dbSz4ZRI7J+TWd
+	 ZcdNmb8N6mCMtlvqLP+wIIULtdu8hdJjz97X/128XW2UDqry+bn9hlzluUiyCqZq3h
+	 87bA96wl0r8+WNmatheASGN0mhhDD02pUMWfcDkFyiIyn4+Rh0Ua6nEIiDsA9aw7eD
+	 AthYzHPiS3G3A==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 5E72E385A29
+	for <usrp-users@lists.ettus.com>; Wed, 15 Apr 2026 06:37:42 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1776249462; bh=zquUG8QqpwIV3VLPJDvMylJyCC8I25Sq3S1h3Y6tsaM=;
+	h=Date:To:From:Subject:From;
+	b=MszOMWMuncB4N+suOrpVsp0IpCLSEs35w6vbrzE/c3X9LjUOGwrwtGgNFNX6C1obc
+	 TjbI1fRI27cxnzd2rk8EQD991+WJZATODbI0clalwnZKyaUDz4Fe9ES2kHSNeIFT2O
+	 XrU40v3SxLGEjmlboewCYmxry4VmusKzHcnr8u4wmznKgaYRK1Yf1gt+RjiqtGyrrn
+	 lHdskETLOpi2uNgui0er6SAiiyhSmKZsb3X3gK5XMwwNUqG6L/JfWxoR4rgKjnZb3+
+	 lwJo7eD4jHoXnc1RSEJ6WZdg2wS8dJ5phPk+o3/bCAcGkXpRsUMbvqCR5JXIoFH4MA
+	 yeJ+G8MDFQn+g==
+Date: Wed, 15 Apr 2026 10:37:42 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <qmJjoDnH4XQqhlBu95P9z6nNd3faH7Jyq1x8CImerQo@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-Date: Mon, 13 Apr 2026 09:45:17 -0500
-Message-ID: <Mailbird-ffd27942-a577-4803-8137-f6ba7ade0634@gmail.com>
-From: "page heller" <pageheller@gmail.com>
-To: "Martin Braun" <martin.braun@ettus.com>
-In-Reply-To: <CAFOi1A5Z2WcvQky3kd7nuv8fDgf0M0HLj_hHzurrdzXSg6hFkA@mail.gmail.com>
-References: <Mailbird-2c382234-25a9-4120-81b8-4c0a3b62f1f6@gmail.com>
- <CAFOi1A4aVMq5-cs6=ZtMSSeEzfZS-tD2tJim_Ew=OeQzkrdcAw@mail.gmail.com>
- <Mailbird-ea503f2a-55f3-4750-a9a3-215f6b514efe@gmail.com>
- <CAFOi1A5Z2WcvQky3kd7nuv8fDgf0M0HLj_hHzurrdzXSg6hFkA@mail.gmail.com>
-User-Agent: Mailbird/3.0.53.0
-X-Mailbird-ID: Mailbird-ffd27942-a577-4803-8137-f6ba7ade0634@gmail.com
-Message-ID-Hash: 4CAANBFGA4CBOIRZG4E23W5VOSYDWGHD
-X-Message-ID-Hash: 4CAANBFGA4CBOIRZG4E23W5VOSYDWGHD
-X-MailFrom: pageheller@gmail.com
+Message-ID-Hash: 77F5ENRCSZHKOQUFFTN6D2XNBRVGBE62
+X-Message-ID-Hash: 77F5ENRCSZHKOQUFFTN6D2XNBRVGBE62
+X-MailFrom: marian.koop@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B210 GPIO SPI support using UHD Python API
+Subject: [USRP-users] [UHD] Announcing UHD 4.10.0.0 Release Candidate 3
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4CAANBFGA4CBOIRZG4E23W5VOSYDWGHD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/77F5ENRCSZHKOQUFFTN6D2XNBRVGBE62/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3070602766835102406=="
-X-Spamd-Result: default: False [-0.41 / 15.00];
+From: "marian.koop--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: marian.koop@emerson.com
+Content-Type: multipart/mixed; boundary="===============2945262614746726862=="
+X-Spamd-Result: default: False [-0.51 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : No valid SPF, DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	R_SPF_NA(0.00)[no SPF record];
-	ARC_NA(0.00)[];
+	HAS_PHPMAILER_SIG(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	R_DKIM_REJECT(0.00)[gmail.com:s=20251104];
 	DKIM_MIXED(0.00)[];
-	DKIM_TRACE(0.00)[emwd.com:+,gmail.com:-];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[pageheller@gmail.com,usrp-users-bounces@lists.ettus.com];
+	DMARC_NA(0.00)[ettus.com];
+	R_SPF_NA(0.00)[no SPF record];
+	RCPT_COUNT_ONE(0.00)[1];
+	TO_EQ_FROM(0.00)[];
+	R_DKIM_REJECT(0.00)[emwd.com:s=harmony];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[emwd.com:+,emwd.com:-];
+	HAS_REPLYTO(0.00)[marian.koop@emerson.com];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.739];
 	TAGGED_RCPT(0.00)[usrp-users];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[youtu.be:url,ettus.com:email,9i:email,emwd.com:dkim,mm2.emwd.com:helo,mm2.emwd.com:rdns,uhd.readthedocs.io:url]
-X-Rspamd-Queue-Id: 7F3A53ED7C1
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[emerson.com:replyto,lists.ettus.com:mid]
+X-Rspamd-Queue-Id: 5449F403562
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============3070602766835102406==
+This is a multi-part message in MIME format.
+
+--===============2945262614746726862==
 Content-Type: multipart/alternative;
- boundary="----=_NextPart_28311920.707663269946"
+ boundary="b1_qmJjoDnH4XQqhlBu95P9z6nNd3faH7Jyq1x8CImerQo"
+Content-Transfer-Encoding: 7bit
 
-------=_NextPart_28311920.707663269946
-Content-Type: text/plain;
- charset="utf-8"
+This is a multi-part message in MIME format.
+
+--b1_qmJjoDnH4XQqhlBu95P9z6nNd3faH7Jyq1x8CImerQo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Good advice. Thanks, Martin. I didn't actually know that there were separat=
-e .bashrc settings. I'm with you, though, in preferring to run as user, so =
-I'll see if I can set up the proper group first. -p
-On 4/13/2026 4:17:42 AM, Martin Braun <martin.braun@ettus.com> wrote:
-Hey Page,
+The first release candidate of UHD 4.10.0.0 is available for testing.\
+This release includes support for USRP X420 and the addition of timed com=
+plex\
+gain feature to RFNoC radio blocks. For a complete list\
+of new features, updates and bug fixes see the CHANGELOG (see also below)=
+.
 
-The sudo issue points to the library path not being picked up correctly for=
- root, or maybe python not finding the installed packages there. So you mig=
-ht want to change root's bashrc, not the user's.
+Tag for the UHD release candidate:\
+[https://github.com/EttusResearch/uhd/releases/tag/v4.10.0.0-rc3](https:/=
+/github.com/EttusResearch/uhd/releases/tag/v4.10.0.0-rc3 "https://github.=
+com/EttusResearch/uhd/releases/tag/v4.10.0.0-rc3")
 
+Tag for the file system release candidate:\
+[https://github.com/EttusResearch/meta-ettus/releases/tag/v4.10.0.0-rc3](=
+https://github.com/EttusResearch/meta-ettus/releases/tag/v4.10.0.0-rc3 "h=
+ttps://github.com/EttusResearch/meta-ettus/releases/tag/v4.10.0.0-rc3")
 
-For the permission denied error when running as user, you'll likely need to=
- add your user to the 'gpio' group or ensure the necessary permissions are =
-set on /dev/gpiochip0. What group is that device owned by? Personally, I pr=
-efer this option (giving users access to the Pi's GPIOs).
+Thanks,
 
-It's worth pointing out (to future readers of this thread) that the GPIO-pr=
-ogramming on your Pi is unrelated to the GPIO programming of the USRP itsel=
-f.
+Marian
 
---M
+CHANGELOG:
 
-On Fri, Apr 10, 2026 at 4:49 PM page heller <pageheller@gmail.com [mailto:p=
-ageheller@gmail.com]> wrote:
+### **004.010.000.000**
 
-Martin, thanks for your hints. I had indeed watched the video on the gpio p=
-ins. The only difference I see is that I am trying to use the Python API to=
- read the pins. I have a question on permissions as I get underway here.
+* Highlights / Main Changes
 
-If I run my python3 program as the user, I get a permission-denied error wh=
-en retrieving the chip0 name. If I run it as super user, it can't fund uhd =
-to import. I read through a number of recommendations, and decided defining=
- PATHs in ./basrc was the way to solve this. But, with the paths I show bel=
-ow, the same errors occur. I am not using a virtual environment since this =
-is a dedicated machine for a single purpose/single user. -page
-Linux 6.17.0-14-generic
-Ubuntu 24.04.4 LTS
-Python 3.12.3
-uhd 4.9.0
+  * Support for USRP X420
 
+  * Addition of timed complex gain feature, which allows setting a comple=
+x gain\
+    value to fix phase and amplitude of signals from radio blocks
 
-user@9i:~$ python3 b210_get_time6_bitbang.py
-gpiochip0 0 2 6 1e-05
-192
-Traceback (most recent call last):
-File "/home/endpoint/b210_get_time6_bitbang.py", line 77, in <module>
-read_spi(args.chip, args.clk, args.cs, args.mosi, args.bits, args.half_peri=
-od)
-File "/home/endpoint/b210_get_time6_bitbang.py", line 10, in read_spi
-chip =3D gpiod.Chip(chip_name)
-^^^^^^^^^^^^^^^^^^^^^
-PermissionError: [Errno 13] Permission denied
+* New Features
 
+  * CMake:
 
-user@9i:~$ sudo python3 b210_get_time6_bitbang.py
-Traceback (most recent call last):
-File "/home/endpoint/b210_get_time6_bitbang.py", line 5, in <module>
-import uhd
-ModuleNotFoundError: No module named 'uhd'
+    * Create UHD::uhd package for improved integration in downstream buil=
+d\
+      processes. The init_usrp example is used to showcase this feature.
 
+    * Improved options for RFNoC OOT modules to write unit tests.
 
+  * Add helper routines to up- and download data (reliably) from and to t=
+he\
+    DRAM block
 
-user@9i:~$ ls /usr/local/include
-uhd uhd.h
-user@9i:~$ ls /usr/local/include/uhd
-build_info.hpp device.hpp features stream.hpp utils
-cal error.h property_tree.hpp transport version.h
-config.h exception.hpp property_tree.ipp types version.hpp
-config.hpp experts rfnoc usrp
-convert.hpp extension rfnoc_graph.hpp usrp_clock
-user@9i:~$ ls /usr/local/lib
-cmake libuhd.so libuhd.so.4.9.0 pkgconfig python3.12 uhd
+  * X310: Allow daughterboards to set dboard clock rate
 
+  * Improve finding of MPM-based devices by making parts of the find call=
+\
+    asynchronous and allowing to skip reachability checks.
 
+  * RFNoC:
 
-user@9i:~$ sudo nano .bashrc
-=E2=80=A6
-# set up uhd
-export LD_LIBRARY_PATH=3D/usr/local/lib/
-export LD_LIBRARY_PATH=3D/usr/local/include/:$LD_LIBRARY_PATH
-export PYTHONPATH=3D/usr/local/lib/python3.12/site-packages/:$PYTHONPATH
+    * Added new optional feature to all Radio blocks - Timed complex gain=
+:
 
-On 2/19/2026 2:48:28 AM, Martin Braun <martin.braun@ettus.com [mailto:marti=
-n.braun@ettus.com]> wrote:
-Hi Page,
+      * Allows specifying complex gain coefficients to be applied to all\
+        TX and/or RX samples of a radio channel at the specified time.
 
-I'm not sure where you got the 3.3V info from, but this section in the manu=
-al shows the pins:
+      * Enabled by default for all TX and RX channels of the radio blocks=
+,\
+        but can be disabled at FPGA build time via the=C2=A0`EN_COMP_GAIN=
+_TX`\
+        and=C2=A0`EN_COMP_GAIN_RX`=C2=A0parameters of the radio blocks.
 
-https://uhd.readthedocs.io/en/latest/page_usrp_b200.html#b200_switches [htt=
-ps://uhd.readthedocs.io/en/latest/page_usrp_b200.html#b200_switches]
+      * NOTE: For the x440_X4_400 default FPGA design provided with UHD,\
+        enabling this feature for all 8 RX and TX channels necessitated\
+        restricting the existing crossbar connections between the replay\
+        blocks and the radio blocks. As a result, only blocks with the sa=
+me\
+        indices can be connected (e.g. replay0<->radio0 and replay1<->rad=
+io1\
+        only) when using this pre-built USRP FPGA image.
 
-From here, this is the pinout: 1=3DGPIO_0, 2=3DGPIO_1, 3=3DGPIO_2, 4=3DGPIO=
-_3, 5=3DGPIO_4, 6=3DGPIO_5, 7=3DGPIO_6, 8=3DGPIO_7, 9=3DGND, 10=3DGND
+    * Blocks may now drive the front-panel GPIO pins on all RFNoC-capable=
+\
+      devices. New IO signatures are added, and all device BSPs have IO p=
+orts\
+      for accessing the GPIOs. Device controls are updated such that the =
+user\
+      can choose the source for GPIOs dynamically in this case (i.e., the=
+\
+      radio blocks and other GPIO sources are still available). In some c=
+ases,\
+      the device BSP HDL had to be significantly refactored.
 
-Make sure you share a ground pin with your Pi Zero.
+    * Add names and descriptions for block's and module's YAML files, so =
+that\
+      other tools may read information about those in an automated fashio=
+n
 
-If you're just reading pins, follow the manual for set_gpio_attr() (https:/=
-/uhd.readthedocs.io/en/latest/classuhd_1_1usrp_1_1multi__usrp.html#a57f25d1=
-18d20311aca261e6dd252625e [https://uhd.readthedocs.io/en/latest/classuhd_1_=
-1usrp_1_1multi__usrp.html#a57f25d118d20311aca261e6dd252625e]) to do the fol=
-lowing:
-* Set desired pins CTRL to 0 (GPIO mode)
-* Set DDR to 0 (input)
-* Call get_gpio_attr() on the READBACK attribute. You will get all 8 pins b=
-ack, not just the ones you set to input (the others will be whatever their =
-state is).
-You're right that the manual page for the GPIO API does not spell out B210 =
-specifically, but everything there also applies to B210: https://uhd.readth=
-edocs.io/en/latest/page_gpio_api.html [https://uhd.readthedocs.io/en/latest=
-/page_gpio_api.html]
+    * Allow=C2=A0`mtu`=C2=A0stream argument, which overrides the MTU valu=
+e that is\
+      derived from the link information.
 
-Start slowly, without SPI, and read back known pin values. Then, poll the G=
-PIO bank more quickly to get your bit-banging functionality.
+    * Action handling is now moved to its own thread (there is one action=
+\
+      handling thread per graph). This allows actions to be handled\
+      asynchronously, e.g., when triggering actions from async message ha=
+ndlers.
 
-While this does not specifically talk about reading GPIOs, it maybe also be=
- useful: https://youtu.be/ppD06ZETnek?si=3DEYGKvF5jfKG9RiGv [https://youtu.=
-be/ppD06ZETnek?si=3DEYGKvF5jfKG9RiGv]
+    * Add radio_state IO signature, so that other blocks can monitor the =
+ATR\
+      state of radio blocks.
 
---M
+    * All RFNoC devices can now take an=C2=A0`mtu`=C2=A0stream argument (=
+which overrides\
+      the detected link MTU) and a=C2=A0`force_mtu`=C2=A0device argument =
+(which skips\
+      automatic MTU detection and forces a fixed value). These are helpfu=
+l in\
+      scenarios where a specific network topology interferes with path MT=
+U\
+      discovery, and for remote streaming when the MTU for a remote strea=
+m link\
+      cannot be inferred from UHD.
 
+    * rfnoc_modtool has improved support for generating unit tests.
 
+    * Add PPS IO signature for all targets
 
-On Thu, Feb 12, 2026 at 7:43 PM page heller <pageheller@gmail.com [mailto:p=
-ageheller@gmail.com]> wrote:
+    * Add stream command to start receiving when a transmit occurs
 
-I am struggling with the GPIO on the Ettus B210 (J504). I am connecting it =
-to a Raspberry Pi Zero acting as the Master for SPI communications, sending=
- the chip select and clock to the B210. The loopback test on the Pi is succ=
-essful. The NI-provided Python example code on the B210 side appears to 'ge=
-t' (read) the pins on J504. Disconnected I see the chip select signal go lo=
-w and back high, but when I connect it to J504, the software to 'get' the p=
-in doesn't change (same code, but in a for-loop). I'm using pin 1 as the ch=
-ip select, 3 for clock, 6 for MOSI. I'm not using MISO.
+    * Null source/sink: Add finite mode.
 
-Some references on line suggest that pin 1 is an output on J504 of 3.3V pow=
-er, but, I don't think so. It most certainly is not 3.3V and appears to be =
-just like the other pins.
+    * Add UX1/UX2/UX4 QSFP configurations for X4xx
 
-I need some help. I've invested about ten hours trying a number of differen=
-t methods and code examples. I've tried getting SPI to work, but the docume=
-ntation is so poor, I can only guess on the actual implementation. When tha=
-t didn't work, I went to bit-banging; also with no success. I'm just sendin=
-g datetime from the pi to the B210 to synch them (doesn't have to be exact,=
- just within hundreds of microseconds). So, I'm only sending a handful of b=
-ytes once, so bit-banging is just fine for this application. But, I can't g=
-et either the SPI nor the bit-banging to work. If I can't see the pin chang=
-e when I use the example 'get' python code, then nothing will work.
+* API Changes
 
-I'd love to talk with someone who has transferred data over the B210 GPIO. =
-(Am I supposed to call this the NI 2109 now?) Thanks. -page
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com [mailto:usrp-users@li=
-sts.ettus.com]
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com [mailto:us=
-rp-users-leave@lists.ettus.com]
+  * meta_range_t and uhd::dict can now be initialized from initializer li=
+sts
 
-_______________________________________________ USRP-users mailing list -- =
-usrp-users@lists.ettus.com [mailto:usrp-users@lists.ettus.com] To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com [mailto:usrp-users-lea=
-ve@lists.ettus.com]
-------=_NextPart_28311920.707663269946
-Content-Type: text/html;
- charset="utf-8"
+  * Add rfnoc_graph::get_chdr_xport_adapters()
+
+  * Python API now allows creating SubdevSpec from a string
+
+  * Some public APIs that used=C2=A0`boost::optional`=C2=A0now also work =
+with=C2=A0`std::optional`
+
+  * Unit tests for RFNoC blocks (in-tree and out-of-tree) no longer requi=
+re a\
+    dummy implementation of=C2=A0`~make_args_t()`
+
+  * `uhd::cast::to_str()`=C2=A0was added and=C2=A0`uhd::cast::from_str()`=
+=C2=A0was extended to\
+    be a full replacement for=C2=A0`boost::lexical_cast`
+
+* Examples
+
+  * Overhauled many of the examples to improve documentation, as well as =
+some\
+    minor conveniences or bug fixes
+
+  * Added continuous streaming to tx_samples_from_file
+
+  * Improved gpio example.
+
+* Bug Fixes
+
+  * Fix static UHD library builds
+
+  * Fix compatibility with Boost 1.89
+
+  * RFNoC:
+
+    * Fix slicing notation in rfnoc_image_builder
+
+    * Fix building of GRC files with empty default target (this would aff=
+ect\
+      builds of X410 and X440 device bitfiles from GNU Radio)
+
+    * Fix installation of OOT modules in Python venvs
+
+    * Fix time alignment of first sample
+
+    * Unit tests in RFNoC OOT modules now preload their DLLs to ensure th=
+e\
+      correct library version is loaded
+
+    * Fix generation of GNU Radio C++ block controllers
+
+    * rfnoc_modtool: Fix creation of spurious unit tests, fix package_dat=
+a for\
+      Python module installation
+
+    * rfnoc_modtool: Fix connection check for invalid ports
+
+    * Fix alignment of first sample coming from radio block.
+
+    * Fix bug in ctrlport_endpoint which could cause the software to beli=
+eve\
+      the associated RFNoC block's command FIFO was full when packets wer=
+e lost
+
+    * Add parameter to skip waiting for ACKs in async messages
+
+  * E31x: Fix GPIO control
+
+  * E3xx/B2xx: Fix rounding bug for RF PLL tuning
+
+  * B2xx: Fix image loading via b200_image_loader when multiple devices a=
+re\
+    attached
+
+  * X410: Fix tuning when power calibration and non-default gain profiles=
+ are\
+    used.
+
+  * Power calibration tools: Fix settings for E320, allow non-default sam=
+pling\
+    rate, other minor fixes
+
+  * FPGA
+
+    * Fix various simulation-related bugs
+
+  * USRP Simulator: Update to match current UHD.
+
+  * multi_usrp:
+
+    * Improved bank name check in multi_usrp::{set,get}_gpio_attr()
+
+  * CMake:
+
+    * Allow absolute paths for install dirs in pkg-config
+
+    * Fix target include path for Python module
+
+  * USRP1: Fix converter name in property tree
+
+  * FPGA:
+
+    * Fix various simulation/testbench issues.
+
+    * Improve resource utilization in various places.
+
+  * MPM:
+
+    * Fix file descriptor leaks by using with/open everywhere.
+
+    * Fix double-free issue in rpclib.
+
+    * Remove tolerance for non-existing EEPROMs.
+
+  * Examples: Properly report errors when opening a file failed.
+
+  * Python: When installing into venvs, no longer force a reinstallation =
+of\
+    dependencies.
+
+* Dependencies changes
+
+  * Increase minimum required versions
+
+    * Boost to 1.71
+
+    * DPDK to 19.11
+
+    * Changed minimum CMake versions for various non-UHD projects, e.g.\
+      firmware builds, to stay compatible with CMake 4
+
+* Documentation
+
+  * Restructured the UHD manual, improved chapter structure, improved get=
+ting\
+    started content, added RFNoC specification.
+
+  * Fixed some external links
+
+  * Many smaller improvements (typos, duplicate entries removed, formatti=
+ng,\
+    etc.)
+
+* Codebase Management
+
+  * Increased C++ version to 20 for UHD library, examples, and utilities
+
+  * Removed Boost in multiple locations and replaced with standard librar=
+y\
+    calls
+
+  * Fix numerous (mostly harmless) compiler and Doxygen warnings
+
+  * Improve CMake linking instructions
+
+* Validated OS Environments\
+  (Versions for build and runtime dependencies can be determined from the=
+\
+  docker container definitions in the UHD repository at .ci/docker/...)
+
+  * Linux:
+
+    * Ubuntu: jammy (22.04), noble (24.04), questing (25.10)
+
+    * Fedora: 40, 41, 42
+
+  * Windows: 10 22H2, 11 24H2
+
+  * MacOS: Sequoia (15.6)
+
+--b1_qmJjoDnH4XQqhlBu95P9z6nNd3faH7Jyq1x8CImerQo
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<body><div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-fami=
-ly: Arial;color: #1A1A1A;text-align: left" dir=3D"ltr">
-                                        Good advice. Thanks, Martin. I didn=
-'t actually know that there were separate .bashrc settings. I'm with you, t=
-hough, in preferring to run as user, so I'll see if I can set up the proper=
- group first. -p<blockquote class=3D'history_container' type=3D'cite' style=
-=3D'border-left-style:solid;border-width:1px; margin-top:20px; margin-left:=
-0px;padding-left:10px;'>
-                        <p style=3D'color: #AAAAAA; margin-top: 10px;'>On 4=
-/13/2026 4:17:42 AM, Martin Braun &lt;martin.braun@ettus.com&gt; wrote:</p>=
-<div style=3D'font-family:Arial,Helvetica,sans-serif'><div dir=3D"ltr">Hey =
-Page,<br><br>The sudo issue points to the library path not being picked up =
-correctly for root, or maybe python not finding the installed packages ther=
-e. So you might want to change root&#39;s bashrc, not the user&#39;s.<br><b=
-r><div>For the permission denied error when running as user, you&#39;ll lik=
-ely need to add your user to the &#39;gpio&#39; group or ensure the necessa=
-ry permissions are set on /dev/gpiochip0. What group is that device owned b=
-y? Personally, I prefer this option (giving users access to the Pi&#39;s GP=
-IOs).</div><div><br></div><div>It&#39;s worth pointing out (to future reade=
-rs of this thread) that the GPIO-programming on your Pi is unrelated to the=
- GPIO programming of the USRP itself.</div><br>--M</div><br><div class=3D"g=
-mail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Fri, Apr 10, 2026 at 4:49=E2=80=AFPM page heller &lt;<a href=3D"mailto:page=
-heller@gmail.com">pageheller@gmail.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div><div id=3D"m_-913332898183813855=
-8__MailbirdStyleContent" style=3D"font-size: 10pt;font-family: Arial;color:=
- rgb(26,26,26);text-align: left" dir=3D"ltr">
-                                        Martin, thanks for your hints. I ha=
-d indeed watched the video on the gpio pins. The only difference I see is t=
-hat I am trying to use the Python API to read the pins. I have a question o=
-n permissions as I get underway here.<div><br></div><div>If I run my python=
-3 program as the user, I get a permission-denied error when retrieving the =
-chip0 name. If I run it as super user, it can&#39;t fund uhd to import. I r=
-ead through a number of recommendations, and decided defining PATHs in ./ba=
-src was the way to solve this. But, with the paths I show below, the same e=
-rrors occur. I am not using a virtual environment since this is a dedicated=
- machine for a single purpose/single user. -page</div><div><span style=3D"c=
-olor: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt=
-">Linux 6.17.0-14-generic</span><br style=3D"color: rgb(34,34,34);font-fami=
-ly: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"color: rgb(3=
-4,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">Ubuntu 24=
-.04.4 LTS</span><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvet=
-ica,sans-serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-fa=
-mily: Arial,Helvetica,sans-serif;font-size: 10pt">Python 3.12.3</span><br s=
-tyle=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-s=
-ize: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica=
-,sans-serif;font-size: 10pt">uhd 4.9.0</span></div><div><br style=3D"color:=
- rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt"><br=
- style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font=
--size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Arial,Helveti=
-ca,sans-serif;font-size: 10pt">user@9i:~$ python3 b210_get_time6_bitbang.py=
-</span><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-=
-serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Ari=
-al,Helvetica,sans-serif;font-size: 10pt">gpiochip0 0 2 6 1e-05</span><br st=
-yle=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-si=
-ze: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,=
-sans-serif;font-size: 10pt">192</span><br style=3D"color: rgb(34,34,34);fon=
-t-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"color:=
- rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">Tra=
-ceback (most recent call last):</span><br style=3D"color: rgb(34,34,34);fon=
-t-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"color:=
- rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">Fil=
-e &quot;/home/endpoint/b210_get_</span><span style=3D"color: rgb(34,34,34);=
-font-family: Arial,Helvetica,sans-serif;font-size: 10pt">time6_bitbang.py&q=
-uot;, line 77, in &lt;module&gt;</span><br style=3D"color: rgb(34,34,34);fo=
-nt-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"color=
-: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">re=
-ad_spi(args.chip, args.clk, args.cs, args.mosi, args.bits, args.half_period=
-)</span><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans=
--serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Ar=
-ial,Helvetica,sans-serif;font-size: 10pt">File &quot;/home/endpoint/b210_ge=
-t_</span><span style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,s=
-ans-serif;font-size: 10pt">time6_bitbang.py&quot;, line 10, in read_spi</sp=
-an><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-seri=
-f;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Arial,H=
-elvetica,sans-serif;font-size: 10pt">chip =3D gpiod.Chip(chip_name)</span><=
-br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;fo=
-nt-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Arial,Helve=
-tica,sans-serif;font-size: 10pt">^^^^^^^^^^^^^^^^^^^^^</span><br style=3D"c=
-olor: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt=
-"><span style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-ser=
-if;font-size: 10pt">PermissionError: [Errno 13] Permission denied</span><br=
- style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font=
--size: 10pt"><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica=
-,sans-serif;font-size: 10pt"><br style=3D"color: rgb(34,34,34);font-family:=
- Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"color: rgb(34,3=
-4,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">user@9i:~$ s=
-udo python3 b210_get_time6_bitbang.py</span><br style=3D"color: rgb(34,34,3=
-4);font-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"=
-color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10p=
-t">Traceback (most recent call last):</span><br style=3D"color: rgb(34,34,3=
-4);font-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"=
-color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10p=
-t">File &quot;/home/endpoint/b210_get_</span><span style=3D"color: rgb(34,3=
-4,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">time6_bitban=
-g.py&quot;, line 5, in &lt;module&gt;</span><br style=3D"color: rgb(34,34,3=
-4);font-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"=
-color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10p=
-t">import uhd</span><br style=3D"color: rgb(34,34,34);font-family: Arial,He=
-lvetica,sans-serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);fon=
-t-family: Arial,Helvetica,sans-serif;font-size: 10pt">ModuleNotFoundError: =
-No module named &#39;uhd&#39;</span><br style=3D"color: rgb(34,34,34);font-=
-family: Arial,Helvetica,sans-serif;font-size: 10pt"><br style=3D"color: rgb=
-(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt"><br sty=
-le=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-siz=
-e: 10pt"><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,san=
-s-serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: A=
-rial,Helvetica,sans-serif;font-size: 10pt">user@9i:~$ ls /usr/local/include=
-</span><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-=
-serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Ari=
-al,Helvetica,sans-serif;font-size: 10pt">uhd uhd.h</span><br style=3D"color=
-: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt"><s=
-pan style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;f=
-ont-size: 10pt">user@9i:~$ ls /usr/local/include/uhd</span><br style=3D"col=
-or: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">=
-<span style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif=
-;font-size: 10pt">build_info.hpp device.hpp features stream.hpp utils</span=
-><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;=
-font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Arial,Hel=
-vetica,sans-serif;font-size: 10pt">cal error.h property_tree.hpp transport =
-version.h</span><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvet=
-ica,sans-serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-fa=
-mily: Arial,Helvetica,sans-serif;font-size: 10pt">config.h exception.hpp pr=
-operty_tree.ipp types version.hpp</span><br style=3D"color: rgb(34,34,34);f=
-ont-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"colo=
-r: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">c=
-onfig.hpp experts rfnoc usrp</span><br style=3D"color: rgb(34,34,34);font-f=
-amily: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"color: rg=
-b(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">conver=
-t.hpp extension rfnoc_graph.hpp usrp_clock</span><br style=3D"color: rgb(34=
-,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span styl=
-e=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size=
-: 10pt">user@9i:~$ ls /usr/local/lib</span><br style=3D"color: rgb(34,34,34=
-);font-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"c=
-olor: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt=
-">cmake libuhd.so libuhd.so.4.9.0 pkgconfig python3.12 uhd</span><br style=
-=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size:=
- 10pt"><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-=
-serif;font-size: 10pt"><br style=3D"color: rgb(34,34,34);font-family: Arial=
-,Helvetica,sans-serif;font-size: 10pt"><br style=3D"color: rgb(34,34,34);fo=
-nt-family: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"color=
-: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">us=
-er@9i:~$ sudo nano .bashrc</span><br style=3D"color: rgb(34,34,34);font-fam=
-ily: Arial,Helvetica,sans-serif;font-size: 10pt"><span style=3D"color: rgb(=
-34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">=E2=80=
-=A6</span><br style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sa=
-ns-serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: =
-Arial,Helvetica,sans-serif;font-size: 10pt"># set up uhd</span><br style=3D=
-"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10=
-pt"><span style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-s=
-erif;font-size: 10pt">export LD_LIBRARY_PATH=3D/usr/local/</span><span styl=
-e=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-size=
-: 10pt">lib/</span><br style=3D"color: rgb(34,34,34);font-family: Arial,Hel=
-vetica,sans-serif;font-size: 10pt"><span style=3D"color: rgb(34,34,34);font=
--family: Arial,Helvetica,sans-serif;font-size: 10pt">export LD_LIBRARY_PATH=
-=3D/usr/local/</span><span style=3D"color: rgb(34,34,34);font-family: Arial=
-,Helvetica,sans-serif;font-size: 10pt">include/:$LD_LIBRARY_PATH</span><br =
-style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;font-=
-size: 10pt"><span style=3D"color: rgb(34,34,34);font-family: Arial,Helvetic=
-a,sans-serif;font-size: 10pt">export PYTHONPATH=3D/usr/local/lib/</span><sp=
-an style=3D"color: rgb(34,34,34);font-family: Arial,Helvetica,sans-serif;fo=
-nt-size: 10pt">python3.12/site-packages/:$</span><span style=3D"color: rgb(=
-34,34,34);font-family: Arial,Helvetica,sans-serif;font-size: 10pt">PYTHONPA=
-TH</span></div><div><span style=3D"color: rgb(34,34,34);font-family: Arial,=
-Helvetica,sans-serif;font-size: 10pt"><br></span></div><blockquote type=3D"=
-cite" style=3D"border-left-style:solid;border-width:1px;margin-top:20px;mar=
-gin-left:0px;padding-left:10px">
-                        <p style=3D"color:rgb(170,170,170);margin-top:10px"=
->On 2/19/2026 2:48:28 AM, Martin Braun &lt;<a href=3D"mailto:martin.braun@e=
-ttus.com" target=3D"_blank">martin.braun@ettus.com</a>&gt; wrote:</p><div s=
-tyle=3D"font-family:Arial,Helvetica,sans-serif"><div dir=3D"ltr"><div>Hi Pa=
-ge,</div><div><br></div><div>I&#39;m not sure where you got the 3.3V info f=
-rom, but this section in the manual shows the pins:</div><div><br></div><di=
-v><a href=3D"https://uhd.readthedocs.io/en/latest/page_usrp_b200.html#b200_=
-switches" target=3D"_blank">https://uhd.readthedocs.io/en/latest/page_usrp_=
-b200.html#b200_switches</a></div><div><br></div><div>From here, this is the=
- pinout:=C2=A0
-1=3DGPIO_0, 2=3DGPIO_1, 3=3DGPIO_2, 4=3DGPIO_3, 5=3DGPIO_4, 6=3DGPIO_5, 7=
-=3DGPIO_6, 8=3DGPIO_7, 9=3DGND, 10=3DGND</div><div><br></div><div>Make sure=
- you share a ground pin with your Pi Zero.</div><div><br></div><div>If you&=
-#39;re just reading pins, follow the manual for set_gpio_attr() (<a href=3D=
-"https://uhd.readthedocs.io/en/latest/classuhd_1_1usrp_1_1multi__usrp.html#=
-a57f25d118d20311aca261e6dd252625e" target=3D"_blank">https://uhd.readthedoc=
-s.io/en/latest/classuhd_1_1usrp_1_1multi__usrp.html#a57f25d118d20311aca261e=
-6dd252625e</a>) to do the following:</div><div><ul><li>Set desired pins CTR=
-L to 0 (GPIO mode)</li><li>Set DDR to 0 (input)</li><li>Call get_gpio_attr(=
-) on the READBACK attribute. You will get all 8 pins back, not just the one=
-s you set to input (the others will be whatever their state is).</li></ul><=
-/div><div>You&#39;re right that the manual page for the GPIO API does not s=
-pell out B210 specifically, but everything there also applies to B210: <a h=
-ref=3D"https://uhd.readthedocs.io/en/latest/page_gpio_api.html" target=3D"_=
-blank">https://uhd.readthedocs.io/en/latest/page_gpio_api.html</a></div><di=
-v><br></div><div>Start slowly, without SPI, and read back known pin values.=
- Then, poll the GPIO bank more quickly to get your bit-banging functionalit=
-y.</div><div><br></div><div>While this does not specifically talk about rea=
-ding GPIOs, it maybe also be useful:=C2=A0<a href=3D"https://youtu.be/ppD06=
-ZETnek?si=3DEYGKvF5jfKG9RiGv" target=3D"_blank">https://youtu.be/ppD06ZETne=
-k?si=3DEYGKvF5jfKG9RiGv</a></div><div><br></div><div>--M</div><div><br></di=
-v><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
-s=3D"gmail_attr">On Thu, Feb 12, 2026 at 7:43=E2=80=AFPM page heller &lt;<a=
- href=3D"mailto:pageheller@gmail.com" target=3D"_blank">pageheller@gmail.co=
-m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
-><div id=3D"m_-9133328981838138558m_5982087996159542787__MailbirdStyleConte=
-nt" style=3D"font-size: 10pt;font-family: Arial;color: rgb(26,26,26);text-a=
-lign: left" dir=3D"ltr">I am struggling with the GPIO on the Ettus B210 (J5=
-04). I am connecting it to a Raspberry Pi Zero acting as the Master for SPI=
- communications, sending the chip select and clock to the B210. The loopbac=
-k test on the Pi is successful. The NI-provided Python example code on the =
-B210 side appears to &#39;get&#39; (read) the pins on J504. Disconnected I =
-see the chip select signal go low and back high, but when I connect it to J=
-504, the software to &#39;get&#39; the pin doesn&#39;t change (same code, b=
-ut in a for-loop). I&#39;m using pin 1 as the chip select, 3 for clock, 6 f=
-or MOSI. I&#39;m not using MISO.=C2=A0<div><br></div><div>Some references o=
-n line suggest that pin 1 is an output on J504 of 3.3V power, but, I don&#3=
-9;t think so. It most certainly is not 3.3V and appears to be just like the=
- other pins.</div><div><br></div><div>I need some help. I&#39;ve invested a=
-bout ten hours trying a number of different methods and code examples. I&#3=
-9;ve tried getting SPI to work, but the documentation is so poor, I can onl=
-y guess on the actual implementation. When that didn&#39;t work, I went to =
-bit-banging; also with no success. I&#39;m just sending datetime from the p=
-i to the B210 to synch them (doesn&#39;t have to be exact, just within hund=
-reds of microseconds). So, I&#39;m only sending a handful of bytes once, so=
- bit-banging is just fine for this application. But, I can&#39;t get either=
- the SPI nor the bit-banging to work. If I can&#39;t see the pin change whe=
-n I use the example &#39;get&#39; python code, then nothing will work.</div=
-><div><br></div><div>I&#39;d love to talk with someone who has transferred =
-data over the B210 GPIO. (Am I supposed to call this the NI 2109 now?) Than=
-ks. -page</div></div>_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</div></blockquote>
-                                        </div></div></blockquote></div>
-</div></blockquote>
-                                        </div></body>
-------=_NextPart_28311920.707663269946--
+<p>The first release candidate of UHD 4.10.0.0 is available for testing.<br=
+>This release includes support for USRP X420 and the addition of timed comp=
+lex<br>gain feature to RFNoC radio blocks. For a complete list<br>of new fe=
+atures, updates and bug fixes see the CHANGELOG (see also below).</p><p>Tag=
+ for the UHD release candidate:<br><a href=3D"https://github.com/EttusResea=
+rch/uhd/releases/tag/v4.10.0.0-rc3" title=3D"https://github.com/EttusResear=
+ch/uhd/releases/tag/v4.10.0.0-rc3">https://github.com/EttusResearch/uhd/rel=
+eases/tag/v4.10.0.0-rc3</a></p><p>Tag for the file system release candidate=
+:<br><a href=3D"https://github.com/EttusResearch/meta-ettus/releases/tag/v4=
+.10.0.0-rc3" title=3D"https://github.com/EttusResearch/meta-ettus/releases/=
+tag/v4.10.0.0-rc3">https://github.com/EttusResearch/meta-ettus/releases/tag=
+/v4.10.0.0-rc3</a></p><p>Thanks,</p><p>Marian</p><p>CHANGELOG:</p><h3><stro=
+ng>004.010.000.000</strong></h3><ul><li><p>Highlights / Main Changes</p><ul=
+><li><p>Support for USRP X420</p></li><li><p>Addition of timed complex gain=
+ feature, which allows setting a complex gain<br>value to fix phase and amp=
+litude of signals from radio blocks</p></li></ul></li><li><p>New Features</=
+p><ul><li><p>CMake:</p><ul><li><p>Create UHD::uhd package for improved inte=
+gration in downstream build<br>processes. The init_usrp example is used to =
+showcase this feature.</p></li><li><p>Improved options for RFNoC OOT module=
+s to write unit tests.</p></li></ul></li><li><p>Add helper routines to up- =
+and download data (reliably) from and to the<br>DRAM block</p></li><li><p>X=
+310: Allow daughterboards to set dboard clock rate</p></li><li><p>Improve f=
+inding of MPM-based devices by making parts of the find call<br>asynchronou=
+s and allowing to skip reachability checks.</p></li><li><p>RFNoC:</p><ul><l=
+i><p>Added new optional feature to all Radio blocks - Timed complex gain:</=
+p><ul><li><p>Allows specifying complex gain coefficients to be applied to a=
+ll<br>TX and/or RX samples of a radio channel at the specified time.</p></l=
+i><li><p>Enabled by default for all TX and RX channels of the radio blocks,=
+<br>but can be disabled at FPGA build time via the&nbsp;<code>EN_COMP_GAIN_=
+TX</code><br>and&nbsp;<code>EN_COMP_GAIN_RX</code>&nbsp;parameters of the r=
+adio blocks.</p></li><li><p>NOTE: For the x440_X4_400 default FPGA design p=
+rovided with UHD,<br>enabling this feature for all 8 RX and TX channels nec=
+essitated<br>restricting the existing crossbar connections between the repl=
+ay<br>blocks and the radio blocks. As a result, only blocks with the same<b=
+r>indices can be connected (e.g. replay0&lt;-&gt;radio0 and replay1&lt;-&gt=
+;radio1<br>only) when using this pre-built USRP FPGA image.</p></li></ul></=
+li><li><p>Blocks may now drive the front-panel GPIO pins on all RFNoC-capab=
+le<br>devices. New IO signatures are added, and all device BSPs have IO por=
+ts<br>for accessing the GPIOs. Device controls are updated such that the us=
+er<br>can choose the source for GPIOs dynamically in this case (i.e., the<b=
+r>radio blocks and other GPIO sources are still available). In some cases,<=
+br>the device BSP HDL had to be significantly refactored.</p></li><li><p>Ad=
+d names and descriptions for block's and module's YAML files, so that<br>ot=
+her tools may read information about those in an automated fashion</p></li>=
+<li><p>Allow&nbsp;<code>mtu</code>&nbsp;stream argument, which overrides th=
+e MTU value that is<br>derived from the link information.</p></li><li><p>Ac=
+tion handling is now moved to its own thread (there is one action<br>handli=
+ng thread per graph). This allows actions to be handled<br>asynchronously, =
+e.g., when triggering actions from async message handlers.</p></li><li><p>A=
+dd radio_state IO signature, so that other blocks can monitor the ATR<br>st=
+ate of radio blocks.</p></li><li><p>All RFNoC devices can now take an&nbsp;=
+<code>mtu</code>&nbsp;stream argument (which overrides<br>the detected link=
+ MTU) and a&nbsp;<code>force_mtu</code>&nbsp;device argument (which skips<b=
+r>automatic MTU detection and forces a fixed value). These are helpful in<b=
+r>scenarios where a specific network topology interferes with path MTU<br>d=
+iscovery, and for remote streaming when the MTU for a remote stream link<br=
+>cannot be inferred from UHD.</p></li><li><p>rfnoc_modtool has improved sup=
+port for generating unit tests.</p></li><li><p>Add PPS IO signature for all=
+ targets</p></li><li><p>Add stream command to start receiving when a transm=
+it occurs</p></li><li><p>Null source/sink: Add finite mode.</p></li><li><p>=
+Add UX1/UX2/UX4 QSFP configurations for X4xx</p></li></ul></li></ul></li><l=
+i><p>API Changes</p><ul><li><p>meta_range_t and uhd::dict can now be initia=
+lized from initializer lists</p></li><li><p>Add rfnoc_graph::get_chdr_xport=
+_adapters()</p></li><li><p>Python API now allows creating SubdevSpec from a=
+ string</p></li><li><p>Some public APIs that used&nbsp;<code>boost::optiona=
+l</code>&nbsp;now also work with&nbsp;<code>std::optional</code></p></li><l=
+i><p>Unit tests for RFNoC blocks (in-tree and out-of-tree) no longer requir=
+e a<br>dummy implementation of&nbsp;<code>~make_args_t()</code></p></li><li=
+><p><code>uhd::cast::to_str()</code>&nbsp;was added and&nbsp;<code>uhd::cas=
+t::from_str()</code>&nbsp;was extended to<br>be a full replacement for&nbsp=
+;<code>boost::lexical_cast</code></p></li></ul></li><li><p>Examples</p><ul>=
+<li><p>Overhauled many of the examples to improve documentation, as well as=
+ some<br>minor conveniences or bug fixes</p></li><li><p>Added continuous st=
+reaming to tx_samples_from_file</p></li><li><p>Improved gpio example.</p></=
+li></ul></li><li><p>Bug Fixes</p><ul><li><p>Fix static UHD library builds</=
+p></li><li><p>Fix compatibility with Boost 1.89</p></li><li><p>RFNoC:</p><u=
+l><li><p>Fix slicing notation in rfnoc_image_builder</p></li><li><p>Fix bui=
+lding of GRC files with empty default target (this would affect<br>builds o=
+f X410 and X440 device bitfiles from GNU Radio)</p></li><li><p>Fix installa=
+tion of OOT modules in Python venvs</p></li><li><p>Fix time alignment of fi=
+rst sample</p></li><li><p>Unit tests in RFNoC OOT modules now preload their=
+ DLLs to ensure the<br>correct library version is loaded</p></li><li><p>Fix=
+ generation of GNU Radio C++ block controllers</p></li><li><p>rfnoc_modtool=
+: Fix creation of spurious unit tests, fix package_data for<br>Python modul=
+e installation</p></li><li><p>rfnoc_modtool: Fix connection check for inval=
+id ports</p></li><li><p>Fix alignment of first sample coming from radio blo=
+ck.</p></li><li><p>Fix bug in ctrlport_endpoint which could cause the softw=
+are to believe<br>the associated RFNoC block's command FIFO was full when p=
+ackets were lost</p></li><li><p>Add parameter to skip waiting for ACKs in a=
+sync messages</p></li></ul></li><li><p>E31x: Fix GPIO control</p></li><li><=
+p>E3xx/B2xx: Fix rounding bug for RF PLL tuning</p></li><li><p>B2xx: Fix im=
+age loading via b200_image_loader when multiple devices are<br>attached</p>=
+</li><li><p>X410: Fix tuning when power calibration and non-default gain pr=
+ofiles are<br>used.</p></li><li><p>Power calibration tools: Fix settings fo=
+r E320, allow non-default sampling<br>rate, other minor fixes</p></li><li><=
+p>FPGA</p><ul><li><p>Fix various simulation-related bugs</p></li></ul></li>=
+<li><p>USRP Simulator: Update to match current UHD.</p></li><li><p>multi_us=
+rp:</p><ul><li><p>Improved bank name check in multi_usrp::{set,get}_gpio_at=
+tr()</p></li></ul></li><li><p>CMake:</p><ul><li><p>Allow absolute paths for=
+ install dirs in pkg-config</p></li><li><p>Fix target include path for Pyth=
+on module</p></li></ul></li><li><p>USRP1: Fix converter name in property tr=
+ee</p></li><li><p>FPGA:</p><ul><li><p>Fix various simulation/testbench issu=
+es.</p></li><li><p>Improve resource utilization in various places.</p></li>=
+</ul></li><li><p>MPM:</p><ul><li><p>Fix file descriptor leaks by using with=
+/open everywhere.</p></li><li><p>Fix double-free issue in rpclib.</p></li><=
+li><p>Remove tolerance for non-existing EEPROMs.</p></li></ul></li><li><p>E=
+xamples: Properly report errors when opening a file failed.</p></li><li><p>=
+Python: When installing into venvs, no longer force a reinstallation of<br>=
+dependencies.</p></li></ul></li><li><p>Dependencies changes</p><ul><li><p>I=
+ncrease minimum required versions</p><ul><li><p>Boost to 1.71</p></li><li><=
+p>DPDK to 19.11</p></li><li><p>Changed minimum CMake versions for various n=
+on-UHD projects, e.g.<br>firmware builds, to stay compatible with CMake 4</=
+p></li></ul></li></ul></li><li><p>Documentation</p><ul><li><p>Restructured =
+the UHD manual, improved chapter structure, improved getting<br>started con=
+tent, added RFNoC specification.</p></li><li><p>Fixed some external links</=
+p></li><li><p>Many smaller improvements (typos, duplicate entries removed, =
+formatting,<br>etc.)</p></li></ul></li><li><p>Codebase Management</p><ul><l=
+i><p>Increased C++ version to 20 for UHD library, examples, and utilities</=
+p></li><li><p>Removed Boost in multiple locations and replaced with standar=
+d library<br>calls</p></li><li><p>Fix numerous (mostly harmless) compiler a=
+nd Doxygen warnings</p></li><li><p>Improve CMake linking instructions</p></=
+li></ul></li><li><p>Validated OS Environments<br>(Versions for build and ru=
+ntime dependencies can be determined from the<br>docker container definitio=
+ns in the UHD repository at .ci/docker/...)</p><ul><li><p>Linux:</p><ul><li=
+><p>Ubuntu: jammy (22.04), noble (24.04), questing (25.10)</p></li><li><p>F=
+edora: 40, 41, 42</p></li></ul></li><li><p>Windows: 10 22H2, 11 24H2</p></l=
+i><li><p>MacOS: Sequoia (15.6)</p></li></ul></li></ul>
 
---===============3070602766835102406==
+--b1_qmJjoDnH4XQqhlBu95P9z6nNd3faH7Jyq1x8CImerQo--
+
+--===============2945262614746726862==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -561,4 +551,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3070602766835102406==--
+--===============2945262614746726862==--
