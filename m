@@ -2,88 +2,88 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yIzXLd5k72kIBAEAu9opvQ
+	id YEceA9OM72l5CwEAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Apr 2026 15:30:06 +0200
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Apr 2026 18:20:35 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72174736C1
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Apr 2026 15:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B8CB4763F4
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Apr 2026 18:20:34 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 57DB438A338
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Apr 2026 09:30:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CFA2038A818
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Apr 2026 12:20:32 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1777296604; bh=M26VDF6gH6mayatXHMZCk78cUCIQ8R0lEzo4R+KM6II=;
+	t=1777306832; bh=cL8UY7cOApIYwYxgMgjxCUFkmpP6FPN8B3lCZK+w9ug=;
 	h=From:To:Date:CC:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=u0htdr2l8tLDGvyDMBp3tevhqQmbQNC5EOXuczUHFwbb673uIlkfrgCrx5w8ZoiO0
-	 kk/IXTSeNFftZWatlymrC2HdVYUOy47eFiQt3usHRjEzBJRBUbB/8zaqRmF81WWKkr
-	 MiLRJYeobW3SDfeS36Bka3//JrTpGTIWMkBR+G6E0tCNatTSoEB5+XXAxy/+SYEADF
-	 hxddUujs2PaavFPAptecGBhBMyFpEgAXu6pEZoaVYljgSzQ4bGMFT04CuaQoxEqwkh
-	 xr1CVX657ywXM4XdEw8WZ7h1dwwT/tbWjvgbkoSE4ZXbDnFJu25MeRMqx3HigwdueF
-	 np3deaRaDtyHQ==
-Received: from mx01.hhi.fraunhofer.de (mx01.HHI.FRAUNHOFER.DE [193.174.67.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 72ADE38A258
-	for <usrp-users@lists.ettus.com>; Mon, 27 Apr 2026 09:27:38 -0400 (EDT)
+	b=SczB5qmfxgobqEsA9ZlofV2Hf4vrk7qi3mv37Jzwdy+emzsrMnNevR534NEbQE7oG
+	 YkLwQdt0HYiH74FuzDB3q/2/0D+iSswbGsPIdroXOLxwwan4CMS9h0sXK3+rTTNAIs
+	 9unBBZpeJdZlAjJGeZyQ+jRCy36ZSAX+4jJx5T4RIWM4eRuEgqkwiue5sziqbXnxIX
+	 O4/HEG+behTG51vTRJIP3kgKeHn3IawdLF01xRN2AeBA2OGfIUEBpP+EkXOjMexpWr
+	 qM5E6859vNoZdgsed5m/SddIcctcjh0obllVnojKnAl+pOM5r+ES1XodJohwr/K3Sg
+	 y1WZVUQ1MFnaA==
+Received: from mx02.hhi.fraunhofer.de (mx02.HHI.FRAUNHOFER.DE [193.174.67.55])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3CCA038A7B8
+	for <usrp-users@lists.ettus.com>; Mon, 27 Apr 2026 12:19:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=hhi.fraunhofer.de header.i=@hhi.fraunhofer.de header.b="SdMuayFL";
+	dkim=pass (2048-bit key; unprotected) header.d=hhi.fraunhofer.de header.i=@hhi.fraunhofer.de header.b="ao9qLJN6";
 	dkim-atps=neutral
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=hhi.fraunhofer.de; i=@hhi.fraunhofer.de; q=dns/txt;
-  s=s1; t=1777296458; x=1808832458;
+  s=s1; t=1777306763; x=1808842763;
   h=from:to:cc:subject:date:message-id:mime-version;
-  bh=w3EmI5/f4TOAVkxogjUq+x3ukCd0+JWODx0UC+fXCvE=;
-  b=SdMuayFLfe7q9pTiFqrc/ECCU9qKS8PiEH/Igl4jvMhkCWTzCoRnyaRK
-   E/DScDrsJ1JjoT44RiFX6122JPenG1tXMCCEY4I7rcEGkz8ZneRs05YJJ
-   ZMBil3kiTPPv2uZD3pP/jFzBS+ycS+sssjiFqk2wC5antRG0SdVPQutmk
-   Jdt2YhwELZ9WQ6WFDtg4szBLu+WQPS23To9dub7UCuytu1pLvfvak2yny
-   phcFuv9AXbckrt2h4mrgHkXYGApT1TIf7vq30TnFBo1TNZRYOdNdHVGWm
-   fO40DdIblzOoOc4bFt7KytJvHWV+wUiYKZdyqoIikolkL/Rf5WPhdnS9u
-   g==;
-X-CSE-ConnectionGUID: 1OJQ0pQdT8i5+T04cy9ooQ==
-X-CSE-MsgGUID: 3epzz1SmRnavT7dTbuVq1g==
+  bh=uaDrjeLsc1hpbJfAb7+kgHrQ8TSy5GPRSWfYYiHqk/g=;
+  b=ao9qLJN6wXkNYIVTYPVn5m+JSnssmp8LT0JLqtEIr1hbrm+n2w1S2MO1
+   kNl+oe7LriES6O7L1OTUHQXuB/e3jOFnJGYDlDXf6OGRuDoIU4jKun1yT
+   LLjZ3WSeX8um6UdNF3hwaqxZM4P21Q1vITSDjDLdslIybVPL55sJMNmFu
+   QFMbjHwUbb15jvUCaEleMAebzuEElY3iURH5YrIvo5UY1dq1Ic2fA5rx9
+   Y1Tbniq3RJU+dF/hX3L7ePsAPZKulGLmSfqOMWjygi/1TsLoJzMhgb8Td
+   eMQuDNnS1pC7ogl0ZxCWxSKcedPCu3rSSnzXLlhtOlXZCcv4QiKCnGOpm
+   A==;
+X-CSE-ConnectionGUID: ENgqX3tCSoapqmoUKmMNjA==
+X-CSE-MsgGUID: 9VjlFPGTQGiWtzExbREAbw==
 X-IronPort-AV: E=Sophos;i="6.23,202,1770591600";
-   d="scan'208,217";a="1119174"
+   d="scan'208,217";a="933828"
 X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO mx.fe.hhi.de) ([172.16.0.106])
-  by mx01.hhi.fraunhofer.de with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2026 15:27:36 +0200
+Received: from unknown (HELO mx.fe.hhi.de) ([172.16.0.104])
+  by mx02.hhi.fraunhofer.de with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2026 18:19:21 +0200
 Received: from mxsrv3.fe.hhi.de (fdea:e0ae:2f75:0:859b:1ee2:31f7:cd7b) by
- mxsrv3.fe.hhi.de (fdea:e0ae:2f75:0:859b:1ee2:31f7:cd7b) with Microsoft SMTP
+ mxsrv1.fe.hhi.de (fdea:e0ae:2f75:0:41fd:7c9d:a728:4e1c) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.37; Mon, 27 Apr 2026 15:27:36 +0200
+ 15.2.2562.37; Mon, 27 Apr 2026 18:19:13 +0200
 Received: from mxsrv3.fe.hhi.de ([fe80::ad2b:b94c:74a4:fae9]) by
  mxsrv3.fe.hhi.de ([fe80::ad2b:b94c:74a4:fae9%5]) with mapi id 15.02.2562.037;
- Mon, 27 Apr 2026 15:27:36 +0200
+ Mon, 27 Apr 2026 18:19:07 +0200
 From: "Jurk, Dennis" <dennis.jurk@hhi.fraunhofer.de>
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: USRP X410 Triggering
-Thread-Index: AdzWSNCvFmndUuavQU+G629iL5lKFw==
-Date: Mon, 27 Apr 2026 13:27:36 +0000
-Message-ID: <a17be7f0c99d446b838808fb0ab2104a@hhi.fraunhofer.de>
+Thread-Topic: USRP X410 Triggering LabView
+Thread-Index: AdzWYYohSGxJL+p1RZidu+2wL1yL0A==
+Date: Mon, 27 Apr 2026 16:19:07 +0000
+Message-ID: <a1c47b3c5e0342dab3a48ca1427d44ce@hhi.fraunhofer.de>
 Accept-Language: en-US, de-DE
 Content-Language: de-DE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [192.168.22.100]
 MIME-Version: 1.0
-Message-ID-Hash: GQD2TXDTCSH5DFQ4AJLUGRFGWYIX4GYO
-X-Message-ID-Hash: GQD2TXDTCSH5DFQ4AJLUGRFGWYIX4GYO
+Message-ID-Hash: OQPHPNXYR56WBRULFOAO5TRPKN5CNKW6
+X-Message-ID-Hash: OQPHPNXYR56WBRULFOAO5TRPKN5CNKW6
 X-MailFrom: prvs=570078262=dennis.jurk@hhi.fraunhofer.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "Kaya, Altug" <altug.kaya@hhi.fraunhofer.de>, "Jurk, Dennis" <dennis.jurk@hhi.fraunhofer.de>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] USRP X410 Triggering
+Subject: [USRP-users] USRP X410 Triggering LabView
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GQD2TXDTCSH5DFQ4AJLUGRFGWYIX4GYO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OQPHPNXYR56WBRULFOAO5TRPKN5CNKW6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5831813414293567103=="
-X-Rspamd-Queue-Id: D72174736C1
+Content-Type: multipart/mixed; boundary="===============7554081242105177016=="
+X-Rspamd-Queue-Id: 7B8CB4763F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
@@ -116,14 +116,14 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ettus.com:email,mm2.emwd.com:helo,mm2.emwd.com:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ettus.com:email,hhi.fraunhofer.de:mid]
 
---===============5831813414293567103==
+--===============7554081242105177016==
 Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_a17be7f0c99d446b838808fb0ab2104ahhifraunhoferde_"
+	boundary="_000_a1c47b3c5e0342dab3a48ca1427d44cehhifraunhoferde_"
 
---_000_a17be7f0c99d446b838808fb0ab2104ahhifraunhoferde_
+--_000_a1c47b3c5e0342dab3a48ca1427d44cehhifraunhoferde_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -140,7 +140,7 @@ Thank you in advance!
 Best regards
 Dennis Jurk
 
---_000_a17be7f0c99d446b838808fb0ab2104ahhifraunhoferde_
+--_000_a1c47b3c5e0342dab3a48ca1427d44cehhifraunhoferde_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -200,9 +200,9 @@ Dennis Jurk<o:p></o:p></span></p>
 </body>
 </html>
 
---_000_a17be7f0c99d446b838808fb0ab2104ahhifraunhoferde_--
+--_000_a1c47b3c5e0342dab3a48ca1427d44cehhifraunhoferde_--
 
---===============5831813414293567103==
+--===============7554081242105177016==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -212,4 +212,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5831813414293567103==--
+--===============7554081242105177016==--
