@@ -2,83 +2,88 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0MKaMeTi8WlZlAEAu9opvQ
+	id YMQoK1nj8WlZlAEAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Apr 2026 12:52:20 +0200
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Apr 2026 12:54:17 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6162A4932D6
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Apr 2026 12:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54CD9493389
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Apr 2026 12:54:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DC75438A642
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Apr 2026 06:52:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6577738B9AF
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Apr 2026 06:54:12 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1777459934; bh=iEQ+FMkY8yt49l5jO3GjDYyobii1RA/7esanoloxsT0=;
+	t=1777460052; bh=U7UVrBoSINbhwPXLo1KO8NCRjpjbQUS7WpXUV+YHebs=;
 	h=To:Date:References:In-Reply-To:CC:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From:Reply-To:From;
-	b=WoTd14NW771o4A+38vS43chiKz+TByHI3OS1nNYn0CskS02RkA6imA0s3V497dPLS
-	 OUAX9xFDHl4+/t9kjt70nEDN3OxhYWmty+FpinjO0USXDd86tgJ1vPuV3NUJly5Ncu
-	 dG6TyE0P0nK3AGHiDwb4mvTYiltxSZrXdSSz0NurRum9oogcvWK/9RQHdV09XpWFpf
-	 MJeRvzHlycs8eKaRu4Uh1dZYRQLKsyF7Zqw1B+FxHxXSL/w1Myf/z47S6mraSnzx3R
-	 uJ9ipBoVekuTCpnzr1INVkpR+D1TnFM+ZR1xEMXNcBMsA9Zeggtpv0HRcHXLdK16Qq
-	 C8P+9MDffs1xw==
-Received: from mx0b-00300601.pphosted.com (mx0b-00300601.pphosted.com [148.163.142.35])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4B7AF38A642
-	for <usrp-users@lists.ettus.com>; Wed, 29 Apr 2026 06:50:56 -0400 (EDT)
+	b=r6EmkE5caxb28XpmoB5BKdldLaRBlED1EQj8cLEEioJpAlzQ/RjGQD9kVZd10a+5K
+	 hNqyzIKMb4xTdJzx0ABLm9zcVGulcsNh+EwnnhgtInskOKdCUGGlesneWn9jxSVoPf
+	 mYtZg0vjzNaKKgEATWV0JnHm6HhK3kyHdl9qM7RgzYH3+Ff5Rm56/85X60QAuioy9a
+	 s4azPwnVokdK6hhso9XtFtuX+GHWh3mFwR/06fbfU5SLwxUpCcrGTzt6Ay2IUAJGWQ
+	 WdxjnmUT+7kE07e59S5Xb0lexucORdSLOQjLhiaHeDSWQ1oemhuPIGeuogu96AdqfI
+	 G90XiwbXloORw==
+Received: from mx0a-00300601.pphosted.com (mx0a-00300601.pphosted.com [148.163.146.64])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1B9293854C4
+	for <usrp-users@lists.ettus.com>; Wed, 29 Apr 2026 06:52:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=emerson.com header.i=@emerson.com header.b="zhvuxRGo";
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=Emerson.com header.i=@Emerson.com header.b="ONetoP6y";
+	dkim=pass (2048-bit key; unprotected) header.d=emerson.com header.i=@emerson.com header.b="qjIwtdBU";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=Emerson.com header.i=@Emerson.com header.b="iUdjO4Oz";
 	dkim-atps=neutral
-Received: from pps.filterd (m0484885.ppops.net [127.0.0.1])
-	by mx0b-00300601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63T7PC7s2439869;
-	Wed, 29 Apr 2026 10:50:53 GMT
+Received: from pps.filterd (m0484887.ppops.net [127.0.0.1])
+	by mx0b-00300601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63T3a2QV1158572;
+	Wed, 29 Apr 2026 10:52:49 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emerson.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=email; bh=RDyHQojzDwSQwk6aLVabE7lThRhC
-	H3VYr47C+CD0OeM=; b=zhvuxRGo7iRnwcH9jg6EJeVvBzZj+rjkasFcYe85L3YK
-	o7HDJjpaahv1lgYtyvkZTBKYz1vgOxY4YnX7+aughpLOrMXMUMd7vngALOl37PjN
-	v86JF2rkGf+J2VdO3yqGcJE+yqqOzaiSkdQ2l4PgJeY20Y94ILcfOdTNxABOHsu8
-	z6MNHizXeITtM1jkSRhf63s8iLpjk0gitYJSgskFhrZPuoTGgYejpS1KpwmYZxRJ
-	w1VPHut69S0/iZpzk98JhgKQepjTRCXz14gqydGhNJJJucoCEiSXafFI8do7/kaB
-	Xw/aFKm+lQZnSFVHwrW44WfM1CAljNu35owFunETzg==
-Received: from dm1pr04cu001.outbound.protection.outlook.com (mail-centralusazon11010031.outbound.protection.outlook.com [52.101.61.31])
-	by mx0b-00300601.pphosted.com (PPS) with ESMTPS id 4dudk5hhq1-1
+	:references:subject:to; s=email; bh=p355LTyFFT6twnC2XBBRnFOFW4ie
+	eaL+66oduPZnZtk=; b=qjIwtdBU6DMVk/fkr1sePlRiM9cHDL1kSPENmrdSI2v4
+	rhqSzQng8ywfBBIWb+hWuAVPfmuEq4N7GdtVnC3NcwV/29pm0yaSyVUirvl7an3I
+	wxCNDpFqKVYl9spCLNnmw1WOgHH8fOseMsiORXGK8X1egQ81G0YcdBH0Tg325OKA
+	1kxDqlgVzWBMuMbQa0h+KBDp0L02SlI+//Z1TaGLTw383okgFcEVq1lnJ4k1h3rr
+	/sJsjcKw6wLzAR3xpP4UzV7WD3vyzDKdny3erUdRlyqoE2xC0WlU7P8RZnIk5JzF
+	o5G6jsNEer3DC3lSkeDmnV8k+dk6z1a0DahGPdItzg==
+Received: from sn4pr2101cu001.outbound.protection.outlook.com (mail-southcentralusazon11012004.outbound.protection.outlook.com [40.93.195.4])
+	by mx0b-00300601.pphosted.com (PPS) with ESMTPS id 4dtuwa1vbc-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 29 Apr 2026 10:50:53 +0000 (GMT)
+	Wed, 29 Apr 2026 10:52:48 +0000 (GMT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=khpFFuJqhMxhsroFAMMa1bRi7BY1LJubKtacttxytIr18yaDAo4htNCtBU1509M9KSk/UKTN2/QRPjzmkNshe9MLrJSc1fN0QgG8lPTC4slLi7qg/6Hwm1cYSHZ4WojdOBBv9Y+a3UlDHvnZYCSbE+zhSlTMAFX+7Oje6tlVgNgQ3tycgR6N79bdblyUat4K54EIGEf3oxwl0YSpLn+pFx987YT6FJW0udOGX/B+cTYoWochxVdqwUb+5bzbSmjIDjKjfvx8thR8BGFlbs6n4IK6M2Bc09gf7Yqv39F3B807GUnHbNJTSWezPye8415kuQJjR3VdnLE85Vl+8xyDVA==
+ b=M5b1RWJ1oDeLAqOFL1OkVqxBI3NMLARIHyGT0U3hBo6wu6wsXD14WlI/IYck217ynOs9EQm2CYJOUh7whpJahI5Fre2RQe7Gm4So5lt1q7vzeD6xN7pIBsQhKlGMYO/HrhRDXkQbIp75LQcTY3qdEvB9AcP/DDq5k1fD04eYShLavILzgdUp0aAVSlmtKkuc5dWEl/HWfCh7d+mBr9wzUQGle9gGHw9C47ly+hEyHjOySoeD8wDVY8Z8ijyBQBb3Ni8cXBSAV+btdXWHVUYYMfNgQK2H5zlvS2xhoKwfL8tK9Rk/4nGuRe9TLA+LpMjLba09DmoIzU7LeEAILu0QGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X3Rz9qXsHHwGuFDx08LKZw2Zk/Euof5FrUpknGWu/5M=;
- b=SMIZn94cgL8QqgyxeiZvZASoUO1dYkRD5fqUG4HaoL0MNk+zAXUieAvTMQiIhDK7hUzPRjcsZQfZ8dtcBc3MXyTW/ko+PRDWfraNeCboE8YXOaqy6yQiBjPsNsNpBcb71jJgC4h/Hd98AJzqlsgBVjp/+eQHpQo/6aLLARhKZDZe0oqSgKyi8KLdijOhirHTrcy6w5/xNa49hWJRaIhAITYSxT7N0/7tAEq847+4kt98Cw6d+1G/sIwvMoOlzJ/nuzDRPaef/jGH3Sm1a8gSlaUoqdyU/WEOH4qUAUgAbU2sOncqJot1/6/0stOj95Z1viytJHVuqXNJYpk8xsdVlQ==
+ bh=uaAU0Atz6TyAwYaEDgRRqNl4KXZk3Uy45UcbVUBYltQ=;
+ b=XAyaudvhBaDOpKnt9/t97s5vvlVlO5DqgNxiF/37cEFu2qxNZ9aZoYaAu+GiPHpBN2CaxlK1Eq9T3fofT+SoSuPgvvS1lSDTn1Acvu5f5K3+eDKuvKXJTtYnSWu1ply6f9vckZNzrkpuyuErNQbwkyBKw6ltDA2IPTa8GtDkuFmCgNh03z4uSkC8npkYmtFZ46nIHSYkE7cJLgXEWCzqGUW/lWEvPOKKwItKYFdULd8/im+BSeb3T/KHz+a9+RfiYg18i1+ZC2PaQlCGIKEbUnfplE7GFUPx0StYZCH/WvipaX70t3myHMiKR8aHaOcF/SLSpdxJ2oWcSfG9fmZuhw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=emerson.com; dmarc=pass action=none header.from=emerson.com;
  dkim=pass header.d=emerson.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Emerson.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X3Rz9qXsHHwGuFDx08LKZw2Zk/Euof5FrUpknGWu/5M=;
- b=ONetoP6ynL5lMUa7bRanVKR7/AebgJZLHJ0xAnXvgXWYiXCt7fWswyHCI9ZOm3Dgvv1mRiDYx0ZDJUBAPlOZlFVGku+qrYFxM27ztogLZTZeUxDBbCn2l7zpBV45hLfIlJTod3x5mnh/N15yiX0G6rdPF0VVLKkWIjFNAbp99ro7ViTbt24ZCYupSFNFOnzMmb/YP6mKmRk1w9mlc1emGAEz14aEIIJzEE7QfdJdRNgBFThFPntblTqwe4Q4fY4RiDOFZjtzBn5G7OLg6q0qvv3gOsFbEGzHn1gf5STwMDJTvZowR17zN4F9v7bbQD2jMUFr8tsiUasSh54PzpnVzA==
+ bh=uaAU0Atz6TyAwYaEDgRRqNl4KXZk3Uy45UcbVUBYltQ=;
+ b=iUdjO4OzZ+dHhvjmBJSGIRQYTcqvXPCAH8MNw1pO7DJtdJDjvbHGfc+6MlA+TDS28Ykqtue+t6WraDqnDNOnfoAAmKH9I9qltF/rTgzOkPu2yaZcNPRwVTYEjVyWyNz7N+Wp3iDsnqz3tfVoPaWlFzYD4iKhdp3J7J7iMqofG+KAw6x1lYZx3C7TOQOtmZ1pUfpMNu6aKr/6dsb1Q3ut/WMYWTCVl1cz70BQ7PDvSaXbZmPQn/G0XvRXKLYQNmVXze9SdgVk8RVlyl89QmQQynRjPMPU1ZS8Ywjh7tO9iQ0rmEZGs8xJ/nv/c9hLO/iqib4v6hdd9jrSBkClQRRgPw==
 Received: from IA1PR10MB6781.namprd10.prod.outlook.com (2603:10b6:208:42b::9)
  by DS0PR10MB7127.namprd10.prod.outlook.com (2603:10b6:8:df::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.18; Wed, 29 Apr
- 2026 10:50:51 +0000
+ 2026 10:52:46 +0000
 Received: from IA1PR10MB6781.namprd10.prod.outlook.com
  ([fe80::bdba:6cbe:1a15:fe40]) by IA1PR10MB6781.namprd10.prod.outlook.com
  ([fe80::bdba:6cbe:1a15:fe40%4]) with mapi id 15.20.9870.016; Wed, 29 Apr 2026
- 10:50:50 +0000
-To: "Jurk, Dennis" <dennis.jurk@hhi.fraunhofer.de>,
-        "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+ 10:52:46 +0000
+To: "Amsel, Lars" <lars.amsel@emerson.com>,
+        "Jurk, Dennis"
+	<dennis.jurk@hhi.fraunhofer.de>,
+        "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
 Thread-Topic: USRP X410 TRIG LabView
-Thread-Index: AdzW/IbukQ14JROXRXuMEmxRA866pAAyEPhA
-Date: Wed, 29 Apr 2026 10:50:50 +0000
+Thread-Index: AdzW/IbukQ14JROXRXuMEmxRA866pAAyEPhAAABeJ7A=
+Date: Wed, 29 Apr 2026 10:52:46 +0000
 Message-ID: 
- <IA1PR10MB67817078046DEAD82E551D2F8C342@IA1PR10MB6781.namprd10.prod.outlook.com>
+ <IA1PR10MB6781772A7F62357D5BE6FA548C342@IA1PR10MB6781.namprd10.prod.outlook.com>
 References: <2886c174218f45de8fb1b100e4b3c6d0@hhi.fraunhofer.de>
-In-Reply-To: <2886c174218f45de8fb1b100e4b3c6d0@hhi.fraunhofer.de>
+ <IA1PR10MB67817078046DEAD82E551D2F8C342@IA1PR10MB6781.namprd10.prod.outlook.com>
+In-Reply-To: 
+ <IA1PR10MB67817078046DEAD82E551D2F8C342@IA1PR10MB6781.namprd10.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -89,99 +94,101 @@ msip_labels:
  Label;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_SetDate=2026-04-29T10:41:53Z;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_SiteId=eb06985d-06ca-4a17-81da-629ab99f6505;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: IA1PR10MB6781:EE_|DS0PR10MB7127:EE_
-x-ms-office365-filtering-correlation-id: 07f62694-88d8-498b-0561-08dea5dd2dda
+x-ms-office365-filtering-correlation-id: 4c6d1173-6528-4934-f2e0-08dea5dd72b9
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: 
  BCL:0;ARA:13230040|1800799024|376014|366016|22082099003|18002099003|38070700021|8096899003|56012099003|13003099007;
 x-microsoft-antispam-message-info: 
- wSPrNZ+nzTVbAW7FtQg1mhfuNtq670V6Ajslcvjiyrb+GRo4KGv2QBIKF1Nai485lC3Bph0YxLb4dDIlB+nXwx3dFz+x4R0ORyb5holcgn1tqwLq5QdIFkE/FWA+8aQpGw9sDBBxGw/QHglQn/JAJMo9GeXa8xWvXr0TEEOK49r91OIVS55bhPA+X7wT2KHP1ShuRKDMHwtPoF5iA3J6jHA2BuC15LTONscvuarcdgYR1SXcWlNvm2JEKpgroN1S/hs1Pjovl1+1+bwInZA1fHLSJeB0ri2/8BXnXZNOlqJ8pjohba/D1mwg7Ojt+pGEvC2I2BnfGx0pSJ7zuMLZtf05eDdFjMlURKj3q7Lvsrf8ZnMsKGWoGmt/RD46mkh5SX8KHMoJIVntQns/Vn8hJt0Bwq1Wni4eCyMwI6BZgMF1Wewv4gezHPDnQ5ty6/Mm0pOGcbDgOPkq7UTuBjdz2QVYlU+7L4Iczco4JpQO87K/NGytZvUev0WKQNpdra7Oxt3lGO4op/zVGXyFg155vGAVed+ejvJVXREDHu9CllCxwlJ/j4M86HFdbn5HOLKlijUmFdo6Bv6rNg43/hgEkazI8SOJDsvl90Fou7mYDSJ4qgXHw+bxHzI/u3HuCy69x9i8jr+TRtipma3Rban0w1D8IIC+wqgctDLOooKqR3wxO5g/vdfcQnPAbaeqyqvjZJtugFJWBUGBCOJ9fHyYTf9MXmeGAqsTcgrBSLsL4TPSMFcbzLPW2OlX6zz1N7Fq
+ jyaTdJiFZiBHo2jlAJOTZ+mso/E40TbHKthPdnDyEMjCiVQYTClYQBxnP1fg6uoaWHU0oIOtDXy3IStpRr2s8JplvilgkK9slcXq2pa5z7zsMXN9RNPi7zAA2vtzF+G0b9CEU1okUx4X1YSmNCQK3RSDcKCyg4QJxV7SXZ/6w6doyAzBmep14VrERSsAWeiNtj3ERxHtA0LBrvUfd/7cd1qHB9q0pkBJANwq4XXnyH/mHKTs12j+aGhNrbLbtAlA/nOaOI0mPh51LxpiVBnjU5Nvb3pZVtUYtLZHWJY8ayaS1L5k7PXGVCn2kFQw4yCouqgPjgNNSbSEFWkulzin/KCK6eM9mCoOM1EL5enpTXEd6LTV9/50rsEI2fgZd8pWS73g/pkXgGX1OsvVlYQPvQoyi5YwYIHVevaXTcBegVAJ0dcAWrx6g2GxIvfHiJ5IBdoC53vwo8nA+td4uNh+m+X3ZPLl4muBz/dZWqpyjjjnozt+niohcncfbxVlwlLOmSS2uokU7WiInDOCUCnK7j5gWvC/HxnqyUiMcdJKROz0tpenTAgThMDaH38hwubYAAXOK3t6464lScFbCNiKFCfoNr+Yuq6gheQlJaf0O9yME7T4D/mMqgrjLeVguwauIh1NVuufhU4+pFEj3+zpIM3afmGdRTL3rt4BRRpuSIpw53V3v4+MYoO3pQQ/OFhh2TSPjqDAMm7hUKAXJjvHlIi+5BbIxe//YQVBJDXBuvp03SdBZ8rn3oXsC60mvc2i
 x-forefront-antispam-report: 
  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR10MB6781.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(18002099003)(38070700021)(8096899003)(56012099003)(13003099007);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?bGg4dUNDcFc2VUhMYkFUYjVPRTYwdENsSlZRaS9Bdkw5YkF4eDFkNnRNM2l0?=
- =?utf-8?B?dmhyNm5OcVRNT3hKR20yZUtJN0xzTitZZGNIbEN0TTVkc2s4YWIxY2ZKWTZG?=
- =?utf-8?B?a3IybmlESzQySDI1UDJKNk1rZUNGVmpoaTZ4RHJEYUc0SFpIQ1JGcS9Mdk1Z?=
- =?utf-8?B?K1BuM1BBTHZtR29USlkvRjRUQk96QUdsZnpERmVDTU9DaWdaRnVMUndHZDgr?=
- =?utf-8?B?QzZFamp1UnViOHdEalEzTmY0aEsxTXAzeDhEb1RKb0ZFQ3JseTVnZ2lvS3Bm?=
- =?utf-8?B?VUpLWEkrUi9YdFZBSnVDdjh2b2ZvWkoyQjNXa2NSZmRrb3Rwa0ozS0dpcW5m?=
- =?utf-8?B?TXFNTlUzVC9CYWFMSUdzQTlNaDRmOUd4dEEyUXRueDE0Z2tWdUlXVDBOaUx0?=
- =?utf-8?B?Tnp4MTBQNmtEOUJYWHFKOWRJRjNFVDJjSzFKNkNyWCt4cHRiamk3YU1EWjVH?=
- =?utf-8?B?MzdZRHcvREpMUmlkU3lNZHRMaUdtcE1tckhFWHBHSHU1aHdqZlJXWHBjcTBX?=
- =?utf-8?B?WTZkT0ZIZnN3RE9iOWpiai9sOExuMStKbVR0emQ2UHlwYUNWTnZtUG1SYllo?=
- =?utf-8?B?VXRMZ05ob0paTzFORzAxK0Jxd2F3MFRSL2tXOVp3RUlSdWxpZHZuMUV4d2Vx?=
- =?utf-8?B?Z08wbzBlOWxjYS9OM1JYY3NZQVA3MmlhSWl5TFR2WHU0cmo4am51M3p5Qmlu?=
- =?utf-8?B?TnVwcUJjUE1uMHdLaTIzd3ZvRG1Kb0VBbzE2bGRKVlQ0aE5aWVhzVWdYZmht?=
- =?utf-8?B?SEgwQ2t2Y1FJNXV5OVFTVjhwSDlKTlkxdklWcFUxWEpxcVNkVEpMK0ZjNllW?=
- =?utf-8?B?WmpiZ0JYUENYVmF5R1U2TldiVHNRdzN6Tk0yaXc5ZlVJQjhhZkdrdEJEeWNI?=
- =?utf-8?B?SXNBOGpqNXI2VlNyUGRiSjQwcGFxUVpJLzMrS3RRbXJVMXovT0V6VjNEMktS?=
- =?utf-8?B?MnNzWC8rTHVEOXFsVWtoNDNhU0k0aWhWM05Vcm9iYzBKSmFxd0FUT0cxZ0gx?=
- =?utf-8?B?YWNOdTdVZS9nQ1RLTENGWWh5YkljYnI4Tm9SR0xiQktWdm4xSm5jUnV4Ylo0?=
- =?utf-8?B?R2pCc3hZWFdmS1VoVFJSeUFLY0tNbkFjT0JpTzFWVjczakhiUlFHbXYyamFi?=
- =?utf-8?B?c2JKMnB6c0R3cEFZbXpQNGV0TG1jbzhRUnFwWGp6WUpPbnJkNWtmQk42ZTZN?=
- =?utf-8?B?dGlNQzNSV05YdFBIVXVoT1ZaY0JiY0Z1T05GOXVXMVYyQVFhYXQ0QXZERUJS?=
- =?utf-8?B?N1NUMkhLMFUxRTE4b1BseTFURnpXN1FXK1M1b09KOTdVQ21nbWdvV1J3UmlT?=
- =?utf-8?B?dTVTdVh3U0VDUEZjU3ZCQkxKeFdsM2xVdG5SZzRsam5KbURhanArRDIxTDJY?=
- =?utf-8?B?NEhqakVhQVdLM2hUc2tyUnBCZURDZjNvY1dIN2JZOURQMzdCam03U285S0Q3?=
- =?utf-8?B?Z1ljZlgwQnpUQXo0bUF3OEVMcExKS3g0eEpHT3BCVFdDbEZFWlVyZjJZYVNu?=
- =?utf-8?B?d0t5Wlp6dldwblBLRkwvZWtBQUFmZ2JyTUZJNXY4NVkwZHpWTFVWUDI0NUV0?=
- =?utf-8?B?Z05oK0JmYjVEcE8yNkkrTCtoSFdBbmN2eWdGVWZqRDk4eHhZMUk3ZnZmWVdk?=
- =?utf-8?B?UitIcE5SYUUyZ3NpMEpFREF1OTFxK0NndVNtQzJoU3Z3T1VOV0hMRVlaL0VZ?=
- =?utf-8?B?WWRIN2piZ3FLb0VKTEttT3ZwTS91bUZKTm9YTy9EaWJuS2lqR3d1THh2bUpo?=
- =?utf-8?B?M1JuLzBsZ0FCQkswM08rRU9sSWJ2MGNIZ05aOUVKTlRRakowZ2lxWXVRWUxW?=
- =?utf-8?B?Sk5iQklhbVpKdWwreG1LeU02bEp1S3RvcEVPM0Z6Mi9yMjhYQmFhUWNWNGJL?=
- =?utf-8?B?dkF0TjIvRUx4M3JFVVYwY1U5MVNDSkljeUdIaEpmMUJtQzZYZVYyQ0p0a2tB?=
- =?utf-8?B?ejhZZSthTTNIN2p3c0FuY2JLNm5NQ1dNQVUxdUNuOG03SEE2V1FjQTNFQjRT?=
- =?utf-8?B?T0dNVlgvd0NxSklqNUxwTkdYUjUxRVJJNkxvbmxkRGU5S3YyUzNaOFNMekl4?=
- =?utf-8?B?bGxWK0RTdWUvTUlRb3EwN0FXM25FK002cDAwbW5wOFlpZ2pjK0NHYkZxNWJH?=
- =?utf-8?B?bjFiMGpCcW9QaEpSWnBVWVQvSnV3RWsvVE1ybXVzMERFYzVmQUN3ZGhkU09E?=
- =?utf-8?B?enZvMGRLQUUwUlB4NStTcUlFckx4cGZTZXNLWE1UdVhCK2w5RmpVWlpCU2Vu?=
- =?utf-8?B?bEppb2ZobGRGVUpWL25QRmNJMmVCcXJ6N29kRTFtVHM2WDdWQU5OSUtUSm1B?=
- =?utf-8?B?S0tlTzRyQjc3dmhMMFpNdEFnMDhtM0ZoMlUxRkliU1ZjZE1XZjU2dz09?=
+ =?utf-8?B?R0t5cmVFUUFkc0V1YmlRYWxQQ0dpeGxER2RmTVBJNWpoOHZoejVMbkxUMEht?=
+ =?utf-8?B?SklDeEhMRWkxQ09YU3hNUjFMK0ViYjFnejJNYnNpQkgyYTRwV2kwcXpDbkta?=
+ =?utf-8?B?ZW9tcm0zNXN6eGZHZGMvSDFXUEhaMVdTZlRUenVmTEpIVG5oYzZ5NkRDR3Zj?=
+ =?utf-8?B?YWlaRGxLL1MvcU1SYUo4ZFpSa2ZXaWtCeHZ4WDM0dzY5RHlkUjM1dlRoZVI3?=
+ =?utf-8?B?UERWODdpL3NNMklpYm9tTEpIZWthZkR0TnUzL0FHVW5sN1o0bzFhQzJ2ZHkr?=
+ =?utf-8?B?ZkcvWnQ4ek1wSXZWWlIzRXhOb0syaU1DekV4YURXOUl6ajM3QlRtYk56Ylhi?=
+ =?utf-8?B?UVdBUVpSNktIMEx5QlV5ZFZpK1F6TFg1RkxtZjlVMUxZY3RydncxSjNTY0xm?=
+ =?utf-8?B?WFhYQ3FpdFVmbVR3YVJvTTRyVGFFblE3bThWZ0RwQVBWWm1DN2ZHYThkK2ZS?=
+ =?utf-8?B?YUx0VTFZRUdyM0l2Skl6NzRLRU9mcHFhUU1UYkRUWit0eXQ5V0kvOHgvb1Bj?=
+ =?utf-8?B?UC81OElBbEQzV25HdHE4bmEyemo5TkZEdkUwWTVNUUFLbFVaZjB5NGF4dEk2?=
+ =?utf-8?B?dTFuTVUrbjJrTXg2QnU4bUVhTlkyVTNhOGRhZmNEci83Qlphalp1MllaWVJP?=
+ =?utf-8?B?bUNaajdpQ0k4aW1mQWJFK1hvdE5oSFF3WW5VaTlJWHVqQWNsK0w2dWV3bHls?=
+ =?utf-8?B?dlVKYVJDalZtSXp2ZmlnMTR2QmkwRHNURTA3Y1JtbGNBRjZCNXF6c0p0Wjlq?=
+ =?utf-8?B?ZHJlT2tiaHZ5RDVzVytQd016ZnJQMVYxOHZNVC9NS1NGd3BLY0lmbC9LZ216?=
+ =?utf-8?B?elVLbkZkUWw3RmEyaE1zVVJJRHJHTFZrNXY1NkRRdWRCczdqNVRtcjYvL1FO?=
+ =?utf-8?B?QTE0SEZNUW0zanhGRlVkdXpjNnpEdCs4VDVJbFNrR0owWEhRSGQwakRLdldM?=
+ =?utf-8?B?aFMwcG1pazEyUENCU0FQSFdDL21LRjliekFNZGFPVmlyRlZaZ2tlK0lPQVNJ?=
+ =?utf-8?B?d2tUKytYODRCaWRxMVdLQUpwZmxkU1FkRmJNL1ByZC9DbkNRYlJpTEhXZDRB?=
+ =?utf-8?B?S3ZUN0dIckhKY2xOMSs2TWRWQ3lXVUxJclJ2VW43dWlKUXlIN3pJdWlBSk93?=
+ =?utf-8?B?dFM1OFQyVmxxL0VNdTlubFc3SklrNFZ5V3ZHeExzYlFqN3JOMnZ3RVplS2Zz?=
+ =?utf-8?B?WHQ3N2FhSEFuQU9ocUlUWGZpVVpzMTM3WGlVRnRucHFCNlZJMER4bFBLV3lH?=
+ =?utf-8?B?YkovWkxuTjRGZG0rMHhDUmc0MXdWbE9GMVRDM0N5b2lFUXIyRVl3aTYzVzc4?=
+ =?utf-8?B?TVdDVHdqaTJtUXo5Z1lRUTZvbzljeGtxZTJHSU5DVG9jZm53OFVtTGtmTW9J?=
+ =?utf-8?B?c3BJZEdLTmJ5cTRlUjdCYXo5QnZjVksvSlVtUC96UmtCTWZaRkZuNVhzL05r?=
+ =?utf-8?B?UGZ5dGNxd0k4NzNacXFqNWhpbXlCWWFwdDkxMWthY0UvM01JS3p1UUZZaFQv?=
+ =?utf-8?B?am9RN3pRbDhxay83TFhYanhoODdYNENsYkhPYVlVOHltK2t0Zk9DVUJ5aXYw?=
+ =?utf-8?B?VHZSV3piS091S1NWdzR2OGV1QW10YlpPTTJ1SjZzZUxqNi9IVjJCalZxc3Yr?=
+ =?utf-8?B?SWlDSEZMVlFaWDNRdEtVbWhkSXZkL3NlUDJDb1MyUEUrL1pQVDBORXEzY0xW?=
+ =?utf-8?B?Zk8vL0pJRmxVaWpYR3RqRUcxd2dIWjJCdmpncGgvSkl1VzJpWXllRmhudjFH?=
+ =?utf-8?B?V3JtUzlqZU1IMGxvVzF6VFNWNFMrSEVwMjFLSTgvMGVnOHVhbWl1dnpOcXJG?=
+ =?utf-8?B?N3dyN1RveldLWFI0UTdFOHU1MWp3OXdyUWhBRzRjYVN3OFd5R3VTZjU3emZy?=
+ =?utf-8?B?enV2S2h2aXZpZllPUEdRRE5KajN5NHAyM0FZQys4RGdQQ3JUdFIveEM3RHlG?=
+ =?utf-8?B?Y3hNdUJrSTAxb2g3dEFYTC94U1VNc0dQdXJZaUNvQThYb1R1TGYrd3lNR2ZS?=
+ =?utf-8?B?cWlqdHB0MFlrWmZWSllSSThhS2EwOG9yMkRoK3NxK2FvZG1Td1RVcTFEeU1n?=
+ =?utf-8?B?TXhleGNEL08rZDk2NzNHZUplUVZDc3dEaExMd1l3NDAwcmkyS2VYUUNvNWMy?=
+ =?utf-8?B?WEJHNExZSkdSR1hwUEp6RUNSK2E5ZEIydTRqMjJoWForVHVnWHU3TGw4QWJo?=
+ =?utf-8?B?ZzRPYytiTGRhWVV6dXduYUorZ1dzdXlaK0lRbmw5VXo2WFVsL2U2Q3BvUXFH?=
+ =?utf-8?B?bERoblZ1RWlRcnNHYk1EMHRQdnpJekRZcWwwRTEvVVoxYkRCcnVpTFQ4eGRy?=
+ =?utf-8?B?TXFQbXVHMXNUc3dxYVd5VkQ1OVQzUHFaRnFDQ0RwQ1VTQlBOTEZuQT09?=
 MIME-Version: 1.0
 X-Exchange-RoutingPolicyChecked: 
-	U/169R4NQu5dRpqsT88u8MkCNfQHP1eD/b/pBVeFN5cL/BUE4M4doGuKXxoDJGBn5l94Z83fWdmoS0EdP+CsWCdLMZG4ex6Dr+VHjyyVc7tifzWMNpAc7ntkPcwsKPnPGJnqAfy5SGEFhxj+wq4P0aMhbKvLY0gXPnBlynzT/cfQ36iU9IDZ/5CTbWtWoeCbJKOgqGCySg5PenHh8dAbRsFV3oz/RUlYpDRdAcEb2TwtirObXkX8zNpn2tzENf8qa4KOcD+9IQcn4x84r+GXqrp8NOH8V6JQbfyG/CjM8uRhuqfd6HbBSFErefAJAjD7r4xHtdZqzquWo5c5hVaOJQ==
+	UYntnkbpU2Tlrv4hQkAv+Jlwbx15x9Deij4cBIF1acY0/gypy6TYpaWJCqAIMemy/thwm3pKMoHdl7d0VOvMJ/XE9wfK9Xm86Gdxz1p2z7gg5iVpf3tT7ZpnCBYaClCbiyGJjsWbNZhhk1/Klv7W2yrZJMLj9ej7ANgqtUroac1Abf0CZFQa5NKNP8ec54jPXRi2ATf9V32H3LislEaSMKLquc3ZJdnRMHzrB47Z/fxhZ5MJqqdLtaZa+q5rwgLudvMeMZrhn+6U6xr4Kjho+o1p01DgWAKaWYTf32XZjNOD/GxFTDCWL8XaPI4FPkYJp2HZqHg/lVTsS5g4B9D/Lg==
 X-OriginatorOrg: Emerson.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: IA1PR10MB6781.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07f62694-88d8-498b-0561-08dea5dd2dda
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2026 10:50:50.8342
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c6d1173-6528-4934-f2e0-08dea5dd72b9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2026 10:52:46.3975
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: eb06985d-06ca-4a17-81da-629ab99f6505
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Pb6j12xQmmWqp+cE7KqJNaa/9zOelJiO3YJUisig6sAN9qKz9p8WBlxqhLFf/DDX9f1q6iPaXbaXro4QKHIWQg==
+X-MS-Exchange-CrossTenant-userprincipalname: +eG5sn3QRtzZPbc+j079ebx86f4uVJcBc1Ga3zFfOUek5ytrwVjTQB75J5CbJn/QtslyYVHUAzJZfTrs9rfhEg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7127
-X-Proofpoint-ORIG-GUID: Hykhdyd0CQq01tX7Sy5jDBABnIhbegee
-X-Authority-Analysis: v=2.4 cv=Ye2NIQRf c=1 sm=1 tr=0 ts=69f1e28d cx=c_pps
- a=AR2WfxoYHs0IzVfHT2lLEw==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+X-Proofpoint-GUID: IbCzVN19cRiTFODsv75KUn4ACrAcQlAK
+X-Proofpoint-ORIG-GUID: IbCzVN19cRiTFODsv75KUn4ACrAcQlAK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI5MDExMCBTYWx0ZWRfXwoFcNalxK8E8
+ s7Qmht9gCGOGlJvN2cvNaP/9r62ZCS+pPsaPxvxBBqKB5dMkOroZwkc5HxZTwMDhTxK+md6KTQQ
+ 6FZJzXgh175XqL5qBZtmPac0zqZBvBE6tdv7UECyR7kklPoChGcdE6JOpuH5U6IxjoBhFDgEoWU
+ ohP9nXi5T/vK54NKVG/AY/xUMH+izpE9JITXdDCQjgs8uxc+XaLbxSLCtAnyPIzadqbRiMeV0eU
+ JN9OYzy6gv5We/j3OXEKkiWjrD7ZrLSyKwC720z2R/1Bmn2QS4mnD31axoUsTmypntWKWT/w5P2
+ hbUdM/ptOqF8+yNIXzdmiO/SsL4hkJTvdt2b/k6AvLNJ5fec7rXacY2wY6xWxputx20dkk+UWR3
+ hf0J6fUDn+/UL326X37YutdOZmqlkY4U1HGpD/0Ih9XuQzVv7qpl/VVvcTYF9eiZPs2HCd0kkwP
+ K8pQtbi342F0A7GcHJQ==
+X-Authority-Analysis: v=2.4 cv=avWCzyZV c=1 sm=1 tr=0 ts=69f1e301 cx=c_pps
+ a=eN70jGNn7EKSdYhrfilGAg==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
  a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=A5OVakUREuEA:10
  a=ZPWZ4rD8_x8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=Ps6gwBxKFAOpZu8f3VnT:22
- a=GhS-NIbOczwsjVVHtiwp:22 a=gVGD3344AAAA:8 a=RpNjiQI2AAAA:8 a=etiEgX_XAAAA:8
- a=tFdSZQYWK_iqVsu7EWAA:9 a=QEXdDO2ut3YA:10 a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8
- a=BGZnU-dMvnmlJ1JThucA:9 a=tp_cEaBglJnQR8B0:21 a=gKO2Hq4RSVkA:10
- a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10
- a=xQEvYfgLW3QvObN0DhJi:22 a=MLbIUA-Bjd6y1alW9qBG:22
-X-Proofpoint-GUID: Hykhdyd0CQq01tX7Sy5jDBABnIhbegee
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI5MDEwOSBTYWx0ZWRfX3OHcgZEBzjqA
- pBjbsCWtzVy0SFbFFAesgaQRZC2w7Xm1e4nsK1HYJtN74wdhIF5i9vaISnYRw8YcNp0Y/gsEHlb
- HsgJFopHc8y6V5j3YsLF333Vo/PSIu/Ii4Fsvi1SNIY0TOeJ/q2EqAZVzq1wtQjD8qyjtWliOu3
- Fj53RIW5R6a4qLd7c3JAq97fKYzvl9lQwLxayyKS2EGUsuFP5ZbKDNyw609MfpldwuiNXO0hYb3
- 51kX2h6p4hRKGQR3p3d12MwJs+0l6jDsDPfoM83gs+nrjckyUKcvFFmuEbThs//MCCWIv8wWt+7
- IY8nxqEVFC+0ZR4pE4EAYmGz39n2Ar/IWO8JKYGJGhQA7dM6Foo08CcxuNhQVNmRJOy77DzCg1G
- RlBGxMLFJi7tXvbpRIZ2WaNth7nTERyqxL8l3mMDKTGI6kcAeMzEsbqS9vDEnYi9R7ybfMhHuK3
- p5m/+GS3DXOSpkThouQ==
+ a=YzFfMDytZQSzZALhj0jU:22 a=RpNjiQI2AAAA:8 a=gVGD3344AAAA:8 a=etiEgX_XAAAA:8
+ a=oQul3iIlOuiHuoASVdwA:9 a=lqcHg5cX4UMA:10 a=PRpDppDLrCsA:10
+ a=QEXdDO2ut3YA:10 a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8 a=YBWOnjYgnd6YQH1wcnYA:9
+ a=c5B277tqPcJkWjI9:21 a=gKO2Hq4RSVkA:10 a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10
+ a=frz4AuCg-hUA:10 a=ImwWUX5h3JJ3gRE9moBe:22 a=xQEvYfgLW3QvObN0DhJi:22
+ a=MLbIUA-Bjd6y1alW9qBG:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-28_05,2026-04-28_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 bulkscore=0 spamscore=0 suspectscore=0
- impostorscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1011 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604290109
-Message-ID-Hash: K6ME6INYYVRYHXCSMMZQ6U56BZL4QOCN
-X-Message-ID-Hash: K6ME6INYYVRYHXCSMMZQ6U56BZL4QOCN
+ lowpriorityscore=0 adultscore=0 phishscore=0 impostorscore=0
+ priorityscore=1501 suspectscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
+ definitions=main-2604290110
+Message-ID-Hash: 2IZFL3Z2WZ3NS3O52CZOL33LSBRDMFPG
+X-Message-ID-Hash: 2IZFL3Z2WZ3NS3O52CZOL33LSBRDMFPG
 X-MailFrom: prvs=6579798030=lars.amsel@emerson.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "Kaya, Altug" <altug.kaya@hhi.fraunhofer.de>
@@ -189,7 +196,7 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP X410 TRIG LabView
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QJVQ3PIPDWOFASW65GQXAM63Q5OIOPXL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RMXQ742BUPS4OZW5NEBYIMP3SAILBHOF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
@@ -198,8 +205,8 @@ List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
 From: "Amsel, Lars via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Amsel, Lars" <lars.amsel@emerson.com>
-Content-Type: multipart/mixed; boundary="===============1194883244673570567=="
-X-Rspamd-Queue-Id: 6162A4932D6
+Content-Type: multipart/mixed; boundary="===============3298835972127552469=="
+X-Rspamd-Queue-Id: 54CD9493389
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.09 / 15.00];
@@ -209,39 +216,48 @@ X-Spamd-Result: default: False [0.09 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	DKIM_MIXED(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[ettus.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_REJECT(0.00)[emerson.com:s=email,Emerson.com:s=selector1];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[lars.amsel@emerson.com];
 	R_SPF_NA(0.00)[no SPF record];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[lars.amsel@emerson.com];
 	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	R_DKIM_REJECT(0.00)[emerson.com:s=email,Emerson.com:s=selector1];
+	TAGGED_RCPT(0.00)[usrp-users];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
 	DKIM_TRACE(0.00)[emwd.com:+,emerson.com:-,Emerson.com:-];
-	TAGGED_RCPT(0.00)[usrp-users];
-	RCPT_COUNT_THREE(0.00)[3];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim,ettus.com:email,emerson.com:replyto,fraunhofer.de:email,mm2.emwd.com:helo,mm2.emwd.com:rdns]
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim,ettus.com:email,emerson.com:replyto,mm2.emwd.com:helo,mm2.emwd.com:rdns,fraunhofer.de:email,IA1PR10MB6781.namprd10.prod.outlook.com:mid,ni.com:url]
 
---===============1194883244673570567==
+--===============3298835972127552469==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_IA1PR10MB67817078046DEAD82E551D2F8C342IA1PR10MB6781namp_"
+	boundary="_000_IA1PR10MB6781772A7F62357D5BE6FA548C342IA1PR10MB6781namp_"
 
---_000_IA1PR10MB67817078046DEAD82E551D2F8C342IA1PR10MB6781namp_
+--_000_IA1PR10MB6781772A7F62357D5BE6FA548C342IA1PR10MB6781namp_
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+
+The last sentence misses a don=E2=80=99t =F0=9F=98=8A
+
+From: Amsel, Lars via USRP-users <usrp-users@lists.ettus.com>
+Sent: Wednesday, 29 April 2026 12:51
+To: Jurk, Dennis <dennis.jurk@hhi.fraunhofer.de>; usrp-users@lists.ettus.com
+Cc: Kaya, Altug <altug.kaya@hhi.fraunhofer.de>
+Subject: [EXTERNAL] [USRP-users] Re: USRP X410 TRIG LabView
+
+
 
 Dennis,
 
@@ -256,11 +272,13 @@ Regards
 
 Lars
 
-From: Jurk, Dennis <dennis.jurk@hhi.fraunhofer.de>
+From: Jurk, Dennis <dennis.jurk@hhi.fraunhofer.de<mailto:dennis.jurk@hhi.fr=
+aunhofer.de>>
 Sent: Tuesday, 28 April 2026 12:49
-To: usrp-users@lists.ettus.com
-Cc: Kaya, Altug <altug.kaya@hhi.fraunhofer.de>; Jurk, Dennis <dennis.jurk@h=
-hi.fraunhofer.de>
+To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>
+Cc: Kaya, Altug <altug.kaya@hhi.fraunhofer.de<mailto:altug.kaya@hhi.fraunho=
+fer.de>>; Jurk, Dennis <dennis.jurk@hhi.fraunhofer.de<mailto:dennis.jurk@hh=
+i.fraunhofer.de>>
 Subject: [EXTERNAL] [USRP-users] USRP X410 TRIG LabView
 
 
@@ -279,7 +297,7 @@ Best regards
 Dennis Jurk
 
 
---_000_IA1PR10MB67817078046DEAD82E551D2F8C342IA1PR10MB6781namp_
+--_000_IA1PR10MB6781772A7F62357D5BE6FA548C342IA1PR10MB6781namp_
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -309,7 +327,7 @@ a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:#467886;
 	text-decoration:underline;}
-span.EmailStyle19
+span.EmailStyle21
 	{mso-style-type:personal-reply;
 	font-family:"Aptos",sans-serif;
 	color:windowtext;}
@@ -332,6 +350,38 @@ div.WordSection1
 <body lang=3D"en-DE" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
 break-word">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"en-DE" style=3D"font-size:12.0pt;mso-f=
+areast-language:EN-US">The last sentence misses a don=E2=80=99t
+</span><span lang=3D"en-DE" style=3D"font-size:12.0pt;font-family:&quot;Seg=
+oe UI Emoji&quot;,sans-serif;mso-fareast-language:EN-US">&#128522;</span><s=
+pan lang=3D"en-DE" style=3D"font-size:12.0pt;mso-fareast-language:EN-US"><o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"en-DE" style=3D"font-size:12.0pt;mso-f=
+areast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt;fo=
+nt-family:&quot;Calibri&quot;,sans-serif">From:</span></b><span lang=3D"EN-=
+US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> =
+Amsel, Lars via USRP-users &lt;usrp-users@lists.ettus.com&gt;
+<br>
+<b>Sent:</b> Wednesday, 29 April 2026 12:51<br>
+<b>To:</b> Jurk, Dennis &lt;dennis.jurk@hhi.fraunhofer.de&gt;; usrp-users@l=
+ists.ettus.com<br>
+<b>Cc:</b> Kaya, Altug &lt;altug.kaya@hhi.fraunhofer.de&gt;<br>
+<b>Subject:</b> [EXTERNAL] [USRP-users] Re: USRP X410 TRIG LabView<o:p></o:=
+p></span></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span style=3D"f=
+ont-size:1.0pt;font-family:&quot;Arial&quot;,sans-serif;color:white"><o:p><=
+/o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span style=3D"f=
+ont-size:1.0pt;color:white"><o:p></o:p></span></p>
+</div>
 <p class=3D"MsoNormal"><span lang=3D"en-DE" style=3D"font-size:12.0pt;mso-f=
 areast-language:EN-US">Dennis,<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span lang=3D"en-DE" style=3D"font-size:12.0pt;mso-f=
@@ -362,24 +412,27 @@ areast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
 <p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt;fo=
 nt-family:&quot;Calibri&quot;,sans-serif">From:</span></b><span lang=3D"EN-=
 US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> =
-Jurk, Dennis &lt;dennis.jurk@hhi.fraunhofer.de&gt;
+Jurk, Dennis &lt;<a href=3D"mailto:dennis.jurk@hhi.fraunhofer.de">dennis.ju=
+rk@hhi.fraunhofer.de</a>&gt;
 <br>
 <b>Sent:</b> Tuesday, 28 April 2026 12:49<br>
-<b>To:</b> usrp-users@lists.ettus.com<br>
-<b>Cc:</b> Kaya, Altug &lt;altug.kaya@hhi.fraunhofer.de&gt;; Jurk, Dennis &=
-lt;dennis.jurk@hhi.fraunhofer.de&gt;<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.e=
+ttus.com</a><br>
+<b>Cc:</b> Kaya, Altug &lt;<a href=3D"mailto:altug.kaya@hhi.fraunhofer.de">=
+altug.kaya@hhi.fraunhofer.de</a>&gt;; Jurk, Dennis &lt;<a href=3D"mailto:de=
+nnis.jurk@hhi.fraunhofer.de">dennis.jurk@hhi.fraunhofer.de</a>&gt;<br>
 <b>Subject:</b> [EXTERNAL] [USRP-users] USRP X410 TRIG LabView<o:p></o:p></=
 span></p>
 </div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"en-DE"><o:p>&nbsp;</o:p></span></p>
 <div>
-<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span style=3D"f=
-ont-size:1.0pt;font-family:&quot;Arial&quot;,sans-serif;color:white"><o:p><=
-/o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span lang=3D"en=
+-DE" style=3D"font-size:1.0pt;font-family:&quot;Arial&quot;,sans-serif;colo=
+r:white"><o:p>&nbsp;</o:p></span></p>
 </div>
 <div>
-<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span style=3D"f=
-ont-size:1.0pt;color:white"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span lang=3D"en=
+-DE" style=3D"font-size:1.0pt;color:white"><o:p>&nbsp;</o:p></span></p>
 </div>
 <p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;mso-l=
 igatures:standardcontextual;mso-fareast-language:EN-US">Hello everyone,<br>
@@ -401,9 +454,9 @@ n></p>
 </body>
 </html>
 
---_000_IA1PR10MB67817078046DEAD82E551D2F8C342IA1PR10MB6781namp_--
+--_000_IA1PR10MB6781772A7F62357D5BE6FA548C342IA1PR10MB6781namp_--
 
---===============1194883244673570567==
+--===============3298835972127552469==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -413,4 +466,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1194883244673570567==--
+--===============3298835972127552469==--
