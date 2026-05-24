@@ -2,115 +2,109 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yGAILrfHDGrAlwUAu9opvQ
+	id ALYKHIZvE2oCBAcAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Tue, 19 May 2026 22:27:35 +0200
+	for <lists+usrp-users@lfdr.de>; Sun, 24 May 2026 23:37:10 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E80E4584AE0
-	for <lists+usrp-users@lfdr.de>; Tue, 19 May 2026 22:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 963595C4647
+	for <lists+usrp-users@lfdr.de>; Sun, 24 May 2026 23:37:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 936D7385F58
-	for <lists+usrp-users@lfdr.de>; Tue, 19 May 2026 16:27:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4A9753862FC
+	for <lists+usrp-users@lfdr.de>; Sun, 24 May 2026 17:37:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1779222453; bh=4+DIEs6etlJzpuh+SYMtaaPg+RFIv/e4M7AOjBDL70s=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=E6uJ7b0KXfDirYTdbG5KX5MM1dJ9a+Sf+hNNZCev7xYV3uhcolrxnADAVETg1JdOx
-	 SdFL533IhV883vBgZ+TuiAYBmCN9uJLhr7Ry5/9SDOtmDT74855tY1tuNHmsJAUd0/
-	 wlM9+Vefzmuz0g2rxywwn2HBPwpRGynY9Wsn0FH8CoL9fyXCf16W4y67peyQ/LrXXE
-	 4WihBm9nck9IkJ0u3OAdSmDlvgidvBGpzXF8DxasNUrksVI2O/ELRap5jUyNpyx923
-	 FtzSfCb3ZuZS83bW76Aj713+f665F6IRViM5qPe1QcADsc6rUwHaA0Tp1pO5mi/5Al
-	 vYt+6yrtFXi3Q==
-Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3F750385EEF
-	for <usrp-users@lists.ettus.com>; Tue, 19 May 2026 16:27:13 -0400 (EDT)
+	t=1779658627; bh=95mZLTVog5Cm8aACKJddQSh6IWzoItGphad4Y9+k78c=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=vf1rpmWxvxBYPptNFVclJIGnsRjCUT1cNhH0+l026Og7CGw03195GII/Aa1lRTrNA
+	 8eGzmGwJ8m8kevusOcIgDDl2FSlHzPgasdvd7SW8r3nZYq0GODLY1tgs6yQ+6PANY9
+	 iExPVAORWxBb5uioPlaDuilAuy+Z6v0f+TIwHkEKqrJZFS+jTg9oxyr+xerUz/VUGx
+	 DIOfjhENXH1rws1l0p3LK1gFMD7iQEOeU8X3AoWfgau5YnDXfvFR4+a7FndFHzKBPF
+	 mOlE0rjQKPJW+s6yzFNJlOkwzykg3oeHibW2CRuwer9TGjUtexYl3uf9D8dHoJGq9H
+	 1uZ8rb0bO1jBQ==
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3CB52385D1D
+	for <usrp-users@lists.ettus.com>; Sun, 24 May 2026 17:36:36 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20251104.gappssmtp.com header.i=@ettus-com.20251104.gappssmtp.com header.b="Izk8L64Y";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20251104.gappssmtp.com header.i=@ettus-com.20251104.gappssmtp.com header.b="jYpJYLwX";
 	dkim-atps=neutral
-Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-65c24be9e4bso4308041d50.1
-        for <usrp-users@lists.ettus.com>; Tue, 19 May 2026 13:27:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779222432; cv=none;
+Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-69d92dbc420so1057738eaf.3
+        for <usrp-users@lists.ettus.com>; Sun, 24 May 2026 14:36:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779658595; cv=none;
         d=google.com; s=arc-20240605;
-        b=JqAqV0tvbrixR9pyhlsEC32ykGuZkesHUMv7MfjMnY1yj/XDSPdfupr9tWUOcEVq2/
-         CLIWRD/otjhyawdTeE28HgsEMk/6f3jSOKS8oyOtBz+mZRw638uv+OAT+dMQdrBipsty
-         938YZnXdd70IWG9GeyRjoLNTooNADmuQ2vSS2xgBThEsbDNC4vv/0vkmKcSGJCvEaN+Z
-         Wdi1BGqKKO7d9t8pfLyOW6PSkFPpSRZ9JxrX1NISRZV/IbaWcUMHtdTHzpNMivmAl9ER
-         4VltCkBjpT6Ax5tTRPw/QVR6bgkC7E+1/ESoMn+sEmtx1SYqR7Iy9YHaq4bKU3MlEuIn
-         YRww==
+        b=R9TcAH3lcbfscC/RaNC8vZUEhjHvUkp0D9OM+n9uTdHh7hFHVfXndrTIzxQiVywMXU
+         88YYPM1X2NP5AvUNbWG9PKnbwcmnJnH3o+FMLzvHMqbTh0FU8VMoW5k2YVUnhr4Nbxup
+         6cdEe3tZUKDT317VJ1zyXp4G/WWhy2t7Ffi8heMSdaHYExAbcEWhTx7p/iefxWvFneYy
+         zoliGrwoIjGUCfn7yDkUjVnQ3lRZsTvAqbjXqOzZ9fMYYppVTP9CzXTy7MfenBf5n906
+         O8ygjAoa2/1dkUayjoOAZb2+kCyzMylYqDsfLtKvamE4/Gz0zoTnj8LPTuhiKMfoLEvZ
+         ViHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=xiAf5IOAhYigRfOE0iStDw6C4B8yeuNAPEkdDOCZSCA=;
-        fh=eFOEXq/FBBPAWkAldIlflP6ZP6yh0xIbWs7iCeBYTF4=;
-        b=aBBEq3OKmVDNkzqvPKEFaaxUtSHRj0UrRPCaPPHXZL3yFJQkYsGqcf0BFQdkNSaKiZ
-         wUFB9zpks9OuKrTx8NhO6CSZufEccROF9RFdJiyfz/WyhDt/Ca8QCjfAR1Igw3kkwUOi
-         ZNSP3F8mpDu/9a16Aa/RWn4LK/mqw+7UJLce7Wqpkeo4MsSSkTwaVwfReWYLq82+ykQc
-         xIh/rRHeD2acLMhaf/dinrmDgAAhfMutJbCjzhdLMkUfE1W7B1g1hPxRLt0kKHpT2VfH
-         W+34qKLRuu67KKoxQ6SG6zeqO4GOfHoPEoDg26G/HkHBtOess66hTGYNciZf8EvkFiF7
-         I01g==;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=ey4NWNKPobpShAurZFn+kzmBJm+1zuWxKe1K01ph29M=;
+        fh=7x+5Qq5FC8MUtCGcJvrnDrCV484FJE2pnnNf2U13jts=;
+        b=iyFMSUluVxdJsBRwv8BrcfjEIBz3i5vwWA2RK3AtHRCSer2c1+lucn5CfoORBYSjMO
+         wFVodGJrsW7xmTb/bHJb3HzqkflDqToKvsFuqXkMcAu0OGuiVu4XwqXnPHiCiZcgDX8D
+         70NkBhZ4Uxou7UDPb6Xs1k24zC2H5GHLqN4xUI9mQWu461ADWvz21fngImwD/KbUvYy4
+         F6LT+F//rZsUHBmhibjYb8mDyXdkZ247ItkounSRQITeA8TpmUs4773vBucoEDkN44T6
+         AfwqwkiI6ujZlIzBJaGYv6DraGfw7s1JndtqBBXnovEpNQPXLerxutgIH/ReRuobIn5z
+         mOag==;
         darn=lists.ettus.com
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20251104.gappssmtp.com; s=20251104; t=1779222432; x=1779827232; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xiAf5IOAhYigRfOE0iStDw6C4B8yeuNAPEkdDOCZSCA=;
-        b=Izk8L64Y3F2fm9hspZmdNot4QKEuhsorL1sERKTzZb6JnsbgELOL2DSczX67lgoEOf
-         LphUF7hie/5LjfMVyPVrBOfMvRzoR5dNtkca0I3Q7HDrLqH3zog5aQRI84Vx2cikLL+M
-         5L3Na613LS5Oye5Brsv590+7LVn+qAgQg83zRZ77mNR2ugn9SEUmHFXsooAnA70x3/qj
-         TxoSXz3JDlwp4/xNusDhlM1wQ0AQguIKSzNPggkrqnyDvvWStL8nlMmTugQMibib6Ic1
-         WRp498LpFKuc8M9FznYT2jF0kb2a9wM0I1k0+praaHBbnpG6tducchWHZd2MFmKsJfMN
-         vLWg==
+        d=ettus-com.20251104.gappssmtp.com; s=20251104; t=1779658595; x=1780263395; darn=lists.ettus.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ey4NWNKPobpShAurZFn+kzmBJm+1zuWxKe1K01ph29M=;
+        b=jYpJYLwXqmTHq+0c1wTaKVpdvnZqy+Ne0DmgQVOTCK6YGmfkQ1eOT3qoSrLJlqQMli
+         Z5ce8oXCyQcGuLSzPuu/GuoUVBtH/IFaw4EEk+PzaOYEPnyASipQnl7Q/9K4V5vesoKt
+         xR5dRupAeDHlKnPbJRLwFEvs4yEoSdcHiLlFyw9rOhXv9JP5W+9N19yyFtJyWb3WSVNs
+         +JF6tvC0tz40rI1AvfEz2eviCr+eQAy0dVn4eEx+PkZHDrGQlHluyd+4R7NEFYcyhSoD
+         Uol8OL160J0gMDMr7wFidtk89s/ApQW6OUZA3Ylnu7COcPgzrNtNtBfs1popjcuYRkP8
+         KcQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779222432; x=1779827232;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xiAf5IOAhYigRfOE0iStDw6C4B8yeuNAPEkdDOCZSCA=;
-        b=nieyXnPU74lk9PrirAjLgOjAiNGdDOU7Ww+PllFJrHYV+40QUTyonyNHpZlD5SkTAb
-         HC8A6/l8xXugqm+3FZo4HCnHXNTkY354zokzIwJz/L3Fjaf/63a9zgXJHicnTxSTNZYI
-         cDChvd5acmbTZ99wtH30BEx5N68L4WRW0zGLicqxlYyqIYOHK3I0XzOknQPyC3wHjTeM
-         lj+Vtgw/e+KaOMGgYgLYR1afYJLekZg5pJNydLIKWpYKoradkk1iQHIKLVVAJ+9J42DJ
-         pcZZj4lBKl92RIuEUEXtxkT8Dz/YIrWAVRTCSCvHRyXrr4ZxlFHG9CF16KNC86ZHW2Hc
-         h4Gw==
-X-Gm-Message-State: AOJu0YyF+HpKBQbDTVnGHqf8p/tSTZK0ANh53QEVxszeU5h2WWdLaZhy
-	WDLIcZRu6XD6nnZgtS5NQy9pVO6X1ZxJ00jgKTB9tyIiCD30nnnGcgwF4lJIUGwkd7KkfV7GCIA
-	+UvnuGCBqkrCEqzoafzsWf1bVvcT3v2ibYgxpRb/yWmDb
-X-Gm-Gg: Acq92OHSrMxwH6A9cLolCXNWBE6S12GWKuv2a2EODt2diI1uFrjgOrpSkqDAib18zc7
-	TwR5M3feL1lN4nw2/2FIOVSkPnaYBEes/l/11+KSNpenkdCBr3LnLi1/xCu+C5/yE5XcKh4HV07
-	9q2x7QFYHhiY7Qac/WKy889VUJSy/1WMOdd+idI8RgLRSGnbBG+ROrygrooaZa2aWBQygU9A5FM
-	RBMqVXUZjBguwWex+M+Pal4Utcim1nQokXoT7cgIL8w/GL9VjjTjTmcdbqfkyuInTVc/27d1i8G
-	ypeE
-X-Received: by 2002:a05:690e:1516:b0:65d:7ffc:bcdd with SMTP id
- 956f58d0204a3-65e226f5da8mr16629745d50.25.1779222432435; Tue, 19 May 2026
- 13:27:12 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1779658595; x=1780263395;
+        h=to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ey4NWNKPobpShAurZFn+kzmBJm+1zuWxKe1K01ph29M=;
+        b=kagRY7zWDcYWau/8Au1GstPxc6PHP19JZ2uXBX8L81Vm7yEJqXsyf7fBAh1x+iQomA
+         Dtn8VFyU1J/9QQEx+QyWrPYSuOlOiIdMjOVU317bwe+Z3zlB0rZWaneD9o7FzzaA4lZ4
+         hPlUwEe4zqTDVpdXLT8uSqpOYr+Ra+gYz4czW3ZHDwO4kbiHg4IrE8PHhndki35JwUSC
+         ajPUuG+0yvnn5g3hO4Jpb3UWJjBMWko7PPeZrXZ/h8pc6ChglVnjBH6ara1uvrJKdZEA
+         wD8/652UmWnXqqfqMun/D9M4kzow7Zi0zd2PvDmfVf4jfsoxYiaCVKSgRt+P3PSd+aOq
+         yoGw==
+X-Gm-Message-State: AOJu0YzpuJ8Nh4pd3dHOjdv09gtNAhPq6LhyxENspm3tKharazZMulzb
+	SRmz1pxY2YRyb1CrKWdJUlbi9rosnOospyN45WKoOOWHmsXXl5NkR3JJOug9pqavVjECGyKsySb
+	O1V3big10PYAs/G19HOZFn1JH3TKTlqzHOn1GEBZ28v6pdfz8jTaGvceicw==
+X-Gm-Gg: Acq92OG5utXAXT10QniPRnYeAPVLd6/W/lX9KGfeJ1VV+m6Pq75AUDdORex0+gxH1c+
+	EWSJOrNPaDH+6ArKI+EubftLSgXf0XOeDnAqlRmPcVyPtKogO7UObJVSRSweodMqDea4w6abjuN
+	7snlr33WqIuNMUGVDgNjHSmItl3IYwZksaIjiDRuBRhfhmKKzoh3853cIWXW4Weo2X8kw8mnOIx
+	T2zflllvD0cDaE1+6o0M0qZoV8/4WOrWoU/RXMVIZbfVDvv7IntY17CajAdPDrpFxhfQVE42Md2
+	52r7FWBk5OPppbnHNSIHuHV4xkVI304m8AtHpc77x/OuOQ2TSKjs
+X-Received: by 2002:a05:6820:818b:b0:694:9f3a:da8 with SMTP id
+ 006d021491bc7-69d7eb30e64mr6620133eaf.12.1779658595020; Sun, 24 May 2026
+ 14:36:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <XKAyxVytRClYEJlSSBpskOSbVd8IEmWGiHeTKgmQ1M@lists.ettus.com>
-In-Reply-To: <XKAyxVytRClYEJlSSBpskOSbVd8IEmWGiHeTKgmQ1M@lists.ettus.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Tue, 19 May 2026 15:26:56 -0500
-X-Gm-Features: AVHnY4IScNtrGY_M-MPWEcm74mqSFBcIa4nn47Z4_E2iFVbHa7JAwL2U-_5WQ84
-Message-ID: <CAFche=gy_dYA0EeGuuSB=onHMZcb5uBfSN21KHOd-b0HjD9pEg@mail.gmail.com>
-To: eunsung.son@emerson.com
-Message-ID-Hash: AO46QZE6LEYIEEQYTLNBI32DMYRGSGED
-X-Message-ID-Hash: AO46QZE6LEYIEEQYTLNBI32DMYRGSGED
-X-MailFrom: wade.fife@ettus.com
+From: Neel Pandeya <neel.pandeya@ettus.com>
+Date: Sun, 24 May 2026 16:35:59 -0500
+X-Gm-Features: AVHnY4IPZTMZyqQBXXyK82DHNA5UpnEWRr8Cvnc9E9tYdNrcABvQRjxBGv1Oloc
+Message-ID: <CACaXmv-_dQZsMzP=iyP9w4o+g2ikqNrRyicHCScovr8a1mwVAg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: MTTXEZZHYS7VS4KPMUTUEJL2OK2JA5ZM
+X-Message-ID-Hash: MTTXEZZHYS7VS4KPMUTUEJL2OK2JA5ZM
+X-MailFrom: neel.pandeya@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Questions about RFNoC DRAM Helper in UHD 4.10 on X410 UC_200
+Subject: [USRP-users] =?utf-8?q?NEWSDR_2026_in_Two_Weeks_=E2=80=94_June_4_=26_5_=E2=80=94_WPI_in_Worcester=2C_Massachusetts=2C_USA?=
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AO46QZE6LEYIEEQYTLNBI32DMYRGSGED/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MTTXEZZHYS7VS4KPMUTUEJL2OK2JA5ZM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0985676341792902549=="
+Content-Type: multipart/mixed; boundary="===============5934162972734607660=="
 X-Spamd-Result: default: False [0.09 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
 	RWL_MAILSPIKE_EXCELLENT(-0.40)[172.104.30.75:from];
@@ -118,154 +112,82 @@ X-Spamd-Result: default: False [0.09 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
 	R_SPF_NA(0.00)[no SPF record];
-	RCPT_COUNT_TWO(0.00)[2];
-	R_DKIM_REJECT(0.00)[ettus-com.20251104.gappssmtp.com:s=20251104];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DMARC_NA(0.00)[ettus.com];
-	DKIM_MIXED(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_ONE(0.00)[1];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wade.fife@ettus.com,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
+	R_DKIM_REJECT(0.00)[ettus-com.20251104.gappssmtp.com:s=20251104];
 	DKIM_TRACE(0.00)[emwd.com:+,ettus-com.20251104.gappssmtp.com:-];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.986];
+	FROM_NEQ_ENVFROM(0.00)[neel.pandeya@ettus.com,usrp-users-bounces@lists.ettus.com];
+	FROM_HAS_DN(0.00)[];
+	DKIM_MIXED(0.00)[];
 	TAGGED_RCPT(0.00)[usrp-users];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,ettus.com:email]
-X-Rspamd-Queue-Id: E80E4584AE0
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,ettus.com:email,newsdr.org:url,mm2.emwd.com:rdns,mm2.emwd.com:helo]
+X-Rspamd-Queue-Id: 963595C4647
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============0985676341792902549==
-Content-Type: multipart/alternative; boundary="0000000000000fdb1b06523181f8"
+--===============5934162972734607660==
+Content-Type: multipart/alternative; boundary="00000000000060c0480652970e95"
 
---0000000000000fdb1b06523181f8
+--00000000000060c0480652970e95
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-1. I can confirm that this file isn't being installed with UHD. I don't
-know why not. I think copying it over is fine if you're trying to compile
-against it.
+The 16th annual New England Workshop on Software Defined Radio (NEWSDR) is
+only two weeks away!!
 
-2. It sounds like you're using an FPGA that is too old for this feature.
-Have you downloaded the latest FPGA images for UHD 4.10? You should be able
-to download the latest using the uhd_images_downloader utility.
+NEWSDR 2026 will be held on Friday June 5, with evening tutorials on
+Thursday June 4.
 
-Wade
+NEWSDR 2026 will be hosted in-person at Worcester Polytechnic Institute
+(WPI) in Worcester, Massachusetts.
 
-On Thu, May 14, 2026 at 5:52=E2=80=AFAM eunsung.son--- via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Advance registration is free but required so that we can get a headcount.
 
-> Hello,
->
->
-> I have two questions.
->
->    1.
->
->    I would like to ask whether it is expected that the dram folder is not
->    included under the following RFNoC include path after installing the U=
-HD
->    4.10 release version:
->
->    C:\Program Files\UHD\include\uhd\rfnoc\dram
->
->    However, I can see the dram folder in the UHD 4.10 source code, so I
->    copied it from the source code into the installed UHD include folder. =
-Is it
->    okay to use it this way?
->    2.
->
->    I am using an X410 with the UC_200 FPGA image, connected to a Windows
->    host PC. The UHD version on the X410 is shown below:
->    [INFO] [UHD] linux; GNU C++ version 11.5.0; Boost_107800;
->    UHD_4.10.0.0-0-g2af4ddb9
->
->    After applying the workaround described in question 1, I used the
->    upload function in dram_helper.hpp to upload a recorded file from the =
-host
->    PC to DRAM in order to improve the transfer speed.
->
->    After running the program, I encountered the following error message:
->
->    [18:35:52] [ERROR] [XPORT::TX_DATA_XPORT] Requested 'stop on sequence
->    error' stream mode but FPGA does not report that this mode is enabled.
->    Please check whether the FPGA image supports this mode.
->
->    [18:35:53] ERROR: RuntimeError: Requested 'stop on sequence error'
->    stream mode but FPGA does not report that this mode is enabled. Please
->    check whether the FPGA image supports this mode.
->
->    Do I need to modify the FPGA image to resolve this issue? Or is there
->    another way to fix it?
->
->
->
-> Thank you.
->
->
->
-> Best regards,
->
-> Eunsung
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+For event details, latest updates, and registration, please visit:
 
---0000000000000fdb1b06523181f8
+https://newsdr.org/workshops/newsdr-2026/
+
+We are also still welcoming poster presentations, and we encourage anyone
+interested to submit a poster for the event at the link below.
+
+https://docs.google.com/forms/d/e/1FAIpQLScYvl_NpCt2RLHv7UoqGMy1APVh_3MfT5DZgoiknACl0ENliw/viewform
+
+We look forward to seeing you at the event !!
+
+--00000000000060c0480652970e95
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>1. I can confirm that this file isn&#39;t being insta=
-lled with UHD. I don&#39;t know why not. I think copying it over is fine if=
- you&#39;re trying to compile against it.=C2=A0</div><div><br></div><div>2.=
- It sounds like you&#39;re using an FPGA that is too old for this feature. =
-Have you downloaded the latest FPGA images for UHD 4.10? You should be able=
- to download the latest using the uhd_images_downloader utility.</div><div>=
-<br></div><div>Wade</div></div><br><div class=3D"gmail_quote gmail_quote_co=
-ntainer"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 14, 2026 at 5:52=
-=E2=80=AFAM eunsung.son--- via USRP-users &lt;<a href=3D"mailto:usrp-users@=
-lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><p>Hello,</p><p><br></p><p>I hav=
-e two questions.</p><ol><li><p>I would like to ask whether it is expected t=
-hat the dram folder is not included under the following RFNoC include path =
-after installing the UHD 4.10 release version:</p><p>C:\Program Files\UHD\i=
-nclude\uhd\rfnoc\dram</p><p>However, I can see the dram folder in the UHD 4=
-.10 source code, so I copied it from the source code into the installed UHD=
- include folder. Is it okay to use it this way?</p></li><li><p>I am using a=
-n X410 with the UC_200 FPGA image, connected to a Windows host PC. The UHD =
-version on the X410 is shown below:<br>[INFO] [UHD] linux; GNU C++ version =
-11.5.0; Boost_107800; UHD_4.10.0.0-0-g2af4ddb9</p><p>After applying the wor=
-karound described in question 1, I used the upload function in dram_helper.=
-hpp to upload a recorded file from the host PC to DRAM in order to improve =
-the transfer speed.</p><p>After running the program, I encountered the foll=
-owing error message:</p><p>[18:35:52] [ERROR] [XPORT::TX_DATA_XPORT] Reques=
-ted &#39;stop on sequence error&#39; stream mode but FPGA does not report t=
-hat this mode is enabled. Please check whether the FPGA image supports this=
- mode.</p><p>[18:35:53] ERROR: RuntimeError: Requested &#39;stop on sequenc=
-e error&#39; stream mode but FPGA does not report that this mode is enabled=
-. Please check whether the FPGA image supports this mode.</p><p>Do I need t=
-o modify the FPGA image to resolve this issue? Or is there another way to f=
-ix it?</p></li></ol><p>=C2=A0</p><p>Thank you.</p><p>=C2=A0</p><p>Best rega=
-rds,</p><p>Eunsung</p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D""><font face=3D"verd=
+ana, sans-serif">The 16th annual New England Workshop on Software Defined R=
+adio (NEWSDR) is only two weeks away!!</font></div><font face=3D"verdana, s=
+ans-serif"><br>NEWSDR 2026 will be held on Friday June 5, with evening tuto=
+rials on Thursday June 4.<br><br>NEWSDR 2026 will be hosted in-person at Wo=
+rcester Polytechnic Institute (WPI) in Worcester, Massachusetts.<br><br>Adv=
+ance registration is free but required so that<span class=3D"gmail_default"=
+ style=3D""></span> we can get a headcount.<br><br>For event details, lates=
+t updates, and registration, please visit:<br><br><a href=3D"https://newsdr=
+.org/workshops/newsdr-2026/">https://newsdr.org/workshops/newsdr-2026/</a><=
+br><br>We are also still welcoming poster presentations, and we encourage a=
+nyone interested to submit a poster for the event at the link below.<br><br=
+><a href=3D"https://docs.google.com/forms/d/e/1FAIpQLScYvl_NpCt2RLHv7UoqGMy=
+1APVh_3MfT5DZgoiknACl0ENliw/viewform">https://docs.google.com/forms/d/e/1FA=
+IpQLScYvl_NpCt2RLHv7UoqGMy1APVh_3MfT5DZgoiknACl0ENliw/viewform</a><br><br>W=
+e look forward to seeing you at the event !!</font><br></div>
 
---0000000000000fdb1b06523181f8--
+--00000000000060c0480652970e95--
 
---===============0985676341792902549==
+--===============5934162972734607660==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -275,4 +197,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0985676341792902549==--
+--===============5934162972734607660==--
