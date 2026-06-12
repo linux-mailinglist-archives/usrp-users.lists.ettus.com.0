@@ -2,470 +2,241 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VyP0NRHBKmoHwQMAu9opvQ
+	id THytL/LEK2rLEgQAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2026 16:07:13 +0200
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2026 10:36:02 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0FDD67292C
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2026 16:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE802677D91
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2026 10:36:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=emwd.com header.s=harmony header.b=EZqoCPvT;
-	dkim=fail ("body hash did not verify") header.d=nd.edu header.s=google header.b=Xg3a14P8;
+	dkim=pass header.d=emwd.com header.s=harmony header.b="MU/kmKyd";
+	dkim=fail ("body hash did not verify") header.d=syss.de header.s=syss-de-2105 header.b=SPpMYYsy;
 	spf=none (mail.lfdr.de: domain of "usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com" has no SPF policy when checking 172.104.30.75) smtp.mailfrom="usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com";
-	dmarc=none;
-	arc=reject ("signature check failed: fail, {[1] = sig:google.com:reject}")
+	dmarc=none
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B1708386694
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2026 10:07:11 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 83D8F3867A5
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2026 04:36:00 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1781186831; bh=krLi9IFLsm9oWx5/TWKfhXAS0ft3fw2Rn1IVThadka0=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=EZqoCPvTC9NlfXa1aj2uasn/qTL9EZG6b4etI01WiNm5zwMV7XWaXPgA+m2663NVr
-	 +ksbR0RsVCajRQKGGXJZz1qCAhp33HGU2d7WpdeLkf0nvcD2zErZ31WE5kITRvZk2x
-	 JZXL2/qX5S5PVWjpyjwLRwBoPV0PC9nDJ7Hzt1ZnHGb4LwpBFMDarj/Oi4ZecIDmol
-	 LA2X0XDA68d6DIRXb0vsA5Af2J0ZVyves9vmkdhbsVIOppecTlDla7LChQci/dAZgB
-	 ByUbBdV7QcRttjKUFV9dwB4P8EvBS4vS6KXadTWYLy+tgbnoIBuxpwSKW7j3wVJCwR
-	 +cZtx+kiT0oCg==
-Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com [74.125.224.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7EFE93863C2
-	for <usrp-users@lists.ettus.com>; Thu, 11 Jun 2026 10:06:37 -0400 (EDT)
-Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-6626cd98209so517295d50.3
-        for <usrp-users@lists.ettus.com>; Thu, 11 Jun 2026 07:06:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781186797; cv=none;
-        d=google.com; s=arc-20240605;
-        b=YfT4tqj9leKyUsNKaZW+menVXunYyB5PYwXp15YBzuuMSYQLgynATbqQk3LrBWvwdS
-         qRlELjBXckI5gmwbZdQp9LDDNAMgLDHHL31pCd8DOs+T6v1L292a9TZS2HiuUmqiqdRY
-         higokXF/kjL8uA8RjIkvO2LvtDcOUvXgGR/VQHj0jQdJI58z3lCP/tib5cFNx5j99tM1
-         tx7T6Bf3H7vPUjmA5NdqkD5lWK5MPirkid4NTuavwAJCY00+IPNFTUbhUCS+O2DC9b04
-         ft+4WdyWwKRkurFy6eZoyC4XsFSF/JD/2jAUN+DghhyTMYQEzhsEUbRC0lygzrjedG56
-         lmLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=Wum+deQb60ADALQG6O8Ze1b74YWwEBDJLiKVjjitdTw=;
-        fh=/v+i14waOHokpfI1kn3hxt2Zv2Lm4d1YSiFjovWzxf4=;
-        b=dQmE6HoNJ4kpf+QKQIp7o5ugZ09ywsGZlTp4lPCZIXYkggfmlYVP09knt7uLcGC6Gp
-         Buv+hB1kMnXNzWA7BcMflsJDhHxauNP+oLj/TwdyLvEzwqC4GSmGG7aD3uX2jCAg3NJY
-         Xc51aDMmQmGoKLo8oofPzliIBBR3mg7nwaozia+oUhmlf+AAkGZO6SUpOXh6lEKxUBy4
-         pD64PouokqKIxe1Xktc2OfHgJLR8S8LOtuR8ygLqX07U9eKKta6xSvbPfwhjKOIbIqu0
-         YPkPpkPApoRNv526hV+ybqX2P7sRa5mF7g26nah46ImkcXFa473sovofBV6ztlgj8MZZ
-         q8ZA==;
-        darn=lists.ettus.com
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1781186797; x=1781791597; darn=lists.ettus.com;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wum+deQb60ADALQG6O8Ze1b74YWwEBDJLiKVjjitdTw=;
-        b=Xg3a14P8hi8ntQvpO9GecX5P2kORPiniBWeqrQpdurCqJVpAadrg1+lk+HACwUJawr
-         IqFZGOj2MiT3ia9aKM/fb4QuIBI48FFmI58co7FjsPmA7nrCIOhIP057FtfE6ITK/AUe
-         vCEm9e5Jn7PD0teFbJgQ7GG+zdhM1RFNvCcYWd3Lorxi7WaDqnBn2UxU/SxPADGMss9H
-         3wur/GkKH1ggLCsbk03014/5Kj4O4oJDt2a4NbVBheDgHU2cf2oFoisLMh7Vbw0r3iWj
-         9khPsJlAuIQw0jkhqn/TIINH2Sh57nQi///4U+f22wAB/dXj2wdH9ZUifJ9THZjrQCWe
-         8VTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781186797; x=1781791597;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wum+deQb60ADALQG6O8Ze1b74YWwEBDJLiKVjjitdTw=;
-        b=IsntulJ5xPxps5Pp9mGNd3SUi1DRLWjH32cZ8vdtvBWTgwzoVtL6jrimquRS5++Llp
-         VQt3OmDDZCFvt7f/wDp4I21qxTQIIrVNwX59xT6sTWmKUEvzTUPGEuYSF05KcEM/XZoa
-         4jGTf15qx4HoQOAO0nE0WlzHROUC6fPDrGY+PrXV+YT9WBEGBwRtA7wVs1DhUs4lcvNc
-         gEdJCxclaCRaXYRVe9PbEDKMEnbAdaIV8NkjuCzhSHInA1iD3tLFwErApclwTXbx7JbM
-         C441Pseih+itZOSiTIPhBH2eaLJz34do9hGUsLLsymduBENuvWGlo7CnBZGhfgaCs9Xi
-         iD1g==
-X-Gm-Message-State: AOJu0Ywk4e9UVvkMtV/+pxXcNNot2fnx0QhRfEuvcfShCdD/PZimQHer
-	f8rK/KqyxlKInu4UgdoDvCd5KiOvxd2X1DXZ3UjcYvEaV11FyiIaBBIMRPblrvq60bDSHKCx72r
-	efCw8dWTXIaghVi3UAZ6CvCIHvT1wzYNxlQnX4NbEnbdhIl2zsrm/2A==
-X-Gm-Gg: Acq92OEvb4dHSrhtRPA8IqexTjUJD6OiRmEF7cxlRBzrK7VtLqtV2nnC62G3EOuOncZ
-	loZjnfRjtnBQlWsPhsC/jCPk1/c0zXXeBLXEIhy4pbk7MBg3DHTATVje2GcXngc3/T4fKLWsjlr
-	2uJlRX1tyqTAIHacfHdQCuDrjm/VjnmNywHVXJJbLRoBAd6QilazL1ck7XpdyAXIvD9LbxWcdKu
-	3XV0mM+DCqqywtBgtVGzWnm34BxxpxIDeI5NlywyVSweLkJTtsTXlFmTbVE71QCbZg9mNaA+m1j
-	/10v0ULScdsQCp6eg5d9PWhMZ1fiug4/zOVbpl1NYOij7K+kbQ==
-X-Received: by 2002:a05:690e:4105:b0:660:8e61:1a3a with SMTP id
- 956f58d0204a3-66269657c7amr2310577d50.19.1781186796523; Thu, 11 Jun 2026
- 07:06:36 -0700 (PDT)
+	t=1781253360; bh=Uc1kCo6gJ1ul4DP3BecxNjUJmFwGORPvJOXxvvBu4zU=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=MU/kmKydedUvSqQ1isX3FkhuKclafrtlfVb+X1xMcsIYuNiar0VY+tej4wxEqcBTq
+	 8w6dSiGEv9ky/bo2bs0XoYaVFDZIimnxEVP9/TUKT5ho2T/PQHCda0U6kQXsSpwsVV
+	 RVCmoQSB9fVQLnxuRTiU+5lcXotb+Yy9jMVB7tzcDHLK2pRUGM6IPWZ799nNWRiq9r
+	 scgEyMcOgvbwXCyeFw2ukqAVhD9jTzpZxCK4FIL3w28jldjGlQ4b3DwqIlcZmUND53
+	 fGRZAjVVNNVG5B9SLgG8lH1L6uGtl6psWmpyC8LvLw+xfFtmrFiBNDXpvBmVPf3tm6
+	 K7a3k8as4U4LQ==
+Received: from mail01.syss.de (mail01.syss.de [185.142.186.14])
+	by mm2.emwd.com (Postfix) with ESMTPS id D9C863866E8
+	for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2026 04:35:18 -0400 (EDT)
+Message-ID: <896d01fd-d484-4d45-89d6-7b498e03aa3a@syss.de>
+Date: Fri, 12 Jun 2026 10:35:12 +0200
 MIME-Version: 1.0
-References: <CAB__hTQU4PVeJpqWm3GB4BVHtbG48WvrnPJ0=s=_o5TtHMW4bg@mail.gmail.com>
- <CAFche=h-+WLUxeiq1bF49Oz8zspO4K5UFVQTGYahBF-dgYKPdQ@mail.gmail.com>
-In-Reply-To: <CAFche=h-+WLUxeiq1bF49Oz8zspO4K5UFVQTGYahBF-dgYKPdQ@mail.gmail.com>
-Date: Thu, 11 Jun 2026 10:06:26 -0400
-X-Gm-Features: AVVi8CdP43m7fwREw6LWaYlOsD0EcEbYWDTWhNX3rZAEJH_OvWgV3Lgx3t37Ae8
-Message-ID: <CAB__hTRzaOdc+HoCrHa3szxmCPyomB9qNmOBxFzevMvQJm-PSw@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Message-ID-Hash: O6LN5EABI7PQRO7AIUNO2ENZAJ7466BK
-X-Message-ID-Hash: O6LN5EABI7PQRO7AIUNO2ENZAJ7466BK
-X-MailFrom: rkossler@nd.edu
+User-Agent: Mozilla Thunderbird
+To: usrp-users <usrp-users@lists.ettus.com>
+Content-Language: en-US, de-DE
+X-FE-Attachment-Name: smime.p7s
+X-FEAS-BEC-Info: WlpIGw0aAQkEARIJHAEHBlJSCRoLAAEeDUhZUEhYSFhIWUhZXkguLT4lWFpYWFhYWlleWV5aSFpcSCsAGgEbHAEJBkYyCQ0bAw0oGxEbG0YMDUhZSFpeSB0bGhhFHRsNGhsoBAEbHBtGDRwcHRtGCwcFSFhIWkhZWkhZWEZZWFlGWUZaWF9IUEhYSFhIWUhYSFhIWEhaXkgdGxoYRR0bDRobKAQBGxwbRg0cHB0bRgsHBUhY
+X-FEAS-Client-IP: 10.101.1.207
+X-FE-Policy-ID: 4:7:0:SYSTEM
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=syss.de; s=syss-de-2105; c=relaxed/relaxed;
+ h=message-id:date:mime-version:to:from:subject:content-type;
+ bh=QiVrryJvcTR/KmfRnXb2QdrQgIRBkUt3FYXdWKB33cg=;
+ b=SPpMYYsyPBA5mrvc3k2Z7cY1F7tYA8qfz6H2MS1hm0Fvdx572Hib30bfilh+4NjTSb44MIZVEoMW
+	PbywEBx/OHbGX17qRMKesjiReBHY3KQB3AUL2GLnrmcdTuT4+v1zcjilCUek9GffXYDT3rGBxJX2
+	c47ja46W4hnuNyoprhA6PykDfr/L6pLDdrIUp2v5md52N/4LLNdBzqni4RHmfsdVc4QOEU+/5hE1
+	fC9xtttyt9O4dsGaPdl5NV9t0j+tJTit5yYgyOpOCHxvkS/3qXSotYzHSWQJWsBNqTtGPX1qI65W
+	uYkBfbMEtNBYdj2oUmtxfElj0vcHRCzXScDYXQ==
+Message-ID-Hash: Y6WQEDBAQPVNLR5TGCX3KEB3JSZLVL6K
+X-Message-ID-Hash: Y6WQEDBAQPVNLR5TGCX3KEB3JSZLVL6K
+X-MailFrom: Christian.Zaeske@syss.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: build N320 fpga image with axi_ram_fifo
+Subject: [USRP-users] B200 frequency shifted
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/O6LN5EABI7PQRO7AIUNO2ENZAJ7466BK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y6WQEDBAQPVNLR5TGCX3KEB3JSZLVL6K/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============6114749220937740791=="
+From: =?utf-8?q?Christian_Z=C3=A4ske_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Christian_Z=C3=A4ske?= <christian.zaeske@syss.de>
+Content-Type: multipart/mixed; boundary="===============8754903562250202070=="
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.29 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
-	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+X-Spamd-Result: default: False [-2.71 / 15.00];
+	SIGNED_SMIME(-2.00)[];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.20)[multipart/mixed,multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
-	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	R_SPF_NA(0.00)[no SPF record];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:usrp-users@lists.ettus.com,s:lists@lfdr.de];
 	TO_DN_ALL(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:wade.fife@ettus.com,m:usrp-users@lists.ettus.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ettus.com];
-	FORGED_SENDER(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_MIXED(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rkossler@nd.edu];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	R_SPF_NA(0.00)[no SPF record];
+	DMARC_NA(0.00)[ettus.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	R_DKIM_REJECT(0.00)[syss.de:s=syss-de-2105];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
+	RCPT_COUNT_ONE(0.00)[1];
+	DKIM_TRACE(0.00)[emwd.com:+,syss.de:-];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TO_EQ_FROM(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
-	R_DKIM_REJECT(0.00)[nd.edu:s=google];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[usrp-users];
-	MISSING_XM_UA(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	DKIM_TRACE(0.00)[emwd.com:+,nd.edu:-];
+	HAS_ATTACHMENT(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nd.edu:replyto,ettus.com:url,ettus.com:email,lists.ettus.com:from_smtp,lists.ettus.com:from_mime]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	HAS_REPLYTO(0.00)[christian.zaeske@syss.de]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D0FDD67292C
+X-Rspamd-Queue-Id: CE802677D91
 
---===============6114749220937740791==
-Content-Type: multipart/alternative; boundary="000000000000497e3b0653fade47"
+--===============8754903562250202070==
+Content-Language: en-US, de-DE
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha-512; boundary="------------ms090903090909070100040509"
 
---000000000000497e3b0653fade47
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------ms090903090909070100040509
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Thanks Wade,
-Thanks for the link to the RFNoC FAQ - I had not seen that.  One question:
-In my original email, I had pasted some code from the stock N320 BIST yaml
-which included 4 DMA FIFO ports (but then specifically indicated that the
-latter 2 were not used).  But the FAQ indicates that you could simply
-choose a lower number of ports than the max.  So, is there any reason why
-the stock N320 BIST yaml specifies 4 ports (with 2 un-connected) rather
-than just 2 ports?
+SGVsbG8sDQoNCihTb3JyeSBpZiB0aGlzIGlzIGEgZHVwbGljYXRlLCBJIHRoaW5rIHRoZXJl
+IHdlbnQgc29tZXRoaW5nIHdyb25nIHdpdGggDQpteSBsYXN0IGVtYWlsIHRvIHRoZSBtYWls
+aW5nIGxpc3QpDQoNCkluIHRoZSBwYXN0LCB3ZSB1c2VkIGEgQjIwMCBhbmQgc3JzUkFOIHRv
+IGJ1aWxkIG91ciBvd24gTFRFIGNlbGwsIHdoaWNoIA0KYWx3YXlzIHdvcmtlZCBmbGF3bGVz
+c2x5LiBBZnRlciBzb21lIHRpbWUsIHdlIHdhbnRlZCB0byBidWlsZCB0aGlzIHNldHVwIA0K
+YWdhaW4gYnV0IHdlIHJhbiBpbnRvIGFuIGlzc3VlOiBUaGUgcGhvbmUgbmV2ZXIgZm91bmQg
+dGhlIGNlbGwuDQoNCkFmdGVyIGxvb2tpbmcgaW50byB0aGUgcHJvYmxlbSBJIG5vdGljZWQs
+IHRoYXQgdGhlIG91dHB1dCBmcmVxdWVuY3kgb2YgDQp0aGUgQjIwMCBpcyBzaGlmdGVkIGFy
+b3VuZCArNSBrSHogYXQgYXJvdW5kIDIuNiBHSHogKFZlcmlmaWVkIGl0IHdpdGggDQphbm90
+aGVyIFNEUikuIFRvbyBtdWNoIGZvciB0aGUgcGhvbmUgdG8gZ2V0IHRoZSBzaWduYWwgcHJv
+cGVybHkuIFdoZW4gSSANCm1hbnVhbGx5IGFkanVzdCB0aGUgZnJlcXVlbmN5IGluIHNyc1JB
+TiB0byBjb21wZW5zYXRlIGZvciB0aGUgNSBrSHogDQpzaGlmdCwgdGhlIHBob25lIGltbWVk
+aWF0ZWx5IGRldGVjdHMgdGhlIGNlbGwuDQoNCkF0IGxvd2VyIGZyZXF1ZW5jaWVzLCB0aGUg
+c2hpZnQgYWxzbyBnZXRzIGxvd2VyLg0KDQpJcyB0aGVyZSBzb21ldGhpbmcgd2UgY2FuIGRv
+IHRvIHJldml2ZSB0aGUgQjIwMD/CoCBCZWNhdXNlIHRoaXMgZXhhY3QgDQpzZXR1cCB3b3Jr
+ZWQgaW4gdGhlIHBhc3QsIEkgdGhpbmsgc29tZXRoaW5nIGhhcHBlbmVkIHRvIHRoZSBiMjAw
+IHRoYXQgDQpjYXVzZXMgdGhpcyBzaGlmdC4NCg0KVGhhbmtzIGluIGFkdmFuY2UsDQpDaHJp
+c3RpYW4NCg0K
 
-In the period in between our emails, I was unable to get my "repeater
-application" working using the DMA FIFO so I simply removed it.  By
-removing it, my application included the following blocks statically linked=
-:
-    Radio0-rx =3D> DDC0 =3D> my-time-stamp-adjust =3D> DUC1 =3D> Radio1-Tx
+--------------ms090903090909070100040509
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-This is a single-channel repeater chain where the block
-"my-time-stamp-adjust" simply adds a user-controllable integer to the
-receive time stamp so that the samples will not be late when they arrive at
-the transmit radio.  There was apparently enough "fifo buffering" in the
-NOC shells or otherwise that would allow me to set my time-stamp adjustment
-anywhere from 8100 to 18100 samples (with no DDC decimation / DUC
-interpolation) and avoid all Lates/Overruns.
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgMFADCABgkqhkiG9w0BBwEAAKCC
+DdgwggbAMIIEqKADAgECAhEAguXt1XMI1M9ja6YADLMXHDANBgkqhkiG9w0BAQwFADBSMQsw
+CQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UEAxMfR2xvYmFs
+U2lnbiBTZWN1cmUgTWFpbCBSb290IFI0NTAeFw0yNTAyMTkwMzE2MzJaFw0zMDAyMTkwMDAw
+MDBaMFMxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSkwJwYDVQQD
+EyBHbG9iYWxTaWduIEdDQyBSNDUgU01JTUUgQ0EgMjAyNTCCAiIwDQYJKoZIhvcNAQEBBQAD
+ggIPADCCAgoCggIBAL1qyfjRCRfoxPUTYVUZN5AY427Wv2BO7DSa5WsshTjky7bt9HEVQCNu
+MVitLYtmxgIdYO1K5vjquFQ/MVvMDdnkkkUBStIdy8itvkTolZiiQTb6/edsBzrAL+xZDn/p
+wmg86IfvORo/lwQsvUS2TUew0LB47xKpUAs941HvcFWmnDyciZ5ta2iCZ4nFDbDt2HcH/+s9
+RJ779Odgw/PRdjwxCg7hdxvFnIrEVTcfj1Kj9dVg1oy2mT0Wh16gxDQRhPoSdBP0B/YeFc4b
+lHbt37hdglN45/CMCKuIL5r0ExDpgaqCDvUTZYgbO+yJaz3s1Qq0y9zW3xF0BCv6+o+C4lon
+XnoLR/Fq6ckSgwq1b7dOZiMTulRsmyt4sQDui8pZ2yoSBWVSXYKWtkXzlbFsVE0BD0c+i1EE
+5345nLzRuUGYhOUjH7IYufWYnrHQOI13obkVbw0BNmy+C00og2yU+78OPjL/0f+Ldr2k4Ggg
+NNs+r8fW8rvprM9ekiTdZ7xhbmZeUTCQfCMIN6WDGDdm95DzqUntcy0aohDum3Fbw03Y0C0d
+y7n3TVfieDZhUvMvywBLndEvwpVvjiqYJJ4iXsbNJMYwmtYpox6CqPVjCtxv+ejH7ghpYifs
+su203RAbaKMM5Au/oQ49blaV2xVZ78U8jlx8pXxmS3t8erk8RrP/AgMBAAGjggGOMIIBijAO
+BgNVHQ8BAf8EBAMCAYYwTAYDVR0lBEUwQwYIKwYBBQUHAwIGCCsGAQUFBwMEBgorBgEEAYI3
+FAICBgorBgEEAYI3CgMMBgorBgEEAYI3CgMEBgkrBgEEAYI3FQYwEgYDVR0TAQH/BAgwBgEB
+/wIBADAdBgNVHQ4EFgQU2aSgJ8sKJKoxqkN9c3DMf7Ulu5MwHwYDVR0jBBgwFoAUoJMVKG7u
+jwiyNcaeYnl0p7EOK3swgYUGCCsGAQUFBwEBBHkwdzAzBggrBgEFBQcwAYYnaHR0cDovL29j
+c3AuZ2xvYmFsc2lnbi5jb20vc21pbWVyb290cjQ1MEAGCCsGAQUFBzAChjRodHRwOi8vc2Vj
+dXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9zbWltZXJvb3RyNDUuY3J0MDsGA1UdHwQ0MDIw
+MKAuoCyGKmh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vc21pbWVyb290cjQ1LmNybDARBgNV
+HSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQEMBQADggIBALDCxbvqOLEThKczQBqrVSOJepAw
+pFQFIY6oFpkqWsgINDYdcv7ugQEXSxkb6mgPuHqH1sJZ9iO/yQvPYcGOUg8K/Tec61Le38bS
+MtTufS5Kq1arWQYQgSX5QPI6I7J2BYYtA2Pt9MteQresV6Bmya8TLnG4FGCwXjrQRNnwGAZx
+5Tp1p6CEr9/1JIR9ThpP3A8AQ1k47BmwTT6oV3xU0s2Bg110jHpQigR/Isvc9WN4sHlF3Wnb
+PC0awf4ySojxYNCCr7WdBdltF22kkyOr4jbPcgroRlZFXLyOfevW12lEbmn3a7AXP2+QQxm4
+S6CzK7BDCSk18UUlkKPZ7nBcUQbDr68JhdCamo5N9cgo9IDcYavQ8RSMQfB6aLpLWq4oz2Vj
+HUHUgtPDfu8ngoq1xQU1jcC3hxXUidcOQ4ohD0Sb0M+sElXYnmGqUGY2QbLLJLVE1Dwd3Oew
+P5izqIVBnVf0fp9y1fL5In5mjfKnlGeN72ln/QSlERADRIGXlB+I7N3WPgEbG+4YVy3MnSbM
+aUN/NMSZAitWUzht+/e+PC4DKKxYhqxNAC2pjSKV+la44jiKcbv3YW/dTk0U2uYqCrtKE48U
+fwKVcfnzbiXdA8LK0YDlsn/obFEwhq3PNJw19Yp4aZMWSwMk4mDQbhO2z9LXZl4dIy77rtvR
+1ODyYl/iMIIHEDCCBPigAwIBAgIMceniZMyB8KwVGjKiMA0GCSqGSIb3DQEBCwUAMFMxCzAJ
+BgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSkwJwYDVQQDEyBHbG9iYWxT
+aWduIEdDQyBSNDUgU01JTUUgQ0EgMjAyNTAeFw0yNjAzMDMxMTQyMTRaFw0yNzAzMDQxMTQy
+MTRaMEwxITAfBgNVBAMMGGNocmlzdGlhbi56YWVza2VAc3lzcy5kZTEnMCUGCSqGSIb3DQEJ
+ARYYY2hyaXN0aWFuLnphZXNrZUBzeXNzLmRlMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIIC
+CgKCAgEAsjKEjVRi/0E+bMiAfy89R6BBo74ETAwTOcLw3qNc8LQiPVPxisEXtwXSdMOR6ll9
+Xgc9s8Jo4ne2iPI6onN5zu0mb6lwSMRJsASwiiGfc7KKjhcNXymOAas+nM9LIch0JIdGe1f3
+BVISu67Cb8Vh8n47pTgsJpMCbdlCquw9RNQ/eurvyv7kCy++T+64Kguv9yTzSz073XQeVJYa
+h8KTaGKJ4Z2EZFAD7lrYn9GmZll0q8piEBFelVB1ugotJ5I/0GFHedx18soIGcOaEjpvh9Q2
+9+ow/jGY2xcVJHu3FMO7xwUiN98UBK1xXLLV8NM6J8Fk94vgzq64jS/zTvpzdOCOS881LSxE
+879vA2Wz+e/ov18qZR8NjKgmWOkLYK7SlTX8uGmQeCKbfR9lolaGBQH+GsyarsGTw2yn7aOI
+GUpubBafDwoLBg1QEQ5pxeNs9YudePA50w4G5EfQbcilfBwZEFqeI6hQt7Bw6z08Auo5VSTp
+CFlucAlEWPkrP/MTR2EuPhqSrgO1Xe0LAPPx6goLpw8CisSDKn9fIFncVXwYJWsjzpEoxIJQ
+Unw7c0Lqs9EBfbkmbfeX+m0Fk679jYD5f8oyhbd5P/Nc49rZ5zNJt91ZmUwuJG8Y4O7lZOlG
+YelTYILhdo8YNt6GsxzRcltUL5f/+TBqJeoF7ezIvY8CAwEAAaOCAekwggHlMA4GA1UdDwEB
+/wQEAwIFoDAMBgNVHRMBAf8EAjAAMIGVBggrBgEFBQcBAQSBiDCBhTBHBggrBgEFBQcwAoY7
+aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyNDVzbWltZWNhMjAy
+NS5jcnQwOgYIKwYBBQUHMAGGLmh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjQ1
+c21pbWVjYTIwMjUwZQYDVR0gBF4wXDAJBgdngQwBBQECMAsGCSsGAQQBoDIBKDBCBgorBgEE
+AaAyCgMDMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9z
+aXRvcnkvMEIGA1UdHwQ7MDkwN6A1oDOGMWh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3Nn
+Y2NyNDVzbWltZWNhMjAyNS5jcmwwIwYDVR0RBBwwGoEYY2hyaXN0aWFuLnphZXNrZUBzeXNz
+LmRlMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAfBgNVHSMEGDAWgBTZpKAnywok
+qjGqQ31zcMx/tSW7kzAdBgNVHQ4EFgQUDqUpp1an0n5L+aYKMQWzE0aMIAgwDQYJKoZIhvcN
+AQELBQADggIBAA5sOVUmAJ60d+4mk9IHjlL7PphiXRUfaHoodKkVrn5NHbNU7TZHqlD2P7y0
+hkTtjjUh4z3Teu9wTc7zDkGPbWWzVc8ARgzCIRoVo+1bTZEKFrgYeTWarwm7sxBI4BhArrH4
+umU5siHcrdZXVwA7/aCDvz7p4UjEJZFlaHFls+36OFUl9CgGmzPAPN2PpBIOy5nO9Ipmt/7Z
+BxuPKKKKNuSJTAsZngwZqFYFRjLSwgzxUYqxNCi59gwaxUB3imbLR1SUgG80TFNC98sm/k9B
+b7YsDbkIPB+0qnkXq0ZcUVUYeL8CTTbvjGZ3DJfdWFKUsIXljovlrH2wpj3rBRIkzEWlNtmR
+x/ZZRpLUqdeCUS8ZfRL3LQTMNxT7kbgF6rcGlNllm62cRfPLwNQlzidmb8ooD2CQy8SQ3/GG
+oVVTvF9x+NVg84gEsgHjOkp+/ceFuwDb5WUhoIf2fUC9yQ4L9Nb1D0DNxZP5olbl0ECGeCyc
+RB5Xnk79+vo8Lu59EgCl10QLh2YN4aIjvZsbgIMUZzbrnVMqMjqAhQu9Su++VAO7AgVvVAGx
+uzU/FQ5A7TKmkQu/10hulOmExLS8K4XNXdy9d16QcP3UClgR3zPy8d98njzLkatRTEOufIK9
+/s4gngHlk69mbYFBFF/WvzeeTGZGM6njdrIlVzWOBHYQ5zhWMYIFYDCCBVwCAQEwYzBTMQsw
+CQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEpMCcGA1UEAxMgR2xvYmFs
+U2lnbiBHQ0MgUjQ1IFNNSU1FIENBIDIwMjUCDHHp4mTMgfCsFRoyojANBglghkgBZQMEAgMF
+AKCCAs4wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjYwNjEy
+MDgzNTEyWjBPBgkqhkiG9w0BCQQxQgRATg8aIIVf/5ZHXSs5MT8A1SvecxkjqDfjn7R0vNpv
+7It++kOdeXFo+Q1kOzkQvc2ESuSg66AlmgBGPH3mtY/ljzByBgkrBgEEAYI3EAQxZTBjMFMx
+CzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSkwJwYDVQQDEyBHbG9i
+YWxTaWduIEdDQyBSNDUgU01JTUUgQ0EgMjAyNQIMceniZMyB8KwVGjKiMHQGCyqGSIb3DQEJ
+EAILMWWgYzBTMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEpMCcG
+A1UEAxMgR2xvYmFsU2lnbiBHQ0MgUjQ1IFNNSU1FIENBIDIwMjUCDHHp4mTMgfCsFRoyojCC
+AVcGCSqGSIb3DQEJDzGCAUgwggFEMAsGCWCGSAFlAwQBKjALBglghkgBZQMEAQIwCgYIKoZI
+hvcNAwcwDQYIKoZIhvcNAwICAQUwDQYIKoZIhvcNAwICAQUwBwYFKw4DAgcwDQYIKoZIhvcN
+AwICAQUwBwYFKw4DAhowCwYJYIZIAWUDBAIBMAsGCWCGSAFlAwQCAjALBglghkgBZQMEAgMw
+CwYJYIZIAWUDBAIEMAsGCWCGSAFlAwQCBzALBglghkgBZQMEAggwCwYJYIZIAWUDBAIJMAsG
+CWCGSAFlAwQCCjALBgkqhkiG9w0BAQEwCwYJK4EFEIZIPwACMAgGBiuBBAELADAIBgYrgQQB
+CwEwCAYGK4EEAQsCMAgGBiuBBAELAzALBgkrgQUQhkg/AAMwCAYGK4EEAQ4AMAgGBiuBBAEO
+ATAIBgYrgQQBDgIwCAYGK4EEAQ4DMA0GCSqGSIb3DQEBAQUABIICAG3OroCd4Ym/8vkqxU4b
+A8Z6bBtXDBzRUElZh57QMyqwo0+kYqC7e8+MC3uCPVqbi7OoFUHsi7AHNnSXtEbm64mY80yM
+9n0da+TUUDkjTcj9RdoLaxlsJMkY73LUrkWbY8g3zizSNUMPCW5Acyb5opKlMbi6/J6Jn7cs
+kIt5MRLKwg2OLgT8bBLar8qLd52kxYbfoGAU39G+CG8FHqRTzIR1eFhcbnO8vQxX4756sMx0
+nqRFsXSgcVXmngVeO5mB+1/zqNt1EXxgGz8RESGBlQfX7yqUMk3USxiLvVlyv28ZtDZ8ysUo
++/hzuhfXUkwSaIrRccvU3021IqQTep8KTE1HoH4R78qdoFrAO5GhQ/uAVgZ1ySxBO+hgSOKk
+bSGNxGl/OAfjCwd9tIG7MSXDHx3Oi/coi6VNBpN9veh4Z53vHphZrfFcxi7edDJvWWyraGtS
+u6/2ZyJogTbnE4zTgZKMCfjh7vkV0zmsRrHScGDX6ZT+oV9xhevECjHIhVnvNaakb3306Wxa
+jqQtOo6TThBSEx9NCUjAm+oMIR0lqxlMmkszHdao+WxB31XEIEtrd0XFDB79RrHXbEeoExnG
+6jrOTqedqGDutR/w9Si4OW5XvUIDpRaOG3TFtUGnLoANTC2oVCWrA3HBsGj7tS7y2OPVTFEa
+offUBUFBGGnyVkCzAAAAAAAA
+--------------ms090903090909070100040509--
 
-I am still curious why I couldn't get it working with the DMA FIFO.  The
-FAQ indicates throughput of 341 MS/s for single channel operation. This
-should be sufficient for my case of 250 MS/s. I know that you mentioned
-latency/delay. In my application it seems that latency/delay "variation" is
-all that matters.  In other words, I can compensate for any fixed
-latency/delay as long as I set my time-stamp-adjust value large enough that
-the samples won't be late.  But, if this latency/delay is varying then
-perhaps this could be an issue.  Let me know if you have any thoughts on
-using the DMA FIFO in this application.
-Thanks.
-Rob
-
-On Wed, Jun 10, 2026 at 4:26=E2=80=AFPM Wade Fife <wade.fife@ettus.com> wro=
-te:
-
-> Hi Rob,
->
-> Sorry for the late reply. On the N320 you have 2 GiB of space that you ca=
-n
-> divide as you like. Each channel gets a memory region defined by those
-> parameters. The FIFO_ADDR_BASE is the start address of each buffer and
-> FIFO_ADDR_MASK is effectively the size minus 1. The FIFO_ADDR_MASK must b=
-e
-> a power of 2 minus 1 (i.e., all ones). Set FIFO_ADDR_BASE to 0 for every
-> bit where the mask is 1. Take care not to create overlapping regions for
-> channels you intend to use. Otherwise, the data for one channel could
-> overwrite the data in another channel.
->
-> If you want one maximum sized FIFO buffer, you can set the mask to
-> 31'7FFFFFFF to get a 2 GiB region. If you set each channel the same, then
-> you've assigned the same memory space to all four channels. This is fine =
-if
-> you only intend to use one channel.
->
->       FIFO_ADDR_BASE: "{31'h00000000, 31'h00000000, 31'h00000000,
-> 31'h00000000}"
->       FIFO_ADDR_MASK: "{31'h7FFFFFFF, 31'h7FFFFFFF, 31'h7FFFFFFF, 31'
-> h7FFFFFFF}"
->
-> If you want two maximum sized buffers, I think your example is correct
-> assuming you only intend to use the first and second channels.
->
->       FIFO_ADDR_BASE: "{31'h00000000, 31'h00000000, 31'h40000000,
-> 31'h00000000}"
->       FIFO_ADDR_MASK: "{31'h3FFFFFFF, 31'h3FFFFFFF, 31'h3FFFFFFF,
-> 31'h3FFFFFFF}"
->
-> If you want four maximum sized buffers, it would be:
->
->       FIFO_ADDR_BASE: "{31'h60000000, 31'h40000000, 31'h20000000,
-> 31'h00000000}"
->       FIFO_ADDR_MASK: "{31'h1FFFFFFF, 31'h1FFFFFFF, 31'h1FFFFFFF, 31'
-> h1FFFFFFF}"
->
-> The throughput is highly application-dependent. It will vary based on the
-> number of channels and how much those channels contend for memory at the
-> same time. But we have some benchmark numbers here that will give you a
-> rough idea:
->
->
-> https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_DRAM_data_rate=
-s_can_I_expect_on_each_USRP.3F
->
-> If you're looking for bytes per second, multiply the numbers in that tabl=
-e
-> by 4.
->
-> One common gotcha is DRAM latency/delay. You may need to tweak the
-> IN_FIFO_SIZE and/or OUT_FIFO_SIZE when connecting DRAM directly to a radi=
-o
-> block. It's possible to see under/overruns in the radio even if the DRAM =
-is
-> "fast enough" due to DRAM latency, particularly when it cycles between
-> multiple channels. But in your case, connecting DRAM to the DDC/DUC, you'=
-ll
-> probably be OK as long as the timestamp delay you add is longer than the
-> total latency through the DRAM.
->
-> Wade
->
-> On Thu, May 28, 2026 at 9:39=E2=80=AFAM Rob Kossler via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi,
->> I am building an N320 image that is basically a repeater with static
->> rfnoc links as follows:
->>   radio0 =3D> ddc0 =3D> my-timestamp-adjust =3D> axi_ram_fifo =3D> duc1 =
-=3D> radio1
->>
->> I have a question about how to use the parameters of the axi_ram_fifo
->> block in order to maximize the FIFO depth.  From the N320 BIST yml, I fo=
-und
->> the following:
->>       # These parameters match the memory interface on the N3XX
->>       NUM_PORTS: 4
->>       MEM_DATA_W: 64
->>       MEM_ADDR_W: 31
->>       # Create four non-overlapping 32 MB buffers by default
->>       FIFO_ADDR_BASE: "{31'h06000000, 31'h04000000, 31'h02000000,
->> 31'h00000000}"
->>       FIFO_ADDR_MASK: "{31'h01FFFFFF, 31'h01FFFFFF, 31'h01FFFFFF,
->> 31'h01FFFFFF}"
->>       MEM_CLK_RATE: "303819444" # 166.666666 MHz * 21.875 / 4 / 3 =3D
->> 303.819444 MHz
->>
->> This indicates that there are 4 ports (later in the yml, ports 3 and 4
->> are explicitly not connected).  My question is: how do I configure
->> FIFO_ADDR_BASE and FIFO_ADDR_MASK in order to maximize the FIFO capacity=
-?
->>
->> For the case of only needing one FIFO buffer, would this be correct?
->>       FIFO_ADDR_BASE: "{31'h00000000, 31'h00000000, 31'h00000000,
->> 31'h00000000}"
->>       FIFO_ADDR_MASK: "{31'h3FFFFFFF, 31'h3FFFFFFF, 31'h3FFFFFFF,
->> 31'h3FFFFFFF}"
->>
->> For the case of only needing two FIFO buffers, would this be correct?
->>       FIFO_ADDR_BASE: "{31'h00000000, 31'h00000000, 31'h40000000,
->> 31'h00000000}"
->>       FIFO_ADDR_MASK: "{31'h3FFFFFFF, 31'h3FFFFFFF, 31'h3FFFFFFF,
->> 31'h3FFFFFFF}"
->>
->> My other question is related to what is the maximum axi_ram_fifo
->> throughput?  Can I run with one port (in & out) at full streaming rate o=
-f
->> 250 MS/s?  Does the RAM bandwidth support this rate?  How about if I hav=
-e 2
->> ports (in & out) - what is the maximum rate?
->>
->> Rob
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
->
-
---000000000000497e3b0653fade47
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Thanks Wade,</div><div>Thanks for th=
-e link to the RFNoC FAQ - I had not seen that.=C2=A0 One question: In my or=
-iginal email, I had pasted some code from the stock N320 BIST yaml which in=
-cluded 4 DMA FIFO ports (but then specifically indicated that the latter 2 =
-were not used).=C2=A0 But the FAQ indicates that you could simply choose a =
-lower number of ports than the max.=C2=A0 So, is there any reason why the s=
-tock N320 BIST yaml specifies 4 ports (with 2 un-connected) rather than jus=
-t 2 ports?</div><div><br></div><div>In the period in between our emails, I =
-was unable to get my &quot;repeater application&quot; working using the DMA=
- FIFO so I simply removed it.=C2=A0 By removing it, my application included=
- the following blocks statically linked:</div><div>=C2=A0 =C2=A0 Radio0-rx =
-=3D&gt; DDC0 =3D&gt; my-time-stamp-adjust =3D&gt; DUC1 =3D&gt; Radio1-Tx</d=
-iv><div><br></div><div>This is a single-channel repeater chain where the bl=
-ock &quot;my-time-stamp-adjust&quot; simply adds a user-controllable intege=
-r to the receive time stamp=C2=A0so that the samples will not be late when =
-they arrive at the transmit radio.=C2=A0 There was apparently enough &quot;=
-fifo buffering&quot; in the NOC shells or otherwise that would allow me to =
-set my time-stamp adjustment anywhere=C2=A0from 8100 to 18100 samples (with=
- no DDC decimation / DUC interpolation) and avoid all Lates/Overruns.</div>=
-<div><br></div><div>I am still curious why I couldn&#39;t get it working wi=
-th the DMA FIFO.=C2=A0 The FAQ indicates throughput of 341 MS/s for single =
-channel operation. This should be sufficient for my case of 250 MS/s. I kno=
-w that you mentioned latency/delay. In my application it seems that latency=
-/delay &quot;variation&quot; is all that matters.=C2=A0 In other words, I c=
-an compensate for any fixed latency/delay as long as I set my time-stamp-ad=
-just value large enough that the samples won&#39;t be late.=C2=A0 But, if t=
-his latency/delay is varying then perhaps this could be an issue.=C2=A0 Let=
- me know if you have any thoughts on using the DMA FIFO in this application=
-.</div><div>Thanks.</div><div>Rob</div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 10, 2026 at 4:26=E2=80=AFPM Wa=
-de Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.f=
-ife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>Sorry f=
-or the late reply. On the N320 you have 2 GiB of space that you can divide =
-as you like. Each channel gets a memory region defined by those parameters.=
- The FIFO_ADDR_BASE is the start address of each buffer and FIFO_ADDR_MASK =
-is effectively the size minus 1. The FIFO_ADDR_MASK must be a power of 2 mi=
-nus 1 (i.e., all ones). Set FIFO_ADDR_BASE to 0 for every bit where the mas=
-k is 1. Take care not to create overlapping regions for channels you intend=
- to use. Otherwise, the data for one channel could overwrite the data in an=
-other channel.</div><div><br></div><div>If you want one maximum sized FIFO =
-buffer, you can set the mask to 31&#39;7FFFFFFF to get a 2 GiB region. If y=
-ou set each channel the same, then you&#39;ve assigned the same memory spac=
-e to all four channels. This is fine if you only intend to use one channel.=
-</div><div><br><span style=3D"font-family:monospace">=C2=A0 =C2=A0 =C2=A0 F=
-IFO_ADDR_BASE: &quot;{31&#39;h00000000, 31&#39;h00000000, 31&#39;h00000000,=
- 31&#39;h00000000}&quot;<br>=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_MASK: &quot;{31&=
-#39;h7FFFFFFF, 31&#39;</span><span style=3D"font-family:monospace">h7FFFFFF=
-F</span><span style=3D"font-family:monospace">, 31&#39;</span><span style=
-=3D"font-family:monospace">h7FFFFFFF</span><span style=3D"font-family:monos=
-pace">, 31&#39;</span><span style=3D"font-family:monospace">h7FFFFFFF</span=
-><span style=3D"font-family:monospace">}&quot;</span>
-
-<br><br></div><div>If you want two maximum sized buffers, I think your exam=
-ple is correct assuming you only intend to use the first and second channel=
-s.</div><div><br></div><div>
-<span style=3D"font-family:monospace">=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_BASE: =
-&quot;{31&#39;h00000000, 31&#39;h00000000, 31&#39;h40000000, 31&#39;h000000=
-00}&quot;<br>=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_MASK: &quot;{31&#39;h3FFFFFFF, =
-31&#39;h3FFFFFFF, 31&#39;h3FFFFFFF, 31&#39;h3FFFFFFF}&quot;</span>
-
-</div><div><br></div><div>If you want four maximum sized buffers, it would =
-be:</div><div><br></div><div>
-<span style=3D"font-family:monospace">=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_BASE: =
-&quot;{31&#39;h60000000, 31&#39;h40000000, 31&#39;h20000000, 31&#39;h000000=
-00}&quot;<br>=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_MASK: &quot;{31&#39;h1FFFFFFF, =
-31&#39;</span><span style=3D"font-family:monospace">h1FFFFFFF</span><span s=
-tyle=3D"font-family:monospace">, 31&#39;</span><span style=3D"font-family:m=
-onospace">h1FFFFFFF</span><span style=3D"font-family:monospace">, 31&#39;</=
-span><span style=3D"font-family:monospace">h1FFFFFFF</span><span style=3D"f=
-ont-family:monospace">}&quot;</span>
-
-</div><div><br></div><div>The throughput is highly application-dependent. I=
-t will vary based on the number of channels and how much those channels con=
-tend for memory at the same time. But we have some benchmark numbers here t=
-hat will give you a rough idea:<br><br>=C2=A0 =C2=A0 <a href=3D"https://kb.=
-ettus.com/RFNoC_Frequently_Asked_Questions#What_DRAM_data_rates_can_I_expec=
-t_on_each_USRP.3F" target=3D"_blank">https://kb.ettus.com/RFNoC_Frequently_=
-Asked_Questions#What_DRAM_data_rates_can_I_expect_on_each_USRP.3F</a></div>=
-<div><br></div><div>If you&#39;re looking for bytes per second, multiply th=
-e numbers in that table by 4.</div><div><br></div><div>One common gotcha is=
- DRAM latency/delay. You may need to tweak the IN_FIFO_SIZE and/or OUT_FIFO=
-_SIZE when connecting DRAM directly to a radio block. It&#39;s possible to =
-see under/overruns in the radio even if the DRAM is &quot;fast enough&quot;=
- due to DRAM latency, particularly when it cycles between multiple channels=
-. But in your case, connecting DRAM to the DDC/DUC, you&#39;ll probably be =
-OK as long as the timestamp delay you add is longer than the total latency =
-through the DRAM.</div><div><br></div><div>Wade</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 28, 2026=
- at 9:39=E2=80=AFAM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-u=
-sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div>Hi,</div><div>I am building an N320 image that is basically a=
- repeater with static rfnoc links as follows:</div><div><span style=3D"font=
--family:monospace">=C2=A0 radio0 =3D&gt; ddc0 =3D&gt; my-timestamp-adjust =
-=3D&gt; axi_ram_fifo =3D&gt; duc1 =3D&gt; radio1</span></div><div><br></div=
-><div>I have a question about how to use the parameters of the axi_ram_fifo=
- block in order to maximize the FIFO depth.=C2=A0 From the N320 BIST yml, I=
- found the following:</div><div><span style=3D"font-family:monospace">=C2=
-=A0 =C2=A0 =C2=A0 # These parameters match the memory interface on the N3XX=
-<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 4<br>=C2=A0 =C2=A0 =C2=A0 MEM_DATA_W: 6=
-4<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 31<br>=C2=A0 =C2=A0 =C2=A0 # Create f=
-our non-overlapping 32 MB buffers by default<br><span style=3D"background-c=
-olor:rgb(255,255,0)">=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_BASE: &quot;{31&#39;h06=
-000000, 31&#39;h04000000, 31&#39;h02000000, 31&#39;h00000000}&quot;<br>=C2=
-=A0 =C2=A0 =C2=A0 FIFO_ADDR_MASK: &quot;{31&#39;h01FFFFFF, 31&#39;h01FFFFFF=
-, 31&#39;h01FFFFFF, 31&#39;h01FFFFFF}&quot;<br></span>=C2=A0 =C2=A0 =C2=A0 =
-MEM_CLK_RATE: &quot;303819444&quot; # 166.666666 MHz * 21.875 / 4 / 3 =3D 3=
-03.819444 MHz<br></span><br></div><div>This indicates that there are 4 port=
-s (later in the yml, ports 3 and 4 are explicitly not connected).=C2=A0 My =
-question is: how do I configure FIFO_ADDR_BASE and FIFO_ADDR_MASK in order =
-to maximize the FIFO capacity?</div><div><br></div><div>For the case of onl=
-y needing one FIFO buffer, would this be correct?</div><div><span style=3D"=
-font-family:monospace">=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_BASE: &quot;{31&#39;h=
-00000000, 31&#39;h00000000, 31&#39;h00000000, 31&#39;h00000000}&quot;<br>=
-=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_MASK: &quot;{31&#39;h3FFFFFFF, 31&#39;h3FFFF=
-FFF, 31&#39;h3FFFFFFF, 31&#39;h3FFFFFFF}&quot;<br></span><br></div><div><di=
-v>For the case of only needing two FIFO buffers, would this be correct?</di=
-v><div><span style=3D"font-family:monospace">=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR=
-_BASE: &quot;{31&#39;h00000000, 31&#39;h00000000, 31&#39;h40000000, 31&#39;=
-h00000000}&quot;<br>=C2=A0 =C2=A0 =C2=A0 FIFO_ADDR_MASK: &quot;{31&#39;h3FF=
-FFFFF, 31&#39;h3FFFFFFF, 31&#39;h3FFFFFFF, 31&#39;h3FFFFFFF}&quot;<br></spa=
-n><br></div><div>My other question is related to what is the maximum axi_ra=
-m_fifo throughput?=C2=A0 Can I run with one port (in &amp; out) at full str=
-eaming rate of 250 MS/s?=C2=A0 Does the RAM bandwidth support this rate?=C2=
-=A0 How about if I have 2 ports (in &amp; out) - what is the maximum rate?<=
-/div><div><br></div><div>Rob</div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div></div>
-</div>
-
---000000000000497e3b0653fade47--
-
---===============6114749220937740791==
+--===============8754903562250202070==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -475,4 +246,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6114749220937740791==--
+--===============8754903562250202070==--
