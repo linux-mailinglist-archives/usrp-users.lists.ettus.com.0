@@ -2,482 +2,492 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5fBcN93SQmpxDgoAu9opvQ
+	id oXdLCq7YQmppEgoAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jun 2026 22:17:33 +0200
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jun 2026 22:42:22 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037836DE93E
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jun 2026 22:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9046F6DEAF2
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jun 2026 22:42:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=emwd.com header.s=harmony header.b=O4c6Wo1V;
-	dkim=fail ("body hash did not verify") header.d=aero.org header.s=mailhub header.b=jsueRhIZ;
-	dkim=fail ("body hash did not verify") header.d=aerospacecloud.onmicrosoft.com header.s=selector2-aerospacecloud-onmicrosoft-com header.b=Xr5VNe1r;
+	dkim=pass header.d=emwd.com header.s=harmony header.b=S330T7G2;
+	dkim=fail ("body hash did not verify") header.d=gmail.com header.s=20251104 header.b=ohnwtfBP;
 	spf=none (mail.lfdr.de: domain of "usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com" has no SPF policy when checking 172.104.30.75) smtp.mailfrom="usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com";
-	dmarc=fail reason="No valid SPF, DKIM not aligned (relaxed)" header.from=aero.org (policy=none);
-	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
+	dmarc=fail reason="No valid SPF, DKIM not aligned (relaxed)" header.from=gmail.com (policy=none);
+	arc=reject ("signature check failed: fail, {[1] = sig:google.com:reject}")
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C1C5E386539
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jun 2026 16:17:31 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7F923386666
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jun 2026 16:42:20 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1782764251; bh=HyAGbGOxtLIWy/4Se1M9CJds4dX+EN5m8UajEZm+a2A=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	t=1782765740; bh=2W8pt5mPaiJ4t0Pko7yN5/7AOqz5ir53nftDAL46LuA=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=O4c6Wo1VMtUQ/mU/tcOocpmK8ZdEUIjVAAZItkZ68n5tzZL9kWOfdM0JntZTDfNok
-	 63Vd+IW21kD2UtNC5YAy2lOdfJ4EtXhQ+h/ThzgmKtkVO49e/P8Nx80tVn/1adz0eb
-	 Ba5783FdV+dyBEbUnMuwTeTPOBJMsHKW75TRfEvtripGaGWy0NjsoCPDnurNuMxZMb
-	 1sJpZgpTOi62ElHAbY0txvB9RnaGI+PRXnFOLCGtrI7+VsYp21l0MqKbY8cf7eTksX
-	 A4nmoxTY2e7m3hJ5DrSt01mhdQhz7iiT36GHSIs5Y32pdE94csCjXs3lvfyB6EmmV/
-	 vMAHLZ7hChciw==
-Received: from email5-west.aero.org (email5-west.aero.org [130.221.16.30])
-	by mm2.emwd.com (Postfix) with ESMTPS id 159263862B4
-	for <usrp-users@lists.ettus.com>; Mon, 29 Jun 2026 16:17:12 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
-  t=1782764233; x=1814300233;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:mime-version;
-  bh=b8/ttlvGZBArwJwudCmlba9Bqik7coWxH5xeUMkNX8E=;
-  b=jsueRhIZy4Kb9fRQmxRZlNQHOZvcEDyp9hBFdhyGcqvvrmhWrvJHHK5K
-   du5B89nK6/Nx5Tc2fbpqGxeytwkyoqunC4XQVYObuTc4Sx56TP3Ow5G+P
-   AN4OZ1yYJ+xnAeB4KXeRTP0Cr+EdCHhJApZpqwTRTN66CfU9K+sfPxWX4
-   w=;
-X-CSE-ConnectionGUID: nCd+DbBDR/2Q0caeY88Zaw==
-X-CSE-MsgGUID: uFm5SFmmRxCg59VL/4db0A==
-x-SBRS: 4.2
-x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="9525487"
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600";
-   d="scan'208,217";a="9525487"
-X-IPAS-Result: =?us-ascii?q?A2F0AQC40UJqjhwUXShXAx4BAQsSDIIFC4E9AVopQgFFg?=
- =?us-ascii?q?WyEWJF0A4ETljGGVxSBEANCCwoPAQEBAQEBAQEBBwIuASIEAQEDBIR/AhaNN?=
- =?us-ascii?q?yc2Bw4BAgQDAgMBAQEBAQEBAQ4BAQEFAQEBAQEHBAECAhABAQEBAQE5BQ47h?=
- =?us-ascii?q?k8NhAeBJgEBAQEBAQEBAQEBAR0CNVUBAQEBAwEiHQEBDCALAQ8CAQYCEQQBA?=
- =?us-ascii?q?SsCAgIlCQEUCQgCBAgGBQgVBIJhgh4HBAsHAzacIpsNN3qBMoEBggwBAQYEB?=
- =?us-ascii?q?NsqGGWBaQmBTYN+gUEygk4bAQEFJUlsAw6CTIEhGYR8NoFVRIEVQoIxOD6EB?=
- =?us-ascii?q?AoBEgEjBg8KJoMUOoIwgg0ZUigSGw88BQYuHQIjAQEVByseHHUSAQEBK22Bb?=
- =?us-ascii?q?YJFE4FahWdSciIDJjMsAVUTFwsHBV5FQwOBBiNLBS0dgSMhHRcWHlgbBwUSI?=
- =?us-ascii?q?CpBRSMDJ1dBOAtDBYFZAoIMTiMfAzl/gTB1WGYVMDWBAgECEB4KbEIkKQMLb?=
- =?us-ascii?q?T03FBsDBIE1BYtzB1wXD4IdeBoSOxQHWxY0bRiXDotio0M0B4QggWAGDIkJj?=
- =?us-ascii?q?mSIMheqbJkIo0sfBIUpAgQCBAUCEAiBbwNyKnAzGjBDggFmUxkPjiEZgR0BB?=
- =?us-ascii?q?4JEy215PQIHAgEGDgMLk2cBAQ?=
-IronPort-PHdr: A9a23:Cic1nBwlCAhr2+zXCzPangc9DxPP8534PQ8Qv5wgjb8GMqGu5I/rM
- 0GX4/JxxETIUoPW57Mh6aLWvqnsVHZG7cOHt3YPI5BJXgUO3MMRmQFoCcWZCEr9efjtaSFyH
- MlLWFJ/uX+hNk0AEcvkYBvVuHLhhQM=
-IronPort-Data: A9a23:ZZq3o63So7OjcftDVfbD5fpxkn2cJEfYwER7XKvMYLTBsI5bpzYPx
- 2FKWG2OaPqLZ2bzeth2aI2/8xhXup/XyoNjSgQ/qSg9HnlHgPSeCIXCJC8cHc8zwu4v7a5Dx
- 59DAjUVBJlsFhcwgD/zYuC5xZVb/fjRFuGmYAL8EnksA1ciEWF50koLd9cR2uZAmcK+Dx6Gp
- eT8qsjePE7N8zNvOwr40YrbwP9UlKq04m9wUmAWP6gR4geAzShNVfrzGInoR5fGatgMdgKFb
- 7ubpF2J1jux1wsgDNqjjoH6fiUiKlIFFVXmZtJ+AsBOszAazsAA+v9T2Mk0MC+7vw60c+VZk
- 72hg7TtEF1xZvWkdNM1CHG0GwkmVUFPFSSuzXKX6aR/xGWeG5fgLmkH4Ojb8uT0984uaVyi+
- 8D0JxgLRRzAq+ic7Ij8ENA0jc0uHZm7DooA7yQIITHxVZ7KQLjoY/zy34cJ9wpo3pkIGuvCb
- c0EbzYpdA7HfxBEJlYQDtQ5gfusgX78NTZfrTp5p4Jruy6Cl0oriP63YLI5efTTLSlRtkuFq
- W/A8iL2GBgLKtGF4TOI6HXqgfXA9c/+cNNPTuDkpqECbFu720IWVSY4UF6BsdK21x+Af5UDJ
- 0ZM0397xUQ13BfwFIWiN/Gim1aZpQQEHsdLHvchwAWM0bbPpQuFGnUfCDVGbbQOrMIqSCZs2
- UKhg87sQzBi2IB5UlqY/7aQ6DW1IzQVJmIEeTUNSRYe6svnuNhs1kuWFowzVqmoktfyBDf8h
- SiQqzQzjKkSishN0Lin+VfAgHSnoZ2hohMJChv/WEmprS9zTqKfINaRsVPS4McQfLSQUQzU1
- JQboPRy+tziGn1kqcBgaOAEHbXs4fGfLD3XjFhzBZAl6i+k6Xq7JN8IuWgmfhcvNdsYczj0Z
- kOVoRlW+JJYIHqta+lwfp61DMMpi6PnELwJt8w4jPIROfCdlyfepkmCgHJ8OUi2zSDAdoljY
- f+mnT6EVypyNEie5GPeqx0hPUAXKtAWnjiJGc+TI+WP1LuVfnmOTrkZeFCJdPhR0Z5oVD79q
- o4FX+PTkk03eLSnPkH/r9RPRXhUdiJTLc6t9KRqmhurflAO9JcJV6WJmetJlk0Mt/g9q9okC
- VnnBhQJkgCm1SGcQehIA1g6AI7SsV9EhSpTFUQR0ZyAghDPva7HAH8jSqYK
-IronPort-HdrOrdr: A9a23:/z0fGqv21JSTp+wRP+jG13BJ7skC3IMji2hC6mlwRA09TyXGra
- 2TdaUgvyMc1gx7ZJh5o6H6BEGBKUmslqKdkrNhR4tKPTOW81dASbsP0WKM+UyGJ8STzI9gPO
- JbAtBD4b7LfBJHZKTBkW+F+r8bqbHpnpxAx92utkuFJjsaCZ2Imj0JbjpzZXcGITWua6BYKL
- OsouZXrTupfnoaKv+8GmQEWOb7odjKnoLNYBINBRIrgTP+wA+A2frfKVy1zx0eWzRAzfMJ6m
- 7eiTH04a2lrrWS1gLc/3W71eUYpPLRjv94QOCcgMkcLTvhziyyYp56ZrGEtDcp5Mmy9VcRls
- XWqRtIBbU815qRRBD1nfLe4Xii7N8c0Q6h9basuwqinSW2fkN+NyMLv/MlTvKQ0TtdgDg76t
- MG44vRjesoMfvN8R6NmOTgRlVkkFG5rmEllvNWh3tDUZEGYLsUtoAH+lhJea1wah4SxbpXZN
- WGNvusk8p+YBefdTTUr2NvyNujUjA6GQqHWFELvoiQ3yJNlH50wkMEzIhH901wvK4VWt1B/a
- DJI65onLZBQosfar98Hv4IRY+yBnbWSRzBPWqOKRDsFb0BOXjKt5nriY9Frd2CadgN1t8/iZ
- 7BWFRXuSo7fF/vE9SH2NlR/hXEUAyGLEHQIwFllupEU5HHNcnW2He4OSETeuOb0oUiPvE=
-X-Talos-CUID: 9a23:fLoDW23rGJE0EsRr5JjLw7xfHOspMVHX5lvqZBWBUW1gRYzFGW2Z5/Yx
-X-Talos-MUID: 9a23:sIpt4wowgLIsh+7VxL0ezyxMMZpTzaGrMlAmnshXhe3DaSB6Yx7I2Q==
-Received: from mail-northcentralusazlp17011028.outbound.protection.outlook.com (HELO CH1PR09CU001.outbound.protection.outlook.com) ([40.93.20.28])
-  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 13:17:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dz1aYOECDP+4AAa6fiPr/2ngRbf6pnp6T66iRb8nf4IGny6vOCwutyufGBJAJ9QEbDSVLwKHpYt4Qg55kX/IYianQ6TCjzLiL64GcZ9QDxB1Do72dQabPRwgCUwh5jH8DEvlLGIzqIc6cabyNHLKfc6BzYBdeGu1B260/Hw48zTIFIo2ZuLhW0eZ7r/cxbU94drlgHhg8wdaRsdFAhQini6oAH+kE0ElhrsWm7t+gkW6U+38JSCUyIz3ZvjLfIqrFSxQEtch56oFq/0s2wPEXVlia3lixyO8AJC/xzvTqwBMYXwJE/G4NSdSQS6Lh8EKiQz1uBsfo5nk4yAxMYPDgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b8/ttlvGZBArwJwudCmlba9Bqik7coWxH5xeUMkNX8E=;
- b=fCk5em7FX4/L/vCqqVstrucv6gjIQpqsLOqNjUwgAJkZ4Acf26Snue3Zw8rreR05gx29YnDHCXyf7sb0gh/uU07+YO2jxly6ylfOps9AVULS9fSoG0uohvyP4S0gevQDXN5QMnEGX27VDUY9nQihI6LiLXAlv1yUOwgIx5Hbqmz7/anDr95GiSsqms8el8dBMTMapBRYpnghBiitZqTw8S3H55b//RBnyq4b/dlnVc0d1JuwfdS4NdwkVHdD9LY8+f1B0Zh/E2B06jA5GAf+e7tQ0gVQQFJEa7m4ajDxb2Ly6VVF5NL7NyOveQoKq0RtsrpAy8KUQBiyksjkpsuphA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
- dkim=pass header.d=aero.org; arc=none
+	b=S330T7G2Cf38kRJDH4x4TGKrHs1rN967hvlqSIdI77D2SOskjsTcVb8++dLdkbGUL
+	 jozUVimGnMt7yWT50nxl2D2C4iqzrNwzTBwfKJdwEUZItGaaeWhbggbchpd1BVc+BI
+	 m00n16ZoUeciJ54q+kWlqYCuNIoOY18WXGK4ooUw+Y4s8IKSe9KOORNxq8wGCszLfN
+	 31+zfCnRGaXwfojnSTIeF+UPY09mAROfvESNk+cSqLbEyMUncq9/Jqfxj9PU0Fsaeb
+	 tYUS4A9M5UjZpOiLveRdBilsYwaxB8kLNEuI0c2d6RCKNJSlrFlrt1ZkjZidBWE8/G
+	 lzDNuyzP2vT8A==
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id C32BE38652E
+	for <usrp-users@lists.ettus.com>; Mon, 29 Jun 2026 16:42:02 -0400 (EDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-691c5776f35so5769934a12.3
+        for <usrp-users@lists.ettus.com>; Mon, 29 Jun 2026 13:42:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782765722; cv=none;
+        d=google.com; s=arc-20260327;
+        b=V0LM7XXIBMyc6yIvUirkXlx20iPVsXsACr3heOZoiEMsuu5/eyps0VfaOE57uIdAw7
+         l2uc/tQ47e7TyIoYlcjuszPXkZT7arxvkrESNx0slOuiprIuTqMr/jgLyqRRtkZ/aHHl
+         EAFWIMJqwFCayFbv2hj1O2lfUXLPM8kk770wFQmGQVx8FLj/BC3JsBbMacLE/5T+gwPs
+         hXgBrAfh7j2XZl3d7ytrPQroK4xN4Ng1zfAYeD5kFcctzKMeY1MGQNBfsWXGeAcPkTiW
+         RZc1MqRz4jYbkZUMqHa5weWAYmt/zn+a/nV1KDBjC4xLJMxVGh/8Q+4vdY1SjB79NdgH
+         kPGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=CwJnig7Hqi5fSZc2IYQu3y+YtbCj4f1qYjh+DzEyhd8=;
+        fh=5WjtEqfsEIwTZ6Z+avrgvMr8EhcosimPLJcaNasiR4c=;
+        b=OpLtjlNX6yHythSzejnhIjWQsLB7gdyRF+pjpJaULDGrm9/2dJRQpcjpL+C6jTLhXO
+         IHWfm2vUOHJR+7U3L4w+pRg38+cG8Gy1c7/rw0+HW+a6lfjJrA1Qs0xkkC0yMmv1riGJ
+         75y5oucoIwxWXDBCrm3T5r/YWQbpgnyTVUATRIn7tNT9yT1hiuYMPoek+T2/C1UPxpG0
+         TFQLLGB6qHB9ecx5dKVMsoBUZUNYrNY7evfDyAglaW9JvaivmdDNIW69AjiVrwrq3Sex
+         Sq7eiZcAcL4a6UtBHdyLVUrmG2lpfigJ97iBfWl9ht1JzXUekEWgiPqJUryfPppmSAe/
+         pu8g==;
+        darn=lists.ettus.com
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b8/ttlvGZBArwJwudCmlba9Bqik7coWxH5xeUMkNX8E=;
- b=Xr5VNe1rewwJQ4P5YKkgGK4kH50p36QQgNY+Xt+vUF12fbEf6NH/fWh0hw+ed2sBBquXhP4vaBe5Dj1lcF9neMfX9YyQPW9mEvBe8AjW44Iaxl2qrdcDtOkNAlmovQJM6MsuGtK8FuycKTsVx0pfzVrQWfo4Dck8Xr5ka78XkFU=
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
- by PH0PR09MB8730.namprd09.prod.outlook.com (2603:10b6:510:6d::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
- 2026 20:17:06 +0000
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::4b5:d448:c89e:48e8]) by SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::4b5:d448:c89e:48e8%7]) with mapi id 15.21.0159.018; Mon, 29 Jun 2026
- 20:17:06 +0000
-From: Eugene Grayver <eugene.grayver@aero.org>
-To: Peter Jiacheng Gu <peter.gu@tum.de>
-Thread-Topic: [USRP-users] Underflows on X440 TX
-Thread-Index: AQHdB/c1QzxkLAVUZEyLcGMkftC+e7ZV6bvEgAAOdR8=
-Date: Mon, 29 Jun 2026 20:17:06 +0000
-Message-ID: 
- <SJ0PR09MB91266AD4901565D18F6E7FCFECE82@SJ0PR09MB9126.namprd09.prod.outlook.com>
-References: 
- <SJ0PR09MB91269679895FCEA5C6F8A3DCECE82@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <9F969F1B-75D0-4621-8FE8-4384D26A6594@tum.de>
-In-Reply-To: <9F969F1B-75D0-4621-8FE8-4384D26A6594@tum.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|PH0PR09MB8730:EE_
-x-ms-office365-filtering-correlation-id: dfeb86b1-2e93-47ae-10c9-08ded61b6423
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|4022899009|23010399003|1800799024|366016|41320700013|18002099003|8096899003|38070700021|22082099003|56012099006|4143699003;
-x-microsoft-antispam-message-info: 
- FZ+B+/BxlA+1v2H0dYmPTRU60o5Pwjo3vAP6KqNv5de+pDaggaxk/latSZUYDmEqUPLslN+RciI1VszFlv7OT8PD7Ryj2ySZS5z2NORrtFEcHtrrhlnu223FrXnfVvmniqS8T+8AB3a6nSuT/7rd2TLWuT/llAwj+hlTIsFIe+6QCfgWGtBNaDrKFDjzLTfLofMCHKQ4lWa5suGrKUyodqLtsyYWbnDdXY53sJWGOjGKBkLKdMYXfAEvkvKbpEnkv4eL0jBTXcKYsj4kXVonOCidq2Q/iwVt0jsVyZnd5JkXA4mCh8yva/JzA7FK+k1EPRJOX4xGcitL1I2G9w6AgD2ZYCup2ED6QhBTScX7H45fNzoZT8Q2v1EN52tLuIqPOeVaZCRn9zVQRTFtkpuDPN7ljhApGYirEcbdIB9MthBW60r+681mTaOE/+hM+Vy/K0mT/cvm8/MX1j5FBl3DIluynJeQmvIrl/ou5YdeyoQWvPZuUxHN2CYJYOvkED1YpsEpzgBlTjZ5hGhWgmZKEw/j7LjGBUGYyTXgofqRCxnnaPTNI5HqBAQcy6I62dkukbPcBGVOpLAQP35pnbhXZpV67WMFjkDC22tXkfuP4Rg/fPiQyCxRWDotyQRHDySN3kHy5UBUN+0JE5v8Wl4I0orVAOMhJlXBpsAuPq92xYtG5kN1BhLVMBYMFLn5aodKrjRxJsQjsj9ElKJAIAjN9CC7dPIaaZT436b4r6lc+QI=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(4022899009)(23010399003)(1800799024)(366016)(41320700013)(18002099003)(8096899003)(38070700021)(22082099003)(56012099006)(4143699003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?WW54WWhHT2FFVGRzOVEvNHBRNXd6cEJobkRjL2xHNGc1N0VNR213bmtCSVBG?=
- =?utf-8?B?cFhkUDdCS093WnZhV0oyMk9tem9zY0J2UW15djcxQnRIVFpONGxsdDhMWWhY?=
- =?utf-8?B?cnBrQjcxNjBTRFhDa0JEMVc2cjhlZ252aFo0OVVLQmhSamE5aVJWdDliT3lo?=
- =?utf-8?B?d01ycVdQcnBpTC9mNisvRVlKb2wxbWdvVTJhR2NwZmhpVFpCUHpoRW1iYTJs?=
- =?utf-8?B?czRWRHJ0ODVWOWF5aEJCR3E0bnF6K0djZ0VMK09pTG9UTTdxMEo1TEJ0ZGtB?=
- =?utf-8?B?WFRGNTNUSjk0TUJCUXg2Tnhhay9aOGJ4aVlodSsxRmJoblNCbFBKZi81cndj?=
- =?utf-8?B?Smx0Z1I5U0gxcEZsT0V4NEdSK2hVZTJZbWZJaVlXeVlMdGwwYXlBRWhiYlI4?=
- =?utf-8?B?cU1JWmg4cnVvS01jLzVodlc3WXZJdHJjRGVkMkthTlFvNmdqall4SnJPdTFW?=
- =?utf-8?B?ZEdpWFU3V3VqM0VNL1dOYjZrWDFzait3MnJISGpkTThOZ3FwYVhRL2RzYzBV?=
- =?utf-8?B?eGFueGxrTHAxVGJuY21LY01MRGRncERWRFd3M1VXU3lOK0ZGL3F3S1RkTDVz?=
- =?utf-8?B?ckhSR0JJck03NzhBYjgvMHJUNzk0RjgzcFlCZm1WMzljbkkwemduRVovNlhH?=
- =?utf-8?B?NFhKRlgzZHgzZUFnK3VWUHVhNlY0Zm5YRER3VUNWM2tlMUJBSHp3NUVPeGE5?=
- =?utf-8?B?L00vMmtjS3loUUE4YnlCS3JNN2ptWXNFaEVFMFRwUE43M2JmSXk1S1ZRbVlZ?=
- =?utf-8?B?bnVMNHIweENqbm9pRFBSclN0Zkp4QU1rMlJFWUxtSEJYYnVUZWpuaHFhUGVz?=
- =?utf-8?B?YTJIWFVKS2NybHZleEZlZkd4WFR3OUYxWEhQcU5CY0YrUGcxSk1RZEgvZEQ3?=
- =?utf-8?B?S0hOVGo4UHB0MDQrWWE2RHh6d1dReHB0MEJZUC85KzUxTjhuV2hrbnFtdWZX?=
- =?utf-8?B?dlVPc2lURmIrNHBpdXZVTkMvQjJaU0FFZ2YwZjR4d1ZSelhackUyTUJrS0ZK?=
- =?utf-8?B?Y3h3Ri9mb0ljajBkVHdCdXg1eXRTL0RwUGYzRm82bURkMTFITTFLUnArckVm?=
- =?utf-8?B?RTBWcFpHbWZubjBkKzRoQVM1VWo1SFBVbWdJNjV2MGVpTExRcFJXNTN3Qnd2?=
- =?utf-8?B?Y3ZJb0xIRGM5K3VWRUlrN1dGUVh4bWhuU0FOUTcvZllXaG1xQVVNREhYSVJu?=
- =?utf-8?B?N0RqczhqVjdsUng1SDFlRVZUL3JjYzJOQTJ5NEVPLys2TWxZeGxXUittRzNr?=
- =?utf-8?B?U2Z2SW1lVWpvUWVVQlZTMWFPSWJwVS9GYzcveHpLbW85dFdWeFFwalpxSHcr?=
- =?utf-8?B?UjBWSjBScmVkTTVJRDRyck8wZXFIUEcxRGszL21ScFpXUEZrM2RsM3RVZG9x?=
- =?utf-8?B?Z081ZldlRzB1M3BMT1NOdE9ka0g4T2JQRHFsVXV6Tno3cjErdC90S2tJaUVx?=
- =?utf-8?B?cncwS25qQVlsaWk4ZVhrbkpPSjZFcEUvbTl5MTRoNTViR08wc3JKNER4d3lz?=
- =?utf-8?B?cUQvV2FjcHd1aDhQbEpUSWVVbVlhMURlMndHbmNqYTNtZGdJM3gxRG80UHNx?=
- =?utf-8?B?Y2V1NlJyTDBsNWZ1YVZ3S2kwMHhJNzJxV21ZZURUZUl0U1VUK2MwZnJEWExH?=
- =?utf-8?B?SFZGTHdaV3NqMzEzNXJvSEk0SW1JK0VPa0JhanlmTEl0UEtRbHRNMEhiOThq?=
- =?utf-8?B?RnhsWGZmZ2xoN0Y2QzNCWmZrdDUvL0NSOXBob1ZEclFVVHE1dUFZaGZ1YWdT?=
- =?utf-8?B?aDNLRTREMEZJRVpDUGkzbHkwck9TV1BkYU81SU5UdU1CbHNXeTVoL1oyWGFh?=
- =?utf-8?B?WVZ1eWdtQzdxelFwS0hTRFFoZnBERmlmNDhXeUxXOVVreDdlY2JpbW0ycmUx?=
- =?utf-8?B?Q3RZNDhIUHVvVjloK25Fb00yR3VSakRsN3ZzMGJ6cXdxOHdPbTd1QWhzdXVq?=
- =?utf-8?B?eGlBQzZ5azdCWkpRc3dqMEVOZWFxRXBsSXJPdURDY0taUDczbVBJQ1lrT1RH?=
- =?utf-8?B?dFMrL3BnYjNtZTE3R05GcUwxbEpTQmpyRktDRGowQ1FJcURUakxMdUpWRDlM?=
- =?utf-8?B?RmFmeTNLaDdwN3U0STQzanVoQm9XdG1rL2x5SWd6cU92TENYZndxRjN0MW1J?=
- =?utf-8?B?Q1dzNXVpcGd3NFFOc3AwS2RoN0Q2NWNYVFdubk9OMFZCL0dhL21lSGtkWFps?=
- =?utf-8?B?SUlwb0MwTGRHQ0JlWGovZldVZWZKSE43MWU4bmJ0dUtTZW9rR2xUeUVmRDNG?=
- =?utf-8?B?U1JubnNiUmxWUmx3d1lxeGZWM0IyWmtVNExlY2hia0JKUGdyem9ocVlvN0xa?=
- =?utf-8?Q?+uBmtyqma2y9e7cg4N?=
+        d=gmail.com; s=20251104; t=1782765722; x=1783370522; darn=lists.ettus.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CwJnig7Hqi5fSZc2IYQu3y+YtbCj4f1qYjh+DzEyhd8=;
+        b=ohnwtfBP9SMiWAddCaBz5n13KtAlGChEQ3+pm+6YT2mA9Lsbalt83sQE+ZpYp6HbXP
+         jLh8EuvAaE3rgZYg5989jaPCf7CWuNZ/LzQNMOAYaLzgzEg1aD60vvNCZH2D0EgaBS/A
+         g1BoE7YZMaqGgRL7+WcxNdua1dphoZ5gQHN8kWU72WalHIEAg1CbcbxtGmrDDnbyHVLs
+         1WHVPOiGfzPZHwns2WeWapyVm21XlGYjErTD1jZ5mlDSH6vByZlCF60c9poLHrdSWE/G
+         Pcg8HZghsksf2ZxoTwMyMVEoVKnHGzBmRht5kXFqlg+nP4JJS7pgHpUkv67lk5ptbzR3
+         k46g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782765722; x=1783370522;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CwJnig7Hqi5fSZc2IYQu3y+YtbCj4f1qYjh+DzEyhd8=;
+        b=E6gsnLn+QCttva8roJNYv1MOj90WxTWn3moz2BhOfIuhLHVPxhJ8b/wyr70psiG7Uj
+         76BHzRcNYUBjo2lcT4OUpdOY9bUSs5CRX68Pluk0unXAvW8nLvcWyh5PvzSAUq7j/ppM
+         ZhvO5rHFDYG8vXchT8KQv2c1hk9lySasbpBd1OprsWk63c2IuV/Bo0kLS1relZ/BXCYS
+         dpKMZeO+Xm1x/HLjCmbfV6FBukTKvBm2siEJscupjOsSDVpkvjM3kcDoGQpQzSt9NODX
+         FZ4bpCEtlqOT3/FYzx2QFNTSc2ArK2gJ2E32D3+Znjhx1wdkXZO9vhp/37IB2gRAqgu9
+         DiGQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/7mqz2U7UY0a8Cchj+y9vlpcwJj0rSD/FODxvNr2Z/bQr/FA0oJ8C1LEpxqPCks/YzlnXAExfkhtO6@lists.ettus.com
+X-Gm-Message-State: AOJu0Yyiob//rljJNxZr+Smk31uYsAnyKx5FOyFTWXcGVYXTLc2WiaMO
+	AqDbkxc9hrnIAoW/cMyVqcvfqS9/wKaerbkGmWOy0gLegHu/39ujABjRq24YIwQydCGJEQ7ncXh
+	n68GVTZ4i+iOx22q9Ue/XLJ+gyI4AN/U=
+X-Gm-Gg: AfdE7ck/efG5t016RbqO1H8oAxhFqvKDj5etrmpxZ+r6Q2pTbm58N7XIFEdnn7OTt+C
+	HqZm76CDWxDrrK3i7aG0Cl9QlK5YDQITAYG1NE3OIOeZJgz+yBtCyEfNj+CpsNdJziU/zlri7M2
+	3P1BxfVA1n4fMjKVYOa7pAQEkWAyPBFRNZUpgxZShux3HCj7gPIP+ZifOj2Z5heobNogPU634Qs
+	cSlGULvLUTLgYj4HrPWB5V79bg0rgfR+mxqGr7muoVzKFxxHtp2E3onJvEaqhtLDH44Cso=
+X-Received: by 2002:a05:6402:4304:b0:697:ef08:e18b with SMTP id
+ 4fb4d7f45d1cf-69879dcd8e2mr300977a12.1.1782765721484; Mon, 29 Jun 2026
+ 13:42:01 -0700 (PDT)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: 
-	VVd7ch38/I8oKOMxcWZIdOf5fIPoN/ePoqLeiNKfUPjgg8YzIwcaFBVT6lkSUSoNOVGXK1qVqh0Q3ngULhiCMKlbDVSRxlj8mK/ENjE8A/TJ0pTHdsXrDq092yMctNV3srrCqyOpU4xPrtveIkISzV6SgSeVSDXWTOG7IPs1VrIbugqQ7j1OxtjRjiFRwd2BRmHhtNREf5Wl2MtXyxCt0UefeHv5TI5DdooaIkChtwBc3p5FhEYL1t5FBTIaQHE35gyJx2aFq07KYCtAKr+QqpvMOvRvcIMAyqEuESSAnUv4qP6GaLKu0IS9NsNxcwybzhm5qHtlE2oJW9FnyG5tVw==
-X-OriginatorOrg: aero.org
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfeb86b1-2e93-47ae-10c9-08ded61b6423
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2026 20:17:06.5395
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR09MB8730
-Message-ID-Hash: L7EAK5XL6E7LIBCXJW4NIBRK2AXCW7IE
-X-Message-ID-Hash: L7EAK5XL6E7LIBCXJW4NIBRK2AXCW7IE
-X-MailFrom: prvs=63344e7c2=eugene.grayver@aero.org
+References: <SJ0PR09MB91269679895FCEA5C6F8A3DCECE82@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <9F969F1B-75D0-4621-8FE8-4384D26A6594@tum.de> <SJ0PR09MB91266AD4901565D18F6E7FCFECE82@SJ0PR09MB9126.namprd09.prod.outlook.com>
+In-Reply-To: <SJ0PR09MB91266AD4901565D18F6E7FCFECE82@SJ0PR09MB9126.namprd09.prod.outlook.com>
+From: Chris Rogers <c1337rogers@gmail.com>
+Date: Mon, 29 Jun 2026 16:41:49 -0400
+X-Gm-Features: AVVi8CdqRxl9rAjT5ESWubKkUwBSIWxE_LeV-pmACl4o4r1CXsv6-D6X0XrEROc
+Message-ID: <CAOEzSFTUiDru7Pfigu=nzEJtkHGsz84ZEZCJ7q5kmxR31dMCMg@mail.gmail.com>
+To: Eugene Grayver <eugene.grayver@aero.org>
+Message-ID-Hash: RX4H77YSDZLRGDBG44ELM5MBIDR3TRW5
+X-Message-ID-Hash: RX4H77YSDZLRGDBG44ELM5MBIDR3TRW5
+X-MailFrom: c1337rogers@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
+CC: Peter Jiacheng Gu <peter.gu@tum.de>, usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Underflows on X440 TX
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RVVNP3ZRQRA3OV7QPC74S6C76BZE5JTH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RX4H77YSDZLRGDBG44ELM5MBIDR3TRW5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2102687694672563754=="
+Content-Type: multipart/mixed; boundary="===============4673845747054264259=="
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+X-Spamd-Result: default: False [0.39 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
 	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
-	MIME_BASE64_TEXT(0.10)[];
-	DMARC_POLICY_SOFTFAIL(0.10)[aero.org : No valid SPF, DKIM not aligned (relaxed),none];
+	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : No valid SPF, DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:peter.gu@tum.de,m:usrp-users@lists.ettus.com,s:lists@lfdr.de];
+	TO_DN_ALL(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:eugene.grayver@aero.org,m:peter.gu@tum.de,m:usrp-users@lists.ettus.com,s:lists@lfdr.de];
 	R_SPF_NA(0.00)[no SPF record];
-	FORGED_SENDER(0.00)[eugene.grayver@aero.org,usrp-users-bounces@lists.ettus.com];
-	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_SENDER(0.00)[c1337rogers@gmail.com,usrp-users-bounces@lists.ettus.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	R_DKIM_REJECT(0.00)[aero.org:s=mailhub,aerospacecloud.onmicrosoft.com:s=selector2-aerospacecloud-onmicrosoft-com];
-	DKIM_TRACE(0.00)[emwd.com:+,aero.org:-,aerospacecloud.onmicrosoft.com:-];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[eugene.grayver@aero.org,usrp-users-bounces@lists.ettus.com];
-	FROM_HAS_DN(0.00)[];
 	DKIM_MIXED(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[usrp-users];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[c1337rogers@gmail.com,usrp-users-bounces@lists.ettus.com];
+	R_DKIM_REJECT(0.00)[gmail.com:s=20251104];
+	TAGGED_RCPT(0.00)[usrp-users];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ettus.com:email]
+	DKIM_TRACE(0.00)[emwd.com:+,gmail.com:-];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,ettus.com:email,tum.de:email,emwd.com:dkim,lists.ettus.com:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 037836DE93E
+X-Rspamd-Queue-Id: 9046F6DEAF2
 
---===============2102687694672563754==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR09MB91266AD4901565D18F6E7FCFECE82SJ0PR09MB9126namp_"
+--===============4673845747054264259==
+Content-Type: multipart/alternative; boundary="0000000000008c002706556a7d11"
 
---_000_SJ0PR09MB91266AD4901565D18F6E7FCFECE82SJ0PR09MB9126namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000008c002706556a7d11
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SSBoYXZlIG5vdCB0cmllZCB0aGUgWDRfNDAwIGltYWdlIGJlY2F1c2UgSSBuZWVkIG1hbnkgY2hh
-bm5lbHMgYXQgcmVsYXRpdmVseSBsb3cgKDUwIE1IeikgYmFuZHdpZHRoLiAgVGhpcyBpc3N1ZSBt
-dXN0IGJlIHNvbHZlZCDigJQgSSd2ZSBiZWVuIGFibGUgdG8gdXNlIG9sZGVyIFVTUlBzIGZvciBU
-WCBhdCByYXRlcyB1cCB0byAyMDAgTXNwcy4gIFRoZXJlIGlzIG5vIHJlYXNvbiBmb3IgdGhlIFg0
-NDAgdG8gYmVoYXZlIHRoaXMgd2F5Lg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18N
-CkZyb206IFBldGVyIEppYWNoZW5nIEd1IDxwZXRlci5ndUB0dW0uZGU+DQpTZW50OiBNb25kYXks
-IEp1bmUgMjksIDIwMjYgMTI6MjMgUE0NClRvOiBFdWdlbmUgR3JheXZlciA8ZXVnZW5lLmdyYXl2
-ZXJAYWVyby5vcmc+DQpDYzogdXNycC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
-DQpTdWJqZWN0OiBbRVhURVJOQUxdIFJlOiBbVVNSUC11c2Vyc10gVW5kZXJmbG93cyBvbiBYNDQw
-IFRYDQoNCg0KRG8gbm90IG9wZW4gbGlua3Mgb3IgYXR0YWNobWVudHMgdW5sZXNzIHlvdSByZWNv
-Z25pemUgdGhlIHNlbmRlci4gSWYgdW5zdXJlLCBjbGljayB0aGUgUmVwb3J0IFBoaXNoIGJ1dHRv
-biBvciBmb3J3YXJkIHRoZSBlbWFpbCB0byBPUFNFQy4NCg0KSGkgRXVnZW5lLA0KDQpJIGFsc28g
-ZW5jb3VudGVyZWQgdGhpcyBpc3N1ZS4gSeKAmW0gY3VycmVudGx5IGludmVzdGlnYXRpbmcgdGhl
-IFg0XzQwMCBpbWFnZSBzaW5jZSBpdCBzdXBwb3J0cyB0aGUgcmVwbGF5IGJsb2NrLiBIYXZlIHlv
-dSBhbHJlYWR5IHRyaWVkIHRoaXM/DQoNCkJlc3QsDQpQZXRlcg0KDQpBbSAyOS4wNi4yMDI2IHVt
-IDIxOjAyIHNjaHJpZWIgRXVnZW5lIEdyYXl2ZXIgPGV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnPjoN
-Cg0K77u/DQpIZWxsbywNCg0KSSBhbSByZXR1cm5pbmcgdG8gdGhlIHByb2JsZW0gcmVwb3J0ZWQg
-YSBmZXcgbW9udGhzIGFnbzoNCg0KSSBoYXZlIHR3byBYNDQwcyB3aXRoIFhfMjAwIGltYWdlIGNv
-bm5lY3RlZCB0byBhIFRocmVhZHJpcHBlciAyNCBjb3JlLiAgSSBhbSB1c2luZyB0d28gMTAgR2JF
-IGRpcmVjdCBjb25uZWN0IGNhYmxlcyBmb3IgZWFjaCBVU1JQICh0b3RhbCBvZiA0eCAxMCBHYkUp
-Lg0KDQpJIHdhcyBhYmxlIHRvIGdldCBSWCB3b3JraW5nLCBidXQgVFggaXMgZ2V0dGluZyBjb250
-aW51b3VzIHVuZGVyZmxvd3MuDQoNCg0KICAqDQpVc2luZyB0aGUgYmVuY2hhcmtfcmF0ZSBleGFt
-cGxlLg0KICAqDQpVbmRlcmZsb3dzIG9ic2VydmVkIGJvdGggdy8gRFBESyBhbmQgdy9vdXQgRFBE
-Sw0KICAqDQpVbmRlcmZsb3dzIG9ic2VydmVkIHdpdGggNCwgOCBjaGFubmVscyBhbmQgMTYgY2hh
-bm5lbHMNCiAgICAgKg0KRmV3ZXIgdW5kZXJmbG93cyB3aXRoIDQgY2hhbm5lbHMsIGJ1dCBzdGls
-bCBnZXQgYSBmZXcgcGVyIG1pbnV0ZQ0KICAqDQpQcmlvcml0eSBoaWdoL25vcm1hbCBkb2VzIG5v
-dCBtYWtlIGEgZGlmZmVyZW5jZSAodXN1YWxseSkNCg0KSU1QT1JUQU5UOiBJZiBJIHVzZSBvbmx5
-IG9uZSBpbnRlcmZhY2UgKCDigJRhcmdzPWFkZHI9MTkyLjE2OC4xMC4yLG1nbXRfYWRkcj0xOTIu
-MTY4LjEuMTApIHRoZXJlIGFyZSBubyB1bmRlcmZsb3dzIHdpdGggdXAgdG8gNyBjaGFubmVscyAo
-bWF4IHRvIGZpdCBpbiAxMCBHYkUpLg0KDQouL2JlbmNobWFya19yYXRlIC0tYXJncz1hZGRyMD0x
-OTIuMTY4LjEwLjIsc2Vjb25kX2FkZHIwPTE5Mi4xNjguMTEuMixtZ210X2FkZHIwPTE5Mi4xNjgu
-MS4xMCxhZGRyMT0xOTIuMTY4LjE1LjIsc2Vjb25kX2FkZHIxPTE5Mi4xNjguMTYuMixtZ210X2Fk
-ZHIxPTE5Mi4xNjguMS4yMCxjbG9ja19zb3VyY2U9ZXh0ZXJuYWwsdXNlX2RwZGs9MSx0eXBlPXg0
-eHgscHJvZHVjdD14NDQwIC0tdHhfY2hhbm5lbHMgMCwxLDIsMyw0LDUsNiw3IC0tdHhfcmF0ZSA0
-MC45NmU2IC0tdHhfY3B1IHNjMTYgLS1tdWx0aV9zdHJlYW1lciAtLWR1cmF0aW9uIDEyMA0KDQpU
-aGlzIHNob3VsZCBiZSB0cml2aWFsIGZvciBzdWNoIGEgcG93ZXJmdWwgbWFjaGluZSENCg0KSSBh
-bSBzdXNwZWN0aW5nIGFuIGlzc3VlIHdpdGggaGFuZGxpbmcgb2YgcGFja2V0cyBhY3Jvc3MgbXVs
-dGlwbGUgbmV0d29yayBpbnRlcmZhY2VzLiAgQXJlIHRoZSBUWCBmbG93IGNvbnRyb2wgcGFja2V0
-cyBub3QgZ2V0dGluZyB0byB0aGUgcmlnaHQgcGxhY2U/DQoNClRoaXMgaXMgYSBjcml0aWNhbCBm
-YWlsdXJlIOKAlCBub3Qgc29tZXRoaW5nIEkgZXhwZWN0IGZvciBhICQzNWsgYm94IPCfmYINCg0K
-DQoNCkV1Z2VuZSBHcmF5dmVyLCBQaC5ELg0KUHJpbmNpcGFsIEVuZ2luZWVyDQozMTAtMzM2LTEy
-NzQNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KVG8gdW5z
-dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
-bQ0K
+A few comments here:
 
---_000_SJ0PR09MB91266AD4901565D18F6E7FCFECE82SJ0PR09MB9126namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I have almost the exact same setup. After extensively debugging dropped
+samples on Tx, I concluded that there just wasn't very much on-fabric
+buffering on the X4_200 image, meaning it's very sensitive to host latency
+jitter which was causing the sample drops. Using DPDK, isolating some CPUs
+(isolcpus), and putting all DPDK fast-path sender threads on the isolated
+cores completely solved my problems.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
-Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpJIGhhdmUgbm90IHRyaWVkIHRoZSBYNF80MDAg
-aW1hZ2UgYmVjYXVzZSBJIG5lZWQgbWFueSBjaGFubmVscyBhdCByZWxhdGl2ZWx5IGxvdyAoNTAg
-TUh6KSBiYW5kd2lkdGguJm5ic3A7IFRoaXMgaXNzdWUgbXVzdCBiZSBzb2x2ZWQg4oCUIEkndmUg
-YmVlbiBhYmxlIHRvIHVzZSBvbGRlciBVU1JQcyBmb3IgVFggYXQgcmF0ZXMgdXAgdG8gMjAwIE1z
-cHMuJm5ic3A7IFRoZXJlIGlzIG5vIHJlYXNvbiBmb3IgdGhlIFg0NDAgdG8gYmVoYXZlIHRoaXMg
-d2F5LjwvZGl2Pg0KPGRpdiBpZD0iYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0iZGlz
-cGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIiB0YWJpbmRleD0iLTEiPg0KPGRpdiBpZD0iZGl2
-UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIHN0
-eWxlPSJmb250LXNpemU6MTFwdCIgY29sb3I9IiMwMDAwMDAiPjxiPkZyb206PC9iPiBQZXRlciBK
-aWFjaGVuZyBHdSAmbHQ7cGV0ZXIuZ3VAdHVtLmRlJmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBNb25k
-YXksIEp1bmUgMjksIDIwMjYgMTI6MjMgUE08YnI+DQo8Yj5Ubzo8L2I+IEV1Z2VuZSBHcmF5dmVy
-ICZsdDtldWdlbmUuZ3JheXZlckBhZXJvLm9yZyZndDs8YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNl
-cnMgJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9i
-PiBbRVhURVJOQUxdIFJlOiBbVVNSUC11c2Vyc10gVW5kZXJmbG93cyBvbiBYNDQwIFRYPC9mb250
-Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPg0KPHAgc3R5bGU9
-ImJhY2tncm91bmQtY29sb3I6IzVFOEFCNDsgY29sb3I6I2ZmZmZmZjsgZm9udC1zaXplOjEwcHQh
-aW1wb3J0YW50OyBwYWRkaW5nOjFlbSI+DQo8c3Ryb25nPkRvIG5vdCBvcGVuIGxpbmtzIG9yIGF0
-dGFjaG1lbnRzIHVubGVzcyB5b3UgcmVjb2duaXplIHRoZSBzZW5kZXIuIElmIHVuc3VyZSwgY2xp
-Y2sgdGhlIFJlcG9ydCBQaGlzaCBidXR0b24gb3IgZm9yd2FyZCB0aGUgZW1haWwgdG8gT1BTRUMu
-DQo8L3N0cm9uZz48L3A+DQo8ZGl2IGRpcj0ibHRyIj48L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPkhp
-IEV1Z2VuZSw8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0
-ciI+SSBhbHNvIGVuY291bnRlcmVkIHRoaXMgaXNzdWUuIEnigJltIGN1cnJlbnRseSBpbnZlc3Rp
-Z2F0aW5nIHRoZSBYNF80MDAgaW1hZ2Ugc2luY2UgaXQgc3VwcG9ydHMgdGhlIHJlcGxheSBibG9j
-ay4gSGF2ZSB5b3UgYWxyZWFkeSB0cmllZCB0aGlzPzwvZGl2Pg0KPGRpdiBkaXI9Imx0ciI+PGJy
-Pg0KPC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj5CZXN0LDwvZGl2Pg0KPGRpdiBkaXI9Imx0ciI+UGV0
-ZXI8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPkFt
-IDI5LjA2LjIwMjYgdW0gMjE6MDIgc2NocmllYiBFdWdlbmUgR3JheXZlciAmbHQ7ZXVnZW5lLmdy
-YXl2ZXJAYWVyby5vcmcmZ3Q7Ojxicj4NCjxicj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJs
-b2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2IGRpcj0ibHRyIj7vu78NCjxkaXYgY2xhc3M9Inhf
-ZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZv
-bnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250
-LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpIZWxsbyw8L2Rpdj4NCjxkaXYgY2xhc3M9
-InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRl
-ZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBm
-b250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xh
-c3M9InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJl
-ZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlm
-OyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpJIGFtIHJldHVybmluZyB0byB0
-aGUgcHJvYmxlbSByZXBvcnRlZCBhIGZldyBtb250aHMgYWdvOjwvZGl2Pg0KPGRpdiBjbGFzcz0i
-eF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVk
-Rm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
-bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFz
-cz0ieF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVk
-ZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7
-IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkkgaGF2ZSB0d28gWDQ0MHMgd2l0
-aCBYXzIwMCBpbWFnZSBjb25uZWN0ZWQgdG8gYSBUaHJlYWRyaXBwZXIgMjQgY29yZS4mbmJzcDsg
-SSBhbSB1c2luZyB0d28gMTAgR2JFIGRpcmVjdCBjb25uZWN0IGNhYmxlcyBmb3IgZWFjaCBVU1JQ
-ICh0b3RhbCBvZiA0eCAxMCBHYkUpLjwvZGl2Pg0KPGRpdiBjbGFzcz0ieF9lbGVtZW50VG9Qcm9v
-ZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0Zv
-bnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBj
-b2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0ieF9lbGVtZW50VG9Q
-cm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19N
-U0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0
-OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkkgd2FzIGFibGUgdG8gZ2V0IFJYIHdvcmtpbmcsIGJ1dCBU
-WCBpcyBnZXR0aW5nIGNvbnRpbnVvdXMgdW5kZXJmbG93cy48L2Rpdj4NCjxkaXYgY2xhc3M9Inhf
-ZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZv
-bnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250
-LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjx1bCBkYXRhLWVk
-aXRpbmctaW5mbz0ieyZxdW90O2FwcGx5TGlzdFN0eWxlRnJvbUxldmVsJnF1b3Q7OmZhbHNlLCZx
-dW90O3Vub3JkZXJlZFN0eWxlVHlwZSZxdW90OzoxfSIgc3R5bGU9Im1hcmdpbi10b3A6MHB4OyBt
-YXJnaW4tYm90dG9tOjBweDsgbGlzdC1zdHlsZS10eXBlOmRpc2MiPg0KPGxpIHN0eWxlPSJmb250
-LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxp
-YnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCww
-KTsgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4Ij4NCjxkaXYgY2xhc3M9InhfZWxl
-bWVudFRvUHJvb2YiIHJvbGU9InByZXNlbnRhdGlvbiI+VXNpbmcgdGhlIGJlbmNoYXJrX3JhdGUg
-ZXhhbXBsZS4mbmJzcDsmbmJzcDs8L2Rpdj4NCjwvbGk+PGxpIHN0eWxlPSJmb250LWZhbWlseTpB
-cHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZl
-dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgbWFyZ2lu
-LXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4Ij4NCjxkaXYgY2xhc3M9InhfZWxlbWVudFRvUHJv
-b2YiIHJvbGU9InByZXNlbnRhdGlvbiI+VW5kZXJmbG93cyBvYnNlcnZlZCBib3RoIHcvIERQREsg
-YW5kIHcvb3V0IERQREs8L2Rpdj4NCjwvbGk+PGxpIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxB
-cHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxz
-YW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgbWFyZ2luLXRvcDow
-cHg7IG1hcmdpbi1ib3R0b206MHB4Ij4NCjxkaXYgY2xhc3M9InhfZWxlbWVudFRvUHJvb2YiIHJv
-bGU9InByZXNlbnRhdGlvbiI+VW5kZXJmbG93cyBvYnNlcnZlZCB3aXRoIDQsIDggY2hhbm5lbHMg
-YW5kIDE2IGNoYW5uZWxzPC9kaXY+DQo8dWwgZGF0YS1lZGl0aW5nLWluZm89InsmcXVvdDthcHBs
-eUxpc3RTdHlsZUZyb21MZXZlbCZxdW90Ozp0cnVlfSIgc3R5bGU9Im1hcmdpbi10b3A6MHB4OyBt
-YXJnaW4tYm90dG9tOjBweDsgbGlzdC1zdHlsZS10eXBlOmNpcmNsZSI+DQo8bGkgc3R5bGU9ImZv
-bnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENh
-bGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCww
-LDApOyBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHgiPg0KPGRpdiBjbGFzcz0ieF9l
-bGVtZW50VG9Qcm9vZiIgcm9sZT0icHJlc2VudGF0aW9uIj5GZXdlciB1bmRlcmZsb3dzIHdpdGgg
-NCBjaGFubmVscywgYnV0IHN0aWxsIGdldCBhIGZldyBwZXIgbWludXRlPC9kaXY+DQo8L2xpPjwv
-dWw+DQo8L2xpPjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250
-LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1z
-aXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9t
-OjBweCI+DQo8ZGl2IGNsYXNzPSJ4X2VsZW1lbnRUb1Byb29mIiByb2xlPSJwcmVzZW50YXRpb24i
-PlByaW9yaXR5IGhpZ2gvbm9ybWFsIGRvZXMgbm90IG1ha2UgYSBkaWZmZXJlbmNlICh1c3VhbGx5
-KTwvZGl2Pg0KPC9saT48L3VsPg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDowcHg7IG1hcmdpbi1i
-b3R0b206MHB4OyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNG
-b250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsg
-Y29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9InhfZWxlbWVudFRv
-UHJvb2YiIHN0eWxlPSJtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IGZvbnQtZmFt
-aWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmks
-SGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4N
-CklNUE9SVEFOVDogSWYgSSB1c2Ugb25seSBvbmUgaW50ZXJmYWNlICgg4oCUYXJncz1hZGRyPTE5
-Mi4xNjguMTAuMixtZ210X2FkZHI9MTkyLjE2OC4xLjEwKSB0aGVyZSBhcmUgbm8gdW5kZXJmbG93
-cyB3aXRoIHVwIHRvIDcgY2hhbm5lbHMgKG1heCB0byBmaXQgaW4gMTAgR2JFKS48L2Rpdj4NCjxk
-aXYgY2xhc3M9InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRv
-c19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5z
-LXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4N
-CjxkaXYgY2xhc3M9InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxB
-cHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxz
-YW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQouL2JlbmNobWFy
-a19yYXRlIC0tYXJncz1hZGRyMD0xOTIuMTY4LjEwLjIsc2Vjb25kX2FkZHIwPTE5Mi4xNjguMTEu
-MixtZ210X2FkZHIwPTE5Mi4xNjguMS4xMCxhZGRyMT0xOTIuMTY4LjE1LjIsc2Vjb25kX2FkZHIx
-PTE5Mi4xNjguMTYuMixtZ210X2FkZHIxPTE5Mi4xNjguMS4yMCxjbG9ja19zb3VyY2U9ZXh0ZXJu
-YWwsdXNlX2RwZGs9MSx0eXBlPXg0eHgscHJvZHVjdD14NDQwIC0tdHhfY2hhbm5lbHMgMCwxLDIs
-Myw0LDUsNiw3IC0tdHhfcmF0ZQ0KIDQwLjk2ZTYgLS10eF9jcHUgc2MxNiAtLW11bHRpX3N0cmVh
-bWVyIC0tZHVyYXRpb24gMTIwPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X2VsZW1lbnRUb1Byb29mIiBz
-dHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNl
-cnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9y
-OnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X2VsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9u
-dFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNv
-bG9yOnJnYigwLDAsMCkiPg0KVGhpcyBzaG91bGQgYmUgdHJpdmlhbCBmb3Igc3VjaCBhIHBvd2Vy
-ZnVsIG1hY2hpbmUhPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0i
-Zm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2Us
-Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigw
-LDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X2VsZW1lbnRUb1Byb29mIiBzdHls
-ZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZp
-Y2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJn
-YigwLDAsMCkiPg0KSSBhbSBzdXNwZWN0aW5nIGFuIGlzc3VlIHdpdGggaGFuZGxpbmcgb2YgcGFj
-a2V0cyBhY3Jvc3MgbXVsdGlwbGUgbmV0d29yayBpbnRlcmZhY2VzLiZuYnNwOyBBcmUgdGhlIFRY
-IGZsb3cgY29udHJvbCBwYWNrZXRzIG5vdCBnZXR0aW5nIHRvIHRoZSByaWdodCBwbGFjZT88L2Rp
-dj4NCjxkaXYgY2xhc3M9InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRv
-cyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGlj
-YSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8
-L2Rpdj4NCjxkaXYgY2xhc3M9InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpB
-cHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZl
-dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpUaGlz
-IGlzIGEgY3JpdGljYWwgZmFpbHVyZSDigJQgbm90IHNvbWV0aGluZyBJIGV4cGVjdCBmb3IgYSAk
-MzVrIGJveCDwn5mCPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0i
-Zm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2Us
-Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigw
-LDAsMCkiPg0KPGJyPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGlkPSJ4X1NpZ25hdHVyZSIgY2xhc3M9
-InhfZWxlbWVudFRvUHJvb2YiPg0KPGRpdiBjbGFzcz0ieF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9
-ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNl
-LENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2Io
-MCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0ieF9lbGVtZW50VG9Qcm9vZiIgc3R5
-bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2
-aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpy
-Z2IoMCwwLDApIj4NCkV1Z2VuZSBHcmF5dmVyLCBQaC5ELjwvZGl2Pg0KPGRpdiBjbGFzcz0ieF9l
-bGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9u
-dCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQt
-c2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NClByaW5jaXBhbCBFbmdpbmVlcjwvZGl2Pg0K
-PGRpdiBjbGFzcz0ieF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFw
-dG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjMxMC0zMzYtMTI3
-NDwvZGl2Pg0KPC9kaXY+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
-LSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvc3Bhbj48YnI+DQo8c3Bhbj5UbyB1bnN1YnNj
-cmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9z
-cGFuPjxicj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+
-DQo=
+I would check your network interfaces and make sure the packets are going
+where they should be. You can "watch -n 0.5 ifconfig" or something like
+that on your host machine while you run your tests and watch the Tx/Rx
+packet counters tick up. Make sure when the test starts, the management
+interface does some small amount of communication and when the test is
+running the 100G ports do the high speed comms.
 
---_000_SJ0PR09MB91266AD4901565D18F6E7FCFECE82SJ0PR09MB9126namp_--
+Also, it would be awesome to get a prebuilt image with RAM buffering and
+DUC/DDC enabled. I assume some resource limitation prevented an image like
+this from already shipping with UHD?
 
---===============2102687694672563754==
+On Mon, Jun 29, 2026 at 4:18=E2=80=AFPM Eugene Grayver <eugene.grayver@aero=
+.org>
+wrote:
+
+> I have not tried the X4_400 image because I need many channels at
+> relatively low (50 MHz) bandwidth.  This issue must be solved =E2=80=94 I=
+'ve been
+> able to use older USRPs for TX at rates up to 200 Msps.  There is no reas=
+on
+> for the X440 to behave this way.
+> ------------------------------
+> *From:* Peter Jiacheng Gu <peter.gu@tum.de>
+> *Sent:* Monday, June 29, 2026 12:23 PM
+> *To:* Eugene Grayver <eugene.grayver@aero.org>
+> *Cc:* usrp-users <usrp-users@lists.ettus.com>
+> *Subject:* [EXTERNAL] Re: [USRP-users] Underflows on X440 TX
+>
+>
+> *Do not open links or attachments unless you recognize the sender. If
+> unsure, click the Report Phish button or forward the email to OPSEC. *
+> Hi Eugene,
+>
+> I also encountered this issue. I=E2=80=99m currently investigating the X4=
+_400
+> image since it supports the replay block. Have you already tried this?
+>
+> Best,
+> Peter
+>
+> Am 29.06.2026 um 21:02 schrieb Eugene Grayver <eugene.grayver@aero.org>:
+>
+> =EF=BB=BF
+> Hello,
+>
+> I am returning to the problem reported a few months ago:
+>
+> I have two X440s with X_200 image connected to a Threadripper 24 core.  I
+> am using two 10 GbE direct connect cables for each USRP (total of 4x 10
+> GbE).
+>
+> I was able to get RX working, but TX is getting continuous underflows.
+>
+>
+>    - Using the benchark_rate example.
+>    - Underflows observed both w/ DPDK and w/out DPDK
+>    - Underflows observed with 4, 8 channels and 16 channels
+>    - Fewer underflows with 4 channels, but still get a few per minute
+>       - Priority high/normal does not make a difference (usually)
+>
+>
+> IMPORTANT: If I use only one interface (
+> =E2=80=94args=3Daddr=3D192.168.10.2,mgmt_addr=3D192.168.1.10) there are n=
+o underflows
+> with up to 7 channels (max to fit in 10 GbE).
+>
+> ./benchmark_rate
+> --args=3Daddr0=3D192.168.10.2,second_addr0=3D192.168.11.2,mgmt_addr0=3D19=
+2.168.1.10,addr1=3D192.168.15.2,second_addr1=3D192.168.16.2,mgmt_addr1=3D19=
+2.168.1.20,clock_source=3Dexternal,use_dpdk=3D1,type=3Dx4xx,product=3Dx440
+> --tx_channels 0,1,2,3,4,5,6,7 --tx_rate 40.96e6 --tx_cpu sc16
+> --multi_streamer --duration 120
+>
+> This should be trivial for such a powerful machine!
+>
+> I am suspecting an issue with handling of packets across multiple network
+> interfaces.  Are the TX flow control packets not getting to the right pla=
+ce?
+>
+> This is a critical failure =E2=80=94 not something I expect for a $35k bo=
+x =F0=9F=99=82
+>
+>
+>
+> Eugene Grayver, Ph.D.
+> Principal Engineer
+> 310-336-1274
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000008c002706556a7d11
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>A few comments here:</div><div><br></div><div>I have =
+almost the exact same setup. After extensively debugging dropped samples on=
+ Tx, I concluded that there just wasn&#39;t very much on-fabric buffering o=
+n the X4_200 image, meaning it&#39;s very sensitive to host latency jitter =
+which was causing the sample drops. Using DPDK, isolating some CPUs (isolcp=
+us), and putting all DPDK fast-path sender threads on the isolated cores co=
+mpletely solved my problems.</div><div><br></div><div>I would check your ne=
+twork interfaces and make sure the packets are going where they should be. =
+You can &quot;watch -n 0.5 ifconfig&quot; or something like that on your ho=
+st machine while you run your tests and watch the Tx/Rx packet counters tic=
+k up. Make sure when the test starts, the management interface does some sm=
+all amount of communication and when the test is running the 100G ports do =
+the high speed comms.</div><div><br></div><div>Also, it would be awesome to=
+ get a prebuilt image with RAM buffering and DUC/DDC enabled. I assume some=
+ resource limitation prevented an image like this from already shipping wit=
+h UHD?</div></div><br><div class=3D"gmail_quote gmail_quote_container"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 29, 2026 at 4:18=E2=80=AFPM E=
+ugene Grayver &lt;<a href=3D"mailto:eugene.grayver@aero.org">eugene.grayver=
+@aero.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div class=3D"msg9152407416944071415">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I have not tried the X4_400 image because I need many channels at relativel=
+y low (50 MHz) bandwidth.=C2=A0 This issue must be solved =E2=80=94 I&#39;v=
+e been able to use older USRPs for TX at rates up to 200 Msps.=C2=A0 There =
+is no reason for the X440 to behave this way.</div>
+<div id=3D"m_9152407416944071415appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_9152407416944071415divRplyFwdMsg" dir=3D"ltr"><font face=3D"Ca=
+libri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> =
+Peter Jiacheng Gu &lt;<a href=3D"mailto:peter.gu@tum.de" target=3D"_blank">=
+peter.gu@tum.de</a>&gt;<br>
+<b>Sent:</b> Monday, June 29, 2026 12:23 PM<br>
+<b>To:</b> Eugene Grayver &lt;<a href=3D"mailto:eugene.grayver@aero.org" ta=
+rget=3D"_blank">eugene.grayver@aero.org</a>&gt;<br>
+<b>Cc:</b> usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
+get=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> [EXTERNAL] Re: [USRP-users] Underflows on X440 TX</font>
+<div>=C2=A0</div>
+</div>
+<div dir=3D"auto">
+<p style=3D"background-color:rgb(94,138,180);color:rgb(255,255,255);font-si=
+ze:10pt;padding:1em">
+<strong>Do not open links or attachments unless you recognize the sender. I=
+f unsure, click the Report Phish button or forward the email to OPSEC.
+</strong></p>
+<div dir=3D"ltr"></div>
+<div dir=3D"ltr">Hi Eugene,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">I also encountered this issue. I=E2=80=99m currently inves=
+tigating the X4_400 image since it supports the replay block. Have you alre=
+ady tried this?</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Best,</div>
+<div dir=3D"ltr">Peter</div>
+<div dir=3D"ltr"><br>
+<blockquote type=3D"cite">Am 29.06.2026 um 21:02 schrieb Eugene Grayver &lt=
+;<a href=3D"mailto:eugene.grayver@aero.org" target=3D"_blank">eugene.grayve=
+r@aero.org</a>&gt;:<br>
+<br>
+</blockquote>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">=EF=BB=BF
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Hello,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I am returning to the problem reported a few months ago:</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I have two X440s with X_200 image connected to a Threadripper 24 core.=C2=
+=A0 I am using two 10 GbE direct connect cables for each USRP (total of 4x =
+10 GbE).</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I was able to get RX working, but TX is getting continuous underflows.</div=
+>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<ul style=3D"margin-top:0px;margin-bottom:0px;list-style-type:disc">
+<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);margin-top:0px;marg=
+in-bottom:0px">
+<div role=3D"presentation">Using the benchark_rate example.=C2=A0=C2=A0</di=
+v>
+</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
+Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);margin-top:0px=
+;margin-bottom:0px">
+<div role=3D"presentation">Underflows observed both w/ DPDK and w/out DPDK<=
+/div>
+</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
+Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);margin-top:0px=
+;margin-bottom:0px">
+<div role=3D"presentation">Underflows observed with 4, 8 channels and 16 ch=
+annels</div>
+<ul style=3D"margin-top:0px;margin-bottom:0px;list-style-type:circle">
+<li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);margin-top:0px;marg=
+in-bottom:0px">
+<div role=3D"presentation">Fewer underflows with 4 channels, but still get =
+a few per minute</div>
+</li></ul>
+</li><li style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,=
+Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);margin-top:0px=
+;margin-bottom:0px">
+<div role=3D"presentation">Priority high/normal does not make a difference =
+(usually)</div>
+</li></ul>
+<div style=3D"margin-top:0px;margin-bottom:0px;font-family:Aptos,Aptos_Embe=
+ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
+lor:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"margin-top:0px;margin-bottom:0px;font-family:Aptos,Aptos_Embe=
+ddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;font-size:12pt;co=
+lor:rgb(0,0,0)">
+IMPORTANT: If I use only one interface ( =E2=80=94args=3Daddr=3D192.168.10.=
+2,mgmt_addr=3D192.168.1.10) there are no underflows with up to 7 channels (=
+max to fit in 10 GbE).</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+./benchmark_rate --args=3Daddr0=3D192.168.10.2,second_addr0=3D192.168.11.2,=
+mgmt_addr0=3D192.168.1.10,addr1=3D192.168.15.2,second_addr1=3D192.168.16.2,=
+mgmt_addr1=3D192.168.1.20,clock_source=3Dexternal,use_dpdk=3D1,type=3Dx4xx,=
+product=3Dx440 --tx_channels 0,1,2,3,4,5,6,7 --tx_rate
+ 40.96e6 --tx_cpu sc16 --multi_streamer --duration 120</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+This should be trivial for such a powerful machine!</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+I am suspecting an issue with handling of packets across multiple network i=
+nterfaces.=C2=A0 Are the TX flow control packets not getting to the right p=
+lace?</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+This is a critical failure =E2=80=94 not something I expect for a $35k box =
+=F0=9F=99=82</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+<br>
+</div>
+<div id=3D"m_9152407416944071415x_Signature">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Eugene Grayver, Ph.D.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Principal Engineer</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+310-336-1274</div>
+</div>
+<span>_______________________________________________</span><br>
+<span>USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.c=
+om" target=3D"_blank">usrp-users@lists.ettus.com</a></span><br>
+<span>To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@li=
+sts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a></span=
+><br>
+</div>
+</blockquote>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--0000000000008c002706556a7d11--
+
+--===============4673845747054264259==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -487,4 +497,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2102687694672563754==--
+--===============4673845747054264259==--
