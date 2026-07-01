@@ -2,83 +2,122 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id N6eEOMjJRGra0woAu9opvQ
+	id d6r/HZ5WRWq++goAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Wed, 01 Jul 2026 10:03:20 +0200
+	for <lists+usrp-users@lfdr.de>; Wed, 01 Jul 2026 20:04:14 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 098796EAEE2
-	for <lists+usrp-users@lfdr.de>; Wed, 01 Jul 2026 10:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F9156F07E2
+	for <lists+usrp-users@lfdr.de>; Wed, 01 Jul 2026 20:04:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=emwd.com header.s=harmony header.b=IAG20Hw4;
-	dkim=fail ("body hash did not verify") header.d=emerson.com header.s=email header.b=PD9dlCAK;
-	dkim=fail ("body hash did not verify") header.d=Emerson.com header.s=selector1 header.b=nOA3sg20;
+	dkim=pass header.d=emwd.com header.s=harmony header.b="0LlqXkG/";
+	dkim=fail ("body hash did not verify") header.d=aero.org header.s=mailhub header.b=gJ8FvCS7;
+	dkim=fail ("body hash did not verify") header.d=aerospacecloud.onmicrosoft.com header.s=selector2-aerospacecloud-onmicrosoft-com header.b=DH+bfUTe;
 	spf=none (mail.lfdr.de: domain of "usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com" has no SPF policy when checking 172.104.30.75) smtp.mailfrom="usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com";
-	dmarc=none;
+	dmarc=fail reason="No valid SPF, DKIM not aligned (relaxed)" header.from=aero.org (policy=none);
 	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4EA843867FA
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Jul 2026 04:03:19 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9DC2B386957
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Jul 2026 14:04:10 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1782892999; bh=qg28nsTcOHQ0WP3ArxvIusx36ex5C946Wu5kVmzjWp8=;
-	h=To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1782929050; bh=rGpTyTrsz3scubVLdYnAyUb7KtNSaf06lLzfgetWcsc=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=IAG20Hw4reNiVJ++JFCRdl3ZVKwbh3A2gaav4zOta3r/vr9GIEMgMo5jER9c8JP/k
-	 sEhSwxId18bCh4IXr2P1FatJQdPLaDZSbL1qVlSKjAJeE0Yc8JDoExrol4J3gzLLDw
-	 ylBR/oW1G8LvmgHUxe/F4ma8ik1TXTbk41FLYij6rnR9vYOnVBQxBTx/UrEvfK6bOy
-	 qmmT2jUJUL43Ozh9GuCb330jXfxeX/SlWZ4r0kecYYSJCGTM/w6IpYEwYhqgMYYhry
-	 OFVzaV4fSzlMcV3S2Q4gKFuiFfq/dsLWtFzcvHOkQnhDsY8bDmEAzFsG+FFz0dKI85
-	 J0G6+GUNfZ0Ng==
-Received: from mx0b-00300601.pphosted.com (mx0b-00300601.pphosted.com [148.163.142.35])
-	by mm2.emwd.com (Postfix) with ESMTPS id BFC8638668A
-	for <usrp-users@lists.ettus.com>; Wed,  1 Jul 2026 04:02:36 -0400 (EDT)
-Received: from pps.filterd (m0484881.ppops.net [127.0.0.1])
-	by mx0b-00300601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66155bv22088771
-	for <usrp-users@lists.ettus.com>; Wed, 1 Jul 2026 08:02:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emerson.com; h=
-	content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=email; bh=BrWBzy+kHqQ7oF/KZehKD9l9w2Fx
-	SCs4/jxaE279NJI=; b=PD9dlCAKQkkV1WYnEpOJ9uCPclPJX+hzWMr6idTC9Nyr
-	+84ASZJEJ7eUJOfZRordXl5XjgxYiMZX5+8L7PruMIc1IMOXd6IR5FDnG+PUsKVh
-	PKE1UgsYelstHfJ+DrIjH6chNj9Y/xH+LoYhxPx8dXtPfdni6omCiPdIianyrBgg
-	lB1++NwsV0bMBSVYWYuJXizpkDfVyF2Zc8YIpTd+x3H2tqIqcoCbL0ehvrz23/OC
-	Lh4VNM5fsUwyQCUnTOSpcB93GwlTAzuNtTWHjxB6EWvPxt+Yyk95NYh64evZdFnB
-	KjUI6PAs/KY1vNWXBBm6oatLglmNISYO6y5sIPffGw==
-Received: from sa9pr02cu001.outbound.protection.outlook.com (mail-southcentralusazon11013044.outbound.protection.outlook.com [40.93.196.44])
-	by mx0b-00300601.pphosted.com (PPS) with ESMTPS id 4f4veqs9bc-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Wed, 01 Jul 2026 08:02:35 +0000 (GMT)
+	 From;
+	b=0LlqXkG/AwtXy8bpDHepXSIXYodFhFWMZfV6liyXZgxRtn2ctY8CX3wrwX1YlHOyQ
+	 iBSuT5NVe8suYJ7LKanF4NsX5XuC5Fp6oyrpo+5UdHj60Vv3oTRzNpfE4sZj0nvrlW
+	 OxU/Bun1yu/9JTyomQ7zlPu8c8G+13WwBPa+Q1ztrC+LIVoWxnuG8y7wTc3X2qP3OP
+	 HOmnjPBpQuDRqMcYSUlP3NVChJCpwFDlEWmO2tU0bYYZkZIa1QYeB6FTWkW9r35Ii6
+	 LGDiySbxqYyHFOeKJaocSpe9Rgx29Drqij39JdfkRAfkDiHA7Kqn1FWtkHebSBvP64
+	 GLpG0ngmK/o7w==
+Received: from email5-west.aero.org (email5-west.aero.org [130.221.16.30])
+	by mm2.emwd.com (Postfix) with ESMTPS id A22633868C3
+	for <usrp-users@lists.ettus.com>; Wed,  1 Jul 2026 14:03:24 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
+  t=1782929004; x=1814465004;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   mime-version;
+  bh=R6vFKxxAADZcvnE2ifEJrMwFBfhkzAL27H5uuNjeFmk=;
+  b=gJ8FvCS7mo9K+23nTddHl2CidmXtwsp+nIUbU9qe+hArQOYkNVnoGrG9
+   RduXGGPTZW0mUBEFE3WAqL3w4a0nwJE+tlBN1DVhdyI9p08mGzIVCQGZM
+   8wbOyHk3dFbU6qTS523MsTXGhEeGfKHJkAID1igHJn1TBgXbtDRzJ+uyr
+   4=;
+X-CSE-ConnectionGUID: 2lADaZNeRqWESGjwv3WQQA==
+X-CSE-MsgGUID: IzXY4oKYQVejpIO08gFKew==
+x-SBRS: 4.2
+x-SenderGroup: Inbound_Office365
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="9544171"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000";
+   d="scan'208,217";a="9544171"
+X-IPAS-Result: =?us-ascii?q?A2GMAQA7VUVqjjUMXShXA4JZgT0BgQNCAUWBbJZMA4ETn?=
+ =?us-ascii?q?RyBEANRBg8BAQEBAQEBAQEHAi4BIgQBAQMEhH8CjU0nNwYOAQIEAwIDAQEBA?=
+ =?us-ascii?q?QEBAQEOAQEBBQEBAQEBBwQBAgIQAQEBAQEBOQUOO4ZPDYQHgSYBAQEBAQEBA?=
+ =?us-ascii?q?QEBAQEdAjVVAQEBAQMBPwEBOA8CAQgRBAEBIQENJwodCAIEEwiCeoIeBwQLB?=
+ =?us-ascii?q?wM2uyx4gTSBAYIMAQEGBATbKhhlgWkJgU2DfoFBMoJpAQEqgTWCXYEhGYR8N?=
+ =?us-ascii?q?oFVRIEUAUKCMQcxPoQGIxwfBQEgg06CMIImehIbgSOBCoERQI0kUnIiAyYzL?=
+ =?us-ascii?q?AFVExcLBwVeRUMDgQYjSwUtHYEjIR0XFh5YGwcFEiAqQUUjAydZQTgLQwWBW?=
+ =?us-ascii?q?QKCCU4jHwM5f4EvdVhmFTA1gQMCEB4KbEIkgR4DC209NxQbAwSBNQWMKwdcF?=
+ =?us-ascii?q?w+BS1JCWRMBMIJFLZJGLo9PR44ZlGM0B4QggWAGDJdtiDIXqmyZCKN9hRoCB?=
+ =?us-ascii?q?AIEBQIQCIF+UoEuMxowQ4JnUxkPjjqDac4MeT4BBwIHDwKBc5ACLYFQAQE?=
+IronPort-PHdr: A9a23:ECLxtRbqyINfwj9XXOz8A6T/LTAqhN3EVzX9orIriLNLJ6Kk+Zmqf
+ EnS/u5kg1KBW4LHo+lFhOzbv+GFOyQA7J+NvWpEfMlKUBkI2skTlhYrVciCD0CzJfX2bis8S
+ cJFUlIt/3yyPUVPXsjkYFiHq3Co6ngVABqsXTc=
+IronPort-Data: A9a23:vlqedKBPsegFXhVW/yHjw5YqxClBgxIJ4kV8jS/XYbTApDklhGMPz
+ TRNXj2HaPvfamukeo8jbdzj8R8Au57VnIM2TANkpHpgZkwRpJueD7x1DKtR0wB+jyHnZBg6h
+ ynLQoCYdKjYaFeC9k/1WlTGhSAlhfrULlbEILeZfHg3HEk8E39JZStLw4YRmpRvjcWyHzSDs
+ Nbzp9y3EFK+0laYCEpMg064gE0p5qmaVA8w5ARkO6gU5AaGzBH5MbpGTU2PByqgKmVrNrPiL
+ wrz5OnR1n/U+R4rFuSknt7TGqHdauO60aCm0xK6aoD66vRwjnVaPpUTbZLwXXxqZwChxLid/
+ v0Q7MboEV9B0prkw4zxWzEAe8130DYvFLXveRBTuuTLp6HKnueFL1yDwyjaMKVBktubD12i+
+ tRCLBkhZyKlitiv/5+AZetzmJ8cFfDCadZ3VnFIlVk1DN4MZ8D7ef2bzuIAhG52gd1SF/HDY
+ cZfcSBocBnLfxxIPBEQFY46m+CrwHL4dlW0qnrJ/exmuC6Klkosi9ABM/KMEjCObchIkUueq
+ yTJ5W3oHBwAHNWS0z3D9Wij7gPKtXKmBN5LS+TQGvhCoU+j9zAUKywva1a5udie0h6xdfFSN
+ BlBksYphfNprhD0JjXnZDWlu2Sc+wMHVsBLO+k78x2WjKfI/xuCQGMDS1Z8hMcOscY3QXkn3
+ 0SVgsizDC5rqOTKESvHrurP6zSvJSISMGkOIzceShcI6MXip4d1iQ/TStFkE+i+idid9SzML
+ y6i9iwXq7whq8MxzpqWxn/FnCz3maHwZ1tgjunIZV5J+D+Vc2JMWmBFwV3S7PIFIY+CUkSa5
+ nEWn9DHs7hXV8nQz2qKXfkHG6yv67CdKjrAjFVzHp4nsTOw53qkeoMW6zZ7TKuIDirmUWCxC
+ KMwkVoBjHO2AJdMRfQpC25WI5hypZUM7fy/CpjpgiNmO/CdjjNrAx2ClWbLhDqxzyDAYIk6O
+ JyBdt2rA2pSAqN91FKLegvp6pdynnpW7TqKHfjTlk37uZLAPiL9YeleajOmMLtmhJ5oVS2Jq
+ b6zwePWkU0HCIUTo0D/reYuELz9BSJmVcqo8pAJJrbrz8gPMDhJNsI9CIgJI+RN95m5XM+Rl
+ p1hcie0EGbCuEA=
+IronPort-HdrOrdr: A9a23:+S2ALaPyEL+UBsBcThijsMiBIKoaSvp037BL7TENdfUxSKelfq
+ +V/cjzqiWE7gr5NEtNpTnCAtj4fZqkz+8P3WBJB8bZYOCEghrVEGgB1+vfKlTbckWVygc678
+ hdmsNFZeEYY2IVsS6GiDPIa+rIFOP3kpxB+Y/lvhBQpHlRGsJdBvBCe2Km++RNNWx7OaY=
+X-Talos-CUID: 9a23:6EgrYmCSrBLwnzL6E3Nj3WIdKOYoSGTi4Uz/IVCmUllQcZTAHA==
+X-Talos-MUID: 9a23:vhodLgrRoubMkoSvbO4ezxBwBPY05IefMX4Ak40nnJHUOgJTNijI2Q==
+Received: from mail-eastus2azlp17012053.outbound.protection.outlook.com (HELO BN8PR09CU001.outbound.protection.outlook.com) ([40.93.12.53])
+  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jul 2026 11:03:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Afkp8tm2Th0nwg4hnzK9zA3aJeT6XQujXJEReEBhfH6jhKY+8WvP710rBBzaQpDYII0nrp5uKTpPZj21l7JMXXCEhPc5V68i3E9SSsI9cVHVGGtFDIED8J5nvWtFa4O8E5qBdDJ+aRIIC3mY2Oqb6eO4J16m+79o8WTBAmbczhevItAgMNeML6Z8loBz/6RzFGfgyUmhwYBt4PlWCJ8wXhKLfKUfHc/ybOvwJzhXnUA4Xu4LvR0a1U6BljT4xYvASjMaEINdvwTQivhLLotLiPe/BpRJaDoZOf/Vyyp86DyiO+fpPwyugJrLVOUiSCfefPwW8rFEs2vHSdltC6Pnlg==
+ b=Z+tM2sV0EksjxRruSBCKBTGvsCuEJrmx5fDP75yK+Cav9wAMmbxihvOptt/8Ysl5J+Q+E/4ngIkqieo01teQt/lxlufty7hwaHFSJPh6gW6QKsVBLtcVMn1UUsBpgqZWg19E2l1buLIAZOPNt4pNq+BE0hPsLMm/krdgo7OMYq5B157Cmapy/dJIydsabK21Q/hYGCFDMDIgQ2Zdj8X8m4ARCitGRY33DGTi5bIYWxqruOAuTzNZR8sA8NBzqAYtIJL3I25Es9G/GvP6GJh34lll16gag/oTfm55ByAjpJ58W7yr7xWzJ6s3AK+Csgh7Vy99fw1PVZfPZW92HYMuLA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7K6QHpVQbvVBo2oHM9hhEihTYkiYnSH2hsLktI6zkCA=;
- b=Pri0YaU3HHMsf9InCn437I1Yh8aGk++TsWMQWRhCFEytw5cD/Bwe3ypU8nH8kiOI0nUFmaBdpt2wBBdg0W9bwyZYQdEQc0CbbVOeL8qYdg5xS3vjvYOza0slN/5X6DsiOLLWo562xPpKxLw8q254Janm6lzDoQRup7eBZghH8LlV7kGONVGZb1rS8NKNqNNdzqnM2/pfr3zuVoMbOOAjvJL0gngale1HdTFhiSvLttajMV0k9DeZkObhk9nbPI7v6ywOJzxZSW4hKjxzV39Fy1+NwWdh8oUqu6H+mlbTdIk+Ne37+MEYMlITszCDKlOA5SX5b1jY9uMBf/1OzCF5zw==
+ bh=ZBzrrnm/9yIpCwL8Scf2p/4OL1pDsIt5NEYHaq/KVmM=;
+ b=CyREUX/6R2h5hHIU/VovVL8fSBxWCl4dAB8cy2p36Pew2KALM619RXnqWyKbsvqNvXw1NnXsx+KuRq6sD7v5yasLb6xJakFhnCGeWGRFKAxVHjlB5qKheipU18s1WeUAtpKT6T1sk9c40wyEvIQ2tSO5NZy2NTqpPtIbGpIcQPP4UzRuwSSfwoBMKX9x+iNOS6nudr9NjrP298eje5RuNMfkWOLrmtijdAMLrqWatDFIhkhnnXW/FgQA4Nx1YfbCvUEo2bjkYcd3KuBj3JbaXaevAT9bMdbF+4ZcJ0GCsZXofdRp0Qdqqi1MsWYq5BiO1R0TA4mQsWUDUC0o0DW3PA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=emerson.com; dmarc=pass action=none header.from=emerson.com;
- dkim=pass header.d=emerson.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Emerson.com;
- s=selector1;
+ smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
+ dkim=pass header.d=aero.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7K6QHpVQbvVBo2oHM9hhEihTYkiYnSH2hsLktI6zkCA=;
- b=nOA3sg20qnaHjOsYkhBX0FF6upsXqeluPv8Ld+YwCgaxwoD/ksybPB1T7LyMLgNKq+9KGkYVP/ipA11LDGcs0lVg2HeokvwE6FwdnmKuytrRmpndCAssHrCyOtZdGHfThq2n/2a10yC5sA/1HR04BVAHGDaxJW5C3UmAFb0MbAYuo/soRIT9/FAIDYB2dBvX8RxeQv5bEyeHVBlnHoFvV8c0fZQljmdgJmm0CvysCxNGJFYia0562weaSAm5Swx3I0KYB8ugi5I7dpVLnFT+GNtsi3VOLE7GjjNzRm094vreZvw9oovajIYi4xDci2ke4VcZMWeSXeU/D4Zwf0EIQQ==
-Received: from CH0PR10MB5179.namprd10.prod.outlook.com (2603:10b6:610:c7::21)
- by IA3PR10MB8516.namprd10.prod.outlook.com (2603:10b6:208:57d::12) with
+ bh=ZBzrrnm/9yIpCwL8Scf2p/4OL1pDsIt5NEYHaq/KVmM=;
+ b=DH+bfUTePOTGrblv1jn3o/i2d6XbNLrayFllvw2YXA0AhNydXL0Zmn8u+HdWTaM+R8JDzNa6TIsRBHrEPqN+dURY7anp5+eoR3gG7BuQq5GohVy3XyJn/ztXvf7fg+VleKzkBkB2dDUsypFjZxcAkSeedLb1YPLiPl5Ap5ejEjc=
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
+ by PH8PR09MB10300.namprd09.prod.outlook.com (2603:10b6:510:18f::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Wed, 1 Jul 2026
- 08:02:33 +0000
-Received: from CH0PR10MB5179.namprd10.prod.outlook.com
- ([fe80::4415:6064:40b9:6705]) by CH0PR10MB5179.namprd10.prod.outlook.com
- ([fe80::4415:6064:40b9:6705%3]) with mapi id 15.21.0159.018; Wed, 1 Jul 2026
- 08:02:33 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.9; Wed, 1 Jul 2026
+ 18:03:20 +0000
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::4b5:d448:c89e:48e8]) by SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::4b5:d448:c89e:48e8%7]) with mapi id 15.21.0181.008; Wed, 1 Jul 2026
+ 18:03:20 +0000
+From: Eugene Grayver <eugene.grayver@aero.org>
 To: usrp-users <usrp-users@lists.ettus.com>
 Thread-Topic: X440 RFNoC build with TX FIFO
-Thread-Index: AQHdCOeSaclwuRlUrEyueQFJgPeIyrZYOlJg
-Date: Wed, 1 Jul 2026 08:02:33 +0000
+Thread-Index: AQHdCOeSaclwuRlUrEyueQFJgPeIyrZY9bl2
+Date: Wed, 1 Jul 2026 18:03:20 +0000
 Message-ID: 
- <CH0PR10MB51793D09910638296032B5AB99F62@CH0PR10MB5179.namprd10.prod.outlook.com>
+ <SJ0PR09MB9126DC2ACEE891812F0FAE53ECF62@SJ0PR09MB9126.namprd09.prod.outlook.com>
 References: 
  <SJ0PR09MB9126AD2BAD8585D2EFFFA073ECF72@SJ0PR09MB9126.namprd09.prod.outlook.com>
 In-Reply-To: 
@@ -88,190 +127,131 @@ Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: 
- MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_ActionId=994c6776-95b6-4e98-87a9-221df7ad3de9;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_ContentBits=0;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_Enabled=true;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_Method=Standard;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_Name=Internal
- - No
- Label;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_SetDate=2026-07-01T06:51:38Z;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_SiteId=eb06985d-06ca-4a17-81da-629ab99f6505;MSIP_Label_d38901aa-f724-46bf-bb4f-aef09392934b_Tag=10,
- 3, 0, 1;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR10MB5179:EE_|IA3PR10MB8516:EE_
-x-ms-office365-filtering-correlation-id: d64ef265-84a9-4bbf-61c6-08ded7471b58
+x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|PH8PR09MB10300:EE_
+x-ms-office365-filtering-correlation-id: d6a367b2-4a5c-4262-7e31-08ded79b08ee
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: 
- BCL:0;ARA:13230040|23010399003|376014|1800799024|366016|18002099003|22082099003|38070700021|8096899003|11063799006|3023799007|6133799003|56012099006;
+ BCL:0;ARA:13230040|366016|1800799024|41320700013|23010399003|18002099003|22082099003|38070700021|56012099006|6133799003|8096899003|3023799007;
 x-microsoft-antispam-message-info: 
- tQUkXZmmH6dxTV9tyHxyEJH+habLluSCZ1myu4d8vdIPTxRFnEyLg6XMeJ+CjNQCv3WDyyLgu1/FDQJhPfmyzcSfHVb51fr+fg4G28B2X36xjfOTqe9QuHxRYs1iDn+Xfm0jHXySsULzIreRyTq7VLKHtMJWuK8lFnmXe61OEPASuGXDne3+rRfZUC0sZijAkDAozsxF0YDCtskWiX2e4NxhyLgVLnmnffQuNKSPfx8ClIUWpm3uNeUQbyPF4gSGfdCCW3KmS6XFdsybM/N+7yeV4s0Hmuo66ZHPSbOGHqgWriYMlG5VUKSZF39KeoFggz2K4vE6o6j5ObftqL7GK8icJdAbT+5Bdst93+qEN4Cjp+MEpq8JwqLSKmcZlwzAa92xxPupJCyH3sY88H2l2eTTnR5Tzv5n/4RuMMZMv+6DGTWrQbOfhy4J3wMvzvfXMCgrPWKslxl7OlTqy2W+6SvAvPejiSuKWdgtvd8cHWHw93zXzD5kDOxp1TvkIIxQL+Pd4X6KKz146akZCJVnYJJb4YCoUg4ckTR4qvA+pFkbXlarW9n4+3fA27eHgjkUfUf8JAwEfb8XgKyz9ngQWQkc0xNq8jpQfheJyBzGC4+CFZJ2aTH45fLHXT/TkWQfdUpe4JxkIH6byGcTde0IvOM7TuXIo3wLJVxkaOvD+lc9S5/5uIKvc1eqhU+MLgqdRSycSV9ChOgPD3Kea38D+5hFkdcZ05VzpWyoMyKP7P0=
+ 7JvkhIsYdmhisrJDxohtaRJnQDj7kNj0imGE0ez3eJb03RxQveDnXJkjgv52Giwjf/VlkZKz+gj+NfLHEjFUv2t3cTj1FuQVFZ1sqjYK5HGelUEURAomUvGiXwyBMOsx0Bb7d0X+wv6Aq0X4T9MOjdtb2n9Kzc/Af5SOkHsO6btmDwEt1Zdk8taUX+uA8ScsGaw/LHHu8euzLXtSwsRPMAoEjY1s4E6/w8TbrMI4V/Vv9nmeHNq3t1yG6GGJbz7cj0LQIZevLjsaIcyy82g/OijgpJ8CFDPGxt/mwuEHsk0EkWR1kxdTmhiZ0ytGkrKyiPCrqQcg3RxcRry7bRQil782L++BoXe6GkYlTr7JoNCn2zqIY2okOMC9XMFYPkepxCb6Iv9G/D4Kd57lpuyJBw9KGZm0iQdZjFn5KCSkLGsPIJGow2V0TBuhDzIoOqxftFjeZYAiCxifIGLdoWld70Iu9A2n+t5gr3oS+V0uqIOh6UkXh2uIX0oug8+v18qnKsKO+I6rmhTDvLl+Hg++5+mwKc5qiYS4n8ghxJuCvdCl25nGFsMPX3VmiZiu8yM8m4qtKX8y23VFxLYNrnQcTACb21GpPCH0N7DAVbHnv/SzDxJTuuH4U0VQuMCkVwNMyhkpfAaxulEaDU9hpXlOgaVOpKAYEf5eMFWxjLmPBkMLKW4FU0QgNME61X6XpeftoAaeVO6Z1B5hQD5umNHBiWix6ym7fpGJU5ZZts3R+RU=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR10MB5179.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(18002099003)(22082099003)(38070700021)(8096899003)(11063799006)(3023799007)(6133799003)(56012099006);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(41320700013)(23010399003)(18002099003)(22082099003)(38070700021)(56012099006)(6133799003)(8096899003)(3023799007);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?SmJ5VmZQYkN0RVRqQnZhZzRodzY5LytuRSttQ0dYTXdTQ0kwZ0Jlb2hjZkNV?=
- =?utf-8?B?MGZtZGlCbk1hdXEyQzNyU0F6cHNlSWRwbDVBVzE5UXJDRXhhOG5ERDNoNGI3?=
- =?utf-8?B?WEk1R3o5VEZSektpbWw1b0loMVhMWThES3E5MG43ZFdpWFdKNVV1UTk0cjYy?=
- =?utf-8?B?QnBIYWR0cXNwMm1nOEhlbGNFcDVvL1VyWWNBTlRtSmR6TVN4My9SMUx5K0tG?=
- =?utf-8?B?cHlUdnJhY2o1SHNxZEpOZHpzbFZNcDhFSmQvcXhqN2U2dXVpbW5lSUhFdVZS?=
- =?utf-8?B?c2RGTjQ3Z3ZjcUMyQ1p0bDU2WlF1QW44YW1UaWJFRm5BTzNSZG53aUppRU9z?=
- =?utf-8?B?dkpYMTJVQnJ4S3dmSXBRdEs2MEVmeVcyZWQyS0RhRVlYdWZRUHgwbWdUUzA2?=
- =?utf-8?B?ekVCR1BrZWRGWjh4RjlPRDhSYjlZeXAyaElLTjJFQ28yTXk5SDJsaEx0N3Vn?=
- =?utf-8?B?TXdtc0RYSTFlb0pET2M0NjNKSS9tSzBkT2NTVU5nc090a3VvTGJZaHFSSTc3?=
- =?utf-8?B?RVlVdm1JUzNvU096ODBiaktjRXFJaUtjSlhTaDJaMTkvQkduS0lNemRKQkM2?=
- =?utf-8?B?K2hac1N3TVpmZ3hHZTd6aUVWSjBXbmkxTFJhTm1mYmRra2FSeE9FQUZGVkVh?=
- =?utf-8?B?ZXRaQVdGNHZaTmVnK0twSzRUMTlScUVHeFliaEFReDlETTYrcUNhZUV2UmM5?=
- =?utf-8?B?aENtSXVmVktYUTVvbWFNakdialZzVVlheFgycXQzNVdRS0gvYWU1QTBJMkxC?=
- =?utf-8?B?K1o3blZuaXJxbTZXNll0WWNhK1JQdVZnajlGbE95NXVZamhaYjNDU1JQOHA1?=
- =?utf-8?B?bXlCS0VuZ1Y2akY3cVp1RmppbGZrd083dWp5VVRmSjZCcm9nK3BPN2tOa3Mz?=
- =?utf-8?B?Q1B5cDlucmJHTWFHMS9wMUpIRnUrUldDdXgydlEwSGp1NGNzbVFNZ1g0N1dM?=
- =?utf-8?B?eFdIYitmczhEUjlKbHdmMlRMb0NtTXgrTk12eStKU0NGWTFraDk4UVlkOVcw?=
- =?utf-8?B?TnZ2N0JzM1V4S01iSi8wZVBNcW03dDAzYmhZcFlhaVowREg4MHRSWit4U3Vr?=
- =?utf-8?B?NlNNeHg2dTFoR2Npb0lEYTIxSHlwLzFsVUdoVnF3cXFzb3JTNisvUmJCYU1P?=
- =?utf-8?B?RDQ2RmlmT1M5N0FySkJ6ZEx5TU0zUTdPNFdmSy9veHpoU0dwL0NTY2RUWGlY?=
- =?utf-8?B?TWMyV1ZSNTk4SkpEOVBqcnlTWXluWjlSb1pyRkp2Ujk3Y0JTVlBHenB4STR2?=
- =?utf-8?B?Q0xFL3MwM2N1OG5wNWlYMDlDckUyNW0zc2FRSHBGNlJVbjREWndLaWhSWDUx?=
- =?utf-8?B?NTNhMTE0UjlOaEw5azVyMmFiZFg2c0lUaWFpNjMvc21QeDNiRCtQSVZTS0JR?=
- =?utf-8?B?K0RpcTFiVGJxd28vSm1CYWxiT2d6QmNaV2d6WDg2cFNHcUxLZjFQRzgzQWky?=
- =?utf-8?B?aXF5bUhEWWVmWTVwMFd3dk0ycGZ5VjZ0RXczYXgvZlhtTGhldXhaL3FVYTh1?=
- =?utf-8?B?TU1RVUR4Q2M5REtyZDlmZTRJZUZrMFdNWlhzTDJDbUMrV2hrbnQ5VkNFWjM2?=
- =?utf-8?B?RGxuK2Z5UWRodURTYUZUSXNIeGVST3F4eUJoanREZkVKdmJDa1crNzVETVBR?=
- =?utf-8?B?TUlsZ3VQWGQvcVMvRGhGd21yODR1V0pWYUVXekVVbk4vOG1sUmFzR0FqSUpo?=
- =?utf-8?B?MnRkck41Mm11eG0vK040RWcwOEcza1lrUExGaHl6TUVoWVh4M3F0c3ZPVWFW?=
- =?utf-8?B?c1VlKzFKVVdjUFNjVmRidEdsOUVITnpmcjlhYmN5TEhoYnlZMWx4cHZSNFlM?=
- =?utf-8?B?UFFrOXUwUFp2dmp6UVBKU2YzZXVjU2xXMXl4cTNWWVhYNW45RURuZzhtVXIz?=
- =?utf-8?B?RVJMazdZN1IrblQ0d3hmaFE2amMrdWlPdjUwZ1VBb3NsN2Vmb0FnV0NheVFQ?=
- =?utf-8?B?Y0F2UVRjZnNkQUNqRmx1SzArNWY3YStUdWNlSTIyVXZkeVUyQXhrZU1IOHo0?=
- =?utf-8?B?cEQ5OGRUMjBzUHVlbWR5SWhMTUpUTGd5ei8yTHpoNENDUUFmVno4bEJwQ3kv?=
- =?utf-8?B?YTlXVUZGU0ZNK3laTTd0d1MyUzkrK2dtZUJITDlXQVg5SCthWE5EUU5KVDJv?=
- =?utf-8?B?YTEvblgvZGhIWFQybmtiODhnNmxSMVpJVVlxSzNwaENiSHg2MEpDd1V0SDcw?=
- =?utf-8?B?SXlndEt2M0RzRWl3WTh4U3VoQ0dHbHd0dEFPd2JoS3pkRmt0endRcThKbEhQ?=
- =?utf-8?B?dW01a3p4aVFjVHB2azNIVmxqYUF4MGV4N1kwZ2hCbkhWaURiVTVRQ2NQaTBZ?=
- =?utf-8?B?K2FUUkJoQUtsL2xlSnA4U3R0Y2I0a1pEbk5uUVMvOGxLK1JCcmpHQT09?=
+ =?us-ascii?Q?1KbCiyNJgwNa5SB3/7Fs54LYL9rd9HwlrLHvXesS8ZKInVdft6QBghVhd3Bo?=
+ =?us-ascii?Q?ufScKqACS610rM63k2YERIyV3e31WbNROjtKTw2Hm8NqSx+r2dlH2VM4fdl4?=
+ =?us-ascii?Q?GebyAOTMRii6jETf9oKLh9mePxHqF9Cmsf1ajtwVD2GWBrJI3l3xJ1++PkNO?=
+ =?us-ascii?Q?1DqoTUlMi2z0tD1I+tmeEklbYQFfQrOgzMHFMywD0dwB9kPv6XlkW6fpFRR3?=
+ =?us-ascii?Q?3gKNSF6nKI3CCHAoB7ZCEq+xtmhWbgxTyKtnIOfc7pOPlYccJMf0ejoEhcAC?=
+ =?us-ascii?Q?8xKbiD/bh4+0lFzOW4ay9kxuHduLoL0IxV1qSNNTWaBZWaa8AWQj5XIaMiV6?=
+ =?us-ascii?Q?0vg1qOSMvg9x9FNzYmRr1vQ/Fr23Pv98nG4R0yP1iTSLFEhE7nXoR32XzXFe?=
+ =?us-ascii?Q?VZnEOz8AJJizdWSpZkID5k/C8PE6pkqucPzdGlEMnPXepJIMDshl4pnwdyDh?=
+ =?us-ascii?Q?FmLlTHvzPMM1pZB+579jwx6qYMjiapw76qUv8KCRfDubMUHCfWE+0H2ynStE?=
+ =?us-ascii?Q?wnkF9spQ32nZDStG8Z7ZCvVNSw1OtVmz+r8SDJdKQ5ZMvaBxl4Pe2s0ueH09?=
+ =?us-ascii?Q?7bTRf/YVS+0Q9FM/wAYY3x1jXyCWviQO7NlQh3xqAHbnN2sSgJYmeVA+MxRl?=
+ =?us-ascii?Q?d/lqi0cu6bbDYrTFCf5AlY2nVyh5c9lVLN70uBCUOB//3z3ZuhM3hmPyAhjl?=
+ =?us-ascii?Q?KxD8CySuU4rKQPcQeN8trwJbvzFXjnBdSxFVZT9XE4B5vy0PQjUAcRrU+R7b?=
+ =?us-ascii?Q?aX/mqUkWX7PXfPPxrFFGm3DFAw+OHw1czQFNAQLkcTEdTZSk9/d1lAQCJiV4?=
+ =?us-ascii?Q?JQ0/jVPMphuR+qsus00LaOmo7OlfRyMWVKLLtSTwngnUxqRoyBFZ3ve17Ayw?=
+ =?us-ascii?Q?SA6VPTybLyUR8fxkBcuE9wK1pL+FN5XTC4V15SCp8o/EGi7WudAVVh5LqFq9?=
+ =?us-ascii?Q?Ew1rMWQEb4LRnlFhaQtamCBjyT6juKw76sYs4amOzUqlINN5WFOVtierldk8?=
+ =?us-ascii?Q?mUW4o4dDJtpg3fkMIWqX/4r3ESlLQ9ZspDudwADfTySJx23pj173cY/lWsyv?=
+ =?us-ascii?Q?p2H/Opq6FB4yabPdYQeWMTkSehXqrVpApjEZ47HBSeqYUg6sbz8Yk0by0aRg?=
+ =?us-ascii?Q?G8VytLBwVFYVTKFctc+BUabPv2B7Q8+HWWyqeDkG0BpBD88ODZUfeAzgdkgX?=
+ =?us-ascii?Q?vqSBmWPO407+xFaqk2LjgumdIbsZSDOWrZUJF7uiMopjazfZH4ADVm4meW6E?=
+ =?us-ascii?Q?gCPYexON37uwMT97Zs2OrXYhaRHNYLT8KeI7xOLvGez2olGddx8fCKYGiMOr?=
+ =?us-ascii?Q?6MCc1e0dVUdBYGHuUx9O6tJgGczm/EhKn/CbeMQDyiOqEQ8/s5osQOFJWN+A?=
+ =?us-ascii?Q?mwQN8jWvpZRuBXwN5w7aH4b3GadboXab08tOoEH4YmcDO/GTSHYpnUyjUzyj?=
+ =?us-ascii?Q?R/TuXkaRN9kE4GUuxIeCHoOBy1LkcQfR+CGRSPAuL4v3YFAp2b5jHDvzsDKL?=
+ =?us-ascii?Q?b9OfJc2GhdtsN54vdgC6ojhfJlJeH6Nj1Gx6WQQVs+2+EY+UmxCQoDbqHwQc?=
+ =?us-ascii?Q?jc0vW+py6SP3vjZXpWQmt04tY+PQl+/ykMFcdW6ctDJfsnjOfUJRIz+Hc/72?=
+ =?us-ascii?Q?DK9wJPFDnyrVIFQQ/OX4W8jCMsA1Od3Uai7ehVjAKsxgBPGGlCNPNAjgJN6R?=
+ =?us-ascii?Q?52twjmuq/KDFVN6nv2AMjPSn2/9ICq52LedYgcbUQ4o2L7RA?=
 MIME-Version: 1.0
 X-Exchange-RoutingPolicyChecked: 
-	qFnVCMiA+G7MNy6K5ibGxG6sWXCICf+p2Amp8tvXRhPgrVArZPqYPR1DKvTPxePQWXBE9MnZefa6ntYi0Kiu1zZO5kPkm+YH8PpOh0eJ6hV5y/bLe5zMxG5K0c55vUz2hthexbwqj62gqsnq5xilgvXlFSymz0ktOJtPg+1T0MGLzHIzBMeuwlXdWRCTk0cihf1+NkAHAT6jNzEpUpgGZcB1USh1umj1e3ZOSM8hSCqsHaSjEqo1ae+VlEE7T7vbLmTY49X3ZMTr4itLF4KKHQV9ZWyc4U9LxwoW7t7PFKFeWiQ3zkYnN9YyV08BDN6KlbePyDjDXGbbpJW0M0ZzBQ==
-X-OriginatorOrg: Emerson.com
+	mS8v86eRexClSn/1bM8nIjvL7zsO0NLuxUHC6X09Ehx9cBR7XG+xvzPNTlP+dJli0hNsvmL4A/lx0UNTJnN1UTXIY9pN4edkKeeUfMbjeT0gdEV2r2jmjtc4rrSzMyI0TgEBTfOK2xvR/Zngs+/U6Wpk5mwwhDesTez4N4KsFAfvy1n3bO7/ogASIJYU/Huk47Ze8m8HCTfsmWox7JaSZ3mh5GPZSfmT/QC5fkGkO2kOFTJ7jOxR/ytTEzm8GTOP4Cz4vhyr7hKqnXgGdc3dwOGlprAt7fhKdx5Sj1YalzuMLuKWoUNHx7orvZ+RtfJ6yJ4vugj25EaWeQb99fJKfg==
+X-OriginatorOrg: aero.org
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR10MB5179.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d64ef265-84a9-4bbf-61c6-08ded7471b58
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2026 08:02:33.4432
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6a367b2-4a5c-4262-7e31-08ded79b08ee
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2026 18:03:20.2924
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eb06985d-06ca-4a17-81da-629ab99f6505
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gg9KL72F2SRdSNxwpJmkE1RJiHRi/vO3bIckNmks0mj92birrC33oSNG8gmQ3pqd2CVcL3C/XaAaJxLN2zqcwfmIlIeOtw+AO9+hZ+RGjuE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8516
-X-Proofpoint-GUID: 7C8Ho1BtYwabPdwxNOBtaklB4VuPsXfa
-X-Proofpoint-ORIG-GUID: 7C8Ho1BtYwabPdwxNOBtaklB4VuPsXfa
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDA4MSBTYWx0ZWRfX7rYhlYO5zdJ6
- ia58GULBKaEPOgao6wEKUxc6PeIrLVgs6RoxxDMSyzKtCyTDR1tthnJ6euV/2SfpqnxB6Q8QwM6
- hOxFvvZaIwTcUzr74VEJ19IlqD7VUmnIvMv/vr6gyyXkPi92QHKn
-X-Authority-Analysis: v=2.4 cv=JIELdcKb c=1 sm=1 tr=0 ts=6a44c99b cx=c_pps
- a=Ji2ygefkweamrNJ/4LFw0Q==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=RAioF0-LDSMA:10
- a=ZPWZ4rD8_x8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=Ps6gwBxKFAOpZu8f3VnT:22
- a=w-TWy_O1uGRWD6PSa5rv:22 a=RpNjiQI2AAAA:8 a=8CGCo7kxAAAA:8 a=etiEgX_XAAAA:8
- a=D3gASegTpVpD0IN6FMYA:9 a=QEXdDO2ut3YA:10 a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8
- a=d0So0zVRHEtkc6NBWzQA:9 a=9vP0lyyKA0_DAENA:21 a=gKO2Hq4RSVkA:10
- a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10
- a=uyKDLsAT3yn652Fg1vMC:22 a=MLbIUA-Bjd6y1alW9qBG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDA4MSBTYWx0ZWRfX17h8+OD4vEoO
- rFYPjESL6abRZ80K9NgOJeHYLKPssm21vrrrbVQx4PHtdZabiOlwfJRQwz/NxFMWjiGxY7VGcDi
- p77pT8tZ9JFmH5GYjeC6v5w8T4LvaVlBN8zg8bH51N4NiTwXt0i/yf2k8lpslOgOhvtmlumSrOb
- TT1ja1FZHrE+QBC86/8evMSEy0fto8pXkEh09myiRkBwSWnEsUh/N+taRDIc8xCtifqiQ9u1wXx
- k9qO9iFWoXYz25wl5LTX4xGEv2ioFo4ct2Saguy5/IxKbfe5eH/8LoMgn6RFjs1hckbVeOJIHAO
- +fBXbB3Y8+VTTl5mjSeivctKN9BEehxSxy6lJahQxQHc4mNMVmWaDKW2l2oRutvVgqZfXxgHGOt
- P0VijQAz99m/StUy4a/AoJKZDML8CUfV6cSJkLH+KfeVTmSEiw//XJU4orOq7uoK4HzQDwpLXBq
- OQ8NVJeLUhTGvIbbVPw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-07-01_01,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 suspectscore=0 adultscore=0 clxscore=1015
- impostorscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607010081
-Message-ID-Hash: I2IPBQ6GJTB4W6R2RF3PIYMS3ZPF4IRQ
-X-Message-ID-Hash: I2IPBQ6GJTB4W6R2RF3PIYMS3ZPF4IRQ
-X-MailFrom: prvs=864294e54b=martin.anderseck@emerson.com
+X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR09MB10300
+Message-ID-Hash: XDP4KEHAIWIRYQAK5AE4JECWGBAEDH4Y
+X-Message-ID-Hash: XDP4KEHAIWIRYQAK5AE4JECWGBAEDH4Y
+X-MailFrom: prvs=635f5c779=eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X440 RFNoC build with TX FIFO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3EJ7JHO5X7XCYSJ7V6ZWE435XXLQDGNK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DGLWAH3ANJUW22IB5YEAANYZ6LD7CO5X/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Anderseck, Martin via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Anderseck, Martin" <martin.anderseck@emerson.com>
-Content-Type: multipart/mixed; boundary="===============5275864030090180437=="
+Content-Type: multipart/mixed; boundary="===============4472705113234504914=="
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.29 / 15.00];
+X-Spamd-Result: default: False [0.39 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
-	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
+	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
 	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[aero.org : No valid SPF, DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,usrp-users=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:usrp-users@lists.ettus.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ettus.com];
 	R_SPF_NA(0.00)[no SPF record];
-	FORGED_SENDER(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
-	TO_EQ_FROM(0.00)[];
+	FORGED_SENDER(0.00)[eugene.grayver@aero.org,usrp-users-bounces@lists.ettus.com];
 	RCPT_COUNT_ONE(0.00)[1];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
-	DKIM_MIXED(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[martin.anderseck@emerson.com];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ALIAS_RESOLVED(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	R_DKIM_REJECT(0.00)[aero.org:s=mailhub,aerospacecloud.onmicrosoft.com:s=selector2-aerospacecloud-onmicrosoft-com];
+	DKIM_TRACE(0.00)[emwd.com:+,aero.org:-,aerospacecloud.onmicrosoft.com:-];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[eugene.grayver@aero.org,usrp-users-bounces@lists.ettus.com];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[usrp-users@lists.ettus.com,usrp-users-bounces@lists.ettus.com];
-	R_DKIM_REJECT(0.00)[emerson.com:s=email,Emerson.com:s=selector1];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_MIXED(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[usrp-users];
-	DKIM_TRACE(0.00)[emwd.com:+,emerson.com:-,Emerson.com:-];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[CH0PR10MB5179.namprd10.prod.outlook.com:mid,emwd.com:dkim,lists.ettus.com:from_smtp,lists.ettus.com:from_mime,mm2.emwd.com:rdns,mm2.emwd.com:helo,ettus.com:email,aero.org:email,emerson.com:replyto]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.ettus.com:from_smtp,SJ0PR09MB9126.namprd09.prod.outlook.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 098796EAEE2
+X-Rspamd-Queue-Id: 4F9156F07E2
 
---===============5275864030090180437==
+--===============4472705113234504914==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_CH0PR10MB51793D09910638296032B5AB99F62CH0PR10MB5179namp_"
+	boundary="_000_SJ0PR09MB9126DC2ACEE891812F0FAE53ECF62SJ0PR09MB9126namp_"
 
---_000_CH0PR10MB51793D09910638296032B5AB99F62CH0PR10MB5179namp_
-Content-Type: text/plain; charset="utf-8"
+--_000_SJ0PR09MB9126DC2ACEE891812F0FAE53ECF62SJ0PR09MB9126namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Eugene,
-
-You enabled the DRAM while there are no replay endpoints in your crossbar r=
-outes. And it seems like you cleaned up the RX part while you don=E2=80=99t=
- have the corresponding VHDL changes. That probably explains the error that=
- you=E2=80=99re seeing.
-Unfortunately, I cannot tell you how to exactly fix this. But I=E2=80=99d r=
-ather like to fix the original issue.
-
-/Martin
-
+Hi,
+Turns out even rebuilding the stock .yml results in the same error.  Is the=
+re something wrong with either my build or with the version of FPGA code ch=
+ecked in?
+Eugene.
+________________________________
 From: Eugene Grayver <eugene.grayver@aero.org>
-Sent: Wednesday, July 1, 2026 1:33 AM
+Sent: Tuesday, June 30, 2026 4:33 PM
 To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [EXTERNAL] [USRP-users] X440 RFNoC build with TX FIFO
-
-
+Subject: X440 RFNoC build with TX FIFO
 
 Hi,
 
@@ -489,6 +469,7 @@ connections:
   - { srcblk: radio1, srcport: out_3, dstblk: ep7,    dstport: in0  }
 
 
+
 # A list of all clock domain connections in design
 # ------------------------------------------------
 # Format: A list of connection maps (list of key-value pairs) with the foll=
@@ -514,1187 +495,1043 @@ Eugene Grayver, Ph.D.
 Principal Engineer
 310-336-1274
 
---_000_CH0PR10MB51793D09910638296032B5AB99F62CH0PR10MB5179namp_
-Content-Type: text/html; charset="utf-8"
+--_000_SJ0PR09MB9126DC2ACEE891812F0FAE53ECF62SJ0PR09MB9126namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Aptos;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:10.0pt;
-	font-family:"Aptos",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Aptos",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:70.85pt 70.85pt 56.7pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
 </head>
-<body lang=3D"DE" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break-w=
-ord">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;mso-f=
-areast-language:EN-US">Hi Eugene,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;mso-f=
-areast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;mso-f=
-areast-language:EN-US">You enabled the DRAM while there are no replay endpo=
-ints in your crossbar routes. And it seems like you cleaned up the RX part =
-while you don=E2=80=99t have the corresponding
- VHDL changes. That probably explains the error that you=E2=80=99re seeing.=
- <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;mso-f=
-areast-language:EN-US">Unfortunately, I cannot tell you how to exactly fix =
-this. But I=E2=80=99d rather like to fix the original issue.<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;mso-f=
-areast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;mso-f=
-areast-language:EN-US">/Martin<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;mso-f=
-areast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt;fo=
-nt-family:&quot;Calibri&quot;,sans-serif">From:</span></b><span lang=3D"EN-=
-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> =
-Eugene Grayver &lt;eugene.grayver@aero.org&gt;
-<br>
-<b>Sent:</b> Wednesday, July 1, 2026 1:33 AM<br>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hi,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Turns out even rebuilding the stock .yml results in the same error.&nbsp; I=
+s there something wrong with either my build or with the version of FPGA co=
+de checked in?</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Eugene.</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Eugene Grayver &lt;eu=
+gene.grayver@aero.org&gt;<br>
+<b>Sent:</b> Tuesday, June 30, 2026 4:33 PM<br>
 <b>To:</b> usrp-users &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> [EXTERNAL] [USRP-users] X440 RFNoC build with TX FIFO<o:p><=
-/o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span lang=3D"EN=
--US" style=3D"font-size:1.0pt;font-family:&quot;Arial&quot;,sans-serif;colo=
-r:white"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-line-height-alt:.75pt"><span style=3D"f=
-ont-size:1.0pt;color:white"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Hi,<o:p=
-></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">I am trying to work around the underflows on the TX.&nbsp;<o:p></o:=
-p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">I added a AXI DMA FIFO and rebuilt.&nbsp; As far as I can tell the =
-yaml is OK, but when I load the new bit file,<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">uhd_image_loader --args type=3Dx4xx,addr=3D192.168.10.2,clock_sourc=
-e=3Dinternal,time_source=3Dinternal --fpga-path ./uhd-4.9.0.1/fpga/usrp3/to=
-p/x400//build-usrp_x440_fpga_X4_200_fifo/X440.bit<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">I get an error:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: R=
-fnocError: Specified destination address is unreachable: 1:0<o:p></o:p></sp=
-an></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">Note: I had to rename the resultant bit file from x4xx.bit to X440.=
-bit to avoid an error related to a missing .dts file (since the DTS file is=
- correctly named X440.dts).<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">Here's the .yml file.&nbsp; Note that I removed the RX DDC to reduc=
-e the FPGA congestion.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">-----------------------<o:p></o:p></span></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># General parameters<o:p></o:p></span=
-></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># -----------------------------------=
-------<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">schema: rfnoc_imagebuilder_args&nbsp;=
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Identifier for the schema used to valid=
-ate this file<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">copyright: &gt;-&nbsp;&nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;# Copyright information used in file headers<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; Copyright 2023 Ettus Research,=
- a National Instruments Brand<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">license: &gt;-&nbsp;&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp;# License information used in file headers<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; SPDX-License-Identifier: LGPL-=
-3.0-or-later<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">version: '1.0'&nbsp;&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #=
- File version<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">chdr_width: 64&nbsp;&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #=
- Bit width of the CHDR bus for this image<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">device: 'x440'&nbsp;&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #=
- USRP type<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">image_core_name: 'usrp_x440_fpga_X4_2=
-00_fifo' # Name to use for the generated output files<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">default_target: 'X440'&nbsp;&nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Default make target=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">inherit:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - 'yaml_include/x440_radio_bas=
-e.yml'<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - 'yaml_include/x4xx_x4_base.y=
-ml'<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">parameters:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; RF_BW: 400<o:p></o:p></span></=
-p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ENABLE_DRAM: True<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; NUM_DRAM_BANKS: 2<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; NUM_DRAM_CHANS: 8<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; DRAM_WIDTH: 128<o:p></o:p></sp=
-an></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># A list of all stream endpoints in d=
-esign<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># -----------------------------------=
------<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">stream_endpoints:<o:p></o:p></span></=
-p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ep0: &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp;# Stream endpoint name<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; ctrl: True&nbsp;&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp;# Endpoint passes control traffic<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; data: True&nbsp;&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp;# Endpoint passes data traffic<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; buff_size_bytes: 262144=
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Ingress buffer size for d=
-ata<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ep1:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; ctrl: False<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; data: True<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; buff_size_bytes: 262144=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ep2:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; ctrl: False<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; data: True<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; buff_size_bytes: 262144=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ep3:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; ctrl: False<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; data: True<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; buff_size_bytes: 262144=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ep4:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; ctrl: False<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; data: True<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; buff_size_bytes: 262144=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ep5:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; ctrl: False<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; data: True<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; buff_size_bytes: 262144=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ep6:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; ctrl: False<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; data: True<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; buff_size_bytes: 262144=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; ep7:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; ctrl: False<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; data: True<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; buff_size_bytes: 262144=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># A table of which crossbar routes to=
- include<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># -----------------------------------=
---------<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># Rows correspond to input ports and =
-columns correspond to output ports.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># Entering a 1 includes and a 0 remov=
-es that route from the crossbar.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">crossbar_routes:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # &nbsp;eth0 &nbsp;eth2 &nbsp;=
-dma &nbsp; ep1 &nbsp; ep3 &nbsp; ep5 &nbsp; ep7<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # &nbsp; &nbsp; eth1 &nbsp;eth=
-3 &nbsp;ep0 &nbsp; ep2 &nbsp; ep4 &nbsp; ep6<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 0, 0, 0, 0, 1, 1, 1, 1,=
- 1, 1, 1, 1&nbsp;] # eth0 (QSFP Port 0, Lane 0)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 0, 1, 0, 0, 0, 1, 1, 1, 1,=
- 1, 1, 1, 1&nbsp;] # eth1 (QSFP Port 0, Lane 1)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 0, 0, 1, 0, 0, 1, 1, 1, 1,=
- 1, 1, 1, 1&nbsp;] # eth2 (QSFP Port 0, Lane 2)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 0, 0, 0, 1, 0, 1, 1, 1, 1,=
- 1, 1, 1, 1&nbsp;] # eth3 (QSFP Port 0, Lane 3)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 0, 0, 0, 0, 1, 1, 1, 1, 1,=
- 1, 1, 1, 1&nbsp;] # dma<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0,=
- 0, 0, 0, 0&nbsp;] # ep0 (radio0.0)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0,=
- 0, 0, 0, 0&nbsp;] # ep1 (radio0.1)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0,=
- 0, 0, 0, 0&nbsp;] # ep2 (radio0.2)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0,=
- 0, 0, 0, 0&nbsp;] # ep3 (radio0.3)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0,=
- 0, 0, 0, 0&nbsp;] # ep4 (radio1.0)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0,=
- 0, 0, 0, 0&nbsp;] # ep5 (radio1.1)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0,=
- 0, 0, 0, 0&nbsp;] # ep6 (radio1.2)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0,=
- 0, 0, 0, 0&nbsp;] # ep7 (radio1.3)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># A list of all NoC blocks in design<=
-o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># ----------------------------------<=
-o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">noc_blocks:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; radio0:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; block_desc: 'radio.yml'=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; parameters:<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; NUM_PORTS: 4<o:p=
-></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; radio1:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; block_desc: 'radio.yml'=
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; parameters:<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; NUM_PORTS: 4<o:p=
-></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; duc0:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; block_desc: 'duc.yml'<o=
-:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; parameters:<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; NUM_PORTS: 4<o:p=
-></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; duc1:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; block_desc: 'duc.yml'<o=
-:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; parameters:<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; NUM_PORTS: 4<o:p=
-></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; fifo0:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; block_desc: 'axi_ram_fi=
-fo.yml'<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; parameters:<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; NUM_PORTS: 4<o:p=
-></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; MEM_ADDR_W: &nbs=
-p; 32<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; MEM_DATA_W: &nbs=
-p; 128<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; MEM_CLK_RATE: &q=
-uot;300e6&quot;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; # Create 4 non-o=
-verlapping 2 MB buffers<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; FIFO_ADDR_BASE: =
-&quot;{32'h00600000, 32'h00400000, 32'h00200000, 32'h00000000}&quot;<o:p></=
-o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; FIFO_ADDR_MASK: =
-&quot;{32'h001FFFFF, 32'h001FFFFF, 32'h001FFFFF, 32'h001FFFFF}&quot;<o:p></=
-o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; fifo1:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; block_desc: 'axi_ram_fi=
-fo.yml'<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; parameters:<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; NUM_PORTS: 4<o:p=
-></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; MEM_ADDR_W: &nbs=
-p; 32<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; MEM_DATA_W: &nbs=
-p; 128<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; MEM_CLK_RATE: &q=
-uot;300e6&quot;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; # Create 4 non-o=
-verlapping 2 MB buffers<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; FIFO_ADDR_BASE: =
-&quot;{32'h00600000, 32'h00400000, 32'h00200000, 32'h00000000}&quot;<o:p></=
-o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; &nbsp; &nbsp; FIFO_ADDR_MASK: =
-&quot;{32'h001FFFFF, 32'h001FFFFF, 32'h001FFFFF, 32'h001FFFFF}&quot;<o:p></=
-o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># A list of all static connections in=
- design<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># -----------------------------------=
--------<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># Format: A list of connection maps (=
-list of key-value pairs) with the following keys<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># &nbsp; - srcblk &nbsp;=3D Source bl=
-ock to connect<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># &nbsp; - srcport =3D Port on the so=
-urce block to connect<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># &nbsp; - dstblk &nbsp;=3D Destinati=
-on block to connect<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># &nbsp; - dstport =3D Port on the de=
-stination block to connect<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">connections:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # RF A:0 TX<o:p></o:p></span><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: ep0, &nbsp; &nbsp;=
-srcport: out0, &nbsp;dstblk: fifo0, &nbsp;dstport: in_0&nbsp;}<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo0, &nbsp;srcpo=
-rt: out_0, dstblk: duc0, &nbsp; dstport: in_0&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: duc0, &nbsp; srcpo=
-rt: out_0, dstblk: radio0, dstport: in_0&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # RF A:1 TX<o:p></o:p></span><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: ep1, &nbsp; &nbsp;=
-srcport: out0, &nbsp;dstblk: fifo0, &nbsp;dstport: in_1&nbsp;}<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo0, &nbsp;srcpo=
-rt: out_1, dstblk: duc0, &nbsp; dstport: in_1&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: duc0, &nbsp; srcpo=
-rt: out_1, dstblk: radio0, dstport: in_1&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # RF A:2 TX<o:p></o:p></span><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: ep2, &nbsp; &nbsp;=
-srcport: out0, &nbsp;dstblk: fifo0, &nbsp;dstport: in_2&nbsp;}<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo0, &nbsp;srcpo=
-rt: out_2, dstblk: duc0, &nbsp; dstport: in_2&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: duc0, &nbsp; srcpo=
-rt: out_2, dstblk: radio0, dstport: in_2&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # RF A:3 TX<o:p></o:p></span><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: ep3, &nbsp; &nbsp;=
-srcport: out0, &nbsp;dstblk: fifo0, &nbsp;dstport: in_3&nbsp;}<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo0, &nbsp;srcpo=
-rt: out_3, dstblk: duc0, &nbsp; dstport: in_3&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: duc0, &nbsp; srcpo=
-rt: out_3, dstblk: radio0, dstport: in_3&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; #<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # RF B:0 TX<o:p></o:p></span><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: ep4, &nbsp; &nbsp;=
-srcport: out0, &nbsp;dstblk: fifo1, &nbsp;dstport: in_0&nbsp;}<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo1, &nbsp;srcpo=
-rt: out_0, dstblk: duc1, &nbsp; dstport: in_0&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: duc1, &nbsp; srcpo=
-rt: out_0, dstblk: radio1, dstport: in_0&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # RF B:1 TX<o:p></o:p></span><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: ep5, &nbsp; &nbsp;=
-srcport: out0, &nbsp;dstblk: fifo1, &nbsp;dstport: in_1&nbsp;}<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo1, &nbsp;srcpo=
-rt: out_1, dstblk: duc1, &nbsp; dstport: in_1&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: duc1, &nbsp; srcpo=
-rt: out_1, dstblk: radio1, dstport: in_1&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # RF B:2 TX<o:p></o:p></span><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: ep6, &nbsp; &nbsp;=
-srcport: out0, &nbsp;dstblk: fifo1, &nbsp;dstport: in_2&nbsp;}<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo1, &nbsp;srcpo=
-rt: out_2, dstblk: duc1, &nbsp; dstport: in_2&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: duc1, &nbsp; srcpo=
-rt: out_2, dstblk: radio1, dstport: in_2&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # RF B:3 TX<o:p></o:p></span><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: ep7, &nbsp; &nbsp;=
-srcport: out0, &nbsp;dstblk: fifo1, &nbsp;dstport: in_3&nbsp;}<o:p></o:p></=
-span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo1, &nbsp;srcpo=
-rt: out_3, dstblk: duc1, &nbsp; dstport: in_3&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: duc1, &nbsp; srcpo=
-rt: out_3, dstblk: radio1, dstport: in_3&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; #<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # - { srcblk: _device_, srcpor=
-t: _none_, dstblk: _device_, dstport: gpio0 }<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # - { srcblk: _device_, srcpor=
-t: _none_, dstblk: _device_, dstport: gpio1 }<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # BSP connections are inherite=
-d from YAML include files<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo0, srcport: ax=
-i_ram, dstblk: _device_, dstport: dram0&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: fifo1, srcport: ax=
-i_ram, dstblk: _device_, dstport: dram1&nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: radio0, srcport: o=
-ut_0, dstblk: ep0, &nbsp; &nbsp;dstport: in0&nbsp;&nbsp;}<o:p></o:p></span>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: radio0, srcport: o=
-ut_1, dstblk: ep1, &nbsp; &nbsp;dstport: in0&nbsp;&nbsp;}<o:p></o:p></span>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: radio0, srcport: o=
-ut_2, dstblk: ep2, &nbsp; &nbsp;dstport: in0&nbsp;&nbsp;}<o:p></o:p></span>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: radio0, srcport: o=
-ut_3, dstblk: ep3, &nbsp; &nbsp;dstport: in0&nbsp;&nbsp;}<o:p></o:p></span>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: radio1, srcport: o=
-ut_0, dstblk: ep4, &nbsp; &nbsp;dstport: in0&nbsp;&nbsp;}<o:p></o:p></span>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: radio1, srcport: o=
-ut_1, dstblk: ep5, &nbsp; &nbsp;dstport: in0&nbsp;&nbsp;}<o:p></o:p></span>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: radio1, srcport: o=
-ut_2, dstblk: ep6, &nbsp; &nbsp;dstport: in0&nbsp;&nbsp;}<o:p></o:p></span>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: radio1, srcport: o=
-ut_3, dstblk: ep7, &nbsp; &nbsp;dstport: in0&nbsp;&nbsp;}<o:p></o:p></span>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt;line-height:14.25pt"><=
-span lang=3D"EN-US" style=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p=
-></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># A list of all clock domain connecti=
-ons in design<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># -----------------------------------=
--------------<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># Format: A list of connection maps (=
-list of key-value pairs) with the following keys<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># &nbsp; - srcblk &nbsp;=3D Source bl=
-ock to connect (Always &quot;_device&quot;_)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># &nbsp; - srcport =3D Clock domain o=
-n the source block to connect<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># &nbsp; - dstblk &nbsp;=3D Destinati=
-on block to connect<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"># &nbsp; - dstport =3D Clock domain o=
-n the destination block to connect<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">clk_domains:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: _device_, srcport:=
- ce, &nbsp; &nbsp; &nbsp; &nbsp; dstblk: duc0, &nbsp; dstport: ce&nbsp;&nbs=
-p; &nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: _device_, srcport:=
- ce, &nbsp; &nbsp; &nbsp; &nbsp; dstblk: duc1, &nbsp; dstport: ce&nbsp;&nbs=
-p; &nbsp;}<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; # Other clock domains are inhe=
-rited from YAML include files<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: _device_, srcport:=
- dram, &nbsp; dstblk: fifo0, dstport: mem&nbsp;&nbsp; }<o:p></o:p></span></=
-p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black">&nbsp; - { srcblk: _device_, srcport:=
- dram, &nbsp; dstblk: fifo1, dstport: mem&nbsp;&nbsp; }<o:p></o:p></span></=
-p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"line-height:14.25pt"><span lang=3D"EN-US" s=
-tyle=3D"font-size:12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">--------------------------------<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div id=3D"Signature">
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">Eugene Grayver, Ph.D.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
-:black">Principal Engineer<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">310-336=
--1274<o:p></o:p></span></p>
-</div>
+<b>Subject:</b> X440 RFNoC build with TX FIFO</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Hi,</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+I am trying to work around the underflows on the TX.&nbsp;</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+I added a AXI DMA FIFO and rebuilt.&nbsp; As far as I can tell the yaml is =
+OK, but when I load the new bit file,</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+uhd_image_loader --args type=3Dx4xx,addr=3D192.168.10.2,clock_source=3Dinte=
+rnal,time_source=3Dinternal --fpga-path ./uhd-4.9.0.1/fpga/usrp3/top/x400//=
+build-usrp_x440_fpga_X4_200_fifo/X440.bit</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+I get an error:</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: RfnocErro=
+r: Specified destination address is unreachable: 1:0</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Note: I had to rename the resultant bit file from x4xx.bit to X440.bit to a=
+void an error related to a missing .dts file (since the DTS file is correct=
+ly named X440.dts).</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Here's the .yml file.&nbsp; Note that I removed the RX DDC to reduce the FP=
+GA congestion.</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+-----------------------</div>
+<div class=3D"x_elementToProof">
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# General parameters</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# -----------------------------------------</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+schema: rfnoc_imagebuilder_args&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Id=
+entifier for the schema used to validate this file</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+copyright: &gt;-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Copyright information used in=
+ file headers</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; Copyright 2023 Ettus Research, a National Instruments Brand</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+license: &gt;-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# License information used=
+ in file headers</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; SPDX-License-Identifier: LGPL-3.0-or-later</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+version: '1.0'&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # File version</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+chdr_width: 64&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Bit width of the CHDR bus for this im=
+age</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+device: 'x440'&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # USRP type</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+image_core_name: 'usrp_x440_fpga_X4_200_fifo' # Name to use for the generat=
+ed output files</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+default_target: 'X440'&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; # Default make target</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+inherit:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - 'yaml_include/x440_radio_base.yml'</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - 'yaml_include/x4xx_x4_base.yml'</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+parameters:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; RF_BW: 400</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ENABLE_DRAM: True</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; NUM_DRAM_BANKS: 2</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; NUM_DRAM_CHANS: 8</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; DRAM_WIDTH: 128</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# A list of all stream endpoints in design</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# ----------------------------------------</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+stream_endpoints:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ep0: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Stream endpoint na=
+me</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; ctrl: True&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Endpoint passes control traf=
+fic</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; data: True&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Endpoint passes data traffic=
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; buff_size_bytes: 262144&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; # Ingress buffer size for data</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ep1:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; ctrl: False</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; data: True</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; buff_size_bytes: 262144</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ep2:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; ctrl: False</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; data: True</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; buff_size_bytes: 262144</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ep3:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; ctrl: False</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; data: True</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; buff_size_bytes: 262144</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ep4:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; ctrl: False</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; data: True</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; buff_size_bytes: 262144</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ep5:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; ctrl: False</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; data: True</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; buff_size_bytes: 262144</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ep6:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; ctrl: False</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; data: True</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; buff_size_bytes: 262144</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; ep7:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; ctrl: False</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; data: True</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; buff_size_bytes: 262144</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# A table of which crossbar routes to include</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# -------------------------------------------</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# Rows correspond to input ports and columns correspond to output ports.</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# Entering a 1 includes and a 0 removes that route from the crossbar.</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+crossbar_routes:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # &nbsp;eth0 &nbsp;eth2 &nbsp;dma &nbsp; ep1 &nbsp; ep3 &nbsp; ep5 &=
+nbsp; ep7</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # &nbsp; &nbsp; eth1 &nbsp;eth3 &nbsp;ep0 &nbsp; ep2 &nbsp; ep4 &nbs=
+p; ep6</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # eth0 (QSFP Port 0=
+, Lane 0)</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # eth1 (QSFP Port 0=
+, Lane 1)</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # eth2 (QSFP Port 0=
+, Lane 2)</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # eth3 (QSFP Port 0=
+, Lane 3)</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # dma</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep0 (radio0.0)</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep1 (radio0.1)</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep2 (radio0.2)</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep3 (radio0.3)</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep4 (radio1.0)</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep5 (radio1.1)</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep6 (radio1.2)</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep7 (radio1.3)</d=
+iv>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# A list of all NoC blocks in design</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# ----------------------------------</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+noc_blocks:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; radio0:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; block_desc: 'radio.yml'</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; parameters:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; radio1:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; block_desc: 'radio.yml'</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; parameters:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; duc0:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; block_desc: 'duc.yml'</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; parameters:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; duc1:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; block_desc: 'duc.yml'</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; parameters:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; fifo0:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; block_desc: 'axi_ram_fifo.yml'</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; parameters:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; MEM_ADDR_W: &nbsp; 32</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; MEM_DATA_W: &nbsp; 128</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; MEM_CLK_RATE: &quot;300e6&quot;</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; # Create 4 non-overlapping 2 MB buffers</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; FIFO_ADDR_BASE: &quot;{32'h00600000, 32'h00400000, 32'=
+h00200000, 32'h00000000}&quot;</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; FIFO_ADDR_MASK: &quot;{32'h001FFFFF, 32'h001FFFFF, 32'=
+h001FFFFF, 32'h001FFFFF}&quot;</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; fifo1:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; block_desc: 'axi_ram_fifo.yml'</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; parameters:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; MEM_ADDR_W: &nbsp; 32</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; MEM_DATA_W: &nbsp; 128</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; MEM_CLK_RATE: &quot;300e6&quot;</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; # Create 4 non-overlapping 2 MB buffers</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; FIFO_ADDR_BASE: &quot;{32'h00600000, 32'h00400000, 32'=
+h00200000, 32'h00000000}&quot;</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; FIFO_ADDR_MASK: &quot;{32'h001FFFFF, 32'h001FFFFF, 32'=
+h001FFFFF, 32'h001FFFFF}&quot;</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# A list of all static connections in design</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# ------------------------------------------</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# Format: A list of connection maps (list of key-value pairs) with the foll=
+owing keys</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# &nbsp; - srcblk &nbsp;=3D Source block to connect</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# &nbsp; - srcport =3D Port on the source block to connect</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# &nbsp; - dstblk &nbsp;=3D Destination block to connect</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# &nbsp; - dstport =3D Port on the destination block to connect</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+connections:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # RF A:0 TX</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: ep0, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo0, &n=
+bsp;dstport: in_0&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo0, &nbsp;srcport: out_0, dstblk: duc0, &nbsp; dstpor=
+t: in_0&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: duc0, &nbsp; srcport: out_0, dstblk: radio0, dstport: in=
+_0&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # RF A:1 TX</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: ep1, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo0, &n=
+bsp;dstport: in_1&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo0, &nbsp;srcport: out_1, dstblk: duc0, &nbsp; dstpor=
+t: in_1&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: duc0, &nbsp; srcport: out_1, dstblk: radio0, dstport: in=
+_1&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # RF A:2 TX</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: ep2, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo0, &n=
+bsp;dstport: in_2&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo0, &nbsp;srcport: out_2, dstblk: duc0, &nbsp; dstpor=
+t: in_2&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: duc0, &nbsp; srcport: out_2, dstblk: radio0, dstport: in=
+_2&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # RF A:3 TX</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: ep3, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo0, &n=
+bsp;dstport: in_3&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo0, &nbsp;srcport: out_3, dstblk: duc0, &nbsp; dstpor=
+t: in_3&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: duc0, &nbsp; srcport: out_3, dstblk: radio0, dstport: in=
+_3&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; #</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # RF B:0 TX</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: ep4, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo1, &n=
+bsp;dstport: in_0&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo1, &nbsp;srcport: out_0, dstblk: duc1, &nbsp; dstpor=
+t: in_0&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: duc1, &nbsp; srcport: out_0, dstblk: radio1, dstport: in=
+_0&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # RF B:1 TX</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: ep5, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo1, &n=
+bsp;dstport: in_1&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo1, &nbsp;srcport: out_1, dstblk: duc1, &nbsp; dstpor=
+t: in_1&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: duc1, &nbsp; srcport: out_1, dstblk: radio1, dstport: in=
+_1&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # RF B:2 TX</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: ep6, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo1, &n=
+bsp;dstport: in_2&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo1, &nbsp;srcport: out_2, dstblk: duc1, &nbsp; dstpor=
+t: in_2&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: duc1, &nbsp; srcport: out_2, dstblk: radio1, dstport: in=
+_2&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # RF B:3 TX</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: ep7, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo1, &n=
+bsp;dstport: in_3&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo1, &nbsp;srcport: out_3, dstblk: duc1, &nbsp; dstpor=
+t: in_3&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: duc1, &nbsp; srcport: out_3, dstblk: radio1, dstport: in=
+_3&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; #</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # - { srcblk: _device_, srcport: _none_, dstblk: _device_, dstport: =
+gpio0 }</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # - { srcblk: _device_, srcport: _none_, dstblk: _device_, dstport: =
+gpio1 }</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # BSP connections are inherited from YAML include files</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo0, srcport: axi_ram, dstblk: _device_, dstport: dram=
+0&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: fifo1, srcport: axi_ram, dstblk: _device_, dstport: dram=
+1&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: radio0, srcport: out_0, dstblk: ep0, &nbsp; &nbsp;dstpor=
+t: in0&nbsp;&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: radio0, srcport: out_1, dstblk: ep1, &nbsp; &nbsp;dstpor=
+t: in0&nbsp;&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: radio0, srcport: out_2, dstblk: ep2, &nbsp; &nbsp;dstpor=
+t: in0&nbsp;&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: radio0, srcport: out_3, dstblk: ep3, &nbsp; &nbsp;dstpor=
+t: in0&nbsp;&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: radio1, srcport: out_0, dstblk: ep4, &nbsp; &nbsp;dstpor=
+t: in0&nbsp;&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: radio1, srcport: out_1, dstblk: ep5, &nbsp; &nbsp;dstpor=
+t: in0&nbsp;&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: radio1, srcport: out_2, dstblk: ep6, &nbsp; &nbsp;dstpor=
+t: in0&nbsp;&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: radio1, srcport: out_3, dstblk: ep7, &nbsp; &nbsp;dstpor=
+t: in0&nbsp;&nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp;</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# A list of all clock domain connections in design</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# ------------------------------------------------</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# Format: A list of connection maps (list of key-value pairs) with the foll=
+owing keys</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# &nbsp; - srcblk &nbsp;=3D Source block to connect (Always &quot;_device&q=
+uot;_)</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# &nbsp; - srcport =3D Clock domain on the source block to connect</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# &nbsp; - dstblk &nbsp;=3D Destination block to connect</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+# &nbsp; - dstport =3D Clock domain on the destination block to connect</di=
+v>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+clk_domains:</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: _device_, srcport: ce, &nbsp; &nbsp; &nbsp; &nbsp; dstbl=
+k: duc0, &nbsp; dstport: ce&nbsp;&nbsp; &nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: _device_, srcport: ce, &nbsp; &nbsp; &nbsp; &nbsp; dstbl=
+k: duc1, &nbsp; dstport: ce&nbsp;&nbsp; &nbsp;}</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; # Other clock domains are inherited from YAML include files</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: _device_, srcport: dram, &nbsp; dstblk: fifo0, dstport: =
+mem&nbsp;&nbsp; }</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+&nbsp; - { srcblk: _device_, srcport: dram, &nbsp; dstblk: fifo1, dstport: =
+mem&nbsp;&nbsp; }</div>
+<div class=3D"x_elementToProof" style=3D"line-height:19px; font-family:Apto=
+s,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font=
+-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+--------------------------------</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"x_Signature" class=3D"x_elementToProof">
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Eugene Grayver, Ph.D.</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Principal Engineer</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+310-336-1274</div>
 </div>
 </div>
 </body>
 </html>
 
---_000_CH0PR10MB51793D09910638296032B5AB99F62CH0PR10MB5179namp_--
+--_000_SJ0PR09MB9126DC2ACEE891812F0FAE53ECF62SJ0PR09MB9126namp_--
 
---===============5275864030090180437==
+--===============4472705113234504914==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1704,4 +1541,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5275864030090180437==--
+--===============4472705113234504914==--
