@@ -2,218 +2,233 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id V+CBFsWlRmrQawsAu9opvQ
+	id xsgzMfavRmqMbgsAu9opvQ
 	(envelope-from <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>)
-	for <lists+usrp-users@lfdr.de>; Thu, 02 Jul 2026 19:54:13 +0200
+	for <lists+usrp-users@lfdr.de>; Thu, 02 Jul 2026 20:37:42 +0200
 X-Original-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B6456FBB37
-	for <lists+usrp-users@lfdr.de>; Thu, 02 Jul 2026 19:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B256FC277
+	for <lists+usrp-users@lfdr.de>; Thu, 02 Jul 2026 20:37:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=emwd.com header.s=harmony header.b=G6thZpqt;
-	dkim=fail ("body hash did not verify") header.d=aero.org header.s=mailhub header.b=FgxCR5v+;
-	dkim=fail ("body hash did not verify") header.d=aerospacecloud.onmicrosoft.com header.s=selector2-aerospacecloud-onmicrosoft-com header.b=GpXrrAqA;
+	dkim=pass header.d=emwd.com header.s=harmony header.b=Z8XWcdRg;
+	dkim=fail ("body hash did not verify") header.d=aero.org header.s=mailhub header.b=khmZTkT9;
+	dkim=fail ("body hash did not verify") header.d=aerospacecloud.onmicrosoft.com header.s=selector2-aerospacecloud-onmicrosoft-com header.b=wBPFtm3O;
 	spf=none (mail.lfdr.de: domain of "usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com" has no SPF policy when checking 172.104.30.75) smtp.mailfrom="usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com";
 	dmarc=fail reason="No valid SPF, DKIM not aligned (relaxed)" header.from=aero.org (policy=none);
 	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F28BF386A42
-	for <lists+usrp-users@lfdr.de>; Thu,  2 Jul 2026 13:54:06 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 38CA5386A4A
+	for <lists+usrp-users@lfdr.de>; Thu,  2 Jul 2026 14:37:40 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1783014846; bh=kjIXeOyi8NUznqYByt/txI+KO+T7tn52hmlAJcTgP/w=;
+	t=1783017460; bh=R07JTr3kn4WOr/ojuW3EiBNoF+FlZ5xYjb5SZpkz9aA=;
 	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=G6thZpqtZ+zwWNibJlDww8TBkl9e14sI8lbj9LCX35glBaauXOIh8jrU65rwzv8ga
-	 IjsFdo/G53o8WckUbSxL2sOHWgSdl7w8ynMw2dDGHEAj7Hiec7HynUFrnMb9aOn1kd
-	 G9Gt/7DAg8Fi2LwrP9ODyF04w0cOpNuj9pe9kR7tSD7zbPgxjCaJ/VFyNWkCw2WXF3
-	 4ewud2BWjqeGzT8y8Shf5Gde3PqfV4ugyw6TjuY+N8PAf0KEOa+K4ElyusXszyEBzr
-	 5EBmwqX+teXVLv8lJhh4EXPA/LQa5iBxe/T41KpddUsdbsIroxZOQu1coYoXrsEiZw
-	 fQ3Bvwe8GqjSQ==
+	b=Z8XWcdRgBacj2cuylwOzcsNIUqN3IZe5XjM3K6kq2SZP6oDsYx43QvP95UT72wTSF
+	 lTdrhqoGeXLklSMhVFYmZnc+9uYKcqocIS4T1NPTv7AiG3UfkMF9/ocAjDiYbRoXc6
+	 N8vSMtf42vQlG170QFrLjqH30V75Sgij3mKXdYR6liz3wxg4HCdjrl517yvhZIt07o
+	 5khBZMXWccL2DaNugvm9qV6xkFdTkeoHwpdimoQaqLzHbp2QLCBE9oK+3NNAGedywO
+	 S12xyxyKlNHac3CsaghwcQ5RmkfX4iZ0ucfKwPQuxYAK04mpynr2zkKVcVotYSN4Ho
+	 F24bYl5jLjCRQ==
 Received: from email5-west.aero.org (email5-west.aero.org [130.221.16.30])
-	by mm2.emwd.com (Postfix) with ESMTPS id 785AB3869F0
-	for <usrp-users@lists.ettus.com>; Thu,  2 Jul 2026 13:53:50 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTPS id 4A80C386A25
+	for <usrp-users@lists.ettus.com>; Thu,  2 Jul 2026 14:37:24 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
-  t=1783014830; x=1814550830;
+  t=1783017444; x=1814553444;
   h=from:to:subject:date:message-id:references:in-reply-to:
    mime-version;
-  bh=V4m+8Sn7iP3/2Tl7RTl2RWCcYVMdlipq8ODgQdvJIyU=;
-  b=FgxCR5v+a2G1Vcqzomt/yZzxZIq34f2gDGHXjWBLGC6B8h2mCZgbiKX6
-   KNdHegxZ85D1DkYzW36v42tE0w0njoPm83abvLalxLLmjZvlzJeFrmyCh
-   OSS0pBo4pcR+6PIVnlTrrrN0kRjR6U2KAqflT2eXiZa0MaUhHqhClFhie
-   4=;
-X-CSE-ConnectionGUID: s/tpk6PZThCX6I+5f9Anqg==
-X-CSE-MsgGUID: WSXspj6lSuGGVKXExHQLKA==
+  bh=MY75zkxDT4ps1hu5yza+ffHYhmizBcpckiHbls2HGg0=;
+  b=khmZTkT9805s4x8FDV/98LKo/4DVOrm3Po48nJM7GXtYYjRXL7GUHwq7
+   pRMEXy9TnOUJXfT1/RPTSCOwtl7rtAviQ+wEihP74DS5cP/zxaOdxAv8x
+   Lkgrf1I6I4j2HtRj6Zxnh2yszvfnWHRWizUSx/hmfGwxuycrUqViaUs4r
+   g=;
+X-CSE-ConnectionGUID: 8FWIrVgnQqON0+Zarnu4Kw==
+X-CSE-MsgGUID: uOLvahFPSoy5hcwENkOY0A==
 x-SBRS: 4.2
 x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="9553331"
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="9553847"
 X-IronPort-AV: E=Sophos;i="6.25,144,1779174000";
-   d="scan'208,217";a="9553331"
-X-IPAS-Result: =?us-ascii?q?A2GNAQCZpEZqjhYOXShXA4JZgT0BWilCAUWBbJZMA4ETn?=
- =?us-ascii?q?RyBEANRBg8BAQEBAQEBAQEHAi4BIgQBAQMEhH8CjU0nNwYOAQIEAwIDAQEBA?=
- =?us-ascii?q?QEBAQEOAQEBBQEBAQEBBwQBAgIQAQEBAQEBOQUOO4ZPDYQHgSYBAQEBAQEBA?=
- =?us-ascii?q?QEBAQEdAjVVAQEBAQMBJhkBATgPAgEIEQQBASEBDScKHQgCBBMIgnqCHgcEC?=
- =?us-ascii?q?wcDNro6eIEBM4EBggwBAQYEBNsqGGWBaQmBTYN+gUEygmkBASqBNYJdgSEZh?=
- =?us-ascii?q?Hw2gVVEgRQBQoIxBzE+hAYjHB8FAQUbg06CMIImehIbcjGBCoERQI0XUnIiA?=
- =?us-ascii?q?yYzLAFVExcLBwVeRUMDgQYjSwUtHYEjIR0XFh5YGwcFEiAqQUUjAydZQTgLQ?=
- =?us-ascii?q?wWBWQKCCU4jHwM5f4EwdUxrKjWBAwIQHgpsQiSBIgMLbT03FBsDBIE1BYwgB?=
- =?us-ascii?q?1wXD4FLLSVCWRMBMBuCKi2SRi4UjztHjhmUYzQHhCCBYAYMl22IMheqbJkIo?=
- =?us-ascii?q?32FGgIEAgQFAhAIgX5SgS4zGjBDgmdTGQ+OOoEdAQGCSs45eT4BBwIHDwKBc?=
- =?us-ascii?q?5ACLYFQAQE?=
-IronPort-PHdr: A9a23:WgF7Ch+QvatuAP9uWCboyV9kXcBvk7n3PwtA7J0hhvoOd6m45J3tM
- QTZ4ukll17GW4jXqpcmw+rbuqztQyoMtJCGtn1RfJlFTRRQj8IQkkQpC9KEDkuuKvnsYmQ6E
- c1OWUUj8Wu8NB1cFdz5IVrIrS7a0A==
-IronPort-Data: A9a23:cJDWbq+KVdSBAa+HHKa7DrUDn36TJUtcMsCJ2f8bNWPcYEJGY0x3z
- DYbXG7UbPvYZWb1KI1yaI+0/EJU65eBzoBlSwBrqCgxFiIbosfsO4+Ufxz6V8+wwmwvb67GA
- +E2MISowBUcFyeEzvuLGuax9SEUOYagH+OsU7Os1hhZHFIiEGF4z0o4w4bVu6Yw6fChGQSBp
- NjulMPWPV6hylZcP3kdg065gEsHUM/a5nVC4zTSWdgR5AWAzyZNVspFTU2MByKQrrd8T7bSq
- 9nrkenRElPxp38FFt6jm7DnRUwGKpa60d+m1xK684D76vRzjnRaPpQTbZLwWm8O49m9pO2d/
- f0W3XCGYVpwZPWUwIzxZDEDe812FfUuFLYquhFTu+TLp6HNWyOEL/mDkCjalGDXkwp6KTgmy
- BAWFNwCRgvEm/q1noqJdulHtpoCb5TlbaoZo341mFk1Dd5+KXzCa57jtOdihGYbu5gWR7DZe
- tYTbidpYFLYeRpTN1wLCZU42uC1mn34dD4eo1WQzUY1yzSLil0qluGxdoCPEjCJbZw9ckKwq
- 3/J8mL0RB4APc2BxCCt+3+2ganIhyyTtIc6ReDlraUx2TV/wEQsMy0NTVnlpcKkpWGAeOJyO
- 2wt3gkH+P1aGEuDFYKnA0LQTGS/lgMHQcIVDvY38hqlzqvP/x3fC3QYUyUHY9sj3PLaXhQv3
- 16N2sjuGCBvu7CTVWiU8qqPpCG2IXFKdTZaPXVeCwwY/9PkvYc/yArVScpuG7K0iduzHizsx
- zeNr241gLB7YdM3O7uT5hfbmzHynqr1TiUFuCSUA2z0xwVga9vwD2C30mQ3+8qsO2pwc7Vsl
- H0Nmszb9+cTEZGGmSqRWuwJAaqg9fKdaWKE2AY3RcNn8Cmx8Xm+e4wW+Ct5OEpiLscDf3nuf
- VPXvgRSopRUORNGjJObgaruU6zGLoC5T7wJs8w4iPIVPfCdkyfcrUlTiba4hTyFraTVufhX1
- W2nnTmQ4YYyUv89kGXeqxY11L4g3Cclwm3PDZv81QzP7IdykEW9EO9fWHPXN7hRxPrd/G39r
- YwDX+PUkE83eLOlPUHqHXs7cQpiwY4TWcqu85Q/my/qClYOJVzN/NeLne5wKtw1xP09eyWh1
- ijVZ3K0AWHX3RXvQThmoFg6AF8zdf6TdU4GABE=
-IronPort-HdrOrdr: A9a23:KiSDqqPRrHPkRMBcT3L155DYdb4zR+YMi2TDiHoddfUFSKalfp
- 6V98jzjSWE8Ar5K0tQ4uxoWZPwCU80kKQY3WB/B8bHYOCLggqVxcRZnPLfKl7bambDH4xmpM
- BdmsFFYbWeY2SSz/yKhjVQeOxQo+VvhZrY4Ns2uE0dLz2CBZsB0y5JTiqLGEx/QwdLQaE+CI
- ed4cR/oT+hc2Q8b8iwBHUJNtKz7eHjpdbDW1orFhQn4A6BgXeD87jhCSWV2R8YTndm3aoi2X
- KtqX202oyT99WAjjPM3W7a6Jpb3PH7zMFYOcCKgs8Jbh3xlweTYph7UbHqhkF7nAjv0idlrD
- D/mWZhAy1B0QKTQoiBm2qt5+Cv6kdt15ao8y7jvZKqm72FeNt9MbsNuWsRSGqn16It0esMrJ
- 5jziaXsYFaAgjHmzm479/UVwtynk7xunY6l/UP5kYvJrf2RYUh2LD3xnklZKsoDWb/8sQqAe
- NuBMbT6LJfdk6bdWnQui1qzMa3Vno+Ex+aSgxa0/blmgR+jTR81Q8V1cYflnAP+NY0TIRF/f
- 3NNuBtmKtVRsEbYKphDKMKQNexCGbKXRXQWVjiV2jPBeUCITbAupT36LI66KWjf4EJ1oI7nN
- DbXFZRpQcJCjDT4A21re52Gzz2MRWAtG7Wu79jDrBCy8zBeIY=
-X-Talos-CUID: 9a23:uMZUUWOpLa6Oce5DQ2577E1KIvIZclbtklaTfkHpIGBwR+jA
-X-Talos-MUID: 9a23:u7w5PAkITChUulbnJLLidnpdD/dz+6bwDHsQvro4mPmpJQxJHxS02WE=
-Received: from mail-southcentralusazlp17010022.outbound.protection.outlook.com (HELO SA9PR09CU002.outbound.protection.outlook.com) ([40.93.14.22])
-  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2026 10:53:47 -0700
+   d="scan'208,217";a="9553847"
+X-IPAS-Result: =?us-ascii?q?A2EbAQBOr0Zqjh4UXShXAx4BAQsSDIIFC4E9AVopQgFFg?=
+ =?us-ascii?q?WyEWJF0A4ETljGGVxSBEANCCwoPAQEBAQEBAQEBBwIuASIEAQEDBIR/AhaNN?=
+ =?us-ascii?q?yc0CQ4BAgQDAgMBAQEBAQEBAQ4BAQEFAQEBAQEHBAECAhABAQEBAQE5BQ47h?=
+ =?us-ascii?q?k8NhAeBJgEBAQEBAQEBAQEBAR0CNVUBAQEBAwEiHQEBDCAMDwIBBgIRBAEBK?=
+ =?us-ascii?q?wICAiUJARQJCAIECAsIFQSCYYIeBwQLBwM2nnubDTd6gTKBAYIMAQEGBATbK?=
+ =?us-ascii?q?hhlgWkJgU2DfoFBMoJOGwEBBSVJbAMOgkyBIRmEfDaBVUSBFUKCMTg+hAQKA?=
+ =?us-ascii?q?RIBIwYPCiaDFDqCMIINGVIoEhsPPAUGLh0CIwEBFQcrHhx1EgEBASttgW2CK?=
+ =?us-ascii?q?xOBWjyFaVJyIgMmMywBVRMXCwcFXkVDA4EGI0sFLR2BIyEdFxYeWBsHBRIgK?=
+ =?us-ascii?q?kFFIwMnWUE4C0MFgVkCgglOIx8DOX+BMHVMayo1gQMCEB4KbEIkgSIDC209N?=
+ =?us-ascii?q?xQbAwSBNQWMIAdcFw+CHXgaEjsUB1sWNBkfNRiXDotio0M0B4QggWAGDIkJj?=
+ =?us-ascii?q?mSIMheqbJkIo0sfBIUpAgQCBAUCEAiBaHwqcDMaMEOCAWZTGQ+OIRmBHQEHg?=
+ =?us-ascii?q?kTOOnk9AgcCAQYOAwuTZwEB?=
+IronPort-PHdr: A9a23:tKXATRessqZw4ThNyh7mNQkHlGM/toqcDmcuAtIPh7FPd/Gl+JLvd
+ Aza6O52hVDEFYPc97pfiuXQvqyhPA5I4ZuIvH0YNpAZURgDhJYamgU6C5uDDkv2ZPfhcy09G
+ pFEU1lot3G2OERYAoDwfVrX93S/9zlUHQ/wZmJI
+IronPort-Data: A9a23:8B5dTKxrLfAZ/v5aJNp6t+coxirEfRIJ4+MujC+fZmUNrF6WrkVSn
+ DEcDWqBbKuKa2DxKt51Po7l/R4D6sCEx981TAtu+S00HyNBpOP7XtnIdU2Y0wF+jyHgoOOLy
+ +1EN7Es+ehtFie0SjGFbOi59RGQ8onRH+qnVYYoAggoGEk8Dn5n0Uk78wIAqtYAqcCjBA+Qs
+ s/FrcTaOVu0sxZ5KWt8B5ir8HuDh9ys/mlF1rACTaoT5gGGyCFPVMh3yZyZdhMUfKEFRoZWe
+ M6elNlVzkuBlz8xB9WslKrMc0FiatY+6iDT4pb+c/HKbilq/kTe4I5iXBYvQR4/ZwGyojxE4
+ I4lWaqYFF5zZvWU8Agqe0Iw/ylWZcWq8VJcSJS1mZT7I0buKxMAzxjyZa2f0EJxFutfWAlzG
+ fIkxD8lPj68pviIz7SCU85K3ocRJdPtId88pSQ1pd3ZJa5OrZHraIWT3eUAjRwN3pgXW/HDe
+ 8AedDxjKgzaZAFCMUsWD5R4m/q0gn74cHtTr1f9SagfvzCVnVc3iuCra4K9lt+iHK25mm6Vu
+ 23L+Wm/DQsTJcKS0xKM/2irwOjVkksXXapDSeDjpqI16LGV7nE0LAMfVXWDmv6o1061RP95K
+ GslogN7+MDe82TwFYOhAHVUukWsowUGQ59NCOAg8ymJy7HI+ECUGnQZVXhKb9lOiSMtbTkj1
+ 1vMmdTzGTxkvbuJU3uZ66ydvzeqYHdNdDZaPndCShYZ6d7+po11lgjIUttoDK+yiJvyBC30x
+ DeJ6iM5gt3/kPLnyY3r02/mmQyjoKHQaShtpTfeRGS4siBmMdvNi5OT1bTN0RpXwG+korSpu
+ XEFn42Y6/oSDZqAkjCXSeEQB7i74+7cb2WF2AY0R98m6iin/GOlccZI+jZiKUx1M8ECPzj0f
+ EvUvgAX75hWVJdLUUOVS93pYyjJ5fG6fTgAahwyRoEeCnSWXFTWlByCnWbKgwjQfLEEyMnTw
+ 6t3jvpA/V5BUv47k1Jats8Y0LQxwTs5y3+bTpfh13ya7FZqX1bMEe1tGALXNogRtfrYyC2Lq
+ Yo3H5XRkX13DrahChQ7BKZPdzjm21BnX8iu86S6t4erfmJbJY3WI6WNnOJwK9w+xsy4VI7gp
+ xmAZ6OR83Kn7VWvFOlAQikLhG/HNXqnkU8GAA==
+IronPort-HdrOrdr: A9a23:nM9IAqtFmptPj5WjInJ0I4Hz7skCxYMji2hC6mlwRA09TyXGra
+ 2TdaUgvyMc1gx7ZJh5o6H5BEDyewKmyXcV2/hYAV7GZmXbUQSTXeVfBOfZogEIXheOj9K1tp
+ 0QOJSWaueAamSS5PySiGbXLz9j+qjgzEnCv5a8854Zd3AOV0gW1XYaNu/0KC1LbTgDKYsyFZ
+ Ka6MYCnDy9ZHQRYP28A3kOT8LDq9fImJ+OW29NOzcXrC21yR+44r/zFBaVmj0EVSlU/Lsk+W
+ /Z1yTk+6SKqZiAu1Ph/l6Wy64TtMrqy9NFCsDJoNMSMC/QhgGhY5kkc6GevQoyvPqk5D8R4Z
+ bxSlYbTopOAkHqDyGISCjWqkrdOQMVmj7fIBGj8DneSIfCNUgH4oJ69P9km13imgcdVZhHod
+ 12N271jesqMTrQ2Cv6/NTGTBdsiw69pmcji/caizhFXZIZc6I5l/1pwKp5KuZ0IMvB0vFSLM
+ B+SMXHoPpGe1KTaH7U+mFp3dy3R3w2WhOLWFILtMCZ2yVf2CkR9TpQ+OUP2nMbsJ4tQZhN4O
+ rJdqxuibFVV8cTKaZwHv0IT8e7AnHEBRjMLGWRK1L6E7xvAQO6l7fnpLEuoO26cp0By5U/3J
+ zHTVNDrGY3P1njDMWftac7gCwlgF/NLggF5vsul6SR4IeMOoYDGRfzOWwTrw==
+X-Talos-CUID: =?us-ascii?q?9a23=3Ar8IkD2iRStM48crcNfi47aevgTJuIlPi7W3uLEm?=
+ =?us-ascii?q?BEEFPEP6nQEWW5f9HjJ87?=
+X-Talos-MUID: =?us-ascii?q?9a23=3AMwdZnQyCDEfyl8ZPJqrBFiGuHKiaqLmJLF4Ekbs?=
+ =?us-ascii?q?+gM6VaCx7JBq7jxOGGqZyfw=3D=3D?=
+Received: from mail-northcentralusazlp17011030.outbound.protection.outlook.com (HELO CH1PR09CU001.outbound.protection.outlook.com) ([40.93.20.30])
+  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2026 11:37:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VH7Fqm75EBaReMbA89o+MRTy2eAeUxTVo/kb8nko5FmthYjgesm8Os13gIsPTtO+iCozDARpL8VZNCo4iDJHkAove93Mey/3ZlKBSFbnyTojERLpW4HzZ0DK7JunRmOehnl0JoT+Bfn0m0Y6W2v6WzGsboO39+ALinQeACZ7CRDoKEHmyGjkN97BGkiMaK2+p4kg2FtR7IoRkswggjFt+UZ/Wik1RCgKX/e8eJV8Xf6h4CXQQY3gqq3rvlZqme1FF6ZatJvb/MYZYcwk+J8uY2IABEWRDTAqqvD5S41K2HUNHSdBfCB+CLDr/UYWMvVZcQYFJ5VhvqD1o1OkCltWWg==
+ b=t/9NXufT923B9tGwAlj2Rc4+laXDHPsPk2zxNnvn9FgB26XJKfIoQWQvLboSnqd8SKdaTrVHj0kF58m88+yNfH6SSighwtLUlV9BwO6Wz5bx6YjmZIzupjeCHn5hfWEcctnjqWbhni70amA1+cKNmnjaGWkw7XBAW3XzeA1mbtVZ+jqmfa2MXKyUXkaP59E10JG0cZnxPreLUoLqgiS/ciDB/ZrkUi9nE4dRHfDsQPn1/FQt1CEfkhgIvBDvXUZ5gx894l+fc/nyyv+BUijSiXdx3rpgt4EQGAxhbJFmq3xTI311PukfE56SS4Ge0L0tIWe8gDQP/yMUa+C7jzwUZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dpwvKK6j1CmLRKPQQwHficf2zUSEdOmjuSyMlGaPM8Y=;
- b=fljndflQ+90vouHlMW34E9u0ll+l1xqIdUSmt61t84p0H5LWn+ZF2whYCrS6ZhjgH4bhgn6BDy3dtRDkNGkTC9XEiP1IKnZzVlazYYnWxSu4rnWZPKra+f/a7wqxINHWlxJR5x1zKl658wU0zsuTIl3A7NTmNPcs+S2gZopIaykDPlRT+/4M1wJGfHhTc0vg3TmA/jGHdIKkZE1A/+eErXSwZo3QlI8Z1yAwA7YEfz7p1I6Z8LPeBlQIrQTh3Kp4XeesqcY1hiCKKggdmUW2sQrXFr9ueN8v+Bv7JMK5h7vQ5qVE/SCjF2OVe65PPMuI5+tNRBOM19L+iGFjpzYSzQ==
+ bh=MY75zkxDT4ps1hu5yza+ffHYhmizBcpckiHbls2HGg0=;
+ b=peC85o+VR9WlzVK1Zkxw1r/nAyxibUQfT6hBjTH+z/CKVTSPfYYLLSkpH9wXVls1kVm5NZIzjIfGdGCXcuyyjRjki5lSDOBASfFnun3/EyQHj4ttM/eKVpSuZ9lqU4xnD0pu2Rm3R5xsHsItD9YE78sn09Q8Rx9p3G8FEPJAyLr8pSpnJcYFE8etDMqb3Jqe5OOX6KYVWNXUPGC/exvIVIxdDZ0WvEdvv1x+8GU8dWUN+iw9EenjuZr5uh8HTKrP8UYFiBhymsliqb2vwLQZyuAE+v5J86uwJ2VNMRuwzQyudT1xSlt3WNPAeY8BqvN8pFLQjDj9gFQw6nJmRi567w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
  dkim=pass header.d=aero.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dpwvKK6j1CmLRKPQQwHficf2zUSEdOmjuSyMlGaPM8Y=;
- b=GpXrrAqAmJJ+Q6h0DnmNZc8qa7YMz7oLnPVPLI2V1YS4ETwckh6WqovynKSQEpOkgUP4+4m6BQkHR0J1BzG5qVJbAy+DUwXHKWrP0LiYPIsVuZanlYV6loDJ0dAlrvbP0PVmOhfJ5SL9OokEvgWb39zEWJoFZodbNB0F8cnZJoQ=
+ bh=MY75zkxDT4ps1hu5yza+ffHYhmizBcpckiHbls2HGg0=;
+ b=wBPFtm3O7BpLdiKjReIPuN0tf3rF6K3v/1aT4aCR+mJRQeO7ueDYS22ZdLYmYK5Mf2Bb5+5yZHfp/5pRgc1je6jjj4QFGBRTNBSO4k0KJOtzJjSecJVnemOnjtJ/ljCoTgjBH1j+R3JQPNq2PfTAqvYisswYqJEWJhCa4QXSn4E=
 Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
- by SA1PR09MB10668.namprd09.prod.outlook.com (2603:10b6:806:365::19) with
+ by MN2PR09MB5035.namprd09.prod.outlook.com (2603:10b6:208:211::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 2 Jul
- 2026 17:53:45 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.9; Thu, 2 Jul 2026
+ 18:37:18 +0000
 Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
  ([fe80::4b5:d448:c89e:48e8]) by SJ0PR09MB9126.namprd09.prod.outlook.com
  ([fe80::4b5:d448:c89e:48e8%7]) with mapi id 15.21.0181.010; Thu, 2 Jul 2026
- 17:53:44 +0000
+ 18:37:17 +0000
 From: Eugene Grayver <eugene.grayver@aero.org>
 To: usrp-users <usrp-users@lists.ettus.com>
-Thread-Topic: X440 RFNoC build with TX FIFO
-Thread-Index: AQHdCOeSaclwuRlUrEyueQFJgPeIyrZY9bl2gAGN6ro=
-Date: Thu, 2 Jul 2026 17:53:44 +0000
+Thread-Topic: [USRP-users] Underflows on X440 TX
+Thread-Index: AQHdB/c1QzxkLAVUZEyLcGMkftC+e7ZV6bvEgAAOdR+ABJsm9A==
+Date: Thu, 2 Jul 2026 18:37:17 +0000
 Message-ID: 
- <SJ0PR09MB91266A3647902D5C21B21B24ECF52@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <SJ0PR09MB9126558CB1A60C27887C17DDECF52@SJ0PR09MB9126.namprd09.prod.outlook.com>
 References: 
- <SJ0PR09MB9126AD2BAD8585D2EFFFA073ECF72@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <SJ0PR09MB9126DC2ACEE891812F0FAE53ECF62@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <SJ0PR09MB91269679895FCEA5C6F8A3DCECE82@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <9F969F1B-75D0-4621-8FE8-4384D26A6594@tum.de>
+ <SJ0PR09MB91266AD4901565D18F6E7FCFECE82@SJ0PR09MB9126.namprd09.prod.outlook.com>
 In-Reply-To: 
- <SJ0PR09MB9126DC2ACEE891812F0FAE53ECF62@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <SJ0PR09MB91266AD4901565D18F6E7FCFECE82@SJ0PR09MB9126.namprd09.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: 
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|SA1PR09MB10668:EE_
-x-ms-office365-filtering-correlation-id: dd7ac11c-ee36-4210-75a8-08ded862dc4b
+x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|MN2PR09MB5035:EE_
+x-ms-office365-filtering-correlation-id: 4a9b8938-040d-488e-0832-08ded868f1b5
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: 
- BCL:0;ARA:13230040|41320700013|1800799024|366016|23010399003|22082099003|18002099003|3023799007|8096899003|38070700021|6133799003|4143699003|56012099006;
+ BCL:0;ARA:13230040|366016|23010399003|41320700013|1800799024|4022899009|18002099003|22082099003|38070700021|4143699003|8096899003|56012099006;
 x-microsoft-antispam-message-info: 
- TLo4+vt7bdo/fGTQJ6AHnM2Szw8OZriVu9TUZijF5B7KI9mCxHLDXTOQ655NvSftH0kDiR1ECSw3Z/0cMk0wLyVdO78fpWNXl8hnJ+KLwhw0ub3iCN4dSyk0G/GAT7Or6DDB6AW63AkZriYaQTmhAdfB0NiSJ8Lu3gqWi6N4/alrttvGdHfHCOWBTYqt87cp5Lx8BZxZSV5fsgTN1FavarSYL+HR5MrypvTJZhDEcbEQEbmlnaFzh/dt/+iCnEJERmxxzE3elbi7NtdhcstoPAo/TWVrh84SNJpEwNI3vP0e+3yDx02RiNX1+K3/7cf8x4NRPbzZcSOQM6Shw2jeLLqR+xB5Hp6fjBmmPP0x+B6mZf+H9cGSta0fwLLNOi1RtLdc9gWnTSf7Wsm3viRpGTfWiW5DLnTRekmqic7WLuGM7Kq+j8PNh25jvKnLvMhLEIzlXv/ERHt5SdO90uGxec6fQxtKJ1SRMBvUGh4wA/GoDMTqq3njp7Hr276CsylKrsr53ETWivMz0Z/0YcV7PziKStVq3CFzpzOC3G3NvFhCJpJZX4WBNkL5ywNYx8Uj5wGDczVVqox5GZIpvaywn+D6XsFQgKSjGRPqqsVhTSg1vzSIrDJV46Js3dZF1HltTxJ7/2d0z9ZcqRsYdZetvpaP+4OEl7jOQ9vlfG34GYFNjShcGnVrIhiZpVfM7nxJDAv+iSW/yanftsOK0W5wzWSIvmldzjblh8fICVVO5lM=
+ 5dHwQNPA21vt7tzupx2tnSAl3GYg0KX7dRnDv8F58p4W8FKCplT0WU97MP8aOXfDI8tX2k3lyCb3tuEuouwOmpipC0K+ocFoncwfo4VD3OX+pGgKfcG+pbJBML2kJwTfnUIBbGkyywGXRCvvAWEOM6P8rY/qCuGKJ1NbNQoSpvfD9GnS957yvDbQzEaBBY954kHuyYpOe9DAeWpsddIdzOafnghMVYgAUmMwhVWL29+AjexI2Ryg04jBDgiQmj9uzsR3upI4HUWHPFsjWw186P69TsaZwTtcCMvvURD8jpO7pLxviLDN7akJdRfgYleNAmyi/InnmuEb3KdxMNGdxIKkxKWxnuUdjW7sAibsnx9zmy93O87nHgptz9D43kmvhTHJNj3X9fWW0yMFfxsjAIYQI/HAWilG6UQV/omDle3meQ+YP3EwGvHS7iQOvdozryDtXFlD9vWDqINpfm35KfvYKgb45F6/ero7Pfdj26ho/M99GlYoC/y8AUsu1RW3XDMnonNtt9QJcePn/PQnOwQEX9Cq5L+JvTsDzm76RA6K6eoy33n2DaavsxGxVJnrJ9AsdDjUUinalEUk/MR0lu/YfF4Jccgj8aTtwF6w/T9MqJ6Jq8e2xkifiZHXdH///wwAnB//+hMjaNfL7IIPgKDScjB5Zsu73OrBs4NYQEXQ12eYeQOC1v7XLtC77Bxko3ffS20hQVqSbKbHd6JSCszxa2MtRDAF//9KdwoJtLk=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(41320700013)(1800799024)(366016)(23010399003)(22082099003)(18002099003)(3023799007)(8096899003)(38070700021)(6133799003)(4143699003)(56012099006);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(41320700013)(1800799024)(4022899009)(18002099003)(22082099003)(38070700021)(4143699003)(8096899003)(56012099006);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?rnIfepxxMirtRt3a1HubyVJzcuDwbeEWFSdkc+5XbXA12gnomDZMGClk+Ohc?=
- =?us-ascii?Q?LvNUwwrTDQ/Fko6iinEgYmVFJr9TbzahvBam2FGIry9NnuHEXv2Gx/XGsTh9?=
- =?us-ascii?Q?aRVp4T3tkWPX7J9aY1J3POYFnZZ6P3aQXUZy3MB7HA197/yiGJ2wMI9+8RXM?=
- =?us-ascii?Q?iaKTnfBsJS3iM8ybWqthczEedwCPgqcGAfOulD0koYFM3GrOGgUk2H8Vf9JL?=
- =?us-ascii?Q?DXskOJgA+i+/PJjJdsaD2ig34JmB8aOTHT1iPrwZvG4hdv2DQwHU4J9EB4Es?=
- =?us-ascii?Q?NJMmRV8psWuuWyBd+SizxJQDponMFkPVTaxTGapFDtVsRuj9ReKBd/Uoa9jw?=
- =?us-ascii?Q?SwJHcHg8T1RGOBZmbnASrMDhpXxK9L89CjSMQmFWhps4rGjBh8sGsw8t5QzF?=
- =?us-ascii?Q?FT6Sa2wkehn5TMp+ERVeHc4yw/eGgHTdcM/SrRbJttL89LQkSYYFPZjt8DQ+?=
- =?us-ascii?Q?kuVb3g/l+PMs++5hlM6VWkikv+5ZfhMIBBGMvdOfqC3yjy/pJTAPVkgAwAIY?=
- =?us-ascii?Q?m/uWvHYZvzZ8B6sFrgOc8AtM8WGI6ulYBTMEI37RDuTvXhE06eoyxuzXVnQ0?=
- =?us-ascii?Q?3GSYJfPpS1uUKx4cGyxF1F0ZICgFplBX3InWjQ3oq4SEIjTGnOqwMCLg9DGq?=
- =?us-ascii?Q?IT6CFlWiRkj/2rQv4tsN3e2aZkUXeVVyzE4rthtHFbTIyAgupuPlKJZZPNyO?=
- =?us-ascii?Q?4jT7qOt8LTyvoTzoWh8gxj/4VAdrWHzpNbmbUykN/h2axgxt6pojSKLT4Nz6?=
- =?us-ascii?Q?weEAoVRMaIQ9FmFGiZI7MoecI8u4LJUTLuWfd/AJiWrO+k4NTV93n/Gxzk0s?=
- =?us-ascii?Q?MQJqOuy2Y5lChBx5ts5M3eAbpuS+cd7BTWAQ4Uyv8TJd7QVPsF0ntMDbceoi?=
- =?us-ascii?Q?spAsrynf2P9JlEB51aaWEKXPvmwoSrWu/y8XCjIqFHIOeqGsLt03VdwhpnjI?=
- =?us-ascii?Q?OZmOMS34iN8sa7/gsFIk9wndHih8gp43UWZCX0LbJb+DuKAAiJBR2+v7prEd?=
- =?us-ascii?Q?Sx+FvCWC6p76YdR0SWFYbmYNKi6bscRgxSe8/X4/nDY5uODYXbuNFBfKaKm6?=
- =?us-ascii?Q?+OpmHH22rbVHml/WqYlo+WWytJ52L88vwvW5QzgTaQySvyQWwOfla6JajJmx?=
- =?us-ascii?Q?36NTgJZeYpvC/LzWKR/IpaxvF5qbou95X9nwIq1cKQzgzS0OZufYpKg0g2eb?=
- =?us-ascii?Q?/Iv8ynhBKg4vZbTVaUBxJYmD14wDifSuQo5hx5sNDwh2UHqxzXcmzigclkX8?=
- =?us-ascii?Q?1l2/sm93lqGf8Wsrw+b49eHb2bcNdBJjKOnQ/XulEcN2zPbKW2CBS3slT8Zr?=
- =?us-ascii?Q?mNgKjYwhPp5y7D5rUsBkwhbzLmck6vx1s19Ry6rY0njPffZFC628GeNcFQpk?=
- =?us-ascii?Q?mpRIRrfU5xAWKtb1rivc0J17skQznpkYHzTTeiBGdVohkPiZ1OD1N3tSmTUp?=
- =?us-ascii?Q?bAA1SweS26yGgZZaQHh/TTGhkpWtGo2tE1SQgeeUaqnI2k18p2RcvAiW6Yyu?=
- =?us-ascii?Q?Wr9ngn26ad9aMpiuVqy3d4RQYxD9o9/044aNfbwS8gVAl0w3eiZsVF68KVbE?=
- =?us-ascii?Q?hWLTICskGprh+3SskjC7QSc39xuYLJfnhRWnkzqccUVmgKLByST0r/rZhmHs?=
- =?us-ascii?Q?3HsVfRroiKGLtZhBid8wN/83Pye+GLkcn8Oeart8XXGJL1RBte2jsBY2NZqx?=
- =?us-ascii?Q?x7zHghXy6Yc3ue7VuEkjq0T+UfCVHxTYBseLgHMX4Jx+Y5CS?=
+ =?utf-8?B?RDVvVExPMWVUdXpDc3JoNGRlYlVhK1VON1k4c2hpYTJSamR6R1VpNzJzbk9N?=
+ =?utf-8?B?UG1NZ2FTOEFvTHQ3MUQxVXROU2FOcFVUZEViZGtyZDRzNkNlMjI3UFZjcWEr?=
+ =?utf-8?B?dUsySVd6MzU4UlcwL0RhWE43d2NkUWtIWCtEZS9rUnZ4aFc0R2EybnZZcVo1?=
+ =?utf-8?B?azJHNEpienhSbUkzLzBRdEpOK0pGaFZRd1JVMjNYQk5GMk1nM3Vxb0RLa1Z0?=
+ =?utf-8?B?RDBNVHFJdkNWWFNxbGVyQjc3Q3JvbHpzb2JsTGN3OWQyUXBIUW5ZK3ZtalRX?=
+ =?utf-8?B?eStjQ1ZvbmVudFNONmxVUEhXZFVNYnhid2RHRStDWWRFckpEazNNcm9pVzNh?=
+ =?utf-8?B?WUlqT3VhUlN0KzEvdDdBd1JhZGtNS2dPVUc5QWl5Sk9YbFdYK1RTVm9vcWdO?=
+ =?utf-8?B?dUxUNTNPODdzbE51WUUyV1N6R3JoaDBjL3J5dEtjanNoaHg5bVRQVDd1V0xX?=
+ =?utf-8?B?SmpSNUhURjQ1bjVUTERPYkcrZXNEZXlRejl3NllZZlNSSDl2NldieW1VVUQw?=
+ =?utf-8?B?cGJub1BxVU00NTBqOG96RlBMSXVHRDRJY0h1VXhvSHhwUkdBbE9mL3pEQVFa?=
+ =?utf-8?B?M1Q2ZzB6Wm9LMHh1VHFiVVFIaUZSOHp5aEdHSkZiOEkwcE1IVmorNW5ROXE1?=
+ =?utf-8?B?QllqaGZPSmZpQW9DM1NvMlRMOVlYWUp1WlZCOEZLcC80OXRySkhRMTJtRHlF?=
+ =?utf-8?B?YmR0T25iVGNZSC9NcjJEbEpNTk1CdjBVcjhzbWxiN28yYUg2eDFscEVHSGZH?=
+ =?utf-8?B?dE1UVml1dWlvaXFYdnY5UnpsK2lxNGJJSkdacjBxNytibTBleGh0S0dySk5s?=
+ =?utf-8?B?aDFsTzhtdmFiS0xITFB3aEdpYVlnMUNlclIzZ3U1eTduUEhINGNMTld1SEE1?=
+ =?utf-8?B?NE5Pa2lnbzZkNW94bi9abmNOcG9aem5jOFlpbTV5VXp1aG5nbDZoUHhCM2ZS?=
+ =?utf-8?B?N1VkS1orSzViN1YyT2hrT0NnTzVHSFROQkRvWmJYS2x5dUhqVlk5aU1MVnYy?=
+ =?utf-8?B?a0VyRkNnNFFIWXUwcUhHZm5GVGdMbkRDLzQ0eURLTXg0Q1M3Y0t6VDhzSDA0?=
+ =?utf-8?B?TFVQai80MGl4WXlHSExFRnF4WnNOSG9vUXRJY29SbzFHN0gzMGsyc01DMm9B?=
+ =?utf-8?B?RksyV2hQR0t0dUthWXJ4aS82eFB6aDdBbG9BV3dRMDMvVk44a2lvbllZbmpK?=
+ =?utf-8?B?ZUQ2UkhmaExOQzhrL1RhNnhZWEI2OWd0UzVPN3plVzRvcGdpL0htSzhQUnhL?=
+ =?utf-8?B?RDNhK2ZvdnRpeEY2YXE0S3A4UCt0MzN3RExITEU0VUJsMWg5OU9UMU51RmZy?=
+ =?utf-8?B?R0h2eHNKMGRNVklUMjlYejVFaTErcnp2QjR4OC9td2lDSWxlYWFQOU1HdktZ?=
+ =?utf-8?B?YlNET1hxRFNkS0VuNmNCQ3FneG11Syt1QTlKdGJxTks0SldwTVg0SHJBQWpK?=
+ =?utf-8?B?bzdabVQwaWJaTjEzU1Vrb3FKYXg4SHU5aUZKb3VsWHZtOU5VV2RJZmxuamd0?=
+ =?utf-8?B?dnNzelhpQytQU1JtelltQlhlZHlUb05TTWNFRDhIUjRtdzBkdzhyc1JZTXhW?=
+ =?utf-8?B?MlMwdFBNNnFEOHNmQ3kzdXNFcy9mWUFyWThKZHBoQU9QQmEzeDRwazNIY0Nq?=
+ =?utf-8?B?UCtGaEpsUWlCRWJpMXk5QlBlNFh4TCtEeUtHWW5tNVk3bkRlQnRWMUhtMlJu?=
+ =?utf-8?B?M0c2bVAzZnU4MmlBcFFZMnpHMTdkKy9zQU9GZU8xc3EzQWZaKytETjVOeXNo?=
+ =?utf-8?B?NzBpRDJxMnBpNFJaWHRvZkd3S2RXY2VmU25QUm9jbVFzVFpsRXF3SzZXQldl?=
+ =?utf-8?B?VGxTTE1BT3NadHFHZkFSSld0ZW5XQm5GMXhvUEZXelZRWDROblRCcUpKQm02?=
+ =?utf-8?B?Wm4rS296TnU1OThpN21tNC9ZMmdyNGgrb0NGbjQxcVZxNHhhWXg1cjljOTNh?=
+ =?utf-8?B?WldMUUQzSjRwQlhGOHQ0QUxMc2dKVnRwSWJMbkdmT0JFM29SNVRSTkZuR0pJ?=
+ =?utf-8?B?bExEWDNtMlNzMVdPSGpRU2tuejhNVDVESUtmMkU5R1BiMVBnSnR5Y0p6Znpl?=
+ =?utf-8?B?dTEvV3RlNllYMnFNVkdKQmlIT2hUREJBLzNCdE91MThDRW85b2lxWC9qOS96?=
+ =?utf-8?B?NzJPYjkybzdWd3dGMzJCOXo4blp5TWxUZndlQ1ArVGRSTEZwOThSWnJJN2l0?=
+ =?utf-8?B?YjliQ0tRaFNzUmtGeThHckMvNkZROUxnS1kyQm1yUlprbWc1TFFmSDBDcERP?=
+ =?utf-8?B?Zk1ydWp0ak9abUxJbEtJL01nQlIzK1NYSzRiZDhOYkg4Y0VyVzNNOXA2YnNr?=
+ =?utf-8?Q?VsItDf0Ib9dEdYU2B+?=
 MIME-Version: 1.0
 X-Exchange-RoutingPolicyChecked: 
-	Dwd3ZWS0HHrRsfuA2vsI2fQrvUKskwjwJCyuk/qrBHRfEHCJJQqN7OPGckkDAShtS8brjdhz8G6xHm5MQiYvhKI9WkSeHWv1FYxNX8hTOR/sZ3pIEjxnA/08zg/DisNGwHUkPR0tJtXVpM98oj2dvlC50XMp1sgYRxEnvLMBrnFjAZp+T+jajpOhKaGcmI238xlrZSwJ9U2GQC1Rdl/LanpTHLKwZAHfI2ddWVIbSDDoBTLzYjNaP0mLixg2O+Awzogsr0QC32lC4N4BToNiiUO7UwvmPIUbPRKz3E0tojTO/FVl1HoV3n6/DhclZg1ZCtVqU3R7yy0xhsK6w/dAsg==
+	SIxSrp2+D99TkliAh+qRh1hyK1pekWWY7d6yqzVYZqOF2yeSlgLd21eFwUEPkZWzY5TYNHJgqS4qzjY6Re+ECjee0+5j+KcM+CZpAyd3e9nH0AkOhTSgv0HvKI9Ww1mRRjpoNWY8+jdy+YQ4oaOayORStK0NN3KQp7uCvSKAnFtPcatxx9vFzplbHsU16czcE7DEgI77PNuSqffBP8gKoLJqO/YToTPjD3TofGDnHXk1xVD2xWnWFEEjZFAfA3EUmtIY8F/mHEhQQDYfiGbTKR2Y2QvgIiuQ6AWzu+fJx6RSJg2f0eZV8OoW1EpY+LvMt79YJlv1zKBpcVtpV4d7mA==
 X-OriginatorOrg: aero.org
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd7ac11c-ee36-4210-75a8-08ded862dc4b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2026 17:53:44.7274
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a9b8938-040d-488e-0832-08ded868f1b5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2026 18:37:17.6156
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR09MB10668
-Message-ID-Hash: COABU4OOTVBWC25LCDLP4RAC2U3TSCPD
-X-Message-ID-Hash: COABU4OOTVBWC25LCDLP4RAC2U3TSCPD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR09MB5035
+Message-ID-Hash: VL66SGKO7QI6XW7DNBGAPSEW7AOHAIW2
+X-Message-ID-Hash: VL66SGKO7QI6XW7DNBGAPSEW7AOHAIW2
 X-MailFrom: prvs=636286108=eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X440 RFNoC build with TX FIFO
+Subject: [USRP-users] Re: Underflows on X440 TX
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5U7SHNOVJ5CU5QTIQHCKV5KS5E67NZW7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/U5GHCF5U7QLMHM2NUAFAWVKBKZXGS4PQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5843501476155524580=="
+Content-Type: multipart/mixed; boundary="===============6408604927013298865=="
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.39 / 15.00];
+X-Spamd-Result: default: False [0.49 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	RWL_MAILSPIKE_VERYGOOD(-0.20)[172.104.30.75:from];
-	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[emwd.com:s=harmony];
 	DMARC_POLICY_SOFTFAIL(0.10)[aero.org : No valid SPF, DKIM not aligned (relaxed),none];
+	MIME_BASE64_TEXT(0.10)[];
+	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -238,1611 +253,275 @@ X-Spamd-Result: default: False [0.39 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.104.16.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.ettus.com:from_smtp,mm2.emwd.com:rdns,mm2.emwd.com:helo,SJ0PR09MB9126.namprd09.prod.outlook.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[emwd.com:dkim,lists.ettus.com:from_smtp,mm2.emwd.com:rdns,mm2.emwd.com:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4B6456FBB37
+X-Rspamd-Queue-Id: 03B256FC277
 
---===============5843501476155524580==
+--===============6408604927013298865==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR09MB91266A3647902D5C21B21B24ECF52SJ0PR09MB9126namp_"
+	boundary="_000_SJ0PR09MB9126558CB1A60C27887C17DDECF52SJ0PR09MB9126namp_"
 
---_000_SJ0PR09MB91266A3647902D5C21B21B24ECF52SJ0PR09MB9126namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_SJ0PR09MB9126558CB1A60C27887C17DDECF52SJ0PR09MB9126namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Sorry for the spam - the issue with rebuild was my mistake - I had a typo i=
-n the .yml that was being built (the one attached to previous message was c=
-orrect).
+UmVzcG9uZGluZyB0byBtYXJ0aW4ncyBxdWVzdGlvbjoNCg0KICAqDQpZZXMsIEkgaGF2ZSBhIFFT
+RlAgdG8gNHggU0ZQIGJyZWFrb3V0IGNhYmxlDQogICoNClRoZSB1bmRlcmZsb3dzIGhhcHBlbiBl
+dmVuIHdoZW4gdXNpbmcganVzdCBvbmUgVVNSUCAoaS5lLiByZW1vdmUgYWxsIHJlZmVyZW5jZXMg
+dG8gdGhlIHNlY29uZCBvbmUgZnJvbSB0aGUgYmVuY2htYXJrKQ0KDQpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXw0KRnJvbTogRXVnZW5lIEdyYXl2ZXIgPGV1Z2VuZS5ncmF5dmVyQGFl
+cm8ub3JnPg0KU2VudDogTW9uZGF5LCBKdW5lIDI5LCAyMDI2IDE6MTcgUE0NClRvOiBQZXRlciBK
+aWFjaGVuZyBHdSA8cGV0ZXIuZ3VAdHVtLmRlPg0KQ2M6IHVzcnAtdXNlcnMgPHVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBVbmRlcmZsb3dzIG9u
+IFg0NDAgVFgNCg0KSSBoYXZlIG5vdCB0cmllZCB0aGUgWDRfNDAwIGltYWdlIGJlY2F1c2UgSSBu
+ZWVkIG1hbnkgY2hhbm5lbHMgYXQgcmVsYXRpdmVseSBsb3cgKDUwIE1IeikgYmFuZHdpZHRoLiAg
+VGhpcyBpc3N1ZSBtdXN0IGJlIHNvbHZlZCDigJQgSSd2ZSBiZWVuIGFibGUgdG8gdXNlIG9sZGVy
+IFVTUlBzIGZvciBUWCBhdCByYXRlcyB1cCB0byAyMDAgTXNwcy4gIFRoZXJlIGlzIG5vIHJlYXNv
+biBmb3IgdGhlIFg0NDAgdG8gYmVoYXZlIHRoaXMgd2F5Lg0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18NCkZyb206IFBldGVyIEppYWNoZW5nIEd1IDxwZXRlci5ndUB0dW0uZGU+DQpT
+ZW50OiBNb25kYXksIEp1bmUgMjksIDIwMjYgMTI6MjMgUE0NClRvOiBFdWdlbmUgR3JheXZlciA8
+ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmc+DQpDYzogdXNycC11c2VycyA8dXNycC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBbRVhURVJOQUxdIFJlOiBbVVNSUC11c2Vyc10gVW5kZXJm
+bG93cyBvbiBYNDQwIFRYDQoNCg0KRG8gbm90IG9wZW4gbGlua3Mgb3IgYXR0YWNobWVudHMgdW5s
+ZXNzIHlvdSByZWNvZ25pemUgdGhlIHNlbmRlci4gSWYgdW5zdXJlLCBjbGljayB0aGUgUmVwb3J0
+IFBoaXNoIGJ1dHRvbiBvciBmb3J3YXJkIHRoZSBlbWFpbCB0byBPUFNFQy4NCg0KSGkgRXVnZW5l
+LA0KDQpJIGFsc28gZW5jb3VudGVyZWQgdGhpcyBpc3N1ZS4gSeKAmW0gY3VycmVudGx5IGludmVz
+dGlnYXRpbmcgdGhlIFg0XzQwMCBpbWFnZSBzaW5jZSBpdCBzdXBwb3J0cyB0aGUgcmVwbGF5IGJs
+b2NrLiBIYXZlIHlvdSBhbHJlYWR5IHRyaWVkIHRoaXM/DQoNCkJlc3QsDQpQZXRlcg0KDQpBbSAy
+OS4wNi4yMDI2IHVtIDIxOjAyIHNjaHJpZWIgRXVnZW5lIEdyYXl2ZXIgPGV1Z2VuZS5ncmF5dmVy
+QGFlcm8ub3JnPjoNCg0K77u/DQpIZWxsbywNCg0KSSBhbSByZXR1cm5pbmcgdG8gdGhlIHByb2Js
+ZW0gcmVwb3J0ZWQgYSBmZXcgbW9udGhzIGFnbzoNCg0KSSBoYXZlIHR3byBYNDQwcyB3aXRoIFhf
+MjAwIGltYWdlIGNvbm5lY3RlZCB0byBhIFRocmVhZHJpcHBlciAyNCBjb3JlLiAgSSBhbSB1c2lu
+ZyB0d28gMTAgR2JFIGRpcmVjdCBjb25uZWN0IGNhYmxlcyBmb3IgZWFjaCBVU1JQICh0b3RhbCBv
+ZiA0eCAxMCBHYkUpLg0KDQpJIHdhcyBhYmxlIHRvIGdldCBSWCB3b3JraW5nLCBidXQgVFggaXMg
+Z2V0dGluZyBjb250aW51b3VzIHVuZGVyZmxvd3MuDQoNCg0KICAqDQpVc2luZyB0aGUgYmVuY2hh
+cmtfcmF0ZSBleGFtcGxlLg0KICAqDQpVbmRlcmZsb3dzIG9ic2VydmVkIGJvdGggdy8gRFBESyBh
+bmQgdy9vdXQgRFBESw0KICAqDQpVbmRlcmZsb3dzIG9ic2VydmVkIHdpdGggNCwgOCBjaGFubmVs
+cyBhbmQgMTYgY2hhbm5lbHMNCiAgICAgKg0KRmV3ZXIgdW5kZXJmbG93cyB3aXRoIDQgY2hhbm5l
+bHMsIGJ1dCBzdGlsbCBnZXQgYSBmZXcgcGVyIG1pbnV0ZQ0KICAqDQpQcmlvcml0eSBoaWdoL25v
+cm1hbCBkb2VzIG5vdCBtYWtlIGEgZGlmZmVyZW5jZSAodXN1YWxseSkNCg0KSU1QT1JUQU5UOiBJ
+ZiBJIHVzZSBvbmx5IG9uZSBpbnRlcmZhY2UgKCDigJRhcmdzPWFkZHI9MTkyLjE2OC4xMC4yLG1n
+bXRfYWRkcj0xOTIuMTY4LjEuMTApIHRoZXJlIGFyZSBubyB1bmRlcmZsb3dzIHdpdGggdXAgdG8g
+NyBjaGFubmVscyAobWF4IHRvIGZpdCBpbiAxMCBHYkUpLg0KDQouL2JlbmNobWFya19yYXRlIC0t
+YXJncz1hZGRyMD0xOTIuMTY4LjEwLjIsc2Vjb25kX2FkZHIwPTE5Mi4xNjguMTEuMixtZ210X2Fk
+ZHIwPTE5Mi4xNjguMS4xMCxhZGRyMT0xOTIuMTY4LjE1LjIsc2Vjb25kX2FkZHIxPTE5Mi4xNjgu
+MTYuMixtZ210X2FkZHIxPTE5Mi4xNjguMS4yMCxjbG9ja19zb3VyY2U9ZXh0ZXJuYWwsdXNlX2Rw
+ZGs9MSx0eXBlPXg0eHgscHJvZHVjdD14NDQwIC0tdHhfY2hhbm5lbHMgMCwxLDIsMyw0LDUsNiw3
+IC0tdHhfcmF0ZSA0MC45NmU2IC0tdHhfY3B1IHNjMTYgLS1tdWx0aV9zdHJlYW1lciAtLWR1cmF0
+aW9uIDEyMA0KDQpUaGlzIHNob3VsZCBiZSB0cml2aWFsIGZvciBzdWNoIGEgcG93ZXJmdWwgbWFj
+aGluZSENCg0KSSBhbSBzdXNwZWN0aW5nIGFuIGlzc3VlIHdpdGggaGFuZGxpbmcgb2YgcGFja2V0
+cyBhY3Jvc3MgbXVsdGlwbGUgbmV0d29yayBpbnRlcmZhY2VzLiAgQXJlIHRoZSBUWCBmbG93IGNv
+bnRyb2wgcGFja2V0cyBub3QgZ2V0dGluZyB0byB0aGUgcmlnaHQgcGxhY2U/DQoNClRoaXMgaXMg
+YSBjcml0aWNhbCBmYWlsdXJlIOKAlCBub3Qgc29tZXRoaW5nIEkgZXhwZWN0IGZvciBhICQzNWsg
+Ym94IPCfmYINCg0KDQoNCkV1Z2VuZSBHcmF5dmVyLCBQaC5ELg0KUHJpbmNpcGFsIEVuZ2luZWVy
+DQozMTAtMzM2LTEyNzQNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbQ0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxp
+c3RzLmV0dHVzLmNvbQ0K
 
-I can now rebuild an image w/out RX DDC and w/ RX radio going nowhere.  The=
- fixed connection is EP->DmaFIFO->DUC->Radio.
+--_000_SJ0PR09MB9126558CB1A60C27887C17DDECF52SJ0PR09MB9126namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Usrp_probe gives the expected result as shown below.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
+IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
+Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
+MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpSZXNwb25kaW5nIHRvIG1hcnRpbidzIHF1ZXN0
+aW9uOjwvZGl2Pg0KPHVsIGRhdGEtZWRpdGluZy1pbmZvPSJ7JnF1b3Q7YXBwbHlMaXN0U3R5bGVG
+cm9tTGV2ZWwmcXVvdDs6ZmFsc2UsJnF1b3Q7dW5vcmRlcmVkU3R5bGVUeXBlJnF1b3Q7OjF9IiBz
+dHlsZT0ibWFyZ2luLXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGxpc3Qtc3R5bGUtdHlw
+ZTogZGlzYzsiPg0KPGxpIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVk
+Rm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlm
+OyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IG1hcmdpbi10b3A6IDBweDsg
+bWFyZ2luLWJvdHRvbTogMHB4OyI+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgcm9sZT0i
+cHJlc2VudGF0aW9uIj5ZZXMsIEkgaGF2ZSBhIFFTRlAgdG8gNHggU0ZQIGJyZWFrb3V0IGNhYmxl
+PC9kaXY+DQo8L2xpPjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRl
+ZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJp
+ZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyBtYXJnaW4tdG9wOiAwcHg7
+IG1hcmdpbi1ib3R0b206IDBweDsiPg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHJvbGU9
+InByZXNlbnRhdGlvbiI+VGhlIHVuZGVyZmxvd3MgaGFwcGVuIGV2ZW4gd2hlbiB1c2luZyBqdXN0
+IG9uZSBVU1JQIChpLmUuIHJlbW92ZSBhbGwgcmVmZXJlbmNlcyB0byB0aGUgc2Vjb25kIG9uZSBm
+cm9tIHRoZSBiZW5jaG1hcmspPC9kaXY+DQo8L2xpPjwvdWw+DQo8ZGl2IHN0eWxlPSJtYXJnaW4t
+dG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19F
+bWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fu
+cy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8
+L2Rpdj4NCjxkaXYgaWQ9ImFwcGVuZG9uc2VuZCI+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6
+aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5kZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlG
+d2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0i
+Zm9udC1zaXplOjExcHQiIGNvbG9yPSIjMDAwMDAwIj48Yj5Gcm9tOjwvYj4gRXVnZW5lIEdyYXl2
+ZXIgJmx0O2V1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnJmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBNb25k
+YXksIEp1bmUgMjksIDIwMjYgMToxNyBQTTxicj4NCjxiPlRvOjwvYj4gUGV0ZXIgSmlhY2hlbmcg
+R3UgJmx0O3BldGVyLmd1QHR1bS5kZSZndDs8YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNlcnMgJmx0
+O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTog
+W1VTUlAtdXNlcnNdIFVuZGVyZmxvd3Mgb24gWDQ0MCBUWDwvZm9udD4NCjxkaXY+Jm5ic3A7PC9k
+aXY+DQo8L2Rpdj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9ImRpc3BsYXk6bm9uZSI+
+DQo8IS0tDQpwDQoJe21hcmdpbi10b3A6MDsNCgltYXJnaW4tYm90dG9tOjB9DQotLT4NCjwvc3R5
+bGU+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9InhfZWxlbWVudFRvUHJvb2YiIHN0eWxl
+PSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2Vydmlj
+ZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdi
+KDAsMCwwKSI+DQpJIGhhdmUgbm90IHRyaWVkIHRoZSBYNF80MDAgaW1hZ2UgYmVjYXVzZSBJIG5l
+ZWQgbWFueSBjaGFubmVscyBhdCByZWxhdGl2ZWx5IGxvdyAoNTAgTUh6KSBiYW5kd2lkdGguJm5i
+c3A7IFRoaXMgaXNzdWUgbXVzdCBiZSBzb2x2ZWQg4oCUIEkndmUgYmVlbiBhYmxlIHRvIHVzZSBv
+bGRlciBVU1JQcyBmb3IgVFggYXQgcmF0ZXMgdXAgdG8gMjAwIE1zcHMuJm5ic3A7IFRoZXJlIGlz
+IG5vIHJlYXNvbiBmb3IgdGhlIFg0NDAgdG8gYmVoYXZlIHRoaXMgd2F5LjwvZGl2Pg0KPGRpdiBp
+ZD0ieF9hcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHRhYmluZGV4PSItMSIgc3R5bGU9ImRpc3Bs
+YXk6aW5saW5lLWJsb2NrOyB3aWR0aDo5OCUiPg0KPGRpdiBpZD0ieF9kaXZScGx5RndkTXNnIiBk
+aXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAi
+IHN0eWxlPSJmb250LXNpemU6MTFwdCI+PGI+RnJvbTo8L2I+IFBldGVyIEppYWNoZW5nIEd1ICZs
+dDtwZXRlci5ndUB0dW0uZGUmZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwgSnVuZSAyOSwg
+MjAyNiAxMjoyMyBQTTxicj4NCjxiPlRvOjwvYj4gRXVnZW5lIEdyYXl2ZXIgJmx0O2V1Z2VuZS5n
+cmF5dmVyQGFlcm8ub3JnJmd0Ozxicj4NCjxiPkNjOjwvYj4gdXNycC11c2VycyAmbHQ7dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFtFWFRFUk5BTF0g
+UmU6IFtVU1JQLXVzZXJzXSBVbmRlcmZsb3dzIG9uIFg0NDAgVFg8L2ZvbnQ+DQo8ZGl2PiZuYnNw
+OzwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+DQo8cCBzdHlsZT0iYmFja2dyb3VuZC1j
+b2xvcjojNUU4QUI0OyBjb2xvcjojZmZmZmZmOyBmb250LXNpemU6MTBwdCFpbXBvcnRhbnQ7IHBh
+ZGRpbmc6MWVtIj4NCjxzdHJvbmc+RG8gbm90IG9wZW4gbGlua3Mgb3IgYXR0YWNobWVudHMgdW5s
+ZXNzIHlvdSByZWNvZ25pemUgdGhlIHNlbmRlci4gSWYgdW5zdXJlLCBjbGljayB0aGUgUmVwb3J0
+IFBoaXNoIGJ1dHRvbiBvciBmb3J3YXJkIHRoZSBlbWFpbCB0byBPUFNFQy4NCjwvc3Ryb25nPjwv
+cD4NCjxkaXYgZGlyPSJsdHIiPjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciI+SGkgRXVnZW5lLDwvZGl2
+Pg0KPGRpdiBkaXI9Imx0ciI+PGJyPg0KPC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj5JIGFsc28gZW5j
+b3VudGVyZWQgdGhpcyBpc3N1ZS4gSeKAmW0gY3VycmVudGx5IGludmVzdGlnYXRpbmcgdGhlIFg0
+XzQwMCBpbWFnZSBzaW5jZSBpdCBzdXBwb3J0cyB0aGUgcmVwbGF5IGJsb2NrLiBIYXZlIHlvdSBh
+bHJlYWR5IHRyaWVkIHRoaXM/PC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj48YnI+DQo8L2Rpdj4NCjxk
+aXYgZGlyPSJsdHIiPkJlc3QsPC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj5QZXRlcjwvZGl2Pg0KPGRp
+diBkaXI9Imx0ciI+PGJyPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+QW0gMjkuMDYuMjAyNiB1
+bSAyMTowMiBzY2hyaWViIEV1Z2VuZSBHcmF5dmVyICZsdDtldWdlbmUuZ3JheXZlckBhZXJvLm9y
+ZyZndDs6PGJyPg0KPGJyPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8YmxvY2txdW90ZSB0eXBl
+PSJjaXRlIj4NCjxkaXYgZGlyPSJsdHIiPu+7vw0KPGRpdiBjbGFzcz0ieF94X2VsZW1lbnRUb1By
+b29mIiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01T
+Rm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7
+IGNvbG9yOnJnYigwLDAsMCkiPg0KSGVsbG8sPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X3hfZWxlbWVu
+dFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0
+b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6
+MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9l
+bGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9u
+dCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkkgYW0gcmV0dXJuaW5nIHRvIHRoZSBwcm9i
+bGVtIHJlcG9ydGVkIGEgZmV3IG1vbnRocyBhZ286PC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X3hfZWxl
+bWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQs
+QXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNp
+emU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9Inhf
+eF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVk
+Rm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkkgaGF2ZSB0d28gWDQ0MHMgd2l0aCBY
+XzIwMCBpbWFnZSBjb25uZWN0ZWQgdG8gYSBUaHJlYWRyaXBwZXIgMjQgY29yZS4mbmJzcDsgSSBh
+bSB1c2luZyB0d28gMTAgR2JFIGRpcmVjdCBjb25uZWN0IGNhYmxlcyBmb3IgZWFjaCBVU1JQICh0
+b3RhbCBvZiA0eCAxMCBHYkUpLjwvZGl2Pg0KPGRpdiBjbGFzcz0ieF94X2VsZW1lbnRUb1Byb29m
+IiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9u
+dFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNv
+bG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X3hfZWxlbWVudFRv
+UHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3Nf
+TVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJw
+dDsgY29sb3I6cmdiKDAsMCwwKSI+DQpJIHdhcyBhYmxlIHRvIGdldCBSWCB3b3JraW5nLCBidXQg
+VFggaXMgZ2V0dGluZyBjb250aW51b3VzIHVuZGVyZmxvd3MuPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4
+X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRl
+ZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBm
+b250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjx1bCBkYXRh
+LWVkaXRpbmctaW5mbz0ieyZxdW90O2FwcGx5TGlzdFN0eWxlRnJvbUxldmVsJnF1b3Q7OmZhbHNl
+LCZxdW90O3Vub3JkZXJlZFN0eWxlVHlwZSZxdW90OzoxfSIgc3R5bGU9Im1hcmdpbi10b3A6MHB4
+OyBtYXJnaW4tYm90dG9tOjBweDsgbGlzdC1zdHlsZS10eXBlOmRpc2MiPg0KPGxpIHN0eWxlPSJm
+b250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxD
+YWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAs
+MCwwKTsgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4Ij4NCjxkaXYgY2xhc3M9Inhf
+eF9lbGVtZW50VG9Qcm9vZiIgcm9sZT0icHJlc2VudGF0aW9uIj5Vc2luZyB0aGUgYmVuY2hhcmtf
+cmF0ZSBleGFtcGxlLiZuYnNwOyZuYnNwOzwvZGl2Pg0KPC9saT48bGkgc3R5bGU9ImZvbnQtZmFt
+aWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmks
+SGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBt
+YXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHgiPg0KPGRpdiBjbGFzcz0ieF94X2VsZW1l
+bnRUb1Byb29mIiByb2xlPSJwcmVzZW50YXRpb24iPlVuZGVyZmxvd3Mgb2JzZXJ2ZWQgYm90aCB3
+LyBEUERLIGFuZCB3L291dCBEUERLPC9kaXY+DQo8L2xpPjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6
+QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2
+ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IG1hcmdp
+bi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweCI+DQo8ZGl2IGNsYXNzPSJ4X3hfZWxlbWVudFRv
+UHJvb2YiIHJvbGU9InByZXNlbnRhdGlvbiI+VW5kZXJmbG93cyBvYnNlcnZlZCB3aXRoIDQsIDgg
+Y2hhbm5lbHMgYW5kIDE2IGNoYW5uZWxzPC9kaXY+DQo8dWwgZGF0YS1lZGl0aW5nLWluZm89Insm
+cXVvdDthcHBseUxpc3RTdHlsZUZyb21MZXZlbCZxdW90Ozp0cnVlfSIgc3R5bGU9Im1hcmdpbi10
+b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbGlzdC1zdHlsZS10eXBlOmNpcmNsZSI+DQo8bGkg
+c3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRT
+ZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xv
+cjpyZ2IoMCwwLDApOyBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHgiPg0KPGRpdiBj
+bGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIiByb2xlPSJwcmVzZW50YXRpb24iPkZld2VyIHVuZGVy
+Zmxvd3Mgd2l0aCA0IGNoYW5uZWxzLCBidXQgc3RpbGwgZ2V0IGEgZmV3IHBlciBtaW51dGU8L2Rp
+dj4NCjwvbGk+PC91bD4NCjwvbGk+PGxpIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19F
+bWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNl
+cmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgbWFyZ2luLXRvcDowcHg7IG1h
+cmdpbi1ib3R0b206MHB4Ij4NCjxkaXYgY2xhc3M9InhfeF9lbGVtZW50VG9Qcm9vZiIgcm9sZT0i
+cHJlc2VudGF0aW9uIj5Qcmlvcml0eSBoaWdoL25vcm1hbCBkb2VzIG5vdCBtYWtlIGEgZGlmZmVy
+ZW5jZSAodXN1YWxseSk8L2Rpdj4NCjwvbGk+PC91bD4NCjxkaXYgc3R5bGU9Im1hcmdpbi10b3A6
+MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRG
+b250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9u
+dC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNz
+PSJ4X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRv
+bTowcHg7IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRT
+ZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xv
+cjpyZ2IoMCwwLDApIj4NCklNUE9SVEFOVDogSWYgSSB1c2Ugb25seSBvbmUgaW50ZXJmYWNlICgg
+4oCUYXJncz1hZGRyPTE5Mi4xNjguMTAuMixtZ210X2FkZHI9MTkyLjE2OC4xLjEwKSB0aGVyZSBh
+cmUgbm8gdW5kZXJmbG93cyB3aXRoIHVwIHRvIDcgY2hhbm5lbHMgKG1heCB0byBmaXQgaW4gMTAg
+R2JFKS48L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQt
+ZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGli
+cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
+Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0i
+Zm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2Us
+Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigw
+LDAsMCkiPg0KLi9iZW5jaG1hcmtfcmF0ZSAtLWFyZ3M9YWRkcjA9MTkyLjE2OC4xMC4yLHNlY29u
+ZF9hZGRyMD0xOTIuMTY4LjExLjIsbWdtdF9hZGRyMD0xOTIuMTY4LjEuMTAsYWRkcjE9MTkyLjE2
+OC4xNS4yLHNlY29uZF9hZGRyMT0xOTIuMTY4LjE2LjIsbWdtdF9hZGRyMT0xOTIuMTY4LjEuMjAs
+Y2xvY2tfc291cmNlPWV4dGVybmFsLHVzZV9kcGRrPTEsdHlwZT14NHh4LHByb2R1Y3Q9eDQ0MCAt
+LXR4X2NoYW5uZWxzIDAsMSwyLDMsNCw1LDYsNyAtLXR4X3JhdGUNCiA0MC45NmU2IC0tdHhfY3B1
+IHNjMTYgLS1tdWx0aV9zdHJlYW1lciAtLWR1cmF0aW9uIDEyMDwvZGl2Pg0KPGRpdiBjbGFzcz0i
+eF94X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRk
+ZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsg
+Zm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGNs
+YXNzPSJ4X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19F
+bWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNl
+cmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpUaGlzIHNob3VsZCBiZSB0
+cml2aWFsIGZvciBzdWNoIGEgcG93ZXJmdWwgbWFjaGluZSE8L2Rpdj4NCjxkaXYgY2xhc3M9Inhf
+eF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVk
+Rm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFz
+cz0ieF94X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1i
+ZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJp
+ZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSSBhbSBzdXNwZWN0aW5nIGFu
+IGlzc3VlIHdpdGggaGFuZGxpbmcgb2YgcGFja2V0cyBhY3Jvc3MgbXVsdGlwbGUgbmV0d29yayBp
+bnRlcmZhY2VzLiZuYnNwOyBBcmUgdGhlIFRYIGZsb3cgY29udHJvbCBwYWNrZXRzIG5vdCBnZXR0
+aW5nIHRvIHRoZSByaWdodCBwbGFjZT88L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9lbGVtZW50VG9Q
+cm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19N
+U0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0
+OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0ieF94X2VsZW1l
+bnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFw
+dG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXpl
+OjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KVGhpcyBpcyBhIGNyaXRpY2FsIGZhaWx1cmUg4oCU
+IG5vdCBzb21ldGhpbmcgSSBleHBlY3QgZm9yIGEgJDM1ayBib3gg8J+ZgjwvZGl2Pg0KPGRpdiBj
+bGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6QXB0b3MsQXB0b3Nf
+RW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1z
+ZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPGJyPg0KPC9k
+aXY+DQo8ZGl2IGlkPSJ4X3hfU2lnbmF0dXJlIiBjbGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIj4N
+CjxkaXYgY2xhc3M9InhfeF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9z
+LEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNh
+LHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwv
+ZGl2Pg0KPGRpdiBjbGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6
+QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2
+ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KRXVn
+ZW5lIEdyYXl2ZXIsIFBoLkQuPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X3hfZWxlbWVudFRvUHJvb2Yi
+IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250
+U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
+b3I6cmdiKDAsMCwwKSI+DQpQcmluY2lwYWwgRW5naW5lZXI8L2Rpdj4NCjxkaXYgY2xhc3M9Inhf
+eF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVk
+Rm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjMxMC0zMzYtMTI3NDwvZGl2Pg0KPC9k
+aXY+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xzwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbTwvc3Bhbj48YnI+DQo8c3Bhbj5UbyB1bnN1YnNjcmliZSBzZW5kIGFu
+IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9zcGFuPjxicj4NCjwv
+ZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-Unfortunately running a tx-only benchmark results in an immediate and conti=
-nuous stream of 'U'.  What am I missing?  Is this not the expected use patt=
-ern for DmaFIFO?
+--_000_SJ0PR09MB9126558CB1A60C27887C17DDECF52SJ0PR09MB9126namp_--
 
-Thanks
-
-----------
-|     _____________________________________________________
-|    /
-|   |       RFNoC blocks on this device:
-|   |
-|   |   * 0/DUC#0
-|   |   * 0/DUC#1
-|   |   * 0/DmaFIFO#0
-|   |   * 0/DmaFIFO#1
-|   |   * 0/Radio#0
-|   |   * 0/Radio#1
-|     _____________________________________________________
-|    /
-|   |       Static connections on this device:
-|   |
-|   |   * 0/SEP#0:0=3D=3D>0/DmaFIFO#0:0
-|   |   * 0/DmaFIFO#0:0=3D=3D>0/DUC#0:0
-|   |   * 0/DUC#0:0=3D=3D>0/Radio#0:0
-|   |   * 0/SEP#1:0=3D=3D>0/DmaFIFO#0:1
-|   |   * 0/DmaFIFO#0:1=3D=3D>0/DUC#0:1
-|   |   * 0/DUC#0:1=3D=3D>0/Radio#0:1
-|   |   * 0/SEP#2:0=3D=3D>0/DmaFIFO#0:2
-|   |   * 0/DmaFIFO#0:2=3D=3D>0/DUC#0:2
-|   |   * 0/DUC#0:2=3D=3D>0/Radio#0:2
-|   |   * 0/SEP#3:0=3D=3D>0/DmaFIFO#0:3
-|   |   * 0/DmaFIFO#0:3=3D=3D>0/DUC#0:3
-|   |   * 0/DUC#0:3=3D=3D>0/Radio#0:3
-|   |   * 0/SEP#4:0=3D=3D>0/DmaFIFO#1:0
-|   |   * 0/DmaFIFO#1:0=3D=3D>0/DUC#1:0
-|   |   * 0/DUC#1:0=3D=3D>0/Radio#1:0
-|   |   * 0/SEP#5:0=3D=3D>0/DmaFIFO#1:1
-|   |   * 0/DmaFIFO#1:1=3D=3D>0/DUC#1:1
-|   |   * 0/DUC#1:1=3D=3D>0/Radio#1:1
-|   |   * 0/SEP#6:0=3D=3D>0/DmaFIFO#1:2
-|   |   * 0/DmaFIFO#1:2=3D=3D>0/DUC#1:2
-|   |   * 0/DUC#1:2=3D=3D>0/Radio#1:2
-|   |   * 0/SEP#7:0=3D=3D>0/DmaFIFO#1:3
-|   |   * 0/DmaFIFO#1:3=3D=3D>0/DUC#1:3
-|   |   * 0/DUC#1:3=3D=3D>0/Radio#1:3
-------------
-
-
-________________________________
-From: Eugene Grayver <eugene.grayver@aero.org>
-Sent: Wednesday, July 1, 2026 11:03 AM
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: X440 RFNoC build with TX FIFO
-
-Hi,
-Turns out even rebuilding the stock .yml results in the same error.  Is the=
-re something wrong with either my build or with the version of FPGA code ch=
-ecked in?
-Eugene.
-________________________________
-From: Eugene Grayver <eugene.grayver@aero.org>
-Sent: Tuesday, June 30, 2026 4:33 PM
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: X440 RFNoC build with TX FIFO
-
-Hi,
-
-I am trying to work around the underflows on the TX.
-
-I added a AXI DMA FIFO and rebuilt.  As far as I can tell the yaml is OK, b=
-ut when I load the new bit file,
-
-uhd_image_loader --args type=3Dx4xx,addr=3D192.168.10.2,clock_source=3Dinte=
-rnal,time_source=3Dinternal --fpga-path ./uhd-4.9.0.1/fpga/usrp3/top/x400//=
-build-usrp_x440_fpga_X4_200_fifo/X440.bit
-
-I get an error:
-
-[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: RfnocErro=
-r: Specified destination address is unreachable: 1:0
-
-Note: I had to rename the resultant bit file from x4xx.bit to X440.bit to a=
-void an error related to a missing .dts file (since the DTS file is correct=
-ly named X440.dts).
-
-
-Here's the .yml file.  Note that I removed the RX DDC to reduce the FPGA co=
-ngestion.
-
------------------------
-# General parameters
-# -----------------------------------------
-schema: rfnoc_imagebuilder_args          # Identifier for the schema used t=
-o validate this file
-copyright: >-                            # Copyright information used in fi=
-le headers
-  Copyright 2023 Ettus Research, a National Instruments Brand
-license: >-                              # License information used in file=
- headers
-  SPDX-License-Identifier: LGPL-3.0-or-later
-version: '1.0'                           # File version
-chdr_width: 64                           # Bit width of the CHDR bus for th=
-is image
-device: 'x440'                           # USRP type
-image_core_name: 'usrp_x440_fpga_X4_200_fifo' # Name to use for the generat=
-ed output files
-default_target: 'X440'                   # Default make target
-inherit:
-  - 'yaml_include/x440_radio_base.yml'
-  - 'yaml_include/x4xx_x4_base.yml'
-
-parameters:
-  RF_BW: 400
-  ENABLE_DRAM: True
-  NUM_DRAM_BANKS: 2
-  NUM_DRAM_CHANS: 8
-  DRAM_WIDTH: 128
-
-# A list of all stream endpoints in design
-# ----------------------------------------
-stream_endpoints:
-  ep0:                                  # Stream endpoint name
-    ctrl: True                          # Endpoint passes control traffic
-    data: True                          # Endpoint passes data traffic
-    buff_size_bytes: 262144             # Ingress buffer size for data
-  ep1:
-    ctrl: False
-    data: True
-    buff_size_bytes: 262144
-  ep2:
-    ctrl: False
-    data: True
-    buff_size_bytes: 262144
-  ep3:
-    ctrl: False
-    data: True
-    buff_size_bytes: 262144
-  ep4:
-    ctrl: False
-    data: True
-    buff_size_bytes: 262144
-  ep5:
-    ctrl: False
-    data: True
-    buff_size_bytes: 262144
-  ep6:
-    ctrl: False
-    data: True
-    buff_size_bytes: 262144
-  ep7:
-    ctrl: False
-    data: True
-    buff_size_bytes: 262144
-
-# A table of which crossbar routes to include
-# -------------------------------------------
-# Rows correspond to input ports and columns correspond to output ports.
-# Entering a 1 includes and a 0 removes that route from the crossbar.
-crossbar_routes:
-  #  eth0  eth2  dma   ep1   ep3   ep5   ep7
-  #     eth1  eth3  ep0   ep2   ep4   ep6
-  - [ 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 ] # eth0 (QSFP Port 0, Lane 0)
-  - [ 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 ] # eth1 (QSFP Port 0, Lane 1)
-  - [ 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 ] # eth2 (QSFP Port 0, Lane 2)
-  - [ 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 ] # eth3 (QSFP Port 0, Lane 3)
-  - [ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 ] # dma
-  - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] # ep0 (radio0.0)
-  - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] # ep1 (radio0.1)
-  - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] # ep2 (radio0.2)
-  - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] # ep3 (radio0.3)
-  - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] # ep4 (radio1.0)
-  - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] # ep5 (radio1.1)
-  - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] # ep6 (radio1.2)
-  - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] # ep7 (radio1.3)
-
-# A list of all NoC blocks in design
-# ----------------------------------
-noc_blocks:
-  radio0:
-    block_desc: 'radio.yml'
-    parameters:
-      NUM_PORTS: 4
-  radio1:
-    block_desc: 'radio.yml'
-    parameters:
-      NUM_PORTS: 4
-  duc0:
-    block_desc: 'duc.yml'
-    parameters:
-      NUM_PORTS: 4
-  duc1:
-    block_desc: 'duc.yml'
-    parameters:
-      NUM_PORTS: 4
-  fifo0:
-    block_desc: 'axi_ram_fifo.yml'
-    parameters:
-      NUM_PORTS: 4
-      MEM_ADDR_W:   32
-      MEM_DATA_W:   128
-      MEM_CLK_RATE: "300e6"
-      # Create 4 non-overlapping 2 MB buffers
-      FIFO_ADDR_BASE: "{32'h00600000, 32'h00400000, 32'h00200000, 32'h00000=
-000}"
-      FIFO_ADDR_MASK: "{32'h001FFFFF, 32'h001FFFFF, 32'h001FFFFF, 32'h001FF=
-FFF}"
-
-  fifo1:
-    block_desc: 'axi_ram_fifo.yml'
-    parameters:
-      NUM_PORTS: 4
-      MEM_ADDR_W:   32
-      MEM_DATA_W:   128
-      MEM_CLK_RATE: "300e6"
-      # Create 4 non-overlapping 2 MB buffers
-      FIFO_ADDR_BASE: "{32'h00600000, 32'h00400000, 32'h00200000, 32'h00000=
-000}"
-      FIFO_ADDR_MASK: "{32'h001FFFFF, 32'h001FFFFF, 32'h001FFFFF, 32'h001FF=
-FFF}"
-
-# A list of all static connections in design
-# ------------------------------------------
-# Format: A list of connection maps (list of key-value pairs) with the foll=
-owing keys
-#   - srcblk  =3D Source block to connect
-#   - srcport =3D Port on the source block to connect
-#   - dstblk  =3D Destination block to connect
-#   - dstport =3D Port on the destination block to connect
-connections:
-  # RF A:0 TX
-  - { srcblk: ep0,    srcport: out0,  dstblk: fifo0,  dstport: in_0 }
-  - { srcblk: fifo0,  srcport: out_0, dstblk: duc0,   dstport: in_0 }
-  - { srcblk: duc0,   srcport: out_0, dstblk: radio0, dstport: in_0 }
-  # RF A:1 TX
-  - { srcblk: ep1,    srcport: out0,  dstblk: fifo0,  dstport: in_1 }
-  - { srcblk: fifo0,  srcport: out_1, dstblk: duc0,   dstport: in_1 }
-  - { srcblk: duc0,   srcport: out_1, dstblk: radio0, dstport: in_1 }
-  # RF A:2 TX
-  - { srcblk: ep2,    srcport: out0,  dstblk: fifo0,  dstport: in_2 }
-  - { srcblk: fifo0,  srcport: out_2, dstblk: duc0,   dstport: in_2 }
-  - { srcblk: duc0,   srcport: out_2, dstblk: radio0, dstport: in_2 }
-  # RF A:3 TX
-  - { srcblk: ep3,    srcport: out0,  dstblk: fifo0,  dstport: in_3 }
-  - { srcblk: fifo0,  srcport: out_3, dstblk: duc0,   dstport: in_3 }
-  - { srcblk: duc0,   srcport: out_3, dstblk: radio0, dstport: in_3 }
-  #
-  # RF B:0 TX
-  - { srcblk: ep4,    srcport: out0,  dstblk: fifo1,  dstport: in_0 }
-  - { srcblk: fifo1,  srcport: out_0, dstblk: duc1,   dstport: in_0 }
-  - { srcblk: duc1,   srcport: out_0, dstblk: radio1, dstport: in_0 }
-  # RF B:1 TX
-  - { srcblk: ep5,    srcport: out0,  dstblk: fifo1,  dstport: in_1 }
-  - { srcblk: fifo1,  srcport: out_1, dstblk: duc1,   dstport: in_1 }
-  - { srcblk: duc1,   srcport: out_1, dstblk: radio1, dstport: in_1 }
-  # RF B:2 TX
-  - { srcblk: ep6,    srcport: out0,  dstblk: fifo1,  dstport: in_2 }
-  - { srcblk: fifo1,  srcport: out_2, dstblk: duc1,   dstport: in_2 }
-  - { srcblk: duc1,   srcport: out_2, dstblk: radio1, dstport: in_2 }
-  # RF B:3 TX
-  - { srcblk: ep7,    srcport: out0,  dstblk: fifo1,  dstport: in_3 }
-  - { srcblk: fifo1,  srcport: out_3, dstblk: duc1,   dstport: in_3 }
-  - { srcblk: duc1,   srcport: out_3, dstblk: radio1, dstport: in_3 }
-  #
-  # - { srcblk: _device_, srcport: _none_, dstblk: _device_, dstport: gpio0=
- }
-  # - { srcblk: _device_, srcport: _none_, dstblk: _device_, dstport: gpio1=
- }
-  # BSP connections are inherited from YAML include files
-  - { srcblk: fifo0, srcport: axi_ram, dstblk: _device_, dstport: dram0 }
-  - { srcblk: fifo1, srcport: axi_ram, dstblk: _device_, dstport: dram1 }
-
-  - { srcblk: radio0, srcport: out_0, dstblk: ep0,    dstport: in0  }
-  - { srcblk: radio0, srcport: out_1, dstblk: ep1,    dstport: in0  }
-  - { srcblk: radio0, srcport: out_2, dstblk: ep2,    dstport: in0  }
-  - { srcblk: radio0, srcport: out_3, dstblk: ep3,    dstport: in0  }
-  - { srcblk: radio1, srcport: out_0, dstblk: ep4,    dstport: in0  }
-  - { srcblk: radio1, srcport: out_1, dstblk: ep5,    dstport: in0  }
-  - { srcblk: radio1, srcport: out_2, dstblk: ep6,    dstport: in0  }
-  - { srcblk: radio1, srcport: out_3, dstblk: ep7,    dstport: in0  }
-
-
-
-# A list of all clock domain connections in design
-# ------------------------------------------------
-# Format: A list of connection maps (list of key-value pairs) with the foll=
-owing keys
-#   - srcblk  =3D Source block to connect (Always "_device"_)
-#   - srcport =3D Clock domain on the source block to connect
-#   - dstblk  =3D Destination block to connect
-#   - dstport =3D Clock domain on the destination block to connect
-clk_domains:
-  - { srcblk: _device_, srcport: ce,         dstblk: duc0,   dstport: ce   =
- }
-  - { srcblk: _device_, srcport: ce,         dstblk: duc1,   dstport: ce   =
- }
-  # Other clock domains are inherited from YAML include files
-  - { srcblk: _device_, srcport: dram,   dstblk: fifo0, dstport: mem   }
-  - { srcblk: _device_, srcport: dram,   dstblk: fifo1, dstport: mem   }
-
-
---------------------------------
-
-
-Eugene Grayver, Ph.D.
-Principal Engineer
-310-336-1274
-
---_000_SJ0PR09MB91266A3647902D5C21B21B24ECF52SJ0PR09MB9126namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Sorry for the spam &#8212; the issue with rebuild was my mistake &#8212; I =
-had a typo in the .yml that was being built (the one attached to previous m=
-essage was correct).&nbsp;</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-I can now rebuild an image w/out RX DDC and w/ RX radio going nowhere.&nbsp=
-; The fixed connection is EP-&gt;DmaFIFO-&gt;DUC-&gt;Radio.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Usrp_probe gives the expected result as shown below.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Unfortunately running a tx-only benchmark results in an immediate and conti=
-nuous stream of 'U'.&nbsp; What am I missing?&nbsp; Is this not the expecte=
-d use pattern for DmaFIFO?</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Thanks</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-----------</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; &nbsp; _____________________________________________________</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; &nbsp;/</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; &nbsp; &nbsp; RFNoC blocks on this device:</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; |</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/Radio#0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/Radio#1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; &nbsp; _____________________________________________________</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; &nbsp;/</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; &nbsp; &nbsp; Static connections on this device:</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; |</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/SEP#0:0=3D=3D&gt;0/DmaFIFO#0:0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#0:0=3D=3D&gt;0/DUC#0:0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#0:0=3D=3D&gt;0/Radio#0:0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/SEP#1:0=3D=3D&gt;0/DmaFIFO#0:1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#0:1=3D=3D&gt;0/DUC#0:1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#0:1=3D=3D&gt;0/Radio#0:1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/SEP#2:0=3D=3D&gt;0/DmaFIFO#0:2</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#0:2=3D=3D&gt;0/DUC#0:2</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#0:2=3D=3D&gt;0/Radio#0:2</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/SEP#3:0=3D=3D&gt;0/DmaFIFO#0:3</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#0:3=3D=3D&gt;0/DUC#0:3</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#0:3=3D=3D&gt;0/Radio#0:3</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/SEP#4:0=3D=3D&gt;0/DmaFIFO#1:0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#1:0=3D=3D&gt;0/DUC#1:0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#1:0=3D=3D&gt;0/Radio#1:0</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/SEP#5:0=3D=3D&gt;0/DmaFIFO#1:1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#1:1=3D=3D&gt;0/DUC#1:1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#1:1=3D=3D&gt;0/Radio#1:1</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/SEP#6:0=3D=3D&gt;0/DmaFIFO#1:2</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#1:2=3D=3D&gt;0/DUC#1:2</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#1:2=3D=3D&gt;0/Radio#1:2</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/SEP#7:0=3D=3D&gt;0/DmaFIFO#1:3</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DmaFIFO#1:3=3D=3D&gt;0/DUC#1:3</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-| &nbsp; | &nbsp; * 0/DUC#1:3=3D=3D&gt;0/Radio#1:3</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-------------</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Eugene Grayver &lt;eu=
-gene.grayver@aero.org&gt;<br>
-<b>Sent:</b> Wednesday, July 1, 2026 11:03 AM<br>
-<b>To:</b> usrp-users &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: X440 RFNoC build with TX FIFO</font>
-<div>&nbsp;</div>
-</div>
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-Hi,</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-Turns out even rebuilding the stock .yml results in the same error.&nbsp; I=
-s there something wrong with either my build or with the version of FPGA co=
-de checked in?</div>
-<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
-nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
-rgb(0,0,0)">
-Eugene.</div>
-<div id=3D"x_appendonsend"></div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Eugene Grayver &lt;=
-eugene.grayver@aero.org&gt;<br>
-<b>Sent:</b> Tuesday, June 30, 2026 4:33 PM<br>
-<b>To:</b> usrp-users &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> X440 RFNoC build with TX FIFO</font>
-<div>&nbsp;</div>
-</div>
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-Hi,</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-I am trying to work around the underflows on the TX.&nbsp;</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-I added a AXI DMA FIFO and rebuilt.&nbsp; As far as I can tell the yaml is =
-OK, but when I load the new bit file,</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-uhd_image_loader --args type=3Dx4xx,addr=3D192.168.10.2,clock_source=3Dinte=
-rnal,time_source=3Dinternal --fpga-path ./uhd-4.9.0.1/fpga/usrp3/top/x400//=
-build-usrp_x440_fpga_X4_200_fifo/X440.bit</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-I get an error:</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: RfnocErro=
-r: Specified destination address is unreachable: 1:0</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-Note: I had to rename the resultant bit file from x4xx.bit to X440.bit to a=
-void an error related to a missing .dts file (since the DTS file is correct=
-ly named X440.dts).</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-Here's the .yml file.&nbsp; Note that I removed the RX DDC to reduce the FP=
-GA congestion.</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
------------------------</div>
-<div class=3D"x_x_elementToProof">
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# General parameters</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# -----------------------------------------</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-schema: rfnoc_imagebuilder_args&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Id=
-entifier for the schema used to validate this file</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-copyright: &gt;-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Copyright information used in=
- file headers</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; Copyright 2023 Ettus Research, a National Instruments Brand</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-license: &gt;-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# License information used=
- in file headers</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; SPDX-License-Identifier: LGPL-3.0-or-later</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-version: '1.0'&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # File version</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-chdr_width: 64&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Bit width of the CHDR bus for this im=
-age</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-device: 'x440'&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # USRP type</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-image_core_name: 'usrp_x440_fpga_X4_200_fifo' # Name to use for the generat=
-ed output files</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-default_target: 'X440'&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; # Default make target</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-inherit:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - 'yaml_include/x440_radio_base.yml'</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - 'yaml_include/x4xx_x4_base.yml'</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-parameters:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; RF_BW: 400</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ENABLE_DRAM: True</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; NUM_DRAM_BANKS: 2</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; NUM_DRAM_CHANS: 8</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; DRAM_WIDTH: 128</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# A list of all stream endpoints in design</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# ----------------------------------------</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-stream_endpoints:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ep0: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Stream endpoint na=
-me</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; ctrl: True&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Endpoint passes control traf=
-fic</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; data: True&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Endpoint passes data traffic=
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; buff_size_bytes: 262144&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; # Ingress buffer size for data</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ep1:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; ctrl: False</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; data: True</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; buff_size_bytes: 262144</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ep2:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; ctrl: False</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; data: True</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; buff_size_bytes: 262144</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ep3:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; ctrl: False</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; data: True</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; buff_size_bytes: 262144</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ep4:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; ctrl: False</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; data: True</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; buff_size_bytes: 262144</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ep5:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; ctrl: False</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; data: True</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; buff_size_bytes: 262144</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ep6:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; ctrl: False</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; data: True</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; buff_size_bytes: 262144</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; ep7:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; ctrl: False</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; data: True</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; buff_size_bytes: 262144</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# A table of which crossbar routes to include</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# -------------------------------------------</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# Rows correspond to input ports and columns correspond to output ports.</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# Entering a 1 includes and a 0 removes that route from the crossbar.</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-crossbar_routes:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # &nbsp;eth0 &nbsp;eth2 &nbsp;dma &nbsp; ep1 &nbsp; ep3 &nbsp; ep5 &=
-nbsp; ep7</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # &nbsp; &nbsp; eth1 &nbsp;eth3 &nbsp;ep0 &nbsp; ep2 &nbsp; ep4 &nbs=
-p; ep6</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # eth0 (QSFP Port 0=
-, Lane 0)</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # eth1 (QSFP Port 0=
-, Lane 1)</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # eth2 (QSFP Port 0=
-, Lane 2)</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # eth3 (QSFP Port 0=
-, Lane 3)</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1&nbsp;] # dma</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep0 (radio0.0)</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep1 (radio0.1)</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep2 (radio0.2)</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep3 (radio0.3)</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep4 (radio1.0)</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep5 (radio1.1)</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep6 (radio1.2)</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - [ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0&nbsp;] # ep7 (radio1.3)</d=
-iv>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# A list of all NoC blocks in design</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# ----------------------------------</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-noc_blocks:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; radio0:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; block_desc: 'radio.yml'</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; parameters:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; radio1:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; block_desc: 'radio.yml'</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; parameters:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; duc0:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; block_desc: 'duc.yml'</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; parameters:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; duc1:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; block_desc: 'duc.yml'</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; parameters:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; fifo0:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; block_desc: 'axi_ram_fifo.yml'</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; parameters:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; MEM_ADDR_W: &nbsp; 32</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; MEM_DATA_W: &nbsp; 128</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; MEM_CLK_RATE: &quot;300e6&quot;</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; # Create 4 non-overlapping 2 MB buffers</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; FIFO_ADDR_BASE: &quot;{32'h00600000, 32'h00400000, 32'=
-h00200000, 32'h00000000}&quot;</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; FIFO_ADDR_MASK: &quot;{32'h001FFFFF, 32'h001FFFFF, 32'=
-h001FFFFF, 32'h001FFFFF}&quot;</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; fifo1:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; block_desc: 'axi_ram_fifo.yml'</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; parameters:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; NUM_PORTS: 4</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; MEM_ADDR_W: &nbsp; 32</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; MEM_DATA_W: &nbsp; 128</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; MEM_CLK_RATE: &quot;300e6&quot;</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; # Create 4 non-overlapping 2 MB buffers</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; FIFO_ADDR_BASE: &quot;{32'h00600000, 32'h00400000, 32'=
-h00200000, 32'h00000000}&quot;</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; &nbsp; &nbsp; FIFO_ADDR_MASK: &quot;{32'h001FFFFF, 32'h001FFFFF, 32'=
-h001FFFFF, 32'h001FFFFF}&quot;</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# A list of all static connections in design</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# ------------------------------------------</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# Format: A list of connection maps (list of key-value pairs) with the foll=
-owing keys</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# &nbsp; - srcblk &nbsp;=3D Source block to connect</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# &nbsp; - srcport =3D Port on the source block to connect</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# &nbsp; - dstblk &nbsp;=3D Destination block to connect</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# &nbsp; - dstport =3D Port on the destination block to connect</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-connections:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # RF A:0 TX</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: ep0, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo0, &n=
-bsp;dstport: in_0&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo0, &nbsp;srcport: out_0, dstblk: duc0, &nbsp; dstpor=
-t: in_0&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: duc0, &nbsp; srcport: out_0, dstblk: radio0, dstport: in=
-_0&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # RF A:1 TX</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: ep1, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo0, &n=
-bsp;dstport: in_1&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo0, &nbsp;srcport: out_1, dstblk: duc0, &nbsp; dstpor=
-t: in_1&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: duc0, &nbsp; srcport: out_1, dstblk: radio0, dstport: in=
-_1&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # RF A:2 TX</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: ep2, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo0, &n=
-bsp;dstport: in_2&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo0, &nbsp;srcport: out_2, dstblk: duc0, &nbsp; dstpor=
-t: in_2&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: duc0, &nbsp; srcport: out_2, dstblk: radio0, dstport: in=
-_2&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # RF A:3 TX</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: ep3, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo0, &n=
-bsp;dstport: in_3&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo0, &nbsp;srcport: out_3, dstblk: duc0, &nbsp; dstpor=
-t: in_3&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: duc0, &nbsp; srcport: out_3, dstblk: radio0, dstport: in=
-_3&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; #</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # RF B:0 TX</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: ep4, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo1, &n=
-bsp;dstport: in_0&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo1, &nbsp;srcport: out_0, dstblk: duc1, &nbsp; dstpor=
-t: in_0&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: duc1, &nbsp; srcport: out_0, dstblk: radio1, dstport: in=
-_0&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # RF B:1 TX</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: ep5, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo1, &n=
-bsp;dstport: in_1&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo1, &nbsp;srcport: out_1, dstblk: duc1, &nbsp; dstpor=
-t: in_1&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: duc1, &nbsp; srcport: out_1, dstblk: radio1, dstport: in=
-_1&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # RF B:2 TX</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: ep6, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo1, &n=
-bsp;dstport: in_2&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo1, &nbsp;srcport: out_2, dstblk: duc1, &nbsp; dstpor=
-t: in_2&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: duc1, &nbsp; srcport: out_2, dstblk: radio1, dstport: in=
-_2&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # RF B:3 TX</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: ep7, &nbsp; &nbsp;srcport: out0, &nbsp;dstblk: fifo1, &n=
-bsp;dstport: in_3&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo1, &nbsp;srcport: out_3, dstblk: duc1, &nbsp; dstpor=
-t: in_3&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: duc1, &nbsp; srcport: out_3, dstblk: radio1, dstport: in=
-_3&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; #</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # - { srcblk: _device_, srcport: _none_, dstblk: _device_, dstport: =
-gpio0 }</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # - { srcblk: _device_, srcport: _none_, dstblk: _device_, dstport: =
-gpio1 }</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # BSP connections are inherited from YAML include files</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo0, srcport: axi_ram, dstblk: _device_, dstport: dram=
-0&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: fifo1, srcport: axi_ram, dstblk: _device_, dstport: dram=
-1&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: radio0, srcport: out_0, dstblk: ep0, &nbsp; &nbsp;dstpor=
-t: in0&nbsp;&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: radio0, srcport: out_1, dstblk: ep1, &nbsp; &nbsp;dstpor=
-t: in0&nbsp;&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: radio0, srcport: out_2, dstblk: ep2, &nbsp; &nbsp;dstpor=
-t: in0&nbsp;&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: radio0, srcport: out_3, dstblk: ep3, &nbsp; &nbsp;dstpor=
-t: in0&nbsp;&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: radio1, srcport: out_0, dstblk: ep4, &nbsp; &nbsp;dstpor=
-t: in0&nbsp;&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: radio1, srcport: out_1, dstblk: ep5, &nbsp; &nbsp;dstpor=
-t: in0&nbsp;&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: radio1, srcport: out_2, dstblk: ep6, &nbsp; &nbsp;dstpor=
-t: in0&nbsp;&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: radio1, srcport: out_3, dstblk: ep7, &nbsp; &nbsp;dstpor=
-t: in0&nbsp;&nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp;</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# A list of all clock domain connections in design</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# ------------------------------------------------</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# Format: A list of connection maps (list of key-value pairs) with the foll=
-owing keys</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# &nbsp; - srcblk &nbsp;=3D Source block to connect (Always &quot;_device&q=
-uot;_)</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# &nbsp; - srcport =3D Clock domain on the source block to connect</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# &nbsp; - dstblk &nbsp;=3D Destination block to connect</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-# &nbsp; - dstport =3D Clock domain on the destination block to connect</di=
-v>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-clk_domains:</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: _device_, srcport: ce, &nbsp; &nbsp; &nbsp; &nbsp; dstbl=
-k: duc0, &nbsp; dstport: ce&nbsp;&nbsp; &nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: _device_, srcport: ce, &nbsp; &nbsp; &nbsp; &nbsp; dstbl=
-k: duc1, &nbsp; dstport: ce&nbsp;&nbsp; &nbsp;}</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; # Other clock domains are inherited from YAML include files</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: _device_, srcport: dram, &nbsp; dstblk: fifo0, dstport: =
-mem&nbsp;&nbsp; }</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-&nbsp; - { srcblk: _device_, srcport: dram, &nbsp; dstblk: fifo1, dstport: =
-mem&nbsp;&nbsp; }</div>
-<div class=3D"x_x_elementToProof" style=3D"line-height:19px; font-family:Ap=
-tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; fo=
-nt-size:12pt; color:rgb(0,0,0)">
-<br>
-</div>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
---------------------------------</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div id=3D"x_x_Signature" class=3D"x_x_elementToProof">
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-<br>
-</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-Eugene Grayver, Ph.D.</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-Principal Engineer</div>
-<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
-Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
-r:rgb(0,0,0)">
-310-336-1274</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_SJ0PR09MB91266A3647902D5C21B21B24ECF52SJ0PR09MB9126namp_--
-
---===============5843501476155524580==
+--===============6408604927013298865==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1852,4 +531,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5843501476155524580==--
+--===============6408604927013298865==--
